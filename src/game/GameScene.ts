@@ -10,6 +10,7 @@ import { DEFAULT_JOKER_IDS, getJoker } from '../jokers/JokerEngine';
 import type { JokerId, JokerResolution } from '../jokers/types';
 import { scoreHand, type ScoreResult } from '../scoring/scoreHand';
 import { getCharacter, type CharacterId } from './characters';
+import { portraitSquareCrop } from './portraitCrop';
 
 const HAND_SIZE = 8;
 const MAX_SELECTED = 5;
@@ -82,17 +83,15 @@ export class GameScene extends Phaser.Scene {
       .rectangle(width - 200, 56, 344, 76, 0x2b2317, 0.98)
       .setStrokeStyle(2, character.accent, 0.72);
 
-    // HUD 角色区：小型立绘（正方裁切）+ 称号 · 名称 + 当前被动
+    // HUD 角色区：小型立绘（按 focal 点正方裁切，保住脸）+ 称号 · 名称 + 当前被动
     const portraitSize = 58;
     const portraitX = roleBg.x - roleBg.width / 2 + portraitSize / 2 + 8;
     const portraitKey = `portrait-${character.id}`;
     if (this.textures.exists(portraitKey)) {
       const frame = this.textures.get(portraitKey).getSourceImage() as HTMLImageElement;
-      const side = Math.min(frame.width, frame.height);
-      const cropX = (frame.width - side) / 2;
-      const cropY = (frame.height - side) / 2;
+      const crop = portraitSquareCrop(frame.width, frame.height, character.portraitFocusX, character.portraitFocusY);
       this.add.image(portraitX, roleBg.y, portraitKey)
-        .setCrop(cropX, cropY, side, side)
+        .setCrop(crop.x, crop.y, crop.width, crop.height)
         .setDisplaySize(portraitSize, portraitSize);
     } else {
       this.add.rectangle(portraitX, roleBg.y, portraitSize, portraitSize, character.accent, 0.28)

@@ -1,5 +1,22 @@
 import { describe, expect, it } from 'vitest';
-import { resolveCharacterModifier } from '../src/game/characters';
+import { CHARACTERS, resolveCharacterModifier } from '../src/game/characters';
+
+describe('character portrait config', () => {
+  it('六位角色的立绘路径均指向自己的资源文件', () => {
+    for (const character of CHARACTERS) {
+      expect(character.portrait).toContain(`assets/characters/${character.id}.png`);
+    }
+  });
+  it('focal 对焦点都在 0~1 有效区间内', () => {
+    for (const character of CHARACTERS) {
+      expect(character.portraitFocusX).toBeGreaterThanOrEqual(0);
+      expect(character.portraitFocusX).toBeLessThanOrEqual(1);
+      expect(character.portraitFocusY).toBeGreaterThanOrEqual(0);
+      expect(character.portraitFocusY).toBeLessThanOrEqual(1);
+    }
+  });
+});
+
 
 describe('character passives', () => {
   it('阿默 triples one-card plays', () => {
