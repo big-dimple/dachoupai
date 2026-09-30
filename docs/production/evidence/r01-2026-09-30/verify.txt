@@ -1,0 +1,52 @@
+
+> dachoupai@0.1.0 verify
+> npm run typecheck && npm test && npm run build
+
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ✓ tests/handEvaluator.test.ts (5 tests) 22ms
+ ✓ tests/SeededRng.test.ts (3 tests) 8ms
+ ✓ tests/portraitCrop.test.ts (8 tests) 11ms
+ ✓ tests/jokers.test.ts (5 tests) 7ms
+ ✓ tests/characters.test.ts (6 tests) 10ms
+ ✓ tests/scoreHand.test.ts (2 tests) 8ms
+ ✓ tests/run.test.ts (7 tests) 15ms
+ ✓ tests/shop.test.ts (8 tests) 31ms
+ ✓ tests/balance.test.ts (2 tests) 845ms
+   ✓ balance gate (greedy bot, real scoring) > stage 1 stays tutorial-grade: greedy fails it on at most 3/10 seeds  589ms
+ ✓ tests/domain.test.ts (22 tests) 7480ms
+   ✓ complete r1 command state > keeps all active card instances in exactly one zone in 1000 fixed generated cases  7071ms
+
+ Test Files  10 passed (10)
+      Tests  68 passed (68)
+   Start at  23:14:26
+   Duration  11.64s (transform 4.68s, setup 0ms, collect 13.56s, tests 8.44s, environment 4ms, prepare 9.81s)
+
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 35 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.57 kB │ gzip:   0.37 kB
+dist/assets/index-eXYOqAOg.css      0.24 kB │ gzip:   0.22 kB
+dist/assets/index-BNnT4aXc.js   1,249.55 kB │ gzip: 346.59 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 7.64s
+EXIT_CODE=0

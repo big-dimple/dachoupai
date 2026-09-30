@@ -1,0 +1,17 @@
+
+> dachoupai@0.1.0 test:domain
+> vitest run tests/domain.test.ts tests/SeededRng.test.ts
+
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ✓ tests/SeededRng.test.ts (3 tests) 4ms
+ ✓ tests/domain.test.ts (22 tests) 4785ms
+   ✓ complete r1 command state > keeps all active card instances in exactly one zone in 1000 fixed generated cases  4571ms
+
+ Test Files  2 passed (2)
+      Tests  25 passed (25)
+   Start at  23:17:24
+   Duration  5.72s (transform 161ms, setup 0ms, collect 317ms, tests 4.79s, environment 0ms, prepare 322ms)
+
+EXIT_CODE=0
