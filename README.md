@@ -24,6 +24,7 @@
 
 ```bash
 npm install
+npx playwright install chromium   # 首次跑冒烟前需要（约 120 MB 浏览器）
 npm run dev
 ```
 
