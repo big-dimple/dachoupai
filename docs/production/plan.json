@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "auditCommit": "9fd6e0bdb20c7e6114e045ca336c27afe5d47e9e",
-  "currentTask": "R03",
+  "currentTask": "R04",
   "selectionPolicy": "One ready/in_progress task at a time. Choose the lowest-priority-number eligible planned task after closing the current task. Blocked human gates stay blocked; never mark done to unlock work. If no independent work is eligible, currentTask may point to the blocked gate.",
   "tasks": [
     {"id":"R00","title":"采用基线与复现证据","priority":0,"status":"done","dependsOn":[],"reads":["docs/production/AUDIT.md","docs/production/DECISIONS.md","docs/production/QUALITY.md"],"package":"docs/production/WORK_PACKAGES.md#r00","humanGate":false,"evidence":["docs/production/evidence/R00-2026-09-30.json"]},
     {"id":"R01","title":"唯一领域命令与完整状态","priority":1,"status":"done","dependsOn":["R00"],"reads":["docs/production/ENGINEERING.md","docs/production/RULES.md"],"package":"docs/production/WORK_PACKAGES.md#r01","humanGate":false,"evidence":["docs/production/evidence/R01-2026-09-30.json"]},
     {"id":"R02","title":"r2计分角色与内容schema","priority":2,"status":"done","dependsOn":["R01"],"reads":["docs/production/RULES.md","docs/production/CONTENT.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#r02","humanGate":false,"evidence":["docs/production/evidence/R02-2026-10-01.json"]},
-    {"id":"R03","title":"出弃牌与构筑经济","priority":3,"status":"in_progress","dependsOn":["R02"],"reads":["docs/production/RULES.md","docs/production/ENGINEERING.md","docs/production/UX.md"],"package":"docs/production/WORK_PACKAGES.md#r03","humanGate":false,"evidence":[]},
-    {"id":"R04","title":"存档恢复与演出取消","priority":4,"status":"planned","dependsOn":["R03"],"reads":["docs/production/ENGINEERING.md","docs/production/UX.md","docs/production/QUALITY.md"],"package":"docs/production/WORK_PACKAGES.md#r04","humanGate":false,"evidence":[]},
+    {"id":"R03","title":"出弃牌与构筑经济","priority":3,"status":"done","dependsOn":["R02"],"reads":["docs/production/RULES.md","docs/production/ENGINEERING.md","docs/production/UX.md"],"package":"docs/production/WORK_PACKAGES.md#r03","humanGate":false,"evidence":["docs/production/evidence/R03-2026-10-01.json"]},
+    {"id":"R04","title":"存档恢复与演出取消","priority":4,"status":"ready","dependsOn":["R03"],"reads":["docs/production/ENGINEERING.md","docs/production/UX.md","docs/production/QUALITY.md"],"package":"docs/production/WORK_PACKAGES.md#r04","humanGate":false,"evidence":[]},
     {"id":"R05","title":"真实移动布局与操作","priority":5,"status":"planned","dependsOn":["R04"],"reads":["docs/production/UX.md","docs/production/ART.md","docs/production/ENGINEERING.md"],"package":"docs/production/WORK_PACKAGES.md#r05","humanGate":false,"evidence":[]},
     {"id":"R06","title":"CI与执行门禁","priority":6,"status":"planned","dependsOn":["R05"],"reads":["docs/production/QUALITY.md","docs/production/ENGINEERING.md","docs/production/AUDIT.md"],"package":"docs/production/WORK_PACKAGES.md#r06","humanGate":false,"evidence":[]},
     {"id":"V00","title":"24牌两章核心灰盒","priority":10,"status":"planned","dependsOn":["R06"],"reads":["docs/production/PRODUCT.md","docs/production/CONTENT.md","docs/production/RULES.md","docs/production/QUALITY.md"],"package":"docs/production/WORK_PACKAGES.md#v00","humanGate":false,"evidence":[]},

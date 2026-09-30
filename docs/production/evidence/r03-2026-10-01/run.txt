@@ -1,0 +1,20 @@
+
+> dachoupai@0.1.0 test:run
+> vitest run tests/r2-run.test.ts tests/r2-shop.test.ts tests/r2-command.test.ts tests/card-boundary.test.ts tests/run.test.ts tests/shop.test.ts
+
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ✓ tests/run.test.ts (7 tests) 7ms
+ ✓ tests/shop.test.ts (8 tests) 7ms
+ ✓ tests/card-boundary.test.ts (1 test) 9ms
+ ✓ tests/r2-command.test.ts (5 tests) 72ms
+ ✓ tests/r2-run.test.ts (13 tests) 92ms
+ ✓ tests/r2-shop.test.ts (2 tests) 139ms
+
+ Test Files  6 passed (6)
+      Tests  36 passed (36)
+   Start at  01:05:49
+   Duration  1.08s (transform 332ms, setup 0ms, collect 1.35s, tests 326ms, environment 1ms, prepare 1.25s)
+
+EXIT_CODE=0

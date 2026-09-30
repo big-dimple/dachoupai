@@ -1,0 +1,58 @@
+
+> dachoupai@0.1.0 verify
+> npm run typecheck && npm test && npm run build
+
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ✓ tests/portraitCrop.test.ts (8 tests) 8ms
+ ✓ tests/jokers.test.ts (5 tests) 6ms
+ ✓ tests/rational.test.ts (4 tests) 56ms
+ ✓ tests/characters.test.ts (6 tests) 5ms
+ ✓ tests/scoreHand.test.ts (3 tests) 6ms
+ ✓ tests/content-schema.test.ts (12 tests) 6ms
+ ✓ tests/run.test.ts (7 tests) 10ms
+ ✓ tests/shop.test.ts (8 tests) 11ms
+ ✓ tests/rules.test.ts (39 tests) 94ms
+ ✓ tests/card-boundary.test.ts (1 test) 12ms
+ ✓ tests/r2-command.test.ts (5 tests) 92ms
+ ✓ tests/r2-run.test.ts (13 tests) 135ms
+ ✓ tests/r2-shop.test.ts (2 tests) 209ms
+ ✓ tests/SeededRng.test.ts (3 tests) 4ms
+ ✓ tests/handEvaluator.test.ts (5 tests) 3ms
+ ✓ tests/balance.test.ts (2 tests) 379ms
+ ✓ tests/domain.test.ts (22 tests) 3620ms
+   ✓ complete r1 command state > keeps all active card instances in exactly one zone in 1000 fixed generated cases  3432ms
+
+ Test Files  17 passed (17)
+      Tests  145 passed (145)
+   Start at  01:05:06
+   Duration  5.09s (transform 1.40s, setup 0ms, collect 5.81s, tests 4.66s, environment 5ms, prepare 5.43s)
+
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 44 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.57 kB │ gzip:   0.37 kB
+dist/assets/index-eXYOqAOg.css      0.24 kB │ gzip:   0.22 kB
+dist/assets/index-K4EKo249.js   1,280.14 kB │ gzip: 355.35 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.13s
+EXIT_CODE=0
