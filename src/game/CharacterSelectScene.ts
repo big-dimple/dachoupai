@@ -92,6 +92,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     this.registry.set('characterId', characterId);
     this.registry.set('seed', seed);
     this.registry.set('runState', createRunState(seed, characterId));
-    this.scene.start('game');
+    // 每局从货摊开始：起手金币先淘一张大丑牌，再进第一关
+    this.scene.start('shop');
   }
 }

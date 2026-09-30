@@ -1,5 +1,5 @@
 /**
- * 轻量冒烟与截图工具：真实浏览器跑通「选角 -> 开局」主流程。
+ * 轻量冒烟与截图工具：真实浏览器跑通「选角 -> 商店 -> 开局」主流程。
  *
  * - 默认 `npm run shot`：桌面 + 竖屏手机各跑一遍，截图存 shots/（gitignore，人工目审）
  * - `npm run verify:smoke`（--verify-smoke）：同上但不落盘，断言失败即非零退出，作发布门禁
@@ -96,13 +96,19 @@ async function runViewport(browser, name, viewport) {
   await page.waitForTimeout(400); // 等立绘裁切渲染稳定
   await shot('select');
 
-  // 点第一张卡（阿默）-> 应进入游戏场景
+  // 点第一张卡（阿默）-> 每局先进商店（起手淘牌），点「开局」-> 进入游戏场景
   const point = await gameToPage(page, FIRST_CARD.x, FIRST_CARD.y);
   await page.mouse.click(point.x, point.y);
-  await waitForScene(page, 'game');
+  await waitForScene(page, 'shop');
 
   const chosen = await page.evaluate(() => window.__harness.game.registry.get('characterId'));
   assert.equal(chosen, 'amo', `${name}: clicking first card starts a run as amo`);
+  await page.waitForTimeout(400);
+  await shot('shop');
+
+  const openRun = await gameToPage(page, 1108, 624); // ShopScene 开局/下一关按钮
+  await page.mouse.click(openRun.x, openRun.y);
+  await waitForScene(page, 'game');
   await page.waitForTimeout(600); // 等 HUD 立绘与手牌发完
   await shot('game');
 

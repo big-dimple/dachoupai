@@ -11,6 +11,8 @@ export interface StageDefinition {
   targetHeat: number;
   /** 本关可出牌次数 */
   hands: number;
+  /** 过关基础金币奖励（另加每张剩余出牌的 HAND_BONUS_GOLD） */
+  clearGold: number;
 }
 
 export const STAGES = stageData as StageDefinition[];
@@ -28,4 +30,12 @@ export function stageOrderLabel(index: number): string {
 
 export function isFinalStage(index: number): boolean {
   return index === STAGES.length - 1;
+}
+
+/** 每剩余 1 张出牌额外奖励的金币 */
+export const HAND_BONUS_GOLD = 2;
+
+/** 过关金币 = 关卡基础奖励 + 剩余出牌 × HAND_BONUS_GOLD */
+export function stageClearGold(stage: StageDefinition, handsLeft: number): number {
+  return stage.clearGold + Math.max(0, handsLeft) * HAND_BONUS_GOLD;
 }

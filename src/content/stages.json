@@ -3,21 +3,24 @@
     "id": "stage-1",
     "name": "开台锣鼓",
     "intro": "锣鼓三声，台口一开，先热个场。",
-    "targetHeat": 1200,
-    "hands": 4
+    "targetHeat": 700,
+    "hands": 4,
+    "clearGold": 6
   },
   {
     "id": "stage-2",
     "name": "满座听雨",
     "intro": "雨声入夜，满座皆是知音，得拿出真东西了。",
-    "targetHeat": 2000,
-    "hands": 4
+    "targetHeat": 1500,
+    "hands": 4,
+    "clearGold": 7
   },
   {
     "id": "stage-3",
     "name": "灯火连天",
     "intro": "灯火连台不夜天，这一场要让全场失控。",
-    "targetHeat": 2800,
-    "hands": 5
+    "targetHeat": 2200,
+    "hands": 5,
+    "clearGold": 8
   }
 ]

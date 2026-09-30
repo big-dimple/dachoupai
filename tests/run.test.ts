@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { createShuffledDeck } from '../src/cards/deck';
-import { DEFAULT_JOKER_IDS } from '../src/jokers/JokerEngine';
 import {
   advanceStage,
   allStagesCleared,
   createRunState,
   stageRng,
+  STARTING_GOLD,
 } from '../src/run/runState';
 import { getStage, isFinalStage, STAGES, stageOrderLabel } from '../src/run/stages';
 
@@ -27,20 +27,24 @@ describe('stages definition', () => {
 });
 
 describe('RunState', () => {
-  it('starts at stage 0 with the five default jokers equipped', () => {
+  it('starts at stage 0 with starter gold and no jokers (shop batch: buy-to-equip)', () => {
     const run = createRunState('seed-1', 'amo');
     expect(run.stageIndex).toBe(0);
     expect(run.totalHeat).toBe(0);
-    expect(run.jokerIds).toEqual(DEFAULT_JOKER_IDS);
+    expect(run.gold).toBe(STARTING_GOLD);
+    expect(run.jokerIds).toEqual([]);
   });
 
-  it('advanceStage accumulates heat and moves on without mutating the old state', () => {
+  it('advanceStage accumulates heat and clear gold without mutating the old state', () => {
     const run = createRunState('seed-1', 'amo');
-    const next = advanceStage(run, 1500);
+    const next = advanceStage(run, 1500, 2);
     expect(next.stageIndex).toBe(1);
     expect(next.totalHeat).toBe(1500);
+    // 第一关 clearGold 6 + 剩余 2 手 × 2 = 10
+    expect(next.gold).toBe(STARTING_GOLD + 10);
     expect(run.stageIndex).toBe(0);
     expect(run.totalHeat).toBe(0);
+    expect(run.gold).toBe(STARTING_GOLD);
     expect(allStagesCleared(next)).toBe(false);
     expect(allStagesCleared(advanceStage(advanceStage(next, 1), 1))).toBe(true);
   });

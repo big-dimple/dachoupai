@@ -1,8 +1,10 @@
 import { SeededRng } from '../core/SeededRng';
 import type { CharacterId } from '../game/characters';
-import { DEFAULT_JOKER_IDS } from '../jokers/JokerEngine';
 import type { JokerId } from '../jokers/types';
-import { STAGES } from './stages';
+import { getStage, stageClearGold, STAGES } from './stages';
+
+/** 开局金币：够买任意一张牌（最贵 6）或普通牌 + 一次刷新 */
+export const STARTING_GOLD = 6;
 
 /**
  * 一局（Run）的可变状态。跨 Scene 存放于 Phaser registry，键名 `runState`。
@@ -16,7 +18,9 @@ export interface RunState {
   stageIndex: number;
   /** 已过各关的累计热度（不含当前关进行中的热度） */
   totalHeat: number;
-  /** 已装备大丑牌（Phase 2B 商店接手管理；此前默认五张全装） */
+  /** 金币：过关奖励所得，商店购买/刷新消耗 */
+  gold: number;
+  /** 已装备大丑牌，最多 5 张（商店购买进入，Batch 2C 前暂无卸下/售出） */
   jokerIds: readonly JokerId[];
 }
 
@@ -26,19 +30,22 @@ export function createRunState(seed: string, characterId: CharacterId): RunState
     characterId,
     stageIndex: 0,
     totalHeat: 0,
-    jokerIds: [...DEFAULT_JOKER_IDS],
+    gold: STARTING_GOLD,
+    jokerIds: [],
   };
 }
 
 /**
- * 当前关结束后推进关卡：累计热度，stageIndex + 1。
+ * 当前关过关后推进关卡：累计热度与过关金币奖励，stageIndex + 1。
  * stageIndex 可能因此等于 STAGES.length（普通关全部打完），由过场决定下一步。
  */
-export function advanceStage(run: RunState, stageHeat: number): RunState {
+export function advanceStage(run: RunState, stageHeat: number, handsLeft = 0): RunState {
+  const cleared = getStage(run.stageIndex);
   return {
     ...run,
     stageIndex: run.stageIndex + 1,
     totalHeat: run.totalHeat + stageHeat,
+    gold: run.gold + (cleared ? stageClearGold(cleared, handsLeft) : 0),
   };
 }
 

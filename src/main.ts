@@ -4,6 +4,7 @@ import { BootScene } from './game/BootScene';
 import { CharacterSelectScene } from './game/CharacterSelectScene';
 import { GameScene } from './game/GameScene';
 import { IntermissionScene } from './game/IntermissionScene';
+import { ShopScene } from './game/ShopScene';
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -11,7 +12,7 @@ const config: Phaser.Types.Core.GameConfig = {
   width: 1280,
   height: 720,
   backgroundColor: '#090711',
-  scene: [BootScene, CharacterSelectScene, GameScene, IntermissionScene],
+  scene: [BootScene, CharacterSelectScene, GameScene, IntermissionScene, ShopScene],
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,

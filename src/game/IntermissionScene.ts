@@ -10,6 +10,8 @@ export interface IntermissionResult {
   stageIndex: number;
   stageHeat: number;
   handsLeft: number;
+  /** 本关过关金币奖励（冷场为 0） */
+  goldEarned: number;
 }
 
 /**
@@ -57,8 +59,8 @@ export class IntermissionScene extends Phaser.Scene {
     const lines = this.result.cleared
       ? [
           `达成热度  ${this.result.stageHeat.toLocaleString()} / ${stage.targetHeat.toLocaleString()}`,
-          `剩余出牌  ${this.result.handsLeft}`,
-          `巡演累计  ${run.totalHeat.toLocaleString()} 热度`,
+          `剩余出牌  ${this.result.handsLeft}    ·    过关奖励  +${this.result.goldEarned} 金币`,
+          `巡演累计  ${run.totalHeat.toLocaleString()} 热度    ·    现有金币  ${run.gold}`,
         ]
       : [
           `${stageOrderLabel(this.result.stageIndex)} · ${stage.name} 差 ${Math.max(0, stage.targetHeat - this.result.stageHeat).toLocaleString()} 热度`,
@@ -86,12 +88,12 @@ export class IntermissionScene extends Phaser.Scene {
 
     const buttonLabel = this.result.cleared
       ? nextStage
-        ? '进入下一关'
+        ? '去货摊看看'
         : '回到选角'
       : '重新开局';
     this.addButton(width / 2, height - 150, buttonLabel, () => {
       if (this.result.cleared && nextStage) {
-        this.scene.start('game');
+        this.scene.start('shop');
       } else {
         // 巡演落幕或冷场：本局结束，回到选角开始新的一局
         this.registry.remove('runState');

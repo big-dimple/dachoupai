@@ -9,7 +9,7 @@ import { TriggerEngine } from '../core/TriggerEngine';
 import { getJoker } from '../jokers/JokerEngine';
 import type { JokerId, JokerResolution } from '../jokers/types';
 import { advanceStage, createRunState, stageRng, type RunState } from '../run/runState';
-import { getStage, stageOrderLabel, type StageDefinition } from '../run/stages';
+import { getStage, stageClearGold, stageOrderLabel, type StageDefinition } from '../run/stages';
 import { scoreHand, type ScoreResult } from '../scoring/scoreHand';
 import { getCharacter, type CharacterId } from './characters';
 import type { IntermissionResult } from './IntermissionScene';
@@ -214,6 +214,15 @@ export class GameScene extends Phaser.Scene {
     const y = 145;
     const cardWidth = 132;
     const gap = 12;
+
+    if (this.jokerIds.length === 0) {
+      this.add.text(startX, y, '尚未装备大丑牌——过关后去货摊淘几张。', {
+        fontFamily: '"Microsoft YaHei", sans-serif',
+        fontSize: '15px',
+        color: '#8f8267',
+      }).setOrigin(0, 0.5);
+      return;
+    }
 
     this.jokerIds.forEach((id, index) => {
       const joker = getJoker(id);
@@ -465,11 +474,12 @@ export class GameScene extends Phaser.Scene {
   private finishStage(cleared: boolean): void {
     const completedIndex = this.run.stageIndex;
     const stageHeat = this.heat;
+    const goldEarned = cleared ? stageClearGold(this.stage, this.handsLeft) : 0;
 
     if (cleared) {
       this.resultText.setText(`全场失控！\n${stageHeat.toLocaleString()} 热度`);
       this.cameras.main.flash(420, 255, 231, 181, false);
-      this.run = advanceStage(this.run, stageHeat);
+      this.run = advanceStage(this.run, stageHeat, this.handsLeft);
       this.registry.set('runState', this.run);
     } else {
       this.resultText.setText(
@@ -483,6 +493,7 @@ export class GameScene extends Phaser.Scene {
         stageIndex: completedIndex,
         stageHeat,
         handsLeft: this.handsLeft,
+        goldEarned,
       } satisfies IntermissionResult);
     });
   }
