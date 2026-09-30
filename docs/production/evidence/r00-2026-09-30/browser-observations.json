@@ -1,0 +1,559 @@
+{
+  "testedCommit": "14be6d65eeffd3a0d97a9d76a6274112fe75585e",
+  "branch": "feat/R00-baseline-evidence",
+  "dirtyState": "M docs/development-handoff.md\n M docs/production/plan.json\n?? docs/production/evidence/r00-2026-09-30/",
+  "captureHash": "edbf3217bc7c062874592df36bf99fe4ef198ba48c8c2075b2caf04b0ae328a0",
+  "node": "v22.20.0",
+  "viewports": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "input": "mouse.click",
+      "errors": [],
+      "afterBuy": {
+        "seed": "r00-baseline",
+        "characterId": "amo",
+        "stageIndex": 0,
+        "totalHeat": 0,
+        "gold": 2,
+        "jokerIds": [
+          "mantangcai"
+        ]
+      },
+      "beforePlay": {
+        "active": true,
+        "playing": false,
+        "heat": 0,
+        "handsLeft": 4,
+        "hand": [
+          "diamonds-7",
+          "spades-2",
+          "diamonds-10",
+          "diamonds-6",
+          "diamonds-2",
+          "spades-12",
+          "hearts-5",
+          "spades-7"
+        ],
+        "deckCount": 44,
+        "queueRunning": false,
+        "pendingEffects": 0,
+        "result": "选 1～5 张牌，开始你的第一个包袱。",
+        "breakdown": "计分来源会在这里逐项展开",
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "playButtonCssHeight": 58,
+        "jokerDescriptionCssFontSize": 10,
+        "run": {
+          "seed": "r00-baseline",
+          "characterId": "amo",
+          "stageIndex": 0,
+          "totalHeat": 0,
+          "gold": 2,
+          "jokerIds": [
+            "mantangcai"
+          ]
+        }
+      },
+      "afterPlay": {
+        "active": true,
+        "playing": false,
+        "heat": 60,
+        "handsLeft": 3,
+        "hand": [
+          "spades-2",
+          "diamonds-10",
+          "diamonds-6",
+          "diamonds-2",
+          "spades-12",
+          "hearts-5",
+          "spades-7",
+          "diamonds-3"
+        ],
+        "deckCount": 43,
+        "queueRunning": false,
+        "pendingEffects": 0,
+        "result": "高牌   +60 热度",
+        "breakdown": "牌型：20 热度 × 1 倍率\n角色：独角戏 ×3\n结算：20 × 1.0 × 3.00 = 60",
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "playButtonCssHeight": 58,
+        "jokerDescriptionCssFontSize": 10,
+        "run": {
+          "seed": "r00-baseline",
+          "characterId": "amo",
+          "stageIndex": 0,
+          "totalHeat": 0,
+          "gold": 2,
+          "jokerIds": [
+            "mantangcai"
+          ]
+        }
+      },
+      "interruptSubmitted": {
+        "active": true,
+        "playing": true,
+        "heat": 120,
+        "handsLeft": 2,
+        "hand": [
+          "spades-2",
+          "diamonds-10",
+          "diamonds-6",
+          "diamonds-2",
+          "spades-12",
+          "hearts-5",
+          "spades-7",
+          "diamonds-3"
+        ],
+        "deckCount": 43,
+        "queueRunning": true,
+        "pendingEffects": 2,
+        "result": "高牌   +60 热度",
+        "breakdown": "牌型：20 热度 × 1 倍率\n角色：独角戏 ×3\n结算：20 × 1.0 × 3.00 = 60",
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "playButtonCssHeight": 58,
+        "jokerDescriptionCssFontSize": 10,
+        "run": {
+          "seed": "r00-baseline",
+          "characterId": "amo",
+          "stageIndex": 0,
+          "totalHeat": 0,
+          "gold": 2,
+          "jokerIds": [
+            "mantangcai"
+          ]
+        }
+      },
+      "afterExit": {
+        "active": false,
+        "playing": true,
+        "heat": 120,
+        "handsLeft": 2,
+        "hand": [
+          "spades-2",
+          "diamonds-10",
+          "diamonds-6",
+          "diamonds-2",
+          "spades-12",
+          "hearts-5",
+          "spades-7",
+          "diamonds-3"
+        ],
+        "deckCount": 43,
+        "queueRunning": true,
+        "pendingEffects": 2,
+        "result": "高牌   +60 热度",
+        "breakdown": "牌型：20 热度 × 1 倍率\n角色：独角戏 ×3\n结算：20 × 1.0 × 3.00 = 60",
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "playButtonCssHeight": 58,
+        "jokerDescriptionCssFontSize": 10,
+        "run": {
+          "seed": "r00-baseline",
+          "characterId": "amo",
+          "stageIndex": 0,
+          "totalHeat": 0,
+          "gold": 2,
+          "jokerIds": [
+            "mantangcai"
+          ]
+        }
+      },
+      "reentered": {
+        "active": true,
+        "playing": false,
+        "heat": 0,
+        "handsLeft": 4,
+        "hand": [
+          "diamonds-7",
+          "spades-2",
+          "diamonds-10",
+          "diamonds-6",
+          "diamonds-2",
+          "spades-12",
+          "hearts-5",
+          "spades-7"
+        ],
+        "deckCount": 44,
+        "queueRunning": true,
+        "pendingEffects": 0,
+        "result": "选 1～5 张牌，开始你的第一个包袱。",
+        "breakdown": "计分来源会在这里逐项展开",
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "playButtonCssHeight": 58,
+        "jokerDescriptionCssFontSize": 10,
+        "run": {
+          "seed": "r00-baseline",
+          "characterId": "amo",
+          "stageIndex": 0,
+          "totalHeat": 0,
+          "gold": 6,
+          "jokerIds": []
+        }
+      },
+      "afterReentryPlay": {
+        "active": true,
+        "playing": false,
+        "heat": 60,
+        "handsLeft": 3,
+        "hand": [
+          "spades-2",
+          "diamonds-10",
+          "diamonds-6",
+          "diamonds-2",
+          "spades-12",
+          "hearts-5",
+          "spades-7",
+          "diamonds-3"
+        ],
+        "deckCount": 43,
+        "queueRunning": true,
+        "pendingEffects": 3,
+        "result": "选 1～5 张牌，开始你的第一个包袱。",
+        "breakdown": "计分来源会在这里逐项展开",
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "playButtonCssHeight": 58,
+        "jokerDescriptionCssFontSize": 10,
+        "run": {
+          "seed": "r00-baseline",
+          "characterId": "amo",
+          "stageIndex": 0,
+          "totalHeat": 0,
+          "gold": 6,
+          "jokerIds": []
+        }
+      },
+      "F07": "FAIL: interrupted drain remains running; new hand bypasses animation with effects pending"
+    },
+    {
+      "name": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touchscreen.tap",
+      "errors": [],
+      "afterBuy": {
+        "seed": "r00-baseline",
+        "characterId": "amo",
+        "stageIndex": 0,
+        "totalHeat": 0,
+        "gold": 2,
+        "jokerIds": [
+          "mantangcai"
+        ]
+      },
+      "beforePlay": {
+        "active": true,
+        "playing": false,
+        "heat": 0,
+        "handsLeft": 4,
+        "hand": [
+          "diamonds-7",
+          "spades-2",
+          "diamonds-10",
+          "diamonds-6",
+          "diamonds-2",
+          "spades-12",
+          "hearts-5",
+          "spades-7"
+        ],
+        "deckCount": 44,
+        "queueRunning": false,
+        "pendingEffects": 0,
+        "result": "选 1～5 张牌，开始你的第一个包袱。",
+        "breakdown": "计分来源会在这里逐项展开",
+        "canvas": {
+          "width": 390,
+          "height": 219.375
+        },
+        "playButtonCssHeight": 17.671875,
+        "jokerDescriptionCssFontSize": 3.046875,
+        "run": {
+          "seed": "r00-baseline",
+          "characterId": "amo",
+          "stageIndex": 0,
+          "totalHeat": 0,
+          "gold": 2,
+          "jokerIds": [
+            "mantangcai"
+          ]
+        }
+      },
+      "afterPlay": {
+        "active": true,
+        "playing": false,
+        "heat": 60,
+        "handsLeft": 3,
+        "hand": [
+          "spades-2",
+          "diamonds-10",
+          "diamonds-6",
+          "diamonds-2",
+          "spades-12",
+          "hearts-5",
+          "spades-7",
+          "diamonds-3"
+        ],
+        "deckCount": 43,
+        "queueRunning": false,
+        "pendingEffects": 0,
+        "result": "高牌   +60 热度",
+        "breakdown": "牌型：20 热度 × 1 倍率\n角色：独角戏 ×3\n结算：20 × 1.0 × 3.00 = 60",
+        "canvas": {
+          "width": 390,
+          "height": 219.375
+        },
+        "playButtonCssHeight": 17.671875,
+        "jokerDescriptionCssFontSize": 3.046875,
+        "run": {
+          "seed": "r00-baseline",
+          "characterId": "amo",
+          "stageIndex": 0,
+          "totalHeat": 0,
+          "gold": 2,
+          "jokerIds": [
+            "mantangcai"
+          ]
+        }
+      },
+      "interruptSubmitted": {
+        "active": true,
+        "playing": true,
+        "heat": 120,
+        "handsLeft": 2,
+        "hand": [
+          "spades-2",
+          "diamonds-10",
+          "diamonds-6",
+          "diamonds-2",
+          "spades-12",
+          "hearts-5",
+          "spades-7",
+          "diamonds-3"
+        ],
+        "deckCount": 43,
+        "queueRunning": true,
+        "pendingEffects": 2,
+        "result": "高牌   +60 热度",
+        "breakdown": "牌型：20 热度 × 1 倍率\n角色：独角戏 ×3\n结算：20 × 1.0 × 3.00 = 60",
+        "canvas": {
+          "width": 390,
+          "height": 219.375
+        },
+        "playButtonCssHeight": 17.671875,
+        "jokerDescriptionCssFontSize": 3.046875,
+        "run": {
+          "seed": "r00-baseline",
+          "characterId": "amo",
+          "stageIndex": 0,
+          "totalHeat": 0,
+          "gold": 2,
+          "jokerIds": [
+            "mantangcai"
+          ]
+        }
+      },
+      "afterExit": {
+        "active": false,
+        "playing": true,
+        "heat": 120,
+        "handsLeft": 2,
+        "hand": [
+          "spades-2",
+          "diamonds-10",
+          "diamonds-6",
+          "diamonds-2",
+          "spades-12",
+          "hearts-5",
+          "spades-7",
+          "diamonds-3"
+        ],
+        "deckCount": 43,
+        "queueRunning": true,
+        "pendingEffects": 2,
+        "result": "高牌   +60 热度",
+        "breakdown": "牌型：20 热度 × 1 倍率\n角色：独角戏 ×3\n结算：20 × 1.0 × 3.00 = 60",
+        "canvas": {
+          "width": 390,
+          "height": 219.375
+        },
+        "playButtonCssHeight": 17.671875,
+        "jokerDescriptionCssFontSize": 3.046875,
+        "run": {
+          "seed": "r00-baseline",
+          "characterId": "amo",
+          "stageIndex": 0,
+          "totalHeat": 0,
+          "gold": 2,
+          "jokerIds": [
+            "mantangcai"
+          ]
+        }
+      },
+      "reentered": {
+        "active": true,
+        "playing": false,
+        "heat": 0,
+        "handsLeft": 4,
+        "hand": [
+          "diamonds-7",
+          "spades-2",
+          "diamonds-10",
+          "diamonds-6",
+          "diamonds-2",
+          "spades-12",
+          "hearts-5",
+          "spades-7"
+        ],
+        "deckCount": 44,
+        "queueRunning": true,
+        "pendingEffects": 0,
+        "result": "选 1～5 张牌，开始你的第一个包袱。",
+        "breakdown": "计分来源会在这里逐项展开",
+        "canvas": {
+          "width": 390,
+          "height": 219.375
+        },
+        "playButtonCssHeight": 17.671875,
+        "jokerDescriptionCssFontSize": 3.046875,
+        "run": {
+          "seed": "r00-baseline",
+          "characterId": "amo",
+          "stageIndex": 0,
+          "totalHeat": 0,
+          "gold": 6,
+          "jokerIds": []
+        }
+      },
+      "afterReentryPlay": {
+        "active": true,
+        "playing": false,
+        "heat": 60,
+        "handsLeft": 3,
+        "hand": [
+          "spades-2",
+          "diamonds-10",
+          "diamonds-6",
+          "diamonds-2",
+          "spades-12",
+          "hearts-5",
+          "spades-7",
+          "diamonds-3"
+        ],
+        "deckCount": 43,
+        "queueRunning": true,
+        "pendingEffects": 3,
+        "result": "选 1～5 张牌，开始你的第一个包袱。",
+        "breakdown": "计分来源会在这里逐项展开",
+        "canvas": {
+          "width": 390,
+          "height": 219.375
+        },
+        "playButtonCssHeight": 17.671875,
+        "jokerDescriptionCssFontSize": 3.046875,
+        "run": {
+          "seed": "r00-baseline",
+          "characterId": "amo",
+          "stageIndex": 0,
+          "totalHeat": 0,
+          "gold": 6,
+          "jokerIds": []
+        }
+      },
+      "F07": "FAIL: interrupted drain remains running; new hand bypasses animation with effects pending"
+    }
+  ],
+  "limitation": "Automated headless browser; mobile touchscreen emulation is not a physical phone or human acceptance.",
+  "browserChannel": "installed Chrome",
+  "browserVersion": "154.0.8037.58",
+  "portraits": [
+    {
+      "file": "/assets/characters/amo.png",
+      "width": 1086,
+      "height": 1448
+    },
+    {
+      "file": "/assets/characters/amo.avatar.webp",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "file": "/assets/characters/touye.png",
+      "width": 1086,
+      "height": 1448
+    },
+    {
+      "file": "/assets/characters/touye.avatar.webp",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "file": "/assets/characters/laohuan.png",
+      "width": 1086,
+      "height": 1448
+    },
+    {
+      "file": "/assets/characters/laohuan.avatar.webp",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "file": "/assets/characters/erxiang.png",
+      "width": 1086,
+      "height": 1448
+    },
+    {
+      "file": "/assets/characters/erxiang.avatar.webp",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "file": "/assets/characters/azao.png",
+      "width": 1086,
+      "height": 1448
+    },
+    {
+      "file": "/assets/characters/azao.avatar.webp",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "file": "/assets/characters/xiemu.png",
+      "width": 1086,
+      "height": 1448
+    },
+    {
+      "file": "/assets/characters/xiemu.avatar.webp",
+      "width": 512,
+      "height": 512
+    }
+  ],
+  "assets": {
+    "manifestEntries": 130,
+    "glbEntries": 39,
+    "previewSource": "public/assets/renders/p0/contact-sheet.webp",
+    "fullGlbReview": "NOT_RUN: deferred to A00",
+    "artApproval": "NOT_RUN",
+    "originalPortraitBytes": 14285460
+  },
+  "status": "PASS: baseline captured, not product acceptance"
+}

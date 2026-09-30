@@ -1,29 +1,26 @@
 # 当前交接
 
-## 当前任务：R00 / READY
+## 当前任务：R01 / READY
 
-采用质量重置计划并复现基线，详见 `production/WORK_PACKAGES.md#r00`。权威任务指针是 `production/plan.json` 的 currentTask，若本摘要与其冲突，先修复交接，不跳过检查开工。
+权威指针：`production/plan.json`。唯一下一步：读取 R01 小节和 ENGINEERING/RULES，先补领域命令、完整状态与随机恢复的失败用例，再将 UI/机器人接到同一入口。禁止恢复旧 Batch 2C Boss 路线。
 
-## 基线与已知证据
+## R00 交付与真实基线
 
-审查提交：`9fd6e0bdb20c7e6114e045ca336c27afe5d47e9e`，2026-09-30 19:55:55 UTC+8。
+2026-09-30 已执行 `git pull --ff-only`。main 仍为审查 SHA `9fd6e0bdb20c7e6114e045ca336c27afe5d47e9e`；起始工作区干净。PR #3 仍 open，已在独立分支 `feat/R00-baseline-evidence` 采用头提交 `14be6d65eeffd3a0d97a9d76a6274112fe75585e`，没有合并或强推。
 
-本次交付只改文档和文档验证工具，不改游戏代码、不重画资源。旧规范原样保存在 `docs/archive/2026-09-30-pre-audit/`。
+相对审查 SHA 的 29 个文件只涉及质量方案、旧文档归档、计划检查器和文档 CI；游戏源码、资源和依赖锁文件无变化。R00 不改玩法或素材。被测游戏 SHA 是 `14be6d65eeffd3a0d97a9d76a6274112fe75585e`；测试时未提交的内容仅为 R00 证据和 plan/handoff，完整记录与采集脚本哈希见 `production/evidence/R00-2026-09-30.json`。
 
-GitHub CI run `36711575856` / job `109874375123` 的日志证明该基线 typecheck、9 个文件的 45 个单元测试、build 成功。该 CI 没有完整浏览器流程或素材验收。审查环境没有成功取得可运行的完整工作副本，因此 **没有在本地重跑 npm verify、浏览器游戏、目标手机或 Blender**。
+## 实际验证与证据
 
-审查执行了来源摘录的 EffectQueue 微型探针和尺寸算术；结果与范围见 `production/evidence/baseline-probes.json`。这不是仓库整套测试通过的声明。
+- `npm ci`、`npm run verify`、`npx playwright install chromium`、`npm run verify:smoke`：退出码均为 0；9 文件 45 单元测试、类型检查、构建、双端启动冒烟通过。
+- R00 浏览器采集：Windows 11 / Node v22.20.0 / 本机 Chrome 154.0.8037.58（headless），桌面 mouse.click 与 390×844 touchscreen.tap 均实际完成选角→购买→牌桌→出一手→演出中退出→重进出牌。
+- F07 已由本机浏览器自动化复现：退出后 queue.running 保持 true；重进再出牌热度变为 60，但有 3 个 pending effects，结果文本不更新。此缺陷留给 R04，不以基线采集成功冒充修复。
+- 手机模拟视口实际 canvas 为 390×219.375；出牌按钮仅 17.671875 CSS px 高，Joker 描述约 3.046875 CSS px，留给 R05。
+- 六原图/头像对照、资产联系表、选角/商店/牌桌/出牌/重进截图、命令日志及逐发现复查表均在 `production/evidence/r00-2026-09-30/`。39 GLB 的完整预览留给 A00。
+- 计划检查器自测通过（1 个有效、13 个无效样例）；计划结构检查结果见同目录 `plan-check.txt`。结构通过不代表玩法通过。
 
-## 需要先处理的事
+## 未运行与保留风险
 
-方向问题：无弃牌和牌组改造、五张池配五个槽且无出售、计分不含普通点数且加乘分组令顺序无策略价值。工程问题：完整局状态留在 Scene、队列无取消、仿真抽牌方向/随机计算不同、手机 FIT 过小、冒烟覆盖过浅。
+Android 真机、iPhone Safari、真人操作/对标、美术批准、完整一局/恢复、目标机性能、逐 GLB 动画/透明边缘审查：**NOT_RUN**。支持矩阵已分别登记，不将模拟器视为手机验收。
 
-具体发现、证据与分类见 `production/AUDIT.md`。不要把设计改动误记为旧实现违反旧合同。
-
-## 本工作包边界
-
-先比对当前 main/工作分支相对审查提交的新增改动，保留并复审，不 reset 到旧版本。运行现有检查，保留真实截图/trace、CI 和资源预览。随后将当前任务置为 R01。暂不批量加 Boss、不扩 3D、不同时重画六名角色。
-
-## 交接模板
-
-完成任务时替换本页为：任务 ID / 基线和实现提交 / 变更摘要 / 实际命令与退出码 / 证据路径 / NOT_RUN 与阻塞 / 唯一下一任务。证据必须对应真正被测试的代码提交；后补纯文档提交可以另列，不伪装成已测游戏提交。
+`npm audit --json` 实际退出码 1：Vitest 3.2.7 → @vitest/mocker 3.2.7 开发依赖链的 2 项 moderate 告警，同一 GHSA。具体 JSON/链路已保存；未 force 修复，生产可利用性未确认，R06 需处理。美术仍按 ART 单独交 Astra，金样批准前不扩产。
