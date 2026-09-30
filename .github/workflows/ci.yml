@@ -2,21 +2,79 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
-      - "feat/**"
+    branches: [main, "feat/**", "fix/**", "docs/**", "art/**"]
   pull_request:
-    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  verify:
+  domain:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install
-      - run: npm run typecheck
-      - run: npm test
-      - run: npm run build
+          cache: npm
+      - run: npm ci
+      - run: npm run verify:ci -- --scope=domain
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: domain-${{ github.run_id }}
+          path: shots/ci/
+          retention-days: 14
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run verify:ci -- --scope=browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-${{ github.run_id }}
+          path: |
+            shots/ci/
+            shots/e2e/
+            shots/gate-faults/
+            shots/domain/
+            shots/layout/
+            shots/recovery/
+          retention-days: 14
+  docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run verify:ci -- --scope=docs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: docs-${{ github.run_id }}
+          path: shots/ci/
+          retention-days: 14

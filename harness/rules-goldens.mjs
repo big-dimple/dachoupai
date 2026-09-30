@@ -5,7 +5,7 @@ import {resolve} from 'node:path';
 import {createServer} from 'vite';
 
 const output=resolve(process.argv[2]??'shots/rules');
-const server=await createServer({server:{middlewareMode:true},appType:'custom'});
+const server=await createServer({server:{middlewareMode:true,hmr:false},appType:'custom'});
 try {
   const {scoreR2Hand,previewR2Hand}=await server.ssrLoadModule('/src/domain/scoreR2.ts');
   const {Rational}=await server.ssrLoadModule('/src/domain/rational.ts');

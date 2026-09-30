@@ -86,7 +86,7 @@ async function characterStates(){
     }finally{await context.close();}
   }
 }
-const server=spawn(process.execPath,[path.join(root,'node_modules/vite/bin/vite.js'),'--port',String(port),'--strictPort'],{cwd:root,stdio:'ignore',windowsHide:true});let browser,activePage;
+const server=spawn(process.execPath,[path.join(root,'node_modules/vite/bin/vite.js'),'--mode','e2e','--port',String(port),'--strictPort'],{cwd:root,stdio:'ignore',windowsHide:true});let browser,activePage;
 try{
   const deadline=Date.now()+30000;while(true){try{if((await fetch(url)).ok)break;}catch{}if(Date.now()>deadline)throw Error('layout server timeout');await new Promise(r=>setTimeout(r,200));}
   browser=await chromium.launch();report.browser=browser.version();

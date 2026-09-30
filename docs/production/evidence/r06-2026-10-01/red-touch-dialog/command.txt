@@ -1,0 +1,51 @@
+
+> dachoupai@0.1.0 test:e2e
+> node harness/e2e.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.57 kB │ gzip:   0.37 kB
+dist/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+dist/assets/index-BqmYM0wJ.js   1,315.50 kB │ gzip: 367.70 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.19s
+vite v7.3.6 building client environment for e2e...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-e2e/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-e2e/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-e2e/assets/index-BeOfRt4F.js   1,315.60 kB │ gzip: 367.76 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.20s
+chromium/production-observer-hidden: PASS
+chromium/workflow-amo: PASS
+chromium/workflow-erxiang: FAIL
+locator.waitFor: Timeout 12000ms exceeded.
+Call log:
+  - waiting for locator('dialog[open]') to be detached
+    27 × locator resolved to visible <dialog open="" class="detail-dialog" aria-label="碰瓷 · 购买详情">…</dialog>
+
+    at perform (D:\ai\dachoupai\dachoupai\harness\e2e.mjs:51:84)
+    at async workflow (D:\ai\dachoupai\dachoupai\harness\e2e.mjs:119:5)
+    at async scenario (D:\ai\dachoupai\dachoupai\harness\e2e.mjs:95:5)
+    at async file:///D:/ai/dachoupai/dachoupai/harness/e2e.mjs:149:66 {
+  log: [
+    "  - waiting for locator('dialog[open]') to be detached",
+    '    27 × locator resolved to visible <dialog open="" class="detail-dialog" aria-label="碰瓷 · 购买详情">…</dialog>'
+  ],
+  name: 'TimeoutError'
+}
+built-bundle E2E: FAIL; 3 actual scenarios (all)

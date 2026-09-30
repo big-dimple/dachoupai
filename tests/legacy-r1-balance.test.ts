@@ -5,19 +5,19 @@ import type { CharacterId } from '../src/domain/characters';
 import { STAGES } from '../src/run/stages';
 import { simulateRun } from '../src/testing/bot';
 
-describe('balance gate (greedy bot, real scoring)', () => {
+describe('legacy r1 fixed-seed scoring regression (not r2 balance acceptance)', () => {
   const seeds = Array.from({ length: 10 }, (_, i) => `balance-${i + 1}`);
 
   const clearedBy = (character: CharacterId) => seeds.map((seed) => simulateRun(seed, character).state.stageIndex);
 
-  it('stage 1 stays tutorial-grade: greedy fails it on at most 3/10 seeds', () => {
+  it('retains the r1 first-stage result for the ten historical seeds', () => {
     for (const character of ['erxiang', 'azao'] as CharacterId[]) {
       const failedAtFirst = clearedBy(character).filter((cleared) => cleared === 0).length;
       expect(failedAtFirst).toBeLessThanOrEqual(3);
     }
   });
 
-  it('full run stays achievable: greedy clears all 3 stages on at least 3/10 seeds', () => {
+  it('retains the r1 three-stage result for the ten historical seeds', () => {
     for (const character of ['erxiang', 'azao'] as CharacterId[]) {
       const fullClears = clearedBy(character).filter((cleared) => cleared === STAGES.length).length;
       expect(fullClears).toBeGreaterThanOrEqual(3);

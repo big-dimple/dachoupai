@@ -81,7 +81,7 @@ async function run(browser,name,viewport){
     record.commands=observed.journal;record.finalState=observed.state;record.stateHash=domain.stateHash(replay);record.status='PASS';assert.deepEqual(record.errors,[]);console.log(`${name}: r2 buy/discard/play/clear/reorder/sell/replace + exact replay PASS (${record.stateHash})`);
   }catch(error){record.failureObservation=await page.evaluate(()=>({state:window.__harness.game.registry.get('runState'),saveStatus:window.__harness.game.registry.get('runController').status,shopBusy:window.__harness.game.scene.getScene('shop').busy,dialog:document.querySelector('dialog')?.textContent,disabled:[...document.querySelectorAll('dialog button')].map(b=>[b.textContent,b.disabled])}));await page.screenshot({path:path.join(output,`${name}-failure.png`)});throw error;}finally{await context.close();}
 }
-const server=spawn(process.execPath,[path.join(root,'node_modules/vite/bin/vite.js'),'--port',String(port),'--strictPort'],{cwd:root,stdio:'ignore',windowsHide:true});let browser;
+const server=spawn(process.execPath,[path.join(root,'node_modules/vite/bin/vite.js'),'--mode','e2e','--port',String(port),'--strictPort'],{cwd:root,stdio:'ignore',windowsHide:true});let browser;
 try{const deadline=Date.now()+30000;while(true){try{if((await fetch(base)).ok)break;}catch{}if(Date.now()>deadline)throw new Error('browser server timeout');await new Promise(resolve=>setTimeout(resolve,200));}
   browser=await chromium.launch();report.browser=browser.version();await run(browser,'desktop',{width:1280,height:800});await run(browser,'mobile',{width:390,height:844});report.status='PASS';
 }catch(error){report.status='FAIL';report.error=String(error);console.error(error);process.exitCode=1;}

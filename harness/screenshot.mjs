@@ -6,7 +6,7 @@ import path from 'node:path';
 import {chromium} from 'playwright';
 import {waitScene,chooseCharacter,tapUI} from './ui.mjs';
 const root=process.cwd(),port=Number(process.env.SHOT_PORT||5199),base=`http://localhost:${port}/?harness=1`,verify=process.argv.includes('--verify-smoke');
-const server=spawn(process.execPath,[path.join(root,'node_modules/vite/bin/vite.js'),'--port',String(port),'--strictPort'],{cwd:root,stdio:'ignore',windowsHide:true});let browser;
+const server=spawn(process.execPath,[path.join(root,'node_modules/vite/bin/vite.js'),'--mode','e2e','--port',String(port),'--strictPort'],{cwd:root,stdio:'ignore',windowsHide:true});let browser;
 try {
   const deadline=Date.now()+30000;while(true){try{if((await fetch(base)).ok)break;}catch{}if(Date.now()>deadline)throw Error('smoke server timeout');await new Promise(r=>setTimeout(r,200));}
   browser=await chromium.launch();if(!verify)await mkdir('shots',{recursive:true});

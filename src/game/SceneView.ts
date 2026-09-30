@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import {layout,type Box,type TableLayout} from './layout';
 import {PointerIntent} from './PointerIntent';
+import {modalBlocksCanvas} from './DetailDialog';
 
 type TouchActions={tap:()=>void;detail?:()=>void;drag?:(x:number,y:number)=>void;holdToDrag?:boolean};
 export class SceneView {
@@ -11,6 +12,8 @@ export class SceneView {
   private timer?:ReturnType<typeof setTimeout>;
   private readonly cancel=()=>{this.intent.cancel();this.pressed=undefined;clearTimeout(this.timer);};
   private readonly down=(p:Phaser.Input.Pointer,over:Phaser.GameObjects.GameObject[])=>{
+    const canvas=this.scene.game.canvas.getBoundingClientRect();
+    if(modalBlocksCanvas(canvas.left+p.x*canvas.width/this.scene.scale.width,canvas.top+p.y*canvas.height/this.scene.scale.height)){this.cancel();return;}
     const object=over.find(o=>this.gestures.has(o));if(!object)return;this.cancel();
     const actions=this.gestures.get(object)!;this.pressed={object,actions,held:false,touch:p.wasTouch};this.intent.down(p.id,p.x,p.y,performance.now());
     this.timer=setTimeout(()=>{if(this.intent.hold(performance.now())){if(this.pressed)this.pressed.held=true;if(!actions.holdToDrag)actions.detail?.();}},355);

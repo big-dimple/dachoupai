@@ -1,0 +1,205 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/ci-gates.test.mjs (6 tests | 6 failed) 21ms
+     × has real E2E and CI entry points, rather than placeholder success 7ms
+     × CI installs the lockfile, runs gates and retains failed browser artifacts 1ms
+     × release checking cannot automatically commit or push any branch 1ms
+     × an ordinary successful child keeps source and index unchanged 6ms
+     × a zero-exit checker which writes source is rejected without hiding its write 3ms
+     × a failing child stops the gate and cannot run a later false-success step 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ci-gates.test.mjs > executable CI and read-only gates > has real E2E and CI entry points, rather than placeholder success
+AssertionError: expected undefined to be truthy
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ tests/ci-gates.test.mjs:26:77
+     24|   it('has real E2E and CI entry points, rather than placeholder succes…
+     25|     const p=JSON.parse(text('package.json'));
+     26|     for(const script of ['test:e2e','verify:ci']){expect(p.scripts[scr…
+       |                                                                             ^
+     27|     for(const file of ['harness/e2e.mjs','scripts/verify-ci.mjs'])expe…
+     28|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/ci-gates.test.mjs > executable CI and read-only gates > CI installs the lockfile, runs gates and retains failed browser artifacts
+AssertionError: expected 'name: CI\r\n\r\non:\r\n  push:\r\n   …' to match /npm ci/
+
+- Expected:
+/npm ci/
+
++ Received:
+"name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - \"feat/**\"
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+"
+
+ ❯ tests/ci-gates.test.mjs:31:22
+     29|   it('CI installs the lockfile, runs gates and retains failed browser …
+     30|     const workflow=text('.github/workflows/ci.yml');
+     31|     expect(workflow).toMatch(/npm ci/);expect(workflow).not.toMatch(/n…
+       |                      ^
+     32|     expect(workflow).toMatch(/verify:ci/);expect(workflow).toMatch(/pl…
+     33|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/ci-gates.test.mjs > executable CI and read-only gates > release checking cannot automatically commit or push any branch
+AssertionError: expected '#!/usr/bin/env node\r\n/**\r\n * 发布门禁…' not to match /git\(['"](?:commit|push)['"]/
+
+- Expected:
+/git\(['"](?:commit|push)['"]/
+
++ Received:
+"#!/usr/bin/env node
+/**
+ * 发布门禁：测试 + 构建 + 浏览器冒烟全过后，才允许提交并推送 main。
+ * board-race release-checked.sh 的 Node 移植版，Windows / WSL / CI 行为一致。
+ *
+ * 用法：
+ *   npm run release:checked -- [--plan] \"type: message\"
+ *
+ * 纪律（沿用 board-race）：
+ * - 必须在 main 分支，origin 必须存在
+ * - 只允许提交已 stage 的评审文件：无未 stage 改动、无未跟踪文件
+ * - 门禁运行期间工作区不得发生任何变化（防止测试顺手改文件）
+ * - 成功即提交并 push；push 即发布动作
+ */
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+const args = process.argv.slice(2);
+let plan = false;
+const positional = [];
+for (const arg of args) {
+  if (arg === '--plan') plan = true;
+  else if (arg.startsWith('--')) fail(`unknown option: ${arg}`);
+  else positional.push(arg);
+}
+
+const message = positional[0];
+if (!message || positional.length !== 1 || message.includes('\\n')) {
+  fail('usage: npm run release:checked -- [--plan] \"type: message\"');
+}
+
+const git = (...gitArgs) => execFileSync('git', ['-C', root, ...gitArgs], { encoding: 'utf8' }).trim();
+// 退出码本身是结果的检查（diff --quiet 系列），不能抛异常，要看 code
+const gitStatus = (...gitArgs) => {
+  try {
+    return { code: 0, out: git(...gitArgs) };
+  } catch (error) {
+    return { code: error.status ?? 1, out: '' };
+  }
+};
+
+function fail(reason) {
+  console.error(reason);
+  process.exit(3);
+}
+
+function assertCleanSinceGates(label) {
+  if (gitStatus('diff', '--quiet', '--').code !== 0) fail(`${label}: working tree changed`);
+  if (gitStatus('ls-files', '--others', '--exclude-standard').out) fail(`${label}: untracked files appeared`);
+}
+
+const branch = git('branch', '--show-current');
+if (branch !== 'main') fail(`release requires main, found: ${branch || 'detached'}`);
+if (gitStatus('remote', 'get-url', 'origin').code !== 0) fail('origin remote is required');
+
+if (gitStatus('diff', '--cached', '--quiet', '--').code === 0) fail('stage the reviewed release files first');
+if (gitStatus('diff', '--quiet', '--').code !== 0) fail('unstaged tracked changes are not allowed');
+if (gitStatus('ls-files', '--others', '--exclude-standard').out) fail('untracked files are not allowed');
+if (gitStatus('diff', '--cached', '--check').code !== 0) fail('git diff --cached --check failed');
+
+console.log(`repository=${root}`);
+console.log('gates=test,build,smoke');
+if (plan) {
+  console.log('mode=plan');
+  process.exit(0);
+}
+
+const indexBefore = git('write-tree');
+// Windows 上 npm 是 npm.cmd，spawn 找不到；经 npm run 进来时必有 npm_execpath
+const npmCli = process.env.npm_execpath;
+if (!npmCli) fail('run via npm: npm run release:checked -- \"type: message\"');
+const npmRun = (script) => execFileSync(process.execPath, [npmCli, 'run', script], { cwd: root, stdio: 'inherit' });
+npmRun('test');
+npmRun('build');
+npmRun('verify:smoke');
+
+assertCleanSinceGates('a release gate');
+if (indexBefore !== git('write-tree')) fail('a release gate changed the staged file set');
+
+git('commit', '-m', message);
+git('push', 'origin', 'main');
+console.log('release=committed-and-pushed');
+"
+
+ ❯ tests/ci-gates.test.mjs:36:24
+     34|   it('release checking cannot automatically commit or push any branch'…
+     35|     const script=text('scripts/release-checked.mjs');
+     36|     expect(script).not.toMatch(/git\(['"](?:commit|push)['"]/);expect(…
+       |                        ^
+     37|   });
+     38|   it('an ordinary successful child keeps source and index unchanged',a…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/ci-gates.test.mjs > executable CI and read-only gates > an ordinary successful child keeps source and index unchanged
+Error: Cannot find module 'file:///D:/ai/dachoupai/dachoupai/scripts/check-runner.mjs' imported from D:/ai/dachoupai/dachoupai/tests/ci-gates.test.mjs
+ ❯ tests/ci-gates.test.mjs:39:37
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/ci-gates.test.mjs > executable CI and read-only gates > a zero-exit checker which writes source is rejected without hiding its write
+Error: Cannot find module 'file:///D:/ai/dachoupai/dachoupai/scripts/check-runner.mjs' imported from D:/ai/dachoupai/dachoupai/tests/ci-gates.test.mjs
+ ❯ tests/ci-gates.test.mjs:43:22
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/ci-gates.test.mjs > executable CI and read-only gates > a failing child stops the gate and cannot run a later false-success step
+Error: Cannot find module 'file:///D:/ai/dachoupai/dachoupai/scripts/check-runner.mjs' imported from D:/ai/dachoupai/dachoupai/tests/ci-gates.test.mjs
+ ❯ tests/ci-gates.test.mjs:47:22
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed (6)
+   Start at  04:51:48
+   Duration  372ms (transform 26ms, setup 0ms, import 50ms, tests 21ms, environment 0ms)
+
+EXIT_CODE=1

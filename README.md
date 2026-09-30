@@ -21,8 +21,10 @@ npm run dev
 
 ```bash
 npm run verify
-npx playwright install chromium
+npx playwright install chromium firefox webkit
 npm run verify:smoke
+npm run test:e2e
+npm run verify:ci
 npm run test:rules
 npm run test:run
 npm run test:recovery
@@ -33,6 +35,8 @@ npm run verify:content
 npm run test:domain:browser
 ```
 
-启动冒烟只覆盖选角→商店→牌桌。领域浏览器检查另外用正常按钮完成一场出弃牌、回店、买卖调序并核对命令回放。恢复浏览器检查另外覆盖七个刷新点、存储故障、非法导入、多标签和中断取消。完整一局、真机触屏手感、离线恢复和美术质量有独立验收，不能由这些自动检查通过代替。
+启动冒烟只覆盖选角→商店→牌桌。E2E 使用生产/测试构建产物，检查三引擎、六选角详情、阿默/二响的出弃牌、过场奖励、商店买卖调序/付费刷新、次数耗尽失败、演出退出/快进/旋转和刷新继续；手机尺寸使用真实触摸事件。它另查根/子路径、生产包关闭观察接口、头像失败降级和音频拒绝。失败截图/trace 写入忽略的 `shots/e2e/`，CI artifact 保留 14 天。
+
+`verify:ci` 按领域/浏览器/文档组合已有检查，并拒绝检查期间的源码或 Git index/HEAD 改动。资产和平衡/真人检查在相应工作包落地前明确未纳入；Boss、最终胜利/无尽、真机手感、离线恢复和美术质量有独立验收。`release:checked` 只执行这组只读检查，`--plan` 标 NOT_RUN；不会提交、推送或合并 PR。
 
 技术栈保留 Phaser 3、TypeScript、Vite、Vitest、Playwright；Blender 是离线素材工具，不是游戏运行时依赖。生产规范和阶段门禁见 [ROADMAP.md](ROADMAP.md)，当前任务见 [TODO.md](TODO.md)。

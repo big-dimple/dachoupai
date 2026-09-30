@@ -2,7 +2,7 @@
 
 本项目以《小丑牌》（Balatro）的构筑深度、操作准确性、信息可读性和连锁反馈为质量标杆。功能做完不等于达到标杆；未经实测不得宣称持平。
 
-本次质量重置只交付审查、策划、任务协议与文档检查工具，**没有完成游戏整改**。当前实现仍是 2026-09-30 的 Phase 2B 原型。旧文件已归档，禁止继续照旧交接里的“直接做 Batch 2C Boss”扩建。
+2026-09-30 的质量重置建立了审查、策划与任务协议；审查中的 Phase 2B 是固定历史快照。当前整改进度只以 plan 和 handoff 为准。旧文件已归档，禁止继续照旧交接里的“直接做 Batch 2C Boss”扩建。
 
 ## 新会话只先读这三处
 
@@ -43,15 +43,17 @@
 ```bash
 npm ci
 npm run verify
-npx playwright install chromium
+npx playwright install chromium firefox webkit
 npm run verify:smoke
+npm run test:e2e
+npm run verify:ci
 node scripts/check-production-plan.mjs --self-test
 node scripts/check-production-plan.mjs
 ```
 
-`verify:smoke` 在旧实现只覆盖选角→商店→进入牌桌，**不是完整一局验收**。其他计划中的命令在工作包落地前一律视为尚未实现，不能假装运行成功。
+`verify:smoke` 只覆盖选角→商店→进入牌桌。`test:e2e` 用构建产物检查三引擎和实际触摸的已实现主循环/中断；当前未实现的 Boss/最终胜利/无尽仍不在覆盖内。`verify:ci` 只组合现有门禁，报告未纳入的资产/平衡/真人项；不得以此替代手机或真人验收。其他计划中的命令在工作包落地前一律视为尚未实现。
 
-不使用现有 `release:checked` 自动推送 main 来代替 PR 审查。该脚本保留为历史工具，R06 负责调整发布纪律。不得擅自合并自己的 PR 或强推。
+`release:checked` 只执行只读 `verify:ci`，`--plan` 只列计划、标 NOT_RUN。它不提交、推送或合并；正常小分支提交与 PR 审查仍需执行。提交/推送前运行轻量 `jiepi-clear`，只纳入评审过的文件。不得擅自合并自己的 PR、强推或推送 main。
 
 ## 完成定义
 
