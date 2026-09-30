@@ -1,0 +1,146 @@
+{
+  "testedCommit": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+  "dirtyState": "",
+  "scope": "touch",
+  "engines": [
+    "chromium"
+  ],
+  "environment": {
+    "os": "win32",
+    "node": "v22.20.0",
+    "chromium": "153.0.8010.12"
+  },
+  "checks": [
+    {
+      "engine": "chromium",
+      "name": "production-observer-hidden",
+      "input": "mouse.click + native DOM click",
+      "prefix": "/",
+      "status": "PASS",
+      "errors": [],
+      "assetResponses": [
+        {
+          "url": "/dachoupai/assets/index-BZ-fR-YG.css",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/index-BJxTMKP1.js",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/amo.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/touye.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/laohuan.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/erxiang.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/azao.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/xiemu.avatar.webp",
+          "status": 200
+        }
+      ],
+      "failedRequests": []
+    },
+    {
+      "engine": "chromium",
+      "name": "touch-entry",
+      "input": "touchscreen.tap + native DOM tap",
+      "prefix": "/dachoupai/",
+      "status": "PASS",
+      "errors": [],
+      "assetResponses": [
+        {
+          "url": "/dachoupai/assets/index-BZ-fR-YG.css",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/index-DaaLy-mw.js",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/amo.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/touye.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/laohuan.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/erxiang.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/azao.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/xiemu.avatar.webp",
+          "status": 200
+        }
+      ],
+      "failedRequests": [],
+      "commandSeq": 4
+    }
+  ],
+  "limitations": [
+    "Browser touchscreen emulation; physical Android Chrome / iPhone Safari and human/art acceptance NOT_RUN.",
+    "Boss, final eight-chapter victory and endless are NOT_IMPLEMENTED in this five-joker build; later packages must extend these paths.",
+    "Cold-load performance, long-session memory and full screen-reader acceptance NOT_RUN."
+  ],
+  "bundles": [
+    {
+      "mode": "production",
+      "outDir": "shots/build-production",
+      "files": [
+        {
+          "name": "index-BJxTMKP1.js",
+          "bytes": 1316007,
+          "sha256": "2eb910727d826dbbef077709ae4ff02db443c057a4866ad3081d3815374bcf75"
+        },
+        {
+          "name": "index-BZ-fR-YG.css",
+          "bytes": 1744,
+          "sha256": "4ff91eaa8529831d5f64807b39ed81eda2ced1c54b23d52e618b813af543dc29"
+        }
+      ]
+    },
+    {
+      "mode": "e2e",
+      "outDir": "shots/build-e2e",
+      "files": [
+        {
+          "name": "index-BZ-fR-YG.css",
+          "bytes": 1744,
+          "sha256": "4ff91eaa8529831d5f64807b39ed81eda2ced1c54b23d52e618b813af543dc29"
+        },
+        {
+          "name": "index-DaaLy-mw.js",
+          "bytes": 1316102,
+          "sha256": "a83ca77b7fbb21da14ac7bba3e9e4270517260335c68bff56609bc07e5da9d51"
+        }
+      ]
+    }
+  ],
+  "fixtures": {
+    "selection": "first natural seeds among at most 50, through public bot and shared commands; no card/resource injection, not a win-rate sample",
+    "runs": []
+  },
+  "status": "PASS"
+}

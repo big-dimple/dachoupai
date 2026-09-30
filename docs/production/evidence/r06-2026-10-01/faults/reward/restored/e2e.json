@@ -1,0 +1,406 @@
+{
+  "testedCommit": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+  "dirtyState": "",
+  "scope": "reward",
+  "engines": [
+    "chromium"
+  ],
+  "environment": {
+    "os": "win32",
+    "node": "v22.20.0",
+    "chromium": "153.0.8010.12"
+  },
+  "checks": [
+    {
+      "engine": "chromium",
+      "name": "production-observer-hidden",
+      "input": "mouse.click + native DOM click",
+      "prefix": "/",
+      "status": "PASS",
+      "errors": [],
+      "assetResponses": [
+        {
+          "url": "/dachoupai/assets/index-BZ-fR-YG.css",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/index-BJxTMKP1.js",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/amo.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/laohuan.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/erxiang.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/touye.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/xiemu.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/azao.avatar.webp",
+          "status": 200
+        }
+      ],
+      "failedRequests": []
+    },
+    {
+      "engine": "chromium",
+      "name": "workflow-amo",
+      "input": "mouse.click + native DOM click",
+      "prefix": "/",
+      "status": "PASS",
+      "errors": [],
+      "assetResponses": [
+        {
+          "url": "/assets/index-BZ-fR-YG.css",
+          "status": 200
+        },
+        {
+          "url": "/assets/index-DaaLy-mw.js",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/amo.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/touye.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/erxiang.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/azao.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/xiemu.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/laohuan.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/index-BZ-fR-YG.css",
+          "status": 200
+        },
+        {
+          "url": "/assets/index-DaaLy-mw.js",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/amo.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/touye.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/erxiang.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/laohuan.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/azao.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/xiemu.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/index-BZ-fR-YG.css",
+          "status": 200
+        },
+        {
+          "url": "/assets/index-DaaLy-mw.js",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/amo.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/touye.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/laohuan.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/azao.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/erxiang.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/xiemu.avatar.webp",
+          "status": 200
+        }
+      ],
+      "failedRequests": [],
+      "warmReward": 6,
+      "seed": "r03-1",
+      "characterId": "amo",
+      "commands": [
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/2",
+          "expectedSeq": 1,
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/r03-1/amo/shop/0/0/0"
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/3",
+          "expectedSeq": 2,
+          "action": {
+            "type": "LeaveShop"
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/4",
+          "expectedSeq": 3,
+          "action": {
+            "type": "EnterStage"
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/5",
+          "expectedSeq": 4,
+          "action": {
+            "type": "DiscardHand",
+            "selectedIds": [
+              "spades-6"
+            ]
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/6",
+          "expectedSeq": 5,
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "clubs-14"
+            ]
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/7",
+          "expectedSeq": 6,
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "diamonds-9",
+              "hearts-6",
+              "spades-7",
+              "clubs-8",
+              "hearts-5"
+            ]
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/8",
+          "expectedSeq": 7,
+          "action": {
+            "type": "OpenShop"
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/9",
+          "expectedSeq": 8,
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/r03-1/amo/shop/1/0/0"
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/10",
+          "expectedSeq": 9,
+          "action": {
+            "type": "ReorderJokers",
+            "ids": [
+              "run/r03-1/amo/joker/run/r03-1/amo/command/9",
+              "run/r03-1/amo/joker/run/r03-1/amo/command/2"
+            ]
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/11",
+          "expectedSeq": 10,
+          "action": {
+            "type": "SellJoker",
+            "instanceId": "run/r03-1/amo/joker/run/r03-1/amo/command/9"
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/12",
+          "expectedSeq": 11,
+          "action": {
+            "type": "SellJoker",
+            "instanceId": "run/r03-1/amo/joker/run/r03-1/amo/command/2"
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/13",
+          "expectedSeq": 12,
+          "action": {
+            "type": "RerollShop"
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/14",
+          "expectedSeq": 13,
+          "action": {
+            "type": "LeaveShop"
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/15",
+          "expectedSeq": 14,
+          "action": {
+            "type": "EnterStage"
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/16",
+          "expectedSeq": 15,
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "spades-3"
+            ]
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/17",
+          "expectedSeq": 16,
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "hearts-2"
+            ]
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/18",
+          "expectedSeq": 17,
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "clubs-2"
+            ]
+          }
+        },
+        {
+          "runId": "run/r03-1/amo",
+          "commandId": "run/r03-1/amo/command/19",
+          "expectedSeq": 18,
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "diamonds-10"
+            ]
+          }
+        }
+      ],
+      "finalHash": "json-fnv-v1:27cd85bf91fc5333",
+      "outcome": {
+        "reason": "hands-exhausted",
+        "stageIndex": 1
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "dpr": 1
+      }
+    }
+  ],
+  "limitations": [
+    "Browser touchscreen emulation; physical Android Chrome / iPhone Safari and human/art acceptance NOT_RUN.",
+    "Boss, final eight-chapter victory and endless are NOT_IMPLEMENTED in this five-joker build; later packages must extend these paths.",
+    "Cold-load performance, long-session memory and full screen-reader acceptance NOT_RUN."
+  ],
+  "bundles": [
+    {
+      "mode": "production",
+      "outDir": "shots/build-production",
+      "files": [
+        {
+          "name": "index-BJxTMKP1.js",
+          "bytes": 1316007,
+          "sha256": "2eb910727d826dbbef077709ae4ff02db443c057a4866ad3081d3815374bcf75"
+        },
+        {
+          "name": "index-BZ-fR-YG.css",
+          "bytes": 1744,
+          "sha256": "4ff91eaa8529831d5f64807b39ed81eda2ced1c54b23d52e618b813af543dc29"
+        }
+      ]
+    },
+    {
+      "mode": "e2e",
+      "outDir": "shots/build-e2e",
+      "files": [
+        {
+          "name": "index-BZ-fR-YG.css",
+          "bytes": 1744,
+          "sha256": "4ff91eaa8529831d5f64807b39ed81eda2ced1c54b23d52e618b813af543dc29"
+        },
+        {
+          "name": "index-DaaLy-mw.js",
+          "bytes": 1316102,
+          "sha256": "a83ca77b7fbb21da14ac7bba3e9e4270517260335c68bff56609bc07e5da9d51"
+        }
+      ]
+    }
+  ],
+  "fixtures": {
+    "selection": "first natural seeds among at most 50, through public bot and shared commands; no card/resource injection, not a win-rate sample",
+    "runs": [
+      {
+        "seed": "r03-1",
+        "characterId": "amo"
+      }
+    ]
+  },
+  "status": "PASS"
+}

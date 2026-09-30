@@ -1,0 +1,69 @@
+Decoded primary job log excerpts, selected by commands/results/SHA/read-only fingerprints/environment/artifact retention (not a regenerated result).
+Source job: 110111502992; run: 36781124417
+2026-09-30T21:42:52.7757637Z Ubuntu
+2026-09-30T21:42:52.7760414Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-30T21:42:52.7765482Z Secret source: Actions
+2026-09-30T21:42:54.2303986Z   ref: 98c381c5d96b76951d9034e2dc91309049dcad0d
+2026-09-30T21:42:54.5276397Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 98c381c5d96b76951d9034e2dc91309049dcad0d
+2026-09-30T21:42:57.3472724Z  * branch            98c381c5d96b76951d9034e2dc91309049dcad0d -> FETCH_HEAD
+2026-09-30T21:42:57.3597983Z [command]/usr/bin/git checkout --progress --force 98c381c5d96b76951d9034e2dc91309049dcad0d
+2026-09-30T21:42:57.4607001Z Note: switching to '98c381c5d96b76951d9034e2dc91309049dcad0d'.
+2026-09-30T21:42:57.4609802Z HEAD is now at 98c381c fix(R06): isolate SSR cache in fault-check worktrees
+2026-09-30T21:42:57.4684698Z 98c381c5d96b76951d9034e2dc91309049dcad0d
+2026-09-30T21:42:57.5773568Z Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+2026-09-30T21:42:57.5776130Z (node:2081) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-30T21:42:57.8641662Z node: v22.23.3
+2026-09-30T21:42:57.8641871Z npm: 10.9.9
+2026-09-30T21:42:57.8653970Z [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+2026-09-30T21:42:58.1555453Z (node:2081) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-30T21:42:59.5282402Z ##[group]Run npm ci
+2026-09-30T21:42:59.5282566Z npm ci
+2026-09-30T21:43:00.9994978Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-09-30T21:43:01.8502150Z found 0 vulnerabilities
+2026-09-30T21:43:01.9020004Z ##[group]Run npm run verify:ci -- --scope=domain
+2026-09-30T21:43:01.9020218Z npm run verify:ci -- --scope=domain
+2026-09-30T21:43:01.9701704Z > node scripts/verify-ci.mjs --scope=domain
+2026-09-30T21:43:02.0515419Z CHECK typecheck: /opt/hostedtoolcache/node/22.23.3/x64/bin/node /opt/hostedtoolcache/node/22.23.3/x64/lib/node_modules/npm/bin/npm-cli.js run typecheck
+2026-09-30T21:43:03.8423488Z typecheck: PASS
+2026-09-30T21:43:03.8424327Z CHECK test: /opt/hostedtoolcache/node/22.23.3/x64/bin/node /opt/hostedtoolcache/node/22.23.3/x64/lib/node_modules/npm/bin/npm-cli.js run test
+2026-09-30T21:43:04.8958900Z stdout | tests/ci-gates.test.mjs > executable CI and read-only gates > an ordinary successful child keeps source and index unchanged
+2026-09-30T21:43:04.8959886Z CHECK read: /opt/hostedtoolcache/node/22.23.3/x64/bin/node -e require("node:fs").readFileSync("source.txt")
+2026-09-30T21:43:04.8960310Z read: PASS
+2026-09-30T21:43:04.9578614Z stdout | tests/ci-gates.test.mjs > executable CI and read-only gates > a zero-exit checker which writes source is rejected without hiding its write
+2026-09-30T21:43:04.9580039Z CHECK write: /opt/hostedtoolcache/node/22.23.3/x64/bin/node -e require("node:fs").writeFileSync("source.txt","changed")
+2026-09-30T21:43:05.0132062Z CHECK fail: /opt/hostedtoolcache/node/22.23.3/x64/bin/node -e process.exit(9)
+2026-09-30T21:43:05.0638044Z stdout | tests/ci-gates.test.mjs > executable CI and read-only gates > a zero-exit checker which changes only the index is also rejected
+2026-09-30T21:43:05.0639631Z CHECK index-write: /opt/hostedtoolcache/node/22.23.3/x64/bin/node -e require("node:child_process").execFileSync("git",["rm","--cached","source.txt"])
+2026-09-30T21:43:06.6915057Z  Test Files  21 passed (21)
+2026-09-30T21:43:06.6915536Z       Tests  171 passed (171)
+2026-09-30T21:43:06.7691789Z test: PASS
+2026-09-30T21:43:06.7692505Z CHECK verify:content: /opt/hostedtoolcache/node/22.23.3/x64/bin/node /opt/hostedtoolcache/node/22.23.3/x64/lib/node_modules/npm/bin/npm-cli.js run verify:content
+2026-09-30T21:43:07.1199772Z   "status": "PASS",
+2026-09-30T21:43:07.1200563Z   "contentHash": "json-fnv-v1:004135ca2b38f6ee",
+2026-09-30T21:43:07.1201042Z   "conservativeEventBound": 82,
+2026-09-30T21:43:07.4332262Z verify:content: PASS
+2026-09-30T21:43:07.4332681Z CHECK rules-goldens: /opt/hostedtoolcache/node/22.23.3/x64/bin/node harness/rules-goldens.mjs shots/ci/rules
+2026-09-30T21:43:07.8274146Z PASS: G01–G15; scoring traces, every before/after and operations independently checked. /home/runner/work/dachoupai/dachoupai/shots/ci/rules
+2026-09-30T21:43:08.0533300Z rules-goldens: PASS
+2026-09-30T21:43:08.1068565Z   "scope": "domain",
+2026-09-30T21:43:08.1068900Z   "testedCommit": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+2026-09-30T21:43:08.1069176Z   "status": "PASS",
+2026-09-30T21:43:08.1069814Z     "source": "54a11a28692dfaf7892bd44e328101804380770b8268ef7324fb642a262ba0fa",
+2026-09-30T21:43:08.1070247Z     "index": "4b80c1148ee80bc9c5e208a320a2e4f7909368b41257a5a1009d769a03fda471",
+2026-09-30T21:43:08.1070916Z     "head": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+2026-09-30T21:43:08.1071148Z     "branch": null
+2026-09-30T21:43:08.1071739Z     "source": "54a11a28692dfaf7892bd44e328101804380770b8268ef7324fb642a262ba0fa",
+2026-09-30T21:43:08.1072188Z     "index": "4b80c1148ee80bc9c5e208a320a2e4f7909368b41257a5a1009d769a03fda471",
+2026-09-30T21:43:08.1072560Z     "head": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+2026-09-30T21:43:08.1072877Z     "branch": null
+2026-09-30T21:43:08.1073435Z       "status": "PASS",
+2026-09-30T21:43:08.1074119Z       "status": "PASS",
+2026-09-30T21:43:08.1074823Z       "status": "PASS",
+2026-09-30T21:43:08.1075443Z       "name": "rules-goldens",
+2026-09-30T21:43:08.1075579Z       "status": "PASS",
+2026-09-30T21:43:08.1244817Z   retention-days: 14
+2026-09-30T21:43:08.2231448Z (node:2534) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-30T21:43:08.6024541Z (node:2534) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-30T21:43:09.1467193Z Artifact domain-36781124417.zip successfully finalized. Artifact ID 11127557024
+2026-09-30T21:43:09.2329597Z (node:2546) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-30T21:43:09.3964523Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

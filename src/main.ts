@@ -26,7 +26,7 @@ game.canvas.tabIndex=0;
 game.canvas.setAttribute('aria-label','大丑牌牌桌，方向键聚焦手牌，空格选牌，Enter 查看详情');
 installRunMenu(game);
 
-// harness 挂钩：仅 ?harness=1 时暴露给本地冒烟脚本，正常游玩路径不挂全局
-if (new URLSearchParams(window.location.search).has('harness')) {
+// Read-only browser observers are available only in the explicit E2E build mode.
+if (import.meta.env.MODE === 'e2e' && new URLSearchParams(window.location.search).get('harness') === '1') {
   (window as unknown as { __harness: { game: Phaser.Game } }).__harness = { game };
 }

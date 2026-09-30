@@ -22,16 +22,25 @@
     "test:recovery": "vitest run tests/recovery-queue.test.ts tests/recovery-save.test.ts",
     "test:recovery:browser": "node harness/recovery.mjs",
     "test:layout": "vitest run tests/layout.test.ts",
-    "test:layout:browser": "node harness/layout.mjs"
+    "test:layout:browser": "node harness/layout.mjs",
+    "test:e2e": "node harness/e2e.mjs",
+    "test:gate-faults": "node harness/gate-faults.mjs",
+    "verify:ci": "node scripts/verify-ci.mjs"
   },
   "dependencies": {
     "phaser": "3.90.0"
   },
   "devDependencies": {
     "@gltf-transform/cli": "^4.5.1",
+    "@gltf-transform/core": "4.5.1",
+    "@gltf-transform/extensions": "4.5.1",
+    "@gltf-transform/functions": "4.5.1",
+    "gltf-validator": "2.0.0-dev.3.10",
+    "mikktspace": "1.1.1",
     "playwright": "^1.63.0",
+    "sharp": "0.35.5",
     "typescript": "^5.9.2",
-    "vite": "^7.3.6",
-    "vitest": "^3.2.4"
+    "vite": "7.3.6",
+    "vitest": "4.1.11"
   }
 }

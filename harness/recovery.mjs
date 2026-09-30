@@ -13,7 +13,7 @@ const output=path.resolve(root,process.env.RECOVERY_EVIDENCE_DIR||'shots/recover
 const report={testedCommit:execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),dirtyState:execFileSync('git',['status','--porcelain'],{cwd:root,encoding:'utf8'}).trim(),checks:[],limitations:['Windows Chromium and touchscreen emulation; physical phones/human acceptance NOT_RUN.','Current five-joker r2 build; not a full chapter/Boss or balance evaluation.']};
 const mark=check=>{report.checks.push(check);console.log(`${check.name}: ${check.status}`);};
 const ssr=await createServer({root,server:{middlewareMode:true,hmr:false},appType:'custom'}),domain=await ssr.ssrLoadModule('/src/domain/run.ts'),checkpoints=await ssr.ssrLoadModule('/src/application/checkpoint.ts');
-const server=spawn(process.execPath,[path.join(root,'node_modules/vite/bin/vite.js'),'--port',String(port),'--strictPort'],{cwd:root,stdio:'ignore',windowsHide:true});
+const server=spawn(process.execPath,[path.join(root,'node_modules/vite/bin/vite.js'),'--mode','e2e','--port',String(port),'--strictPort'],{cwd:root,stdio:'ignore',windowsHide:true});
 const base=`http://localhost:${port}/?harness=1&seed=r03-1`;
 let browser;
 const waitScene=(page,key)=>page.waitForFunction(key=>window.__harness?.game.scene.getScene(key)?.scene.isActive(),key);

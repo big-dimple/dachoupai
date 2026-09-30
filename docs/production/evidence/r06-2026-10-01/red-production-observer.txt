@@ -1,0 +1,17 @@
+{
+  "testedCommit": "a76db0ef65b4fdcc629e7c71ed3b36c97ed9204b",
+  "dirtyState": "?? docs/production/evidence/r06-2026-10-01/browser-install.txt\n?? harness/e2e.mjs\n?? tests/ci-gates.test.mjs",
+  "checks": [
+    {
+      "name": "production-observer-hidden",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: production query must not expose the test observer\n+ actual - expected\n\n+ 'object'\n- 'undefined'\n"
+    }
+  ],
+  "limitations": [
+    "Test browser emulation; physical phone and human acceptance NOT_RUN."
+  ],
+  "browser": "153.0.8010.12",
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: production query must not expose the test observer\n+ actual - expected\n\n+ 'object'\n- 'undefined'\n"
+}

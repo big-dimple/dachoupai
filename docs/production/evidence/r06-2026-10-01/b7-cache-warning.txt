@@ -1,0 +1,47 @@
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-production/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-production/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-production/assets/index-BJxTMKP1.js   1,316.01 kB │ gzip: 367.88 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.91s
+vite v7.3.6 building client environment for e2e...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-e2e/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-e2e/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-e2e/assets/index-DaaLy-mw.js   1,316.10 kB │ gzip: 367.94 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.76s
+Error: ENOENT: no such file or directory, mkdir 'C:\Users\WANGHO~1\AppData\Local\Temp\dachoupai-gate-faults-WzKAXB\candidate\node_modules\.vite\deps_temp_b27577d3'
+    at Object.mkdirSync (node:fs:1363:26)
+    at runOptimizeDeps (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:32014:5)
+    at file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:34202:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+05:32:45 [vite] (client) error while updating dependencies:
+Error: ENOENT: no such file or directory, mkdir 'C:\Users\WANGHO~1\AppData\Local\Temp\dachoupai-gate-faults-WzKAXB\candidate\node_modules\.vite\deps_temp_af0cd287'
+    at Object.mkdirSync (node:fs:1363:26)
+    at runOptimizeDeps (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:32014:5)
+    at runOptimizer (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:34251:26)
+    at rerun (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:34342:3)
+    at Timeout._onTimeout (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:34377:30)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+chromium/production-observer-hidden: PASS
+chromium/fallback-404: PASS
+chromium/fallback-timedout: PASS
+chromium/fallback-audio-denied: PASS
+built-bundle E2E: PASS; 4 actual scenarios (assets)

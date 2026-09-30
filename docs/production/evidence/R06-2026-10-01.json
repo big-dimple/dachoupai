@@ -1,0 +1,184 @@
+{
+  "taskId": "R06",
+  "testedCommit": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+  "baseCommit": "abb62eefba1d20f6a9e3621fc52495342ea80679",
+  "completedAt": "2026-09-30T22:02:42Z",
+  "rulesVersion": "r2",
+  "contentVersion": "quality-r2-run-v2",
+  "contentHash": "json-fnv-v1:004135ca2b38f6ee",
+  "testedTree": {
+    "scope": "Clean committed candidate; source/index/HEAD/branch identical before and after all local checks. Only evidence/progress docs generated afterward.",
+    "report": "docs/production/evidence/r06-2026-10-01/local-ci.json"
+  },
+  "environment": {
+    "local": {
+      "os": "Windows_NT 10.0.26200",
+      "node": "v22.20.0",
+      "chromium": "153.0.8010.12",
+      "firefox": "155.0",
+      "webkit": "26.6"
+    },
+    "ci": {
+      "os": "Ubuntu 24.04.5",
+      "node": "22.23.3",
+      "npm": "10.9.9"
+    },
+    "device": "Real mouse and emulated touchscreen input in browsers; physical phones NOT_RUN"
+  },
+  "changes": [
+    "Read-only runner fingerprints tracked and non-ignored files, index, HEAD and branch; any child failure or write stops the gate and preserves the detected write for review.",
+    "Normal production removes test observer; explicit e2e build exposes read-only state/geometry. Real double-confirm touch discovered a modal click-through bug; closing guards the same pointer position briefly without changing score expectations.",
+    "npm ci, three browser engines, failure screenshots/traces and semantic reward/touch/path mutations run in CI; release:checked performs checks and never commits/pushes/merges. Legacy r1 seed suite is named regression rather than balance.",
+    "Pure SSR no longer starts the unneeded client optimizer; each scratch checkout owns its cache, eliminating the observed ENOENT race. Default npm dependency audit has zero advisories for this locked candidate."
+  ],
+  "checks": [
+    {
+      "name": "full-local-gate",
+      "command": "npm run verify:ci",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r06-2026-10-01/local-ci.txt",
+      "report": "docs/production/evidence/r06-2026-10-01/local-ci.json",
+      "scope": "13 steps: typecheck, 171 units/21 files, content 5/bound82, G01–15, build, startup smoke, exact domain replay, 30 layout, 18 recovery plus100 continue,21 E2E,3 fault/restore pairs,plan self-test and actual plan."
+    },
+    {
+      "name": "built-bundle-cross-browser-input",
+      "command": "npm run test:e2e (through verify:ci)",
+      "status": "PASS",
+      "exitCode": 0,
+      "report": "docs/production/evidence/r06-2026-10-01/e2e.json",
+      "scope": "21 scenarios: amo mouse and erxiang touch; independent reward, double intent, buy/sell/reorder/reroll, discard/play/loss, save/exit/continue/reload/speed/mute/rotate, six details, subpath,404/transport timeout/audio-denied."
+    },
+    {
+      "name": "semantic-faults-and-restoration",
+      "command": "npm run test:gate-faults (through verify:ci)",
+      "status": "PASS",
+      "exitCode": 0,
+      "report": "docs/production/evidence/r06-2026-10-01/faults.json",
+      "scope": "Each broken child returns1 and its specific semantic scenario fails; each restored child returns0. All writes are in an owned temporary checkout; shared source/index unchanged.",
+      "evidenceRoot": "docs/production/evidence/r06-2026-10-01/faults"
+    },
+    {
+      "name": "ci-actual-execution",
+      "command": "npm run verify:ci -- --scope=domain; npm run verify:ci -- --scope=browser; npm run verify:ci -- --scope=docs (separate CI jobs, after npm ci; browser installs three engines)",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": [
+        "docs/production/evidence/r06-2026-10-01/ci-domain.txt",
+        "docs/production/evidence/r06-2026-10-01/ci-browser.txt",
+        "docs/production/evidence/r06-2026-10-01/ci-docs.txt"
+      ],
+      "runId": 36781124417,
+      "runUrl": "https://github.com/big-dimple/dachoupai/actions/runs/36781124417",
+      "jobs": [
+        {
+          "id": 110111502679,
+          "name": "docs",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 110111502992,
+          "name": "domain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 110111503144,
+          "name": "browser",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "scope": "Every job checks out the explicit PR head SHA, not a merge ref; all three job conclusions success."
+    },
+    {
+      "name": "release-plan",
+      "command": "npm run release:checked -- --plan",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r06-2026-10-01/release-plan.txt",
+      "scope": "Plan is explicitly NOT_RUN; no Git mutation. Full release wrapper NOT_RUN separately; identical inner verify:ci gate actually ran above."
+    }
+  ],
+  "testFirstEvidence": [
+    {
+      "testedCommit": "a76db0ef65b4fdcc629e7c71ed3b36c97ed9204b",
+      "command": "vitest run tests/ci-gates.test.mjs",
+      "status": "FAIL",
+      "exitCode": 1,
+      "evidence": "docs/production/evidence/r06-2026-10-01/red-gates.txt",
+      "scope": "Six initial contract failures before executable CI/read-only runner.",
+      "invocationNote": "Original shell prefix not retained in red log; actual Vitest suite/failures recorded, not claiming global CLI availability."
+    },
+    {
+      "testedCommit": "a76db0ef65b4fdcc629e7c71ed3b36c97ed9204b",
+      "command": "node harness/e2e.mjs",
+      "workingTree": "New test-first browser harness, not a clean implementation",
+      "status": "FAIL",
+      "exitCode": 1,
+      "evidence": "docs/production/evidence/r06-2026-10-01/red-production-observer.txt",
+      "report": "docs/production/evidence/r06-2026-10-01/observer-red/e2e.json"
+    },
+    {
+      "testedCommit": "a76db0ef65b4fdcc629e7c71ed3b36c97ed9204b",
+      "command": "node harness/e2e.mjs",
+      "workingTree": "Partial R06; actual dirty state preserved",
+      "status": "FAIL",
+      "exitCode": 1,
+      "evidence": "docs/production/evidence/r06-2026-10-01/red-touch-dialog/command.txt",
+      "report": "docs/production/evidence/r06-2026-10-01/red-touch-dialog/e2e.json",
+      "scope": "Rapid touch reopened an underlying offer dialog; retained failure screenshot and trace precede the pointer guard."
+    },
+    {
+      "testedCommit": "b7de15cabc1af25ad9e8f8c8f5ce6a51fc71562a",
+      "command": "npm run verify:ci",
+      "status": "PASS_WITH_INFRASTRUCTURE_WARNING",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r06-2026-10-01/b7-cache-warning.txt",
+      "scope": "All local steps returned0 but asset restoration logged Vite ENOENT. Fixed and whole gate rerun at testedCommit; six new scratch logs contain0 optimizer errors. CI run36779006821 cancelled by newer push, not counted as full CI success."
+    }
+  ],
+  "ciArtifacts": [
+    {
+      "id": 11127958795,
+      "name": "browser-36781124417",
+      "sha256": "sha256:e94e875f32cddc6878fe683f5e542d4d520b385d55fda560eac12ef26307963a",
+      "bytes": 19012196,
+      "expiresAt": "2026-10-14T21:58:46Z",
+      "url": "https://github.com/big-dimple/dachoupai/actions/runs/36781124417/artifacts/11127958795",
+      "retentionDays": 14
+    },
+    {
+      "id": 11127916099,
+      "name": "docs-36781124417",
+      "sha256": "sha256:50784eeb13bd5661d2fa647f809adc95662fd02108540403ad3da56542ccae42",
+      "bytes": 637,
+      "expiresAt": "2026-10-14T21:43:01Z",
+      "url": "https://github.com/big-dimple/dachoupai/actions/runs/36781124417/artifacts/11127916099",
+      "retentionDays": 14
+    },
+    {
+      "id": 11127557024,
+      "name": "domain-36781124417",
+      "sha256": "sha256:c5d6437b738821e49fdc79c85d1dcfcf032da78515e9a99f1d5d4c8251435396",
+      "bytes": 10558,
+      "expiresAt": "2026-10-14T21:43:08Z",
+      "url": "https://github.com/big-dimple/dachoupai/actions/runs/36781124417/artifacts/11127557024",
+      "retentionDays": 14
+    }
+  ],
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": "",
+    "evidence": ""
+  },
+  "limitations": [
+    "Physical Android Chrome/iPhone Safari, target-device performance,20 cold-load trials/30-minute memory, human comparison and art approval NOT_RUN. User accepts key Android milestones and handles deployment; no deployment handoff.",
+    "This candidate still has five jokers and no Boss/final eight-chapter victory/endless. Browser full-slot replacement remains outside this suite; R03 domain full-slot rejection and actual R06 sales/replacements covered. V00 extends the natural two-chapter paths.",
+    "timedout is a failed transport injection, not the separate true slow-load deadline measurement. Offline cached build, no-Navigator-Locks browser and full screen-reader acceptance NOT_RUN.",
+    "Asset check not adopted until A00; balance/benchmark gates NOT_INCLUDED without placeholders. Source PNG/GLB retained and still copied to build; publication allowlist approval pending. Large chunk/deprecated tooling warnings remain; zero npm advisories is specific to this locked dependency audit.",
+    "100 reentries measures direct scene children and shutdown listeners, not total memory or phone acceptance. Failed screenshot/trace artifacts expire after14days; compact command reports and key original regressions retained in repository."
+  ],
+  "nextTask": "V00"
+}

@@ -1,0 +1,141 @@
+Decoded primary job log excerpts, selected by commands/results/SHA/read-only fingerprints/environment/artifact retention.
+Source job: 110111503144; run: 36781124417
+2026-09-30T21:42:52.6922567Z Ubuntu
+2026-09-30T21:42:52.6927677Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-30T21:42:53.5813628Z   ref: 98c381c5d96b76951d9034e2dc91309049dcad0d
+2026-09-30T21:42:53.8335146Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 98c381c5d96b76951d9034e2dc91309049dcad0d
+2026-09-30T21:42:55.6052591Z  * branch            98c381c5d96b76951d9034e2dc91309049dcad0d -> FETCH_HEAD
+2026-09-30T21:42:55.6171052Z [command]/usr/bin/git checkout --progress --force 98c381c5d96b76951d9034e2dc91309049dcad0d
+2026-09-30T21:42:55.7734024Z Note: switching to '98c381c5d96b76951d9034e2dc91309049dcad0d'.
+2026-09-30T21:42:55.7747151Z HEAD is now at 98c381c fix(R06): isolate SSR cache in fault-check worktrees
+2026-09-30T21:42:55.7833693Z 98c381c5d96b76951d9034e2dc91309049dcad0d
+2026-09-30T21:42:55.9731597Z Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+2026-09-30T21:42:55.9735498Z (node:2297) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-30T21:42:56.3163098Z node: v22.23.3
+2026-09-30T21:42:56.3163653Z npm: 10.9.9
+2026-09-30T21:42:56.3182994Z [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+2026-09-30T21:42:56.6150600Z (node:2297) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-30T21:42:57.6073583Z ##[group]Run npm ci
+2026-09-30T21:42:57.6073913Z npm ci
+2026-09-30T21:42:59.8870591Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-09-30T21:43:01.2596355Z found 0 vulnerabilities
+2026-09-30T21:43:47.6308183Z CHECK build: /opt/hostedtoolcache/node/22.23.3/x64/bin/node /opt/hostedtoolcache/node/22.23.3/x64/lib/node_modules/npm/bin/npm-cli.js run build
+2026-09-30T21:43:55.7466354Z build: PASS
+2026-09-30T21:43:55.7467823Z CHECK verify:smoke: /opt/hostedtoolcache/node/22.23.3/x64/bin/node /opt/hostedtoolcache/node/22.23.3/x64/lib/node_modules/npm/bin/npm-cli.js run verify:smoke
+2026-09-30T21:44:03.7922053Z verify:smoke: PASS
+2026-09-30T21:44:03.7924025Z CHECK test:domain:browser: /opt/hostedtoolcache/node/22.23.3/x64/bin/node /opt/hostedtoolcache/node/22.23.3/x64/lib/node_modules/npm/bin/npm-cli.js run test:domain:browser
+2026-09-30T21:44:27.5794246Z desktop: r2 buy/discard/play/clear/reorder/sell/replace + exact replay PASS (json-fnv-v1:bbad9009bd42f61d)
+2026-09-30T21:44:38.3339880Z mobile: r2 buy/discard/play/clear/reorder/sell/replace + exact replay PASS (json-fnv-v1:bbad9009bd42f61d)
+2026-09-30T21:44:38.3897377Z domain workflow: PASS
+2026-09-30T21:44:38.5001322Z test:domain:browser: PASS
+2026-09-30T21:44:38.5002674Z CHECK test:layout:browser: /opt/hostedtoolcache/node/22.23.3/x64/bin/node /opt/hostedtoolcache/node/22.23.3/x64/lib/node_modules/npm/bin/npm-cli.js run test:layout:browser
+2026-09-30T21:45:31.2205058Z   "status": "PASS",
+2026-09-30T21:45:31.2206467Z       "status": "PASS",
+2026-09-30T21:45:31.2208752Z       "status": "PASS",
+2026-09-30T21:45:31.2210687Z       "status": "PASS",
+2026-09-30T21:45:31.2213819Z       "status": "PASS",
+2026-09-30T21:45:31.2215591Z       "status": "PASS",
+2026-09-30T21:45:31.2217272Z       "status": "PASS",
+2026-09-30T21:45:31.2218911Z       "status": "PASS",
+2026-09-30T21:45:31.2220475Z       "status": "PASS",
+2026-09-30T21:45:31.2221653Z       "status": "PASS",
+2026-09-30T21:45:31.2223253Z       "status": "PASS",
+2026-09-30T21:45:31.2224596Z       "status": "PASS",
+2026-09-30T21:45:31.2225690Z       "status": "PASS",
+2026-09-30T21:45:31.2226782Z       "status": "PASS",
+2026-09-30T21:45:31.2227848Z       "status": "PASS",
+2026-09-30T21:45:31.2228911Z       "status": "PASS",
+2026-09-30T21:45:31.2229977Z       "status": "PASS",
+2026-09-30T21:45:31.2231018Z       "status": "PASS",
+2026-09-30T21:45:31.2233095Z       "status": "PASS",
+2026-09-30T21:45:31.2234506Z       "status": "PASS",
+2026-09-30T21:45:31.2235604Z       "status": "PASS",
+2026-09-30T21:45:31.2238931Z       "status": "PASS",
+2026-09-30T21:45:31.2240226Z       "status": "PASS",
+2026-09-30T21:45:31.2241334Z       "status": "PASS",
+2026-09-30T21:45:31.2242606Z       "status": "PASS",
+2026-09-30T21:45:31.2243857Z       "status": "PASS"
+2026-09-30T21:45:31.2244738Z       "status": "PASS",
+2026-09-30T21:45:31.2246157Z       "status": "PASS"
+2026-09-30T21:45:31.2247000Z       "status": "PASS"
+2026-09-30T21:45:31.2248050Z       "status": "PASS"
+2026-09-30T21:45:31.2248927Z       "status": "PASS"
+2026-09-30T21:45:31.3287132Z test:layout:browser: PASS
+2026-09-30T21:45:31.3288579Z CHECK test:recovery:browser: /opt/hostedtoolcache/node/22.23.3/x64/bin/node /opt/hostedtoolcache/node/22.23.3/x64/lib/node_modules/npm/bin/npm-cli.js run test:recovery:browser
+2026-09-30T21:45:39.7440183Z refresh/character-confirmed: PASS
+2026-09-30T21:45:46.6573735Z refresh/shop-first-shown: PASS
+2026-09-30T21:45:54.6715882Z refresh/bought: PASS
+2026-09-30T21:46:03.4670870Z refresh/rerolled: PASS
+2026-09-30T21:46:13.7603072Z refresh/play-committed: PASS
+2026-09-30T21:46:19.3520982Z refresh/during-presentation: PASS
+2026-09-30T21:46:32.5243415Z refresh/reward-published: PASS
+2026-09-30T21:46:37.7413313Z playback/1: PASS
+2026-09-30T21:46:43.7181282Z playback/2: PASS
+2026-09-30T21:46:51.2143125Z playback/4: PASS
+2026-09-30T21:46:56.6178040Z playback/fast-forward: PASS
+2026-09-30T21:47:01.7522712Z playback/audio-denied: PASS
+2026-09-30T21:47:13.4632979Z quota/pause-export-retry: PASS
+2026-09-30T21:47:24.4073952Z data/corrupt-backup-retained: PASS
+2026-09-30T21:47:35.2107645Z data/incompatible-backup-retained: PASS
+2026-09-30T21:47:45.5923514Z import/illegal-rejected-valid-roundtrip: PASS
+2026-09-30T21:48:04.5023311Z tabs/readonly-explicit-takeover: PASS
+2026-09-30T21:50:41.1107738Z scene/exit-new-run-no-stale-callbacks-100-reentries: PASS
+2026-09-30T21:50:41.2746461Z recovery: PASS; 18 actual scenarios
+2026-09-30T21:50:41.4488904Z test:recovery:browser: PASS
+2026-09-30T21:50:41.4489890Z CHECK test:e2e: /opt/hostedtoolcache/node/22.23.3/x64/bin/node /opt/hostedtoolcache/node/22.23.3/x64/lib/node_modules/npm/bin/npm-cli.js run test:e2e
+2026-09-30T21:50:54.4563709Z chromium/production-observer-hidden: PASS
+2026-09-30T21:52:27.6252299Z chromium/workflow-amo: PASS
+2026-09-30T21:53:07.4193171Z chromium/workflow-erxiang: PASS
+2026-09-30T21:53:11.2925007Z chromium/touch-entry: PASS
+2026-09-30T21:53:16.3227791Z chromium/fallback-404: PASS
+2026-09-30T21:53:21.2033140Z chromium/fallback-timedout: PASS
+2026-09-30T21:53:26.0152832Z chromium/fallback-audio-denied: PASS
+2026-09-30T21:53:28.1407088Z firefox/production-observer-hidden: PASS
+2026-09-30T21:53:35.7675673Z firefox/workflow-amo: PASS
+2026-09-30T21:53:41.8064395Z firefox/workflow-erxiang: PASS
+2026-09-30T21:53:42.7776938Z firefox/touch-entry: PASS
+2026-09-30T21:53:43.8905699Z firefox/fallback-404: PASS
+2026-09-30T21:53:44.9986371Z firefox/fallback-timedout: PASS
+2026-09-30T21:53:46.1922500Z firefox/fallback-audio-denied: PASS
+2026-09-30T21:53:51.5068744Z webkit/production-observer-hidden: PASS
+2026-09-30T21:54:14.9894245Z webkit/workflow-amo: PASS
+2026-09-30T21:54:28.8437188Z webkit/workflow-erxiang: PASS
+2026-09-30T21:54:30.9943757Z webkit/touch-entry: PASS
+2026-09-30T21:54:33.4419170Z webkit/fallback-404: PASS
+2026-09-30T21:54:35.9648234Z webkit/fallback-timedout: PASS
+2026-09-30T21:54:38.5076908Z webkit/fallback-audio-denied: PASS
+2026-09-30T21:54:38.5905686Z built-bundle E2E: PASS; 21 actual scenarios (all)
+2026-09-30T21:54:38.7013607Z test:e2e: PASS
+2026-09-30T21:54:38.7015994Z CHECK test:gate-faults: /opt/hostedtoolcache/node/22.23.3/x64/bin/node /opt/hostedtoolcache/node/22.23.3/x64/lib/node_modules/npm/bin/npm-cli.js run test:gate-faults
+2026-09-30T21:54:39.3590258Z Note: switching to '98c381c5d96b76951d9034e2dc91309049dcad0d'.
+2026-09-30T21:54:39.5166037Z reward: running intentionally broken gate
+2026-09-30T21:55:36.3582263Z reward: running restored gate
+2026-09-30T21:57:21.5648146Z touch: running intentionally broken gate
+2026-09-30T21:57:48.3241409Z touch: running restored gate
+2026-09-30T21:58:04.7544816Z assets: running intentionally broken gate
+2026-09-30T21:58:18.7334715Z assets: running restored gate
+2026-09-30T21:58:46.3218434Z test:gate-faults: PASS
+2026-09-30T21:58:46.4008075Z   "testedCommit": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+2026-09-30T21:58:46.4008616Z   "status": "PASS",
+2026-09-30T21:58:46.4008943Z   "exitCode": 0,
+2026-09-30T21:58:46.4009858Z     "source": "d6d68f1a29e39ea802fcbd90c662f569dc64eb9afd8ba3fe953a229b1a09a529",
+2026-09-30T21:58:46.4010742Z     "index": "4b80c1148ee80bc9c5e208a320a2e4f7909368b41257a5a1009d769a03fda471",
+2026-09-30T21:58:46.4011451Z     "head": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+2026-09-30T21:58:46.4012179Z     "branch": null
+2026-09-30T21:58:46.4013470Z     "source": "d6d68f1a29e39ea802fcbd90c662f569dc64eb9afd8ba3fe953a229b1a09a529",
+2026-09-30T21:58:46.4014481Z     "index": "4b80c1148ee80bc9c5e208a320a2e4f7909368b41257a5a1009d769a03fda471",
+2026-09-30T21:58:46.4015260Z     "head": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+2026-09-30T21:58:46.4015746Z     "branch": null
+2026-09-30T21:58:46.4017345Z       "status": "PASS",
+2026-09-30T21:58:46.4019475Z       "status": "PASS",
+2026-09-30T21:58:46.4022367Z       "status": "PASS",
+2026-09-30T21:58:46.4024586Z       "status": "PASS",
+2026-09-30T21:58:46.4026780Z       "status": "PASS",
+2026-09-30T21:58:46.4028769Z       "status": "PASS",
+2026-09-30T21:58:46.4030961Z       "status": "PASS",
+2026-09-30T21:58:46.4229955Z   retention-days: 14
+2026-09-30T21:58:46.5874484Z (node:8500) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-30T21:58:47.2597583Z (node:8500) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-30T21:58:48.3933661Z Artifact browser-36781124417.zip successfully finalized. Artifact ID 11127958795
+2026-09-30T21:58:48.5414324Z (node:8514) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-30T21:58:48.8205230Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

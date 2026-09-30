@@ -1,0 +1,44 @@
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-production/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-production/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-production/assets/index-dmGYTdni.js   1,316.03 kB │ gzip: 367.88 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.76s
+vite v7.3.6 building client environment for e2e...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-e2e/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-e2e/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-e2e/assets/index-Bfa3Ta5z.js   1,316.12 kB │ gzip: 367.94 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.76s
+chromium/production-observer-hidden: PASS
+chromium/touch-entry: FAIL
+locator.tap: Timeout 12000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: '选择并开局', exact: true })[22m
+
+    at chooseCharacter (C:\Users\WANGHO~1\AppData\Local\Temp\dachoupai-gate-faults-D6SHt9\candidate\harness\ui.mjs:17:246)
+    at async scenario.touch (C:\Users\WANGHO~1\AppData\Local\Temp\dachoupai-gate-faults-D6SHt9\candidate\harness\e2e.mjs:152:151)
+    at async scenario (C:\Users\WANGHO~1\AppData\Local\Temp\dachoupai-gate-faults-D6SHt9\candidate\harness\e2e.mjs:97:5)
+    at async file:///C:/Users/WANGHO%7E1/AppData/Local/Temp/dachoupai-gate-faults-D6SHt9/candidate/harness/e2e.mjs:152:41 {
+  log: [
+    "  - waiting for getByRole('button', { name: '选择并开局', exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+built-bundle E2E: FAIL; 2 actual scenarios (touch)

@@ -1,0 +1,9 @@
+
+> dachoupai@0.1.0 release:checked
+> node scripts/release-checked.mjs --plan
+
+{
+  "status": "NOT_RUN",
+  "command": "npm run verify:ci",
+  "publishing": "PR review required; no Git mutation performed"
+}
