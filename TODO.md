@@ -100,6 +100,12 @@
 - [ ] 素材总新增体积 ≤ 20 MB；单张背景 ≤ 2 MB
 - [ ] 素材清单与本清单一一对应（每个文件用途一句话），不写额外文档
 
+### 本机工具链（已装好，直接可用）
+- **Blender 5.2.1 LTS**：`D:\tools\blender-5.2.1-windows-x64\blender.exe`，支持无头跑 Python 脚本批量产资产：
+  `"D:/tools/blender-5.2.1-windows-x64/blender.exe" --background --factory-startup --python tools/blender/make_cube_demo.py`（示例脚本在仓库 `tools/blender/`，新脚本照此约定放同目录）
+- **gltf-transform**：`npx gltf-transform inspect <glb>` 检查、`npx gltf-transform optimize in.glb out.glb` 压缩（Meshopt + 纹理压缩一条龙）
+- **Playwright 冒烟**：产出的素材接入后跑 `npm run shot` 截图目审
+
 ### H5 性能预算
 - [ ] 普通道具：约 500～5,000 triangles
 - [ ] 核心卡牌：约 5,000～15,000 triangles
