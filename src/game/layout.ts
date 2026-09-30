@@ -27,8 +27,10 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const cols=portrait?2:3,rows=6/cols,cgap=12,ch=(h-68-(rows-1)*cgap)/rows,cwidth=(w-(cols-1)*cgap)/cols;
   const characterCards=Array.from({length:6},(_,i)=>box(x+(i%cols)*(cwidth+cgap),y+56+Math.floor(i/cols)*(ch+cgap),cwidth,ch));
   const slotWidth=(jokers.width-4*8)/5,slots=Array.from({length:5},(_,i)=>box(cx+i*(slotWidth+8),jokers.y,slotWidth,jokers.height));
-  const shelfTop=portrait?y+256:y+126,shelfHeight=Math.max(80,actions.y-shelfTop-24),shelfWidth=(cw-2*12)/3;
+  const shopToolsY=jokers.y+jokers.height+8,shopToolWidth=(cw-8)/2;
+  const shopTools={chapter:box(cx,shopToolsY,shopToolWidth,44),items:box(cx+shopToolWidth+8,shopToolsY,shopToolWidth,44)};
+  const shelfTop=shopToolsY+56,shelfHeight=Math.max(80,actions.y-shelfTop-24),shelfWidth=(cw-2*12)/3;
   const shelf=Array.from({length:3},(_,i)=>box(cx+i*(shelfWidth+12),shelfTop,shelfWidth,shelfHeight));
-  return {mode,compact,width,height,bodyFont:14,numberFont:22,hud,jokers,preview,tools,hand,actions,status,buttons,cards,characterCards,slots,shelf};
+  return {mode,compact,width,height,bodyFont:14,numberFont:22,hud,jokers,preview,tools,hand,actions,status,buttons,shopTools,cards,characterCards,slots,shelf};
 }
 export type TableLayout=ReturnType<typeof layout>;

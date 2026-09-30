@@ -1,0 +1,33 @@
+
+> dachoupai@0.1.0 test
+> vitest run --run tests/v00-run.test.ts
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/v00-run.test.ts (12 tests | 1 failed) 117ms
+     × can explicitly abandon a skipped scene, its following shop, or its stage-ready phase 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/v00-run.test.ts > V00 economic transactions and public chapter plans > can explicitly abandon a skipped scene, its following shop, or its stage-ready phase
+Error: Run invariant: skip has no success effects
+ ❯ check src/domain/r2Run.ts:35:70
+     33|
+     34| export function assertR2Invariants(state:R2RunState):void {
+     35|   const check=(condition:boolean,label:string)=>{if(!condition)throw n…
+       |                                                                      ^
+     36|   check(state.schemaVersion===2 && state.rulesVersion==='r2' && state.…
+     37|   const ids=state.deckInstances.map(c=>c.id), zones=[...state.drawPile…
+ ❯ assertR2Invariants src/domain/r2Run.ts:62:7
+ ❯ applyCommand src/domain/run.ts:189:5
+ ❯ send tests/v00-run.test.ts:11:51
+ ❯ tests/v00-run.test.ts:60:54
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 11 passed (12)
+   Start at  07:47:02
+   Duration  707ms (transform 252ms, setup 0ms, import 313ms, tests 117ms, environment 0ms)

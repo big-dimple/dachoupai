@@ -28,15 +28,15 @@ describe('explicit r2 commands, G10–G14', () => {
   });
   it('G10/G13 clears on the fourth hand, then never repeats score/resource/reward effects', () => {
     const run = table('xiemu');
-    run.stage!.handsLeft = 1;
+    run.stage!.handsLeft = 1;run.stage!.playIndex=3;run.stage!.previousHandType='high-card';
     const card = run.deckInstances.find(c=>c.id===run.handOrder[0])!;
     const expected = 2 * (20 + (card.rank===14 ? 11 : Math.min(card.rank,10)));
-    run.stage!.targetHeat = String(expected);
+    run.stage!.heat = String(BigInt(run.stage!.targetHeat)-BigInt(expected)); // Last-hand boundary at the unchanged contractual target.
     const command:Command = {runId:run.runId,commandId:'last-hand',expectedSeq:run.commandSeq,action:{type:'PlayHand',selectedIds:[card.id]}};
     const result = applyCommand(run,command);
     if (!result.ok) throw new Error(result.code);
     expect(result.state.phase).toBe('stage-cleared');
-    expect(result.state.stage?.heat).toBe(String(expected));
+    expect(result.state.stage?.heat).toBe('400');expect(result.state.lastTrace?.finalScore).toBe(String(expected));
     expect(result.state.stage?.handsLeft).toBe(0);
     expect(result.state.gold).toBe(13); // base 4 + interest 1 + xiemu 2, no unused hands.
     expect(result.state.stage?.goldEarned).toBe(7);

@@ -48,7 +48,7 @@ export class SceneView {
   }
   button(b:Box,label:string,name:string,action:()=>void,enabled=true,primary=false):Phaser.GameObjects.Rectangle {
     const r=this.rect(b,primary?0xc84e42:0x24313b);this.target(r,name,{tap:action});this.setEnabled(r,enabled);
-    this.text(b.x+b.width/2,b.y+b.height/2,label,primary?22:14).setOrigin(.5);return r;
+    r.setData('label',this.text(b.x+b.width/2,b.y+b.height/2,label,primary?22:14).setOrigin(.5));return r;
   }
   setEnabled(object:Phaser.GameObjects.Rectangle,enabled:boolean):void {
     object.input!.enabled=enabled;object.setAlpha(enabled?1:.45);

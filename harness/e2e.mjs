@@ -14,7 +14,7 @@ const engines={chromium,firefox,webkit},selected=(process.env.E2E_BROWSERS||'chr
 assert.ok(selected.length&&new Set(selected).size===selected.length&&selected.every(e=>engines[e]),'valid E2E_BROWSERS');
 assert.ok(['all','reward','touch','assets'].includes(scope),'valid E2E_SCENARIO');
 const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8'}).trim();
-const report={testedCommit:git('rev-parse','HEAD'),dirtyState:git('status','--porcelain=v1'),scope,engines:selected,environment:{os:process.platform,node:process.version},checks:[],limitations:['Browser touchscreen emulation; physical Android Chrome / iPhone Safari and human/art acceptance NOT_RUN.','Boss, final eight-chapter victory and endless are NOT_IMPLEMENTED in this five-joker build; later packages must extend these paths.','Cold-load performance, long-session memory and full screen-reader acceptance NOT_RUN.']};
+const report={testedCommit:git('rev-parse','HEAD'),dirtyState:git('status','--porcelain=v1'),scope,engines:selected,environment:{os:process.platform,node:process.version},checks:[],limitations:['Browser touchscreen emulation; physical Android Chrome / iPhone Safari and human/art acceptance NOT_RUN.','This harness covers warm-stage transactions, failure and resource fallback; two-chapter/Boss/skip/item paths are checked by test:v00:browser. Eight chapters and endless remain later work.','Cold-load performance, long-session memory and full screen-reader acceptance NOT_RUN.']};
 const mark=record=>{report.checks.push(record);console.log(`${record.engine}/${record.name}: ${record.status}`);};
 let active,ssr,production,test,domain,bot,characters;
 const build=(mode,outDir)=>{

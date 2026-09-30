@@ -1,0 +1,78 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/v00-consumables.test.ts (8 tests | 7 failed) 20ms
+     × T03 changes1–3 known instances in shop, preserves IDs/cursors and survives stage/save 7ms
+     × T04 changes1–3 known instances in shop, preserves IDs/cursors and survives stage/save 1ms
+     × T05 changes1–3 known instances in shop, preserves IDs/cursors and survives stage/save 1ms
+     × T06 changes1–3 known instances in shop, preserves IDs/cursors and survives stage/save 1ms
+     × rejects empty/duplicate/too many/all-unchanged/hidden in-stage targets without consuming 4ms
+     × T01 upgrades only an actually discovered hand, never a capped/unknown type; persists exact score level 4ms
+     × T17 restores one paid discard up to3 without erasing successful discard count 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/v00-consumables.test.ts > minimum skip rewards are usable, without enabling unfinished items > T03 changes1–3 known instances in shop, preserves IDs/cursors and survives stage/save
+ FAIL  tests/v00-consumables.test.ts > minimum skip rewards are usable, without enabling unfinished items > T04 changes1–3 known instances in shop, preserves IDs/cursors and survives stage/save
+ FAIL  tests/v00-consumables.test.ts > minimum skip rewards are usable, without enabling unfinished items > T05 changes1–3 known instances in shop, preserves IDs/cursors and survives stage/save
+ FAIL  tests/v00-consumables.test.ts > minimum skip rewards are usable, without enabling unfinished items > T06 changes1–3 known instances in shop, preserves IDs/cursors and survives stage/save
+Error: consumable-not-enabled
+ ❯ send tests/v00-consumables.test.ts:5:162
+      3| import {makeCheckpoint,readCheckpoint} from '../src/application/checkp…
+      4| const start=()=>createRun({seed:'skip-items',characterId:'amo',runId:'…
+      5| const send=(s:R2RunState,action:Action)=>{const r=applyCommand(s,{runI…
+       |                                                                                                                                                                  ^
+      6| const item=(s:R2RunState,id:string)=>{s.consumables=[{instanceId:'item…
+      7| const use=(s:R2RunState,targetIds:readonly string[]=[],handType?:'high…
+ ❯ use tests/v00-consumables.test.ts:7:80
+ ❯ tests/v00-consumables.test.ts:11:134
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/v00-consumables.test.ts > minimum skip rewards are usable, without enabling unfinished items > rejects empty/duplicate/too many/all-unchanged/hidden in-stage targets without consuming
+Error: consumable-not-enabled
+ ❯ send tests/v00-consumables.test.ts:5:162
+      3| import {makeCheckpoint,readCheckpoint} from '../src/application/checkp…
+      4| const start=()=>createRun({seed:'skip-items',characterId:'amo',runId:'…
+      5| const send=(s:R2RunState,action:Action)=>{const r=applyCommand(s,{runI…
+       |                                                                                                                                                                  ^
+      6| const item=(s:R2RunState,id:string)=>{s.consumables=[{instanceId:'item…
+      7| const use=(s:R2RunState,targetIds:readonly string[]=[],handType?:'high…
+ ❯ use tests/v00-consumables.test.ts:7:80
+ ❯ tests/v00-consumables.test.ts:16:211
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/v00-consumables.test.ts > minimum skip rewards are usable, without enabling unfinished items > T01 upgrades only an actually discovered hand, never a capped/unknown type; persists exact score level
+Error: consumable-not-enabled
+ ❯ send tests/v00-consumables.test.ts:5:162
+      3| import {makeCheckpoint,readCheckpoint} from '../src/application/checkp…
+      4| const start=()=>createRun({seed:'skip-items',characterId:'amo',runId:'…
+      5| const send=(s:R2RunState,action:Action)=>{const r=applyCommand(s,{runI…
+       |                                                                                                                                                                  ^
+      6| const item=(s:R2RunState,id:string)=>{s.consumables=[{instanceId:'item…
+      7| const use=(s:R2RunState,targetIds:readonly string[]=[],handType?:'high…
+ ❯ use tests/v00-consumables.test.ts:7:80
+ ❯ tests/v00-consumables.test.ts:19:201
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/v00-consumables.test.ts > minimum skip rewards are usable, without enabling unfinished items > T17 restores one paid discard up to3 without erasing successful discard count
+Error: consumable-not-enabled
+ ❯ send tests/v00-consumables.test.ts:5:162
+      3| import {makeCheckpoint,readCheckpoint} from '../src/application/checkp…
+      4| const start=()=>createRun({seed:'skip-items',characterId:'amo',runId:'…
+      5| const send=(s:R2RunState,action:Action)=>{const r=applyCommand(s,{runI…
+       |                                                                                                                                                                  ^
+      6| const item=(s:R2RunState,id:string)=>{s.consumables=[{instanceId:'item…
+      7| const use=(s:R2RunState,targetIds:readonly string[]=[],handType?:'high…
+ ❯ use tests/v00-consumables.test.ts:7:80
+ ❯ tests/v00-consumables.test.ts:23:176
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 1 passed (8)
+   Start at  06:26:08
+   Duration  632ms (transform 245ms, setup 0ms, import 306ms, tests 20ms, environment 0ms)

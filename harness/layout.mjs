@@ -29,7 +29,7 @@ async function gesture(page,key,name,{cancel=false,to,hold=0}={}){
   const send=async(type,p)=>{const touchPoints=['touchEnd','touchCancel'].includes(type)?[]:[{x:p.x,y:p.y,id:1,radiusX:2,radiusY:2,force:1}];await cdp.send('Input.dispatchTouchEvent',{type,touchPoints});report.inputTrace.push({type,target:name,x:p.x,y:p.y,at:new Date().toISOString()});};
   await send('touchStart',start);if(hold)await page.waitForTimeout(hold);if(to)await send('touchMove',target);await send(cancel?'touchCancel':'touchEnd',target);await cdp.detach();
 }
-async function fresh(character){const context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,deviceScaleFactor:2}),page=await context.newPage();page.on('pageerror',e=>{throw e;});await page.goto(url.replace('r05-layout','r03-1'));await chooseCharacter(page,character,true);return{context,page};}
+async function fresh(character){const context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,deviceScaleFactor:2}),page=await context.newPage();page.on('pageerror',e=>{throw e;});await page.goto(url.replace('r05-layout','r03-651'));await chooseCharacter(page,character,true);return{context,page};}
 async function touchWorkflow(){
   const {context,page}=await fresh('erxiang');try{
     let before=(await read(page)).state,offer=before.shop.offers.find(o=>o.definitionId==='mantangcai');

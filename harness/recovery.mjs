@@ -14,7 +14,7 @@ const report={testedCommit:execFileSync('git',['rev-parse','HEAD'],{cwd:root,enc
 const mark=check=>{report.checks.push(check);console.log(`${check.name}: ${check.status}`);};
 const ssr=await createServer({root,server:{middlewareMode:true,hmr:false},appType:'custom'}),domain=await ssr.ssrLoadModule('/src/domain/run.ts'),checkpoints=await ssr.ssrLoadModule('/src/application/checkpoint.ts');
 const server=spawn(process.execPath,[path.join(root,'node_modules/vite/bin/vite.js'),'--mode','e2e','--port',String(port),'--strictPort'],{cwd:root,stdio:'ignore',windowsHide:true});
-const base=`http://localhost:${port}/?harness=1&seed=r03-1`;
+const base=`http://localhost:${port}/?harness=1&seed=r03-651`; // Same natural 514 pair golden, new24-card shop pool.
 let browser;
 const waitScene=(page,key)=>page.waitForFunction(key=>window.__harness?.game.scene.getScene(key)?.scene.isActive(),key);
 const read=page=>page.evaluate(()=>{const run=window.__harness.game.registry.get('runController');return run?{state:run.state,journal:run.journal,status:run.status}:null;});

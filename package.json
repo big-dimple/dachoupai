@@ -24,6 +24,8 @@
     "test:layout": "vitest run tests/layout.test.ts",
     "test:layout:browser": "node harness/layout.mjs",
     "test:e2e": "node harness/e2e.mjs",
+    "test:v00:sample": "node harness/v00-sample.mjs",
+    "test:v00:browser": "node harness/v00.mjs",
     "test:gate-faults": "node harness/gate-faults.mjs",
     "verify:ci": "node scripts/verify-ci.mjs"
   },

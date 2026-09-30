@@ -1,6 +1,6 @@
 import type { PlayingCard } from '../cards/types';
 import { SeededRng, type RngSnapshot } from '../core/SeededRng';
-import { validateR2Content, type Condition, type HookPhase, type Operation, type R2JokerDefinition, type R2JokerInstance, type ScorePhase } from '../content/r2Schema';
+import { validateR2Content, type Condition, type ScoreHookPhase, type Operation, type R2JokerDefinition, type R2JokerInstance, type ScorePhase } from '../content/r2Schema';
 import { CHARACTER_IDS, type CharacterId } from './characters';
 import { evaluateR2Hand, R2_HAND_TYPES, validateCardInstances, type HandRules, type R2HandType } from './evaluateR2';
 import { Rational, type Fraction } from './rational';
@@ -20,6 +20,7 @@ export interface ScoreInput {
   jokers: readonly R2JokerInstance[]; definitions: readonly R2JokerDefinition[];
   handLevels: Partial<Record<R2HandType, number>>; handRules?: HandRules;
   playIndex: number; handsBeforePlay: number; previousHandType: R2HandType | null; wager: boolean; rng: RngSnapshot;
+  gold?:number; discardsUsed?:number; ordinaryPointsSuppressedIds?:readonly string[];
 }
 export interface Accumulator { H: Fraction; M: Fraction }
 export interface ScoreEvent {
@@ -51,6 +52,9 @@ export function scoreR2Hand(input: ScoreInput): ScoreTrace {
   if(input.hand.some(c=>c.enhancement!==undefined))throw new Error('enhancement-not-enabled');
   if (!Array.isArray(input.jokers) || !Array.isArray(input.selectedIds) || input.selectedIds.length < 1 || input.selectedIds.length > 5 || new Set(input.selectedIds).size !== input.selectedIds.length || input.selectedIds.some(id => !input.hand.some(c => c.id === id))) throw new Error('invalid-selection');
   if (input.disabledIds.some(id => !input.hand.some(c => c.id === id)) || new Set(input.disabledIds).size !== input.disabledIds.length) throw new Error('invalid-disabled-cards');
+  if(![input.gold??0,input.discardsUsed??0].every(n=>Number.isSafeInteger(n)&&n>=0))throw new Error('invalid-score-resources');
+  const ordinarySuppressed=input.ordinaryPointsSuppressedIds??[];
+  if(new Set(ordinarySuppressed).size!==ordinarySuppressed.length||ordinarySuppressed.some(id=>!input.selectedIds.includes(id)))throw new Error('invalid-ordinary-point-suppression');
   if (!Number.isSafeInteger(input.playIndex) || input.playIndex < 1 || !Number.isSafeInteger(input.handsBeforePlay) || input.handsBeforePlay < 1 || (input.previousHandType !== null && !R2_HAND_TYPES.includes(input.previousHandType)) || typeof input.wager !== 'boolean' || (input.wager && input.characterId !== 'touye')) throw new Error('invalid-score-context');
   for (const [type, level] of Object.entries(input.handLevels)) if (!R2_HAND_TYPES.includes(type as R2HandType) || !Number.isInteger(level) || level! < 1 || level! > SCORE_LIMITS.handLevel) throw new Error('invalid-hand-level');
   const errors = validateR2Content(input.definitions);
@@ -94,9 +98,15 @@ export function scoreR2Hand(input: ScoreInput): ScoreTrace {
       case 'played-count': return played.length === c.equals;
       case 'held-count': return held.length >= c.minimum;
       case 'play-modulo': return input.playIndex % c.divisor === c.remainder;
+      case 'suit-in': return !!card&&c.values.includes(card.suit);
+      case 'paired-rank': return !!card&&played.filter(p=>p.rank===card.rank).length>=c.minimum;
+      case 'rank-groups': return [...new Set(played.map(p=>p.rank))].filter(rank=>played.filter(p=>p.rank===rank).length>=c.groupSize).length>=c.minimum;
+      case 'held-rank-first': return !!card&&held.filter(p=>c.values.includes(p.rank)).slice(0,c.limit).some(p=>p.id===card.id);
+      case 'resource': return ({gold:input.gold??0,'hands-after':input.handsBeforePlay-1,'play-index':input.playIndex,'discards-used':input.discardsUsed??0})[c.resource]===c.equals;
+      case 'resource-minimum': return (input.gold??0)>=c.minimum;
     }
   };
-  const hook = (phase: HookPhase, card?: PlayingCard, depth = 0, rootEventId?: string): number => {
+  const hook = (phase: ScoreHookPhase, card?: PlayingCard, depth = 0, rootEventId?: string): number => {
     let retriggers = 0;
     for (const joker of jokers) {
       const definition = input.definitions.find(d => d.id === joker.definitionId)!;
@@ -115,7 +125,11 @@ export function scoreR2Hand(input: ScoreInput): ScoreTrace {
           const available = Math.min(op.count, SCORE_LIMITS.extraRetriggers - retriggers);
           emit(phase, source, 'retrigger-card', new Rational(BigInt(available)), () => { retriggers += available; }, h.condition, card, depth, rootEventId);
           if (available < op.count) emit(phase, source, 'retrigger-cap', new Rational(BigInt(SCORE_LIMITS.extraRetriggers)), () => {}, h.condition, card, depth, rootEventId);
-        } else {
+        } else if(op.kind==='add-heat-per-gold'||op.kind==='add-heat-per-empty-slot') {
+          const amount=op.kind==='add-heat-per-gold'?(input.gold??0):Math.max(0,5-jokers.length);
+          const raw=Rational.fromJSON(op.value).multiply(new Rational(BigInt(amount))),cap=Rational.fromJSON(op.cap),value=raw.compare(cap)>0?cap:raw;
+          emit(phase,source,op.kind,value,()=>{H=H.add(value);},h.condition,card,depth,rootEventId);
+        } else if('value' in op) {
           const value = Rational.fromJSON(op.value);
           emit(phase, source, op.kind, value, () => {
             if (op.kind === 'add-heat') H = H.add(value);
@@ -129,7 +143,8 @@ export function scoreR2Hand(input: ScoreInput): ScoreTrace {
   };
   for (const card of active) {
     const source: Source = {sourceType:'card',sourceDefinitionId:`rank-${card.rank}`,sourceInstanceId:card.id};
-    const points = new Rational(BigInt(card.rank === 14 ? 11 : Math.min(card.rank, 10)));
+    if(ordinarySuppressed.includes(card.id))emit('onCardScore',{sourceType:'rule',sourceDefinitionId:'B02',sourceInstanceId:input.runId},'ordinary-points-suppressed',new Rational(0n),()=>{},{kind:'always'},card);
+    const points = new Rational(BigInt(ordinarySuppressed.includes(card.id)?0:card.rank === 14 ? 11 : Math.min(card.rank, 10)));
     const root = `${input.rootId}/event/${events.length}`;
     emit('onCardScore', source, 'add-heat', points, () => { H = H.add(points); }, {kind:'always'}, card);
     const extra = hook('onCardScore', card, 0, root);

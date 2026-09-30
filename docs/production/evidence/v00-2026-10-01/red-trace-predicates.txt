@@ -1,0 +1,27 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/v00-save.test.ts (5 tests | 1 failed) 84ms
+     × rejects malformed visible trace predicates rather than displaying a fabricated reason 28ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/v00-save.test.ts > V00 strict save boundary before broader browser coverage > rejects malformed visible trace predicates rather than displaying a fabricated reason
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/v00-save.test.ts:33:375
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  07:14:23
+   Duration  1.16s (transform 500ms, setup 0ms, import 602ms, tests 84ms, environment 0ms)

@@ -1,0 +1,29 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/v00-consumables.test.ts (9 tests | 1 failed) 35ms
+     × two legitimately held T17s allow five successful discards and a restorable checkpoint 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/v00-consumables.test.ts > minimum skip rewards are usable, without enabling unfinished items > two legitimately held T17s allow five successful discards and a restorable checkpoint
+Error: invalid-save-integer
+ ❯ fail src/application/checkpoint.ts:20:43
+     18| }
+     19| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     20| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     21| function record(value:unknown,required:string[],optional:string[]=[]):…
+     22|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ integer src/application/checkpoint.ts:27:145
+ ❯ validateState src/application/checkpoint.ts:103:162
+ ❯ makeCheckpoint src/application/checkpoint.ts:116:19
+ ❯ tests/v00-consumables.test.ts:29:65
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  06:58:08
+   Duration  618ms (transform 244ms, setup 0ms, import 304ms, tests 35ms, environment 0ms)

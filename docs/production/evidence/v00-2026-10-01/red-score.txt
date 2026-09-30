@@ -1,0 +1,237 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/v00-score.test.ts (15 tests | 15 failed) 19ms
+     × publishes the exact 24 planned identities and no dead future definitions 9ms
+     × A03 sees actual played=1, and happens after the character multiplier 2ms
+     × a05 grows after this hand, caps and survives a JSON checkpoint 1ms
+     × b03 grows after this hand, caps and survives a JSON checkpoint 0ms
+     × c06 grows after this hand, caps and survives a JSON checkpoint 0ms
+     × B02 counts paired ranks in played; only active scoring cards trigger, with one final floor 0ms
+     × B04 needs two different groups, not one four-kind group 0ms
+     × C02 ignores red kickers and held cards; C04 applies only to straight or straight-flush 0ms
+     × D01 takes the first four eligible held J/Q/K in hand order, never A or played 1ms
+     × D03 growth is next-hand only and requires at least three held 1ms
+     × D10 empty slots exclude all occupied instances and cap at four 0ms
+     × E03 and E08 read current public gold, including boundaries 0ms
+     × F02/F03/F09 use actual remaining hands, first play and successful discard count 0ms
+     × B02 Boss suppresses fourth/fifth ordinary points while their explicit Joker effects still apply 0ms
+     × mixed +M/×M still follows slot order and previews never grow live instances 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > publishes the exact 24 planned identities and no dead future definitions
+AssertionError: expected [ 'huimaqiang', 'jiedongfeng', …(3) ] to deeply equal [ 'a03', 'a05', 'b02', 'b03', …(20) ]
+
+- Expected
++ Received
+
+@@ -1,25 +1,6 @@
+  [
+-   "a03",
+-   "a05",
+-   "b02",
+-   "b03",
+-   "b04",
+-   "c02",
+-   "c04",
+-   "c06",
+-   "d01",
+-   "d03",
+-   "d05",
+-   "d10",
+-   "e01",
+-   "e03",
+-   "e05",
+-   "e08",
+-   "f02",
+-   "f03",
+-   "f09",
+    "huimaqiang",
+    "jiedongfeng",
+    "mantangcai",
+    "pengci",
+    "tiesuanpan",
+
+ ❯ tests/v00-score.test.ts:19:43
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/15]⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > A03 sees actual played=1, and happens after the character multiplier
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:61:160
+     59|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     60|   for (const joker of jokers) {
+     61|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     62|     const writers = input.definitions.find(d => d.id === joker.definit…
+     63|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/v00-score.test.ts:11:10
+ ❯ tests/v00-score.test.ts:22:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/15]⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > a05 grows after this hand, caps and survives a JSON checkpoint
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > b03 grows after this hand, caps and survives a JSON checkpoint
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > c06 grows after this hand, caps and survives a JSON checkpoint
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:61:160
+     59|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     60|   for (const joker of jokers) {
+     61|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     62|     const writers = input.definitions.find(d => d.id === joker.definit…
+     63|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/v00-score.test.ts:11:10
+ ❯ tests/v00-score.test.ts:26:57
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/15]⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > B02 counts paired ranks in played; only active scoring cards trigger, with one final floor
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:61:160
+     59|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     60|   for (const joker of jokers) {
+     61|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     62|     const writers = input.definitions.find(d => d.id === joker.definit…
+     63|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/v00-score.test.ts:11:10
+ ❯ tests/v00-score.test.ts:33:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/15]⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > B04 needs two different groups, not one four-kind group
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:61:160
+     59|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     60|   for (const joker of jokers) {
+     61|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     62|     const writers = input.definitions.find(d => d.id === joker.definit…
+     63|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/v00-score.test.ts:11:10
+ ❯ tests/v00-score.test.ts:40:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/15]⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > C02 ignores red kickers and held cards; C04 applies only to straight or straight-flush
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:61:160
+     59|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     60|   for (const joker of jokers) {
+     61|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     62|     const writers = input.definitions.find(d => d.id === joker.definit…
+     63|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/v00-score.test.ts:11:10
+ ❯ tests/v00-score.test.ts:45:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/15]⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > D01 takes the first four eligible held J/Q/K in hand order, never A or played
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:61:160
+     59|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     60|   for (const joker of jokers) {
+     61|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     62|     const writers = input.definitions.find(d => d.id === joker.definit…
+     63|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/v00-score.test.ts:11:10
+ ❯ tests/v00-score.test.ts:52:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/15]⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > D03 growth is next-hand only and requires at least three held
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:61:160
+     59|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     60|   for (const joker of jokers) {
+     61|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     62|     const writers = input.definitions.find(d => d.id === joker.definit…
+     63|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/v00-score.test.ts:11:10
+ ❯ tests/v00-score.test.ts:57:66
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/15]⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > D10 empty slots exclude all occupied instances and cap at four
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:61:160
+     59|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     60|   for (const joker of jokers) {
+     61|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     62|     const writers = input.definitions.find(d => d.id === joker.definit…
+     63|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/v00-score.test.ts:11:10
+ ❯ tests/v00-score.test.ts:62:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/15]⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > E03 and E08 read current public gold, including boundaries
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:61:160
+     59|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     60|   for (const joker of jokers) {
+     61|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     62|     const writers = input.definitions.find(d => d.id === joker.definit…
+     63|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/v00-score.test.ts:11:10
+ ❯ tests/v00-score.test.ts:66:99
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/15]⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > F02/F03/F09 use actual remaining hands, first play and successful discard count
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:61:160
+     59|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     60|   for (const joker of jokers) {
+     61|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     62|     const writers = input.definitions.find(d => d.id === joker.definit…
+     63|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/v00-score.test.ts:11:10
+ ❯ tests/v00-score.test.ts:71:51
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/15]⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > B02 Boss suppresses fourth/fifth ordinary points while their explicit Joker effects still apply
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:61:160
+     59|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     60|   for (const joker of jokers) {
+     61|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     62|     const writers = input.definitions.find(d => d.id === joker.definit…
+     63|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/v00-score.test.ts:11:10
+ ❯ tests/v00-score.test.ts:74:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/15]⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > mixed +M/×M still follows slot order and previews never grow live instances
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:61:160
+     59|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     60|   for (const joker of jokers) {
+     61|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     62|     const writers = input.definitions.find(d => d.id === joker.definit…
+     63|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/v00-score.test.ts:11:10
+ ❯ tests/v00-score.test.ts:81:76
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/15]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  15 failed (15)
+   Start at  06:06:55
+   Duration  510ms (transform 122ms, setup 0ms, import 158ms, tests 19ms, environment 0ms)
+
+TEST_AUTHOR_CORRECTION_BEFORE_IMPLEMENTATION: B04 four eights expected 2520 was an arithmetic typo in the initially unreachable invalid-joker branch. Independent contract (320+4*8)*7=2464; corrected before implementation, not derived from an implementation output.

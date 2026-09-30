@@ -1,0 +1,159 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/v00-run.test.ts (9 tests | 9 failed) 28ms
+     × E05 grows only sources owned before successful purchases, persists, caps, and clears on sale 11ms
+     × E01 rewards a real success exactly once, with prior-gold interest, never failure 5ms
+     × D05 refunds only the first successful discard, but still disables F09; rejected intents do not count 2ms
+     × B01 charges2 before the first play, then1; refund is after payment and never bypasses insufficient quota 2ms
+     × B03 disables its fixed suit on new draws and still forms a pair; B04 never disables A 3ms
+     × declares two complete chapters at unchanged targets, not eight-chapter/endless completion 1ms
+     × locks and publicly exposes chapter Boss/skip reward before purchases or rerolls, with no repeats 1ms
+     × skip never clears/rewards/grows, gives a saved single-use actual-price coupon, and Boss skip rejects atomically 1ms
+     × normal skip delivers its pre-generated usable item, preserves full inventory and converts only to1gold 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/v00-run.test.ts > V00 economic transactions and public chapter plans > E05 grows only sources owned before successful purchases, persists, caps, and clears on sale
+AssertionError: expected undefined to deeply equal { n: '8', d: '1' }
+
+- Expected:
+{
+  "d": "1",
+  "n": "8",
+}
+
++ Received:
+undefined
+
+ ❯ tests/v00-run.test.ts:23:169
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  tests/v00-run.test.ts > V00 economic transactions and public chapter plans > E01 rewards a real success exactly once, with prior-gold interest, never failure
+AssertionError: expected 8 to be 10 // Object.is equality
+
+- Expected
++ Received
+
+- 10
++ 8
+
+ ❯ tests/v00-run.test.ts:30:39
+     28|     let s=start();s.jokers=[own('e01')];s=send(send(s,{type:'LeaveShop…
+     29|     const cmd=command(s,{type:'PlayHand',selectedIds:[s.handOrder[0]]}…
+     30|     expect(r.state.stage!.goldEarned).toBe(10);expect(r.state.gold).to…
+       |                                       ^
+     31|     let lost=table();lost.jokers=[own('e01')];lost.stage!.handsLeft=1;…
+     32|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  tests/v00-run.test.ts > V00 economic transactions and public chapter plans > D05 refunds only the first successful discard, but still disables F09; rejected intents do not count
+AssertionError: expected undefined to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+undefined
+
+ ❯ tests/v00-run.test.ts:35:150
+     33|   it('D05 refunds only the first successful discard, but still disable…
+     34|     let s=start();s.jokers=[own('d05'),own('f09')];s=send(send(s,{type…
+     35|     const bad=applyCommand(s,command(s,{type:'DiscardHand',selectedIds…
+       |                                                                                                                                                      ^
+     36|     s=send(s,{type:'DiscardHand',selectedIds:[s.handOrder[0]]});expect…
+     37|     const restored=JSON.parse(JSON.stringify(s));s=send(restored,{type…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  tests/v00-run.test.ts > V00 economic transactions and public chapter plans > B01 charges2 before the first play, then1; refund is after payment and never bypasses insufficient quota
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/v00-run.test.ts:42:95
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  tests/v00-run.test.ts > V00 economic transactions and public chapter plans > B03 disables its fixed suit on new draws and still forms a pair; B04 never disables A
+AssertionError: expected [] to deeply equal [ 'hearts-12', 'hearts-13', …(1) ]
+
+- Expected
++ Received
+
+- [
+-   "hearts-12",
+-   "hearts-13",
+-   "hearts-10",
+- ]
++ []
+
+ ❯ tests/v00-run.test.ts:47:276
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  tests/v00-run.test.ts > V00 economic transactions and public chapter plans > declares two complete chapters at unchanged targets, not eight-chapter/endless completion
+AssertionError: expected { index: 6, name: '第 3 章 · 暖场', …(2) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "index": 6,
+  "intro": "打到目标热度即可过场，出牌和弃牌次数每场补满。",
+  "name": "第 3 章 · 暖场",
+  "targetHeat": "2400",
+}
+
+ ❯ tests/v00-run.test.ts:54:141
+     52|   });
+     53|   it('declares two complete chapters at unchanged targets, not eight-c…
+     54|     expect(Array.from({length:6},(_,i)=>getR2Stage(i)?.targetHeat)).to…
+       |                                                                                                                                             ^
+     55|   });
+     56|   it('locks and publicly exposes chapter Boss/skip reward before purch…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  tests/v00-run.test.ts > V00 economic transactions and public chapter plans > locks and publicly exposes chapter Boss/skip reward before purchases or rerolls, with no repeats
+AssertionError: expected [ 'B01', 'B02', 'B03', 'B04' ] to include undefined
+ ❯ tests/v00-run.test.ts:57:192
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  tests/v00-run.test.ts > V00 economic transactions and public chapter plans > skip never clears/rewards/grows, gives a saved single-use actual-price coupon, and Boss skip rejects atomically
+Error: r2-interaction-not-enabled
+ ❯ tests/v00-run.test.ts:63:119
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  tests/v00-run.test.ts > V00 economic transactions and public chapter plans > normal skip delivers its pre-generated usable item, preserves full inventory and converts only to1gold
+Error: r2-interaction-not-enabled
+ ❯ send tests/v00-run.test.ts:11:100
+      9| const start=(seed='v00-contract')=>createRun({seed,characterId:'amo',r…
+     10| const command=(s:R2RunState,action:Action)=>({runId:s.runId,commandId:…
+     11| const send=(s:R2RunState,action:Action)=>{const r=applyCommand(s,comma…
+       |                                                                                                    ^
+     12| const own=(id:string)=>({instanceId:'owned/'+id,definitionId:id,paidPr…
+     13| // Explicit invariant-valid boundary checkpoints below are not natural…
+ ❯ tests/v00-run.test.ts:70:53
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed (9)
+   Start at  06:13:44
+   Duration  636ms (transform 226ms, setup 0ms, import 282ms, tests 28ms, environment 0ms)

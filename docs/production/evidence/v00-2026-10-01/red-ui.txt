@@ -1,0 +1,23 @@
+vite v7.3.6 building client environment for e2e...
+transforming...
+✓ 55 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-v00/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-v00/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-v00/assets/index-BHI3K9xj.js   1,331.67 kB │ gzip: 372.26 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.20s
+page.waitForFunction: Timeout 12000ms exceeded.
+    at point (D:\ai\dachoupai\dachoupai\harness\ui.mjs:5:14)
+    at tapUI (D:\ai\dachoupai\dachoupai\harness\ui.mjs:16:70)
+    at chapterSkip (D:\ai\dachoupai\dachoupai\harness\v00.mjs:24:39)
+    at async file:///D:/ai/dachoupai/dachoupai/harness/v00.mjs:44:21 {
+  log: [],
+  name: 'TimeoutError'
+}
+graybox browser: FAIL

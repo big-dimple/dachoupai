@@ -1,0 +1,63 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/v00-save.test.ts (3 tests | 3 failed) 13ms
+     × persists chapter Boss/reward/coupon and economic growth with the new content version 9ms
+     × preserves an incompatible v2 raw slot and explains the version boundary, without converting it 2ms
+     × rejects forged Boss parameters, reused Boss, excessive growth and invalid coupon/skip state even with a new checksum 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/v00-save.test.ts > V00 strict save boundary before broader browser coverage > persists chapter Boss/reward/coupon and economic growth with the new content version
+Error: invalid-save-fields
+ ❯ fail src/application/checkpoint.ts:18:43
+     16| }
+     17| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     18| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     19| function record(value:unknown,required:string[],optional:string[]=[]):…
+     20|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ record src/application/checkpoint.ts:22:125
+ ❯ validateState src/application/checkpoint.ts:87:11
+ ❯ makeCheckpoint src/application/checkpoint.ts:109:19
+ ❯ tests/v00-save.test.ts:11:56
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/v00-save.test.ts > V00 strict save boundary before broader browser coverage > preserves an incompatible v2 raw slot and explains the version boundary, without converting it
+Error: invalid-save-fields
+ ❯ fail src/application/checkpoint.ts:18:43
+     16| }
+     17| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     18| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     19| function record(value:unknown,required:string[],optional:string[]=[]):…
+     20|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ record src/application/checkpoint.ts:22:125
+ ❯ validateState src/application/checkpoint.ts:87:11
+ ❯ makeCheckpoint src/application/checkpoint.ts:109:19
+ ❯ tests/v00-save.test.ts:15:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/v00-save.test.ts > V00 strict save boundary before broader browser coverage > rejects forged Boss parameters, reused Boss, excessive growth and invalid coupon/skip state even with a new checksum
+Error: invalid-save-fields
+ ❯ fail src/application/checkpoint.ts:18:43
+     16| }
+     17| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     18| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     19| function record(value:unknown,required:string[],optional:string[]=[]):…
+     20|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ record src/application/checkpoint.ts:22:125
+ ❯ validateState src/application/checkpoint.ts:87:11
+ ❯ makeCheckpoint src/application/checkpoint.ts:109:19
+ ❯ tests/v00-save.test.ts:21:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  06:21:25
+   Duration  622ms (transform 258ms, setup 0ms, import 318ms, tests 13ms, environment 0ms)
