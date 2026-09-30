@@ -38,6 +38,12 @@ async function touchWorkflow(){
     await page.getByRole('button',{name:'确认购买',exact:true}).tap();await advanced(page,before.commandSeq);assert.equal((await read(page)).state.gold,2);
     await page.setViewportSize({width:390,height:844});await tapUI(page,'shop','action/start-stage',true);await waitScene(page,'game');await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.length===8);
     const state=(await read(page)).state,ids=state.handOrder;
+    const views=await page.evaluateHandle(()=>{const g=window.__harness.game.scene.getScene('game');return{hud:g.heatText,card:g.cardViews[0].container};});
+    await tapUI(page,'game','card/'+ids[0],true);
+    assert.ok(await page.evaluate(old=>old.hud===window.__harness.game.scene.getScene('game').heatText,views),'selection must preserve the HUD rather than recreate the entire stage');
+    assert.ok(await page.evaluate(old=>old.card===window.__harness.game.scene.getScene('game').cardViews[0].container,views),'selection updates the existing card view');
+    await tapUI(page,'game','card/'+ids[0],true);await views.dispose();
+    report.checks.push({name:'touch/selection-preserves-stage-and-card-views',status:'PASS'});
     for(const id of ids.slice(0,6))await tapUI(page,'game','card/'+id,true);
     assert.equal((await read(page)).selected.length,5);assert.ok(await page.evaluate(()=>window.__harness.game.scene.getScene('game').statusMessage.includes('最多选择 5')));
     assert.deepEqual((await read(page)).state,state);let selection=(await read(page)).selected;
@@ -45,7 +51,7 @@ async function touchWorkflow(){
     await gesture(page,'game','card/'+ids[0],{hold:410});await page.getByRole('dialog').waitFor();assert.deepEqual((await read(page)).selected,selection,'long press does not toggle');await page.getByRole('button',{name:'关闭',exact:true}).tap();
     await page.setViewportSize({width:844,height:390});assert.deepEqual((await read(page)).selected,selection);assert.deepEqual((await read(page)).state,state);await checkScene(page,'game','rotated-table');
     await page.setViewportSize({width:390,height:844});await gesture(page,'game','card/'+ids[0],{to:'card/'+ids[1]});await advanced(page,state.commandSeq);let after=(await read(page)).state;assert.deepEqual(after.rng,state.rng);assert.equal(after.gold,state.gold);assert.deepEqual((await read(page)).selected,selection);assert.equal(after.handOrder[1],ids[0]);
-    for(const action of ['action/sort-rank','action/sort-suit']){before=(await read(page)).state;await tapUI(page,'game',action,true);await advanced(page,before.commandSeq);after=(await read(page)).state;assert.deepEqual(after.rng,before.rng);assert.deepEqual((await read(page)).selected,selection);}
+    for(const action of ['action/sort-rank','action/sort-suit']){before=(await read(page)).state;const hud=await page.evaluateHandle(()=>window.__harness.game.scene.getScene('game').heatText);await tapUI(page,'game',action,true);await advanced(page,before.commandSeq);after=(await read(page)).state;assert.deepEqual(after.rng,before.rng);assert.deepEqual((await read(page)).selected,selection);assert.ok(await page.evaluate(old=>old===window.__harness.game.scene.getScene('game').heatText,hud),'sorting redraws only the hand');await hud.dispose();}
     await tapUI(page,'game','action/deck',true);await page.getByLabel('牌组范围').selectOption('all');await page.getByLabel('增强筛选').selectOption('enhanced');assert.ok((await page.getByRole('dialog').textContent()).includes('不展示抽牌顺序'));await page.getByRole('button',{name:'关闭',exact:true}).tap();
     // The natural pair of aces wins the warm stage. Selection only is UI state.
     for(const id of (await read(page)).selected)await tapUI(page,'game','card/'+id,true);for(const id of ['clubs-14','hearts-14'])await tapUI(page,'game','card/'+id,true);
@@ -56,7 +62,7 @@ async function touchWorkflow(){
     assert.equal(after.gold,before.gold);assert.deepEqual(after.jokers.map(j=>j.instanceId),[second.instanceId,first.instanceId]);assert.ok(after.receipts.at(-1).commandId);assert.equal(after.commandSeq,before.commandSeq+1,'drag is reorder only');
     await tapUI(page,'shop','joker/'+first.instanceId,true);await page.getByRole('button',{name:'出售',exact:true}).tap();await page.getByRole('dialog',{name:'出售确认'}).waitFor();await page.getByRole('button',{name:'关闭',exact:true}).tap();assert.deepEqual((await read(page)).state,after,'cancel sale preserves inventory and gold');
     await page.screenshot({path:path.join(dir,'touch-reordered-build.png')});report.checks.push({name:'touch/select-limit-cancel-longpress-sort-deck-rotate-drag-confirm',status:'PASS',input:'touchscreen.tap and Chromium Input.dispatchTouchEvent',finalSeq:after.commandSeq,score:'514'});
-  }finally{await context.close();}
+  }catch(error){report.failureObservation=await read(page);await page.screenshot({path:path.join(dir,'layout-failure.png')});throw error;}finally{await context.close();}
 }
 async function characterStates(){
   for(const character of ['touye','xiemu','amo']){
@@ -66,7 +72,9 @@ async function characterStates(){
         const before=(await read(page)).state;await tapUI(page,'game','action/details',true);await page.getByRole('button',{name:'押注本手',exact:true}).tap();await advanced(page,before.commandSeq);assert.ok((await page.getByRole('dialog').textContent()).includes('50%'));assert.ok((await read(page)).state.stage.wagerSelected);assert.deepEqual((await read(page)).state.rng,before.rng);await page.getByRole('button',{name:'关闭',exact:true}).tap();
         await tapUI(page,'game','card/'+(await read(page)).state.handOrder[0],true);assert.ok(await page.evaluate(()=>window.__harness.game.scene.getScene('game').breakdownText.text.includes('50%')));await page.screenshot({path:path.join(dir,'touch-wager-preview.png')});
       }else if(character==='xiemu'){
-        for(let i=0;i<3;i++){const before=(await read(page)).state;await tapUI(page,'game','card/'+before.handOrder[0],true);await tapUI(page,'game','action/play',true);await advanced(page,before.commandSeq);await page.waitForFunction(()=>!window.__harness.game.scene.getScene('game').playing);}
+        const hud=await page.evaluateHandle(()=>window.__harness.game.scene.getScene('game').heatText);
+        for(let i=0;i<3;i++){const before=(await read(page)).state;await tapUI(page,'game','card/'+before.handOrder[0],true);await tapUI(page,'game','action/play',true);await advanced(page,before.commandSeq);await page.waitForFunction(()=>!window.__harness.game.scene.getScene('game').playing);assert.ok(await page.evaluate(old=>old===window.__harness.game.scene.getScene('game').heatText,hud),'dealing the next hand preserves the stage');}
+        await hud.dispose();
         assert.equal((await read(page)).state.stage.handsLeft,1);await tapUI(page,'game','action/details',true);assert.ok((await page.getByRole('dialog').textContent()).includes('当前为最后一手'));await page.screenshot({path:path.join(dir,'touch-last-hand.png')});
       }else{
         const empty=(await read(page)).state;await tapUI(page,'game','action/play',true);assert.deepEqual((await read(page)).state,empty,'zero selection cannot play');await page.locator('canvas').focus();await page.keyboard.press('ArrowRight');await page.keyboard.press('Space');assert.equal((await read(page)).selected.length,1);await page.keyboard.press('Enter');await page.getByRole('dialog').waitFor();await page.getByRole('button',{name:'关闭',exact:true}).click();await page.keyboard.press('Space');

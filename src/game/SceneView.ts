@@ -44,7 +44,10 @@ export class SceneView {
     object.once('destroy',()=>{this.gestures.delete(object);if(this.pressed?.object===object)this.cancel();});
   }
   button(b:Box,label:string,name:string,action:()=>void,enabled=true,primary=false):Phaser.GameObjects.Rectangle {
-    const r=this.rect(b,primary?0xc84e42:0x24313b);if(enabled)this.target(r,name,{tap:action});else r.setName(name).setAlpha(.45);
+    const r=this.rect(b,primary?0xc84e42:0x24313b);this.target(r,name,{tap:action});this.setEnabled(r,enabled);
     this.text(b.x+b.width/2,b.y+b.height/2,label,primary?22:14).setOrigin(.5);return r;
+  }
+  setEnabled(object:Phaser.GameObjects.Rectangle,enabled:boolean):void {
+    object.input!.enabled=enabled;object.setAlpha(enabled?1:.45);
   }
 }

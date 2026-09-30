@@ -25,7 +25,10 @@ const MAX_SELECTED = R2_LIMITS.maxSelected;
 interface CardView {
   card: PlayingCard;
   container: Phaser.GameObjects.Container;
+  background: Phaser.GameObjects.Rectangle;
+  scoringMark: Phaser.GameObjects.Text;
 }
+type HandPreview=ReturnType<typeof previewR2Hand>;
 
 export class GameScene extends Phaser.Scene {
   private get deck(): string[] { return this.run.drawPile; }
@@ -56,6 +59,11 @@ export class GameScene extends Phaser.Scene {
   private breakdownText!: Phaser.GameObjects.Text;
   private roleText!: Phaser.GameObjects.Text;
   private playButton!: Phaser.GameObjects.Rectangle;
+  private discardButton!: Phaser.GameObjects.Rectangle;
+  private rankButton!: Phaser.GameObjects.Rectangle;
+  private suitButton!: Phaser.GameObjects.Rectangle;
+  private forwardButton!: Phaser.GameObjects.Rectangle;
+  private statusText!: Phaser.GameObjects.Text;
 
   constructor() {
     super('game');
@@ -92,7 +100,7 @@ export class GameScene extends Phaser.Scene {
 
   private readonly keyboard=(event:KeyboardEvent)=>{
     if(this.playing||document.querySelector('dialog[open]')||!this.scene.isActive()||document.activeElement?.matches('input,select,textarea,button'))return;
-    if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();this.focusIndex=(this.focusIndex+(event.key==='ArrowRight'?1:this.hand.length-1))%this.hand.length;this.renderHand();}
+    if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();this.focusIndex=(this.focusIndex+(event.key==='ArrowRight'?1:this.hand.length-1))%this.hand.length;this.refreshSelection();}
     else if(event.key===' '&&this.hand[this.focusIndex]){event.preventDefault();this.toggleCard(this.hand[this.focusIndex].id);}
     else if(event.key==='Enter'&&this.hand[this.focusIndex]){event.preventDefault();this.inspectCard(this.hand[this.focusIndex].id);}
   };
@@ -107,20 +115,16 @@ export class GameScene extends Phaser.Scene {
     if(!portrait)v.button({x:h.x,y:h.y+232,width:h.width,height:44},'角色 / 本场规则','action/role',()=>this.inspectRole());
     this.renderJokerRack();
     this.resultText=v.text(l.preview.x,l.preview.y,'选择 1～5 张牌',22,undefined,l.preview.width);
-    const remaining=(BigInt(this.stage.targetHeat)>BigInt(this.heat)?BigInt(this.stage.targetHeat)-BigInt(this.heat):0n).toString();
-    this.breakdownText=v.text(l.preview.x,l.preview.y+32,'距目标还需 '+heatText(remaining)+' 热度',14,'#dddacb',l.preview.width);
-    v.button(l.buttons.rank,'点数排序','action/sort-rank',()=>void this.sortHand('rank'),this.ready);
-    v.button(l.buttons.suit,'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready);
+    this.breakdownText=v.text(l.preview.x,l.preview.y+32,'',14,'#dddacb',l.preview.width);
+    this.rankButton=v.button(l.buttons.rank,'点数排序','action/sort-rank',()=>void this.sortHand('rank'),this.ready);
+    this.suitButton=v.button(l.buttons.suit,'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready);
     v.button(l.buttons.deck,'查看牌组','action/deck',()=>this.inspectDeck());
     v.button(l.buttons.details,'角色详情','action/details',()=>this.inspectRole());
-    v.button(l.buttons.discard,'弃牌','action/discard',()=>void this.discardSelected(),this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>0);
+    this.discardButton=v.button(l.buttons.discard,'弃牌','action/discard',()=>void this.discardSelected(),this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>0);
     this.playButton=v.button(l.buttons.play,'出牌','action/play',()=>void this.playSelected(),this.ready&&this.selectedIds.size>0&&this.handsLeft>0,true);
-    v.button(l.buttons.forward,'快进','action/forward',()=>this.fastForward(),!!this.presentation);
+    this.forwardButton=v.button(l.buttons.forward,'快进','action/forward',()=>this.fastForward(),!!this.presentation);
+    this.statusText=v.text(l.status.x,l.status.y,'',14,'#f1c575',l.status.width);
     this.updateHud();this.renderHand();
-    if(this.presentation){this.resultText.setText('正在结算 · 可快进');}
-    else if(this.selectedIds.size)this.previewSelection();
-    else if(this.run.lastTrace){this.resultText.setText('上手 '+HAND_LABELS[this.run.lastTrace.handType]+' +'+heatText(this.run.lastTrace.finalScore));this.breakdownText.setText(this.formatBreakdown(this.run.lastTrace));}
-    v.text(l.status.x,l.status.y,this.statusMessage||(this.playing?'结算中，不接受下一手':this.selectedIds.size?'已选 '+this.selectedIds.size+' / 5':'先选择牌，出牌和弃牌才可用'),14,'#f1c575',l.status.width);
   }
   private renderJokerRack():void {
     const v=this.view,l=v.layout;this.jokerViews.clear();
@@ -138,21 +142,37 @@ export class GameScene extends Phaser.Scene {
   }
   private renderHand():void {
     this.cardViews.forEach(v=>v.container.destroy());this.cardViews=[];const v=this.view,l=v.layout;
-    let active:readonly string[]=[];
-    if(this.selectedIds.size&&this.run.phase==='await-input')active=this.preview().sets.activeScoringIds;
     this.hand.forEach((card,i)=>{
       const b=l.cards[i].visual,hit=l.cards[i].hit,selected=this.selectedIds.has(card.id),c=this.add.container(b.x+b.width/2,b.y+b.height/2-(selected?16:0));v.add(c);
-      const bg=this.add.rectangle(0,0,b.width,b.height,0xf3eadb).setStrokeStyle(active.includes(card.id)?4:2,active.includes(card.id)?0x5d9184:selected?0xc84e42:0x879486);
+      const bg=this.add.rectangle(0,0,b.width,b.height,0xf3eadb);
       const red=card.suit==='hearts'||card.suit==='diamonds',color=red?'#b83132':'#24313b';
       const label=this.add.text(-b.width/2+5,-b.height/2+5,rankLabel(card.rank)+'\n'+SUIT_SYMBOL[card.suit],{fontFamily:'Georgia,serif',fontSize:'22px',fontStyle:'bold',color,resolution:Math.min(devicePixelRatio||1,2)});
       const suit=this.add.text(b.width/2-16,b.height/2-18,SUIT_SYMBOL[card.suit],{fontSize:'26px',color}).setOrigin(.5);
-      c.add([bg,label,suit]);c.setData('selected',selected).setData('activeScoring',active.includes(card.id));
-      if(document.activeElement===this.game.canvas&&i===this.focusIndex)bg.setStrokeStyle(3,0x7fb3d5);
-      if(active.includes(card.id))c.add(this.add.text(-b.width/2+5,b.height/2-24,'★',{fontSize:'14px',color:'#24313b'}));
+      const scoringMark=this.add.text(-b.width/2+5,b.height/2-24,'★',{fontSize:'14px',color:'#24313b'});
+      c.add([bg,label,suit,scoringMark]);
       v.target(bg,'card/'+card.id,{tap:()=>this.toggleCard(card.id),detail:()=>this.inspectCard(card.id),drag:x=>void this.reorderCard(card.id,x)});
       (bg.input!.hitArea as Phaser.Geom.Rectangle).width=hit.width;
-      this.cardViews.push({card,container:c});
+      this.cardViews.push({card,container:c,background:bg,scoringMark});
     });
+    this.refreshSelection();
+  }
+  private refreshSelection():void {
+    const preview=!this.presentation&&this.selectedIds.size?this.preview():undefined;
+    const active=this.presentation?.score.sets.activeScoringIds??preview?.sets.activeScoringIds??[],l=this.view.layout;
+    this.cardViews.forEach((v,i)=>{
+      const selected=this.selectedIds.has(v.card.id),scoring=active.includes(v.card.id),focused=document.activeElement===this.game.canvas&&i===this.focusIndex,b=l.cards[i].visual;
+      v.container.y=b.y+b.height/2-(selected?16:0);v.container.setData('selected',selected).setData('activeScoring',scoring);
+      v.background.setStrokeStyle(focused?3:scoring?4:2,focused?0x7fb3d5:scoring?0x5d9184:selected?0xc84e42:0x879486);v.scoringMark.setVisible(scoring);
+    });
+    if(this.presentation)this.resultText.setText('正在结算 · 可快进');else this.previewSelection(preview);
+    this.updateControls();
+  }
+  private updateControls():void {
+    this.view.setEnabled(this.rankButton,this.ready);this.view.setEnabled(this.suitButton,this.ready);
+    this.view.setEnabled(this.discardButton,this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>0);
+    this.view.setEnabled(this.playButton,this.ready&&this.selectedIds.size>0&&this.handsLeft>0);
+    this.view.setEnabled(this.forwardButton,!!this.presentation);
+    this.statusText.setText(this.statusMessage||(this.playing?'结算中，不接受下一手':this.selectedIds.size?'已选 '+this.selectedIds.size+' / 5':'先选择牌，出牌和弃牌才可用'));
   }
   private preview(){
     const stage=this.run.stage!;
@@ -185,9 +205,9 @@ export class GameScene extends Phaser.Scene {
     };scope.onchange=render;enhancement.onchange=render;render();
   }
   private async command(action:import('../domain/run').Action):Promise<void> {
-    if(!this.ready)return;this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.render();
-    try{const result=await dispatchRun(this,action);if(!this.alive(lifecycle,intent))return;if(result.ok)this.run=result.state;else this.statusMessage='操作未提交：'+result.code;}
-    finally{if(this.alive(lifecycle,intent)){this.playing=false;this.render();}}
+    if(!this.ready)return;this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();
+    try{const result=await dispatchRun(this,action);if(!this.alive(lifecycle,intent))return;if(result.ok){this.run=result.state;this.statusMessage='';if(action.type==='ReorderHand')this.renderHand();else if(action.type==='ReorderJokers')this.render();}else this.statusMessage='操作未提交：'+result.code;}
+    finally{if(this.alive(lifecycle,intent)){this.playing=false;this.refreshSelection();}}
   }
   private async sortHand(mode:'rank'|'suit'):Promise<void> {
     const cards=[...this.hand].sort((a,b)=>mode==='rank'?b.rank-a.rank||SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit):SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit)||b.rank-a.rank);
@@ -202,11 +222,11 @@ export class GameScene extends Phaser.Scene {
     if (this.selectedIds.has(id)) {
       this.selectedIds.delete(id);
     } else {
-      if (this.selectedIds.size >= MAX_SELECTED) {this.statusMessage='每手最多选择 5 张牌';this.render();return;}
+      if (this.selectedIds.size >= MAX_SELECTED) {this.statusMessage='每手最多选择 5 张牌';this.updateControls();return;}
       this.selectedIds.add(id);
     }
     this.audio.select();
-    this.render();
+    this.refreshSelection();
   }
 
   private alive(lifecycle:number,intent:number):boolean {return lifecycle===this.lifecycle&&intent===this.intent&&this.scene.isActive();}
@@ -247,45 +267,48 @@ export class GameScene extends Phaser.Scene {
       +'结算 '+fractionText(score.accumulator.H)+' × '+fractionText(score.accumulator.M)+' = '+heatText(score.finalScore);
   }
 
-  private previewSelection():void {
-    if(!this.selectedIds.size){this.resultText.setText('选 1～5 张牌，选择出牌或弃牌');return;}
-    const preview=this.preview();
+  private previewSelection(preview?:HandPreview):void {
+    if(!preview){
+      if(this.run.lastTrace){this.resultText.setText('上手 '+HAND_LABELS[this.run.lastTrace.handType]+' +'+heatText(this.run.lastTrace.finalScore));this.breakdownText.setText(this.formatBreakdown(this.run.lastTrace));}
+      else{this.resultText.setText('选择 1～5 张牌');this.breakdownText.setText('距目标还需 '+heatText((BigInt(this.stage.targetHeat)>BigInt(this.heat)?BigInt(this.stage.targetHeat)-BigInt(this.heat):0n).toString())+' 热度');}
+      return;
+    }
     this.resultText.setText(HAND_LABELS[preview.handType]+' Lv.'+preview.level+' · '+this.selectedIds.size+'/5');
     this.breakdownText.setText('基础热度 '+fractionText(preview.base.H)+' × 倍率 '+fractionText(preview.base.M)+'\n'+(preview.possibleScores.length===2?'押注：50% '+heatText(preview.possibleScores[0])+' / 50% '+heatText(preview.possibleScores[1]):'本手预览 '+heatText(preview.possibleScores[0])+' 热度'));
   }
 
   private async discardSelected():Promise<void> {
-    if(this.playing)return;this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent,selectedIds=[...this.selectedIds];
+    if(!this.ready||!this.selectedIds.size||this.run.stage!.discardsLeft<=0)return;this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,selectedIds=[...this.selectedIds];
     try {
       const result=await dispatchRun(this,{type:'DiscardHand',selectedIds});
       if(!this.alive(lifecycle,intent))return;
-      if(!result.ok){this.resultText.setText(result.code==='no-discards-left'?'本场弃牌次数已用完':result.code==='save-failed'?'未保存，请在菜单中重试或导出':'请选择 1～5 张牌再弃牌');return;}
-      this.run=result.state;this.selectedIds.clear();this.updateHud();this.renderHand();this.previewSelection();
+      if(!result.ok){this.statusMessage=result.code==='no-discards-left'?'本场弃牌次数已用完':result.code==='save-failed'?'未保存，请在菜单中重试或导出':'请选择 1～5 张牌再弃牌';return;}
+      this.run=result.state;this.selectedIds.clear();this.updateHud();this.renderHand();
       if(this.run.phase==='run-lost')this.finishStage(false);
-    } finally {if(this.alive(lifecycle,intent)&&this.run.phase==='await-input'){this.playing=false;this.render();}}
+    } finally {if(this.alive(lifecycle,intent)&&this.run.phase==='await-input'){this.playing=false;this.refreshSelection();}}
   }
 
   private async playSelected():Promise<void> {
-    if(this.playing||this.selectedIds.size===0||this.handsLeft<=0)return;
+    if(!this.ready||this.selectedIds.size===0||this.handsLeft<=0)return;
     const selectedIds=[...this.selectedIds],lifecycle=this.lifecycle,intent=++this.intent;
-    this.playing=true;this.render();
+    this.playing=true;this.statusMessage='';this.updateControls();
     const selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id));
     try {
       const result=await dispatchRun(this,{type:'PlayHand',selectedIds});
       if(!this.alive(lifecycle,intent))return;
-      if(!result.ok||result.duplicate){if(!result.ok)this.resultText.setText(result.code==='save-failed'?'未保存，请在菜单中重试或导出':result.code==='score-diagnostic'?'本手无法结算，资源与原状态已保留':'出牌未提交，请查看菜单或选择。');return;}
+      if(!result.ok||result.duplicate){if(!result.ok)this.statusMessage=result.code==='save-failed'?'未保存，请在菜单中重试或导出':result.code==='score-diagnostic'?'本手无法结算，资源与原状态已保留':'出牌未提交，请查看菜单或选择。';return;}
       this.run=result.state;
       const event=result.events.find(e=>e.type==='hand-scored-r2');if(!event||event.type!=='hand-scored-r2')throw Error('Successful play missing score event');
       this.triggers.emit('hand:played',event.score.sets);
       await this.presentTrace(event.score,result.state,selectedViews,lifecycle,intent);
     } finally {
-      if(this.alive(lifecycle,intent)&&this.run.phase==='await-input'&&!this.presentation){this.playing=false;this.render();}
+      if(this.alive(lifecycle,intent)&&this.run.phase==='await-input'&&!this.presentation){this.playing=false;this.refreshSelection();}
     }
   }
 
   private async presentTrace(score:ScoreTrace,state:RunState,views:readonly CardView[],lifecycle:number,intent:number):Promise<void> {
     this.effects.clear();const generation=this.effects.generation;
-    const hand=this.cardViews.map(v=>v.card),presentation={generation,lifecycle,intent,state,score,hand};this.presentation=presentation;this.render();
+    const hand=this.cardViews.map(v=>v.card),presentation={generation,lifecycle,intent,state,score,hand};this.presentation=presentation;this.refreshSelection();this.updateHud();
     const currentViews=this.cardViews.filter(v=>score.sets.playedIds.includes(v.card.id));
     if(views.length)this.effects.enqueue(context=>{
       this.audio.playHand();return Promise.all(currentViews.map((view,index)=>this.animate({targets:view.container,y:view.container.y-70,angle:index%2===0?-4:4,alpha:.25,duration:210,delay:index*30,ease:'Cubic.easeIn'},context))).then(()=>undefined);
@@ -319,7 +342,8 @@ export class GameScene extends Phaser.Scene {
     this.resultText.setText(HAND_LABELS[presentation.score.handType]+'   +'+heatText(presentation.score.finalScore)+' 热度');this.breakdownText.setText(this.formatBreakdown(presentation.score));
     if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true);return;}
     if(this.run.phase==='run-lost'){this.finishStage(false);return;}
-    this.playing=false;this.render();
+    this.playing=false;this.roleText.setText(getCharacter(this.characterId).passiveName).setScale(1);
+    this.jokerViews.forEach(v=>v.setPosition(0,0).setScale(1));this.renderHand();
   }
 
   fastForward():void {const presentation=this.presentation;if(!presentation)return;this.effects.clear();this.completePresentation(presentation);}

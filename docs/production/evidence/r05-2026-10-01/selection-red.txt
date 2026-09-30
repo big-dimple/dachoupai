@@ -1,0 +1,131 @@
+
+> dachoupai@0.1.0 test:layout:browser
+> node harness/layout.mjs
+
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "select/320x568",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/320x568",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/320x568",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/360x640",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/360x640",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/360x640",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/390x844",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/390x844",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/390x844",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/430x932",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/430x932",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/430x932",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/844x390",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/844x390",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/844x390",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/1024x768",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/1024x768",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/1024x768",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/1280x720",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/1280x720",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/1280x720",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/768x1024",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/768x1024",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/768x1024",
+      "status": "PASS",
+      "failures": []
+    }
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: selection must preserve the HUD rather than recreate the entire stage"
+}
+EXIT_CODE=1
