@@ -1,0 +1,1200 @@
+{
+  "testedCommit": "6589288ee5f76890d374cd853178b51042ba2f9b",
+  "dirtyState": "M docs/development-handoff.md\n M docs/production/plan.json\n?? docs/production/evidence/r05-2026-10-01/\n?? harness/layout.mjs\n?? tests/layout.test.ts",
+  "checks": [
+    {
+      "name": "select/360x640",
+      "status": "FAIL",
+      "metrics": {
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "dpr": 2,
+        "canvas": {
+          "width": 360,
+          "height": 202.5
+        },
+        "texts": [
+          {
+            "text": "大 丑 牌",
+            "font": 12.375
+          },
+          {
+            "text": "今晚，你是哪一种丑？",
+            "font": 5.0625
+          },
+          {
+            "text": "默剧王",
+            "font": 3.9375
+          },
+          {
+            "text": "阿默",
+            "font": 6.46875
+          },
+          {
+            "text": "独角戏",
+            "font": 4.21875
+          },
+          {
+            "text": "只打出 1 张牌时，倍率 ×3。",
+            "font": 3.375
+          },
+          {
+            "text": "赌命客",
+            "font": 3.9375
+          },
+          {
+            "text": "骰爷",
+            "font": 6.46875
+          },
+          {
+            "text": "再来一把",
+            "font": 4.21875
+          },
+          {
+            "text": "通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。",
+            "font": 3.375
+          },
+          {
+            "text": "空袖",
+            "font": 3.9375
+          },
+          {
+            "text": "老幻",
+            "font": 6.46875
+          },
+          {
+            "text": "袖里有牌",
+            "font": 4.21875
+          },
+          {
+            "text": "顺子、同花、同花顺额外 +120 基础热度。",
+            "font": 3.375
+          },
+          {
+            "text": "捧哏王",
+            "font": 3.9375
+          },
+          {
+            "text": "二响",
+            "font": 6.46875
+          },
+          {
+            "text": "接得漂亮",
+            "font": 4.21875
+          },
+          {
+            "text": "对子、两对、三条的倍率 +1.5。",
+            "font": 3.375
+          },
+          {
+            "text": "热场王",
+            "font": 3.9375
+          },
+          {
+            "text": "阿燥",
+            "font": 6.46875
+          },
+          {
+            "text": "换个活儿",
+            "font": 4.21875
+          },
+          {
+            "text": "与本场上次牌型不同，倍率 +1；第一手不触发。",
+            "font": 3.375
+          },
+          {
+            "text": "压轴",
+            "font": 3.9375
+          },
+          {
+            "text": "谢幕人",
+            "font": 6.46875
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 4.21875
+          },
+          {
+            "text": "最后可用出牌 ×2；该手过关额外 +2 金。",
+            "font": 3.375
+          },
+          {
+            "text": "点选角色开局 · 六个身份，六种活法",
+            "font": 3.65625
+          }
+        ],
+        "hits": [
+          {
+            "name": "",
+            "width": 103.5,
+            "height": 72
+          },
+          {
+            "name": "",
+            "width": 103.5,
+            "height": 72
+          },
+          {
+            "name": "",
+            "width": 103.5,
+            "height": 72
+          },
+          {
+            "name": "",
+            "width": 103.5,
+            "height": 72
+          },
+          {
+            "name": "",
+            "width": 103.5,
+            "height": 72
+          },
+          {
+            "name": "",
+            "width": 103.5,
+            "height": 72
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.png",
+        "http://localhost:5205/assets/characters/touye.png",
+        "http://localhost:5205/assets/characters/laohuan.png",
+        "http://localhost:5205/assets/characters/erxiang.png",
+        "http://localhost:5205/assets/characters/azao.png",
+        "http://localhost:5205/assets/characters/xiemu.png"
+      ],
+      "failures": [
+        "canvas-letterbox",
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    },
+    {
+      "name": "select/390x844",
+      "status": "FAIL",
+      "metrics": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "dpr": 2,
+        "canvas": {
+          "width": 390,
+          "height": 219.375
+        },
+        "texts": [
+          {
+            "text": "大 丑 牌",
+            "font": 13.40625
+          },
+          {
+            "text": "今晚，你是哪一种丑？",
+            "font": 5.484375
+          },
+          {
+            "text": "默剧王",
+            "font": 4.265625
+          },
+          {
+            "text": "阿默",
+            "font": 7.0078125
+          },
+          {
+            "text": "独角戏",
+            "font": 4.5703125
+          },
+          {
+            "text": "只打出 1 张牌时，倍率 ×3。",
+            "font": 3.65625
+          },
+          {
+            "text": "赌命客",
+            "font": 4.265625
+          },
+          {
+            "text": "骰爷",
+            "font": 7.0078125
+          },
+          {
+            "text": "再来一把",
+            "font": 4.5703125
+          },
+          {
+            "text": "通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。",
+            "font": 3.65625
+          },
+          {
+            "text": "空袖",
+            "font": 4.265625
+          },
+          {
+            "text": "老幻",
+            "font": 7.0078125
+          },
+          {
+            "text": "袖里有牌",
+            "font": 4.5703125
+          },
+          {
+            "text": "顺子、同花、同花顺额外 +120 基础热度。",
+            "font": 3.65625
+          },
+          {
+            "text": "捧哏王",
+            "font": 4.265625
+          },
+          {
+            "text": "二响",
+            "font": 7.0078125
+          },
+          {
+            "text": "接得漂亮",
+            "font": 4.5703125
+          },
+          {
+            "text": "对子、两对、三条的倍率 +1.5。",
+            "font": 3.65625
+          },
+          {
+            "text": "热场王",
+            "font": 4.265625
+          },
+          {
+            "text": "阿燥",
+            "font": 7.0078125
+          },
+          {
+            "text": "换个活儿",
+            "font": 4.5703125
+          },
+          {
+            "text": "与本场上次牌型不同，倍率 +1；第一手不触发。",
+            "font": 3.65625
+          },
+          {
+            "text": "压轴",
+            "font": 4.265625
+          },
+          {
+            "text": "谢幕人",
+            "font": 7.0078125
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 4.5703125
+          },
+          {
+            "text": "最后可用出牌 ×2；该手过关额外 +2 金。",
+            "font": 3.65625
+          },
+          {
+            "text": "点选角色开局 · 六个身份，六种活法",
+            "font": 3.9609375
+          }
+        ],
+        "hits": [
+          {
+            "name": "",
+            "width": 112.125,
+            "height": 78
+          },
+          {
+            "name": "",
+            "width": 112.125,
+            "height": 78
+          },
+          {
+            "name": "",
+            "width": 112.125,
+            "height": 78
+          },
+          {
+            "name": "",
+            "width": 112.125,
+            "height": 78
+          },
+          {
+            "name": "",
+            "width": 112.125,
+            "height": 78
+          },
+          {
+            "name": "",
+            "width": 112.125,
+            "height": 78
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.png",
+        "http://localhost:5205/assets/characters/touye.png",
+        "http://localhost:5205/assets/characters/laohuan.png",
+        "http://localhost:5205/assets/characters/erxiang.png",
+        "http://localhost:5205/assets/characters/azao.png",
+        "http://localhost:5205/assets/characters/xiemu.png"
+      ],
+      "failures": [
+        "canvas-letterbox",
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    },
+    {
+      "name": "select/430x932",
+      "status": "FAIL",
+      "metrics": {
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "dpr": 2,
+        "canvas": {
+          "width": 430,
+          "height": 241.875
+        },
+        "texts": [
+          {
+            "text": "大 丑 牌",
+            "font": 14.78125
+          },
+          {
+            "text": "今晚，你是哪一种丑？",
+            "font": 6.046875
+          },
+          {
+            "text": "默剧王",
+            "font": 4.703125
+          },
+          {
+            "text": "阿默",
+            "font": 7.7265625
+          },
+          {
+            "text": "独角戏",
+            "font": 5.0390625
+          },
+          {
+            "text": "只打出 1 张牌时，倍率 ×3。",
+            "font": 4.03125
+          },
+          {
+            "text": "赌命客",
+            "font": 4.703125
+          },
+          {
+            "text": "骰爷",
+            "font": 7.7265625
+          },
+          {
+            "text": "再来一把",
+            "font": 5.0390625
+          },
+          {
+            "text": "通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。",
+            "font": 4.03125
+          },
+          {
+            "text": "空袖",
+            "font": 4.703125
+          },
+          {
+            "text": "老幻",
+            "font": 7.7265625
+          },
+          {
+            "text": "袖里有牌",
+            "font": 5.0390625
+          },
+          {
+            "text": "顺子、同花、同花顺额外 +120 基础热度。",
+            "font": 4.03125
+          },
+          {
+            "text": "捧哏王",
+            "font": 4.703125
+          },
+          {
+            "text": "二响",
+            "font": 7.7265625
+          },
+          {
+            "text": "接得漂亮",
+            "font": 5.0390625
+          },
+          {
+            "text": "对子、两对、三条的倍率 +1.5。",
+            "font": 4.03125
+          },
+          {
+            "text": "热场王",
+            "font": 4.703125
+          },
+          {
+            "text": "阿燥",
+            "font": 7.7265625
+          },
+          {
+            "text": "换个活儿",
+            "font": 5.0390625
+          },
+          {
+            "text": "与本场上次牌型不同，倍率 +1；第一手不触发。",
+            "font": 4.03125
+          },
+          {
+            "text": "压轴",
+            "font": 4.703125
+          },
+          {
+            "text": "谢幕人",
+            "font": 7.7265625
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 5.0390625
+          },
+          {
+            "text": "最后可用出牌 ×2；该手过关额外 +2 金。",
+            "font": 4.03125
+          },
+          {
+            "text": "点选角色开局 · 六个身份，六种活法",
+            "font": 4.3671875
+          }
+        ],
+        "hits": [
+          {
+            "name": "",
+            "width": 123.625,
+            "height": 86
+          },
+          {
+            "name": "",
+            "width": 123.625,
+            "height": 86
+          },
+          {
+            "name": "",
+            "width": 123.625,
+            "height": 86
+          },
+          {
+            "name": "",
+            "width": 123.625,
+            "height": 86
+          },
+          {
+            "name": "",
+            "width": 123.625,
+            "height": 86
+          },
+          {
+            "name": "",
+            "width": 123.625,
+            "height": 86
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.png",
+        "http://localhost:5205/assets/characters/touye.png",
+        "http://localhost:5205/assets/characters/laohuan.png",
+        "http://localhost:5205/assets/characters/erxiang.png",
+        "http://localhost:5205/assets/characters/azao.png",
+        "http://localhost:5205/assets/characters/xiemu.png"
+      ],
+      "failures": [
+        "canvas-letterbox",
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    },
+    {
+      "name": "select/844x390",
+      "status": "FAIL",
+      "metrics": {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "dpr": 2,
+        "canvas": {
+          "width": 693.328125,
+          "height": 390
+        },
+        "texts": [
+          {
+            "text": "大 丑 牌",
+            "font": 23.833333333333332
+          },
+          {
+            "text": "今晚，你是哪一种丑？",
+            "font": 9.75
+          },
+          {
+            "text": "默剧王",
+            "font": 7.583333333333333
+          },
+          {
+            "text": "阿默",
+            "font": 12.458333333333332
+          },
+          {
+            "text": "独角戏",
+            "font": 8.125
+          },
+          {
+            "text": "只打出 1 张牌时，倍率 ×3。",
+            "font": 6.5
+          },
+          {
+            "text": "赌命客",
+            "font": 7.583333333333333
+          },
+          {
+            "text": "骰爷",
+            "font": 12.458333333333332
+          },
+          {
+            "text": "再来一把",
+            "font": 8.125
+          },
+          {
+            "text": "通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。",
+            "font": 6.5
+          },
+          {
+            "text": "空袖",
+            "font": 7.583333333333333
+          },
+          {
+            "text": "老幻",
+            "font": 12.458333333333332
+          },
+          {
+            "text": "袖里有牌",
+            "font": 8.125
+          },
+          {
+            "text": "顺子、同花、同花顺额外 +120 基础热度。",
+            "font": 6.5
+          },
+          {
+            "text": "捧哏王",
+            "font": 7.583333333333333
+          },
+          {
+            "text": "二响",
+            "font": 12.458333333333332
+          },
+          {
+            "text": "接得漂亮",
+            "font": 8.125
+          },
+          {
+            "text": "对子、两对、三条的倍率 +1.5。",
+            "font": 6.5
+          },
+          {
+            "text": "热场王",
+            "font": 7.583333333333333
+          },
+          {
+            "text": "阿燥",
+            "font": 12.458333333333332
+          },
+          {
+            "text": "换个活儿",
+            "font": 8.125
+          },
+          {
+            "text": "与本场上次牌型不同，倍率 +1；第一手不触发。",
+            "font": 6.5
+          },
+          {
+            "text": "压轴",
+            "font": 7.583333333333333
+          },
+          {
+            "text": "谢幕人",
+            "font": 12.458333333333332
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 8.125
+          },
+          {
+            "text": "最后可用出牌 ×2；该手过关额外 +2 金。",
+            "font": 6.5
+          },
+          {
+            "text": "点选角色开局 · 六个身份，六种活法",
+            "font": 7.041666666666666
+          }
+        ],
+        "hits": [
+          {
+            "name": "",
+            "width": 199.33183593750002,
+            "height": 138.66666666666666
+          },
+          {
+            "name": "",
+            "width": 199.33183593750002,
+            "height": 138.66666666666666
+          },
+          {
+            "name": "",
+            "width": 199.33183593750002,
+            "height": 138.66666666666666
+          },
+          {
+            "name": "",
+            "width": 199.33183593750002,
+            "height": 138.66666666666666
+          },
+          {
+            "name": "",
+            "width": 199.33183593750002,
+            "height": 138.66666666666666
+          },
+          {
+            "name": "",
+            "width": 199.33183593750002,
+            "height": 138.66666666666666
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.png",
+        "http://localhost:5205/assets/characters/touye.png",
+        "http://localhost:5205/assets/characters/laohuan.png",
+        "http://localhost:5205/assets/characters/erxiang.png",
+        "http://localhost:5205/assets/characters/azao.png",
+        "http://localhost:5205/assets/characters/xiemu.png"
+      ],
+      "failures": [
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    },
+    {
+      "name": "select/1024x768",
+      "status": "FAIL",
+      "metrics": {
+        "viewport": {
+          "width": 1024,
+          "height": 768
+        },
+        "dpr": 2,
+        "canvas": {
+          "width": 1024,
+          "height": 576
+        },
+        "texts": [
+          {
+            "text": "大 丑 牌",
+            "font": 35.2
+          },
+          {
+            "text": "今晚，你是哪一种丑？",
+            "font": 14.4
+          },
+          {
+            "text": "默剧王",
+            "font": 11.200000000000001
+          },
+          {
+            "text": "阿默",
+            "font": 18.400000000000002
+          },
+          {
+            "text": "独角戏",
+            "font": 12
+          },
+          {
+            "text": "只打出 1 张牌时，倍率 ×3。",
+            "font": 9.600000000000001
+          },
+          {
+            "text": "赌命客",
+            "font": 11.200000000000001
+          },
+          {
+            "text": "骰爷",
+            "font": 18.400000000000002
+          },
+          {
+            "text": "再来一把",
+            "font": 12
+          },
+          {
+            "text": "通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。",
+            "font": 9.600000000000001
+          },
+          {
+            "text": "空袖",
+            "font": 11.200000000000001
+          },
+          {
+            "text": "老幻",
+            "font": 18.400000000000002
+          },
+          {
+            "text": "袖里有牌",
+            "font": 12
+          },
+          {
+            "text": "顺子、同花、同花顺额外 +120 基础热度。",
+            "font": 9.600000000000001
+          },
+          {
+            "text": "捧哏王",
+            "font": 11.200000000000001
+          },
+          {
+            "text": "二响",
+            "font": 18.400000000000002
+          },
+          {
+            "text": "接得漂亮",
+            "font": 12
+          },
+          {
+            "text": "对子、两对、三条的倍率 +1.5。",
+            "font": 9.600000000000001
+          },
+          {
+            "text": "热场王",
+            "font": 11.200000000000001
+          },
+          {
+            "text": "阿燥",
+            "font": 18.400000000000002
+          },
+          {
+            "text": "换个活儿",
+            "font": 12
+          },
+          {
+            "text": "与本场上次牌型不同，倍率 +1；第一手不触发。",
+            "font": 9.600000000000001
+          },
+          {
+            "text": "压轴",
+            "font": 11.200000000000001
+          },
+          {
+            "text": "谢幕人",
+            "font": 18.400000000000002
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 12
+          },
+          {
+            "text": "最后可用出牌 ×2；该手过关额外 +2 金。",
+            "font": 9.600000000000001
+          },
+          {
+            "text": "点选角色开局 · 六个身份，六种活法",
+            "font": 10.4
+          }
+        ],
+        "hits": [
+          {
+            "name": "",
+            "width": 294.40000000000003,
+            "height": 204.8
+          },
+          {
+            "name": "",
+            "width": 294.40000000000003,
+            "height": 204.8
+          },
+          {
+            "name": "",
+            "width": 294.40000000000003,
+            "height": 204.8
+          },
+          {
+            "name": "",
+            "width": 294.40000000000003,
+            "height": 204.8
+          },
+          {
+            "name": "",
+            "width": 294.40000000000003,
+            "height": 204.8
+          },
+          {
+            "name": "",
+            "width": 294.40000000000003,
+            "height": 204.8
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.png",
+        "http://localhost:5205/assets/characters/touye.png",
+        "http://localhost:5205/assets/characters/laohuan.png",
+        "http://localhost:5205/assets/characters/erxiang.png",
+        "http://localhost:5205/assets/characters/azao.png",
+        "http://localhost:5205/assets/characters/xiemu.png"
+      ],
+      "failures": [
+        "canvas-letterbox",
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    },
+    {
+      "name": "select/1280x720",
+      "status": "FAIL",
+      "metrics": {
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "dpr": 2,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "texts": [
+          {
+            "text": "大 丑 牌",
+            "font": 44
+          },
+          {
+            "text": "今晚，你是哪一种丑？",
+            "font": 18
+          },
+          {
+            "text": "默剧王",
+            "font": 14
+          },
+          {
+            "text": "阿默",
+            "font": 23
+          },
+          {
+            "text": "独角戏",
+            "font": 15
+          },
+          {
+            "text": "只打出 1 张牌时，倍率 ×3。",
+            "font": 12
+          },
+          {
+            "text": "赌命客",
+            "font": 14
+          },
+          {
+            "text": "骰爷",
+            "font": 23
+          },
+          {
+            "text": "再来一把",
+            "font": 15
+          },
+          {
+            "text": "通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。",
+            "font": 12
+          },
+          {
+            "text": "空袖",
+            "font": 14
+          },
+          {
+            "text": "老幻",
+            "font": 23
+          },
+          {
+            "text": "袖里有牌",
+            "font": 15
+          },
+          {
+            "text": "顺子、同花、同花顺额外 +120 基础热度。",
+            "font": 12
+          },
+          {
+            "text": "捧哏王",
+            "font": 14
+          },
+          {
+            "text": "二响",
+            "font": 23
+          },
+          {
+            "text": "接得漂亮",
+            "font": 15
+          },
+          {
+            "text": "对子、两对、三条的倍率 +1.5。",
+            "font": 12
+          },
+          {
+            "text": "热场王",
+            "font": 14
+          },
+          {
+            "text": "阿燥",
+            "font": 23
+          },
+          {
+            "text": "换个活儿",
+            "font": 15
+          },
+          {
+            "text": "与本场上次牌型不同，倍率 +1；第一手不触发。",
+            "font": 12
+          },
+          {
+            "text": "压轴",
+            "font": 14
+          },
+          {
+            "text": "谢幕人",
+            "font": 23
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 15
+          },
+          {
+            "text": "最后可用出牌 ×2；该手过关额外 +2 金。",
+            "font": 12
+          },
+          {
+            "text": "点选角色开局 · 六个身份，六种活法",
+            "font": 13
+          }
+        ],
+        "hits": [
+          {
+            "name": "",
+            "width": 368,
+            "height": 256
+          },
+          {
+            "name": "",
+            "width": 368,
+            "height": 256
+          },
+          {
+            "name": "",
+            "width": 368,
+            "height": 256
+          },
+          {
+            "name": "",
+            "width": 368,
+            "height": 256
+          },
+          {
+            "name": "",
+            "width": 368,
+            "height": 256
+          },
+          {
+            "name": "",
+            "width": 368,
+            "height": 256
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.png",
+        "http://localhost:5205/assets/characters/touye.png",
+        "http://localhost:5205/assets/characters/laohuan.png",
+        "http://localhost:5205/assets/characters/erxiang.png",
+        "http://localhost:5205/assets/characters/azao.png",
+        "http://localhost:5205/assets/characters/xiemu.png"
+      ],
+      "failures": [
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    },
+    {
+      "name": "select/768x1024",
+      "status": "FAIL",
+      "metrics": {
+        "viewport": {
+          "width": 768,
+          "height": 1024
+        },
+        "dpr": 2,
+        "canvas": {
+          "width": 768,
+          "height": 432
+        },
+        "texts": [
+          {
+            "text": "大 丑 牌",
+            "font": 26.4
+          },
+          {
+            "text": "今晚，你是哪一种丑？",
+            "font": 10.799999999999999
+          },
+          {
+            "text": "默剧王",
+            "font": 8.4
+          },
+          {
+            "text": "阿默",
+            "font": 13.799999999999999
+          },
+          {
+            "text": "独角戏",
+            "font": 9
+          },
+          {
+            "text": "只打出 1 张牌时，倍率 ×3。",
+            "font": 7.199999999999999
+          },
+          {
+            "text": "赌命客",
+            "font": 8.4
+          },
+          {
+            "text": "骰爷",
+            "font": 13.799999999999999
+          },
+          {
+            "text": "再来一把",
+            "font": 9
+          },
+          {
+            "text": "通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。",
+            "font": 7.199999999999999
+          },
+          {
+            "text": "空袖",
+            "font": 8.4
+          },
+          {
+            "text": "老幻",
+            "font": 13.799999999999999
+          },
+          {
+            "text": "袖里有牌",
+            "font": 9
+          },
+          {
+            "text": "顺子、同花、同花顺额外 +120 基础热度。",
+            "font": 7.199999999999999
+          },
+          {
+            "text": "捧哏王",
+            "font": 8.4
+          },
+          {
+            "text": "二响",
+            "font": 13.799999999999999
+          },
+          {
+            "text": "接得漂亮",
+            "font": 9
+          },
+          {
+            "text": "对子、两对、三条的倍率 +1.5。",
+            "font": 7.199999999999999
+          },
+          {
+            "text": "热场王",
+            "font": 8.4
+          },
+          {
+            "text": "阿燥",
+            "font": 13.799999999999999
+          },
+          {
+            "text": "换个活儿",
+            "font": 9
+          },
+          {
+            "text": "与本场上次牌型不同，倍率 +1；第一手不触发。",
+            "font": 7.199999999999999
+          },
+          {
+            "text": "压轴",
+            "font": 8.4
+          },
+          {
+            "text": "谢幕人",
+            "font": 13.799999999999999
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 9
+          },
+          {
+            "text": "最后可用出牌 ×2；该手过关额外 +2 金。",
+            "font": 7.199999999999999
+          },
+          {
+            "text": "点选角色开局 · 六个身份，六种活法",
+            "font": 7.8
+          }
+        ],
+        "hits": [
+          {
+            "name": "",
+            "width": 220.79999999999998,
+            "height": 153.6
+          },
+          {
+            "name": "",
+            "width": 220.79999999999998,
+            "height": 153.6
+          },
+          {
+            "name": "",
+            "width": 220.79999999999998,
+            "height": 153.6
+          },
+          {
+            "name": "",
+            "width": 220.79999999999998,
+            "height": 153.6
+          },
+          {
+            "name": "",
+            "width": 220.79999999999998,
+            "height": 153.6
+          },
+          {
+            "name": "",
+            "width": 220.79999999999998,
+            "height": 153.6
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.png",
+        "http://localhost:5205/assets/characters/touye.png",
+        "http://localhost:5205/assets/characters/laohuan.png",
+        "http://localhost:5205/assets/characters/erxiang.png",
+        "http://localhost:5205/assets/characters/azao.png",
+        "http://localhost:5205/assets/characters/xiemu.png"
+      ],
+      "failures": [
+        "canvas-letterbox",
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    }
+  ],
+  "limitations": [
+    "Chromium touchscreen emulation; physical Android/iPhone acceptance NOT_RUN."
+  ],
+  "browser": "153.0.8010.12",
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: actual CSS/font/target/first-load contract"
+}

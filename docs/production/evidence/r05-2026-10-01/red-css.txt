@@ -1,0 +1,68 @@
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "select/360x640",
+      "status": "FAIL",
+      "failures": [
+        "canvas-letterbox",
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    },
+    {
+      "name": "select/390x844",
+      "status": "FAIL",
+      "failures": [
+        "canvas-letterbox",
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    },
+    {
+      "name": "select/430x932",
+      "status": "FAIL",
+      "failures": [
+        "canvas-letterbox",
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    },
+    {
+      "name": "select/844x390",
+      "status": "FAIL",
+      "failures": [
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    },
+    {
+      "name": "select/1024x768",
+      "status": "FAIL",
+      "failures": [
+        "canvas-letterbox",
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    },
+    {
+      "name": "select/1280x720",
+      "status": "FAIL",
+      "failures": [
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    },
+    {
+      "name": "select/768x1024",
+      "status": "FAIL",
+      "failures": [
+        "canvas-letterbox",
+        "body-below-14-css-px",
+        "original-png-first-load"
+      ]
+    }
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: actual CSS/font/target/first-load contract"
+}
+EXIT_CODE=1

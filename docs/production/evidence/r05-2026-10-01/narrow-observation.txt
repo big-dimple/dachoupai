@@ -1,0 +1,20 @@
+
+> dachoupai@0.1.0 test:layout:browser
+> node harness/layout.mjs
+
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "select/320x568",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/320x568",
+      "status": "PASS",
+      "failures": []
+    }
+  ],
+  "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}

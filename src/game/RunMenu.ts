@@ -32,6 +32,11 @@ export function installRunMenu(game:Phaser.Game):void {
     if(session.run&&!window.confirm('返回选角开始新局？选择新角色前会再次确认，已有存档保留为备份。'))return;
     for(const key of ['shop','game','intermission'])game.scene.stop(key);game.scene.start('character-select');close();
   });
+  button('保存并退出',async()=>{
+    if(!window.confirm('保存已经确定的结果并退出？稍后可继续本局。'))return;
+    if(session.run&&!await session.run.flush())return;
+    for(const key of ['shop','game','intermission'])game.scene.stop(key);game.scene.start('character-select');close();
+  });
   const retry=button('重试保存',async()=>{if(await session.retry()){routeSavedRun(game);close();}});
   const reload=button('重试读取',()=>session.initialize());
   const takeover=button('接管写入',async()=>{
@@ -41,6 +46,7 @@ export function installRunMenu(game:Phaser.Game):void {
     await new Promise<void>(resolve=>game.events.once('poststep',resolve));close();
   });
   const exportRun=button('导出本局',()=>{if(session.run)download(session.run.exportJSON(),'dachoupai-checkpoint.json');});
+  button('局详情',()=>{const state=session.state();status.textContent=state?'角色 '+state.characterId+'\nSEED '+state.seed+'\n规则 '+state.rulesVersion+' · 内容 '+state.contentVersion:'当前没有进行中的局。';});
   button('导出保留数据',async()=>{try{download(await session.storage.exportRetained(),'dachoupai-retained-data.json');}catch{status.textContent='导出失败，原数据未修改。';}});
   const file=document.createElement('input');file.type='file';file.accept='.json,application/json';file.hidden=true;
   const importRun=button('导入本局',()=>file.click());file.onchange=async()=>{

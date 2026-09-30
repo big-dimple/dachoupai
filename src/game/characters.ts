@@ -11,7 +11,7 @@ export interface CharacterDefinition {
   passiveDescription: string;
   accent: number;
   portrait: string;
-  /** 立绘对焦锚点（0~1，相对原图宽/高），选角页 cover 裁切与 HUD 正方裁切共用 */
+  /** 原始立绘的离线裁切焦点；运行时选角/HUD 使用独立 avatar。保留源图映射。 */
   portraitFocusX: number;
   portraitFocusY: number;
 }

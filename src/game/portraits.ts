@@ -1,70 +1,19 @@
 import Phaser from 'phaser';
-import type { CharacterDefinition, CharacterId } from './characters';
-import { portraitCoverCrop } from './portraitCrop';
-
-export function portraitKey(id: CharacterId): string {
-  return `portrait-${id}`;
+import type {CharacterDefinition,CharacterId} from './characters';
+import {portraitSquareCrop} from './portraitCrop';
+export const avatarKey=(id:CharacterId):string=>`avatar-${id}`;
+export const avatarURL=(id:CharacterId):string=>`${import.meta.env.BASE_URL}assets/characters/${id}.avatar.webp`;
+export function queueAvatarLoads(scene:Phaser.Scene,characters:CharacterDefinition[]):void {
+  for(const character of characters)if(!scene.textures.exists(avatarKey(character.id)))scene.load.image(avatarKey(character.id),avatarURL(character.id));
 }
-
-export function queuePortraitLoads(scene: Phaser.Scene, characters: CharacterDefinition[]): void {
-  characters.forEach((character) => {
-    if (!scene.textures.exists(portraitKey(character.id))) {
-      scene.load.image(portraitKey(character.id), character.portrait);
-    }
-  });
-}
-
-export function hasPortrait(scene: Phaser.Scene, id: CharacterId): boolean {
-  return scene.textures.exists(portraitKey(id));
-}
-
-/**
- * 把立绘以“等比 cover、按角色 focal 点锚定”的方式装进 w×h 的展示框：
- * - 绝不拉伸变形
- * - 竖版全身立绘配小 portraitFocusY（0.07~0.11），保住头部与帽饰
- * - 用 setCrop 裁掉溢出部分；cover 必须双边同比例缩放（setScale），
- *   不能用 setDisplaySize（它按完整帧宽高分别求 scale，会纵向压扁）
- * 纹理缺失时退化为 accent 色占位板 + 首字，保证任何情况下界面不空、不炸。
- */
-export function addPortraitInBox(
-  scene: Phaser.Scene,
-  container: Phaser.GameObjects.Container,
-  character: CharacterDefinition,
-  centerX: number,
-  centerY: number,
-  boxW: number,
-  boxH: number,
-): void {
-  const key = portraitKey(character.id);
-  if (!scene.textures.exists(key)) {
-    const fallback = scene.add.rectangle(centerX, centerY, boxW, boxH, character.accent, 0.16)
-      .setStrokeStyle(2, character.accent, 0.55);
-    const initial = scene.add.text(centerX, centerY, character.name.slice(0, 1), {
-      fontFamily: '"Microsoft YaHei", sans-serif',
-      fontSize: `${Math.floor(boxH * 0.4)}px`,
-      fontStyle: 'bold',
-      color: '#ffffff',
-    }).setOrigin(0.5);
-    container.add([fallback, initial]);
-    return;
+/** Both HUD and selector use the existing independent square avatar, never a stretched full portrait. */
+export function addAvatar(scene:Phaser.Scene,container:Phaser.GameObjects.Container,character:CharacterDefinition,x:number,y:number,size=64):void {
+  const key=avatarKey(character.id);
+  if(scene.textures.exists(key)){
+    const source=scene.textures.get(key).getSourceImage() as HTMLImageElement,crop=portraitSquareCrop(source.width,source.height,.5,.5);
+    container.add(scene.add.image(x,y,key).setCrop(crop.x,crop.y,crop.width,crop.height).setScale(size/crop.width));
+  }else{
+    container.add(scene.add.rectangle(x,y,size,size,character.accent,.25));
+    container.add(scene.add.text(x,y,character.name[0],{fontSize:'22px',color:'#fff',resolution:Math.min(devicePixelRatio||1,2)}).setOrigin(.5));
   }
-
-  const texture = scene.textures.get(key);
-  const frame = texture.getSourceImage() as HTMLImageElement;
-
-  const crop = portraitCoverCrop(
-    frame.width,
-    frame.height,
-    boxW,
-    boxH,
-    character.portraitFocusX,
-    character.portraitFocusY,
-  );
-  const image = scene.add.image(centerX, centerY, key);
-  image.setCrop(crop.x, crop.y, crop.width, crop.height);
-  // 注意：setDisplaySize 会分别按完整帧宽高求 scale，cover 裁切后必须两边同比例缩放，
-  // 否则会被压扁成一条（crop.width × coverScale 恰好等于 boxW/boxH）
-  image.setScale(Math.max(boxW / frame.width, boxH / frame.height));
-
-  container.add(image);
 }

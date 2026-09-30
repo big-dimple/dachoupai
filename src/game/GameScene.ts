@@ -13,7 +13,10 @@ import {previewR2Hand,type ScoreTrace,type ScoreEvent} from '../domain/scoreR2';
 
 import { getCharacter, type CharacterId } from './characters';
 import type { IntermissionResult } from './IntermissionScene';
-import { portraitSquareCrop } from './portraitCrop';
+import {addAvatar} from './portraits';
+import {SceneView} from './SceneView';
+import {DetailDialog} from './DetailDialog';
+import {SUITS} from '../cards/types';
 import {dispatchRun,runController} from './runAdapter';
 import {gameSession} from './session';
 
@@ -26,11 +29,10 @@ interface CardView {
 
 export class GameScene extends Phaser.Scene {
   private get deck(): string[] { return this.run.drawPile; }
-  private get hand(): PlayingCard[] { return this.run.handOrder.map(id => this.run.deckInstances.find(card => card.id === id)!); }
+  private get hand(): readonly PlayingCard[] { return this.presentation?.hand??this.run.handOrder.map(id => this.run.deckInstances.find(card => card.id === id)!); }
   private selectedIds = new Set<string>();
   private cardViews: CardView[] = [];
   private jokerViews = new Map<string, Phaser.GameObjects.Container>();
-  private get jokerIds(): readonly string[] { return this.run.jokers.map(j=>j.definitionId); }
   private run!: RunState;
   private stage!: NonNullable<ReturnType<typeof getStage>>;
   private get handsLeft(): number { return this.run.stage?.handsLeft ?? 0; }
@@ -38,12 +40,16 @@ export class GameScene extends Phaser.Scene {
   private playing = false;
   private lifecycle=0;
   private intent=0;
-  private presentation?:{generation:number;lifecycle:number;intent:number;state:RunState;score:ScoreTrace};
+  private presentation?:{generation:number;lifecycle:number;intent:number;state:RunState;score:ScoreTrace;hand:readonly PlayingCard[]};
   private characterId!: CharacterId;
   private readonly effects = new EffectQueue();
   private readonly triggers = new TriggerEngine();
   private readonly audio = AudioEngine.shared;
 
+  private view!:SceneView;
+  private readonly dialog=new DetailDialog();
+  private focusIndex=0;
+  private statusMessage='';
   private heatText!: Phaser.GameObjects.Text;
   private handsText!: Phaser.GameObjects.Text;
   private resultText!: Phaser.GameObjects.Text;
@@ -57,11 +63,12 @@ export class GameScene extends Phaser.Scene {
 
   async create(): Promise<void> {
     const lifecycle=++this.lifecycle;this.intent++;
-    this.effects.clear();this.triggers.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.playing=false;this.presentation=undefined;
+    this.effects.clear();this.triggers.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.playing=false;this.presentation=undefined;this.statusMessage='';this.focusIndex=0;
     const settings=()=>{this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;this.audio.muted=gameSession().muted;};
     window.addEventListener('dachoupai-presentation',settings);
     this.events.once('shutdown',()=>{
-      this.lifecycle++;this.intent++;this.effects.clear();this.tweens.killAll();this.time.removeAllEvents();this.triggers.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.presentation=undefined;this.playing=false;
+      this.lifecycle++;this.intent++;this.effects.clear();this.tweens.killAll();this.time.removeAllEvents();this.triggers.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.presentation=undefined;this.playing=false;this.dialog.close();
+      window.removeEventListener('keydown',this.keyboard);
       window.removeEventListener('dachoupai-presentation',settings);
     });
     const controller=runController(this);
@@ -74,244 +81,132 @@ export class GameScene extends Phaser.Scene {
     this.run=controller.state;
     if(this.run.phase!=='await-input'||!this.run.stage){this.scene.start('character-select');return;}
     this.stage=getStage(this.run.stage.index)!;this.characterId=this.run.characterId;settings();
-    const seed = this.run.seed;
-
-    const { width } = this.scale;
-    const character = getCharacter(this.characterId);
-    this.cameras.main.setBackgroundColor('#14120d');
-
-    this.add.text(42, 24, '大丑牌', {
-      fontFamily: '"Microsoft YaHei", sans-serif',
-      fontSize: '34px',
-      fontStyle: 'bold',
-      color: '#fff1c8',
+    this.cameras.main.setBackgroundColor('#182b2a');
+    this.view=new SceneView(this,()=>{
+      if(this.presentation)this.fastForward();
+      this.render();
     });
-    this.add.text(42, 66, `SEED  ${seed}`, {
-      fontFamily: 'monospace',
-      fontSize: '12px',
-      color: '#8f8267',
-    });
-    this.add.text(42, 88, this.stage.name, {
-      fontFamily: '"Microsoft YaHei", sans-serif',
-      fontSize: '17px',
-      fontStyle: 'bold',
-      color: '#f3cf7c',
-    });
+    window.addEventListener('keydown',this.keyboard);
+    this.render();
+  }
 
-    const roleBg = this.add
-      .rectangle(width - 200, 56, 344, 76, 0x2b2317, 0.98)
-      .setStrokeStyle(2, character.accent, 0.72);
-
-    // HUD 角色区：小型立绘（按 focal 点正方裁切，保住脸）+ 称号 · 名称 + 当前被动
-    const portraitSize = 58;
-    const portraitX = roleBg.x - roleBg.width / 2 + portraitSize / 2 + 8;
-    const portraitKey = `portrait-${character.id}`;
-    if (this.textures.exists(portraitKey)) {
-      const frame = this.textures.get(portraitKey).getSourceImage() as HTMLImageElement;
-      const crop = portraitSquareCrop(frame.width, frame.height, character.portraitFocusX, character.portraitFocusY);
-      this.add.image(portraitX, roleBg.y, portraitKey)
-        .setCrop(crop.x, crop.y, crop.width, crop.height)
-        .setDisplaySize(portraitSize, portraitSize);
-    } else {
-      this.add.rectangle(portraitX, roleBg.y, portraitSize, portraitSize, character.accent, 0.28)
-        .setStrokeStyle(2, character.accent, 0.8);
-      this.add.text(portraitX, roleBg.y, character.name.slice(0, 1), {
-        fontFamily: '"Microsoft YaHei", sans-serif', fontSize: '24px', fontStyle: 'bold', color: '#ffffff',
-      }).setOrigin(0.5);
-    }
-    this.add.rectangle(portraitX, roleBg.y, portraitSize, portraitSize, 0x000000, 0)
-      .setStrokeStyle(2, character.accent, 0.9);
-
-    this.add.text(roleBg.x - 96, roleBg.y - 22, `${character.title} · ${character.name}`, {
-      fontFamily: '"Microsoft YaHei", sans-serif',
-      fontSize: '18px',
-      fontStyle: 'bold',
-      color: '#fff4d7',
-    });
-    this.roleText = this.add.text(roleBg.x - 96, roleBg.y + 5, character.passiveName, {
-      fontFamily: '"Microsoft YaHei", sans-serif',
-      fontSize: '14px',
-      color: '#f3cf7c',
-    });
-
-    this.heatText = this.add.text(42, 118, '', {
-      fontFamily: '"Microsoft YaHei", sans-serif',
-      fontSize: '30px',
-      fontStyle: 'bold',
-      color: '#fff7df',
-    });
-    this.handsText = this.add.text(42, 160, '', {
-      fontFamily: '"Microsoft YaHei", sans-serif',
-      fontSize: '16px',
-      color: '#bdb197',
-    });
-
+  private readonly keyboard=(event:KeyboardEvent)=>{
+    if(this.playing||document.querySelector('dialog[open]')||!this.scene.isActive()||document.activeElement?.matches('input,select,textarea,button'))return;
+    if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();this.focusIndex=(this.focusIndex+(event.key==='ArrowRight'?1:this.hand.length-1))%this.hand.length;this.renderHand();}
+    else if(event.key===' '&&this.hand[this.focusIndex]){event.preventDefault();this.toggleCard(this.hand[this.focusIndex].id);}
+    else if(event.key==='Enter'&&this.hand[this.focusIndex]){event.preventDefault();this.inspectCard(this.hand[this.focusIndex].id);}
+  };
+  private get ready():boolean {return !this.playing&&runController(this)?.status==='idle'&&gameSession().lease.writable;}
+  private render():void {
+    const v=this.view,l=v.layout;v.clear();const h=l.hud,c=getCharacter(this.characterId),portrait=l.mode==='portrait';
+    const avatarSize=l.compact?48:64;addAvatar(this,v.root,c,h.x+avatarSize/2,h.y+avatarSize/2,avatarSize);
+    v.text(h.x+76,h.y,c.name,22);this.roleText=v.text(h.x+76,h.y+30,c.passiveName,14,'#f1c575',h.width-152);
+    if(!l.compact)v.text(portrait?h.x+76:h.x,h.y+(portrait?52:76),this.stage.name,14,'#dddacb',portrait?h.width-152:h.width);
+    this.heatText=v.text(h.x,h.y+(portrait?(l.compact?52:76):100),'',22);
+    this.handsText=v.text(h.x,h.y+(portrait?(l.compact?78:108):140),'',14,undefined,h.width);
+    if(!portrait)v.button({x:h.x,y:h.y+232,width:h.width,height:44},'角色 / 本场规则','action/role',()=>this.inspectRole());
     this.renderJokerRack();
-
-    this.resultText = this.add
-      .text(width / 2, 254, '选 1～5 张牌，开始你的第一个包袱。', {
-        fontFamily: '"Microsoft YaHei", sans-serif',
-        fontSize: '27px',
-        fontStyle: 'bold',
-        color: '#f1e6cc',
-        align: 'center',
-      })
-      .setOrigin(0.5);
-
-    this.breakdownText = this.add
-      .text(width / 2, 314, '计分来源会在这里逐项展开', {
-        fontFamily: '"Microsoft YaHei", sans-serif',
-        fontSize: '15px',
-        color: '#b9aa8a',
-        align: 'center',
-        lineSpacing: 5,
-      })
-      .setOrigin(0.5, 0);
-
-    this.playButton = this.add
-      .rectangle(width / 2, 650, 220, 58, 0xa43d2f, 1)
-      .setStrokeStyle(2, 0xf1bd68, 0.8)
-      .setInteractive({ useHandCursor: true });
-    this.add
-      .text(width / 2, 650, '出 牌', {
-        fontFamily: '"Microsoft YaHei", sans-serif',
-        fontSize: '24px',
-        fontStyle: 'bold',
-        color: '#fff8e9',
-      })
-      .setOrigin(0.5)
-      .setDepth(2);
-    this.playButton.on('pointerdown', () => void this.playSelected());
-    const discard=this.add.rectangle(width/2-250,650,190,58,0x2b3a4a).setStrokeStyle(2,0x7fb3d5).setInteractive({useHandCursor:true});
-    this.add.text(discard.x,discard.y,'弃 牌',{fontSize:'22px',color:'#dceefb'}).setOrigin(0.5);
-    discard.on('pointerdown',()=>this.discardSelected());
-    if(this.characterId==='touye'){
-      const wager=this.add.text(width/2+190,650,'本手押注：否',{fontSize:'18px',color:'#ffba66'}).setOrigin(0,0.5).setInteractive({useHandCursor:true});
-      wager.on('pointerdown',async()=>{
-        if(this.playing)return;this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;
-        try {
-          const result=await dispatchRun(this,{type:'SetWager',enabled:!this.run.stage!.wagerSelected});
-          if(!this.alive(lifecycle,intent))return;
-          if(result.ok){this.run=result.state;wager.setText(this.run.stage!.wagerSelected?'本手押注：是':'本手押注：否');this.previewSelection();}
-          else wager.setText(result.code==='wager-used'?'本场押注已使用':'押注未提交，请查看菜单');
-        } finally {if(this.alive(lifecycle,intent))this.playing=false;}
-      });
-    }
-
-    this.add
-      .text(width - 42, 686, '保存并退出', {
-        fontFamily: '"Microsoft YaHei", sans-serif',
-        fontSize: '14px',
-        color: '#a99c82',
-      })
-      .setOrigin(1, 0.5)
-      .setInteractive({ useHandCursor: true })
-      .on('pointerdown',async()=>{
-        if(!window.confirm('保存已确定结果并退出？稍后可继续本局。'))return;
-        const lifecycle=this.lifecycle;
-        if(await runController(this)!.flush()&&lifecycle===this.lifecycle)this.scene.start('character-select');
-      });
-
-    this.updateHud();
-    this.renderHand();
-    if(this.run.lastTrace){this.resultText.setText('已恢复 · 上手 '+HAND_LABELS[this.run.lastTrace.handType]+' +'+heatText(this.run.lastTrace.finalScore));this.breakdownText.setText(this.formatBreakdown(this.run.lastTrace));}
+    this.resultText=v.text(l.preview.x,l.preview.y,'选择 1～5 张牌',22,undefined,l.preview.width);
+    const remaining=(BigInt(this.stage.targetHeat)>BigInt(this.heat)?BigInt(this.stage.targetHeat)-BigInt(this.heat):0n).toString();
+    this.breakdownText=v.text(l.preview.x,l.preview.y+32,'距目标还需 '+heatText(remaining)+' 热度',14,'#dddacb',l.preview.width);
+    v.button(l.buttons.rank,'点数排序','action/sort-rank',()=>void this.sortHand('rank'),this.ready);
+    v.button(l.buttons.suit,'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready);
+    v.button(l.buttons.deck,'查看牌组','action/deck',()=>this.inspectDeck());
+    v.button(l.buttons.details,'角色详情','action/details',()=>this.inspectRole());
+    v.button(l.buttons.discard,'弃牌','action/discard',()=>void this.discardSelected(),this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>0);
+    this.playButton=v.button(l.buttons.play,'出牌','action/play',()=>void this.playSelected(),this.ready&&this.selectedIds.size>0&&this.handsLeft>0,true);
+    v.button(l.buttons.forward,'快进','action/forward',()=>this.fastForward(),!!this.presentation);
+    this.updateHud();this.renderHand();
+    if(this.presentation){this.resultText.setText('正在结算 · 可快进');}
+    else if(this.selectedIds.size)this.previewSelection();
+    else if(this.run.lastTrace){this.resultText.setText('上手 '+HAND_LABELS[this.run.lastTrace.handType]+' +'+heatText(this.run.lastTrace.finalScore));this.breakdownText.setText(this.formatBreakdown(this.run.lastTrace));}
+    v.text(l.status.x,l.status.y,this.statusMessage||(this.playing?'结算中，不接受下一手':this.selectedIds.size?'已选 '+this.selectedIds.size+' / 5':'先选择牌，出牌和弃牌才可用'),14,'#f1c575',l.status.width);
   }
-
-  private renderJokerRack(): void {
-    const startX = 390;
-    const y = 145;
-    const cardWidth = 132;
-    const gap = 12;
-
-    if (this.jokerIds.length === 0) {
-      this.add.text(startX, y, '尚未装备大丑牌——过关后去货摊淘几张。', {
-        fontFamily: '"Microsoft YaHei", sans-serif',
-        fontSize: '15px',
-        color: '#8f8267',
-      }).setOrigin(0, 0.5);
-      return;
-    }
-
-    this.jokerIds.forEach((id, index) => {
-      const joker = getJoker(id);
-      const x = startX + index * (cardWidth + gap);
-      const container = this.add.container(x, y);
-      const bg = this.add
-        .rectangle(0, 0, cardWidth, 74, 0xf3e5bd, 1)
-        .setStrokeStyle(2, joker.rarity === 'rare' ? 0xc84b31 : 0xb88b3d, 0.85);
-      const name = this.add
-        .text(0, -18, joker.name, {
-          fontFamily: '"Microsoft YaHei", sans-serif',
-          fontSize: '17px',
-          fontStyle: 'bold',
-          color: '#3e2c1e',
-        })
-        .setOrigin(0.5);
-      const desc = this.add
-        .text(0, 12, joker.description, {
-          fontFamily: '"Microsoft YaHei", sans-serif',
-          fontSize: '10px',
-          color: '#6b5840',
-          align: 'center',
-          wordWrap: { width: cardWidth - 16,useAdvancedWrap:true },
-        })
-        .setOrigin(0.5);
-      container.add([bg, name, desc]);
-      this.jokerViews.set(id, container);
+  private renderJokerRack():void {
+    const v=this.view,l=v.layout;this.jokerViews.clear();
+    l.slots.forEach((b,i)=>{
+      const j=this.run.jokers[i],r=v.rect(b,j?0xf3eadb:0x24313b);
+      if(!j){v.text(b.x+6,b.y+12,'空槽',14);return;}
+      const d=getJoker(j.definitionId),name=v.text(b.x+5,b.y+5,d.name,14,'#24313b',b.width-10);
+      const symbol=d.rarity==='rare'?'★':d.rarity==='uncommon'?'◇':'□';
+      const op=d.hooks.flatMap(h=>h.operations).find(o=>'value' in o);
+      const value=op&&'value' in op?fractionText(op.value):'';
+      const current=v.text(b.x+5,b.y+b.height-24,symbol+' '+(op?.kind==='multiply-multiplier'?'×':'+')+value,14,'#24313b');
+      const marker=this.add.container(0,0,[r,name,current]);v.add(marker);this.jokerViews.set(j.definitionId,marker);
+      v.target(r,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:x=>void this.reorderJoker(j.instanceId,x),holdToDrag:true});
     });
   }
-
-  private renderHand(): void {
-    this.cardViews.forEach((view) => view.container.destroy());
-    this.cardViews = [];
-
-    const { width } = this.scale;
-    const cardWidth = 126;
-    const gap = 16;
-    const total = this.hand.length * cardWidth + Math.max(0, this.hand.length - 1) * gap;
-    const startX = (width - total) / 2 + cardWidth / 2;
-
-    this.hand.forEach((card, index) => {
-      const x = startX + index * (cardWidth + gap);
-      const y = 490;
-      const container = this.add.container(x, y);
-      const red = card.suit === 'hearts' || card.suit === 'diamonds';
-      const bg = this.add
-        .rectangle(0, 0, cardWidth, 174, 0xf6eedf, 1)
-        .setStrokeStyle(2, 0x8b7455, 0.72)
-        .setInteractive({ useHandCursor: true });
-      const label = this.add.text(-46, -69, `${rankLabel(card.rank)}${SUIT_SYMBOL[card.suit]}`, {
-        fontFamily: 'Georgia, serif',
-        fontSize: '25px',
-        fontStyle: 'bold',
-        color: red ? '#b83132' : '#252019',
-      });
-      const suit = this.add
-        .text(0, 8, SUIT_SYMBOL[card.suit], {
-          fontFamily: 'Georgia, serif',
-          fontSize: '62px',
-          color: red ? '#bd3435' : '#292219',
-        })
-        .setOrigin(0.5);
-
-      container.add([bg, label, suit]);
-      bg.on('pointerdown', () => this.toggleCard(card.id));
-      this.cardViews.push({ card, container });
-      if (this.selectedIds.has(card.id)) container.y -= 30;
+  private renderHand():void {
+    this.cardViews.forEach(v=>v.container.destroy());this.cardViews=[];const v=this.view,l=v.layout;
+    let active:readonly string[]=[];
+    if(this.selectedIds.size&&this.run.phase==='await-input')active=this.preview().sets.activeScoringIds;
+    this.hand.forEach((card,i)=>{
+      const b=l.cards[i].visual,hit=l.cards[i].hit,selected=this.selectedIds.has(card.id),c=this.add.container(b.x+b.width/2,b.y+b.height/2-(selected?16:0));v.add(c);
+      const bg=this.add.rectangle(0,0,b.width,b.height,0xf3eadb).setStrokeStyle(active.includes(card.id)?4:2,active.includes(card.id)?0x5d9184:selected?0xc84e42:0x879486);
+      const red=card.suit==='hearts'||card.suit==='diamonds',color=red?'#b83132':'#24313b';
+      const label=this.add.text(-b.width/2+5,-b.height/2+5,rankLabel(card.rank)+'\n'+SUIT_SYMBOL[card.suit],{fontFamily:'Georgia,serif',fontSize:'22px',fontStyle:'bold',color,resolution:Math.min(devicePixelRatio||1,2)});
+      const suit=this.add.text(b.width/2-16,b.height/2-18,SUIT_SYMBOL[card.suit],{fontSize:'26px',color}).setOrigin(.5);
+      c.add([bg,label,suit]);c.setData('selected',selected).setData('activeScoring',active.includes(card.id));
+      if(document.activeElement===this.game.canvas&&i===this.focusIndex)bg.setStrokeStyle(3,0x7fb3d5);
+      if(active.includes(card.id))c.add(this.add.text(-b.width/2+5,b.height/2-24,'★',{fontSize:'14px',color:'#24313b'}));
+      v.target(bg,'card/'+card.id,{tap:()=>this.toggleCard(card.id),detail:()=>this.inspectCard(card.id),drag:x=>void this.reorderCard(card.id,x)});
+      (bg.input!.hitArea as Phaser.Geom.Rectangle).width=hit.width;
+      this.cardViews.push({card,container:c});
     });
   }
+  private preview(){
+    const stage=this.run.stage!;
+    return previewR2Hand({rulesVersion:'r2',runId:this.run.runId,rootId:'preview',characterId:this.characterId,hand:this.hand,selectedIds:[...this.selectedIds],disabledIds:stage.disabledIds,jokers:this.run.jokers,definitions:R2_JOKERS,handLevels:this.run.handLevels,playIndex:stage.playIndex+1,handsBeforePlay:stage.handsLeft,previousHandType:stage.previousHandType,wager:stage.wagerSelected});
+  }
+  private inspectCard(id:string):void {
+    const c=this.hand.find(c=>c.id===id);if(!c)return;
+    this.dialog.open(rankLabel(c.rank)+SUIT_SYMBOL[c.suit]+' · 手牌详情',(this.selectedIds.has(id)?'已选中':'未选中')+'；'+(this.cardViews.find(v=>v.card.id===id)?.container.getData('activeScoring')?'本手计分牌':'本手不计分或尚未预览')+'\n增强：'+(c.enhancement??'无')+'\n长按只查看，不会选牌或出牌。',[{label:this.selectedIds.has(id)?'取消选择':'选择此牌',disabled:!this.ready,run:()=>{this.toggleCard(id);this.dialog.close();}}]);
+  }
+  private inspectRole():void {
+    const c=getCharacter(this.characterId),stage=this.run.stage!,body=c.passiveDescription+'\n'+(this.characterId==='xiemu'?(stage.handsLeft===1?'当前为最后一手：倍率 ×2，过关额外 +2 金。':'距离最后一手还有 '+(stage.handsLeft-1)+' 次。'):this.characterId==='touye'?(stage.wagerUsed?'本场押注已用。':stage.wagerSelected?'本手已押注：50% ×2 / 50% ×0.75。':'本场押注未用；默认倍率 ×1.15。'):'')+'\n'+this.stage.name+'：'+this.stage.intro+'\n本场规则：'+(stage.disabledIds.length?'带封禁标记的牌不参与计分。':'当前无封禁。');
+    const dialog=this.dialog.open(c.name+' · 角色与本场规则',body,this.characterId==='touye'?[{label:stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[]);
+  }
+  private inspectJoker(id:string):void {
+    const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=getJoker(j.definitionId),index=this.run.jokers.indexOf(j);
+    const move=async(delta:number)=>{const ids=this.run.jokers.map(j=>j.instanceId);ids.splice(index,1);ids.splice(index+delta,0,id);await this.command({type:'ReorderJokers',ids});if(this.dialog.active(dialog))this.inspectJoker(id);};
+    const dialog=this.dialog.open(d.name,d.description+'\n当前成长：'+(Object.entries(j.growth).map(([k,value])=>k+' '+fractionText(value)).join('、')||'无')+'\n第 '+(index+1)+' 个结算；长按后拖动可调序，出售只在商店确认。',[
+      {label:'左移',disabled:!this.ready||index===0,run:()=>move(-1)},{label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:()=>move(1)},
+    ]);
+  }
+  private inspectDeck():void {
+    const state=this.run,dialog=this.dialog.open('牌组查看',''),content=dialog.querySelector('p')!,controls=document.createElement('div');
+    const scope=document.createElement('select'),enhancement=document.createElement('select');
+    for(const [value,label] of [['remaining','剩余牌堆'],['all','全部牌组']]){const o=document.createElement('option');o.value=value;o.textContent=label;scope.append(o);}
+    for(const [value,label] of [['all','所有增强'],['none','无增强'],['enhanced','有增强']]){const o=document.createElement('option');o.value=value;o.textContent=label;enhancement.append(o);}
+    scope.setAttribute('aria-label','牌组范围');enhancement.setAttribute('aria-label','增强筛选');controls.append(scope,enhancement);content.before(controls);
+    const render=()=>{
+      const cards=state.deckInstances.filter(c=>(scope.value==='all'||state.drawPile.includes(c.id))&&(enhancement.value==='all'||(enhancement.value==='none'?!c.enhancement:!!c.enhancement))).sort((a,b)=>SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit)||a.rank-b.rank);
+      content.textContent='按花色与点数统计，不展示抽牌顺序。\n'+SUITS.map(s=>SUIT_SYMBOL[s]+' '+cards.filter(c=>c.suit===s).length).join(' · ')+'\n'+cards.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]+(state.playedPile.includes(c.id)?' 已打出':state.discardPile.includes(c.id)?' 已弃':state.handOrder.includes(c.id)?' 手牌':'' )+(c.enhancement?' '+c.enhancement:'')).join('、');
+    };scope.onchange=render;enhancement.onchange=render;render();
+  }
+  private async command(action:import('../domain/run').Action):Promise<void> {
+    if(!this.ready)return;this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.render();
+    try{const result=await dispatchRun(this,action);if(!this.alive(lifecycle,intent))return;if(result.ok)this.run=result.state;else this.statusMessage='操作未提交：'+result.code;}
+    finally{if(this.alive(lifecycle,intent)){this.playing=false;this.render();}}
+  }
+  private async sortHand(mode:'rank'|'suit'):Promise<void> {
+    const cards=[...this.hand].sort((a,b)=>mode==='rank'?b.rank-a.rank||SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit):SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit)||b.rank-a.rank);
+    await this.command({type:'ReorderHand',ids:cards.map(c=>c.id)});
+  }
+  private async reorderCard(id:string,x:number):Promise<void> {const ids=[...this.run.handOrder],from=ids.indexOf(id),to=this.view.layout.cards.findIndex(b=>x>=b.hit.x&&x<=b.hit.x+b.hit.width);if(from<0||to<0||to>=ids.length||from===to)return;ids.splice(from,1);ids.splice(to,0,id);await this.command({type:'ReorderHand',ids});}
+  private async reorderJoker(id:string,x:number):Promise<void> {const ids=this.run.jokers.map(j=>j.instanceId),from=ids.indexOf(id),to=this.view.layout.slots.findIndex(b=>x>=b.x&&x<=b.x+b.width);if(to<0||to>=ids.length||from===to)return;ids.splice(from,1);ids.splice(to,0,id);await this.command({type:'ReorderJokers',ids});}
 
   private toggleCard(id: string): void {
-    if (this.playing) return;
+    if (!this.ready) return;
+    this.statusMessage='';
     if (this.selectedIds.has(id)) {
       this.selectedIds.delete(id);
     } else {
-      if (this.selectedIds.size >= MAX_SELECTED) {this.resultText.setText('每手最多选择 5 张牌');return;}
+      if (this.selectedIds.size >= MAX_SELECTED) {this.statusMessage='每手最多选择 5 张牌';this.render();return;}
       this.selectedIds.add(id);
     }
     this.audio.select();
-    this.renderHand();
-    this.previewSelection();
+    this.render();
   }
 
   private alive(lifecycle:number,intent:number):boolean {return lifecycle===this.lifecycle&&intent===this.intent&&this.scene.isActive();}
@@ -354,10 +249,9 @@ export class GameScene extends Phaser.Scene {
 
   private previewSelection():void {
     if(!this.selectedIds.size){this.resultText.setText('选 1～5 张牌，选择出牌或弃牌');return;}
-    const stage=this.run.stage!;
-    const preview=previewR2Hand({rulesVersion:'r2',runId:this.run.runId,rootId:'preview',characterId:this.characterId,hand:this.hand,selectedIds:[...this.selectedIds],disabledIds:stage.disabledIds,jokers:this.run.jokers,definitions:R2_JOKERS,handLevels:this.run.handLevels,playIndex:stage.playIndex+1,handsBeforePlay:stage.handsLeft,previousHandType:stage.previousHandType,wager:stage.wagerSelected});
-    this.resultText.setText(HAND_LABELS[preview.handType]+' · 已选 '+this.selectedIds.size+' 张');
-    this.breakdownText.setText(preview.possibleScores.length===2?'押注：50% '+heatText(preview.possibleScores[0])+' / 50% '+heatText(preview.possibleScores[1]):'本手预览 '+heatText(preview.possibleScores[0])+' 热度');
+    const preview=this.preview();
+    this.resultText.setText(HAND_LABELS[preview.handType]+' Lv.'+preview.level+' · '+this.selectedIds.size+'/5');
+    this.breakdownText.setText('基础热度 '+fractionText(preview.base.H)+' × 倍率 '+fractionText(preview.base.M)+'\n'+(preview.possibleScores.length===2?'押注：50% '+heatText(preview.possibleScores[0])+' / 50% '+heatText(preview.possibleScores[1]):'本手预览 '+heatText(preview.possibleScores[0])+' 热度'));
   }
 
   private async discardSelected():Promise<void> {
@@ -368,13 +262,14 @@ export class GameScene extends Phaser.Scene {
       if(!result.ok){this.resultText.setText(result.code==='no-discards-left'?'本场弃牌次数已用完':result.code==='save-failed'?'未保存，请在菜单中重试或导出':'请选择 1～5 张牌再弃牌');return;}
       this.run=result.state;this.selectedIds.clear();this.updateHud();this.renderHand();this.previewSelection();
       if(this.run.phase==='run-lost')this.finishStage(false);
-    } finally {if(this.alive(lifecycle,intent)&&this.run.phase==='await-input')this.playing=false;}
+    } finally {if(this.alive(lifecycle,intent)&&this.run.phase==='await-input'){this.playing=false;this.render();}}
   }
 
   private async playSelected():Promise<void> {
     if(this.playing||this.selectedIds.size===0||this.handsLeft<=0)return;
-    const selectedIds=[...this.selectedIds],selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id)),lifecycle=this.lifecycle,intent=++this.intent;
-    this.playing=true;this.playButton.disableInteractive();
+    const selectedIds=[...this.selectedIds],lifecycle=this.lifecycle,intent=++this.intent;
+    this.playing=true;this.render();
+    const selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id));
     try {
       const result=await dispatchRun(this,{type:'PlayHand',selectedIds});
       if(!this.alive(lifecycle,intent))return;
@@ -384,15 +279,16 @@ export class GameScene extends Phaser.Scene {
       this.triggers.emit('hand:played',event.score.sets);
       await this.presentTrace(event.score,result.state,selectedViews,lifecycle,intent);
     } finally {
-      if(this.alive(lifecycle,intent)&&this.run.phase==='await-input'&&!this.presentation){this.playing=false;this.playButton.setInteractive({useHandCursor:true});}
+      if(this.alive(lifecycle,intent)&&this.run.phase==='await-input'&&!this.presentation){this.playing=false;this.render();}
     }
   }
 
   private async presentTrace(score:ScoreTrace,state:RunState,views:readonly CardView[],lifecycle:number,intent:number):Promise<void> {
     this.effects.clear();const generation=this.effects.generation;
-    const presentation={generation,lifecycle,intent,state,score};this.presentation=presentation;
+    const hand=this.cardViews.map(v=>v.card),presentation={generation,lifecycle,intent,state,score,hand};this.presentation=presentation;this.render();
+    const currentViews=this.cardViews.filter(v=>score.sets.playedIds.includes(v.card.id));
     if(views.length)this.effects.enqueue(context=>{
-      this.audio.playHand();return Promise.all(views.map((view,index)=>this.animate({targets:view.container,y:view.container.y-70,angle:index%2===0?-4:4,alpha:.25,duration:210,delay:index*30,ease:'Cubic.easeIn'},context))).then(()=>undefined);
+      this.audio.playHand();return Promise.all(currentViews.map((view,index)=>this.animate({targets:view.container,y:view.container.y-70,angle:index%2===0?-4:4,alpha:.25,duration:210,delay:index*30,ease:'Cubic.easeIn'},context))).then(()=>undefined);
     });
     for(const [index,event] of score.events.entries()){
       if(['base','finalScore','afterHand'].includes(event.phase))continue;
@@ -423,7 +319,7 @@ export class GameScene extends Phaser.Scene {
     this.resultText.setText(HAND_LABELS[presentation.score.handType]+'   +'+heatText(presentation.score.finalScore)+' 热度');this.breakdownText.setText(this.formatBreakdown(presentation.score));
     if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true);return;}
     if(this.run.phase==='run-lost'){this.finishStage(false);return;}
-    this.renderHand();this.playing=false;this.playButton.setInteractive({useHandCursor:true});
+    this.playing=false;this.render();
   }
 
   fastForward():void {const presentation=this.presentation;if(!presentation)return;this.effects.clear();this.completePresentation(presentation);}
@@ -442,11 +338,11 @@ export class GameScene extends Phaser.Scene {
     const goldEarned = this.run.stage!.goldEarned;
 
     if (cleared) {
-      this.resultText.setText(`全场失控！\n${heatText(stageHeat)} 热度`);
-      this.cameras.main.flash(420, 255, 231, 181, false);
+      this.resultText.setText(`过关 · ${heatText(stageHeat)} 热度`);
+
     } else {
       this.resultText.setText(
-        `冷场了。\n差 ${heatText((BigInt(this.stage.targetHeat)>BigInt(stageHeat)?BigInt(this.stage.targetHeat)-BigInt(stageHeat):0n).toString())} 热度`,
+        `冷场 · 差 ${heatText((BigInt(this.stage.targetHeat)>BigInt(stageHeat)?BigInt(this.stage.targetHeat)-BigInt(stageHeat):0n).toString())} 热度`,
       );
     }
 
@@ -463,7 +359,8 @@ export class GameScene extends Phaser.Scene {
   }
 
   private updateHud(): void {
-    this.heatText.setText(`热度  ${heatText(this.heat)} / ${heatText(this.stage.targetHeat)}`);
-    this.handsText.setText(`剩余出牌  ${this.handsLeft} · 弃牌 ${this.run.stage!.discardsLeft} · 金币 ${this.run.gold} · 牌堆 ${this.deck.length}`);
+    this.heatText.setText('热度 '+heatText(this.heat)+' / '+heatText(this.stage.targetHeat));
+    const l=this.view.layout;this.handsText.setText(l.mode==='portrait'?'出牌 '+this.handsLeft+' · 弃牌 '+this.run.stage!.discardsLeft+' · 金币 '+this.run.gold:'出牌 '+this.handsLeft+' · 弃牌 '+this.run.stage!.discardsLeft+'\n金币 '+this.run.gold+' · 牌堆 '+this.deck.length+'\n还需 '+heatText((BigInt(this.stage.targetHeat)>BigInt(this.heat)?BigInt(this.stage.targetHeat)-BigInt(this.heat):0n).toString()));
+
   }
 }
