@@ -1,4 +1,9 @@
-export type TriggerName = 'hand:played' | 'role:triggered' | 'score:resolved';
+export type TriggerName =
+  | 'hand:played'
+  | 'role:triggered'
+  | 'joker:triggered'
+  | 'score:resolved';
+
 export type TriggerListener<T = unknown> = (payload: T) => void;
 
 export class TriggerEngine {

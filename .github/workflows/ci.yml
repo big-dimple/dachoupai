@@ -2,7 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main, feat/vertical-slice]
+    branches:
+      - main
+      - "feat/**"
   pull_request:
     branches: [main]
 
