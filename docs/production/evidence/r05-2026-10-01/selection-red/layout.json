@@ -1,0 +1,5600 @@
+{
+  "inputTrace": [
+    {
+      "type": "touchStart",
+      "target": "offer/run/r03-1/erxiang/shop/0/0/2",
+      "x": 321,
+      "y": 494,
+      "at": "2026-09-30T20:13:20.317Z"
+    },
+    {
+      "type": "touchEnd",
+      "target": "offer/run/r03-1/erxiang/shop/0/0/2",
+      "x": 321,
+      "y": 494,
+      "at": "2026-09-30T20:13:20.783Z"
+    }
+  ],
+  "testedCommit": "85d5555c895c21cda7ec0066471f0f8696880ef0",
+  "dirtyState": "M harness/layout.mjs\n?? docs/production/evidence/r05-2026-10-01/content.txt\n?? docs/production/evidence/r05-2026-10-01/layout.txt\n?? docs/production/evidence/r05-2026-10-01/layout/\n?? docs/production/evidence/r05-2026-10-01/recovery.txt\n?? docs/production/evidence/r05-2026-10-01/recovery/\n?? docs/production/evidence/r05-2026-10-01/selection-red.txt\n?? docs/production/evidence/r05-2026-10-01/verify.txt",
+  "checks": [
+    {
+      "name": "select/320x568",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 320,
+          "height": 568
+        },
+        "texts": [
+          {
+            "text": "大丑牌 · 选择角色",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "查看身份，确认后开局",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "骰爷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "再来一把",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "老幻",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "袖里有牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "二响",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "接得漂亮",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿燥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "换个活儿",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "谢幕人",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 12,
+            "y": 67.99999491373698,
+            "width": 142,
+            "height": 150.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/touye",
+            "x": 166,
+            "y": 67.99999491373698,
+            "width": 142,
+            "height": 150.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/laohuan",
+            "x": 12,
+            "y": 230.66666666666669,
+            "width": 142,
+            "height": 150.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/erxiang",
+            "x": 166,
+            "y": 230.66666666666669,
+            "width": 142,
+            "height": 150.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/azao",
+            "x": 12,
+            "y": 393.3333231608073,
+            "width": 142,
+            "height": 150.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/xiemu",
+            "x": 166,
+            "y": 393.3333231608073,
+            "width": 142,
+            "height": 150.66666666666666,
+            "enabled": true
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.avatar.webp",
+        "http://localhost:5205/assets/characters/touye.avatar.webp",
+        "http://localhost:5205/assets/characters/laohuan.avatar.webp",
+        "http://localhost:5205/assets/characters/erxiang.avatar.webp",
+        "http://localhost:5205/assets/characters/azao.avatar.webp",
+        "http://localhost:5205/assets/characters/xiemu.avatar.webp"
+      ],
+      "failures": []
+    },
+    {
+      "name": "shop/320x568",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 320,
+          "height": 568
+        },
+        "texts": [
+          {
+            "text": "后台货摊",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "金币 6",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "下一场 第 1 章 · 暖场\n目标 400",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "铁算盘",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "6 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "碰瓷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "满堂彩",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "换牌 2 金",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "开局",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "构筑详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点卡面看详情，再确认买卖",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/reroll",
+            "x": 12.000001271565758,
+            "y": 468,
+            "width": 93.33333333333333,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/start-stage",
+            "x": 113.33333333333334,
+            "y": 468,
+            "width": 93.33333333333333,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/build",
+            "x": 214.66667683919272,
+            "y": 468,
+            "width": 93.33333333333333,
+            "height": 56,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "table/320x568",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 320,
+          "height": 568
+        },
+        "texts": [
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "热度 0 / 400",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "出牌 4 · 弃牌 3 · 金币 6",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "选择 1～5 张牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "距目标还需 400 热度",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点数排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "花色排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "查看牌组",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "角色详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "弃牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "出牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "快进",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "5\n♦",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♦",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "8\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "10\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "3\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "A\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "J\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "先选择牌，出牌和弃牌才可用",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/sort-rank",
+            "x": 12,
+            "y": 260,
+            "width": 68,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/sort-suit",
+            "x": 88,
+            "y": 260,
+            "width": 68,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/deck",
+            "x": 164,
+            "y": 260,
+            "width": 68,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/details",
+            "x": 240,
+            "y": 260,
+            "width": 68,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/discard",
+            "x": 12,
+            "y": 468,
+            "width": 93.33333333333333,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/play",
+            "x": 113.33333333333334,
+            "y": 468,
+            "width": 93.33333333333334,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/forward",
+            "x": 214.66666666666666,
+            "y": 468,
+            "width": 93.33333333333334,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "card/diamonds-5",
+            "x": 12,
+            "y": 334,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-8",
+            "x": 48,
+            "y": 334,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-9",
+            "x": 84,
+            "y": 334,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-10",
+            "x": 120,
+            "y": 334,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-3",
+            "x": 156,
+            "y": 334,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-9",
+            "x": 192,
+            "y": 334,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-14",
+            "x": 228,
+            "y": 334,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-11",
+            "x": 264,
+            "y": 334,
+            "width": 44,
+            "height": 126,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "select/360x640",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 360,
+          "height": 640
+        },
+        "texts": [
+          {
+            "text": "大丑牌 · 选择角色",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "查看身份，确认后开局",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "只打出 1 张牌时，倍率 ×3。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "骰爷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "再来一把",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "老幻",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "袖里有牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "顺子、同花、同花顺额外 +120 基础热度。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "二响",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "接得漂亮",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "对子、两对、三条的倍率 +1.5。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿燥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "换个活儿",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "与本场上次牌型不同，倍率 +1；第一手不触发。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "谢幕人",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "最后可用出牌 ×2；该手过关额外 +2 金。",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 12,
+            "y": 67.99999491373698,
+            "width": 162,
+            "height": 174.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/touye",
+            "x": 186,
+            "y": 67.99999491373698,
+            "width": 162,
+            "height": 174.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/laohuan",
+            "x": 12,
+            "y": 254.66666666666669,
+            "width": 162,
+            "height": 174.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/erxiang",
+            "x": 186,
+            "y": 254.66666666666669,
+            "width": 162,
+            "height": 174.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/azao",
+            "x": 12,
+            "y": 441.33335367838544,
+            "width": 162,
+            "height": 174.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/xiemu",
+            "x": 186,
+            "y": 441.33335367838544,
+            "width": 162,
+            "height": 174.66666666666666,
+            "enabled": true
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.avatar.webp",
+        "http://localhost:5205/assets/characters/touye.avatar.webp",
+        "http://localhost:5205/assets/characters/laohuan.avatar.webp",
+        "http://localhost:5205/assets/characters/erxiang.avatar.webp",
+        "http://localhost:5205/assets/characters/azao.avatar.webp",
+        "http://localhost:5205/assets/characters/xiemu.avatar.webp"
+      ],
+      "failures": []
+    },
+    {
+      "name": "shop/360x640",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 360,
+          "height": 640
+        },
+        "texts": [
+          {
+            "text": "后台货摊",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "金币 6",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "下一场 第 1 章 · 暖场\n目标 400",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "铁算盘",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "6 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "碰瓷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "满堂彩",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "换牌 2 金",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "开局",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "构筑详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点卡面看详情，再确认买卖",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/reroll",
+            "x": 12.000002543131508,
+            "y": 540,
+            "width": 106.66666666666667,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/start-stage",
+            "x": 126.66666666666666,
+            "y": 540,
+            "width": 106.66666666666667,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/build",
+            "x": 241.33332316080728,
+            "y": 540,
+            "width": 106.66666666666667,
+            "height": 56,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "table/360x640",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 360,
+          "height": 640
+        },
+        "texts": [
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "第 1 章 · 暖场",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "热度 0 / 400",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "出牌 4 · 弃牌 3 · 金币 6",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "选择 1～5 张牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "距目标还需 400 热度",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点数排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "花色排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "查看牌组",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "角色详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "弃牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "出牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "快进",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "5\n♦",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♦",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "8\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "10\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "3\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "A\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "J\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "先选择牌，出牌和弃牌才可用",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/sort-rank",
+            "x": 12,
+            "y": 332,
+            "width": 78,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/sort-suit",
+            "x": 98,
+            "y": 332,
+            "width": 78,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/deck",
+            "x": 184,
+            "y": 332,
+            "width": 78,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/details",
+            "x": 270,
+            "y": 332,
+            "width": 78,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/discard",
+            "x": 12.000000000000007,
+            "y": 540,
+            "width": 106.66666666666669,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/play",
+            "x": 126.66666666666666,
+            "y": 540,
+            "width": 106.66666666666666,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/forward",
+            "x": 241.33333333333334,
+            "y": 540,
+            "width": 106.66666666666666,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "card/diamonds-5",
+            "x": 12,
+            "y": 406,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-8",
+            "x": 48,
+            "y": 406,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-9",
+            "x": 84,
+            "y": 406,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-10",
+            "x": 120,
+            "y": 406,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-3",
+            "x": 156,
+            "y": 406,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-9",
+            "x": 192,
+            "y": 406,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-14",
+            "x": 228,
+            "y": 406,
+            "width": 36,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-11",
+            "x": 264,
+            "y": 406,
+            "width": 84,
+            "height": 126,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "select/390x844",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 390,
+          "height": 844
+        },
+        "texts": [
+          {
+            "text": "大丑牌 · 选择角色",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "查看身份，确认后开局",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "只打出 1 张牌时，倍率 ×3。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "骰爷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "再来一把",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "老幻",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "袖里有牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "顺子、同花、同花顺额外 +120 基础热度。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "二响",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "接得漂亮",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "对子、两对、三条的倍率 +1.5。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿燥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "换个活儿",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "与本场上次牌型不同，倍率 +1；第一手不触发。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "谢幕人",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "最后可用出牌 ×2；该手过关额外 +2 金。",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 12,
+            "y": 67.99999491373698,
+            "width": 177,
+            "height": 242.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/touye",
+            "x": 201,
+            "y": 67.99999491373698,
+            "width": 177,
+            "height": 242.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/laohuan",
+            "x": 12,
+            "y": 322.6666666666667,
+            "width": 177,
+            "height": 242.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/erxiang",
+            "x": 201,
+            "y": 322.6666666666667,
+            "width": 177,
+            "height": 242.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/azao",
+            "x": 12,
+            "y": 577.3333536783854,
+            "width": 177,
+            "height": 242.66666666666666,
+            "enabled": true
+          },
+          {
+            "name": "character/xiemu",
+            "x": 201,
+            "y": 577.3333536783854,
+            "width": 177,
+            "height": 242.66666666666666,
+            "enabled": true
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.avatar.webp",
+        "http://localhost:5205/assets/characters/touye.avatar.webp",
+        "http://localhost:5205/assets/characters/laohuan.avatar.webp",
+        "http://localhost:5205/assets/characters/erxiang.avatar.webp",
+        "http://localhost:5205/assets/characters/azao.avatar.webp",
+        "http://localhost:5205/assets/characters/xiemu.avatar.webp"
+      ],
+      "failures": []
+    },
+    {
+      "name": "shop/390x844",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 390,
+          "height": 844
+        },
+        "texts": [
+          {
+            "text": "后台货摊",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "金币 6",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "下一场 第 1 章 · 暖场\n目标 400",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "铁算盘",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "6 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "碰瓷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "满堂彩",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "换牌 2 金",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "开局",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "构筑详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点卡面看详情，再确认买卖",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/reroll",
+            "x": 12.000002543131508,
+            "y": 744,
+            "width": 116.66666666666667,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/start-stage",
+            "x": 136.66666666666666,
+            "y": 744,
+            "width": 116.66666666666667,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/build",
+            "x": 261.3333231608073,
+            "y": 744,
+            "width": 116.66666666666667,
+            "height": 56,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "table/390x844",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 390,
+          "height": 844
+        },
+        "texts": [
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "第 1 章 · 暖场",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "热度 0 / 400",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "出牌 4 · 弃牌 3 · 金币 6",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "选择 1～5 张牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "距目标还需 400 热度",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点数排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "花色排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "查看牌组",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "角色详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "弃牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "出牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "快进",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "5\n♦",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♦",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "8\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "10\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "3\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "A\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "J\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "先选择牌，出牌和弃牌才可用",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/sort-rank",
+            "x": 12,
+            "y": 536,
+            "width": 85.5,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/sort-suit",
+            "x": 105.5,
+            "y": 536,
+            "width": 85.5,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/deck",
+            "x": 199,
+            "y": 536,
+            "width": 85.5,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/details",
+            "x": 292.5,
+            "y": 536,
+            "width": 85.5,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/discard",
+            "x": 12.000000000000007,
+            "y": 744,
+            "width": 116.66666666666669,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/play",
+            "x": 136.66666666666669,
+            "y": 744,
+            "width": 116.66666666666669,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/forward",
+            "x": 261.33333333333337,
+            "y": 744,
+            "width": 116.66666666666669,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "card/diamonds-5",
+            "x": 12,
+            "y": 610,
+            "width": 36.285714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-8",
+            "x": 48.28571319580078,
+            "y": 610,
+            "width": 36.285714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-9",
+            "x": 84.57142639160156,
+            "y": 610,
+            "width": 36.285714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-10",
+            "x": 120.85714721679688,
+            "y": 610,
+            "width": 36.285714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-3",
+            "x": 157.14285278320312,
+            "y": 610,
+            "width": 36.285714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-9",
+            "x": 193.42857360839844,
+            "y": 610,
+            "width": 36.285714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-14",
+            "x": 229.71429443359375,
+            "y": 610,
+            "width": 36.285714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-11",
+            "x": 266,
+            "y": 610,
+            "width": 112,
+            "height": 126,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "select/430x932",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 430,
+          "height": 932
+        },
+        "texts": [
+          {
+            "text": "大丑牌 · 选择角色",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "查看身份，确认后开局",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "只打出 1 张牌时，倍率 ×3。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "骰爷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "再来一把",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "老幻",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "袖里有牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "顺子、同花、同花顺额外 +120 基础热度。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "二响",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "接得漂亮",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "对子、两对、三条的倍率 +1.5。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿燥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "换个活儿",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "与本场上次牌型不同，倍率 +1；第一手不触发。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "谢幕人",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "最后可用出牌 ×2；该手过关额外 +2 金。",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 12,
+            "y": 68,
+            "width": 197,
+            "height": 272,
+            "enabled": true
+          },
+          {
+            "name": "character/touye",
+            "x": 221,
+            "y": 68,
+            "width": 197,
+            "height": 272,
+            "enabled": true
+          },
+          {
+            "name": "character/laohuan",
+            "x": 12,
+            "y": 352,
+            "width": 197,
+            "height": 272,
+            "enabled": true
+          },
+          {
+            "name": "character/erxiang",
+            "x": 221,
+            "y": 352,
+            "width": 197,
+            "height": 272,
+            "enabled": true
+          },
+          {
+            "name": "character/azao",
+            "x": 12,
+            "y": 636,
+            "width": 197,
+            "height": 272,
+            "enabled": true
+          },
+          {
+            "name": "character/xiemu",
+            "x": 221,
+            "y": 636,
+            "width": 197,
+            "height": 272,
+            "enabled": true
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.avatar.webp",
+        "http://localhost:5205/assets/characters/touye.avatar.webp",
+        "http://localhost:5205/assets/characters/laohuan.avatar.webp",
+        "http://localhost:5205/assets/characters/erxiang.avatar.webp",
+        "http://localhost:5205/assets/characters/azao.avatar.webp",
+        "http://localhost:5205/assets/characters/xiemu.avatar.webp"
+      ],
+      "failures": []
+    },
+    {
+      "name": "shop/430x932",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 430,
+          "height": 932
+        },
+        "texts": [
+          {
+            "text": "后台货摊",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "金币 6",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "下一场 第 1 章 · 暖场\n目标 400",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "铁算盘",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "6 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "碰瓷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "满堂彩",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "换牌 2 金",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "开局",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "构筑详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点卡面看详情，再确认买卖",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/reroll",
+            "x": 12,
+            "y": 832,
+            "width": 130,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/start-stage",
+            "x": 150,
+            "y": 832,
+            "width": 130,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/build",
+            "x": 288,
+            "y": 832,
+            "width": 130,
+            "height": 56,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "table/430x932",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 430,
+          "height": 932
+        },
+        "texts": [
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "第 1 章 · 暖场",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "热度 0 / 400",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "出牌 4 · 弃牌 3 · 金币 6",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "选择 1～5 张牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "距目标还需 400 热度",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点数排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "花色排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "查看牌组",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "角色详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "弃牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "出牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "快进",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "5\n♦",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♦",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "8\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "10\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "3\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "A\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "J\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "先选择牌，出牌和弃牌才可用",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/sort-rank",
+            "x": 12,
+            "y": 624,
+            "width": 95.5,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/sort-suit",
+            "x": 115.5,
+            "y": 624,
+            "width": 95.5,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/deck",
+            "x": 219,
+            "y": 624,
+            "width": 95.5,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/details",
+            "x": 322.5,
+            "y": 624,
+            "width": 95.5,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/discard",
+            "x": 12,
+            "y": 832,
+            "width": 130,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/play",
+            "x": 150,
+            "y": 832,
+            "width": 130,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/forward",
+            "x": 288,
+            "y": 832,
+            "width": 130,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "card/diamonds-5",
+            "x": 12,
+            "y": 698,
+            "width": 42,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-8",
+            "x": 54,
+            "y": 698,
+            "width": 42,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-9",
+            "x": 96,
+            "y": 698,
+            "width": 42,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-10",
+            "x": 138,
+            "y": 698,
+            "width": 42,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-3",
+            "x": 180,
+            "y": 698,
+            "width": 42,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-9",
+            "x": 222,
+            "y": 698,
+            "width": 42,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-14",
+            "x": 264,
+            "y": 698,
+            "width": 42,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-11",
+            "x": 306,
+            "y": 698,
+            "width": 112,
+            "height": 126,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "select/844x390",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 844,
+          "height": 390
+        },
+        "texts": [
+          {
+            "text": "大丑牌 · 选择角色",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "查看身份，确认后开局",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "骰爷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "再来一把",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "老幻",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "袖里有牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "二响",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "接得漂亮",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿燥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "换个活儿",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "谢幕人",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 12.00000508626303,
+            "y": 68,
+            "width": 265.3333333333333,
+            "height": 143,
+            "enabled": true
+          },
+          {
+            "name": "character/touye",
+            "x": 289.33333333333337,
+            "y": 68,
+            "width": 265.3333333333333,
+            "height": 143,
+            "enabled": true
+          },
+          {
+            "name": "character/laohuan",
+            "x": 566.6666463216146,
+            "y": 68,
+            "width": 265.3333333333333,
+            "height": 143,
+            "enabled": true
+          },
+          {
+            "name": "character/erxiang",
+            "x": 12.00000508626303,
+            "y": 223,
+            "width": 265.3333333333333,
+            "height": 143,
+            "enabled": true
+          },
+          {
+            "name": "character/azao",
+            "x": 289.33333333333337,
+            "y": 223,
+            "width": 265.3333333333333,
+            "height": 143,
+            "enabled": true
+          },
+          {
+            "name": "character/xiemu",
+            "x": 566.6666463216146,
+            "y": 223,
+            "width": 265.3333333333333,
+            "height": 143,
+            "enabled": true
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.avatar.webp",
+        "http://localhost:5205/assets/characters/touye.avatar.webp",
+        "http://localhost:5205/assets/characters/laohuan.avatar.webp",
+        "http://localhost:5205/assets/characters/erxiang.avatar.webp",
+        "http://localhost:5205/assets/characters/azao.avatar.webp",
+        "http://localhost:5205/assets/characters/xiemu.avatar.webp"
+      ],
+      "failures": []
+    },
+    {
+      "name": "shop/844x390",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 844,
+          "height": 390
+        },
+        "texts": [
+          {
+            "text": "后台货摊",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "金币 6",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "下一场 第 1 章 · 暖场\n目标 400",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "铁算盘",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "6 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "碰瓷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "高牌时，整手倍率 +2。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "满堂彩",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "换牌 2 金",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "开局",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "构筑详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点卡面看详情，再确认买卖",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/reroll",
+            "x": 237.19998982747398,
+            "y": 326,
+            "width": 192.9333333333333,
+            "height": 52,
+            "enabled": true
+          },
+          {
+            "name": "action/start-stage",
+            "x": 438.13330891927086,
+            "y": 326,
+            "width": 192.9333333333333,
+            "height": 52,
+            "enabled": true
+          },
+          {
+            "name": "action/build",
+            "x": 639.0666585286458,
+            "y": 326,
+            "width": 192.9333333333333,
+            "height": 52,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "table/844x390",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 844,
+          "height": 390
+        },
+        "texts": [
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "第 1 章 · 暖场",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "热度 0 / 400",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "出牌 4 · 弃牌 3\n金币 6 · 牌堆 44\n还需 400",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "角色 / 本场规则",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "选择 1～5 张牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "距目标还需 400 热度",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点数排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "花色排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "查看牌组",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "角色详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "弃牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "出牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "快进",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "5\n♦",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♦",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "8\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "10\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "3\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "A\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "J\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "先选择牌，出牌和弃牌才可用",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/role",
+            "x": 11.999998474121085,
+            "y": 244,
+            "width": 213.20000000000002,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/sort-rank",
+            "x": 237.19998779296876,
+            "y": 168,
+            "width": 142.7,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/sort-suit",
+            "x": 387.9,
+            "y": 168,
+            "width": 142.7,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/deck",
+            "x": 538.6000122070312,
+            "y": 168,
+            "width": 142.7,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/details",
+            "x": 689.3000244140625,
+            "y": 168,
+            "width": 142.7,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/discard",
+            "x": 237.20000000000005,
+            "y": 326,
+            "width": 192.93333333333328,
+            "height": 52,
+            "enabled": false
+          },
+          {
+            "name": "action/play",
+            "x": 438.1333333333334,
+            "y": 326,
+            "width": 192.93333333333334,
+            "height": 52,
+            "enabled": false
+          },
+          {
+            "name": "action/forward",
+            "x": 639.0666666666666,
+            "y": 326,
+            "width": 192.93333333333328,
+            "height": 52,
+            "enabled": false
+          },
+          {
+            "name": "card/diamonds-5",
+            "x": 237.20001220703125,
+            "y": 242,
+            "width": 68.97142857142856,
+            "height": 78,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-8",
+            "x": 306.1714172363281,
+            "y": 242,
+            "width": 68.97142857142856,
+            "height": 78,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-9",
+            "x": 375.1428527832031,
+            "y": 242,
+            "width": 68.97142857142856,
+            "height": 78,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-10",
+            "x": 444.1142883300781,
+            "y": 242,
+            "width": 68.97142857142856,
+            "height": 78,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-3",
+            "x": 513.085693359375,
+            "y": 242,
+            "width": 68.97142857142856,
+            "height": 78,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-9",
+            "x": 582.05712890625,
+            "y": 242,
+            "width": 68.97142857142856,
+            "height": 78,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-14",
+            "x": 651.028564453125,
+            "y": 242,
+            "width": 68.97142857142856,
+            "height": 78,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-11",
+            "x": 720,
+            "y": 242,
+            "width": 112,
+            "height": 78,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "select/1024x768",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 1024,
+          "height": 768
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 1024,
+          "height": 768
+        },
+        "texts": [
+          {
+            "text": "大丑牌 · 选择角色",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "查看身份，确认后开局",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "只打出 1 张牌时，倍率 ×3。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "骰爷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "再来一把",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "老幻",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "袖里有牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "顺子、同花、同花顺额外 +120 基础热度。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "二响",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "接得漂亮",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "对子、两对、三条的倍率 +1.5。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿燥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "换个活儿",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "与本场上次牌型不同，倍率 +1；第一手不触发。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "谢幕人",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "最后可用出牌 ×2；该手过关额外 +2 金。",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 12.00000508626303,
+            "y": 68,
+            "width": 325.3333333333333,
+            "height": 332,
+            "enabled": true
+          },
+          {
+            "name": "character/touye",
+            "x": 349.33333333333337,
+            "y": 68,
+            "width": 325.3333333333333,
+            "height": 332,
+            "enabled": true
+          },
+          {
+            "name": "character/laohuan",
+            "x": 686.6666463216146,
+            "y": 68,
+            "width": 325.3333333333333,
+            "height": 332,
+            "enabled": true
+          },
+          {
+            "name": "character/erxiang",
+            "x": 12.00000508626303,
+            "y": 412,
+            "width": 325.3333333333333,
+            "height": 332,
+            "enabled": true
+          },
+          {
+            "name": "character/azao",
+            "x": 349.33333333333337,
+            "y": 412,
+            "width": 325.3333333333333,
+            "height": 332,
+            "enabled": true
+          },
+          {
+            "name": "character/xiemu",
+            "x": 686.6666463216146,
+            "y": 412,
+            "width": 325.3333333333333,
+            "height": 332,
+            "enabled": true
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.avatar.webp",
+        "http://localhost:5205/assets/characters/touye.avatar.webp",
+        "http://localhost:5205/assets/characters/laohuan.avatar.webp",
+        "http://localhost:5205/assets/characters/erxiang.avatar.webp",
+        "http://localhost:5205/assets/characters/azao.avatar.webp",
+        "http://localhost:5205/assets/characters/xiemu.avatar.webp"
+      ],
+      "failures": []
+    },
+    {
+      "name": "shop/1024x768",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 1024,
+          "height": 768
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 1024,
+          "height": 768
+        },
+        "texts": [
+          {
+            "text": "后台货摊",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "金币 6",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "下一场 第 1 章 · 暖场\n目标 400",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "铁算盘",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "6 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "碰瓷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "高牌时，整手倍率 +2。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "满堂彩",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "换牌 2 金",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "开局",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "构筑详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点卡面看详情，再确认买卖",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/reroll",
+            "x": 244.00001017252606,
+            "y": 668,
+            "width": 250.66666666666666,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/start-stage",
+            "x": 502.6666666666667,
+            "y": 668,
+            "width": 250.66666666666666,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/build",
+            "x": 761.3333536783854,
+            "y": 668,
+            "width": 250.66666666666666,
+            "height": 56,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "table/1024x768",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 1024,
+          "height": 768
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 1024,
+          "height": 768
+        },
+        "texts": [
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "第 1 章 · 暖场",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "热度 0 / 400",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "出牌 4 · 弃牌 3\n金币 6 · 牌堆 44\n还需 400",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "角色 / 本场规则",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "选择 1～5 张牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "距目标还需 400 热度",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点数排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "花色排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "查看牌组",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "角色详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "弃牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "出牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "快进",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "5\n♦",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♦",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "8\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "10\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "3\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "A\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "J\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "先选择牌，出牌和弃牌才可用",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/role",
+            "x": 12,
+            "y": 244,
+            "width": 220,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/sort-rank",
+            "x": 244,
+            "y": 460,
+            "width": 186,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/sort-suit",
+            "x": 438,
+            "y": 460,
+            "width": 186,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/deck",
+            "x": 632,
+            "y": 460,
+            "width": 186,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/details",
+            "x": 826,
+            "y": 460,
+            "width": 186,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/discard",
+            "x": 244,
+            "y": 668,
+            "width": 250.66666666666663,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/play",
+            "x": 502.6666666666667,
+            "y": 668,
+            "width": 250.66666666666669,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/forward",
+            "x": 761.3333333333333,
+            "y": 668,
+            "width": 250.66666666666663,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "card/diamonds-5",
+            "x": 244,
+            "y": 534,
+            "width": 93.71428571428571,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-8",
+            "x": 337.71429443359375,
+            "y": 534,
+            "width": 93.71428571428571,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-9",
+            "x": 431.4285583496094,
+            "y": 534,
+            "width": 93.71428571428571,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-10",
+            "x": 525.1428833007812,
+            "y": 534,
+            "width": 93.71428571428571,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-3",
+            "x": 618.8571166992188,
+            "y": 534,
+            "width": 93.71428571428571,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-9",
+            "x": 712.5714111328125,
+            "y": 534,
+            "width": 93.71428571428571,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-14",
+            "x": 806.2857055664062,
+            "y": 534,
+            "width": 93.71428571428571,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-11",
+            "x": 900,
+            "y": 534,
+            "width": 112,
+            "height": 126,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "select/1280x720",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "texts": [
+          {
+            "text": "大丑牌 · 选择角色",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "查看身份，确认后开局",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "只打出 1 张牌时，倍率 ×3。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "骰爷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "再来一把",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "老幻",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "袖里有牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "顺子、同花、同花顺额外 +120 基础热度。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "二响",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "接得漂亮",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "对子、两对、三条的倍率 +1.5。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿燥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "换个活儿",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "与本场上次牌型不同，倍率 +1；第一手不触发。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "谢幕人",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "最后可用出牌 ×2；该手过关额外 +2 金。",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 11.99999491373697,
+            "y": 68,
+            "width": 410.6666666666667,
+            "height": 308,
+            "enabled": true
+          },
+          {
+            "name": "character/touye",
+            "x": 434.66666666666663,
+            "y": 68,
+            "width": 410.6666666666667,
+            "height": 308,
+            "enabled": true
+          },
+          {
+            "name": "character/laohuan",
+            "x": 857.3332926432291,
+            "y": 68,
+            "width": 410.6666666666667,
+            "height": 308,
+            "enabled": true
+          },
+          {
+            "name": "character/erxiang",
+            "x": 11.99999491373697,
+            "y": 388,
+            "width": 410.6666666666667,
+            "height": 308,
+            "enabled": true
+          },
+          {
+            "name": "character/azao",
+            "x": 434.66666666666663,
+            "y": 388,
+            "width": 410.6666666666667,
+            "height": 308,
+            "enabled": true
+          },
+          {
+            "name": "character/xiemu",
+            "x": 857.3332926432291,
+            "y": 388,
+            "width": 410.6666666666667,
+            "height": 308,
+            "enabled": true
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.avatar.webp",
+        "http://localhost:5205/assets/characters/touye.avatar.webp",
+        "http://localhost:5205/assets/characters/laohuan.avatar.webp",
+        "http://localhost:5205/assets/characters/erxiang.avatar.webp",
+        "http://localhost:5205/assets/characters/azao.avatar.webp",
+        "http://localhost:5205/assets/characters/xiemu.avatar.webp"
+      ],
+      "failures": []
+    },
+    {
+      "name": "shop/1280x720",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "texts": [
+          {
+            "text": "后台货摊",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "金币 6",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "下一场 第 1 章 · 暖场\n目标 400",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "铁算盘",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "6 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "碰瓷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "高牌时，整手倍率 +2。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "满堂彩",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "换牌 2 金",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "开局",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "构筑详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点卡面看详情，再确认买卖",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/reroll",
+            "x": 244,
+            "y": 620,
+            "width": 336,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/start-stage",
+            "x": 588,
+            "y": 620,
+            "width": 336,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/build",
+            "x": 932,
+            "y": 620,
+            "width": 336,
+            "height": 56,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "table/1280x720",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "texts": [
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "第 1 章 · 暖场",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "热度 0 / 400",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "出牌 4 · 弃牌 3\n金币 6 · 牌堆 44\n还需 400",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "角色 / 本场规则",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "选择 1～5 张牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "距目标还需 400 热度",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点数排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "花色排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "查看牌组",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "角色详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "弃牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "出牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "快进",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "5\n♦",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♦",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "8\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "10\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "3\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "A\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "J\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "先选择牌，出牌和弃牌才可用",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/role",
+            "x": 12,
+            "y": 244,
+            "width": 220,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/sort-rank",
+            "x": 244,
+            "y": 412,
+            "width": 250,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/sort-suit",
+            "x": 502,
+            "y": 412,
+            "width": 250,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/deck",
+            "x": 760,
+            "y": 412,
+            "width": 250,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/details",
+            "x": 1018,
+            "y": 412,
+            "width": 250,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/discard",
+            "x": 244,
+            "y": 620,
+            "width": 336,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/play",
+            "x": 588,
+            "y": 620,
+            "width": 336,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/forward",
+            "x": 932,
+            "y": 620,
+            "width": 336,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "card/diamonds-5",
+            "x": 244,
+            "y": 486,
+            "width": 112,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-8",
+            "x": 374.28570556640625,
+            "y": 486,
+            "width": 112,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-9",
+            "x": 504.5714111328125,
+            "y": 486,
+            "width": 112,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-10",
+            "x": 634.8571166992188,
+            "y": 486,
+            "width": 112,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-3",
+            "x": 765.1428833007812,
+            "y": 486,
+            "width": 112,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-9",
+            "x": 895.4285888671875,
+            "y": 486,
+            "width": 112,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-14",
+            "x": 1025.7142333984375,
+            "y": 486,
+            "width": 112,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-11",
+            "x": 1156,
+            "y": 486,
+            "width": 112,
+            "height": 126,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "select/768x1024",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 768,
+          "height": 1024
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 768,
+          "height": 1024
+        },
+        "texts": [
+          {
+            "text": "大丑牌 · 选择角色",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "查看身份，确认后开局",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "只打出 1 张牌时，倍率 ×3。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "骰爷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "再来一把",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "老幻",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "袖里有牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "顺子、同花、同花顺额外 +120 基础热度。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "二响",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "接得漂亮",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "对子、两对、三条的倍率 +1.5。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "阿燥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "换个活儿",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "与本场上次牌型不同，倍率 +1；第一手不触发。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "谢幕人",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "最后一个包袱",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "最后可用出牌 ×2；该手过关额外 +2 金。",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 12,
+            "y": 68,
+            "width": 240,
+            "height": 460,
+            "enabled": true
+          },
+          {
+            "name": "character/touye",
+            "x": 264,
+            "y": 68,
+            "width": 240,
+            "height": 460,
+            "enabled": true
+          },
+          {
+            "name": "character/laohuan",
+            "x": 516,
+            "y": 68,
+            "width": 240,
+            "height": 460,
+            "enabled": true
+          },
+          {
+            "name": "character/erxiang",
+            "x": 12,
+            "y": 540,
+            "width": 240,
+            "height": 460,
+            "enabled": true
+          },
+          {
+            "name": "character/azao",
+            "x": 264,
+            "y": 540,
+            "width": 240,
+            "height": 460,
+            "enabled": true
+          },
+          {
+            "name": "character/xiemu",
+            "x": 516,
+            "y": 540,
+            "width": 240,
+            "height": 460,
+            "enabled": true
+          }
+        ]
+      },
+      "assetRequests": [
+        "http://localhost:5205/assets/characters/amo.avatar.webp",
+        "http://localhost:5205/assets/characters/touye.avatar.webp",
+        "http://localhost:5205/assets/characters/laohuan.avatar.webp",
+        "http://localhost:5205/assets/characters/erxiang.avatar.webp",
+        "http://localhost:5205/assets/characters/azao.avatar.webp",
+        "http://localhost:5205/assets/characters/xiemu.avatar.webp"
+      ],
+      "failures": []
+    },
+    {
+      "name": "shop/768x1024",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 768,
+          "height": 1024
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 768,
+          "height": 1024
+        },
+        "texts": [
+          {
+            "text": "后台货摊",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "金币 6",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "下一场 第 1 章 · 暖场\n目标 400",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "铁算盘",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "6 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "碰瓷",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "高牌时，整手倍率 +2。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "满堂彩",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "4 金币\n查看详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "换牌 2 金",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "开局",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "构筑详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点卡面看详情，再确认买卖",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/reroll",
+            "x": 217.4399918619792,
+            "y": 924,
+            "width": 174.18666666666664,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/start-stage",
+            "x": 399.6266678873698,
+            "y": 924,
+            "width": 174.18666666666664,
+            "height": 56,
+            "enabled": true
+          },
+          {
+            "name": "action/build",
+            "x": 581.8133439127604,
+            "y": 924,
+            "width": 174.18666666666664,
+            "height": 56,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    },
+    {
+      "name": "table/768x1024",
+      "status": "PASS",
+      "metrics": {
+        "viewport": {
+          "width": 768,
+          "height": 1024
+        },
+        "dpr": 2,
+        "scrollY": 0,
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 768,
+          "height": 1024
+        },
+        "texts": [
+          {
+            "text": "阿默",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "独角戏",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "第 1 章 · 暖场",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "热度 0 / 400",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "出牌 4 · 弃牌 3\n金币 6 · 牌堆 44\n还需 400",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "角色 / 本场规则",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "空槽",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "选择 1～5 张牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "距目标还需 400 热度",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "点数排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "花色排序",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "查看牌组",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "角色详情",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "弃牌",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "出牌",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "快进",
+            "font": 14,
+            "resolution": 2
+          },
+          {
+            "text": "5\n♦",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♦",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "8\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "10\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "3\n♠",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♠",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "9\n♥",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♥",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "A\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "J\n♣",
+            "font": 22,
+            "resolution": 2
+          },
+          {
+            "text": "♣",
+            "font": 26,
+            "resolution": 1
+          },
+          {
+            "text": "先选择牌，出牌和弃牌才可用",
+            "font": 14,
+            "resolution": 2
+          }
+        ],
+        "hits": [
+          {
+            "name": "action/role",
+            "x": 12.000001220703126,
+            "y": 244,
+            "width": 193.44,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/sort-rank",
+            "x": 217.440009765625,
+            "y": 716,
+            "width": 128.64,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/sort-suit",
+            "x": 354.0799938964844,
+            "y": 716,
+            "width": 128.64,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/deck",
+            "x": 490.71997802734376,
+            "y": 716,
+            "width": 128.64,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/details",
+            "x": 627.3599926757813,
+            "y": 716,
+            "width": 128.64,
+            "height": 44,
+            "enabled": true
+          },
+          {
+            "name": "action/discard",
+            "x": 217.44,
+            "y": 924,
+            "width": 174.18666666666667,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/play",
+            "x": 399.62666666666667,
+            "y": 924,
+            "width": 174.1866666666666,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "action/forward",
+            "x": 581.8133333333333,
+            "y": 924,
+            "width": 174.1866666666666,
+            "height": 56,
+            "enabled": false
+          },
+          {
+            "name": "card/diamonds-5",
+            "x": 217.44000244140625,
+            "y": 790,
+            "width": 60.93714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-8",
+            "x": 278.37713623046875,
+            "y": 790,
+            "width": 60.93714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-9",
+            "x": 339.3143005371094,
+            "y": 790,
+            "width": 60.93714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-10",
+            "x": 400.2514343261719,
+            "y": 790,
+            "width": 60.93714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/spades-3",
+            "x": 461.1885986328125,
+            "y": 790,
+            "width": 60.93714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/hearts-9",
+            "x": 522.125732421875,
+            "y": 790,
+            "width": 60.93714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-14",
+            "x": 583.0628662109375,
+            "y": 790,
+            "width": 60.93714285714285,
+            "height": 126,
+            "enabled": true
+          },
+          {
+            "name": "card/clubs-11",
+            "x": 644,
+            "y": 790,
+            "width": 112,
+            "height": 126,
+            "enabled": true
+          }
+        ]
+      },
+      "failures": []
+    }
+  ],
+  "limitations": [
+    "Chromium touchscreen emulation; physical Android/iPhone acceptance NOT_RUN."
+  ],
+  "browser": "153.0.8010.12",
+  "failureObservation": {
+    "state": {
+      "schemaVersion": 2,
+      "rulesVersion": "r2",
+      "contentVersion": "quality-r2-run-v2",
+      "contentHash": "json-fnv-v1:004135ca2b38f6ee",
+      "runId": "run/r03-1/erxiang",
+      "seed": "r03-1",
+      "commandSeq": 4,
+      "difficulty": 0,
+      "characterId": "erxiang",
+      "chapter": 1,
+      "stageIndex": 0,
+      "phase": "await-input",
+      "deckInstances": [
+        {
+          "id": "spades-2",
+          "suit": "spades",
+          "rank": 2
+        },
+        {
+          "id": "spades-3",
+          "suit": "spades",
+          "rank": 3
+        },
+        {
+          "id": "spades-4",
+          "suit": "spades",
+          "rank": 4
+        },
+        {
+          "id": "spades-5",
+          "suit": "spades",
+          "rank": 5
+        },
+        {
+          "id": "spades-6",
+          "suit": "spades",
+          "rank": 6
+        },
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7
+        },
+        {
+          "id": "spades-8",
+          "suit": "spades",
+          "rank": 8
+        },
+        {
+          "id": "spades-9",
+          "suit": "spades",
+          "rank": 9
+        },
+        {
+          "id": "spades-10",
+          "suit": "spades",
+          "rank": 10
+        },
+        {
+          "id": "spades-11",
+          "suit": "spades",
+          "rank": 11
+        },
+        {
+          "id": "spades-12",
+          "suit": "spades",
+          "rank": 12
+        },
+        {
+          "id": "spades-13",
+          "suit": "spades",
+          "rank": 13
+        },
+        {
+          "id": "spades-14",
+          "suit": "spades",
+          "rank": 14
+        },
+        {
+          "id": "hearts-2",
+          "suit": "hearts",
+          "rank": 2
+        },
+        {
+          "id": "hearts-3",
+          "suit": "hearts",
+          "rank": 3
+        },
+        {
+          "id": "hearts-4",
+          "suit": "hearts",
+          "rank": 4
+        },
+        {
+          "id": "hearts-5",
+          "suit": "hearts",
+          "rank": 5
+        },
+        {
+          "id": "hearts-6",
+          "suit": "hearts",
+          "rank": 6
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        },
+        {
+          "id": "hearts-8",
+          "suit": "hearts",
+          "rank": 8
+        },
+        {
+          "id": "hearts-9",
+          "suit": "hearts",
+          "rank": 9
+        },
+        {
+          "id": "hearts-10",
+          "suit": "hearts",
+          "rank": 10
+        },
+        {
+          "id": "hearts-11",
+          "suit": "hearts",
+          "rank": 11
+        },
+        {
+          "id": "hearts-12",
+          "suit": "hearts",
+          "rank": 12
+        },
+        {
+          "id": "hearts-13",
+          "suit": "hearts",
+          "rank": 13
+        },
+        {
+          "id": "hearts-14",
+          "suit": "hearts",
+          "rank": 14
+        },
+        {
+          "id": "clubs-2",
+          "suit": "clubs",
+          "rank": 2
+        },
+        {
+          "id": "clubs-3",
+          "suit": "clubs",
+          "rank": 3
+        },
+        {
+          "id": "clubs-4",
+          "suit": "clubs",
+          "rank": 4
+        },
+        {
+          "id": "clubs-5",
+          "suit": "clubs",
+          "rank": 5
+        },
+        {
+          "id": "clubs-6",
+          "suit": "clubs",
+          "rank": 6
+        },
+        {
+          "id": "clubs-7",
+          "suit": "clubs",
+          "rank": 7
+        },
+        {
+          "id": "clubs-8",
+          "suit": "clubs",
+          "rank": 8
+        },
+        {
+          "id": "clubs-9",
+          "suit": "clubs",
+          "rank": 9
+        },
+        {
+          "id": "clubs-10",
+          "suit": "clubs",
+          "rank": 10
+        },
+        {
+          "id": "clubs-11",
+          "suit": "clubs",
+          "rank": 11
+        },
+        {
+          "id": "clubs-12",
+          "suit": "clubs",
+          "rank": 12
+        },
+        {
+          "id": "clubs-13",
+          "suit": "clubs",
+          "rank": 13
+        },
+        {
+          "id": "clubs-14",
+          "suit": "clubs",
+          "rank": 14
+        },
+        {
+          "id": "diamonds-2",
+          "suit": "diamonds",
+          "rank": 2
+        },
+        {
+          "id": "diamonds-3",
+          "suit": "diamonds",
+          "rank": 3
+        },
+        {
+          "id": "diamonds-4",
+          "suit": "diamonds",
+          "rank": 4
+        },
+        {
+          "id": "diamonds-5",
+          "suit": "diamonds",
+          "rank": 5
+        },
+        {
+          "id": "diamonds-6",
+          "suit": "diamonds",
+          "rank": 6
+        },
+        {
+          "id": "diamonds-7",
+          "suit": "diamonds",
+          "rank": 7
+        },
+        {
+          "id": "diamonds-8",
+          "suit": "diamonds",
+          "rank": 8
+        },
+        {
+          "id": "diamonds-9",
+          "suit": "diamonds",
+          "rank": 9
+        },
+        {
+          "id": "diamonds-10",
+          "suit": "diamonds",
+          "rank": 10
+        },
+        {
+          "id": "diamonds-11",
+          "suit": "diamonds",
+          "rank": 11
+        },
+        {
+          "id": "diamonds-12",
+          "suit": "diamonds",
+          "rank": 12
+        },
+        {
+          "id": "diamonds-13",
+          "suit": "diamonds",
+          "rank": 13
+        },
+        {
+          "id": "diamonds-14",
+          "suit": "diamonds",
+          "rank": 14
+        }
+      ],
+      "drawPile": [
+        "clubs-7",
+        "diamonds-6",
+        "spades-4",
+        "diamonds-12",
+        "hearts-2",
+        "hearts-12",
+        "diamonds-8",
+        "spades-14",
+        "spades-9",
+        "clubs-10",
+        "spades-2",
+        "clubs-5",
+        "diamonds-14",
+        "spades-5",
+        "hearts-4",
+        "hearts-9",
+        "clubs-4",
+        "clubs-13",
+        "clubs-6",
+        "diamonds-11",
+        "diamonds-7",
+        "hearts-13",
+        "hearts-7",
+        "spades-11",
+        "hearts-11",
+        "hearts-3",
+        "diamonds-3",
+        "diamonds-5",
+        "spades-8",
+        "diamonds-2",
+        "clubs-3",
+        "diamonds-13",
+        "hearts-10",
+        "diamonds-4",
+        "clubs-9",
+        "clubs-11",
+        "diamonds-10",
+        "hearts-8",
+        "clubs-12",
+        "spades-10",
+        "spades-3",
+        "spades-12",
+        "hearts-5",
+        "clubs-8"
+      ],
+      "handOrder": [
+        "spades-6",
+        "diamonds-9",
+        "clubs-14",
+        "hearts-6",
+        "spades-13",
+        "hearts-14",
+        "spades-7",
+        "clubs-2"
+      ],
+      "playedPile": [],
+      "discardPile": [],
+      "destroyedIds": [],
+      "stage": {
+        "index": 0,
+        "targetHeat": "400",
+        "heat": "0",
+        "handsLeft": 4,
+        "discardsLeft": 3,
+        "playIndex": 0,
+        "previousHandType": null,
+        "clearId": null,
+        "goldEarned": 0,
+        "disabledIds": [],
+        "wagerSelected": false,
+        "wagerUsed": false
+      },
+      "totalHeat": "0",
+      "gold": 2,
+      "jokers": [
+        {
+          "instanceId": "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2",
+          "definitionId": "mantangcai",
+          "paidPrice": 4,
+          "growth": {}
+        }
+      ],
+      "consumables": [],
+      "longTermItems": [],
+      "program": null,
+      "boss": null,
+      "shop": null,
+      "rng": {
+        "deck": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 3776575393
+        },
+        "rule": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 3156943997
+        },
+        "shop": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 3155266670
+        },
+        "reward": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 3926999612
+        }
+      },
+      "receipts": [
+        {
+          "commandId": "run/r03-1/erxiang/start",
+          "fingerprint": "json-fnv-v1:8ef5b8dd210604d9",
+          "seq": 1
+        },
+        {
+          "commandId": "run/r03-1/erxiang/command/2",
+          "fingerprint": "json-fnv-v1:25d7eeabb7484027",
+          "seq": 2
+        },
+        {
+          "commandId": "run/r03-1/erxiang/command/3",
+          "fingerprint": "json-fnv-v1:608af2d10986fa9d",
+          "seq": 3
+        },
+        {
+          "commandId": "run/r03-1/erxiang/command/4",
+          "fingerprint": "json-fnv-v1:fc62e3b2d974cda6",
+          "seq": 4
+        }
+      ],
+      "lastTrace": null,
+      "handLevels": {},
+      "outcome": null
+    },
+    "selected": [
+      "spades-6"
+    ],
+    "presenting": false
+  },
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: selection must preserve the HUD rather than recreate the entire stage"
+}

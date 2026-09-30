@@ -1,3 +1,4 @@
+import {tapUI,chooseCharacter,buyOffer} from './ui.mjs';
 /** Actual user inputs and storage fault injection; no private game actions or resource/state shortcuts. */
 import assert from 'node:assert/strict';
 import {spawn,execFileSync} from 'node:child_process';
@@ -11,28 +12,27 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),port=
 const output=path.resolve(root,process.env.RECOVERY_EVIDENCE_DIR||'shots/recovery');await mkdir(output,{recursive:true});
 const report={testedCommit:execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),dirtyState:execFileSync('git',['status','--porcelain'],{cwd:root,encoding:'utf8'}).trim(),checks:[],limitations:['Windows Chromium and touchscreen emulation; physical phones/human acceptance NOT_RUN.','Current five-joker r2 build; not a full chapter/Boss or balance evaluation.']};
 const mark=check=>{report.checks.push(check);console.log(`${check.name}: ${check.status}`);};
-const ssr=await createServer({root,server:{middlewareMode:true},appType:'custom'}),domain=await ssr.ssrLoadModule('/src/domain/run.ts'),checkpoints=await ssr.ssrLoadModule('/src/application/checkpoint.ts');
+const ssr=await createServer({root,server:{middlewareMode:true,hmr:false},appType:'custom'}),domain=await ssr.ssrLoadModule('/src/domain/run.ts'),checkpoints=await ssr.ssrLoadModule('/src/application/checkpoint.ts');
 const server=spawn(process.execPath,[path.join(root,'node_modules/vite/bin/vite.js'),'--port',String(port),'--strictPort'],{cwd:root,stdio:'ignore',windowsHide:true});
 const base=`http://localhost:${port}/?harness=1&seed=r03-1`;
 let browser;
 const waitScene=(page,key)=>page.waitForFunction(key=>window.__harness?.game.scene.getScene(key)?.scene.isActive(),key);
 const read=page=>page.evaluate(()=>{const run=window.__harness.game.registry.get('runController');return run?{state:run.state,journal:run.journal,status:run.status}:null;});
 async function slots(page){return page.evaluate(async()=>{const {IndexedDbSave}=await import('/src/platform/IndexedDbSave.ts');return new IndexedDbSave().read();});}
-async function tap(page,x,y,touch=false){const point=await page.evaluate(({x,y})=>{const r=document.querySelector('canvas').getBoundingClientRect();return{x:r.left+x*r.width/1280,y:r.top+y*r.height/720};},{x,y});if(touch)await page.touchscreen.tap(point.x,point.y);else await page.mouse.click(point.x,point.y);}
 async function menu(page){const button=page.getByRole('button',{name:'菜单',exact:true});if(await button.getAttribute('aria-expanded')!=='true')await button.click();}
 async function advanced(page,seq){await page.waitForFunction(seq=>window.__harness.game.registry.get('runController')?.state.commandSeq>seq,seq);}
 async function start(name,{amo=false,touch=false,video=false,audioFailure=false}={}){
   const context=await browser.newContext({viewport:touch?{width:390,height:844}:{width:1280,height:800},hasTouch:touch,...(video?{recordVideo:{dir:output,size:{width:960,height:600}}}:{})});
   if(audioFailure)await context.addInitScript(()=>{window.AudioContext=class {constructor(){throw new DOMException('blocked audio','NotAllowedError');}};});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('dialog',d=>d.accept());
-  try {await page.goto(base);await waitScene(page,'character-select');await tap(page,248,amo?256:532,touch);await waitScene(page,'shop');}
+  try {await page.goto(base);await waitScene(page,'character-select');await chooseCharacter(page,amo?'amo':'erxiang',touch);}
   catch(error){mark({name:`startup/${name}`,status:'FAIL',errors});throw error;}
   return {context,page,errors,touch,video,name};
 }
 async function close(test){assert.deepEqual(test.errors,[],`${test.name}: no page errors`);const video=test.video?test.page.video():null;await test.context.close();if(video){const source=await video.path(),target=path.join(output,`${test.name}.webm`);await video.saveAs(target);if(source!==target){const {unlink}=await import('node:fs/promises');await unlink(source);}}}
-async function buy(page,definition='mantangcai',touch=false){const before=await read(page),offers=before.state.shop.offers.filter(o=>!o.consumed),i=offers.findIndex(o=>o.definitionId===definition);assert.ok(i>=0);await tap(page,167+i*274,445,touch);await advanced(page,before.state.commandSeq);return read(page);}
-async function enter(page,touch=false){await tap(page,1108,624,touch);await waitScene(page,'game');await page.waitForFunction(()=>window.__harness.game.registry.get('runController').state.phase==='await-input'&&window.__harness.game.scene.getScene('game').cardViews.length>0);}
-async function play(page,ids,touch=false){const before=await read(page);for(const id of ids){const point=await page.evaluate(id=>{const view=window.__harness.game.scene.getScene('game').cardViews.find(v=>v.card.id===id);return {x:view.container.x,y:view.container.y};},id);await tap(page,point.x,point.y,touch);}await tap(page,640,650,touch);await advanced(page,before.state.commandSeq);return read(page);}
+async function buy(page,definition='mantangcai',touch=false){const before=await read(page),offers=before.state.shop.offers.filter(o=>!o.consumed),i=offers.findIndex(o=>o.definitionId===definition);assert.ok(i>=0);await buyOffer(page,offers[i].offerId,touch);await advanced(page,before.state.commandSeq);return read(page);}
+async function enter(page,touch=false){await tapUI(page,'shop','action/start-stage',touch);await waitScene(page,'game');await page.waitForFunction(()=>window.__harness.game.registry.get('runController').state.phase==='await-input'&&window.__harness.game.scene.getScene('game').cardViews.length>0);}
+async function play(page,ids,touch=false){const before=await read(page);for(const id of ids)await tapUI(page,'game','card/'+id,touch);await tapUI(page,'game','action/play',touch);await advanced(page,before.state.commandSeq);return read(page);}
 async function restored(page,before,name){
   const saved=await slots(page);assert.deepEqual(saved.current.state,before.state);const hash=domain.stateHash(before.state);
   await page.reload();await waitScene(page,'character-select');assert.deepEqual((await read(page)).state,before.state);assert.deepEqual(await slots(page),saved);
@@ -47,7 +47,7 @@ async function refreshMatrix(){
     const test=await start(name,{amo:name==='play-committed',touch:name==='during-presentation',video:name==='during-presentation'}),{page,touch}=test;
     try {
       if(['bought','rerolled','during-presentation','reward-published'].includes(name))await buy(page,'mantangcai',touch);
-      if(name==='rerolled'){const before=await read(page);await tap(page,152,624,touch);await advanced(page,before.state.commandSeq);assert.equal((await read(page)).state.shop.rerollCount,1);}
+      if(name==='rerolled'){const before=await read(page);await tapUI(page,'shop','action/reroll',touch);await advanced(page,before.state.commandSeq);assert.equal((await read(page)).state.shop.rerollCount,1);}
       if(['play-committed','during-presentation','reward-published'].includes(name)){
         await enter(page,touch);const ids=name==='play-committed'?[(await read(page)).state.handOrder[0]]:['clubs-14','hearts-14'];await play(page,ids,touch);
         if(name==='during-presentation')await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').resultText.text.includes('计分牌'));
@@ -58,7 +58,7 @@ async function refreshMatrix(){
         await menu(page);await page.getByRole('button',{name:'回看上一手',exact:true}).click();await page.waitForFunction(()=>!window.__harness.game.scene.getScene('game').playing);assert.deepEqual((await read(page)).state,before.state);
       }
       if(name==='reward-published'){
-        await tap(page,640,570);await waitScene(page,'shop');assert.equal((await read(page)).state.gold,before.state.gold);assert.equal((await read(page)).state.commandSeq,before.state.commandSeq+1);
+        await tapUI(page,'intermission','action/continue-stage');await waitScene(page,'shop');assert.equal((await read(page)).state.gold,before.state.gold);assert.equal((await read(page)).state.commandSeq,before.state.commandSeq+1);
       }
       mark({name:`refresh/${name}`,status:'PASS',...result});
     }finally{await close(test);}
@@ -84,10 +84,10 @@ async function quota(){
   try {
     const before=await read(page),durable=await slots(page);
     await page.evaluate(()=>{const original=IDBObjectStore.prototype.put;IDBObjectStore.prototype.put=function(...args){if(this.name==='saves'&&args[1]==='meta')throw new DOMException('injected quota after checkpoint put','QuotaExceededError');return Reflect.apply(original,this,args);};window.restoreStorage=()=>IDBObjectStore.prototype.put=original;});
-    const offers=before.state.shop.offers.filter(o=>!o.consumed),i=offers.findIndex(o=>o.definitionId==='mantangcai');await tap(page,167+i*274,445);
+    const offers=before.state.shop.offers.filter(o=>!o.consumed),i=offers.findIndex(o=>o.definitionId==='mantangcai');await buyOffer(page,offers[i].offerId);
     await page.getByText(/未保存：存储空间不足/).waitFor();assert.deepEqual((await read(page)).state,before.state);assert.deepEqual(await slots(page),durable);
-    await tap(page,152,624);assert.deepEqual((await read(page)).state,before.state);
-    const event=page.waitForEvent('download');await page.getByRole('button',{name:'导出本局',exact:true}).click();const download=await event,file=path.join(output,'unsaved-quota-checkpoint.json');await download.saveAs(file);
+    await tapUI(page,'shop','action/reroll');assert.deepEqual((await read(page)).state,before.state);
+    const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'导出本局',exact:true}).click()]);const file=path.join(output,'unsaved-quota-checkpoint.json');await download.saveAs(file);
     const exported=JSON.parse(await readFile(file,'utf8'));assert.ok(checkpoints.readCheckpoint(exported).ok);assert.equal(exported.state.gold,2);
     await page.evaluate(()=>window.restoreStorage());await page.getByRole('button',{name:'重试保存',exact:true}).click();await page.waitForFunction(()=>window.__harness.game.registry.get('runController').status==='idle');await waitScene(page,'shop');
     const retried=await read(page);assert.deepEqual(retried.state,exported.state);assert.equal(retried.state.jokers.length,1);assert.equal(retried.state.commandSeq,before.state.commandSeq+1);
@@ -108,8 +108,8 @@ async function badData(){
       if(mode==='corrupt'){assert.deepEqual((await read(page)).state,valid.previous.state);await page.getByText(/已读取上次有效备份/).waitFor();}
       else {assert.equal(await read(page),null);await page.getByText(/存档损坏或版本不兼容/).waitFor();}
       assert.deepEqual(await slots(page),raw);
-      const event=page.waitForEvent('download');await page.getByRole('button',{name:'导出保留数据',exact:true}).click();const download=await event,file=path.join(output,`retained-${mode}.json`);await download.saveAs(file);const exported=JSON.parse(await readFile(file,'utf8'));assert.ok(exported.records.some(r=>JSON.stringify(r.value).includes(mode==='corrupt'?'broken':'old-content')));
-      await page.getByRole('button',{name:'菜单',exact:true}).click();await tap(page,248,256);await waitScene(page,'shop');const current=await read(page);assert.equal(current.state.gold,6);
+      const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'导出保留数据',exact:true}).click()]);const file=path.join(output,`retained-${mode}.json`);await download.saveAs(file);const exported=JSON.parse(await readFile(file,'utf8'));assert.ok(exported.records.some(r=>JSON.stringify(r.value).includes(mode==='corrupt'?'broken':'old-content')));
+      await page.getByRole('button',{name:'菜单',exact:true}).click();await chooseCharacter(page,'amo');const current=await read(page);assert.equal(current.state.gold,6);
       const retained=await page.evaluate(async()=>{const {IndexedDbSave}=await import('/src/platform/IndexedDbSave.ts');return new IndexedDbSave().exportRetained();});assert.ok(retained.includes(mode==='corrupt'?'broken':'old-content'));
       mark({name:`data/${mode}-backup-retained`,status:'PASS'});
     }finally{await close(test);}
@@ -128,9 +128,9 @@ async function tabs(){
   const test=await start('two-tabs'),first=test.page,second=await test.context.newPage();second.on('pageerror',e=>test.errors.push(String(e)));second.on('dialog',d=>d.accept());
   try {
     await second.goto(base);await waitScene(second,'character-select');await second.getByText(/本页只读/).waitFor();const before=await slots(first);
-    await second.getByRole('button',{name:'继续本局',exact:true}).click();await waitScene(second,'shop');await tap(second,152,624);assert.deepEqual(await slots(second),before);
+    await second.getByRole('button',{name:'继续本局',exact:true}).click();await waitScene(second,'shop');await tapUI(second,'shop','action/reroll');assert.deepEqual(await slots(second),before);
     await menu(second);await second.getByRole('button',{name:'接管写入',exact:true}).click();await second.waitForFunction(()=>window.__harness.game.registry.get('runController').status==='idle'&&document.querySelector('.run-menu>button').getAttribute('aria-expanded')==='false');await buy(second);
-    const written=await slots(second);assert.equal(written.current.state.gold,2);await first.getByText(/本页只读/).waitFor();await tap(first,152,624);assert.deepEqual(await slots(first),written);
+    const written=await slots(second);assert.equal(written.current.state.gold,2);await first.getByText(/本页只读/).waitFor();await tapUI(first,'shop','action/reroll');assert.deepEqual(await slots(first),written);
     mark({name:'tabs/readonly-explicit-takeover',status:'PASS',stateHash:domain.stateHash(written.current.state)});
   }catch(error){
     const snapshot=await second.evaluate(async()=>{const {gameSession}=await import('/src/game/session.ts'),s=gameSession(),g=window.__harness.game,shop=g.scene.getScene('shop');return {writable:s.lease.writable,working:s.working,notice:s.notice,status:s.run?.status,lastError:s.run?.lastError,state:s.run?.state,shopActive:shop.scene.isActive(),shopBusy:shop.busy,shopState:shop.run,menuText:document.querySelector('.run-menu').textContent};});
@@ -141,8 +141,8 @@ async function interruption(){
   const test=await start('scene-interruption',{video:true}),{page}=test;
   try {
     await buy(page);await enter(page);await play(page,['clubs-14','hearts-14']);const committed=(await read(page)).state;
-    await tap(page,1190,686);await waitScene(page,'character-select');assert.deepEqual((await read(page)).state,committed);
-    await tap(page,248,256);await waitScene(page,'shop');await enter(page);const fresh=await read(page);assert.equal(fresh.state.characterId,'amo');assert.equal(fresh.state.stage.playIndex,0);
+    await menu(page);await page.getByRole('button',{name:'保存并退出',exact:true}).click();await waitScene(page,'character-select');assert.deepEqual((await read(page)).state,committed);
+    await chooseCharacter(page,'amo');await enter(page);const fresh=await read(page);assert.equal(fresh.state.characterId,'amo');assert.equal(fresh.state.stage.playIndex,0);
     await play(page,[fresh.state.handOrder[0]]);await page.waitForFunction(()=>!window.__harness.game.scene.getScene('game').playing);
     const finished=await read(page);assert.equal(finished.state.stage.playIndex,1);assert.equal(finished.state.stage.handsLeft,3);assert.equal(finished.state.stage.discardsLeft,3);
     const resources=domain.stateHash(finished.state),before=await page.evaluate(()=>{const g=window.__harness.game.scene.getScene('game');return {children:g.children.length,shutdownListeners:g.events.listenerCount('shutdown')};});

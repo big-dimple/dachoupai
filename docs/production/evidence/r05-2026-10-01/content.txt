@@ -1,0 +1,12 @@
+
+> dachoupai@0.1.0 verify:content
+> node scripts/verify-content.mjs
+
+{
+  "status": "PASS",
+  "definitions": 5,
+  "contentVersion": "quality-r2-run-v2",
+  "contentHash": "json-fnv-v1:004135ca2b38f6ee",
+  "conservativeEventBound": 82,
+  "readOnly": true
+}

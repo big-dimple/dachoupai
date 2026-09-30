@@ -164,9 +164,9 @@ export function scoreR2Hand(input: ScoreInput): ScoreTrace {
 }
 
 /** Public preview never accepts the real RNG or reveals which wager outcome is next. */
-export function previewR2Hand(input: Omit<ScoreInput, 'rng'>): {handType:R2HandType; sets:ScoreTrace['sets']; possibleScores:string[]} {
+export function previewR2Hand(input: Omit<ScoreInput, 'rng'>): {handType:R2HandType; level:number; base:Accumulator; sets:ScoreTrace['sets']; possibleScores:string[]} {
   const snapshot = new SeededRng('public-preview').snapshot();
   const outcomes = input.wager ? [0, 1] : [0];
   const traces = outcomes.map(state => scoreR2Hand({...input, rng:{...snapshot,state}}));
-  return {handType:traces[0].handType,sets:traces[0].sets,possibleScores:traces.map(t=>t.finalScore)};
+  return {handType:traces[0].handType,level:traces[0].level,base:traces[0].events[0].after,sets:traces[0].sets,possibleScores:traces.map(t=>t.finalScore)};
 }

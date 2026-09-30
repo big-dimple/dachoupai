@@ -1,0 +1,65 @@
+
+> dachoupai@0.1.0 verify
+> npm run typecheck && npm test && npm run build
+
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ✓ tests/run.test.ts (7 tests) 15ms
+ ✓ tests/recovery-queue.test.ts (5 tests) 20ms
+ ✓ tests/shop.test.ts (8 tests) 15ms
+ ✓ tests/layout.test.ts (12 tests) 45ms
+ ✓ tests/rules.test.ts (39 tests) 166ms
+ ✓ tests/rational.test.ts (4 tests) 107ms
+ ✓ tests/content-schema.test.ts (12 tests) 12ms
+ ✓ tests/characters.test.ts (6 tests) 9ms
+ ✓ tests/card-boundary.test.ts (1 test) 21ms
+ ✓ tests/r2-command.test.ts (5 tests) 297ms
+ ✓ tests/r2-shop.test.ts (2 tests) 747ms
+   ✓ r2 shelves and public policy > exposes only public information; policy previews never change the checkpoint  678ms
+ ✓ tests/r2-run.test.ts (13 tests) 514ms
+   ✓ r2 run economy and resources > starts at a deterministic saved shop with an affordable offer in 100 fixed seeds  316ms
+ ✓ tests/recovery-save.test.ts (8 tests) 840ms
+   ✓ complete checkpoint validation and save-before-publish > keeps only the newest bounded journal while preserving every card, RNG and receipt  472ms
+ ✓ tests/SeededRng.test.ts (3 tests) 35ms
+ ✓ tests/scoreHand.test.ts (3 tests) 14ms
+ ✓ tests/handEvaluator.test.ts (5 tests) 25ms
+ ✓ tests/jokers.test.ts (5 tests) 21ms
+ ✓ tests/balance.test.ts (2 tests) 2206ms
+   ✓ balance gate (greedy bot, real scoring) > stage 1 stays tutorial-grade: greedy fails it on at most 3/10 seeds  1403ms
+   ✓ balance gate (greedy bot, real scoring) > full run stays achievable: greedy clears all 3 stages on at least 3/10 seeds  795ms
+ ✓ tests/portraitCrop.test.ts (2 tests) 7ms
+ ✓ tests/domain.test.ts (22 tests) 14236ms
+   ✓ complete r1 command state > keeps all active card instances in exactly one zone in 1000 fixed generated cases  13704ms
+
+ Test Files  20 passed (20)
+      Tests  164 passed (164)
+   Start at  04:19:13
+   Duration  19.26s (transform 4.49s, setup 0ms, collect 18.37s, tests 19.35s, environment 27ms, prepare 24.28s)
+
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.57 kB │ gzip:   0.37 kB
+dist/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+dist/assets/index-CQr-W4DS.js   1,315.59 kB │ gzip: 367.76 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 6.53s

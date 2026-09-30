@@ -1,0 +1,23 @@
+
+> dachoupai@0.1.0 test:recovery:browser
+> node harness/recovery.mjs
+
+refresh/character-confirmed: PASS
+refresh/shop-first-shown: PASS
+refresh/bought: PASS
+refresh/rerolled: PASS
+refresh/play-committed: PASS
+refresh/during-presentation: PASS
+refresh/reward-published: PASS
+playback/1: PASS
+playback/2: PASS
+playback/4: PASS
+playback/fast-forward: PASS
+playback/audio-denied: PASS
+quota/pause-export-retry: PASS
+data/corrupt-backup-retained: PASS
+data/incompatible-backup-retained: PASS
+import/illegal-rejected-valid-roundtrip: PASS
+tabs/readonly-explicit-takeover: PASS
+scene/exit-new-run-no-stale-callbacks-100-reentries: PASS
+recovery: PASS; 18 actual scenarios

@@ -1,0 +1,13 @@
+
+> dachoupai@0.1.0 test:domain:browser
+> node harness/domain.mjs
+
+desktop: r2 buy/discard/play/clear/reorder/sell/replace + exact replay PASS (json-fnv-v1:bbad9009bd42f61d)
+page.waitForFunction: Timeout 30000ms exceeded.
+    at perform (D:\ai\dachoupai\dachoupai\harness\domain.mjs:47:16)
+    at async run (D:\ai\dachoupai\dachoupai\harness\domain.mjs:67:7)
+    at async file:///D:/ai/dachoupai/dachoupai/harness/domain.mjs:86:121 {
+  log: [],
+  name: 'TimeoutError'
+}
+domain workflow: FAIL
