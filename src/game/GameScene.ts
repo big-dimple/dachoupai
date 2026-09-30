@@ -1,22 +1,19 @@
 import Phaser from 'phaser';
 import { AudioEngine } from '../audio/AudioEngine';
-import { createShuffledDeck } from '../cards/deck';
-import { evaluateHand, type HandType } from '../cards/handEvaluator';
 import { rankLabel, SUIT_SYMBOL, type PlayingCard } from '../cards/types';
 import { EffectQueue } from '../core/EffectQueue';
-import { SeededRng } from '../core/SeededRng';
 import { TriggerEngine } from '../core/TriggerEngine';
 import { getJoker } from '../jokers/JokerEngine';
 import type { JokerId, JokerResolution } from '../jokers/types';
-import { advanceStage, createRunState, stageRng, type RunState } from '../run/runState';
-import { getStage, stageClearGold, stageOrderLabel, type StageDefinition } from '../run/stages';
-import { scoreHand, type ScoreResult } from '../scoring/scoreHand';
+import { jokerIds, R1_LIMITS, type RunState } from '../domain/run';
+import { getStage, stageOrderLabel, type StageDefinition } from '../run/stages';
+import type { ScoreResult } from '../scoring/scoreHand';
 import { getCharacter, type CharacterId } from './characters';
 import type { IntermissionResult } from './IntermissionScene';
 import { portraitSquareCrop } from './portraitCrop';
+import { dispatchRun, runController, startRun } from './runAdapter';
 
-const HAND_SIZE = 8;
-const MAX_SELECTED = 5;
+const MAX_SELECTED = R1_LIMITS.maxSelected;
 
 interface CardView {
   card: PlayingCard;
@@ -24,18 +21,16 @@ interface CardView {
 }
 
 export class GameScene extends Phaser.Scene {
-  private rng!: SeededRng;
-  private deck: PlayingCard[] = [];
-  private hand: PlayingCard[] = [];
+  private get deck(): string[] { return this.run.drawPile; }
+  private get hand(): PlayingCard[] { return this.run.handOrder.map(id => this.run.deckInstances.find(card => card.id === id)!); }
   private selectedIds = new Set<string>();
   private cardViews: CardView[] = [];
   private jokerViews = new Map<JokerId, Phaser.GameObjects.Container>();
-  private jokerIds: readonly JokerId[] = [];
+  private get jokerIds(): readonly JokerId[] { return jokerIds(this.run); }
   private run!: RunState;
   private stage!: StageDefinition;
-  private handsLeft = 0;
-  private heat = 0;
-  private previousHandType?: HandType;
+  private get handsLeft(): number { return this.run.stage?.handsLeft ?? 0; }
+  private get heat(): number { return this.run.stage?.heat ?? 0; }
   private playing = false;
   private characterId!: CharacterId;
   private readonly effects = new EffectQueue();
@@ -54,39 +49,22 @@ export class GameScene extends Phaser.Scene {
   }
 
   create(): void {
-    // 正常路径由选角页建好 runState；深链/冒烟只有 characterId+seed 时现场补建
-    const savedRun = this.registry.get('runState') as RunState | undefined;
-    const savedCharacter = (savedRun?.characterId ?? this.registry.get('characterId')) as CharacterId | undefined;
-    if (!savedCharacter) {
-      this.scene.start('character-select');
-      return;
+    let controller = runController(this);
+    if (!controller) {
+      const characterId = this.registry.get('characterId') as CharacterId | undefined;
+      if (!characterId) { this.scene.start('character-select'); return; }
+      controller = startRun(this, String(this.registry.get('seed') ?? Date.now()), characterId);
+      dispatchRun(this, { type: 'LeaveShop' });
     }
-
-    this.run = savedRun ?? createRunState(String(this.registry.get('seed') ?? Date.now()), savedCharacter);
-    this.registry.set('runState', this.run);
-
-    const stage = getStage(this.run.stageIndex);
-    if (!stage) {
-      // 普通关已全部打完，游戏场景无关可打（Boss 关属 Batch 2C）
-      this.scene.start('character-select');
-      return;
-    }
-    this.stage = stage;
+    if (controller.state.phase === 'stage-ready') dispatchRun(this, { type: 'EnterStage' });
+    this.run = controller.state;
+    if (this.run.phase !== 'await-input' || !this.run.stage) { this.scene.start('character-select'); return; }
+    this.stage = getStage(this.run.stage.index)!;
     this.characterId = this.run.characterId;
-    this.jokerIds = this.run.jokerIds;
-
-    // 每关都是全新一场：热度、出牌数、上次牌型、选牌与演出队列全部重置
-    this.handsLeft = stage.hands;
-    this.heat = 0;
-    this.previousHandType = undefined;
     this.selectedIds.clear();
     this.playing = false;
     this.effects.clear();
-
     const seed = this.run.seed;
-    this.rng = stageRng(seed, this.run.stageIndex);
-    this.deck = createShuffledDeck(this.rng);
-    this.hand = this.draw(HAND_SIZE);
 
     const { width } = this.scale;
     const character = getCharacter(this.characterId);
@@ -203,7 +181,10 @@ export class GameScene extends Phaser.Scene {
       })
       .setOrigin(1, 0.5)
       .setInteractive({ useHandCursor: true })
-      .on('pointerdown', () => this.scene.start('character-select'));
+      .on('pointerdown', () => {
+        dispatchRun(this, { type: 'AbandonRun' });
+        this.scene.start('character-select');
+      });
 
     this.updateHud();
     this.renderHand();
@@ -251,15 +232,6 @@ export class GameScene extends Phaser.Scene {
       container.add([bg, name, desc]);
       this.jokerViews.set(id, container);
     });
-  }
-
-  private draw(count: number): PlayingCard[] {
-    const result: PlayingCard[] = [];
-    for (let i = 0; i < count && this.deck.length > 0; i += 1) {
-      const card = this.deck.pop();
-      if (card) result.push(card);
-    }
-    return result;
   }
 
   private renderHand(): void {
@@ -377,22 +349,18 @@ export class GameScene extends Phaser.Scene {
     this.playing = true;
     this.playButton.disableInteractive();
 
-    const chosen = this.hand.filter((card) => this.selectedIds.has(card.id));
-    const evaluated = evaluateHand(chosen);
-    const playIndex = this.stage.hands - this.handsLeft + 1;
-    const score = scoreHand(evaluated, this.characterId, {
-      previousHandType: this.previousHandType,
-      handsBeforePlay: this.handsLeft,
-      luckRoll: this.rng.next(),
-      playIndex,
-      jokerIds: this.jokerIds,
-    });
-
-    this.triggers.emit('hand:played', { cards: chosen, hand: evaluated });
-
-    this.handsLeft -= 1;
-    this.heat += score.finalHeat;
-    this.previousHandType = evaluated.type;
+    const result = dispatchRun(this, { type: 'PlayHand', selectedIds: [...this.selectedIds] });
+    if (!result.ok || result.duplicate) {
+      this.playButton.setInteractive({ useHandCursor: true });
+      this.playing = false;
+      return;
+    }
+    this.run = result.state;
+    const event = result.events.find(event => event.type === 'hand-scored');
+    if (!event || event.type !== 'hand-scored') throw new Error('Successful play missing score event');
+    const score = event.score;
+    const evaluated = score.hand;
+    this.triggers.emit('hand:played', { cards: evaluated.cards, hand: evaluated });
 
     const selectedViews = this.cardViews.filter((view) => this.selectedIds.has(view.card.id));
     this.effects.enqueue(() => {
@@ -450,17 +418,15 @@ export class GameScene extends Phaser.Scene {
 
     await this.effects.drain();
 
-    this.hand = this.hand.filter((card) => !this.selectedIds.has(card.id));
     this.selectedIds.clear();
-    this.hand.push(...this.draw(HAND_SIZE - this.hand.length));
     this.updateHud();
 
-    if (this.heat >= this.stage.targetHeat) {
+    if (this.run.phase === 'stage-cleared' || this.run.phase === 'run-won') {
       this.finishStage(true);
       return;
     }
 
-    if (this.handsLeft <= 0) {
+    if (this.run.phase === 'run-lost') {
       this.finishStage(false);
       return;
     }
@@ -472,15 +438,13 @@ export class GameScene extends Phaser.Scene {
 
   /** 本关结束：先让玩家看清结果，再进入明确的过场状态 */
   private finishStage(cleared: boolean): void {
-    const completedIndex = this.run.stageIndex;
+    const completedIndex = this.run.stage!.index;
     const stageHeat = this.heat;
-    const goldEarned = cleared ? stageClearGold(this.stage, this.handsLeft) : 0;
+    const goldEarned = this.run.stage!.goldEarned;
 
     if (cleared) {
       this.resultText.setText(`全场失控！\n${stageHeat.toLocaleString()} 热度`);
       this.cameras.main.flash(420, 255, 231, 181, false);
-      this.run = advanceStage(this.run, stageHeat, this.handsLeft);
-      this.registry.set('runState', this.run);
     } else {
       this.resultText.setText(
         `冷场了。\n差 ${Math.max(0, this.stage.targetHeat - stageHeat).toLocaleString()} 热度`,

@@ -1,19 +1,15 @@
 import Phaser from 'phaser';
 import { getJoker } from '../jokers/JokerEngine';
-import type { JokerId, JokerRarity } from '../jokers/types';
-import type { RunState } from '../run/runState';
+import type { JokerRarity } from '../jokers/types';
+import { jokerIds, type RunState, type ShopOffer } from '../domain/run';
 import { getStage, stageOrderLabel } from '../run/stages';
 import {
-  buyJoker,
   canBuyJoker,
-  drawShelf,
-  jokerPrice,
   MAX_JOKER_SLOTS,
-  payReroll,
   REROLL_COST,
   shopPool,
-  shopRng,
 } from '../run/shop';
+import { dispatchRun, runController } from './runAdapter';
 
 const RARITY_COLOR: Record<JokerRarity, number> = {
   common: 0xb88b3d,
@@ -28,13 +24,11 @@ const BUY_ERROR_TEXT = {
 } as const;
 
 /**
- * 后台货摊（Batch 2B）：过关后进店，买大丑牌 / 刷新货架 / 进入下一关。
- * 规则全部走 src/run/shop.ts 纯函数；本场景只做展示与点击。
+ * r1 货摊适配器：展示已保存货架，点击提交领域命令。
  */
 export class ShopScene extends Phaser.Scene {
   private run!: RunState;
-  private rng!: import('../core/SeededRng').SeededRng;
-  private shelf: JokerId[] = [];
+  private get shelf(): ShopOffer[] { return this.run.shop?.offers.filter(offer => !offer.consumed) ?? []; }
 
   private goldText!: Phaser.GameObjects.Text;
   private slotContainer!: Phaser.GameObjects.Container;
@@ -47,16 +41,13 @@ export class ShopScene extends Phaser.Scene {
   }
 
   create(): void {
-    const run = this.registry.get('runState') as RunState | undefined;
-    if (!run || !getStage(run.stageIndex)) {
-      // 没有进行中的局，或普通关已打完（落幕/冷场后不该进店）
+    const run = runController(this)?.state;
+    if (!run || run.phase !== 'shop' || !getStage(run.stageIndex)) {
+      // 领域阶段不允许进店时返回选角。
       this.scene.start('character-select');
       return;
     }
     this.run = run;
-    // 货架随机与关卡随机隔离；同一次进店内刷新消耗同一序列
-    this.rng = shopRng(run.seed, run.stageIndex);
-    this.shelf = drawShelf(this.rng, shopPool(run));
 
     const { width, height } = this.scale;
     this.cameras.main.setBackgroundColor('#14120d');
@@ -120,7 +111,10 @@ export class ShopScene extends Phaser.Scene {
       fontStyle: 'bold',
       color: '#fff8e9',
     }).setOrigin(0.5).setDepth(2);
-    nextButton.on('pointerdown', () => this.scene.start('game'));
+    nextButton.on('pointerdown', () => {
+      const result = dispatchRun(this, { type: 'LeaveShop' });
+      if (result.ok) this.scene.start('game');
+    });
 
     this.renderAll();
   }
@@ -140,7 +134,7 @@ export class ShopScene extends Phaser.Scene {
     const y = 206;
     for (let i = 0; i < MAX_JOKER_SLOTS; i += 1) {
       const x = startX + i * (slotW + gap);
-      const equipped = this.run.jokerIds[i];
+      const equipped = jokerIds(this.run)[i];
       const box = this.add.rectangle(x, y, slotW, 96, 0x1d1810, 1);
       if (equipped) {
         const joker = getJoker(equipped);
@@ -183,10 +177,11 @@ export class ShopScene extends Phaser.Scene {
     const startX = 42 + cardW / 2;
     const y = 340 + cardH / 2;
 
-    this.shelf.forEach((id, index) => {
+    this.shelf.forEach((offer, index) => {
+      const id = offer.definitionId;
       const joker = getJoker(id);
-      const price = jokerPrice(id);
-      const error = canBuyJoker(this.run, id);
+      const price = offer.price;
+      const error = canBuyJoker({ gold: this.run.gold, jokerIds: jokerIds(this.run) }, id);
       const x = startX + index * (cardW + gap);
       const accent = RARITY_COLOR[joker.rarity];
 
@@ -217,7 +212,7 @@ export class ShopScene extends Phaser.Scene {
 
       if (!error) {
         bg.setInteractive({ useHandCursor: true });
-        bg.on('pointerdown', () => this.buy(id));
+        bg.on('pointerdown', () => this.buy(offer.offerId));
       }
       this.shelfContainer.add(children);
     });
@@ -225,7 +220,7 @@ export class ShopScene extends Phaser.Scene {
 
   private renderReroll(): void {
     const affordable = this.run.gold >= REROLL_COST;
-    const hasGoods = shopPool(this.run).length > 0;
+    const hasGoods = shopPool({ jokerIds: jokerIds(this.run) }).length > 0;
     const enabled = affordable && hasGoods;
     this.rerollLabel.setText(
       !hasGoods ? '已无货可换' : affordable ? `换一批（${REROLL_COST} 金币）` : `换一批需 ${REROLL_COST} 金币`,
@@ -238,19 +233,17 @@ export class ShopScene extends Phaser.Scene {
     }
   }
 
-  private buy(id: JokerId): void {
-    if (canBuyJoker(this.run, id)) return;
-    this.run = buyJoker(this.run, id);
-    this.registry.set('runState', this.run);
-    this.shelf = this.shelf.filter((item) => item !== id);
+  private buy(offerId: string): void {
+    const result = dispatchRun(this, { type: 'BuyOffer', offerId });
+    if (!result.ok) return;
+    this.run = result.state;
     this.renderAll();
   }
 
   private reroll(): void {
-    if (this.run.gold < REROLL_COST || shopPool(this.run).length === 0) return;
-    this.run = payReroll(this.run);
-    this.registry.set('runState', this.run);
-    this.shelf = drawShelf(this.rng, shopPool(this.run));
+    const result = dispatchRun(this, { type: 'RerollShop' });
+    if (!result.ok) return;
+    this.run = result.state;
     this.renderAll();
   }
 }

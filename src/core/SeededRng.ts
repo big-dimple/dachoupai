@@ -1,3 +1,8 @@
+export interface RngSnapshot {
+  algorithm: 'fnv1a-mulberry32-v1';
+  state: number;
+}
+
 export class SeededRng {
   private state: number;
 
@@ -12,14 +17,30 @@ export class SeededRng {
   }
 
   next(): number {
-    let t = (this.state += 0x6d2b79f5);
+    this.state = (this.state + 0x6d2b79f5) >>> 0;
+    let t = this.state;
     t = Math.imul(t ^ (t >>> 15), t | 1);
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   }
 
   integer(min: number, maxInclusive: number): number {
+    if (!Number.isSafeInteger(min) || !Number.isSafeInteger(maxInclusive) || maxInclusive < min) {
+      throw new Error('Invalid RNG integer bounds');
+    }
     return Math.floor(this.next() * (maxInclusive - min + 1)) + min;
+  }
+
+  snapshot(): RngSnapshot {
+    return { algorithm: 'fnv1a-mulberry32-v1', state: this.state };
+  }
+
+  static restore(snapshot: { algorithm: string; state: number }): SeededRng {
+    if (snapshot.algorithm !== 'fnv1a-mulberry32-v1' || !Number.isInteger(snapshot.state) ||
+        snapshot.state < 0 || snapshot.state > 0xffffffff) throw new Error('Invalid RNG snapshot');
+    const rng = new SeededRng(0);
+    rng.state = snapshot.state;
+    return rng;
   }
 
   shuffle<T>(items: readonly T[]): T[] {
