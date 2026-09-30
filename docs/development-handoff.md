@@ -1,21 +1,19 @@
 # 当前交接
 
-## 当前任务：R06 / IN_PROGRESS
+## 当前任务：V00 / READY
 
-权威指针：`production/plan.json`。分支 `feat/R06-ci-gates`，开包基线 `abb62eefba1d20f6a9e3621fc52495342ea80679`；没有 reset、合并或 main 推送。R06 draft PR #10 已推送。唯一下一步：在修复隔离缓存后的固定 SHA 重新运行 verify:ci，取得该 SHA 的实际 CI 结果，再关闭 R06。
+权威指针：`production/plan.json`。R06 工程门禁已关闭，证据 `production/evidence/R06-2026-10-01.json`，被测实现 `98c381c5d96b76951d9034e2dc91309049dcad0d`。目前分支 `feat/R06-ci-gates`，draft PR #10，未合并、未推送 main。唯一下一步：开 `feat/V00-core-graybox`，先补指定新牌的独立金样和失败用例，再实现 24 牌/两章。
 
-## 已完成与实际检查
+## 已完成与证据
 
-依赖子项提交 `a76db0ef65b4fdcc629e7c71ed3b36c97ed9204b`：Vitest 4.1.11、六项离线工具直接依赖已锁定；默认 npm ci、verify 164 项与 audit 零告警实际通过。npm 10 peers 内部错误及临时 npm 11 安装重试日志保留，未升级全局安装器。
+R06 固定 SHA 的本地 verify:ci 13 项退出 0，源码/索引/HEAD/分支未变；171 单测、G01–15、构建/启动冒烟、领域回放、30 布局、18 恢复/100 继续、三引擎 21 E2E、奖励/触控/路径三项破坏失败与还原通过。实际 CI run `36781124417` 的领域、浏览器、文档三个 job 全部 success；固定 PR head，失败截图/trace artifact 保留 14 天，ID/到期日期与简明日志在证据内。
 
-实现提交 `b7de15cabc1af25ad9e8f8c8f5ce6a51fc71562a` 的完整 verify:ci 13 项实际退出 0：171 单测、G01–15、构建、启动冒烟、领域回放、30 布局、18 恢复/100 继续、三引擎 E2E 21 场景、3 个语义破坏失败与还原通过、plan 校验；源码/索引/HEAD 未变。原始报告与日志见 `production/evidence/r06-2026-10-01/b7-*`。隔离资源还原日志同时出现 Vite 客户端优化缓存 ENOENT；不能据退出 0 隐去基础设施问题。本次关闭纯 SSR 客户端依赖发现并使用独立缓存，工作树 Chromium 4 资源场景通过，固定提交的全量复验待运行。
+测试先发现生产 observer 暴露、触摸双购点穿及隔离 Vite 缓存冲突，失败/警告原记录保留，修复后全量复验。计分预期未改。旧 b7 CI 被新推送取消，未算全量成功；零 npm 告警仅适用于当前锁定依赖。release:checked 只检查，不做 Git 写入。R00–R05 证据均以 plan 指针为准。
 
-实际 CI run `36779006821` 的 b7 领域与文档 job 已 success，浏览器尚在执行。生产观察 hook/触摸购买弹窗穿透先红后绿证据仍在本包目录；计分与规则预期未改。完整质量与后续功能不由这些自动检查代签。
+## V00 范围与剩余门禁
 
-R05 自动布局/操作关闭证据：`production/evidence/R05-2026-10-01.json`，被测 `4227bca813a4d478f9685c260745a884c0b4997e`。规则内容仍仅五张 r2 Joker，完整 Boss/两章核心待 V00；旧 r1 十 seed 测试明确为回归，不是平衡验收。
+已读 PRODUCT、CONTENT、RULES、QUALITY 和 V00 工作包。指定 24 张、首测阿默/二响、B01–B04、两个完整章节与最小跳场；成长/持牌/经济/风险必须有真实行为与保存/顺序边界。需要自然抽样多策略诊断、三类可行构筑日志、普通 UI 的完整两章和恢复；不降低目标、不注入指定牌、不把挑选的通关当胜率。当前内容仍五张、未实现 Boss/跳场；八章、无尽与完整物品系统留后续包。
 
-## 门禁与边界
+Astra A00 准备产物独立于 `art/A00-inventory`，最新 `30600c2c9850da3453b42c940b238f347320c7fd`：137 资产/39 GLB 真实预览、默认只读与严格 CLI 反例，未采用为主线完成。来源 UNKNOWN、视觉 NOT_GRANTED、发布白名单空；A00 还需正式接入检查，未进入 A01、未量产。源 PNG/GLB 保留并仍被 Vite 复制。
 
-Astra A00 准备产物在独立 `art/A00-inventory`，最新提交 `30600c2c9850da3453b42c940b238f347320c7fd`：137 文件/39 GLB 实际预览、旧 inspector 默认只读及严格 CLI 反例；未采用为主线完成状态，来源 UNKNOWN、视觉 NOT_GRANTED。A00 还需正式接入和工程检查；未进入 A01，不量产。源 PNG/GLB 已退出首屏但仍被 Vite 复制到产物。
-
-Android Chrome/iPhone Safari 真机、目标设备性能、离线恢复、旧浏览器无 Locks、完整读屏、完整内容/平衡、真人体验和美术批准：NOT_RUN。用户只在关键节点验 Android Chrome，部署自行处理，不准备部署交接材料。继续独立工程，不以自动浏览器替代人类验收。
+Android Chrome/iPhone Safari 真机、设备性能、离线构建恢复、无 Locks 浏览器、完整读屏、平衡、真人体验和美术批准：NOT_RUN。用户只在关键节点验 Android Chrome；部署由用户自行处理，不准备部署交接材料，不要求用户代传话。V01/A01 人工批准不能自签；继续不依赖门禁的工程任务。

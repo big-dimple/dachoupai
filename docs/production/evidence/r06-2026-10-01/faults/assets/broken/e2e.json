@@ -1,0 +1,81 @@
+{
+  "testedCommit": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+  "dirtyState": "M src/game/portraits.ts",
+  "scope": "assets",
+  "engines": [
+    "chromium"
+  ],
+  "environment": {
+    "os": "win32",
+    "node": "v22.20.0",
+    "chromium": "153.0.8010.12"
+  },
+  "checks": [
+    {
+      "engine": "chromium",
+      "name": "production-observer-hidden",
+      "input": "mouse.click + native DOM click",
+      "prefix": "/",
+      "status": "FAIL",
+      "errors": [],
+      "assetResponses": [
+        {
+          "url": "/dachoupai/assets/index-BZ-fR-YG.css",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/index-DEYdjYjg.js",
+          "status": 200
+        }
+      ],
+      "failedRequests": [],
+      "error": "AssertionError [ERR_ASSERTION]: all six production avatars resolve\n\n0 !== 6\n",
+      "observation": null
+    }
+  ],
+  "limitations": [
+    "Browser touchscreen emulation; physical Android Chrome / iPhone Safari and human/art acceptance NOT_RUN.",
+    "Boss, final eight-chapter victory and endless are NOT_IMPLEMENTED in this five-joker build; later packages must extend these paths.",
+    "Cold-load performance, long-session memory and full screen-reader acceptance NOT_RUN."
+  ],
+  "bundles": [
+    {
+      "mode": "production",
+      "outDir": "shots/build-production",
+      "files": [
+        {
+          "name": "index-BZ-fR-YG.css",
+          "bytes": 1744,
+          "sha256": "4ff91eaa8529831d5f64807b39ed81eda2ced1c54b23d52e618b813af543dc29"
+        },
+        {
+          "name": "index-DEYdjYjg.js",
+          "bytes": 1316015,
+          "sha256": "94e15fc4abdba772e4c4392cc064c9274e7ec6f3488671c8aab46811fe714a7f"
+        }
+      ]
+    },
+    {
+      "mode": "e2e",
+      "outDir": "shots/build-e2e",
+      "files": [
+        {
+          "name": "index-BhSfF7TX.js",
+          "bytes": 1316110,
+          "sha256": "540894d5d6765a81b5ea07f19769af249c9cc25c95edb3ed69825304fc112e82"
+        },
+        {
+          "name": "index-BZ-fR-YG.css",
+          "bytes": 1744,
+          "sha256": "4ff91eaa8529831d5f64807b39ed81eda2ced1c54b23d52e618b813af543dc29"
+        }
+      ]
+    }
+  ],
+  "fixtures": {
+    "selection": "first natural seeds among at most 50, through public bot and shared commands; no card/resource injection, not a win-rate sample",
+    "runs": []
+  },
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: all six production avatars resolve\n\n0 !== 6\n"
+}

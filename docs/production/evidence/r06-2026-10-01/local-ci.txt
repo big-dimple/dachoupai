@@ -1,0 +1,704 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs
+
+CHECK typecheck: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run typecheck
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+typecheck: PASS
+CHECK test: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+
+ Test Files  21 passed (21)
+      Tests  171 passed (171)
+   Start at  05:41:43
+   Duration  7.61s (transform 3.18s, setup 0ms, import 5.05s, tests 12.12s, environment 4ms)
+
+test: PASS
+CHECK verify:content: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run verify:content
+
+> dachoupai@0.1.0 verify:content
+> node scripts/verify-content.mjs
+
+{
+  "status": "PASS",
+  "definitions": 5,
+  "contentVersion": "quality-r2-run-v2",
+  "contentHash": "json-fnv-v1:004135ca2b38f6ee",
+  "conservativeEventBound": 82,
+  "readOnly": true
+}
+(!) Failed to run dependency scan. Skipping dependency pre-bundling. Error:   Failed to scan for dependencies from entries:
+  D:/ai/dachoupai/dachoupai/index.html
+D:/ai/dachoupai/dachoupai/shots/build-production/index.html
+D:/ai/dachoupai/dachoupai/shots/build-e2e/index.html
+
+  X [ERROR] The server is being restarted or closed. Request is outdated [plugin vite:dep-scan]
+
+    node_modules/esbuild/lib/main.js:1502:27:
+      1502 │         let result = await callback({
+           ╵                            ^
+
+    at throwClosedServerError (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:28639:32)
+    at EnvironmentPluginContainer.resolveId (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:28771:65)
+    at resolveId (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31580:38)
+    at resolve$4 (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31585:22)
+    at file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31738:28
+    at requestCallbacks.on-resolve (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1502:28)
+    at handleRequest (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:911:17)
+    at handleIncomingPacket (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:936:7)
+    at Socket.readFromStdout (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:864:7)
+    at Socket.emit (node:events:519:28)
+
+  This error came from the "onResolve" callback registered here:
+
+    node_modules/esbuild/lib/main.js:1426:20:
+      1426 │       let promise = setup({
+           ╵                     ^
+
+    at setup (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31737:12)
+    at handlePlugins (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1426:21)
+    at buildOrContextImpl (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1139:5)
+    at Object.buildOrContext (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:963:5)
+    at D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2329:68
+    at new Promise (<anonymous>)
+    at Object.context (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2329:27)
+    at Object.context (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2171:58)
+    at prepareEsbuildScanner (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31534:23)
+
+  The plugin "vite:dep-scan" was triggered by this import
+
+    src/scoring/scoreHand.ts:7:7:
+      7 │ } from '../domain/characters';
+        ╵        ~~~~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] The server is being restarted or closed. Request is outdated [plugin vite:dep-scan]
+
+    node_modules/esbuild/lib/main.js:1502:27:
+      1502 │         let result = await callback({
+           ╵                            ^
+
+    at throwClosedServerError (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:28639:32)
+    at EnvironmentPluginContainer.resolveId (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:28771:65)
+    at resolveId (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31580:38)
+    at resolve$4 (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31585:22)
+    at file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31738:28
+    at requestCallbacks.on-resolve (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1502:28)
+    at handleRequest (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:911:17)
+    at handleIncomingPacket (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:936:7)
+    at Socket.readFromStdout (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:864:7)
+    at Socket.emit (node:events:519:28)
+
+  This error came from the "onResolve" callback registered here:
+
+    node_modules/esbuild/lib/main.js:1426:20:
+      1426 │       let promise = setup({
+           ╵                     ^
+
+    at setup (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31737:12)
+    at handlePlugins (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1426:21)
+    at buildOrContextImpl (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1139:5)
+    at Object.buildOrContext (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:963:5)
+    at D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2329:68
+    at new Promise (<anonymous>)
+    at Object.context (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2329:27)
+    at Object.context (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2171:58)
+    at prepareEsbuildScanner (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31534:23)
+
+  The plugin "vite:dep-scan" was triggered by this import
+
+    src/run/shop.ts:1:26:
+      1 │ import { SeededRng } from '../core/SeededRng';
+        ╵                           ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] The server is being restarted or closed. Request is outdated [plugin vite:dep-scan]
+
+    node_modules/esbuild/lib/main.js:1502:27:
+      1502 │         let result = await callback({
+           ╵                            ^
+
+    at throwClosedServerError (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:28639:32)
+    at EnvironmentPluginContainer.resolveId (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:28771:65)
+    at resolveId (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31580:38)
+    at resolve$4 (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31585:22)
+    at file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31738:28
+    at requestCallbacks.on-resolve (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1502:28)
+    at handleRequest (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:911:17)
+    at handleIncomingPacket (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:936:7)
+    at Socket.readFromStdout (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:864:7)
+    at Socket.emit (node:events:519:28)
+
+  This error came from the "onResolve" callback registered here:
+
+    node_modules/esbuild/lib/main.js:1426:20:
+      1426 │       let promise = setup({
+           ╵                     ^
+
+    at setup (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31737:12)
+    at handlePlugins (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1426:21)
+    at buildOrContextImpl (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1139:5)
+    at Object.buildOrContext (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:963:5)
+    at D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2329:68
+    at new Promise (<anonymous>)
+    at Object.context (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2329:27)
+    at Object.context (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2171:58)
+    at prepareEsbuildScanner (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31534:23)
+
+  The plugin "vite:dep-scan" was triggered by this import
+
+    src/scoring/scoreHand.ts:8:30:
+      8 │ import { resolveJokers } from '../jokers/JokerEngine';
+        ╵                               ~~~~~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] The server is being restarted or closed. Request is outdated [plugin vite:dep-scan]
+
+    node_modules/esbuild/lib/main.js:1502:27:
+      1502 │         let result = await callback({
+           ╵                            ^
+
+    at throwClosedServerError (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:28639:32)
+    at EnvironmentPluginContainer.resolveId (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:28771:65)
+    at resolveId (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31580:38)
+    at resolve$4 (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31585:22)
+    at file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31738:28
+    at requestCallbacks.on-resolve (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1502:28)
+    at handleRequest (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:911:17)
+    at handleIncomingPacket (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:936:7)
+    at Socket.readFromStdout (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:864:7)
+    at Socket.emit (node:events:519:28)
+
+  This error came from the "onResolve" callback registered here:
+
+    node_modules/esbuild/lib/main.js:1426:20:
+      1426 │       let promise = setup({
+           ╵                     ^
+
+    at setup (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31737:12)
+    at handlePlugins (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1426:21)
+    at buildOrContextImpl (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1139:5)
+    at Object.buildOrContext (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:963:5)
+    at D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2329:68
+    at new Promise (<anonymous>)
+    at Object.context (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2329:27)
+    at Object.context (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2171:58)
+    at prepareEsbuildScanner (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31534:23)
+
+  The plugin "vite:dep-scan" was triggered by this import
+
+    src/run/runState.ts:1:26:
+      1 │ import { SeededRng } from '../core/SeededRng';
+        ╵                           ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] The server is being restarted or closed. Request is outdated [plugin vite:dep-scan]
+
+    node_modules/esbuild/lib/main.js:1502:27:
+      1502 │         let result = await callback({
+           ╵                            ^
+
+    at throwClosedServerError (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:28639:32)
+    at EnvironmentPluginContainer.resolveId (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:28771:65)
+    at resolveId (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31580:38)
+    at resolve$4 (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31585:22)
+    at file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31738:28
+    at requestCallbacks.on-resolve (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1502:28)
+    at handleRequest (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:911:17)
+    at handleIncomingPacket (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:936:7)
+    at Socket.readFromStdout (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:864:7)
+    at Socket.emit (node:events:519:28)
+
+  This error came from the "onResolve" callback registered here:
+
+    node_modules/esbuild/lib/main.js:1426:20:
+      1426 │       let promise = setup({
+           ╵                     ^
+
+    at setup (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31737:12)
+    at handlePlugins (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1426:21)
+    at buildOrContextImpl (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1139:5)
+    at Object.buildOrContext (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:963:5)
+    at D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2329:68
+    at new Promise (<anonymous>)
+    at Object.context (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2329:27)
+    at Object.context (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2171:58)
+    at prepareEsbuildScanner (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31534:23)
+
+  The plugin "vite:dep-scan" was triggered by this import
+
+    src/run/shop.ts:2:33:
+      2 │ import { getJoker, JOKERS } from '../jokers/JokerEngine';
+        ╵                                  ~~~~~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] The server is being restarted or closed. Request is outdated [plugin vite:dep-scan]
+
+    node_modules/esbuild/lib/main.js:1502:27:
+      1502 │         let result = await callback({
+           ╵                            ^
+
+    at throwClosedServerError (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:28639:32)
+    at EnvironmentPluginContainer.resolveId (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:28771:65)
+    at resolveId (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31580:38)
+    at resolve$4 (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31585:22)
+    at file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31738:28
+    at requestCallbacks.on-resolve (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1502:28)
+    at handleRequest (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:911:17)
+    at handleIncomingPacket (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:936:7)
+    at Socket.readFromStdout (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:864:7)
+    at Socket.emit (node:events:519:28)
+
+  This error came from the "onResolve" callback registered here:
+
+    node_modules/esbuild/lib/main.js:1426:20:
+      1426 │       let promise = setup({
+           ╵                     ^
+
+    at setup (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31737:12)
+    at handlePlugins (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1426:21)
+    at buildOrContextImpl (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1139:5)
+    at Object.buildOrContext (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:963:5)
+    at D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2329:68
+    at new Promise (<anonymous>)
+    at Object.context (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2329:27)
+    at Object.context (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:2171:58)
+    at prepareEsbuildScanner (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:31534:23)
+
+  The plugin "vite:dep-scan" was triggered by this import
+
+    src/run/runState.ts:4:49:
+      4 │ import { getStage, stageClearGold, STAGES } from './stages';
+        ╵                                                  ~~~~~~~~~~
+
+
+    at failureErrorWithLog (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1752:15)
+    at D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1211:25
+    at runOnEndCallbacks (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1592:45)
+    at buildResponseToResult (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1209:7)
+    at D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1221:9
+    at new Promise (<anonymous>)
+    at requestCallbacks.on-end (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:1220:54)
+    at handleRequest (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:911:17)
+    at handleIncomingPacket (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:936:7)
+    at Socket.readFromStdout (D:\ai\dachoupai\dachoupai\node_modules\esbuild\lib\main.js:864:7)
+verify:content: PASS
+CHECK rules-goldens: C:\Program Files\nodejs\node.exe harness/rules-goldens.mjs shots/ci/rules
+PASS: G01–G15; scoring traces, every before/after and operations independently checked. D:\ai\dachoupai\dachoupai\shots\ci\rules
+rules-goldens: PASS
+CHECK build: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run build
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.57 kB │ gzip:   0.37 kB
+dist/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+dist/assets/index-BJxTMKP1.js   1,316.01 kB │ gzip: 367.88 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.26s
+build: PASS
+CHECK verify:smoke: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run verify:smoke
+
+> dachoupai@0.1.0 verify:smoke
+> node harness/screenshot.mjs --verify-smoke
+
+desktop: ok
+mobile: ok
+smoke: ok
+verify:smoke: PASS
+CHECK test:domain:browser: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test:domain:browser
+
+> dachoupai@0.1.0 test:domain:browser
+> node harness/domain.mjs
+
+desktop: r2 buy/discard/play/clear/reorder/sell/replace + exact replay PASS (json-fnv-v1:bbad9009bd42f61d)
+mobile: r2 buy/discard/play/clear/reorder/sell/replace + exact replay PASS (json-fnv-v1:bbad9009bd42f61d)
+domain workflow: PASS
+test:domain:browser: PASS
+CHECK test:layout:browser: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test:layout:browser
+
+> dachoupai@0.1.0 test:layout:browser
+> node harness/layout.mjs
+
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "select/320x568",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/320x568",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/320x568",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/360x640",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/360x640",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/360x640",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/390x844",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/390x844",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/390x844",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/430x932",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/430x932",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/430x932",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/844x390",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/844x390",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/844x390",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/1024x768",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/1024x768",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/1024x768",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/1280x720",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/1280x720",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/1280x720",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/768x1024",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/768x1024",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/768x1024",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "touch/selection-preserves-stage-and-card-views",
+      "status": "PASS"
+    },
+    {
+      "name": "rotated-table",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "touch/select-limit-cancel-longpress-sort-deck-rotate-drag-confirm",
+      "status": "PASS"
+    },
+    {
+      "name": "state/touye",
+      "status": "PASS"
+    },
+    {
+      "name": "state/xiemu",
+      "status": "PASS"
+    },
+    {
+      "name": "state/amo",
+      "status": "PASS"
+    }
+  ]
+}
+test:layout:browser: PASS
+CHECK test:recovery:browser: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test:recovery:browser
+
+> dachoupai@0.1.0 test:recovery:browser
+> node harness/recovery.mjs
+
+refresh/character-confirmed: PASS
+refresh/shop-first-shown: PASS
+refresh/bought: PASS
+refresh/rerolled: PASS
+refresh/play-committed: PASS
+refresh/during-presentation: PASS
+refresh/reward-published: PASS
+playback/1: PASS
+playback/2: PASS
+playback/4: PASS
+playback/fast-forward: PASS
+playback/audio-denied: PASS
+quota/pause-export-retry: PASS
+data/corrupt-backup-retained: PASS
+data/incompatible-backup-retained: PASS
+import/illegal-rejected-valid-roundtrip: PASS
+tabs/readonly-explicit-takeover: PASS
+scene/exit-new-run-no-stale-callbacks-100-reentries: PASS
+recovery: PASS; 18 actual scenarios
+test:recovery:browser: PASS
+CHECK test:e2e: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test:e2e
+
+> dachoupai@0.1.0 test:e2e
+> node harness/e2e.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-production/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-production/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-production/assets/index-BJxTMKP1.js   1,316.01 kB │ gzip: 367.88 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.20s
+vite v7.3.6 building client environment for e2e...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-e2e/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-e2e/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-e2e/assets/index-DaaLy-mw.js   1,316.10 kB │ gzip: 367.94 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.22s
+chromium/production-observer-hidden: PASS
+chromium/workflow-amo: PASS
+chromium/workflow-erxiang: PASS
+chromium/touch-entry: PASS
+chromium/fallback-404: PASS
+chromium/fallback-timedout: PASS
+chromium/fallback-audio-denied: PASS
+firefox/production-observer-hidden: PASS
+firefox/workflow-amo: PASS
+firefox/workflow-erxiang: PASS
+firefox/touch-entry: PASS
+firefox/fallback-404: PASS
+firefox/fallback-timedout: PASS
+firefox/fallback-audio-denied: PASS
+webkit/production-observer-hidden: PASS
+webkit/workflow-amo: PASS
+webkit/workflow-erxiang: PASS
+webkit/touch-entry: PASS
+webkit/fallback-404: PASS
+webkit/fallback-timedout: PASS
+webkit/fallback-audio-denied: PASS
+built-bundle E2E: PASS; 21 actual scenarios (all)
+test:e2e: PASS
+CHECK test:gate-faults: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test:gate-faults
+
+> dachoupai@0.1.0 test:gate-faults
+> node harness/gate-faults.mjs
+
+reward: running intentionally broken gate
+reward: running restored gate
+touch: running intentionally broken gate
+touch: running restored gate
+assets: running intentionally broken gate
+assets: running restored gate
+test:gate-faults: PASS
+CHECK plan-counterexamples: C:\Program Files\nodejs\node.exe scripts/check-production-plan.mjs --self-test
+PLAN_CHECKER_SELF_TEST_PASS: 1 valid and 13 invalid fixtures
+plan-counterexamples: PASS
+CHECK production-plan: C:\Program Files\nodejs\node.exe scripts/check-production-plan.mjs
+PLAN_VALID: 23 work packages; current=R06; not a gameplay acceptance
+production-plan: PASS
+{
+  "scope": "all",
+  "testedCommit": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "a034981df33e7e6c36e23c365fb780d427f693233e5fce5a5e178f500b92ccd9",
+    "index": "4b80c1148ee80bc9c5e208a320a2e4f7909368b41257a5a1009d769a03fda471",
+    "head": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+    "branch": "refs/heads/feat/R06-ci-gates"
+  },
+  "after": {
+    "source": "a034981df33e7e6c36e23c365fb780d427f693233e5fce5a5e178f500b92ccd9",
+    "index": "4b80c1148ee80bc9c5e208a320a2e4f7909368b41257a5a1009d769a03fda471",
+    "head": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+    "branch": "refs/heads/feat/R06-ci-gates"
+  },
+  "steps": [
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3104
+    },
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 9423
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3367
+    },
+    {
+      "name": "rules-goldens",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 4049
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8050
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 7428
+    },
+    {
+      "name": "test:domain:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 24071
+    },
+    {
+      "name": "test:layout:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 31722
+    },
+    {
+      "name": "test:recovery:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 167091
+    },
+    {
+      "name": "test:e2e",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 144219
+    },
+    {
+      "name": "test:gate-faults",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 217531
+    },
+    {
+      "name": "plan-counterexamples",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 706
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 717
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "verify:assets",
+      "status": "NOT_INCLUDED",
+      "reason": "A00 not yet adopted; no placeholder gate"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; legacy r1 seeds are regressions only"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

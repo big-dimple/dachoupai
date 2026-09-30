@@ -1,0 +1,148 @@
+{
+  "testedCommit": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+  "dirtyState": "M src/game/SceneView.ts",
+  "scope": "touch",
+  "engines": [
+    "chromium"
+  ],
+  "environment": {
+    "os": "win32",
+    "node": "v22.20.0",
+    "chromium": "153.0.8010.12"
+  },
+  "checks": [
+    {
+      "engine": "chromium",
+      "name": "production-observer-hidden",
+      "input": "mouse.click + native DOM click",
+      "prefix": "/",
+      "status": "PASS",
+      "errors": [],
+      "assetResponses": [
+        {
+          "url": "/dachoupai/assets/index-BZ-fR-YG.css",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/index-dmGYTdni.js",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/amo.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/touye.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/laohuan.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/erxiang.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/azao.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/xiemu.avatar.webp",
+          "status": 200
+        }
+      ],
+      "failedRequests": []
+    },
+    {
+      "engine": "chromium",
+      "name": "touch-entry",
+      "input": "touchscreen.tap + native DOM tap",
+      "prefix": "/dachoupai/",
+      "status": "FAIL",
+      "errors": [],
+      "assetResponses": [
+        {
+          "url": "/dachoupai/assets/index-BZ-fR-YG.css",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/index-Bfa3Ta5z.js",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/amo.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/touye.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/erxiang.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/azao.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/xiemu.avatar.webp",
+          "status": 200
+        },
+        {
+          "url": "/dachoupai/assets/characters/laohuan.avatar.webp",
+          "status": 200
+        }
+      ],
+      "failedRequests": [],
+      "error": "TimeoutError: locator.tap: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '选择并开局', exact: true })\u001b[22m\n",
+      "observation": null
+    }
+  ],
+  "limitations": [
+    "Browser touchscreen emulation; physical Android Chrome / iPhone Safari and human/art acceptance NOT_RUN.",
+    "Boss, final eight-chapter victory and endless are NOT_IMPLEMENTED in this five-joker build; later packages must extend these paths.",
+    "Cold-load performance, long-session memory and full screen-reader acceptance NOT_RUN."
+  ],
+  "bundles": [
+    {
+      "mode": "production",
+      "outDir": "shots/build-production",
+      "files": [
+        {
+          "name": "index-BZ-fR-YG.css",
+          "bytes": 1744,
+          "sha256": "4ff91eaa8529831d5f64807b39ed81eda2ced1c54b23d52e618b813af543dc29"
+        },
+        {
+          "name": "index-dmGYTdni.js",
+          "bytes": 1316028,
+          "sha256": "5d10210d898bb21b13634ba376be25f165c4210ee619d2f7b5230ada39b5c526"
+        }
+      ]
+    },
+    {
+      "mode": "e2e",
+      "outDir": "shots/build-e2e",
+      "files": [
+        {
+          "name": "index-Bfa3Ta5z.js",
+          "bytes": 1316123,
+          "sha256": "8f36aad4d17a0c5380dc71acde409b1bfbb1891d4ad0fb7782ebfd5300f2a478"
+        },
+        {
+          "name": "index-BZ-fR-YG.css",
+          "bytes": 1744,
+          "sha256": "4ff91eaa8529831d5f64807b39ed81eda2ced1c54b23d52e618b813af543dc29"
+        }
+      ]
+    }
+  ],
+  "fixtures": {
+    "selection": "first natural seeds among at most 50, through public bot and shared commands; no card/resource injection, not a win-rate sample",
+    "runs": []
+  },
+  "status": "FAIL",
+  "error": "TimeoutError: locator.tap: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '选择并开局', exact: true })\u001b[22m\n"
+}

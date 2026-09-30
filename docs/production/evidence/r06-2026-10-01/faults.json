@@ -1,0 +1,83 @@
+{
+  "testedCommit": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+  "environment": {
+    "node": "v22.20.0",
+    "os": "win32"
+  },
+  "checks": [
+    {
+      "name": "reward",
+      "status": "PASS",
+      "file": "src/domain/r2Run.ts",
+      "mutation": {
+        "from": "const reward=[4,5,7]",
+        "to": "const reward=1+[4,5,7]"
+      },
+      "broken": {
+        "status": "FAIL",
+        "exitCode": 1,
+        "evidence": "shots/gate-faults/reward/broken/e2e.json"
+      },
+      "restored": {
+        "status": "PASS",
+        "exitCode": 0,
+        "evidence": "shots/gate-faults/reward/restored/e2e.json"
+      }
+    },
+    {
+      "name": "touch",
+      "status": "PASS",
+      "file": "src/game/SceneView.ts",
+      "mutation": {
+        "from": "const canvas=this.scene.game.canvas.getBoundingClientRect();",
+        "to": "if(p.wasTouch)return;const canvas=this.scene.game.canvas.getBoundingClientRect();"
+      },
+      "broken": {
+        "status": "FAIL",
+        "exitCode": 1,
+        "evidence": "shots/gate-faults/touch/broken/e2e.json"
+      },
+      "restored": {
+        "status": "PASS",
+        "exitCode": 0,
+        "evidence": "shots/gate-faults/touch/restored/e2e.json"
+      }
+    },
+    {
+      "name": "assets",
+      "status": "PASS",
+      "file": "src/game/portraits.ts",
+      "mutation": {
+        "from": "${import.meta.env.BASE_URL}assets/characters/",
+        "to": "${import.meta.env.BASE_URL}missing-assets/characters/"
+      },
+      "broken": {
+        "status": "FAIL",
+        "exitCode": 1,
+        "evidence": "shots/gate-faults/assets/broken/e2e.json"
+      },
+      "restored": {
+        "status": "PASS",
+        "exitCode": 0,
+        "evidence": "shots/gate-faults/assets/restored/e2e.json"
+      }
+    }
+  ],
+  "limitations": [
+    "Chromium focused counterexamples, not a second full cross-browser acceptance.",
+    "Mutation and restoration occur only in an isolated local clone; the shared source is checked unchanged."
+  ],
+  "status": "PASS",
+  "sourceBefore": {
+    "source": "a034981df33e7e6c36e23c365fb780d427f693233e5fce5a5e178f500b92ccd9",
+    "index": "4b80c1148ee80bc9c5e208a320a2e4f7909368b41257a5a1009d769a03fda471",
+    "head": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+    "branch": "refs/heads/feat/R06-ci-gates"
+  },
+  "sourceAfter": {
+    "source": "a034981df33e7e6c36e23c365fb780d427f693233e5fce5a5e178f500b92ccd9",
+    "index": "4b80c1148ee80bc9c5e208a320a2e4f7909368b41257a5a1009d769a03fda471",
+    "head": "98c381c5d96b76951d9034e2dc91309049dcad0d",
+    "branch": "refs/heads/feat/R06-ci-gates"
+  }
+}

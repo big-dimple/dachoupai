@@ -1,0 +1,46 @@
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-production/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-production/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-production/assets/index-D45Demao.js   1,316.01 kB │ gzip: 367.88 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.73s
+vite v7.3.6 building client environment for e2e...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-e2e/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-e2e/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-e2e/assets/index-C8YyDIP1.js   1,316.10 kB │ gzip: 367.94 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.53s
+chromium/production-observer-hidden: PASS
+chromium/workflow-amo: FAIL
+AssertionError [ERR_ASSERTION]: independent contractual reward (base + unused hands + prior-gold interest)
+
+7 !== 6
+
+    at perform (file:///C:/Users/WANGHO%7E1/AppData/Local/Temp/dachoupai-gate-faults-D6SHt9/candidate/harness/e2e.mjs:76:16)
+    at async workflow (file:///C:/Users/WANGHO%7E1/AppData/Local/Temp/dachoupai-gate-faults-D6SHt9/candidate/harness/e2e.mjs:121:5)
+    at async scenario (file:///C:/Users/WANGHO%7E1/AppData/Local/Temp/dachoupai-gate-faults-D6SHt9/candidate/harness/e2e.mjs:97:5)
+    at async file:///C:/Users/WANGHO%7E1/AppData/Local/Temp/dachoupai-gate-faults-D6SHt9/candidate/harness/e2e.mjs:151:66 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 7,
+  expected: 6,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+built-bundle E2E: FAIL; 2 actual scenarios (reward)
