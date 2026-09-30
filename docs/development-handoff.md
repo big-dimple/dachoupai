@@ -1,36 +1,29 @@
 # 大丑牌 开发交接
 
-状态：Phase 1 完成 + 工程防线就位（双端冒烟、release 门禁已全链路验证含推送），`main` = `60f4c71`，typecheck / 28 测试 / build / 双端冒烟全绿。本文是换 session / 换模型恢复上下文的入口，只写当前工作包与唯一下一步；稳定合同见 `docs/GDD.md`。远端 `9e9078e` 的 3D 资产母版包 TODO 已合并进 P0。
+状态：2026-09-30，TODO P0「3D 视觉资产母版包 v1」完成，按 S → A → B 交付。只修改素材、`tools/blender/` 和归属文档；`src/`、游戏规则、加载方式与依赖未改。稳定合同见 `docs/GDD.md`，逐项用途见 TODO P0；按用户要求保留本批次勾选清单供素材验收，阶段状态已回写 ROADMAP。
 
-## 最近完成
+## 当前工作包与已完成
 
-- 工程防线（本提交，移植 board-race 成熟做法）：
-  - `harness/screenshot.mjs` + `npm run shot` / `verify:smoke`：playwright 双端（桌面 1280×800 / 竖屏手机 390×844）跑通「选角 -> 开局」并断言六卡渲染、点击进入 game 场景、无页面错误；截图落 `shots/`（gitignored）。
-  - `scripts/release-checked.mjs` + `npm run release:checked`：测试 + 构建 + 冒烟全绿才提交并 push main；要求 main 分支、只允许已 stage 文件、门禁期间工作区不得变化。
-  - `main.ts` 增加 `?harness=1` 挂钩（仅测试模式暴露 `window.__harness`）。
-  - CI（`.github/workflows/ci.yml`）原有 typecheck+test+build 保留，与本地 verify 对齐。
-- 修复立绘纵向压扁 bug（接入时就存在）：`setDisplaySize` 按完整帧宽高分别求 scale，cover 裁切后被压成横条；改为 `setScale(coverScale)` 双边同比例。冒烟截图确认选角页六张立绘正常满框显示。
-- 六张正式立绘接入（`cd66332`）：`CharacterDefinition.portrait`，BootScene 统一预加载，选角页 3×2 卡片 + fallback 占位，GameScene HUD 角色小头像。
-- 裁切焦点与资源路径修复（`18bf081`）：
-  - `src/game/portraitCrop.ts`：纯函数 `portraitCoverCrop` / `portraitSquareCrop`，选角页 cover 裁切与 HUD 正方裁切共用同一 focal 配置。
-  - 修掉方向反转 bug：原 `offsetY = (drawH - boxH) * 0.8` 实际裁掉头部；现按每角色 `portraitFocusX/Y`（0.52~0.62 / 0.07~0.11，按实际脸部位置估）锚定。
-  - 立绘路径从 `/assets/...` 根路径改为 `import.meta.env.BASE_URL` 拼接，兼容子目录部署；补 `src/vite-env.d.ts`。
-  - 新增 `tests/portraitCrop.test.ts`（真实图幅 1086×1448 + 选角框 352×158）。
+- 39 个 GLB：1 张双面可变形扑克母版、5 档可换插画卡框、1 套三材质示例、11 个道具、8 个爆分词、1 个含 11 条 clip 的动画包、12 个舞台组件。
+- 独立源纹理：纸张 Normal/Roughness、卡面/卡背/插画占位，以及 Holographic / 琉璃 / 鎏金的 BaseColor、Normal、Roughness、Metallic、Emissive、Mask。
+- Phaser 可直接使用的 B 级资源：1920×1080 同投影三层 WebP 背景、3 套透明 16 帧/256px PNG atlas + JSON、6 张既有立绘顶部裁切的 512×512 WebP 头像。原立绘完整保留，没有六角色 3D 模型。
+- 可重建源入口：`tools/blender/build_asset_pack.py`；几何与 PBR helper、Pillow 纹理/裁切/精灵表脚本及 `inspect_asset_pack.mjs` 同目录。重建命令在 TODO P0 本机工具链内，无 `.blend`、FBX 或外部素材下载依赖。
+- 逐文件用途与实际参数：`public/assets/models/asset-pack-v1.json`；预览总表 `public/assets/renders/p0/contact-sheet.webp`，背景合成与头像预览同目录。没有另建说明文档。
 
 ## 验证与证据
 
-- `npm run verify` 全绿；`npm run verify:smoke` 双端通过（桌面 + 390×844 竖屏）。
-- 双端截图在 `shots/`（gitignored）：`desktop-select/game.png`、`mobile-select/game.png`，立绘满框、HUD 头像正常。
+- Blender 5.2.1 无头完整运行；A 级从源重建复测成功。GLB 全部经 gltf-transform inspect 与 Khronos validator 检查：39 个模型，0 errors / 0 warnings，UV0、法线、可替换节点与三形态键保留。
+- 动画包具名 clip 恰为 11 条，每条时间归一到 0～1 秒；导出后补烘焙 Bend/Twist/Arch 曲线，弯曲峰值权重为 1，避免 Blender NLA 形态键导出仅保留末帧零值。Normal 材质补烘焙 MikkTSpace 切线，运行产物不需要几何压缩解码器。
+- 新增素材约 17.08 MB（含清单、纹理、背景、预览、精灵表和头像）；三层背景分别约 0.88 / 0.42 / 0.30 MB。道具 1,532～4,476 tris，核心牌/框/动画 8,416～14,588 tris，舞台组件 4,024～14,624 tris，均在 P0 预算内。
+- 本机目审了素材总表、卡正背、背景合成、六角色头像和特效 atlas；背景中/近景保留透明度，头像保留头饰、脸与肩部。
+- `npm run verify`：typecheck、28 单元测试、build 通过；`npm run verify:smoke`：桌面 1280×800 与手机 390×844 选角 → 开局 → HUD 通过。这是已有游戏流程回归检查，资产接入尚未实施。
 
-## 遗留风险
+## 遗留与边界
 
-- 6 张 PNG 合计约 14.3 MB，BootScene 开局全量预加载；H5 首次打开受网络影响明显（已知问题，见 TODO P1）。
-- 选角页仍是 `#090711` 深色背景，与明亮东方立绘不搭；属 Phase 3 视觉统一范围，不单独修。
+- GLB、预渲染背景、atlas、头像均未接入游戏。Holographic/流光 Mask 留给接入时的 shader；琉璃材质带 glTF Transmission/IOR 扩展，低端渲染器可退回不透明玉色 PBR。
+- 既有 6 张高清立绘约 14.3 MB 仍由 BootScene 全量加载；P1 缩略图与按需高清加载尚未做。
+- 既有选角页仍为深色 UI；Phase 3 视觉统一尚未做，素材交付不代表该阶段已接入。
 
 ## 唯一下一步
 
-**TODO.md 的 P0 批次：3D 视觉资产母版包 v1**（S 级 3D 牌母版/卡框/材质套件优先，其次 A 级演出资源、B 级 2D 直出资源），只产出素材不改代码；风格硬约束、交付规范、性能预算、角色 3D 约束、本机工具链（Blender 5.2.1 无头 / gltf-transform / Playwright 冒烟）都在 TODO P0 内，`tools/blender/make_cube_demo.py` 是跑通的流水线示例。由高端模型接手。
-
-P1（立绘 WebP 压缩，工程任务）可与 P0 并行，完成后把对应批次从 TODO 回写 ROADMAP 并刷新本文。
-
-素材齐后主线进入 Phase 2 Batch 2A（关卡骨架：RunState / StageDefinition，见 TODO.md）。
+主线继续 TODO 的 **Phase 2 Batch 2A：关卡骨架**，建立 RunState / StageDefinition 与三级普通关卡。P0 游戏接入和 P1 立绘加载优化另开独立批次，不夹带进当前已完成素材包。

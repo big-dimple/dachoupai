@@ -1,0 +1,1834 @@
+{
+  "version": 1,
+  "units": "meters",
+  "up": "+Y",
+  "cardFront": "+Z",
+  "source": "tools/blender/build_asset_pack.py",
+  "copyright": "Original procedural geometry/art; existing project portraits; Noto Serif SC mesh outlines (SIL OFL 1.1). No font files redistributed.",
+  "materialHooks": {
+    "mask": "UV0 grayscale; animate UV/hue for flow or holographic response",
+    "glass": "KHR_materials_transmission / IOR, opaque jade fallback"
+  },
+  "assets": [
+    {
+      "file": "characters/amo.avatar.webp",
+      "purpose": "既有立绘裁切 512×512 头像，HUD/商店可直接使用",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 40006
+    },
+    {
+      "file": "characters/azao.avatar.webp",
+      "purpose": "既有立绘裁切 512×512 头像，HUD/商店可直接使用",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 51430
+    },
+    {
+      "file": "characters/erxiang.avatar.webp",
+      "purpose": "既有立绘裁切 512×512 头像，HUD/商店可直接使用",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 43854
+    },
+    {
+      "file": "characters/laohuan.avatar.webp",
+      "purpose": "既有立绘裁切 512×512 头像，HUD/商店可直接使用",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 50934
+    },
+    {
+      "file": "characters/touye.avatar.webp",
+      "purpose": "既有立绘裁切 512×512 头像，HUD/商店可直接使用",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 64572
+    },
+    {
+      "file": "characters/xiemu.avatar.webp",
+      "purpose": "既有立绘裁切 512×512 头像，HUD/商店可直接使用",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 50270
+    },
+    {
+      "file": "models/card-animation-templates.glb",
+      "triangles": 11696,
+      "nodes": [
+        "AnimatedCard",
+        "Fragment_0_0",
+        "Fragment_0_1",
+        "Fragment_1_0",
+        "Fragment_1_1",
+        "Fragment_2_0",
+        "Fragment_2_1",
+        "Fragment_3_0",
+        "Fragment_3_1",
+        "burn_00",
+        "burn_01",
+        "burn_02",
+        "burn_03",
+        "burn_04",
+        "burn_05",
+        "burn_06",
+        "burn_07",
+        "burn_08",
+        "burn_09",
+        "burn_10",
+        "burn_11",
+        "ink_00",
+        "ink_01",
+        "ink_02",
+        "ink_03",
+        "ink_04",
+        "ink_05",
+        "ink_06",
+        "ink_07",
+        "ink_08",
+        "ink_09",
+        "ink_10",
+        "ink_11",
+        "gold-dust_00",
+        "gold-dust_01",
+        "gold-dust_02",
+        "gold-dust_03",
+        "gold-dust_04",
+        "gold-dust_05",
+        "gold-dust_06",
+        "gold-dust_07",
+        "gold-dust_08",
+        "gold-dust_09",
+        "gold-dust_10",
+        "gold-dust_11",
+        "gold-dust_12",
+        "gold-dust_13",
+        "gold-dust_14",
+        "gold-dust_15",
+        "gold-dust_16",
+        "gold-dust_17",
+        "gold-dust_18",
+        "gold-dust_19",
+        "gold-dust_20",
+        "gold-dust_21",
+        "gold-dust_22",
+        "gold-dust_23"
+      ],
+      "materials": [
+        "BackArtwork",
+        "Fire",
+        "FrontArtwork",
+        "gold",
+        "ink",
+        "ivory"
+      ],
+      "purpose": "11 条具名 30fps 卡牌演出；独立可播放，形态键弯曲、裂片与燃烧/墨/金粒子均烘焙在 GLB",
+      "category": "animation",
+      "clips": [
+        {
+          "name": "flip",
+          "purpose": "翻牌",
+          "seconds": 1,
+          "fps": 30
+        },
+        {
+          "name": "draw",
+          "purpose": "抽牌",
+          "seconds": 1,
+          "fps": 30
+        },
+        {
+          "name": "throw",
+          "purpose": "扔牌",
+          "seconds": 1,
+          "fps": 30
+        },
+        {
+          "name": "bounce",
+          "purpose": "弹起",
+          "seconds": 1,
+          "fps": 30
+        },
+        {
+          "name": "spin",
+          "purpose": "旋转",
+          "seconds": 1,
+          "fps": 30
+        },
+        {
+          "name": "bend",
+          "purpose": "弯曲",
+          "seconds": 1,
+          "fps": 30
+        },
+        {
+          "name": "knock-away",
+          "purpose": "被击飞",
+          "seconds": 1,
+          "fps": 30
+        },
+        {
+          "name": "split",
+          "purpose": "裂开",
+          "seconds": 1,
+          "fps": 30
+        },
+        {
+          "name": "burn",
+          "purpose": "燃烧",
+          "seconds": 1,
+          "fps": 30
+        },
+        {
+          "name": "ink",
+          "purpose": "化墨",
+          "seconds": 1,
+          "fps": 30
+        },
+        {
+          "name": "gold-dust",
+          "purpose": "化金粉",
+          "seconds": 1,
+          "fps": 30
+        }
+      ],
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": [
+          "bend",
+          "bounce",
+          "burn",
+          "draw",
+          "flip",
+          "gold-dust",
+          "ink",
+          "knock-away",
+          "spin",
+          "split",
+          "throw"
+        ]
+      },
+      "bytes": 1201644
+    },
+    {
+      "file": "models/joker-frame-common.glb",
+      "triangles": 8416,
+      "nodes": [
+        "Frame_common",
+        "ReplaceableIllustration"
+      ],
+      "materials": [
+        "BackArtwork",
+        "JokerIllustration",
+        "bamboo",
+        "gold",
+        "ivory"
+      ],
+      "purpose": "普通大丑牌卡框；独立插画节点可换图，边框节点可整套替换",
+      "category": "card",
+      "replaceableNodes": [
+        "Frame_common",
+        "ReplaceableIllustration"
+      ],
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 393432
+    },
+    {
+      "file": "models/joker-frame-epic.glb",
+      "triangles": 13564,
+      "nodes": [
+        "Frame_epic",
+        "ReplaceableIllustration"
+      ],
+      "materials": [
+        "BackArtwork",
+        "JokerIllustration",
+        "gold",
+        "ivory",
+        "purple"
+      ],
+      "purpose": "史诗大丑牌卡框；独立插画节点可换图，边框节点可整套替换",
+      "category": "card",
+      "replaceableNodes": [
+        "Frame_epic",
+        "ReplaceableIllustration"
+      ],
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 685884
+    },
+    {
+      "file": "models/joker-frame-legendary.glb",
+      "triangles": 13564,
+      "nodes": [
+        "Frame_legendary",
+        "ReplaceableIllustration"
+      ],
+      "materials": [
+        "BackArtwork",
+        "JokerIllustration",
+        "gold",
+        "ivory",
+        "red"
+      ],
+      "purpose": "传说大丑牌卡框；独立插画节点可换图，边框节点可整套替换",
+      "category": "card",
+      "replaceableNodes": [
+        "Frame_legendary",
+        "ReplaceableIllustration"
+      ],
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 685888
+    },
+    {
+      "file": "models/joker-frame-rare.glb",
+      "triangles": 11872,
+      "nodes": [
+        "Frame_rare",
+        "ReplaceableIllustration"
+      ],
+      "materials": [
+        "BackArtwork",
+        "JokerIllustration",
+        "gold",
+        "ivory",
+        "jade"
+      ],
+      "purpose": "稀有大丑牌卡框；独立插画节点可换图，边框节点可整套替换",
+      "category": "card",
+      "replaceableNodes": [
+        "Frame_rare",
+        "ReplaceableIllustration"
+      ],
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 537488
+    },
+    {
+      "file": "models/joker-frame-special.glb",
+      "triangles": 14588,
+      "nodes": [
+        "Frame_special",
+        "ReplaceableIllustration"
+      ],
+      "materials": [
+        "BackArtwork",
+        "JokerIllustration",
+        "Kit_holographic",
+        "gold",
+        "ivory",
+        "jade"
+      ],
+      "purpose": "特殊大丑牌卡框；独立插画节点可换图，边框节点可整套替换",
+      "category": "card",
+      "replaceableNodes": [
+        "Frame_special",
+        "ReplaceableIllustration"
+      ],
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 905892
+    },
+    {
+      "file": "models/material-kit.glb",
+      "triangles": 7812,
+      "nodes": [
+        "material-kit"
+      ],
+      "materials": [
+        "Kit_gilded",
+        "Kit_glass",
+        "Kit_holographic",
+        "ivory"
+      ],
+      "purpose": "Holographic / 琉璃 / 鎏金 PBR 示例球，18 张独立通道纹理可复用",
+      "category": "material",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 595996
+    },
+    {
+      "file": "models/poker-card-master.glb",
+      "triangles": 9536,
+      "nodes": [
+        "PokerCardMaster"
+      ],
+      "materials": [
+        "BackArtwork",
+        "FrontArtwork",
+        "gold",
+        "ivory"
+      ],
+      "purpose": "带纸张 PBR、双面 UV、金边和 Bend/Twist/Arch 形态键的可换卡面母版",
+      "category": "card",
+      "morphTargets": [
+        "Bend",
+        "Twist",
+        "Arch"
+      ],
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 1051028
+    },
+    {
+      "file": "models/prop-bell.glb",
+      "triangles": 4320,
+      "nodes": [
+        "prop-bell"
+      ],
+      "materials": [
+        "gold",
+        "ink"
+      ],
+      "purpose": "铜铃：中空铃身、悬环和铃舌，触发连锁",
+      "category": "prop",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 124228
+    },
+    {
+      "file": "models/prop-coin.glb",
+      "triangles": 4352,
+      "nodes": [
+        "prop-coin"
+      ],
+      "materials": [
+        "gold"
+      ],
+      "purpose": "铜钱：方孔铜钱与浮雕云纹，奖励粒子/掉落",
+      "category": "prop",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 134420
+    },
+    {
+      "file": "models/prop-dice.glb",
+      "triangles": 2708,
+      "nodes": [
+        "prop-dice"
+      ],
+      "materials": [
+        "ink",
+        "ivory",
+        "red"
+      ],
+      "purpose": "骰子：米白圆角、六面标准点数，骰爷演出",
+      "category": "prop",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 91160
+    },
+    {
+      "file": "models/prop-fan.glb",
+      "triangles": 2836,
+      "nodes": [
+        "prop-fan"
+      ],
+      "materials": [
+        "gold",
+        "ivory",
+        "jade",
+        "wood"
+      ],
+      "purpose": "扇子：折纸扇面与竹骨，借东风演出",
+      "category": "prop",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 105360
+    },
+    {
+      "file": "models/prop-gold-ingot.glb",
+      "triangles": 2480,
+      "nodes": [
+        "prop-gold-ingot"
+      ],
+      "materials": [
+        "gold"
+      ],
+      "purpose": "金锭：元宝舟形凹面，金币与爆分奖励",
+      "category": "prop",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 75756
+    },
+    {
+      "file": "models/prop-jade-plaque.glb",
+      "triangles": 2268,
+      "nodes": [
+        "prop-jade-plaque"
+      ],
+      "materials": [
+        "gold",
+        "jade",
+        "red"
+      ],
+      "purpose": "玉牌：玉青牌身、金纹与红穗，稀有奖励",
+      "category": "prop",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 78608
+    },
+    {
+      "file": "models/prop-opera-mask.glb",
+      "triangles": 3568,
+      "nodes": [
+        "prop-opera-mask"
+      ],
+      "materials": [
+        "gold",
+        "ink",
+        "ivory",
+        "red"
+      ],
+      "purpose": "面具：原创玉色戏曲面具，角色身份演出",
+      "category": "prop",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 107972
+    },
+    {
+      "file": "models/prop-seal.glb",
+      "triangles": 2644,
+      "nodes": [
+        "prop-seal"
+      ],
+      "materials": [
+        "gold",
+        "jade",
+        "red"
+      ],
+      "purpose": "印章：朱红印座与玉柄，确认/命中演出",
+      "category": "prop",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 109300
+    },
+    {
+      "file": "models/prop-small-gong.glb",
+      "triangles": 3052,
+      "nodes": [
+        "prop-small-gong"
+      ],
+      "materials": [
+        "gold",
+        "red",
+        "wood"
+      ],
+      "purpose": "小锣：金属锣面与槌，命中反馈",
+      "category": "prop",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 95628
+    },
+    {
+      "file": "models/prop-talisman.glb",
+      "triangles": 1532,
+      "nodes": [
+        "prop-talisman"
+      ],
+      "materials": [
+        "ivory",
+        "red"
+      ],
+      "purpose": "纸符：微卷纸张与原创朱砂符线，施法粒子",
+      "category": "prop",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 57720
+    },
+    {
+      "file": "models/prop-wine-bowl.glb",
+      "triangles": 4476,
+      "nodes": [
+        "prop-wine-bowl"
+      ],
+      "materials": [
+        "ivory",
+        "jade",
+        "purple"
+      ],
+      "purpose": "酒碗：米白釉面玉青口沿，市井舞台道具",
+      "category": "prop",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 136372
+    },
+    {
+      "file": "models/stage-censer.glb",
+      "triangles": 4340,
+      "nodes": [
+        "stage-censer"
+      ],
+      "materials": [
+        "gold",
+        "ivory",
+        "red",
+        "wood"
+      ],
+      "purpose": "香炉：三足鎏金炉、双耳和香条",
+      "category": "stage",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 140252
+    },
+    {
+      "file": "models/stage-cloud-plinth.glb",
+      "triangles": 5496,
+      "nodes": [
+        "stage-cloud-plinth"
+      ],
+      "materials": [
+        "gold",
+        "ivory",
+        "jade"
+      ],
+      "purpose": "云纹地台：玉青基座与米白台面",
+      "category": "stage",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 169988
+    },
+    {
+      "file": "models/stage-drape.glb",
+      "triangles": 5764,
+      "nodes": [
+        "stage-drape"
+      ],
+      "materials": [
+        "gold",
+        "red",
+        "wood"
+      ],
+      "purpose": "布幔：带褶皱的双面朱红丝帘与金边",
+      "category": "stage",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 245860
+    },
+    {
+      "file": "models/stage-drum.glb",
+      "triangles": 6800,
+      "nodes": [
+        "stage-drum"
+      ],
+      "materials": [
+        "gold",
+        "ivory",
+        "red",
+        "wood"
+      ],
+      "purpose": "鼓：朱红鼓身、米白鼓皮、金钉与鼓架",
+      "category": "stage",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 253668
+    },
+    {
+      "file": "models/stage-gong.glb",
+      "triangles": 4024,
+      "nodes": [
+        "stage-gong"
+      ],
+      "materials": [
+        "gold",
+        "red",
+        "wood"
+      ],
+      "purpose": "铜锣：悬挂锣面、红木架与锣槌",
+      "category": "stage",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 179592
+    },
+    {
+      "file": "models/stage-lantern.glb",
+      "triangles": 8360,
+      "nodes": [
+        "stage-lantern"
+      ],
+      "materials": [
+        "gold",
+        "red"
+      ],
+      "purpose": "灯笼：朱红丝灯、金骨、吊环和穗",
+      "category": "stage",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 248604
+    },
+    {
+      "file": "models/stage-neon-arch.glb",
+      "triangles": 13088,
+      "nodes": [
+        "stage-neon-arch"
+      ],
+      "materials": [
+        "Jade_neon",
+        "Purple_neon",
+        "bamboo",
+        "gold",
+        "ivory",
+        "jade",
+        "red"
+      ],
+      "purpose": "未来东方霓虹牌坊：传统飞檐加玉青/绛紫自发光管",
+      "category": "stage",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 508444
+    },
+    {
+      "file": "models/stage-screen.glb",
+      "triangles": 12528,
+      "nodes": [
+        "stage-screen"
+      ],
+      "materials": [
+        "gold",
+        "ivory",
+        "jade",
+        "wood"
+      ],
+      "purpose": "屏风：三折米白纸屏、金格与玉色云纹",
+      "category": "stage",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 750224
+    },
+    {
+      "file": "models/stage-stage.glb",
+      "triangles": 14624,
+      "nodes": [
+        "stage-stage"
+      ],
+      "materials": [
+        "bamboo",
+        "gold",
+        "ivory",
+        "jade",
+        "red",
+        "wood"
+      ],
+      "purpose": "戏台：朱红柱、玉青瓦、云纹台裙与木阶",
+      "category": "stage",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 643836
+    },
+    {
+      "file": "models/stage-table-chairs.glb",
+      "triangles": 7336,
+      "nodes": [
+        "stage-table-chairs"
+      ],
+      "materials": [
+        "gold",
+        "red",
+        "wood"
+      ],
+      "purpose": "桌椅：云纹红木桌与成对靠背椅",
+      "category": "stage",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 411500
+    },
+    {
+      "file": "models/stage-wine-jar.glb",
+      "triangles": 5816,
+      "nodes": [
+        "stage-wine-jar"
+      ],
+      "materials": [
+        "gold",
+        "ivory",
+        "purple",
+        "red"
+      ],
+      "purpose": "酒坛：绛紫釉、红布盖与米白标签",
+      "category": "stage",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 182520
+    },
+    {
+      "file": "models/stage-wood-arch.glb",
+      "triangles": 11712,
+      "nodes": [
+        "stage-wood-arch"
+      ],
+      "materials": [
+        "bamboo",
+        "gold",
+        "ivory",
+        "jade",
+        "red"
+      ],
+      "purpose": "木质牌坊：飞檐、朱柱、金箍，可模块拼接",
+      "category": "stage",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 466076
+    },
+    {
+      "file": "models/word-critical.glb",
+      "triangles": 6266,
+      "nodes": [
+        "word-critical"
+      ],
+      "materials": [
+        "gold",
+        "red"
+      ],
+      "purpose": "爆分词「暴击」：立体鎏金字与朱红底牌，可整体缩放/换材质",
+      "category": "word",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 212736
+    },
+    {
+      "file": "models/word-double.glb",
+      "triangles": 8738,
+      "nodes": [
+        "word-double"
+      ],
+      "materials": [
+        "gold",
+        "red"
+      ],
+      "purpose": "爆分词「翻倍」：立体鎏金字与朱红底牌，可整体缩放/换材质",
+      "category": "word",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 295408
+    },
+    {
+      "file": "models/word-east-wind.glb",
+      "triangles": 7556,
+      "nodes": [
+        "word-east-wind"
+      ],
+      "materials": [
+        "gold",
+        "red"
+      ],
+      "purpose": "爆分词「借东风」：立体鎏金字与朱红底牌，可整体缩放/换材质",
+      "category": "word",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 254756
+    },
+    {
+      "file": "models/word-full-house.glb",
+      "triangles": 11472,
+      "nodes": [
+        "word-full-house"
+      ],
+      "materials": [
+        "gold",
+        "red"
+      ],
+      "purpose": "爆分词「满堂彩」：立体鎏金字与朱红底牌，可整体缩放/换材质",
+      "category": "word",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 387372
+    },
+    {
+      "file": "models/word-good-fortune.glb",
+      "triangles": 3746,
+      "nodes": [
+        "word-good-fortune"
+      ],
+      "materials": [
+        "gold",
+        "red"
+      ],
+      "purpose": "爆分词「大吉」：立体鎏金字与朱红底牌，可整体缩放/换材质",
+      "category": "word",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 127336
+    },
+    {
+      "file": "models/word-out-of-control.glb",
+      "triangles": 10292,
+      "nodes": [
+        "word-out-of-control"
+      ],
+      "materials": [
+        "gold",
+        "red"
+      ],
+      "purpose": "爆分词「全场失控」：立体鎏金字与朱红底牌，可整体缩放/换材质",
+      "category": "word",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 346776
+    },
+    {
+      "file": "models/word-times-2.glb",
+      "triangles": 2580,
+      "nodes": [
+        "word-times-2"
+      ],
+      "materials": [
+        "gold",
+        "red"
+      ],
+      "purpose": "爆分词「×2」：立体鎏金字与朱红底牌，可整体缩放/换材质",
+      "category": "word",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 88416
+    },
+    {
+      "file": "models/word-times-4.glb",
+      "triangles": 1840,
+      "nodes": [
+        "word-times-4"
+      ],
+      "materials": [
+        "gold",
+        "red"
+      ],
+      "purpose": "爆分词「×4」：立体鎏金字与朱红底牌，可整体缩放/换材质",
+      "category": "word",
+      "validation": {
+        "gltfTransformInspect": "passed",
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "animationClips": []
+      },
+      "bytes": 63252
+    },
+    {
+      "file": "renders/p0/animation-bend.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 16848
+    },
+    {
+      "file": "renders/p0/animation-bounce.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 13842
+    },
+    {
+      "file": "renders/p0/animation-burn.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 3342
+    },
+    {
+      "file": "renders/p0/animation-draw.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 13944
+    },
+    {
+      "file": "renders/p0/animation-flip.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 6462
+    },
+    {
+      "file": "renders/p0/animation-gold-dust.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 3394
+    },
+    {
+      "file": "renders/p0/animation-ink.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 2276
+    },
+    {
+      "file": "renders/p0/animation-knock-away.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 12182
+    },
+    {
+      "file": "renders/p0/animation-spin.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 20624
+    },
+    {
+      "file": "renders/p0/animation-split.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 10102
+    },
+    {
+      "file": "renders/p0/animation-throw.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 19718
+    },
+    {
+      "file": "renders/p0/avatars-preview.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "bytes": 326704
+    },
+    {
+      "file": "renders/p0/background-composite.webp",
+      "purpose": "三层东方戏台背景的合成预览；选角/牌桌构图评审",
+      "category": "raster",
+      "width": 1920,
+      "height": 1080,
+      "alpha": false,
+      "bytes": 91812
+    },
+    {
+      "file": "renders/p0/background-far.webp",
+      "purpose": "东方戏台视差背景；far 远景不透明 / mid 中景与 near 近景透明，同投影 1920×1080",
+      "category": "raster",
+      "width": 1920,
+      "height": 1080,
+      "alpha": false,
+      "bytes": 875866
+    },
+    {
+      "file": "renders/p0/background-mid.webp",
+      "purpose": "东方戏台视差背景；far 远景不透明 / mid 中景与 near 近景透明，同投影 1920×1080",
+      "category": "raster",
+      "width": 1920,
+      "height": 1080,
+      "alpha": true,
+      "bytes": 417880
+    },
+    {
+      "file": "renders/p0/background-near.webp",
+      "purpose": "东方戏台视差背景；far 远景不透明 / mid 中景与 near 近景透明，同投影 1920×1080",
+      "category": "raster",
+      "width": 1920,
+      "height": 1080,
+      "alpha": true,
+      "bytes": 300360
+    },
+    {
+      "file": "renders/p0/contact-sheet.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 1500,
+      "height": 2860,
+      "alpha": false,
+      "bytes": 215732
+    },
+    {
+      "file": "renders/p0/joker-frame-common.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 13540
+    },
+    {
+      "file": "renders/p0/joker-frame-epic.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 14900
+    },
+    {
+      "file": "renders/p0/joker-frame-legendary.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 15808
+    },
+    {
+      "file": "renders/p0/joker-frame-rare.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 16046
+    },
+    {
+      "file": "renders/p0/joker-frame-special.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 16032
+    },
+    {
+      "file": "renders/p0/material-kit.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 7668
+    },
+    {
+      "file": "renders/p0/poker-card-back.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 92980
+    },
+    {
+      "file": "renders/p0/poker-card-master.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 108564
+    },
+    {
+      "file": "renders/p0/prop-bell.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 9840
+    },
+    {
+      "file": "renders/p0/prop-coin.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 12214
+    },
+    {
+      "file": "renders/p0/prop-dice.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 7612
+    },
+    {
+      "file": "renders/p0/prop-fan.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 6926
+    },
+    {
+      "file": "renders/p0/prop-gold-ingot.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 6372
+    },
+    {
+      "file": "renders/p0/prop-jade-plaque.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 7094
+    },
+    {
+      "file": "renders/p0/prop-opera-mask.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 9332
+    },
+    {
+      "file": "renders/p0/prop-seal.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 14560
+    },
+    {
+      "file": "renders/p0/prop-small-gong.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 8906
+    },
+    {
+      "file": "renders/p0/prop-talisman.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 6056
+    },
+    {
+      "file": "renders/p0/prop-wine-bowl.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 7506
+    },
+    {
+      "file": "renders/p0/stage-censer.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 10184
+    },
+    {
+      "file": "renders/p0/stage-cloud-plinth.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 9864
+    },
+    {
+      "file": "renders/p0/stage-drape.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 10764
+    },
+    {
+      "file": "renders/p0/stage-drum.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 14846
+    },
+    {
+      "file": "renders/p0/stage-gong.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 11074
+    },
+    {
+      "file": "renders/p0/stage-lantern.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 6680
+    },
+    {
+      "file": "renders/p0/stage-neon-arch.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 13926
+    },
+    {
+      "file": "renders/p0/stage-screen.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 20088
+    },
+    {
+      "file": "renders/p0/stage-stage.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 22548
+    },
+    {
+      "file": "renders/p0/stage-table-chairs.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 10924
+    },
+    {
+      "file": "renders/p0/stage-wine-jar.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 11134
+    },
+    {
+      "file": "renders/p0/stage-wood-arch.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 12146
+    },
+    {
+      "file": "renders/p0/word-critical.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 14260
+    },
+    {
+      "file": "renders/p0/word-double.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 14530
+    },
+    {
+      "file": "renders/p0/word-east-wind.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 13290
+    },
+    {
+      "file": "renders/p0/word-full-house.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 14416
+    },
+    {
+      "file": "renders/p0/word-good-fortune.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 12764
+    },
+    {
+      "file": "renders/p0/word-out-of-control.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 12942
+    },
+    {
+      "file": "renders/p0/word-times-2.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 13132
+    },
+    {
+      "file": "renders/p0/word-times-4.webp",
+      "purpose": "资产或动画姿态预览，供美术评审与选型",
+      "category": "raster",
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 12640
+    },
+    {
+      "file": "sprites/p0/hit-cinnabar.json",
+      "purpose": "256px 单帧、16 帧 30fps 透明特效精灵表 / Phaser atlas 元数据",
+      "category": "raster",
+      "bytes": 6155
+    },
+    {
+      "file": "sprites/p0/hit-cinnabar.png",
+      "purpose": "256px 单帧、16 帧 30fps 透明特效精灵表 / Phaser atlas 元数据",
+      "category": "raster",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "bytes": 179868
+    },
+    {
+      "file": "sprites/p0/play-ruyi.json",
+      "purpose": "256px 单帧、16 帧 30fps 透明特效精灵表 / Phaser atlas 元数据",
+      "category": "raster",
+      "bytes": 6104
+    },
+    {
+      "file": "sprites/p0/play-ruyi.png",
+      "purpose": "256px 单帧、16 帧 30fps 透明特效精灵表 / Phaser atlas 元数据",
+      "category": "raster",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "bytes": 81080
+    },
+    {
+      "file": "sprites/p0/score-gold.json",
+      "purpose": "256px 单帧、16 帧 30fps 透明特效精灵表 / Phaser atlas 元数据",
+      "category": "raster",
+      "bytes": 6121
+    },
+    {
+      "file": "sprites/p0/score-gold.png",
+      "purpose": "256px 单帧、16 帧 30fps 透明特效精灵表 / Phaser atlas 元数据",
+      "category": "raster",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "bytes": 154312
+    },
+    {
+      "file": "textures/p0/card-back.png",
+      "purpose": "可编辑源纹理：card-back（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 1024,
+      "height": 1024,
+      "alpha": false,
+      "bytes": 18370
+    },
+    {
+      "file": "textures/p0/card-front.png",
+      "purpose": "可编辑源纹理：card-front（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 1024,
+      "height": 1024,
+      "alpha": false,
+      "bytes": 21298
+    },
+    {
+      "file": "textures/p0/gilded-basecolor.png",
+      "purpose": "可编辑源纹理：gilded-basecolor（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 6465
+    },
+    {
+      "file": "textures/p0/gilded-emissive.png",
+      "purpose": "可编辑源纹理：gilded-emissive（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 10131
+    },
+    {
+      "file": "textures/p0/gilded-mask.png",
+      "purpose": "可编辑源纹理：gilded-mask（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 2115
+    },
+    {
+      "file": "textures/p0/gilded-metallic.png",
+      "purpose": "可编辑源纹理：gilded-metallic（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 919
+    },
+    {
+      "file": "textures/p0/gilded-normal.png",
+      "purpose": "可编辑源纹理：gilded-normal（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 5526
+    },
+    {
+      "file": "textures/p0/gilded-roughness.png",
+      "purpose": "可编辑源纹理：gilded-roughness（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 2776
+    },
+    {
+      "file": "textures/p0/glass-basecolor.png",
+      "purpose": "可编辑源纹理：glass-basecolor（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 6354
+    },
+    {
+      "file": "textures/p0/glass-emissive.png",
+      "purpose": "可编辑源纹理：glass-emissive（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 9721
+    },
+    {
+      "file": "textures/p0/glass-mask.png",
+      "purpose": "可编辑源纹理：glass-mask（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 2115
+    },
+    {
+      "file": "textures/p0/glass-metallic.png",
+      "purpose": "可编辑源纹理：glass-metallic（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 334
+    },
+    {
+      "file": "textures/p0/glass-normal.png",
+      "purpose": "可编辑源纹理：glass-normal（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 5526
+    },
+    {
+      "file": "textures/p0/glass-roughness.png",
+      "purpose": "可编辑源纹理：glass-roughness（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 1930
+    },
+    {
+      "file": "textures/p0/holographic-basecolor.png",
+      "purpose": "可编辑源纹理：holographic-basecolor（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 6190
+    },
+    {
+      "file": "textures/p0/holographic-emissive.png",
+      "purpose": "可编辑源纹理：holographic-emissive（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 11633
+    },
+    {
+      "file": "textures/p0/holographic-mask.png",
+      "purpose": "可编辑源纹理：holographic-mask（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 2115
+    },
+    {
+      "file": "textures/p0/holographic-metallic.png",
+      "purpose": "可编辑源纹理：holographic-metallic（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 920
+    },
+    {
+      "file": "textures/p0/holographic-normal.png",
+      "purpose": "可编辑源纹理：holographic-normal（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 5526
+    },
+    {
+      "file": "textures/p0/holographic-roughness.png",
+      "purpose": "可编辑源纹理：holographic-roughness（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 1986
+    },
+    {
+      "file": "textures/p0/joker-artwork.png",
+      "purpose": "可编辑源纹理：joker-artwork（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 7088
+    },
+    {
+      "file": "textures/p0/paper-normal.png",
+      "purpose": "可编辑源纹理：paper-normal（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 16418
+    },
+    {
+      "file": "textures/p0/paper-roughness.png",
+      "purpose": "可编辑源纹理：paper-roughness（UV0，PNG，无外部依赖）",
+      "category": "raster",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "bytes": 6482
+    }
+  ],
+  "fontLicense": "https://github.com/notofonts/noto-cjk/blob/main/Serif/LICENSE",
+  "validation": {
+    "models": 39,
+    "totalAssetBytes": 17079697,
+    "budgetBytes": 20000000,
+    "geometryCompression": "none (no decoder dependency)",
+    "checks": "gltf-transform inspect + Khronos validator + topology/UV/morph/clip/node budgets",
+    "tangentSpace": "MikkTSpace on Normal-mapped primitives"
+  }
+}
