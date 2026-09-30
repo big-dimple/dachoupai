@@ -1,0 +1,515 @@
+{
+  "taskId": "R05",
+  "testedCommit": "4227bca813a4d478f9685c260745a884c0b4997e",
+  "baseCommit": "6589288ee5f76890d374cd853178b51042ba2f9b",
+  "completedAt": "2026-09-30T20:26:14.910Z",
+  "rulesVersion": "r2",
+  "contentVersion": "quality-r2-run-v2",
+  "contentHash": "json-fnv-v1:004135ca2b38f6ee",
+  "testedTree": {
+    "gameSourceDiff": "",
+    "scope": "Checked-in implementation; only evidence/progress docs generated afterward."
+  },
+  "environment": {
+    "os": "Windows_NT 10.0.26200",
+    "node": "v22.20.0",
+    "browser": "153.0.8010.12",
+    "device": "Eight CSS viewport sizes; actual Chromium mouse/touchscreen/CDP touch input, not physical phones",
+    "dpr": 2
+  },
+  "completionScope": "Automatic layout and input subitems only, as permitted by R05. Physical Android Chrome/iPhone Safari acceptance NOT_RUN.",
+  "changes": [
+    "Pure CSS-pixel desktop/portrait/landscape/compact layout; body text >=14px, primary actions >=48px, secondary >=44px, exposed card hit strips >=36px. Rotation preserves durable state, selection and open confirmations.",
+    "Tap/select/cancel/long-press/drag, five-card cap, public preview and active-scoring markers, sort preserving selection, deck counts/filters; shop detail then explicit purchase, separate sale confirmation and reorder.",
+    "Shared independent avatar crop and six existing WebP thumbnails replace original PNG startup requests; DPR text texture cap 2. Original source art and GLB retained.",
+    "Selection updates existing card/HUD views; sorting and next-hand dealing rebuild only hand views. Disabled controls become enabled in place; presentation cancellation resets transient transforms without rebuilding the entire stage.",
+    "Real touch harness uses observed hit geometry and normal DOM confirmations; no run-state writes or private action calls. Test-first CSS, narrow-screen, touch compatibility and whole-stage-redraw failures retained."
+  ],
+  "checks": [
+    {
+      "name": "typecheck-unit-build",
+      "command": "npm run verify",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r05-2026-10-01/verify.txt",
+      "tests": 164,
+      "testFiles": 20,
+      "layoutUnitTests": 12,
+      "scope": "Includes r2 goldens; no score expectations altered."
+    },
+    {
+      "name": "css-layout-and-real-touch",
+      "command": "LAYOUT_EVIDENCE_DIR=docs/production/evidence/r05-2026-10-01/layout npm run test:layout:browser",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout.txt",
+      "report": "docs/production/evidence/r05-2026-10-01/layout/layout.json",
+      "checks": [
+        {
+          "name": "select/320x568",
+          "status": "PASS"
+        },
+        {
+          "name": "shop/320x568",
+          "status": "PASS"
+        },
+        {
+          "name": "table/320x568",
+          "status": "PASS"
+        },
+        {
+          "name": "select/360x640",
+          "status": "PASS"
+        },
+        {
+          "name": "shop/360x640",
+          "status": "PASS"
+        },
+        {
+          "name": "table/360x640",
+          "status": "PASS"
+        },
+        {
+          "name": "select/390x844",
+          "status": "PASS"
+        },
+        {
+          "name": "shop/390x844",
+          "status": "PASS"
+        },
+        {
+          "name": "table/390x844",
+          "status": "PASS"
+        },
+        {
+          "name": "select/430x932",
+          "status": "PASS"
+        },
+        {
+          "name": "shop/430x932",
+          "status": "PASS"
+        },
+        {
+          "name": "table/430x932",
+          "status": "PASS"
+        },
+        {
+          "name": "select/844x390",
+          "status": "PASS"
+        },
+        {
+          "name": "shop/844x390",
+          "status": "PASS"
+        },
+        {
+          "name": "table/844x390",
+          "status": "PASS"
+        },
+        {
+          "name": "select/1024x768",
+          "status": "PASS"
+        },
+        {
+          "name": "shop/1024x768",
+          "status": "PASS"
+        },
+        {
+          "name": "table/1024x768",
+          "status": "PASS"
+        },
+        {
+          "name": "select/1280x720",
+          "status": "PASS"
+        },
+        {
+          "name": "shop/1280x720",
+          "status": "PASS"
+        },
+        {
+          "name": "table/1280x720",
+          "status": "PASS"
+        },
+        {
+          "name": "select/768x1024",
+          "status": "PASS"
+        },
+        {
+          "name": "shop/768x1024",
+          "status": "PASS"
+        },
+        {
+          "name": "table/768x1024",
+          "status": "PASS"
+        },
+        {
+          "name": "touch/selection-preserves-stage-and-card-views",
+          "status": "PASS"
+        },
+        {
+          "name": "rotated-table",
+          "status": "PASS"
+        },
+        {
+          "name": "touch/select-limit-cancel-longpress-sort-deck-rotate-drag-confirm",
+          "status": "PASS"
+        },
+        {
+          "name": "state/touye",
+          "status": "PASS"
+        },
+        {
+          "name": "state/xiemu",
+          "status": "PASS"
+        },
+        {
+          "name": "state/amo",
+          "status": "PASS"
+        }
+      ],
+      "input": "touchscreen.tap / Input.dispatchTouchEvent touchStart, touchMove, touchEnd, touchCancel / keyboard",
+      "viewports": [
+        [
+          320,
+          568
+        ],
+        [
+          360,
+          640
+        ],
+        [
+          390,
+          844
+        ],
+        [
+          430,
+          932
+        ],
+        [
+          844,
+          390
+        ],
+        [
+          1024,
+          768
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          768,
+          1024
+        ]
+      ]
+    },
+    {
+      "name": "actual-ui-and-exact-replay",
+      "command": "DOMAIN_EVIDENCE_DIR=docs/production/evidence/r05-2026-10-01/domain npm run test:domain:browser",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r05-2026-10-01/domain.txt",
+      "report": "docs/production/evidence/r05-2026-10-01/domain/domain-replay.json",
+      "runs": [
+        {
+          "name": "desktop",
+          "status": "PASS",
+          "input": "mouse.click",
+          "commands": 10,
+          "checkpoints": 6,
+          "stateHash": "json-fnv-v1:bbad9009bd42f61d",
+          "errors": []
+        },
+        {
+          "name": "mobile",
+          "status": "PASS",
+          "input": "touchscreen.tap",
+          "commands": 10,
+          "checkpoints": 6,
+          "stateHash": "json-fnv-v1:bbad9009bd42f61d",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "name": "actual-browser-recovery",
+      "command": "RECOVERY_EVIDENCE_DIR=docs/production/evidence/r05-2026-10-01/recovery npm run test:recovery:browser",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r05-2026-10-01/recovery.txt",
+      "report": "docs/production/evidence/r05-2026-10-01/recovery/recovery.json",
+      "scenarios": 18,
+      "reentries": 100,
+      "observations": {
+        "before": {
+          "children": 1,
+          "shutdownListeners": 14
+        },
+        "after": {
+          "children": 1,
+          "shutdownListeners": 14
+        }
+      }
+    },
+    {
+      "name": "content",
+      "command": "npm run verify:content",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r05-2026-10-01/content.txt",
+      "definitions": 5,
+      "conservativeEventBound": 82
+    },
+    {
+      "name": "startup-smoke",
+      "command": "npm run verify:smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r05-2026-10-01/smoke.txt",
+      "scope": "Desktop mouse/mobile touch startup only; not complete-run or phone acceptance."
+    },
+    {
+      "name": "scene-shots",
+      "command": "npm run shot",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r05-2026-10-01/shot.txt",
+      "scope": "Ignored startup screenshots; fixed-SHA layout/touch/recovery evidence retained in artifacts."
+    },
+    {
+      "name": "plan-counterexamples",
+      "command": "node scripts/check-production-plan.mjs --self-test",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r05-2026-10-01/plan-self-test.txt",
+      "scope": "One valid and 13 invalid fixtures; protocol only."
+    },
+    {
+      "name": "plan-structure",
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r05-2026-10-01/plan-check.txt",
+      "scope": "R05 engineering subitems closed and R06 ready; does not certify device/human/art acceptance."
+    }
+  ],
+  "testFirstEvidence": [
+    {
+      "name": "missing-layout-module",
+      "testedCommit": "6589288ee5f76890d374cd853178b51042ba2f9b",
+      "command": "vitest run tests/layout.test.ts",
+      "status": "FAIL",
+      "exitCode": 1,
+      "evidence": "docs/production/evidence/r05-2026-10-01/red-layout.txt",
+      "scope": "New contract tests before layout implementation.",
+      "invocationNote": "Vitest suite and failure output retained; original npm/npx shell prefix not recorded."
+    },
+    {
+      "name": "old-css-and-first-load",
+      "testedCommit": "6589288ee5f76890d374cd853178b51042ba2f9b",
+      "command": "node harness/layout.mjs",
+      "status": "FAIL",
+      "exitCode": 1,
+      "evidence": "docs/production/evidence/r05-2026-10-01/red-css.txt",
+      "report": "docs/production/evidence/r05-2026-10-01/red-css/layout.json",
+      "scope": "Seven actual old selector sizes; FIT letterbox, tiny text, original PNG loads.",
+      "invocationNote": "Browser runner output retained; original npm shell prefix not recorded."
+    },
+    {
+      "name": "compact-touch-regressions",
+      "testedCommit": "6589288ee5f76890d374cd853178b51042ba2f9b",
+      "workingTree": "Partial R05 implementation; exact dirtyState and observations retained, not clean final SHA",
+      "status": "FAIL",
+      "evidence": "docs/production/evidence/r05-2026-10-01/narrow-observation/layout.json",
+      "additionalEvidence": "docs/production/evidence/r05-2026-10-01/trade-observation/domain-replay.json",
+      "scope": "Forced canvas height prevented narrow touch action; disabling capture produced compatibility mouse double-trigger. Compact layout and restored capture fix both."
+    },
+    {
+      "name": "selection-recreates-stage",
+      "testedCommit": "85d5555c895c21cda7ec0066471f0f8696880ef0",
+      "workingTree": "New read-only object identity assertions before view-update fix",
+      "command": "LAYOUT_EVIDENCE_DIR=docs/production/evidence/r05-2026-10-01/selection-red npm run test:layout:browser",
+      "status": "FAIL",
+      "exitCode": 1,
+      "evidence": "docs/production/evidence/r05-2026-10-01/selection-red.txt",
+      "report": "docs/production/evidence/r05-2026-10-01/selection-red/layout.json",
+      "screenshot": "docs/production/evidence/r05-2026-10-01/selection-red/layout-failure.png"
+    }
+  ],
+  "firstLoad": {
+    "status": "PASS",
+    "scope": "Actual selector asset requests in layout report contain six avatar WebP files and no original character PNG or GLB.",
+    "sixAvatarFileBytes": 301066,
+    "transferBudgetBenchmark": "NOT_RUN",
+    "decodedTextureBudget": "NOT_RUN"
+  },
+  "engineeringVisualReview": {
+    "status": "PASS",
+    "scope": "Agent viewed fixed-SHA pair preview and landscape screenshots plus preceding 320/390 layouts: labels, active-scoring stars, character state and primary actions. Technical information review only; no aesthetic or human acceptance."
+  },
+  "artifacts": [
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/select-390x844.png",
+      "bytes": 390000,
+      "sha256": "6beaaef33e3c4612d4cc0882382a6e9da192ffd8df6fdaf2a4e5b0fbac895575"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/shop-390x844.png",
+      "bytes": 117355,
+      "sha256": "7cf46f61746e25e3a49b99cd06f878d98d8a122dea0dd22e515cb53d9972e813"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/table-1024x768.png",
+      "bytes": 218171,
+      "sha256": "edd5a71e8b688ff07e9cf813fd1455c2591a4f3dc71a288e700ff3dec736d992"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/table-1280x720.png",
+      "bytes": 239642,
+      "sha256": "a9c3a08f90ff1cd612e0c793f4214a183136c3c523326fe807c29a145501eac6"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/table-320x568.png",
+      "bytes": 160332,
+      "sha256": "2617a5e17344691e85309c60ab329b057088f31b3165e8da94bd105abee9f42b"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/table-360x640.png",
+      "bytes": 177883,
+      "sha256": "fabcf14e2e9c0145bcd8b3e4d378d97cf2e36bd1f8329395e1b05ca8d67fa0da"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/table-390x844.png",
+      "bytes": 188437,
+      "sha256": "e45901936b956905336f823c9660a1cd415d9590ebcbd46ef0da183203003955"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/table-430x932.png",
+      "bytes": 185659,
+      "sha256": "77289fd2cfe9a042e96dea6c77d35baf01f215139979059bbdcd49a6239f7051"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/table-768x1024.png",
+      "bytes": 224423,
+      "sha256": "fb5c312fff82f3684546796e839eeff87efbcf8d875b14f4687f0369d97ed279"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/table-844x390.png",
+      "bytes": 213309,
+      "sha256": "060dd7c2bb13c305aa2bd5b2330bcaeef4b55bedce51ef255c1905b7ced7dc70"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/touch-last-hand.png",
+      "bytes": 207460,
+      "sha256": "391382b1225da18f0cc9ae7d1c64ddf4256907367d553769944b75fe7271c22f"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/touch-pair-preview.png",
+      "bytes": 192919,
+      "sha256": "66a5c9220c1f098a6413a4d9e7cb0f35c036326f1e511d6313faef47a35ff473"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/touch-reordered-build.png",
+      "bytes": 116346,
+      "sha256": "1b7a15f705caa99287b1c71e3dbdbf8e35adb1e90a85e48e4279826fa2f22bd9"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/layout/touch-wager-preview.png",
+      "bytes": 192757,
+      "sha256": "becd791b85ce3fae263dd5d6711f088aac075f0cb6d0e71ff9b5eab4e7c29ee9"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/domain/desktop-clear.png",
+      "bytes": 25831,
+      "sha256": "227d4806b73424b17827dfd9b2a981ad027143fc72bf9fc69c006feb8df3ec49"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/domain/desktop-discard.png",
+      "bytes": 59433,
+      "sha256": "9ccfdfc6694e570f82017510a74720c34e5b8ae36114f2992733c79c80ddc767"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/domain/desktop-trade.png",
+      "bytes": 31996,
+      "sha256": "5ec56e7125f59925645592d685a811d01ec9f3a98131d38866d101c7b921b4a2"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/domain/mobile-clear.png",
+      "bytes": 22005,
+      "sha256": "719125b0b87fc320e33332054a70ae67cf6af7b074f08a78545e071064bbd419"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/domain/mobile-discard.png",
+      "bytes": 48809,
+      "sha256": "19648062b77aaaac55cb5001e89ab8cd0d2de803ba46fbf064c5be866c592768"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/domain/mobile-trade.png",
+      "bytes": 24038,
+      "sha256": "9b6f3b688d1d77f77eeef803b413db28550cf91a89938ad2fa465d233783bb21"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/recovery/bought-restored.png",
+      "bytes": 34822,
+      "sha256": "137be8bf33465d9d2f0d52a4df6cde754fe61213d20a6dae340448ab41d03054"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/recovery/character-confirmed-restored.png",
+      "bytes": 44132,
+      "sha256": "cb9615fe9d361ec9cc395753a473639f5a2fa39afdc755c27ee3dbeedfaa388c"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/recovery/during-presentation-restored.png",
+      "bytes": 22005,
+      "sha256": "719125b0b87fc320e33332054a70ae67cf6af7b074f08a78545e071064bbd419"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/recovery/during-presentation.webm",
+      "bytes": 191566,
+      "sha256": "84fe27ec508b6e058cba2e430fbde8e2136acced4191250cb10af0ceb10483e8"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/recovery/play-committed-restored.png",
+      "bytes": 61392,
+      "sha256": "a7fd1cc078cf09850283ab0e69b54b514233d1717eb62e8e6b64e45cf8f798d6"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/recovery/quota-retry-restored.png",
+      "bytes": 34822,
+      "sha256": "137be8bf33465d9d2f0d52a4df6cde754fe61213d20a6dae340448ab41d03054"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/recovery/rerolled-restored.png",
+      "bytes": 41397,
+      "sha256": "640e3746135524b645e959b5e3406c6ff5f973531c131177ce3371f770d104de"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/recovery/reward-published-restored.png",
+      "bytes": 25831,
+      "sha256": "227d4806b73424b17827dfd9b2a981ad027143fc72bf9fc69c006feb8df3ec49"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/recovery/scene-interruption.webm",
+      "bytes": 2235781,
+      "sha256": "01aca0dcda42194f668cd1574bce8e5bae9ea93217716755843e0b56a4f995c9"
+    },
+    {
+      "evidence": "docs/production/evidence/r05-2026-10-01/recovery/shop-first-shown-restored.png",
+      "bytes": 44132,
+      "sha256": "cb9615fe9d361ec9cc395753a473639f5a2fa39afdc755c27ee3dbeedfaa388c"
+    }
+  ],
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": "",
+    "evidence": ""
+  },
+  "limitations": [
+    "Physical Android Chrome/iPhone Safari acceptance, device FPS/latency/memory and 20 cold-load trials at 10Mbps/80ms NOT_RUN. User accepts key Android milestones and handles deployment.",
+    "Other browser engines NOT_RUN here; R06 adds actual Chromium/Firefox/WebKit gates. Offline cached-build restore and legacy browser without Navigator Locks NOT_RUN.",
+    "100 entries measure direct scene children 1->1 and shutdown listeners 14->14; this is not full memory profiling or 30-minute target-device acceptance.",
+    "Five-joker warm-stage workflows only; 24-card/two-chapter/Boss/natural-build and human comparison gates remain V00/V01 onward.",
+    "Visual direction/goldens and batch production approval NOT_RUN. Existing source PNG/GLB still retained under public and copied by Vite; runtime release whitelist belongs A00 onward.",
+    "Large JS chunk warning retained; two moderate development Vitest advisories remain R06. No thresholds or score expectations relaxed."
+  ],
+  "nextTask": "R06"
+}
