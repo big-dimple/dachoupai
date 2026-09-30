@@ -1,0 +1,358 @@
+{
+  "taskId": "R04",
+  "testedCommit": "542e0479371d56334641b84b2010d163ea8cf97f",
+  "baseCommit": "414fbf54132963ec454dda77dab41c8304671e92",
+  "completedAt": "2026-09-30T18:39:14.459Z",
+  "rulesVersion": "r2",
+  "contentVersion": "quality-r2-run-v2",
+  "contentHash": "json-fnv-v1:004135ca2b38f6ee",
+  "testedTree": {
+    "gameSourceDiff": "",
+    "scope": "Checked-in implementation; only evidence/progress docs generated afterward."
+  },
+  "environment": {
+    "os": "Windows_NT 10.0.26200",
+    "node": "v22.20.0",
+    "browser": "153.0.8010.12",
+    "device": "Desktop and 390x844 touchscreen Chromium emulation; not physical phones"
+  },
+  "changes": [
+    "Generation/AbortSignal EffectQueue with shared drain; aborted tween/timer waits settle. Scene lifetime/intent guards capture the played hand and committed state; stale callbacks cannot act on a replacement run.",
+    "Strict complete r2 checkpoint validation, bounded 256-command journal and receipts; current/previous checkpoints and revision written in one IndexedDB transaction. Keep incompatible/corrupt raw records exportable.",
+    "Serialized save-before-publish commands; quota failure pauses with exact pending candidate, export and retry without applying or charging again. Browser writer lease plus atomic revision CAS protect competing tabs.",
+    "Continue, safe file import/export, speed/mute/fast-forward/trace replay use the durable result. Audio denial does not block startup or rules.",
+    "Explicit takeover waits for Phaser input registration before dismissing the menu; the observed premature-click failure is retained."
+  ],
+  "checks": [
+    {
+      "name": "typecheck-unit-build",
+      "command": "npm run verify",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r04-2026-10-01/verify.txt",
+      "tests": 158,
+      "testFiles": 19
+    },
+    {
+      "name": "queue-and-save-contracts",
+      "command": "npm run test:recovery",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r04-2026-10-01/recovery.txt",
+      "tests": 13,
+      "testFiles": 2
+    },
+    {
+      "name": "actual-browser-recovery",
+      "command": "RECOVERY_EVIDENCE_DIR=docs/production/evidence/r04-2026-10-01 npm run test:recovery:browser",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r04-2026-10-01/browser.txt",
+      "report": "docs/production/evidence/r04-2026-10-01/recovery.json",
+      "scenarios": [
+        {
+          "name": "refresh/character-confirmed",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:af95f869147f7bcd",
+          "commandSeq": 1,
+          "gold": 6,
+          "revision": 1
+        },
+        {
+          "name": "refresh/shop-first-shown",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:af95f869147f7bcd",
+          "commandSeq": 1,
+          "gold": 6,
+          "revision": 1
+        },
+        {
+          "name": "refresh/bought",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:a26c7e8ef14a29f2",
+          "commandSeq": 2,
+          "gold": 2,
+          "revision": 2
+        },
+        {
+          "name": "refresh/rerolled",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:32df9ea1bb48c975",
+          "commandSeq": 3,
+          "gold": 0,
+          "revision": 3
+        },
+        {
+          "name": "refresh/play-committed",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:ba2ff7129faf4e66",
+          "commandSeq": 4,
+          "gold": 6,
+          "revision": 4
+        },
+        {
+          "name": "refresh/during-presentation",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:37ee74e3225adda7",
+          "commandSeq": 5,
+          "gold": 9,
+          "revision": 5
+        },
+        {
+          "name": "refresh/reward-published",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:37ee74e3225adda7",
+          "commandSeq": 5,
+          "gold": 9,
+          "revision": 5
+        },
+        {
+          "name": "playback/1",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:ba2ff7129faf4e66"
+        },
+        {
+          "name": "playback/2",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:ba2ff7129faf4e66"
+        },
+        {
+          "name": "playback/4",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:ba2ff7129faf4e66"
+        },
+        {
+          "name": "playback/fast-forward",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:ba2ff7129faf4e66"
+        },
+        {
+          "name": "playback/audio-denied",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:ba2ff7129faf4e66"
+        },
+        {
+          "name": "quota/pause-export-retry",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:a26c7e8ef14a29f2",
+          "atomicRevisionBefore": 1,
+          "atomicRevisionAfter": 2
+        },
+        {
+          "name": "data/corrupt-backup-retained",
+          "status": "PASS"
+        },
+        {
+          "name": "data/incompatible-backup-retained",
+          "status": "PASS"
+        },
+        {
+          "name": "import/illegal-rejected-valid-roundtrip",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:af95f869147f7bcd"
+        },
+        {
+          "name": "tabs/readonly-explicit-takeover",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:a26c7e8ef14a29f2"
+        },
+        {
+          "name": "scene/exit-new-run-no-stale-callbacks-100-reentries",
+          "status": "PASS",
+          "stateHash": "json-fnv-v1:ba2ff7129faf4e66",
+          "observations": {
+            "before": {
+              "children": 26,
+              "shutdownListeners": 13
+            },
+            "after": {
+              "children": 26,
+              "shutdownListeners": 13
+            }
+          }
+        }
+      ],
+      "scope": "full recovery suite"
+    },
+    {
+      "name": "strict-takeover-repeat",
+      "command": "RECOVERY_EVIDENCE_DIR=docs/production/evidence/r04-2026-10-01/takeover-repeat node harness/recovery.mjs --tabs --repeat=10",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r04-2026-10-01/takeover-repeat.txt",
+      "report": "docs/production/evidence/r04-2026-10-01/takeover-repeat/recovery.json",
+      "scope": "tabs only, 10 distinct contexts",
+      "scenarios": 10
+    },
+    {
+      "name": "actual-ui-and-exact-replay",
+      "command": "DOMAIN_EVIDENCE_DIR=docs/production/evidence/r04-2026-10-01/domain npm run test:domain:browser",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r04-2026-10-01/domain.txt",
+      "report": "docs/production/evidence/r04-2026-10-01/domain/domain-replay.json",
+      "runs": [
+        {
+          "name": "desktop",
+          "input": "mouse.click",
+          "commands": 10,
+          "checkpoints": 6,
+          "stateHash": "json-fnv-v1:bbad9009bd42f61d",
+          "status": "PASS",
+          "errors": []
+        },
+        {
+          "name": "mobile",
+          "input": "touchscreen.tap",
+          "commands": 10,
+          "checkpoints": 6,
+          "stateHash": "json-fnv-v1:bbad9009bd42f61d",
+          "status": "PASS",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "name": "content",
+      "command": "npm run verify:content",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r04-2026-10-01/content.txt",
+      "definitions": 5,
+      "conservativeEventBound": 82
+    },
+    {
+      "name": "startup-smoke",
+      "command": "npm run verify:smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r04-2026-10-01/smoke.txt",
+      "scope": "Desktop/mobile-emulated startup, not a complete run."
+    },
+    {
+      "name": "scene-shots",
+      "command": "npm run shot",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r04-2026-10-01/shot.txt",
+      "scope": "Ignored startup shots; recovery screenshots and two actual browser videos retained below."
+    },
+    {
+      "name": "plan-structure",
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r04-2026-10-01/plan-check.txt",
+      "scope": "Structural task protocol only; not phone/human/art approval."
+    }
+  ],
+  "testFirstEvidence": [
+    {
+      "name": "source-queue-and-missing-checkpoint",
+      "testedCommit": "414fbf54132963ec454dda77dab41c8304671e92",
+      "workingTree": "New source-contract tests before implementation",
+      "command": "npx vitest run tests/recovery-queue.test.ts tests/recovery-save.test.ts",
+      "status": "FAIL",
+      "exitCode": 1,
+      "evidence": "docs/production/evidence/r04-2026-10-01/red-contracts.txt",
+      "scope": "Four queue failures and missing checkpoint module suite."
+    },
+    {
+      "name": "audio-denied-browser",
+      "testedCommit": "414fbf54132963ec454dda77dab41c8304671e92",
+      "workingTree": "Partial R04 implementation as recorded in report; not clean final SHA",
+      "command": "node harness/recovery.mjs",
+      "status": "FAIL",
+      "evidence": "docs/production/evidence/r04-2026-10-01/failed-browser-audio.json",
+      "scope": "AudioContext constructor rejection blocked Phaser boot after earlier recovery cases."
+    },
+    {
+      "name": "premature-takeover-click",
+      "testedCommit": "414fbf54132963ec454dda77dab41c8304671e92",
+      "workingTree": "Partial R04 implementation as recorded in reports; not clean final SHA",
+      "command": "node harness/recovery.mjs --tabs --repeat=10",
+      "status": "FAIL",
+      "evidence": "docs/production/evidence/r04-2026-10-01/failed-takeover-observation.json",
+      "log": "docs/production/evidence/r04-2026-10-01/failed-takeover.txt",
+      "screenshot": "docs/production/evidence/r04-2026-10-01/failed-takeover.png",
+      "scope": "Six contexts passed then a real buy timed out: writable/idle scene was observable before its interactive objects were registered."
+    }
+  ],
+  "recoveryObservations": {
+    "refreshScope": "Full checkpoint/RNG/shop/receipt equality, real reload and Continue routes. Character-confirmed and first-shop checkpoints are the same Start transaction; presentation/reward also share an already-persisted reward.",
+    "quotaScope": "Checkpoint put succeeds, metadata put throws within the same actual transaction; old revision/state remain intact. Exported pending checkpoint is valid; retry commits revision 2 once, restores gold 2.",
+    "dataScope": "Corrupt current restores previous; incompatible current stays exportable, including after a new run. Illegal schema/prototype/arbitrary asset URL imports do not alter existing state; valid file chooser import roundtrips.",
+    "interruptionScope": "Exit during presentation, start a new character and play once; new run only spends its own hand. One hundred actual menu Continue entries preserve state, child count 26 and shutdown listener count 13.",
+    "F07": "PASS for source queue cancellation and actual scene interruption; old generation does not consume the replacement hand."
+  },
+  "artifacts": [
+    {
+      "evidence": "docs/production/evidence/r04-2026-10-01/bought-restored.png",
+      "bytes": 79240,
+      "sha256": "c1542cc94825303cf9ba8a8949fcd14f7a0f74a0174af718b8112d09cc887a21"
+    },
+    {
+      "evidence": "docs/production/evidence/r04-2026-10-01/character-confirmed-restored.png",
+      "bytes": 82214,
+      "sha256": "90dd7a38773c953753afb8adbff539110cf598e52969796801500a69f4f6cc32"
+    },
+    {
+      "evidence": "docs/production/evidence/r04-2026-10-01/during-presentation-restored.png",
+      "bytes": 71266,
+      "sha256": "4814cf54be9258582b167c31a81f562da8bd8fa19f774965d77307889cbccb33"
+    },
+    {
+      "evidence": "docs/production/evidence/r04-2026-10-01/during-presentation.webm",
+      "bytes": 162436,
+      "sha256": "24435d4e45569e14903fd21c65e85e1099fd6f4e475ce6d396b960d53bbb0278"
+    },
+    {
+      "evidence": "docs/production/evidence/r04-2026-10-01/play-committed-restored.png",
+      "bytes": 100020,
+      "sha256": "ed713229a5e16666fda3ccd2e22425289d3749c1612cf71f4c369f9ee93c0864"
+    },
+    {
+      "evidence": "docs/production/evidence/r04-2026-10-01/quota-retry-restored.png",
+      "bytes": 79240,
+      "sha256": "c1542cc94825303cf9ba8a8949fcd14f7a0f74a0174af718b8112d09cc887a21"
+    },
+    {
+      "evidence": "docs/production/evidence/r04-2026-10-01/rerolled-restored.png",
+      "bytes": 83199,
+      "sha256": "de028eceb15063cf7e54a9f0264f5d7b1f5642335002211755b71ccfec1ff1ea"
+    },
+    {
+      "evidence": "docs/production/evidence/r04-2026-10-01/reward-published-restored.png",
+      "bytes": 77060,
+      "sha256": "d03e7e6d43a7978f08ba3d0ff12bf0392f44670891f9c113a33593b676a3b242"
+    },
+    {
+      "evidence": "docs/production/evidence/r04-2026-10-01/scene-interruption.webm",
+      "bytes": 2462601,
+      "sha256": "35b58535aff910021c9ca9b41052bed016b0cd5e61a93666fa32aaf3b648720f"
+    },
+    {
+      "evidence": "docs/production/evidence/r04-2026-10-01/shop-first-shown-restored.png",
+      "bytes": 82214,
+      "sha256": "90dd7a38773c953753afb8adbff539110cf598e52969796801500a69f4f6cc32"
+    }
+  ],
+  "engineeringVisualReview": {
+    "status": "PASS",
+    "scope": "Agent viewed quota-retry and during-presentation screenshots for correct resource/inventory/score labels. Known tiny FIT layout still fails R05; no physical-phone or art approval. Videos are recorded evidence, not human-reviewed acceptance."
+  },
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": "",
+    "evidence": ""
+  },
+  "limitations": [
+    "Offline cached-build restore NOT_RUN; current README makes no offline capability claim.",
+    "Physical Android Chrome/iPhone Safari, other browser engines, target-device performance and human/art approval NOT_RUN. User checks key Android milestones and handles deployment.",
+    "Legacy browser without Navigator Locks NOT_RUN; CAS is unit-tested and current Chromium lease/takeover is exercised.",
+    "FIT mobile text/targets/letterboxing and six original PNG first-load requests remain R05.",
+    "Five current jokers and natural warm-stage browser workflow only; full chapter/Boss/content and balance are not certified.",
+    "Existing large-chunk warning and two moderate development Vitest advisories remain R05/R06."
+  ],
+  "nextTask": "R05"
+}

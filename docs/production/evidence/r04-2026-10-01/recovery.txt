@@ -1,0 +1,16 @@
+
+> dachoupai@0.1.0 test:recovery
+> vitest run tests/recovery-queue.test.ts tests/recovery-save.test.ts
+
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ✓ tests/recovery-queue.test.ts (5 tests) 7ms
+ ✓ tests/recovery-save.test.ts (8 tests) 117ms
+
+ Test Files  2 passed (2)
+      Tests  13 passed (13)
+   Start at  02:24:59
+   Duration  1.07s (transform 219ms, setup 0ms, collect 406ms, tests 124ms, environment 0ms, prepare 309ms)
+
+EXIT_CODE=0
