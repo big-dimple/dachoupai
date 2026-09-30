@@ -140,10 +140,10 @@
 ## 当前批次：Phase 2 — 完整一局
 
 ### Batch 2A：关卡骨架
-- [ ] 建立 RunState / StageDefinition
-- [ ] 3 个普通关卡，目标热度逐级提高
-- [ ] 关卡完成后进入明确的过场状态
-- [ ] Seed 必须决定关卡相关随机内容
+- [x] 建立 RunState / StageDefinition — `src/run/runState.ts` + `src/run/stages.ts` + `src/content/stages.json`
+- [x] 3 个普通关卡，目标热度逐级提高 — 开台锣鼓 1200/4 手 → 满座听雨 2000/4 手 → 灯火连天 2800/5 手
+- [x] 关卡完成后进入明确的过场状态 — `IntermissionScene`（过关/冷场/三关落幕三态）
+- [x] Seed 必须决定关卡相关随机内容 — `stageRng(seed, stageIndex)` 派生洗牌与骰爷判定，`tests/run.test.ts` 锁死
 
 ### Batch 2B：商店与构筑
 - [ ] 金币奖励

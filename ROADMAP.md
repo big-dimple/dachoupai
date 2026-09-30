@@ -26,7 +26,7 @@
 - [x] 六角色正式立绘接入（BootScene 预加载 + 选择界面 3×2 卡片 + HUD 角色区）
 
 ### Phase 2 — 完整一局
-- [ ] 3 个普通关卡
+- [x] 3 个普通关卡（RunState / StageDefinition + 逐级目标 + 过场流转，Batch 2A）
 - [ ] 1 个 Boss
 - [ ] 金币与商店
 - [ ] 大丑牌购买 / 装备槽

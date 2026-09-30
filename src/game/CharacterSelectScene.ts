@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { createRunState } from '../run/runState';
 import { CHARACTERS, type CharacterId } from './characters';
 import { addPortraitInBox } from './portraits';
 
@@ -87,8 +88,10 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
 
   private choose(characterId: CharacterId): void {
+    const seed = new URLSearchParams(window.location.search).get('seed') ?? String(Date.now());
     this.registry.set('characterId', characterId);
-    this.registry.set('seed', new URLSearchParams(window.location.search).get('seed') ?? String(Date.now()));
+    this.registry.set('seed', seed);
+    this.registry.set('runState', createRunState(seed, characterId));
     this.scene.start('game');
   }
 }

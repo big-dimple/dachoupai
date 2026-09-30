@@ -6,16 +6,17 @@ import { rankLabel, SUIT_SYMBOL, type PlayingCard } from '../cards/types';
 import { EffectQueue } from '../core/EffectQueue';
 import { SeededRng } from '../core/SeededRng';
 import { TriggerEngine } from '../core/TriggerEngine';
-import { DEFAULT_JOKER_IDS, getJoker } from '../jokers/JokerEngine';
+import { getJoker } from '../jokers/JokerEngine';
 import type { JokerId, JokerResolution } from '../jokers/types';
+import { advanceStage, createRunState, stageRng, type RunState } from '../run/runState';
+import { getStage, stageOrderLabel, type StageDefinition } from '../run/stages';
 import { scoreHand, type ScoreResult } from '../scoring/scoreHand';
 import { getCharacter, type CharacterId } from './characters';
+import type { IntermissionResult } from './IntermissionScene';
 import { portraitSquareCrop } from './portraitCrop';
 
 const HAND_SIZE = 8;
 const MAX_SELECTED = 5;
-const STARTING_HANDS = 4;
-const TARGET_HEAT = 1600;
 
 interface CardView {
   card: PlayingCard;
@@ -29,8 +30,10 @@ export class GameScene extends Phaser.Scene {
   private selectedIds = new Set<string>();
   private cardViews: CardView[] = [];
   private jokerViews = new Map<JokerId, Phaser.GameObjects.Container>();
-  private readonly jokerIds: JokerId[] = [...DEFAULT_JOKER_IDS];
-  private handsLeft = STARTING_HANDS;
+  private jokerIds: readonly JokerId[] = [];
+  private run!: RunState;
+  private stage!: StageDefinition;
+  private handsLeft = 0;
   private heat = 0;
   private previousHandType?: HandType;
   private playing = false;
@@ -51,15 +54,37 @@ export class GameScene extends Phaser.Scene {
   }
 
   create(): void {
-    const savedCharacter = this.registry.get('characterId') as CharacterId | undefined;
+    // 正常路径由选角页建好 runState；深链/冒烟只有 characterId+seed 时现场补建
+    const savedRun = this.registry.get('runState') as RunState | undefined;
+    const savedCharacter = (savedRun?.characterId ?? this.registry.get('characterId')) as CharacterId | undefined;
     if (!savedCharacter) {
       this.scene.start('character-select');
       return;
     }
 
-    this.characterId = savedCharacter;
-    const seed = String(this.registry.get('seed') ?? Date.now());
-    this.rng = new SeededRng(seed);
+    this.run = savedRun ?? createRunState(String(this.registry.get('seed') ?? Date.now()), savedCharacter);
+    this.registry.set('runState', this.run);
+
+    const stage = getStage(this.run.stageIndex);
+    if (!stage) {
+      // 普通关已全部打完，游戏场景无关可打（Boss 关属 Batch 2C）
+      this.scene.start('character-select');
+      return;
+    }
+    this.stage = stage;
+    this.characterId = this.run.characterId;
+    this.jokerIds = this.run.jokerIds;
+
+    // 每关都是全新一场：热度、出牌数、上次牌型、选牌与演出队列全部重置
+    this.handsLeft = stage.hands;
+    this.heat = 0;
+    this.previousHandType = undefined;
+    this.selectedIds.clear();
+    this.playing = false;
+    this.effects.clear();
+
+    const seed = this.run.seed;
+    this.rng = stageRng(seed, this.run.stageIndex);
     this.deck = createShuffledDeck(this.rng);
     this.hand = this.draw(HAND_SIZE);
 
@@ -77,6 +102,12 @@ export class GameScene extends Phaser.Scene {
       fontFamily: 'monospace',
       fontSize: '12px',
       color: '#8f8267',
+    });
+    this.add.text(42, 88, `${stageOrderLabel(this.run.stageIndex)} · ${this.stage.name}`, {
+      fontFamily: '"Microsoft YaHei", sans-serif',
+      fontSize: '17px',
+      fontStyle: 'bold',
+      color: '#f3cf7c',
     });
 
     const roleBg = this.add
@@ -339,7 +370,7 @@ export class GameScene extends Phaser.Scene {
 
     const chosen = this.hand.filter((card) => this.selectedIds.has(card.id));
     const evaluated = evaluateHand(chosen);
-    const playIndex = STARTING_HANDS - this.handsLeft + 1;
+    const playIndex = this.stage.hands - this.handsLeft + 1;
     const score = scoreHand(evaluated, this.characterId, {
       previousHandType: this.previousHandType,
       handsBeforePlay: this.handsLeft,
@@ -415,18 +446,13 @@ export class GameScene extends Phaser.Scene {
     this.hand.push(...this.draw(HAND_SIZE - this.hand.length));
     this.updateHud();
 
-    if (this.heat >= TARGET_HEAT) {
-      this.resultText.setText(`全场失控！\n${this.heat.toLocaleString()} 热度`);
-      this.cameras.main.flash(420, 255, 231, 181, false);
-      this.playing = false;
+    if (this.heat >= this.stage.targetHeat) {
+      this.finishStage(true);
       return;
     }
 
     if (this.handsLeft <= 0) {
-      this.resultText.setText(
-        `冷场了。\n差 ${Math.max(0, TARGET_HEAT - this.heat).toLocaleString()} 热度`,
-      );
-      this.playing = false;
+      this.finishStage(false);
       return;
     }
 
@@ -435,8 +461,34 @@ export class GameScene extends Phaser.Scene {
     this.playing = false;
   }
 
+  /** 本关结束：先让玩家看清结果，再进入明确的过场状态 */
+  private finishStage(cleared: boolean): void {
+    const completedIndex = this.run.stageIndex;
+    const stageHeat = this.heat;
+
+    if (cleared) {
+      this.resultText.setText(`全场失控！\n${stageHeat.toLocaleString()} 热度`);
+      this.cameras.main.flash(420, 255, 231, 181, false);
+      this.run = advanceStage(this.run, stageHeat);
+      this.registry.set('runState', this.run);
+    } else {
+      this.resultText.setText(
+        `冷场了。\n差 ${Math.max(0, this.stage.targetHeat - stageHeat).toLocaleString()} 热度`,
+      );
+    }
+
+    this.time.delayedCall(1000, () => {
+      this.scene.start('intermission', {
+        cleared,
+        stageIndex: completedIndex,
+        stageHeat,
+        handsLeft: this.handsLeft,
+      } satisfies IntermissionResult);
+    });
+  }
+
   private updateHud(): void {
-    this.heatText.setText(`热度  ${this.heat.toLocaleString()} / ${TARGET_HEAT.toLocaleString()}`);
+    this.heatText.setText(`热度  ${this.heat.toLocaleString()} / ${this.stage.targetHeat.toLocaleString()}`);
     this.handsText.setText(`剩余出牌  ${this.handsLeft}    ·    牌堆  ${this.deck.length}`);
   }
 }
