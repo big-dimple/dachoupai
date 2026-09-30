@@ -30,9 +30,10 @@ npm run dev
 ## 检查
 
 ```bash
-npm run typecheck
-npm test
-npm run build
+npm run verify        # typecheck + 测试 + 构建
+npm run verify:smoke  # 双端浏览器冒烟（选角 -> 开局）
 ```
+
+发布：`npm run release:checked -- "type: message"`（测试 + 构建 + 冒烟全过才提交推送）。
 
 核心规则修改必须通过 CI 后再合并。

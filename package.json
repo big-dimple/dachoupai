@@ -10,10 +10,16 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "verify": "npm run typecheck && npm test && npm run build"
+    "verify": "npm run typecheck && npm test && npm run build",
+    "shot": "node harness/screenshot.mjs",
+    "verify:smoke": "node harness/screenshot.mjs --verify-smoke",
+    "release:checked": "node scripts/release-checked.mjs"
   },
-  "dependencies": { "phaser": "3.90.0" },
+  "dependencies": {
+    "phaser": "3.90.0"
+  },
   "devDependencies": {
+    "playwright": "^1.63.0",
     "typescript": "^5.9.2",
     "vite": "^7.3.6",
     "vitest": "^3.2.4"

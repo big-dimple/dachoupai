@@ -51,12 +51,19 @@
 ## 修改后的最低检查
 
 ```bash
-npm run typecheck
-npm test
-npm run build
+npm run verify        # typecheck + 单元测试 + 构建
+npm run verify:smoke  # 真实浏览器双端冒烟：选角 -> 开局 -> HUD（playwright）
 ```
 
 若当前环境无法运行，必须明确写出“未运行”，不能把静态检查描述为已通过。
+
+改动演出、场景流转、立绘渲染后，另跑 `npm run shot` 生成双端截图人工目审（落盘 `shots/`，已 gitignore）。
+
+## 发布
+
+- 发布走门禁：`npm run release:checked -- "type: message"`（先 stage 评审过的文件）。
+  它会依次跑单元测试、构建、双端冒烟，全部通过才提交并推送 `main`；任一环节失败或门禁期间工作区被改动都会中止。
+- `--plan` 只检查发布纪律不执行；平时提交小步也可用普通 `git commit`。
 
 ## 提交前
 

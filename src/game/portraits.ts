@@ -22,7 +22,8 @@ export function hasPortrait(scene: Phaser.Scene, id: CharacterId): boolean {
  * 把立绘以“等比 cover、按角色 focal 点锚定”的方式装进 w×h 的展示框：
  * - 绝不拉伸变形
  * - 竖版全身立绘配小 portraitFocusY（0.07~0.11），保住头部与帽饰
- * - 用 setCrop 裁掉溢出部分，再精确缩放到展示框尺寸
+ * - 用 setCrop 裁掉溢出部分；cover 必须双边同比例缩放（setScale），
+ *   不能用 setDisplaySize（它按完整帧宽高分别求 scale，会纵向压扁）
  * 纹理缺失时退化为 accent 色占位板 + 首字，保证任何情况下界面不空、不炸。
  */
 export function addPortraitInBox(
@@ -61,7 +62,9 @@ export function addPortraitInBox(
   );
   const image = scene.add.image(centerX, centerY, key);
   image.setCrop(crop.x, crop.y, crop.width, crop.height);
-  image.setDisplaySize(boxW, boxH);
+  // 注意：setDisplaySize 会分别按完整帧宽高求 scale，cover 裁切后必须两边同比例缩放，
+  // 否则会被压扁成一条（crop.width × coverScale 恰好等于 boxW/boxH）
+  image.setScale(Math.max(boxW / frame.width, boxH / frame.height));
 
   container.add(image);
 }
