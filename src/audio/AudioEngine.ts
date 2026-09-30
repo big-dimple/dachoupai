@@ -23,8 +23,23 @@ export class AudioEngine {
     oscillator.stop(context.currentTime + duration);
   }
 
-  select(): void { this.tone(420, 0.05, 0.025); }
-  playHand(): void { this.tone(180, 0.12, 0.05); }
-  score(intensity = 0): void { this.tone(520 + intensity * 80, 0.2, 0.04); }
-  role(): void { this.tone(740, 0.24, 0.045); }
+  select(): void {
+    this.tone(420, 0.05, 0.025);
+  }
+
+  playHand(): void {
+    this.tone(180, 0.12, 0.05);
+  }
+
+  score(intensity = 0): void {
+    this.tone(520 + intensity * 80, 0.2, 0.04);
+  }
+
+  role(): void {
+    this.tone(740, 0.24, 0.045);
+  }
+
+  joker(chainIndex: number): void {
+    this.tone(600 + Math.min(chainIndex, 6) * 70, 0.16, 0.04);
+  }
 }

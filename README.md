@@ -1,27 +1,24 @@
 # 大丑牌 Dachoupai
 
-一款面向 H5 的扑克 Roguelike。目标不是复刻现有作品，而是围绕 **舞台演出、连续触发、动态音乐与夸张爆分反馈** 做独立体验。
+一款面向 H5 的扑克 Roguelike，核心是 **角色身份 + 大丑牌构筑 + 东方舞台演出 + 连续触发爆分**。
 
-## 当前阶段
+## 当前进度
 
-Phase 0 / Vertical Slice：先做出一局里最核心的“发牌 → 选牌 → 出牌 → 识别牌型 → 计分 → 动效反馈”闭环。
+- Phase 0：工程、扑克规则、六角色基础能力 —— 完成
+- Phase 1：首批 5 张大丑牌、数据驱动、逐张触发、计分明细 —— 完成
+- Phase 2：关卡 / 商店 / Boss / 完整一局 —— 下一批
+- Phase 3：东方视觉、正式立绘、动态音乐与高级演出 —— 待开发
+
+详见 [ROADMAP.md](./ROADMAP.md) 与 [TODO.md](./TODO.md)。
 
 ## 技术栈
 
 - Phaser 3 + TypeScript
 - Vite
 - Vitest
-- Seeded RNG（核心逻辑禁止直接使用 Math.random）
-- Event / Trigger / Effect Queue 驱动演出
-
-## 开发原则
-
-1. 核心规则与动画分离。
-2. 随机行为统一经过 Seeded RNG。
-3. 复杂规则必须有测试。
-4. 优先可玩的垂直切片，不提前堆内容。
-5. 大丑牌、Boss、舞台效果逐步数据驱动。
-6. 每个效果都应能解释“为什么触发、如何影响最终热度”。
+- Seeded RNG
+- TriggerEngine + EffectQueue
+- JSON 数据驱动 Joker
 
 ## 本地运行
 
@@ -38,4 +35,4 @@ npm test
 npm run build
 ```
 
-详细路线见 [ROADMAP.md](./ROADMAP.md)。
+核心规则修改必须通过 CI 后再合并。
