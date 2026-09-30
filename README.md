@@ -1,40 +1,24 @@
 # 大丑牌 Dachoupai
 
-一款面向 H5 的扑克 Roguelike，核心是 **角色身份 + 大丑牌构筑 + 东方舞台演出 + 连续触发爆分**。
+扑克构筑 Roguelike：通过出牌、弃牌、改造牌组与大丑牌连锁，完成一场荒诞巡演。品质目标对标 Balatro 的核心玩法和操作体验，视觉不照搬其素材与界面。
 
-## 当前进度
+**当前代码是早期原型，不是完成版。** 已有六角色、五张大丑牌、三个普通关卡和购买商店；质量重置计划要求先修正规则基础、移动端、恢复能力与测试，再扩展内容。本分支文档不代表这些新功能已经实现。
 
-- Phase 0：工程、扑克规则、六角色基础能力 —— 完成
-- Phase 1：首批 5 张大丑牌、数据驱动、逐张触发、计分明细 —— 完成
-- Phase 2：关卡骨架（2A）+ 金币商店构筑（2B）—— 完成；Boss / 胜负结算 / 角色台词（2C）—— 下一批
-- Phase 3：东方视觉、正式立绘、动态音乐与高级演出 —— 待开发
+开发 AI 从 [AGENTS.md](AGENTS.md) 开始。人类阅读入口是 [审查与策划目录](docs/production/INDEX.md)。
 
-详见 [ROADMAP.md](./ROADMAP.md) 与 [TODO.md](./TODO.md)。
-
-## 技术栈
-
-- Phaser 3 + TypeScript
-- Vite
-- Vitest
-- Seeded RNG
-- TriggerEngine + EffectQueue
-- JSON 数据驱动 Joker
-
-## 本地运行
+## 运行当前原型
 
 ```bash
-npm install
-npx playwright install chromium   # 首次跑冒烟前需要（约 120 MB 浏览器）
+npm ci
 npm run dev
 ```
 
-## 检查
-
 ```bash
-npm run verify        # typecheck + 测试 + 构建
-npm run verify:smoke  # 双端浏览器冒烟（选角 -> 开局）
+npm run verify
+npx playwright install chromium
+npm run verify:smoke
 ```
 
-发布：`npm run release:checked -- "type: message"`（测试 + 构建 + 冒烟全过才提交推送）。
+当前冒烟只覆盖选角→商店→牌桌。完整一局、触屏手感、刷新恢复和美术质量有独立验收，不能由冒烟通过代替。
 
-核心规则修改必须通过 CI 后再合并。
+技术栈保留 Phaser 3、TypeScript、Vite、Vitest、Playwright；Blender 是离线素材工具，不是游戏运行时依赖。生产规范和阶段门禁见 [ROADMAP.md](ROADMAP.md)，当前任务见 [TODO.md](TODO.md)。

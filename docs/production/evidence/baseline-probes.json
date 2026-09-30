@@ -1,0 +1,22 @@
+{
+  "auditedCommit": "9fd6e0bdb20c7e6114e045ca336c27afe5d47e9e",
+  "environment": "Node v22.16.0",
+  "scope": "Source-extracted EffectQueue micro-probe and arithmetic; NOT full repository tests, Phaser browser tests, visual art inspection or device tests.",
+  "queue": {
+    "secondDrainResolvedBeforeEffects": true,
+    "oldDrainConsumedNewQueue": true,
+    "log": ["old-completed", "new-effect"]
+  },
+  "fitLayoutCalculatedCssPixels": {
+    "viewport": [390, 844],
+    "logicalCanvas": [1280, 720],
+    "scale": 0.3046875,
+    "canvasHeight": 219.375,
+    "playButtonHeight": 17.671875,
+    "jokerDescriptionFont": 3.046875
+  },
+  "originalSixPortraitPngBytes": 14285460,
+  "deckDirectionIllustration": {"input":["A","B","C","D"],"runtimePop":["D","C"],"simulatorShift":["A","B"]},
+  "currentScoringOrderIllustration": {"additiveFirstAlways":10,"proposedSerialA":10,"proposedSerialB":7},
+  "planCheckerLocalSelfTest": "PASS: 1 valid and 13 invalid fixtures; actual repository file existence requires the production-docs CI job"
+}

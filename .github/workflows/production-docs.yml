@@ -1,0 +1,23 @@
+name: production-docs
+on:
+  push:
+    branches: [main, 'docs/**', 'feat/**', 'fix/**']
+    paths: ['AGENTS.md', 'README.md', 'TODO.md', 'ROADMAP.md', 'docs/**', 'scripts/check-production-plan.mjs', '.github/workflows/production-docs.yml']
+  pull_request:
+    branches: [main]
+    paths: ['AGENTS.md', 'README.md', 'TODO.md', 'ROADMAP.md', 'docs/**', 'scripts/check-production-plan.mjs', '.github/workflows/production-docs.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  plan-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test the plan validator against invalid fixtures
+        run: node scripts/check-production-plan.mjs --self-test
+      - name: Check current plan and referenced work packages
+        run: node scripts/check-production-plan.mjs
