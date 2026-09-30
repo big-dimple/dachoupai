@@ -14,7 +14,7 @@
 
 ## V00 范围与剩余门禁
 
-已读 PRODUCT、CONTENT、RULES、QUALITY 和 V00 工作包。`verify:ci` 新增自然抽样及三引擎两章门禁，合计15项；固定候选的完整执行与对应 GitHub CI：NOT_RUN。V00 暂保持 IN_PROGRESS，验证与证据关闭后才推进 V01；无人/未批准时 V01 为 BLOCKED，下一独立工程包为 A00。
+已读 PRODUCT、CONTENT、RULES、QUALITY 和 V00 工作包。`verify:ci` 新增自然抽样及三引擎两章门禁，合计15项。固定候选 `57f329e` 在旧 G10 夹具处退出1，CI domain 同样失败：夹具直接改目标且末手计数不完整，被新不变量拒绝。现改为正式400目标下的最后一手边界，原分数计算/预期未改；失败报告保留，修复候选须重跑完整门禁。V00 暂保持 IN_PROGRESS，验证与证据关闭后才推进 V01；无人/未批准时 V01 为 BLOCKED，下一独立工程包为 A00。
 
 Astra A00 准备产物独立于 `art/A00-inventory`，最新 `30600c2c9850da3453b42c940b238f347320c7fd`：137 资产/39 GLB 真实预览、默认只读与严格 CLI 反例，未采用为主线完成。来源 UNKNOWN、视觉 NOT_GRANTED、发布白名单空；A00 还需正式接入检查，未进入 A01、未量产。源 PNG/GLB 保留并仍被 Vite 复制。
 

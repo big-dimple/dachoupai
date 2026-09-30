@@ -63,13 +63,15 @@ try {
     const result=applyCommand(state,command);assert.equal(result.ok,true);return {command,result};
   };
   const table=characterId=>send(send(createRun({seed:'r2-golden',characterId,runId:`golden-${characterId}`,rulesVersion:'r2'}),{type:'LeaveShop'},'leave').result.state,{type:'EnterStage'},'enter').result.state;
-  const fourth=table('xiemu');fourth.stage.handsLeft=1;
+  const fourth=table('xiemu');fourth.stage.handsLeft=1;fourth.stage.playIndex=3;fourth.stage.previousHandType='high-card';
   const card=fourth.deckInstances.find(c=>c.id===fourth.handOrder[0]);
-  fourth.stage.targetHeat=String(2*(20+(card.rank===14?11:Math.min(card.rank,10))));
+  const fourthExpected=String(2*(20+(card.rank===14?11:Math.min(card.rank,10))));
+  fourth.stage.heat=String(BigInt(fourth.stage.targetHeat)-BigInt(fourthExpected)); // Explicit last-hand boundary fixture at the unchanged production target.
   const last=send(fourth,{type:'PlayHand',selectedIds:[card.id]},'fourth');
   assert.equal(last.result.state.phase,'stage-cleared');assert.equal(last.result.state.stage.handsLeft,0);
   assert.equal(last.result.state.gold,13);assert.equal(last.result.state.stage.goldEarned,7);
-  verifyTrace(last.result.state.lastTrace,fourth.stage.targetHeat,'20','1',['base','add-heat','multiply-multiplier','final-score'],'G10');
+  assert.equal(last.result.state.stage.heat,'400');
+  verifyTrace(last.result.state.lastTrace,fourthExpected,'20','1',['base','add-heat','multiply-multiplier','final-score'],'G10');
   goldens.push({id:'G10',status:'PASS',inputState:fourth,command:last.command,result:last.result,stateHash:stateHash(last.result.state)});
   const selected=send(table('touye'),{type:'SetWager',enabled:true},'wager').result.state;
   const before=JSON.stringify(selected);

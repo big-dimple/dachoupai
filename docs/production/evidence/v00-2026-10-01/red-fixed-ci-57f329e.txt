@@ -1,0 +1,114 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs
+
+CHECK typecheck: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run typecheck
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+typecheck: PASS
+CHECK test: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+
+ Test Files  26 passed (26)
+      Tests  222 passed (222)
+   Start at  07:53:36
+   Duration  7.99s (transform 2.82s, setup 0ms, import 6.03s, tests 15.09s, environment 4ms)
+
+test: PASS
+CHECK verify:content: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run verify:content
+
+> dachoupai@0.1.0 verify:content
+> node scripts/verify-content.mjs
+
+{
+  "status": "PASS",
+  "definitions": 24,
+  "contentVersion": "quality-r2-graybox-v3",
+  "contentHash": "json-fnv-v1:a1f6f62ddd627819",
+  "conservativeEventBound": 144,
+  "readOnly": true
+}
+verify:content: PASS
+CHECK rules-goldens: C:\Program Files\nodejs\node.exe harness/rules-goldens.mjs shots/ci/rules
+D:/ai/dachoupai/dachoupai/src/domain/r2Run.ts:43
+    if (!condition) throw new Error(`Run invariant: ${label}`);
+                          ^
+
+Error: Run invariant: stage target/play budget
+    at check (D:/ai/dachoupai/dachoupai/src/domain/r2Run.ts:43:27)
+    at assertR2Invariants (D:/ai/dachoupai/dachoupai/src/domain/r2Run.ts:71:5)
+    at applyCommand (D:/ai/dachoupai/dachoupai/src/domain/run.ts:115:50)
+    at send (file:///D:/ai/dachoupai/dachoupai/harness/rules-goldens.mjs:63:18)
+    at file:///D:/ai/dachoupai/dachoupai/harness/rules-goldens.mjs:69:14
+
+Node.js v22.20.0
+rules-goldens: FAIL
+{
+  "scope": "all",
+  "testedCommit": "57f329ea2131e2286a0b0bbc29e88cfdeee601e4",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "b7f08a6a312d7ac2bcc088a521077d5a4b3569a0651b54b78f5e9c4bb8a17a13",
+    "index": "85c682054531217247f4346576421859ba9f6c95f62fb11b56fdd994c99f1d2f",
+    "head": "57f329ea2131e2286a0b0bbc29e88cfdeee601e4",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "after": {
+    "source": "b7f08a6a312d7ac2bcc088a521077d5a4b3569a0651b54b78f5e9c4bb8a17a13",
+    "index": "85c682054531217247f4346576421859ba9f6c95f62fb11b56fdd994c99f1d2f",
+    "head": "57f329ea2131e2286a0b0bbc29e88cfdeee601e4",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "steps": [
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3438
+    },
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 9803
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3644
+    },
+    {
+      "name": "rules-goldens",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 3214,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "verify:assets",
+      "status": "NOT_INCLUDED",
+      "reason": "A00 not yet adopted; no placeholder gate"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; legacy r1 seeds are regressions only"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
