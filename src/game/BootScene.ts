@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { CHARACTERS } from './characters';
 import { queuePortraitLoads } from './portraits';
+import {gameSession} from './session';
 
 /**
  * 资源预加载层：只负责把六张立绘拉进纹理缓存。
@@ -18,7 +19,8 @@ export class BootScene extends Phaser.Scene {
     queuePortraitLoads(this, CHARACTERS);
   }
 
-  create(): void {
+  async create(): Promise<void> {
+    await gameSession().initialize();
     this.scene.start('character-select');
   }
 }

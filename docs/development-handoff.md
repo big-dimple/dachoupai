@@ -1,19 +1,19 @@
 # 当前交接
 
-## 当前任务：R04 / READY
+## 当前任务：R04 / IN_PROGRESS
 
-权威指针：`production/plan.json`。R03 分支 `feat/R03-run-economy`，被测实现 `f6ccd17c008ae4998f8b18615d01c624a2ea089a`；唯一下一步：从本包关闭点创建 R04 分支，按 ENGINEERING/UX/QUALITY 先复现队列取消和存档失败，再实现原子 checkpoint、恢复与演出生命周期。
+权威指针：`production/plan.json`。当前分支 `feat/R04-recovery-cancellation`，包基线 `414fbf54132963ec454dda77dab41c8304671e92`；main 开包 fetch 后仍为审查基线，未重置/强推。唯一下一步：在实现提交点跑完整 verify、recovery、真实恢复/主流程浏览器检查、shot 与内容/计划检查，写实际 SHA 证据后进入 R05。
 
-## 上一包验证
+## 本包进度
 
-R03 完成网页 r2 出弃牌、持久牌组和构筑经济。`npm run verify`（145 项）、`test:run`（36 项）、内容检查、G01–G15、双端启动冒烟、shot 均实际通过。真实 mouse.click / touchscreen.tap 提交买入→弃牌→出牌过关→回店→调序→出售→替换；10 条命令与 6 个检查点逐步回放一致，最终完整状态 hash `json-fnv-v1:bbad9009bd42f61d`。具体日志、命令、版本与截图只见 `production/evidence/R03-2026-10-01.json`。
+源 EffectQueue 的共享 Promise、clear、AbortSignal、throw 尾队列已先跑红；存档模块缺失红测、音频拒绝启动失败、接管后点击过早的现场 JSON/截图保留在 `production/evidence/r04-2026-10-01/`。队列现在按代取消，tween/timer 等待会结束，场景 shutdown 清理且旧继续点只使用捕获的本手状态/选牌。
 
-增强、T01–T18、U01–U12 只验证合法 ID/命令边界；未实现效果明确拒绝且不出售。保留 r1 原预期，没有扩展完整 Boss 或声称平衡完成。
+完整 r2 checkpoint、256 条有界日志及回执原子保存，上一份有效备份与不兼容/损坏原数据保留供导出；先保存再公布结果，quota 暂停并原样重试。网页有继续/导入导出、写入锁+revision CAS、1×/2×/4×/静音/快进/上手复盘。Phaser 未使用的音频管理器已关闭，音频拒绝不阻断规则。
+
+工作树专项 13 项与 typecheck、双端启动冒烟/真实买卖出弃牌回放已通过。18 个恢复浏览器场景曾实际通过；最终追加 checkpoint put 后 metadata put 故障回滚，并修复接管时尚未完成 Phaser 输入注册的问题，10 个独立双标签场景已严格通过。正式被测 SHA 和完整复跑结果在关闭本包时补齐；当前不把工作树检查当已关闭证据。
 
 ## 保留风险与安排
 
-R00 F07（中断后旧队列不结束）仍开放，R04 修复。R05 仍需消除 FIT 小字/小触点/大留白及原图首屏预载。R06 的 CI 与 2 项 moderate Vitest 告警待做。当前截图只经工程目审，不是手机品质或美术批准。
+R00–R03 的证据各见对应 JSON，R03 draft PR #7 已推送未合并。R04 离线/已缓存版本恢复尚未运行；当前支持矩阵仍待真机确认。R05 仍需消除 FIT 小字/小触点/大留白与原图首屏预载；R06 的 CI 与 2 项 moderate Vitest 告警待做。没有扩展 Boss 或完整内容，数值未验证平衡。
 
-采用方案 `14be6d65eeffd3a0d97a9d76a6274112fe75585e`；main 未重置/强推，相关 draft PR 未自行合并。R00–R03 详细证据各见对应 JSON，不把历史测试当新版本通过。
-
-Android Chrome/iPhone Safari 真机、目标机性能、真人体验/对标、美术批准：**NOT_RUN**。用户只在关键节点验 Android Chrome，连续推进独立工程。部署由用户处理，不准备部署交接材料。R05 后按 A00/ART 独立交 Astra；金样未获批准，不量产或提前重画所有角色。
+Android Chrome/iPhone Safari 真机、目标机性能、真人体验/对标、美术批准：**NOT_RUN**。用户只在关键节点验 Android Chrome，连续推进独立工程。部署由用户处理，不准备部署交接材料。R05 后按 A00/ART 独立交 Astra；金样未批准，不量产或提前重画全部角色。

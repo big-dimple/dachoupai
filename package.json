@@ -18,7 +18,9 @@
     "verify": "npm run typecheck && npm test && npm run build",
     "shot": "node harness/screenshot.mjs",
     "verify:smoke": "node harness/screenshot.mjs --verify-smoke",
-    "release:checked": "node scripts/release-checked.mjs"
+    "release:checked": "node scripts/release-checked.mjs",
+    "test:recovery": "vitest run tests/recovery-queue.test.ts tests/recovery-save.test.ts",
+    "test:recovery:browser": "node harness/recovery.mjs"
   },
   "dependencies": {
     "phaser": "3.90.0"

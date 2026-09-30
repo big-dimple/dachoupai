@@ -1,6 +1,6 @@
 import { applyCommand, type Action, type AnyRunState, type Command, type CommandResult, type RunState } from '../domain/run';
 
-function freezeCheckpoint<T extends object>(value: T): T {
+export function freezeCheckpoint<T extends object>(value: T): T {
   if (!Object.isFrozen(value)) {
     Object.freeze(value);
     for (const child of Object.values(value)) if (child && typeof child === 'object') freezeCheckpoint(child);
@@ -8,7 +8,7 @@ function freezeCheckpoint<T extends object>(value: T): T {
   return value;
 }
 
-/** Synchronous domain transactions are serialized before presentation starts. Persistence is R04. */
+/** Synchronous/headless command adapter. The website uses SavedRun's save-before-publish adapter. */
 export class RunController<S extends AnyRunState = RunState> {
   private current: S;
   private readonly commands: Command[] = [];

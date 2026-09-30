@@ -1,0 +1,89 @@
+{
+  "testedCommit": "414fbf54132963ec454dda77dab41c8304671e92",
+  "dirtyState": "M docs/development-handoff.md\n M docs/production/plan.json\n M harness/domain.mjs\n M package.json\n M src/application/RunController.ts\n M src/audio/AudioEngine.ts\n M src/core/EffectQueue.ts\n M src/game/BootScene.ts\n M src/game/CharacterSelectScene.ts\n M src/game/GameScene.ts\n M src/game/IntermissionScene.ts\n M src/game/ShopScene.ts\n M src/game/runAdapter.ts\n M src/main.ts\n M src/style.css\n?? docs/production/evidence/r04-2026-10-01/\n?? harness/recovery.mjs\n?? src/application/SavedRun.ts\n?? src/application/checkpoint.ts\n?? src/game/RunMenu.ts\n?? src/game/session.ts\n?? src/platform/\n?? tests/recovery-queue.test.ts\n?? tests/recovery-save.test.ts",
+  "checks": [
+    {
+      "name": "refresh/character-confirmed",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:af95f869147f7bcd",
+      "commandSeq": 1,
+      "gold": 6,
+      "revision": 1
+    },
+    {
+      "name": "refresh/shop-first-shown",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:af95f869147f7bcd",
+      "commandSeq": 1,
+      "gold": 6,
+      "revision": 1
+    },
+    {
+      "name": "refresh/bought",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:a26c7e8ef14a29f2",
+      "commandSeq": 2,
+      "gold": 2,
+      "revision": 2
+    },
+    {
+      "name": "refresh/rerolled",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:32df9ea1bb48c975",
+      "commandSeq": 3,
+      "gold": 0,
+      "revision": 3
+    },
+    {
+      "name": "refresh/play-committed",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:ba2ff7129faf4e66",
+      "commandSeq": 4,
+      "gold": 6,
+      "revision": 4
+    },
+    {
+      "name": "refresh/during-presentation",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:37ee74e3225adda7",
+      "commandSeq": 5,
+      "gold": 9,
+      "revision": 5
+    },
+    {
+      "name": "refresh/reward-published",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:37ee74e3225adda7",
+      "commandSeq": 5,
+      "gold": 9,
+      "revision": 5
+    },
+    {
+      "name": "playback/1",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:ba2ff7129faf4e66"
+    },
+    {
+      "name": "playback/2",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:ba2ff7129faf4e66"
+    },
+    {
+      "name": "playback/4",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:ba2ff7129faf4e66"
+    },
+    {
+      "name": "playback/fast-forward",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:ba2ff7129faf4e66"
+    }
+  ],
+  "limitations": [
+    "Windows Chromium and touchscreen emulation; physical phones/human acceptance NOT_RUN.",
+    "Current five-joker r2 build; not a full chapter/Boss or balance evaluation."
+  ],
+  "browser": "153.0.8010.12",
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}

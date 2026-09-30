@@ -2,15 +2,20 @@ import Phaser from 'phaser';
 import { CHARACTERS, type CharacterId } from './characters';
 import { addPortraitInBox } from './portraits';
 import { startRun } from './runAdapter';
+import {gameSession} from './session';
 
 const GRID_COLS = 3;
 
 export class CharacterSelectScene extends Phaser.Scene {
+  private choosing=false;
+  private lifecycle=0;
   constructor() {
     super('character-select');
   }
 
   create(): void {
+    this.choosing=false;this.lifecycle++;
+    this.events.once('shutdown',()=>{this.lifecycle++;this.time.removeAllEvents();this.tweens.killAll();});
     const { width, height } = this.scale;
     this.cameras.main.setBackgroundColor('#090711');
 
@@ -77,6 +82,8 @@ export class CharacterSelectScene extends Phaser.Scene {
         bg.setStrokeStyle(2, character.accent, 0.72);
       });
       bg.on('pointerdown', () => {
+        if(this.choosing)return;
+        this.choosing=true;
         this.tweens.add({ targets: container, scale: 0.97, duration: 70, ease: 'Quad.easeIn' });
         this.time.delayedCall(95, () => this.choose(character.id));
       });
@@ -87,11 +94,16 @@ export class CharacterSelectScene extends Phaser.Scene {
     }).setOrigin(0.5);
   }
 
-  private choose(characterId: CharacterId): void {
+  private async choose(characterId: CharacterId): Promise<void> {
+    const lifecycle=this.lifecycle;
+    const existing=gameSession().run;
+    if(existing&&!['run-won','run-lost'].includes(existing.state.phase)&&!window.confirm('开始新局将替换当前进度。当前有效存档会保留为备份，是否继续？')){this.choosing=false;return;}
     const seed = new URLSearchParams(window.location.search).get('seed') ?? String(Date.now());
     this.registry.set('characterId', characterId);
     this.registry.set('seed', seed);
-    startRun(this, seed, characterId);
+    const controller=await startRun(this,seed,characterId);
+    if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
+    if(!controller||controller.status!=='idle'){this.choosing=false;return;}
     // 每局从货摊开始：起手金币先淘一张大丑牌，再进第一关
     this.scene.start('shop');
   }

@@ -25,6 +25,8 @@ const BUY_ERROR_TEXT = {
  */
 export class ShopScene extends Phaser.Scene {
   private run!: RunState;
+  private busy=false;
+  private lifecycle=0;
   private get shelf(): ShopOffer[] { return this.run.shop?.offers.filter(offer => !offer.consumed) ?? []; }
 
   private goldText!: Phaser.GameObjects.Text;
@@ -38,6 +40,8 @@ export class ShopScene extends Phaser.Scene {
   }
 
   create(): void {
+    this.busy=false;this.lifecycle++;
+    this.events.once('shutdown',()=>{this.lifecycle++;this.tweens.killAll();this.time.removeAllEvents();});
     const run = runController(this)?.state;
     if (!run || run.phase !== 'shop' || !getStage(run.stageIndex)) {
       // 领域阶段不允许进店时返回选角。
@@ -108,9 +112,8 @@ export class ShopScene extends Phaser.Scene {
       fontStyle: 'bold',
       color: '#fff8e9',
     }).setOrigin(0.5).setDepth(2);
-    nextButton.on('pointerdown', () => {
-      const result = dispatchRun(this, { type: 'LeaveShop' });
-      if (result.ok) this.scene.start('game');
+    nextButton.on('pointerdown',async()=>{
+      const result=await this.send({type:'LeaveShop'});if(result?.ok)this.scene.start('game');
     });
 
     this.renderAll();
@@ -148,18 +151,19 @@ export class ShopScene extends Phaser.Scene {
           }).setOrigin(0.5),
         ]);
         const sell=this.add.text(x,y+65,'出售 +'+salePrice(instance.paidPrice),{fontSize:'14px',color:'#f3cf7c'}).setOrigin(0.5).setInteractive({useHandCursor:true});
-        sell.on('pointerdown',()=>{
+        sell.on('pointerdown',async()=>{
+          if(this.busy)return;
           if(!window.confirm('出售「'+joker.name+'」获得 '+salePrice(instance.paidPrice)+' 金币？该实例的成长会丢失。'))return;
-          const result=dispatchRun(this,{type:'SellJoker',instanceId:instance.instanceId});
-          if(result.ok){this.run=result.state;this.renderAll();}
+          const result=await this.send({type:'SellJoker',instanceId:instance.instanceId});
+          if(result?.ok){this.run=result.state;this.renderAll();}
         });
         this.slotContainer.add(sell);
         for(const [label,delta] of [['←',-1],['→',1]] as const){
           if(i+delta<0||i+delta>=this.run.jokers.length)continue;
           const move=this.add.text(x+delta*62,y+65,label,{fontSize:'18px',color:'#dceefb'}).setOrigin(0.5).setInteractive({useHandCursor:true});
-          move.on('pointerdown',()=>{
+          move.on('pointerdown',async()=>{
             const ids=this.run.jokers.map(j=>j.instanceId);[ids[i],ids[i+delta]]=[ids[i+delta],ids[i]];
-            const result=dispatchRun(this,{type:'ReorderJokers',ids});if(result.ok){this.run=result.state;this.renderAll();}
+            const result=await this.send({type:'ReorderJokers',ids});if(result?.ok){this.run=result.state;this.renderAll();}
           });this.slotContainer.add(move);
         }
       } else {
@@ -247,18 +251,25 @@ export class ShopScene extends Phaser.Scene {
     }
   }
 
-  private buy(offerId: string): void {
+  private async send(action:import('../domain/run').Action):Promise<import('../domain/run').CommandResult<RunState>|undefined> {
+    if(this.busy)return;this.busy=true;const lifecycle=this.lifecycle;
+    try {const result=await dispatchRun(this,action);return lifecycle===this.lifecycle&&this.scene.isActive()?result:undefined;}
+    finally {if(lifecycle===this.lifecycle)this.busy=false;}
+  }
+
+  private async buy(offerId: string): Promise<void> {
+    if(this.busy)return;
     const offer=this.shelf.find(o=>o.offerId===offerId);if(!offer)return;
     if(!window.confirm('购买「'+getJoker(offer.definitionId).name+'」：'+offer.price+' 金币，购买后剩 '+(this.run.gold-offer.price)+' 金币？'))return;
-    const result = dispatchRun(this, { type: 'BuyOffer', offerId });
-    if (!result.ok) return;
+    const result = await this.send({type:'BuyOffer',offerId});
+    if(!result?.ok) return;
     this.run = result.state;
     this.renderAll();
   }
 
-  private reroll(): void {
-    const result = dispatchRun(this, { type: 'RerollShop' });
-    if (!result.ok) return;
+  private async reroll(): Promise<void> {
+    const result=await this.send({type:'RerollShop'});
+    if(!result?.ok) return;
     this.run = result.state;
     this.renderAll();
   }

@@ -21,6 +21,7 @@ export interface IntermissionResult {
  */
 export class IntermissionScene extends Phaser.Scene {
   private result!: IntermissionResult;
+  private lifecycle=0;
 
   constructor() {
     super('intermission');
@@ -31,6 +32,8 @@ export class IntermissionScene extends Phaser.Scene {
   }
 
   create(): void {
+    const lifecycle=++this.lifecycle;
+    this.events.once('shutdown',()=>{this.lifecycle++;this.time.removeAllEvents();this.tweens.killAll();});
     const run = runController(this)?.state;
     if (!run) {
       this.scene.start('character-select');
@@ -92,9 +95,9 @@ export class IntermissionScene extends Phaser.Scene {
         ? '去货摊看看'
         : '回到选角'
       : '重新开局';
-    this.addButton(width / 2, height - 150, buttonLabel, () => {
+    this.addButton(width / 2, height - 150, buttonLabel, async () => {
       if (this.result.cleared && nextStage) {
-        if (dispatchRun(this, { type: 'OpenShop' }).ok) this.scene.start('shop');
+        if ((await dispatchRun(this, { type: 'OpenShop' })).ok&&lifecycle===this.lifecycle&&this.scene.isActive()) this.scene.start('shop');
       } else {
         // 巡演落幕或冷场：本局结束，回到选角开始新的一局
         this.registry.remove('runState');
@@ -110,7 +113,7 @@ export class IntermissionScene extends Phaser.Scene {
     }).setOrigin(0.5);
   }
 
-  private addButton(x: number, y: number, label: string, onClick: () => void): void {
+  private addButton(x: number, y: number, label: string, onClick: () => void|Promise<void>): void {
     const button = this.add
       .rectangle(x, y, 240, 60, 0xa43d2f, 1)
       .setStrokeStyle(2, 0xf1bd68, 0.8)

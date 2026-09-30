@@ -10,7 +10,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const output=path.resolve(root,process.env.DOMAIN_EVIDENCE_DIR||'shots/domain'),port=5202,base=`http://localhost:${port}/?harness=1`;
 await mkdir(output,{recursive:true});
 const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8'}).trim();
-const report={testedCommit:git('rev-parse','HEAD'),dirtyState:git('status','--porcelain=v1'),rulesVersion:'r2',runs:[],limitations:['Browser touchscreen emulation, not physical Android/iPhone or human acceptance.','One natural warm-stage workflow; not eight-chapter/Boss or balance acceptance.','R04 persistence/cancellation and R05 layout remain separate.']};
+const report={testedCommit:git('rev-parse','HEAD'),dirtyState:git('status','--porcelain=v1'),rulesVersion:'r2',runs:[],limitations:['Browser touchscreen emulation, not physical Android/iPhone or human acceptance.','One natural warm-stage workflow; not eight-chapter/Boss or balance acceptance.','Recovery/cancellation have their own R04 evidence; R05 layout remains separate.']};
 const ssr=await createServer({root,server:{middlewareMode:true},appType:'custom'});
 const domain=await ssr.ssrLoadModule('/src/domain/run.ts'),bot=await ssr.ssrLoadModule('/src/testing/r2Bot.ts');
 const {RunController}=await ssr.ssrLoadModule('/src/application/RunController.ts');
@@ -36,7 +36,7 @@ async function click(page,touch,x,y){const point=await page.evaluate(({x,y})=>{c
 async function perform(page,touch,observed,action,double=false){
   if(action.type==='BuyOffer'){
     const i=observed.view.offers.findIndex(o=>o.offerId===action.offerId);assert.ok(i>=0);await click(page,touch,167+i*274,445);
-  }else if(action.type==='LeaveShop'){await click(page,touch,1108,624);await scene(page,'game');}
+  }else if(action.type==='LeaveShop'){await click(page,touch,1108,624);await scene(page,'game');await page.waitForFunction(()=>window.__harness.game.registry.get('runController').state.phase==='await-input'&&window.__harness.game.scene.getScene('game').cardViews.length>0);}
   else if(action.type==='OpenShop'){await scene(page,'intermission');await click(page,touch,640,570);await scene(page,'shop');}
   else if(action.type==='ReorderJokers'){await click(page,touch,179,271);}
   else if(action.type==='SellJoker'){const i=observed.state.jokers.findIndex(j=>j.instanceId===action.instanceId);assert.ok(i>=0);await click(page,touch,117+i*164,271);}
@@ -44,9 +44,11 @@ async function perform(page,touch,observed,action,double=false){
     for(const id of action.selectedIds){const point=await page.evaluate(id=>{const v=window.__harness.game.scene.getScene('game').cardViews.find(v=>v.card.id===id);return{x:v.container.x,y:v.container.y};},id);await click(page,touch,point.x,point.y);}
     await click(page,touch,action.type==='PlayHand'?640:390,650);
     if(double)await click(page,touch,640,650);
+    await page.waitForFunction(seq=>window.__harness.game.registry.get('runController').state.commandSeq>seq,observed.state.commandSeq);
     const after=await read(page);assert.equal(after.state.commandSeq,observed.state.commandSeq+1,'one command per selected intent');
     if(action.type==='PlayHand')await page.waitForFunction(()=>{const g=window.__harness.game,s=g.scene.getScene('game');return g.scene.getScene('intermission').scene.isActive()||(s.scene.isActive()&&!s.playing);});
   }else throw new Error(`unsupported user action ${action.type}`);
+  await page.waitForFunction(seq=>window.__harness.game.registry.get('runController').state.commandSeq>seq,observed.state.commandSeq);
   const after=await read(page);assert.ok(after.state.commandSeq>observed.state.commandSeq,`input submitted ${action.type}`);return after;
 }
 async function run(browser,name,viewport){
