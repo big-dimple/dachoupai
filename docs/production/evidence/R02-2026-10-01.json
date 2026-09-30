@@ -1,0 +1,136 @@
+{
+  "taskId": "R02",
+  "testedCommit": "00e0cf0d5ae54bece673e005fb013ff01ac73f6c",
+  "baseCommit": "006360901cfcae1ed8243484351b088bc18c3926",
+  "completedAt": "2026-09-30T16:16:41.391Z",
+  "rulesVersion": "r2",
+  "contentVersion": "quality-r2-score-v1",
+  "contentHash": "json-fnv-v1:72429df91373ab75",
+  "sourceContentSha256": "2823d32284eb176d894980646c671b6fb5552d9ff328a6fe433bacaf879369e8",
+  "testedTree": {
+    "gameSourceDiff": "",
+    "scope": "The checked-in implementation was tested. Only evidence/docs were generated afterward."
+  },
+  "environment": {
+    "os": "Windows 11 Pro 10.0.26200",
+    "node": "v22.20.0",
+    "npm": "10.9.3",
+    "device": "Desktop; mobile smoke is browser emulation, not Android/iPhone"
+  },
+  "changes": [
+    "Exact normalized BigInt rational arithmetic, bounded decimal serialization and one final floor; no Infinity/NaN.",
+    "Twelve hands and played/scoring/active/held sets use stored order; ordinary points exclude kickers and disabled cards.",
+    "Six r2 character timings, voluntary once-per-stage touye wager, public preview with two possible scores and no live RNG argument.",
+    "Five existing definition IDs preserved with finite typed hooks; left-to-right operations, instance growth after score, depth 1/four extra card triggers, explicit cap events and 512-event diagnostics.",
+    "Explicit version routing through applyCommand and generic RunController, r2 schema 2/string scores/independent content hash. Duplicate commands and length-limit failures leave resources unchanged.",
+    "Removed default-all equipment and its dead export from r1; existing r1 score and balance expectations retained."
+  ],
+  "migration": {
+    "kind": "explicit rule upgrade per D02; not a bugfix that changes r1 expectations",
+    "differences": [
+      "r1 has no ordinary rank chips; r2 ranks 2–10/JQK/A contribute 2–10/10/11 only on active scoring cards.",
+      "r2 base table and 12 types/levels differ from r1 nine-type table.",
+      "r1 combined additive/final groups and round; r2 per-phase ordered H/M and one floor.",
+      "r2 amo/erxiang/laohuan/azao/xiemu use the new characterScore predicates and amounts.",
+      "r1 touye consumes a forced random result each hand; r2 normally x1.15 without RNG, optional one hand x2 or x0.75.",
+      "r2 reward boundary in G10 uses 4+unused hands+interest+xiemu bonus; complete economy and shop flow remain R03."
+    ],
+    "ui": "Current website remains the r1 compatibility adapter. R02 r2 headless starts stage-ready; R03 adds inventory/discards/shop and enables the r2 user flow."
+  },
+  "checks": [
+    {
+      "name": "typecheck-unit-build",
+      "command": "npm run verify",
+      "status": "PASS",
+      "exitCode": 0,
+      "testFiles": 14,
+      "tests": 129,
+      "evidence": "docs/production/evidence/r02-2026-09-30/verify.txt"
+    },
+    {
+      "name": "rules",
+      "command": "npm run test:rules",
+      "status": "PASS",
+      "exitCode": 0,
+      "tests": 60,
+      "evidence": "docs/production/evidence/r02-2026-09-30/rules.txt"
+    },
+    {
+      "name": "content",
+      "command": "npm run verify:content",
+      "status": "PASS",
+      "exitCode": 0,
+      "definitions": 5,
+      "conservativeEventBound": 82,
+      "evidence": "docs/production/evidence/r02-2026-09-30/content.txt"
+    },
+    {
+      "name": "content-rejection",
+      "command": "npm run verify:content -- docs/production/evidence/r02-2026-09-30/invalid-content.json",
+      "status": "PASS",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "evidence": "docs/production/evidence/r02-2026-09-30/content-rejection.txt"
+    },
+    {
+      "name": "exact-goldens",
+      "command": "node harness/rules-goldens.mjs docs/production/evidence/r02-2026-09-30",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r02-2026-09-30/G01-G15.json",
+      "sha256": "6ff944d920b8bc7c5ef72958e2446c704b58f5224987c97125ec8f75679115c1"
+    },
+    {
+      "name": "r1-startup-smoke",
+      "command": "npm run verify:smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r02-2026-09-30/smoke.txt",
+      "scope": "r1 desktop and mobile-emulated startup; not r2 complete UI or phone acceptance"
+    },
+    {
+      "name": "plan-structure",
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r02-2026-09-30/plan-check.txt",
+      "scope": "Structural validator; not gameplay or human signoff."
+    }
+  ],
+  "testFirstEvidence": [
+    {
+      "name": "missing-r2-modules",
+      "testedCommit": "006360901cfcae1ed8243484351b088bc18c3926",
+      "workingTree": "New rules/rational tests; no implementation yet",
+      "command": "npx vitest run tests/rules.test.ts tests/rational.test.ts",
+      "status": "FAIL",
+      "exitCode": 1,
+      "evidence": "docs/production/evidence/r02-2026-09-30/red-rules.txt"
+    },
+    {
+      "name": "command-and-malformed-schema",
+      "testedCommit": "006360901cfcae1ed8243484351b088bc18c3926",
+      "workingTree": "Partial uncommitted pure scorer; r2 commands/public preview not implemented",
+      "command": "npx vitest run tests/r2-command.test.ts tests/content-schema.test.ts",
+      "status": "FAIL",
+      "exitCode": 1,
+      "failures": 5,
+      "evidence": "docs/production/evidence/r02-2026-09-30/red-command-schema.txt"
+    }
+  ],
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": "",
+    "evidence": ""
+  },
+  "limitations": [
+    "Physical Android Chrome/iPhone Safari and target-device performance NOT_RUN. User will validate Android only at key milestones and handles deployment.",
+    "Human core UX/benchmark/art approval NOT_RUN; no self-signoff.",
+    "R03 full shop/discard/persistent-deck interactions and r2 UI not implemented in this package.",
+    "R04 persistent checkpoints/cancellation remain open, including R00 F07. R05 FIT readability and full PNG preload remain open.",
+    "Only five production definitions; growth/retrigger/held hooks validated through explicit test fixtures, not a claimed 72-card catalog.",
+    "r2 numeric parameters/targets and six-role fairness are uncalibrated; unit passes do not certify balance.",
+    "Existing Vite large-chunk warning and two moderate Vitest advisories remain for R05/R06."
+  ],
+  "nextTask": "R03"
+}

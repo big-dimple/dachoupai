@@ -1,0 +1,6 @@
+
+> dachoupai@0.1.0 verify:content
+> node scripts/verify-content.mjs docs/production/evidence/r02-2026-09-30/invalid-content.json
+
+content[0].hooks[0].operations[0]: unknown/invalid operation or timing
+EXIT_CODE=1 EXPECTED_EXIT_CODE=1

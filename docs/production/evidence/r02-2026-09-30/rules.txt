@@ -1,0 +1,18 @@
+
+> dachoupai@0.1.0 test:rules
+> vitest run tests/rules.test.ts tests/rational.test.ts tests/r2-command.test.ts tests/content-schema.test.ts
+
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ✓ tests/content-schema.test.ts (12 tests) 5ms
+ ✓ tests/rational.test.ts (4 tests) 43ms
+ ✓ tests/rules.test.ts (39 tests) 70ms
+ ✓ tests/r2-command.test.ts (5 tests) 53ms
+
+ Test Files  4 passed (4)
+      Tests  60 passed (60)
+   Start at  00:13:21
+   Duration  1.07s (transform 336ms, setup 0ms, collect 729ms, tests 171ms, environment 1ms, prepare 785ms)
+
+EXIT_CODE=0

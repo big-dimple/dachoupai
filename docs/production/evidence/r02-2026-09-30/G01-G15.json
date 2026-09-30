@@ -1,0 +1,6369 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-30T16:12:32.381Z",
+  "sourceSha": "00e0cf0d5ae54bece673e005fb013ff01ac73f6c",
+  "kind": "domain fixtures; not phone or human acceptance",
+  "goldens": [
+    {
+      "id": "G01",
+      "status": "PASS",
+      "expected": "22",
+      "input": {
+        "rulesVersion": "r2",
+        "runId": "golden",
+        "rootId": "golden/hand/1",
+        "characterId": "neutral",
+        "hand": [
+          {
+            "id": "single",
+            "rank": 2,
+            "suit": "spades"
+          }
+        ],
+        "selectedIds": [
+          "single"
+        ],
+        "disabledIds": [],
+        "jokers": [],
+        "definitions": [
+          {
+            "id": "pengci",
+            "name": "碰瓷",
+            "rarity": "common",
+            "description": "高牌时，整手倍率 +2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "high-card"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mantangcai",
+            "name": "满堂彩",
+            "rarity": "common",
+            "description": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "pair",
+                    "two-pair",
+                    "three-kind",
+                    "full-house",
+                    "four-kind"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "90",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "tiesuanpan",
+            "name": "铁算盘",
+            "rarity": "uncommon",
+            "description": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+            "hooks": [
+              {
+                "phase": "onCardScore",
+                "condition": {
+                  "kind": "rank-in",
+                  "values": [
+                    11,
+                    12,
+                    13,
+                    14
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "25",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "huimaqiang",
+            "name": "回马枪",
+            "rarity": "rare",
+            "description": "本场每第 3 次出牌，整手倍率 ×2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "play-modulo",
+                  "divisor": 3,
+                  "remainder": 0
+                },
+                "operations": [
+                  {
+                    "kind": "multiply-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "jiedongfeng",
+            "name": "借东风",
+            "rarity": "uncommon",
+            "description": "顺子、同花或同花顺，整手倍率 +1.5。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "straight",
+                    "flush",
+                    "straight-flush"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "3",
+                      "d": "2"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "handLevels": {},
+        "playIndex": 1,
+        "handsBeforePlay": 4,
+        "previousHandType": null,
+        "wager": false,
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      },
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "golden/hand/1",
+        "handType": "high-card",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "single"
+          ],
+          "scoringIds": [
+            "single"
+          ],
+          "activeScoringIds": [
+            "single"
+          ],
+          "heldIds": []
+        },
+        "finalScore": "22",
+        "accumulator": {
+          "H": {
+            "n": "22",
+            "d": "1"
+          },
+          "M": {
+            "n": "1",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "golden/hand/1/event/0",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "high-card",
+            "sourceInstanceId": "golden",
+            "operation": "base",
+            "value": {
+              "n": "20",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "20",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "reasonKey": "high-card.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/1",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-2",
+            "sourceInstanceId": "single",
+            "targetCardId": "single",
+            "operation": "add-heat",
+            "value": {
+              "n": "2",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "20",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "22",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-2.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/2",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/2",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "high-card",
+            "sourceInstanceId": "golden",
+            "operation": "final-score",
+            "value": {
+              "n": "22",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "22",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "22",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "reasonKey": "high-card.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      }
+    },
+    {
+      "id": "G02",
+      "status": "PASS",
+      "expected": "30",
+      "input": {
+        "rulesVersion": "r2",
+        "runId": "golden",
+        "rootId": "golden/hand/1",
+        "characterId": "neutral",
+        "hand": [
+          {
+            "id": "single",
+            "rank": 10,
+            "suit": "spades"
+          }
+        ],
+        "selectedIds": [
+          "single"
+        ],
+        "disabledIds": [],
+        "jokers": [],
+        "definitions": [
+          {
+            "id": "pengci",
+            "name": "碰瓷",
+            "rarity": "common",
+            "description": "高牌时，整手倍率 +2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "high-card"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mantangcai",
+            "name": "满堂彩",
+            "rarity": "common",
+            "description": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "pair",
+                    "two-pair",
+                    "three-kind",
+                    "full-house",
+                    "four-kind"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "90",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "tiesuanpan",
+            "name": "铁算盘",
+            "rarity": "uncommon",
+            "description": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+            "hooks": [
+              {
+                "phase": "onCardScore",
+                "condition": {
+                  "kind": "rank-in",
+                  "values": [
+                    11,
+                    12,
+                    13,
+                    14
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "25",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "huimaqiang",
+            "name": "回马枪",
+            "rarity": "rare",
+            "description": "本场每第 3 次出牌，整手倍率 ×2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "play-modulo",
+                  "divisor": 3,
+                  "remainder": 0
+                },
+                "operations": [
+                  {
+                    "kind": "multiply-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "jiedongfeng",
+            "name": "借东风",
+            "rarity": "uncommon",
+            "description": "顺子、同花或同花顺，整手倍率 +1.5。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "straight",
+                    "flush",
+                    "straight-flush"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "3",
+                      "d": "2"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "handLevels": {},
+        "playIndex": 1,
+        "handsBeforePlay": 4,
+        "previousHandType": null,
+        "wager": false,
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      },
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "golden/hand/1",
+        "handType": "high-card",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "single"
+          ],
+          "scoringIds": [
+            "single"
+          ],
+          "activeScoringIds": [
+            "single"
+          ],
+          "heldIds": []
+        },
+        "finalScore": "30",
+        "accumulator": {
+          "H": {
+            "n": "30",
+            "d": "1"
+          },
+          "M": {
+            "n": "1",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "golden/hand/1/event/0",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "high-card",
+            "sourceInstanceId": "golden",
+            "operation": "base",
+            "value": {
+              "n": "20",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "20",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "reasonKey": "high-card.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/1",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-10",
+            "sourceInstanceId": "single",
+            "targetCardId": "single",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "20",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-10.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/2",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/2",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "high-card",
+            "sourceInstanceId": "golden",
+            "operation": "final-score",
+            "value": {
+              "n": "30",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "reasonKey": "high-card.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      }
+    },
+    {
+      "id": "G03",
+      "status": "PASS",
+      "expected": "102",
+      "input": {
+        "rulesVersion": "r2",
+        "runId": "golden",
+        "rootId": "golden/hand/1",
+        "characterId": "neutral",
+        "hand": [
+          {
+            "id": "8s",
+            "rank": 8,
+            "suit": "spades"
+          },
+          {
+            "id": "8h",
+            "rank": 8,
+            "suit": "hearts"
+          },
+          {
+            "id": "kd",
+            "rank": 13,
+            "suit": "diamonds"
+          },
+          {
+            "id": "2c",
+            "rank": 2,
+            "suit": "clubs"
+          }
+        ],
+        "selectedIds": [
+          "8s",
+          "8h",
+          "kd",
+          "2c"
+        ],
+        "disabledIds": [],
+        "jokers": [],
+        "definitions": [
+          {
+            "id": "pengci",
+            "name": "碰瓷",
+            "rarity": "common",
+            "description": "高牌时，整手倍率 +2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "high-card"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mantangcai",
+            "name": "满堂彩",
+            "rarity": "common",
+            "description": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "pair",
+                    "two-pair",
+                    "three-kind",
+                    "full-house",
+                    "four-kind"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "90",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "tiesuanpan",
+            "name": "铁算盘",
+            "rarity": "uncommon",
+            "description": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+            "hooks": [
+              {
+                "phase": "onCardScore",
+                "condition": {
+                  "kind": "rank-in",
+                  "values": [
+                    11,
+                    12,
+                    13,
+                    14
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "25",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "huimaqiang",
+            "name": "回马枪",
+            "rarity": "rare",
+            "description": "本场每第 3 次出牌，整手倍率 ×2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "play-modulo",
+                  "divisor": 3,
+                  "remainder": 0
+                },
+                "operations": [
+                  {
+                    "kind": "multiply-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "jiedongfeng",
+            "name": "借东风",
+            "rarity": "uncommon",
+            "description": "顺子、同花或同花顺，整手倍率 +1.5。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "straight",
+                    "flush",
+                    "straight-flush"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "3",
+                      "d": "2"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "handLevels": {},
+        "playIndex": 1,
+        "handsBeforePlay": 4,
+        "previousHandType": null,
+        "wager": false,
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      },
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "golden/hand/1",
+        "handType": "pair",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "8s",
+            "8h",
+            "kd",
+            "2c"
+          ],
+          "scoringIds": [
+            "8s",
+            "8h"
+          ],
+          "activeScoringIds": [
+            "8s",
+            "8h"
+          ],
+          "heldIds": []
+        },
+        "finalScore": "102",
+        "accumulator": {
+          "H": {
+            "n": "51",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "golden/hand/1/event/0",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "pair",
+            "sourceInstanceId": "golden",
+            "operation": "base",
+            "value": {
+              "n": "35",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "35",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "pair.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/1",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-8",
+            "sourceInstanceId": "8s",
+            "targetCardId": "8s",
+            "operation": "add-heat",
+            "value": {
+              "n": "8",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "35",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "43",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-8.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/2",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-8",
+            "sourceInstanceId": "8h",
+            "targetCardId": "8h",
+            "operation": "add-heat",
+            "value": {
+              "n": "8",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "43",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-8.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/3",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/3",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "pair",
+            "sourceInstanceId": "golden",
+            "operation": "final-score",
+            "value": {
+              "n": "102",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "pair.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      }
+    },
+    {
+      "id": "G04",
+      "status": "PASS",
+      "expected": "102",
+      "input": {
+        "rulesVersion": "r2",
+        "runId": "golden",
+        "rootId": "golden/hand/1",
+        "characterId": "neutral",
+        "hand": [
+          {
+            "id": "8s",
+            "rank": 8,
+            "suit": "spades"
+          },
+          {
+            "id": "8h",
+            "rank": 8,
+            "suit": "hearts"
+          },
+          {
+            "id": "kd",
+            "rank": 13,
+            "suit": "diamonds"
+          },
+          {
+            "id": "2c",
+            "rank": 2,
+            "suit": "clubs"
+          }
+        ],
+        "selectedIds": [
+          "8s",
+          "8h",
+          "kd",
+          "2c"
+        ],
+        "disabledIds": [],
+        "jokers": [
+          {
+            "instanceId": "abacus",
+            "definitionId": "tiesuanpan",
+            "paidPrice": 0,
+            "growth": {}
+          }
+        ],
+        "definitions": [
+          {
+            "id": "pengci",
+            "name": "碰瓷",
+            "rarity": "common",
+            "description": "高牌时，整手倍率 +2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "high-card"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mantangcai",
+            "name": "满堂彩",
+            "rarity": "common",
+            "description": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "pair",
+                    "two-pair",
+                    "three-kind",
+                    "full-house",
+                    "four-kind"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "90",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "tiesuanpan",
+            "name": "铁算盘",
+            "rarity": "uncommon",
+            "description": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+            "hooks": [
+              {
+                "phase": "onCardScore",
+                "condition": {
+                  "kind": "rank-in",
+                  "values": [
+                    11,
+                    12,
+                    13,
+                    14
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "25",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "huimaqiang",
+            "name": "回马枪",
+            "rarity": "rare",
+            "description": "本场每第 3 次出牌，整手倍率 ×2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "play-modulo",
+                  "divisor": 3,
+                  "remainder": 0
+                },
+                "operations": [
+                  {
+                    "kind": "multiply-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "jiedongfeng",
+            "name": "借东风",
+            "rarity": "uncommon",
+            "description": "顺子、同花或同花顺，整手倍率 +1.5。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "straight",
+                    "flush",
+                    "straight-flush"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "3",
+                      "d": "2"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "handLevels": {},
+        "playIndex": 1,
+        "handsBeforePlay": 4,
+        "previousHandType": null,
+        "wager": false,
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      },
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "golden/hand/1",
+        "handType": "pair",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "8s",
+            "8h",
+            "kd",
+            "2c"
+          ],
+          "scoringIds": [
+            "8s",
+            "8h"
+          ],
+          "activeScoringIds": [
+            "8s",
+            "8h"
+          ],
+          "heldIds": []
+        },
+        "finalScore": "102",
+        "accumulator": {
+          "H": {
+            "n": "51",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "golden/hand/1/event/0",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "pair",
+            "sourceInstanceId": "golden",
+            "operation": "base",
+            "value": {
+              "n": "35",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "35",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "pair.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/1",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-8",
+            "sourceInstanceId": "8s",
+            "targetCardId": "8s",
+            "operation": "add-heat",
+            "value": {
+              "n": "8",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "35",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "43",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-8.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/2",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-8",
+            "sourceInstanceId": "8h",
+            "targetCardId": "8h",
+            "operation": "add-heat",
+            "value": {
+              "n": "8",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "43",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-8.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/3",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/3",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "pair",
+            "sourceInstanceId": "golden",
+            "operation": "final-score",
+            "value": {
+              "n": "102",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "pair.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [
+          {
+            "instanceId": "abacus",
+            "definitionId": "tiesuanpan",
+            "paidPrice": 0,
+            "growth": {}
+          }
+        ],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      }
+    },
+    {
+      "id": "G05",
+      "status": "PASS",
+      "expected": "510",
+      "input": {
+        "rulesVersion": "r2",
+        "runId": "golden",
+        "rootId": "golden/hand/1",
+        "characterId": "neutral",
+        "hand": [
+          {
+            "id": "8s",
+            "rank": 8,
+            "suit": "spades"
+          },
+          {
+            "id": "8h",
+            "rank": 8,
+            "suit": "hearts"
+          },
+          {
+            "id": "kd",
+            "rank": 13,
+            "suit": "diamonds"
+          },
+          {
+            "id": "2c",
+            "rank": 2,
+            "suit": "clubs"
+          }
+        ],
+        "selectedIds": [
+          "8s",
+          "8h",
+          "kd",
+          "2c"
+        ],
+        "disabledIds": [],
+        "jokers": [
+          {
+            "instanceId": "plus-i",
+            "definitionId": "plus",
+            "paidPrice": 0,
+            "growth": {}
+          },
+          {
+            "instanceId": "times-i",
+            "definitionId": "times",
+            "paidPrice": 0,
+            "growth": {}
+          }
+        ],
+        "definitions": [
+          {
+            "id": "plus",
+            "name": "plus",
+            "rarity": "common",
+            "description": "golden fixture",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "always"
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "3",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "times",
+            "name": "times",
+            "rarity": "common",
+            "description": "golden fixture",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "always"
+                },
+                "operations": [
+                  {
+                    "kind": "multiply-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "handLevels": {},
+        "playIndex": 1,
+        "handsBeforePlay": 4,
+        "previousHandType": null,
+        "wager": false,
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      },
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "golden/hand/1",
+        "handType": "pair",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "8s",
+            "8h",
+            "kd",
+            "2c"
+          ],
+          "scoringIds": [
+            "8s",
+            "8h"
+          ],
+          "activeScoringIds": [
+            "8s",
+            "8h"
+          ],
+          "heldIds": []
+        },
+        "finalScore": "510",
+        "accumulator": {
+          "H": {
+            "n": "51",
+            "d": "1"
+          },
+          "M": {
+            "n": "10",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "golden/hand/1/event/0",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "pair",
+            "sourceInstanceId": "golden",
+            "operation": "base",
+            "value": {
+              "n": "35",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "35",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "pair.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/1",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-8",
+            "sourceInstanceId": "8s",
+            "targetCardId": "8s",
+            "operation": "add-heat",
+            "value": {
+              "n": "8",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "35",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "43",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-8.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/2",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-8",
+            "sourceInstanceId": "8h",
+            "targetCardId": "8h",
+            "operation": "add-heat",
+            "value": {
+              "n": "8",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "43",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-8.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/3",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/3",
+            "phase": "jokerScore",
+            "sourceType": "joker",
+            "sourceDefinitionId": "plus",
+            "sourceInstanceId": "plus-i",
+            "operation": "add-multiplier",
+            "value": {
+              "n": "3",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "plus.add-multiplier",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/4",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/4",
+            "phase": "jokerScore",
+            "sourceType": "joker",
+            "sourceDefinitionId": "times",
+            "sourceInstanceId": "times-i",
+            "operation": "multiply-multiplier",
+            "value": {
+              "n": "2",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "10",
+                "d": "1"
+              }
+            },
+            "reasonKey": "times.multiply-multiplier",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/5",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/5",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "pair",
+            "sourceInstanceId": "golden",
+            "operation": "final-score",
+            "value": {
+              "n": "510",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "10",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "10",
+                "d": "1"
+              }
+            },
+            "reasonKey": "pair.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [
+          {
+            "instanceId": "plus-i",
+            "definitionId": "plus",
+            "paidPrice": 0,
+            "growth": {}
+          },
+          {
+            "instanceId": "times-i",
+            "definitionId": "times",
+            "paidPrice": 0,
+            "growth": {}
+          }
+        ],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      },
+      "reversedTrace": {
+        "rulesVersion": "r2",
+        "rootId": "golden/hand/1",
+        "handType": "pair",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "8s",
+            "8h",
+            "kd",
+            "2c"
+          ],
+          "scoringIds": [
+            "8s",
+            "8h"
+          ],
+          "activeScoringIds": [
+            "8s",
+            "8h"
+          ],
+          "heldIds": []
+        },
+        "finalScore": "357",
+        "accumulator": {
+          "H": {
+            "n": "51",
+            "d": "1"
+          },
+          "M": {
+            "n": "7",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "golden/hand/1/event/0",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "pair",
+            "sourceInstanceId": "golden",
+            "operation": "base",
+            "value": {
+              "n": "35",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "35",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "pair.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/1",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-8",
+            "sourceInstanceId": "8s",
+            "targetCardId": "8s",
+            "operation": "add-heat",
+            "value": {
+              "n": "8",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "35",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "43",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-8.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/2",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-8",
+            "sourceInstanceId": "8h",
+            "targetCardId": "8h",
+            "operation": "add-heat",
+            "value": {
+              "n": "8",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "43",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-8.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/3",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/3",
+            "phase": "jokerScore",
+            "sourceType": "joker",
+            "sourceDefinitionId": "times",
+            "sourceInstanceId": "times-i",
+            "operation": "multiply-multiplier",
+            "value": {
+              "n": "2",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "times.multiply-multiplier",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/4",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/4",
+            "phase": "jokerScore",
+            "sourceType": "joker",
+            "sourceDefinitionId": "plus",
+            "sourceInstanceId": "plus-i",
+            "operation": "add-multiplier",
+            "value": {
+              "n": "3",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "7",
+                "d": "1"
+              }
+            },
+            "reasonKey": "plus.add-multiplier",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/5",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/5",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "pair",
+            "sourceInstanceId": "golden",
+            "operation": "final-score",
+            "value": {
+              "n": "357",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "7",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "51",
+                "d": "1"
+              },
+              "M": {
+                "n": "7",
+                "d": "1"
+              }
+            },
+            "reasonKey": "pair.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [
+          {
+            "instanceId": "times-i",
+            "definitionId": "times",
+            "paidPrice": 0,
+            "growth": {}
+          },
+          {
+            "instanceId": "plus-i",
+            "definitionId": "plus",
+            "paidPrice": 0,
+            "growth": {}
+          }
+        ],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      }
+    },
+    {
+      "id": "G06",
+      "status": "PASS",
+      "expected": "600",
+      "input": {
+        "rulesVersion": "r2",
+        "runId": "golden",
+        "rootId": "golden/hand/1",
+        "characterId": "neutral",
+        "hand": [
+          {
+            "id": "a",
+            "rank": 14,
+            "suit": "spades"
+          },
+          {
+            "id": "2",
+            "rank": 2,
+            "suit": "hearts"
+          },
+          {
+            "id": "3",
+            "rank": 3,
+            "suit": "spades"
+          },
+          {
+            "id": "4",
+            "rank": 4,
+            "suit": "spades"
+          },
+          {
+            "id": "5",
+            "rank": 5,
+            "suit": "spades"
+          }
+        ],
+        "selectedIds": [
+          "a",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "disabledIds": [],
+        "jokers": [],
+        "definitions": [
+          {
+            "id": "pengci",
+            "name": "碰瓷",
+            "rarity": "common",
+            "description": "高牌时，整手倍率 +2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "high-card"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mantangcai",
+            "name": "满堂彩",
+            "rarity": "common",
+            "description": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "pair",
+                    "two-pair",
+                    "three-kind",
+                    "full-house",
+                    "four-kind"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "90",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "tiesuanpan",
+            "name": "铁算盘",
+            "rarity": "uncommon",
+            "description": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+            "hooks": [
+              {
+                "phase": "onCardScore",
+                "condition": {
+                  "kind": "rank-in",
+                  "values": [
+                    11,
+                    12,
+                    13,
+                    14
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "25",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "huimaqiang",
+            "name": "回马枪",
+            "rarity": "rare",
+            "description": "本场每第 3 次出牌，整手倍率 ×2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "play-modulo",
+                  "divisor": 3,
+                  "remainder": 0
+                },
+                "operations": [
+                  {
+                    "kind": "multiply-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "jiedongfeng",
+            "name": "借东风",
+            "rarity": "uncommon",
+            "description": "顺子、同花或同花顺，整手倍率 +1.5。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "straight",
+                    "flush",
+                    "straight-flush"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "3",
+                      "d": "2"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "handLevels": {},
+        "playIndex": 1,
+        "handsBeforePlay": 4,
+        "previousHandType": null,
+        "wager": false,
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      },
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "golden/hand/1",
+        "handType": "straight",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "a",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "scoringIds": [
+            "a",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "activeScoringIds": [
+            "a",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "heldIds": []
+        },
+        "finalScore": "600",
+        "accumulator": {
+          "H": {
+            "n": "150",
+            "d": "1"
+          },
+          "M": {
+            "n": "4",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "golden/hand/1/event/0",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "straight",
+            "sourceInstanceId": "golden",
+            "operation": "base",
+            "value": {
+              "n": "125",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "125",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "straight.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/1",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-14",
+            "sourceInstanceId": "a",
+            "targetCardId": "a",
+            "operation": "add-heat",
+            "value": {
+              "n": "11",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "125",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "136",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-14.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/2",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-2",
+            "sourceInstanceId": "2",
+            "targetCardId": "2",
+            "operation": "add-heat",
+            "value": {
+              "n": "2",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "136",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "138",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-2.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/3",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/3",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-3",
+            "sourceInstanceId": "3",
+            "targetCardId": "3",
+            "operation": "add-heat",
+            "value": {
+              "n": "3",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "138",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "141",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-3.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/4",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/4",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-4",
+            "sourceInstanceId": "4",
+            "targetCardId": "4",
+            "operation": "add-heat",
+            "value": {
+              "n": "4",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "141",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "145",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-4.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/5",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/5",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-5",
+            "sourceInstanceId": "5",
+            "targetCardId": "5",
+            "operation": "add-heat",
+            "value": {
+              "n": "5",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "145",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "150",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-5.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/6",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/6",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "straight",
+            "sourceInstanceId": "golden",
+            "operation": "final-score",
+            "value": {
+              "n": "600",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "150",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "150",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "straight.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      }
+    },
+    {
+      "id": "G07",
+      "status": "PASS",
+      "expected": "90",
+      "input": {
+        "rulesVersion": "r2",
+        "runId": "golden",
+        "rootId": "golden/hand/1",
+        "characterId": "amo",
+        "hand": [
+          {
+            "id": "k",
+            "rank": 13,
+            "suit": "spades"
+          }
+        ],
+        "selectedIds": [
+          "k"
+        ],
+        "disabledIds": [],
+        "jokers": [],
+        "definitions": [
+          {
+            "id": "pengci",
+            "name": "碰瓷",
+            "rarity": "common",
+            "description": "高牌时，整手倍率 +2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "high-card"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mantangcai",
+            "name": "满堂彩",
+            "rarity": "common",
+            "description": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "pair",
+                    "two-pair",
+                    "three-kind",
+                    "full-house",
+                    "four-kind"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "90",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "tiesuanpan",
+            "name": "铁算盘",
+            "rarity": "uncommon",
+            "description": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+            "hooks": [
+              {
+                "phase": "onCardScore",
+                "condition": {
+                  "kind": "rank-in",
+                  "values": [
+                    11,
+                    12,
+                    13,
+                    14
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "25",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "huimaqiang",
+            "name": "回马枪",
+            "rarity": "rare",
+            "description": "本场每第 3 次出牌，整手倍率 ×2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "play-modulo",
+                  "divisor": 3,
+                  "remainder": 0
+                },
+                "operations": [
+                  {
+                    "kind": "multiply-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "jiedongfeng",
+            "name": "借东风",
+            "rarity": "uncommon",
+            "description": "顺子、同花或同花顺，整手倍率 +1.5。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "straight",
+                    "flush",
+                    "straight-flush"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "3",
+                      "d": "2"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "handLevels": {},
+        "playIndex": 1,
+        "handsBeforePlay": 4,
+        "previousHandType": null,
+        "wager": false,
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      },
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "golden/hand/1",
+        "handType": "high-card",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "k"
+          ],
+          "scoringIds": [
+            "k"
+          ],
+          "activeScoringIds": [
+            "k"
+          ],
+          "heldIds": []
+        },
+        "finalScore": "90",
+        "accumulator": {
+          "H": {
+            "n": "30",
+            "d": "1"
+          },
+          "M": {
+            "n": "3",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "golden/hand/1/event/0",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "high-card",
+            "sourceInstanceId": "golden",
+            "operation": "base",
+            "value": {
+              "n": "20",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "20",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "reasonKey": "high-card.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/1",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-13",
+            "sourceInstanceId": "k",
+            "targetCardId": "k",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "20",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-13.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/2",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/2",
+            "phase": "characterScore",
+            "sourceType": "character",
+            "sourceDefinitionId": "amo",
+            "sourceInstanceId": "golden/character",
+            "operation": "multiply-multiplier",
+            "value": {
+              "n": "3",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "amo.multiply-multiplier",
+            "visibleCondition": {
+              "kind": "played-count",
+              "equals": 1
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/3",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/3",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "high-card",
+            "sourceInstanceId": "golden",
+            "operation": "final-score",
+            "value": {
+              "n": "90",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "high-card.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      }
+    },
+    {
+      "id": "G08",
+      "status": "PASS",
+      "expected": "150",
+      "input": {
+        "rulesVersion": "r2",
+        "runId": "golden",
+        "rootId": "golden/hand/1",
+        "characterId": "amo",
+        "hand": [
+          {
+            "id": "k",
+            "rank": 13,
+            "suit": "spades"
+          }
+        ],
+        "selectedIds": [
+          "k"
+        ],
+        "disabledIds": [],
+        "jokers": [
+          {
+            "instanceId": "pengci-i",
+            "definitionId": "pengci",
+            "paidPrice": 0,
+            "growth": {}
+          }
+        ],
+        "definitions": [
+          {
+            "id": "pengci",
+            "name": "碰瓷",
+            "rarity": "common",
+            "description": "高牌时，整手倍率 +2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "high-card"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mantangcai",
+            "name": "满堂彩",
+            "rarity": "common",
+            "description": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "pair",
+                    "two-pair",
+                    "three-kind",
+                    "full-house",
+                    "four-kind"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "90",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "tiesuanpan",
+            "name": "铁算盘",
+            "rarity": "uncommon",
+            "description": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+            "hooks": [
+              {
+                "phase": "onCardScore",
+                "condition": {
+                  "kind": "rank-in",
+                  "values": [
+                    11,
+                    12,
+                    13,
+                    14
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "25",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "huimaqiang",
+            "name": "回马枪",
+            "rarity": "rare",
+            "description": "本场每第 3 次出牌，整手倍率 ×2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "play-modulo",
+                  "divisor": 3,
+                  "remainder": 0
+                },
+                "operations": [
+                  {
+                    "kind": "multiply-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "jiedongfeng",
+            "name": "借东风",
+            "rarity": "uncommon",
+            "description": "顺子、同花或同花顺，整手倍率 +1.5。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "straight",
+                    "flush",
+                    "straight-flush"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "3",
+                      "d": "2"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "handLevels": {},
+        "playIndex": 1,
+        "handsBeforePlay": 4,
+        "previousHandType": null,
+        "wager": false,
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      },
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "golden/hand/1",
+        "handType": "high-card",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "k"
+          ],
+          "scoringIds": [
+            "k"
+          ],
+          "activeScoringIds": [
+            "k"
+          ],
+          "heldIds": []
+        },
+        "finalScore": "150",
+        "accumulator": {
+          "H": {
+            "n": "30",
+            "d": "1"
+          },
+          "M": {
+            "n": "5",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "golden/hand/1/event/0",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "high-card",
+            "sourceInstanceId": "golden",
+            "operation": "base",
+            "value": {
+              "n": "20",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "20",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "reasonKey": "high-card.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/1",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-13",
+            "sourceInstanceId": "k",
+            "targetCardId": "k",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "20",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-13.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/2",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/2",
+            "phase": "characterScore",
+            "sourceType": "character",
+            "sourceDefinitionId": "amo",
+            "sourceInstanceId": "golden/character",
+            "operation": "multiply-multiplier",
+            "value": {
+              "n": "3",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "amo.multiply-multiplier",
+            "visibleCondition": {
+              "kind": "played-count",
+              "equals": 1
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/3",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/3",
+            "phase": "jokerScore",
+            "sourceType": "joker",
+            "sourceDefinitionId": "pengci",
+            "sourceInstanceId": "pengci-i",
+            "operation": "add-multiplier",
+            "value": {
+              "n": "2",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "pengci.add-multiplier",
+            "visibleCondition": {
+              "kind": "hand-type-in",
+              "values": [
+                "high-card"
+              ]
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/4",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/4",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "high-card",
+            "sourceInstanceId": "golden",
+            "operation": "final-score",
+            "value": {
+              "n": "150",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "30",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "high-card.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [
+          {
+            "instanceId": "pengci-i",
+            "definitionId": "pengci",
+            "paidPrice": 0,
+            "growth": {}
+          }
+        ],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      }
+    },
+    {
+      "id": "G09",
+      "status": "PASS",
+      "expected": "86",
+      "input": {
+        "rulesVersion": "r2",
+        "runId": "golden",
+        "rootId": "golden/hand/1",
+        "characterId": "neutral",
+        "hand": [
+          {
+            "id": "8s",
+            "rank": 8,
+            "suit": "spades"
+          },
+          {
+            "id": "8h",
+            "rank": 8,
+            "suit": "hearts"
+          },
+          {
+            "id": "kd",
+            "rank": 13,
+            "suit": "diamonds"
+          },
+          {
+            "id": "2c",
+            "rank": 2,
+            "suit": "clubs"
+          }
+        ],
+        "selectedIds": [
+          "8s",
+          "8h",
+          "kd",
+          "2c"
+        ],
+        "disabledIds": [
+          "8s"
+        ],
+        "jokers": [],
+        "definitions": [
+          {
+            "id": "pengci",
+            "name": "碰瓷",
+            "rarity": "common",
+            "description": "高牌时，整手倍率 +2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "high-card"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mantangcai",
+            "name": "满堂彩",
+            "rarity": "common",
+            "description": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "pair",
+                    "two-pair",
+                    "three-kind",
+                    "full-house",
+                    "four-kind"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "90",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "tiesuanpan",
+            "name": "铁算盘",
+            "rarity": "uncommon",
+            "description": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+            "hooks": [
+              {
+                "phase": "onCardScore",
+                "condition": {
+                  "kind": "rank-in",
+                  "values": [
+                    11,
+                    12,
+                    13,
+                    14
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-heat",
+                    "value": {
+                      "n": "25",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "huimaqiang",
+            "name": "回马枪",
+            "rarity": "rare",
+            "description": "本场每第 3 次出牌，整手倍率 ×2。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "play-modulo",
+                  "divisor": 3,
+                  "remainder": 0
+                },
+                "operations": [
+                  {
+                    "kind": "multiply-multiplier",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "jiedongfeng",
+            "name": "借东风",
+            "rarity": "uncommon",
+            "description": "顺子、同花或同花顺，整手倍率 +1.5。",
+            "hooks": [
+              {
+                "phase": "jokerScore",
+                "condition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "straight",
+                    "flush",
+                    "straight-flush"
+                  ]
+                },
+                "operations": [
+                  {
+                    "kind": "add-multiplier",
+                    "value": {
+                      "n": "3",
+                      "d": "2"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "handLevels": {},
+        "playIndex": 1,
+        "handsBeforePlay": 4,
+        "previousHandType": null,
+        "wager": false,
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      },
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "golden/hand/1",
+        "handType": "pair",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "8s",
+            "8h",
+            "kd",
+            "2c"
+          ],
+          "scoringIds": [
+            "8s",
+            "8h"
+          ],
+          "activeScoringIds": [
+            "8h"
+          ],
+          "heldIds": []
+        },
+        "finalScore": "86",
+        "accumulator": {
+          "H": {
+            "n": "43",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "golden/hand/1/event/0",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "pair",
+            "sourceInstanceId": "golden",
+            "operation": "base",
+            "value": {
+              "n": "35",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "35",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "pair.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/1",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-8",
+            "sourceInstanceId": "8h",
+            "targetCardId": "8h",
+            "operation": "add-heat",
+            "value": {
+              "n": "8",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "35",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "43",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-8.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "golden/hand/1/event/2",
+            "rootId": "golden/hand/1",
+            "rootEventId": "golden/hand/1/event/2",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "pair",
+            "sourceInstanceId": "golden",
+            "operation": "final-score",
+            "value": {
+              "n": "86",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "43",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "43",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "pair.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2630859744
+        }
+      }
+    },
+    {
+      "id": "G10",
+      "status": "PASS",
+      "inputState": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-score-v1",
+        "contentHash": "json-fnv-v1:72429df91373ab75",
+        "runId": "golden-xiemu",
+        "seed": "r2-golden",
+        "commandSeq": 2,
+        "difficulty": 0,
+        "characterId": "xiemu",
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "await-input",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "diamonds-6",
+          "diamonds-5",
+          "hearts-14",
+          "diamonds-4",
+          "diamonds-7",
+          "hearts-6",
+          "spades-14",
+          "clubs-10",
+          "clubs-3",
+          "clubs-9",
+          "hearts-10",
+          "diamonds-11",
+          "hearts-2",
+          "diamonds-2",
+          "clubs-13",
+          "spades-12",
+          "hearts-9",
+          "hearts-4",
+          "hearts-13",
+          "spades-11",
+          "diamonds-9",
+          "diamonds-12",
+          "hearts-3",
+          "clubs-11",
+          "clubs-2",
+          "spades-2",
+          "diamonds-14",
+          "diamonds-13",
+          "hearts-5",
+          "diamonds-10",
+          "hearts-8",
+          "diamonds-8",
+          "spades-9",
+          "spades-6",
+          "spades-3",
+          "spades-5",
+          "clubs-8",
+          "spades-4",
+          "hearts-11",
+          "diamonds-3",
+          "clubs-6",
+          "hearts-12",
+          "spades-8",
+          "clubs-4"
+        ],
+        "handOrder": [
+          "spades-7",
+          "spades-13",
+          "hearts-7",
+          "clubs-12",
+          "clubs-14",
+          "clubs-7",
+          "clubs-5",
+          "spades-10"
+        ],
+        "playedPile": [],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": {
+          "index": 0,
+          "targetHeat": "54",
+          "heat": "0",
+          "handsLeft": 1,
+          "discardsLeft": 0,
+          "playIndex": 0,
+          "previousHandType": null,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false
+        },
+        "totalHeat": "0",
+        "gold": 6,
+        "jokers": [],
+        "consumables": [],
+        "longTermItems": [],
+        "program": null,
+        "boss": null,
+        "shop": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1756379316
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2685644718
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 241398764
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 259094911
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "golden-xiemu/start",
+            "fingerprint": "json-fnv-v1:f2d854ec47356278",
+            "seq": 1
+          },
+          {
+            "commandId": "enter",
+            "fingerprint": "json-fnv-v1:0abeb493f15eb1e7",
+            "seq": 2
+          }
+        ],
+        "lastTrace": null,
+        "handLevels": {},
+        "outcome": null
+      },
+      "command": {
+        "runId": "golden-xiemu",
+        "commandId": "fourth",
+        "expectedSeq": 2,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-7"
+          ]
+        }
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "schemaVersion": 2,
+          "rulesVersion": "r2",
+          "contentVersion": "quality-r2-score-v1",
+          "contentHash": "json-fnv-v1:72429df91373ab75",
+          "runId": "golden-xiemu",
+          "seed": "r2-golden",
+          "commandSeq": 3,
+          "difficulty": 0,
+          "characterId": "xiemu",
+          "chapter": 1,
+          "stageIndex": 1,
+          "phase": "stage-cleared",
+          "deckInstances": [
+            {
+              "id": "spades-2",
+              "suit": "spades",
+              "rank": 2
+            },
+            {
+              "id": "spades-3",
+              "suit": "spades",
+              "rank": 3
+            },
+            {
+              "id": "spades-4",
+              "suit": "spades",
+              "rank": 4
+            },
+            {
+              "id": "spades-5",
+              "suit": "spades",
+              "rank": 5
+            },
+            {
+              "id": "spades-6",
+              "suit": "spades",
+              "rank": 6
+            },
+            {
+              "id": "spades-7",
+              "suit": "spades",
+              "rank": 7
+            },
+            {
+              "id": "spades-8",
+              "suit": "spades",
+              "rank": 8
+            },
+            {
+              "id": "spades-9",
+              "suit": "spades",
+              "rank": 9
+            },
+            {
+              "id": "spades-10",
+              "suit": "spades",
+              "rank": 10
+            },
+            {
+              "id": "spades-11",
+              "suit": "spades",
+              "rank": 11
+            },
+            {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12
+            },
+            {
+              "id": "spades-13",
+              "suit": "spades",
+              "rank": 13
+            },
+            {
+              "id": "spades-14",
+              "suit": "spades",
+              "rank": 14
+            },
+            {
+              "id": "hearts-2",
+              "suit": "hearts",
+              "rank": 2
+            },
+            {
+              "id": "hearts-3",
+              "suit": "hearts",
+              "rank": 3
+            },
+            {
+              "id": "hearts-4",
+              "suit": "hearts",
+              "rank": 4
+            },
+            {
+              "id": "hearts-5",
+              "suit": "hearts",
+              "rank": 5
+            },
+            {
+              "id": "hearts-6",
+              "suit": "hearts",
+              "rank": 6
+            },
+            {
+              "id": "hearts-7",
+              "suit": "hearts",
+              "rank": 7
+            },
+            {
+              "id": "hearts-8",
+              "suit": "hearts",
+              "rank": 8
+            },
+            {
+              "id": "hearts-9",
+              "suit": "hearts",
+              "rank": 9
+            },
+            {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            {
+              "id": "hearts-11",
+              "suit": "hearts",
+              "rank": 11
+            },
+            {
+              "id": "hearts-12",
+              "suit": "hearts",
+              "rank": 12
+            },
+            {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13
+            },
+            {
+              "id": "hearts-14",
+              "suit": "hearts",
+              "rank": 14
+            },
+            {
+              "id": "clubs-2",
+              "suit": "clubs",
+              "rank": 2
+            },
+            {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 3
+            },
+            {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            {
+              "id": "clubs-5",
+              "suit": "clubs",
+              "rank": 5
+            },
+            {
+              "id": "clubs-6",
+              "suit": "clubs",
+              "rank": 6
+            },
+            {
+              "id": "clubs-7",
+              "suit": "clubs",
+              "rank": 7
+            },
+            {
+              "id": "clubs-8",
+              "suit": "clubs",
+              "rank": 8
+            },
+            {
+              "id": "clubs-9",
+              "suit": "clubs",
+              "rank": 9
+            },
+            {
+              "id": "clubs-10",
+              "suit": "clubs",
+              "rank": 10
+            },
+            {
+              "id": "clubs-11",
+              "suit": "clubs",
+              "rank": 11
+            },
+            {
+              "id": "clubs-12",
+              "suit": "clubs",
+              "rank": 12
+            },
+            {
+              "id": "clubs-13",
+              "suit": "clubs",
+              "rank": 13
+            },
+            {
+              "id": "clubs-14",
+              "suit": "clubs",
+              "rank": 14
+            },
+            {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2
+            },
+            {
+              "id": "diamonds-3",
+              "suit": "diamonds",
+              "rank": 3
+            },
+            {
+              "id": "diamonds-4",
+              "suit": "diamonds",
+              "rank": 4
+            },
+            {
+              "id": "diamonds-5",
+              "suit": "diamonds",
+              "rank": 5
+            },
+            {
+              "id": "diamonds-6",
+              "suit": "diamonds",
+              "rank": 6
+            },
+            {
+              "id": "diamonds-7",
+              "suit": "diamonds",
+              "rank": 7
+            },
+            {
+              "id": "diamonds-8",
+              "suit": "diamonds",
+              "rank": 8
+            },
+            {
+              "id": "diamonds-9",
+              "suit": "diamonds",
+              "rank": 9
+            },
+            {
+              "id": "diamonds-10",
+              "suit": "diamonds",
+              "rank": 10
+            },
+            {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11
+            },
+            {
+              "id": "diamonds-12",
+              "suit": "diamonds",
+              "rank": 12
+            },
+            {
+              "id": "diamonds-13",
+              "suit": "diamonds",
+              "rank": 13
+            },
+            {
+              "id": "diamonds-14",
+              "suit": "diamonds",
+              "rank": 14
+            }
+          ],
+          "drawPile": [
+            "diamonds-6",
+            "diamonds-5",
+            "hearts-14",
+            "diamonds-4",
+            "diamonds-7",
+            "hearts-6",
+            "spades-14",
+            "clubs-10",
+            "clubs-3",
+            "clubs-9",
+            "hearts-10",
+            "diamonds-11",
+            "hearts-2",
+            "diamonds-2",
+            "clubs-13",
+            "spades-12",
+            "hearts-9",
+            "hearts-4",
+            "hearts-13",
+            "spades-11",
+            "diamonds-9",
+            "diamonds-12",
+            "hearts-3",
+            "clubs-11",
+            "clubs-2",
+            "spades-2",
+            "diamonds-14",
+            "diamonds-13",
+            "hearts-5",
+            "diamonds-10",
+            "hearts-8",
+            "diamonds-8",
+            "spades-9",
+            "spades-6",
+            "spades-3",
+            "spades-5",
+            "clubs-8",
+            "spades-4",
+            "hearts-11",
+            "diamonds-3",
+            "clubs-6",
+            "hearts-12",
+            "spades-8",
+            "clubs-4"
+          ],
+          "handOrder": [
+            "spades-13",
+            "hearts-7",
+            "clubs-12",
+            "clubs-14",
+            "clubs-7",
+            "clubs-5",
+            "spades-10"
+          ],
+          "playedPile": [
+            "spades-7"
+          ],
+          "discardPile": [],
+          "destroyedIds": [],
+          "stage": {
+            "index": 0,
+            "targetHeat": "54",
+            "heat": "54",
+            "handsLeft": 0,
+            "discardsLeft": 0,
+            "playIndex": 1,
+            "previousHandType": "high-card",
+            "clearId": "golden-xiemu/clear/0",
+            "goldEarned": 7,
+            "disabledIds": [],
+            "wagerSelected": false,
+            "wagerUsed": false
+          },
+          "totalHeat": "54",
+          "gold": 13,
+          "jokers": [],
+          "consumables": [],
+          "longTermItems": [],
+          "program": null,
+          "boss": null,
+          "shop": null,
+          "rng": {
+            "deck": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 1756379316
+            },
+            "rule": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 2685644718
+            },
+            "shop": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 241398764
+            },
+            "reward": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 259094911
+            }
+          },
+          "receipts": [
+            {
+              "commandId": "golden-xiemu/start",
+              "fingerprint": "json-fnv-v1:f2d854ec47356278",
+              "seq": 1
+            },
+            {
+              "commandId": "enter",
+              "fingerprint": "json-fnv-v1:0abeb493f15eb1e7",
+              "seq": 2
+            },
+            {
+              "commandId": "fourth",
+              "fingerprint": "json-fnv-v1:f3282722dd004136",
+              "seq": 3
+            }
+          ],
+          "lastTrace": {
+            "rulesVersion": "r2",
+            "rootId": "golden-xiemu/hand/fourth",
+            "handType": "high-card",
+            "level": 1,
+            "sets": {
+              "playedIds": [
+                "spades-7"
+              ],
+              "scoringIds": [
+                "spades-7"
+              ],
+              "activeScoringIds": [
+                "spades-7"
+              ],
+              "heldIds": [
+                "spades-13",
+                "hearts-7",
+                "clubs-12",
+                "clubs-14",
+                "clubs-7",
+                "clubs-5",
+                "spades-10"
+              ]
+            },
+            "finalScore": "54",
+            "accumulator": {
+              "H": {
+                "n": "27",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "events": [
+              {
+                "eventId": "golden-xiemu/hand/fourth/event/0",
+                "rootId": "golden-xiemu/hand/fourth",
+                "rootEventId": "golden-xiemu/hand/fourth/event/0",
+                "phase": "base",
+                "sourceType": "rule",
+                "sourceDefinitionId": "high-card",
+                "sourceInstanceId": "golden-xiemu",
+                "operation": "base",
+                "value": {
+                  "n": "20",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "0",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "0",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "20",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "high-card.base",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "golden-xiemu/hand/fourth/event/1",
+                "rootId": "golden-xiemu/hand/fourth",
+                "rootEventId": "golden-xiemu/hand/fourth/event/1",
+                "phase": "onCardScore",
+                "sourceType": "card",
+                "sourceDefinitionId": "rank-7",
+                "sourceInstanceId": "spades-7",
+                "targetCardId": "spades-7",
+                "operation": "add-heat",
+                "value": {
+                  "n": "7",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "20",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "27",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "rank-7.add-heat",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "golden-xiemu/hand/fourth/event/2",
+                "rootId": "golden-xiemu/hand/fourth",
+                "rootEventId": "golden-xiemu/hand/fourth/event/2",
+                "phase": "characterScore",
+                "sourceType": "character",
+                "sourceDefinitionId": "xiemu",
+                "sourceInstanceId": "golden-xiemu/character",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "27",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "27",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "2",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "xiemu.multiply-multiplier",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "golden-xiemu/hand/fourth/event/3",
+                "rootId": "golden-xiemu/hand/fourth",
+                "rootEventId": "golden-xiemu/hand/fourth/event/3",
+                "phase": "finalScore",
+                "sourceType": "rule",
+                "sourceDefinitionId": "high-card",
+                "sourceInstanceId": "golden-xiemu",
+                "operation": "final-score",
+                "value": {
+                  "n": "54",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "27",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "2",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "27",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "2",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "high-card.final-score",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              }
+            ],
+            "jokers": [],
+            "rng": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 2685644718
+            }
+          },
+          "handLevels": {},
+          "outcome": null
+        },
+        "events": [
+          {
+            "type": "hand-scored-r2",
+            "score": {
+              "rulesVersion": "r2",
+              "rootId": "golden-xiemu/hand/fourth",
+              "handType": "high-card",
+              "level": 1,
+              "sets": {
+                "playedIds": [
+                  "spades-7"
+                ],
+                "scoringIds": [
+                  "spades-7"
+                ],
+                "activeScoringIds": [
+                  "spades-7"
+                ],
+                "heldIds": [
+                  "spades-13",
+                  "hearts-7",
+                  "clubs-12",
+                  "clubs-14",
+                  "clubs-7",
+                  "clubs-5",
+                  "spades-10"
+                ]
+              },
+              "finalScore": "54",
+              "accumulator": {
+                "H": {
+                  "n": "27",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "events": [
+                {
+                  "eventId": "golden-xiemu/hand/fourth/event/0",
+                  "rootId": "golden-xiemu/hand/fourth",
+                  "rootEventId": "golden-xiemu/hand/fourth/event/0",
+                  "phase": "base",
+                  "sourceType": "rule",
+                  "sourceDefinitionId": "high-card",
+                  "sourceInstanceId": "golden-xiemu",
+                  "operation": "base",
+                  "value": {
+                    "n": "20",
+                    "d": "1"
+                  },
+                  "before": {
+                    "H": {
+                      "n": "0",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "0",
+                      "d": "1"
+                    }
+                  },
+                  "after": {
+                    "H": {
+                      "n": "20",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "1",
+                      "d": "1"
+                    }
+                  },
+                  "reasonKey": "high-card.base",
+                  "visibleCondition": {
+                    "kind": "always"
+                  },
+                  "retriggerDepth": 0
+                },
+                {
+                  "eventId": "golden-xiemu/hand/fourth/event/1",
+                  "rootId": "golden-xiemu/hand/fourth",
+                  "rootEventId": "golden-xiemu/hand/fourth/event/1",
+                  "phase": "onCardScore",
+                  "sourceType": "card",
+                  "sourceDefinitionId": "rank-7",
+                  "sourceInstanceId": "spades-7",
+                  "targetCardId": "spades-7",
+                  "operation": "add-heat",
+                  "value": {
+                    "n": "7",
+                    "d": "1"
+                  },
+                  "before": {
+                    "H": {
+                      "n": "20",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "1",
+                      "d": "1"
+                    }
+                  },
+                  "after": {
+                    "H": {
+                      "n": "27",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "1",
+                      "d": "1"
+                    }
+                  },
+                  "reasonKey": "rank-7.add-heat",
+                  "visibleCondition": {
+                    "kind": "always"
+                  },
+                  "retriggerDepth": 0
+                },
+                {
+                  "eventId": "golden-xiemu/hand/fourth/event/2",
+                  "rootId": "golden-xiemu/hand/fourth",
+                  "rootEventId": "golden-xiemu/hand/fourth/event/2",
+                  "phase": "characterScore",
+                  "sourceType": "character",
+                  "sourceDefinitionId": "xiemu",
+                  "sourceInstanceId": "golden-xiemu/character",
+                  "operation": "multiply-multiplier",
+                  "value": {
+                    "n": "2",
+                    "d": "1"
+                  },
+                  "before": {
+                    "H": {
+                      "n": "27",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "1",
+                      "d": "1"
+                    }
+                  },
+                  "after": {
+                    "H": {
+                      "n": "27",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  },
+                  "reasonKey": "xiemu.multiply-multiplier",
+                  "visibleCondition": {
+                    "kind": "always"
+                  },
+                  "retriggerDepth": 0
+                },
+                {
+                  "eventId": "golden-xiemu/hand/fourth/event/3",
+                  "rootId": "golden-xiemu/hand/fourth",
+                  "rootEventId": "golden-xiemu/hand/fourth/event/3",
+                  "phase": "finalScore",
+                  "sourceType": "rule",
+                  "sourceDefinitionId": "high-card",
+                  "sourceInstanceId": "golden-xiemu",
+                  "operation": "final-score",
+                  "value": {
+                    "n": "54",
+                    "d": "1"
+                  },
+                  "before": {
+                    "H": {
+                      "n": "27",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  },
+                  "after": {
+                    "H": {
+                      "n": "27",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "2",
+                      "d": "1"
+                    }
+                  },
+                  "reasonKey": "high-card.final-score",
+                  "visibleCondition": {
+                    "kind": "always"
+                  },
+                  "retriggerDepth": 0
+                }
+              ],
+              "jokers": [],
+              "rng": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 2685644718
+              }
+            },
+            "playedIds": [
+              "spades-7"
+            ],
+            "playIndex": 1
+          },
+          {
+            "type": "stage-ended",
+            "cleared": true,
+            "stage": {
+              "index": 0,
+              "targetHeat": "54",
+              "heat": "54",
+              "handsLeft": 0,
+              "discardsLeft": 0,
+              "playIndex": 1,
+              "previousHandType": "high-card",
+              "clearId": "golden-xiemu/clear/0",
+              "goldEarned": 7,
+              "disabledIds": [],
+              "wagerSelected": false,
+              "wagerUsed": false
+            }
+          }
+        ],
+        "receipt": {
+          "commandId": "fourth",
+          "fingerprint": "json-fnv-v1:f3282722dd004136",
+          "seq": 3
+        },
+        "duplicate": false
+      },
+      "stateHash": "json-fnv-v1:4c4f797554d41ed1"
+    },
+    {
+      "id": "G11",
+      "status": "PASS",
+      "inputState": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-score-v1",
+        "contentHash": "json-fnv-v1:72429df91373ab75",
+        "runId": "golden-touye",
+        "seed": "r2-golden",
+        "commandSeq": 3,
+        "difficulty": 0,
+        "characterId": "touye",
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "await-input",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "diamonds-6",
+          "diamonds-5",
+          "hearts-14",
+          "diamonds-4",
+          "diamonds-7",
+          "hearts-6",
+          "spades-14",
+          "clubs-10",
+          "clubs-3",
+          "clubs-9",
+          "hearts-10",
+          "diamonds-11",
+          "hearts-2",
+          "diamonds-2",
+          "clubs-13",
+          "spades-12",
+          "hearts-9",
+          "hearts-4",
+          "hearts-13",
+          "spades-11",
+          "diamonds-9",
+          "diamonds-12",
+          "hearts-3",
+          "clubs-11",
+          "clubs-2",
+          "spades-2",
+          "diamonds-14",
+          "diamonds-13",
+          "hearts-5",
+          "diamonds-10",
+          "hearts-8",
+          "diamonds-8",
+          "spades-9",
+          "spades-6",
+          "spades-3",
+          "spades-5",
+          "clubs-8",
+          "spades-4",
+          "hearts-11",
+          "diamonds-3",
+          "clubs-6",
+          "hearts-12",
+          "spades-8",
+          "clubs-4"
+        ],
+        "handOrder": [
+          "spades-7",
+          "spades-13",
+          "hearts-7",
+          "clubs-12",
+          "clubs-14",
+          "clubs-7",
+          "clubs-5",
+          "spades-10"
+        ],
+        "playedPile": [],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": {
+          "index": 0,
+          "targetHeat": "400",
+          "heat": "0",
+          "handsLeft": 4,
+          "discardsLeft": 0,
+          "playIndex": 0,
+          "previousHandType": null,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": true,
+          "wagerUsed": false
+        },
+        "totalHeat": "0",
+        "gold": 6,
+        "jokers": [],
+        "consumables": [],
+        "longTermItems": [],
+        "program": null,
+        "boss": null,
+        "shop": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1756379316
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2685644718
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 241398764
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 259094911
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "golden-touye/start",
+            "fingerprint": "json-fnv-v1:73edac1af1fe8c4e",
+            "seq": 1
+          },
+          {
+            "commandId": "enter",
+            "fingerprint": "json-fnv-v1:42e531b9f88b3855",
+            "seq": 2
+          },
+          {
+            "commandId": "wager",
+            "fingerprint": "json-fnv-v1:7643fa0183957155",
+            "seq": 3
+          }
+        ],
+        "lastTrace": null,
+        "handLevels": {},
+        "outcome": null
+      },
+      "command": {
+        "runId": "golden-touye",
+        "commandId": "play",
+        "expectedSeq": 3,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-7"
+          ]
+        }
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "schemaVersion": 2,
+          "rulesVersion": "r2",
+          "contentVersion": "quality-r2-score-v1",
+          "contentHash": "json-fnv-v1:72429df91373ab75",
+          "runId": "golden-touye",
+          "seed": "r2-golden",
+          "commandSeq": 4,
+          "difficulty": 0,
+          "characterId": "touye",
+          "chapter": 1,
+          "stageIndex": 0,
+          "phase": "await-input",
+          "deckInstances": [
+            {
+              "id": "spades-2",
+              "suit": "spades",
+              "rank": 2
+            },
+            {
+              "id": "spades-3",
+              "suit": "spades",
+              "rank": 3
+            },
+            {
+              "id": "spades-4",
+              "suit": "spades",
+              "rank": 4
+            },
+            {
+              "id": "spades-5",
+              "suit": "spades",
+              "rank": 5
+            },
+            {
+              "id": "spades-6",
+              "suit": "spades",
+              "rank": 6
+            },
+            {
+              "id": "spades-7",
+              "suit": "spades",
+              "rank": 7
+            },
+            {
+              "id": "spades-8",
+              "suit": "spades",
+              "rank": 8
+            },
+            {
+              "id": "spades-9",
+              "suit": "spades",
+              "rank": 9
+            },
+            {
+              "id": "spades-10",
+              "suit": "spades",
+              "rank": 10
+            },
+            {
+              "id": "spades-11",
+              "suit": "spades",
+              "rank": 11
+            },
+            {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12
+            },
+            {
+              "id": "spades-13",
+              "suit": "spades",
+              "rank": 13
+            },
+            {
+              "id": "spades-14",
+              "suit": "spades",
+              "rank": 14
+            },
+            {
+              "id": "hearts-2",
+              "suit": "hearts",
+              "rank": 2
+            },
+            {
+              "id": "hearts-3",
+              "suit": "hearts",
+              "rank": 3
+            },
+            {
+              "id": "hearts-4",
+              "suit": "hearts",
+              "rank": 4
+            },
+            {
+              "id": "hearts-5",
+              "suit": "hearts",
+              "rank": 5
+            },
+            {
+              "id": "hearts-6",
+              "suit": "hearts",
+              "rank": 6
+            },
+            {
+              "id": "hearts-7",
+              "suit": "hearts",
+              "rank": 7
+            },
+            {
+              "id": "hearts-8",
+              "suit": "hearts",
+              "rank": 8
+            },
+            {
+              "id": "hearts-9",
+              "suit": "hearts",
+              "rank": 9
+            },
+            {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            {
+              "id": "hearts-11",
+              "suit": "hearts",
+              "rank": 11
+            },
+            {
+              "id": "hearts-12",
+              "suit": "hearts",
+              "rank": 12
+            },
+            {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13
+            },
+            {
+              "id": "hearts-14",
+              "suit": "hearts",
+              "rank": 14
+            },
+            {
+              "id": "clubs-2",
+              "suit": "clubs",
+              "rank": 2
+            },
+            {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 3
+            },
+            {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            {
+              "id": "clubs-5",
+              "suit": "clubs",
+              "rank": 5
+            },
+            {
+              "id": "clubs-6",
+              "suit": "clubs",
+              "rank": 6
+            },
+            {
+              "id": "clubs-7",
+              "suit": "clubs",
+              "rank": 7
+            },
+            {
+              "id": "clubs-8",
+              "suit": "clubs",
+              "rank": 8
+            },
+            {
+              "id": "clubs-9",
+              "suit": "clubs",
+              "rank": 9
+            },
+            {
+              "id": "clubs-10",
+              "suit": "clubs",
+              "rank": 10
+            },
+            {
+              "id": "clubs-11",
+              "suit": "clubs",
+              "rank": 11
+            },
+            {
+              "id": "clubs-12",
+              "suit": "clubs",
+              "rank": 12
+            },
+            {
+              "id": "clubs-13",
+              "suit": "clubs",
+              "rank": 13
+            },
+            {
+              "id": "clubs-14",
+              "suit": "clubs",
+              "rank": 14
+            },
+            {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2
+            },
+            {
+              "id": "diamonds-3",
+              "suit": "diamonds",
+              "rank": 3
+            },
+            {
+              "id": "diamonds-4",
+              "suit": "diamonds",
+              "rank": 4
+            },
+            {
+              "id": "diamonds-5",
+              "suit": "diamonds",
+              "rank": 5
+            },
+            {
+              "id": "diamonds-6",
+              "suit": "diamonds",
+              "rank": 6
+            },
+            {
+              "id": "diamonds-7",
+              "suit": "diamonds",
+              "rank": 7
+            },
+            {
+              "id": "diamonds-8",
+              "suit": "diamonds",
+              "rank": 8
+            },
+            {
+              "id": "diamonds-9",
+              "suit": "diamonds",
+              "rank": 9
+            },
+            {
+              "id": "diamonds-10",
+              "suit": "diamonds",
+              "rank": 10
+            },
+            {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11
+            },
+            {
+              "id": "diamonds-12",
+              "suit": "diamonds",
+              "rank": 12
+            },
+            {
+              "id": "diamonds-13",
+              "suit": "diamonds",
+              "rank": 13
+            },
+            {
+              "id": "diamonds-14",
+              "suit": "diamonds",
+              "rank": 14
+            }
+          ],
+          "drawPile": [
+            "diamonds-6",
+            "diamonds-5",
+            "hearts-14",
+            "diamonds-4",
+            "diamonds-7",
+            "hearts-6",
+            "spades-14",
+            "clubs-10",
+            "clubs-3",
+            "clubs-9",
+            "hearts-10",
+            "diamonds-11",
+            "hearts-2",
+            "diamonds-2",
+            "clubs-13",
+            "spades-12",
+            "hearts-9",
+            "hearts-4",
+            "hearts-13",
+            "spades-11",
+            "diamonds-9",
+            "diamonds-12",
+            "hearts-3",
+            "clubs-11",
+            "clubs-2",
+            "spades-2",
+            "diamonds-14",
+            "diamonds-13",
+            "hearts-5",
+            "diamonds-10",
+            "hearts-8",
+            "diamonds-8",
+            "spades-9",
+            "spades-6",
+            "spades-3",
+            "spades-5",
+            "clubs-8",
+            "spades-4",
+            "hearts-11",
+            "diamonds-3",
+            "clubs-6",
+            "hearts-12",
+            "spades-8"
+          ],
+          "handOrder": [
+            "spades-13",
+            "hearts-7",
+            "clubs-12",
+            "clubs-14",
+            "clubs-7",
+            "clubs-5",
+            "spades-10",
+            "clubs-4"
+          ],
+          "playedPile": [
+            "spades-7"
+          ],
+          "discardPile": [],
+          "destroyedIds": [],
+          "stage": {
+            "index": 0,
+            "targetHeat": "400",
+            "heat": "20",
+            "handsLeft": 3,
+            "discardsLeft": 0,
+            "playIndex": 1,
+            "previousHandType": "high-card",
+            "clearId": null,
+            "goldEarned": 0,
+            "disabledIds": [],
+            "wagerSelected": false,
+            "wagerUsed": true
+          },
+          "totalHeat": "0",
+          "gold": 6,
+          "jokers": [],
+          "consumables": [],
+          "longTermItems": [],
+          "program": null,
+          "boss": null,
+          "shop": null,
+          "rng": {
+            "deck": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 1756379316
+            },
+            "rule": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 222243235
+            },
+            "shop": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 241398764
+            },
+            "reward": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 259094911
+            }
+          },
+          "receipts": [
+            {
+              "commandId": "golden-touye/start",
+              "fingerprint": "json-fnv-v1:73edac1af1fe8c4e",
+              "seq": 1
+            },
+            {
+              "commandId": "enter",
+              "fingerprint": "json-fnv-v1:42e531b9f88b3855",
+              "seq": 2
+            },
+            {
+              "commandId": "wager",
+              "fingerprint": "json-fnv-v1:7643fa0183957155",
+              "seq": 3
+            },
+            {
+              "commandId": "play",
+              "fingerprint": "json-fnv-v1:d74f68659a1e0af1",
+              "seq": 4
+            }
+          ],
+          "lastTrace": {
+            "rulesVersion": "r2",
+            "rootId": "golden-touye/hand/play",
+            "handType": "high-card",
+            "level": 1,
+            "sets": {
+              "playedIds": [
+                "spades-7"
+              ],
+              "scoringIds": [
+                "spades-7"
+              ],
+              "activeScoringIds": [
+                "spades-7"
+              ],
+              "heldIds": [
+                "spades-13",
+                "hearts-7",
+                "clubs-12",
+                "clubs-14",
+                "clubs-7",
+                "clubs-5",
+                "spades-10"
+              ]
+            },
+            "finalScore": "20",
+            "accumulator": {
+              "H": {
+                "n": "27",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "4"
+              }
+            },
+            "events": [
+              {
+                "eventId": "golden-touye/hand/play/event/0",
+                "rootId": "golden-touye/hand/play",
+                "rootEventId": "golden-touye/hand/play/event/0",
+                "phase": "base",
+                "sourceType": "rule",
+                "sourceDefinitionId": "high-card",
+                "sourceInstanceId": "golden-touye",
+                "operation": "base",
+                "value": {
+                  "n": "20",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "0",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "0",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "20",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "high-card.base",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "golden-touye/hand/play/event/1",
+                "rootId": "golden-touye/hand/play",
+                "rootEventId": "golden-touye/hand/play/event/1",
+                "phase": "onCardScore",
+                "sourceType": "card",
+                "sourceDefinitionId": "rank-7",
+                "sourceInstanceId": "spades-7",
+                "targetCardId": "spades-7",
+                "operation": "add-heat",
+                "value": {
+                  "n": "7",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "20",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "27",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "rank-7.add-heat",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "golden-touye/hand/play/event/2",
+                "rootId": "golden-touye/hand/play",
+                "rootEventId": "golden-touye/hand/play/event/2",
+                "phase": "characterScore",
+                "sourceType": "character",
+                "sourceDefinitionId": "touye",
+                "sourceInstanceId": "golden-touye/character",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "4"
+                },
+                "before": {
+                  "H": {
+                    "n": "27",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "27",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "3",
+                    "d": "4"
+                  }
+                },
+                "reasonKey": "touye.multiply-multiplier",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "golden-touye/hand/play/event/3",
+                "rootId": "golden-touye/hand/play",
+                "rootEventId": "golden-touye/hand/play/event/3",
+                "phase": "finalScore",
+                "sourceType": "rule",
+                "sourceDefinitionId": "high-card",
+                "sourceInstanceId": "golden-touye",
+                "operation": "final-score",
+                "value": {
+                  "n": "20",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "27",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "3",
+                    "d": "4"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "27",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "3",
+                    "d": "4"
+                  }
+                },
+                "reasonKey": "high-card.final-score",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              }
+            ],
+            "jokers": [],
+            "rng": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 222243235
+            }
+          },
+          "handLevels": {},
+          "outcome": null
+        },
+        "events": [
+          {
+            "type": "hand-scored-r2",
+            "score": {
+              "rulesVersion": "r2",
+              "rootId": "golden-touye/hand/play",
+              "handType": "high-card",
+              "level": 1,
+              "sets": {
+                "playedIds": [
+                  "spades-7"
+                ],
+                "scoringIds": [
+                  "spades-7"
+                ],
+                "activeScoringIds": [
+                  "spades-7"
+                ],
+                "heldIds": [
+                  "spades-13",
+                  "hearts-7",
+                  "clubs-12",
+                  "clubs-14",
+                  "clubs-7",
+                  "clubs-5",
+                  "spades-10"
+                ]
+              },
+              "finalScore": "20",
+              "accumulator": {
+                "H": {
+                  "n": "27",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "4"
+                }
+              },
+              "events": [
+                {
+                  "eventId": "golden-touye/hand/play/event/0",
+                  "rootId": "golden-touye/hand/play",
+                  "rootEventId": "golden-touye/hand/play/event/0",
+                  "phase": "base",
+                  "sourceType": "rule",
+                  "sourceDefinitionId": "high-card",
+                  "sourceInstanceId": "golden-touye",
+                  "operation": "base",
+                  "value": {
+                    "n": "20",
+                    "d": "1"
+                  },
+                  "before": {
+                    "H": {
+                      "n": "0",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "0",
+                      "d": "1"
+                    }
+                  },
+                  "after": {
+                    "H": {
+                      "n": "20",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "1",
+                      "d": "1"
+                    }
+                  },
+                  "reasonKey": "high-card.base",
+                  "visibleCondition": {
+                    "kind": "always"
+                  },
+                  "retriggerDepth": 0
+                },
+                {
+                  "eventId": "golden-touye/hand/play/event/1",
+                  "rootId": "golden-touye/hand/play",
+                  "rootEventId": "golden-touye/hand/play/event/1",
+                  "phase": "onCardScore",
+                  "sourceType": "card",
+                  "sourceDefinitionId": "rank-7",
+                  "sourceInstanceId": "spades-7",
+                  "targetCardId": "spades-7",
+                  "operation": "add-heat",
+                  "value": {
+                    "n": "7",
+                    "d": "1"
+                  },
+                  "before": {
+                    "H": {
+                      "n": "20",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "1",
+                      "d": "1"
+                    }
+                  },
+                  "after": {
+                    "H": {
+                      "n": "27",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "1",
+                      "d": "1"
+                    }
+                  },
+                  "reasonKey": "rank-7.add-heat",
+                  "visibleCondition": {
+                    "kind": "always"
+                  },
+                  "retriggerDepth": 0
+                },
+                {
+                  "eventId": "golden-touye/hand/play/event/2",
+                  "rootId": "golden-touye/hand/play",
+                  "rootEventId": "golden-touye/hand/play/event/2",
+                  "phase": "characterScore",
+                  "sourceType": "character",
+                  "sourceDefinitionId": "touye",
+                  "sourceInstanceId": "golden-touye/character",
+                  "operation": "multiply-multiplier",
+                  "value": {
+                    "n": "3",
+                    "d": "4"
+                  },
+                  "before": {
+                    "H": {
+                      "n": "27",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "1",
+                      "d": "1"
+                    }
+                  },
+                  "after": {
+                    "H": {
+                      "n": "27",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "3",
+                      "d": "4"
+                    }
+                  },
+                  "reasonKey": "touye.multiply-multiplier",
+                  "visibleCondition": {
+                    "kind": "always"
+                  },
+                  "retriggerDepth": 0
+                },
+                {
+                  "eventId": "golden-touye/hand/play/event/3",
+                  "rootId": "golden-touye/hand/play",
+                  "rootEventId": "golden-touye/hand/play/event/3",
+                  "phase": "finalScore",
+                  "sourceType": "rule",
+                  "sourceDefinitionId": "high-card",
+                  "sourceInstanceId": "golden-touye",
+                  "operation": "final-score",
+                  "value": {
+                    "n": "20",
+                    "d": "1"
+                  },
+                  "before": {
+                    "H": {
+                      "n": "27",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "3",
+                      "d": "4"
+                    }
+                  },
+                  "after": {
+                    "H": {
+                      "n": "27",
+                      "d": "1"
+                    },
+                    "M": {
+                      "n": "3",
+                      "d": "4"
+                    }
+                  },
+                  "reasonKey": "high-card.final-score",
+                  "visibleCondition": {
+                    "kind": "always"
+                  },
+                  "retriggerDepth": 0
+                }
+              ],
+              "jokers": [],
+              "rng": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 222243235
+              }
+            },
+            "playedIds": [
+              "spades-7"
+            ],
+            "playIndex": 1
+          }
+        ],
+        "receipt": {
+          "commandId": "play",
+          "fingerprint": "json-fnv-v1:d74f68659a1e0af1",
+          "seq": 4
+        },
+        "duplicate": false
+      },
+      "stateHash": "json-fnv-v1:f43b01c0608cfe4c"
+    },
+    {
+      "id": "G12",
+      "status": "PASS",
+      "previewCount": 100,
+      "preview": {
+        "handType": "high-card",
+        "sets": {
+          "playedIds": [
+            "spades-7"
+          ],
+          "scoringIds": [
+            "spades-7"
+          ],
+          "activeScoringIds": [
+            "spades-7"
+          ],
+          "heldIds": [
+            "spades-13",
+            "hearts-7",
+            "clubs-12",
+            "clubs-14",
+            "clubs-7",
+            "clubs-5",
+            "spades-10"
+          ]
+        },
+        "possibleScores": [
+          "54",
+          "20"
+        ]
+      },
+      "unchangedStateHash": "json-fnv-v1:e204c81e1e9c2202",
+      "resultStateHash": "json-fnv-v1:f43b01c0608cfe4c"
+    },
+    {
+      "id": "G13",
+      "status": "PASS",
+      "command": {
+        "runId": "golden-touye",
+        "commandId": "play",
+        "expectedSeq": 3,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-7"
+          ]
+        }
+      },
+      "receipt": {
+        "commandId": "play",
+        "fingerprint": "json-fnv-v1:d74f68659a1e0af1",
+        "seq": 4
+      },
+      "duplicate": true,
+      "unchangedStateHash": "json-fnv-v1:f43b01c0608cfe4c"
+    },
+    {
+      "id": "G14",
+      "status": "PASS",
+      "code": "duplicate-card",
+      "unchangedStateHash": "json-fnv-v1:e204c81e1e9c2202",
+      "rng": {
+        "deck": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 1756379316
+        },
+        "rule": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2685644718
+        },
+        "shop": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 241398764
+        },
+        "reward": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 259094911
+        }
+      }
+    },
+    {
+      "id": "G15",
+      "status": "PASS",
+      "input": {
+        "H": "21",
+        "M": {
+          "n": "3",
+          "d": "2"
+        }
+      },
+      "exactProduct": {
+        "n": "63",
+        "d": "2"
+      },
+      "finalScore": "31"
+    }
+  ]
+}
