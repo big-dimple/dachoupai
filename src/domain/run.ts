@@ -10,6 +10,9 @@ import { getStage, STAGES } from '../run/stages';
 import { scoreHand, type ScoreResult } from '../scoring/scoreHand';
 import { CHARACTER_IDS, type CharacterId } from './characters';
 import { stableHash } from './hash';
+import { assertR2Invariants, R2_CONTENT_HASH, R2_CONTENT_VERSION, transactR2, type R2RunState, type R2StageState } from './r2Run';
+import type { ScoreTrace } from './scoreR2';
+export type { R2RunState } from './r2Run';
 
 export const R1_LIMITS = { handSize: 8, maxSelected: 5, jokerSlots: MAX_JOKER_SLOTS } as const;
 export const CONTENT_VERSION = 'phase2b-r1';
@@ -56,7 +59,7 @@ export interface Receipt {
 
 export interface RunState {
   schemaVersion: 1;
-  rulesVersion: 'r1' | 'r2';
+  rulesVersion: 'r1';
   contentVersion: string;
   contentHash: string;
   runId: string;
@@ -92,6 +95,7 @@ export type Action =
   | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2' }
   | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' }
   | { type: 'PlayHand'; selectedIds: readonly string[] }
+  | { type: 'SetWager'; enabled: boolean }
   | { type: 'BuyOffer'; offerId: string }
   | { type: 'ReorderHand' | 'ReorderJokers'; ids: readonly string[] };
 
@@ -104,14 +108,16 @@ export interface Command {
 
 export type DomainEvent =
   | { type: 'hand-scored'; score: ScoreResult; playedIds: string[]; playIndex: number }
-  | { type: 'stage-ended'; cleared: boolean; stage: StageState }
+  | { type: 'hand-scored-r2'; score: ScoreTrace; playedIds: string[]; playIndex: number }
+  | { type: 'stage-ended'; cleared: boolean; stage: StageState | R2StageState }
   | { type: 'run-abandoned' };
 
 export type CommandResult<S = RunState> =
-  | { ok: true; state: RunState; events: DomainEvent[]; receipt: Receipt; duplicate: boolean }
-  | { ok: false; code: string; state: S };
+  | { ok: true; state: Exclude<S, null>; events: DomainEvent[]; receipt: Receipt; duplicate: boolean }
+  | { ok: false; code: string; state: S; diagnostic?: {code:string;events:readonly unknown[]} };
 
-export const stateHash = (state: RunState): string => stableHash(state);
+export type AnyRunState = RunState | R2RunState;
+export const stateHash = (state: AnyRunState): string => stableHash(state);
 export const jokerIds = (state: RunState): JokerId[] => state.jokers.map(joker => joker.definitionId);
 const summary = (state: RunState) => ({ seed: state.seed, characterId: state.characterId, stageIndex: state.stageIndex, totalHeat: state.totalHeat, gold: state.gold, jokerIds: jokerIds(state) });
 
@@ -153,8 +159,11 @@ function permutation(ids: readonly string[], expected: readonly string[]): boole
   return ids.length === expected.length && new Set(ids).size === ids.length && ids.every(id => expected.includes(id));
 }
 
-export function applyCommand<S extends RunState | null>(input: S, command: Command): CommandResult<S> {
-  const fail = (code: string): CommandResult<S> => ({ ok: false, code, state: input });
+export function applyCommand(input: RunState, command: Command): CommandResult;
+export function applyCommand(input: R2RunState, command: Command): CommandResult<R2RunState>;
+export function applyCommand(input: AnyRunState | null, command: Command): CommandResult<AnyRunState | null>;
+export function applyCommand(input: AnyRunState | null, command: Command): CommandResult<AnyRunState | null> {
+  const fail = (code: string): CommandResult<AnyRunState|null> => ({ ok: false, code, state: input });
   if (!command || !command.action || typeof command.runId !== 'string' || !command.runId.trim() || typeof command.commandId !== 'string' || !command.commandId.trim() || !Number.isSafeInteger(command.expectedSeq) || command.expectedSeq < 0) return fail('invalid-command');
   if (input && command.runId !== input.runId) return fail('wrong-run');
   const fingerprint = stableHash(command);
@@ -164,6 +173,15 @@ export function applyCommand<S extends RunState | null>(input: S, command: Comma
     return { ok: true, state: input!, events: [], receipt: previous, duplicate: true };
   }
   if (command.expectedSeq !== (input?.commandSeq ?? 0)) return fail('stale-sequence');
+  if (input?.rulesVersion === 'r2' || (!input && command.action.type === 'StartRun' && command.action.rulesVersion === 'r2')) {
+    if (input && (input.schemaVersion !== 2 || input.contentHash !== R2_CONTENT_HASH || input.contentVersion !== R2_CONTENT_VERSION)) return fail('incompatible-version');
+    const result = transactR2(input as R2RunState|null, command);
+    if (!result.ok) return {...fail(result.code), ...(result.diagnostic ? {diagnostic:result.diagnostic} : {})};
+    const receipt = {commandId:command.commandId,fingerprint,seq:result.state.commandSeq+1};
+    result.state.commandSeq++; result.state.receipts.push(receipt);
+    assertR2Invariants(result.state);
+    return {...result,receipt,duplicate:false};
+  }
   if (input && (input.rulesVersion !== 'r1' || input.contentHash !== CONTENT_HASH || input.contentVersion !== CONTENT_VERSION)) return fail('incompatible-version');
 
   const action = command.action;
@@ -290,7 +308,11 @@ export function applyCommand<S extends RunState | null>(input: S, command: Comma
   return { ok: true, state, events, receipt, duplicate: false };
 }
 
-export function createRun(options: { seed: string; characterId: CharacterId; runId: string; rulesVersion?: 'r1' | 'r2' }): RunState {
+type StartOptions = { seed: string; characterId: CharacterId; runId: string };
+export function createRun(options: StartOptions & {rulesVersion:'r2'}): R2RunState;
+export function createRun(options: StartOptions & {rulesVersion?:'r1'}): RunState;
+export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState;
+export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState {
   const result = applyCommand(null, {
     runId: options.runId, commandId: `${options.runId}/start`, expectedSeq: 0,
     action: { type: 'StartRun', seed: options.seed, characterId: options.characterId, ...(options.rulesVersion ? { rulesVersion: options.rulesVersion } : {}) },
@@ -299,7 +321,8 @@ export function createRun(options: { seed: string; characterId: CharacterId; run
   return result.state;
 }
 
-export function assertRunInvariants(state: RunState): void {
+export function assertRunInvariants(state: AnyRunState): void {
+  if (state.rulesVersion === 'r2') return assertR2Invariants(state);
   const check = (condition: boolean, message: string) => { if (!condition) throw new Error(`Run invariant: ${message}`); };
   const integer = (value: number) => Number.isSafeInteger(value) && value >= 0;
   const ids = state.deckInstances.map(card => card.id);

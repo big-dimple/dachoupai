@@ -9,7 +9,6 @@ import type {
 } from './types';
 
 export const JOKERS = jokerData as unknown as JokerDefinition[];
-export const DEFAULT_JOKER_IDS = JOKERS.map((joker) => joker.id);
 
 function countFaceCards(context: JokerContext): number {
   return context.hand.cards.filter((card) => card.rank >= 11).length;

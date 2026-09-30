@@ -1,4 +1,4 @@
-import { applyCommand, type Action, type Command, type CommandResult, type RunState } from '../domain/run';
+import { applyCommand, type Action, type AnyRunState, type Command, type CommandResult, type RunState } from '../domain/run';
 
 function freezeCheckpoint<T extends object>(value: T): T {
   if (!Object.isFrozen(value)) {
@@ -9,21 +9,22 @@ function freezeCheckpoint<T extends object>(value: T): T {
 }
 
 /** Synchronous domain transactions are serialized before presentation starts. Persistence is R04. */
-export class RunController {
-  private current: RunState;
+export class RunController<S extends AnyRunState = RunState> {
+  private current: S;
   private readonly commands: Command[] = [];
 
-  constructor(state: RunState) { this.current = freezeCheckpoint(state); }
+  constructor(state: S) { this.current = freezeCheckpoint(state); }
 
-  get state(): RunState { return this.current; }
+  get state(): S { return this.current; }
   get journal(): readonly Command[] { return Object.freeze([...this.commands]); }
 
-  dispatch(action: Action): CommandResult {
+  dispatch(action: Action): CommandResult<S> {
     return this.submit({ runId: this.current.runId, commandId: `${this.current.runId}/command/${this.current.commandSeq + 1}`, expectedSeq: this.current.commandSeq, action });
   }
 
-  submit(command: Command): CommandResult {
-    const result = applyCommand(this.current, command);
+  submit(command: Command): CommandResult<S> {
+    // A started run cannot change version; both reducers preserve the supplied schema.
+    const result = applyCommand(this.current, command) as CommandResult<S>;
     if (result.ok && !result.duplicate) {
       this.current = freezeCheckpoint(result.state);
       this.commands.push(structuredClone(command));

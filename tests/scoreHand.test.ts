@@ -9,7 +9,13 @@ const c = (rank: Rank, suit: Suit): PlayingCard => ({
   suit,
 });
 
-describe('scoreHand with jokers', () => {
+describe('r1 scoring compatibility with explicit jokers', () => {
+  it('refuses omitted equipment instead of silently adding the full catalog',()=>{
+    const hand=evaluateHand([c(2,'spades')]);
+    // @ts-expect-error Deliberate old JavaScript caller without explicit equipment.
+    expect(()=>scoreHand(hand,'amo',{playIndex:1,handsBeforePlay:4,luckRoll:0})).toThrow('explicit-joker-equipment-required');
+    expect(scoreHand(hand,'amo',{playIndex:1,handsBeforePlay:4,luckRoll:0,jokerIds:[]}).finalHeat).toBe(60);
+  });
   it('stacks heat and additive multiplier before final multiplier', () => {
     const hand = evaluateHand([
       c(2, 'spades'),

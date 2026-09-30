@@ -44,14 +44,14 @@ describe('versioned RNG continuation', () => {
 });
 
 describe('complete r1 command state', () => {
-  it('pins r1 and rejects selecting an unimplemented rules version', () => {
+  it('pins default r1; the explicit r2 upgrade has its own schema and command tests', () => {
     const run = started();
     expect(run.rulesVersion).toBe('r1');
     expect(run.phase).toBe('shop');
     expect(run.gold).toBe(6);
     expect(run.deckInstances).toHaveLength(52);
     expect(run.shop?.offers).toHaveLength(3);
-    expect(() => createRun({ seed: 'x', characterId: 'amo', runId: 'x', rulesVersion: 'r2' })).toThrow();
+    expect(createRun({ seed: 'x', characterId: 'amo', runId: 'x', rulesVersion: 'r2' }).schemaVersion).toBe(2);
     assertRunInvariants(run);
   });
 
