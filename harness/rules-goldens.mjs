@@ -62,7 +62,7 @@ try {
     const command={runId:state.runId,commandId,expectedSeq:state.commandSeq,action};
     const result=applyCommand(state,command);assert.equal(result.ok,true);return {command,result};
   };
-  const table=characterId=>send(createRun({seed:'r2-golden',characterId,runId:`golden-${characterId}`,rulesVersion:'r2'}),{type:'EnterStage'},'enter').result.state;
+  const table=characterId=>send(send(createRun({seed:'r2-golden',characterId,runId:`golden-${characterId}`,rulesVersion:'r2'}),{type:'LeaveShop'},'leave').result.state,{type:'EnterStage'},'enter').result.state;
   const fourth=table('xiemu');fourth.stage.handsLeft=1;
   const card=fourth.deckInstances.find(c=>c.id===fourth.handOrder[0]);
   fourth.stage.targetHeat=String(2*(20+(card.rank===14?11:Math.min(card.rank,10))));

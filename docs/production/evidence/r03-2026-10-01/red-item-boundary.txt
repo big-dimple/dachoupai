@@ -1,0 +1,49 @@
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/card-boundary.test.ts (1 test | 1 failed) 9ms
+   × reserved card enhancement schema > refuses unknown enhancements and reports a known but not-yet-enabled enhancement atomically 8ms
+     → expected [Function] to throw an error
+ ❯ tests/r2-run.test.ts (12 tests | 1 failed) 68ms
+   × r2 run economy and resources > keeps unavailable consumable operations explicit and never consumes failed uses 12ms
+     → expected [Function] to throw an error
+   ✓ r2 run economy and resources > starts at a deterministic saved shop with an affordable offer in 100 fixed seeds 32ms
+   ✓ r2 run economy and resources > buys a concrete shelf ID once, retains paid price and does not refill other positions 1ms
+   ✓ r2 run economy and resources > rejects insufficient funds and full slots without spending or touching RNG 1ms
+   ✓ r2 run economy and resources > sells only the named instance using actual paid price, with no instant shelf refresh 1ms
+   ✓ r2 run economy and resources > reroll fees increase per shop, cap at 10 and restore the exact shelf cursor 8ms
+   ✓ r2 run economy and resources > empty candidates do not charge a reroll or advance its cursor 0ms
+   ✓ r2 run economy and resources > spends a discard instead of a hand and retains previous type/play index 3ms
+   ✓ r2 run economy and resources > rejects duplicate/unknown/empty/over-limit/no-resource discards atomically 2ms
+   ✓ r2 run economy and resources > keeps modified persistent instances through a natural clear and next-stage shuffle 2ms
+   ✓ r2 run economy and resources > when the deck is empty, permits the remaining card then ends without invisible refills 1ms
+   ✓ r2 run economy and resources > reorder permutations preserve instances and terminal phases reject every resource action 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/card-boundary.test.ts > reserved card enhancement schema > refuses unknown enhancements and reports a known but not-yet-enabled enhancement atomically
+AssertionError: expected [Function] to throw an error
+ ❯ tests/card-boundary.test.ts:7:122
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > keeps unavailable consumable operations explicit and never consumes failed uses
+AssertionError: expected [Function] to throw an error
+ ❯ tests/r2-run.test.ts:17:115
+     15|     expect(use.ok).toBe(false);if(!use.ok)expect(use.code).toBe('consu…
+     16|     const destroyed=send(run,{type:'DestroyConsumable',instanceId:'ite…
+     17|     const bad=structuredClone(run);bad.consumables[0].definitionId='un…
+       |                                                                                                                   ^
+     18|   });
+     19|   it('starts at a deterministic saved shop with an affordable offer in…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 11 passed (13)
+   Start at  00:51:21
+   Duration  959ms (transform 173ms, setup 0ms, collect 545ms, tests 76ms, environment 0ms, prepare 285ms)
+
+EXIT_CODE=1

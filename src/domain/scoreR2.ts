@@ -48,6 +48,7 @@ function immutable<T>(value: T): T {
 export function scoreR2Hand(input: ScoreInput): ScoreTrace {
   if (input.rulesVersion !== 'r2' || !input.runId || !input.rootId || ![...CHARACTER_IDS, 'neutral'].includes(input.characterId)) throw new Error('invalid-score-version-or-character');
   validateCardInstances(input.hand);
+  if(input.hand.some(c=>c.enhancement!==undefined))throw new Error('enhancement-not-enabled');
   if (!Array.isArray(input.jokers) || !Array.isArray(input.selectedIds) || input.selectedIds.length < 1 || input.selectedIds.length > 5 || new Set(input.selectedIds).size !== input.selectedIds.length || input.selectedIds.some(id => !input.hand.some(c => c.id === id))) throw new Error('invalid-selection');
   if (input.disabledIds.some(id => !input.hand.some(c => c.id === id)) || new Set(input.disabledIds).size !== input.disabledIds.length) throw new Error('invalid-disabled-cards');
   if (!Number.isSafeInteger(input.playIndex) || input.playIndex < 1 || !Number.isSafeInteger(input.handsBeforePlay) || input.handsBeforePlay < 1 || (input.previousHandType !== null && !R2_HAND_TYPES.includes(input.previousHandType)) || typeof input.wager !== 'boolean' || (input.wager && input.characterId !== 'touye')) throw new Error('invalid-score-context');

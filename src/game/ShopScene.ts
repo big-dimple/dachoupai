@@ -1,15 +1,12 @@
 import Phaser from 'phaser';
-import { getJoker } from '../jokers/JokerEngine';
+import {getR2Joker as getJoker,r2Pool,rerollPrice,salePrice} from '../domain/r2Shop';
 import type { JokerRarity } from '../jokers/types';
-import { jokerIds, type RunState, type ShopOffer } from '../domain/run';
-import { getStage, stageOrderLabel } from '../run/stages';
-import {
-  canBuyJoker,
-  MAX_JOKER_SLOTS,
-  REROLL_COST,
-  shopPool,
-} from '../run/shop';
+import type {R2RunState as RunState} from '../domain/run';
+import type {R2Offer as ShopOffer} from '../domain/r2Shop';
+import {heatText} from './scoreText';
+import {getR2Stage as getStage,R2_LIMITS} from '../domain/r2Run';
 import { dispatchRun, runController } from './runAdapter';
+const MAX_JOKER_SLOTS=R2_LIMITS.jokerSlots;
 
 const RARITY_COLOR: Record<JokerRarity, number> = {
   common: 0xb88b3d,
@@ -24,7 +21,7 @@ const BUY_ERROR_TEXT = {
 } as const;
 
 /**
- * r1 货摊适配器：展示已保存货架，点击提交领域命令。
+ * r2 货摊适配器：展示已保存货架，点击提交领域命令。
  */
 export class ShopScene extends Phaser.Scene {
   private run!: RunState;
@@ -59,7 +56,7 @@ export class ShopScene extends Phaser.Scene {
       color: '#fff1c8',
     });
     const nextStage = getStage(this.run.stageIndex)!;
-    this.add.text(42, 76, `下一关：${stageOrderLabel(this.run.stageIndex)} · ${nextStage.name}（目标 ${nextStage.targetHeat.toLocaleString()} 热度）`, {
+    this.add.text(42, 76, `下一关：${nextStage.name}（目标 ${heatText(nextStage.targetHeat)} 热度）`, {
       fontFamily: '"Microsoft YaHei", sans-serif',
       fontSize: '15px',
       color: '#b9aa8a',
@@ -134,7 +131,8 @@ export class ShopScene extends Phaser.Scene {
     const y = 206;
     for (let i = 0; i < MAX_JOKER_SLOTS; i += 1) {
       const x = startX + i * (slotW + gap);
-      const equipped = jokerIds(this.run)[i];
+      const instance=this.run.jokers[i];
+      const equipped = instance?.definitionId;
       const box = this.add.rectangle(x, y, slotW, 96, 0x1d1810, 1);
       if (equipped) {
         const joker = getJoker(equipped);
@@ -146,9 +144,24 @@ export class ShopScene extends Phaser.Scene {
           }).setOrigin(0.5),
           this.add.text(x, y + 14, joker.description, {
             fontFamily: '"Microsoft YaHei", sans-serif', fontSize: '11px', color: '#c9bb9c',
-            align: 'center', wordWrap: { width: slotW - 14 },
+            align: 'center', wordWrap: { width: slotW - 14,useAdvancedWrap:true },
           }).setOrigin(0.5),
         ]);
+        const sell=this.add.text(x,y+65,'出售 +'+salePrice(instance.paidPrice),{fontSize:'14px',color:'#f3cf7c'}).setOrigin(0.5).setInteractive({useHandCursor:true});
+        sell.on('pointerdown',()=>{
+          if(!window.confirm('出售「'+joker.name+'」获得 '+salePrice(instance.paidPrice)+' 金币？该实例的成长会丢失。'))return;
+          const result=dispatchRun(this,{type:'SellJoker',instanceId:instance.instanceId});
+          if(result.ok){this.run=result.state;this.renderAll();}
+        });
+        this.slotContainer.add(sell);
+        for(const [label,delta] of [['←',-1],['→',1]] as const){
+          if(i+delta<0||i+delta>=this.run.jokers.length)continue;
+          const move=this.add.text(x+delta*62,y+65,label,{fontSize:'18px',color:'#dceefb'}).setOrigin(0.5).setInteractive({useHandCursor:true});
+          move.on('pointerdown',()=>{
+            const ids=this.run.jokers.map(j=>j.instanceId);[ids[i],ids[i+delta]]=[ids[i+delta],ids[i]];
+            const result=dispatchRun(this,{type:'ReorderJokers',ids});if(result.ok){this.run=result.state;this.renderAll();}
+          });this.slotContainer.add(move);
+        }
       } else {
         box.setStrokeStyle(1, 0x5a4d38, 0.6);
         this.slotContainer.add([
@@ -181,7 +194,7 @@ export class ShopScene extends Phaser.Scene {
       const id = offer.definitionId;
       const joker = getJoker(id);
       const price = offer.price;
-      const error = canBuyJoker({ gold: this.run.gold, jokerIds: jokerIds(this.run) }, id);
+      const error=this.run.jokers.length>=MAX_JOKER_SLOTS?'slots-full':this.run.jokers.some(j=>j.definitionId===id)?'already-owned':this.run.gold<price?'not-enough-gold':undefined;
       const x = startX + index * (cardW + gap);
       const accent = RARITY_COLOR[joker.rarity];
 
@@ -194,7 +207,7 @@ export class ShopScene extends Phaser.Scene {
         }).setOrigin(0.5),
         this.add.text(x, y - 20, joker.description, {
           fontFamily: '"Microsoft YaHei", sans-serif', fontSize: '13px', color: '#6b5840',
-          align: 'center', wordWrap: { width: cardW - 28 },
+          align: 'center', wordWrap: { width: cardW - 28,useAdvancedWrap:true },
         }).setOrigin(0.5),
       ];
 
@@ -206,7 +219,7 @@ export class ShopScene extends Phaser.Scene {
           fontFamily: '"Microsoft YaHei", sans-serif',
           fontSize: '16px',
           fontStyle: 'bold',
-          color: error ? '#9a8a70' : '#a43d2f',
+          color: error ? '#322414' : '#a43d2f',
         }).setOrigin(0.5),
       );
 
@@ -219,11 +232,12 @@ export class ShopScene extends Phaser.Scene {
   }
 
   private renderReroll(): void {
-    const affordable = this.run.gold >= REROLL_COST;
-    const hasGoods = shopPool({ jokerIds: jokerIds(this.run) }).length > 0;
+    const cost=rerollPrice(this.run.shop!.rerollCount);
+    const affordable = this.run.gold >= cost;
+    const hasGoods = r2Pool(this.run.jokers.map(j=>j.definitionId)).length > 0;
     const enabled = affordable && hasGoods;
     this.rerollLabel.setText(
-      !hasGoods ? '已无货可换' : affordable ? `换一批（${REROLL_COST} 金币）` : `换一批需 ${REROLL_COST} 金币`,
+      !hasGoods ? '已无货可换' : affordable ? `换一批（${cost} 金币）` : `换一批需 ${cost} 金币`,
     );
     this.rerollButton.setFillStyle(0x2b3a4a, enabled ? 1 : 0.45);
     if (enabled) {
@@ -234,6 +248,8 @@ export class ShopScene extends Phaser.Scene {
   }
 
   private buy(offerId: string): void {
+    const offer=this.shelf.find(o=>o.offerId===offerId);if(!offer)return;
+    if(!window.confirm('购买「'+getJoker(offer.definitionId).name+'」：'+offer.price+' 金币，购买后剩 '+(this.run.gold-offer.price)+' 金币？'))return;
     const result = dispatchRun(this, { type: 'BuyOffer', offerId });
     if (!result.ok) return;
     this.run = result.state;

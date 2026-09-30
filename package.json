@@ -12,6 +12,7 @@
     "test:domain": "vitest run tests/domain.test.ts tests/SeededRng.test.ts",
     "test:domain:browser": "node harness/domain.mjs",
     "test:rules": "vitest run tests/rules.test.ts tests/rational.test.ts tests/r2-command.test.ts tests/content-schema.test.ts",
+    "test:run": "vitest run tests/r2-run.test.ts tests/r2-shop.test.ts tests/r2-command.test.ts tests/card-boundary.test.ts tests/run.test.ts tests/shop.test.ts",
     "verify:content": "node scripts/verify-content.mjs",
     "test:watch": "vitest",
     "verify": "npm run typecheck && npm test && npm run build",
