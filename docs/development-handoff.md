@@ -1,8 +1,8 @@
 # 当前交接
 
-## 当前任务：R06 / READY
+## 当前任务：R06 / IN_PROGRESS
 
-权威指针：`production/plan.json`。R05 自动布局/操作子项已关闭，真机验收 **NOT_RUN**。当前分支 `feat/R05-mobile-layout`；R06 从本包关闭提交创建独立工程分支。唯一下一步：按 R06 先补门禁失败用例，再接入真实浏览器 E2E、只读检查与 CI，验证故意破坏会失败、恢复后通过，并记录实际 GitHub CI 运行。
+权威指针：`production/plan.json`。R05 自动布局/操作子项已关闭，真机验收 **NOT_RUN**。当前分支 `feat/R06-ci-gates`，基线 `abb62eefba1d20f6a9e3621fc52495342ea80679`，开包工作区干净；fetch 后 main 仍为审查基线，没有重置或合并。R05 draft PR #9 已推送。唯一下一步：补只读/失败传播/生产挂钩/PR 发布纪律的失败用例，再实现真实多引擎 E2E 与 CI，并验证奖励/触控/资源破坏均能失败。
 
 ## 已验证基线
 
@@ -12,6 +12,8 @@ R05 被测 SHA：`4227bca813a4d478f9685c260745a884c0b4997e`，证据 `production
 
 ## 待处理与边界
 
-R06：CI npm ci/真实多引擎 E2E/失败 artifact/只读和变异反例/发布纪律；两个 moderate Vitest 开发告警需按具体依赖链修复验证。A00 负责资产盘点和发布白名单，源 PNG/GLB 已退出首屏但仍被 Vite 复制到 dist。完整内容、Boss、平衡与两章体验进入 V00。
+R06：CI/真实多引擎 E2E/失败 artifact/只读和变异反例/发布纪律仍未完成。依赖子项在基线加 package/lock 差异的工作树上实际验证：Vitest 4.1.11、六项离线工具直接依赖已锁定；默认 npm ci、verify 164 项与 audit 零告警通过。日志 `production/evidence/r06-2026-10-01/`，不冒充整包关闭。npm 10 peers 解析内部错误保留，临时 npm 11.21.0 安装重试成功；未升级全局安装器。GHSA-82fw-gwwq-j7x9 属开发 mock 服务器，不声称生产游戏可利用。
+
+Astra 独立 worktree 正在准备 A00 实际 39 GLB/联系表，未获视觉/来源批准。A00 负责资产白名单，源 PNG/GLB 已退出首屏但仍被 Vite 复制到 dist。完整内容、Boss、平衡与两章体验进入 V00。
 
 Android Chrome/iPhone Safari 真机、离线缓存恢复、无 Locks 的旧浏览器、目标设备性能、完整读屏、真人对标和美术批准：**NOT_RUN**。用户只在关键节点验 Android Chrome，部署自行处理，不准备部署交接材料。继续推进独立工程；美术交 Astra 独立分支，先盘点/真实牌桌金样，未获批准不量产或提前重画六角色。
