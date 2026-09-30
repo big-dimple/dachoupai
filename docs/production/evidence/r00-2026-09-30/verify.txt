@@ -1,0 +1,49 @@
+
+> dachoupai@0.1.0 verify
+> npm run typecheck && npm test && npm run build
+
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ✓ tests/handEvaluator.test.ts (5 tests) 4ms
+ ✓ tests/SeededRng.test.ts (2 tests) 3ms
+ ✓ tests/characters.test.ts (6 tests) 5ms
+ ✓ tests/portraitCrop.test.ts (8 tests) 5ms
+ ✓ tests/jokers.test.ts (5 tests) 5ms
+ ✓ tests/scoreHand.test.ts (2 tests) 4ms
+ ✓ tests/run.test.ts (7 tests) 9ms
+ ✓ tests/shop.test.ts (8 tests) 9ms
+ ✓ tests/balance.test.ts (2 tests) 164ms
+
+ Test Files  9 passed (9)
+      Tests  45 passed (45)
+   Start at  22:25:02
+   Duration  1.20s (transform 398ms, setup 0ms, collect 1.41s, tests 209ms, environment 2ms, prepare 2.58s)
+
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 30 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.57 kB │ gzip:   0.37 kB
+dist/assets/index-eXYOqAOg.css      0.24 kB │ gzip:   0.22 kB
+dist/assets/index-c6TEtnbP.js   1,239.58 kB │ gzip: 343.27 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.29s
+EXIT_CODE=0

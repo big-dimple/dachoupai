@@ -1,0 +1,349 @@
+{
+  "taskId": "R00",
+  "testedCommit": "14be6d65eeffd3a0d97a9d76a6274112fe75585e",
+  "rulesVersion": "r1",
+  "contentHash": "ad51be5f8db64c4ff8c8d3a566592175f2855a77f61fa2a84f02204359d505be",
+  "contentHashInputs": [
+    "src/content/jokers.json",
+    "src/content/stages.json"
+  ],
+  "adoptedPlanCommit": "14be6d65eeffd3a0d97a9d76a6274112fe75585e",
+  "auditCommit": "9fd6e0bdb20c7e6114e045ca336c27afe5d47e9e",
+  "testedTree": {
+    "gameplay": "Tracked src/public/package files exactly match testedCommit",
+    "dirty": "M docs/development-handoff.md\n M docs/production/plan.json\n?? docs/production/evidence/r00-2026-09-30/",
+    "captureScriptSha256": "edbf3217bc7c062874592df36bf99fe4ef198ba48c8c2075b2caf04b0ae328a0",
+    "scope": "Only R00 evidence and plan/handoff were uncommitted. No gameplay/asset/lockfile modifications."
+  },
+  "git": {
+    "startingBranch": "main",
+    "startingHead": "9fd6e0bdb20c7e6114e045ca336c27afe5d47e9e",
+    "startingDirty": [],
+    "pull": {
+      "command": "git pull --ff-only",
+      "exitCode": 0,
+      "result": "Already up to date."
+    },
+    "pr3": {
+      "state": "open",
+      "merged": false,
+      "head": "14be6d65eeffd3a0d97a9d76a6274112fe75585e"
+    },
+    "workingBranch": "feat/R00-baseline-evidence",
+    "postAuditChanges": {
+      "files": 29,
+      "scope": "Quality-reset docs/archives/plan checker/docs workflow only",
+      "gameplayChanges": []
+    },
+    "preservedWork": "No local or additional main gameplay changes existed; no reset, merge or force push."
+  },
+  "environment": {
+    "os": "Windows 11 Pro 10.0.26200 build 26200",
+    "node": "v22.20.0",
+    "npm": "10.9.3",
+    "browser": "installed Chrome 154.0.8037.58 (headless)",
+    "device": "Desktop Windows host; physical Android/iPhone NOT_RUN"
+  },
+  "checks": [
+    {
+      "name": "install",
+      "command": "npm ci",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r00-2026-09-30/npm-ci.txt"
+    },
+    {
+      "name": "typecheck-unit-build",
+      "command": "npm run verify",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r00-2026-09-30/verify.txt"
+    },
+    {
+      "name": "browser-install",
+      "command": "npx playwright install chromium",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r00-2026-09-30/playwright-install.txt"
+    },
+    {
+      "name": "startup-smoke",
+      "command": "npm run verify:smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r00-2026-09-30/smoke.txt"
+    },
+    {
+      "name": "baseline-interactions",
+      "command": "node docs/production/evidence/r00-2026-09-30/capture.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r00-2026-09-30/browser-observations.json"
+    },
+    {
+      "name": "dependency-audit",
+      "command": "npm audit --json",
+      "status": "FAIL",
+      "exitCode": 1,
+      "evidence": "docs/production/evidence/r00-2026-09-30/npm-audit.json"
+    },
+    {
+      "name": "dependency-chains",
+      "command": "npm explain vitest @vitest/mocker",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r00-2026-09-30/dependency-chains.txt"
+    },
+    {
+      "name": "plan-validator-self-test",
+      "command": "node scripts/check-production-plan.mjs --self-test",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r00-2026-09-30/plan-self-test.txt"
+    },
+    {
+      "name": "plan-structure-after-closeout",
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "evidence": "docs/production/evidence/r00-2026-09-30/plan-check.txt",
+      "exitCode": 0
+    }
+  ],
+  "dependencyRisk": {
+    "status": "OPEN",
+    "severity": "moderate",
+    "count": 2,
+    "chain": "root devDependency vitest@3.2.7 -> @vitest/mocker@3.2.7",
+    "advisory": "https://github.com/advisories/GHSA-82fw-gwwq-j7x9",
+    "productionReachability": "NOT_RUN: dev/test server issue; no confirmed production-game exploit",
+    "remediation": "R06: review targeted compatible upgrade. No force fix."
+  },
+  "supportMatrix": [
+    {
+      "target": "Desktop Chrome",
+      "device": "Windows desktop host",
+      "os": "Windows 11 Pro 10.0.26200",
+      "browser": "Chrome 154.0.8037.58",
+      "status": "PASS",
+      "scope": "Headless mouse automation: select, buy, table, one hand, interrupt/reenter. Not a declaration of full support."
+    },
+    {
+      "target": "390x844 mobile simulation",
+      "device": "Playwright emulation; no physical handset",
+      "os": "Windows 11 Pro 10.0.26200",
+      "browser": "Chrome 154.0.8037.58",
+      "status": "PASS",
+      "scope": "touchscreen.tap in same baseline flow; no human touch/audio/performance acceptance"
+    },
+    {
+      "target": "Android Chrome",
+      "device": "NOT_RUN: no physical Android connected",
+      "os": "NOT_RUN",
+      "browser": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "target": "iPhone Safari",
+      "device": "NOT_RUN: no physical iPhone connected",
+      "os": "NOT_RUN",
+      "browser": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "target": "Firefox/WebKit/WebView",
+      "device": "NOT_RUN",
+      "os": "NOT_RUN",
+      "browser": "NOT_RUN",
+      "status": "NOT_RUN"
+    }
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "state": "REPLACED",
+      "source": "AGENTS.md; docs/production/plan.json",
+      "conclusion": "New entry adopted; current=R00, next=R01. No old Boss expansion."
+    },
+    {
+      "id": "F02",
+      "state": "OPEN",
+      "source": "src/scoring/scoreHand.ts; src/cards/handEvaluator.ts",
+      "conclusion": "Game source unchanged; ordinary ranks do not contribute chips and selected/scoring/held sets remain undefined."
+    },
+    {
+      "id": "F03",
+      "state": "OPEN",
+      "source": "src/scoring/scoreHand.ts",
+      "conclusion": "Grouped addition/final multiplication still removes equipment-order strategy; r2 is an explicit upgrade."
+    },
+    {
+      "id": "F04",
+      "state": "OPEN",
+      "source": "src/game/GameScene.ts; src/run/shop.ts",
+      "conclusion": "No discard/deck modification/sale; five definitions and five slots remain."
+    },
+    {
+      "id": "F05",
+      "state": "OPEN",
+      "source": "src/run/runState.ts; src/game/GameScene.ts; src/game/ShopScene.ts",
+      "conclusion": "Hand, deck, heat, counters, shelf and RNG cursor are still scene-owned."
+    },
+    {
+      "id": "F06",
+      "state": "REPRODUCED",
+      "source": "browser-observations.json; mobile-one-hand.png",
+      "conclusion": "390x844: canvas=390x219.375; play button=17.671875 CSS px; joker description=3.046875 CSS px. Automated measurement, not phone acceptance."
+    },
+    {
+      "id": "F07",
+      "state": "REPRODUCED",
+      "source": "browser-observations.json; desktop-reentry.png; mobile-reentry.png",
+      "conclusion": "Both viewports: interrupt during tween, reenter, play. Queue stays running with 3 pending effects; heat changes but old first-hand prompt remains."
+    },
+    {
+      "id": "F08",
+      "state": "OPEN",
+      "source": "tests/balance.test.ts; src/game/GameScene.ts",
+      "conclusion": "Bot splice(0)/shift and fixed luck=.5 differ from UI pop/actual random; only two characters and 10 seeds."
+    },
+    {
+      "id": "F09",
+      "state": "OPEN",
+      "source": "harness/screenshot.mjs; .github/workflows/ci.yml",
+      "conclusion": "Old smoke still mouse-only and stops at table. R00 probe adds touch observations but does not close full E2E/CI coverage."
+    },
+    {
+      "id": "F10",
+      "state": "RECONFIRMED",
+      "source": "src/game/BootScene.ts; src/game/portraits.ts; browser-observations.json",
+      "conclusion": "Boot still loads all six original PNGs, total 14,285,460 bytes. No transfer/performance benchmark performed."
+    },
+    {
+      "id": "F11",
+      "state": "OPEN",
+      "source": "public/assets/models/asset-pack-v1.json; portraits-avatars.png; asset-overview.png",
+      "conclusion": "Existing sources retained and previewed; 39 GLBs not rendered one by one; no style approval or runtime integration."
+    },
+    {
+      "id": "F12",
+      "state": "OPEN",
+      "source": "tools/blender/inspect_asset_pack.mjs",
+      "conclusion": "Inspector still writes manifest without --optimize. Not executed because it is not read-only; A00 owns correction."
+    },
+    {
+      "id": "F13",
+      "state": "OPEN",
+      "source": "src/game/GameScene.ts; desktop-one-hand.png",
+      "conclusion": "HUD crop still uses setDisplaySize on original frame; screenshot retained for R05 comparison."
+    },
+    {
+      "id": "F14",
+      "state": "OPEN",
+      "source": "src/audio/AudioEngine.ts; src/game/GameScene.ts",
+      "conclusion": "Placeholder tones and feedback remain; no human audio/experience evaluation."
+    },
+    {
+      "id": "F15",
+      "state": "OPEN",
+      "source": "src/jokers/JokerEngine.ts; src/scoring/scoreHand.ts; src/run/shop.ts",
+      "conclusion": "Unchecked JSON assertion, omitted joker default-all, shelf membership omission remain."
+    },
+    {
+      "id": "F16",
+      "state": "OPEN",
+      "source": "src/game/characters.ts; src/run/stages.ts; tests/balance.test.ts",
+      "conclusion": "Character/reward tradeoffs remain unvalidated; legacy two-character bot success is not six-character balance."
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/production/evidence/r00-2026-09-30/asset-overview.png",
+      "sha256": "e8a34116dec0e8291d525438ebfa448838262cf2355e414f70251af28325f6cf",
+      "bytes": 147656
+    },
+    {
+      "path": "docs/production/evidence/r00-2026-09-30/desktop-one-hand.png",
+      "sha256": "508ed1e1a68b13ba92cb4399b3a28d229424abf69fe424aa0f19f37896e702a9",
+      "bytes": 86814
+    },
+    {
+      "path": "docs/production/evidence/r00-2026-09-30/desktop-reentry.png",
+      "sha256": "5b36ef3829ac99544cd51ffe7306df27851ef04c842e3b9630047bd084f7b447",
+      "bytes": 85628
+    },
+    {
+      "path": "docs/production/evidence/r00-2026-09-30/desktop-select.png",
+      "sha256": "6ef95c19288d63b94839fa92f769b2192fe63bfce6a56accb1c520fde1c58d21",
+      "bytes": 770288
+    },
+    {
+      "path": "docs/production/evidence/r00-2026-09-30/desktop-shop.png",
+      "sha256": "7179c5278afa0b63170915be42950b85061ff23e60189033ebae63047062ae02",
+      "bytes": 60680
+    },
+    {
+      "path": "docs/production/evidence/r00-2026-09-30/desktop-table.png",
+      "sha256": "fe636cd99f47596c397b3e8626a8102656f0742472e65dff9a26779c22100ff1",
+      "bytes": 85489
+    },
+    {
+      "path": "docs/production/evidence/r00-2026-09-30/mobile-one-hand.png",
+      "sha256": "cf6036140704bf7485a07ea0000aa27efdb52d27256b8320543fef803cd8bc32",
+      "bytes": 51976
+    },
+    {
+      "path": "docs/production/evidence/r00-2026-09-30/mobile-reentry.png",
+      "sha256": "60f8b2546e7edf2b8ef577fd7ec0a22eef554f93c6c1f592beed4fa5f98646db",
+      "bytes": 51935
+    },
+    {
+      "path": "docs/production/evidence/r00-2026-09-30/mobile-select.png",
+      "sha256": "dec42fd6af39e16e9a268e0620daad375cc17637079db685eeddc9ea6ee96360",
+      "bytes": 127879
+    },
+    {
+      "path": "docs/production/evidence/r00-2026-09-30/mobile-shop.png",
+      "sha256": "8902d14f5d06644d01348efa0c41d11924a7004037ec66380136d1e16ad8f353",
+      "bytes": 46913
+    },
+    {
+      "path": "docs/production/evidence/r00-2026-09-30/mobile-table.png",
+      "sha256": "cf906486836a70cf8871a0da1175f191d02f700216490a0989436cc70a671a46",
+      "bytes": 51858
+    },
+    {
+      "path": "docs/production/evidence/r00-2026-09-30/portraits-avatars.png",
+      "sha256": "6b3af6edc573eb35364e83071268dfc2dfb3fdb0c2e1adf6b67c1cab78e72807",
+      "bytes": 735223
+    }
+  ],
+  "agentVisualInspection": {
+    "scope": [
+      "mobile-one-hand.png",
+      "desktop-one-hand.png",
+      "portraits-avatars.png",
+      "asset-overview.png"
+    ],
+    "observations": [
+      "Mobile table occupies only a thin horizontal strip; tiny text and button.",
+      "HUD portrait remains a miniature full-image crop; joker description spills horizontally.",
+      "Existing six illustrations and 80px avatars available for Astra review. Source art retained.",
+      "Contact sheet is only an overview; not a full GLB/animation/alpha inspection."
+    ],
+    "approval": "NOT_RUN: agent inspection cannot substitute for human/art approval"
+  },
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": "",
+    "evidence": ""
+  },
+  "limitations": [
+    "No physical Android/iPhone, desktop human play or target-device performance measurement.",
+    "No full run, restore, balancing holdout or human comparison performed.",
+    "F07 and mobile layout fail; baseline reproduction is not product acceptance.",
+    "39 full GLB visual/animation previews deferred to A00.",
+    "Art work remains separate for Astra after R05/A00; no assets produced or approved."
+  ],
+  "acceptance": "Baseline reproducible; new plan explicitly adopted. Existing defects stay open in their assigned packages.",
+  "nextTask": "R01"
+}

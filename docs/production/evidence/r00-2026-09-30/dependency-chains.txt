@@ -1,0 +1,9 @@
+vitest@3.2.7 dev
+node_modules/vitest
+  dev vitest@"^3.2.4" from the root project
+
+@vitest/mocker@3.2.7 dev
+node_modules/@vitest/mocker
+  @vitest/mocker@"3.2.7" from vitest@3.2.7 dev
+  node_modules/vitest
+    dev vitest@"^3.2.4" from the root project
