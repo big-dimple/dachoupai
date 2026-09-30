@@ -1,0 +1,42 @@
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/rational.test.ts [ tests/rational.test.ts ]
+Error: Cannot find module '../src/domain/rational' imported from 'D:/ai/dachoupai/dachoupai/tests/rational.test.ts'
+ ❯ tests/rational.test.ts:2:1
+      1| import { describe, expect, it } from 'vitest';
+      2| import { Rational } from '../src/domain/rational';
+       | ^
+      3|
+      4| describe('exact serialized rational arithmetic', () => {
+
+Caused by: Error: Failed to load url ../src/domain/rational (resolved id: ../src/domain/rational) in D:/ai/dachoupai/dachoupai/tests/rational.test.ts. Does the file exist?
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/config.js:22739:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/rules.test.ts [ tests/rules.test.ts ]
+Error: Cannot find module '../src/domain/evaluateR2' imported from 'D:/ai/dachoupai/dachoupai/tests/rules.test.ts'
+ ❯ tests/rules.test.ts:4:1
+      2| import type { PlayingCard, Rank, Suit } from '../src/cards/types';
+      3| import { SeededRng } from '../src/core/SeededRng';
+      4| import { evaluateR2Hand } from '../src/domain/evaluateR2';
+       | ^
+      5| import { scoreR2Hand, type ScoreInput } from '../src/domain/scoreR2';
+      6| import { validateR2Content, R2_JOKERS, type R2JokerDefinition } from '…
+
+Caused by: Error: Failed to load url ../src/domain/evaluateR2 (resolved id: ../src/domain/evaluateR2) in D:/ai/dachoupai/dachoupai/tests/rules.test.ts. Does the file exist?
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/config.js:22739:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  no tests
+   Start at  23:34:27
+   Duration  743ms (transform 92ms, setup 0ms, collect 0ms, tests 0ms, environment 0ms, prepare 328ms)
+
+EXIT_CODE=1

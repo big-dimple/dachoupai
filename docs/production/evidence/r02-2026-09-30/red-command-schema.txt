@@ -1,0 +1,110 @@
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/content-schema.test.ts (12 tests | 1 failed) 9ms
+   ✓ content schema rejects unsafe and unknown data > returns diagnostics rather than throwing for null 1ms
+   ✓ content schema rejects unsafe and unknown data > returns diagnostics rather than throwing for {} 0ms
+   ✓ content schema rejects unsafe and unknown data > returns diagnostics rather than throwing for null 0ms
+   ✓ content schema rejects unsafe and unknown data > returns diagnostics rather than throwing for {"id":"pengci","name":"碰瓷","rarity":"common","description":"高牌时，整手倍率 +2。","hooks":[null]} 0ms
+   × content schema rejects unsafe and unknown data > returns diagnostics rather than throwing for {"id":"pengci","name":"碰瓷","rarity":"common","description":"高牌时，整手倍率 +2。","hooks":[{"phase":"jokerScore","condition":{"kind":"always"},"operations":[null]}]} 4ms
+     → Cannot read properties of null (reading 'kind')
+   ✓ content schema rejects unsafe and unknown data > rejects operation {"kind":"add-heat","value":{"n":"-1","d":"1"}} 0ms
+   ✓ content schema rejects unsafe and unknown data > rejects operation {"kind":"multiply-multiplier","value":{"n":"0","d":"1"}} 0ms
+   ✓ content schema rejects unsafe and unknown data > rejects operation {"kind":"add-heat","value":{"n":"1","d":"0"}} 0ms
+   ✓ content schema rejects unsafe and unknown data > rejects operation {"kind":"add-heat","value":{"n":"Infinity","d":"1"}} 0ms
+   ✓ content schema rejects unsafe and unknown data > rejects operation {"kind":"script","code":"arbitrary"} 0ms
+   ✓ content schema rejects unsafe and unknown data > rejects operation {"kind":"retrigger-card","count":5} 0ms
+   ✓ content schema rejects unsafe and unknown data > rejects operation {"kind":"read-growth","key":"missing","target":"heat"} 0ms
+ ❯ tests/r2-command.test.ts (4 tests | 4 failed) 11ms
+   × explicit r2 commands, G10–G14 > isolates r1/r2 versions and rejects mismatched content hashes 7ms
+     → unsupported-rules-version
+   × explicit r2 commands, G10–G14 > G10/G13 clears on the fourth hand, then never repeats score/resource/reward effects 1ms
+     → unsupported-rules-version
+   × explicit r2 commands, G10–G14 > G11/G12 makes 100 public previews without reading RNG, then exactly replays a wager 1ms
+     → unsupported-rules-version
+   × explicit r2 commands, G10–G14 > G14 invalid and duplicate IDs reject without consuming a wager or RNG 0ms
+     → unsupported-rules-version
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/content-schema.test.ts > content schema rejects unsafe and unknown data > returns diagnostics rather than throwing for {"id":"pengci","name":"碰瓷","rarity":"common","description":"高牌时，整手倍率 +2。","hooks":[{"phase":"jokerScore","condition":{"kind":"always"},"operations":[null]}]}
+TypeError: Cannot read properties of null (reading 'kind')
+ ❯ src/content/r2Schema.ts:74:106
+     72|     // A reference to growth must have a finite, declared writer on th…
+     73|     const hooks = definition.hooks as R2JokerDefinition['hooks'];
+     74|     const writers = new Set(hooks.flatMap(h => Array.isArray(h?.operat…
+       |                                                                                                          ^
+     75|     if (hooks.some(h => Array.isArray(h?.operations) && h.operations.s…
+     76|   }
+ ❯ src/content/r2Schema.ts:74:92
+ ❯ validateR2Content src/content/r2Schema.ts:74:35
+ ❯ tests/content-schema.test.ts:5:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/r2-command.test.ts > explicit r2 commands, G10–G14 > isolates r1/r2 versions and rejects mismatched content hashes
+Error: unsupported-rules-version
+ ❯ createRun src/domain/run.ts:298:25
+    296|     action: { type: 'StartRun', seed: options.seed, characterId: optio…
+    297|   });
+    298|   if (!result.ok) throw new Error(result.code);
+       |                         ^
+    299|   return result.state;
+    300| }
+ ❯ started tests/r2-command.test.ts:6:65
+ ❯ tests/r2-command.test.ts:16:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/r2-command.test.ts > explicit r2 commands, G10–G14 > G10/G13 clears on the fourth hand, then never repeats score/resource/reward effects
+Error: unsupported-rules-version
+ ❯ createRun src/domain/run.ts:298:25
+    296|     action: { type: 'StartRun', seed: options.seed, characterId: optio…
+    297|   });
+    298|   if (!result.ok) throw new Error(result.code);
+       |                         ^
+    299|   return result.state;
+    300| }
+ ❯ started tests/r2-command.test.ts:6:65
+ ❯ table tests/r2-command.test.ts:8:15
+ ❯ tests/r2-command.test.ts:27:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/r2-command.test.ts > explicit r2 commands, G10–G14 > G11/G12 makes 100 public previews without reading RNG, then exactly replays a wager
+Error: unsupported-rules-version
+ ❯ createRun src/domain/run.ts:298:25
+    296|     action: { type: 'StartRun', seed: options.seed, characterId: optio…
+    297|   });
+    298|   if (!result.ok) throw new Error(result.code);
+       |                         ^
+    299|   return result.state;
+    300| }
+ ❯ started tests/r2-command.test.ts:6:65
+ ❯ table tests/r2-command.test.ts:8:15
+ ❯ tests/r2-command.test.ts:51:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/r2-command.test.ts > explicit r2 commands, G10–G14 > G14 invalid and duplicate IDs reject without consuming a wager or RNG
+Error: unsupported-rules-version
+ ❯ createRun src/domain/run.ts:298:25
+    296|     action: { type: 'StartRun', seed: options.seed, characterId: optio…
+    297|   });
+    298|   if (!result.ok) throw new Error(result.code);
+       |                         ^
+    299|   return result.state;
+    300| }
+ ❯ started tests/r2-command.test.ts:6:65
+ ❯ table tests/r2-command.test.ts:8:15
+ ❯ tests/r2-command.test.ts:80:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  5 failed | 11 passed (16)
+   Start at  23:52:30
+   Duration  879ms (transform 173ms, setup 0ms, collect 357ms, tests 19ms, environment 1ms, prepare 309ms)
+
+EXIT_CODE=1

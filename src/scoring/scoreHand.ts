@@ -5,7 +5,7 @@ import {
   type CharacterId,
   type CharacterModifier,
 } from '../domain/characters';
-import { DEFAULT_JOKER_IDS, resolveJokers } from '../jokers/JokerEngine';
+import { resolveJokers } from '../jokers/JokerEngine';
 import type { JokerId, JokerResolution } from '../jokers/types';
 
 interface BaseScore {
@@ -28,7 +28,7 @@ const BASE_SCORES: Record<HandType, BaseScore> = {
 export interface ScoreContext
   extends Omit<CharacterContext, 'cardCount' | 'handType'> {
   playIndex: number;
-  jokerIds?: readonly JokerId[];
+  jokerIds: readonly JokerId[];
 }
 
 export interface ScoreResult {
@@ -48,6 +48,7 @@ export function scoreHand(
   characterId: CharacterId,
   context: ScoreContext,
 ): ScoreResult {
+  if (!Array.isArray(context.jokerIds)) throw new Error('explicit-joker-equipment-required');
   const base = BASE_SCORES[hand.type];
   const modifier = resolveCharacterModifier(characterId, {
     previousHandType: context.previousHandType,
@@ -57,7 +58,7 @@ export function scoreHand(
     handType: hand.type,
   });
 
-  const jokers = resolveJokers(context.jokerIds ?? DEFAULT_JOKER_IDS, {
+  const jokers = resolveJokers(context.jokerIds, {
     hand,
     playIndex: context.playIndex,
   });

@@ -1,0 +1,7 @@
+[
+  {"id":"pengci","name":"碰瓷","rarity":"common","description":"高牌时，整手倍率 +2。","hooks":[{"phase":"jokerScore","condition":{"kind":"hand-type-in","values":["high-card"]},"operations":[{"kind":"add-multiplier","value":{"n":"2","d":"1"}}]}]},
+  {"id":"mantangcai","name":"满堂彩","rarity":"common","description":"对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。","hooks":[{"phase":"jokerScore","condition":{"kind":"hand-type-in","values":["pair","two-pair","three-kind","full-house","four-kind"]},"operations":[{"kind":"add-heat","value":{"n":"90","d":"1"}}]}]},
+  {"id":"tiesuanpan","name":"铁算盘","rarity":"uncommon","description":"每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。","hooks":[{"phase":"onCardScore","condition":{"kind":"rank-in","values":[11,12,13,14]},"operations":[{"kind":"add-heat","value":{"n":"25","d":"1"}}]}]},
+  {"id":"huimaqiang","name":"回马枪","rarity":"rare","description":"本场每第 3 次出牌，整手倍率 ×2。","hooks":[{"phase":"jokerScore","condition":{"kind":"play-modulo","divisor":3,"remainder":0},"operations":[{"kind":"multiply-multiplier","value":{"n":"2","d":"1"}}]}]},
+  {"id":"jiedongfeng","name":"借东风","rarity":"uncommon","description":"顺子、同花或同花顺，整手倍率 +1.5。","hooks":[{"phase":"jokerScore","condition":{"kind":"hand-type-in","values":["straight","flush","straight-flush"]},"operations":[{"kind":"add-multiplier","value":{"n":"3","d":"2"}}]}]}
+]
