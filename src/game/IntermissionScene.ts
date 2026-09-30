@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import { getCharacter } from './characters';
 import { getStage, stageOrderLabel, type StageDefinition } from '../run/stages';
-import { allStagesCleared, type RunState } from '../run/runState';
+import { runController, dispatchRun } from './runAdapter';
 
 export interface IntermissionResult {
   /** 本关是否达成目标热度 */
@@ -16,7 +16,7 @@ export interface IntermissionResult {
 
 /**
  * 关与关之间的过场状态：展示本关结果，由玩家决定进入下一关或结束本局。
- * 胜利/失败的正式结算与台词属 Batch 2C，这里只放骨架流转。
+ * 胜负与奖励已经由领域提交；本场景只显示确定结果和下一步入口。
  */
 export class IntermissionScene extends Phaser.Scene {
   private result!: IntermissionResult;
@@ -30,7 +30,7 @@ export class IntermissionScene extends Phaser.Scene {
   }
 
   create(): void {
-    const run = this.registry.get('runState') as RunState | undefined;
+    const run = runController(this)?.state;
     if (!run) {
       this.scene.start('character-select');
       return;
@@ -43,7 +43,7 @@ export class IntermissionScene extends Phaser.Scene {
     const character = getCharacter(run.characterId);
 
     const title = this.result.cleared
-      ? allStagesCleared(run)
+      ? run.phase === 'run-won'
         ? '今日巡演落幕'
         : `${stageOrderLabel(this.result.stageIndex)} · ${stage.name}，过！`
       : '冷场了';
@@ -75,7 +75,7 @@ export class IntermissionScene extends Phaser.Scene {
       lineSpacing: 12,
     }).setOrigin(0.5, 0);
 
-    const nextStage = this.result.cleared && !allStagesCleared(run) ? getStage(run.stageIndex) : undefined;
+    const nextStage = this.result.cleared && run.phase === 'stage-cleared' ? getStage(run.stageIndex) : undefined;
     if (nextStage) {
       this.add.text(width / 2, 390, `下一关：${stageOrderLabel(run.stageIndex)} · ${nextStage.name}\n${nextStage.intro}`, {
         fontFamily: '"Microsoft YaHei", sans-serif',
@@ -93,10 +93,11 @@ export class IntermissionScene extends Phaser.Scene {
       : '重新开局';
     this.addButton(width / 2, height - 150, buttonLabel, () => {
       if (this.result.cleared && nextStage) {
-        this.scene.start('shop');
+        if (dispatchRun(this, { type: 'OpenShop' }).ok) this.scene.start('shop');
       } else {
         // 巡演落幕或冷场：本局结束，回到选角开始新的一局
         this.registry.remove('runState');
+        this.registry.remove('runController');
         this.scene.start('character-select');
       }
     });

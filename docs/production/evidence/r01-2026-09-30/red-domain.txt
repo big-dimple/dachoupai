@@ -1,0 +1,28 @@
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/domain.test.ts [ tests/domain.test.ts ]
+Error: Cannot find module '../src/domain/run' imported from 'D:/ai/dachoupai/dachoupai/tests/domain.test.ts'
+ ❯ tests/domain.test.ts:3:1
+      1| import { describe, expect, it } from 'vitest';
+      2| import { SeededRng } from '../src/core/SeededRng';
+      3| import { applyCommand, assertRunInvariants, createRun, stateHash, type…
+       | ^
+      4| import { RunController } from '../src/application/RunController';
+      5| import { chooseAction, publicView, simulateRun } from '../src/testing/…
+
+Caused by: Error: Failed to load url ../src/domain/run (resolved id: ../src/domain/run) in D:/ai/dachoupai/dachoupai/tests/domain.test.ts. Does the file exist?
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/config.js:22739:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  22:47:05
+   Duration  732ms (transform 65ms, setup 0ms, collect 0ms, tests 0ms, environment 0ms, prepare 149ms)
+
+EXIT_CODE=1

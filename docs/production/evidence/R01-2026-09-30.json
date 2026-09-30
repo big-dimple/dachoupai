@@ -1,0 +1,224 @@
+{
+  "taskId": "R01",
+  "testedCommit": "54d7655190bc80dd0b55ae5def3563a8540d5125",
+  "baseCommit": "bbf205077ccf06b714133edd9cb1d2561fbe9766",
+  "rulesVersion": "r1",
+  "contentHash": "json-fnv-v1:3ac7e23dfb58a0f1",
+  "sourceContentSha256": "ad51be5f8db64c4ff8c8d3a566592175f2855a77f61fa2a84f02204359d505be",
+  "contentHashInputs": [
+    "src/content/jokers.json",
+    "src/content/stages.json"
+  ],
+  "testedTree": {
+    "dirtyAtBrowserStart": "M docs/development-handoff.md\n M docs/production/plan.json\n?? docs/production/evidence/r01-2026-09-30/",
+    "gameplay": "src/tests/harness/package files matched testedCommit; only docs/plan/evidence uncommitted",
+    "postTestSourceDiff": ""
+  },
+  "environment": {
+    "os": "Windows 11 Pro 10.0.26200",
+    "node": "v22.20.0",
+    "npm": "10.9.3",
+    "browser": "Playwright Chromium 153.0.8010.12",
+    "device": "Windows desktop; mobile is 390x844 emulation"
+  },
+  "changes": [
+    "Complete serialized r1 zones, stage resources/outcome, persisted shelf/reroll cursor, joker instances/order, RNG domains and receipts.",
+    "One immutable applyCommand path, frozen RunController checkpoints, phase/ID/sequence validation and idempotent retries.",
+    "Scene adapters and public-information bot share the controller. Removed independent bot draw/score loop.",
+    "Role rule definitions separated from portrait URLs. Snapshot/restore retains the legacy RNG golden vectors.",
+    "r1 scoring/economy/targets unchanged; rulesVersion=r2 remains rejected until R02."
+  ],
+  "checks": [
+    {
+      "name": "domain",
+      "command": "npm run test:domain",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r01-2026-09-30/domain.txt"
+    },
+    {
+      "name": "typecheck-unit-build",
+      "command": "npm run verify",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r01-2026-09-30/verify.txt"
+    },
+    {
+      "name": "startup-smoke",
+      "command": "npm run verify:smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r01-2026-09-30/smoke.txt"
+    },
+    {
+      "name": "three-stage-ui-replay",
+      "command": "DOMAIN_EVIDENCE_DIR=docs/production/evidence/r01-2026-09-30 npm run test:domain:browser",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r01-2026-09-30/browser.txt"
+    },
+    {
+      "name": "screenshots",
+      "command": "npm run shot",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r01-2026-09-30/shot.txt"
+    },
+    {
+      "name": "pure-rule-boundary",
+      "command": "node --input-type=module (stdin boundary scan; directories and regex recorded below)",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r01-2026-09-30/rule-boundary.json"
+    },
+    {
+      "name": "plan-structure",
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "evidence": "docs/production/evidence/r01-2026-09-30/plan-check.txt",
+      "exitCode": 0
+    }
+  ],
+  "testFirstEvidence": [
+    {
+      "name": "missing-domain-entry",
+      "testedCommit": "bbf205077ccf06b714133edd9cb1d2561fbe9766",
+      "command": "npx vitest run tests/domain.test.ts",
+      "status": "FAIL",
+      "exitCode": 1,
+      "evidence": "docs/production/evidence/r01-2026-09-30/red-domain.txt",
+      "scope": "New tests added before the domain implementation; failed because the entry did not exist."
+    },
+    {
+      "name": "missing-rng-checkpoint",
+      "testedCommit": "bbf205077ccf06b714133edd9cb1d2561fbe9766",
+      "command": "npx vitest run tests/SeededRng.test.ts",
+      "status": "FAIL",
+      "exitCode": 1,
+      "evidence": "docs/production/evidence/r01-2026-09-30/red-rng.txt",
+      "scope": "Actual old RNG: snapshot is not a function. Existing sequence expectations were sampled before implementation."
+    }
+  ],
+  "goldenVectors": {
+    "baselineSourceCommit": "14be6d65eeffd3a0d97a9d76a6274112fe75585e",
+    "seed": "r01-vector",
+    "uint32": [
+      1171121472,
+      711762313,
+      361259361,
+      1667192404,
+      1023409646,
+      3021464197
+    ],
+    "shuffleInput": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "shuffleOutput": [
+      4,
+      5,
+      8,
+      6,
+      7,
+      1,
+      2,
+      3
+    ]
+  },
+  "generatedCases": {
+    "count": 1000,
+    "status": "PASS",
+    "scope": "Fixed seeds, diverse legal actions, card conservation and exact continued state after JSON restoration. Bulk-test timeout 15s; not a phone-performance metric."
+  },
+  "pureBoundary": {
+    "status": "PASS",
+    "forbiddenPattern": "from\\s+['\"](?:phaser|[^'\"]*\\/game\\/)|\\b(?:Math\\.random|Date\\.now|window|document|AudioContext)\\b",
+    "details": "docs/production/evidence/r01-2026-09-30/rule-boundary.json"
+  },
+  "threeStageEvidence": {
+    "seed": "balance-1",
+    "characterId": "erxiang",
+    "finalPhase": "run-won",
+    "details": "docs/production/evidence/r01-2026-09-30/domain-replay.json",
+    "uiRuns": [
+      {
+        "viewport": "desktop",
+        "status": "PASS",
+        "input": "mouse.click",
+        "commands": 20,
+        "hands": 7,
+        "stages": 3,
+        "stateHash": "json-fnv-v1:90343630e3596064",
+        "gold": 15,
+        "totalHeat": 6062,
+        "checkpointsMatchReplay": true
+      },
+      {
+        "viewport": "mobile",
+        "status": "PASS",
+        "input": "touchscreen.tap",
+        "commands": 20,
+        "hands": 7,
+        "stages": 3,
+        "stateHash": "json-fnv-v1:90343630e3596064",
+        "gold": 15,
+        "totalHeat": 6062,
+        "checkpointsMatchReplay": true
+      }
+    ]
+  },
+  "screenshots": [
+    {
+      "path": "docs/production/evidence/r01-2026-09-30/desktop-stage-1-clear.png",
+      "sha256": "1132b65b08193c1954537d025825bbf70f192e49a2fcc5bb9a04f9ee0c41b7f0"
+    },
+    {
+      "path": "docs/production/evidence/r01-2026-09-30/desktop-stage-2-clear.png",
+      "sha256": "4deb7a3c30ee2d093e59f207a25ee9bcabc1f275b4062909c1f96511267d861a"
+    },
+    {
+      "path": "docs/production/evidence/r01-2026-09-30/desktop-three-stage.png",
+      "sha256": "9a696d82b8ce1c9e75fee7a64602b16f8e3fec6df1e27e33358dffe16ec47d2e"
+    },
+    {
+      "path": "docs/production/evidence/r01-2026-09-30/mobile-stage-1-clear.png",
+      "sha256": "c83334d04ba84c9a8386c5f075cac4733d622c2e5f419c71cd12a1d4404e56a4"
+    },
+    {
+      "path": "docs/production/evidence/r01-2026-09-30/mobile-stage-2-clear.png",
+      "sha256": "872a25b3c47f81a0056600b55a29cc33c0cf923c9117c403754b88fc1b48b20d"
+    },
+    {
+      "path": "docs/production/evidence/r01-2026-09-30/mobile-three-stage.png",
+      "sha256": "e20d6ca3f08b9eebc993affc76a703f304f79124d6d39a50d94e5a2ec63f0694"
+    }
+  ],
+  "agentVisualInspection": {
+    "status": "OBSERVED",
+    "scope": "Desktop stage-clear and mobile final result plus startup table were viewed. No rule-state dependence on animations introduced.",
+    "observations": [
+      "r1 intermission shows correct target, reward and next-shop path.",
+      "Mobile remains FIT with very small UI; R05 still required."
+    ],
+    "approval": "NOT_RUN"
+  },
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": "",
+    "evidence": ""
+  },
+  "limitations": [
+    "No physical Android/iPhone, human UX/art approval or device performance evidence.",
+    "R04 browser persistence, cancellation and recovery not implemented. R00 F07 remains open.",
+    "r2 scoring/content schema/discard/selling absent until R02/R03. Legacy r1 optional scoring default remains outside the migrated command API and is assigned to R02.",
+    "Simple ten-seed r1 bot regressions do not certify balance; expected assertions unchanged.",
+    "Two moderate Vitest-chain advisories from R00 remain for R06."
+  ],
+  "nextTask": "R02"
+}

@@ -1,26 +1,31 @@
 # 当前交接
 
-## 当前任务：R01 / READY
+## 当前任务：R02 / READY
 
-权威指针：`production/plan.json`。唯一下一步：读取 R01 小节和 ENGINEERING/RULES，先补领域命令、完整状态与随机恢复的失败用例，再将 UI/机器人接到同一入口。禁止恢复旧 Batch 2C Boss 路线。
+权威指针：`production/plan.json`。唯一下一步：读取 R02 小节、RULES/CONTENT/DECISIONS，先建立 G01–G15 与数值服务/schema 的失败金样例，再实现显式 r2 计分和角色。保持 r1 回归与 r2 新合同分开，不改预期分数掩盖错误。
 
-## R00 交付与真实基线
+## 基线与实现
 
-2026-09-30 已执行 `git pull --ff-only`。main 仍为审查 SHA `9fd6e0bdb20c7e6114e045ca336c27afe5d47e9e`；起始工作区干净。PR #3 仍 open，已在独立分支 `feat/R00-baseline-evidence` 采用头提交 `14be6d65eeffd3a0d97a9d76a6274112fe75585e`，没有合并或强推。
+方案采用提交 `14be6d65eeffd3a0d97a9d76a6274112fe75585e`；main 仍基于审查 `9fd6e0b`，未合并 PR #3 或强推。R00 已完成，交付 `bbf205077ccf06b714133edd9cb1d2561fbe9766` / draft PR #4（base 为质量方案分支）；基线缺陷与未运行项见 `production/evidence/R00-2026-09-30.json`。
 
-相对审查 SHA 的 29 个文件只涉及质量方案、旧文档归档、计划检查器和文档 CI；游戏源码、资源和依赖锁文件无变化。R00 不改玩法或素材。被测游戏 SHA 是 `14be6d65eeffd3a0d97a9d76a6274112fe75585e`；测试时未提交的内容仅为 R00 证据和 plan/handoff，完整记录与采集脚本哈希见 `production/evidence/R00-2026-09-30.json`。
+R01 工作分支 `feat/R01-domain-commands`，**实际被测实现 SHA：`54d7655190bc80dd0b55ae5def3563a8540d5125`**。后补证据/交接提交不改变被测游戏 SHA。
 
-## 实际验证与证据
+领域权威入口在 `src/domain/run.ts`，完整状态包括真实牌区、阶段资源/终局、货架、Joker 实例/顺序、四 RNG 游标、回执和最后分数。`RunController` 提交同步事务并提供冻结 checkpoint；场景只读状态/播放确定结果。旧 `src/run/runState.ts` 仅为 `RunSummary` 纯函数摘要。规则角色与资源 URL 已分离。
 
-- `npm ci`、`npm run verify`、`npx playwright install chromium`、`npm run verify:smoke`：退出码均为 0；9 文件 45 单元测试、类型检查、构建、双端启动冒烟通过。
-- R00 浏览器采集：Windows 11 / Node v22.20.0 / 本机 Chrome 154.0.8037.58（headless），桌面 mouse.click 与 390×844 touchscreen.tap 均实际完成选角→购买→牌桌→出一手→演出中退出→重进出牌。
-- F07 已由本机浏览器自动化复现：退出后 queue.running 保持 true；重进再出牌热度变为 60，但有 3 个 pending effects，结果文本不更新。此缺陷留给 R04，不以基线采集成功冒充修复。
-- 手机模拟视口实际 canvas 为 390×219.375；出牌按钮仅 17.671875 CSS px 高，Joker 描述约 3.046875 CSS px，留给 R05。
-- 六原图/头像对照、资产联系表、选角/商店/牌桌/出牌/重进截图、命令日志及逐发现复查表均在 `production/evidence/r00-2026-09-30/`。39 GLB 的完整预览留给 A00。
-- 计划检查器自测通过（1 个有效、13 个无效样例）；计划结构检查结果见同目录 `plan-check.txt`。结构通过不代表玩法通过。
+机器人已移到 `src/testing/bot.ts`，只从公开信息选命令，和 UI 共用 controller/reducer；旧独立出牌循环已删除。r1 数值与原断言未降低。RNG 保持黄金序列，抽牌方向统一 pop；骰爷结算实际随机值，商店游标可 JSON 恢复。r2 当前明确拒绝，留给下一包。
+
+## 在被测 SHA 上实际运行
+
+- `npm run verify`：退出 0，typecheck / 10 文件 **68 测试** / build 通过。
+- `npm run test:domain`：退出 0，25 项通过，包含 1000 固定生成案例的牌区守恒和 JSON 恢复后继续执行一致。
+- `npm run verify:smoke`、`npm run shot`：退出 0；桌面/手机模拟端启动冒烟与截图通过。截图生成不代表人工批准。
+- `DOMAIN_EVIDENCE_DIR=docs/production/evidence/r01-2026-09-30 npm run test:domain:browser`：退出 0。Chromium 153.0.8010.12，桌面 mouse.click 与 390×844 touchscreen.tap 实际用二响完成三场；各 20 条命令、7 手出牌，最终总热度 6062、金币 15。UI 日志 headless 重放完整状态一致，关键 checkpoint 和最终 hash 均一致：`json-fnv-v1:90343630e3596064`。快速二次出牌只产生一条领域命令。
+- 规则边界扫描无 Phaser/DOM/Audio/时钟/Math.random 或反向 game 引用。计划结构检查见证据目录。
+
+证据入口：`production/evidence/R01-2026-09-30.json`；实际命令输出、先失败的日志、三场命令/状态/hash、截图见 `production/evidence/r01-2026-09-30/`。原 RNG 的 snapshot 缺失已先真实跑红；测试金向量来自旧源码取样。
 
 ## 未运行与保留风险
 
-Android 真机、iPhone Safari、真人操作/对标、美术批准、完整一局/恢复、目标机性能、逐 GLB 动画/透明边缘审查：**NOT_RUN**。支持矩阵已分别登记，不将模拟器视为手机验收。
+Android/iPhone 真机、真人体验/对标、美术批准、目标机性能：**NOT_RUN**。当前只证明 r1 状态和命令迁移正确。
 
-`npm audit --json` 实际退出码 1：Vitest 3.2.7 → @vitest/mocker 3.2.7 开发依赖链的 2 项 moderate 告警，同一 GHSA。具体 JSON/链路已保存；未 force 修复，生产可利用性未确认，R06 需处理。美术仍按 ART 单独交 Astra，金样批准前不扩产。
+R04 尚未实现 IndexedDB/中断取消/恢复，R00 的队列重入缺陷仍开放；R05 尚未解决 FIT 小字和原图预载。r1 旧独立 scoring 的漏传装备默认全装仍由 R02 移除，当前 UI/机器人命令已总是显式提供装备。R00 的 2 项 moderate Vitest 开发依赖告警留给 R06。美术在 R05 后按 A00/ART 独立交 Astra，未生产或批准金样，不扩产。

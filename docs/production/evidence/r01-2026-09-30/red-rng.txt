@@ -1,0 +1,30 @@
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/SeededRng.test.ts (3 tests | 1 failed) 7ms
+   ✓ SeededRng > repeats the same sequence for the same seed 2ms
+   ✓ SeededRng > produces deterministic shuffles 0ms
+   × SeededRng > continues the baseline sequence after serializing the cursor 4ms
+     → rng.snapshot is not a function
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/SeededRng.test.ts > SeededRng > continues the baseline sequence after serializing the cursor
+TypeError: rng.snapshot is not a function
+ ❯ tests/SeededRng.test.ts:18:70
+     16|     const rng = new SeededRng('r01-vector');
+     17|     expect([rng.next(), rng.next()].map(value => value * 4294967296)).…
+     18|     const restored = SeededRng.restore(JSON.parse(JSON.stringify(rng.s…
+       |                                                                      ^
+     19|     expect(restored.next() * 4294967296).toBe(361259361);
+     20|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  22:48:46
+   Duration  726ms (transform 40ms, setup 0ms, collect 46ms, tests 7ms, environment 0ms, prepare 148ms)
+
+EXIT_CODE=1

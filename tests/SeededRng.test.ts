@@ -12,4 +12,10 @@ describe('SeededRng', () => {
     const b = new SeededRng('stage-1');
     expect(a.shuffle([1, 2, 3, 4, 5, 6])).toEqual(b.shuffle([1, 2, 3, 4, 5, 6]));
   });
+  it('continues the baseline sequence after serializing the cursor', () => {
+    const rng = new SeededRng('r01-vector');
+    expect([rng.next(), rng.next()].map(value => value * 4294967296)).toEqual([1171121472, 711762313]);
+    const restored = SeededRng.restore(JSON.parse(JSON.stringify(rng.snapshot())));
+    expect(restored.next() * 4294967296).toBe(361259361);
+  });
 });

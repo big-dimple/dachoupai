@@ -4,7 +4,7 @@ import {
   type CharacterContext,
   type CharacterId,
   type CharacterModifier,
-} from '../game/characters';
+} from '../domain/characters';
 import { DEFAULT_JOKER_IDS, resolveJokers } from '../jokers/JokerEngine';
 import type { JokerId, JokerResolution } from '../jokers/types';
 

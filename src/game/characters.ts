@@ -1,6 +1,6 @@
-import type { HandType } from '../cards/handEvaluator';
-
-export type CharacterId = 'amo' | 'touye' | 'laohuan' | 'erxiang' | 'azao' | 'xiemu';
+import type { CharacterId } from '../domain/characters';
+export { resolveCharacterModifier } from '../domain/characters';
+export type { CharacterId, CharacterContext, CharacterModifier } from '../domain/characters';
 
 export interface CharacterDefinition {
   id: CharacterId;
@@ -28,53 +28,8 @@ export const CHARACTERS: CharacterDefinition[] = [
   { id: 'xiemu', name: '谢幕人', title: '压轴', quote: '最后一个包袱，才值票价。', passiveName: '最后一个包袱', passiveDescription: '本场最后一次出牌，最终倍率 ×2。', accent: 0xff5b5b, portrait: characterAsset('xiemu.png'), portraitFocusX: 0.52, portraitFocusY: 0.09 },
 ];
 
-export interface CharacterContext {
-  cardCount: number;
-  handType: HandType;
-  previousHandType?: HandType;
-  handsBeforePlay: number;
-  luckRoll: number;
-}
-
-export interface CharacterModifier {
-  heatBonus: number;
-  multiplierBonus: number;
-  finalMultiplier: number;
-  triggered: boolean;
-  note?: string;
-}
-
 export function getCharacter(id: CharacterId): CharacterDefinition {
   const character = CHARACTERS.find((item) => item.id === id);
   if (!character) throw new Error(`Unknown character: ${id}`);
   return character;
-}
-
-export function resolveCharacterModifier(id: CharacterId, context: CharacterContext): CharacterModifier {
-  const base: CharacterModifier = { heatBonus: 0, multiplierBonus: 0, finalMultiplier: 1, triggered: false };
-
-  switch (id) {
-    case 'amo':
-      return context.cardCount === 1 ? { ...base, finalMultiplier: 3, triggered: true, note: '独角戏 ×3' } : base;
-    case 'touye':
-      return context.luckRoll < 0.5
-        ? { ...base, finalMultiplier: 2, triggered: true, note: '赌中了 ×2' }
-        : { ...base, finalMultiplier: 0.75, triggered: true, note: '赌歪了 ×0.75' };
-    case 'laohuan':
-      return ['straight', 'flush', 'straight-flush'].includes(context.handType)
-        ? { ...base, heatBonus: 120, triggered: true, note: '袖里有牌 +120' }
-        : base;
-    case 'erxiang':
-      return ['pair', 'two-pair', 'three-kind'].includes(context.handType)
-        ? { ...base, multiplierBonus: 1.5, triggered: true, note: '接得漂亮 +1.5 倍率' }
-        : base;
-    case 'azao':
-      return context.previousHandType !== undefined && context.previousHandType !== context.handType
-        ? { ...base, multiplierBonus: 1, triggered: true, note: '换个活儿 +1 倍率' }
-        : base;
-    case 'xiemu':
-      return context.handsBeforePlay === 1
-        ? { ...base, finalMultiplier: 2, triggered: true, note: '压轴 ×2' }
-        : base;
-  }
 }

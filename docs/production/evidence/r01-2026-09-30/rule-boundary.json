@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "files": [
+    "src/domain/characters.ts",
+    "src/domain/hash.ts",
+    "src/domain/run.ts",
+    "src/run/runState.ts",
+    "src/run/shop.ts",
+    "src/run/stages.ts",
+    "src/cards/deck.ts",
+    "src/cards/handEvaluator.ts",
+    "src/cards/types.ts",
+    "src/scoring/scoreHand.ts",
+    "src/jokers/JokerEngine.ts",
+    "src/jokers/types.ts",
+    "src/core/SeededRng.ts"
+  ],
+  "matches": [],
+  "scope": "Static boundary scan, not gameplay or human acceptance"
+}

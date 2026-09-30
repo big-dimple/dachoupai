@@ -9,6 +9,8 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "test:domain": "vitest run tests/domain.test.ts tests/SeededRng.test.ts",
+    "test:domain:browser": "node harness/domain.mjs",
     "test:watch": "vitest",
     "verify": "npm run typecheck && npm test && npm run build",
     "shot": "node harness/screenshot.mjs",

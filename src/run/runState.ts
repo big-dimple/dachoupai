@@ -1,5 +1,5 @@
 import { SeededRng } from '../core/SeededRng';
-import type { CharacterId } from '../game/characters';
+import type { CharacterId } from '../domain/characters';
 import type { JokerId } from '../jokers/types';
 import { getStage, stageClearGold, STAGES } from './stages';
 
@@ -7,10 +7,10 @@ import { getStage, stageClearGold, STAGES } from './stages';
 export const STARTING_GOLD = 6;
 
 /**
- * 一局（Run）的可变状态。跨 Scene 存放于 Phaser registry，键名 `runState`。
- * 更新一律走纯函数返回新对象，UI 不直接改字段。
+ * r1 的计价/过关摘要，仅供纯函数复用。不是可恢复的一局。
+ * 完整权威状态在 domain/run.ts；Scene 只能通过 RunController 提交命令。
  */
-export interface RunState {
+export interface RunSummary {
   /** 本局主种子：关卡内一切随机（洗牌、骰爷判定等）都由它派生 */
   seed: string;
   characterId: CharacterId;
@@ -20,11 +20,11 @@ export interface RunState {
   totalHeat: number;
   /** 金币：过关奖励所得，商店购买/刷新消耗 */
   gold: number;
-  /** 已装备大丑牌，最多 5 张（商店购买进入，Batch 2C 前暂无卸下/售出） */
+  /** r1 已装备定义 ID；完整实例和顺序属于 domain/run.ts。 */
   jokerIds: readonly JokerId[];
 }
 
-export function createRunState(seed: string, characterId: CharacterId): RunState {
+export function createRunState(seed: string, characterId: CharacterId): RunSummary {
   return {
     seed,
     characterId,
@@ -39,7 +39,7 @@ export function createRunState(seed: string, characterId: CharacterId): RunState
  * 当前关过关后推进关卡：累计热度与过关金币奖励，stageIndex + 1。
  * stageIndex 可能因此等于 STAGES.length（普通关全部打完），由过场决定下一步。
  */
-export function advanceStage(run: RunState, stageHeat: number, handsLeft = 0): RunState {
+export function advanceStage(run: RunSummary, stageHeat: number, handsLeft = 0): RunSummary {
   const cleared = getStage(run.stageIndex);
   return {
     ...run,
@@ -57,7 +57,7 @@ export function stageRng(seed: string, stageIndex: number): SeededRng {
   return new SeededRng(`${seed}/stage/${stageIndex}`);
 }
 
-/** 普通关是否已全部打完（Boss 关属 Batch 2C，打完后 stageIndex === STAGES.length）。 */
-export function allStagesCleared(run: RunState): boolean {
+/** r1 摘要是否已过全部三场；终局权威判定属于领域 phase。 */
+export function allStagesCleared(run: RunSummary): boolean {
   return run.stageIndex >= STAGES.length;
 }
