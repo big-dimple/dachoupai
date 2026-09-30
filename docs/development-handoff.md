@@ -1,25 +1,19 @@
 # 当前交接
 
-## 当前任务：R03 / READY
+## 当前任务：R04 / READY
 
-权威指针：`production/plan.json`。唯一下一步：从 R02 最终交接提交建立 `feat/R03-run-economy`，读取 R03 与 RULES/ENGINEERING/UX，先补出弃牌、持续牌组、买卖与奖励的失败用例，再接入 r2 最小可操作 UI。
+权威指针：`production/plan.json`。R03 分支 `feat/R03-run-economy`，被测实现 `f6ccd17c008ae4998f8b18615d01c624a2ea089a`；唯一下一步：从本包关闭点创建 R04 分支，按 ENGINEERING/UX/QUALITY 先复现队列取消和存档失败，再实现原子 checkpoint、恢复与演出生命周期。
 
-R02 分支 `feat/R02-rules-v2`，包基线 `006360901cfcae1ed8243484351b088bc18c3926`。**实际被测实现 SHA：`00e0cf0d5ae54bece673e005fb013ff01ac73f6c`**。本次证据/交接提交不改变被测游戏 SHA。
+## 上一包验证
 
-## R02 已交付与实际验证
+R03 完成网页 r2 出弃牌、持久牌组和构筑经济。`npm run verify`（145 项）、`test:run`（36 项）、内容检查、G01–G15、双端启动冒烟、shot 均实际通过。真实 mouse.click / touchscreen.tap 提交买入→弃牌→出牌过关→回店→调序→出售→替换；10 条命令与 6 个检查点逐步回放一致，最终完整状态 hash `json-fnv-v1:bbad9009bd42f61d`。具体日志、命令、版本与截图只见 `production/evidence/R03-2026-10-01.json`。
 
-准确有理数与单次 floor、12 牌型/等级、played/scoring/active/held、有序计分、六角色时点、可选押注、不可变 trace、有限 typed hook/schema、实例成长、深度 1/额外 4 次重触发与 512 事件诊断。r2 由同一 `applyCommand`/`RunController` 显式分派，schema=2、分数字符串、内容 hash 隔离；漏传装备默认全装和死常量已删除。
+增强、T01–T18、U01–U12 只验证合法 ID/命令边界；未实现效果明确拒绝且不出售。保留 r1 原预期，没有扩展完整 Boss 或声称平衡完成。
 
-在上述提交上实际运行：`npm run verify`（14 文件 129 测试/typecheck/build）、`npm run test:rules`（60 项）、`npm run verify:content`（5 定义，上界 82）、G01–G15 金样与逐事件独立分数核对，全部 PASS。非法分母的内容反例真实退出 1。`npm run verify:smoke` 双端通过，**仅 r1 启动冒烟**。
+## 保留风险与安排
 
-证据权威入口：`production/evidence/R02-2026-10-01.json`；红/绿日志、反例、逐事件 trace 见其引用。r1 数值/余额/胜率原断言未降低，显式升级迁移差异已列在证据中。R00/R01 只保留证据指针，见各自 JSON。
+R00 F07（中断后旧队列不结束）仍开放，R04 修复。R05 仍需消除 FIT 小字/小触点/大留白及原图首屏预载。R06 的 CI 与 2 项 moderate Vitest 告警待做。当前截图只经工程目审，不是手机品质或美术批准。
 
-## R03 边界与保留风险
+采用方案 `14be6d65eeffd3a0d97a9d76a6274112fe75585e`；main 未重置/强推，相关 draft PR 未自行合并。R00–R03 详细证据各见对应 JSON，不把历史测试当新版本通过。
 
-r2 当前为计分命令内核，初始 `stage-ready`，可进入/出牌/押注/调序；商店、弃牌和网页 r2 路径待 R03，当前网页仍是 r1。不得用该启动冒烟冒充 r2 完整一局。R03 只做最小可操作流程，不扩 72 牌/Boss/终稿美术。
-
-方案采用 `14be6d65eeffd3a0d97a9d76a6274112fe75585e`；main 基于审查 `9fd6e0b`。draft PR #4/#5 未合并，保留 PR 分层审查，不合并或强推 main。
-
-Android Chrome/iPhone Safari 真机、真人核心体验/对标、美术批准、目标机性能：**NOT_RUN**。用户只在关键节点验 Android Chrome，平时连续推进工程；部署由用户处理，不准备部署交接材料。
-
-R04 的存档/队列取消和 R00 F07 未关闭；R05 的 FIT 小字/原图预载未修；R06 的 2 项 moderate Vitest 告警与 CI 待做。r2 数值和角色公平性未校准。美术按 A00/ART 独立交 Astra，未制作或批准牌桌金样，不提前重画全部角色。
+Android Chrome/iPhone Safari 真机、目标机性能、真人体验/对标、美术批准：**NOT_RUN**。用户只在关键节点验 Android Chrome，连续推进独立工程。部署由用户处理，不准备部署交接材料。R05 后按 A00/ART 独立交 Astra；金样未获批准，不量产或提前重画所有角色。

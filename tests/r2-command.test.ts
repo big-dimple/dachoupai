@@ -5,7 +5,10 @@ import { R2_JOKERS } from '../src/content/r2Schema';
 
 const started = (characterId: 'amo'|'touye'|'xiemu' = 'amo') => createRun({ seed:'r2-command',characterId,runId:'r2-fixture',rulesVersion:'r2' });
 function table(characterId?: 'amo'|'touye'|'xiemu') {
-  const run = started(characterId);
+  const shop = started(characterId);
+  const leave=applyCommand(shop,{runId:shop.runId,commandId:'leave',expectedSeq:shop.commandSeq,action:{type:'LeaveShop'}});
+  if(!leave.ok)throw new Error(leave.code);
+  const run = leave.state;
   const result = applyCommand(run, {runId:run.runId,commandId:'enter',expectedSeq:run.commandSeq,action:{type:'EnterStage'}});
   if (!result.ok) throw new Error(result.code);
   return result.state;

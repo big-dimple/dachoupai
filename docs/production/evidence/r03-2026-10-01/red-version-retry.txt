@@ -1,0 +1,47 @@
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/r2-run.test.ts (13 tests | 1 failed) 69ms
+   ✓ r2 run economy and resources > keeps unavailable consumable operations explicit and never consumes failed uses 6ms
+   ✓ r2 run economy and resources > starts at a deterministic saved shop with an affordable offer in 100 fixed seeds 33ms
+   ✓ r2 run economy and resources > buys a concrete shelf ID once, retains paid price and does not refill other positions 1ms
+   × r2 run economy and resources > does not let a cached receipt bypass the active content-version boundary 8ms
+     → expected true to be false // Object.is equality
+   ✓ r2 run economy and resources > rejects insufficient funds and full slots without spending or touching RNG 1ms
+   ✓ r2 run economy and resources > sells only the named instance using actual paid price, with no instant shelf refresh 1ms
+   ✓ r2 run economy and resources > reroll fees increase per shop, cap at 10 and restore the exact shelf cursor 8ms
+   ✓ r2 run economy and resources > empty candidates do not charge a reroll or advance its cursor 0ms
+   ✓ r2 run economy and resources > spends a discard instead of a hand and retains previous type/play index 4ms
+   ✓ r2 run economy and resources > rejects duplicate/unknown/empty/over-limit/no-resource discards atomically 2ms
+   ✓ r2 run economy and resources > keeps modified persistent instances through a natural clear and next-stage shuffle 2ms
+   ✓ r2 run economy and resources > when the deck is empty, permits the remaining card then ends without invisible refills 1ms
+   ✓ r2 run economy and resources > reorder permutations preserve instances and terminal phases reject every resource action 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > does not let a cached receipt bypass the active content-version boundary
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/r2-run.test.ts:45:22
+     43|     const result=applyCommand(run,cmd);if(!result.ok)throw new Error(r…
+     44|     const incompatible={...result.state,contentHash:'incompatible-cont…
+     45|     expect(retry.ok).toBe(false);expect(retry.state).toBe(incompatible…
+       |                      ^
+     46|   });
+     47|   it('rejects insufficient funds and full slots without spending or to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
+   Start at  00:56:04
+   Duration  940ms (transform 154ms, setup 0ms, collect 271ms, tests 69ms, environment 0ms, prepare 134ms)
+
+EXIT_CODE=1

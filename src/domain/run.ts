@@ -95,6 +95,10 @@ export type Action =
   | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2' }
   | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' }
   | { type: 'PlayHand'; selectedIds: readonly string[] }
+  | { type: 'DiscardHand'; selectedIds: readonly string[] }
+  | { type: 'SellJoker'; instanceId:string }
+  | { type: 'UseConsumable'; instanceId:string; targetIds:readonly string[] }
+  | { type: 'DestroyConsumable'; instanceId:string }
   | { type: 'SetWager'; enabled: boolean }
   | { type: 'BuyOffer'; offerId: string }
   | { type: 'ReorderHand' | 'ReorderJokers'; ids: readonly string[] };
@@ -110,6 +114,7 @@ export type DomainEvent =
   | { type: 'hand-scored'; score: ScoreResult; playedIds: string[]; playIndex: number }
   | { type: 'hand-scored-r2'; score: ScoreTrace; playedIds: string[]; playIndex: number }
   | { type: 'stage-ended'; cleared: boolean; stage: StageState | R2StageState }
+  | { type: 'cards-discarded';cardIds:string[];discardsLeft:number }
   | { type: 'run-abandoned' };
 
 export type CommandResult<S = RunState> =
@@ -166,6 +171,7 @@ export function applyCommand(input: AnyRunState | null, command: Command): Comma
   const fail = (code: string): CommandResult<AnyRunState|null> => ({ ok: false, code, state: input });
   if (!command || !command.action || typeof command.runId !== 'string' || !command.runId.trim() || typeof command.commandId !== 'string' || !command.commandId.trim() || !Number.isSafeInteger(command.expectedSeq) || command.expectedSeq < 0) return fail('invalid-command');
   if (input && command.runId !== input.runId) return fail('wrong-run');
+  if(input && !((input.rulesVersion==='r1'&&input.schemaVersion===1&&input.contentHash===CONTENT_HASH&&input.contentVersion===CONTENT_VERSION)||(input.rulesVersion==='r2'&&input.schemaVersion===2&&input.contentHash===R2_CONTENT_HASH&&input.contentVersion===R2_CONTENT_VERSION)))return fail('incompatible-version');
   const fingerprint = stableHash(command);
   const previous = input?.receipts.find(receipt => receipt.commandId === command.commandId);
   if (previous) {
@@ -174,7 +180,6 @@ export function applyCommand(input: AnyRunState | null, command: Command): Comma
   }
   if (command.expectedSeq !== (input?.commandSeq ?? 0)) return fail('stale-sequence');
   if (input?.rulesVersion === 'r2' || (!input && command.action.type === 'StartRun' && command.action.rulesVersion === 'r2')) {
-    if (input && (input.schemaVersion !== 2 || input.contentHash !== R2_CONTENT_HASH || input.contentVersion !== R2_CONTENT_VERSION)) return fail('incompatible-version');
     const result = transactR2(input as R2RunState|null, command);
     if (!result.ok) return {...fail(result.code), ...(result.diagnostic ? {diagnostic:result.diagnostic} : {})};
     const receipt = {commandId:command.commandId,fingerprint,seq:result.state.commandSeq+1};
@@ -182,7 +187,6 @@ export function applyCommand(input: AnyRunState | null, command: Command): Comma
     assertR2Invariants(result.state);
     return {...result,receipt,duplicate:false};
   }
-  if (input && (input.rulesVersion !== 'r1' || input.contentHash !== CONTENT_HASH || input.contentVersion !== CONTENT_VERSION)) return fail('incompatible-version');
 
   const action = command.action;
   const events: DomainEvent[] = [];

@@ -1,0 +1,203 @@
+{
+  "taskId": "R03",
+  "testedCommit": "f6ccd17c008ae4998f8b18615d01c624a2ea089a",
+  "baseCommit": "651d2e6b84d2c985574d952fd0b73c11aee2717e",
+  "completedAt": "2026-09-30T17:09:45.055Z",
+  "rulesVersion": "r2",
+  "contentVersion": "quality-r2-run-v2",
+  "contentHash": "json-fnv-v1:004135ca2b38f6ee",
+  "testedTree": {
+    "gameSourceDiff": "",
+    "scope": "Checked-in implementation tested; only evidence and progress docs generated afterward."
+  },
+  "environment": {
+    "os": "Windows_NT 10.0.26200",
+    "node": "v22.20.0",
+    "browser": "153.0.8010.12",
+    "device": "Windows desktop and 390x844 touchscreen browser emulation; not physical phones"
+  },
+  "changes": [
+    "Website uses explicit r2 run commands and immutable score traces, with public preview and exact string score formatting. Existing r1 numeric/balance expectations retained.",
+    "Persistent card instances, 4 hands/3 discards, real draw-pile depletion, weighted without-replacement shelf, affordable initial offer, consumed offers, actual paid price, confirmation for buys/sells, order changes, bounded 2+n reroll cost, one-time reward/interest.",
+    "Enhancement and T01–T18/U01–U12 IDs have validation/command boundaries only; unavailable effects reject explicitly and are not sold.",
+    "Compatibility validation precedes cached command receipts, so old-content retries cannot bypass version checks."
+  ],
+  "checks": [
+    {
+      "name": "typecheck-unit-build",
+      "command": "npm run verify",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r03-2026-10-01/verify.txt",
+      "testFiles": 17,
+      "tests": 145
+    },
+    {
+      "name": "run-economy",
+      "command": "npm run test:run",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r03-2026-10-01/run.txt",
+      "testFiles": 6,
+      "tests": 36
+    },
+    {
+      "name": "content",
+      "command": "npm run verify:content",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r03-2026-10-01/content.txt",
+      "definitions": 5,
+      "conservativeEventBound": 82
+    },
+    {
+      "name": "exact-goldens",
+      "command": "node harness/rules-goldens.mjs docs/production/evidence/r03-2026-10-01",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r03-2026-10-01/G01-G15.json",
+      "sha256": "a4bb8af413aba9de99d00c38e9a241e4ef9bbfe4ae53f9321494398b4a814adf"
+    },
+    {
+      "name": "real-ui-and-replay",
+      "command": "DOMAIN_EVIDENCE_DIR=docs/production/evidence/r03-2026-10-01 npm run test:domain:browser",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r03-2026-10-01/domain-replay.json",
+      "fixture": {
+        "seed": "r03-1",
+        "characterId": "erxiang",
+        "selection": "first of up to 50 natural seeds that permits the required buy/discard/clear/trade workflow; no injected cards/resources; not a win-rate sample"
+      },
+      "runs": [
+        {
+          "name": "desktop",
+          "input": "mouse.click",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "commands": 10,
+          "checkpoints": 6,
+          "stateHash": "json-fnv-v1:bbad9009bd42f61d",
+          "errors": [],
+          "status": "PASS"
+        },
+        {
+          "name": "mobile",
+          "input": "touchscreen.tap",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "commands": 10,
+          "checkpoints": 6,
+          "stateHash": "json-fnv-v1:bbad9009bd42f61d",
+          "errors": [],
+          "status": "PASS"
+        }
+      ],
+      "scope": "Natural warm-stage buy/discard/play/clear/reorder/sell/replace workflow; no state or resource injection. Not a balance sample."
+    },
+    {
+      "name": "startup-smoke",
+      "command": "npm run verify:smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r03-2026-10-01/smoke.txt",
+      "scope": "Desktop and mobile-emulated r2 startup only."
+    },
+    {
+      "name": "scene-shots",
+      "command": "npm run shot",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r03-2026-10-01/shot.txt",
+      "scope": "Ignored shots/ startup/select/shop/table screenshots; reviewed browser workflow PNGs below are retained."
+    },
+    {
+      "name": "plan-structure",
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/r03-2026-10-01/plan-check.txt",
+      "scope": "Structural protocol only, not human approval."
+    }
+  ],
+  "testFirstEvidence": [
+    {
+      "name": "run-economy-contract",
+      "testedCommit": "651d2e6b84d2c985574d952fd0b73c11aee2717e",
+      "workingTree": "New run tests before implementation",
+      "command": "npx vitest run tests/r2-run.test.ts",
+      "status": "FAIL",
+      "exitCode": 1,
+      "failures": 11,
+      "evidence": "docs/production/evidence/r03-2026-10-01/red-run.txt"
+    },
+    {
+      "name": "item-boundaries",
+      "testedCommit": "651d2e6b84d2c985574d952fd0b73c11aee2717e",
+      "workingTree": "Partial R03 implementation, boundary tests added before guards",
+      "command": "npx vitest run tests/card-boundary.test.ts tests/r2-run.test.ts",
+      "status": "FAIL",
+      "exitCode": 1,
+      "failures": 2,
+      "evidence": "docs/production/evidence/r03-2026-10-01/red-item-boundary.txt"
+    },
+    {
+      "name": "cached-receipt-version",
+      "testedCommit": "651d2e6b84d2c985574d952fd0b73c11aee2717e",
+      "workingTree": "Partial R03 implementation, retry version test added before guard move",
+      "command": "npx vitest run tests/r2-run.test.ts",
+      "status": "FAIL",
+      "exitCode": 1,
+      "failures": 1,
+      "evidence": "docs/production/evidence/r03-2026-10-01/red-version-retry.txt"
+    }
+  ],
+  "screenshots": [
+    {
+      "evidence": "docs/production/evidence/r03-2026-10-01/desktop-clear.png",
+      "sha256": "cfac76f74a98aceeecbaac9d2ff1a3869d159365f14299aa2f78437c37db0d89"
+    },
+    {
+      "evidence": "docs/production/evidence/r03-2026-10-01/desktop-discard.png",
+      "sha256": "69eb6e6ec36e036fc59a070a323f6ffb92572de9b0448cd35d80ee179fbf4dd1"
+    },
+    {
+      "evidence": "docs/production/evidence/r03-2026-10-01/desktop-trade.png",
+      "sha256": "4ff6c52ba09ee4195796e70fe303eed46b39df4a54b66bb46bdca9fc0ede2dbb"
+    },
+    {
+      "evidence": "docs/production/evidence/r03-2026-10-01/mobile-clear.png",
+      "sha256": "94bdb2b3f06c6a93a1d6652eb80e6691e630f660c44552d74b6572d07512c9bb"
+    },
+    {
+      "evidence": "docs/production/evidence/r03-2026-10-01/mobile-discard.png",
+      "sha256": "f78ef5ef287f021e4284dde907ca9386ab45e17bfab37e1aebd5dd0762b005fb"
+    },
+    {
+      "evidence": "docs/production/evidence/r03-2026-10-01/mobile-trade.png",
+      "sha256": "606fb69bc678afdbb1388be1b8c2b8511d16aac27f817c0d389afbed59a567f6"
+    }
+  ],
+  "engineeringVisualReview": {
+    "status": "PASS",
+    "scope": "Agent checked actual desktop trade and mobile discard screenshots for correct inventory/resource labels and CJK wrapping. Existing tiny FIT layout is a known R05 defect; this is not phone or art acceptance."
+  },
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": "",
+    "evidence": ""
+  },
+  "limitations": [
+    "R00 F07 interrupted EffectQueue, checkpoint persistence and recovery remain open for R04.",
+    "FIT mobile layout still has tiny text/controls and large letterboxing; R05 remains required.",
+    "Physical Android Chrome/iPhone Safari, target-device performance, human core/benchmark and art approval NOT_RUN. User validates Android at key milestones and handles deployment.",
+    "Five production jokers and one natural warm-stage UI workflow; full chapter/Boss, complete consumables/long-term/enhancement effects and balance not certified.",
+    "Native confirmations are functional temporary UI; accessible responsive detail/confirmation layouts remain R05.",
+    "Large-chunk build warning and two moderate development Vitest advisories remain R05/R06."
+  ],
+  "nextTask": "R04"
+}

@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { getCharacter } from './characters';
-import { getStage, stageOrderLabel, type StageDefinition } from '../run/stages';
+import {getR2Stage as getStage} from '../domain/r2Run';
+import {heatText} from './scoreText';
 import { runController, dispatchRun } from './runAdapter';
 
 export interface IntermissionResult {
@@ -8,7 +9,7 @@ export interface IntermissionResult {
   cleared: boolean;
   /** 刚打完的关卡序号（0-based） */
   stageIndex: number;
-  stageHeat: number;
+  stageHeat: string;
   handsLeft: number;
   /** 本关过关金币奖励（冷场为 0） */
   goldEarned: number;
@@ -39,13 +40,13 @@ export class IntermissionScene extends Phaser.Scene {
     const { width, height } = this.scale;
     this.cameras.main.setBackgroundColor('#14120d');
 
-    const stage = getStage(this.result.stageIndex) as StageDefinition;
+    const stage = getStage(this.result.stageIndex) !;
     const character = getCharacter(run.characterId);
 
     const title = this.result.cleared
       ? run.phase === 'run-won'
         ? '今日巡演落幕'
-        : `${stageOrderLabel(this.result.stageIndex)} · ${stage.name}，过！`
+        : `${stage.name}，过！`
       : '冷场了';
 
     this.add.text(width / 2, 150, title, {
@@ -58,13 +59,13 @@ export class IntermissionScene extends Phaser.Scene {
 
     const lines = this.result.cleared
       ? [
-          `达成热度  ${this.result.stageHeat.toLocaleString()} / ${stage.targetHeat.toLocaleString()}`,
+          `达成热度  ${heatText(this.result.stageHeat)} / ${heatText(stage.targetHeat)}`,
           `剩余出牌  ${this.result.handsLeft}    ·    过关奖励  +${this.result.goldEarned} 金币`,
-          `巡演累计  ${run.totalHeat.toLocaleString()} 热度    ·    现有金币  ${run.gold}`,
+          `巡演累计  ${heatText(run.totalHeat)} 热度    ·    现有金币  ${run.gold}`,
         ]
       : [
-          `${stageOrderLabel(this.result.stageIndex)} · ${stage.name} 差 ${Math.max(0, stage.targetHeat - this.result.stageHeat).toLocaleString()} 热度`,
-          `巡演止步于此，累计 ${(run.totalHeat + this.result.stageHeat).toLocaleString()} 热度`,
+          `${stage.name} 差 ${heatText((BigInt(stage.targetHeat)>BigInt(this.result.stageHeat)?BigInt(stage.targetHeat)-BigInt(this.result.stageHeat):0n).toString())} 热度`,
+          `巡演止步于此，累计 ${heatText((BigInt(run.totalHeat)+BigInt(this.result.stageHeat)).toString())} 热度`,
         ];
 
     this.add.text(width / 2, 252, lines.join('\n'), {
@@ -77,7 +78,7 @@ export class IntermissionScene extends Phaser.Scene {
 
     const nextStage = this.result.cleared && run.phase === 'stage-cleared' ? getStage(run.stageIndex) : undefined;
     if (nextStage) {
-      this.add.text(width / 2, 390, `下一关：${stageOrderLabel(run.stageIndex)} · ${nextStage.name}\n${nextStage.intro}`, {
+      this.add.text(width / 2, 390, `下一关：${nextStage.name}\n${nextStage.intro}`, {
         fontFamily: '"Microsoft YaHei", sans-serif',
         fontSize: '16px',
         color: '#f3cf7c',

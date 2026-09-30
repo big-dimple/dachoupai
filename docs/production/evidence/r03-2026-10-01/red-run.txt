@@ -1,0 +1,219 @@
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/r2-run.test.ts (11 tests | 11 failed) 22ms
+   × r2 run economy and resources > starts at a deterministic saved shop with an affordable offer in 100 fixed seeds 10ms
+     → expected 'stage-ready' to be 'shop' // Object.is equality
+   × r2 run economy and resources > buys a concrete shelf ID once, retains paid price and does not refill other positions 1ms
+     → Cannot read properties of null (reading 'offers')
+   × r2 run economy and resources > rejects insufficient funds and full slots without spending or touching RNG 1ms
+     → Cannot read properties of null (reading 'offers')
+   × r2 run economy and resources > sells only the named instance using actual paid price, with no instant shelf refresh 1ms
+     → Cannot read properties of null (reading 'offers')
+   × r2 run economy and resources > reroll fees increase per shop, cap at 10 and restore the exact shelf cursor 2ms
+     → expected false to be true // Object.is equality
+   × r2 run economy and resources > empty candidates do not charge a reroll or advance its cursor 2ms
+     → expected 'r2-interaction-not-enabled' to be 'no-reroll-candidates' // Object.is equality
+   × r2 run economy and resources > spends a discard instead of a hand and retains previous type/play index 1ms
+     → expected false to be true // Object.is equality
+   × r2 run economy and resources > rejects duplicate/unknown/empty/over-limit/no-resource discards atomically 1ms
+     → expected false to be true // Object.is equality
+   × r2 run economy and resources > keeps modified persistent instances through a natural clear and next-stage shuffle 1ms
+     → expected false to be true // Object.is equality
+   × r2 run economy and resources > when the deck is empty, permits the remaining card then ends without invisible refills 1ms
+     → expected false to be true // Object.is equality
+   × r2 run economy and resources > reorder permutations preserve instances and terminal phases reject every resource action 1ms
+     → Cannot read properties of null (reading 'offers')
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > starts at a deterministic saved shop with an affordable offer in 100 fixed seeds
+AssertionError: expected 'stage-ready' to be 'shop' // Object.is equality
+
+Expected: "shop"
+Received: "stage-ready"
+
+ ❯ tests/r2-run.test.ts:15:25
+     13|     for(let i=0;i<100;i++){
+     14|       const run=start(`initial-${i}`),same=start(`initial-${i}`);
+     15|       expect(run.phase).toBe('shop');expect(run.gold).toBe(6);
+       |                         ^
+     16|       expect(run.shop?.offers).toHaveLength(3);expect(run.shop?.offers…
+     17|       expect(run.shop).toEqual(same.shop);expect(run.rng).toEqual(same…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > buys a concrete shelf ID once, retains paid price and does not refill other positions
+TypeError: Cannot read properties of null (reading 'offers')
+ ❯ tests/r2-run.test.ts:22:39
+     20|   });
+     21|   it('buys a concrete shelf ID once, retains paid price and does not r…
+     22|     const run=start(),offer=run.shop!.offers.find(o=>o.price<=run.gold…
+       |                                       ^
+     23|     const cmd=command(run,{type:'BuyOffer',offerId:offer.offerId}),fir…
+     24|     const bought=first.state;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > rejects insufficient funds and full slots without spending or touching RNG
+TypeError: Cannot read properties of null (reading 'offers')
+ ❯ tests/r2-run.test.ts:35:56
+     33|       const run=start();if(boundary==='money')run.gold=0;
+     34|       else run.jokers=R2_JOKERS.map(d=>({instanceId:`owned/${d.id}`,de…
+     35|       const before=JSON.stringify(run),offer=run.shop!.offers[0];
+       |                                                        ^
+     36|       const result=applyCommand(run,command(run,{type:'BuyOffer',offer…
+     37|       expect(result.ok).toBe(false);expect(result.state).toBe(run);exp…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > sells only the named instance using actual paid price, with no instant shelf refresh
+TypeError: Cannot read properties of null (reading 'offers')
+ ❯ tests/r2-run.test.ts:42:39
+     40|   });
+     41|   it('sells only the named instance using actual paid price, with no i…
+     42|     const run=start(),offer=run.shop!.offers.find(o=>o.price<=run.gold…
+       |                                       ^
+     43|     const bought=send(run,{type:'BuyOffer',offerId:offer.offerId}),ins…
+     44|     const sold=send(bought,{type:'SellJoker',instanceId:instance.insta…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > reroll fees increase per shop, cap at 10 and restore the exact shelf cursor
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ send tests/r2-run.test.ts:7:76
+      5| const command=(state:R2RunState,action:Action)=>({runId:state.runId,co…
+      6| const send=(state:R2RunState,action:Action)=>{
+      7|   const result=applyCommand(state,command(state,action));expect(result…
+       |                                                                            ^
+      8|   assertRunInvariants(result.state);return result.state;
+      9| };
+ ❯ tests/r2-run.test.ts:55:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/11]⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > empty candidates do not charge a reroll or advance its cursor
+AssertionError: expected 'r2-interaction-not-enabled' to be 'no-reroll-candidates' // Object.is equality
+
+Expected: "no-reroll-candidates"
+Received: "r2-interaction-not-enabled"
+
+ ❯ tests/r2-run.test.ts:64:69
+     62|     const run=start();run.gold=20;run.jokers=R2_JOKERS.map(d=>({instan…
+     63|     const before=JSON.stringify(run),result=applyCommand(run,command(r…
+     64|     expect(result.ok).toBe(false);if(!result.ok)expect(result.code).to…
+       |                                                                     ^
+     65|   });
+     66|   it('spends a discard instead of a hand and retains previous type/pla…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/11]⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > spends a discard instead of a hand and retains previous type/play index
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ send tests/r2-run.test.ts:7:76
+      5| const command=(state:R2RunState,action:Action)=>({runId:state.runId,co…
+      6| const send=(state:R2RunState,action:Action)=>{
+      7|   const result=applyCommand(state,command(state,action));expect(result…
+       |                                                                            ^
+      8|   assertRunInvariants(result.state);return result.state;
+      9| };
+ ❯ table tests/r2-run.test.ts:10:36
+ ❯ tests/r2-run.test.ts:67:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/11]⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > rejects duplicate/unknown/empty/over-limit/no-resource discards atomically
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ send tests/r2-run.test.ts:7:76
+      5| const command=(state:R2RunState,action:Action)=>({runId:state.runId,co…
+      6| const send=(state:R2RunState,action:Action)=>{
+      7|   const result=applyCommand(state,command(state,action));expect(result…
+       |                                                                            ^
+      8|   assertRunInvariants(result.state);return result.state;
+      9| };
+ ❯ table tests/r2-run.test.ts:10:36
+ ❯ tests/r2-run.test.ts:75:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/11]⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > keeps modified persistent instances through a natural clear and next-stage shuffle
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ send tests/r2-run.test.ts:7:76
+      5| const command=(state:R2RunState,action:Action)=>({runId:state.runId,co…
+      6| const send=(state:R2RunState,action:Action)=>{
+      7|   const result=applyCommand(state,command(state,action));expect(result…
+       |                                                                            ^
+      8|   assertRunInvariants(result.state);return result.state;
+      9| };
+ ❯ tests/r2-run.test.ts:87:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/11]⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > when the deck is empty, permits the remaining card then ends without invisible refills
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ send tests/r2-run.test.ts:7:76
+      5| const command=(state:R2RunState,action:Action)=>({runId:state.runId,co…
+      6| const send=(state:R2RunState,action:Action)=>{
+      7|   const result=applyCommand(state,command(state,action));expect(result…
+       |                                                                            ^
+      8|   assertRunInvariants(result.state);return result.state;
+      9| };
+ ❯ table tests/r2-run.test.ts:10:36
+ ❯ tests/r2-run.test.ts:95:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/11]⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > reorder permutations preserve instances and terminal phases reject every resource action
+TypeError: Cannot read properties of null (reading 'offers')
+ ❯ tests/r2-run.test.ts:103:34
+    101|   it('reorder permutations preserve instances and terminal phases reje…
+    102|     const run=start();run.gold=100;let bought=run;
+    103|     for(const offer of run.shop!.offers.slice(0,2))bought=send(bought,…
+       |                                  ^
+    104|     const reversed=bought.jokers.map(j=>j.instanceId).reverse(),ordere…
+    105|     expect(ordered.jokers.map(j=>j.instanceId)).toEqual(reversed);expe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/11]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  11 failed (11)
+   Start at  00:28:10
+   Duration  876ms (transform 144ms, setup 0ms, collect 255ms, tests 22ms, environment 0ms, prepare 132ms)
+
+EXIT_CODE=1

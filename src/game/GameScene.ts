@@ -3,17 +3,20 @@ import { AudioEngine } from '../audio/AudioEngine';
 import { rankLabel, SUIT_SYMBOL, type PlayingCard } from '../cards/types';
 import { EffectQueue } from '../core/EffectQueue';
 import { TriggerEngine } from '../core/TriggerEngine';
-import { getJoker } from '../jokers/JokerEngine';
-import type { JokerId, JokerResolution } from '../jokers/types';
-import { jokerIds, R1_LIMITS, type RunState } from '../domain/run';
-import { getStage, stageOrderLabel, type StageDefinition } from '../run/stages';
-import type { ScoreResult } from '../scoring/scoreHand';
+import { getR2Joker as getJoker } from '../domain/r2Shop';
+import {R2_JOKERS} from '../content/r2Schema';
+import {HAND_LABELS} from '../content/handLabels';
+import {heatText,fractionText} from './scoreText';
+import type {R2RunState as RunState} from '../domain/run';
+import {R2_LIMITS,getR2Stage as getStage} from '../domain/r2Run';
+import {previewR2Hand,type ScoreTrace,type ScoreEvent} from '../domain/scoreR2';
+
 import { getCharacter, type CharacterId } from './characters';
 import type { IntermissionResult } from './IntermissionScene';
 import { portraitSquareCrop } from './portraitCrop';
 import { dispatchRun, runController, startRun } from './runAdapter';
 
-const MAX_SELECTED = R1_LIMITS.maxSelected;
+const MAX_SELECTED = R2_LIMITS.maxSelected;
 
 interface CardView {
   card: PlayingCard;
@@ -25,12 +28,12 @@ export class GameScene extends Phaser.Scene {
   private get hand(): PlayingCard[] { return this.run.handOrder.map(id => this.run.deckInstances.find(card => card.id === id)!); }
   private selectedIds = new Set<string>();
   private cardViews: CardView[] = [];
-  private jokerViews = new Map<JokerId, Phaser.GameObjects.Container>();
-  private get jokerIds(): readonly JokerId[] { return jokerIds(this.run); }
+  private jokerViews = new Map<string, Phaser.GameObjects.Container>();
+  private get jokerIds(): readonly string[] { return this.run.jokers.map(j=>j.definitionId); }
   private run!: RunState;
-  private stage!: StageDefinition;
+  private stage!: NonNullable<ReturnType<typeof getStage>>;
   private get handsLeft(): number { return this.run.stage?.handsLeft ?? 0; }
-  private get heat(): number { return this.run.stage?.heat ?? 0; }
+  private get heat(): string { return this.run.stage?.heat ?? '0'; }
   private playing = false;
   private characterId!: CharacterId;
   private readonly effects = new EffectQueue();
@@ -81,7 +84,7 @@ export class GameScene extends Phaser.Scene {
       fontSize: '12px',
       color: '#8f8267',
     });
-    this.add.text(42, 88, `${stageOrderLabel(this.run.stageIndex)} · ${this.stage.name}`, {
+    this.add.text(42, 88, this.stage.name, {
       fontFamily: '"Microsoft YaHei", sans-serif',
       fontSize: '17px',
       fontStyle: 'bold',
@@ -172,6 +175,18 @@ export class GameScene extends Phaser.Scene {
       .setOrigin(0.5)
       .setDepth(2);
     this.playButton.on('pointerdown', () => void this.playSelected());
+    const discard=this.add.rectangle(width/2-250,650,190,58,0x2b3a4a).setStrokeStyle(2,0x7fb3d5).setInteractive({useHandCursor:true});
+    this.add.text(discard.x,discard.y,'弃 牌',{fontSize:'22px',color:'#dceefb'}).setOrigin(0.5);
+    discard.on('pointerdown',()=>this.discardSelected());
+    if(this.characterId==='touye'){
+      const wager=this.add.text(width/2+190,650,'本手押注：否',{fontSize:'18px',color:'#ffba66'}).setOrigin(0,0.5).setInteractive({useHandCursor:true});
+      wager.on('pointerdown',()=>{
+        if(this.playing)return;
+        const result=dispatchRun(this,{type:'SetWager',enabled:!this.run.stage!.wagerSelected});
+        if(result.ok){this.run=result.state;wager.setText(this.run.stage!.wagerSelected?'本手押注：是':'本手押注：否');this.previewSelection();}
+        else wager.setText('本场押注已使用');
+      });
+    }
 
     this.add
       .text(width - 42, 686, '重新选角色', {
@@ -182,6 +197,7 @@ export class GameScene extends Phaser.Scene {
       .setOrigin(1, 0.5)
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', () => {
+        if(!window.confirm('结束当前局并重新选角色？'))return;
         dispatchRun(this, { type: 'AbandonRun' });
         this.scene.start('character-select');
       });
@@ -226,7 +242,7 @@ export class GameScene extends Phaser.Scene {
           fontSize: '10px',
           color: '#6b5840',
           align: 'center',
-          wordWrap: { width: cardWidth - 16 },
+          wordWrap: { width: cardWidth - 16,useAdvancedWrap:true },
         })
         .setOrigin(0.5);
       container.add([bg, name, desc]);
@@ -279,11 +295,12 @@ export class GameScene extends Phaser.Scene {
     if (this.selectedIds.has(id)) {
       this.selectedIds.delete(id);
     } else {
-      if (this.selectedIds.size >= MAX_SELECTED) return;
+      if (this.selectedIds.size >= MAX_SELECTED) {this.resultText.setText('每手最多选择 5 张牌');return;}
       this.selectedIds.add(id);
     }
     this.audio.select();
     this.renderHand();
+    this.previewSelection();
   }
 
   private wait(ms: number): Promise<void> {
@@ -307,8 +324,8 @@ export class GameScene extends Phaser.Scene {
     });
   }
 
-  private animateJoker(joker: JokerResolution, chainIndex: number): Promise<void> {
-    const view = this.jokerViews.get(joker.id);
+  private animateJoker(joker: ScoreEvent, chainIndex: number): Promise<void> {
+    const view = this.jokerViews.get(joker.sourceDefinitionId);
     if (!view) return Promise.resolve();
     this.audio.joker(chainIndex);
     return new Promise((resolve) => {
@@ -325,23 +342,27 @@ export class GameScene extends Phaser.Scene {
     });
   }
 
-  private formatBreakdown(score: ScoreResult): string {
-    const lines = [
-      `牌型：${score.baseHeat} 热度 × ${score.baseMultiplier} 倍率`,
-    ];
+  private formatBreakdown(score: ScoreTrace): string {
+    const first=score.events[0].after;
+    return '牌型 '+fractionText(first.H)+' 热度 × '+fractionText(first.M)+' 倍率\n'
+      +'计分 '+score.sets.activeScoringIds.length+' 张 / 打出 '+score.sets.playedIds.length+' 张\n'
+      +'结算 '+fractionText(score.accumulator.H)+' × '+fractionText(score.accumulator.M)+' = '+heatText(score.finalScore);
+  }
 
-    if (score.modifier.triggered && score.modifier.note) {
-      lines.push(`角色：${score.modifier.note}`);
-    }
+  private previewSelection():void {
+    if(!this.selectedIds.size){this.resultText.setText('选 1～5 张牌，选择出牌或弃牌');return;}
+    const stage=this.run.stage!;
+    const preview=previewR2Hand({rulesVersion:'r2',runId:this.run.runId,rootId:'preview',characterId:this.characterId,hand:this.hand,selectedIds:[...this.selectedIds],disabledIds:stage.disabledIds,jokers:this.run.jokers,definitions:R2_JOKERS,handLevels:this.run.handLevels,playIndex:stage.playIndex+1,handsBeforePlay:stage.handsLeft,previousHandType:stage.previousHandType,wager:stage.wagerSelected});
+    this.resultText.setText(HAND_LABELS[preview.handType]+' · 已选 '+this.selectedIds.size+' 张');
+    this.breakdownText.setText(preview.possibleScores.length===2?'押注：50% '+heatText(preview.possibleScores[0])+' / 50% '+heatText(preview.possibleScores[1]):'本手预览 '+heatText(preview.possibleScores[0])+' 热度');
+  }
 
-    score.jokers
-      .filter((joker) => joker.triggered)
-      .forEach((joker) => lines.push(`大丑牌「${joker.name}」：${joker.note}`));
-
-    lines.push(
-      `结算：${score.adjustedHeat} × ${score.adjustedMultiplier.toFixed(1)} × ${score.combinedFinalMultiplier.toFixed(2)} = ${score.finalHeat}`,
-    );
-    return lines.join('\n');
+  private discardSelected():void {
+    if(this.playing)return;
+    const result=dispatchRun(this,{type:'DiscardHand',selectedIds:[...this.selectedIds]});
+    if(!result.ok){this.resultText.setText(result.code==='no-discards-left'?'本场弃牌次数已用完':'请选择 1～5 张牌再弃牌');return;}
+    this.run=result.state;this.selectedIds.clear();this.updateHud();this.renderHand();this.previewSelection();
+    if(this.run.phase==='run-lost')this.finishStage(false);
   }
 
   private async playSelected(): Promise<void> {
@@ -351,16 +372,16 @@ export class GameScene extends Phaser.Scene {
 
     const result = dispatchRun(this, { type: 'PlayHand', selectedIds: [...this.selectedIds] });
     if (!result.ok || result.duplicate) {
+      if(!result.ok)this.resultText.setText(result.code==='score-diagnostic'?'本手无法结算，资源与原状态已保留。':'出牌未提交，请检查所选牌。');
       this.playButton.setInteractive({ useHandCursor: true });
       this.playing = false;
       return;
     }
     this.run = result.state;
-    const event = result.events.find(event => event.type === 'hand-scored');
-    if (!event || event.type !== 'hand-scored') throw new Error('Successful play missing score event');
+    const event = result.events.find(event => event.type === 'hand-scored-r2');
+    if (!event || event.type !== 'hand-scored-r2') throw new Error('Successful play missing score event');
     const score = event.score;
-    const evaluated = score.hand;
-    this.triggers.emit('hand:played', { cards: evaluated.cards, hand: evaluated });
+    this.triggers.emit('hand:played',score.sets);
 
     const selectedViews = this.cardViews.filter((view) => this.selectedIds.has(view.card.id));
     this.effects.enqueue(() => {
@@ -384,36 +405,22 @@ export class GameScene extends Phaser.Scene {
       ).then(() => undefined);
     });
 
-    if (score.modifier.triggered) {
-      this.effects.enqueue(async () => {
-        this.triggers.emit('role:triggered', score.modifier);
-        await this.animateRole(score.modifier.note);
-        await this.wait(70);
+    for(const [index,event] of score.events.entries()){
+      if(event.phase==='base'||event.phase==='finalScore'||event.phase==='afterHand')continue;
+      this.effects.enqueue(async()=>{
+        const operation=event.operation==='multiply-multiplier'?'×倍率':event.operation==='add-multiplier'?'+倍率':'+热度';
+        const source=event.sourceType==='joker'?getJoker(event.sourceDefinitionId).name:event.sourceType==='character'?getCharacter(this.characterId).name:'计分牌';
+        this.resultText.setText(source+' '+operation+' '+fractionText(event.value));
+        this.breakdownText.setText('热度 '+fractionText(event.after.H)+' · 倍率 '+fractionText(event.after.M));
+        if(event.sourceType==='character'){this.triggers.emit('role:triggered',event);await this.animateRole(operation+' '+fractionText(event.value));}
+        else if(event.sourceType==='joker'){this.triggers.emit('joker:triggered',event);await this.animateJoker(event,index);}
+        else await this.wait(50);
       });
     }
-
-    score.jokers
-      .filter((joker) => joker.triggered)
-      .forEach((joker, index) => {
-        this.effects.enqueue(async () => {
-          this.triggers.emit('joker:triggered', joker);
-          this.resultText.setText(`大丑牌「${joker.name}」触发！\n${joker.note}`);
-          await this.animateJoker(joker, index);
-          await this.wait(90);
-        });
-      });
-
-    this.effects.enqueue(() => {
-      this.triggers.emit('score:resolved', score);
-      this.resultText.setText(`${evaluated.label}   +${score.finalHeat} 热度`);
-      this.breakdownText.setText(this.formatBreakdown(score));
-      this.audio.score(Math.min(4, score.adjustedMultiplier));
-      this.tweens.add({
-        targets: this.resultText,
-        scale: { from: 1.22, to: 1 },
-        duration: 300,
-        ease: 'Back.easeOut',
-      });
+    this.effects.enqueue(()=>{
+      this.triggers.emit('score:resolved',score);
+      this.resultText.setText(HAND_LABELS[score.handType]+'   +'+heatText(score.finalScore)+' 热度');
+      this.breakdownText.setText(this.formatBreakdown(score));this.audio.score(2);
     });
 
     await this.effects.drain();
@@ -443,11 +450,11 @@ export class GameScene extends Phaser.Scene {
     const goldEarned = this.run.stage!.goldEarned;
 
     if (cleared) {
-      this.resultText.setText(`全场失控！\n${stageHeat.toLocaleString()} 热度`);
+      this.resultText.setText(`全场失控！\n${heatText(stageHeat)} 热度`);
       this.cameras.main.flash(420, 255, 231, 181, false);
     } else {
       this.resultText.setText(
-        `冷场了。\n差 ${Math.max(0, this.stage.targetHeat - stageHeat).toLocaleString()} 热度`,
+        `冷场了。\n差 ${heatText((BigInt(this.stage.targetHeat)>BigInt(stageHeat)?BigInt(this.stage.targetHeat)-BigInt(stageHeat):0n).toString())} 热度`,
       );
     }
 
@@ -463,7 +470,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private updateHud(): void {
-    this.heatText.setText(`热度  ${this.heat.toLocaleString()} / ${this.stage.targetHeat.toLocaleString()}`);
-    this.handsText.setText(`剩余出牌  ${this.handsLeft}    ·    牌堆  ${this.deck.length}`);
+    this.heatText.setText(`热度  ${heatText(this.heat)} / ${heatText(this.stage.targetHeat)}`);
+    this.handsText.setText(`剩余出牌  ${this.handsLeft} · 弃牌 ${this.run.stage!.discardsLeft} · 金币 ${this.run.gold} · 牌堆 ${this.deck.length}`);
   }
 }
