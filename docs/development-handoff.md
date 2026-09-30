@@ -4,6 +4,8 @@
 
 ## 当前工作包与已完成
 
+资产交付基线：`0c8e228`（`feat: deliver oriental 3d visual asset master pack v1`）。
+
 - 39 个 GLB：1 张双面可变形扑克母版、5 档可换插画卡框、1 套三材质示例、11 个道具、8 个爆分词、1 个含 11 条 clip 的动画包、12 个舞台组件。
 - 独立源纹理：纸张 Normal/Roughness、卡面/卡背/插画占位，以及 Holographic / 琉璃 / 鎏金的 BaseColor、Normal、Roughness、Metallic、Emissive、Mask。
 - Phaser 可直接使用的 B 级资源：1920×1080 同投影三层 WebP 背景、3 套透明 16 帧/256px PNG atlas + JSON、6 张既有立绘顶部裁切的 512×512 WebP 头像。原立绘完整保留，没有六角色 3D 模型。
