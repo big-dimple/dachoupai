@@ -33,6 +33,14 @@ if (!message || positional.length !== 1 || message.includes('\n')) {
 }
 
 const git = (...gitArgs) => execFileSync('git', ['-C', root, ...gitArgs], { encoding: 'utf8' }).trim();
+// 退出码本身是结果的检查（diff --quiet 系列），不能抛异常，要看 code
+const gitStatus = (...gitArgs) => {
+  try {
+    return { code: 0, out: git(...gitArgs) };
+  } catch (error) {
+    return { code: error.status ?? 1, out: '' };
+  }
+};
 
 function fail(reason) {
   console.error(reason);
@@ -40,22 +48,18 @@ function fail(reason) {
 }
 
 function assertCleanSinceGates(label) {
-  git('diff', '--quiet', '--') || fail(`${label}: working tree changed`);
-  !git('ls-files', '--others', '--exclude-standard') || fail(`${label}: untracked files appeared`);
+  if (gitStatus('diff', '--quiet', '--').code !== 0) fail(`${label}: working tree changed`);
+  if (gitStatus('ls-files', '--others', '--exclude-standard').out) fail(`${label}: untracked files appeared`);
 }
 
 const branch = git('branch', '--show-current');
 if (branch !== 'main') fail(`release requires main, found: ${branch || 'detached'}`);
-try {
-  git('remote', 'get-url', 'origin');
-} catch {
-  fail('origin remote is required');
-}
+if (gitStatus('remote', 'get-url', 'origin').code !== 0) fail('origin remote is required');
 
-git('diff', '--cached', '--quiet', '--') && fail('stage the reviewed release files first');
-git('diff', '--quiet', '--') || fail('unstaged tracked changes are not allowed');
-!git('ls-files', '--others', '--exclude-standard') || fail('untracked files are not allowed');
-execFileSync('git', ['-C', root, 'diff', '--cached', '--check'], { stdio: 'inherit' });
+if (gitStatus('diff', '--cached', '--quiet', '--').code === 0) fail('stage the reviewed release files first');
+if (gitStatus('diff', '--quiet', '--').code !== 0) fail('unstaged tracked changes are not allowed');
+if (gitStatus('ls-files', '--others', '--exclude-standard').out) fail('untracked files are not allowed');
+if (gitStatus('diff', '--cached', '--check').code !== 0) fail('git diff --cached --check failed');
 
 console.log(`repository=${root}`);
 console.log('gates=test,build,smoke');
@@ -65,7 +69,10 @@ if (plan) {
 }
 
 const indexBefore = git('write-tree');
-const npmRun = (script) => execFileSync('npm', ['run', script], { cwd: root, stdio: 'inherit' });
+// Windows 上 npm 是 npm.cmd，spawn 找不到；经 npm run 进来时必有 npm_execpath
+const npmCli = process.env.npm_execpath;
+if (!npmCli) fail('run via npm: npm run release:checked -- "type: message"');
+const npmRun = (script) => execFileSync(process.execPath, [npmCli, 'run', script], { cwd: root, stdio: 'inherit' });
 npmRun('test');
 npmRun('build');
 npmRun('verify:smoke');

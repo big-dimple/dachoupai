@@ -1,6 +1,6 @@
 # 大丑牌 开发交接
 
-状态：Phase 1 完成（含六角色立绘接入与裁切修复，`main` = `18bf081`，typecheck / 28 测试 / build 全绿）。本文是换 session / 换模型恢复上下文的入口，只写当前工作包与唯一下一步；稳定合同见 `docs/GDD.md`。
+状态：Phase 1 完成 + 工程防线就位（双端冒烟、release 门禁），`main` 最新提交 `94015f3`，typecheck / 28 测试 / build / 双端冒烟全绿。本文是换 session / 换模型恢复上下文的入口，只写当前工作包与唯一下一步；稳定合同见 `docs/GDD.md`。
 
 ## 最近完成
 
@@ -24,11 +24,13 @@
 
 ## 遗留风险
 
-- 6 张 PNG 合计约 14.3 MB，BootScene 开局全量预加载；H5 首次打开受网络影响明显（已知问题，见 TODO P0）。
+- 6 张 PNG 合计约 14.3 MB，BootScene 开局全量预加载；H5 首次打开受网络影响明显（已知问题，见 TODO P1）。
 - 选角页仍是 `#090711` 深色背景，与明亮东方立绘不搭；属 Phase 3 视觉统一范围，不单独修。
 
 ## 唯一下一步
 
-**TODO.md 的 P0 批次：角色立绘资源压缩**（WebP 缩略图 + 按需加载）。由外部模型并行处理，验收标准与接入要点已写在 TODO P0 批次内；完成后把该批次从 TODO 回写 ROADMAP，并刷新本文。
+**TODO.md 的 P0 批次：Phase 3 视觉素材与特效**（东方戏台背景、出牌/爆分特效、卡面底图、角色头像特写），只产出素材不改代码，风格硬约束与验收标准在 TODO P0 内。由高端模型接手。
 
-P0 完成后主线进入 Phase 2 Batch 2A（关卡骨架：RunState / StageDefinition，见 TODO.md）。
+P1（立绘 WebP 压缩，工程任务）可与 P0 并行，完成后把对应批次从 TODO 回写 ROADMAP 并刷新本文。
+
+素材齐后主线进入 Phase 2 Batch 2A（关卡骨架：RunState / StageDefinition，见 TODO.md）。
