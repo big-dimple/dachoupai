@@ -1,0 +1,114 @@
+{
+  "scope": "all",
+  "testedCommit": "b7de15cabc1af25ad9e8f8c8f5ce6a51fc71562a",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "a7ff6e36cde232332d6dfd72d9507059df8122f0de9a02912e9a502d85220759",
+    "index": "d2999516867a44efda111d8d516157ceabfca2ed892c3213acc6e6c563749bfd",
+    "head": "b7de15cabc1af25ad9e8f8c8f5ce6a51fc71562a",
+    "branch": "refs/heads/feat/R06-ci-gates"
+  },
+  "after": {
+    "source": "a7ff6e36cde232332d6dfd72d9507059df8122f0de9a02912e9a502d85220759",
+    "index": "d2999516867a44efda111d8d516157ceabfca2ed892c3213acc6e6c563749bfd",
+    "head": "b7de15cabc1af25ad9e8f8c8f5ce6a51fc71562a",
+    "branch": "refs/heads/feat/R06-ci-gates"
+  },
+  "steps": [
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3285
+    },
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 9424
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3070
+    },
+    {
+      "name": "rules-goldens",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3752
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 7999
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 6906
+    },
+    {
+      "name": "test:domain:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 23159
+    },
+    {
+      "name": "test:layout:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 31496
+    },
+    {
+      "name": "test:recovery:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 167187
+    },
+    {
+      "name": "test:e2e",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 145909
+    },
+    {
+      "name": "test:gate-faults",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 223641
+    },
+    {
+      "name": "plan-counterexamples",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 704
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 715
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "verify:assets",
+      "status": "NOT_INCLUDED",
+      "reason": "A00 not yet adopted; no placeholder gate"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; legacy r1 seeds are regressions only"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

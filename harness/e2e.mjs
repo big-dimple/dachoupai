@@ -142,7 +142,7 @@ async function workflow(page,record,url,touch,fixture){
 try{
   // Own both build directories, so another local build cannot replace the served files.
   build(null,'shots/build-production');build('e2e','shots/build-e2e');production=await serve('shots/build-production');test=await serve('shots/build-e2e');
-  ssr=await createServer({root,server:{middlewareMode:true,hmr:false},appType:'custom'});domain=await ssr.ssrLoadModule('/src/domain/run.ts');bot=await ssr.ssrLoadModule('/src/testing/r2Bot.ts');({RunController:domainController}=await ssr.ssrLoadModule('/src/application/RunController.ts'));({CHARACTERS:characters}=await ssr.ssrLoadModule('/src/game/characters.ts'));
+  ssr=await createServer({root,cacheDir:path.join(root,'shots/e2e-ssr-cache'),optimizeDeps:{noDiscovery:true,include:[]},server:{middlewareMode:true,hmr:false},appType:'custom'});domain=await ssr.ssrLoadModule('/src/domain/run.ts');bot=await ssr.ssrLoadModule('/src/testing/r2Bot.ts');({RunController:domainController}=await ssr.ssrLoadModule('/src/application/RunController.ts'));({CHARACTERS:characters}=await ssr.ssrLoadModule('/src/game/characters.ts'));
   const fixtures=scope==='all'?[fixture('amo'),fixture('erxiang')]:scope==='reward'?[fixture('amo')]:[];report.fixtures={selection:'first natural seeds among at most 50, through public bot and shared commands; no card/resource injection, not a win-rate sample',runs:fixtures};
   for(const engine of selected){
     const browser=await engines[engine].launch();report.environment[engine]=browser.version();
