@@ -1,26 +1,31 @@
 export class AudioEngine {
+  static readonly shared=new AudioEngine();
   private context?: AudioContext;
+  muted=false;
 
   private getContext(): AudioContext | undefined {
     if (!window.AudioContext) return undefined;
     this.context ??= new AudioContext();
-    if (this.context.state === 'suspended') void this.context.resume();
+    if (this.context.state === 'suspended') void this.context.resume().catch(()=>{});
     return this.context;
   }
 
   private tone(frequency: number, duration: number, volume: number): void {
-    const context = this.getContext();
-    if (!context) return;
-    const oscillator = context.createOscillator();
-    const gain = context.createGain();
-    oscillator.type = 'triangle';
-    oscillator.frequency.setValueAtTime(frequency, context.currentTime);
-    gain.gain.setValueAtTime(volume, context.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + duration);
-    oscillator.connect(gain);
-    gain.connect(context.destination);
-    oscillator.start();
-    oscillator.stop(context.currentTime + duration);
+    if(this.muted||document.hidden)return;
+    try {
+      const context = this.getContext();
+      if (!context) return;
+      const oscillator = context.createOscillator();
+      const gain = context.createGain();
+      oscillator.type = 'triangle';
+      oscillator.frequency.setValueAtTime(frequency, context.currentTime);
+      gain.gain.setValueAtTime(volume, context.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + duration);
+      oscillator.connect(gain);
+      gain.connect(context.destination);
+      oscillator.start();
+      oscillator.stop(context.currentTime + duration);
+    } catch {/* Audio construction or permission failure never interrupts a rule command. */}
   }
 
   select(): void {

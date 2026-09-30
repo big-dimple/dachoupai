@@ -1,0 +1,63 @@
+{
+  "testedCommit": "542e0479371d56334641b84b2010d163ea8cf97f",
+  "dirtyState": "?? docs/production/evidence/r04-2026-10-01/bought-restored.png\n?? docs/production/evidence/r04-2026-10-01/browser.txt\n?? docs/production/evidence/r04-2026-10-01/character-confirmed-restored.png\n?? docs/production/evidence/r04-2026-10-01/content.txt\n?? docs/production/evidence/r04-2026-10-01/during-presentation-restored.png\n?? docs/production/evidence/r04-2026-10-01/during-presentation.webm\n?? docs/production/evidence/r04-2026-10-01/play-committed-restored.png\n?? docs/production/evidence/r04-2026-10-01/quota-retry-restored.png\n?? docs/production/evidence/r04-2026-10-01/recovery.json\n?? docs/production/evidence/r04-2026-10-01/recovery.txt\n?? docs/production/evidence/r04-2026-10-01/rerolled-restored.png\n?? docs/production/evidence/r04-2026-10-01/retained-corrupt.json\n?? docs/production/evidence/r04-2026-10-01/retained-incompatible.json\n?? docs/production/evidence/r04-2026-10-01/reward-published-restored.png\n?? docs/production/evidence/r04-2026-10-01/scene-interruption.webm\n?? docs/production/evidence/r04-2026-10-01/shop-first-shown-restored.png\n?? docs/production/evidence/r04-2026-10-01/smoke.txt\n?? docs/production/evidence/r04-2026-10-01/unsaved-quota-checkpoint.json\n?? docs/production/evidence/r04-2026-10-01/verify.txt",
+  "checks": [
+    {
+      "name": "tabs/readonly-explicit-takeover",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:a26c7e8ef14a29f2"
+    },
+    {
+      "name": "tabs/readonly-explicit-takeover",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:a26c7e8ef14a29f2"
+    },
+    {
+      "name": "tabs/readonly-explicit-takeover",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:a26c7e8ef14a29f2"
+    },
+    {
+      "name": "tabs/readonly-explicit-takeover",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:a26c7e8ef14a29f2"
+    },
+    {
+      "name": "tabs/readonly-explicit-takeover",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:a26c7e8ef14a29f2"
+    },
+    {
+      "name": "tabs/readonly-explicit-takeover",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:a26c7e8ef14a29f2"
+    },
+    {
+      "name": "tabs/readonly-explicit-takeover",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:a26c7e8ef14a29f2"
+    },
+    {
+      "name": "tabs/readonly-explicit-takeover",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:a26c7e8ef14a29f2"
+    },
+    {
+      "name": "tabs/readonly-explicit-takeover",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:a26c7e8ef14a29f2"
+    },
+    {
+      "name": "tabs/readonly-explicit-takeover",
+      "status": "PASS",
+      "stateHash": "json-fnv-v1:a26c7e8ef14a29f2"
+    }
+  ],
+  "limitations": [
+    "Windows Chromium and touchscreen emulation; physical phones/human acceptance NOT_RUN.",
+    "Current five-joker r2 build; not a full chapter/Boss or balance evaluation."
+  ],
+  "browser": "153.0.8010.12",
+  "scope": "tabs only, 10 distinct contexts",
+  "status": "PASS"
+}

@@ -1,0 +1,121 @@
+
+ RUN  v3.2.7 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/recovery-queue.test.ts (4 tests | 4 failed) 97ms
+   × source EffectQueue generation contract > returns the same unfinished promise to every concurrent drain caller 8ms
+     → expected Promise{…} to be Promise{…} // Object.is equality
+
+If it should pass with deep equality, replace "toBe" with "toStrictEqual"
+
+Expected: Promise{…}
+Received: serializes to the same string
+
+   × source EffectQueue generation contract > clear settles a stopped tween and allows a fresh generation to drain 84ms
+     → expected false to be true // Object.is equality
+   × source EffectQueue generation contract > supplies an abort signal and never lets an old drain consume a new tail 1ms
+     → Cannot read properties of undefined (reading 'signal')
+   × source EffectQueue generation contract > rejects an effect error, discards its tail and unlocks subsequent work 3ms
+     → expected [ 'stale', 'new' ] to deeply equal [ 'new' ]
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/recovery-save.test.ts [ tests/recovery-save.test.ts ]
+Error: Cannot find module '../src/application/checkpoint' imported from 'D:/ai/dachoupai/dachoupai/tests/recovery-save.test.ts'
+ ❯ tests/recovery-save.test.ts:3:1
+      1| import {describe,expect,it} from 'vitest';
+      2| import {createRun,applyCommand,stateHash,type Command} from '../src/do…
+      3| import {makeCheckpoint,readCheckpoint,restoreSlots,MAX_JOURNAL} from '…
+       | ^
+      4| import {SavedRun,type SaveStore,type SaveSlots} from '../src/applicati…
+      5|
+
+Caused by: Error: Failed to load url ../src/application/checkpoint (resolved id: ../src/application/checkpoint) in D:/ai/dachoupai/dachoupai/tests/recovery-save.test.ts. Does the file exist?
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/config.js:22739:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/recovery-queue.test.ts > source EffectQueue generation contract > returns the same unfinished promise to every concurrent drain caller
+AssertionError: expected Promise{…} to be Promise{…} // Object.is equality
+
+If it should pass with deep equality, replace "toBe" with "toStrictEqual"
+
+Expected: Promise{…}
+Received: serializes to the same string
+
+
+Compared values have no visual difference.
+
+ ❯ tests/recovery-queue.test.ts:11:25
+      9|     const queue=new EffectQueue(),gate=deferred();queue.enqueue(()=>ga…
+     10|     const first=queue.drain(),second=queue.drain();
+     11|     try {expect(second).toBe(first);} finally {gate.resolve();await fi…
+       |                         ^
+     12|   });
+     13|   it('clear settles a stopped tween and allows a fresh generation to d…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/recovery-queue.test.ts > source EffectQueue generation contract > clear settles a stopped tween and allows a fresh generation to drain
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/recovery-queue.test.ts:18:38
+     16|     const old=queue.drain();await Promise.resolve();queue.clear();
+     17|     queue.enqueue(()=>{played.push('new');});const fresh=queue.drain();
+     18|     try {expect(await deadline(old)).toBe(true);await fresh;expect(pla…
+       |                                      ^
+     19|     finally {gate.resolve();await old;}
+     20|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/recovery-queue.test.ts > source EffectQueue generation contract > supplies an abort signal and never lets an old drain consume a new tail
+TypeError: Cannot read properties of undefined (reading 'signal')
+ ❯ tests/recovery-queue.test.ts:23:44
+     21|   it('supplies an abort signal and never lets an old drain consume a n…
+     22|     const queue=new EffectQueue(),gate=deferred(),seen:number[]=[];let…
+     23|     queue.enqueue(context=>{signal=context.signal;return gate.promise;…
+       |                                            ^
+     24|     await Promise.resolve();queue.clear();queue.enqueue(context=>{seen…
+     25|     const fresh=queue.drain();gate.resolve();await Promise.all([old,fr…
+ ❯ EffectQueue.drain src/core/EffectQueue.ts:21:27
+ ❯ tests/recovery-queue.test.ts:23:90
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/recovery-queue.test.ts > source EffectQueue generation contract > rejects an effect error, discards its tail and unlocks subsequent work
+AssertionError: expected [ 'stale', 'new' ] to deeply equal [ 'new' ]
+
+- Expected
++ Received
+
+  [
++   "stale",
+    "new",
+  ]
+
+ ❯ tests/recovery-queue.test.ts:32:81
+     30|     queue.enqueue(()=>{throw new Error('broken presentation');});queue…
+     31|     await expect(queue.drain()).rejects.toThrow('broken presentation');
+     32|     queue.enqueue(()=>{played.push('new');});await queue.drain();expec…
+       |                                                                                 ^
+     33|   });
+     34| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  4 failed (4)
+   Start at  01:19:23
+   Duration  907ms (transform 203ms, setup 0ms, collect 72ms, tests 97ms, environment 0ms, prepare 282ms)
+
+EXIT_CODE=1

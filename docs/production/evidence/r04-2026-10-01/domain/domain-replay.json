@@ -1,0 +1,1869 @@
+{
+  "testedCommit": "542e0479371d56334641b84b2010d163ea8cf97f",
+  "dirtyState": "?? docs/production/evidence/r04-2026-10-01/bought-restored.png\n?? docs/production/evidence/r04-2026-10-01/browser.txt\n?? docs/production/evidence/r04-2026-10-01/character-confirmed-restored.png\n?? docs/production/evidence/r04-2026-10-01/content.txt\n?? docs/production/evidence/r04-2026-10-01/domain.txt\n?? docs/production/evidence/r04-2026-10-01/during-presentation-restored.png\n?? docs/production/evidence/r04-2026-10-01/during-presentation.webm\n?? docs/production/evidence/r04-2026-10-01/play-committed-restored.png\n?? docs/production/evidence/r04-2026-10-01/quota-retry-restored.png\n?? docs/production/evidence/r04-2026-10-01/recovery.json\n?? docs/production/evidence/r04-2026-10-01/recovery.txt\n?? docs/production/evidence/r04-2026-10-01/rerolled-restored.png\n?? docs/production/evidence/r04-2026-10-01/retained-corrupt.json\n?? docs/production/evidence/r04-2026-10-01/retained-incompatible.json\n?? docs/production/evidence/r04-2026-10-01/reward-published-restored.png\n?? docs/production/evidence/r04-2026-10-01/scene-interruption.webm\n?? docs/production/evidence/r04-2026-10-01/shop-first-shown-restored.png\n?? docs/production/evidence/r04-2026-10-01/shot.txt\n?? docs/production/evidence/r04-2026-10-01/smoke.txt\n?? docs/production/evidence/r04-2026-10-01/takeover-repeat.txt\n?? docs/production/evidence/r04-2026-10-01/takeover-repeat/\n?? docs/production/evidence/r04-2026-10-01/unsaved-quota-checkpoint.json\n?? docs/production/evidence/r04-2026-10-01/verify.txt",
+  "rulesVersion": "r2",
+  "runs": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "input": "mouse.click",
+      "errors": [],
+      "dialogs": [
+        {
+          "type": "confirm",
+          "message": "购买「满堂彩」：4 金币，购买后剩 2 金币？"
+        },
+        {
+          "type": "confirm",
+          "message": "购买「碰瓷」：4 金币，购买后剩 5 金币？"
+        },
+        {
+          "type": "confirm",
+          "message": "出售「满堂彩」获得 2 金币？该实例的成长会丢失。"
+        },
+        {
+          "type": "confirm",
+          "message": "购买「借东风」：6 金币，购买后剩 1 金币？"
+        }
+      ],
+      "checkpoints": [
+        {
+          "seq": 1,
+          "stateHash": "json-fnv-v1:af95f869147f7bcd"
+        },
+        {
+          "seq": 2,
+          "stateHash": "json-fnv-v1:a26c7e8ef14a29f2"
+        },
+        {
+          "seq": 4,
+          "stateHash": "json-fnv-v1:ba640d279deb81cb"
+        },
+        {
+          "seq": 5,
+          "stateHash": "json-fnv-v1:40b7b859e2dcc9f5"
+        },
+        {
+          "seq": 6,
+          "stateHash": "json-fnv-v1:f86be0ece3fba320"
+        },
+        {
+          "seq": 7,
+          "stateHash": "json-fnv-v1:c0668a420894933e"
+        }
+      ],
+      "commands": [
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/2",
+          "expectedSeq": 1,
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/r03-1/erxiang/shop/0/0/2"
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/3",
+          "expectedSeq": 2,
+          "action": {
+            "type": "LeaveShop"
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/4",
+          "expectedSeq": 3,
+          "action": {
+            "type": "EnterStage"
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/5",
+          "expectedSeq": 4,
+          "action": {
+            "type": "DiscardHand",
+            "selectedIds": [
+              "spades-6"
+            ]
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/6",
+          "expectedSeq": 5,
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "clubs-14",
+              "hearts-14"
+            ]
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/7",
+          "expectedSeq": 6,
+          "action": {
+            "type": "OpenShop"
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/8",
+          "expectedSeq": 7,
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/r03-1/erxiang/shop/1/0/0"
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/9",
+          "expectedSeq": 8,
+          "action": {
+            "type": "ReorderJokers",
+            "ids": [
+              "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/8",
+              "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2"
+            ]
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/10",
+          "expectedSeq": 9,
+          "action": {
+            "type": "SellJoker",
+            "instanceId": "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2"
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/11",
+          "expectedSeq": 10,
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/r03-1/erxiang/shop/1/0/1"
+          }
+        }
+      ],
+      "finalState": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-run-v2",
+        "contentHash": "json-fnv-v1:004135ca2b38f6ee",
+        "runId": "run/r03-1/erxiang",
+        "seed": "r03-1",
+        "commandSeq": 11,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "chapter": 1,
+        "stageIndex": 1,
+        "phase": "shop",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "clubs-7",
+          "diamonds-6",
+          "spades-4",
+          "diamonds-12",
+          "hearts-2",
+          "hearts-12",
+          "diamonds-8",
+          "spades-14",
+          "spades-9",
+          "clubs-10",
+          "spades-2",
+          "clubs-5",
+          "diamonds-14",
+          "spades-5",
+          "hearts-4",
+          "hearts-9",
+          "clubs-4",
+          "clubs-13",
+          "clubs-6",
+          "diamonds-11",
+          "diamonds-7",
+          "hearts-13",
+          "hearts-7",
+          "spades-11",
+          "hearts-11",
+          "hearts-3",
+          "diamonds-3",
+          "diamonds-5",
+          "spades-8",
+          "diamonds-2",
+          "clubs-3",
+          "diamonds-13",
+          "hearts-10",
+          "diamonds-4",
+          "clubs-9",
+          "clubs-11",
+          "diamonds-10",
+          "hearts-8",
+          "clubs-12",
+          "spades-10",
+          "spades-3",
+          "spades-12",
+          "hearts-5"
+        ],
+        "handOrder": [
+          "diamonds-9",
+          "hearts-6",
+          "spades-13",
+          "spades-7",
+          "clubs-2",
+          "clubs-8"
+        ],
+        "playedPile": [
+          "clubs-14",
+          "hearts-14"
+        ],
+        "discardPile": [
+          "spades-6"
+        ],
+        "destroyedIds": [],
+        "stage": {
+          "index": 0,
+          "targetHeat": "400",
+          "heat": "514",
+          "handsLeft": 3,
+          "discardsLeft": 2,
+          "playIndex": 1,
+          "previousHandType": "pair",
+          "clearId": "run/r03-1/erxiang/clear/0",
+          "goldEarned": 7,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false
+        },
+        "totalHeat": "514",
+        "gold": 1,
+        "jokers": [
+          {
+            "instanceId": "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/8",
+            "definitionId": "pengci",
+            "paidPrice": 4,
+            "growth": {}
+          },
+          {
+            "instanceId": "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/11",
+            "definitionId": "jiedongfeng",
+            "paidPrice": 6,
+            "growth": {}
+          }
+        ],
+        "consumables": [],
+        "longTermItems": [],
+        "program": null,
+        "boss": null,
+        "shop": {
+          "visitIndex": 1,
+          "rerollCount": 0,
+          "offers": [
+            {
+              "offerId": "run/r03-1/erxiang/shop/1/0/0",
+              "definitionId": "pengci",
+              "price": 4,
+              "consumed": true
+            },
+            {
+              "offerId": "run/r03-1/erxiang/shop/1/0/1",
+              "definitionId": "jiedongfeng",
+              "price": 6,
+              "consumed": true
+            },
+            {
+              "offerId": "run/r03-1/erxiang/shop/1/0/2",
+              "definitionId": "tiesuanpan",
+              "price": 6,
+              "consumed": false
+            }
+          ]
+        },
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3776575393
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3156943997
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3138489051
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3926999612
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "run/r03-1/erxiang/start",
+            "fingerprint": "json-fnv-v1:8ef5b8dd210604d9",
+            "seq": 1
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/2",
+            "fingerprint": "json-fnv-v1:25d7eeabb7484027",
+            "seq": 2
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/3",
+            "fingerprint": "json-fnv-v1:608af2d10986fa9d",
+            "seq": 3
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/4",
+            "fingerprint": "json-fnv-v1:fc62e3b2d974cda6",
+            "seq": 4
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/5",
+            "fingerprint": "json-fnv-v1:a219378de7758d99",
+            "seq": 5
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/6",
+            "fingerprint": "json-fnv-v1:8f076b3a07513f16",
+            "seq": 6
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/7",
+            "fingerprint": "json-fnv-v1:58874a0ac705b876",
+            "seq": 7
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/8",
+            "fingerprint": "json-fnv-v1:1ea380f0aeee9ee4",
+            "seq": 8
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/9",
+            "fingerprint": "json-fnv-v1:4d38f07513be9409",
+            "seq": 9
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/10",
+            "fingerprint": "json-fnv-v1:f28778e44de95490",
+            "seq": 10
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/11",
+            "fingerprint": "json-fnv-v1:e6e958610f49dac5",
+            "seq": 11
+          }
+        ],
+        "lastTrace": {
+          "rulesVersion": "r2",
+          "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+          "handType": "pair",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "clubs-14",
+              "hearts-14"
+            ],
+            "scoringIds": [
+              "clubs-14",
+              "hearts-14"
+            ],
+            "activeScoringIds": [
+              "clubs-14",
+              "hearts-14"
+            ],
+            "heldIds": [
+              "diamonds-9",
+              "hearts-6",
+              "spades-13",
+              "spades-7",
+              "clubs-2",
+              "clubs-8"
+            ]
+          },
+          "finalScore": "514",
+          "accumulator": {
+            "H": {
+              "n": "147",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "2"
+            }
+          },
+          "events": [
+            {
+              "eventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/0",
+              "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+              "rootEventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "pair",
+              "sourceInstanceId": "run/r03-1/erxiang",
+              "operation": "base",
+              "value": {
+                "n": "35",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "35",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/1",
+              "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+              "rootEventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-14",
+              "sourceInstanceId": "clubs-14",
+              "targetCardId": "clubs-14",
+              "operation": "add-heat",
+              "value": {
+                "n": "11",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "35",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "46",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-14.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/2",
+              "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+              "rootEventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/2",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-14",
+              "sourceInstanceId": "hearts-14",
+              "targetCardId": "hearts-14",
+              "operation": "add-heat",
+              "value": {
+                "n": "11",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "46",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "57",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-14.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/3",
+              "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+              "rootEventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/3",
+              "phase": "characterScore",
+              "sourceType": "character",
+              "sourceDefinitionId": "erxiang",
+              "sourceInstanceId": "run/r03-1/erxiang/character",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "3",
+                "d": "2"
+              },
+              "before": {
+                "H": {
+                  "n": "57",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "57",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "erxiang.add-multiplier",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/4",
+              "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+              "rootEventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/4",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "mantangcai",
+              "sourceInstanceId": "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2",
+              "operation": "add-heat",
+              "value": {
+                "n": "90",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "57",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "147",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "mantangcai.add-heat",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/5",
+              "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+              "rootEventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/5",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "pair",
+              "sourceInstanceId": "run/r03-1/erxiang",
+              "operation": "final-score",
+              "value": {
+                "n": "514",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "147",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "147",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [
+            {
+              "instanceId": "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2",
+              "definitionId": "mantangcai",
+              "paidPrice": 4,
+              "growth": {}
+            }
+          ],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3156943997
+          }
+        },
+        "handLevels": {},
+        "outcome": null
+      },
+      "stateHash": "json-fnv-v1:bbad9009bd42f61d",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touchscreen.tap",
+      "errors": [],
+      "dialogs": [
+        {
+          "type": "confirm",
+          "message": "购买「满堂彩」：4 金币，购买后剩 2 金币？"
+        },
+        {
+          "type": "confirm",
+          "message": "购买「碰瓷」：4 金币，购买后剩 5 金币？"
+        },
+        {
+          "type": "confirm",
+          "message": "出售「满堂彩」获得 2 金币？该实例的成长会丢失。"
+        },
+        {
+          "type": "confirm",
+          "message": "购买「借东风」：6 金币，购买后剩 1 金币？"
+        }
+      ],
+      "checkpoints": [
+        {
+          "seq": 1,
+          "stateHash": "json-fnv-v1:af95f869147f7bcd"
+        },
+        {
+          "seq": 2,
+          "stateHash": "json-fnv-v1:a26c7e8ef14a29f2"
+        },
+        {
+          "seq": 4,
+          "stateHash": "json-fnv-v1:ba640d279deb81cb"
+        },
+        {
+          "seq": 5,
+          "stateHash": "json-fnv-v1:40b7b859e2dcc9f5"
+        },
+        {
+          "seq": 6,
+          "stateHash": "json-fnv-v1:f86be0ece3fba320"
+        },
+        {
+          "seq": 7,
+          "stateHash": "json-fnv-v1:c0668a420894933e"
+        }
+      ],
+      "commands": [
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/2",
+          "expectedSeq": 1,
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/r03-1/erxiang/shop/0/0/2"
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/3",
+          "expectedSeq": 2,
+          "action": {
+            "type": "LeaveShop"
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/4",
+          "expectedSeq": 3,
+          "action": {
+            "type": "EnterStage"
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/5",
+          "expectedSeq": 4,
+          "action": {
+            "type": "DiscardHand",
+            "selectedIds": [
+              "spades-6"
+            ]
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/6",
+          "expectedSeq": 5,
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "clubs-14",
+              "hearts-14"
+            ]
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/7",
+          "expectedSeq": 6,
+          "action": {
+            "type": "OpenShop"
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/8",
+          "expectedSeq": 7,
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/r03-1/erxiang/shop/1/0/0"
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/9",
+          "expectedSeq": 8,
+          "action": {
+            "type": "ReorderJokers",
+            "ids": [
+              "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/8",
+              "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2"
+            ]
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/10",
+          "expectedSeq": 9,
+          "action": {
+            "type": "SellJoker",
+            "instanceId": "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2"
+          }
+        },
+        {
+          "runId": "run/r03-1/erxiang",
+          "commandId": "run/r03-1/erxiang/command/11",
+          "expectedSeq": 10,
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/r03-1/erxiang/shop/1/0/1"
+          }
+        }
+      ],
+      "finalState": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-run-v2",
+        "contentHash": "json-fnv-v1:004135ca2b38f6ee",
+        "runId": "run/r03-1/erxiang",
+        "seed": "r03-1",
+        "commandSeq": 11,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "chapter": 1,
+        "stageIndex": 1,
+        "phase": "shop",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "clubs-7",
+          "diamonds-6",
+          "spades-4",
+          "diamonds-12",
+          "hearts-2",
+          "hearts-12",
+          "diamonds-8",
+          "spades-14",
+          "spades-9",
+          "clubs-10",
+          "spades-2",
+          "clubs-5",
+          "diamonds-14",
+          "spades-5",
+          "hearts-4",
+          "hearts-9",
+          "clubs-4",
+          "clubs-13",
+          "clubs-6",
+          "diamonds-11",
+          "diamonds-7",
+          "hearts-13",
+          "hearts-7",
+          "spades-11",
+          "hearts-11",
+          "hearts-3",
+          "diamonds-3",
+          "diamonds-5",
+          "spades-8",
+          "diamonds-2",
+          "clubs-3",
+          "diamonds-13",
+          "hearts-10",
+          "diamonds-4",
+          "clubs-9",
+          "clubs-11",
+          "diamonds-10",
+          "hearts-8",
+          "clubs-12",
+          "spades-10",
+          "spades-3",
+          "spades-12",
+          "hearts-5"
+        ],
+        "handOrder": [
+          "diamonds-9",
+          "hearts-6",
+          "spades-13",
+          "spades-7",
+          "clubs-2",
+          "clubs-8"
+        ],
+        "playedPile": [
+          "clubs-14",
+          "hearts-14"
+        ],
+        "discardPile": [
+          "spades-6"
+        ],
+        "destroyedIds": [],
+        "stage": {
+          "index": 0,
+          "targetHeat": "400",
+          "heat": "514",
+          "handsLeft": 3,
+          "discardsLeft": 2,
+          "playIndex": 1,
+          "previousHandType": "pair",
+          "clearId": "run/r03-1/erxiang/clear/0",
+          "goldEarned": 7,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false
+        },
+        "totalHeat": "514",
+        "gold": 1,
+        "jokers": [
+          {
+            "instanceId": "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/8",
+            "definitionId": "pengci",
+            "paidPrice": 4,
+            "growth": {}
+          },
+          {
+            "instanceId": "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/11",
+            "definitionId": "jiedongfeng",
+            "paidPrice": 6,
+            "growth": {}
+          }
+        ],
+        "consumables": [],
+        "longTermItems": [],
+        "program": null,
+        "boss": null,
+        "shop": {
+          "visitIndex": 1,
+          "rerollCount": 0,
+          "offers": [
+            {
+              "offerId": "run/r03-1/erxiang/shop/1/0/0",
+              "definitionId": "pengci",
+              "price": 4,
+              "consumed": true
+            },
+            {
+              "offerId": "run/r03-1/erxiang/shop/1/0/1",
+              "definitionId": "jiedongfeng",
+              "price": 6,
+              "consumed": true
+            },
+            {
+              "offerId": "run/r03-1/erxiang/shop/1/0/2",
+              "definitionId": "tiesuanpan",
+              "price": 6,
+              "consumed": false
+            }
+          ]
+        },
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3776575393
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3156943997
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3138489051
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3926999612
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "run/r03-1/erxiang/start",
+            "fingerprint": "json-fnv-v1:8ef5b8dd210604d9",
+            "seq": 1
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/2",
+            "fingerprint": "json-fnv-v1:25d7eeabb7484027",
+            "seq": 2
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/3",
+            "fingerprint": "json-fnv-v1:608af2d10986fa9d",
+            "seq": 3
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/4",
+            "fingerprint": "json-fnv-v1:fc62e3b2d974cda6",
+            "seq": 4
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/5",
+            "fingerprint": "json-fnv-v1:a219378de7758d99",
+            "seq": 5
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/6",
+            "fingerprint": "json-fnv-v1:8f076b3a07513f16",
+            "seq": 6
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/7",
+            "fingerprint": "json-fnv-v1:58874a0ac705b876",
+            "seq": 7
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/8",
+            "fingerprint": "json-fnv-v1:1ea380f0aeee9ee4",
+            "seq": 8
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/9",
+            "fingerprint": "json-fnv-v1:4d38f07513be9409",
+            "seq": 9
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/10",
+            "fingerprint": "json-fnv-v1:f28778e44de95490",
+            "seq": 10
+          },
+          {
+            "commandId": "run/r03-1/erxiang/command/11",
+            "fingerprint": "json-fnv-v1:e6e958610f49dac5",
+            "seq": 11
+          }
+        ],
+        "lastTrace": {
+          "rulesVersion": "r2",
+          "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+          "handType": "pair",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "clubs-14",
+              "hearts-14"
+            ],
+            "scoringIds": [
+              "clubs-14",
+              "hearts-14"
+            ],
+            "activeScoringIds": [
+              "clubs-14",
+              "hearts-14"
+            ],
+            "heldIds": [
+              "diamonds-9",
+              "hearts-6",
+              "spades-13",
+              "spades-7",
+              "clubs-2",
+              "clubs-8"
+            ]
+          },
+          "finalScore": "514",
+          "accumulator": {
+            "H": {
+              "n": "147",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "2"
+            }
+          },
+          "events": [
+            {
+              "eventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/0",
+              "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+              "rootEventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "pair",
+              "sourceInstanceId": "run/r03-1/erxiang",
+              "operation": "base",
+              "value": {
+                "n": "35",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "35",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/1",
+              "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+              "rootEventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-14",
+              "sourceInstanceId": "clubs-14",
+              "targetCardId": "clubs-14",
+              "operation": "add-heat",
+              "value": {
+                "n": "11",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "35",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "46",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-14.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/2",
+              "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+              "rootEventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/2",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-14",
+              "sourceInstanceId": "hearts-14",
+              "targetCardId": "hearts-14",
+              "operation": "add-heat",
+              "value": {
+                "n": "11",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "46",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "57",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-14.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/3",
+              "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+              "rootEventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/3",
+              "phase": "characterScore",
+              "sourceType": "character",
+              "sourceDefinitionId": "erxiang",
+              "sourceInstanceId": "run/r03-1/erxiang/character",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "3",
+                "d": "2"
+              },
+              "before": {
+                "H": {
+                  "n": "57",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "57",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "erxiang.add-multiplier",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/4",
+              "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+              "rootEventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/4",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "mantangcai",
+              "sourceInstanceId": "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2",
+              "operation": "add-heat",
+              "value": {
+                "n": "90",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "57",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "147",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "mantangcai.add-heat",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/5",
+              "rootId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6",
+              "rootEventId": "run/r03-1/erxiang/hand/run/r03-1/erxiang/command/6/event/5",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "pair",
+              "sourceInstanceId": "run/r03-1/erxiang",
+              "operation": "final-score",
+              "value": {
+                "n": "514",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "147",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "147",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [
+            {
+              "instanceId": "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2",
+              "definitionId": "mantangcai",
+              "paidPrice": 4,
+              "growth": {}
+            }
+          ],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3156943997
+          }
+        },
+        "handLevels": {},
+        "outcome": null
+      },
+      "stateHash": "json-fnv-v1:bbad9009bd42f61d",
+      "status": "PASS"
+    }
+  ],
+  "limitations": [
+    "Browser touchscreen emulation, not physical Android/iPhone or human acceptance.",
+    "One natural warm-stage workflow; not eight-chapter/Boss or balance acceptance.",
+    "Recovery/cancellation have their own R04 evidence; R05 layout remains separate."
+  ],
+  "fixture": {
+    "seed": "r03-1",
+    "characterId": "erxiang",
+    "selection": "first of up to 50 natural seeds that permits the required buy/discard/clear/trade workflow; no injected cards/resources; not a win-rate sample"
+  },
+  "browser": "153.0.8010.12",
+  "status": "PASS"
+}

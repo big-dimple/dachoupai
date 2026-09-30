@@ -1,19 +1,17 @@
 # 当前交接
 
-## 当前任务：R04 / READY
+## 当前任务：R05 / READY
 
-权威指针：`production/plan.json`。R03 分支 `feat/R03-run-economy`，被测实现 `f6ccd17c008ae4998f8b18615d01c624a2ea089a`；唯一下一步：从本包关闭点创建 R04 分支，按 ENGINEERING/UX/QUALITY 先复现队列取消和存档失败，再实现原子 checkpoint、恢复与演出生命周期。
+权威指针：`production/plan.json`。R04 工程完成，分支 `feat/R04-recovery-cancellation`；被测实现 SHA `542e0479371d56334641b84b2010d163ea8cf97f`，包基线 `414fbf54132963ec454dda77dab41c8304671e92`。main 未重置、强推或擅自合并。唯一下一步：从本包提交新建 R05 分支，先补纯布局/真实 CSS 失败用例，再做桌面、竖屏与横屏操作和缩略图首屏。
 
-## 上一包验证
+## 本包证据
 
-R03 完成网页 r2 出弃牌、持久牌组和构筑经济。`npm run verify`（145 项）、`test:run`（36 项）、内容检查、G01–G15、双端启动冒烟、shot 均实际通过。真实 mouse.click / touchscreen.tap 提交买入→弃牌→出牌过关→回店→调序→出售→替换；10 条命令与 6 个检查点逐步回放一致，最终完整状态 hash `json-fnv-v1:bbad9009bd42f61d`。具体日志、命令、版本与截图只见 `production/evidence/R03-2026-10-01.json`。
+`production/evidence/R04-2026-10-01.json` 保存真实命令、SHA、日志、截图和两段恢复录像。固定 SHA：verify 158 项、recovery 13 项、真实浏览器恢复 18 场景、接管 10 个独立上下文、桌面/触摸主流程及精确回放、smoke、shot、内容检查全部 PASS。主流程状态 hash 仍为 `json-fnv-v1:bbad9009bd42f61d`，计分预期未改。
 
-增强、T01–T18、U01–U12 只验证合法 ID/命令边界；未实现效果明确拒绝且不出售。保留 r1 原预期，没有扩展完整 Boss 或声称平衡完成。
+已解决源队列共享 Promise/取消、旧代与场景回调串到新局、原子保存失败回滚及原样重试、损坏/旧版原数据保留、导入校验、双标签接管、音频拒绝。接管点击曾先失败，实际现场 JSON/截图保留；菜单现在等输入注册后开放。100 次实际继续进入场景的节点和 shutdown 监听数保持 26/13。
 
-## 保留风险与安排
+## 风险与安排
 
-R00 F07（中断后旧队列不结束）仍开放，R04 修复。R05 仍需消除 FIT 小字/小触点/大留白及原图首屏预载。R06 的 CI 与 2 项 moderate Vitest 告警待做。当前截图只经工程目审，不是手机品质或美术批准。
+R05 尚需消除 FIT 小字、小触点、大留白、原始六 PNG 首屏预载，补触摸详情/拖动/取消与可读状态。R06 的 CI、2 项 moderate Vitest 告警待做。当前五张大丑牌，完整内容/Boss/数值平衡尚未验收。
 
-采用方案 `14be6d65eeffd3a0d97a9d76a6274112fe75585e`；main 未重置/强推，相关 draft PR 未自行合并。R00–R03 详细证据各见对应 JSON，不把历史测试当新版本通过。
-
-Android Chrome/iPhone Safari 真机、目标机性能、真人体验/对标、美术批准：**NOT_RUN**。用户只在关键节点验 Android Chrome，连续推进独立工程。部署由用户处理，不准备部署交接材料。R05 后按 A00/ART 独立交 Astra；金样未获批准，不量产或提前重画所有角色。
+离线缓存恢复、无 Navigator Locks 的旧浏览器、Android Chrome/iPhone Safari 真机、目标机性能、真人体验/对标、美术批准：**NOT_RUN**。现有截图只核对工程状态，不是手机体验或美术签收。用户只在关键节点验 Android Chrome，部署由用户自行处理，不准备部署交接材料。连续推进独立工程；R05 后按 A00/ART 独立交 Astra，金样未批准不量产或提前重画全部角色。

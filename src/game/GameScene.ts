@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import { AudioEngine } from '../audio/AudioEngine';
 import { rankLabel, SUIT_SYMBOL, type PlayingCard } from '../cards/types';
-import { EffectQueue } from '../core/EffectQueue';
+import {EffectQueue,type EffectContext} from '../core/EffectQueue';
 import { TriggerEngine } from '../core/TriggerEngine';
 import { getR2Joker as getJoker } from '../domain/r2Shop';
 import {R2_JOKERS} from '../content/r2Schema';
@@ -14,7 +14,8 @@ import {previewR2Hand,type ScoreTrace,type ScoreEvent} from '../domain/scoreR2';
 import { getCharacter, type CharacterId } from './characters';
 import type { IntermissionResult } from './IntermissionScene';
 import { portraitSquareCrop } from './portraitCrop';
-import { dispatchRun, runController, startRun } from './runAdapter';
+import {dispatchRun,runController} from './runAdapter';
+import {gameSession} from './session';
 
 const MAX_SELECTED = R2_LIMITS.maxSelected;
 
@@ -35,10 +36,13 @@ export class GameScene extends Phaser.Scene {
   private get handsLeft(): number { return this.run.stage?.handsLeft ?? 0; }
   private get heat(): string { return this.run.stage?.heat ?? '0'; }
   private playing = false;
+  private lifecycle=0;
+  private intent=0;
+  private presentation?:{generation:number;lifecycle:number;intent:number;state:RunState;score:ScoreTrace};
   private characterId!: CharacterId;
   private readonly effects = new EffectQueue();
   private readonly triggers = new TriggerEngine();
-  private readonly audio = new AudioEngine();
+  private readonly audio = AudioEngine.shared;
 
   private heatText!: Phaser.GameObjects.Text;
   private handsText!: Phaser.GameObjects.Text;
@@ -51,22 +55,25 @@ export class GameScene extends Phaser.Scene {
     super('game');
   }
 
-  create(): void {
-    let controller = runController(this);
-    if (!controller) {
-      const characterId = this.registry.get('characterId') as CharacterId | undefined;
-      if (!characterId) { this.scene.start('character-select'); return; }
-      controller = startRun(this, String(this.registry.get('seed') ?? Date.now()), characterId);
-      dispatchRun(this, { type: 'LeaveShop' });
+  async create(): Promise<void> {
+    const lifecycle=++this.lifecycle;this.intent++;
+    this.effects.clear();this.triggers.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.playing=false;this.presentation=undefined;
+    const settings=()=>{this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;this.audio.muted=gameSession().muted;};
+    window.addEventListener('dachoupai-presentation',settings);
+    this.events.once('shutdown',()=>{
+      this.lifecycle++;this.intent++;this.effects.clear();this.tweens.killAll();this.time.removeAllEvents();this.triggers.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.presentation=undefined;this.playing=false;
+      window.removeEventListener('dachoupai-presentation',settings);
+    });
+    const controller=runController(this);
+    if(!controller){this.scene.start('character-select');return;}
+    if(controller.state.phase==='stage-ready'){
+      const entered=await dispatchRun(this,{type:'EnterStage'});
+      if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
+      if(!entered.ok){this.scene.start('character-select');return;}
     }
-    if (controller.state.phase === 'stage-ready') dispatchRun(this, { type: 'EnterStage' });
-    this.run = controller.state;
-    if (this.run.phase !== 'await-input' || !this.run.stage) { this.scene.start('character-select'); return; }
-    this.stage = getStage(this.run.stage.index)!;
-    this.characterId = this.run.characterId;
-    this.selectedIds.clear();
-    this.playing = false;
-    this.effects.clear();
+    this.run=controller.state;
+    if(this.run.phase!=='await-input'||!this.run.stage){this.scene.start('character-select');return;}
+    this.stage=getStage(this.run.stage.index)!;this.characterId=this.run.characterId;settings();
     const seed = this.run.seed;
 
     const { width } = this.scale;
@@ -180,30 +187,34 @@ export class GameScene extends Phaser.Scene {
     discard.on('pointerdown',()=>this.discardSelected());
     if(this.characterId==='touye'){
       const wager=this.add.text(width/2+190,650,'本手押注：否',{fontSize:'18px',color:'#ffba66'}).setOrigin(0,0.5).setInteractive({useHandCursor:true});
-      wager.on('pointerdown',()=>{
-        if(this.playing)return;
-        const result=dispatchRun(this,{type:'SetWager',enabled:!this.run.stage!.wagerSelected});
-        if(result.ok){this.run=result.state;wager.setText(this.run.stage!.wagerSelected?'本手押注：是':'本手押注：否');this.previewSelection();}
-        else wager.setText('本场押注已使用');
+      wager.on('pointerdown',async()=>{
+        if(this.playing)return;this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;
+        try {
+          const result=await dispatchRun(this,{type:'SetWager',enabled:!this.run.stage!.wagerSelected});
+          if(!this.alive(lifecycle,intent))return;
+          if(result.ok){this.run=result.state;wager.setText(this.run.stage!.wagerSelected?'本手押注：是':'本手押注：否');this.previewSelection();}
+          else wager.setText(result.code==='wager-used'?'本场押注已使用':'押注未提交，请查看菜单');
+        } finally {if(this.alive(lifecycle,intent))this.playing=false;}
       });
     }
 
     this.add
-      .text(width - 42, 686, '重新选角色', {
+      .text(width - 42, 686, '保存并退出', {
         fontFamily: '"Microsoft YaHei", sans-serif',
         fontSize: '14px',
         color: '#a99c82',
       })
       .setOrigin(1, 0.5)
       .setInteractive({ useHandCursor: true })
-      .on('pointerdown', () => {
-        if(!window.confirm('结束当前局并重新选角色？'))return;
-        dispatchRun(this, { type: 'AbandonRun' });
-        this.scene.start('character-select');
+      .on('pointerdown',async()=>{
+        if(!window.confirm('保存已确定结果并退出？稍后可继续本局。'))return;
+        const lifecycle=this.lifecycle;
+        if(await runController(this)!.flush()&&lifecycle===this.lifecycle)this.scene.start('character-select');
       });
 
     this.updateHud();
     this.renderHand();
+    if(this.run.lastTrace){this.resultText.setText('已恢复 · 上手 '+HAND_LABELS[this.run.lastTrace.handType]+' +'+heatText(this.run.lastTrace.finalScore));this.breakdownText.setText(this.formatBreakdown(this.run.lastTrace));}
   }
 
   private renderJokerRack(): void {
@@ -303,43 +314,35 @@ export class GameScene extends Phaser.Scene {
     this.previewSelection();
   }
 
-  private wait(ms: number): Promise<void> {
-    return new Promise((resolve) => {
-      this.time.delayedCall(ms, resolve);
+  private alive(lifecycle:number,intent:number):boolean {return lifecycle===this.lifecycle&&intent===this.intent&&this.scene.isActive();}
+
+  private wait(ms:number,context:EffectContext):Promise<void> {
+    return new Promise(resolve=>{
+      if(context.signal.aborted){resolve();return;}
+      const finish=()=>{context.signal.removeEventListener('abort',cancel);resolve();};
+      const timer=this.time.delayedCall(ms,finish),cancel=()=>{timer.remove(false);finish();};
+      context.signal.addEventListener('abort',cancel,{once:true});
     });
   }
 
-  private animateRole(note?: string): Promise<void> {
-    if (!note) return Promise.resolve();
-    this.roleText.setText(note);
-    this.audio.role();
-    return new Promise((resolve) => {
-      this.tweens.add({
-        targets: this.roleText,
-        scale: { from: 1.28, to: 1 },
-        duration: 230,
-        ease: 'Back.easeOut',
-        onComplete: () => resolve(),
-      });
+  private animate(config:Phaser.Types.Tweens.TweenBuilderConfig,context:EffectContext):Promise<void> {
+    return new Promise(resolve=>{
+      if(context.signal.aborted){resolve();return;}
+      const finish=()=>{context.signal.removeEventListener('abort',cancel);resolve();};
+      const tween=this.tweens.add({...config,onComplete:finish}),cancel=()=>{tween.remove();finish();};
+      context.signal.addEventListener('abort',cancel,{once:true});
     });
   }
 
-  private animateJoker(joker: ScoreEvent, chainIndex: number): Promise<void> {
-    const view = this.jokerViews.get(joker.sourceDefinitionId);
-    if (!view) return Promise.resolve();
+  private animateRole(note:string,context:EffectContext):Promise<void> {
+    this.roleText.setText(note);this.audio.role();
+    return this.animate({targets:this.roleText,scale:{from:1.28,to:1},duration:230,ease:'Back.easeOut'},context);
+  }
+
+  private animateJoker(joker:ScoreEvent,chainIndex:number,context:EffectContext):Promise<void> {
+    const view=this.jokerViews.get(joker.sourceDefinitionId);if(!view)return Promise.resolve();
     this.audio.joker(chainIndex);
-    return new Promise((resolve) => {
-      this.tweens.add({
-        targets: view,
-        y: view.y - 14,
-        scale: 1.12,
-        duration: 120,
-        yoyo: true,
-        hold: 70,
-        ease: 'Back.easeOut',
-        onComplete: () => resolve(),
-      });
-    });
+    return this.animate({targets:view,y:view.y-14,scale:1.12,duration:120,yoyo:true,hold:70,ease:'Back.easeOut'},context);
   }
 
   private formatBreakdown(score: ScoreTrace): string {
@@ -357,94 +360,83 @@ export class GameScene extends Phaser.Scene {
     this.breakdownText.setText(preview.possibleScores.length===2?'押注：50% '+heatText(preview.possibleScores[0])+' / 50% '+heatText(preview.possibleScores[1]):'本手预览 '+heatText(preview.possibleScores[0])+' 热度');
   }
 
-  private discardSelected():void {
-    if(this.playing)return;
-    const result=dispatchRun(this,{type:'DiscardHand',selectedIds:[...this.selectedIds]});
-    if(!result.ok){this.resultText.setText(result.code==='no-discards-left'?'本场弃牌次数已用完':'请选择 1～5 张牌再弃牌');return;}
-    this.run=result.state;this.selectedIds.clear();this.updateHud();this.renderHand();this.previewSelection();
-    if(this.run.phase==='run-lost')this.finishStage(false);
+  private async discardSelected():Promise<void> {
+    if(this.playing)return;this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent,selectedIds=[...this.selectedIds];
+    try {
+      const result=await dispatchRun(this,{type:'DiscardHand',selectedIds});
+      if(!this.alive(lifecycle,intent))return;
+      if(!result.ok){this.resultText.setText(result.code==='no-discards-left'?'本场弃牌次数已用完':result.code==='save-failed'?'未保存，请在菜单中重试或导出':'请选择 1～5 张牌再弃牌');return;}
+      this.run=result.state;this.selectedIds.clear();this.updateHud();this.renderHand();this.previewSelection();
+      if(this.run.phase==='run-lost')this.finishStage(false);
+    } finally {if(this.alive(lifecycle,intent)&&this.run.phase==='await-input')this.playing=false;}
   }
 
-  private async playSelected(): Promise<void> {
-    if (this.playing || this.selectedIds.size === 0 || this.handsLeft <= 0) return;
-    this.playing = true;
-    this.playButton.disableInteractive();
-
-    const result = dispatchRun(this, { type: 'PlayHand', selectedIds: [...this.selectedIds] });
-    if (!result.ok || result.duplicate) {
-      if(!result.ok)this.resultText.setText(result.code==='score-diagnostic'?'本手无法结算，资源与原状态已保留。':'出牌未提交，请检查所选牌。');
-      this.playButton.setInteractive({ useHandCursor: true });
-      this.playing = false;
-      return;
+  private async playSelected():Promise<void> {
+    if(this.playing||this.selectedIds.size===0||this.handsLeft<=0)return;
+    const selectedIds=[...this.selectedIds],selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id)),lifecycle=this.lifecycle,intent=++this.intent;
+    this.playing=true;this.playButton.disableInteractive();
+    try {
+      const result=await dispatchRun(this,{type:'PlayHand',selectedIds});
+      if(!this.alive(lifecycle,intent))return;
+      if(!result.ok||result.duplicate){if(!result.ok)this.resultText.setText(result.code==='save-failed'?'未保存，请在菜单中重试或导出':result.code==='score-diagnostic'?'本手无法结算，资源与原状态已保留':'出牌未提交，请查看菜单或选择。');return;}
+      this.run=result.state;
+      const event=result.events.find(e=>e.type==='hand-scored-r2');if(!event||event.type!=='hand-scored-r2')throw Error('Successful play missing score event');
+      this.triggers.emit('hand:played',event.score.sets);
+      await this.presentTrace(event.score,result.state,selectedViews,lifecycle,intent);
+    } finally {
+      if(this.alive(lifecycle,intent)&&this.run.phase==='await-input'&&!this.presentation){this.playing=false;this.playButton.setInteractive({useHandCursor:true});}
     }
-    this.run = result.state;
-    const event = result.events.find(event => event.type === 'hand-scored-r2');
-    if (!event || event.type !== 'hand-scored-r2') throw new Error('Successful play missing score event');
-    const score = event.score;
-    this.triggers.emit('hand:played',score.sets);
+  }
 
-    const selectedViews = this.cardViews.filter((view) => this.selectedIds.has(view.card.id));
-    this.effects.enqueue(() => {
-      this.audio.playHand();
-      return Promise.all(
-        selectedViews.map(
-          (view, index) =>
-            new Promise<void>((resolve) => {
-              this.tweens.add({
-                targets: view.container,
-                y: view.container.y - 70,
-                angle: index % 2 === 0 ? -4 : 4,
-                alpha: 0.25,
-                duration: 210,
-                delay: index * 30,
-                ease: 'Cubic.easeIn',
-                onComplete: () => resolve(),
-              });
-            }),
-        ),
-      ).then(() => undefined);
+  private async presentTrace(score:ScoreTrace,state:RunState,views:readonly CardView[],lifecycle:number,intent:number):Promise<void> {
+    this.effects.clear();const generation=this.effects.generation;
+    const presentation={generation,lifecycle,intent,state,score};this.presentation=presentation;
+    if(views.length)this.effects.enqueue(context=>{
+      this.audio.playHand();return Promise.all(views.map((view,index)=>this.animate({targets:view.container,y:view.container.y-70,angle:index%2===0?-4:4,alpha:.25,duration:210,delay:index*30,ease:'Cubic.easeIn'},context))).then(()=>undefined);
     });
-
     for(const [index,event] of score.events.entries()){
-      if(event.phase==='base'||event.phase==='finalScore'||event.phase==='afterHand')continue;
-      this.effects.enqueue(async()=>{
+      if(['base','finalScore','afterHand'].includes(event.phase))continue;
+      this.effects.enqueue(async context=>{
+        if(!this.alive(lifecycle,intent)||context.signal.aborted)return;
         const operation=event.operation==='multiply-multiplier'?'×倍率':event.operation==='add-multiplier'?'+倍率':'+热度';
-        const source=event.sourceType==='joker'?getJoker(event.sourceDefinitionId).name:event.sourceType==='character'?getCharacter(this.characterId).name:'计分牌';
-        this.resultText.setText(source+' '+operation+' '+fractionText(event.value));
-        this.breakdownText.setText('热度 '+fractionText(event.after.H)+' · 倍率 '+fractionText(event.after.M));
-        if(event.sourceType==='character'){this.triggers.emit('role:triggered',event);await this.animateRole(operation+' '+fractionText(event.value));}
-        else if(event.sourceType==='joker'){this.triggers.emit('joker:triggered',event);await this.animateJoker(event,index);}
-        else await this.wait(50);
+        const source=event.sourceType==='joker'?getJoker(event.sourceDefinitionId).name:event.sourceType==='character'?getCharacter(state.characterId).name:'计分牌';
+        this.resultText.setText(source+' '+operation+' '+fractionText(event.value));this.breakdownText.setText('热度 '+fractionText(event.after.H)+' · 倍率 '+fractionText(event.after.M));
+        if(event.sourceType==='character'){this.triggers.emit('role:triggered',event);await this.animateRole(operation+' '+fractionText(event.value),context);}
+        else if(event.sourceType==='joker'){this.triggers.emit('joker:triggered',event);await this.animateJoker(event,index,context);}
+        else await this.wait(50,context);
+        if(!context.signal.aborted)await this.wait(60,context);
       });
     }
-    this.effects.enqueue(()=>{
-      this.triggers.emit('score:resolved',score);
-      this.resultText.setText(HAND_LABELS[score.handType]+'   +'+heatText(score.finalScore)+' 热度');
-      this.breakdownText.setText(this.formatBreakdown(score));this.audio.score(2);
+    this.effects.enqueue(context=>{
+      if(context.signal.aborted||!this.alive(lifecycle,intent))return;
+      this.triggers.emit('score:resolved',score);this.resultText.setText(HAND_LABELS[score.handType]+'   +'+heatText(score.finalScore)+' 热度');this.breakdownText.setText(this.formatBreakdown(score));this.audio.score(2);
     });
+    let failed=false;
+    try {await this.effects.drain();}
+    catch {failed=true;if(this.alive(lifecycle,intent))this.resultText.setText('演出已停止，确定结果已保存。');}
+    if(this.alive(lifecycle,intent)&&this.presentation===presentation&&(failed||this.effects.isCurrent(generation)))this.completePresentation(presentation);
+  }
 
-    await this.effects.drain();
+  private completePresentation(presentation:NonNullable<GameScene['presentation']>):void {
+    if(!this.alive(presentation.lifecycle,presentation.intent))return;
+    this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.updateHud();
+    this.resultText.setText(HAND_LABELS[presentation.score.handType]+'   +'+heatText(presentation.score.finalScore)+' 热度');this.breakdownText.setText(this.formatBreakdown(presentation.score));
+    if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true);return;}
+    if(this.run.phase==='run-lost'){this.finishStage(false);return;}
+    this.renderHand();this.playing=false;this.playButton.setInteractive({useHandCursor:true});
+  }
 
-    this.selectedIds.clear();
-    this.updateHud();
-
-    if (this.run.phase === 'stage-cleared' || this.run.phase === 'run-won') {
-      this.finishStage(true);
-      return;
-    }
-
-    if (this.run.phase === 'run-lost') {
-      this.finishStage(false);
-      return;
-    }
-
-    this.renderHand();
-    this.playButton.setInteractive({ useHandCursor: true });
-    this.playing = false;
+  fastForward():void {const presentation=this.presentation;if(!presentation)return;this.effects.clear();this.completePresentation(presentation);}
+  replayLastTrace():void {
+    if(this.playing||!this.run.lastTrace)return;
+    this.playing=true;this.playButton.disableInteractive();const intent=++this.intent;
+    void this.presentTrace(this.run.lastTrace,this.run,[],this.lifecycle,intent);
   }
 
   /** 本关结束：先让玩家看清结果，再进入明确的过场状态 */
   private finishStage(cleared: boolean): void {
+    this.playing=true;this.playButton.disableInteractive();
+    const lifecycle=this.lifecycle,handsLeft=this.handsLeft;
     const completedIndex = this.run.stage!.index;
     const stageHeat = this.heat;
     const goldEarned = this.run.stage!.goldEarned;
@@ -459,11 +451,12 @@ export class GameScene extends Phaser.Scene {
     }
 
     this.time.delayedCall(1000, () => {
+      if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
       this.scene.start('intermission', {
         cleared,
         stageIndex: completedIndex,
         stageHeat,
-        handsLeft: this.handsLeft,
+        handsLeft,
         goldEarned,
       } satisfies IntermissionResult);
     });

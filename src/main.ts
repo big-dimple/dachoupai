@@ -5,6 +5,7 @@ import { CharacterSelectScene } from './game/CharacterSelectScene';
 import { GameScene } from './game/GameScene';
 import { IntermissionScene } from './game/IntermissionScene';
 import { ShopScene } from './game/ShopScene';
+import {installRunMenu} from './game/RunMenu';
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -18,9 +19,11 @@ const config: Phaser.Types.Core.GameConfig = {
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
   render: { antialias: true, pixelArt: false },
+  audio: {noAudio:true}, // AudioEngine owns the application context; Phaser's unused manager must not block boot.
 };
 
 const game = new Phaser.Game(config);
+installRunMenu(game);
 
 // harness 挂钩：仅 ?harness=1 时暴露给本地冒烟脚本，正常游玩路径不挂全局
 if (new URLSearchParams(window.location.search).has('harness')) {
