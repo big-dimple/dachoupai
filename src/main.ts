@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import './style.css';
+import { BootScene } from './game/BootScene';
 import { CharacterSelectScene } from './game/CharacterSelectScene';
 import { GameScene } from './game/GameScene';
 
@@ -9,7 +10,7 @@ const config: Phaser.Types.Core.GameConfig = {
   width: 1280,
   height: 720,
   backgroundColor: '#090711',
-  scene: [CharacterSelectScene, GameScene],
+  scene: [BootScene, CharacterSelectScene, GameScene],
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,

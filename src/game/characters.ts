@@ -10,15 +10,16 @@ export interface CharacterDefinition {
   passiveName: string;
   passiveDescription: string;
   accent: number;
+  portrait: string;
 }
 
 export const CHARACTERS: CharacterDefinition[] = [
-  { id: 'amo', name: '阿默', title: '默剧王', quote: '一个人，也能把台子撑爆。', passiveName: '独角戏', passiveDescription: '只打出 1 张牌时，倍率 ×3。', accent: 0xd8d0ff },
-  { id: 'touye', name: '骰爷', title: '赌命客', quote: '别算了，下一把就翻。', passiveName: '再来一把', passiveDescription: '每次出牌：50% 倍率 ×2，否则 ×0.75。', accent: 0xffba66 },
-  { id: 'laohuan', name: '老幻', title: '空袖', quote: '袖子是空的，分不是。', passiveName: '袖里有牌', passiveDescription: '顺子、同花、同花顺额外 +120 基础热度。', accent: 0x79e7ff },
-  { id: 'erxiang', name: '二响', title: '捧哏王', quote: '你出对子，我负责把场子接住。', passiveName: '接得漂亮', passiveDescription: '对子、两对、三条的倍率 +1.5。', accent: 0xff83b4 },
-  { id: 'azao', name: '阿燥', title: '热场王', quote: '同一个包袱说两遍就凉了。', passiveName: '换个活儿', passiveDescription: '本次牌型与上次不同，倍率 +1。', accent: 0x95ff8c },
-  { id: 'xiemu', name: '谢幕人', title: '压轴', quote: '最后一个包袱，才值票价。', passiveName: '最后一个包袱', passiveDescription: '本场最后一次出牌，最终倍率 ×2。', accent: 0xff5b5b },
+  { id: 'amo', name: '阿默', title: '默剧王', quote: '一个人，也能把台子撑爆。', passiveName: '独角戏', passiveDescription: '只打出 1 张牌时，倍率 ×3。', accent: 0xd8d0ff, portrait: '/assets/characters/amo.png' },
+  { id: 'touye', name: '骰爷', title: '赌命客', quote: '别算了，下一把就翻。', passiveName: '再来一把', passiveDescription: '每次出牌：50% 倍率 ×2，否则 ×0.75。', accent: 0xffba66, portrait: '/assets/characters/touye.png' },
+  { id: 'laohuan', name: '老幻', title: '空袖', quote: '袖子是空的，分不是。', passiveName: '袖里有牌', passiveDescription: '顺子、同花、同花顺额外 +120 基础热度。', accent: 0x79e7ff, portrait: '/assets/characters/laohuan.png' },
+  { id: 'erxiang', name: '二响', title: '捧哏王', quote: '你出对子，我负责把场子接住。', passiveName: '接得漂亮', passiveDescription: '对子、两对、三条的倍率 +1.5。', accent: 0xff83b4, portrait: '/assets/characters/erxiang.png' },
+  { id: 'azao', name: '阿燥', title: '热场王', quote: '同一个包袱说两遍就凉了。', passiveName: '换个活儿', passiveDescription: '本次牌型与上次不同，倍率 +1。', accent: 0x95ff8c, portrait: '/assets/characters/azao.png' },
+  { id: 'xiemu', name: '谢幕人', title: '压轴', quote: '最后一个包袱，才值票价。', passiveName: '最后一个包袱', passiveDescription: '本场最后一次出牌，最终倍率 ×2。', accent: 0xff5b5b, portrait: '/assets/characters/xiemu.png' },
 ];
 
 export interface CharacterContext {

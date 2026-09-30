@@ -79,15 +79,38 @@ export class GameScene extends Phaser.Scene {
     });
 
     const roleBg = this.add
-      .rectangle(width - 190, 56, 320, 72, 0x2b2317, 0.98)
+      .rectangle(width - 200, 56, 344, 76, 0x2b2317, 0.98)
       .setStrokeStyle(2, character.accent, 0.72);
-    this.add.text(roleBg.x - 138, roleBg.y - 22, `${character.title} · ${character.name}`, {
+
+    // HUD 角色区：小型立绘（正方裁切）+ 称号 · 名称 + 当前被动
+    const portraitSize = 58;
+    const portraitX = roleBg.x - roleBg.width / 2 + portraitSize / 2 + 8;
+    const portraitKey = `portrait-${character.id}`;
+    if (this.textures.exists(portraitKey)) {
+      const frame = this.textures.get(portraitKey).getSourceImage() as HTMLImageElement;
+      const side = Math.min(frame.width, frame.height);
+      const cropX = (frame.width - side) / 2;
+      const cropY = (frame.height - side) / 2;
+      this.add.image(portraitX, roleBg.y, portraitKey)
+        .setCrop(cropX, cropY, side, side)
+        .setDisplaySize(portraitSize, portraitSize);
+    } else {
+      this.add.rectangle(portraitX, roleBg.y, portraitSize, portraitSize, character.accent, 0.28)
+        .setStrokeStyle(2, character.accent, 0.8);
+      this.add.text(portraitX, roleBg.y, character.name.slice(0, 1), {
+        fontFamily: '"Microsoft YaHei", sans-serif', fontSize: '24px', fontStyle: 'bold', color: '#ffffff',
+      }).setOrigin(0.5);
+    }
+    this.add.rectangle(portraitX, roleBg.y, portraitSize, portraitSize, 0x000000, 0)
+      .setStrokeStyle(2, character.accent, 0.9);
+
+    this.add.text(roleBg.x - 96, roleBg.y - 22, `${character.title} · ${character.name}`, {
       fontFamily: '"Microsoft YaHei", sans-serif',
       fontSize: '18px',
       fontStyle: 'bold',
       color: '#fff4d7',
     });
-    this.roleText = this.add.text(roleBg.x - 138, roleBg.y + 5, character.passiveName, {
+    this.roleText = this.add.text(roleBg.x - 96, roleBg.y + 5, character.passiveName, {
       fontFamily: '"Microsoft YaHei", sans-serif',
       fontSize: '14px',
       color: '#f3cf7c',
