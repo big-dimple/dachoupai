@@ -1,0 +1,77 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/content-schema.test.ts (16 tests | 4 failed) 10ms
+     × rejects unsupported transaction predicates onStageClear {"kind":"hand-type-in","values":["pair"]} 3ms
+     × rejects unsupported transaction predicates onBuyOffer {"kind":"resource","resource":"hands-after","equals":1} 1ms
+     × rejects unsupported transaction predicates onDiscard {"kind":"resource-minimum","resource":"gold","minimum":20} 0ms
+     × rejects unsupported transaction predicates onDiscard {"kind":"resource","resource":"gold","equals":1} 0ms
+ ❯ tests/v00-score.test.ts (15 tests | 1 failed) 45ms
+     × B02 Boss suppresses fourth/fifth ordinary points while their explicit Joker effects still apply 9ms
+ ❯ tests/v00-save.test.ts (4 tests | 1 failed) 32ms
+     × rejects a forged target, impossible skip success and counters after checksum re-signing 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/content-schema.test.ts > content schema rejects unsafe and unknown data > rejects unsupported transaction predicates onStageClear {"kind":"hand-type-in","values":["pair"]}
+ FAIL  tests/content-schema.test.ts > content schema rejects unsafe and unknown data > rejects unsupported transaction predicates onBuyOffer {"kind":"resource","resource":"hands-after","equals":1}
+ FAIL  tests/content-schema.test.ts > content schema rejects unsafe and unknown data > rejects unsupported transaction predicates onDiscard {"kind":"resource-minimum","resource":"gold","minimum":20}
+ FAIL  tests/content-schema.test.ts > content schema rejects unsafe and unknown data > rejects unsupported transaction predicates onDiscard {"kind":"resource","resource":"gold","equals":1}
+AssertionError: expected 0 to be greater than 0
+ ❯ tests/content-schema.test.ts:23:96
+     21|   ])('rejects unsupported transaction predicates %s %j',(phase,conditi…
+     22|     const operations=phase==='onStageClear'?[{kind:'add-gold',amount:2…
+     23|     expect(validateR2Content([{...R2_JOKERS[0],hooks:[{phase,condition…
+       |                                                                                                ^
+     24|   });
+     25| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/v00-save.test.ts > V00 strict save boundary before broader browser coverage > rejects a forged target, impossible skip success and counters after checksum re-signing
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/v00-save.test.ts:28:133
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/v00-score.test.ts > V00 independent scoring goldens, no target or legacy-golden changes > B02 Boss suppresses fourth/fifth ordinary points while their explicit Joker effects still apply
+AssertionError: expected [] to deeply equal [ [ 'B02', '4' ], [ 'B02', '5' ] ]
+
+- Expected
++ Received
+
+- [
+-   [
+-     "B02",
+-     "4",
+-   ],
+-   [
+-     "B02",
+-     "5",
+-   ],
+- ]
++ []
+
+ ❯ tests/v00-score.test.ts:77:122
+     75|     // Straight base125 + ordinary(A,2,3)=16 + A iron25 + stair50 =216…
+     76|     expect(r.finalScore).toBe('864');expect(r.sets.activeScoringIds).t…
+     77|     expect(r.events.filter(e=>e.operation==='ordinary-points-suppresse…
+       |                                                                                                                          ^
+     78|     const red=[...flush],rr=score(red,red.map(c=>c.id),[owned('c02')],…
+     79|     expect(rr.events.filter(e=>e.sourceDefinitionId==='c02')).toHaveLe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+
+ Test Files  3 failed | 1 passed (4)
+      Tests  6 failed | 39 passed (45)
+   Start at  06:56:20
+   Duration  690ms (transform 494ms, setup 0ms, import 815ms, tests 190ms, environment 0ms)

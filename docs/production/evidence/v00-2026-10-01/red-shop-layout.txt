@@ -1,0 +1,20 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/layout.test.ts (13 tests | 1 failed) 24ms
+     × shop chapter/items controls have their own readable row outside the shelf and rack 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > shop chapter/items controls have their own readable row outside the shelf and rack
+TypeError: Cannot convert undefined or null to object
+ ❯ tests/layout.test.ts:27:28
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
+   Start at  06:45:49
+   Duration  392ms (transform 60ms, setup 0ms, import 84ms, tests 24ms, environment 0ms)

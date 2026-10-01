@@ -16,7 +16,7 @@ try {
   let eventBound=0;
   for(let played=1;played<=5;played++) {
     const worst=costs.map(c=>5*played*c.card+(14-played)*c.held+c.whole).sort((a,b)=>b-a).slice(0,5).reduce((a,b)=>a+b,0);
-    eventBound=Math.max(eventBound,3+5*played+worst+5*played); // base/character/final, points, explicit cap notices.
+    eventBound=Math.max(eventBound,3+5*played+worst+5*played+played); // base/character/final, points, retrigger caps and Boss point notices.
   }
   if(eventBound>512)errors.push(`content event bound ${eventBound} exceeds 512`);
   if(errors.length) {console.error(errors.join('\n'));process.exitCode=1;}

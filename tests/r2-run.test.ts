@@ -11,7 +11,7 @@ const send=(state:R2RunState,action:Action)=>{
 const table=(seed='economy')=>send(send(start(seed),{type:'LeaveShop'}),{type:'EnterStage'});
 describe('r2 run economy and resources',()=>{
   it('keeps unavailable consumable operations explicit and never consumes failed uses',()=>{
-    const run=start();run.consumables=[{instanceId:'item-1',definitionId:'T01'}];
+    const run=start();run.consumables=[{instanceId:'item-1',definitionId:'T02'}]; // T01 enabled/test-first in V00; T02 still future.
     const before=JSON.stringify(run),use=applyCommand(run,command(run,{type:'UseConsumable',instanceId:'item-1',targetIds:[]}));
     expect(use.ok).toBe(false);if(!use.ok)expect(use.code).toBe('consumable-not-enabled');expect(JSON.stringify(run)).toBe(before);
     const destroyed=send(run,{type:'DestroyConsumable',instanceId:'item-1'});expect(destroyed.consumables).toEqual([]);
@@ -47,7 +47,7 @@ describe('r2 run economy and resources',()=>{
   it('rejects insufficient funds and full slots without spending or touching RNG',()=>{
     for(const boundary of ['money','slots'] as const){
       const run=start();if(boundary==='money')run.gold=0;
-      else run.jokers=R2_JOKERS.map(d=>({instanceId:`owned/${d.id}`,definitionId:d.id,paidPrice:4,growth:{}}));
+      else run.jokers=R2_JOKERS.slice(0,5).map(d=>({instanceId:`owned/${d.id}`,definitionId:d.id,paidPrice:4,growth:{}}));
       const before=JSON.stringify(run),offer=run.shop!.offers[0];
       const result=applyCommand(run,command(run,{type:'BuyOffer',offerId:offer.offerId}));
       expect(result.ok).toBe(false);expect(result.state).toBe(run);expect(JSON.stringify(run)).toBe(before);
@@ -74,10 +74,10 @@ describe('r2 run economy and resources',()=>{
       expect(run.rng.deck).toEqual(before.rng.deck);expect(run.rng.rule).toEqual(before.rng.rule);
     }
   });
-  it('empty candidates do not charge a reroll or advance its cursor',()=>{
-    const run=start();run.gold=20;run.jokers=R2_JOKERS.map(d=>({instanceId:`owned/${d.id}`,definitionId:d.id,paidPrice:4,growth:{}}));
-    const before=JSON.stringify(run),result=applyCommand(run,command(run,{type:'RerollShop'}));
-    expect(result.ok).toBe(false);if(!result.ok)expect(result.code).toBe('no-reroll-candidates');expect(JSON.stringify(run)).toBe(before);
+  it('a legal full five-slot build still has new24-card reroll candidates, excluding owned identities',()=>{
+    const run=start();run.gold=20;run.jokers=R2_JOKERS.slice(0,5).map(d=>({instanceId:`owned/${d.id}`,definitionId:d.id,paidPrice:4,growth:{}}));
+    assertRunInvariants(run);const result=send(run,{type:'RerollShop'});expect(result.gold).toBe(18);expect(result.shop!.offers).toHaveLength(3);
+    expect(result.shop!.offers.every(o=>!run.jokers.some(j=>j.definitionId===o.definitionId))).toBe(true);
   });
   it('spends a discard instead of a hand and retains previous type/play index',()=>{
     let run=table();run=send(run,{type:'PlayHand',selectedIds:[run.handOrder[0]]});

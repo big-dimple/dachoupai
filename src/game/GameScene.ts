@@ -4,12 +4,13 @@ import { rankLabel, SUIT_SYMBOL, type PlayingCard } from '../cards/types';
 import {EffectQueue,type EffectContext} from '../core/EffectQueue';
 import { TriggerEngine } from '../core/TriggerEngine';
 import { getR2Joker as getJoker } from '../domain/r2Shop';
-import {R2_JOKERS} from '../content/r2Schema';
+import {R2_JOKERS,type R2JokerInstance} from '../content/r2Schema';
 import {HAND_LABELS} from '../content/handLabels';
 import {heatText,fractionText} from './scoreText';
 import type {R2RunState as RunState} from '../domain/run';
-import {R2_LIMITS,getR2Stage as getStage} from '../domain/r2Run';
+import {R2_LIMITS,getR2Stage as getStage,r2ScoreContext,r2DiscardCost} from '../domain/r2Run';
 import {previewR2Hand,type ScoreTrace,type ScoreEvent} from '../domain/scoreR2';
+import {Rational} from '../domain/rational';
 
 import { getCharacter, type CharacterId } from './characters';
 import type { IntermissionResult } from './IntermissionScene';
@@ -19,6 +20,8 @@ import {DetailDialog} from './DetailDialog';
 import {SUITS} from '../cards/types';
 import {dispatchRun,runController} from './runAdapter';
 import {gameSession} from './session';
+import {r2BossText,r2DisabledCards} from '../domain/r2Chapter';
+import {showConsumables} from './ConsumableDialog';
 
 const MAX_SELECTED = R2_LIMITS.maxSelected;
 
@@ -108,8 +111,9 @@ export class GameScene extends Phaser.Scene {
   private render():void {
     const v=this.view,l=v.layout;v.clear();const h=l.hud,c=getCharacter(this.characterId),portrait=l.mode==='portrait';
     const avatarSize=l.compact?48:64;addAvatar(this,v.root,c,h.x+avatarSize/2,h.y+avatarSize/2,avatarSize);
-    v.text(h.x+76,h.y,c.name,22);this.roleText=v.text(h.x+76,h.y+30,c.passiveName,14,'#f1c575',h.width-152);
-    if(!l.compact)v.text(portrait?h.x+76:h.x,h.y+(portrait?52:76),this.stage.name,14,'#dddacb',portrait?h.width-152:h.width);
+    const bossName=r2BossText(this.run.boss).split('：')[0];
+    v.text(h.x+76,h.y,c.name,22);this.roleText=v.text(h.x+76,h.y+30,this.roleCaption(),14,'#f1c575',h.width-152);
+    if(!l.compact)v.text(portrait?h.x+76:h.x,h.y+(portrait?52:76),this.stage.index%3===2?'压轴 · '+bossName:this.stage.name,14,'#dddacb',portrait?h.width-152:h.width);
     this.heatText=v.text(h.x,h.y+(portrait?(l.compact?52:76):100),'',22);
     this.handsText=v.text(h.x,h.y+(portrait?(l.compact?78:108):140),'',14,undefined,h.width);
     if(!portrait)v.button({x:h.x,y:h.y+232,width:h.width,height:44},'角色 / 本场规则','action/role',()=>this.inspectRole());
@@ -119,8 +123,8 @@ export class GameScene extends Phaser.Scene {
     this.rankButton=v.button(l.buttons.rank,'点数排序','action/sort-rank',()=>void this.sortHand('rank'),this.ready);
     this.suitButton=v.button(l.buttons.suit,'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready);
     v.button(l.buttons.deck,'查看牌组','action/deck',()=>this.inspectDeck());
-    v.button(l.buttons.details,'角色详情','action/details',()=>this.inspectRole());
-    this.discardButton=v.button(l.buttons.discard,'弃牌','action/discard',()=>void this.discardSelected(),this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>0);
+    v.button(l.buttons.details,'规则 / 物品','action/details',()=>this.inspectRole());
+    this.discardButton=v.button(l.buttons.discard,r2DiscardCost(this.run)===2?'弃牌 ×2':'弃牌','action/discard',()=>void this.discardSelected(),this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run));
     this.playButton=v.button(l.buttons.play,'出牌','action/play',()=>void this.playSelected(),this.ready&&this.selectedIds.size>0&&this.handsLeft>0,true);
     this.forwardButton=v.button(l.buttons.forward,'快进','action/forward',()=>this.fastForward(),!!this.presentation);
     this.statusText=v.text(l.status.x,l.status.y,'',14,'#f1c575',l.status.width);
@@ -131,15 +135,21 @@ export class GameScene extends Phaser.Scene {
     l.slots.forEach((b,i)=>{
       const j=this.run.jokers[i],r=v.rect(b,j?0xf3eadb:0x24313b);
       if(!j){v.text(b.x+6,b.y+12,'空槽',14);return;}
-      const d=getJoker(j.definitionId),name=v.text(b.x+5,b.y+5,d.name,14,'#24313b',b.width-10);
-      const symbol=d.rarity==='rare'?'★':d.rarity==='uncommon'?'◇':'□';
-      const op=d.hooks.flatMap(h=>h.operations).find(o=>'value' in o);
-      const value=op&&'value' in op?fractionText(op.value):'';
-      const current=v.text(b.x+5,b.y+b.height-24,symbol+' '+(op?.kind==='multiply-multiplier'?'×':'+')+value,14,'#24313b');
+      const d=getJoker(j.definitionId),symbol=d.rarity==='rare'?'★':d.rarity==='uncommon'?'◇':'□',name=v.text(b.x+5,b.y+5,symbol+d.name,14,'#24313b',b.width-10);
+      const current=v.text(b.x+5,b.y+b.height-20,this.jokerValue(j),14,'#24313b');
       const marker=this.add.container(0,0,[r,name,current]);v.add(marker);this.jokerViews.set(j.definitionId,marker);
       v.target(r,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:x=>void this.reorderJoker(j.instanceId,x),holdToDrag:true});
     });
   }
+  private jokerValue(j:R2JokerInstance):string {
+    const ops=getJoker(j.definitionId).hooks.flatMap(h=>h.operations),growth=ops.find(o=>o.kind==='read-growth'),op=ops.find(o=>o.kind!=='add-growth'&&'value' in o);
+    if(growth?.kind==='read-growth')return '+'+fractionText(j.growth[growth.key]??{n:'0',d:'1'});
+    if(op?.kind==='add-heat-per-gold'||op?.kind==='add-heat-per-empty-slot'){const count=op.kind==='add-heat-per-gold'?this.run.gold:Math.max(0,R2_LIMITS.jokerSlots-this.run.jokers.length),raw=Rational.fromJSON(op.value).multiply(new Rational(BigInt(count))),cap=Rational.fromJSON(op.cap);return '+'+fractionText((raw.compare(cap)>0?cap:raw).toJSON());}
+    if(op&&'value' in op)return (op.kind==='multiply-multiplier'?'×':'+')+fractionText(op.value);
+    const transaction=ops.find(o=>['add-gold','refund-discard'].includes(o.kind));if(transaction&&'amount' in transaction)return transaction.kind==='add-gold'?'+'+transaction.amount+'金':'返'+transaction.amount;
+    const retrigger=ops.find(o=>o.kind==='retrigger-card');return retrigger?.kind==='retrigger-card'?'重触'+retrigger.count:'';
+  }
+  private roleCaption():string {return this.view.layout.compact&&this.stage.index%3===2?this.run.boss.definitionId+' '+r2BossText(this.run.boss).split('：')[0]:getCharacter(this.characterId).passiveName;}
   private renderHand():void {
     this.cardViews.forEach(v=>v.container.destroy());this.cardViews=[];const v=this.view,l=v.layout;
     this.hand.forEach((card,i)=>{
@@ -159,32 +169,35 @@ export class GameScene extends Phaser.Scene {
   private refreshSelection():void {
     const preview=!this.presentation&&this.selectedIds.size?this.preview():undefined;
     const active=this.presentation?.score.sets.activeScoringIds??preview?.sets.activeScoringIds??[],l=this.view.layout;
+    const disabledIds=r2DisabledCards(this.run.boss,this.stage.index,this.hand),suppressed=this.presentation?.score.events.filter(e=>e.operation==='ordinary-points-suppressed').map(e=>e.targetCardId)??r2ScoreContext(this.run,this.hand,[...this.selectedIds]).ordinaryPointsSuppressedIds;
     this.cardViews.forEach((v,i)=>{
       const selected=this.selectedIds.has(v.card.id),scoring=active.includes(v.card.id),focused=document.activeElement===this.game.canvas&&i===this.focusIndex,b=l.cards[i].visual;
       v.container.y=b.y+b.height/2-(selected?16:0);v.container.setData('selected',selected).setData('activeScoring',scoring);
-      v.background.setStrokeStyle(focused?3:scoring?4:2,focused?0x7fb3d5:scoring?0x5d9184:selected?0xc84e42:0x879486);v.scoringMark.setVisible(scoring);
+      const disabled=disabledIds.includes(v.card.id),pointsZero=suppressed.includes(v.card.id);v.background.setFillStyle(disabled?0xd2d0cb:0xf3eadb);
+      v.background.setStrokeStyle(focused?3:scoring?4:2,focused?0x7fb3d5:scoring?0x5d9184:selected?0xc84e42:0x879486);v.scoringMark.setText(disabled?'失效':pointsZero?'点数0':'★').setVisible(disabled||pointsZero||scoring);
     });
     if(this.presentation)this.resultText.setText('正在结算 · 可快进');else this.previewSelection(preview);
     this.updateControls();
   }
   private updateControls():void {
     this.view.setEnabled(this.rankButton,this.ready);this.view.setEnabled(this.suitButton,this.ready);
-    this.view.setEnabled(this.discardButton,this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>0);
+    (this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(r2DiscardCost(this.run)===2?'弃牌 ×2':'弃牌');
+    this.view.setEnabled(this.discardButton,this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run));
     this.view.setEnabled(this.playButton,this.ready&&this.selectedIds.size>0&&this.handsLeft>0);
     this.view.setEnabled(this.forwardButton,!!this.presentation);
     this.statusText.setText(this.statusMessage||(this.playing?'结算中，不接受下一手':this.selectedIds.size?'已选 '+this.selectedIds.size+' / 5':'先选择牌，出牌和弃牌才可用'));
   }
   private preview(){
     const stage=this.run.stage!;
-    return previewR2Hand({rulesVersion:'r2',runId:this.run.runId,rootId:'preview',characterId:this.characterId,hand:this.hand,selectedIds:[...this.selectedIds],disabledIds:stage.disabledIds,jokers:this.run.jokers,definitions:R2_JOKERS,handLevels:this.run.handLevels,playIndex:stage.playIndex+1,handsBeforePlay:stage.handsLeft,previousHandType:stage.previousHandType,wager:stage.wagerSelected});
+    return previewR2Hand({rulesVersion:'r2',runId:this.run.runId,rootId:'preview',characterId:this.characterId,hand:this.hand,selectedIds:[...this.selectedIds],disabledIds:stage.disabledIds,jokers:this.run.jokers,definitions:R2_JOKERS,handLevels:this.run.handLevels,playIndex:stage.playIndex+1,handsBeforePlay:stage.handsLeft,previousHandType:stage.previousHandType,wager:stage.wagerSelected,...r2ScoreContext(this.run,this.hand,[...this.selectedIds])});
   }
   private inspectCard(id:string):void {
     const c=this.hand.find(c=>c.id===id);if(!c)return;
     this.dialog.open(rankLabel(c.rank)+SUIT_SYMBOL[c.suit]+' · 手牌详情',(this.selectedIds.has(id)?'已选中':'未选中')+'；'+(this.cardViews.find(v=>v.card.id===id)?.container.getData('activeScoring')?'本手计分牌':'本手不计分或尚未预览')+'\n增强：'+(c.enhancement??'无')+'\n长按只查看，不会选牌或出牌。',[{label:this.selectedIds.has(id)?'取消选择':'选择此牌',disabled:!this.ready,run:()=>{this.toggleCard(id);this.dialog.close();}}]);
   }
   private inspectRole():void {
-    const c=getCharacter(this.characterId),stage=this.run.stage!,body=c.passiveDescription+'\n'+(this.characterId==='xiemu'?(stage.handsLeft===1?'当前为最后一手：倍率 ×2，过关额外 +2 金。':'距离最后一手还有 '+(stage.handsLeft-1)+' 次。'):this.characterId==='touye'?(stage.wagerUsed?'本场押注已用。':stage.wagerSelected?'本手已押注：50% ×2 / 50% ×0.75。':'本场押注未用；默认倍率 ×1.15。'):'')+'\n'+this.stage.name+'：'+this.stage.intro+'\n本场规则：'+(stage.disabledIds.length?'带封禁标记的牌不参与计分。':'当前无封禁。');
-    const dialog=this.dialog.open(c.name+' · 角色与本场规则',body,this.characterId==='touye'?[{label:stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[]);
+    const c=getCharacter(this.characterId),stage=this.run.stage!,body=c.passiveDescription+'\n'+(this.characterId==='xiemu'?(stage.handsLeft===1?'当前为最后一手：倍率 ×2，过关额外 +2 金。':'距离最后一手还有 '+(stage.handsLeft-1)+' 次。'):this.characterId==='touye'?(stage.wagerUsed?'本场押注已用。':stage.wagerSelected?'本手已押注：50% ×2 / 50% ×0.75。':'本场押注未用；默认倍率 ×1.15。'):'')+'\n'+this.stage.name+'：'+this.stage.intro+'\n'+(stage.index%3===2?'本场压轴':'本章压轴预告')+' '+this.run.boss.definitionId+' · '+r2BossText(this.run.boss)+'\n失效牌仍参与牌型。弃牌成本：'+r2DiscardCost(this.run)+'；本场已弃 '+stage.discardsUsed+' 次。';
+    const dialog=this.dialog.open(c.name+' · 角色与本场规则',body,[{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready,a=>this.command(a))},...(this.characterId==='touye'?[{label:stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[])]);
   }
   private inspectJoker(id:string):void {
     const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=getJoker(j.definitionId),index=this.run.jokers.indexOf(j);
@@ -204,9 +217,9 @@ export class GameScene extends Phaser.Scene {
       content.textContent='按花色与点数统计，不展示抽牌顺序。\n'+SUITS.map(s=>SUIT_SYMBOL[s]+' '+cards.filter(c=>c.suit===s).length).join(' · ')+'\n'+cards.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]+(state.playedPile.includes(c.id)?' 已打出':state.discardPile.includes(c.id)?' 已弃':state.handOrder.includes(c.id)?' 手牌':'' )+(c.enhancement?' '+c.enhancement:'')).join('、');
     };scope.onchange=render;enhancement.onchange=render;render();
   }
-  private async command(action:import('../domain/run').Action):Promise<void> {
-    if(!this.ready)return;this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();
-    try{const result=await dispatchRun(this,action);if(!this.alive(lifecycle,intent))return;if(result.ok){this.run=result.state;this.statusMessage='';if(action.type==='ReorderHand')this.renderHand();else if(action.type==='ReorderJokers')this.render();}else this.statusMessage='操作未提交：'+result.code;}
+  private async command(action:import('../domain/run').Action):Promise<boolean> {
+    if(!this.ready)return false;this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();
+    try{const result=await dispatchRun(this,action);if(!this.alive(lifecycle,intent))return false;if(result.ok){this.run=result.state;this.statusMessage='';if(action.type==='ReorderHand')this.renderHand();else if(action.type==='ReorderJokers')this.render();else if(action.type==='UseConsumable'){this.updateHud();this.renderHand();}return true;}else{this.statusMessage='操作未提交：'+result.code;return false;}}
     finally{if(this.alive(lifecycle,intent)){this.playing=false;this.refreshSelection();}}
   }
   private async sortHand(mode:'rank'|'suit'):Promise<void> {
@@ -278,7 +291,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private async discardSelected():Promise<void> {
-    if(!this.ready||!this.selectedIds.size||this.run.stage!.discardsLeft<=0)return;this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,selectedIds=[...this.selectedIds];
+    if(!this.ready||!this.selectedIds.size||this.run.stage!.discardsLeft<r2DiscardCost(this.run))return;this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,selectedIds=[...this.selectedIds];
     try {
       const result=await dispatchRun(this,{type:'DiscardHand',selectedIds});
       if(!this.alive(lifecycle,intent))return;
@@ -317,8 +330,8 @@ export class GameScene extends Phaser.Scene {
       if(['base','finalScore','afterHand'].includes(event.phase))continue;
       this.effects.enqueue(async context=>{
         if(!this.alive(lifecycle,intent)||context.signal.aborted)return;
-        const operation=event.operation==='multiply-multiplier'?'×倍率':event.operation==='add-multiplier'?'+倍率':'+热度';
-        const source=event.sourceType==='joker'?getJoker(event.sourceDefinitionId).name:event.sourceType==='character'?getCharacter(state.characterId).name:'计分牌';
+        const operation=event.operation==='ordinary-points-suppressed'?'普通点数归零':event.operation==='multiply-multiplier'?'×倍率':event.operation==='add-multiplier'?'+倍率':'+热度';
+        const source=event.sourceType==='joker'?getJoker(event.sourceDefinitionId).name:event.sourceType==='character'?getCharacter(state.characterId).name:event.sourceDefinitionId==='B02'?'低调点':'计分牌';
         this.resultText.setText(source+' '+operation+' '+fractionText(event.value));this.breakdownText.setText('热度 '+fractionText(event.after.H)+' · 倍率 '+fractionText(event.after.M));
         if(event.sourceType==='character'){this.triggers.emit('role:triggered',event);await this.animateRole(operation+' '+fractionText(event.value),context);}
         else if(event.sourceType==='joker'){this.triggers.emit('joker:triggered',event);await this.animateJoker(event,index,context);}
@@ -342,7 +355,7 @@ export class GameScene extends Phaser.Scene {
     this.resultText.setText(HAND_LABELS[presentation.score.handType]+'   +'+heatText(presentation.score.finalScore)+' 热度');this.breakdownText.setText(this.formatBreakdown(presentation.score));
     if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true);return;}
     if(this.run.phase==='run-lost'){this.finishStage(false);return;}
-    this.playing=false;this.roleText.setText(getCharacter(this.characterId).passiveName).setScale(1);
+    this.playing=false;this.roleText.setText(this.roleCaption()).setScale(1);
     this.jokerViews.forEach(v=>v.setPosition(0,0).setScale(1));this.renderHand();
   }
 
@@ -385,6 +398,6 @@ export class GameScene extends Phaser.Scene {
   private updateHud(): void {
     this.heatText.setText('热度 '+heatText(this.heat)+' / '+heatText(this.stage.targetHeat));
     const l=this.view.layout;this.handsText.setText(l.mode==='portrait'?'出牌 '+this.handsLeft+' · 弃牌 '+this.run.stage!.discardsLeft+' · 金币 '+this.run.gold:'出牌 '+this.handsLeft+' · 弃牌 '+this.run.stage!.discardsLeft+'\n金币 '+this.run.gold+' · 牌堆 '+this.deck.length+'\n还需 '+heatText((BigInt(this.stage.targetHeat)>BigInt(this.heat)?BigInt(this.stage.targetHeat)-BigInt(this.heat):0n).toString()));
-
+    for(const j of this.run.jokers){const label=this.jokerViews.get(j.definitionId)?.list[2] as Phaser.GameObjects.Text|undefined;label?.setText(this.jokerValue(j));}
   }
 }

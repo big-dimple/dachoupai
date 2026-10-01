@@ -58,6 +58,8 @@ jobs:
             shots/domain/
             shots/layout/
             shots/recovery/
+            shots/v00-sample/
+            shots/v00-ui/
           retention-days: 14
   docs:
     runs-on: ubuntu-latest

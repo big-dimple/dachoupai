@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/v00-bot.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/v00-bot.test.ts [ tests/v00-bot.test.ts ]
+Error: Cannot find module '../src/testing/v00Bot' imported from D:/ai/dachoupai/dachoupai/tests/v00-bot.test.ts
+ ❯ tests/v00-bot.test.ts:4:1
+      2| import {createRun,applyCommand,type R2RunState} from '../src/domain/ru…
+      3| import {publicR2View} from '../src/testing/r2Bot';
+      4| import {chooseV00Action,V00_STYLES} from '../src/testing/v00Bot';
+       | ^
+      5| import {r2Price} from '../src/domain/r2Shop';
+      6|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  06:50:33
+   Duration  576ms (transform 237ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)

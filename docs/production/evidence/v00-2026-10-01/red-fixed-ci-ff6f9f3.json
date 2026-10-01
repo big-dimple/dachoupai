@@ -1,0 +1,97 @@
+{
+  "scope": "all",
+  "testedCommit": "ff6f9f363293afe8133d631960505a0dfa1fc6ab",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "65079ddd06fcb1ce3c97bca0f10084aeca30f3b75547a977b5b24dff4860bc0d",
+    "index": "e8b7ce1c9763475b19b089a7212a718b054874a60e471deaba2193cd54f0e218",
+    "head": "ff6f9f363293afe8133d631960505a0dfa1fc6ab",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "after": {
+    "source": "65079ddd06fcb1ce3c97bca0f10084aeca30f3b75547a977b5b24dff4860bc0d",
+    "index": "e8b7ce1c9763475b19b089a7212a718b054874a60e471deaba2193cd54f0e218",
+    "head": "ff6f9f363293afe8133d631960505a0dfa1fc6ab",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "steps": [
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3378
+    },
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 9695
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3677
+    },
+    {
+      "name": "rules-goldens",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 4323
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8195
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 7034
+    },
+    {
+      "name": "test:domain:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 27053
+    },
+    {
+      "name": "test:layout:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 31895
+    },
+    {
+      "name": "test:recovery:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 169191
+    },
+    {
+      "name": "test:e2e",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 80769,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "verify:assets",
+      "status": "NOT_INCLUDED",
+      "reason": "A00 not yet adopted; no placeholder gate"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; legacy r1 seeds are regressions only"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/v00-run.test.ts (11 tests | 1 failed) 111ms
+     × resource overflow rejects clear/sale atomically instead of throwing or publishing rounded gold 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/v00-run.test.ts > V00 economic transactions and public chapter plans > resource overflow rejects clear/sale atomically instead of throwing or publishing rounded gold
+Error: Run invariant: r2 resources
+ ❯ check src/domain/r2Run.ts:35:70
+     33|
+     34| export function assertR2Invariants(state:R2RunState):void {
+     35|   const check=(condition:boolean,label:string)=>{if(!condition)throw n…
+       |                                                                      ^
+     36|   check(state.schemaVersion===2 && state.rulesVersion==='r2' && state.…
+     37|   const ids=state.deckInstances.map(c=>c.id), zones=[...state.drawPile…
+ ❯ assertR2Invariants src/domain/r2Run.ts:41:3
+ ❯ applyCommand src/domain/run.ts:189:5
+ ❯ tests/v00-run.test.ts:79:214
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 10 passed (11)
+   Start at  07:29:39
+   Duration  690ms (transform 241ms, setup 0ms, import 298ms, tests 111ms, environment 0ms)

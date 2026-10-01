@@ -1,0 +1,461 @@
+{
+  "taskId": "V00",
+  "testedCommit": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+  "baseCommit": "3e97550220daec7e480d932af3a13719fd3b856a",
+  "completedAt": "2026-10-01T01:05:08.927Z",
+  "rulesVersion": "r2",
+  "contentVersion": "quality-r2-graybox-v3",
+  "contentHash": "json-fnv-v1:a1f6f62ddd627819",
+  "completionScope": "24-card/two-chapter engineering graybox; V01 human approval, final art, eight chapters and final balance remain separate.",
+  "testedTree": {
+    "scope": "Clean committed3ca candidate for fixed local and CI checks; before/after source/index/HEAD/branch identical. Two closeout-only changes (player wording/root shot ignore) tested separately on the explicitly dirty3ca tree; no claim that3ca contains them.",
+    "report": "docs/production/evidence/v00-2026-10-01/local-focused.json",
+    "closeoutReport": "docs/production/evidence/v00-2026-10-01/closeout-wording.json"
+  },
+  "environment": {
+    "local": {
+      "os": "Windows_NT 10.0.26200",
+      "node": "v22.20.0",
+      "chromium": "153.0.8010.12",
+      "firefox": "155.0",
+      "webkit": "26.6"
+    },
+    "ci": {
+      "os": "Ubuntu24.04.5",
+      "node": "22.23.3",
+      "npm": "10.9.9",
+      "browsers": "Chromium/Firefox/WebKit actual installed locked Playwright engines"
+    },
+    "device": "Ordinary mouse/native DOM/emulated touchscreen inputs; physical phones NOT_RUN"
+  },
+  "changes": [
+    "Exactly24 specified Joker identities, primary Amo/Erxiang, two complete chapters at unchanged400/600/800/1000/1500/2000 targets; terminal graybox-complete reason with honest two-chapter wording.",
+    "Real growth/held/economic/risk timing, bounded save validation, actual paid prices, full-slot sell-before-buy, fixed public B01–B04 forecasts and disabled-card marks.",
+    "Minimal skip coupon/public fixed reward/full-item-slot fallback without success/interest/growth; T01/T03/T04/T05/T06/T17 have real targets, phase/cap/failure rules and persistence.",
+    "v3 checkpoint partition explicitly preserves/export older v2 data (D09); no silent conversion or deletion.",
+    "Natural public-policy cohort and built-bundle ordinary-input/recovery checks join CI; Firefox narrow-font failure is retained and repaired by moving rarity to wrapped names, preserving full decimal values and14px text."
+  ],
+  "checks": [
+    {
+      "name": "fixed-local-candidate",
+      "command": "npm run verify; npm run verify:smoke; npm run verify:content; node harness/rules-goldens.mjs shots/v00-focused-rules; npm run test:v00:sample; npm run test:v00:browser; npm run shot; node scripts/check-production-plan.mjs --self-test; node scripts/check-production-plan.mjs",
+      "environmentOverrides": {
+        "V00_SAMPLE_COUNT": "20",
+        "V00_BROWSERS": "chromium,firefox,webkit",
+        "V00_SCENARIO": "all"
+      },
+      "status": "PASS",
+      "exitCode": 0,
+      "scope": "Nine proportional steps:222 units/26 files+build; startup smoke;24 content/bound144; G01–G15;120 diagnostic runs;30 graybox cases; desktop/mobile shots;13 plan counterexamples and actual plan.",
+      "evidence": "docs/production/evidence/v00-2026-10-01/local-focused.txt",
+      "report": "docs/production/evidence/v00-2026-10-01/local-focused.json"
+    },
+    {
+      "name": "natural-public-information-cohort",
+      "command": "V00_SAMPLE_COUNT=20 npm run test:v00:sample (via fixed local runner)",
+      "status": "PASS",
+      "exitCode": 0,
+      "report": "docs/production/evidence/v00-2026-10-01/natural-report.json",
+      "scope": "20 fixed seeds ×2 characters ×3 styles; all120 outcomes retained,33 losses with last-shop/last-hand/gold/discard/build diagnostics. Three first qualifying representatives exactly replay; no hidden RNG/deck oracle or fixture state injection."
+    },
+    {
+      "name": "ordinary-built-bundle-graybox-ui",
+      "command": "V00_BROWSERS=chromium,firefox,webkit V00_SCENARIO=all npm run test:v00:browser (via fixed local runner)",
+      "status": "PASS",
+      "exitCode": 0,
+      "report": "docs/production/evidence/v00-2026-10-01/v00-ui.json",
+      "scope": "30 cases: all three engines × public chapter/skip,3 natural two-chapter routes,6 actual minimum consumables. Buy/sell/full-slot replacement, independent preview/reward, Boss marks/notice, fast-forward, speed4, checkpoints and exact replay; every leave-shop checks360px rack bounds and name/value separation."
+    },
+    {
+      "name": "ci-actual-execution",
+      "command": "npm ci; npm run verify:ci -- --scope=domain|browser|docs (three separate jobs; browser installs all3 engines)",
+      "status": "PASS",
+      "exitCode": 0,
+      "runId": 36797246965,
+      "runUrl": "https://github.com/big-dimple/dachoupai/actions/runs/36797246965",
+      "jobs": [
+        {
+          "id": 110163398639,
+          "name": "domain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 110163398750,
+          "name": "browser",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 110163398823,
+          "name": "docs",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "evidence": [
+        "docs/production/evidence/v00-2026-10-01/ci-domain.txt",
+        "docs/production/evidence/v00-2026-10-01/ci-browser.txt",
+        "docs/production/evidence/v00-2026-10-01/ci-docs.txt"
+      ],
+      "reports": [
+        "docs/production/evidence/v00-2026-10-01/ci-domain.json",
+        "docs/production/evidence/v00-2026-10-01/ci-browser.json",
+        "docs/production/evidence/v00-2026-10-01/ci-docs.json"
+      ],
+      "scope": "15 actual steps, explicit PR head3ca checkout:222 units,24 content,G01–15,build/smoke/domain,30 layout,18 recovery+100 reentry,21 E2E,120 natural runs,30 V00 UI,3 semantic fault/restoration pairs,plan checks; source/index/HEAD unchanged in each job."
+    },
+    {
+      "name": "small-closeout-changes",
+      "command": "npm run verify; npm run verify:smoke; npm run shot",
+      "testedCommit": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+      "workingTree": "Final player wording and root-only shot ignore; prior fixed-SHA evidence added; source/index/HEAD unchanged during these checks",
+      "status": "PASS",
+      "exitCode": 0,
+      "report": "docs/production/evidence/v00-2026-10-01/closeout-wording.json",
+      "evidence": "docs/production/evidence/v00-2026-10-01/closeout-wording.txt",
+      "scope": "Only player-facing terminal availability wording and /shots/ root ignore changed after the fixed candidate; actual checks are on the explicitly dirty working tree, not claimed as a clean3ca or full-CI rerun."
+    }
+  ],
+  "diagnostic": {
+    "cohort": {
+      "seeds": [
+        "v00-sample-000",
+        "v00-sample-001",
+        "v00-sample-002",
+        "v00-sample-003",
+        "v00-sample-004",
+        "v00-sample-005",
+        "v00-sample-006",
+        "v00-sample-007",
+        "v00-sample-008",
+        "v00-sample-009",
+        "v00-sample-010",
+        "v00-sample-011",
+        "v00-sample-012",
+        "v00-sample-013",
+        "v00-sample-014",
+        "v00-sample-015",
+        "v00-sample-016",
+        "v00-sample-017",
+        "v00-sample-018",
+        "v00-sample-019"
+      ],
+      "characters": [
+        "amo",
+        "erxiang"
+      ],
+      "styles": [
+        "single-held",
+        "groups",
+        "suit"
+      ]
+    },
+    "summary": [
+      {
+        "style": "single-held",
+        "characterId": "amo",
+        "total": 20,
+        "wins": 13,
+        "deathStages": {
+          "1": 2,
+          "2": 2,
+          "4": 1,
+          "5": 2
+        },
+        "averageRemainingGold": 25.35,
+        "unusedDiscardsAtDeath": 7,
+        "allFiveSlots": 15
+      },
+      {
+        "style": "single-held",
+        "characterId": "erxiang",
+        "total": 20,
+        "wins": 6,
+        "deathStages": {
+          "1": 1,
+          "2": 1,
+          "3": 2,
+          "4": 3,
+          "5": 7
+        },
+        "averageRemainingGold": 21.05,
+        "unusedDiscardsAtDeath": 14,
+        "allFiveSlots": 14
+      },
+      {
+        "style": "groups",
+        "characterId": "amo",
+        "total": 20,
+        "wins": 15,
+        "deathStages": {
+          "2": 2,
+          "4": 2,
+          "5": 1
+        },
+        "averageRemainingGold": 27.05,
+        "unusedDiscardsAtDeath": 5,
+        "allFiveSlots": 18
+      },
+      {
+        "style": "groups",
+        "characterId": "erxiang",
+        "total": 20,
+        "wins": 18,
+        "deathStages": {
+          "4": 1,
+          "5": 1
+        },
+        "averageRemainingGold": 33.1,
+        "unusedDiscardsAtDeath": 2,
+        "allFiveSlots": 20
+      },
+      {
+        "style": "suit",
+        "characterId": "amo",
+        "total": 20,
+        "wins": 16,
+        "deathStages": {
+          "2": 2,
+          "5": 2
+        },
+        "averageRemainingGold": 28.3,
+        "unusedDiscardsAtDeath": 0,
+        "allFiveSlots": 16
+      },
+      {
+        "style": "suit",
+        "characterId": "erxiang",
+        "total": 20,
+        "wins": 19,
+        "deathStages": {
+          "5": 1
+        },
+        "averageRemainingGold": 32.75,
+        "unusedDiscardsAtDeath": 0,
+        "allFiveSlots": 18
+      }
+    ],
+    "total": 120,
+    "wins": 87,
+    "losses": 33,
+    "fullSlotLosses": 19,
+    "interpretation": "Different route/character behavior and19 full-slot losses show no automatic five-card guarantee in this cohort. Paired seeds and selected representative wins are not independent balance estimates; V01/B00 still must assess mandatory-pick dominance and decision quality.",
+    "representatives": [
+      {
+        "style": "single-held",
+        "seed": "v00-sample-001",
+        "characterId": "amo",
+        "selection": "First qualifying win in this fixed cohort; >=3 style hands and an actual family trigger. Selected wins are illustrative, not a win-rate sample.",
+        "commandCount": 43,
+        "commands": {
+          "BuyOffer": 6,
+          "LeaveShop": 6,
+          "EnterStage": 6,
+          "PlayHand": 17,
+          "OpenShop": 5,
+          "RerollShop": 2,
+          "SellJoker": 1
+        },
+        "handTypes": {
+          "three-kind": 1,
+          "high-card": 12,
+          "two-pair": 2,
+          "full-house": 2
+        },
+        "triggerCounts": {
+          "pengci": 12,
+          "tiesuanpan": 9,
+          "f03": 2,
+          "a03": 2,
+          "d01": 1
+        },
+        "finalBuild": [
+          "pengci",
+          "tiesuanpan",
+          "f03",
+          "a03",
+          "d01"
+        ],
+        "stateHash": "json-fnv-v1:c77e9555de7721a1",
+        "explanation": "Amo single-card/held route: 12 high-card hands among17; pengci/A03 and tiesuanpan/D01 really trigger. Early three-kind/two-pair/full-house bridge incomplete equipment; six buys, two paid rerolls and one explicit sale build the final set.",
+        "evidence": "docs/production/evidence/v00-2026-10-01/natural-report.json"
+      },
+      {
+        "style": "groups",
+        "seed": "v00-sample-000",
+        "characterId": "erxiang",
+        "selection": "First qualifying win in this fixed cohort; >=3 style hands and an actual family trigger. Selected wins are illustrative, not a win-rate sample.",
+        "commandCount": 40,
+        "commands": {
+          "BuyOffer": 6,
+          "LeaveShop": 6,
+          "EnterStage": 6,
+          "PlayHand": 15,
+          "OpenShop": 5,
+          "DiscardHand": 1,
+          "SellJoker": 1
+        },
+        "handTypes": {
+          "two-pair": 10,
+          "pair": 4,
+          "three-kind": 1
+        },
+        "triggerCounts": {
+          "e05": 10,
+          "f02": 1,
+          "mantangcai": 6,
+          "d10": 6,
+          "b02": 14,
+          "f09": 2
+        },
+        "finalBuild": [
+          "e05",
+          "mantangcai",
+          "d10",
+          "b02",
+          "f09"
+        ],
+        "stateHash": "json-fnv-v1:bf45bab1164e2685",
+        "explanation": "Erxiang group route:10 two-pair,4 pair and1 three-kind. B02 triggers14 times, mantangcai6; E05 purchase growth and D10 early empty slots provide support. F02 last-hand and F09 unused-discard conditions differ; one discard and one sale are real choices.",
+        "evidence": "docs/production/evidence/v00-2026-10-01/natural-report.json"
+      },
+      {
+        "style": "suit",
+        "seed": "v00-sample-001",
+        "characterId": "erxiang",
+        "selection": "First qualifying win in this fixed cohort; >=3 style hands and an actual family trigger. Selected wins are illustrative, not a win-rate sample.",
+        "commandCount": 38,
+        "commands": {
+          "BuyOffer": 5,
+          "LeaveShop": 6,
+          "EnterStage": 6,
+          "PlayHand": 13,
+          "OpenShop": 5,
+          "DiscardHand": 3
+        },
+        "handTypes": {
+          "three-kind": 3,
+          "two-pair": 4,
+          "flush": 3,
+          "straight": 1,
+          "pair": 2
+        },
+        "triggerCounts": {
+          "e05": 13,
+          "e03": 12,
+          "c04": 1,
+          "c02": 7,
+          "f03": 2
+        },
+        "finalBuild": [
+          "e05",
+          "e03",
+          "c04",
+          "c02",
+          "f03"
+        ],
+        "stateHash": "json-fnv-v1:ce152704b71066b8",
+        "explanation": "Erxiang straight/flush route:3 flush and1 straight among13 hands, with pairs/triples as bridge. C02 triggers7 times and C04 once; E03 gold and E05 purchases support it. Three real discards find structure; this is a mixed build, not13 forced flushes.",
+        "evidence": "docs/production/evidence/v00-2026-10-01/natural-report.json"
+      }
+    ]
+  },
+  "screenshots": {
+    "testedCommit": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "scope": "Four original fixed-candidate captures, before the small terminal-wording closeout. Browser review only; no phone/human approval.",
+    "paths": [
+      "docs/shots/2026-10-01-V00/chromium-single-held-boss-5.png",
+      "docs/shots/2026-10-01-V00/chromium-groups-boss-5.png",
+      "docs/shots/2026-10-01-V00/chromium-suit-boss-5.png",
+      "docs/shots/2026-10-01-V00/chromium-single-held-complete.png"
+    ]
+  },
+  "testFirstEvidence": [
+    {
+      "testedCommit": "3e97550220daec7e480d932af3a13719fd3b856a",
+      "workingTree": "New failing suites and incremental V00 implementation; not a clean release checkout.",
+      "command": "Vitest run of v00-score/run/save/consumables/bot suites; original shell prefix not retained in the compact logs.",
+      "status": "FAIL",
+      "exitCode": 1,
+      "evidence": [
+        "docs/production/evidence/v00-2026-10-01/red-score.txt",
+        "docs/production/evidence/v00-2026-10-01/red-run.txt",
+        "docs/production/evidence/v00-2026-10-01/red-save.txt",
+        "docs/production/evidence/v00-2026-10-01/red-consumables.txt",
+        "docs/production/evidence/v00-2026-10-01/red-public-policies.txt"
+      ],
+      "note": "Each failure precedes its corresponding implementation/fix. Before implementation, an unreachable four-eights expected2520 arithmetic typo was independently corrected to(320+4*8)*7=2464; retained red-score footer explicitly records the correction, not an implementation-derived expected value."
+    },
+    {
+      "testedCommit": "57f329ea2131e2286a0b0bbc29e88cfdeee601e4",
+      "command": "npm run verify:ci",
+      "status": "FAIL",
+      "exitCode": 1,
+      "report": "docs/production/evidence/v00-2026-10-01/red-fixed-ci-57f329e.json",
+      "evidence": "docs/production/evidence/v00-2026-10-01/red-fixed-ci-57f329e.txt",
+      "scope": "G10 fixture now respects unchanged400 target and complete prior play counter; score expected untouched."
+    },
+    {
+      "testedCommit": "ff6f9f363293afe8133d631960505a0dfa1fc6ab",
+      "command": "npm run verify:ci",
+      "status": "FAIL",
+      "exitCode": 1,
+      "report": "docs/production/evidence/v00-2026-10-01/red-fixed-ci-ff6f9f3.json",
+      "evidence": "docs/production/evidence/v00-2026-10-01/red-fixed-ci-ff6f9f3.txt",
+      "scope": "New unaffordable inspection after intentional double-confirm must wait360ms for the existing350ms guard; product guard and score expected untouched."
+    },
+    {
+      "testedCommit": "25aa02de27d46e9a334e636aefa9b608357261c0",
+      "command": "npm run verify:ci -- --scope=browser (actual Linux CI)",
+      "status": "FAIL",
+      "exitCode": 1,
+      "evidence": "docs/production/evidence/v00-2026-10-01/red-ci-linux-fonts.txt",
+      "runUrl": "https://github.com/big-dimple/dachoupai/actions/runs/36794568665",
+      "scope": "Local full15 had passed, Linux Firefox360px rarity+decimal overflow failed. It is not counted as full CI success."
+    }
+  ],
+  "ciArtifacts": [
+    {
+      "id": 11134718654,
+      "name": "browser-36797246965",
+      "sha256": "sha256:9b4053f567324aca944a6c74818f6a373b6a1c0b87da90cbb67796a3b44d5f11",
+      "bytes": 23203918,
+      "expiresAt": "2026-10-15T01:01:57Z",
+      "retentionDays": 14,
+      "url": "https://github.com/big-dimple/dachoupai/actions/runs/36797246965/artifacts/11134718654"
+    },
+    {
+      "id": 11134251110,
+      "name": "docs-36797246965",
+      "sha256": "sha256:fecbf16e493041440c83b14601e813736ffeecf260a0bd57e38a642b23855391",
+      "bytes": 637,
+      "expiresAt": "2026-10-15T00:39:32Z",
+      "retentionDays": 14,
+      "url": "https://github.com/big-dimple/dachoupai/actions/runs/36797246965/artifacts/11134251110"
+    },
+    {
+      "id": 11133579921,
+      "name": "domain-36797246965",
+      "sha256": "sha256:11eecb031b1e8dc43b310a467f43dbd28d6a5c4a49cc105359e539490a600bda",
+      "bytes": 15958,
+      "expiresAt": "2026-10-15T00:39:40Z",
+      "retentionDays": 14,
+      "url": "https://github.com/big-dimple/dachoupai/actions/runs/36797246965/artifacts/11133579921"
+    }
+  ],
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": "",
+    "evidence": ""
+  },
+  "limitations": [
+    "Physical Android Chrome/iPhone Safari, target device performance/20 cold-load trials/30-minute memory, true offline recovery/no-Locks and full screen-reader acceptance NOT_RUN. User validates Android at key milestones and handles deployment independently.",
+    "V01 8–12 mixed participants and owner acceptance absent: BLOCKED; no AI experience or art signoff. A01/C00 remain dependency-gated.",
+    "Natural120 runs are diagnostic, not B00 18,000 training/holdout or global balance; all six-family representative benefits are present across mixed builds, not a claim that every role/seed can play each family equally.",
+    "Eight chapters/16Boss/endless,full18 consumables/12 permanent items/6enhancements,72 cards/final art NOT_IMPLEMENTED until their scheduled packages.",
+    "A00 has not yet adopted the asset gate. Old source PNG/GLB remain and are still copied to build; source rights/visual approval and publication whitelist pending. Chunk/action deprecation warnings are retained.",
+    "CI artifacts expire after14days; compact reports/logs and four selected original screenshots are retained in the repository."
+  ],
+  "nextTask": "A00"
+}

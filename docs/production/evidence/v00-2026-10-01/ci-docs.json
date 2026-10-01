@@ -1,0 +1,48 @@
+{
+  "scope": "docs",
+  "testedCommit": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "c47a6c2c69cf24c172e01d5711717f802981b2192d6fe8a332a634615e97d81b",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": null
+  },
+  "after": {
+    "source": "c47a6c2c69cf24c172e01d5711717f802981b2192d6fe8a332a634615e97d81b",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": null
+  },
+  "steps": [
+    {
+      "name": "plan-counterexamples",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 119
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 123
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "verify:assets",
+      "status": "NOT_INCLUDED",
+      "reason": "A00 not yet adopted; no placeholder gate"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; legacy r1 seeds are regressions only"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

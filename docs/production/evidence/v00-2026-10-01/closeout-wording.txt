@@ -1,0 +1,95 @@
+CHECK verify: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run verify
+
+> dachoupai@0.1.0 verify
+> npm run typecheck && npm test && npm run build
+
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+
+ Test Files  26 passed (26)
+      Tests  222 passed (222)
+   Start at  08:58:28
+   Duration  9.01s (transform 3.12s, setup 0ms, import 6.63s, tests 18.29s, environment 5ms)
+
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 56 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.57 kB │ gzip:   0.37 kB
+dist/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+dist/assets/index-Cw6Gus5X.js   1,339.78 kB │ gzip: 375.26 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.27s
+verify: PASS
+CHECK verify:smoke: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run verify:smoke
+
+> dachoupai@0.1.0 verify:smoke
+> node harness/screenshot.mjs --verify-smoke
+
+desktop: ok
+mobile: ok
+smoke: ok
+verify:smoke: PASS
+CHECK shot: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run shot
+
+> dachoupai@0.1.0 shot
+> node harness/screenshot.mjs
+
+desktop: ok
+mobile: ok
+shots saved to shots/
+shot: PASS
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "3c5bc4752d8e4cb55733d0ecbedb62c859e61555e34eca0c83ad325f7d0814a3",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "after": {
+    "source": "3c5bc4752d8e4cb55733d0ecbedb62c859e61555e34eca0c83ad325f7d0814a3",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "steps": [
+    {
+      "name": "verify",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 22629
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 7570
+    },
+    {
+      "name": "shot",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8324
+    }
+  ]
+}

@@ -2,11 +2,13 @@ import {assertR2Invariants,R2_CONTENT_HASH,R2_CONTENT_VERSION,R2_LIMITS,R2_TARGE
 import type {R2RunState,Command,Action} from '../domain/run';
 import {CHARACTER_IDS} from '../domain/characters';
 import {R2_HAND_TYPES} from '../domain/evaluateR2';
-import {R2_JOKERS} from '../content/r2Schema';
+import {R2_JOKERS,validR2Condition} from '../content/r2Schema';
 import {Rational,MAX_INTEGER_DIGITS} from '../domain/rational';
 import {SCORE_LIMITS} from '../domain/scoreR2';
 import {SeededRng} from '../core/SeededRng';
 import {stableHash} from '../domain/hash';
+import {R2_AVAILABLE_CHAPTERS,R2_BOSSES,R2_SKIP_CONSUMABLES} from '../domain/r2Chapter';
+import {SUITS} from '../cards/types';
 
 export const MAX_JOURNAL=256;
 export const MAX_IMPORT_BYTES=16*1024*1024;
@@ -54,19 +56,17 @@ function trace(value:unknown):void {
     oneOf(e.sourceType,['rule','card','character','joker']);
     if(e.sourceType==='joker')oneOf(e.sourceDefinitionId,R2_JOKERS.map(d=>d.id));
     if(e.sourceType==='character')oneOf(e.sourceDefinitionId,CHARACTER_IDS);
-    oneOf(e.operation,['base','add-heat','add-multiplier','multiply-multiplier','read-growth','add-growth','retrigger-card','retrigger-cap','final-score']);
+    oneOf(e.operation,['base','add-heat','add-multiplier','multiply-multiplier','read-growth','add-growth','retrigger-card','retrigger-cap','final-score','add-heat-per-gold','add-heat-per-empty-slot','ordinary-points-suppressed']);
     fraction(e.value);accumulator(e.before);accumulator(e.after);integer(e.retriggerDepth,0,1);if(e.targetCardId!==undefined)text(e.targetCardId);
-    const c=record(e.visibleCondition, ['kind'],['values','equals','minimum','divisor','remainder']);
-    oneOf(c.kind,['always','hand-type-in','rank-in','played-count','held-count','play-modulo']);
-    if(c.values!==undefined)array(c.values,12).forEach(v=>{if(c.kind==='rank-in')integer(v,2,14);else oneOf(v,R2_HAND_TYPES);});
-    for(const k of ['equals','minimum','divisor','remainder'])if(c[k]!==undefined)integer(c[k],0,100);
+    if(!validR2Condition(e.visibleCondition))fail('invalid-save-visible-condition');
   }
 }
 function action(value:unknown):void {
-  const a=record(value,['type'],['seed','characterId','rulesVersion','selectedIds','instanceId','targetIds','enabled','offerId','ids']);
-  const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],PlayHand:['selectedIds'],DiscardHand:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
+  const a=record(value,['type'],['seed','characterId','rulesVersion','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType']);
+  const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],PlayHand:['selectedIds'],DiscardHand:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
   if(typeof a.type!=='string'||!Object.hasOwn(keys,a.type))fail('unknown-save-command');
-  record(a,['type',...keys[a.type as Action['type']]]);
+  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType']:[]);
+  if(a.handType!==undefined)oneOf(a.handType,R2_HAND_TYPES);
   if(a.type==='StartRun'){text(a.seed,4096);oneOf(a.characterId,CHARACTER_IDS);oneOf(a.rulesVersion,['r2']);}
   for(const k of ['selectedIds','targetIds','ids'])if(a[k]!==undefined)strings(a[k],14);
   for(const k of ['instanceId','offerId'])if(a[k]!==undefined)text(a[k]);
@@ -84,17 +84,20 @@ function safeTree(value:unknown):void {
   };visit(value,0);
 }
 function validateState(value:unknown):asserts value is R2RunState {
-  const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','difficulty','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome']);
+  // Diagnose old versions before changed fields; retaining/exporting raw saves remains explicit.
+  if(value&&typeof value==='object'&&!Array.isArray(value)){const tags=value as Record<string,unknown>;if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||tags.contentVersion!==R2_CONTENT_VERSION||tags.contentHash!==R2_CONTENT_HASH)fail('incompatible-version');}
+  const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','difficulty','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons']);
   if(s.schemaVersion!==2||s.rulesVersion!=='r2'||s.contentVersion!==R2_CONTENT_VERSION||s.contentHash!==R2_CONTENT_HASH)fail('incompatible-version');
-  text(s.runId);text(s.seed,4096);integer(s.commandSeq,1);oneOf(s.difficulty,[0]);oneOf(s.characterId,CHARACTER_IDS);integer(s.chapter,1,8);integer(s.stageIndex,0,R2_TARGETS.length*3);
+  text(s.runId);text(s.seed,4096);integer(s.commandSeq,1);oneOf(s.difficulty,[0]);oneOf(s.characterId,CHARACTER_IDS);integer(s.chapter,1,R2_AVAILABLE_CHAPTERS);integer(s.stageIndex,0,R2_AVAILABLE_CHAPTERS*3);
   oneOf(s.phase,['shop','stage-ready','await-input','stage-cleared','run-won','run-lost']);
   for(const c of array(s.deckInstances,10000))record(c,['id','rank','suit'],['enhancement']);
   for(const k of ['drawPile','handOrder','playedPile','discardPile','destroyedIds','longTermItems'])strings(s[k]);
   score(s.totalHeat);integer(s.gold);jokers(s.jokers);
   for(const c of array(s.consumables,R2_LIMITS.consumableSlots)){const v=record(c,['instanceId','definitionId']);text(v.instanceId);text(v.definitionId);}
-  oneOf(s.program,[null]);oneOf(s.boss,[null]);
-  if(s.stage!==null){const t=record(s.stage,['index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed']);
-    integer(t.index,0,R2_TARGETS.length*3-1);score(t.targetHeat);score(t.heat);integer(t.handsLeft,0,4);integer(t.discardsLeft,0,3);integer(t.playIndex,0,4);integer(t.goldEarned);strings(t.disabledIds);bool(t.wagerSelected);bool(t.wagerUsed);oneOf(t.previousHandType,[null,...R2_HAND_TYPES]);if(t.clearId!==null)text(t.clearId);
+  oneOf(s.program,[null]);const boss=record(s.boss,['definitionId','disabledSuit']);oneOf(boss.definitionId,R2_BOSSES.map(b=>b.id));oneOf(boss.disabledSuit,[null,...SUITS]);strings(s.seenBossIds,R2_AVAILABLE_CHAPTERS);oneOf(s.chapterSkipConsumable,R2_SKIP_CONSUMABLES);integer(s.purchaseCoupons,0,R2_AVAILABLE_CHAPTERS);
+  if(s.stage!==null){const t=record(s.stage,['index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult']);
+    integer(t.index,0,R2_AVAILABLE_CHAPTERS*3-1);score(t.targetHeat);score(t.heat);integer(t.handsLeft,0,R2_LIMITS.hands);integer(t.discardsLeft,0,R2_LIMITS.discards);integer(t.playIndex,0,R2_LIMITS.hands);integer(t.discardsUsed,0,R2_LIMITS.discards+1+R2_LIMITS.consumableSlots);integer(t.goldEarned);strings(t.disabledIds);bool(t.wagerSelected);bool(t.wagerUsed);oneOf(t.previousHandType,[null,...R2_HAND_TYPES]);if(t.clearId!==null)text(t.clearId);
+    if(t.skipResult!==null){const r=record(t.skipResult,['kind'],['amount','definitionId']);oneOf(r.kind,['coupon','consumable','gold']);if(r.kind==='consumable'){record(r,['kind','definitionId']);oneOf(r.definitionId,R2_SKIP_CONSUMABLES);}else{record(r,['kind','amount']);oneOf(r.amount,r.kind==='coupon'?[2]:[1]);}}
   }
   if(s.shop!==null){const shop=record(s.shop,['visitIndex','rerollCount','offers']);integer(shop.visitIndex,0,R2_TARGETS.length*3-1);integer(shop.rerollCount);for(const o of array(shop.offers,3)){const v=record(o,['offerId','definitionId','price','consumed']);text(v.offerId);text(v.definitionId);integer(v.price);bool(v.consumed);}}
   const rng=record(s.rng,['deck','shop','rule','reward']);Object.values(rng).forEach(cursor);
@@ -102,7 +105,7 @@ function validateState(value:unknown):asserts value is R2RunState {
   for(const r of receipts){const v=record(r,['commandId','fingerprint','seq']);text(v.commandId);text(v.fingerprint);integer(v.seq,1);if(v.seq!==++seq||ids.has(v.commandId))fail('invalid-save-receipts');ids.add(v.commandId);}
   if(seq!==s.commandSeq)fail('invalid-save-sequence');
   record(s.handLevels,[],[...R2_HAND_TYPES]);trace(s.lastTrace);
-  if(s.outcome!==null){const o=record(s.outcome,['reason','stageIndex']);oneOf(o.reason,['all-stages-cleared','hands-exhausted','no-legal-cards','abandoned']);integer(o.stageIndex,0,R2_TARGETS.length*3);}
+  if(s.outcome!==null){const o=record(s.outcome,['reason','stageIndex']);oneOf(o.reason,['graybox-complete','all-stages-cleared','hands-exhausted','no-legal-cards','abandoned']);integer(o.stageIndex,0,R2_AVAILABLE_CHAPTERS*3);}
   assertR2Invariants(value as unknown as R2RunState);
 }
 export function makeCheckpoint(state:R2RunState,journal:readonly Command[]):Checkpoint {

@@ -13,4 +13,13 @@ describe('content schema rejects unsafe and unknown data', () => {
     const data=[{...R2_JOKERS[0],hooks:[{phase:'jokerScore',condition:{kind:'always'},operations:[op]}]}];
     expect(validateR2Content(data).length).toBeGreaterThan(0);
   });
+  it.each([
+    ['onStageClear',{kind:'hand-type-in',values:['pair']}],
+    ['onBuyOffer',{kind:'resource',resource:'hands-after',equals:1}],
+    ['onDiscard',{kind:'resource-minimum',resource:'gold',minimum:20}],
+    ['onDiscard',{kind:'resource',resource:'gold',equals:1}],
+  ])('rejects unsupported transaction predicates %s %j',(phase,condition)=>{
+    const operations=phase==='onStageClear'?[{kind:'add-gold',amount:2}]:phase==='onDiscard'?[{kind:'refund-discard',amount:1}]:[{kind:'add-growth',key:'heat',value:{n:'8',d:'1'},cap:{n:'80',d:'1'}}];
+    expect(validateR2Content([{...R2_JOKERS[0],hooks:[{phase,condition,operations}]}]).length).toBeGreaterThan(0);
+  });
 });

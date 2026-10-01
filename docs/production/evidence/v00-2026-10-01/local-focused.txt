@@ -1,0 +1,419 @@
+CHECK verify: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run verify
+
+> dachoupai@0.1.0 verify
+> npm run typecheck && npm test && npm run build
+
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+
+ Test Files  26 passed (26)
+      Tests  222 passed (222)
+   Start at  08:44:08
+   Duration  8.73s (transform 2.55s, setup 0ms, import 6.07s, tests 17.18s, environment 5ms)
+
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 56 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.57 kB │ gzip:   0.37 kB
+dist/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+dist/assets/index-D48pFVya.js   1,339.79 kB │ gzip: 375.27 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.43s
+verify: PASS
+CHECK verify:smoke: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run verify:smoke
+
+> dachoupai@0.1.0 verify:smoke
+> node harness/screenshot.mjs --verify-smoke
+
+desktop: ok
+mobile: ok
+smoke: ok
+verify:smoke: PASS
+CHECK verify:content: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run verify:content
+
+> dachoupai@0.1.0 verify:content
+> node scripts/verify-content.mjs
+
+{
+  "status": "PASS",
+  "definitions": 24,
+  "contentVersion": "quality-r2-graybox-v3",
+  "contentHash": "json-fnv-v1:a1f6f62ddd627819",
+  "conservativeEventBound": 144,
+  "readOnly": true
+}
+verify:content: PASS
+CHECK rules-goldens: C:\Program Files\nodejs\node.exe harness/rules-goldens.mjs shots/v00-focused-rules
+PASS: G01–G15; scoring traces, every before/after and operations independently checked. D:\ai\dachoupai\dachoupai\shots\v00-focused-rules
+rules-goldens: PASS
+CHECK test:v00:sample: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test:v00:sample
+
+> dachoupai@0.1.0 test:v00:sample
+> node harness/v00-sample.mjs
+
+single-held/amo/v00-sample-000: run-lost stage=1 gold=5 hands=5/7 sources=12
+single-held/amo/v00-sample-001: run-won stage=6 gold=29 hands=12/17 sources=24
+single-held/amo/v00-sample-002: run-won stage=6 gold=42 hands=10/15 sources=16
+single-held/amo/v00-sample-003: run-lost stage=1 gold=8 hands=4/6 sources=0
+single-held/amo/v00-sample-004: run-won stage=6 gold=39 hands=5/13 sources=32
+single-held/amo/v00-sample-005: run-won stage=6 gold=27 hands=5/17 sources=25
+single-held/amo/v00-sample-006: run-won stage=6 gold=35 hands=13/18 sources=46
+single-held/amo/v00-sample-007: run-lost stage=5 gold=20 hands=11/17 sources=36
+single-held/amo/v00-sample-008: run-won stage=6 gold=30 hands=7/13 sources=40
+single-held/amo/v00-sample-009: run-won stage=6 gold=29 hands=19/20 sources=43
+single-held/amo/v00-sample-010: run-won stage=6 gold=32 hands=10/13 sources=52
+single-held/amo/v00-sample-011: run-lost stage=5 gold=18 hands=10/16 sources=32
+single-held/amo/v00-sample-012: run-lost stage=2 gold=13 hands=8/9 sources=8
+single-held/amo/v00-sample-013: run-lost stage=4 gold=11 hands=7/11 sources=39
+single-held/amo/v00-sample-014: run-lost stage=2 gold=9 hands=6/9 sources=19
+single-held/amo/v00-sample-015: run-won stage=6 gold=30 hands=14/16 sources=44
+single-held/amo/v00-sample-016: run-won stage=6 gold=36 hands=11/16 sources=31
+single-held/amo/v00-sample-017: run-won stage=6 gold=35 hands=10/14 sources=53
+single-held/amo/v00-sample-018: run-won stage=6 gold=27 hands=11/15 sources=61
+single-held/amo/v00-sample-019: run-won stage=6 gold=32 hands=11/16 sources=28
+single-held/erxiang/v00-sample-000: run-lost stage=1 gold=6 hands=2/6 sources=8
+single-held/erxiang/v00-sample-001: run-lost stage=3 gold=15 hands=4/10 sources=11
+single-held/erxiang/v00-sample-002: run-won stage=6 gold=44 hands=1/13 sources=2
+single-held/erxiang/v00-sample-003: run-lost stage=5 gold=15 hands=9/19 sources=27
+single-held/erxiang/v00-sample-004: run-won stage=6 gold=40 hands=1/13 sources=22
+single-held/erxiang/v00-sample-005: run-lost stage=5 gold=19 hands=1/15 sources=20
+single-held/erxiang/v00-sample-006: run-lost stage=4 gold=15 hands=2/15 sources=31
+single-held/erxiang/v00-sample-007: run-lost stage=5 gold=19 hands=3/17 sources=22
+single-held/erxiang/v00-sample-008: run-won stage=6 gold=31 hands=2/12 sources=36
+single-held/erxiang/v00-sample-009: run-lost stage=3 gold=11 hands=4/11 sources=8
+single-held/erxiang/v00-sample-010: run-lost stage=5 gold=21 hands=11/18 sources=65
+single-held/erxiang/v00-sample-011: run-lost stage=5 gold=19 hands=3/15 sources=22
+single-held/erxiang/v00-sample-012: run-lost stage=2 gold=12 hands=6/10 sources=6
+single-held/erxiang/v00-sample-013: run-lost stage=4 gold=10 hands=3/11 sources=36
+single-held/erxiang/v00-sample-014: run-lost stage=5 gold=16 hands=4/19 sources=45
+single-held/erxiang/v00-sample-015: run-lost stage=4 gold=8 hands=8/17 sources=22
+single-held/erxiang/v00-sample-016: run-won stage=6 gold=38 hands=1/12 sources=12
+single-held/erxiang/v00-sample-017: run-lost stage=5 gold=24 hands=1/14 sources=28
+single-held/erxiang/v00-sample-018: run-won stage=6 gold=25 hands=3/17 sources=44
+single-held/erxiang/v00-sample-019: run-won stage=6 gold=33 hands=2/15 sources=13
+groups/amo/v00-sample-000: run-lost stage=2 gold=13 hands=10/11 sources=0
+groups/amo/v00-sample-001: run-won stage=6 gold=33 hands=11/14 sources=32
+groups/amo/v00-sample-002: run-won stage=6 gold=46 hands=9/13 sources=8
+groups/amo/v00-sample-003: run-lost stage=4 gold=11 hands=13/15 sources=3
+groups/amo/v00-sample-004: run-won stage=6 gold=38 hands=8/10 sources=26
+groups/amo/v00-sample-005: run-won stage=6 gold=26 hands=11/17 sources=22
+groups/amo/v00-sample-006: run-lost stage=5 gold=12 hands=13/21 sources=28
+groups/amo/v00-sample-007: run-won stage=6 gold=30 hands=14/17 sources=49
+groups/amo/v00-sample-008: run-won stage=6 gold=36 hands=6/9 sources=12
+groups/amo/v00-sample-009: run-lost stage=2 gold=11 hands=8/9 sources=0
+groups/amo/v00-sample-010: run-lost stage=4 gold=8 hands=6/12 sources=0
+groups/amo/v00-sample-011: run-won stage=6 gold=38 hands=9/10 sources=37
+groups/amo/v00-sample-012: run-won stage=6 gold=29 hands=11/14 sources=36
+groups/amo/v00-sample-013: run-won stage=6 gold=42 hands=6/10 sources=6
+groups/amo/v00-sample-014: run-won stage=6 gold=22 hands=14/18 sources=61
+groups/amo/v00-sample-015: run-won stage=6 gold=26 hands=13/17 sources=17
+groups/amo/v00-sample-016: run-won stage=6 gold=28 hands=11/17 sources=21
+groups/amo/v00-sample-017: run-won stage=6 gold=34 hands=11/12 sources=31
+groups/amo/v00-sample-018: run-won stage=6 gold=27 hands=15/17 sources=58
+groups/amo/v00-sample-019: run-won stage=6 gold=31 hands=12/14 sources=41
+groups/erxiang/v00-sample-000: run-won stage=6 gold=29 hands=15/15 sources=20
+groups/erxiang/v00-sample-001: run-won stage=6 gold=40 hands=8/9 sources=36
+groups/erxiang/v00-sample-002: run-won stage=6 gold=53 hands=7/9 sources=8
+groups/erxiang/v00-sample-003: run-lost stage=5 gold=19 hands=13/15 sources=4
+groups/erxiang/v00-sample-004: run-won stage=6 gold=41 hands=8/9 sources=26
+groups/erxiang/v00-sample-005: run-won stage=6 gold=33 hands=9/12 sources=18
+groups/erxiang/v00-sample-006: run-won stage=6 gold=23 hands=11/18 sources=23
+groups/erxiang/v00-sample-007: run-won stage=6 gold=37 hands=9/10 sources=36
+groups/erxiang/v00-sample-008: run-won stage=6 gold=36 hands=6/9 sources=12
+groups/erxiang/v00-sample-009: run-lost stage=4 gold=17 hands=11/13 sources=0
+groups/erxiang/v00-sample-010: run-won stage=6 gold=22 hands=11/13 sources=0
+groups/erxiang/v00-sample-011: run-won stage=6 gold=40 hands=7/8 sources=24
+groups/erxiang/v00-sample-012: run-won stage=6 gold=35 hands=9/11 sources=37
+groups/erxiang/v00-sample-013: run-won stage=6 gold=42 hands=6/7 sources=6
+groups/erxiang/v00-sample-014: run-won stage=6 gold=30 hands=11/14 sources=50
+groups/erxiang/v00-sample-015: run-won stage=6 gold=30 hands=11/13 sources=15
+groups/erxiang/v00-sample-016: run-won stage=6 gold=28 hands=11/17 sources=21
+groups/erxiang/v00-sample-017: run-won stage=6 gold=40 hands=9/10 sources=26
+groups/erxiang/v00-sample-018: run-won stage=6 gold=34 hands=11/13 sources=44
+groups/erxiang/v00-sample-019: run-won stage=6 gold=33 hands=10/12 sources=31
+suit/amo/v00-sample-000: run-won stage=6 gold=25 hands=6/15 sources=0
+suit/amo/v00-sample-001: run-won stage=6 gold=30 hands=4/15 sources=6
+suit/amo/v00-sample-002: run-lost stage=2 gold=8 hands=1/9 sources=9
+suit/amo/v00-sample-003: run-lost stage=5 gold=19 hands=3/15 sources=13
+suit/amo/v00-sample-004: run-lost stage=2 gold=12 hands=1/10 sources=1
+suit/amo/v00-sample-005: run-won stage=6 gold=34 hands=7/14 sources=31
+suit/amo/v00-sample-006: run-won stage=6 gold=34 hands=6/14 sources=17
+suit/amo/v00-sample-007: run-won stage=6 gold=30 hands=4/16 sources=24
+suit/amo/v00-sample-008: run-won stage=6 gold=38 hands=5/10 sources=18
+suit/amo/v00-sample-009: run-lost stage=5 gold=13 hands=3/18 sources=48
+suit/amo/v00-sample-010: run-won stage=6 gold=30 hands=6/12 sources=18
+suit/amo/v00-sample-011: run-won stage=6 gold=40 hands=4/13 sources=9
+suit/amo/v00-sample-012: run-won stage=6 gold=30 hands=5/15 sources=27
+suit/amo/v00-sample-013: run-won stage=6 gold=30 hands=4/10 sources=28
+suit/amo/v00-sample-014: run-won stage=6 gold=27 hands=3/17 sources=40
+suit/amo/v00-sample-015: run-won stage=6 gold=36 hands=7/12 sources=37
+suit/amo/v00-sample-016: run-won stage=6 gold=40 hands=5/8 sources=12
+suit/amo/v00-sample-017: run-won stage=6 gold=35 hands=3/12 sources=24
+suit/amo/v00-sample-018: run-won stage=6 gold=28 hands=4/15 sources=36
+suit/amo/v00-sample-019: run-won stage=6 gold=27 hands=4/16 sources=1
+suit/erxiang/v00-sample-000: run-won stage=6 gold=21 hands=1/20 sources=3
+suit/erxiang/v00-sample-001: run-won stage=6 gold=33 hands=4/13 sources=8
+suit/erxiang/v00-sample-002: run-won stage=6 gold=34 hands=4/12 sources=24
+suit/erxiang/v00-sample-003: run-won stage=6 gold=26 hands=4/13 sources=27
+suit/erxiang/v00-sample-004: run-won stage=6 gold=42 hands=2/10 sources=14
+suit/erxiang/v00-sample-005: run-won stage=6 gold=27 hands=5/15 sources=17
+suit/erxiang/v00-sample-006: run-won stage=6 gold=35 hands=6/13 sources=16
+suit/erxiang/v00-sample-007: run-won stage=6 gold=43 hands=3/13 sources=19
+suit/erxiang/v00-sample-008: run-won stage=6 gold=40 hands=4/9 sources=13
+suit/erxiang/v00-sample-009: run-lost stage=5 gold=15 hands=3/16 sources=39
+suit/erxiang/v00-sample-010: run-won stage=6 gold=29 hands=4/13 sources=19
+suit/erxiang/v00-sample-011: run-won stage=6 gold=42 hands=1/11 sources=6
+suit/erxiang/v00-sample-012: run-won stage=6 gold=29 hands=3/16 sources=33
+suit/erxiang/v00-sample-013: run-won stage=6 gold=45 hands=4/7 sources=23
+suit/erxiang/v00-sample-014: run-won stage=6 gold=29 hands=3/14 sources=37
+suit/erxiang/v00-sample-015: run-won stage=6 gold=30 hands=5/16 sources=11
+suit/erxiang/v00-sample-016: run-won stage=6 gold=34 hands=5/10 sources=14
+suit/erxiang/v00-sample-017: run-won stage=6 gold=38 hands=2/11 sources=19
+suit/erxiang/v00-sample-018: run-won stage=6 gold=33 hands=4/12 sources=28
+suit/erxiang/v00-sample-019: run-won stage=6 gold=30 hands=2/14 sources=1
+[
+  {
+    "style": "single-held",
+    "characterId": "amo",
+    "total": 20,
+    "wins": 13,
+    "deathStages": {
+      "1": 2,
+      "2": 2,
+      "4": 1,
+      "5": 2
+    },
+    "averageRemainingGold": 25.35,
+    "unusedDiscardsAtDeath": 7,
+    "allFiveSlots": 15
+  },
+  {
+    "style": "single-held",
+    "characterId": "erxiang",
+    "total": 20,
+    "wins": 6,
+    "deathStages": {
+      "1": 1,
+      "2": 1,
+      "3": 2,
+      "4": 3,
+      "5": 7
+    },
+    "averageRemainingGold": 21.05,
+    "unusedDiscardsAtDeath": 14,
+    "allFiveSlots": 14
+  },
+  {
+    "style": "groups",
+    "characterId": "amo",
+    "total": 20,
+    "wins": 15,
+    "deathStages": {
+      "2": 2,
+      "4": 2,
+      "5": 1
+    },
+    "averageRemainingGold": 27.05,
+    "unusedDiscardsAtDeath": 5,
+    "allFiveSlots": 18
+  },
+  {
+    "style": "groups",
+    "characterId": "erxiang",
+    "total": 20,
+    "wins": 18,
+    "deathStages": {
+      "4": 1,
+      "5": 1
+    },
+    "averageRemainingGold": 33.1,
+    "unusedDiscardsAtDeath": 2,
+    "allFiveSlots": 20
+  },
+  {
+    "style": "suit",
+    "characterId": "amo",
+    "total": 20,
+    "wins": 16,
+    "deathStages": {
+      "2": 2,
+      "5": 2
+    },
+    "averageRemainingGold": 28.3,
+    "unusedDiscardsAtDeath": 0,
+    "allFiveSlots": 16
+  },
+  {
+    "style": "suit",
+    "characterId": "erxiang",
+    "total": 20,
+    "wins": 19,
+    "deathStages": {
+      "5": 1
+    },
+    "averageRemainingGold": 32.75,
+    "unusedDiscardsAtDeath": 0,
+    "allFiveSlots": 18
+  }
+]
+public graybox cohort: PASS; runs=120
+test:v00:sample: PASS
+CHECK test:v00:browser: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test:v00:browser
+
+> dachoupai@0.1.0 test:v00:browser
+> node harness/v00.mjs
+
+vite v7.3.6 building client environment for e2e...
+transforming...
+✓ 56 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-v00/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-v00/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-v00/assets/index-6VepcyR2.js   1,339.88 kB │ gzip: 375.33 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.69s
+chromium/chapter-skip-public-ui: PASS
+chromium/two-chapters-single-held: PASS
+chromium/two-chapters-groups: PASS
+chromium/two-chapters-suit: PASS
+chromium/usable-skip-T01: PASS
+chromium/usable-skip-T06: PASS
+chromium/usable-skip-T03: PASS
+chromium/usable-skip-T05: PASS
+chromium/usable-skip-T04: PASS
+chromium/usable-skip-T17: PASS
+firefox/chapter-skip-public-ui: PASS
+firefox/two-chapters-single-held: PASS
+firefox/two-chapters-groups: PASS
+firefox/two-chapters-suit: PASS
+firefox/usable-skip-T01: PASS
+firefox/usable-skip-T06: PASS
+firefox/usable-skip-T03: PASS
+firefox/usable-skip-T05: PASS
+firefox/usable-skip-T04: PASS
+firefox/usable-skip-T17: PASS
+webkit/chapter-skip-public-ui: PASS
+webkit/two-chapters-single-held: PASS
+webkit/two-chapters-groups: PASS
+webkit/two-chapters-suit: PASS
+webkit/usable-skip-T01: PASS
+webkit/usable-skip-T06: PASS
+webkit/usable-skip-T03: PASS
+webkit/usable-skip-T05: PASS
+webkit/usable-skip-T04: PASS
+webkit/usable-skip-T17: PASS
+graybox browser: PASS
+test:v00:browser: PASS
+CHECK shot: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run shot
+
+> dachoupai@0.1.0 shot
+> node harness/screenshot.mjs
+
+desktop: ok
+mobile: ok
+shots saved to shots/
+shot: PASS
+CHECK plan-counterexamples: C:\Program Files\nodejs\node.exe scripts/check-production-plan.mjs --self-test
+PLAN_CHECKER_SELF_TEST_PASS: 1 valid and 13 invalid fixtures
+plan-counterexamples: PASS
+CHECK production-plan: C:\Program Files\nodejs\node.exe scripts/check-production-plan.mjs
+PLAN_VALID: 23 work packages; current=V00; not a gameplay acceptance
+production-plan: PASS
+{
+  "scope": "V00 final font repair and unchanged domain contracts",
+  "testedCommit": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "a40976a3186a3ab2ad867e308e9cf633a8a12a66a7c94edccf264cfaf378730e",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "after": {
+    "source": "a40976a3186a3ab2ad867e308e9cf633a8a12a66a7c94edccf264cfaf378730e",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "steps": [
+    {
+      "name": "verify",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 22564
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8024
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3793
+    },
+    {
+      "name": "rules-goldens",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 4462
+    },
+    {
+      "name": "test:v00:sample",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 43562
+    },
+    {
+      "name": "test:v00:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 502753
+    },
+    {
+      "name": "shot",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8645
+    },
+    {
+      "name": "plan-counterexamples",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 726
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 736
+    }
+  ]
+}

@@ -7,6 +7,7 @@ export function getR2Joker(id:string):R2JokerDefinition {
   const definition=R2_JOKERS.find(d=>d.id===id);if(!definition)throw new Error(`unknown-joker: ${id}`);return definition;
 }
 export const r2Price=(id:string):number=>R2_ECONOMY.prices[getR2Joker(id).rarity];
+export const r2PurchasePrice=(state:{purchaseCoupons:number},offer:R2Offer):number=>Math.max(1,offer.price-(state.purchaseCoupons>0?2:0));
 export const salePrice=(paidPrice:number):number=>Math.max(1,Math.floor(paidPrice/2));
 export const rerollPrice=(count:number):number=>Math.min(R2_ECONOMY.rerollCap,R2_ECONOMY.rerollStart+count);
 export const r2Pool=(owned:readonly string[]):R2JokerDefinition[]=>R2_JOKERS.filter(d=>!owned.includes(d.id));

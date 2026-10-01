@@ -1,0 +1,60 @@
+{
+  "scope": "domain",
+  "testedCommit": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "70fdbe8b0ad3647cc87e9ee916ebe24471b2a3a4f25c9dd39c0b2f6fc0292f4f",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": null
+  },
+  "after": {
+    "source": "70fdbe8b0ad3647cc87e9ee916ebe24471b2a3a4f25c9dd39c0b2f6fc0292f4f",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": null
+  },
+  "steps": [
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3673
+    },
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 6055
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 1133
+    },
+    {
+      "name": "rules-goldens",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 1066
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "verify:assets",
+      "status": "NOT_INCLUDED",
+      "reason": "A00 not yet adopted; no placeholder gate"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; legacy r1 seeds are regressions only"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

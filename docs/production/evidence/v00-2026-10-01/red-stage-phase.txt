@@ -1,0 +1,27 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/v00-save.test.ts (5 tests | 1 failed) 39ms
+     × rejects a forged target, impossible skip success and counters after checksum re-signing 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/v00-save.test.ts > V00 strict save boundary before broader browser coverage > rejects a forged target, impossible skip success and counters after checksum re-signing
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/v00-save.test.ts:29:133
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  07:32:02
+   Duration  634ms (transform 253ms, setup 0ms, import 312ms, tests 39ms, environment 0ms)

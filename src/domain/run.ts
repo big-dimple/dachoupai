@@ -93,11 +93,11 @@ export interface RunState {
 
 export type Action =
   | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2' }
-  | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' }
+  | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' | 'SkipStage' }
   | { type: 'PlayHand'; selectedIds: readonly string[] }
   | { type: 'DiscardHand'; selectedIds: readonly string[] }
   | { type: 'SellJoker'; instanceId:string }
-  | { type: 'UseConsumable'; instanceId:string; targetIds:readonly string[] }
+  | { type: 'UseConsumable'; instanceId:string; targetIds:readonly string[]; handType?:import('./evaluateR2').R2HandType }
   | { type: 'DestroyConsumable'; instanceId:string }
   | { type: 'SetWager'; enabled: boolean }
   | { type: 'BuyOffer'; offerId: string }
@@ -115,7 +115,9 @@ export type DomainEvent =
   | { type: 'hand-scored-r2'; score: ScoreTrace; playedIds: string[]; playIndex: number }
   | { type: 'stage-ended'; cleared: boolean; stage: StageState | R2StageState }
   | { type: 'cards-discarded';cardIds:string[];discardsLeft:number }
-  | { type: 'run-abandoned' };
+  | { type: 'run-abandoned' }
+  | { type: 'stage-skipped';stage: R2StageState }
+  | { type: 'joker-transaction';phase:'onDiscard'|'onStageClear'|'onBuyOffer';definitionId:string;instanceId:string;operation:string;amount:string };
 
 export type CommandResult<S = RunState> =
   | { ok: true; state: Exclude<S, null>; events: DomainEvent[]; receipt: Receipt; duplicate: boolean }

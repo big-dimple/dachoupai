@@ -1,0 +1,41 @@
+
+> dachoupai@0.1.0 verify
+> npm run typecheck && npm test && npm run build
+
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/r2-run.test.ts (13 tests | 1 failed) 194ms
+     × reorder permutations preserve instances and terminal phases reject every resource action 23ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/r2-run.test.ts > r2 run economy and resources > reorder permutations preserve instances and terminal phases reject every resource action
+Error: Run invariant: active stage pointer
+ ❯ check src/domain/r2Run.ts:35:70
+     33|
+     34| export function assertR2Invariants(state:R2RunState):void {
+     35|   const check=(condition:boolean,label:string)=>{if(!condition)throw n…
+       |                                                                      ^
+     36|   check(state.schemaVersion===2 && state.rulesVersion==='r2' && state.…
+     37|   const ids=state.deckInstances.map(c=>c.id), zones=[...state.drawPile…
+ ❯ assertR2Invariants src/domain/r2Run.ts:53:55
+ ❯ applyCommand src/domain/run.ts:189:5
+ ❯ send tests/r2-run.test.ts:8:16
+ ❯ tests/r2-run.test.ts:122:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 25 passed (26)
+      Tests  1 failed | 220 passed (221)
+   Start at  07:32:08
+   Duration  7.90s (transform 2.22s, setup 0ms, import 5.39s, tests 14.99s, environment 5ms)

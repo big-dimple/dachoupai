@@ -1,0 +1,31 @@
+
+> dachoupai@0.1.0 test:v00:browser
+> node harness/v00.mjs
+
+vite v7.3.6 building client environment for e2e...
+transforming...
+✓ 56 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-v00/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-v00/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-v00/assets/index-usRYSCX1.js   1,339.74 kB │ gzip: 375.30 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.29s
+chromium/two-chapters-single-held: AssertionError [ERR_ASSERTION]: 360px equipped-card label stays inside its slot: □ 过场+2金
+AssertionError [ERR_ASSERTION]: 360px equipped-card label stays inside its slot: □ 过场+2金
+    at rackFits (file:///D:/ai/dachoupai/dachoupai/harness/v00.mjs:27:66)
+    at async fullRun (file:///D:/ai/dachoupai/dachoupai/harness/v00.mjs:85:34)
+    at async file:///D:/ai/dachoupai/dachoupai/harness/v00.mjs:125:21 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+graybox browser: FAIL

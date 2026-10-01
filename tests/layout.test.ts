@@ -22,6 +22,12 @@ describe('CSS layout contract',()=>{
     expect(l.hud.y).toBeGreaterThanOrEqual(24);expect(l.buttons.play.y+l.buttons.play.height).toBeLessThanOrEqual(810);
     const narrow=layout({width:320,height:568},{top:0,right:0,bottom:0,left:0});expect(narrow.compact).toBe(true);expect(narrow.height).toBe(568);
   });
+  it('shop chapter/items controls have their own readable row outside the shelf and rack',()=>{
+    for(const [width,height] of sizes){const l=layout({width,height},{top:0,right:0,bottom:0,left:0});
+      const targets=Object.values(l.shopTools);for(const b of targets){expect(inside(b,width,height)).toBe(true);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.width).toBeGreaterThanOrEqual(44);for(const other of [...l.shelf,...l.slots,...[l.buttons.discard,l.buttons.play,l.buttons.forward]])expect(intersects(b,other)).toBe(false);}
+      expect(intersects(targets[0],targets[1])).toBe(false);
+    }
+  });
 });
 describe('pointer intent prevents accidental commands',()=>{
   it('tap selects; motion and cancellation never select or buy',()=>{

@@ -46,12 +46,14 @@ npm run verify
 npx playwright install chromium firefox webkit
 npm run verify:smoke
 npm run test:e2e
+npm run test:v00:sample
+npm run test:v00:browser
 npm run verify:ci
 node scripts/check-production-plan.mjs --self-test
 node scripts/check-production-plan.mjs
 ```
 
-`verify:smoke` 只覆盖选角→商店→进入牌桌。`test:e2e` 用构建产物检查三引擎和实际触摸的已实现主循环/中断；当前未实现的 Boss/最终胜利/无尽仍不在覆盖内。`verify:ci` 只组合现有门禁，报告未纳入的资产/平衡/真人项；不得以此替代手机或真人验收。其他计划中的命令在工作包落地前一律视为尚未实现。
+`verify:smoke` 只覆盖选角→商店→进入牌桌。`test:e2e` 用构建产物检查三引擎和实际触摸的暖场事务、失败、资源降级与中断。`test:v00:sample` 固定120局公开信息策略诊断，随后 `test:v00:browser` 用其三种代表种子检查完整两章/B01–B04/跳场/六种最小物品与恢复；CI 强制三引擎。八章/无尽仍在后续工作包。`verify:ci` 报告未纳入的资产/平衡/真人项；不得以此替代手机或真人验收。其他计划中的命令在工作包落地前一律视为尚未实现。
 
 `release:checked` 只执行只读 `verify:ci`，`--plan` 只列计划、标 NOT_RUN。它不提交、推送或合并；正常小分支提交与 PR 审查仍需执行。提交/推送前运行轻量 `jiepi-clear`，只纳入评审过的文件。不得擅自合并自己的 PR、强推或推送 main。
 
