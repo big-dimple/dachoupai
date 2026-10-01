@@ -28,7 +28,8 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const playedArea=landscape?box(scoreBoard.x+scoreBoard.width+8,preview.y,preview.width-scoreBoard.width-8,preview.height):box(preview.x,scoreBoard.y+scoreBoard.height+8,preview.width,preview.height-scoreBoard.height-8);
   const gap=8,toolWidth=(tools.width-3*gap)/4,actionWidth=(actions.width-2*gap)/3;
   const buttons={rank:box(tools.x,tools.y,toolWidth,44),suit:box(tools.x+toolWidth+gap,tools.y,toolWidth,44),deck:box(tools.x+2*(toolWidth+gap),tools.y,toolWidth,44),details:box(tools.x+3*(toolWidth+gap),tools.y,toolWidth,44),discard:box(actions.x,actions.y,actionWidth,actions.height),play:box(actions.x+actionWidth+gap,actions.y,actionWidth,actions.height),forward:box(actions.x+2*(actionWidth+gap),actions.y,actionWidth,actions.height)};
-  const cardWidth=Math.min(portrait?112:132,hand.width-7*36),pitch=(hand.width-cardWidth)/7;
+  // Keep poker faces vertical even when the hand row has little height.
+  const cardWidth=Math.min(portrait?112:132,(hand.height-22)/1.4,hand.width-7*36),pitch=(hand.width-cardWidth)/7;
   const cards=Array.from({length:8},(_,i)=>({visual:box(hand.x+i*pitch,hand.y+22,cardWidth,hand.height-22),hit:box(hand.x+i*pitch,hand.y,Math.min(cardWidth,i===7?cardWidth:pitch),hand.height)}));
   const cols=portrait?2:3,rows=6/cols,cgap=12,ch=(h-68-(rows-1)*cgap)/rows,cwidth=(w-(cols-1)*cgap)/cols;
   const characterCards=Array.from({length:6},(_,i)=>box(x+(i%cols)*(cwidth+cgap),y+56+Math.floor(i/cols)*(ch+cgap),cwidth,ch));

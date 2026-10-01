@@ -38,15 +38,16 @@ export class IntermissionScene extends Phaser.Scene {
   private lifecycle=0;
   private busy=false;
   private notice='';
+  private firstRender=true;
   private readonly dialog=new DetailDialog();
   private readonly audio=AudioEngine.shared;
   constructor(){super('intermission');}
   init(data:IntermissionResult):void {this.result=data;}
   private get ready():boolean {return !this.busy&&runController(this)?.status==='idle'&&gameSession().lease.writable;}
   create():void {
-    this.lifecycle++;this.busy=false;this.notice='';this.events.once('shutdown',()=>{this.lifecycle++;this.dialog.close();});
+    this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;this.events.once('shutdown',()=>{this.lifecycle++;this.dialog.close();});
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
-    this.cameras.main.setBackgroundColor('#e4dac7');
+    this.cameras.main.setBackgroundColor('#153c40');
     const skipped=!!run.stage.skipResult;this.audio.setScene(this.result.cleared?'success':'failure');
     if(!skipped){if(this.result.cleared)this.audio.success();else this.audio.failure();}
     this.view=new SceneView(this,()=>this.render());this.render();
@@ -58,32 +59,46 @@ export class IntermissionScene extends Phaser.Scene {
     const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex):undefined,skipped=run.stage?.skipResult,won=run.phase==='run-won';
     const gap=(BigInt(stage.targetHeat)>BigInt(this.result.stageHeat)?BigInt(stage.targetHeat)-BigInt(this.result.stageHeat):0n).toString(),accent=this.result.cleared?0x367f75:0xbf493d,accentText=this.result.cleared?'#367f75':'#aa3f35';
     v.clear();v.paperBackground();
-    v.text(p.x,p.top,skipped?'换一场，再登台':won?'两章演完了':this.result.cleared?'这场，撑住了':'冷场了，再试一次',p.short?24:30,'#203744',p.w-72);
-    v.text(p.x,p.top+42,stage.name+' · '+character.name,14,'#48685f',p.w);
+    v.text(p.x,p.top,skipped?'换一场，再登台':won?'两章演完了':this.result.cleared?'这场，撑住了':'冷场了，再试一次',p.short?24:30,'#fff2da',p.w-72).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
+    v.text(p.x,p.top+42,stage.name+' · '+character.name,14,'#d5ddc9',p.w);
     const s=p.score,lightAccent=this.result.cleared?'#b5dec8':'#ffc7a7';
+    const animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.panel(s,this.result.cleared?0x3b716d:0x7c4a48,this.result.cleared?0x183944:0x3e2836,0xcda96e,true);
     v.text(s.x+16,s.y+11,'本场热度',14,'#f1dbaa').setFontStyle('bold');
     const scoreSize=Math.max(24,Math.min(p.short?42:56,(s.height-78)/1.2));
     const score=v.text(s.x+16,s.y+31,heatText(this.result.stageHeat),scoreSize,'#fff3d4').setName('result/score').setFontStyle('bold').setShadow(0,2,'#142b34',2,true,true);
     for(let font=scoreSize;score.width>s.width-96&&font>24;)score.setFontSize(--font);
+    if(animateIn){
+      const target=BigInt(this.result.stageHeat),roll={t:0};
+      if(target>0n&&target<10000000000n)this.tweens.add({targets:roll,t:1,duration:560,ease:'Cubic.easeOut',onUpdate:()=>{if(score.active)score.setText(heatText(BigInt(Math.floor(Number(target)*roll.t)).toString()));},onComplete:()=>{if(score.active){score.setText(heatText(this.result.stageHeat));}}});
+    }
     const seal={x:s.x+s.width-66,y:s.y+14,width:48,height:48};
     this.panel(seal,0xffe6a5,0xbc8f51,0xf0cc8f);
-    v.text(seal.x+24,seal.y+24,skipped?'跳':this.result.cleared?'过':'冷',28,accentText).setOrigin(.5).setAngle(-6).setFontStyle('bold');
+    const sealStamp=v.text(seal.x+24,seal.y+24,skipped?'跳':this.result.cleared?'过':'冷',28,accentText).setOrigin(.5).setAngle(-6).setFontStyle('bold');
+    if(animateIn){
+      sealStamp.setScale(1.8).setAngle(-28).setAlpha(0);
+      this.tweens.add({targets:sealStamp,scale:1,angle:-6,alpha:1,duration:290,delay:240,ease:'Back.easeOut',onComplete:()=>{if(sealStamp.active&&this.scene.isActive())this.audio.cardLand();}});
+    }
     if(this.result.cleared&&!skipped&&s.height>=150){
       v.text(seal.x+24,s.y+68,'过关奖励',14,'#e4c894').setOrigin(.5,0);
       const reward=v.text(seal.x+24,s.y+87,'+'+this.result.goldEarned+' 金',24,'#ffdf92').setOrigin(.5,0).setFontStyle('bold').setShadow(0,1,'#142b34',1,true,true);
       for(let font=24;reward.width>80&&font>18;)reward.setFontSize(--font);
+      if(animateIn)this.tweens.add({targets:reward,scale:{from:.3,to:1},duration:260,delay:380,ease:'Back.easeOut'});
     }
     v.text(s.x+16,s.y+s.height-46,`目标 ${heatText(stage.targetHeat)} · `+(skipped?'本场跳过':this.result.cleared?'已达标':`差 ${heatText(gap)}`),14,lightAccent,s.width-32).setName('result/gap');
     const bar={x:s.x+16,y:s.y+s.height-18,width:s.width-32,height:7};v.rect(bar,0x142f38).setStrokeStyle(1,0x7f7c66,.65);
     const target=BigInt(stage.targetHeat),current=BigInt(this.result.stageHeat),progress=current>=target?1:Number(current*1000n/target)/1000;
-    if(progress>0)v.material({...bar,width:Math.max(1,bar.width*progress)},this.result.cleared?0xb5dcb9:0xf2b68e,this.result.cleared?0x65a895:0xc77765,2);
+    if(progress>0){
+      const fill=v.material({...bar,width:Math.max(1,bar.width*progress)},this.result.cleared?0xb5dcb9:0xf2b68e,this.result.cleared?0x65a895:0xc77765,2);
+      if(animateIn){const full=fill.displayWidth;fill.displayWidth=1;this.tweens.add({targets:fill,displayWidth:full,duration:520,delay:260,ease:'Cubic.easeOut'});}
+    }
     const values=[['金币',run.gold],['剩余出牌',this.result.handsLeft],['剩余弃牌',run.stage?.discardsLeft??0],['本场出牌',run.stage?.playIndex??0]] as const;
+    v.material(p.resources,0x2a4c52,0x1a323d,6);
     const resourceWidth=(p.resources.width-24)/4;
     values.forEach(([label,value],i)=>{
       const b={x:p.resources.x+i*(resourceWidth+8),y:p.resources.y,width:resourceWidth,height:p.resources.height};
-      this.panel(b,i===0?0xf9dfa6:0xfaf0d9,i===0?0xd4ac6d:0xdfceb0,i===0?0xb38b50:0xb8aa8d);
-      v.text(b.x+8,b.y+7,label,14,i===0?'#664a2a':'#48685f',b.width-16);v.text(b.x+8,b.y+30,String(value),22,i===0?'#694623':'#203744').setFontStyle('bold');
+      if(i>0)v.add(this.add.graphics().lineStyle(1,0x809a93,.4).lineBetween(b.x-4,b.y+12,b.x-4,b.y+b.height-12));
+      v.text(b.x+8,b.y+7,label,14,i===0?'#f3d59a':'#d1dccb');v.text(b.x+8,b.y+30,String(value),22,i===0?'#ffe4a8':'#fff0d3').setFontStyle('bold');
     });
     const trace=run.lastTrace,a=p.last;this.panel(a,0xfff8e6,0xead7b5,0xbca578);v.text(a.x+14,a.y+10,'最后一手',14,'#48685f').setFontStyle('bold');
     if(trace){
@@ -116,20 +131,14 @@ export class IntermissionScene extends Phaser.Scene {
       v.button(p.primary,this.busy?'正在开局…':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }
     v.button(p.right,'回看上手','action/last-hand',()=>this.inspectLastHand(),!!trace&&!this.busy);
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':nextStage?'结果已保存，进入商店准备下一场。':'同局重试保留角色与 seed，从第一章开始。'),14,this.notice?'#aa3f35':'#48685f',p.w);
+    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':nextStage?'结果已保存，进入商店准备下一场。':'同局重试保留角色与 seed，从第一章开始。'),14,this.notice?'#ffd0b1':'#d5ddc9',p.w);
+    this.firstRender=false;
   }
   private panel(b:Box,top:number,bottom:number,edge:number,heavy=false):void {
     const v=this.view,g=this.add.graphics(),radius=heavy?8:5;
     v.add(this.add.graphics().fillStyle(0x18353d,.17).fillRoundedRect(b.x+1,b.y+4,b.width,b.height,radius));
     v.material(b,top,bottom,radius);
-    g.lineStyle(heavy?2:1,edge).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,radius);
-    g.lineStyle(1,0xffecc3,heavy ? .45 : .35).beginPath().moveTo(b.x+8,b.y+5).lineTo(b.x+b.width-8,b.y+5).strokePath();
-    if(heavy){
-      g.lineStyle(1,0x94ada1,.45).strokeRoundedRect(b.x+5,b.y+5,b.width-10,b.height-10,4);
-      for(const [cx,cy,sx,sy] of [[b.x+8,b.y+8,1,1],[b.x+b.width-8,b.y+8,-1,1],[b.x+8,b.y+b.height-8,1,-1],[b.x+b.width-8,b.y+b.height-8,-1,-1]]){
-        g.lineStyle(2,0xe5bd7c).beginPath().moveTo(cx,cy+8*sy).lineTo(cx,cy).lineTo(cx+8*sx,cy).strokePath();
-      }
-    }
+    g.lineStyle(heavy?1.5:1,edge,heavy?.8:.45).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,radius);
     v.add(g);
   }
   private inspectResult():void {

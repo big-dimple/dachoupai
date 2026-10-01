@@ -13,7 +13,7 @@ describe('CSS layout contract',()=>{
     expect(intersects(l.hand,l.actions)).toBe(false);expect(intersects(l.tools,l.hand)).toBe(false);expect(intersects(l.preview,l.tools)).toBe(false);
     const buttons=Object.values(l.buttons);for(let i=0;i<buttons.length;i++)for(let j=i+1;j<buttons.length;j++)expect(intersects(buttons[i],buttons[j])).toBe(false);
     expect(l.bodyFont).toBeGreaterThanOrEqual(14);expect(l.numberFont).toBeGreaterThanOrEqual(22);
-    expect(l.cards.length).toBe(8);for(const c of l.cards){expect(inside(c.hit,width,height)).toBe(true);expect(c.hit.width).toBeGreaterThanOrEqual(36);}
+    expect(l.cards.length).toBe(8);for(const c of l.cards){expect(inside(c.hit,width,height)).toBe(true);expect(c.hit.width).toBeGreaterThanOrEqual(36);expect(c.visual.height/c.visual.width).toBeGreaterThanOrEqual(1.4-1e-6);}
     for(let i=0;i<l.cards.length;i++)for(let j=i+1;j<l.cards.length;j++)expect(intersects(l.cards[i].hit,l.cards[j].hit)).toBe(false);
     expect(l.characterCards).toHaveLength(6);for(const c of l.characterCards)expect(inside(c,width,height)).toBe(true);
   });

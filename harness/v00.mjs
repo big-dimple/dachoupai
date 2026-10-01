@@ -6,7 +6,7 @@ import {createServer} from 'node:http';
 import path from 'node:path';
 import {chromium,firefox,webkit} from 'playwright';
 import {createServer as createViteServer} from 'vite';
-import {waitScene,tapUI,chooseCharacter} from './ui.mjs';
+import {openSelector,waitScene,tapUI,chooseCharacter} from './ui.mjs';
 
 const root=process.cwd(),dir=path.resolve(process.env.V00_EVIDENCE_DIR||'shots/v00-ui'),out=path.join(root,'shots/build-v00');
 fs.mkdirSync(dir,{recursive:true});
@@ -28,7 +28,7 @@ async function rackFits(page){
   }finally{await page.setViewportSize(original);await page.waitForFunction(w=>window.__harness.game.scale.width===w,original.width);}
 }
 async function menu(page,touch){if(await page.getByRole('button',{name:'菜单',exact:true}).getAttribute('aria-expanded')!=='true')await dom(page,'菜单',touch);}
-async function restore(page,touch,key){const before=await read(page);await page.reload();await waitScene(page,'character-select');assert.deepEqual(await read(page),before,'reload restores complete checkpoint');await menu(page,touch);await dom(page,'继续本局',touch);await waitScene(page,key);assert.deepEqual(await read(page),before,'continuing cannot change score or RNG');}
+async function restore(page,touch,key){const before=await read(page);await page.reload();await openSelector(page);assert.deepEqual(await read(page),before,'reload restores complete checkpoint');await menu(page,touch);await dom(page,'继续本局',touch);await waitScene(page,key);assert.deepEqual(await read(page),before,'continuing cannot change score or RNG');}
 async function chapterSkip(page,touch,url){
   await page.goto(url+'&seed=v00-ui-minimal');await chooseCharacter(page,'erxiang',touch);
   const before=await read(page);await tapUI(page,'shop','action/chapter',touch);

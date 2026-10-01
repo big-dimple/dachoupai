@@ -56,25 +56,30 @@ export class SceneView {
       c.beginPath();c.moveTo(rx,0);c.lineTo(256-rx,0);c.quadraticCurveTo(256,0,256,ry);c.lineTo(256,128-ry);c.quadraticCurveTo(256,128,256-rx,128);c.lineTo(rx,128);c.quadraticCurveTo(0,128,0,128-ry);c.lineTo(0,ry);c.quadraticCurveTo(0,0,rx,0);c.closePath();c.clip();
       const hex=(color:number)=>`#${color.toString(16).padStart(6,'0')}`,gradient=c.createLinearGradient(0,0,0,128);
       gradient.addColorStop(0,hex(top));gradient.addColorStop(1,hex(bottom));c.fillStyle=gradient;c.fillRect(0,0,256,128);
-      for(let y=2;y<128;y+=4){c.fillStyle=y%8===2?'rgba(255,255,255,.025)':'rgba(0,0,0,.018)';c.fillRect(0,y,256,1);}
       c.fillStyle='rgba(255,245,216,.18)';c.fillRect(rx,1,256-rx*2,1);texture.refresh();
     }
     return this.add(this.scene.add.image(b.x,b.y,key).setOrigin(0).setDisplaySize(b.width,b.height));
   }
   paperBackground():void {
     const {width,height}=this.layout;
-    this.add(this.scene.add.rectangle(width/2,height/2,width,height,0x192c32));
-    const board=this.scene.add.graphics();
-    this.material({x:6,y:6,width:width-12,height:height-12},0xf7ecd7,0xe1ccaa,9);
-    board.lineStyle(3,0x756046).strokeRoundedRect(5,5,width-10,height-10,9);
-    board.lineStyle(1,0xfff5da,.85).strokeRoundedRect(9,9,width-18,height-18,6);this.add(board);
-    if(this.scene.textures.exists('p00-paper'))this.add(this.scene.add.tileSprite(8,8,width-16,height-16,'p00-paper').setOrigin(0).setAlpha(.22));
-    const corners=this.scene.add.graphics().lineStyle(2,PAPER_THEME.brass,.75);
-    for(const [cx,cy,sx,sy] of [[14,14,1,1],[width-14,14,-1,1],[14,height-14,1,-1],[width-14,height-14,-1,-1]])corners.beginPath().moveTo(cx,cy+18*sy).lineTo(cx,cy).lineTo(cx+18*sx,cy).strokePath();
-    this.add(corners);
+    this.material({x:0,y:0,width,height},0x254f52,0x0d252e,0);
+    if(this.scene.textures.exists('p03-stage')){
+      const backdrop=this.add(this.scene.add.image(width/2,height/2,'p03-stage'));
+      backdrop.setScale(Math.max(width/backdrop.width,height/backdrop.height)).setAlpha(.2);
+    }
+    if(this.scene.textures.exists('p00-paper'))this.add(this.scene.add.tileSprite(0,0,width,height,'p00-paper').setOrigin(0).setAlpha(.035).setTint(0x79a89b));
+    // Dark timber rail frames the felt; card faces carry the bright paper material.
+    const rail=this.scene.add.graphics();
+    rail.lineStyle(8,0x111f29,.9).strokeRoundedRect(4,4,width-8,height-8,16);
+    rail.lineStyle(1,0xbda473,.6).strokeRoundedRect(7,7,width-14,height-14,12);
+    rail.lineStyle(1,0x9cc7ae,.12).strokeRoundedRect(10,10,width-20,height-20,10);
+    for(const [cx,cy,sx,sy] of [[19,19,1,1],[width-19,19,-1,1],[19,height-19,1,-1],[width-19,height-19,-1,-1]]){
+      rail.lineStyle(1,0xc9ac78,.6).beginPath().moveTo(cx,cy+12*sy).lineTo(cx,cy).lineTo(cx+12*sx,cy).strokePath();
+    }
+    this.add(rail);
   }
   text(x:number,y:number,value:string,size=14,color=PAPER_CSS.ink,wrap?:number):Phaser.GameObjects.Text {
-    return this.add(this.scene.add.text(x,y,value,{fontFamily:UI_FONT,fontSize:`${size}px`,color,resolution:Math.min(window.devicePixelRatio||1,2),wordWrap:wrap?{width:wrap,useAdvancedWrap:true}:undefined}));
+    return this.add(this.scene.add.text(Math.round(x),Math.round(y),value,{fontFamily:UI_FONT,fontSize:`${size}px`,color,resolution:Math.max(1.5,Math.min(window.devicePixelRatio||1,2)),wordWrap:wrap?{width:wrap,useAdvancedWrap:true}:undefined}));
   }
   rect(b:Box,color:number=PAPER_THEME.paper):Phaser.GameObjects.Rectangle {return this.add(this.scene.add.rectangle(b.x+b.width/2,b.y+b.height/2,b.width,b.height,color).setStrokeStyle(1,PAPER_THEME.jade,.65));}
   target(object:Phaser.GameObjects.Rectangle,name:string,actions:TouchActions):void {
@@ -89,16 +94,17 @@ export class SceneView {
     object.once('destroy',()=>{this.gestures.delete(object);if(this.pressed?.object===object)this.cancel();});
   }
   button(b:Box,label:string,name:string,action:()=>void,enabled=true,primary=false):Phaser.GameObjects.Rectangle {
-    const art=this.add(this.scene.add.container(b.x,b.y)),g=this.scene.add.graphics(),radius=Math.min(7,b.height/5);
-    g.fillStyle(0x192b30,.3).fillRoundedRect(1,4,b.width-2,b.height-1,radius);
-    g.fillStyle(0x6c4b2c).fillRoundedRect(0,0,b.width,b.height,radius);
-    const fill=this.material({x:2,y:2,width:b.width-4,height:b.height-6},primary?0xd77554:0x487b7c,primary?0x923b30:0x234550,radius-1),edge=this.scene.add.graphics();
-    edge.lineStyle(1,0xf5d69b,.95).strokeRoundedRect(.5,.5,b.width-1,b.height-1,radius);
-    edge.lineStyle(1,primary?0xefa87a:0x7fa6a0,.6).strokeRoundedRect(5,5,b.width-10,b.height-12,3);
-    edge.lineStyle(1,0x102b32,.55).beginPath().moveTo(7,b.height-7).lineTo(b.width-7,b.height-7).strokePath();
+    const art=this.add(this.scene.add.container(b.x,b.y)),g=this.scene.add.graphics(),radius=Math.min(9,b.height/5);
+    g.fillStyle(0x061b24,.65).fillRoundedRect(0,4,b.width,b.height,radius);
+    g.fillStyle(primary?0x71452f:0x233b42).fillRoundedRect(0,0,b.width,b.height,radius);
+    const fill=this.material({x:1,y:1,width:b.width-2,height:b.height-5},primary?0xc9694a:0x37646b,primary?0x983d32:0x213f49,radius-1),edge=this.scene.add.graphics();
+    edge.lineStyle(1,primary?0xf0c18a:0x8aa59f,.85).strokeRoundedRect(.5,.5,b.width-1,b.height-3,radius);
+    edge.lineStyle(1,primary?0xefa87a:0x87b2aa,.45).beginPath().moveTo(10,3).lineTo(b.width-10,3).strokePath();
+    edge.lineStyle(1,0x09222a,.6).beginPath().moveTo(10,b.height-6).lineTo(b.width-10,b.height-6).strokePath();
+    if(primary)for(const px of [10,b.width-10])edge.fillStyle(0xf0cc94,.75).fillCircle(px,b.height/2,1.5);
     const glow=this.scene.add.graphics().lineStyle(2,0xffedb8,.8).strokeRoundedRect(1,1,b.width-2,b.height-3,radius).setAlpha(0);
     art.add([g,fill,edge,glow]);
-    const t=this.text(b.x+b.width/2,b.y+b.height/2-1,label,primary?22:14,'#fff2d4').setOrigin(.5).setFontStyle('bold').setShadow(0,2,'#10232b',2,true,true);
+    const t=this.text(b.x+b.width/2,b.y+b.height/2-1,label,primary?22:15,'#fff4de').setOrigin(.5).setFontStyle('bold').setShadow(0,1,'#10232b',2,true,false);
     const r=this.rect(b).setFillStyle(0,0).setStrokeStyle(0);
     r.setData('label',t).setData('buttonArt',art);
     const rest=()=>{art.y=b.y;t.y=b.y+b.height/2-1;glow.setAlpha(0);};

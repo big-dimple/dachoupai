@@ -1,4 +1,4 @@
-import {tapUI,chooseCharacter,buyOffer} from './ui.mjs';
+import {openSelector,tapUI,chooseCharacter,buyOffer} from './ui.mjs';
 /** Actual user inputs and storage fault injection; no private game actions or resource/state shortcuts. */
 import assert from 'node:assert/strict';
 import {spawn,execFileSync} from 'node:child_process';
@@ -25,7 +25,7 @@ async function start(name,{amo=false,touch=false,video=false,audioFailure=false}
   const context=await browser.newContext({viewport:touch?{width:390,height:844}:{width:1280,height:800},hasTouch:touch,...(video?{recordVideo:{dir:output,size:{width:960,height:600}}}:{})});
   if(audioFailure)await context.addInitScript(()=>{window.AudioContext=class {constructor(){throw new DOMException('blocked audio','NotAllowedError');}};});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('dialog',d=>d.accept());
-  try {await page.goto(base);await waitScene(page,'character-select');await chooseCharacter(page,amo?'amo':'erxiang',touch);}
+  try {await page.goto(base);await openSelector(page);await chooseCharacter(page,amo?'amo':'erxiang',touch);}
   catch(error){mark({name:`startup/${name}`,status:'FAIL',errors});throw error;}
   return {context,page,errors,touch,video,name};
 }
@@ -35,7 +35,7 @@ async function enter(page,touch=false){await tapUI(page,'shop','action/start-sta
 async function play(page,ids,touch=false){const before=await read(page);for(const id of ids)await tapUI(page,'game','card/'+id,touch);await tapUI(page,'game','action/play',touch);await advanced(page,before.state.commandSeq);return read(page);}
 async function restored(page,before,name){
   const saved=await slots(page);assert.deepEqual(saved.current.state,before.state);const hash=domain.stateHash(before.state);
-  await page.reload();await waitScene(page,'character-select');assert.deepEqual((await read(page)).state,before.state);assert.deepEqual(await slots(page),saved);
+  await page.reload();await openSelector(page);assert.deepEqual((await read(page)).state,before.state);assert.deepEqual(await slots(page),saved);
   await menu(page);await page.getByRole('button',{name:'继续本局',exact:true}).click();
   await waitScene(page,before.state.phase==='shop'?'shop':before.state.phase==='await-input'?'game':'intermission');
   assert.deepEqual((await read(page)).state,before.state);assert.equal(domain.stateHash((await read(page)).state),hash);
@@ -74,7 +74,7 @@ async function speeds(){
       if(mode==='fast-forward'){await menu(page);await page.getByRole('button',{name:'快进当前手',exact:true}).click();}
       await page.waitForFunction(()=>!window.__harness.game.scene.getScene('game').playing);
       const after=await read(page);if(!expected)expected=after.state;else assert.deepEqual(after.state,expected);
-      if(mode==='4'){await page.reload();await waitScene(page,'character-select');await menu(page);assert.equal(await page.getByLabel('演出速度').inputValue(),'4');}
+      if(mode==='4'){await page.reload();await openSelector(page);await menu(page);assert.equal(await page.getByLabel('演出速度').inputValue(),'4');}
       mark({name:`playback/${mode}`,status:'PASS',stateHash:domain.stateHash(after.state)});
     }finally{await close(test);}
   }
@@ -104,7 +104,7 @@ async function badData(){
   for(const mode of ['corrupt','incompatible']){
     const test=await start(`data-${mode}`),{page}=test;
     try {
-      await buy(page);const valid=await slots(page);await changeStored(page,mode);const raw=await slots(page);await page.reload();await waitScene(page,'character-select');
+      await buy(page);const valid=await slots(page);await changeStored(page,mode);const raw=await slots(page);await page.reload();await openSelector(page);
       if(mode==='corrupt'){assert.deepEqual((await read(page)).state,valid.previous.state);await page.getByText(/已读取上次有效备份/).waitFor();}
       else {assert.equal(await read(page),null);await page.getByText(/存档损坏或版本不兼容/).waitFor();}
       assert.deepEqual(await slots(page),raw);
@@ -141,7 +141,7 @@ async function interruption(){
   const test=await start('scene-interruption',{video:true}),{page}=test;
   try {
     await buy(page);await enter(page);await play(page,['clubs-14','hearts-14']);const committed=(await read(page)).state;
-    await menu(page);await page.getByRole('button',{name:'保存并退出',exact:true}).click();await waitScene(page,'character-select');assert.deepEqual((await read(page)).state,committed);
+    await menu(page);await page.getByRole('button',{name:'保存并退出',exact:true}).click();await openSelector(page);assert.deepEqual((await read(page)).state,committed);
     await chooseCharacter(page,'amo');await enter(page);const fresh=await read(page);assert.equal(fresh.state.characterId,'amo');assert.equal(fresh.state.stage.playIndex,0);
     await play(page,[fresh.state.handOrder[0]]);await page.waitForFunction(()=>!window.__harness.game.scene.getScene('game').playing);
     const finished=await read(page);assert.equal(finished.state.stage.playIndex,1);assert.equal(finished.state.stage.handsLeft,3);assert.equal(finished.state.stage.discardsLeft,3);

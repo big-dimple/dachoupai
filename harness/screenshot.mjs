@@ -27,7 +27,7 @@ try {
   for(const name of selectedProfiles){
     const viewport=profiles[name],touch=name==='mobile'||name==='landscape',recordVideo=process.env.SHOT_VIDEO==='1'&&engine===selected[0]&&name==='desktop';
     const context=await browser.newContext({viewport,hasTouch:touch,...(recordVideo?{recordVideo:{dir:'shots/p00-video',size:viewport}}:{})}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));
-    await page.goto(base);await waitScene(page,'character-select');
+    await page.goto(base);await waitScene(page,'title');await tapUI(page,'title','action/title-start',touch);await waitScene(page,'character-select');
     const count=await page.evaluate(()=>{const s=window.__harness.game.scene.getScene('character-select');const walk=list=>list.reduce((n,o)=>n+(o.name.startsWith('character/')?1:0)+(o.list?walk(o.list):0),0);return walk(s.children.list);});assert.equal(count,6);
     if(saveScreens&&engine===selected[0])await page.screenshot({path:`shots/${name}-select.png`});
     await tapUI(page,'character-select','character/amo',touch);
@@ -45,6 +45,7 @@ try {
     await tapUI(page,'shop','action/start-stage',touch);await waitScene(page,'game');await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.length>0);
     await ready(page);const initial=await state(page),chosen=initial.handOrder[0];
     await tapUI(page,'game','card/'+chosen,touch);
+    await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(c=>!c.back?.visible&&c.container.alpha===1));
     assert.ok(await page.evaluate(id=>{const s=window.__harness.game.scene.getScene('game'),c=s.cardViews.find(c=>c.card.id===id);return s.selectedIds.has(id)&&c.container.getData('selected')&&s.resultText.text.includes('当前选择');},chosen),'selection immediately changes both card and preview');
     for(const name of ['action/sort-rank','action/sort-suit']){
       const before=await state(page);await tapUI(page,'game',name,touch);await next(page,before.commandSeq);const after=await state(page);
@@ -52,14 +53,15 @@ try {
       assert.ok(await page.evaluate(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),chosen),'sorting keeps selection');
     }
     const beforeDiscard=await state(page);await tapUI(page,'game','action/discard',touch);await next(page,beforeDiscard.commandSeq);await ready(page);const discarded=await state(page);
+    await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(c=>!c.back?.visible&&c.container.alpha===1));
     assert.ok(discarded.discardPile.includes(chosen));assert.ok(!discarded.handOrder.includes(chosen));assert.equal(discarded.handOrder.length,8);
     for(const id of beforeDiscard.handOrder.filter(id=>id!==chosen))assert.ok(discarded.handOrder.includes(id),'unselected cards stay held');
     assert.equal(discarded.stage.discardsLeft,beforeDiscard.stage.discardsLeft-1);assert.equal(discarded.stage.handsLeft,beforeDiscard.stage.handsLeft);assert.equal(discarded.drawPile.length,beforeDiscard.drawPile.length-1);
     await tapUI(page,'game','card/'+discarded.handOrder[0],touch);if(saveScreens&&engine===selected[0])await page.screenshot({path:`shots/${name}-game.png`});
     await tapUI(page,'game','action/play',touch);await next(page,discarded.commandSeq);await ready(page);const played=await state(page);
     assert.equal(played.stage.handsLeft,discarded.stage.handsLeft-1);assert.equal(played.stage.discardsLeft,discarded.stage.discardsLeft);assert.ok(BigInt(played.stage.heat)>BigInt(discarded.stage.heat));assert.ok(played.lastTrace);
-    await page.reload();await waitScene(page,'character-select');assert.deepEqual(await state(page),played,'refresh restores the full determined result');
-    await dom(page,'菜单',touch);await dom(page,'继续本局',touch);await waitScene(page,'game');await ready(page);assert.deepEqual(await state(page),played,'continue never re-scores');
+    await page.reload();await waitScene(page,'title');assert.deepEqual(await state(page),played,'refresh restores the full determined result');
+    await tapUI(page,'title','action/title-continue',touch);await waitScene(page,'game');await ready(page);assert.deepEqual(await state(page),played,'continue never re-scores');
     assert.deepEqual(errors,[]);report.checks.push({engine,browserVersion:browser.version(),profile:name,viewport,status:'PASS',input:touch?'touchscreen.tap / DOM tap':'mouse.click / DOM click',covered:['select-confirm-cancel','buy-cancel','rank/suit-sort','discard-refill','play-preview-feedback','reload-continue']});const video=page.video();await context.close();if(recordVideo)await video.saveAs('shots/p00-play.webm');console.log(`${engine}/${name}: ok`);
   }
   await browser.close();browser=undefined;

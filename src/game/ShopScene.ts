@@ -13,24 +13,26 @@ import {SKIP_ITEM_LABELS,showConsumables} from './ConsumableDialog';
 import type {IntermissionResult} from './IntermissionScene';
 import type {Box} from './layout';
 import {jokerArtKey,jokerArtUrl} from './jokerArt';
+import {UI_FONT} from './theme';
+import {drawJokerMotif} from './JokerMotif';
 
 const RARITY_LABEL={common:'普通',uncommon:'特别',rare:'稀有'} as const;
 /** The badge describes declared operations; conditions remain in the readable effect text. */
 function mechanismBadge(d:ReturnType<typeof getR2Joker>){
   const operations=d.hooks.flatMap(h=>h.operations),growth=operations.find(o=>o.kind==='add-growth');
-  if(growth?.kind==='add-growth')return {label:'成长',value:'+'+fractionText(growth.value),key:'p00-mark-plus',glyph:'↑',ink:0x367f75,paper:0xdce9df};
+  if(growth?.kind==='add-growth')return {label:'成长',value:'+'+fractionText(growth.value),paper:0xdce9df};
   const times=operations.find(o=>o.kind==='multiply-multiplier');
-  if(times?.kind==='multiply-multiplier')return {label:'×倍率',value:'×'+fractionText(times.value),key:'p00-mark-times',glyph:'×',ink:0xbf493d,paper:0xf0d3c7};
+  if(times?.kind==='multiply-multiplier')return {label:'×倍率',value:'×'+fractionText(times.value),paper:0xf0d3c7};
   const plus=operations.find(o=>o.kind==='add-multiplier');
-  if(plus?.kind==='add-multiplier')return {label:'+倍率',value:'+'+fractionText(plus.value),key:'p00-mark-plus',glyph:'+',ink:0x367f75,paper:0xdce9df};
+  if(plus?.kind==='add-multiplier')return {label:'+倍率',value:'+'+fractionText(plus.value),paper:0xdce9df};
   const heat=operations.find(o=>o.kind==='add-heat');
-  if(heat?.kind==='add-heat')return {label:'计分热度',value:'+'+fractionText(heat.value),key:'p00-mark-plus',glyph:'+',ink:0x3f7978,paper:0xd8e9e3};
+  if(heat?.kind==='add-heat')return {label:'计分热度',value:'+'+fractionText(heat.value),paper:0xd8e9e3};
   const economy=operations.find(o=>o.kind==='add-heat-per-gold'||o.kind==='add-heat-per-empty-slot');
-  if(economy?.kind==='add-heat-per-gold'||economy?.kind==='add-heat-per-empty-slot')return {label:economy.kind==='add-heat-per-gold'?'金币计分':'空槽计分',value:'+'+fractionText(economy.value),key:'p00-mark-joker',glyph:'✦',ink:0x9b693d,paper:0xf2dfbc};
+  if(economy?.kind==='add-heat-per-gold'||economy?.kind==='add-heat-per-empty-slot')return {label:economy.kind==='add-heat-per-gold'?'金币计分':'空槽计分',value:'+'+fractionText(economy.value),paper:0xf2dfbc};
   const gold=operations.find(o=>o.kind==='add-gold');
-  if(gold?.kind==='add-gold')return {label:'过关金币',value:'+'+gold.amount+' 金',key:'p00-mark-joker',glyph:'金',ink:0x9b693d,paper:0xf2dfbc};
-  if(operations.some(o=>o.kind==='refund-discard'))return {label:'弃牌救场',value:'返还弃牌',key:'p00-mark-joker',glyph:'↺',ink:0x64708c,paper:0xe2e3ed};
-  return {label:'构筑计分',value:'+热度',key:'p00-mark-joker',glyph:'✦',ink:0x9b693d,paper:0xf2dfbc};
+  if(gold?.kind==='add-gold')return {label:'过关金币',value:'+'+gold.amount+' 金',paper:0xf2dfbc};
+  if(operations.some(o=>o.kind==='refund-discard'))return {label:'弃牌救场',value:'返还弃牌',paper:0xe2e3ed};
+  return {label:'构筑计分',value:'+热度',paper:0xf2dfbc};
 }
 function shopLayout(width:number,height:number,top:number,bottom:number){
   const portrait=width<700&&height>width,short=height<500,wideHeader=width>=1000&&!short,compact=portrait&&height-bottom-top<760,w=Math.min(1180,width-24),x=(width-w)/2;
@@ -55,6 +57,11 @@ export class ShopScene extends Phaser.Scene {
   private selectedOfferId?:string;
   private notice='';
   private view!:SceneView;
+  private offerArts:Phaser.GameObjects.Container[]=[];
+  private goldText?:Phaser.GameObjects.Text;
+  private pendingGoldRoll?:number;
+  private pendingRerollFlip=false;
+  private pendingPurchaseFlight?:{from:Box;to:Box;name:string};
   private readonly dialog=new DetailDialog();
   private readonly audio=AudioEngine.shared;
   constructor(){super('shop');}
@@ -62,26 +69,29 @@ export class ShopScene extends Phaser.Scene {
   private geometry(){const l=this.view.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;return shopLayout(l.width,l.height,l.hud.y,bottom);}
   create():void {
     this.busy=false;this.selectedOfferId=undefined;this.notice='';this.lifecycle++;
+    this.pendingGoldRoll=undefined;this.pendingRerollFlip=false;this.pendingPurchaseFlight=undefined;
     this.events.once('shutdown',()=>{this.lifecycle++;this.dialog.close();});
     const run=runController(this)?.state;if(!run||run.phase!=='shop'){this.scene.start('character-select');return;}this.run=run;
-    this.cameras.main.setBackgroundColor('#e4dac7');this.audio.setScene('shop');this.view=new SceneView(this,()=>this.render());this.render();
+    this.cameras.main.setBackgroundColor('#153c40');this.audio.setScene('shop');this.view=new SceneView(this,()=>this.render());this.render();
     if(!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       this.view.root.setAlpha(.35);this.tweens.add({targets:this.view.root,alpha:1,duration:220,ease:'Cubic.easeOut'});
+      this.offerArts.forEach((art,i)=>{const ty=art.y;art.setPosition(art.x,ty+26).setAlpha(0);this.tweens.add({targets:art,y:ty,alpha:1,duration:260,delay:110+i*70,ease:'Cubic.easeOut'});});
     }
   }
   private render():void {
-    const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex)!;v.clear();v.paperBackground();
-    v.text(p.x,p.top,'后台商店',p.short?24:28,'#203744');
+    const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex)!;v.clear();v.paperBackground();this.offerArts=[];
+    v.text(p.x,p.top,'后台商店',p.short?24:28,'#fff2da').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     const purse={x:p.x+p.w-182,y:p.top-1,width:116,height:34},purseArt=this.add.graphics();
     v.add(this.add.graphics().fillStyle(0x213d45,.2).fillRoundedRect(purse.x+1,purse.y+3,purse.width,purse.height,7));
     v.material(purse,0xfbe1a6,0xc99455,7);
     purseArt.lineStyle(1,0x916738).strokeRoundedRect(purse.x+.5,purse.y+.5,purse.width-1,purse.height-1,7);v.add(purseArt);
     const gold=v.text(purse.x+10,purse.y+5,'金币 '+this.run.gold,20,'#614321').setName('shop/gold').setFontStyle('bold');
     for(let font=20;gold.width>purse.width-20&&font>14;)gold.setFontSize(--font);
-    v.text(p.x,p.top+37,`${stage.name} · 目标 ${heatText(stage.targetHeat)}`,14,'#48685f',p.short?380:p.w-24);
+    this.goldText=gold;
+    v.text(p.x,p.top+37,`${stage.name} · 目标 ${heatText(stage.targetHeat)}`,14,'#d5ddc9',p.short?380:p.w-24);
     if(!p.short){
-      if(!p.compact)v.text(p.x,p.top+64,this.run.stageIndex===0?'点卡牌看大图与效果，再确认购买。':'补一张、卖一张，或留着金币赚利息。',14,'#48685f',p.wideHeader?p.slots[0].x-p.x-24:p.w);
-      v.text(p.wideHeader?p.slots[0].x:p.x,p.slots[0].y-24,`随身大丑牌 ${this.run.jokers.length} / ${R2_LIMITS.jokerSlots} · 点牌可出售或调序`,14,'#203744',p.wideHeader?p.slots[4].x+p.slots[4].width-p.slots[0].x:p.w);
+      if(!p.compact)v.text(p.x,p.top+64,this.run.stageIndex===0?'点卡牌看大图与效果，再确认购买。':'补一张、卖一张，或留着金币赚利息。',14,'#d5ddc9',p.wideHeader?p.slots[0].x-p.x-24:p.w);
+      v.text(p.wideHeader?p.slots[0].x:p.x,p.slots[0].y-24,`随身大丑牌 ${this.run.jokers.length} / ${R2_LIMITS.jokerSlots} · 点牌可出售或调序`,14,'#f2e5c9',p.wideHeader?p.slots[4].x+p.slots[4].width-p.slots[0].x:p.w);
     }
     this.run.jokers.forEach((j,i)=>{
       const b=p.slots[i],d=getR2Joker(j.definitionId),badge=mechanismBadge(d),first=v.root.length;
@@ -92,7 +102,7 @@ export class ShopScene extends Phaser.Scene {
       const growth=d.hooks.flatMap(h=>h.operations).find(o=>o.kind==='read-growth');
       const value=growth?.kind==='read-growth'?'+'+fractionText(j.growth[growth.key]??{n:'0',d:'1'}):badge.value==='返还弃牌'?'↺1':badge.value;
       v.text(b.x+b.width/2,b.y+b.height-22,value.replace(' 金','金'),14,'#fff0d0').setOrigin(.5,0).setFontStyle('bold');
-      v.text(b.x+b.width/2,b.y+b.height+4,`售${salePrice(j.paidPrice)}金`,14,'#714c29').setOrigin(.5,0);
+      v.text(b.x+b.width/2,b.y+b.height+4,`售${salePrice(j.paidPrice)}金`,14,'#ecd6a4').setOrigin(.5,0);
       v.add(this.add.circle(b.x+b.width-11,b.y+b.height-34,8,0xe8c180).setStrokeStyle(1,0x765532));
       v.text(b.x+b.width-11,b.y+b.height-34,String(i+1),14,'#4b3825').setOrigin(.5);
       const hover=this.hoverCard(first,b),r=v.rect({...b,height:b.height+22}).setFillStyle(0,0).setStrokeStyle(0);
@@ -103,13 +113,13 @@ export class ShopScene extends Phaser.Scene {
     }
     v.button(p.chapter,'本章节目','action/chapter',()=>this.inspectChapter());
     v.button(p.items,`物品 ${this.run.consumables.length}/2`,'action/items',()=>showConsumables(this.dialog,this.run,this.ready,a=>this.send(a)));
-    v.text(p.shelf[0].x,p.shelfLabelY,'今日卡牌 · 点选查看完整效果',14,'#203744',p.short?p.w-p.shelf[0].x+p.x:p.w);
+    v.text(p.shelf[0].x,p.shelfLabelY,'今日卡牌 · 点选查看完整效果',14,'#f2e5c9',p.short?p.w-p.shelf[0].x+p.x:p.w);
     const offers=this.run.shop!.offers;
     offers.forEach((o,i)=>{
       const selected=this.selectedOfferId===o.offerId,raw=p.shelf[i],b=selected?{...raw,y:raw.y-4}:raw,d=getR2Joker(o.definitionId),badge=mechanismBadge(d),first=v.root.length;
       const headerHeight=p.short?38:54,footerHeight=p.short?44:64;
       this.drawOfferCard(b,d.rarity,selected,o.consumed,p.short,headerHeight,footerHeight);
-      const name=v.text(b.x+10,b.y+5,d.name,p.short?20:22,o.consumed?'#c6c5af':'#fff2d4').setFontStyle('bold').setShadow(0,1,'#12282e',1,true,true);
+      const name=v.text(b.x+10,b.y+5,d.name,p.short?20:22,o.consumed?'#c6c5af':'#fff2d4').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setShadow(0,1,'#12282e',1,true,true);
       for(let font=p.short?20:22;name.width>b.width-20&&font>14;)name.setFontSize(--font);
       if(!p.short)v.text(b.x+10,b.y+33,({common:'○ ',uncommon:'◆ ',rare:'✦ '} as const)[d.rarity]+RARITY_LABEL[d.rarity],14,'#efcf8f',b.width-20);
       if(b.width>=245&&!p.short)v.text(b.x+b.width-10,b.y+33,badge.label,14,'#f7e8c9').setOrigin(1,0);
@@ -128,20 +138,21 @@ export class ShopScene extends Phaser.Scene {
       const availability=reason||'可购买',status=(selected?'✓ 已选 · ':'')+availability;
       v.text(b.x+10,priceText.y+priceText.height+1,b.width<220?availability:status,14,reason?'#ffc6a4':'#d3e9cb',b.width-20).setStyle({maxLines:p.short?1:2});
       const hover=this.hoverCard(first,b),r=v.rect(raw).setFillStyle(0,0).setStrokeStyle(0).setData('selected',selected);
+      this.offerArts.push(hover.art);
       v.target(r,`offer/${o.offerId}`,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
     });
-    if(!offers.length)v.text(p.shelf[0].x,p.shelf[0].y,'卡牌售罄，可换一批或进入牌桌。',14,'#48685f',p.w);
+    if(!offers.length)v.text(p.shelf[0].x,p.shelf[0].y,'卡牌售罄，可换一批或进入牌桌。',14,'#d5ddc9',p.w);
     const cost=rerollPrice(this.run.shop!.rerollCount),canReroll=this.ready&&this.run.gold>=cost&&r2Pool(this.run.jokers.map(j=>j.definitionId)).length>0;
     v.button(p.reroll,`换牌 ${cost} 金`,'action/reroll',()=>void this.send({type:'RerollShop'}),canReroll);
     v.button(p.play,'进入牌桌','action/start-stage',()=>void this.send({type:'LeaveShop'}),this.ready,true);
     v.button(p.build,'构筑详情','action/build',()=>this.inspectBuild());
     const reason=!this.ready?'当前进度未保存或只读，请查看菜单。':this.run.gold<cost?`换牌需 ${cost} 金，还差 ${cost-this.run.gold} 金。可直接入场。`:this.run.jokers.length===5?'五个槽位已满；点随身牌出售后再买。':'点卡牌不会扣钱；点随身牌可出售或左移、右移。';
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||reason,14,this.notice?'#367f75':'#48685f',p.w);
+    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||reason,14,this.notice?'#f4da9e':'#d5ddc9',p.w);
   }
-  private hoverCard(first:number,b:Box):{enter:()=>void;leave:()=>void} {
+  private hoverCard(first:number,b:Box):{enter:()=>void;leave:()=>void;art:Phaser.GameObjects.Container} {
     const v=this.view,cx=b.x+b.width/2,cy=b.y+b.height/2,members=v.root.list.slice(first),art=this.add.container(cx,cy);
     for(const child of members){
-      if(child instanceof Phaser.GameObjects.Image||child instanceof Phaser.GameObjects.Text||child instanceof Phaser.GameObjects.Graphics||child instanceof Phaser.GameObjects.Rectangle||child instanceof Phaser.GameObjects.Arc){
+      if(child instanceof Phaser.GameObjects.Image||child instanceof Phaser.GameObjects.Text||child instanceof Phaser.GameObjects.Graphics||child instanceof Phaser.GameObjects.Rectangle||child instanceof Phaser.GameObjects.Arc||child instanceof Phaser.GameObjects.Container){
         child.setPosition(child.x-cx,child.y-cy);art.add(child);
       }
     }
@@ -150,14 +161,14 @@ export class ShopScene extends Phaser.Scene {
     const reduced=()=>gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const leave=()=>{
       if(!art.active)return;this.tweens.killTweensOf(art);glow.setAlpha(0);
-      if(reduced())art.setPosition(cx,cy).setScale(1);
-      else this.tweens.add({targets:art,x:cx,y:cy,scaleX:1,scaleY:1,duration:110,ease:'Sine.easeOut'});
+      if(reduced())art.setPosition(cx,cy).setScale(1).setAngle(0);
+      else this.tweens.add({targets:art,x:cx,y:cy,angle:0,scaleX:1,scaleY:1,duration:110,ease:'Sine.easeOut'});
     };
     art.once('destroy',()=>this.tweens.killTweensOf(art));
     return {enter:()=>{
       if(!art.active||!this.scene.isActive())return;this.tweens.killTweensOf(art);glow.setAlpha(1);v.root.bringToTop(art);
-      if(!reduced())this.tweens.add({targets:art,y:cy-5,scaleX:1.025,scaleY:1.025,duration:130,ease:'Sine.easeOut'});
-    },leave};
+      if(!reduced())this.tweens.add({targets:art,y:cy-6,angle:cx>this.scale.width/2?-1.6:1.6,scaleX:1.03,scaleY:1.03,duration:130,ease:'Sine.easeOut'});
+    },leave,art};
   }
   private jokerPortrait(definitionId:string):{url:string;alt:string;layout:'card'}|undefined {
     const key=jokerArtKey(definitionId),url=jokerArtUrl(definitionId);
@@ -175,10 +186,7 @@ export class ShopScene extends Phaser.Scene {
     }
     v.material({x:b.x+2,y:b.y+b.height-25,width:b.width-4,height:23},occupied?0x426a62:0x385c5a,0x203e49,3);
     g.lineStyle(1.5,occupied?edge:0xc5ad79).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,5);
-    g.lineStyle(1,0xffecc2,.55).strokeRoundedRect(b.x+3,b.y+3,b.width-6,b.height-6,3);
     g.lineStyle(1,0xc5ab74).beginPath().moveTo(b.x+6,b.y+b.height-25).lineTo(b.x+b.width-6,b.y+b.height-25).strokePath();v.add(g);
-    const frame='p00-frame-'+rarity;
-    if(occupied&&this.textures.exists(frame))v.add(this.add.image(b.x+b.width/2,b.y+b.height/2,frame).setDisplaySize(b.width,b.height).setAlpha(.55));
   }
   private drawJokerPicture(definitionId:string,b:Box,alpha=1):void {
     const v=this.view,d=getR2Joker(definitionId),badge=mechanismBadge(d),key=jokerArtKey(definitionId),g=this.add.graphics();
@@ -187,11 +195,10 @@ export class ShopScene extends Phaser.Scene {
       const picture=this.add.image(b.x+b.width/2,b.y+b.height/2,key),size=Math.min(b.width-4,b.height-4);
       v.add(picture.setScale(size/Math.max(picture.width,picture.height)).setAlpha(alpha));
     }else {
-      const cx=b.x+b.width/2,cy=b.y+b.height/2;
-      g.lineStyle(1,badge.ink,.25).beginPath().moveTo(cx,b.y+4).lineTo(b.x+b.width-4,cy).lineTo(cx,b.y+b.height-4).lineTo(b.x+4,cy).closePath().strokePath();
-      this.drawMechanismMark(badge.key,badge.glyph,cx,cy,Math.min(b.width,b.height)*.7,alpha);
+      const motif=this.add.container(b.x+b.width/2,b.y+b.height/2).setAlpha(alpha);v.add(motif);
+      drawJokerMotif(this,motif,definitionId,0,0,Math.min(b.width,b.height)*.88);
     }
-    g.lineStyle(1,0xb39868).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,3);v.add(g.setAlpha(alpha));
+    g.lineStyle(1,0xa69778,.45).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,3);v.add(g.setAlpha(alpha));
   }
   private drawOfferCard(b:Box,rarity:keyof typeof RARITY_LABEL,selected:boolean,consumed:boolean,short:boolean,headerHeight=64,footerHeight=short?44:64):void {
     const g=this.add.graphics(),shadow=this.add.graphics(),edge=rarity==='rare'?0x8c394c:rarity==='uncommon'?0x32665e:0x335662,metal=rarity==='common'?0xbda171:0xe4c186;
@@ -205,16 +212,11 @@ export class ShopScene extends Phaser.Scene {
     this.view.material(b,consumed?0xe5dfcc:0xfff7e5,consumed?0xcfc9b5:0xeedbb8);
     this.view.material({x:b.x,y:b.y,width:b.width,height:headerHeight},consumed?0x607673:edge,consumed?0x435c59:rarity==='rare'?0x542936:0x1b3e48);
     this.view.material({x:b.x,y:b.y+b.height-footerHeight,width:b.width,height:footerHeight},consumed?0x607673:0x365d61,consumed?0x435c59:0x1c3542);
-    g.lineStyle(selected?2:1,selected?0x226c66:metal).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,6);
+    g.lineStyle(selected?2:1,selected?0xf0d295:0xa99a79,.9).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,6);
     g.lineStyle(1,0xffedbf,.45).beginPath().moveTo(b.x+6,b.y+5).lineTo(b.x+b.width-6,b.y+5).moveTo(b.x+8,b.y+headerHeight).lineTo(b.x+b.width-8,b.y+headerHeight).strokePath();
     g.lineStyle(1,0xcdb784,.7).beginPath().moveTo(b.x+8,b.y+b.height-footerHeight).lineTo(b.x+b.width-8,b.y+b.height-footerHeight).strokePath();
-    for(const [cx,cy,sx,sy] of [[b.x+5,b.y+5,1,1],[b.x+b.width-5,b.y+5,-1,1],[b.x+5,b.y+b.height-5,1,-1],[b.x+b.width-5,b.y+b.height-5,-1,-1]]){
-      g.lineStyle(rarity==='rare'?2:1,metal).beginPath().moveTo(cx,cy+7*sy).lineTo(cx,cy).lineTo(cx+7*sx,cy).strokePath();
-    }
     if(rarity==='rare')g.fillStyle(metal).fillTriangle(b.x+b.width/2-5,b.y+2,b.x+b.width/2+5,b.y+2,b.x+b.width/2,b.y+7);
     this.view.add(g);
-    const frameKey='p00-frame-'+rarity;
-    if(this.textures.exists(frameKey))this.view.add(this.add.image(b.x+b.width/2,b.y+b.height/2,frameKey).setDisplaySize(b.width,b.height).setAlpha(consumed?.3:.5));
   }
   private drawMechanismMark(key:string,glyph:string,x:number,y:number,size:number,alpha:number):void {
     if(this.textures.exists(key))this.view.add(this.add.image(x,y,key).setDisplaySize(size,size).setAlpha(alpha));
@@ -265,9 +267,48 @@ export class ShopScene extends Phaser.Scene {
     const from=this.run.jokers.findIndex(j=>j.instanceId===id),to=this.geometry().slots.findIndex(b=>x>=b.x&&x<=b.x+b.width);
     if(from>=0&&to>=0&&to<this.run.jokers.length&&from!==to)void this.reorder(from,to);
   }
+  private rollGold(from:number):void {
+    const text=this.goldText,to=this.run.gold,reduced=gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!text?.active||reduced||from===to)return;
+    const roll={t:0};
+    this.tweens.add({targets:roll,t:1,duration:320,ease:'Cubic.easeOut',onUpdate:()=>{if(text.active)text.setText('金币 '+Math.round(from+(to-from)*roll.t));},onComplete:()=>{if(text.active){text.setText('金币 '+to);for(let font=20;text.width>96&&font>14;)text.setFontSize(--font);}}});
+  }
+  /** Purchased card visibly flies from its shelf seat into the new joker slot. */
+  private flyPurchase(from:Box,to:Box,name:string):void {
+    const cx=from.x+from.width/2,cy=from.y+from.height/2,card=this.add.container(cx,cy).setDepth(60);
+    const g=this.add.graphics();
+    g.fillStyle(0x172e36,.22).fillRoundedRect(-49,-63,98,126,7);
+    g.fillStyle(0xfff7e5).fillRoundedRect(-50,-66,100,132,7);
+    g.fillStyle(0x365d61).fillRoundedRect(-50,-66,100,30,{tl:7,tr:7,bl:0,br:0});
+    g.lineStyle(2,0xe4c186).strokeRoundedRect(-50,-66,100,132,7);
+    card.add([g,this.add.text(0,-51,name,{fontFamily:UI_FONT,fontSize:'15px',fontStyle:'bold',color:'#fff2d4',resolution:Math.min(devicePixelRatio||1,2)}).setOrigin(.5),this.add.text(0,8,'✓',{fontFamily:UI_FONT,fontSize:'34px',fontStyle:'bold',color:'#367f75',resolution:Math.min(devicePixelRatio||1,2)}).setOrigin(.5)]);
+    const tx=to.x+to.width/2,ty=to.y+to.height/2,mx=(cx+tx)/2,my=Math.min(cy,ty)-80,flight={t:0};
+    this.audio.coin();
+    this.tweens.add({targets:flight,t:1,duration:340,ease:'Cubic.easeIn',onUpdate:()=>{
+      if(!card.active)return;const t=flight.t,u=1-t;
+      card.setPosition(u*u*cx+2*u*t*mx+t*t*tx,u*u*cy+2*u*t*my+t*t*ty).setScale(1-t*.6).setAngle(t*9);
+    },onComplete:()=>{card.destroy();this.slotPop(to);}});
+  }
+  private slotPop(slot:Box):void {
+    if(!this.scene.isActive())return;
+    const ring=this.add.graphics().setDepth(59);
+    ring.lineStyle(3,0xffd98e,.95).strokeRoundedRect(slot.x-3,slot.y-3,slot.width+6,slot.height+6,8);
+    ring.fillStyle(0xffe2a1,.2).fillRoundedRect(slot.x-3,slot.y-3,slot.width+6,slot.height+6,8);
+    this.tweens.add({targets:ring,alpha:0,duration:420,ease:'Cubic.easeOut',onComplete:()=>ring.destroy()});
+  }
+  private afterRenderFx():void {
+    const reduced=gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(this.pendingGoldRoll!==undefined){const from=this.pendingGoldRoll;this.pendingGoldRoll=undefined;this.rollGold(from);}
+    if(this.pendingRerollFlip){this.pendingRerollFlip=false;if(!reduced)this.offerArts.forEach((art,i)=>{if(!art.active)return;art.setScale(0,1);this.tweens.add({targets:art,scaleX:1,duration:160,delay:i*70,ease:'Sine.easeOut'});});}
+    if(this.pendingPurchaseFlight){const flight=this.pendingPurchaseFlight;this.pendingPurchaseFlight=undefined;if(!reduced)this.flyPurchase(flight.from,flight.to,flight.name);}
+  }
   private async send(action:Action):Promise<boolean> {
     if(!this.ready)return false;
-    const previous=this.run,oldGold=previous.gold;this.busy=true;const lifecycle=this.lifecycle;this.render();
+    const previous=this.run,oldGold=previous.gold;this.busy=true;const lifecycle=this.lifecycle;
+    const buyIndex=action.type==='BuyOffer'?previous.shop!.offers.findIndex(o=>o.offerId===action.offerId):-1;
+    const buyBox=buyIndex>=0?this.geometry().shelf[buyIndex]:undefined;
+    const landSlot=action.type==='BuyOffer'?this.geometry().slots[Math.min(previous.jokers.length,R2_LIMITS.jokerSlots-1)]:undefined;
+    this.render();
     try {
       const result=await dispatchRun(this,action);if(lifecycle!==this.lifecycle||!this.scene.isActive())return false;
       if(!result.ok){
@@ -280,16 +321,19 @@ export class ShopScene extends Phaser.Scene {
       if(action.type==='BuyOffer'){
         const offer=previous.shop!.offers.find(o=>o.offerId===action.offerId)!;this.audio.purchase();
         this.notice=`已买 ${getR2Joker(offer.definitionId).name} · 金币 ${oldGold} → ${this.run.gold}`;
+        this.pendingGoldRoll=oldGold;
+        if(buyBox&&landSlot)this.pendingPurchaseFlight={from:buyBox,to:landSlot,name:getR2Joker(offer.definitionId).name};
       }else if(action.type==='SellJoker'){
         const joker=previous.jokers.find(j=>j.instanceId===action.instanceId)!;this.audio.sale();
         this.notice=`已售 ${getR2Joker(joker.definitionId).name} · 金币 ${oldGold} → ${this.run.gold}`;
-      }else if(action.type==='RerollShop'){this.selectedOfferId=undefined;this.audio.reroll();this.notice=`卡牌已更新 · 金币 ${oldGold} → ${this.run.gold}`;}
+        this.pendingGoldRoll=oldGold;
+      }else if(action.type==='RerollShop'){this.selectedOfferId=undefined;this.audio.reroll();this.notice=`卡牌已更新 · 金币 ${oldGold} → ${this.run.gold}`;this.pendingGoldRoll=oldGold;this.pendingRerollFlip=true;}
       else if(action.type==='ReorderJokers'){this.audio.select();this.notice='顺序已保存 · 从左至右触发';}
       if(action.type==='LeaveShop'){this.audio.select();this.scene.start('game');}
       else if(action.type==='SkipStage'){
         const s=this.run.stage!;this.scene.start('intermission',{cleared:true,stageIndex:s.index,stageHeat:s.heat,handsLeft:s.handsLeft,goldEarned:s.goldEarned} satisfies IntermissionResult);
       }
       return true;
-    }finally {if(lifecycle===this.lifecycle){this.busy=false;if(this.scene.isActive()&&this.run.phase==='shop')this.render();}}
+    }finally {if(lifecycle===this.lifecycle){this.busy=false;if(this.scene.isActive()&&this.run.phase==='shop'){this.render();this.afterRenderFx();}}}
   }
 }

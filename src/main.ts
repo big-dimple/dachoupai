@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import './style.css';
 import { BootScene } from './game/BootScene';
+import { TitleScene } from './game/TitleScene';
 import { CharacterSelectScene } from './game/CharacterSelectScene';
 import { GameScene } from './game/GameScene';
 import { IntermissionScene } from './game/IntermissionScene';
@@ -8,15 +9,14 @@ import { ShopScene } from './game/ShopScene';
 import {installRunMenu} from './game/RunMenu';
 import {AudioEngine} from './audio/AudioEngine';
 import {gameSession} from './game/session';
-import {PAPER_CSS} from './game/theme';
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   parent: 'app',
   width: window.innerWidth,
   height: window.innerHeight,
-  backgroundColor: PAPER_CSS.paper,
-  scene: [BootScene, CharacterSelectScene, GameScene, IntermissionScene, ShopScene],
+  backgroundColor: '#153b40',
+  scene: [BootScene, TitleScene, CharacterSelectScene, GameScene, IntermissionScene, ShopScene],
   scale: {
     mode: Phaser.Scale.RESIZE,
   },

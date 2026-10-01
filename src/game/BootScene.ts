@@ -21,10 +21,13 @@ export class BootScene extends Phaser.Scene {
     queueAvatarLoads(this, CHARACTERS);
     for(const asset of P00_ASSETS)this.load.svg(asset.key,assetUrl(asset.path),{width:asset.width,height:asset.height});
     for(const art of JOKER_ART)this.load.image(art.key,assetUrl(art.path));
+    this.load.image('p03-stage',assetUrl('assets/p03/stage-wide.webp'));
   }
 
   async create(): Promise<void> {
     await gameSession().initialize();
-    this.scene.start('character-select');
+    if(!this.scene.isActive())return;
+    const query=new URLSearchParams(location.search),seed=query.get('seed')??undefined;
+    this.scene.start('title',{seed});
   }
 }

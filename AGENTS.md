@@ -55,7 +55,7 @@ node scripts/check-production-plan.mjs
 
 `verify:smoke` 用构建产物检查选角确认、购买/取消、排序、弃牌、出牌与刷新续局，默认Chromium桌面鼠标/手机尺寸触摸；CI通过SMOKE_BROWSERS运行三个引擎的同一短路径。`verify:ci` 默认仅组合单测、内容、构建、短路径、plan五项。现有E2E/恢复/布局长路径、120局诊断、V00代表种子、资产和故障注入按当前变更选择，不重复全部运行。资产CLI只读/反例通过不代表视觉、来源或预算获准；八章/无尽、真机、平衡、真人项仍在后续工作包。其他计划中的命令在工作包落地前一律视为尚未实现。
 
-`test:assets` / `verify:assets` 的A00改动仍在本地协作中，尚未纳入main；接纳前不能按已可用命令执行。
+`test:assets` / `verify:assets` 的A00盘点与只读CLI已由 `2926c7e` 接纳main；按资产相关变更选择执行，不能把CLI通过当作视觉或商用来源批准。
 
 `release:checked` 只执行只读 `verify:ci`，`--plan` 只列计划、标 NOT_RUN。它不提交、推送或合并。提交/推送前运行轻量 `jiepi-clear`，只纳入评审过的文件；当前用户已授权总 Agent完成代码走查后正常合并、推送main。不得强推。未获授权的未来发布仍需遵守当时的用户指令。
 

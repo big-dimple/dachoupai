@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "workPackage": "P03.2",
+  "date": "2026-10-01",
+  "visualVersion": "p03-stage-v1",
+  "candidateCount": 1,
+  "scope": "One background for the existing title/character-selection candidate. No new character/Joker batch or rule change.",
+  "generation": {
+    "tool": "image_gen.imagegen",
+    "mode": "built-in",
+    "modelVersion": "NOT_REPORTED",
+    "referencedImages": [],
+    "transparentBackground": false,
+    "generatedFile": "C:/Users/wanghongping/.codex/generated_images/01a0f51b-c9aa-76c0-b4ae-4b348f38eff0/exec-f150834a-ee25-4ae3-a7ad-cc27db7a466f.png",
+    "prompt": "Use case: illustration-story.\nAsset type: ONE original wide landscape background for the title and character-selection screens of a theatrical card game, approximately 16:9. Background artwork only, not a UI mockup or poster.\nPrimary request: a refined touring paper-cut theatre with an exquisite hand-painted storybook feel. Deep peacock-teal velvet curtains are parted broadly around a luminous warm-paper interior, a shallow wooden stage seen at a slight three-quarter angle, restrained brass trim and a few elegant blank-backed playing-card props near the outer stage edges. Layered paper edges and soft sculptural shadows suggest stage depth.\nComposition and usable negative space: keep the central two-thirds of the width visually quiet, and especially the lower half free of objects, patterns and strong contrast so real interactive cards, titles and buttons can be drawn over it. Decorative curtains and small card props stay at the outer sides and upper corners. The center is a broad smooth warm ivory/pale jade paper backdrop with a gentle light gradient; the stage floor is light warm wood with very subtle grain. No bright spotlight hotspot across the text area. Full-bleed landscape with a coherent theatrical perspective, no ornamental frame enclosing a fake interface.\nStyle and materials: polished collectible-game art with hand-painted gouache/oil texture, layered cut paper, tactile velvet folds, softly worn lacquered wood and a few thin satin-brass accents. Sophisticated and playful, clear large shapes, restrained craftsmanship, not photorealistic 3D and not a flat SVG icon.\nLighting and palette: soft warm spotlight from upper-left/front, gentle depth shadows under the paper layers, deep peacock teal only at the side curtains, ivory paper and warm honey wood occupying the open center and lower area. A touch of subdued plum in distant shadows is allowed. Overall readable and inviting, not a mostly black image.\nConstraints: original invented touring theatre. No people, faces, masks with faces, creatures, text, lettering, numerals, scores, UI controls, logos, watermark or recognizable existing game elements. No readable ranks or suits baked on card props; show simple blank card backs. No horror, gothic casino, neon clutter, dense gold filigree, throne-room grandeur, busy central props, confetti or smoke veiling the useful space. Opaque background.",
+    "promptSha256": "3eb21c4361f74d15f91420fce43275661f5342fd2ccede648f9e8c526a6f770a"
+  },
+  "transform": {
+    "library": "sharp",
+    "version": "0.35.5",
+    "longEdge": 1536,
+    "fit": "inside",
+    "kernel": "lanczos3",
+    "withoutEnlargement": true,
+    "format": "webp",
+    "quality": 82,
+    "effort": 6,
+    "crop": "NONE",
+    "retouch": "NONE"
+  },
+  "permission": {
+    "candidateAuthorization": "User requested P03 current-presentation repair; D15 records the scope.",
+    "commercialUseReview": "NOT_VERIFIED",
+    "releaseAllowlistApproval": "NOT_GRANTED"
+  },
+  "visualApproval": "NOT_GRANTED",
+  "productionBatchApproval": "NOT_GRANTED",
+  "verification": {
+    "sourceViewedByAgent": true,
+    "runtimeExportViewedByAgent": true,
+    "dimensionsBytesAndSha256ReadFromActualFiles": true,
+    "noBakedTextFacesLogoOrWatermarkObserved": true,
+    "integratedBrowser": "NOT_RUN_BY_THIS_AGENT",
+    "humanVisualAcceptance": "NOT_GRANTED",
+    "limitations": [
+      "Single wide image; portrait center crop can hide side curtains and props.",
+      "Agent image inspection and generation success are not human visual approval."
+    ]
+  },
+  "assets": [
+    {
+      "assetId": "p03-stage-wide",
+      "textureKey": "p03-stage",
+      "contentId": null,
+      "purpose": [
+        "title-stage-background",
+        "character-selection-background"
+      ],
+      "sourcePath": "art/sources/p03-stage/stage-wide.v1.original.png",
+      "source": {
+        "format": "png",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2288896,
+        "sha256": "6d70631c087fe3b151a080a6213efd1aa31291f39ba905eeec3a62c5dcb2feeb"
+      },
+      "runtimePaths": [
+        "public/assets/p03/stage-wide.webp"
+      ],
+      "runtime": {
+        "format": "webp",
+        "width": 1536,
+        "height": 864,
+        "alpha": false,
+        "bytes": 131486,
+        "sha256": "06689cb284552d2ee38bc8da7bfa208a4c0568f628267ece853d09dab2401d6c",
+        "targetBytes": 160000,
+        "targetMet": true
+      },
+      "previewPath": "public/assets/p03/stage-wide.webp",
+      "crop": "FULL_FRAME_NO_CROP",
+      "safeAreas": {
+        "coordinateSystem": "normalized",
+        "centralText": {
+          "x": 0.25,
+          "y": 0.13,
+          "width": 0.5,
+          "height": 0.5
+        },
+        "lowerControls": {
+          "x": 0.2,
+          "y": 0.72,
+          "width": 0.6,
+          "height": 0.13
+        },
+        "status": "Suggested regions from actual image inspection; integrated layouts require review."
+      },
+      "visualVersion": "p03-stage-v1",
+      "visualApproval": "NOT_GRANTED"
+    }
+  ],
+  "audioPresentation": {
+    "source": "src/audio/AudioEngine.ts",
+    "soundSources": "Original code synthesis; no third-party audio files.",
+    "cues": [
+      {
+        "api": "titleBell()",
+        "trigger": "Actual user continues a saved run from the title; never render/resize.",
+        "voices": 3,
+        "scheduledTailSeconds": 0.375,
+        "bus": "sfx"
+      },
+      {
+        "api": "curtainOpen()",
+        "trigger": "Actual user opens title curtain.",
+        "voices": 6,
+        "scheduledTailSeconds": 0.425,
+        "bus": "sfx"
+      },
+      {
+        "api": "multiplier('add',index)",
+        "trigger": "Committed trace add-multiplier / actual growth-M contribution.",
+        "voices": 2,
+        "scheduledTailSeconds": 0.21,
+        "bus": "sfx",
+        "tone": "Light filtered pluck and warm upper note."
+      },
+      {
+        "api": "multiplier('multiply',index)",
+        "trigger": "Committed trace multiply-multiplier event.",
+        "voices": 5,
+        "scheduledTailSeconds": 0.275,
+        "bus": "sfx",
+        "tone": "Warm low hit, wood body, quiet short bright tail."
+      },
+      {
+        "api": "coin()",
+        "trigger": "Actual gold transaction feedback.",
+        "voices": 2,
+        "scheduledTailSeconds": 0.15,
+        "bus": "ui",
+        "tone": "Two distinct notes below existing MIDI81 ceiling."
+      }
+    ],
+    "existingInterfaces": "deal/cardLand/hoverTick and other public APIs preserved; cardScore uses filtered pluck.",
+    "lifecycle": "One existing AudioContext; four buses, compressor and 32-voice cap retained. App owns listeners and preferences. A gesture is remembered when initially muted, enabling later unmute.",
+    "music": "Existing three-section 24-bar original loop unchanged.",
+    "check": {
+      "command": "C:/Program Files/nodejs/node.exe node_modules/typescript/bin/tsc --noEmit",
+      "result": "EXIT_1_EXTERNAL_FILE_ERROR",
+      "ownedFileErrors": 0,
+      "reportedError": "TitleScene.ts(88,86): getValue() number|null passed where number|undefined required; flow agent informed."
+    },
+    "listening": "NOT_RUN",
+    "limitation": "Scheduled durations and source inspection are not headphone, phone or human listening evidence."
+  }
+}

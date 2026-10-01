@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "workPackage": "P03.2",
+  "visualVersion": "p03-stage-v1",
+  "candidateCount": 1,
+  "sourceManifest": "art/sources/p03-stage/manifest.json",
+  "visualApproval": "NOT_GRANTED",
+  "productionBatchApproval": "NOT_GRANTED",
+  "assets": [
+    {
+      "assetId": "p03-stage-wide",
+      "textureKey": "p03-stage",
+      "file": "stage-wide.webp",
+      "width": 1536,
+      "height": 864,
+      "alpha": false,
+      "bytes": 131486,
+      "sha256": "06689cb284552d2ee38bc8da7bfa208a4c0568f628267ece853d09dab2401d6c",
+      "purpose": [
+        "title-stage-background",
+        "character-selection-background"
+      ]
+    }
+  ]
+}

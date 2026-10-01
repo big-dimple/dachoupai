@@ -7,7 +7,7 @@ import {createServer as httpServer} from 'node:http';
 import path from 'node:path';
 import {createServer} from 'vite';
 import {chromium,firefox,webkit} from 'playwright';
-import {waitScene,point,tapUI,chooseCharacter} from './ui.mjs';
+import {openSelector,waitScene,point,tapUI,chooseCharacter} from './ui.mjs';
 
 const root=process.cwd(),dir=path.resolve(process.env.E2E_EVIDENCE_DIR||'shots/e2e');fs.mkdirSync(dir,{recursive:true});
 const engines={chromium,firefox,webkit},selected=(process.env.E2E_BROWSERS||'chromium,firefox,webkit').split(','),scope=process.env.E2E_SCENARIO||'all';
@@ -76,7 +76,7 @@ async function perform(page,touch,action,{double=false,interrupt=false,rotate=fa
         assert.equal(committed.state.stage.goldEarned,expected,'independent contractual reward (base + unused hands + prior-gold interest)');assert.equal(committed.state.gold,before.state.gold+expected,'reward is granted once');
       }
       if(interrupt){
-        await menu(page,touch);await dom(page,'保存并退出',touch);await waitScene(page,'character-select');assert.deepEqual((await read(page)).state,committed.state,'exiting presentation preserves already committed result');
+        await menu(page,touch);await dom(page,'保存并退出',touch);await openSelector(page);assert.deepEqual((await read(page)).state,committed.state,'exiting presentation preserves already committed result');
         await menu(page,touch);await dom(page,'继续本局',touch);await idle(page);assert.deepEqual((await read(page)).state,committed.state,'continue cannot re-award');
       }else if(rotate){
         await page.setViewportSize({width:844,height:390});await idle(page);assert.deepEqual((await read(page)).state,committed.state,'rotation cannot rescore');await page.setViewportSize({width:390,height:844});
@@ -85,7 +85,7 @@ async function perform(page,touch,action,{double=false,interrupt=false,rotate=fa
   }else throw Error('unsupported UI action '+action.type);
   return read(page);
 }
-async function restart(page,touch){const before=await read(page);await page.reload();await waitScene(page,'character-select');assert.deepEqual(await read(page),before,'reload restores full state and journal');await menu(page,touch);assert.equal(await page.getByLabel('演出速度').inputValue(),'4');assert.equal(await page.getByLabel('静音',{exact:true}).isChecked(),true);await dom(page,'继续本局',touch);await waitScene(page,before.state.phase==='shop'?'shop':'game');}
+async function restart(page,touch){const before=await read(page);await page.reload();await openSelector(page);assert.deepEqual(await read(page),before,'reload restores full state and journal');await menu(page,touch);assert.equal(await page.getByLabel('演出速度').inputValue(),'4');assert.equal(await page.getByLabel('静音',{exact:true}).isChecked(),true);await dom(page,'继续本局',touch);await waitScene(page,before.state.phase==='shop'?'shop':'game');}
 async function scenario(browser,engine,name,callback,{touch=false,fault=null,prefix='/'}={}){
   const context=await browser.newContext({viewport:touch?{width:390,height:844}:{width:1280,height:800},hasTouch:touch,deviceScaleFactor:touch?2:1}),page=await context.newPage();page.setDefaultTimeout(12000);
   const record={engine,name,input:touch?'touchscreen.tap + native DOM tap':'mouse.click + native DOM click',prefix,status:'IN_PROGRESS',errors:[],assetResponses:[],failedRequests:[]};active={context,page,record};
@@ -111,7 +111,7 @@ function fixture(characterId){
 }
 let domainController;
 async function workflow(page,record,url,touch,fixture){
-  await page.goto(url+'&seed='+fixture.seed);await waitScene(page,'character-select');
+  await page.goto(url+'&seed='+fixture.seed);await openSelector(page);
   for(const character of characters){await tapUI(page,'character-select','character/'+character.id,touch);await tapUI(page,'character-select','action/character-details',touch);assert.ok((await page.locator('dialog').textContent()).includes(character.passiveDescription));await dom(page,'关闭',touch);}
   await chooseCharacter(page,fixture.characterId,touch);await settings(page,touch);const checkpoints=[];let discarded=false,doubled=false,interrupted=false;
   for(let step=0;step<24;step++){
@@ -141,7 +141,7 @@ async function workflow(page,record,url,touch,fixture){
   let replay=domain.createRun({seed:observed.state.seed,characterId:observed.state.characterId,runId:observed.state.runId,rulesVersion:'r2'});const hashes=new Map([[replay.commandSeq,domain.stateHash(replay)]]);
   for(const command of observed.journal){const result=domain.applyCommand(replay,command);assert.ok(result.ok,result.code);replay=result.state;hashes.set(replay.commandSeq,domain.stateHash(replay));}assert.deepEqual(replay,observed.state);for(const checkpoint of checkpoints)assert.equal(hashes.get(checkpoint.seq),checkpoint.hash);
   record.seed=fixture.seed;record.characterId=fixture.characterId;record.commands=observed.journal;record.finalHash=domain.stateHash(replay);record.outcome=observed.state.outcome;record.viewport=await page.evaluate(()=>({width:innerWidth,height:innerHeight,dpr:devicePixelRatio}));
-  await tapUI(page,'intermission','action/continue-stage',touch);await waitScene(page,'character-select');assert.equal((await read(page)).state.runId,observed.state.runId,'loss restart leaves the previous save until a new choice');
+  await tapUI(page,'intermission','action/continue-stage',touch);await openSelector(page);assert.equal((await read(page)).state.runId,observed.state.runId,'loss restart leaves the previous save until a new choice');
 }
 try{
   // Own both build directories, so another local build cannot replace the served files.

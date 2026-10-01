@@ -10,6 +10,13 @@ export class DetailDialog {
   private lastPointer?:{x:number;y:number};
   private returnFocus?:HTMLElement;
   active(dialog:HTMLDialogElement):boolean {return this.dialog===dialog;}
+  /** Reuse the actual Phaser card face for readable poker details, after snapshot resolves. */
+  attachCardArt(dialog:HTMLDialogElement,url:string,alt:string):void {
+    if(!this.active(dialog))return;
+    const frame=document.createElement('figure'),image=document.createElement('img');
+    frame.className='dialog-card-art dialog-poker-art';image.className='dialog-card-image';image.src=url;image.alt=alt;
+    frame.append(image);dialog.querySelector('.dialog-body')?.before(frame);
+  }
   close(expected?:HTMLDialogElement):void {
     if(expected&&!this.active(expected))return;
     if(this.dialog&&this.lastPointer)dismissedPointer={...this.lastPointer,until:performance.now()+350};
@@ -38,6 +45,6 @@ export class DetailDialog {
     dialog.append(content,status,row);document.body.append(dialog);
     dialog.addEventListener('cancel',event=>{event.preventDefault();this.close(dialog);});
     dialog.addEventListener('pointerup',event=>{this.lastPointer={x:event.clientX,y:event.clientY};});
-    dialog.showModal();this.dialog=dialog;close.focus();return dialog;
+    dialog.showModal();this.dialog=dialog;close.focus({preventScroll:true});dialog.scrollTop=0;return dialog;
   }
 }

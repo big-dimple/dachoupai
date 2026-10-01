@@ -1,27 +1,13 @@
-# 当前交接
+# 开发交接
 
-## 当前工作包：A01 / BLOCKED（真人视觉批准门禁）
+当前包 **P03 / IN_PROGRESS**：接续另一AI未完的美术与交互打磨。用户2026-10-01明确暂停后续开发；不推进新章节、卡池、数值、M4/M5或批量美术。唯一任务状态源为`docs/production/plan.json`；按WORK_PACKAGES P03与D15执行。
 
-A00已接纳并关闭：盘点扩展至166项（含29个P00/P01运行时候选），verify:assets/test:assets/全量单测/构建均PASS，证据见 `production/evidence/A00-2026-10-01.json`。发布白名单仍为空，视觉批准NOT_GRANTED。V01真人门禁不变。A02及后续内容里程碑仍被门禁阻塞，不要自行开工。
+基线：root工作树`D:/ai/dachoupai/dachoupai`，main HEAD `2926c7ef2b269b71e8596cf54b466eaa6cb29298`。已fetch，main比origin/main领先1、落后0。接管时GameScene/Shop/选角/Intermission/SceneView/AudioEngine有未提交修改，TitleScene未跟踪；保留这些成果逐项接续，不reset。历史审查基线仍为`9fd6e0bdb20c7e6114e045ca336c27afe5d47e9e`，不复写旧审查。
 
-## 代码与协作位置
+已做：实际读差异和720×886选角/商店，记录首次`npm run build`失败（三处TitleScene缺方法/类型错误），日志`docs/production/evidence/p03-2026-10-01/baseline-build.txt`。旧P00/P01/P02及A00工程证据在各包JSON；A00已接纳main，166条盘点含29个候选条目，批准白名单仍为空。
 
-主目录 `D:/ai/dachoupai/dachoupai` 为main；隔离目录 `D:/ai/dachoupai/p00-main-delivery` 为detached，只用于保留协作工作。用户明确授权本轮总Agent正常整合并推main；不强推、不reset，部署由用户处理。子Agent已完成并冻结，当前没有待整合的P01/P02源文件。
+本轮分工：root独占GameScene/SceneView/theme/详情与整合；flow负责Title/Boot/main/选角/Shop/Intermission；art/audio负责一张舞台候选及声音；table只读检查交互/演出风险，不与工程共改文件。全部在root目录，不使用旧`p00-main-delivery`。独立Node `C:/Program Files/nodejs/node.exe` v22.20.0可用。5204为本轮Vite预览，5201/5202/5203是旧预览，不据其画面签收。
 
-A00暂存成果已全部纳入main（盘点、联系表、tools/blender只读CLI、package两条脚本、vitest.config隔离）。环境备注：本机默认node是Kimi Electron shim，ci-gates四个门禁夹具在shim下EPERM失败；用独立Node 22.20.0（`C:\Program Files\nodejs\node.exe`）全绿。CI与评审一律使用真实Node。
+限制：r2-v4内容hash `json-fnv-v1:44ae9e0098657624`、规则、RNG、存档不改；出牌仍消费已确定trace。Android Chrome实机、真人试听、A01视觉批准、V01真人体验均未完成，不能自签。P03候选可接入用于评审，不代表资产白名单获批。
 
-## 已交付与真实验证
-
-牌桌有真实牌形/背纹、悬停抬升与固定命中框、三张原创Joker的512px大卡面；普通点分、角色、加倍率、乘倍率分节拍，真实扑克/角色/Joker来源联动。P01实际桌面/390竖屏/844横屏/360短竖屏走查，一手单K+碰瓷150；必要build曾失败并修复，日志保留。
-
-P02先跑红8失败/2通过，再实现阿默新局高牌Lv3；新金样10通过，旧默认L1的T01独立用例1通过。全局等级曲线/数学/其他五能力/目标/商店RNG未改。最终build和24牌内容检查PASS；实际390普通出牌显示Lv3预览325、角色阶段225、最终325并补牌。其他21张Joker仍是机制图案，六角色平衡未验证。
-
-v4初始等级进入内容hash。v3原文保留，新版本需显式新开局；不静默补等级或承诺旧局续打。实际兼容提示已看；导出保留数据已点击，但IAB下载观察超时，文件恢复NOT_VERIFIED。单位restoreSlots原文保留金样通过。Android真机、耳机/手机试听、正式视觉与V01真人接受仍NOT_RUN/待批准；A01/V01保持BLOCKED，不自签或批产正式24/72牌。
-
-## 用户2026-10-01第二轮指示（表现层打磨）
-
-用户要求对标小丑牌/炉石传说的细节，停在当前开发进度，把现有美术资源与交互效果打磨到极致，不推进新里程碑；之后由另一个AI按里程碑继续。本轮打磨属P01/P02可试玩候选的表现层迭代：只动Phaser表现/交互/音频呈现，不改规则、数值、内容hash与存档格式；产出真实截图证据，但不据此自封A01视觉批准。
-
-## 唯一下一步
-
-等用户对打磨后的候选做视觉/体验反馈；A01批准前不扩角色批次、不扩72卡、不接A02。工程侧若继续，只做不依赖门禁的打磨修复。
+**唯一下一步：完成P03表现整改并用实际构建与桌面/390尺寸操作检验，然后正常推main供同版本关键节点反馈；不启动后续内容。**

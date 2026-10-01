@@ -109,6 +109,9 @@ export class AudioEngine {
 
   /** Call only from the application's first pointer/key gesture; repeated calls are safe. */
   unlock(): Promise<void> {
+    // Remember a real gesture even when initially muted; unmuting can then create
+    // or resume the context after the app's one-shot gesture listeners are gone.
+    this.unlocked = true;
     if (this.unlockTask) return this.unlockTask;
     const pending = this.enableAudio();
     this.unlockTask = pending;
@@ -182,7 +185,6 @@ export class AudioEngine {
       }
       const context = this.context;
       if (!context) return;
-      this.unlocked = true;
       // Resume even when running: it also follows a pending background suspend safely.
       if (context.state !== 'closed') await context.resume();
       if (!this.suspended && !this.hidden() && !this.masterMuted) this.startMusic();
@@ -337,13 +339,50 @@ export class AudioEngine {
     }
   }
 
+  /** Short filtered swish for one dealt card; the caller passes the visual stagger index. */
+  deal(index = 0): void {
+    const i = Math.floor(bounded(index, 8));
+    this.paper(.075, .02, i * .055, 'sfx', undefined, 1150 + i * 70);
+    this.note(57 + Math.min(i, 6), .05, .015, 'sfx', i * .055, 'triangle');
+  }
+  /** Soft warm thump when a played card lands in the scoring area. */
+  cardLand(): void {
+    this.note(54, .07, .034, 'sfx', 0, 'sine', undefined, 45, 'warm');
+    this.paper(.04, .02, 0, 'sfx', undefined, 900);
+  }
+  private lastHoverTick = 0;
+  /** Nearly-silent paper tick on card hover; throttled so sweeping the hand cannot buzz. */
+  hoverTick(): void {
+    const now = typeof performance === 'undefined' ? 0 : performance.now();
+    if (now - this.lastHoverTick < 55) return;
+    this.lastHoverTick = now;
+    this.paper(.032, .011, 0, 'ui', undefined, 2100);
+  }
+  coin(): void { this.note(78, .07, .024, 'ui', 0, 'sine'); this.note(81, .09, .019, 'ui', .045, 'sine'); }
+  /** A gentle bell when the user continues a saved run from the title. */
+  titleBell(): void {
+    const pitch = 69;
+    this.note(pitch, .36, .027, 'sfx', 0, 'sine');
+    this.note(Math.min(81, pitch + 12), .21, .008, 'sfx', .009, 'sine');
+    this.note(pitch - 12, .16, .009, 'sfx', 0, 'triangle', undefined, undefined, 'warm');
+  }
+  /** A single soft fabric pull and warm chord when the user opens the curtain. */
+  curtainOpen(): void {
+    this.duckMusic(.55);
+    this.paper(.18, .018, 0, 'sfx', undefined, 850);
+    this.paper(.16, .016, .11, 'sfx', undefined, 1150);
+    this.paper(.14, .014, .24, 'sfx', undefined, 900);
+    this.note(45, .26, .027, 'sfx', 0, 'sine', undefined, 50, 'warm');
+    this.note(57, .24, .026, 'sfx', .10, 'triangle', undefined, undefined, 'pluck');
+    this.note(62, .25, .020, 'sfx', .16, 'sine', undefined, undefined, 'warm');
+  }
   select(): void { this.note(74, .07, .045, 'ui'); this.note(78, .055, .017, 'ui', .024, 'sine'); }
   cancel(): void { this.note(71, .08, .035, 'ui', 0, 'triangle', undefined, 67); }
   deselect(): void { this.cancel(); }
   invalid(): void { this.note(55, .11, .035, 'ui'); this.note(54, .08, .025, 'ui', .095); }
   playHand(): void { this.duckMusic(); this.paper(.12, .052); this.note(50, .13, .065, 'sfx', .02, 'sine', undefined, 43); }
   discard(): void { this.paper(.08, .046); this.paper(.09, .03, .055); this.note(62, .095, .027, 'sfx', .015, 'triangle', undefined, 55); }
-  cardScore(index = 0): void { this.note([67, 69, 71, 74, 76][Math.floor(bounded(index, 4))], .095, .044); }
+  cardScore(index = 0): void { this.note([67, 69, 71, 74, 76][Math.floor(bounded(index, 4))], .095, .038, 'sfx', 0, 'triangle', undefined, undefined, 'pluck'); }
   role(): void { this.duckMusic(.4); [69, 74, 78].forEach((n, i) => this.note(n, .18, .04, 'sfx', i * .055)); }
   joker(chainIndex: number): void {
     const index = Math.floor(bounded(chainIndex, 6));
@@ -354,12 +393,16 @@ export class AudioEngine {
   multiplier(kind: 'add' | 'multiply', chainIndex = 0): void {
     const step = Math.floor(bounded(chainIndex, 4));
     this.duckMusic(kind === 'multiply' ? .4 : .2);
-    if (kind === 'add') { this.note(69 + step, .12, .04); this.note(74 + step, .14, .035, 'sfx', .055); }
+    if (kind === 'add') {
+      this.note(65 + step, .135, .033, 'sfx', 0, 'triangle', undefined, undefined, 'pluck');
+      this.note(69 + step, .16, .025, 'sfx', .035, 'sine', undefined, undefined, 'warm');
+    }
     else {
-      this.note(45, .23, .065, 'sfx', 0, 'sine', undefined, 33, 'warm');
-      this.paper(.055, .018, 0, 'sfx', undefined, 700);
-      this.note(74 + Math.min(step, 3), .13, .03, 'sfx', .05, 'triangle', undefined, undefined, 'pluck');
-      this.note(81, .17, .017, 'sfx', .105, 'sine');
+      this.note(43, .26, .059, 'sfx', 0, 'sine', undefined, 31, 'warm');
+      this.note(55, .16, .028, 'sfx', .015, 'triangle', undefined, undefined, 'warm');
+      this.paper(.06, .014, 0, 'sfx', undefined, 680);
+      this.note(69 + Math.min(step, 3), .18, .028, 'sfx', .052, 'triangle', undefined, undefined, 'pluck');
+      this.note(76 + Math.min(step, 3), .16, .013, 'sfx', .10, 'sine');
     }
   }
   retrigger(chainIndex = 0): void { const n = 72 + Math.floor(bounded(chainIndex, 5)); this.note(n, .06, .034); this.note(n, .09, .042, 'sfx', .075); }

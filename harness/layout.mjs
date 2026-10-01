@@ -1,4 +1,4 @@
-import {waitScene,point,tapUI,chooseCharacter,buyOffer} from './ui.mjs';
+import {openSelector,waitScene,point,tapUI,chooseCharacter,buyOffer} from './ui.mjs';
 /** Actual CSS-size observations and pointer workflows; never writes run state. */
 import assert from 'node:assert/strict';
 import {spawn,execFileSync} from 'node:child_process';
@@ -93,7 +93,7 @@ try{
   for(const [width,height] of [[320,568],[360,640],[390,844],[430,932],[844,390],[1024,768],[1280,720],[768,1024]]){
     const context=await browser.newContext({viewport:{width,height},hasTouch:true,deviceScaleFactor:2}),page=await context.newPage(),requests=[];
     activePage=page;page.on('request',r=>{if(r.url().includes('/assets/'))requests.push(r.url());});
-    await page.goto(url);await page.waitForFunction(()=>window.__harness?.game.scene.isActive('character-select'));
+    await page.goto(url);await openSelector(page);
     const metrics=await metricsFor(page,'character-select');
     const failures=[];if(metrics.canvas.height<height*.9)failures.push('canvas-letterbox');if(metrics.texts.some(t=>t.font<14))failures.push('body-below-14-css-px');if(metrics.hits.some(h=>h.width<44||h.height<44))failures.push('secondary-target-below-44-css-px');if(requests.some(r=>/characters\/[^/]+\.png/.test(r)))failures.push('original-png-first-load');
     report.checks.push({name:`select/${width}x${height}`,status:failures.length?'FAIL':'PASS',metrics,assetRequests:requests,failures});await page.screenshot({path:path.join(dir,`select-${width}x${height}.png`)});
