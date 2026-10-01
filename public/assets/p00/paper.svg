@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640">
+  <rect width="640" height="640" fill="#f3eadb"/>
+  <defs>
+    <pattern id="weave" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M9 13h6m28 25h8m-31 28h3m41-11h5M23 6v2m36 64v3m-52-35v4" stroke="#b6a487" stroke-width=".8" opacity=".11"/>
+      <path d="M4 30h7m29-11h5m17 27h6m-37 29h4M17 53v2m38-49v4" stroke="#fffdf6" stroke-width="1.2" opacity=".4"/>
+      <circle cx="31" cy="46" r=".65" fill="#8d806b" opacity=".1"/>
+      <circle cx="71" cy="11" r=".7" fill="#8d806b" opacity=".09"/>
+      <circle cx="4" cy="68" r=".5" fill="#8d806b" opacity=".1"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="640" fill="url(#weave)"/>
+  <g fill="#b6a487" opacity=".025">
+    <path d="M80 108c44-10 84 4 112-5l-1 2c-29 10-72-2-112 6z"/>
+    <path d="M411 236c35-5 59-2 82 1l-2 2c-28-3-54-5-78 0z"/>
+    <path d="M176 502c26-4 54-3 89-7l-3 3c-25 3-55 5-87 7z"/>
+  </g>
+</svg>

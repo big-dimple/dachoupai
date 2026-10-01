@@ -4,6 +4,8 @@ import {heatText} from './scoreText';
 import {HAND_LABELS} from '../content/handLabels';
 import {MAX_IMPORT_BYTES} from '../application/checkpoint';
 import type {GameScene} from './GameScene';
+import {buildInfo} from '../platform/buildInfo';
+import {AudioEngine} from '../audio/AudioEngine';
 
 function download(text:string,name:string):void {
   const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),link=document.createElement('a');
@@ -18,13 +20,14 @@ export function routeSavedRun(game:Phaser.Game):void {
   game.scene.start(target,target==='intermission'?{cleared:state.phase==='stage-cleared'||state.phase==='run-won',stageIndex:state.stage!.index,stageHeat:state.stage!.heat,handsLeft:state.stage!.handsLeft,goldEarned:state.stage!.goldEarned}:undefined);
 }
 
-/** App-scoped recovery controls are outside scene lifetimes. R05 supplies the responsive table layout. */
+/** Progress and presentation preferences survive scene changes. */
 export function installRunMenu(game:Phaser.Game):void {
-  const session=gameSession(),host=document.createElement('div'),toggle=document.createElement('button'),panel=document.createElement('section'),status=document.createElement('p');
+  const session=gameSession(),audio=AudioEngine.shared,host=document.createElement('div'),toggle=document.createElement('button'),panel=document.createElement('section'),status=document.createElement('p');
+  try{const saved=JSON.parse(localStorage.getItem('dachoupai-audio-v1')??'null');if(typeof saved?.musicMuted==='boolean')audio.musicMuted=saved.musicMuted;if(typeof saved?.master==='number'&&Number.isFinite(saved.master))audio.setVolume('master',saved.master);}catch{/* Optional preferences cannot block boot. */}
   host.className='run-menu';toggle.textContent='菜单';toggle.setAttribute('aria-expanded','false');panel.hidden=true;panel.setAttribute('aria-label','进度与演出设置');
   const close=()=>{panel.hidden=true;toggle.setAttribute('aria-expanded','false');};
   toggle.onclick=()=>{panel.hidden=!panel.hidden;toggle.setAttribute('aria-expanded',String(!panel.hidden));};
-  const button=(name:string,action:()=>void|Promise<unknown>)=>{const b=document.createElement('button');b.textContent=name;b.onclick=()=>{void action();};panel.append(b);return b;};
+  const button=(name:string,action:()=>void|Promise<unknown>,container:HTMLElement=panel)=>{const b=document.createElement('button');b.textContent=name;b.onclick=()=>{void action();};container.append(b);return b;};
   panel.append(status);
   const resume=button('继续本局',()=>{if(!session.run)return;routeSavedRun(game);close();});
   const start=button('开始新局',async()=>{
@@ -45,11 +48,13 @@ export function installRunMenu(game:Phaser.Game):void {
     // setInteractive objects enter Phaser's input list on the following step.
     await new Promise<void>(resolve=>game.events.once('poststep',resolve));close();
   });
-  const exportRun=button('导出本局',()=>{if(session.run)download(session.run.exportJSON(),'dachoupai-checkpoint.json');});
+  const saveTools=document.createElement('details'),saveSummary=document.createElement('summary');saveSummary.textContent='存档工具';saveTools.append(saveSummary);panel.append(saveTools);
+  const exportRun=button('导出本局',()=>{if(session.run)download(session.run.exportJSON(),'dachoupai-checkpoint.json');},saveTools);
   button('局详情',()=>{const state=session.state();status.textContent=state?'角色 '+state.characterId+'\nSEED '+state.seed+'\n规则 '+state.rulesVersion+' · 内容 '+state.contentVersion:'当前没有进行中的局。';});
-  button('导出保留数据',async()=>{try{download(await session.storage.exportRetained(),'dachoupai-retained-data.json');}catch{status.textContent='导出失败，原数据未修改。';}});
+  button('版本信息',()=>{status.textContent=`版本 ${buildInfo.version} · ${buildInfo.revision.slice(0,12)}${buildInfo.modified?'（含本地修改）':''}\n构建 ${buildInfo.builtAt}\n当前可玩内容：24张大丑牌、两章。`;});
+  button('导出保留数据',async()=>{try{download(await session.storage.exportRetained(),'dachoupai-retained-data.json');}catch{status.textContent='导出失败，原数据未修改。';}},saveTools);
   const file=document.createElement('input');file.type='file';file.accept='.json,application/json';file.hidden=true;
-  const importRun=button('导入本局',()=>file.click());file.onchange=async()=>{
+  const importRun=button('导入本局',()=>file.click(),saveTools);file.onchange=async()=>{
     const selected=file.files?.[0];file.value='';if(!selected)return;
     if(selected.size>MAX_IMPORT_BYTES){status.textContent='导入失败：文件过大，原进度未修改。';return;}
     if(session.run&&!window.confirm('用导入的完整存档替换当前进度？当前有效存档会保留为备份。'))return;
@@ -58,7 +63,12 @@ export function installRunMenu(game:Phaser.Game):void {
   const speedLabel=document.createElement('label'),speed=document.createElement('select');speedLabel.textContent='演出速度 ';
   for(const value of [1,2,4]){const option=document.createElement('option');option.value=String(value);option.textContent=`${value}×`;speed.append(option);}speed.value=String(session.speed);speedLabel.append(speed);panel.append(speedLabel);
   const muted=document.createElement('input'),muteLabel=document.createElement('label');muted.type='checkbox';muted.checked=session.muted;muteLabel.append(muted,document.createTextNode(' 静音'));panel.append(muteLabel);
-  speed.onchange=()=>session.preferences(Number(speed.value) as 1|2|4,muted.checked);muted.onchange=()=>session.preferences(Number(speed.value) as 1|2|4,muted.checked);
+  const reduced=document.createElement('input'),reducedLabel=document.createElement('label');reduced.type='checkbox';reduced.checked=session.reducedMotion;reducedLabel.append(reduced,document.createTextNode(' 减少动态'));panel.append(reducedLabel);
+  const presentation=()=>session.preferences(Number(speed.value) as 1|2|4,muted.checked,reduced.checked);
+  speed.onchange=presentation;muted.onchange=()=>{presentation();if(!muted.checked)void audio.unlock();};reduced.onchange=presentation;
+  const music=document.createElement('input'),musicLabel=document.createElement('label');music.type='checkbox';music.checked=audio.musicMuted;musicLabel.append(music,document.createTextNode(' 关闭背景音乐'));panel.append(musicLabel);music.onchange=()=>{audio.musicMuted=music.checked;saveAudio();};
+  const volume=document.createElement('input'),volumeLabel=document.createElement('label');volume.type='range';volume.min='0';volume.max='100';volume.value=String(Math.round(audio.getVolume('master')*100));volume.setAttribute('aria-label','总音量');volumeLabel.append(document.createTextNode('总音量'),volume);panel.append(volumeLabel);volume.oninput=()=>{audio.setVolume('master',Number(volume.value)/100);saveAudio();};
+  function saveAudio():void {try{localStorage.setItem('dachoupai-audio-v1',JSON.stringify({musicMuted:audio.musicMuted,master:audio.getVolume('master')}));}catch{/* Audio preferences are optional. */}}
   const forward=button('快进当前手',()=>{const scene=game.scene.getScene('game') as GameScene;if(scene.scene.isActive())scene.fastForward();close();});
   const replay=button('回看上一手',()=>{
     const state=session.state();if(!state?.lastTrace)return;
@@ -74,7 +84,7 @@ export function installRunMenu(game:Phaser.Game):void {
     takeover.disabled=session.working;
     start.disabled=session.working||!session.loaded||!session.lease.writable||run?.status==='saving'||run?.status==='paused';exportRun.disabled=!run;importRun.disabled=session.working||!session.loaded||!session.lease.writable;
     forward.disabled=!game.scene.isActive('game');replay.disabled=!run?.state.lastTrace;
-    if(run?.status==='paused'||run?.status==='readonly'||session.notice||!session.lease.writable){panel.hidden=false;toggle.setAttribute('aria-expanded','true');}
+    if(run?.status==='paused'||run?.status==='readonly'||session.notice||!session.lease.writable){panel.hidden=false;toggle.setAttribute('aria-expanded','true');if(run?.status==='paused'||session.notice)saveTools.open=true;}
   });
   host.append(toggle,panel);document.body.append(host);
 }

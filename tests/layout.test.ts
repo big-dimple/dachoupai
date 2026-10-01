@@ -2,7 +2,7 @@ import {describe,it,expect} from 'vitest';
 import {layout,intersects,type Box} from '../src/game/layout';
 import {PointerIntent} from '../src/game/PointerIntent';
 
-const sizes=[[320,568],[360,640],[390,844],[430,932],[844,390],[1024,768],[1280,720],[768,1024]];
+const sizes=[[320,568],[360,640],[390,844],[430,932],[844,390],[1024,768],[1280,720],[1920,1080],[768,1024]];
 const inside=(b:Box,w:number,h:number)=>b.x>=0&&b.y>=0&&b.x+b.width<=w+.01&&b.y+b.height<=h+.01;
 describe('CSS layout contract',()=>{
   for(const [width,height] of sizes)it(`${width}×${height}: readable, visible and distinct hit areas`,()=>{
@@ -26,6 +26,16 @@ describe('CSS layout contract',()=>{
     for(const [width,height] of sizes){const l=layout({width,height},{top:0,right:0,bottom:0,left:0});
       const targets=Object.values(l.shopTools);for(const b of targets){expect(inside(b,width,height)).toBe(true);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.width).toBeGreaterThanOrEqual(44);for(const other of [...l.shelf,...l.slots,...[l.buttons.discard,l.buttons.play,l.buttons.forward]])expect(intersects(b,other)).toBe(false);}
       expect(intersects(targets[0],targets[1])).toBe(false);
+    }
+  });
+  it('played cards, current score and pile counts stay visible above the independent hand controls',()=>{
+    for(const [width,height] of [[1920,1080],[1280,720],[390,844],[844,390]]){
+      const l=layout({width,height},{top:0,right:0,bottom:0,left:0});
+      for(const b of [l.scoreBoard,l.playedArea,l.handLabel,l.piles])expect(inside(b,width,height)).toBe(true);
+      expect(l.playedArea.height).toBeGreaterThanOrEqual(48);
+      expect(intersects(l.scoreBoard,l.playedArea)).toBe(false);
+      for(const b of [l.scoreBoard,l.playedArea,l.handLabel,l.piles])for(const control of [l.tools,l.hand,l.actions])expect(intersects(b,control)).toBe(false);
+      expect(l.hand.width).toBeLessThanOrEqual(1100);
     }
   });
 });

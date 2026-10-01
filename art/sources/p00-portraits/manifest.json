@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "visualVersion": "p00-theatrical-portraits-v1",
+  "status": "review-candidate",
+  "visualApproval": "NOT_GRANTED",
+  "batchProductionApproval": "NOT_GRANTED",
+  "tool": "Built-in image_gen.imagegen",
+  "modelVersion": "NOT_REPORTED",
+  "derivativeTool": "Sharp 0.35.5; resize/crop and WebP encode only",
+  "sourcePermission": "User explicitly requested six original character candidates on 2026-10-01. No external media or IP characters.",
+  "assets": [
+    {
+      "contentId": "amo",
+      "source": {
+        "path": "art/sources/p00-portraits/amo.original.png",
+        "width": 1254,
+        "height": 1254,
+        "alpha": false,
+        "bytes": 2270932,
+        "sha256": "53d12ca801897d5fbd4451af5786e7147175d9563e1a0b3c7b5a8f09375aaa38"
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: one original square bust portrait for a hand-painted collectible card game, also readable as a 64px avatar. Generate ONE character, ONE image, not a sheet or collage.\nSubject: Amo, a 45-year-old male mime actor. Distinctively long face, high cheekbones, fine separated pencil moustache, slightly tired eyes, one eyebrow raised, a sly restrained smile. His mature lined face is charismatic and theatrical, not conventionally pretty. Turn his head and torso in a two-thirds side view while his eyes look directly at the audience. A small white theatre mask sits off to one side of his shoulder; it does not cover his face. Deep indigo tailored stage suit and an ivory neck scarf. Dry, slightly dark stage humor.\nStyle: exquisite hand-painted collectible card illustration, visible painterly edges, crisp expressive eyes, exaggerated but believable personal silhouette, sculptural warm spotlight and jewel-dark shadows, elegant brass accents and velvet curtain textures. Clearly an illustration, neither a photograph nor anime, not a xianxia pretty-boy face.\nComposition: square chest-up bust; head centered in the upper middle, full hair, full shoulders and chest inside the image, generous safe margins so no scalp or shoulders are clipped. The face and eyes occupy enough space to remain recognizable at 64 pixels. Simple purple-indigo stage curtain backdrop with a warm theatrical spotlight; facial silhouette has clear value separation.\nConstraints: original fictional adult character. One head, two normal eyes, anatomically coherent neck and shoulders. No other people. No text, lettering, numbers, borders, card frame, logos, watermark, weapons or dense ornaments. The mask is a small side prop, never a second face fused to the actor. Opaque background.",
+      "faceFocus": {
+        "x": 0.56,
+        "y": 0.3
+      },
+      "framing": "Square chest-up candidate; not a full-body standing illustration.",
+      "runtime": [
+        {
+          "assetId": "p00-amo-avatar",
+          "path": "public/assets/p00/characters/amo.avatar.webp",
+          "url": "assets/p00/characters/amo.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 12168,
+          "sha256": "53698a3f96d8aab625c401451ca54b4bdcf9d8f8be9c27930ccaf56967f559c4",
+          "use": "Startup selector and 64px HUD"
+        },
+        {
+          "assetId": "p00-amo-portrait",
+          "path": "public/assets/p00/characters/amo.portrait.webp",
+          "url": "assets/p00/characters/amo.portrait.webp",
+          "width": 640,
+          "height": 640,
+          "alpha": false,
+          "bytes": 65650,
+          "sha256": "d7fc6e7dd6fe35b65075c84180fa0fa1f4f16446599fc263ef8ab03241e1a099",
+          "use": "Character detail; lazy DOM image"
+        }
+      ],
+      "visualApproval": "NOT_GRANTED"
+    },
+    {
+      "contentId": "touye",
+      "source": {
+        "path": "art/sources/p00-portraits/touye.original.png",
+        "width": 1254,
+        "height": 1254,
+        "alpha": false,
+        "bytes": 2202956,
+        "sha256": "e99c0b90d7ad7b9095ae4a7293425e4e7ecca6199540dd1bcc421981765f9436"
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: one square 1:1 game character portrait, chest-up collectible-card illustration. Generate exactly one character, no border.\nSubject: Touye, a 35-year-old woman professional gambler. Short jet-black bob haircut, slim narrowed eyes, slightly upturned angular chin, a knowing crooked smirk. Her face is at a slight three-quarter angle toward the left. A chestnut-red long coat with restrained brass details and one small jewel accent. One hand holds a single small die below shoulder level.\nComposition: complete shoulders and upper chest within the square, face large and centered in the upper half, clear silhouette. Keep the eyes and expression readable when reduced to 64 pixels. The die must stay away from the face and not obscure the coat.\nBackdrop: warm ochre and wine-red stage velvet curtains, softly simplified.\nStyle: exquisite hand-painted collectible game card artwork, sculptural light and shadow, controlled brushwork, clear exaggerated shapes, refined material detail, playful absurd theatrical humor. Light from upper-left front. The person feels like a cunning working professional with a distinctive adult face.\nConstraints: no text, numbers, lettering, watermark, logos, framing, card border or UI. No photography, no anime, no pretty generic fantasy heroine, no xianxia immortals, no cloned porcelain doll face. Do not depict a child or a young teenager. Opaque illustrated background.",
+      "faceFocus": {
+        "x": 0.5,
+        "y": 0.3
+      },
+      "framing": "Square chest-up candidate; not a full-body standing illustration.",
+      "runtime": [
+        {
+          "assetId": "p00-touye-avatar",
+          "path": "public/assets/p00/characters/touye.avatar.webp",
+          "url": "assets/p00/characters/touye.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 14736,
+          "sha256": "c4d1ad3b175f52869c4b3d1efba16826c446109492ae1b287026880e8e925918",
+          "use": "Startup selector and 64px HUD"
+        },
+        {
+          "assetId": "p00-touye-portrait",
+          "path": "public/assets/p00/characters/touye.portrait.webp",
+          "url": "assets/p00/characters/touye.portrait.webp",
+          "width": 640,
+          "height": 640,
+          "alpha": false,
+          "bytes": 80484,
+          "sha256": "3432c6a525d6df01e4bcc11457953e248e99803478ea99c218ae173c9e4cd38b",
+          "use": "Character detail; lazy DOM image"
+        }
+      ],
+      "visualApproval": "NOT_GRANTED"
+    },
+    {
+      "contentId": "laohuan",
+      "source": {
+        "path": "art/sources/p00-portraits/laohuan.original.png",
+        "width": 1254,
+        "height": 1254,
+        "alpha": false,
+        "bytes": 2472445,
+        "sha256": "13f067076e7b52a3061182e667ff7b9ca00a6397d438d8535c805981f42439ec"
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: one square 1:1 game character portrait, chest-up collectible-card illustration. Generate exactly one character, no border.\nSubject: Laohuan, a 70-year-old woman theatrical mechanical-prop maker. Clearly elderly, with deep expressive wrinkles and a broad round face, fluffy unruly silver-white hair gathered into a voluminous loose bun, round copper spectacles. In a slight sideways pose she looks downward at a few tiny floating paper scraps with a gently surprised delighted expression. She wears a dark teal work outfit with a small repair-tool pouch visible near the upper chest and old jade-colored sleeve protectors. Her silhouette, elderly face and lively practical personality are immediately distinctive.\nComposition: complete shoulders and upper chest within the square, face large and centered in the upper half. The spectacles and eyes are unobstructed and readable at 64 pixels. Put floating scraps below the face around chest level, not in front of her eyes.\nBackdrop: softly simplified green and teal stage velvet curtains.\nStyle: exquisite hand-painted collectible game card artwork, sculptural light and shadow, controlled brushwork, clear exaggerated shapes, refined copper material detail, playful absurd theatrical humor. Light from upper-left front. Focus on an appealing genuinely old craftswoman with a recognizable round silhouette.\nConstraints: no text, numbers, lettering, watermark, logos, framing, card border or UI. No photography, no anime, no young pretty witch, no xianxia heroine, no cloned generic beautiful face. The visible age must remain about 70 with deep wrinkles and elderly features. Opaque illustrated background.",
+      "faceFocus": {
+        "x": 0.5,
+        "y": 0.3
+      },
+      "framing": "Square chest-up candidate; not a full-body standing illustration.",
+      "runtime": [
+        {
+          "assetId": "p00-laohuan-avatar",
+          "path": "public/assets/p00/characters/laohuan.avatar.webp",
+          "url": "assets/p00/characters/laohuan.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 21228,
+          "sha256": "6f3edceb9faa286ee505925570c305ba69fdadd71ae122407ec62fb53ca6b1d8",
+          "use": "Startup selector and 64px HUD"
+        },
+        {
+          "assetId": "p00-laohuan-portrait",
+          "path": "public/assets/p00/characters/laohuan.portrait.webp",
+          "url": "assets/p00/characters/laohuan.portrait.webp",
+          "width": 640,
+          "height": 640,
+          "alpha": false,
+          "bytes": 106082,
+          "sha256": "424ee55e594f9ba683ad077d005d1958303b3b0c5b90b5a739574fb1a921f172",
+          "use": "Character detail; lazy DOM image"
+        }
+      ],
+      "visualApproval": "NOT_GRANTED"
+    },
+    {
+      "contentId": "erxiang",
+      "source": {
+        "path": "art/sources/p00-portraits/erxiang.original.png",
+        "width": 1254,
+        "height": 1254,
+        "alpha": false,
+        "bytes": 2277177,
+        "sha256": "5b9c6ad23221637a3753f085d2c15edcfc2fb199526c606852aaead1e6cdce5c"
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: One square painted character bust for an original premium theatrical card game, designed to remain distinctive at a 64px avatar size.\nPrimary request: Generate exactly ONE 1024x1024 square image of 二响 / Erxiang: a 40-year-old stocky male comic stage performer. He has a round broad face, a broad nose, thick eyebrows, deep brown skin, and very short cropped hair. He is warmly laughing with clearly visible teeth and expressive friendly eyes. This is a memorable working comedian with a powerful sturdy silhouette, not a conventionally beautiful fantasy hero.\nComposition/framing: Chest-up portrait, full head and both shoulders and upper chest comfortably within frame. Face centered slightly above the image center, front-facing with a small natural turn, camera looking slightly downward. Do not crop the hair or shoulders. A pair of DIFFERENT-SIZED wooden rhythm clappers are held below the shoulders, with clear simple plausible hands and visible wood shapes; props do not cover the face. His clothing is a shirt with waistcoat and suspenders, suited to a comic theatre performer.\nStyle/medium: Refined hand-painted collectible-card illustration with expressive caricature, strong recognizable silhouette and sculpted chiaroscuro. Rich deliberate brushwork, jewel and brass stage accents, coherent high-quality painterly rendering. Playful absurd theatrical humour without grotesque horror. The eyes, broad nose, laughing mouth and facial shape must remain immediately readable when reduced to 64px.\nScene/backdrop and palette: Simple rose-copper and warm ivory theatre backdrop, restrained stage velvet and gentle warm spotlight. Background has a few broad elegant colour shapes with less contrast and detail than the face; keep visual focus on the actor.\nConstraints: One character only, no collage, no card frame, no border, no lettering, no symbols resembling text, no labels, no logo or trademark, no watermark. Original individual face. Not a photograph, not anime, not glossy plastic 3D, not a young handsome xianxia swordsman, no ornate fantasy robes. Do not add extra objects or characters. This is a square clean reusable character illustration.",
+      "faceFocus": {
+        "x": 0.51,
+        "y": 0.3
+      },
+      "framing": "Square face and shoulders crop for 64px readability; the 640px portrait preserves the complete generated chest-up composition.",
+      "runtime": [
+        {
+          "assetId": "p00-erxiang-avatar",
+          "path": "public/assets/p00/characters/erxiang.avatar.webp",
+          "url": "assets/p00/characters/erxiang.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 15186,
+          "sha256": "9825a7bc7af14dc8ad230b66a133ceb06e017d9420a52e792b857ebcb0681768",
+          "use": "Startup selector and 64px HUD"
+        },
+        {
+          "assetId": "p00-erxiang-portrait",
+          "path": "public/assets/p00/characters/erxiang.portrait.webp",
+          "url": "assets/p00/characters/erxiang.portrait.webp",
+          "width": 640,
+          "height": 640,
+          "alpha": false,
+          "bytes": 69052,
+          "sha256": "28146064b62bebdfffa4130c475ca195f49544fbfe203d4536395604bbf5937a",
+          "use": "Character detail; lazy DOM image"
+        }
+      ],
+      "visualApproval": "NOT_GRANTED"
+    },
+    {
+      "contentId": "azao",
+      "source": {
+        "path": "art/sources/p00-portraits/azao.original.png",
+        "width": 1254,
+        "height": 1254,
+        "alpha": false,
+        "bytes": 2117368,
+        "sha256": "21df48385924f12373093c2358107e992a224a40c61121f4ef2c8f8f52a4496c"
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: one original square bust portrait for a hand-painted collectible card game, also readable as a 64px avatar. Generate ONE character, ONE image, not a sheet or collage.\nSubject: Azao, a 25-year-old female street juggling warm-up performer. Brown skin, visible freckles, a broad joyful face, short red curls with one side closely shaved. She is bursting into a wide open-mouth laugh; expressive lively eyes and cheek muscles. Slight low camera angle, her upper body leans eagerly forward toward the audience. One natural hand at the bottom of the composition holds a small fan of blank playing cards, kept entirely below her face; clear plausible fingers and card grip. Jade-green short street-performance jacket with orange-red accessories. Mischievous, slightly dark theatrical humor.\nStyle: exquisite hand-painted collectible card illustration, visible painterly edges, crisp expressive eyes, exaggerated but believable personal silhouette, sculptural warm spotlight and jewel-dark shadows, elegant brass accents and velvet stage textures. Clearly an illustration, neither a photograph nor anime, not a xianxia beauty face. Strong mature illustrative character design rather than a generic model face.\nComposition: square chest-up bust; head centered in the upper middle, full red hair, full shoulders and chest inside the image, generous safe margins. Dynamic forward lean with slight low viewpoint. Face and eyes are large enough to stay expressive at 64 pixels. Simple jade-green and amber theatrical stage backdrop with clear facial value separation. No extra person.\nConstraints: original fictional adult character. One head, two normal eyes, coherent teeth and mouth, anatomically coherent shoulders, exactly one visible natural hand with five plausible fingers at the bottom. Fan of cards has no writing or symbols. No text, lettering, numbers, borders, card frame, logos, watermark, dense ornaments or weapons. Opaque background.",
+      "faceFocus": {
+        "x": 0.49,
+        "y": 0.3
+      },
+      "framing": "Square chest-up candidate; not a full-body standing illustration.",
+      "runtime": [
+        {
+          "assetId": "p00-azao-avatar",
+          "path": "public/assets/p00/characters/azao.avatar.webp",
+          "url": "assets/p00/characters/azao.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 15156,
+          "sha256": "29acad27b82d469e287c0b3a0f9b62e3e86d6ca6cd0dd64e6910880c0d9f9fe8",
+          "use": "Startup selector and 64px HUD"
+        },
+        {
+          "assetId": "p00-azao-portrait",
+          "path": "public/assets/p00/characters/azao.portrait.webp",
+          "url": "assets/p00/characters/azao.portrait.webp",
+          "width": 640,
+          "height": 640,
+          "alpha": false,
+          "bytes": 65442,
+          "sha256": "e458ac30a1d6d1a5c3c793f6123f6bf1c1c64a93fef215a526202d65ba66335a",
+          "use": "Character detail; lazy DOM image"
+        }
+      ],
+      "visualApproval": "NOT_GRANTED"
+    },
+    {
+      "contentId": "xiemu",
+      "source": {
+        "path": "art/sources/p00-portraits/xiemu.original.png",
+        "width": 1254,
+        "height": 1254,
+        "alpha": false,
+        "bytes": 2167001,
+        "sha256": "6f2874bfe74cb05fe1bdb53ef4ef2cc5c9f0af00101bc3e69c0e8f53822e4ecb"
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: One square painted character bust for the same refined original theatrical card-game visual language, designed to remain distinctive at a 64px avatar size.\nPrimary request: Generate exactly ONE 1024x1024 square image of 谢幕人 / Xiemu: a 60-year-old male retired theatre master of ceremonies. He has a sharply hooked nose, a square jaw, swept-back silver hair, a carefully trimmed white beard, visible mature age lines and thoughtful stern eyes. He is quiet, severe and dignified. His angular elderly silhouette and weathered features must be completely distinct from a round middle-aged laughing comedian or a young pretty fantasy face.\nComposition/framing: Chest-up portrait with the complete head, both shoulders and upper chest visible within the square. Face centered slightly above the image center. A strong right-side two-thirds / three-quarter view, clearly looking to the right, with a confident stage-host bearing. A long silver cane is visible below shoulder level, kept away from the face. He wears a black and burgundy long formal theatre coat, a small bow tie, and dignified tailored fabrics. The long coat is communicated through its collar, lapels and visible chest, rather than a full-body view.\nStyle/medium: Refined hand-painted collectible-card illustration with expressive caricature, memorable individual silhouette and sculpted chiaroscuro. Rich controlled brushwork, jewel and brass accents, coherent painterly materials and luxurious stage velvet. A subtle touch of absurd theatrical humour while preserving his calm severity. At 64px the silver swept-back hair, hooked nose, stern eye, white beard and angular jaw must read clearly.\nScene/backdrop and palette: A simple burgundy velvet curtain backdrop and focused golden stage spotlight. Broad quiet backdrop shapes and restrained brass-gold details, with contrast concentrated on the face. Face fully visible, never lost in black shadows.\nConstraints: Exactly one original character. No collage, card frame, border, writing, fake lettering, labels, logo, trademark or watermark. Not a photo, not anime, not shiny plastic 3D, not a handsome young xianxia warrior, no flowing fantasy robe or crowded ornamental jewellery. No extra people or objects. Square reusable character illustration.",
+      "faceFocus": {
+        "x": 0.54,
+        "y": 0.29
+      },
+      "framing": "Square face and shoulders crop for 64px readability; the 640px portrait preserves the complete generated chest-up composition.",
+      "runtime": [
+        {
+          "assetId": "p00-xiemu-avatar",
+          "path": "public/assets/p00/characters/xiemu.avatar.webp",
+          "url": "assets/p00/characters/xiemu.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 13644,
+          "sha256": "f2f42890e191d0ce6f089ca33bf078052995548d6db0534aefa1eae8dcac8bc8",
+          "use": "Startup selector and 64px HUD"
+        },
+        {
+          "assetId": "p00-xiemu-portrait",
+          "path": "public/assets/p00/characters/xiemu.portrait.webp",
+          "url": "assets/p00/characters/xiemu.portrait.webp",
+          "width": 640,
+          "height": 640,
+          "alpha": false,
+          "bytes": 59428,
+          "sha256": "cdd3e1ac26854bc44f1020d59e7c36bfddd444e098d1a20a1bf6aa30e36e0f80",
+          "use": "Character detail; lazy DOM image"
+        }
+      ],
+      "visualApproval": "NOT_GRANTED"
+    }
+  ]
+}

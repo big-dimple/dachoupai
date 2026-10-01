@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="336" viewBox="0 0 240 336">
+  <defs>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#efe0af"/><stop offset=".3" stop-color="#b18b52"/><stop offset=".54" stop-color="#f3e4ba"/><stop offset="1" stop-color="#7a5933"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="6" width="232" height="327" rx="14" fill="none" stroke="#102d31" stroke-width="4" opacity=".23"/>
+  <rect x="4" y="3" width="232" height="327" rx="14" fill="none" stroke="#203b3e" stroke-width="4"/>
+  <rect x="6" y="5" width="228" height="323" rx="12" fill="none" stroke="url(#brass)" stroke-width="1.6"/>
+  <rect x="11" y="10" width="218" height="313" rx="7" fill="none" stroke="#887251" stroke-width="1"/>
+  <path d="M14 8h21M8 15v20M205 8h20M232 15v20M14 327h21M8 300v20M205 327h20M232 300v20" fill="none" stroke="#fff2ce" stroke-width="1" opacity=".82"/>
+  <g fill="url(#brass)" stroke="#534b3b" stroke-width=".6">
+    <circle cx="12" cy="11" r="2.8"/><circle cx="228" cy="11" r="2.8"/><circle cx="12" cy="322" r="2.8"/><circle cx="228" cy="322" r="2.8"/>
+  </g>
+</svg>

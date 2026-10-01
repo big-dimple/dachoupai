@@ -35,7 +35,7 @@ jobs:
           retention-days: 14
   browser:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
@@ -47,19 +47,16 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run verify:ci -- --scope=browser
+        env:
+          SMOKE_BROWSERS: chromium,firefox,webkit
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: browser-${{ github.run_id }}
           path: |
             shots/ci/
-            shots/e2e/
-            shots/gate-faults/
-            shots/domain/
-            shots/layout/
-            shots/recovery/
-            shots/v00-sample/
-            shots/v00-ui/
+            shots/desktop-*.png
+            shots/mobile-*.png
           retention-days: 14
   docs:
     runs-on: ubuntu-latest

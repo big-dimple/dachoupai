@@ -14,11 +14,12 @@ export class GameSession {
   working=false;
   speed:1|2|4=1;
   muted=false;
+  reducedMotion=false;
   private listeners=new Set<()=>void>();
   constructor(){
     this.storage.canWrite=()=>this.lease.writable;
     this.lease.onChange=()=>{if(!this.lease.writable)this.run?.setReadOnly();this.changed();};
-    try {const s=JSON.parse(localStorage.getItem('dachoupai-presentation-v1')??'null');if(s&&[1,2,4].includes(s.speed))this.speed=s.speed;if(typeof s?.muted==='boolean')this.muted=s.muted;}catch{/* Optional preferences cannot block a run. */}
+    try {const s=JSON.parse(localStorage.getItem('dachoupai-presentation-v1')??'null');if(s&&[1,2,4].includes(s.speed))this.speed=s.speed;if(typeof s?.muted==='boolean')this.muted=s.muted;if(typeof s?.reducedMotion==='boolean')this.reducedMotion=s.reducedMotion;}catch{/* Optional preferences cannot block a run. */}
     document.addEventListener('visibilitychange',()=>{if(document.hidden)void this.run?.flush();});
   }
   subscribe(listener:()=>void):()=>void {this.listeners.add(listener);return ()=>this.listeners.delete(listener);}
@@ -68,9 +69,9 @@ export class GameSession {
     }catch(error){this.notice='导入失败：'+(error instanceof Error?error.message:'非法文件')+'。原进度未修改。';this.changed();return false;}
     finally {this.working=false;this.changed();}
   }
-  preferences(speed:1|2|4,muted:boolean):void {
-    this.speed=speed;this.muted=muted;
-    try {localStorage.setItem('dachoupai-presentation-v1',JSON.stringify({speed,muted}));}catch{/* Playback remains usable when preferences cannot persist. */}
+  preferences(speed:1|2|4,muted:boolean,reducedMotion=this.reducedMotion):void {
+    this.speed=speed;this.muted=muted;this.reducedMotion=reducedMotion;
+    try {localStorage.setItem('dachoupai-presentation-v1',JSON.stringify({speed,muted,reducedMotion}));}catch{/* Playback remains usable when preferences cannot persist. */}
     window.dispatchEvent(new Event('dachoupai-presentation'));this.changed();
   }
   async retry():Promise<boolean> {if(!this.run)return false;const result=await this.run.retry();return result.ok;}

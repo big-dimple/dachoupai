@@ -19,7 +19,7 @@ let browser;
 const waitScene=(page,key)=>page.waitForFunction(key=>window.__harness?.game.scene.getScene(key)?.scene.isActive(),key);
 const read=page=>page.evaluate(()=>{const run=window.__harness.game.registry.get('runController');return run?{state:run.state,journal:run.journal,status:run.status}:null;});
 async function slots(page){return page.evaluate(async()=>{const {IndexedDbSave}=await import('/src/platform/IndexedDbSave.ts');return new IndexedDbSave().read();});}
-async function menu(page){const button=page.getByRole('button',{name:'菜单',exact:true});if(await button.getAttribute('aria-expanded')!=='true')await button.click();}
+async function menu(page){const button=page.getByRole('button',{name:'菜单',exact:true});if(await button.getAttribute('aria-expanded')!=='true')await button.click();const tools=page.locator('.run-menu details');if(await tools.getAttribute('open')===null)await tools.locator('summary').click();}
 async function advanced(page,seq){await page.waitForFunction(seq=>window.__harness.game.registry.get('runController')?.state.commandSeq>seq,seq);}
 async function start(name,{amo=false,touch=false,video=false,audioFailure=false}={}){
   const context=await browser.newContext({viewport:touch?{width:390,height:844}:{width:1280,height:800},hasTouch:touch,...(video?{recordVideo:{dir:output,size:{width:960,height:600}}}:{})});

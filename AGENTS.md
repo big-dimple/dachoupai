@@ -24,7 +24,7 @@
 
 `plan.json` 是任务状态唯一来源；handoff 只是当前指针和交接摘要，TODO/ROADMAP 不重复勾选任务。
 
-开工先检查 `git status`、当前分支、HEAD、远端变化；不得重置、覆盖或夹带别人未提交的修改。使用 `feat/<任务ID>-<主题>` 或 `fix/<任务ID>-<主题>` 分支。美术使用独立分支，不与工程 Agent 同改文件。
+开工先检查 `git status`、当前分支、HEAD、远端变化；不得重置、覆盖或夹带别人未提交的修改。用户2026-10-01明确授权总 Agent整合、正常合并并推送main用于其自动部署；本轮成果不得滞留未合并分支。隔离工作树仅用于保护协作中的改动，美术不与工程 Agent同改文件。禁止强推或reset清除别人工作。
 
 先打印：任务 ID、依赖是否完成、本次范围、禁止顺带做的事、拟运行检查。修改规则前先补失败用例或金样例。工作包过大时在包内拆子步骤，不私建平行路线图。
 
@@ -48,14 +48,16 @@ npm run verify:smoke
 npm run test:e2e
 npm run test:v00:sample
 npm run test:v00:browser
+npm run test:assets
+npm run verify:assets
 npm run verify:ci
 node scripts/check-production-plan.mjs --self-test
 node scripts/check-production-plan.mjs
 ```
 
-`verify:smoke` 只覆盖选角→商店→进入牌桌。`test:e2e` 用构建产物检查三引擎和实际触摸的暖场事务、失败、资源降级与中断。`test:v00:sample` 固定120局公开信息策略诊断，随后 `test:v00:browser` 用其三种代表种子检查完整两章/B01–B04/跳场/六种最小物品与恢复；CI 强制三引擎。八章/无尽仍在后续工作包。`verify:ci` 报告未纳入的资产/平衡/真人项；不得以此替代手机或真人验收。其他计划中的命令在工作包落地前一律视为尚未实现。
+`verify:smoke` 用构建产物检查选角确认、购买/取消、排序、弃牌、出牌与刷新续局，默认Chromium桌面鼠标/手机尺寸触摸；CI通过SMOKE_BROWSERS运行三个引擎的同一短路径。`verify:ci` 默认仅组合单测、内容、构建、短路径、plan五项。现有E2E/恢复/布局长路径、120局诊断、V00代表种子、资产和故障注入按当前变更选择，不重复全部运行。资产CLI只读/反例通过不代表视觉、来源或预算获准；八章/无尽、真机、平衡、真人项仍在后续工作包。其他计划中的命令在工作包落地前一律视为尚未实现。
 
-`release:checked` 只执行只读 `verify:ci`，`--plan` 只列计划、标 NOT_RUN。它不提交、推送或合并；正常小分支提交与 PR 审查仍需执行。提交/推送前运行轻量 `jiepi-clear`，只纳入评审过的文件。不得擅自合并自己的 PR、强推或推送 main。
+`release:checked` 只执行只读 `verify:ci`，`--plan` 只列计划、标 NOT_RUN。它不提交、推送或合并。提交/推送前运行轻量 `jiepi-clear`，只纳入评审过的文件；当前用户已授权总 Agent完成代码走查后正常合并、推送main。不得强推。未获授权的未来发布仍需遵守当时的用户指令。
 
 ## 完成定义
 

@@ -31,7 +31,7 @@ PASS 才允许 exitCode=0；人工判断没有命令退出码，不虚构。视�
 | 命令 | 提供者 | 含义/边界 |
 | --- | --- | --- |
 | npm run verify | 原型已有 | typecheck/unit/build，不含完整浏览器体验 |
-| npm run verify:smoke | 原型已有 | 启动冒烟，旧版只到牌桌 |
+| npm run verify:smoke | P00扩展 | 构建产物上选角确认/购买/排序/弃牌/出牌/续局；短路径不等于完整体验 |
 | node scripts/check-production-plan.mjs | 本计划工具 | 文档图结构检查，不是游戏验收 |
 | npm run test:domain | R01新增 | 命令与不变量、固定随机向量、与UI/仿真入口一致 |
 | npm run test:rules | R02新增 | 金样例、时点、顺序、有理数、全牌型/角色 |
@@ -40,7 +40,7 @@ PASS 才允许 exitCode=0；人工判断没有命令退出码，不虚构。视�
 | npm run test:recovery | R04新增 | 存档/中断/幂等/队列取消与坏数据 |
 | npm run test:layout | R05新增 | 布局/点击框/旋转与卡牌排序 |
 | npm run test:e2e | R06新增 | 真实浏览器完整用户路径，不绕过用户操作 |
-| npm run verify:ci | R06新增 | 已落地机器门禁的组合；不能把未来命令写成空壳 |
+| npm run verify:ci | R06新增，P00减重复 | 单测/内容/构建/短用户路径/plan五项；CI三个引擎；其他诊断按变更选择 |
 | npm run verify:assets | A00新增 | 只读清单/尺寸/hash/引用/预算，视觉质量仍需目审 |
 | npm run test:assets-runtime | A02新增 | 构建产物资源、懒加载、降级与实际截图 |
 | npm run sim:balance | B00新增 | 共享领域逻辑的多策略训练/留出报告 |

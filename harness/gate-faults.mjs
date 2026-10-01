@@ -13,7 +13,7 @@ const report={testedCommit:before.head,environment:{node:process.version,os:proc
 const cases=[
   {name:'reward',file:'src/domain/r2Run.ts',from:'const reward=[4,5,7]',to:'const reward=1+[4,5,7]',scenario:'workflow-amo',error:/independent contractual reward/},
   {name:'touch',file:'src/game/SceneView.ts',from:'const canvas=this.scene.game.canvas.getBoundingClientRect();',to:'if(p.wasTouch)return;const canvas=this.scene.game.canvas.getBoundingClientRect();',scenario:'touch-entry'},
-  {name:'assets',file:'src/game/portraits.ts',from:'${import.meta.env.BASE_URL}assets/characters/',to:'${import.meta.env.BASE_URL}missing-assets/characters/',scenario:'production-observer-hidden'},
+  {name:'assets',file:'src/game/portraits.ts',from:'${import.meta.env.BASE_URL}assets/p00/characters/',to:'${import.meta.env.BASE_URL}missing-assets/characters/',scenario:'production-observer-hidden'},
 ];
 function run(test,phase){
   const dir=path.join(output,test.name,phase);fs.mkdirSync(dir,{recursive:true});const log=fs.openSync(path.join(dir,'command.txt'),'w');

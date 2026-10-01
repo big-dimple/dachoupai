@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "visualVersion": "p00-theatrical-portraits-v1",
+  "status": "review-candidate",
+  "visualApproval": "NOT_GRANTED",
+  "batchProductionApproval": "NOT_GRANTED",
+  "tool": "Built-in image_gen.imagegen",
+  "modelVersion": "NOT_REPORTED",
+  "derivativeTool": "Sharp 0.35.5; resize/crop and WebP encode only",
+  "sourcePermission": "User explicitly requested six original character candidates on 2026-10-01. No external media or IP characters.",
+  "assets": [
+    {
+      "contentId": "amo",
+      "source": {
+        "path": "art/sources/p00-portraits/amo.original.png",
+        "width": 1254,
+        "height": 1254,
+        "alpha": false,
+        "bytes": 2270932,
+        "sha256": "53d12ca801897d5fbd4451af5786e7147175d9563e1a0b3c7b5a8f09375aaa38"
+      },
+      "faceFocus": {
+        "x": 0.56,
+        "y": 0.3
+      },
+      "framing": "Square chest-up candidate; not a full-body standing illustration.",
+      "runtime": [
+        {
+          "assetId": "p00-amo-avatar",
+          "path": "public/assets/p00/characters/amo.avatar.webp",
+          "url": "assets/p00/characters/amo.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 12168,
+          "sha256": "53698a3f96d8aab625c401451ca54b4bdcf9d8f8be9c27930ccaf56967f559c4",
+          "use": "Startup selector and 64px HUD"
+        },
+        {
+          "assetId": "p00-amo-portrait",
+          "path": "public/assets/p00/characters/amo.portrait.webp",
+          "url": "assets/p00/characters/amo.portrait.webp",
+          "width": 640,
+          "height": 640,
+          "alpha": false,
+          "bytes": 65650,
+          "sha256": "d7fc6e7dd6fe35b65075c84180fa0fa1f4f16446599fc263ef8ab03241e1a099",
+          "use": "Character detail; lazy DOM image"
+        }
+      ],
+      "visualApproval": "NOT_GRANTED",
+      "promptReference": "art/sources/p00-portraits/manifest.json"
+    },
+    {
+      "contentId": "touye",
+      "source": {
+        "path": "art/sources/p00-portraits/touye.original.png",
+        "width": 1254,
+        "height": 1254,
+        "alpha": false,
+        "bytes": 2202956,
+        "sha256": "e99c0b90d7ad7b9095ae4a7293425e4e7ecca6199540dd1bcc421981765f9436"
+      },
+      "faceFocus": {
+        "x": 0.5,
+        "y": 0.3
+      },
+      "framing": "Square chest-up candidate; not a full-body standing illustration.",
+      "runtime": [
+        {
+          "assetId": "p00-touye-avatar",
+          "path": "public/assets/p00/characters/touye.avatar.webp",
+          "url": "assets/p00/characters/touye.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 14736,
+          "sha256": "c4d1ad3b175f52869c4b3d1efba16826c446109492ae1b287026880e8e925918",
+          "use": "Startup selector and 64px HUD"
+        },
+        {
+          "assetId": "p00-touye-portrait",
+          "path": "public/assets/p00/characters/touye.portrait.webp",
+          "url": "assets/p00/characters/touye.portrait.webp",
+          "width": 640,
+          "height": 640,
+          "alpha": false,
+          "bytes": 80484,
+          "sha256": "3432c6a525d6df01e4bcc11457953e248e99803478ea99c218ae173c9e4cd38b",
+          "use": "Character detail; lazy DOM image"
+        }
+      ],
+      "visualApproval": "NOT_GRANTED",
+      "promptReference": "art/sources/p00-portraits/manifest.json"
+    },
+    {
+      "contentId": "laohuan",
+      "source": {
+        "path": "art/sources/p00-portraits/laohuan.original.png",
+        "width": 1254,
+        "height": 1254,
+        "alpha": false,
+        "bytes": 2472445,
+        "sha256": "13f067076e7b52a3061182e667ff7b9ca00a6397d438d8535c805981f42439ec"
+      },
+      "faceFocus": {
+        "x": 0.5,
+        "y": 0.3
+      },
+      "framing": "Square chest-up candidate; not a full-body standing illustration.",
+      "runtime": [
+        {
+          "assetId": "p00-laohuan-avatar",
+          "path": "public/assets/p00/characters/laohuan.avatar.webp",
+          "url": "assets/p00/characters/laohuan.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 21228,
+          "sha256": "6f3edceb9faa286ee505925570c305ba69fdadd71ae122407ec62fb53ca6b1d8",
+          "use": "Startup selector and 64px HUD"
+        },
+        {
+          "assetId": "p00-laohuan-portrait",
+          "path": "public/assets/p00/characters/laohuan.portrait.webp",
+          "url": "assets/p00/characters/laohuan.portrait.webp",
+          "width": 640,
+          "height": 640,
+          "alpha": false,
+          "bytes": 106082,
+          "sha256": "424ee55e594f9ba683ad077d005d1958303b3b0c5b90b5a739574fb1a921f172",
+          "use": "Character detail; lazy DOM image"
+        }
+      ],
+      "visualApproval": "NOT_GRANTED",
+      "promptReference": "art/sources/p00-portraits/manifest.json"
+    },
+    {
+      "contentId": "erxiang",
+      "source": {
+        "path": "art/sources/p00-portraits/erxiang.original.png",
+        "width": 1254,
+        "height": 1254,
+        "alpha": false,
+        "bytes": 2277177,
+        "sha256": "5b9c6ad23221637a3753f085d2c15edcfc2fb199526c606852aaead1e6cdce5c"
+      },
+      "faceFocus": {
+        "x": 0.51,
+        "y": 0.3
+      },
+      "framing": "Square face and shoulders crop for 64px readability; the 640px portrait preserves the complete generated chest-up composition.",
+      "runtime": [
+        {
+          "assetId": "p00-erxiang-avatar",
+          "path": "public/assets/p00/characters/erxiang.avatar.webp",
+          "url": "assets/p00/characters/erxiang.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 15186,
+          "sha256": "9825a7bc7af14dc8ad230b66a133ceb06e017d9420a52e792b857ebcb0681768",
+          "use": "Startup selector and 64px HUD"
+        },
+        {
+          "assetId": "p00-erxiang-portrait",
+          "path": "public/assets/p00/characters/erxiang.portrait.webp",
+          "url": "assets/p00/characters/erxiang.portrait.webp",
+          "width": 640,
+          "height": 640,
+          "alpha": false,
+          "bytes": 69052,
+          "sha256": "28146064b62bebdfffa4130c475ca195f49544fbfe203d4536395604bbf5937a",
+          "use": "Character detail; lazy DOM image"
+        }
+      ],
+      "visualApproval": "NOT_GRANTED",
+      "promptReference": "art/sources/p00-portraits/manifest.json"
+    },
+    {
+      "contentId": "azao",
+      "source": {
+        "path": "art/sources/p00-portraits/azao.original.png",
+        "width": 1254,
+        "height": 1254,
+        "alpha": false,
+        "bytes": 2117368,
+        "sha256": "21df48385924f12373093c2358107e992a224a40c61121f4ef2c8f8f52a4496c"
+      },
+      "faceFocus": {
+        "x": 0.49,
+        "y": 0.3
+      },
+      "framing": "Square chest-up candidate; not a full-body standing illustration.",
+      "runtime": [
+        {
+          "assetId": "p00-azao-avatar",
+          "path": "public/assets/p00/characters/azao.avatar.webp",
+          "url": "assets/p00/characters/azao.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 15156,
+          "sha256": "29acad27b82d469e287c0b3a0f9b62e3e86d6ca6cd0dd64e6910880c0d9f9fe8",
+          "use": "Startup selector and 64px HUD"
+        },
+        {
+          "assetId": "p00-azao-portrait",
+          "path": "public/assets/p00/characters/azao.portrait.webp",
+          "url": "assets/p00/characters/azao.portrait.webp",
+          "width": 640,
+          "height": 640,
+          "alpha": false,
+          "bytes": 65442,
+          "sha256": "e458ac30a1d6d1a5c3c793f6123f6bf1c1c64a93fef215a526202d65ba66335a",
+          "use": "Character detail; lazy DOM image"
+        }
+      ],
+      "visualApproval": "NOT_GRANTED",
+      "promptReference": "art/sources/p00-portraits/manifest.json"
+    },
+    {
+      "contentId": "xiemu",
+      "source": {
+        "path": "art/sources/p00-portraits/xiemu.original.png",
+        "width": 1254,
+        "height": 1254,
+        "alpha": false,
+        "bytes": 2167001,
+        "sha256": "6f2874bfe74cb05fe1bdb53ef4ef2cc5c9f0af00101bc3e69c0e8f53822e4ecb"
+      },
+      "faceFocus": {
+        "x": 0.54,
+        "y": 0.29
+      },
+      "framing": "Square face and shoulders crop for 64px readability; the 640px portrait preserves the complete generated chest-up composition.",
+      "runtime": [
+        {
+          "assetId": "p00-xiemu-avatar",
+          "path": "public/assets/p00/characters/xiemu.avatar.webp",
+          "url": "assets/p00/characters/xiemu.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 13644,
+          "sha256": "f2f42890e191d0ce6f089ca33bf078052995548d6db0534aefa1eae8dcac8bc8",
+          "use": "Startup selector and 64px HUD"
+        },
+        {
+          "assetId": "p00-xiemu-portrait",
+          "path": "public/assets/p00/characters/xiemu.portrait.webp",
+          "url": "assets/p00/characters/xiemu.portrait.webp",
+          "width": 640,
+          "height": 640,
+          "alpha": false,
+          "bytes": 59428,
+          "sha256": "cdd3e1ac26854bc44f1020d59e7c36bfddd444e098d1a20a1bf6aa30e36e0f80",
+          "use": "Character detail; lazy DOM image"
+        }
+      ],
+      "visualApproval": "NOT_GRANTED",
+      "promptReference": "art/sources/p00-portraits/manifest.json"
+    }
+  ]
+}

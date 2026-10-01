@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "visualVersion": "p00-stage-trim-v2",
+  "date": "2026-10-01",
+  "status": "PLAYABLE_REVIEW_CANDIDATE",
+  "candidateIntegration": "AUTHORIZED: DECISIONS D10 / P00.4",
+  "visualApproval": "NOT_GRANTED",
+  "productionBatchApproval": "NOT_GRANTED",
+  "source": {
+    "creator": "Codex P00 art/audio task",
+    "tools": "Hand-authored SVG/XML paths, gradients and engraving; no external bitmap/IP input. Sharp 0.35.5 raster decode and inspection.",
+    "externalMedia": "NONE",
+    "permissions": "Original task-authored shapes, fixed composition and synthesis code. The user authorized this playable review candidate. This manifest does not grant visual acceptance or batch production."
+  },
+  "assets": [
+    {
+      "assetId": "p00-paper",
+      "sourcePath": "public/assets/p00/paper.svg",
+      "runtimePaths": [
+        "assets/p00/paper.svg"
+      ],
+      "previewPath": null,
+      "width": 640,
+      "height": 640,
+      "alpha": false,
+      "bytes": 985,
+      "sha256": "3b0aea1ddf1b8fbc8c4f25b5a4b0a265eda1d7f9c766da0f0f0c9a4f0534d949",
+      "crop": "full viewBox",
+      "safeArea": "full artwork",
+      "use": "Reduced-contrast seamless warm paper grain; decorative surface stays behind readable UI.",
+      "visualApproval": "NOT_GRANTED"
+    },
+    {
+      "assetId": "p00-card-back",
+      "sourcePath": "public/assets/p00/card-back.svg",
+      "runtimePaths": [
+        "assets/p00/card-back.svg"
+      ],
+      "previewPath": null,
+      "width": 240,
+      "height": 336,
+      "alpha": true,
+      "bytes": 4120,
+      "sha256": "b84113356c65b3e528c6b52b99efa50747d0296a997f7b687fe31dda5da9e5b7",
+      "crop": "full viewBox",
+      "safeArea": "full artwork",
+      "use": "Original touring-hat inlay over jade/lacquer guilloche, brass framing and ivory medallion; upright 240:336.",
+      "visualApproval": "NOT_GRANTED"
+    },
+    {
+      "assetId": "p00-frame-common",
+      "sourcePath": "public/assets/p00/frame-common.svg",
+      "runtimePaths": [
+        "assets/p00/frame-common.svg"
+      ],
+      "previewPath": null,
+      "width": 240,
+      "height": 336,
+      "alpha": true,
+      "bytes": 1135,
+      "sha256": "a7108b5487a04115a34d23333554ee17cc29e9680c718ddefcfb7cf313a8d80b",
+      "crop": "full viewBox",
+      "safeArea": "16px inset; center stays transparent.",
+      "use": "Common: narrow lacquer edge, fine brass bevel and four small corner studs; transparent content area.",
+      "visualApproval": "NOT_GRANTED"
+    },
+    {
+      "assetId": "p00-frame-uncommon",
+      "sourcePath": "public/assets/p00/frame-uncommon.svg",
+      "runtimePaths": [
+        "assets/p00/frame-uncommon.svg"
+      ],
+      "previewPath": null,
+      "width": 240,
+      "height": 336,
+      "alpha": true,
+      "bytes": 1596,
+      "sha256": "5b9160a14f8bb626f774188c2fd25a78f09459333e4b6940718a5552fc58b178",
+      "crop": "full viewBox",
+      "safeArea": "16px inset; existing top-left and bottom-right 50px diagonal badge regions are reserved.",
+      "use": "Uncommon: jade bevel and two opposite clipped-corner hollow diamond tabs, distinguishable in grayscale.",
+      "visualApproval": "NOT_GRANTED"
+    },
+    {
+      "assetId": "p00-frame-rare",
+      "sourcePath": "public/assets/p00/frame-rare.svg",
+      "runtimePaths": [
+        "assets/p00/frame-rare.svg"
+      ],
+      "previewPath": null,
+      "width": 240,
+      "height": 336,
+      "alpha": true,
+      "bytes": 2008,
+      "sha256": "d17345c30a2a0622f9ae4463c3af5c4d2f6e48ceaf2d1b26d66d7efa73994548",
+      "crop": "full viewBox",
+      "safeArea": "16px inset; existing top-right 57px gem badge region is reserved.",
+      "use": "Rare: carved brass bevel, large top-right faceted gem diamond and three bottom-left engraved bars, distinguishable in grayscale.",
+      "visualApproval": "NOT_GRANTED"
+    },
+    {
+      "assetId": "p00-mark-joker",
+      "sourcePath": "public/assets/p00/mark-joker.svg",
+      "runtimePaths": [
+        "assets/p00/mark-joker.svg"
+      ],
+      "previewPath": null,
+      "width": 96,
+      "height": 96,
+      "alpha": true,
+      "bytes": 1197,
+      "sha256": "db1f865952c770e9d14a5fc157b0fe945844bb57ada0096b36f56d9d0ce6d1b0",
+      "crop": "full viewBox",
+      "safeArea": "full artwork",
+      "use": "Original three-bell touring hat with velvet/brass highlight, reusable Joker/empty-slot icon.",
+      "visualApproval": "NOT_GRANTED"
+    },
+    {
+      "assetId": "p00-mark-plus",
+      "sourcePath": "public/assets/p00/mark-plus.svg",
+      "runtimePaths": [
+        "assets/p00/mark-plus.svg"
+      ],
+      "previewPath": null,
+      "width": 96,
+      "height": 96,
+      "alpha": true,
+      "bytes": 1034,
+      "sha256": "bffd262120c60902b380682866947a54978e82b7785d9b1328685adbc3c02977",
+      "crop": "full viewBox",
+      "safeArea": "full artwork",
+      "use": "Jade circle with bright plus sign; pair with the actual addition value.",
+      "visualApproval": "NOT_GRANTED"
+    },
+    {
+      "assetId": "p00-mark-times",
+      "sourcePath": "public/assets/p00/mark-times.svg",
+      "runtimePaths": [
+        "assets/p00/mark-times.svg"
+      ],
+      "previewPath": null,
+      "width": 96,
+      "height": 96,
+      "alpha": true,
+      "bytes": 1071,
+      "sha256": "9db59de4d96c8517969a220da5df77318f3b45efad07bc3d2c9767ace6684be1",
+      "crop": "full viewBox",
+      "safeArea": "full artwork",
+      "use": "Red lacquer diamond with bright multiplication sign; pair with the actual multiplication value.",
+      "visualApproval": "NOT_GRANTED"
+    }
+  ],
+  "audio": {
+    "sourcePath": "src/audio/AudioEngine.ts",
+    "bytes": 19155,
+    "sha256": "92278214851a11b3c3d23cd0852cf174c8c7740aace76c4ccb411d650fe4f295",
+    "title": "Paper Procession",
+    "composition": "Original fixed D-major 24-bar theme: main melody, variation and spacious section; warm bass, fixed plucked harmonics and scene-specific wood/clap accents. All synthesized locally.",
+    "loop": {
+      "bars": 24,
+      "beatsPerBar": 4,
+      "tableBpm": 104,
+      "tableSeconds": 55.38461538461539
+    },
+    "buses": [
+      "master",
+      "music",
+      "sfx",
+      "ui"
+    ],
+    "preferences": "Application persists settings; AudioEngine does not write run saves or localStorage.",
+    "lifecycle": "One context after unlock(), one music scheduler; setSuspended(true) stops pending voices and suspends the context. Foreground resumes the same context. Muting stops the loop. No scene DOM listeners.",
+    "voiceLimit": 32,
+    "midiCeiling": 81,
+    "ruleRandom": "NOT_CONSUMED",
+    "networkAudio": "NONE",
+    "operations": {
+      "select()": "Real selection/confirmation UI gesture.",
+      "cancel()/deselect()": "Real cancellation or deselection.",
+      "invalid()": "Refused action after a readable reason.",
+      "discard()": "DiscardHand succeeds.",
+      "playHand()": "PlayHand succeeds, immediately before committed-result presentation.",
+      "cardScore(index)": "A real scoring-card trace event.",
+      "role()": "A real character trace event.",
+      "joker(chainIndex)": "A real Joker trace event; pitch rises only to the finite cap.",
+      "multiplier(add|multiply,index)": "The corresponding real +M or multiplication trace event.",
+      "retrigger(index)": "A real retrigger event.",
+      "score(0|1|2)": "Final committed score enters the total; the caller chooses the relative reward tier.",
+      "purchase()/sale()/reroll()": "The corresponding shop command succeeds.",
+      "rareReveal()": "A real rare reveal.",
+      "success()/failure()": "Actual stage/run outcome once, without render/resize repetition."
+    },
+    "calculatedEnvelopesSeconds": {
+      "musicTableLoop": 55.38461538461539,
+      "musicShopLoop": 61.276595744680854,
+      "musicMenuLoop": 62.608695652173914,
+      "select": 0.085,
+      "cancel": 0.095,
+      "playHand": 0.165,
+      "discard": 0.145,
+      "cardScore": 0.11,
+      "role": 0.305,
+      "joker": 0.175,
+      "jokerWithHarmony": 0.2,
+      "addMultiplier": 0.21,
+      "multiplyMultiplier": 0.29,
+      "scoreTier0": 0.315,
+      "scoreTier1": 0.375,
+      "scoreTier2": 0.435,
+      "purchase": 0.245,
+      "sale": 0.235,
+      "reroll": 0.25,
+      "retrigger": 0.18,
+      "rareReveal": 0.6,
+      "success": 0.745,
+      "failure": 0.735
+    },
+    "listeningLimits": "Timings are calculated schedules, not measured device latency or human listening. Three fixed sections reduce immediate repetition; synthesized instrument body, mobile balance, fatigue, loop seam and fast overlap remain NOT_RUN for listening. Finite pitch and 32-voice cap remain. Earlier fake WebAudio checks apply to the prior eight-bar revision; this music extension was typechecked, not re-audited by that probe."
+  },
+  "checks": {
+    "scopedTypeScript": "PASS: tsc --noEmit --strict --skipLibCheck --lib ES2022,DOM --target ES2022 --module ESNext --moduleResolution bundler on AudioEngine.ts/theme.ts with the existing Vite client declarations.",
+    "svgDecode": "PASS for trim v2: eight SVGs decoded by Sharp at unchanged dimensions; all three frame-center alpha samples are zero; no embedded text, external image, script, filter or large bitmap.",
+    "audioStructure": "PASS: one-off fake WebAudio check covered 11 lifecycle/API cases, max one context, max one music timer, 32-voice cap, no uncaught resume/device failures.",
+    "inspection": "Agent inspected actual trim-v2 raster outputs at native size, 64x90 grayscale card-frame thumbnails and 32px symbols. Corner silhouettes remain distinct; fine engraving is decorative and does not carry essential information. Temporary inspection composite is not an approval record.",
+    "actualIntegratedBrowser": "NOT_RUN by this agent; root owns candidate integration.",
+    "physicalListening": "NOT_RUN",
+    "physicalAndroid": "NOT_RUN",
+    "visualHumanApproval": "NOT_GRANTED"
+  },
+  "runtimeSVGBytes": 13146
+}

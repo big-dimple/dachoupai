@@ -19,6 +19,17 @@ const effect = (id: string, kind: 'add-multiplier' | 'multiply-multiplier', n: s
 });
 
 describe('r2 G01–G09 scoring goldens', () => {
+  it('the reported QQQ99 selection is a full house, independent of other held cards', () => {
+    const hand = [card('jc', 11, 'clubs'), card('qd', 12, 'diamonds'), card('9c', 9, 'clubs'),
+      card('qs', 12), card('qh', 12, 'hearts'), card('9h', 9, 'hearts'), card('9s', 9), card('7h', 7, 'hearts')];
+    const selected = ['qd', 'qs', 'qh', '9h', '9s'];
+    const result = scoreR2Hand(fixture(hand, selected));
+    expect(result.handType).toBe('full-house');
+    expect(result.sets.scoringIds).toEqual(selected);
+    expect(result.sets.heldIds).toEqual(['jc', '9c', '7h']);
+    expect(result.finalScore).toBe('1290'); // (210 + 10 + 10 + 10 + 9 + 9) × 5.
+  });
+
   it.each([['G01', 2, '22'], ['G02', 10, '30']] as const)('%s gives ordinary ranks their own chips', (_id, rank, expected) => {
     const result = scoreR2Hand(fixture([card('single', rank)]));
     expect(result.finalScore).toBe(expected);

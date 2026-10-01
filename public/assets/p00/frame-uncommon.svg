@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="336" viewBox="0 0 240 336">
+  <defs>
+    <linearGradient id="jade" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#72b29c"/><stop offset=".27" stop-color="#286b61"/><stop offset=".54" stop-color="#468e78"/><stop offset="1" stop-color="#173c3b"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f3e4b9"/><stop offset=".4" stop-color="#ad8550"/><stop offset=".64" stop-color="#e7cd8e"/><stop offset="1" stop-color="#755531"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="6" width="232" height="327" rx="14" fill="none" stroke="#102d31" stroke-width="4" opacity=".25"/>
+  <rect x="4" y="3" width="232" height="327" rx="14" fill="none" stroke="#153b3b" stroke-width="5"/>
+  <rect x="6" y="5" width="228" height="323" rx="12" fill="none" stroke="url(#jade)" stroke-width="3"/>
+  <rect x="11" y="10" width="218" height="313" rx="7" fill="none" stroke="url(#brass)" stroke-width="1.5"/>
+  <g fill="url(#jade)" stroke="#153b3b" stroke-width="1.5">
+    <path d="M18 3h33L4 50V17c0-8 5-14 14-14Z"/><path d="M222 330h-33l47-47v33c0 8-5 14-14 14Z"/>
+  </g>
+  <path d="M49 5 5 49M191 328l43-43" stroke="url(#brass)" stroke-width="2"/>
+  <path d="m20 12 11 11-11 11-11-11zM220 300l11 11-11 11-11-11z" fill="#f4e5bc"/>
+  <path d="m20 17 6 6-6 6-6-6zM220 305l6 6-6 6-6-6z" fill="#245d55"/>
+  <path d="M61 7h102M7 65v56M179 327H78M233 214v56" fill="none" stroke="#a6d6bb" stroke-width="1" opacity=".72"/>
+  <path d="m7 153 3 7-3 7-3-7zm226 0 3 7-3 7-3-7z" fill="url(#brass)"/>
+</svg>

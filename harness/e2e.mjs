@@ -91,7 +91,7 @@ async function scenario(browser,engine,name,callback,{touch=false,fault=null,pre
   const record={engine,name,input:touch?'touchscreen.tap + native DOM tap':'mouse.click + native DOM click',prefix,status:'IN_PROGRESS',errors:[],assetResponses:[],failedRequests:[]};active={context,page,record};
   page.on('pageerror',e=>record.errors.push(String(e)));page.on('response',r=>{if(new URL(r.url()).pathname.includes('/assets/'))record.assetResponses.push({url:new URL(r.url()).pathname,status:r.status()});});page.on('requestfailed',r=>record.failedRequests.push({url:new URL(r.url()).pathname,error:r.failure()?.errorText}));page.on('dialog',d=>d.accept());
   if(fault==='audio-denied')await context.addInitScript(()=>{window.AudioContext=class{constructor(){throw new DOMException('audio denied','NotAllowedError');}};});
-  if(fault==='404'||fault==='timedout')await page.route('**/assets/characters/amo.avatar.webp',route=>fault==='404'?route.fulfill({status:404,body:'missing'}):route.abort('timedout'));
+  if(fault==='404'||fault==='timedout')await page.route('**/assets/p00/characters/amo.avatar.webp',route=>fault==='404'?route.fulfill({status:404,body:'missing'}):route.abort('timedout'));
   await context.tracing.start({screenshots:true,snapshots:true});
   try{
     await callback(page,record,`${test.url}${prefix}?harness=1`,touch);assert.deepEqual(record.errors,[],'no page errors');
@@ -112,7 +112,7 @@ function fixture(characterId){
 let domainController;
 async function workflow(page,record,url,touch,fixture){
   await page.goto(url+'&seed='+fixture.seed);await waitScene(page,'character-select');
-  for(const character of characters){await tapUI(page,'character-select','character/'+character.id,touch);assert.ok((await page.locator('dialog').textContent()).includes(character.passiveDescription));await dom(page,'关闭',touch);}
+  for(const character of characters){await tapUI(page,'character-select','character/'+character.id,touch);await tapUI(page,'character-select','action/character-details',touch);assert.ok((await page.locator('dialog').textContent()).includes(character.passiveDescription));await dom(page,'关闭',touch);}
   await chooseCharacter(page,fixture.characterId,touch);await settings(page,touch);const checkpoints=[];let discarded=false,doubled=false,interrupted=false;
   for(let step=0;step<24;step++){
     const before=await read(page),state=before.state;checkpoints.push({seq:state.commandSeq,hash:domain.stateHash(state)});if(state.phase==='shop'&&state.stageIndex===1)break;
@@ -124,7 +124,7 @@ async function workflow(page,record,url,touch,fixture){
       if(unaffordable){
         // This is a new inspection after the intentional double-confirm. Allow the
         // 350ms modal-dismiss click-through guard to finish before its next intent.
-        await page.waitForTimeout(360);await tapUI(page,'shop','offer/'+unaffordable.offerId,touch);assert.equal(await page.getByRole('button',{name:'确认购买',exact:true}).isDisabled(),true);assert.ok((await page.locator('dialog').textContent()).includes('金币不足'));await dom(page,'关闭',touch);assert.deepEqual(await read(page),after,'insufficient gold does not submit a purchase');
+        await page.waitForTimeout(360);await tapUI(page,'shop','offer/'+unaffordable.offerId,touch);assert.equal(await page.getByRole('button',{name:'确认购买',exact:true}).isDisabled(),true);assert.ok((await page.locator('dialog').textContent()).includes('金币不足'));await dom(page,'取消',touch);assert.deepEqual(await read(page),after,'insufficient gold does not submit a purchase');
       }
     }
     if(action.type==='DiscardHand')discarded=true;if(hand){doubled=true;interrupted=true;}
@@ -151,7 +151,7 @@ try{
   for(const engine of selected){
     const browser=await engines[engine].launch();report.environment[engine]=browser.version();
     try{
-      await scenario(browser,engine,'production-observer-hidden',async(page,record)=>{await page.goto(production.url+'/dachoupai/?harness=1');await page.getByRole('button',{name:'菜单',exact:true}).waitFor();await page.waitForFunction(()=>performance.getEntriesByType('resource').filter(r=>r.name.endsWith('.avatar.webp')).length===6);assert.equal(await page.evaluate(()=>typeof window.__harness),'undefined','production query must not expose the test observer');const avatars=record.assetResponses.filter(r=>r.url.endsWith('.avatar.webp'));assert.equal(avatars.length,6,'all six production avatars resolve');assert.ok(avatars.every(r=>r.url.startsWith('/dachoupai/assets/characters/')),'subdirectory assets use the registered base');assert.ok(!record.assetResponses.some(r=>/\.(png|glb)$/.test(r.url)),'source portraits and GLB are not startup downloads');});
+      await scenario(browser,engine,'production-observer-hidden',async(page,record)=>{await page.goto(production.url+'/dachoupai/?harness=1');await page.getByRole('button',{name:'菜单',exact:true}).waitFor();await page.waitForFunction(()=>performance.getEntriesByType('resource').filter(r=>r.name.endsWith('.avatar.webp')).length===6);assert.equal(await page.evaluate(()=>typeof window.__harness),'undefined','production query must not expose the test observer');const avatars=record.assetResponses.filter(r=>r.url.endsWith('.avatar.webp'));assert.equal(avatars.length,6,'all six production avatars resolve');assert.ok(avatars.every(r=>r.url.startsWith('/dachoupai/assets/p00/characters/')),'subdirectory assets use the registered base');assert.ok(!record.assetResponses.some(r=>/\.(png|glb)$/.test(r.url)),'source portraits and GLB are not startup downloads');});
       if(scope==='all'||scope==='reward')for(const f of fixtures)await scenario(browser,engine,'workflow-'+f.characterId,(p,r,u,t)=>workflow(p,r,u,t,f),{touch:f.characterId==='erxiang',prefix:f.characterId==='erxiang'?'/dachoupai/':'/'});
       if(scope==='all'||scope==='touch')await scenario(browser,engine,'touch-entry',async(page,record,url,touch)=>{await page.goto(url+'&seed=r03-1');await chooseCharacter(page,'amo',touch);await perform(page,touch,{type:'LeaveShop'});const state=(await read(page)).state;await perform(page,touch,{type:'DiscardHand',selectedIds:[state.handOrder[0]]});record.commandSeq=(await read(page)).state.commandSeq;},{touch:true,prefix:'/dachoupai/'});
       if(scope==='all'||scope==='assets')for(const fault of ['404','timedout','audio-denied'])await scenario(browser,engine,'fallback-'+fault,async(page,record,url,touch)=>{await page.goto(url+'&seed=r03-1');await chooseCharacter(page,'amo',touch);await perform(page,touch,{type:'LeaveShop'});if(fault!=='audio-denied')assert.equal(await page.evaluate(()=>window.__harness.game.textures.exists('avatar-amo')),false,'failed image uses the letter fallback');const state=(await read(page)).state;await perform(page,touch,{type:'PlayHand',selectedIds:[state.handOrder[0]]});record.commandSeq=(await read(page)).state.commandSeq;},{touch:true,fault,prefix:'/dachoupai/'});

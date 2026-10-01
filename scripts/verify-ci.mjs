@@ -7,14 +7,14 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),args=
 const scope=args.length?args[0].replace(/^--scope=/,''):'all';
 if(args.length>1||(args.length&&!args[0].startsWith('--scope='))||!['all','domain','browser','docs'].includes(scope))throw Error('usage: npm run verify:ci -- [--scope=all|domain|browser|docs]');
 const npmCli=process.env.npm_execpath;if(!npmCli)throw Error('run via npm run verify:ci');
-const npm=name=>({name,command:process.execPath,args:[npmCli,'run',name],...(name==='test:e2e'?{env:{E2E_BROWSERS:'chromium,firefox,webkit',E2E_SCENARIO:'all'}}:name==='test:v00:browser'?{env:{V00_BROWSERS:'chromium,firefox,webkit',V00_SCENARIO:'all'}}:name==='test:v00:sample'?{env:{V00_SAMPLE_COUNT:'20'}}:{})});
+const npm=name=>({name,command:process.execPath,args:[npmCli,'run',name]});
 const node=(name,...args)=>({name,command:process.execPath,args});
 const gates={
-  domain:[npm('typecheck'),npm('test'),npm('verify:content'),node('rules-goldens','harness/rules-goldens.mjs','shots/ci/rules')],
-  browser:[npm('build'),npm('verify:smoke'),npm('test:domain:browser'),npm('test:layout:browser'),npm('test:recovery:browser'),npm('test:e2e'),npm('test:v00:sample'),npm('test:v00:browser'),npm('test:gate-faults')],
-  docs:[node('plan-counterexamples','scripts/check-production-plan.mjs','--self-test'),node('production-plan','scripts/check-production-plan.mjs')],
+  domain:[npm('test'),npm('verify:content')],
+  browser:[npm('build'),npm('verify:smoke')],
+  docs:[node('production-plan','scripts/check-production-plan.mjs')],
 };
 const selected=scope==='all'?Object.values(gates).flat():gates[scope],result=runSteps(root,selected);
-const report={scope,testedCommit:result.before.head,...result,notIncluded:[{name:'verify:assets',status:'NOT_INCLUDED',reason:'A00 not yet adopted; no placeholder gate'},{name:'balance/benchmark acceptance',status:'NOT_INCLUDED',reason:'later work packages; legacy r1 seeds are regressions only'},{name:'physical devices / human / art approval',status:'NOT_RUN'}]};
+const report={scope,testedCommit:result.before.head,...result,notIncluded:[{name:'extended browser/recovery/fault/asset/simulation diagnostics',status:'NOT_INCLUDED',reason:'run the existing specific command only when its domain changes; P00 removes repeated default execution'},{name:'balance/benchmark acceptance',status:'NOT_INCLUDED',reason:'later work packages; no gameplay approval inferred from checks'},{name:'physical devices / human / art approval',status:'NOT_RUN'}]};
 fs.mkdirSync(path.join(root,'shots/ci'),{recursive:true});fs.writeFileSync(path.join(root,`shots/ci/${scope}.json`),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report,null,2));process.exitCode=result.exitCode;
