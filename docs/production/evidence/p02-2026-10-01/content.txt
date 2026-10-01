@@ -1,0 +1,147 @@
+
+> dachoupai@0.1.0 verify:content
+> node scripts/verify-content.mjs
+
+{
+  "status": "PASS",
+  "definitions": 24,
+  "contentVersion": "quality-r2-graybox-v4",
+  "contentHash": "json-fnv-v1:44ae9e0098657624",
+  "conservativeEventBound": 144,
+  "readOnly": true
+}
+(!) Failed to run dependency scan. Skipping dependency pre-bundling. Error:   Failed to scan for dependencies from entries:
+  D:/ai/dachoupai/p00-main-delivery/index.html
+D:/ai/dachoupai/p00-main-delivery/shots/build-v00/index.html
+D:/ai/dachoupai/p00-main-delivery/shots/smoke-build/index.html
+
+  X [ERROR] The server is being restarted or closed. Request is outdated [plugin vite:dep-scan]
+
+    node_modules/esbuild/lib/main.js:1502:27:
+      1502 │         let result = await callback({
+           ╵                            ^
+
+    at throwClosedServerError (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:28639:32)
+    at EnvironmentPluginContainer.resolveId (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:28771:65)
+    at resolveId (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31580:38)
+    at resolve$4 (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31585:22)
+    at file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31738:28
+    at requestCallbacks.on-resolve (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1502:28)
+    at handleRequest (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:911:17)
+    at handleIncomingPacket (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:936:7)
+    at Socket.readFromStdout (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:864:7)
+    at Socket.emit (node:events:519:28)
+
+  This error came from the "onResolve" callback registered here:
+
+    node_modules/esbuild/lib/main.js:1426:20:
+      1426 │       let promise = setup({
+           ╵                     ^
+
+    at setup (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31737:12)
+    at handlePlugins (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1426:21)
+    at buildOrContextImpl (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1139:5)
+    at Object.buildOrContext (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:963:5)
+    at D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:2329:68
+    at new Promise (<anonymous>)
+    at Object.context (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:2329:27)
+    at Object.context (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:2171:58)
+    at prepareEsbuildScanner (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31534:23)
+
+  The plugin "vite:dep-scan" was triggered by this import
+
+    src/domain/r2Run.ts:11:87:
+      11 │ ... SCORE_LIMITS, R2_BASE_SCORES, type ScoreTrace } from './scoreR2';
+         ╵                                                          ~~~~~~~~~~~
+
+
+X [ERROR] The server is being restarted or closed. Request is outdated [plugin vite:dep-scan]
+
+    node_modules/esbuild/lib/main.js:1502:27:
+      1502 │         let result = await callback({
+           ╵                            ^
+
+    at throwClosedServerError (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:28639:32)
+    at EnvironmentPluginContainer.resolveId (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:28771:65)
+    at resolveId (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31580:38)
+    at resolve$4 (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31585:22)
+    at file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31738:28
+    at requestCallbacks.on-resolve (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1502:28)
+    at handleRequest (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:911:17)
+    at handleIncomingPacket (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:936:7)
+    at Socket.readFromStdout (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:864:7)
+    at Socket.emit (node:events:519:28)
+
+  This error came from the "onResolve" callback registered here:
+
+    node_modules/esbuild/lib/main.js:1426:20:
+      1426 │       let promise = setup({
+           ╵                     ^
+
+    at setup (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31737:12)
+    at handlePlugins (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1426:21)
+    at buildOrContextImpl (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1139:5)
+    at Object.buildOrContext (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:963:5)
+    at D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:2329:68
+    at new Promise (<anonymous>)
+    at Object.context (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:2329:27)
+    at Object.context (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:2171:58)
+    at prepareEsbuildScanner (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31534:23)
+
+  The plugin "vite:dep-scan" was triggered by this import
+
+    src/content/r2Schema.ts:4:30:
+      4 │ import {SUITS,type Suit} from '../cards/types';
+        ╵                               ~~~~~~~~~~~~~~~~
+
+
+X [ERROR] The server is being restarted or closed. Request is outdated [plugin vite:dep-scan]
+
+    node_modules/esbuild/lib/main.js:1502:27:
+      1502 │         let result = await callback({
+           ╵                            ^
+
+    at throwClosedServerError (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:28639:32)
+    at EnvironmentPluginContainer.resolveId (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:28771:65)
+    at resolveId (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31580:38)
+    at resolve$4 (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31585:22)
+    at file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31738:28
+    at requestCallbacks.on-resolve (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1502:28)
+    at handleRequest (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:911:17)
+    at handleIncomingPacket (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:936:7)
+    at Socket.readFromStdout (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:864:7)
+    at Socket.emit (node:events:519:28)
+
+  This error came from the "onResolve" callback registered here:
+
+    node_modules/esbuild/lib/main.js:1426:20:
+      1426 │       let promise = setup({
+           ╵                     ^
+
+    at setup (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31737:12)
+    at handlePlugins (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1426:21)
+    at buildOrContextImpl (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1139:5)
+    at Object.buildOrContext (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:963:5)
+    at D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:2329:68
+    at new Promise (<anonymous>)
+    at Object.context (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:2329:27)
+    at Object.context (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:2171:58)
+    at prepareEsbuildScanner (file:///D:/ai/dachoupai/p00-main-delivery/node_modules/vite/dist/node/chunks/config.js:31534:23)
+
+  The plugin "vite:dep-scan" was triggered by this import
+
+    src/domain/r2Run.ts:13:107:
+      13 │ ...Price,salePrice,r2PurchasePrice,type R2ShopState} from './r2Shop';
+         ╵                                                           ~~~~~~~~~~
+
+
+    at failureErrorWithLog (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1752:15)
+    at D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1211:25
+    at runOnEndCallbacks (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1592:45)
+    at buildResponseToResult (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1209:7)
+    at D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1221:9
+    at new Promise (<anonymous>)
+    at requestCallbacks.on-end (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:1220:54)
+    at handleRequest (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:911:17)
+    at handleIncomingPacket (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:936:7)
+    at Socket.readFromStdout (D:\ai\dachoupai\p00-main-delivery\node_modules\esbuild\lib\main.js:864:7)

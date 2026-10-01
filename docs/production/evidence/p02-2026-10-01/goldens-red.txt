@@ -1,0 +1,160 @@
+Baseline: 205818a0628114466e6de0a2f4f0847e0699fae2
+Command: npx vitest run tests/r2-starting-profile.test.ts
+
+ RUN  v4.1.11 D:/ai/dachoupai/p00-main-delivery
+
+ ❯ tests/r2-starting-profile.test.ts (10 tests | 8 failed) 59ms
+     × starts Amo at discovered high-card Lv3 in v4, keeping every other hand at Lv1 10ms
+     × 'single K': preview equals submitted '225', with held effects before the character 7ms
+     × 'single K with Pengci': preview equals submitted '325', with held effects before the character 4ms
+     × 'single K with four held faces and D01': preview equals submitted '525', with held effects before the character 3ms
+     × never grants Amo ×3 for two played cards even when only K scores 3ms
+     × keeps the Lv3 starting profile through a natural clear, next stage and checkpoint restore 16ms
+     × allows T01 before the first play to upgrade the discovered high-card from Lv3 to Lv4, surviving restore and entry 1ms
+     × rejects a real v3 profile/hash at the version boundary while retaining its exact raw checkpoint 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/r2-starting-profile.test.ts > P02 starting profile: independent D14 goldens through public commands > starts Amo at discovered high-card Lv3 in v4, keeping every other hand at Lv1
+AssertionError: expected undefined to be 3 // Object.is equality
+
+- Expected:
+3
+
++ Received:
+undefined
+
+ ❯ tests/r2-starting-profile.test.ts:48:41
+     46|   it('starts Amo at discovered high-card Lv3 in v4, keeping every othe…
+     47|     const run=start();assertRunInvariants(run);
+     48|     expect(run.handLevels['high-card']).toBe(3);
+       |                                         ^
+     49|     for(const type of R2_HAND_TYPES.filter(type=>type!=='high-card'))e…
+     50|     expect(Object.hasOwn(run.handLevels,'high-card')).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/r2-starting-profile.test.ts > P02 starting profile: independent D14 goldens through public commands > 'single K': preview equals submitted '225', with held effects before the character
+AssertionError: expected '90' to be '225' // Object.is equality
+
+Expected: "225"
+Received: "90"
+
+ ❯ tests/r2-starting-profile.test.ts:69:30
+     67|     const result=previewAndSubmit(enter(start(),ids,joker),['spades-13…
+     68|     // Lv3: base 40H / 3/2M; K adds 10H. D01 adds four 1/2M before Amo…
+     69|     expect(trace.finalScore).toBe(score);expect(trace.level).toBe(3);
+       |                              ^
+     70|     expect(trace.events[0].after).toEqual({H:{n:'40',d:'1'},M:{n:'3',d…
+     71|     expect(trace.accumulator).toEqual({H:{n:'50',d:'1'},M:multiplier});
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/r2-starting-profile.test.ts > P02 starting profile: independent D14 goldens through public commands > 'single K with Pengci': preview equals submitted '325', with held effects before the character
+AssertionError: expected '150' to be '325' // Object.is equality
+
+Expected: "325"
+Received: "150"
+
+ ❯ tests/r2-starting-profile.test.ts:69:30
+     67|     const result=previewAndSubmit(enter(start(),ids,joker),['spades-13…
+     68|     // Lv3: base 40H / 3/2M; K adds 10H. D01 adds four 1/2M before Amo…
+     69|     expect(trace.finalScore).toBe(score);expect(trace.level).toBe(3);
+       |                              ^
+     70|     expect(trace.events[0].after).toEqual({H:{n:'40',d:'1'},M:{n:'3',d…
+     71|     expect(trace.accumulator).toEqual({H:{n:'50',d:'1'},M:multiplier});
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/r2-starting-profile.test.ts > P02 starting profile: independent D14 goldens through public commands > 'single K with four held faces and D01': preview equals submitted '525', with held effects before the character
+AssertionError: expected '270' to be '525' // Object.is equality
+
+Expected: "525"
+Received: "270"
+
+ ❯ tests/r2-starting-profile.test.ts:69:30
+     67|     const result=previewAndSubmit(enter(start(),ids,joker),['spades-13…
+     68|     // Lv3: base 40H / 3/2M; K adds 10H. D01 adds four 1/2M before Amo…
+     69|     expect(trace.finalScore).toBe(score);expect(trace.level).toBe(3);
+       |                              ^
+     70|     expect(trace.events[0].after).toEqual({H:{n:'40',d:'1'},M:{n:'3',d…
+     71|     expect(trace.accumulator).toEqual({H:{n:'50',d:'1'},M:multiplier});
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  tests/r2-starting-profile.test.ts > P02 starting profile: independent D14 goldens through public commands > never grants Amo ×3 for two played cards even when only K scores
+AssertionError: expected '30' to be '75' // Object.is equality
+
+Expected: "75"
+Received: "30"
+
+ ❯ tests/r2-starting-profile.test.ts:96:30
+     94|     expect(trace.sets.playedIds).toEqual(['spades-13','clubs-2']);expe…
+     95|     expect(trace.events.filter(event=>event.sourceType==='character'))…
+     96|     expect(trace.finalScore).toBe('75');
+       |                              ^
+     97|   });
+     98|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  tests/r2-starting-profile.test.ts > P02 starting profile: independent D14 goldens through public commands > keeps the Lv3 starting profile through a natural clear, next stage and checkpoint restore
+AssertionError: expected undefined to be 3 // Object.is equality
+
+- Expected:
+3
+
++ Received:
+undefined
+
+ ❯ tests/r2-starting-profile.test.ts:104:41
+    102|     run=send(send(send(restore(run),{type:'OpenShop'}),{type:'LeaveSho…
+    103|     run=restore(run);expect(run.stageIndex).toBe(1);expect(run.phase).…
+    104|     expect(run.handLevels['high-card']).toBe(3);expect(run.handLevels[…
+       |                                         ^
+    105|   });
+    106|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  tests/r2-starting-profile.test.ts > P02 starting profile: independent D14 goldens through public commands > allows T01 before the first play to upgrade the discovered high-card from Lv3 to Lv4, surviving restore and entry
+Error: undiscovered-hand-type
+ ❯ send tests/r2-starting-profile.test.ts:17:23
+     15| function send(state:R2RunState,action:Action):R2RunState {
+     16|   const result=applyCommand(state,{runId:state.runId,commandId:`c-${st…
+     17|   if(!result.ok)throw new Error(result.code);
+       |                       ^
+     18|   assertRunInvariants(result.state);return result.state;
+     19| }
+ ❯ tests/r2-starting-profile.test.ts:110:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  tests/r2-starting-profile.test.ts > P02 starting profile: independent D14 goldens through public commands > rejects a real v3 profile/hash at the version boundary while retaining its exact raw checkpoint
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/r2-starting-profile.test.ts:125:21
+    123|     const raw=JSON.parse(JSON.stringify(legacy)),before=JSON.stringify…
+    124|     const read=readCheckpoint(raw),restored=restoreSlots({revision:1,c…
+    125|     expect(read.ok).toBe(false);if(!read.ok)expect(read.code).toBe('in…
+       |                     ^
+    126|     expect(restored.status).toBe('invalid');expect(restored.code).toBe…
+    127|     expect(restored.raw).toBe(raw);expect(JSON.stringify(raw)).toBe(be…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed | 2 passed (10)
+   Start at  12:43:39
+   Duration  716ms (transform 271ms, setup 0ms, import 336ms, tests 59ms, environment 0ms)
+
+
+Run worktree: 205818a0628114466e6de0a2f4f0847e0699fae2 + uncommitted P02 test/docs/UI; domain mathematics remained at the original baseline.
+After this red run, only the clear/checkpoint test titles and provenance comment were tightened; fixtures and expected values were unchanged.
