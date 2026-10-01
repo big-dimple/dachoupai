@@ -1,0 +1,96 @@
+P04 audio check — actual one-off execution evidence
+Date: 2026-10-01
+Working directory: D:/ai/dachoupai/dachoupai
+Runtime source: src/audio/AudioEngine.ts
+Source SHA256 at freeze: 69A14F4365DDD94E61485E6AF6C697B6DF7EF5AFF71E6F1F49B310AA49CC5D02
+
+Purpose and limits
+This file preserves the command and output already executed during P04. It is evidence, not a new permanent harness. Saving this file did not rerun the command.
+Chromium used actual OfflineAudioContext, oscillator/filter/gain/compressor/WaveShaper nodes and startRendering(), at 48 kHz, mono. Music cases rendered a 3-second first-bar window; cue cases rendered a 1.2-second window. RMS is over the whole window, including silence/tails. Peak and clips describe only these rendered snippets, not a full-loop or all-combinations guarantee.
+The inline script replaced currentTime and state to advance short scheduling deterministically. resume() and suspend() were async no-op substitutes. Its lifecycle counters verify engine context/timer bookkeeping under those substitutes; they do not verify real audio-device suspension, browser autoplay policy, hardware output or audible quality.
+Resource branch inspection replaced note(), paper() and duckMusic() to capture dispatch arguments. Those branch counts are not listening evidence. Other rendered cases used the actual AudioEngine sound synthesis methods.
+Human phone/headphone audition: NOT_RUN.
+Real-device background/resume verification in this script: NOT_RUN.
+Human audio approval: NOT_GRANTED. No visual approval is asserted.
+
+Actual PowerShell command
+@'
+const fs = require('fs');
+const ts = require('typescript');
+const { chromium } = require('playwright');
+const compiled = ts.transpileModule(fs.readFileSync('src/audio/AudioEngine.ts','utf8'), { compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS} }).outputText;
+(async () => {
+ const browser = await chromium.launch({headless:true});
+ try {
+  const page = await browser.newPage();
+  await page.addScriptTag({content:'window.exports={};\n'+compiled+'\nwindow.__Audio=exports.AudioEngine;'});
+  const report = await page.evaluate(async () => {
+   const cases=[];
+   async function render(label,{scene='table',volumes={},cue,bar=false,muted=false,musicMuted=false}={}) {
+    const sampleRate=48000,seconds=bar?3:1.2,context=new OfflineAudioContext(1,Math.ceil(sampleRate*seconds),sampleRate);
+    let cursor=0,contexts=0;
+    Object.defineProperty(context,'currentTime',{get:()=>cursor});
+    Object.defineProperty(context,'state',{get:()=>'running'});
+    context.resume=async()=>{};context.suspend=async()=>{};
+    window.AudioContext=function(){contexts++;return context;};
+    const a=new window.__Audio();a.setScene(scene);a.muted=muted;a.musicMuted=musicMuted;
+    for(const [bus,value] of Object.entries(volumes))a.setVolume(bus,value);
+    await a.unlock();
+    if(a.musicTimer!==undefined)clearInterval(a.musicTimer);a.musicTimer=undefined;
+    if(bar){for(cursor=.08;cursor<2.12;cursor+=.08)a.scheduleMusic();}
+    else{a.stopMusic();cursor=.04;if(cue)cue(a);}
+    const voices=a.voices.size,buffer=await context.startRendering(),data=buffer.getChannelData(0);
+    let sum=0,peak=0,clips=0,nonzero=0;
+    for(const value of data){sum+=value*value;peak=Math.max(peak,Math.abs(value));if(Math.abs(value)>=1)clips++;if(value!==0)nonzero++;}
+    const rms=Math.sqrt(sum/data.length);
+    return {label,peak:+peak.toFixed(8),rms:+rms.toFixed(8),rmsDbFS:rms?+(20*Math.log10(rms)).toFixed(2):null,clips,nonzero,voices,contexts,rawMaster:a.getVolume('master')};
+   }
+   cases.push(await render('table-first-bar-default',{bar:true}));
+   cases.push(await render('table-first-bar-master1',{bar:true,volumes:{master:1}}));
+   cases.push(await render('table-first-bar-music1-master1',{bar:true,volumes:{master:1,music:1}}));
+   cases.push(await render('overkill3-master1',{volumes:{master:1},cue:a=>a.overkill(3)}));
+   cases.push(await render('stack-all-buses1',{volumes:{master:1,music:1,sfx:1,ui:1},cue:a=>{a.overkill(3);a.multiplier('multiply',3);a.resourceSpend('play',0,1,1);}}));
+   cases.push(await render('master0-cues',{volumes:{master:0},cue:a=>{a.overkill(3);a.resourceSpend('discard',1,1,2);}}));
+   cases.push(await render('music0-first-bar',{bar:true,volumes:{music:0}}));
+   cases.push(await render('master-muted',{muted:true,cue:a=>{a.overkill(3);a.select();}}));
+   cases.push(await render('music-muted',{bar:true,musicMuted:true}));
+   cases.push(await render('sfx-ui0-cues',{volumes:{sfx:0,ui:0},cue:a=>{a.overkill(3);a.select();}}));
+   cases.push(await render('refund-net0-silent',{cue:a=>a.resourceSpend('discard',1,0,2)}));
+   const events=[];
+   const a=new window.__Audio();a.note=(...args)=>events.push({type:'note',args});a.paper=(...args)=>events.push({type:'paper',args});a.duckMusic=()=>{};
+   a.resourceSpend('discard',1,1,2);const unavailable=events.splice(0);
+   a.resourceSpend('discard',3,1,2);const last=events.splice(0);
+   a.resourceSpend('discard',4,1,2);const normal=events.splice(0);
+   let contextCount=0;
+   const lifeContext=new OfflineAudioContext(1,48000,48000);
+   Object.defineProperty(lifeContext,'state',{get:()=>'running'});
+   lifeContext.resume=async()=>{};lifeContext.suspend=async()=>{};
+   window.AudioContext=function(){contextCount++;return lifeContext;};
+   const life=new window.__Audio();life.muted=true;
+   const first=life.unlock();life.muted=false;await first;await life.unlock();
+   const initialUnmuteContextCount=contextCount;
+   await Promise.all([life.unlock(),life.unlock()]);
+   const musicTimerStarted=life.musicTimer!==undefined;
+   life.setSuspended(true);const backgroundStopped=life.musicTimer===undefined&&life.voices.size===0;
+   life.setSuspended(false);await life.unlock();
+   const resumedSingleContext=contextCount===1&&life.musicTimer!==undefined;
+   life.musicMuted=true;const musicMuteStopped=life.musicTimer===undefined&&life.voices.size===0;
+   life.muted=true;
+   return {sampleRate:48000,channels:1,cases,resources:{unavailableVoices:unavailable.length,lastVoices:last.length,normalVoices:normal.length,unavailablePitch:unavailable[2].args[0],lastPitch:last[2].args[0]},lifecycle:{initialUnmuteContextCount,musicTimerStarted,backgroundStopped,resumedSingleContext,musicMuteStopped,contextCount}};
+  });
+  console.log(JSON.stringify(report));
+ } finally {await browser.close();}
+})().catch(error=>{console.error(error);process.exitCode=1;});
+'@ | & 'C:/Program Files/nodejs/node.exe'
+
+Actual execution result
+exit_code: 0
+wall_time_seconds: 2.1554561
+stdout:
+{"sampleRate":48000,"channels":1,"cases":[{"label":"table-first-bar-default","peak":0.2439326,"rms":0.05147127,"rmsDbFS":-25.77,"clips":0,"nonzero":105964,"voices":27,"contexts":1,"rawMaster":0.9},{"label":"table-first-bar-master1","peak":0.26983976,"rms":0.05714518,"rmsDbFS":-24.86,"clips":0,"nonzero":105965,"voices":27,"contexts":1,"rawMaster":1},{"label":"table-first-bar-music1-master1","peak":0.4984985,"rms":0.11287636,"rmsDbFS":-18.95,"clips":0,"nonzero":105983,"voices":27,"contexts":1,"rawMaster":1},{"label":"overkill3-master1","peak":0.48265719,"rms":0.09842619,"rmsDbFS":-20.14,"clips":0,"nonzero":29278,"voices":11,"contexts":1,"rawMaster":1},{"label":"stack-all-buses1","peak":0.52206707,"rms":0.11439383,"rmsDbFS":-18.83,"clips":0,"nonzero":29256,"voices":20,"contexts":1,"rawMaster":1},{"label":"master0-cues","peak":0,"rms":0,"rmsDbFS":null,"clips":0,"nonzero":0,"voices":15,"contexts":1,"rawMaster":0},{"label":"music0-first-bar","peak":0,"rms":0,"rmsDbFS":null,"clips":0,"nonzero":0,"voices":27,"contexts":1,"rawMaster":0.9},{"label":"master-muted","peak":0,"rms":0,"rmsDbFS":null,"clips":0,"nonzero":0,"voices":0,"contexts":0,"rawMaster":0.9},{"label":"music-muted","peak":0,"rms":0,"rmsDbFS":null,"clips":0,"nonzero":0,"voices":0,"contexts":1,"rawMaster":0.9},{"label":"sfx-ui0-cues","peak":0,"rms":0,"rmsDbFS":null,"clips":0,"nonzero":0,"voices":13,"contexts":1,"rawMaster":0.9},{"label":"refund-net0-silent","peak":0,"rms":0,"rmsDbFS":null,"clips":0,"nonzero":0,"voices":0,"contexts":1,"rawMaster":0.9}],"resources":{"unavailableVoices":4,"lastVoices":4,"normalVoices":2,"unavailablePitch":45,"lastPitch":50},"lifecycle":{"initialUnmuteContextCount":1,"musicTimerStarted":true,"backgroundStopped":true,"resumedSingleContext":true,"musicMuteStopped":true,"contextCount":1}}
+
+Actual final TypeScript command (already executed)
+& 'C:/Program Files/nodejs/node.exe' 'node_modules/typescript/bin/tsc' --noEmit
+exit_code: 0
+wall_time_seconds: 3.0590916
+output: ""

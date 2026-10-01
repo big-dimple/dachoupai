@@ -9,19 +9,25 @@ import { ShopScene } from './game/ShopScene';
 import {installRunMenu} from './game/RunMenu';
 import {AudioEngine} from './audio/AudioEngine';
 import {gameSession} from './game/session';
+import {installViewport,viewportMetrics} from './platform/Viewport';
+
+const viewport=viewportMetrics();
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   parent: 'app',
-  width: window.innerWidth,
-  height: window.innerHeight,
+  width: viewport.width*viewport.density,
+  height: viewport.height*viewport.density,
   backgroundColor: '#153b40',
   scene: [BootScene, TitleScene, CharacterSelectScene, GameScene, IntermissionScene, ShopScene],
   scale: {
-    mode: Phaser.Scale.RESIZE,
+    mode: Phaser.Scale.NONE,
+    zoom: 1/viewport.density,
+    autoRound: true,
   },
   render: { antialias: true, pixelArt: false },
   audio: {noAudio:true}, // AudioEngine owns the application context; Phaser's unused manager must not block boot.
+  callbacks: {postBoot:installViewport},
 };
 
 const game = new Phaser.Game(config);

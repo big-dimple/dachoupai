@@ -1,0 +1,29 @@
+
+> dachoupai@0.1.0 test:layout
+> vitest run tests/layout.test.ts
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/layout.test.ts (17 tests | 1 failed) 37ms
+     × played cards, current score and pile counts stay visible above the independent hand controls 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > played cards, current score and pile counts stay visible above the independent hand controls
+AssertionError: expected -38 to be greater than or equal to 48
+ ❯ tests/layout.test.ts:35:35
+     33|       const l=layout({width,height},{top:0,right:0,bottom:0,left:0});
+     34|       for(const b of [l.scoreBoard,l.playedArea,l.handLabel,l.piles])e…
+     35|       expect(l.playedArea.height).toBeGreaterThanOrEqual(48);
+       |                                   ^
+     36|       expect(intersects(l.scoreBoard,l.playedArea)).toBe(false);
+     37|       for(const b of [l.scoreBoard,l.playedArea,l.handLabel,l.piles])f…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 passed (17)
+   Start at  17:05:57
+   Duration  423ms (transform 70ms, setup 0ms, import 94ms, tests 37ms, environment 0ms)

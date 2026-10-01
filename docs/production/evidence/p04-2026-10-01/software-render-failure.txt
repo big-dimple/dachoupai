@@ -1,0 +1,22 @@
+
+> dachoupai@0.1.0 verify:smoke
+> node harness/screenshot.mjs --verify-smoke
+
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+{"inputEvidence":[{"type":"phaser-down","at":33143.5,"over":["card/clubs-5"],"pressed":"card/clubs-5"},{"type":"touchstart","at":33143.59999999404,"stamp":32355.69999998808},{"type":"phaser-up","at":33152.59999999404,"selected":["clubs-5"],"dialog":false},{"type":"touchend","at":33152.69999998808,"stamp":32355.79999999702},{"type":"phaser-down","at":36330.39999999106,"over":["card/diamonds-14"],"pressed":"card/diamonds-14"},{"type":"touchstart","at":36330.5,"stamp":35542},{"type":"phaser-up","at":36333.19999998808,"selected":["clubs-5","diamonds-14"],"dialog":false},{"type":"touchend","at":36333.29999999702,"stamp":35542.09999999404},{"type":"phaser-down","at":39505.5,"over":["card/clubs-4"],"pressed":"card/clubs-4"},{"type":"touchstart","at":39505.5,"stamp":38706.59999999404},{"type":"phaser-up","at":39507.39999999106,"selected":["clubs-5","diamonds-14","clubs-4"],"dialog":false},{"type":"touchend","at":39507.5,"stamp":38706.59999999404},{"type":"phaser-down","at":42696.19999998808,"over":["card/diamonds-3"],"pressed":"card/diamonds-3"},{"type":"touchstart","at":42696.39999999106,"stamp":41901.69999998808},{"type":"phaser-up","at":42698.5,"selected":["clubs-5","diamonds-14","clubs-4","diamonds-3"],"dialog":false},{"type":"touchend","at":42698.59999999404,"stamp":41901.79999999702},{"type":"phaser-down","at":46062.69999998808,"over":["card/clubs-2"],"pressed":"card/clubs-2"},{"type":"touchstart","at":46062.79999999702,"stamp":45206.39999999106},{"type":"phaser-up","at":46068.79999999702,"selected":["clubs-5","diamonds-14","clubs-4","diamonds-3","clubs-2"],"dialog":false},{"type":"touchend","at":46068.89999999106,"stamp":45206.5},{"type":"phaser-down","at":49877.79999999702,"over":["action/play"],"pressed":"action/play"},{"type":"touchstart","at":49877.79999999702,"stamp":49003.89999999106},{"type":"phaser-up","at":50292.39999999106,"selected":["clubs-5","diamonds-14","clubs-4","diamonds-3","clubs-2"],"dialog":false},{"type":"touchend","at":50292.5,"stamp":49003.89999999106}],"renderFps":3.0000001646282213}
+{"phase":"stage-cleared","commandSeq":5,"controller":"idle","playing":true,"presenting":true,"selectedIds":["clubs-5","diamonds-14","clubs-4","diamonds-3","clubs-2"],"discardEnabled":false,"status":"正在结算 · 可快进","pointers":[{"id":0,"touch":false,"x":0,"y":0},{"id":1,"touch":true,"x":789,"y":2037}]}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at D:\ai\dachoupai\dachoupai\harness\screenshot.mjs:157:16 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v22.20.0

@@ -1,0 +1,302 @@
+{
+  "taskId": "P04",
+  "testedCommit": "27c633a8f34b3be52d8522dc6e3d594c681bf139",
+  "date": "2026-10-01",
+  "branch": "main",
+  "trackedSourceModified": true,
+  "completionScope": "Runnable engineering repair candidate; human art, real Android, listening and gameplay acceptance are not closed.",
+  "baseline": {
+    "head": "27c633a8f34b3be52d8522dc6e3d594c681bf139",
+    "branch": "main",
+    "fetchedOriginAligned": true,
+    "trackedDirtyAtStart": false,
+    "reset": false,
+    "forcePush": false
+  },
+  "contentVersion": "quality-r2-graybox-v4",
+  "contentHash": "json-fnv-v1:44ae9e0098657624",
+  "testedSource": {
+    "normalization": "CRLF to LF, SHA256 of UTF-8 source. Final runtime logic unchanged after build/unit; documentation and smoke observers finalized afterward.",
+    "normalizedSha256": {
+      "src/audio/AudioEngine.ts": "67796c248d81aaf5d8d6da69f9796d8f8bf6ef4d0a145dedc02be9efc3fda27b",
+      "src/game/CharacterSelectScene.ts": "31f89fae4ca54c46f13bdadb35d40ad12b211f8dd4942aad329fdffd145d5341",
+      "src/game/GameScene.ts": "135b8f54c1bdb44465b6d0320337b2b14db57b66e43449aa3d0efbc96fd7c4f1",
+      "src/game/PointerIntent.ts": "4df121537ccfdba6e21bbecbeaaa6ea1f43583557dc57b97d848b3be9dda7b3b",
+      "src/game/RunMenu.ts": "c08ab480da1d0bd6a1309bb25b36b3ace7a7085e2d4f48568b47862f2ed3740f",
+      "src/game/SceneView.ts": "12e96f5bdab5fff10b7156e03977deb73630eeb7e15ab495949f7ee1917df422",
+      "src/game/ShopScene.ts": "9214b3c06bbd3a093f41a7fcb46856f302c8de729407dc80c972b2c7bab5d3c9",
+      "src/game/TitleScene.ts": "4bb280a85586d7be184891016311154b7c4d35fc6f5397d70ec7923c9a005a40",
+      "src/game/layout.ts": "d393ab1550a2448089e46fb2dcd3b7c0865b8c2a97fe2306d4714d10a266c9a1",
+      "src/game/scoreCelebration.ts": "506affaa65363cb12331cb1f20cc014a0f36b11ee1f972854881aeb8098bfdd8",
+      "src/platform/Fullscreen.ts": "a81f9090aaa0ecb69e0916f5424a2c00ffd3e689999417f804058c80292d35ce",
+      "src/platform/Viewport.ts": "2b19d85fc8c9833f7e2efd504a10d7f2001a1f30a93b0259562f16cc675470e0",
+      "src/main.ts": "37f456aa037853c4f1a46b632de3868eaac6d1ac98c251705c6353e92667c67c",
+      "src/style.css": "0e7916df70858610cbffc113e3a4f86cb8d71ec72030af41bd374df82a00e382",
+      "vite.config.ts": "c00c87b4a3759d06ff2bd7d8e0c50ab8d1572500cf25f4c82c58971ed9f859eb"
+    },
+    "deleted": [
+      "src/core/TriggerEngine.ts"
+    ],
+    "audioExactByteSha256": "69a14f4365ddd94e61485e6af6c697b6df7ef5aff71e6f1f49b310aa49cc5d02"
+  },
+  "changes": [
+    "Bounded high-DPR canvas with CSS input geometry, complete rank10 safety area",
+    "Fixed menu anchor and preserved selection, actual fullscreen and truthful orientation fallback",
+    "Mobile information priority and readable actions; quiet empty card backs; short landscape fifth slot and gold preserved",
+    "Actual committed play/discard count pulses, net refunds/costs and last-usable warning; plain action holds release once",
+    "First actual cumulative target crossing: ordinary clear and exact2/3/5x tiers; saved trace drives burst, score roll, sound and bounded haptic",
+    "Original melody/answer/space arrangement, stronger source/bus gains, bounded compression and music ducking, exact mute and first-unmute unlock repair"
+  ],
+  "checks": [
+    {
+      "command": "npx vitest run tests/layout.test.ts",
+      "status": "FAIL",
+      "scope": "Golden negative played-area height before repair",
+      "log": "docs/production/evidence/p04-2026-10-01/baseline-layout.txt"
+    },
+    {
+      "command": "SHOT_PROFILES=mobile npm run verify:smoke",
+      "status": "FAIL",
+      "scope": "Actual one-pixel framebuffer before repair",
+      "log": "docs/production/evidence/p04-2026-10-01/baseline-density.txt"
+    },
+    {
+      "command": "npx vitest run tests/layout.test.ts",
+      "status": "FAIL",
+      "scope": "Native utility buttons overlap fifth slot golden",
+      "log": "docs/production/evidence/p04-2026-10-01/baseline-utility.txt"
+    },
+    {
+      "command": "npx vitest run tests/score-celebration.test.ts",
+      "status": "FAIL",
+      "scope": "Golden added before implementation; missing helper module, zero assertions executed",
+      "log": "docs/production/evidence/p04-2026-10-01/baseline-celebration.txt"
+    },
+    {
+      "command": "npx vitest run tests/layout.test.ts",
+      "status": "FAIL",
+      "scope": "Plain action button hold swallowed release: one failing case before PointerIntent repair",
+      "log": "docs/production/evidence/p04-2026-10-01/baseline-button-hold.txt"
+    },
+    {
+      "command": "SHOT_PROFILES=mobile SMOKE_FEEDBACK=1 npm run verify:smoke",
+      "status": "FAIL",
+      "scope": "Enabled selected discard touch did not commit before plain-button gesture repair",
+      "log": "docs/production/evidence/p04-2026-10-01/touch-failure.txt"
+    },
+    {
+      "command": "npx vitest run tests/layout.test.ts tests/score-celebration.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 27,
+      "log": "docs/production/evidence/p04-2026-10-01/unit.txt"
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "includes": "tsc --noEmit and actual production bundle",
+      "log": "docs/production/evidence/p04-2026-10-01/build.txt",
+      "buildInfo": "docs/production/evidence/p04-2026-10-01/build-info.json"
+    },
+    {
+      "command": "SMOKE_FEEDBACK=only SHOT_PROFILES=mobile SMOKE_SHOTS=1 npm run verify:smoke",
+      "status": "FAIL",
+      "scope": "Default Windows headless-shell SwiftShader rendered at about3 FPS; all five taps and committed result observed, presentation had not reached final award within30s. Not a score mismatch.",
+      "log": "docs/production/evidence/p04-2026-10-01/software-render-failure.txt"
+    },
+    {
+      "command": "SMOKE_CHROMIUM_CHANNEL=chromium SHOT_PROFILES=desktop,mobile SMOKE_SHOTS=1 SMOKE_FEEDBACK=1 npm run verify:smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/production/evidence/p04-2026-10-01/smoke.txt",
+      "report": "docs/production/evidence/p04-2026-10-01/smoke-result.json",
+      "profiles": [
+        {
+          "engine": "chromium",
+          "browserVersion": "153.0.8010.12",
+          "profile": "desktop",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "deviceScaleFactor": 1,
+          "framebufferDensity": 1,
+          "fullscreen": "NOT_RUN",
+          "status": "PASS",
+          "input": "mouse.click / DOM click",
+          "covered": [
+            "select-confirm-cancel",
+            "buy-cancel",
+            "rank/suit-sort",
+            "discard-refill",
+            "live-discard-count-pulse",
+            "live-play-count-pulse",
+            "play-preview-feedback",
+            "reload-continue",
+            "fixed-menu-anchor",
+            "menu-preserves-selection"
+          ]
+        },
+        {
+          "engine": "chromium",
+          "profile": "mobile-critical-resources",
+          "status": "PASS",
+          "covered": [
+            "last-discard-pulse",
+            "exhausted-discards-disabled",
+            "last-play-warning"
+          ],
+          "physicalDevice": "NOT_RUN"
+        },
+        {
+          "engine": "chromium",
+          "browserVersion": "153.0.8010.12",
+          "profile": "mobile",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "deviceScaleFactor": 3,
+          "framebufferDensity": 3,
+          "fullscreen": "PASS (browser API; physical toolbar/orientation NOT_RUN)",
+          "status": "PASS",
+          "input": "touchscreen.tap / DOM tap",
+          "covered": [
+            "select-confirm-cancel",
+            "buy-cancel",
+            "rank/suit-sort",
+            "discard-refill",
+            "live-discard-count-pulse",
+            "live-play-count-pulse",
+            "play-preview-feedback",
+            "reload-continue",
+            "fixed-menu-anchor",
+            "menu-preserves-selection",
+            "high-DPR",
+            "rotation-preserves-state"
+          ]
+        },
+        {
+          "engine": "chromium",
+          "browserVersion": "153.0.8010.12",
+          "channel": "chromium",
+          "profile": "natural-three-times-target",
+          "status": "PASS",
+          "seed": "p04-golden-02",
+          "character": "touye",
+          "selectedIds": [
+            "clubs-5",
+            "diamonds-14",
+            "clubs-4",
+            "diamonds-3",
+            "clubs-2"
+          ],
+          "finalScore": "1200",
+          "target": "400",
+          "burstElapsedMs": 2787,
+          "renderFps": 54.6328125,
+          "linkedAudio": {
+            "context": "running",
+            "sfxVoices": 7,
+            "master": 0.9
+          },
+          "covered": [
+            "natural-wager-straight",
+            "real-3x-stamp",
+            "score-number-bounce",
+            "scheduled-overkill-audio",
+            "exact-credit-once"
+          ],
+          "physicalListening": "NOT_RUN",
+          "physicalPerformance": "NOT_RUN"
+        }
+      ],
+      "limits": "Real browser mouse/touch events at emulated CSS sizes; not physical Android. Complete Chromium uses Intel UHD630 Direct3D11; shell used SwiftShader. No rules, renderer or animation override."
+    },
+    {
+      "command": "One-off Chromium OfflineAudioContext command preserved in audio-check.txt",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/production/evidence/p04-2026-10-01/audio-check.txt",
+      "scope": "Actual short waveform renders and engine dispatch bookkeeping. Clock/state/resume/suspend and branch capture substitutes are explicitly recorded.",
+      "maxStackPeak": 0.52206707,
+      "maxStackRmsDbFS": -18.83,
+      "clippedSamples": 0,
+      "physicalListening": "NOT_RUN",
+      "nonzeroSamplesAtZeroVolume": 0
+    },
+    {
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "log": "docs/production/evidence/p04-2026-10-01/plan.txt",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS",
+      "exitCode": 0
+    }
+  ],
+  "screens": [
+    {
+      "file": "docs/production/evidence/p04-2026-10-01/table-short.webp",
+      "cssViewport": "360x640",
+      "pixels": "1080x1920",
+      "subject": "Complete poker10 and portrait action priority"
+    },
+    {
+      "file": "docs/production/evidence/p04-2026-10-01/table-landscape.webp",
+      "cssViewport": "844x300",
+      "pixels": "2532x900",
+      "subject": "Short landscape retains real resources, selection, controls and five slots"
+    },
+    {
+      "file": "docs/production/evidence/p04-2026-10-01/shop-mobile.webp",
+      "cssViewport": "390x740",
+      "pixels": "1170x2220",
+      "subject": "Readable short purpose, real price and full-rule purchase detail entry"
+    },
+    {
+      "file": "docs/production/evidence/p04-2026-10-01/overkill.webp",
+      "cssViewport": "390x740",
+      "pixels": "1170x2220",
+      "subject": "Real natural1200/400 first crossing, captured during rolling HUD and score bounce"
+    }
+  ],
+  "imageEncoding": "Actual browser screenshots encoded losslessly to WebP; RGBA equality checked. No crop, retouch or mockup.",
+  "cleanup": {
+    "deleted": "Unused TriggerEngine and empty emissions; unused layout surfaces/mirror assertions; one-off motion probe and duplicate temporary feedback image",
+    "kept": "Useful earlier scenes, actual portraits/court rendering, card assets, originals and audio pipeline; unique user attachments ignored, not publicly staged",
+    "noNewHarness": "Extended the existing short player path only; diagnostic input listeners removed; no new production mutation hook or full suite"
+  },
+  "humanReview": {
+    "status": "NOT_RUN",
+    "physicalAndroidChrome": "NOT_RUN",
+    "phoneAndHeadphoneListening": "NOT_RUN",
+    "visualApproval": "NOT_GRANTED",
+    "V01": "BLOCKED"
+  },
+  "cua": {
+    "status": "BLOCKED",
+    "scope": "Built-in browser screenshots/read succeeded; automation inputs produced no state change. Not counted as passed interaction."
+  },
+  "notRun": [
+    "Physical Android toolbar/fullscreen/orientation/performance and speaker/headphone audition",
+    "Full loop waveform and all audio stacks; offline lifecycle hardware behavior",
+    "Natural2x/5x UI paths; exact tier boundaries covered by unit goldens only",
+    "Formal A01 art approval and V01 human gameplay acceptance",
+    "Full CI/long E2E/recovery/120-run matrix/three engines/balance holdout",
+    "Cloudflare deployment, owned by user"
+  ],
+  "warnings": [
+    "Production Phaser chunk remains about1.463MB /416KB gzip; actual existing Vite size warning retained",
+    "Agent images and numerical checks cannot establish subjective appeal, listening or parity with competitors"
+  ],
+  "closeout": {
+    "skill": "jiepi-clear lightweight pre-commit",
+    "delivery": "Normal origin/main commit and push authorized; no branch, force push, reset or deployment"
+  },
+  "nextTask": "A01 same-version key-node Android visual/interaction/listening feedback only. Later content stays paused; fix concrete rejected presentation issues, never self-approve.",
+  "logFormatting": "Actual console content retained; redundant blank EOF lines removed for git diff --check."
+}

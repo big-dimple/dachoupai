@@ -35,20 +35,21 @@ export class TitleScene extends Phaser.Scene {
   private reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
   private render():void {
     if(this.leaving)return;
-    const v=this.view,{width:w,height:h}=v.layout,short=h<500,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
+    const v=this.view,l=v.layout,{width:w,height:h}=l,short=h<500,style=getComputedStyle(document.documentElement),bottom=parseFloat(style.getPropertyValue('--safe-bottom'))||0,right=parseFloat(style.getPropertyValue('--safe-right'))||0,left=parseFloat(style.getPropertyValue('--safe-left'))||0;
+    const session=gameSession(),saved=session.run,canContinue=!!saved&&['idle','readonly'].includes(saved.status);
+    const buttonWidth=short?Math.min(340,(w-left-right-64)*.44):Math.min(360,w-48),x=short?w-right-24-buttonWidth:(w-buttonWidth)/2,visualX=short?(left+x)/2:w/2;
     v.clear();v.paperBackground();
     if(this.textures.exists('p03-stage')){
       const stage=this.add.image(w/2,h/2,'p03-stage'),scale=Math.max(w/stage.width,h/stage.height);
       v.add(stage.setScale(scale).setAlpha(.85));
     }
-    const titleY=h*(short?.2:.23),titleSize=Math.max(38,Math.min(94,w*.18,h*.15));
-    const title=v.text(w/2,titleY,'大丑牌',titleSize,'#203944').setOrigin(.5).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setShadow(0,2,'#fff3d9',4,true,true);
+    const titleSize=short?Math.max(32,Math.min(50,(h-l.hud.y-bottom)*.2)):Math.max(38,Math.min(w<700?56:94,w*.18,h*.15)),titleY=short?l.hud.y+titleSize*.6+4:h*.23;
+    const title=v.text(visualX,titleY,'大丑牌',titleSize,'#203944').setOrigin(.5).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setShadow(0,2,'#fff3d9',4,true,true);
     const hasStage=this.textures.exists('p03-stage'),textColor=hasStage?'#345057':'#e8cf9e';
     if(!hasStage)title.setColor('#fff0ce').setShadow(0,3,'#122331',7,true,true);
-    v.text(w/2,titleY+titleSize*.75,'一出戏 · 一副牌',16,textColor).setOrigin(.5);
-    if(!short)v.text(w/2,titleY+titleSize*.75+32,'选一位巡演者，把这一手演漂亮。',14,textColor).setOrigin(.5);
-    const fanY=short?h*.54:h*.59,cardWidth=Math.min(short?68:112,w*.2),cardHeight=cardWidth*1.42;
-    const fan=v.add(this.add.container(w/2,fanY));
+    v.text(visualX,titleY+titleSize*.75,'一出戏 · 一副牌',16,textColor).setOrigin(.5);
+    const fanTop=titleY+titleSize*.75+28,fanRoom=Math.max(24,h-bottom-18-fanTop),fanY=short?fanTop+fanRoom/2:h*.56,cardWidth=short?Math.min(82,(x-left-48)/3.5,fanRoom/1.9):Math.min(112,w*.2),cardHeight=cardWidth*1.42;
+    const fan=v.add(this.add.container(visualX,fanY));
     [-1,0,1].forEach((side,i)=>{
       const card=this.add.container(side*cardWidth*.69,Math.abs(side)*9).setAngle(side*13),g=this.add.graphics();
       g.fillStyle(0x071b24,.4).fillRoundedRect(-cardWidth/2+3,-cardHeight/2+6,cardWidth,cardHeight,7);
@@ -65,18 +66,11 @@ export class TitleScene extends Phaser.Scene {
     const entrance=this.firstRender&&!this.reducedMotion();this.firstRender=false;
     if(entrance){fan.y+=12;fan.setAlpha(.6);this.tweens.add({targets:fan,y:fanY,alpha:1,duration:360,ease:'Cubic.easeOut'});}
     fan.once('destroy',()=>this.tweens.killTweensOf(fan));
-    const session=gameSession(),saved=session.run,canContinue=!!saved&&['idle','readonly'].includes(saved.status),buttonWidth=Math.min(360,w-48),x=(w-buttonWidth)/2;
-    const primaryY=h-bottom-(short?86:168),primary={x,y:primaryY,width:buttonWidth,height:52};
+    const primaryY=short?l.hud.y+(h-l.hud.y-bottom-(saved?112:52))/2:h-bottom-168,primary={x,y:primaryY,width:buttonWidth,height:52};
     if(saved){
-      if(short){
-        const rowWidth=Math.min(720,w-48),half=(rowWidth-12)/2,left=(w-rowWidth)/2;
-        v.button({...primary,x:left,width:half},'继续本局','action/title-continue',()=>this.continueRun(),canContinue,true);
-        v.button({...primary,x:left+half+12,width:half},'选角，开始新局','action/title-start',()=>this.enterNew(),!session.working);
-      }else {
-        v.button(primary,'继续本局','action/title-continue',()=>this.continueRun(),canContinue,true);
-        v.button({x,y:primaryY+62,width:buttonWidth,height:48},'选角，开始新局','action/title-start',()=>this.enterNew(),!session.working);
-        v.text(w/2,primaryY-28,'第 '+saved.state.chapter+' 章 · 金币 '+saved.state.gold,14,textColor).setOrigin(.5);
-      }
+      v.button(primary,'继续本局','action/title-continue',()=>this.continueRun(),canContinue,true);
+      v.button({x,y:primaryY+62,width:buttonWidth,height:48},'选角，开始新局','action/title-start',()=>this.enterNew(),!session.working);
+      v.text(short?x+buttonWidth/2:w/2,short?primaryY+128:primaryY-28,'第 '+saved.state.chapter+' 章 · 金币 '+saved.state.gold,14,textColor).setOrigin(.5);
     }else {
       v.button(primary,'点触开场','action/title-start',()=>this.enterNew(),!session.working,true);
       if(!short)v.text(w/2,primaryY+66,'进入选角，确认后才建立新局。',14,'#fff0d2').setOrigin(.5).setShadow(0,1,'#172d36',3,true,true);

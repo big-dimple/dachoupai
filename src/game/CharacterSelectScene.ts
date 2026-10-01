@@ -18,13 +18,16 @@ const ROLE_STAGE:Record<CharacterId,number>={
   azao:0x58764c,
   xiemu:0xa74a3e,
 };
+const ROLE_ENTRY:Record<CharacterId,string>={
+  amo:'单张高牌 · Lv3',touye:'稳分，可押一手',laohuan:'顺子或同花',erxiang:'对子、两对、三条',azao:'轮换两种牌型',xiemu:'末次出牌翻倍',
+};
 
 /** The selector reserves its action row before sizing cards; it never borrows table space. */
 function selectionLayout(width:number,height:number,top:number,bottom:number){
   const portrait=width<640&&height>width,short=height<500;
   const w=Math.min(1180,width-24),x=(width-w)/2,footerY=height-bottom-104;
-  const summaryHeight=short?42:portrait?100:90,summaryY=footerY-summaryHeight-12;
-  const gridTop=top+(short?50:72),gap=portrait?10:14,cols=short&&width>=700||width>=1120?6:width>=640?3:2,rows=6/cols;
+  const summaryHeight=short?42:portrait?78:90,summaryY=footerY-summaryHeight-12;
+  const gridTop=top+(short?50:portrait?58:72),gap=portrait?10:14,cols=short&&width>=700||width>=1120?6:width>=640?3:2,rows=6/cols;
   const cardWidth=(w-gap*(cols-1))/cols,cardHeight=Math.min(390,(summaryY-14-gridTop-gap*(rows-1))/rows);
   const cards:Box[]=Array.from({length:6},(_,i)=>({x:x+(i%cols)*(cardWidth+gap),y:gridTop+Math.floor(i/cols)*(cardHeight+gap),width:cardWidth,height:cardHeight}));
   const cancelWidth=Math.floor(w*.22),detailWidth=Math.floor(w*.25),confirmWidth=w-cancelWidth-detailWidth-16;
@@ -55,26 +58,26 @@ export class CharacterSelectScene extends Phaser.Scene {
   private render():void {
     const v=this.view,l=v.layout,style=getComputedStyle(document.documentElement),bottom=parseFloat(style.getPropertyValue('--safe-bottom'))||0;
     const p=selectionLayout(l.width,l.height,l.hud.y,bottom);v.clear();v.paperBackground();
-    v.text(p.x,p.top,'巡演选角',p.short?24:30,'#fff2da').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
-    if(!p.short)v.text(p.x,p.top+42,'点选角色，再确认登台；完整能力见详情。',14,'#d5ddc9',p.w);
+    v.text(p.x,p.top,'巡演选角',p.short||p.portrait?24:30,'#fff2da').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
+    if(!p.short)v.text(p.x,p.top+(p.portrait?34:42),'点选角色，再确认登台。',14,'#d5ddc9',p.w);
     CHARACTERS.forEach((character,i)=>{
       const base=p.cards[i],selected=character.id===this.selectedId,b={...base,y:base.y-(selected?4:0)},first=v.root.length,tone=ROLE_STAGE[character.id];
       const frame=v.add(this.add.graphics());
       frame.fillStyle(0x071c25,.5).fillRoundedRect(b.x+2,b.y+6,b.width,b.height,8);
       v.material(b,0xf9efdb,0xe8d8bb,8);
-      const detailed=b.height>=235,bodyHeight=detailed?112:b.height>=145?60:42,picture={x:b.x+4,y:b.y+4,width:b.width-8,height:b.height-bodyHeight-4};
+      const condensed=p.short&&b.height<125,bodyHeight=condensed?30:p.portrait?56:64,picture={x:b.x+4,y:b.y+4,width:b.width-8,height:Math.max(1,b.height-bodyHeight-4)};
       v.material(picture,tone,0x203e46,5);
       this.drawPortrait(character.id,picture);
-      if(picture.height>=100){
+      if(!p.portrait&&picture.height>=100){
         const badge={x:b.x+10,y:b.y+10,width:Math.min(76,b.width-20),height:26};
         v.material(badge,0x3b3649,0x1b3039,4).setAlpha(.94);
         this.singleLine(badge.x+7,badge.y+4,character.title,14,'#fbe2ae',badge.width-14);
       }
-      const textY=b.y+b.height-bodyHeight+6,name=this.singleLine(b.x+10,textY,character.name,detailed?23:20,'#203744',b.width-20,18,true);
-      if(detailed){
-        this.singleLine(b.x+10,name.y+name.height+4,character.passiveName,14,'#386d65',b.width-20);
-        v.text(b.x+10,name.y+name.height+25,character.passiveDescription,14,'#203744',b.width-20).setLineSpacing(1).setStyle({maxLines:3});
-      }else if(bodyHeight>=60)this.singleLine(b.x+10,name.y+name.height+3,character.passiveName,14,'#386d65',b.width-20);
+      const textY=b.y+b.height-bodyHeight+(condensed?3:6),name=this.singleLine(b.x+10,textY,character.name,condensed?18:20,'#203744',b.width-20,18,true);
+      if(!condensed){
+        const entry=b.width<155?(character.id==='amo'?'单张Lv3':ROLE_ENTRY[character.id].replace(/、/g,'').replace('，','')):ROLE_ENTRY[character.id];
+        this.singleLine(b.x+10,name.y+name.height+3,entry,14,'#386d65',b.width-20);
+      }
       const edge=v.add(this.add.graphics());
       edge.lineStyle(selected?3:1,selected?0xf6d794:0xa88d60,.95).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,8);
       if(selected){
@@ -94,19 +97,20 @@ export class CharacterSelectScene extends Phaser.Scene {
     if(p.short)v.text(s.x+12,s.y+10,c?`${c.name} · ${c.passiveDescription}`:'点选一位角色；详情可查看完整能力。',14,'#fff1d8',s.width-24);
     else {
       if(c){
-        addAvatar(this,v.root,c,s.x+42,s.y+s.height/2,64);
-        this.singleLine(s.x+86,s.y+12,`${c.name} · ${c.passiveName}`,20,'#fff2da',s.width-100,18);
-        v.text(s.x+86,s.y+43,c.passiveDescription,14,'#e7e8cf',s.width-100).setLineSpacing(2);
+        if(!p.portrait)addAvatar(this,v.root,c,s.x+42,s.y+s.height/2,64);
+        const textX=s.x+(p.portrait?12:86),textWidth=s.width-(p.portrait?24:100);
+        this.singleLine(textX,s.y+(p.portrait?8:12),`${c.name} · ${c.passiveName}`,p.portrait?18:20,'#fff2da',textWidth,18);
+        v.text(textX,s.y+(p.portrait?34:43),c.passiveDescription,14,'#e7e8cf',textWidth).setLineSpacing(2);
       }else {
-        v.text(s.x+16,s.y+16,'这次，你用什么活儿撑场？',22,'#fff2da',s.width-32);
-        v.text(s.x+16,s.y+51,'点选巡演卡。确认角色后建立新局。',14,'#d5ddc9',s.width-32);
+        v.text(s.x+16,s.y+(p.portrait?10:16),'这次，你用什么活儿撑场？',p.portrait?20:22,'#fff2da',s.width-32);
+        v.text(s.x+16,s.y+(p.portrait?42:51),'确认角色后建立新局。',14,'#d5ddc9',s.width-32);
       }
     }
     const existing=gameSession().run,canReturn=!!existing&&!['run-won','run-lost'].includes(existing.state.phase);
     v.button(p.cancel,this.selectedId?'取消选择':canReturn?'返回本局':'取消选择','action/cancel-character',()=>void this.cancelChoice(),!this.choosing&&(!!this.selectedId||canReturn));
     v.button(p.details,'角色详情','action/character-details',()=>{if(this.selectedId)this.inspect(this.selectedId);},!this.choosing&&!!this.selectedId);
     v.button(p.confirm,this.choosing?'正在开局…':'确认角色','action/confirm-character',()=>void this.confirmChoice(),!this.choosing&&!!this.selectedId,true);
-    v.text(p.x,p.noticeY,this.notice||(this.selectedId?'已选 '+getCharacter(this.selectedId).name+'，确认后进入商店。':'先点选一位角色。完整能力随时可查。'),14,this.notice?'#ffd0b1':'#d5ddc9',p.w);
+    v.text(p.x,p.noticeY,this.notice||(this.selectedId?'已选 '+getCharacter(this.selectedId).name+'，确认后进入商店。':'完整能力与构筑思路见角色详情。'),14,this.notice?'#ffd0b1':'#d5ddc9',p.w);
   }
   private reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
   private drawPortrait(id:CharacterId,b:Box):void {

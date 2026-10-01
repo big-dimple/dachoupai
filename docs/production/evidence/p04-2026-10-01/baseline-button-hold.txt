@@ -1,0 +1,32 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/layout.test.ts (17 tests | 1 failed) 32ms
+     × holding a plain action button still releases once; only inspectable cards long-press 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/layout.test.ts > pointer intent prevents accidental commands > holding a plain action button still releases once; only inspectable cards long-press
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/layout.test.ts:45:77
+     43| describe('pointer intent prevents accidental commands',()=>{
+     44|   it('holding a plain action button still releases once; only inspecta…
+     45|     const p=new PointerIntent();p.down(1,10,10,0,false);expect(p.hold(…
+       |                                                                             ^
+     46|     p.down(1,10,10,0,false);p.move(1,30,10);expect(p.up(1,30,10,500)).…
+     47|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 passed (17)
+   Start at  18:52:34
+   Duration  414ms (transform 63ms, setup 0ms, import 88ms, tests 32ms, environment 0ms)

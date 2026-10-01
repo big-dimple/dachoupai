@@ -17,6 +17,13 @@ import {UI_FONT} from './theme';
 import {drawJokerMotif} from './JokerMotif';
 
 const RARITY_LABEL={common:'普通',uncommon:'特别',rare:'稀有'} as const;
+/** Entry hints only; the complete conditions and values stay in purchase details. */
+const OFFER_USE:Record<string,string>={
+  pengci:'高牌加倍率',mantangcai:'对子等加热',tiesuanpan:'JQKA计分加热',huimaqiang:'每三手翻倍',jiedongfeng:'顺子同花增倍',
+  a03:'单张加热度',a05:'单张养热度',b02:'重复点数增倍',b03:'对子两对三条成长',b04:'两组重复增倍',
+  c02:'红色计分加热',c04:'顺子加热度',c06:'同花养倍率',d01:'留JQK增倍',d03:'留≥3张成长',d05:'首次弃牌返次',d10:'空槽加热度',
+  e01:'过关加金币',e03:'持金加热度',e05:'买其他牌成长',e08:'≥20金增倍',f02:'最后一手加分',f03:'第一手加倍率',f09:'不弃牌则增倍',
+};
 /** The badge describes declared operations; conditions remain in the readable effect text. */
 function mechanismBadge(d:ReturnType<typeof getR2Joker>){
   const operations=d.hooks.flatMap(h=>h.operations),growth=operations.find(o=>o.kind==='add-growth');
@@ -36,6 +43,14 @@ function mechanismBadge(d:ReturnType<typeof getR2Joker>){
 }
 function shopLayout(width:number,height:number,top:number,bottom:number){
   const portrait=width<700&&height>width,short=height<500,wideHeader=width>=1000&&!short,compact=portrait&&height-bottom-top<760,w=Math.min(1180,width-24),x=(width-w)/2;
+  if(portrait){
+    const slotY=top+78,slotHeight=compact?72:88,slotWidth=Math.min(64,(w-32)/5),groupWidth=slotWidth*5+32,slotX=x+(w-groupWidth)/2;
+    const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+8),y:slotY,width:slotWidth,height:slotHeight}));
+    const toolsY=slotY+slotHeight+18,toolWidth=(w-8)/2,shelfTop=toolsY+68,secondaryY=height-bottom-148,cardWidth=(w-20)/3,cardHeight=Math.min(280,secondaryY-16-shelfTop);
+    const shelf:Box[]=Array.from({length:3},(_,i)=>({x:x+i*(cardWidth+10),y:shelfTop,width:cardWidth,height:cardHeight}));
+    return {x,w,top,short,compact,wideHeader,portrait,slots,chapter:{x,y:toolsY,width:toolWidth,height:44},items:{x:x+toolWidth+8,y:toolsY,width:toolWidth,height:44},shelf,shelfLabelY:shelfTop-22,
+      reroll:{x,y:secondaryY,width:toolWidth,height:44},build:{x:x+toolWidth+8,y:secondaryY,width:toolWidth,height:44},play:{x,y:secondaryY+52,width:w,height:48},noticeY:secondaryY+108};
+  }
   const footerY=height-bottom-104,slotY=top+(short||wideHeader?64:compact?88:112),slotHeight=short?90:compact?72:portrait||wideHeader?112:128,slotWidth=Math.min(short?48:86,(w-32)/5),slotGroupWidth=slotWidth*5+32;
   const slotX=short?x:wideHeader?x+w-slotGroupWidth:x+(w-slotGroupWidth)/2;
   const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+8),y:slotY,width:slotWidth,height:slotHeight}));
@@ -80,18 +95,19 @@ export class ShopScene extends Phaser.Scene {
   }
   private render():void {
     const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex)!;v.clear();v.paperBackground();this.offerArts=[];
-    v.text(p.x,p.top,'后台商店',p.short?24:28,'#fff2da').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
-    const purse={x:p.x+p.w-182,y:p.top-1,width:116,height:34},purseArt=this.add.graphics();
+    v.text(p.x,p.top,this.view.layout.width<350?'商店':'后台商店',p.short||p.portrait?24:28,'#fff2da').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
+    const purse={x:p.x+p.w-(this.view.layout.width<=700?96:136)-124,y:p.top-1,width:116,height:34},purseArt=this.add.graphics();
     v.add(this.add.graphics().fillStyle(0x213d45,.2).fillRoundedRect(purse.x+1,purse.y+3,purse.width,purse.height,7));
     v.material(purse,0xfbe1a6,0xc99455,7);
     purseArt.lineStyle(1,0x916738).strokeRoundedRect(purse.x+.5,purse.y+.5,purse.width-1,purse.height-1,7);v.add(purseArt);
-    const gold=v.text(purse.x+10,purse.y+5,'金币 '+this.run.gold,20,'#614321').setName('shop/gold').setFontStyle('bold');
-    for(let font=20;gold.width>purse.width-20&&font>14;)gold.setFontSize(--font);
+    const gold=v.text(purse.x+10,purse.y+5,'金币 '+this.run.gold,22,'#614321').setName('shop/gold').setFontStyle('bold');
+    for(let font=22;gold.width>purse.width-20&&font>14;)gold.setFontSize(--font);
     this.goldText=gold;
     v.text(p.x,p.top+37,`${stage.name} · 目标 ${heatText(stage.targetHeat)}`,14,'#d5ddc9',p.short?380:p.w-24);
     if(!p.short){
-      if(!p.compact)v.text(p.x,p.top+64,this.run.stageIndex===0?'点卡牌看大图与效果，再确认购买。':'补一张、卖一张，或留着金币赚利息。',14,'#d5ddc9',p.wideHeader?p.slots[0].x-p.x-24:p.w);
-      v.text(p.wideHeader?p.slots[0].x:p.x,p.slots[0].y-24,`随身大丑牌 ${this.run.jokers.length} / ${R2_LIMITS.jokerSlots} · 点牌可出售或调序`,14,'#f2e5c9',p.wideHeader?p.slots[4].x+p.slots[4].width-p.slots[0].x:p.w);
+      if(!p.compact&&!p.portrait)v.text(p.x,p.top+64,this.run.stageIndex===0?'点卡牌看大图与效果，再确认购买。':'补一张、卖一张，或留着金币赚利息。',14,'#d5ddc9',p.wideHeader?p.slots[0].x-p.x-24:p.w);
+      const ownedLabel=p.portrait?`随身牌 ${this.run.jokers.length} / ${R2_LIMITS.jokerSlots}`:`随身大丑牌 ${this.run.jokers.length} / ${R2_LIMITS.jokerSlots} · 点牌可出售或调序`;
+      v.text(p.wideHeader?p.slots[0].x:p.x,p.slots[0].y-22,ownedLabel,14,'#d7ddc8',p.wideHeader?p.slots[4].x+p.slots[4].width-p.slots[0].x:p.w);
     }
     this.run.jokers.forEach((j,i)=>{
       const b=p.slots[i],d=getR2Joker(j.definitionId),badge=mechanismBadge(d),first=v.root.length;
@@ -109,34 +125,34 @@ export class ShopScene extends Phaser.Scene {
       v.target(r,`joker/${j.instanceId}`,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:(x)=>this.moveJoker(j.instanceId,x),holdToDrag:true,...hover});
     });
     for(let i=this.run.jokers.length;i<R2_LIMITS.jokerSlots;i++){
-      const b=p.slots[i];this.drawSlot(b,false);v.text(b.x+b.width/2,b.y+b.height-22,`空槽 ${i+1}`,14,'#fff0d0').setOrigin(.5,0).setFontStyle('bold');
+      const b=p.slots[i];this.drawSlot(b,false);v.text(b.x+b.width/2,b.y+b.height-21,p.portrait?String(i+1):`空槽 ${i+1}`,14,'#a6bab0').setOrigin(.5,0);
     }
-    v.button(p.chapter,'本章节目','action/chapter',()=>this.inspectChapter());
+    v.button(p.chapter,p.portrait?'本章':'本章节目','action/chapter',()=>this.inspectChapter());
     v.button(p.items,`物品 ${this.run.consumables.length}/2`,'action/items',()=>showConsumables(this.dialog,this.run,this.ready,a=>this.send(a)));
-    v.text(p.shelf[0].x,p.shelfLabelY,'今日卡牌 · 点选查看完整效果',14,'#f2e5c9',p.short?p.w-p.shelf[0].x+p.x:p.w);
+    v.text(p.shelf[0].x,p.shelfLabelY,p.portrait?'今日卡牌':'今日卡牌 · 点选查看完整效果',14,'#f2e5c9',p.short?p.w-p.shelf[0].x+p.x:p.w);
     const offers=this.run.shop!.offers;
     offers.forEach((o,i)=>{
       const selected=this.selectedOfferId===o.offerId,raw=p.shelf[i],b=selected?{...raw,y:raw.y-4}:raw,d=getR2Joker(o.definitionId),badge=mechanismBadge(d),first=v.root.length;
-      const headerHeight=p.short?38:54,footerHeight=p.short?44:64;
+      const headerHeight=p.portrait?32:p.short?38:54,footerHeight=p.portrait?56:p.short?44:64;
       this.drawOfferCard(b,d.rarity,selected,o.consumed,p.short,headerHeight,footerHeight);
-      const name=v.text(b.x+10,b.y+5,d.name,p.short?20:22,o.consumed?'#c6c5af':'#fff2d4').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setShadow(0,1,'#12282e',1,true,true);
-      for(let font=p.short?20:22;name.width>b.width-20&&font>14;)name.setFontSize(--font);
-      if(!p.short)v.text(b.x+10,b.y+33,({common:'○ ',uncommon:'◆ ',rare:'✦ '} as const)[d.rarity]+RARITY_LABEL[d.rarity],14,'#efcf8f',b.width-20);
+      const nameSize=p.portrait?18:p.short?20:22,name=v.text(b.x+(p.portrait?8:10),b.y+5,d.name,nameSize,o.consumed?'#c6c5af':'#fff2d4').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setShadow(0,1,'#12282e',1,true,true);
+      for(let font=nameSize;name.width>b.width-16&&font>(p.portrait?18:14);)name.setFontSize(--font);
+      if(!p.short&&!p.portrait)v.text(b.x+10,b.y+33,({common:'○ ',uncommon:'◆ ',rare:'✦ '} as const)[d.rarity]+RARITY_LABEL[d.rarity],14,'#efcf8f',b.width-20);
       if(b.width>=245&&!p.short)v.text(b.x+b.width-10,b.y+33,badge.label,14,'#f7e8c9').setOrigin(1,0);
       const bodyTop=b.y+headerHeight+8,bodyHeight=b.height-headerHeight-footerHeight-16;
-      const description=v.text(b.x+12,bodyTop,d.description,14,o.consumed?'#686e65':'#203744',b.width-24).setLineSpacing(2);
-      const minimumArt=Math.min(b.width-24,p.short?32:p.compact?46:80,Math.max(0,bodyHeight-28)),pictureSize=Math.max(0,Math.min(256,b.width-24,Math.max(minimumArt,bodyHeight-description.height-12)));
+      const description=v.text(b.x+(p.portrait?8:12),bodyTop,p.portrait?OFFER_USE[d.id]??'查看用途详情':d.description,14,o.consumed?'#686e65':'#203744',b.width-(p.portrait?16:24)).setLineSpacing(2);
+      const minimumArt=Math.min(b.width-16,p.short?32:p.portrait?68:80,Math.max(0,bodyHeight-40)),pictureSize=Math.max(0,Math.min(256,b.width-(p.portrait?16:24),Math.max(minimumArt,bodyHeight-description.height-12)));
       if(pictureSize>0)this.drawJokerPicture(o.definitionId,{x:b.x+(b.width-pictureSize)/2,y:bodyTop,width:pictureSize,height:pictureSize},o.consumed ? .55 : 1);
       description.y=bodyTop+pictureSize+10;
       const readableHeight=b.y+b.height-footerHeight-8-description.y;
       if(description.height>readableHeight)description.setStyle({maxLines:Math.max(1,Math.floor((readableHeight+2)/19))});
       if(o.consumed){
-        v.text(b.x+10,b.y+b.height-36,'✓ 已收入构筑',14,'#d3e9cb',b.width-20).setFontStyle('bold');return;
+        v.text(b.x+8,b.y+b.height-36,p.portrait?'✓ 已买':'✓ 已收入构筑',14,'#d3e9cb',b.width-16).setFontStyle('bold');return;
       }
       const price=r2PurchasePrice(this.run,o),reason=this.purchaseReason(o,true);
-      const priceText=v.text(b.x+10,b.y+b.height-(p.short?44:60),`${price} 金币`,20,'#f6d28c',b.width-20).setFontStyle('bold').setShadow(0,1,'#132931',1,true,true);
+      const priceText=v.text(b.x+8,b.y+b.height-footerHeight+5,`${price} 金币`,p.portrait?22:20,'#f6d28c',b.width-16).setFontStyle('bold').setShadow(0,1,'#132931',1,true,true);
       const availability=reason||'可购买',status=(selected?'✓ 已选 · ':'')+availability;
-      v.text(b.x+10,priceText.y+priceText.height+1,b.width<220?availability:status,14,reason?'#ffc6a4':'#d3e9cb',b.width-20).setStyle({maxLines:p.short?1:2});
+      if(!p.portrait||reason||selected)v.text(b.x+8,priceText.y+priceText.height+1,p.portrait?reason||'✓ 已选':b.width<220?availability:status,14,reason?'#ffc6a4':'#d3e9cb',b.width-16).setStyle({maxLines:p.short||p.portrait?1:2});
       const hover=this.hoverCard(first,b),r=v.rect(raw).setFillStyle(0,0).setStrokeStyle(0).setData('selected',selected);
       this.offerArts.push(hover.art);
       v.target(r,`offer/${o.offerId}`,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
@@ -146,8 +162,8 @@ export class ShopScene extends Phaser.Scene {
     v.button(p.reroll,`换牌 ${cost} 金`,'action/reroll',()=>void this.send({type:'RerollShop'}),canReroll);
     v.button(p.play,'进入牌桌','action/start-stage',()=>void this.send({type:'LeaveShop'}),this.ready,true);
     v.button(p.build,'构筑详情','action/build',()=>this.inspectBuild());
-    const reason=!this.ready?'当前进度未保存或只读，请查看菜单。':this.run.gold<cost?`换牌需 ${cost} 金，还差 ${cost-this.run.gold} 金。可直接入场。`:this.run.jokers.length===5?'五个槽位已满；点随身牌出售后再买。':'点卡牌不会扣钱；点随身牌可出售或左移、右移。';
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||reason,14,this.notice?'#f4da9e':'#d5ddc9',p.w);
+    const reason=!this.ready?'当前进度未保存或只读，请查看菜单。':this.run.gold<cost?`换牌还差 ${cost-this.run.gold} 金。可直接入场。`:this.run.jokers.length===5?'五槽已满，点随身牌出售后再买。':p.portrait?'点卡牌看详情，确认后扣款。':'点卡牌不会扣钱；点随身牌可出售或左移、右移。';
+    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||reason,14,this.notice?'#f4da9e':'#d5ddc9',p.w).setStyle({maxLines:2});
   }
   private hoverCard(first:number,b:Box):{enter:()=>void;leave:()=>void;art:Phaser.GameObjects.Container} {
     const v=this.view,cx=b.x+b.width/2,cy=b.y+b.height/2,members=v.root.list.slice(first),art=this.add.container(cx,cy);
@@ -167,7 +183,7 @@ export class ShopScene extends Phaser.Scene {
     art.once('destroy',()=>this.tweens.killTweensOf(art));
     return {enter:()=>{
       if(!art.active||!this.scene.isActive())return;this.tweens.killTweensOf(art);glow.setAlpha(1);v.root.bringToTop(art);
-      if(!reduced())this.tweens.add({targets:art,y:cy-6,angle:cx>this.scale.width/2?-1.6:1.6,scaleX:1.03,scaleY:1.03,duration:130,ease:'Sine.easeOut'});
+      if(!reduced())this.tweens.add({targets:art,y:cy-6,angle:cx>this.view.layout.width/2?-1.6:1.6,scaleX:1.03,scaleY:1.03,duration:130,ease:'Sine.easeOut'});
     },leave,art};
   }
   private jokerPortrait(definitionId:string):{url:string;alt:string;layout:'card'}|undefined {
@@ -176,16 +192,17 @@ export class ShopScene extends Phaser.Scene {
   }
   private drawSlot(b:Box,occupied:boolean,rarity:keyof typeof RARITY_LABEL='common'):void {
     const v=this.view,g=this.add.graphics(),edge=rarity==='rare'?0x9e5661:rarity==='uncommon'?0x367f75:0xb39868;
+    if(!occupied){
+      v.material(b,0x28494c,0x193940,5);
+      if(this.textures.exists('p00-card-back'))v.add(this.add.image(b.x+b.width/2,b.y+b.height/2,'p00-card-back').setDisplaySize(b.width-4,b.height-4).setTint(0x9fb8ad).setAlpha(.16));
+      else g.lineStyle(1,0x6b8b80,.3).strokeRect(b.x+8,b.y+10,b.width-16,b.height-32);
+      g.lineStyle(1,0x769487,.35).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,5);v.add(g);return;
+    }
     v.add(this.add.graphics().fillStyle(0x263d40,.2).fillRoundedRect(b.x+2,b.y+4,b.width,b.height,5));
     v.material({...b,x:b.x-1,y:b.y-1},0xfaf1db,0xc8af85,5);
-    v.material(b,occupied?0xfff6e2:0x5a7e70,occupied?0xe2cda6:0x213f49,5);
-    if(!occupied&&this.textures.exists('p00-card-back'))v.add(this.add.image(b.x+b.width/2,b.y+b.height/2,'p00-card-back').setDisplaySize(b.width,b.height).setAlpha(.75));
-    else if(!occupied){
-      for(let yy=b.y+10;yy<b.y+b.height-26;yy+=12)for(let xx=b.x+10;xx<b.x+b.width-6;xx+=12)g.lineStyle(1,0xd9c38d,.28).strokeRect(xx-3,yy-3,6,6);
-      this.drawMechanismMark('p00-mark-joker','✦',b.x+b.width/2,b.y+b.height*.47,b.width*.6,.7);
-    }
-    v.material({x:b.x+2,y:b.y+b.height-25,width:b.width-4,height:23},occupied?0x426a62:0x385c5a,0x203e49,3);
-    g.lineStyle(1.5,occupied?edge:0xc5ad79).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,5);
+    v.material(b,0xfff6e2,0xe2cda6,5);
+    v.material({x:b.x+2,y:b.y+b.height-25,width:b.width-4,height:23},0x426a62,0x203e49,3);
+    g.lineStyle(1.5,edge).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,5);
     g.lineStyle(1,0xc5ab74).beginPath().moveTo(b.x+6,b.y+b.height-25).lineTo(b.x+b.width-6,b.y+b.height-25).strokePath();v.add(g);
   }
   private drawJokerPicture(definitionId:string,b:Box,alpha=1):void {
@@ -218,10 +235,6 @@ export class ShopScene extends Phaser.Scene {
     if(rarity==='rare')g.fillStyle(metal).fillTriangle(b.x+b.width/2-5,b.y+2,b.x+b.width/2+5,b.y+2,b.x+b.width/2,b.y+7);
     this.view.add(g);
   }
-  private drawMechanismMark(key:string,glyph:string,x:number,y:number,size:number,alpha:number):void {
-    if(this.textures.exists(key))this.view.add(this.add.image(x,y,key).setDisplaySize(size,size).setAlpha(alpha));
-    else this.view.text(x,y,glyph,size*.7,'#367f75').setOrigin(.5).setAlpha(alpha);
-  }
   private purchaseReason(o:R2Offer,short=false):string {
     if(!this.ready)return short?'暂不可购买':'当前只读或未保存，请查看菜单。';
     if(this.run.jokers.length>=R2_LIMITS.jokerSlots)return short?'槽位已满':'五个槽位已满。请先关闭详情，点随身牌确认出售，再购买。';
@@ -247,7 +260,7 @@ export class ShopScene extends Phaser.Scene {
     this.selectedOfferId=id;this.notice='';this.audio.select();this.render();
     const d=getR2Joker(o.definitionId),price=r2PurchasePrice(this.run,o),after=this.run.gold-price,reason=this.purchaseReason(o);
     const money=after<0?`现有 ${this.run.gold} 金，尚差 ${-after} 金。`:`余额 ${this.run.gold} → ${after} 金。\n过关利息档 ${Math.min(5,Math.floor(this.run.gold/5))} → ${Math.min(5,Math.floor(after/5))} 金。`;
-    const body=d.description+`\n\n价格 ${price} 金币${this.run.purchaseCoupons?'（原价 '+o.price+'，使用1张减2金券）':''}\n`+money+'\n\n当前构筑：'+(this.run.jokers.map(j=>getR2Joker(j.definitionId).name).join('、')||'空')+(reason?'\n\n无法购买：'+reason:'\n\n确认购买才会扣除金币。');
+    const body=RARITY_LABEL[d.rarity]+'大丑牌\n'+d.description+`\n\n价格 ${price} 金币${this.run.purchaseCoupons?'（原价 '+o.price+'，使用1张减2金券）':''}\n`+money+'\n\n当前构筑：'+(this.run.jokers.map(j=>getR2Joker(j.definitionId).name).join('、')||'空')+(reason?'\n\n无法购买：'+reason:'\n\n确认购买才会扣除金币。');
     const dialog=this.dialog.open(d.name+' · 购买详情',body,[{label:'确认购买',primary:true,disabled:!!reason,run:async()=>{if(await this.send({type:'BuyOffer',offerId:id}))this.dialog.close(dialog);}}],{closeLabel:'取消',portrait:this.jokerPortrait(d.id)});
   }
   private inspectJoker(id:string):void {
@@ -271,7 +284,7 @@ export class ShopScene extends Phaser.Scene {
     const text=this.goldText,to=this.run.gold,reduced=gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(!text?.active||reduced||from===to)return;
     const roll={t:0};
-    this.tweens.add({targets:roll,t:1,duration:320,ease:'Cubic.easeOut',onUpdate:()=>{if(text.active)text.setText('金币 '+Math.round(from+(to-from)*roll.t));},onComplete:()=>{if(text.active){text.setText('金币 '+to);for(let font=20;text.width>96&&font>14;)text.setFontSize(--font);}}});
+    this.tweens.add({targets:roll,t:1,duration:320,ease:'Cubic.easeOut',onUpdate:()=>{if(text.active)text.setText('金币 '+Math.round(from+(to-from)*roll.t));},onComplete:()=>{if(text.active){text.setText('金币 '+to);for(let font=22;text.width>96&&font>14;)text.setFontSize(--font);}}});
   }
   /** Purchased card visibly flies from its shelf seat into the new joker slot. */
   private flyPurchase(from:Box,to:Box,name:string):void {
@@ -281,7 +294,7 @@ export class ShopScene extends Phaser.Scene {
     g.fillStyle(0xfff7e5).fillRoundedRect(-50,-66,100,132,7);
     g.fillStyle(0x365d61).fillRoundedRect(-50,-66,100,30,{tl:7,tr:7,bl:0,br:0});
     g.lineStyle(2,0xe4c186).strokeRoundedRect(-50,-66,100,132,7);
-    card.add([g,this.add.text(0,-51,name,{fontFamily:UI_FONT,fontSize:'15px',fontStyle:'bold',color:'#fff2d4',resolution:Math.min(devicePixelRatio||1,2)}).setOrigin(.5),this.add.text(0,8,'✓',{fontFamily:UI_FONT,fontSize:'34px',fontStyle:'bold',color:'#367f75',resolution:Math.min(devicePixelRatio||1,2)}).setOrigin(.5)]);
+    card.add([g,this.add.text(0,-51,name,{fontFamily:UI_FONT,fontSize:'15px',fontStyle:'bold',color:'#fff2d4',resolution:Math.min(window.devicePixelRatio||1,3)}).setOrigin(.5),this.add.text(0,8,'✓',{fontFamily:UI_FONT,fontSize:'34px',fontStyle:'bold',color:'#367f75',resolution:Math.min(window.devicePixelRatio||1,3)}).setOrigin(.5)]);
     const tx=to.x+to.width/2,ty=to.y+to.height/2,mx=(cx+tx)/2,my=Math.min(cy,ty)-80,flight={t:0};
     this.audio.coin();
     this.tweens.add({targets:flight,t:1,duration:340,ease:'Cubic.easeIn',onUpdate:()=>{

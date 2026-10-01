@@ -6,7 +6,7 @@ const git = (...args: string[]) => {
   catch { return 'unknown'; }
 };
 const buildInfo = {
-  version: 'P03',
+  version: 'P04',
   revision: git('rev-parse', 'HEAD'),
   modified: git('status', '--porcelain', '--untracked-files=no') !== '',
   builtAt: new Date().toISOString(),

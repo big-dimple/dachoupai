@@ -1,0 +1,23 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/score-celebration.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/score-celebration.test.ts [ tests/score-celebration.test.ts ]
+Error: Cannot find module '../src/game/scoreCelebration' imported from D:/ai/dachoupai/dachoupai/tests/score-celebration.test.ts
+ ❯ tests/score-celebration.test.ts:2:1
+      1| import {describe,it,expect} from 'vitest';
+      2| import {scoreCelebration} from '../src/game/scoreCelebration';
+       | ^
+      3|
+      4| describe('real stage over-target celebration',()=>{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  18:22:13
+   Duration  345ms (transform 32ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)

@@ -10,7 +10,8 @@ export async function point(page,key,name){
   const p=await page.evaluate(({key,name})=>{
     const game=window.__harness.game,scene=game.scene.getScene(key),walk=list=>{for(const o of list){if(o.name===name)return o;if(o.list){const found=walk(o.list);if(found)return found;}}},o=walk(scene.children.list),r=game.canvas.getBoundingClientRect(),hit=o.input?.hitArea;
     const x=hit?hit.x+hit.width/2-o.displayOriginX:0,y=hit?hit.y+hit.height/2-o.displayOriginY:0,matrix=o.getWorldTransformMatrix(),p=matrix.transformPoint(x,y);
-    return{x:r.left+p.x*r.width/game.scale.width,y:r.top+p.y*r.height/game.scale.height,enabled:!!o.input?.enabled};
+    const camera=scene.cameras.main,screen=camera.matrix.transformPoint(p.x-camera.scrollX,p.y-camera.scrollY);
+    return{x:r.left+screen.x*r.width/game.scale.width,y:r.top+screen.y*r.height/game.scale.height,enabled:!!o.input?.enabled};
   },{key,name});assert.ok(p,'visible named UI');return p;
 }
 export async function tapUI(page,key,name,touch=false){const p=await point(page,key,name);if(touch)await page.touchscreen.tap(p.x,p.y);else await page.mouse.click(p.x,p.y);}

@@ -62,7 +62,7 @@ ScoreTrace 每条事件至少：eventId、rootId、phase、sourceType、sourceIn
 
 EffectContext 是该时点明确的只读快照；效果返回有限的 typed operations/state patches，而不是传一个任意可执行字符串。数据由 schema 验证，定义 ID/条件/效果/时点要穷尽检查；未知种类启动时报内容错误，不能静默当无效果。
 
-TriggerEngine 可保留为 UI 通知总线或重命名；不要把当前四种 emit 误称为规则引擎。真正规则分派由 reducer/score 明确调用，各时点顺序由 RULES 固定。
+视图直接消费已确定的 ScoreTrace 与 EffectQueue；不维护没有通知消费者的并行触发总线。真正规则分派由 reducer/score 明确调用，各时点顺序由 RULES 固定。
 
 数字建议使用小型 BigInt 有理数服务：分子分母为整数，分母始终正，每次运算约分；最终 floor 一次，阶段分数为 BigInt。存档存十进制字符串，禁止裸 BigInt JSON。UI 科学记数法只格式化，不回写领域值。输入配置值只接受有限、范围合法的整数或分数。
 
@@ -86,6 +86,8 @@ Scene shutdown/destroy：取消本代、停止并清理 tween/timer、解除监�
 
 动画期间可以快进、静音或退出；退出确认后保存已确定结果，再取消演出。后台切回和布局 resize 不重新打出一次牌。连接音频与游戏事件的订阅有对应 unsubscribe，不用全局匿名监听永久累加。
 
+Viewport 按可用 CSS 尺寸与设备 DPR 设置有界像素画布（密度上限3、约450万像素预算）；Phaser NONE/zoom 与主相机转换让 layout、字体和命中保持 CSS 坐标。ResizeObserver 与 visualViewport 变化更新显示，场景重新布局保留选牌与已确定结果。菜单使用原生 dialog，同一触发按钮在浮层开关时保持锚点；Fullscreen 只在直接点击中请求，并以浏览器 fullscreenElement 为状态来源。
+
 ## 8. 资源、构建、依赖与部署
 
 资产分 source/runtime/preview 三种用途，由注册表白名单生成发布文件；public 内存在不等于全部应该发布/预加载。先保留旧目录并建立映射，确认无引用后再迁移；禁止破坏用户已放好的素材。资源地址统一经过 BASE_URL，测试根路径和 /dachoupai/ 子路径。
@@ -98,12 +100,14 @@ CI 至少拆领域/内容验证、构建、浏览器 E2E、资源检查、文档
 
 发布使用 PR + 被测试构建哈希，不用本机脚本直接 main 作为唯一门禁。部署 manifest 包含 build/content/rules 版本、资源哈希与支持环境；预发完整一局验证后发布，回退时保持存档兼容或明确恢复策略。没有部署目的地与授权不能假装已上线，更不自动开付费云资源。
 
-本轮P00–P02按D10的用户最新明确授权，由总Agent走查后正常整合并推main供用户自动部署；禁止强推或清除协作修改。此授权不等于正式美术/真人签收，也不扩大到代办部署。
+当前P00–P04按D10、D15、D16、D17与用户最新明确授权，由总Agent走查后正常整合并推main供用户自动部署；禁止强推或清除有效协作修改。此授权不等于正式美术/真人签收，也不扩大到代办部署。D17的资源脉冲和超额分类只读取已提交状态；BigInt档位、音画演出取消均不得改变规则结果或引入存档成就。
 
 ## 9. 渐进披露与机械检查
 
 plan.json 是唯一任务状态；每条依赖必须存在且无环，只有一项当前工程任务。被阻塞的人工门禁可以保留 blocked，选择不依赖它的另一包继续；不能将其改 done 解锁依赖。每包完成必须有证据路径及实际被测 SHA。
 
 check-production-plan 只证明协议结构：ID/依赖/路径/当前状态等，**不证明游戏质量、文件内容真实性或真人签收**。其反例测试必须能捕获重复 ID、环、完成依赖缺失、缺证据和双当前任务。
+
+P04反馈专项在既有短路径中按需设置 `SMOKE_FEEDBACK=1`，核对耗尽弃牌、最后出牌及自然三倍目标；`only` 只重跑三倍金样。Windows默认headless-shell可能使用SwiftShader，`SMOKE_CHROMIUM_CHANNEL=chromium` 可选择完整Chromium的真实硬件加速；应记录实际版本、帧率和限制，不修改规则或动画来迁就软件渲染，也不把桌面GPU帧率当手机性能通过。
 
 工程 Agent 的完成报告不写“预计能过”。要写实际跑了什么、没跑什么、为何没跑、谁负责后续验证。新会话不得把未运行项目从上一次 handoff 复制成通过。

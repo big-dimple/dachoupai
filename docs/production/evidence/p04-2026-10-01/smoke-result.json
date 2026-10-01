@@ -1,0 +1,107 @@
+{
+  "testedCommit": "27c633a8f34b3be52d8522dc6e3d594c681bf139",
+  "dirty": "M .gitignore\n M docs/development-handoff.md\n M docs/production/ART.md\n M docs/production/DECISIONS.md\n M docs/production/ENGINEERING.md\n M docs/production/UX.md\n M docs/production/WORK_PACKAGES.md\n M docs/production/plan.json\n M harness/screenshot.mjs\n M harness/ui.mjs\n M src/audio/AudioEngine.ts\n D src/core/TriggerEngine.ts\n M src/game/CharacterSelectScene.ts\n M src/game/GameScene.ts\n M src/game/PointerIntent.ts\n M src/game/RunMenu.ts\n M src/game/SceneView.ts\n M src/game/ShopScene.ts\n M src/game/TitleScene.ts\n M src/game/layout.ts\n M src/main.ts\n M src/style.css\n M tests/layout.test.ts\n M vite.config.ts\n?? docs/production/evidence/p04-2026-10-01/\n?? src/game/scoreCelebration.ts\n?? src/platform/Fullscreen.ts\n?? src/platform/Viewport.ts\n?? tests/score-celebration.test.ts",
+  "checks": [
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "profile": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "deviceScaleFactor": 1,
+      "framebufferDensity": 1,
+      "fullscreen": "NOT_RUN",
+      "status": "PASS",
+      "input": "mouse.click / DOM click",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "live-discard-count-pulse",
+        "live-play-count-pulse",
+        "play-preview-feedback",
+        "reload-continue",
+        "fixed-menu-anchor",
+        "menu-preserves-selection"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "profile": "mobile-critical-resources",
+      "status": "PASS",
+      "covered": [
+        "last-discard-pulse",
+        "exhausted-discards-disabled",
+        "last-play-warning"
+      ],
+      "physicalDevice": "NOT_RUN"
+    },
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "profile": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "deviceScaleFactor": 3,
+      "framebufferDensity": 3,
+      "fullscreen": "PASS (browser API; physical toolbar/orientation NOT_RUN)",
+      "status": "PASS",
+      "input": "touchscreen.tap / DOM tap",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "live-discard-count-pulse",
+        "live-play-count-pulse",
+        "play-preview-feedback",
+        "reload-continue",
+        "fixed-menu-anchor",
+        "menu-preserves-selection",
+        "high-DPR",
+        "rotation-preserves-state"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "channel": "chromium",
+      "profile": "natural-three-times-target",
+      "status": "PASS",
+      "seed": "p04-golden-02",
+      "character": "touye",
+      "selectedIds": [
+        "clubs-5",
+        "diamonds-14",
+        "clubs-4",
+        "diamonds-3",
+        "clubs-2"
+      ],
+      "finalScore": "1200",
+      "target": "400",
+      "burstElapsedMs": 2787,
+      "renderFps": 54.6328125,
+      "linkedAudio": {
+        "context": "running",
+        "sfxVoices": 7,
+        "master": 0.9
+      },
+      "covered": [
+        "natural-wager-straight",
+        "real-3x-stamp",
+        "score-number-bounce",
+        "scheduled-overkill-audio",
+        "exact-credit-once"
+      ],
+      "physicalListening": "NOT_RUN",
+      "physicalPerformance": "NOT_RUN"
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN"
+}

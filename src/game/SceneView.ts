@@ -3,6 +3,7 @@ import {layout,type Box,type TableLayout} from './layout';
 import {PointerIntent} from './PointerIntent';
 import {modalBlocksCanvas} from './DetailDialog';
 import {PAPER_THEME,PAPER_CSS,UI_FONT} from './theme';
+import {alignViewportCamera,cssViewport} from '../platform/Viewport';
 
 type TouchActions={tap:()=>void;detail?:()=>void;drag?:(x:number,y:number)=>void;dragMove?:(x:number,y:number)=>void;cancel?:()=>void;press?:()=>void;release?:()=>void;enter?:()=>void;leave?:()=>void;holdToDrag?:boolean};
 export class SceneView {
@@ -17,25 +18,29 @@ export class SceneView {
     const canvas=this.scene.game.canvas.getBoundingClientRect();
     if(modalBlocksCanvas(canvas.left+p.x*canvas.width/this.scene.scale.width,canvas.top+p.y*canvas.height/this.scene.scale.height)){this.cancel();return;}
     const object=over.find(o=>this.gestures.has(o));if(!object)return;this.cancel();
-    const actions=this.gestures.get(object)!;this.pressed={object,actions,id:p.id,held:false,touch:p.wasTouch,x:p.x,y:p.y,dragging:false};this.intent.down(p.id,p.x,p.y,performance.now());actions.press?.();
-    this.timer=setTimeout(()=>{if(this.intent.hold(performance.now())){if(this.pressed)this.pressed.held=true;if(!actions.holdToDrag)actions.detail?.();}},355);
+    const {x,y}=p.positionToCamera(this.scene.cameras.main) as Phaser.Math.Vector2;
+    const actions=this.gestures.get(object)!,inspectable=!!actions.detail||!!actions.holdToDrag;this.pressed={object,actions,id:p.id,held:false,touch:p.wasTouch,x,y,dragging:false};this.intent.down(p.id,x,y,performance.now(),inspectable);actions.press?.();
+    if(inspectable)this.timer=setTimeout(()=>{if(this.intent.hold(performance.now())){if(this.pressed)this.pressed.held=true;if(!actions.holdToDrag)actions.detail?.();}},355);
   };
   private readonly move=(p:Phaser.Input.Pointer)=>{
-    this.intent.move(p.id,p.x,p.y);const pressed=this.pressed;
+    const {x,y}=p.positionToCamera(this.scene.cameras.main) as Phaser.Math.Vector2;
+    this.intent.move(p.id,x,y);const pressed=this.pressed;
     if(!pressed||pressed.id!==p.id||!p.isDown)return;
-    if(Math.hypot(p.x-pressed.x,p.y-pressed.y)>10)pressed.dragging=true;
-    if(pressed.dragging&&(!pressed.actions.holdToDrag||!pressed.touch||pressed.held))pressed.actions.dragMove?.(p.x,p.y);
+    if(Math.hypot(x-pressed.x,y-pressed.y)>10)pressed.dragging=true;
+    if(pressed.dragging&&(!pressed.actions.holdToDrag||!pressed.touch||pressed.held))pressed.actions.dragMove?.(x,y);
   };
   private readonly up=(p:Phaser.Input.Pointer)=>{
     if(this.pressed?.id!==p.id)return;
-    const pressed=this.pressed,kind=this.intent.up(p.id,p.x,p.y,performance.now());this.reset(false);if(!pressed)return;
-    if(kind==='drag'&&(!pressed.actions.holdToDrag||!pressed.touch||pressed.held))pressed.actions.drag?.(p.x,p.y);
-    else if(kind==='tap'&&(pressed.object as Phaser.GameObjects.Rectangle).getBounds().contains(p.x,p.y))pressed.actions.tap();
+    const {x,y}=p.positionToCamera(this.scene.cameras.main) as Phaser.Math.Vector2;
+    const pressed=this.pressed,kind=this.intent.up(p.id,x,y,performance.now());this.reset(false);if(!pressed)return;
+    if(kind==='drag'&&(!pressed.actions.holdToDrag||!pressed.touch||pressed.held))pressed.actions.drag?.(x,y);
+    else if(kind==='tap'&&(pressed.object as Phaser.GameObjects.Rectangle).getBounds().contains(x,y))pressed.actions.tap();
     else if(kind==='none'&&pressed.held&&pressed.actions.holdToDrag)pressed.actions.detail?.();
     else pressed.actions.cancel?.();
   };
-  private readonly resize=()=>{if(this.scene.scene.isActive())this.redraw();};
+  private readonly resize=()=>{if(this.scene.scene.isActive()){alignViewportCamera(this.scene);this.redraw();}};
   constructor(private readonly scene:Phaser.Scene,private readonly redraw:()=>void){
+    alignViewportCamera(scene);
     this.root=scene.add.container(0,0).setName('view');
     scene.input.on('pointerdown',this.down);scene.input.on('pointermove',this.move);scene.input.on('pointerup',this.up);scene.input.on('pointerupoutside',this.cancel);
     scene.game.canvas.addEventListener('pointercancel',this.cancel);scene.scale.on('resize',this.resize);
@@ -43,7 +48,7 @@ export class SceneView {
   }
   get layout():TableLayout {
     const style=getComputedStyle(document.documentElement),n=(key:string)=>parseFloat(style.getPropertyValue(key))||0;
-    return layout({width:this.scene.scale.width,height:this.scene.scale.height},{top:n('--safe-top'),right:n('--safe-right'),bottom:n('--safe-bottom'),left:n('--safe-left')});
+    return layout(cssViewport(this.scene),{top:n('--safe-top'),right:n('--safe-right'),bottom:n('--safe-bottom'),left:n('--safe-left')});
   }
   clear():void {this.cancel();this.gestures.clear();this.root.removeAll(true);}
   add<T extends Phaser.GameObjects.GameObject>(object:T):T {this.root.add(object);return object;}
@@ -79,7 +84,7 @@ export class SceneView {
     this.add(rail);
   }
   text(x:number,y:number,value:string,size=14,color=PAPER_CSS.ink,wrap?:number):Phaser.GameObjects.Text {
-    return this.add(this.scene.add.text(Math.round(x),Math.round(y),value,{fontFamily:UI_FONT,fontSize:`${size}px`,color,resolution:Math.max(1.5,Math.min(window.devicePixelRatio||1,2)),wordWrap:wrap?{width:wrap,useAdvancedWrap:true}:undefined}));
+    return this.add(this.scene.add.text(Math.round(x),Math.round(y),value,{fontFamily:UI_FONT,fontSize:`${size}px`,color,resolution:Math.max(1.5,1/this.scene.scale.zoom),wordWrap:wrap?{width:wrap,useAdvancedWrap:true}:undefined}));
   }
   rect(b:Box,color:number=PAPER_THEME.paper):Phaser.GameObjects.Rectangle {return this.add(this.scene.add.rectangle(b.x+b.width/2,b.y+b.height/2,b.width,b.height,color).setStrokeStyle(1,PAPER_THEME.jade,.65));}
   target(object:Phaser.GameObjects.Rectangle,name:string,actions:TouchActions):void {

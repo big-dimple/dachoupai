@@ -1,0 +1,36 @@
+
+> dachoupai@0.1.0 test:layout
+> vitest run tests/layout.test.ts
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/layout.test.ts (17 tests | 1 failed) 40ms
+     × played cards, current score and pile counts stay visible above the independent hand controls 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > played cards, current score and pile counts stay visible above the independent hand controls
+AssertionError: menu/fullscreen must not cover the fifth joker: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/layout.test.ts:44:133
+     42|       if(l.mode==='landscape'){
+     43|         const utility={x:width-148,y:12,width:136,height:44};
+     44|         for(const b of [...l.slots,...l.jokerLabels])expect(intersects…
+       |                                                                                                                                     ^
+     45|       }
+     46|       expect(l.hand.width).toBeLessThanOrEqual(1100);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 passed (17)
+   Start at  17:50:37
+   Duration  412ms (transform 65ms, setup 0ms, import 89ms, tests 40ms, environment 0ms)
