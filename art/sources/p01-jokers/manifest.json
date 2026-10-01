@@ -20,7 +20,25 @@
       "effort": 6
     },
     "crop": "NONE",
-    "retouch": "NONE"
+    "retouch": "NONE",
+    "detail": {
+      "library": "sharp",
+      "version": "0.35.5",
+      "resize": {
+        "width": 512,
+        "height": 512,
+        "fit": "inside",
+        "kernel": "lanczos3",
+        "withoutEnlargement": true
+      },
+      "webp": {
+        "quality": 88,
+        "effort": 6
+      },
+      "crop": "NONE",
+      "retouch": "NONE",
+      "source": "Same original masters as the 256px thumbnails; no additional image generation."
+    }
   },
   "visualApproval": "NOT_GRANTED",
   "productionBatchApproval": "NOT_GRANTED",
@@ -31,9 +49,11 @@
     "noBakedTextNumeralsLogoOrWatermarkObserved": true,
     "integratedBrowser": "NOT_RUN_BY_THIS_AGENT",
     "humanVisualAcceptance": "NOT_GRANTED",
-    "limitation": "Agent image inspection is candidate quality evidence, not human visual approval or a product usability claim."
+    "limitation": "Agent image inspection is candidate quality evidence, not human visual approval or a product usability claim.",
+    "detail512pxExportsViewedByAgent": true,
+    "thumbnailBytesAndSha256Unchanged": true
   },
-  "totalRuntimeBytes": 53352,
+  "totalRuntimeBytes": 225358,
   "assets": [
     {
       "id": "pengci",
@@ -69,7 +89,20 @@
       "agentInspection": [
         "At 64px the large ivory split platter and actor above it remain distinct.",
         "Hands support the platter at each side; no extra limbs observed in generated and exported images."
-      ]
+      ],
+      "detail": {
+        "file": "public/assets/p01/jokers/pengci-detail.webp",
+        "format": "webp",
+        "width": 512,
+        "height": 512,
+        "bytes": 47726,
+        "sha256": "2882458dcba34e3c979ebcdb191998d0a0c340d05d4f27379563f123c30dd133",
+        "hasAlpha": false,
+        "source": "art/sources/p01-jokers/pengci.v1.original.png",
+        "purpose": "large-joker-detail-inspection",
+        "loading": "lazy",
+        "preload": false
+      }
     },
     {
       "id": "e05",
@@ -106,7 +139,20 @@
         "At 64px the empty jacket, tall hat and ivory half-mask form a distinct upright still-life silhouette.",
         "Needle, red thread and stitching are secondary details that do not resolve clearly at 64px.",
         "Hat tip is close to the top edge; no additional crop was applied."
-      ]
+      ],
+      "detail": {
+        "file": "public/assets/p01/jokers/e05-detail.webp",
+        "format": "webp",
+        "width": 512,
+        "height": 512,
+        "bytes": 57368,
+        "sha256": "c6afd4951086f2c7a7a31783557cfb0edd51d7df4fa62cbe349713931282d450",
+        "hasAlpha": false,
+        "source": "art/sources/p01-jokers/e05.v1.original.png",
+        "purpose": "large-joker-detail-inspection",
+        "loading": "lazy",
+        "preload": false
+      }
     },
     {
       "id": "huimaqiang",
@@ -142,7 +188,25 @@
       "agentInspection": [
         "At 64px the rocking-horse group and broad red return arc remain distinct.",
         "One rider and horse, clear jointed wood limbs and rocking base; no duplicate heads or tangled legs observed."
-      ]
+      ],
+      "detail": {
+        "file": "public/assets/p01/jokers/huimaqiang-detail.webp",
+        "format": "webp",
+        "width": 512,
+        "height": 512,
+        "bytes": 66912,
+        "sha256": "efaa3e9b3589a8a356469df0b29d56b4065047605da787a2a88e1a77e11d4663",
+        "hasAlpha": false,
+        "source": "art/sources/p01-jokers/huimaqiang.v1.original.png",
+        "purpose": "large-joker-detail-inspection",
+        "loading": "lazy",
+        "preload": false
+      }
     }
-  ]
+  ],
+  "candidateCount": 3,
+  "thumbnailRuntimeBytes": 53352,
+  "initialPreloadBytes": 53352,
+  "detailRuntimeBytes": 172006,
+  "loadingPolicy": "Preload only 256px thumbnails; 512px detail files are lazy loaded for large-art inspection."
 }

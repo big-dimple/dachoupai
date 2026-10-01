@@ -4,7 +4,7 @@ import {PointerIntent} from './PointerIntent';
 import {modalBlocksCanvas} from './DetailDialog';
 import {PAPER_THEME,PAPER_CSS,UI_FONT} from './theme';
 
-type TouchActions={tap:()=>void;detail?:()=>void;drag?:(x:number,y:number)=>void;dragMove?:(x:number,y:number)=>void;cancel?:()=>void;press?:()=>void;release?:()=>void;holdToDrag?:boolean};
+type TouchActions={tap:()=>void;detail?:()=>void;drag?:(x:number,y:number)=>void;dragMove?:(x:number,y:number)=>void;cancel?:()=>void;press?:()=>void;release?:()=>void;enter?:()=>void;leave?:()=>void;holdToDrag?:boolean};
 export class SceneView {
   readonly root:Phaser.GameObjects.Container;
   private gestures=new Map<Phaser.GameObjects.GameObject,TouchActions>();
@@ -79,6 +79,13 @@ export class SceneView {
   rect(b:Box,color:number=PAPER_THEME.paper):Phaser.GameObjects.Rectangle {return this.add(this.scene.add.rectangle(b.x+b.width/2,b.y+b.height/2,b.width,b.height,color).setStrokeStyle(1,PAPER_THEME.jade,.65));}
   target(object:Phaser.GameObjects.Rectangle,name:string,actions:TouchActions):void {
     object.setName(name).setInteractive({useHandCursor:true});this.gestures.set(object,actions);
+    if(actions.enter){
+      object.on('pointerover',(pointer:Phaser.Input.Pointer)=>{
+        const canvas=this.scene.game.canvas.getBoundingClientRect();
+        if(!pointer.wasTouch&&!modalBlocksCanvas(canvas.left+pointer.x*canvas.width/this.scene.scale.width,canvas.top+pointer.y*canvas.height/this.scene.scale.height))actions.enter?.();
+      });
+      object.on('pointerout',()=>actions.leave?.());
+    }
     object.once('destroy',()=>{this.gestures.delete(object);if(this.pressed?.object===object)this.cancel();});
   }
   button(b:Box,label:string,name:string,action:()=>void,enabled=true,primary=false):Phaser.GameObjects.Rectangle {

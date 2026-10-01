@@ -24,7 +24,7 @@ import {r2BossText,r2DisabledCards} from '../domain/r2Chapter';
 import {showConsumables} from './ConsumableDialog';
 import {PAPER_THEME as T,PAPER_CSS as C,UI_FONT,P00_ASSETS,assetUrl} from './theme';
 import type {Box} from './layout';
-import {jokerArtKey} from './jokerArt';
+import {jokerArtKey,jokerArtUrl} from './jokerArt';
 
 const MAX_SELECTED = R2_LIMITS.maxSelected;
 
@@ -36,13 +36,18 @@ interface CardView {
   hit?:Phaser.GameObjects.Rectangle;
   back?:Phaser.GameObjects.Image;
   edgeGlow?:Phaser.GameObjects.Graphics;
+  faceGlow?:Phaser.GameObjects.Graphics;
 }
 type HandPreview=ReturnType<typeof previewR2Hand>;
+type ScoreBeat={windup:number;flight:number;impact:number;strength:'light'|'medium'|'role'|'multiply'|'retrigger'};
 
 export class GameScene extends Phaser.Scene {
   private get deck(): string[] { return this.run.drawPile; }
   private get hand(): readonly PlayingCard[] { return this.presentation?.hand??this.run.handOrder.map(id => this.run.deckInstances.find(card => card.id === id)!); }
   private selectedIds = new Set<string>();
+  private hoveredCardId?:string;
+  private hoveredJokerId?:string;
+  private draggingCardId?:string;
   private cardViews: CardView[] = [];
   private jokerViews = new Map<string, Phaser.GameObjects.Container>();
   private run!: RunState;
@@ -97,11 +102,11 @@ export class GameScene extends Phaser.Scene {
 
   async create(): Promise<void> {
     const lifecycle=++this.lifecycle;this.intent++;
-    this.effects.clear();this.triggers.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.playing=false;this.presentation=undefined;this.statusMessage='';this.focusIndex=0;
-    const settings=()=>{this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;this.audio.muted=gameSession().muted;if(this.reducedMotion){this.cameras.main.resetFX();if(this.presentation)this.fastForward();this.cardViews.forEach(view=>this.revealCard(view));}};
+    this.effects.clear();this.triggers.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.draggingCardId=undefined;this.playing=false;this.presentation=undefined;this.statusMessage='';this.focusIndex=0;
+    const settings=()=>{this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;this.audio.muted=gameSession().muted;if(this.reducedMotion){this.cameras.main.resetFX();if(this.presentation)this.fastForward();this.cardViews.forEach(view=>this.revealCard(view));if(this.run?.phase==='await-input'){this.cardViews.forEach((view,i)=>this.restingCard(view,i,false));this.jokerViews.forEach(view=>this.restingJoker(view,false));}}};
     window.addEventListener('dachoupai-presentation',settings);
     this.events.once('shutdown',()=>{
-      this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.tweens.killAll();this.time.removeAllEvents();this.triggers.clear();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.previewCards=undefined;this.dropMarker=undefined;this.presentation=undefined;this.playing=false;this.dialog.close();
+      this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.tweens.killAll();this.time.removeAllEvents();this.triggers.clear();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.draggingCardId=undefined;this.previewCards=undefined;this.dropMarker=undefined;this.presentation=undefined;this.playing=false;this.dialog.close();
       window.removeEventListener('keydown',this.keyboard);
       window.removeEventListener('dachoupai-presentation',settings);
     });
@@ -135,7 +140,7 @@ export class GameScene extends Phaser.Scene {
   };
   private get ready():boolean {return !this.playing&&runController(this)?.status==='idle'&&gameSession().lease.writable;}
   private render():void {
-    const v=this.view,l=v.layout;v.clear();v.paperBackground();this.settledCards.clear();this.previewCards=undefined;this.dropMarker=undefined;
+    const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.draggingCardId=undefined;v.clear();v.paperBackground();this.settledCards.clear();this.previewCards=undefined;this.dropMarker=undefined;
     const h=l.hud,c=getCharacter(this.characterId),portrait=l.mode==='portrait',short=l.mode==='landscape';
     v.rect(h,T.ink).setStrokeStyle(2,T.jade);
     const avatarSize=portrait||short?48:64,avatarY=h.y+(portrait?8:short?34:66);
@@ -198,7 +203,7 @@ export class GameScene extends Phaser.Scene {
         v.text(b.x+b.width/2,b.y+b.height-23,'空槽 '+(i+1),14,'#3e5b59').setOrigin(.5,0);return;
       }
       const d=getJoker(j.definitionId),symbol=d.rarity==='rare'?'★':d.rarity==='uncommon'?'◇':'□',sideLabels=l.mode==='landscape',labelBox=l.jokerLabels[i],labelX=sideLabels?labelBox.x-b.x-b.width/2:-b.width/2+5;
-      const marker=v.add(this.add.container(b.x+b.width/2,b.y+b.height/2)).setData('baseY',b.y+b.height/2);
+      const marker=v.add(this.add.container(b.x+b.width/2,b.y+b.height/2)).setData('baseX',b.x+b.width/2).setData('baseY',b.y+b.height/2);
       const r=this.add.rectangle(0,0,b.width,b.height,T.paper).setFillStyle(0,0).setStrokeStyle(2,d.rarity==='rare'?T.brass:T.jade);
       const paper=v.material({x:-b.width/2,y:-b.height/2,width:b.width,height:b.height},0xfff6df,0xd9c29f,5),resolution=Math.min(devicePixelRatio||1,2);
       const name=this.add.text(labelX,-b.height/2+(sideLabels?2:5),d.name,{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:sideLabels?C.ink:'#fff0cf',wordWrap:{width:sideLabels?labelBox.width:b.width-10,useAdvancedWrap:true},resolution});
@@ -210,9 +215,9 @@ export class GameScene extends Phaser.Scene {
       if(key&&this.textures.exists(key)){const art=this.add.image(0,artTop+artHeight/2,key);art.setScale(Math.min((b.width-10)/art.width,artHeight/art.height));marker.add(art);}
       else this.jokerMechanism(marker,0,artTop+artHeight/2,artSize,j);
       const trim=this.textures.exists('p00-frame-'+d.rarity)?this.add.image(0,0,'p00-frame-'+d.rarity).setDisplaySize(b.width,b.height).setAlpha(.58):undefined;
-      marker.add([...(trim?[trim]:[]),r,name,current,rarity]).setData('frame',r).setData('nameLabel',name).setData('valueLabel',current);this.jokerViews.set(j.instanceId,marker);
-      const hit=sideLabels?this.add.rectangle((labelBox.width+6)/2,0,b.width+labelBox.width+6,b.height,T.ink,.001):r;if(hit!==r)marker.add(hit);
-      v.target(hit,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:x=>void this.reorderJoker(j.instanceId,x),holdToDrag:true});
+      marker.add([...(trim?[trim]:[]),r,name,current,rarity]).setData('frame',r).setData('frameColor',d.rarity==='rare'?T.brass:T.jade).setData('nameLabel',name).setData('valueLabel',current);this.jokerViews.set(j.instanceId,marker);
+      const hit=v.rect({x:b.x,y:b.y,width:b.width+(sideLabels?labelBox.width+6:0),height:b.height},T.ink).setFillStyle(T.ink,.001).setStrokeStyle(0);marker.setData('hit',hit);
+      v.target(hit,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:x=>void this.reorderJoker(j.instanceId,x),holdToDrag:true,enter:()=>this.hoverJoker(j.instanceId,true),leave:()=>this.hoverJoker(j.instanceId,false)});
     });
   }
   private jokerMechanism(marker:Phaser.GameObjects.Container,x:number,y:number,size:number,joker:R2JokerInstance):void {
@@ -245,7 +250,9 @@ export class GameScene extends Phaser.Scene {
     const edgeLines=this.add.graphics();
     edgeLines.lineStyle(1,0xfffdf1,.92).strokeRoundedRect(-b.width/2+2,-b.height/2+2,b.width-4,b.height-4,radius-1);
     edgeLines.lineStyle(1,0x967c5b,.48).beginPath().moveTo(-b.width/2+5,b.height/2-3).lineTo(b.width/2-5,b.height/2-3).strokePath();
-    c.add(edgeLines);
+    const faceGlow=this.add.graphics().fillStyle(0xffedb6,.28).fillRoundedRect(-b.width/2+2,-b.height/2+2,b.width-4,b.height-4,radius).lineStyle(3,0xffe7a2,.95).strokeRoundedRect(-b.width/2+3,-b.height/2+3,b.width-6,b.height-6,radius-1).setAlpha(0);
+    faceGlow.lineStyle(1,0xfffbdf,.85);for(let i=0;i<3;i++)faceGlow.beginPath().moveTo(-b.width*.3,-b.height*.3+i*4).lineTo(b.width*.28,-b.height*.15+i*4).strokePath();
+    c.add([edgeLines,faceGlow]);
     if(this.textures.exists('p00-frame-common'))c.add(this.add.image(0,0,'p00-frame-common').setDisplaySize(b.width,b.height).setAlpha(.32));
     const red=card.suit==='hearts'||card.suit==='diamonds',color=red?C.red:C.ink,small=b.width<90,edge=small?5:10,resolution=Math.min(devicePixelRatio||1,2);
     const pointSize=Math.min(small?17:26,b.width*.24,b.height*.19),label=this.add.text(-b.width/2+edge,-b.height/2+edge,rankLabel(card.rank)+'\n'+SUIT_SYMBOL[card.suit],{fontFamily:'Georgia,serif',fontSize:`${pointSize}px`,fontStyle:'bold',color,lineSpacing:-4,resolution});
@@ -254,7 +261,7 @@ export class GameScene extends Phaser.Scene {
     const scoringMark=this.add.text(-b.width/2+edge,b.height/2-21,'★',{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:C.jade,resolution}).setVisible(false);
     c.add([label,suit,corner,scoringMark]);
     const back=this.textures.exists('p00-card-back')?this.add.image(0,0,'p00-card-back').setDisplaySize(b.width,b.height).setVisible(false):undefined;if(back)c.add(back);
-    return {card,container:c,background:bg,scoringMark,back,edgeGlow};
+    return {card,container:c,background:bg,scoringMark,back,edgeGlow,faceGlow};
   }
   private revealCard(view:CardView):void {
     if(!view.back?.visible)return;this.tweens.killTweensOf(view.back);view.back.setVisible(false);
@@ -272,33 +279,60 @@ export class GameScene extends Phaser.Scene {
     });
   }
   private renderHand():void {
-    this.cardViews.forEach(v=>{v.hit?.destroy();v.container.destroy();});this.cardViews=[];const v=this.view,l=v.layout;
+    this.hoveredCardId=undefined;this.draggingCardId=undefined;this.cardViews.forEach(v=>{v.hit?.destroy();v.container.destroy();});this.cardViews=[];const v=this.view,l=v.layout;
     this.hand.forEach((card,i)=>{
       const b=l.cards[i].visual,hit=l.cards[i].hit,cv=this.cardPiece(card,b);
       const target=v.rect(hit,T.ink).setFillStyle(T.ink,.001).setStrokeStyle(0);cv.hit=target;
       v.target(target,'card/'+card.id,{tap:()=>this.toggleCard(card.id),detail:()=>this.inspectCard(card.id),drag:x=>{this.endCardDrag();void this.reorderCard(card.id,x);},dragMove:(x,y)=>{
-        if(!this.ready)return;v.root.bringToTop(cv.container);cv.container.setPosition(Phaser.Math.Clamp(x,l.hand.x+b.width/2,l.hand.x+l.hand.width-b.width/2),Phaser.Math.Clamp(y,l.hand.y,l.hand.y+l.hand.height)).setAngle(-3);
+        if(!this.ready)return;this.draggingCardId=card.id;this.hoveredCardId=undefined;this.tweens.killTweensOf(cv.container);v.root.bringToTop(cv.container);cv.container.setPosition(Phaser.Math.Clamp(x,l.hand.x+b.width/2,l.hand.x+l.hand.width-b.width/2),Phaser.Math.Clamp(y,l.hand.y,l.hand.y+l.hand.height)).setAngle(-3).setScale(1);
         const drop=l.cards.find(area=>x>=area.hit.x&&x<=area.hit.x+area.hit.width);
         this.dropMarker?.destroy();this.dropMarker=drop?v.rect({x:drop.hit.x-2,y:l.hand.y+2,width:4,height:l.hand.height-4},T.red).setStrokeStyle(0):undefined;
-      },cancel:()=>this.endCardDrag()});this.cardViews.push(cv);
+      },cancel:()=>this.endCardDrag(),enter:()=>this.hoverCard(card.id,true),leave:()=>this.hoverCard(card.id,false)});this.cardViews.push(cv);
     });
     this.refreshSelection();
   }
-  private endCardDrag():void {this.dropMarker?.destroy();this.dropMarker=undefined;if(!this.presentation)this.refreshSelection();}
+  private endCardDrag():void {this.draggingCardId=undefined;this.dropMarker?.destroy();this.dropMarker=undefined;if(!this.presentation)this.refreshSelection();}
+  private hoverCard(id:string,enter:boolean):void {
+    if(enter&&(!this.ready||this.draggingCardId))return;
+    const index=this.cardViews.findIndex(view=>view.card.id===id),view=this.cardViews[index];if(!view)return;
+    if(enter){const previous=this.cardViews.find(card=>card.card.id===this.hoveredCardId);this.hoveredCardId=id;if(previous&&previous!==view)this.restingCard(previous,this.cardViews.indexOf(previous),true);this.revealCard(view);}else if(this.hoveredCardId===id)this.hoveredCardId=undefined;
+    this.restingCard(view,index,true);
+  }
+  private restingCard(view:CardView,index:number,animate:boolean):void {
+    if(!view.container.active||this.playing||this.presentation||this.draggingCardId===view.card.id)return;
+    const b=this.view.layout.cards[index]?.visual;if(!b)return;
+    const selected=this.selectedIds.has(view.card.id),hovered=this.hoveredCardId===view.card.id,scoring=!!view.container.getData('activeScoring'),focused=document.activeElement===this.game.canvas&&index===this.focusIndex;
+    const y=b.y+b.height/2-(selected?20:0)-(hovered&&!this.reducedMotion?6:0),scale=hovered&&!this.reducedMotion?1.06:1;
+    this.tweens.killTweensOf(view.container);view.container.setAngle(0).setAlpha(1);view.faceGlow?.setAlpha(0);
+    if(animate&&!this.reducedMotion)this.tweens.add({targets:view.container,x:b.x+b.width/2,y,scaleX:scale,scaleY:scale,duration:115,ease:selected?'Back.easeOut':'Sine.easeOut'});else view.container.setPosition(b.x+b.width/2,y).setScale(scale);
+    view.background.setStrokeStyle(hovered||focused||selected||scoring?4:1,hovered||focused?0xffd990:scoring?T.jade:selected?T.red:T.brass);view.edgeGlow?.setAlpha(hovered||focused?1:selected?0.85:0);
+    if(hovered)this.view.root.bringToTop(view.container);else if(view.hit?.active)this.view.root.moveBelow<Phaser.GameObjects.GameObject>(view.container,view.hit);
+    this.view.root.bringToTop(this.handCountText);this.view.root.bringToTop(this.pileText);
+  }
+  private hoverJoker(id:string,enter:boolean):void {
+    if(enter&&!this.ready)return;
+    if(enter){const previous=this.jokerViews.get(this.hoveredJokerId??'');this.hoveredJokerId=id;if(previous)this.restingJoker(previous,true);}else if(this.hoveredJokerId===id)this.hoveredJokerId=undefined;
+    const view=this.jokerViews.get(id);if(view)this.restingJoker(view,true);
+  }
+  private restingJoker(view:Phaser.GameObjects.Container,animate:boolean):void {
+    if(!view.active||this.playing||this.presentation)return;
+    const frame=view.getData('frame') as Phaser.GameObjects.Rectangle,hit=view.getData('hit') as Phaser.GameObjects.Rectangle,hovered=this.jokerViews.get(this.hoveredJokerId??'')===view,x=Number(view.getData('baseX')),baseY=Number(view.getData('baseY')),lift=Math.min(6,Math.max(0,baseY-frame.height/2-6)*.5),y=baseY-(hovered&&!this.reducedMotion?lift:0),scale=hovered&&!this.reducedMotion?1.045:1;
+    this.tweens.killTweensOf(view);frame.setStrokeStyle(hovered?4:2,hovered?0xffdea3:Number(view.getData('frameColor')));
+    if(animate&&!this.reducedMotion)this.tweens.add({targets:view,x,y,angle:0,scaleX:scale,scaleY:scale,duration:120,ease:'Sine.easeOut'});else view.setPosition(x,y).setAngle(0).setScale(scale);
+    if(hovered)this.view.root.bringToTop(view);else if(hit?.active)this.view.root.moveBelow<Phaser.GameObjects.GameObject>(view,hit);
+  }
+  private clearHover():void {this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.draggingCardId=undefined;this.cardViews.forEach((view,i)=>this.restingCard(view,i,false));this.jokerViews.forEach(view=>this.restingJoker(view,false));}
   private refreshSelection(animateId?:string):void {
     const preview=!this.presentation&&this.selectedIds.size?this.preview():undefined;
-    const active=this.presentation?.score.sets.activeScoringIds??preview?.sets.activeScoringIds??[],l=this.view.layout;
+    const active=this.presentation?.score.sets.activeScoringIds??preview?.sets.activeScoringIds??[];
     const disabledIds=r2DisabledCards(this.run.boss,this.stage.index,this.hand),suppressed=this.presentation?.score.events.filter(e=>e.operation==='ordinary-points-suppressed').map(e=>e.targetCardId)??r2ScoreContext(this.run,this.hand,[...this.selectedIds]).ordinaryPointsSuppressedIds;
     this.cardViews.forEach((v,i)=>{
-      const selected=this.selectedIds.has(v.card.id),scoring=active.includes(v.card.id),focused=document.activeElement===this.game.canvas&&i===this.focusIndex,b=l.cards[i].visual;
-      if(!this.presentation){
-        this.tweens.killTweensOf(v.container);v.container.setAngle(0).setAlpha(1).setScale(1);const y=b.y+b.height/2-(selected?20:0);
-        if(animateId===v.card.id&&!this.reducedMotion)this.tweens.add({targets:v.container,x:b.x+b.width/2,y,duration:135,ease:'Back.easeOut'});else v.container.setPosition(b.x+b.width/2,y);
-      }
+      const selected=this.selectedIds.has(v.card.id),scoring=active.includes(v.card.id),focused=document.activeElement===this.game.canvas&&i===this.focusIndex;
       v.container.setData('selected',selected).setData('activeScoring',scoring);
       const disabled=disabledIds.includes(v.card.id),pointsZero=suppressed.includes(v.card.id);v.background.setFillStyle(disabled?0xd2d0cb:T.paper);
       v.background.setStrokeStyle(focused||selected||scoring?4:1,focused?T.brass:scoring?T.jade:selected?T.red:T.brass);
       v.edgeGlow?.setAlpha(focused?1:selected?0.85:0);
+      if(!this.presentation)this.restingCard(v,i,animateId===v.card.id);
       v.scoringMark.setText(disabled?'失效':pointsZero?'点数0':'★').setVisible(disabled||pointsZero||scoring);
       if(v.hit)v.hit.input!.enabled=this.ready;
     });
@@ -342,11 +376,11 @@ export class GameScene extends Phaser.Scene {
     const dialog=this.dialog.open(c.name+' · 角色与本场规则',body,[{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready,a=>this.command(a))},...(this.characterId==='touye'?[{label:stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[])]);
   }
   private inspectJoker(id:string):void {
-    const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=getJoker(j.definitionId),index=this.run.jokers.indexOf(j);
+    const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=getJoker(j.definitionId),index=this.run.jokers.indexOf(j),art=jokerArtUrl(d.id);
     const move=async(delta:number)=>{const ids=this.run.jokers.map(j=>j.instanceId);ids.splice(index,1);ids.splice(index+delta,0,id);await this.command({type:'ReorderJokers',ids});if(this.dialog.active(dialog))this.inspectJoker(id);};
     const dialog=this.dialog.open(d.name,(d.rarity==='rare'?'★ 稀有':d.rarity==='uncommon'?'◇ 罕见':'□ 普通')+' · 当前 '+this.jokerValue(j)+'\n'+d.description+'\n当前成长：'+(Object.entries(j.growth).map(([k,value])=>k+' '+fractionText(value)).join('、')||'无')+'\n第 '+(index+1)+' 个结算；长按后拖动可调序，出售只在商店确认。',[
       {label:'左移',disabled:!this.ready||index===0,run:()=>move(-1)},{label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:()=>move(1)},
-    ]);
+    ],art?{portrait:{url:art,alt:d.name+'卡面',layout:'card',caption:d.name+' · '+this.jokerValue(j)}}:undefined);
   }
   private inspectDeck():void {
     const state=this.run,dialog=this.dialog.open('牌组查看',''),content=dialog.querySelector('p')!,controls=document.createElement('div');
@@ -360,7 +394,7 @@ export class GameScene extends Phaser.Scene {
     };scope.onchange=render;enhancement.onchange=render;render();
   }
   private async command(action:import('../domain/run').Action):Promise<boolean> {
-    if(!this.ready)return false;this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();
+    if(!this.ready)return false;this.clearHover();this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();
     try{const result=await dispatchRun(this,action);if(!this.alive(lifecycle,intent))return false;if(result.ok){this.run=result.state;this.statusMessage='';if(action.type==='ReorderHand')this.renderHand();else if(action.type==='ReorderJokers')this.render();else if(action.type==='UseConsumable'){this.updateHud();this.renderHand();}return true;}else{this.statusMessage='操作未提交：'+result.code;return false;}}
     finally{if(this.alive(lifecycle,intent)){this.playing=false;this.refreshSelection();}}
   }
@@ -406,13 +440,13 @@ export class GameScene extends Phaser.Scene {
 
   private animateRole(note:string,duration:number,context:EffectContext):Promise<void> {
     const frame=this.roleFrame;this.roleText.setText(note);frame.setFillStyle(T.brass,.16).setStrokeStyle(4,T.brass);
-    return this.focusSource(this.roleAvatar,frame,T.brass,false,duration,context).then(()=>{if(frame.active)frame.setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);});
+    return this.focusSource(this.roleAvatar,frame,T.brass,true,duration,context).then(()=>{if(frame.active)frame.setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);});
   }
 
   private animateJoker(joker:ScoreEvent,duration:number,context:EffectContext):Promise<void> {
     const view=this.jokerViews.get(joker.sourceInstanceId);if(!view)return this.wait(duration,context);
     const frame=view.getData('frame') as Phaser.GameObjects.Rectangle,multiply=joker.operation==='multiply-multiplier';frame.setStrokeStyle(4,multiply?T.red:T.brass);
-    return this.focusSource(view,frame,multiply?T.red:T.brass,multiply,duration,context).then(()=>{if(frame.active)frame.setStrokeStyle(2,T.jade);});
+    return this.focusSource(view,frame,multiply?T.red:T.brass,multiply,duration,context).then(()=>{if(frame.active)frame.setStrokeStyle(2,Number(view.getData('frameColor')));});
   }
   private async focusSource(source:Phaser.GameObjects.Container,frame:Phaser.GameObjects.Rectangle,color:number,strong:boolean,duration:number,context:EffectContext):Promise<void> {
     if(context.signal.aborted)return;
@@ -450,7 +484,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private async discardSelected():Promise<void> {
-    if(!this.ready||!this.selectedIds.size||this.run.stage!.discardsLeft<r2DiscardCost(this.run))return;this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,selectedIds=[...this.selectedIds],previousIds=[...this.run.handOrder];
+    if(!this.ready||!this.selectedIds.size||this.run.stage!.discardsLeft<r2DiscardCost(this.run))return;this.clearHover();this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,selectedIds=[...this.selectedIds],previousIds=[...this.run.handOrder];
     try {
       const result=await dispatchRun(this,{type:'DiscardHand',selectedIds});
       if(!this.alive(lifecycle,intent))return;
@@ -467,7 +501,7 @@ export class GameScene extends Phaser.Scene {
   private async playSelected():Promise<void> {
     if(!this.ready||this.selectedIds.size===0||this.handsLeft<=0)return;
     const selectedIds=[...this.selectedIds],lifecycle=this.lifecycle,intent=++this.intent,beforeHeat=this.heat,previousTrace=this.run.lastTrace;
-    this.playing=true;this.statusMessage='';this.updateControls();
+    this.clearHover();this.playing=true;this.statusMessage='';this.updateControls();
     const selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id));
     try {
       const result=await dispatchRun(this,{type:'PlayHand',selectedIds});
@@ -502,6 +536,38 @@ export class GameScene extends Phaser.Scene {
     this.scoreHeat.setText(fractionText(value.H));this.scoreMult.setText('× '+fractionText(value.M));
     this.scoreTotal.setText(heatText(Rational.fromJSON(value.H).multiply(Rational.fromJSON(value.M)).floor().toString()));
   }
+  private scoreBeat(event:ScoreEvent,tempo=1):ScoreBeat {
+    let beat:ScoreBeat;
+    if(event.phase==='afterHand')beat={windup:40,flight:0,impact:120,strength:'medium'};
+    else if(event.operation==='retrigger-card')beat={windup:40,flight:0,impact:100,strength:'retrigger'};
+    else if(event.operation==='multiply-multiplier')beat={windup:220,flight:140,impact:190,strength:'multiply'};
+    else if(event.sourceType==='character')beat={windup:150,flight:115,impact:165,strength:'role'};
+    else if(event.sourceType==='card'&&event.retriggerDepth>0)beat={windup:12,flight:38,impact:55,strength:'retrigger'};
+    else if(event.operation==='add-multiplier'||event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)beat={windup:55,flight:110,impact:115,strength:'medium'};
+    else if(event.sourceType==='card')beat={windup:25,flight:55,impact:60,strength:'light'};
+    else if(event.operation==='ordinary-points-suppressed'||event.operation==='retrigger-cap')beat={windup:20,flight:0,impact:70,strength:'light'};
+    else beat={windup:65,flight:95,impact:90,strength:'medium'};
+    const changed=event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d||event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d;
+    return {...beat,windup:beat.windup*tempo,flight:changed?beat.flight*tempo:0,impact:beat.impact*tempo};
+  }
+  private cardRespondsTo(event:ScoreEvent,card:CardView):boolean {
+    const sets=this.presentation?.score.sets;
+    if(!sets||event.targetCardId!==card.card.id||event.value.n==='0'||event.phase==='afterHand'||event.sourceType!=='card'&&event.sourceType!=='joker')return false;
+    return sets.activeScoringIds.includes(card.card.id)||event.phase==='onHeldCard'&&sets.heldIds.includes(card.card.id);
+  }
+  private async illuminateCard(card:CardView,event:ScoreEvent,beat:ScoreBeat,context:EffectContext):Promise<void> {
+    const glow=card.faceGlow,edge=card.edgeGlow;if(!glow||!this.cardRespondsTo(event,card)||context.signal.aborted)return;
+    const edgeAlpha=edge?.alpha??0;glow.setAlpha(this.reducedMotion?0.5:0.85);edge?.setAlpha(1);
+    try {
+      await this.wait(beat.windup+beat.flight,context);if(context.signal.aborted)return;
+      if(this.reducedMotion){await this.wait(beat.impact,context);return;}
+      if(event.retriggerDepth>0||event.operation==='retrigger-card'){
+        await this.animate({targets:glow,alpha:.2,duration:beat.impact/3},context);
+        await this.animate({targets:glow,alpha:1,duration:beat.impact/3},context);
+      }
+      await this.animate({targets:glow,alpha:0,duration:event.retriggerDepth>0||event.operation==='retrigger-card'?beat.impact/3:beat.impact,ease:'Sine.easeOut'},context);
+    } finally {if(glow.active)glow.setAlpha(0);if(edge?.active)edge.setAlpha(edgeAlpha);}
+  }
   private floatNote(note:string,x:number,y:number,color:string,duration:number,context:EffectContext):Promise<void> {
     const group=this.view.add(this.add.container(x,y)),text=this.add.text(0,0,note,{fontFamily:UI_FONT,fontSize:this.view.layout.mode==='desktop'?'22px':'18px',fontStyle:'bold',color,resolution:Math.min(devicePixelRatio||1,2)}).setOrigin(.5).setShadow(0,1,'#071d24',2,true,true);
     const width=text.width+16,height=text.height+8,plate=this.view.material({x:-width/2,y:-height/2,width,height},0x30545a,0x17323c,5).setAlpha(.94);
@@ -514,7 +580,8 @@ export class GameScene extends Phaser.Scene {
     const targets=[];
     if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)targets.push(this.scoreHeat);
     if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)targets.push(this.scoreMult);
-    return targets.length?this.animate({targets,scale:{from:event.operation==='multiply-multiplier'?1.3:1.15,to:1},duration,ease:'Back.easeOut'},context):Promise.resolve();
+    const strength=this.scoreBeat(event).strength,scale=strength==='multiply'?1.36:strength==='role'?1.24:strength==='medium'?1.17:1.1;
+    return targets.length?this.animate({targets,scale:{from:scale,to:1},duration,ease:'Back.easeOut'},context):Promise.resolve();
   }
   private impactAccumulator(event:ScoreEvent,duration:number,context:EffectContext):Promise<void> {
     if(this.reducedMotion||context.signal.aborted)return Promise.resolve();
@@ -523,7 +590,7 @@ export class GameScene extends Phaser.Scene {
     const target=multChanged?this.scoreMult:this.scoreHeat,b=target.getBounds(),strong=event.operation==='multiply-multiplier',width=Math.min(this.view.layout.scoreBoard.width/3-18,Math.max(42,b.width+16)),height=b.height+8;
     const impact=this.view.add(this.add.graphics().setPosition(b.centerX,b.centerY));
     impact.fillStyle(strong?T.red:multChanged?T.jade:T.brass,.18).fillRoundedRect(-width/2,-height/2,width,height,5);
-    impact.lineStyle(strong?3:2,strong?0xffd3a6:0xc7f1d8,.95).strokeRoundedRect(-width/2,-height/2,width,height,5);
+    impact.lineStyle(strong?4:event.sourceType==='card'?1:2,strong?0xffd3a6:0xc7f1d8,.95).strokeRoundedRect(-width/2,-height/2,width,height,5);
     if(strong)for(const [x,y] of [[-1,-1],[1,-1],[-1,1],[1,1]])impact.lineStyle(2,T.brass,.9).beginPath().moveTo(x*width*.54,y*height*.54).lineTo(x*width*.65,y*height*.72).strokePath();
     this.keepScoreReadable();return this.animate({targets:impact,scale:{from:.75,to:strong?1.18:1.06},alpha:{from:1,to:0},duration,ease:'Cubic.easeOut'},context).then(()=>impact.destroy());
   }
@@ -553,22 +620,25 @@ export class GameScene extends Phaser.Scene {
       this.animate({targets:trail,alpha:{from:1,to:0},duration,ease:'Sine.easeIn'},context),
     ]).then(()=>{packet.destroy();trail.destroy();});
   }
-  private async showScoreEvent(event:ScoreEvent,index:number,duration:number,context:EffectContext):Promise<void> {
+  private async showScoreEvent(event:ScoreEvent,index:number,beat:ScoreBeat,context:EffectContext):Promise<void> {
     if(context.signal.aborted)return;
+    const timing=this.reducedMotion?{...beat,windup:0,flight:0,impact:Math.min(100,beat.impact)}:beat,duration=timing.windup+timing.flight+timing.impact;
     const note=this.operationText(event),source=this.eventSource(event),card=this.settledCards.get(event.targetCardId??'')??this.cardViews.find(view=>view.card.id===event.targetCardId);
     this.resultText.setText(source+' · '+note);this.breakdownText.setText((event.phase==='afterHand'?'下手成长':event.sourceType==='joker'?'连锁 '+(index+1):'逐项计分')+' · '+source+' '+note);this.setAccumulator(event.before);
     const sourceEffects:Promise<void>[]=[];
+    const cardResponds=!!card&&this.cardRespondsTo(event,card);
+    if(cardResponds&&card)sourceEffects.push(this.illuminateCard(card,event,timing,context));
     if(event.sourceType==='character'){
       this.triggers.emit('role:triggered',event);sourceEffects.push(this.animateRole(note,duration,context));
     }else if(event.sourceType==='joker'){
       this.triggers.emit('joker:triggered',event);sourceEffects.push(this.animateJoker(event,duration,context));
-    }else if(card){
+    }else if(card&&cardResponds){
       card.background.setStrokeStyle(4,event.retriggerDepth?T.brass:T.jade);
       sourceEffects.push(this.focusSource(card.container,card.background,event.retriggerDepth?T.brass:T.jade,false,duration,context));
     }
-    if(!this.reducedMotion)await this.wait(duration*.24,context);
+    await this.wait(timing.windup,context);
     if(context.signal.aborted)return;
-    await this.transferToAccumulator(event,card,duration*.42,context);
+    await this.transferToAccumulator(event,card,timing.flight,context);
     if(context.signal.aborted)return;
     // The domain result is already saved. Only the display and SFX arrive with this hit.
     this.setAccumulator(event.after);
@@ -578,9 +648,13 @@ export class GameScene extends Phaser.Scene {
     if(event.operation==='multiply-multiplier')this.audio.multiplier('multiply',index);
     else if(event.operation==='add-multiplier'||event.operation==='read-growth'&&(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d))this.audio.multiplier('add',index);
     else if(event.operation==='retrigger-card')this.audio.retrigger(index);
-    const impactDuration=this.reducedMotion?Math.min(110,duration):duration*.34;
+    const impactDuration=timing.impact;
     const effects=[...sourceEffects,this.pulseAccumulator(event,impactDuration,context),this.impactAccumulator(event,impactDuration,context),this.wait(impactDuration,context)];
     if(card&&event.sourceType!=='joker'&&event.sourceType!=='character')effects.push(this.floatNote(note,card.container.x,card.container.y,'#d3f0d3',impactDuration,context));
+    if(cardResponds&&card&&event.sourceType==='joker'&&!this.reducedMotion){
+      const angle=card.container.angle;
+      effects.push(this.animate({targets:card.container,angle:angle+(event.operation==='retrigger-card'?3:2),duration:impactDuration/4,yoyo:true,repeat:1,ease:'Sine.easeInOut'},context).then(()=>{if(card.container.active)card.container.setAngle(angle);}));
+    }
     await Promise.all(effects);
   }
   private burst(tier:number,context:EffectContext):Promise<void> {
@@ -664,13 +738,12 @@ export class GameScene extends Phaser.Scene {
       }));
       if(context.signal.aborted)return;this.setAccumulator(score.events[0].after);this.breakdownText.setText('牌型 '+HAND_LABELS[score.handType]+' · ★ '+score.sets.activeScoringIds.length+' 张计分');
     });
-    const duration=Math.max(160,Math.min(300,3600/Math.max(1,score.events.length-2)));let jokerIndex=0;
+    const rawTime=score.events.filter(event=>event.phase!=='base'&&event.phase!=='finalScore').reduce((total,event)=>{const beat=this.scoreBeat(event);return total+beat.windup+beat.flight+beat.impact;},0),tempo=Math.min(1,5200/Math.max(1,rawTime));let jokerIndex=0;
     for(const event of score.events){
       if(event.phase==='base')continue;
       if(event.phase==='finalScore'){this.effects.enqueue(context=>this.award(score,presentation,context));continue;}
       const index=event.sourceType==='joker'?jokerIndex++:event.sourceType==='character'?0:score.sets.activeScoringIds.indexOf(event.targetCardId??'');
-      const beat=duration*(event.operation==='multiply-multiplier'?1.4:event.sourceType==='joker'?1.25:event.sourceType==='character'?1.15:1);
-      this.effects.enqueue(context=>this.showScoreEvent(event,Math.max(0,index),beat,context));
+      const beat=this.scoreBeat(event,tempo);this.effects.enqueue(context=>this.showScoreEvent(event,Math.max(0,index),beat,context));
     }
     let failed=false;
     try {await this.effects.drain();}
@@ -689,7 +762,7 @@ export class GameScene extends Phaser.Scene {
   fastForward():void {const presentation=this.presentation;if(!presentation)return;this.effects.clear();this.audio.cancelPresentation();this.completePresentation(presentation);}
   replayLastTrace():void {
     if(this.playing||!this.run.lastTrace)return;
-    this.playing=true;this.playButton.disableInteractive();const intent=++this.intent;
+    this.clearHover();this.playing=true;this.playButton.disableInteractive();const intent=++this.intent;
     void this.presentTrace(this.run.lastTrace,this.run,[],this.lifecycle,intent,this.heat,true);
   }
   private inspectLastTrace():void {

@@ -5,7 +5,7 @@
   "sourceManifest": "art/sources/p01-jokers/manifest.json",
   "visualApproval": "NOT_GRANTED",
   "productionBatchApproval": "NOT_GRANTED",
-  "totalRuntimeBytes": 53352,
+  "totalRuntimeBytes": 225358,
   "assets": [
     {
       "id": "pengci",
@@ -15,7 +15,18 @@
       "height": 256,
       "bytes": 15206,
       "sha256": "b9d3371d3f96a1192233af5e68b6b3ff2a3ae3848bf27a3df1965b8e224ed962",
-      "hasAlpha": false
+      "hasAlpha": false,
+      "detail": {
+        "file": "pengci-detail.webp",
+        "width": 512,
+        "height": 512,
+        "bytes": 47726,
+        "sha256": "2882458dcba34e3c979ebcdb191998d0a0c340d05d4f27379563f123c30dd133",
+        "hasAlpha": false,
+        "purpose": "large-joker-detail-inspection",
+        "loading": "lazy",
+        "preload": false
+      }
     },
     {
       "id": "e05",
@@ -25,7 +36,18 @@
       "height": 256,
       "bytes": 17566,
       "sha256": "b982fa2d90e957226bb31e59e9a64cf0279dbe2d83812378c577ada830ec71e1",
-      "hasAlpha": false
+      "hasAlpha": false,
+      "detail": {
+        "file": "e05-detail.webp",
+        "width": 512,
+        "height": 512,
+        "bytes": 57368,
+        "sha256": "c6afd4951086f2c7a7a31783557cfb0edd51d7df4fa62cbe349713931282d450",
+        "hasAlpha": false,
+        "purpose": "large-joker-detail-inspection",
+        "loading": "lazy",
+        "preload": false
+      }
     },
     {
       "id": "huimaqiang",
@@ -35,7 +57,23 @@
       "height": 256,
       "bytes": 20580,
       "sha256": "10cd948f8677e26763226b8a8f8b696afa440916954bd38bd0cdf51e9ddd0780",
-      "hasAlpha": false
+      "hasAlpha": false,
+      "detail": {
+        "file": "huimaqiang-detail.webp",
+        "width": 512,
+        "height": 512,
+        "bytes": 66912,
+        "sha256": "efaa3e9b3589a8a356469df0b29d56b4065047605da787a2a88e1a77e11d4663",
+        "hasAlpha": false,
+        "purpose": "large-joker-detail-inspection",
+        "loading": "lazy",
+        "preload": false
+      }
     }
-  ]
+  ],
+  "candidateCount": 3,
+  "thumbnailRuntimeBytes": 53352,
+  "initialPreloadBytes": 53352,
+  "detailRuntimeBytes": 172006,
+  "loadingPolicy": "Preload only 256px thumbnails; 512px detail files are lazy loaded for large-art inspection."
 }
