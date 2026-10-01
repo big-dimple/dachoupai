@@ -1,0 +1,28 @@
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+TAP version 13
+ ❯ tools/blender/inspect_asset_pack.test.mjs (0 test)
+TAP version 13
+ ❯ tools/blender/verify_assets.test.mjs (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tools/blender/inspect_asset_pack.test.mjs [ tools/blender/inspect_asset_pack.test.mjs ]
+Error: No test suite found in file D:/ai/dachoupai/dachoupai/tools/blender/inspect_asset_pack.test.mjs
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tools/blender/verify_assets.test.mjs [ tools/blender/verify_assets.test.mjs ]
+Error: No test suite found in file D:/ai/dachoupai/dachoupai/tools/blender/verify_assets.test.mjs
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 26 passed (28)
+      Tests  222 passed (222)
+   Start at  09:11:11
+   Duration  8.42s (transform 3.07s, setup 0ms, import 7.00s, tests 16.55s, environment 5ms)
+

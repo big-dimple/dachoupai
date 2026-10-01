@@ -1,0 +1,75 @@
+{
+  "testedCommit": "66f92b7468cafa902d3846379ee6285e3c1b1d97",
+  "dirtyState": "Only asset CLI/tests and A00 review evidence changed; no original asset/game/package/plan changes.",
+  "checks": [
+    {
+      "command": "node tools/blender/inspect_asset_pack.mjs",
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"assets\": 137,\n  \"mode\": \"read-only\",\n  \"visualApproval\": \"NOT_GRANTED\",\n  \"rightsApproval\": \"UNKNOWN\",\n  \"errors\": []\n}",
+      "stderr": ""
+    },
+    {
+      "command": "node tools/blender/verify_assets.mjs",
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"assets\": 137,\n  \"mode\": \"read-only\",\n  \"visualApproval\": \"NOT_GRANTED\",\n  \"rightsApproval\": \"UNKNOWN\",\n  \"errors\": []\n}",
+      "stderr": ""
+    },
+    {
+      "command": "node tools/blender/verify_assets.mjs --root",
+      "exitCode": 2,
+      "stdout": "",
+      "stderr": "--root requires one directory value and cannot repeat\nUsage: node tools/blender/verify_assets.mjs [inventory.json] [--root directory]"
+    },
+    {
+      "command": "node tools/blender/inspect_asset_pack.mjs --unknown",
+      "exitCode": 2,
+      "stdout": "",
+      "stderr": "Unexpected argument: --unknown\nUsage: node tools/blender/inspect_asset_pack.mjs [inventory.json] [--root directory]"
+    }
+  ],
+  "tests": {
+    "command": "node --test tools/blender/inspect_asset_pack.test.mjs tools/blender/verify_assets.test.mjs",
+    "exitCode": 0,
+    "log": "cli-safety-green.txt",
+    "earlierRedLog": "cli-safety-red.txt",
+    "earlierRedExitCode": 1,
+    "details": [
+      "Default fixture manifest changed before fix: 14 to 334 bytes, exit0; test exit1",
+      "Default after fix: manifest and one-triangle GLB unchanged, exit0",
+      "Corrupt contract: exit1 without repair",
+      "Both CLIs reject 6 malformed argument patterns with exit2",
+      "Explicit --optimize on empty-manifest fixture writes only when requested",
+      "Existing 11 contract failures continue to exit1"
+    ]
+  },
+  "assetReadOnly": {
+    "files": 137,
+    "beforeAggregateSha256": "fc2c431392b8835d1f153350de32c801ba90652c387b92e0a758cd90e4eff809",
+    "afterAggregateSha256": "fc2c431392b8835d1f153350de32c801ba90652c387b92e0a758cd90e4eff809",
+    "unchanged": true,
+    "allMatchInitialInventory": true,
+    "manifestBefore": {
+      "path": "public/assets/models/asset-pack-v1.json",
+      "sha256": "8792da0eefb98330c68445e90868d8c7f33404439cf9a42295770bb08f9b3cc3"
+    },
+    "manifestAfter": {
+      "path": "public/assets/models/asset-pack-v1.json",
+      "sha256": "8792da0eefb98330c68445e90868d8c7f33404439cf9a42295770bb08f9b3cc3"
+    }
+  },
+  "protectedDiffEmpty": true,
+  "toolHashes": {
+    "tools/blender/inspect_asset_pack.mjs": "d39ceb2f327b8a3ed1eb13fcbce5f22755cce37411f41341e0dde75c79b6755c",
+    "tools/blender/verify_assets.mjs": "ac20b6168a75e56f469f9f1f17c5b2ed592a965f5c48cd50a8538a0dcec067f5",
+    "tools/blender/inspect_asset_pack.test.mjs": "a5c13233b99783d47a6ca5e70310a916d3be7d03f76152c3ad55b69464e7805f"
+  },
+  "visualApproval": "NOT_GRANTED",
+  "rightsStatus": "UNKNOWN",
+  "publicationAllowlist": [],
+  "notRun": [
+    "Full producer/optimizer on original GLBs",
+    "New rendering",
+    "A01",
+    "Physical-device acceptance"
+  ]
+}

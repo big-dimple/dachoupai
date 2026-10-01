@@ -1,0 +1,199 @@
+{
+  "task": "A00 preparation only",
+  "testedCommit": "abb62eefba1d20f6a9e3621fc52495342ea80679",
+  "branch": "art/A00-inventory",
+  "createdAt": "2026-09-30T20:52:25.566Z",
+  "dirtyState": "New A00 tools/evidence only; checked public assets and protected existing sources equal Git HEAD with checkout filters (Windows CRLF).",
+  "sourceHashComparison": {
+    "count": 137,
+    "allEqual": true,
+    "baselineAggregateSha256": "fc2c431392b8835d1f153350de32c801ba90652c387b92e0a758cd90e4eff809",
+    "workingAggregateSha256": "fc2c431392b8835d1f153350de32c801ba90652c387b92e0a758cd90e4eff809",
+    "manifest": {
+      "path": "public/assets/models/asset-pack-v1.json",
+      "headCheckoutSha256": "8792da0eefb98330c68445e90868d8c7f33404439cf9a42295770bb08f9b3cc3",
+      "workingSha256": "8792da0eefb98330c68445e90868d8c7f33404439cf9a42295770bb08f9b3cc3"
+    },
+    "perFileHashes": "inventory.json"
+  },
+  "protectedSources": [
+    {
+      "path": "src/game/portraits.ts",
+      "headCheckoutSha256": "0a7aa7b94c4056fbaf26b5589914e05491564639391e0e546069c3c6ad5431f1",
+      "workingSha256": "0a7aa7b94c4056fbaf26b5589914e05491564639391e0e546069c3c6ad5431f1",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/characters.ts",
+      "headCheckoutSha256": "08a07f58412a42abd6bad9789ced75f1c7ec0bc39a73382c5bea9cf16ce64cda",
+      "workingSha256": "08a07f58412a42abd6bad9789ced75f1c7ec0bc39a73382c5bea9cf16ce64cda",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/layout.ts",
+      "headCheckoutSha256": "0d6bbf27f4dd4e4f366ab6a3ef293f4bfddc4bf9de024b0d5a67753ee627848e",
+      "workingSha256": "0d6bbf27f4dd4e4f366ab6a3ef293f4bfddc4bf9de024b0d5a67753ee627848e",
+      "unchanged": true
+    },
+    {
+      "path": "tools/blender/build_asset_pack.py",
+      "headCheckoutSha256": "9b06e1df23b6845a7abf044f25bd6d948ae234568e32acdfd53bce3c60f8841c",
+      "workingSha256": "9b06e1df23b6845a7abf044f25bd6d948ae234568e32acdfd53bce3c60f8841c",
+      "unchanged": true
+    },
+    {
+      "path": "tools/blender/asset_geometry.py",
+      "headCheckoutSha256": "d92a2a303813bbb9e0618ad464c4e839fdbe6d5b10b8e17296c244bd50e883f3",
+      "workingSha256": "d92a2a303813bbb9e0618ad464c4e839fdbe6d5b10b8e17296c244bd50e883f3",
+      "unchanged": true
+    },
+    {
+      "path": "tools/blender/make_raster_assets.py",
+      "headCheckoutSha256": "0e91e87bac99049d5723d6d70aa3d68469c4c767966d8eca8eff5ff23c6e68ef",
+      "workingSha256": "0e91e87bac99049d5723d6d70aa3d68469c4c767966d8eca8eff5ff23c6e68ef",
+      "unchanged": true
+    },
+    {
+      "path": "tools/blender/inspect_asset_pack.mjs",
+      "headCheckoutSha256": "45c80f0f0d6ea14842a80a0a1483b6d3c4dc63e87a2d20aeeb3be91dd0a44aa0",
+      "workingSha256": "45c80f0f0d6ea14842a80a0a1483b6d3c4dc63e87a2d20aeeb3be91dd0a44aa0",
+      "unchanged": true
+    },
+    {
+      "path": "docs/production/plan.json",
+      "headCheckoutSha256": "5674a51a1917a5948b85d1499932381d349e0bb0893ce661063114496d0589de",
+      "workingSha256": "5674a51a1917a5948b85d1499932381d349e0bb0893ce661063114496d0589de",
+      "unchanged": true
+    },
+    {
+      "path": "docs/development-handoff.md",
+      "headCheckoutSha256": "f22c7223f63c4238c02be57fa25226f03d52554e148eb20ca7ea4fbacdfe97cc",
+      "workingSha256": "f22c7223f63c4238c02be57fa25226f03d52554e148eb20ca7ea4fbacdfe97cc",
+      "unchanged": true
+    },
+    {
+      "path": "package.json",
+      "headCheckoutSha256": "42ac340da36637b09aa0d2d70249bd2d3639d60a238ce10bf812ba34f0789467",
+      "workingSha256": "42ac340da36637b09aa0d2d70249bd2d3639d60a238ce10bf812ba34f0789467",
+      "unchanged": true
+    },
+    {
+      "path": "package-lock.json",
+      "headCheckoutSha256": "257e4154f43b7c9f83b29b61a2bbf4ed734d647837328662d0e9a719960225b1",
+      "workingSha256": "257e4154f43b7c9f83b29b61a2bbf4ed734d647837328662d0e9a719960225b1",
+      "unchanged": true
+    }
+  ],
+  "newToolSha256": {
+    "tools/blender/preview_existing_assets.py": "31a5c920a4bb9b0745ba790154d32db8389e2444d094eb79ab21609092623ce8",
+    "tools/blender/asset_contact_sheets.py": "a3a4c7935a9ca48f052b7a0d201ee55678789ae4e9f7cbb92bea844ee3d6339d",
+    "tools/blender/verify_assets.mjs": "5f5a4556d85e7aca4d5208537dd574cf89b00bd489509de0901612e0059fc5dd",
+    "tools/blender/verify_assets.test.mjs": "0f2a936bc96e67ec28ee2f29298baa8dd2d554837d99d8b62e55cece186e6607"
+  },
+  "environment": {
+    "node": "v22.20.0",
+    "python": "3.12.14",
+    "pillow": "12.3.0",
+    "blender": "5.2.1 LTS 9e2066aef7ef",
+    "sharp": "0.35.5",
+    "gltfValidator": "2.0.0-dev.3.10",
+    "blenderResolvedPath": "D:/tools/blender-5.2.1-windows-x64/blender.exe",
+    "pythonResolvedPath": "C:/Users/wanghongping/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe"
+  },
+  "checks": [
+    {
+      "name": "npm-ci",
+      "command": "npm ci --no-audit",
+      "exitCode": 0,
+      "detail": "232 packages installed; no package/lock changes"
+    },
+    {
+      "name": "negative-first",
+      "command": "node --test tools/blender/verify_assets.test.mjs",
+      "exitCode": 1,
+      "detail": "Initial test preceded implementation; ERR_MODULE_NOT_FOUND verify_assets.mjs. Final negative cases separately assert CLI exit 1."
+    },
+    {
+      "name": "blender-static-and-clips",
+      "command": "BLENDER --background --factory-startup --python tools/blender/preview_existing_assets.py -- --out shots/a00-render",
+      "exitCode": 0,
+      "models": 39,
+      "staticRenders": 38,
+      "clips": 11,
+      "sampleFrames": [
+        0,
+        6,
+        12,
+        18,
+        24
+      ],
+      "previewFps": 24,
+      "renderLog": "render-log.json"
+    },
+    {
+      "name": "blender-oblique-clips",
+      "command": "BLENDER --background --factory-startup --python tools/blender/preview_existing_assets.py -- --out shots/a00-oblique --only card-animation --oblique",
+      "exitCode": 0,
+      "detail": "All 11 clips sampled at oblique angle; only bend contact sheet retained as additional evidence."
+    },
+    {
+      "name": "contact-first",
+      "command": "ASSET_PYTHON tools/blender/asset_contact_sheets.py --renders shots/a00-render --out docs/production/evidence/a00-2026-10-01",
+      "exitCode": 1,
+      "detail": "Python UnicodeDecodeError reading atlas JSON with Windows GBK default. Fixed explicit UTF-8; rerun succeeded."
+    },
+    {
+      "name": "contact-final",
+      "command": "ASSET_PYTHON tools/blender/asset_contact_sheets.py --renders shots/a00-render --oblique shots/a00-oblique --out docs/production/evidence/a00-2026-10-01",
+      "exitCode": 0,
+      "detail": "136 visual source paths mapped; 48 atlas frames"
+    },
+    {
+      "name": "asset-read-only",
+      "command": "node tools/blender/verify_assets.mjs",
+      "exitCode": 0,
+      "output": "verify.txt"
+    },
+    {
+      "name": "negative-fixtures",
+      "command": "node --test tools/blender/verify_assets.test.mjs",
+      "exitCode": 0,
+      "output": "negative-tests.txt"
+    },
+    {
+      "name": "plan-structure",
+      "command": "node scripts/check-production-plan.mjs",
+      "exitCode": 0,
+      "output": "PLAN_VALID: 23 work packages; current=R06; not a gameplay acceptance"
+    },
+    {
+      "name": "build",
+      "command": "npm run build",
+      "exitCode": 0,
+      "detail": "TypeScript and Vite 7.3.6; 54 modules transformed; existing >500kB JS chunk warning",
+      "distBytes": 32684890,
+      "runtimeBudgetStatus": "FAIL_PUBLIC_SOURCES_COPIED"
+    }
+  ],
+  "budget": {
+    "allAssetBytes": 31366991,
+    "currentAvatarBytes": 301066,
+    "currentAvatarRgbaBytes": 6291456,
+    "allRasterRgbaBytes": 225572800,
+    "firstScreenNetworkPerformance": "NOT_RUN",
+    "physicalDevice": "NOT_RUN"
+  },
+  "approvals": {
+    "visual": "NOT_GRANTED",
+    "commercialRights": "UNKNOWN",
+    "publicationAllowlist": [],
+    "planStatus": "planned; not changed"
+  },
+  "limitations": [
+    "No user visual approval",
+    "Commercial rights UNKNOWN",
+    "Literal source-reference snapshot is not whole-program dataflow; runtime built-artifact/network gate remains A02",
+    "Decoded bytes are RGBA estimates, not measured GPU memory",
+    "GLB pixels are null; embedded textures and rendered preview resolution are separate"
+  ]
+}

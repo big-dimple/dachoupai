@@ -1,0 +1,320 @@
+{
+  "blender": "5.2.1 LTS",
+  "engine": "CYCLES",
+  "samples": 8,
+  "size": [
+    320,
+    320
+  ],
+  "records": [
+    {
+      "source": "public/assets/models/card-animation-templates.glb",
+      "clips": [
+        "bend",
+        "bounce",
+        "burn",
+        "draw",
+        "flip",
+        "gold-dust",
+        "ink",
+        "knock-away",
+        "spin",
+        "split",
+        "throw"
+      ],
+      "fps": 24,
+      "sampleFrames": [
+        0,
+        6,
+        12,
+        18,
+        24
+      ],
+      "renders": [
+        "clip-bend-00.png",
+        "clip-bend-06.png",
+        "clip-bend-12.png",
+        "clip-bend-18.png",
+        "clip-bend-24.png",
+        "clip-bounce-00.png",
+        "clip-bounce-06.png",
+        "clip-bounce-12.png",
+        "clip-bounce-18.png",
+        "clip-bounce-24.png",
+        "clip-burn-00.png",
+        "clip-burn-06.png",
+        "clip-burn-12.png",
+        "clip-burn-18.png",
+        "clip-burn-24.png",
+        "clip-draw-00.png",
+        "clip-draw-06.png",
+        "clip-draw-12.png",
+        "clip-draw-18.png",
+        "clip-draw-24.png",
+        "clip-flip-00.png",
+        "clip-flip-06.png",
+        "clip-flip-12.png",
+        "clip-flip-18.png",
+        "clip-flip-24.png",
+        "clip-gold-dust-00.png",
+        "clip-gold-dust-06.png",
+        "clip-gold-dust-12.png",
+        "clip-gold-dust-18.png",
+        "clip-gold-dust-24.png",
+        "clip-ink-00.png",
+        "clip-ink-06.png",
+        "clip-ink-12.png",
+        "clip-ink-18.png",
+        "clip-ink-24.png",
+        "clip-knock-away-00.png",
+        "clip-knock-away-06.png",
+        "clip-knock-away-12.png",
+        "clip-knock-away-18.png",
+        "clip-knock-away-24.png",
+        "clip-spin-00.png",
+        "clip-spin-06.png",
+        "clip-spin-12.png",
+        "clip-spin-18.png",
+        "clip-spin-24.png",
+        "clip-split-00.png",
+        "clip-split-06.png",
+        "clip-split-12.png",
+        "clip-split-18.png",
+        "clip-split-24.png",
+        "clip-throw-00.png",
+        "clip-throw-06.png",
+        "clip-throw-12.png",
+        "clip-throw-18.png",
+        "clip-throw-24.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/joker-frame-common.glb",
+      "renders": [
+        "joker-frame-common.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/joker-frame-epic.glb",
+      "renders": [
+        "joker-frame-epic.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/joker-frame-legendary.glb",
+      "renders": [
+        "joker-frame-legendary.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/joker-frame-rare.glb",
+      "renders": [
+        "joker-frame-rare.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/joker-frame-special.glb",
+      "renders": [
+        "joker-frame-special.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/material-kit.glb",
+      "renders": [
+        "material-kit.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/poker-card-master.glb",
+      "renders": [
+        "poker-card-master.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/prop-bell.glb",
+      "renders": [
+        "prop-bell.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/prop-coin.glb",
+      "renders": [
+        "prop-coin.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/prop-dice.glb",
+      "renders": [
+        "prop-dice.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/prop-fan.glb",
+      "renders": [
+        "prop-fan.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/prop-gold-ingot.glb",
+      "renders": [
+        "prop-gold-ingot.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/prop-jade-plaque.glb",
+      "renders": [
+        "prop-jade-plaque.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/prop-opera-mask.glb",
+      "renders": [
+        "prop-opera-mask.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/prop-seal.glb",
+      "renders": [
+        "prop-seal.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/prop-small-gong.glb",
+      "renders": [
+        "prop-small-gong.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/prop-talisman.glb",
+      "renders": [
+        "prop-talisman.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/prop-wine-bowl.glb",
+      "renders": [
+        "prop-wine-bowl.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/stage-censer.glb",
+      "renders": [
+        "stage-censer.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/stage-cloud-plinth.glb",
+      "renders": [
+        "stage-cloud-plinth.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/stage-drape.glb",
+      "renders": [
+        "stage-drape.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/stage-drum.glb",
+      "renders": [
+        "stage-drum.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/stage-gong.glb",
+      "renders": [
+        "stage-gong.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/stage-lantern.glb",
+      "renders": [
+        "stage-lantern.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/stage-neon-arch.glb",
+      "renders": [
+        "stage-neon-arch.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/stage-screen.glb",
+      "renders": [
+        "stage-screen.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/stage-stage.glb",
+      "renders": [
+        "stage-stage.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/stage-table-chairs.glb",
+      "renders": [
+        "stage-table-chairs.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/stage-wine-jar.glb",
+      "renders": [
+        "stage-wine-jar.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/stage-wood-arch.glb",
+      "renders": [
+        "stage-wood-arch.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/word-critical.glb",
+      "renders": [
+        "word-critical.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/word-double.glb",
+      "renders": [
+        "word-double.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/word-east-wind.glb",
+      "renders": [
+        "word-east-wind.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/word-full-house.glb",
+      "renders": [
+        "word-full-house.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/word-good-fortune.glb",
+      "renders": [
+        "word-good-fortune.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/word-out-of-control.glb",
+      "renders": [
+        "word-out-of-control.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/word-times-2.glb",
+      "renders": [
+        "word-times-2.png"
+      ]
+    },
+    {
+      "source": "public/assets/models/word-times-4.glb",
+      "renders": [
+        "word-times-4.png"
+      ]
+    }
+  ]
+}

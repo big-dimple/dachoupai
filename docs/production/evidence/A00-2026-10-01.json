@@ -1,0 +1,25 @@
+{
+  "taskId": "A00",
+  "testedCommit": "140841ca0f744d99db7a70524a5077fd0e4e1b98",
+  "dirty": "Adoption: staged A00 evidence/tools plus inventory extension for 29 P00/P01 runtime candidates, package entries, vitest.config isolation, REVIEW adoption record. No asset bytes or game rules modified.",
+  "completionScope": "Inventory and read-only CLI adoption only. Visual approval NOT_GRANTED, rights UNKNOWN, publication allowlist empty. Does not unblock A01/V01 or authorize production.",
+  "adoptedFrom": {
+    "artBranch": "art/A00-inventory",
+    "preparedCommits": ["66f92b7468cafa902d3846379ee6285e3c1b1d97", "30600c2"],
+    "originalRenderEvidenceSha": "abb62eefba1d20f6a9e3621fc52495342ea80679",
+    "report": "docs/production/evidence/a00-2026-10-01/REVIEW.md"
+  },
+  "checks": [
+    {"command": "node tools/blender/verify_assets.mjs", "status": "FAIL", "exitCode": 1, "when": "before inventory extension", "errors": ["29 unlisted P00/P01 runtime candidate files", "sourceReferences snapshot changed"], "note": "Expected red: the frozen inventory predates P00/P01 assets."},
+    {"command": "node tools/blender/verify_assets.mjs", "status": "PASS", "exitCode": 0, "when": "after inventory extension to 166 entries", "log": "docs/production/evidence/a00-2026-10-01/adoption-verify.json"},
+    {"command": "npm run test:assets", "status": "PASS", "exitCode": 0, "passed": 3, "log": "docs/production/evidence/a00-2026-10-01/adoption-test-assets.txt"},
+    {"command": "npx vitest run", "status": "PASS", "exitCode": 0, "files": 27, "passed": 235, "node": "22.20.0 (C:\\Program Files\\nodejs\\node.exe)", "log": "docs/production/evidence/a00-2026-10-01/adoption-vitest.txt"},
+    {"command": "npm run build", "status": "PASS", "exitCode": 0, "log": "docs/production/evidence/a00-2026-10-01/adoption-build.txt"},
+    {"command": "P00/P01 manifest byte/sha256 cross-check vs actual files", "status": "PASS", "result": "ALL MATCH (8 SVG, 12 character WebP, 6 joker WebP)"}
+  ],
+  "environmentNote": "Default node on this machine is the Kimi Electron shim (process.execPath=Kimi.exe); tests/ci-gates.test.mjs gate fixtures EPERM-fail under it and pass 7/7 under standalone Node 22.20.0. Environmental, not a code regression.",
+  "inventory": {"path": "docs/production/evidence/a00-2026-10-01/inventory.json", "assets": 166, "bytes": 32165699, "publicationAllowlist": [], "runtimeCurrentlyLoaded": "8 P00 SVG + 6 P00 avatars + 3 P01 joker thumbnails preloaded; 6 portraits + 3 joker details lazy"},
+  "notRun": ["Blender re-render of the already-inspected GLB pack (deliberately skipped per work package)", "P00 viewport matrix rerun", "Full production-chain --optimize write mode", "Human visual approval", "Physical device checks"],
+  "humanReview": {"status": "NOT_RUN", "reviewer": "", "evidence": ""},
+  "nextTask": "A01 remains a human visual-approval gate; V01 human gate unchanged. Owner-directed presentation polish proceeds on the playable candidate without opening new milestones."
+}

@@ -1,0 +1,68 @@
+TAP version 13
+# Subtest: legacy inspector defaults to read-only; writing requires explicit optimize
+not ok 1 - legacy inspector defaults to read-only; writing requires explicit optimize
+  ---
+  duration_ms: 422.3118
+  type: 'test'
+  location: 'C:\\Users\\wanghongping\\.codex\\worktrees\\art-inventory\\dachoupai\\tools\\blender\\inspect_asset_pack.test.mjs:35:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    default inspector must not rewrite manifest
+    + actual - expected
+
+    + '6548f1ba7d30dab26207daf8e3db8f53f6b9510a132c52d53ec962746b73d203'
+    - 'fed692c21e0b4a7d57809fae9ea31b53220946f90c0b236f0f41006585a863f8'
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'fed692c21e0b4a7d57809fae9ea31b53220946f90c0b236f0f41006585a863f8'
+  actual: '6548f1ba7d30dab26207daf8e3db8f53f6b9510a132c52d53ec962746b73d203'
+  operator: 'strictEqual'
+  stack: |-
+    file:///C:/Users/wanghongping/.codex/worktrees/art-inventory/dachoupai/tools/blender/inspect_asset_pack.test.mjs:41:10
+    async fixture (file:///C:/Users/wanghongping/.codex/worktrees/art-inventory/dachoupai/tools/blender/inspect_asset_pack.test.mjs:27:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# {"command":"node tools/blender/inspect_asset_pack.mjs","exit":0,"before":"fed692c21e0b4a7d57809fae9ea31b53220946f90c0b236f0f41006585a863f8","after":"6548f1ba7d30dab26207daf8e3db8f53f6b9510a132c52d53ec962746b73d203","unchanged":false}
+# Subtest: both asset CLIs reject unknown, ambiguous and incomplete arguments without writes
+not ok 2 - both asset CLIs reject unknown, ambiguous and incomplete arguments without writes
+  ---
+  duration_ms: 315.1907
+  type: 'test'
+  location: 'C:\\Users\\wanghongping\\.codex\\worktrees\\art-inventory\\dachoupai\\tools\\blender\\inspect_asset_pack.test.mjs:53:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {
+      "status": "PASS",
+      "assets": 1,
+      "mode": "read-only",
+      "visualApproval": "NOT_GRANTED",
+      "rightsApproval": "UNKNOWN",
+      "errors": []
+    }
+
+
+    0 !== 2
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 2
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    file:///C:/Users/wanghongping/.codex/worktrees/art-inventory/dachoupai/tools/blender/inspect_asset_pack.test.mjs:60:14
+    async fixture (file:///C:/Users/wanghongping/.codex/worktrees/art-inventory/dachoupai/tools/blender/inspect_asset_pack.test.mjs:27:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# verify_assets.mjs ["<fixture>\\\\docs\\\\production\\\\evidence\\\\a00-2026-10-01\\\\inventory.json","--unknown"]: exit 0
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1039.2087

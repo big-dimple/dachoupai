@@ -1,0 +1,27 @@
+TAP version 13
+# Subtest: asset verification rejects broken contracts and leaves inputs unchanged
+ok 1 - asset verification rejects broken contracts and leaves inputs unchanged
+  ---
+  duration_ms: 3830.8116
+  type: 'test'
+  ...
+# JSON content changed after LF normalization: expected CLI exit 1 observed
+# width: expected CLI exit 1 observed
+# height: expected CLI exit 1 observed
+# alpha: expected CLI exit 1 observed
+# sha256: expected CLI exit 1 observed
+# wrong animation clip: expected CLI exit 1 observed
+# missing file: expected CLI exit 1 observed
+# unapproved publication allowlist entry: expected CLI exit 1 observed
+# extra runtime resource expression: expected CLI exit 1 observed
+# unlisted asset: expected CLI exit 1 observed
+# escaping asset path: expected CLI exit 1 observed
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4127.6683

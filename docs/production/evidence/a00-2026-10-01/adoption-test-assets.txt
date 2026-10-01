@@ -1,0 +1,42 @@
+
+> dachoupai@0.1.0 test:assets
+> node --test tools/blender/verify_assets.test.mjs tools/blender/inspect_asset_pack.test.mjs
+
+✔ legacy inspector defaults to read-only; writing requires explicit optimize (846.2814ms)
+ℹ {"command":"node tools/blender/inspect_asset_pack.mjs","exit":0,"before":"fed692c21e0b4a7d57809fae9ea31b53220946f90c0b236f0f41006585a863f8","after":"fed692c21e0b4a7d57809fae9ea31b53220946f90c0b236f0f41006585a863f8","unchanged":true}
+ℹ one-triangle GLB: default exit 0, bytes unchanged; no minimum triangle padding
+ℹ corrupt contract: default exit 1; manifest and GLB bytes unchanged
+ℹ explicit --optimize fixture: exit 0, manifest deliberately written
+✔ both asset CLIs reject unknown, ambiguous and incomplete arguments without writes (1982.2967ms)
+ℹ verify_assets.mjs ["<fixture>\\docs\\production\\evidence\\a00-2026-10-01\\inventory.json","--unknown"]: exit 2
+ℹ verify_assets.mjs ["<fixture>\\docs\\production\\evidence\\a00-2026-10-01\\inventory.json","--root"]: exit 2
+ℹ verify_assets.mjs ["<fixture>\\docs\\production\\evidence\\a00-2026-10-01\\inventory.json","--root","--unknown"]: exit 2
+ℹ verify_assets.mjs ["<fixture>\\docs\\production\\evidence\\a00-2026-10-01\\inventory.json","--root","<fixture>","--root","<fixture>"]: exit 2
+ℹ verify_assets.mjs ["<fixture>\\docs\\production\\evidence\\a00-2026-10-01\\inventory.json","extra.json"]: exit 2
+ℹ verify_assets.mjs ["--optimize","--unknown"]: exit 2
+ℹ inspect_asset_pack.mjs ["<fixture>\\docs\\production\\evidence\\a00-2026-10-01\\inventory.json","--unknown"]: exit 2
+ℹ inspect_asset_pack.mjs ["<fixture>\\docs\\production\\evidence\\a00-2026-10-01\\inventory.json","--root"]: exit 2
+ℹ inspect_asset_pack.mjs ["<fixture>\\docs\\production\\evidence\\a00-2026-10-01\\inventory.json","--root","--unknown"]: exit 2
+ℹ inspect_asset_pack.mjs ["<fixture>\\docs\\production\\evidence\\a00-2026-10-01\\inventory.json","--root","<fixture>","--root","<fixture>"]: exit 2
+ℹ inspect_asset_pack.mjs ["<fixture>\\docs\\production\\evidence\\a00-2026-10-01\\inventory.json","extra.json"]: exit 2
+ℹ inspect_asset_pack.mjs ["--optimize","--unknown"]: exit 2
+✔ asset verification rejects broken contracts and leaves inputs unchanged (1997.2122ms)
+ℹ JSON content changed after LF normalization: expected CLI exit 1 observed
+ℹ width: expected CLI exit 1 observed
+ℹ height: expected CLI exit 1 observed
+ℹ alpha: expected CLI exit 1 observed
+ℹ sha256: expected CLI exit 1 observed
+ℹ wrong animation clip: expected CLI exit 1 observed
+ℹ missing file: expected CLI exit 1 observed
+ℹ unapproved publication allowlist entry: expected CLI exit 1 observed
+ℹ extra runtime resource expression: expected CLI exit 1 observed
+ℹ unlisted asset: expected CLI exit 1 observed
+ℹ escaping asset path: expected CLI exit 1 observed
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2993.0894
