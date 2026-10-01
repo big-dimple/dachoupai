@@ -39,7 +39,7 @@ export class GameSession {
   }
   async start(seed:string,characterId:CharacterId):Promise<SavedRun|undefined> {
     if(!this.loaded||!this.lease.writable){this.notice='当前页面无法写入，请重试存储或接管写入。';this.changed();return;}
-    if(this.working)return;this.working=true;this.changed();
+    if(this.working)return;this.working=true;this.notice='';this.changed();
     try {
       if(this.run&&!(await this.run.flush())){this.notice='本局尚未保存，请先重试或导出；未替换已有进度。';return;}
       const slots=await this.storage.read();
