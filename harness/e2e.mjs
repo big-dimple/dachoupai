@@ -121,7 +121,11 @@ async function workflow(page,record,url,touch,fixture){
     await perform(page,touch,action,{double:action.type==='BuyOffer'||hand&&!doubled,interrupt});
     if(action.type==='BuyOffer'){
       const after=await read(page),unaffordable=bot.publicR2View(after.state).offers.find(o=>o.price>after.state.gold);
-      if(unaffordable){await tapUI(page,'shop','offer/'+unaffordable.offerId,touch);assert.equal(await page.getByRole('button',{name:'确认购买',exact:true}).isDisabled(),true);assert.ok((await page.locator('dialog').textContent()).includes('金币不足'));await dom(page,'关闭',touch);assert.deepEqual(await read(page),after,'insufficient gold does not submit a purchase');}
+      if(unaffordable){
+        // This is a new inspection after the intentional double-confirm. Allow the
+        // 350ms modal-dismiss click-through guard to finish before its next intent.
+        await page.waitForTimeout(360);await tapUI(page,'shop','offer/'+unaffordable.offerId,touch);assert.equal(await page.getByRole('button',{name:'确认购买',exact:true}).isDisabled(),true);assert.ok((await page.locator('dialog').textContent()).includes('金币不足'));await dom(page,'关闭',touch);assert.deepEqual(await read(page),after,'insufficient gold does not submit a purchase');
+      }
     }
     if(action.type==='DiscardHand')discarded=true;if(hand){doubled=true;interrupted=true;}
   }

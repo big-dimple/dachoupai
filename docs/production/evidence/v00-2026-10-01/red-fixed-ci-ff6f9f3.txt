@@ -1,0 +1,408 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs
+
+CHECK typecheck: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run typecheck
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+typecheck: PASS
+CHECK test: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+
+ Test Files  26 passed (26)
+      Tests  222 passed (222)
+   Start at  07:55:53
+   Duration  7.88s (transform 2.41s, setup 0ms, import 5.75s, tests 14.76s, environment 5ms)
+
+test: PASS
+CHECK verify:content: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run verify:content
+
+> dachoupai@0.1.0 verify:content
+> node scripts/verify-content.mjs
+
+{
+  "status": "PASS",
+  "definitions": 24,
+  "contentVersion": "quality-r2-graybox-v3",
+  "contentHash": "json-fnv-v1:a1f6f62ddd627819",
+  "conservativeEventBound": 144,
+  "readOnly": true
+}
+verify:content: PASS
+CHECK rules-goldens: C:\Program Files\nodejs\node.exe harness/rules-goldens.mjs shots/ci/rules
+PASS: G01–G15; scoring traces, every before/after and operations independently checked. D:\ai\dachoupai\dachoupai\shots\ci\rules
+rules-goldens: PASS
+CHECK build: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run build
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 56 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.57 kB │ gzip:   0.37 kB
+dist/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+dist/assets/index-BKWhT3Qi.js   1,339.88 kB │ gzip: 375.29 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.23s
+build: PASS
+CHECK verify:smoke: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run verify:smoke
+
+> dachoupai@0.1.0 verify:smoke
+> node harness/screenshot.mjs --verify-smoke
+
+desktop: ok
+mobile: ok
+smoke: ok
+verify:smoke: PASS
+CHECK test:domain:browser: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test:domain:browser
+
+> dachoupai@0.1.0 test:domain:browser
+> node harness/domain.mjs
+
+desktop: r2 buy/discard/play/clear/reorder/sell/replace + exact replay PASS (json-fnv-v1:15020a59c8c2cecd)
+mobile: r2 buy/discard/play/clear/reorder/sell/replace + exact replay PASS (json-fnv-v1:15020a59c8c2cecd)
+domain workflow: PASS
+test:domain:browser: PASS
+CHECK test:layout:browser: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test:layout:browser
+
+> dachoupai@0.1.0 test:layout:browser
+> node harness/layout.mjs
+
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "select/320x568",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/320x568",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/320x568",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/360x640",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/360x640",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/360x640",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/390x844",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/390x844",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/390x844",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/430x932",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/430x932",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/430x932",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/844x390",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/844x390",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/844x390",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/1024x768",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/1024x768",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/1024x768",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/1280x720",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/1280x720",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/1280x720",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "select/768x1024",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "shop/768x1024",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "table/768x1024",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "touch/selection-preserves-stage-and-card-views",
+      "status": "PASS"
+    },
+    {
+      "name": "rotated-table",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "touch/select-limit-cancel-longpress-sort-deck-rotate-drag-confirm",
+      "status": "PASS"
+    },
+    {
+      "name": "state/touye",
+      "status": "PASS"
+    },
+    {
+      "name": "state/xiemu",
+      "status": "PASS"
+    },
+    {
+      "name": "state/amo",
+      "status": "PASS"
+    }
+  ]
+}
+test:layout:browser: PASS
+CHECK test:recovery:browser: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test:recovery:browser
+
+> dachoupai@0.1.0 test:recovery:browser
+> node harness/recovery.mjs
+
+refresh/character-confirmed: PASS
+refresh/shop-first-shown: PASS
+refresh/bought: PASS
+refresh/rerolled: PASS
+refresh/play-committed: PASS
+refresh/during-presentation: PASS
+refresh/reward-published: PASS
+playback/1: PASS
+playback/2: PASS
+playback/4: PASS
+playback/fast-forward: PASS
+playback/audio-denied: PASS
+quota/pause-export-retry: PASS
+data/corrupt-backup-retained: PASS
+data/incompatible-backup-retained: PASS
+import/illegal-rejected-valid-roundtrip: PASS
+tabs/readonly-explicit-takeover: PASS
+scene/exit-new-run-no-stale-callbacks-100-reentries: PASS
+recovery: PASS; 18 actual scenarios
+test:recovery:browser: PASS
+CHECK test:e2e: C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js run test:e2e
+
+> dachoupai@0.1.0 test:e2e
+> node harness/e2e.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 56 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-production/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-production/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-production/assets/index-BKWhT3Qi.js   1,339.88 kB │ gzip: 375.29 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.25s
+vite v7.3.6 building client environment for e2e...
+transforming...
+✓ 56 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-e2e/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-e2e/assets/index-BZ-fR-YG.css      1.74 kB │ gzip:   0.75 kB
+shots/build-e2e/assets/index-B6aLvwFr.js   1,339.98 kB │ gzip: 375.35 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.37s
+chromium/production-observer-hidden: PASS
+chromium/workflow-amo: PASS
+chromium/workflow-erxiang: FAIL
+locator.isDisabled: Timeout 12000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: '确认购买', exact: true })
+
+    at workflow (D:\ai\dachoupai\dachoupai\harness\e2e.mjs:124:154)
+    at async scenario (D:\ai\dachoupai\dachoupai\harness\e2e.mjs:97:5)
+    at async file:///D:/ai/dachoupai/dachoupai/harness/e2e.mjs:151:66 {
+  log: [
+    "  - waiting for getByRole('button', { name: '确认购买', exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+built-bundle E2E: FAIL; 3 actual scenarios (all)
+test:e2e: FAIL
+{
+  "scope": "all",
+  "testedCommit": "ff6f9f363293afe8133d631960505a0dfa1fc6ab",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "65079ddd06fcb1ce3c97bca0f10084aeca30f3b75547a977b5b24dff4860bc0d",
+    "index": "e8b7ce1c9763475b19b089a7212a718b054874a60e471deaba2193cd54f0e218",
+    "head": "ff6f9f363293afe8133d631960505a0dfa1fc6ab",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "after": {
+    "source": "65079ddd06fcb1ce3c97bca0f10084aeca30f3b75547a977b5b24dff4860bc0d",
+    "index": "e8b7ce1c9763475b19b089a7212a718b054874a60e471deaba2193cd54f0e218",
+    "head": "ff6f9f363293afe8133d631960505a0dfa1fc6ab",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "steps": [
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3378
+    },
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 9695
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3677
+    },
+    {
+      "name": "rules-goldens",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 4323
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8195
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 7034
+    },
+    {
+      "name": "test:domain:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 27053
+    },
+    {
+      "name": "test:layout:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 31895
+    },
+    {
+      "name": "test:recovery:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 169191
+    },
+    {
+      "name": "test:e2e",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 80769,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "verify:assets",
+      "status": "NOT_INCLUDED",
+      "reason": "A00 not yet adopted; no placeholder gate"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; legacy r1 seeds are regressions only"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
