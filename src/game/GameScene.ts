@@ -221,10 +221,10 @@ export class GameScene extends Phaser.Scene {
     edgeLines.lineStyle(1,0x967c5b,.48).beginPath().moveTo(-b.width/2+5,b.height/2-3).lineTo(b.width/2-5,b.height/2-3).strokePath();
     c.add(edgeLines);
     if(this.textures.exists('p00-frame-common'))c.add(this.add.image(0,0,'p00-frame-common').setDisplaySize(b.width,b.height).setAlpha(.32));
-    const red=card.suit==='hearts'||card.suit==='diamonds',color=red?C.red:C.ink,small=b.width<70,edge=small?5:10,resolution=Math.min(devicePixelRatio||1,2);
-    const pointSize=Math.min(small?17:26,b.width*.4),label=this.add.text(-b.width/2+edge,-b.height/2+edge,rankLabel(card.rank)+'\n'+SUIT_SYMBOL[card.suit],{fontFamily:'Georgia,serif',fontSize:`${pointSize}px`,fontStyle:'bold',color,lineSpacing:-4,resolution});
-    const suit=this.add.text(b.width*.08,b.height*.08,SUIT_SYMBOL[card.suit],{fontFamily:'Georgia,serif',fontSize:`${Math.min(54,b.width*.49)}px`,color,resolution}).setOrigin(.5).setShadow(0,1,'#d9c6a7',1,true,false);
-    const corner=this.add.text(b.width/2-edge,b.height/2-edge,rankLabel(card.rank)+(small?'':'\n'+SUIT_SYMBOL[card.suit]),{fontFamily:'Georgia,serif',fontSize:`${Math.min(small?13:22,b.width*.3)}px`,fontStyle:'bold',color,lineSpacing:-4,resolution}).setOrigin(0,0).setAngle(180);
+    const red=card.suit==='hearts'||card.suit==='diamonds',color=red?C.red:C.ink,small=b.width<90,edge=small?5:10,resolution=Math.min(devicePixelRatio||1,2);
+    const pointSize=Math.min(small?17:26,b.width*.24,b.height*.19),label=this.add.text(-b.width/2+edge,-b.height/2+edge,rankLabel(card.rank)+'\n'+SUIT_SYMBOL[card.suit],{fontFamily:'Georgia,serif',fontSize:`${pointSize}px`,fontStyle:'bold',color,lineSpacing:-4,resolution});
+    const suit=this.add.text(b.width*.08,b.height*.08,SUIT_SYMBOL[card.suit],{fontFamily:'Georgia,serif',fontSize:`${Math.min(54,b.width*.43,b.height*.3)}px`,color,resolution}).setOrigin(.5).setShadow(0,1,'#d9c6a7',1,true,false);
+    const corner=this.add.text(b.width/2-edge,b.height/2-edge,rankLabel(card.rank)+(small?'':'\n'+SUIT_SYMBOL[card.suit]),{fontFamily:'Georgia,serif',fontSize:`${Math.min(small?13:20,b.width*.2,b.height*.14)}px`,fontStyle:'bold',color,lineSpacing:-4,resolution}).setOrigin(0,0).setAngle(180);
     const scoringMark=this.add.text(-b.width/2+edge,b.height/2-21,'★',{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:C.jade,resolution}).setVisible(false);
     c.add([label,suit,corner,scoringMark]);
     const back=this.textures.exists('p00-card-back')?this.add.image(0,0,'p00-card-back').setDisplaySize(b.width,b.height).setVisible(false):undefined;if(back)c.add(back);
