@@ -1,0 +1,13 @@
+{
+  "taskId": "V01",
+  "testedCommit": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+  "rulesVersion": "r2",
+  "contentVersion": "quality-r2-graybox-v3",
+  "contentHash": "json-fnv-v1:a1f6f62ddd627819",
+  "status": "BLOCKED",
+  "environment": {"device": "Android Chrome key-milestone operation NOT_RUN; physical model/OS/browser version not yet recorded"},
+  "checks": [{"name":"first-human-core-experience","command":"NOT_RUN: supervised human observation has no shell command","status":"BLOCKED","reason":"No actual 8–12 mixed novice/experienced participant observations, repeat validation or explicit owner acceptance for this candidate."}],
+  "humanReview": {"status":"NOT_RUN","reviewer":"","evidence":""},
+  "limitations": ["V00 automated evidence does not establish human enjoyment, understanding or phone touch acceptance.","User validates Android only at key milestones and handles deployment independently; do not prepare deployment handoff or require routine checks/message relay.","A00 is independent and eligible; A01/C00 remain dependency-gated until actual V01 approval."],
+  "nextTask": "A00"
+}

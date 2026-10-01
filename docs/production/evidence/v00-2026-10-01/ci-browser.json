@@ -1,0 +1,90 @@
+{
+  "scope": "browser",
+  "testedCommit": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "8194bccd49d07fbe263c1ac612c73074b06f24c755221bcf3aa51bc4382f968a",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": null
+  },
+  "after": {
+    "source": "8194bccd49d07fbe263c1ac612c73074b06f24c755221bcf3aa51bc4382f968a",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": null
+  },
+  "steps": [
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8375
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 6790
+    },
+    {
+      "name": "test:domain:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 38965
+    },
+    {
+      "name": "test:layout:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 52692
+    },
+    {
+      "name": "test:recovery:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 309363
+    },
+    {
+      "name": "test:e2e",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 243152
+    },
+    {
+      "name": "test:v00:sample",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 34435
+    },
+    {
+      "name": "test:v00:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 348483
+    },
+    {
+      "name": "test:gate-faults",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 250030
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "verify:assets",
+      "status": "NOT_INCLUDED",
+      "reason": "A00 not yet adopted; no placeholder gate"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; legacy r1 seeds are regressions only"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

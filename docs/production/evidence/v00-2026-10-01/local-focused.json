@@ -1,0 +1,74 @@
+{
+  "scope": "V00 final font repair and unchanged domain contracts",
+  "testedCommit": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "a40976a3186a3ab2ad867e308e9cf633a8a12a66a7c94edccf264cfaf378730e",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "after": {
+    "source": "a40976a3186a3ab2ad867e308e9cf633a8a12a66a7c94edccf264cfaf378730e",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "steps": [
+    {
+      "name": "verify",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 22564
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8024
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3793
+    },
+    {
+      "name": "rules-goldens",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 4462
+    },
+    {
+      "name": "test:v00:sample",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 43562
+    },
+    {
+      "name": "test:v00:browser",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 502753
+    },
+    {
+      "name": "shot",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8645
+    },
+    {
+      "name": "plan-counterexamples",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 726
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 736
+    }
+  ]
+}

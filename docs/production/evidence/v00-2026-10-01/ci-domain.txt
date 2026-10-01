@@ -1,0 +1,356 @@
+﻿2026-10-01T00:39:19.6092257Z Current runner version: '2.337.0'
+2026-10-01T00:39:19.6118178Z ##[group]Runner Image Provisioner
+2026-10-01T00:39:19.6119285Z Hosted Compute Agent
+2026-10-01T00:39:19.6119998Z Version: 20260828.587
+2026-10-01T00:39:19.6120660Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-10-01T00:39:19.6121392Z Build Date: 2026-08-28T16:44:25Z
+2026-10-01T00:39:19.6122218Z Worker ID: {0750f0d1-dedd-4699-b2d6-78c68394bcbe}
+2026-10-01T00:39:19.6122957Z Azure Region: northcentralus
+2026-10-01T00:39:19.6123713Z ##[endgroup]
+2026-10-01T00:39:19.6125129Z ##[group]Operating System
+2026-10-01T00:39:19.6125790Z Ubuntu
+2026-10-01T00:39:19.6126434Z 24.04.5
+2026-10-01T00:39:19.6126979Z LTS
+2026-10-01T00:39:19.6127558Z ##[endgroup]
+2026-10-01T00:39:19.6128397Z ##[group]Runner Image
+2026-10-01T00:39:19.6129398Z Image: ubuntu-24.04
+2026-10-01T00:39:19.6130180Z Version: 20260920.314.1
+2026-10-01T00:39:19.6131490Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-01T00:39:19.6133085Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+2026-10-01T00:39:19.6134103Z ##[endgroup]
+2026-10-01T00:39:19.6135365Z ##[group]GITHUB_TOKEN Permissions
+2026-10-01T00:39:19.6137257Z Contents: read
+2026-10-01T00:39:19.6138010Z Metadata: read
+2026-10-01T00:39:19.6138636Z ##[endgroup]
+2026-10-01T00:39:19.6141104Z Secret source: Actions
+2026-10-01T00:39:19.6142068Z Cache mode: write
+2026-10-01T00:39:19.6142867Z Prepare workflow directory
+2026-10-01T00:39:19.6486361Z Prepare all required actions
+2026-10-01T00:39:19.6534559Z Getting action download info
+2026-10-01T00:39:19.9325100Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-01T00:39:20.0096765Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-01T00:39:20.1113574Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-01T00:39:20.3172450Z Complete job name: domain
+2026-10-01T00:39:20.3961029Z ##[group]Run actions/checkout@v4
+2026-10-01T00:39:20.3961914Z with:
+2026-10-01T00:39:20.3962458Z   ref: 3ca5261d4b11e51630fd030799e5c0e9b50a82ea
+2026-10-01T00:39:20.3963162Z   repository: big-dimple/dachoupai
+2026-10-01T00:39:20.3967069Z   token: ***
+2026-10-01T00:39:20.3967587Z   ssh-strict: true
+2026-10-01T00:39:20.3968100Z   ssh-user: git
+2026-10-01T00:39:20.3968622Z   persist-credentials: true
+2026-10-01T00:39:20.3969630Z   clean: true
+2026-10-01T00:39:20.3970130Z   sparse-checkout-cone-mode: true
+2026-10-01T00:39:20.3970702Z   fetch-depth: 1
+2026-10-01T00:39:20.3971182Z   fetch-tags: false
+2026-10-01T00:39:20.3971681Z   show-progress: true
+2026-10-01T00:39:20.3972181Z   lfs: false
+2026-10-01T00:39:20.3972649Z   submodules: false
+2026-10-01T00:39:20.3973160Z   set-safe-directory: true
+2026-10-01T00:39:20.3973721Z   allow-unsafe-pr-checkout: false
+2026-10-01T00:39:20.3974573Z ##[endgroup]
+2026-10-01T00:39:20.5016903Z Syncing repository: big-dimple/dachoupai
+2026-10-01T00:39:20.5020099Z ##[group]Getting Git version info
+2026-10-01T00:39:20.5021251Z Working directory is '/home/runner/work/dachoupai/dachoupai'
+2026-10-01T00:39:20.5022949Z [command]/usr/bin/git version
+2026-10-01T00:39:20.5064081Z git version 2.55.0
+2026-10-01T00:39:20.5084738Z ##[endgroup]
+2026-10-01T00:39:20.5100382Z Temporarily overriding HOME='/home/runner/work/_temp/1467f833-b6c9-407f-9d80-43d1e4668d51' before making global git config changes
+2026-10-01T00:39:20.5102709Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-01T00:39:20.5105836Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dachoupai/dachoupai
+2026-10-01T00:39:20.5179156Z Deleting the contents of '/home/runner/work/dachoupai/dachoupai'
+2026-10-01T00:39:20.5181634Z ##[group]Initializing the repository
+2026-10-01T00:39:20.5183003Z [command]/usr/bin/git init /home/runner/work/dachoupai/dachoupai
+2026-10-01T00:39:20.5258282Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-01T00:39:20.5260244Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-01T00:39:20.5261213Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-01T00:39:20.5262346Z hint: call:
+2026-10-01T00:39:20.5262750Z hint:
+2026-10-01T00:39:20.5263289Z hint: 	git config --global init.defaultBranch <name>
+2026-10-01T00:39:20.5263916Z hint:
+2026-10-01T00:39:20.5264503Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-01T00:39:20.5265446Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-01T00:39:20.5266208Z hint:
+2026-10-01T00:39:20.5266633Z hint: 	git branch -m <name>
+2026-10-01T00:39:20.5267116Z hint:
+2026-10-01T00:39:20.5267744Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-01T00:39:20.5280304Z Initialized empty Git repository in /home/runner/work/dachoupai/dachoupai/.git/
+2026-10-01T00:39:20.5283954Z [command]/usr/bin/git remote add origin https://github.com/big-dimple/dachoupai
+2026-10-01T00:39:20.5337807Z ##[endgroup]
+2026-10-01T00:39:20.5338706Z ##[group]Disabling automatic garbage collection
+2026-10-01T00:39:20.5339789Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-01T00:39:20.5376421Z ##[endgroup]
+2026-10-01T00:39:20.5377572Z ##[group]Setting up auth
+2026-10-01T00:39:20.5384068Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-01T00:39:20.5421362Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-01T00:39:20.5799776Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-01T00:39:20.5852748Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-01T00:39:20.6115478Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-01T00:39:20.6159462Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-01T00:39:20.6430342Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-01T00:39:20.6475672Z ##[endgroup]
+2026-10-01T00:39:20.6476865Z ##[group]Fetching the repository
+2026-10-01T00:39:20.6487385Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 3ca5261d4b11e51630fd030799e5c0e9b50a82ea
+2026-10-01T00:39:22.2315088Z From https://github.com/big-dimple/dachoupai
+2026-10-01T00:39:22.2316925Z  * branch            3ca5261d4b11e51630fd030799e5c0e9b50a82ea -> FETCH_HEAD
+2026-10-01T00:39:22.2331548Z ##[endgroup]
+2026-10-01T00:39:22.2332655Z ##[group]Determining the checkout info
+2026-10-01T00:39:22.2334031Z ##[endgroup]
+2026-10-01T00:39:22.2334821Z [command]/usr/bin/git sparse-checkout disable
+2026-10-01T00:39:22.2400558Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-01T00:39:22.2441078Z ##[group]Checking out the ref
+2026-10-01T00:39:22.2445175Z [command]/usr/bin/git checkout --progress --force 3ca5261d4b11e51630fd030799e5c0e9b50a82ea
+2026-10-01T00:39:22.4024274Z Note: switching to '3ca5261d4b11e51630fd030799e5c0e9b50a82ea'.
+2026-10-01T00:39:22.4025122Z
+2026-10-01T00:39:22.4025750Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-01T00:39:22.4026919Z changes and commit them, and you can discard any commits you make in this
+2026-10-01T00:39:22.4028128Z state without impacting any branches by switching back to a branch.
+2026-10-01T00:39:22.4029026Z
+2026-10-01T00:39:22.4029564Z If you want to create a new branch to retain commits you create, you may
+2026-10-01T00:39:22.4030915Z do so (now or later) by using -c with the switch command. Example:
+2026-10-01T00:39:22.4031963Z
+2026-10-01T00:39:22.4032318Z   git switch -c <new-branch-name>
+2026-10-01T00:39:22.4032866Z
+2026-10-01T00:39:22.4033216Z Or undo this operation with:
+2026-10-01T00:39:22.4033711Z
+2026-10-01T00:39:22.4034012Z   git switch -
+2026-10-01T00:39:22.4034448Z
+2026-10-01T00:39:22.4035106Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-01T00:39:22.4036088Z
+2026-10-01T00:39:22.4036761Z HEAD is now at 3ca5261 fix(V00): separate rarity from full narrow-screen values
+2026-10-01T00:39:22.4042902Z ##[endgroup]
+2026-10-01T00:39:22.4092654Z [command]/usr/bin/git log -1 --format=%H
+2026-10-01T00:39:22.4124585Z 3ca5261d4b11e51630fd030799e5c0e9b50a82ea
+2026-10-01T00:39:22.4573905Z ##[group]Run actions/setup-node@v4
+2026-10-01T00:39:22.4575078Z with:
+2026-10-01T00:39:22.4575976Z   node-version: 22
+2026-10-01T00:39:22.4576903Z   cache: npm
+2026-10-01T00:39:22.4577809Z   always-auth: false
+2026-10-01T00:39:22.4578943Z   check-latest: false
+2026-10-01T00:39:22.4586860Z   token: ***
+2026-10-01T00:39:22.4587799Z ##[endgroup]
+2026-10-01T00:39:22.6044071Z Found in cache @ /opt/hostedtoolcache/node/22.23.2/x64
+2026-10-01T00:39:22.6047659Z (node:2252) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-01T00:39:22.6051659Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-01T00:39:22.6055062Z ##[group]Environment details
+2026-10-01T00:39:22.9676647Z node: v22.23.2
+2026-10-01T00:39:22.9677960Z npm: 10.9.8
+2026-10-01T00:39:22.9679319Z yarn: 1.22.22
+2026-10-01T00:39:22.9681413Z ##[endgroup]
+2026-10-01T00:39:22.9699560Z [command]/opt/hostedtoolcache/node/22.23.2/x64/bin/npm config get cache
+2026-10-01T00:39:23.0756486Z /home/runner/.npm
+2026-10-01T00:39:23.1881988Z Cache hit for: node-cache-Linux-x64-npm-0f079ee01ade4a5835fe99686f334c01324694e20f2d9805b8cc57300ed7c392
+2026-10-01T00:39:23.1978347Z (node:2252) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-01T00:39:23.9098492Z Received 59052182 of 59052182 (100.0%), 92.6 MBs/sec
+2026-10-01T00:39:23.9100098Z Cache Size: ~56 MB (59052182 B)
+2026-10-01T00:39:23.9122750Z [command]/usr/bin/tar -xf /home/runner/work/_temp/c69af1b8-fb27-41c6-8ba8-4d4642da3629/cache.tzst -P -C /home/runner/work/dachoupai/dachoupai --use-compress-program unzstd
+2026-10-01T00:39:24.0331801Z Cache restored successfully
+2026-10-01T00:39:24.0364566Z Cache restored from key: node-cache-Linux-x64-npm-0f079ee01ade4a5835fe99686f334c01324694e20f2d9805b8cc57300ed7c392
+2026-10-01T00:39:24.0584445Z ##[group]Run npm ci
+2026-10-01T00:39:24.0584785Z npm ci
+2026-10-01T00:39:24.0827223Z shell: /usr/bin/bash -e {0}
+2026-10-01T00:39:24.0827562Z ##[endgroup]
+2026-10-01T00:39:26.5414971Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-10-01T00:39:27.9614389Z
+2026-10-01T00:39:27.9615414Z added 226 packages, and audited 227 packages in 4s
+2026-10-01T00:39:27.9616433Z
+2026-10-01T00:39:27.9639878Z 53 packages are looking for funding
+2026-10-01T00:39:27.9661282Z   run `npm fund` for details
+2026-10-01T00:39:27.9699369Z
+2026-10-01T00:39:27.9699798Z found 0 vulnerabilities
+2026-10-01T00:39:28.0324419Z ##[group]Run npm run verify:ci -- --scope=domain
+2026-10-01T00:39:28.0324876Z npm run verify:ci -- --scope=domain
+2026-10-01T00:39:28.0396811Z shell: /usr/bin/bash -e {0}
+2026-10-01T00:39:28.0397118Z ##[endgroup]
+2026-10-01T00:39:28.1498622Z
+2026-10-01T00:39:28.1499567Z > dachoupai@0.1.0 verify:ci
+2026-10-01T00:39:28.1500300Z > node scripts/verify-ci.mjs --scope=domain
+2026-10-01T00:39:28.1500682Z
+2026-10-01T00:39:28.2822574Z CHECK typecheck: /opt/hostedtoolcache/node/22.23.2/x64/bin/node /opt/hostedtoolcache/node/22.23.2/x64/lib/node_modules/npm/bin/npm-cli.js run typecheck
+2026-10-01T00:39:28.4057481Z
+2026-10-01T00:39:28.4058520Z > dachoupai@0.1.0 typecheck
+2026-10-01T00:39:28.4059494Z > tsc --noEmit
+2026-10-01T00:39:28.4059934Z
+2026-10-01T00:39:31.9560017Z typecheck: PASS
+2026-10-01T00:39:31.9561444Z CHECK test: /opt/hostedtoolcache/node/22.23.2/x64/bin/node /opt/hostedtoolcache/node/22.23.2/x64/lib/node_modules/npm/bin/npm-cli.js run test
+2026-10-01T00:39:32.0492782Z
+2026-10-01T00:39:32.0493442Z > dachoupai@0.1.0 test
+2026-10-01T00:39:32.0493904Z > vitest run
+2026-10-01T00:39:32.0494391Z
+2026-10-01T00:39:32.3226354Z
+2026-10-01T00:39:32.3228215Z  RUN  v4.1.11 /home/runner/work/dachoupai/dachoupai
+2026-10-01T00:39:32.3229366Z
+2026-10-01T00:39:32.9278155Z  ✓ tests/rules.test.ts (39 tests) 148ms
+2026-10-01T00:39:33.0451808Z  ✓ tests/v00-run.test.ts (12 tests) 206ms
+2026-10-01T00:39:33.2531547Z  ✓ tests/r2-run.test.ts (13 tests) 98ms
+2026-10-01T00:39:33.3620726Z  ✓ tests/v00-score.test.ts (15 tests) 66ms
+2026-10-01T00:39:33.7381476Z  ✓ tests/recovery-save.test.ts (8 tests) 226ms
+2026-10-01T00:39:33.7570851Z  ✓ tests/r2-command.test.ts (5 tests) 157ms
+2026-10-01T00:39:34.0408632Z  ✓ tests/v00-consumables.test.ts (9 tests) 59ms
+2026-10-01T00:39:34.0485499Z  ✓ tests/v00-save.test.ts (5 tests) 61ms
+2026-10-01T00:39:34.2641614Z  ✓ tests/layout.test.ts (13 tests) 30ms
+2026-10-01T00:39:34.3970318Z stdout | tests/ci-gates.test.mjs > executable CI and read-only gates > an ordinary successful child keeps source and index unchanged
+2026-10-01T00:39:34.3972457Z CHECK read: /opt/hostedtoolcache/node/22.23.2/x64/bin/node -e require("node:fs").readFileSync("source.txt")
+2026-10-01T00:39:34.3973870Z read: PASS
+2026-10-01T00:39:34.3974561Z
+2026-10-01T00:39:34.4474179Z  ✓ tests/shop.test.ts (8 tests) 9ms
+2026-10-01T00:39:34.4837916Z stdout | tests/ci-gates.test.mjs > executable CI and read-only gates > a zero-exit checker which writes source is rejected without hiding its write
+2026-10-01T00:39:34.4841144Z CHECK write: /opt/hostedtoolcache/node/22.23.2/x64/bin/node -e require("node:fs").writeFileSync("source.txt","changed")
+2026-10-01T00:39:34.4842672Z write: FAIL
+2026-10-01T00:39:34.4852328Z
+2026-10-01T00:39:34.5726021Z stdout | tests/ci-gates.test.mjs > executable CI and read-only gates > a failing child stops the gate and cannot run a later false-success step
+2026-10-01T00:39:34.5731790Z CHECK fail: /opt/hostedtoolcache/node/22.23.2/x64/bin/node -e process.exit(9)
+2026-10-01T00:39:34.5737077Z fail: FAIL
+2026-10-01T00:39:34.5737574Z
+2026-10-01T00:39:34.6214871Z  ✓ tests/run.test.ts (7 tests) 8ms
+2026-10-01T00:39:34.6781339Z stdout | tests/ci-gates.test.mjs > executable CI and read-only gates > a zero-exit checker which changes only the index is also rejected
+2026-10-01T00:39:34.6785439Z CHECK index-write: /opt/hostedtoolcache/node/22.23.2/x64/bin/node -e require("node:child_process").execFileSync("git",["rm","--cached","source.txt"])
+2026-10-01T00:39:34.6787085Z index-write: FAIL
+2026-10-01T00:39:34.6787634Z
+2026-10-01T00:39:34.6817226Z  ✓ tests/ci-gates.test.mjs (7 tests) 443ms
+2026-10-01T00:39:34.8108260Z  ✓ tests/recovery-queue.test.ts (5 tests) 11ms
+2026-10-01T00:39:35.0930057Z  ✓ tests/rational.test.ts (4 tests) 72ms
+2026-10-01T00:39:35.6514428Z  ✓ tests/r2-shop.test.ts (2 tests) 318ms
+2026-10-01T00:39:35.8710980Z  ✓ tests/scoreHand.test.ts (3 tests) 7ms
+2026-10-01T00:39:36.0154596Z  ✓ tests/jokers.test.ts (5 tests) 5ms
+2026-10-01T00:39:36.2076542Z  ✓ tests/characters.test.ts (6 tests) 8ms
+2026-10-01T00:39:36.4310977Z  ✓ tests/content-schema.test.ts (16 tests) 8ms
+2026-10-01T00:39:36.6680190Z  ✓ tests/card-boundary.test.ts (1 test) 11ms
+2026-10-01T00:39:36.7599183Z  ✓ tests/v00-bot.test.ts (5 tests) 1868ms
+2026-10-01T00:39:36.7600973Z      ✓ single-held emits only valid ordinary commands on a natural run  445ms
+2026-10-01T00:39:36.7613837Z      ✓ groups emits only valid ordinary commands on a natural run  807ms
+2026-10-01T00:39:36.7615656Z      ✓ suit emits only valid ordinary commands on a natural run  603ms
+2026-10-01T00:39:36.9790827Z  ✓ tests/handEvaluator.test.ts (5 tests) 6ms
+2026-10-01T00:39:37.1488539Z  ✓ tests/SeededRng.test.ts (3 tests) 4ms
+2026-10-01T00:39:37.3019721Z  ✓ tests/portraitCrop.test.ts (2 tests) 5ms
+2026-10-01T00:39:37.3634156Z  ✓ tests/legacy-r1-balance.test.ts (2 tests) 479ms
+2026-10-01T00:39:37.8924796Z  ✓ tests/domain.test.ts (22 tests) 5026ms
+2026-10-01T00:39:37.8925909Z      ✓ keeps all active card instances in exactly one zone in 1000 fixed generated cases  4794ms
+2026-10-01T00:39:37.8968701Z
+2026-10-01T00:39:37.8980035Z  Test Files  26 passed (26)
+2026-10-01T00:39:37.8980896Z       Tests  222 passed (222)
+2026-10-01T00:39:37.8981372Z    Start at  00:39:32
+2026-10-01T00:39:37.8982181Z    Duration  5.56s (transform 951ms, setup 0ms, import 1.78s, tests 9.34s, environment 3ms)
+2026-10-01T00:39:37.8982574Z
+2026-10-01T00:39:38.0108413Z test: PASS
+2026-10-01T00:39:38.0109899Z CHECK verify:content: /opt/hostedtoolcache/node/22.23.2/x64/bin/node /opt/hostedtoolcache/node/22.23.2/x64/lib/node_modules/npm/bin/npm-cli.js run verify:content
+2026-10-01T00:39:38.1045180Z
+2026-10-01T00:39:38.1045935Z > dachoupai@0.1.0 verify:content
+2026-10-01T00:39:38.1046571Z > node scripts/verify-content.mjs
+2026-10-01T00:39:38.1046897Z
+2026-10-01T00:39:38.6365046Z {
+2026-10-01T00:39:38.6365364Z   "status": "PASS",
+2026-10-01T00:39:38.6365640Z   "definitions": 24,
+2026-10-01T00:39:38.6365970Z   "contentVersion": "quality-r2-graybox-v3",
+2026-10-01T00:39:38.6366358Z   "contentHash": "json-fnv-v1:a1f6f62ddd627819",
+2026-10-01T00:39:38.6366710Z   "conservativeEventBound": 144,
+2026-10-01T00:39:38.6367499Z   "readOnly": true
+2026-10-01T00:39:38.6367826Z }
+2026-10-01T00:39:39.1433614Z verify:content: PASS
+2026-10-01T00:39:39.1434691Z CHECK rules-goldens: /opt/hostedtoolcache/node/22.23.2/x64/bin/node harness/rules-goldens.mjs shots/ci/rules
+2026-10-01T00:39:39.8601247Z PASS: G01–G15; scoring traces, every before/after and operations independently checked. /home/runner/work/dachoupai/dachoupai/shots/ci/rules
+2026-10-01T00:39:40.2097019Z rules-goldens: PASS
+2026-10-01T00:39:40.2964699Z {
+2026-10-01T00:39:40.2965107Z   "scope": "domain",
+2026-10-01T00:39:40.2965665Z   "testedCommit": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+2026-10-01T00:39:40.2966169Z   "status": "PASS",
+2026-10-01T00:39:40.2966489Z   "exitCode": 0,
+2026-10-01T00:39:40.2966790Z   "before": {
+2026-10-01T00:39:40.2967412Z     "source": "70fdbe8b0ad3647cc87e9ee916ebe24471b2a3a4f25c9dd39c0b2f6fc0292f4f",
+2026-10-01T00:39:40.2968334Z     "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+2026-10-01T00:39:40.2969318Z     "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+2026-10-01T00:39:40.2969782Z     "branch": null
+2026-10-01T00:39:40.2970094Z   },
+2026-10-01T00:39:40.2970376Z   "after": {
+2026-10-01T00:39:40.2970965Z     "source": "70fdbe8b0ad3647cc87e9ee916ebe24471b2a3a4f25c9dd39c0b2f6fc0292f4f",
+2026-10-01T00:39:40.2971905Z     "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+2026-10-01T00:39:40.2972698Z     "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+2026-10-01T00:39:40.2973214Z     "branch": null
+2026-10-01T00:39:40.2973545Z   },
+2026-10-01T00:39:40.2973855Z   "steps": [
+2026-10-01T00:39:40.2974167Z     {
+2026-10-01T00:39:40.2974543Z       "name": "typecheck",
+2026-10-01T00:39:40.2974988Z       "status": "PASS",
+2026-10-01T00:39:40.2975370Z       "childExitCode": 0,
+2026-10-01T00:39:40.2975767Z       "elapsedMs": 3673
+2026-10-01T00:39:40.2976095Z     },
+2026-10-01T00:39:40.2976415Z     {
+2026-10-01T00:39:40.2976739Z       "name": "test",
+2026-10-01T00:39:40.2977109Z       "status": "PASS",
+2026-10-01T00:39:40.2977480Z       "childExitCode": 0,
+2026-10-01T00:39:40.2977877Z       "elapsedMs": 6055
+2026-10-01T00:39:40.2978192Z     },
+2026-10-01T00:39:40.2978535Z     {
+2026-10-01T00:39:40.2979114Z       "name": "verify:content",
+2026-10-01T00:39:40.2979577Z       "status": "PASS",
+2026-10-01T00:39:40.2979949Z       "childExitCode": 0,
+2026-10-01T00:39:40.2980369Z       "elapsedMs": 1133
+2026-10-01T00:39:40.2980749Z     },
+2026-10-01T00:39:40.2981080Z     {
+2026-10-01T00:39:40.2981490Z       "name": "rules-goldens",
+2026-10-01T00:39:40.2981935Z       "status": "PASS",
+2026-10-01T00:39:40.2982310Z       "childExitCode": 0,
+2026-10-01T00:39:40.2982787Z       "elapsedMs": 1066
+2026-10-01T00:39:40.2983144Z     }
+2026-10-01T00:39:40.2983455Z   ],
+2026-10-01T00:39:40.2983791Z   "notIncluded": [
+2026-10-01T00:39:40.2984139Z     {
+2026-10-01T00:39:40.2984494Z       "name": "verify:assets",
+2026-10-01T00:39:40.2984942Z       "status": "NOT_INCLUDED",
+2026-10-01T00:39:40.2985538Z       "reason": "A00 not yet adopted; no placeholder gate"
+2026-10-01T00:39:40.2986065Z     },
+2026-10-01T00:39:40.2986335Z     {
+2026-10-01T00:39:40.2986776Z       "name": "balance/benchmark acceptance",
+2026-10-01T00:39:40.2987270Z       "status": "NOT_INCLUDED",
+2026-10-01T00:39:40.2987917Z       "reason": "later work packages; legacy r1 seeds are regressions only"
+2026-10-01T00:39:40.2988503Z     },
+2026-10-01T00:39:40.2988916Z     {
+2026-10-01T00:39:40.2989401Z       "name": "physical devices / human / art approval",
+2026-10-01T00:39:40.2990019Z       "status": "NOT_RUN"
+2026-10-01T00:39:40.2990401Z     }
+2026-10-01T00:39:40.2990687Z   ]
+2026-10-01T00:39:40.2990974Z }
+2026-10-01T00:39:40.3200972Z ##[group]Run actions/upload-artifact@v4
+2026-10-01T00:39:40.3201281Z with:
+2026-10-01T00:39:40.3201498Z   name: domain-36797246965
+2026-10-01T00:39:40.3201750Z   path: shots/ci/
+2026-10-01T00:39:40.3202001Z   retention-days: 14
+2026-10-01T00:39:40.3202277Z   if-no-files-found: warn
+2026-10-01T00:39:40.3202523Z   compression-level: 6
+2026-10-01T00:39:40.3202761Z   overwrite: false
+2026-10-01T00:39:40.3202992Z   include-hidden-files: false
+2026-10-01T00:39:40.3203248Z ##[endgroup]
+2026-10-01T00:39:40.4880076Z (node:2746) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-01T00:39:40.4880960Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-01T00:39:40.4965669Z With the provided path, there will be 2 files uploaded
+2026-10-01T00:39:40.4966940Z Artifact name is valid!
+2026-10-01T00:39:40.4967385Z Root directory input is valid!
+2026-10-01T00:39:40.7583609Z Beginning upload of artifact content to blob storage
+2026-10-01T00:39:40.7821999Z (node:2746) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-01T00:39:40.8844357Z Uploaded bytes 15958
+2026-10-01T00:39:40.9149698Z Finished uploading artifact content to blob storage!
+2026-10-01T00:39:40.9150845Z SHA256 digest of uploaded artifact zip is 11eecb031b1e8dc43b310a467f43dbd28d6a5c4a49cc105359e539490a600bda
+2026-10-01T00:39:40.9152034Z Finalizing artifact upload
+2026-10-01T00:39:41.1172214Z Artifact domain-36797246965.zip successfully finalized. Artifact ID 11133579921
+2026-10-01T00:39:41.1173544Z Artifact domain-36797246965 has been successfully uploaded! Final size is 15958 bytes. Artifact ID is 11133579921
+2026-10-01T00:39:41.1180021Z Artifact download URL: https://github.com/big-dimple/dachoupai/actions/runs/36797246965/artifacts/11133579921
+2026-10-01T00:39:41.1373732Z Post job cleanup.
+2026-10-01T00:39:41.2666087Z (node:2758) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-01T00:39:41.2666945Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-01T00:39:41.2670523Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-0f079ee01ade4a5835fe99686f334c01324694e20f2d9805b8cc57300ed7c392, not saving cache.
+2026-10-01T00:39:41.2812054Z Post job cleanup.
+2026-10-01T00:39:41.3683722Z [command]/usr/bin/git version
+2026-10-01T00:39:41.3727414Z git version 2.55.0
+2026-10-01T00:39:41.3768235Z Temporarily overriding HOME='/home/runner/work/_temp/2c8bb381-7a12-474a-bd7b-c20a065a0652' before making global git config changes
+2026-10-01T00:39:41.3769965Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-01T00:39:41.3774294Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dachoupai/dachoupai
+2026-10-01T00:39:41.3815016Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-01T00:39:41.3869955Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-01T00:39:41.4127409Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-01T00:39:41.4160136Z http.https://github.com/.extraheader
+2026-10-01T00:39:41.4173762Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-01T00:39:41.4214728Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-01T00:39:41.4499836Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-01T00:39:41.4539607Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-01T00:39:41.4973902Z Cleaning up orphan processes
+2026-10-01T00:39:41.5291013Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,38 @@
+{
+  "testedCommit": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+  "workingTree": "Final player wording and root-only shot ignore; prior fixed-SHA evidence added; source/index/HEAD unchanged during these checks",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "3c5bc4752d8e4cb55733d0ecbedb62c859e61555e34eca0c83ad325f7d0814a3",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "after": {
+    "source": "3c5bc4752d8e4cb55733d0ecbedb62c859e61555e34eca0c83ad325f7d0814a3",
+    "index": "f1b7764f985ed2c3dbf5dd22eb6ca03fdd16f8d9e1fd771b00d32bb75d3c225b",
+    "head": "3ca5261d4b11e51630fd030799e5c0e9b50a82ea",
+    "branch": "refs/heads/feat/V00-core-graybox"
+  },
+  "steps": [
+    {
+      "name": "verify",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 22629
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 7570
+    },
+    {
+      "name": "shot",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8324
+    }
+  ]
+}
