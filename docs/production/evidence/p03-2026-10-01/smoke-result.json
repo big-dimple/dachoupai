@@ -1,0 +1,46 @@
+{
+  "testedCommit": "a37154d84e908bc4790d27e3c4863698df3af3b7",
+  "dirty": "?? .codex-remote-attachments/\n?? .tmp-feedback/\n?? docs/production/evidence/p03-2026-10-01/\n?? harness/motion-probe.tmp.mjs",
+  "checks": [
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "profile": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "input": "mouse.click / DOM click",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "play-preview-feedback",
+        "reload-continue"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "profile": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "PASS",
+      "input": "touchscreen.tap / DOM tap",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "play-preview-feedback",
+        "reload-continue"
+      ]
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN"
+}

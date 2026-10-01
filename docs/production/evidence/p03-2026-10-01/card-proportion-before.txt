@@ -1,0 +1,68 @@
+
+> dachoupai@0.1.0 test:layout
+> vitest run tests/layout.test.ts
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/layout.test.ts (15 tests | 8 failed) 32ms
+     × 360×640: readable, visible and distinct hit areas 5ms
+     × 390×844: readable, visible and distinct hit areas 2ms
+     × 430×932: readable, visible and distinct hit areas 1ms
+     × 844×390: readable, visible and distinct hit areas 1ms
+     × 1024×768: readable, visible and distinct hit areas 1ms
+     × 1280×720: readable, visible and distinct hit areas 1ms
+     × 1920×1080: readable, visible and distinct hit areas 1ms
+     × 768×1024: readable, visible and distinct hit areas 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > 360×640: readable, visible and distinct hit areas
+AssertionError: expected 1.0714285714285714 to be greater than or equal to 1.399999
+ ❯ tests/layout.test.ts:16:192
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > 390×844: readable, visible and distinct hit areas
+ FAIL  tests/layout.test.ts > CSS layout contract > 430×932: readable, visible and distinct hit areas
+AssertionError: expected 1.2857142857142858 to be greater than or equal to 1.399999
+ ❯ tests/layout.test.ts:16:192
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > 844×390: readable, visible and distinct hit areas
+AssertionError: expected 0.5909090909090909 to be greater than or equal to 1.399999
+ ❯ tests/layout.test.ts:16:192
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > 1024×768: readable, visible and distinct hit areas
+AssertionError: expected 1.1296969696969696 to be greater than or equal to 1.399999
+ ❯ tests/layout.test.ts:16:192
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > 1280×720: readable, visible and distinct hit areas
+AssertionError: expected 1.0460606060606061 to be greater than or equal to 1.399999
+ ❯ tests/layout.test.ts:16:192
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > 1920×1080: readable, visible and distinct hit areas
+ FAIL  tests/layout.test.ts > CSS layout contract > 768×1024: readable, visible and distinct hit areas
+AssertionError: expected 1.2272727272727273 to be greater than or equal to 1.399999
+ ❯ tests/layout.test.ts:16:192
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed | 7 passed (15)
+   Start at  15:57:25
+   Duration  519ms (transform 73ms, setup 0ms, import 100ms, tests 32ms, environment 0ms)

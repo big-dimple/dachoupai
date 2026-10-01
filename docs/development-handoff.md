@@ -1,13 +1,13 @@
 # 开发交接
 
-当前包 **P03 / IN_PROGRESS**：接续另一AI未完的美术与交互打磨。用户2026-10-01明确暂停后续开发；不推进新章节、卡池、数值、M4/M5或批量美术。唯一任务状态源为`docs/production/plan.json`；按WORK_PACKAGES P03与D15执行。
+当前指针 **A01 / BLOCKED**。P03只完成可试玩的美术/交互工程候选；用户2026-10-01要求的后续开发暂停仍有效，不推进新章节、卡池、平衡、M4/M5或正式批量美术。唯一状态源为`docs/production/plan.json`，接力读A01、ART、UX与D15。
 
-基线：root工作树`D:/ai/dachoupai/dachoupai`，main HEAD `2926c7ef2b269b71e8596cf54b466eaa6cb29298`。已fetch，main比origin/main领先1、落后0。接管时GameScene/Shop/选角/Intermission/SceneView/AudioEngine有未提交修改，TitleScene未跟踪；保留这些成果逐项接续，不reset。历史审查基线仍为`9fd6e0bdb20c7e6114e045ca336c27afe5d47e9e`，不复写旧审查。
+交付在root `D:/ai/dachoupai/dachoupai` 的main，正常push供用户自动部署。接管基线`2926c7ef2b269b71e8596cf54b466eaa6cb29298`，保留另一AI的未提交表现工作；P03核心提交`a37154d84e908bc4790d27e3c4863698df3af3b7`，版本标识提交`0291baa3d4466bbac98209db26eb6889b6b2c475`。最终构建在0291baa上另含GameScene三行横屏文字颜色修正；SHA、dirty状态和被测源文件hash均在证据中，不能把它写成干净0291baa。启动仍需检查真实HEAD/status，不reset回这些记录点。历史审查快照不改。
 
-已做：实际读差异和720×886选角/商店，记录首次`npm run build`失败（三处TitleScene缺方法/类型错误），日志`docs/production/evidence/p03-2026-10-01/baseline-build.txt`。旧P00/P01/P02及A00工程证据在各包JSON；A00已接纳main，166条盘点含29个候选条目，批准白名单仍为空。
+已完成：原创巡演舞台开场；深青牌桌和克制按钮；六肖像主体选角；真实纵向扑克、多点花色、人头牌与增强标记；桌面悬停提起/倾斜/光泽与小丑大图；长按完整扑克；发牌翻面、弃牌飞出、排序滑动、购买入槽；来源高亮、数字滚动与加乘音效同步。修复选牌取消发牌导致牌背卡住、休息浮动抢计分位置、无效光泽遮罩、减少动态残留和横屏深色文字。当前24牌中三张有专用插画，其他机制使用道具版画；不宣称正式插画批次完成。
 
-本轮分工：root独占GameScene/SceneView/theme/详情与整合；flow负责Title/Boot/main/选角/Shop/Intermission；art/audio负责一张舞台候选及声音；table只读检查交互/演出风险，不与工程共改文件。全部在root目录，不使用旧`p00-main-delivery`。独立Node `C:/Program Files/nodejs/node.exe` v22.20.0可用。5204为本轮Vite预览，5201/5202/5203是旧预览，不据其画面签收。
+实际证据：[P03-2026-10-01.json](production/evidence/P03-2026-10-01.json)。首次build真实FAIL；扑克比例用例先8失败、后15通过。最终build PASS；Chromium桌面鼠标/390尺寸触摸短路径PASS；生产构建实际走查1280×720、390×844、844×390，K♠预览325→角色225→碰瓷+2→入账325、补齐8张、刷新续局不重计。保留Vite大包警告。完整长套件、真机与试听NOT_RUN，正式视觉和素材白名单NOT_GRANTED。可选原生“开始新局”确认探针遇到CUA focus命令超时，未算通过；这条是工具限制，未据此宣称产品确认流程坏了。
 
-限制：r2-v4内容hash `json-fnv-v1:44ae9e0098657624`、规则、RNG、存档不改；出牌仍消费已确定trace。Android Chrome实机、真人试听、A01视觉批准、V01真人体验均未完成，不能自签。P03候选可接入用于评审，不代表资产白名单获批。
+规则、内容hash `json-fnv-v1:44ae9e0098657624`、RNG和存档合同保持v4。A00已接纳；盘点/只读CLI不等于素材批准。唯一未跟踪的旧探针/临时反馈/用户附件保留且不纳入提交。本轮5206为实际生产预览；5201/5202/5203属于旧预览，不据其画面签收。
 
-**唯一下一步：完成P03表现整改并用实际构建与桌面/390尺寸操作检验，然后正常推main供同版本关键节点反馈；不启动后续内容。**
+**唯一下一步：在同一P03候选上收集用户关键节点的美术与交互反馈，按具体缺陷继续打磨；不自动推进后续内容，也不代签A01/V01。部署由用户处理。**

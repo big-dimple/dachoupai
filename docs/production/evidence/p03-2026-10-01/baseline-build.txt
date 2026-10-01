@@ -1,0 +1,8 @@
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+src/game/TitleScene.ts(84,15): error TS2339: Property 'titleBell' does not exist on type 'AudioEngine'.
+src/game/TitleScene.ts(88,86): error TS2345: Argument of type 'number | null' is not assignable to parameter of type 'number | undefined'.
+  Type 'null' is not assignable to type 'number | undefined'.
+src/game/TitleScene.ts(159,13): error TS2339: Property 'curtainOpen' does not exist on type 'AudioEngine'.
