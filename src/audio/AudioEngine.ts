@@ -582,6 +582,21 @@ export class AudioEngine {
     this.note(n, .07, .059, 'sfx', 0, 'triangle', undefined, undefined, 'pluck');
     this.note(n, .11, .064, 'sfx', .072, 'triangle', undefined, undefined, 'piano');
   }
+  chanceRoll(kind:'lucky'|'glass',hit:boolean):void {
+    this.duckMusic(.22);
+    this.whoosh(.12,.032,kind==='lucky');
+    const pitches=kind==='glass'?[81,88]:hit?[69,76,81]:[64,62];
+    pitches.forEach((pitch,i)=>this.note(pitch,.09,.032,'sfx',i*.035,kind==='glass'?'sine':'triangle',undefined,undefined,'pluck'));
+  }
+  glassBreak():void {
+    this.duckMusic(.35);this.paper(.16,.07,0,'sfx',undefined,4200);
+    [93,88,81,76].forEach((pitch,i)=>this.note(pitch,.12,.035,'sfx',i*.022,'sine'));
+  }
+  toolUse(family:'tarot'|'planet'|'spectral'|'utility'):void {
+    this.duckMusic(.3);this.whoosh(.18,.09,true);
+    const pitches=family==='planet'?[69,76,81]:family==='spectral'?[45,64,78]:family==='tarot'?[62,69,74]:[64,71];
+    pitches.forEach((pitch,i)=>this.note(pitch,.17,.042,'sfx',i*.045,'triangle',undefined,undefined,'pluck'));
+  }
   score(intensity = 0): void {
     const tier = Math.floor(bounded(intensity, 2));
     this.duckMusic(.5);

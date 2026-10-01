@@ -3,7 +3,7 @@ import {applyCommand,createRun,assertRunInvariants,type Action,type R2RunState} 
 import {r2Price} from '../src/domain/r2Shop';
 import {scoreR2Hand} from '../src/domain/scoreR2';
 import {R2_JOKERS} from '../src/content/r2Schema';
-import {getR2Stage} from '../src/domain/r2Run';
+import {getR2Stage,makeR2Shop} from '../src/domain/r2Run';
 import type {Suit} from '../src/cards/types';
 
 const start=(seed='v00-contract')=>createRun({seed,characterId:'amo',runId:seed,rulesVersion:'r2'});
@@ -11,11 +11,22 @@ const command=(s:R2RunState,action:Action)=>({runId:s.runId,commandId:`test-${s.
 const send=(s:R2RunState,action:Action)=>{const r=applyCommand(s,command(s,action));if(!r.ok)throw Error(r.code);assertRunInvariants(r.state);return r.state;};
 const own=(id:string)=>({instanceId:'owned/'+id,definitionId:id,paidPrice:r2Price(id),growth:{}});
 // Explicit invariant-valid boundary checkpoints below are not natural UI/balance evidence.
-const fixtureBoss=(s:R2RunState,id:string,suit:Suit|null=null)=>Object.assign(s,{stageIndex:2,boss:{definitionId:id,disabledSuit:suit},seenBossIds:[id]});
+const fixtureBoss=(s:R2RunState,id:string,suit:Suit|null=null)=>{
+  Object.assign(s,{stageIndex:2,boss:{definitionId:id,disabledSuit:suit},seenBossIds:[id]});
+  makeR2Shop(s,true);return s;
+};
 const table=(id='B01',suit:Suit|null=null)=>send(send(fixtureBoss(start(),id,suit),{type:'LeaveShop'}),{type:'EnterStage'});
 const futureStage=(s:R2RunState)=>s.stage as NonNullable<R2RunState['stage']>&{discardsUsed:number};
 const skip={type:'SkipStage'} as Action;
-const offer=(s:R2RunState,id:string)=>{s.shop!.offers[0]={...s.shop!.offers[0],definitionId:id,price:r2Price(id),consumed:false};return s.shop!.offers[0];};
+const offer=(s:R2RunState,id:string)=>{s.shop!.offers[0]={...s.shop!.offers[0],definitionId:id,price:r2Price(id),edition:'none',consumed:false};return s.shop!.offers[0];};
+const fixtureLowDiscards=()=>{
+  let s=table();s.jokers=[own('d05')];
+  s.consumables=[{instanceId:'quota/restore-first',definitionId:'T17'},{instanceId:'quota/restore-after-rejection',definitionId:'T17'}];
+  // Reach quota1 through real spending and restoration, keeping the saved refund ledger valid.
+  s=send(s,{type:'DiscardHand',selectedIds:[s.handOrder[0]]});
+  s=send(s,{type:'UseConsumable',instanceId:'quota/restore-first',targetIds:[]});
+  return send(s,{type:'DiscardHand',selectedIds:[s.handOrder[0]]});
+};
 
 describe('V00 economic transactions and public chapter plans',()=>{
   it('E05 grows only sources owned before successful purchases, persists, caps, and clears on sale',()=>{
@@ -40,8 +51,9 @@ describe('V00 economic transactions and public chapter plans',()=>{
   it('B01 charges2 before the first play, then1; refund is after payment and never bypasses insufficient quota',()=>{
     let s=table();s.jokers=[own('d05')];s=send(s,{type:'DiscardHand',selectedIds:[s.handOrder[0]]});expect(s.stage!.discardsLeft).toBe(2);
     s=send(s,{type:'DiscardHand',selectedIds:[s.handOrder[0]]});expect(s.stage!.discardsLeft).toBe(0);
-    let low=table();low.stage!.discardsLeft=1;low.jokers=[own('d05')];const before=JSON.stringify(low),fail=applyCommand(low,command(low,{type:'DiscardHand',selectedIds:[low.handOrder[0]]}));expect(fail.ok).toBe(false);expect(JSON.stringify(low)).toBe(before);
-    low=send(low,{type:'PlayHand',selectedIds:[low.handOrder[0]]});low=send(low,{type:'DiscardHand',selectedIds:[low.handOrder[0]]});expect(low.stage!.discardsLeft).toBe(1); // paid1, first discard refund1.
+    let low=fixtureLowDiscards();const before=JSON.stringify(low),fail=applyCommand(low,command(low,{type:'DiscardHand',selectedIds:[low.handOrder[0]]}));expect(fail.ok).toBe(false);expect(JSON.stringify(low)).toBe(before);
+    low=send(low,{type:'UseConsumable',instanceId:'quota/restore-after-rejection',targetIds:[]});
+    low=send(low,{type:'PlayHand',selectedIds:[low.handOrder[0]]});low=send(low,{type:'DiscardHand',selectedIds:[low.handOrder[0]]});expect(low.stage!.discardsLeft).toBe(1); // After a play, pay1 from quota2; the first-discard refund was already spent.
   });
   it('B03 disables its fixed suit on new draws and still forms a pair; B04 never disables A',()=>{
     for(const [boss,suit] of [['B03','hearts'],['B04',null]] as const){let s=table(boss,suit);const expected=()=>s.handOrder.filter(id=>{const c=s.deckInstances.find(c=>c.id===id)!;return boss==='B03'?c.suit===suit:[11,12,13].includes(c.rank);});expect(s.stage!.disabledIds).toEqual(expected());

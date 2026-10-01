@@ -98,7 +98,7 @@ export type Action =
   | { type: 'PlayHand'; selectedIds: readonly string[] }
   | { type: 'DiscardHand'; selectedIds: readonly string[] }
   | { type: 'SellJoker'; instanceId:string }
-  | { type: 'UseConsumable'; instanceId:string; targetIds:readonly string[]; handType?:import('./evaluateR2').R2HandType }
+  | { type: 'UseConsumable'; instanceId:string; targetIds:readonly string[]; handType?:import('./evaluateR2').R2HandType; secondaryHandType?:import('./evaluateR2').R2HandType; suit?:import('../cards/types').Suit; sacrificeId?:string; targetKind?:'card'|'joker' }
   | { type: 'DestroyConsumable'; instanceId:string }
   | { type: 'SetWager'; enabled: boolean }
   | { type: 'BuyOffer'; offerId: string }
@@ -118,6 +118,7 @@ export type DomainEvent =
   | { type: 'cards-discarded';cardIds:string[];discardsLeft:number }
   | { type: 'run-abandoned' }
   | { type: 'stage-skipped';stage: R2StageState }
+  | { type: 'consumable-used';definitionId:string;instanceId:string;targetIds:string[];createdCardIds:string[];destroyedCardIds:string[];createdJokerIds?:string[];destroyedJokerIds?:string[] }
   | { type: 'joker-transaction';phase:'onDiscard'|'onStageClear'|'onBuyOffer'|'onSellJoker'|'beforeFailure';definitionId:string;instanceId:string;operation:string;amount:string;resourceBefore?:number;resourceAfter?:number;visibleCondition?:Condition };
 
 export type CommandResult<S = RunState> =

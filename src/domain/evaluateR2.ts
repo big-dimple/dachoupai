@@ -1,4 +1,4 @@
-import { ENHANCEMENTS,RANKS, SUITS, type PlayingCard } from '../cards/types';
+import { EDITIONS,ENHANCEMENTS,RANKS, SUITS, type PlayingCard } from '../cards/types';
 
 export const R2_HAND_TYPES = ['high-card', 'pair', 'two-pair', 'three-kind', 'straight', 'flush', 'full-house', 'four-kind', 'straight-flush', 'five-kind', 'flush-house', 'flush-five'] as const;
 export type R2HandType = typeof R2_HAND_TYPES[number];
@@ -6,7 +6,7 @@ export interface HandRules { fourStraight?: boolean; fourFlush?: boolean }
 export interface R2Hand { type: R2HandType; scoringIds: string[] }
 
 export function validateCardInstances(cards: readonly PlayingCard[]): void {
-  if (new Set(cards.map(c => c.id)).size !== cards.length || cards.some(c => !c.id || !RANKS.includes(c.rank) || !SUITS.includes(c.suit) || (c.enhancement!==undefined&&!ENHANCEMENTS.includes(c.enhancement)))) throw new Error('invalid-card-instances');
+  if (new Set(cards.map(c => c.id)).size !== cards.length || cards.some(c => typeof c.id!=='string'||!c.id || !RANKS.includes(c.rank) || !SUITS.includes(c.suit) || (c.enhancement!==undefined&&!ENHANCEMENTS.includes(c.enhancement)) || (c.edition!==undefined&&!EDITIONS.includes(c.edition)))) throw new Error('invalid-card-instances');
 }
 
 export function evaluateR2Hand(cards: readonly PlayingCard[], rules: HandRules): R2Hand {

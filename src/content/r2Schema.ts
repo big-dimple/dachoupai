@@ -55,6 +55,7 @@ export interface R2JokerCounters { singleDiscards?:number; handsScored?:number }
 export interface R2JokerInstance {
   instanceId: string; definitionId: string; paidPrice: number; growth: Record<string, Fraction>;
   counters?:R2JokerCounters;
+  edition?:import('../cards/types').Edition;
 }
 
 const object = (value: unknown): value is Record<string, unknown> => !!value && typeof value === 'object' && !Array.isArray(value);

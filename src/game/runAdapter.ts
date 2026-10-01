@@ -16,10 +16,13 @@ export function runController(scene: Phaser.Scene): SavedRun | undefined {
   return scene.registry.get('runController') as SavedRun | undefined;
 }
 
-export async function dispatchRun(scene: Phaser.Scene, action: Action): Promise<CommandResult<R2RunState>> {
+export async function dispatchRun(scene: Phaser.Scene, action: Action, expectedSeq?:number): Promise<CommandResult<R2RunState>> {
   const controller = runController(scene);
   if (!controller) throw new Error('No active run controller');
-  const result = await controller.dispatch(action);
+  const session=gameSession();
+  if(session.pendingRun||session.working)return {ok:false,code:'replacement-pending',state:controller.state};
+  if(session.run!==controller)return {ok:false,code:'wrong-run',state:controller.state};
+  const result = await controller.dispatch(action,expectedSeq);
   if (result.ok) scene.registry.set('runState', result.state);
   return result;
 }

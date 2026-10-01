@@ -29,7 +29,7 @@ describe('minimum skip rewards are usable, without enabling unfinished items',()
     for(const instanceId of ['one','two']){s=send(s,{type:'UseConsumable',instanceId,targetIds:[]});s=send(s,{type:'DiscardHand',selectedIds:[s.handOrder[0]]});}
     expect(s.stage!.discardsUsed).toBe(5);expect(readCheckpoint(makeCheckpoint(s,[])).ok).toBe(true);
   });
-  it('unfinished T02/T16/U effects remain explicit and never consume a future item',()=>{
-    for(const id of ['T02','T16'])rejects(item(start(),id),['clubs-2']);
+  it('unknown tool IDs remain explicit and never consume an item',()=>{
+    for(const id of ['T99','P99'])rejects(item(start(),id),['clubs-2']);
   });
 });

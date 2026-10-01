@@ -82,7 +82,7 @@ describe('C00 actual command transactions and lifecycle',()=>{
     let state=table(['a07','d05']);
     for(let n=0;n<4;n++)state=send(state,{type:'DiscardHand',selectedIds:[state.handOrder[0]]});
     expect(state.gold).toBe(8);expect(state.stage!.discardsLeft).toBe(0);expect(state.stage!.discardsUsed).toBe(4);restore(state);
-    state=table(['a07','d05'],'boss-discard');state.stageIndex=2;state.stage!.index=2;state.stage!.targetHeat='800';state.boss={definitionId:'B01',disabledSuit:null};state.seenBossIds=['B01'];
+    state=table(['a07','d05'],'boss-discard');state.stageIndex=2;state.stage!.index=2;state.stage!.targetHeat='800';state.stage!.doubleDiscardBeforeFirstPlay=true;state.boss={definitionId:'B01',disabledSuit:null};state.seenBossIds=['B01'];
     state=send(state,{type:'DiscardHand',selectedIds:[state.handOrder[0]]});expect(state.gold).toBe(7);expect(state.stage!.discardsLeft).toBe(2);expect(state.stage!.discardsUsed).toBe(1);restore(state);
   });
   it('C05 accumulates only same-suit discards, caps at 80 and consumes once at jokerScore',()=>{
@@ -211,6 +211,8 @@ describe('C00 actual command transactions and lifecycle',()=>{
     expect(state.phase).toBe('await-input');expect(state.stage!.handsLeft).toBe(1);expect(state.stage!.playIndex).toBe(4);expect(state.stage).toHaveProperty('rescueUsed',true);expect(state).toHaveProperty('safetyNetUsed',true);expect(state.jokers).toEqual([]);expect(state.gold).toBe(6);
     expect(result.events.some(e=>e.type==='joker-transaction'&&e.definitionId==='f07'&&e.instanceId==='owned/f07'&&e.operation==='rescue-hand')).toBe(true);
     expect(state.lastTrace!.events.some(e=>e.sourceInstanceId==='owned/f07'&&e.operation==='rescue-hand')).toBe(true);
+    expect(state.lastTrace!.sourceJokers.map(j=>j.instanceId)).toContain('owned/f07');
+    expect(state.lastTrace!.jokers.map(j=>j.instanceId)).not.toContain('owned/f07');
     const resumed=restore(state),retry=applyCommand(resumed,cmd);expect(retry.ok&&retry.duplicate).toBe(true);expect(retry.state).toBe(resumed);
     state=hand(resumed,['hearts-2']);state=send(state,{type:'PlayHand',selectedIds:state.handOrder});expect(state.phase).toBe('run-lost');expect(state.stage!.playIndex).toBe(5);expect(state.gold).toBe(6);
   });

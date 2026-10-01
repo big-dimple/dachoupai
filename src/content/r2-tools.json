@@ -1,0 +1,2403 @@
+{
+  "schemaVersion": 1,
+  "decisionId": "D24",
+  "limits": {
+    "singleUse": 1,
+    "oncePerRun": 1,
+    "handLevelMaximum": 30,
+    "deckDeletionFloor": 20,
+    "minimalDeckFloor": 16,
+    "deckMaximum": 80,
+    "handMinimum": 5,
+    "handMaximum": 14,
+    "handsMinimum": 2,
+    "jokerMaximum": 5,
+    "consumableSlots": 2,
+    "consumableSlotsMaximum": 4,
+    "longTermSlots": 4,
+    "spectralHandsPenaltyMaximum": 2,
+    "spectralHandPenaltyMaximum": 2,
+    "luckyGoldPerHand": 20,
+    "deletionFloorPolicy": "voluntary-only"
+  },
+  "acquisition": {
+    "familyWeights": {
+      "tarot": 45,
+      "planet": 30,
+      "spectral": 10,
+      "utility": 15
+    },
+    "emptyFamily": "remove-and-renormalize",
+    "skipRewardIds": [
+      "T01",
+      "T03",
+      "T04",
+      "T05",
+      "T06",
+      "T17"
+    ],
+    "generatedCards": "draw-pile-bottom-without-shuffle",
+    "duplicates": "independent-consumable-instances",
+    "eligibility": "legal-effect-and-discovery-before-weighting"
+  },
+  "initialSupportedToolIds": [
+    "T01",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T17"
+  ],
+  "initialSupportedFeatures": [
+    "hand-upgrade",
+    "card-targets",
+    "suit-change",
+    "discard-restore"
+  ],
+  "tools": [
+    {
+      "id": "T01",
+      "name": "练一招",
+      "family": "utility",
+      "price": 4,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "discovered-hand",
+        "selection": "chosen"
+      },
+      "operation": {
+        "kind": "upgrade-hand",
+        "levels": 1
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "hand-level-cap"
+      ],
+      "requiredFeatures": [
+        "hand-upgrade"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t01",
+      "rewardSources": [
+        {
+          "source": "normal-stage-skip",
+          "overflowGold": 1
+        },
+        {
+          "source": "e10-stage-clear",
+          "overflowGold": 2
+        }
+      ]
+    },
+    {
+      "id": "T02",
+      "name": "精简节目",
+      "family": "tarot",
+      "price": 4,
+      "shopWeight": 2,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 2,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "delete-cards"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "deckDeletionFloor"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "card-delete"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t02",
+      "rewardSources": []
+    },
+    {
+      "id": "T03",
+      "name": "红桃染",
+      "family": "tarot",
+      "price": 4,
+      "shopWeight": 4,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 3,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "set-suit",
+        "suit": "hearts"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "suit-change"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t03",
+      "rewardSources": [
+        {
+          "source": "normal-stage-skip",
+          "overflowGold": 1
+        },
+        {
+          "source": "c12-stage-clear",
+          "overflowGold": 2
+        }
+      ]
+    },
+    {
+      "id": "T04",
+      "name": "方片染",
+      "family": "tarot",
+      "price": 4,
+      "shopWeight": 4,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 3,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "set-suit",
+        "suit": "diamonds"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "suit-change"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t04",
+      "rewardSources": [
+        {
+          "source": "normal-stage-skip",
+          "overflowGold": 1
+        },
+        {
+          "source": "c12-stage-clear",
+          "overflowGold": 2
+        }
+      ]
+    },
+    {
+      "id": "T05",
+      "name": "梅花染",
+      "family": "tarot",
+      "price": 4,
+      "shopWeight": 4,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 3,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "set-suit",
+        "suit": "clubs"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "suit-change"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t05",
+      "rewardSources": [
+        {
+          "source": "normal-stage-skip",
+          "overflowGold": 1
+        },
+        {
+          "source": "c12-stage-clear",
+          "overflowGold": 2
+        }
+      ]
+    },
+    {
+      "id": "T06",
+      "name": "黑桃染",
+      "family": "tarot",
+      "price": 4,
+      "shopWeight": 4,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 3,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "set-suit",
+        "suit": "spades"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "suit-change"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t06",
+      "rewardSources": [
+        {
+          "source": "normal-stage-skip",
+          "overflowGold": 1
+        },
+        {
+          "source": "c12-stage-clear",
+          "overflowGold": 2
+        }
+      ]
+    },
+    {
+      "id": "T07",
+      "name": "复印一张",
+      "family": "tarot",
+      "price": 6,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 1,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "copy-card",
+        "copies": 1,
+        "fields": [
+          "rank",
+          "suit",
+          "enhancement",
+          "edition"
+        ],
+        "retainOriginal": true
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "deckMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "card-copy"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t07",
+      "rewardSources": []
+    },
+    {
+      "id": "T08",
+      "name": "往上挪",
+      "family": "tarot",
+      "price": 4,
+      "shopWeight": 2,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 2,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "shift-rank",
+        "delta": 1,
+        "minimum": 2,
+        "maximum": 14,
+        "wrap": false
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "rank-change"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t08",
+      "rewardSources": []
+    },
+    {
+      "id": "T09",
+      "name": "往下挪",
+      "family": "tarot",
+      "price": 4,
+      "shopWeight": 2,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 2,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "shift-rank",
+        "delta": -1,
+        "minimum": 2,
+        "maximum": 14,
+        "wrap": false
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "rank-change"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t09",
+      "rewardSources": []
+    },
+    {
+      "id": "T10",
+      "name": "加厚纸",
+      "family": "tarot",
+      "price": 4,
+      "shopWeight": 4,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 2,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "set-enhancement",
+        "enhancement": "heat-paper"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "replacement-unconfirmed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "enhancements"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t10",
+      "rewardSources": []
+    },
+    {
+      "id": "T11",
+      "name": "大字号",
+      "family": "tarot",
+      "price": 4,
+      "shopWeight": 4,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 2,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "set-enhancement",
+        "enhancement": "multiplier-paper"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "replacement-unconfirmed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "enhancements"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t11",
+      "rewardSources": []
+    },
+    {
+      "id": "T12",
+      "name": "玻璃面",
+      "family": "tarot",
+      "price": 5,
+      "shopWeight": 2,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 1,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "set-enhancement",
+        "enhancement": "glass-paper"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "replacement-unconfirmed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "enhancements"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t12",
+      "rewardSources": []
+    },
+    {
+      "id": "T13",
+      "name": "留个声",
+      "family": "tarot",
+      "price": 4,
+      "shopWeight": 3,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 2,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "set-enhancement",
+        "enhancement": "voice-paper"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "replacement-unconfirmed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "enhancements"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t13",
+      "rewardSources": []
+    },
+    {
+      "id": "T14",
+      "name": "金边纸",
+      "family": "tarot",
+      "price": 4,
+      "shopWeight": 3,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 2,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "set-enhancement",
+        "enhancement": "gold-paper"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "replacement-unconfirmed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "enhancements"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t14",
+      "rewardSources": []
+    },
+    {
+      "id": "T15",
+      "name": "返场票",
+      "family": "tarot",
+      "price": 6,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 1,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "set-enhancement",
+        "enhancement": "encore-paper"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "replacement-unconfirmed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "enhancements"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t15",
+      "rewardSources": []
+    },
+    {
+      "id": "T16",
+      "name": "小红包",
+      "family": "utility",
+      "price": 4,
+      "shopWeight": 0,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "none"
+      },
+      "operation": {
+        "kind": "add-gold",
+        "amount": 5
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed"
+      ],
+      "requiredFeatures": [
+        "gold-supply",
+        "first-boss-supply"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t16",
+      "rewardSources": [
+        {
+          "source": "first-boss-clear",
+          "overflowGold": 2,
+          "claim": "once-per-run",
+          "rng": "none"
+        }
+      ]
+    },
+    {
+      "id": "T17",
+      "name": "再想想",
+      "family": "utility",
+      "price": 4,
+      "shopWeight": 3,
+      "phases": [
+        "await-input"
+      ],
+      "target": {
+        "kind": "none"
+      },
+      "operation": {
+        "kind": "restore-discard",
+        "amount": 1,
+        "cap": "stage-entry"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "stageDiscardMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed"
+      ],
+      "requiredFeatures": [
+        "discard-restore"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t17",
+      "rewardSources": [
+        {
+          "source": "normal-stage-skip",
+          "overflowGold": 1
+        }
+      ]
+    },
+    {
+      "id": "T18",
+      "name": "免费逛摊",
+      "family": "utility",
+      "price": 4,
+      "shopWeight": 2,
+      "phases": [
+        "shop"
+      ],
+      "target": {
+        "kind": "none"
+      },
+      "operation": {
+        "kind": "free-reroll",
+        "advanceCount": true,
+        "growth": false
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "empty-refresh-pool"
+      ],
+      "requiredFeatures": [
+        "free-reroll"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t18",
+      "rewardSources": []
+    },
+    {
+      "id": "T19",
+      "name": "幸运贴",
+      "family": "tarot",
+      "price": 4,
+      "shopWeight": 2,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 2,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "set-enhancement",
+        "enhancement": "lucky-paper"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "replacement-unconfirmed"
+      ],
+      "requiredFeatures": [
+        "card-targets",
+        "enhancements",
+        "lucky"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-t19",
+      "rewardSources": []
+    },
+    {
+      "id": "P01",
+      "name": "高牌星",
+      "family": "planet",
+      "price": 4,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "discovered-hand",
+        "selection": "fixed"
+      },
+      "operation": {
+        "kind": "upgrade-hand",
+        "levels": 1,
+        "handType": "high-card"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "hand-level-cap",
+        "wrong-hand-type"
+      ],
+      "requiredFeatures": [
+        "hand-upgrade",
+        "planet-upgrade"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-p01",
+      "rewardSources": []
+    },
+    {
+      "id": "P02",
+      "name": "对子星",
+      "family": "planet",
+      "price": 4,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "discovered-hand",
+        "selection": "fixed"
+      },
+      "operation": {
+        "kind": "upgrade-hand",
+        "levels": 1,
+        "handType": "pair"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "hand-level-cap",
+        "wrong-hand-type"
+      ],
+      "requiredFeatures": [
+        "hand-upgrade",
+        "planet-upgrade"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-p02",
+      "rewardSources": []
+    },
+    {
+      "id": "P03",
+      "name": "两对星",
+      "family": "planet",
+      "price": 4,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "discovered-hand",
+        "selection": "fixed"
+      },
+      "operation": {
+        "kind": "upgrade-hand",
+        "levels": 1,
+        "handType": "two-pair"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "hand-level-cap",
+        "wrong-hand-type"
+      ],
+      "requiredFeatures": [
+        "hand-upgrade",
+        "planet-upgrade"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-p03",
+      "rewardSources": []
+    },
+    {
+      "id": "P04",
+      "name": "三条星",
+      "family": "planet",
+      "price": 4,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "discovered-hand",
+        "selection": "fixed"
+      },
+      "operation": {
+        "kind": "upgrade-hand",
+        "levels": 1,
+        "handType": "three-kind"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "hand-level-cap",
+        "wrong-hand-type"
+      ],
+      "requiredFeatures": [
+        "hand-upgrade",
+        "planet-upgrade"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-p04",
+      "rewardSources": []
+    },
+    {
+      "id": "P05",
+      "name": "顺子星",
+      "family": "planet",
+      "price": 4,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "discovered-hand",
+        "selection": "fixed"
+      },
+      "operation": {
+        "kind": "upgrade-hand",
+        "levels": 1,
+        "handType": "straight"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "hand-level-cap",
+        "wrong-hand-type"
+      ],
+      "requiredFeatures": [
+        "hand-upgrade",
+        "planet-upgrade"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-p05",
+      "rewardSources": []
+    },
+    {
+      "id": "P06",
+      "name": "同花星",
+      "family": "planet",
+      "price": 4,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "discovered-hand",
+        "selection": "fixed"
+      },
+      "operation": {
+        "kind": "upgrade-hand",
+        "levels": 1,
+        "handType": "flush"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "hand-level-cap",
+        "wrong-hand-type"
+      ],
+      "requiredFeatures": [
+        "hand-upgrade",
+        "planet-upgrade"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-p06",
+      "rewardSources": []
+    },
+    {
+      "id": "P07",
+      "name": "葫芦星",
+      "family": "planet",
+      "price": 4,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "discovered-hand",
+        "selection": "fixed"
+      },
+      "operation": {
+        "kind": "upgrade-hand",
+        "levels": 1,
+        "handType": "full-house"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "hand-level-cap",
+        "wrong-hand-type"
+      ],
+      "requiredFeatures": [
+        "hand-upgrade",
+        "planet-upgrade"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-p07",
+      "rewardSources": []
+    },
+    {
+      "id": "P08",
+      "name": "四条星",
+      "family": "planet",
+      "price": 4,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "discovered-hand",
+        "selection": "fixed"
+      },
+      "operation": {
+        "kind": "upgrade-hand",
+        "levels": 1,
+        "handType": "four-kind"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "hand-level-cap",
+        "wrong-hand-type"
+      ],
+      "requiredFeatures": [
+        "hand-upgrade",
+        "planet-upgrade"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-p08",
+      "rewardSources": []
+    },
+    {
+      "id": "P09",
+      "name": "同花顺星",
+      "family": "planet",
+      "price": 4,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "discovered-hand",
+        "selection": "fixed"
+      },
+      "operation": {
+        "kind": "upgrade-hand",
+        "levels": 1,
+        "handType": "straight-flush"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "hand-level-cap",
+        "wrong-hand-type"
+      ],
+      "requiredFeatures": [
+        "hand-upgrade",
+        "planet-upgrade"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-p09",
+      "rewardSources": []
+    },
+    {
+      "id": "P10",
+      "name": "五条星",
+      "family": "planet",
+      "price": 4,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "discovered-hand",
+        "selection": "fixed"
+      },
+      "operation": {
+        "kind": "upgrade-hand",
+        "levels": 1,
+        "handType": "five-kind"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "hand-level-cap",
+        "wrong-hand-type"
+      ],
+      "requiredFeatures": [
+        "hand-upgrade",
+        "planet-upgrade"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-p10",
+      "rewardSources": []
+    },
+    {
+      "id": "P11",
+      "name": "同花葫芦星",
+      "family": "planet",
+      "price": 4,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "discovered-hand",
+        "selection": "fixed"
+      },
+      "operation": {
+        "kind": "upgrade-hand",
+        "levels": 1,
+        "handType": "flush-house"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "hand-level-cap",
+        "wrong-hand-type"
+      ],
+      "requiredFeatures": [
+        "hand-upgrade",
+        "planet-upgrade"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-p11",
+      "rewardSources": []
+    },
+    {
+      "id": "P12",
+      "name": "同花五条星",
+      "family": "planet",
+      "price": 4,
+      "shopWeight": 1,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "discovered-hand",
+        "selection": "fixed"
+      },
+      "operation": {
+        "kind": "upgrade-hand",
+        "levels": 1,
+        "handType": "flush-five"
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "hand-level-cap",
+        "wrong-hand-type"
+      ],
+      "requiredFeatures": [
+        "hand-upgrade",
+        "planet-upgrade"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-p12",
+      "rewardSources": []
+    },
+    {
+      "id": "S01",
+      "name": "献纸",
+      "family": "spectral",
+      "price": 8,
+      "shopWeight": 3,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "card-sacrifice",
+        "donors": 1,
+        "minimum": 1,
+        "maximum": 2,
+        "recipients": "unenhanced",
+        "distinct": true
+      },
+      "operation": {
+        "kind": "random-enhancement",
+        "rng": "rule",
+        "independentPerTarget": true,
+        "choices": [
+          {
+            "id": "heat-paper",
+            "weight": 1
+          },
+          {
+            "id": "multiplier-paper",
+            "weight": 1
+          },
+          {
+            "id": "glass-paper",
+            "weight": 1
+          },
+          {
+            "id": "voice-paper",
+            "weight": 1
+          },
+          {
+            "id": "gold-paper",
+            "weight": 1
+          },
+          {
+            "id": "encore-paper",
+            "weight": 1
+          },
+          {
+            "id": "lucky-paper",
+            "weight": 1
+          }
+        ]
+      },
+      "costs": [
+        {
+          "kind": "sacrifice-card",
+          "count": 1
+        }
+      ],
+      "caps": [
+        "singleUse",
+        "deckDeletionFloor",
+        "legalActionAfter"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "deck-floor",
+        "donor-is-recipient"
+      ],
+      "requiredFeatures": [
+        "spectral",
+        "card-targets",
+        "card-delete",
+        "enhancements",
+        "lucky"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-s01",
+      "rewardSources": []
+    },
+    {
+      "id": "S02",
+      "name": "镀影",
+      "family": "spectral",
+      "price": 8,
+      "shopWeight": 3,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "card-or-joker",
+        "edition": "none"
+      },
+      "operation": {
+        "kind": "random-edition",
+        "rng": "rule",
+        "choices": [
+          {
+            "id": "foil",
+            "weight": 5
+          },
+          {
+            "id": "holographic",
+            "weight": 3
+          },
+          {
+            "id": "polychrome",
+            "weight": 2
+          }
+        ]
+      },
+      "costs": [
+        {
+          "kind": "gold",
+          "amount": 5
+        }
+      ],
+      "caps": [
+        "singleUse"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "not-enough-gold",
+        "nonordinary-target"
+      ],
+      "requiredFeatures": [
+        "spectral",
+        "card-targets",
+        "editions"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-s02",
+      "rewardSources": []
+    },
+    {
+      "id": "S03",
+      "name": "复演",
+      "family": "spectral",
+      "price": 6,
+      "shopWeight": 2,
+      "phases": [
+        "shop"
+      ],
+      "target": {
+        "kind": "cards",
+        "minimum": 1,
+        "maximum": 1,
+        "scope": "phase-known"
+      },
+      "operation": {
+        "kind": "copy-card",
+        "copies": 2,
+        "fields": [
+          "rank",
+          "suit",
+          "enhancement",
+          "edition"
+        ],
+        "retainOriginal": true
+      },
+      "costs": [
+        {
+          "kind": "permanent-hands-penalty",
+          "amount": 1,
+          "effective": "next-stage",
+          "requireExactChange": true
+        }
+      ],
+      "caps": [
+        "singleUse",
+        "deckMaximum",
+        "spectralHandsPenaltyMaximum",
+        "handsMinimum",
+        "actualResourceChange"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "deck-maximum",
+        "resource-floor",
+        "no-next-stage"
+      ],
+      "requiredFeatures": [
+        "spectral",
+        "card-targets",
+        "card-copy",
+        "permanent-resources"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-s03",
+      "rewardSources": []
+    },
+    {
+      "id": "S04",
+      "name": "独幕",
+      "family": "spectral",
+      "price": 6,
+      "shopWeight": 2,
+      "phases": [
+        "shop"
+      ],
+      "target": {
+        "kind": "suit",
+        "scope": "whole-deck"
+      },
+      "operation": {
+        "kind": "set-deck-suit",
+        "preserveOrder": true
+      },
+      "costs": [
+        {
+          "kind": "permanent-hand-penalty",
+          "amount": 1,
+          "effective": "next-stage",
+          "requireExactChange": true
+        }
+      ],
+      "caps": [
+        "singleUse",
+        "spectralHandPenaltyMaximum",
+        "handMinimum",
+        "actualResourceChange"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "resource-floor",
+        "no-next-stage"
+      ],
+      "requiredFeatures": [
+        "spectral",
+        "suit-change",
+        "permanent-resources"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-s04",
+      "rewardSources": []
+    },
+    {
+      "id": "S05",
+      "name": "忘招",
+      "family": "spectral",
+      "price": 6,
+      "shopWeight": 2,
+      "phases": [
+        "shop",
+        "await-input"
+      ],
+      "target": {
+        "kind": "hand-exchange",
+        "distinct": true
+      },
+      "operation": {
+        "kind": "exchange-hand-levels",
+        "gain": 3,
+        "loss": 1,
+        "targetMaximumBefore": 27,
+        "donorMinimumBefore": 2,
+        "preserveDiscovery": true
+      },
+      "costs": [
+        {
+          "kind": "gold",
+          "amount": 3
+        }
+      ],
+      "caps": [
+        "singleUse",
+        "handLevelMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "undiscovered-hand",
+        "not-enough-gold",
+        "invalid-hand-exchange"
+      ],
+      "requiredFeatures": [
+        "spectral",
+        "hand-upgrade",
+        "hand-exchange"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-s05",
+      "rewardSources": []
+    },
+    {
+      "id": "S06",
+      "name": "孤注",
+      "family": "spectral",
+      "price": 6,
+      "shopWeight": 1,
+      "phases": [
+        "shop"
+      ],
+      "target": {
+        "kind": "none"
+      },
+      "operation": {
+        "kind": "rare-joker-reward",
+        "rng": "reward",
+        "selection": "uniform-unowned-supported-rare",
+        "paidPrice": 0,
+        "edition": "none",
+        "resetGrowth": true
+      },
+      "costs": [
+        {
+          "kind": "all-gold",
+          "minimum": 5
+        }
+      ],
+      "caps": [
+        "singleUse",
+        "jokerMaximum"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "not-enough-gold",
+        "joker-slots-full",
+        "empty-reward-pool"
+      ],
+      "requiredFeatures": [
+        "spectral",
+        "rare-reward"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-s06",
+      "rewardSources": []
+    },
+    {
+      "id": "S07",
+      "name": "谢幕镀彩",
+      "family": "spectral",
+      "price": 8,
+      "shopWeight": 1,
+      "phases": [
+        "shop"
+      ],
+      "target": {
+        "kind": "joker-sacrifice",
+        "donors": 1,
+        "recipients": 1,
+        "distinct": true,
+        "excludedEdition": "polychrome"
+      },
+      "operation": {
+        "kind": "set-joker-edition",
+        "edition": "polychrome",
+        "saleHooks": false,
+        "keepPaidPrice": true
+      },
+      "costs": [
+        {
+          "kind": "sacrifice-joker",
+          "count": 1
+        }
+      ],
+      "caps": [
+        "singleUse",
+        "postConsumptionCapacity"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "donor-is-recipient",
+        "target-already-polychrome",
+        "over-capacity-after-sacrifice"
+      ],
+      "requiredFeatures": [
+        "spectral",
+        "editions",
+        "joker-sacrifice"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-s07",
+      "rewardSources": []
+    },
+    {
+      "id": "S08",
+      "name": "净台",
+      "family": "spectral",
+      "price": 6,
+      "shopWeight": 1,
+      "phases": [
+        "shop"
+      ],
+      "target": {
+        "kind": "whole-deck",
+        "selection": "all-active"
+      },
+      "operation": {
+        "kind": "clear-deck-specials",
+        "minimumModifiedCards": 4,
+        "countEachCardOnce": true,
+        "handBonus": 1,
+        "effective": "next-stage",
+        "requireExactChange": true
+      },
+      "costs": [],
+      "caps": [
+        "singleUse",
+        "oncePerRun",
+        "handMaximum",
+        "actualResourceChange"
+      ],
+      "reject": [
+        "wrong-phase",
+        "unknown-target",
+        "duplicate-target",
+        "no-effect",
+        "stale-command",
+        "save-failed",
+        "already-claimed",
+        "too-few-special-cards",
+        "resource-cap",
+        "no-next-stage"
+      ],
+      "requiredFeatures": [
+        "spectral",
+        "enhancements",
+        "editions",
+        "specials-reset",
+        "permanent-resources"
+      ],
+      "lifetime": "consumed-on-success",
+      "assetId": "tool-s08",
+      "rewardSources": []
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "heat-paper",
+      "name": "热度纸",
+      "assetId": "enhancement-heat-paper",
+      "replacement": "one-enhancement",
+      "activeOnly": true,
+      "repeat": "each-scoring-pass",
+      "effects": [
+        {
+          "phase": "onCardScore",
+          "kind": "add-heat",
+          "value": {
+            "n": "20",
+            "d": "1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "multiplier-paper",
+      "name": "倍率纸",
+      "assetId": "enhancement-multiplier-paper",
+      "replacement": "one-enhancement",
+      "activeOnly": true,
+      "repeat": "each-scoring-pass",
+      "effects": [
+        {
+          "phase": "onCardScore",
+          "kind": "add-multiplier",
+          "value": {
+            "n": "2",
+            "d": "1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "glass-paper",
+      "name": "玻璃纸",
+      "assetId": "enhancement-glass-paper",
+      "replacement": "one-enhancement",
+      "activeOnly": true,
+      "repeat": "each-scoring-pass",
+      "effects": [
+        {
+          "phase": "onCardScore",
+          "kind": "multiply-multiplier",
+          "value": {
+            "n": "3",
+            "d": "2"
+          }
+        },
+        {
+          "phase": "afterHand",
+          "kind": "chance-destroy",
+          "probability": {
+            "n": 1,
+            "d": 4
+          },
+          "rng": "rule",
+          "oncePerOriginalCard": true,
+          "belowDeletionFloorAllowed": true
+        }
+      ]
+    },
+    {
+      "id": "voice-paper",
+      "name": "留声纸",
+      "assetId": "enhancement-voice-paper",
+      "replacement": "one-enhancement",
+      "activeOnly": true,
+      "repeat": "held-once",
+      "effects": [
+        {
+          "phase": "onHeldCard",
+          "kind": "add-multiplier",
+          "value": {
+            "n": "1",
+            "d": "1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gold-paper",
+      "name": "金纸",
+      "assetId": "enhancement-gold-paper",
+      "replacement": "one-enhancement",
+      "activeOnly": true,
+      "repeat": "winning-held-once",
+      "effects": [
+        {
+          "phase": "onStageClear",
+          "kind": "add-gold",
+          "amount": 1,
+          "capPerStage": 5
+        }
+      ]
+    },
+    {
+      "id": "encore-paper",
+      "name": "返场纸",
+      "assetId": "enhancement-encore-paper",
+      "replacement": "one-enhancement",
+      "activeOnly": true,
+      "repeat": "each-scoring-pass",
+      "effects": [
+        {
+          "phase": "onCardScore",
+          "kind": "retrigger-card",
+          "count": 1,
+          "maximumDepth": 1
+        }
+      ]
+    },
+    {
+      "id": "lucky-paper",
+      "name": "幸运纸",
+      "assetId": "enhancement-lucky-paper",
+      "replacement": "one-enhancement",
+      "activeOnly": true,
+      "repeat": "each-scoring-pass",
+      "effects": [
+        {
+          "phase": "onCardScore",
+          "kind": "chance-add-multiplier",
+          "probability": {
+            "n": 1,
+            "d": 5
+          },
+          "value": {
+            "n": "4",
+            "d": "1"
+          },
+          "rng": "rule"
+        },
+        {
+          "phase": "onCardScore",
+          "kind": "chance-add-gold",
+          "probability": {
+            "n": 1,
+            "d": 15
+          },
+          "amount": 10,
+          "capPerHand": 20,
+          "rng": "rule",
+          "drawWhenCapped": true
+        }
+      ]
+    }
+  ],
+  "editions": [
+    {
+      "id": "none",
+      "name": "普通",
+      "assetId": "edition-none",
+      "shopWeight": 90,
+      "priceDelta": 0,
+      "appliesTo": [
+        "card",
+        "joker"
+      ],
+      "cardTiming": "after-enhancement-before-joker-hooks",
+      "jokerTiming": "after-own-jokerScore",
+      "jokerRequiresOwnHookHit": false,
+      "disabledStopsScore": true,
+      "rarityIndependent": true,
+      "repeat": "each-scoring-pass",
+      "effect": null
+    },
+    {
+      "id": "foil",
+      "name": "闪箔",
+      "assetId": "edition-foil",
+      "shopWeight": 5,
+      "priceDelta": 2,
+      "appliesTo": [
+        "card",
+        "joker"
+      ],
+      "cardTiming": "after-enhancement-before-joker-hooks",
+      "jokerTiming": "after-own-jokerScore",
+      "jokerRequiresOwnHookHit": false,
+      "disabledStopsScore": true,
+      "rarityIndependent": true,
+      "repeat": "each-scoring-pass",
+      "effect": {
+        "kind": "add-heat",
+        "value": {
+          "n": "25",
+          "d": "1"
+        }
+      }
+    },
+    {
+      "id": "holographic",
+      "name": "全息",
+      "assetId": "edition-holographic",
+      "shopWeight": 3,
+      "priceDelta": 3,
+      "appliesTo": [
+        "card",
+        "joker"
+      ],
+      "cardTiming": "after-enhancement-before-joker-hooks",
+      "jokerTiming": "after-own-jokerScore",
+      "jokerRequiresOwnHookHit": false,
+      "disabledStopsScore": true,
+      "rarityIndependent": true,
+      "repeat": "each-scoring-pass",
+      "effect": {
+        "kind": "add-multiplier",
+        "value": {
+          "n": "2",
+          "d": "1"
+        }
+      }
+    },
+    {
+      "id": "polychrome",
+      "name": "多彩",
+      "assetId": "edition-polychrome",
+      "shopWeight": 2,
+      "priceDelta": 5,
+      "appliesTo": [
+        "card",
+        "joker"
+      ],
+      "cardTiming": "after-enhancement-before-joker-hooks",
+      "jokerTiming": "after-own-jokerScore",
+      "jokerRequiresOwnHookHit": false,
+      "disabledStopsScore": true,
+      "rarityIndependent": true,
+      "repeat": "each-scoring-pass",
+      "effect": {
+        "kind": "multiply-multiplier",
+        "value": {
+          "n": "3",
+          "d": "2"
+        }
+      }
+    }
+  ],
+  "longTermItems": [
+    {
+      "id": "U01",
+      "name": "宽桌面",
+      "price": 10,
+      "shopWeight": 1,
+      "operation": {
+        "kind": "hand-limit",
+        "amount": 1
+      },
+      "readAt": [
+        "stage-entry"
+      ],
+      "caps": [
+        "longTermSlots",
+        "handMaximum"
+      ],
+      "duplicate": false,
+      "sellable": false,
+      "lifetime": "run",
+      "requiredFeatures": [
+        "long-term-items"
+      ],
+      "assetId": "item-u01"
+    },
+    {
+      "id": "U02",
+      "name": "排练券",
+      "price": 12,
+      "shopWeight": 1,
+      "operation": {
+        "kind": "discard-limit",
+        "amount": 1
+      },
+      "readAt": [
+        "stage-entry"
+      ],
+      "caps": [
+        "longTermSlots"
+      ],
+      "duplicate": false,
+      "sellable": false,
+      "lifetime": "run",
+      "requiredFeatures": [
+        "long-term-items"
+      ],
+      "assetId": "item-u02"
+    },
+    {
+      "id": "U03",
+      "name": "加演许可",
+      "price": 16,
+      "shopWeight": 1,
+      "operation": {
+        "kind": "hands-limit",
+        "amount": 1
+      },
+      "readAt": [
+        "stage-entry"
+      ],
+      "caps": [
+        "longTermSlots"
+      ],
+      "duplicate": false,
+      "sellable": false,
+      "lifetime": "run",
+      "requiredFeatures": [
+        "long-term-items"
+      ],
+      "assetId": "item-u03"
+    },
+    {
+      "id": "U04",
+      "name": "利息册",
+      "price": 10,
+      "shopWeight": 1,
+      "operation": {
+        "kind": "interest-cap",
+        "amount": 2
+      },
+      "readAt": [
+        "reward-before"
+      ],
+      "caps": [
+        "longTermSlots"
+      ],
+      "duplicate": false,
+      "sellable": false,
+      "lifetime": "run",
+      "requiredFeatures": [
+        "long-term-items"
+      ],
+      "assetId": "item-u04"
+    },
+    {
+      "id": "U05",
+      "name": "扩个摊",
+      "price": 12,
+      "shopWeight": 1,
+      "operation": {
+        "kind": "joker-offer-count",
+        "base": 3,
+        "amount": 1
+      },
+      "readAt": [
+        "shop-open",
+        "reroll-before"
+      ],
+      "caps": [
+        "longTermSlots"
+      ],
+      "duplicate": false,
+      "sellable": false,
+      "lifetime": "run",
+      "requiredFeatures": [
+        "long-term-items"
+      ],
+      "assetId": "item-u05"
+    },
+    {
+      "id": "U06",
+      "name": "常客章",
+      "price": 12,
+      "shopWeight": 1,
+      "operation": {
+        "kind": "paid-reroll-discount",
+        "amount": 1,
+        "minimum": 1
+      },
+      "readAt": [
+        "reroll-before"
+      ],
+      "caps": [
+        "longTermSlots"
+      ],
+      "duplicate": false,
+      "sellable": false,
+      "lifetime": "run",
+      "requiredFeatures": [
+        "long-term-items"
+      ],
+      "assetId": "item-u06"
+    },
+    {
+      "id": "U07",
+      "name": "双层箱",
+      "price": 10,
+      "shopWeight": 1,
+      "operation": {
+        "kind": "consumable-slots",
+        "amount": 1
+      },
+      "readAt": [
+        "purchase-before",
+        "capacity-change"
+      ],
+      "caps": [
+        "longTermSlots",
+        "consumableSlotsMaximum"
+      ],
+      "duplicate": false,
+      "sellable": false,
+      "lifetime": "run",
+      "requiredFeatures": [
+        "long-term-items"
+      ],
+      "assetId": "item-u07"
+    },
+    {
+      "id": "U08",
+      "name": "极简手册",
+      "price": 12,
+      "shopWeight": 1,
+      "operation": {
+        "kind": "deletion-floor",
+        "floor": 16
+      },
+      "readAt": [
+        "delete-before"
+      ],
+      "caps": [
+        "longTermSlots",
+        "minimalDeckFloor"
+      ],
+      "duplicate": false,
+      "sellable": false,
+      "lifetime": "run",
+      "requiredFeatures": [
+        "long-term-items"
+      ],
+      "assetId": "item-u08"
+    },
+    {
+      "id": "U09",
+      "name": "复盘本",
+      "price": 14,
+      "shopWeight": 1,
+      "operation": {
+        "kind": "boss-most-used-hand-upgrade",
+        "levels": 1,
+        "tieBreak": "hand-table-low-to-high",
+        "atCap": "skip-without-redraw"
+      },
+      "readAt": [
+        "boss-clear"
+      ],
+      "caps": [
+        "longTermSlots",
+        "handLevelMaximum"
+      ],
+      "duplicate": false,
+      "sellable": false,
+      "lifetime": "run",
+      "requiredFeatures": [
+        "long-term-items"
+      ],
+      "assetId": "item-u09"
+    },
+    {
+      "id": "U10",
+      "name": "采购证",
+      "price": 10,
+      "shopWeight": 1,
+      "operation": {
+        "kind": "first-purchase-discount",
+        "amount": 1,
+        "minimum": 1,
+        "excludeSelf": true
+      },
+      "readAt": [
+        "purchase-before"
+      ],
+      "caps": [
+        "longTermSlots"
+      ],
+      "duplicate": false,
+      "sellable": false,
+      "lifetime": "run",
+      "requiredFeatures": [
+        "long-term-items"
+      ],
+      "assetId": "item-u10"
+    },
+    {
+      "id": "U11",
+      "name": "另一间摊",
+      "price": 10,
+      "shopWeight": 1,
+      "operation": {
+        "kind": "item-offer-count",
+        "base": 1,
+        "amount": 1
+      },
+      "readAt": [
+        "shop-open"
+      ],
+      "caps": [
+        "longTermSlots"
+      ],
+      "duplicate": false,
+      "sellable": false,
+      "lifetime": "run",
+      "requiredFeatures": [
+        "long-term-items"
+      ],
+      "assetId": "item-u11"
+    },
+    {
+      "id": "U12",
+      "name": "开场彩头",
+      "price": 10,
+      "shopWeight": 1,
+      "operation": {
+        "kind": "first-normal-clear-per-chapter",
+        "gold": 3,
+        "skipConsumes": false,
+        "retroactive": false
+      },
+      "readAt": [
+        "normal-clear"
+      ],
+      "caps": [
+        "longTermSlots"
+      ],
+      "duplicate": false,
+      "sellable": false,
+      "lifetime": "run",
+      "requiredFeatures": [
+        "long-term-items"
+      ],
+      "assetId": "item-u12"
+    }
+  ]
+}

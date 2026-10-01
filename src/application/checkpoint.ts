@@ -1,17 +1,31 @@
-import {assertR2Invariants,R2_CONTENT_HASH,R2_CONTENT_VERSION,R2_LIMITS,R2_TARGETS} from '../domain/r2Run';
+import {assertR2Invariants,R2_CONTENT_HASH,R2_CONTENT_VERSION,R2_LIMITS,R2_RESOURCE_CONTRACT,R2_TARGETS} from '../domain/r2Run';
 import type {R2RunState,Command,Action} from '../domain/run';
 import {CHARACTER_IDS} from '../domain/characters';
 import {R2_HAND_TYPES} from '../domain/evaluateR2';
-import {R2_JOKERS,r2GrowthCaps,validR2JokerCounters,validR2Condition} from '../content/r2Schema';
+import {R2_JOKERS,r2GrowthCaps,supportsR2Joker,validR2JokerCounters,validR2Condition,type R2JokerInstance} from '../content/r2Schema';
 import {Rational,MAX_INTEGER_DIGITS} from '../domain/rational';
-import {SCORE_LIMITS} from '../domain/scoreR2';
+import {SCORE_LIMITS,SCORE_OPERATIONS} from '../domain/scoreR2';
 import {SeededRng} from '../core/SeededRng';
 import {stableHash} from '../domain/hash';
 import {R2_AVAILABLE_CHAPTERS,R2_BOSSES,R2_SKIP_CONSUMABLES} from '../domain/r2Chapter';
-import {SUITS} from '../cards/types';
+import {EDITIONS,ENHANCEMENTS,RANKS,SUITS,type PlayingCard} from '../cards/types';
+import {R2_TOOL_CATALOG,type R2LongTermOperation} from '../content/r2Tools';
+import {R2_IMPLEMENTED_TOOL_FEATURES,r2CardSpecialsSupported,r2EditionSupported,r2ItemSupported,r2ToolSupported} from '../domain/r2ToolRuntime';
+import {r2Price,r2ToolPrice,r2ItemPrice} from '../domain/r2Shop';
 
 export const MAX_JOURNAL=256;
 export const MAX_IMPORT_BYTES=16*1024*1024;
+const luckyGoldEffect=R2_TOOL_CATALOG.enhancements.find(definition=>definition.id==='lucky-paper')!.effects.find(effect=>effect.kind==='chance-add-gold')!;
+const heldGoldEffect=R2_TOOL_CATALOG.enhancements.find(definition=>definition.id==='gold-paper')!.effects.find(effect=>effect.kind==='add-gold')!;
+type ShelfEffect=Extract<R2LongTermOperation,{base:number}>;
+const jokerShelfEffect=R2_TOOL_CATALOG.longTermItems.map(item=>item.operation).find((operation):operation is ShelfEffect=>operation.kind==='joker-offer-count')!;
+const itemShelfEffect=R2_TOOL_CATALOG.longTermItems.map(item=>item.operation).find((operation):operation is ShelfEffect=>operation.kind==='item-offer-count')!;
+const itemInterestEffect=R2_TOOL_CATALOG.longTermItems.map(item=>item.operation).find((operation):operation is Extract<R2LongTermOperation,{amount:number}>=>operation.kind==='interest-cap')!;
+const jokerInterestEffect=R2_JOKERS.find(joker=>joker.id==='e04')!.modifiers!.find(modifier=>modifier.kind==='interest-cap')!;
+const normalClearEffect=R2_TOOL_CATALOG.longTermItems.map(item=>item.operation).find(operation=>operation.kind==='first-normal-clear-per-chapter')!;
+const bossUpgradeEffect=R2_TOOL_CATALOG.longTermItems.map(item=>item.operation).find(operation=>operation.kind==='boss-most-used-hand-upgrade')!;
+const firstBossSupply=R2_TOOL_CATALOG.tools.find(tool=>tool.id==='T16')!.rewardSources.find(source=>source.source==='first-boss-clear')!;
+const clearRuleDefinitions=['U04','U09','U12','T16'] as const;
 export interface Checkpoint {
   format:'dachoupai-checkpoint';formatVersion:1;state:R2RunState;
   journalBaseSeq:number;journal:Command[];checksum:string;
@@ -34,44 +48,165 @@ function score(value:unknown):void {if(typeof value!=='string'||!/^(0|[1-9]\d*)$
 function fraction(value:unknown):void {const v=record(value,['n','d']);const number=Rational.fromJSON(v);if(number.n<0n||number.d<=0n)fail('invalid-save-fraction');}
 function accumulator(value:unknown):void {const v=record(value,['H','M']);fraction(v.H);fraction(v.M);}
 function cursor(value:unknown):void {const v=record(value,['algorithm','state']);SeededRng.restore(v as unknown as ReturnType<SeededRng['snapshot']>);}
+function cards(value:unknown,max:number):void {
+  const ids=new Set<unknown>();
+  for(const item of array(value,max)){
+    const card=record(item,['id','rank','suit'],['enhancement','edition']);text(card.id);oneOf(card.rank,RANKS);oneOf(card.suit,SUITS);
+    if(card.enhancement!==undefined)oneOf(card.enhancement,ENHANCEMENTS);
+    if(card.edition!==undefined)oneOf(card.edition,EDITIONS);
+    if(ids.has(card.id))fail('duplicate-save-card');ids.add(card.id);
+    if(!r2CardSpecialsSupported(card as unknown as PlayingCard))fail('save-card-special-not-enabled');
+  }
+}
 function jokers(value:unknown):void {
+  const ids=new Set<unknown>(),definitions=new Set<unknown>();
   for(const item of array(value,R2_LIMITS.jokerSlots)){
-    const j=record(item,['instanceId','definitionId','paidPrice','growth'],['counters']);text(j.instanceId);integer(j.paidPrice);
+    const j=record(item,['instanceId','definitionId','paidPrice','growth'],['counters','edition']);text(j.instanceId);integer(j.paidPrice);
+    if(j.edition!==undefined){oneOf(j.edition,EDITIONS);if(!r2EditionSupported(j.edition as typeof EDITIONS[number]))fail('save-joker-edition-not-enabled');}
     const definition=R2_JOKERS.find(d=>d.id===j.definitionId);if(!definition)fail('unknown-save-joker');
-    const keys=Object.keys(r2GrowthCaps(definition!));
+    if(ids.has(j.instanceId)||definitions.has(j.definitionId))fail('duplicate-save-joker');ids.add(j.instanceId);definitions.add(j.definitionId);
+    const caps=r2GrowthCaps(definition!),keys=Object.keys(caps);
     const growth=record(j.growth,[],keys);Object.values(growth).forEach(fraction);
+    for(const [key,value] of Object.entries(growth))if(Rational.fromJSON(value).compare(Rational.fromJSON(caps[key]))>0)fail('save-joker-growth-cap');
     if(!validR2JokerCounters(j.definitionId as string,j.counters))fail('invalid-save-joker-counters');
   }
 }
-function trace(value:unknown):void {
+function shop(value:unknown,commandSeq:number):void {
+  const s=record(value,['visitIndex','rerollCount','purchases','offers','toolOffers','itemOffers']);
+  integer(s.visitIndex,0,R2_TARGETS.length*3-1);integer(s.rerollCount);integer(s.purchases,0,commandSeq);
+  const ids=new Set<unknown>(),caps={offers:jokerShelfEffect.base+jokerShelfEffect.amount,toolOffers:1,itemOffers:itemShelfEffect.base+itemShelfEffect.amount};
+  for(const name of ['offers','toolOffers','itemOffers'] as const)for(const item of array(s[name],caps[name])){
+    const offer=record(item,['offerId','definitionId','price','consumed'],name==='offers'?['edition']:[]);
+    text(offer.offerId);text(offer.definitionId);integer(offer.price,1);bool(offer.consumed);
+    if(ids.has(offer.offerId))fail('duplicate-save-offer');ids.add(offer.offerId);
+    const definitionId=offer.definitionId as string;
+    if(name==='offers'){
+      const definition=R2_JOKERS.find(joker=>joker.id===definitionId);
+      if(!definition||!supportsR2Joker(definition))fail('save-joker-offer-not-enabled');
+      if(offer.edition!==undefined){oneOf(offer.edition,EDITIONS);if(!r2EditionSupported(offer.edition as typeof EDITIONS[number]))fail('save-offer-edition-not-enabled');}
+      if(offer.price!==r2Price(definitionId,offer.edition as typeof EDITIONS[number]|undefined))fail('invalid-save-offer-price');
+    }else if(name==='toolOffers'){
+      const definition=R2_TOOL_CATALOG.tools.find(tool=>tool.id===definitionId);
+      if(!definition||!r2ToolSupported(definitionId)||!definition.shopWeight)fail('save-tool-offer-not-enabled');
+      if(offer.price!==r2ToolPrice(definitionId))fail('invalid-save-offer-price');
+    }else{
+      if(!r2ItemSupported(definitionId))fail('save-item-offer-not-enabled');
+      if(offer.price!==r2ItemPrice(definitionId))fail('invalid-save-offer-price');
+    }
+  }
+}
+function trace(value:unknown,context:{runId:string;characterId:string;discoveredHands:readonly string[]}):void {
   if(value===null)return;
-  const t=record(value,['rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng','destroyedJokerIds']);
+  const t=record(value,['rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng','destroyedJokerIds','goldDelta','destroyedCardIds','cards','sourceJokers']);
   oneOf(t.rulesVersion,['r2']);text(t.rootId);oneOf(t.handType,R2_HAND_TYPES);integer(t.level,1,30);score(t.finalScore);accumulator(t.accumulator);cursor(t.rng);jokers(t.jokers);
-  const sets=record(t.sets,['playedIds','scoringIds','activeScoringIds','heldIds']);Object.values(sets).forEach(v=>strings(v,14));
+  const sets=record(t.sets,['playedIds','scoringIds','activeScoringIds','heldIds']);
+  for(const [key,ids] of Object.entries(sets))strings(ids,key==='heldIds'?R2_RESOURCE_CONTRACT.handMaximum:R2_LIMITS.maxSelected);
+  const played=sets.playedIds as string[],held=sets.heldIds as string[],scoring=sets.scoringIds as string[],active=sets.activeScoringIds as string[],all=[...played,...held];
+  if(!played.length||all.length>R2_RESOURCE_CONTRACT.handMaximum||new Set(all).size!==all.length||new Set(scoring).size!==scoring.length||scoring.some(id=>!played.includes(id))||new Set(active).size!==active.length||active.some(id=>!scoring.includes(id)))fail('invalid-save-trace-cards');
+  integer(t.goldDelta,0,R2_TOOL_CATALOG.limits.luckyGoldPerHand);cards(t.cards,R2_RESOURCE_CONTRACT.handMaximum);jokers(t.sourceJokers);
+  const cardSources=new Map((t.cards as PlayingCard[]).map(card=>[card.id,card])),jokerSources=new Map((t.sourceJokers as R2JokerInstance[]).map(joker=>[joker.instanceId,joker]));
+  if(all.length!==cardSources.size||all.some(id=>!cardSources.has(id)))fail('invalid-save-trace-cards');
+  for(const ids of [played,held,scoring,active]){const order=(t.cards as PlayingCard[]).filter(card=>ids.includes(card.id)).map(card=>card.id);if(order.some((id,index)=>id!==ids[index]))fail('invalid-save-trace-order');}
   const events=array(t.events,SCORE_LIMITS.eventCount);if(!events.length)fail('empty-save-trace');
+  const eventIds=new Set<unknown>(),rootEventIds:unknown[]=[],destroyedCards:string[]=[],destroyedJokers:string[]=[],glassHits=new Set<string>(),heldGoldSources=new Set<string>();let luckyGold=0n;
+  const unchanged=(before:unknown,after:unknown)=>{
+    const a=before as Record<string,unknown>,b=after as Record<string,unknown>;
+    if(['H','M'].some(key=>Rational.fromJSON(a[key]).compare(Rational.fromJSON(b[key]))!==0))fail('invalid-save-resource-score');
+  };
   for(const item of events){
-    const e=record(item,['eventId','rootId','rootEventId','phase','sourceType','sourceDefinitionId','sourceInstanceId','operation','value','before','after','reasonKey','visibleCondition','retriggerDepth'],['targetCardId','resourceBefore','resourceAfter']);
+    const e=record(item,['eventId','rootId','rootEventId','phase','sourceType','sourceDefinitionId','sourceInstanceId','operation','value','before','after','reasonKey','visibleCondition','retriggerDepth'],['targetCardId','resourceBefore','resourceAfter','targetHandType']);
     for(const k of ['eventId','rootId','rootEventId','sourceDefinitionId','sourceInstanceId','reasonKey'])text(e[k]);
-    if(e.rootId!==t.rootId)fail('invalid-save-trace-root');
+    if(e.rootId!==t.rootId||eventIds.has(e.eventId))fail('invalid-save-trace-root');eventIds.add(e.eventId);rootEventIds.push(e.rootEventId);
     oneOf(e.phase,['base','onCardScore','onHeldCard','characterScore','jokerScore','finalScore','afterHand','beforeFailure','onStageClear']);
     oneOf(e.sourceType,['rule','card','character','joker']);
-    if(e.sourceType==='joker')oneOf(e.sourceDefinitionId,R2_JOKERS.map(d=>d.id));
-    if(e.sourceType==='character')oneOf(e.sourceDefinitionId,CHARACTER_IDS);
-    oneOf(e.operation,['base','add-heat','add-multiplier','multiply-multiplier','read-growth','consume-growth','add-growth','reset-growth','score-growth-baseline','increment-hands-scored','destroy-joker','rescue-hand','add-gold','retrigger-card','retrigger-cap','final-score','add-heat-per-gold','add-heat-per-empty-slot','ordinary-points-suppressed']);
+    oneOf(e.operation,SCORE_OPERATIONS);
+    if(e.operation==='upgrade-hand'){oneOf(e.targetHandType,R2_HAND_TYPES);if(!context.discoveredHands.includes(e.targetHandType as string))fail('undiscovered-save-upgrade-target');}
+    else if(Object.hasOwn(e,'targetHandType'))fail('invalid-save-target-hand-operation');
     fraction(e.value);accumulator(e.before);accumulator(e.after);integer(e.retriggerDepth,0,1);if(e.targetCardId!==undefined)text(e.targetCardId);
     if(!validR2Condition(e.visibleCondition))fail('invalid-save-visible-condition');
     if(Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter')){integer(e.resourceBefore);integer(e.resourceAfter);}
+    const sourceCard=cardSources.get(e.sourceInstanceId as string);
+    if(e.targetCardId!==undefined){
+      if(!cardSources.has(e.targetCardId as string))fail('unknown-save-trace-target');
+      if(e.phase==='onCardScore'&&!active.includes(e.targetCardId as string)||e.phase==='onHeldCard'&&!held.includes(e.targetCardId as string))fail('invalid-save-trace-target-set');
+    }
+    if(e.sourceType==='card'){
+      if(!sourceCard||e.targetCardId!==sourceCard.id||![sourceCard.id,`rank-${sourceCard.rank}`].includes(e.sourceDefinitionId as string))fail('invalid-save-card-source');
+      const scope=e.phase==='onCardScore'||e.phase==='afterHand'?active:e.phase==='onHeldCard'||e.phase==='onStageClear'?held:[];
+      if(!scope.includes(sourceCard!.id))fail('invalid-save-card-source-set');
+    }
+    if(e.sourceType==='joker'){const source=jokerSources.get(e.sourceInstanceId as string);if(!source||source.definitionId!==e.sourceDefinitionId)fail('invalid-save-joker-source');}
+    if(e.sourceType==='character'&&(e.sourceDefinitionId!==context.characterId||e.sourceInstanceId!==`${context.runId}/character`))fail('invalid-save-character-source');
+    if(e.sourceType==='rule'&&(e.sourceInstanceId!==context.runId||![t.handType,'B02',...clearRuleDefinitions].includes(e.sourceDefinitionId)))fail('invalid-save-rule-source');
+    const amount=Rational.fromJSON(e.value);
+    if(e.operation==='upgrade-hand'&&(e.sourceType!=='rule'||e.sourceDefinitionId!=='U09')||e.operation==='reward-consumable'&&(e.sourceType!=='rule'||e.sourceDefinitionId!=='T16'))fail('invalid-save-clear-operation-source');
+    if(e.sourceType==='rule'&&clearRuleDefinitions.includes(e.sourceDefinitionId as typeof clearRuleDefinitions[number])){
+      if(e.phase!=='onStageClear'||e.targetCardId!==undefined)fail('invalid-save-clear-source-phase');
+      if(e.sourceDefinitionId==='T16'?!r2ToolSupported('T16'):!r2ItemSupported(e.sourceDefinitionId as string))fail('save-clear-source-not-enabled');
+      unchanged(e.before,e.after);
+      switch(e.sourceDefinitionId){
+        case 'U04':if(e.operation!=='add-gold'||amount.d!==1n||amount.n<=0n||amount.n>BigInt(itemInterestEffect.amount))fail('invalid-save-item-interest');break;
+        case 'U12':if(e.operation!=='add-gold'||amount.compare(new Rational(BigInt(normalClearEffect.gold)))!==0)fail('invalid-save-normal-clear-gold');break;
+        case 'U09':
+          if(e.operation!=='upgrade-hand'||amount.compare(new Rational(BigInt(bossUpgradeEffect.levels)))!==0)fail('invalid-save-boss-upgrade');
+          integer(e.resourceBefore,1,R2_TOOL_CATALOG.limits.handLevelMaximum);integer(e.resourceAfter,1,R2_TOOL_CATALOG.limits.handLevelMaximum);
+          if((e.resourceAfter as number)!==(e.resourceBefore as number)+bossUpgradeEffect.levels)fail('invalid-save-boss-upgrade-delta');break;
+        case 'T16':
+          if(e.operation==='add-gold'){if(amount.compare(new Rational(BigInt(firstBossSupply.overflowGold)))!==0)fail('invalid-save-supply-overflow');}
+          else if(e.operation==='reward-consumable'){
+            if(amount.compare(new Rational(1n))!==0)fail('invalid-save-supply-count');
+            integer(e.resourceBefore,0,R2_TOOL_CATALOG.limits.consumableSlotsMaximum);integer(e.resourceAfter,0,R2_TOOL_CATALOG.limits.consumableSlotsMaximum);
+            if((e.resourceAfter as number)!==(e.resourceBefore as number)+1)fail('invalid-save-supply-delta');
+          }else fail('invalid-save-supply-operation');break;
+      }
+    }
+    if(['lucky-multiplier-check','lucky-gold-check','glass-check','lucky-gold-cap'].includes(e.operation as string)){
+      const glass=e.operation==='glass-check';
+      if(e.sourceType!=='card'||!sourceCard||e.sourceDefinitionId!==sourceCard.id||sourceCard.enhancement!==(glass?'glass-paper':'lucky-paper')||e.phase!==(glass?'afterHand':'onCardScore'))fail('invalid-save-random-source');
+      if(e.operation==='lucky-gold-cap'){if(amount.compare(new Rational(BigInt(R2_TOOL_CATALOG.limits.luckyGoldPerHand)))!==0)fail('invalid-save-random-check');}
+      else if(amount.d!==1n||amount.n!==0n&&amount.n!==1n)fail('invalid-save-random-check');
+      unchanged(e.before,e.after);
+      if(e.operation==='lucky-gold-check'||e.operation==='lucky-gold-cap'){integer(e.resourceBefore);integer(e.resourceAfter);if(e.resourceBefore!==e.resourceAfter)fail('invalid-save-random-resource');}
+      if(glass&&amount.n===1n)glassHits.add(sourceCard!.id);
+    }
+    if(e.operation==='add-gold'){
+      integer(e.resourceBefore);integer(e.resourceAfter);if(amount.d!==1n||amount.n<0n||BigInt(e.resourceAfter as number)-BigInt(e.resourceBefore as number)!==amount.n)fail('invalid-save-gold-event');unchanged(e.before,e.after);
+      if(e.sourceType==='joker'&&e.sourceDefinitionId==='e04'&&(e.phase!=='onStageClear'||amount.n<=0n||amount.n>BigInt(jokerInterestEffect.amount)))fail('invalid-save-joker-interest');
+      if(e.sourceType==='card'){
+        if(e.phase==='onCardScore'&&sourceCard?.enhancement==='lucky-paper'&&amount.n>0n&&amount.n<=BigInt(luckyGoldEffect.amount))luckyGold+=amount.n;
+        else if(e.phase==='onStageClear'&&sourceCard?.enhancement==='gold-paper'&&amount.n===BigInt(heldGoldEffect.amount)&&!heldGoldSources.has(sourceCard.id))heldGoldSources.add(sourceCard.id);
+        else fail('invalid-save-card-gold');
+      }
+    }
+    if(e.operation==='destroy-card'){
+      if(e.sourceType!=='card'||!sourceCard||sourceCard.enhancement!=='glass-paper'||e.phase!=='afterHand'||amount.n!==0n||!glassHits.has(sourceCard.id))fail('invalid-save-card-destruction');
+      unchanged(e.before,e.after);destroyedCards.push(sourceCard!.id);
+    }
+    if(e.operation==='destroy-joker'){
+      if(e.sourceType!=='joker'||!['afterHand','beforeFailure'].includes(e.phase as string)||amount.n!==0n)fail('invalid-save-joker-destruction');
+      unchanged(e.before,e.after);destroyedJokers.push(e.sourceInstanceId as string);
+    }
   }
-  strings(t.destroyedJokerIds,R2_LIMITS.jokerSlots);
-  const destroyed=t.destroyedJokerIds as string[];
-  if(new Set(destroyed).size!==destroyed.length||destroyed.some(id=>!events.some(event=>{const e=event as Record<string,unknown>;return e.operation==='destroy-joker'&&e.sourceType==='joker'&&e.sourceInstanceId===id;})))fail('invalid-save-destroyed-jokers');
+  if(rootEventIds.some(id=>!eventIds.has(id)))fail('invalid-save-trace-event-root');
+  if(luckyGold!==BigInt(t.goldDelta as number)||heldGoldSources.size*heldGoldEffect.amount>heldGoldEffect.capPerStage)fail('invalid-save-trace-gold');
+  strings(t.destroyedJokerIds,R2_LIMITS.jokerSlots);strings(t.destroyedCardIds,R2_RESOURCE_CONTRACT.handMaximum);
+  for(const [value,actual] of [[t.destroyedJokerIds,destroyedJokers],[t.destroyedCardIds,destroyedCards]] as const){
+    const ids=value as string[];if(new Set(ids).size!==ids.length||new Set(actual).size!==actual.length||ids.length!==actual.length||ids.some(id=>!actual.includes(id)))fail('invalid-save-destruction-result');
+  }
+  const survivors=(t.jokers as R2JokerInstance[]),expected=[...jokerSources.keys()].filter(id=>!destroyedJokers.includes(id));
+  if(survivors.length!==expected.length||survivors.some(joker=>!expected.includes(joker.instanceId)))fail('invalid-save-joker-result');
+  for(const joker of survivors){const source=jokerSources.get(joker.instanceId)!;if(joker.definitionId!==source.definitionId||joker.paidPrice!==source.paidPrice||(joker.edition??'none')!==(source.edition??'none'))fail('invalid-save-joker-result-identity');}
 }
 function action(value:unknown):void {
-  const a=record(value,['type'],['seed','characterId','rulesVersion','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType']);
+  const a=record(value,['type'],['seed','characterId','rulesVersion','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind']);
   const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],PlayHand:['selectedIds'],DiscardHand:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
   if(typeof a.type!=='string'||!Object.hasOwn(keys,a.type))fail('unknown-save-command');
-  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType']:[]);
+  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:[]);
   if(a.handType!==undefined)oneOf(a.handType,R2_HAND_TYPES);
+  if(a.secondaryHandType!==undefined)oneOf(a.secondaryHandType,R2_HAND_TYPES);
+  if(a.suit!==undefined)oneOf(a.suit,SUITS);
+  if(a.sacrificeId!==undefined)text(a.sacrificeId);
+  if(a.targetKind!==undefined)oneOf(a.targetKind,['card','joker']);
   if(a.type==='StartRun'){text(a.seed,4096);oneOf(a.characterId,CHARACTER_IDS);oneOf(a.rulesVersion,['r2']);}
   for(const k of ['selectedIds','targetIds','ids'])if(a[k]!==undefined)strings(a[k],14);
   for(const k of ['instanceId','offerId'])if(a[k]!==undefined)text(a[k]);
@@ -91,25 +226,38 @@ function safeTree(value:unknown):void {
 function validateState(value:unknown):asserts value is R2RunState {
   // Diagnose old versions before changed fields; retaining/exporting raw saves remains explicit.
   if(value&&typeof value==='object'&&!Array.isArray(value)){const tags=value as Record<string,unknown>;if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||tags.contentVersion!==R2_CONTENT_VERSION||tags.contentHash!==R2_CONTENT_HASH)fail('incompatible-version');}
-  const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','difficulty','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons','safetyNetUsed']);
+  const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','difficulty','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons','safetyNetUsed','spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed']);
   if(s.schemaVersion!==2||s.rulesVersion!=='r2'||s.contentVersion!==R2_CONTENT_VERSION||s.contentHash!==R2_CONTENT_HASH)fail('incompatible-version');
   text(s.runId);text(s.seed,4096);integer(s.commandSeq,1);oneOf(s.difficulty,[0]);oneOf(s.characterId,CHARACTER_IDS);integer(s.chapter,1,R2_AVAILABLE_CHAPTERS);integer(s.stageIndex,0,R2_AVAILABLE_CHAPTERS*3);
   oneOf(s.phase,['shop','stage-ready','await-input','stage-cleared','run-won','run-lost']);
-  for(const c of array(s.deckInstances,10000))record(c,['id','rank','suit'],['enhancement']);
+  cards(s.deckInstances,10000);
   for(const k of ['drawPile','handOrder','playedPile','discardPile','destroyedIds','longTermItems'])strings(s[k]);
   score(s.totalHeat);integer(s.gold);jokers(s.jokers);
-  for(const c of array(s.consumables,R2_LIMITS.consumableSlots)){const v=record(c,['instanceId','definitionId']);text(v.instanceId);text(v.definitionId);}
+  for(const c of array(s.consumables,R2_TOOL_CATALOG.limits.consumableSlotsMaximum)){const v=record(c,['instanceId','definitionId']);text(v.instanceId);text(v.definitionId);if(!r2ToolSupported(v.definitionId as string))fail('save-tool-not-enabled');}
+  for(const id of s.longTermItems as string[])if(!r2ItemSupported(id))fail('save-item-not-enabled');
+  const modifiers=record(s.spectralModifiers,['handsPenalty','handPenalty','cleanSlateBonus']);
+  integer(modifiers.handsPenalty,0,R2_TOOL_CATALOG.limits.spectralHandsPenaltyMaximum);integer(modifiers.handPenalty,0,R2_TOOL_CATALOG.limits.spectralHandPenaltyMaximum);integer(modifiers.cleanSlateBonus,0,R2_TOOL_CATALOG.limits.oncePerRun);
+  if(!R2_IMPLEMENTED_TOOL_FEATURES.includes('permanent-resources')&&Object.values(modifiers).some(value=>value!==0))fail('save-spectral-modifiers-not-enabled');
+  bool(s.supplyRewardClaimed);bool(s.normalClearClaimed);
+  if(s.supplyRewardClaimed&&!R2_IMPLEMENTED_TOOL_FEATURES.includes('first-boss-supply'))fail('save-first-boss-supply-not-enabled');
+  const levels=record(s.handLevels,[],[...R2_HAND_TYPES]);Object.values(levels).forEach(level=>integer(level,1,SCORE_LIMITS.handLevel));
+  const usage=record(s.chapterHandUsage,[],[...R2_HAND_TYPES]);let plays=0n;
+  for(const [type,count] of Object.entries(usage)){integer(count);if(!Object.hasOwn(levels,type))fail('undiscovered-save-hand-usage');plays+=BigInt(count as number);}
+  if(plays>BigInt(s.commandSeq as number))fail('invalid-save-hand-usage');
   oneOf(s.program,[null]);const boss=record(s.boss,['definitionId','disabledSuit']);oneOf(boss.definitionId,R2_BOSSES.map(b=>b.id));oneOf(boss.disabledSuit,[null,...SUITS]);strings(s.seenBossIds,R2_AVAILABLE_CHAPTERS);oneOf(s.chapterSkipConsumable,R2_SKIP_CONSUMABLES);integer(s.purchaseCoupons,0,R2_AVAILABLE_CHAPTERS);bool(s.safetyNetUsed);
-  if(s.stage!==null){const t=record(s.stage,['index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult']);
-    integer(t.index,0,R2_AVAILABLE_CHAPTERS*3-1);score(t.targetHeat);score(t.heat);integer(t.handLimit,R2_LIMITS.handSize,14);bool(t.rescueUsed);if(t.previousHandScore!==null)score(t.previousHandScore);integer(t.handsLeft,0,R2_LIMITS.hands);integer(t.discardsLeft,0,R2_LIMITS.discards);integer(t.playIndex,0,R2_LIMITS.hands+(t.rescueUsed?1:0));integer(t.discardsUsed,0,R2_LIMITS.discards+1+R2_LIMITS.consumableSlots);integer(t.goldEarned);strings(t.disabledIds);bool(t.wagerSelected);bool(t.wagerUsed);oneOf(t.previousHandType,[null,...R2_HAND_TYPES]);if(t.clearId!==null)text(t.clearId);
+  if(s.stage!==null){const t=record(s.stage,['index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult','initialHands','initialDiscards','discardSpent','discardGained','doubleDiscardBeforeFirstPlay']);
+    integer(t.index,0,R2_AVAILABLE_CHAPTERS*3-1);score(t.targetHeat);score(t.heat);integer(t.handLimit,R2_RESOURCE_CONTRACT.handMinimum,R2_RESOURCE_CONTRACT.handMaximum);bool(t.rescueUsed);if(t.previousHandScore!==null)score(t.previousHandScore);
+    integer(t.initialHands,R2_RESOURCE_CONTRACT.handsMinimum,R2_RESOURCE_CONTRACT.handsMaximum);integer(t.initialDiscards,R2_LIMITS.discards,R2_RESOURCE_CONTRACT.discardsMaximum);bool(t.doubleDiscardBeforeFirstPlay);
+    integer(t.handsLeft,0,t.initialHands as number);integer(t.discardsLeft,0,t.initialDiscards as number);integer(t.playIndex,0,(t.initialHands as number)+(t.rescueUsed?1:0));integer(t.discardGained,0,R2_RESOURCE_CONTRACT.discardGainMaximum);integer(t.discardSpent,0,(t.initialDiscards as number)+(t.discardGained as number));integer(t.discardsUsed,0,t.discardSpent as number);
+    integer(t.goldEarned);strings(t.disabledIds);bool(t.wagerSelected);bool(t.wagerUsed);oneOf(t.previousHandType,[null,...R2_HAND_TYPES]);if(t.clearId!==null)text(t.clearId);
     if(t.skipResult!==null){const r=record(t.skipResult,['kind'],['amount','definitionId']);oneOf(r.kind,['coupon','consumable','gold']);if(r.kind==='consumable'){record(r,['kind','definitionId']);oneOf(r.definitionId,R2_SKIP_CONSUMABLES);}else{record(r,['kind','amount']);oneOf(r.amount,r.kind==='coupon'?[2]:[1]);}}
   }
-  if(s.shop!==null){const shop=record(s.shop,['visitIndex','rerollCount','purchases','offers']);integer(shop.visitIndex,0,R2_TARGETS.length*3-1);integer(shop.rerollCount);integer(shop.purchases,0,s.commandSeq as number);for(const o of array(shop.offers,3)){const v=record(o,['offerId','definitionId','price','consumed']);text(v.offerId);text(v.definitionId);integer(v.price);bool(v.consumed);}}
+  if(s.shop!==null)shop(s.shop,s.commandSeq as number);
   const rng=record(s.rng,['deck','shop','rule','reward']);Object.values(rng).forEach(cursor);
   const receipts=array(s.receipts,100000);let seq=0;const ids=new Set();
   for(const r of receipts){const v=record(r,['commandId','fingerprint','seq']);text(v.commandId);text(v.fingerprint);integer(v.seq,1);if(v.seq!==++seq||ids.has(v.commandId))fail('invalid-save-receipts');ids.add(v.commandId);}
   if(seq!==s.commandSeq)fail('invalid-save-sequence');
-  record(s.handLevels,[],[...R2_HAND_TYPES]);trace(s.lastTrace);
+  trace(s.lastTrace,{runId:s.runId as string,characterId:s.characterId as string,discoveredHands:Object.keys(levels)});
   if(s.outcome!==null){const o=record(s.outcome,['reason','stageIndex']);oneOf(o.reason,['graybox-complete','all-stages-cleared','hands-exhausted','no-legal-cards','abandoned']);integer(o.stageIndex,0,R2_AVAILABLE_CHAPTERS*3);}
   assertR2Invariants(value as unknown as R2RunState);
 }

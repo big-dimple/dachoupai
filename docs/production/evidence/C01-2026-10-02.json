@@ -1,0 +1,1360 @@
+{
+  "taskId": "C01",
+  "status": "IN_PROGRESS",
+  "testedCommit": "966b6126ca1d1fc5d1a179c5e8cd14c7967260c2",
+  "treeIdentity": {
+    "modified": true,
+    "method": "966b612 is the tested Git baseline, not the final commit. These LF-normalized source/test/checker fingerprints identify the closeout candidate. Unit results predate the UI-only packet-arrival fix; final production build and real browser checks cover that fix. The only post-build domain edit removes an extra blank EOF line.",
+    "files": [
+      {
+        "file": "scripts/verify-content.mjs",
+        "normalizedLfSha256": "41ef53e526cbffcf0987d814b1ab80d66697d37fb47cafdc99dc54e550720925"
+      },
+      {
+        "file": "src/application/SavedRun.ts",
+        "normalizedLfSha256": "985acd863d431bf647c08baf2c2775bbae212abf54cd82b4befb994b24ed24f8"
+      },
+      {
+        "file": "src/application/checkpoint.ts",
+        "normalizedLfSha256": "11de79016782bf98ffa070a3b71a97dd24aff96c87d551b53efdebaf1fad11d5"
+      },
+      {
+        "file": "src/audio/AudioEngine.ts",
+        "normalizedLfSha256": "d839cda404b22a70fdda499240d914ba7a9998676c584a4ef38ac13877919d70"
+      },
+      {
+        "file": "src/cards/types.ts",
+        "normalizedLfSha256": "f410785946fcce22529900967c0c24a97efdd609e7dfb15ce6dc870bc718d8b7"
+      },
+      {
+        "file": "src/content/r2-tools.json",
+        "normalizedLfSha256": "b5c0970d6e5c4ca6104f81cc33ac57c0b59efedd382a901602a9a5336d8d259e"
+      },
+      {
+        "file": "src/content/r2Schema.ts",
+        "normalizedLfSha256": "04b45fbbdd595c507898a8c234801b60507f6c9659b9608c872176e2b341d33b"
+      },
+      {
+        "file": "src/content/r2Tools.ts",
+        "normalizedLfSha256": "8cd4af05a7d71067db45ee0dadbdffaae0bc70b2164968fd6199589a65350046"
+      },
+      {
+        "file": "src/domain/evaluateR2.ts",
+        "normalizedLfSha256": "4b6ee5d5abe9ca87a4e9a4cc76029fc630d3f6d89a572e6ecc16aa96720ff592"
+      },
+      {
+        "file": "src/domain/r2Resources.ts",
+        "normalizedLfSha256": "c435ed5d9467184a1af93430a6634ead52df6416473c1c444e1429f8c1b371ac"
+      },
+      {
+        "file": "src/domain/r2Run.ts",
+        "normalizedLfSha256": "60e30b7c4d518494777b7196a51892fc19a069c1c06c92ead71f896fe9c13a99"
+      },
+      {
+        "file": "src/domain/r2Shop.ts",
+        "normalizedLfSha256": "f089349b07da1896d18d3a90ab78874ce0d3f5c5b7591c3799f8f340db0b5d27"
+      },
+      {
+        "file": "src/domain/r2SpectralTools.ts",
+        "normalizedLfSha256": "568bb551613ddfd2d6f024d6c7911f852edc983b3ff7da9c569dc230d2c4d969"
+      },
+      {
+        "file": "src/domain/r2ToolCommands.ts",
+        "normalizedLfSha256": "290e55e2373c1571b6e7bd6390a8f6ae901f2372c628cf4ebc38190ddbac1080"
+      },
+      {
+        "file": "src/domain/r2ToolRuntime.ts",
+        "normalizedLfSha256": "57b883723fe7754195b317f243dbfe3ddaee14b1b2922c78ffe407bc8b8a7bf2"
+      },
+      {
+        "file": "src/domain/run.ts",
+        "normalizedLfSha256": "2151894140d1c27a43103fa236c9c3bc840f78a769695f131aa2457fdb9bc68e"
+      },
+      {
+        "file": "src/domain/scoreR2.ts",
+        "normalizedLfSha256": "a3fbf79293cae8a663f36998f2e40b002b33fa104df2dd6ba3f0de77a74f2559"
+      },
+      {
+        "file": "src/game/ConsumableDialog.ts",
+        "normalizedLfSha256": "496cf32cbab1d74784fad8c0265905c7b2ff3183d4f655f6fdebb7f48c44f48b"
+      },
+      {
+        "file": "src/game/GameScene.ts",
+        "normalizedLfSha256": "d46c94ff9221f3851b9ed01d39a44c72bbe706411621dca685886fc5dfabbdb5"
+      },
+      {
+        "file": "src/game/RunMenu.ts",
+        "normalizedLfSha256": "b68bc500c200b334d9f63364dbd00a21aeb8d3814c5ce9b920a832aa1c8911e7"
+      },
+      {
+        "file": "src/game/ShopScene.ts",
+        "normalizedLfSha256": "289289a663ac0517ae33bf3195581c5a929a07004538eacbc034dcea70649861"
+      },
+      {
+        "file": "src/game/r2Help.ts",
+        "normalizedLfSha256": "4154f631d27eb2d0e3118de98c9c9424476c09611da46a2ac28571a98fe28bdf"
+      },
+      {
+        "file": "src/game/r2ToolInfo.ts",
+        "normalizedLfSha256": "1fc3ddea3472f12f7ca2a3acbb08f9f513d7f82f46903b32907c17dd553bc288"
+      },
+      {
+        "file": "src/game/runAdapter.ts",
+        "normalizedLfSha256": "28a01a358ebc0747601098ff53cbc749b60a6761facf3f483fd8aa2afbdd87c3"
+      },
+      {
+        "file": "src/game/scorePresentation.ts",
+        "normalizedLfSha256": "a0b4cc907a0beeb9933ffb9cf7885440d1c389b87f31d9e33cd0849e0dd9ba2c"
+      },
+      {
+        "file": "src/game/session.ts",
+        "normalizedLfSha256": "9a45e1c8c4d28a9f942b8ec205451ad0dc1479adbbccfe1a4b60b704ae860b5a"
+      },
+      {
+        "file": "src/style.css",
+        "normalizedLfSha256": "5b313eb80fecda4f9ba35f40e745840c6418348eff73d10c3fee8809b4d73655"
+      },
+      {
+        "file": "src/testing/r2Bot.ts",
+        "normalizedLfSha256": "9b4d48e9ee5def462ceabe2dbca6843ad8c897d860a567ce7845d12207a63758"
+      },
+      {
+        "file": "tests/c00-transactions.test.ts",
+        "normalizedLfSha256": "2fc4a080ce358db022a6270910399fe1b2f4850c5297830e4e1d0c7af27009f0"
+      },
+      {
+        "file": "tests/c01-boundary.test.ts",
+        "normalizedLfSha256": "782a7e4fc7c894089dcd093fb67aab45078fb77751e1d73a2a5f8378079e1ddf"
+      },
+      {
+        "file": "tests/c01-catalog.test.ts",
+        "normalizedLfSha256": "4155a31c59407a6e6701a97398e7755d74ba7d558062c4f20662d46822b96679"
+      },
+      {
+        "file": "tests/c01-checkpoint.test.ts",
+        "normalizedLfSha256": "3b376f5e631892764afb5e3598cb1747ed071f1455ec0fdad6f6168930befb2b"
+      },
+      {
+        "file": "tests/c01-economy.test.ts",
+        "normalizedLfSha256": "cbe19f74f279bd185aaa43490c961083f3cb3dfd807fdd5d523f4fcb466bca99"
+      },
+      {
+        "file": "tests/c01-enhancement-tools.test.ts",
+        "normalizedLfSha256": "924473db40b56bc168aac3da517cb4c57b06641738984bcf84ceac1f10c6b191"
+      },
+      {
+        "file": "tests/c01-hand-resources.test.ts",
+        "normalizedLfSha256": "a62836c86495f85a7f96524e7c04e93e2dcb4cf28373c2120981b900b0671399"
+      },
+      {
+        "file": "tests/c01-planets.test.ts",
+        "normalizedLfSha256": "4c88f6cccc9bb3dda91948b7f271d41411bcfe5a1ae485fa173d9bce5883c6a7"
+      },
+      {
+        "file": "tests/c01-preview-resource.test.ts",
+        "normalizedLfSha256": "b379cc5ac89307744a1b6d5e4695df754374c45afbc9ec1b7ea25762975fb36d"
+      },
+      {
+        "file": "tests/c01-score-copy.test.ts",
+        "normalizedLfSha256": "a23cfe831b5aeda920419eb14470d71cdf3126ac65444777a99a3c21ef907f6c"
+      },
+      {
+        "file": "tests/c01-score.test.ts",
+        "normalizedLfSha256": "0ac3932c22f2e2ebc5e8604e59ae3708bf5e8b0617d5a18341751bf261351244"
+      },
+      {
+        "file": "tests/c01-spectral.test.ts",
+        "normalizedLfSha256": "887cb6b7cb67aa7e2b9e7f5ca015d612f15ad0435ede4bd9c7e3f8f11e76abb1"
+      },
+      {
+        "file": "tests/c01-tool-info.test.ts",
+        "normalizedLfSha256": "0ae52f3c04e7954c063cba7a5b3d9286b75f90f794fe4051d21dd7c5306db897"
+      },
+      {
+        "file": "tests/c01-tools.test.ts",
+        "normalizedLfSha256": "582417adf19d6c07ce6a920844e66c4881b277b5bd3d94640acf7f353382edda"
+      },
+      {
+        "file": "tests/card-boundary.test.ts",
+        "normalizedLfSha256": "335a8d2de8b0bd4f7be47afc384431924171d2fa848fd07fb922a90c85e1c567"
+      },
+      {
+        "file": "tests/r2-run.test.ts",
+        "normalizedLfSha256": "6e11de52908ad1ce6a77ff3ac722b91e4352257485df16ed9d2a79775d51113f"
+      },
+      {
+        "file": "tests/r2-starting-profile.test.ts",
+        "normalizedLfSha256": "0db3c301568c733d55a4e1ef406f00ded71f45c0700c203e83c777954777327a"
+      },
+      {
+        "file": "tests/recovery-save.test.ts",
+        "normalizedLfSha256": "a4906371f654dda3e15ed89bd387171c08437b4d679b5722600f51eddcfb8374"
+      },
+      {
+        "file": "tests/stageNotice.test.ts",
+        "normalizedLfSha256": "be2b47bd8d52877a73c77c7a9a646df6da1fde6f7c0ea313873fe706fd6635d6"
+      },
+      {
+        "file": "tests/v00-consumables.test.ts",
+        "normalizedLfSha256": "573b8f88976a49b85728811b295fa2c171bf68096fccf28dbe1f27c5478346a6"
+      },
+      {
+        "file": "tests/v00-run.test.ts",
+        "normalizedLfSha256": "d892ba8ba62612fef3b91939a1a6967eff70e91c1dcb7bf6ea462ead97674162"
+      },
+      {
+        "file": "vite.config.ts",
+        "normalizedLfSha256": "bf1eba4393ca52cd293ae79056b0d57dc8a2b84a1dc1318cc7ad0624315dee0e"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "step": "C01.1",
+      "command": "npx vitest run tests/c01-catalog.test.ts",
+      "result": "RED",
+      "tests": 35,
+      "failed": 25,
+      "passed": 10,
+      "exitCode": 1,
+      "toolChunk": "e434ef",
+      "note": "10 positive contracts passed; 25 rejection counterexamples failed before validator implementation."
+    },
+    {
+      "step": "C01.1",
+      "command": "npx vitest run tests/c01-catalog.test.ts",
+      "result": "PASS",
+      "tests": 52,
+      "exitCode": 0,
+      "toolChunk": "b4b625"
+    },
+    {
+      "step": "C01.1",
+      "command": "npm run typecheck",
+      "result": "PASS",
+      "exitCode": 0,
+      "toolChunk": "4199fc"
+    },
+    {
+      "step": "C01.1",
+      "command": "npx vitest run tests/c01-score.test.ts",
+      "result": "RED",
+      "tests": 40,
+      "failed": 40,
+      "exitCode": 1,
+      "log": "shots/c01-score-red.log",
+      "logSha256": "c6a839f225b1d8bb81e7c76278599af8ab43b502878c90a3b44e0a7fe1c7aaa3"
+    },
+    {
+      "step": "C01.1",
+      "command": "npx vitest run tests/c01-tools.test.ts",
+      "result": "RED",
+      "tests": 16,
+      "failed": 8,
+      "passed": 8,
+      "exitCode": 1,
+      "log": "shots/c01-tools-red.log",
+      "logSha256": "e176a294cdf960abd74b88741803674110e5906f93a9855aaeee89ee232f5df5"
+    },
+    {
+      "step": "C01.1",
+      "command": "npx vitest run tests/recovery-save.test.ts -t 'keeps the published run after'",
+      "result": "RED",
+      "tests": 10,
+      "failed": 2,
+      "skipped": 8,
+      "exitCode": 1,
+      "log": "shots/c01-save-red-compact.log",
+      "logSha256": "fbf62f1959c3bf414e8c22361ace263021166b5d298f3282c2ff0d97a56ab587"
+    },
+    {
+      "step": "C01.2 preparation",
+      "command": "npx vitest run tests/c01-boundary.test.ts",
+      "result": "RED",
+      "tests": 9,
+      "failed": 5,
+      "passed": 4,
+      "exitCode": 1,
+      "toolChunk": "a9eb51",
+      "log": "shots/c01-boundary-red.log",
+      "note": "Entry ledger zero assertions added afterward; real RED precedes production changes.",
+      "logSha256": "8ec25cb44d294143242fe551fde3d2c157f09a83464d4bd333a80129db078b21"
+    },
+    {
+      "step": "C01.2",
+      "command": "npx.cmd vitest run tests/recovery-save.test.ts -t 'expired preview sequence'",
+      "result": "RED",
+      "failed": 1,
+      "skipped": 11,
+      "exitCode": 1,
+      "log": "shots/c01-save-stale-red.log",
+      "note": "Valid intervening reroll; old dispatch ignored preview sequence and consumed the tool.",
+      "logSha256": "8360130bdeabebef4d20ee50be26acd29b4ff8207983d26e023bebf9a73bf6ab",
+      "commandProvenance": "shots/c01-save-stale-red-meta.json (agent confirmed actual invocation)"
+    },
+    {
+      "step": "C01.2",
+      "command": "npx vitest run tests/c01-checkpoint.test.ts",
+      "result": "RED",
+      "tests": 64,
+      "failed": 7,
+      "passed": 57,
+      "exitCode": 1,
+      "log": "shots/c01-checkpoint-red.log",
+      "logSha256": "0663a2d70b0e582e78ba19da35679363c84ddae9b17d272164c48b1c07ba5d20"
+    },
+    {
+      "step": "C01.2",
+      "command": "npx vitest run tests/c01-checkpoint.test.ts",
+      "result": "RED",
+      "tests": 78,
+      "failed": 3,
+      "passed": 75,
+      "exitCode": 1,
+      "log": "shots/c01-checkpoint-schema-red.log",
+      "note": "Malformed trace snapshots incorrectly accepted before tightening source uniqueness/growth/played size.",
+      "logSha256": "3f4a1e0c1b533a2d5ab35eeadba8213a541a1ffae22794709c885731591754cf"
+    },
+    {
+      "step": "C01.2",
+      "command": "npx vitest run tests/c01-checkpoint.test.ts tests/c01-boundary.test.ts tests/v00-save.test.ts tests/recovery-save.test.ts",
+      "result": "PASS",
+      "tests": 105,
+      "exitCode": 0,
+      "toolChunk": "35f332",
+      "log": "shots/c01-checkpoint-green.log",
+      "logSha256": "a7c53872f6ceca689c5c9cb86a725021fd87fa309af6ba2854c9624d5da67367"
+    },
+    {
+      "step": "C01.2",
+      "command": "npm run typecheck",
+      "result": "PASS",
+      "exitCode": 0,
+      "toolChunk": "6dc99c",
+      "log": "shots/c01-checkpoint-typecheck.log",
+      "logSha256": "6f7412792adf8ef4a17607d877c78acb1bb82589b79f8355838ebb4428780993"
+    },
+    {
+      "step": "C01.3",
+      "command": "npx.cmd vitest run tests/c01-tools.test.ts tests/v00-consumables.test.ts",
+      "result": "PARTIAL_PASS",
+      "passed": 29,
+      "failed": 2,
+      "log": "shots/c01-tools-module-check.log",
+      "note": "21/22 tools passed, dedicated P01 is C01.4 future RED; 8/9 legacy passed, old T02-unimplemented assertion is obsolete and changed to unknown IDs under D24. No score goldens changed."
+    },
+    {
+      "step": "C01.3",
+      "command": "npm.cmd run typecheck",
+      "result": "PASS",
+      "log": "shots/c01-tools-module-typecheck-final.log"
+    },
+    {
+      "step": "C01.4",
+      "command": "npx.cmd vitest run tests/c01-planets.test.ts",
+      "result": "RED",
+      "tests": 48,
+      "failed": 48,
+      "log": "shots/c01-planets-red.log",
+      "toolChunk": "738ebb",
+      "note": "Independent handwritten mappings and illegal targets; unsupported family rejection is explicitly not accepted as validation of a target."
+    },
+    {
+      "step": "C01.5",
+      "command": "npx.cmd vitest run tests/c01-hand-resources.test.ts",
+      "result": "RED",
+      "tests": 5,
+      "failed": 5,
+      "exitCode": 1,
+      "toolChunk": "a1c986",
+      "startedAtLocal": "2026-10-02 05:02:55 Asia/Shanghai",
+      "log": "shots/c01-hand-resources-red.log",
+      "note": "Five explicit domain fixtures, after natural stage entry; losing lucky payout once, clear interest includes lucky, winning held gold cap5 after interest, persistent glass removal and no hidden manual-floor immunity."
+    },
+    {
+      "step": "C01.3/4",
+      "command": "npx.cmd vitest run tests/c01-tools.test.ts tests/c01-planets.test.ts tests/v00-consumables.test.ts",
+      "result": "PASS",
+      "tests": 80,
+      "exitCode": 0,
+      "log": "shots/c01-planets-module-check.log",
+      "provenance": "shots/c01-planets-module-check-meta.json"
+    },
+    {
+      "step": "C01.4",
+      "command": "npm.cmd run typecheck",
+      "result": "PASS",
+      "exitCode": 0,
+      "log": "shots/c01-planets-module-typecheck.log"
+    },
+    {
+      "step": "C01.3/4",
+      "command": "npx.cmd vitest run tests/v00-consumables.test.ts tests/r2-run.test.ts tests/r2-starting-profile.test.ts",
+      "result": "PASS",
+      "tests": 32,
+      "exitCode": 0,
+      "toolChunk": "3687ad",
+      "log": "shots/c01-tools-legacy-green.log",
+      "note": "Only explicit content version and obsolete capabilities assertions changed; ordinary score expectations remain unchanged."
+    },
+    {
+      "step": "C01.5/6",
+      "command": "npx.cmd vitest run tests/c01-score.test.ts tests/c01-preview-resource.test.ts",
+      "result": "PASS",
+      "tests": 41,
+      "exitCode": 0,
+      "toolChunk": "a59250",
+      "log": "shots/c01-score-green.log",
+      "note": "Original40 test LF fingerprint unchanged; final includes one real public-preview overflow regression."
+    },
+    {
+      "step": "C01.5/6",
+      "command": "npx.cmd vitest run tests/rules.test.ts tests/v00-score.test.ts tests/c00-score.test.ts tests/rational.test.ts",
+      "result": "PASS",
+      "tests": 89,
+      "exitCode": 0,
+      "toolChunk": "087448",
+      "log": "shots/c01-score-regression.log"
+    },
+    {
+      "step": "C01.5/6",
+      "command": "npm.cmd run typecheck",
+      "result": "PASS",
+      "exitCode": 0,
+      "toolChunk": "e7b9bd",
+      "log": "shots/c01-score-typecheck.log"
+    },
+    {
+      "step": "C01.5",
+      "command": "npx.cmd vitest run tests/c01-enhancement-tools.test.ts -t \"in shop\"",
+      "result": "RED",
+      "failed": 19,
+      "skipped": 28,
+      "log": "shots/c01-enhancement-tools-red.log",
+      "note": "Other28 not run at this initial shop-only checkpoint; not counted as failing or passing."
+    },
+    {
+      "step": "C01.5",
+      "command": "npx.cmd vitest run tests/c01-enhancement-tools.test.ts tests/c01-tools.test.ts",
+      "result": "PASS",
+      "tests": 70,
+      "exitCode": 0,
+      "log": "shots/c01-enhancement-tools-green.log",
+      "provenance": "shots/c01-enhancement-tools-green-meta.json"
+    },
+    {
+      "step": "C01.5/6",
+      "command": "npx.cmd vitest run tests/c01-preview-resource.test.ts",
+      "result": "RED",
+      "tests": 1,
+      "failed": 1,
+      "exitCode": 1,
+      "toolChunk": "2d68f8",
+      "log": "shots/c01-preview-resource-red.log"
+    },
+    {
+      "step": "C01.5/6",
+      "command": "npx.cmd vitest run tests/c01-hand-resources.test.ts",
+      "result": "PARTIAL_PASS",
+      "tests": 5,
+      "passed": 2,
+      "failed": 3,
+      "exitCode": 1,
+      "toolChunk": "f6f4d5",
+      "log": "shots/c01-hand-resources-integration.log",
+      "note": "Payout, interest, cap and destruction assertions reached correctly; three saves rejected new Lucky/glass operations before parser support."
+    },
+    {
+      "step": "C01.5/6",
+      "command": "npx.cmd vitest run tests/c00-transactions.test.ts -t \"F07 rescues resource exhaustion\"",
+      "result": "RED",
+      "failed": 1,
+      "skipped": 25,
+      "exitCode": 1,
+      "toolChunk": "a06a80",
+      "log": "shots/c01-rescue-source-red.log"
+    },
+    {
+      "step": "C01.5/6",
+      "command": "npx.cmd vitest run tests/c00-transactions.test.ts -t \"F07 rescues resource exhaustion\"",
+      "result": "PASS",
+      "passed": 1,
+      "skipped": 25,
+      "exitCode": 0,
+      "toolChunk": "bda068",
+      "log": "shots/c01-rescue-source-green.log",
+      "note": "Source F07 retained, post-hand result F07 removed; no original numeric expected value changed."
+    },
+    {
+      "step": "C01.7",
+      "command": "npx.cmd vitest run tests/c01-spectral.test.ts",
+      "result": "RED",
+      "tests": 34,
+      "failed": 34,
+      "exitCode": 1,
+      "toolChunk": "5ed9f0",
+      "log": "shots/c01-spectral-order-red.log",
+      "note": "32 original independent cost/RNG/boundary cases plus two target-order cases; unsupported gate is not accepted as illegal-target proof. Three currently unreachable future content combinations NOT_RUN."
+    },
+    {
+      "step": "C01.5/6",
+      "command": "npx.cmd vitest run tests/c01-checkpoint.test.ts tests/c01-boundary.test.ts tests/recovery-save.test.ts tests/recovery-queue.test.ts tests/v00-save.test.ts tests/c01-hand-resources.test.ts",
+      "result": "RED",
+      "tests": 104,
+      "failed": 15,
+      "passed": 89,
+      "exitCode": 1,
+      "toolChunk": "8c5940",
+      "log": "shots/c01-checkpoint-trace-red.log"
+    },
+    {
+      "step": "C01.5/6",
+      "command": "npx.cmd vitest run tests/c01-checkpoint.test.ts tests/c01-boundary.test.ts tests/recovery-save.test.ts tests/recovery-queue.test.ts tests/v00-save.test.ts tests/c01-hand-resources.test.ts",
+      "result": "PASS",
+      "tests": 136,
+      "exitCode": 0,
+      "toolChunk": "2d0455",
+      "log": "shots/c01-checkpoint-trace-green.log"
+    },
+    {
+      "step": "C01.5/6",
+      "command": "npm.cmd run typecheck",
+      "result": "PASS",
+      "exitCode": 0,
+      "toolChunk": "6b39c2",
+      "log": "shots/c01-checkpoint-trace-typecheck.log"
+    },
+    {
+      "step": "C01.5/6",
+      "command": "npx.cmd vitest run tests/c00-transactions.test.ts tests/card-boundary.test.ts",
+      "result": "PASS",
+      "tests": 27,
+      "exitCode": 0,
+      "toolChunk": "851dbc",
+      "log": "shots/c01-lifecycle-regression-green.log",
+      "note": "Existing B01 synthetic fixture now supplies its frozen double-discard flag; original numerical expectations unchanged. Unknown enhancement remains rejected; glass no longer falsely declared unimplemented."
+    },
+    {
+      "step": "C01.7",
+      "command": "npx vitest run tests/c01-spectral.test.ts",
+      "result": "RED",
+      "tests": 34,
+      "failed": 34,
+      "passed": 0,
+      "exitCode": 1,
+      "toolChunk": "876ace",
+      "log": "shots/c01-spectral-red.log",
+      "logSha256": "f0a15de3067eaaae0db22b21624ec096b4c91f294acd26a695004162f610fa33"
+    },
+    {
+      "step": "C01.7",
+      "command": "npx vitest run tests/c01-spectral.test.ts",
+      "result": "PASS",
+      "tests": 34,
+      "exitCode": 0,
+      "toolChunk": "7c2ab1",
+      "log": "shots/c01-spectral-green.log",
+      "logSha256": "c4fe52af8cdc11c2b38340739a5fdecb99b0598892d679179fe38b9467f6d242"
+    },
+    {
+      "step": "C01.7",
+      "command": "npx vitest run tests/c01-tools.test.ts tests/c01-planets.test.ts tests/c01-enhancement-tools.test.ts tests/v00-consumables.test.ts",
+      "result": "PASS",
+      "tests": 127,
+      "exitCode": 0,
+      "toolChunk": "a540e5",
+      "log": "shots/c01-spectral-regression.log",
+      "logSha256": "8ff9f7aa242022cbe405defb8a8095160f1ed591df84b0368154fa35a242dabb"
+    },
+    {
+      "step": "C01.8",
+      "command": "npx.cmd vitest run tests/c01-economy.test.ts",
+      "result": "RED",
+      "tests": 47,
+      "passed": 0,
+      "failed": 47,
+      "exitCode": 1,
+      "log": "shots/c01-economy-red.log"
+    },
+    {
+      "step": "C01.8",
+      "command": "npm.cmd run typecheck",
+      "result": "PASS",
+      "exitCode": 0,
+      "toolChunk": "1b5de7",
+      "log": "shots/c01-economy-root-typecheck.log"
+    },
+    {
+      "step": "C01.8",
+      "command": "npx.cmd vitest run tests/c01-checkpoint.test.ts tests/c01-boundary.test.ts tests/recovery-save.test.ts tests/recovery-queue.test.ts tests/v00-save.test.ts tests/c01-hand-resources.test.ts tests/c01-economy.test.ts",
+      "result": "PASS",
+      "tests": 249,
+      "exitCode": 0,
+      "toolChunk": "f72cc5",
+      "log": "shots/c01-checkpoint-economy-green.log"
+    },
+    {
+      "step": "C01.8",
+      "command": "npm.cmd run typecheck",
+      "result": "PASS",
+      "exitCode": 0,
+      "toolChunk": "1ec127",
+      "log": "shots/c01-checkpoint-economy-typecheck.log"
+    },
+    {
+      "step": "C01.8",
+      "command": "npx.cmd vitest run tests/r2-shop.test.ts",
+      "result": "PASS",
+      "tests": 2,
+      "exitCode": 0,
+      "log": "shots/c01-economy-shop-regression-fixed.log",
+      "note": "Real circular-import collection failure fixed by pure r2Resources; prior r2Run and C00 transactions39 also passed."
+    },
+    {
+      "step": "C01.9",
+      "command": "npx.cmd vitest run tests/c01-score-copy.test.ts",
+      "result": "RED",
+      "tests": 2,
+      "failed": 2,
+      "exitCode": 1,
+      "toolChunk": "f8e20e",
+      "log": "shots/c01-score-copy-red.log"
+    },
+    {
+      "step": "C01.9",
+      "command": "npx.cmd vitest run tests/c01-score-copy.test.ts",
+      "result": "PASS",
+      "tests": 2,
+      "exitCode": 0,
+      "toolChunk": "d0642b",
+      "log": "shots/c01-score-copy-green.log"
+    }
+  ],
+  "limits": {
+    "naturalAcquisition": "PASS: ordinary desktop/touch UI obtains T10 and P01, uses known targets, crosses a stage and restores the complete state. This is a bounded path, not every possible seed.",
+    "newRuleGameplay": "PASS: 839 unit cases plus bounded ordinary UI flow; maximum full-game chain and balance are separate.",
+    "browserCandidate": "PASS: natural desktop/touch UI, three bounded combination continuations, existing serialized desktop/touch smoke. This is not physical-device or whole-game maximum-chain evidence.",
+    "physicalAndroid": "NOT_RUN for this new C01 candidate; prior owner D22/D25 acceptance remains PASS.",
+    "formalArtA03": "NOT_RUN; engineering mechanism frames do not approve the formal art batch.",
+    "longSessionListening": "NOT_RUN; existing complete Schubert track and two independent volume controls preserved.",
+    "balanceHoldout": "NOT_RUN",
+    "maximumLegalChain": "NOT_RUN; definition-derived bound is not measured maximum, C02 covers all 72 definitions.",
+    "actualBackgroundVisibility": "NOT_RUN: headless browser keeps document.hidden=false; CDP freeze and explicitly synthetic handler checks pass, physical lifecycle remains a target-device check."
+  },
+  "steps": {
+    "C01_1": "DONE",
+    "C01_2": "DONE",
+    "C01_3": "DONE",
+    "C01_4": "DONE",
+    "C01_5": "DONE",
+    "C01_6": "DONE",
+    "C01_7": "DONE",
+    "C01_8": "DONE",
+    "C01_9": "IN_PROGRESS"
+  },
+  "c01_2Scope": "Save-before-publish, expectedSeq, finite v6 schema, exact discard ledger, old v1-v5 raw export and gated replacement. Current real UI path exercised at closeout.",
+  "c01_2Fingerprints": [
+    {
+      "file": "src/domain/r2Run.ts",
+      "normalizedLfSha256": "fea465c6169454df04e03cbaea42a092dbf4673d15035d0c7a55dccf35ee6dcb"
+    },
+    {
+      "file": "src/domain/r2ToolRuntime.ts",
+      "normalizedLfSha256": "58e7e4223a25c9c9c975efa35d6e39f25e792e64efc2c958b9a26241149254c8"
+    },
+    {
+      "file": "src/domain/run.ts",
+      "normalizedLfSha256": "530956459df530eddb03194051b7e962322b20358e9b5cca3624fce5824bd128"
+    },
+    {
+      "file": "src/domain/evaluateR2.ts",
+      "normalizedLfSha256": "4b6ee5d5abe9ca87a4e9a4cc76029fc630d3f6d89a572e6ecc16aa96720ff592"
+    },
+    {
+      "file": "src/cards/types.ts",
+      "normalizedLfSha256": "f410785946fcce22529900967c0c24a97efdd609e7dfb15ce6dc870bc718d8b7"
+    },
+    {
+      "file": "src/content/r2Schema.ts",
+      "normalizedLfSha256": "04b45fbbdd595c507898a8c234801b60507f6c9659b9608c872176e2b341d33b"
+    },
+    {
+      "file": "src/application/SavedRun.ts",
+      "normalizedLfSha256": "985acd863d431bf647c08baf2c2775bbae212abf54cd82b4befb994b24ed24f8"
+    },
+    {
+      "file": "src/application/checkpoint.ts",
+      "normalizedLfSha256": "3e103f77f3557d732818b289187f564310adcba0a57ab6720df7b5c517ed6091"
+    },
+    {
+      "file": "src/game/session.ts",
+      "normalizedLfSha256": "9a45e1c8c4d28a9f942b8ec205451ad0dc1479adbbccfe1a4b60b704ae860b5a"
+    },
+    {
+      "file": "src/game/runAdapter.ts",
+      "normalizedLfSha256": "28a01a358ebc0747601098ff53cbc749b60a6761facf3f483fd8aa2afbdd87c3"
+    },
+    {
+      "file": "src/game/ConsumableDialog.ts",
+      "normalizedLfSha256": "0b3bb64cec1cf5cc2fd3617263aba5d5e41a371dd3e74a281548ba27d1f38257"
+    },
+    {
+      "file": "src/game/RunMenu.ts",
+      "normalizedLfSha256": "b68bc500c200b334d9f63364dbd00a21aeb8d3814c5ce9b920a832aa1c8911e7"
+    },
+    {
+      "file": "src/game/GameScene.ts",
+      "normalizedLfSha256": "671291d9a233b44a954a23e537486584695d1b8f51c17f16f8a539464a1351a6"
+    },
+    {
+      "file": "src/game/ShopScene.ts",
+      "normalizedLfSha256": "1a50cbf739a70a3e9f03f3a634024cf1d9dc1b9ad3f6ea4b4799d63d2f488d38"
+    },
+    {
+      "file": "tests/recovery-save.test.ts",
+      "normalizedLfSha256": "a4906371f654dda3e15ed89bd387171c08437b4d679b5722600f51eddcfb8374"
+    },
+    {
+      "file": "tests/c01-checkpoint.test.ts",
+      "normalizedLfSha256": "e2cc94554f1b67701c3fb59609235639c01ca8381d76fb1dfb3c53d9f1d41fee"
+    },
+    {
+      "file": "tests/c01-boundary.test.ts",
+      "normalizedLfSha256": "782a7e4fc7c894089dcd093fb67aab45078fb77751e1d73a2a5f8378079e1ddf"
+    },
+    {
+      "file": "tests/stageNotice.test.ts",
+      "normalizedLfSha256": "be2b47bd8d52877a73c77c7a9a646df6da1fde6f7c0ea313873fe706fd6635d6"
+    }
+  ],
+  "preImplementationResourceTests": {
+    "file": "tests/c01-hand-resources.test.ts",
+    "normalizedLfSha256": "c948932bbd4aafe9bd4318e0b73fc42ac140902705820811244e175f327436e6"
+  },
+  "c01_5Math": {
+    "baseline": "966b6126ca1d1fc5d1a179c5e8cd14c7967260c2",
+    "modified": true,
+    "scoreNormalizedLfSha256": "836f2112fe08d9c654463ce34759a067ca5575d67d7100d1003455191db04b49",
+    "original40TestSha256": "0ac3932c22f2e2ebc5e8604e59ae3708bf5e8b0617d5a18341751bf261351244",
+    "definitionBasedEventBound": 318,
+    "maximumCombination": "NOT_RUN",
+    "note": "318 is the final catalog-derived conservative trace bound with per-phase breakdown and rejection of a 2191-event counterexample. Preliminary 428 estimate is superseded; neither is an observed maximum.",
+    "previousPreliminaryBound": 428
+  },
+  "c01_7": {
+    "status": "DONE",
+    "module": "src/domain/r2SpectralTools.ts",
+    "normalizedLfSha256": "568bb551613ddfd2d6f024d6c7911f852edc983b3ff7da9c569dc230d2c4d969",
+    "goldenTestSha256": "887cb6b7cb67aa7e2b9e7f5ca015d612f15ad0435ede4bd9c7e3f8f11e76abb1",
+    "notRun": [
+      "E09 capacity loss: C02 definition unavailable",
+      "Empty rare pool: current seven supported rare cannot all occupy five slots",
+      "S08 already at hand14: current reachable cap lower"
+    ],
+    "note": "Unreachable fixtures not fabricated. Intermediate typecheck failed due future economy offer type; final root typecheck passed after canonical offer interface."
+  },
+  "c01_8": {
+    "status": "DONE",
+    "economyTests": 48,
+    "economyTestSha256": "cbe19f74f279bd185aaa43490c961083f3cb3dfd807fdd5d523f4fcb466bca99",
+    "checkpointTests": 164,
+    "checkpointSha256": "11de79016782bf98ffa070a3b71a97dd24aff96c87d551b53efdebaf1fad11d5",
+    "checkpointTestSha256": "3b376f5e631892764afb5e3598cb1747ed071f1455ec0fdad6f6168930befb2b",
+    "presentation": "PASS: real three-shelf purchasing and current tool/planet flows; full combination source presentation separately recorded in C01.9.",
+    "notes": [
+      "All hand-computed price and score expectations preserved",
+      "Items/known conditional targets come through separate real shelves, T16 reward-only",
+      "E12 paid-reroll growth is unavailable in current48; C02 integration remains NOT_RUN",
+      "Purchase before use; additional spectral costs not automatically applied"
+    ]
+  },
+  "closeoutReview": {
+    "expectationsUnchanged": {
+      "exitCode": 0,
+      "unchangedChains": 66,
+      "method": "TypeScript AST existing expectation-chain extraction compared to HEAD",
+      "chunk": "82c78f",
+      "log": "shots/c01-v00-expectations.log"
+    },
+    "original40ScoreGoldensSha256": "0ac3932c22f2e2ebc5e8604e59ae3708bf5e8b0617d5a18341751bf261351244",
+    "currentReachableDomainReview": {
+      "covered": [
+        "r2Shop/r2Resources/r2Run runtime import seam",
+        "Three shelf eligibility/edition prices/extra use costs and pre-owned discounts",
+        "Free/paid refresh and preserved item shelf",
+        "Saved U12 per-chapter and T16 global qualifications",
+        "Lucky starting-gold math and reward-before interest followed by held gold and U/T/Joker rewards",
+        "Finite trace provenance/checkpoint sources and isolated deck/rule/shop/reward RNG streams"
+      ],
+      "result": "No new issue found in current reachable 48-Joker/two-chapter scope",
+      "exclusions": [
+        "Unsupported future E09/E12/C12/E10 and future Boss mechanics were not fabricated as reachable fixtures",
+        "Natural UI/browser/audio acceptance remains with root"
+      ]
+    },
+    "eventProof": {
+      "finalProof": {
+        "exitCode": 0,
+        "command": "node --input-type=module inline child-process checker assertions: coverage, component sum, limits and phase costs",
+        "log": "shots/c01-event-bound-proof.log",
+        "chunk": "e68bed",
+        "conservativeBound": 318
+      },
+      "green": {
+        "exitCode": 0,
+        "command": "npm.cmd run verify:content",
+        "log": "shots/c01-event-bound-green.log",
+        "chunk": "b99612",
+        "conservativeBound": 318
+      },
+      "oldRed": {
+        "exitCode": 1,
+        "command": "Existing checker output assertion requires eventBoundBreakdown.scoringEnhancement > 0",
+        "oldReportedBound": 185,
+        "log": "shots/c01-event-bound-red.log",
+        "chunk": "92175b/24886b"
+      },
+      "derivation": "14-card hand, five selected, each 1+4 passes; maximum per-pass enhancement expansion and one edition; original-only suppression/glass; held enhancement and capped gold; top-five same Joker sources weighted across card/held/later/interest/edition phases; catalog-derived U04/U09/U12/T16 and two rescue events",
+      "meaning": "Definition-based conservative trace-event upper bound; not an observed maximum, seed search or balanced gameplay sample",
+      "overflowRefusal": {
+        "inputRemoved": true,
+        "chunk": "37b174",
+        "expectedRefusalVerified": true,
+        "derivedBound": 2191,
+        "checkerExitCode": 1,
+        "command": "node scripts/verify-content.mjs isolated burst counterexample input",
+        "log": "shots/c01-event-bound-overflow.log"
+      }
+    }
+  },
+  "c01_9": {
+    "status": "READY_FOR_MAIN",
+    "publication": "NOT_RUN",
+    "scope": [
+      "39 tools and 12 items have family/effect/cost/target details with complete card frames. Full generic risk text is folded after targets; public spectral outcomes stay visible.",
+      "Three separate shop shelves, explicit purchase confirmation, mobile-sized touch targets, and actual extra use costs.",
+      "Tools commit once, close their successful dialog and highlight original sources before showing the transformation. Failed save/cancel keeps targets and resources.",
+      "Trace uses immutable hand-start cards/Jokers, independent risk/gold/destruction/upgrade events, packet-arrival source illumination, phased numeric/SFX impacts, exact replay without reward or rule RNG draws.",
+      "New edition rims retain clear rank/pips and static reduced-motion appearance. Destroyed cards disappear from current deck statistics."
+    ],
+    "checks": [
+      {
+        "command": "npm.cmd test",
+        "result": "PASS",
+        "files": 48,
+        "tests": 839,
+        "exitCode": 0,
+        "toolChunk": "5915b1",
+        "log": "shots/c01-unit-final-green.log",
+        "note": "All domain and recovery expectations preserved. Later changes only UI arrival timing/dialog folding plus EOF whitespace; covered by final build/browser."
+      },
+      {
+        "command": "npm.cmd run build",
+        "result": "PASS",
+        "exitCode": 0,
+        "toolChunks": [
+          "b1f83a",
+          "71d3ee"
+        ],
+        "log": "shots/c01-production-final-build.log",
+        "note": "Final production source includes arrival synchronization and compact tool details. Known Phaser bundle chunk-size advisory remains."
+      },
+      {
+        "command": "npm.cmd run verify:content",
+        "result": "PASS",
+        "exitCode": 0,
+        "toolChunk": "f0c22a",
+        "log": "shots/c01-content-final.log",
+        "definitions": 48,
+        "conservativeEventBound": 318
+      },
+      {
+        "command": "node shots/c01-natural-flow.mjs",
+        "result": "PASS",
+        "exitCode": 0,
+        "toolChunks": [
+          "15291d",
+          "e92ebb"
+        ],
+        "report": "shots/c01-natural-flow.json",
+        "profiles": [
+          {
+            "profile": "desktop",
+            "viewport": {
+              "width": 1280,
+              "height": 720
+            },
+            "touch": false,
+            "handScores": [
+              "319",
+              "225",
+              "315"
+            ],
+            "highCardLevel": 4,
+            "covered": [
+              "three-real-shelves",
+              "buy/cancel-real-gold",
+              "public-target/cancel",
+              "T10-known-hand-enhancement",
+              "per-source-score",
+              "refresh-and-replay-no-reward",
+              "next-stage-natural-planet",
+              "planet-public-level-and-H/M",
+              "new-stage-scoring",
+              "whole-state-refresh"
+            ]
+          },
+          {
+            "profile": "mobile",
+            "viewport": {
+              "width": 390,
+              "height": 740
+            },
+            "touch": true,
+            "handScores": [
+              "319",
+              "225",
+              "315"
+            ],
+            "highCardLevel": 4,
+            "covered": [
+              "three-real-shelves",
+              "buy/cancel-real-gold",
+              "public-target/cancel",
+              "T10-known-hand-enhancement",
+              "per-source-score",
+              "refresh-and-replay-no-reward",
+              "next-stage-natural-planet",
+              "planet-public-level-and-H/M",
+              "new-stage-scoring",
+              "whole-state-refresh"
+            ]
+          }
+        ],
+        "note": "Ordinary real mouse/touch/DOM controls, no session or reward injection. Each observed scoring card remains illuminated at its own numeric impact. Refresh/replay preserve exact whole state/RNG/resources."
+      },
+      {
+        "command": "node shots/c01-dialog-dom-check.mjs extended",
+        "result": "PASS",
+        "tests": 21,
+        "exitCode": 0,
+        "toolChunks": [
+          "8a8d68",
+          "34db8d"
+        ],
+        "report": "shots/c01-dialog-dom-extended.json",
+        "note": "Isolated component DOM with explicit fixtures covers spectral selection, cancel/stale/failure, artwork and target controls. The 39-tool/12-item information catalog is covered by unit tests; this DOM check is not natural acquisition or physical-device acceptance. Cold-start navigation timeout before assertions is retained as an environment attempt."
+      },
+      {
+        "command": "git diff --check; node scripts/check-production-plan.mjs",
+        "result": "PASS",
+        "exitCode": 0,
+        "toolChunk": "7e4c0f",
+        "note": "Removed one extra EOF blank line; plan31/current C01."
+      },
+      {
+        "command": "SMOKE_REUSE_BUILD=1 SMOKE_CHROMIUM_CHANNEL=chromium npm.cmd run verify:smoke",
+        "result": "PASS",
+        "exitCode": 0,
+        "toolChunks": [
+          "fef092",
+          "74c61b"
+        ],
+        "log": "shots/c01-smoke-serialized-chromium.log",
+        "note": "Same existing smoke checks and deadline, serialized full Chromium with final candidate build. Both desktop mouse and mobile-sized touch selection/confirmation/buy/cancel/sort/discard/play/refresh pass."
+      },
+      {
+        "command": "node shots/c01-background-check.mjs",
+        "result": "PASS",
+        "scope": "Synthetic application visibility handler only",
+        "actualTabVisibility": "NOT_RUN",
+        "exitCode": 0,
+        "toolChunks": [
+          "0a66a0",
+          "69d5bc"
+        ],
+        "report": "shots/c01-background-check.json",
+        "note": "Ordinary UI replay, explicitly synthetic visibilitychange with a restored document.hidden property. Full saved state/RNG unchanged; headless tabs did not actually become hidden. Earlier runner setup failures (folded import controls/missing harness query) are retained and not product failures."
+      }
+    ],
+    "regressions": [
+      {
+        "result": "RED -> GREEN",
+        "failure": "Successful tool dialog hid committed source feedback; conversion had already replaced the visible source.",
+        "report": "shots/c01-natural-feedback-red.json",
+        "fix": "Close only a committed tool dialog, retain pre-tool visible sources during their feedback, then render transformed cards/resource response."
+      },
+      {
+        "result": "RED -> GREEN",
+        "failure": "Mobile and edition traces had source glow alpha 0 at numeric impact because guessed timing completed before actual transfer frames.",
+        "reports": [
+          "shots/c01-natural-source-mobile-red.json",
+          "shots/c01-combination-old-bundle.json"
+        ],
+        "fix": "Every source reaction waits for actual packet arrival or abort; final natural desktop/touch observed glow0.85 at both ordinary and enhancement score impacts."
+      },
+      {
+        "result": "FAIL retained",
+        "command": "node shots/c01-combination-check.mjs (default headless-shell)",
+        "report": "shots/c01-combination-arrival-red.json",
+        "note": "45-second ready deadline with concurrent software rendering at about3FPS. All10 observed card impact glows were0.85; completed sequence and subsequent replay were not yet proven in this attempt."
+      },
+      {
+        "result": "FAIL retained",
+        "command": "SMOKE_REUSE_BUILD=1 npm.cmd run verify:smoke (default headless-shell)",
+        "toolChunks": [
+          "0678b1",
+          "21be8c"
+        ],
+        "log": "shots/c01-smoke-final-current.log",
+        "note": "Desktop passed; mobile30-second ready deadline at about2FPS with overlapping renderer processes. Final serialized full Chromium run still pending."
+      }
+    ],
+    "artifacts": {
+      "shots/c01-unit-final-green.log": {
+        "sha256": "380f0c7357d415002cbc335ceec9de35435a1fd1db43d4b70d426c5717190912",
+        "bytes": 271,
+        "modifiedUTC": "2026-10-01T22:45:50.179Z"
+      },
+      "shots/c01-production-final-build.log": {
+        "sha256": "6e0cd750c8585deeff690d46590656ac7556b9d51412263d4cc2b2fd5e30f578",
+        "bytes": 827,
+        "modifiedUTC": "2026-10-01T23:00:53.633Z"
+      },
+      "shots/c01-content-final.log": {
+        "sha256": "e23aa62b28169b3e00300f19957dad879332706cb535c02e971347a9930dac0f",
+        "bytes": 2319,
+        "modifiedUTC": "2026-10-01T23:09:12.426Z"
+      },
+      "shots/c01-natural-flow.json": {
+        "sha256": "7ddabb2bd6f66c227f2cf795e1d5cb33abddeb2eda23f2b15d0ab2253fbd8c04",
+        "bytes": 5710,
+        "modifiedUTC": "2026-10-01T23:04:28.150Z"
+      },
+      "shots/c01-natural-final.log": {
+        "sha256": "ac4cca9f9721071b0575ae2d564b17d1f3b1227d5fcc18c5a0d47afa0193f311",
+        "bytes": 53,
+        "modifiedUTC": "2026-10-01T23:04:27.600Z"
+      },
+      "shots/c01-dialog-dom-extended.json": {
+        "sha256": "c12370b092e034e1b61c56a3a2be40a2bcda8ff0a0e485a1efadc968d6415618",
+        "bytes": 3040,
+        "modifiedUTC": "2026-10-01T22:51:50.362Z"
+      },
+      "shots/c01-closeout-review-meta.json": {
+        "sha256": "4caef2ec6e781d69cee49f2b181f0c7ef42e46d94bfb7c25c67a0a7534f0402c",
+        "bytes": 5958,
+        "modifiedUTC": "2026-10-01T22:43:16.920Z"
+      },
+      "shots/c01-natural-feedback-red.json": {
+        "sha256": "0a65344e95ebf4688e8d8cd9255823e466fdf66ebcf18c203ddd64748aeb3894",
+        "bytes": 13406,
+        "modifiedUTC": "2026-10-01T22:37:14.871Z"
+      },
+      "shots/c01-natural-source-mobile-red.json": {
+        "sha256": "c3b538e9cdd2c1d64d3414a371944091ce1caedcbd8b81637e2d1f9c90c3de33",
+        "bytes": 22014,
+        "modifiedUTC": "2026-10-01T22:43:33.631Z"
+      },
+      "shots/c01-combination-old-bundle.json": {
+        "sha256": "9c2e39d9c8aa43c06dde90997be3d220dbefe4e048184d665911b80b118db115",
+        "bytes": 153706,
+        "modifiedUTC": "2026-10-01T22:54:14.950Z"
+      },
+      "shots/c01-combination-arrival-red.json": {
+        "sha256": "af416754709b17de0d71ff2db218d64be71b5d32beab141d6f9992a30c8e1c64",
+        "bytes": 69695,
+        "modifiedUTC": "2026-10-01T22:59:27.753Z"
+      },
+      "shots/c01-smoke-final-current.log": {
+        "sha256": "1d1bf649a0f8704bd91c75927104a66c4c84bff80d9141af29e0788626d5902c",
+        "bytes": 866,
+        "modifiedUTC": "2026-10-01T23:01:19.772Z"
+      },
+      "shots/c01-combination-meta.json": {
+        "sha256": "669eb53027f924c0f487942a2a33c9e8b304370fd98bdaef54a7b74481f1511d",
+        "bytes": 10551,
+        "modifiedUTC": "2026-10-01T23:23:21.310Z"
+      },
+      "shots/c01-combination-full-source-pass.json": {
+        "sha256": "a518c88dc35547a57c4866ef08df1ae4cce3d00743799a17c674eec256d04e5c",
+        "bytes": 153314,
+        "modifiedUTC": "2026-10-01T23:11:20.891Z"
+      },
+      "shots/c01-combination-rank-fixture-red.json": {
+        "sha256": "4b3bc3994d4c7132a727a4ee7a525ee43871dfef73b6ef33a4b87fab88b497af",
+        "bytes": 90251,
+        "modifiedUTC": "2026-10-01T23:15:57.986Z"
+      },
+      "shots/c01-combination-result.json": {
+        "sha256": "dc511668e5f16205dbfa622b0e859f9d92c15330f76aeb7d46cdf5aaa9c4f283",
+        "bytes": 7093,
+        "modifiedUTC": "2026-10-01T23:22:01.328Z"
+      },
+      "shots/c01-smoke-serialized-chromium.log": {
+        "sha256": "0dd2c21ced0e7b6dc6b853bcc15685e75a181f892263a958b1095f2bab7cbc0d",
+        "bytes": 136,
+        "modifiedUTC": "2026-10-01T23:23:18.620Z"
+      },
+      "shots/c01-background-check.json": {
+        "sha256": "382278a794a808e8cd0b0069b65a89d956008715316f22290f712fab0607ae42",
+        "bytes": 841,
+        "modifiedUTC": "2026-10-01T23:31:53.646Z"
+      },
+      "shots/c01-background-check.log": {
+        "sha256": "2ba23c8366ce428fb265cb6525447bc54285879355fe70c4a8ea7809c7c64d69",
+        "bytes": 772,
+        "modifiedUTC": "2026-10-01T23:31:53.651Z"
+      },
+      "shots/c01-background-import-runner-red.log": {
+        "sha256": "d737270aa8f07fe082a1c7028c8b3bda324126056f8d762637608317c3175f2a",
+        "bytes": 477,
+        "modifiedUTC": "2026-10-01T23:26:28.350Z"
+      },
+      "shots/c01-background-runner-query-red.json": {
+        "sha256": "cb16811a9ec0025cfb38e5427d66f3bb0bed0297477d965f4167b96efa3c77a4",
+        "bytes": 394,
+        "modifiedUTC": "2026-10-01T23:28:58.787Z"
+      }
+    },
+    "combination": {
+      "summary": "Three bounded executions: first-half 8 checks PASS, remaining 7 checks PASS, T02 supplement 7 checks PASS. No assertion that one full route ran from a new run to the end.",
+      "baseline": "966b6126ca1d1fc5d1a179c5e8cd14c7967260c2",
+      "buildInfo": {
+        "version": "C01",
+        "revision": "966b6126ca1d1fc5d1a179c5e8cd14c7967260c2",
+        "modified": true,
+        "builtAt": "2026-10-01T22:56:16.453Z"
+      },
+      "bundle": {
+        "path": "./assets/index-B4idBdax.js",
+        "sha256": "1218c46483599a55b925893052fc183a5ea90b0678484f0e234885026fb6cf60"
+      },
+      "browser": {
+        "engine": "Chromium",
+        "channel": "chromium",
+        "version": "153.0.8010.12",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "deviceScaleFactor": 1
+      },
+      "gpu": {
+        "rendererType": 2,
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmaskedVendor": "Google Inc. (Intel)",
+        "unmaskedRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00009BC5) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "initialFps": 52
+      },
+      "commands": [
+        "C01_COMBINATION_CHANNEL=chromium node shots/c01-combination-check.mjs",
+        "C01_COMBINATION_CHANNEL=chromium C01_COMBINATION_REMAINING=1 node shots/c01-combination-check.mjs",
+        "C01_COMBINATION_CHANNEL=chromium C01_COMBINATION_DELETE_ONLY=1 node shots/c01-combination-check.mjs"
+      ],
+      "executions": [
+        {
+          "report": "shots/c01-combination-full-source-pass.json",
+          "rawStatus": "FAIL",
+          "passedChecks": [
+            {
+              "name": "strict-v6-fixture",
+              "status": "PASS"
+            },
+            {
+              "name": "real-file-import-save-and-route",
+              "status": "PASS"
+            },
+            {
+              "name": "independent-score-gold-glass-and-four-rng",
+              "status": "PASS"
+            },
+            {
+              "name": "committed-per-source-order",
+              "status": "PASS",
+              "eventCount": 12,
+              "frameCount": 36
+            },
+            {
+              "name": "presentation-never-reawards",
+              "status": "PASS"
+            },
+            {
+              "name": "replay-per-source-order",
+              "status": "PASS",
+              "eventCount": 12,
+              "frameCount": 36
+            },
+            {
+              "name": "snapshot-replay-readonly",
+              "status": "PASS"
+            },
+            {
+              "name": "fast-forward-result-and-clean-input",
+              "status": "PASS",
+              "cleanup": {
+                "presentation": false,
+                "settled": 0,
+                "fireVoices": 0,
+                "selected": [],
+                "cardHits": [
+                  {
+                    "id": "spades-7",
+                    "enabled": true
+                  },
+                  {
+                    "id": "clubs-7",
+                    "enabled": true
+                  },
+                  {
+                    "id": "hearts-8",
+                    "enabled": true
+                  },
+                  {
+                    "id": "hearts-7",
+                    "enabled": true
+                  },
+                  {
+                    "id": "spades-8",
+                    "enabled": true
+                  },
+                  {
+                    "id": "diamonds-3",
+                    "enabled": true
+                  },
+                  {
+                    "id": "hearts-13",
+                    "enabled": true
+                  },
+                  {
+                    "id": "spades-3",
+                    "enabled": true
+                  }
+                ],
+                "modal": false
+              }
+            }
+          ],
+          "ending": "Incorrect runner rim count >=2. After played cards leave hand, only e02 holographic rim remains. This fixture expectation error is retained, not a product failure."
+        },
+        {
+          "report": "shots/c01-combination-rank-fixture-red.json",
+          "rawStatus": "FAIL",
+          "passedChecks": [
+            {
+              "name": "strict-v6-fixture",
+              "status": "PASS"
+            },
+            {
+              "name": "real-file-import-save-and-route",
+              "status": "PASS"
+            },
+            {
+              "name": "previously-committed-trace-import-no-recompute",
+              "status": "PASS"
+            },
+            {
+              "name": "idle-reduced-motion-stops-edition-rims",
+              "status": "PASS",
+              "rims": [
+                {
+                  "alpha": 0.9,
+                  "hasTween": false,
+                  "running": 0
+                }
+              ]
+            },
+            {
+              "name": "replay-reduced-per-source-order",
+              "status": "PASS",
+              "eventCount": 12,
+              "frameCount": 24
+            },
+            {
+              "name": "reduced-replay-result-and-rng-unchanged",
+              "status": "PASS"
+            },
+            {
+              "name": "browser-lifecycle-freeze-resume-readonly",
+              "status": "PASS",
+              "actualDocumentHidden": false,
+              "visibilityMethod": "tab switch",
+              "scope": "CDP real browser lifecycle freeze/resume; background visibility NOT_RUN"
+            }
+          ],
+          "ending": "Incorrect fixture tool T08 expected to delete. T08 is +1 rank, A target correctly blocked as noop. Original saved state did not change."
+        },
+        {
+          "report": "shots/c01-combination-result.json",
+          "rawStatus": "PASS",
+          "passedChecks": [
+            {
+              "name": "strict-v6-fixture",
+              "status": "PASS"
+            },
+            {
+              "name": "strict-T02-inventory-only-fixture-correction",
+              "status": "PASS"
+            },
+            {
+              "name": "real-file-import-save-and-route",
+              "status": "PASS"
+            },
+            {
+              "name": "previously-committed-trace-import-no-recompute",
+              "status": "PASS"
+            },
+            {
+              "name": "T02-delete-current-hand-no-free-draw-and-no-recompute",
+              "status": "PASS"
+            },
+            {
+              "name": "T02-delete-all-deck-excludes-history",
+              "status": "PASS",
+              "counts": [
+                12,
+                12,
+                12,
+                14
+              ],
+              "total": 50,
+              "handSize": 7
+            },
+            {
+              "name": "whole-combination-save-reload-preserved",
+              "status": "PASS"
+            }
+          ],
+          "ending": "Allowed inventory-only T08 -> T02 correction; strict v6 real file import, delete current hand without draw/refund/RNG/trace change, 50 live deck cards, reload preservation."
+        }
+      ],
+      "note": "Three bounded executions complete the affected scenarios. Two earlier runner fixture errors remain FAIL in their original reports; these are not rewritten to PASS and do not alter production or score/RNG expectations. This is a checkpoint-fixture combination path, separate from natural acquisition.",
+      "visibility": "CDP freeze/resume PASS; actual document visibility is checked separately by root."
+    },
+    "background": {
+      "task": "C01 actual browser visibility during source replay",
+      "baseline": "966b6126ca1d1fc5d1a179c5e8cd14c7967260c2",
+      "browser": "153.0.8010.12",
+      "channel": "chromium",
+      "status": "NOT_RUN",
+      "physicalAndroid": "NOT_RUN",
+      "fixtureSha256": "1b5e9b2890f310f7529338d0c1665c0bba6eb64099f2f0edf647010f7fa02f2e",
+      "background": {
+        "hidden": false,
+        "visibility": "visible"
+      },
+      "note": "Actual headless tab activation did not change document visibility. The application handler is checked separately with an explicitly synthetic visibility event; it is not physical background evidence.",
+      "visibilityHandler": {
+        "status": "PASS",
+        "method": "Explicit synthetic document.hidden + visibilitychange, restored by deleting the override; ordinary UI replay with immutable whole state. Not actual OS/tab background."
+      }
+    },
+    "closeout": {
+      "skill": "jiepi-clear lightweight pre-commit",
+      "review": "Actual source/domain/UI/test diff and affected documentation reviewed. Kept existing 66 expectation chains and original40 math goldens, removed one extra EOF blank and obsolete upper-bound narrative; no permanent new harness, screenshots, GLB download or unrelated file.",
+      "checks": "839 unit + final production build + content318 + bounded DOM/natural/combination/existing smoke. Physical/background/long listening/balance limits recorded explicitly.",
+      "publication": "NOT_RUN"
+    }
+  }
+}

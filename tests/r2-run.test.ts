@@ -11,12 +11,12 @@ const send=(state:R2RunState,action:Action)=>{
 const table=(seed='economy')=>send(send(start(seed),{type:'LeaveShop'}),{type:'EnterStage'});
 describe('r2 run economy and resources',()=>{
   it('keeps unavailable consumable operations explicit and never consumes failed uses',()=>{
-    const run=start();run.consumables=[{instanceId:'item-1',definitionId:'T02'}]; // T01 enabled/test-first in V00; T02 still future.
+    const run=start();run.consumables=[{instanceId:'item-1',definitionId:'T99'}];
     const before=JSON.stringify(run),use=applyCommand(run,command(run,{type:'UseConsumable',instanceId:'item-1',targetIds:[]}));
     expect(use.ok).toBe(false);if(!use.ok)expect(use.code).toBe('consumable-not-enabled');expect(JSON.stringify(run)).toBe(before);
     const destroyed=send(run,{type:'DestroyConsumable',instanceId:'item-1'});expect(destroyed.consumables).toEqual([]);
     const bad=structuredClone(run);bad.consumables[0].definitionId='unknown';expect(()=>assertRunInvariants(bad)).toThrow();
-    const future=start();future.longTermItems=['U01'];expect(()=>assertRunInvariants(future)).not.toThrow();
+    const future=start();future.longTermItems=['U99'];expect(()=>assertRunInvariants(future)).toThrow();
     const blocked=applyCommand(future,command(future,{type:'RerollShop'}));expect(blocked.ok).toBe(false);if(!blocked.ok)expect(blocked.code).toBe('long-term-not-enabled');expect(blocked.state).toBe(future);
   });
   it('starts at a deterministic saved shop with an affordable offer in 100 fixed seeds',()=>{

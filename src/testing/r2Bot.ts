@@ -2,13 +2,13 @@ import type {Action,R2RunState} from '../domain/run';
 import {previewR2Hand} from '../domain/scoreR2';
 import {R2_JOKERS} from '../content/r2Schema';
 import {r2ScoreContext} from '../domain/r2Run';
-import {r2PurchasePrice,rerollPrice} from '../domain/r2Shop';
+import {r2PurchasePrice,r2PaidRerollPrice} from '../domain/r2Shop';
 
 export function publicR2View(state:R2RunState){
   return {phase:state.phase,characterId:state.characterId,gold:state.gold,stageIndex:state.stageIndex,boss:{...state.boss},chapter:state.chapter,purchaseCoupons:state.purchaseCoupons,chapterSkipConsumable:state.chapterSkipConsumable,
     hand:state.handOrder.map(id=>({...state.deckInstances.find(c=>c.id===id)!})),
     stage:state.stage?structuredClone(state.stage):null,jokers:structuredClone(state.jokers),handLevels:{...state.handLevels},
-    consumables:state.consumables.map(c=>({...c})),rerollCost:state.shop?rerollPrice(state.shop.rerollCount):null,rerollCount:state.shop?.rerollCount??0,offers:state.shop?.offers.filter(o=>!o.consumed).map(o=>({...o,price:r2PurchasePrice(state,o)}))??[]};
+    consumables:state.consumables.map(c=>({...c})),longTermItems:[...state.longTermItems],rerollCost:state.shop?r2PaidRerollPrice(state):null,rerollCount:state.shop?.rerollCount??0,offers:state.shop?.offers.filter(o=>!o.consumed).map(o=>({...o,price:r2PurchasePrice(state,o)}))??[],toolOffers:state.shop?.toolOffers.filter(o=>!o.consumed).map(o=>({...o,price:r2PurchasePrice(state,o)}))??[],itemOffers:state.shop?.itemOffers.filter(o=>!o.consumed).map(o=>({...o,price:r2PurchasePrice(state,o)}))??[]};
 }
 export function chooseR2Action(view:ReturnType<typeof publicR2View>):Action|null {
   if(view.phase==='shop'){

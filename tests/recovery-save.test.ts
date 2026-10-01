@@ -1,7 +1,13 @@
-import {describe,expect,it} from 'vitest';
+import {afterEach,describe,expect,it,vi} from 'vitest';
 import {createRun,applyCommand,stateHash,type Command} from '../src/domain/run';
 import {makeCheckpoint,readCheckpoint,restoreSlots,MAX_JOURNAL} from '../src/application/checkpoint';
 import {SavedRun,type SaveStore,type SaveSlots} from '../src/application/SavedRun';
+import {GameSession} from '../src/game/session';
+
+let sessionStore:MemoryStore;
+vi.mock('../src/platform/IndexedDbSave',()=>({IndexedDbSave:class {constructor(){return sessionStore;}}}));
+vi.mock('../src/platform/WriteLease',()=>({WriteLease:class {writable=true;onChange=()=>{};async claim(){return true;}}}));
+afterEach(()=>vi.unstubAllGlobals());
 
 // First searched natural 24-card fixture with the same pair-of-aces 514 golden; no state injection.
 const initial=()=>createRun({seed:'r03-651',characterId:'erxiang',runId:'recovery-fixture',rulesVersion:'r2'});
@@ -15,6 +21,16 @@ class MemoryStore implements SaveStore {
     this.slots={revision:expected+1,current:structuredClone(current),previous:structuredClone(previous)};return this.slots.revision;
   }
 }
+
+async function existingSession(){
+  sessionStore=new MemoryStore();
+  vi.stubGlobal('document',{hidden:false,addEventListener:()=>{}});
+  const session=new GameSession();
+  await session.initialize();
+  const run=await session.start('existing-session','erxiang');if(!run)throw Error('session setup failed');
+  return {session,run,store:sessionStore};
+}
+
 describe('complete checkpoint validation and save-before-publish',()=>{
   it('round trips full state and bounds the journal without truncating the checkpoint',()=>{
     const state=initial(),checkpoint=makeCheckpoint(state,[]);
@@ -68,6 +84,27 @@ describe('complete checkpoint validation and save-before-publish',()=>{
     const first=run.dispatch({type:'RerollShop'}),second=await run.dispatch({type:'RerollShop'});
     expect(second.ok).toBe(false);expect(run.state.gold).toBe(6);release();await first;expect(run.state.gold).toBe(4);expect(run.state.shop!.rerollCount).toBe(1);
   });
+  it('keeps a pending result readonly if the writer lease is lost before a failed write settles',async()=>{
+    const store=new MemoryStore(),run=await SavedRun.start(store,initial(),{revision:0,current:null,previous:null}),before=run.state;
+    let release!:()=>void;const commit=store.commit.bind(store);store.fail=true;
+    store.commit=async(...args)=>{await new Promise<void>(resolve=>release=resolve);return commit(...args);};
+    const submitted=run.dispatch({type:'RerollShop'}),candidate=run.exportJSON();run.setReadOnly();release();
+    expect((await submitted).ok).toBe(false);expect(run.status).toBe('readonly');expect(run.state).toBe(before);
+    expect(run.exportJSON()).toBe(candidate);const writes=store.writes;expect((await run.retry()).ok).toBe(false);expect(store.writes).toBe(writes);
+  });
+  it('rejects a consumable confirmed against an expired preview sequence while default dispatch uses the current sequence',async()=>{
+    const store=new MemoryStore(),state=initial();state.consumables=[{instanceId:'preview-dye',definitionId:'T03'}];
+    const run=await SavedRun.start(store,state,{revision:0,current:null,previous:null}),previewSeq=run.state.commandSeq;
+    expect((await run.dispatch({type:'RerollShop'})).ok).toBe(true);
+    const before=run.state,slots=await store.read(),writes=store.writes;
+    const action={type:'UseConsumable' as const,instanceId:'preview-dye',targetIds:['clubs-2']};
+    const stale=await run.dispatch(action,previewSeq);
+    expect(stale.ok).toBe(false);if(!stale.ok)expect(stale.code).toBe('stale-sequence');
+    expect(run.state).toBe(before);expect(await store.read()).toEqual(slots);expect(store.writes).toBe(writes);
+    const fresh=await run.dispatch(action);expect(fresh.ok).toBe(true);
+    expect(run.state.consumables).toEqual([]);expect(run.state.deckInstances.find(c=>c.id==='clubs-2')?.suit).toBe('hearts');
+    expect(run.state.rng).toEqual(before.rng);
+  });
   it('recovers play/reward/checkpoint and continues the exact saved RNG and commands',async()=>{
     const store=new MemoryStore();let run=await SavedRun.start(store,initial(),{revision:0,current:null,previous:null});
     for(const action of [{type:'BuyOffer',offerId:run.state.shop!.offers.find(o=>o.definitionId==='mantangcai')!.offerId},{type:'LeaveShop'},{type:'EnterStage'}] as const){expect((await run.dispatch(action)).ok).toBe(true);}
@@ -76,5 +113,44 @@ describe('complete checkpoint validation and save-before-publish',()=>{
     expect((await run.submit(command)).ok).toBe(true);expect(run.state.phase).toBe('stage-cleared');const saved=run.state;
     run=SavedRun.restore(store,await store.read());expect(run.state).toEqual(saved);
     expect((await run.submit(command)).ok).toBe(true);expect(run.state).toEqual(saved);expect(run.state.rng).toEqual(saved.rng);
+  });
+  it.each(['start','import'] as const)('keeps the published run after a failed %s, then retries the exact unpublished candidate once',async(kind)=>{
+    const {session,run,store}=await existingSession(),before=run.state,oldJSON=run.exportJSON(),slots=await store.read();
+    let imported=createRun({seed:'replacement-import',characterId:'touye',runId:'replacement-import',rulesVersion:'r2'});
+    for(const action of [{type:'LeaveShop'},{type:'EnterStage'},{type:'SetWager',enabled:true}] as Command['action'][]){
+      const result=applyCommand(imported,next(imported,action));if(!result.ok)throw Error(result.code);imported=result.state;
+    }
+    const scored=applyCommand(imported,next(imported,{type:'PlayHand',selectedIds:[imported.handOrder[0]]}));if(!scored.ok)throw Error(scored.code);imported=scored.state;
+    const importedJSON=JSON.stringify(makeCheckpoint(imported,[]),null,2);store.fail=true;
+    const result=kind==='start'?await session.start('replacement-start','amo'):await session.importJSON(importedJSON);
+    expect(session.run===run).toBe(true);expect(run.state).toBe(before);expect(run.exportJSON()).toBe(oldJSON);
+    expect(result).toBe(kind==='start'?undefined:false);expect(await store.read()).toEqual(slots);
+    const candidate=session.pendingRun;expect(candidate).toBeDefined();if(!candidate)throw Error('missing retryable candidate');
+    const candidateJSON=candidate.exportJSON();expect(readCheckpoint(JSON.parse(candidateJSON)).ok).toBe(true);
+    if(kind==='import')expect(candidateJSON).toBe(importedJSON);
+    expect(await session.retry()).toBe(false);expect(session.run===run).toBe(true);
+    expect(candidate.exportJSON()).toBe(candidateJSON);expect(await store.read()).toEqual(slots);
+    store.fail=false;
+    let release!:()=>void;const commit=store.commit.bind(store);
+    store.commit=async(...args)=>{await new Promise<void>(resolve=>release=resolve);return commit(...args);};
+    const first=session.retry(),second=await session.retry();expect(second).toBe(false);expect(session.cancelPending()).toBe(false);release();
+    expect(await first).toBe(true);expect(session.run?.exportJSON()).toBe(candidateJSON);expect(session.pendingRun).toBeUndefined();
+    expect(JSON.stringify(store.slots.current,null,2)).toBe(candidateJSON);expect(JSON.stringify(store.slots.previous,null,2)).toBe(oldJSON);
+    const writes=store.writes;expect(await session.retry()).toBe(false);expect(store.writes).toBe(writes);
+  });
+  it('preserves a failed candidate through initialization and lease loss, then explicitly cancels without a storage write',async()=>{
+    const {session,run,store}=await existingSession(),oldJSON=run.exportJSON();store.fail=true;
+    expect(await session.start('pending-candidate','amo')).toBeUndefined();
+    const candidate=session.pendingRun;expect(candidate).toBeDefined();if(!candidate)throw Error('missing retryable candidate');
+    const exported=candidate.exportJSON(),slots=await store.read(),writes=store.writes;
+    expect(await session.start('replacement-that-must-not-overwrite','erxiang')).toBeUndefined();
+    expect(await session.importJSON(oldJSON)).toBe(false);expect(session.pendingRun===candidate).toBe(true);
+    await session.initialize();expect(await session.takeOver()).toBe(false);
+    expect(session.pendingRun===candidate).toBe(true);expect(session.run===run).toBe(true);
+    session.lease.writable=false;session.lease.onChange();expect(candidate.status).toBe('readonly');
+    expect(await session.retry()).toBe(false);expect(candidate.exportJSON()).toBe(exported);
+    expect(session.cancelPending()).toBe(true);expect(session.pendingRun).toBeUndefined();expect(session.run===run).toBe(true);
+    expect(run.exportJSON()).toBe(oldJSON);expect(await store.read()).toEqual(slots);expect(store.writes).toBe(writes);
+    expect(session.cancelPending()).toBe(false);
   });
 });

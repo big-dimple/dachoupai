@@ -1,10 +1,11 @@
 import Phaser from 'phaser';
 import {AudioEngine} from '../audio/AudioEngine';
-import {getR2Joker,rerollPrice,salePrice,r2Pool,r2PurchasePrice,r2PurchaseDiscount,type R2Offer} from '../domain/r2Shop';
+import {getR2Joker,r2PaidRerollPrice,salePrice,r2Pool,r2PurchasePrice,r2PurchaseDiscount,r2ToolAcquisitionPool,type R2Offer} from '../domain/r2Shop';
 import type {R2RunState,Action,DomainEvent} from '../domain/run';
-import {getR2Stage,R2_LIMITS,r2InterestCap} from '../domain/r2Run';
+import {getR2Stage,R2_LIMITS,r2InterestCap,r2ConsumableCapacity} from '../domain/r2Run';
 import {dispatchRun,runController} from './runAdapter';
 import {heatText} from './scoreText';
+import {toolInfo,itemInfo,editionLabel,editionEffectText,toolFamilyLabel} from './r2ToolInfo';
 import {SceneView} from './SceneView';
 import {DetailDialog} from './DetailDialog';
 import {gameSession} from './session';
@@ -18,14 +19,16 @@ import {drawJokerMotif} from './JokerMotif';
 import {R2_OFFER_USE as OFFER_USE,r2MechanismBadge as mechanismBadge,r2JokerValue,r2JokerStateText,r2JokerExtraHelp,r2TransactionText} from './r2Help';
 
 const RARITY_LABEL={common:'普通',uncommon:'特别',rare:'稀有'} as const;
-function shopLayout(width:number,height:number,top:number,bottom:number){
+type ShelfKind='jokers'|'tools'|'items';
+const SHELF_FIELDS={jokers:'offers',tools:'toolOffers',items:'itemOffers'} as const;
+function shopLayout(width:number,height:number,top:number,bottom:number,cols:number){
   const portrait=width<700&&height>width,short=height<500,wideHeader=width>=1000&&!short,compact=portrait&&height-bottom-top<760,w=Math.min(1180,width-24),x=(width-w)/2;
   if(portrait){
     const slotY=top+78,slotHeight=compact?72:88,slotWidth=Math.min(64,(w-32)/5),groupWidth=slotWidth*5+32,slotX=x+(w-groupWidth)/2;
     const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+8),y:slotY,width:slotWidth,height:slotHeight}));
-    const toolsY=slotY+slotHeight+18,toolWidth=(w-8)/2,shelfTop=toolsY+68,secondaryY=height-bottom-148,cardWidth=(w-20)/3,cardHeight=Math.min(280,secondaryY-16-shelfTop);
-    const shelf:Box[]=Array.from({length:3},(_,i)=>({x:x+i*(cardWidth+10),y:shelfTop,width:cardWidth,height:cardHeight}));
-    return {x,w,top,short,compact,wideHeader,portrait,slots,chapter:{x,y:toolsY,width:toolWidth,height:44},items:{x:x+toolWidth+8,y:toolsY,width:toolWidth,height:44},shelf,shelfLabelY:shelfTop-22,
+    const toolsY=slotY+slotHeight+18,toolWidth=(w-8)/2,shelfTop=toolsY+104,secondaryY=height-bottom-148,availableWidth=(w-10*(cols-1))/cols,cardWidth=cols<3?Math.min(340,availableWidth):availableWidth,cardHeight=Math.min(280,secondaryY-16-shelfTop),shelfX=x+(w-cardWidth*cols-10*(cols-1))/2;
+    const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:shelfX+i*(cardWidth+10),y:shelfTop,width:cardWidth,height:cardHeight}));
+    return {x,w,top,short,compact,wideHeader,portrait,slots,chapter:{x,y:toolsY,width:toolWidth,height:44},items:{x:x+toolWidth+8,y:toolsY,width:toolWidth,height:44},shelf,tabs:{x,y:shelfTop-52,width:w,height:44},
       reroll:{x,y:secondaryY,width:toolWidth,height:44},build:{x:x+toolWidth+8,y:secondaryY,width:toolWidth,height:44},play:{x,y:secondaryY+52,width:w,height:48},noticeY:secondaryY+108};
   }
   const footerY=height-bottom-(short?84:104),slotY=top+(short?58:wideHeader?64:compact?88:112),slotHeight=short?72:compact?72:portrait||wideHeader?112:128,slotWidth=Math.min(short?48:86,(w-32)/5),slotGroupWidth=slotWidth*5+32;
@@ -35,11 +38,11 @@ function shopLayout(width:number,height:number,top:number,bottom:number){
   let chapter:Box={x,y:toolsY,width:toolWidth,height:44},items:Box={x:x+toolWidth+8,y:toolsY,width:toolWidth,height:44};
   if(wideHeader){const available=slotX-x-24,width=(available-8)/2;chapter={x,y:top+108,width,height:44};items={...chapter,x:x+width+8};}
   const shelfX=short?x+slotGroupWidth+24:x,shelfWidth=short?w-slotGroupWidth-24:w;
-  const shelfTop=short?top+44:wideHeader?slotY+slotHeight+36:toolsY+64,cols=3,rows=1,gap=12;
-  const cardWidth=(shelfWidth-gap*(cols-1))/cols,cardHeight=(footerY-36-shelfTop-gap*(rows-1))/rows;
-  const shelf:Box[]=Array.from({length:3},(_,i)=>({x:shelfX+(i%cols)*(cardWidth+gap),y:shelfTop+Math.floor(i/cols)*(cardHeight+gap),width:cardWidth,height:cardHeight}));
+  const shelfTop=short?top+92:wideHeader?slotY+slotHeight+84:toolsY+104,gap=12;
+  const availableWidth=(shelfWidth-gap*(cols-1))/cols,cardWidth=cols<3?Math.min(340,availableWidth):availableWidth,cardHeight=footerY-36-shelfTop,startX=shelfX+(shelfWidth-cardWidth*cols-gap*(cols-1))/2;
+  const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:startX+i*(cardWidth+gap),y:shelfTop,width:cardWidth,height:cardHeight}));
   const rerollWidth=Math.floor(w*.29),buildWidth=Math.floor(w*.25),playWidth=w-rerollWidth-buildWidth-16;
-  return {x,w,top,short,compact,wideHeader,portrait,slots,chapter,items,shelf,shelfLabelY:shelfTop-25,reroll:{x,y:footerY,width:rerollWidth,height:48},play:{x:x+rerollWidth+8,y:footerY,width:playWidth,height:48},build:{x:x+w-buildWidth,y:footerY,width:buildWidth,height:48},noticeY:footerY+56};
+  return {x,w,top,short,compact,wideHeader,portrait,slots,chapter,items,shelf,tabs:{x:shelfX,y:shelfTop-52,width:shelfWidth,height:44},reroll:{x,y:footerY,width:rerollWidth,height:48},play:{x:x+rerollWidth+8,y:footerY,width:playWidth,height:48},build:{x:x+w-buildWidth,y:footerY,width:buildWidth,height:48},noticeY:footerY+56};
 }
 
 export class ShopScene extends Phaser.Scene {
@@ -47,6 +50,10 @@ export class ShopScene extends Phaser.Scene {
   private busy=false;
   private lifecycle=0;
   private selectedOfferId?:string;
+  private shelfKind:ShelfKind='jokers';
+  private shelfPage=0;
+  private artRefreshListeners=new Map<string,()=>void>();
+  private artTargets=new Map<string,{holder:Phaser.GameObjects.Container;box:Box;alpha:number}>();
   private notice='';
   private view!:SceneView;
   private offerArts:Phaser.GameObjects.Container[]=[];
@@ -58,15 +65,19 @@ export class ShopScene extends Phaser.Scene {
   private pendingGoldRoll?:number;
   private pendingRerollFlip=false;
   private pendingPurchaseFlight?:{from:Box;to:Box;name:string};
+  private pendingToolCue?:{instanceId:string;label:string};
   private readonly dialog=new DetailDialog();
   private readonly audio=AudioEngine.shared;
   constructor(){super('shop');}
-  private get ready():boolean {return this.run?.phase==='shop'&&!this.busy&&runController(this)?.status==='idle'&&gameSession().lease.writable;}
-  private geometry(){const l=this.view.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;return shopLayout(l.width,l.height,l.hud.y,bottom);}
+  private get ready():boolean {const session=gameSession();return this.run?.phase==='shop'&&!this.busy&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
+  private shelfOffers(kind=this.shelfKind):R2Offer[]{return this.run.shop![SHELF_FIELDS[kind]];}
+  private get pageSize():number{return this.view.layout.width<700?3:4;}
+  private visibleOffers():R2Offer[]{return this.shelfOffers().slice(this.shelfPage*this.pageSize,(this.shelfPage+1)*this.pageSize);}
+  private geometry(){const l=this.view.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0,cols=this.shelfKind==='jokers'?Math.max(3,Math.min(this.pageSize,this.shelfOffers().length)):Math.max(1,Math.min(2,this.shelfOffers().length));return shopLayout(l.width,l.height,l.hud.y,bottom,cols);}
   create():void {
-    this.busy=false;this.selectedOfferId=undefined;this.notice='';this.lifecycle++;
-    this.pendingGoldRoll=undefined;this.pendingRerollFlip=false;this.pendingPurchaseFlight=undefined;this.pendingTransactions=[];this.lastTransactionNotes=[];
-    this.events.once('shutdown',()=>{this.lifecycle++;this.hideHoverPicture();this.dialog.close();});
+    this.busy=false;this.selectedOfferId=undefined;this.shelfKind='jokers';this.shelfPage=0;this.notice='';this.lifecycle++;
+    this.pendingGoldRoll=undefined;this.pendingRerollFlip=false;this.pendingPurchaseFlight=undefined;this.pendingToolCue=undefined;this.pendingTransactions=[];this.lastTransactionNotes=[];
+    this.events.once('shutdown',()=>{this.lifecycle++;this.hideHoverPicture();this.dialog.close();for(const [key,listener] of this.artRefreshListeners)this.textures.off('addtexture-'+key,listener);this.artRefreshListeners.clear();this.artTargets.clear();});
     const run=runController(this)?.state;if(!run||run.phase!=='shop'){this.scene.start('character-select');return;}this.run=run;
     this.cameras.main.setBackgroundColor('#153c40');this.audio.setScene('shop');this.view=new SceneView(this,()=>this.render());this.render();
     if(!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
@@ -75,7 +86,9 @@ export class ShopScene extends Phaser.Scene {
     }
   }
   private render():void {
-    const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex)!;this.hideHoverPicture();v.clear();v.paperBackground();this.offerArts=[];
+    const selectedIndex=this.shelfOffers().findIndex(offer=>offer.offerId===this.selectedOfferId);if(selectedIndex>=0)this.shelfPage=Math.floor(selectedIndex/this.pageSize);
+    this.shelfPage=Math.min(this.shelfPage,Math.max(0,Math.ceil(this.shelfOffers().length/this.pageSize)-1));
+    const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex)!;this.hideHoverPicture();v.clear();v.paperBackground();this.offerArts=[];this.artTargets.clear();
     v.text(p.x,p.top,this.view.layout.width<350?'商店':'后台商店',p.short||p.portrait?24:28,'#fff2da').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     const purse={x:p.x+p.w-(this.view.layout.width<=700?96:136)-124,y:p.top-1,width:116,height:34},purseArt=this.add.graphics();
     v.add(this.add.graphics().fillStyle(0x213d45,.2).fillRoundedRect(purse.x+1,purse.y+3,purse.width,purse.height,7));
@@ -84,7 +97,7 @@ export class ShopScene extends Phaser.Scene {
     const gold=v.text(purse.x+10,purse.y+5,'金币 '+this.run.gold,22,'#614321').setName('shop/gold').setFontStyle('bold');
     for(let font=22;gold.width>purse.width-20&&font>14;)gold.setFontSize(--font);
     this.goldText=gold;
-    v.text(p.x,p.top+37,`${stage.name} · 目标 ${heatText(stage.targetHeat)}`,14,'#d5ddc9',p.short?380:p.w-24);
+    v.text(p.x,p.top+37,`${stage.name} · 目标 ${heatText(stage.targetHeat)}`,14,'#d5ddc9',p.short?p.slots[4].x+p.slots[4].width-p.x:p.w-24);
     if(!p.short){
       if(!p.compact&&!p.portrait)v.text(p.x,p.top+64,this.run.stageIndex===0?'点卡牌看大图与效果，再确认购买。':'补一张、卖一张，或留着金币赚利息。',14,'#d5ddc9',p.wideHeader?p.slots[0].x-p.x-24:p.w);
       const ownedLabel=p.portrait?`随身牌 ${this.run.jokers.length} / ${R2_LIMITS.jokerSlots}`:`随身大丑牌 ${this.run.jokers.length} / ${R2_LIMITS.jokerSlots} · 点牌可出售或调序`;
@@ -96,6 +109,7 @@ export class ShopScene extends Phaser.Scene {
       const ownedName=v.text(b.x+(p.compact?2:5),b.y+5,d.name,14,'#203744',b.width-(p.compact?4:10)).setStyle({maxLines:2}).setFontStyle('bold');
       const pictureY=ownedName.y+ownedName.height+4,pictureSize=Math.max(6,Math.min(b.width-12,b.y+b.height-27-pictureY));
       this.drawJokerPicture(j.definitionId,{x:b.x+(b.width-pictureSize)/2,y:pictureY,width:pictureSize,height:pictureSize});
+      if(j.edition&&j.edition!=='none')v.text(b.x+4,b.y+b.height-39,editionLabel(j.edition),14,'#ffe5b0').setFontStyle('bold').setShadow(0,1,'#17323c',2,true,true);
       const value=r2JokerValue(j,{gold:this.run.gold,jokerCount:this.run.jokers.length,jokerSlots:R2_LIMITS.jokerSlots,deckSize:this.run.deckInstances.length-this.run.destroyedIds.length});
       v.text(b.x+b.width/2,b.y+b.height-22,value.replace(' 金','金'),14,'#fff0d0').setOrigin(.5,0).setFontStyle('bold');
       v.text(b.x+b.width/2,b.y+b.height+4,`售${salePrice(j.paidPrice)}金`,14,'#ecd6a4').setOrigin(.5,0);
@@ -108,16 +122,18 @@ export class ShopScene extends Phaser.Scene {
       const b=p.slots[i];this.drawSlot(b,false);v.text(b.x+b.width/2,b.y+b.height-21,p.portrait?String(i+1):`空槽 ${i+1}`,14,'#a6bab0').setOrigin(.5,0);
     }
     v.button(p.chapter,p.portrait?'本章':'本章节目','action/chapter',()=>this.inspectChapter());
-    v.button(p.items,`物品 ${this.run.consumables.length}/2`,'action/items',()=>showConsumables(this.dialog,this.run,this.ready,a=>this.send(a)));
-    v.text(p.shelf[0].x,p.shelfLabelY,p.portrait?'今日卡牌':'今日卡牌 · 点选查看完整效果',14,'#f2e5c9',p.short?p.w-p.shelf[0].x+p.x:p.w);
-    const offers=this.run.shop!.offers;
+    v.button(p.items,`物品 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)} · 道具${this.run.longTermItems.length}`,'action/items',()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq)));
+    this.drawShelfTabs(p.tabs);
+    const offers=this.visibleOffers();
     offers.forEach((o,i)=>{
+      if(this.shelfKind!=='jokers'){this.drawGoodsOffer(o,p.shelf[i],p.short,p.portrait);return;}
       const selected=this.selectedOfferId===o.offerId,raw=p.shelf[i],b=selected?{...raw,y:raw.y-4}:raw,d=getR2Joker(o.definitionId),first=v.root.length;
       const headerHeight=p.portrait?32:p.short?28:36,footerHeight=p.portrait?56:p.short?48:64;
       this.drawOfferCard(b,d.rarity,selected,o.consumed,p.short,headerHeight,footerHeight);
       const nameSize=p.portrait?18:p.short?20:22,name=v.text(b.x+(p.portrait?8:10),b.y+5,d.name,nameSize,o.consumed?'#c6c5af':'#fff2d4').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setShadow(0,1,'#12282e',1,true,true);
       for(let font=nameSize;name.width>b.width-16&&font>(p.portrait?18:14);)name.setFontSize(--font);
-      const bodyTop=b.y+headerHeight+(p.short?4:8),bodyHeight=b.height-headerHeight-footerHeight-(p.short?8:16),reason=o.consumed?'':this.purchaseReason(o,true);
+      const hasEdition=o.edition&&o.edition!=='none',editionHeight=hasEdition?18:0,bodyTop=b.y+headerHeight+(p.short?4:8)+editionHeight,bodyHeight=b.height-headerHeight-footerHeight-(p.short?8:16)-editionHeight,reason=o.consumed?'':this.purchaseReason(o,true);
+      if(hasEdition)v.text(b.x+b.width/2,b.y+headerHeight+3,editionLabel(o.edition),14,'#836136').setOrigin(.5,0).setFontStyle('bold');
       const use=p.portrait||p.short?OFFER_USE[d.id]??'查看用途详情':d.description;
       const description=v.text(b.x+(p.portrait?8:12),bodyTop,use+(p.portrait&&reason?'\n'+reason:''),14,o.consumed?'#686e65':'#203744',b.width-(p.portrait?16:24)).setLineSpacing(2);
       const aspect=this.jokerAspect(o.definitionId),pictureWidth=Math.max(0,Math.min(280,b.width-(p.portrait?12:24),Math.max(0,bodyHeight-description.height-10)*aspect)),pictureHeight=pictureWidth/aspect;
@@ -137,15 +153,66 @@ export class ShopScene extends Phaser.Scene {
       this.offerArts.push(hover.art);
       v.target(r,`offer/${o.offerId}`,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
     });
-    if(!offers.length)v.text(p.shelf[0].x,p.shelf[0].y,'卡牌售罄，可换一批或进入牌桌。',14,'#d5ddc9',p.w);
-    const cost=rerollPrice(this.run.shop!.rerollCount),canReroll=this.ready&&this.run.gold>=cost&&r2Pool(this.run.jokers.map(j=>j.definitionId)).length>0;
+    if(!offers.length)v.text(p.shelf[0].x,p.shelf[0].y,this.shelfKind==='items'?'本店暂无可购道具；换牌会保留此货架。':'本货架暂无商品，可换一批或进入牌桌。',14,'#d5ddc9',p.w);
+    const cost=r2PaidRerollPrice(this.run),canReroll=this.ready&&this.run.gold>=cost&&r2Pool(this.run.jokers.map(j=>j.definitionId),this.run.safetyNetUsed?['f07']:[]).length>0;
     v.button(p.reroll,`换牌 ${cost} 金`,'action/reroll',()=>void this.send({type:'RerollShop'}),canReroll);
     v.button(p.play,'进入牌桌','action/start-stage',()=>void this.send({type:'LeaveShop'}),this.ready,true);
     v.button(p.build,'构筑详情','action/build',()=>this.inspectBuild());
-    const reason=!this.ready?'当前进度未保存或只读，请查看菜单。':this.run.gold<cost?`换牌还差 ${cost-this.run.gold} 金。可直接入场。`:this.run.jokers.length===5?'五槽已满，点随身牌出售后再买。':p.portrait?'点卡牌看详情，确认后扣款。':'点卡牌不会扣钱；点随身牌可出售或左移、右移。';
+    const reason=!this.ready?'当前进度未保存或只读，请查看菜单。':this.run.gold<cost?`换牌还差 ${cost-this.run.gold} 金。可直接入场。`:this.shelfKind==='jokers'&&this.run.jokers.length===5?'五槽已满，点随身牌出售后再买。':this.shelfKind==='tools'?'购买后收入库存；查看详情，再确认使用。':this.shelfKind==='items'?'道具本局生效；换牌不重抽道具货架。':p.portrait?'点卡牌看详情，确认后扣款。':'点卡牌不会扣钱；点随身牌可出售或左移、右移。';
     v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||reason,14,this.notice?'#f4da9e':'#d5ddc9',p.w).setStyle({maxLines:p.short?1:2});
   }
-  private hoverCard(first:number,b:Box,definitionId:string):{enter:()=>void;leave:()=>void;art:Phaser.GameObjects.Container} {
+  private drawShelfTabs(b:Box):void {
+    const v=this.view,pages=Math.ceil(this.shelfOffers().length/this.pageSize),pagerWidth=pages>1?44:0,gap=6,width=(b.width-pagerWidth-gap*(pagerWidth?3:2))/3;
+    const labels:Record<ShelfKind,string>={jokers:'大丑牌',tools:'工具',items:'道具'};
+    (['jokers','tools','items'] as const).forEach((kind,i)=>{
+      const button=v.button({x:b.x+i*(width+gap),y:b.y,width,height:b.height},labels[kind]+' '+this.shelfOffers(kind).length,'action/shelf-'+kind,()=>{
+        if(this.busy)return;this.shelfKind=kind;this.shelfPage=0;this.selectedOfferId=undefined;this.audio.select();this.render();
+      },!this.busy,this.shelfKind===kind);
+      (button.getData('label') as Phaser.GameObjects.Text).setFontSize(14);
+    });
+    if(pages>1){
+      const button=v.button({x:b.x+b.width-44,y:b.y,width:44,height:b.height},this.shelfPage+1<pages?'›':'‹','action/shelf-page',()=>{
+        if(this.busy)return;this.shelfPage=(this.shelfPage+1)%pages;this.selectedOfferId=undefined;this.audio.select();this.render();
+      },!this.busy);(button.getData('label') as Phaser.GameObjects.Text).setFontSize(24);
+    }
+  }
+  private findOffer(id:string):{kind:ShelfKind;offer:R2Offer}|undefined {
+    for(const kind of ['jokers','tools','items'] as const){const offer=this.shelfOffers(kind).find(row=>row.offerId===id);if(offer)return {kind,offer};}
+  }
+  private drawGoodsArt(id:string,url:string,b:Box,alpha=1):void {
+    const key='goods-motif/'+id,holder=this.view.add(this.add.container(b.x+b.width/2,b.y+b.height/2));this.artTargets.set(key,{holder,box:b,alpha});
+    if(this.textures.exists(key)){this.paintGoodsArt(key);return;}
+    holder.add(this.view.text(0,0,this.shelfKind==='tools'?'工具':'道具',18,'#85784f').setOrigin(.5));
+    if(this.artRefreshListeners.has(key))return;
+    const lifecycle=this.lifecycle,loaded=()=>{this.artRefreshListeners.delete(key);if(lifecycle===this.lifecycle&&this.scene.isActive())this.paintGoodsArt(key);};
+    this.artRefreshListeners.set(key,loaded);this.textures.once('addtexture-'+key,loaded);this.textures.addBase64(key,url);
+  }
+  private paintGoodsArt(key:string):void {
+    const target=this.artTargets.get(key);if(!target?.holder.active)return;
+    const image=this.add.image(0,0,key),scale=Math.min(target.box.width/image.width,target.box.height/image.height);
+    target.holder.removeAll(true);target.holder.add(image.setScale(scale).setAlpha(target.alpha));
+  }
+  private drawGoodsOffer(o:R2Offer,raw:Box,short:boolean,portrait:boolean):void {
+    const v=this.view,selected=this.selectedOfferId===o.offerId,b=selected?{...raw,y:raw.y-4}:raw,isTool=this.shelfKind==='tools',info=isTool?toolInfo(o.definitionId):itemInfo(o.definitionId),first=v.root.length;
+    const family=isTool?toolFamilyLabel(toolInfo(o.definitionId).family):'长期道具',headerHeight=short?28:36,footerHeight=short?48:64;
+    this.drawOfferCard(b,isTool?'uncommon':'common',selected,o.consumed,short,headerHeight,footerHeight);
+    const name=v.text(b.x+10,b.y+5,info.name,short?20:22,o.consumed?'#c6c5af':'#fff2d4',b.width-20).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setShadow(0,1,'#12282e',1,true,true);
+    for(let font=short?20:22;name.width>b.width-20&&font>14;)name.setFontSize(--font);
+    const bodyTop=b.y+headerHeight+8,bodyHeight=b.height-headerHeight-footerHeight-16;
+    const description=v.text(b.x+12,bodyTop,info.description.split('\n')[0],14,o.consumed?'#686e65':'#203744',b.width-24).setLineSpacing(2).setStyle({maxLines:short?1:3});
+    const pictureSize=Math.max(0,Math.min(180,b.width-24,bodyHeight-description.height-8));
+    if(pictureSize>0)this.drawGoodsArt(o.definitionId,info.artUrl,{x:b.x+(b.width-pictureSize)/2,y:bodyTop,width:pictureSize,height:pictureSize},o.consumed ? .55 : 1);
+    description.y=bodyTop+pictureSize+(pictureSize?8:0);
+    const readableHeight=b.y+b.height-footerHeight-6-description.y;if(description.height>readableHeight)description.setStyle({maxLines:Math.max(1,Math.floor((readableHeight+2)/19))});
+    v.text(b.x+b.width-10,b.y+b.height-footerHeight+8,family,14,'#ecd6a4').setOrigin(1,0).setFontStyle('bold');
+    if(o.consumed){v.text(b.x+10,b.y+b.height-footerHeight+8,'✓ 已买',14,'#d3e9cb').setFontStyle('bold');return;}
+    const reason=this.purchaseReason(o,true),price=r2PurchasePrice(this.run,o);
+    const priceText=v.text(b.x+10,b.y+b.height-footerHeight+6,price+' 金',portrait?22:20,'#f6d28c').setFontStyle('bold');
+    v.text(b.x+10,priceText.y+priceText.height+2,reason||(isTool?'购买后收入库存':'本局生效'),14,reason?'#ffc6a4':'#d3e9cb',b.width-20).setStyle({maxLines:1});
+    const hover=this.hoverCard(first,b),r=v.rect(raw).setFillStyle(0,0).setStrokeStyle(0).setData('selected',selected);this.offerArts.push(hover.art);
+    v.target(r,'offer/'+o.offerId,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
+  }
+  private hoverCard(first:number,b:Box,definitionId?:string):{enter:()=>void;leave:()=>void;art:Phaser.GameObjects.Container} {
     const v=this.view,cx=b.x+b.width/2,cy=b.y+b.height/2,members=v.root.list.slice(first),art=this.add.container(cx,cy);
     for(const child of members){
       if(child instanceof Phaser.GameObjects.Image||child instanceof Phaser.GameObjects.Text||child instanceof Phaser.GameObjects.Graphics||child instanceof Phaser.GameObjects.Rectangle||child instanceof Phaser.GameObjects.Arc||child instanceof Phaser.GameObjects.Container){
@@ -164,7 +231,7 @@ export class ShopScene extends Phaser.Scene {
     return {enter:()=>{
       if(!art.active||!this.scene.isActive())return;this.hideHoverPicture();this.tweens.killTweensOf(art);glow.setAlpha(1);v.root.bringToTop(art);
       if(!reduced())this.tweens.add({targets:art,y:cy-6,angle:cx>this.view.layout.width/2?-1.6:1.6,scaleX:1.03,scaleY:1.03,duration:130,ease:'Sine.easeOut'});
-      this.hoverDelay=this.time.delayedCall(280,()=>{this.hoverDelay=undefined;if(art.active&&this.scene.isActive()&&!document.querySelector('dialog[open]'))this.showHoverPicture(definitionId,b);});
+      if(definitionId)this.hoverDelay=this.time.delayedCall(280,()=>{this.hoverDelay=undefined;if(art.active&&this.scene.isActive()&&!document.querySelector('dialog[open]'))this.showHoverPicture(definitionId,b);});
     },leave,art};
   }
   private hideHoverPicture():void {
@@ -268,48 +335,61 @@ export class ShopScene extends Phaser.Scene {
   }
   private purchaseReason(o:R2Offer,short=false):string {
     if(!this.ready)return short?'暂不可购买':'当前只读或未保存，请查看菜单。';
-    if(this.run.jokers.length>=R2_LIMITS.jokerSlots)return short?'槽位已满':'五个槽位已满。请先关闭详情，点随身牌确认出售，再购买。';
-    if(this.run.jokers.some(j=>j.definitionId===o.definitionId))return '已装备同名牌';
+    const kind=this.findOffer(o.offerId)?.kind;if(!kind)return '商品已变化，请重新查看';
+    if(kind==='jokers'){
+      if(this.run.jokers.length>=R2_LIMITS.jokerSlots)return short?'槽位已满':'五个槽位已满。请先关闭详情，点随身牌确认出售，再购买。';
+      if(this.run.jokers.some(j=>j.definitionId===o.definitionId))return '已装备同名牌';
+    }else if(kind==='tools'){
+      if(this.run.consumables.length>=r2ConsumableCapacity(this.run))return short?'库存已满':'消耗品库存已满。购买不会自动使用或替换已有物品。';
+      if(!r2ToolAcquisitionPool(this.run).some(row=>row.id===o.definitionId))return '当前没有合法目标或资源条件';
+    }else {
+      if(this.run.longTermItems.includes(o.definitionId))return '已持有同名道具';
+      if(this.run.longTermItems.length>=R2_LIMITS.longTermSlots)return '四种道具已满';
+    }
     const deficit=r2PurchasePrice(this.run,o)-this.run.gold;
     return deficit>0?(short?`差 ${deficit} 金`:`金币不足，还差 ${deficit} 金币。`):'';
   }
   private inspectBuild():void {
-    const body=this.run.jokers.map((j,i)=>`${i+1}. ${getR2Joker(j.definitionId).name} · 售价 ${salePrice(j.paidPrice)} 金\n${getR2Joker(j.definitionId).description}`).join('\n\n')||'尚无大丑牌。先看卡牌效果，也可以保留金币直接入场。';
-    this.dialog.open('当前构筑 · 从左至右触发',body+'\n\n点随身牌可移动顺序。出售需要再次确认；调序不花金币。'+(this.lastTransactionNotes.length?'\n\n上次交易的实际来源：\n'+this.lastTransactionNotes.join('\n'):''));
+    const body=this.run.jokers.map((j,i)=>`${i+1}. ${getR2Joker(j.definitionId).name} · ${editionEffectText(j.edition)} · 售价 ${salePrice(j.paidPrice)} 金\n${getR2Joker(j.definitionId).description}`).join('\n\n')||'尚无大丑牌。先看卡牌效果，也可以保留金币直接入场。';
+    const items=this.run.longTermItems.map(id=>{const info=itemInfo(id);return info.name+'：'+info.description;}).join('\n')||'尚无长期道具。';
+    this.dialog.open('当前构筑 · 从左至右触发',body+`\n\n有效牌组 ${this.run.deckInstances.length-this.run.destroyedIds.length} 张 · 消耗品 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)}\n长期道具 ${this.run.longTermItems.length}/${R2_LIMITS.longTermSlots}\n`+items+'\n\n点随身牌可移动顺序。出售需要再次确认；调序不花金币。'+(this.lastTransactionNotes.length?'\n\n上次交易的实际来源：\n'+this.lastTransactionNotes.join('\n'):''));
   }
   private inspectChapter():void {
-    const s=this.run,index=s.stageIndex,start=Math.floor(index/3)*3,normal=SKIP_ITEM_LABELS[s.chapterSkipConsumable];
+    const s=this.run,seq=s.commandSeq,index=s.stageIndex,start=Math.floor(index/3)*3,normal=SKIP_ITEM_LABELS[s.chapterSkipConsumable];
     const stages=[0,1,2].map(i=>{const stage=getR2Stage(start+i)!;return stage.name+' · 目标 '+heatText(stage.targetHeat);}).join('\n');
     const body=stages+`\n\n压轴 ${s.boss.definitionId} · `+r2BossText(s.boss)+`\n\n暖场跳过：下一次买牌减2金，最低1金。现有 ${s.purchaseCoupons} 张券。\n正场跳过：${normal}；库存满时改为1金。\n跳过不获得过关奖励或利息，不触发过关效果；压轴不可跳过。`;
     this.dialog.open('本章节目',body,[{label:'跳过本场',disabled:!this.ready||index%3===2,run:()=>{
-      const reward=index%3===0?'下一次买牌减2金券':s.consumables.length<2?normal:'库存已满，获得1金';
-      const d=this.dialog.open('跳场确认',`跳过「${getR2Stage(index)!.name}」获得 ${reward}。\n本场没有热度、过关奖金或利息，也不会触发过关效果。`,[{label:'确认跳场',primary:true,run:async()=>{if(await this.send({type:'SkipStage'}))this.dialog.close(d);}}],{closeLabel:'取消'});
+      const reward=index%3===0?'下一次买牌减2金券':s.consumables.length<r2ConsumableCapacity(s)?normal:'库存已满，获得1金';
+      const d=this.dialog.open('跳场确认',`跳过「${getR2Stage(index)!.name}」获得 ${reward}。\n本场没有热度、过关奖金或利息，也不会触发过关效果。`,[{label:'确认跳场',primary:true,run:async()=>{if(await this.send({type:'SkipStage'},seq))this.dialog.close(d);}}],{closeLabel:'取消'});
     }}]);
   }
   private inspectOffer(id:string):void {
-    const o=this.run.shop!.offers.find(o=>o.offerId===id);if(!o||o.consumed||this.busy)return;
+    const found=this.findOffer(id);if(!found||found.offer.consumed||this.busy)return;const {kind,offer:o}=found,seq=this.run.commandSeq;
     this.selectedOfferId=id;this.notice='';this.audio.select();this.render();
-    const d=getR2Joker(o.definitionId),price=r2PurchasePrice(this.run,o),after=this.run.gold-price,reason=this.purchaseReason(o);
-    const cap=r2InterestCap(this.run),afterCap=r2InterestCap({...this.run,jokers:[...this.run.jokers,{instanceId:'preview/'+o.offerId,definitionId:d.id,paidPrice:price,growth:{}}]});
+    const price=r2PurchasePrice(this.run,o),after=this.run.gold-price,reason=this.purchaseReason(o),d=kind==='jokers'?getR2Joker(o.definitionId):undefined,info=kind==='tools'?toolInfo(o.definitionId):kind==='items'?itemInfo(o.definitionId):undefined;
+    const cap=r2InterestCap(this.run),afterState=kind==='jokers'?{...this.run,jokers:[...this.run.jokers,{instanceId:'preview/'+o.offerId,definitionId:o.definitionId,paidPrice:price,growth:{},edition:o.edition}]}:kind==='items'?{...this.run,longTermItems:[...this.run.longTermItems,o.definitionId]}:this.run,afterCap=r2InterestCap(afterState);
     const money=after<0?`现有 ${this.run.gold} 金，尚差 ${-after} 金。`:`余额 ${this.run.gold} → ${after} 金。\n过关利息档 ${Math.min(cap,Math.floor(this.run.gold/5))} → ${Math.min(afterCap,Math.floor(after/5))} 金。`;
     const discount=r2PurchaseDiscount(this.run),discountText=discount?`原价 ${o.price} 金，当前优惠 ${discount} 金，最低实付1金。\n${this.run.purchaseCoupons?'本次会使用1张减2金券。\n':''}`:'';
-    const body=d.description+r2JokerExtraHelp(d)+`\n\n实际支付 ${price} 金\n`+discountText+money+'\n\n当前构筑：'+(this.run.jokers.map(j=>getR2Joker(j.definitionId).name).join('、')||'空')+(reason?'\n\n无法购买：'+reason:'\n\n确认购买才会扣除金币。');
-    const dialog=this.dialog.open(d.name+' · 购买详情',body,[{label:'确认购买',primary:true,disabled:!!reason,run:async()=>{if(await this.send({type:'BuyOffer',offerId:id}))this.dialog.close(dialog);}}],{closeLabel:'取消',portrait:this.jokerPortrait(d.id),rarity:d.rarity});
-    this.attachJokerFallback(dialog,d.id);
+    const effect=d?d.description+r2JokerExtraHelp(d)+'\n版次：'+editionEffectText(o.edition):kind==='tools'?(()=>{const tool=toolInfo(o.definitionId);return [tool.description,tool.cost,tool.risk,'购买后收入消耗品库存，使用时另选目标并确认额外代价。'].filter(Boolean).join('\n\n');})():info!.description;
+    const inventory=kind==='jokers'?'当前构筑：'+(this.run.jokers.map(j=>getR2Joker(j.definitionId).name).join('、')||'空'):kind==='tools'?`消耗品库存 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)}。购买不会自动使用或替换旧物。`:`长期道具 ${this.run.longTermItems.length}/${R2_LIMITS.longTermSlots}。同种不可重复、不可出售，持续到本局结束。`;
+    const body=effect+`\n\n实际购买支付 ${price} 金\n`+discountText+money+'\n\n'+inventory+(reason?'\n\n无法购买：'+reason:'\n\n确认购买才会扣除金币。');
+    const name=d?.name??(kind==='tools'?toolInfo(o.definitionId).label:info!.name),portrait=d?this.jokerPortrait(d.id):{url:info!.artUrl,alt:info!.name+'机制纹章',layout:'card' as const,caption:'机制纹章候选 · 正式插画待 A03 验收'};
+    const dialog=this.dialog.open(name+' · 购买详情',body,[{label:'确认购买',primary:true,disabled:!!reason,run:async()=>{if(await this.send({type:'BuyOffer',offerId:id},seq))this.dialog.close(dialog);}}],{closeLabel:'取消',portrait,rarity:d?.rarity});
+    if(d)this.attachJokerFallback(dialog,d.id);
   }
   private inspectJoker(id:string):void {
-    const j=this.run.jokers.find(j=>j.instanceId===id);if(!j||this.busy)return;this.hideHoverPicture();const d=getR2Joker(j.definitionId),index=this.run.jokers.indexOf(j);
+    const j=this.run.jokers.find(j=>j.instanceId===id);if(!j||this.busy)return;this.hideHoverPicture();const d=getR2Joker(j.definitionId),index=this.run.jokers.indexOf(j),seq=this.run.commandSeq;
     const growth=r2JokerStateText(j);
-    const dialog=this.dialog.open(d.name+' · 第 '+(index+1)+' 槽',d.description+r2JokerExtraHelp(d)+'\n\n当前实例：'+growth+`\n实际买价 ${j.paidPrice} 金；出售可得 ${salePrice(j.paidPrice)} 金。\n出售后余额 ${this.run.gold} → ${this.run.gold+salePrice(j.paidPrice)} 金。\n\n大丑牌按从左至右的顺序触发。`,[
-      {label:'左移',disabled:!this.ready||index===0,run:async()=>{if(await this.reorder(index,index-1)&&this.dialog.active(dialog))this.inspectJoker(id);}},
-      {label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:async()=>{if(await this.reorder(index,index+1)&&this.dialog.active(dialog))this.inspectJoker(id);}},
-      {label:'出售',disabled:!this.ready,run:()=>{const confirmation=this.dialog.open('出售确认',`出售第 ${index+1} 槽的「${d.name}」获得 ${salePrice(j.paidPrice)} 金币。\n余额 ${this.run.gold} → ${this.run.gold+salePrice(j.paidPrice)} 金。\n\n该牌成长将丢失，当前成长：${growth}。`,[{label:'确认出售',primary:true,run:async()=>{if(await this.send({type:'SellJoker',instanceId:id}))this.dialog.close(confirmation);}}],{closeLabel:'取消'});}},
+    const dialog=this.dialog.open(d.name+' · 第 '+(index+1)+' 槽',d.description+r2JokerExtraHelp(d)+'\n版次：'+editionEffectText(j.edition)+'\n\n当前实例：'+growth+`\n实际买价 ${j.paidPrice} 金；出售可得 ${salePrice(j.paidPrice)} 金。\n出售后余额 ${this.run.gold} → ${this.run.gold+salePrice(j.paidPrice)} 金。\n\n大丑牌按从左至右的顺序触发。`,[
+      {label:'左移',disabled:!this.ready||index===0,run:async()=>{if(await this.reorder(index,index-1,seq)&&this.dialog.active(dialog))this.inspectJoker(id);}},
+      {label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:async()=>{if(await this.reorder(index,index+1,seq)&&this.dialog.active(dialog))this.inspectJoker(id);}},
+      {label:'出售',disabled:!this.ready,run:()=>{const confirmation=this.dialog.open('出售确认',`出售第 ${index+1} 槽的「${d.name}」获得 ${salePrice(j.paidPrice)} 金币。\n余额 ${this.run.gold} → ${this.run.gold+salePrice(j.paidPrice)} 金。\n\n该牌成长将丢失，当前成长：${growth}。`,[{label:'确认出售',primary:true,run:async()=>{if(await this.send({type:'SellJoker',instanceId:id},seq))this.dialog.close(confirmation);}}],{closeLabel:'取消'});}},
     ],{portrait:this.jokerPortrait(d.id),rarity:d.rarity});
     this.attachJokerFallback(dialog,d.id);
   }
-  private async reorder(from:number,to:number):Promise<boolean> {
+  private async reorder(from:number,to:number,expectedSeq?:number):Promise<boolean> {
     if(from<0||to<0||from>=this.run.jokers.length||to>=this.run.jokers.length)return false;
-    const ids=this.run.jokers.map(j=>j.instanceId),[id]=ids.splice(from,1);ids.splice(to,0,id);return this.send({type:'ReorderJokers',ids});
+    const ids=this.run.jokers.map(j=>j.instanceId),[id]=ids.splice(from,1);ids.splice(to,0,id);return this.send({type:'ReorderJokers',ids},expectedSeq);
   }
   private moveJoker(id:string,x:number):void {
     const from=this.run.jokers.findIndex(j=>j.instanceId===id),to=this.geometry().slots.findIndex(b=>x>=b.x&&x<=b.x+b.width);
@@ -349,6 +429,11 @@ export class ShopScene extends Phaser.Scene {
     if(this.pendingGoldRoll!==undefined){const from=this.pendingGoldRoll;this.pendingGoldRoll=undefined;this.rollGold(from);}
     if(this.pendingRerollFlip){this.pendingRerollFlip=false;if(!reduced)this.offerArts.forEach((art,i)=>{if(!art.active)return;art.setScale(0,1);this.tweens.add({targets:art,scaleX:1,duration:160,delay:i*70,ease:'Sine.easeOut'});});}
     if(this.pendingPurchaseFlight){const flight=this.pendingPurchaseFlight;this.pendingPurchaseFlight=undefined;if(!reduced)this.flyPurchase(flight.from,flight.to,flight.name);}
+    if(this.pendingToolCue){
+      const cue=this.pendingToolCue,box=this.geometry().items;this.pendingToolCue=undefined;if(!reduced)this.slotPop(box);
+      const note=this.add.text(box.x+box.width/2,box.y-4,cue.label,{fontFamily:UI_FONT,fontSize:'14px',color:'#ffe3ae',resolution:Math.min(window.devicePixelRatio||1,3)}).setOrigin(.5,1).setDepth(60).setName('tool-use/'+cue.instanceId);
+      this.tweens.add({targets:note,y:reduced?note.y:note.y-14,alpha:0,duration:reduced?500:1000,onComplete:()=>note.destroy()});
+    }
     for(const event of this.pendingTransactions){
       const index=this.run.jokers.findIndex(joker=>joker.instanceId===event.instanceId),slot=this.geometry().slots[index];if(!slot)continue;
       if(!reduced)this.slotPop(slot);
@@ -356,35 +441,43 @@ export class ShopScene extends Phaser.Scene {
       this.tweens.add({targets:note,y:reduced?note.y:note.y-14,alpha:0,duration:reduced?500:1000,onComplete:()=>note.destroy()});
     }this.pendingTransactions=[];
   }
-  private async send(action:Action):Promise<boolean> {
+  private async send(action:Action,expectedSeq?:number):Promise<boolean> {
     if(!this.ready)return false;
     const previous=this.run,oldGold=previous.gold;this.busy=true;const lifecycle=this.lifecycle;
-    const buyIndex=action.type==='BuyOffer'?previous.shop!.offers.findIndex(o=>o.offerId===action.offerId):-1;
+    const purchase=action.type==='BuyOffer'?this.findOffer(action.offerId):undefined;
+    const buyIndex=action.type==='BuyOffer'?this.visibleOffers().findIndex(o=>o.offerId===action.offerId):-1;
     const buyBox=buyIndex>=0?this.geometry().shelf[buyIndex]:undefined;
-    const landSlot=action.type==='BuyOffer'?this.geometry().slots[Math.min(previous.jokers.length,R2_LIMITS.jokerSlots-1)]:undefined;
+    const landSlot=purchase?.kind==='jokers'?this.geometry().slots[Math.min(previous.jokers.length,R2_LIMITS.jokerSlots-1)]:purchase?this.geometry().items:undefined;
     this.render();
     try {
-      const result=await dispatchRun(this,action);if(lifecycle!==this.lifecycle||!this.scene.isActive())return false;
+      const result=await dispatchRun(this,action,expectedSeq);if(lifecycle!==this.lifecycle||!this.scene.isActive())return false;
       if(!result.ok){
         this.audio.invalid();
         if(result.code==='save-failed')this.dialog.close();
-        else this.dialog.open('操作未提交',({'slots-full':'五个槽位已满，请先出售一张。','not-enough-gold':'金币不足；本次操作没有扣款。','already-owned':'已装备同名牌。','no-reroll-candidates':'没有可换入的卡牌。'} as Record<string,string>)[result.code]??'本次操作未提交，原选择和资源仍然保留。');
+        else this.dialog.open('操作未提交',({'slots-full':'五个槽位已满，请先出售一张。','not-enough-gold':'金币不足；本次操作没有扣款。','already-owned':'已装备同名牌。','no-reroll-candidates':'没有可换入的卡牌。','stale-sequence':'本局在预览后已变化，请重新打开详情确认；没有消耗物品或金币。','replacement-pending':'新局或导入尚未保存，请在菜单重试、导出或取消候选。'} as Record<string,string>)[result.code]??'本次操作未提交，原选择和资源仍然保留。');
         return false;
       }
       this.run=result.state;
       const transactions=result.events.filter((event):event is Extract<DomainEvent,{type:'joker-transaction'}>=>event.type==='joker-transaction');
       if(!result.duplicate&&transactions.length){this.pendingTransactions=transactions;this.lastTransactionNotes=transactions.map(r2TransactionText);}
-      if(action.type==='BuyOffer'){
-        const offer=previous.shop!.offers.find(o=>o.offerId===action.offerId)!;this.audio.purchase();
-        this.notice=`已买 ${getR2Joker(offer.definitionId).name} · 金币 ${oldGold} → ${this.run.gold}`;
+      if(action.type==='BuyOffer'&&purchase&&!result.duplicate){
+        const {kind,offer}=purchase,name=kind==='jokers'?getR2Joker(offer.definitionId).name:kind==='tools'?toolInfo(offer.definitionId).name:itemInfo(offer.definitionId).name;this.audio.purchase();
+        this.notice=`已买 ${name} · 金币 ${oldGold} → ${this.run.gold}`;
         this.pendingGoldRoll=oldGold;
-        if(buyBox&&landSlot)this.pendingPurchaseFlight={from:buyBox,to:landSlot,name:getR2Joker(offer.definitionId).name};
-      }else if(action.type==='SellJoker'){
+        if(buyBox&&landSlot)this.pendingPurchaseFlight={from:buyBox,to:landSlot,name};
+      }else if(action.type==='SellJoker'&&!result.duplicate){
         const joker=previous.jokers.find(j=>j.instanceId===action.instanceId)!;this.audio.sale();
         this.notice=`已售 ${getR2Joker(joker.definitionId).name} · 金币 ${oldGold} → ${this.run.gold}`;
         this.pendingGoldRoll=oldGold;
-      }else if(action.type==='RerollShop'){this.selectedOfferId=undefined;this.audio.reroll();this.notice=`卡牌已更新 · 金币 ${oldGold} → ${this.run.gold}`;this.pendingGoldRoll=oldGold;this.pendingRerollFlip=true;}
+      }else if(action.type==='RerollShop'&&!result.duplicate){this.selectedOfferId=undefined;this.audio.reroll();this.notice=`大丑牌与工具已更新 · 道具保留 · 金币 ${oldGold} → ${this.run.gold}`;this.pendingGoldRoll=oldGold;this.pendingRerollFlip=this.shelfKind!=='items';}
       else if(action.type==='ReorderJokers'){this.audio.select();this.notice='顺序已保存 · 从左至右触发';}
+      else if((action.type==='UseConsumable'||action.type==='DestroyConsumable')&&!result.duplicate){
+        const item=previous.consumables.find(row=>row.instanceId===action.instanceId),used=result.events.find((event):event is Extract<DomainEvent,{type:'consumable-used'}>=>event.type==='consumable-used');
+        if(used){const info=toolInfo(used.definitionId);this.audio.toolUse(info.family);this.pendingToolCue={instanceId:used.instanceId,label:info.label};}else this.audio.select();
+        this.notice=(action.type==='UseConsumable'?'已使用 ':'已销毁 ')+(item?toolInfo(item.definitionId).name:'物品')+` · 库存 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)}`+(oldGold!==this.run.gold?` · 金币 ${oldGold} → ${this.run.gold}`:'');
+        if(oldGold!==this.run.gold)this.pendingGoldRoll=oldGold;
+        if(previous.shop!.rerollCount!==this.run.shop!.rerollCount){this.selectedOfferId=undefined;this.audio.reroll();this.pendingRerollFlip=this.shelfKind!=='items';}
+      }
       if(action.type==='LeaveShop'){this.audio.select();this.scene.start('game');}
       else if(action.type==='SkipStage'){
         const s=this.run.stage!;this.scene.start('intermission',{cleared:true,stageIndex:s.index,stageHeat:s.heat,handsLeft:s.handsLeft,goldEarned:s.goldEarned} satisfies IntermissionResult);

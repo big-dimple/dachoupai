@@ -43,12 +43,12 @@ function previewAndSubmit(state:R2RunState,selectedIds:readonly string[]):R2RunS
 }
 
 describe('P02 starting profile: independent D14 goldens through public commands',()=>{
-  it('keeps Amo at discovered high-card Lv3 in v5, with every other hand at Lv1',()=>{
+  it('keeps Amo at discovered high-card Lv3 in explicit v6, with every other hand at Lv1',()=>{
     const run=start();assertRunInvariants(run);
     expect(run.handLevels['high-card']).toBe(3);
     for(const type of R2_HAND_TYPES.filter(type=>type!=='high-card'))expect(run.handLevels[type]??1).toBe(1);
     expect(Object.hasOwn(run.handLevels,'high-card')).toBe(true);
-    expect(run.contentVersion).toBe('quality-r2-content-v5');
+    expect(run.contentVersion).toBe('quality-r2-content-v6');
     expect(run.contentHash).not.toBe('json-fnv-v1:a1f6f62ddd627819');
   });
 

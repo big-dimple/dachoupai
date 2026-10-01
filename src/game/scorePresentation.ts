@@ -5,7 +5,17 @@ export type ScoreBeat={windup:number;flight:number;impact:number;rest:number;str
 /** Zero-based presented trace position, never chain length or a rule clock. Long chains retain every beat. */
 export function scoreBeat(event:ScoreEvent,ordinal=0):ScoreBeat {
   let start:ScoreBeat,fast:ScoreBeat;
-  if(event.phase==='afterHand'||event.phase==='beforeFailure'||event.phase==='onStageClear'){
+  if(event.operation==='lucky-multiplier-check'||event.operation==='lucky-gold-check'||event.operation==='lucky-gold-cap'){
+    start={windup:90,flight:0,impact:170,rest:100,strength:'light'};fast={windup:70,flight:0,impact:140,rest:90,strength:'light'};
+  }else if(event.operation==='glass-check'){
+    start={windup:110,flight:0,impact:190,rest:120,strength:'light'};fast={windup:80,flight:0,impact:150,rest:90,strength:'light'};
+  }else if(event.operation==='destroy-card'||event.operation==='destroy-joker'){
+    start={windup:180,flight:0,impact:270,rest:150,strength:'medium'};fast={windup:140,flight:0,impact:220,rest:120,strength:'medium'};
+  }else if(event.operation==='reward-consumable'){
+    start={windup:170,flight:0,impact:280,rest:150,strength:'medium'};fast={windup:110,flight:0,impact:190,rest:100,strength:'medium'};
+  }else if(event.operation==='upgrade-hand'||event.operation==='add-gold'){
+    start={windup:140,flight:0,impact:240,rest:120,strength:'medium'};fast={windup:90,flight:0,impact:180,rest:90,strength:'medium'};
+  }else if(event.phase==='afterHand'||event.phase==='beforeFailure'||event.phase==='onStageClear'){
     start={windup:140,flight:0,impact:240,rest:120,strength:'medium'};fast={windup:90,flight:0,impact:180,rest:90,strength:'medium'};
   }else if(event.operation==='ordinary-points-suppressed'||event.operation==='retrigger-cap'){
     start={windup:100,flight:0,impact:180,rest:120,strength:'light'};fast={windup:60,flight:0,impact:150,rest:90,strength:'light'};

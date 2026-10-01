@@ -4,6 +4,7 @@ import type {DomainEvent} from '../domain/run';
 import {SCORE_LIMITS,type ScoreEvent} from '../domain/scoreR2';
 import {Rational} from '../domain/rational';
 import {fractionText} from './scoreText';
+import {HAND_LABELS} from '../content/handLabels';
 
 /** Short entry hints; values and full conditions still come from the content definition. */
 export const R2_OFFER_USE:Record<string,string>={
@@ -88,6 +89,13 @@ export function r2JokerExtraHelp(definition:R2JokerDefinition):string {
 export function r2ScoreOperationText(event:ScoreEvent):string {
   const value=fractionText(event.value);
   const resource=event.resourceBefore!==undefined&&event.resourceAfter!==undefined?' · '+event.resourceBefore+' → '+event.resourceAfter:'';
+  if(event.operation==='lucky-multiplier-check')return '幸运倍率 · '+(event.value.n==='1'?'命中':'未命中')+'（1/5）';
+  if(event.operation==='lucky-gold-check')return '幸运金币 · '+(event.value.n==='1'?'命中':'未命中')+'（1/15）';
+  if(event.operation==='lucky-gold-cap')return '幸运金币本手已达'+value+'金上限';
+  if(event.operation==='glass-check')return event.value.n==='1'?'玻璃裂纹（碎裂概率1/4）':'玻璃完好（碎裂概率1/4）';
+  if(event.operation==='destroy-card')return '玻璃碎裂 · 永久离开牌组';
+  if(event.operation==='upgrade-hand')return (event.targetHandType?HAND_LABELS[event.targetHandType]:'牌型')+'升'+value+'级'+resource;
+  if(event.operation==='reward-consumable')return '获得小红包 · 库存 '+event.resourceBefore+' → '+event.resourceAfter;
   if(event.operation==='add-gold'||event.operation==='add-gold-limited')return '+'+value+' 金'+resource;
   if(event.operation==='ordinary-points-suppressed')return '普通点数归零';
   if(event.operation==='retrigger-card')return '额外重触发 '+value+' 次';

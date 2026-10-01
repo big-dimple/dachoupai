@@ -8,13 +8,15 @@ import {buildInfo} from '../platform/buildInfo';
 import {AudioEngine} from '../audio/AudioEngine';
 import {readAudioPreferences} from '../audio/preferences';
 import {installFullscreen} from '../platform/Fullscreen';
+import {R2_JOKERS} from '../content/r2Schema';
+import {R2_AVAILABLE_CHAPTERS} from '../domain/r2Chapter';
 
 function download(text:string,name:string):void {
   const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),link=document.createElement('a');
   link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 export function routeSavedRun(game:Phaser.Game):void {
-  const session=gameSession(),run=session.run;if(!run)return;
+  const session=gameSession(),run=session.run;if(!run||session.pendingRun||session.working)return;
   game.registry.set('runController',run);game.registry.set('runState',run.state);game.registry.set('characterId',run.state.characterId);game.registry.set('seed',run.state.seed);
   const state=run.state;
   const target=state.phase==='shop'?'shop':['stage-ready','await-input'].includes(state.phase)?'game':state.stage?'intermission':'character-select';
@@ -72,6 +74,11 @@ export function installRunMenu(game:Phaser.Game):void {
   },primary);resume.className='dialog-primary';
   const recovery=document.createElement('div');recovery.className='run-menu-recovery';panel.append(recovery);
   const retry=button('重试保存',async()=>{if(await session.retry()){routeSavedRun(game);close();}},recovery);
+  const exportCandidate=button('导出未保存候选',()=>{if(session.pendingRun)download(session.pendingRun.exportJSON(),'dachoupai-unsaved-candidate.json');},recovery);
+  const cancelCandidate=button('取消候选，保留原局',()=>{
+    if(!session.pendingRun||!window.confirm('放弃尚未保存的新局或导入候选？原局会保留。需要保留候选时，请先导出。'))return;
+    if(session.cancelPending())close();
+  },recovery);
   const reload=button('重试读取',()=>session.initialize(),recovery);
   const takeover=button('接管写入',async()=>{
     if(!await session.takeOver()||!session.run)return;
@@ -132,18 +139,18 @@ export function installRunMenu(game:Phaser.Game):void {
   panel.append(saveTools);
   const infoTools=document.createElement('details'),infoSummary=document.createElement('summary'),info=document.createElement('p');infoSummary.textContent='本局与版本';infoTools.append(infoSummary);panel.append(infoTools);
   button('局详情',()=>{const state=session.state();info.textContent=state?'角色 '+state.characterId+'\nSEED '+state.seed+'\n规则 '+state.rulesVersion+' · 内容 '+state.contentVersion:'当前没有进行中的局。';},infoTools);
-  button('版本信息',()=>{info.textContent=`版本 ${buildInfo.version} · ${buildInfo.revision.slice(0,12)}${buildInfo.modified?'（含本地修改）':''}\n构建 ${buildInfo.builtAt}\n当前可玩内容：24张大丑牌、两章。`;},infoTools);infoTools.append(info);
+  button('版本信息',()=>{info.textContent=`版本 ${buildInfo.version} · ${buildInfo.revision.slice(0,12)}${buildInfo.modified?'（含本地修改）':''}\n构建 ${buildInfo.builtAt}\n当前可玩内容：${R2_JOKERS.length}张大丑牌、${R2_AVAILABLE_CHAPTERS}章。`;},infoTools);infoTools.append(info);
   function refreshState():void {
-    const run=session.run;
+    const run=session.run,pending=session.pendingRun,saving=pending??run;
     if(run){game.registry.set('runController',run);game.registry.set('runState',run.state);}else{game.registry.remove('runController');game.registry.remove('runState');}
-    status.textContent=!session.loaded?session.notice||'正在读取完整存档…':!session.lease.writable?'另一页面持有写入权，本页只读。接管会读取最新完整进度。':run?.status==='paused'?'未保存：'+(run.lastError==='quota-exceeded'?'存储空间不足':'存储暂时不可用')+'。后续操作已暂停，重试会保存同一结果；也可导出内存结果。':run?.status==='saving'?'正在保存，请稍候…':run?.status==='readonly'?'进度已在另一页面更新。请接管并读取最新存档。':session.notice|| (run?'已保存 · 第 '+run.state.chapter+' 章 · 金币 '+run.state.gold:'没有进行中的局，请选择角色。');
-    resume.textContent=run?'继续本局':'返回游戏';resume.disabled=session.working||!!run&&!['idle','readonly'].includes(run.status);retry.hidden=run?.status!=='paused';reload.hidden=session.loaded;reload.disabled=session.working||!session.notice;takeover.hidden=!session.loaded||session.lease.writable&&run?.status!=='readonly';
-    takeover.disabled=session.working;
-    start.disabled=session.working||!session.loaded||!session.lease.writable||run?.status==='saving'||run?.status==='paused';exit.disabled=start.disabled;exportRun.disabled=!run;importRun.disabled=session.working||!session.loaded||!session.lease.writable;
+    status.textContent=!session.loaded?session.notice||'正在读取完整存档…':pending?'新局或导入尚未保存，原局已保留。'+(saving?.status==='saving'?'正在保存同一候选…':saving?.status==='readonly'?'候选已只读，可导出或取消后接管。':'请重试保存，或先导出候选再取消。'):!session.lease.writable?'另一页面持有写入权，本页只读。接管会读取最新完整进度。':run?.status==='paused'?'未保存：'+(run.lastError==='quota-exceeded'?'存储空间不足':'存储暂时不可用')+'。后续操作已暂停，重试会保存同一结果；也可导出内存结果。':run?.status==='saving'?'正在保存，请稍候…':run?.status==='readonly'?'进度已在另一页面更新。请接管并读取最新存档。':session.notice|| (run?'已保存 · 第 '+run.state.chapter+' 章 · 金币 '+run.state.gold:'没有进行中的局，请选择角色。');
+    resume.textContent=run?'继续本局':'返回游戏';resume.disabled=session.working||!!pending||!!run&&!['idle','readonly'].includes(run.status);retry.hidden=saving?.status!=='paused';retry.disabled=session.working;exportCandidate.hidden=!pending;cancelCandidate.hidden=!pending;cancelCandidate.disabled=session.working||saving?.status==='saving';reload.hidden=session.loaded;reload.disabled=session.working||!!pending||!session.notice;takeover.hidden=!session.loaded||session.lease.writable&&run?.status!=='readonly'&&saving?.status!=='readonly';
+    takeover.disabled=session.working||!!pending;
+    start.disabled=session.working||!!pending||!session.loaded||!session.lease.writable||run?.status==='saving'||run?.status==='paused';exit.disabled=start.disabled;exportRun.disabled=!run;importRun.disabled=session.working||!!pending||!session.loaded||!session.lease.writable;
     refreshPlayback();
-    const warningNotice=session.notice&&!session.notice.startsWith('导入成功'),critical=session.loaded?run?.status==='paused'||run?.status==='readonly'||!!warningNotice||!session.lease.writable:!!session.notice;
+    const warningNotice=session.notice&&!session.notice.startsWith('导入成功'),critical=session.loaded?!!pending||run?.status==='paused'||run?.status==='readonly'||!!warningNotice||!session.lease.writable:!!session.notice;
     toggle.classList.toggle('needs-attention',critical);toggle.setAttribute('aria-label',modal.open?'关闭菜单':critical?'菜单，有进度提示待处理':'菜单');status.dataset.tone=critical?'warning':run?.status==='saving'?'pending':'normal';
-    const key=critical?`${run?.status}/${run?.lastError}/${session.notice}/${session.lease.writable}`:'';
+    const key=critical?`${saving?.status}/${saving?.lastError}/${session.notice}/${session.lease.writable}/${!!pending}`:'';
     if(key&&key!==attentionKey){if(run?.status==='paused'||session.notice)saveTools.open=true;open();}attentionKey=key;
   }
   fullButton.onclick=()=>{if(modal.open)close();void fullscreen.toggle();};

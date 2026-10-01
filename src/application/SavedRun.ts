@@ -39,8 +39,8 @@ export class SavedRun {
     const restored=restoreSlots(slots);if(!restored.checkpoint)throw Error(restored.code??'invalid-save');
     return new SavedRun(store,restored.checkpoint,slots.revision);
   }
-  dispatch(action:Action):Promise<CommandResult<R2RunState>> {
-    return this.submit({runId:this.state.runId,commandId:`${this.state.runId}/command/${this.state.commandSeq+1}`,expectedSeq:this.state.commandSeq,action});
+  dispatch(action:Action,expectedSeq=this.state.commandSeq):Promise<CommandResult<R2RunState>> {
+    return this.submit({runId:this.state.runId,commandId:`${this.state.runId}/command/${this.state.commandSeq+1}`,expectedSeq,action});
   }
   async submit(command:Command):Promise<CommandResult<R2RunState>> {
     if(this.status!=='idle')return {ok:false,code:this.status==='saving'?'command-busy':this.status==='readonly'?'read-only':'save-paused',state:this.state};
@@ -54,6 +54,7 @@ export class SavedRun {
     return this.persist();
   }
   setReadOnly():void {this.status='readonly';this.onChange();}
+  private isReadOnly():boolean {return this.status==='readonly';}
   async flush():Promise<boolean> {if(this.active)await this.active;return !this.pending&&(this.status==='idle'||this.status==='readonly');}
   private persist():Promise<CommandResult<R2RunState>> {
     this.active=this.performPersist();return this.active;
@@ -62,11 +63,11 @@ export class SavedRun {
     const pending=this.pending!;this.status='saving';this.onChange();
     try {
       this.revision=await this.store.commit(this.revision,pending.checkpoint,pending.backup);
-      this.checkpoint=freezeCheckpoint(pending.checkpoint);this.pending=undefined;this.status='idle';this.lastError='';
+      this.checkpoint=freezeCheckpoint(pending.checkpoint);this.pending=undefined;if(!this.isReadOnly())this.status='idle';this.lastError='';
       return {...pending.result,state:this.state};
     } catch(error) {
       this.lastError=error instanceof DOMException&&error.name==='QuotaExceededError'?'quota-exceeded':error instanceof Error?error.message:'storage-error';
-      this.status=this.lastError==='write-conflict'||this.lastError==='read-only'?'readonly':'paused';
+      this.status=this.isReadOnly()||this.lastError==='write-conflict'||this.lastError==='read-only'?'readonly':'paused';
       return {ok:false,code:this.status==='readonly'?'read-only':'save-failed',state:this.state};
     } finally {this.onChange();}
   }
