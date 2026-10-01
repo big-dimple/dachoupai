@@ -1,0 +1,173 @@
+{
+  "status": "ENGINEERING_CANDIDATE",
+  "baseline": {
+    "branch": "main",
+    "head": "d3f3ba6119a74559112129698bb6bb4f238fc6e1",
+    "initialDirty": "",
+    "pull": "git pull --ff-only origin main: Already up to date"
+  },
+  "testedCommit": "d3f3ba6119a74559112129698bb6bb4f238fc6e1",
+  "testedTree": "HEAD + reviewed working-tree modifications; exact LF source hashes are recorded at closeout",
+  "red": {
+    "blueScreen": {
+      "errors": [
+        "TypeError: Cannot set properties of undefined (setting 'enabled')\n    at Ie.setEnabled (http://127.0.0.1:5209/assets/index-BZ6dnOGZ.js:76:14957)\n    at Bn.updateControls (http://127.0.0.1:5209/assets/index-BZ6dnOGZ.js:83:966)\n    at R (http://127.0.0.1:5209/assets/index-BZ6dnOGZ.js:80:13557)\n    at Bn.create (http://127.0.0.1:5209/assets/index-BZ6dnOGZ.js:80:14736)",
+        "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+      ],
+      "steps": [
+        {
+          "phase": "stage-cleared",
+          "controls": [
+            "view"
+          ]
+        }
+      ]
+    },
+    "redBundle": {
+      "version": "P04",
+      "revision": "27c633a8f34b3be52d8522dc6e3d594c681bf139",
+      "modified": true,
+      "builtAt": "2026-10-01T11:21:37.413Z"
+    },
+    "reproduction": "Natural UI: Amo, p00-core-ui, reach target, intermission, shop, second table entry. Existing P04 compiled bundle (27c633a+dirty metadata), unchanged relevant baseline scene logic. First table entry passed six role/size combinations; reused scene throws setEnabled/undefined enabled.",
+    "scoreGolden": "tests/score-presentation.test.ts first failed because scorePresentation module was absent; six precise per-source pace/fire boundary examples then passed.",
+    "assets": "Read-only asset verification rejected 13 unlisted P03/P05 files and changed literal source references; registered measured candidates without granting visual approval."
+  },
+  "checks": [
+    {
+      "command": "npx vitest run tests/score-presentation.test.ts tests/score-celebration.test.ts tests/stageNotice.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "3 files / 27 tests",
+      "log": "docs/production/evidence/p05-2026-10-01/targeted-tests.txt"
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "tsc + Vite production build. Existing >500KB bundle warning remains; 1478.93KB JS, 421.42KB gzip.",
+      "log": "docs/production/evidence/p05-2026-10-01/build.txt"
+    },
+    {
+      "command": "SMOKE_CHROMIUM_CHANNEL=chromium SMOKE_FEEDBACK=only SMOKE_SHOTS=1 node harness/screenshot.mjs --verify-smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "Actual natural touch/UI route; five ordered card impacts + character multiply, target400→1200, exact credit once, level3 rendering and two real burning voices, clear→shop→second table8cards with no error and zero fire voices.",
+      "log": "docs/production/evidence/p05-2026-10-01/smoke-result.json",
+      "artifact": "docs/production/evidence/p05-2026-10-01/smoke-build-info.json",
+      "scope": "One targeted Chromium path, not the default full smoke matrix."
+    },
+    {
+      "command": "node shots/p05-visual-probe.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "1280×720 mouse / 390×740 DPR3 touch: real shop reroll, new615×768 full-art detail/badge, cancel, four low hands→true301/400 loss, real music voices, no fire leakage, same seed/character retry to shop. No page errors.",
+      "log": "docs/production/evidence/p05-2026-10-01/visual-result.json",
+      "artifact": "docs/production/evidence/p05-2026-10-01/visual-build-info.json",
+      "probeRetention": "One-off probe removed at lightweight closeout."
+    },
+    {
+      "command": "node shots/p05-shop-still.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "Desktop/phone shop captured after actual reroll flip settled; initial capture during flip not used as static-layout evidence.",
+      "log": "docs/production/evidence/p05-2026-10-01/shop-still.txt",
+      "probeRetention": "One-off removed."
+    },
+    {
+      "command": "node C:/Users/wanghongping/AppData/Local/Temp/dachoupai-p05-audio/check.cjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "Actual Chromium OfflineAudioContext snippets: default openingRMS−13.54dBFS; source32voice peak0.900758 and no abs>=1 clipping; real native offline pause/cancel/resume yields zero late output; zero buses/mutes exact.",
+      "log": "docs/production/evidence/p05-2026-10-01/audio-evidence.txt",
+      "raw": "docs/production/evidence/p05-2026-10-01/audio-output.json",
+      "limits": "Short snippets before final failure-profile melody/tempo addition. Lifecycle/autoplay/background bookkeeping uses resume/state substitutes; no hardware audition/full-loop loudness guarantee. Final build and natural loss verify final profile schedules music, not subjective listening."
+    },
+    {
+      "command": "node tools/blender/verify_assets.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "179 measured runtime assets; added13 P03/P05 registrations/source refs. Visual approval NOT_GRANTED, rights UNKNOWN, allowlist remains empty.",
+      "log": "docs/production/evidence/p05-2026-10-01/assets-green.txt"
+    },
+    {
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "log": "docs/production/evidence/p05-2026-10-01/plan.txt",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check; git diff --cached --check",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "Exit0. Initial staged log check found two trailing blank lines; normalized those log endings, then rechecked actual final staged files."
+    }
+  ],
+  "rules": {
+    "version": "quality-r2-graybox-v4",
+    "contentHash": "json-fnv-v1:44ae9e0098657624",
+    "changes": "None to domain scoring, RNG, content or save schema"
+  },
+  "notRun": [
+    "Physical Android browser/toolbar/fullscreen/performance",
+    "Phone/headphone audition",
+    "Full audio loop loudness",
+    "Three-engine matrix, 120-run harness and balance",
+    "Tarot/planet/spectral/new-enhancement gameplay",
+    "P05 all Boss intro UI routes, replay/fast-forward full matrix (existing cancellation contract unchanged; targeted audio cancellation and scene cleanup observed)"
+  ],
+  "humanAcceptance": "NOT_GRANTED",
+  "nextStep": "A01 blocked: owner feedback on the same P05 main key-node candidate. Fix concrete art/interaction/listening concerns first; do not advance gameplay or formal asset batches.",
+  "taskId": "P05",
+  "date": "2026-10-01",
+  "completionScope": "Runnable presentation repair candidate only. No human visual, physical Android or listening acceptance; all new gameplay remains frozen.",
+  "testedSource": {
+    "normalization": "CRLF to LF, SHA256 of UTF-8. Final build/natural smoke include all runtime changes. Detail/loss probe was before only the subsequent ScoreFlame curve refinement; its ShopScene/IntermissionScene/AudioEngine/CSS logic is unchanged.",
+    "normalizedSha256": {
+      "src/audio/AudioEngine.ts": "209732a9252d8f83ddecb3907b143b174141d7dbb1de19e64938ccde500f5859",
+      "src/audio/chopinTheme.ts": "02d64de35d46623a90e1266c5d7ae02f666043be14fe93b43e14758610a5325d",
+      "src/game/DetailDialog.ts": "ca345e1d7c36f806b5642c3f80b2922d3f4daebcdb6aaf3fc583ef887084c843",
+      "src/game/GameScene.ts": "284b1de9375387ae624f0ac59d9f9fa492de87b346161c8918c4bf2c45a38877",
+      "src/game/IntermissionScene.ts": "8f1b085c77809076a6968ae8be76c11afdc5ed666bd08f96b50211b93d3e54c8",
+      "src/game/ShopScene.ts": "76bbf2387b7133ee25fbb1c847e96bb67cb492a5830489c0f9764b3364d63f76",
+      "src/game/ScoreFlame.ts": "a45571b6ca9b621745ef89f7fd5857f9615cb60aff4fb22fd67ce1f43fd98f94",
+      "src/game/scorePresentation.ts": "36c4012b99a01dd94f097767fd25ca9f772aee7b2da904396767255741ba2abf",
+      "src/game/stageNotice.ts": "bcebbc330cf604decfad6652892868eb9e3c53a48df0a79c7fc42d0fafa30082",
+      "src/game/jokerArt.ts": "9bdf1159ef807a3c3ab3f61ad3b713599c49c9875247985084fcb951479f3a0c",
+      "src/style.css": "58d834f4f14f07e6708f541c8bdb12019416013422f5ceb450ee917cabc3f85f",
+      "vite.config.ts": "c0d0f7569bb458433e25c7eebbbac37d013377ca2a7387401bd58aa3e824dd62",
+      "tests/score-presentation.test.ts": "5063fd54cf6d5699d08caac53416268547cf53d83a7adcdc4133d5c78c154f98",
+      "tests/stageNotice.test.ts": "3e3899c75d4df00a871c35a892acd5cb235b4d49d835c3bf125ae869f4bec086",
+      "harness/screenshot.mjs": "15a7a0ac3bfd9a12f1bf047e670e180691ef383769d730e75262d3e47f7479ee"
+    }
+  },
+  "changes": [
+    "S blocker: reused Phaser Scene no longer updates destroyed controls during create/settings; live controls are accessed only after this generation finishes rendering.",
+    "Each actual ScoreEvent has its own charge, packet, number impact and rest; multiply pauses longer. No total-time squeeze or grouped card/retrigger calculations.",
+    "Current exact displayed H×M plus prior cumulative heat drives three bounded flame/fire-sound levels; no prediction or early credit. Cleanup on cancel/scene/background/mute.",
+    "Chopin Op.28 No.7 full-score independent WebAudio arrangement, higher source gains and distinct card/held/character/Joker/retrigger/multiply/fire cues. Failure scene keeps softer melody.",
+    "Five new full Joker illustrations, thumbnail/detail variants, shaped rarity badges, large mouse preview and refined full-art confirmation/details.",
+    "Existing current-stage Boss restrictions are explained at table start; future card-family/edition gaps recorded and frozen.",
+    "Loss uses warm encouragement, actual last-hand highlights and saved exact gap/resources, staggered entrance and same-seed retry. No invented record, reward or win."
+  ],
+  "art": {
+    "illustratedJokers": "8 of24 (prior3 + current5); remaining16 still mechanism motifs",
+    "generator": "built-in image_gen.imagegen; model not exposed",
+    "manifest": "art/sources/p05-jokers/manifest.json",
+    "validation": "art/sources/p05-jokers/technical-validation.json",
+    "preloadBytes": 117810,
+    "lazyDetailBytes": 632012,
+    "visualApproval": "NOT_GRANTED",
+    "oldGLB": "39 retained as offline candidates/rework/source-only per A00; no runtime3D added"
+  },
+  "screenshots": [
+    "docs/production/evidence/p05-2026-10-01/mobile-overkill.webp",
+    "docs/production/evidence/p05-2026-10-01/mobile-detail.webp",
+    "docs/production/evidence/p05-2026-10-01/mobile-loss.webp"
+  ],
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": null,
+    "evidence": null
+  }
+}

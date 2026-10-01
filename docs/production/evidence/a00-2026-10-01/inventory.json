@@ -1,9 +1,13 @@
 {
   "schemaVersion": 1,
-  "task": "A00 adopted: legacy inventory plus P00/P01 runtime candidates; visual approval NOT_GRANTED",
-  "testedCommit": "140841ca0f744d99db7a70524a5077fd0e4e1b98",
-  "dirtyState": "Adoption change: inventory extended by 30 P00/P01 runtime candidate entries; sourceReferences snapshot refreshed; no asset bytes modified",
+  "task": "A00 inventory extended with P03 stage and P05 current Joker candidates; human approval NOT_GRANTED",
+  "testedCommit": "d3f3ba6119a74559112129698bb6bb4f238fc6e1",
+  "dirtyState": "P05 reviewed dirty working tree; existing asset entries/bytes preserved, 13 unlisted P03/P05 candidate files measured and registered; no visual approval",
   "sourceReferences": [
+    {
+      "source": "src/game/BootScene.ts",
+      "expression": "assets/p03/stage-wide.webp"
+    },
     {
       "source": "src/game/characters.ts",
       "expression": "${import.meta.env.BASE_URL}assets/characters/${file}"
@@ -31,6 +35,46 @@
     {
       "source": "src/game/jokerArt.ts",
       "expression": "assets/p01/jokers/huimaqiang-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p05/a03.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p05/a03-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p05/f02.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p05/f02-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p05/d03.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p05/d03-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p05/tiesuanpan.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p05/tiesuanpan-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p05/mantangcai.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p05/mantangcai-detail.webp"
     },
     {
       "source": "src/game/portraits.ts",
@@ -91,7 +135,13 @@
     "public/assets/p00/characters/xiemu.avatar.webp",
     "public/assets/p01/jokers/pengci.webp",
     "public/assets/p01/jokers/e05.webp",
-    "public/assets/p01/jokers/huimaqiang.webp"
+    "public/assets/p01/jokers/huimaqiang.webp",
+    "public/assets/jokers-p05/a03.webp",
+    "public/assets/jokers-p05/d03.webp",
+    "public/assets/jokers-p05/f02.webp",
+    "public/assets/jokers-p05/mantangcai.webp",
+    "public/assets/jokers-p05/tiesuanpan.webp",
+    "public/assets/p03/stage-wide.webp"
   ],
   "limitations": [
     "No user visual approval",
@@ -101,14 +151,19 @@
     "GLB pixels are null; embedded textures and rendered preview resolution are separate"
   ],
   "totals": {
-    "files": 166,
-    "bytes": 32165699,
-    "decodedRgbaBytes": 240908224,
+    "files": 179,
+    "bytes": 33051489,
+    "decodedRgbaBytes": 257301440,
     "groups": {
       "characters": {
         "count": 12,
         "bytes": 14586526,
         "decodedRgbaBytes": 44032128
+      },
+      "jokers-p05": {
+        "count": 11,
+        "bytes": 753652,
+        "decodedRgbaBytes": 11084800
       },
       "models": {
         "count": 40,
@@ -124,6 +179,11 @@
         "count": 7,
         "bytes": 227781,
         "decodedRgbaBytes": 3932160
+      },
+      "p03": {
+        "count": 2,
+        "bytes": 132138,
+        "decodedRgbaBytes": 5308416
       },
       "renders": {
         "count": 56,
@@ -573,6 +633,343 @@
       "productionTool": "UNKNOWN",
       "crop": null,
       "safeArea": "NOT_APPROVED",
+      "legacyManifestListed": false
+    },
+    {
+      "path": "public/assets/jokers-p05/a03-detail.webp",
+      "bytes": 115330,
+      "sha256": "88e31b3414ea7d38735e6c504b01a90ee76cf53d66266218e1ea496aad1a631d",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp",
+      "assetId": "p05-joker-a03-detail",
+      "contentId": "a03",
+      "sourcePath": "art/sources/p05-jokers/manifest.json",
+      "runtimePaths": [
+        "public/assets/jokers-p05/a03-detail.webp"
+      ],
+      "previewPath": [],
+      "usage": "完整768长边详情，按需请求",
+      "disposition": "在用工程候选；等待用户视觉验收",
+      "technicalStatus": "PASS_READ_ONLY_LOAD",
+      "visualStatus": "OBSERVED_NOT_APPROVED",
+      "integrationStatus": "RUNTIME_CANDIDATE_UNAPPROVED",
+      "visualVersion": "p05-jokers-v1",
+      "visualApproval": "NOT_GRANTED",
+      "rightsStatus": "UNKNOWN",
+      "releaseEligible": false,
+      "safeArea": "NOT_APPROVED",
+      "provenance": "Built-in imagegen，prompt/原文件hash见source manifest；文字和徽章由程序绘制",
+      "productionTool": "Built-in imagegen + sharp 0.35.5",
+      "crop": "full artwork",
+      "legacyManifestListed": false
+    },
+    {
+      "path": "public/assets/jokers-p05/a03.webp",
+      "bytes": 21178,
+      "sha256": "6882e368fb3eae4f237714b8cc8c5674f3fbd5d0ae193acd705863a02e0a0634",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp",
+      "assetId": "p05-joker-a03",
+      "contentId": "a03",
+      "sourcePath": "art/sources/p05-jokers/manifest.json",
+      "runtimePaths": [
+        "public/assets/jokers-p05/a03.webp"
+      ],
+      "previewPath": [],
+      "usage": "运行时缩略或现有舞台候选，Boot预载",
+      "disposition": "在用工程候选；等待用户视觉验收",
+      "technicalStatus": "PASS_READ_ONLY_LOAD",
+      "visualStatus": "OBSERVED_NOT_APPROVED",
+      "integrationStatus": "RUNTIME_CANDIDATE_UNAPPROVED",
+      "visualVersion": "p05-jokers-v1",
+      "visualApproval": "NOT_GRANTED",
+      "rightsStatus": "UNKNOWN",
+      "releaseEligible": false,
+      "safeArea": "NOT_APPROVED",
+      "provenance": "Built-in imagegen，prompt/原文件hash见source manifest；文字和徽章由程序绘制",
+      "productionTool": "Built-in imagegen + sharp 0.35.5",
+      "crop": "full artwork",
+      "legacyManifestListed": false
+    },
+    {
+      "path": "public/assets/jokers-p05/d03-detail.webp",
+      "bytes": 125230,
+      "sha256": "6062ea04cb279f81f140fd877f79e000917fa6e750ce26ce139973ffd878e0d6",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp",
+      "assetId": "p05-joker-d03-detail",
+      "contentId": "d03",
+      "sourcePath": "art/sources/p05-jokers/manifest.json",
+      "runtimePaths": [
+        "public/assets/jokers-p05/d03-detail.webp"
+      ],
+      "previewPath": [],
+      "usage": "完整768长边详情，按需请求",
+      "disposition": "在用工程候选；等待用户视觉验收",
+      "technicalStatus": "PASS_READ_ONLY_LOAD",
+      "visualStatus": "OBSERVED_NOT_APPROVED",
+      "integrationStatus": "RUNTIME_CANDIDATE_UNAPPROVED",
+      "visualVersion": "p05-jokers-v1",
+      "visualApproval": "NOT_GRANTED",
+      "rightsStatus": "UNKNOWN",
+      "releaseEligible": false,
+      "safeArea": "NOT_APPROVED",
+      "provenance": "Built-in imagegen，prompt/原文件hash见source manifest；文字和徽章由程序绘制",
+      "productionTool": "Built-in imagegen + sharp 0.35.5",
+      "crop": "full artwork",
+      "legacyManifestListed": false
+    },
+    {
+      "path": "public/assets/jokers-p05/d03.webp",
+      "bytes": 21572,
+      "sha256": "972a572611a3858000c77f0f2fd751807a0bff926f225db848ee11969b3281ea",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp",
+      "assetId": "p05-joker-d03",
+      "contentId": "d03",
+      "sourcePath": "art/sources/p05-jokers/manifest.json",
+      "runtimePaths": [
+        "public/assets/jokers-p05/d03.webp"
+      ],
+      "previewPath": [],
+      "usage": "运行时缩略或现有舞台候选，Boot预载",
+      "disposition": "在用工程候选；等待用户视觉验收",
+      "technicalStatus": "PASS_READ_ONLY_LOAD",
+      "visualStatus": "OBSERVED_NOT_APPROVED",
+      "integrationStatus": "RUNTIME_CANDIDATE_UNAPPROVED",
+      "visualVersion": "p05-jokers-v1",
+      "visualApproval": "NOT_GRANTED",
+      "rightsStatus": "UNKNOWN",
+      "releaseEligible": false,
+      "safeArea": "NOT_APPROVED",
+      "provenance": "Built-in imagegen，prompt/原文件hash见source manifest；文字和徽章由程序绘制",
+      "productionTool": "Built-in imagegen + sharp 0.35.5",
+      "crop": "full artwork",
+      "legacyManifestListed": false
+    },
+    {
+      "path": "public/assets/jokers-p05/f02-detail.webp",
+      "bytes": 125320,
+      "sha256": "8bcaa271772e07384cb5c60c119a1b5b990e9425e83921cb9d523d19b1af4278",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp",
+      "assetId": "p05-joker-f02-detail",
+      "contentId": "f02",
+      "sourcePath": "art/sources/p05-jokers/manifest.json",
+      "runtimePaths": [
+        "public/assets/jokers-p05/f02-detail.webp"
+      ],
+      "previewPath": [],
+      "usage": "完整768长边详情，按需请求",
+      "disposition": "在用工程候选；等待用户视觉验收",
+      "technicalStatus": "PASS_READ_ONLY_LOAD",
+      "visualStatus": "OBSERVED_NOT_APPROVED",
+      "integrationStatus": "RUNTIME_CANDIDATE_UNAPPROVED",
+      "visualVersion": "p05-jokers-v1",
+      "visualApproval": "NOT_GRANTED",
+      "rightsStatus": "UNKNOWN",
+      "releaseEligible": false,
+      "safeArea": "NOT_APPROVED",
+      "provenance": "Built-in imagegen，prompt/原文件hash见source manifest；文字和徽章由程序绘制",
+      "productionTool": "Built-in imagegen + sharp 0.35.5",
+      "crop": "full artwork",
+      "legacyManifestListed": false
+    },
+    {
+      "path": "public/assets/jokers-p05/f02.webp",
+      "bytes": 22424,
+      "sha256": "ec85019d0b25aab8eb65d0deb39c82096d9c684344b36f043318fb69a9b33ce3",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp",
+      "assetId": "p05-joker-f02",
+      "contentId": "f02",
+      "sourcePath": "art/sources/p05-jokers/manifest.json",
+      "runtimePaths": [
+        "public/assets/jokers-p05/f02.webp"
+      ],
+      "previewPath": [],
+      "usage": "运行时缩略或现有舞台候选，Boot预载",
+      "disposition": "在用工程候选；等待用户视觉验收",
+      "technicalStatus": "PASS_READ_ONLY_LOAD",
+      "visualStatus": "OBSERVED_NOT_APPROVED",
+      "integrationStatus": "RUNTIME_CANDIDATE_UNAPPROVED",
+      "visualVersion": "p05-jokers-v1",
+      "visualApproval": "NOT_GRANTED",
+      "rightsStatus": "UNKNOWN",
+      "releaseEligible": false,
+      "safeArea": "NOT_APPROVED",
+      "provenance": "Built-in imagegen，prompt/原文件hash见source manifest；文字和徽章由程序绘制",
+      "productionTool": "Built-in imagegen + sharp 0.35.5",
+      "crop": "full artwork",
+      "legacyManifestListed": false
+    },
+    {
+      "path": "public/assets/jokers-p05/manifest.json",
+      "bytes": 3830,
+      "sha256": "c5370cba5d6d4451882f99dec2d42965fdfc57cb1585b5e9aa4e0ccf90f32978",
+      "textNormalization": "LF",
+      "canonicalBytes": 3830,
+      "canonicalSha256": "c5370cba5d6d4451882f99dec2d42965fdfc57cb1585b5e9aa4e0ccf90f32978",
+      "assetId": "p05-joker-manifest",
+      "contentId": null,
+      "sourcePath": "art/sources/p05-jokers/manifest.json",
+      "runtimePaths": [],
+      "previewPath": [],
+      "usage": "素材候选清单",
+      "disposition": "在用工程候选；等待用户视觉验收",
+      "technicalStatus": "PASS_READ_ONLY_LOAD",
+      "visualStatus": "OBSERVED_NOT_APPROVED",
+      "integrationStatus": "MANIFEST_ONLY",
+      "visualVersion": "p05-jokers-v1",
+      "visualApproval": "NOT_GRANTED",
+      "rightsStatus": "UNKNOWN",
+      "releaseEligible": false,
+      "safeArea": "NOT_APPROVED",
+      "provenance": "Built-in imagegen，prompt/原文件hash见source manifest；文字和徽章由程序绘制",
+      "productionTool": "Built-in imagegen + sharp 0.35.5",
+      "crop": "full artwork",
+      "legacyManifestListed": false
+    },
+    {
+      "path": "public/assets/jokers-p05/mantangcai-detail.webp",
+      "bytes": 143008,
+      "sha256": "09d5b4307a963356a2dcbbeb4153210f65b9a0cb27bad3764c4ad4e9f14725f2",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp",
+      "assetId": "p05-joker-mantangcai-detail",
+      "contentId": "mantangcai",
+      "sourcePath": "art/sources/p05-jokers/manifest.json",
+      "runtimePaths": [
+        "public/assets/jokers-p05/mantangcai-detail.webp"
+      ],
+      "previewPath": [],
+      "usage": "完整768长边详情，按需请求",
+      "disposition": "在用工程候选；等待用户视觉验收",
+      "technicalStatus": "PASS_READ_ONLY_LOAD",
+      "visualStatus": "OBSERVED_NOT_APPROVED",
+      "integrationStatus": "RUNTIME_CANDIDATE_UNAPPROVED",
+      "visualVersion": "p05-jokers-v1",
+      "visualApproval": "NOT_GRANTED",
+      "rightsStatus": "UNKNOWN",
+      "releaseEligible": false,
+      "safeArea": "NOT_APPROVED",
+      "provenance": "Built-in imagegen，prompt/原文件hash见source manifest；文字和徽章由程序绘制",
+      "productionTool": "Built-in imagegen + sharp 0.35.5",
+      "crop": "full artwork",
+      "legacyManifestListed": false
+    },
+    {
+      "path": "public/assets/jokers-p05/mantangcai.webp",
+      "bytes": 26564,
+      "sha256": "8d7c33d3c6216bef3a6986f19cb7a584321867040b1be28d75c7debc6c89281c",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp",
+      "assetId": "p05-joker-mantangcai",
+      "contentId": "mantangcai",
+      "sourcePath": "art/sources/p05-jokers/manifest.json",
+      "runtimePaths": [
+        "public/assets/jokers-p05/mantangcai.webp"
+      ],
+      "previewPath": [],
+      "usage": "运行时缩略或现有舞台候选，Boot预载",
+      "disposition": "在用工程候选；等待用户视觉验收",
+      "technicalStatus": "PASS_READ_ONLY_LOAD",
+      "visualStatus": "OBSERVED_NOT_APPROVED",
+      "integrationStatus": "RUNTIME_CANDIDATE_UNAPPROVED",
+      "visualVersion": "p05-jokers-v1",
+      "visualApproval": "NOT_GRANTED",
+      "rightsStatus": "UNKNOWN",
+      "releaseEligible": false,
+      "safeArea": "NOT_APPROVED",
+      "provenance": "Built-in imagegen，prompt/原文件hash见source manifest；文字和徽章由程序绘制",
+      "productionTool": "Built-in imagegen + sharp 0.35.5",
+      "crop": "full artwork",
+      "legacyManifestListed": false
+    },
+    {
+      "path": "public/assets/jokers-p05/tiesuanpan-detail.webp",
+      "bytes": 123124,
+      "sha256": "f72e1ba76e25e644d657e2c7223a0c8db89c7befe8749656369b9c6fa0741157",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp",
+      "assetId": "p05-joker-tiesuanpan-detail",
+      "contentId": "tiesuanpan",
+      "sourcePath": "art/sources/p05-jokers/manifest.json",
+      "runtimePaths": [
+        "public/assets/jokers-p05/tiesuanpan-detail.webp"
+      ],
+      "previewPath": [],
+      "usage": "完整768长边详情，按需请求",
+      "disposition": "在用工程候选；等待用户视觉验收",
+      "technicalStatus": "PASS_READ_ONLY_LOAD",
+      "visualStatus": "OBSERVED_NOT_APPROVED",
+      "integrationStatus": "RUNTIME_CANDIDATE_UNAPPROVED",
+      "visualVersion": "p05-jokers-v1",
+      "visualApproval": "NOT_GRANTED",
+      "rightsStatus": "UNKNOWN",
+      "releaseEligible": false,
+      "safeArea": "NOT_APPROVED",
+      "provenance": "Built-in imagegen，prompt/原文件hash见source manifest；文字和徽章由程序绘制",
+      "productionTool": "Built-in imagegen + sharp 0.35.5",
+      "crop": "full artwork",
+      "legacyManifestListed": false
+    },
+    {
+      "path": "public/assets/jokers-p05/tiesuanpan.webp",
+      "bytes": 26072,
+      "sha256": "302b86c35f3eba6401ac87949b7dbd970d2c2296c44493fb1f0fa3ed8efe9079",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp",
+      "assetId": "p05-joker-tiesuanpan",
+      "contentId": "tiesuanpan",
+      "sourcePath": "art/sources/p05-jokers/manifest.json",
+      "runtimePaths": [
+        "public/assets/jokers-p05/tiesuanpan.webp"
+      ],
+      "previewPath": [],
+      "usage": "运行时缩略或现有舞台候选，Boot预载",
+      "disposition": "在用工程候选；等待用户视觉验收",
+      "technicalStatus": "PASS_READ_ONLY_LOAD",
+      "visualStatus": "OBSERVED_NOT_APPROVED",
+      "integrationStatus": "RUNTIME_CANDIDATE_UNAPPROVED",
+      "visualVersion": "p05-jokers-v1",
+      "visualApproval": "NOT_GRANTED",
+      "rightsStatus": "UNKNOWN",
+      "releaseEligible": false,
+      "safeArea": "NOT_APPROVED",
+      "provenance": "Built-in imagegen，prompt/原文件hash见source manifest；文字和徽章由程序绘制",
+      "productionTool": "Built-in imagegen + sharp 0.35.5",
+      "crop": "full artwork",
       "legacyManifestListed": false
     },
     {
@@ -3800,6 +4197,64 @@
       "visualNote": "P01真实桌面/移动截图可定位；三张未获批，不得扩成24/72全套。",
       "provenance": "P01原创机制卡面候选；母版见art/sources/p01-jokers/manifest.json；文字由程序排版，未烘焙。",
       "productionTool": "P01 art task; Sharp 0.35.5 export",
+      "crop": "full artwork",
+      "legacyManifestListed": false
+    },
+    {
+      "path": "public/assets/p03/manifest.json",
+      "bytes": 652,
+      "sha256": "a24c20e4c8c359fcac79dee847e1ca1649631bd11238f7917d27214318c73cbc",
+      "textNormalization": "LF",
+      "canonicalBytes": 652,
+      "canonicalSha256": "a24c20e4c8c359fcac79dee847e1ca1649631bd11238f7917d27214318c73cbc",
+      "assetId": "p03-stage-manifest",
+      "contentId": null,
+      "sourcePath": "art/sources/p03-stage/manifest.json",
+      "runtimePaths": [],
+      "previewPath": [],
+      "usage": "素材候选清单",
+      "disposition": "在用工程候选；等待用户视觉验收",
+      "technicalStatus": "PASS_READ_ONLY_LOAD",
+      "visualStatus": "OBSERVED_NOT_APPROVED",
+      "integrationStatus": "MANIFEST_ONLY",
+      "visualVersion": "p03-stage-v1",
+      "visualApproval": "NOT_GRANTED",
+      "rightsStatus": "UNKNOWN",
+      "releaseEligible": false,
+      "safeArea": "NOT_APPROVED",
+      "provenance": "P03现有已接入舞台候选，补登记不重制",
+      "productionTool": "P03 imagegen + sharp",
+      "crop": "full artwork",
+      "legacyManifestListed": false
+    },
+    {
+      "path": "public/assets/p03/stage-wide.webp",
+      "bytes": 131486,
+      "sha256": "06689cb284552d2ee38bc8da7bfa208a4c0568f628267ece853d09dab2401d6c",
+      "width": 1536,
+      "height": 864,
+      "alpha": false,
+      "decodedRgbaBytes": 5308416,
+      "format": "webp",
+      "assetId": "p03-stage-stage-wide",
+      "contentId": null,
+      "sourcePath": "art/sources/p03-stage/manifest.json",
+      "runtimePaths": [
+        "public/assets/p03/stage-wide.webp"
+      ],
+      "previewPath": [],
+      "usage": "运行时缩略或现有舞台候选，Boot预载",
+      "disposition": "在用工程候选；等待用户视觉验收",
+      "technicalStatus": "PASS_READ_ONLY_LOAD",
+      "visualStatus": "OBSERVED_NOT_APPROVED",
+      "integrationStatus": "RUNTIME_CANDIDATE_UNAPPROVED",
+      "visualVersion": "p03-stage-v1",
+      "visualApproval": "NOT_GRANTED",
+      "rightsStatus": "UNKNOWN",
+      "releaseEligible": false,
+      "safeArea": "NOT_APPROVED",
+      "provenance": "P03现有已接入舞台候选，补登记不重制",
+      "productionTool": "P03 imagegen + sharp",
       "crop": "full artwork",
       "legacyManifestListed": false
     },
@@ -7151,6 +7606,11 @@
     "public/assets/p00/characters/xiemu.portrait.webp",
     "public/assets/p01/jokers/pengci-detail.webp",
     "public/assets/p01/jokers/e05-detail.webp",
-    "public/assets/p01/jokers/huimaqiang-detail.webp"
+    "public/assets/p01/jokers/huimaqiang-detail.webp",
+    "public/assets/jokers-p05/a03-detail.webp",
+    "public/assets/jokers-p05/d03-detail.webp",
+    "public/assets/jokers-p05/f02-detail.webp",
+    "public/assets/jokers-p05/mantangcai-detail.webp",
+    "public/assets/jokers-p05/tiesuanpan-detail.webp"
   ]
 }

@@ -147,14 +147,39 @@ try {
     await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(c=>!c.back?.visible&&c.container.alpha===1));
     const ids=['clubs-5','diamonds-14','clubs-4','diamonds-3','clubs-2'];
     for(const id of ids){await tapUI(page,'game','card/'+id,true);await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),id,{timeout:5000});}
-    const beforePlay=await state(page),started=Date.now();await tapUI(page,'game','action/play',true);await next(page,beforePlay.commandSeq);
+    const beforePlay=await state(page),started=Date.now();
+    await page.evaluate(()=>{
+      window.__scoreObservation={started:performance.now(),events:[],fire:[],timer:undefined};
+      const observation=window.__scoreObservation;
+      observation.timer=setInterval(()=>{
+        const s=window.__harness.game.scene.getScene('game');if(!s.scoreTotal?.active)return;
+        const id=s.scoreTotal.getData('eventId'),phase=s.scoreTotal.getData('eventPhase');
+        if(id&&!observation.events.some(e=>e.id===id&&e.phase===phase))observation.events.push({id,phase,at:performance.now()-observation.started,label:s.resultText.text,heat:s.scoreHeat.text,mult:s.scoreMult.text});
+        const level=s.scoreFlame?.graphic?.getData('intensity')??0;
+        if(level&&!observation.fire.some(f=>f.level===level))observation.fire.push({level,at:performance.now()-observation.started,voices:s.audio.fireVoices.size});
+      },30);
+    });
+    await tapUI(page,'game','action/play',true);await next(page,beforePlay.commandSeq);
     await page.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.resultText.text.includes('三倍爆场')&&s.scoreTotal.text==='1,200'&&s.scoreTotal.scaleX>1.05&&s.view.root.list.some(o=>o.name==='score/celebration');},{},{timeout:30000});
     const burstElapsedMs=Date.now()-started,renderFps=await page.evaluate(()=>window.__harness.game.loop.actualFps);
     const linkedAudio=await page.evaluate(()=>{const a=window.__harness.game.scene.getScene('game').audio;return {context:a.context?.state,sfxVoices:[...a.voices].filter(v=>v.bus==='sfx').length,master:a.getVolume('master')};});
     assert.equal(linkedAudio.context,'running');assert.ok(linkedAudio.sfxVoices>0,'burst has actual scheduled SFX voices');assert.ok(linkedAudio.master>0);
     if(saveScreens)await page.screenshot({path:'shots/mobile-overkill.png'});
     await waitScene(page,'intermission');const after=await state(page);assert.equal(after.lastTrace.finalScore,'1200');assert.equal(after.stage.heat,'1200');assert.equal(after.stage.targetHeat,'400');assert.equal(after.stage.handsLeft,3);assert.equal(after.gold,14);assert.deepEqual(errors,[]);
-    report.checks.push({engine,browserVersion:browser.version(),channel:process.env.SMOKE_CHROMIUM_CHANNEL||'default',profile:'natural-three-times-target',status:'PASS',seed:'p04-golden-02',character:'touye',selectedIds:ids,finalScore:'1200',target:'400',burstElapsedMs,renderFps,linkedAudio,covered:['natural-wager-straight','real-3x-stamp','score-number-bounce','scheduled-overkill-audio','exact-credit-once'],physicalListening:'NOT_RUN',physicalPerformance:'NOT_RUN'});
+    const observation=await page.evaluate(()=>{const o=window.__scoreObservation;clearInterval(o.timer);return {events:o.events,fire:o.fire};});
+    const expected=after.lastTrace.events.filter(e=>e.phase!=='base'&&e.phase!=='finalScore');
+    assert.deepEqual(observation.events.filter(e=>e.phase==='impact').map(e=>e.id),expected.map(e=>e.eventId),'every actual source gets its own ordered impact');
+    assert.ok(observation.fire.some(f=>f.level===3&&f.voices>0),'actual 3x score has flame rendering and real scheduled burning voices');
+    for(let i=0;i<5;i++){
+      const id=expected[i].eventId,start=observation.events.find(e=>e.id===id&&e.phase==='windup'),end=observation.events.find(e=>e.id===id&&e.phase==='rest');
+      assert.ok(end.at-start.at>=550,'ordinary card is identified, arrives, rolls, and rests individually at 1x');
+    }
+    // Regression for the reported blue screen: reuse the same Phaser Scene after a real clear.
+    await tapUI(page,'intermission','action/continue-stage',true);await waitScene(page,'shop');await tapUI(page,'shop','action/start-stage',true);await ready(page);
+    assert.equal((await state(page)).stage.index,1);assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('game').cardViews.length),8);
+    assert.deepEqual(errors,[],'second table entry must not touch destroyed controls');
+    assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('game').audio.fireVoices.size),0,'finished scoring does not leak fire audio into the next table');
+    report.checks.push({engine,browserVersion:browser.version(),channel:process.env.SMOKE_CHROMIUM_CHANNEL||'default',profile:'natural-three-times-target',status:'PASS',seed:'p04-golden-02',character:'touye',selectedIds:ids,finalScore:'1200',target:'400',burstElapsedMs,renderFps,linkedAudio,observation,covered:['natural-wager-straight','every-source-ordered-impact','individual-card-pace','3x-flame-and-burning-audio','real-3x-stamp','score-number-bounce','scheduled-overkill-audio','exact-credit-once','second-table-entry-after-clear','fire-cleanup'],physicalListening:'NOT_RUN',physicalPerformance:'NOT_RUN'});
     await context.close();console.log(`${engine}/natural-3x: ok`);
   }
   await browser.close();browser=undefined;

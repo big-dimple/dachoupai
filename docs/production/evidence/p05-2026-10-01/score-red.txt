@@ -1,0 +1,23 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/score-presentation.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/score-presentation.test.ts [ tests/score-presentation.test.ts ]
+Error: Cannot find module '../src/game/scorePresentation' imported from D:/ai/dachoupai/dachoupai/tests/score-presentation.test.ts
+ ❯ tests/score-presentation.test.ts:2:1
+      1| import {describe,it,expect} from 'vitest';
+      2| import {scoreBeat,scoreFireLevel} from '../src/game/scorePresentation';
+       | ^
+      3| import type {ScoreEvent} from '../src/domain/scoreR2';
+      4|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  19:49:59
+   Duration  341ms (transform 32ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)

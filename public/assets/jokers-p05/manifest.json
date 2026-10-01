@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "workPackage": "P05",
+  "status": "ENGINEERING_CANDIDATE",
+  "visualApproval": "NOT_GRANTED",
+  "productionBatchApproval": "NOT_GRANTED",
+  "commercialRights": "NOT_REVIEWED",
+  "sourceManifest": "art/sources/p05-jokers/manifest.json",
+  "preload": "thumbnail only; detail requested by purchase panel",
+  "initialPreloadBytes": 117810,
+  "detailBytes": 632012,
+  "assets": [
+    {
+      "id": "a03",
+      "name": "一束光",
+      "key": "p05-joker-a03",
+      "thumbnail": {
+        "path": "public/assets/jokers-p05/a03.webp",
+        "width": 256,
+        "height": 320,
+        "bytes": 21178,
+        "sha256": "6882e368fb3eae4f237714b8cc8c5674f3fbd5d0ae193acd705863a02e0a0634",
+        "format": "webp",
+        "hasAlpha": false
+      },
+      "detail": {
+        "path": "public/assets/jokers-p05/a03-detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 115330,
+        "sha256": "88e31b3414ea7d38735e6c504b01a90ee76cf53d66266218e1ea496aad1a631d",
+        "format": "webp",
+        "hasAlpha": false
+      }
+    },
+    {
+      "id": "f02",
+      "name": "最后一句",
+      "key": "p05-joker-f02",
+      "thumbnail": {
+        "path": "public/assets/jokers-p05/f02.webp",
+        "width": 256,
+        "height": 320,
+        "bytes": 22424,
+        "sha256": "ec85019d0b25aab8eb65d0deb39c82096d9c684344b36f043318fb69a9b33ce3",
+        "format": "webp",
+        "hasAlpha": false
+      },
+      "detail": {
+        "path": "public/assets/jokers-p05/f02-detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 125320,
+        "sha256": "8bcaa271772e07384cb5c60c119a1b5b990e9425e83921cb9d523d19b1af4278",
+        "format": "webp",
+        "hasAlpha": false
+      }
+    },
+    {
+      "id": "d03",
+      "name": "等得住",
+      "key": "p05-joker-d03",
+      "thumbnail": {
+        "path": "public/assets/jokers-p05/d03.webp",
+        "width": 256,
+        "height": 320,
+        "bytes": 21572,
+        "sha256": "972a572611a3858000c77f0f2fd751807a0bff926f225db848ee11969b3281ea",
+        "format": "webp",
+        "hasAlpha": false
+      },
+      "detail": {
+        "path": "public/assets/jokers-p05/d03-detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 125230,
+        "sha256": "6062ea04cb279f81f140fd877f79e000917fa6e750ce26ce139973ffd878e0d6",
+        "format": "webp",
+        "hasAlpha": false
+      }
+    },
+    {
+      "id": "tiesuanpan",
+      "name": "铁算盘",
+      "key": "p05-joker-tiesuanpan",
+      "thumbnail": {
+        "path": "public/assets/jokers-p05/tiesuanpan.webp",
+        "width": 256,
+        "height": 320,
+        "bytes": 26072,
+        "sha256": "302b86c35f3eba6401ac87949b7dbd970d2c2296c44493fb1f0fa3ed8efe9079",
+        "format": "webp",
+        "hasAlpha": false
+      },
+      "detail": {
+        "path": "public/assets/jokers-p05/tiesuanpan-detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 123124,
+        "sha256": "f72e1ba76e25e644d657e2c7223a0c8db89c7befe8749656369b9c6fa0741157",
+        "format": "webp",
+        "hasAlpha": false
+      }
+    },
+    {
+      "id": "mantangcai",
+      "name": "满堂彩",
+      "key": "p05-joker-mantangcai",
+      "thumbnail": {
+        "path": "public/assets/jokers-p05/mantangcai.webp",
+        "width": 256,
+        "height": 320,
+        "bytes": 26564,
+        "sha256": "8d7c33d3c6216bef3a6986f19cb7a584321867040b1be28d75c7debc6c89281c",
+        "format": "webp",
+        "hasAlpha": false
+      },
+      "detail": {
+        "path": "public/assets/jokers-p05/mantangcai-detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 143008,
+        "sha256": "09d5b4307a963356a2dcbbeb4153210f65b9a0cb27bad3764c4ad4e9f14725f2",
+        "format": "webp",
+        "hasAlpha": false
+      }
+    }
+  ]
+}

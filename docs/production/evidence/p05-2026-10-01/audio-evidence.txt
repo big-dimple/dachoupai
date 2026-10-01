@@ -1,0 +1,28 @@
+Captured one-off agent evidence. Raw JSON is saved alongside as audio-output.json. Failure profile was changed after this sampling; see P05 record for that limit.
+
+P05 one-off audio verification evidence, 2026-10-01
+Working directory: D:/ai/dachoupai/dachoupai
+No permanent repository harness; source frozen after this check.
+Actual command: & 'C:/Program Files/nodejs/node.exe' 'C:/Users/wanghongping/AppData/Local/Temp/dachoupai-p05-audio/check.cjs'
+Exit code: 0; wall time seconds: 2.6893514
+Full exact executed script: check.cjs (same directory)
+Raw JSON output: output.json (same directory)
+Actual final typecheck: & 'C:/Program Files/nodejs/node.exe' 'node_modules/typescript/bin/tsc' --noEmit
+Typecheck exit code: 0; output empty; wall time seconds: 3.168412
+
+Scope/limitations:
+Actual Chromium OfflineAudioContext, 48000Hz mono, rendered 3-second music opening or 1.3-second cues. RMS includes each whole window and silence/tails. Not a full-loop loudness/device guarantee.
+For short scheduling, currentTime/state are substitutes; app unlock resume/suspend are async no-op substitutes. Lifecycle bookkeeping is checked, not hardware autoplay/background behavior.
+Cancellation uses the actual native OfflineAudioContext.suspend(.55), then actual cancelPresentation(), then native OfflineAudioContext.resume(); after .65s the observed PCM is exactly zero and fire voices are zero.
+Master0, SFX0 (including fire), Music0, musicMuted, masterMuted and refund-net0 snippets are exactly zero. BGM off intentionally retains score-fire SFX; app-wide mute/background/scene change/cancel/explicit stop remove it. No stale fire auto-resume.
+32-voice stress includes two pinned fire sources; peak is .90075767 (2x WaveShaper interpolation can slightly exceed nominal .9), clips(abs>=1)=0 for these samples.
+Existing persisted volumes/mutes are not migrated or overwritten by AudioEngine. The app restores raw0..1 values; default1/.74/1/.9 is only a constructor default before app preferences.
+Phone/headphone/external speaker audition NOT_RUN. Real hardware suspend/resume NOT_RUN. Human audio approval NOT_GRANTED.
+
+Score source:
+https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=470
+Chopin Prelude in A major Op.28 No.7, measures1-16 plus pickup; Mutopia Magnus Lewis-Smith/Peters transcription explicitly Public Domain. Independent WebAudio arrangement; no recording or downloaded MIDI shipped.
+Original MIDI notation (1759 bytes) SHA256: 6eed7f2185afd852f01d695e50db84cdb4c8742de1a26294dc3202569346ef36
+Original LilyPond SHA256: c34177722dcbebc5b1bc29d73deffbb84d81523ef710ab5b2e24f3b1ac8308b4
+Original source ZIP SHA256: 6e061dd3af2f17398c33d9d8eb657e65dca88ba0acae6592aa5cc2928b3f21ce
+Three full 48-quarter-beat passes, final third-beat rest replaced by next pickup for looping; table86BPM=100.47s, shop80=108s, menu78=110.77s, boss98=88.16s. Note/rhythm positions from source; dynamics/timbres and tempos adapted. 85 groups/168 notes, MIDI33..85; openingE4-C#5-D5 verified from source.

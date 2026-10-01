@@ -1,0 +1,14 @@
+{
+  "errors": [
+    "TypeError: Cannot set properties of undefined (setting 'enabled')\n    at Ie.setEnabled (http://127.0.0.1:5209/assets/index-BZ6dnOGZ.js:76:14957)\n    at Bn.updateControls (http://127.0.0.1:5209/assets/index-BZ6dnOGZ.js:83:966)\n    at R (http://127.0.0.1:5209/assets/index-BZ6dnOGZ.js:80:13557)\n    at Bn.create (http://127.0.0.1:5209/assets/index-BZ6dnOGZ.js:80:14736)",
+    "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+  ],
+  "steps": [
+    {
+      "phase": "stage-cleared",
+      "controls": [
+        "view"
+      ]
+    }
+  ]
+}

@@ -1,74 +1,28 @@
+import { CHOPIN_BEATS, CHOPIN_PASSES, CHOPIN_SCORE } from './chopinTheme';
+
 export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
 export type AudioScene = 'menu' | 'shop' | 'table' | 'boss' | 'success' | 'failure';
 type VoiceBus = Exclude<AudioBus, 'master'>;
-type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus };
+type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; fire?: boolean };
+export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 'retrigger';
 
-// Original theme, "Paper Procession": a recurring two-bar hook, answer and space.
-// Three eight-bar phrases / 96 quarters: table 55.38s, shop 60s, menu 62.61s.
-// Fixed notes and local synthesis consume no rule RNG, network or audio assets.
-const MUSIC_SECTIONS = [
-  {
-    name: 'theme', level: .94,
-    roots: [38, 38, 43, 48, 41, 43, 38, 45],
-    chords: [[57, 60, 64, 65], [57, 60, 64, 65], [55, 59, 62, 65], [55, 59, 62, 64],
-      [57, 60, 64, 65], [55, 59, 62, 65], [57, 60, 64, 65], [55, 61, 64, 69]],
-    melody: [
-      62, 0, 65, 0, 69, 67, 65, 0,
-      64, 65, 62, 0, 60, 0, 57, 0,
-      62, 0, 65, 0, 69, 67, 65, 0,
-      64, 0, 62, 60, 59, 0, 55, 0,
-      65, 0, 69, 0, 72, 69, 67, 0,
-      65, 0, 62, 0, 59, 0, 55, 0,
-      62, 0, 65, 0, 69, 67, 65, 0,
-      64, 0, 61, 0, 57, 0, 61, 0,
-    ],
-  },
-  {
-    name: 'variation', level: 1,
-    roots: [46, 41, 43, 45, 38, 43, 41, 45],
-    chords: [[57, 60, 62, 65], [57, 60, 64, 65], [55, 59, 62, 65], [55, 61, 64, 69],
-      [57, 60, 64, 65], [55, 59, 62, 65], [57, 60, 64, 65], [55, 61, 64, 69]],
-    melody: [
-      69, 0, 72, 0, 74, 72, 69, 0,
-      67, 69, 65, 0, 64, 0, 60, 0,
-      69, 0, 72, 0, 74, 72, 69, 0,
-      67, 0, 64, 61, 57, 0, 61, 0,
-      65, 0, 69, 0, 72, 69, 67, 0,
-      65, 67, 62, 0, 59, 0, 55, 0,
-      65, 0, 69, 0, 72, 69, 65, 0,
-      64, 0, 61, 0, 57, 0, 61, 0,
-    ],
-  },
-  {
-    name: 'space', level: .72,
-    roots: [38, 43, 48, 41, 46, 43, 38, 45],
-    chords: [[57, 60, 64, 65], [55, 59, 62, 65], [55, 59, 62, 64], [57, 60, 64, 65],
-      [57, 60, 62, 65], [55, 59, 62, 65], [57, 60, 64, 65], [55, 61, 64, 69]],
-    melody: [
-      62, 0, 0, 0, 65, 0, 0, 0,
-      62, 0, 0, 0, 59, 0, 0, 0,
-      64, 0, 0, 0, 62, 0, 0, 0,
-      65, 0, 0, 0, 60, 0, 0, 0,
-      62, 0, 0, 0, 65, 0, 0, 0,
-      62, 0, 0, 0, 59, 0, 0, 0,
-      62, 0, 65, 0, 69, 0, 65, 0,
-      61, 0, 0, 0, 57, 0, 0, 0,
-    ],
-  },
-] as const;
-const SECTION_STEPS = 64;
-const LOOP_STEPS = SECTION_STEPS * MUSIC_SECTIONS.length;
+// Public-domain Chopin notation, locally arranged; no recording or rule RNG.
+// Three 16-bar passes: piano, velvet strings, then a lighter melodic return.
+const LOOP_EVENTS = CHOPIN_SCORE.length * CHOPIN_PASSES;
+const MELODY_TOP = new Map<number, number>();
+for (const [beat, , notes, hand] of CHOPIN_SCORE) if (hand === 'right')
+  MELODY_TOP.set(beat, Math.max(MELODY_TOP.get(beat) ?? 0, ...notes));
 const PROFILES: Record<AudioScene, { bpm: number; level: number; melody: boolean }> = {
-  menu: { bpm: 92, level: .84, melody: true },
-  shop: { bpm: 96, level: .88, melody: true },
-  table: { bpm: 104, level: 1, melody: true },
-  boss: { bpm: 110, level: 1.04, melody: true },
-  success: { bpm: 94, level: .5, melody: false },
-  failure: { bpm: 82, level: .32, melody: false },
+  menu: { bpm: 78, level: .94, melody: true },
+  shop: { bpm: 80, level: .94, melody: true },
+  table: { bpm: 86, level: 1, melody: true },
+  boss: { bpm: 98, level: 1.05, melody: true },
+  success: { bpm: 78, level: .48, melody: false },
+  failure: { bpm: 74, level: .60, melody: true },
 };
 const bounded = (value: number, max: number): number => Number.isFinite(value) ? Math.max(0, Math.min(max, value)) : 0;
 const midiHz = (note: number): number => 440 * 2 ** ((note - 69) / 12);
-const SOURCE_GAIN: Record<VoiceBus, number> = { music: 3.5, sfx: 3.5, ui: 3.5 };
+const SOURCE_GAIN: Record<VoiceBus, number> = { music: 6.2, sfx: 5.7, ui: 4.5 };
 
 /** One application context. The app owns gesture/visibility listeners and persistence. */
 export class AudioEngine {
@@ -78,8 +32,13 @@ export class AudioEngine {
   private noise?: AudioBuffer;
   private pluckedWave?: PeriodicWave;
   private leadWave?: PeriodicWave;
+  private pianoWave?: PeriodicWave;
+  private fireBed?: AudioBuffer;
+  private fireCrackles?: AudioBuffer;
+  private fireVoices = new Set<Voice>();
+  private fireIntensity: 0 | 1 | 2 | 3 = 0;
   private voices = new Set<Voice>();
-  private volumes: Record<AudioBus, number> = { master: .9, music: .5, sfx: .9, ui: .8 };
+  private volumes: Record<AudioBus, number> = { master: 1, music: .74, sfx: 1, ui: .9 };
   private masterMuted = false;
   private musicIsMuted = false;
   private suspended = false;
@@ -95,7 +54,7 @@ export class AudioEngine {
   set muted(value: boolean) {
     this.masterMuted = value;
     this.applyVolume('master');
-    if (value) { this.stopMusic(); this.stopVoices(); this.duckUntil = 0; this.applyVolume('music'); }
+    if (value) { this.stopScoreFire(); this.stopMusic(); this.stopVoices(); this.duckUntil = 0; this.applyVolume('music'); }
     else if (this.unlocked) void this.unlock();
   }
   get musicMuted(): boolean { return this.musicIsMuted; }
@@ -130,6 +89,7 @@ export class AudioEngine {
   setScene(scene: AudioScene): void {
     if (scene === this.scene) return;
     this.scene = scene;
+    this.stopScoreFire();
     this.stopMusic();
     this.duckUntil = 0;
     this.applyVolume('music');
@@ -143,6 +103,7 @@ export class AudioEngine {
   setSuspended(value: boolean): void {
     this.suspended = value;
     if (!value) { if (this.unlocked) void this.unlock(); return; }
+    this.stopScoreFire();
     this.stopMusic();
     this.stopVoices();
     this.duckUntil = 0;
@@ -170,11 +131,11 @@ export class AudioEngine {
           sfx: context.createGain(), ui: context.createGain(),
         };
         const compressor = context.createDynamicsCompressor();
-        compressor.threshold.value = -14;
-        compressor.knee.value = 14;
-        compressor.ratio.value = 4;
-        compressor.attack.value = .003;
-        compressor.release.value = .14;
+        compressor.threshold.value = -11;
+        compressor.knee.value = 12;
+        compressor.ratio.value = 5;
+        compressor.attack.value = .002;
+        compressor.release.value = .12;
         // A tiny final soft ceiling bounds fast-forwarded stacks below full scale.
         const ceiling = context.createWaveShaper(), curve = new Float32Array(1025);
         for (let i = 0; i < curve.length; i++) {
@@ -198,6 +159,9 @@ export class AudioEngine {
           this.leadWave = context.createPeriodicWave(
             new Float32Array(6), new Float32Array([0, 1, .11, .18, .055, .025]),
           );
+          this.pianoWave = context.createPeriodicWave(
+            new Float32Array(9), new Float32Array([0, 1, .36, .19, .085, .045, .025, .012, .005]),
+          );
         } catch { /* Filtered triangle is the fallback on limited audio devices. */ }
         const noise = context.createBuffer(1, Math.ceil(context.sampleRate * .18), context.sampleRate);
         this.noise = noise;
@@ -207,6 +171,7 @@ export class AudioEngine {
           seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
           samples[i] = seed / 0xffffffff * 2 - 1;
         }
+        this.createFireBuffers(context);
       }
       const context = this.context;
       if (!context) return;
@@ -214,6 +179,7 @@ export class AudioEngine {
       if (context.state !== 'closed') await context.resume();
       if (!this.suspended && !this.hidden() && !this.masterMuted) this.startMusic();
     } catch {
+      this.stopScoreFire();
       this.stopMusic();
       this.stopVoices();
     }
@@ -244,7 +210,7 @@ export class AudioEngine {
   private retain(voice: Voice): void {
     // Fast-forwarded/long traces cannot create an unbounded wall of simultaneous sound.
     if (this.voices.size >= 32) {
-      const oldest = this.voices.values().next().value as Voice | undefined;
+      const oldest = [...this.voices].find(voice => !voice.fire) ?? this.voices.values().next().value;
       if (oldest) this.release(oldest);
     }
     this.voices.add(voice);
@@ -252,6 +218,7 @@ export class AudioEngine {
   }
   private release(voice: Voice): void {
     this.voices.delete(voice);
+    this.fireVoices.delete(voice);
     voice.source.onended = null;
     try { voice.source.stop(); } catch { /* The source may already have ended. */ }
     try { voice.source.disconnect(); voice.gain.disconnect(); voice.filter?.disconnect(); } catch { /* Device teardown. */ }
@@ -260,9 +227,9 @@ export class AudioEngine {
     for (const voice of this.voices) if (!bus || voice.bus === bus) this.release(voice);
   }
   /** Cancel a skipped scene's score tails while its table music keeps playing. */
-  cancelPresentation(): void { this.stopVoices('sfx'); this.duckUntil = 0; this.applyVolume('music'); }
+  cancelPresentation(): void { this.stopScoreFire(); this.stopVoices('sfx'); this.duckUntil = 0; this.applyVolume('music'); }
 
-  private note(note: number, duration: number, volume: number, bus: VoiceBus = 'sfx', offset = 0, wave: OscillatorType = 'triangle', absoluteTime?: number, endNote?: number, color: 'clean' | 'pluck' | 'warm' | 'lead' = 'clean'): void {
+  private note(note: number, duration: number, volume: number, bus: VoiceBus = 'sfx', offset = 0, wave: OscillatorType = 'triangle', absoluteTime?: number, endNote?: number, color: 'clean' | 'pluck' | 'warm' | 'lead' | 'piano' | 'string' = 'clean'): void {
     if (!this.canPlay(bus)) return;
     try {
       const context = this.context!, oscillator = context.createOscillator(), gain = context.createGain();
@@ -270,20 +237,25 @@ export class AudioEngine {
       oscillator.type = wave;
       if (color === 'pluck' && this.pluckedWave) oscillator.setPeriodicWave(this.pluckedWave);
       if (color === 'lead' && this.leadWave) oscillator.setPeriodicWave(this.leadWave);
-      oscillator.frequency.setValueAtTime(midiHz(Math.max(30, Math.min(81, note))), time);
+      if (color === 'piano' && this.pianoWave) oscillator.setPeriodicWave(this.pianoWave);
+      oscillator.frequency.setValueAtTime(midiHz(Math.max(24, Math.min(bus === 'music' ? 90 : 81, note))), time);
       if (endNote !== undefined) oscillator.frequency.exponentialRampToValueAtTime(midiHz(endNote), time + duration);
       gain.gain.setValueAtTime(.0001, time);
-      const peak = bounded(volume * SOURCE_GAIN[bus], .28);
-      gain.gain.linearRampToValueAtTime(peak, time + (color === 'warm' || color === 'lead' ? .014 : .006));
-      if (color === 'lead') gain.gain.linearRampToValueAtTime(peak * .78, time + duration * .62);
+      const peak = bounded(volume * SOURCE_GAIN[bus], .5);
+      gain.gain.linearRampToValueAtTime(peak, time + (color === 'string' ? .07 : color === 'warm' || color === 'lead' ? .014 : .006));
+      if (color === 'lead' || color === 'string') gain.gain.linearRampToValueAtTime(peak * .78, time + duration * .62);
+      if (color === 'piano') {
+        gain.gain.exponentialRampToValueAtTime(peak * .60, time + Math.min(.07, duration * .22));
+        gain.gain.exponentialRampToValueAtTime(peak * .22, time + duration * .72);
+      }
       gain.gain.exponentialRampToValueAtTime(.0001, time + duration);
       let filter: BiquadFilterNode | undefined;
       if (color !== 'clean') {
         filter = context.createBiquadFilter();
         filter.type = 'lowpass';
         filter.Q.value = .35;
-        filter.frequency.setValueAtTime(color === 'warm' ? 900 : color === 'lead' ? 2600 : 2200, time);
-        filter.frequency.exponentialRampToValueAtTime(color === 'warm' ? 500 : color === 'lead' ? 1500 : 950, time + duration);
+        filter.frequency.setValueAtTime(color === 'warm' ? 900 : color === 'string' ? 1500 : color === 'piano' ? 4200 : color === 'lead' ? 2600 : 2200, time);
+        filter.frequency.exponentialRampToValueAtTime(color === 'warm' ? 500 : color === 'string' ? 1000 : color === 'piano' ? 1700 : color === 'lead' ? 1500 : 950, time + duration);
         oscillator.connect(filter); filter.connect(gain);
       } else oscillator.connect(gain);
       gain.connect(this.gains![bus]);
@@ -330,6 +302,66 @@ export class AudioEngine {
     this.paper(.032, volume * .4, 0, 'music', time + .024, 950);
   }
 
+  private createFireBuffers(context: AudioContext): void {
+    const bed = context.createBuffer(1, Math.ceil(context.sampleRate * 2.4), context.sampleRate);
+    const crackles = context.createBuffer(1, Math.ceil(context.sampleRate * 1.79), context.sampleRate);
+    let seed = 0x46495245, pink = 0, grain = 0;
+    const sample = (): number => {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 0xffffffff * 2 - 1;
+    };
+    const bedData = bed.getChannelData(0), crackleData = crackles.getChannelData(0);
+    for (let i = 0; i < bedData.length; i++) {
+      const white = sample(); pink = pink * .985 + white * .035;
+      const edge = Math.min(1, i / (context.sampleRate * .025), (bedData.length - i) / (context.sampleRate * .025));
+      bedData[i] = (pink * .65 + white * .15) * edge;
+    }
+    const interval = Math.max(1, Math.floor(context.sampleRate * .023));
+    for (let i = 0; i < crackleData.length; i++) {
+      const white = sample();
+      if (i % interval === 0 && white > .38) grain = .4 + white * .6;
+      grain *= .988;
+      const edge = Math.min(1, i / (context.sampleRate * .015), (crackleData.length - i) / (context.sampleRate * .015));
+      crackleData[i] = white * grain * edge;
+    }
+    this.fireBed = bed;
+    this.fireCrackles = crackles;
+  }
+
+  /** Two bounded SFX sources for the actual score-fire state, never a second context. */
+  setScoreFire(intensity: 0 | 1 | 2 | 3): void {
+    if (intensity === 0 || ![1, 2, 3].includes(intensity) || !this.canPlay('sfx')) { this.stopScoreFire(); return; }
+    if (this.fireIntensity === intensity && this.fireVoices.size === 2) return;
+    try {
+      const context = this.context!;
+      if (this.fireVoices.size !== 2) {
+        this.stopScoreFire();
+        for (const [buffer, type] of [[this.fireBed, 'lowpass'], [this.fireCrackles, 'bandpass']] as const) {
+          if (!buffer) { this.stopScoreFire(); return; }
+          const source = context.createBufferSource(), gain = context.createGain(), filter = context.createBiquadFilter();
+          source.buffer = buffer; source.loop = true;
+          filter.type = type; filter.Q.value = type === 'lowpass' ? .4 : .65;
+          gain.gain.setValueAtTime(0, context.currentTime);
+          source.connect(filter); filter.connect(gain); gain.connect(this.gains!.sfx);
+          const voice: Voice = {source, gain, filter, bus: 'sfx', fire: true};
+          this.fireVoices.add(voice); this.retain(voice); source.start();
+        }
+      }
+      this.fireIntensity = intensity;
+      for (const voice of this.fireVoices) {
+        const bed = voice.filter!.type === 'lowpass';
+        voice.gain.gain.setTargetAtTime((bed ? [.14, .20, .26] : [.12, .19, .28])[intensity - 1], context.currentTime, .025);
+        voice.filter!.frequency.setTargetAtTime(bed ? 290 + intensity * 120 : 760 + intensity * 270, context.currentTime, .04);
+      }
+    } catch { this.stopScoreFire(); }
+  }
+
+  /** Stop now on fast-forward, shutdown, new stage or background; no stale auto-resume. */
+  stopScoreFire(): void {
+    this.fireIntensity = 0;
+    for (const voice of this.fireVoices) this.release(voice);
+  }
+
   private startMusic(): void {
     if (this.musicTimer !== undefined || !this.canPlay('music') || this.context!.state !== 'running') return;
     this.nextStepTime = this.context!.currentTime + .04;
@@ -345,35 +377,34 @@ export class AudioEngine {
     const context = this.context;
     if (!context || !this.canPlay('music') || context.state !== 'running') { this.stopMusic(); return; }
     const profile = PROFILES[this.scene], quarter = 60 / profile.bpm;
-    // A throttled tab never tries to catch up and burst through minutes of old notes.
+    // A throttled tab resumes one lookahead window, never a burst of missed bars.
     if (this.nextStepTime < context.currentTime - .15) this.nextStepTime = context.currentTime + .025;
     while (this.nextStepTime < context.currentTime + .14) {
-      const step = this.musicStep % LOOP_STEPS, sectionIndex = Math.floor(step / SECTION_STEPS);
-      const localStep = step % SECTION_STEPS, bar = Math.floor(localStep / 8), beat = localStep % 8, time = this.nextStepTime;
-      const section = MUSIC_SECTIONS[sectionIndex], previous = MUSIC_SECTIONS[(sectionIndex + MUSIC_SECTIONS.length - 1) % MUSIC_SECTIONS.length];
-      const sectionLevel = previous.level + (section.level - previous.level) * Math.min(1, localStep / 8);
-      const level = sectionLevel * profile.level, spacious = section.name === 'space';
-      const tableLike = this.scene === 'table' || this.scene === 'boss';
-      if (beat === 0 || beat === 4 || (!spacious && tableLike && beat === 6)) {
-        const bass = section.roots[bar] + (beat === 6 ? 7 : 0);
-        this.note(bass, quarter * .85, .035 * level, 'music', 0, 'sine', time, undefined, 'warm');
-        this.note(bass + 12, quarter * .72, .018 * level, 'music', 0, 'triangle', time, undefined, 'warm');
-      }
-      if (beat === 1 || (!spacious && beat === 5)) section.chords[bar].forEach((n, i, chord) => {
-        const string = beat === 5 ? chord.length - 1 - i : i;
-        this.note(chord[string], quarter * (spacious ? 1.3 : .82), .009 * level, 'music', 0, 'triangle', time + i * .022, undefined, 'pluck');
+      const index = this.musicStep % CHOPIN_SCORE.length, pass = Math.floor(this.musicStep / CHOPIN_SCORE.length);
+      const [beat, held, notes, hand, velocity] = CHOPIN_SCORE[index], time = this.nextStepTime;
+      const breath = beat >= 42 ? .91 : beat >= 30 && beat <= 40 ? 1.06 : 1;
+      const level = profile.level * [1, .92, .82][pass] * breath * velocity / 90;
+      if (hand === 'left' || profile.melody) notes.forEach(pitch => {
+        const melody = hand === 'right' && pitch === MELODY_TOP.get(beat);
+        const bass = hand === 'left' && pitch < 48;
+        const volume = melody ? .076 : bass ? .081 : hand === 'left' ? .038 : .027;
+        const color = pass === 1 && hand === 'left' && !bass ? 'pluck' : 'piano';
+        this.note(pitch, quarter * held * .94 + .13, volume * level, 'music', 0, 'triangle', time, undefined, color);
       });
-      if (section.melody[localStep] && profile.melody) {
-        const nextNote = section.melody.slice(localStep + 1, localStep + 5).findIndex(n => n !== 0);
-        const eighths = nextNote < 0 ? (spacious ? 4 : 2) : nextNote + 1;
-        const accent = beat === 0 ? 1.08 : 1;
-        this.note(section.melody[localStep], quarter * .5 * eighths * .88, .042 * level * accent, 'music', 0, 'triangle', time, undefined, 'lead');
+      // A restrained bowed layer opens the middle pass while retaining the score.
+      if (pass === 1 && hand === 'left' && held >= 2 && profile.melody) {
+        for (const pitch of [notes[0], notes[notes.length - 1]])
+          this.note(pitch, quarter * held * 1.15, .018 * profile.level, 'music', 0, 'triangle', time, undefined, 'string');
       }
-      if (this.scene === 'shop' && beat === 4 && !spacious) this.woodTap(time, .017 * level);
-      if (tableLike && (beat === 2 || beat === 6) && !spacious) this.softClap(time, .012 * level);
-      if (tableLike && beat === 0 && (bar % 2 === 0 || this.scene === 'boss')) this.woodTap(time, .012 * level);
-      this.nextStepTime += quarter * (beat % 2 === 0 ? .56 : .44);
-      this.musicStep = (this.musicStep + 1) % LOOP_STEPS;
+      if (hand === 'left' && notes[0] < 48) {
+        if (this.scene === 'shop') this.woodTap(time, .012);
+        if (this.scene === 'boss') { this.woodTap(time, .019); this.softClap(time + quarter, .018); }
+        else if (this.scene === 'table' && pass === 1) this.softClap(time + quarter * 2, .012);
+      }
+      const next = (index + 1) % CHOPIN_SCORE.length;
+      const gap = CHOPIN_SCORE[next][0] - beat + (next === 0 ? CHOPIN_BEATS : 0);
+      this.nextStepTime += gap * quarter;
+      this.musicStep = (this.musicStep + 1) % LOOP_EVENTS;
     }
   }
 
@@ -410,9 +441,9 @@ export class AudioEngine {
     this.paper(.18, .018, 0, 'sfx', undefined, 850);
     this.paper(.16, .016, .11, 'sfx', undefined, 1150);
     this.paper(.14, .014, .24, 'sfx', undefined, 900);
-    this.note(45, .26, .027, 'sfx', 0, 'sine', undefined, 50, 'warm');
+    this.note(45, .26, .027, 'sfx', 0, 'sine', undefined, 52, 'warm');
     this.note(57, .24, .026, 'sfx', .10, 'triangle', undefined, undefined, 'pluck');
-    this.note(62, .25, .020, 'sfx', .16, 'sine', undefined, undefined, 'warm');
+    this.note(64, .25, .020, 'sfx', .16, 'sine', undefined, undefined, 'warm');
   }
   select(): void { this.note(74, .07, .045, 'ui'); this.note(78, .055, .017, 'ui', .024, 'sine'); }
   cancel(): void { this.note(71, .08, .035, 'ui', 0, 'triangle', undefined, 67); }
@@ -439,35 +470,66 @@ export class AudioEngine {
       this.paper(.07, .022, .09, 'ui', undefined, 650);
     }
   }
-  cardScore(index = 0): void { this.note([67, 69, 71, 74, 76][Math.floor(bounded(index, 4))], .095, .038, 'sfx', 0, 'triangle', undefined, undefined, 'pluck'); }
-  role(): void { this.duckMusic(.4); [69, 74, 78].forEach((n, i) => this.note(n, .18, .04, 'sfx', i * .055)); }
+  /** One source impact, called from a committed trace hit rather than a redraw. */
+  sourceCue(kind: ScoreSourceCue, index = 0): void {
+    if (kind === 'card') this.cardScore(index);
+    else if (kind === 'character') this.role();
+    else if (kind === 'joker') this.joker(index);
+    else if (kind === 'retrigger') this.retrigger(index);
+    else if (kind === 'held') {
+      this.duckMusic(.16);
+      this.note(52, .15, .050, 'sfx', 0, 'triangle', undefined, undefined, 'pluck');
+      this.note(64, .17, .027, 'sfx', .025, 'sine', undefined, undefined, 'piano');
+    } else if (kind === 'boss') {
+      this.duckMusic(.3);
+      this.note(40, .25, .078, 'sfx', 0, 'sine', undefined, 31, 'warm');
+      this.paper(.1, .042, 0, 'sfx', undefined, 650);
+    }
+  }
+  cardScore(index = 0): void {
+    this.duckMusic(.14);
+    this.note([64, 66, 69, 71, 73][Math.floor(bounded(index, 4))], .15, .052, 'sfx', 0, 'triangle', undefined, undefined, 'piano');
+    this.paper(.035, .014, 0, 'sfx', undefined, 1150);
+  }
+  role(): void {
+    this.duckMusic(.4);
+    [57, 64, 73].forEach((n, i) => this.note(n, .24, .045, 'sfx', i * .040, 'triangle', undefined, undefined, 'lead'));
+    this.paper(.06, .022, 0, 'sfx', undefined, 1050);
+  }
   joker(chainIndex: number): void {
     const index = Math.floor(bounded(chainIndex, 6));
     this.duckMusic(.32);
-    this.note([67, 69, 71, 74, 76, 78, 79][index], .16, .048 - index * .002);
-    if (index >= 3) this.note(62 + index, .15, .02, 'sfx', .035, 'sine');
+    const pitch = [64, 66, 68, 69, 71, 73, 76][index];
+    this.note(pitch, .20, .066, 'sfx', 0, 'triangle', undefined, undefined, 'pluck');
+    this.note(Math.min(81, pitch + 12), .16, .019, 'sfx', .028, 'sine');
+    if (index >= 3) this.note(57, .14, .033, 'sfx', 0, 'sine', undefined, undefined, 'warm');
   }
   multiplier(kind: 'add' | 'multiply', chainIndex = 0): void {
-    const step = Math.floor(bounded(chainIndex, 4));
+    const step = [0, 2, 4, 7, 9][Math.floor(bounded(chainIndex, 4))];
     this.duckMusic(kind === 'multiply' ? .4 : .2);
     if (kind === 'add') {
-      this.note(65 + step, .135, .033, 'sfx', 0, 'triangle', undefined, undefined, 'pluck');
-      this.note(69 + step, .16, .025, 'sfx', .035, 'sine', undefined, undefined, 'warm');
+      this.note(64 + step, .17, .053, 'sfx', 0, 'triangle', undefined, undefined, 'piano');
+      this.note(69 + step, .18, .037, 'sfx', .028, 'sine');
     }
     else {
-      this.note(43, .26, .059, 'sfx', 0, 'sine', undefined, 31, 'warm');
-      this.note(55, .16, .028, 'sfx', .015, 'triangle', undefined, undefined, 'warm');
-      this.paper(.06, .014, 0, 'sfx', undefined, 680);
-      this.note(69 + Math.min(step, 3), .18, .028, 'sfx', .052, 'triangle', undefined, undefined, 'pluck');
-      this.note(76 + Math.min(step, 3), .16, .013, 'sfx', .10, 'sine');
+      this.note(45, .29, .081, 'sfx', 0, 'sine', undefined, 31, 'warm');
+      this.note(57, .20, .046, 'sfx', .012, 'triangle', undefined, undefined, 'warm');
+      this.paper(.07, .029, 0, 'sfx', undefined, 720);
+      this.note(73, .21, .049, 'sfx', .042, 'triangle', undefined, undefined, 'lead');
+      this.note(81, .18, .026, 'sfx', .09, 'sine');
     }
   }
-  retrigger(chainIndex = 0): void { const n = 72 + Math.floor(bounded(chainIndex, 5)); this.note(n, .06, .034); this.note(n, .09, .042, 'sfx', .075); }
+  retrigger(chainIndex = 0): void {
+    this.duckMusic(.2);
+    const n = [69, 71, 73, 76, 78, 81][Math.floor(bounded(chainIndex, 5))];
+    this.note(n, .07, .059, 'sfx', 0, 'triangle', undefined, undefined, 'pluck');
+    this.note(n, .11, .064, 'sfx', .072, 'triangle', undefined, undefined, 'piano');
+  }
   score(intensity = 0): void {
     const tier = Math.floor(bounded(intensity, 2));
     this.duckMusic(.5);
-    [62, 69, 74].forEach((n, i) => this.note(n, .23 + tier * .06, .04, 'sfx', i * .035, 'sine'));
-    if (tier > 0) this.note(78, .23, .038, 'sfx', .12);
+    [64, 69, 73].forEach((n, i) => this.note(n, .26 + tier * .06, .053, 'sfx', i * .035, 'sine'));
+    if (tier > 0) this.note(76, .26, .054, 'sfx', .12, 'triangle', undefined, undefined, 'piano');
     if (tier > 1) {
       this.note(43, .25, .068, 'sfx', 0, 'sine', undefined, 31, 'warm');
       this.paper(.06, .016, 0, 'sfx', undefined, 1000);
@@ -478,14 +540,14 @@ export class AudioEngine {
   overkill(tier: 1 | 2 | 3): void {
     if (tier !== 1 && tier !== 2 && tier !== 3) return;
     this.duckMusic(.4 + tier * .2);
-    this.note(tier === 3 ? 38 : 43, .18 + tier * .06, .042 + tier * .01, 'sfx', 0, 'sine', undefined, 31, 'warm');
-    this.paper(.045 + tier * .01, .018, 0, 'sfx', undefined, 850);
-    [62, 65, 69, ...(tier > 1 ? [74] : [])].forEach((pitch, i) =>
-      this.note(pitch, .19 + tier * .04, .032, 'sfx', .035 + i * .04, 'sine'));
-    if (tier > 1) this.note(50, .23, .033, 'sfx', .015, 'triangle', undefined, undefined, 'warm');
+    this.note(tier === 3 ? 33 : 45, .21 + tier * .06, .066 + tier * .01, 'sfx', 0, 'sine', undefined, 30, 'warm');
+    this.paper(.06 + tier * .01, .030, 0, 'sfx', undefined, 850);
+    [64, 69, 73, ...(tier > 1 ? [76] : [])].forEach((pitch, i) =>
+      this.note(pitch, .23 + tier * .04, .051, 'sfx', .025 + i * .04, 'sine'));
+    if (tier > 1) this.note(57, .26, .052, 'sfx', .012, 'triangle', undefined, undefined, 'warm');
     if (tier === 3) {
-      this.paper(.06, .026, .16, 'sfx', undefined, 1400);
-      [69, 74, 77].forEach((pitch, i) => this.note(pitch, .28, .028, 'sfx', .24 + i * .035, 'triangle', undefined, undefined, 'lead'));
+      this.paper(.075, .040, .16, 'sfx', undefined, 1400);
+      [73, 76, 81].forEach((pitch, i) => this.note(pitch, .32, .045, 'sfx', .24 + i * .035, 'triangle', undefined, undefined, 'lead'));
     }
   }
   purchase(): void { [78, 81, 74].forEach((n, i) => this.note(n, .13, .038, 'ui', i * .05, 'sine')); }

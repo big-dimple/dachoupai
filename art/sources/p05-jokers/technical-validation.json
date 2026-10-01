@@ -1,0 +1,30 @@
+{
+  "status": "PASS_TECHNICAL_ONLY",
+  "testedHead": "d3f3ba6119a74559112129698bb6bb4f238fc6e1",
+  "testedState": "P05 uncommitted working-tree changes; collaborative scene work may be in progress",
+  "command": "node --input-type=module (stdin: hash/size/full decode/source-copy equality/registry check)",
+  "exitCode": 0,
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0
+  },
+  "definitions": 24,
+  "registeredIllustrations": 8,
+  "newIllustrations": 5,
+  "verifiedFiles": 15,
+  "sourceMatchesGeneratedOriginal": true,
+  "runtimeContainsSourcePNG": false,
+  "thumbnailBytes": 117810,
+  "detailBytes": 632012,
+  "agentVisualReview": {
+    "sourceImages": 5,
+    "thumbnailContactSheet": "art/sources/p05-jokers/contact-sheet.webp",
+    "status": "REVIEWED_NOT_USER_APPROVED"
+  },
+  "notRun": [
+    "Android Chrome actual-device review",
+    "User visual acceptance",
+    "In-scene visual acceptance",
+    "Commercial rights review"
+  ]
+}
