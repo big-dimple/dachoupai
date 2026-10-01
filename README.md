@@ -40,8 +40,6 @@ npm run test:recovery:browser
 npm run test:layout
 npm run test:layout:browser
 npm run verify:content
-npm run test:assets
-npm run verify:assets
 npm run test:domain:browser
 ```
 
@@ -49,6 +47,10 @@ npm run test:domain:browser
 
 `verify:ci` 默认只执行单测、内容校验、构建、短用户路径、plan结构五项，拒绝期间的源码或 Git index/HEAD 改动。现有 `test:e2e`、恢复/布局长路径、120局诊断、V00代表种子、资产CLI与故障注入保留为按变更范围选择的诊断，不在每次提交重复执行。P00没有重跑的诊断不算新版本通过。
 
-手机尺寸与浏览器模拟不能替代 Android 真机、视觉金样批准或真人体验验收。两章工程交付也不代表八章巡演或数值平衡通过。`release:checked` 只执行只读检查，`--plan` 标 NOT_RUN；不会提交、推送或合并。
+手机尺寸与浏览器模拟不能替代 Android 真机、视觉金样批准或真人体验验收。两章工程交付也不代表八章巡演或数值平衡通过。
+
+`test:assets` / `verify:assets` 的A00改动仍在本地协作中，尚未纳入main；接纳前不能按已可用命令执行。
+
+`release:checked` 只执行只读检查，`--plan` 标 NOT_RUN；不会提交、推送或合并。
 
 技术栈保留 Phaser 3、TypeScript、Vite、Vitest、Playwright；Blender 是离线素材工具，不是游戏运行时依赖。生产规范和阶段门禁见 [ROADMAP.md](ROADMAP.md)，当前任务见 [TODO.md](TODO.md)。

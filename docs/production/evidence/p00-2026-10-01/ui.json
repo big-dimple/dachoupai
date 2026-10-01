@@ -1,0 +1,84 @@
+{
+  "testedCommit": "242e3a5a489eff0a8938630139d355f35b193b25",
+  "dirty": "",
+  "checks": [
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "profile": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "input": "mouse.click / DOM click",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "play-preview-feedback",
+        "reload-continue"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "profile": "wide",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": "PASS",
+      "input": "mouse.click / DOM click",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "play-preview-feedback",
+        "reload-continue"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "profile": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "PASS",
+      "input": "touchscreen.tap / DOM tap",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "play-preview-feedback",
+        "reload-continue"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "profile": "landscape",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "status": "PASS",
+      "input": "touchscreen.tap / DOM tap",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "play-preview-feedback",
+        "reload-continue"
+      ]
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN"
+}

@@ -1,0 +1,156 @@
+{
+  "taskId": "P00",
+  "testedCommit": "242e3a5a489eff0a8938630139d355f35b193b25",
+  "integrationCommit": "ca8248aa0a4ed787a6c0fb8a1108b4e7361d32b2",
+  "completedAt": "2026-10-01T03:27:40.099Z",
+  "rulesVersion": "r2",
+  "contentVersion": "quality-r2-graybox-v3",
+  "contentHash": "json-fnv-v1:a1f6f62ddd627819",
+  "completionScope": "P00 playable engineering candidate, delivered to main. Product, physical-device and formal visual approval remain separate.",
+  "testedTree": {
+    "dirty": "",
+    "branch": "main",
+    "deltaSinceIntegration": "Only compact card corner/suit sizing in GameScene.ts; rules, persistence, audio and command paths unchanged."
+  },
+  "environment": {
+    "os": "win32 10.0.26200",
+    "node": "v22.20.0",
+    "npm": "10.9.3",
+    "playwright": "1.63.0",
+    "browsers": {
+      "chromium": "153.0.8010.12",
+      "firefox": "155.0",
+      "webkit": "26.6"
+    },
+    "input": "Real mouse and touchscreen.tap / DOM tap in browser CSS viewports, not physical phones"
+  },
+  "checks": [
+    {
+      "name": "five CI gates",
+      "command": "npm run verify:ci",
+      "environmentVariables": {
+        "SMOKE_BROWSERS": "chromium,firefox,webkit",
+        "SMOKE_SHOTS": "1",
+        "SHOT_VIDEO": "1"
+      },
+      "testedCommit": "ca8248aa0a4ed787a6c0fb8a1108b4e7361d32b2",
+      "status": "PASS",
+      "exitCode": 0,
+      "tests": 225,
+      "testFiles": 26,
+      "profiles": [
+        "1280x720 mouse",
+        "390x844 touch"
+      ],
+      "evidence": "docs/production/evidence/p00-2026-10-01/ci.txt",
+      "report": "docs/production/evidence/p00-2026-10-01/ci.json",
+      "scope": "Unit rules/save/recovery tests, content, production build, six short user paths and plan; no full simulations or fault matrix."
+    },
+    {
+      "name": "one natural two-chapter representative",
+      "command": "npm run test:v00:browser",
+      "environmentVariables": {
+        "V00_BROWSERS": "chromium",
+        "V00_SCENARIO": "runs",
+        "V00_STYLE": "groups",
+        "V00_EVIDENCE_DIR": "shots/p00-chapters"
+      },
+      "testedCommit": "ca8248aa0a4ed787a6c0fb8a1108b4e7361d32b2",
+      "status": "PASS",
+      "exitCode": 0,
+      "seed": "v00-sample-000",
+      "character": "erxiang",
+      "evidence": "docs/production/evidence/p00-2026-10-01/chapters.txt",
+      "report": "docs/production/evidence/p00-2026-10-01/chapters.json",
+      "scope": "Natural public-information policy through two chapters, B04/B03, buy/sell/reorder, full slot refusal, growth, restore and exact journal replay. No state or resource injection."
+    },
+    {
+      "name": "final production build",
+      "command": "npm run build",
+      "testedCommit": "242e3a5a489eff0a8938630139d355f35b193b25",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/p00-2026-10-01/build.txt",
+      "buildInfo": "docs/production/evidence/p00-2026-10-01/build-info.json"
+    },
+    {
+      "name": "final four-size interaction and pictures",
+      "command": "npm run shot",
+      "environmentVariables": {
+        "SMOKE_BROWSERS": "chromium",
+        "SHOT_PROFILES": "desktop,wide,mobile,landscape",
+        "SHOT_VIDEO": "1"
+      },
+      "testedCommit": "242e3a5a489eff0a8938630139d355f35b193b25",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/p00-2026-10-01/ui.txt",
+      "report": "docs/production/evidence/p00-2026-10-01/ui.json",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "play-preview-feedback",
+        "reload-continue"
+      ]
+    }
+  ],
+  "golden": {
+    "case": "Selected QQQ99 with J/9/7 held is full house; all five selected cards score; held cards unchanged.",
+    "score": "(210+10+10+10+9+9)*5=1290",
+    "test": "tests/rules.test.ts",
+    "expectationChanged": false
+  },
+  "visualInspection": {
+    "reviewer": "Root agent; not a human acceptance",
+    "screens": [
+      "docs/production/evidence/p00-2026-10-01/select-desktop.png",
+      "docs/production/evidence/p00-2026-10-01/shop-desktop.png",
+      "docs/production/evidence/p00-2026-10-01/table-desktop.png",
+      "docs/production/evidence/p00-2026-10-01/table-wide.png",
+      "docs/production/evidence/p00-2026-10-01/table-mobile.png",
+      "docs/production/evidence/p00-2026-10-01/table-landscape.png"
+    ],
+    "observedFixes": [
+      "Six distinct faces and explicit confirmation",
+      "Continuous button/material gradients",
+      "Two-line footer notices inside board",
+      "Compact card corners no longer collide with the central suit"
+    ],
+    "video": "docs/production/evidence/p00-2026-10-01/play.webm",
+    "videoAudio": "NOT_RECORDED"
+  },
+  "art": {
+    "portraits": "art/sources/p00-portraits/manifest.json",
+    "theme": "public/assets/p00/manifest.json",
+    "runtimeAvatarBytes": 92118,
+    "lazyPortraitBytes": 446138,
+    "approval": "NOT_GRANTED",
+    "jokerIllustrations": "Not complete; P01 addresses the owner feedback about plain text panels and empty slots."
+  },
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": "",
+    "evidence": ""
+  },
+  "notRun": [
+    "Physical Android Chrome",
+    "Physical iPhone Safari",
+    "Human headphone/phone speaker listening",
+    "Formal visual approval",
+    "V01 gameplay acceptance",
+    "Balance holdout and eight-chapter completion"
+  ],
+  "warnings": [
+    "Vite SSR validation logged a nonfatal HMR port collision and dependency-scan shutdown while the independent chapter check ran; content validation and all CI gates exited 0.",
+    "Existing Phaser production chunk is about 1.4MB uncompressed / 397KB gzip."
+  ],
+  "delivery": {
+    "branch": "main",
+    "pushedCommit": "242e3a5a489eff0a8938630139d355f35b193b25",
+    "status": "PUSHED",
+    "force": false
+  },
+  "nextTask": "P01: card-shaped Joker slots, three illustrative samples and stronger trace-driven audiovisual source feedback."
+}

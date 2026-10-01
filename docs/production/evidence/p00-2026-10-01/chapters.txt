@@ -1,0 +1,21 @@
+
+> dachoupai@0.1.0 test:v00:browser
+> node harness/v00.mjs
+
+vite v7.3.6 building client environment for e2e...
+transforming...
+✓ 58 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/build-v00/build-info.json                0.14 kB │ gzip:   0.14 kB
+shots/build-v00/index.html                     0.57 kB │ gzip:   0.37 kB
+shots/build-v00/assets/index-BrQG-WNQ.css      3.37 kB │ gzip:   1.30 kB
+shots/build-v00/assets/index-CoP9KPAX.js   1,402.44 kB │ gzip: 396.63 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.54s
+chromium/two-chapters-groups: PASS
+graybox browser: PASS
