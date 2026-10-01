@@ -1,6 +1,6 @@
 {
   "taskId": "C01",
-  "status": "IN_PROGRESS",
+  "status": "DONE",
   "testedCommit": "966b6126ca1d1fc5d1a179c5e8cd14c7967260c2",
   "treeIdentity": {
     "modified": true,
@@ -650,7 +650,7 @@
     "C01_6": "DONE",
     "C01_7": "DONE",
     "C01_8": "DONE",
-    "C01_9": "IN_PROGRESS"
+    "C01_9": "DONE"
   },
   "c01_2Scope": "Save-before-publish, expectedSeq, finite v6 schema, exact discard ledger, old v1-v5 raw export and gated replacement. Current real UI path exercised at closeout.",
   "c01_2Fingerprints": [
@@ -828,8 +828,17 @@
     }
   },
   "c01_9": {
-    "status": "READY_FOR_MAIN",
-    "publication": "NOT_RUN",
+    "status": "DONE",
+    "publication": {
+      "status": "PASS",
+      "command": "git push origin main",
+      "commit": "1aab1a8a7866d1d750aaea3bb03491295e316088",
+      "toolChunk": "c10d83",
+      "log": "shots/c01-code-push.log",
+      "logSha256": "6ef21f0be75d7ecdecb0326394a629e4c5c43fe711bc6c66657236fdc0f8fee8",
+      "sourceFingerprintsMatched": 50,
+      "note": "Ordinary fast-forward push, no forced update or branch left behind. Earlier tested baseline+dirty fingerprints bind to this delivered code commit; checks are not falsely reported as rerun after commit."
+    },
     "scope": [
       "39 tools and 12 items have family/effect/cost/target details with complete card frames. Full generic risk text is folded after targets; public spectral outcomes stay visible.",
       "Three separate shop shelves, explicit purchase confirmation, mobile-sized touch targets, and actual extra use costs.",
@@ -1354,7 +1363,8 @@
       "skill": "jiepi-clear lightweight pre-commit",
       "review": "Actual source/domain/UI/test diff and affected documentation reviewed. Kept existing 66 expectation chains and original40 math goldens, removed one extra EOF blank and obsolete upper-bound narrative; no permanent new harness, screenshots, GLB download or unrelated file.",
       "checks": "839 unit + final production build + content318 + bounded DOM/natural/combination/existing smoke. Physical/background/long listening/balance limits recorded explicitly.",
-      "publication": "NOT_RUN"
+      "publication": "PASS: code main delivery at 1aab1a8; this document update records the receipt and selects C02."
     }
-  }
+  },
+  "completionScope": "C01 engineering package on current48/two-chapter scope. Owner D22/D25 acceptance remains PASS. Actual phone/background visibility, long listening, formal future A03 art, balance and maximum72-chain checks remain explicitly separate; no AI human approval."
 }
