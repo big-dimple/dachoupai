@@ -1,28 +1,17 @@
-import { CHOPIN_BEATS, CHOPIN_PASSES, CHOPIN_SCORE } from './chopinTheme';
+import recording from '../../public/assets/audio/p06/recording.json';
 
 export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
 export type AudioScene = 'menu' | 'shop' | 'table' | 'boss' | 'success' | 'failure';
 type VoiceBus = Exclude<AudioBus, 'master'>;
-type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; fire?: boolean };
+type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; fire?: boolean; roll?: ScoreRollKind };
 export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 'retrigger';
+export type ScoreRollKind = 'heat' | 'mult' | 'total';
 
-// Public-domain Chopin notation, locally arranged; no recording or rule RNG.
-// Three 16-bar passes: piano, velvet strings, then a lighter melodic return.
-const LOOP_EVENTS = CHOPIN_SCORE.length * CHOPIN_PASSES;
-const MELODY_TOP = new Map<number, number>();
-for (const [beat, , notes, hand] of CHOPIN_SCORE) if (hand === 'right')
-  MELODY_TOP.set(beat, Math.max(MELODY_TOP.get(beat) ?? 0, ...notes));
-const PROFILES: Record<AudioScene, { bpm: number; level: number; melody: boolean }> = {
-  menu: { bpm: 78, level: .94, melody: true },
-  shop: { bpm: 80, level: .94, melody: true },
-  table: { bpm: 86, level: 1, melody: true },
-  boss: { bpm: 98, level: 1.05, melody: true },
-  success: { bpm: 78, level: .48, melody: false },
-  failure: { bpm: 74, level: .60, melody: true },
-};
+// Only a verified recording may populate this manifest. No synthesized BGM fallback.
+const RECORDING_PATH: string | null = recording.runtimePath;
 const bounded = (value: number, max: number): number => Number.isFinite(value) ? Math.max(0, Math.min(max, value)) : 0;
 const midiHz = (note: number): number => 440 * 2 ** ((note - 69) / 12);
-const SOURCE_GAIN: Record<VoiceBus, number> = { music: 6.2, sfx: 5.7, ui: 4.5 };
+const SOURCE_GAIN: Record<VoiceBus, number> = { music: 1, sfx: 5.7, ui: 4.5 };
 
 /** One application context. The app owns gesture/visibility listeners and persistence. */
 export class AudioEngine {
@@ -35,19 +24,22 @@ export class AudioEngine {
   private pianoWave?: PeriodicWave;
   private fireBed?: AudioBuffer;
   private fireCrackles?: AudioBuffer;
+  private rollBuffer?: AudioBuffer;
   private fireVoices = new Set<Voice>();
   private fireIntensity: 0 | 1 | 2 | 3 = 0;
   private voices = new Set<Voice>();
-  private volumes: Record<AudioBus, number> = { master: 1, music: .74, sfx: 1, ui: .9 };
+  private volumes: Record<AudioBus, number> = { master: 1, music: .22, sfx: 1, ui: 1 };
   private masterMuted = false;
   private musicIsMuted = false;
   private suspended = false;
   private unlocked = false;
   private unlockTask?: Promise<void>;
   private scene: AudioScene = 'menu';
-  private musicTimer?: ReturnType<typeof setInterval>;
-  private musicStep = 0;
-  private nextStepTime = 0;
+  private musicElement?: HTMLAudioElement;
+  private musicNode?: MediaElementAudioSourceNode;
+  private musicTask?: Promise<void>;
+  private musicGeneration = 0;
+  private musicFailed = false;
   private duckUntil = 0;
 
   get muted(): boolean { return this.masterMuted; }
@@ -66,8 +58,19 @@ export class AudioEngine {
     else this.startMusic();
   }
   setVolume(bus: AudioBus, value: number): void {
+    // The removed UI slider remains a compatible alias of the effects route.
+    if (bus === 'ui') bus = 'sfx';
     this.volumes[bus] = bounded(value, 1);
+    if (bus === 'sfx') { this.volumes.ui = this.volumes.sfx; this.applyVolume('ui'); }
     this.applyVolume(bus);
+    if (this.volumes[bus] === 0) {
+      if (bus === 'music' || bus === 'master') this.stopMusic();
+      if (bus === 'sfx' || bus === 'master') {
+        this.stopScoreFire(); this.stopVoices('sfx'); this.stopVoices('ui');
+      }
+    } else if (bus === 'music' || bus === 'master') {
+      if (this.unlocked) void this.unlock();
+    }
   }
   getVolume(bus: AudioBus): number { return this.volumes[bus]; }
 
@@ -90,12 +93,10 @@ export class AudioEngine {
     if (scene === this.scene) return;
     this.scene = scene;
     this.stopScoreFire();
-    this.stopMusic();
+    this.stopVoices('sfx');
     this.duckUntil = 0;
     this.applyVolume('music');
-    if (scene === 'menu') this.musicStep = 0;
-    // Keep the phrase position through shop/table transitions so short stages also
-    // reach the variation and breathing section, rather than restarting the hook.
+    // The same performance continues across title, shop, table and intermission.
     this.startMusic();
   }
 
@@ -172,6 +173,7 @@ export class AudioEngine {
           samples[i] = seed / 0xffffffff * 2 - 1;
         }
         this.createFireBuffers(context);
+        this.createRollBuffer(context);
       }
       const context = this.context;
       if (!context) return;
@@ -205,7 +207,8 @@ export class AudioEngine {
 
   private canPlay(bus: VoiceBus): boolean {
     return !!this.context && !!this.gains && this.unlocked && !this.masterMuted && !this.suspended
-      && !this.hidden() && !(bus === 'music' && this.musicIsMuted) && this.context.state !== 'closed';
+      && !this.hidden() && this.volumes.master > 0 && this.volumes[bus] > 0
+      && !(bus === 'music' && this.musicIsMuted) && this.context.state !== 'closed';
   }
   private retain(voice: Voice): void {
     // Fast-forwarded/long traces cannot create an unbounded wall of simultaneous sound.
@@ -291,17 +294,6 @@ export class AudioEngine {
     } catch { /* Ducking failure is inaudible to rule state. */ }
   }
 
-  private woodTap(time: number, volume: number): void {
-    this.note(65, .045, volume, 'music', 0, 'sine', time, 54, 'warm');
-    this.paper(.027, volume * .4, 0, 'music', time, 1050);
-  }
-  private softClap(time: number, volume: number): void {
-    // Three very short filtered grains make a soft hand-clap rather than a hi-hat.
-    this.paper(.055, volume, 0, 'music', time, 1650);
-    this.paper(.042, volume * .65, 0, 'music', time + .012, 1250);
-    this.paper(.032, volume * .4, 0, 'music', time + .024, 950);
-  }
-
   private createFireBuffers(context: AudioContext): void {
     const bed = context.createBuffer(1, Math.ceil(context.sampleRate * 2.4), context.sampleRate);
     const crackles = context.createBuffer(1, Math.ceil(context.sampleRate * 1.79), context.sampleRate);
@@ -363,56 +355,121 @@ export class AudioEngine {
   }
 
   private startMusic(): void {
-    if (this.musicTimer !== undefined || !this.canPlay('music') || this.context!.state !== 'running') return;
-    this.nextStepTime = this.context!.currentTime + .04;
-    this.scheduleMusic();
-    this.musicTimer = setInterval(() => this.scheduleMusic(), 80);
+    if (!RECORDING_PATH || this.musicFailed || !this.canPlay('music') || this.context!.state !== 'running') return;
+    try {
+      if (!this.musicElement) {
+        // Streaming avoids decoding a whole multi-minute stereo performance on phones.
+        // Neither an element nor a request exists before a real gesture and an open bus.
+        const element = new Audio();
+        element.preload = 'none'; element.loop = true; element.volume = 1;
+        element.playbackRate = 1; element.setAttribute('playsinline', '');
+        const node = this.context!.createMediaElementSource(element);
+        node.connect(this.gains!.music);
+        element.onerror = () => { this.musicFailed = true; this.stopMusic(); };
+        element.src = `${import.meta.env.BASE_URL}${RECORDING_PATH}`;
+        this.musicElement = element; this.musicNode = node;
+      }
+      const element = this.musicElement;
+      if (this.musicTask || !element.paused) return;
+      const generation = this.musicGeneration;
+      const pending = element.play();
+      this.musicTask = pending;
+      void pending.then(() => {
+        // A mute/background transition can happen while browser playback is pending.
+        if (!this.canPlay('music')) element.pause();
+      }).catch(() => { /* A blocked/failed recording leaves the game silently usable. */ }).finally(() => {
+        if (this.musicTask === pending) this.musicTask = undefined;
+        // Recover a fast pause/resume race once; a plain playback denial is not retried.
+        if (generation !== this.musicGeneration && this.canPlay('music')) this.startMusic();
+      });
+    } catch { /* No synthetic melody replaces an unavailable recording. */ }
   }
   private stopMusic(): void {
-    if (this.musicTimer !== undefined) clearInterval(this.musicTimer);
-    this.musicTimer = undefined;
-    this.stopVoices('music');
+    this.musicGeneration++;
+    try { this.musicElement?.pause(); } catch { /* Device teardown. */ }
   }
-  private scheduleMusic(): void {
-    const context = this.context;
-    if (!context || !this.canPlay('music') || context.state !== 'running') { this.stopMusic(); return; }
-    const profile = PROFILES[this.scene], quarter = 60 / profile.bpm;
-    // A throttled tab resumes one lookahead window, never a burst of missed bars.
-    if (this.nextStepTime < context.currentTime - .15) this.nextStepTime = context.currentTime + .025;
-    while (this.nextStepTime < context.currentTime + .14) {
-      const index = this.musicStep % CHOPIN_SCORE.length, pass = Math.floor(this.musicStep / CHOPIN_SCORE.length);
-      const [beat, held, notes, hand, velocity] = CHOPIN_SCORE[index], time = this.nextStepTime;
-      const breath = beat >= 42 ? .91 : beat >= 30 && beat <= 40 ? 1.06 : 1;
-      const level = profile.level * [1, .92, .82][pass] * breath * velocity / 90;
-      if (hand === 'left' || profile.melody) notes.forEach(pitch => {
-        const melody = hand === 'right' && pitch === MELODY_TOP.get(beat);
-        const bass = hand === 'left' && pitch < 48;
-        const volume = melody ? .076 : bass ? .081 : hand === 'left' ? .038 : .027;
-        const color = pass === 1 && hand === 'left' && !bass ? 'pluck' : 'piano';
-        this.note(pitch, quarter * held * .94 + .13, volume * level, 'music', 0, 'triangle', time, undefined, color);
-      });
-      // A restrained bowed layer opens the middle pass while retaining the score.
-      if (pass === 1 && hand === 'left' && held >= 2 && profile.melody) {
-        for (const pitch of [notes[0], notes[notes.length - 1]])
-          this.note(pitch, quarter * held * 1.15, .018 * profile.level, 'music', 0, 'triangle', time, undefined, 'string');
-      }
-      if (hand === 'left' && notes[0] < 48) {
-        if (this.scene === 'shop') this.woodTap(time, .012);
-        if (this.scene === 'boss') { this.woodTap(time, .019); this.softClap(time + quarter, .018); }
-        else if (this.scene === 'table' && pass === 1) this.softClap(time + quarter * 2, .012);
-      }
-      const next = (index + 1) % CHOPIN_SCORE.length;
-      const gap = CHOPIN_SCORE[next][0] - beat + (next === 0 ? CHOPIN_BEATS : 0);
-      this.nextStepTime += gap * quarter;
-      this.musicStep = (this.musicStep + 1) % LOOP_EVENTS;
+
+  private createRollBuffer(context: AudioContext): void {
+    const buffer = context.createBuffer(1, Math.ceil(context.sampleRate * .24), context.sampleRate);
+    const samples = buffer.getChannelData(0);
+    let seed = 0x524f4c4c, low = 0;
+    for (let i = 0; i < samples.length; i++) {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      const white = seed / 0xffffffff * 2 - 1;
+      low = low * .94 + white * .12;
+      // A tactile bead train over a warm continuous bed; no rule random source.
+      const phase = i / context.sampleRate;
+      const grain = (.5 + .5 * Math.sin(phase * Math.PI * 2 * 50)) ** 7;
+      const edge = Math.min(1, i / (context.sampleRate * .004), (samples.length - i) / (context.sampleRate * .004));
+      samples[i] = (low * .7 + white * (.10 + grain * .42)) * edge;
     }
+    this.rollBuffer = buffer;
+  }
+
+  /** One call per committed number roll. Same-kind overlap replaces, never piles up. */
+  scoreRoll(durationMs: number, kind: ScoreRollKind, strength = 1): void {
+    if (!['heat', 'mult', 'total'].includes(kind)) return;
+    for (const voice of this.voices) if (voice.roll === kind) this.release(voice);
+    if (!Number.isFinite(durationMs) || durationMs <= 0 || !this.canPlay('sfx') || !this.rollBuffer) return;
+    const level = bounded(strength, 3);
+    if (level === 0) return;
+    try {
+      const context = this.context!, duration = Math.max(.04, Math.min(1.6, durationMs / 1000));
+      const time = context.currentTime, source = context.createBufferSource(), gain = context.createGain(), filter = context.createBiquadFilter();
+      const total = kind === 'total', mult = kind === 'mult';
+      source.buffer = this.rollBuffer; source.loop = true;
+      source.playbackRate.setValueAtTime(mult ? 1.4 : total ? .82 : 1, time);
+      source.playbackRate.linearRampToValueAtTime(mult ? 2.1 : total ? 1.1 : 1.5, time + duration);
+      filter.type = total ? 'lowpass' : 'bandpass'; filter.Q.value = .65;
+      filter.frequency.setValueAtTime(mult ? 1050 : total ? 1050 : 500, time);
+      filter.frequency.exponentialRampToValueAtTime(mult ? 2100 : total ? 1800 : 900, time + duration);
+      const peak = Math.min(.36, (total ? .19 : mult ? .16 : .14) * (.7 + level * .3));
+      gain.gain.setValueAtTime(0, time);
+      gain.gain.linearRampToValueAtTime(peak, time + Math.min(.015, duration * .2));
+      gain.gain.setValueAtTime(peak, time + duration * .65);
+      gain.gain.linearRampToValueAtTime(0, time + duration);
+      source.connect(filter); filter.connect(gain); gain.connect(this.gains!.sfx);
+      this.retain({source, gain, filter, bus: 'sfx', roll: kind});
+      source.start(time); source.stop(time + duration);
+      const body = context.createOscillator(), bodyGain = context.createGain();
+      body.type = 'sine';
+      body.frequency.setValueAtTime(mult ? 170 : total ? 70 : 105, time);
+      body.frequency.exponentialRampToValueAtTime(mult ? 370 : total ? 125 : 175, time + duration);
+      const bodyPeak = Math.min(.10, .045 + level * .014);
+      bodyGain.gain.setValueAtTime(0, time);
+      bodyGain.gain.linearRampToValueAtTime(bodyPeak, time + Math.min(.02, duration * .2));
+      // Small gain beads give the low layer a rounded gurgle, not another melody.
+      for (let i = 1; i < 17; i++) bodyGain.gain.linearRampToValueAtTime(bodyPeak * (i % 2 ? .42 : 1), time + duration * i / 18);
+      bodyGain.gain.linearRampToValueAtTime(0, time + duration);
+      body.connect(bodyGain); bodyGain.connect(this.gains!.sfx);
+      this.retain({source: body, gain: bodyGain, bus: 'sfx', roll: kind});
+      body.start(time); body.stop(time + duration);
+      this.duckMusic(Math.min(.45, duration));
+    } catch { /* Number animation and scoring never depend on sound. */ }
+  }
+
+  private whoosh(duration = .15, volume = .07, rising = false, bus: VoiceBus = 'sfx', offset = 0): void {
+    if (!this.canPlay(bus) || !this.noise) return;
+    try {
+      const context = this.context!, source = context.createBufferSource(), filter = context.createBiquadFilter(), gain = context.createGain();
+      const time = context.currentTime + offset, length = Math.max(.04, Math.min(.35, duration));
+      source.buffer = this.noise; source.loop = true;
+      filter.type = 'bandpass'; filter.Q.value = .45;
+      filter.frequency.setValueAtTime(rising ? 650 : 2400, time);
+      filter.frequency.exponentialRampToValueAtTime(rising ? 2000 : 450, time + length);
+      gain.gain.setValueAtTime(0, time);
+      gain.gain.linearRampToValueAtTime(bounded(volume, .18), time + length * .24);
+      gain.gain.linearRampToValueAtTime(0, time + length);
+      source.connect(filter); filter.connect(gain); gain.connect(this.gains![bus]);
+      this.retain({source, gain, filter, bus}); source.start(time); source.stop(time + length);
+    } catch { /* Card movement remains independent of audio. */ }
   }
 
   /** Short filtered swish for one dealt card; the caller passes the visual stagger index. */
   deal(index = 0): void {
     const i = Math.floor(bounded(index, 8));
-    this.paper(.075, .02, i * .055, 'sfx', undefined, 1150 + i * 70);
-    this.note(57 + Math.min(i, 6), .05, .015, 'sfx', i * .055, 'triangle');
+    this.whoosh(.11, .065, true, 'sfx', i * .055);
+    this.note(57 + Math.min(i, 6), .05, .011, 'sfx', i * .055, 'sine', undefined, undefined, 'warm');
   }
   /** Soft warm thump when a played card lands in the scoring area. */
   cardLand(): void {
@@ -445,12 +502,12 @@ export class AudioEngine {
     this.note(57, .24, .026, 'sfx', .10, 'triangle', undefined, undefined, 'pluck');
     this.note(64, .25, .020, 'sfx', .16, 'sine', undefined, undefined, 'warm');
   }
-  select(): void { this.note(74, .07, .045, 'ui'); this.note(78, .055, .017, 'ui', .024, 'sine'); }
-  cancel(): void { this.note(71, .08, .035, 'ui', 0, 'triangle', undefined, 67); }
+  select(): void { this.whoosh(.085, .065, true, 'ui'); this.note(74, .07, .023, 'ui', 0, 'sine'); }
+  cancel(): void { this.whoosh(.10, .060, false, 'ui'); this.note(71, .08, .023, 'ui', 0, 'sine', undefined, 67); }
   deselect(): void { this.cancel(); }
   invalid(): void { this.note(55, .11, .035, 'ui'); this.note(54, .08, .025, 'ui', .095); }
-  playHand(): void { this.duckMusic(); this.paper(.12, .052); this.note(50, .13, .065, 'sfx', .02, 'sine', undefined, 43); }
-  discard(): void { this.paper(.08, .046); this.paper(.09, .03, .055); this.note(62, .095, .027, 'sfx', .015, 'triangle', undefined, 55); }
+  playHand(): void { this.duckMusic(); this.whoosh(.21, .14, true); this.note(50, .13, .065, 'sfx', .02, 'sine', undefined, 43, 'warm'); }
+  discard(): void { this.whoosh(.26, .16); this.paper(.09, .03, .055, 'sfx', undefined, 650); this.note(62, .095, .027, 'sfx', .015, 'sine', undefined, 55, 'warm'); }
   /** One committed counter decrement; the view passes the actual post-command balance. */
   resourceSpend(kind: 'play' | 'discard', remaining: number, amount = 1, cost = amount): void {
     if ((kind !== 'play' && kind !== 'discard') || !Number.isSafeInteger(remaining) || remaining < 0

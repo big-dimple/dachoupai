@@ -74,7 +74,7 @@ async function inputs(page,touch,action){
   return after;
 }
 async function fullRun(page,touch,url,fixture,engine){
-  const {style,seed,characterId}=fixture;await page.goto(url+'&seed='+seed);await chooseCharacter(page,characterId,touch);await menu(page,touch);await page.getByLabel('演出速度').selectOption('4');await page.getByLabel('静音',{exact:true}).check();await dom(page,'菜单',touch);
+  const {style,seed,characterId}=fixture;await page.goto(url+'&seed='+seed);await chooseCharacter(page,characterId,touch);await menu(page,touch);await page.getByLabel('演出速度').selectOption('4');await page.getByLabel('背景音量',{exact:true}).press('Home');await page.getByLabel('音效音量',{exact:true}).press('Home');await dom(page,'菜单',touch);
   const checkpoints=[],bosses=[],observations=[],restored=new Set();let fullSlot=false;
   for(let step=0;step<180;step++){
     const observed=await read(page),s=observed.state;checkpoints.push({seq:s.commandSeq,hash:domain.stateHash(s)});assert.notEqual(s.phase,'run-lost','selected natural representative must still finish');if(s.phase==='run-won')break;

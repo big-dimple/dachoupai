@@ -6,6 +6,7 @@ import {MAX_IMPORT_BYTES} from '../application/checkpoint';
 import type {GameScene} from './GameScene';
 import {buildInfo} from '../platform/buildInfo';
 import {AudioEngine} from '../audio/AudioEngine';
+import {readAudioPreferences} from '../audio/preferences';
 import {installFullscreen} from '../platform/Fullscreen';
 
 function download(text:string,name:string):void {
@@ -27,7 +28,10 @@ export function installRunMenu(game:Phaser.Game):void {
   const host=document.createElement('div'),toggle=document.createElement('button'),fullButton=document.createElement('button'),modal=document.createElement('dialog'),panel=document.createElement('section'),status=document.createElement('p');
   const fullscreenInfo=document.createElement('p'),fullscreenNotice=document.createElement('p');
   let previousFocus:HTMLElement|undefined,attentionKey='',noticeTimer:ReturnType<typeof setTimeout>|undefined;
-  try{const saved=JSON.parse(localStorage.getItem('dachoupai-audio-v1')??'null');if(typeof saved?.musicMuted==='boolean')audio.musicMuted=saved.musicMuted;if(typeof saved?.master==='number'&&Number.isFinite(saved.master))audio.setVolume('master',saved.master);}catch{/* Optional preferences cannot block boot. */}
+  const stored=(key:string):unknown=>{try{return JSON.parse(localStorage.getItem(key)??'null');}catch{return null;}};
+  const audioPreferences=readAudioPreferences(stored('dachoupai-audio-v2'),stored('dachoupai-audio-v1'),stored('dachoupai-presentation-v1'));
+  audio.setVolume('master',1);audio.muted=false;audio.musicMuted=false;
+  audio.setVolume('music',audioPreferences.music);audio.setVolume('sfx',audioPreferences.sfx);audio.setVolume('ui',audioPreferences.sfx);
   host.className='run-menu';toggle.className='run-menu-toggle';fullButton.className='run-fullscreen-toggle';
   toggle.type=fullButton.type='button';toggle.textContent='菜单';toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls','run-menu-modal');
   modal.id='run-menu-modal';modal.className='run-menu-modal';modal.setAttribute('aria-labelledby','run-menu-heading');panel.className='run-menu-panel';
@@ -100,13 +104,19 @@ export function installRunMenu(game:Phaser.Game):void {
   };panel.append(file);
   const speedLabel=document.createElement('label'),speed=document.createElement('select');speedLabel.textContent='演出速度 ';
   for(const value of [1,2,4]){const option=document.createElement('option');option.value=String(value);option.textContent=`${value}×`;speed.append(option);}speed.value=String(session.speed);speedLabel.append(speed);settings.append(speedLabel);
-  const muted=document.createElement('input'),muteLabel=document.createElement('label');muted.type='checkbox';muted.checked=session.muted;muteLabel.append(muted,document.createTextNode(' 静音'));settings.append(muteLabel);
   const reduced=document.createElement('input'),reducedLabel=document.createElement('label');reduced.type='checkbox';reduced.checked=session.reducedMotion;reducedLabel.append(reduced,document.createTextNode(' 减少动态'));settings.append(reducedLabel);
-  const presentation=()=>session.preferences(Number(speed.value) as 1|2|4,muted.checked,reduced.checked);
-  speed.onchange=presentation;muted.onchange=()=>{presentation();if(!muted.checked)void audio.unlock();};reduced.onchange=presentation;
-  const music=document.createElement('input'),musicLabel=document.createElement('label');music.type='checkbox';music.checked=audio.musicMuted;musicLabel.append(music,document.createTextNode(' 关闭背景音乐'));settings.append(musicLabel);music.onchange=()=>{audio.musicMuted=music.checked;saveAudio();};
-  const volume=document.createElement('input'),volumeLabel=document.createElement('label');volume.type='range';volume.min='0';volume.max='100';volume.value=String(Math.round(audio.getVolume('master')*100));volume.setAttribute('aria-label','总音量');volumeLabel.append(document.createTextNode('总音量'),volume);settings.append(volumeLabel);volume.oninput=()=>{audio.setVolume('master',Number(volume.value)/100);saveAudio();};
-  function saveAudio():void {try{localStorage.setItem('dachoupai-audio-v1',JSON.stringify({musicMuted:audio.musicMuted,master:audio.getVolume('master')}));}catch{/* Audio preferences are optional. */}}
+  const presentation=()=>session.preferences(Number(speed.value) as 1|2|4,reduced.checked);
+  speed.onchange=presentation;reduced.onchange=presentation;
+  const audioControls=document.createElement('div');audioControls.className='audio-controls';settings.append(audioControls);
+  for(const [bus,label]of [['music','背景音量'],['sfx','音效音量']] as const){
+    const row=document.createElement('label'),name=document.createElement('span'),range=document.createElement('input'),value=document.createElement('output');
+    row.className='audio-volume-label';name.textContent=label;range.type='range';range.min='0';range.max='100';range.step='1';range.value=String(Math.round(audio.getVolume(bus)*100));range.setAttribute('aria-label',label);value.textContent=range.value+'%';value.className='audio-volume-value';
+    row.append(name,range,value);audioControls.append(row);
+    range.oninput=()=>{const volume=Number(range.value)/100;audio.setVolume(bus,volume);if(bus==='sfx')audio.setVolume('ui',volume);value.textContent=range.value+'%';void audio.unlock();saveAudio();};
+  }
+  const audioHint=document.createElement('small');audioHint.className='audio-controls-hint';audioHint.textContent='拖到 0% 即关闭这一类声音';audioControls.append(audioHint);
+  function saveAudio():void {try{localStorage.setItem('dachoupai-audio-v2',JSON.stringify({version:2,music:audio.getVolume('music'),sfx:audio.getVolume('sfx')}));}catch{/* Audio preferences are optional. */}}
+  saveAudio();
   const playback=document.createElement('div');playback.className='run-menu-playback';panel.append(playback);
   const forward=button('快进当前手',()=>{const scene=game.scene.getScene('game') as GameScene;if(scene.scene.isActive())scene.fastForward();close();},playback);
   const replay=button('回看上一手',()=>{

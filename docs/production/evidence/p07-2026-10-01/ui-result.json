@@ -1,0 +1,181 @@
+{
+  "status": "PASS",
+  "buildInfo": {
+    "version": "P07",
+    "revision": "1d58fe4d40f201a6a76a764609323c2dc70a0e2d",
+    "modified": true,
+    "builtAt": "2026-10-01T15:02:50.531Z"
+  },
+  "checks": [
+    {
+      "profile": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "dpr": 1,
+      "input": "mouse / DOM click",
+      "status": "PASS",
+      "textures": {
+        "avatars": 6,
+        "selection": 6,
+        "jokers": 24
+      },
+      "details": [
+        {
+          "id": "amo",
+          "src": "./assets/characters-p07/amo.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "fit": "contain",
+          "visibleWidth": 304.58001708984375,
+          "visibleHeight": 363.158935546875
+        },
+        {
+          "id": "touye",
+          "src": "./assets/characters-p07/touye.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "fit": "contain",
+          "visibleWidth": 304.58001708984375,
+          "visibleHeight": 363.158935546875
+        },
+        {
+          "id": "laohuan",
+          "src": "./assets/characters-p07/laohuan.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "fit": "contain",
+          "visibleWidth": 304.58001708984375,
+          "visibleHeight": 363.158935546875
+        },
+        {
+          "id": "erxiang",
+          "src": "./assets/characters-p07/erxiang.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "fit": "contain",
+          "visibleWidth": 304.58001708984375,
+          "visibleHeight": 363.158935546875
+        },
+        {
+          "id": "azao",
+          "src": "./assets/characters-p07/azao.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "fit": "contain",
+          "visibleWidth": 304.58001708984375,
+          "visibleHeight": 363.158935546875
+        },
+        {
+          "id": "xiemu",
+          "src": "./assets/characters-p07/xiemu.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "fit": "contain",
+          "visibleWidth": 304.58001708984375,
+          "visibleHeight": 363.158935546875
+        }
+      ],
+      "joker": {
+        "src": "./assets/jokers-p07/e05-detail.webp",
+        "width": 615,
+        "height": 768,
+        "fit": "contain"
+      },
+      "entryCards": 8,
+      "defaultMusic": 22,
+      "defaultSfx": 100,
+      "pageErrors": [],
+      "failedResponses": [],
+      "largeOriginalRequests": 0
+    },
+    {
+      "profile": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "dpr": 3,
+      "input": "touchscreen / DOM tap",
+      "status": "PASS",
+      "textures": {
+        "avatars": 6,
+        "selection": 6,
+        "jokers": 24
+      },
+      "details": [
+        {
+          "id": "amo",
+          "src": "./assets/characters-p07/amo.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "fit": "contain",
+          "visibleWidth": 304.58001708984375,
+          "visibleHeight": 308.6418762207031
+        },
+        {
+          "id": "touye",
+          "src": "./assets/characters-p07/touye.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "fit": "contain",
+          "visibleWidth": 304.58001708984375,
+          "visibleHeight": 308.6418762207031
+        },
+        {
+          "id": "laohuan",
+          "src": "./assets/characters-p07/laohuan.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "fit": "contain",
+          "visibleWidth": 304.58001708984375,
+          "visibleHeight": 308.6418762207031
+        },
+        {
+          "id": "erxiang",
+          "src": "./assets/characters-p07/erxiang.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "fit": "contain",
+          "visibleWidth": 304.58001708984375,
+          "visibleHeight": 308.6418762207031
+        },
+        {
+          "id": "azao",
+          "src": "./assets/characters-p07/azao.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "fit": "contain",
+          "visibleWidth": 304.58001708984375,
+          "visibleHeight": 308.6418762207031
+        },
+        {
+          "id": "xiemu",
+          "src": "./assets/characters-p07/xiemu.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "fit": "contain",
+          "visibleWidth": 304.58001708984375,
+          "visibleHeight": 308.6418762207031
+        }
+      ],
+      "joker": {
+        "src": "./assets/jokers-p07/e05-detail.webp",
+        "width": 615,
+        "height": 768,
+        "fit": "contain"
+      },
+      "entryCards": 8,
+      "defaultMusic": 22,
+      "defaultSfx": 100,
+      "pageErrors": [],
+      "failedResponses": [],
+      "largeOriginalRequests": 0
+    }
+  ],
+  "physicalAndroid": "NOT_RUN",
+  "humanAcceptance": "NOT_GRANTED",
+  "hardwareListening": "NOT_RUN",
+  "browserVersion": "153.0.8010.12"
+}

@@ -149,7 +149,7 @@ export class GameScene extends Phaser.Scene {
     const lifecycle=++this.lifecycle;this.intent++;
     this.effects.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.draggingCardId=undefined;this.playing=false;this.presentation=undefined;this.statusMessage='';this.focusIndex=0;
     const settings=()=>{
-      this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;this.audio.muted=gameSession().muted;
+      this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;
       if(this.reducedMotion){
         this.stopJokerIdle();this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.cameras.main.resetFX();
         this.cardViews.forEach(view=>{view.sheenTween?.remove();view.sheen?.setAlpha(0);this.revealCard(view);});
@@ -878,6 +878,7 @@ export class GameScene extends Phaser.Scene {
     const h0=Number(event.before.H.n)/Number(event.before.H.d),h1=Number(event.after.H.n)/Number(event.after.H.d);
     const m0=Number(event.before.M.n)/Number(event.before.M.d),m1=Number(event.after.M.n)/Number(event.after.M.d);
     if(this.reducedMotion||duration<90||![h0,h1,m0,m1,h0*m0,h1*m1].every(Number.isFinite)){this.setAccumulator(event.after);return Promise.resolve();}
+    if(!context.signal.aborted&&(h0!==h1||m0!==m1))this.audio.scoreRoll(duration/gameSession().speed,m0!==m1?'mult':'heat',event.operation==='multiply-multiplier'?2:1);
     const trim=(value:number)=>Number.isInteger(value)||Math.abs(value*10-Math.round(value*10))<1e-6?String(Math.round(value*10)/10):value.toFixed(1);
     const roll={t:0};
     return this.animate({targets:roll,t:1,duration,ease:'Sine.easeOut',onUpdate:()=>{
@@ -998,6 +999,7 @@ export class GameScene extends Phaser.Scene {
     // The credited heat rolls up in the HUD; the exact saved value always lands last.
     const heatFrom=BigInt(presentation.displayHeat),heatTo=BigInt(presentation.state.stage!.heat);
     if(!this.reducedMotion&&heatTo>heatFrom&&heatTo-heatFrom<10000000000n){
+      this.audio.scoreRoll((celebration.cleared?560:400)/gameSession().speed,'total',celebration.tier>=2?2:1);
       const roll={t:0};this.rollingHeat=true;
       effects.push(this.animate({targets:roll,t:1,duration:celebration.cleared?560:400,ease:'Cubic.easeOut',onUpdate:()=>{
         presentation.displayHeat=(heatFrom+BigInt(Math.floor(Number(heatTo-heatFrom)*roll.t))).toString();this.updateHud();

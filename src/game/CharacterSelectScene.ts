@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import {AudioEngine} from '../audio/AudioEngine';
 import {CHARACTERS,getCharacter,type CharacterId} from './characters';
-import {addAvatar,avatarKey,portraitURL} from './portraits';
+import {addAvatar,selectionPortraitKey,portraitURL} from './portraits';
 import {startRun} from './runAdapter';
 import {gameSession} from './session';
 import {routeSavedRun} from './RunMenu';
@@ -114,9 +114,9 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
   private reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
   private drawPortrait(id:CharacterId,b:Box):void {
-    const key=avatarKey(id);if(!this.textures.exists(key)){addAvatar(this,this.view.root,getCharacter(id),b.x+b.width/2,b.y+b.height/2,Math.min(b.width,b.height));return;}
+    const key=selectionPortraitKey(id);if(!this.textures.exists(key)){addAvatar(this,this.view.root,getCharacter(id),b.x+b.width/2,b.y+b.height/2,Math.min(b.width,b.height));return;}
     const image=this.add.image(0,0,key),sourceWidth=image.width,sourceHeight=image.height,scale=Math.max(b.width/sourceWidth,b.height/sourceHeight);
-    const cw=b.width/scale,ch=b.height/scale,cx=(sourceWidth-cw)/2,cy=Phaser.Math.Clamp(sourceHeight*.4-ch/2,0,sourceHeight-ch);
+    const character=getCharacter(id),cw=b.width/scale,ch=b.height/scale,cx=Phaser.Math.Clamp(sourceWidth*character.portraitFocusX-cw/2,0,sourceWidth-cw),cy=Phaser.Math.Clamp(sourceHeight*character.portraitFocusY-ch/2,0,sourceHeight-ch);
     image.setCrop(cx,cy,cw,ch).setScale(scale).setPosition(b.x-cx*scale+sourceWidth*scale/2,b.y-cy*scale+sourceHeight*scale/2);this.view.add(image);
   }
   /** Card content drawn since `first` is wrapped into one hoverable, liftable container. */
@@ -147,7 +147,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     if(this.choosing)return;const c=getCharacter(id);
     const body=[c.passiveName+'\n'+c.passiveDescription,'构筑思路\n'+c.buildTip,'“'+c.quote+'”'];
     if(this.selectedId===id)body.push('该角色已选中。关闭详情后，用底部「确认角色」进入商店。');
-    this.dialog.open(c.name+' · '+c.title,body.join('\n\n'),this.selectedId===id?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}],{portrait:{url:portraitURL(id),alt:c.name+'的巡演胸像'}});
+    this.dialog.open(c.name+' · '+c.title,body.join('\n\n'),this.selectedId===id?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}],{portrait:{url:portraitURL(id),alt:c.name+'的完整巡演立绘'}});
   }
   private async cancelChoice():Promise<void> {
     if(this.choosing)return;

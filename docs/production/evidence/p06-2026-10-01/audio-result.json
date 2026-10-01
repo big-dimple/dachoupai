@@ -1,0 +1,473 @@
+{
+  "scope": "P06 one-off Chromium real OfflineAudioContext PCM plus native HTMLAudioElement/AudioContext lifecycle",
+  "limitations": [
+    "Offline samples substitute currentTime/state and no-op resume/suspend; native OfflineAudioContext rendering and scheduled .55s pause/resume are real.",
+    "Offline BGM uses decoded runtime MP3 -> the actual music gain/compressor/ceiling graph; browser streaming is checked separately.",
+    "The structural zero check reads route preferences; actual zero PCM is separately rendered. Native gain-value checks wait 40ms and attach tiny probe-only constant inputs to make otherwise idle routes process their AudioParam timeline.",
+    "Source recording technique is NOT_SPECIFIED; no assertion of acoustic microphone recording or commercial original master.",
+    "Human headphone/phone audition and product audio approval NOT_RUN / NOT_GRANTED."
+  ],
+  "pcm": {
+    "decode": {
+      "durationSeconds": 217.9395918367347,
+      "sampleRate": 44100,
+      "channels": 2,
+      "frames": 9611136,
+      "originalLeftChannel": {
+        "peak": 0.63125336,
+        "rms": 0.09691393,
+        "rmsDbFS": -20.27,
+        "clips": 0,
+        "nonzero": 9602447
+      }
+    },
+    "samples": [
+      {
+        "label": "roll-heat",
+        "left": {
+          "peak": 0.27212065,
+          "rms": 0.05082513,
+          "rmsDbFS": -25.88,
+          "clips": 0,
+          "nonzero": 43353
+        },
+        "right": {
+          "peak": 0.27212065,
+          "rms": 0.05082513,
+          "rmsDbFS": -25.88,
+          "clips": 0,
+          "nonzero": 43353
+        },
+        "voices": 2,
+        "fire": 0,
+        "voicesAfter": 0,
+        "fireAfter": 0,
+        "contexts": 1,
+        "volumes": {
+          "master": 1,
+          "music": 0,
+          "sfx": 1,
+          "ui": 1
+        }
+      },
+      {
+        "label": "roll-mult",
+        "left": {
+          "peak": 0.26986063,
+          "rms": 0.05203754,
+          "rmsDbFS": -25.67,
+          "clips": 0,
+          "nonzero": 43339
+        },
+        "right": {
+          "peak": 0.26986063,
+          "rms": 0.05203754,
+          "rmsDbFS": -25.67,
+          "clips": 0,
+          "nonzero": 43339
+        },
+        "voices": 2,
+        "fire": 0,
+        "voicesAfter": 0,
+        "fireAfter": 0,
+        "contexts": 1,
+        "volumes": {
+          "master": 1,
+          "music": 0,
+          "sfx": 1,
+          "ui": 1
+        }
+      },
+      {
+        "label": "roll-total",
+        "left": {
+          "peak": 0.44449154,
+          "rms": 0.06351436,
+          "rmsDbFS": -23.94,
+          "clips": 0,
+          "nonzero": 43344
+        },
+        "right": {
+          "peak": 0.44449154,
+          "rms": 0.06351436,
+          "rmsDbFS": -23.94,
+          "clips": 0,
+          "nonzero": 43344
+        },
+        "voices": 2,
+        "fire": 0,
+        "voicesAfter": 0,
+        "fireAfter": 0,
+        "contexts": 1,
+        "volumes": {
+          "master": 1,
+          "music": 0,
+          "sfx": 1,
+          "ui": 1
+        }
+      },
+      {
+        "label": "discard-select-play",
+        "left": {
+          "peak": 0.72093916,
+          "rms": 0.04152433,
+          "rmsDbFS": -27.63,
+          "clips": 0,
+          "nonzero": 12650
+        },
+        "right": {
+          "peak": 0.72093916,
+          "rms": 0.04152433,
+          "rmsDbFS": -27.63,
+          "clips": 0,
+          "nonzero": 12650
+        },
+        "voices": 7,
+        "fire": 0,
+        "voicesAfter": 0,
+        "fireAfter": 0,
+        "contexts": 1,
+        "volumes": {
+          "master": 1,
+          "music": 0,
+          "sfx": 1,
+          "ui": 1
+        }
+      },
+      {
+        "label": "multiply-overkill3-fire-roll",
+        "left": {
+          "peak": 0.8664456,
+          "rms": 0.20375732,
+          "rmsDbFS": -13.82,
+          "clips": 0,
+          "nonzero": 95709
+        },
+        "right": {
+          "peak": 0.86792904,
+          "rms": 0.20346943,
+          "rmsDbFS": -13.83,
+          "clips": 0,
+          "nonzero": 95709
+        },
+        "voices": 20,
+        "fire": 2,
+        "voicesAfter": 2,
+        "fireAfter": 2,
+        "contexts": 1,
+        "volumes": {
+          "master": 1,
+          "music": 0.22,
+          "sfx": 1,
+          "ui": 1
+        }
+      },
+      {
+        "label": "recorded-piano-default22",
+        "left": {
+          "peak": 0.17578891,
+          "rms": 0.03523836,
+          "rmsDbFS": -29.06,
+          "clips": 0,
+          "nonzero": 95709
+        },
+        "right": {
+          "peak": 0.13136834,
+          "rms": 0.03586488,
+          "rmsDbFS": -28.91,
+          "clips": 0,
+          "nonzero": 95709
+        },
+        "voices": 0,
+        "fire": 0,
+        "voicesAfter": 0,
+        "fireAfter": 0,
+        "contexts": 1,
+        "volumes": {
+          "master": 1,
+          "music": 0.22,
+          "sfx": 1,
+          "ui": 1
+        }
+      },
+      {
+        "label": "recorded-piano100",
+        "left": {
+          "peak": 0.65478575,
+          "rms": 0.15498269,
+          "rmsDbFS": -16.19,
+          "clips": 0,
+          "nonzero": 95709
+        },
+        "right": {
+          "peak": 0.539092,
+          "rms": 0.15843249,
+          "rmsDbFS": -16,
+          "clips": 0,
+          "nonzero": 95709
+        },
+        "voices": 0,
+        "fire": 0,
+        "voicesAfter": 0,
+        "fireAfter": 0,
+        "contexts": 1,
+        "volumes": {
+          "master": 1,
+          "music": 1,
+          "sfx": 1,
+          "ui": 1
+        }
+      },
+      {
+        "label": "cancel-fire-roll",
+        "left": {
+          "peak": 0.47838688,
+          "rms": 0.06400276,
+          "rmsDbFS": -23.88,
+          "clips": 0,
+          "nonzero": 26685
+        },
+        "right": {
+          "peak": 0.47838688,
+          "rms": 0.06400276,
+          "rmsDbFS": -23.88,
+          "clips": 0,
+          "nonzero": 26685
+        },
+        "voices": 4,
+        "fire": 2,
+        "voicesAfter": 0,
+        "fireAfter": 0,
+        "contexts": 1,
+        "volumes": {
+          "master": 1,
+          "music": 0,
+          "sfx": 1,
+          "ui": 1
+        },
+        "after650ms": {
+          "peak": 0,
+          "rms": 0,
+          "rmsDbFS": null,
+          "clips": 0,
+          "nonzero": 0
+        }
+      },
+      {
+        "label": "sfx0-after-fire-roll",
+        "left": {
+          "peak": 0.47838688,
+          "rms": 0.06400276,
+          "rmsDbFS": -23.88,
+          "clips": 0,
+          "nonzero": 26685
+        },
+        "right": {
+          "peak": 0.47838688,
+          "rms": 0.06400276,
+          "rmsDbFS": -23.88,
+          "clips": 0,
+          "nonzero": 26685
+        },
+        "voices": 4,
+        "fire": 2,
+        "voicesAfter": 0,
+        "fireAfter": 0,
+        "contexts": 1,
+        "volumes": {
+          "master": 1,
+          "music": 0,
+          "sfx": 0,
+          "ui": 0
+        },
+        "after650ms": {
+          "peak": 0,
+          "rms": 0,
+          "rmsDbFS": null,
+          "clips": 0,
+          "nonzero": 0
+        }
+      },
+      {
+        "label": "background-after-fire-roll",
+        "left": {
+          "peak": 0.47838688,
+          "rms": 0.06400276,
+          "rmsDbFS": -23.88,
+          "clips": 0,
+          "nonzero": 26685
+        },
+        "right": {
+          "peak": 0.47838688,
+          "rms": 0.06400276,
+          "rmsDbFS": -23.88,
+          "clips": 0,
+          "nonzero": 26685
+        },
+        "voices": 4,
+        "fire": 2,
+        "voicesAfter": 0,
+        "fireAfter": 0,
+        "contexts": 1,
+        "volumes": {
+          "master": 1,
+          "music": 0,
+          "sfx": 1,
+          "ui": 1
+        },
+        "after650ms": {
+          "peak": 0,
+          "rms": 0,
+          "rmsDbFS": null,
+          "clips": 0,
+          "nonzero": 0
+        }
+      },
+      {
+        "label": "all-buses0",
+        "left": {
+          "peak": 0,
+          "rms": 0,
+          "rmsDbFS": null,
+          "clips": 0,
+          "nonzero": 0
+        },
+        "right": {
+          "peak": 0,
+          "rms": 0,
+          "rmsDbFS": null,
+          "clips": 0,
+          "nonzero": 0
+        },
+        "voices": 0,
+        "fire": 0,
+        "voicesAfter": 0,
+        "fireAfter": 0,
+        "contexts": 1,
+        "volumes": {
+          "master": 1,
+          "music": 0,
+          "sfx": 0,
+          "ui": 0
+        }
+      },
+      {
+        "label": "master0",
+        "left": {
+          "peak": 0,
+          "rms": 0,
+          "rmsDbFS": null,
+          "clips": 0,
+          "nonzero": 0
+        },
+        "right": {
+          "peak": 0,
+          "rms": 0,
+          "rmsDbFS": null,
+          "clips": 0,
+          "nonzero": 0
+        },
+        "voices": 0,
+        "fire": 0,
+        "voicesAfter": 0,
+        "fireAfter": 0,
+        "contexts": 1,
+        "volumes": {
+          "master": 0,
+          "music": 0.22,
+          "sfx": 1,
+          "ui": 1
+        }
+      },
+      {
+        "label": "muted-first-gesture",
+        "left": {
+          "peak": 0,
+          "rms": 0,
+          "rmsDbFS": null,
+          "clips": 0,
+          "nonzero": 0
+        },
+        "right": {
+          "peak": 0,
+          "rms": 0,
+          "rmsDbFS": null,
+          "clips": 0,
+          "nonzero": 0
+        },
+        "voices": 0,
+        "fire": 0,
+        "voicesAfter": 0,
+        "fireAfter": 0,
+        "contexts": 0,
+        "volumes": {
+          "master": 1,
+          "music": 0.22,
+          "sfx": 1,
+          "ui": 1
+        }
+      },
+      {
+        "label": "voice-cap32",
+        "left": {
+          "peak": 0.90112221,
+          "rms": 0.2610809,
+          "rmsDbFS": -11.66,
+          "clips": 0,
+          "nonzero": 95646
+        },
+        "right": {
+          "peak": 0.90112221,
+          "rms": 0.2610809,
+          "rmsDbFS": -11.66,
+          "clips": 0,
+          "nonzero": 95646
+        },
+        "voices": 32,
+        "fire": 2,
+        "voicesAfter": 2,
+        "fireAfter": 2,
+        "contexts": 1,
+        "volumes": {
+          "master": 1,
+          "music": 0,
+          "sfx": 1,
+          "ui": 1
+        }
+      }
+    ],
+    "structural": {
+      "sameKindTwoVoices": true,
+      "fireBoundTwo": true,
+      "effectsZeroStopsEverything": true,
+      "sceneCancelsRoll": true
+    }
+  },
+  "media": {
+    "beforeGesture": 0,
+    "zeroFirstGesture": 0,
+    "requestsAfterEnable": 1,
+    "contexts": 1,
+    "sceneContinues": true,
+    "musicMutedPause": true,
+    "musicZeroPause": true,
+    "musicZeroResume": true,
+    "backgroundStops": true,
+    "foregroundResumes": true,
+    "cancellation": true,
+    "sfxZeroUiZero": true,
+    "zeroSnapshot": {
+      "voices": 0,
+      "sfx": 0,
+      "ui": 0,
+      "musicPaused": false
+    },
+    "masterMute": true,
+    "masterUnmuteSameElement": true,
+    "failedMusicNonBlocking": true,
+    "rate": 1,
+    "loop": true,
+    "preload": "none",
+    "unhandled": []
+  }
+}

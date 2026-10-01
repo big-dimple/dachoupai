@@ -1,0 +1,207 @@
+{
+  "testedCommit": "1d58fe4d40f201a6a76a764609323c2dc70a0e2d",
+  "dirty": "M docs/development-handoff.md\n M docs/production/ART.md\n M docs/production/DECISIONS.md\n M docs/production/ENGINEERING.md\n M docs/production/UX.md\n M docs/production/WORK_PACKAGES.md\n M docs/production/plan.json\n M harness/e2e.mjs\n M harness/v00.mjs\n M src/audio/AudioEngine.ts\n D src/audio/chopinTheme.ts\n M src/game/GameScene.ts\n M src/game/RunMenu.ts\n M src/game/jokerArt.ts\n M src/game/session.ts\n M src/main.ts\n M src/style.css\n M vite.config.ts\n?? art/sources/p06-jokers/\n?? public/assets/audio/\n?? public/assets/jokers-p06/\n?? src/audio/preferences.ts\n?? tests/audio-preferences.test.ts\n?? tests/joker-art.test.ts",
+  "checks": [
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "channel": "chromium",
+      "profile": "natural-three-times-target",
+      "status": "PASS",
+      "seed": "p04-golden-02",
+      "character": "touye",
+      "selectedIds": [
+        "clubs-5",
+        "diamonds-14",
+        "clubs-4",
+        "diamonds-3",
+        "clubs-2"
+      ],
+      "finalScore": "1200",
+      "target": "400",
+      "burstElapsedMs": 8275,
+      "renderFps": 32.8638391494751,
+      "linkedAudio": {
+        "context": "running",
+        "sfxVoices": 11,
+        "master": 1
+      },
+      "observation": {
+        "events": [
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/1",
+            "phase": "windup",
+            "at": 1472.2999999970198,
+            "label": "5♣ · +5 热度",
+            "heat": "125",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/1",
+            "phase": "impact",
+            "at": 1868.9000000059605,
+            "label": "5♣ · +5 热度",
+            "heat": "125",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/1",
+            "phase": "rest",
+            "at": 2239.5,
+            "label": "5♣ · +5 热度",
+            "heat": "130",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/2",
+            "phase": "windup",
+            "at": 2443.7999999970198,
+            "label": "A♦ · +11 热度",
+            "heat": "130",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/2",
+            "phase": "impact",
+            "at": 2854.5999999940395,
+            "label": "A♦ · +11 热度",
+            "heat": "130",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/2",
+            "phase": "rest",
+            "at": 3221.9000000059605,
+            "label": "A♦ · +11 热度",
+            "heat": "141",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/3",
+            "phase": "windup",
+            "at": 3398,
+            "label": "4♣ · +4 热度",
+            "heat": "141",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/3",
+            "phase": "impact",
+            "at": 3814.4000000059605,
+            "label": "4♣ · +4 热度",
+            "heat": "141",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/3",
+            "phase": "rest",
+            "at": 4177.0999999940395,
+            "label": "4♣ · +4 热度",
+            "heat": "145",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/4",
+            "phase": "windup",
+            "at": 4364.5,
+            "label": "3♦ · +3 热度",
+            "heat": "145",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/4",
+            "phase": "impact",
+            "at": 4772.5,
+            "label": "3♦ · +3 热度",
+            "heat": "145",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/4",
+            "phase": "rest",
+            "at": 5146.20000000298,
+            "label": "3♦ · +3 热度",
+            "heat": "148",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/5",
+            "phase": "windup",
+            "at": 5353,
+            "label": "2♣ · +2 热度",
+            "heat": "148",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/5",
+            "phase": "impact",
+            "at": 5761.5,
+            "label": "2♣ · +2 热度",
+            "heat": "148",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/5",
+            "phase": "rest",
+            "at": 6126.70000000298,
+            "label": "2♣ · +2 热度",
+            "heat": "150",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/6",
+            "phase": "windup",
+            "at": 6304.0999999940395,
+            "label": "骰爷 · ×2 倍率",
+            "heat": "150",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/6",
+            "phase": "impact",
+            "at": 7085.70000000298,
+            "label": "骰爷 · ×2 倍率",
+            "heat": "150",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/6",
+            "phase": "rest",
+            "at": 7724.5,
+            "label": "骰爷 · ×2 倍率",
+            "heat": "150",
+            "mult": "× 8"
+          }
+        ],
+        "fire": [
+          {
+            "level": 1,
+            "at": 822,
+            "voices": 2
+          },
+          {
+            "level": 3,
+            "at": 7085.70000000298,
+            "voices": 2
+          }
+        ]
+      },
+      "covered": [
+        "natural-wager-straight",
+        "every-source-ordered-impact",
+        "individual-card-pace",
+        "3x-flame-and-burning-audio",
+        "real-3x-stamp",
+        "score-number-bounce",
+        "scheduled-overkill-audio",
+        "exact-credit-once",
+        "second-table-entry-after-clear",
+        "fire-cleanup"
+      ],
+      "physicalListening": "NOT_RUN",
+      "physicalPerformance": "NOT_RUN"
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN"
+}

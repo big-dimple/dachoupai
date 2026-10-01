@@ -1,0 +1,103 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "profile": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "dpr": 1,
+      "input": "mouse clicks; native range keyboard changes",
+      "status": "PASS",
+      "nativeMusic": {
+        "src": "http://127.0.0.1:5221/assets/audio/p06/serenade-schubert-216755.mp3",
+        "duration": 217.939592,
+        "paused": false,
+        "time": 0.072562,
+        "rate": 1,
+        "readyState": 4
+      },
+      "restoredVolumes": {
+        "music": 0.22,
+        "sfx": 0.7
+      },
+      "mappedNewTextures": 16,
+      "detail": {
+        "src": "./assets/jokers-p06/b02-detail.webp",
+        "width": 615,
+        "height": 768,
+        "fit": "contain",
+        "visible": 287.1199645996094
+      },
+      "offerId": "b02",
+      "covered": [
+        "two sliders only",
+        "quiet defaults",
+        "first-gesture media lazy load",
+        "music/SFX independent zero",
+        "exact preference restore",
+        "continuous scene music",
+        "16 thumb loads",
+        "natural new-card full detail/cancel",
+        "actual first table entry"
+      ],
+      "pageErrors": []
+    },
+    {
+      "profile": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "dpr": 3,
+      "input": "touchscreen taps; native range keyboard changes",
+      "status": "PASS",
+      "nativeMusic": {
+        "src": "http://127.0.0.1:5221/assets/audio/p06/serenade-schubert-216755.mp3",
+        "duration": 217.939592,
+        "paused": false,
+        "time": 0.077518,
+        "rate": 1,
+        "readyState": 4
+      },
+      "restoredVolumes": {
+        "music": 0.22,
+        "sfx": 0.7
+      },
+      "mappedNewTextures": 16,
+      "detail": {
+        "src": "./assets/jokers-p06/b02-detail.webp",
+        "width": 615,
+        "height": 768,
+        "fit": "contain",
+        "visible": 258.6864013671875
+      },
+      "offerId": "b02",
+      "covered": [
+        "two sliders only",
+        "quiet defaults",
+        "first-gesture media lazy load",
+        "music/SFX independent zero",
+        "exact preference restore",
+        "continuous scene music",
+        "16 thumb loads",
+        "natural new-card full detail/cancel",
+        "actual first table entry"
+      ],
+      "pageErrors": []
+    },
+    {
+      "profile": "legacy-muted-migration",
+      "status": "PASS",
+      "music": 0,
+      "sfx": 0,
+      "speed": 2,
+      "reducedMotion": true,
+      "mediaRequested": false
+    }
+  ],
+  "physicalAndroid": "NOT_RUN",
+  "listening": "NOT_RUN",
+  "browser": "153.0.8010.12"
+}

@@ -8,7 +8,6 @@ import { IntermissionScene } from './game/IntermissionScene';
 import { ShopScene } from './game/ShopScene';
 import {installRunMenu} from './game/RunMenu';
 import {AudioEngine} from './audio/AudioEngine';
-import {gameSession} from './game/session';
 import {installViewport,viewportMetrics} from './platform/Viewport';
 
 const viewport=viewportMetrics();
@@ -35,9 +34,6 @@ game.canvas.tabIndex=0;
 game.canvas.setAttribute('aria-label','大丑牌牌桌，方向键聚焦手牌，空格选牌，Enter 查看详情');
 installRunMenu(game);
 const audio=AudioEngine.shared;
-const applyPresentation=()=>{audio.muted=gameSession().muted;};
-applyPresentation();
-window.addEventListener('dachoupai-presentation',applyPresentation);
 const unlockAudio=()=>{void audio.unlock();};
 window.addEventListener('pointerdown',unlockAudio,{once:true,capture:true});
 window.addEventListener('keydown',unlockAudio,{once:true,capture:true});

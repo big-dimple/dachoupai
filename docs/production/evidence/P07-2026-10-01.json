@@ -1,0 +1,161 @@
+{
+  "taskId": "P07",
+  "status": "ENGINEERING_CANDIDATE",
+  "testedCommit": "1d58fe4d40f201a6a76a764609323c2dc70a0e2d",
+  "testedTree": "main HEAD + final reviewed P06 audio and P07 visual working-tree changes. Exact LF code hashes below; source/output binary hashes in art manifests.",
+  "baseline": {
+    "branch": "main",
+    "initialPull": "git pull --ff-only origin main: Already up to date",
+    "initialHead": "1d58fe4d40f201a6a76a764609323c2dc70a0e2d",
+    "noReset": true,
+    "noForcePush": true
+  },
+  "scope": "Six new Chinese opening characters and24 current Joker illustrations through ChatGPT web Create Image; retain completed P06 music and SFX; no new gameplay, rule/RNG/save changes.",
+  "generator": {
+    "product": "ChatGPT Images 2.5 per current official documentation",
+    "entry": "Signed-in ChatGPT web Create Image",
+    "documentation": "https://help.openai.com/en/articles/11084440-images-in-chatgpt",
+    "backendSnapshot": "NOT_EXPOSED_BY_UI",
+    "requests": 31,
+    "adoptedIndependentSources": 30,
+    "rejectedSimilarFaceCandidate": 1,
+    "builtInImageGenUsed": false
+  },
+  "gold": {
+    "source": "art/sources/p07-characters/amo.png",
+    "review": "Root viewed generated original before UI integration; feminine Chinese mime, face/hands readable, jade cape and blank card, no visible watermark/text. Not human acceptance."
+  },
+  "checks": [
+    {
+      "command": "node scripts/export-character-art.mjs",
+      "status": "PASS",
+      "result": "6 reviewed square crops,6 selection thumbnails,6 full portraits; full decode/dimensions/hash in source manifest"
+    },
+    {
+      "command": "node shots/p07-integrate-assets.mjs (one-off; removed at closeout)",
+      "status": "PASS",
+      "result": "96 full image decodes,30 unique mother-image hashes,24 exact current Joker mappings",
+      "resultFile": "docs/production/evidence/p07-2026-10-01/art-check.json"
+    },
+    {
+      "command": "npx vitest run tests/audio-preferences.test.ts tests/joker-art.test.ts tests/portraitCrop.test.ts tests/score-presentation.test.ts tests/score-celebration.test.ts tests/stageNotice.test.ts",
+      "status": "PASS",
+      "result": "6 files /36 tests",
+      "log": "docs/production/evidence/p07-2026-10-01/targeted-tests.txt"
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "result": "TypeScript + production Vite build;1481.12KB JS /421.85KB gzip; existing >500KB warning unchanged",
+      "log": "docs/production/evidence/p07-2026-10-01/build.txt",
+      "firstFailure": {
+        "log": "docs/production/evidence/p07-2026-10-01/build-first-failure.txt",
+        "reason": "Preload call retained the previous helper name; corrected call and reran actual build"
+      }
+    },
+    {
+      "command": "node tools/blender/verify_assets.mjs",
+      "status": "PASS",
+      "result": "204 registered assets, no mismatch or unlisted file; allowlist empty",
+      "log": "docs/production/evidence/p07-2026-10-01/assets.txt",
+      "limits": "Technical integrity only, not human visual/rights approval"
+    },
+    {
+      "command": "SMOKE_CHROMIUM_CHANNEL=chromium SMOKE_FEEDBACK=only node harness/screenshot.mjs --verify-smoke",
+      "status": "PASS",
+      "result": "Natural straight1200 /target400, ordered impacts, three-tier flame/audio, credit once, clear-shop-second table8cards, no page error",
+      "log": "docs/production/evidence/p07-2026-10-01/smoke.txt",
+      "resultFile": "docs/production/evidence/p07-2026-10-01/smoke-result.json",
+      "limits": "This selected natural path only; complete engine matrix NOT_RUN"
+    },
+    {
+      "command": "node shots/p07-ui-probe.mjs (one-off; removed at closeout)",
+      "status": "PASS",
+      "result": "Real compiled UI, desktop1280x720 mouse /390x740 DPR3 touchscreen,12 full character-detail opens,24 Joker thumb loads, real shop detail/cancel without gold/RNG mutation, default22/100 sliders, first table8face cards, no response/page errors, no sourcePNG/GLB initial requests",
+      "log": "docs/production/evidence/p07-2026-10-01/ui.txt",
+      "resultFile": "docs/production/evidence/p07-2026-10-01/ui-result.json",
+      "captureCorrection": "The first snapshot captured shop/card entrance before its alpha/deal animation finished. Root viewed that actual evidence, corrected only the observation wait, then reran both UI profiles; final screenshots show all shelf art and face cards."
+    },
+    {
+      "command": "python -c \"import ast,pathlib; [ast.parse(pathlib.Path(p).read_text(encoding='utf-8-sig')) for p in ['tools/blender/build_asset_pack.py','tools/blender/make_raster_assets.py']]; print('Python asset tools syntax: PASS (full Blender generation NOT_RUN)')\"",
+      "status": "PASS",
+      "result": "Python syntax valid; full Blender production NOT_RUN"
+    },
+    {
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "result": "31 work packages; current A01; no gameplay acceptance",
+      "log": "docs/production/evidence/p07-2026-10-01/closeout.txt"
+    }
+  ],
+  "art": {
+    "characters": 6,
+    "jokers": 24,
+    "characterPreloadBytes": 238786,
+    "jokerPreloadBytes": 580968,
+    "lazyDetailBytes": 3390802,
+    "motherPNGsInPublic": false,
+    "sourceSize": "1122x1402 actual web output; no upscale to claim formal1536px source compliance",
+    "formalLayeredProduction": "NOT_RUN /A03 not approved",
+    "characterManifest": "art/sources/p07-characters/manifest.json",
+    "jokerManifest": "art/sources/p07-jokers/manifest.json",
+    "sourceParts": [
+      "art/sources/p07-jokers/part-a.json",
+      "art/sources/p07-jokers/part-b.json",
+      "art/sources/p07-jokers/part-c.json"
+    ]
+  },
+  "sourceHashesLF": {
+    "src/game/characters.ts": "84bed67ed74875bc700ffab6312268adcda3877f7403a0d10a9d0175c02564ff",
+    "src/game/portraits.ts": "a03b61c631ef73ab61c5ba87f2c7926aa1f4576feb9f0c2bf3eb2b7d3e3b6ccf",
+    "src/game/BootScene.ts": "eed4ba4d8ae1a72a802e5c467155ca25ba0cb74f61ff9313d2dd284efa30d64f",
+    "src/game/CharacterSelectScene.ts": "b039975eb0361cbb9d6fbe126a3bfb9e861e224c39c0304b68fe952d5f69b8e2",
+    "src/game/jokerArt.ts": "612eb5839218b4fa96f706aa5158e5b497fe2ea74ba400cb899b8bb4465f8578",
+    "src/audio/AudioEngine.ts": "4fe3c72715a7fa282f9a2afa39014cd7efd292d04622e436a90f15cf3f2985cb",
+    "src/audio/preferences.ts": "79f4715fbb4a8983c68491d9a01116a0a2ba68701c8003d1d692b4f9ad1ac577",
+    "src/game/RunMenu.ts": "535c40fbdc8ba16472766350e1e730f769fa48a780940629aa3fe73fa29cd009",
+    "src/game/GameScene.ts": "122ae089cf0b66e62040bd61fd8479c0b2fd36c33575903b0472f90e0f67a816",
+    "src/game/session.ts": "2016c45c364e3ad28da77236bbf0facb5c1ce42d00d17e5ae0492a45a19184de",
+    "src/main.ts": "04a90e47add1ac3fb3bd0e60b87dede6f05428ca8471ed3e48668c65eddf8a39",
+    "src/style.css": "e90e36ff9dc888a7338ae56d303005aa633283bde504a65c2c48ba54ce2c8dd3",
+    "vite.config.ts": "894e566a90a0512d30441c6664d6c3e4c3a7386f276299ce1352f79775dec2a3",
+    "scripts/export-character-art.mjs": "788a08df3372d18236b611382571dff1bf2885c45d5750828b3ce645ca65313f",
+    "tools/blender/build_asset_pack.py": "40902a90b35c0619e373bc9e0f3d8161cfec7ddb059ae1af0fb23a73ed6b14ae",
+    "tools/blender/make_raster_assets.py": "53438b00cf736afd765ab7957fcd7440461f3a64a2fee0d3a64a4888865c6f1b"
+  },
+  "retained": [
+    "P06 full217.94s Schubert piano stream and quiet22% default",
+    "independent0..100 music/SFX sliders and old preference migration",
+    "rolling/gurgling/airy SFX and per-event feedback",
+    "source-by-source scoring and flames/fire audio",
+    "resource-count pulse and loss highlights",
+    "stable character names/IDs/abilities, rule RNG and game save",
+    "39 old GLB/offline generation tools, no runtime3D"
+  ],
+  "cleanup": {
+    "removed": "Rejected P06 Western candidates, obsolete portrait/fullPNG exports, historical-name cropped/downloaded experiments and blind-resize script, replaced Western runtime Joker exports, one-off workspace probes and raw captures",
+    "reusable": "scripts/export-character-art.mjs consumes reviewed crop/source metadata",
+    "temporaryExportDirectories": "Automatic approval rejected recursive Temp export cleanup; two P06 directories remain outside the repository. No bypass or repo inclusion."
+  },
+  "notRun": [
+    "Physical Android Chrome /iPhone Safari",
+    "Phone speaker and headphone full-track listening /melody transcription",
+    "Human visual/interaction acceptance",
+    "Complete smoke-browser matrix /long E2E /balance and new gameplay",
+    "Full offline Blender production"
+  ],
+  "humanGate": {
+    "A01": "BLOCKED",
+    "V01": "BLOCKED",
+    "visualApproval": "NOT_GRANTED",
+    "listeningApproval": "NOT_GRANTED"
+  },
+  "screenshots": [
+    "docs/production/evidence/p07-2026-10-01/desktop-select.webp",
+    "docs/production/evidence/p07-2026-10-01/mobile-character-detail.webp",
+    "docs/production/evidence/p07-2026-10-01/mobile-shop.webp",
+    "docs/production/evidence/p07-2026-10-01/mobile-table.webp"
+  ],
+  "delivery": "Normal reviewed main commit/push executes after evidence is saved. The final response names its actual resulting SHA; no branch/force/reset/deployment operation.",
+  "nextStep": "Use key-node feedback on the same main visual candidate to refine art and interaction; no new gameplay before explicit user acceptance."
+}

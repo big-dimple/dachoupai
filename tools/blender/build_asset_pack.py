@@ -725,7 +725,7 @@ def register_rasters():
     paths=[]
     for folder in ['textures/p0','renders/p0','sprites/p0']:
         paths.extend((ROOT/'public/assets'/folder).glob('*'))
-    paths.extend((ROOT/'public/assets/characters').glob('*.avatar.webp'))
+    paths.extend((ROOT/'public/assets/characters-p07').glob('*.avatar.webp'))
     for path in sorted(paths):
         file=path.relative_to(ROOT/'public/assets').as_posix()
         if path.suffix not in ['.png','.webp','.json']:continue
@@ -733,7 +733,7 @@ def register_rasters():
             purpose='三层东方戏台背景的合成预览；选角/牌桌构图评审'
         elif 'background-' in path.name:
             purpose='东方戏台视差背景；far 远景不透明 / mid 中景与 near 近景透明，同投影 1920×1080'
-        elif path.name.endswith('.avatar.webp'):purpose='既有立绘裁切 512×512 头像，HUD/商店可直接使用'
+        elif path.name.endswith('.avatar.webp'):purpose='P07经复审裁切的256×256独立头像；视觉批准另列'
         elif 'sprites/' in file:purpose='256px 单帧、16 帧 30fps 透明特效精灵表 / Phaser atlas 元数据'
         elif 'textures/' in file:purpose='可编辑源纹理：'+path.stem+'（UV0，PNG，无外部依赖）'
         else:purpose='资产或动画姿态预览，供美术评审与选型'

@@ -1,0 +1,207 @@
+{
+  "testedCommit": "1d58fe4d40f201a6a76a764609323c2dc70a0e2d",
+  "dirty": "D art/sources/p00-portraits/amo.original.png\n D art/sources/p00-portraits/azao.original.png\n D art/sources/p00-portraits/erxiang.original.png\n D art/sources/p00-portraits/laohuan.original.png\n D art/sources/p00-portraits/manifest.json\n D art/sources/p00-portraits/touye.original.png\n D art/sources/p00-portraits/xiemu.original.png\nMM docs/development-handoff.md\nMM docs/production/ART.md\nMM docs/production/DECISIONS.md\nM  docs/production/ENGINEERING.md\nM  docs/production/UX.md\nMM docs/production/WORK_PACKAGES.md\nAM docs/production/evidence/P06-2026-10-01.json\nMM docs/production/evidence/a00-2026-10-01/inventory.json\nA  docs/production/evidence/p06-2026-10-01/art-check.json\nA  docs/production/evidence/p06-2026-10-01/assets.txt\nA  docs/production/evidence/p06-2026-10-01/audio-preferences-red.txt\nA  docs/production/evidence/p06-2026-10-01/audio-result.json\nA  docs/production/evidence/p06-2026-10-01/audio-summary.txt\nA  docs/production/evidence/p06-2026-10-01/build.txt\nA  docs/production/evidence/p06-2026-10-01/closeout.txt\nA  docs/production/evidence/p06-2026-10-01/joker-art-red.txt\nA  docs/production/evidence/p06-2026-10-01/mobile-detail.webp\nA  docs/production/evidence/p06-2026-10-01/mobile-settings.webp\nA  docs/production/evidence/p06-2026-10-01/mobile-shop.webp\nA  docs/production/evidence/p06-2026-10-01/smoke-build-info.json\nA  docs/production/evidence/p06-2026-10-01/smoke-result.json\nA  docs/production/evidence/p06-2026-10-01/smoke.txt\nA  docs/production/evidence/p06-2026-10-01/targeted-tests.txt\nA  docs/production/evidence/p06-2026-10-01/ui-result.json\nMM docs/production/plan.json\nM  harness/e2e.mjs\nM  harness/v00.mjs\nA  public/assets/audio/p06/recording.json\nA  public/assets/audio/p06/serenade-schubert-216755.mp3\n D public/assets/characters/amo.avatar.webp\n D public/assets/characters/amo.png\n D public/assets/characters/azao.avatar.webp\n D public/assets/characters/azao.png\n D public/assets/characters/erxiang.avatar.webp\n D public/assets/characters/erxiang.png\n D public/assets/characters/laohuan.avatar.webp\n D public/assets/characters/laohuan.png\n D public/assets/characters/touye.avatar.webp\n D public/assets/characters/touye.png\n D public/assets/characters/xiemu.avatar.webp\n D public/assets/characters/xiemu.png\n D public/assets/jokers-p05/a03-detail.webp\n D public/assets/jokers-p05/a03.webp\n D public/assets/jokers-p05/d03-detail.webp\n D public/assets/jokers-p05/d03.webp\n D public/assets/jokers-p05/f02-detail.webp\n D public/assets/jokers-p05/f02.webp\n D public/assets/jokers-p05/manifest.json\n D public/assets/jokers-p05/mantangcai-detail.webp\n D public/assets/jokers-p05/mantangcai.webp\n D public/assets/jokers-p05/tiesuanpan-detail.webp\n D public/assets/jokers-p05/tiesuanpan.webp\n M public/assets/models/asset-pack-v1.json\n D public/assets/p00/characters/amo.avatar.webp\n D public/assets/p00/characters/amo.portrait.webp\n D public/assets/p00/characters/azao.avatar.webp\n D public/assets/p00/characters/azao.portrait.webp\n D public/assets/p00/characters/erxiang.avatar.webp\n D public/assets/p00/characters/erxiang.portrait.webp\n D public/assets/p00/characters/laohuan.avatar.webp\n D public/assets/p00/characters/laohuan.portrait.webp\n D public/assets/p00/characters/manifest.json\n D public/assets/p00/characters/touye.avatar.webp\n D public/assets/p00/characters/touye.portrait.webp\n D public/assets/p00/characters/xiemu.avatar.webp\n D public/assets/p00/characters/xiemu.portrait.webp\n D public/assets/p01/jokers/e05-detail.webp\n D public/assets/p01/jokers/e05.webp\n D public/assets/p01/jokers/huimaqiang-detail.webp\n D public/assets/p01/jokers/huimaqiang.webp\n D public/assets/p01/jokers/manifest.json\n D public/assets/p01/jokers/pengci-detail.webp\n D public/assets/p01/jokers/pengci.webp\nM  src/audio/AudioEngine.ts\nD  src/audio/chopinTheme.ts\nA  src/audio/preferences.ts\n M src/game/BootScene.ts\n M src/game/CharacterSelectScene.ts\nM  src/game/GameScene.ts\nM  src/game/RunMenu.ts\n M src/game/characters.ts\nMM src/game/jokerArt.ts\n M src/game/portraits.ts\nM  src/game/session.ts\nM  src/main.ts\nM  src/style.css\nA  tests/audio-preferences.test.ts\nA  tests/joker-art.test.ts\n M tools/blender/build_asset_pack.py\n M tools/blender/make_raster_assets.py\nMM vite.config.ts\n?? art/sources/p07-characters/\n?? art/sources/p07-jokers/\n?? docs/production/evidence/p06-2026-10-01/assets-index.txt\n?? docs/production/evidence/p06-2026-10-01/assets-initial.txt\n?? docs/production/evidence/p06-2026-10-01/build-index.txt\n?? docs/production/evidence/p06-2026-10-01/build-info.json\n?? docs/production/evidence/p07-2026-10-01/\n?? public/assets/characters-p07/\n?? public/assets/jokers-p07/\n?? scripts/export-character-art.mjs",
+  "checks": [
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "channel": "chromium",
+      "profile": "natural-three-times-target",
+      "status": "PASS",
+      "seed": "p04-golden-02",
+      "character": "touye",
+      "selectedIds": [
+        "clubs-5",
+        "diamonds-14",
+        "clubs-4",
+        "diamonds-3",
+        "clubs-2"
+      ],
+      "finalScore": "1200",
+      "target": "400",
+      "burstElapsedMs": 8243,
+      "renderFps": 33.334556579589844,
+      "linkedAudio": {
+        "context": "running",
+        "sfxVoices": 11,
+        "master": 1
+      },
+      "observation": {
+        "events": [
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/1",
+            "phase": "windup",
+            "at": 1470.9000000059605,
+            "label": "5♣ · +5 热度",
+            "heat": "125",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/1",
+            "phase": "impact",
+            "at": 1869.7000000029802,
+            "label": "5♣ · +5 热度",
+            "heat": "125",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/1",
+            "phase": "rest",
+            "at": 2250.2999999970198,
+            "label": "5♣ · +5 热度",
+            "heat": "130",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/2",
+            "phase": "windup",
+            "at": 2430.9000000059605,
+            "label": "A♦ · +11 热度",
+            "heat": "130",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/2",
+            "phase": "impact",
+            "at": 2850.9000000059605,
+            "label": "A♦ · +11 热度",
+            "heat": "130",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/2",
+            "phase": "rest",
+            "at": 3211.7999999970198,
+            "label": "A♦ · +11 热度",
+            "heat": "141",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/3",
+            "phase": "windup",
+            "at": 3397.4000000059605,
+            "label": "4♣ · +4 热度",
+            "heat": "141",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/3",
+            "phase": "impact",
+            "at": 3811.4000000059605,
+            "label": "4♣ · +4 热度",
+            "heat": "141",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/3",
+            "phase": "rest",
+            "at": 4177.9000000059605,
+            "label": "4♣ · +4 热度",
+            "heat": "145",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/4",
+            "phase": "windup",
+            "at": 4381.4000000059605,
+            "label": "3♦ · +3 热度",
+            "heat": "145",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/4",
+            "phase": "impact",
+            "at": 4773.9000000059605,
+            "label": "3♦ · +3 热度",
+            "heat": "145",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/4",
+            "phase": "rest",
+            "at": 5160.79999999702,
+            "label": "3♦ · +3 热度",
+            "heat": "148",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/5",
+            "phase": "windup",
+            "at": 5340.4000000059605,
+            "label": "2♣ · +2 热度",
+            "heat": "148",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/5",
+            "phase": "impact",
+            "at": 5760.5999999940395,
+            "label": "2♣ · +2 热度",
+            "heat": "148",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/5",
+            "phase": "rest",
+            "at": 6120.79999999702,
+            "label": "2♣ · +2 热度",
+            "heat": "150",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/6",
+            "phase": "windup",
+            "at": 6304.29999999702,
+            "label": "骰爷 · ×2 倍率",
+            "heat": "150",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/6",
+            "phase": "impact",
+            "at": 7087.0999999940395,
+            "label": "骰爷 · ×2 倍率",
+            "heat": "150",
+            "mult": "× 4"
+          },
+          {
+            "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/6",
+            "phase": "rest",
+            "at": 7681.9000000059605,
+            "label": "骰爷 · ×2 倍率",
+            "heat": "150",
+            "mult": "× 8"
+          }
+        ],
+        "fire": [
+          {
+            "level": 1,
+            "at": 810.4000000059605,
+            "voices": 2
+          },
+          {
+            "level": 3,
+            "at": 7087.0999999940395,
+            "voices": 2
+          }
+        ]
+      },
+      "covered": [
+        "natural-wager-straight",
+        "every-source-ordered-impact",
+        "individual-card-pace",
+        "3x-flame-and-burning-audio",
+        "real-3x-stamp",
+        "score-number-bounce",
+        "scheduled-overkill-audio",
+        "exact-credit-once",
+        "second-table-entry-after-clear",
+        "fire-cleanup"
+      ],
+      "physicalListening": "NOT_RUN",
+      "physicalPerformance": "NOT_RUN"
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN"
+}

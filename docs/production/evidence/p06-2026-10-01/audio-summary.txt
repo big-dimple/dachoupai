@@ -1,0 +1,37 @@
+P06 AUDIO — one-off verification evidence, not a permanent harness
+Workspace: D:/ai/dachoupai/dachoupai
+Date: 2026-10-01
+
+Source: https://pixabay.com/music/solo-piano-serenade-schubert-216755/
+Contributor: Jérôme Chauvel / Abydos Music
+Recording license: Pixabay Content License, not CC0.
+License: https://pixabay.com/service/terms/#license
+Recording technique / source arrangement edition: NOT_SPECIFIED.
+Use: Integrated game background only; no standalone music-download or asset-library offering.
+
+ACTUAL CONVERSION COMMAND (PowerShell, executed in workspace)
+& 'C:/Users/wanghongping/AppData/Local/Temp/dachoupai-p06-audio/tools/imageio_ffmpeg/binaries/ffmpeg-win-x86_64-v7.1.exe' -hide_banner -i 'C:/Users/wanghongping/Downloads/abydos_music-serenade-schubert-216755.mp3' -map_metadata -1 -vn -c:a libmp3lame -b:a 128k -ac 2 'D:/ai/dachoupai/dachoupai/public/assets/audio/p06/serenade-schubert-216755.mp3'
+Observed exit code: 0.
+Source FFmpeg input metadata: MP3 256kbps, 44100Hz stereo, 3:37.94. Separate ffprobe NOT_RUN (unavailable).
+No tempo, pitch, EQ, loudness, excerpt or channel-count change. FFmpeg toolkit installed only in Temp, no project dependency.
+Original local download: 6974067bytes; SHA256 43984bc3fc5d9965c977022d0c4d55bee0513587c6b3ad2c98af8b6509ce7589.
+Runtime MP3: 3487912bytes; SHA256 e07b53322fd650fb5929215cef3b07b34977a2c486e140f8b71c5a23017daead.
+
+ACTUAL FINAL TYPECHECK COMMAND (PowerShell)
+& 'C:/Program Files/nodejs/node.exe' 'node_modules/typescript/bin/tsc' --noEmit
+Observed exit code: 0; stdout empty; wall time 3.0376358 seconds.
+Frozen AudioEngine SHA256 b2c8bdcde640aa5e8494a8a9316965c5e5f79c1ce2880abcdb151f30709a797b.
+recording.json SHA256 dfb139a918cbdd3a2c2947fefd391e21979908e60a2330575661f6358b16958b.
+
+ACTUAL FINAL PROBE COMMAND (PowerShell)
+& 'C:/Program Files/nodejs/node.exe' 'C:/Users/wanghongping/AppData/Local/Temp/dachoupai-p06-audio/check.cjs'
+Observed exit code: 0; wall time 4.5295583 seconds.
+output.json is the actual JSON written by that executed script, not reconstructed assertions.
+Earlier probe failures: one wrapper-syntax error before PCM; three probe assertions read idle AudioParam.value synchronously or without an active input. No runtime code was changed for these. Final probe waits 40ms and attaches tiny temporary constant inputs so idle native routes process their gain timeline. The PCM and native cancellation results remained unchanged.
+
+LIMITS
+OfflineAudioContext PCM is real; Offline currentTime/state getters and resume/suspend are substitutes.
+Offline scheduled 0.55s render pause/resume is native. BGM PCM uses the decoded runtime MP3 in the actual engine gain/compressor/ceiling graph, selecting 12–14 seconds.
+Native HTMLAudioElement / AudioContext streaming lifecycle is separately real. Its music object and node remain continuous across scene/pause/resume; one context and one enabled-track request.
+Voice stress/render samples are technical level evidence, not hardware sound pressure or perceptual approval.
+Human headphone / phone audition, exact melody recognition against the score and product audio approval: NOT_RUN / NOT_GRANTED.

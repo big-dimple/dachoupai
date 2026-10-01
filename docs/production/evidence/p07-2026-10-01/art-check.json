@@ -1,0 +1,957 @@
+{
+  "status": "PASS",
+  "completeImageDecodes": 96,
+  "uniqueSourceHashes": 30,
+  "characters": 6,
+  "jokers": 24,
+  "requestCount": 31,
+  "failedSameFaceCandidate": 1,
+  "thumbnailBytes": 580968,
+  "characterPreloadBytes": 238786,
+  "lazyDetailBytes": 3390802,
+  "removedInventoryPaths": [
+    "public/assets/characters/amo.avatar.webp",
+    "public/assets/characters/amo.png",
+    "public/assets/characters/azao.avatar.webp",
+    "public/assets/characters/azao.png",
+    "public/assets/characters/erxiang.avatar.webp",
+    "public/assets/characters/erxiang.png",
+    "public/assets/characters/laohuan.avatar.webp",
+    "public/assets/characters/laohuan.png",
+    "public/assets/characters/touye.avatar.webp",
+    "public/assets/characters/touye.png",
+    "public/assets/characters/xiemu.avatar.webp",
+    "public/assets/characters/xiemu.png",
+    "public/assets/jokers-p05/a03-detail.webp",
+    "public/assets/jokers-p05/a03.webp",
+    "public/assets/jokers-p05/d03-detail.webp",
+    "public/assets/jokers-p05/d03.webp",
+    "public/assets/jokers-p05/f02-detail.webp",
+    "public/assets/jokers-p05/f02.webp",
+    "public/assets/jokers-p05/manifest.json",
+    "public/assets/jokers-p05/mantangcai-detail.webp",
+    "public/assets/jokers-p05/mantangcai.webp",
+    "public/assets/jokers-p05/tiesuanpan-detail.webp",
+    "public/assets/jokers-p05/tiesuanpan.webp",
+    "public/assets/p00/characters/amo.avatar.webp",
+    "public/assets/p00/characters/amo.portrait.webp",
+    "public/assets/p00/characters/azao.avatar.webp",
+    "public/assets/p00/characters/azao.portrait.webp",
+    "public/assets/p00/characters/erxiang.avatar.webp",
+    "public/assets/p00/characters/erxiang.portrait.webp",
+    "public/assets/p00/characters/laohuan.avatar.webp",
+    "public/assets/p00/characters/laohuan.portrait.webp",
+    "public/assets/p00/characters/manifest.json",
+    "public/assets/p00/characters/touye.avatar.webp",
+    "public/assets/p00/characters/touye.portrait.webp",
+    "public/assets/p00/characters/xiemu.avatar.webp",
+    "public/assets/p00/characters/xiemu.portrait.webp",
+    "public/assets/p01/jokers/e05-detail.webp",
+    "public/assets/p01/jokers/e05.webp",
+    "public/assets/p01/jokers/huimaqiang-detail.webp",
+    "public/assets/p01/jokers/huimaqiang.webp",
+    "public/assets/p01/jokers/manifest.json",
+    "public/assets/p01/jokers/pengci-detail.webp",
+    "public/assets/p01/jokers/pengci.webp",
+    "public/assets/jokers-p06/a05-detail.webp",
+    "public/assets/jokers-p06/a05.webp",
+    "public/assets/jokers-p06/b02-detail.webp",
+    "public/assets/jokers-p06/b02.webp",
+    "public/assets/jokers-p06/b03-detail.webp",
+    "public/assets/jokers-p06/b03.webp",
+    "public/assets/jokers-p06/b04-detail.webp",
+    "public/assets/jokers-p06/b04.webp",
+    "public/assets/jokers-p06/c02-detail.webp",
+    "public/assets/jokers-p06/c02.webp",
+    "public/assets/jokers-p06/c04-detail.webp",
+    "public/assets/jokers-p06/c04.webp",
+    "public/assets/jokers-p06/c06-detail.webp",
+    "public/assets/jokers-p06/c06.webp",
+    "public/assets/jokers-p06/d01-detail.webp",
+    "public/assets/jokers-p06/d01.webp",
+    "public/assets/jokers-p06/d05-detail.webp",
+    "public/assets/jokers-p06/d05.webp",
+    "public/assets/jokers-p06/d10-detail.webp",
+    "public/assets/jokers-p06/d10.webp",
+    "public/assets/jokers-p06/e01-detail.webp",
+    "public/assets/jokers-p06/e01.webp",
+    "public/assets/jokers-p06/e03-detail.webp",
+    "public/assets/jokers-p06/e03.webp",
+    "public/assets/jokers-p06/e08-detail.webp",
+    "public/assets/jokers-p06/e08.webp",
+    "public/assets/jokers-p06/f03-detail.webp",
+    "public/assets/jokers-p06/f03.webp",
+    "public/assets/jokers-p06/f09-detail.webp",
+    "public/assets/jokers-p06/f09.webp",
+    "public/assets/jokers-p06/jiedongfeng-detail.webp",
+    "public/assets/jokers-p06/jiedongfeng.webp"
+  ],
+  "checks": [
+    {
+      "id": "amo",
+      "path": "art/sources/p07-characters/amo.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2149006,
+      "sha256": "19b8bc5907f63a9f4b95acdfc4eb532e102603b3275e53c7549402b92e376ae7",
+      "status": "PASS"
+    },
+    {
+      "id": "amo",
+      "path": "public/assets/characters-p07/amo.avatar.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 12652,
+      "sha256": "c0d2fd29db1116951f0acbe0381fd7985e7aa2936bcd398b6236d501118e7be9",
+      "status": "PASS"
+    },
+    {
+      "id": "amo",
+      "path": "public/assets/characters-p07/amo.selection.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 20204,
+      "sha256": "069c6044df114e33bfcae3bd913d063f07705230217076d85f5673f7e3e1d9d4",
+      "status": "PASS"
+    },
+    {
+      "id": "amo",
+      "path": "public/assets/characters-p07/amo.portrait.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 77082,
+      "sha256": "e40ab6bece1a537db49d92c2f2deb9f01c0e25f40fb5b4a13bae4d29ecfa23b4",
+      "status": "PASS"
+    },
+    {
+      "id": "touye",
+      "path": "art/sources/p07-characters/touye.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2283214,
+      "sha256": "d7509685a6e707ba253427fcc92d65514527fcdee1496c710279557a1638379c",
+      "status": "PASS"
+    },
+    {
+      "id": "touye",
+      "path": "public/assets/characters-p07/touye.avatar.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 14978,
+      "sha256": "82162eb76626a6402fdee2ad9473814f501054e7cb49323562dff245b78d3507",
+      "status": "PASS"
+    },
+    {
+      "id": "touye",
+      "path": "public/assets/characters-p07/touye.selection.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 22674,
+      "sha256": "8e3901b8ad35569b4ccff002e7a14bc08ccd0c135eeb8be5a042f77a893e0a15",
+      "status": "PASS"
+    },
+    {
+      "id": "touye",
+      "path": "public/assets/characters-p07/touye.portrait.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 92552,
+      "sha256": "1638e004e331497d1fc7fb8ed3f413c16f834598be56f5f8596491628f156d7a",
+      "status": "PASS"
+    },
+    {
+      "id": "laohuan",
+      "path": "art/sources/p07-characters/laohuan.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2351974,
+      "sha256": "4f1aafc591274ce9d72b85827a9ad65e1ac8ba2f4ef5a67230a220159c03d037",
+      "status": "PASS"
+    },
+    {
+      "id": "laohuan",
+      "path": "public/assets/characters-p07/laohuan.avatar.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 18520,
+      "sha256": "5e64913b8bc22179986c61ae1865f9ee85fd31879402b0df2893cfdcff35695b",
+      "status": "PASS"
+    },
+    {
+      "id": "laohuan",
+      "path": "public/assets/characters-p07/laohuan.selection.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 24896,
+      "sha256": "f8f5ee3e73e68d7861411b2f743cbd5678cc5e8dd56aae373704afd2ded135fb",
+      "status": "PASS"
+    },
+    {
+      "id": "laohuan",
+      "path": "public/assets/characters-p07/laohuan.portrait.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 107386,
+      "sha256": "226596012c713eebd8f913b724f0cd2a0affef42764dd004b38ed6e57bd38b2b",
+      "status": "PASS"
+    },
+    {
+      "id": "erxiang",
+      "path": "art/sources/p07-characters/erxiang.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2300090,
+      "sha256": "ee109706f7a8a9eed53ef2fe9326bead5ef996dde909ba9341727e1ad933999d",
+      "status": "PASS"
+    },
+    {
+      "id": "erxiang",
+      "path": "public/assets/characters-p07/erxiang.avatar.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 15674,
+      "sha256": "053f5dd09e6786b679113a130a8a1a3fc5a77cd23786a821d796d9c19da698ca",
+      "status": "PASS"
+    },
+    {
+      "id": "erxiang",
+      "path": "public/assets/characters-p07/erxiang.selection.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 24704,
+      "sha256": "dc4b2c9c160183baf245b8fd31b21b83ef9fc08f929d56e15c4d85416ede16c4",
+      "status": "PASS"
+    },
+    {
+      "id": "erxiang",
+      "path": "public/assets/characters-p07/erxiang.portrait.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 100360,
+      "sha256": "e11162f6d7fe61252e75044d04bd503d8fc11083fa1c87d482c2581f139b9624",
+      "status": "PASS"
+    },
+    {
+      "id": "azao",
+      "path": "art/sources/p07-characters/azao.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2248561,
+      "sha256": "8430fdeabdfae664a5943e8ad769246aade438f42331abf779891dfbdc524bf5",
+      "status": "PASS"
+    },
+    {
+      "id": "azao",
+      "path": "public/assets/characters-p07/azao.avatar.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 18410,
+      "sha256": "518a90da28c06313401ea72e48384f36e09860e293ecad8c37e079794929f4cf",
+      "status": "PASS"
+    },
+    {
+      "id": "azao",
+      "path": "public/assets/characters-p07/azao.selection.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 25954,
+      "sha256": "2cb82b4bd9ea72911b671fe5d8991e6981414d867dd27ea75eae8333c6adb662",
+      "status": "PASS"
+    },
+    {
+      "id": "azao",
+      "path": "public/assets/characters-p07/azao.portrait.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 99730,
+      "sha256": "9ea3a00e2aed90d7718b81241174dc2a4839e34f4ca793c6c3de7f591097aae9",
+      "status": "PASS"
+    },
+    {
+      "id": "xiemu",
+      "path": "art/sources/p07-characters/xiemu.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2320547,
+      "sha256": "99f75a370db706245297f800830668b509ee631d9be4402f7fb99f004376047e",
+      "status": "PASS"
+    },
+    {
+      "id": "xiemu",
+      "path": "public/assets/characters-p07/xiemu.avatar.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 16052,
+      "sha256": "7d98072c1c02a3790f1ac2c41e38a52a843987426a1573ce6560028727407b40",
+      "status": "PASS"
+    },
+    {
+      "id": "xiemu",
+      "path": "public/assets/characters-p07/xiemu.selection.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 24068,
+      "sha256": "e642c7dec217fd74bb8f9fb6bed97d2f8c21dbc313bdf2eeddcb99e55a7b48b5",
+      "status": "PASS"
+    },
+    {
+      "id": "xiemu",
+      "path": "public/assets/characters-p07/xiemu.portrait.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 94928,
+      "sha256": "091b8990d0dc5e7fb69139e20a5be96dd65f9f3ffd809d49466c6b49b6076eb9",
+      "status": "PASS"
+    },
+    {
+      "id": "pengci",
+      "path": "art/sources/p07-jokers/pengci.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2358069,
+      "sha256": "b643a4281d5ce96ab505066fa76ad5d13e8956e6ba7bbdba1a87337208b58528",
+      "status": "PASS"
+    },
+    {
+      "id": "pengci",
+      "path": "public/assets/jokers-p07/pengci.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 22448,
+      "sha256": "fb4d7953cc9303026be8b3e9b133ecb8ac1cbada7ec9a2b8ae59460b4d30629b",
+      "status": "PASS"
+    },
+    {
+      "id": "pengci",
+      "path": "public/assets/jokers-p07/pengci-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 111488,
+      "sha256": "a4e53a9c5eefb03b639da4fee1c3ef3e3180728982a66035181ec524bb2ae0ec",
+      "status": "PASS"
+    },
+    {
+      "id": "mantangcai",
+      "path": "art/sources/p07-jokers/mantangcai.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2098273,
+      "sha256": "010585e9d9c18c51d25380764086125dfa70437d7cee13d7a27163ca9b497ca2",
+      "status": "PASS"
+    },
+    {
+      "id": "mantangcai",
+      "path": "public/assets/jokers-p07/mantangcai.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 21006,
+      "sha256": "b345310a8a2b505302485e5ab34492c341a533abf3d7e098b1ebb5121569479c",
+      "status": "PASS"
+    },
+    {
+      "id": "mantangcai",
+      "path": "public/assets/jokers-p07/mantangcai-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 90684,
+      "sha256": "c3d3b504bae404e96871a31652690f73c1b0f95c0c3a6dc2ba98875cdd2d35cd",
+      "status": "PASS"
+    },
+    {
+      "id": "tiesuanpan",
+      "path": "art/sources/p07-jokers/tiesuanpan.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2229112,
+      "sha256": "202bfc2edd21080491fb69967bf83ff35d14e4a0315e35181b5e667ff70868e2",
+      "status": "PASS"
+    },
+    {
+      "id": "tiesuanpan",
+      "path": "public/assets/jokers-p07/tiesuanpan.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 24816,
+      "sha256": "b1d29908236028eead4d54379466cafb65b2677005e338ce8a5911d525d59d1f",
+      "status": "PASS"
+    },
+    {
+      "id": "tiesuanpan",
+      "path": "public/assets/jokers-p07/tiesuanpan-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 112102,
+      "sha256": "8a10a449b9f974ea1bb5b4b7a513a085217e6d8c14ae929906f9a5ec85990a06",
+      "status": "PASS"
+    },
+    {
+      "id": "huimaqiang",
+      "path": "art/sources/p07-jokers/huimaqiang.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2419790,
+      "sha256": "838f2b706283db848e6f5993fc3c3cf3a1a55ba1e4089a67650ad999f5917dd2",
+      "status": "PASS"
+    },
+    {
+      "id": "huimaqiang",
+      "path": "public/assets/jokers-p07/huimaqiang.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 23712,
+      "sha256": "41a75934fd77b26bd94e3d09d6683453bec7c836fa0162463cd06b48e9c875a8",
+      "status": "PASS"
+    },
+    {
+      "id": "huimaqiang",
+      "path": "public/assets/jokers-p07/huimaqiang-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 119756,
+      "sha256": "0a8a31d321921f4b63e9a5ab40c7a380ff371983fc767511dbeac8bd91c057f0",
+      "status": "PASS"
+    },
+    {
+      "id": "jiedongfeng",
+      "path": "art/sources/p07-jokers/jiedongfeng.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2514796,
+      "sha256": "dbc6e61a7870bd7cf5404a3b0bedc61fb5a9897ea49ad9c6f557b642bcd89166",
+      "status": "PASS"
+    },
+    {
+      "id": "jiedongfeng",
+      "path": "public/assets/jokers-p07/jiedongfeng.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 23362,
+      "sha256": "be042740a519cdbb9c7356044b207620ffafac8c22acd3dcc28b113799612310",
+      "status": "PASS"
+    },
+    {
+      "id": "jiedongfeng",
+      "path": "public/assets/jokers-p07/jiedongfeng-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 121636,
+      "sha256": "247d556f1182c8c8b9be5d0989642fa54655ab47292014425c804bd05426e573",
+      "status": "PASS"
+    },
+    {
+      "id": "a03",
+      "path": "art/sources/p07-jokers/a03.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2362465,
+      "sha256": "b70cecb5f696ef6081d3f1616a0e40653b0533df36840187363db385b3b95641",
+      "status": "PASS"
+    },
+    {
+      "id": "a03",
+      "path": "public/assets/jokers-p07/a03.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 21946,
+      "sha256": "2c60e2177f7b3feb60c8d3eb4713d28ddf0f6992374019c1ce23e527fbc29c2f",
+      "status": "PASS"
+    },
+    {
+      "id": "a03",
+      "path": "public/assets/jokers-p07/a03-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 109258,
+      "sha256": "6e911e319d216825c5623eba60bb33e865d6f128cc29c0a63adb89ded9079b40",
+      "status": "PASS"
+    },
+    {
+      "id": "a05",
+      "path": "art/sources/p07-jokers/a05.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2206709,
+      "sha256": "be50d224730e096c682df7acca25edefc99fea521d2db9bdcaa3beaf9cef37e6",
+      "status": "PASS"
+    },
+    {
+      "id": "a05",
+      "path": "public/assets/jokers-p07/a05.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 22396,
+      "sha256": "36596a9fa7b54e3e4ad705a5690fbe9929f20eae323db52a71b2d99270eb5158",
+      "status": "PASS"
+    },
+    {
+      "id": "a05",
+      "path": "public/assets/jokers-p07/a05-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 101906,
+      "sha256": "3f623348f544d5f5e1b8123c0fc2c5545f0fc60e54acf24922bab42ff807e1cb",
+      "status": "PASS"
+    },
+    {
+      "id": "b02",
+      "path": "art/sources/p07-jokers/b02.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2328183,
+      "sha256": "49088befbc7e8a4fdc3a30ce73e1bc20287ccba9425e7a6d8303a207f2e07dab",
+      "status": "PASS"
+    },
+    {
+      "id": "b02",
+      "path": "public/assets/jokers-p07/b02.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 20262,
+      "sha256": "01499193f64950f38f59ef26ec3692b598fe860a6115bde3204a6ae2fe951df5",
+      "status": "PASS"
+    },
+    {
+      "id": "b02",
+      "path": "public/assets/jokers-p07/b02-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 105946,
+      "sha256": "83a38cc8d847b54a0101b58ba8767ba50b423defb2cd641bbfbbc4d5e3175719",
+      "status": "PASS"
+    },
+    {
+      "id": "b03",
+      "path": "art/sources/p07-jokers/b03.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2453271,
+      "sha256": "94283398a798890386027a9da78713522ca32558faf5fc7b7c560e2be2e9e487",
+      "status": "PASS"
+    },
+    {
+      "id": "b03",
+      "path": "public/assets/jokers-p07/b03.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 23466,
+      "sha256": "a805e29e24ffce035e6aae1770476fb51ef96e0491fa5269da5e0bcca6e38179",
+      "status": "PASS"
+    },
+    {
+      "id": "b03",
+      "path": "public/assets/jokers-p07/b03-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 124100,
+      "sha256": "5f477b6ba8db98c8cbc20c08d7f0842119b45cabfa9234fa6764220632b7bad3",
+      "status": "PASS"
+    },
+    {
+      "id": "b04",
+      "path": "art/sources/p07-jokers/b04.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2371819,
+      "sha256": "b06d7588d011792202088bf1f1cedc0bdd1760d41f1ab07a328e7b4c5e67e527",
+      "status": "PASS"
+    },
+    {
+      "id": "b04",
+      "path": "public/assets/jokers-p07/b04.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 24276,
+      "sha256": "2dffdc6ee43afdbed7799a19490ad36e997001f55652e3ba1d7dea060e563ec7",
+      "status": "PASS"
+    },
+    {
+      "id": "b04",
+      "path": "public/assets/jokers-p07/b04-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 115284,
+      "sha256": "392a903bb9da871038c49634c9b3849afeab936ae7e11cf4134d3bbbe44996d5",
+      "status": "PASS"
+    },
+    {
+      "id": "c02",
+      "path": "art/sources/p07-jokers/c02.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2275999,
+      "sha256": "997d7410bbd9e4c710f6153030e1f847ee870d4b1653843c892f43ffc25da55b",
+      "status": "PASS"
+    },
+    {
+      "id": "c02",
+      "path": "public/assets/jokers-p07/c02.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 24364,
+      "sha256": "4ba1d564839049a99704fc150cbeac0d31771106ee8c904b203ec10c8627d821",
+      "status": "PASS"
+    },
+    {
+      "id": "c02",
+      "path": "public/assets/jokers-p07/c02-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 110126,
+      "sha256": "76b23ed15f4d465c453a7981709956c699c255a3b9149ac408b6745a10cc90cc",
+      "status": "PASS"
+    },
+    {
+      "id": "c04",
+      "path": "art/sources/p07-jokers/c04.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2322228,
+      "sha256": "de2b71865240f4b15e969bc5f2d7da209b1d9504275a42bd28dad5a33fa01630",
+      "status": "PASS"
+    },
+    {
+      "id": "c04",
+      "path": "public/assets/jokers-p07/c04.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 25884,
+      "sha256": "0c6ebaf15dcbac27f22441fe8645f17628658197db9a103bb3f4e1da3d78dc29",
+      "status": "PASS"
+    },
+    {
+      "id": "c04",
+      "path": "public/assets/jokers-p07/c04-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 122334,
+      "sha256": "e9d12220d4d9c4c5b2b7257ddb2159f153bbf8c09146453e271d69d4fba32820",
+      "status": "PASS"
+    },
+    {
+      "id": "c06",
+      "path": "art/sources/p07-jokers/c06.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2457340,
+      "sha256": "10f804bd40e8591837b87d97bab4b2b1cdd953f66eb85f308940a187ac2c0a96",
+      "status": "PASS"
+    },
+    {
+      "id": "c06",
+      "path": "public/assets/jokers-p07/c06.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 29256,
+      "sha256": "2557fe8ead81d84865fd9f950d8695d4d3d1d72e3cfb13ccbff86db36cc841f8",
+      "status": "PASS"
+    },
+    {
+      "id": "c06",
+      "path": "public/assets/jokers-p07/c06-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 142670,
+      "sha256": "21ea21dd5bc7269f314d064ecb434c6b7f9a8bc8b7b2b31cbaf3425dbd4e6751",
+      "status": "PASS"
+    },
+    {
+      "id": "d01",
+      "path": "art/sources/p07-jokers/d01.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2251609,
+      "sha256": "14a932fda9ea127fe5a991b731e2accbfcf74fb11102a120c225898bacf4e6da",
+      "status": "PASS"
+    },
+    {
+      "id": "d01",
+      "path": "public/assets/jokers-p07/d01.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 23760,
+      "sha256": "a04dc5dc6668f86a5051cd0bce660e4dc47a563cd808374d725ddc22523864ed",
+      "status": "PASS"
+    },
+    {
+      "id": "d01",
+      "path": "public/assets/jokers-p07/d01-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 111980,
+      "sha256": "d76b373c56bc27f1388f7d594fe962fdd0cf492bd1719516d3a259cc5306fd71",
+      "status": "PASS"
+    },
+    {
+      "id": "d03",
+      "path": "art/sources/p07-jokers/d03.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2297401,
+      "sha256": "a805e7c6fecc9c2abfd76b798ea2ff2cc492e913bc8081be71078a958966de85",
+      "status": "PASS"
+    },
+    {
+      "id": "d03",
+      "path": "public/assets/jokers-p07/d03.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 22968,
+      "sha256": "86cd92d1294ae76f4ff923be6274b6b027892814cbd665ef4bfabb7dc35c1dd4",
+      "status": "PASS"
+    },
+    {
+      "id": "d03",
+      "path": "public/assets/jokers-p07/d03-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 114702,
+      "sha256": "9be33eac4bf7c1e879af472b9c0de4244bf5182f995306032df9721b7bce453a",
+      "status": "PASS"
+    },
+    {
+      "id": "d05",
+      "path": "art/sources/p07-jokers/d05.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2236058,
+      "sha256": "204021559dcbd3343e0b3e5f4383387490817e3a49e826066e2453f3dd92c98f",
+      "status": "PASS"
+    },
+    {
+      "id": "d05",
+      "path": "public/assets/jokers-p07/d05.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 22814,
+      "sha256": "de352d6d2ec8c8833ba6f67e10f25b42e70f620970eab7b46333c924cf6dfbe6",
+      "status": "PASS"
+    },
+    {
+      "id": "d05",
+      "path": "public/assets/jokers-p07/d05-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 101668,
+      "sha256": "0805f22c20d9abae186db0436ee178eaddd6b3320d3eda62c9984409d8d65741",
+      "status": "PASS"
+    },
+    {
+      "id": "d10",
+      "path": "art/sources/p07-jokers/d10.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2285475,
+      "sha256": "611e17a2673eef1dbfeb50e1a1cc8b96bfac966021d3ba6475b720944f4e5baf",
+      "status": "PASS"
+    },
+    {
+      "id": "d10",
+      "path": "public/assets/jokers-p07/d10.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 23932,
+      "sha256": "aa3ee0fe3d1ff2c29b5da4f18307fb53f3a72a5ae0bb939de19bc06112c62e63",
+      "status": "PASS"
+    },
+    {
+      "id": "d10",
+      "path": "public/assets/jokers-p07/d10-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 118576,
+      "sha256": "0946727e20118dd4479ba7f13db81d8e90b7d9d8abcf81ddf1d226b34ad8f4a8",
+      "status": "PASS"
+    },
+    {
+      "id": "e01",
+      "path": "art/sources/p07-jokers/e01.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2414219,
+      "sha256": "2bc12f189c20e6815af6a5b019d5dd6514badc4b5a35d411c067da44f58f3005",
+      "status": "PASS"
+    },
+    {
+      "id": "e01",
+      "path": "public/assets/jokers-p07/e01.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 25522,
+      "sha256": "4655582c6543c46f7c868e0bc5af9583dd2b4c40cbfa5f4f382c32a8663b01c0",
+      "status": "PASS"
+    },
+    {
+      "id": "e01",
+      "path": "public/assets/jokers-p07/e01-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 127516,
+      "sha256": "f003267422644261b05b4ee25a4b4228862784aaaff79d71998dbb87c93ad91c",
+      "status": "PASS"
+    },
+    {
+      "id": "e03",
+      "path": "art/sources/p07-jokers/e03.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2307884,
+      "sha256": "2679a42361cd9d584fbd86ec6879df1b4f2c31eb58aa3064b798d88cb4c28bfe",
+      "status": "PASS"
+    },
+    {
+      "id": "e03",
+      "path": "public/assets/jokers-p07/e03.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 26072,
+      "sha256": "b18319574987921b7d3afb23ec9e89b73264bdc133463d18870b18a93abd4b0d",
+      "status": "PASS"
+    },
+    {
+      "id": "e03",
+      "path": "public/assets/jokers-p07/e03-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 118766,
+      "sha256": "9aeb93f0a682684980656cb23f0748849db5cae53aa566edf804d47e28731570",
+      "status": "PASS"
+    },
+    {
+      "id": "e05",
+      "path": "art/sources/p07-jokers/e05.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2426618,
+      "sha256": "41db3f5556777648a07b9244e3a32df592b4ee4eb3fbfcc6961ff20fa13834d6",
+      "status": "PASS"
+    },
+    {
+      "id": "e05",
+      "path": "public/assets/jokers-p07/e05.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 28306,
+      "sha256": "787e84f7f81e261266a70869d0fa60541473c61fd629592933cbf4abf9d73a19",
+      "status": "PASS"
+    },
+    {
+      "id": "e05",
+      "path": "public/assets/jokers-p07/e05-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 139420,
+      "sha256": "87094593b6bf2be005974ac823948283f418eea2600dde43e7a8ca5041a2df1b",
+      "status": "PASS"
+    },
+    {
+      "id": "e08",
+      "path": "art/sources/p07-jokers/e08.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2470607,
+      "sha256": "7732d4a9adb96819a76f51a2b054ac383f6b45f93d9cd3e16982101a9574257d",
+      "status": "PASS"
+    },
+    {
+      "id": "e08",
+      "path": "public/assets/jokers-p07/e08.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 29304,
+      "sha256": "f2bdd416d667a99fd18a77fda80ce9faecec92944732ef92cea6dc688d2f7be4",
+      "status": "PASS"
+    },
+    {
+      "id": "e08",
+      "path": "public/assets/jokers-p07/e08-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 142510,
+      "sha256": "4bda40b900abe3268ab988c87daef3339c5a5a3e76d07b663e4f8381bf2f50b9",
+      "status": "PASS"
+    },
+    {
+      "id": "f02",
+      "path": "art/sources/p07-jokers/f02.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2271504,
+      "sha256": "ca839f4f30231a10b001f1fea35ac0d1833fa3fcf1411f8fd9f83f8d7c32d2d2",
+      "status": "PASS"
+    },
+    {
+      "id": "f02",
+      "path": "public/assets/jokers-p07/f02.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 22558,
+      "sha256": "6bee648adf56514da088cb338869a2e9f267f0f1dfcf3267ce94a604da27e060",
+      "status": "PASS"
+    },
+    {
+      "id": "f02",
+      "path": "public/assets/jokers-p07/f02-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 112416,
+      "sha256": "cb1577d113dfd592f8bac0bb17ea525237a816689124bc9911d0886d1dcb7975",
+      "status": "PASS"
+    },
+    {
+      "id": "f03",
+      "path": "art/sources/p07-jokers/f03.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2513491,
+      "sha256": "dc0e26ce23c9f63108936155ce6f15c5e0e5d7bd95913b289f0bdd8809b4733b",
+      "status": "PASS"
+    },
+    {
+      "id": "f03",
+      "path": "public/assets/jokers-p07/f03.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 24462,
+      "sha256": "8875f5a853b18609d95e3fdfe8eb525c3d4591eb19b864d0372fcea393f5fbb3",
+      "status": "PASS"
+    },
+    {
+      "id": "f03",
+      "path": "public/assets/jokers-p07/f03-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 129140,
+      "sha256": "980d33c9d7ed6fcc047d076e0203d0dd222d1b66874a4649967874d976496dad",
+      "status": "PASS"
+    },
+    {
+      "id": "f09",
+      "path": "art/sources/p07-jokers/f09.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2254698,
+      "sha256": "c9116396f89a2667b831f48d8635a96e37a53f1760054b83efe98125b5a3ddda",
+      "status": "PASS"
+    },
+    {
+      "id": "f09",
+      "path": "public/assets/jokers-p07/f09.webp",
+      "width": 256,
+      "height": 320,
+      "bytes": 24076,
+      "sha256": "62fc10f52ee41df43814b5b99f97e63a1093d02b84af4956da50a5b5dadbd38e",
+      "status": "PASS"
+    },
+    {
+      "id": "f09",
+      "path": "public/assets/jokers-p07/f09-detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 114780,
+      "sha256": "44fb550763f9d6c81aa09a5a641dde6c78dcbcc6d9d1a84367552b9f739f9380",
+      "status": "PASS"
+    }
+  ],
+  "visualApproval": "NOT_GRANTED",
+  "physicalAndroid": "NOT_RUN"
+}

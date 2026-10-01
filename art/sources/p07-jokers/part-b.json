@@ -1,0 +1,545 @@
+{
+  "taskId": "P07",
+  "part": "B",
+  "visualVersion": "p07-eastern-chinese-theatre",
+  "requestedIds": [
+    "b03",
+    "b04",
+    "c02",
+    "c04",
+    "c06",
+    "d01",
+    "d03",
+    "d05"
+  ],
+  "generationMode": "ChatGPT web Create Image, eight independent outputs; never image_gen/imagegen skill",
+  "productName": "ChatGPT Images 2.5",
+  "productDocumentation": "https://help.openai.com/en/articles/11084440-images-in-chatgpt",
+  "modelSnapshot": "NOT_EXPOSED",
+  "modelSnapshotNote": "The product documentation names ChatGPT Images 2.5. The signed-in Create Image UI does not expose the backend snapshot for an individual output.",
+  "formalVisualApproval": "NOT_GRANTED",
+  "humanDeviceApproval": "NOT_RUN",
+  "commercialApproval": "NOT_GRANTED",
+  "sourceRightsNote": "Original generated illustrations downloaded through the authorized signed-in ChatGPT web UI. No third-party reference image uploaded. Generation alone is not human commercial approval.",
+  "technicalChecks": "sharp metadata, complete raw-pixel decode and SHA-256 for each source/thumbnail/detail",
+  "assets": [
+    {
+      "contentId": "b03",
+      "title": "老搭档",
+      "prompt": "Create ONE original illustration, portrait aspect ratio 4:5, for a premium Chinese travelling-theatre fantasy collectible card game. Refined hand-painted concept art, expressive natural East Asian Chinese faces, culturally Chinese clothing and props, elegant stylized realism with crisp readable shapes. Deep jade and teal, warm parchment, vermilion details, restrained brass, cinematic warm upper-left light. Waist/thigh-up composition, human subjects and meaningful prop occupy 80%, large clearly visible faces, muted uncluttered Chinese wooden stage and curtains. No text, writing, numbers, frames, UI, watermark, logos or rank symbols. No Western or medieval-European people/clothes, no plastic 3D, photorealism or grotesque caricature. Do not resemble an existing famous game character. Scene: Two seasoned Chinese theatre partners in their late fifties, one slender silver-haired man with narrow kindly eyes and one sturdy woman with dark hair streaked grey. The woman faces three-quarter left in a dark teal short stage jacket; the man faces three-quarter right in warm ochre Chinese waistcoat. They exchange a knowing amused glance, gently linking matching small wooden rhythm clappers in the middle, ready to perform together. Both faces equally clear, distinct facial structures and age lines, only two plausible hands emphasized, warm friendship and confidence. Balanced readable duo, no random floating decorations.",
+      "provenance": {
+        "conversationUrl": "https://chatgpt.com/c/6abe6bac-4b14-83e9-bfdd-706e6fa01d5e",
+        "viewerTitle": "戏台双星共鸣",
+        "downloadPath": "C:/Users/wanghongping/Downloads/戏台双星共鸣.png",
+        "generationSurface": "ChatGPT web Create Image",
+        "capturedAt": "2026-10-01T14:26:05.573Z"
+      },
+      "crop": "Centered 4:5; faces and main mechanic prop checked in thumbnail/detail",
+      "outputs": [
+        {
+          "path": "art/sources/p07-jokers/b03.png",
+          "role": "source",
+          "width": 1122,
+          "height": 1402,
+          "format": "png",
+          "alpha": false,
+          "bytes": 2453271,
+          "sha256": "94283398a798890386027a9da78713522ca32558faf5fc7b7c560e2be2e9e487",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/b03.webp",
+          "role": "preload-thumbnail",
+          "width": 256,
+          "height": 320,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 23466,
+          "sha256": "a805e29e24ffce035e6aae1770476fb51ef96e0491fa5269da5e0bcca6e38179",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/b03-detail.webp",
+          "role": "lazy-detail",
+          "width": 615,
+          "height": 768,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 124100,
+          "sha256": "5f477b6ba8db98c8cbc20c08d7f0842119b45cabfa9234fa6764220632b7bad3",
+          "fullDecode": "PASS"
+        }
+      ],
+      "visualReview": {
+        "status": "AGENT_REVIEWED_CANDIDATE",
+        "approval": "NOT_GRANTED",
+        "notes": "Eastern Chinese faces and clothing; distinct profession and meaningful mechanic prop; no observed text, watermark or obvious extra limbs; detailed naturalistic painterly rendering."
+      },
+      "sourcePath": "art/sources/p07-jokers/b03.png",
+      "runtimePaths": [
+        "public/assets/jokers-p07/b03.webp",
+        "public/assets/jokers-p07/b03-detail.webp"
+      ],
+      "previewPath": "art/sources/p07-jokers/contact-sheet-b.webp"
+    },
+    {
+      "contentId": "b04",
+      "title": "一唱一和",
+      "prompt": "Create ONE original illustration, portrait aspect ratio 4:5, for a premium Chinese travelling-theatre fantasy collectible card game. Refined hand-painted concept art, expressive natural East Asian Chinese faces, culturally Chinese clothing and props, elegant stylized realism with crisp readable shapes. Deep jade and teal, warm parchment, vermilion details, restrained brass, cinematic warm upper-left light. Waist/thigh-up composition, human subjects and meaningful prop occupy 80%, large clearly visible faces, muted uncluttered Chinese wooden stage and curtains. No text, writing, numbers, frames, UI, watermark, logos or rank symbols. No Western or medieval-European people/clothes, no plastic 3D, photorealism or grotesque caricature. Do not resemble an existing famous game character. Scene: A bright Chinese female singer aged 26 in a vermilion tailored Chinese stage blouse and a Chinese male bamboo-flute musician aged 35 in muted teal, singing and responding in a lively duet. Singer on left in three-quarter view, mouth slightly open in a joyful singing expression, flute player on right in profile with one bamboo flute. Two people, distinct faces and complementary diagonal gestures, one shared rhythmic golden arc subtly connecting the performances, not neon. Their faces and flute form the focus; stage backdrop softly subdued.",
+      "provenance": {
+        "conversationUrl": "https://chatgpt.com/c/6abe6bac-4b14-83e9-bfdd-706e6fa01d5e",
+        "viewerTitle": "金色舞台上的笛歌相和",
+        "downloadPath": "C:/Users/wanghongping/Downloads/金色舞台上的笛歌相和.png",
+        "generationSurface": "ChatGPT web Create Image",
+        "capturedAt": "2026-10-01T14:27:19.436Z"
+      },
+      "crop": "Centered 4:5; faces and main mechanic prop checked in thumbnail/detail",
+      "outputs": [
+        {
+          "path": "art/sources/p07-jokers/b04.png",
+          "role": "source",
+          "width": 1122,
+          "height": 1402,
+          "format": "png",
+          "alpha": false,
+          "bytes": 2371819,
+          "sha256": "b06d7588d011792202088bf1f1cedc0bdd1760d41f1ab07a328e7b4c5e67e527",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/b04.webp",
+          "role": "preload-thumbnail",
+          "width": 256,
+          "height": 320,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 24276,
+          "sha256": "2dffdc6ee43afdbed7799a19490ad36e997001f55652e3ba1d7dea060e563ec7",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/b04-detail.webp",
+          "role": "lazy-detail",
+          "width": 615,
+          "height": 768,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 115284,
+          "sha256": "392a903bb9da871038c49634c9b3849afeab936ae7e11cf4134d3bbbe44996d5",
+          "fullDecode": "PASS"
+        }
+      ],
+      "visualReview": {
+        "status": "AGENT_REVIEWED_CANDIDATE",
+        "approval": "NOT_GRANTED",
+        "notes": "Eastern Chinese faces and clothing; distinct profession and meaningful mechanic prop; no observed text, watermark or obvious extra limbs; detailed naturalistic painterly rendering."
+      },
+      "sourcePath": "art/sources/p07-jokers/b04.png",
+      "runtimePaths": [
+        "public/assets/jokers-p07/b04.webp",
+        "public/assets/jokers-p07/b04-detail.webp"
+      ],
+      "previewPath": "art/sources/p07-jokers/contact-sheet-b.webp"
+    },
+    {
+      "contentId": "c02",
+      "title": "红线",
+      "prompt": "Create ONE original illustration, portrait aspect ratio 4:5, for a premium Chinese travelling-theatre fantasy collectible card game. Refined hand-painted concept art, expressive natural East Asian Chinese faces, culturally Chinese clothing and props, elegant stylized realism with crisp readable shapes. Deep jade and teal, warm parchment, vermilion details, restrained brass, cinematic warm upper-left light. Waist/thigh-up composition, human subjects and meaningful prop occupy 80%, large clearly visible faces, muted uncluttered Chinese wooden stage and curtains. No text, writing, numbers, frames, UI, watermark, logos or rank symbols. No Western or medieval-European people/clothes, no plastic 3D, photorealism or grotesque caricature. Do not resemble an existing famous game character. Scene: A composed Chinese theatre seamstress aged 32 in a pale parchment blouse under a jade apron, hair neatly pinned with a small wooden pin, shown in close three-quarter angle. A single flowing crimson silk thread loops from a wooden spool held in her left hand to a fine needle carefully held in her right hand; her focused eyes follow the thread. Graceful hands with correct anatomy, red thread strongly readable against jade, tasteful tiny embroidered red-heart patch on folded stage fabric, no written symbols. Warm elegant feminine face, human craft and magical red thread, not romantic cliché.",
+      "provenance": {
+        "conversationUrl": "https://chatgpt.com/c/6abe6bac-4b14-83e9-bfdd-706e6fa01d5e",
+        "viewerTitle": "金线红丝间的巧手绣娘",
+        "downloadPath": "C:/Users/wanghongping/Downloads/金线红丝间的巧手绣娘.png",
+        "generationSurface": "ChatGPT web Create Image",
+        "capturedAt": "2026-10-01T14:28:42.342Z"
+      },
+      "crop": "Centered 4:5; faces and main mechanic prop checked in thumbnail/detail",
+      "outputs": [
+        {
+          "path": "art/sources/p07-jokers/c02.png",
+          "role": "source",
+          "width": 1122,
+          "height": 1402,
+          "format": "png",
+          "alpha": false,
+          "bytes": 2275999,
+          "sha256": "997d7410bbd9e4c710f6153030e1f847ee870d4b1653843c892f43ffc25da55b",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/c02.webp",
+          "role": "preload-thumbnail",
+          "width": 256,
+          "height": 320,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 24364,
+          "sha256": "4ba1d564839049a99704fc150cbeac0d31771106ee8c904b203ec10c8627d821",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/c02-detail.webp",
+          "role": "lazy-detail",
+          "width": 615,
+          "height": 768,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 110126,
+          "sha256": "76b23ed15f4d465c453a7981709956c699c255a3b9149ac408b6745a10cc90cc",
+          "fullDecode": "PASS"
+        }
+      ],
+      "visualReview": {
+        "status": "AGENT_REVIEWED_CANDIDATE",
+        "approval": "NOT_GRANTED",
+        "notes": "Eastern Chinese faces and clothing; distinct profession and meaningful mechanic prop; no observed text, watermark or obvious extra limbs; detailed naturalistic painterly rendering."
+      },
+      "sourcePath": "art/sources/p07-jokers/c02.png",
+      "runtimePaths": [
+        "public/assets/jokers-p07/c02.webp",
+        "public/assets/jokers-p07/c02-detail.webp"
+      ],
+      "previewPath": "art/sources/p07-jokers/contact-sheet-b.webp"
+    },
+    {
+      "contentId": "c04",
+      "title": "搭台阶",
+      "prompt": "Create ONE original illustration, portrait aspect ratio 4:5, for a premium Chinese travelling-theatre fantasy collectible card game. Refined hand-painted concept art, expressive natural East Asian Chinese faces, culturally Chinese clothing and props, elegant stylized realism with crisp readable shapes. Deep jade and teal, warm parchment, vermilion details, restrained brass, cinematic warm upper-left light. Waist/thigh-up composition, human subjects and meaningful prop occupy 80%, large clearly visible faces, muted uncluttered Chinese wooden stage and curtains. No text, writing, numbers, frames, UI, watermark, logos or rank symbols. No Western or medieval-European people/clothes, no plastic 3D, photorealism or grotesque caricature. Do not resemble an existing famous game character. Scene: A broad-shouldered Chinese stage carpenter aged 48 with sun-weathered face, short salt-and-pepper hair, confident friendly grin, angled low three-quarter portrait in a practical rolled-sleeve blue-grey Chinese work jacket. He places one carved wooden step into a rising sequence of three warm timber stage steps and holds a short brass-handled mallet. One sturdy believable hand visible on step, other with mallet. The ascending stairs make a strong simple diagonal behind his shoulder. Chinese workshop theatre ambience, capable craftsperson, not medieval warrior.",
+      "provenance": {
+        "conversationUrl": "https://chatgpt.com/c/6abe6bac-4b14-83e9-bfdd-706e6fa01d5e",
+        "viewerTitle": "木匠匠心雕琢戏台彩堂",
+        "downloadPath": "C:/Users/wanghongping/Downloads/木匠匠心雕琢戏台彩堂.png",
+        "generationSurface": "ChatGPT web Create Image",
+        "capturedAt": "2026-10-01T14:31:13.802Z"
+      },
+      "crop": "Centered 4:5; faces and main mechanic prop checked in thumbnail/detail",
+      "outputs": [
+        {
+          "path": "art/sources/p07-jokers/c04.png",
+          "role": "source",
+          "width": 1122,
+          "height": 1402,
+          "format": "png",
+          "alpha": false,
+          "bytes": 2322228,
+          "sha256": "de2b71865240f4b15e969bc5f2d7da209b1d9504275a42bd28dad5a33fa01630",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/c04.webp",
+          "role": "preload-thumbnail",
+          "width": 256,
+          "height": 320,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 25884,
+          "sha256": "0c6ebaf15dcbac27f22441fe8645f17628658197db9a103bb3f4e1da3d78dc29",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/c04-detail.webp",
+          "role": "lazy-detail",
+          "width": 615,
+          "height": 768,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 122334,
+          "sha256": "e9d12220d4d9c4c5b2b7257ddb2159f153bbf8c09146453e271d69d4fba32820",
+          "fullDecode": "PASS"
+        }
+      ],
+      "visualReview": {
+        "status": "AGENT_REVIEWED_CANDIDATE",
+        "approval": "NOT_GRANTED",
+        "notes": "Eastern Chinese faces and clothing; distinct profession and meaningful mechanic prop; no observed text, watermark or obvious extra limbs; detailed naturalistic painterly rendering."
+      },
+      "sourcePath": "art/sources/p07-jokers/c04.png",
+      "runtimePaths": [
+        "public/assets/jokers-p07/c04.webp",
+        "public/assets/jokers-p07/c04-detail.webp"
+      ],
+      "previewPath": "art/sources/p07-jokers/contact-sheet-b.webp"
+    },
+    {
+      "contentId": "c06",
+      "title": "越染越深",
+      "prompt": "Create ONE original illustration, portrait aspect ratio 4:5, for a premium Chinese travelling-theatre fantasy collectible card game. Refined hand-painted concept art, expressive natural East Asian Chinese faces, culturally Chinese clothing and props, elegant stylized realism with crisp readable shapes. Deep jade and teal, warm parchment, vermilion details, restrained brass, cinematic warm upper-left light. Waist/thigh-up composition, human subjects and meaningful prop occupy 80%, large clearly visible faces, muted uncluttered Chinese wooden stage and curtains. No text, writing, numbers, frames, UI, watermark, logos or rank symbols. No Western or medieval-European people/clothes, no plastic 3D, photorealism or grotesque caricature. Do not resemble an existing famous game character. Scene: A mature Chinese cloth dyer woman aged 43 with almond eyes, square jaw and warm concentrated expression, dark hair tied high, indigo-blue Chinese work tunic and parchment apron. In three-quarter right view she lifts one long silk ribbon from a small dye bowl, cloth changes gradually from pale turquoise at top to saturated deep indigo at bottom. One powerful graceful arc of cloth, correct hands, face fully unobscured and large. Indigo dye splashes minimal, rich handmade textile texture, practical profession and quiet magic, no extraneous props.",
+      "provenance": {
+        "conversationUrl": "https://chatgpt.com/c/6abe6bac-4b14-83e9-bfdd-706e6fa01d5e",
+        "viewerTitle": "匠心染蓝：古韵染坊中的织艺人",
+        "downloadPath": "C:/Users/wanghongping/Downloads/匠心染蓝：古韵染坊中的织艺人.png",
+        "generationSurface": "ChatGPT web Create Image",
+        "capturedAt": "2026-10-01T14:33:38.751Z"
+      },
+      "crop": "Centered 4:5; faces and main mechanic prop checked in thumbnail/detail",
+      "outputs": [
+        {
+          "path": "art/sources/p07-jokers/c06.png",
+          "role": "source",
+          "width": 1122,
+          "height": 1402,
+          "format": "png",
+          "alpha": false,
+          "bytes": 2457340,
+          "sha256": "10f804bd40e8591837b87d97bab4b2b1cdd953f66eb85f308940a187ac2c0a96",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/c06.webp",
+          "role": "preload-thumbnail",
+          "width": 256,
+          "height": 320,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 29256,
+          "sha256": "2557fe8ead81d84865fd9f950d8695d4d3d1d72e3cfb13ccbff86db36cc841f8",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/c06-detail.webp",
+          "role": "lazy-detail",
+          "width": 615,
+          "height": 768,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 142670,
+          "sha256": "21ea21dd5bc7269f314d064ecb434c6b7f9a8bc8b7b2b31cbaf3425dbd4e6751",
+          "fullDecode": "PASS"
+        }
+      ],
+      "visualReview": {
+        "status": "AGENT_REVIEWED_CANDIDATE",
+        "approval": "NOT_GRANTED",
+        "notes": "Eastern Chinese faces and clothing; distinct profession and meaningful mechanic prop; no observed text, watermark or obvious extra limbs; detailed naturalistic painterly rendering."
+      },
+      "sourcePath": "art/sources/p07-jokers/c06.png",
+      "runtimePaths": [
+        "public/assets/jokers-p07/c06.webp",
+        "public/assets/jokers-p07/c06-detail.webp"
+      ],
+      "previewPath": "art/sources/p07-jokers/contact-sheet-b.webp"
+    },
+    {
+      "contentId": "d01",
+      "title": "候场席",
+      "prompt": "Create ONE original illustration, portrait aspect ratio 4:5, for a premium Chinese travelling-theatre fantasy collectible card game. Refined hand-painted concept art, expressive natural East Asian Chinese faces, culturally Chinese clothing and props, elegant stylized realism with crisp readable shapes. Deep jade and teal, warm parchment, vermilion details, restrained brass, cinematic warm upper-left light. Waist/thigh-up composition, human subjects and meaningful prop occupy 80%, large clearly visible faces, muted uncluttered Chinese wooden stage and curtains. No text, writing, numbers, frames, UI, watermark, logos or rank symbols. No Western or medieval-European people/clothes, no plastic 3D, photorealism or grotesque caricature. Do not resemble an existing famous game character. Scene: A handsome introspective Chinese actor aged 29 seated sideways on a simple carved theatre waiting chair, body in relaxed profile with face turned three-quarter toward viewer. Short tied dark hair, clean face, dark jade cropped Chinese stage coat over cream garment, one vermilion sash. A folded wooden fan rests on his knees, one hand gently holds it. In background three empty waiting chairs recede softly, clear warm spotlight edge on his face and hand, patient readiness and poised elegance, not a Western throne or royalty.",
+      "provenance": {
+        "conversationUrl": "https://chatgpt.com/c/6abe6bac-4b14-83e9-bfdd-706e6fa01d5e",
+        "viewerTitle": "暖光戏台前的沉思公子",
+        "downloadPath": "C:/Users/wanghongping/Downloads/暖光戏台前的沉思公子.png",
+        "generationSurface": "ChatGPT web Create Image",
+        "capturedAt": "2026-10-01T14:35:59.751Z"
+      },
+      "crop": "Centered 4:5; faces and main mechanic prop checked in thumbnail/detail",
+      "outputs": [
+        {
+          "path": "art/sources/p07-jokers/d01.png",
+          "role": "source",
+          "width": 1122,
+          "height": 1402,
+          "format": "png",
+          "alpha": false,
+          "bytes": 2251609,
+          "sha256": "14a932fda9ea127fe5a991b731e2accbfcf74fb11102a120c225898bacf4e6da",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/d01.webp",
+          "role": "preload-thumbnail",
+          "width": 256,
+          "height": 320,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 23760,
+          "sha256": "a04dc5dc6668f86a5051cd0bce660e4dc47a563cd808374d725ddc22523864ed",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/d01-detail.webp",
+          "role": "lazy-detail",
+          "width": 615,
+          "height": 768,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 111980,
+          "sha256": "d76b373c56bc27f1388f7d594fe962fdd0cf492bd1719516d3a259cc5306fd71",
+          "fullDecode": "PASS"
+        }
+      ],
+      "visualReview": {
+        "status": "AGENT_REVIEWED_CANDIDATE",
+        "approval": "NOT_GRANTED",
+        "notes": "Eastern Chinese faces and clothing; distinct profession and meaningful mechanic prop; no observed text, watermark or obvious extra limbs; detailed naturalistic painterly rendering."
+      },
+      "sourcePath": "art/sources/p07-jokers/d01.png",
+      "runtimePaths": [
+        "public/assets/jokers-p07/d01.webp",
+        "public/assets/jokers-p07/d01-detail.webp"
+      ],
+      "previewPath": "art/sources/p07-jokers/contact-sheet-b.webp"
+    },
+    {
+      "contentId": "d03",
+      "title": "等得住",
+      "prompt": "Create ONE original illustration, portrait aspect ratio 4:5, for a premium Chinese travelling-theatre fantasy collectible card game. Refined hand-painted concept art, expressive natural East Asian Chinese faces, culturally Chinese clothing and props, elegant stylized realism with crisp readable shapes. Deep jade and teal, warm parchment, vermilion details, restrained brass, cinematic warm upper-left light. Waist/thigh-up composition, human subjects and meaningful prop occupy 80%, large clearly visible faces, muted uncluttered Chinese wooden stage and curtains. No text, writing, numbers, frames, UI, watermark, logos or rank symbols. No Western or medieval-European people/clothes, no plastic 3D, photorealism or grotesque caricature. Do not resemble an existing famous game character. Scene: A patient dignified Chinese woman musician aged 62, silver hair in a simple low knot, calm small smile and subtle laugh lines, seated with a small Chinese pipa resting upright beside her shoulder, in jade silk traditional Chinese jacket with warm ivory cuffs. Three-quarter frontal intimate portrait, soft eyes toward offstage light, one hand relaxed on instrument, other resting on knee. One small brass hourglass stands clearly beside her in foreground, time and patience expressed by stillness, instrument and hourglass do not obscure face. Warm humane character, no Western classical aristocrat.",
+      "provenance": {
+        "conversationUrl": "https://chatgpt.com/c/6abe6bac-4b14-83e9-bfdd-706e6fa01d5e",
+        "viewerTitle": "暖光下的琵琶艺人",
+        "downloadPath": "C:/Users/wanghongping/Downloads/暖光下的琵琶艺人.png",
+        "generationSurface": "ChatGPT web Create Image",
+        "capturedAt": "2026-10-01T14:38:25.586Z"
+      },
+      "crop": "Centered 4:5; faces and main mechanic prop checked in thumbnail/detail",
+      "outputs": [
+        {
+          "path": "art/sources/p07-jokers/d03.png",
+          "role": "source",
+          "width": 1122,
+          "height": 1402,
+          "format": "png",
+          "alpha": false,
+          "bytes": 2297401,
+          "sha256": "a805e7c6fecc9c2abfd76b798ea2ff2cc492e913bc8081be71078a958966de85",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/d03.webp",
+          "role": "preload-thumbnail",
+          "width": 256,
+          "height": 320,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 22968,
+          "sha256": "86cd92d1294ae76f4ff923be6274b6b027892814cbd665ef4bfabb7dc35c1dd4",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/d03-detail.webp",
+          "role": "lazy-detail",
+          "width": 615,
+          "height": 768,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 114702,
+          "sha256": "9be33eac4bf7c1e879af472b9c0de4244bf5182f995306032df9721b7bce453a",
+          "fullDecode": "PASS"
+        }
+      ],
+      "visualReview": {
+        "status": "AGENT_REVIEWED_CANDIDATE",
+        "approval": "NOT_GRANTED",
+        "notes": "Eastern Chinese faces and clothing; distinct profession and meaningful mechanic prop; no observed text, watermark or obvious extra limbs; detailed naturalistic painterly rendering."
+      },
+      "sourcePath": "art/sources/p07-jokers/d03.png",
+      "runtimePaths": [
+        "public/assets/jokers-p07/d03.webp",
+        "public/assets/jokers-p07/d03-detail.webp"
+      ],
+      "previewPath": "art/sources/p07-jokers/contact-sheet-b.webp"
+    },
+    {
+      "contentId": "d05",
+      "title": "彩排",
+      "prompt": "Create ONE original illustration, portrait aspect ratio 4:5, for a premium Chinese travelling-theatre fantasy collectible card game. Refined hand-painted concept art, expressive natural East Asian Chinese faces, culturally Chinese clothing and props, elegant stylized realism with crisp readable shapes. Deep jade and teal, warm parchment, vermilion details, restrained brass, cinematic warm upper-left light. Waist/thigh-up composition, human subjects and meaningful prop occupy 80%, large clearly visible faces, muted uncluttered Chinese wooden stage and curtains. No text, writing, numbers, frames, UI, watermark, logos or rank symbols. No Western or medieval-European people/clothes, no plastic 3D, photorealism or grotesque caricature. Do not resemble an existing famous game character. Scene: An energetic Chinese woman stage rehearsal director aged 38, short bobbed dark hair, sharp eyebrows, bright assertive smile, wearing fitted jade Chinese theatre jacket with rolled vermilion cuffs. Three-quarter left view, one hand lifts a wooden rehearsal clapper and the other guides a graceful sweeping gesture. Beside her, three pale semi-transparent repetitions of a single silk ribbon trace a rehearsal movement without duplicate bodies or arms. Clear competent director portrait, expressive human face, legible wooden clapper, Chinese stage boards and curtain as soft background.",
+      "provenance": {
+        "conversationUrl": "https://chatgpt.com/c/6abe6bac-4b14-83e9-bfdd-706e6fa01d5e",
+        "viewerTitle": "戏台上的翡翠指挥者",
+        "downloadPath": "C:/Users/wanghongping/Downloads/戏台上的翡翠指挥者.png",
+        "generationSurface": "ChatGPT web Create Image",
+        "capturedAt": "2026-10-01T14:40:59.649Z"
+      },
+      "crop": "Centered 4:5; faces and main mechanic prop checked in thumbnail/detail",
+      "outputs": [
+        {
+          "path": "art/sources/p07-jokers/d05.png",
+          "role": "source",
+          "width": 1122,
+          "height": 1402,
+          "format": "png",
+          "alpha": false,
+          "bytes": 2236058,
+          "sha256": "204021559dcbd3343e0b3e5f4383387490817e3a49e826066e2453f3dd92c98f",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/d05.webp",
+          "role": "preload-thumbnail",
+          "width": 256,
+          "height": 320,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 22814,
+          "sha256": "de352d6d2ec8c8833ba6f67e10f25b42e70f620970eab7b46333c924cf6dfbe6",
+          "fullDecode": "PASS"
+        },
+        {
+          "path": "public/assets/jokers-p07/d05-detail.webp",
+          "role": "lazy-detail",
+          "width": 615,
+          "height": 768,
+          "format": "webp",
+          "alpha": false,
+          "bytes": 101668,
+          "sha256": "0805f22c20d9abae186db0436ee178eaddd6b3320d3eda62c9984409d8d65741",
+          "fullDecode": "PASS"
+        }
+      ],
+      "visualReview": {
+        "status": "AGENT_REVIEWED_CANDIDATE",
+        "approval": "NOT_GRANTED",
+        "notes": "Eastern Chinese faces and clothing; distinct profession and meaningful mechanic prop; no observed text, watermark or obvious extra limbs; detailed naturalistic painterly rendering."
+      },
+      "sourcePath": "art/sources/p07-jokers/d05.png",
+      "runtimePaths": [
+        "public/assets/jokers-p07/d05.webp",
+        "public/assets/jokers-p07/d05-detail.webp"
+      ],
+      "previewPath": "art/sources/p07-jokers/contact-sheet-b.webp"
+    }
+  ],
+  "completedCount": 8,
+  "bytes": {
+    "source": 18665725,
+    "preload-thumbnail": 196788,
+    "lazy-detail": 942864
+  },
+  "exportProcessing": {
+    "tool": "sharp",
+    "version": "0.35.5",
+    "fit": "cover",
+    "position": "centre",
+    "thumbnail": {
+      "width": 256,
+      "height": 320,
+      "format": "webp",
+      "quality": 87,
+      "effort": 6
+    },
+    "detail": {
+      "width": 615,
+      "height": 768,
+      "format": "webp",
+      "quality": 90,
+      "effort": 6
+    },
+    "source": "Exact downloaded PNG, no generative edits or compositing"
+  },
+  "contactSheetReview": {
+    "status": "AGENT_REVIEWED_CANDIDATE",
+    "dimensions": [
+      1024,
+      704
+    ],
+    "checks": [
+      "Eight distinct independent pictures",
+      "Natural Eastern Chinese faces and clothing",
+      "Age, gender, occupation, pose and expression differences",
+      "No observed watermark, garbled text or obvious extra limbs",
+      "Clear faces and mechanic props at runtime thumbnail size"
+    ],
+    "formalApproval": "NOT_GRANTED"
+  },
+  "browserLimitations": [
+    "Initial downloadMedia timed out; no file was falsely recorded. Every delivered source was then downloaded by clicking the actual viewer Download button and matching its title in Downloads.",
+    "Create Image backend model snapshot is not exposed. Product naming is based on the official current product documentation."
+  ]
+}

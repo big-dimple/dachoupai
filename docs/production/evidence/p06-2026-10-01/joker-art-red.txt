@@ -1,0 +1,56 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/joker-art.test.ts (1 test | 1 failed) 11ms
+   × every Joker in the current playable pool has its own illustration mapping 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/joker-art.test.ts > every Joker in the current playable pool has its own illustration mapping
+AssertionError: expected [ 'a03', 'd03', 'e05', 'f02', …(4) ] to deeply equal [ 'a03', 'a05', 'b02', 'b03', …(20) ]
+
+- Expected
++ Received
+
+  [
+    "a03",
+-   "a05",
+-   "b02",
+-   "b03",
+-   "b04",
+-   "c02",
+-   "c04",
+-   "c06",
+-   "d01",
+    "d03",
+-   "d05",
+-   "d10",
+-   "e01",
+-   "e03",
+    "e05",
+-   "e08",
+    "f02",
+-   "f03",
+-   "f09",
+    "huimaqiang",
+-   "jiedongfeng",
+    "mantangcai",
+    "pengci",
+    "tiesuanpan",
+  ]
+
+ ❯ tests/joker-art.test.ts:8:27
+      6|   const ids=JOKER_ART.map(a=>a.id);
+      7|   expect(new Set(ids).size).toBe(ids.length);
+      8|   expect([...ids].sort()).toEqual(R2_JOKERS.map(j=>j.id).sort());
+       |                           ^
+      9| });
+     10|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  21:07:13
+   Duration  475ms (transform 117ms, setup 0ms, import 154ms, tests 11ms, environment 0ms)

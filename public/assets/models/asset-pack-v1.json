@@ -11,58 +11,58 @@
   },
   "assets": [
     {
-      "file": "characters/amo.avatar.webp",
-      "purpose": "既有立绘裁切 512×512 头像，HUD/商店可直接使用",
+      "file": "characters-p07/amo.avatar.webp",
+      "purpose": "P07经复审裁切的256×256独立头像；正式视觉批准另列",
       "category": "raster",
-      "width": 512,
-      "height": 512,
+      "width": 256,
+      "height": 256,
       "alpha": false,
-      "bytes": 40006
+      "bytes": 12652
     },
     {
-      "file": "characters/azao.avatar.webp",
-      "purpose": "既有立绘裁切 512×512 头像，HUD/商店可直接使用",
+      "file": "characters-p07/azao.avatar.webp",
+      "purpose": "P07经复审裁切的256×256独立头像；正式视觉批准另列",
       "category": "raster",
-      "width": 512,
-      "height": 512,
+      "width": 256,
+      "height": 256,
       "alpha": false,
-      "bytes": 51430
+      "bytes": 18410
     },
     {
-      "file": "characters/erxiang.avatar.webp",
-      "purpose": "既有立绘裁切 512×512 头像，HUD/商店可直接使用",
+      "file": "characters-p07/erxiang.avatar.webp",
+      "purpose": "P07经复审裁切的256×256独立头像；正式视觉批准另列",
       "category": "raster",
-      "width": 512,
-      "height": 512,
+      "width": 256,
+      "height": 256,
       "alpha": false,
-      "bytes": 43854
+      "bytes": 15674
     },
     {
-      "file": "characters/laohuan.avatar.webp",
-      "purpose": "既有立绘裁切 512×512 头像，HUD/商店可直接使用",
+      "file": "characters-p07/laohuan.avatar.webp",
+      "purpose": "P07经复审裁切的256×256独立头像；正式视觉批准另列",
       "category": "raster",
-      "width": 512,
-      "height": 512,
+      "width": 256,
+      "height": 256,
       "alpha": false,
-      "bytes": 50934
+      "bytes": 18520
     },
     {
-      "file": "characters/touye.avatar.webp",
-      "purpose": "既有立绘裁切 512×512 头像，HUD/商店可直接使用",
+      "file": "characters-p07/touye.avatar.webp",
+      "purpose": "P07经复审裁切的256×256独立头像；正式视觉批准另列",
       "category": "raster",
-      "width": 512,
-      "height": 512,
+      "width": 256,
+      "height": 256,
       "alpha": false,
-      "bytes": 64572
+      "bytes": 14978
     },
     {
-      "file": "characters/xiemu.avatar.webp",
-      "purpose": "既有立绘裁切 512×512 头像，HUD/商店可直接使用",
+      "file": "characters-p07/xiemu.avatar.webp",
+      "purpose": "P07经复审裁切的256×256独立头像；正式视觉批准另列",
       "category": "raster",
-      "width": 512,
-      "height": 512,
+      "width": 256,
+      "height": 256,
       "alpha": false,
-      "bytes": 50270
+      "bytes": 16052
     },
     {
       "file": "models/card-animation-templates.glb",
@@ -1830,5 +1830,6 @@
     "geometryCompression": "none (no decoder dependency)",
     "checks": "gltf-transform inspect + Khronos validator + topology/UV/morph/clip/node budgets",
     "tangentSpace": "MikkTSpace on Normal-mapped primitives"
-  }
+  },
+  "portraitVersion": "P07 Eastern review candidate; human approval NOT_GRANTED"
 }

@@ -1,0 +1,183 @@
+{
+  "taskId": "P06",
+  "status": "AUDIO_ENGINEERING_CANDIDATE_ART_SUPERSEDED_BY_P07",
+  "testedCommit": "1d58fe4d40f201a6a76a764609323c2dc70a0e2d",
+  "testedTree": "HEAD + reviewed P06 working-tree modifications; exact LF source hashes below and binary hashes in source manifests.",
+  "baseline": {
+    "branch": "main",
+    "initialDirty": "",
+    "pull": "git pull --ff-only origin main: Already up to date",
+    "reset": false
+  },
+  "scope": "Two independent volume controls, complete piano music, event and rolling SFX,16 missing current Joker illustrations; no new gameplay.",
+  "red": [
+    {
+      "command": "npx vitest run tests/audio-preferences.test.ts",
+      "result": "FAIL before implementation: preferences module missing",
+      "exitCode": 1,
+      "log": "docs/production/evidence/p06-2026-10-01/audio-preferences-red.txt"
+    },
+    {
+      "command": "npx vitest run tests/joker-art.test.ts",
+      "result": "FAIL before registration: only8 of24 current Joker illustrations mapped",
+      "exitCode": 1,
+      "log": "docs/production/evidence/p06-2026-10-01/joker-art-red.txt"
+    }
+  ],
+  "checks": [
+    {
+      "command": "npx vitest run tests/audio-preferences.test.ts tests/joker-art.test.ts tests/score-presentation.test.ts tests/score-celebration.test.ts tests/stageNotice.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "5 files /34 tests",
+      "log": "docs/production/evidence/p06-2026-10-01/targeted-tests.txt"
+    },
+    {
+      "command": "node shots/p06-index-build.mjs (node node_modules/typescript/bin/tsc --noEmit; node node_modules/vite/bin/vite.js build)",
+      "status": "PASS",
+      "log": "docs/production/evidence/p06-2026-10-01/build-index.txt",
+      "exitCode": 0,
+      "buildInfo": "docs/production/evidence/p06-2026-10-01/build-info.json",
+      "result": "Intended Git index exported without line-ending conversion; production typecheck + build PASS. JS1480.88KB /gzip421.83KB; existing large-bundle warning remains.",
+      "limits": "Historical P06 intended-index build passed. The separate P07 final build validates delivered combined audio and Eastern-art changes."
+    },
+    {
+      "command": "SMOKE_CHROMIUM_CHANNEL=chromium SMOKE_FEEDBACK=only node harness/screenshot.mjs --verify-smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "Chromium natural straight /ordered source impacts /actual1200 against400 target /flames and fire audio /credit once /clear-shop-second table8cards with no error",
+      "log": "docs/production/evidence/p06-2026-10-01/smoke.txt",
+      "resultFile": "docs/production/evidence/p06-2026-10-01/smoke-result.json",
+      "buildInfo": "docs/production/evidence/p06-2026-10-01/smoke-build-info.json"
+    },
+    {
+      "command": "node shots/p06-ui-probe.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "Real compiled UI at1280x720 mouse and390x740 DPR3 touchscreen; two sliders, independent zeros, persistence/legacy migration, native complete music load and cross-scene continuity, all16 new thumbnails, b02 full detail and cancel, first table entry",
+      "resultFile": "docs/production/evidence/p06-2026-10-01/ui-result.json",
+      "artifacts": [
+        "docs/production/evidence/p06-2026-10-01/mobile-settings.webp"
+      ],
+      "limits": "Native range changes use keyboard. Touch dimensions are not physical Android operation. Temporary probe removed at closeout."
+    },
+    {
+      "command": "node shots/p06-art-check.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "16 distinct IDs,48 complete image decodes; source/runtime dimensions and SHA256 match",
+      "resultFile": "docs/production/evidence/p06-2026-10-01/art-check.json",
+      "limits": "Temporary probe removed; root contact-sheet review is not user approval."
+    },
+    {
+      "command": "& 'C:/Program Files/nodejs/node.exe' 'C:/Users/wanghongping/AppData/Local/Temp/dachoupai-p06-audio/check.cjs'",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "Complete217.93959-second MP3 decoded;14 real PCM cases, peak maximum .90112221 without >=1 clips; cancel/zero/background tails silent; native media one context, one enabled-track request, gesture/nonzero lazy loading and independent zero controls",
+      "log": "docs/production/evidence/p06-2026-10-01/audio-summary.txt",
+      "resultFile": "docs/production/evidence/p06-2026-10-01/audio-result.json",
+      "limits": "Offline currentTime/state/resume are substitutes; native streaming lifecycle checked separately. Technical level samples do not certify hardware loudness or musical quality."
+    },
+    {
+      "command": "node tools/blender/verify_assets.mjs",
+      "status": "BLOCKED",
+      "log": "docs/production/evidence/p06-2026-10-01/assets.txt",
+      "exitCode": 1,
+      "initialStatus": "PASS",
+      "initialLog": "docs/production/evidence/p06-2026-10-01/assets-initial.txt",
+      "result": "Final direct working-tree check detects24 concurrently replaced character files by another AI; preserve them, do not silently register or include them in this commit."
+    },
+    {
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "log": "docs/production/evidence/p06-2026-10-01/closeout.txt",
+      "exitCode": 0
+    },
+    {
+      "command": "node --check harness/e2e.mjs; node --check harness/v00.mjs; git diff --check",
+      "status": "PASS",
+      "log": "docs/production/evidence/p06-2026-10-01/closeout.txt",
+      "exitCode": 0
+    },
+    {
+      "command": "node shots/p06-index-assets.mjs (git -c core.autocrlf=false checkout-index -z --stdin --prefix=<Temp>; verifyAssets(snapshot, inventory))",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/production/evidence/p06-2026-10-01/assets-index.txt",
+      "result": "All213 assets in the intended Git index match; source references unchanged from reviewed inventory. Original concurrent working-tree files untouched.",
+      "limits": "Historical intended-index check passed; temporary export retained in Windows Temp after recursive cleanup was rejected by automatic policy. No expected asset identity was weakened."
+    }
+  ],
+  "sourceHashesLF": {
+    "src/audio/AudioEngine.ts": "4fe3c72715a7fa282f9a2afa39014cd7efd292d04622e436a90f15cf3f2985cb",
+    "src/audio/preferences.ts": "79f4715fbb4a8983c68491d9a01116a0a2ba68701c8003d1d692b4f9ad1ac577",
+    "src/game/GameScene.ts": "122ae089cf0b66e62040bd61fd8479c0b2fd36c33575903b0472f90e0f67a816",
+    "src/game/RunMenu.ts": "535c40fbdc8ba16472766350e1e730f769fa48a780940629aa3fe73fa29cd009",
+    "src/game/jokerArt.ts": "00b483d2e3f7f97e70a8a8d07db3bfcb4bee869e1cc7db6923f7b968aa640b8f",
+    "src/game/session.ts": "2016c45c364e3ad28da77236bbf0facb5c1ce42d00d17e5ae0492a45a19184de",
+    "src/main.ts": "04a90e47add1ac3fb3bd0e60b87dede6f05428ca8471ed3e48668c65eddf8a39",
+    "src/style.css": "e90e36ff9dc888a7338ae56d303005aa633283bde504a65c2c48ba54ce2c8dd3",
+    "vite.config.ts": "f9ffab7ea8a37a7f1cca785a28e55ebf5c9cd85d3bc8fdea54341c19838b14fb",
+    "harness/e2e.mjs": "6d8b329d40a007675a2f4dd456bc7a9434d9249fddbf852ef04a56e17c5baae1",
+    "harness/v00.mjs": "ba9edaa8eeb63ad761e18176fd57ac687e4046c3824338a89942cbbf9813d984",
+    "tests/audio-preferences.test.ts": "c6c5f19680ac0c5d326f68aaaed0826dba7c403248f0c6121fd2ca2084cbf9f7",
+    "tests/joker-art.test.ts": "c628d44ccb217fda663520d3650508c9628ae6c5ff98dc2ae9196150e20249ff",
+    "public/assets/audio/p06/recording.json": "dfb139a918cbdd3a2c2947fefd391e21979908e60a2330575661f6358b16958b",
+    "art/sources/p06-jokers/manifest.json": "8de6758807780ff0bbefe7545a10e0b061ce70c726596cbda154badfe17d2ae3",
+    "art/sources/p06-jokers/part-a.json": "57b07fee105e324033079a4dbbbc121ffc273af32e13a0d17cc1fe49c9290885",
+    "art/sources/p06-jokers/part-b.json": "4af8212ff9cefa0c1139508f49a3725a006b67e46c8c722640f15b8c22317faf"
+  },
+  "removed": [
+    "src/audio/chopinTheme.ts",
+    "old synthetic BGM sequencer",
+    "mute/music-mute/master UI controls and dead presentation-muted consumer",
+    "one-off workspace probe scripts",
+    "Raw one-off screenshots after saving three compressed representative views"
+  ],
+  "art": {
+    "manifest": null,
+    "currentCoverage": "24/24",
+    "retained": 8,
+    "newIndependentSources": 16,
+    "thumbnailBytes": 378596,
+    "lazyDetailBytes": 2004360,
+    "sourcePNGsInPublic": false,
+    "visualApproval": "NOT_GRANTED",
+    "rightsApproval": "NOT_GRANTED",
+    "status": "SUPERSEDED_BY_D20_P07",
+    "disposition": "16 Western source/output candidates generated and technically checked during P06, then deleted following the user replacement instruction; current24 coverage comes only from P07."
+  },
+  "music": {
+    "metadata": "public/assets/audio/p06/recording.json",
+    "source": "https://pixabay.com/music/solo-piano-serenade-schubert-216755/",
+    "author": "Jérôme Chauvel / Abydos Music",
+    "license": "Pixabay Content License, not CC0",
+    "runtimeBytes": 3487912,
+    "sha256": "e07b53322fd650fb5929215cef3b07b34977a2c486e140f8b71c5a23017daead",
+    "loading": "Stream after first actual gesture and nonzero music; preserve position across scenes; playbackRate1",
+    "technique": "NOT_SPECIFIED",
+    "fullHardwareAudition": "NOT_RUN"
+  },
+  "preserved": [
+    "P05 table re-entry blue-screen fix",
+    "individual source trace /three-level flames and burning sound /resource counter response /loss highlight",
+    "rule RNG and game save /r2-v4 content",
+    "User subsequently stopped the other portrait task and authorized P07 replacement; all current runtime images now use P07 Oriental illustrations."
+  ],
+  "metadataTiming": "Informational recording metadata was completed after UI/smoke. Playback path, AudioEngine and MP3 stayed frozen. Final build and asset-identity check cover the final metadata. Final working-tree asset check was blocked by concurrent character replacement; intended-index build/asset check independently passed. Source hashes above also match actual staged Git blobs.",
+  "notRun": [
+    "Physical Android Chrome",
+    "Headphone and phone speaker listening /full-track listening /exact melody against score",
+    "Full smoke-browser matrix /long E2E /balance and later gameplay"
+  ],
+  "humanReview": {
+    "status": "NOT_GRANTED",
+    "evidence": "No user acceptance of this candidate; A01/V01 remain blocked."
+  },
+  "risks": [
+    "Existing >500KB bundle warning",
+    "24-card art and source/publication rights remain candidates, not formal human approval"
+  ],
+  "delivery": "P06 audio retained in the combined P07 normal main commit/push; P06 Western art not delivered.",
+  "nextStep": "See P07 evidence and current handoff; do not deepen gameplay before human visual/interaction acceptance."
+}

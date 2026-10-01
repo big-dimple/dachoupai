@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-01T13:24:03.871Z",
+  "assets": 16,
+  "files": 48,
+  "command": "node shots/p06-art-check.mjs",
+  "checks": [
+    "16 unique IDs",
+    "48 full image decodes",
+    "source/runtime dimensions and SHA256 match each manifest"
+  ],
+  "totals": {
+    "sourceBytes": 39388741,
+    "thumbnailBytes": 378596,
+    "detailBytes": 2004360
+  },
+  "visualApproval": "NOT_GRANTED",
+  "limitations": [
+    "Contact sheets self-reviewed by root; no user visual or Android acceptance"
+  ]
+}

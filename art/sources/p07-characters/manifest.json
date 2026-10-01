@@ -1,0 +1,354 @@
+{
+  "visualVersion": "P07-east-2026-10-01",
+  "status": "ENGINEERING_CANDIDATE",
+  "generator": {
+    "productName": "ChatGPT Images 2.5",
+    "entry": "Signed-in ChatGPT web Create Image",
+    "officialProductSource": "https://help.openai.com/en/articles/11084440-images-in-chatgpt",
+    "backendSnapshot": "NOT_EXPOSED_BY_UI",
+    "export": "Normal image-viewer Download button; original PNG copied from browser download",
+    "requestCount": 6
+  },
+  "visualApproval": "NOT_GRANTED",
+  "rightsApproval": "NOT_GRANTED",
+  "conversation": "https://chatgpt.com/c/6abe6bb8-80f8-83ee-9501-61025bce3409",
+  "technicalCheck": "node scripts/export-character-art.mjs; original/output full decode, dimensions and SHA-256",
+  "characters": [
+    {
+      "id": "amo",
+      "name": "阿默",
+      "gender": "female",
+      "age": 28,
+      "profession": "Chinese travelling-theatre mime",
+      "downloadTitle": "暖灯古戏台中的翡翠仕女",
+      "avatarCropPixels": {
+        "left": 270,
+        "top": 0,
+        "width": 600,
+        "height": 600
+      },
+      "selectionFocus": {
+        "x": 0.47,
+        "y": 0.22
+      },
+      "visualReview": "Root viewed original: Chinese woman, three-quarter look-back, jade cape, natural face/hands, blank card, no visible watermark/text. Human approval not granted.",
+      "source": {
+        "path": "art/sources/p07-characters/amo.png",
+        "width": 1122,
+        "height": 1402,
+        "alpha": false,
+        "bytes": 2149006,
+        "sha256": "19b8bc5907f63a9f4b95acdfc4eb532e102603b3275e53c7549402b92e376ae7"
+      },
+      "outputs": [
+        {
+          "path": "public/assets/characters-p07/amo.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 12652,
+          "sha256": "c0d2fd29db1116951f0acbe0381fd7985e7aa2936bcd398b6236d501118e7be9"
+        },
+        {
+          "path": "public/assets/characters-p07/amo.selection.webp",
+          "width": 256,
+          "height": 320,
+          "alpha": false,
+          "bytes": 20204,
+          "sha256": "069c6044df114e33bfcae3bd913d063f07705230217076d85f5673f7e3e1d9d4"
+        },
+        {
+          "path": "public/assets/characters-p07/amo.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "alpha": false,
+          "bytes": 77082,
+          "sha256": "e40ab6bece1a537db49d92c2f2deb9f01c0e25f40fb5b4a13bae4d29ecfa23b4"
+        }
+      ],
+      "prompt": "请直接用 ChatGPT 当前的创建图像功能生成一张独立的精美东方游戏角色立绘，不要只回复提示词。用途：中国巡演戏班主题的精品卡牌游戏，角色「阿默」。竖幅4:5，从大腿到头顶的完整构图，脸和双手清楚，人物占画面80%，保留头顶和肩膀安全区。人物是28岁的中国女性默剧师，精致但自然的东方眉眼、鹅蛋脸、黑发利落盘起，安静自信、嘴角略带笑意。三分之二侧身、回头看向镜头，一只戴乳白色薄手套的手轻轻托起一张无字无花色的纸牌，另一手优雅收势。穿修身的玉青短披肩与暗青交领演出服，衣料有真实丝绸质感，腰部小小朱红结扣，简洁干练，不画成西方贵族服装、不堆金饰。风格是高水准东方幻想游戏的手绘概念插画，真实自然人体比例，优美高级而不油腻，不是照片、不是3D塑料、不夸张丑化脸部、不画成幼态网红同一张脸。深玉青、暖象牙纸、克制朱红和旧金点缀；左上暖光勾出清楚轮廓和细腻面部，背景为低对比的中国小戏台绸幕、隐约木格与柔和灯火，有舞台气息而不抢人物。构图有留白，清晰焦点，适合做全图详情和另裁头像。没有文字、标记、数字、水印、logo、卡框、UI。只生成阿默这一张，不生成拼图。",
+      "conversation": "https://chatgpt.com/c/6abe6bb8-80f8-83ee-9501-61025bce3409",
+      "viewerImageIndex": 1
+    },
+    {
+      "id": "touye",
+      "name": "骰爷",
+      "gender": "male",
+      "age": 38,
+      "profession": "Chinese street gambler / dice performer",
+      "downloadTitle": "戏台掷骰的江湖浪客",
+      "avatarCropPixels": {
+        "left": 300,
+        "top": 0,
+        "width": 620,
+        "height": 620
+      },
+      "selectionFocus": {
+        "x": 0.53,
+        "y": 0.22
+      },
+      "visualReview": "Root viewed original: stocky Chinese man, short stubble, laughing low-angle pose, rolled sleeves, dice and pouch, no visible text/watermark. Human approval not granted.",
+      "source": {
+        "path": "art/sources/p07-characters/touye.png",
+        "width": 1122,
+        "height": 1402,
+        "alpha": false,
+        "bytes": 2283214,
+        "sha256": "d7509685a6e707ba253427fcc92d65514527fcdee1496c710279557a1638379c"
+      },
+      "outputs": [
+        {
+          "path": "public/assets/characters-p07/touye.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 14978,
+          "sha256": "82162eb76626a6402fdee2ad9473814f501054e7cb49323562dff245b78d3507"
+        },
+        {
+          "path": "public/assets/characters-p07/touye.selection.webp",
+          "width": 256,
+          "height": 320,
+          "alpha": false,
+          "bytes": 22674,
+          "sha256": "8e3901b8ad35569b4ccff002e7a14bc08ccd0c135eeb8be5a042f77a893e0a15"
+        },
+        {
+          "path": "public/assets/characters-p07/touye.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "alpha": false,
+          "bytes": 92552,
+          "sha256": "1638e004e331497d1fc7fb8ed3f413c16f834598be56f5f8596491628f156d7a"
+        }
+      ],
+      "prompt": "继续生成同一款精品中国巡演戏班卡牌游戏的第二个独立角色「骰爷」，保持上一张的精致手绘质感、深玉青/暖象牙/克制朱红/旧金色和左上暖光，但绝对不要沿用上一张女性的脸或轮廓。单张竖幅4:5，大腿至头顶完整构图，人物占80%，头像可另裁。38岁中国男性市井赌客，宽方脸、健康小麦色皮肤、浓眉和短小胡茬，束起的黑发、强壮结实的肩臂，斜倚在中国戏台木栏边，以低一点的三分之二角度看向观众，放松又狡黠的大笑，眼睛有神。一只手在指间自然转着两粒骰子，另一只手拎一个简洁布袋；身穿卷袖的暗青短褂、朱褐色腰带和朴素的中国布料，不是西方背心贵族、不是仙人长袍。天然东方脸型，成熟好看、不丑化、不夸张卡通、不塑料3D、不摄影、不幼态网红脸。道具清晰，双手完整自然，不让骰子遮住脸，背景是低对比青色戏幕、木梁和柔和灯火，人物与背景有明度分离。整体有洒脱自信的东方江湖气，细节精雕而克制，没有密集纹样。无文字、数字、logo、水印、卡框、UI、扑克花色。直接生成图片，只生成这个角色。",
+      "conversation": "https://chatgpt.com/c/6abe6bb8-80f8-83ee-9501-61025bce3409",
+      "viewerImageIndex": 2
+    },
+    {
+      "id": "laohuan",
+      "name": "老幻",
+      "gender": "male",
+      "age": 68,
+      "profession": "Chinese senior conjurer",
+      "downloadTitle": "戏台魔术师与纸鹤",
+      "avatarCropPixels": {
+        "left": 300,
+        "top": 0,
+        "width": 620,
+        "height": 620
+      },
+      "selectionFocus": {
+        "x": 0.52,
+        "y": 0.23
+      },
+      "visualReview": "Root viewed original: grey hair and beard, visible age, amused magician with paper bird and empty sleeve, natural hands, no visible text/watermark. Human approval not granted.",
+      "source": {
+        "path": "art/sources/p07-characters/laohuan.png",
+        "width": 1122,
+        "height": 1402,
+        "alpha": false,
+        "bytes": 2351974,
+        "sha256": "4f1aafc591274ce9d72b85827a9ad65e1ac8ba2f4ef5a67230a220159c03d037"
+      },
+      "outputs": [
+        {
+          "path": "public/assets/characters-p07/laohuan.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 18520,
+          "sha256": "5e64913b8bc22179986c61ae1865f9ee85fd31879402b0df2893cfdcff35695b"
+        },
+        {
+          "path": "public/assets/characters-p07/laohuan.selection.webp",
+          "width": 256,
+          "height": 320,
+          "alpha": false,
+          "bytes": 24896,
+          "sha256": "f8f5ee3e73e68d7861411b2f743cbd5678cc5e8dd56aae373704afd2ded135fb"
+        },
+        {
+          "path": "public/assets/characters-p07/laohuan.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "alpha": false,
+          "bytes": 107386,
+          "sha256": "226596012c713eebd8f913b724f0cd2a0affef42764dd004b38ed6e57bd38b2b"
+        }
+      ],
+      "prompt": "请为同一款中国巡演戏班主题精品卡牌游戏直接生成第三张独立人物立绘「老幻」。与前两张保持精美东方手绘概念插画质感和玉青、暖象牙、朱红、旧金配色，但这是68岁中国男性幻术师，必须是明显不同的老年面孔、职业、姿势。竖幅4:5，大腿以上完整构图，人物占画面80%，头顶/双肩/双手完整。瘦而矍铄，颧骨稍高，深邃带笑的东方眼睛，灰白头发束起，灰白眉和短胡须，表情温和睿智又顽皮。四分之三侧脸看着自己手心，一手展示空袖口，另一手指间变出一只纸折的飞鸟与少量淡金光点，真实自然手指，适量幻想，不画炫目光球。穿灰玉青中国交领短袍、袖缘有细致修补的朱红线、竹制小道具袋，符合巡演匠人而不是西游仙人、西方巫师或王公贵族。背景是低对比的中国木戏台、深青绸幕、柔和纸灯笼，左上暖光把面部、双手和衣料分开，手绘笔触细腻且克制，人物优雅帅气但保留年龄纹理，不丑化，不卡通大头，不照搬网红脸，不照片不3D。无文字、UI、牌框、logo、水印、数字。只生成这一张人物图片，不生成拼图。",
+      "conversation": "https://chatgpt.com/c/6abe6bb8-80f8-83ee-9501-61025bce3409",
+      "viewerImageIndex": 3
+    },
+    {
+      "id": "erxiang",
+      "name": "二响",
+      "gender": "female",
+      "age": 42,
+      "profession": "Chinese storyteller / clapper performer",
+      "downloadTitle": "灯影下的木鱼说书人",
+      "avatarCropPixels": {
+        "left": 350,
+        "top": 0,
+        "width": 620,
+        "height": 620
+      },
+      "selectionFocus": {
+        "x": 0.57,
+        "y": 0.23
+      },
+      "visualReview": "Root viewed original: middle-aged Chinese woman with rounded face and laugh lines, red short coat and wooden clappers, different from youthful mime; no visible text/watermark. Human approval not granted.",
+      "source": {
+        "path": "art/sources/p07-characters/erxiang.png",
+        "width": 1122,
+        "height": 1402,
+        "alpha": false,
+        "bytes": 2300090,
+        "sha256": "ee109706f7a8a9eed53ef2fe9326bead5ef996dde909ba9341727e1ad933999d"
+      },
+      "outputs": [
+        {
+          "path": "public/assets/characters-p07/erxiang.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 15674,
+          "sha256": "053f5dd09e6786b679113a130a8a1a3fc5a77cd23786a821d796d9c19da698ca"
+        },
+        {
+          "path": "public/assets/characters-p07/erxiang.selection.webp",
+          "width": 256,
+          "height": 320,
+          "alpha": false,
+          "bytes": 24704,
+          "sha256": "dc4b2c9c160183baf245b8fd31b21b83ef9fc08f929d56e15c4d85416ede16c4"
+        },
+        {
+          "path": "public/assets/characters-p07/erxiang.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "alpha": false,
+          "bytes": 100360,
+          "sha256": "e11162f6d7fe61252e75044d04bd503d8fc11083fa1c87d482c2581f139b9624"
+        }
+      ],
+      "prompt": "请直接生成第四张独立中国巡演戏班精品卡牌游戏角色立绘「二响」。同一高水准手绘插画语言，玉青、象牙、朱褐、旧金与左上暖光。与已经画的年轻女默剧师、男人赌客、老年幻术师彻底区分脸型和动作。这位是42岁中国女性捧哏/说书艺人，饱满亲切的圆脸，笑纹自然，有力量的眉眼，黑发简单盘成利落的矮髻，两鬓少许灰丝；她不是少女、不是仙女、不是皇后。身体前倾以接话的姿态面向观众，略偏三分之二角度，眉梢挑起、明亮又机灵的大笑，左手和右手握着大小不同的木板快板，双手清楚自然不遮脸。穿活动方便的朱褐色中国交领短袄、深青袖和腰带、裤装，布料有低调手工针脚，不堆复杂宫廷纹样。4:5竖幅，大腿到头顶完整，头肩和道具保留安全区，人物占80%。背景低对比青色戏台绸幕、茶壶与柔和纸灯火，精美细腻但背景不抢焦点。可爱而有真实成年人魅力，真实人体比例，不丑化、不夸张小丑妆、不网红整容脸、不照片、不3D。无文字数字水印logo卡框UI。只生成二响这一个独立人物，不画拼图。",
+      "conversation": "https://chatgpt.com/c/6abe6bb8-80f8-83ee-9501-61025bce3409",
+      "viewerImageIndex": 4
+    },
+    {
+      "id": "azao",
+      "name": "阿燥",
+      "gender": "male",
+      "age": 24,
+      "profession": "Chinese young street acrobat",
+      "downloadTitle": "红绸飞舞的古风艺人",
+      "avatarCropPixels": {
+        "left": 380,
+        "top": 20,
+        "width": 640,
+        "height": 640
+      },
+      "selectionFocus": {
+        "x": 0.61,
+        "y": 0.25
+      },
+      "visualReview": "Root viewed original: youthful clean-shaven Chinese man, energetic diagonal pose, flowing red ribbon and blank card, clearly different age/expression from gambler and magician. Natural hands, no visible text/watermark. Human approval not granted.",
+      "source": {
+        "path": "art/sources/p07-characters/azao.png",
+        "width": 1122,
+        "height": 1402,
+        "alpha": false,
+        "bytes": 2248561,
+        "sha256": "8430fdeabdfae664a5943e8ad769246aade438f42331abf779891dfbdc524bf5"
+      },
+      "outputs": [
+        {
+          "path": "public/assets/characters-p07/azao.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 18410,
+          "sha256": "518a90da28c06313401ea72e48384f36e09860e293ecad8c37e079794929f4cf"
+        },
+        {
+          "path": "public/assets/characters-p07/azao.selection.webp",
+          "width": 256,
+          "height": 320,
+          "alpha": false,
+          "bytes": 25954,
+          "sha256": "2cb82b4bd9ea72911b671fe5d8991e6981414d867dd27ea75eae8333c6adb662"
+        },
+        {
+          "path": "public/assets/characters-p07/azao.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "alpha": false,
+          "bytes": 99730,
+          "sha256": "9ea3a00e2aed90d7718b81241174dc2a4839e34f4ca793c6c3de7f591097aae9"
+        }
+      ],
+      "prompt": "直接生成第五张独立人物立绘：精品中国巡演戏班卡牌游戏的青年热场演员「阿燥」。为确保多样性，换成24岁中国年轻男性，五官锐利清秀，短黑发有小高束、干净无胡须，与此前成熟赌客/老年幻术师的脸型和体态明显不同。这次以动态右侧接近侧面的三分之二角度，身体斜向前跃起，面向镜头闪亮地笑，眉眼轻快，一只手接住飞来的无字纸牌、另一只手甩出一条柔软朱红杂技彩带，双手完整自然，牌不遮脸，纸牌无文字无花色。穿玉青色利落中国布料短夹克、暗青窄袖、朱红腰结、深色裤装，服装整洁而非破布，职业是中国街头杂技演员不是西方巫师、赌场贵族、宫廷皇帝或科幻装甲。构图应当清晰大胆，有倾斜动势，头肩完整安全区。竖幅4:5、大腿至头顶，主体80%，背景是低对比中国木戏台和青色绸幕，轻微纸灯虚光，不能像复制之前赌客站在同一根木栏杆。共用玉青/象牙/克制朱红/旧金、左上暖光和精细东方幻想手绘概念插画风，自然身体比例与面部，有手绘笔触的高级美术，不照片、不3D塑料，不网红同脸，不丑化。无数字、文字、UI、牌框、logo、水印。只生成阿燥这个人物一张，不做拼图。",
+      "conversation": "https://chatgpt.com/c/6abe6bb8-80f8-83ee-9501-61025bce3409",
+      "viewerImageIndex": 5
+    },
+    {
+      "id": "xiemu",
+      "name": "谢幕人",
+      "gender": "female",
+      "age": 55,
+      "profession": "Chinese senior final-act performer",
+      "downloadTitle": "剧终余韵：锦衣执扇的银发伶人",
+      "conversation": "https://chatgpt.com/c/6abe7080-df64-83e8-9ca0-208e7848f8fa",
+      "avatarCropPixels": {
+        "left": 280,
+        "top": 0,
+        "width": 610,
+        "height": 610
+      },
+      "selectionFocus": {
+        "x": 0.5,
+        "y": 0.22
+      },
+      "visualReview": "Root viewed original: mature silver/black-haired Chinese woman in red/teal with bamboo fan, restrained profile pose, natural face/hands; no visible text/watermark. Human approval not granted.",
+      "source": {
+        "path": "art/sources/p07-characters/xiemu.png",
+        "width": 1122,
+        "height": 1402,
+        "alpha": false,
+        "bytes": 2320547,
+        "sha256": "99f75a370db706245297f800830668b509ee631d9be4402f7fb99f004376047e"
+      },
+      "outputs": [
+        {
+          "path": "public/assets/characters-p07/xiemu.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "bytes": 16052,
+          "sha256": "7d98072c1c02a3790f1ac2c41e38a52a843987426a1573ce6560028727407b40"
+        },
+        {
+          "path": "public/assets/characters-p07/xiemu.selection.webp",
+          "width": 256,
+          "height": 320,
+          "alpha": false,
+          "bytes": 24068,
+          "sha256": "e642c7dec217fd74bb8f9fb6bed97d2f8c21dbc313bdf2eeddcb99e55a7b48b5"
+        },
+        {
+          "path": "public/assets/characters-p07/xiemu.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "alpha": false,
+          "bytes": 94928,
+          "sha256": "091b8990d0dc5e7fb69139e20a5be96dd65f9f3ffd809d49466c6b49b6076eb9"
+        }
+      ],
+      "prompt": "用 ChatGPT 当前创建图像功能直接生成一张中国巡演戏班精品卡牌游戏的原创角色「谢幕人」立绘。单张竖幅4:5、大腿到头顶完整构图、主体80%、双肩双手与头顶安全区。她是55岁的中国女性终演者，成熟清瘦的鹅蛋偏长脸、有自然细纹、锐利但慈爱的东方眼神，银黑交织的头发整齐绾起，身形挺直、静中有力。右侧三分之二侧身，目光略向左下方，微微一笑结束演出；一只手在身前缓缓合上细长旧竹扇，另一手自然做收势，扇子不遮脸。穿清楚的中国绸布交领演出服，深朱红外襟、暗玉青内衣、裤装，有细腻但不繁复的针脚、旧金小扣，服饰是熟练巡演艺人而非西方贵族、中世纪法师、女皇或少女仙侠。高水准东方幻想游戏手绘概念插画，自然成年人比例、精致面部与衣料、左上暖金舞台灯，背景是低对比中国戏台木梁和青色绸幕，谢幕后星星点点暖灯，留白清楚高级。主色深玉青、暖象牙、克制朱红和旧金。人物五官必须区别于年轻女性，不用网红同脸、不丑化、不卡通大头，不照片，不3D塑料。无文字、数字、UI、卡框、logo、水印。只生成这一张，不做拼图。",
+      "viewerImageIndex": 1
+    }
+  ]
+}

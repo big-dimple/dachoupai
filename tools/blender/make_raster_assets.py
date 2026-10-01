@@ -117,17 +117,6 @@ def textures():
     save(im,TEX/'joker-artwork.png')
 
 
-def portraits():
-    for name in ['amo','touye','laohuan','erxiang','azao','xiemu']:
-        im=Image.open(ROOT/f'public/assets/characters/{name}.png').convert('RGB')
-        # Explicit head close-up, tighter than the current HUD's largest square.
-        # Same existing focal anchors; keep hats, face and upper shoulders.
-        focal={'amo':.62,'touye':.52,'laohuan':.55,'erxiang':.52,'azao':.57,'xiemu':.52}[name]
-        side=round(im.width*.42)
-        left=max(0,min(im.width-side,round(focal*im.width-side/2)))
-        crop=(left,0,left+side,side)
-        save(im.crop(crop).resize((512,512),Image.Resampling.LANCZOS),
-             ROOT/f'public/assets/characters/{name}.avatar.webp')
 
 
 def effects():
@@ -215,8 +204,8 @@ def finish():
     save(bg,REN/'background-composite.webp')
     avatars=Image.new('RGB',(1536,1024),IVORY)
     for i,name in enumerate(['amo','touye','laohuan','erxiang','azao','xiemu']):
-        im=Image.open(ROOT/f'public/assets/characters/{name}.avatar.webp')
-        avatars.paste(im,(i%3*512,i//3*512))
+        im=Image.open(ROOT/f'public/assets/characters-p07/{name}.avatar.webp')
+        avatars.paste(im.resize((512,512),Image.Resampling.LANCZOS),(i%3*512,i//3*512))
     save(avatars,REN/'avatars-preview.webp')
 
 
@@ -226,6 +215,5 @@ if __name__=='__main__':
     args=parser.parse_args()
     if args.phase=='textures': textures()
     elif args.phase=='b':
-        portraits()
         effects()
     else: finish()

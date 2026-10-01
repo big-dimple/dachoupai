@@ -1,0 +1,466 @@
+{
+  "taskId": "P07",
+  "group": "A",
+  "visualVersion": "p07-eastern-20261001",
+  "productName": "ChatGPT Images 2.5",
+  "productBasis": "Official current ChatGPT Images documentation verified by root; Create Image selected in signed-in ChatGPT web UI.",
+  "modelSnapshot": "NOT_EXPOSED_BY_UI",
+  "generationMode": "ChatGPT web Create Image through CUA in own Edge tab",
+  "builtInImagegenUsed": false,
+  "assets": [
+    {
+      "id": "pengci",
+      "prompt": "请直接生成一张原创游戏卡牌立绘，不要解释文字。使用当前 ChatGPT Images 图像创建模式。竖幅4:5。中国东方巡演戏班奇幻卡牌游戏，精致成熟的手绘概念插画，电影级暖光与深青玉色舞台，温暖米白纸张质感，少量朱红与克制黄铜，光从左上前方来。角色是虚构的东亚中国男性，28岁，瘦而灵巧，脸型偏长，浓眉、小胡茬，神情机灵含笑，非丑化卡通。职业是中国街头喜剧杂耍演员，短款青布对襟衣、卷起袖口、朱红腰带，侧身三分之二角度，头向观众微微挑眉，右手托住一只精致但有一条裂纹的白瓷小碗，左手拿着唯一一张没有任何字样的纸牌，滑稽但优雅、自信，不要摔伤或苦相。机制意象是“碰瓷”：以小小一张牌和瓷碗创造出意料之外的好戏。膝上/大腿以上构图，人物占画面约80%，脸清晰而大，双手和瓷碗完整，没有截断道具。背景是低对比的中国木质戏台与青色绒幕，主体明亮、有清晰轮廓。人物必须是东方东亚面孔，不要欧洲中世纪服装，不要西方贵族/西方幻想人物。不要文字、数字、牌点、花色、卡框、徽章、LOGO、水印，不要拼图/联系表，只生成这一个独立角色的完整立绘。避免塑料3D质感、现代照片、流水线网红脸、过密金饰、畸形手指。",
+      "conversationUrl": "https://chatgpt.com/c/6abe6bb0-e0d4-83ee-8033-544a549b6a3c",
+      "viewerTitle": "戏台幻术师：裂纹瓷碗与空白卡牌",
+      "downloadedPath": "C:/Users/wanghongping/Downloads/戏台幻术师：裂纹瓷碗与空白卡牌.png",
+      "source": {
+        "path": "art/sources/p07-jokers/pengci.png",
+        "bytes": 2358069,
+        "sha256": "b643a4281d5ce96ab505066fa76ad5d13e8956e6ba7bbdba1a87337208b58528",
+        "width": 1122,
+        "height": 1402,
+        "hasAlpha": false,
+        "format": "png",
+        "decode": "PASS"
+      },
+      "thumbnail": {
+        "path": "public/assets/jokers-p07/pengci.webp",
+        "bytes": 22448,
+        "sha256": "fb4d7953cc9303026be8b3e9b133ecb8ac1cbada7ec9a2b8ae59460b4d30629b",
+        "width": 256,
+        "height": 320,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "detail": {
+        "path": "public/assets/jokers-p07/pengci-detail.webp",
+        "bytes": 111488,
+        "sha256": "a4e53a9c5eefb03b639da4fee1c3ef3e3180728982a66035181ec524bb2ae0ec",
+        "width": 615,
+        "height": 768,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "crop": {
+        "mode": "cover",
+        "position": "centre",
+        "note": "Only near-4:5 aspect adaptation; not a collage crop."
+      },
+      "agentVisualReview": {
+        "status": "REVIEWED_CANDIDATE",
+        "observations": "Eastern Chinese theatre identity, readable face and mechanic prop; no visible embedded text or watermark. Root and user acceptance remain separate."
+      },
+      "userVisualApproval": "NOT_GRANTED",
+      "purpose": "Current Joker card thumbnail and complete art detail",
+      "previewPath": "art/sources/p07-jokers/contact-sheet-a.webp",
+      "safeArea": {
+        "mode": "Full near-4:5 portrait preserved",
+        "review": "Face/hands and primary prop reviewed in actual source viewer; surrounding long staff/ribbons may extend to original frame edges. No crop from a contact sheet."
+      }
+    },
+    {
+      "id": "mantangcai",
+      "prompt": "请直接生成一张原创游戏卡牌立绘，不要解释文字。使用当前 ChatGPT Images 图像创建模式。竖幅4:5。中国东方巡演戏班奇幻卡牌游戏，精致成熟的手绘概念插画，电影级暖光与深青玉色舞台，温暖米白纸张质感，少量朱红与克制黄铜，光从左上前方来。主角是一位55岁的中国女戏班主演，宽而优雅的脸型，有真实成熟的笑纹，黑发夹少量银丝，高髻不加复杂凤冠，神态是开怀而端庄的笑，成熟自信。她穿米白交领短袍与朱红披肩，双手把一副木制拍板展开在胸前，像刚刚赢得满场掌声，身体略向左倾而正脸望向观众；衣袖简洁不遮手。画面下侧有两双低对比观众鼓掌的手，远处是柔焦灯火和满座戏台。机制意象“满堂彩”，掌声是主符号，演员脸最清晰，不要明星复刻、艳俗舞女或千篇一律年轻脸。膝上/大腿以上构图，人物占画面约80%，脸清晰而大，所有手和关键道具完整，没有截断道具。背景是低对比的中国木质戏台与青色绒幕，主体明亮、有清晰轮廓。所有人物必须是东方东亚中国面孔，原创虚构成年人，不要欧洲中世纪服装，不要西方贵族/西方幻想人物。不要文字、数字、牌点、花色、卡框、徽章、LOGO、水印，不要拼图/联系表，只生成这张独立完整立绘。避免塑料3D质感、现代照片、流水线网红脸、过密金饰、畸形手指。",
+      "conversationUrl": "https://chatgpt.com/c/6abe6cbb-dd44-83ee-a478-ed73cb541b79",
+      "viewerTitle": "传统戏台上的欢欣表演",
+      "downloadedPath": "C:/Users/wanghongping/Downloads/传统戏台上的欢欣表演.png",
+      "source": {
+        "path": "art/sources/p07-jokers/mantangcai.png",
+        "bytes": 2098273,
+        "sha256": "010585e9d9c18c51d25380764086125dfa70437d7cee13d7a27163ca9b497ca2",
+        "width": 1122,
+        "height": 1402,
+        "hasAlpha": false,
+        "format": "png",
+        "decode": "PASS"
+      },
+      "thumbnail": {
+        "path": "public/assets/jokers-p07/mantangcai.webp",
+        "bytes": 21006,
+        "sha256": "b345310a8a2b505302485e5ab34492c341a533abf3d7e098b1ebb5121569479c",
+        "width": 256,
+        "height": 320,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "detail": {
+        "path": "public/assets/jokers-p07/mantangcai-detail.webp",
+        "bytes": 90684,
+        "sha256": "c3d3b504bae404e96871a31652690f73c1b0f95c0c3a6dc2ba98875cdd2d35cd",
+        "width": 615,
+        "height": 768,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "crop": {
+        "mode": "cover",
+        "position": "centre",
+        "note": "Only near-4:5 aspect adaptation; not a collage crop."
+      },
+      "agentVisualReview": {
+        "status": "REVIEWED_CANDIDATE",
+        "observations": "Eastern Chinese theatre identity, readable face and mechanic prop; no visible embedded text or watermark. Root and user acceptance remain separate."
+      },
+      "userVisualApproval": "NOT_GRANTED",
+      "purpose": "Current Joker card thumbnail and complete art detail",
+      "previewPath": "art/sources/p07-jokers/contact-sheet-a.webp",
+      "safeArea": {
+        "mode": "Full near-4:5 portrait preserved",
+        "review": "Face/hands and primary prop reviewed in actual source viewer; surrounding long staff/ribbons may extend to original frame edges. No crop from a contact sheet."
+      }
+    },
+    {
+      "id": "tiesuanpan",
+      "prompt": "请直接生成一张原创游戏卡牌立绘，不要解释文字。使用当前 ChatGPT Images 图像创建模式。竖幅4:5。中国东方巡演戏班奇幻卡牌游戏，精致成熟的手绘概念插画，电影级暖光与深青玉色舞台，温暖米白纸张质感，少量朱红与克制黄铜，光从左上前方来。主角是一位68岁的中国女账房先生，方而有骨相的脸，睿智锐利的眼神，银白头发挽成简洁圆髻，真实皱纹但气质精神，三分之二侧脸望向右前方。她穿高领玉青织物马甲与米白棉衫，戴一枚简单铜色耳饰。双手把一架黄铜边框木算盘抱在胸前，右手拨动整齐算盘珠，眼角微扬有不动声色的幽默。机制意象“铁算盘”，算盘和拨珠动作是唯一强符号，不加币堆、不加假文字账册、不加西方眼镜和欧洲服装。手指和算盘珠要准确、清楚。膝上/大腿以上构图，人物占画面约80%，脸清晰而大，所有手和关键道具完整，没有截断道具。背景是低对比的中国木质戏台与青色绒幕，主体明亮、有清晰轮廓。所有人物必须是东方东亚中国面孔，原创虚构成年人，不要欧洲中世纪服装，不要西方贵族/西方幻想人物。不要文字、数字、牌点、花色、卡框、徽章、LOGO、水印，不要拼图/联系表，只生成这张独立完整立绘。避免塑料3D质感、现代照片、流水线网红脸、过密金饰、畸形手指。",
+      "conversationUrl": "https://chatgpt.com/c/6abe6cbb-dd44-83ee-a478-ed73cb541b79",
+      "viewerTitle": "银发智者拨动金珠算盘",
+      "downloadedPath": "C:/Users/wanghongping/Downloads/银发智者拨动金珠算盘.png",
+      "source": {
+        "path": "art/sources/p07-jokers/tiesuanpan.png",
+        "bytes": 2229112,
+        "sha256": "202bfc2edd21080491fb69967bf83ff35d14e4a0315e35181b5e667ff70868e2",
+        "width": 1122,
+        "height": 1402,
+        "hasAlpha": false,
+        "format": "png",
+        "decode": "PASS"
+      },
+      "thumbnail": {
+        "path": "public/assets/jokers-p07/tiesuanpan.webp",
+        "bytes": 24816,
+        "sha256": "b1d29908236028eead4d54379466cafb65b2677005e338ce8a5911d525d59d1f",
+        "width": 256,
+        "height": 320,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "detail": {
+        "path": "public/assets/jokers-p07/tiesuanpan-detail.webp",
+        "bytes": 112102,
+        "sha256": "8a10a449b9f974ea1bb5b4b7a513a085217e6d8c14ae929906f9a5ec85990a06",
+        "width": 615,
+        "height": 768,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "crop": {
+        "mode": "cover",
+        "position": "centre",
+        "note": "Only near-4:5 aspect adaptation; not a collage crop."
+      },
+      "agentVisualReview": {
+        "status": "REVIEWED_CANDIDATE",
+        "observations": "Eastern Chinese theatre identity, readable face and mechanic prop; no visible embedded text or watermark. Root and user acceptance remain separate."
+      },
+      "userVisualApproval": "NOT_GRANTED",
+      "purpose": "Current Joker card thumbnail and complete art detail",
+      "previewPath": "art/sources/p07-jokers/contact-sheet-a.webp",
+      "safeArea": {
+        "mode": "Full near-4:5 portrait preserved",
+        "review": "Face/hands and primary prop reviewed in actual source viewer; surrounding long staff/ribbons may extend to original frame edges. No crop from a contact sheet."
+      }
+    },
+    {
+      "id": "huimaqiang",
+      "prompt": "请直接生成一张原创游戏卡牌立绘，不要解释文字。使用当前 ChatGPT Images 图像创建模式。竖幅4:5。中国东方巡演戏班奇幻卡牌游戏，精致成熟的手绘概念插画，电影级暖光与深青玉色舞台，温暖米白纸张质感，少量朱红与克制黄铜，光从左上前方来。主角是一位42岁的中国戏班男武生，结实宽肩，方脸、浓眉，短黑发束起，不留长仙侠飘发，眉间专注而嘴角自信。穿简洁深青练功短袍、朱红护腕和腰带。以强烈但优雅的回身旋转姿态，从背侧转头看向观众，一支没有锋利刀刃的中国戏曲长枪道具斜着贯穿画面，枪杆和红缨完整可见，红缨留出一道弧线表现返身。机制意象“回马枪”，像演出第三拍的漂亮返场，不画攻击伤害、血迹、凶恶将军，不穿欧洲骑士甲。人物脸清晰大，动作不遮眼睛。膝上/大腿以上构图，人物占画面约80%，脸清晰而大，所有手和关键道具完整，没有截断道具。背景是低对比的中国木质戏台与青色绒幕，主体明亮、有清晰轮廓。所有人物必须是东方东亚中国面孔，原创虚构成年人，不要欧洲中世纪服装，不要西方贵族/西方幻想人物。不要文字、数字、牌点、花色、卡框、徽章、LOGO、水印，不要拼图/联系表，只生成这张独立完整立绘。避免塑料3D质感、现代照片、流水线网红脸、过密金饰、畸形手指。",
+      "conversationUrl": "https://chatgpt.com/c/6abe6e5c-7e40-83ee-a94f-3614d2ce68c0",
+      "viewerTitle": "舞台侠客挥杆瞬间",
+      "downloadedPath": "C:/Users/wanghongping/Downloads/舞台侠客挥杆瞬间.png",
+      "source": {
+        "path": "art/sources/p07-jokers/huimaqiang.png",
+        "bytes": 2419790,
+        "sha256": "838f2b706283db848e6f5993fc3c3cf3a1a55ba1e4089a67650ad999f5917dd2",
+        "width": 1122,
+        "height": 1402,
+        "hasAlpha": false,
+        "format": "png",
+        "decode": "PASS"
+      },
+      "thumbnail": {
+        "path": "public/assets/jokers-p07/huimaqiang.webp",
+        "bytes": 23712,
+        "sha256": "41a75934fd77b26bd94e3d09d6683453bec7c836fa0162463cd06b48e9c875a8",
+        "width": 256,
+        "height": 320,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "detail": {
+        "path": "public/assets/jokers-p07/huimaqiang-detail.webp",
+        "bytes": 119756,
+        "sha256": "0a8a31d321921f4b63e9a5ab40c7a380ff371983fc767511dbeac8bd91c057f0",
+        "width": 615,
+        "height": 768,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "crop": {
+        "mode": "cover",
+        "position": "centre",
+        "note": "Only near-4:5 aspect adaptation; not a collage crop."
+      },
+      "agentVisualReview": {
+        "status": "REVIEWED_CANDIDATE",
+        "observations": "Eastern Chinese theatre identity, readable face and mechanic prop; no visible embedded text or watermark. Root and user acceptance remain separate."
+      },
+      "userVisualApproval": "NOT_GRANTED",
+      "purpose": "Current Joker card thumbnail and complete art detail",
+      "previewPath": "art/sources/p07-jokers/contact-sheet-a.webp",
+      "safeArea": {
+        "mode": "Full near-4:5 portrait preserved",
+        "review": "Face/hands and primary prop reviewed in actual source viewer; surrounding long staff/ribbons may extend to original frame edges. No crop from a contact sheet."
+      }
+    },
+    {
+      "id": "jiedongfeng",
+      "prompt": "请直接生成一张原创游戏卡牌立绘，不要解释文字。使用当前 ChatGPT Images 图像创建模式。竖幅4:5。中国东方巡演戏班奇幻卡牌游戏，精致成熟的手绘概念插画，电影级暖光与深青玉色舞台，温暖米白纸张质感，少量朱红与克制黄铜，光从左上前方来。主角是一位24岁的中国女扇舞杂耍者，瓜子脸但有鲜明骨相，细长而坚定的眼睛，低束黑发，轻快从容的微笑，不是流水线网红脸。她穿修身浅玉色交领短衣、深青裙裤、朱红短披肩，左肩朝画面而回头看向观众。手执一把大型米白折扇，扇面没有字画，另一只手指引一条被东风扬起的红色丝带，折扇和飘带形成向上流动的风势，主体清楚，不让丝带盖脸。机制意象“借东风”，优雅的风流与连贯构筑，不加魔法龙卷风或西方仙女翅膀。膝上/大腿以上构图，人物占画面约80%，脸清晰而大，所有手和关键道具完整，没有截断道具。背景是低对比的中国木质戏台与青色绒幕，主体明亮、有清晰轮廓。所有人物必须是东方东亚中国面孔，原创虚构成年人，不要欧洲中世纪服装，不要西方贵族/西方幻想人物。不要文字、数字、牌点、花色、卡框、徽章、LOGO、水印，不要拼图/联系表，只生成这张独立完整立绘。避免塑料3D质感、现代照片、流水线网红脸、过密金饰、畸形手指。",
+      "conversationUrl": "https://chatgpt.com/c/6abe6ef7-5a20-83ee-addd-f25610b487e6",
+      "viewerTitle": "舞台流光中的翩然舞者",
+      "downloadedPath": "C:/Users/wanghongping/Downloads/舞台流光中的翩然舞者.png",
+      "source": {
+        "path": "art/sources/p07-jokers/jiedongfeng.png",
+        "bytes": 2514796,
+        "sha256": "dbc6e61a7870bd7cf5404a3b0bedc61fb5a9897ea49ad9c6f557b642bcd89166",
+        "width": 1122,
+        "height": 1402,
+        "hasAlpha": false,
+        "format": "png",
+        "decode": "PASS"
+      },
+      "thumbnail": {
+        "path": "public/assets/jokers-p07/jiedongfeng.webp",
+        "bytes": 23362,
+        "sha256": "be042740a519cdbb9c7356044b207620ffafac8c22acd3dcc28b113799612310",
+        "width": 256,
+        "height": 320,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "detail": {
+        "path": "public/assets/jokers-p07/jiedongfeng-detail.webp",
+        "bytes": 121636,
+        "sha256": "247d556f1182c8c8b9be5d0989642fa54655ab47292014425c804bd05426e573",
+        "width": 615,
+        "height": 768,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "crop": {
+        "mode": "cover",
+        "position": "centre",
+        "note": "Only near-4:5 aspect adaptation; not a collage crop."
+      },
+      "agentVisualReview": {
+        "status": "REVIEWED_CANDIDATE",
+        "observations": "Eastern Chinese theatre identity, readable face and mechanic prop; no visible embedded text or watermark. Root and user acceptance remain separate."
+      },
+      "userVisualApproval": "NOT_GRANTED",
+      "purpose": "Current Joker card thumbnail and complete art detail",
+      "previewPath": "art/sources/p07-jokers/contact-sheet-a.webp",
+      "safeArea": {
+        "mode": "Full near-4:5 portrait preserved",
+        "review": "Face/hands and primary prop reviewed in actual source viewer; surrounding long staff/ribbons may extend to original frame edges. No crop from a contact sheet."
+      }
+    },
+    {
+      "id": "a03",
+      "prompt": "请直接生成一张原创游戏卡牌立绘，不要解释文字。使用当前 ChatGPT Images 图像创建模式。竖幅4:5。中国东方巡演戏班奇幻卡牌游戏，精致成熟的手绘概念插画，电影级暖光与深青玉色舞台，温暖米白纸张质感，少量朱红与克制黄铜，光从左上前方来。主角是一位35岁的中国男提灯师，修长脸，整洁黑色短发，清秀但成熟的眼神，安静而温和，侧脸四分之三朝左。穿浅米白棉袍、青色短披肩，单手把唯一一盏小黄铜灯托在胸口前，另一只手轻调灯罩，让一束柔和明亮的暖光从灯里投向前方，脸也被这束光照亮。机制意象“一束光”，一盏灯和一个人的小小精彩，清爽留白，不加其它灯、不画西方神父或中世纪斗篷。不要烧火危险或烟雾遮脸。膝上/大腿以上构图，人物占画面约80%，脸清晰而大，所有手和关键道具完整，没有截断道具。背景是低对比的中国木质戏台与青色绒幕，主体明亮、有清晰轮廓。所有人物必须是东方东亚中国面孔，原创虚构成年人，不要欧洲中世纪服装，不要西方贵族/西方幻想人物。不要文字、数字、牌点、花色、卡框、徽章、LOGO、水印，不要拼图/联系表，只生成这张独立完整立绘。避免塑料3D质感、现代照片、流水线网红脸、过密金饰、畸形手指。",
+      "conversationUrl": "https://chatgpt.com/c/6abe6f68-a088-83ee-8097-659251f5d18c",
+      "viewerTitle": "暖灯下的古风行者展台",
+      "downloadedPath": "C:/Users/wanghongping/Downloads/暖灯下的古风行者展台.png",
+      "source": {
+        "path": "art/sources/p07-jokers/a03.png",
+        "bytes": 2362465,
+        "sha256": "b70cecb5f696ef6081d3f1616a0e40653b0533df36840187363db385b3b95641",
+        "width": 1122,
+        "height": 1402,
+        "hasAlpha": false,
+        "format": "png",
+        "decode": "PASS"
+      },
+      "thumbnail": {
+        "path": "public/assets/jokers-p07/a03.webp",
+        "bytes": 21946,
+        "sha256": "2c60e2177f7b3feb60c8d3eb4713d28ddf0f6992374019c1ce23e527fbc29c2f",
+        "width": 256,
+        "height": 320,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "detail": {
+        "path": "public/assets/jokers-p07/a03-detail.webp",
+        "bytes": 109258,
+        "sha256": "6e911e319d216825c5623eba60bb33e865d6f128cc29c0a63adb89ded9079b40",
+        "width": 615,
+        "height": 768,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "crop": {
+        "mode": "cover",
+        "position": "centre",
+        "note": "Only near-4:5 aspect adaptation; not a collage crop."
+      },
+      "agentVisualReview": {
+        "status": "REVIEWED_CANDIDATE",
+        "observations": "Eastern Chinese theatre identity, readable face and mechanic prop; no visible embedded text or watermark. Root and user acceptance remain separate."
+      },
+      "userVisualApproval": "NOT_GRANTED",
+      "purpose": "Current Joker card thumbnail and complete art detail",
+      "previewPath": "art/sources/p07-jokers/contact-sheet-a.webp",
+      "safeArea": {
+        "mode": "Full near-4:5 portrait preserved",
+        "review": "Face/hands and primary prop reviewed in actual source viewer; surrounding long staff/ribbons may extend to original frame edges. No crop from a contact sheet."
+      }
+    },
+    {
+      "id": "a05",
+      "prompt": "请直接生成一张原创游戏卡牌立绘，不要解释文字。使用当前 ChatGPT Images 图像创建模式。竖幅4:5。中国东方巡演戏班奇幻卡牌游戏，精致成熟的手绘概念插画，电影级暖光与深青玉色舞台，温暖米白纸张质感，少量朱红与克制黄铜，光从左上前方来。主角是一位63岁的中国戏班迎客人，圆而亲切的脸型，笑纹和浓淡适中的灰白胡须，头发带银丝收在小布帽下，笑得眯眼但眼睛仍可辨，正面轻微俯身欢迎熟客。他穿深青对襟短外套与朱红围领，左手把一把小折扇合拢握在胸前，右手作熟络的欢迎手势。背景是同一座中国木质戏台入口的暖灯，机制意象“熟面孔”：一次次来访积累默契，不加文字门牌或欧洲礼服。角色要可信、精神，温暖但不幼稚，不夸张丑化老人。膝上/大腿以上构图，人物占画面约80%，脸清晰而大，所有手和关键道具完整，没有截断道具。背景是低对比的中国木质戏台与青色绒幕，主体明亮、有清晰轮廓。所有人物必须是东方东亚中国面孔，原创虚构成年人，不要欧洲中世纪服装，不要西方贵族/西方幻想人物。不要文字、数字、牌点、花色、卡框、徽章、LOGO、水印，不要拼图/联系表，只生成这张独立完整立绘。避免塑料3D质感、现代照片、流水线网红脸、过密金饰、畸形手指。",
+      "conversationUrl": "https://chatgpt.com/c/6abe6fb2-12bc-83e8-ae90-63496f99ac7b",
+      "viewerTitle": "戏台迎客的老先生",
+      "downloadedPath": "C:/Users/wanghongping/Downloads/戏台迎客的老先生.png",
+      "source": {
+        "path": "art/sources/p07-jokers/a05.png",
+        "bytes": 2206709,
+        "sha256": "be50d224730e096c682df7acca25edefc99fea521d2db9bdcaa3beaf9cef37e6",
+        "width": 1122,
+        "height": 1402,
+        "hasAlpha": false,
+        "format": "png",
+        "decode": "PASS"
+      },
+      "thumbnail": {
+        "path": "public/assets/jokers-p07/a05.webp",
+        "bytes": 22396,
+        "sha256": "36596a9fa7b54e3e4ad705a5690fbe9929f20eae323db52a71b2d99270eb5158",
+        "width": 256,
+        "height": 320,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "detail": {
+        "path": "public/assets/jokers-p07/a05-detail.webp",
+        "bytes": 101906,
+        "sha256": "3f623348f544d5f5e1b8123c0fc2c5545f0fc60e54acf24922bab42ff807e1cb",
+        "width": 615,
+        "height": 768,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "crop": {
+        "mode": "cover",
+        "position": "centre",
+        "note": "Only near-4:5 aspect adaptation; not a collage crop."
+      },
+      "agentVisualReview": {
+        "status": "REVIEWED_CANDIDATE",
+        "observations": "Eastern Chinese theatre identity, readable face and mechanic prop; no visible embedded text or watermark. Root and user acceptance remain separate."
+      },
+      "userVisualApproval": "NOT_GRANTED",
+      "purpose": "Current Joker card thumbnail and complete art detail",
+      "previewPath": "art/sources/p07-jokers/contact-sheet-a.webp",
+      "safeArea": {
+        "mode": "Full near-4:5 portrait preserved",
+        "review": "Face/hands and primary prop reviewed in actual source viewer; surrounding long staff/ribbons may extend to original frame edges. No crop from a contact sheet."
+      }
+    },
+    {
+      "id": "b02",
+      "prompt": "请直接生成一张原创游戏卡牌立绘，不要解释文字。使用当前 ChatGPT Images 图像创建模式。竖幅4:5。中国东方巡演戏班奇幻卡牌游戏，精致成熟的手绘概念插画，电影级暖光与深青玉色舞台，温暖米白纸张质感，少量朱红与克制黄铜，光从左上前方来。双人完整立绘：一位26岁的中国女戏班演员与一位29岁的中国男演员，二人面孔明确不同，女人是短黑发和坚决杏眼、窄脸，男人是微卷短发和柔和圆脸、干净下巴。女演员穿朱红短袄和浅米白内衫，男演员穿青色对襟短衣。二人肩并肩但稍微转身互相看着彼此，目光准确相遇，一边嘴角挑笑，一边眼神会意；每人各持一只形状相同的简洁木制拍板，像准备接出同一句台词。机制意象“对上眼”：成对的默契，不是婚纱情侣照、不加暧昧拥抱或心形符号，不复制同一张脸。两张脸各自都要大且清晰，双人共占画面80%，道具和手完整。膝上/大腿以上构图，人物占画面约80%，脸清晰而大，所有手和关键道具完整，没有截断道具。背景是低对比的中国木质戏台与青色绒幕，主体明亮、有清晰轮廓。所有人物必须是东方东亚中国面孔，原创虚构成年人，不要欧洲中世纪服装，不要西方贵族/西方幻想人物。不要文字、数字、牌点、花色、卡框、徽章、LOGO、水印，不要拼图/联系表，只生成这张独立完整立绘。避免塑料3D质感、现代照片、流水线网红脸、过密金饰、畸形手指。",
+      "conversationUrl": "https://chatgpt.com/c/6abe703c-01cc-83e8-922f-f818ac6a16ce",
+      "viewerTitle": "戏台默契 clappers",
+      "downloadedPath": "C:/Users/wanghongping/Downloads/戏台默契 clappers.png",
+      "source": {
+        "path": "art/sources/p07-jokers/b02.png",
+        "bytes": 2328183,
+        "sha256": "49088befbc7e8a4fdc3a30ce73e1bc20287ccba9425e7a6d8303a207f2e07dab",
+        "width": 1122,
+        "height": 1402,
+        "hasAlpha": false,
+        "format": "png",
+        "decode": "PASS"
+      },
+      "thumbnail": {
+        "path": "public/assets/jokers-p07/b02.webp",
+        "bytes": 20262,
+        "sha256": "01499193f64950f38f59ef26ec3692b598fe860a6115bde3204a6ae2fe951df5",
+        "width": 256,
+        "height": 320,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "detail": {
+        "path": "public/assets/jokers-p07/b02-detail.webp",
+        "bytes": 105946,
+        "sha256": "83a38cc8d847b54a0101b58ba8767ba50b423defb2cd641bbfbbc4d5e3175719",
+        "width": 615,
+        "height": 768,
+        "hasAlpha": false,
+        "format": "webp",
+        "decode": "PASS"
+      },
+      "crop": {
+        "mode": "cover",
+        "position": "centre",
+        "note": "Only near-4:5 aspect adaptation; not a collage crop."
+      },
+      "agentVisualReview": {
+        "status": "REVIEWED_CANDIDATE",
+        "observations": "Eastern Chinese theatre identity, readable face and mechanic prop; no visible embedded text or watermark. Root and user acceptance remain separate."
+      },
+      "userVisualApproval": "NOT_GRANTED",
+      "purpose": "Current Joker card thumbnail and complete art detail",
+      "previewPath": "art/sources/p07-jokers/contact-sheet-a.webp",
+      "safeArea": {
+        "mode": "Full near-4:5 portrait preserved",
+        "review": "Face/hands and primary prop reviewed in actual source viewer; surrounding long staff/ribbons may extend to original frame edges. No crop from a contact sheet."
+      }
+    }
+  ],
+  "userVisualApproval": "NOT_GRANTED",
+  "independentGenerationRequests": 8,
+  "technicalChecks": {
+    "status": "PASS",
+    "decodedFiles": 24,
+    "uniqueSourceHashes": 8,
+    "thumbnailSize": "256x320",
+    "detailSize": "615x768",
+    "command": "node shots/p07-a-closeout.mjs",
+    "note": "One-off closeout file is removed after execution; no permanent harness added."
+  },
+  "preview": {
+    "path": "art/sources/p07-jokers/contact-sheet-a.webp",
+    "width": 1104,
+    "height": 792,
+    "bytes": 178816,
+    "sha256": "05ee2f0be91eb416581f3a982f5e1e2c94f415ef810f3e11211dce418f65be6d"
+  },
+  "runtimeBytes": {
+    "thumbnails": 179948,
+    "details": 872776,
+    "source": 18517397
+  },
+  "runtimeIntegration": "ROOT_PENDING",
+  "publicationRightsApproval": "NOT_GRANTED",
+  "notes": [
+    "Eight independently requested images through ChatGPT web Create Image, not contact-sheet generations or built-in imagegen calls.",
+    "mantangcai and tiesuanpan share one conversation after a new-chat UI route race, but were two separate full image requests.",
+    "Exact hidden backend model snapshot is not exposed by the UI; current product naming comes from the official documentation verified by root."
+  ]
+}
