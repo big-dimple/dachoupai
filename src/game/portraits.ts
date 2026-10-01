@@ -7,10 +7,10 @@ export const selectionPortraitKey=(id:CharacterId):string=>`selection-portrait-$
 export const selectionPortraitURL=(id:CharacterId):string=>`${import.meta.env.BASE_URL}assets/characters-p07/${id}.selection.webp`;
 /** Full portraits are loaded only when the player opens character details. */
 export const portraitURL=(id:CharacterId):string=>getCharacter(id).portrait;
-export function queueCharacterPreviewLoads(scene:Phaser.Scene,characters:CharacterDefinition[]):void {
+export function queueCharacterPreviewLoads(scene:Phaser.Scene,characters:CharacterDefinition[],xhrSettings?:Phaser.Types.Loader.XHRSettingsObject):void {
   for(const character of characters){
-    if(!scene.textures.exists(avatarKey(character.id)))scene.load.image(avatarKey(character.id),avatarURL(character.id));
-    if(!scene.textures.exists(selectionPortraitKey(character.id)))scene.load.image(selectionPortraitKey(character.id),selectionPortraitURL(character.id));
+    if(!scene.textures.exists(avatarKey(character.id)))scene.load.image(avatarKey(character.id),avatarURL(character.id),xhrSettings);
+    if(!scene.textures.exists(selectionPortraitKey(character.id)))scene.load.image(selectionPortraitKey(character.id),selectionPortraitURL(character.id),xhrSettings);
   }
 }
 /** The HUD uses reviewed face crops, never a stretched full portrait. */

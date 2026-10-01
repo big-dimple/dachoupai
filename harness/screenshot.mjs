@@ -156,10 +156,14 @@ try {
         const id=s.scoreTotal.getData('eventId'),phase=s.scoreTotal.getData('eventPhase');
         if(id&&!observation.events.some(e=>e.id===id&&e.phase===phase))observation.events.push({id,phase,at:performance.now()-observation.started,label:s.resultText.text,heat:s.scoreHeat.text,mult:s.scoreMult.text});
         const level=s.scoreFlame?.graphic?.getData('intensity')??0;
-        if(level&&!observation.fire.some(f=>f.level===level))observation.fire.push({level,at:performance.now()-observation.started,voices:s.audio.fireVoices.size});
+        if(level&&!observation.fire.some(f=>f.level===level))observation.fire.push({level,at:performance.now()-observation.started,voices:s.audio.fireVoices.size,shown:s.scoreTotal.text,heat:s.scoreHeat.text,mult:s.scoreMult.text,id,phase});
       },30);
     });
     await tapUI(page,'game','action/play',true);await next(page,beforePlay.commandSeq);
+    if(saveScreens){
+      await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').scoreFlame?.graphic?.getData('intensity')===3,{},{timeout:30000});
+      await page.screenshot({path:'shots/mobile-score-fire.png'});
+    }
     await page.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.resultText.text.includes('三倍爆场')&&s.scoreTotal.text==='1,200'&&s.scoreTotal.scaleX>1.05&&s.view.root.list.some(o=>o.name==='score/celebration');},{},{timeout:30000});
     const burstElapsedMs=Date.now()-started,renderFps=await page.evaluate(()=>window.__harness.game.loop.actualFps);
     const linkedAudio=await page.evaluate(()=>{const a=window.__harness.game.scene.getScene('game').audio;return {context:a.context?.state,sfxVoices:[...a.voices].filter(v=>v.bus==='sfx').length,master:a.getVolume('master')};});
@@ -170,16 +174,31 @@ try {
     const expected=after.lastTrace.events.filter(e=>e.phase!=='base'&&e.phase!=='finalScore');
     assert.deepEqual(observation.events.filter(e=>e.phase==='impact').map(e=>e.id),expected.map(e=>e.eventId),'every actual source gets its own ordered impact');
     assert.ok(observation.fire.some(f=>f.level===3&&f.voices>0),'actual 3x score has flame rendering and real scheduled burning voices');
-    for(let i=0;i<5;i++){
-      const id=expected[i].eventId,start=observation.events.find(e=>e.id===id&&e.phase==='windup'),end=observation.events.find(e=>e.id===id&&e.phase==='rest');
-      assert.ok(end.at-start.at>=550,'ordinary card is identified, arrives, rolls, and rests individually at 1x');
+    assert.deepEqual(observation.fire.map(f=>f.level),[1,2,3],'natural score roll crosses each displayed flame threshold in order');
+    for(const frame of observation.fire){
+      const shown=BigInt(frame.shown.replaceAll(',','')),total=BigInt(beforePlay.stage.heat)+shown,target=BigInt(after.stage.targetHeat);
+      const level=total<=target?0:total>=target*3n?3:total>=target*2n?2:1;
+      assert.equal(frame.level,level,'flame level follows the score visible in this same browser tick, never a future roll result');
     }
+    for(const event of expected){
+      const phases=['windup','impact','rest'].map(phase=>observation.events.find(e=>e.id===event.eventId&&e.phase===phase));
+      assert.ok(phases.every(Boolean),'every source retains a visible windup, impact and rest');
+      assert.ok(phases[0].at<phases[1].at&&phases[1].at<phases[2].at,'each source has one ordered complete beat');
+    }
+    const ordinaryPacing=expected.slice(0,5).map((event,i)=>{
+      const start=observation.events.find(e=>e.id===event.eventId&&e.phase==='windup'),rest=observation.events.find(e=>e.id===event.eventId&&e.phase==='rest'),next=observation.events.find(e=>e.id===expected[i+1].eventId&&e.phase==='windup');
+      const beatMs=next.at-start.at;
+      assert.ok(rest.at<next.at,'each ordinary source finishes its own rest before the next source');
+      assert.ok(beatMs>=300,'ordinary card keeps its readable 1x beat floor after D22 acceleration');
+      return {eventId:event.eventId,ordinal:i,preRestMs:rest.at-start.at,beatMs};
+    });
+    assert.ok(ordinaryPacing[0].beatMs>ordinaryPacing[4].beatMs,'ordinary cards progressively accelerate within the same committed trace');
     // Regression for the reported blue screen: reuse the same Phaser Scene after a real clear.
     await tapUI(page,'intermission','action/continue-stage',true);await waitScene(page,'shop');await tapUI(page,'shop','action/start-stage',true);await ready(page);
     assert.equal((await state(page)).stage.index,1);assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('game').cardViews.length),8);
     assert.deepEqual(errors,[],'second table entry must not touch destroyed controls');
     assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('game').audio.fireVoices.size),0,'finished scoring does not leak fire audio into the next table');
-    report.checks.push({engine,browserVersion:browser.version(),channel:process.env.SMOKE_CHROMIUM_CHANNEL||'default',profile:'natural-three-times-target',status:'PASS',seed:'p04-golden-02',character:'touye',selectedIds:ids,finalScore:'1200',target:'400',burstElapsedMs,renderFps,linkedAudio,observation,covered:['natural-wager-straight','every-source-ordered-impact','individual-card-pace','3x-flame-and-burning-audio','real-3x-stamp','score-number-bounce','scheduled-overkill-audio','exact-credit-once','second-table-entry-after-clear','fire-cleanup'],physicalListening:'NOT_RUN',physicalPerformance:'NOT_RUN'});
+    report.checks.push({engine,browserVersion:browser.version(),channel:process.env.SMOKE_CHROMIUM_CHANNEL||'default',profile:'natural-three-times-target',status:'PASS',seed:'p04-golden-02',character:'touye',selectedIds:ids,finalScore:'1200',target:'400',burstElapsedMs,renderFps,linkedAudio,observation,ordinaryPacing,covered:['natural-wager-straight','every-source-ordered-impact','progressive-individual-card-pace','displayed-score-fire-thresholds','3x-flame-and-burning-audio','real-3x-stamp','score-number-bounce','scheduled-overkill-audio','exact-credit-once','second-table-entry-after-clear','fire-cleanup'],physicalListening:'NOT_RUN',physicalPerformance:'NOT_RUN'});
     await context.close();console.log(`${engine}/natural-3x: ok`);
   }
   await browser.close();browser=undefined;

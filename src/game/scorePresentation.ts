@@ -2,20 +2,32 @@ import type {ScoreEvent} from '../domain/scoreR2';
 
 export type ScoreBeat={windup:number;flight:number;impact:number;rest:number;strength:'light'|'medium'|'role'|'multiply'|'retrigger'};
 
-/** Playback mapping only. Each committed event receives its own full beat, even in long chains. */
-export function scoreBeat(event:ScoreEvent):ScoreBeat {
-  let beat:ScoreBeat;
-  if(event.phase==='afterHand')beat={windup:200,flight:0,impact:260,rest:240,strength:'medium'};
-  else if(event.operation==='ordinary-points-suppressed'||event.operation==='retrigger-cap')beat={windup:180,flight:0,impact:280,rest:200,strength:'light'};
-  else if(event.operation==='retrigger-card')beat={windup:220,flight:0,impact:300,rest:180,strength:'retrigger'};
-  else if(event.operation==='multiply-multiplier')beat={windup:480,flight:240,impact:450,rest:320,strength:'multiply'};
-  else if(event.sourceType==='character')beat={windup:320,flight:200,impact:360,rest:240,strength:'role'};
-  else if(event.sourceType==='card'&&event.retriggerDepth>0)beat={windup:140,flight:160,impact:260,rest:140,strength:'retrigger'};
-  else if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)beat={windup:280,flight:210,impact:340,rest:230,strength:'medium'};
-  else if(event.sourceType==='card')beat={windup:200,flight:150,impact:280,rest:180,strength:'light'};
-  else beat={windup:260,flight:200,impact:320,rest:220,strength:'medium'};
+/** Zero-based presented trace position, never chain length or a rule clock. Long chains retain every beat. */
+export function scoreBeat(event:ScoreEvent,ordinal=0):ScoreBeat {
+  let start:ScoreBeat,fast:ScoreBeat;
+  if(event.phase==='afterHand'){
+    start={windup:140,flight:0,impact:240,rest:120,strength:'medium'};fast={windup:90,flight:0,impact:180,rest:90,strength:'medium'};
+  }else if(event.operation==='ordinary-points-suppressed'||event.operation==='retrigger-cap'){
+    start={windup:100,flight:0,impact:180,rest:120,strength:'light'};fast={windup:60,flight:0,impact:150,rest:90,strength:'light'};
+  }else if(event.operation==='retrigger-card'){
+    start={windup:140,flight:0,impact:220,rest:140,strength:'retrigger'};fast={windup:100,flight:0,impact:160,rest:100,strength:'retrigger'};
+  }else if(event.operation==='multiply-multiplier'){
+    start={windup:360,flight:180,impact:340,rest:220,strength:'multiply'};fast={windup:300,flight:150,impact:270,rest:180,strength:'multiply'};
+  }else if(event.sourceType==='character'){
+    start={windup:220,flight:160,impact:260,rest:160,strength:'role'};fast={windup:160,flight:120,impact:200,rest:120,strength:'role'};
+  }else if(event.sourceType==='card'&&event.retriggerDepth>0){
+    start={windup:130,flight:110,impact:190,rest:90,strength:'retrigger'};fast={windup:80,flight:70,impact:130,rest:60,strength:'retrigger'};
+  }else if(event.sourceType==='card'&&event.before.M.n===event.after.M.n&&event.before.M.d===event.after.M.d){
+    start={windup:110,flight:110,impact:180,rest:100,strength:'light'};fast={windup:60,flight:70,impact:110,rest:60,strength:'light'};
+  }else {
+    start={windup:140,flight:120,impact:210,rest:130,strength:'medium'};fast={windup:90,flight:90,impact:140,rest:80,strength:'medium'};
+  }
+  const progress=Number.isFinite(ordinal)?Math.min(8,Math.max(0,Math.floor(ordinal)))/8:0;
+  const mix=(a:number,b:number)=>Math.round(a+(b-a)*progress),total=(beat:ScoreBeat)=>beat.windup+beat.flight+beat.impact+beat.rest;
+  const windup=mix(start.windup,fast.windup),flight=mix(start.flight,fast.flight),rest=mix(start.rest,fast.rest);
+  const impact=mix(total(start),total(fast))-windup-flight-rest;
   const changed=event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d||event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d;
-  return {...beat,flight:changed?beat.flight:0};
+  return {windup,flight:changed?flight:0,impact,rest:rest+(changed?0:flight),strength:start.strength};
 }
 
 /** The provisional displayed product may fall later (e.g. wager ×0.75); no prediction or credit. */

@@ -1,0 +1,14 @@
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+src/game/BootScene.ts(24,49): error TS2345: Argument of type '{ timeout: number; }' is not assignable to parameter of type 'XHRSettingsObject'.
+  Property 'responseType' is missing in type '{ timeout: number; }' but required in type 'XHRSettingsObject'.
+src/game/BootScene.ts(25,120): error TS2345: Argument of type '{ timeout: number; }' is not assignable to parameter of type 'XHRSettingsObject'.
+  Property 'responseType' is missing in type '{ timeout: number; }' but required in type 'XHRSettingsObject'.
+src/game/BootScene.ts(26,75): error TS2345: Argument of type '{ timeout: number; }' is not assignable to parameter of type 'XHRSettingsObject'.
+  Property 'responseType' is missing in type '{ timeout: number; }' but required in type 'XHRSettingsObject'.
+src/game/BootScene.ts(27,72): error TS2345: Argument of type '{ timeout: number; }' is not assignable to parameter of type 'XHRSettingsObject'.
+  Property 'responseType' is missing in type '{ timeout: number; }' but required in type 'XHRSettingsObject'.
+src/game/GameScene.ts(143,156): error TS2345: Argument of type '{ timeout: number; }' is not assignable to parameter of type 'XHRSettingsObject'.
+  Property 'responseType' is missing in type '{ timeout: number; }' but required in type 'XHRSettingsObject'.

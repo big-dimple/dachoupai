@@ -15,13 +15,17 @@ export class BootScene extends Phaser.Scene {
   }
 
   preload(): void {
+    // File-local settings are required: Phaser's image defaults otherwise override loader.timeout with 0.
+    const imageXHR:Phaser.Types.Loader.XHRSettingsObject={responseType:'blob',timeout:5000};
+    const svgXHR:Phaser.Types.Loader.XHRSettingsObject={responseType:'text',timeout:5000};
+    this.load.maxRetries=0;
     this.load.on('loaderror', (file: Phaser.Loader.File) => {
       console.warn(`[boot] 资源加载失败（已跳过，不阻断游戏）: ${file.key} -> ${file.url}`);
     });
-    queueCharacterPreviewLoads(this, CHARACTERS);
-    for(const asset of P00_ASSETS)this.load.svg(asset.key,assetUrl(asset.path),{width:asset.width,height:asset.height});
-    for(const art of JOKER_ART)this.load.image(art.key,assetUrl(art.path));
-    this.load.image('p03-stage',assetUrl('assets/p03/stage-wide.webp'));
+    queueCharacterPreviewLoads(this, CHARACTERS,imageXHR);
+    for(const asset of P00_ASSETS)this.load.svg(asset.key,assetUrl(asset.path),{width:asset.width,height:asset.height},svgXHR);
+    for(const art of JOKER_ART)this.load.image(art.key,assetUrl(art.path),imageXHR);
+    this.load.image('p03-stage',assetUrl('assets/p03/stage-wide.webp'),imageXHR);
   }
 
   async create(): Promise<void> {

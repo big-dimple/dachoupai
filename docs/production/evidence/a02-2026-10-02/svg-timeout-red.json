@@ -1,0 +1,307 @@
+{
+  "workPackage": "A02",
+  "command": [
+    "D:\\ai\\dachoupai\\dachoupai\\harness\\assets-runtime.mjs",
+    "--build-dir",
+    "shots/smoke-build",
+    "--scenario",
+    "svg",
+    "--samples",
+    "0",
+    "--output",
+    "shots/a02-runtime-svg-red"
+  ],
+  "testedHead": "89dce3512285cddb00f83d20ad36038493a8e5d8",
+  "dirty": "M README.md\n M ROADMAP.md\n M art/sources/p07-characters/manifest.json\n M art/sources/p07-jokers/manifest.json\n M docs/development-handoff.md\n M docs/production/ART.md\n M docs/production/DECISIONS.md\n M docs/production/ENGINEERING.md\n M docs/production/QUALITY.md\n M docs/production/UX.md\n M docs/production/WORK_PACKAGES.md\n M docs/production/plan.json\n M harness/screenshot.mjs\n M package.json\n M src/game/BootScene.ts\n M src/game/GameScene.ts\n M src/game/ScoreFlame.ts\n M src/game/portraits.ts\n M src/game/scorePresentation.ts\n M tests/score-presentation.test.ts\n M vite.config.ts\n?? docs/production/evidence/A01-2026-10-02.json\n?? harness/assets-runtime.mjs",
+  "buildDir": "shots/smoke-build",
+  "buildInfo": {
+    "version": "P07",
+    "revision": "1d58fe4d40f201a6a76a764609323c2dc70a0e2d",
+    "modified": true,
+    "builtAt": "2026-10-01T15:02:50.531Z"
+  },
+  "buildTreeSha256": "0345140734df5174d218535d399e4aea1e0984a9bd9242cf00c64135a7d2e7dd",
+  "bundles": [
+    {
+      "file": "assets/index-BkkEONg8.js",
+      "bytes": 1481219,
+      "sha256": "5fe586f31526d50036890a8db7197dd709a77a73e1db26bf49930ce0c681b11e"
+    },
+    {
+      "file": "assets/index-Dl51sGFE.css",
+      "bytes": 10119,
+      "sha256": "94a4ebe02a5c0c10dadd84b3467cbf5a3f2883c8f62275cbd486e51f693d1840"
+    }
+  ],
+  "environment": {
+    "node": "v22.20.0",
+    "playwright": "1.63.0",
+    "os": "Windows_NT",
+    "osRelease": "10.0.26200",
+    "arch": "x64",
+    "chromium": "153.0.8010.12",
+    "channel": "default Chromium headless shell",
+    "headless": true
+  },
+  "byteUnits": {
+    "MB": 1000000,
+    "MiB": 1048576,
+    "firstTransfer": "CDP Network.loadingFinished encodedDataLength: HTTP response headers + encoded body before first input; excludes request headers/TCP/TLS. Resource Timing transferSize is also retained.",
+    "publication": "All files in this actual build directory, uncompressed file bytes; includes code/metadata/unused copied assets.",
+    "decode": "Live Phaser image source width * height * 4 RGBA8 estimate; excludes driver allocation, mipmaps, framebuffers and audio decode."
+  },
+  "budgets": {
+    "firstTransferBytes": 4000000,
+    "publicationBytes": 20000000,
+    "textureBytes": 100663296,
+    "firstUsableMs": 4000
+  },
+  "publication": {
+    "bytes": 26126933,
+    "files": 208,
+    "glb": [
+      {
+        "file": "assets/models/card-animation-templates.glb",
+        "bytes": 1201644,
+        "sha256": "18b9828e1de93ca02e261dbedb18c25b4c63982c05cd391c3cea364c2443a305"
+      },
+      {
+        "file": "assets/models/joker-frame-common.glb",
+        "bytes": 393432,
+        "sha256": "a30124fd1cf019543ab7d765a12c4fbf010128d4fdf375b8c2085f565fe1cbd1"
+      },
+      {
+        "file": "assets/models/joker-frame-epic.glb",
+        "bytes": 685884,
+        "sha256": "4bc2a78a71846196e2ae7f31cf7feec57c087954dbdb0ae263d916e4b6d37780"
+      },
+      {
+        "file": "assets/models/joker-frame-legendary.glb",
+        "bytes": 685888,
+        "sha256": "0b73aacdc51dd3f3ff8b035e44770360faaad73d963445b71aa627c32e34c5f5"
+      },
+      {
+        "file": "assets/models/joker-frame-rare.glb",
+        "bytes": 537488,
+        "sha256": "13a1cda2aa057fce656452cfc6ba2939df09ffd30c2135bc618b36180cd1d9df"
+      },
+      {
+        "file": "assets/models/joker-frame-special.glb",
+        "bytes": 905892,
+        "sha256": "ed50cc3ab7bce72a5c7c867562ee1a140c94d8bc66bda59784e0f416a271a44d"
+      },
+      {
+        "file": "assets/models/material-kit.glb",
+        "bytes": 595996,
+        "sha256": "c7b22d9eef67adebb3d7d546757fc257a69773c56b9a4c6faa20784b0bdabe26"
+      },
+      {
+        "file": "assets/models/poker-card-master.glb",
+        "bytes": 1051028,
+        "sha256": "452654307f3a5720695a916ef452d785d5fcd4124c66d6a1bd4f7f02ec388421"
+      },
+      {
+        "file": "assets/models/prop-bell.glb",
+        "bytes": 124228,
+        "sha256": "744e763ee06c28fdee53ffb5f268d89bae5acaff7bc50ea48a869f635a8d6558"
+      },
+      {
+        "file": "assets/models/prop-coin.glb",
+        "bytes": 134420,
+        "sha256": "25c97ba5ac7a094ac7d234b16a932ecf87a32a722a6e76388beccae4d6201c69"
+      },
+      {
+        "file": "assets/models/prop-dice.glb",
+        "bytes": 91160,
+        "sha256": "321ca54bc533c2d02a7c9e0dac954f6ba2d1cc08239f45ef3d19f68b59544f1d"
+      },
+      {
+        "file": "assets/models/prop-fan.glb",
+        "bytes": 105360,
+        "sha256": "928284b108d92fbb6bd59eb6c80672de92a7cbd763160095e85aa5f91992ecea"
+      },
+      {
+        "file": "assets/models/prop-gold-ingot.glb",
+        "bytes": 75756,
+        "sha256": "4da4fc7c903de86d2e695dbe588488022f9681d4f059702c302cf5fe6d96b1e5"
+      },
+      {
+        "file": "assets/models/prop-jade-plaque.glb",
+        "bytes": 78608,
+        "sha256": "5814de59330573f329e3ff2392f403e1a699d3b3610854ebd0923e3ec5e72932"
+      },
+      {
+        "file": "assets/models/prop-opera-mask.glb",
+        "bytes": 107972,
+        "sha256": "4a7f14b40bdda68f615f84cebd43275716a258d1b7c7c6f70fa8a2c9573e67b2"
+      },
+      {
+        "file": "assets/models/prop-seal.glb",
+        "bytes": 109300,
+        "sha256": "e3af10dd77988e09838c73cd4d7b0f7475682c6fce5c80580a4c50a50b868ed8"
+      },
+      {
+        "file": "assets/models/prop-small-gong.glb",
+        "bytes": 95628,
+        "sha256": "7cd44d0b123759c729c4efee50c627929cb155b54d9486d7cf2721782bd801c8"
+      },
+      {
+        "file": "assets/models/prop-talisman.glb",
+        "bytes": 57720,
+        "sha256": "6599e6ed17a658fd9c35b83d194ead9c6c840815aa82e1d359fcb6db50dae920"
+      },
+      {
+        "file": "assets/models/prop-wine-bowl.glb",
+        "bytes": 136372,
+        "sha256": "4927424a001be9ca5ad01391f35cd260f64df2bcba209d8abc232795e6dbda4f"
+      },
+      {
+        "file": "assets/models/stage-censer.glb",
+        "bytes": 140252,
+        "sha256": "bb38d1e6d29a3971bff4670e40d3617d8069d21c4afa7db7f7dc15c6fd052e9d"
+      },
+      {
+        "file": "assets/models/stage-cloud-plinth.glb",
+        "bytes": 169988,
+        "sha256": "7f462079ca2b8d9db4354321de3c4c927f2109debfdb82ef0f45d02b85819020"
+      },
+      {
+        "file": "assets/models/stage-drape.glb",
+        "bytes": 245860,
+        "sha256": "ea2f4dfb4f343087f31d923199a5341c82123d07b8410f891a26b4d5574e97be"
+      },
+      {
+        "file": "assets/models/stage-drum.glb",
+        "bytes": 253668,
+        "sha256": "e5bd0b4750602b371e4d0414dfb240ad750221d4b4d6c88b01a786fcd7bb393d"
+      },
+      {
+        "file": "assets/models/stage-gong.glb",
+        "bytes": 179592,
+        "sha256": "796592af598b727be81d6f33f4311ddce8cf86594d50b61549a2000efd2b75e7"
+      },
+      {
+        "file": "assets/models/stage-lantern.glb",
+        "bytes": 248604,
+        "sha256": "18a0502871162be437b29cc4f034760aeb20da7fe10f62725ef0c6c40fdcbb09"
+      },
+      {
+        "file": "assets/models/stage-neon-arch.glb",
+        "bytes": 508444,
+        "sha256": "6a973b6c2f40fb2e94ea116126577d8e001a240dcd57a75bd19ddfc17817c6e7"
+      },
+      {
+        "file": "assets/models/stage-screen.glb",
+        "bytes": 750224,
+        "sha256": "7d82b3cb3f213273e1a712459bda26e51546e06c6d3af22baa09ac86d82859df"
+      },
+      {
+        "file": "assets/models/stage-stage.glb",
+        "bytes": 643836,
+        "sha256": "c34fa7106c2d7d250a66534b191e1f032a631c9de88f5e632daa68c475d1f398"
+      },
+      {
+        "file": "assets/models/stage-table-chairs.glb",
+        "bytes": 411500,
+        "sha256": "482d34fd491eeabe7a0f7b31a35f5194da757e267a8b2af2f31b030e27e0069a"
+      },
+      {
+        "file": "assets/models/stage-wine-jar.glb",
+        "bytes": 182520,
+        "sha256": "12950b303fae27da9d14f66d9dbb330b6f4000f6199c8e3614a24889d4fde491"
+      },
+      {
+        "file": "assets/models/stage-wood-arch.glb",
+        "bytes": 466076,
+        "sha256": "9d084e956920021c76080d3910fbc2ef89cea9e905b79deb09b9f328e3471d99"
+      },
+      {
+        "file": "assets/models/word-critical.glb",
+        "bytes": 212736,
+        "sha256": "bd47f49a09da94070d38566d4fb936a17b37b71e02660f92b6c3ac3555edddf8"
+      },
+      {
+        "file": "assets/models/word-double.glb",
+        "bytes": 295408,
+        "sha256": "49dde0961c9c10c113c9792f85901d1b4f566651f32be9ee0cf8b582caa67854"
+      },
+      {
+        "file": "assets/models/word-east-wind.glb",
+        "bytes": 254756,
+        "sha256": "b7e30fcea1f9ff677e766a6eedac2841752b174697439d58d1a1b19b4d93859b"
+      },
+      {
+        "file": "assets/models/word-full-house.glb",
+        "bytes": 387372,
+        "sha256": "8b145dc88eed1c3988bc10fb95b5340c99450a00ca556f33ed97b7293352eb32"
+      },
+      {
+        "file": "assets/models/word-good-fortune.glb",
+        "bytes": 127336,
+        "sha256": "bea5a1b60c4291ec249d484aafdc54d17584c37b3d3675e05383ee3af7353c39"
+      },
+      {
+        "file": "assets/models/word-out-of-control.glb",
+        "bytes": 346776,
+        "sha256": "2ff8a29b559819c2287f4607df36e78af0093cfe5c21ee5a5562f0a963c8c364"
+      },
+      {
+        "file": "assets/models/word-times-2.glb",
+        "bytes": 88416,
+        "sha256": "93824b94039fbe83b06cb94c1848537f89a3957f859bcaaa606b1108eadd8fb6"
+      },
+      {
+        "file": "assets/models/word-times-4.glb",
+        "bytes": 63252,
+        "sha256": "a06b4097b308be8049f819e9741d9be3fbe58ba4b95c52798b8f1f18a4a42eaa"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "missing-boot-svg-then-stalled-game-reload",
+      "status": "FAIL",
+      "path": "/dachoupai/assets/p00/mark-joker.svg",
+      "boot": {
+        "path": "/dachoupai/assets/p00/mark-joker.svg",
+        "actualXHRTimeoutMs": 0,
+        "retryAttempts": 2
+      },
+      "game": {
+        "path": "/dachoupai/assets/p00/mark-joker.svg",
+        "actualXHRTimeoutMs": 0,
+        "retryAttempts": 2
+      },
+      "blocked": {
+        "gameLoading": true,
+        "gameActive": false,
+        "inflight": [
+          {
+            "path": "/dachoupai/assets/p00/mark-joker.svg",
+            "xhrTimeoutMs": 0
+          }
+        ]
+      },
+      "stalledRequests": 1,
+      "pageErrors": [],
+      "error": "TimeoutError: page.waitForFunction: Timeout 7000ms exceeded."
+    }
+  ],
+  "coldSamples": [],
+  "limitations": [
+    "Local headless Chromium browser with CDP network throttling; physical Android/iPhone performance and listening NOT_RUN.",
+    "Cold contexts have no storage or cache; this is not a 30-minute/100-scene memory test.",
+    "Candidate integration only; commercial source allowlist and A03 source specification approval are not granted by this check."
+  ],
+  "server": {
+    "contentEncoding": "identity (no gzip/brotli)",
+    "cacheControl": "no-store",
+    "mounts": [
+      "/",
+      "/dachoupai/"
+    ],
+    "missingFiles": "HTTP 404, no SPA fallback"
+  },
+  "status": "FAIL",
+  "failure": "TimeoutError: page.waitForFunction: Timeout 7000ms exceeded."
+}

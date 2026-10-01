@@ -11,4 +11,4 @@
 | B 平衡与打磨 | 留出种子、不同策略、目标设备和真人对标都经验证 | 无未关闭阻断问题；无“看上去已达标”的自评替代证据 |
 | L 发布 | 可部署、可回退、可恢复、可复查，且质量关有人签收 | QUALITY 的发布验收全部完成，发布清单有真实构建哈希 |
 
-玩家可验的M0–M9里程碑只定义在[工作包开头](docs/production/WORK_PACKAGES.md)，这里不维护另一份进度。按D21，用户明确认可当前Android视觉/交互/音画后A01→A02→C00续接；尚未认可全部新玩法暂停。V01多人专题独立保留，不由用户单次真机试玩替代，L00须等待它。正式素材批次仍按批准范围生产。详见[产品定义](docs/production/PRODUCT.md)、[质量门禁](docs/production/QUALITY.md)。
+玩家可验的M0–M9里程碑只定义在[工作包开头](docs/production/WORK_PACKAGES.md)，这里不维护另一份进度。按D21/D22，用户关键节点放行后A01→A02→C00续接，当前状态只读plan。V01多人专题独立保留，不由用户单次真机试玩替代，L00须等待它。正式素材批次仍按批准范围生产。详见[产品定义](docs/production/PRODUCT.md)、[质量门禁](docs/production/QUALITY.md)。

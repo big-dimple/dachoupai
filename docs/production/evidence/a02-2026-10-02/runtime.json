@@ -1,0 +1,2617 @@
+{
+  "workPackage": "A02",
+  "command": [
+    "D:\\ai\\dachoupai\\dachoupai\\harness\\assets-runtime.mjs",
+    "--build-dir",
+    "shots/smoke-build",
+    "--output",
+    "shots/a02-runtime"
+  ],
+  "testedHead": "89dce3512285cddb00f83d20ad36038493a8e5d8",
+  "dirty": "M README.md\n M ROADMAP.md\n M art/sources/p07-characters/manifest.json\n M art/sources/p07-jokers/manifest.json\n M docs/development-handoff.md\n M docs/production/ART.md\n M docs/production/DECISIONS.md\n M docs/production/ENGINEERING.md\n M docs/production/QUALITY.md\n M docs/production/UX.md\n M docs/production/WORK_PACKAGES.md\n M docs/production/plan.json\n M harness/screenshot.mjs\n M package.json\n M src/game/BootScene.ts\n M src/game/GameScene.ts\n M src/game/ScoreFlame.ts\n M src/game/portraits.ts\n M src/game/scorePresentation.ts\n M tests/score-presentation.test.ts\n M vite.config.ts\n?? docs/production/evidence/A01-2026-10-02.json\n?? harness/assets-runtime.mjs",
+  "buildDir": "shots/smoke-build",
+  "buildInfo": {
+    "version": "A02",
+    "revision": "89dce3512285cddb00f83d20ad36038493a8e5d8",
+    "modified": true,
+    "builtAt": "2026-10-01T16:57:00.367Z"
+  },
+  "buildTreeSha256": "85a62a5c88bd63654dc9ad00b50364c5ef5a43ee6f78c01dab3bf4897d8811dc",
+  "bundles": [
+    {
+      "file": "assets/index-CJ_nvnKQ.js",
+      "bytes": 1486900,
+      "sha256": "50a516190b9920468f0d29d3679a0e6028ee2b23e28ae54be82972cd7030a616"
+    },
+    {
+      "file": "assets/index-Dl51sGFE.css",
+      "bytes": 10119,
+      "sha256": "94a4ebe02a5c0c10dadd84b3467cbf5a3f2883c8f62275cbd486e51f693d1840"
+    }
+  ],
+  "environment": {
+    "node": "v22.20.0",
+    "playwright": "1.63.0",
+    "os": "Windows_NT",
+    "osRelease": "10.0.26200",
+    "arch": "x64",
+    "chromium": "153.0.8010.12",
+    "channel": "chromium",
+    "headless": true,
+    "graphics": {
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00009BC5) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "software": false
+    }
+  },
+  "byteUnits": {
+    "MB": 1000000,
+    "MiB": 1048576,
+    "firstTransfer": "CDP Network.loadingFinished encodedDataLength: HTTP response headers + encoded body before first input; excludes request headers/TCP/TLS. Resource Timing transferSize is also retained.",
+    "publication": "All files in this actual build directory, uncompressed file bytes; includes code/metadata/unused copied assets.",
+    "decode": "Live Phaser image source width * height * 4 RGBA8 estimate; excludes driver allocation, mipmaps, framebuffers and audio decode."
+  },
+  "budgets": {
+    "firstTransferBytes": 4000000,
+    "publicationBytes": 20000000,
+    "textureBytes": 100663296,
+    "firstUsableMs": 4000
+  },
+  "publication": {
+    "bytes": 12982222,
+    "files": 169,
+    "glb": []
+  },
+  "checks": [
+    {
+      "name": "publication-budget-and-offline-source-exclusion",
+      "status": "PASS",
+      "publication": {
+        "bytes": 12982222,
+        "files": 169,
+        "glb": []
+      },
+      "offlineGLBSourceCount": 39,
+      "sourceGLBNotServed": "assets/models/card-animation-templates.glb"
+    },
+    {
+      "name": "paths-and-lazy-details",
+      "status": "PASS",
+      "prefix": "/",
+      "viewport": "1280x720 DPR1 mouse",
+      "first": {
+        "firstUsableMs": 915.4000000059605,
+        "timing": [
+          {
+            "url": "http://127.0.0.1:54303/?harness=1&seed=p00-core-ui",
+            "transferSize": 865,
+            "encodedBodySize": 565,
+            "decodedBodySize": 565,
+            "responseEnd": 6.5
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/index-CJ_nvnKQ.js",
+            "transferSize": 1487200,
+            "encodedBodySize": 1486900,
+            "decodedBodySize": 1486900,
+            "responseEnd": 25.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/index-Dl51sGFE.css",
+            "transferSize": 10419,
+            "encodedBodySize": 10119,
+            "decodedBodySize": 10119,
+            "responseEnd": 19.700000002980232
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/characters-p07/amo.avatar.webp",
+            "transferSize": 12952,
+            "encodedBodySize": 12652,
+            "decodedBodySize": 12652,
+            "responseEnd": 613.5999999940395
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/characters-p07/amo.selection.webp",
+            "transferSize": 20504,
+            "encodedBodySize": 20204,
+            "decodedBodySize": 20204,
+            "responseEnd": 613.7000000029802
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/characters-p07/touye.avatar.webp",
+            "transferSize": 15278,
+            "encodedBodySize": 14978,
+            "decodedBodySize": 14978,
+            "responseEnd": 617.2999999970198
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/characters-p07/touye.selection.webp",
+            "transferSize": 22974,
+            "encodedBodySize": 22674,
+            "decodedBodySize": 22674,
+            "responseEnd": 617.4000000059605
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/characters-p07/laohuan.avatar.webp",
+            "transferSize": 18820,
+            "encodedBodySize": 18520,
+            "decodedBodySize": 18520,
+            "responseEnd": 620
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/characters-p07/laohuan.selection.webp",
+            "transferSize": 25196,
+            "encodedBodySize": 24896,
+            "decodedBodySize": 24896,
+            "responseEnd": 620
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/characters-p07/erxiang.avatar.webp",
+            "transferSize": 15974,
+            "encodedBodySize": 15674,
+            "decodedBodySize": 15674,
+            "responseEnd": 626.5999999940395
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/characters-p07/erxiang.selection.webp",
+            "transferSize": 25004,
+            "encodedBodySize": 24704,
+            "decodedBodySize": 24704,
+            "responseEnd": 627.2999999970198
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/characters-p07/azao.avatar.webp",
+            "transferSize": 18710,
+            "encodedBodySize": 18410,
+            "decodedBodySize": 18410,
+            "responseEnd": 629.5999999940395
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/characters-p07/azao.selection.webp",
+            "transferSize": 26254,
+            "encodedBodySize": 25954,
+            "decodedBodySize": 25954,
+            "responseEnd": 629.7999999970198
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/characters-p07/xiemu.avatar.webp",
+            "transferSize": 16352,
+            "encodedBodySize": 16052,
+            "decodedBodySize": 16052,
+            "responseEnd": 633.2000000029802
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/characters-p07/xiemu.selection.webp",
+            "transferSize": 24368,
+            "encodedBodySize": 24068,
+            "decodedBodySize": 24068,
+            "responseEnd": 633.2999999970198
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/p00/paper.svg",
+            "transferSize": 1285,
+            "encodedBodySize": 985,
+            "decodedBodySize": 985,
+            "responseEnd": 637.5
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/p00/card-back.svg",
+            "transferSize": 4420,
+            "encodedBodySize": 4120,
+            "decodedBodySize": 4120,
+            "responseEnd": 638.2000000029802
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/p00/frame-common.svg",
+            "transferSize": 1435,
+            "encodedBodySize": 1135,
+            "decodedBodySize": 1135,
+            "responseEnd": 639
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/p00/frame-uncommon.svg",
+            "transferSize": 1896,
+            "encodedBodySize": 1596,
+            "decodedBodySize": 1596,
+            "responseEnd": 639.5
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/p00/frame-rare.svg",
+            "transferSize": 2308,
+            "encodedBodySize": 2008,
+            "decodedBodySize": 2008,
+            "responseEnd": 640.5
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/p00/mark-joker.svg",
+            "transferSize": 1497,
+            "encodedBodySize": 1197,
+            "decodedBodySize": 1197,
+            "responseEnd": 640.7000000029802
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/p00/mark-plus.svg",
+            "transferSize": 1334,
+            "encodedBodySize": 1034,
+            "decodedBodySize": 1034,
+            "responseEnd": 643.0999999940395
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/p00/mark-times.svg",
+            "transferSize": 1371,
+            "encodedBodySize": 1071,
+            "decodedBodySize": 1071,
+            "responseEnd": 643.9000000059605
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/pengci.webp",
+            "transferSize": 22748,
+            "encodedBodySize": 22448,
+            "decodedBodySize": 22448,
+            "responseEnd": 645.9000000059605
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/e05.webp",
+            "transferSize": 28606,
+            "encodedBodySize": 28306,
+            "decodedBodySize": 28306,
+            "responseEnd": 648.9000000059605
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/huimaqiang.webp",
+            "transferSize": 24012,
+            "encodedBodySize": 23712,
+            "decodedBodySize": 23712,
+            "responseEnd": 649.5999999940395
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/a03.webp",
+            "transferSize": 22246,
+            "encodedBodySize": 21946,
+            "decodedBodySize": 21946,
+            "responseEnd": 649.7000000029802
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/f02.webp",
+            "transferSize": 22858,
+            "encodedBodySize": 22558,
+            "decodedBodySize": 22558,
+            "responseEnd": 656.0999999940395
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/d03.webp",
+            "transferSize": 23268,
+            "encodedBodySize": 22968,
+            "decodedBodySize": 22968,
+            "responseEnd": 657.9000000059605
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/tiesuanpan.webp",
+            "transferSize": 25116,
+            "encodedBodySize": 24816,
+            "decodedBodySize": 24816,
+            "responseEnd": 659.0999999940395
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/mantangcai.webp",
+            "transferSize": 21306,
+            "encodedBodySize": 21006,
+            "decodedBodySize": 21006,
+            "responseEnd": 659.7000000029802
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/jiedongfeng.webp",
+            "transferSize": 23662,
+            "encodedBodySize": 23362,
+            "decodedBodySize": 23362,
+            "responseEnd": 660.2999999970198
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/a05.webp",
+            "transferSize": 22696,
+            "encodedBodySize": 22396,
+            "decodedBodySize": 22396,
+            "responseEnd": 660.5
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/b02.webp",
+            "transferSize": 20562,
+            "encodedBodySize": 20262,
+            "decodedBodySize": 20262,
+            "responseEnd": 663
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/b03.webp",
+            "transferSize": 23766,
+            "encodedBodySize": 23466,
+            "decodedBodySize": 23466,
+            "responseEnd": 664.5999999940395
+          },
+          {
+            "url": "http://127.0.0.1:54303/favicon.ico",
+            "transferSize": 309,
+            "encodedBodySize": 9,
+            "decodedBodySize": 9,
+            "responseEnd": 661.7999999970198
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/b04.webp",
+            "transferSize": 24576,
+            "encodedBodySize": 24276,
+            "decodedBodySize": 24276,
+            "responseEnd": 667.0999999940395
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/c02.webp",
+            "transferSize": 24664,
+            "encodedBodySize": 24364,
+            "decodedBodySize": 24364,
+            "responseEnd": 667.0999999940395
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/c04.webp",
+            "transferSize": 26184,
+            "encodedBodySize": 25884,
+            "decodedBodySize": 25884,
+            "responseEnd": 667.7999999970198
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/c06.webp",
+            "transferSize": 29556,
+            "encodedBodySize": 29256,
+            "decodedBodySize": 29256,
+            "responseEnd": 668
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/d01.webp",
+            "transferSize": 24060,
+            "encodedBodySize": 23760,
+            "decodedBodySize": 23760,
+            "responseEnd": 668.5999999940395
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/d05.webp",
+            "transferSize": 23114,
+            "encodedBodySize": 22814,
+            "decodedBodySize": 22814,
+            "responseEnd": 669.9000000059605
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/d10.webp",
+            "transferSize": 24232,
+            "encodedBodySize": 23932,
+            "decodedBodySize": 23932,
+            "responseEnd": 672
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/e01.webp",
+            "transferSize": 25822,
+            "encodedBodySize": 25522,
+            "decodedBodySize": 25522,
+            "responseEnd": 672.0999999940395
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/e03.webp",
+            "transferSize": 26372,
+            "encodedBodySize": 26072,
+            "decodedBodySize": 26072,
+            "responseEnd": 672.2000000029802
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/e08.webp",
+            "transferSize": 29604,
+            "encodedBodySize": 29304,
+            "decodedBodySize": 29304,
+            "responseEnd": 672.5
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/f03.webp",
+            "transferSize": 24762,
+            "encodedBodySize": 24462,
+            "decodedBodySize": 24462,
+            "responseEnd": 702.4000000059605
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/jokers-p07/f09.webp",
+            "transferSize": 24376,
+            "encodedBodySize": 24076,
+            "decodedBodySize": 24076,
+            "responseEnd": 703.7999999970198
+          },
+          {
+            "url": "http://127.0.0.1:54303/assets/p03/stage-wide.webp",
+            "transferSize": 131786,
+            "encodedBodySize": 131486,
+            "decodedBodySize": 131486,
+            "responseEnd": 704.2999999970198
+          }
+        ],
+        "textures": [
+          {
+            "key": "avatar-amo",
+            "width": 256,
+            "height": 256,
+            "rgbaBytes": 262144
+          },
+          {
+            "key": "selection-portrait-amo",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "avatar-touye",
+            "width": 256,
+            "height": 256,
+            "rgbaBytes": 262144
+          },
+          {
+            "key": "selection-portrait-touye",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "avatar-laohuan",
+            "width": 256,
+            "height": 256,
+            "rgbaBytes": 262144
+          },
+          {
+            "key": "selection-portrait-laohuan",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "avatar-erxiang",
+            "width": 256,
+            "height": 256,
+            "rgbaBytes": 262144
+          },
+          {
+            "key": "selection-portrait-erxiang",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "avatar-azao",
+            "width": 256,
+            "height": 256,
+            "rgbaBytes": 262144
+          },
+          {
+            "key": "selection-portrait-azao",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p00-paper",
+            "width": 640,
+            "height": 640,
+            "rgbaBytes": 1638400
+          },
+          {
+            "key": "p00-card-back",
+            "width": 240,
+            "height": 336,
+            "rgbaBytes": 322560
+          },
+          {
+            "key": "p00-frame-common",
+            "width": 240,
+            "height": 336,
+            "rgbaBytes": 322560
+          },
+          {
+            "key": "p00-frame-uncommon",
+            "width": 240,
+            "height": 336,
+            "rgbaBytes": 322560
+          },
+          {
+            "key": "p00-frame-rare",
+            "width": 240,
+            "height": 336,
+            "rgbaBytes": 322560
+          },
+          {
+            "key": "p00-mark-joker",
+            "width": 96,
+            "height": 96,
+            "rgbaBytes": 36864
+          },
+          {
+            "key": "p00-mark-plus",
+            "width": 96,
+            "height": 96,
+            "rgbaBytes": 36864
+          },
+          {
+            "key": "p00-mark-times",
+            "width": 96,
+            "height": 96,
+            "rgbaBytes": 36864
+          },
+          {
+            "key": "avatar-xiemu",
+            "width": 256,
+            "height": 256,
+            "rgbaBytes": 262144
+          },
+          {
+            "key": "selection-portrait-xiemu",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-pengci",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-e05",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-huimaqiang",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-a03",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-f02",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-d03",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-tiesuanpan",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-mantangcai",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-jiedongfeng",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-a05",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-b02",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-b03",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-b04",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-c02",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-c04",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-c06",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-d01",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-d05",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-d10",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-e01",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-e03",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-e08",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-f03",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-f09",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p03-stage",
+            "width": 1536,
+            "height": 864,
+            "rgbaBytes": 5308416
+          },
+          {
+            "key": "p00-material-2445138-861486-0.0-0.0",
+            "width": 256,
+            "height": 128,
+            "rgbaBytes": 131072
+          },
+          {
+            "key": "3a9cf0c3-44fe-4b0b-87c7-d03919b01395",
+            "width": 1280,
+            "height": 720,
+            "rgbaBytes": 3686400
+          },
+          {
+            "key": "c770fe4a-5646-40fa-a46f-a7c43fdf2307",
+            "width": 1,
+            "height": 1,
+            "rgbaBytes": 4
+          },
+          {
+            "key": "18246372-926a-4822-b9a4-500ffe9c1a26",
+            "width": 1,
+            "height": 1,
+            "rgbaBytes": 4
+          },
+          {
+            "key": "p00-material-13199690-9977138-5.7-21.8",
+            "width": 256,
+            "height": 128,
+            "rgbaBytes": 131072
+          },
+          {
+            "key": "fb64f2da-3fcf-42d4-82a8-50e346ec5711",
+            "width": 1,
+            "height": 1,
+            "rgbaBytes": 4
+          },
+          {
+            "key": "2692c969-656a-4f9f-92f4-741dc44a7b5c",
+            "width": 1,
+            "height": 1,
+            "rgbaBytes": 4
+          }
+        ],
+        "decodedTextureBytes": 23699472,
+        "graphics": {
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00009BC5) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "software": false
+        },
+        "framebuffer": {
+          "width": 1280,
+          "height": 720,
+          "density": 1
+        },
+        "requests": [
+          {
+            "url": "/",
+            "type": "Document",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 739,
+            "complete": true
+          },
+          {
+            "url": "/assets/index-CJ_nvnKQ.js",
+            "type": "Script",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1487084,
+            "complete": true
+          },
+          {
+            "url": "/assets/index-Dl51sGFE.css",
+            "type": "Stylesheet",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 10294,
+            "complete": true
+          },
+          {
+            "url": "/assets/characters-p07/amo.avatar.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 12829,
+            "complete": true
+          },
+          {
+            "url": "/assets/characters-p07/amo.selection.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 20381,
+            "complete": true
+          },
+          {
+            "url": "/assets/characters-p07/touye.avatar.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 15155,
+            "complete": true
+          },
+          {
+            "url": "/assets/characters-p07/touye.selection.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 22851,
+            "complete": true
+          },
+          {
+            "url": "/assets/characters-p07/laohuan.avatar.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 18697,
+            "complete": true
+          },
+          {
+            "url": "/assets/characters-p07/laohuan.selection.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 25073,
+            "complete": true
+          },
+          {
+            "url": "/assets/characters-p07/erxiang.avatar.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 15851,
+            "complete": true
+          },
+          {
+            "url": "/assets/characters-p07/erxiang.selection.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24881,
+            "complete": true
+          },
+          {
+            "url": "/assets/characters-p07/azao.avatar.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 18587,
+            "complete": true
+          },
+          {
+            "url": "/assets/characters-p07/azao.selection.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 26131,
+            "complete": true
+          },
+          {
+            "url": "/assets/characters-p07/xiemu.avatar.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 16229,
+            "complete": true
+          },
+          {
+            "url": "/assets/characters-p07/xiemu.selection.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24245,
+            "complete": true
+          },
+          {
+            "url": "/assets/p00/paper.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1163,
+            "complete": true
+          },
+          {
+            "url": "/assets/p00/card-back.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 4299,
+            "complete": true
+          },
+          {
+            "url": "/assets/p00/frame-common.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1314,
+            "complete": true
+          },
+          {
+            "url": "/assets/p00/frame-uncommon.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1775,
+            "complete": true
+          },
+          {
+            "url": "/assets/p00/frame-rare.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 2187,
+            "complete": true
+          },
+          {
+            "url": "/assets/p00/mark-joker.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1376,
+            "complete": true
+          },
+          {
+            "url": "/assets/p00/mark-plus.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1213,
+            "complete": true
+          },
+          {
+            "url": "/assets/p00/mark-times.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1250,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/pengci.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 22625,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/e05.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 28483,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/huimaqiang.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 23889,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/a03.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 22123,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/f02.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 22735,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/d03.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 23145,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/tiesuanpan.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24993,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/mantangcai.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 21183,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/jiedongfeng.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 23539,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/a05.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 22573,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/b02.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 20439,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/b03.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 23643,
+            "complete": true
+          },
+          {
+            "url": "/favicon.ico",
+            "type": "Other",
+            "status": 404,
+            "fromDiskCache": false,
+            "encodedBytes": 157,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/b04.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24453,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/c02.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24541,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/c04.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 26061,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/c06.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 29433,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/d01.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 23937,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/d05.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 22991,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/d10.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24109,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/e01.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 25699,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/e03.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 26249,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/e08.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 29481,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/f03.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24639,
+            "complete": true
+          },
+          {
+            "url": "/assets/jokers-p07/f09.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24253,
+            "complete": true
+          },
+          {
+            "url": "/assets/p03/stage-wide.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 131664,
+            "complete": true
+          }
+        ],
+        "transferBytes": 2470641,
+        "resourceTimingTransferBytes": 2476679
+      },
+      "character": {
+        "path": "/assets/characters-p07/amo.portrait.webp",
+        "width": 615,
+        "height": 768,
+        "fit": "contain"
+      },
+      "card": {
+        "path": "/assets/jokers-p07/e05-detail.webp",
+        "width": 615,
+        "height": 768,
+        "fit": "contain"
+      },
+      "loadedDetails": [
+        {
+          "path": "/assets/characters-p07/amo.portrait.webp",
+          "status": 200
+        },
+        {
+          "path": "/assets/jokers-p07/e05-detail.webp",
+          "status": 200
+        }
+      ],
+      "hd404": "NOT_RUN"
+    },
+    {
+      "name": "paths-and-lazy-details",
+      "status": "PASS",
+      "prefix": "/dachoupai/",
+      "viewport": "390x844 DPR2 touch",
+      "first": {
+        "firstUsableMs": 572.7999999970198,
+        "timing": [
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/?harness=1&seed=p00-core-ui",
+            "transferSize": 865,
+            "encodedBodySize": 565,
+            "decodedBodySize": 565,
+            "responseEnd": 2.5999999940395355
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/index-CJ_nvnKQ.js",
+            "transferSize": 1487200,
+            "encodedBodySize": 1486900,
+            "decodedBodySize": 1486900,
+            "responseEnd": 21.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/index-Dl51sGFE.css",
+            "transferSize": 10419,
+            "encodedBodySize": 10119,
+            "decodedBodySize": 10119,
+            "responseEnd": 15.299999997019768
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/characters-p07/amo.avatar.webp",
+            "transferSize": 12952,
+            "encodedBodySize": 12652,
+            "decodedBodySize": 12652,
+            "responseEnd": 275.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/characters-p07/amo.selection.webp",
+            "transferSize": 20504,
+            "encodedBodySize": 20204,
+            "decodedBodySize": 20204,
+            "responseEnd": 275.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/characters-p07/touye.avatar.webp",
+            "transferSize": 15278,
+            "encodedBodySize": 14978,
+            "decodedBodySize": 14978,
+            "responseEnd": 277.79999999701977
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/characters-p07/touye.selection.webp",
+            "transferSize": 22974,
+            "encodedBodySize": 22674,
+            "decodedBodySize": 22674,
+            "responseEnd": 278
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/characters-p07/laohuan.avatar.webp",
+            "transferSize": 18820,
+            "encodedBodySize": 18520,
+            "decodedBodySize": 18520,
+            "responseEnd": 278.70000000298023
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/characters-p07/laohuan.selection.webp",
+            "transferSize": 25196,
+            "encodedBodySize": 24896,
+            "decodedBodySize": 24896,
+            "responseEnd": 278.79999999701977
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/characters-p07/erxiang.avatar.webp",
+            "transferSize": 15974,
+            "encodedBodySize": 15674,
+            "decodedBodySize": 15674,
+            "responseEnd": 280.29999999701977
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/characters-p07/erxiang.selection.webp",
+            "transferSize": 25004,
+            "encodedBodySize": 24704,
+            "decodedBodySize": 24704,
+            "responseEnd": 281.29999999701977
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/characters-p07/azao.avatar.webp",
+            "transferSize": 18710,
+            "encodedBodySize": 18410,
+            "decodedBodySize": 18410,
+            "responseEnd": 281.40000000596046
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/characters-p07/azao.selection.webp",
+            "transferSize": 26254,
+            "encodedBodySize": 25954,
+            "decodedBodySize": 25954,
+            "responseEnd": 281.79999999701977
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/characters-p07/xiemu.avatar.webp",
+            "transferSize": 16352,
+            "encodedBodySize": 16052,
+            "decodedBodySize": 16052,
+            "responseEnd": 283.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/characters-p07/xiemu.selection.webp",
+            "transferSize": 24368,
+            "encodedBodySize": 24068,
+            "decodedBodySize": 24068,
+            "responseEnd": 287.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/p00/paper.svg",
+            "transferSize": 1285,
+            "encodedBodySize": 985,
+            "decodedBodySize": 985,
+            "responseEnd": 287.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/p00/card-back.svg",
+            "transferSize": 4420,
+            "encodedBodySize": 4120,
+            "decodedBodySize": 4120,
+            "responseEnd": 288.20000000298023
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/p00/frame-common.svg",
+            "transferSize": 1435,
+            "encodedBodySize": 1135,
+            "decodedBodySize": 1135,
+            "responseEnd": 288
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/p00/frame-uncommon.svg",
+            "transferSize": 1896,
+            "encodedBodySize": 1596,
+            "decodedBodySize": 1596,
+            "responseEnd": 289
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/p00/frame-rare.svg",
+            "transferSize": 2308,
+            "encodedBodySize": 2008,
+            "decodedBodySize": 2008,
+            "responseEnd": 289.29999999701977
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/p00/mark-joker.svg",
+            "transferSize": 1497,
+            "encodedBodySize": 1197,
+            "decodedBodySize": 1197,
+            "responseEnd": 290.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/p00/mark-plus.svg",
+            "transferSize": 1334,
+            "encodedBodySize": 1034,
+            "decodedBodySize": 1034,
+            "responseEnd": 290.40000000596046
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/p00/mark-times.svg",
+            "transferSize": 1371,
+            "encodedBodySize": 1071,
+            "decodedBodySize": 1071,
+            "responseEnd": 290.79999999701977
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/pengci.webp",
+            "transferSize": 22748,
+            "encodedBodySize": 22448,
+            "decodedBodySize": 22448,
+            "responseEnd": 291.20000000298023
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/e05.webp",
+            "transferSize": 28606,
+            "encodedBodySize": 28306,
+            "decodedBodySize": 28306,
+            "responseEnd": 293.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/huimaqiang.webp",
+            "transferSize": 24012,
+            "encodedBodySize": 23712,
+            "decodedBodySize": 23712,
+            "responseEnd": 293.20000000298023
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/a03.webp",
+            "transferSize": 22246,
+            "encodedBodySize": 21946,
+            "decodedBodySize": 21946,
+            "responseEnd": 293.79999999701977
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/f02.webp",
+            "transferSize": 22858,
+            "encodedBodySize": 22558,
+            "decodedBodySize": 22558,
+            "responseEnd": 294.79999999701977
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/d03.webp",
+            "transferSize": 23268,
+            "encodedBodySize": 22968,
+            "decodedBodySize": 22968,
+            "responseEnd": 295.20000000298023
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/tiesuanpan.webp",
+            "transferSize": 25116,
+            "encodedBodySize": 24816,
+            "decodedBodySize": 24816,
+            "responseEnd": 296.40000000596046
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/mantangcai.webp",
+            "transferSize": 21306,
+            "encodedBodySize": 21006,
+            "decodedBodySize": 21006,
+            "responseEnd": 300.79999999701977
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/jiedongfeng.webp",
+            "transferSize": 23662,
+            "encodedBodySize": 23362,
+            "decodedBodySize": 23362,
+            "responseEnd": 301.20000000298023
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/a05.webp",
+            "transferSize": 22696,
+            "encodedBodySize": 22396,
+            "decodedBodySize": 22396,
+            "responseEnd": 301.5
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/b02.webp",
+            "transferSize": 20562,
+            "encodedBodySize": 20262,
+            "decodedBodySize": 20262,
+            "responseEnd": 303.5
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/b03.webp",
+            "transferSize": 23766,
+            "encodedBodySize": 23466,
+            "decodedBodySize": 23466,
+            "responseEnd": 303.79999999701977
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/b04.webp",
+            "transferSize": 24576,
+            "encodedBodySize": 24276,
+            "decodedBodySize": 24276,
+            "responseEnd": 358.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/c02.webp",
+            "transferSize": 24664,
+            "encodedBodySize": 24364,
+            "decodedBodySize": 24364,
+            "responseEnd": 358.40000000596046
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/c04.webp",
+            "transferSize": 26184,
+            "encodedBodySize": 25884,
+            "decodedBodySize": 25884,
+            "responseEnd": 359
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/c06.webp",
+            "transferSize": 29556,
+            "encodedBodySize": 29256,
+            "decodedBodySize": 29256,
+            "responseEnd": 361.70000000298023
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/d01.webp",
+            "transferSize": 24060,
+            "encodedBodySize": 23760,
+            "decodedBodySize": 23760,
+            "responseEnd": 363.20000000298023
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/d05.webp",
+            "transferSize": 23114,
+            "encodedBodySize": 22814,
+            "decodedBodySize": 22814,
+            "responseEnd": 363
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/d10.webp",
+            "transferSize": 24232,
+            "encodedBodySize": 23932,
+            "decodedBodySize": 23932,
+            "responseEnd": 364.20000000298023
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/e01.webp",
+            "transferSize": 25822,
+            "encodedBodySize": 25522,
+            "decodedBodySize": 25522,
+            "responseEnd": 364.5
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/e03.webp",
+            "transferSize": 26372,
+            "encodedBodySize": 26072,
+            "decodedBodySize": 26072,
+            "responseEnd": 365.20000000298023
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/e08.webp",
+            "transferSize": 29604,
+            "encodedBodySize": 29304,
+            "decodedBodySize": 29304,
+            "responseEnd": 366.20000000298023
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/f03.webp",
+            "transferSize": 24762,
+            "encodedBodySize": 24462,
+            "decodedBodySize": 24462,
+            "responseEnd": 367.40000000596046
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/jokers-p07/f09.webp",
+            "transferSize": 24376,
+            "encodedBodySize": 24076,
+            "decodedBodySize": 24076,
+            "responseEnd": 367.5
+          },
+          {
+            "url": "http://127.0.0.1:54303/dachoupai/assets/p03/stage-wide.webp",
+            "transferSize": 131786,
+            "encodedBodySize": 131486,
+            "decodedBodySize": 131486,
+            "responseEnd": 368.09999999403954
+          }
+        ],
+        "textures": [
+          {
+            "key": "p00-paper",
+            "width": 640,
+            "height": 640,
+            "rgbaBytes": 1638400
+          },
+          {
+            "key": "p00-card-back",
+            "width": 240,
+            "height": 336,
+            "rgbaBytes": 322560
+          },
+          {
+            "key": "p00-frame-common",
+            "width": 240,
+            "height": 336,
+            "rgbaBytes": 322560
+          },
+          {
+            "key": "p00-frame-uncommon",
+            "width": 240,
+            "height": 336,
+            "rgbaBytes": 322560
+          },
+          {
+            "key": "p00-frame-rare",
+            "width": 240,
+            "height": 336,
+            "rgbaBytes": 322560
+          },
+          {
+            "key": "p00-mark-joker",
+            "width": 96,
+            "height": 96,
+            "rgbaBytes": 36864
+          },
+          {
+            "key": "p00-mark-plus",
+            "width": 96,
+            "height": 96,
+            "rgbaBytes": 36864
+          },
+          {
+            "key": "p00-mark-times",
+            "width": 96,
+            "height": 96,
+            "rgbaBytes": 36864
+          },
+          {
+            "key": "avatar-amo",
+            "width": 256,
+            "height": 256,
+            "rgbaBytes": 262144
+          },
+          {
+            "key": "selection-portrait-amo",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "avatar-touye",
+            "width": 256,
+            "height": 256,
+            "rgbaBytes": 262144
+          },
+          {
+            "key": "selection-portrait-touye",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "avatar-laohuan",
+            "width": 256,
+            "height": 256,
+            "rgbaBytes": 262144
+          },
+          {
+            "key": "selection-portrait-laohuan",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "avatar-erxiang",
+            "width": 256,
+            "height": 256,
+            "rgbaBytes": 262144
+          },
+          {
+            "key": "selection-portrait-erxiang",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "avatar-azao",
+            "width": 256,
+            "height": 256,
+            "rgbaBytes": 262144
+          },
+          {
+            "key": "selection-portrait-azao",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "avatar-xiemu",
+            "width": 256,
+            "height": 256,
+            "rgbaBytes": 262144
+          },
+          {
+            "key": "selection-portrait-xiemu",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-pengci",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-e05",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-huimaqiang",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-a03",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-f02",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-d03",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-tiesuanpan",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-mantangcai",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-jiedongfeng",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-a05",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-b02",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-b03",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-b04",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-c02",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-c04",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-c06",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-d05",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-d01",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-d10",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-e01",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-e03",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-e08",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-f03",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p07-joker-f09",
+            "width": 256,
+            "height": 320,
+            "rgbaBytes": 327680
+          },
+          {
+            "key": "p03-stage",
+            "width": 1536,
+            "height": 864,
+            "rgbaBytes": 5308416
+          },
+          {
+            "key": "p00-material-2445138-861486-0.0-0.0",
+            "width": 256,
+            "height": 128,
+            "rgbaBytes": 131072
+          },
+          {
+            "key": "dfae6e9d-bdc4-4fc6-8e61-a45622c1cf4a",
+            "width": 390,
+            "height": 844,
+            "rgbaBytes": 1316640
+          },
+          {
+            "key": "5697d787-72af-4113-83f0-a2ea04751b9e",
+            "width": 1,
+            "height": 1,
+            "rgbaBytes": 4
+          },
+          {
+            "key": "29a49fa1-0368-4591-ac3a-7f61acf22474",
+            "width": 1,
+            "height": 1,
+            "rgbaBytes": 4
+          },
+          {
+            "key": "p00-material-13199690-9977138-6.0-21.8",
+            "width": 256,
+            "height": 128,
+            "rgbaBytes": 131072
+          },
+          {
+            "key": "a4b208cd-752e-49a0-a962-5e15e575a288",
+            "width": 1,
+            "height": 1,
+            "rgbaBytes": 4
+          },
+          {
+            "key": "5156f2e5-e62a-4c34-8758-a384466b28ce",
+            "width": 1,
+            "height": 1,
+            "rgbaBytes": 4
+          }
+        ],
+        "decodedTextureBytes": 21329712,
+        "graphics": {
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00009BC5) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "software": false
+        },
+        "framebuffer": {
+          "width": 780,
+          "height": 1688,
+          "density": 2
+        },
+        "requests": [
+          {
+            "url": "/dachoupai/",
+            "type": "Document",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 739,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/index-CJ_nvnKQ.js",
+            "type": "Script",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1487084,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/index-Dl51sGFE.css",
+            "type": "Stylesheet",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 10294,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/characters-p07/amo.avatar.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 12829,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/characters-p07/amo.selection.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 20381,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/characters-p07/touye.avatar.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 15155,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/characters-p07/touye.selection.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 22851,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/characters-p07/laohuan.avatar.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 18697,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/characters-p07/laohuan.selection.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 25073,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/characters-p07/erxiang.avatar.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 15851,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/characters-p07/erxiang.selection.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24881,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/characters-p07/azao.avatar.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 18587,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/characters-p07/azao.selection.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 26131,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/characters-p07/xiemu.avatar.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 16229,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/characters-p07/xiemu.selection.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24245,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/p00/paper.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1163,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/p00/card-back.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 4299,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/p00/frame-common.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1314,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/p00/frame-uncommon.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1775,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/p00/frame-rare.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 2187,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/p00/mark-joker.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1376,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/p00/mark-plus.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1213,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/p00/mark-times.svg",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 1250,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/pengci.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 22625,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/e05.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 28483,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/huimaqiang.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 23889,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/a03.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 22123,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/f02.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 22735,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/d03.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 23145,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/tiesuanpan.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24993,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/mantangcai.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 21183,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/jiedongfeng.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 23539,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/a05.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 22573,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/b02.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 20439,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/b03.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 23643,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/b04.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24453,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/c02.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24541,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/c04.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 26061,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/c06.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 29433,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/d01.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 23937,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/d05.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 22991,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/d10.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24109,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/e01.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 25699,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/e03.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 26249,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/e08.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 29481,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/f03.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24639,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/jokers-p07/f09.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 24253,
+            "complete": true
+          },
+          {
+            "url": "/dachoupai/assets/p03/stage-wide.webp",
+            "type": "XHR",
+            "status": 200,
+            "fromDiskCache": false,
+            "encodedBytes": 131664,
+            "complete": true
+          }
+        ],
+        "transferBytes": 2470484,
+        "resourceTimingTransferBytes": 2476370
+      },
+      "character": {
+        "path": "/dachoupai/assets/characters-p07/amo.portrait.webp",
+        "width": 615,
+        "height": 768,
+        "fit": "contain"
+      },
+      "card": {
+        "path": "/dachoupai/assets/jokers-p07/e05-detail.webp",
+        "width": 615,
+        "height": 768,
+        "fit": "contain"
+      },
+      "loadedDetails": [
+        {
+          "path": "/dachoupai/assets/characters-p07/amo.portrait.webp",
+          "status": 200
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/e05-detail.webp",
+          "status": 200
+        }
+      ],
+      "hd404": "PASS"
+    },
+    {
+      "name": "previews-and-character-hd-404",
+      "status": "PASS",
+      "missing": {
+        "avatar": false,
+        "selection": false,
+        "jokers": []
+      },
+      "letterFallback": true,
+      "handCards": 8,
+      "warnings": [
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: avatar-amo -> ./assets/characters-p07/amo.avatar.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: selection-portrait-amo -> ./assets/characters-p07/amo.selection.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-pengci -> ./assets/jokers-p07/pengci.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-e05 -> ./assets/jokers-p07/e05.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-huimaqiang -> ./assets/jokers-p07/huimaqiang.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-a03 -> ./assets/jokers-p07/a03.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-f02 -> ./assets/jokers-p07/f02.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-d03 -> ./assets/jokers-p07/d03.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-tiesuanpan -> ./assets/jokers-p07/tiesuanpan.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-mantangcai -> ./assets/jokers-p07/mantangcai.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-jiedongfeng -> ./assets/jokers-p07/jiedongfeng.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-a05 -> ./assets/jokers-p07/a05.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-b02 -> ./assets/jokers-p07/b02.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-b03 -> ./assets/jokers-p07/b03.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-b04 -> ./assets/jokers-p07/b04.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-c02 -> ./assets/jokers-p07/c02.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-c04 -> ./assets/jokers-p07/c04.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-c06 -> ./assets/jokers-p07/c06.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-d01 -> ./assets/jokers-p07/d01.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-d05 -> ./assets/jokers-p07/d05.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-d10 -> ./assets/jokers-p07/d10.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-e01 -> ./assets/jokers-p07/e01.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-e03 -> ./assets/jokers-p07/e03.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-e08 -> ./assets/jokers-p07/e08.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-f03 -> ./assets/jokers-p07/f03.webp",
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p07-joker-f09 -> ./assets/jokers-p07/f09.webp"
+      ],
+      "requests": [
+        {
+          "path": "/dachoupai/assets/characters-p07/amo.avatar.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/characters-p07/amo.selection.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/pengci.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/e05.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/huimaqiang.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/a03.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/f02.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/d03.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/tiesuanpan.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/mantangcai.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/jiedongfeng.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/a05.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/b02.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/b03.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/b04.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/c02.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/c04.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/c06.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/d01.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/d05.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/d10.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/e01.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/e03.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/e08.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/f03.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/jokers-p07/f09.webp",
+          "status": 404
+        },
+        {
+          "path": "/dachoupai/assets/characters-p07/amo.portrait.webp",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "name": "server-never-responds",
+      "status": "PASS",
+      "path": "/dachoupai/assets/characters-p07/amo.avatar.webp",
+      "loader": {
+        "path": "/dachoupai/assets/characters-p07/amo.avatar.webp",
+        "actualXHRTimeoutMs": 5000,
+        "retryAttempts": 0
+      },
+      "stalledRequests": 1,
+      "firstUsableMs": 5381.20000000298,
+      "warnings": [
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: avatar-amo -> ./assets/characters-p07/amo.avatar.webp"
+      ]
+    },
+    {
+      "name": "missing-boot-svg-then-stalled-game-reload",
+      "status": "PASS",
+      "path": "/dachoupai/assets/p00/mark-joker.svg",
+      "boot": {
+        "path": "/dachoupai/assets/p00/mark-joker.svg",
+        "actualXHRTimeoutMs": 5000,
+        "retryAttempts": 0
+      },
+      "game": {
+        "path": "/dachoupai/assets/p00/mark-joker.svg",
+        "actualXHRTimeoutMs": 5000,
+        "retryAttempts": 0
+      },
+      "stalledRequests": 1,
+      "handCards": 8,
+      "warnings": [
+        "[boot] 资源加载失败（已跳过，不阻断游戏）: p00-mark-joker -> ./assets/p00/mark-joker.svg"
+      ]
+    }
+  ],
+  "coldSamples": [
+    {
+      "sample": 1,
+      "firstUsableMs": 3034.699999988079,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 2,
+      "firstUsableMs": 3084.6000000089407,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 3,
+      "firstUsableMs": 3219.2999999970198,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 4,
+      "firstUsableMs": 3044.5,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 5,
+      "firstUsableMs": 3045.800000011921,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 6,
+      "firstUsableMs": 3052.2999999970198,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 7,
+      "firstUsableMs": 3221,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 8,
+      "firstUsableMs": 2996.5,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 9,
+      "firstUsableMs": 3059.5,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 10,
+      "firstUsableMs": 3032.2000000029802,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 11,
+      "firstUsableMs": 2994,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 12,
+      "firstUsableMs": 3028.199999988079,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 13,
+      "firstUsableMs": 2985.0999999940395,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 14,
+      "firstUsableMs": 3065.2000000029802,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 15,
+      "firstUsableMs": 3197.2000000029802,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 16,
+      "firstUsableMs": 3062.699999988079,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 17,
+      "firstUsableMs": 3070.300000011921,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 18,
+      "firstUsableMs": 3076.2000000029802,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 19,
+      "firstUsableMs": 3121.7999999970198,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    },
+    {
+      "sample": 20,
+      "firstUsableMs": 3159.5999999940395,
+      "transferBytes": 2470484,
+      "resourceTimingTransferBytes": 2476370,
+      "decodedTextureBytes": 21329712
+    }
+  ],
+  "limitations": [
+    "Local headless Chromium browser with CDP network throttling; physical Android/iPhone performance and listening NOT_RUN.",
+    "Cold contexts have no storage or cache; this is not a 30-minute/100-scene memory test.",
+    "Candidate integration only; commercial source allowlist and A03 source specification approval are not granted by this check."
+  ],
+  "server": {
+    "contentEncoding": "identity (no gzip/brotli)",
+    "cacheControl": "no-store",
+    "mounts": [
+      "/",
+      "/dachoupai/"
+    ],
+    "missingFiles": "HTTP 404, no SPA fallback"
+  },
+  "throttle": {
+    "downloadMbps": 10,
+    "uploadMbps": 10,
+    "latencyMs": 80,
+    "method": "Chromium CDP Network.emulateNetworkConditions",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "deviceScaleFactor": 2,
+    "cache": "fresh isolated browser context + CDP cache disabled per sample",
+    "metric": "navigation start to rendered/enabled title-start; click verifies effective operation after snapshot"
+  },
+  "coldSummary": {
+    "samples": 20,
+    "medianMs": 3061.0999999940395,
+    "p95Ms": 3219.2999999970198,
+    "maxMs": 3221,
+    "status": "PASS (local browser; physical-device performance NOT_RUN)"
+  },
+  "status": "PASS"
+}

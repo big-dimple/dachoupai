@@ -1,0 +1,29 @@
+Actual terminal output excerpt, retained without reverting implementation.
+Command: npx vitest run tests/score-presentation.test.ts
+Workspace: D:/ai/dachoupai/dachoupai
+Exit code: 1
+Start at: 00:36:31
+
+RUN v4.1.11 D:/ai/dachoupai/dachoupai
+tests/score-presentation.test.ts (8 tests | 4 failed)
+
+FAIL accelerates by committed trace position and stops at a readable ordinary-card floor
+AssertionError: expected 810 to be 500
+tests/score-presentation.test.ts:18:24
+
+FAIL keeps role, additive multiplier and multiplicative multiplier beats distinct at the same position
+AssertionError: expected [ 1120, 1120 ] to deeply equal [ 800, 600 ]
+tests/score-presentation.test.ts:32:45
+
+FAIL gives every retrigger its own highlight and never restarts the chain pace for a source
+AssertionError: expected 700 to be less than 700
+tests/score-presentation.test.ts:50:34
+
+FAIL shows growth and suppression without pretending they changed the accumulator
+AssertionError: expected 700 to be less than or equal to 500
+tests/score-presentation.test.ts:62:35
+
+Test Files: 1 failed (1)
+Tests: 4 failed | 4 passed (8)
+Duration: 382ms (transform 47ms, setup 0ms, import 68ms, tests 15ms, environment 0ms)
+The three unchanged BigInt flame threshold tests passed.

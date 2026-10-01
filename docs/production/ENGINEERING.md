@@ -94,6 +94,10 @@ Viewport 按可用 CSS 尺寸与设备 DPR 设置有界像素画布（密度上�
 
 注册表包含 id、kind、source、runtimeVariants、尺寸/字节/hash、裁切安全区、用途、技术验证、视觉批准、来源/使用许可证据。首屏只加载小头像和必要牌桌/字体；长音轨、高清立绘、源 GLB 按需或不发布。
 
+A02的构建只移除产物中`assets/models/*.glb`副本，public内39个离线原件仍供资产工具读取；不把源目录清空或将有价值模型改成运行时3D。资源首屏/降级检查消费已构建产物，不在检查中重导资产或自行build。
+
+`npm run test:assets-runtime -- --build-dir shots/smoke-build`在verify:smoke之后消费同一E2E产物；根路径/子路径、高清按需、404/实际挂起请求和20个10Mbps/80ms冷样本都检查，输出在shots/a02-runtime.json及首个冷样本HAR。可用SMOKE_CHROMIUM_CHANNEL选择完整Chromium，记录实际引擎/渲染限制；结果不替代物理手机或30分钟长局。Boot与缺资源重试的GameScene逐文件XHR超时5秒、零自动重试，失败继续使用现有可读回退。
+
 npm ci + lockfile；直接 import 的工具包声明为直接 devDependency，固定 Blender/Python/Pillow 工具链信息；本机路径用环境变量/配置，不写死每个开发者都拥有 D 盘。核心 runtime 不依赖 Blender/CLI。新鲜克隆应能仅安装 Node 运行游戏测试。
 
 CI 至少拆领域/内容验证、构建、浏览器 E2E、资源检查、文档图校验。检查模式只读；输出放临时 artifact，不能重写 manifest 然后假装工作区无变更。禁止 audit fix --force；安全告警按 advisory、依赖链、生产/开发可达性及修复测试记录处理。

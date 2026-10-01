@@ -1,0 +1,295 @@
+{
+  "taskId": "A02",
+  "testedCommit": "89dce3512285cddb00f83d20ad36038493a8e5d8",
+  "scope": "D22 presentation/runtime corrections; current six-character/24-Joker candidate. No rules, RNG, save or content revision changes.",
+  "treeIdentity": {
+    "method": "SHA identifies base only; files below identify final dirty runtime/test inputs with CRLF normalized to LF. Delivered commit contains these reviewed inputs.",
+    "modified": true,
+    "files": [
+      {
+        "file": "src/game/BootScene.ts",
+        "normalizedLfSha256": "a744acb14ed554b8155c374853a3e560595224dcfc1240d46dfbfef1e4f548bc"
+      },
+      {
+        "file": "src/game/GameScene.ts",
+        "normalizedLfSha256": "476c4d1f04f273e297a47c0a317e0a8a95912e50386d2de47dc736fd4122e59a"
+      },
+      {
+        "file": "src/game/ScoreFlame.ts",
+        "normalizedLfSha256": "b63dfdd4abf6a4da53fad99e7bc96b5fed9d8e9034a3ea3ffce6f6ce8ca07a91"
+      },
+      {
+        "file": "src/game/portraits.ts",
+        "normalizedLfSha256": "0a539f002f0aeeb26862c84d505572ef1d8242df3142ce40801b4f769907144a"
+      },
+      {
+        "file": "src/game/scorePresentation.ts",
+        "normalizedLfSha256": "22abe5edb8ddd2bd74575007dc4fddb7108ee1cdce34e60ffc7a9130d789fd3c"
+      },
+      {
+        "file": "tests/score-presentation.test.ts",
+        "normalizedLfSha256": "d4a9aae30a3ac983c025c425c0809775f345a3b29ba4d41c5a839c66072a9971"
+      },
+      {
+        "file": "harness/screenshot.mjs",
+        "normalizedLfSha256": "954ab1c9f3f56ecc1b16d51bca0a9d71da6913df25206b543ff1e9050f4d1e90"
+      },
+      {
+        "file": "harness/assets-runtime.mjs",
+        "normalizedLfSha256": "7f3c6e2de4c046a621e6d9ccf26efcb9d17760d8e6fb88cbda8ff2aef9971d78"
+      },
+      {
+        "file": "vite.config.ts",
+        "normalizedLfSha256": "6d353860cfbbc61a206d6993d308318b12f8d8a30722624aca53530c257bf4a9"
+      },
+      {
+        "file": "package.json",
+        "normalizedLfSha256": "7d104ccfc5211c080dde1077555cb6b5183358a8ef3808ec9c7f6bc0afd2712c"
+      }
+    ],
+    "production": {
+      "buildInfo": {
+        "version": "A02",
+        "revision": "89dce3512285cddb00f83d20ad36038493a8e5d8",
+        "modified": true,
+        "builtAt": "2026-10-01T17:10:46.748Z"
+      },
+      "buildTreeSha256": "2387da1ba2f9305f2236beeb757c97f4197c45131dbe353a325dfcaac6b8dff6",
+      "bytes": 12982082,
+      "files": 169,
+      "glb": 0,
+      "bundles": [
+        {
+          "file": "assets/index-D-uAlKBI.js",
+          "bytes": 1486760,
+          "sha256": "c5f76f2f47b6f8a96faa42c7b9ea5febdfa26211d1125c2c09dbbaef802d6ff0"
+        },
+        {
+          "file": "assets/index-Dl51sGFE.css",
+          "bytes": 10119,
+          "sha256": "94a4ebe02a5c0c10dadd84b3467cbf5a3f2883c8f62275cbd486e51f693d1840"
+        }
+      ]
+    },
+    "finalSmoke": {
+      "buildInfo": {
+        "version": "A02",
+        "revision": "89dce3512285cddb00f83d20ad36038493a8e5d8",
+        "modified": true,
+        "builtAt": "2026-10-01T17:10:42.863Z"
+      },
+      "buildTreeSha256": "b098db6b8b077086bad8ea92b68e11554658e84aaa660874dc54aa3fe8fcd240",
+      "bundles": [
+        {
+          "file": "assets/index-Dl51sGFE.css",
+          "bytes": 10119,
+          "sha256": "94a4ebe02a5c0c10dadd84b3467cbf5a3f2883c8f62275cbd486e51f693d1840"
+        },
+        {
+          "file": "assets/index-lyxCF5Bb.js",
+          "bytes": 1486855,
+          "sha256": "fe50ab51413cfae2d9a1004a8075c9950c323f48c6d4623a2d44cdaba0b24958"
+        }
+      ]
+    }
+  },
+  "decisions": [
+    "D22"
+  ],
+  "ownerAcceptance": "docs/production/evidence/A01-2026-10-02.json",
+  "checks": [
+    {
+      "command": "npx vitest run tests/score-presentation.test.ts (before implementation)",
+      "status": "FAIL",
+      "exitCode": 1,
+      "result": "4 expected pace failures / 4 passing cases; immutable score/fire threshold goldens preserved.",
+      "log": "docs/production/evidence/a02-2026-10-02/pace-red.txt"
+    },
+    {
+      "command": "node harness/assets-runtime.mjs --build-dir shots/smoke-build --scenario timeout --samples 0 --output shots/a02-runtime-red (before loader fix)",
+      "status": "FAIL",
+      "exitCode": 1,
+      "result": "Actual image XHR timeout 0/retries2 leaves Boot loading after7s.",
+      "log": "docs/production/evidence/a02-2026-10-02/image-timeout-red.json",
+      "limitation": "Old compiled artifact: P07 /1d58fe4 dirty; raw record retains its bundle hashes. Not claimed to be final SHA."
+    },
+    {
+      "command": "node harness/assets-runtime.mjs --build-dir shots/smoke-build --scenario svg --samples 0 --output shots/a02-runtime-svg-red (before loader fix)",
+      "status": "FAIL",
+      "exitCode": 1,
+      "result": "Boot SVG404 then actual GameScene reload hangs with timeout0/retries2.",
+      "log": "docs/production/evidence/a02-2026-10-02/svg-timeout-red.json",
+      "limitation": "Same explicitly identified older artifact."
+    },
+    {
+      "command": "npm run build (first A02 attempt)",
+      "status": "FAIL",
+      "result": "Required XHR responseType was missing; corrected to image blob / SVG text, no type assertion workaround.",
+      "log": "docs/production/evidence/a02-2026-10-02/build-first-failure.txt"
+    },
+    {
+      "command": "Independent same-tick BigInt assertion over actual saved natural browser trace",
+      "status": "FAIL",
+      "exitCode": 1,
+      "result": "H150/M4 shows600 while fire3; independently expected1. Fixed premature future accumulator use.",
+      "log": "docs/production/evidence/a02-2026-10-02/fire-red.txt",
+      "trace": "docs/production/evidence/a02-2026-10-02/smoke-before-fire-sync.json"
+    },
+    {
+      "command": "npx vitest run tests/score-presentation.test.ts tests/recovery-queue.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "13 tests /2 files on final sources.",
+      "log": "docs/production/evidence/a02-2026-10-02/unit.txt"
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "tsc --noEmit +Vite7.3.6 production build; existing >500kB chunk warning retained.",
+      "log": "docs/production/evidence/a02-2026-10-02/build.txt"
+    },
+    {
+      "command": "SMOKE_CHROMIUM_CHANNEL=chromium SMOKE_FEEDBACK=1 SMOKE_SHOTS=1 node harness/screenshot.mjs --verify-smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "1280x720 mouse and390x740 DPR3 touch: selection/confirm/cancel, buy/cancel, sort/discard/play, resource pulse, refresh/continue, fixed menu, rotation/fullscreenAPI, next table. Run before the final display-only fire fix; unaffected UI checks reused.",
+      "log": "docs/production/evidence/a02-2026-10-02/smoke-basic.txt",
+      "trace": "docs/production/evidence/a02-2026-10-02/smoke-before-fire-sync.json"
+    },
+    {
+      "command": "SMOKE_CHROMIUM_CHANNEL=chromium SMOKE_FEEDBACK=only SMOKE_SHOTS=1 node harness/screenshot.mjs --verify-smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "Final natural wager straight1200/400, gold14 credited once;6 ordered individual sources retain windup/impact/rest; flame1/2/3 follow same-tick displayed integer; actual scheduled SFX and next-table cleanup. Only affected path repeated.",
+      "log": "docs/production/evidence/a02-2026-10-02/fire-green.txt",
+      "trace": "docs/production/evidence/a02-2026-10-02/smoke-final.json"
+    },
+    {
+      "command": "SMOKE_CHROMIUM_CHANNEL=chromium node harness/assets-runtime.mjs --build-dir shots/smoke-build --output shots/a02-runtime",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "Root/subpath lazy HD, image/HD404 fallback, real stalled image and reloadedSVG finite5s/no retries;20 cold10Mbps/80ms samples;39 offline GLB retained/excluded. Runtime loading checks completed before display-only fire fix; raw bundle hash and version retained.",
+      "log": "docs/production/evidence/a02-2026-10-02/runtime.txt",
+      "trace": "docs/production/evidence/a02-2026-10-02/runtime.json",
+      "har": "docs/production/evidence/a02-2026-10-02/cold-first.har",
+      "scopeReuse": "Final change affects only score/fire playback and its observation assertion. Boot/preload/registry/assets/loading behavior unchanged; final production bytes re-inventoried, final score path rerun. Cold timing belongs to the earlier recorded A02 bundle."
+    },
+    {
+      "command": "node scripts/check-production-plan.mjs; git diff --check",
+      "status": "PASS",
+      "result": "PLAN_VALID31/currentC00; whitespace diff check clean. Structural check does not certify product acceptance.",
+      "exitCode": 0
+    }
+  ],
+  "presentation": {
+    "targetBeatMs": {
+      "ordinary": [
+        500,
+        300
+      ],
+      "role": [
+        800,
+        600
+      ],
+      "additive": [
+        600,
+        400
+      ],
+      "multiply": [
+        1100,
+        900
+      ]
+    },
+    "actualOrdinaryBeatMs": [
+      575.7000000029802,
+      569.5999999940395,
+      569.8000000119209,
+      505.5,
+      490.8999999910593
+    ],
+    "actualUntil3xBurstMs": 5247,
+    "actualFireThresholds": [
+      {
+        "level": 1,
+        "at": 723.6999999880791,
+        "voices": 2,
+        "shown": "500",
+        "heat": "125",
+        "mult": "× 4"
+      },
+      {
+        "level": 2,
+        "at": 4502,
+        "voices": 2,
+        "shown": "878",
+        "heat": "150",
+        "mult": "× 5.9",
+        "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/6",
+        "phase": "impact"
+      },
+      {
+        "level": 3,
+        "at": 4740.79999999702,
+        "voices": 2,
+        "shown": "1,200",
+        "heat": "150",
+        "mult": "× 8",
+        "id": "run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/6",
+        "phase": "rest"
+      }
+    ],
+    "scoreFinal": "1200",
+    "target": "400",
+    "renderFpsSingleInstant": 52.03834533691406,
+    "flameBudget": {
+      "sceneObjects": 2,
+      "canvasMax": "512x96 RGBA8 <=196608 bytes per CPU surface; GPU/browser copies unmeasured",
+      "embersMax": 18,
+      "decorativeHz": 30
+    },
+    "screens": [
+      {
+        "path": "docs/production/evidence/a02-2026-10-02/mobile-fire.webp",
+        "source": "Final compiled natural path /390x740 CSS px /DPR3; compressed screenshot, no compositing."
+      },
+      {
+        "path": "docs/production/evidence/a02-2026-10-02/desktop-fire.webp",
+        "source": "1280x720 Chromium153 Vite development preview by flame agent before display-only sync fix; same final flame source; not an independent final production desktop run."
+      }
+    ]
+  },
+  "assetBudget": {
+    "measuredBundle": "85a62a5c88bd63654dc9ad00b50364c5ef5a43ee6f78c01dab3bf4897d8811dc",
+    "cold": {
+      "samples": 20,
+      "medianMs": 3061.0999999940395,
+      "p95Ms": 3219.2999999970198,
+      "maxMs": 3221,
+      "status": "PASS (local browser; physical-device performance NOT_RUN)"
+    },
+    "firstTransferBytes": 2470484,
+    "textureRGBA8EstimateBytes": 21329712,
+    "publicationBytes": 12982222,
+    "sourceModelsRetained": 39,
+    "sourceModelsBytes": 13150392,
+    "units": {
+      "MB": 1000000,
+      "MiB": 1048576,
+      "firstTransfer": "CDP Network.loadingFinished encodedDataLength: HTTP response headers + encoded body before first input; excludes request headers/TCP/TLS. Resource Timing transferSize is also retained.",
+      "publication": "All files in this actual build directory, uncompressed file bytes; includes code/metadata/unused copied assets.",
+      "decode": "Live Phaser image source width * height * 4 RGBA8 estimate; excludes driver allocation, mipmaps, framebuffers and audio decode."
+    }
+  },
+  "limits": {
+    "physicalAndroidDetailedScenarios": "NOT_RUN by agent; owner scoped feedback in A01 only",
+    "iPhone": "NOT_RUN",
+    "physicalListening": "NOT_RUN",
+    "performance30Minutes100Scenes": "NOT_RUN",
+    "multiPlayerV01": "NOT_RUN",
+    "finalL01": "NOT_RUN",
+    "sourceAllowlistAndA03FormalSourceSpecs": "NOT_GRANTED",
+    "newTarotPlanetsSpectralEnhancementsEditionsBosses": "NOT_IMPLEMENTED; C01/C03 contracts and milestones already tracked"
+  },
+  "nextTask": "C00"
+}

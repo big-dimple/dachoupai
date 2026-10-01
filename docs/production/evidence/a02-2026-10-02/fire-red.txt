@@ -1,0 +1,24 @@
+{"scope":"Actual saved natural browser trace; same-tick display/fire mismatch, no injected state","at":4380.5,"shown":"600","observedFire":3,"expectedFire":1,"sourceFrame":{"id":"run/p04-golden-02/touye/hand/run/p04-golden-02/touye/command/5/event/6","phase":"impact","at":4380.5,"label":"骰爷 · ×2 倍率","heat":"150","mult":"× 4"}}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Flames must follow the currently displayed product, not the future end of the roll
+
+3 !== 1
+
+    at file:///D:/ai/dachoupai/dachoupai/[eval1]:8:8
+    at ModuleJob.run (node:internal/modules/esm/module_job:345:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 3,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.20.0
