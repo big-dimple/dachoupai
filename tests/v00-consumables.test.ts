@@ -1,7 +1,7 @@
 import {describe,expect,it} from 'vitest';
 import {applyCommand,createRun,assertRunInvariants,type Action,type R2RunState} from '../src/domain/run';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
-const start=()=>createRun({seed:'skip-items',characterId:'amo',runId:'skip-items',rulesVersion:'r2'});
+const start=(characterId:'amo'|'erxiang'='amo')=>createRun({seed:'skip-items',characterId,runId:'skip-items',rulesVersion:'r2'});
 const send=(s:R2RunState,action:Action)=>{const r=applyCommand(s,{runId:s.runId,commandId:`c-${s.commandSeq+1}`,expectedSeq:s.commandSeq,action});if(!r.ok)throw Error(r.code);return r.state;};
 const item=(s:R2RunState,id:string)=>{s.consumables=[{instanceId:'item',definitionId:id}];return s;};
 const use=(s:R2RunState,targetIds:readonly string[]=[],handType?:'high-card')=>send(s,{type:'UseConsumable',instanceId:'item',targetIds,...(handType?{handType}:{})});
@@ -16,7 +16,8 @@ describe('minimum skip rewards are usable, without enabling unfinished items',()
     s=send(send(s,{type:'LeaveShop'}),{type:'EnterStage'});const hidden=s.drawPile.find(id=>!id.startsWith('hearts'))!;rejects(s,[hidden]);const available=s.handOrder.find(id=>!id.startsWith('hearts'))!;expect(use(s,[available]).consumables).toEqual([]);
   });
   it('T01 upgrades only an actually discovered hand, never a capped/unknown type; persists exact score level',()=>{
-    let s=item(start(),'T01');rejects(s,[]);s=send(send(s,{type:'LeaveShop'}),{type:'EnterStage'});s=send(s,{type:'PlayHand',selectedIds:[s.handOrder[0]]});expect(s.handLevels['high-card']).toBe(1);s=use(s,[],'high-card');expect(s.handLevels['high-card']).toBe(2);expect(s.consumables).toEqual([]);
+    // Default-Lv1 discovery contract; Amo's explicit Lv3 starting profile has separate P02 goldens.
+    let s=item(start('erxiang'),'T01');rejects(s,[]);s=send(send(s,{type:'LeaveShop'}),{type:'EnterStage'});s=send(s,{type:'PlayHand',selectedIds:[s.handOrder[0]]});expect(s.handLevels['high-card']).toBe(1);s=use(s,[],'high-card');expect(s.handLevels['high-card']).toBe(2);expect(s.consumables).toEqual([]);
     s=item(s,'T01');s.handLevels['high-card']=30;const before=JSON.stringify(s),r=applyCommand(s,{runId:s.runId,commandId:'cap',expectedSeq:s.commandSeq,action:{type:'UseConsumable',instanceId:'item',targetIds:[],handType:'high-card'}});expect(r.ok).toBe(false);expect(JSON.stringify(s)).toBe(before);
   });
   it('T17 restores one paid discard up to3 without erasing successful discard count',()=>{

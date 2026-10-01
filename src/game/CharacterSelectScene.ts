@@ -129,7 +129,9 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
   private inspect(id:CharacterId):void {
     if(this.choosing)return;const c=getCharacter(id);
-    this.dialog.open(c.name+' · '+c.title,c.passiveName+'\n'+c.passiveDescription+'\n\n“'+c.quote+'”'+(this.selectedId===id?'\n\n该角色已选中。关闭详情后，用底部「确认角色」进入商店。':''),this.selectedId===id?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}],{portrait:{url:portraitURL(id),alt:c.name+'的巡演胸像'}});
+    const body=[c.passiveName+'\n'+c.passiveDescription,'构筑思路\n'+c.buildTip,'“'+c.quote+'”'];
+    if(this.selectedId===id)body.push('该角色已选中。关闭详情后，用底部「确认角色」进入商店。');
+    this.dialog.open(c.name+' · '+c.title,body.join('\n\n'),this.selectedId===id?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}],{portrait:{url:portraitURL(id),alt:c.name+'的巡演胸像'}});
   }
   private async cancelChoice():Promise<void> {
     if(this.choosing)return;

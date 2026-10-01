@@ -1,7 +1,7 @@
 import { createDeck } from '../cards/deck';
 import { R2_JOKERS, type R2JokerInstance,type TransactionHookPhase } from '../content/r2Schema';
 import { SeededRng } from '../core/SeededRng';
-import { CHARACTER_IDS } from './characters';
+import { CHARACTER_IDS, type CharacterId } from './characters';
 import { R2_HAND_TYPES,validateCardInstances, type R2HandType } from './evaluateR2';
 import { stableHash } from './hash';
 import { MAX_INTEGER_DIGITS,Rational } from './rational';
@@ -14,8 +14,9 @@ import {drawR2Shelf,R2_ECONOMY,r2Price,r2Pool,rerollPrice,salePrice,r2PurchasePr
 
 export const R2_LIMITS = {handSize:8,maxSelected:5,hands:4,discards:3,jokerSlots:5,consumableSlots:2,longTermSlots:4} as const;
 export const R2_TARGETS = [400,1000,2400,5600,13000,30000,70000,160000] as const;
-export const R2_CONTENT_VERSION = 'quality-r2-graybox-v3';
-export const R2_CONTENT_HASH = stableHash({jokers:R2_JOKERS,limits:R2_LIMITS,economy:R2_ECONOMY,targets:R2_TARGETS,hands:R2_BASE_SCORES,score:SCORE_LIMITS,bosses:R2_BOSSES,chapters:R2_AVAILABLE_CHAPTERS,skip:R2_SKIP_CONSUMABLES});
+export const R2_STARTING_HAND_LEVELS:Partial<Record<CharacterId,Partial<Record<R2HandType,number>>>> = {amo:{'high-card':3}};
+export const R2_CONTENT_VERSION = 'quality-r2-graybox-v4';
+export const R2_CONTENT_HASH = stableHash({jokers:R2_JOKERS,limits:R2_LIMITS,economy:R2_ECONOMY,targets:R2_TARGETS,hands:R2_BASE_SCORES,startingHandLevels:R2_STARTING_HAND_LEVELS,score:SCORE_LIMITS,bosses:R2_BOSSES,chapters:R2_AVAILABLE_CHAPTERS,skip:R2_SKIP_CONSUMABLES});
 export interface R2StageState extends Omit<StageState,'targetHeat'|'heat'|'previousHandType'> {
   targetHeat:string; heat:string; previousHandType:R2HandType|null; disabledIds:string[]; wagerSelected:boolean; wagerUsed:boolean;
   discardsUsed:number;skipResult:R2SkipResult|null;
@@ -120,7 +121,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
     state={schemaVersion:2,rulesVersion:'r2',contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH,runId:command.runId,seed:action.seed,commandSeq:0,difficulty:0,characterId:action.characterId,
       chapter:1,stageIndex:0,phase:'shop',deckInstances:cards,drawPile:cards.map(c=>c.id),handOrder:[],playedPile:[],discardPile:[],destroyedIds:[],stage:null,totalHeat:'0',gold:R2_ECONOMY.initialGold,jokers:[],consumables:[],longTermItems:[],program:null,boss:{definitionId:'B01',disabledSuit:null},seenBossIds:[],chapterSkipConsumable:'T01',purchaseCoupons:0,shop:null,
       rng:{deck:new SeededRng(`${action.seed}/r2/deck/0`).snapshot(),rule:new SeededRng(`${action.seed}/r2/rule/0`).snapshot(),shop:new SeededRng(`${action.seed}/r2/shop/0`).snapshot(),reward:new SeededRng(`${action.seed}/r2/reward/0`).snapshot()},
-      receipts:[],lastTrace:null,handLevels:{},outcome:null};
+      receipts:[],lastTrace:null,handLevels:structuredClone(R2_STARTING_HAND_LEVELS[action.characterId]??{}),outcome:null};
     makeChapter(state);makeShop(state,true);
   } else {
     if(!input)return fail('run-not-started');
