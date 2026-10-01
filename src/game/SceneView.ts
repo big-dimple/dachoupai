@@ -1,11 +1,11 @@
 import Phaser from 'phaser';
-import {layout,type Box,type TableLayout} from './layout';
+import {layout,type Box,type TableLayout,type HandWindow} from './layout';
 import {PointerIntent} from './PointerIntent';
 import {modalBlocksCanvas} from './DetailDialog';
 import {PAPER_THEME,PAPER_CSS,UI_FONT} from './theme';
 import {alignViewportCamera,cssViewport} from '../platform/Viewport';
 
-type TouchActions={tap:()=>void;detail?:()=>void;drag?:(x:number,y:number)=>void;dragMove?:(x:number,y:number)=>void;cancel?:()=>void;press?:()=>void;release?:()=>void;enter?:()=>void;leave?:()=>void;holdToDrag?:boolean};
+type TouchActions={tap:()=>void;detail?:()=>void;drag?:(x:number,y:number)=>void;dragMove?:(x:number,y:number)=>void;swipe?:(dx:number,dy:number)=>void;cancel?:()=>void;press?:()=>void;release?:()=>void;enter?:()=>void;leave?:()=>void;holdToDrag?:boolean};
 export class SceneView {
   readonly root:Phaser.GameObjects.Container;
   private gestures=new Map<Phaser.GameObjects.GameObject,TouchActions>();
@@ -33,13 +33,14 @@ export class SceneView {
     if(this.pressed?.id!==p.id)return;
     const {x,y}=p.positionToCamera(this.scene.cameras.main) as Phaser.Math.Vector2;
     const pressed=this.pressed,kind=this.intent.up(p.id,x,y,performance.now());this.reset(false);if(!pressed)return;
-    if(kind==='drag'&&(!pressed.actions.holdToDrag||!pressed.touch||pressed.held))pressed.actions.drag?.(x,y);
+    if(kind==='drag'&&pressed.actions.holdToDrag&&pressed.touch&&!pressed.held&&pressed.actions.swipe)pressed.actions.swipe(x-pressed.x,y-pressed.y);
+    else if(kind==='drag'&&(!pressed.actions.holdToDrag||!pressed.touch||pressed.held))pressed.actions.drag?.(x,y);
     else if(kind==='tap'&&(pressed.object as Phaser.GameObjects.Rectangle).getBounds().contains(x,y))pressed.actions.tap();
     else if(kind==='none'&&pressed.held&&pressed.actions.holdToDrag)pressed.actions.detail?.();
     else pressed.actions.cancel?.();
   };
   private readonly resize=()=>{if(this.scene.scene.isActive()){alignViewportCamera(this.scene);this.redraw();}};
-  constructor(private readonly scene:Phaser.Scene,private readonly redraw:()=>void){
+  constructor(private readonly scene:Phaser.Scene,private readonly redraw:()=>void,private readonly handWindow?:()=>HandWindow){
     alignViewportCamera(scene);
     this.root=scene.add.container(0,0).setName('view');
     scene.input.on('pointerdown',this.down);scene.input.on('pointermove',this.move);scene.input.on('pointerup',this.up);scene.input.on('pointerupoutside',this.cancel);
@@ -48,7 +49,7 @@ export class SceneView {
   }
   get layout():TableLayout {
     const style=getComputedStyle(document.documentElement),n=(key:string)=>parseFloat(style.getPropertyValue(key))||0;
-    return layout(cssViewport(this.scene),{top:n('--safe-top'),right:n('--safe-right'),bottom:n('--safe-bottom'),left:n('--safe-left')});
+    return layout(cssViewport(this.scene),{top:n('--safe-top'),right:n('--safe-right'),bottom:n('--safe-bottom'),left:n('--safe-left')},undefined,this.handWindow?.());
   }
   clear():void {this.cancel();this.gestures.clear();this.root.removeAll(true);}
   add<T extends Phaser.GameObjects.GameObject>(object:T):T {this.root.add(object);return object;}

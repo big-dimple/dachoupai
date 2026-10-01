@@ -12,6 +12,7 @@ import { CHARACTER_IDS, type CharacterId } from './characters';
 import { stableHash } from './hash';
 import { assertR2Invariants, R2_CONTENT_HASH, R2_CONTENT_VERSION, transactR2, type R2RunState, type R2StageState } from './r2Run';
 import type { ScoreTrace } from './scoreR2';
+import type { Condition } from '../content/r2Schema';
 export type { R2RunState } from './r2Run';
 
 export const R1_LIMITS = { handSize: 8, maxSelected: 5, jokerSlots: MAX_JOKER_SLOTS } as const;
@@ -117,7 +118,7 @@ export type DomainEvent =
   | { type: 'cards-discarded';cardIds:string[];discardsLeft:number }
   | { type: 'run-abandoned' }
   | { type: 'stage-skipped';stage: R2StageState }
-  | { type: 'joker-transaction';phase:'onDiscard'|'onStageClear'|'onBuyOffer';definitionId:string;instanceId:string;operation:string;amount:string };
+  | { type: 'joker-transaction';phase:'onDiscard'|'onStageClear'|'onBuyOffer'|'onSellJoker'|'beforeFailure';definitionId:string;instanceId:string;operation:string;amount:string;resourceBefore?:number;resourceAfter?:number;visibleCondition?:Condition };
 
 export type CommandResult<S = RunState> =
   | { ok: true; state: Exclude<S, null>; events: DomainEvent[]; receipt: Receipt; duplicate: boolean }

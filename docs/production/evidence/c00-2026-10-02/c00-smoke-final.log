@@ -1,0 +1,23 @@
+
+> dachoupai@0.1.0 verify:smoke
+> node harness/screenshot.mjs --verify-smoke
+
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+chromium/desktop: ok
+{"phase":"await-input","commandSeq":8,"controller":"idle","playing":true,"presenting":true,"selectedIds":["spades-13"],"discardEnabled":false,"status":"正在结算 · 可快进","pointers":[{"id":0,"touch":false,"x":0,"y":0},{"id":1,"touch":true,"x":789,"y":2037}]}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at ready (D:\ai\dachoupai\dachoupai\harness\screenshot.mjs:18:24)
+    at D:\ai\dachoupai\dachoupai\harness\screenshot.mjs:102:11 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v22.20.0

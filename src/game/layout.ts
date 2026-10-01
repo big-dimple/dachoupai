@@ -1,12 +1,13 @@
 export interface Box {x:number;y:number;width:number;height:number}
 export interface Insets {top:number;right:number;bottom:number;left:number}
 export type LayoutMode='portrait'|'landscape'|'desktop';
+export interface HandWindow {count:number;start?:number}
 // Shared edges are not overlaps; tolerate floating-point rounding below a CSS subpixel.
 export const intersects=(a:Box,b:Box):boolean=>a.x<b.x+b.width-1e-6&&b.x<a.x+a.width-1e-6&&a.y<b.y+b.height-1e-6&&b.y<a.y+a.height-1e-6;
 const box=(x:number,y:number,width:number,height:number):Box=>({x,y,width,height});
 
 /** All coordinates and font sizes are CSS pixels, independent of texture DPR. */
-export function layout(viewport:{width:number;height:number},safe:Insets,requested?:LayoutMode){
+export function layout(viewport:{width:number;height:number},safe:Insets,requested?:LayoutMode,handWindow:HandWindow={count:8}){
   const mode=requested??(viewport.width<700&&viewport.height>viewport.width?'portrait':viewport.height<500?'landscape':'desktop');
   const compact=mode==='portrait'&&(viewport.width<360||viewport.height-safe.top-safe.bottom<760);
   const width=viewport.width,height=viewport.height;
@@ -30,13 +31,23 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const gap=shortLandscape?4:8,toolWidth=(tools.width-3*gap)/4,actionWidth=(actions.width-2*8)/3;
   const buttons={rank:box(tools.x,tools.y,toolWidth,44),suit:box(tools.x+toolWidth+gap,tools.y,toolWidth,44),deck:box(tools.x+2*(toolWidth+gap),tools.y,toolWidth,44),details:box(tools.x+3*(toolWidth+gap),tools.y,toolWidth,44),discard:box(actions.x,actions.y,actionWidth,actions.height),play:box(actions.x+actionWidth+gap,actions.y,actionWidth,actions.height),forward:box(actions.x+2*(actionWidth+gap),actions.y,actionWidth,actions.height)};
   // Keep poker faces vertical even when the hand row has little height.
-  const cardWidth=Math.min(portrait?112:132,(hand.height-22)/1.4,hand.width-7*36),pitch=(hand.width-cardWidth)/7;
-  const cards=Array.from({length:8},(_,i)=>({visual:box(hand.x+i*pitch,hand.y+22,cardWidth,hand.height-22),hit:box(hand.x+i*pitch,hand.y,Math.min(cardWidth,i===7?cardWidth:pitch),hand.height)}));
+  const cardWidth=Math.min(portrait?112:132,(hand.height-22)/1.4,hand.width-7*36);
+  const count=Number.isSafeInteger(handWindow.count)&&handWindow.count>=0?handWindow.count:8;
+  const handOverflow=count>Math.floor((hand.width-cardWidth)/36)+1;
+  const cardArea=handOverflow?box(hand.x+48,hand.y,hand.width-96,hand.height):hand;
+  const visibleCardCount=Math.min(count,Math.max(1,Math.floor((cardArea.width-cardWidth)/36)+1));
+  const handStart=Math.max(0,Math.min(count-visibleCardCount,Number.isSafeInteger(handWindow.start)?handWindow.start!:0));
+  const pitch=visibleCardCount>1?(cardArea.width-cardWidth)/(visibleCardCount-1):0;
+  const cards=Array.from({length:count},(_,i)=>{
+    const visible=i>=handStart&&i<handStart+visibleCardCount,cardX=cardArea.x+(visibleCardCount===1?(cardArea.width-cardWidth)/2:(i-handStart)*pitch);
+    return {visible,visual:box(cardX,hand.y+22,cardWidth,hand.height-22),hit:box(cardX,hand.y,Math.min(cardWidth,i===handStart+visibleCardCount-1?cardWidth:pitch||cardWidth),hand.height)};
+  });
+  const handNavigation={previous:box(hand.x,hand.y+(hand.height-44)/2,44,44),next:box(hand.x+hand.width-44,hand.y+(hand.height-44)/2,44,44)};
   const slotGap=portrait?8:14,slotWidth=Math.min(shortLandscape?34:landscape?48:portrait?90:104,(jokers.width-4*slotGap)/5),rackWidth=5*slotWidth+4*slotGap;
   const slots=Array.from({length:5},(_,i)=>box(landscape?jokers.x+i*jokers.width/5+2:jokers.x+(jokers.width-rackWidth)/2+i*(slotWidth+slotGap),jokers.y,slotWidth,jokers.height));
   // Short horizontal screens keep the illustration vertical and its readable labels beside it.
   const jokerLabels=landscape?slots.map((slot,i)=>box(slot.x+slot.width+6,jokers.y,jokers.width/5-slot.width-12,jokers.height)):slots;
   const tableActions=portrait?{discard:box(actions.x,actions.y,Math.floor((actions.width-8)*.36),actions.height),play:box(actions.x+Math.floor((actions.width-8)*.36)+8,actions.y,actions.width-Math.floor((actions.width-8)*.36)-8,actions.height)}:{discard:buttons.discard,play:buttons.play};
-  return {mode,compact,shortLandscape,width,height,hud,jokers,preview,scoreBoard,playedArea,handLabel,piles,tools,hand,actions,status,buttons,tableActions,cards,slots,jokerLabels};
+  return {mode,compact,shortLandscape,width,height,hud,jokers,preview,scoreBoard,playedArea,handLabel,piles,tools,hand,actions,status,buttons,tableActions,cards,handOverflow,handStart,visibleCardCount,handNavigation,slots,jokerLabels};
 }
 export type TableLayout=ReturnType<typeof layout>;

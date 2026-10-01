@@ -1,0 +1,33 @@
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/characters.test.ts (6 tests | 1 failed) 23ms
+     × 六位角色的立绘路径均指向自己的资源文件 15ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/characters.test.ts > character portrait config > 六位角色的立绘路径均指向自己的资源文件
+AssertionError: expected '/assets/characters-p07/amo.portrait.w…' to contain 'assets/characters/amo.png'
+
+Expected: "assets/characters/amo.png"
+Received: "/assets/characters-p07/amo.portrait.webp"
+
+ ❯ tests/characters.test.ts:7:34
+      5|   it('六位角色的立绘路径均指向自己的资源文件', () => {
+      6|     for (const character of CHARACTERS) {
+      7|       expect(character.portrait).toContain(`assets/characters/${charac…
+       |                                  ^
+      8|     }
+      9|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 34 passed (35)
+      Tests  1 failed | 348 passed (349)
+   Start at  02:05:27
+   Duration  12.58s (transform 7.82s, setup 0ms, import 12.24s, tests 26.95s, environment 8ms)

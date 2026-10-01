@@ -7,7 +7,7 @@ const ids=['hearts-11','hearts-14','clubs-12','diamonds-13','spades-2'];
 function fixture(index:number,boss:R2BossPlan={definitionId:'B04',disabledSuit:null}):StageNoticeInput {
   return {phase:'await-input',stageIndex:index,boss,deckInstances:createDeck(),handOrder:[...ids],stage:{
     index,targetHeat:'400',heat:'0',handsLeft:4,discardsLeft:3,playIndex:0,previousHandType:null,clearId:null,goldEarned:0,disabledIds:[],
-    wagerSelected:false,wagerUsed:false,discardsUsed:0,skipResult:null,
+    wagerSelected:false,wagerUsed:false,discardsUsed:0,skipResult:null,handLimit:8,previousHandScore:null,rescueUsed:false,
   }};
 }
 

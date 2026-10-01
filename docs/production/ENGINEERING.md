@@ -44,6 +44,8 @@ RunState 至少包含：schemaVersion、rulesVersion、contentVersion/hash、run
 
 不变量：所有实例 ID 唯一；每个活动实例恰好在一个牌区；手牌不超过上限，必要的牌生成效果也受明确上限；整数资源非负；槽位受限；货架 offerId 唯一；不合法阶段没有资源消费；每场奖励唯一；状态可 JSON 往返；规则版本与内容 hash 匹配。每个命令的测试均运行不变量检查。
 
+C00/D23把进场锁定的手牌上限、本场前手分数/救场资格、商店成功购买计数及实例有限寿命写入状态。`readR2Modifiers`是有限类型联合，UI与领域共用资源/预览入口；定义的实际能力和声明均由`supportsR2Joker`检查，不支持的内容不进商店。新增字段由内容版本分区，不静默迁移旧局。
+
 ## 4. RNG 与重放
 
 固定并版本化现有算法，提供 snapshot/restore，不用“重建 seed 后猜消耗了多少次”恢复。随机域至少 deck、shop、rule、reward 四类；cosmetic 单独在表现层，禁止读取规则域。
@@ -64,6 +66,8 @@ EffectContext 是该时点明确的只读快照；效果返回有限的 typed op
 
 视图直接消费已确定的 ScoreTrace 与 EffectQueue；不维护没有通知消费者的并行触发总线。真正规则分派由 reducer/score 明确调用，各时点顺序由 RULES 固定。
 
+C00的`afterHand`寿命/成长、`beforeFailure`救场/销毁及`onStageClear`金币来源均保存到同一最后一手trace。资源事件携带真实`resourceBefore/resourceAfter`，不伪装成H/M；追加也受事件预算保护，超限整笔回滚。视图保留原实例至销毁演出，刷新后的回看可补只读来源，不返还资源或再次发奖。
+
 数字建议使用小型 BigInt 有理数服务：分子分母为整数，分母始终正，每次运算约分；最终 floor 一次，阶段分数为 BigInt。存档存十进制字符串，禁止裸 BigInt JSON。UI 科学记数法只格式化，不回写领域值。输入配置值只接受有限、范围合法的整数或分数。
 
 用 Python Fraction 或另一独立算术实现作测试 oracle，仅验证数值运算，不另写一套游戏逻辑。至少覆盖 10^1000、连续分数乘法、零/负输入拒绝、保存往返。对数字长度和 512 事件上限作保护；保护触发应返回可恢复诊断，不能变成 0 分、Infinity 或篡改玩家状态。性能不达标时评估成熟数字库及替代表示，先 ADR、再基准，不私自改成浮点近似。
@@ -81,6 +85,8 @@ IndexedDB 为主存储，保存 complete checkpoint + 有界命令日志；同�
 ## 7. 演出生命周期
 
 EffectQueue 对一次 trace 创建独立 generation/AbortSignal，drain 返回该代共享的完成 Promise；并发调用不能立即假完成。clear/cancel 必须让正在等待的 tween/timer Promise settle，并且不消费下一代的效果。
+
+演出停顿、胜败转场与可视动画使用同一TweenManager计时和速度：低帧率时Scene Clock的平滑delta可能与TweenManager的真实delta不同，不能混用而把一段停顿拉长。等待使用无视觉token、零时长立即返回，仍由同代AbortSignal取消；转场仍检查原场景生命周期，这个时钟只决定演出，不参与领域结算。
 
 Scene shutdown/destroy：取消本代、停止并清理 tween/timer、解除监听、释放视图引用。所有异步继续点检查 generation；playSelected 入口锁在 finally 恢复或被新 scene 接管。旧回调绝不读取新局的 selectedIds 或操作新局 hand。
 

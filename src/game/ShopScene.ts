@@ -1,10 +1,10 @@
 import Phaser from 'phaser';
 import {AudioEngine} from '../audio/AudioEngine';
-import {getR2Joker,rerollPrice,salePrice,r2Pool,r2PurchasePrice,type R2Offer} from '../domain/r2Shop';
-import type {R2RunState,Action} from '../domain/run';
-import {getR2Stage,R2_LIMITS} from '../domain/r2Run';
+import {getR2Joker,rerollPrice,salePrice,r2Pool,r2PurchasePrice,r2PurchaseDiscount,type R2Offer} from '../domain/r2Shop';
+import type {R2RunState,Action,DomainEvent} from '../domain/run';
+import {getR2Stage,R2_LIMITS,r2InterestCap} from '../domain/r2Run';
 import {dispatchRun,runController} from './runAdapter';
-import {heatText,fractionText} from './scoreText';
+import {heatText} from './scoreText';
 import {SceneView} from './SceneView';
 import {DetailDialog} from './DetailDialog';
 import {gameSession} from './session';
@@ -15,32 +15,9 @@ import type {Box} from './layout';
 import {jokerArtKey,jokerArtUrl} from './jokerArt';
 import {UI_FONT} from './theme';
 import {drawJokerMotif} from './JokerMotif';
+import {R2_OFFER_USE as OFFER_USE,r2MechanismBadge as mechanismBadge,r2JokerValue,r2JokerStateText,r2JokerExtraHelp,r2TransactionText} from './r2Help';
 
 const RARITY_LABEL={common:'普通',uncommon:'特别',rare:'稀有'} as const;
-/** Entry hints only; the complete conditions and values stay in purchase details. */
-const OFFER_USE:Record<string,string>={
-  pengci:'高牌加倍率',mantangcai:'对子等加热',tiesuanpan:'JQKA加热',huimaqiang:'每3手翻倍',jiedongfeng:'顺/同花增倍',
-  a03:'单张加热',a05:'单张成长',b02:'重复增倍',b03:'对子型成长',b04:'两组增倍',
-  c02:'红牌加热',c04:'顺子加热',c06:'同花成长',d01:'留JQK增倍',d03:'留≥3张成长',d05:'首弃返次',d10:'空槽加热',
-  e01:'过关加金',e03:'金币加热',e05:'买别牌成长',e08:'≥20金增倍',f02:'末手加热',f03:'首手增倍',f09:'不弃增倍',
-};
-/** The badge describes declared operations; conditions remain in the readable effect text. */
-function mechanismBadge(d:ReturnType<typeof getR2Joker>){
-  const operations=d.hooks.flatMap(h=>h.operations),growth=operations.find(o=>o.kind==='add-growth');
-  if(growth?.kind==='add-growth')return {label:'成长',value:'+'+fractionText(growth.value),paper:0xdce9df};
-  const times=operations.find(o=>o.kind==='multiply-multiplier');
-  if(times?.kind==='multiply-multiplier')return {label:'×倍率',value:'×'+fractionText(times.value),paper:0xf0d3c7};
-  const plus=operations.find(o=>o.kind==='add-multiplier');
-  if(plus?.kind==='add-multiplier')return {label:'+倍率',value:'+'+fractionText(plus.value),paper:0xdce9df};
-  const heat=operations.find(o=>o.kind==='add-heat');
-  if(heat?.kind==='add-heat')return {label:'计分热度',value:'+'+fractionText(heat.value),paper:0xd8e9e3};
-  const economy=operations.find(o=>o.kind==='add-heat-per-gold'||o.kind==='add-heat-per-empty-slot');
-  if(economy?.kind==='add-heat-per-gold'||economy?.kind==='add-heat-per-empty-slot')return {label:economy.kind==='add-heat-per-gold'?'金币计分':'空槽计分',value:'+'+fractionText(economy.value),paper:0xf2dfbc};
-  const gold=operations.find(o=>o.kind==='add-gold');
-  if(gold?.kind==='add-gold')return {label:'过关金币',value:'+'+gold.amount+' 金',paper:0xf2dfbc};
-  if(operations.some(o=>o.kind==='refund-discard'))return {label:'弃牌救场',value:'返还弃牌',paper:0xe2e3ed};
-  return {label:'构筑计分',value:'+热度',paper:0xf2dfbc};
-}
 function shopLayout(width:number,height:number,top:number,bottom:number){
   const portrait=width<700&&height>width,short=height<500,wideHeader=width>=1000&&!short,compact=portrait&&height-bottom-top<760,w=Math.min(1180,width-24),x=(width-w)/2;
   if(portrait){
@@ -76,6 +53,8 @@ export class ShopScene extends Phaser.Scene {
   private hoverPreview?:Phaser.GameObjects.Container;
   private hoverDelay?:Phaser.Time.TimerEvent;
   private goldText?:Phaser.GameObjects.Text;
+  private pendingTransactions:Extract<DomainEvent,{type:'joker-transaction'}>[]=[];
+  private lastTransactionNotes:string[]=[];
   private pendingGoldRoll?:number;
   private pendingRerollFlip=false;
   private pendingPurchaseFlight?:{from:Box;to:Box;name:string};
@@ -86,7 +65,7 @@ export class ShopScene extends Phaser.Scene {
   private geometry(){const l=this.view.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;return shopLayout(l.width,l.height,l.hud.y,bottom);}
   create():void {
     this.busy=false;this.selectedOfferId=undefined;this.notice='';this.lifecycle++;
-    this.pendingGoldRoll=undefined;this.pendingRerollFlip=false;this.pendingPurchaseFlight=undefined;
+    this.pendingGoldRoll=undefined;this.pendingRerollFlip=false;this.pendingPurchaseFlight=undefined;this.pendingTransactions=[];this.lastTransactionNotes=[];
     this.events.once('shutdown',()=>{this.lifecycle++;this.hideHoverPicture();this.dialog.close();});
     const run=runController(this)?.state;if(!run||run.phase!=='shop'){this.scene.start('character-select');return;}this.run=run;
     this.cameras.main.setBackgroundColor('#153c40');this.audio.setScene('shop');this.view=new SceneView(this,()=>this.render());this.render();
@@ -112,13 +91,12 @@ export class ShopScene extends Phaser.Scene {
       v.text(p.wideHeader?p.slots[0].x:p.x,p.slots[0].y-22,ownedLabel,14,'#d7ddc8',p.wideHeader?p.slots[4].x+p.slots[4].width-p.slots[0].x:p.w);
     }
     this.run.jokers.forEach((j,i)=>{
-      const b=p.slots[i],d=getR2Joker(j.definitionId),badge=mechanismBadge(d),first=v.root.length;
+      const b=p.slots[i],d=getR2Joker(j.definitionId),first=v.root.length;
       this.drawSlot(b,true,d.rarity);
       const ownedName=v.text(b.x+(p.compact?2:5),b.y+5,d.name,14,'#203744',b.width-(p.compact?4:10)).setStyle({maxLines:2}).setFontStyle('bold');
       const pictureY=ownedName.y+ownedName.height+4,pictureSize=Math.max(6,Math.min(b.width-12,b.y+b.height-27-pictureY));
       this.drawJokerPicture(j.definitionId,{x:b.x+(b.width-pictureSize)/2,y:pictureY,width:pictureSize,height:pictureSize});
-      const growth=d.hooks.flatMap(h=>h.operations).find(o=>o.kind==='read-growth');
-      const value=growth?.kind==='read-growth'?'+'+fractionText(j.growth[growth.key]??{n:'0',d:'1'}):badge.value==='返还弃牌'?'↺1':badge.value;
+      const value=r2JokerValue(j,{gold:this.run.gold,jokerCount:this.run.jokers.length,jokerSlots:R2_LIMITS.jokerSlots,deckSize:this.run.deckInstances.length-this.run.destroyedIds.length});
       v.text(b.x+b.width/2,b.y+b.height-22,value.replace(' 金','金'),14,'#fff0d0').setOrigin(.5,0).setFontStyle('bold');
       v.text(b.x+b.width/2,b.y+b.height+4,`售${salePrice(j.paidPrice)}金`,14,'#ecd6a4').setOrigin(.5,0);
       v.add(this.add.circle(b.x+b.width-11,b.y+b.height-34,8,0xe8c180).setStrokeStyle(1,0x765532));
@@ -235,6 +213,14 @@ export class ShopScene extends Phaser.Scene {
     const key=jokerArtKey(definitionId),url=jokerArtUrl(definitionId);
     return key&&url&&this.textures.exists(key)?{url,alt:getR2Joker(definitionId).name+'的卡牌插画',layout:'card'}:undefined;
   }
+  private attachJokerFallback(dialog:HTMLDialogElement,definitionId:string):void {
+    if(this.jokerPortrait(definitionId))return;
+    const face=this.add.container(),paper=this.add.graphics().fillStyle(0xfff7e5).fillRoundedRect(0,0,240,336,10).lineStyle(3,0xb69866).strokeRoundedRect(2,2,236,332,10);
+    face.add([paper,this.add.text(120,14,getR2Joker(definitionId).name,{fontFamily:UI_FONT,fontSize:'20px',color:'#203744'}).setOrigin(.5,0),this.add.text(120,302,'机制示意',{fontFamily:UI_FONT,fontSize:'14px',color:'#48685f'}).setOrigin(.5,0)]);
+    drawJokerMotif(this,face,definitionId,120,166,192);
+    const image=this.add.renderTexture(0,0,240,336).setVisible(false);image.draw(face);face.destroy();
+    image.snapshot(snapshot=>{if(snapshot instanceof HTMLImageElement)this.dialog.attachCardArt(dialog,snapshot.src,getR2Joker(definitionId).name+'机制示意卡面');image.destroy();});
+  }
   private drawSlot(b:Box,occupied:boolean,rarity:keyof typeof RARITY_LABEL='common'):void {
     const v=this.view,g=this.add.graphics(),edge=rarity==='rare'?0x9e5661:rarity==='uncommon'?0x367f75:0xb39868;
     if(!occupied){
@@ -289,7 +275,7 @@ export class ShopScene extends Phaser.Scene {
   }
   private inspectBuild():void {
     const body=this.run.jokers.map((j,i)=>`${i+1}. ${getR2Joker(j.definitionId).name} · 售价 ${salePrice(j.paidPrice)} 金\n${getR2Joker(j.definitionId).description}`).join('\n\n')||'尚无大丑牌。先看卡牌效果，也可以保留金币直接入场。';
-    this.dialog.open('当前构筑 · 从左至右触发',body+'\n\n点随身牌可移动顺序。出售需要再次确认；调序不花金币。');
+    this.dialog.open('当前构筑 · 从左至右触发',body+'\n\n点随身牌可移动顺序。出售需要再次确认；调序不花金币。'+(this.lastTransactionNotes.length?'\n\n上次交易的实际来源：\n'+this.lastTransactionNotes.join('\n'):''));
   }
   private inspectChapter():void {
     const s=this.run,index=s.stageIndex,start=Math.floor(index/3)*3,normal=SKIP_ITEM_LABELS[s.chapterSkipConsumable];
@@ -304,18 +290,22 @@ export class ShopScene extends Phaser.Scene {
     const o=this.run.shop!.offers.find(o=>o.offerId===id);if(!o||o.consumed||this.busy)return;
     this.selectedOfferId=id;this.notice='';this.audio.select();this.render();
     const d=getR2Joker(o.definitionId),price=r2PurchasePrice(this.run,o),after=this.run.gold-price,reason=this.purchaseReason(o);
-    const money=after<0?`现有 ${this.run.gold} 金，尚差 ${-after} 金。`:`余额 ${this.run.gold} → ${after} 金。\n过关利息档 ${Math.min(5,Math.floor(this.run.gold/5))} → ${Math.min(5,Math.floor(after/5))} 金。`;
-    const body=d.description+`\n\n价格 ${price} 金币${this.run.purchaseCoupons?'（原价 '+o.price+'，使用1张减2金券）':''}\n`+money+'\n\n当前构筑：'+(this.run.jokers.map(j=>getR2Joker(j.definitionId).name).join('、')||'空')+(reason?'\n\n无法购买：'+reason:'\n\n确认购买才会扣除金币。');
+    const cap=r2InterestCap(this.run),afterCap=r2InterestCap({...this.run,jokers:[...this.run.jokers,{instanceId:'preview/'+o.offerId,definitionId:d.id,paidPrice:price,growth:{}}]});
+    const money=after<0?`现有 ${this.run.gold} 金，尚差 ${-after} 金。`:`余额 ${this.run.gold} → ${after} 金。\n过关利息档 ${Math.min(cap,Math.floor(this.run.gold/5))} → ${Math.min(afterCap,Math.floor(after/5))} 金。`;
+    const discount=r2PurchaseDiscount(this.run),discountText=discount?`原价 ${o.price} 金，当前优惠 ${discount} 金，最低实付1金。\n${this.run.purchaseCoupons?'本次会使用1张减2金券。\n':''}`:'';
+    const body=d.description+r2JokerExtraHelp(d)+`\n\n实际支付 ${price} 金\n`+discountText+money+'\n\n当前构筑：'+(this.run.jokers.map(j=>getR2Joker(j.definitionId).name).join('、')||'空')+(reason?'\n\n无法购买：'+reason:'\n\n确认购买才会扣除金币。');
     const dialog=this.dialog.open(d.name+' · 购买详情',body,[{label:'确认购买',primary:true,disabled:!!reason,run:async()=>{if(await this.send({type:'BuyOffer',offerId:id}))this.dialog.close(dialog);}}],{closeLabel:'取消',portrait:this.jokerPortrait(d.id),rarity:d.rarity});
+    this.attachJokerFallback(dialog,d.id);
   }
   private inspectJoker(id:string):void {
     const j=this.run.jokers.find(j=>j.instanceId===id);if(!j||this.busy)return;this.hideHoverPicture();const d=getR2Joker(j.definitionId),index=this.run.jokers.indexOf(j);
-    const growth=Object.entries(j.growth).map(([k,v])=>k+' '+fractionText(v)).join('、')||'无';
-    const dialog=this.dialog.open(d.name+' · 第 '+(index+1)+' 槽',d.description+'\n\n当前成长：'+growth+`\n实际买价 ${j.paidPrice} 金；出售可得 ${salePrice(j.paidPrice)} 金。\n出售后余额 ${this.run.gold} → ${this.run.gold+salePrice(j.paidPrice)} 金。\n\n大丑牌按从左至右的顺序触发。`,[
+    const growth=r2JokerStateText(j);
+    const dialog=this.dialog.open(d.name+' · 第 '+(index+1)+' 槽',d.description+r2JokerExtraHelp(d)+'\n\n当前实例：'+growth+`\n实际买价 ${j.paidPrice} 金；出售可得 ${salePrice(j.paidPrice)} 金。\n出售后余额 ${this.run.gold} → ${this.run.gold+salePrice(j.paidPrice)} 金。\n\n大丑牌按从左至右的顺序触发。`,[
       {label:'左移',disabled:!this.ready||index===0,run:async()=>{if(await this.reorder(index,index-1)&&this.dialog.active(dialog))this.inspectJoker(id);}},
       {label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:async()=>{if(await this.reorder(index,index+1)&&this.dialog.active(dialog))this.inspectJoker(id);}},
       {label:'出售',disabled:!this.ready,run:()=>{const confirmation=this.dialog.open('出售确认',`出售第 ${index+1} 槽的「${d.name}」获得 ${salePrice(j.paidPrice)} 金币。\n余额 ${this.run.gold} → ${this.run.gold+salePrice(j.paidPrice)} 金。\n\n该牌成长将丢失，当前成长：${growth}。`,[{label:'确认出售',primary:true,run:async()=>{if(await this.send({type:'SellJoker',instanceId:id}))this.dialog.close(confirmation);}}],{closeLabel:'取消'});}},
     ],{portrait:this.jokerPortrait(d.id),rarity:d.rarity});
+    this.attachJokerFallback(dialog,d.id);
   }
   private async reorder(from:number,to:number):Promise<boolean> {
     if(from<0||to<0||from>=this.run.jokers.length||to>=this.run.jokers.length)return false;
@@ -359,6 +349,12 @@ export class ShopScene extends Phaser.Scene {
     if(this.pendingGoldRoll!==undefined){const from=this.pendingGoldRoll;this.pendingGoldRoll=undefined;this.rollGold(from);}
     if(this.pendingRerollFlip){this.pendingRerollFlip=false;if(!reduced)this.offerArts.forEach((art,i)=>{if(!art.active)return;art.setScale(0,1);this.tweens.add({targets:art,scaleX:1,duration:160,delay:i*70,ease:'Sine.easeOut'});});}
     if(this.pendingPurchaseFlight){const flight=this.pendingPurchaseFlight;this.pendingPurchaseFlight=undefined;if(!reduced)this.flyPurchase(flight.from,flight.to,flight.name);}
+    for(const event of this.pendingTransactions){
+      const index=this.run.jokers.findIndex(joker=>joker.instanceId===event.instanceId),slot=this.geometry().slots[index];if(!slot)continue;
+      if(!reduced)this.slotPop(slot);
+      const note=this.add.text(slot.x+slot.width/2,slot.y+slot.height+24,r2TransactionText(event),{fontFamily:UI_FONT,fontSize:'14px',color:'#ffe3ae',resolution:Math.min(window.devicePixelRatio||1,3)}).setOrigin(.5).setName('transaction/'+event.instanceId);
+      this.tweens.add({targets:note,y:reduced?note.y:note.y-14,alpha:0,duration:reduced?500:1000,onComplete:()=>note.destroy()});
+    }this.pendingTransactions=[];
   }
   private async send(action:Action):Promise<boolean> {
     if(!this.ready)return false;
@@ -376,6 +372,8 @@ export class ShopScene extends Phaser.Scene {
         return false;
       }
       this.run=result.state;
+      const transactions=result.events.filter((event):event is Extract<DomainEvent,{type:'joker-transaction'}>=>event.type==='joker-transaction');
+      if(!result.duplicate&&transactions.length){this.pendingTransactions=transactions;this.lastTransactionNotes=transactions.map(r2TransactionText);}
       if(action.type==='BuyOffer'){
         const offer=previous.shop!.offers.find(o=>o.offerId===action.offerId)!;this.audio.purchase();
         this.notice=`已买 ${getR2Joker(offer.definitionId).name} · 金币 ${oldGold} → ${this.run.gold}`;

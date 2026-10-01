@@ -1,0 +1,353 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+xxxxxx·xxxxxxxxxxxxx·x
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 20 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > locks A04/D06 hand limits from the surviving persistent deck at entry
+AssertionError: expected [ 'diamonds-2', 'clubs-3', …(6) ] to have a length of 11 but got 8
+
+- Expected
++ Received
+
+- 11
++ 8
+
+ ❯ tests/c00-transactions.test.ts:44:31
+     42|       state.deckInstances=state.deckInstances.slice(0,count);state.dra…
+     43|       state=send(send(state,{type:'LeaveShop'}),{type:'EnterStage'});
+     44|       expect(state.handOrder).toHaveLength(count===40?11:9);
+       |                               ^
+     45|       expect(state.stage).toHaveProperty('handLimit',count===40?11:9);
+     46|       state=restore(state);expect(send(state,{type:'DiscardHand',selec…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > preserves an over-base completed-stage hand after selling its modifiers and lowers the next entry only
+AssertionError: expected [ 'hearts-8', 'hearts-7', …(5) ] to have a length of 10 but got 7
+
+- Expected
++ Received
+
+- 10
++ 7
+
+ ❯ tests/c00-transactions.test.ts:54:146
+     52|     let state=equipped(['a04','d06']);state.deckInstances=state.deckIn…
+     53|     state=send(send(state,{type:'LeaveShop'}),{type:'EnterStage'});
+     54|     state=send(state,{type:'PlayHand',selectedIds:state.handOrder.slic…
+       |                                                                                                                                                  ^
+     55|     state=send(state,{type:'OpenShop'});state=send(state,{type:'SellJo…
+     56|     expect(state.stage).toHaveProperty('handLimit',11);state=restore(s…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > A07 pays only two successful single-card discards per stage and never pays twice on retry
+AssertionError: expected 6 to be 7 // Object.is equality
+
+- Expected
++ Received
+
+- 7
++ 6
+
+ ❯ tests/c00-transactions.test.ts:65:26
+     63|       const before=state.gold,cmd=command(state,{type:'DiscardHand',se…
+     64|       if(!result.ok)throw Error(result.code);state=result.state;assert…
+     65|       expect(state.gold).toBe(before+(i<2?1:0));
+       |                          ^
+     66|       expect(result.events.filter(e=>e.type==='joker-transaction'&&e.d…
+     67|       const retry=applyCommand(state,cmd);expect(retry.ok&&retry.dupli…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > A07 ignores multi-card discards and resets its allowance on a new stage
+AssertionError: expected 6 to be 7 // Object.is equality
+
+- Expected
++ Received
+
+- 7
++ 6
+
+ ❯ tests/c00-transactions.test.ts:75:96
+     73|   it('A07 ignores multi-card discards and resets its allowance on a ne…
+     74|     let state=table(['a07']);state=send(state,{type:'DiscardHand',sele…
+     75|     state=send(state,{type:'DiscardHand',selectedIds:[state.handOrder[…
+       |                                                                                                ^
+     76|     state=hand(state,['spades-2','spades-3','spades-4','spades-5','spa…
+     77|     state=send(send(send(state,{type:'OpenShop'}),{type:'LeaveShop'}),…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > A07 does not confuse D05 refunds or Boss discard costs with successful discard counts
+AssertionError: expected 6 to be 8 // Object.is equality
+
+- Expected
++ Received
+
+- 8
++ 6
+
+ ❯ tests/c00-transactions.test.ts:83:24
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > C05 accumulates only same-suit discards, caps at 80 and consumes once at jokerScore
+AssertionError: expected { n: '0', d: '1' } to deeply equal { n: '40', d: '1' }
+
+- Expected
++ Received
+
+  {
+    "d": "1",
+-   "n": "40",
++   "n": "0",
+  }
+
+ ❯ tests/c00-transactions.test.ts:91:49
+     89|     for(let i=0;i<3;i++){
+     90|       const ids=state.handOrder.filter(id=>id.startsWith('clubs')).sli…
+     91|       expect(growth(state,'c05','pendingHeat')).toEqual({n:String(Math…
+       |                                                 ^
+     92|     }
+     93|     state=hand(state,['hearts-2']);state=send(state,{type:'PlayHand',s…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > C05 pending heat is cleared on abandon and no-card failure
+AssertionError: expected { n: '0', d: '1' } to deeply equal { n: '40', d: '1' }
+
+- Expected
++ Received
+
+  {
+    "d": "1",
+-   "n": "40",
++   "n": "0",
+  }
+
+ ❯ tests/c00-transactions.test.ts:107:49
+    105|     for(const end of ['abandon','no-cards'] as const){
+    106|       let state=table(['c05']);state=hand(state,['clubs-2','clubs-3','…
+    107|       expect(growth(state,'c05','pendingHeat')).toEqual({n:'40',d:'1'}…
+       |                                                 ^
+    108|       state=end==='abandon'?send(state,{type:'AbandonRun'}):send(state…
+    109|       expect(state.phase).toBe('run-lost');expect(growth(state,'c05','…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > E02 applies to the first actual purchase, stacks a coupon and preserves actual paid/sale price
+AssertionError: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/c00-transactions.test.ts:114:58
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > buying E02 never discounts itself or the second purchase, and a new shop resets the allowance
+AssertionError: expected { Object (visitIndex, rerollCount, ...) } to have property "purchases" with value +0
+
+- Expected:
+0
+
++ Received:
+undefined
+
+ ❯ tests/c00-transactions.test.ts:124:24
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > E02 first-purchase allowance survives failed affordability and capacity checks
+AssertionError: expected { visitIndex: +0, …(2) } to have property "purchases" with value +0
+
+- Expected:
+0
+
++ Received:
+undefined
+
+ ❯ tests/c00-transactions.test.ts:130:127
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > E04 increases only the interest cap and calculates interest before stage rewards
+AssertionError: expected 47 to be 49 // Object.is equality
+
+- Expected
++ Received
+
+- 49
++ 47
+
+ ❯ tests/c00-transactions.test.ts:136:26
+    134|     for(const gold of [24,25,35,100]){
+    135|       let state=table(['e04']);state.gold=gold;state=hand(state,['spad…
+    136|       expect(state.gold).toBe(gold+4+3+Math.min(7,Math.floor(gold/5)))…
+       |                          ^
+    137|     }
+    138|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > E06 grows the remaining original instance only for successful sales of another Joker, capped at 3
+AssertionError: expected { n: '0', d: '1' } to deeply equal { n: '1', d: '2' }
+
+- Expected
++ Received
+
+  {
+-   "d": "2",
+-   "n": "1",
++   "d": "1",
++   "n": "0",
+  }
+
+ ❯ tests/c00-transactions.test.ts:145:48
+    143|       if(i)state=buy(state,'a03');const other=state.jokers.find(j=>j.d…
+    144|       const result=execute(state,{type:'SellJoker',instanceId:other.in…
+    145|       expect(growth(state,'e06','multiplier')).toEqual(i>=5?{n:'3',d:'…
+       |                                                ^
+    146|       expect(result.events.filter(e=>e.type==='joker-transaction'&&e.d…
+    147|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > E07 and the last-hand character reward happen only after success and once on duplicate commands
+AssertionError: expected 13 to be 17 // Object.is equality
+
+- Expected
++ Received
+
+- 17
++ 13
+
+ ❯ tests/c00-transactions.test.ts:154:86
+    152|       let state=table(['e07'],'last-reward','xiemu');state=hand(state,…
+    153|       const cmd=command(state,{type:'PlayHand',selectedIds:state.handO…
+    154|       expect(state.phase).toBe(clears?'stage-cleared':'run-lost');expe…
+       |                                                                                      ^
+    155|       expect(result.events.filter(e=>e.type==='joker-transaction'&&e.d…
+    156|       const retry=applyCommand(restore(state),cmd);expect(retry.ok&&re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > F05 records the first score, grows after an increase and resets on equal/lower score
+AssertionError: expected { index: +0, targetHeat: '400', …(12) } to have property "previousHandScore" with value '22'
+
+- Expected:
+"22"
+
++ Received:
+undefined
+
+ ❯ tests/c00-transactions.test.ts:163:75
+    161|     for(const [rank,score,mult] of [[2,'22',{n:'0',d:'1'}],[10,'30',{n…
+    162|       state=hand(state,[low(rank)]);state=send(restore(state),{type:'P…
+    163|       expect(state.lastTrace!.finalScore).toBe(score);expect(state.sta…
+       |                                                                           ^
+    164|     }
+    165|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > F05 keeps instance growth across stages while stage comparison starts with no previous score
+AssertionError: expected { n: '0', d: '1' } to deeply equal { n: '1', d: '4' }
+
+- Expected
++ Received
+
+  {
+-   "d": "4",
+-   "n": "1",
++   "d": "1",
++   "n": "0",
+  }
+
+ ❯ tests/c00-transactions.test.ts:168:46
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > F06 counts actual plays across stage/checkpoint boundaries and remains effective for its fourth play
+AssertionError: expected { …(4) } to have property "counters.handsScored" with value 1
+
+- Expected:
+1
+
++ Received:
+undefined
+
+ ❯ tests/c00-transactions.test.ts:179:38
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > F07 rescues resource exhaustion after refill, destroys once, records the source and excludes future sale
+AssertionError: expected 'run-lost' to be 'await-input' // Object.is equality
+
+Expected: "await-input"
+Received: "run-lost"
+
+ ❯ tests/c00-transactions.test.ts:187:25
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > F07 never triggers on successful final hands, empty decks, or only disabled remaining cards
+AssertionError: expected { schemaVersion: 2, …(34) } to have property "safetyNetUsed" with value false
+
+- Expected:
+false
+
++ Received:
+undefined
+
+ ❯ tests/c00-transactions.test.ts:198:153
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > F07 stays unavailable in later shops and rejects a stale offer without charging resources
+Error: wrong-phase
+ ❯ execute tests/c00-transactions.test.ts:10:23
+      8| const execute=(state:R2RunState,action:Action)=>{
+      9|   const result=applyCommand(state,command(state,action));
+     10|   if(!result.ok)throw Error(result.code);
+       |                       ^
+     11|   assertRunInvariants(result.state);return result;
+     12| };
+ ❯ send tests/c00-transactions.test.ts:13:46
+ ❯ tests/c00-transactions.test.ts:202:255
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/20]⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > rejects malformed instance counters, unbounded growth and missing v5 lifecycle fields
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/c00-transactions.test.ts:216:164
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/20]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  20 failed | 2 passed (22)
+   Start at  01:38:39
+   Duration  854ms (transform 297ms, setup 0ms, import 367ms, tests 94ms, environment 0ms)

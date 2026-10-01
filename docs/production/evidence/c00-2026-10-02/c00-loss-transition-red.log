@@ -1,0 +1,18 @@
+
+> dachoupai@0.1.0 verify:smoke
+> node harness/screenshot.mjs --verify-smoke
+
+chromium/natural-nine-card-hand: ok
+{"phase":"run-lost","commandSeq":12,"controller":"idle","playing":true,"presenting":false,"eventId":"run/c00-rescue-51/erxiang/hand/run/c00-rescue-51/erxiang/command/12/event/1","eventPhase":"rest","label":"冷场 · 差 278 热度","renderFps":3.0000008042653525,"hidden":false,"selectedIds":[],"discardEnabled":false,"status":"正在结算 · 可快进","pointers":[{"id":0,"touch":false,"x":0,"y":0},{"id":1,"touch":true,"x":789,"y":2037}]}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at waitScene (D:\ai\dachoupai\dachoupai\harness\ui.mjs:3:41)
+    at D:\ai\dachoupai\dachoupai\harness\screenshot.mjs:237:386 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v22.20.0

@@ -1,0 +1,62 @@
+{
+  "testedCommit": "d7c503b9ec131397978be15439391f3c4eee74f8",
+  "dirty": "M docs/development-handoff.md\n M docs/production/CONTENT.md\n M docs/production/DECISIONS.md\n M docs/production/ENGINEERING.md\n M docs/production/RULES.md\n M docs/production/plan.json\n M harness/screenshot.mjs\n M scripts/verify-content.mjs\n M src/application/checkpoint.ts\n M src/content/r2-jokers.json\n M src/content/r2Schema.ts\n M src/domain/r2Run.ts\n M src/domain/r2Shop.ts\n M src/domain/run.ts\n M src/domain/scoreR2.ts\n M src/game/GameScene.ts\n M src/game/IntermissionScene.ts\n M src/game/SceneView.ts\n M src/game/ShopScene.ts\n M src/game/layout.ts\n M src/game/scorePresentation.ts\n M tests/characters.test.ts\n M tests/content-schema.test.ts\n M tests/joker-art.test.ts\n M tests/layout.test.ts\n M tests/r2-starting-profile.test.ts\n M tests/stageNotice.test.ts\n M tests/v00-score.test.ts\n M vite.config.ts\n?? docs/production/evidence/C00-2026-10-02.json\n?? src/game/r2Help.ts\n?? tests/c00-score.test.ts\n?? tests/c00-transactions.test.ts\n?? tests/r2-ui.test.ts",
+  "checks": [
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "profile": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "deviceScaleFactor": 1,
+      "framebufferDensity": 1,
+      "fullscreen": "NOT_RUN",
+      "status": "PASS",
+      "input": "mouse.click / DOM click",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "live-discard-count-pulse",
+        "live-play-count-pulse",
+        "play-preview-feedback",
+        "reload-continue",
+        "fixed-menu-anchor",
+        "menu-preserves-selection"
+      ]
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "failure": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded.",
+  "failureContext": {
+    "phase": "stage-cleared",
+    "commandSeq": 11,
+    "controller": "idle",
+    "playing": false,
+    "presenting": false,
+    "label": "过关 · 479 热度",
+    "renderFps": 3.9999975422862843,
+    "hidden": false,
+    "selectedIds": [],
+    "discardEnabled": false,
+    "status": "正在结算 · 可快进",
+    "pointers": [
+      {
+        "id": 0,
+        "touch": false,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": 1,
+        "touch": true,
+        "x": 729,
+        "y": 1737
+      }
+    ]
+  }
+}

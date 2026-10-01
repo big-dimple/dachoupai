@@ -5,7 +5,7 @@ export type ScoreBeat={windup:number;flight:number;impact:number;rest:number;str
 /** Zero-based presented trace position, never chain length or a rule clock. Long chains retain every beat. */
 export function scoreBeat(event:ScoreEvent,ordinal=0):ScoreBeat {
   let start:ScoreBeat,fast:ScoreBeat;
-  if(event.phase==='afterHand'){
+  if(event.phase==='afterHand'||event.phase==='beforeFailure'||event.phase==='onStageClear'){
     start={windup:140,flight:0,impact:240,rest:120,strength:'medium'};fast={windup:90,flight:0,impact:180,rest:90,strength:'medium'};
   }else if(event.operation==='ordinary-points-suppressed'||event.operation==='retrigger-cap'){
     start={windup:100,flight:0,impact:180,rest:120,strength:'light'};fast={windup:60,flight:0,impact:150,rest:90,strength:'light'};

@@ -15,8 +15,8 @@ const straight=[card('a',14),card('2',2,'clubs'),card('3',3,'hearts'),card('4',4
 const flush=[2,4,6,8,10].map((r,i)=>card('red'+i,r as Rank,'hearts'));
 
 describe('V00 independent scoring goldens, no target or legacy-golden changes',()=>{
-  it('publishes the exact 24 planned identities and no dead future definitions',()=>{
-    expect(R2_JOKERS.map(d=>d.id).sort()).toEqual(['pengci','tiesuanpan','a03','a05','mantangcai','b02','b03','b04','jiedongfeng','c02','c04','c06','d01','d03','d05','d10','e01','e03','e05','e08','huimaqiang','f02','f03','f09'].sort());
+  it('retains the exact original V00 batch before the authorized C00 additions',()=>{
+    expect(R2_JOKERS.slice(0,24).map(d=>d.id).sort()).toEqual(['pengci','tiesuanpan','a03','a05','mantangcai','b02','b03','b04','jiedongfeng','c02','c04','c06','d01','d03','d05','d10','e01','e03','e05','e08','huimaqiang','f02','f03','f09'].sort());
   });
   it('A03 sees actual played=1, and happens after the character multiplier',()=>{
     const j=[owned('a03')];expect(score(single,['two'],j).finalScore).toBe('57');expect(score(single,['two'],j,{characterId:'amo'}).finalScore).toBe('171');

@@ -1,0 +1,31 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+···············x··········
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/c00-transactions.test.ts > C00 actual command transactions and lifecycle > rolls back score and gold together if clear reward sources exceed the trace budget
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/c00-transactions.test.ts:178:25
+    176|       // Pair scoring has six events; three actual reward sources woul…
+    177|       Object.assign(SCORE_LIMITS,{eventCount:8});const result=applyCom…
+    178|       expect(result.ok).toBe(false);if(!result.ok){expect(result.code)…
+       |                         ^
+    179|       expect(result.state).toBe(rigged);expect(JSON.stringify(rigged))…
+    180|     }finally{Object.assign(SCORE_LIMITS,{eventCount:cap});}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 25 passed (26)
+   Start at  02:00:22
+   Duration  904ms (transform 305ms, setup 0ms, import 379ms, tests 232ms, environment 0ms)

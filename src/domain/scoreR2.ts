@@ -1,9 +1,9 @@
 import type { PlayingCard } from '../cards/types';
 import { SeededRng, type RngSnapshot } from '../core/SeededRng';
-import { validateR2Content, type Condition, type ScoreHookPhase, type Operation, type R2JokerDefinition, type R2JokerInstance, type ScorePhase } from '../content/r2Schema';
+import { readR2Modifiers, r2GrowthCaps, validR2JokerCounters, validateR2Content, type Condition, type ScoreHookPhase, type R2JokerDefinition, type R2JokerInstance, type ScorePhase } from '../content/r2Schema';
 import { CHARACTER_IDS, type CharacterId } from './characters';
 import { evaluateR2Hand, R2_HAND_TYPES, validateCardInstances, type HandRules, type R2HandType } from './evaluateR2';
-import { Rational, type Fraction } from './rational';
+import { MAX_INTEGER_DIGITS, Rational, type Fraction } from './rational';
 
 export const SCORE_LIMITS = { eventCount: 512, extraRetriggers: 4, retriggerDepth: 1, handLevel: 30 } as const;
 export const R2_BASE_SCORES: Record<R2HandType, readonly [number, Fraction, number, Fraction]> = {
@@ -21,6 +21,7 @@ export interface ScoreInput {
   handLevels: Partial<Record<R2HandType, number>>; handRules?: HandRules;
   playIndex: number; handsBeforePlay: number; previousHandType: R2HandType | null; wager: boolean; rng: RngSnapshot;
   gold?:number; discardsUsed?:number; ordinaryPointsSuppressedIds?:readonly string[];
+  previousHandScore?:string|null;
 }
 export interface Accumulator { H: Fraction; M: Fraction }
 export interface ScoreEvent {
@@ -28,11 +29,13 @@ export interface ScoreEvent {
   sourceType: 'rule' | 'card' | 'character' | 'joker'; sourceDefinitionId: string; sourceInstanceId: string;
   targetCardId?: string; operation: string; value: Fraction; before: Accumulator; after: Accumulator;
   reasonKey: string; visibleCondition: Condition; retriggerDepth: number;
+  resourceBefore?:number; resourceAfter?:number;
 }
 export interface ScoreTrace {
   rulesVersion: 'r2'; rootId: string; handType: R2HandType; level: number;
   sets: { playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[] };
   finalScore: string; accumulator: Accumulator; events: ScoreEvent[]; jokers: R2JokerInstance[]; rng: RngSnapshot;
+  destroyedJokerIds:string[];
 }
 export class ScoreFault extends Error {
   constructor(readonly code: string, readonly events: readonly ScoreEvent[]) { super(code); }
@@ -53,6 +56,7 @@ export function scoreR2Hand(input: ScoreInput): ScoreTrace {
   if (!Array.isArray(input.jokers) || !Array.isArray(input.selectedIds) || input.selectedIds.length < 1 || input.selectedIds.length > 5 || new Set(input.selectedIds).size !== input.selectedIds.length || input.selectedIds.some(id => !input.hand.some(c => c.id === id))) throw new Error('invalid-selection');
   if (input.disabledIds.some(id => !input.hand.some(c => c.id === id)) || new Set(input.disabledIds).size !== input.disabledIds.length) throw new Error('invalid-disabled-cards');
   if(![input.gold??0,input.discardsUsed??0].every(n=>Number.isSafeInteger(n)&&n>=0))throw new Error('invalid-score-resources');
+  if(input.previousHandScore!==undefined&&input.previousHandScore!==null&&(typeof input.previousHandScore!=='string'||!/^(0|[1-9]\d*)$/.test(input.previousHandScore)||input.previousHandScore.length>MAX_INTEGER_DIGITS))throw new Error('invalid-previous-hand-score');
   const ordinarySuppressed=input.ordinaryPointsSuppressedIds??[];
   if(new Set(ordinarySuppressed).size!==ordinarySuppressed.length||ordinarySuppressed.some(id=>!input.selectedIds.includes(id)))throw new Error('invalid-ordinary-point-suppression');
   if (!Number.isSafeInteger(input.playIndex) || input.playIndex < 1 || !Number.isSafeInteger(input.handsBeforePlay) || input.handsBeforePlay < 1 || (input.previousHandType !== null && !R2_HAND_TYPES.includes(input.previousHandType)) || typeof input.wager !== 'boolean' || (input.wager && input.characterId !== 'touye')) throw new Error('invalid-score-context');
@@ -63,19 +67,23 @@ export function scoreR2Hand(input: ScoreInput): ScoreTrace {
   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
   for (const joker of jokers) {
     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) || joker.paidPrice < 0 || !input.definitions.some(d => d.id === joker.definitionId)) throw new Error('invalid-joker-instance');
-    const writers = input.definitions.find(d => d.id === joker.definitionId)!.hooks.flatMap(h => h.operations.filter((o): o is Extract<Operation, {kind:'add-growth'}> => o.kind === 'add-growth'));
+    if(!validR2JokerCounters(joker.definitionId,joker.counters))throw new Error('invalid-joker-counter-state');
+    const caps = r2GrowthCaps(input.definitions.find(d => d.id === joker.definitionId)!);
     for (const [key, value] of Object.entries(joker.growth)) {
-      const writer = writers.find(o => o.key === key), growth = Rational.fromJSON(value);
-      if (!writer || growth.n < 0n || growth.compare(Rational.fromJSON(writer.cap)) > 0) throw new Error('invalid-growth-state');
+      const growth = Rational.fromJSON(value);
+      if (!caps[key] || growth.n < 0n || growth.compare(Rational.fromJSON(caps[key])) > 0) throw new Error('invalid-growth-state');
     }
   }
   const played = input.hand.filter(c => input.selectedIds.includes(c.id));
   const held = input.hand.filter(c => !input.selectedIds.includes(c.id));
-  const evaluated = evaluateR2Hand(played, input.handRules ?? {});
+  const modifiers=readR2Modifiers(jokers,input.definitions);
+  const evaluated = evaluateR2Hand(played, {...input.handRules,fourStraight:!!input.handRules?.fourStraight||modifiers.fourStraight});
   const active = played.filter(c => evaluated.scoringIds.includes(c.id) && !input.disabledIds.includes(c.id));
   const level = input.handLevels[evaluated.type] ?? 1;
   let H = new Rational(0n), M = new Rational(0n);
   const events: ScoreEvent[] = [];
+  const destroyedJokerIds:string[]=[];
+  let resolvedFinal:bigint|null=null;
   const rng = SeededRng.restore(input.rng);
   const snapshot = (): Accumulator => ({ H: H.toJSON(), M: M.toJSON() });
   type Source = Pick<ScoreEvent, 'sourceType'|'sourceDefinitionId'|'sourceInstanceId'>;
@@ -104,6 +112,10 @@ export function scoreR2Hand(input: ScoreInput): ScoreTrace {
       case 'held-rank-first': return !!card&&held.filter(p=>c.values.includes(p.rank)).slice(0,c.limit).some(p=>p.id===card.id);
       case 'resource': return ({gold:input.gold??0,'hands-after':input.handsBeforePlay-1,'play-index':input.playIndex,'discards-used':input.discardsUsed??0})[c.resource]===c.equals;
       case 'resource-minimum': return (input.gold??0)>=c.minimum;
+      case 'resource-maximum': return (input.gold??0)<=c.maximum;
+      case 'all-played-active':return played.length>=c.minimum&&played.length===active.length;
+      case 'scoring-position':return !!card&&card.id===(c.position==='first'?active[0]:active.at(-1))?.id&&(!c.handTypes||c.handTypes.includes(evaluated.type))&&(!c.playModulo||input.playIndex%c.playModulo.divisor===c.playModulo.remainder);
+      case 'discard-count':case 'discard-same-suit':case 'exhausted-hands':return false;
     }
   };
   const hook = (phase: ScoreHookPhase, card?: PlayingCard, depth = 0, rootEventId?: string): number => {
@@ -113,14 +125,32 @@ export function scoreR2Hand(input: ScoreInput): ScoreTrace {
       const source: Source = {sourceType:'joker',sourceDefinitionId:definition.id,sourceInstanceId:joker.instanceId};
       for (const h of definition.hooks) if (h.phase === phase && matches(h.condition, card)) for (const op of h.operations) {
         if (op.kind === 'retrigger-card' && depth > 0) continue;
-        if (op.kind === 'read-growth') {
+        if (op.kind === 'read-growth'||op.kind==='consume-growth') {
           const value = Rational.fromJSON(joker.growth[op.key] ?? {n:'0',d:'1'});
-          emit(phase, source, op.kind, value, () => { if (op.target === 'heat') H = H.add(value); else M = M.add(value); }, h.condition, card, depth, rootEventId);
+          emit(phase, source, op.kind, value, () => {
+            if (op.target === 'heat') H = H.add(value); else M = M.add(value);
+            if(op.kind==='consume-growth')joker.growth[op.key]={n:'0',d:'1'};
+          }, h.condition, card, depth, rootEventId);
         } else if (op.kind === 'add-growth') {
           const previous = Rational.fromJSON(joker.growth[op.key] ?? {n:'0',d:'1'});
           const grown = previous.add(Rational.fromJSON(op.value)), cap = Rational.fromJSON(op.cap);
           const next = grown.compare(cap) > 0 ? cap : grown;
           emit(phase, source, op.kind, next.add(previous.multiply(new Rational(-1n))), () => { joker.growth[op.key] = next.toJSON(); }, h.condition, card, depth, rootEventId);
+        } else if(op.kind==='update-score-growth') {
+          if(resolvedFinal===null)throw new Error('score-growth-before-final');
+          const previous=Rational.fromJSON(joker.growth[op.key]??{n:'0',d:'1'});
+          if(input.previousHandScore===undefined||input.previousHandScore===null) {
+            emit(phase,source,'score-growth-baseline',new Rational(0n),()=>{},h.condition);
+          } else if(resolvedFinal>BigInt(input.previousHandScore)) {
+            const grown=previous.add(Rational.fromJSON(op.value)),cap=Rational.fromJSON(op.cap),next=grown.compare(cap)>0?cap:grown;
+            emit(phase,source,'add-growth',next.add(previous.multiply(new Rational(-1n))),()=>{joker.growth[op.key]=next.toJSON();},h.condition);
+          } else {
+            emit(phase,source,'reset-growth',previous,()=>{joker.growth[op.key]={n:'0',d:'1'};},h.condition);
+          }
+        } else if(op.kind==='expire-after-hands') {
+          const count=(joker.counters?.handsScored??0)+1;
+          emit(phase,source,'increment-hands-scored',new Rational(BigInt(count)),()=>{joker.counters={...joker.counters,handsScored:count};},h.condition);
+          if(count>=op.limit)emit(phase,source,'destroy-joker',new Rational(0n),()=>{destroyedJokerIds.push(joker.instanceId);},h.condition);
         } else if (op.kind === 'retrigger-card') {
           const available = Math.min(op.count, SCORE_LIMITS.extraRetriggers - retriggers);
           emit(phase, source, 'retrigger-card', new Rational(BigInt(available)), () => { retriggers += available; }, h.condition, card, depth, rootEventId);
@@ -172,10 +202,11 @@ export function scoreR2Hand(input: ScoreInput): ScoreTrace {
   const final = H.multiply(M).floor();
   if (final < 0n) throw new ScoreFault('negative-score', events);
   emit('finalScore', rule, 'final-score', new Rational(final), () => {});
+  resolvedFinal=final;
   hook('afterHand');
   return immutable({ rulesVersion:'r2', rootId:input.rootId, handType:evaluated.type, level,
     sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id)},
-    finalScore:final.toString(),accumulator:snapshot(),events,jokers,rng:rng.snapshot() });
+    finalScore:final.toString(),accumulator:snapshot(),events,jokers:jokers.filter(j=>!destroyedJokerIds.includes(j.instanceId)),rng:rng.snapshot(),destroyedJokerIds });
 }
 
 /** Public preview never accepts the real RNG or reveals which wager outcome is next. */

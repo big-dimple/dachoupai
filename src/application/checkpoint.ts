@@ -2,7 +2,7 @@ import {assertR2Invariants,R2_CONTENT_HASH,R2_CONTENT_VERSION,R2_LIMITS,R2_TARGE
 import type {R2RunState,Command,Action} from '../domain/run';
 import {CHARACTER_IDS} from '../domain/characters';
 import {R2_HAND_TYPES} from '../domain/evaluateR2';
-import {R2_JOKERS,validR2Condition} from '../content/r2Schema';
+import {R2_JOKERS,r2GrowthCaps,validR2JokerCounters,validR2Condition} from '../content/r2Schema';
 import {Rational,MAX_INTEGER_DIGITS} from '../domain/rational';
 import {SCORE_LIMITS} from '../domain/scoreR2';
 import {SeededRng} from '../core/SeededRng';
@@ -36,30 +36,35 @@ function accumulator(value:unknown):void {const v=record(value,['H','M']);fracti
 function cursor(value:unknown):void {const v=record(value,['algorithm','state']);SeededRng.restore(v as unknown as ReturnType<SeededRng['snapshot']>);}
 function jokers(value:unknown):void {
   for(const item of array(value,R2_LIMITS.jokerSlots)){
-    const j=record(item,['instanceId','definitionId','paidPrice','growth']);text(j.instanceId);integer(j.paidPrice);
+    const j=record(item,['instanceId','definitionId','paidPrice','growth'],['counters']);text(j.instanceId);integer(j.paidPrice);
     const definition=R2_JOKERS.find(d=>d.id===j.definitionId);if(!definition)fail('unknown-save-joker');
-    const keys=definition!.hooks.flatMap(h=>h.operations.flatMap(o=>o.kind==='add-growth'?[o.key]:[]));
+    const keys=Object.keys(r2GrowthCaps(definition!));
     const growth=record(j.growth,[],keys);Object.values(growth).forEach(fraction);
+    if(!validR2JokerCounters(j.definitionId as string,j.counters))fail('invalid-save-joker-counters');
   }
 }
 function trace(value:unknown):void {
   if(value===null)return;
-  const t=record(value,['rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng']);
+  const t=record(value,['rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng','destroyedJokerIds']);
   oneOf(t.rulesVersion,['r2']);text(t.rootId);oneOf(t.handType,R2_HAND_TYPES);integer(t.level,1,30);score(t.finalScore);accumulator(t.accumulator);cursor(t.rng);jokers(t.jokers);
   const sets=record(t.sets,['playedIds','scoringIds','activeScoringIds','heldIds']);Object.values(sets).forEach(v=>strings(v,14));
   const events=array(t.events,SCORE_LIMITS.eventCount);if(!events.length)fail('empty-save-trace');
   for(const item of events){
-    const e=record(item,['eventId','rootId','rootEventId','phase','sourceType','sourceDefinitionId','sourceInstanceId','operation','value','before','after','reasonKey','visibleCondition','retriggerDepth'],['targetCardId']);
+    const e=record(item,['eventId','rootId','rootEventId','phase','sourceType','sourceDefinitionId','sourceInstanceId','operation','value','before','after','reasonKey','visibleCondition','retriggerDepth'],['targetCardId','resourceBefore','resourceAfter']);
     for(const k of ['eventId','rootId','rootEventId','sourceDefinitionId','sourceInstanceId','reasonKey'])text(e[k]);
     if(e.rootId!==t.rootId)fail('invalid-save-trace-root');
-    oneOf(e.phase,['base','onCardScore','onHeldCard','characterScore','jokerScore','finalScore','afterHand']);
+    oneOf(e.phase,['base','onCardScore','onHeldCard','characterScore','jokerScore','finalScore','afterHand','beforeFailure','onStageClear']);
     oneOf(e.sourceType,['rule','card','character','joker']);
     if(e.sourceType==='joker')oneOf(e.sourceDefinitionId,R2_JOKERS.map(d=>d.id));
     if(e.sourceType==='character')oneOf(e.sourceDefinitionId,CHARACTER_IDS);
-    oneOf(e.operation,['base','add-heat','add-multiplier','multiply-multiplier','read-growth','add-growth','retrigger-card','retrigger-cap','final-score','add-heat-per-gold','add-heat-per-empty-slot','ordinary-points-suppressed']);
+    oneOf(e.operation,['base','add-heat','add-multiplier','multiply-multiplier','read-growth','consume-growth','add-growth','reset-growth','score-growth-baseline','increment-hands-scored','destroy-joker','rescue-hand','add-gold','retrigger-card','retrigger-cap','final-score','add-heat-per-gold','add-heat-per-empty-slot','ordinary-points-suppressed']);
     fraction(e.value);accumulator(e.before);accumulator(e.after);integer(e.retriggerDepth,0,1);if(e.targetCardId!==undefined)text(e.targetCardId);
     if(!validR2Condition(e.visibleCondition))fail('invalid-save-visible-condition');
+    if(Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter')){integer(e.resourceBefore);integer(e.resourceAfter);}
   }
+  strings(t.destroyedJokerIds,R2_LIMITS.jokerSlots);
+  const destroyed=t.destroyedJokerIds as string[];
+  if(new Set(destroyed).size!==destroyed.length||destroyed.some(id=>!events.some(event=>{const e=event as Record<string,unknown>;return e.operation==='destroy-joker'&&e.sourceType==='joker'&&e.sourceInstanceId===id;})))fail('invalid-save-destroyed-jokers');
 }
 function action(value:unknown):void {
   const a=record(value,['type'],['seed','characterId','rulesVersion','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType']);
@@ -86,7 +91,7 @@ function safeTree(value:unknown):void {
 function validateState(value:unknown):asserts value is R2RunState {
   // Diagnose old versions before changed fields; retaining/exporting raw saves remains explicit.
   if(value&&typeof value==='object'&&!Array.isArray(value)){const tags=value as Record<string,unknown>;if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||tags.contentVersion!==R2_CONTENT_VERSION||tags.contentHash!==R2_CONTENT_HASH)fail('incompatible-version');}
-  const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','difficulty','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons']);
+  const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','difficulty','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons','safetyNetUsed']);
   if(s.schemaVersion!==2||s.rulesVersion!=='r2'||s.contentVersion!==R2_CONTENT_VERSION||s.contentHash!==R2_CONTENT_HASH)fail('incompatible-version');
   text(s.runId);text(s.seed,4096);integer(s.commandSeq,1);oneOf(s.difficulty,[0]);oneOf(s.characterId,CHARACTER_IDS);integer(s.chapter,1,R2_AVAILABLE_CHAPTERS);integer(s.stageIndex,0,R2_AVAILABLE_CHAPTERS*3);
   oneOf(s.phase,['shop','stage-ready','await-input','stage-cleared','run-won','run-lost']);
@@ -94,12 +99,12 @@ function validateState(value:unknown):asserts value is R2RunState {
   for(const k of ['drawPile','handOrder','playedPile','discardPile','destroyedIds','longTermItems'])strings(s[k]);
   score(s.totalHeat);integer(s.gold);jokers(s.jokers);
   for(const c of array(s.consumables,R2_LIMITS.consumableSlots)){const v=record(c,['instanceId','definitionId']);text(v.instanceId);text(v.definitionId);}
-  oneOf(s.program,[null]);const boss=record(s.boss,['definitionId','disabledSuit']);oneOf(boss.definitionId,R2_BOSSES.map(b=>b.id));oneOf(boss.disabledSuit,[null,...SUITS]);strings(s.seenBossIds,R2_AVAILABLE_CHAPTERS);oneOf(s.chapterSkipConsumable,R2_SKIP_CONSUMABLES);integer(s.purchaseCoupons,0,R2_AVAILABLE_CHAPTERS);
-  if(s.stage!==null){const t=record(s.stage,['index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult']);
-    integer(t.index,0,R2_AVAILABLE_CHAPTERS*3-1);score(t.targetHeat);score(t.heat);integer(t.handsLeft,0,R2_LIMITS.hands);integer(t.discardsLeft,0,R2_LIMITS.discards);integer(t.playIndex,0,R2_LIMITS.hands);integer(t.discardsUsed,0,R2_LIMITS.discards+1+R2_LIMITS.consumableSlots);integer(t.goldEarned);strings(t.disabledIds);bool(t.wagerSelected);bool(t.wagerUsed);oneOf(t.previousHandType,[null,...R2_HAND_TYPES]);if(t.clearId!==null)text(t.clearId);
+  oneOf(s.program,[null]);const boss=record(s.boss,['definitionId','disabledSuit']);oneOf(boss.definitionId,R2_BOSSES.map(b=>b.id));oneOf(boss.disabledSuit,[null,...SUITS]);strings(s.seenBossIds,R2_AVAILABLE_CHAPTERS);oneOf(s.chapterSkipConsumable,R2_SKIP_CONSUMABLES);integer(s.purchaseCoupons,0,R2_AVAILABLE_CHAPTERS);bool(s.safetyNetUsed);
+  if(s.stage!==null){const t=record(s.stage,['index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult']);
+    integer(t.index,0,R2_AVAILABLE_CHAPTERS*3-1);score(t.targetHeat);score(t.heat);integer(t.handLimit,R2_LIMITS.handSize,14);bool(t.rescueUsed);if(t.previousHandScore!==null)score(t.previousHandScore);integer(t.handsLeft,0,R2_LIMITS.hands);integer(t.discardsLeft,0,R2_LIMITS.discards);integer(t.playIndex,0,R2_LIMITS.hands+(t.rescueUsed?1:0));integer(t.discardsUsed,0,R2_LIMITS.discards+1+R2_LIMITS.consumableSlots);integer(t.goldEarned);strings(t.disabledIds);bool(t.wagerSelected);bool(t.wagerUsed);oneOf(t.previousHandType,[null,...R2_HAND_TYPES]);if(t.clearId!==null)text(t.clearId);
     if(t.skipResult!==null){const r=record(t.skipResult,['kind'],['amount','definitionId']);oneOf(r.kind,['coupon','consumable','gold']);if(r.kind==='consumable'){record(r,['kind','definitionId']);oneOf(r.definitionId,R2_SKIP_CONSUMABLES);}else{record(r,['kind','amount']);oneOf(r.amount,r.kind==='coupon'?[2]:[1]);}}
   }
-  if(s.shop!==null){const shop=record(s.shop,['visitIndex','rerollCount','offers']);integer(shop.visitIndex,0,R2_TARGETS.length*3-1);integer(shop.rerollCount);for(const o of array(shop.offers,3)){const v=record(o,['offerId','definitionId','price','consumed']);text(v.offerId);text(v.definitionId);integer(v.price);bool(v.consumed);}}
+  if(s.shop!==null){const shop=record(s.shop,['visitIndex','rerollCount','purchases','offers']);integer(shop.visitIndex,0,R2_TARGETS.length*3-1);integer(shop.rerollCount);integer(shop.purchases,0,s.commandSeq as number);for(const o of array(shop.offers,3)){const v=record(o,['offerId','definitionId','price','consumed']);text(v.offerId);text(v.definitionId);integer(v.price);bool(v.consumed);}}
   const rng=record(s.rng,['deck','shop','rule','reward']);Object.values(rng).forEach(cursor);
   const receipts=array(s.receipts,100000);let seq=0;const ids=new Set();
   for(const r of receipts){const v=record(r,['commandId','fingerprint','seq']);text(v.commandId);text(v.fingerprint);integer(v.seq,1);if(v.seq!==++seq||ids.has(v.commandId))fail('invalid-save-receipts');ids.add(v.commandId);}

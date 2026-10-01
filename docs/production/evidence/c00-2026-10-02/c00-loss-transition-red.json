@@ -1,0 +1,63 @@
+{
+  "testedCommit": "d7c503b9ec131397978be15439391f3c4eee74f8",
+  "dirty": "M README.md\n M docs/development-handoff.md\n M docs/production/ART.md\n M docs/production/CONTENT.md\n M docs/production/DECISIONS.md\n M docs/production/ENGINEERING.md\n M docs/production/INDEX.md\n M docs/production/RULES.md\n M docs/production/WORK_PACKAGES.md\n M docs/production/plan.json\n M harness/screenshot.mjs\n M scripts/verify-content.mjs\n M src/application/checkpoint.ts\n M src/content/r2-jokers.json\n M src/content/r2Schema.ts\n M src/domain/r2Run.ts\n M src/domain/r2Shop.ts\n M src/domain/run.ts\n M src/domain/scoreR2.ts\n M src/game/GameScene.ts\n M src/game/IntermissionScene.ts\n M src/game/SceneView.ts\n M src/game/ShopScene.ts\n M src/game/layout.ts\n M src/game/scorePresentation.ts\n M tests/characters.test.ts\n M tests/content-schema.test.ts\n M tests/joker-art.test.ts\n M tests/layout.test.ts\n M tests/r2-starting-profile.test.ts\n M tests/stageNotice.test.ts\n M tests/v00-score.test.ts\n M vite.config.ts\n?? docs/production/evidence/C00-2026-10-02.json\n?? src/game/r2Help.ts\n?? tests/c00-score.test.ts\n?? tests/c00-transactions.test.ts\n?? tests/r2-ui.test.ts",
+  "checks": [
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "profile": "natural-nine-card-hand",
+      "status": "PASS",
+      "seed": "c00-hand-8",
+      "handLimit": 9,
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "deviceScaleFactor": 3,
+      "covered": [
+        "natural-6-gold-buy",
+        "nine-visible-card-models",
+        "ninth-card-touch",
+        "sort-keeps-selection",
+        "discard-refills-nine",
+        "play-refills-nine",
+        "reload-preserves-complete-state",
+        "restored-ninth-card-touch"
+      ],
+      "physicalDevice": "NOT_RUN"
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "build": "existing shots/smoke-build (SMOKE_REUSE_BUILD=1)",
+  "failure": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded.",
+  "failureContext": {
+    "phase": "run-lost",
+    "commandSeq": 12,
+    "controller": "idle",
+    "playing": true,
+    "presenting": false,
+    "eventId": "run/c00-rescue-51/erxiang/hand/run/c00-rescue-51/erxiang/command/12/event/1",
+    "eventPhase": "rest",
+    "label": "冷场 · 差 278 热度",
+    "renderFps": 3.0000008042653525,
+    "hidden": false,
+    "selectedIds": [],
+    "discardEnabled": false,
+    "status": "正在结算 · 可快进",
+    "pointers": [
+      {
+        "id": 0,
+        "touch": false,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": 1,
+        "touch": true,
+        "x": 789,
+        "y": 2037
+      }
+    ]
+  }
+}

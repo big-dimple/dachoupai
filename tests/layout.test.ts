@@ -21,6 +21,42 @@ describe('CSS layout contract',()=>{
     expect(l.hud.y).toBeGreaterThanOrEqual(24);expect(l.tableActions.play.y+l.tableActions.play.height).toBeLessThanOrEqual(810);
     const narrow=layout({width:320,height:568},{top:0,right:0,bottom:0,left:0});expect(narrow.compact).toBe(true);expect(narrow.height).toBe(568);
   });
+  it('expanded hands keep every seat and use a bounded horizontal window on narrow screens',()=>{
+    for(const [width,height] of [[320,568],[390,844],[844,390],[1280,720]])for(const count of [9,10,14]){
+      const l=layout({width,height},{top:0,right:0,bottom:0,left:0},undefined,{count,start:100});
+      expect(l.cards.length).toBe(count);
+      const visible=l.cards.filter(card=>card.visible);
+      expect(visible.length).toBe(l.visibleCardCount);
+      expect(l.handStart).toBe(count-l.visibleCardCount);
+      expect(l.cards.findIndex(card=>card.visible)).toBe(l.handStart);
+      for(const card of visible){
+        expect(inside(card.hit,width,height)).toBe(true);
+        expect(card.hit.width).toBeGreaterThanOrEqual(36);
+        expect(card.visual.height/card.visual.width).toBeGreaterThanOrEqual(1.4-1e-6);
+      }
+      for(let i=0;i<visible.length;i++)for(let j=i+1;j<visible.length;j++)expect(intersects(visible[i].hit,visible[j].hit)).toBe(false);
+      if(l.handOverflow){
+        expect(l.handStart).toBeGreaterThan(0);
+        for(const button of Object.values(l.handNavigation)){
+          expect(inside(button,width,height)).toBe(true);
+          expect(button.width).toBeGreaterThanOrEqual(44);expect(button.height).toBeGreaterThanOrEqual(44);
+          for(const card of visible)expect(intersects(button,card.hit)).toBe(false);
+        }
+      }else expect(visible.length).toBe(count);
+    }
+  });
+  it('expanded hand windows keep all indices reachable without shrinking the original eight-card faces',()=>{
+    const viewport={width:390,height:844},safe={top:0,right:0,bottom:0,left:0};
+    const baseline=layout(viewport,safe),first=layout(viewport,safe,undefined,{count:14,start:0}),last=layout(viewport,safe,undefined,{count:14,start:14});
+    expect(first.handOverflow).toBe(true);expect(first.handStart).toBe(0);
+    expect(first.cards.filter(card=>card.visible)[0].visual.width).toBe(baseline.cards[0].visual.width);
+    const reachable=new Set<number>();
+    for(let start=0;start<14;start++)layout(viewport,safe,undefined,{count:14,start}).cards.forEach((card,i)=>{if(card.visible)reachable.add(i);});
+    expect([...reachable].sort((a,b)=>a-b)).toEqual(Array.from({length:14},(_,i)=>i));
+    expect(last.cards.at(-1)?.visible).toBe(true);
+    expect(layout(viewport,safe,undefined,{count:1,start:0}).cards).toHaveLength(1);
+    expect(layout(viewport,safe,undefined,{count:0,start:0}).cards).toHaveLength(0);
+  });
   it('played cards, current score and pile counts stay visible above the independent hand controls',()=>{
     for(const [width,height] of [[1920,1080],[1280,720],[360,640],[390,740],[390,844],[844,300],[844,390]]){
       const l=layout({width,height},{top:0,right:0,bottom:0,left:0});

@@ -1,7 +1,7 @@
 /** Short player path in a compiled bundle. Observers are read-only; inputs are real. */
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {mkdir,writeFile} from 'node:fs/promises';
+import {access,mkdir,writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {chromium,firefox,webkit} from 'playwright';
 import {build,preview} from 'vite';
@@ -9,6 +9,7 @@ import {waitScene,tapUI,point} from './ui.mjs';
 const root=process.cwd(),port=Number(process.env.SHOT_PORT||5199),outDir=path.join(root,'shots/smoke-build'),verify=process.argv.includes('--verify-smoke');
 const saveScreens=!verify||process.env.SMOKE_SHOTS==='1';
 const engines={chromium,firefox,webkit},selected=(process.env.SMOKE_BROWSERS||'chromium').split(',');
+const checkC00=['1','only','rescue'].includes(process.env.SMOKE_C00),checkFeedback=['1','only'].includes(process.env.SMOKE_FEEDBACK);
 assert.ok(selected.length&&new Set(selected).size===selected.length&&selected.every(e=>engines[e]),'known distinct smoke engines');
 const profiles={desktop:{width:1280,height:720},wide:{width:1920,height:1080},mobile:{width:390,height:740},shortmobile:{width:360,height:640},landscape:{width:844,height:390}},selectedProfiles=(process.env.SHOT_PROFILES||'desktop,mobile').split(',');
 assert.ok(selectedProfiles.length&&new Set(selectedProfiles).size===selectedProfiles.length&&selectedProfiles.every(p=>profiles[p]),'known distinct viewport profiles');
@@ -16,15 +17,25 @@ const report={testedCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'ut
 const state=page=>page.evaluate(()=>window.__harness.game.registry.get('runController').state);
 const next=(page,seq)=>page.waitForFunction(seq=>window.__harness.game.registry.get('runController').state.commandSeq>seq&&window.__harness.game.registry.get('runController').status==='idle',seq);
 const ready=page=>page.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.scene.isActive()&&!s.playing&&s.cardViews.length>0;});
+const revealCard=async(page,id)=>{
+  for(let step=0;step<14;step++){
+    const info=await page.evaluate(id=>{const s=window.__harness.game.scene.getScene('game'),card=s.cardViews.find(c=>c.card.id===id),index=s.cardViews.findIndex(c=>c.card.id===id);return {visible:!!card?.container.visible,index,start:s.view.layout.handStart};},id);
+    assert.ok(info.index>=0,'target is a publicly known held card');if(info.visible)return;
+    await tapUI(page,'game',info.index<info.start?'action/hand-previous':'action/hand-next',true);
+  }
+  assert.fail('every held card is reachable through ordinary hand navigation');
+};
 const dom=async(page,name,touch)=>{const b=page.getByRole('button',{name,exact:true});if(touch)await b.tap();else await b.click();};
 await mkdir('shots',{recursive:true});
-await build({mode:'e2e',build:{outDir,emptyOutDir:true},logLevel:'warn'});
+if(process.env.SMOKE_REUSE_BUILD==='1'){
+  await access(path.join(outDir,'index.html'));report.build='existing shots/smoke-build (SMOKE_REUSE_BUILD=1)';
+}else await build({mode:'e2e',build:{outDir,emptyOutDir:true},logLevel:'warn'});
 const server=await preview({build:{outDir},preview:{port,strictPort:true,host:'127.0.0.1'}}),base=`http://127.0.0.1:${port}/?harness=1&seed=p00-core-ui`;
 let browser,activePage;
 try {
   for(const engine of selected){
   browser=await engines[engine].launch(engine==='chromium'&&process.env.SMOKE_CHROMIUM_CHANNEL?{channel:process.env.SMOKE_CHROMIUM_CHANNEL}:{});
-  for(const name of process.env.SMOKE_FEEDBACK==='only'?[]:selectedProfiles){
+  for(const name of process.env.SMOKE_FEEDBACK==='only'||['only','rescue'].includes(process.env.SMOKE_C00)?[]:selectedProfiles){
     const viewport=profiles[name],touch=['mobile','shortmobile','landscape'].includes(name),deviceScaleFactor=touch?3:1,recordVideo=process.env.SHOT_VIDEO==='1'&&engine===selected[0]&&name==='desktop';
     const context=await browser.newContext({viewport,hasTouch:touch,deviceScaleFactor,...(recordVideo?{recordVideo:{dir:'shots/p00-video',size:viewport}}:{})}),page=await context.newPage(),errors=[];activePage=page;page.on('pageerror',e=>{errors.push(String(e));console.error(e.stack);});
     await page.goto(base);await waitScene(page,'title');
@@ -83,7 +94,7 @@ try {
     if(saveScreens&&touch&&engine===selected[0])await page.screenshot({path:`shots/${name}-discard-feedback.png`});
     await ready(page);const discarded=await state(page);
     await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(c=>!c.back?.visible&&c.container.alpha===1));
-    assert.ok(discarded.discardPile.includes(chosen));assert.ok(!discarded.handOrder.includes(chosen));assert.equal(discarded.handOrder.length,8);
+    assert.ok(discarded.discardPile.includes(chosen));assert.ok(!discarded.handOrder.includes(chosen));assert.equal(discarded.handOrder.length,initial.stage.handLimit);
     for(const id of beforeDiscard.handOrder.filter(id=>id!==chosen))assert.ok(discarded.handOrder.includes(id),'unselected cards stay held');
     assert.equal(discarded.stage.discardsLeft,beforeDiscard.stage.discardsLeft-1);assert.equal(discarded.stage.handsLeft,beforeDiscard.stage.handsLeft);assert.equal(discarded.drawPile.length,beforeDiscard.drawPile.length-1);
     await tapUI(page,'game','card/'+discarded.handOrder[0],touch);
@@ -105,37 +116,10 @@ try {
       await tapUI(page,'game','card/'+held,true);
       await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').selectedIds.size===0);
       if(saveScreens&&engine===selected[0])await page.screenshot({path:`shots/${name}-short.png`});
-      if(process.env.SMOKE_FEEDBACK==='1'&&name==='mobile'){
-        for(let i=0;i<2;i++){
-          await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(c=>!c.back?.visible&&c.container.alpha===1));
-          const before=await state(page),id=before.handOrder[0];await tapUI(page,'game','card/'+id,true);
-          await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),id);
-          await tapUI(page,'game','action/discard',true);await next(page,before.commandSeq);
-          await page.waitForFunction(expected=>{const count=window.__harness.game.scene.getScene('game').resourceCounts.discard;return count.text===String(expected)&&count.scaleX>1.05&&count.style.color==='#ffb391';},before.stage.discardsLeft-1,{timeout:5000});
-          await ready(page);
-        }
-        const noDiscards=await state(page);assert.equal(noDiscards.stage.discardsLeft,0);
-        await tapUI(page,'game','card/'+noDiscards.handOrder[0],true);
-        await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),noDiscards.handOrder[0]);
-        assert.equal((await point(page,'game','action/discard')).enabled,false,'exhausted discard control stays disabled');
-        await tapUI(page,'game','card/'+noDiscards.handOrder[0],true);
-        await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').selectedIds.size===0);
-        for(let i=0;i<2;i++){
-          await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(c=>!c.back?.visible&&c.container.alpha===1));
-          const before=await state(page),cards=before.handOrder.map(id=>before.deckInstances.find(c=>c.id===id)).sort((a,b)=>a.rank-b.rank),ids=[cards[0].id,cards.find(c=>c.rank!==cards[0].rank).id];
-          // Amo's one-card x3 is strong; two distinct ranks deliberately preserve the last-chance fixture.
-          for(const id of ids){await tapUI(page,'game','card/'+id,true);await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),id);}
-          await tapUI(page,'game','action/play',true);await next(page,before.commandSeq);await ready(page);
-        }
-        assert.equal((await state(page)).stage.handsLeft,1);
-        assert.ok(await page.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return s.resourceCounts.play.style.color==='#ffb391'&&s.statusText.text.includes('最后 1 次出牌');}),'last play remains clearly marked after presentation');
-        if(saveScreens&&engine===selected[0])await page.screenshot({path:'shots/mobile-last-chance.png'});
-        report.checks.push({engine,profile:'mobile-critical-resources',status:'PASS',covered:['last-discard-pulse','exhausted-discards-disabled','last-play-warning'],physicalDevice:'NOT_RUN'});
-      }
     }
     assert.deepEqual(errors,[]);report.checks.push({engine,browserVersion:browser.version(),profile:name,viewport,deviceScaleFactor,framebufferDensity:density,fullscreen,status:'PASS',input:touch?'touchscreen.tap / DOM tap':'mouse.click / DOM click',covered:['select-confirm-cancel','buy-cancel','rank/suit-sort','discard-refill','live-discard-count-pulse','live-play-count-pulse','play-preview-feedback','reload-continue','fixed-menu-anchor','menu-preserves-selection',...(touch?['high-DPR','rotation-preserves-state']:[])]});const video=page.video();await context.close();if(recordVideo)await video.saveAs('shots/p00-play.webm');console.log(`${engine}/${name}: ok`);
   }
-  if(['1','only'].includes(process.env.SMOKE_FEEDBACK)&&engine===selected[0]){
+  if(checkFeedback&&engine===selected[0]){
     const viewport={width:390,height:740},context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:3}),page=await context.newPage(),errors=[];activePage=page;
     page.on('pageerror',e=>errors.push(String(e)));await page.goto(`http://127.0.0.1:${port}/?harness=1&seed=p04-golden-02`);await waitScene(page,'title');
     await tapUI(page,'title','action/title-start',true);await waitScene(page,'character-select');
@@ -171,6 +155,7 @@ try {
     if(saveScreens)await page.screenshot({path:'shots/mobile-overkill.png'});
     await waitScene(page,'intermission');const after=await state(page);assert.equal(after.lastTrace.finalScore,'1200');assert.equal(after.stage.heat,'1200');assert.equal(after.stage.targetHeat,'400');assert.equal(after.stage.handsLeft,3);assert.equal(after.gold,14);assert.deepEqual(errors,[]);
     const observation=await page.evaluate(()=>{const o=window.__scoreObservation;clearInterval(o.timer);return {events:o.events,fire:o.fire};});
+    report.naturalScoreObservation={renderFps,burstElapsedMs,linkedAudio,...observation};
     const expected=after.lastTrace.events.filter(e=>e.phase!=='base'&&e.phase!=='finalScore');
     assert.deepEqual(observation.events.filter(e=>e.phase==='impact').map(e=>e.id),expected.map(e=>e.eventId),'every actual source gets its own ordered impact');
     assert.ok(observation.fire.some(f=>f.level===3&&f.voices>0),'actual 3x score has flame rendering and real scheduled burning voices');
@@ -201,12 +186,68 @@ try {
     report.checks.push({engine,browserVersion:browser.version(),channel:process.env.SMOKE_CHROMIUM_CHANNEL||'default',profile:'natural-three-times-target',status:'PASS',seed:'p04-golden-02',character:'touye',selectedIds:ids,finalScore:'1200',target:'400',burstElapsedMs,renderFps,linkedAudio,observation,ordinaryPacing,covered:['natural-wager-straight','every-source-ordered-impact','progressive-individual-card-pace','displayed-score-fire-thresholds','3x-flame-and-burning-audio','real-3x-stamp','score-number-bounce','scheduled-overkill-audio','exact-credit-once','second-table-entry-after-clear','fire-cleanup'],physicalListening:'NOT_RUN',physicalPerformance:'NOT_RUN'});
     await context.close();console.log(`${engine}/natural-3x: ok`);
   }
+  if((checkC00||process.env.SMOKE_FEEDBACK==='1')&&engine===selected[0]){
+    const fixtures=[...(checkC00&&process.env.SMOKE_C00!=='rescue'?[{seed:'c00-hand-8',character:'amo',joker:'d06',profile:'natural-nine-card-hand'}]:[]),{seed:'c00-rescue-51',character:'erxiang',joker:'f07',profile:'natural-last-hand-rescue'}];
+    for(const fixture of fixtures){
+      const viewport={width:390,height:740},context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:3}),page=await context.newPage(),errors=[];activePage=page;page.on('pageerror',e=>errors.push(String(e)));
+      await page.goto(`http://127.0.0.1:${port}/?harness=1&seed=${fixture.seed}`);await waitScene(page,'title');
+      await tapUI(page,'title','action/title-start',true);await waitScene(page,'character-select');await tapUI(page,'character-select','character/'+fixture.character,true);await tapUI(page,'character-select','action/confirm-character',true);await waitScene(page,'shop');
+      const shop=await state(page),offer=shop.shop.offers.find(o=>o.definitionId===fixture.joker&&!o.consumed);assert.ok(offer&&offer.price===6&&shop.gold===6,'natural shelf permits the target purchase without injected state');
+      await tapUI(page,'shop','offer/'+offer.offerId,true);await dom(page,'确认购买',true);await next(page,shop.commandSeq);assert.equal((await state(page)).gold,0);
+      await tapUI(page,'shop','action/start-stage',true);await waitScene(page,'game');await ready(page);
+      if(fixture.joker==='d06'){
+        const initial=await state(page);assert.equal(initial.stage.handLimit,9);assert.equal(initial.handOrder.length,9);assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('game').cardViews.length),9);
+        const ninth=initial.handOrder[8];await revealCard(page,ninth);await tapUI(page,'game','card/'+ninth,true);await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),ninth);
+        for(const sort of ['action/sort-rank','action/sort-suit']){
+          const before=await state(page);await tapUI(page,'game',sort,true);await next(page,before.commandSeq);assert.deepEqual((await state(page)).rng,before.rng);assert.ok(await page.evaluate(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),ninth));
+        }
+        await ready(page);await revealCard(page,ninth);if(saveScreens)await page.screenshot({path:'shots/c00-nine-card-hand.png'});
+        const beforeDiscard=await state(page);await tapUI(page,'game','action/discard',true);await next(page,beforeDiscard.commandSeq);await ready(page);const discarded=await state(page);
+        assert.equal(discarded.stage.handsLeft,4);assert.equal(discarded.stage.discardsLeft,2);assert.equal(discarded.handOrder.length,9);assert.ok(discarded.discardPile.includes(ninth));
+        const held=discarded.handOrder[0];await revealCard(page,held);await tapUI(page,'game','card/'+held,true);await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),held);await tapUI(page,'game','action/play',true);await next(page,discarded.commandSeq);await ready(page);
+        const played=await state(page);assert.equal(played.stage.handsLeft,3);assert.equal(played.handOrder.length,9);assert.ok(BigInt(played.stage.heat)>0n);
+        await page.reload();await waitScene(page,'title');assert.deepEqual(await state(page),played);await tapUI(page,'title','action/title-continue',true);await waitScene(page,'game');await ready(page);assert.deepEqual(await state(page),played);
+        const restoredNinth=played.handOrder[8];await revealCard(page,restoredNinth);await tapUI(page,'game','card/'+restoredNinth,true);await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),restoredNinth);
+        report.checks.push({engine,browserVersion:browser.version(),profile:fixture.profile,status:'PASS',seed:fixture.seed,handLimit:9,viewport,deviceScaleFactor:3,covered:['natural-6-gold-buy','nine-visible-card-models','ninth-card-touch','sort-keeps-selection','discard-refills-nine','play-refills-nine','reload-preserves-complete-state','restored-ninth-card-touch'],physicalDevice:'NOT_RUN'});
+      }else{
+        // Erxiang's low single hands do not amplify: keep the real 400 target and exercise resource warnings before the rescue.
+        for(let discard=0;discard<3;discard++){
+          await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(c=>!c.back?.visible&&c.container.alpha===1));
+          const before=await state(page),id=before.handOrder[0];await revealCard(page,id);await tapUI(page,'game','card/'+id,true);
+          await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),id);await tapUI(page,'game','action/discard',true);await next(page,before.commandSeq);
+          await page.waitForFunction(expected=>{const count=window.__harness.game.scene.getScene('game').resourceCounts.discard;return count.text===String(expected)&&count.scaleX>1.05&&(expected>1||count.style.color==='#ffb391');},before.stage.discardsLeft-1,{timeout:5000});
+          await ready(page);assert.equal((await state(page)).stage.handsLeft,4);
+        }
+        const noDiscards=await state(page),held=noDiscards.handOrder[0];assert.equal(noDiscards.stage.discardsLeft,0);await revealCard(page,held);await tapUI(page,'game','card/'+held,true);
+        await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),held);assert.equal((await point(page,'game','action/discard')).enabled,false,'exhausted discard control stays disabled');
+        await tapUI(page,'game','card/'+held,true);await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').selectedIds.size===0);
+        for(let hand=0;hand<4;hand++){
+          await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(c=>!c.back?.visible&&c.container.alpha===1));
+          await ready(page);const before=await state(page),card=before.handOrder.map(id=>before.deckInstances.find(c=>c.id===id)).sort((a,b)=>a.rank-b.rank)[0];
+          assert.equal(before.stage.handsLeft,4-hand);await revealCard(page,card.id);await tapUI(page,'game','card/'+card.id,true);await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),card.id);
+          if(hand===3)await page.evaluate(()=>{window.__c00RescueObservation=[];window.__c00RescueTimer=setInterval(()=>{const s=window.__harness.game.scene.getScene('game'),id=s.scoreTotal?.getData('eventId'),phase=s.scoreTotal?.getData('eventPhase');if(id&&phase==='impact'&&!window.__c00RescueObservation.some(e=>e.id===id))window.__c00RescueObservation.push({id,label:s.resultText.text,playCount:s.resourceCounts.play.text});},30);});
+          await tapUI(page,'game','action/play',true);await next(page,before.commandSeq);await ready(page);
+          if(hand===2)assert.ok(await page.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return s.resourceCounts.play.style.color==='#ffb391'&&s.statusText.text.includes('最后 1 次出牌');}),'last play remains clearly marked after presentation');
+        }
+        const rescued=await state(page),events=rescued.lastTrace.events.filter(e=>e.phase==='beforeFailure');assert.equal(rescued.phase,'await-input');assert.equal(rescued.stage.handsLeft,1);assert.equal(rescued.stage.playIndex,4);assert.equal(rescued.stage.rescueUsed,true);assert.equal(rescued.safetyNetUsed,true);assert.equal(rescued.gold,0);assert.equal(rescued.jokers.some(j=>j.definitionId==='f07'),false);
+        assert.deepEqual(events.map(e=>e.operation),['rescue-hand','destroy-joker']);assert.equal(events[0].resourceBefore,0);assert.equal(events[0].resourceAfter,1);
+        const observation=await page.evaluate(()=>{clearInterval(window.__c00RescueTimer);return window.__c00RescueObservation;});for(const event of events)assert.ok(observation.some(o=>o.id===event.eventId),'each rescue source has an actual ordered impact');
+        if(saveScreens)await page.screenshot({path:'shots/c00-last-hand-rescue.png'});
+        await page.reload();await waitScene(page,'title');assert.deepEqual(await state(page),rescued);await tapUI(page,'title','action/title-continue',true);await waitScene(page,'game');await ready(page);assert.deepEqual(await state(page),rescued);
+        await dom(page,'菜单',true);await dom(page,'回看上一手',true);await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').isPresenting);await ready(page);assert.deepEqual(await state(page),rescued,'replay uses persisted destroyed source and never refunds again');
+        const last=rescued.handOrder.map(id=>rescued.deckInstances.find(c=>c.id===id)).sort((a,b)=>a.rank-b.rank)[0];await revealCard(page,last.id);await tapUI(page,'game','card/'+last.id,true);await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),last.id);await tapUI(page,'game','action/play',true);await next(page,rescued.commandSeq);await waitScene(page,'intermission');const lost=await state(page);
+        assert.equal(lost.phase,'run-lost');assert.equal(lost.stage.handsLeft,0);assert.equal(lost.stage.playIndex,5);assert.equal(lost.gold,0);assert.equal(lost.lastTrace.events.some(e=>e.operation==='rescue-hand'),false);
+        report.checks.push({engine,browserVersion:browser.version(),profile:fixture.profile,status:'PASS',seed:fixture.seed,observation,rescueEvents:events,viewport,deviceScaleFactor:3,covered:['natural-6-gold-buy','last-discard-pulse','exhausted-discards-disabled','last-play-warning','four-real-single-plays','0-to-1-rescue-source-impact','original-source-destroyed-once','persisted-trace-after-refresh','replay-never-refunds','fifth-play-fails-without-second-rescue'],physicalDevice:'NOT_RUN'});
+      }
+      assert.deepEqual(errors,[]);await context.close();console.log(`${engine}/${fixture.profile}: ok`);
+    }
+  }
   await browser.close();browser=undefined;
   }
 }catch(error){
   report.failure=String(error);
   if(activePage&&!activePage.isClosed())try{
-    report.failureContext=await activePage.evaluate(()=>{const g=window.__harness?.game,s=g?.scene.getScene('game'),r=g?.registry.get('runController');return {phase:r?.state.phase,commandSeq:r?.state.commandSeq,controller:r?.status,playing:s?.playing,presenting:!!s?.presentation,selectedIds:s?[...s.selectedIds]:[],discardEnabled:!!s?.discardButton?.input?.enabled,status:s?.statusText?.text,pointers:g?.input.pointers.map(p=>({id:p.id,touch:p.wasTouch,x:p.x,y:p.y,down:p.timeDown,up:p.timeUp}))};});
+    report.failureContext=await activePage.evaluate(()=>{const g=window.__harness?.game,s=g?.scene.getScene('game'),r=g?.registry.get('runController');return {phase:r?.state.phase,commandSeq:r?.state.commandSeq,controller:r?.status,playing:s?.playing,presenting:!!s?.presentation,eventId:s?.scoreTotal?.getData('eventId'),eventPhase:s?.scoreTotal?.getData('eventPhase'),label:s?.resultText?.text,renderFps:g?.loop.actualFps,hidden:document.hidden,selectedIds:s?[...s.selectedIds]:[],discardEnabled:!!s?.discardButton?.input?.enabled,status:s?.statusText?.text,pointers:g?.input.pointers.map(p=>({id:p.id,touch:p.wasTouch,x:p.x,y:p.y,down:p.timeDown,up:p.timeUp}))};});
     console.error(JSON.stringify(report.failureContext));if(saveScreens)await activePage.screenshot({path:'shots/smoke-failure.png'});
   }catch{/* Keep the original failure even if the failed page cannot be read. */}
   throw error;

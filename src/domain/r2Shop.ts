@@ -1,16 +1,18 @@
-import {R2_JOKERS, type R2JokerDefinition} from '../content/r2Schema';
+import {R2_JOKERS,readR2Modifiers,supportsR2Joker,type R2JokerDefinition,type R2JokerInstance} from '../content/r2Schema';
 import type {SeededRng} from '../core/SeededRng';
 export const R2_ECONOMY={initialGold:6,shelfSlots:3,prices:{common:4,uncommon:6,rare:8},weights:{common:5,uncommon:3,rare:2},rerollStart:2,rerollCap:10} as const;
 export interface R2Offer {offerId:string;definitionId:string;price:number;consumed:boolean}
-export interface R2ShopState {visitIndex:number;rerollCount:number;offers:R2Offer[]}
+export interface R2ShopState {visitIndex:number;rerollCount:number;purchases:number;offers:R2Offer[]}
+interface PurchaseContext {purchaseCoupons:number;jokers?:readonly R2JokerInstance[];shop?:Pick<R2ShopState,'purchases'>|null}
 export function getR2Joker(id:string):R2JokerDefinition {
   const definition=R2_JOKERS.find(d=>d.id===id);if(!definition)throw new Error(`unknown-joker: ${id}`);return definition;
 }
 export const r2Price=(id:string):number=>R2_ECONOMY.prices[getR2Joker(id).rarity];
-export const r2PurchasePrice=(state:{purchaseCoupons:number},offer:R2Offer):number=>Math.max(1,offer.price-(state.purchaseCoupons>0?2:0));
+export const r2PurchaseDiscount=(state:PurchaseContext):number=>(state.purchaseCoupons>0?2:0)+(state.shop?.purchases===0?readR2Modifiers(state.jokers??[],R2_JOKERS).firstPurchaseDiscount:0);
+export const r2PurchasePrice=(state:PurchaseContext,offer:R2Offer):number=>Math.max(1,offer.price-r2PurchaseDiscount(state));
 export const salePrice=(paidPrice:number):number=>Math.max(1,Math.floor(paidPrice/2));
 export const rerollPrice=(count:number):number=>Math.min(R2_ECONOMY.rerollCap,R2_ECONOMY.rerollStart+count);
-export const r2Pool=(owned:readonly string[]):R2JokerDefinition[]=>R2_JOKERS.filter(d=>!owned.includes(d.id));
+export const r2Pool=(owned:readonly string[],excluded:readonly string[]=[]):R2JokerDefinition[]=>R2_JOKERS.filter(d=>!owned.includes(d.id)&&!excluded.includes(d.id)&&supportsR2Joker(d));
 function pick(rng:SeededRng,pool:readonly R2JokerDefinition[]):R2JokerDefinition {
   const total=pool.reduce((sum,d)=>sum+R2_ECONOMY.weights[d.rarity],0);
   let weight=rng.integer(1,total);

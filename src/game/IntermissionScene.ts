@@ -7,6 +7,7 @@ import {HAND_LABELS} from '../content/handLabels';
 import {rankLabel,SUIT_SYMBOL} from '../cards/types';
 import type {ScoreTrace} from '../domain/scoreR2';
 import {heatText,fractionText} from './scoreText';
+import {r2ScoreOperationText} from './r2Help';
 import {runController,dispatchRun,startRun} from './runAdapter';
 import {gameSession} from './session';
 import {getCharacter} from './characters';
@@ -172,10 +173,12 @@ export class IntermissionScene extends Phaser.Scene {
   private inspectLastHand():void {
     const run=runController(this)!.state,trace=run.lastTrace;if(!trace)return;
     const cardName=(id:string)=>{const c=run.deckInstances.find(c=>c.id===id);return c?rankLabel(c.rank)+SUIT_SYMBOL[c.suit]:'已移除的牌';};
-    const lines=trace.events.filter(e=>e.phase!=='afterHand').map(e=>{
+    const lines=trace.events.map(e=>{
       const source=e.sourceType==='joker'?getR2Joker(e.sourceDefinitionId).name:e.sourceType==='character'?getCharacter(run.characterId).name:e.sourceType==='card'?cardName(e.targetCardId??e.sourceInstanceId):e.sourceDefinitionId==='B02'?'压轴规则':'牌型';
-      const operation=({'base':'基础','add-heat':'+热度','add-multiplier':'+倍率','multiply-multiplier':'×倍率','ordinary-points-suppressed':'普通点数归零','final-score':'最终得分','add-growth':'成长','retrigger-card':'重触发','retrigger-cap':'重触发上限'} as Record<string,string>)[e.operation]??'触发';
-      return `${source} · ${operation} ${fractionText(e.value)} → ${fractionText(e.after.H)} 热度 × ${fractionText(e.after.M)} 倍率`;
+      if(e.phase==='base')return `${source} · 基础 ${fractionText(e.after.H)} 热度 × ${fractionText(e.after.M)} 倍率`;
+      if(e.phase==='finalScore')return `最终得分 ${heatText(trace.finalScore)} 热度`;
+      const operation=r2ScoreOperationText(e),status=['afterHand','beforeFailure','onStageClear'].includes(e.phase);
+      return `${source} · ${operation}`+(status?'':` → ${fractionText(e.after.H)} 热度 × ${fractionText(e.after.M)} 倍率`);
     });
     const body=`${HAND_LABELS[trace.handType]} Lv.${trace.level} · ${heatText(trace.finalScore)} 热度\n打出：${trace.sets.playedIds.map(cardName).join('、')}\n实际计分：${trace.sets.activeScoringIds.map(cardName).join('、')||'无'}\n\n${fractionText(trace.accumulator.H)} × ${fractionText(trace.accumulator.M)} = ${heatText(trace.finalScore)}\n\n`+lines.join('\n');
     this.dialog.open('最后一手 · 已保存的结算',body);

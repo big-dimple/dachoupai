@@ -1,0 +1,361 @@
+{
+  "taskId": "C00",
+  "testedCommit": "d7c503b9ec131397978be15439391f3c4eee74f8",
+  "status": "DONE",
+  "scope": "C00 engineering candidate: exact second24, cumulative48. No C01 enhancement/edition/new-family implementation, no C02 B12 or new Boss rules. Formal art and physical/human acceptance remain separate.",
+  "decision": "D23",
+  "contentVersion": "quality-r2-content-v5",
+  "contentHash": "json-fnv-v1:b413ab428651dade",
+  "batch": [
+    "a04",
+    "a06",
+    "a07",
+    "a08",
+    "b05",
+    "b06",
+    "b07",
+    "b08",
+    "c03",
+    "c05",
+    "c07",
+    "c08",
+    "d02",
+    "d04",
+    "d06",
+    "d07",
+    "e02",
+    "e04",
+    "e06",
+    "e07",
+    "f04",
+    "f05",
+    "f06",
+    "f07"
+  ],
+  "treeIdentity": {
+    "method": "testedCommit identifies the real base only. These normalized-LF fingerprints identify the reviewed final dirty inputs; delivered commit contains them. Full integration used identical runtime, with the rescue-only harness selector added afterward; the final low-FPS regression executes that selector. Earlier RED attempts are explicitly separate trees, not claimed to be this final tree.",
+    "modified": true,
+    "files": [
+      {
+        "file": "harness/screenshot.mjs",
+        "normalizedLfSha256": "3e927f3e7372554a8e07f14e7bb8d0f5049047a59ff8c477c9ccb86c12f6611d"
+      },
+      {
+        "file": "scripts/verify-content.mjs",
+        "normalizedLfSha256": "9179e32c038339a557f541fba5831ad64f19b3ea79ceedb58aa6d080c6e85649"
+      },
+      {
+        "file": "src/application/checkpoint.ts",
+        "normalizedLfSha256": "a74054d46cfcf11a0b1524b0a6a9e7c32f063715c872d750a95939723d046a66"
+      },
+      {
+        "file": "src/content/r2-jokers.json",
+        "normalizedLfSha256": "ae1355a6a6b6b8140d90c6b67a0476c2357650621e56c004eb80b3165f2bd28c"
+      },
+      {
+        "file": "src/content/r2Schema.ts",
+        "normalizedLfSha256": "e5718faa6be810294a2a0cc0500bbd99fa53c3658a1ac9aaade01f1386632517"
+      },
+      {
+        "file": "src/domain/r2Run.ts",
+        "normalizedLfSha256": "71129eef8aed9ea8aeee0eb32d7c4118752704ed5e710b000bb3987fb2b814e7"
+      },
+      {
+        "file": "src/domain/r2Shop.ts",
+        "normalizedLfSha256": "7ab4e4a1118366a17627ca13a2ce7b9dd4162f3fe0844b0bbc93595463a78bde"
+      },
+      {
+        "file": "src/domain/run.ts",
+        "normalizedLfSha256": "0acc77a16251597f7aa12b99184c7333f76772c42f3e75866f179b7a9e7d4efb"
+      },
+      {
+        "file": "src/domain/scoreR2.ts",
+        "normalizedLfSha256": "55821abb6c29a3591169d119d88f5b37fefec0db8591131ea90ffaa2d2e5d9b8"
+      },
+      {
+        "file": "src/game/GameScene.ts",
+        "normalizedLfSha256": "48089314ea7aa8a3a5dc5e23b53307a70fe5b24b82babab063c3a157cb183221"
+      },
+      {
+        "file": "src/game/IntermissionScene.ts",
+        "normalizedLfSha256": "fefac9bd039c9a8d878757a9255ef0543798ee67b8b630b34d378db608dd7e92"
+      },
+      {
+        "file": "src/game/SceneView.ts",
+        "normalizedLfSha256": "9aa0dda45fb9e1ed2831e0b4fbda47b456cb465db1fb72ca159600cccde7acf5"
+      },
+      {
+        "file": "src/game/ShopScene.ts",
+        "normalizedLfSha256": "a7c5208f2b48835aab5f50b5c6130edf5ba2cd245967286caf289e57e74a4696"
+      },
+      {
+        "file": "src/game/layout.ts",
+        "normalizedLfSha256": "8f99d6e7675780c322bb87c23e57d603fcc5ca33bbc469aa36ef2a59235130a0"
+      },
+      {
+        "file": "src/game/scorePresentation.ts",
+        "normalizedLfSha256": "79f46097b43071d9a305d50db22e55f95a5df046e1da7d2a7e7f0a4f0a2a7616"
+      },
+      {
+        "file": "tests/characters.test.ts",
+        "normalizedLfSha256": "82d7aa70060dacb1a5e77e15fc7a0f6ebb2ef80c5b25dc3a1043c5cc01ae58e8"
+      },
+      {
+        "file": "tests/content-schema.test.ts",
+        "normalizedLfSha256": "88e89c866c8a5cc0ba35db39e48cfe048f8ab52a97a4fcdc6a3e3d3c890ba230"
+      },
+      {
+        "file": "tests/joker-art.test.ts",
+        "normalizedLfSha256": "24a3459671fde4e07f035a5dd710bb15d0c292beba09a3792bfa892944de1e7d"
+      },
+      {
+        "file": "tests/layout.test.ts",
+        "normalizedLfSha256": "a79367be6e2c6f389d6a6ce5ebd5b0dfd29a10666d2512ca62630a0d2d81415f"
+      },
+      {
+        "file": "tests/r2-starting-profile.test.ts",
+        "normalizedLfSha256": "9e5d8c5acb88b94979bc73b061c10243e12cb8f1e35f5b5eeff3fc4cab9062a1"
+      },
+      {
+        "file": "tests/stageNotice.test.ts",
+        "normalizedLfSha256": "49d5ee73cb44c1634e764bb60883a5845d4195551db043ac8fe0025ef31572fb"
+      },
+      {
+        "file": "tests/v00-score.test.ts",
+        "normalizedLfSha256": "747dbf9d9b895c4e7152c9022b83d9d5f3aa11d7c313010cf22dbd669aea2d53"
+      },
+      {
+        "file": "vite.config.ts",
+        "normalizedLfSha256": "2ade8f7b0946bff0267cb5f98add46cc869fa5a3e957fea452c31346f206c912"
+      },
+      {
+        "file": "src/game/r2Help.ts",
+        "normalizedLfSha256": "e0f0f7b00e41c6c803c43a087b1dbf84b0598b2463812084e88a525f6b433ed6"
+      },
+      {
+        "file": "tests/c00-score.test.ts",
+        "normalizedLfSha256": "cd3ec70eaaa9b7dd697680d1bcffd357469b9a99845bdae1419071946439edca"
+      },
+      {
+        "file": "tests/c00-transactions.test.ts",
+        "normalizedLfSha256": "28a73e5c62c9628fc747c97dfb7053f798b4e546abf226963ba727f5bb8ffc3c"
+      },
+      {
+        "file": "tests/r2-ui.test.ts",
+        "normalizedLfSha256": "8b756d24001a01d165ec79d8b3c627adbb6ce66aad661e2d06f2593e4b8dd0c4"
+      },
+      {
+        "file": "package.json",
+        "normalizedLfSha256": "7d104ccfc5211c080dde1077555cb6b5183358a8ef3808ec9c7f6bc0afd2712c"
+      },
+      {
+        "file": "package-lock.json",
+        "normalizedLfSha256": "c81fc4774920bda2d478e3097f08dea9fe66551b00e1f79ea3e704894defdc18"
+      }
+    ]
+  },
+  "buildArtifacts": {
+    "production": [
+      {
+        "file": "dist/assets/index-Dl51sGFE.css",
+        "bytes": 10119,
+        "sha256": "94a4ebe02a5c0c10dadd84b3467cbf5a3f2883c8f62275cbd486e51f693d1840"
+      },
+      {
+        "file": "dist/assets/index-rUEagdve.js",
+        "bytes": 1524228,
+        "sha256": "5bdcccf4e6c5f82c649d90c7174f00e41f629f3c679d4e826576dc8ba2a8ce5e"
+      }
+    ],
+    "e2e": [
+      {
+        "file": "shots/smoke-build/assets/index-Co9GF20K.js",
+        "bytes": 1524323,
+        "sha256": "8d1e58bd0b50d31b983bd00b5e6af98e25a7b757f66057a316d72d78a4250073"
+      },
+      {
+        "file": "shots/smoke-build/assets/index-Dl51sGFE.css",
+        "bytes": 10119,
+        "sha256": "94a4ebe02a5c0c10dadd84b3467cbf5a3f2883c8f62275cbd486e51f693d1840"
+      }
+    ],
+    "productionBuildInfo": {
+      "version": "C00",
+      "revision": "d7c503b9ec131397978be15439391f3c4eee74f8",
+      "modified": true,
+      "builtAt": "2026-10-01T18:57:58.779Z"
+    }
+  },
+  "checks": [
+    {
+      "command": "npx vitest run tests/c00-score.test.ts",
+      "status": "FAIL (expected RED)",
+      "result": "29 genuine failures on old24 behavior before implementation.",
+      "log": "docs/production/evidence/c00-2026-10-02/c00-score-red.log"
+    },
+    {
+      "command": "npx vitest run tests/content-schema.test.ts",
+      "status": "FAIL (expected RED)",
+      "result": "Malformed operation could throw TypeError during capability derivation; validation now rejects it before feature inference.",
+      "log": "docs/production/evidence/c00-2026-10-02/c00-schema-malformed-red.log"
+    },
+    {
+      "command": "npx vitest run tests/c00-transactions.test.ts",
+      "status": "FAIL (expected RED)",
+      "result": "22 cases:20 failed/2 passed after definitions existed, isolating actual mechanism transactions rather than missing IDs.",
+      "log": "docs/production/evidence/c00-2026-10-02/transactions-red-mechanics.log"
+    },
+    {
+      "command": "npx vitest run tests/c00-transactions.test.ts",
+      "status": "FAIL (expected RED)",
+      "result": "26 cases:24 passed/2 failed for missing persisted clear sources and missing event-cap rollback. Intermediate rerun retained one test-count mistake (five pre-clear events, not six); exact score136/gold20 never changed.",
+      "logs": [
+        "docs/production/evidence/c00-2026-10-02/clear-sources-red.log",
+        "docs/production/evidence/c00-2026-10-02/clear-sources-after-append.log"
+      ]
+    },
+    {
+      "command": "npx vitest run tests/c00-score.test.ts tests/content-schema.test.ts tests/rules.test.ts tests/v00-score.test.ts tests/rational.test.ts tests/SeededRng.test.ts",
+      "status": "PASS",
+      "result": "6 files/122 tests; independent math/set/retrigger/lifetime/counter goldens, existing scores retained.",
+      "log": "docs/production/evidence/c00-2026-10-02/c00-score-green.log"
+    },
+    {
+      "command": "npx vitest run tests/c00-transactions.test.ts",
+      "status": "PASS",
+      "result": "26/26: real commands, failure/retry rollback, trade/clear economics, once-only rescue, persisted lifecycle sources, v4 raw-payload/version rejection.",
+      "log": "docs/production/evidence/c00-2026-10-02/clear-sources-green.log"
+    },
+    {
+      "command": "npm test",
+      "status": "FAIL",
+      "result": "35 files:348 passed/1 failed. Sole failure was an already-stale PNG path assertion against accepted P07 WebP resources; no scoring expectation failed.",
+      "log": "docs/production/evidence/c00-2026-10-02/c00-unit-final.log"
+    },
+    {
+      "command": "npx vitest run tests/characters.test.ts",
+      "status": "PASS",
+      "result": "6/6 after strengthening asset assertions to six unique P07 paths and actual WEBP signatures. Full suite NOT_RERUN; preceding 348 passes plus this targeted resolution are reported separately.",
+      "log": "docs/production/evidence/c00-2026-10-02/c00-characters-green.log"
+    },
+    {
+      "command": "Node assert.deepEqual of every original24 definition against git show d7c503b:src/content/r2-jokers.json",
+      "status": "PASS",
+      "result": "Original24 full JSON definitions unchanged; current48 has exactly24 additions.",
+      "log": "docs/production/evidence/c00-2026-10-02/c00-original24-unchanged.log"
+    },
+    {
+      "command": "npm run verify:content",
+      "status": "PASS",
+      "result": "48/v5; conservative event bound185 under512; command read-only.",
+      "log": "docs/production/evidence/c00-2026-10-02/c00-content-final.log"
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "result": "Actual tsc and production Vite build after both clock corrections;69 modules, JS gzip434.30kB.",
+      "log": "docs/production/evidence/c00-2026-10-02/c00-production-final.log"
+    },
+    {
+      "command": "SMOKE_FEEDBACK=1 SMOKE_C00=1 SMOKE_SHOTS=1 npm run verify:smoke",
+      "status": "FAIL",
+      "result": "Desktop passed; mobile math/state committed325 but presentation was still in a long Scene Clock wait. Actual low-FPS snapshots show smoothing delta16.67 per frame; replaced presentation waits with shared animation clock.",
+      "logs": [
+        "docs/production/evidence/c00-2026-10-02/c00-smoke-final.log",
+        "docs/production/evidence/c00-2026-10-02/c00-smoke-red.json",
+        "docs/production/evidence/c00-2026-10-02/c00-smoke-red-tree.json",
+        "docs/production/evidence/c00-2026-10-02/c00-ui-touch-play-hang.json",
+        "docs/production/evidence/c00-2026-10-02/c00-ui-visual.log"
+      ]
+    },
+    {
+      "command": "SMOKE_FEEDBACK=1 SMOKE_C00=1 SMOKE_SHOTS=1 npm run verify:smoke (after wait correction)",
+      "status": "FAIL",
+      "result": "Desktop passed; stale critical-resource fixture naturally cleared400 at479. Removed that assumption and moved resource warnings into natural F07 path; score/target unchanged.",
+      "logs": [
+        "docs/production/evidence/c00-2026-10-02/c00-clock-green-fixture-red.log",
+        "docs/production/evidence/c00-2026-10-02/c00-critical-fixture-red.json"
+      ]
+    },
+    {
+      "command": "SHOT_PROFILES=mobile SMOKE_FEEDBACK=1 SMOKE_C00=1 SMOKE_SHOTS=1 SMOKE_REUSE_BUILD=1 npm run verify:smoke",
+      "status": "FAIL",
+      "result": "Mobile full path passed. Software-renderer natural1200/400/gold14 fired1→3 at about3.08FPS, missing sampled level2. Kept strict threshold expectations and reran this visual timing path on full Chromium; never changed score goldens or generated fictitious frames.",
+      "logs": [
+        "docs/production/evidence/c00-2026-10-02/c00-mobile-green-fire-sampling-red.log",
+        "docs/production/evidence/c00-2026-10-02/c00-fire-sampling-red.json"
+      ]
+    },
+    {
+      "command": "SMOKE_C00=only SMOKE_SHOTS=1 SMOKE_REUSE_BUILD=1 npm run verify:smoke",
+      "status": "FAIL",
+      "result": "Natural9 passed; F07 rescue/refresh/read-only replay passed, then actual failure state122/400 remained on table beyond30s at3FPS. Replaced the1000ms victory/defeat transition Scene Clock timer with TweenManager plus the original lifecycle guard.",
+      "logs": [
+        "docs/production/evidence/c00-2026-10-02/c00-loss-transition-red.log",
+        "docs/production/evidence/c00-2026-10-02/c00-loss-transition-red.json"
+      ]
+    },
+    {
+      "command": "SHOT_PROFILES=desktop,mobile SMOKE_FEEDBACK=1 SMOKE_C00=1 SMOKE_SHOTS=1 SMOKE_CHROMIUM_CHANNEL=chromium npm run verify:smoke",
+      "status": "PASS",
+      "result": "Fresh compiled e2e bundle after both clock fixes: desktop/mobile, natural1200/400/gold14 ordered sources+progressive beats+flames1/2/3+scheduled audio+reentry cleanup, natural9, natural F07 rescue/restore/replay/fifth-play defeat.",
+      "logs": [
+        "docs/production/evidence/c00-2026-10-02/c00-integration-green.log",
+        "docs/production/evidence/c00-2026-10-02/c00-integration-green.json"
+      ],
+      "browserVersion": "153.0.8010.12",
+      "naturalRenderFps": 55.0889892578125,
+      "physicalPerformance": "NOT_RUN",
+      "physicalListening": "NOT_RUN"
+    },
+    {
+      "command": "SMOKE_C00=rescue SMOKE_SHOTS=1 SMOKE_REUSE_BUILD=1 npm run verify:smoke",
+      "status": "PASS",
+      "result": "Final targeted regression in the original default headless environment: ordinary touch, three discards/warnings, four single plays, saved0→1 rescue, destroyed-source replay, fifth play fails and reaches intermission within original30s wait. No full matrix repeat.",
+      "logs": [
+        "docs/production/evidence/c00-2026-10-02/c00-low-fps-rescue-green.log",
+        "docs/production/evidence/c00-2026-10-02/c00-low-fps-rescue-green.json"
+      ],
+      "physicalDevice": "NOT_RUN"
+    },
+    {
+      "command": "node --check harness/screenshot.mjs; git diff --check; node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "result": "Syntax/whitespace/plan structural checks only; cannot certify subjective quality.",
+      "log": "docs/production/evidence/c00-2026-10-02/c00-closeout.log"
+    }
+  ],
+  "naturalUI": {
+    "status": "PASS",
+    "evidence": "docs/production/evidence/c00-2026-10-02/c00-integration-green.json",
+    "touchMethod": "Actual Playwright touchscreen.tap / DOM button.tap; read-only state/geometry observations, no state injection",
+    "screenshots": [
+      "docs/production/evidence/c00-2026-10-02/c00-nine-card-hand.webp",
+      "docs/production/evidence/c00-2026-10-02/c00-last-hand-rescue.webp"
+    ],
+    "humanVisualAcceptance": "NOT_GRANTED"
+  },
+  "saveRecovery": {
+    "status": "PASS",
+    "scope": "C00 v5 complete-state refresh/continue and destroyed-source read-only replay; duplicate commands do not refund or award twice.",
+    "legacyV4BrowserExport": "NOT_RUN",
+    "legacyV4DomainRawPreservation": "PASS"
+  },
+  "documents": {
+    "status": "PASS",
+    "scope": "Reviewed M0–M9 and user request mapping. Fixed stale ART suspension, expanded C02/C04 reads and steps, enforced existing A03 human batch gate, clarified preservation of all released old versions includingv5. Future exact family counts, lucky probabilities and edition matrix remain C01.1 design work. Resume instructions now explicitly follow the real plan pointer without reopening already approved or completed packages."
+  },
+  "limitations": {
+    "physicalAndroid": "NOT_RUN for this new C00 candidate",
+    "iPhoneSafari": "NOT_RUN",
+    "physicalListening": "NOT_RUN",
+    "thirtyMinuteHundredSceneSoak": "NOT_RUN",
+    "freshColdLoadBudget": "NOT_RUN for C00; prior A02 evidence is historical, not a C00 result",
+    "balance": "NOT_RUN (B00)",
+    "new24FormalArt": "NOT_GRANTED (labeled engineering motifs; A03 required)",
+    "formalMultiPlayerV01": "BLOCKED",
+    "finalL01": "NOT_RUN",
+    "deployment": "USER_OWNED; not performed or claimed by development agent"
+  },
+  "next": "C01.1: finalize family definitions/acquisition/prices/probabilities/risk/caps, enhancement and edition matrix/order, version policy and independent goldens before C01.2 implementation."
+}

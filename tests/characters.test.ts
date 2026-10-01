@@ -1,10 +1,15 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
 import { CHARACTERS, resolveCharacterModifier } from '../src/game/characters';
 
 describe('character portrait config', () => {
   it('六位角色的立绘路径均指向自己的资源文件', () => {
+    expect(new Set(CHARACTERS.map(character=>character.portrait)).size).toBe(6);
     for (const character of CHARACTERS) {
-      expect(character.portrait).toContain(`assets/characters/${character.id}.png`);
+      expect(character.portrait).toContain(`assets/characters-p07/${character.id}.portrait.webp`);
+      const relative=character.portrait.slice(character.portrait.indexOf('assets/'));
+      const bytes=readFileSync(new URL('../public/'+relative,import.meta.url));
+      expect(bytes.subarray(8,12).toString()).toBe('WEBP');
     }
   });
   it('focal 对焦点都在 0~1 有效区间内', () => {

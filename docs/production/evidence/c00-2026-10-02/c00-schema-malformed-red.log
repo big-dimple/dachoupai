@@ -1,0 +1,27 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/content-schema.test.ts (30 tests | 1 failed) 14ms
+     × returns diagnostics for malformed hooks even when a feature manifest is present 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/content-schema.test.ts > content schema rejects unsafe and unknown data > returns diagnostics for malformed hooks even when a feature manifest is present
+TypeError: Cannot read properties of null (reading 'kind')
+ ❯ actualFeatures src/content/r2Schema.ts:101:13
+     99|     else features.add('score-hooks');
+    100|     for(const op of hook.operations) {
+    101|       if(op.kind==='retrigger-card')features.add('retrigger');
+       |             ^
+    102|       if(op.kind==='update-score-growth')features.add('score-growth');
+    103|       if(op.kind==='expire-after-hands')features.add('hand-lifetime');
+ ❯ validateR2Content src/content/r2Schema.ts:212:22
+ ❯ tests/content-schema.test.ts:9:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 29 passed (30)
+   Start at  01:43:01
+   Duration  509ms (transform 117ms, setup 0ms, import 159ms, tests 14ms, environment 0ms)

@@ -1,0 +1,135 @@
+{
+  "testedCommit": "d7c503b9ec131397978be15439391f3c4eee74f8",
+  "dirty": "M README.md\n M docs/development-handoff.md\n M docs/production/ART.md\n M docs/production/CONTENT.md\n M docs/production/DECISIONS.md\n M docs/production/ENGINEERING.md\n M docs/production/INDEX.md\n M docs/production/RULES.md\n M docs/production/WORK_PACKAGES.md\n M docs/production/plan.json\n M harness/screenshot.mjs\n M scripts/verify-content.mjs\n M src/application/checkpoint.ts\n M src/content/r2-jokers.json\n M src/content/r2Schema.ts\n M src/domain/r2Run.ts\n M src/domain/r2Shop.ts\n M src/domain/run.ts\n M src/domain/scoreR2.ts\n M src/game/GameScene.ts\n M src/game/IntermissionScene.ts\n M src/game/SceneView.ts\n M src/game/ShopScene.ts\n M src/game/layout.ts\n M src/game/scorePresentation.ts\n M tests/characters.test.ts\n M tests/content-schema.test.ts\n M tests/joker-art.test.ts\n M tests/layout.test.ts\n M tests/r2-starting-profile.test.ts\n M tests/stageNotice.test.ts\n M tests/v00-score.test.ts\n M vite.config.ts\n?? docs/production/evidence/C00-2026-10-02.json\n?? docs/production/evidence/c00-2026-10-02/\n?? src/game/r2Help.ts\n?? tests/c00-score.test.ts\n?? tests/c00-transactions.test.ts\n?? tests/r2-ui.test.ts",
+  "checks": [
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "profile": "natural-last-hand-rescue",
+      "status": "PASS",
+      "seed": "c00-rescue-51",
+      "observation": [
+        {
+          "id": "run/c00-rescue-51/erxiang/hand/run/c00-rescue-51/erxiang/command/11/event/1",
+          "label": "6♠ · +6 热度",
+          "playCount": "0"
+        },
+        {
+          "id": "run/c00-rescue-51/erxiang/hand/run/c00-rescue-51/erxiang/command/11/event/3",
+          "label": "安全网 · 返还 1 次出牌 · 0 → 1",
+          "playCount": "1"
+        },
+        {
+          "id": "run/c00-rescue-51/erxiang/hand/run/c00-rescue-51/erxiang/command/11/event/4",
+          "label": "安全网 · 救场完成 · 销毁此实例",
+          "playCount": "1"
+        }
+      ],
+      "rescueEvents": [
+        {
+          "eventId": "run/c00-rescue-51/erxiang/hand/run/c00-rescue-51/erxiang/command/11/event/3",
+          "rootId": "run/c00-rescue-51/erxiang/hand/run/c00-rescue-51/erxiang/command/11",
+          "rootEventId": "run/c00-rescue-51/erxiang/hand/run/c00-rescue-51/erxiang/command/11/event/3",
+          "phase": "beforeFailure",
+          "sourceType": "joker",
+          "sourceDefinitionId": "f07",
+          "sourceInstanceId": "run/c00-rescue-51/erxiang/joker/run/c00-rescue-51/erxiang/command/2",
+          "operation": "rescue-hand",
+          "value": {
+            "n": "1",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "26",
+              "d": "1"
+            },
+            "M": {
+              "n": "1",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "26",
+              "d": "1"
+            },
+            "M": {
+              "n": "1",
+              "d": "1"
+            }
+          },
+          "reasonKey": "f07.rescue-hand",
+          "visibleCondition": {
+            "kind": "exhausted-hands"
+          },
+          "retriggerDepth": 0,
+          "resourceBefore": 0,
+          "resourceAfter": 1
+        },
+        {
+          "eventId": "run/c00-rescue-51/erxiang/hand/run/c00-rescue-51/erxiang/command/11/event/4",
+          "rootId": "run/c00-rescue-51/erxiang/hand/run/c00-rescue-51/erxiang/command/11",
+          "rootEventId": "run/c00-rescue-51/erxiang/hand/run/c00-rescue-51/erxiang/command/11/event/3",
+          "phase": "beforeFailure",
+          "sourceType": "joker",
+          "sourceDefinitionId": "f07",
+          "sourceInstanceId": "run/c00-rescue-51/erxiang/joker/run/c00-rescue-51/erxiang/command/2",
+          "operation": "destroy-joker",
+          "value": {
+            "n": "0",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "26",
+              "d": "1"
+            },
+            "M": {
+              "n": "1",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "26",
+              "d": "1"
+            },
+            "M": {
+              "n": "1",
+              "d": "1"
+            }
+          },
+          "reasonKey": "f07.destroy-joker",
+          "visibleCondition": {
+            "kind": "exhausted-hands"
+          },
+          "retriggerDepth": 0,
+          "resourceBefore": 1,
+          "resourceAfter": 1
+        }
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "deviceScaleFactor": 3,
+      "covered": [
+        "natural-6-gold-buy",
+        "last-discard-pulse",
+        "exhausted-discards-disabled",
+        "last-play-warning",
+        "four-real-single-plays",
+        "0-to-1-rescue-source-impact",
+        "original-source-destroyed-once",
+        "persisted-trace-after-refresh",
+        "replay-never-refunds",
+        "fifth-play-fails-without-second-rescue"
+      ],
+      "physicalDevice": "NOT_RUN"
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "build": "existing shots/smoke-build (SMOKE_REUSE_BUILD=1)"
+}

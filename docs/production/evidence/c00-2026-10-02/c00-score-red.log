@@ -1,0 +1,371 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai
+
+ ❯ tests/c00-score.test.ts (29 tests | 29 failed) 33ms
+     × publishes only the original 24 and the exact authorized second batch 12ms
+     × a06 has positive, negative, deterministic and saved-input evidence 3ms
+     × a08 has positive, negative, deterministic and saved-input evidence 1ms
+     × b05 has positive, negative, deterministic and saved-input evidence 1ms
+     × b06 has positive, negative, deterministic and saved-input evidence 1ms
+     × b07 has positive, negative, deterministic and saved-input evidence 1ms
+     × c03 has positive, negative, deterministic and saved-input evidence 1ms
+     × c07 has positive, negative, deterministic and saved-input evidence 1ms
+     × d04 has positive, negative, deterministic and saved-input evidence 1ms
+     × d07 has positive, negative, deterministic and saved-input evidence 1ms
+     × f04 has positive, negative, deterministic and saved-input evidence 1ms
+     × A08/C03 see active scoring cards rather than low or black kickers/held cards 1ms
+     × B05 counts a disabled partner in played but only the active cards receive +15H 1ms
+     × B06 repeats ordinary points and B02 card effects, without repeating whole-hand or character effects 1ms
+     × B07/D07 require every played card to be active, and B07 additionally requires at least two 1ms
+     × C07 chooses the last original active scoring card and repeats its effects only once 0ms
+     × D02 takes only the first four eligible held 2–5, before characterScore 1ms
+     × D04 uses even legal playIndex and the first active original card, with stacked sources in slot order 0ms
+     × A06 and F04 remain ordered after the character and each other 0ms
+     × C08 enables A234 and four consecutive ranks while five-card and four-card flush priority stay explicit 0ms
+     × C05 consumes only its pending heat once at its jokerScore slot, with the reset in the same trace 1ms
+     × F05 grows from actual floored score only after scoring, resets on equal/lower, and preserves growth on a stage first hand 1ms
+     × F05 uses exact serialized scores, validates input and stays deterministic under public previews 1ms
+     × F06 applies x2 through the fourth actual hand, then emits a deterministic destruction without changing H/M 1ms
+     × F06 counts legal hands even if every scoring card is disabled and other afterHand growth still runs 0ms
+     × A04 is conditional on the persistent deck count; D06, E02 and E04 publish exact static modifiers 0ms
+     × validates finite, per-definition lifecycle counters and rejects fabricated state 0ms
+     × declares supported features for all new definitions and never enables a missing capability 0ms
+     × keeps every C00 declared source within the 512-event budget, including mixed repeated card hooks 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 29 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > publishes only the original 24 and the exact authorized second batch
+AssertionError: expected [ 'a03', 'a05', 'b02', 'b03', …(20) ] to deeply equal [ 'a03', 'a04', 'a05', 'a06', …(44) ]
+
+- Expected
++ Received
+
+@@ -1,48 +1,24 @@
+  [
+    "a03",
+-   "a04",
+    "a05",
+-   "a06",
+-   "a07",
+-   "a08",
+    "b02",
+    "b03",
+    "b04",
+-   "b05",
+-   "b06",
+-   "b07",
+-   "b08",
+    "c02",
+-   "c03",
+    "c04",
+-   "c05",
+    "c06",
+-   "c07",
+-   "c08",
+    "d01",
+-   "d02",
+    "d03",
+-   "d04",
+    "d05",
+-   "d06",
+-   "d07",
+    "d10",
+    "e01",
+-   "e02",
+    "e03",
+-   "e04",
+    "e05",
+-   "e06",
+-   "e07",
+    "e08",
+    "f02",
+    "f03",
+-   "f04",
+-   "f05",
+-   "f06",
+-   "f07",
+    "f09",
+    "huimaqiang",
+    "jiedongfeng",
+    "mantangcai",
+    "pengci",
+
+ ❯ tests/c00-score.test.ts:32:43
+     30| describe('C00 independently calculated score and set goldens', () => {
+     31|   it('publishes only the original 24 and the exact authorized second b…
+     32|     expect(R2_JOKERS.map(d=>d.id).sort()).toEqual([...originalBatch, .…
+       |                                           ^
+     33|     expect(schema.validateR2Content(R2_JOKERS)).toEqual([]);
+     34|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > a06 has positive, negative, deterministic and saved-input evidence
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > a08 has positive, negative, deterministic and saved-input evidence
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > b05 has positive, negative, deterministic and saved-input evidence
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > b06 has positive, negative, deterministic and saved-input evidence
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > b07 has positive, negative, deterministic and saved-input evidence
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > c03 has positive, negative, deterministic and saved-input evidence
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > c07 has positive, negative, deterministic and saved-input evidence
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > d04 has positive, negative, deterministic and saved-input evidence
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > d07 has positive, negative, deterministic and saved-input evidence
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > f04 has positive, negative, deterministic and saved-input evidence
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ tests/c00-score.test.ts:50:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > A08/C03 see active scoring cards rather than low or black kickers/held cards
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/c00-score.test.ts:28:3
+ ❯ tests/c00-score.test.ts:61:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > B05 counts a disabled partner in played but only the active cards receive +15H
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/c00-score.test.ts:28:3
+ ❯ tests/c00-score.test.ts:71:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > B06 repeats ordinary points and B02 card effects, without repeating whole-hand or character effects
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/c00-score.test.ts:28:3
+ ❯ tests/c00-score.test.ts:79:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > B07/D07 require every played card to be active, and B07 additionally requires at least two
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/c00-score.test.ts:28:3
+ ❯ tests/c00-score.test.ts:90:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > C07 chooses the last original active scoring card and repeats its effects only once
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/c00-score.test.ts:28:3
+ ❯ tests/c00-score.test.ts:97:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > D02 takes only the first four eligible held 2–5, before characterScore
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/c00-score.test.ts:28:3
+ ❯ tests/c00-score.test.ts:107:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > D04 uses even legal playIndex and the first active original card, with stacked sources in slot order
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/c00-score.test.ts:28:3
+ ❯ tests/c00-score.test.ts:115:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > A06 and F04 remain ordered after the character and each other
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/c00-score.test.ts:28:3
+ ❯ tests/c00-score.test.ts:125:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 independently calculated score and set goldens > C08 enables A234 and four consecutive ranks while five-card and four-card flush priority stay explicit
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/c00-score.test.ts:28:3
+ ❯ tests/c00-score.test.ts:135:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 pending heat, score comparison and finite lifetime > C05 consumes only its pending heat once at its jokerScore slot, with the reset in the same trace
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ tests/c00-score.test.ts:152:40
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 pending heat, score comparison and finite lifetime > F05 grows from actual floored score only after scoring, resets on equal/lower, and preserves growth on a stage first hand
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/c00-score.test.ts:28:3
+ ❯ tests/c00-score.test.ts:165:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 pending heat, score comparison and finite lifetime > F05 uses exact serialized scores, validates input and stays deterministic under public previews
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ tests/c00-score.test.ts:188:40
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 pending heat, score comparison and finite lifetime > F06 applies x2 through the fourth actual hand, then emits a deterministic destruction without changing H/M
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ tests/c00-score.test.ts:201:82
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 pending heat, score comparison and finite lifetime > F06 counts legal hands even if every scoring card is disabled and other afterHand growth still runs
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ tests/c00-score.test.ts:224:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 bounded static and state schema > A04 is conditional on the persistent deck count; D06, E02 and E04 publish exact static modifiers
+TypeError: read is not a function
+ ❯ tests/c00-score.test.ts:237:15
+    235|     const read=schema.readR2Modifiers;
+    236|     const jokers=['a04','d06','e02','e04','c08'].map(id=>owned(id));
+    237|     const yes=read(jokers,R2_JOKERS,{deckSize:40});
+       |               ^
+    238|     expect(yes).toEqual({handLimitBonus:3,fourStraight:true,firstPurch…
+    239|     expect(read(jokers,R2_JOKERS,{deckSize:41}).handLimitBonus).toBe(1…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 bounded static and state schema > validates finite, per-definition lifecycle counters and rejects fabricated state
+TypeError: validR2JokerCounters is not a function
+ ❯ tests/c00-score.test.ts:247:19
+    245|
+    246|   it('validates finite, per-definition lifecycle counters and rejects …
+    247|     expect(schema.validR2JokerCounters('a07',undefined)).toBe(true);
+       |                   ^
+    248|     expect(schema.validR2JokerCounters('a07',{singleDiscards:2})).toBe…
+    249|     expect(schema.validR2JokerCounters('f06',{handsScored:3})).toBe(tr…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 bounded static and state schema > declares supported features for all new definitions and never enables a missing capability
+TypeError: Cannot read properties of undefined (reading 'requiredFeatures')
+ ❯ tests/c00-score.test.ts:258:25
+    256|     for(const id of secondBatch) {
+    257|       const definition=R2_JOKERS.find(d=>d.id===id)!;
+    258|       expect(definition.requiredFeatures?.length).toBeGreaterThan(0);
+       |                         ^
+    259|       expect(schema.supportsR2Joker(definition)).toBe(true);
+    260|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/29]⎯
+
+ FAIL  tests/c00-score.test.ts > C00 bounded static and state schema > keeps every C00 declared source within the 512-event budget, including mixed repeated card hooks
+Error: invalid-joker-instance
+ ❯ scoreR2Hand src/domain/scoreR2.ts:65:160
+     63|   const jokers = structuredClone(input.jokers) as R2JokerInstance[];
+     64|   for (const joker of jokers) {
+     65|     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) ||…
+       |                                                                                                                                                                ^
+     66|     const writers = input.definitions.find(d => d.id === joker.definit…
+     67|     for (const [key, value] of Object.entries(joker.growth)) {
+ ❯ score tests/c00-score.test.ts:28:3
+ ❯ tests/c00-score.test.ts:267:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/29]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  29 failed (29)
+   Start at  01:30:53
+   Duration  661ms (transform 153ms, setup 0ms, import 198ms, tests 33ms, environment 0ms)

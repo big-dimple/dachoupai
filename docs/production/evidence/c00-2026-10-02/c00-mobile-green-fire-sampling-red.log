@@ -1,0 +1,29 @@
+
+> dachoupai@0.1.0 verify:smoke
+> node harness/screenshot.mjs --verify-smoke
+
+chromium/mobile: ok
+{"phase":"stage-cleared","commandSeq":5,"controller":"idle","playing":false,"presenting":false,"label":"过关 · 1,200 热度","renderFps":3.083556049610026,"hidden":false,"selectedIds":[],"discardEnabled":false,"status":"正在结算 · 可快进","pointers":[{"id":0,"touch":false,"x":0,"y":0},{"id":1,"touch":true,"x":789,"y":2037}]}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: natural score roll crosses each displayed flame threshold in order
++ actual - expected
+
+  [
+    1,
+-   2,
+    3
+  ]
+
+    at file:///D:/ai/dachoupai/dachoupai/harness/screenshot.mjs:161:12 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [ 1, 3 ],
+  expected: [ 1, 2, 3 ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.20.0
