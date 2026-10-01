@@ -98,7 +98,7 @@ export class IntermissionScene extends Phaser.Scene {
       heading='跳场所得';body=reward+'。没有过关奖金或利息。'+(nextStage?'\n下一场：'+nextStage.name+' · 目标 '+heatText(nextStage.targetHeat):'');
     }else if(nextStage){
       heading=`过关 +${this.result.goldEarned} 金`;
-      body=`下一场：${nextStage.name} · 目标 ${heatText(nextStage.targetHeat)}\n去货摊补构筑。出牌和弃牌次数会补满。`+(nextStage.index%3===2?'\n压轴规则：'+r2BossText(run.boss):'');
+      body=`下一场：${nextStage.name} · 目标 ${heatText(nextStage.targetHeat)}\n去商店补构筑。出牌和弃牌次数会补满。`+(nextStage.index%3===2?'\n压轴规则：'+r2BossText(run.boss):'');
     }else if(won){
       heading='两章试玩完成';body=`${character.name} · 累计 ${heatText(run.totalHeat)} 热度\n当前可玩内容为两章。返回选角，再换一位角色试试。`;
     }else {
@@ -110,13 +110,13 @@ export class IntermissionScene extends Phaser.Scene {
     v.text(n.x+14,bodyY,body,14,'#fff0d0',n.width-28).setLineSpacing(2).setStyle({maxLines:Math.max(1,Math.floor((n.y+n.height-12-bodyY)/19))});
     if(nextStage){
       v.button(p.left,'本场详情','action/result-details',()=>this.inspectResult());
-      v.button(p.primary,'前往货摊','action/continue-stage',()=>void this.next(),this.ready,true);
+      v.button(p.primary,'前往商店','action/continue-stage',()=>void this.next(),this.ready,true);
     }else {
       v.button(p.left,won?'返回选角':'新局选角','action/continue-stage',()=>void this.next(),!this.busy);
       v.button(p.primary,this.busy?'正在开局…':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }
     v.button(p.right,'回看上手','action/last-hand',()=>this.inspectLastHand(),!!trace&&!this.busy);
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':nextStage?'结果已保存，进入货摊准备下一场。':'同局重试保留角色与 seed，从第一章开始。'),14,this.notice?'#aa3f35':'#48685f',p.w);
+    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':nextStage?'结果已保存，进入商店准备下一场。':'同局重试保留角色与 seed，从第一章开始。'),14,this.notice?'#aa3f35':'#48685f',p.w);
   }
   private panel(b:Box,top:number,bottom:number,edge:number,heavy=false):void {
     const v=this.view,g=this.add.graphics(),radius=heavy?8:5;
@@ -161,7 +161,7 @@ export class IntermissionScene extends Phaser.Scene {
       if(this.result.cleared&&run.phase==='stage-cleared'){
         const result=await dispatchRun(this,{type:'OpenShop'});if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
         if(result.ok){this.audio.select();this.scene.start('shop');return;}
-        this.notice='货摊尚未保存，请在菜单重试保存。';this.audio.invalid();
+        this.notice='商店尚未保存，请在菜单重试保存。';this.audio.invalid();
       }else {this.audio.select();this.scene.start('character-select',{freshSeed:true});return;}
     }finally {if(lifecycle===this.lifecycle&&this.scene.isActive()){this.busy=false;this.render();}}
   }

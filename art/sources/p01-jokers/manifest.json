@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "batch": "p01-jokers-v1",
+  "workPackage": "P01.4",
+  "date": "2026-10-01",
+  "authorizedScope": "Three original review candidates requested by the user under D12. No approval for formal 24/72 production.",
+  "provenance": "Each illustration generated in an independent built-in imagegen call with the complete prompt recorded below. No imported competitor artwork or external image API.",
+  "transform": {
+    "library": "sharp",
+    "version": "0.35.5",
+    "resize": {
+      "width": 256,
+      "height": 256,
+      "fit": "inside",
+      "kernel": "lanczos3",
+      "withoutEnlargement": true
+    },
+    "webp": {
+      "quality": 88,
+      "effort": 6
+    },
+    "crop": "NONE",
+    "retouch": "NONE"
+  },
+  "visualApproval": "NOT_GRANTED",
+  "productionBatchApproval": "NOT_GRANTED",
+  "verification": {
+    "sourceAndExportViewedByAgent": true,
+    "actual64pxExportDownsamplesViewedByAgent": true,
+    "dimensionsBytesAndSha256ReadFromActualFiles": true,
+    "noBakedTextNumeralsLogoOrWatermarkObserved": true,
+    "integratedBrowser": "NOT_RUN_BY_THIS_AGENT",
+    "humanVisualAcceptance": "NOT_GRANTED",
+    "limitation": "Agent image inspection is candidate quality evidence, not human visual approval or a product usability claim."
+  },
+  "totalRuntimeBytes": 53352,
+  "assets": [
+    {
+      "id": "pengci",
+      "name": "碰瓷",
+      "purpose": "add-multiplier",
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original square hand-painted Joker-card illustration for a theatrical deck-building game. Not a card template, not a collage.\nSubject and dramatic action: an absurdly innocent-looking stout stage comedian, caught at the exact instant a large porcelain platter cracks in his hands. The performer has wide startled eyes and a conspiratorial theatrical grimace. A bright ivory porcelain platter dominates the lower center, splitting into two clearly readable halves along a dark jagged crack. Both hands plausibly support the platter from the sides. Two or three large ceramic chips, not a cloud of tiny particles. This is slapstick theatrical fraud and dark humor, without injury.\nStyle: exquisite collectible-card hand-painted illustration, painterly gouache/oil edges on subtle paper, sculptural warm upper-left stage light, deep jewel-tone velvet shadows, restrained brass highlights. Large simple silhouette and clear value separation. Warm plum/indigo stage curtain as a quiet background. The plate should stay unmistakable even at 64px; a large circle/crack and expressive actor, rather than tiny ornament.\nComposition: one coherent chest-up performer holding the plate; square, dominant centered group with 8 percent safe margins; face above the plate, no obstruction of the eyes. Full main platter shape in frame, hands anatomically plausible, no extra limbs. Leave background visually simple. This is an actual narrative illustration, not an icon or SVG-like flat symbol.\nConstraints: original fictional stage character, not a recognizable existing IP. No text, lettering, numbers, symbols indicating scores, card borders, UI, logos or watermark. No third-party game artwork, no photograph, no anime face, no many small objects, no busy patterns. Opaque square background.",
+      "promptSha256": "208e458c7305a2370e4f7bb0ffc5c28e3867d7881283fe4cea41e7b2926cddb1",
+      "generation": {
+        "tool": "image_gen.imagegen",
+        "generatedFile": "C:/Users/wanghongping/.codex/generated_images/01a0f51b-c9aa-76c0-b4ae-4b348f38eff0/exec-bcd1b96c-c57c-422b-9b89-a12fbc15abee.png",
+        "referencedImages": [],
+        "modelVersion": "NOT_REPORTED",
+        "transparentBackground": false
+      },
+      "master": {
+        "file": "art/sources/p01-jokers/pengci.v1.original.png",
+        "format": "png",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 2320547,
+        "sha256": "3fbbecaa6bda83a14bb9e945c27328809df6bc799a3f16b3deaae6539a043dc9"
+      },
+      "runtime": {
+        "file": "public/assets/p01/jokers/pengci.webp",
+        "format": "webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 15206,
+        "sha256": "b9d3371d3f96a1192233af5e68b6b3ff2a3ae3848bf27a3df1965b8e224ed962",
+        "hasAlpha": false,
+        "targetBytes": 25000
+      },
+      "agentInspection": [
+        "At 64px the large ivory split platter and actor above it remain distinct.",
+        "Hands support the platter at each side; no extra limbs observed in generated and exported images."
+      ]
+    },
+    {
+      "id": "e05",
+      "name": "置办行头",
+      "purpose": "growth",
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original square hand-painted Joker-card illustration for a theatrical deck-building game. Not a card template, not a collage.\nSubject: a humorous touring performer's new wardrobe, arranged as ONE clear theatrical still life. A jade-green stage jacket with broad sculptural shoulders on a simple dressmaker's bust, an oversized tilted stage hat sitting above it, a small ivory half theatre mask hung naturally at the lapel. One brass needle with a sweeping loop of red sewing thread crosses an unfinished hem; one sturdy spool is tucked beside the jacket. The occupational joke is that this empty outfit already looks ready to take a bow. No living character or face inside the mannequin.\nStyle: exquisite collectible-card hand-painted illustration, painterly gouache/oil edges on subtle paper, sculptural warm upper-left stage light, jewel-tone velvet shadows, restrained brass highlights. Crisp large silhouettes and calm value separation. Deep indigo/teal stage backdrop, warm paper/ivory mask and golden seam against jade cloth. Hat, jacket and mask should form one memorable upright silhouette recognizable at 64px; details support the silhouette rather than crowding it.\nComposition: square coherent central still life, full main hat and jacket shoulders contained with 8 percent safe margins; the mask and a broad curved sewing-thread line remain readable. Major items have a physically believable attachment, needle and spool do not float randomly. Simple background. Actual richly hand-painted material illustration, not a flat icon or SVG drawing.\nConstraints: original invented touring costume, no named characters or existing IP. No text, lettering, numbers, price tag, scoring glyph, card border, UI, logo or watermark. No third-party game artwork, no photo, no anime, no dense tiny ornament, no extra faces, no mannequin human limbs. Opaque square background.",
+      "promptSha256": "889c8f042bb1f9f55832b3b3b9d67b28f191c50f958928c59d1af6e1aa3be9fa",
+      "generation": {
+        "tool": "image_gen.imagegen",
+        "generatedFile": "C:/Users/wanghongping/.codex/generated_images/01a0f51b-c9aa-76c0-b4ae-4b348f38eff0/exec-1b27a6cb-7e19-4675-a883-4aaad3685074.png",
+        "referencedImages": [],
+        "modelVersion": "NOT_REPORTED",
+        "transparentBackground": false
+      },
+      "master": {
+        "file": "art/sources/p01-jokers/e05.v1.original.png",
+        "format": "png",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 2507054,
+        "sha256": "a1e15d8acd577b341d9a9e7be7a96b41573198777584b09caef1f123bd9b2404"
+      },
+      "runtime": {
+        "file": "public/assets/p01/jokers/e05.webp",
+        "format": "webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 17566,
+        "sha256": "b982fa2d90e957226bb31e59e9a64cf0279dbe2d83812378c577ada830ec71e1",
+        "hasAlpha": false,
+        "targetBytes": 25000
+      },
+      "agentInspection": [
+        "At 64px the empty jacket, tall hat and ivory half-mask form a distinct upright still-life silhouette.",
+        "Needle, red thread and stitching are secondary details that do not resolve clearly at 64px.",
+        "Hat tip is close to the top edge; no additional crop was applied."
+      ]
+    },
+    {
+      "id": "huimaqiang",
+      "name": "回马枪",
+      "purpose": "multiply-multiplier",
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original square hand-painted Joker-card illustration for a theatrical deck-building game. Not a card template, not a collage.\nSubject and action: a wooden marionette knight riding a carved toy rocking horse in a theatrical return strike. The horse's body moves to the left while the wooden knight twists his torso and looks back to the right over his shoulder, his plain wooden stage lance pointing backward. Clearly articulated wooden joints and brass pins, a simple oversized brass stage helmet, playful painted puppet eyes. A single broad scarlet motion arc sweeps behind the turning figure and horse, making the reversed motion unmistakable. A little dark slapstick humor, no injured opponent.\nStyle: exquisite collectible-card hand-painted illustration, painterly gouache/oil edges on subtle paper, sculptural warm upper-left stage light, jewel-tone velvet shadows, restrained brass highlights. Large sculpted warm wood silhouette, crimson motion arc, deep jade/indigo quiet stage backdrop. The full wooden horse/knight group and broad red arc must remain recognizable at 64px, rather than a collection of small gears.\nComposition: one coherent central wooden puppet and rocking-horse group, lively diagonal turn, square with 8 percent safe margins. Full essential horse head, rider torso, rocking base and plain lance tip remain in frame. Jointed anatomy is clear and plausible; no extra horse heads, tangled legs or duplicate rider. Quiet background. This is richly hand-painted narrative card art, not an icon or SVG-like emblem.\nConstraints: original invented puppet, no existing fantasy/game character or identifiable IP. No text, lettering, numbers, scoring symbols, card border, UI, logo or watermark. No third-party game artwork, no photo, no anime, no bloody combat, no tiny visual clutter. Opaque square background.",
+      "promptSha256": "476982b0bf904fe5f15a7dd4a7d4f5c4bcd9641add83860d0441b07ef502573c",
+      "generation": {
+        "tool": "image_gen.imagegen",
+        "generatedFile": "C:/Users/wanghongping/.codex/generated_images/01a0f51b-c9aa-76c0-b4ae-4b348f38eff0/exec-75b5a31e-8139-4f03-81da-9f46b2e30e26.png",
+        "referencedImages": [],
+        "modelVersion": "NOT_REPORTED",
+        "transparentBackground": false
+      },
+      "master": {
+        "file": "art/sources/p01-jokers/huimaqiang.v1.original.png",
+        "format": "png",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 2491420,
+        "sha256": "c482dfb34d0d9f5990ec8db5924fd67e454fb32c7a610aa36d61b0fd4aaae33d"
+      },
+      "runtime": {
+        "file": "public/assets/p01/jokers/huimaqiang.webp",
+        "format": "webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 20580,
+        "sha256": "10cd948f8677e26763226b8a8f8b696afa440916954bd38bd0cdf51e9ddd0780",
+        "hasAlpha": false,
+        "targetBytes": 25000
+      },
+      "agentInspection": [
+        "At 64px the rocking-horse group and broad red return arc remain distinct.",
+        "One rider and horse, clear jointed wood limbs and rocking base; no duplicate heads or tangled legs observed."
+      ]
+    }
+  ]
+}

@@ -22,8 +22,9 @@ import {dispatchRun,runController} from './runAdapter';
 import {gameSession} from './session';
 import {r2BossText,r2DisabledCards} from '../domain/r2Chapter';
 import {showConsumables} from './ConsumableDialog';
-import {PAPER_THEME as T,PAPER_CSS as C,UI_FONT,P00_ASSETS,p00AssetUrl} from './theme';
+import {PAPER_THEME as T,PAPER_CSS as C,UI_FONT,P00_ASSETS,assetUrl} from './theme';
 import type {Box} from './layout';
+import {jokerArtKey} from './jokerArt';
 
 const MAX_SELECTED = R2_LIMITS.maxSelected;
 
@@ -81,6 +82,7 @@ export class GameScene extends Phaser.Scene {
   private pileText!:Phaser.GameObjects.Text;
   private progressBar!:Phaser.GameObjects.Rectangle;
   private roleFrame!:Phaser.GameObjects.Rectangle;
+  private roleAvatar!:Phaser.GameObjects.Container;
   private previewCards?:Phaser.GameObjects.Container;
   private dropMarker?:Phaser.GameObjects.Rectangle;
   private settledCards=new Map<string,CardView>();
@@ -89,7 +91,7 @@ export class GameScene extends Phaser.Scene {
     super('game');
   }
   preload():void {
-    for(const asset of P00_ASSETS)if(!this.textures.exists(asset.key))this.load.svg(asset.key,p00AssetUrl(asset.path),{width:asset.width,height:asset.height});
+    for(const asset of P00_ASSETS)if(!this.textures.exists(asset.key))this.load.svg(asset.key,assetUrl(asset.path),{width:asset.width,height:asset.height});
   }
   private get reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
 
@@ -99,7 +101,7 @@ export class GameScene extends Phaser.Scene {
     const settings=()=>{this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;this.audio.muted=gameSession().muted;if(this.reducedMotion){this.cameras.main.resetFX();if(this.presentation)this.fastForward();this.cardViews.forEach(view=>this.revealCard(view));}};
     window.addEventListener('dachoupai-presentation',settings);
     this.events.once('shutdown',()=>{
-      this.lifecycle++;this.intent++;this.effects.clear();this.tweens.killAll();this.time.removeAllEvents();this.triggers.clear();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.previewCards=undefined;this.dropMarker=undefined;this.presentation=undefined;this.playing=false;this.dialog.close();
+      this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.tweens.killAll();this.time.removeAllEvents();this.triggers.clear();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.previewCards=undefined;this.dropMarker=undefined;this.presentation=undefined;this.playing=false;this.dialog.close();
       window.removeEventListener('keydown',this.keyboard);
       window.removeEventListener('dachoupai-presentation',settings);
     });
@@ -137,8 +139,9 @@ export class GameScene extends Phaser.Scene {
     const h=l.hud,c=getCharacter(this.characterId),portrait=l.mode==='portrait',short=l.mode==='landscape';
     v.rect(h,T.ink).setStrokeStyle(2,T.jade);
     const avatarSize=portrait||short?48:64,avatarY=h.y+(portrait?8:short?34:66);
-    addAvatar(this,v.root,c,h.x+12+avatarSize/2,avatarY+avatarSize/2,avatarSize);
-    this.roleFrame=v.rect({x:h.x+10,y:avatarY-2,width:avatarSize+4,height:avatarSize+4},T.brass).setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);
+    this.roleAvatar=v.add(this.add.container(h.x+12+avatarSize/2,avatarY+avatarSize/2)).setData('baseY',avatarY+avatarSize/2);
+    addAvatar(this,this.roleAvatar,c,0,0,avatarSize);
+    this.roleFrame=this.add.rectangle(0,0,avatarSize+4,avatarSize+4,T.brass).setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);this.roleAvatar.add(this.roleFrame);
     const bossName=r2BossText(this.run.boss).split('：')[0];
     if(!portrait)v.text(h.x+12,h.y+8,'大 丑 牌',short?20:28,C.paper);
     v.text(h.x+76,avatarY,c.name,portrait||short?20:22,C.paper);
@@ -157,10 +160,12 @@ export class GameScene extends Phaser.Scene {
     const s=l.scoreBoard,roomy=s.height>=92;
     v.rect(s,T.paper).setStrokeStyle(1,T.brass,.65);
     this.resultText=v.text(s.x+12,s.y+4,'当前选择 · 选 1～5 张牌',roomy?24:18,C.ink,s.width-24);
-    const metricY=s.y+(roomy?52:28),metricSize=roomy?30:22,metricWidth=s.width/3;
-    this.scoreLabels=['基础热度','基础倍率','预计本手'].map((label,i)=>v.text(s.x+metricWidth*(i+.5),s.y+32,label,14,i===1?C.red:C.jade).setOrigin(.5,0).setVisible(roomy));
-    this.scoreHeat=v.text(s.x+metricWidth*.5,metricY,'—',metricSize,C.jade).setOrigin(.5,0);
-    this.scoreMult=v.text(s.x+metricWidth*1.5,metricY,'—',metricSize,C.red).setOrigin(.5,0);
+    const metricY=s.y+(roomy?52:short?26:28),metricSize=roomy?30:22,metricWidth=s.width/3;
+    const tileY=s.y+(roomy?30:25),tileHeight=roomy?58:Math.min(36,s.height-26);
+    [0,1].forEach(i=>{const tile={x:s.x+metricWidth*i+7,y:tileY,width:metricWidth-14,height:tileHeight};v.material(tile,i===0?0x438d7e:0xc16c50,i===0?0x245955:0x85372f,5);v.rect(tile).setFillStyle(0,0).setStrokeStyle(1,i===0?0xa6cab0:0xe9b089,.9);});
+    this.scoreLabels=['基础热度','基础倍率','预计本手'].map((label,i)=>v.text(s.x+metricWidth*(i+.5),s.y+32,label,14,i===0?'#ddedd5':i===1?'#ffe0bc':C.jade).setOrigin(.5,0).setVisible(roomy));
+    this.scoreHeat=v.text(s.x+metricWidth*.5,metricY,'—',metricSize,'#fff3d3').setOrigin(.5,0).setShadow(0,1,'#163a3b',2,true,true);
+    this.scoreMult=v.text(s.x+metricWidth*1.5,metricY,'—',metricSize,'#fff0ca').setOrigin(.5,0).setShadow(0,1,'#632a28',2,true,true);
     this.scoreTotal=v.text(s.x+metricWidth*2.5,metricY,'—',metricSize,C.ink).setOrigin(.5,0);
     this.breakdownText=v.text(s.x+12,s.y+88,'',14,C.ink,s.width-24).setVisible(roomy);
     const p=l.playedArea;v.rect({...p,x:p.x+2,y:p.y+3},T.ink).setStrokeStyle(0);
@@ -183,19 +188,40 @@ export class GameScene extends Phaser.Scene {
   private renderJokerRack():void {
     const v=this.view,l=v.layout;this.jokerViews.clear();
     l.slots.forEach((b,i)=>{
-      const j=this.run.jokers[i];
-      if(!j){v.material(b,0xe5dcc6,0xcdbfa0,4);v.rect(b).setFillStyle(0,0).setStrokeStyle(1,0xa89676,.7);v.text(b.x+b.width/2,b.y+b.height/2,'＋\n空槽 '+(i+1),14,C.jade).setOrigin(.5);return;}
-      const d=getJoker(j.definitionId),symbol=d.rarity==='rare'?'★':d.rarity==='uncommon'?'◇':'□';
+      const j=this.run.jokers[i],shadow=v.add(this.add.graphics());
+      shadow.fillStyle(T.ink,.18).fillRoundedRect(b.x+2,b.y+4,b.width,b.height,5);
+      if(!j){
+        v.material(b,0xfff1d8,0xc8b38f,5);
+        if(this.textures.exists('p00-card-back'))v.add(this.add.image(b.x+b.width/2,b.y+b.height/2,'p00-card-back').setDisplaySize(b.width-6,b.height-6).setAlpha(.64));
+        v.add(this.add.graphics().lineStyle(1,0xfff2ce,.9).strokeRoundedRect(b.x+2,b.y+2,b.width-4,b.height-4,4).lineStyle(1,0x8b785c,.8).strokeRoundedRect(b.x,b.y,b.width,b.height,5));
+        v.material({x:b.x+4,y:b.y+b.height-25,width:b.width-8,height:21},0xe7d4b1,0xc5b28e,3);
+        v.text(b.x+b.width/2,b.y+b.height-23,'空槽 '+(i+1),14,'#3e5b59').setOrigin(.5,0);return;
+      }
+      const d=getJoker(j.definitionId),symbol=d.rarity==='rare'?'★':d.rarity==='uncommon'?'◇':'□',sideLabels=l.mode==='landscape',labelBox=l.jokerLabels[i],labelX=sideLabels?labelBox.x-b.x-b.width/2:-b.width/2+5;
       const marker=v.add(this.add.container(b.x+b.width/2,b.y+b.height/2)).setData('baseY',b.y+b.height/2);
       const r=this.add.rectangle(0,0,b.width,b.height,T.paper).setFillStyle(0,0).setStrokeStyle(2,d.rarity==='rare'?T.brass:T.jade);
-      const paper=v.material({x:-b.width/2,y:-b.height/2,width:b.width,height:b.height},0xfff6df,0xdfcbaa,4);
-      const head=v.material({x:-b.width/2+2,y:-b.height/2+2,width:b.width-4,height:Math.min(36,b.height*.5)},d.rarity==='rare'?0x78464b:0x3f706a,0x203e48,3);
-      const name=this.add.text(-b.width/2+6,-b.height/2+7,symbol+d.name,{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:'#fff2d4',wordWrap:{width:b.width-12,useAdvancedWrap:true},resolution:Math.min(devicePixelRatio||1,2)});
-      const current=this.add.text(-b.width/2+6,b.height/2-24,this.jokerValue(j),{fontFamily:UI_FONT,fontSize:'18px',fontStyle:'bold',color:C.red,resolution:Math.min(devicePixelRatio||1,2)});
-      const trim=this.textures.exists('p00-frame-'+d.rarity)?this.add.image(0,0,'p00-frame-'+d.rarity).setDisplaySize(b.width,b.height).setAlpha(.5):undefined;
-      marker.add([paper,head,...(trim?[trim]:[]),r,name,current]).setData('frame',r).setData('nameLabel',name).setData('valueLabel',current);this.jokerViews.set(j.instanceId,marker);
-      v.target(r,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:x=>void this.reorderJoker(j.instanceId,x),holdToDrag:true});
+      const paper=v.material({x:-b.width/2,y:-b.height/2,width:b.width,height:b.height},0xfff6df,0xd9c29f,5),resolution=Math.min(devicePixelRatio||1,2);
+      const name=this.add.text(labelX,-b.height/2+(sideLabels?2:5),d.name,{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:sideLabels?C.ink:'#fff0cf',wordWrap:{width:sideLabels?labelBox.width:b.width-10,useAdvancedWrap:true},resolution});
+      const current=this.add.text(labelX,sideLabels?-b.height/2+38:b.height/2-23,this.jokerValue(j),{fontFamily:UI_FONT,fontSize:sideLabels||b.width<80?'14px':'20px',fontStyle:'bold',color:C.red,resolution});
+      const rarity=this.add.text(sideLabels?labelX:b.width/2-6,sideLabels?-b.height/2+56:b.height/2-22,sideLabels?symbol+(d.rarity==='rare'?'稀有':d.rarity==='uncommon'?'罕见':'普通'):symbol,{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:C.ink,resolution}).setOrigin(sideLabels?0:1,0);
+      const headHeight=Math.max(26,name.height+8),head=sideLabels?undefined:v.material({x:-b.width/2+2,y:-b.height/2+2,width:b.width-4,height:headHeight},d.rarity==='rare'?0x854f53:0x46776e,0x213f49,3);
+      marker.add([paper,...(head?[head]:[])]);
+      const artTop=sideLabels?-b.height/2+5:-b.height/2+headHeight+4,artHeight=sideLabels?b.height-10:Math.max(14,b.height-headHeight-30),artSize=Math.min(b.width-10,artHeight),key=jokerArtKey(j.definitionId);
+      if(key&&this.textures.exists(key)){const art=this.add.image(0,artTop+artHeight/2,key);art.setScale(Math.min((b.width-10)/art.width,artHeight/art.height));marker.add(art);}
+      else this.jokerMechanism(marker,0,artTop+artHeight/2,artSize,j);
+      const trim=this.textures.exists('p00-frame-'+d.rarity)?this.add.image(0,0,'p00-frame-'+d.rarity).setDisplaySize(b.width,b.height).setAlpha(.58):undefined;
+      marker.add([...(trim?[trim]:[]),r,name,current,rarity]).setData('frame',r).setData('nameLabel',name).setData('valueLabel',current);this.jokerViews.set(j.instanceId,marker);
+      const hit=sideLabels?this.add.rectangle((labelBox.width+6)/2,0,b.width+labelBox.width+6,b.height,T.ink,.001):r;if(hit!==r)marker.add(hit);
+      v.target(hit,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:x=>void this.reorderJoker(j.instanceId,x),holdToDrag:true});
     });
+  }
+  private jokerMechanism(marker:Phaser.GameObjects.Container,x:number,y:number,size:number,joker:R2JokerInstance):void {
+    const ops=getJoker(joker.definitionId).hooks.flatMap(h=>h.operations),multiply=ops.some(o=>o.kind==='multiply-multiplier'),growth=ops.some(o=>o.kind==='add-growth'),retrigger=ops.some(o=>o.kind==='retrigger-card'),gold=ops.some(o=>o.kind==='add-gold'||o.kind==='add-heat-per-gold');
+    const motif=this.add.graphics().setPosition(x,y),radius=size*.42;motif.fillStyle(multiply?0x7f3836:gold?0x8b693a:0x285c57,.96).fillCircle(0,0,radius).lineStyle(2,T.brass,.9).strokeCircle(0,0,radius);
+    marker.add(motif);
+    const asset=multiply?'p00-mark-times':growth||retrigger||gold?undefined:'p00-mark-plus';
+    if(asset&&this.textures.exists(asset))marker.add(this.add.image(x,y,asset).setDisplaySize(size*.67,size*.67));
+    else marker.add(this.add.text(x,y,growth?'↗':retrigger?'↻':gold?'金':'＋',{fontFamily:UI_FONT,fontSize:`${Math.max(14,size*.55)}px`,fontStyle:'bold',color:'#f8e3af',resolution:Math.min(devicePixelRatio||1,2)}).setOrigin(.5));
   }
   private jokerValue(j:R2JokerInstance):string {
     const ops=getJoker(j.definitionId).hooks.flatMap(h=>h.operations),growth=ops.find(o=>o.kind==='read-growth'),op=ops.find(o=>o.kind!=='add-growth'&&'value' in o);
@@ -318,7 +344,7 @@ export class GameScene extends Phaser.Scene {
   private inspectJoker(id:string):void {
     const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=getJoker(j.definitionId),index=this.run.jokers.indexOf(j);
     const move=async(delta:number)=>{const ids=this.run.jokers.map(j=>j.instanceId);ids.splice(index,1);ids.splice(index+delta,0,id);await this.command({type:'ReorderJokers',ids});if(this.dialog.active(dialog))this.inspectJoker(id);};
-    const dialog=this.dialog.open(d.name,d.description+'\n当前成长：'+(Object.entries(j.growth).map(([k,value])=>k+' '+fractionText(value)).join('、')||'无')+'\n第 '+(index+1)+' 个结算；长按后拖动可调序，出售只在商店确认。',[
+    const dialog=this.dialog.open(d.name,(d.rarity==='rare'?'★ 稀有':d.rarity==='uncommon'?'◇ 罕见':'□ 普通')+' · 当前 '+this.jokerValue(j)+'\n'+d.description+'\n当前成长：'+(Object.entries(j.growth).map(([k,value])=>k+' '+fractionText(value)).join('、')||'无')+'\n第 '+(index+1)+' 个结算；长按后拖动可调序，出售只在商店确认。',[
       {label:'左移',disabled:!this.ready||index===0,run:()=>move(-1)},{label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:()=>move(1)},
     ]);
   }
@@ -343,7 +369,7 @@ export class GameScene extends Phaser.Scene {
     if(await this.command({type:'ReorderHand',ids:cards.map(c=>c.id)})){this.statusMessage=(mode==='rank'?'点数':'花色')+'已排序 · 选择已保留';this.updateControls();}
   }
   private async reorderCard(id:string,x:number):Promise<void> {const ids=[...this.run.handOrder],from=ids.indexOf(id),to=this.view.layout.cards.findIndex(b=>x>=b.hit.x&&x<=b.hit.x+b.hit.width);if(from<0||to<0||to>=ids.length||from===to)return;ids.splice(from,1);ids.splice(to,0,id);await this.command({type:'ReorderHand',ids});}
-  private async reorderJoker(id:string,x:number):Promise<void> {const ids=this.run.jokers.map(j=>j.instanceId),from=ids.indexOf(id),to=this.view.layout.slots.findIndex(b=>x>=b.x&&x<=b.x+b.width);if(to<0||to>=ids.length||from===to)return;ids.splice(from,1);ids.splice(to,0,id);await this.command({type:'ReorderJokers',ids});}
+  private async reorderJoker(id:string,x:number):Promise<void> {const ids=this.run.jokers.map(j=>j.instanceId),from=ids.indexOf(id),l=this.view.layout,to=l.slots.findIndex((b,i)=>x>=b.x&&x<=b.x+b.width+(l.mode==='landscape'?l.jokerLabels[i].width+6:0));if(to<0||to>=ids.length||from===to)return;ids.splice(from,1);ids.splice(to,0,id);await this.command({type:'ReorderJokers',ids});}
 
   private toggleCard(id: string): void {
     if (!this.ready) return;
@@ -379,23 +405,28 @@ export class GameScene extends Phaser.Scene {
   }
 
   private animateRole(note:string,duration:number,context:EffectContext):Promise<void> {
-    this.roleText.setText(note);this.roleFrame.setFillStyle(T.brass,.16).setStrokeStyle(4,T.brass);this.audio.role();
-    if(this.reducedMotion)return this.wait(duration,context).then(()=>{if(!context.signal.aborted)this.roleFrame.setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);});
-    const b=this.roleFrame.getBounds(),spot=this.view.add(this.add.graphics());
-    spot.fillStyle(0xf4d791,.16).fillRoundedRect(b.x-4,b.y-4,b.width+8,b.height+8,7);
-    spot.lineStyle(2,0xffdfa2,.9).strokeRoundedRect(b.x-5,b.y-5,b.width+10,b.height+10,8);
-    return Promise.all([
-      this.animate({targets:this.roleText,scaleX:{from:1.08,to:1},duration,ease:'Back.easeOut'},context),
-      this.animate({targets:spot,alpha:{from:1,to:0},duration,ease:'Sine.easeOut'},context),
-    ]).then(()=>{spot.destroy();if(!context.signal.aborted)this.roleFrame.setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);});
+    const frame=this.roleFrame;this.roleText.setText(note);frame.setFillStyle(T.brass,.16).setStrokeStyle(4,T.brass);
+    return this.focusSource(this.roleAvatar,frame,T.brass,false,duration,context).then(()=>{if(frame.active)frame.setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);});
   }
 
-  private animateJoker(joker:ScoreEvent,chainIndex:number,duration:number,context:EffectContext):Promise<void> {
+  private animateJoker(joker:ScoreEvent,duration:number,context:EffectContext):Promise<void> {
     const view=this.jokerViews.get(joker.sourceInstanceId);if(!view)return this.wait(duration,context);
-    this.audio.joker(chainIndex);
-    const frame=view.getData('frame') as Phaser.GameObjects.Rectangle;frame.setStrokeStyle(4,joker.operation==='multiply-multiplier'?T.red:T.brass);
-    if(this.reducedMotion)return this.wait(duration,context).then(()=>{if(!context.signal.aborted)frame.setStrokeStyle(2,T.jade);});
-    return this.animate({targets:view,y:Number(view.getData('baseY'))-8,scale:1.06,duration:duration/2,yoyo:true,ease:'Sine.easeOut'},context).then(()=>{if(!context.signal.aborted)frame.setStrokeStyle(2,T.jade);});
+    const frame=view.getData('frame') as Phaser.GameObjects.Rectangle,multiply=joker.operation==='multiply-multiplier';frame.setStrokeStyle(4,multiply?T.red:T.brass);
+    return this.focusSource(view,frame,multiply?T.red:T.brass,multiply,duration,context).then(()=>{if(frame.active)frame.setStrokeStyle(2,T.jade);});
+  }
+  private async focusSource(source:Phaser.GameObjects.Container,frame:Phaser.GameObjects.Rectangle,color:number,strong:boolean,duration:number,context:EffectContext):Promise<void> {
+    if(context.signal.aborted)return;
+    if(this.reducedMotion){await this.wait(duration,context);return;}
+    const rest={y:source.y,angle:source.angle,scaleX:source.scaleX,scaleY:source.scaleY},width=frame.width,height=frame.height,top=frame.getBounds().y,lift=Math.min(strong?16:12,height*.14,Math.max(0,top-8)*.5),factor=top<24?1.035:strong?1.1:1.055,glow=this.add.graphics();
+    glow.fillStyle(color,.2).fillRoundedRect(-width/2-5,-height/2-5,width+10,height+10,7);
+    glow.lineStyle(strong?4:3,0xffdc9e,.95).strokeRoundedRect(-width/2-3,-height/2-3,width+6,height+6,6);source.addAt(glow,0);
+    try {
+      await this.animate({targets:source,y:rest.y-lift,angle:strong?-5:-3,scaleX:rest.scaleX*factor,scaleY:rest.scaleY*factor,duration:duration*.2,ease:'Back.easeOut'},context);
+      if(context.signal.aborted)return;
+      await this.animate({targets:source,angle:strong?4:2,duration:duration*.075,yoyo:true,ease:'Sine.easeInOut'},context);
+      await this.wait(duration*.4,context);
+      await this.animate({targets:source,...rest,duration:duration*.25,ease:'Sine.easeOut'},context);
+    } finally {glow.destroy();if(source.active)source.setY(rest.y).setAngle(rest.angle).setScale(rest.scaleX,rest.scaleY);}
   }
 
   private formatBreakdown(score: ScoreTrace): string {
@@ -483,7 +514,18 @@ export class GameScene extends Phaser.Scene {
     const targets=[];
     if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)targets.push(this.scoreHeat);
     if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)targets.push(this.scoreMult);
-    return targets.length?this.animate({targets,scale:{from:event.operation==='multiply-multiplier'?1.2:1.1,to:1},duration,ease:'Back.easeOut'},context):Promise.resolve();
+    return targets.length?this.animate({targets,scale:{from:event.operation==='multiply-multiplier'?1.3:1.15,to:1},duration,ease:'Back.easeOut'},context):Promise.resolve();
+  }
+  private impactAccumulator(event:ScoreEvent,duration:number,context:EffectContext):Promise<void> {
+    if(this.reducedMotion||context.signal.aborted)return Promise.resolve();
+    const multChanged=event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d,heatChanged=event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d;
+    if(!multChanged&&!heatChanged)return Promise.resolve();
+    const target=multChanged?this.scoreMult:this.scoreHeat,b=target.getBounds(),strong=event.operation==='multiply-multiplier',width=Math.min(this.view.layout.scoreBoard.width/3-18,Math.max(42,b.width+16)),height=b.height+8;
+    const impact=this.view.add(this.add.graphics().setPosition(b.centerX,b.centerY));
+    impact.fillStyle(strong?T.red:multChanged?T.jade:T.brass,.18).fillRoundedRect(-width/2,-height/2,width,height,5);
+    impact.lineStyle(strong?3:2,strong?0xffd3a6:0xc7f1d8,.95).strokeRoundedRect(-width/2,-height/2,width,height,5);
+    if(strong)for(const [x,y] of [[-1,-1],[1,-1],[-1,1],[1,1]])impact.lineStyle(2,T.brass,.9).beginPath().moveTo(x*width*.54,y*height*.54).lineTo(x*width*.65,y*height*.72).strokePath();
+    this.keepScoreReadable();return this.animate({targets:impact,scale:{from:.75,to:strong?1.18:1.06},alpha:{from:1,to:0},duration,ease:'Cubic.easeOut'},context).then(()=>impact.destroy());
   }
   private keepScoreReadable():void {
     for(const text of [this.resultText,...this.scoreLabels,this.scoreHeat,this.scoreMult,this.scoreTotal,this.breakdownText,this.previousHandText])if(text.active)this.view.root.bringToTop(text);
@@ -492,17 +534,18 @@ export class GameScene extends Phaser.Scene {
     if(this.reducedMotion||context.signal.aborted)return Promise.resolve();
     const heatChanged=event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d,multChanged=event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d;
     if(!heatChanged&&!multChanged)return Promise.resolve();
-    const source=event.sourceType==='joker'?this.jokerViews.get(event.sourceInstanceId):event.sourceType==='character'?this.roleFrame:card?.container;
+    const jokerFrame=this.jokerViews.get(event.sourceInstanceId)?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;
+    const source=event.sourceType==='joker'?jokerFrame:event.sourceType==='character'?this.roleFrame:card?.background;
     if(!source)return Promise.resolve();
     const b=source.getBounds(),target=multChanged?this.scoreMult:this.scoreHeat,start={x:b.centerX,y:b.centerY},end={x:target.x,y:target.y-7};
     const multiply=event.operation==='multiply-multiplier',color=multiply?T.red:multChanged?T.jade:T.brass,light=multiply?0xffb995:multChanged?0xc4f0d8:0xffdf9d;
     const mid={x:(start.x+end.x)/2+(start.x<end.x?-22:22),y:(start.y+end.y)/2-22},trail=this.view.add(this.add.graphics());
-    trail.lineStyle(multiply?2:1,color,.4).beginPath().moveTo(start.x,start.y);
+    trail.lineStyle(multiply?4:2,color,.72).beginPath().moveTo(start.x,start.y);
     for(let i=1;i<=16;i++){const t=i/16,u=1-t;trail.lineTo(u*u*start.x+2*u*t*mid.x+t*t*end.x,u*u*start.y+2*u*t*mid.y+t*t*end.y);}trail.strokePath();
     const packet=this.view.add(this.add.container(start.x,start.y)),shape=this.add.graphics();
     if(multiply){shape.fillStyle(0x762f32,.96).fillPoints([{x:0,y:-15},{x:20,y:0},{x:0,y:15},{x:-20,y:0}],true);shape.lineStyle(2,T.brass,.9).strokePoints([{x:0,y:-15},{x:20,y:0},{x:0,y:15},{x:-20,y:0}],true);}
     else shape.fillStyle(multChanged?0x285a54:0x715736,.96).fillRoundedRect(-18,-13,36,26,10).lineStyle(1,light,.85).strokeRoundedRect(-18,-13,36,26,10);
-    const symbol=this.add.text(0,-1,multiply?'×M':multChanged?'+M':'+H',{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:'#fff3d0',resolution:Math.min(devicePixelRatio||1,2)}).setOrigin(.5);
+    const symbol=this.add.text(0,-1,multiply?'×M':multChanged?'+M':'+H',{fontFamily:UI_FONT,fontSize:multiply?'18px':'16px',fontStyle:'bold',color:'#fff3d0',resolution:Math.min(devicePixelRatio||1,2)}).setOrigin(.5);
     packet.add([shape,symbol]);this.keepScoreReadable();
     const flight={t:0};
     return Promise.all([
@@ -513,22 +556,32 @@ export class GameScene extends Phaser.Scene {
   private async showScoreEvent(event:ScoreEvent,index:number,duration:number,context:EffectContext):Promise<void> {
     if(context.signal.aborted)return;
     const note=this.operationText(event),source=this.eventSource(event),card=this.settledCards.get(event.targetCardId??'')??this.cardViews.find(view=>view.card.id===event.targetCardId);
-    this.resultText.setText(source+' · '+note);this.breakdownText.setText((event.phase==='afterHand'?'下手成长':event.sourceType==='joker'?'连锁 '+(index+1):'逐项计分')+' · '+source+' '+note);this.setAccumulator(event.after);
+    this.resultText.setText(source+' · '+note);this.breakdownText.setText((event.phase==='afterHand'?'下手成长':event.sourceType==='joker'?'连锁 '+(index+1):'逐项计分')+' · '+source+' '+note);this.setAccumulator(event.before);
+    const sourceEffects:Promise<void>[]=[];
+    if(event.sourceType==='character'){
+      this.triggers.emit('role:triggered',event);sourceEffects.push(this.animateRole(note,duration,context));
+    }else if(event.sourceType==='joker'){
+      this.triggers.emit('joker:triggered',event);sourceEffects.push(this.animateJoker(event,duration,context));
+    }else if(card){
+      card.background.setStrokeStyle(4,event.retriggerDepth?T.brass:T.jade);
+      sourceEffects.push(this.focusSource(card.container,card.background,event.retriggerDepth?T.brass:T.jade,false,duration,context));
+    }
+    if(!this.reducedMotion)await this.wait(duration*.24,context);
+    if(context.signal.aborted)return;
+    await this.transferToAccumulator(event,card,duration*.42,context);
+    if(context.signal.aborted)return;
+    // The domain result is already saved. Only the display and SFX arrive with this hit.
+    this.setAccumulator(event.after);
+    if(event.sourceType==='character')this.audio.role();
+    else if(event.sourceType==='joker')this.audio.joker(index);
+    else if(event.sourceType==='card'&&event.value.n!=='0')this.audio.cardScore(index);
     if(event.operation==='multiply-multiplier')this.audio.multiplier('multiply',index);
     else if(event.operation==='add-multiplier'||event.operation==='read-growth'&&(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d))this.audio.multiplier('add',index);
     else if(event.operation==='retrigger-card')this.audio.retrigger(index);
-    const effects:Promise<void>[]=[this.pulseAccumulator(event,duration,context),this.transferToAccumulator(event,card,duration,context)];
-    if(event.sourceType==='character'){
-      this.triggers.emit('role:triggered',event);effects.push(this.animateRole(note,duration,context));
-    }else if(event.sourceType==='joker'){
-      this.triggers.emit('joker:triggered',event);effects.push(this.animateJoker(event,index,duration,context));
-    }else if(card){
-      if(event.sourceType==='card'&&event.value.n!=='0')this.audio.cardScore(index);
-      card.background.setStrokeStyle(4,event.retriggerDepth?T.brass:T.jade);
-      effects.push(this.floatNote(note,card.container.x,card.container.y,'#d3f0d3',duration,context));
-      if(!this.reducedMotion)effects.push(this.animate({targets:card.container,y:card.container.y-6,duration:duration/2,yoyo:true,ease:'Sine.easeOut'},context));
-    }
-    effects.push(this.wait(duration,context));await Promise.all(effects);
+    const impactDuration=this.reducedMotion?Math.min(110,duration):duration*.34;
+    const effects=[...sourceEffects,this.pulseAccumulator(event,impactDuration,context),this.impactAccumulator(event,impactDuration,context),this.wait(impactDuration,context)];
+    if(card&&event.sourceType!=='joker'&&event.sourceType!=='character')effects.push(this.floatNote(note,card.container.x,card.container.y,'#d3f0d3',impactDuration,context));
+    await Promise.all(effects);
   }
   private burst(tier:number,context:EffectContext):Promise<void> {
     if(this.reducedMotion||tier===0)return Promise.resolve();
@@ -561,6 +614,7 @@ export class GameScene extends Phaser.Scene {
     const target=BigInt(this.stage.targetHeat),points=BigInt(score.finalScore),chain=score.events.filter(event=>event.sourceType==='joker'&&event.phase!=='afterHand').length;
     const previous=BigInt(presentation.previousTrace?.finalScore??'0'),grew=previous===0n||points>=previous*2n;
     const tier=points>=target&&chain>=3&&grew?3:points*3n>=target*2n?2:points*3n>=target?1:0;
+    await this.convergeScore(context);if(context.signal.aborted)return;
     this.triggers.emit('score:resolved',score);this.setAccumulator(score.accumulator);this.scoreTotal.setText(heatText(score.finalScore));
     this.resultText.setText((presentation.replay?'回看 · ':tier>=2?'爆场！ ':HAND_LABELS[score.handType]+' · ')+'+'+heatText(score.finalScore)+' 热度');
     this.breakdownText.setText(fractionText(score.accumulator.H)+' 热度 × '+fractionText(score.accumulator.M)+' 倍率 = '+heatText(score.finalScore));
@@ -582,6 +636,14 @@ export class GameScene extends Phaser.Scene {
     }
     effects.push(this.wait(tier>=2?450:240,context));await Promise.all(effects);
   }
+  private convergeScore(context:EffectContext):Promise<void> {
+    if(this.reducedMotion||context.signal.aborted)return Promise.resolve();
+    const target=this.scoreTotal.getBounds(),end={x:target.centerX,y:target.centerY};
+    const effects=[this.scoreHeat,this.scoreMult].map((source,i)=>{
+      const b=source.getBounds(),color=i===0?0x95d9bb:0xf1ad86,line=this.view.add(this.add.graphics().lineStyle(1,color,.65).beginPath().moveTo(b.centerX,b.centerY).lineTo(end.x,end.y).strokePath()),spark=this.view.add(this.add.circle(b.centerX,b.centerY,4,color).setStrokeStyle(1,0xffebc4));
+      return this.animate({targets:spark,x:end.x,y:end.y,scale:{from:1,to:.55},duration:140,ease:'Sine.easeIn'},context).then(()=>{spark.destroy();line.destroy();});
+    });this.keepScoreReadable();return Promise.all(effects).then(()=>undefined);
+  }
   private async presentTrace(score:ScoreTrace,state:RunState,views:readonly CardView[],lifecycle:number,intent:number,beforeHeat=this.heat,replay=false,previousTrace:ScoreTrace|null=this.run.lastTrace):Promise<void> {
     this.effects.clear();const generation=this.effects.generation;
     const hand=this.cardViews.map(view=>view.card),presentation={generation,lifecycle,intent,state,score,hand,displayHeat:beforeHeat,replay,previousTrace,credited:replay};this.presentation=presentation;
@@ -602,12 +664,13 @@ export class GameScene extends Phaser.Scene {
       }));
       if(context.signal.aborted)return;this.setAccumulator(score.events[0].after);this.breakdownText.setText('牌型 '+HAND_LABELS[score.handType]+' · ★ '+score.sets.activeScoringIds.length+' 张计分');
     });
-    const duration=Math.min(150,1800/Math.max(1,score.events.length-2));let jokerIndex=0;
+    const duration=Math.max(160,Math.min(300,3600/Math.max(1,score.events.length-2)));let jokerIndex=0;
     for(const event of score.events){
       if(event.phase==='base')continue;
       if(event.phase==='finalScore'){this.effects.enqueue(context=>this.award(score,presentation,context));continue;}
       const index=event.sourceType==='joker'?jokerIndex++:event.sourceType==='character'?0:score.sets.activeScoringIds.indexOf(event.targetCardId??'');
-      this.effects.enqueue(context=>this.showScoreEvent(event,Math.max(0,index),duration,context));
+      const beat=duration*(event.operation==='multiply-multiplier'?1.4:event.sourceType==='joker'?1.25:event.sourceType==='character'?1.15:1);
+      this.effects.enqueue(context=>this.showScoreEvent(event,Math.max(0,index),beat,context));
     }
     let failed=false;
     try {await this.effects.drain();}
@@ -623,7 +686,7 @@ export class GameScene extends Phaser.Scene {
     this.playing=false;this.render();this.revealDrawnCards(presentation.hand.map(card=>card.id));
   }
 
-  fastForward():void {const presentation=this.presentation;if(!presentation)return;this.effects.clear();this.completePresentation(presentation);}
+  fastForward():void {const presentation=this.presentation;if(!presentation)return;this.effects.clear();this.audio.cancelPresentation();this.completePresentation(presentation);}
   replayLastTrace():void {
     if(this.playing||!this.run.lastTrace)return;
     this.playing=true;this.playButton.disableInteractive();const intent=++this.intent;

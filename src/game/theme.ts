@@ -35,6 +35,6 @@ export const P00_ASSETS = [
   { key: 'p00-mark-times', path: 'assets/p00/mark-times.svg', width: 96, height: 96 },
 ] as const;
 
-export function p00AssetUrl(path: string): string {
+export function assetUrl(path: string): string {
   return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
 }

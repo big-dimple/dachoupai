@@ -2,7 +2,8 @@ import Phaser from 'phaser';
 import { CHARACTERS } from './characters';
 import { queueAvatarLoads } from './portraits';
 import {gameSession} from './session';
-import {P00_ASSETS,p00AssetUrl} from './theme';
+import {P00_ASSETS,assetUrl} from './theme';
+import {JOKER_ART} from './jokerArt';
 
 /**
  * 首屏预载小头像和轻量纸桌素材；原始立绘及 GLB 不进入纹理缓存。
@@ -18,7 +19,8 @@ export class BootScene extends Phaser.Scene {
       console.warn(`[boot] 资源加载失败（已跳过，不阻断游戏）: ${file.key} -> ${file.url}`);
     });
     queueAvatarLoads(this, CHARACTERS);
-    for(const asset of P00_ASSETS)this.load.svg(asset.key,p00AssetUrl(asset.path),{width:asset.width,height:asset.height});
+    for(const asset of P00_ASSETS)this.load.svg(asset.key,assetUrl(asset.path),{width:asset.width,height:asset.height});
+    for(const art of JOKER_ART)this.load.image(art.key,assetUrl(art.path));
   }
 
   async create(): Promise<void> {

@@ -224,6 +224,8 @@ export class AudioEngine {
   private stopVoices(bus?: VoiceBus): void {
     for (const voice of this.voices) if (!bus || voice.bus === bus) this.release(voice);
   }
+  /** Cancel a skipped scene's score tails while its table music keeps playing. */
+  cancelPresentation(): void { this.stopVoices('sfx'); }
 
   private note(note: number, duration: number, volume: number, bus: VoiceBus = 'sfx', offset = 0, wave: OscillatorType = 'triangle', absoluteTime?: number, endNote?: number, color: 'clean' | 'pluck' | 'warm' = 'clean'): void {
     if (!this.canPlay(bus)) return;

@@ -116,7 +116,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     v.button(p.cancel,this.selectedId?'取消选择':canReturn?'返回本局':'取消选择','action/cancel-character',()=>void this.cancelChoice(),!this.choosing&&(!!this.selectedId||canReturn));
     v.button(p.details,'角色详情','action/character-details',()=>{if(this.selectedId)this.inspect(this.selectedId);},!this.choosing&&!!this.selectedId);
     v.button(p.confirm,this.choosing?'正在开局…':'确认角色','action/confirm-character',()=>void this.confirmChoice(),!this.choosing&&!!this.selectedId,true);
-    v.text(p.x,p.noticeY,this.notice||(this.selectedId?'已选 '+getCharacter(this.selectedId).name+'，确认后进入货摊。':'先点选一位角色。完整能力随时可查。'),14,this.notice?'#aa3f35':'#48685f',p.w);
+    v.text(p.x,p.noticeY,this.notice||(this.selectedId?'已选 '+getCharacter(this.selectedId).name+'，确认后进入商店。':'先点选一位角色。完整能力随时可查。'),14,this.notice?'#aa3f35':'#48685f',p.w);
   }
   private singleLine(x:number,y:number,value:string,size:number,color:string,width:number,minSize=14,bold=false):Phaser.GameObjects.Text {
     const text=this.view.text(x,y,value,size,color);if(bold)text.setFontStyle('bold');
@@ -129,7 +129,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
   private inspect(id:CharacterId):void {
     if(this.choosing)return;const c=getCharacter(id);
-    this.dialog.open(c.name+' · '+c.title,c.passiveName+'\n'+c.passiveDescription+'\n\n“'+c.quote+'”'+(this.selectedId===id?'\n\n该角色已选中。关闭详情后，用底部「确认角色」进入货摊。':''),this.selectedId===id?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}],{portrait:{url:portraitURL(id),alt:c.name+'的巡演胸像'}});
+    this.dialog.open(c.name+' · '+c.title,c.passiveName+'\n'+c.passiveDescription+'\n\n“'+c.quote+'”'+(this.selectedId===id?'\n\n该角色已选中。关闭详情后，用底部「确认角色」进入商店。':''),this.selectedId===id?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}],{portrait:{url:portraitURL(id),alt:c.name+'的巡演胸像'}});
   }
   private async cancelChoice():Promise<void> {
     if(this.choosing)return;
