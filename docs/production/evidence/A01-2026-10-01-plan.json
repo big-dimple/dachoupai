@@ -1,0 +1,23 @@
+{
+  "taskId": "A01",
+  "testedCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
+  "testedTree": "main at delivered P07 plus this documentation-only revision; runtime, art, tests and harness unchanged",
+  "scope": "User requested future-feature coverage, milestones and safe continuation in a new session. No gameplay implementation or acceptance.",
+  "baseline": {"branch":"main","initialWorktree":"clean","pull":"git pull --ff-only origin main: Already up to date"},
+  "sourceReview": {
+    "finding": "Tarot/planet/spectral/lucky/editions were deferred intentions rather than complete executable steps; README remained at P02 and obsolete art/audio/A00 claims",
+    "implementationBoundary": "src/domain/r2Chapter.ts: 2 chapters, B01–B04, T01/T03–T06/T17; src/domain/scoreR2.ts rejects enhancement; no edition in PlayingCard",
+    "decision": "D21: A01 owner Android acceptance -> A02 -> C00–C04; V01 remains a separate 8–12-person gate before L00",
+    "coverage": "CONTENT section8 maps every requested feature to C01.1–9/C03.1–4; WP defines M0–M9; unknown new item quantities/parameters must be settled in C01.1 before coding"
+  },
+  "checks": [
+    {"command":"node scripts/check-production-plan.mjs --self-test","status":"PASS","exitCode":0,"result":"PLAN_CHECKER_SELF_TEST_PASS: 1 valid and 13 invalid fixtures"},
+    {"command":"node scripts/check-production-plan.mjs","status":"PASS","exitCode":0,"result":"PLAN_VALID: 31 work packages; current=A01; not a gameplay acceptance"},
+    {"command":"git diff --check","status":"PASS","exitCode":0,"result":"No whitespace errors"},
+    {"command":"git diff --exit-code HEAD -- src public art tests harness scripts tools package.json package-lock.json vite.config.ts","status":"PASS","exitCode":0,"result":"No runtime, asset, test, harness, script or build-configuration changes"}
+  ],
+  "humanReview": {"status":"NOT_RUN","reviewer":"","evidence":"No Android test result or explicit acceptance has been supplied; the user's intention is conditional."},
+  "limitations": ["A01/V01 remain BLOCKED", "Game build/browser/audio tests are NOT_RUN for this documentation-only revision; original P07 results retain their own tested-tree scope", "New family definitions and numeric contracts are planned C01.1 deliverables, not implemented gameplay", "Single-owner acceptance does not satisfy formal multiple-player, iPhone, long-session performance or final product approval"],
+  "nextTask": "A01",
+  "nextStep": "Receive explicit scoped owner Android feedback; if accepted record its actual SHA/evidence and select A02, otherwise fix only the reported art/interaction issues."
+}

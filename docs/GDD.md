@@ -8,7 +8,9 @@
 - 大丑牌、消耗品、长期道具与 Boss 定义：[`production/CONTENT.md`](production/CONTENT.md)
 - 工程、命令、存档、随机和演出接口：[`production/ENGINEERING.md`](production/ENGINEERING.md)
 - 桌面/触控、信息层级、音效和反馈：[`production/UX.md`](production/UX.md)
-- 美术方向与 Astra 独立委托：[`production/ART.md`](production/ART.md)
+- 当前东方美术方向与独立子Agent委托：[`production/ART.md`](production/ART.md)
 - 开发依赖与验收：[`production/WORK_PACKAGES.md`](production/WORK_PACKAGES.md)、[`production/QUALITY.md`](production/QUALITY.md)
+
+用户早先提出的塔罗/星球/幻灵、牌组升级、玻璃/幸运、闪箔/全息/多彩与盲注限制，统一追踪在CONTENT第8节和C01/C03包内步骤，不再散落为口头待办。当前冻结与真机认可后的恢复路径见plan/handoff及D21，不能把新会话本身当作批准。
 
 旧 GDD 在 `archive/2026-09-30-pre-audit/GDD.md`。r2 新规则明确替代其中部分计算与视觉硬约束，不得同时混用。所有尚未验证的参数都保持“初始参数”标识；策划存在不等于代码完成。

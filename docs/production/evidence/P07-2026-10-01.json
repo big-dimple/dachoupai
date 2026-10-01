@@ -156,6 +156,6 @@
     "docs/production/evidence/p07-2026-10-01/mobile-shop.webp",
     "docs/production/evidence/p07-2026-10-01/mobile-table.webp"
   ],
-  "delivery": "Normal reviewed main commit/push executes after evidence is saved. The final response names its actual resulting SHA; no branch/force/reset/deployment operation.",
+  "delivery": {"commit":"4bf6a7d63d7738d3c415d09439a1bdca878dc685","branch":"main","command":"git push origin main","status":"PASS","result":"To https://github.com/big-dimple/dachoupai.git; 1d58fe4..4bf6a7d main -> main","forcePush":false,"deployment":"Handled by user; deployed SHA/physical testing NOT_VERIFIED here"},
   "nextStep": "Use key-node feedback on the same main visual candidate to refine art and interaction; no new gameplay before explicit user acceptance."
 }
