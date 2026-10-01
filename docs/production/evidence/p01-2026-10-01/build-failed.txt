@@ -1,0 +1,8 @@
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+src/game/GameScene.ts(383,60): error TS2345: Argument of type '{ portrait: { url: string; alt: string; layout: "card"; caption: string; }; } | undefined' is not assignable to parameter of type '{ closeLabel?: string | undefined; portrait?: { url: string; alt: string; layout?: "card" | undefined; } | undefined; } | undefined'.
+  Type '{ portrait: { url: string; alt: string; layout: "card"; caption: string; }; }' is not assignable to type '{ closeLabel?: string | undefined; portrait?: { url: string; alt: string; layout?: "card" | undefined; } | undefined; }'.
+    Types of property 'portrait' are incompatible.
+      Object literal may only specify known properties, and 'caption' does not exist in type '{ url: string; alt: string; layout?: "card" | undefined; }'.
