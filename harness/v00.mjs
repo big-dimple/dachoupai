@@ -23,8 +23,8 @@ const texts=(page,key)=>page.evaluate(key=>{const walk=list=>list.flatMap(o=>[..
 async function rackFits(page){
   const original=page.viewportSize();await page.setViewportSize({width:360,height:800});
   try{await page.waitForFunction(()=>window.__harness.game.scale.width===360);
-    const labels=await page.evaluate(()=>{const bounds=o=>{const b=o.getBounds();return {x:b.x,right:b.right,bottom:b.bottom};};return [...window.__harness.game.scene.getScene('game').jokerViews.values()].map(v=>{const [slot,name,value]=v.list;return {slot:bounds(slot),name:bounds(name),value:bounds(value),text:value.text};});});
-    for(const l of labels)for(const b of [l.name,l.value])assert.ok(b.x>=l.slot.x&&b.right<=l.slot.right+1&&b.bottom<=l.slot.bottom+1,'360px equipped-card label stays inside its slot: '+l.text);
+    const labels=await page.evaluate(()=>{const bounds=o=>{const b=o.getBounds();return {x:b.x,y:b.y,right:b.right,bottom:b.bottom};};return [...window.__harness.game.scene.getScene('game').jokerViews.values()].map(v=>{const [slot,name,value]=v.list;return {slot:bounds(slot),name:bounds(name),value:bounds(value),text:value.text};});});
+    for(const l of labels){for(const b of [l.name,l.value])assert.ok(b.x>=l.slot.x&&b.right<=l.slot.right+1&&b.bottom<=l.slot.bottom+1,'360px equipped-card label stays inside its slot: '+JSON.stringify(l));assert.ok(l.name.bottom<=l.value.y,'equipped-card name and full value cannot overlap: '+JSON.stringify(l));}
   }finally{await page.setViewportSize(original);await page.waitForFunction(w=>window.__harness.game.scale.width===w,original.width);}
 }
 async function menu(page,touch){if(await page.getByRole('button',{name:'菜单',exact:true}).getAttribute('aria-expanded')!=='true')await dom(page,'菜单',touch);}

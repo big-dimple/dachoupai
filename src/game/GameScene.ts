@@ -135,9 +135,8 @@ export class GameScene extends Phaser.Scene {
     l.slots.forEach((b,i)=>{
       const j=this.run.jokers[i],r=v.rect(b,j?0xf3eadb:0x24313b);
       if(!j){v.text(b.x+6,b.y+12,'空槽',14);return;}
-      const d=getJoker(j.definitionId),name=v.text(b.x+5,b.y+5,d.name,14,'#24313b',b.width-10);
-      const symbol=d.rarity==='rare'?'★':d.rarity==='uncommon'?'◇':'□';
-      const current=v.text(b.x+5,b.y+b.height-24,symbol+this.jokerValue(j),14,'#24313b');
+      const d=getJoker(j.definitionId),symbol=d.rarity==='rare'?'★':d.rarity==='uncommon'?'◇':'□',name=v.text(b.x+5,b.y+5,symbol+d.name,14,'#24313b',b.width-10);
+      const current=v.text(b.x+5,b.y+b.height-20,this.jokerValue(j),14,'#24313b');
       const marker=this.add.container(0,0,[r,name,current]);v.add(marker);this.jokerViews.set(j.definitionId,marker);
       v.target(r,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:x=>void this.reorderJoker(j.instanceId,x),holdToDrag:true});
     });
@@ -399,6 +398,6 @@ export class GameScene extends Phaser.Scene {
   private updateHud(): void {
     this.heatText.setText('热度 '+heatText(this.heat)+' / '+heatText(this.stage.targetHeat));
     const l=this.view.layout;this.handsText.setText(l.mode==='portrait'?'出牌 '+this.handsLeft+' · 弃牌 '+this.run.stage!.discardsLeft+' · 金币 '+this.run.gold:'出牌 '+this.handsLeft+' · 弃牌 '+this.run.stage!.discardsLeft+'\n金币 '+this.run.gold+' · 牌堆 '+this.deck.length+'\n还需 '+heatText((BigInt(this.stage.targetHeat)>BigInt(this.heat)?BigInt(this.stage.targetHeat)-BigInt(this.heat):0n).toString()));
-    for(const j of this.run.jokers){const label=this.jokerViews.get(j.definitionId)?.list[2] as Phaser.GameObjects.Text|undefined,d=getJoker(j.definitionId);label?.setText((d.rarity==='rare'?'★':d.rarity==='uncommon'?'◇':'□')+this.jokerValue(j));}
+    for(const j of this.run.jokers){const label=this.jokerViews.get(j.definitionId)?.list[2] as Phaser.GameObjects.Text|undefined;label?.setText(this.jokerValue(j));}
   }
 }
