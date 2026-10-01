@@ -16,7 +16,7 @@ export class DetailDialog {
     this.dialog?.close();this.dialog?.remove();this.dialog=undefined;this.lastPointer=undefined;
     if(this.returnFocus?.isConnected)this.returnFocus.focus({preventScroll:true});this.returnFocus=undefined;
   }
-  open(title:string,body:string,actions:DialogAction[]=[],options:{closeLabel?:string;portrait?:{url:string;alt:string;layout?:'card'}}={}):HTMLDialogElement {
+  open(title:string,body:string,actions:DialogAction[]=[],options:{closeLabel?:string;portrait?:{url:string;alt:string;layout?:'card';caption?:string}}={}):HTMLDialogElement {
     this.close();this.returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:undefined;
     const dialog=document.createElement('dialog'),heading=document.createElement('h2'),content=document.createElement('p'),row=document.createElement('div'),status=document.createElement('p');
     dialog.className='detail-dialog';dialog.setAttribute('aria-label',title);heading.textContent=title;content.textContent=body;content.className='dialog-body';row.className='dialog-actions';
@@ -31,6 +31,7 @@ export class DetailDialog {
       const image=document.createElement('img'),card=options.portrait.layout==='card';image.className=card?'dialog-card-image':'dialog-portrait';image.src=options.portrait.url;image.alt=options.portrait.alt;image.width=card?512:640;image.height=image.width;
       if(card){
         const frame=document.createElement('figure');frame.className='dialog-card-art';frame.append(image);
+        if(options.portrait.caption){const caption=document.createElement('figcaption');caption.textContent=options.portrait.caption;frame.append(caption);}
         image.onerror=()=>frame.remove();dialog.append(frame);
       }else {image.onerror=()=>image.remove();dialog.append(image);}
     }
