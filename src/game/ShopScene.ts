@@ -1,4 +1,5 @@
-import {requestJokerArt} from './JokerArtLoading';
+import {requestJokerArt,jokerArtLoadState,retryJokerArt} from './JokerArtLoading';
+import {JOKER_RARITY,createJokerRarityBadge,type JokerRarity} from './JokerRarity';
 import {cardAbilityCopy} from './CardCopy';
 import Phaser from 'phaser';
 import {r2JokerCapacity} from '../domain/r2Resources';
@@ -23,7 +24,6 @@ import {UI_FONT} from './theme';
 import {drawJokerMotif} from './JokerMotif';
 import {R2_OFFER_USE as OFFER_USE,r2MechanismBadge as mechanismBadge,r2JokerValue,r2JokerStateText,r2JokerExtraHelp,r2TransactionText} from './r2Help';
 
-const RARITY_LABEL={common:'普通',uncommon:'特别',rare:'稀有'} as const;
 type ShelfKind='jokers'|'tools'|'items';
 const SHELF_FIELDS={jokers:'offers',tools:'toolOffers',items:'itemOffers'} as const;
 function shopLayout(width:number,height:number,top:number,bottom:number,cols:number){
@@ -92,6 +92,7 @@ export class ShopScene extends Phaser.Scene {
     }
   }
   private render():void {
+    this.dialog.refreshArtLoad();
     requestJokerArt(this,[...this.run.jokers.map(j=>j.definitionId),...this.visibleOffers().map(o=>o.definitionId)],()=>this.render());
     const selectedIndex=this.shelfOffers().findIndex(offer=>offer.offerId===this.selectedOfferId);if(selectedIndex>=0)this.shelfPage=Math.floor(selectedIndex/this.pageSize);
     this.shelfPage=Math.min(this.shelfPage,Math.max(0,Math.ceil(this.shelfOffers().length/this.pageSize)-1));
@@ -114,7 +115,8 @@ export class ShopScene extends Phaser.Scene {
       const b=p.slots[i],d=getR2Joker(j.definitionId),first=v.root.length;
       this.drawSlot(b,true,d.rarity);
       this.drawJokerPicture(j.definitionId,{x:b.x+2,y:b.y+2,width:b.width-4,height:b.height-4});
-      if(!p.portrait){v.material({x:b.x,y:b.y+b.height-23,width:b.width,height:23},0x183d40,0x183d40,2);v.text(b.x+b.width/2,b.y+b.height-21,d.name,12,'#fff0d0').setOrigin(.5,0);}
+      if(!p.portrait){v.material({x:b.x,y:b.y+b.height-38,width:b.width,height:38},0x183d40,0x183d40,2);v.text(b.x+5,b.y+b.height-37,d.name,12,'#fff0d0',b.width-10);}
+      v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21,compact:true}).setData('definitionId',j.definitionId).setData('surface','owned'));
       const hover=this.hoverCard(first,b,j.definitionId),r=v.rect({...b,height:b.height+(p.portrait?0:22)}).setFillStyle(0,0).setStrokeStyle(0);
       v.target(r,`joker/${j.instanceId}`,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:(x)=>this.moveJoker(j.instanceId,x),holdToDrag:true,...hover});
     });
@@ -136,8 +138,9 @@ export class ShopScene extends Phaser.Scene {
       this.drawJokerPicture(o.definitionId,picture,o.consumed?.35:1);
       if(o.edition&&o.edition!=='none')v.text(b.x+8,picture.y+picture.height-20,editionLabel(o.edition),12,'#ffebbb',b.width-16).setShadow(0,1,'#17323c',2,true,true);
       const reason=o.consumed?'':this.purchaseReason(o,true),price=r2PurchasePrice(this.run,o);
-      v.text(b.x+10,b.y+b.height-footerHeight+8,o.consumed?'已收入':price+' 金',18,'#ffe2a2').setFontStyle('bold');
-      v.text(b.x+b.width-10,b.y+b.height-footerHeight+12,o.consumed?'':reason?'暂不可购':RARITY_LABEL[d.rarity],12,reason?'#f6bba6':'#c8d6c8').setOrigin(1,0);
+      v.text(b.x+8,b.y+b.height-footerHeight+3,o.consumed?'已收入':price+' 金',16,'#ffe2a2').setFontStyle('bold');
+      if(reason)v.text(b.x+8,b.y+b.height-17,reason,11,'#f6bba6',b.width-76).setStyle({maxLines:1});
+      v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-63,y:b.y+b.height-27}).setData('definitionId',o.definitionId).setData('surface','offer'));
       const hover=this.hoverCard(first,b,o.definitionId),r=v.rect(raw).setFillStyle(0,0).setStrokeStyle(0).setData('selected',selected);
       this.offerArts.push(hover.art);
       v.target(r,`offer/${o.offerId}`,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
@@ -238,7 +241,7 @@ export class ShopScene extends Phaser.Scene {
     v.material({x,y,width,height},0xfff7e4,0xe6d0a6,8);
     v.text(x+12,y+7,d.name,18,'#203744',width-24).setFontStyle('bold');
     this.drawJokerPicture(definitionId,{x:x+12,y:y+34,width:artWidth,height:artHeight});
-    this.drawRarityBadge({x:x+(width-64)/2,y:y+height-26,width:64,height:22},d.rarity);
+    v.add(createJokerRarityBadge(this,d.rarity,{x:x+width-70,y:y+height-26}).setData('definitionId',definitionId).setData('surface','hover'));
     const preview=this.add.container();
     for(const child of v.root.list.slice(first))preview.add(child);
     this.hoverPreview=v.add(preview);v.root.bringToTop(preview);
@@ -248,37 +251,23 @@ export class ShopScene extends Phaser.Scene {
     const key=jokerArtKey(definitionId);if(!key||!this.textures.exists(key))return 1;
     const source=this.textures.get(key).getSourceImage();return source.width/source.height;
   }
-  /** Three real rarity tiers, distinguished by a printed circle, diamond or star. */
-  private drawRarityBadge(b:Box,rarity:keyof typeof RARITY_LABEL):void {
-    const ink=rarity==='rare'?0x7d3040:rarity==='uncommon'?0x205e54:0x58452b,paper=rarity==='rare'?0xefcccd:rarity==='uncommon'?0xdcebe1:0xeadebe,g=this.add.graphics(),cx=b.x+11,cy=b.y+b.height/2;
-    this.view.material(b,paper,paper,3);
-    g.lineStyle(1,ink,.8).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,3);
-    if(rarity==='common'){
-      g.lineStyle(1.5,ink).strokeCircle(cx,cy,4);
-      g.lineStyle(1,ink).beginPath().moveTo(cx-3,cy).lineTo(cx+3,cy).strokePath();
-    }else if(rarity==='uncommon'){
-      g.fillStyle(ink).fillTriangle(cx-5,cy,cx,cy-5,cx+5,cy).fillTriangle(cx-5,cy,cx,cy+5,cx+5,cy);
-      g.lineStyle(1,ink,.6).beginPath().moveTo(cx-7,cy+4).lineTo(cx-4,cy+7).moveTo(cx+4,cy-7).lineTo(cx+7,cy-4).strokePath();
-    }else {
-      const points=Array.from({length:10},(_,i)=>{const angle=-Math.PI/2+i*Math.PI/5,r=i%2?2.5:5.5;return {x:cx+Math.cos(angle)*r,y:cy+Math.sin(angle)*r};});
-      g.fillStyle(ink).fillPoints(points,true);
-    }
-    this.view.add(g);this.view.text(b.x+23,b.y+(b.height-17)/2,RARITY_LABEL[rarity],14,'#'+ink.toString(16).padStart(6,'0')).setFontStyle('bold');
+  private jokerArtStatus(definitionId:string) {
+    return {status:jokerArtLoadState(this,definitionId).status,readStatus:()=>jokerArtLoadState(this,definitionId).status,retry:()=>retryJokerArt(this,[definitionId],()=>this.render())};
   }
   private jokerPortrait(definitionId:string):{url:string;thumbnailUrl?:string;alt:string;layout:'card'}|undefined {
     const key=jokerArtKey(definitionId),url=jokerArtUrl(definitionId);
     return key&&url?{url,thumbnailUrl:jokerArtPreviewUrl(definitionId),alt:getR2Joker(definitionId).name+'的卡牌插画',layout:'card'}:undefined;
   }
   private attachJokerFallback(dialog:HTMLDialogElement,definitionId:string):void {
-    if(this.jokerPortrait(definitionId))return;
+    const key=jokerArtKey(definitionId);if(key&&this.textures.exists(key))return;
     const face=this.add.container(),paper=this.add.graphics().fillStyle(0xfff7e5).fillRoundedRect(0,0,240,336,10).lineStyle(3,0xb69866).strokeRoundedRect(2,2,236,332,10);
-    face.add([paper,this.add.text(120,14,getR2Joker(definitionId).name,{fontFamily:UI_FONT,fontSize:'20px',color:'#203744'}).setOrigin(.5,0),this.add.text(120,302,'机制示意',{fontFamily:UI_FONT,fontSize:'14px',color:'#48685f'}).setOrigin(.5,0)]);
+    face.add([paper,this.add.text(120,14,getR2Joker(definitionId).name,{fontFamily:UI_FONT,fontSize:'20px',color:'#203744'}).setOrigin(.5,0)]);
     drawJokerMotif(this,face,definitionId,120,166,192);
     const image=this.add.renderTexture(0,0,240,336).setVisible(false);image.draw(face);face.destroy();
     image.snapshot(snapshot=>{if(snapshot instanceof HTMLImageElement)this.dialog.attachCardArt(dialog,snapshot.src,getR2Joker(definitionId).name+'机制示意卡面','mechanism');image.destroy();});
   }
-  private drawSlot(b:Box,occupied:boolean,rarity:keyof typeof RARITY_LABEL='common'):void {
-    const v=this.view,g=this.add.graphics(),edge=rarity==='rare'?0x9e5661:rarity==='uncommon'?0x367f75:0xb39868;
+  private drawSlot(b:Box,occupied:boolean,rarity:JokerRarity='common'):void {
+    const v=this.view,g=this.add.graphics(),edge=JOKER_RARITY[rarity].edge;
     if(!occupied){
       v.material(b,0x28494c,0x193940,5);
       if(this.textures.exists('p00-card-back'))v.add(this.add.image(b.x+b.width/2,b.y+b.height/2,'p00-card-back').setDisplaySize(b.width-4,b.height-4).setTint(0x9fb8ad).setAlpha(.16));
@@ -287,7 +276,7 @@ export class ShopScene extends Phaser.Scene {
     }
     v.add(this.add.graphics().fillStyle(0x263d40,.2).fillRoundedRect(b.x+2,b.y+4,b.width,b.height,5));
     v.material({...b,x:b.x-1,y:b.y-1},0xfaf1db,0xc8af85,5);
-    v.material(b,0xfff6e2,0xe2cda6,5);
+    v.material(b,JOKER_RARITY[rarity].paper,0xe2cda6,5);
     v.material({x:b.x+2,y:b.y+b.height-25,width:b.width-4,height:23},0x426a62,0x203e49,3);
     g.lineStyle(1.5,edge).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,5);
     g.lineStyle(1,0xc5ab74).beginPath().moveTo(b.x+6,b.y+b.height-25).lineTo(b.x+b.width-6,b.y+b.height-25).strokePath();v.add(g);
@@ -301,11 +290,16 @@ export class ShopScene extends Phaser.Scene {
     }else {
       const motif=this.add.container(b.x+b.width/2,b.y+b.height/2).setAlpha(alpha);v.add(motif);
       drawJokerMotif(this,motif,definitionId,0,0,Math.min(b.width,b.height)*.88);
+      if(b.width>=88&&b.height>=70){
+        const state=jokerArtLoadState(this,definitionId).status,label=state==='unregistered'?'机制示意':state==='failed'?'插画未加载':'插画加载中';
+        v.add(this.add.rectangle(b.x+b.width/2,b.y+b.height-10,b.width-4,18,0xf4ead4,.96));
+        v.text(b.x+b.width/2,b.y+b.height-17,label,11,'#3c5954').setOrigin(.5,0);
+      }
     }
     g.lineStyle(1,0xa69778,.45).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,3);v.add(g.setAlpha(alpha));
   }
-  private drawOfferCard(b:Box,rarity:keyof typeof RARITY_LABEL,selected:boolean,consumed:boolean,short:boolean,headerHeight=64,footerHeight=short?44:64):void {
-    const g=this.add.graphics(),shadow=this.add.graphics(),edge=rarity==='rare'?0x8c394c:rarity==='uncommon'?0x32665e:0x335662,metal=rarity==='common'?0xbda171:0xe4c186;
+  private drawOfferCard(b:Box,rarity:JokerRarity,selected:boolean,consumed:boolean,short:boolean,headerHeight=64,footerHeight=short?44:64):void {
+    const g=this.add.graphics(),shadow=this.add.graphics(),edge=JOKER_RARITY[rarity].edge,metal=rarity==='common'?0xbda171:0xe4c186;
     shadow.fillStyle(0x172e36,.16).fillRoundedRect(b.x+2,b.y+6,b.width,b.height,6);
     shadow.fillStyle(0x172e36,.12).fillRoundedRect(b.x+1,b.y+3,b.width,b.height,6);
     if(selected){
@@ -314,9 +308,9 @@ export class ShopScene extends Phaser.Scene {
     }
     this.view.add(shadow);
     this.view.material(b,consumed?0xe5dfcc:0xfff7e5,consumed?0xcfc9b5:0xeedbb8);
-    this.view.material({x:b.x,y:b.y,width:b.width,height:headerHeight},consumed?0x607673:edge,consumed?0x435c59:rarity==='rare'?0x542936:0x1b3e48);
+    this.view.material({x:b.x,y:b.y,width:b.width,height:headerHeight},edge,JOKER_RARITY[rarity].ink);
     this.view.material({x:b.x,y:b.y+b.height-footerHeight,width:b.width,height:footerHeight},consumed?0x607673:0x365d61,consumed?0x435c59:0x1c3542);
-    g.lineStyle(selected?2:1,selected?0xf0d295:0xa99a79,.9).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,6);
+    g.lineStyle(1.5,edge,.95).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,6);
     g.lineStyle(1,0xffedbf,.45).beginPath().moveTo(b.x+6,b.y+5).lineTo(b.x+b.width-6,b.y+5).moveTo(b.x+8,b.y+headerHeight).lineTo(b.x+b.width-8,b.y+headerHeight).strokePath();
     g.lineStyle(1,0xcdb784,.7).beginPath().moveTo(b.x+8,b.y+b.height-footerHeight).lineTo(b.x+b.width-8,b.y+b.height-footerHeight).strokePath();
     if(rarity==='rare')g.fillStyle(metal).fillTriangle(b.x+b.width/2-5,b.y+2,b.x+b.width/2+5,b.y+2,b.x+b.width/2,b.y+7);
@@ -364,7 +358,7 @@ export class ShopScene extends Phaser.Scene {
     const inventory=kind==='jokers'?'当前构筑：'+(this.run.jokers.map(j=>getR2Joker(j.definitionId).name).join('、')||'空'):kind==='tools'?`消耗品库存 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)}。购买不会自动使用或替换旧物。`:`长期道具 ${this.run.longTermItems.length}/${R2_LIMITS.longTermSlots}。同种不可重复、不可出售，持续到本局结束。`;
     const body=effect+`\n\n实际购买支付 ${price} 金\n`+discountText+money+'\n\n'+inventory+(reason?'\n\n无法购买：'+reason:'\n\n确认购买才会扣除金币。');
     const name=d?.name??(kind==='tools'?toolInfo(o.definitionId).label:info!.name),portrait=d?this.jokerPortrait(d.id):{url:info!.artUrl,alt:info!.name+'机制纹章',layout:'card' as const,caption:'机制纹章候选 · 正式插画待 A03 验收'};
-    const dialog=this.dialog.open(name+' · 购买详情',body,[{label:'确认购买',primary:true,disabled:!!reason,run:async()=>{if(await this.send({type:'BuyOffer',offerId:id},seq))this.dialog.close(dialog);}}],{closeLabel:'取消',portrait,rarity:d?.rarity,summaryBody:`实付 ${price} 金 · `+(after<0?`现有 ${this.run.gold} 金，差 ${-after} 金`:`余额 ${this.run.gold} → ${after} 金`)+(reason?'\n'+reason:''),effectBody:d?.description??effect,ability:cardAbilityCopy(o.definitionId,{gold:this.run.gold,inStage:false}),collapseRules:true});
+    const dialog=this.dialog.open(name+' · 购买详情',body,[{label:'确认购买',primary:true,disabled:!!reason,run:async()=>{if(await this.send({type:'BuyOffer',offerId:id},seq))this.dialog.close(dialog);}}],{closeLabel:'取消',portrait,rarity:d?.rarity,...(d?{artLoad:this.jokerArtStatus(d.id)}:{}),summaryBody:`实付 ${price} 金 · `+(after<0?`现有 ${this.run.gold} 金，差 ${-after} 金`:`余额 ${this.run.gold} → ${after} 金`)+(reason?'\n'+reason:''),effectBody:d?.description??effect,ability:cardAbilityCopy(o.definitionId,{gold:this.run.gold,inStage:false}),collapseRules:true});
     if(d)this.attachJokerFallback(dialog,d.id);
   }
   private inspectJoker(id:string):void {
@@ -374,7 +368,7 @@ export class ShopScene extends Phaser.Scene {
       {label:'左移',disabled:!this.ready||index===0,run:async()=>{if(await this.reorder(index,index-1,seq)&&this.dialog.active(dialog))this.inspectJoker(id);}},
       {label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:async()=>{if(await this.reorder(index,index+1,seq)&&this.dialog.active(dialog))this.inspectJoker(id);}},
       {label:'出售',disabled:!this.ready,run:()=>{const confirmation=this.dialog.open('出售确认',`出售第 ${index+1} 槽的「${d.name}」获得 ${salePrice(j.paidPrice)} 金币。\n余额 ${this.run.gold} → ${this.run.gold+salePrice(j.paidPrice)} 金。\n\n该牌成长将丢失，当前成长：${growth}。`,[{label:'确认出售',primary:true,run:async()=>{if(await this.send({type:'SellJoker',instanceId:id},seq))this.dialog.close(confirmation);}}],{closeLabel:'取消'});}},
-    ],{portrait:this.jokerPortrait(d.id),rarity:d.rarity,ability:cardAbilityCopy(d.id,{gold:this.run.gold,inStage:false}),collapseRules:!!cardAbilityCopy(d.id,{gold:this.run.gold})});
+    ],{portrait:this.jokerPortrait(d.id),rarity:d.rarity,artLoad:this.jokerArtStatus(d.id),ability:cardAbilityCopy(d.id,{gold:this.run.gold,inStage:false}),collapseRules:!!cardAbilityCopy(d.id,{gold:this.run.gold})});
     this.attachJokerFallback(dialog,d.id);
   }
   private async reorder(from:number,to:number,expectedSeq?:number):Promise<boolean> {

@@ -1,6 +1,7 @@
-import {progressiveArt} from './DetailArt';
+import {decodeArtImage,progressiveArt} from './DetailArt';
 import type {CardAbilityCopy} from './CardCopy';
 import {mountF09Detail} from './F09Art';
+import {createJokerRarityElement,type JokerRarity} from './JokerRarity';
 /** Native modal owns focus and readable, scrollable details independently of canvas resize. */
 let dismissedPointer:{x:number;y:number;until:number}|undefined;
 /** A rapid second tap at a just-dismissed modal button must not reach the canvas behind it. */
@@ -8,38 +9,50 @@ export function modalBlocksCanvas(x:number,y:number):boolean {
   return !!document.querySelector('dialog[open]')||!!dismissedPointer&&performance.now()<dismissedPointer.until&&Math.hypot(x-dismissedPointer.x,y-dismissedPointer.y)<24;
 }
 interface DialogAction {label:string;run:()=>void|Promise<void>;disabled?:boolean;primary?:boolean}
-interface DialogOptions {summaryBody?:string;effectBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;f09?:{inactive:boolean;bodyInactive?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:'common'|'uncommon'|'rare';portrait?:{url:string;thumbnailUrl?:string;alt:string;layout?:'card';caption?:string}}
+type ArtLoadStatus='unregistered'|'idle'|'loading'|'loaded'|'failed';
+interface DialogOptions {summaryBody?:string;effectBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;f09?:{inactive:boolean;bodyInactive?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;alt:string;layout?:'card';caption?:string}}
 export class DetailDialog {
   private dialog?:HTMLDialogElement;
   private lastPointer?:{x:number;y:number};
   private returnFocus?:HTMLElement;
   private stopArt?:()=>void;
+  private rarity?:JokerRarity;
+  private attachFallback?:(url:string,alt:string)=>void;
+  private refreshArt?:()=>void;
   active(dialog:HTMLDialogElement):boolean {return this.dialog===dialog;}
+  /** Loader-driven scene refreshes keep an open modal current without rebuilding it. */
+  refreshArtLoad():void {this.refreshArt?.();}
+  private artVisual(image:HTMLImageElement):HTMLDivElement {
+    const visual=document.createElement('div');visual.className='dialog-art-visual';visual.append(image);
+    if(this.rarity)visual.append(createJokerRarityElement(this.rarity));return visual;
+  }
   /** Reuse the actual Phaser card face for readable poker details, after snapshot resolves. */
   attachCardArt(dialog:HTMLDialogElement,url:string,alt:string,variant:'poker'|'mechanism'='poker'):void {
     if(!this.active(dialog))return;
+    if(variant==='mechanism'&&this.attachFallback){this.attachFallback(url,alt);return;}
+    if(dialog.querySelector('.dialog-card-art'))return;
     const frame=document.createElement('figure'),image=document.createElement('img');
     image.width=240;image.height=336;frame.className='dialog-card-art dialog-poker-art'+(variant==='mechanism'?' dialog-mechanism-art':'');image.className='dialog-card-image';image.src=url;image.alt=alt;
-    frame.append(image);const intro=dialog.querySelector('.dialog-intro');if(intro)intro.insertAdjacentElement('afterend',frame);else dialog.querySelector('.dialog-content')?.prepend(frame);dialog.classList.add('detail-dialog--illustrated');
+    frame.append(this.artVisual(image));
+    if(variant==='mechanism'){const caption=document.createElement('figcaption');caption.textContent='机制示意';frame.append(caption);}
+    const intro=dialog.querySelector('.dialog-intro');if(intro)intro.insertAdjacentElement('afterend',frame);else dialog.querySelector('.dialog-content')?.prepend(frame);dialog.classList.add('detail-dialog--illustrated');
   }
   close(expected?:HTMLDialogElement):void {
     if(expected&&!this.active(expected))return;
     if(this.dialog&&this.lastPointer)dismissedPointer={...this.lastPointer,until:performance.now()+350};
     this.stopArt?.();this.stopArt=undefined;
+    this.attachFallback=undefined;this.refreshArt=undefined;this.rarity=undefined;
     this.dialog?.close();this.dialog?.remove();this.dialog=undefined;this.lastPointer=undefined;
     if(this.returnFocus?.isConnected)this.returnFocus.focus({preventScroll:true});this.returnFocus=undefined;
   }
   open(title:string,body:string,actions:DialogAction[]=[],options:DialogOptions={}):HTMLDialogElement {
     this.close();this.returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:undefined;
+    this.rarity=options.rarity;const cleanups:(()=>void)[]=[];this.stopArt=()=>{for(const cleanup of cleanups)cleanup();};
     const dialog=document.createElement('dialog'),header=document.createElement('header'),heading=document.createElement('h2'),content=document.createElement('p'),layout=document.createElement('div'),copy=document.createElement('div'),row=document.createElement('div'),status=document.createElement('p');
     dialog.className='detail-dialog';dialog.setAttribute('aria-label',title);heading.textContent=title;content.textContent=body;content.className='dialog-body';row.className='dialog-actions';
     status.className='dialog-status';status.setAttribute('role','status');status.hidden=true;
     header.className='dialog-header';layout.className='dialog-content';copy.className='dialog-copy';const intro=document.createElement('div');intro.className='dialog-intro';
     const eyebrow=document.createElement('span');eyebrow.className='dialog-eyebrow';eyebrow.textContent=options.portrait?'巡演藏牌':'牌桌手记';header.append(eyebrow,heading);
-    if(options.rarity){
-      const badge=document.createElement('span');badge.className='dialog-rarity';badge.dataset.rarity=options.rarity;
-      badge.textContent=({common:'● 普通大丑牌',uncommon:'◆ 特别大丑牌',rare:'✦ 稀有大丑牌'} as const)[options.rarity];header.append(badge);
-    }
     for(const action of actions){
       const b=document.createElement('button');b.textContent=action.label;b.disabled=!!action.disabled;if(action.primary)b.className='dialog-primary';
       b.onclick=async()=>{b.disabled=true;b.setAttribute('aria-busy','true');status.hidden=true;try{await action.run();}catch{if(this.active(dialog)){status.textContent='操作未完成，请重试。';status.hidden=false;}}finally{if(b.isConnected){b.disabled=!!action.disabled;b.removeAttribute('aria-busy');}}};row.append(b);
@@ -47,16 +60,66 @@ export class DetailDialog {
     const close=document.createElement('button');close.textContent=options.closeLabel??'关闭';close.className='dialog-close';close.onclick=()=>this.close(dialog);row.append(close);
     dialog.append(header);
     if(options.portrait){
-      const image=document.createElement('img'),card=options.portrait.layout==='card';image.className=card?'dialog-card-image':'dialog-portrait';image.src=options.portrait.thumbnailUrl??options.portrait.url;image.alt=options.portrait.alt;image.decoding='async';
+      const portrait=options.portrait,image=document.createElement('img'),card=portrait.layout==='card';image.className=card?'dialog-card-image':'dialog-portrait';image.alt=portrait.alt;image.decoding='async';
       dialog.classList.add('detail-dialog--illustrated');
       if(card){
-        const frame=document.createElement('figure');frame.className='dialog-card-art';frame.append(image);
+        const frame=document.createElement('figure'),visual=this.artVisual(image);frame.className='dialog-card-art';frame.append(visual);
         image.width=615;image.height=768;
-        if(options.portrait.thumbnailUrl)this.stopArt=progressiveArt(frame,image,options.portrait.url,()=>{frame.querySelectorAll<HTMLImageElement>('.f09-layer').forEach(layer=>layer.src=image.src);});
-        if(options.f09){mountF09Detail(frame,image,options.f09.inactive,options.f09.reduced,options.f09.bodyInactive);dialog.classList.add('f09-detail');}
-        if(options.portrait.caption){const caption=document.createElement('figcaption');caption.textContent=options.portrait.caption;frame.append(caption);}
-        image.onerror=()=>{image.alt='卡面暂未加载';frame.classList.add('art-unavailable');};layout.append(frame);
-      }else {image.onerror=()=>image.remove();layout.append(image);}
+        const thumbnailUrl=portrait.thumbnailUrl??portrait.url;
+        let closed=false,thumbnailFailed=false,detailReady=false,showingFallback=false,registeredFailed=options.artLoad?.status==='failed',registeredLoading=options.artLoad?.status==='loading';
+        let fallback:{url:string;alt:string}|undefined,retryDecode:AbortController|undefined;
+        const loadStatus=document.createElement('div'),retry=document.createElement('button');
+        loadStatus.className='detail-art-status dialog-art-load-status';loadStatus.setAttribute('role','status');loadStatus.hidden=true;
+        retry.className='detail-art-retry dialog-art-load-retry';retry.type='button';retry.textContent='重试卡面';retry.hidden=true;
+        const syncLayers=()=>{
+          frame.querySelectorAll<HTMLImageElement>('.f09-layer').forEach(layer=>{layer.hidden=showingFallback;if(!showingFallback)layer.src=image.src;});
+          frame.querySelectorAll<HTMLElement>('.f09-lamp').forEach(layer=>{layer.hidden=showingFallback;});
+        };
+        const updateStatus=()=>{
+          const failed=thumbnailFailed||registeredFailed;loadStatus.hidden=!failed&&!registeredLoading;retry.hidden=!failed||registeredLoading;
+          loadStatus.textContent=registeredLoading?(showingFallback?'暂用机制示意；牌桌卡面加载中…':'牌桌卡面加载中…'):showingFallback?'暂用机制示意卡面':thumbnailFailed?'卡面暂未加载，可重试':registeredFailed?'牌桌卡面暂未加载，可重试':'';
+        };
+        if(options.artLoad?.readStatus)this.refreshArt=()=>{
+          if(closed)return;const current=options.artLoad!.readStatus!();registeredLoading=current==='loading';
+          if(current==='loaded')registeredFailed=false;else if(current==='failed')registeredFailed=true;updateStatus();
+        };
+        const showFallback=()=>{
+          if(!thumbnailFailed||detailReady||!fallback||showingFallback)return;
+          showingFallback=true;frame.dataset.artFallback='mechanism';image.src=fallback.url;image.alt=fallback.alt;syncLayers();updateStatus();
+        };
+        const showReal=()=>{
+          thumbnailFailed=false;showingFallback=false;delete frame.dataset.artFallback;frame.classList.remove('art-unavailable');image.alt=portrait.alt;syncLayers();updateStatus();
+        };
+        this.attachFallback=(url,alt)=>{if(closed)return;fallback={url,alt};showFallback();};
+        image.onerror=()=>{
+          if(closed)return;if(showingFallback){image.alt='机制示意暂未加载';return;}
+          thumbnailFailed=true;detailReady=false;image.alt='卡面暂未加载';frame.classList.add('art-unavailable');showFallback();updateStatus();
+        };
+        image.onload=()=>{if(!closed&&!showingFallback)showReal();};
+        retry.onclick=async()=>{
+          if(closed||retry.disabled)return;retry.disabled=true;retry.setAttribute('aria-busy','true');loadStatus.hidden=false;loadStatus.textContent='正在重试卡面…';
+          retryDecode?.abort();retryDecode=new AbortController();const signal=retryDecode.signal,retryThumbnail=thumbnailFailed;
+          try {
+            const [registered,thumbnail]=await Promise.allSettled([
+              Promise.resolve().then(()=>options.artLoad?.retry?.()),
+              retryThumbnail?decodeArtImage(thumbnailUrl,signal):Promise.resolve(),
+            ]);
+            if(closed||signal.aborted)return;
+            if(options.artLoad?.retry){registeredLoading=false;registeredFailed=registered.status!=='fulfilled'||registered.value!==true;}
+            if(retryThumbnail&&thumbnail.status==='fulfilled'&&!detailReady){image.src=thumbnailUrl;showReal();}else updateStatus();
+          }catch {if(!closed){loadStatus.textContent=showingFallback?'暂用机制示意卡面，可重试':'卡面暂未加载，可重试';loadStatus.hidden=false;retry.hidden=false;}}
+          finally {if(!closed){retry.disabled=false;retry.removeAttribute('aria-busy');}}
+        };
+        image.src=thumbnailUrl;
+        if(options.f09){
+          const layer=document.createElement('div');layer.className='dialog-art-layer';image.replaceWith(layer);layer.append(image);
+          mountF09Detail(layer,image,options.f09.inactive,options.f09.reduced,options.f09.bodyInactive);dialog.classList.add('f09-detail');
+        }
+        if(portrait.caption){const caption=document.createElement('figcaption');caption.textContent=portrait.caption;frame.append(caption);}
+        frame.append(loadStatus,retry);updateStatus();
+        if(portrait.thumbnailUrl)cleanups.push(progressiveArt(frame,image,portrait.url,()=>{if(closed)return;detailReady=true;showReal();}));
+        cleanups.push(()=>{closed=true;retryDecode?.abort();image.onerror=null;image.onload=null;retry.onclick=null;});layout.append(frame);
+      }else {image.src=portrait.thumbnailUrl??portrait.url;image.onerror=()=>image.remove();cleanups.push(()=>{image.onerror=null;});layout.append(options.rarity?this.artVisual(image):image);}
     }
     if(options.ability){
       const ability=document.createElement('section'),condition=document.createElement('span'),value=document.createElement('strong'),state=document.createElement('small');

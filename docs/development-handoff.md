@@ -1,5 +1,7 @@
 # 当前交接：P08单卡体验样板
 
+D37 当前有界回合（2026-10-02）：基于已整合资产维护的 `0f1f0a6`，统一稀有度固定标志并修复缩略图一次失败后不恢复。新 f04/e07 已获接入授权，但官方 Library 传输返回退出码1/download failed、未给HTTP状态，未取得本地像素；两张继续机制示意，不冒称替换。见[D37证据](production/evidence/D37-2026-10-02.json)。D36继承提交远端CI的Chromium两视口、Firefox两视口、WebKit桌面已通过；WebKit手机未完成，整体任务cancelled。稀有度/加载工程候选已通过47项专项测试、类型/构建和7组Canvas浏览器检查；修正首次create加载门槛后自然路线通过。当前仅准备本地提交，按父会话安排先让两张原创source入仓，再整合运行图并跑最终聚合；尚未push，P08保持in_progress。
+
 资产维护整合（2026-10-02）：原独立提交 `bb53b01651854f29daa9ec87210df20a81aac7be` 已按用户新授权整合到 D36 main `beb91fd668276bb8bbf4cab59572b501af93a191`；只做 Linux 离线复建、53 张旧 P0 预览清理与当前清单校验，保留最新 UI 手势代码、部署配置及历史 A00。原[维护证据](assets/maintenance-2026-10-02.json)保留当时本地交付状态，最新整合/发布范围另记[整合证据](assets/integration-2026-10-02.json)，命令见[Blender说明](../tools/blender/README.md)。本轮已明确授权必要检查后正常 push main 并核对 SHA/CI；不 push 旁支，不等网站部署。`plan.currentTask` 仍为 P08，不扩模型、动画、UI 或玩法。
 
 - `plan.currentTask = P08 / in_progress`。D35已发布main `c90a9fc5d704874a52bddda3e4d991aef92c29fb`；当前D36独立分支 `dot/hand-selection`基于该提交。**用户最新授权解除逐轮等待，检查后正常push main并核对SHA/CI**，由既有链路自动部署，用户在网站直接试玩；部署链路不改。

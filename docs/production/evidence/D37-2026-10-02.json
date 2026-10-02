@@ -1,0 +1,255 @@
+{
+  "taskId": "P08",
+  "task": "D37 permanent Joker rarity and bounded artwork recovery",
+  "date": "2026-10-02",
+  "baseCommit": "0f1f0a6284e80e4d96d4e49f82f0d0bf80c202ec",
+  "status": "LOCAL_FOCUSED_PASS_FINAL_RELEASE_GATE_PENDING",
+  "scope": [
+    "One actual rarity identity across shop, owned rack, table and detail",
+    "Recover registered thumbnail failure with bounded retry and honest fallback"
+  ],
+  "invariants": "No rules, RNG, save schema, content definitions or deployment changes.",
+  "baseline": {
+    "thumbnailFailure": {
+      "status": "REPRODUCED",
+      "report": "shots/f04-prep/thumbnail-recovery.json",
+      "description": "One injected b04 XHR failure leaves Phaser texture missing after network restoration, two detail opens and two shelf redraws; clean control succeeds."
+    },
+    "screenshots": [
+      "shots/f04-prep/desktop-f04-detail.png",
+      "shots/f04-prep/mobile-f04-detail.png"
+    ]
+  },
+  "priorRemoteCI": {
+    "sha": "0f1f0a6284e80e4d96d4e49f82f0d0bf80c202ec",
+    "run": 37025926806,
+    "job": 110900837438,
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37025926806",
+    "domain": "success",
+    "docs": "success",
+    "browser": "cancelled",
+    "passed": [
+      "chromium/desktop",
+      "chromium/mobile",
+      "firefox/desktop",
+      "firefox/mobile",
+      "webkit/desktop"
+    ],
+    "unfinished": [
+      "webkit/mobile"
+    ],
+    "excerpt": [
+      "2026-10-02T15:21:49.4950093Z chromium/desktop: ok",
+      "2026-10-02T15:27:19.8520303Z chromium/mobile: ok",
+      "2026-10-02T15:27:34.3661681Z firefox/desktop: ok",
+      "2026-10-02T15:27:56.9316503Z firefox/mobile: ok",
+      "2026-10-02T15:28:37.5166104Z webkit/desktop: ok",
+      "2026-10-02T15:28:50.9863370Z ##[error]The operation was canceled."
+    ],
+    "note": "Inherited D36 hand fix passes the original Firefox mobile occlusion assertion. Whole browser job was cancelled near its unchanged 10-minute job deadline; no completed WebKit mobile result."
+  },
+  "artImport": {
+    "status": "BLOCKED_TRANSFER",
+    "destination": "/workspace/dachoupai/shots/new-joker-import",
+    "officialRoute": "Resolved Library identifiers -> prepare_materialize -> unchanged official library_file_transfer.py with complete transfer object",
+    "result": "Both transfers had workspace_path:null; official helper exited 1 with 'library file transfer failed: download failed'. No HTTP status supplied; not established as permission/scope denial. Bounded retry exhausted for f04; e07 independently attempted once. No alternative download route attempted.",
+    "files": [
+      {
+        "id": "f04",
+        "libraryFileId": "libfile_6202cd8dd67c819187e155edd3345a36",
+        "version": 0,
+        "expectedSha256": "b67b8dc77fa3e7229b0e6ec2f4baa1d6e4e08b87128c6eeb83451ee2d4ba9efd"
+      },
+      {
+        "id": "e07",
+        "libraryFileId": "libfile_1eecfc367e58819196b6fa5b5a2d7480",
+        "version": 0,
+        "expectedSha256": "57eb44fd83722a24360d7e3f844a6a9a83f614387e45228ce135e49189789020"
+      }
+    ],
+    "localPixels": "NOT_OBTAINED",
+    "runtimeReplacement": "NOT_DONE"
+  },
+  "verification": {
+    "targeted": {
+      "status": "PASS",
+      "tests": 47,
+      "files": [
+        "tests/joker-art-loading.test.ts",
+        "tests/joker-rarity.test.ts",
+        "tests/detail-art.test.ts",
+        "tests/detail-dialog.test.ts"
+      ],
+      "note": "45 combined tests passed, then 21 loader tests passed after adding two creation lifecycle regressions."
+    },
+    "typecheck": "PASS",
+    "e2eBuild": "PASS",
+    "browser": {
+      "status": "PASS",
+      "report": "shots/joker-art-rarity/report.json",
+      "command": "PATH=/workspace/.cloud-tools/node_modules/.bin:$PATH node harness/joker-art-rarity.mjs",
+      "browser": "151.0.7922.173",
+      "node": "v22.23.3",
+      "renderer": "Canvas",
+      "args": [
+        "--disable-gpu",
+        "--disable-software-rasterizer"
+      ],
+      "runs": [
+        {
+          "name": "desktop-natural",
+          "status": "PASS",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "touch": false,
+          "checks": 5,
+          "maxThumbnailXHRs": 1,
+          "maxDetailFetches": 1
+        },
+        {
+          "name": "desktop-rare",
+          "status": "PASS",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "touch": false,
+          "checks": 2,
+          "maxThumbnailXHRs": 1,
+          "maxDetailFetches": 1
+        },
+        {
+          "name": "mobile-natural",
+          "status": "PASS",
+          "viewport": {
+            "width": 412,
+            "height": 820
+          },
+          "touch": true,
+          "checks": 5,
+          "maxThumbnailXHRs": 1,
+          "maxDetailFetches": 1
+        },
+        {
+          "name": "mobile-rare",
+          "status": "PASS",
+          "viewport": {
+            "width": 412,
+            "height": 820
+          },
+          "touch": true,
+          "checks": 2,
+          "maxThumbnailXHRs": 1,
+          "maxDetailFetches": 1
+        },
+        {
+          "name": "mobile-transient",
+          "status": "PASS",
+          "viewport": {
+            "width": 412,
+            "height": 820
+          },
+          "touch": true,
+          "checks": 1,
+          "maxThumbnailXHRs": 1,
+          "maxDetailFetches": 1
+        },
+        {
+          "name": "mobile-404-manual",
+          "status": "PASS",
+          "viewport": {
+            "width": 412,
+            "height": 820
+          },
+          "touch": true,
+          "checks": 4,
+          "maxThumbnailXHRs": 1,
+          "maxDetailFetches": 1
+        },
+        {
+          "name": "mobile-short",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 640
+          },
+          "touch": true,
+          "checks": 1,
+          "maxThumbnailXHRs": 1,
+          "maxDetailFetches": 1
+        }
+      ],
+      "checks": 20,
+      "bundleFiles": [
+        {
+          "file": "index-DpZl-qb0.css",
+          "sha256": "17f5ea4db0751489ee087a03adba9b48ea8f52eb0fe697bba35b44bd8ec70eda"
+        },
+        {
+          "file": "index-DzZtHNwC.js",
+          "sha256": "45ec1825d9c9c7b18d1b925e3dba3452bd77f3400be7c28528c1f4d42b4eb1b5"
+        }
+      ],
+      "limitations": [
+        "Linux Chromium Canvas with GPU/software rasterization disabled; physical Android/iPhone and WebGL NOT_RUN.",
+        "Natural initial shops, one purchase and table entry only; Boss-disabled cards and a rare owned Joker are NOT_RUN in browser. Pure badge/scene contracts cover those unreachable states separately.",
+        "Network faults are deliberate injection, isolated from natural runs. FPS observations are emulator samples, not a device-performance claim."
+      ]
+    },
+    "releaseAggregate": "NOT_RUN",
+    "finalCopyUnit": {
+      "status": "PASS",
+      "tests": 11,
+      "note": "Only HD error wording changed after the browser bundle; final integrated browser/build will cover it."
+    }
+  },
+  "limits": [
+    "Physical OnePlus/Android Chrome NOT_RUN",
+    "Canvas functional evidence does not establish WebGL performance",
+    "f04/e07 new illustrations not locally available and not replaced"
+  ],
+  "testedCommit": "0f1f0a6284e80e4d96d4e49f82f0d0bf80c202ec",
+  "testedCommitNote": "testedCommit is the clean base. The actual frozen modified runtime is identified by testedRuntimeFiles and the compiled bundle hashes; not the unmodified base.",
+  "testedRuntimeFiles": {
+    "src/game/JokerArtLoading.ts": "6c28171822206ed7deb6bd8a5e39a051bfe9e0fd7ccf60c2b9d0cfe4582be05a",
+    "src/game/JokerRarity.ts": "61c338be73a36eb4e1f21af9fe53fcd92d15b56c0d02cc4d4b7bbccbb0a9834e",
+    "src/game/DetailArt.ts": "6d2430ae949c37bcffd4975a799b4ec7d55d823380fbff691321d93735b58e52",
+    "src/game/DetailDialog.ts": "2ea77289918051d341e0e9c96af34a669854ceaaa8af39ec546b4cdf625d8b21",
+    "src/game/GameScene.ts": "ccb0292f1e2ed6c20033710bec080c03c42dfc1de28d04935f2b76cd45177cd1",
+    "src/game/ShopScene.ts": "5a0b0562d82726c5c5f9fa0804fc79e57363ab0803014c8947f6179a9d678df0",
+    "src/style.css": "47461ce84ac6d051a27d3dbaf0370f726742babac3b725516a10c74629bcce5b"
+  },
+  "review": {
+    "status": "PASS",
+    "scope": "Independent read-only review of lifecycle, bounded retry, status synchronization, scoring-time redraw guards, rarity/edition layers and image proportions."
+  },
+  "developmentFailures": [
+    {
+      "status": "FIXED_VERIFIED_BROWSER",
+      "artifact": "shots/joker-art-rarity/initial-failure/raw-loader.json",
+      "description": "Browser caught initial create skipped by RUNNING-only scene.isActive guard: zero image requests and empty loader. Phaser calls Scene.create while CREATING; settings.active is already true. Fix uses active lifecycle flag and adds creation regression test. Corrected initial natural shop route and all seven scenarios pass."
+    },
+    {
+      "status": "HARNESS_CORRECTED",
+      "description": "Rarity alpha measured during existing Shop entrance fade. Harness now waits actual entrance tween completion before retaining exact opaque-alpha assertion; no runtime opacity change or timeout increase."
+    }
+  ],
+  "visualEvidence": {
+    "inspected": true,
+    "paths": [
+      "shots/joker-art-rarity/desktop-natural-common-uncommon-shelf.png",
+      "shots/joker-art-rarity/mobile-natural-common-uncommon-shelf.png",
+      "shots/joker-art-rarity/mobile-rare-rare-unaffordable-detail.png",
+      "shots/joker-art-rarity/mobile-404-manual-404-mechanism-retry.png",
+      "shots/joker-art-rarity/mobile-404-manual-manual-recovered-detail.png",
+      "shots/joker-art-rarity/mobile-short-f04-detail-footer.png"
+    ],
+    "observation": "Three stable color/shape/label identities; image aspect preserved; retry affordance and action footer visible. One asynchronous HD failure message wording corrected after review, verified by unit test; final artwork/release browser pass remains pending."
+  },
+  "publication": {
+    "status": "LOCAL_ONLY",
+    "note": "This local code checkpoint is not pushed; parent has requested a serial main write window for the two original source PNGs. Final aggregate will run after the final integrated candidate is frozen."
+  }
+}

@@ -131,7 +131,7 @@ button:disabled { opacity:.5;cursor:default;box-shadow:none; }
 }
 
 /* F09: bounded movement in the script, silk and lamplight; painted face stays still. */
-.dialog-card-art:not(.dialog-poker-art) > .dialog-card-image { aspect-ratio:615 / 768; }
+.dialog-card-art:not(.dialog-poker-art) .dialog-art-visual > .dialog-card-image { aspect-ratio:615 / 768; }
 .f09-art-frame { transform:perspective(900px) rotateY(var(--lean,0deg));transition:transform .18s ease-out; }
 .f09-art-window { position:relative;width:100%;aspect-ratio:615 / 768;overflow:hidden;border-radius:5px;background:#193839; }
 .f09-art-window .dialog-card-image,.f09-layer { position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:cover; }
@@ -197,7 +197,7 @@ button:active { box-shadow:none;transform:translateY(1px); }
 .dialog-purchase-summary { margin:12px 0 0!important;padding:10px 12px;border-radius:5px;background:#e0e7d9;color:#24483f;font-size:15px;font-weight:600; }
 .dialog-card-art { padding:3px;border:0;border-radius:5px;background:#d9cbb1;box-shadow:0 3px 8px #233c4426; }
 .dialog-card-art figcaption { font-size:13px;padding:5px; }
-.dialog-mechanism-art { max-width:112px!important;max-height:158px;justify-self:center;box-shadow:none; }
+.dialog-mechanism-art { max-width:112px!important;justify-self:center;box-shadow:none; }
 .dialog-mechanism-art img { max-height:158px!important; }
 .dialog-actions { padding:12px 20px;gap:8px;background:#e9e1cf;border-top:1px solid #c3c8b5;box-shadow:none; }
 .dialog-actions button { min-height:48px;padding:8px 12px;box-shadow:none;text-shadow:none; }
@@ -208,3 +208,11 @@ button:active { box-shadow:none;transform:translateY(1px); }
 /* D36: only the hand captures horizontal gestures; vertical pan remains browser-owned. */
 .hand-input-surface { position:fixed;z-index:5;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:pointer; }
 .hand-input-surface[hidden] { display:none; }
+
+/* Printed Joker identity stays legible outside art filters and temporary state overlays. */
+.joker-rarity-badge { display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:58px;height:22px;padding:1px 5px;border:1px solid var(--rarity-edge);border-radius:4px;background:var(--rarity-paper);color:var(--rarity-ink);font:700 14px/18px "Noto Sans SC",sans-serif;white-space:nowrap;opacity:1;filter:none;box-shadow:none; }
+.joker-rarity-badge--compact { min-width:28px;height:18px;padding:0 3px;font-size:12px;line-height:16px; }
+.dialog-rarity.joker-rarity-badge { margin-top:6px;padding:1px 5px;border:1px solid var(--rarity-edge)!important;background:var(--rarity-paper)!important; }
+.dialog-art-visual { position:relative;isolation:isolate; }
+.dialog-art-visual > .joker-rarity-badge { position:absolute;right:6px;bottom:6px;z-index:3;pointer-events:none; }
+.dialog-art-visual > .f09-art-frame { width:100%; }

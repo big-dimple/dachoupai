@@ -1,4 +1,5 @@
-import {requestJokerArt} from './JokerArtLoading';
+import {jokerArtLoadState,requestJokerArt,retryJokerArt} from './JokerArtLoading';
+import {JOKER_RARITY,createJokerRarityBadge} from './JokerRarity';
 import {cardAbilityCopy} from './CardCopy';
 import {mountF09Art} from './F09Art';
 import Phaser from 'phaser';
@@ -235,8 +236,9 @@ export class GameScene extends Phaser.Scene {
   private get ready():boolean {const session=gameSession();return !this.playing&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
   get isPresenting():boolean {return !!this.presentation;}
   private render():void {
+    this.dialog.refreshArtLoad();
     this.handInput?.cancel();
-    requestJokerArt(this,this.run.jokers.map(j=>j.definitionId),()=>{if(!this.presentation&&!this.playing)this.render();});
+    requestJokerArt(this,this.run.jokers.map(j=>j.definitionId),()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();});
     this.stage={...this.stage,targetHeat:this.run.stage!.targetHeat};
     this.controlsLive=false;this.stopScoreFire();
     const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.handNavigationButtons=[];v.paperBackground();this.settledCards.clear();this.previewCards=undefined;
@@ -331,34 +333,42 @@ export class GameScene extends Phaser.Scene {
         v.add(this.add.graphics().lineStyle(1,0x8da498,.5).strokeRoundedRect(b.x,b.y,b.width,b.height,6));
         return;
       }
-      const d=getJoker(j.definitionId),symbol=d.rarity==='rare'?'★':d.rarity==='uncommon'?'◇':'□',sideLabels=l.mode==='landscape',labelBox=l.jokerLabels[i],labelX=sideLabels?labelBox.x-b.x-b.width/2:-b.width/2+5;
+      const d=getJoker(j.definitionId),rarityStyle=JOKER_RARITY[d.rarity],sideLabels=l.mode==='landscape',labelBox=l.jokerLabels[i],labelX=sideLabels?labelBox.x-b.x-b.width/2:-b.width/2+5;
+      const stackValue=!sideLabels&&b.width<64,valueWidth=sideLabels?labelBox.width:stackValue?b.width-8:b.width-40;
       const marker=v.add(this.add.container(b.x+b.width/2,b.y+b.height/2)).setData('baseX',b.x+b.width/2).setData('baseY',b.y+b.height/2);
-      const r=this.add.rectangle(0,0,b.width,b.height,T.paper).setFillStyle(0,0).setStrokeStyle(2,d.rarity==='rare'?T.brass:T.jade);
+      const r=this.add.rectangle(0,0,b.width,b.height,T.paper).setFillStyle(0,0).setStrokeStyle(2,rarityStyle.edge);
       const paper=v.material({x:-b.width/2,y:-b.height/2,width:b.width,height:b.height},0xfff6df,0xd9c29f,5),resolution=1/this.scale.zoom;
       const nameText=(b.height<70&&!sideLabels||l.shortLandscape)&&d.name.length>2?d.name.slice(0,2)+'…':d.name;
-      const name=this.add.text(labelX,-b.height/2+(sideLabels?2:5),nameText,{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:'#fff0cf',wordWrap:{width:sideLabels?labelBox.width:b.width-10,useAdvancedWrap:true},resolution,maxLines:l.shortLandscape?1:2});
-      const current=this.add.text(labelX,sideLabels?-b.height/2+(l.shortLandscape?26:38):b.height/2-23,this.jokerValue(j),{fontFamily:UI_FONT,fontSize:sideLabels||b.width<80?'14px':'20px',fontStyle:'bold',color:sideLabels?'#ffd0af':C.red,resolution});
-      const rarity=this.add.text(sideLabels?labelX:b.width/2-6,sideLabels?-b.height/2+56:b.height/2-22,sideLabels?symbol+(d.rarity==='rare'?'稀有':d.rarity==='uncommon'?'罕见':'普通'):symbol,{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:sideLabels?'#d5ddc9':C.ink,resolution}).setOrigin(sideLabels?0:1,0).setVisible(!l.shortLandscape);
-      const headHeight=Math.max(26,name.height+8),head=sideLabels?undefined:v.material({x:-b.width/2+2,y:-b.height/2+2,width:b.width-4,height:headHeight},d.rarity==='rare'?0x854f53:0x46776e,0x213f49,3);
+      const name=this.add.text(labelX,-b.height/2+(sideLabels?2:5),nameText,{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:'#fff0cf',wordWrap:{width:sideLabels?labelBox.width:b.width-((j.edition??'none')!=='none'?30:10),useAdvancedWrap:true},resolution,maxLines:l.shortLandscape?1:2});
+      const current=this.add.text(labelX,sideLabels?-b.height/2+(l.shortLandscape?26:38):b.height/2-(stackValue?24:3),this.jokerValue(j),{fontFamily:UI_FONT,fontSize:sideLabels?(l.shortLandscape?'12px':'14px'):b.width<80?'12px':'20px',fontStyle:'bold',color:sideLabels?'#ffd0af':C.red,resolution,wordWrap:{width:valueWidth,useAdvancedWrap:true},maxLines:l.shortLandscape?1:2}).setOrigin(0,sideLabels?0:1);
+      const headHeight=Math.max(26,name.height+8),head=sideLabels?undefined:v.material({x:-b.width/2+2,y:-b.height/2+2,width:b.width-4,height:headHeight},rarityStyle.ink,rarityStyle.edge,3);
       marker.add([paper,...(head?[head]:[])]);
       const artTop=sideLabels?-b.height/2+5:-b.height/2+headHeight+4,artHeight=sideLabels?b.height-10:Math.max(14,b.height-headHeight-30),artSize=Math.min(b.width-10,artHeight),key=jokerArtKey(j.definitionId);
       if(key&&this.textures.exists(key)){
-        const art=this.add.container(0,0);if(j.definitionId==='f09')mountF09Art(this,art,b.width-6,b.height-6,()=>this.reducedMotion);else{const image=this.add.image(0,0,key);image.setScale(Math.min((b.width-6)/image.width,(b.height-6)/image.height));art.add(image);}marker.add(art);if(j.definitionId==='f09')marker.setData('f09-art',art);
+        const art=this.add.container(0,0);
+        if(j.definitionId==='f09'){
+          const artWidth=Math.min(b.width-6,(b.height-6)*.8);mountF09Art(this,art,artWidth,artWidth/.8,()=>this.reducedMotion);
+        }else{const image=this.add.image(0,0,key);image.setScale(Math.min((b.width-6)/image.width,(b.height-6)/image.height));art.add(image);}
+        marker.add(art);if(j.definitionId==='f09')marker.setData('f09-art',art);
         art.setData('f09-active',(this.run.stage?.discardsUsed??0)===0&&!disabled.has(j.instanceId)).setData('f09-sealed',disabled.has(j.instanceId));
         if(!sideLabels){
-          marker.add(this.add.rectangle(0,b.height/2-15,b.width-6,28,0x173c3d,.88));
-          name.setY(b.height/2-30).setFontSize(12).setText(d.name.length>4?d.name.slice(0,3)+'…':d.name);current.setY(b.height/2-16).setColor('#ffe3a4').setFontSize(12);rarity.setVisible(false);
+          const bandHeight=stackValue?42:b.width<80?48:30;
+          marker.add(this.add.rectangle(0,b.height/2-bandHeight/2-1,b.width-6,bandHeight,rarityStyle.ink,.92));
+          if(stackValue)marker.add(this.add.rectangle(0,-b.height/2+12,b.width-6,20,rarityStyle.ink,.92));
+          name.setY(stackValue?-b.height/2+5:b.height/2-(b.width<80?48:30)).setFontSize(12).setText(d.name.length>4?d.name.slice(0,3)+'…':d.name);
+          if(!stackValue)name.setWordWrapWidth(b.width-10,true);
+          current.setColor('#ffe3a4').setFontSize(12);
         }
-      }else if(key&&this.textures.exists(key)){const art=this.add.image(0,artTop+artHeight/2,key);art.setScale(Math.min((b.width-10)/art.width,artHeight/art.height));marker.add(art);}
-      else this.jokerMechanism(marker,0,artTop+artHeight/2,artSize,j);
+      }else this.jokerMechanism(marker,0,artTop+artHeight/2,artSize,j);
       const trim=this.textures.exists('p00-frame-'+d.rarity)?this.add.image(0,0,'p00-frame-'+d.rarity).setDisplaySize(b.width,b.height).setAlpha(.58):undefined;
-      marker.add([...(trim?[trim]:[]),r,name,current,rarity]).setData('frame',r).setData('frameColor',d.rarity==='rare'?T.brass:T.jade).setData('nameLabel',name).setData('valueLabel',current).setData('slotIndex',i);this.jokerViews.set(j.instanceId,marker);
-      this.editionTrim(marker,b.width,b.height,j.edition);
+      marker.add([...(trim?[trim]:[]),r,name,current]).setData('frame',r).setData('frameColor',rarityStyle.edge).setData('nameLabel',name).setData('valueLabel',current).setData('slotIndex',i);this.jokerViews.set(j.instanceId,marker);
+      this.editionTrim(marker,b.width,b.height,j.edition,true);
       if(disabled.has(j.instanceId)){
         r.setStrokeStyle(2,T.red);marker.setData('frameColor',T.red).setData('bossDisabled',true);
         current.setText(sideLabels?'计分封禁':'封禁').setColor(C.red);
         marker.add(this.add.graphics().fillStyle(T.ink,.2).fillRoundedRect(-b.width/2+3,artTop,b.width-6,artHeight,3).lineStyle(2,T.red,.7).lineBetween(-b.width/2+6,artTop+artHeight-3,b.width/2-6,artTop+3));
       }
+      marker.add(createJokerRarityBadge(this,d.rarity,{x:b.width/2-31,y:b.height/2-21,compact:true,resolution}).setData('definitionId',d.id).setData('surface','table'));
       this.armJokerIdle(marker,i);
       const hit=v.rect({x:b.x,y:b.y,width:b.width+(sideLabels?labelBox.width+6:0),height:b.height},T.ink).setFillStyle(T.ink,.001).setStrokeStyle();marker.setData('hit',hit);
       v.target(hit,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:x=>void this.reorderJoker(j.instanceId,x),holdToDrag:true,enter:()=>this.hoverJoker(j.instanceId,true),leave:()=>this.hoverJoker(j.instanceId,false)});
@@ -465,13 +475,13 @@ export class GameScene extends Phaser.Scene {
     return {card,container:c,background:bg,scoringMark,selectionMark,back,edgeGlow,faceGlow,sheen};
   }
   /** Edition light stays on the rim so rank, pips and character art remain readable. */
-  private editionTrim(container:Phaser.GameObjects.Container,width:number,height:number,edition:PlayingCard['edition']):void {
+  private editionTrim(container:Phaser.GameObjects.Container,width:number,height:number,edition:PlayingCard['edition'],joker=false):void {
     if(!edition||edition==='none')return;
     const rim=this.add.graphics(),colors=edition==='foil'?[0xc0e9f5]:edition==='holographic'?[0xc8a8f5,0x8fe5d9]:[0xf3bc79,0xe390c7,0x93d9e5,0xbce09f];
     colors.forEach((color,i)=>{rim.lineStyle(edition==='polychrome'?2:1.5,color,.9).strokeRoundedRect(-width/2+3+i*1.7,-height/2+3+i*1.7,width-6-i*3.4,height-6-i*3.4,5);});
-    const label=edition==='foil'?'箔':edition==='holographic'?'虹':'彩';
-    rim.fillStyle(colors[0],.9).fillCircle(width/2-12,height/2-12,8);container.add(rim);container.setData('editionRim',rim);
-    container.add(this.add.text(width/2-12,height/2-12,label,{fontFamily:UI_FONT,fontSize:'11px',fontStyle:'bold',color:'#17383c',resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5));
+    const label=edition==='foil'?'箔':edition==='holographic'?'虹':'彩',labelY=joker?-height/2+12:height/2-12;
+    rim.fillStyle(colors[0],.9).fillCircle(width/2-12,labelY,8);container.add(rim);container.setData('editionRim',rim);
+    container.add(this.add.text(width/2-12,labelY,label,{fontFamily:UI_FONT,fontSize:'11px',fontStyle:'bold',color:'#17383c',resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5).setName('edition-badge'));
     if(!this.reducedMotion){const shimmer=this.tweens.add({targets:rim,alpha:{from:.55,to:1},duration:1100,yoyo:true,repeat:-1,ease:'Sine.easeInOut'});rim.setData('editionTween',shimmer);rim.once('destroy',()=>shimmer.remove());}
   }
   private revealCard(view:CardView):void {
@@ -566,8 +576,11 @@ export class GameScene extends Phaser.Scene {
     const panel=this.view.add(this.add.container(x,top));this.jokerHoverPreview=panel;
     const g=this.add.graphics().fillStyle(0x071e29,.65).fillRoundedRect(3,7,width,height,9).fillStyle(0xf4e8d3).fillRoundedRect(0,0,width,height,9).lineStyle(1,0xd0af72).strokeRoundedRect(0,0,width,height,9);
     const size=Math.min(168,height-24,width*.44),key=jokerArtKey(j.definitionId);panel.add(g);
-    if(key&&this.textures.exists(key))panel.add(this.add.image(12+size/2,12+size/2,key).setDisplaySize(size,size));
+    if(key&&this.textures.exists(key)){
+      const image=this.add.image(12+size/2,12+size/2,key);image.setScale(Math.min(size/image.width,size/image.height));panel.add(image);
+    }
     else drawJokerMotif(this,panel,j.definitionId,12+size/2,12+size/2,size);
+    panel.add(createJokerRarityBadge(this,d.rarity,{x:12+size-61,y:12+size-25,resolution:1.5}).setData('definitionId',d.id).setData('surface','hover'));
     const tx=24+size,tw=width-tx-12,style={fontFamily:UI_FONT,resolution:1.5,wordWrap:{width:tw,useAdvancedWrap:true}};
     panel.add(this.add.text(tx,14,d.name,{...style,fontSize:'20px',fontStyle:'bold',color:'#203744'}));
     panel.add(this.add.text(tx,46,this.jokerValue(j),{...style,fontSize:'22px',fontStyle:'bold',color:'#a14b38'}));
@@ -680,18 +693,18 @@ export class GameScene extends Phaser.Scene {
     const dialog=this.dialog.open(c.name+' · 角色与本场规则',body,[{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},...(this.run.program?[{label:'本章节目单',run:()=>showPrograms(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))}]:[]),...(this.characterId==='touye'?[{label:notice?.wagerDisabled?'本场不能押注':stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed||notice?.wagerDisabled,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[])],{portrait:{url:portraitURL(c.id),alt:c.name+'完整立绘'}});
   }
   private inspectJoker(id:string):void {
-    const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=getJoker(j.definitionId),index=this.run.jokers.indexOf(j),art=jokerArtUrl(d.id);
+    const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=getJoker(j.definitionId),index=this.run.jokers.indexOf(j),art=jokerArtUrl(d.id),artKey=jokerArtKey(d.id),rarity=JOKER_RARITY[d.rarity];
     const move=async(delta:number)=>{const ids=this.run.jokers.map(j=>j.instanceId);ids.splice(index,1);ids.splice(index+delta,0,id);await this.command({type:'ReorderJokers',ids});if(this.dialog.active(dialog))this.inspectJoker(id);};
     const notice=stageNotice(this.run),restriction=notice?.disabledJokerIds.includes(id)?'\n本场计分封禁：'+notice.title+'。静态资源、经济与寿命仍正常。':'';
-    const body=j.definitionId==='f09'?'守住原稿，不换一词。\n返还弃牌次数，也不会恢复本场资格。'+restriction+'\n'+(j.edition!=='none'?editionEffectText(j.edition)+'\n':'')+'第 '+(index+1)+' 槽 · 长按后拖动调序。\n出售须在商店确认。':(d.rarity==='rare'?'★ 稀有':d.rarity==='uncommon'?'◇ 罕见':'□ 普通')+' · 当前 '+this.jokerValue(j)+restriction+'\n'+editionEffectText(j.edition)+'\n'+d.description+r2JokerExtraHelp(d)+'\n当前实例：'+r2JokerStateText(j)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 整手计分从右向左':' · 整手计分从左向右')+'；长按后拖动可调序，出售只在商店确认。';
+    const body=j.definitionId==='f09'?'守住原稿，不换一词。\n返还弃牌次数，也不会恢复本场资格。'+restriction+'\n'+(j.edition!=='none'?editionEffectText(j.edition)+'\n':'')+'第 '+(index+1)+' 槽 · 长按后拖动调序。\n出售须在商店确认。':rarity.symbol+' '+rarity.label+' · 当前 '+this.jokerValue(j)+restriction+'\n'+editionEffectText(j.edition)+'\n'+d.description+r2JokerExtraHelp(d)+'\n当前实例：'+r2JokerStateText(j)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 整手计分从右向左':' · 整手计分从左向右')+'；长按后拖动可调序，出售只在商店确认。';
     const dialog=this.dialog.open(d.name,body,[
       {label:'左移',disabled:!this.ready||index===0,run:()=>move(-1)},{label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:()=>move(1)},
-    ],{rarity:d.rarity,ability:cardAbilityCopy(j.definitionId,{gold:this.run.gold,discardsUsed:this.run.stage?.discardsUsed,inStage:true,disabledReason:restriction||undefined}),collapseRules:!!cardAbilityCopy(j.definitionId,{gold:this.run.gold}),...(j.definitionId==='f09'?{f09:{inactive:!!restriction,bodyInactive:(this.run.stage?.discardsUsed??0)>0,reduced:this.reducedMotion,reason:restriction||undefined}}:{}),...(art?{portrait:{url:art,thumbnailUrl:jokerArtPreviewUrl(d.id),alt:d.name+'完整卡面',layout:'card' as const,caption:d.name+' · '+this.jokerValue(j)}}:{})});
-    if(!art)this.attachJokerFallback(dialog,d.id);
+    ],{rarity:d.rarity,artLoad:{status:jokerArtLoadState(this,d.id).status,readStatus:()=>jokerArtLoadState(this,d.id).status,retry:()=>retryJokerArt(this,[d.id],()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();})},ability:cardAbilityCopy(j.definitionId,{gold:this.run.gold,discardsUsed:this.run.stage?.discardsUsed,inStage:true,disabledReason:restriction||undefined}),collapseRules:!!cardAbilityCopy(j.definitionId,{gold:this.run.gold}),...(j.definitionId==='f09'?{f09:{inactive:!!restriction,bodyInactive:(this.run.stage?.discardsUsed??0)>0,reduced:this.reducedMotion,reason:restriction||undefined}}:{}),...(art?{portrait:{url:art,thumbnailUrl:jokerArtPreviewUrl(d.id),alt:d.name+'完整卡面',layout:'card' as const,caption:d.name+' · '+this.jokerValue(j)}}:{})});
+    if(!artKey||!this.textures.exists(artKey))this.attachJokerFallback(dialog,d.id);
   }
   private attachJokerFallback(dialog:HTMLDialogElement,definitionId:string):void {
     const face=this.add.container(),paper=this.add.graphics().fillStyle(0xfff7e5).fillRoundedRect(0,0,240,336,10).lineStyle(3,0xb69866).strokeRoundedRect(2,2,236,332,10);
-    face.add([paper,this.add.text(120,14,getJoker(definitionId).name,{fontFamily:UI_FONT,fontSize:'20px',color:'#203744'}).setOrigin(.5,0),this.add.text(120,302,'机制示意',{fontFamily:UI_FONT,fontSize:'14px',color:'#48685f'}).setOrigin(.5,0)]);
+    face.add([paper,this.add.text(120,14,getJoker(definitionId).name,{fontFamily:UI_FONT,fontSize:'20px',color:'#203744'}).setOrigin(.5,0)]);
     drawJokerMotif(this,face,definitionId,120,166,192);
     const image=this.add.renderTexture(0,0,240,336).setVisible(false);image.draw(face);face.destroy();
     image.snapshot(snapshot=>{if(snapshot instanceof HTMLImageElement)this.dialog.attachCardArt(dialog,snapshot.src,getJoker(definitionId).name+'机制示意卡面','mechanism');image.destroy();});
@@ -1158,11 +1171,13 @@ export class GameScene extends Phaser.Scene {
   }
   private ensureTraceSource(event:ScoreEvent):void {
     if(event.sourceType!=='joker'||this.jokerViews.has(event.sourceInstanceId))return;
-    const definition=getJoker(event.sourceDefinitionId),b=this.view.layout.slots[Math.min(this.jokerViews.size,R2_LIMITS.jokerSlots-1)],marker=this.view.add(this.add.container(b.x+b.width/2,b.y+b.height/2)),frame=this.add.rectangle(0,0,b.width,b.height,T.paper).setStrokeStyle(2,T.brass);
+    const definition=getJoker(event.sourceDefinitionId),rarityStyle=JOKER_RARITY[definition.rarity],l=this.view.layout,index=Math.min(this.jokerViews.size,R2_LIMITS.jokerSlots-1),b=l.slots[index],sideLabels=l.mode==='landscape',labelBox=l.jokerLabels[index],labelX=sideLabels?labelBox.x-b.x-b.width/2:-b.width/2+5;
+    const marker=this.view.add(this.add.container(b.x+b.width/2,b.y+b.height/2)),frame=this.add.rectangle(0,0,b.width,b.height,rarityStyle.paper).setStrokeStyle(2,rarityStyle.edge);
     marker.add(frame);drawJokerMotif(this,marker,definition.id,0,0,Math.min(b.width,b.height)*.75);
-    marker.add(this.add.text(0,-b.height/2+6,definition.name,{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:'#203744',wordWrap:{width:b.width-8}}).setOrigin(.5,0));
-    const label=this.add.text(0,b.height/2-20,'回看来源',{fontFamily:UI_FONT,fontSize:'14px',color:'#203744'}).setOrigin(.5,0);marker.add(label);
-    marker.setData('frame',frame).setData('frameColor',T.brass).setData('valueLabel',label).setData('baseX',marker.x).setData('baseY',marker.y);this.jokerViews.set(event.sourceInstanceId,marker);
+    marker.add(this.add.text(labelX,-b.height/2+5,definition.name,{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:sideLabels?'#fff0cf':rarityStyle.css.ink,wordWrap:{width:sideLabels?labelBox.width:b.width-10,useAdvancedWrap:true},maxLines:l.shortLandscape?1:2}));
+    const stackValue=!sideLabels&&b.width<64,label=this.add.text(labelX,sideLabels?-b.height/2+26:b.height/2-(stackValue?24:3),'回看来源',{fontFamily:UI_FONT,fontSize:'12px',color:sideLabels?'#ffd0af':rarityStyle.css.ink,wordWrap:{width:sideLabels?labelBox.width:stackValue?b.width-10:b.width-40,useAdvancedWrap:true},maxLines:l.shortLandscape?1:2}).setOrigin(0,sideLabels?0:1);marker.add(label);
+    marker.add(createJokerRarityBadge(this,definition.rarity,{x:b.width/2-31,y:b.height/2-21,compact:true,resolution:Math.max(1.5,1/this.scale.zoom)}).setData('definitionId',definition.id).setData('surface','trace'));
+    marker.setData('frame',frame).setData('frameColor',rarityStyle.edge).setData('valueLabel',label).setData('baseX',marker.x).setData('baseY',marker.y);this.jokerViews.set(event.sourceInstanceId,marker);
   }
   private showTraceHeldCard(id:string):void {
     if(!this.presentation||this.settledCards.has(id))return;
