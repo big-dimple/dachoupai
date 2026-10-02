@@ -2,7 +2,7 @@
   "taskId": "C03",
   "insertedFix": "C03-PRESENTATION-20261002",
   "date": "2026-10-02",
-  "status": "ENGINEERING_PASS_PUBLICATION_PENDING",
+  "status": "ENGINEERING_PASS_PUBLISHED",
   "testedCommit": "bf4d7993077255c2a642564402d22bf9016d41c9",
   "testedTree": "main dirty tree bound by sourceFingerprints; no reset, force push or unrelated files",
   "sourceFingerprints": {
@@ -182,7 +182,11 @@
   ],
   "publication": {
     "branch": "main",
-    "codeCommit": null,
-    "normalPush": "PENDING"
+    "codeCommit": "45ecb0bc2e2dc19a29c7f30fa7a780f5617b6d03",
+    "normalPush": "PASS",
+    "commitChunk": "c08d50",
+    "pushChunk": "204930",
+    "command": "git push origin main",
+    "result": "bf4d799..45ecb0b main -> main; exit0"
   }
 }
