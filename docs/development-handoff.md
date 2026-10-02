@@ -1,5 +1,7 @@
 # 当前交接：P08单卡体验样板
 
+D41当前回合（2026-10-02）：基于资产main `9be2e95`，仅接入16帧/800ms铜钱到已保存的正数过关总奖励。先显示可用控件与原数字，再按需加载143,518字节；临时clearId提示只消费一次，e07等收益包含于总额，不单独再奖。减少动态为末帧，快进/跳过/resize/恢复/退出/资源失败不阻塞操作或重复计奖。34项专项及类型检查通过，源码保存本地恢复提交 `e655a61`；9组浏览器48项检查、PC/手机前后截图与短录屏已实际查看；最终冻结源码1761项测试/content/build/双端Canvas smoke/plan全部通过，前后源码指纹相同，见[D41证据](production/evidence/D41-2026-10-02.json)。资产基线CI37075318312取消，五条浏览器路线通过、WebKit手机未完成；不记全绿、不重跑旧SHA。必要检查后依授权正常push main，核对最终SHA/CI并交回父会话。规则/RNG/存档/依赖/部署不变；P08与真机/视觉边界不变。
+
 铜钱候选资产整合（2026-10-02）：在独占main写入窗口内，基于D40 `cb825f8` 合入已核验旁支提交 `a833929` 的源脚本、元数据、联系表和两项图集资源。16帧/800ms，atlas+JSON共143,518字节；游戏运行代码未接入该候选。保留本文件D40交接与plan当前状态，制作阶段[原证据](assets/coin-reward-2026-10-02.json)保持原文，最新范围见[整合证据](assets/coin-reward-integration-2026-10-02.json)。本轮明确授权最小资源/构建检查后正常push main并核对远端SHA；不push旁支。P08仍current/in_progress，A03仍planned，视觉与真机批准仍待后续。
 
 D40当前回合（2026-10-02）：main基线 `b85a5c2`，精确SHA远端[CI37043920217](https://github.com/big-dimple/dachoupai/actions/runs/37043920217)已成功，旧选角回归不再阻塞当前候选。本轮只修复实测过时高清占请求槽；既有缩略优先/预取/重试保留，最后使用者关详情、换货架或退场后取消。56项专项和类型检查通过，代码保存在本地恢复提交 `97403ee`，五组PC/触摸Canvas自然及模拟慢请求对照已通过；测量扣除原200ms弹窗变换，卡框局部尺寸/对齐断言保留，基线已有8px整框垂直位移另记录；最终冻结源码1742项测试/content/build/双端Canvas smoke/plan全部通过，前后源码指纹一致。必要检查后正常push并核对SHA/CI，发布结果写入shots/resource-flow/publication.json，见[D40证据](production/evidence/D40-2026-10-02.json)。新图source审批仍独立；铜钱atlas资产线程本地a833929待后续集成，不在本轮接入，P08保持in_progress。
@@ -18,7 +20,7 @@ D36继承提交 `0f1f0a6` 的远端Chromium两视口、Firefox两视口、WebKit
 
 - `plan.currentTask = P08 / in_progress`。D35已发布main `c90a9fc5d704874a52bddda3e4d991aef92c29fb`；D36已发布 `beb91fd`；D37已发布 `a5afc339`；D39基于D38 `5cf35ab`独立推进。**用户最新授权解除逐轮等待，检查后正常push main并核对SHA/CI**，由既有链路自动部署，用户在网站直接试玩；部署链路不改。
 - 历史接管基线main `209b9073c90778bf57a1736bed9266f305b995f5`；当时本地干净、远端一致。C04历史仍未完/BLOCKED，C04.3/4、新玩法与全卡重画不自动推进。当前决定见[D39](production/DECISIONS.md#d39--五张大丑牌的条件与本手收益2026-10-02采用)。
-- 当前工作仅为D40过时高清请求的生命周期清理；保留D39五张条件/收益说明与实际来源；保留已交付的稀有度、加载恢复和手势。新图继续等待独立source审批，不读取受限源图、不换传输路径；素材不是本次发布前置。
+- 当前工作仅为D41过关奖励铜钱最小接入；保留D40高清生命周期、D39说明、稀有度/恢复/手势。f04/e07新图继续等待独立source审批，不读取受限源图、不换传输路径。
 
 ## 证据与限制
 
@@ -42,6 +44,6 @@ D36继承提交 `0f1f0a6` 的远端Chromium两视口、Firefox两视口、WebKit
 
 单卡浏览器入口：`harness/f09.mjs`（`F09_RENDERER=canvas/webgl`分开记录）；加载/文案专项：`harness/f09-loading.mjs`；D39五张说明专项：`harness/joker-clarity.mjs`。均按各入口要求使用e2e开发构建，不只为重复获取相同失败证据空跑。检查按AGENTS变更矩阵执行，最终发布聚合与开发targeted分开。
 
-D39已push并通过远端CI；D40完成资源对照和最终门禁后正常push，核对GitHub SHA/CI，结果写入shots/resource-flow/publication.json并交回父会话，不等待或探测公开网站。后续范围由父会话安排，不自动扩展到全库、C04或美术。原画重绘暂缓，重新附图/Library/ZIP均不是发布前置；不删工作包、金样或测试门禁。
+D39已push并通过远端CI；D40已push，CI后来被资产main取代。D41完成最终门禁后正常push，核对GitHub SHA/CI，结果写入shots/reward-runtime/publication.json并交回父会话，不等待或探测公开网站。后续范围由父会话安排，不自动扩展到全库、C04或美术。原画重绘暂缓，重新附图/Library/ZIP均不是发布前置；不删工作包、金样或测试门禁。
 
 历史C04源码/CI/旧存档细节以[收尾证据](production/evidence/C04-closeout-2026-10-02.json)及[基线handoff](https://github.com/big-dimple/dachoupai/blob/209b9073c90778bf57a1736bed9266f305b995f5/docs/development-handoff.md)追溯；本地通过不改写其远端CI取消的历史。

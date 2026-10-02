@@ -1,0 +1,150 @@
+{
+  "taskId": "P08",
+  "task": "D41 committed clear reward coin presentation",
+  "date": "2026-10-02",
+  "baseCommit": "9be2e95396fbbedea4aa059b7e306ba774efc24e",
+  "testedCommit": "e655a612f20ccd44863bb34e80a0a1faa42a5af5",
+  "status": "LOCAL_VALIDATION_PASS",
+  "scope": "Presentation-only coin atlas, actual committed total, ephemeral clearId cue, owned cancellation and optional failure fallback. No domain/content/RNG/save/dependency/deployment changes.",
+  "baselineCI": {
+    "run": 37075318312,
+    "status": "CANCELLED",
+    "webKitMobile": "NOT_COMPLETED",
+    "note": "Five browser routes passed; no original assertion error; final SHA will be checked separately."
+  },
+  "assets": {
+    "frames": 16,
+    "durationMs": 800,
+    "bytes": 143518,
+    "cell": "256x256 untrimmed/unrotated",
+    "sizesCss": [
+      96,
+      72,
+      56
+    ]
+  },
+  "verification": {
+    "focused": {
+      "status": "PASS",
+      "tests": 34,
+      "files": 4,
+      "log": "shots/reward-runtime/focused-final.log"
+    },
+    "typecheck": "PASS",
+    "browser": {
+      "status": "PASS",
+      "report": "shots/reward-runtime/final/report.json",
+      "beforeReport": "shots/reward-runtime/before/report.json",
+      "baselineSource": "git archive 9be2e95396fbbedea4aa059b7e306ba774efc24e; baseline buildInfo revision is unknown outside Git checkout",
+      "contexts": 9,
+      "checks": 48,
+      "browser": "151.0.7922.173",
+      "buildInfo": {
+        "version": "C03",
+        "revision": "9be2e95396fbbedea4aa059b7e306ba774efc24e",
+        "modified": true,
+        "builtAt": "2026-10-02T23:19:58.055Z"
+      },
+      "beforeChecks": 4,
+      "inputs": "Real mouse/touch UI. Natural desktop and touch purchase/play; unchanged natural pre-clear imports for reduced motion, slow-request exit, playing exit, skip,404 and public hand fast-forward. Source/hash checks separate from display.",
+      "reward": {
+        "natural": "330 + 283 = 613 heat; gold 0 → 6; one committed reward +6",
+        "e07": "Actual domain-command last-hand boundary tested; add-gold source already included in single stage total."
+      },
+      "geometry": "Atlas alpha>16 union y20..232 of256 measured; all-frame motion/text gaps, total/score/control separation, noninteractive sprite and short/compact CSS viewport checks retained.",
+      "bundle": {
+        "asset": "./assets/index-CYo08wxD.js",
+        "sha256": "5f8db8fa3546de07f1f562512ad2ce41e9677895dc55ba9f1e4632e7bf98ad84"
+      },
+      "observedFps": {
+        "naturalDesktop": 33.39430522918701,
+        "naturalTouch": 28.788315773010254,
+        "note": "Single observed Canvas result samples, not benchmark/physical-device acceptance."
+      }
+    },
+    "releaseAggregate": {
+      "status": "PASS",
+      "tests": 1761,
+      "testFiles": 92,
+      "steps": [
+        {
+          "name": "test",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 52641
+        },
+        {
+          "name": "verify:content",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 3626
+        },
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 15654
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 51769
+        },
+        {
+          "name": "production-plan",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 275
+        }
+      ],
+      "before": {
+        "source": "4b0a691917785f53e014e9ec4eeda8d4e460e44c3b26a314af40ffcf822d337c",
+        "index": "74724cc99308192d9c35f2acc79378e3109662d2144c4515a67b7df6258ea6f6",
+        "head": "e655a612f20ccd44863bb34e80a0a1faa42a5af5",
+        "branch": "refs/heads/dot/reward-coin"
+      },
+      "after": {
+        "source": "4b0a691917785f53e014e9ec4eeda8d4e460e44c3b26a314af40ffcf822d337c",
+        "index": "74724cc99308192d9c35f2acc79378e3109662d2144c4515a67b7df6258ea6f6",
+        "head": "e655a612f20ccd44863bb34e80a0a1faa42a5af5",
+        "branch": "refs/heads/dot/reward-coin"
+      },
+      "report": "shots/ci/all.json",
+      "log": "shots/reward-runtime/release-ci.log",
+      "renderer": "External adapter only selects system Chromium Canvas; all original smoke assertions/timeouts retained."
+    }
+  },
+  "testedWorkingTree": {
+    "files": {
+      "src/game/GameScene.ts": "af7859c80c6e17d475b3a656355faae31bcb794ee9826d7130e814606d9bd258",
+      "src/game/IntermissionScene.ts": "8973f03596f8d674e8a28a1c1d8eca49ffe93029935cea0316bbb8f92a0bd563",
+      "src/game/RewardCoin.ts": "9952505da759556fe3dd67170fdee1d79aa13635a75b24b7413ba9dc05d41a96",
+      "tests/reward-coin.test.ts": "dd07aab56725552f9c061dc26461282a08e7d3cccb97ad0086b26c07f56875bf",
+      "harness/reward-coin.mjs": "789423aa8b837ec0a7927e1f725e4f10a88cfcb9120a48413c64ed5515a9c0c3"
+    }
+  },
+  "limits": [
+    "Linux Chromium Canvas functional evidence only; unchanged low-FPS software WebGL diagnostic inherited, no new WebGL performance claim.",
+    "OnePlus Android Chrome, physical browser bars/touch and human visual acceptance NOT_RUN.",
+    "Local natural and controlled held/404 requests do not represent physical mobile networking."
+  ],
+  "screenshots": {
+    "inspected": true,
+    "beforePC": "shots/reward-runtime/before/desktop-natural-result.png",
+    "beforeTouch": "shots/reward-runtime/before/touch-natural-result.png",
+    "afterPC": "shots/reward-runtime/final/desktop-natural-settled.png",
+    "afterTouch": "shots/reward-runtime/final/touch-natural-settled.png",
+    "compact": "shots/reward-runtime/final/touch-natural-compact.png",
+    "shortVideo": "shots/reward-runtime/final/touch-reward-short.mp4",
+    "fullVideos": [
+      "shots/reward-runtime/final/desktop-natural.webm",
+      "shots/reward-runtime/final/touch-natural.webm"
+    ]
+  },
+  "publication": {
+    "status": "READY_FOR_AUTHORIZED_NORMAL_MAIN_PUSH",
+    "remoteFinalSHA": "RECORDED_AFTER_PUSH_IN_shots/reward-runtime/publication.json",
+    "remoteCI": "NOT_YET_RUN"
+  }
+}
