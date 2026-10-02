@@ -3,7 +3,6 @@ import { CHARACTERS } from './characters';
 import { queueCharacterPreviewLoads } from './portraits';
 import {gameSession} from './session';
 import {P00_ASSETS,assetUrl} from './theme';
-import {JOKER_ART} from './jokerArt';
 
 /**
  * 首屏预载独立头像、选角缩略和轻量纸桌素材；原始立绘及 GLB 不进入纹理缓存。
@@ -24,7 +23,6 @@ export class BootScene extends Phaser.Scene {
     });
     queueCharacterPreviewLoads(this, CHARACTERS,imageXHR);
     for(const asset of P00_ASSETS)this.load.svg(asset.key,assetUrl(asset.path),{width:asset.width,height:asset.height},svgXHR);
-    for(const art of JOKER_ART)this.load.image(art.key,assetUrl(art.path),imageXHR);
     this.load.image('p03-stage',assetUrl('assets/p03/stage-wide.webp'),imageXHR);
   }
 

@@ -394,6 +394,7 @@ export type PublicRandomEffect =
 export interface ScorePreview {
   handType:R2HandType; level:number; base:Accumulator; sets:ScoreTrace['sets'];
   /** With lucky, these are range endpoints, not an exhaustive outcome list. */
+  breakdown:{minimum:Accumulator;maximum:Accumulator;events:readonly ScoreEvent[]};
   possibleScores:string[]; scoreRange:{minimum:string;maximum:string}; randomEffects:PublicRandomEffect[];
 }
 
@@ -428,6 +429,7 @@ export function previewR2Hand(input: PublicScoreInput): ScorePreview {
   for(const {joker,operation} of chanceJokers)if(operation.kind==='chance-add-heat')randomEffects.push({kind:'joker-heat',
     sourceDefinitionId:joker.definitionId,sourceInstanceId:joker.instanceId,probability:operation.probability,value:operation.value,timing:'jokerScore'});
   return immutable({handType:minimum.handType,level:minimum.level,base:minimum.events.filter(event=>event.phase==='base').at(-1)!.after,sets:minimum.sets,
+    breakdown:{minimum:minimum.accumulator,maximum:maximum.accumulator,events:minimum.events},
     possibleScores:randomScore ? [minimum.finalScore,maximum.finalScore] : [minimum.finalScore],
     scoreRange:{minimum:minimum.finalScore,maximum:maximum.finalScore},randomEffects});
 }

@@ -1,0 +1,427 @@
+{
+  "task": "C04-F09-D33",
+  "date": "2026-10-02",
+  "status": "IN_PROGRESS_PENDING_PARENT_VISUAL_REVIEW",
+  "baseline": "209b9073c90778bf57a1736bed9266f305b995f5",
+  "branch": "dot/f09-experience",
+  "push": "NOT_RUN_BY_INSTRUCTION",
+  "dirtyAtTakeover": false,
+  "scope": "f09 art / interaction sample only; C04.3/4 and deployment untouched",
+  "environment": {
+    "node": "22.23.3",
+    "npmCi": "PASS with --cache /workspace/.npm; default HOME cache first attempt failed",
+    "browser": "system /usr/bin/chromium",
+    "playwrightBundledBrowsers": "ABSENT",
+    "ffmpeg": "system /usr/bin/ffmpeg; workspace symlink for Playwright recording",
+    "projectSkills": "No project .agents directory or executor skills; jiepi-clear not available, manual lightweight review"
+  },
+  "art": {
+    "original": "art/sources/p07-jokers/f09.png",
+    "originalChanged": false,
+    "method": "Original pixels with feathered regional masks for script/sleeve and independent warm light. Small motion stays within original silhouette. Face remains static. Shallow detail-card perspective only.",
+    "newGeneratedImages": false,
+    "newIndependentSourceLayers": false,
+    "sourceReference": "https://hearthstone.blizzard.com/en-gb/news/18053404",
+    "humanApproval": "NOT_GRANTED"
+  },
+  "naturalRoute": {
+    "seed": "f09-sample-30",
+    "character": "amo",
+    "buy": "f09 (6 gold)",
+    "firstCard": "hearts-9",
+    "equation": "floor((40+9) × 1.5 × 3 × 1.5) = 330",
+    "afterDiscard": "label 已失效; next committed trace contains no f09"
+  },
+  "baselineCanvas": [
+    {
+      "name": "desktop",
+      "stage": "preview",
+      "renderer": "Canvas",
+      "fps": 20.39990234375,
+      "canvas": [
+        1280,
+        800
+      ],
+      "gpu": null
+    },
+    {
+      "name": "desktop",
+      "stage": "play-finished",
+      "renderer": "Canvas",
+      "fps": 19.834996730089188,
+      "canvas": [
+        1280,
+        800
+      ],
+      "gpu": null
+    },
+    {
+      "name": "desktop",
+      "stage": "discarded",
+      "label": [
+        "×1.5"
+      ],
+      "renderer": "Canvas",
+      "fps": 17.657185660675168,
+      "canvas": [
+        1280,
+        800
+      ],
+      "gpu": null
+    },
+    {
+      "name": "mobile",
+      "stage": "preview",
+      "renderer": "Canvas",
+      "fps": 15.802093505859375,
+      "canvas": [
+        1236,
+        2460
+      ],
+      "gpu": null
+    },
+    {
+      "name": "mobile",
+      "stage": "play-finished",
+      "renderer": "Canvas",
+      "fps": 12.924083160236478,
+      "canvas": [
+        1236,
+        2460
+      ],
+      "gpu": null
+    },
+    {
+      "name": "mobile",
+      "stage": "discarded",
+      "label": [
+        "×1.5"
+      ],
+      "renderer": "Canvas",
+      "fps": 12.292385687418573,
+      "canvas": [
+        1236,
+        2460
+      ],
+      "gpu": null
+    }
+  ],
+  "baselineWebGLDesktopAndInterruptedMobile": [
+    {
+      "name": "desktop",
+      "stage": "preview",
+      "renderer": "WebGL",
+      "fps": 3.640809999323139,
+      "canvas": [
+        1280,
+        800
+      ],
+      "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+    },
+    {
+      "name": "desktop",
+      "stage": "play-finished",
+      "renderer": "WebGL",
+      "fps": 4.709038555914274,
+      "canvas": [
+        1280,
+        800
+      ],
+      "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+    },
+    {
+      "name": "desktop",
+      "stage": "discarded",
+      "label": [
+        "×1.5"
+      ],
+      "renderer": "WebGL",
+      "fps": 4.701388942202516,
+      "canvas": [
+        1280,
+        800
+      ],
+      "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+    },
+    {
+      "name": "mobile",
+      "error": "Error: page.waitForFunction: TypeError: Cannot read properties of undefined (reading 'game')\n    at eval (eval at predicate (eval at evaluate (:311:30)), <anonymous>:1:22)\n    at predicate (eval at evaluate (:311:30), <anonymous>:7:27)\n    at next (eval at evaluate (:311:30), <anonymous>:29:33)\n    at eval (eval at evaluate (:311:30), <anonymous>:42:13)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+      "metrics": {}
+    }
+  ],
+  "baselineWebGLMobileFrozenRerun": [
+    {
+      "name": "mobile",
+      "stage": "preview",
+      "renderer": "WebGL",
+      "fps": 1.1147255280257045,
+      "canvas": [
+        1236,
+        2460
+      ],
+      "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+    },
+    {
+      "name": "mobile",
+      "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded.",
+      "metrics": {
+        "renderer": 2,
+        "fps": 1.7483313078784832
+      }
+    }
+  ],
+  "sampleCanvas": {
+    "rendererRequested": "canvas",
+    "args": [
+      "--disable-gpu",
+      "--disable-software-rasterizer"
+    ],
+    "browser": "151.0.7922.173",
+    "physicalDevice": "NOT_RUN",
+    "humanAcceptance": "NOT_RUN",
+    "runs": [
+      {
+        "name": "desktop",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "deviceScaleFactor": 1,
+        "checks": [
+          "49 × 6.75 = floor(330.75), all four sources visible",
+          "F09 triggers, successful discard disables both UI and actual next score",
+          "refresh restores full state and RNG exactly"
+        ],
+        "samples": [
+          {
+            "stage": "ready",
+            "renderer": "Canvas",
+            "fps": 38.1875,
+            "framebuffer": [
+              1280,
+              800
+            ],
+            "gpu": null
+          },
+          {
+            "stage": "play-complete",
+            "elapsedMs": 5348,
+            "renderer": "Canvas",
+            "fps": 30.977770805358887,
+            "framebuffer": [
+              1280,
+              800
+            ],
+            "gpu": null
+          }
+        ],
+        "status": "PASS"
+      },
+      {
+        "name": "mobile",
+        "viewport": {
+          "width": 412,
+          "height": 820
+        },
+        "deviceScaleFactor": 3,
+        "checks": [
+          "49 × 6.75 = floor(330.75), all four sources visible",
+          "toolbar viewport resize retains state; fullscreen never requests orientation lock",
+          "F09 triggers, successful discard disables both UI and actual next score",
+          "refresh restores full state and RNG exactly"
+        ],
+        "samples": [
+          {
+            "stage": "ready",
+            "renderer": "Canvas",
+            "fps": 36.57421875,
+            "framebuffer": [
+              824,
+              1640
+            ],
+            "gpu": null
+          },
+          {
+            "stage": "play-complete",
+            "elapsedMs": 5719,
+            "renderer": "Canvas",
+            "fps": 25.29031475703232,
+            "framebuffer": [
+              824,
+              1640
+            ],
+            "gpu": null
+          }
+        ],
+        "status": "PASS"
+      }
+    ]
+  },
+  "sampleWebGL": {
+    "rendererRequested": "webgl",
+    "args": [
+      "--enable-unsafe-swiftshader"
+    ],
+    "browser": "151.0.7922.173",
+    "physicalDevice": "NOT_RUN",
+    "humanAcceptance": "NOT_RUN",
+    "runs": [
+      {
+        "name": "desktop",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "deviceScaleFactor": 1,
+        "checks": [
+          "49 × 6.75 = floor(330.75), all four sources visible",
+          "F09 triggers, successful discard disables both UI and actual next score",
+          "refresh restores full state and RNG exactly"
+        ],
+        "samples": [
+          {
+            "stage": "ready",
+            "renderer": "WebGL",
+            "fps": 5.199983213096857,
+            "framebuffer": [
+              1280,
+              800
+            ],
+            "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "stage": "play-complete",
+            "elapsedMs": 17481,
+            "renderer": "WebGL",
+            "fps": 4.183263809304034,
+            "framebuffer": [
+              1280,
+              800
+            ],
+            "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ],
+        "status": "PASS"
+      },
+      {
+        "name": "mobile",
+        "viewport": {
+          "width": 412,
+          "height": 820
+        },
+        "deviceScaleFactor": 3,
+        "checks": [
+          "49 × 6.75 = floor(330.75), all four sources visible",
+          "toolbar viewport resize retains state; fullscreen never requests orientation lock",
+          "F09 triggers, successful discard disables both UI and actual next score",
+          "refresh restores full state and RNG exactly"
+        ],
+        "samples": [
+          {
+            "stage": "ready",
+            "renderer": "WebGL",
+            "fps": 3.291174990009263,
+            "framebuffer": [
+              824,
+              1640
+            ],
+            "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "stage": "play-complete",
+            "elapsedMs": 23734,
+            "renderer": "WebGL",
+            "fps": 2.9993940113900157,
+            "framebuffer": [
+              824,
+              1640
+            ],
+            "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ],
+        "status": "PASS"
+      }
+    ],
+    "scope": "Captured before later copy/loading additions; performance fix already applied. Final loading changes checked separately on Canvas."
+  },
+  "validation": {
+    "unit": "1590 PASS / 82 files",
+    "typecheck": "PASS",
+    "build": "PASS, existing >500kB chunk warning retained",
+    "fullOriginalSmokeWebGL": "PASS desktop/mobile; system Chromium SwiftShader adapter, no GPU disable flags; pre-copy/loading build",
+    "fullOriginalSmokeCanvas": "PASS desktop/mobile on final loading implementation; latest dialog-only CSS checked by sample harness afterward",
+    "content": "PASS (72 definitions)",
+    "plan": "PASS (structural only)",
+    "reducedMotionAndImageFailure": "PASS title requests no Joker images, retained thumbnail on blocked HD, user retry no frame shift, max two requests covered by unit tests, OS reduced motion stops layers",
+    "targetedAdditions": "7 tests PASS: f09 eligibility/score, f04 3/4-gold additive boundary, request dedup/concurrency/budget/timeout-retry",
+    "finalAggregate": "NOT_RUN as a new aggregate; constituent checks recorded, no publishing requested"
+  },
+  "performanceConclusion": "SwiftShader functional sample now completes inside unchanged 30s waits. Software WebGL remains around 3-5 FPS and does NOT pass a smooth-performance bar. Canvas success is recorded separately, never substituted for WebGL.",
+  "limitations": [
+    "Physical OnePlus 15 Android Chrome, real browser toolbars, touch accuracy and speaker listening NOT_RUN.",
+    "Touch evidence uses 412x820 CSS / DPR3 on Linux Chromium, not an actual OnePlus or Android UA.",
+    "No independent transparent person / painted clean plate exists. Large silhouette movement requires approved new source layers.",
+    "Full C04 release gate stays BLOCKED; local evidence does not rewrite historical remote CI status.",
+    "WebGL trigger capture predates final fractional roll landing correction; latest Canvas video reflects correction.",
+    "User remains dissatisfied with original illustration; new art and independent painted source layers are outstanding with parent.",
+    "No Firefox/WebKit rerun; no new remote CI run or deployment."
+  ],
+  "artifacts": {
+    "directory": "shots/f09",
+    "desktopBefore": "before-canvas-desktop.png",
+    "mobileBefore": "before-canvas-mobile.png",
+    "desktopAfter": "final-canvas-desktop-ready.png",
+    "mobileAfter": "final-canvas-mobile-ready.png",
+    "desktopDetail": "final-canvas-desktop-detail.png",
+    "mobileDetail": "final-canvas-mobile-detail.png",
+    "triggerWebGL": "final-webgl-mobile-trigger.png",
+    "inactive": "final-canvas-mobile-inactive.png",
+    "videos": [
+      "desktop-play.webm",
+      "mobile-play.webm"
+    ]
+  },
+  "taskId": "P08",
+  "testedCommit": "209b9073c90778bf57a1736bed9266f305b995f5",
+  "testedWorktree": "Baseline plus scoped sample diff; local implementation commit follows this evidence file.",
+  "copyAndLoading": {
+    "primary": "Condition + numeric benefit before artwork; flavor separate; rules folded. Only f09/f04 authored.",
+    "f04": "coins<=3 => +3, not ×3. Natural shelf seed f04-copy-70.",
+    "network": "No Joker image requests on title; visible/owned thumbnails only. At most 2 upcoming detail prefetches, 2 concurrent fetches, 4 cached blobs, 6s timeout, explicit retry, maximum 2MiB and 1.6M pixels per image. Save-data/2g skips prefetch.",
+    "runtimeEvidence": "shots/f09/edge-loading.json (loading checks passed; initial F04 seed fixture was incorrect) and edge.json (corrected natural F04 seed passed)"
+  },
+  "library": {
+    "original": "libfile_e804e2b3289881918c099c138a8d36e7",
+    "reviewBundle": "libfile_33095e051cac8191901b4f316046b50a",
+    "bundleFileId": "file_000000005ac48211b8f48327dc029221",
+    "filename": "f09-review-20261002.zip",
+    "helperLimit": "Prepared helper failed before tools/list, no upload sessions. Single 10MB review archive saved with small-file create; identity persisted.",
+    "newArtStatus": "NOT_COMPLETED; parent offered image editing; original mask candidate not accepted as art improvement"
+  },
+  "artifactHashes": {
+    "f09-review-20261002.zip": {
+      "bytes": 10486008,
+      "sha256": "1a2c1179ae4b71efbbcae81b2abd497b513a2dec3278c9759bd6937bc6a72c88"
+    },
+    "final-canvas-desktop-ready.png": {
+      "bytes": 444530,
+      "sha256": "7123ec6157b8764d933cbe588a311855792ba5b91e3fe809947cfb3003953631"
+    },
+    "final-canvas-mobile-ready.png": {
+      "bytes": 735314,
+      "sha256": "8c75b7a555eec442c6b5395f39b31e3fc3f12bb271208bdf735ce0bf6f59a585"
+    },
+    "final-canvas-mobile-detail.png": {
+      "bytes": 1792153,
+      "sha256": "af2d0ba991f81ee5cb7a1187040b73506d6f365fa5ee2cd00866a4acbc59bd33"
+    },
+    "mobile-play.webm": {
+      "bytes": 2934318,
+      "sha256": "afc66a32c08a5ba2e8ef1e0b05b97cc3e07d33f008a3c3494830a983606c76c3"
+    },
+    "latest-mobile-f04-copy.png": {
+      "bytes": 140602,
+      "sha256": "df6ce76e580d1f82d5fedcc54ad21634bebdc5f527e661a6cd1bb9650b4cf415"
+    }
+  }
+}

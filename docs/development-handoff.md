@@ -1,5 +1,16 @@
 # 开发交接：dot接手
 
+## dot本地样板候选（D33，2026-10-02）
+
+在`209b9073`恢复，远端main核对一致、无脏工作。分支`dot/f09-experience`只本地提交，**未push，等待父会话视觉验收后再指令**。C04原BLOCKED及C04.3/4暂停不变；当前插入工作为C04-F09-D33 / IN_PROGRESS，禁止自动扩批。
+
+样板自然获取路线：seed `f09-sample-30` → 阿默 → 买「不换词」→ 入场 → 首张9♥。真实预览为牌型40×1.5、9♥+9、阿默×3、不换词×1.5，合计49×6.75，最终向下取整330。首手后弃牌会灰化卡面、显示已失效，下一手trace不含f09。`harness/f09.mjs`覆盖这条路线、详情、全屏不锁方向、手机可用视口收缩和精确刷新恢复；录像/截图/日志在`shots/f09/`，正式记录见`docs/production/evidence/F09-2026-10-02.json`。
+
+原画文件未修改。局部稿纸/袖摆羽化遮罩是运行时原像素，幅度受限，脸及外轮廓保持静止；没有伪造透明人物源、补绘底板、真实3D背面或新生成模型身份。详情固定4:5、主能力与状态先读；减少动态降级保留静态原画。更大幅度、脱离轮廓的动画必须另补素材，当前不扩成全卡工程。
+
+重建：`PATH=/workspace/.cloud-tools/node_modules/.bin:$PATH npm ci --cache /workspace/.npm`；开发`npm run dev -- --host 127.0.0.1 --port 5201 --strictPort`。默认HOME缓存不可写，必须显式缓存路径。系统`/usr/bin/chromium`可用；Playwright浏览器缓存没有原生浏览器二进制，`/workspace/.cloud-tools/system-chromium.mjs`仅是禁GPU/禁software-rasterizer的Canvas外部适配器。单卡专项明确传`F09_RENDERER=canvas`或`webgl`并记录renderer/GPU/FPS。录屏使用系统ffmpeg，映射在工作区Playwright ffmpeg-1011缓存，不入库。不存在项目`.agents/skills`或executor skills；未发现jiepi-clear定义，使用手动轻量diff/范围/无凭据检查，不能声称运行过缺失skill。
+
+
 用户已要求停止扩功能，收尾后暂停。**接下来由dot主导美术与交互提升，参考小丑牌和炉石，优先做一张卡的完整动态体验样板；不自动启动C04.3或新玩法。** 最新决定见D32。`plan.json.currentTask`为C04 / BLOCKED：源码已发布，但远端浏览器CI超时，完整发布校验未通过。C04.2未宣称整包验收完成；C03与C04.1已完成。
 
 收尾基线为main `ab8f376b99c91cd1e76593c1b631d1fb9b4e8976`。原有45个已跟踪修改和12个未跟踪源/测试文件属于同一C04.2接线批次，保留并整合，没有reset、覆盖或丢弃其他人的工作。被测工作树指纹、命令、结果及发布回执见[收尾证据](production/evidence/C04-closeout-2026-10-02.json)。发布只正常提交并push main，既有自动部署链路未修改。

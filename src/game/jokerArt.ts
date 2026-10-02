@@ -35,3 +35,7 @@ export function jokerArtUrl(definitionId: string): string | undefined {
   const art = JOKER_ART.find(candidate => candidate.id === definitionId);
   return art ? assetUrl(art.detailPath) : undefined;
 }
+
+export function jokerArtPreviewUrl(definitionId:string):string|undefined {
+  const art=JOKER_ART.find(candidate=>candidate.id===definitionId);return art?assetUrl(art.path):undefined;
+}

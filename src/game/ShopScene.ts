@@ -1,3 +1,5 @@
+import {requestJokerArt} from './JokerArtLoading';
+import {cardAbilityCopy} from './CardCopy';
 import Phaser from 'phaser';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {r2RunModeConfig,R2_MODE_CATALOG} from '../content/r2Modes';
@@ -16,7 +18,7 @@ import {r2BossText} from '../domain/r2Chapter';
 import {SKIP_ITEM_LABELS,showConsumables} from './ConsumableDialog';
 import type {IntermissionResult} from './IntermissionScene';
 import type {Box} from './layout';
-import {jokerArtKey,jokerArtUrl} from './jokerArt';
+import {jokerArtKey,jokerArtUrl,jokerArtPreviewUrl} from './jokerArt';
 import {UI_FONT} from './theme';
 import {drawJokerMotif} from './JokerMotif';
 import {R2_OFFER_USE as OFFER_USE,r2MechanismBadge as mechanismBadge,r2JokerValue,r2JokerStateText,r2JokerExtraHelp,r2TransactionText} from './r2Help';
@@ -89,6 +91,7 @@ export class ShopScene extends Phaser.Scene {
     }
   }
   private render():void {
+    requestJokerArt(this,[...this.run.jokers.map(j=>j.definitionId),...this.visibleOffers().map(o=>o.definitionId)],()=>this.render());
     const selectedIndex=this.shelfOffers().findIndex(offer=>offer.offerId===this.selectedOfferId);if(selectedIndex>=0)this.shelfPage=Math.floor(selectedIndex/this.pageSize);
     this.shelfPage=Math.min(this.shelfPage,Math.max(0,Math.ceil(this.shelfOffers().length/this.pageSize)-1));
     const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty)!;this.hideHoverPicture();v.clear();v.paperBackground();this.offerArts=[];this.artTargets.clear();
@@ -279,9 +282,9 @@ export class ShopScene extends Phaser.Scene {
     }
     this.view.add(g);this.view.text(b.x+23,b.y+(b.height-17)/2,RARITY_LABEL[rarity],14,'#'+ink.toString(16).padStart(6,'0')).setFontStyle('bold');
   }
-  private jokerPortrait(definitionId:string):{url:string;alt:string;layout:'card'}|undefined {
+  private jokerPortrait(definitionId:string):{url:string;thumbnailUrl?:string;alt:string;layout:'card'}|undefined {
     const key=jokerArtKey(definitionId),url=jokerArtUrl(definitionId);
-    return key&&url&&this.textures.exists(key)?{url,alt:getR2Joker(definitionId).name+'的卡牌插画',layout:'card'}:undefined;
+    return key&&url?{url,thumbnailUrl:jokerArtPreviewUrl(definitionId),alt:getR2Joker(definitionId).name+'的卡牌插画',layout:'card'}:undefined;
   }
   private attachJokerFallback(dialog:HTMLDialogElement,definitionId:string):void {
     if(this.jokerPortrait(definitionId))return;
@@ -378,7 +381,7 @@ export class ShopScene extends Phaser.Scene {
     const inventory=kind==='jokers'?'当前构筑：'+(this.run.jokers.map(j=>getR2Joker(j.definitionId).name).join('、')||'空'):kind==='tools'?`消耗品库存 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)}。购买不会自动使用或替换旧物。`:`长期道具 ${this.run.longTermItems.length}/${R2_LIMITS.longTermSlots}。同种不可重复、不可出售，持续到本局结束。`;
     const body=effect+`\n\n实际购买支付 ${price} 金\n`+discountText+money+'\n\n'+inventory+(reason?'\n\n无法购买：'+reason:'\n\n确认购买才会扣除金币。');
     const name=d?.name??(kind==='tools'?toolInfo(o.definitionId).label:info!.name),portrait=d?this.jokerPortrait(d.id):{url:info!.artUrl,alt:info!.name+'机制纹章',layout:'card' as const,caption:'机制纹章候选 · 正式插画待 A03 验收'};
-    const dialog=this.dialog.open(name+' · 购买详情',body,[{label:'确认购买',primary:true,disabled:!!reason,run:async()=>{if(await this.send({type:'BuyOffer',offerId:id},seq))this.dialog.close(dialog);}}],{closeLabel:'取消',portrait,rarity:d?.rarity});
+    const dialog=this.dialog.open(name+' · 购买详情',body,[{label:'确认购买',primary:true,disabled:!!reason,run:async()=>{if(await this.send({type:'BuyOffer',offerId:id},seq))this.dialog.close(dialog);}}],{closeLabel:'取消',portrait,rarity:d?.rarity,summaryBody:cardAbilityCopy(o.definitionId,{gold:this.run.gold})?`实付 ${price} 金 · 余额 ${this.run.gold} → ${after} 金`+(reason?'\n'+reason:''):undefined,ability:cardAbilityCopy(o.definitionId,{gold:this.run.gold,inStage:false}),collapseRules:!!cardAbilityCopy(o.definitionId,{gold:after})});
     if(d)this.attachJokerFallback(dialog,d.id);
   }
   private inspectJoker(id:string):void {
@@ -388,7 +391,7 @@ export class ShopScene extends Phaser.Scene {
       {label:'左移',disabled:!this.ready||index===0,run:async()=>{if(await this.reorder(index,index-1,seq)&&this.dialog.active(dialog))this.inspectJoker(id);}},
       {label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:async()=>{if(await this.reorder(index,index+1,seq)&&this.dialog.active(dialog))this.inspectJoker(id);}},
       {label:'出售',disabled:!this.ready,run:()=>{const confirmation=this.dialog.open('出售确认',`出售第 ${index+1} 槽的「${d.name}」获得 ${salePrice(j.paidPrice)} 金币。\n余额 ${this.run.gold} → ${this.run.gold+salePrice(j.paidPrice)} 金。\n\n该牌成长将丢失，当前成长：${growth}。`,[{label:'确认出售',primary:true,run:async()=>{if(await this.send({type:'SellJoker',instanceId:id},seq))this.dialog.close(confirmation);}}],{closeLabel:'取消'});}},
-    ],{portrait:this.jokerPortrait(d.id),rarity:d.rarity});
+    ],{portrait:this.jokerPortrait(d.id),rarity:d.rarity,ability:cardAbilityCopy(d.id,{gold:this.run.gold,inStage:false}),collapseRules:!!cardAbilityCopy(d.id,{gold:this.run.gold})});
     this.attachJokerFallback(dialog,d.id);
   }
   private async reorder(from:number,to:number,expectedSeq?:number):Promise<boolean> {

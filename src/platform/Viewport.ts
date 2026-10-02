@@ -4,7 +4,8 @@ import type Phaser from 'phaser';
 export function viewportMetrics() {
   const bounds=document.getElementById('app')!.getBoundingClientRect();
   const width=Math.max(1,Math.round(bounds.width)),height=Math.max(1,Math.round(bounds.height));
-  const density=Math.min(3,Math.ceil(window.devicePixelRatio||1),Math.max(1,Math.floor(Math.sqrt(4_500_000/(width*height)))));
+  // Two physical pixels per CSS pixel retain crisp labels without a 3x fill-rate tax.
+  const density=Math.min(2,Math.ceil(window.devicePixelRatio||1),Math.max(1,Math.floor(Math.sqrt(4_500_000/(width*height)))));
   return {width,height,density};
 }
 

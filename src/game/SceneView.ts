@@ -111,7 +111,7 @@ export class SceneView {
     const glow=this.scene.add.graphics().lineStyle(2,0xffedb8,.8).strokeRoundedRect(1,1,b.width-2,b.height-3,radius).setAlpha(0);
     art.add([g,fill,edge,glow]);
     const t=this.text(b.x+b.width/2,b.y+b.height/2-1,label,primary?22:15,'#fff4de').setOrigin(.5).setFontStyle('bold').setShadow(0,1,'#10232b',2,true,false);
-    const r=this.rect(b).setFillStyle(0,0).setStrokeStyle(0);
+    const r=this.rect(b).setFillStyle(0,0).setStrokeStyle();
     r.setData('label',t).setData('buttonArt',art);
     const rest=()=>{art.y=b.y;t.y=b.y+b.height/2-1;glow.setAlpha(0);};
     this.target(r,name,{tap:action,press:()=>{art.y=b.y+2;t.y=b.y+b.height/2+1;glow.setAlpha(.6);},release:rest,cancel:rest});
