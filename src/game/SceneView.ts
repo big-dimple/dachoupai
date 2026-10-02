@@ -14,6 +14,7 @@ export class SceneView {
   private timer?:ReturnType<typeof setTimeout>;
   private reset(canceled:boolean):void {const pressed=this.pressed;this.intent.cancel();this.pressed=undefined;clearTimeout(this.timer);pressed?.actions.release?.();if(canceled)pressed?.actions.cancel?.();}
   private readonly cancel=()=>this.reset(true);
+  cancelInteraction():void {this.reset(true);}
   private readonly down=(p:Phaser.Input.Pointer,over:Phaser.GameObjects.GameObject[])=>{
     const canvas=this.scene.game.canvas.getBoundingClientRect();
     if(modalBlocksCanvas(canvas.left+p.x*canvas.width/this.scene.scale.width,canvas.top+p.y*canvas.height/this.scene.scale.height)){this.cancel();return;}

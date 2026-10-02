@@ -25,6 +25,8 @@ import { getCharacter, type CharacterId } from './characters';
 import type { IntermissionResult } from './IntermissionScene';
 import {addAvatar,avatarKey,portraitURL} from './portraits';
 import {SceneView} from './SceneView';
+import {HandSelectionInput} from './HandSelectionInput';
+import type {HandSelectionUpdate} from './HandSelectionGesture';
 import {DetailDialog} from './DetailDialog';
 import {dispatchRun,runController} from './runAdapter';
 import {gameSession} from './session';
@@ -95,7 +97,6 @@ export class GameScene extends Phaser.Scene {
   private hoveredCardId?:string;
   private hoveredJokerId?:string;
   private jokerHoverPreview?:Phaser.GameObjects.Container;
-  private draggingCardId?:string;
   private cardViews: CardView[] = [];
   private jokerViews = new Map<string, Phaser.GameObjects.Container>();
   private run!: RunState;
@@ -111,6 +112,7 @@ export class GameScene extends Phaser.Scene {
   private readonly audio = AudioEngine.shared;
 
   private view!:SceneView;
+  private handInput?:HandSelectionInput;
   private readonly dialog=new DetailDialog();
   private focusIndex=0;
   private handStart=0;
@@ -139,7 +141,6 @@ export class GameScene extends Phaser.Scene {
   private roleFrame!:Phaser.GameObjects.Rectangle;
   private roleAvatar!:Phaser.GameObjects.Container;
   private previewCards?:Phaser.GameObjects.Container;
-  private dropMarker?:Phaser.GameObjects.Rectangle;
   private settledCards=new Map<string,CardView>();
   private rollingHeat=false;
   private progressTarget=Number.NaN;
@@ -165,7 +166,7 @@ export class GameScene extends Phaser.Scene {
     // Keep committed score playback moving on slow renderers; bound background gaps to 1s.
     this.tweens.setLagSmooth(1000,1000);
     const lifecycle=++this.lifecycle;this.intent++;
-    this.effects.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.draggingCardId=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.handStart=0;this.handNavigationButtons=[];
+    this.effects.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.handStart=0;this.handNavigationButtons=[];
     const settings=()=>{
       this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;
       if(this.reducedMotion){
@@ -182,10 +183,10 @@ export class GameScene extends Phaser.Scene {
     };
     window.addEventListener('dachoupai-presentation',settings);
     this.events.once('shutdown',()=>{
-      this.controlsLive=false;this.stopScoreFire();
+      this.handInput?.destroy();this.handInput=undefined;this.controlsLive=false;this.stopScoreFire();
       if(this.registry.get('runMenuActions')===this.menuActions)this.registry.remove('runMenuActions');
       this.menuActions=undefined;
-      this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.stopJokerIdle();this.tweens.killAll();this.time.removeAllEvents();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.draggingCardId=undefined;this.previewCards=undefined;this.dropMarker=undefined;this.presentation=undefined;this.playAuraPulse=undefined;this.playing=false;this.rollingHeat=false;this.dialog.close();
+      this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.stopJokerIdle();this.tweens.killAll();this.time.removeAllEvents();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.previewCards=undefined;this.presentation=undefined;this.playAuraPulse=undefined;this.playing=false;this.rollingHeat=false;this.dialog.close();
       window.removeEventListener('keydown',this.keyboard);
       window.removeEventListener('dachoupai-presentation',settings);
     });
@@ -207,6 +208,14 @@ export class GameScene extends Phaser.Scene {
       if(this.toolHand){this.effects.clear();this.toolHand=undefined;}
       this.render();
     },()=>({count:this.hand.length,start:this.handStart}));
+    this.handInput=new HandSelectionInput(this,{
+      cancelCanvas:()=>this.view.cancelInteraction(),
+      ready:()=>this.ready,cards:()=>this.hand.map((card,i)=>({id:card.id,...this.view.layout.cards[i].hit,visible:this.view.layout.cards[i].visible})),selected:()=>this.selectedIds,
+      update:update=>this.applyHandSelection(update),detail:id=>this.inspectCard(id),hover:id=>{
+        if(this.hoveredCardId===id)return;
+        const previous=this.hoveredCardId;if(previous)this.hoverCard(previous,false);if(id)this.hoverCard(id,true);
+      },
+    });
     this.menuActions={viewDeck:()=>this.inspectDeck(),viewRules:()=>this.inspectRole()};
     this.registry.set('runMenuActions',this.menuActions);
     window.addEventListener('keydown',this.keyboard);
@@ -217,6 +226,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private readonly keyboard=(event:KeyboardEvent)=>{
+    if(this.handInput?.active){if(event.key==='Escape'){event.preventDefault();this.handInput.cancel();}return;}
     if(this.playing||document.querySelector('dialog[open]')||!this.scene.isActive()||document.activeElement?.matches('input,select,textarea,button'))return;
     if((event.key==='ArrowRight'||event.key==='ArrowLeft')&&this.hand.length){event.preventDefault();this.focusIndex=(this.focusIndex+(event.key==='ArrowRight'?1:this.hand.length-1))%this.hand.length;this.showFocusedCard();this.refreshSelection();}
     else if(event.key===' '&&this.hand[this.focusIndex]){event.preventDefault();this.toggleCard(this.hand[this.focusIndex].id);}
@@ -225,10 +235,11 @@ export class GameScene extends Phaser.Scene {
   private get ready():boolean {const session=gameSession();return !this.playing&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
   get isPresenting():boolean {return !!this.presentation;}
   private render():void {
+    this.handInput?.cancel();
     requestJokerArt(this,this.run.jokers.map(j=>j.definitionId),()=>{if(!this.presentation&&!this.playing)this.render();});
     this.stage={...this.stage,targetHeat:this.run.stage!.targetHeat};
     this.controlsLive=false;this.stopScoreFire();
-    const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.draggingCardId=undefined;v.clear();this.handNavigationButtons=[];v.paperBackground();this.settledCards.clear();this.previewCards=undefined;this.dropMarker=undefined;
+    const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.handNavigationButtons=[];v.paperBackground();this.settledCards.clear();this.previewCards=undefined;
     this.stopJokerIdle();
     this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.playAura=undefined;
     if(this.progressBar)this.tweens.killTweensOf(this.progressBar);this.progressTarget=Number.NaN;
@@ -428,7 +439,7 @@ export class GameScene extends Phaser.Scene {
     }
     const scoringMark=this.add.text(-b.width/2+edge,b.height/2-21,'★',{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:C.jade,resolution}).setVisible(false);
     c.add([...faceArt,label,corner,scoringMark]);
-    const selectionMark=this.add.text(b.width/2-14,-b.height/2+(card.enhancement?40:15),'✓',{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:'#183a43',backgroundColor:'#f9df9c',padding:{x:4,y:1},resolution}).setOrigin(.5).setVisible(false);c.add(selectionMark);
+    const selectionMark=this.add.text(-b.width/2+edge+9,-b.height/2+edge+label.height+11,'✓',{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:'#183a43',backgroundColor:'#f9df9c',padding:{x:4,y:1},resolution}).setOrigin(.5).setVisible(false);c.add(selectionMark);
     if(card.enhancement){
       const enhancement=ENHANCEMENT_UI[card.enhancement],bx=b.width/2-14,by=-b.height/2+16;
       const badge=this.add.graphics().fillStyle(enhancement.ink).fillRoundedRect(bx-10,by-10,20,20,4).lineStyle(1,0xffe4ad).strokeRoundedRect(bx-10,by-10,20,20,4);
@@ -491,23 +502,22 @@ export class GameScene extends Phaser.Scene {
     });
   }
   private renderHand():void {
-    this.hoveredCardId=undefined;this.draggingCardId=undefined;this.cardViews.forEach(v=>{v.sheenTween?.remove();this.tweens.killTweensOf(v.container);v.hit?.destroy();v.container.destroy();});this.cardViews=[];const v=this.view,l=v.layout;
+    this.handInput?.cancel();
+    this.hoveredCardId=undefined;this.cardViews.forEach(v=>{v.sheenTween?.remove();this.tweens.killTweensOf(v.container);v.hit?.destroy();v.container.destroy();});this.cardViews=[];const v=this.view,l=v.layout;
     this.handStart=l.handStart;this.focusIndex=Math.max(0,Math.min(this.focusIndex,this.hand.length-1));
     for(const button of this.handNavigationButtons){(button.getData('label') as Phaser.GameObjects.Text)?.destroy();(button.getData('buttonArt') as Phaser.GameObjects.Container)?.destroy();button.destroy();}this.handNavigationButtons=[];
     this.hand.forEach((card,i)=>{
       const area=l.cards[i],b=area.visual,hit=area.hit,cv=this.cardPiece(card,b);cv.container.setVisible(area.visible);
       const target=v.rect(hit,T.ink).setFillStyle(T.ink,.001).setStrokeStyle().setVisible(area.visible);cv.hit=target;
-      v.target(target,'card/'+card.id,{tap:()=>this.toggleCard(card.id),detail:()=>this.inspectCard(card.id),drag:x=>{this.endCardDrag();void this.reorderCard(card.id,x);},dragMove:(x,y)=>{
-        if(!this.ready)return;this.revealCard(cv);this.draggingCardId=card.id;this.hoveredCardId=undefined;this.tweens.killTweensOf(cv.container);v.root.bringToTop(cv.container);cv.container.setPosition(Phaser.Math.Clamp(x,l.hand.x+b.width/2,l.hand.x+l.hand.width-b.width/2),Phaser.Math.Clamp(y,l.hand.y,l.hand.y+l.hand.height)).setAngle(-3).setScale(1);
-        const drop=l.cards.find(area=>area.visible&&x>=area.hit.x&&x<=area.hit.x+area.hit.width);
-        this.dropMarker?.destroy();this.dropMarker=drop?v.rect({x:drop.hit.x-2,y:l.hand.y+2,width:4,height:l.hand.height-4},T.red).setStrokeStyle():undefined;
-      },holdToDrag:l.handOverflow,swipe:(dx,dy)=>{if(Math.abs(dx)>Math.abs(dy))this.scrollHand(dx>0?-1:1);},cancel:()=>this.endCardDrag(),enter:()=>this.hoverCard(card.id,true),leave:()=>this.hoverCard(card.id,false)});this.cardViews.push(cv);
+      v.target(target,'card/'+card.id,{tap:()=>this.toggleCard(card.id),detail:()=>this.inspectCard(card.id),enter:()=>this.hoverCard(card.id,true),leave:()=>this.hoverCard(card.id,false)});this.cardViews.push(cv);
     });
     if(l.handOverflow){
       this.handNavigationButtons=[v.button(l.handNavigation.previous,'‹','action/hand-previous',()=>this.scrollHand(-1),this.ready&&l.handStart>0),v.button(l.handNavigation.next,'›','action/hand-next',()=>this.scrollHand(1),this.ready&&l.handStart+l.visibleCardCount<this.hand.length)];
     }
     this.updateHandCount();
     this.refreshSelection();
+    const visible=l.cards.filter(card=>card.visible),first=visible[0],last=visible.at(-1);
+    this.handInput?.setBounds(first&&last?{x:first.hit.x,y:l.hand.y,width:last.hit.x+last.hit.width-first.hit.x,height:l.hand.height}:undefined);
   }
   private scrollHand(delta:number):void {if(!this.ready)return;const l=this.view.layout,next=Math.max(0,Math.min(this.hand.length-l.visibleCardCount,l.handStart+delta));if(next===this.handStart)return;this.handStart=next;this.renderHand();}
   private showFocusedCard():void {const l=this.view.layout;if(this.focusIndex>=l.handStart&&this.focusIndex<l.handStart+l.visibleCardCount)return;this.handStart=this.focusIndex<l.handStart?this.focusIndex:this.focusIndex-l.visibleCardCount+1;if(!this.playing)this.renderHand();}
@@ -516,7 +526,6 @@ export class GameScene extends Phaser.Scene {
     this.handCountText.setText('手牌 '+this.run.handOrder.length+' / '+limit+(l.handOverflow?' · '+(l.handStart+1)+'–'+(l.handStart+l.visibleCardCount):'')).setVisible(l.mode!=='portrait'||l.handOverflow);
     this.handCountText.setPosition(l.mode==='portrait'?l.hand.x+48:l.handLabel.x,l.mode==='portrait'?l.hand.y+2:l.handLabel.y);
   }
-  private endCardDrag():void {this.draggingCardId=undefined;this.dropMarker?.destroy();this.dropMarker=undefined;if(!this.presentation)this.refreshSelection();}
   private sweepSheen(view:CardView):void {
     const sheen=view.sheen;if(!sheen||this.reducedMotion||this.presentation||this.playing)return;
     view.sheenTween?.remove();
@@ -525,25 +534,21 @@ export class GameScene extends Phaser.Scene {
     view.sheenTween=this.tweens.add({targets:sweep,t:1,duration:280,ease:'Sine.easeIn',onUpdate:()=>{if(sheen.active)sheen.setFrame(String(Math.min(11,Math.floor(sweep.t*12)))).setAlpha(Math.sin(sweep.t*Math.PI)*.34);},onComplete:()=>{if(sheen.active)sheen.setAlpha(0);view.sheenTween=undefined;}});
   }
   private hoverCard(id:string,enter:boolean):void {
-    if(enter&&(!this.ready||this.draggingCardId))return;
+    if(enter&&!this.ready)return;
     const index=this.cardViews.findIndex(view=>view.card.id===id),view=this.cardViews[index];if(!view)return;
     if(enter){const previous=this.cardViews.find(card=>card.card.id===this.hoveredCardId);this.hoveredCardId=id;if(previous&&previous!==view)this.restingCard(previous,this.cardViews.indexOf(previous),true);this.revealCard(view);this.sweepSheen(view);this.audio.hoverTick();}else if(this.hoveredCardId===id)this.hoveredCardId=undefined;
     this.restingCard(view,index,true);
     this.orderSelectedCards();
   }
-  /** Cards rest in a slight fan; hover lifts, enlarges and tilts toward the pointer. */
+  /** Stable seats and left-to-right layers keep every exposed index reachable. */
   private restingCard(view:CardView,index:number,animate:boolean):void {
-    if(!view.container.active||view.dealing||this.playing||this.presentation||this.draggingCardId===view.card.id)return;
+    if(!view.container.active||view.dealing||this.playing||this.presentation)return;
     const b=this.view.layout.cards[index]?.visual;if(!b)return;
     const selected=this.selectedIds.has(view.card.id),hovered=this.hoveredCardId===view.card.id,scoring=!!view.container.getData('activeScoring'),focused=document.activeElement===this.game.canvas&&index===this.focusIndex;
-    const count=Math.max(1,this.cardViews.length),fan=this.reducedMotion||this.view.layout.mode==='portrait'?0:(index-(count-1)/2)*.55;
-    const pointerX=(this.input.activePointer.positionToCamera(this.cameras.main) as Phaser.Math.Vector2).x;
-    const pointerDir=hovered?Phaser.Math.Clamp((pointerX-(b.x+b.width/2))/70,-1,1):0;
-    const angle=fan+pointerDir*3,y=b.y+b.height/2-(selected?24:0)-(hovered&&!this.reducedMotion?12:0),scale=hovered&&!this.reducedMotion?1.07:selected?1.035:1;
+    const angle=0,y=b.y+b.height/2-(selected?16:0)-(hovered&&!this.reducedMotion?4:0),scale=1;
     this.tweens.killTweensOf(view.container);view.container.setAlpha(1);view.faceGlow?.setAlpha(0);
     if(animate&&!this.reducedMotion)this.tweens.add({targets:view.container,x:b.x+b.width/2,y,angle,scaleX:scale,scaleY:scale,duration:selected?150:115,ease:selected?'Back.easeOut':'Sine.easeOut'});else view.container.setPosition(b.x+b.width/2,y).setScale(scale).setAngle(angle);
     view.background.setStrokeStyle(hovered||focused||selected||scoring?4:1,hovered||focused?0xffd990:scoring?T.jade:selected?T.red:T.brass);view.edgeGlow?.setAlpha(hovered||focused?1:selected?0.85:0);
-    if(hovered)this.view.root.bringToTop(view.container);else if(!selected&&view.hit?.active)this.view.root.moveBelow<Phaser.GameObjects.GameObject>(view.container,view.hit);
     this.view.root.bringToTop(this.handCountText);this.view.root.bringToTop(this.pileText);
   }
   private hoverJoker(id:string,enter:boolean):void {
@@ -579,12 +584,11 @@ export class GameScene extends Phaser.Scene {
     if(animate&&!this.reducedMotion)this.tweens.add({targets:view,x,y,angle:0,scaleX:scale,scaleY:scale,duration:120,ease:'Sine.easeOut',onComplete:idle});else {view.setPosition(x,y).setAngle(0).setScale(scale);idle();}
     if(hovered)this.view.root.bringToTop(view);else if(hit?.active)this.view.root.moveBelow<Phaser.GameObjects.GameObject>(view,hit);
   }
-  private clearHover():void {this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview?.destroy();this.jokerHoverPreview=undefined;this.draggingCardId=undefined;this.cardViews.forEach((view,i)=>{this.revealCard(view);this.restingCard(view,i,false);});this.orderSelectedCards();this.stopJokerIdle();this.jokerViews.forEach(view=>this.restingJoker(view,false,false));}
-  /** Pointer-out must not lower one chosen card beneath its overlapping neighbours. */
+  private clearHover():void {this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview?.destroy();this.jokerHoverPreview=undefined;this.cardViews.forEach((view,i)=>{this.revealCard(view);this.restingCard(view,i,false);});this.orderSelectedCards();this.stopJokerIdle();this.jokerViews.forEach(view=>this.restingJoker(view,false,false));}
+  /** Rebuild every card layer from hand order, independent of clicks, selection and hover. */
   private orderSelectedCards():void {
     if(this.presentation)return;
-    this.cardViews.filter(view=>this.selectedIds.has(view.card.id)).forEach(view=>this.view.root.bringToTop(view.container));
-    const hovered=this.cardViews.find(view=>view.card.id===this.hoveredCardId);if(hovered)this.view.root.bringToTop(hovered.container);
+    this.cardViews.forEach(view=>this.view.root.bringToTop(view.container));
     this.view.root.bringToTop(this.handCountText);this.view.root.bringToTop(this.pileText);
   }
   private refreshSelection(animateId?:string):void {
@@ -641,7 +645,7 @@ export class GameScene extends Phaser.Scene {
     this.view.setEnabled(this.discardButton,this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run)&&this.run.gold>=discardGoldCost);
     this.view.setEnabled(this.playButton,this.ready&&this.selectedIds.size>0&&this.handsLeft>0);
     const portrait=this.view.layout.mode==='portrait';
-    const reason=this.playing?this.presentation?'正在结算 · 可快进':'正在换牌':this.handsLeft===1?'最后 1 次出牌 · 达到目标才能过关':!this.selectedIds.size?(handWindow.handOverflow?'横滑查看更多；长按拖动调序':portrait?'':'选 1～5 张牌后出牌 / 弃牌'):this.run.gold<discardGoldCost?'弃牌需1金币 · 仍可出牌':this.run.stage!.discardsLeft<r2DiscardCost(this.run)?'弃牌次数已用完':this.handsLeft<=0?'出牌次数已用完':'已选 '+this.selectedIds.size+' / 5';
+    const reason=this.playing?this.presentation?'正在结算 · 可快进':'正在换牌':this.handsLeft===1?'最后 1 次出牌 · 达到目标才能过关':!this.selectedIds.size?(handWindow.handOverflow?'‹ › 翻页 · 按住横滑选牌':portrait?'按住横滑选牌 · 长按看详情':'按住横滑选牌 · 最多 5 张'):this.run.gold<discardGoldCost?'弃牌需1金币 · 仍可出牌':this.run.stage!.discardsLeft<r2DiscardCost(this.run)?'弃牌次数已用完':this.handsLeft<=0?'出牌次数已用完':'已选 '+this.selectedIds.size+' / 5';
     this.statusText.setText(this.statusMessage||reason);
     // Balatro-style call-to-action: the playable state breathes a warm aura.
     const auraOn=!!this.playButton.input?.enabled&&this.selectedIds.size>0&&!this.presentation&&!this.playing;
@@ -659,7 +663,8 @@ export class GameScene extends Phaser.Scene {
     const c=this.hand.find(c=>c.id===id);if(!c)return;
     const notice=stageNotice(this.run,[...this.selectedIds]);
     const limitation=notice?.disabledCardIds.includes(id)||notice?.ordinarySuppressedIds.includes(id)?'\n本场限制：'+notice.title+'。'+notice.description:'';
-    const dialog=this.dialog.open(rankLabel(c.rank)+SUIT_SYMBOL[c.suit]+' · 手牌详情',(this.selectedIds.has(id)?'已选中':'未选中')+'；'+(this.cardViews.find(v=>v.card.id===id)?.container.getData('activeScoring')?'本手计分牌':'本手不计分或尚未预览')+limitation+'\n'+cardSpecialText(c)+'\n长按只查看，不会选牌或出牌。',[{label:this.selectedIds.has(id)?'取消选择':'选择此牌',disabled:!this.ready,run:()=>{this.toggleCard(id);this.dialog.close();}}]);
+    const index=this.run.handOrder.indexOf(id);
+    const dialog=this.dialog.open(rankLabel(c.rank)+SUIT_SYMBOL[c.suit]+' · 手牌详情',(this.selectedIds.has(id)?'已选中':'未选中')+'；'+(this.cardViews.find(v=>v.card.id===id)?.container.getData('activeScoring')?'本手计分牌':'本手不计分或尚未预览')+limitation+'\n'+cardSpecialText(c)+'\n横滑连续选择；从已选牌开始则连续取消。长按只查看，调序使用下方按钮。',[{label:'左移',disabled:!this.ready||index<=0,run:async()=>{await this.moveHandCard(id,-1);if(this.dialog.active(dialog))this.inspectCard(id);}},{label:'右移',disabled:!this.ready||index>=this.hand.length-1,run:async()=>{await this.moveHandCard(id,1);if(this.dialog.active(dialog))this.inspectCard(id);}},{label:this.selectedIds.has(id)?'取消选择':'选择此牌',disabled:!this.ready,run:()=>{this.toggleCard(id);this.dialog.close();}}]);
     const face=this.cardPiece(c,{x:0,y:0,width:240,height:336}),image=this.add.renderTexture(0,0,240,336).setVisible(false);
     image.draw(face.container,120,168);face.container.destroy();
     image.snapshot(snapshot=>{
@@ -755,7 +760,7 @@ export class GameScene extends Phaser.Scene {
     const before=this.handPositions();
     if(await this.command({type:'ReorderHand',ids:cards.map(c=>c.id)})){this.statusMessage=(mode==='rank'?'点数':'花色')+'已排序 · 选择已保留';this.slideHandFrom(before);this.updateControls();}
   }
-  private async reorderCard(id:string,x:number):Promise<void> {const ids=[...this.run.handOrder],from=ids.indexOf(id),to=this.view.layout.cards.findIndex(b=>b.visible&&x>=b.hit.x&&x<=b.hit.x+b.hit.width);if(from<0||to<0||to>=ids.length||from===to)return;const before=this.handPositions();ids.splice(from,1);ids.splice(to,0,id);if(await this.command({type:'ReorderHand',ids}))this.slideHandFrom(before);}
+  private async moveHandCard(id:string,delta:-1|1):Promise<void> {const ids=[...this.run.handOrder],from=ids.indexOf(id),to=from+delta;if(from<0||to<0||to>=ids.length)return;const before=this.handPositions();ids.splice(from,1);ids.splice(to,0,id);if(await this.command({type:'ReorderHand',ids}))this.slideHandFrom(before);}
   private async reorderJoker(id:string,x:number):Promise<void> {const ids=this.run.jokers.map(j=>j.instanceId),from=ids.indexOf(id),l=this.view.layout,to=l.slots.findIndex((b,i)=>x>=b.x&&x<=b.x+b.width+(l.mode==='landscape'?l.jokerLabels[i].width+6:0));if(to<0||to>=ids.length||from===to)return;ids.splice(from,1);ids.splice(to,0,id);await this.command({type:'ReorderJokers',ids});}
 
   /** Denied actions shake the offending card instead of only showing text. */
@@ -764,6 +769,17 @@ export class GameScene extends Phaser.Scene {
     const base=view.container.angle;
     this.tweens.killTweensOf(view.container);
     this.tweens.add({targets:view.container,angle:base+3.4,duration:52,yoyo:true,repeat:3,ease:'Sine.easeInOut',onComplete:()=>this.restingCard(view,index,true)});
+  }
+
+  private applyHandSelection(update:HandSelectionUpdate):void {
+    const previous=this.selectedIds,next=new Set(update.selectedIds),changed=previous.size!==next.size||[...previous].some(id=>!next.has(id));
+    this.statusMessage=update.limitReached?'每手最多选择 5 张牌':'';
+    if(!changed){if(update.limitReached)this.updateControls();return;}
+    this.selectedIds=next;
+    const changedViews=this.cardViews.filter(view=>previous.has(view.card.id)!==next.has(view.card.id));changedViews.forEach(view=>this.revealCard(view));
+    if(update.phase!=='cancelled'){if(update.mode==='select')this.audio.select();else this.audio.deselect();}
+    // Batch a fast crossing into one preview; no rules command, RNG or save is touched.
+    this.refreshSelection(update.phase==='committed'&&changedViews.length===1?changedViews[0].card.id:undefined);
   }
 
   private toggleCard(id: string): void {
@@ -776,6 +792,7 @@ export class GameScene extends Phaser.Scene {
       if (this.selectedIds.size >= MAX_SELECTED) {this.statusMessage='每手最多选择 5 张牌';this.audio.invalid();if(view)this.wiggleCard(view,this.cardViews.indexOf(view));this.updateControls();return;}
       this.selectedIds.add(id);this.audio.select();
     }
+    this.selectedIds=new Set(this.hand.filter(card=>this.selectedIds.has(card.id)).map(card=>card.id));
     this.refreshSelection(id);
   }
 

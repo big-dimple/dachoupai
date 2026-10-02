@@ -204,3 +204,7 @@ button:active { box-shadow:none;transform:translateY(1px); }
 .dialog-primary { background:#a64f37;border:1px solid #94503e;color:#fff4df;box-shadow:none; }
 .dialog-close { background:#e0e6d9;border-color:#9aaa99;color:#2a4845;box-shadow:none; }
 @media(max-width:560px) { .dialog-content{padding:16px;}.dialog-header{padding:12px 16px;}.dialog-actions{padding:10px 16px;}.card-ability{margin:0;padding:0 0 12px;}.card-ability>strong{font-size:25px;}.dialog-card-art{width:min(204px,100%);}.f09-art-frame{width:min(204px,64vw);} }
+
+/* D36: only the hand captures horizontal gestures; vertical pan remains browser-owned. */
+.hand-input-surface { position:fixed;z-index:5;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:pointer; }
+.hand-input-surface[hidden] { display:none; }

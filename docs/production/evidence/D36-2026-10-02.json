@@ -1,0 +1,390 @@
+{
+  "taskId": "P08",
+  "task": "D36 stable hand layering and bidirectional press-sweep selection",
+  "date": "2026-10-02",
+  "testedCommit": "c90a9fc5d704874a52bddda3e4d991aef92c29fb",
+  "baseCommit": "c90a9fc5d704874a52bddda3e4d991aef92c29fb",
+  "status": "LOCAL_ENGINEERING_PASS_REMOTE_CI_CHECK_AFTER_PUSH",
+  "scope": [
+    "Stable original hand order and exposed rank/suit/checkmark column",
+    "Tap, mouse and touch press-sweep with interpolation, fixed mode and five-card cap",
+    "Cancellation, secondary-touch suppression, keyboard and detail reorder"
+  ],
+  "invariants": "UI selection only; no rule, RNG, save schema/content hash, original assets or deployment changes. Explicit detail reorder retains existing shared command.",
+  "verification": {
+    "gestureUnit": {
+      "status": "PASS",
+      "count": 27
+    },
+    "typecheck": {
+      "status": "PASS"
+    },
+    "browser": {
+      "status": "PASS",
+      "command": "PATH=/workspace/.cloud-tools/node_modules/.bin:$PATH PLAYWRIGHT_BROWSERS_PATH=/workspace/.cache/ms-playwright node harness/hand-selection.mjs",
+      "environment": {
+        "platform": "linux",
+        "node": "v22.23.3",
+        "executable": "/usr/bin/chromium",
+        "args": [
+          "--disable-gpu",
+          "--disable-software-rasterizer"
+        ],
+        "browser": "151.0.7922.173"
+      },
+      "bundleFiles": [
+        {
+          "file": "index-IE0w8tit.js",
+          "sha256": "cc14cdcdb3170f41ec23861e541a25935a48887643c30cfe852d45e7306cf669"
+        },
+        {
+          "file": "index-MAOvN9r8.css",
+          "sha256": "39f2b696306211cc4e83fc9e1e4c98929ed30ba30fa2dfc8cc9738bd90873395"
+        }
+      ],
+      "report": "shots/hand-selection/report.json",
+      "totalChecks": 81,
+      "runs": [
+        {
+          "name": "desktop",
+          "status": "PASS",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "touch": false,
+          "reducedMotion": "no-preference",
+          "checks": 21,
+          "fpsSamples": {
+            "initial": 34.61328125,
+            "final": 32.954441652136765
+          },
+          "framebuffer": [
+            1280,
+            800
+          ],
+          "baselineSaveSha256": "83629646c8faea479e0b3b175abb7911aa881a95e4bdada1bba48e0551e8a62c"
+        },
+        {
+          "name": "touch",
+          "status": "PASS",
+          "viewport": {
+            "width": 412,
+            "height": 820
+          },
+          "touch": true,
+          "reducedMotion": "no-preference",
+          "checks": 30,
+          "fpsSamples": {
+            "initial": 34.1171875,
+            "final": 19.128082035348605
+          },
+          "framebuffer": [
+            824,
+            1640
+          ],
+          "baselineSaveSha256": "83629646c8faea479e0b3b175abb7911aa881a95e4bdada1bba48e0551e8a62c"
+        },
+        {
+          "name": "touch-bars",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 640
+          },
+          "touch": true,
+          "reducedMotion": "reduce",
+          "checks": 30,
+          "fpsSamples": {
+            "initial": 33.10546875,
+            "final": 26.45105766019195
+          },
+          "framebuffer": [
+            780,
+            1280
+          ],
+          "baselineSaveSha256": "83629646c8faea479e0b3b175abb7911aa881a95e4bdada1bba48e0551e8a62c"
+        }
+      ],
+      "covered": [
+        "detail-reorder-selection-setup",
+        "detail-right-move-commits-once-preserves-rng-gold-stage-selection",
+        "discard-first-multitouch-release-control-first",
+        "discard-first-multitouch-release-hand-first",
+        "discard-touch-first-mouse-hand-no-command",
+        "escape-cancel-restores-preview",
+        "fast-sweep-max-five-left",
+        "fast-sweep-max-five-right",
+        "final-complete-save-and-rng-invariant",
+        "keyboard-arrow-space-remains",
+        "menu-preserves-selection-and-save",
+        "mouse-hover-out-restores-layers",
+        "multitouch-cancels-no-play",
+        "outside-release-does-not-play",
+        "play-first-multitouch-release-control-first",
+        "play-first-multitouch-release-hand-first",
+        "play-touch-first-mouse-hand-no-command",
+        "rank-suit-visible-and-unselected-strips-selectable",
+        "selected-start-deselect-and-reverse",
+        "selection-preserves-existing-stage-and-card-views",
+        "sixth-tap-feedback",
+        "stationary-long-press-detail-preserved",
+        "sweep-left-to-right",
+        "sweep-release-over-discard",
+        "sweep-release-over-play",
+        "sweep-reverse-without-retoggle",
+        "sweep-right-to-left",
+        "tap-left-to-right",
+        "tap-mixed",
+        "tap-right-to-left",
+        "touch-cancel-restores-preview",
+        "vertical-touch-cancels-no-play"
+      ]
+    },
+    "releaseAggregate": {
+      "scope": "all",
+      "testedCommit": "c90a9fc5d704874a52bddda3e4d991aef92c29fb",
+      "status": "PASS",
+      "exitCode": 0,
+      "before": {
+        "source": "3e88faa5163c69f48d78b6e8b6d66a5453fa47045de0c5ddca0b99884e6c70ae",
+        "index": "2c8d73b44c9d8bc974a4d964379a2e67bba2ffbcd65d866c3e773e39d6d29398",
+        "head": "c90a9fc5d704874a52bddda3e4d991aef92c29fb",
+        "branch": "refs/heads/dot/hand-selection"
+      },
+      "after": {
+        "source": "3e88faa5163c69f48d78b6e8b6d66a5453fa47045de0c5ddca0b99884e6c70ae",
+        "index": "2c8d73b44c9d8bc974a4d964379a2e67bba2ffbcd65d866c3e773e39d6d29398",
+        "head": "c90a9fc5d704874a52bddda3e4d991aef92c29fb",
+        "branch": "refs/heads/dot/hand-selection"
+      },
+      "steps": [
+        {
+          "name": "test",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 61308
+        },
+        {
+          "name": "verify:content",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 3218
+        },
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 18288
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 65169
+        },
+        {
+          "name": "production-plan",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 309
+        }
+      ],
+      "notIncluded": [
+        {
+          "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+          "status": "NOT_INCLUDED",
+          "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+        },
+        {
+          "name": "balance/benchmark acceptance",
+          "status": "NOT_INCLUDED",
+          "reason": "later work packages; no gameplay approval inferred from checks"
+        },
+        {
+          "name": "physical devices / human / art approval",
+          "status": "NOT_RUN"
+        }
+      ],
+      "command": "PATH=/workspace/.cloud-tools/node_modules/.bin:$PATH VITEST_MAX_WORKERS=1 NODE_OPTIONS='--import=/workspace/.cloud-tools/release-canvas-adapter.mjs' PLAYWRIGHT_BROWSERS_PATH=/workspace/.cache/ms-playwright npm run verify:ci",
+      "unitTests": 1631,
+      "adapter": "External-only system Chromium with GPU/software rasterization disabled: Canvas desktop/mobile functionality; no change to repository CI/timeout/assertions.",
+      "smokeReport": "shots/smoke-result.json"
+    }
+  },
+  "limits": [
+    "Linux Chromium native input and emulated touch are not a physical OnePlus or Android Chrome test.",
+    "Canvas functional verification does not establish WebGL or hardware GPU performance.",
+    "No new illustration, physical audio or browser-bar acceptance."
+  ],
+  "publication": {
+    "status": "LOCAL_GATES_PASSED",
+    "authorization": "User explicitly removed per-round review wait; normal main push and SHA/CI check allowed; no deployment wait.",
+    "note": "This evidence is committed before push. Exact published SHA and GitHub CI results belong to the delivery report; no successful remote CI is inferred from local gates."
+  },
+  "baselineRemoteCI": {
+    "sha": "c90a9fc5d704874a52bddda3e4d991aef92c29fb",
+    "run": 37020617006,
+    "job": 110882443459,
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37020617006",
+    "domain": "success",
+    "docs": "success",
+    "browser": "failure",
+    "failure": "Firefox mobile: selected diamonds-10 rank/suit index occluded",
+    "excerpt": "AssertionError [ERR_ASSERTION]: touching cards in either direction keeps all selected rank/suit indices visible\n2026-10-02T14:39:45.2166891Z + actual - expected\n2026-10-02T14:39:45.2167268Z \n2026-10-02T14:39:45.2170364Z + [\n2026-10-02T14:39:45.2170756Z +   'diamonds-10'\n2026-10-02T14:39:45.2171521Z + ]\n2026-10-02T14:39:45.2171992Z - []\n2026-10-02T14:39:45.2172273Z \n2026-10-02T14:39:45.2172983Z     at file:///home/runner/work/dachoupai/dachoupai/harness/screenshot.mjs:91:16 {\n2026-10-02T14:39:45.2174030Z   generatedMessage: false,\n2026-10-02T14:39:45.2174623Z   code: 'ERR_ASSERTION',\n2026-10-02T14:39:45.2175196Z   actual: [ 'diamonds-10' ],\n2026-10-02T14:39:45.2175768Z   expected: [],\n2026-10-02T14:39:45.2176150Z   operator: 'deepStrictEqual',\n2026-10-02T14:39:45.2176559Z   diff: 'simple'\n2026-10-02T14:39:45.2177082Z }\n2026-10-02T14:39:45.2177357Z \n2026-10-02T14:39:45.2177583Z Node.js v22.23.3\n2026-10-02T14:39:45.4196891Z verify:smoke: FAIL\n2026-10-02T14:39:45.4199667Z {\n2026-10-02T14:39:45.4200004Z   \"scope\": \"browser\",\n2026-10-02T14:39:45.4200435Z   \"testedCommit\": \"c90a9fc5d704874a52bddda3e4d991aef92c29fb\",\n2026-10-02T14:39:45.4200818Z   \"status\": \"FAIL\",\n2026-10-02T14:39:45.4201265Z   \"exitCode\": 1,\n2026-10-02T14:39:45.4201492Z   \"before\": {\n2026-10-02T14:3"
+  },
+  "testedRuntimeFiles": {
+    "src/game/GameScene.ts": "27be509af9046d23fa9b90cc6389631aaa6b36036e6d022bd704c815d67cb23d",
+    "src/game/SceneView.ts": "5b616f5b43705be51219cdc6039a8612ed94b966459cf974f051d8bd9953d123",
+    "src/game/HandSelectionInput.ts": "c1604275bb730fceafc92e52bf35ea9397c8097943717fcba08fee9219f08a85",
+    "src/game/HandSelectionGesture.ts": "25cefe1ba232ffdcc7546cb334ae1fb4acb27f7845976d10cecc32a30af62d60",
+    "src/style.css": "f2b25e8ea6011c55a07df040879c8268fc417bc436256a63d3ca03ace5e98613"
+  },
+  "testedCommitNote": "testedCommit identifies the clean base; the final runtime is the frozen modified working tree identified by these SHA256 values and compiled bundle hashes, not the unmodified base.",
+  "visualEvidence": {
+    "inspected": true,
+    "screenshots": [
+      "shots/hand-selection/desktop-tap-left-to-right.png",
+      "shots/hand-selection/touch-tap-left-to-right.png",
+      "shots/hand-selection/touch-bars-partial-selection-readable.png",
+      "shots/hand-selection/touch-manual-reorder-detail.png"
+    ],
+    "observation": "All exposed rank/suit columns and selected checkmarks visible; partial selection preserves unselected hit strips; short portrait actions/count and detail footer visible.",
+    "demo": {
+      "status": "PASS",
+      "node": "v22.23.3",
+      "browser": "151.0.7922.173",
+      "metrics": {
+        "renderer": "Canvas",
+        "fps": 18.022049833089113,
+        "viewport": {
+          "width": 412,
+          "height": 820,
+          "dpr": 3
+        }
+      },
+      "events": [
+        {
+          "label": "left-to-right select",
+          "elapsedMs": 6522,
+          "selected": [
+            "spades-6",
+            "spades-4",
+            "hearts-9",
+            "hearts-2",
+            "clubs-11"
+          ]
+        },
+        {
+          "label": "right-to-left deselect",
+          "elapsedMs": 9053,
+          "selected": []
+        },
+        {
+          "label": "right-to-left select",
+          "elapsedMs": 11151,
+          "selected": [
+            "spades-6",
+            "spades-4",
+            "hearts-9",
+            "hearts-2",
+            "clubs-11"
+          ]
+        },
+        {
+          "label": "left-to-right deselect",
+          "elapsedMs": 13441,
+          "selected": []
+        }
+      ],
+      "duration": 9,
+      "file": "shots/hand-selection/demo.mp4",
+      "limitations": [
+        "Canvas functional adapter; Linux Chromium touch emulation, not physical Android or WebGL.",
+        "Clip is a trimmed recording of real input on the final frozen bundle; no state fixtures."
+      ]
+    },
+    "before": {
+      "sourceCommit": "c90a9fc5d704874a52bddda3e4d991aef92c29fb",
+      "source": "git archive; isolated snapshot with unchanged tracked baseline source",
+      "environment": {
+        "node": "v22.23.3",
+        "platform": "linux",
+        "executable": "/usr/bin/chromium",
+        "args": [
+          "--disable-gpu",
+          "--disable-software-rasterizer"
+        ],
+        "browser": "151.0.7922.173"
+      },
+      "report": "shots/hand-selection/baseline/baseline-observations.json",
+      "runs": [
+        {
+          "name": "desktop",
+          "routes": [
+            {
+              "label": "tap-left-to-right",
+              "selectionMatchesRequested": true,
+              "domainUnchanged": true,
+              "occludedCards": []
+            },
+            {
+              "label": "tap-right-to-left",
+              "selectionMatchesRequested": true,
+              "domainUnchanged": true,
+              "occludedCards": []
+            },
+            {
+              "label": "tap-mixed",
+              "selectionMatchesRequested": true,
+              "domainUnchanged": true,
+              "occludedCards": []
+            }
+          ]
+        },
+        {
+          "name": "touch",
+          "routes": [
+            {
+              "label": "tap-left-to-right",
+              "selectionMatchesRequested": true,
+              "domainUnchanged": true,
+              "occludedCards": [
+                "clubs-4",
+                "diamonds-7"
+              ]
+            },
+            {
+              "label": "tap-right-to-left",
+              "selectionMatchesRequested": true,
+              "domainUnchanged": true,
+              "occludedCards": [
+                "clubs-4",
+                "diamonds-7"
+              ]
+            },
+            {
+              "label": "tap-mixed",
+              "selectionMatchesRequested": true,
+              "domainUnchanged": true,
+              "occludedCards": [
+                "clubs-4",
+                "diamonds-7"
+              ]
+            }
+          ]
+        }
+      ],
+      "inspected": [
+        "shots/hand-selection/baseline/touch-tap-left-to-right.png"
+      ],
+      "observation": "Before: only rightmost selected checkmark visible; selected J hides unselected 4 clubs and 7 diamonds. After: all eight rank/suit columns and all five checks visible, including mixed selection."
+    }
+  },
+  "notRun": [
+    "full legacy layout browser suite (changed detail reorder path covered by focused harness)",
+    "new WebGL performance diagnostic",
+    "physical OnePlus / Android Chrome browser bars",
+    "art / asset / balance / long full-game E2E"
+  ]
+}
