@@ -213,7 +213,8 @@
     "Background tab focus did not produce document.hidden; NOT_RUN.",
     "New48 full illustrations require A03; mechanism motifs are not approved illustrations.",
     "C03 must reclassify expanded Boss scope;91 cannot be silently reused.",
-    "Ignored shots logs/probe are local evidence, not a new permanent harness or repository screenshot archive."
+    "Ignored shots logs/probe are local evidence, not a new permanent harness or repository screenshot archive.",
+    "Raw imported input was exported before the tight proof; its historical pending proof tag remains intact. The scored state stayed identical, while the committed fixture now records the completed scoped proof."
   ],
   "sourceFingerprints": [
     {
@@ -254,7 +255,12 @@
     }
   ],
   "publication": {
-    "status": "PENDING_NORMAL_MAIN_COMMIT_AND_PUSH"
+    "status": "PUSHED_MAIN",
+    "codeCommit": "6ff33a70f1f7215924944b189ca01b63ec2fd323",
+    "commitChunk": "0ade1d",
+    "pushCommand": "git push origin main",
+    "pushChunk": "343086",
+    "result": "5d2d9de..6ff33a7 main -> main; exit0; no force/reset/branch left behind."
   },
   "nextStep": "C03.1: eight-chapter targets and public Boss contract/goldens, before implementation.",
   "cleanup": {
