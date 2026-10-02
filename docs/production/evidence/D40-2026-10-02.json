@@ -1,0 +1,211 @@
+{
+  "taskId": "P08",
+  "task": "D40 obsolete detail-image request cancellation",
+  "date": "2026-10-02",
+  "baseCommit": "b85a5c2b936599e43b4809a76d823486e921d735",
+  "testedCommit": "97403eeedb192c501797eaac676754dab2d1d3ac",
+  "status": "LOCAL_VALIDATION_PASS",
+  "baselineCI": {
+    "run": 37043920217,
+    "status": "SUCCESS",
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37043920217"
+  },
+  "scope": "Only consumer-scoped HD cancellation: detail close, changed visible shelf and scene shutdown. Preserve other consumers and bounded existing cache/retries/prefetch. No Boot/content/domain/RNG/save/art/dependency/ServiceWorker/deployment changes.",
+  "baseline": {
+    "report": "shots/resource-flow/baseline/report.json",
+    "exitReport": "shots/resource-flow/baseline/exit-run/report.json",
+    "finding": "Two old shelf HD fetches survived reroll and blocked a new visible detail request until old responses were released; after scene exit old transfers still decoded."
+  },
+  "verification": {
+    "focused": {
+      "status": "PASS",
+      "tests": 56,
+      "files": [
+        "tests/detail-art.test.ts",
+        "tests/joker-art-loading.test.ts",
+        "tests/detail-dialog.test.ts"
+      ],
+      "log": "shots/resource-flow/focused.log"
+    },
+    "typecheck": "PASS",
+    "browser": {
+      "status": "PASS",
+      "report": "shots/resource-flow/final/report.json",
+      "log": "shots/resource-flow/final-run.log",
+      "contexts": 5,
+      "browser": "151.0.7922.173",
+      "bundle": {
+        "asset": "./assets/index-BC3dxoH5.js",
+        "sha256": "b4f20fd69fa71b677051077639db71f4350da24adecf8e9d67927ca521c83741"
+      },
+      "buildInfo": {
+        "version": "C03",
+        "revision": "b85a5c2b936599e43b4809a76d823486e921d735",
+        "modified": true,
+        "builtAt": "2026-10-02T18:13:41.055Z"
+      },
+      "inputs": "Real native mouse/touch UI. Five serial contexts: natural desktop/touch, desktop slow shelf replacement, desktop slow exit, touch paging/tools/revisit. Full state/RNG/journal/export/IndexedDB unchanged except deliberate RerollShop/LeaveShop commands.",
+      "geometry": "Artwork window measured in its containing card frame, normalized for the unchanged200ms dialog entrance transform; x/y/width/height tolerance1.5px retained. Dialog-relative position remains logged. Baseline geometry-check proves inherited8px vertical relocation when HD status row disappears; no product CSS change or claim that whole-dialog location is fixed."
+    },
+    "releaseAggregate": {
+      "status": "PASS",
+      "tests": 1742,
+      "testFiles": 91,
+      "steps": [
+        {
+          "name": "test",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 52740
+        },
+        {
+          "name": "verify:content",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 3153
+        },
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 13899
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 51638
+        },
+        {
+          "name": "production-plan",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 254
+        }
+      ],
+      "before": {
+        "source": "af4cddabc8bdf1237fd0ae77716049d3ac1ae18676660d6b0ab338f7b125d19f",
+        "index": "2266416f9b728560aeac47b5c53389eeb1906e6b6ef17d683ceb341ae19b9375",
+        "head": "97403eeedb192c501797eaac676754dab2d1d3ac",
+        "branch": "refs/heads/dot/resource-flow"
+      },
+      "after": {
+        "source": "af4cddabc8bdf1237fd0ae77716049d3ac1ae18676660d6b0ab338f7b125d19f",
+        "index": "2266416f9b728560aeac47b5c53389eeb1906e6b6ef17d683ceb341ae19b9375",
+        "head": "97403eeedb192c501797eaac676754dab2d1d3ac",
+        "branch": "refs/heads/dot/resource-flow"
+      },
+      "sourceUnchangedDuringGate": true,
+      "log": "shots/resource-flow/release-ci.log",
+      "report": "shots/resource-flow/release-ci.json",
+      "environment": "Node22.23.3, VITEST_MAX_WORKERS=1; existing external launch-only Canvas adapter uses Chromium151 with GPU/software rasterization disabled. Shared smoke assertions, inputs and timeouts unchanged."
+    }
+  },
+  "preFixRegression": "shots/resource-flow/cancel-before.log: 5 added cancellation tests fail on old implementation (timeouts included); existing11 pass. New API was not yet implemented. Runner also recorded one late rejection after the old shared consumer cancellation test timed out; final focused and aggregate runs have no such error.",
+  "limits": [
+    "Controlled local response holds, not a real network benchmark.",
+    "Linux Chromium Canvas, not physical OnePlus/Android hardware performance.",
+    "No claim of first-screen speed improvement; Boot unchanged.",
+    "Source artwork pending separate approval; no access or bypass.",
+    "Uncancelable bitmap work is closed/discarded when it returns; cannot promise native decoder interruption."
+  ],
+  "newAssetIntegration": "Parallel asset thread has local coin candidate a833929, not integrated here. Future approved atlas enters through assetUrl/registry and scene-owned on-demand preload, then IntermissionScene reward presentation from committed goldEarned. No nonexistent files or raw GLB registered; no first-screen load added.",
+  "publication": {
+    "status": "READY_FOR_AUTHORIZED_MAIN_PUSH",
+    "record": "shots/resource-flow/publication.json",
+    "method": "Normal fast-forward main push after review and remote baseline check; exact SHA/CI status returned to parent. No website polling."
+  },
+  "nextScope": "Return to parent after bounded validation/push; P08 in_progress.",
+  "measurements": {
+    "coldSamples": [
+      {
+        "phase": "baseline",
+        "profile": "desktop-natural",
+        "titleUsableMs": 960.3,
+        "shopUsableMs": 2376.7,
+        "bootHTTPRequests": 24,
+        "bootAssetXHR": 21,
+        "naturalRouteHTTPRequests": 30,
+        "naturalRouteHDRequests": 2,
+        "maxExplicitFetch": 1,
+        "maxExplicitImageDecode": 1,
+        "maxExplicitBitmapDecode": 1
+      },
+      {
+        "phase": "baseline",
+        "profile": "touch-natural",
+        "titleUsableMs": 903.1,
+        "shopUsableMs": 2481.6,
+        "bootHTTPRequests": 24,
+        "bootAssetXHR": 21,
+        "naturalRouteHTTPRequests": 30,
+        "naturalRouteHDRequests": 2,
+        "maxExplicitFetch": 1,
+        "maxExplicitImageDecode": 1,
+        "maxExplicitBitmapDecode": 1
+      },
+      {
+        "phase": "final",
+        "profile": "desktop-natural",
+        "titleUsableMs": 987.1,
+        "shopUsableMs": 2120.7,
+        "bootHTTPRequests": 24,
+        "bootAssetXHR": 21,
+        "naturalRouteHTTPRequests": 30,
+        "naturalRouteHDRequests": 2,
+        "maxExplicitFetch": 1,
+        "maxExplicitImageDecode": 1,
+        "maxExplicitBitmapDecode": 1
+      },
+      {
+        "phase": "final",
+        "profile": "touch-natural",
+        "titleUsableMs": 616.7,
+        "shopUsableMs": 1870.1,
+        "bootHTTPRequests": 24,
+        "bootAssetXHR": 21,
+        "naturalRouteHTTPRequests": 29,
+        "naturalRouteHDRequests": 1,
+        "maxExplicitFetch": 1,
+        "maxExplicitImageDecode": 1,
+        "maxExplicitBitmapDecode": 1
+      }
+    ],
+    "slowShelf": {
+      "baselineDetailUsableMs": 6051.5,
+      "baselineNewHDFetchStartMs": 6727.1,
+      "baselineNewHDWaitAfterDetailMs": 675.6,
+      "baselineOldResponseReleaseMs": 6677.1,
+      "afterDetailUsableMs": 5397.9,
+      "afterNewHDFetchStartMs": 5340.8,
+      "afterNewHDBeforeDetailMs": 57.1,
+      "afterOldConsumersAbortedMs": 4964.5,
+      "afterNewHDVisibleMs": 5768.1,
+      "afterOldResponseReleaseMs": 5998.3,
+      "note": "performance.now from each navigation. Responses deliberately held; old/new action timing differs, so no throughput or percentage speed claim. After current HD displays while both retired responses remain held. Queue occupancy, rather than detail controls, was the blocker."
+    },
+    "coldNote": "Cold local browser context, unthrottled localhost, one sample/profile/version; readiness is first observed enabled public control, shop time includes real intervening inputs. Explicit decode wrappers do not expose all browser implicit decode internals. Boot21 image/SVG XHR and24 HTTP document/script/style/assets unchanged. Natural HD count is timing/lifecycle-dependent, not a first-screen batch."
+  },
+  "measurementFailures": {
+    "entranceTransform": "shots/resource-flow/after/initial-failure/report.json",
+    "dialogCoordinates": "shots/resource-flow/after/dialog-coordinate-failure/report.json",
+    "inheritedBaselineGeometry": "shots/resource-flow/baseline/geometry-check/touch-natural.json",
+    "resolution": "Changed only observation coordinate origin to the card frame; kept product animation, original dimension bounds, all request-cancellation/identity/persistence assertions, and timeouts. No CSS fix added."
+  },
+  "testedWorkingTree": {
+    "files": {
+      "src/game/DetailArt.ts": "5c6d40162b3f314dda81f8c9f19b0d0162c12c85bd6e9a65d88566e8763194d0",
+      "src/game/JokerArtLoading.ts": "d3780c95534fafd63f7de3f0d0df2dfa8dfa4138cba6c48ef4090064c9ffdfc7",
+      "tests/detail-art.test.ts": "ca9eeefef62f20a83ef75150040d0243f8bb65fd2ac807247488bc1777d3a75e",
+      "tests/joker-art-loading.test.ts": "6744355baf2d1796bd54f0769e78a0074ee85abb3a2fd9246d2723e16383e96b",
+      "harness/resource-flow.mjs": "6bb0a752f6f65cc3c4222d337726416c5f6c02ff7e5aa48c17750bdf45184092"
+    }
+  },
+  "screenshots": {
+    "inspected": true,
+    "beforeNewCardWaiting": "shots/resource-flow/baseline/desktop-slow-HD-queued-C.png",
+    "afterNewCardReady": "shots/resource-flow/final/desktop-slow-HD-C-ready.png",
+    "touchRevisit": "shots/resource-flow/final/touch-slow-revisit-revisit.png",
+    "sceneExit": "shots/resource-flow/final/desktop-slow-exit-after-exit.png"
+  }
+}

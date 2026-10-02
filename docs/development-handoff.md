@@ -1,6 +1,8 @@
 # 当前交接：P08单卡体验样板
 
-D39 当前回合（2026-10-02）：基线D38 `5cf35ab`，仅改善 f09、f04、a03、pengci、huimaqiang 五张的条件与收益说明。商店/详情共用主能力，版次独立、细则折叠；牌桌显示当前资格与本手收益，来源和复盘读取对应实例的实际事件。未选牌保持待判断，f04读手开始金币，huimaqiang读下一次成功出牌序号；封禁和f09历史状态取当手快照，出弃牌过渡不以旧选择重算新手牌。内容数值/hash、规则、RNG、存档、素材和部署均不变。五卡29项PC/手机Canvas浏览器检查通过；另按父会话要求修复原生短点击被主线程处理延迟误判为长按的问题，受控WebKit首次选角前后对照与真实长按检查通过。最终冻结源码1735项测试/content/build/桌面手机Canvas smoke/plan全部通过，前后源码指纹一致，见[D39证据](production/evidence/D39-2026-10-02.json)。远端原失败同因仍未证实；P08保持in_progress。必要检查后按既有授权正常push main并核对SHA/CI，真机与真人理解/视觉验收仍独立。
+D40当前回合（2026-10-02）：main基线 `b85a5c2`，精确SHA远端[CI37043920217](https://github.com/big-dimple/dachoupai/actions/runs/37043920217)已成功，旧选角回归不再阻塞当前候选。本轮只修复实测过时高清占请求槽；既有缩略优先/预取/重试保留，最后使用者关详情、换货架或退场后取消。56项专项和类型检查通过，代码保存在本地恢复提交 `97403ee`，五组PC/触摸Canvas自然及模拟慢请求对照已通过；测量扣除原200ms弹窗变换，卡框局部尺寸/对齐断言保留，基线已有8px整框垂直位移另记录；最终冻结源码1742项测试/content/build/双端Canvas smoke/plan全部通过，前后源码指纹一致。必要检查后正常push并核对SHA/CI，发布结果写入shots/resource-flow/publication.json，见[D40证据](production/evidence/D40-2026-10-02.json)。新图source审批仍独立；铜钱atlas资产线程本地a833929待后续集成，不在本轮接入，P08保持in_progress。
+
+D39 上一回合（2026-10-02）：基线D38 `5cf35ab`，仅改善 f09、f04、a03、pengci、huimaqiang 五张的条件与收益说明。商店/详情共用主能力，版次独立、细则折叠；牌桌显示当前资格与本手收益，来源和复盘读取对应实例的实际事件。未选牌保持待判断，f04读手开始金币，huimaqiang读下一次成功出牌序号；封禁和f09历史状态取当手快照，出弃牌过渡不以旧选择重算新手牌。内容数值/hash、规则、RNG、存档、素材和部署均不变。五卡29项PC/手机Canvas浏览器检查通过；另按父会话要求修复原生短点击被主线程处理延迟误判为长按的问题，受控WebKit首次选角前后对照与真实长按检查通过。最终冻结源码1735项测试/content/build/桌面手机Canvas smoke/plan全部通过，前后源码指纹一致，见[D39证据](production/evidence/D39-2026-10-02.json)。远端原失败同因仍未证实；P08保持in_progress。必要检查后按既有授权正常push main并核对SHA/CI，真机与真人理解/视觉验收仍独立。
 
 D38基线远端CI已结束为FAILURE：run `37035323184` / browser job `110931981137`。日志记录Chromium桌面/手机、Firefox桌面/手机通过，WebKit桌面在 `harness/screenshot.mjs:56` 首次角色断言失败（`undefined !== amo`）；domain/docs通过。此为继承基线状态，不记作D39验证通过；父会话明确要求在发布前最小复现角色选择/状态断言，不删断言、不延长超时、不重跑无变化的全矩阵。
 
@@ -14,7 +16,7 @@ D36继承提交 `0f1f0a6` 的远端Chromium两视口、Firefox两视口、WebKit
 
 - `plan.currentTask = P08 / in_progress`。D35已发布main `c90a9fc5d704874a52bddda3e4d991aef92c29fb`；D36已发布 `beb91fd`；D37已发布 `a5afc339`；D39基于D38 `5cf35ab`独立推进。**用户最新授权解除逐轮等待，检查后正常push main并核对SHA/CI**，由既有链路自动部署，用户在网站直接试玩；部署链路不改。
 - 历史接管基线main `209b9073c90778bf57a1736bed9266f305b995f5`；当时本地干净、远端一致。C04历史仍未完/BLOCKED，C04.3/4、新玩法与全卡重画不自动推进。当前决定见[D39](production/DECISIONS.md#d39--五张大丑牌的条件与本手收益2026-10-02采用)。
-- 当前工作仅为D39五张条件/收益共享说明与实际来源；保留已交付的稀有度、加载恢复和手势。新图继续等待独立source审批，不读取受限源图、不换传输路径；素材不是本次发布前置。
+- 当前工作仅为D40过时高清请求的生命周期清理；保留D39五张条件/收益说明与实际来源；保留已交付的稀有度、加载恢复和手势。新图继续等待独立source审批，不读取受限源图、不换传输路径；素材不是本次发布前置。
 
 ## 证据与限制
 
@@ -38,6 +40,6 @@ D36继承提交 `0f1f0a6` 的远端Chromium两视口、Firefox两视口、WebKit
 
 单卡浏览器入口：`harness/f09.mjs`（`F09_RENDERER=canvas/webgl`分开记录）；加载/文案专项：`harness/f09-loading.mjs`；D39五张说明专项：`harness/joker-clarity.mjs`。均按各入口要求使用e2e开发构建，不只为重复获取相同失败证据空跑。检查按AGENTS变更矩阵执行，最终发布聚合与开发targeted分开。
 
-D39五张说明专项、真实浏览器和最终冻结源码门禁已通过；原WebKit选角回归已做最小诊断及输入时钟修正。正常push后核对GitHub SHA/CI，实际结果写入忽略目录shots/joker-clarity/publication.json并交回父会话，不等待或探测公开网站。后续范围由父会话安排，不自动扩展到全库、C04或美术。原画重绘暂缓，重新附图/Library/ZIP均不是发布前置；不删工作包、金样或测试门禁。
+D39已push并通过远端CI；D40完成资源对照和最终门禁后正常push，核对GitHub SHA/CI，结果写入shots/resource-flow/publication.json并交回父会话，不等待或探测公开网站。后续范围由父会话安排，不自动扩展到全库、C04或美术。原画重绘暂缓，重新附图/Library/ZIP均不是发布前置；不删工作包、金样或测试门禁。
 
 历史C04源码/CI/旧存档细节以[收尾证据](production/evidence/C04-closeout-2026-10-02.json)及[基线handoff](https://github.com/big-dimple/dachoupai/blob/209b9073c90778bf57a1736bed9266f305b995f5/docs/development-handoff.md)追溯；本地通过不改写其远端CI取消的历史。
