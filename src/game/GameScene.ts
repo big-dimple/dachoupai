@@ -191,7 +191,7 @@ export class GameScene extends Phaser.Scene {
     }
     this.run=controller.state;
     if(this.run.phase!=='await-input'||!this.run.stage){this.scene.start('character-select');return;}
-    this.stage=getStage(this.run.stage.index)!;this.characterId=this.run.characterId;settings();this.audio.setScene(this.stage.index%3===2?'boss':'table');
+    this.stage=getStage(this.run.stage.index,this.run.tourMode)!;this.characterId=this.run.characterId;settings();this.audio.setScene(this.stage.index%3===2?'boss':'table');
     this.cameras.main.setBackgroundColor(C.paper);
     this.view=new SceneView(this,()=>{
       if(this.presentation)this.fastForward();
@@ -230,8 +230,8 @@ export class GameScene extends Phaser.Scene {
     addAvatar(this,this.roleAvatar,c,0,0,avatarSize);
     this.roleFrame=this.add.rectangle(0,0,avatarSize+4,avatarSize+4,T.brass).setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);this.roleAvatar.add(this.roleFrame);
     const bossName=r2BossText(this.run.boss).split('：')[0];
-    if(!portrait)v.text(h.x+12,h.y+8,'大 丑 牌',short?20:28,C.paper);
-    v.text(h.x+(portrait?64:76),avatarY,c.name,portrait?18:short?20:22,C.paper,portrait?h.width-160:h.width-88);
+    if(!portrait)v.text(h.x+12,h.y+8,this.run.tourMode==='endless'?'无尽巡演':'大 丑 牌',short?20:28,C.paper);
+    v.text(h.x+(portrait?64:76),avatarY,(portrait&&this.run.tourMode==='endless'?'无尽 · ':'')+c.name,portrait?18:short?20:22,C.paper,portrait?h.width-160:h.width-88);
     this.roleText=v.text(h.x+(portrait?64:76),avatarY+(portrait?23:28),this.roleCaption(),14,C.brass,portrait?h.width-160:h.width-88);
     if(!portrait&&!l.shortLandscape)v.text(h.x+12,h.y+(short?96:154),this.stage.index%3===2?'压轴 · '+bossName:this.stage.name,14,C.paper,h.width-24);
     this.heatText=v.text(h.x+12,h.y+(portrait?47:l.shortLandscape?94:short?108:214),'',portrait?24:short?28:42,C.paper,h.width-24).setFontStyle('bold');

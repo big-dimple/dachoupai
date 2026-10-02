@@ -1,0 +1,514 @@
+{
+  "taskId": "C03",
+  "date": "2026-10-02",
+  "status": "ENGINEERING_PASS_C03_4",
+  "completionScope": "C03.4 and M5 engineering route complete: normal eight chapters/24 stages, real win/loss/new game, voluntary endless, exact targets and restore. Natural acquisition/balance/physical-device/new-art acceptance are separate future packages.",
+  "testedCommit": "e634e03857523212bfa534990b3a1e8c26e759e6",
+  "testedTree": "Reviewed main dirty tree, final byte SHA256 fingerprints below. Full unit run preceded build-info/proof-scope text, compact gift caption and result-scene queued-exit fix. Separate final22 result/audio/command tests, type/production/observer builds and bounded tail UI verify the late changes. Domain/scoring code did not change after the full unit run.",
+  "contentVersion": "quality-r2-content-v9",
+  "contentHash": "json-fnv-v1:0d551eb0a2218704",
+  "decision": "D30",
+  "sourceFingerprints": {
+    "scripts/verify-content.mjs": "199e5b34bda45677e8537240ee114a62bc286323b531ed77bbb635da1b401ff5",
+    "src/application/checkpoint.ts": "efd7d8da93d237df539202206c9a9852740880acc7adff67eca9ba49a70f28b1",
+    "src/domain/r2Chapter.ts": "98c877634162468925353d5971b3c8c36483e2ec1fa45ed27f30dcdf9628cb3c",
+    "src/domain/r2Resources.ts": "0d62f88540d26197ee8d5340a05931b9d7003656d9589500831afe94b9e0815a",
+    "src/domain/r2Run.ts": "dce0818e5f7ff9ff0c2d733037e9dabd0558fcfbeb7d9eb0f71ed91d10f3f539",
+    "src/domain/r2SpectralTools.ts": "0bd8dd19bad1dba7099385d597dcdede72216e6a009a06e3be0e432539cafcef",
+    "src/domain/run.ts": "ff2354472d0a473f7494f06bba8addcc0a0d516148c882450034a81a81d98beb",
+    "src/game/ConsumableDialog.ts": "3b6a2d932220c87e7c1b6750db8034ad13c9773f8979a6219f7cfbdb3547d2e0",
+    "src/game/GameScene.ts": "960f4eb61f9a457378f85822c33764a108d00e315d83307cd9c56fefc23632c8",
+    "src/game/IntermissionScene.ts": "e3b1b136aa3a345d0ceb29482950ef4bfda48a4eea6190514ff3e077d4fc15b3",
+    "src/game/ShopScene.ts": "bdc38b036bf6ba63c93a3c7e9e5c882ba51d9be694827e30807388cceb2c9d06",
+    "src/game/TitleScene.ts": "9046cb5143069e68c551a25918568d33e74f42082bd963aa9123ae3426a0e611",
+    "tests/c01-boundary.test.ts": "7c41d481e8d118b0942ba6760ac6720b771c053e46f8b8a986713350cdd3e338",
+    "tests/c01-checkpoint.test.ts": "2627c99c4514ccaf0253944f7a1b673093118b5e110136cc37cf97c09d71a512",
+    "tests/c02-checkpoint.test.ts": "fa5824d48009488ff6b5c8635d7e63f16e6d5b5d6fffed08ae9d6dfb2bd3885d",
+    "tests/c03-boss-save.test.ts": "b639a8d090101eb5d1c4cf003e2fa7136abced716d51a2ad906c4579375188fc",
+    "tests/c03-chapter-spec.test.ts": "7c6300ec82822fdc61f9a863ccf52c49cc627c49d305da1951a29b710dda074f",
+    "tests/r2-starting-profile.test.ts": "507f6bb50751c8f164d384e787349dc0af0716c302767a637df6e45d16f2f54b",
+    "vite.config.ts": "9e7e85ca691a355a01d38114a5cef558fe6bc1e8573f20792f087758d66b9a7a",
+    "tests/c03-endless-run.test.ts": "f42545f77910a7e06b2760f9954ef75ac6a14689f928b429db122c04cc192466",
+    "tests/c03-endless-save.test.ts": "41f652ff9a598bdda26c6d99636865b3611e1c47037443dd5347f16959e08b47",
+    "tests/c03-endless-target.test.ts": "06dd974b7523b28c1f523065908815e4728fca22021f61fbfa71f3c9764dbe3e",
+    "tests/fixtures/c03-v8-checkpoint.json": "3761deb3fc97cf51e2678c0168580065251ce78a933a0747aae7115fd2386b78",
+    "src/domain/scoreR2.ts": "192e8182da92ecf74fd241f0c5a0b49b89c9687c4b69f2a36c4f4098852e4ff7",
+    "src/game/r2Help.ts": "b9ace589aae5b594e6ba5da6d48970105fabd512324c0df151ffcaad1f4532f9",
+    "tests/c03-result-transition.test.ts": "c7e50f51e140dec706f54a93ad3d353fd26c744219d706364d46d23899daa8a0"
+  },
+  "red": [
+    {
+      "command": "npm.cmd test -- --run tests/c03-endless-target.test.ts",
+      "result": "41 FAIL /22 PASS before helper implementation",
+      "chunk": "5409e7",
+      "log": "shots/c03-endless-target-red.log"
+    },
+    {
+      "command": "npm.cmd test -- --run tests/c03-endless-run.test.ts --reporter=dot",
+      "result": "10 FAIL before mode/qualification/ContinueEndless implementation",
+      "chunk": "8187d7",
+      "log": "shots/c03-endless-run-red.log"
+    },
+    {
+      "command": "npm.cmd test -- --run tests/c03-endless-save.test.ts",
+      "result": "9 FAIL /13 PASS after v9 domain but before parser change; eight valid saves wrongfully rejected, one new fixture typo documented below",
+      "chunk": "1e6ad7",
+      "log": "shots/c03-endless-save-red.log"
+    },
+    {
+      "command": "npm.cmd test -- --run tests/c03-endless-run.test.ts --reporter=dot",
+      "result": "3 FAIL /10 PASS: S03/S04/S08 incorrectly returned no-next-stage in chapter9",
+      "chunk": "cae8fe",
+      "log": "shots/c03-endless-spectral-red.log"
+    },
+    {
+      "command": "npm.cmd test -- --run tests/c03-result-transition.test.ts --reporter=dot",
+      "result": "3 FAIL /1 PASS: Phaser queues scene.start, but finally repainted the old result after retry/shop/endless state switched; retry read null stage.",
+      "chunk": "b595ce",
+      "log": "shots/c03-result-transition-red.log"
+    }
+  ],
+  "checks": [
+    {
+      "command": "npm.cmd test -- --maxWorkers=2 --reporter=dot",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "1387 tests /71 files. Score/RNG literals and time/step budgets unchanged; includes 14 shared-command,22 save and63 target new cases.",
+      "chunk": "51c0e3",
+      "log": "shots/c03-endless-unit.log"
+    },
+    {
+      "command": "npm.cmd run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "Final TypeScript and production build including compact gift caption and result-scene queued-exit fix; existing 500kB chunk warning retained.",
+      "chunk": "8d592a",
+      "log": "shots/c03-endless-build-final.log"
+    },
+    {
+      "command": "npm.cmd test -- --run tests/c02-source-copy.test.ts tests/c03-endless-run.test.ts --reporter=dot",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "22 related cases after the UI caption change, no scoring/RNG expectation change.",
+      "chunk": "500dff",
+      "log": "shots/c03-endless-final-ui-unit.log"
+    },
+    {
+      "command": "npm.cmd test -- --run tests/c03-result-transition.test.ts tests/failure-audio.test.ts tests/c03-endless-run.test.ts --reporter=dot",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "22 cases after the queued scene-exit fix: retry has no obsolete result render, failed save still redraws, shop/endless exits retire old view, failure cue identity and shared command regression.",
+      "chunk": "f823c7",
+      "log": "shots/c03-result-transition-green.log"
+    },
+    {
+      "command": "node --input-type=module -e \"import{build}from'vite';await build({mode:'e2e',build:{outDir:'shots/smoke-build',emptyOutDir:true},logLevel:'warn'});\"",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "Final observer build after result-scene fix; read-only observers only.",
+      "chunk": "e95550",
+      "log": "shots/c03-endless-browser-build-final.log"
+    },
+    {
+      "command": "npm.cmd run verify:content",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "72 definitions; attained legal envelope91, conservative319; normal/endless share the same finite resource/Boss/source caps.",
+      "chunk": "832e29",
+      "log": "shots/c03-endless-content.log"
+    },
+    {
+      "command": "$env:SHOT_PROFILES='desktop,shortmobile'; npm.cmd run verify:smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "Chromium1280x720 mouse and360x640 DPR3 touch. Selection, buy/cancel, rank/suit sorting, discard/refill, play/count pulses, exact refresh/continue, fixed menu, two-way selected corner visibility and rotation.",
+      "chunk": "61f1f0",
+      "log": "shots/c03-endless-smoke.log"
+    },
+    {
+      "command": "node shots/c03-endless-browser.mjs",
+      "status": "FAIL",
+      "exitCode": 1,
+      "result": "28 scope checks PASS: explicit first-shop build,24 real touch clears, in-stage/result/normal-win refresh, voluntary cancel/confirm, ninth shop/table refresh and ninth warmup clear. Final probe missed expanding progress/storage before locating new-game and timed out. This command is not marked PASS.",
+      "chunk": "49ffd5",
+      "log": "shots/c03-endless-browser-long-route.log",
+      "report": "shots/c03-endless-browser-long-route.json"
+    },
+    {
+      "command": "node shots/c03-endless-new-game-browser.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "Separate legal endless checkpoint generated with actual normal24/endless commands from the same prepared build, ordinary imported; actual portrait gift-label bounds, real progress/custom-confirmation new-game52-card/mode isolation, four naturally animated single-card loss, exact refresh and same-seed retry passed; zero page errors.",
+      "chunk": "980ea3",
+      "log": "shots/c03-endless-new-game-browser.log",
+      "report": "shots/c03-endless-new-game-browser.json"
+    },
+    {
+      "command": "node scripts/check-production-plan.mjs --self-test",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "1 valid /13 invalid fixtures",
+      "chunk": "974b6c",
+      "log": "shots/c03-endless-plan-self.log"
+    },
+    {
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "result": "31 packages, current=C04; structural validation only",
+      "chunk": "91779b",
+      "log": "shots/c03-endless-plan.log"
+    }
+  ],
+  "browserTrace": {
+    "status": "PASS",
+    "scope": "Two explicit UI segments. Long-route28 checks passed; its final new-game locator missed the closed progress section and exited1. The separate legal-checkpoint tail then used the real expanded section/custom confirmation and passed gift-label bounds/new-game/loss/retry. Raw failed commands remain unchanged; a real retry page error was repaired before the final tail.",
+    "longRoute": {
+      "taskId": "C03",
+      "testedCommit": "e634e03857523212bfa534990b3a1e8c26e759e6",
+      "provenance": "Explicit legal prepared first-shop equipment/deck/levels imported through the ordinary file chooser. All24 normal clears, voluntary continuation, one endless clear and new-game loss use real touch/DOM UI. The long route uses the ordinary fast-forward menu after a committed score; this verifies route/save integrity, not complete animation playback, natural acquisition, balance or a physical phone.",
+      "checks": [
+        {
+          "name": "ordinary import at first shop",
+          "status": "PASS",
+          "mode": "normal",
+          "source": "explicit prepared build"
+        },
+        {
+          "name": "normal stage 0",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/0"
+        },
+        {
+          "name": "normal stage 1",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/1"
+        },
+        {
+          "name": "normal stage 2",
+          "status": "PASS",
+          "boss": "B04",
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/2"
+        },
+        {
+          "name": "normal stage 3",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/3"
+        },
+        {
+          "name": "normal stage 4",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/4"
+        },
+        {
+          "name": "normal stage 5",
+          "status": "PASS",
+          "boss": "B02",
+          "score": "127626801",
+          "clearId": "c03-ordinary-route/clear/5"
+        },
+        {
+          "name": "normal stage 6",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/6"
+        },
+        {
+          "name": "normal stage 7",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/7"
+        },
+        {
+          "name": "normal stage 8",
+          "status": "PASS",
+          "boss": "B07",
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/8"
+        },
+        {
+          "name": "normal stage 9",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/9"
+        },
+        {
+          "name": "normal stage 10",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/10"
+        },
+        {
+          "name": "normal stage 11",
+          "status": "PASS",
+          "boss": "B08",
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/11"
+        },
+        {
+          "name": "normal stage 12",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/12"
+        },
+        {
+          "name": "normal stage 13",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/13"
+        },
+        {
+          "name": "normal stage 14",
+          "status": "PASS",
+          "boss": "B09",
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/14"
+        },
+        {
+          "name": "normal stage 15",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/15"
+        },
+        {
+          "name": "normal stage 16",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/16"
+        },
+        {
+          "name": "normal stage 17",
+          "status": "PASS",
+          "boss": "B06",
+          "score": "38192132",
+          "clearId": "c03-ordinary-route/clear/17"
+        },
+        {
+          "name": "normal stage 18",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/18"
+        },
+        {
+          "name": "normal stage 19",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/19"
+        },
+        {
+          "name": "normal stage 20",
+          "status": "PASS",
+          "boss": "B11",
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/20"
+        },
+        {
+          "name": "normal stage 21",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/21"
+        },
+        {
+          "name": "normal stage 22",
+          "status": "PASS",
+          "boss": null,
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/22"
+        },
+        {
+          "name": "normal stage 23",
+          "status": "PASS",
+          "boss": "B13",
+          "score": "128898445",
+          "clearId": "c03-ordinary-route/clear/23"
+        },
+        {
+          "name": "normal victory refresh and cancel",
+          "status": "PASS"
+        },
+        {
+          "name": "confirm and refresh ninth shop",
+          "status": "PASS",
+          "boss": "B12",
+          "gold": 339,
+          "completion": {
+            "clearId": "c03-ordinary-route/clear/23",
+            "totalHeat": "3001584723"
+          }
+        },
+        {
+          "name": "endless one real clear, no second normal victory",
+          "status": "PASS",
+          "score": "128898445"
+        }
+      ],
+      "physicalDevice": "NOT_RUN",
+      "humanAcceptance": "NOT_RUN",
+      "status": "FAIL",
+      "error": "TimeoutError: locator.tap: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '开始新局', exact: true })\u001b[22m\n",
+      "pageErrors": []
+    },
+    "tail": {
+      "taskId": "C03",
+      "testedCommit": "e634e03857523212bfa534990b3a1e8c26e759e6",
+      "provenance": "Separate tail UI check. A legal stage25 endless checkpoint is generated with real24 normal clear commands and one endless clear using the same prepared first-shop build as the completed long UI segment, then ordinary imported. This is not natural acquisition.",
+      "checks": [
+        {
+          "name": "portrait gift counter stays within its slot",
+          "status": "PASS",
+          "label": {
+            "text": "下关",
+            "right": 320.20000610351565,
+            "max": 330
+          }
+        },
+        {
+          "name": "ordinary menu progress/new-game clears only new-run qualification/build",
+          "status": "PASS"
+        },
+        {
+          "name": "four ordinary single-card plays cause loss, exact refresh, same-seed retry",
+          "status": "PASS",
+          "heat": "113"
+        }
+      ],
+      "status": "PASS",
+      "pageErrors": []
+    }
+  },
+  "interimFailures": [
+    {
+      "command": "node shots/c03-endless-browser.mjs",
+      "status": "FAIL",
+      "chunk": "0beb57",
+      "log": "shots/c03-endless-browser-first.log",
+      "result": "Prepared legal high-retrigger combo was still presenting at the30s wait for intermission; no page error. Screenshot inspected. The route probe was changed to use the existing ordinary fast-forward menu, not to lower targets, alter scores or relax timeouts. Full long-combo animation duration is not certified by this route."
+    },
+    {
+      "command": "node shots/c03-endless-browser.mjs",
+      "status": "FAIL",
+      "chunk": "49ffd5",
+      "result": "All28 long-route checks passed; tail locator did not expand the real progress/storage section. Only the separate tail was rerun through the actual ordinary menu route."
+    },
+    {
+      "command": "node shots/c03-endless-new-game-browser.mjs",
+      "status": "FAIL",
+      "chunk": "ab293a",
+      "report": "shots/c03-endless-new-game-browser-first.json",
+      "result": "Probe blindly toggled the already-open progress section closed; corrected to inspect its actual open state."
+    },
+    {
+      "command": "node shots/c03-endless-new-game-browser.mjs",
+      "status": "FAIL",
+      "chunk": "0609dd",
+      "report": "shots/c03-endless-new-game-browser-confirm-failure.json",
+      "result": "Probe stopped at the existing custom new-game confirmation; corrected to tap its visible confirmation button."
+    },
+    {
+      "command": "node shots/c03-endless-new-game-browser.mjs",
+      "status": "FAIL",
+      "chunk": "ef0d50",
+      "report": "shots/c03-endless-new-game-browser-fast-forward-race.json",
+      "result": "Short natural animation finished between enabled-check and tapping fast-forward. The bounded single-card tail now allows its normal animation to finish without opening the menu."
+    },
+    {
+      "command": "node shots/c03-endless-new-game-browser.mjs",
+      "status": "FAIL",
+      "chunk": "05fd87",
+      "report": "shots/c03-endless-new-game-browser-retry-error.json",
+      "result": "All three behavior checks passed but a real page error occurred on same-seed retry: obsolete result render read null stage.targetHeat while Phaser queued shop transition. Added failing transition cases, retired result lifecycle immediately on successful exit, then reran the bounded tail."
+    },
+    {
+      "command": "npm.cmd run build",
+      "status": "FAIL",
+      "chunk": "9d4c7f",
+      "log": "shots/c03-result-transition-type-failure.log",
+      "result": "New view fixture was typed with a nullable stage union; narrowed the deliberately populated fixture type without changing expectations or production data."
+    }
+  ],
+  "fixtureCorrections": [
+    "New root test used nonexistent ScoreEvent.sourceId; corrected to existing sourceDefinitionId, preserving one expected E10 reward and B15 seal.9PASS/1FAIL interim chunkf61075 retained.",
+    "New save failure fixture enhancement:'none' is not an enhancement enum. Removed enhancement field for the ordinary card, preserving all score/RNG expectations and the failing log.",
+    "Six fresh-run version assertions/hash moved from v8 to the adopted explicit v9 contract. Actual old fixture bytes and score/RNG expected values untouched."
+  ],
+  "saveCompatibility": {
+    "newGame": "explicit v9",
+    "migration": "No silent migration or default normal-completion qualification.",
+    "oldV8": {
+      "path": "tests/fixtures/c03-v8-checkpoint.json",
+      "sourceCommit": "e634e03857523212bfa534990b3a1e8c26e759e6",
+      "capturedBeforeProductionEdits": true,
+      "chunk": "13b9cb",
+      "checksum": "json-fnv-v1:a403a45173486bad",
+      "commandSeq": 3,
+      "sha256": "3761deb3fc97cf51e2678c0168580065251ce78a933a0747aae7115fd2386b78"
+    },
+    "normalCompletion": "Exact runId/clear/23 and cumulative heat on real normal victory; retained unchanged in endless, including later failure. Source stage/trace snapshots remain separate from the newly locked Boss."
+  },
+  "screenshots": [
+    {
+      "path": "shots/c03-endless-confirm-mobile.png",
+      "status": "VIEWED_NOT_HUMAN_ACCEPTED",
+      "sha256": "85cf25a593f0c2a232397220557938878e7ee84360fd6f9bd0ebd4870e8135f7"
+    },
+    {
+      "path": "shots/c03-endless-table-mobile.png",
+      "status": "VIEWED_NOT_HUMAN_ACCEPTED",
+      "sha256": "d90960cf2284d179f5035b7155b83230a276a996efe64522e78c9b566be9d4ac"
+    },
+    {
+      "path": "shots/c03-endless-gift-label-mobile.png",
+      "status": "VIEWED_NOT_HUMAN_ACCEPTED",
+      "sha256": "27fe14f387d294d57310c2e351ee14da73423274d4f1fa2ff2675189948d1732"
+    }
+  ],
+  "finiteProtection": "Exact final ceil,4096 persisted digits,max10766 chapters. Next shop rejects numeric-length-limit atomically; cap unit uses an explicitly synthetic boundary, not natural traversal.",
+  "visualCloseout": "Observed gift-state text overflow in the portrait screenshot. Tiny counter now2关/下关, full rule retained in detail; final browser checks real text bounds and screenshot. No new art generated.",
+  "agentEvidence": [
+    "shots/c03-endless-target-evidence.json",
+    "shots/c03-endless-save-meta.json",
+    "shots/c03-endless-ui-meta.json"
+  ],
+  "notRun": [
+    "Physical Android/iPhone validation of this new C03 candidate",
+    "Natural eight-chapter acquisition/balance and independent held-out runs",
+    "Full animation duration of the prepared high-retrigger long campaign",
+    "Browser fault-injected continuation save failure (SavedRun unit real store-failure/retry PASS)",
+    "Numeric-cap end-page browser render (finite domain/save boundary PASS)",
+    "New art generation/approval and runtime GLB",
+    "Owner-managed deployment"
+  ],
+  "ownerPriorAcceptance": "A01/D22/D25 remains accepted at its recorded scope; this receipt does not grant new art batches or future formal device/human gates.",
+  "next": "C04.1: read task inputs, define finite mode/program/four-difficulty/twelve-challenge contracts and independent failure goldens; no A03 batch expansion.",
+  "publication": {
+    "status": "PENDING_NORMAL_MAIN_PUSH",
+    "branch": "main",
+    "baseCommit": "e634e03857523212bfa534990b3a1e8c26e759e6"
+  },
+  "closeout": {
+    "skill": "jiepi-clear",
+    "mode": "lightweight pre-commit",
+    "status": "PASS",
+    "scope": "Actual owned diff reviewed; stale test titles/current engineering pointer reconciled; original compact plan layout preserved; one-off probes/logs/screenshots remain ignored and no new harness or npm command added. Final build, scoped tests and bounded browser tail are sufficient after the late view-only fix."
+  }
+}

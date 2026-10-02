@@ -50,7 +50,9 @@ C02/D26的v7加入准备商店销售标记、本场最大出牌张数/普通顺�
 
 ## 4. RNG 与重放
 
-C03/D29使用显式v8新局；v7原文继续保留导出。stage增加boss（仅压轴非null）、initialTargetHeat、initialHandLimit、initialJokerIds和sealedJokerIds；初始身份最多5个，寿命销毁仍保留身份，S06仍只在商店创建。trace保存手开始bossContext={boss,previousHandType,sealedJokerIds}，不从新章或本手后封禁状态反推。恢复检查有序章池/不重复及fallback、初始资源和B11/B14精确账，封禁实例只引用真实入场名单且不超过实际出牌次数。新增halve-base-heat与seal-joker是有限Boss来源操作，不能放开任意rule字符串。
+C03/D30为显式v9新局，v8原文保留导出；新增tourMode和只写一次的normalCompletion={clearId,totalHeat}|null。ContinueEndless仅接受真实正常胜利资格，保存成功后路由第9章商店，不从Scene点击或phase名称自行赠奖。目标按精确12/5及最终ceil计算，章/索引/历史/券边界与有限数值上限一致；旧stage/trace快照仍保留原Boss与封禁来源。确认取消不提交命令，重试同收据不再锁章或发奖励。
+
+当前v9沿用C03/D29建立的stage与trace字段组。stage保存boss（仅压轴非null）、initialTargetHeat、initialHandLimit、initialJokerIds和sealedJokerIds；初始身份最多5个，寿命销毁仍保留身份，S06仍只在商店创建。trace保存手开始bossContext={boss,previousHandType,sealedJokerIds}，不从新章或本手后封禁状态反推。恢复检查有序章池/不重复及fallback、初始资源和B11/B14精确账，封禁实例只引用真实入场名单且不超过实际出牌次数。halve-base-heat与seal-joker是有限Boss来源操作，不能放开任意rule字符串。
 
 固定并版本化现有算法，提供 snapshot/restore，不用“重建 seed 后猜消耗了多少次”恢复。随机域至少 deck、shop、rule、reward 四类；cosmetic 单独在表现层，禁止读取规则域。
 

@@ -3,7 +3,7 @@ import {R2_TOOL_CATALOG,R2_LONG_TERM_ITEMS,type R2LongTermOperation} from '../co
 import type {R2RunState} from './r2Run';
 
 export const R2_LIMITS = {handSize:8,maxSelected:5,hands:4,discards:3,jokerSlots:5,consumableSlots:2,longTermSlots:4} as const;
-export const R2_RESOURCE_CONTRACT={handMinimum:R2_TOOL_CATALOG.limits.handMinimum,handMaximum:R2_TOOL_CATALOG.limits.handMaximum,handsMinimum:R2_TOOL_CATALOG.limits.handsMinimum,handsMaximum:5,discardsMaximum:4,discardGainMaximum:R2_TOOL_CATALOG.limits.consumableSlotsMaximum+1,deckMaximum:R2_TOOL_CATALOG.limits.deckMaximum,discardLedger:'spent-plus-left-equals-entry-plus-gained',handLedger:'plays-plus-left-equals-entry-plus-quad-and-rescue',scoreSources:'start-of-hand-deep-copies',newGame:'explicit-v8'} as const;
+export const R2_RESOURCE_CONTRACT={handMinimum:R2_TOOL_CATALOG.limits.handMinimum,handMaximum:R2_TOOL_CATALOG.limits.handMaximum,handsMinimum:R2_TOOL_CATALOG.limits.handsMinimum,handsMaximum:5,discardsMaximum:4,discardGainMaximum:R2_TOOL_CATALOG.limits.consumableSlotsMaximum+1,deckMaximum:R2_TOOL_CATALOG.limits.deckMaximum,discardLedger:'spent-plus-left-equals-entry-plus-gained',handLedger:'plays-plus-left-equals-entry-plus-quad-and-rescue',scoreSources:'start-of-hand-deep-copies',newGame:'explicit-v9'} as const;
 type BossResourceContext=Partial<Pick<R2RunState,'boss'|'stageIndex'>>;
 const bossReduction=(state:BossResourceContext,bossId:'B09'|'B10',amount:number):number=>state.stageIndex!==undefined&&state.stageIndex%3===2&&state.boss?.definitionId===bossId?amount:0;
 export function r2ItemAmount(state:Pick<R2RunState,'longTermItems'>,kind:R2LongTermOperation['kind']):number {

@@ -70,7 +70,7 @@ export class TitleScene extends Phaser.Scene {
     if(saved){
       v.button(primary,'继续本局','action/title-continue',()=>this.continueRun(),canContinue,true);
       v.button({x,y:primaryY+62,width:buttonWidth,height:48},'选角，开始新局','action/title-start',()=>this.enterNew(),!session.working);
-      v.text(short?x+buttonWidth/2:w/2,short?primaryY+128:primaryY-28,'第 '+saved.state.chapter+' 章 · 金币 '+saved.state.gold,14,textColor).setOrigin(.5);
+      v.text(short?x+buttonWidth/2:w/2,short?primaryY+128:primaryY-28,(saved.state.tourMode==='endless'?'无尽 · ':'')+'第 '+saved.state.chapter+' 章 · 金币 '+saved.state.gold,14,textColor).setOrigin(.5);
     }else {
       v.button(primary,'点触开场','action/title-start',()=>this.enterNew(),!session.working,true);
       if(!short)v.text(w/2,primaryY+66,'进入选角，确认后才建立新局。',14,'#fff0d2').setOrigin(.5).setShadow(0,1,'#172d36',3,true,true);

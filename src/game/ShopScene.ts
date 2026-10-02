@@ -88,8 +88,8 @@ export class ShopScene extends Phaser.Scene {
   private render():void {
     const selectedIndex=this.shelfOffers().findIndex(offer=>offer.offerId===this.selectedOfferId);if(selectedIndex>=0)this.shelfPage=Math.floor(selectedIndex/this.pageSize);
     this.shelfPage=Math.min(this.shelfPage,Math.max(0,Math.ceil(this.shelfOffers().length/this.pageSize)-1));
-    const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex)!;this.hideHoverPicture();v.clear();v.paperBackground();this.offerArts=[];this.artTargets.clear();
-    v.text(p.x,p.top,this.view.layout.width<350?'商店':'后台商店',p.short||p.portrait?24:28,'#fff2da').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
+    const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex,this.run.tourMode)!;this.hideHoverPicture();v.clear();v.paperBackground();this.offerArts=[];this.artTargets.clear();
+    v.text(p.x,p.top,this.run.tourMode==='endless'?'无尽商店':this.view.layout.width<350?'商店':'后台商店',p.short||p.portrait?24:28,'#fff2da').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     const purse={x:p.x+p.w-(this.view.layout.width<=700?96:136)-124,y:p.top-1,width:116,height:34},purseArt=this.add.graphics();
     v.add(this.add.graphics().fillStyle(0x213d45,.2).fillRoundedRect(purse.x+1,purse.y+3,purse.width,purse.height,7));
     v.material(purse,0xfbe1a6,0xc99455,7);
@@ -356,11 +356,11 @@ export class ShopScene extends Phaser.Scene {
   }
   private inspectChapter():void {
     const s=this.run,seq=s.commandSeq,index=s.stageIndex,start=Math.floor(index/3)*3,normal=SKIP_ITEM_LABELS[s.chapterSkipConsumable];
-    const stages=[0,1,2].map(i=>{const stage=getR2Stage(start+i)!;return stage.name+' · 目标 '+heatText(stage.targetHeat);}).join('\n');
+    const stages=[0,1,2].map(i=>{const stage=getR2Stage(start+i,s.tourMode)!;return stage.name+' · 目标 '+heatText(stage.targetHeat);}).join('\n');
     const body=stages+`\n\n压轴 ${s.boss.definitionId} · `+r2BossText(s.boss)+`\n\n暖场跳过：下一次买牌减2金，最低1金。现有 ${s.purchaseCoupons} 张券。\n正场跳过：${normal}；库存满时改为1金。\n跳过不获得过关奖励或利息，不触发过关效果；压轴不可跳过。`;
-    this.dialog.open('本章节目',body,[{label:'跳过本场',disabled:!this.ready||index%3===2,run:()=>{
+    this.dialog.open(s.tourMode==='endless'?'无尽 · 本章节目':'本章节目',body,[{label:'跳过本场',disabled:!this.ready||index%3===2,run:()=>{
       const reward=index%3===0?'下一次买牌减2金券':s.consumables.length<r2ConsumableCapacity(s)?normal:'库存已满，获得1金';
-      const d=this.dialog.open('跳场确认',`跳过「${getR2Stage(index)!.name}」获得 ${reward}。\n本场没有热度、过关奖金或利息，也不会触发过关效果。`,[{label:'确认跳场',primary:true,run:async()=>{if(await this.send({type:'SkipStage'},seq))this.dialog.close(d);}}],{closeLabel:'取消'});
+      const d=this.dialog.open('跳场确认',`跳过「${getR2Stage(index,s.tourMode)!.name}」获得 ${reward}。\n本场没有热度、过关奖金或利息，也不会触发过关效果。`,[{label:'确认跳场',primary:true,run:async()=>{if(await this.send({type:'SkipStage'},seq))this.dialog.close(d);}}],{closeLabel:'取消'});
     }}]);
   }
   private inspectOffer(id:string):void {

@@ -95,7 +95,7 @@ export interface RunState {
 
 export type Action =
   | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2' }
-  | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' | 'SkipStage' }
+  | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' | 'SkipStage' | 'ContinueEndless' }
   | { type: 'PlayHand'; selectedIds: readonly string[] }
   | { type: 'DiscardHand'; selectedIds: readonly string[] }
   | { type: 'SellJoker'; instanceId:string }

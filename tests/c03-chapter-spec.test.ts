@@ -44,8 +44,8 @@ describe('C03.1 versioned eight-chapter runtime contract',()=>{
     expect(getR2Stage(24)).toBeUndefined();
   });
   it('separates the explicit C03 new game from the published C02 content partition',()=>{
-    expect(R2_CONTENT_VERSION).toBe('quality-r2-content-v8');
-    expect(R2_CONTENT_HASH).toBe('json-fnv-v1:d49390df655bb6d3');
+    expect(R2_CONTENT_VERSION).toBe('quality-r2-content-v9');
+    expect(R2_CONTENT_HASH).toBe('json-fnv-v1:0d551eb0a2218704');
   });
   it.each([
     {seen:[],boss:{definitionId:'B02',disabledSuit:null},cursor:1831565813},

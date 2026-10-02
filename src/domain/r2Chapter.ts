@@ -1,23 +1,46 @@
 import type {PlayingCard,Suit} from '../cards/types';
 import {SUITS,SUIT_SYMBOL} from '../cards/types';
 import type {SeededRng} from '../core/SeededRng';
+import {MAX_INTEGER_DIGITS} from './rational';
 
 export const R2_TARGETS = [400,1000,2400,5600,13000,30000,70000,160000] as const;
+export type R2TourMode='normal'|'endless';
+export const R2_ENDLESS_MAX_CHAPTER=10766;
+export const R2_ENDLESS_CONTRACT=Object.freeze({
+  normalChapters:R2_TARGETS.length,firstChapter:R2_TARGETS.length+1,maximumChapter:R2_ENDLESS_MAX_CHAPTER,
+  baseHeat:String(R2_TARGETS[R2_TARGETS.length-1]),multiplier:Object.freeze({n:'12',d:'5'}),
+  stageMultipliers:Object.freeze([Object.freeze({n:'1',d:'1'}),Object.freeze({n:'3',d:'2'}),Object.freeze({n:'2',d:'1'})] as const),
+  rounding:'ceil-final-target',integerDigits:MAX_INTEGER_DIGITS,bossPool:'B01-B16',
+} as const);
+const chapterMaximum=(tourMode:R2TourMode):number|undefined=>tourMode==='normal'?R2_TARGETS.length:tourMode==='endless'?R2_ENDLESS_MAX_CHAPTER:undefined;
 export interface R2StageSpec {index:number;name:string;intro:string;targetHeat:string}
 
-/** The normal eight-chapter plan; availability remains a separate runtime guard. */
-export function r2StageSpec(index:number):R2StageSpec|undefined {
-  if(!Number.isInteger(index)||index<0||index>=R2_TARGETS.length*3)return undefined;
-  const base=R2_TARGETS[Math.floor(index/3)];
-  return {index,name:`第 ${Math.floor(index/3)+1} 章 · ${['暖场','正场','压轴'][index%3]}`,intro:'打到目标热度即可过场，出牌和弃牌次数每场补满。',targetHeat:String(Math.ceil(base*[1,1.5,2][index%3]))};
+/** Only an explicit endless lookup exposes later chapters; rounding occurs once at the final target. */
+export function r2StageSpec(index:number,tourMode:R2TourMode='normal'):R2StageSpec|undefined {
+  const maximum=chapterMaximum(tourMode);
+  if(maximum===undefined||!Number.isSafeInteger(index)||index<0||index>=maximum*3)return undefined;
+  const chapter=Math.floor(index/3)+1,multiplier=R2_ENDLESS_CONTRACT.stageMultipliers[index%3];
+  let numerator:bigint,denominator:bigint;
+  if(chapter<=R2_TARGETS.length){numerator=BigInt(R2_TARGETS[chapter-1]);denominator=1n;}
+  else {
+    const exponent=BigInt(chapter-R2_TARGETS.length);
+    // Intermediate integers exceed Rational's input limit even when their quotient fits the score service.
+    numerator=BigInt(R2_ENDLESS_CONTRACT.baseHeat)*(BigInt(R2_ENDLESS_CONTRACT.multiplier.n)**exponent);
+    denominator=BigInt(R2_ENDLESS_CONTRACT.multiplier.d)**exponent;
+  }
+  numerator*=BigInt(multiplier.n);denominator*=BigInt(multiplier.d);
+  const targetHeat=((numerator+denominator-1n)/denominator).toString();
+  if(targetHeat.length>R2_ENDLESS_CONTRACT.integerDigits)return undefined;
+  return {index,name:`第 ${chapter} 章 · ${['暖场','正场','压轴'][index%3]}`,intro:'打到目标热度即可过场，出牌和弃牌次数每场补满。',targetHeat};
 }
 
 const NOMINAL_R2_BOSS_IDS=['B01','B02','B03','B04','B05','B06','B07','B08','B09','B10','B11','B12','B13','B14','B15','B16'] as const;
 export type R2NominalBossId=typeof NOMINAL_R2_BOSS_IDS[number];
 
-/** Planned IDs only: this does not declare implemented or currently selectable Bosses. */
-export function r2ChapterBossIds(chapter:number):readonly R2NominalBossId[]|undefined {
-  if(!Number.isInteger(chapter)||chapter<1||chapter>R2_TARGETS.length)return undefined;
+/** The ordered chapter pool; the run's mode and completion eligibility are validated separately. */
+export function r2ChapterBossIds(chapter:number,tourMode:R2TourMode='normal'):readonly R2NominalBossId[]|undefined {
+  const maximum=chapterMaximum(tourMode);
+  if(maximum===undefined||!Number.isSafeInteger(chapter)||chapter<1||chapter>maximum)return undefined;
   return NOMINAL_R2_BOSS_IDS.slice(0,chapter<=2?4:chapter<=6?12:16);
 }
 
@@ -55,19 +78,19 @@ export type R2SkipConsumable=typeof R2_SKIP_CONSUMABLES[number];
 export type R2SkipResult={kind:'coupon';amount:2}|{kind:'consumable';definitionId:R2SkipConsumable}|{kind:'gold';amount:1};
 
 /** A selection set is not a complete chapter history; validation consumes no randomness. */
-export function drawR2Boss(rng:SeededRng,seen:readonly string[],chapter=1):R2BossPlan {
-  const chapterPool=r2ChapterBossIds(chapter);
+export function drawR2Boss(rng:SeededRng,seen:readonly string[],chapter=1,tourMode:R2TourMode='normal'):R2BossPlan {
+  const chapterPool=r2ChapterBossIds(chapter,tourMode);
   if(!chapterPool)throw Error('invalid-boss-chapter');
   if(!Array.isArray(seen)||[...seen].some(id=>!R2_BOSSES.some(boss=>boss.id===id)))throw Error('invalid-boss-seen');
   const unseen=chapterPool.filter(id=>!seen.includes(id)),pool=unseen.length?unseen:chapterPool;
   const chosen=pool[rng.integer(0,pool.length-1)];
   return {definitionId:chosen,disabledSuit:chosen==='B03'?SUITS[rng.integer(0,3)]:null};
 }
-export function r2BossHistoryValid(seen:readonly string[],chapter:number):boolean {
-  if(!r2ChapterBossIds(chapter)||!Array.isArray(seen)||seen.length!==chapter)return false;
+export function r2BossHistoryValid(seen:readonly string[],chapter:number,tourMode:R2TourMode='normal'):boolean {
+  if(!r2ChapterBossIds(chapter,tourMode)||!Array.isArray(seen)||seen.length!==chapter)return false;
   const previous=new Set<string>();
   for(let index=0;index<seen.length;index++){
-    const pool=r2ChapterBossIds(index+1)!,id=seen[index];
+    const pool=r2ChapterBossIds(index+1,tourMode)!,id=seen[index];
     if(!pool.some(candidate=>candidate===id)||previous.has(id)&&pool.some(candidate=>!previous.has(candidate)))return false;
     previous.add(id);
   }

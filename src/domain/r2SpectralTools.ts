@@ -75,7 +75,7 @@ export function applyR2SpectralTool(state:R2RunState,command:Command,events:Doma
       if(tool.target.kind!=='cards'||cost?.kind!=='permanent-hands-penalty')return 'invalid-spectral-contract';
       if(ids.length<tool.target.minimum||ids.length>tool.target.maximum)return 'invalid-targets';
       if(!knownTargets())return 'unavailable-target';
-      if(!getR2Stage(state.stageIndex))return 'no-next-stage';
+      if(!getR2Stage(state.stageIndex,state.tourMode))return 'no-next-stage';
       if(living.length+operation.copies>limits.deckMaximum)return 'deck-maximum';
       const modifiers={...state.spectralModifiers,handsPenalty:state.spectralModifiers.handsPenalty+cost.amount};
       if(modifiers.handsPenalty>limits.spectralHandsPenaltyMaximum)return 'resource-floor';
@@ -92,7 +92,7 @@ export function applyR2SpectralTool(state:R2RunState,command:Command,events:Doma
       if(tool.target.kind!=='suit'||cost?.kind!=='permanent-hand-penalty')return 'invalid-spectral-contract';
       if(ids.length||!action.suit||!SUITS.includes(action.suit))return 'invalid-targets';
       if(living.every(card=>card.suit===action.suit))return 'no-effect';
-      if(!getR2Stage(state.stageIndex))return 'no-next-stage';
+      if(!getR2Stage(state.stageIndex,state.tourMode))return 'no-next-stage';
       const modifiers={...state.spectralModifiers,handPenalty:state.spectralModifiers.handPenalty+cost.amount};
       if(modifiers.handPenalty>limits.spectralHandPenaltyMaximum)return 'resource-floor';
       const before=r2HandLimit(state),after=r2HandLimit({...state,spectralModifiers:modifiers});
@@ -138,7 +138,7 @@ export function applyR2SpectralTool(state:R2RunState,command:Command,events:Doma
       if(ids.length)return 'invalid-targets';
       if(state.spectralModifiers.cleanSlateBonus)return 'already-claimed';
       if(living.filter(card=>card.enhancement!==undefined||(card.edition??'none')!=='none').length<operation.minimumModifiedCards)return 'too-few-special-cards';
-      if(!getR2Stage(state.stageIndex))return 'no-next-stage';
+      if(!getR2Stage(state.stageIndex,state.tourMode))return 'no-next-stage';
       const modifiers={...state.spectralModifiers,cleanSlateBonus:state.spectralModifiers.cleanSlateBonus+operation.handBonus};
       const before=r2HandLimit(state),after=r2HandLimit({...state,spectralModifiers:modifiers});
       if(after>limits.handMaximum||after-before!==operation.handBonus)return 'resource-cap';

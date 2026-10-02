@@ -45,7 +45,7 @@ export class IntermissionScene extends Phaser.Scene {
   private readonly audio=AudioEngine.shared;
   constructor(){super('intermission');}
   init(data:IntermissionResult):void {this.result=data;}
-  private get ready():boolean {return !this.busy&&runController(this)?.status==='idle'&&gameSession().lease.writable;}
+  private get ready():boolean {const session=gameSession();return !this.busy&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
   create():void {
     this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;this.events.once('shutdown',()=>{this.lifecycle++;this.dialog.close();});
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
@@ -63,13 +63,13 @@ export class IntermissionScene extends Phaser.Scene {
   }
   private render():void {
     const v=this.view,l=v.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
-    const p=resultLayout(l.width,l.height,l.hud.y,bottom),run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
-    const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex):undefined,skipped=run.stage?.skipResult,won=run.phase==='run-won',lost=!this.result.cleared&&!skipped&&!won;
+    const p=resultLayout(l.width,l.height,l.hud.y,bottom),run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex,run.tourMode)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
+    const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex,run.tourMode):undefined,skipped=run.stage?.skipResult,won=run.phase==='run-won',capped=this.result.cleared&&run.phase==='stage-cleared'&&!nextStage,lost=!this.result.cleared&&!skipped&&!won;
     const gap=(BigInt(stage.targetHeat)>BigInt(this.result.stageHeat)?BigInt(stage.targetHeat)-BigInt(this.result.stageHeat):0n).toString(),accent=this.result.cleared?0x367f75:0xc6a46e,accentText=this.result.cleared?'#367f75':'#72532d';
     v.clear();v.paperBackground();
     if(lost)v.add(this.add.graphics().fillStyle(0xe7c38c,.1).fillEllipse(l.width/2,p.score.y+p.score.height/2,Math.min(l.width+120,1000),p.score.height+170));
-    v.text(p.x,p.top,skipped?'换一场，再登台':won?'八章，演完了':this.result.cleared?'这场，撑住了':'好戏，可以再来',p.short?24:30,'#fff2da',p.w-72).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
-    v.text(p.x,p.top+42,stage.name+' · '+character.name,14,'#d5ddc9',p.w);
+    v.text(p.x,p.top,capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?'八章，演完了':this.result.cleared?'这场，撑住了':'好戏，可以再来',p.short?24:30,'#fff2da',p.w-72).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
+    v.text(p.x,p.top+42,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,'#d5ddc9',p.w);
     const s=p.score,lightAccent=this.result.cleared?'#b5dec8':'#f2dfb5';
     const animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.panel(s,this.result.cleared?0x3b716d:0x55766b,this.result.cleared?0x183944:0x28484d,0xcda96e,true);
@@ -125,7 +125,9 @@ export class IntermissionScene extends Phaser.Scene {
       heading=`过关 +${this.result.goldEarned} 金`;
       body=`下一场：${nextStage.name} · 目标 ${heatText(nextStage.targetHeat)}\n去商店补构筑。出牌和弃牌次数会补满。`+(nextStage.index%3===2?'\n压轴规则：'+r2BossText(run.boss):'');
     }else if(won){
-      heading='八章通关';body=`${character.name} · 累计 ${heatText(run.totalHeat)} 热度\n这场演出完成了。返回选角，试试另一条构筑路线。`;
+      heading='八章通关';body=`${character.name} · 累计 ${heatText(run.totalHeat)} 热度\n构筑与金币已保留，可自愿继续无尽巡演。`;
+    }else if(capped){
+      heading='已达数值上限';body='进度已保存。可查看本场、在菜单导出，或返回选角。';
     }else {
       heading='带着这一手，再登台';const discards=run.stage?.discardsLeft??0;
       body=run.outcome?.reason==='no-legal-cards'?'这次牌堆已耗尽；下局留意牌组余量，再找一次成型机会。':discards>0?`这次还留着 ${discards} 次弃牌；下局可以更早找牌。`:'回看最后一手，调整选牌或大丑牌顺序，再试一次。';
@@ -139,12 +141,18 @@ export class IntermissionScene extends Phaser.Scene {
     if(nextStage){
       v.button(p.left,'本场详情','action/result-details',()=>this.inspectResult());
       v.button(p.primary,'前往商店','action/continue-stage',()=>void this.next(),this.ready,true);
+    }else if(won){
+      v.button(p.left,'返回选角','action/return-select',()=>this.returnToSelect(),!this.busy);
+      v.button(p.primary,'继续无尽','action/continue-endless',()=>this.confirmEndless(),this.ready&&!!run.normalCompletion,true);
+    }else if(capped){
+      v.button(p.left,'本场详情','action/result-details',()=>this.inspectResult(),!this.busy);
+      v.button(p.primary,'返回选角','action/return-select',()=>this.returnToSelect(),!this.busy,true);
     }else {
-      v.button(p.left,won?'返回选角':'新局选角','action/continue-stage',()=>void this.next(),!this.busy);
+      v.button(p.left,'新局选角','action/continue-stage',()=>void this.next(),!this.busy);
       v.button(p.primary,this.busy?'正在开局…':lost?'同局再试':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }
     v.button(p.right,lost?'本场详情':'回看上手','action/last-hand',()=>lost?this.inspectResult():this.inspectLastHand(),!this.busy&&(lost||!!trace));
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':nextStage?'结果已保存，进入商店准备下一场。':'同局重试保留角色与 seed，从第一章开始。'),14,this.notice?'#ffd0b1':'#d5ddc9',p.w);
+    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?'八章通关已保存，继续无尽由你决定。':nextStage?'结果已保存，进入商店准备下一场。':'同局重试保留角色与 seed，从第一章开始。'),14,this.notice?'#ffd0b1':'#d5ddc9',p.w);
     this.firstRender=false;
   }
   private traceSources(trace:ScoreTrace):string[] {
@@ -173,14 +181,14 @@ export class IntermissionScene extends Phaser.Scene {
     v.add(g);
   }
   private inspectResult():void {
-    const run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex)!,targetHeat:run.stage!.targetHeat};
-    this.dialog.open('本场详情',`${stage.name}\n热度 ${heatText(this.result.stageHeat)} / ${heatText(stage.targetHeat)}\n${this.result.cleared?'过关收益':'本场收益'} ${this.result.goldEarned} 金 · 余额 ${run.gold} 金\n剩余出牌 ${this.result.handsLeft} · 剩余弃牌 ${run.stage?.discardsLeft??0}\n\n当前构筑：`+(run.jokers.map(j=>getR2Joker(j.definitionId).name).join('、')||'空')+'\n\n'+(this.result.stageIndex%3===2?'本场压轴：':'本章压轴预告：')+r2BossText(run.boss),run.lastTrace?[{label:'回看最后一手',run:()=>this.inspectLastHand()}]:[]);
+    const run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex,run.tourMode)!,targetHeat:run.stage!.targetHeat};
+    this.dialog.open('本场详情',`${run.tourMode==='endless'?'无尽 · ':''}${stage.name}\n热度 ${heatText(this.result.stageHeat)} / ${heatText(stage.targetHeat)}\n${this.result.cleared?'过关收益':'本场收益'} ${this.result.goldEarned} 金 · 余额 ${run.gold} 金\n剩余出牌 ${this.result.handsLeft} · 剩余弃牌 ${run.stage?.discardsLeft??0}\n\n当前构筑：`+(run.jokers.map(j=>getR2Joker(j.definitionId).name).join('、')||'空')+'\n\n'+(run.stage?.boss?'本场压轴：'+r2BossText(run.stage.boss):'本场为普通场。'),run.lastTrace?[{label:'回看最后一手',run:()=>this.inspectLastHand()}]:[]);
   }
   private inspectLastHand():void {
     const run=runController(this)!.state,trace=run.lastTrace;if(!trace)return;
-    const cardName=(id:string)=>{const c=run.deckInstances.find(c=>c.id===id);return c?rankLabel(c.rank)+SUIT_SYMBOL[c.suit]:'已移除的牌';};
+    const cardName=(id:string)=>{const c=trace.cards.find(c=>c.id===id);return c?rankLabel(c.rank)+SUIT_SYMBOL[c.suit]:'已移除的牌';};
     const lines=trace.events.map(e=>{
-      const source=e.sourceType==='joker'?getR2Joker(e.sourceDefinitionId).name:e.sourceType==='character'?getCharacter(run.characterId).name:e.sourceType==='card'?cardName(e.targetCardId??e.sourceInstanceId):e.sourceDefinitionId==='B02'?'压轴规则':'牌型';
+      const source=e.sourceType==='joker'?getR2Joker(e.sourceDefinitionId).name:e.sourceType==='character'?getCharacter(run.characterId).name:e.sourceType==='card'?cardName(e.targetCardId??e.sourceInstanceId):e.sourceDefinitionId===trace.bossContext.boss?.definitionId?r2BossText(trace.bossContext.boss).split('：')[0]:'牌型';
       if(e.phase==='base')return `${source} · 基础 ${fractionText(e.after.H)} 热度 × ${fractionText(e.after.M)} 倍率`;
       if(e.phase==='finalScore')return `最终得分 ${heatText(trace.finalScore)} 热度`;
       const operation=r2ScoreOperationText(e),status=['afterHand','beforeFailure','onStageClear'].includes(e.phase);
@@ -189,22 +197,56 @@ export class IntermissionScene extends Phaser.Scene {
     const body=`${HAND_LABELS[trace.handType]} Lv.${trace.level} · ${heatText(trace.finalScore)} 热度\n打出：${trace.sets.playedIds.map(cardName).join('、')}\n实际计分：${trace.sets.activeScoringIds.map(cardName).join('、')||'无'}\n\n${fractionText(trace.accumulator.H)} × ${fractionText(trace.accumulator.M)} = ${heatText(trace.finalScore)}\n\n`+lines.join('\n');
     this.dialog.open('最后一手 · 已保存的结算',body);
   }
+  private returnToSelect():void {
+    if(this.busy)return;this.exitResult('character-select',{freshSeed:true});
+  }
+  private exitResult(destination:'shop'|'character-select',data?:{freshSeed:true}):void {
+    // Phaser queues the switch; retire this view before async finally can repaint a new run.
+    this.lifecycle++;this.dialog.close();this.audio.select();
+    if(data)this.scene.start(destination,data);else this.scene.start(destination);
+  }
+  private confirmEndless():void {
+    const controller=runController(this);if(!this.ready||!controller)return;
+    const run=controller.state;if(run.phase!=='run-won'||run.tourMode!=='normal'||!run.normalCompletion)return;
+    const seq=run.commandSeq,runId=run.runId,lifecycle=this.lifecycle;
+    const dialog=this.dialog.open('继续无尽 · 自愿巡演','八章通关已保存。\n\n继续无尽会保留当前牌组、大丑牌、成长、道具与金币，从第九章商店接续。\n\n后续每章目标递增为上一章的 2.4 倍，新的压轴规则仍会公开。\n\n是否继续由你决定；取消可留在胜利页。',[
+      {label:'确认继续',primary:true,run:async()=>{
+        if(!this.dialog.active(dialog)||!this.ready||lifecycle!==this.lifecycle)return;
+        const current=runController(this);
+        if(!current||current!==controller||current.state.runId!==runId||current.state.phase!=='run-won'||current.state.tourMode!=='normal'){
+          this.notice='本局状态已变化，请在菜单继续已保存的进度。';this.dialog.close(dialog);this.render();return;
+        }
+        this.busy=true;this.notice='';this.render();
+        try {
+          const result=await dispatchRun(this,{type:'ContinueEndless'},seq);
+          if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
+          if(result.ok&&result.state.phase==='shop'&&result.state.tourMode==='endless'){
+            this.exitResult('shop');return;
+          }
+          this.notice=!result.ok&&result.code==='stale-sequence'?'胜利进度已变化，请重新确认继续。':!result.ok&&result.code==='save-failed'?'接续未保存，胜利进度仍保留；请在菜单重试保存。':'接续未完成，胜利进度仍保留；请查看菜单后重试。';
+          this.dialog.close(dialog);this.audio.invalid();
+        }catch {
+          if(lifecycle===this.lifecycle&&this.scene.isActive()){this.notice='接续未保存，胜利进度仍保留；请在菜单重试保存。';this.dialog.close(dialog);this.audio.invalid();}
+        }finally {if(lifecycle===this.lifecycle&&this.scene.isActive()){this.busy=false;this.render();}}
+      }},
+    ],{closeLabel:'取消'});
+  }
   private async retrySeed():Promise<void> {
     if(!this.ready)return;const run=runController(this)!.state,lifecycle=this.lifecycle;this.busy=true;this.notice='';this.render();
     try {
       const controller=await startRun(this,run.seed,run.characterId);if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
-      if(controller?.status==='idle'){this.audio.select();this.scene.start('shop');return;}
+      if(controller?.status==='idle'){this.exitResult('shop');return;}
       this.notice=gameSession().notice||'新局未保存，请在菜单重试保存。';this.audio.invalid();
     }finally {if(lifecycle===this.lifecycle&&this.scene.isActive()){this.busy=false;this.render();}}
   }
   private async next():Promise<void> {
     if(this.busy)return;this.busy=true;const lifecycle=this.lifecycle,run=runController(this)!.state;this.render();
     try {
-      if(this.result.cleared&&run.phase==='stage-cleared'){
-        const result=await dispatchRun(this,{type:'OpenShop'});if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
-        if(result.ok){this.audio.select();this.scene.start('shop');return;}
+      if(this.result.cleared&&run.phase==='stage-cleared'&&getR2Stage(run.stageIndex,run.tourMode)){
+        const result=await dispatchRun(this,{type:'OpenShop'},run.commandSeq);if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
+        if(result.ok){this.exitResult('shop');return;}
         this.notice='商店尚未保存，请在菜单重试保存。';this.audio.invalid();
-      }else {this.audio.select();this.scene.start('character-select',{freshSeed:true});return;}
+      }else {this.exitResult('character-select',{freshSeed:true});return;}
     }finally {if(lifecycle===this.lifecycle&&this.scene.isActive()){this.busy=false;this.render();}}
   }
 }

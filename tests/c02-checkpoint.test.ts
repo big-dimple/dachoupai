@@ -74,7 +74,7 @@ function rewardSource(definitionId:'c12'|'e10',overflow=false):Fixture {
   return scoredSource(definitionId,overflow);
 }
 
-describe('C02 checkpoint boundary in explicit v8 without rewriting published v6',()=>{
+describe('C02 checkpoint boundary in the current explicit version without rewriting published v6',()=>{
   it('rejects a C12 prize contradicted by the saved stage history',()=>{
     const fixture=rewardSource('c12');expect(readCheckpoint(seal(fixture)).ok).toBe(true);
     for(const key of ['ordinaryStraightSeen','ordinaryFlushSeen'] as const)expect(readCheckpoint(damaged(fixture,state=>{state.stage![key]=false;})).ok).toBe(false);
@@ -110,8 +110,8 @@ describe('C02 checkpoint boundary in explicit v8 without rewriting published v6'
     const before=JSON.stringify(rawV6);expect(readCheckpoint(rawV6)).toEqual({ok:false,code:'incompatible-version'});
     const restored=restoreSlots({revision:9,current:rawV6,previous:null});expect(restored.status).toBe('invalid');expect(restored.raw).toBe(rawV6);expect(JSON.stringify(rawV6)).toBe(before);
   });
-  it.each(['shop','stage'] as const)('round trips required %s fields in an explicit v8 new run',phase=>{
-    const fixture=phase==='shop'?start():enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v8');
+  it.each(['shop','stage'] as const)('round trips required %s fields in an explicit new run',phase=>{
+    const fixture=phase==='shop'?start():enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v9');
     const parsed=readCheckpoint(makeCheckpoint(fixture.state,fixture.journal));expect(parsed.ok&&parsed.checkpoint.state).toEqual(fixture.state);
   });
   it('requires shop.soldJoker and refuses a nonboolean sale snapshot',()=>{

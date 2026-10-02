@@ -136,7 +136,7 @@ function legalEventEnvelope(definitions,catalog,limits,scoreLimits,chapter) {
   return {maximumEvents,definitionCount:definitions.length,statesChecked,
     maximumEntryHand:withoutJokerHandModifiers+sum(handModifiers.flatMap(row=>row.modifiers.map(modifier=>modifier.amount))),
     retriggerCapNoticesReachable:false,abstractWitness,
-    scope:'Current72 command-reachable configurations, normal eight-chapter entry resources and B01–B16; event count, not maximum score or natural acquisition probability.',bossTraceBudgets,
+    scope:'Current72 command-reachable configurations, normal/endless entry resources and B01–B16; event count, not maximum score or natural acquisition probability.',bossTraceBudgets,
     proof:['Each equipped source spends one of the same five slots across all phases; A04/D06 spend slots to increase held count.',
       'The six normal card definitions provide at most four simultaneous groups; overlapping groups are overcounted with fewer slots.',
       'A11 requires played1; B06 requires pair and cannot coexist effectively with C07/D11. Other positions contribute at most three repeats.',

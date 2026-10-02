@@ -119,7 +119,7 @@ describe('C01 strict current checkpoint and retained historical raw',()=>{
   it('can restore a current-version backup while preserving the genuine v5 current raw for export',()=>{
     const restored=restoreSlots({revision:8,current:rawV5,previous:seal(start())});
     expect(restored.status).toBe('backup');expect(restored.code).toBe('incompatible-version');expect(restored.raw).toBe(rawV5);
-    expect(restored.checkpoint?.state.contentVersion).toBe('quality-r2-content-v8');
+    expect(restored.checkpoint?.state.contentVersion).toBe('quality-r2-content-v9');
   });
   it.each(['spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed'])('requires new state field %s',field=>{
     expect(readCheckpoint(damage(start(),state=>{delete object(state)[field];})).ok).toBe(false);

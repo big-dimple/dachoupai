@@ -52,14 +52,14 @@ function forgedJoker(fixture:Fixture,definitionId:string,operation='read-coeffic
   });
 }
 
-describe('C03 v8 Boss snapshots and finite saved sources',()=>{
+describe('C03 Boss snapshots and finite saved sources in the current explicit version',()=>{
   it('retains the exact published v7 raw and rejects it before missing v8 fields',()=>{
     expect(rawV7.state.contentVersion).toBe('quality-r2-content-v7');expect(rawV7.checksum).toBe('json-fnv-v1:ae0b20ea9d4cbb86');
     const before=JSON.stringify(rawV7);expect(readCheckpoint(rawV7)).toEqual({ok:false,code:'incompatible-version'});
     const slots=restoreSlots({revision:2,current:rawV7,previous:null});expect(slots.status).toBe('invalid');expect(slots.raw).toBe(rawV7);expect(JSON.stringify(rawV7)).toBe(before);
   });
   it('round trips a real ordinary entry with empty Boss and seal snapshots',()=>{
-    const fixture=enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v8');
+    const fixture=enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v9');
     expect(fixture.state.stage).toMatchObject({boss:null,initialTargetHeat:'400',initialHandLimit:8,initialJokerIds:[],sealedJokerIds:[]});roundTrip(fixture);
   });
   it.each(['boss','initialTargetHeat','initialHandLimit','initialJokerIds','sealedJokerIds'])('requires the persisted stage.%s field',field=>{

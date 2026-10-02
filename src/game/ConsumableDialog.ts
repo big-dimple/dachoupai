@@ -80,12 +80,12 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
     if(cost.kind==='all-gold'&&state.gold<cost.minimum)return `至少持有 ${cost.minimum} 金才能孤注。`;
     if(cost.kind==='permanent-hands-penalty'){
       const modifiers={...state.spectralModifiers,handsPenalty:state.spectralModifiers.handsPenalty+cost.amount};
-      if(!getR2Stage(state.stageIndex))return '已无下一场，无法支付永久出牌代价。';
+      if(!getR2Stage(state.stageIndex,state.tourMode))return '已无下一场，无法支付永久出牌代价。';
       if(modifiers.handsPenalty>limits.spectralHandsPenaltyMaximum||r2HandsBudget(state)-r2HandsBudget({...state,spectralModifiers:modifiers})!==cost.amount)return '下一场出牌预算不能再实际减少，请保留此工具。';
     }
     if(cost.kind==='permanent-hand-penalty'){
       const modifiers={...state.spectralModifiers,handPenalty:state.spectralModifiers.handPenalty+cost.amount};
-      if(!getR2Stage(state.stageIndex))return '已无下一场，无法支付永久手牌代价。';
+      if(!getR2Stage(state.stageIndex,state.tourMode))return '已无下一场，无法支付永久手牌代价。';
       if(modifiers.handPenalty>limits.spectralHandPenaltyMaximum||r2HandLimit(state)-r2HandLimit({...state,spectralModifiers:modifiers})!==cost.amount)return '下一场手牌容量不能再实际减少，请保留此工具。';
     }
   }
@@ -110,7 +110,7 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
       if(state.spectralModifiers.cleanSlateBonus)return '本局已使用过净台。';
       const modified=state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)&&(card.enhancement!==undefined||(card.edition??'none')!=='none'));
       if(modified.length<operation.minimumModifiedCards)return `至少 ${operation.minimumModifiedCards} 张不同牌有增强或特殊版次；当前 ${modified.length} 张。`;
-      if(!getR2Stage(state.stageIndex)||r2HandLimit({...state,spectralModifiers:{...state.spectralModifiers,cleanSlateBonus:state.spectralModifiers.cleanSlateBonus+operation.handBonus}})-r2HandLimit(state)!==operation.handBonus)return '下一场手牌容量不能实际增加，无法净台。';break;
+      if(!getR2Stage(state.stageIndex,state.tourMode)||r2HandLimit({...state,spectralModifiers:{...state.spectralModifiers,cleanSlateBonus:state.spectralModifiers.cleanSlateBonus+operation.handBonus}})-r2HandLimit(state)!==operation.handBonus)return '下一场手牌容量不能实际增加，无法净台。';break;
     }
     case 'free-reroll':if(!r2Pool(state.jokers.map(joker=>joker.definitionId),state.safetyNetUsed?['f07']:[]).length&&!r2ToolAcquisitionPool(state).length)return '当前没有可刷新的候选。';break;
     case 'add-gold':if(!Number.isSafeInteger(state.gold+operation.amount))return '金币已达可保存上限，无法继续增加。';break;

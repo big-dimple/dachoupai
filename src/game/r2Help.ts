@@ -73,7 +73,7 @@ export function r2JokerValue(joker:R2JokerInstance,context:{gold:number;jokerCou
   if(stored?.kind==='consume-growth')return '待用+'+fractionText(joker.growth[stored.key]??{n:'0',d:'1'});
   const coefficient=operations.find(operation=>operation.kind==='read-coefficient');
   if(coefficient?.kind==='read-coefficient')return '×'+fractionText(joker.growth[coefficient.key]);
-  if(operations.some(operation=>operation.kind==='reward-consumable-every-clears'))return joker.counters!.stageClears===1?'下次过关赠票':'再过关2次赠票';
+  if(operations.some(operation=>operation.kind==='reward-consumable-every-clears'))return joker.counters!.stageClears===1?'下关':'2关';
   const growth=operations.find(operation=>operation.kind==='read-growth');
   if(growth?.kind==='read-growth')return '+'+fractionText(joker.growth[growth.key]??{n:'0',d:'1'});
   const heat=operations.find(operation=>operation.kind==='add-heat-per-gold'||operation.kind==='add-heat-per-empty-slot');
