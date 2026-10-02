@@ -1,11 +1,13 @@
 # 当前交接：P08单卡体验样板
 
-D37 当前有界回合（2026-10-02）：基于已整合资产维护的 `0f1f0a6`，统一稀有度固定标志并修复缩略图一次失败后不恢复。新 f04/e07 已获接入授权，但官方 Library 传输返回退出码1/download failed、未给HTTP状态，未取得本地像素；两张继续机制示意，不冒称替换。见[D37证据](production/evidence/D37-2026-10-02.json)。D36继承提交远端CI的Chromium两视口、Firefox两视口、WebKit桌面已通过；WebKit手机未完成，整体任务cancelled。稀有度/加载工程候选已通过47项专项测试、类型/构建和7组Canvas浏览器检查；修正首次create加载门槛后自然路线通过。当前仅准备本地提交，按父会话安排先让两张原创source入仓，再整合运行图并跑最终聚合；尚未push，P08保持in_progress。
+D37 当前发布候选（2026-10-02）：基于资产维护main `0f1f0a6`，代码提交 `f72ffc5`统一固定稀有度标志并修复缩略图一次失败后不恢复。47项专项测试、类型/构建、7组Canvas浏览器检查通过；自然首屏、自动/人工重试与状态同步已验证，见[D37证据](production/evidence/D37-2026-10-02.json)。父会话明确本轮只发布这些修复，停止等待新图：f04/e07的Library消费有界失败，原创source仓库发布另触发产品审批，未获批准前不继续、不换路绕过；两张仍为机制示意。本轮不包含用户新反馈的滑选背景色/滑出屏幕保留选择，留下一有界回合。最终verify:ci已通过：1675项测试、content、build、Canvas桌面/手机smoke、plan；后续仅记录文档证据。按既有授权正常push main并核对SHA/CI，P08保持in_progress；不把Canvas通过视作WebGL或真机验收。
+
+D36继承提交 `0f1f0a6` 的远端Chromium两视口、Firefox两视口、WebKit桌面已通过；原Firefox手机遮挡断言通过。WebKit手机没有完成记录，整体任务cancelled，不能记作整套CI成功。
 
 资产维护整合（2026-10-02）：原独立提交 `bb53b01651854f29daa9ec87210df20a81aac7be` 已按用户新授权整合到 D36 main `beb91fd668276bb8bbf4cab59572b501af93a191`；只做 Linux 离线复建、53 张旧 P0 预览清理与当前清单校验，保留最新 UI 手势代码、部署配置及历史 A00。原[维护证据](assets/maintenance-2026-10-02.json)保留当时本地交付状态，最新整合/发布范围另记[整合证据](assets/integration-2026-10-02.json)，命令见[Blender说明](../tools/blender/README.md)。本轮已明确授权必要检查后正常 push main 并核对 SHA/CI；不 push 旁支，不等网站部署。`plan.currentTask` 仍为 P08，不扩模型、动画、UI 或玩法。
 
-- `plan.currentTask = P08 / in_progress`。D35已发布main `c90a9fc5d704874a52bddda3e4d991aef92c29fb`；当前D36独立分支 `dot/hand-selection`基于该提交。**用户最新授权解除逐轮等待，检查后正常push main并核对SHA/CI**，由既有链路自动部署，用户在网站直接试玩；部署链路不改。
-- 基线main `209b9073c90778bf57a1736bed9266f305b995f5`；接管时本地干净，远端核对一致。C04历史仍未完/BLOCKED，C04.3/4、新玩法与全卡重画不自动推进。最新决定见[D36](production/DECISIONS.md)。
+- `plan.currentTask = P08 / in_progress`。D35已发布main `c90a9fc5d704874a52bddda3e4d991aef92c29fb`；D36已发布 `beb91fd`；当前D37分支 `dot/rarity-art-foundation`基于资产维护整合main。**用户最新授权解除逐轮等待，检查后正常push main并核对SHA/CI**，由既有链路自动部署，用户在网站直接试玩；部署链路不改。
+- 基线main `209b9073c90778bf57a1736bed9266f305b995f5`；接管时本地干净，远端核对一致。C04历史仍未完/BLOCKED，C04.3/4、新玩法与全卡重画不自动推进。最新决定见[D37](production/DECISIONS.md)。
 - 当前工作：f09三态与真实计分来源、主能力置顶/折叠细则、f04加3文案对照、按需小图/有界高清升级、手机非全屏与用户自主方向。机制、RNG、存档格式、v10内容hash保持不变。
 
 ## 证据与限制

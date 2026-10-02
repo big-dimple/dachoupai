@@ -3,7 +3,7 @@
   "task": "D37 permanent Joker rarity and bounded artwork recovery",
   "date": "2026-10-02",
   "baseCommit": "0f1f0a6284e80e4d96d4e49f82f0d0bf80c202ec",
-  "status": "LOCAL_FOCUSED_PASS_FINAL_RELEASE_GATE_PENDING",
+  "status": "LOCAL_ENGINEERING_PASS_REMOTE_CI_CHECK_AFTER_PUSH",
   "scope": [
     "One actual rarity identity across shop, owned rack, table and detail",
     "Recover registered thumbnail failure with bounded retry and honest fallback"
@@ -49,7 +49,7 @@
     "note": "Inherited D36 hand fix passes the original Firefox mobile occlusion assertion. Whole browser job was cancelled near its unchanged 10-minute job deadline; no completed WebKit mobile result."
   },
   "artImport": {
-    "status": "BLOCKED_TRANSFER",
+    "status": "EXCLUDED_FROM_RELEASE",
     "destination": "/workspace/dachoupai/shots/new-joker-import",
     "officialRoute": "Resolved Library identifiers -> prepare_materialize -> unchanged official library_file_transfer.py with complete transfer object",
     "result": "Both transfers had workspace_path:null; official helper exited 1 with 'library file transfer failed: download failed'. No HTTP status supplied; not established as permission/scope denial. Bounded retry exhausted for f04; e07 independently attempted once. No alternative download route attempted.",
@@ -68,7 +68,8 @@
       }
     ],
     "localPixels": "NOT_OBTAINED",
-    "runtimeReplacement": "NOT_DONE"
+    "runtimeReplacement": "NOT_DONE",
+    "publication": "Parent attempted preparation of original-source repository publication; product approval is pending. No source commit was made, no alternate route is permitted, and this release proceeds without the two images."
   },
   "verification": {
     "targeted": {
@@ -198,7 +199,78 @@
         "Network faults are deliberate injection, isolated from natural runs. FPS observations are emulator samples, not a device-performance claim."
       ]
     },
-    "releaseAggregate": "NOT_RUN",
+    "releaseAggregate": {
+      "scope": "all",
+      "testedCommit": "f72ffc5efedfae5d9532a7bc0c6d50d48e49d3f0",
+      "status": "PASS",
+      "exitCode": 0,
+      "before": {
+        "source": "f5c6d989463b6d125812ebca2d69405d9c23b48042b4b7460dc5dfc08919135a",
+        "index": "2aa924adb18e6bab1ce008cdbfd8e8710ae0c3b412629d3c8da460fb0a70b9d0",
+        "head": "f72ffc5efedfae5d9532a7bc0c6d50d48e49d3f0",
+        "branch": "refs/heads/dot/rarity-art-foundation"
+      },
+      "after": {
+        "source": "f5c6d989463b6d125812ebca2d69405d9c23b48042b4b7460dc5dfc08919135a",
+        "index": "2aa924adb18e6bab1ce008cdbfd8e8710ae0c3b412629d3c8da460fb0a70b9d0",
+        "head": "f72ffc5efedfae5d9532a7bc0c6d50d48e49d3f0",
+        "branch": "refs/heads/dot/rarity-art-foundation"
+      },
+      "steps": [
+        {
+          "name": "test",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 73056
+        },
+        {
+          "name": "verify:content",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 3544
+        },
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 18402
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 68383
+        },
+        {
+          "name": "production-plan",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 406
+        }
+      ],
+      "notIncluded": [
+        {
+          "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+          "status": "NOT_INCLUDED",
+          "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+        },
+        {
+          "name": "balance/benchmark acceptance",
+          "status": "NOT_INCLUDED",
+          "reason": "later work packages; no gameplay approval inferred from checks"
+        },
+        {
+          "name": "physical devices / human / art approval",
+          "status": "NOT_RUN"
+        }
+      ],
+      "command": "PATH=/workspace/.cloud-tools/node_modules/.bin:$PATH VITEST_MAX_WORKERS=1 NODE_OPTIONS='--import=/workspace/.cloud-tools/release-canvas-adapter.mjs' PLAYWRIGHT_BROWSERS_PATH=/workspace/.cache/ms-playwright npm run verify:ci",
+      "unitTests": 1675,
+      "unitFiles": 88,
+      "log": "shots/joker-art-rarity/release-ci.log",
+      "smokeReport": "shots/smoke-result.json",
+      "environment": "Node22.23.3; system Chromium151; external-only GPU/software-rasterizer-disabled Canvas functional adapter; single-worker unit tests. Repository CI/assertions/timeouts unchanged."
+    },
     "finalCopyUnit": {
       "status": "PASS",
       "tests": 11,
@@ -210,8 +282,8 @@
     "Canvas functional evidence does not establish WebGL performance",
     "f04/e07 new illustrations not locally available and not replaced"
   ],
-  "testedCommit": "0f1f0a6284e80e4d96d4e49f82f0d0bf80c202ec",
-  "testedCommitNote": "testedCommit is the clean base. The actual frozen modified runtime is identified by testedRuntimeFiles and the compiled bundle hashes; not the unmodified base.",
+  "testedCommit": "f72ffc5efedfae5d9532a7bc0c6d50d48e49d3f0",
+  "testedCommitNote": "Final runtime is the exact committed f72ffc5 source, additionally identified by testedRuntimeFiles. Subsequent release bookkeeping changes documentation only.",
   "testedRuntimeFiles": {
     "src/game/JokerArtLoading.ts": "6c28171822206ed7deb6bd8a5e39a051bfe9e0fd7ccf60c2b9d0cfe4582be05a",
     "src/game/JokerRarity.ts": "61c338be73a36eb4e1f21af9fe53fcd92d15b56c0d02cc4d4b7bbccbb0a9834e",
@@ -246,10 +318,31 @@
       "shots/joker-art-rarity/mobile-404-manual-manual-recovered-detail.png",
       "shots/joker-art-rarity/mobile-short-f04-detail-footer.png"
     ],
-    "observation": "Three stable color/shape/label identities; image aspect preserved; retry affordance and action footer visible. One asynchronous HD failure message wording corrected after review, verified by unit test; final artwork/release browser pass remains pending."
+    "observation": "Three stable color/shape/label identities; image aspect preserved; retry affordance and action footer visible. One asynchronous HD failure wording corrected after image review and verified by unit test. Final aggregate rebuild/smoke passes the committed runtime; the earlier injected-failure screenshot retains the earlier wording.",
+    "settledTable": {
+      "status": "PASS",
+      "report": "shots/joker-art-rarity/settled-table-recapture.json",
+      "inspected": true,
+      "paths": [
+        "shots/joker-art-rarity/desktop-natural-owned-table-badge.png",
+        "shots/joker-art-rarity/mobile-natural-owned-table-badge.png"
+      ],
+      "note": "Same focused bundle, actual natural purchase/entry; wait for all eight cards face-up. Earlier mid-deal captures retained."
+    }
   },
   "publication": {
-    "status": "LOCAL_ONLY",
-    "note": "This local code checkpoint is not pushed; parent has requested a serial main write window for the two original source PNGs. Final aggregate will run after the final integrated candidate is frozen."
-  }
+    "status": "LOCAL_GATES_PASSED",
+    "authorization": "Parent explicitly authorizes normal main push of this bounded rarity/loading fix after final checks; new art excluded; stop if this push independently requires approval.",
+    "noDeploymentChange": true,
+    "note": "Evidence committed before normal main push. Final published SHA and remote CI are checked in delivery; local PASS does not imply remote CI completion."
+  },
+  "nextScope": "User-reported sweep background anomaly and retaining selection on pointer exit are queued for a separate bounded gesture polish; unchanged in this release.",
+  "notRun": [
+    "New WebGL performance diagnostic",
+    "Physical OnePlus/Android Chrome browser bars and real touch",
+    "New f04/e07 artwork integration",
+    "New swipe background/pointer-exit polish",
+    "Full rare-owned/Boss-disabled natural browser run",
+    "Remote CI completion before push"
+  ]
 }
