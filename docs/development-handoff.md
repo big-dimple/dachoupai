@@ -1,5 +1,7 @@
 # 当前交接：P08单卡体验样板
 
+资产维护整合（2026-10-02）：原独立提交 `bb53b01651854f29daa9ec87210df20a81aac7be` 已按用户新授权整合到 D36 main `beb91fd668276bb8bbf4cab59572b501af93a191`；只做 Linux 离线复建、53 张旧 P0 预览清理与当前清单校验，保留最新 UI 手势代码、部署配置及历史 A00。原[维护证据](assets/maintenance-2026-10-02.json)保留当时本地交付状态，最新整合/发布范围另记[整合证据](assets/integration-2026-10-02.json)，命令见[Blender说明](../tools/blender/README.md)。本轮已明确授权必要检查后正常 push main 并核对 SHA/CI；不 push 旁支，不等网站部署。`plan.currentTask` 仍为 P08，不扩模型、动画、UI 或玩法。
+
 - `plan.currentTask = P08 / in_progress`。D35已发布main `c90a9fc5d704874a52bddda3e4d991aef92c29fb`；当前D36独立分支 `dot/hand-selection`基于该提交。**用户最新授权解除逐轮等待，检查后正常push main并核对SHA/CI**，由既有链路自动部署，用户在网站直接试玩；部署链路不改。
 - 基线main `209b9073c90778bf57a1736bed9266f305b995f5`；接管时本地干净，远端核对一致。C04历史仍未完/BLOCKED，C04.3/4、新玩法与全卡重画不自动推进。最新决定见[D36](production/DECISIONS.md)。
 - 当前工作：f09三态与真实计分来源、主能力置顶/折叠细则、f04加3文案对照、按需小图/有界高清升级、手机非全屏与用户自主方向。机制、RNG、存档格式、v10内容hash保持不变。

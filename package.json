@@ -27,7 +27,7 @@
     "test:v00:sample": "node harness/v00-sample.mjs",
     "test:v00:browser": "node harness/v00.mjs",
     "test:assets-runtime": "node harness/assets-runtime.mjs",
-    "test:assets": "node --test tools/blender/verify_assets.test.mjs tools/blender/inspect_asset_pack.test.mjs",
+    "test:assets": "node --test tools/blender/verify_assets.test.mjs tools/blender/inspect_asset_pack.test.mjs tools/blender/verify_publication.test.mjs",
     "verify:assets": "node tools/blender/verify_assets.mjs",
     "test:gate-faults": "node harness/gate-faults.mjs",
     "verify:ci": "node scripts/verify-ci.mjs"

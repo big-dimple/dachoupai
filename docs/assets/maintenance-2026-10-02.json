@@ -1,0 +1,935 @@
+{
+  "taskId": "A00",
+  "scope": "User-authorized bounded Linux asset maintenance; no P08 runtime/UI changes",
+  "status": "DONE_LOCAL_INTEGRATION_PENDING",
+  "testedCommit": "c90a9fc5d704874a52bddda3e4d991aef92c29fb",
+  "testedWorktree": "Recorded base plus this reviewed independent branch change; tests ran before the final commit.",
+  "branch": "asset/linux-rebuild-cleanup",
+  "base": {
+    "initialLocalHead": "288eb75",
+    "remoteMainAtStart": "c90a9fc5d704874a52bddda3e4d991aef92c29fb",
+    "remoteMainAtFinalCheck": "c90a9fc5d704874a52bddda3e4d991aef92c29fb",
+    "initialWorktree": "clean",
+    "localSkills": "No .agents/skills files available in selected workspace"
+  },
+  "authorization": {
+    "source": "2026-10-02 delegated user instruction",
+    "noMainPush": true,
+    "noBranchPush": true,
+    "reason": "External branch-triggered deployment settings could not be established. Tracked GitHub workflows are read-only checks; GitHub deployments API via gh returned Forbidden. Parent integrates after review.",
+    "paidServicesUsed": false,
+    "installedTools": []
+  },
+  "deleted": {
+    "count": 53,
+    "bytes": 1401090,
+    "runtimeSourceLiteralHits": [],
+    "all53WereLegacyManifestEntries": true,
+    "files": [
+      {
+        "path": "public/assets/renders/p0/animation-bend.webp",
+        "bytes": 16848,
+        "sha256": "af21ba69b2dddfcfd86e85ac4ae6193afdbe8ab46a716a77d63b0d9017b4d72c"
+      },
+      {
+        "path": "public/assets/renders/p0/animation-bounce.webp",
+        "bytes": 13842,
+        "sha256": "05674ac642bb445efc24c63eb853fe171d554267d99098cf9999f119f8570f3c"
+      },
+      {
+        "path": "public/assets/renders/p0/animation-burn.webp",
+        "bytes": 3342,
+        "sha256": "b0a4f497974b759cf8100288a8b565d9847e5ce0f8361ba4242122b0b1431e1d"
+      },
+      {
+        "path": "public/assets/renders/p0/animation-draw.webp",
+        "bytes": 13944,
+        "sha256": "b40c2b3d75e8e40f1baa932ac9b6b42c9dca5be19db748890a84facceb2d4dd1"
+      },
+      {
+        "path": "public/assets/renders/p0/animation-flip.webp",
+        "bytes": 6462,
+        "sha256": "25fc3d27d1a3a3bca3ea45350e733f0bf758cfd85802cf9f28f80dccad3debcf"
+      },
+      {
+        "path": "public/assets/renders/p0/animation-gold-dust.webp",
+        "bytes": 3394,
+        "sha256": "18979135772c08e76234a27c40334a66e527d15993f43fea9f7322ed2a27eaad"
+      },
+      {
+        "path": "public/assets/renders/p0/animation-ink.webp",
+        "bytes": 2276,
+        "sha256": "35f0eb0e8af686880971259e9a6b263d34078aaa5832703e75769f3197b5efd1"
+      },
+      {
+        "path": "public/assets/renders/p0/animation-knock-away.webp",
+        "bytes": 12182,
+        "sha256": "49265e97cf2d95e691291d15934db62b3918e9e2ef8abd6488e743b0b0ddcfc1"
+      },
+      {
+        "path": "public/assets/renders/p0/animation-spin.webp",
+        "bytes": 20624,
+        "sha256": "6433589399f20fa51e999119ea76df411769f2d91fc5b2d322363bdf47996d2b"
+      },
+      {
+        "path": "public/assets/renders/p0/animation-split.webp",
+        "bytes": 10102,
+        "sha256": "6a54268df130b63dc24d1b3a56ed243324525ed8b4eff76703200d6157036708"
+      },
+      {
+        "path": "public/assets/renders/p0/animation-throw.webp",
+        "bytes": 19718,
+        "sha256": "647dd18bc21eb7e696cbee8df0470199bed914286b7b718de16bdecc781cac37"
+      },
+      {
+        "path": "public/assets/renders/p0/avatars-preview.webp",
+        "bytes": 326704,
+        "sha256": "ee887c7f88343a03c8a1e729d5078d7bf3a3841bcdb86e1564c2bec79e5ce035"
+      },
+      {
+        "path": "public/assets/renders/p0/background-composite.webp",
+        "bytes": 91812,
+        "sha256": "9cad2277f7b540dc3b0f2a359dbb0c5c2c2f6b31f12dfe146f78c20778cde98e"
+      },
+      {
+        "path": "public/assets/renders/p0/contact-sheet.webp",
+        "bytes": 215732,
+        "sha256": "a6445cc3459995f61c2dc054ec7b17929110df3803d85c0a1ebf0453459a06cc"
+      },
+      {
+        "path": "public/assets/renders/p0/joker-frame-common.webp",
+        "bytes": 13540,
+        "sha256": "46bb38d45fc5b94694d16a0b4a21b5f0e3e42236e57f2778651f855ed88c853d"
+      },
+      {
+        "path": "public/assets/renders/p0/joker-frame-epic.webp",
+        "bytes": 14900,
+        "sha256": "02384e007f7e6555736c259001d43ea37fd841a60d217f77f6c2adf08b5055ed"
+      },
+      {
+        "path": "public/assets/renders/p0/joker-frame-legendary.webp",
+        "bytes": 15808,
+        "sha256": "90ad4187517c83fa7fc67051268a4dc3f738ee5fcafc9b8b6b87169aec8103d9"
+      },
+      {
+        "path": "public/assets/renders/p0/joker-frame-rare.webp",
+        "bytes": 16046,
+        "sha256": "b29de82ed372cf2705ea07842ab5d327a1507622cc56a74bba1e2c8dba9627a6"
+      },
+      {
+        "path": "public/assets/renders/p0/joker-frame-special.webp",
+        "bytes": 16032,
+        "sha256": "66954c94434b6c48b7ae9362465bdf93f7f451a82bfaae0ccd406be9039112e0"
+      },
+      {
+        "path": "public/assets/renders/p0/material-kit.webp",
+        "bytes": 7668,
+        "sha256": "ae9bbe0abc14de9c79bd0219cb760345e8f5d9a67869675a2d8e2e24f06accc7"
+      },
+      {
+        "path": "public/assets/renders/p0/poker-card-back.webp",
+        "bytes": 92980,
+        "sha256": "897a26ec07ab8f17a452f2682ced3b295f558997a0ac3fc795b6f4e5ad4e9974"
+      },
+      {
+        "path": "public/assets/renders/p0/poker-card-master.webp",
+        "bytes": 108564,
+        "sha256": "b6eabaf874cb04a7d20842f5713ea4a568cdda945945c07c0b4ad8e070820ee9"
+      },
+      {
+        "path": "public/assets/renders/p0/prop-bell.webp",
+        "bytes": 9840,
+        "sha256": "a11c9f3c9a98ba0da3e4641764b616e4dd29dc76521a9b37c294531282a1858d"
+      },
+      {
+        "path": "public/assets/renders/p0/prop-coin.webp",
+        "bytes": 12214,
+        "sha256": "e7d278885f7dc1e2ddc3cc015bbf63a70c8a2dc637faceff32424526f02b52c6"
+      },
+      {
+        "path": "public/assets/renders/p0/prop-dice.webp",
+        "bytes": 7612,
+        "sha256": "ec9404d31c97aa8d73a5b6f7e41d3b98299f9b368f4562225578c54262fc81f9"
+      },
+      {
+        "path": "public/assets/renders/p0/prop-fan.webp",
+        "bytes": 6926,
+        "sha256": "74c54c978cb43c05d2bfeec220fc4d9d5a65948998e11af1aa5c09c507a93c9b"
+      },
+      {
+        "path": "public/assets/renders/p0/prop-gold-ingot.webp",
+        "bytes": 6372,
+        "sha256": "51c00d5c1ac164d753bd0117a8372f8cfa3cacb68fb3f81b05097e651dcbe0a2"
+      },
+      {
+        "path": "public/assets/renders/p0/prop-jade-plaque.webp",
+        "bytes": 7094,
+        "sha256": "a60623da09672619bdd4c8317544906bb060d84862efac7df67c2564d80e156b"
+      },
+      {
+        "path": "public/assets/renders/p0/prop-opera-mask.webp",
+        "bytes": 9332,
+        "sha256": "d56f351f606606b6422d9b93ff955416a0b1a2a9700176d19ab1846a14166e67"
+      },
+      {
+        "path": "public/assets/renders/p0/prop-seal.webp",
+        "bytes": 14560,
+        "sha256": "97da19a8dcfbc52d92553dcdde5038dfcb070f0caabd3af79d2d213dfd14ae28"
+      },
+      {
+        "path": "public/assets/renders/p0/prop-small-gong.webp",
+        "bytes": 8906,
+        "sha256": "bea1012faf346ed0bc4dd62cae25f5bf4f056db66e68b9b0c1982c681d8fb8b9"
+      },
+      {
+        "path": "public/assets/renders/p0/prop-talisman.webp",
+        "bytes": 6056,
+        "sha256": "e75b3df758f21eedec67313cbf083b229ec90deeb79b3deb6c35f69b95144413"
+      },
+      {
+        "path": "public/assets/renders/p0/prop-wine-bowl.webp",
+        "bytes": 7506,
+        "sha256": "e23047a758fe31a1ce4e3b323d9eb1e4bce1e6bf81b3082ccf40649489d52d15"
+      },
+      {
+        "path": "public/assets/renders/p0/stage-censer.webp",
+        "bytes": 10184,
+        "sha256": "822c94ebfade2aeb9475cd4a8110e5ed2425e7b141527d1c13651003fcd03b88"
+      },
+      {
+        "path": "public/assets/renders/p0/stage-cloud-plinth.webp",
+        "bytes": 9864,
+        "sha256": "526901e6451b7682adf18657ed80a113a4630c41ccd9e77f7d12eeb937c5fe1f"
+      },
+      {
+        "path": "public/assets/renders/p0/stage-drape.webp",
+        "bytes": 10764,
+        "sha256": "20322abc4314473f05dc4b9e102a1535c04942ffa5b7ab01e957417723bacf0e"
+      },
+      {
+        "path": "public/assets/renders/p0/stage-drum.webp",
+        "bytes": 14846,
+        "sha256": "513659ae7db86def5aa0d51a71180943d2afaef30d4453977c42a86d575b91ca"
+      },
+      {
+        "path": "public/assets/renders/p0/stage-gong.webp",
+        "bytes": 11074,
+        "sha256": "ae4774dc80c5c0b62762c2693b684f033662d2e36f60ed138e3f7035f5a0c226"
+      },
+      {
+        "path": "public/assets/renders/p0/stage-lantern.webp",
+        "bytes": 6680,
+        "sha256": "fd28537f08d8cf75cf9a001892fe9597cc900538d616523c8928625c01414791"
+      },
+      {
+        "path": "public/assets/renders/p0/stage-neon-arch.webp",
+        "bytes": 13926,
+        "sha256": "48af5317fde69466a5b34d6dbfc40d7c0e1ba2afa05940268c905072f082f5ca"
+      },
+      {
+        "path": "public/assets/renders/p0/stage-screen.webp",
+        "bytes": 20088,
+        "sha256": "f23bfc05500ea2515a1c259aff95fcd49bfca082acf456d5794cfb94acbbb55c"
+      },
+      {
+        "path": "public/assets/renders/p0/stage-stage.webp",
+        "bytes": 22548,
+        "sha256": "6a2f1ee72e0af92a406e2ea095a8230fa51c988476477a67325366d7f0ee9040"
+      },
+      {
+        "path": "public/assets/renders/p0/stage-table-chairs.webp",
+        "bytes": 10924,
+        "sha256": "f1eb23c45fb9467a3b449c95a0274d0023269504be86f656c1af48f82ff04790"
+      },
+      {
+        "path": "public/assets/renders/p0/stage-wine-jar.webp",
+        "bytes": 11134,
+        "sha256": "f5f08491126d593ccb54b673edda493bf0117f3c9f17aa1ca47db9c868837547"
+      },
+      {
+        "path": "public/assets/renders/p0/stage-wood-arch.webp",
+        "bytes": 12146,
+        "sha256": "f92e094a5eca9c2adaa6397b2fab3833637a8782374bb10c6e9c5cea2e6cd7b8"
+      },
+      {
+        "path": "public/assets/renders/p0/word-critical.webp",
+        "bytes": 14260,
+        "sha256": "fb3903dbc662723e32feb29334c92715fb52003b568ab956aaa2c9e42477401c"
+      },
+      {
+        "path": "public/assets/renders/p0/word-double.webp",
+        "bytes": 14530,
+        "sha256": "2409109f882dc8e44e8e9985e3de168e1815c35512f55e39e165ac1a372d6dd4"
+      },
+      {
+        "path": "public/assets/renders/p0/word-east-wind.webp",
+        "bytes": 13290,
+        "sha256": "49eea09471a42865f4668f37c6477bead71ff8dbf0ae0114e604ea24540a50c6"
+      },
+      {
+        "path": "public/assets/renders/p0/word-full-house.webp",
+        "bytes": 14416,
+        "sha256": "4c663b51a823b7b1a583528766038e0a972f50d45eaceac71e8bda4e53b9f3aa"
+      },
+      {
+        "path": "public/assets/renders/p0/word-good-fortune.webp",
+        "bytes": 12764,
+        "sha256": "cac200cb674e8f20ad0eafab45dd132713165cec309ff0ee1a52b757ce52950e"
+      },
+      {
+        "path": "public/assets/renders/p0/word-out-of-control.webp",
+        "bytes": 12942,
+        "sha256": "36871f6f03289216762383d372c1db5f97a494d969d80f46da1202969f79d2a7"
+      },
+      {
+        "path": "public/assets/renders/p0/word-times-2.webp",
+        "bytes": 13132,
+        "sha256": "0b728826b99ea015588502a0a7539d12175377acd23d6b1c40111bea16c49de3"
+      },
+      {
+        "path": "public/assets/renders/p0/word-times-4.webp",
+        "bytes": 12640,
+        "sha256": "f90737ae0c80fb1dab9074fbb9f9a7a80f77ce1542bc166c3c9632f7d1f3db21"
+      }
+    ]
+  },
+  "preserved": {
+    "protectedFilesChecked": 98,
+    "changed": [],
+    "protectedBaselineSha256": "90b5edce29f6848eaac018df5b0694a29fe3c88bced2bc06b83fa1facbbd0ec8",
+    "models": {
+      "count": 39,
+      "bytes": 13150392
+    },
+    "p0Textures": 23,
+    "p0SpriteFiles": 6,
+    "p0LayerFiles": 3,
+    "p0LayerBytes": 1594106,
+    "license": "Original Noto OFL link preserved; installed Debian font license retained; no fonts redistributed",
+    "a00HistoricalEvidence": "unchanged",
+    "generators": "retained and updated; no character or f09 source/review input read",
+    "runtimeUiAndDeploymentDiff": "empty"
+  },
+  "inventory": {
+    "path": "docs/assets/inventory.json",
+    "files": 151,
+    "bytes": 23219573,
+    "manifestEntries": 77,
+    "manifestTotalBytesIncludingManifest": 15459973,
+    "runtimeCurrentlyLoaded": [],
+    "runtimeObservationStatus": "NOT_OBSERVED",
+    "interpretation": "Static source evidence is separate from observed bounded browser requests below; manifest registration is not runtime proof."
+  },
+  "environment": {
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "blender": "4.3.2+dfsg-2 (system package)",
+    "node": "22.23.3",
+    "pillowPython": "3.12.14",
+    "pillow": "12.3.0",
+    "systemFontsPackage": "fonts-noto-cjk 1:20240730+repack1-1",
+    "originalFont": "NotoSerifSC-VF.ttf NOT_AVAILABLE",
+    "fallbackAvailable": "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc",
+    "fontLicenseFile": "/usr/share/doc/fonts-noto-cjk/copyright"
+  },
+  "rebuild": {
+    "blender": "4.3.2",
+    "bytes": 91424,
+    "sha256": "afe487245baa434b6a8f88aad09f7b8d5dff1127bd69e2f66d884eba29894dc6",
+    "repeatSha256": "d44a9fff07f8088d86248676d29d80112e0f7e9266c9be8f2560cb86cbf63135",
+    "repeatByteIdentical": false,
+    "triangles": 2708,
+    "materials": [
+      "ink",
+      "ivory",
+      "red"
+    ],
+    "meshes": 1,
+    "primitives": 3,
+    "khronosErrors": 0,
+    "khronosWarnings": 0,
+    "render": {
+      "width": 640,
+      "height": 640,
+      "alpha": true,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "engine": "CYCLES",
+      "device": "CPU",
+      "samples": 16,
+      "seed": 0,
+      "denoise": false
+    },
+    "fontGuardOutputExists": false,
+    "semanticIdentical": true,
+    "gltfJsonIdentical": true,
+    "semanticSha256": "069c0c47c7f25f2910fb30e93a0e05df69c53d82438e05dcd44fe1b9b42b53a8",
+    "repeatSemanticSha256": "069c0c47c7f25f2910fb30e93a0e05df69c53d82438e05dcd44fe1b9b42b53a8",
+    "semanticComparison": "Material JSON and all attribute numeric values compared exactly. Each oriented index triangle normalized by cyclic rotation (winding preserved), then triangle lists sorted. Only triangle ordering differs in red/ink primitives.",
+    "triangleCountsByPrimitive": [
+      188,
+      120,
+      2400
+    ]
+  },
+  "existingModelRender": {
+    "blender": "4.3.2",
+    "engine": "CYCLES",
+    "device": "CPU",
+    "seed": 0,
+    "denoising": false,
+    "samples": 8,
+    "size": [
+      320,
+      320
+    ],
+    "records": [
+      {
+        "source": "public/assets/models/prop-dice.glb",
+        "renders": [
+          "prop-dice.png"
+        ]
+      }
+    ]
+  },
+  "visualCheck": {
+    "reviewer": "assistant visual inspection (not owner acceptance)",
+    "result": "Rebuilt and retained dice visibly show red top 1, dark left 2 and right 3; complete rounded silhouette without clipping. Undenoised sample noise remains.",
+    "evidence": "docs/assets/rebuilt-dice.webp",
+    "evidenceSha256": "1cded583d164f37e0cc8934d83e8b04a38501d1aac3f8ed61d69e191a08546f9"
+  },
+  "tests": [
+    {
+      "command": "npm run test:assets",
+      "status": "PASS",
+      "tests": 6
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/blender -p test_asset_config.py",
+      "status": "PASS",
+      "tests": 7
+    },
+    {
+      "command": "npm run verify:assets",
+      "status": "PASS",
+      "assets": 151
+    },
+    {
+      "command": "node tools/blender/inspect_asset_pack.mjs",
+      "status": "PASS",
+      "mode": "read-only"
+    },
+    {
+      "command": "npm run typecheck",
+      "status": "PASS"
+    },
+    {
+      "command": "node node_modules/vitest/vitest.mjs run tests/joker-art.test.ts tests/detail-art.test.ts --maxWorkers=1",
+      "status": "PASS",
+      "tests": 5
+    },
+    {
+      "command": "node node_modules/vitest/vitest.mjs run tests/ci-gates.test.mjs --maxWorkers=1",
+      "status": "PASS",
+      "tests": 7
+    },
+    {
+      "command": "npm run build -- --mode e2e",
+      "status": "PASS",
+      "purpose": "bounded browser input path"
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "purpose": "actual production dist"
+    },
+    {
+      "command": "node tools/blender/verify_publication.mjs --build-dir dist",
+      "status": "PASS"
+    },
+    {
+      "command": "node harness/asset-cleanup.mjs --build-dir dist --chromium-executable /usr/bin/chromium",
+      "status": "PASS",
+      "buildMode": "e2e (ran before final production build)"
+    },
+    {
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS"
+    }
+  ],
+  "production": {
+    "files": 116,
+    "bytes": 11890586,
+    "buildInfo": {
+      "version": "C03",
+      "revision": "c90a9fc5d704874a52bddda3e4d991aef92c29fb",
+      "modified": true,
+      "builtAt": "2026-10-02T14:59:53.811Z"
+    },
+    "status": "PASS",
+    "buildDir": "dist",
+    "retainedP0Renders": [
+      "background-far.webp",
+      "background-mid.webp",
+      "background-near.webp"
+    ],
+    "renders": {
+      "public": [
+        "assets/renders/p0/background-far.webp",
+        "assets/renders/p0/background-mid.webp",
+        "assets/renders/p0/background-near.webp"
+      ],
+      "build": [
+        "assets/renders/p0/background-far.webp",
+        "assets/renders/p0/background-mid.webp",
+        "assets/renders/p0/background-near.webp"
+      ]
+    },
+    "sourceModelCount": 39,
+    "publishedModels": [],
+    "references": [],
+    "errors": [],
+    "limitations": [
+      "Literal source/bundle scan; use harness/asset-cleanup.mjs for observed runtime requests."
+    ]
+  },
+  "browser": {
+    "version": "151.0.7922.173",
+    "launchOptions": {
+      "executablePath": "/usr/bin/chromium",
+      "args": [
+        "--disable-gpu",
+        "--disable-software-rasterizer"
+      ]
+    },
+    "scope": "Title → character selection → confirm → shop → enter stage; no purchase/details/long run.",
+    "server": {
+      "mount": "/dachoupai/",
+      "missingFiles": "HTTP 404, no SPA fallback",
+      "cacheControl": "no-store"
+    },
+    "checks": [
+      {
+        "profile": {
+          "name": "desktop",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "deviceScaleFactor": 1,
+          "hasTouch": false
+        },
+        "status": "PASS",
+        "graphics": {
+          "renderer": "Canvas2D",
+          "gpu": null,
+          "framebuffer": {
+            "width": 1280,
+            "height": 800
+          },
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36"
+        },
+        "screenshot": "desktop-stage.png",
+        "requests": [
+          {
+            "path": "/dachoupai/",
+            "type": "document",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/index-DOFZI_dv.js",
+            "type": "script",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/index-CECvLlXs.css",
+            "type": "stylesheet",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/amo.avatar.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/amo.selection.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/touye.avatar.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/touye.selection.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/laohuan.avatar.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/laohuan.selection.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/erxiang.avatar.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/erxiang.selection.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/azao.avatar.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/azao.selection.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/xiemu.avatar.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/xiemu.selection.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/paper.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/card-back.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/frame-common.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/frame-uncommon.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/frame-rare.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/mark-joker.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/mark-plus.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/mark-times.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p03/stage-wide.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/audio/p06/serenade-schubert-216755.mp3",
+            "type": "media",
+            "status": 200
+          },
+          {
+            "path": "/dachoupai/assets/jokers-p07/pengci.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/jokers-p07/pengci-detail.webp",
+            "type": "fetch",
+            "status": 200,
+            "complete": true
+          }
+        ],
+        "httpErrors": [],
+        "failedRequests": [],
+        "removedPreviewRequests": [],
+        "glbRequests": [],
+        "pageErrors": [],
+        "warnings": []
+      },
+      {
+        "profile": {
+          "name": "mobile",
+          "viewport": {
+            "width": 412,
+            "height": 820
+          },
+          "deviceScaleFactor": 3,
+          "hasTouch": true
+        },
+        "status": "PASS",
+        "graphics": {
+          "renderer": "Canvas2D",
+          "gpu": null,
+          "framebuffer": {
+            "width": 824,
+            "height": 1640
+          },
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36"
+        },
+        "screenshot": "mobile-stage.png",
+        "requests": [
+          {
+            "path": "/dachoupai/",
+            "type": "document",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/index-DOFZI_dv.js",
+            "type": "script",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/index-CECvLlXs.css",
+            "type": "stylesheet",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/amo.avatar.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/amo.selection.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/touye.avatar.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/touye.selection.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/laohuan.avatar.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/laohuan.selection.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/erxiang.avatar.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/erxiang.selection.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/azao.avatar.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/azao.selection.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/xiemu.avatar.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/characters-p07/xiemu.selection.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/paper.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/card-back.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/frame-common.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/frame-uncommon.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/frame-rare.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/mark-joker.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/mark-plus.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p00/mark-times.svg",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/p03/stage-wide.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/audio/p06/serenade-schubert-216755.mp3",
+            "type": "media",
+            "status": 200
+          },
+          {
+            "path": "/dachoupai/assets/jokers-p07/pengci.webp",
+            "type": "xhr",
+            "status": 200,
+            "complete": true
+          },
+          {
+            "path": "/dachoupai/assets/jokers-p07/pengci-detail.webp",
+            "type": "fetch",
+            "status": 200,
+            "complete": true
+          }
+        ],
+        "httpErrors": [],
+        "failedRequests": [],
+        "removedPreviewRequests": [],
+        "glbRequests": [],
+        "pageErrors": [],
+        "warnings": []
+      }
+    ],
+    "limitations": [
+      "Linux headless Chromium; physical devices, listening, WebGL performance and visual acceptance NOT_RUN.",
+      "Canvas requested with GPU and software rasterizer disabled; actual renderer is recorded per profile.",
+      "Long music streams need successful response headers, not transfer completion; all other observed resources must finish.",
+      "Only requests from this bounded route are runtime evidence; literal source scanning is recorded separately."
+    ]
+  },
+  "resolvedAttempts": [
+    {
+      "issue": "System Blender lacks OpenImageDenoise; forced denoising prevented review rendering",
+      "resolution": "Default CPU rendering disables denoising; --denoise is explicit; actual successful render configuration recorded."
+    },
+    {
+      "issue": "Browser networkidle waited on long MP3 stream",
+      "resolution": "Retained failed attempt; final check waits for non-media completion, all response headers, no failures/HTTP errors and final request snapshot."
+    },
+    {
+      "issue": "CI-gates Vitest suite initially invoked with node --test",
+      "resolution": "Reran with repository Vitest runner; 7 tests pass; no code or assertions changed."
+    }
+  ],
+  "limitations": [
+    "Full 39-asset regeneration, full animation export and text visual equivalence NOT_RUN. Minimum dice rebuild and existing-dice import/render only.",
+    "GLB repeat is semantically equivalent, not byte-identical. No rebuilt GLB replaces preserved source models.",
+    "Original Chinese variable font unavailable; missing-font failure tested; installed fallback requires explicit acceptance and has NOT_VERIFIED visual equivalence.",
+    "No gameplay/long-session/balance suite rerun; no new rules, realtime 3D or broad artwork.",
+    "Browser observations use Linux Chromium Canvas and simulated touch, not physical Android, WebGL performance or listening acceptance.",
+    "No branch/main push, merge or deployment performed. Parent integration remains pending."
+  ],
+  "localDiagnostics": [
+    "shots/asset-cleanup/",
+    "shots/p0-build/",
+    "shots/p0-repeat/"
+  ],
+  "recovery": "Normal git revert of this commit, or restore deleted previews from base c90a9fc5d704874a52bddda3e4d991aef92c29fb; no history rewrite."
+}

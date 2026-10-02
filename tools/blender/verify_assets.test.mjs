@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
-import { inspectAsset, verifyAssets } from './verify_assets.mjs';
+import { inspectAsset, verifyAssets, createCurrentInventory, currentInventoryPath } from './verify_assets.mjs';
 
 test('asset verification rejects broken contracts and leaves inputs unchanged', async (t) => {
   const root = await mkdtemp(path.join(os.tmpdir(), 'a00-assets-'));
@@ -75,6 +75,87 @@ test('asset verification rejects broken contracts and leaves inputs unchanged', 
   } finally {
     assert.equal(path.dirname(root), path.resolve(os.tmpdir()));
     assert(path.basename(root).startsWith('a00-assets-'));
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('current inventory separates source evidence from observed loading and rejects stale publication data', async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'current-assets-'));
+  try {
+    await mkdir(path.join(root, 'public/assets/renders/p0'), { recursive: true });
+    await mkdir(path.join(root, 'public/assets/models'), { recursive: true });
+    await mkdir(path.join(root, 'src'));
+    const image = await sharp({ create: { width: 2, height: 3, channels: 4, background: '#ff000080' } }).webp().toBuffer();
+    for (const name of ['far', 'mid', 'near']) await writeFile(path.join(root, `public/assets/renders/p0/background-${name}.webp`), image);
+    await writeFile(path.join(root, 'public/assets/thumb.webp'), image);
+    await writeFile(path.join(root, 'public/assets/lazy.mp3'), 'fixture');
+    await writeFile(path.join(root, 'public/assets/recording.json'), JSON.stringify({ runtimePath: 'assets/lazy.mp3' }));
+    const manifest = { assets: [{ file: 'renders/p0/background-far.webp', reviewPath: 'shots/p0-build/review/background-composite.webp' }] };
+    const manifestPath = path.join(root, 'public/assets/models/asset-pack-v1.json');
+    await writeFile(manifestPath, JSON.stringify(manifest));
+    await writeFile(path.join(root, 'src/assets.ts'), [
+      "const thumb = 'assets/thumb.webp';",
+      "const variants = `assets/renders/p0/background-${layer}.webp`;",
+      "import recording from '../public/assets/recording.json';",
+    ].join('\n'));
+    const baseline = await createCurrentInventory(root);
+    assert.deepEqual(await verifyAssets(root, baseline), []);
+    assert.equal(baseline.totals.files, 7);
+    assert.equal(baseline.runtimeObservationStatus, 'NOT_OBSERVED');
+    assert.deepEqual(baseline.runtimeCurrentlyLoaded, []);
+    assert.deepEqual(baseline.staticRuntimePaths, ['public/assets/recording.json', 'public/assets/thumb.webp']);
+    assert.equal(baseline.parameterizedSourceReferences[0].matchingPaths.length, 3);
+    assert.equal(baseline.parameterizedSourceReferences[0].evidence, 'filename-match-only');
+    assert.deepEqual(baseline.indirectRuntimePaths, [{ source: 'public/assets/recording.json', field: 'runtimePath', path: 'public/assets/lazy.mp3' }]);
+    const totals = structuredClone(baseline); totals.totals.bytes++;
+    assert((await verifyAssets(root, totals)).includes('totals mismatch'));
+    const stale = structuredClone(baseline); stale.runtimeCurrentlyLoaded = ['public/assets/jokers-p06/f09.webp'];
+    assert((await verifyAssets(root, stale)).some(error => error.includes('runtimeCurrentlyLoaded')));
+    const staleRefs = structuredClone(baseline); staleRefs.staticRuntimePaths.push('public/assets/missing.webp');
+    assert((await verifyAssets(root, staleRefs)).includes('staticRuntimePaths changed'));
+
+    const cli = args => spawnSync(process.execPath, [fileURLToPath(new URL('./verify_assets.mjs', import.meta.url)), ...args, '--root', root], { encoding: 'utf8', windowsHide: true });
+    const historic = path.join(root, 'docs/production/evidence/a00-2026-10-01/inventory.json');
+    await mkdir(path.dirname(historic), { recursive: true });
+    await writeFile(historic, 'immutable historical evidence');
+    assert.equal(cli([]).status, 1, 'default must not silently use historical A00');
+    const write = cli(['--write-inventory']);
+    assert.equal(write.status, 0, write.stdout + write.stderr);
+    const before = await readFile(path.join(root, currentInventoryPath));
+    assert.equal(cli([]).status, 0);
+    assert.deepEqual(await readFile(path.join(root, currentInventoryPath)), before);
+    assert.equal(await readFile(historic, 'utf8'), 'immutable historical evidence');
+
+    const preview = path.join(root, 'public/assets/renders/p0/prop-dice.webp');
+    await writeFile(preview, image);
+    const polluted = structuredClone(baseline); polluted.assets.push(await inspectAsset(root, 'public/assets/renders/p0/prop-dice.webp'));
+    assert((await verifyAssets(root, polluted)).some(error => error.includes('review-only P0 preview')));
+    assert.equal(cli(['--write-inventory']).status, 1, 'regeneration must refuse to bless publication pollution');
+    assert.deepEqual(await readFile(path.join(root, currentInventoryPath)), before);
+    await rm(preview);
+    manifest.assets.push({ file: 'renders/p0/prop-dice.webp' });
+    await writeFile(manifestPath, JSON.stringify(manifest));
+    assert((await verifyAssets(root, baseline)).some(error => error.includes('missing manifest asset')));
+    manifest.assets.pop(); manifest.assets[0].reviewPath = 'public/assets/review.webp';
+    await writeFile(manifestPath, JSON.stringify(manifest));
+    assert((await verifyAssets(root, baseline)).some(error => error.includes('unsafe reviewPath')));
+    manifest.assets[0].reviewPath = 'shots/p0-build/review/background-composite.webp';
+    await writeFile(manifestPath, JSON.stringify(manifest));
+    manifest.assets[0].bytes = image.length + 1;
+    manifest.validation = { models: 1, totalAssetBytes: 0 };
+    await writeFile(manifestPath, JSON.stringify(manifest));
+    const badManifest = await verifyAssets(root, baseline);
+    assert(badManifest.some(error => error.includes('manifest bytes mismatch')));
+    assert(badManifest.includes('manifest model count mismatch'));
+    assert(badManifest.includes('manifest totalAssetBytes mismatch'));
+    delete manifest.assets[0].bytes; delete manifest.validation;
+    await writeFile(manifestPath, JSON.stringify(manifest));
+    await rm(path.join(root, 'public/assets/thumb.webp'));
+    assert((await verifyAssets(root, baseline)).some(error => error.includes('missing source-referenced asset: public/assets/thumb.webp')));
+    await assert.rejects(createCurrentInventory(root), /missing source-referenced asset/);
+  } finally {
+    assert.equal(path.dirname(root), path.resolve(os.tmpdir()));
+    assert(path.basename(root).startsWith('current-assets-'));
     await rm(root, { recursive: true, force: true });
   }
 });

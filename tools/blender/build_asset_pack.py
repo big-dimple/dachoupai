@@ -1,10 +1,10 @@
-"""P0 v1: S -> A -> B, original Oriental stage assets. Blender 5.2 headless.
+"""P0 editable geometry; isolated builds with Blender 4.3+ headless.
 
 Run from any directory:
-  D:/tools/blender-5.2.1-windows-x64/blender.exe --background --factory-startup \
-    --python tools/blender/build_asset_pack.py -- --section all
+  blender --background --factory-startup --python-exit-code 1 \
+    --python tools/blender/build_asset_pack.py -- --only prop-dice
 
-Options: --section s|a|b|all; --no-previews; --raster-python <Pillow Python>.
+See README.md for output roots, explicit font selection and full-section builds.
 Sources are these scripts + procedural textures (no opaque .blend dependency).
 GLB units: meters, Y up. Card/text face +Z; props/stage grounded at Y=0.
 """
@@ -12,7 +12,6 @@ from pathlib import Path
 import argparse
 import json
 import math
-import os
 import random
 import subprocess
 import sys
@@ -21,21 +20,20 @@ sys.path.insert(0,str(Path(__file__).resolve().parent))
 sys.dont_write_bytecode=True
 import bpy
 import asset_geometry as g
+import asset_config as config
 
 ROOT=g.ROOT
-parser=argparse.ArgumentParser()
-parser.add_argument('--section',choices=['s','a','b','all'],default='all')
-parser.add_argument('--no-previews',action='store_true')
-parser.add_argument('--raster-python',default=str(Path(os.environ['USERPROFILE'])/
-    '.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'))
-args=parser.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
-MANIFEST=g.MODELS/'asset-pack-v1.json'
-records=json.loads(MANIFEST.read_text(encoding='utf-8'))['assets'] if MANIFEST.exists() else []
+FONT=None
+FONT_INFO=None
 
 
 def raster(phase):
-    subprocess.run([args.raster_python,str(Path(__file__).with_name('make_raster_assets.py')),
-                    '--phase',phase],check=True)
+    command=[config.raster_python(args.raster_python),str(Path(__file__).with_name('make_raster_assets.py')),
+             '--phase',phase,'--output-root',str(args.output_root),'--review-root',str(args.review_root)]
+    if FONT:command.extend(['--font',str(FONT)])
+    if phase=='finish':
+        for name in sorted(set(g.RENDERS)):command.extend(['--only',name])
+    subprocess.run(command,check=True)
 
 
 def record(item,purpose,category,**extra):
@@ -50,11 +48,16 @@ def write_manifest():
     g.MODELS.mkdir(parents=True,exist_ok=True)
     data={'version':1,'units':'meters','up':'+Y','cardFront':'+Z',
           'source':'tools/blender/build_asset_pack.py',
-          'copyright':'Original procedural geometry/art; existing project portraits; Noto Serif SC mesh outlines (SIL OFL 1.1). No font files redistributed.',
+          'copyright':'Original procedural geometry/art. Historical Noto Serif SC outlines: SIL OFL 1.1. Current font selection is recorded in build.font; no font files redistributed.',
           'materialHooks':{'mask':'UV0 grayscale; animate UV/hue for flow or holographic response',
                            'glass':'KHR_materials_transmission / IOR, opaque jade fallback'},
           'assets':sorted(records,key=lambda r:r['file'])}
     data['fontLicense']='https://github.com/notofonts/noto-cjk/blob/main/Serif/LICENSE'
+    data['build']={'blender':bpy.app.version_string,'selection':args.only or ['section:'+args.section],
+                   'font':FONT_INFO,
+                   'render':{'engine':'CYCLES','device':'CPU','samples':16,'seed':0,
+                             'denoise':args.denoise,'previews':sorted(set(g.RENDERS))},
+                   'postprocess':'NOT_RUN; inspector optimization is an explicit separate operation'}
     MANIFEST.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
 
@@ -331,6 +334,7 @@ PROPS=[('coin',coin,'铜钱：方孔铜钱与浮雕云纹，奖励粒子/掉落'
 
 def build_props():
     for name,fn,purpose in PROPS:
+        if args.only and 'prop-'+name not in args.only:continue
         g.reset();fn()
         deliver('prop-'+name,purpose,'prop',500)
 
@@ -338,7 +342,7 @@ def build_props():
 def text_mesh(word):
     curve=bpy.data.curves.new('NotoSerifSC_OFL','FONT')
     curve.body=word
-    curve.font=bpy.data.fonts.load('C:/Windows/Fonts/NotoSerifSC-VF.ttf')
+    curve.font=bpy.data.fonts.load(str(FONT))
     curve.align_x='CENTER';curve.align_y='CENTER'
     curve.size=1;curve.extrude=.055;curve.bevel_depth=.012
     curve.bevel_resolution=1;curve.resolution_u=3
@@ -359,6 +363,7 @@ WORDS=[('times-2','×2'),('times-4','×4'),('critical','暴击'),('full-house','
 
 def build_words():
     for name,word in WORDS:
+        if args.only and 'word-'+name not in args.only:continue
         g.reset();obj=text_mesh(word)
         bpy.context.view_layer.update()
         width=obj.dimensions.x
@@ -550,6 +555,7 @@ STAGES=[('stage',stage,'戏台：朱红柱、玉青瓦、云纹台裙与木阶')
 
 def build_stage():
     for name,fn,purpose in STAGES:
+        if args.only and 'stage-'+name not in args.only:continue
         g.reset();fn()
         deliver('stage-'+name,purpose,'stage',2000)
 
@@ -721,30 +727,53 @@ def build_b():
 
 
 def register_rasters():
-    # Every deliverable gets a one-line use in a machine-readable runtime manifest.
+    # Asset inventory is not proof of runtime use. Review images never belong here.
     paths=[]
     for folder in ['textures/p0','renders/p0','sprites/p0']:
-        paths.extend((ROOT/'public/assets'/folder).glob('*'))
-    paths.extend((ROOT/'public/assets/characters-p07').glob('*.avatar.webp'))
+        paths.extend((args.output_root/folder).glob('*'))
     for path in sorted(paths):
-        file=path.relative_to(ROOT/'public/assets').as_posix()
+        file=path.relative_to(args.output_root).as_posix()
         if path.suffix not in ['.png','.webp','.json']:continue
-        if path.name=='background-composite.webp':
-            purpose='三层东方戏台背景的合成预览；选角/牌桌构图评审'
-        elif 'background-' in path.name:
+        if 'renders/' in file and path.stem not in ['background-far','background-mid','background-near']:continue
+        if 'background-' in path.name:
             purpose='东方戏台视差背景；far 远景不透明 / mid 中景与 near 近景透明，同投影 1920×1080'
-        elif path.name.endswith('.avatar.webp'):purpose='P07经复审裁切的256×256独立头像；视觉批准另列'
         elif 'sprites/' in file:purpose='256px 单帧、16 帧 30fps 透明特效精灵表 / Phaser atlas 元数据'
         elif 'textures/' in file:purpose='可编辑源纹理：'+path.stem+'（UV0，PNG，无外部依赖）'
-        else:purpose='资产或动画姿态预览，供美术评审与选型'
+        else:continue
         record({'file':file},purpose,'raster')
 
 
-if args.section in ['s','all']:build_s()
-if args.section in ['a','all']:
-    build_props();build_words();build_animations();build_stage()
-if args.section in ['b','all']:build_b()
-if not args.no_previews and args.section in ['b','all']:raster('finish')
-register_rasters()
-subprocess.run(['node',str(Path(__file__).with_name('inspect_asset_pack.mjs')),'--optimize'],check=True,cwd=ROOT)
-print('PACK_DONE',MANIFEST,flush=True)
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    selection=parser.add_mutually_exclusive_group(required=True)
+    selection.add_argument('--section',choices=['s','a','b','all'],help='Explicit full section rebuild')
+    selection.add_argument('--only',action='append',choices=[*['prop-'+n for n,_,_ in PROPS],
+                           *['stage-'+n for n,_,_ in STAGES],*['word-'+n for n,_ in WORDS]],
+                           help='One asset per flag; repeat to select several')
+    parser.add_argument('--no-previews',action='store_true')
+    parser.add_argument('--denoise',action='store_true',help='Require Cycles denoising support; off by default for portable CPU rendering')
+    parser.add_argument('--raster-python',help='Python executable with Pillow (or P0_RASTER_PYTHON)')
+    config.add_output_arguments(parser)
+    config.add_font_arguments(parser)
+    args=parser.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
+    args.output_root=args.output_root.expanduser().resolve()
+    args.review_root=config.review_path(args.review_root)
+    needs_font=args.section in ['s','a','all'] or any(n.startswith('word-') for n in args.only or [])
+    if needs_font:
+        FONT=config.resolve_font(args.font,args.allow_font_fallback)
+        FONT_INFO=config.font_record(FONT,not args.font)
+    g.configure(args.output_root,args.review_root,args.denoise)
+    MANIFEST=g.MODELS/'asset-pack-v1.json'
+    records=json.loads(MANIFEST.read_text(encoding='utf-8'))['assets'] if MANIFEST.exists() else []
+    # Drop only obsolete review registrations when rebuilding an old public root.
+    records=[r for r in records if not r['file'].startswith('renders/p0/') or
+             Path(r['file']).stem in ['background-far','background-mid','background-near']]
+    if args.section in ['s','all']:build_s()
+    if args.section in ['a','all'] or args.only:
+        build_props();build_words();build_stage()
+        if not args.only:build_animations()
+    if args.section in ['b','all']:build_b()
+    if g.RENDERS:raster('finish')
+    register_rasters()
+    write_manifest()
+    print('PACK_DONE',MANIFEST,flush=True)

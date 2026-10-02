@@ -3,16 +3,28 @@ from pathlib import Path
 import math
 import bpy
 from mathutils import Vector
+from asset_config import DEFAULT_OUTPUT, DEFAULT_REVIEW, review_path
 
 ROOT=Path(__file__).resolve().parents[2]
-MODELS=ROOT/'public/assets/models'
-TEX=ROOT/'public/assets/textures/p0'
-TMP=ROOT/'shots/p0-build'
+MODELS=DEFAULT_OUTPUT/'models'
+TEX=DEFAULT_OUTPUT/'textures/p0'
+TMP=DEFAULT_REVIEW/'raw'
+RENDERS=[]
+DENOISE=False
 PALETTE={'ivory':(.92,.84,.65,1),'red':(.55,.025,.02,1),
          'gold':(.83,.48,.095,1),'jade':(.09,.42,.30,1),
          'bamboo':(.16,.32,.065,1),'purple':(.30,.065,.30,1),
          'wood':(.30,.10,.035,1),'ink':(.025,.065,.06,1)}
 MATS={}
+
+
+def configure(output_root,review_root,denoise=False):
+    global MODELS,TEX,TMP,DENOISE
+    MODELS=output_root/'models'
+    TEX=output_root/'textures/p0'
+    TMP=review_path(review_root)/'raw'
+    DENOISE=denoise
+    RENDERS.clear()
 
 
 def reset():
@@ -42,6 +54,9 @@ def named(name):
 
 
 def image_node(mat,path,noncolor=False):
+    # Existing editable textures are read-only dependencies of isolated builds.
+    if not path.exists():
+        path=ROOT/'public/assets/textures/p0'/path.name
     node=mat.node_tree.nodes.new('ShaderNodeTexImage')
     node.image=bpy.data.images.load(str(path),check_existing=True)
     if noncolor: node.image.colorspace_settings.name='Non-Color'
@@ -265,7 +280,9 @@ def camera_render(name,objects=None,size=(640,640),camera=None,target=None,trans
     scene=bpy.context.scene
     scene.render.engine='CYCLES'
     scene.cycles.samples=16
-    scene.cycles.use_denoising=True
+    scene.cycles.seed=0
+    scene.cycles.device='CPU'
+    scene.cycles.use_denoising=DENOISE
     scene.render.resolution_x,scene.render.resolution_y=size
     scene.render.resolution_percentage=100
     scene.render.image_settings.file_format='PNG'
@@ -299,4 +316,5 @@ def camera_render(name,objects=None,size=(640,640),camera=None,target=None,trans
         lights.append(light)
     scene.render.filepath=str(TMP/f'{name}.png')
     bpy.ops.render.render(write_still=True)
+    RENDERS.append(name)
     for obj in [cam,*lights]: bpy.data.objects.remove(obj,do_unlink=True)

@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { test } from 'node:test';
 import { Document, NodeIO } from '@gltf-transform/core';
-import { root, inspectAsset } from './verify_assets.mjs';
+import { root, inspectAsset, currentInventoryPath } from './verify_assets.mjs';
 
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 async function fixture(run) {
@@ -16,12 +16,12 @@ async function fixture(run) {
     await fs.mkdir(path.join(dir, 'tools/blender'), { recursive: true });
     await fs.mkdir(path.join(dir, 'public/assets/models'), { recursive: true });
     await fs.mkdir(path.join(dir, 'src'));
-    await fs.mkdir(path.join(dir, 'docs/production/evidence/a00-2026-10-01'), { recursive: true });
+    await fs.mkdir(path.dirname(path.join(dir, currentInventoryPath)), { recursive: true });
     for (const script of ['inspect_asset_pack.mjs', 'verify_assets.mjs'])
       await fs.copyFile(path.join(root, 'tools/blender', script), path.join(dir, 'tools/blender', script));
     const manifest = path.join(dir, 'public/assets/models/asset-pack-v1.json');
     await fs.writeFile(manifest, '{"assets":[]}\n');
-    const snapshot = path.join(dir, 'docs/production/evidence/a00-2026-10-01/inventory.json');
+    const snapshot = path.join(dir, currentInventoryPath);
     await fs.writeFile(snapshot, JSON.stringify({ assets: [await inspectAsset(dir, 'public/assets/models/asset-pack-v1.json')], sourceReferences: [] }));
     const invoke = (script, args = []) => spawnSync(process.execPath, [path.join(dir, 'tools/blender', script), ...args],
       { cwd: dir, encoding: 'utf8', windowsHide: true });
@@ -75,7 +75,8 @@ test('both asset CLIs reject unknown, ambiguous and incomplete arguments without
   const before = await fs.readFile(manifest);
   for (const script of ['verify_assets.mjs', 'inspect_asset_pack.mjs']) {
     for (const args of [[snapshot, '--unknown'], [snapshot, '--root'], [snapshot, '--root', '--unknown'],
-      [snapshot, '--root', dir, '--root', dir], [snapshot, 'extra.json'], ['--optimize', '--unknown']]) {
+      [snapshot, '--root', dir, '--root', dir], [snapshot, 'extra.json'], ['--optimize', '--unknown'],
+      [snapshot, '--write-inventory'], ['--write-inventory', '--write-inventory']]) {
       const result = invoke(script, args);
       t.diagnostic(`${script} ${JSON.stringify(args.map(x => x.replaceAll(dir, '<fixture>')))}: exit ${result.status}`);
       assert.equal(result.status, 2, result.stdout + result.stderr);
@@ -83,4 +84,22 @@ test('both asset CLIs reject unknown, ambiguous and incomplete arguments without
       assert.deepEqual(await fs.readFile(manifest), before);
     }
   }
+}));
+
+test('optimization refuses review pollution and missing manifest entries before writing', async () => fixture(async ({ dir, manifest, invoke }) => {
+  const preview = path.join(dir, 'public/assets/renders/p0/prop-dice.webp');
+  await fs.mkdir(path.dirname(preview), { recursive: true });
+  await fs.writeFile(preview, 'review only');
+  const before = await fs.readFile(manifest);
+  let result = invoke('inspect_asset_pack.mjs', ['--optimize']);
+  assert.equal(result.status, 1, result.stdout + result.stderr);
+  assert.match(result.stderr, /review-only P0 preview/);
+  assert.deepEqual(await fs.readFile(manifest), before);
+  await fs.rm(preview);
+  await fs.writeFile(manifest, JSON.stringify({ assets: [{ file: 'renders/p0/prop-dice.webp' }] }));
+  const stale = await fs.readFile(manifest);
+  result = invoke('inspect_asset_pack.mjs', ['--optimize']);
+  assert.equal(result.status, 1, result.stdout + result.stderr);
+  assert.match(result.stderr, /missing manifest asset/);
+  assert.deepEqual(await fs.readFile(manifest), stale);
 }));

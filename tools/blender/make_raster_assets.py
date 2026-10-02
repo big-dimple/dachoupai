@@ -1,28 +1,34 @@
 """Procedural, original raster sources + portrait crops for the P0 pack.
 
-Called by build_asset_pack.py with the local bundled Python (Pillow).
+Called by build_asset_pack.py with an explicitly selectable Pillow Python.
 No downloaded art; Noto font outlines are used under SIL OFL, fonts not shipped.
 """
 from pathlib import Path
 import argparse
 import json
 import math
+import sys
 from PIL import Image, ImageDraw, ImageFont
+sys.dont_write_bytecode=True
+import asset_config as config
 
 ROOT = Path(__file__).resolve().parents[2]
-TEX = ROOT / 'public/assets/textures/p0'
-SPR = ROOT / 'public/assets/sprites/p0'
-REN = ROOT / 'public/assets/renders/p0'
-TMP = ROOT / 'shots/p0-build'
+TEX = config.DEFAULT_OUTPUT / 'textures/p0'
+SPR = config.DEFAULT_OUTPUT / 'sprites/p0'
+REN = config.DEFAULT_OUTPUT / 'renders/p0'
+REVIEW = config.DEFAULT_REVIEW
+TMP = REVIEW / 'raw'
 IVORY = (249, 239, 209)
 RED = (185, 44, 43)
 GOLD = (213, 165, 68)
 JADE = (69, 153, 135)
 PURPLE = (118, 66, 122)
-FONT = Path('C:/Windows/Fonts/NotoSerifSC-VF.ttf')
+FONT = None
 
 
 def font(size):
+    if FONT is None:
+        raise ValueError('Artwork font not configured; supply --font or --allow-font-fallback')
     return ImageFont.truetype(str(FONT), size)
 
 
@@ -166,23 +172,24 @@ def effects():
             'purpose':'Phaser load.atlas / anims，16 帧；256px 单帧'}} ,ensure_ascii=False,indent=2),encoding='utf-8')
 
 
-def finish():
-    REN.mkdir(parents=True,exist_ok=True)
-    for png in sorted(TMP.glob('*.png')):
-        im=Image.open(png)
-        if not png.stem.startswith('background-'):
+def finish(only=None,include_avatars=False):
+    REVIEW.mkdir(parents=True,exist_ok=True)
+    pngs=[p for p in sorted(TMP.glob('*.png')) if not only or p.stem in only]
+    paths=[]
+    for png in pngs:
+        im=Image.open(png).convert('RGBA')
+        if png.stem in ['background-far','background-mid','background-near']:
+            # These three retained layers are assets; every other image is review-only.
+            REN.mkdir(parents=True,exist_ok=True)
+            im.save(REN/f'{png.stem}.webp',lossless=True,method=6)
+            continue
+        else:
             rgba=im.convert('RGBA')
             matte=Image.new('RGBA',rgba.size,(*IVORY,255))
             im=Image.alpha_composite(matte,rgba).convert('RGB')
-        save(im,REN/f'{png.stem}.webp')
-    # Deliver layered background at 1920x1080, foregrounds retain real alpha.
-    for layer in ['far','mid','near']:
-        path=TMP/f'background-{layer}.png'
-        if path.exists():
-            im=Image.open(path).convert('RGBA')
-            out=REN/f'background-{layer}.webp'
-            im.save(out,lossless=True,method=6)
-    paths=[p for p in sorted(REN.glob('*.webp')) if not p.name.startswith(('background','contact'))]
+        out=REVIEW/f'{png.stem}.webp'
+        save(im,out)
+        paths.append(out)
     thumbs=[]
     for p in paths:
         im=Image.open(p).convert('RGBA')
@@ -190,30 +197,47 @@ def finish():
         bg.paste(im,mask=im.getchannel('A'))
         bg.thumbnail((280,220),Image.Resampling.LANCZOS)
         thumbs.append((p.stem,bg))
-    columns=5
-    sheet=Image.new('RGB',(1500,math.ceil(len(thumbs)/columns)*260),IVORY)
-    d=ImageDraw.Draw(sheet)
-    for i,(name,im) in enumerate(thumbs):
-        x,y=i%columns*300,i//columns*260
-        sheet.paste(im,(x+(300-im.width)//2,y))
-        d.text((x+150,y+228),name,font=font(14),fill=RED,anchor='mm')
-    save(sheet,REN/'contact-sheet.webp')
-    layers=[Image.open(REN/f'background-{layer}.webp').convert('RGBA') for layer in ['far','mid','near']]
-    bg=layers[0]
-    for im in layers[1:]: bg=Image.alpha_composite(bg,im)
-    save(bg,REN/'background-composite.webp')
-    avatars=Image.new('RGB',(1536,1024),IVORY)
-    for i,name in enumerate(['amo','touye','laohuan','erxiang','azao','xiemu']):
-        im=Image.open(ROOT/f'public/assets/characters-p07/{name}.avatar.webp')
-        avatars.paste(im.resize((512,512),Image.Resampling.LANCZOS),(i%3*512,i//3*512))
-    save(avatars,REN/'avatars-preview.webp')
+    if thumbs:
+        columns=5
+        sheet=Image.new('RGB',(1500,math.ceil(len(thumbs)/columns)*260),IVORY)
+        d=ImageDraw.Draw(sheet)
+        # ASCII review labels are annotations, not asset artwork or mesh outlines.
+        label_font=ImageFont.load_default()
+        for i,(name,im) in enumerate(thumbs):
+            x,y=i%columns*300,i//columns*260
+            sheet.paste(im,(x+(300-im.width)//2,y))
+            d.text((x+150,y+228),name,font=label_font,fill=RED,anchor='mm')
+        save(sheet,REVIEW/'contact-sheet.webp')
+    if all(any(p.stem=='background-'+layer for p in pngs) for layer in ['far','mid','near']):
+        layers=[Image.open(REN/f'background-{layer}.webp').convert('RGBA') for layer in ['far','mid','near']]
+        bg=layers[0]
+        for im in layers[1:]: bg=Image.alpha_composite(bg,im)
+        save(bg,REVIEW/'background-composite.webp')
+    if include_avatars:
+        avatars=Image.new('RGB',(1536,1024),IVORY)
+        for i,name in enumerate(['amo','touye','laohuan','erxiang','azao','xiemu']):
+            im=Image.open(ROOT/f'public/assets/characters-p07/{name}.avatar.webp')
+            avatars.paste(im.resize((512,512),Image.Resampling.LANCZOS),(i%3*512,i//3*512))
+        save(avatars,REVIEW/'avatars-preview.webp')
 
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--phase',choices=['textures','b','finish'],required=True)
+    parser.add_argument('--only',action='append',help='Convert only these raw PNG stems (repeatable)')
+    parser.add_argument('--include-avatars',action='store_true',help='Explicitly include a P07 avatar review sheet')
+    config.add_output_arguments(parser)
+    config.add_font_arguments(parser)
     args=parser.parse_args()
+    if args.phase!='finish' and (args.only or args.include_avatars):
+        parser.error('--only and --include-avatars apply only to --phase finish')
+    output=args.output_root.expanduser().resolve()
+    REVIEW=config.review_path(args.review_root)
+    TMP=REVIEW/'raw'
+    TEX,SPR,REN=output/'textures/p0',output/'sprites/p0',output/'renders/p0'
+    if args.phase=='textures':
+        FONT=config.resolve_font(args.font,args.allow_font_fallback)
     if args.phase=='textures': textures()
     elif args.phase=='b':
         effects()
-    else: finish()
+    else: finish(args.only,args.include_avatars)

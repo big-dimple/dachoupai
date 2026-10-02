@@ -1,0 +1,2442 @@
+{
+  "schemaVersion": 2,
+  "scope": "Current repository asset tree and static source evidence; not a runtime or visual approval",
+  "historicalEvidence": "docs/production/evidence/a00-2026-10-01/inventory.json",
+  "byteAccounting": "JSON byte totals use LF normalization; all other files use physical bytes",
+  "sourceReferences": [
+    {
+      "source": "src/audio/AudioEngine.ts",
+      "expression": "../../public/assets/audio/p06/recording.json"
+    },
+    {
+      "source": "src/game/BootScene.ts",
+      "expression": "assets/p03/stage-wide.webp"
+    },
+    {
+      "source": "src/game/characters.ts",
+      "expression": "${import.meta.env.BASE_URL}assets/characters-p07/${file}"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/pengci.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/pengci-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/e05.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/e05-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/huimaqiang.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/huimaqiang-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/a03.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/a03-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/f02.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/f02-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/d03.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/d03-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/tiesuanpan.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/tiesuanpan-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/mantangcai.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/mantangcai-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/jiedongfeng.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/jiedongfeng-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/a05.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/a05-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/b02.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/b02-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/b03.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/b03-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/b04.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/b04-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/c02.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/c02-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/c04.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/c04-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/c06.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/c06-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/d01.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/d01-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/d05.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/d05-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/d10.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/d10-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/e01.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/e01-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/e03.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/e03-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/e08.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/e08-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/f03.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/f03-detail.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/f09.webp"
+    },
+    {
+      "source": "src/game/jokerArt.ts",
+      "expression": "assets/jokers-p07/f09-detail.webp"
+    },
+    {
+      "source": "src/game/portraits.ts",
+      "expression": "${import.meta.env.BASE_URL}assets/characters-p07/${id}.avatar.webp"
+    },
+    {
+      "source": "src/game/portraits.ts",
+      "expression": "${import.meta.env.BASE_URL}assets/characters-p07/${id}.selection.webp"
+    },
+    {
+      "source": "src/game/theme.ts",
+      "expression": "assets/p00/paper.svg"
+    },
+    {
+      "source": "src/game/theme.ts",
+      "expression": "assets/p00/card-back.svg"
+    },
+    {
+      "source": "src/game/theme.ts",
+      "expression": "assets/p00/frame-common.svg"
+    },
+    {
+      "source": "src/game/theme.ts",
+      "expression": "assets/p00/frame-uncommon.svg"
+    },
+    {
+      "source": "src/game/theme.ts",
+      "expression": "assets/p00/frame-rare.svg"
+    },
+    {
+      "source": "src/game/theme.ts",
+      "expression": "assets/p00/mark-joker.svg"
+    },
+    {
+      "source": "src/game/theme.ts",
+      "expression": "assets/p00/mark-plus.svg"
+    },
+    {
+      "source": "src/game/theme.ts",
+      "expression": "assets/p00/mark-times.svg"
+    }
+  ],
+  "staticRuntimePaths": [
+    "public/assets/audio/p06/recording.json",
+    "public/assets/jokers-p07/a03-detail.webp",
+    "public/assets/jokers-p07/a03.webp",
+    "public/assets/jokers-p07/a05-detail.webp",
+    "public/assets/jokers-p07/a05.webp",
+    "public/assets/jokers-p07/b02-detail.webp",
+    "public/assets/jokers-p07/b02.webp",
+    "public/assets/jokers-p07/b03-detail.webp",
+    "public/assets/jokers-p07/b03.webp",
+    "public/assets/jokers-p07/b04-detail.webp",
+    "public/assets/jokers-p07/b04.webp",
+    "public/assets/jokers-p07/c02-detail.webp",
+    "public/assets/jokers-p07/c02.webp",
+    "public/assets/jokers-p07/c04-detail.webp",
+    "public/assets/jokers-p07/c04.webp",
+    "public/assets/jokers-p07/c06-detail.webp",
+    "public/assets/jokers-p07/c06.webp",
+    "public/assets/jokers-p07/d01-detail.webp",
+    "public/assets/jokers-p07/d01.webp",
+    "public/assets/jokers-p07/d03-detail.webp",
+    "public/assets/jokers-p07/d03.webp",
+    "public/assets/jokers-p07/d05-detail.webp",
+    "public/assets/jokers-p07/d05.webp",
+    "public/assets/jokers-p07/d10-detail.webp",
+    "public/assets/jokers-p07/d10.webp",
+    "public/assets/jokers-p07/e01-detail.webp",
+    "public/assets/jokers-p07/e01.webp",
+    "public/assets/jokers-p07/e03-detail.webp",
+    "public/assets/jokers-p07/e03.webp",
+    "public/assets/jokers-p07/e05-detail.webp",
+    "public/assets/jokers-p07/e05.webp",
+    "public/assets/jokers-p07/e08-detail.webp",
+    "public/assets/jokers-p07/e08.webp",
+    "public/assets/jokers-p07/f02-detail.webp",
+    "public/assets/jokers-p07/f02.webp",
+    "public/assets/jokers-p07/f03-detail.webp",
+    "public/assets/jokers-p07/f03.webp",
+    "public/assets/jokers-p07/f09-detail.webp",
+    "public/assets/jokers-p07/f09.webp",
+    "public/assets/jokers-p07/huimaqiang-detail.webp",
+    "public/assets/jokers-p07/huimaqiang.webp",
+    "public/assets/jokers-p07/jiedongfeng-detail.webp",
+    "public/assets/jokers-p07/jiedongfeng.webp",
+    "public/assets/jokers-p07/mantangcai-detail.webp",
+    "public/assets/jokers-p07/mantangcai.webp",
+    "public/assets/jokers-p07/pengci-detail.webp",
+    "public/assets/jokers-p07/pengci.webp",
+    "public/assets/jokers-p07/tiesuanpan-detail.webp",
+    "public/assets/jokers-p07/tiesuanpan.webp",
+    "public/assets/p00/card-back.svg",
+    "public/assets/p00/frame-common.svg",
+    "public/assets/p00/frame-rare.svg",
+    "public/assets/p00/frame-uncommon.svg",
+    "public/assets/p00/mark-joker.svg",
+    "public/assets/p00/mark-plus.svg",
+    "public/assets/p00/mark-times.svg",
+    "public/assets/p00/paper.svg",
+    "public/assets/p03/stage-wide.webp"
+  ],
+  "parameterizedSourceReferences": [
+    {
+      "source": "src/game/characters.ts",
+      "expression": "${import.meta.env.BASE_URL}assets/characters-p07/${file}",
+      "matchingPaths": [
+        "public/assets/characters-p07/amo.avatar.webp",
+        "public/assets/characters-p07/amo.portrait.webp",
+        "public/assets/characters-p07/amo.selection.webp",
+        "public/assets/characters-p07/azao.avatar.webp",
+        "public/assets/characters-p07/azao.portrait.webp",
+        "public/assets/characters-p07/azao.selection.webp",
+        "public/assets/characters-p07/erxiang.avatar.webp",
+        "public/assets/characters-p07/erxiang.portrait.webp",
+        "public/assets/characters-p07/erxiang.selection.webp",
+        "public/assets/characters-p07/laohuan.avatar.webp",
+        "public/assets/characters-p07/laohuan.portrait.webp",
+        "public/assets/characters-p07/laohuan.selection.webp",
+        "public/assets/characters-p07/touye.avatar.webp",
+        "public/assets/characters-p07/touye.portrait.webp",
+        "public/assets/characters-p07/touye.selection.webp",
+        "public/assets/characters-p07/xiemu.avatar.webp",
+        "public/assets/characters-p07/xiemu.portrait.webp",
+        "public/assets/characters-p07/xiemu.selection.webp"
+      ],
+      "evidence": "filename-match-only"
+    },
+    {
+      "source": "src/game/portraits.ts",
+      "expression": "${import.meta.env.BASE_URL}assets/characters-p07/${id}.avatar.webp",
+      "matchingPaths": [
+        "public/assets/characters-p07/amo.avatar.webp",
+        "public/assets/characters-p07/azao.avatar.webp",
+        "public/assets/characters-p07/erxiang.avatar.webp",
+        "public/assets/characters-p07/laohuan.avatar.webp",
+        "public/assets/characters-p07/touye.avatar.webp",
+        "public/assets/characters-p07/xiemu.avatar.webp"
+      ],
+      "evidence": "filename-match-only"
+    },
+    {
+      "source": "src/game/portraits.ts",
+      "expression": "${import.meta.env.BASE_URL}assets/characters-p07/${id}.selection.webp",
+      "matchingPaths": [
+        "public/assets/characters-p07/amo.selection.webp",
+        "public/assets/characters-p07/azao.selection.webp",
+        "public/assets/characters-p07/erxiang.selection.webp",
+        "public/assets/characters-p07/laohuan.selection.webp",
+        "public/assets/characters-p07/touye.selection.webp",
+        "public/assets/characters-p07/xiemu.selection.webp"
+      ],
+      "evidence": "filename-match-only"
+    }
+  ],
+  "indirectRuntimePaths": [
+    {
+      "source": "public/assets/audio/p06/recording.json",
+      "field": "runtimePath",
+      "path": "public/assets/audio/p06/serenade-schubert-216755.mp3"
+    }
+  ],
+  "runtimeObservationStatus": "NOT_OBSERVED",
+  "runtimeCurrentlyLoaded": [],
+  "publicationAllowlist": [],
+  "limitations": [
+    "Static literals, imported JSON runtimePath and template filename matches are not whole-program dataflow or executed requests.",
+    "Manifest registration does not prove runtime use. Offline GLB/texture/sprite sources and the three P0 layers are retained independently of runtime use.",
+    "No new visual or rights approval. Decoded RGBA sizes are estimates, not measured GPU memory."
+  ],
+  "totals": {
+    "files": 151,
+    "bytes": 23219573,
+    "decodedRgbaBytes": 141264896,
+    "groups": {
+      "audio": {
+        "count": 2,
+        "bytes": 3490151,
+        "decodedRgbaBytes": 0
+      },
+      "characters-p07": {
+        "count": 18,
+        "bytes": 810824,
+        "decodedRgbaBytes": 14874624
+      },
+      "jokers-p07": {
+        "count": 48,
+        "bytes": 3399732,
+        "decodedRgbaBytes": 53207040
+      },
+      "models": {
+        "count": 40,
+        "bytes": 13185011,
+        "decodedRgbaBytes": 0
+      },
+      "p00": {
+        "count": 9,
+        "bytes": 23041,
+        "decodedRgbaBytes": 0
+      },
+      "p03": {
+        "count": 2,
+        "bytes": 132138,
+        "decodedRgbaBytes": 5308416
+      },
+      "renders": {
+        "count": 3,
+        "bytes": 1594106,
+        "decodedRgbaBytes": 24883200
+      },
+      "sprites": {
+        "count": 6,
+        "bytes": 432632,
+        "decodedRgbaBytes": 12582912
+      },
+      "textures": {
+        "count": 23,
+        "bytes": 151938,
+        "decodedRgbaBytes": 30408704
+      }
+    }
+  },
+  "assets": [
+    {
+      "path": "public/assets/audio/p06/recording.json",
+      "bytes": 2239,
+      "sha256": "dfb139a918cbdd3a2c2947fefd391e21979908e60a2330575661f6358b16958b",
+      "textNormalization": "LF",
+      "canonicalBytes": 2239,
+      "canonicalSha256": "dfb139a918cbdd3a2c2947fefd391e21979908e60a2330575661f6358b16958b"
+    },
+    {
+      "path": "public/assets/audio/p06/serenade-schubert-216755.mp3",
+      "bytes": 3487912,
+      "sha256": "e07b53322fd650fb5929215cef3b07b34977a2c486e140f8b71c5a23017daead"
+    },
+    {
+      "path": "public/assets/characters-p07/amo.avatar.webp",
+      "bytes": 12652,
+      "sha256": "c0d2fd29db1116951f0acbe0381fd7985e7aa2936bcd398b6236d501118e7be9",
+      "width": 256,
+      "height": 256,
+      "alpha": false,
+      "decodedRgbaBytes": 262144,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/amo.portrait.webp",
+      "bytes": 77082,
+      "sha256": "e40ab6bece1a537db49d92c2f2deb9f01c0e25f40fb5b4a13bae4d29ecfa23b4",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/amo.selection.webp",
+      "bytes": 20204,
+      "sha256": "069c6044df114e33bfcae3bd913d063f07705230217076d85f5673f7e3e1d9d4",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/azao.avatar.webp",
+      "bytes": 18410,
+      "sha256": "518a90da28c06313401ea72e48384f36e09860e293ecad8c37e079794929f4cf",
+      "width": 256,
+      "height": 256,
+      "alpha": false,
+      "decodedRgbaBytes": 262144,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/azao.portrait.webp",
+      "bytes": 99730,
+      "sha256": "9ea3a00e2aed90d7718b81241174dc2a4839e34f4ca793c6c3de7f591097aae9",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/azao.selection.webp",
+      "bytes": 25954,
+      "sha256": "2cb82b4bd9ea72911b671fe5d8991e6981414d867dd27ea75eae8333c6adb662",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/erxiang.avatar.webp",
+      "bytes": 15674,
+      "sha256": "053f5dd09e6786b679113a130a8a1a3fc5a77cd23786a821d796d9c19da698ca",
+      "width": 256,
+      "height": 256,
+      "alpha": false,
+      "decodedRgbaBytes": 262144,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/erxiang.portrait.webp",
+      "bytes": 100360,
+      "sha256": "e11162f6d7fe61252e75044d04bd503d8fc11083fa1c87d482c2581f139b9624",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/erxiang.selection.webp",
+      "bytes": 24704,
+      "sha256": "dc4b2c9c160183baf245b8fd31b21b83ef9fc08f929d56e15c4d85416ede16c4",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/laohuan.avatar.webp",
+      "bytes": 18520,
+      "sha256": "5e64913b8bc22179986c61ae1865f9ee85fd31879402b0df2893cfdcff35695b",
+      "width": 256,
+      "height": 256,
+      "alpha": false,
+      "decodedRgbaBytes": 262144,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/laohuan.portrait.webp",
+      "bytes": 107386,
+      "sha256": "226596012c713eebd8f913b724f0cd2a0affef42764dd004b38ed6e57bd38b2b",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/laohuan.selection.webp",
+      "bytes": 24896,
+      "sha256": "f8f5ee3e73e68d7861411b2f743cbd5678cc5e8dd56aae373704afd2ded135fb",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/touye.avatar.webp",
+      "bytes": 14978,
+      "sha256": "82162eb76626a6402fdee2ad9473814f501054e7cb49323562dff245b78d3507",
+      "width": 256,
+      "height": 256,
+      "alpha": false,
+      "decodedRgbaBytes": 262144,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/touye.portrait.webp",
+      "bytes": 92552,
+      "sha256": "1638e004e331497d1fc7fb8ed3f413c16f834598be56f5f8596491628f156d7a",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/touye.selection.webp",
+      "bytes": 22674,
+      "sha256": "8e3901b8ad35569b4ccff002e7a14bc08ccd0c135eeb8be5a042f77a893e0a15",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/xiemu.avatar.webp",
+      "bytes": 16052,
+      "sha256": "7d98072c1c02a3790f1ac2c41e38a52a843987426a1573ce6560028727407b40",
+      "width": 256,
+      "height": 256,
+      "alpha": false,
+      "decodedRgbaBytes": 262144,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/xiemu.portrait.webp",
+      "bytes": 94928,
+      "sha256": "091b8990d0dc5e7fb69139e20a5be96dd65f9f3ffd809d49466c6b49b6076eb9",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/characters-p07/xiemu.selection.webp",
+      "bytes": 24068,
+      "sha256": "e642c7dec217fd74bb8f9fb6bed97d2f8c21dbc313bdf2eeddcb99e55a7b48b5",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/a03-detail.webp",
+      "bytes": 109258,
+      "sha256": "6e911e319d216825c5623eba60bb33e865d6f128cc29c0a63adb89ded9079b40",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/a03.webp",
+      "bytes": 21946,
+      "sha256": "2c60e2177f7b3feb60c8d3eb4713d28ddf0f6992374019c1ce23e527fbc29c2f",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/a05-detail.webp",
+      "bytes": 101906,
+      "sha256": "3f623348f544d5f5e1b8123c0fc2c5545f0fc60e54acf24922bab42ff807e1cb",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/a05.webp",
+      "bytes": 22396,
+      "sha256": "36596a9fa7b54e3e4ad705a5690fbe9929f20eae323db52a71b2d99270eb5158",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/b02-detail.webp",
+      "bytes": 105946,
+      "sha256": "83a38cc8d847b54a0101b58ba8767ba50b423defb2cd641bbfbbc4d5e3175719",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/b02.webp",
+      "bytes": 20262,
+      "sha256": "01499193f64950f38f59ef26ec3692b598fe860a6115bde3204a6ae2fe951df5",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/b03-detail.webp",
+      "bytes": 124100,
+      "sha256": "5f477b6ba8db98c8cbc20c08d7f0842119b45cabfa9234fa6764220632b7bad3",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/b03.webp",
+      "bytes": 23466,
+      "sha256": "a805e29e24ffce035e6aae1770476fb51ef96e0491fa5269da5e0bcca6e38179",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/b04-detail.webp",
+      "bytes": 115284,
+      "sha256": "392a903bb9da871038c49634c9b3849afeab936ae7e11cf4134d3bbbe44996d5",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/b04.webp",
+      "bytes": 24276,
+      "sha256": "2dffdc6ee43afdbed7799a19490ad36e997001f55652e3ba1d7dea060e563ec7",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/c02-detail.webp",
+      "bytes": 110126,
+      "sha256": "76b23ed15f4d465c453a7981709956c699c255a3b9149ac408b6745a10cc90cc",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/c02.webp",
+      "bytes": 24364,
+      "sha256": "4ba1d564839049a99704fc150cbeac0d31771106ee8c904b203ec10c8627d821",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/c04-detail.webp",
+      "bytes": 122334,
+      "sha256": "e9d12220d4d9c4c5b2b7257ddb2159f153bbf8c09146453e271d69d4fba32820",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/c04.webp",
+      "bytes": 25884,
+      "sha256": "0c6ebaf15dcbac27f22441fe8645f17628658197db9a103bb3f4e1da3d78dc29",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/c06-detail.webp",
+      "bytes": 142670,
+      "sha256": "21ea21dd5bc7269f314d064ecb434c6b7f9a8bc8b7b2b31cbaf3425dbd4e6751",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/c06.webp",
+      "bytes": 29256,
+      "sha256": "2557fe8ead81d84865fd9f950d8695d4d3d1d72e3cfb13ccbff86db36cc841f8",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/d01-detail.webp",
+      "bytes": 111980,
+      "sha256": "d76b373c56bc27f1388f7d594fe962fdd0cf492bd1719516d3a259cc5306fd71",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/d01.webp",
+      "bytes": 23760,
+      "sha256": "a04dc5dc6668f86a5051cd0bce660e4dc47a563cd808374d725ddc22523864ed",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/d03-detail.webp",
+      "bytes": 114702,
+      "sha256": "9be33eac4bf7c1e879af472b9c0de4244bf5182f995306032df9721b7bce453a",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/d03.webp",
+      "bytes": 22968,
+      "sha256": "86cd92d1294ae76f4ff923be6274b6b027892814cbd665ef4bfabb7dc35c1dd4",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/d05-detail.webp",
+      "bytes": 101668,
+      "sha256": "0805f22c20d9abae186db0436ee178eaddd6b3320d3eda62c9984409d8d65741",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/d05.webp",
+      "bytes": 22814,
+      "sha256": "de352d6d2ec8c8833ba6f67e10f25b42e70f620970eab7b46333c924cf6dfbe6",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/d10-detail.webp",
+      "bytes": 118576,
+      "sha256": "0946727e20118dd4479ba7f13db81d8e90b7d9d8abcf81ddf1d226b34ad8f4a8",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/d10.webp",
+      "bytes": 23932,
+      "sha256": "aa3ee0fe3d1ff2c29b5da4f18307fb53f3a72a5ae0bb939de19bc06112c62e63",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/e01-detail.webp",
+      "bytes": 127516,
+      "sha256": "f003267422644261b05b4ee25a4b4228862784aaaff79d71998dbb87c93ad91c",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/e01.webp",
+      "bytes": 25522,
+      "sha256": "4655582c6543c46f7c868e0bc5af9583dd2b4c40cbfa5f4f382c32a8663b01c0",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/e03-detail.webp",
+      "bytes": 118766,
+      "sha256": "9aeb93f0a682684980656cb23f0748849db5cae53aa566edf804d47e28731570",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/e03.webp",
+      "bytes": 26072,
+      "sha256": "b18319574987921b7d3afb23ec9e89b73264bdc133463d18870b18a93abd4b0d",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/e05-detail.webp",
+      "bytes": 139420,
+      "sha256": "87094593b6bf2be005974ac823948283f418eea2600dde43e7a8ca5041a2df1b",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/e05.webp",
+      "bytes": 28306,
+      "sha256": "787e84f7f81e261266a70869d0fa60541473c61fd629592933cbf4abf9d73a19",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/e08-detail.webp",
+      "bytes": 142510,
+      "sha256": "4bda40b900abe3268ab988c87daef3339c5a5a3e76d07b663e4f8381bf2f50b9",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/e08.webp",
+      "bytes": 29304,
+      "sha256": "f2bdd416d667a99fd18a77fda80ce9faecec92944732ef92cea6dc688d2f7be4",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/f02-detail.webp",
+      "bytes": 112416,
+      "sha256": "cb1577d113dfd592f8bac0bb17ea525237a816689124bc9911d0886d1dcb7975",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/f02.webp",
+      "bytes": 22558,
+      "sha256": "6bee648adf56514da088cb338869a2e9f267f0f1dfcf3267ce94a604da27e060",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/f03-detail.webp",
+      "bytes": 129140,
+      "sha256": "980d33c9d7ed6fcc047d076e0203d0dd222d1b66874a4649967874d976496dad",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/f03.webp",
+      "bytes": 24462,
+      "sha256": "8875f5a853b18609d95e3fdfe8eb525c3d4591eb19b864d0372fcea393f5fbb3",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/f09-detail.webp",
+      "bytes": 114780,
+      "sha256": "44fb550763f9d6c81aa09a5a641dde6c78dcbcc6d9d1a84367552b9f739f9380",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/f09.webp",
+      "bytes": 24076,
+      "sha256": "62fc10f52ee41df43814b5b99f97e63a1093d02b84af4956da50a5b5dadbd38e",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/huimaqiang-detail.webp",
+      "bytes": 119756,
+      "sha256": "0a8a31d321921f4b63e9a5ab40c7a380ff371983fc767511dbeac8bd91c057f0",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/huimaqiang.webp",
+      "bytes": 23712,
+      "sha256": "41a75934fd77b26bd94e3d09d6683453bec7c836fa0162463cd06b48e9c875a8",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/jiedongfeng-detail.webp",
+      "bytes": 121636,
+      "sha256": "247d556f1182c8c8b9be5d0989642fa54655ab47292014425c804bd05426e573",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/jiedongfeng.webp",
+      "bytes": 23362,
+      "sha256": "be042740a519cdbb9c7356044b207620ffafac8c22acd3dcc28b113799612310",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/mantangcai-detail.webp",
+      "bytes": 90684,
+      "sha256": "c3d3b504bae404e96871a31652690f73c1b0f95c0c3a6dc2ba98875cdd2d35cd",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/mantangcai.webp",
+      "bytes": 21006,
+      "sha256": "b345310a8a2b505302485e5ab34492c341a533abf3d7e098b1ebb5121569479c",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/pengci-detail.webp",
+      "bytes": 111488,
+      "sha256": "a4e53a9c5eefb03b639da4fee1c3ef3e3180728982a66035181ec524bb2ae0ec",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/pengci.webp",
+      "bytes": 22448,
+      "sha256": "fb4d7953cc9303026be8b3e9b133ecb8ac1cbada7ec9a2b8ae59460b4d30629b",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/tiesuanpan-detail.webp",
+      "bytes": 112102,
+      "sha256": "8a10a449b9f974ea1bb5b4b7a513a085217e6d8c14ae929906f9a5ec85990a06",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/jokers-p07/tiesuanpan.webp",
+      "bytes": 24816,
+      "sha256": "b1d29908236028eead4d54379466cafb65b2677005e338ce8a5911d525d59d1f",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/models/asset-pack-v1.json",
+      "bytes": 34619,
+      "sha256": "59bf97eb6c1c722b8f1278f3aec78d2b808170c2b66e2760f8d759f442758c95",
+      "textNormalization": "LF",
+      "canonicalBytes": 34619,
+      "canonicalSha256": "59bf97eb6c1c722b8f1278f3aec78d2b808170c2b66e2760f8d759f442758c95"
+    },
+    {
+      "path": "public/assets/models/card-animation-templates.glb",
+      "bytes": 1201644,
+      "sha256": "18b9828e1de93ca02e261dbedb18c25b4c63982c05cd391c3cea364c2443a305",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 11696,
+      "clips": [
+        "bend",
+        "bounce",
+        "burn",
+        "draw",
+        "flip",
+        "gold-dust",
+        "ink",
+        "knock-away",
+        "spin",
+        "split",
+        "throw"
+      ],
+      "embeddedTextures": [
+        {
+          "name": "paper-normal",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 16418
+        },
+        {
+          "name": "card-front",
+          "width": 1024,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 21298
+        },
+        {
+          "name": "paper-roughness",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 37743
+        },
+        {
+          "name": "card-back",
+          "width": 1024,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 18370
+        }
+      ],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/joker-frame-common.glb",
+      "bytes": 393432,
+      "sha256": "a30124fd1cf019543ab7d765a12c4fbf010128d4fdf375b8c2085f565fe1cbd1",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 8416,
+      "clips": [],
+      "embeddedTextures": [
+        {
+          "name": "paper-normal",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 16418
+        },
+        {
+          "name": "card-back",
+          "width": 1024,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 18370
+        },
+        {
+          "name": "paper-roughness",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 37743
+        },
+        {
+          "name": "joker-artwork",
+          "width": 512,
+          "height": 512,
+          "alpha": true,
+          "bytes": 7088
+        }
+      ],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/joker-frame-epic.glb",
+      "bytes": 685884,
+      "sha256": "4bc2a78a71846196e2ae7f31cf7feec57c087954dbdb0ae263d916e4b6d37780",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 13564,
+      "clips": [],
+      "embeddedTextures": [
+        {
+          "name": "paper-normal",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 16418
+        },
+        {
+          "name": "card-back",
+          "width": 1024,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 18370
+        },
+        {
+          "name": "paper-roughness",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 37743
+        },
+        {
+          "name": "joker-artwork",
+          "width": 512,
+          "height": 512,
+          "alpha": true,
+          "bytes": 7088
+        }
+      ],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/joker-frame-legendary.glb",
+      "bytes": 685888,
+      "sha256": "0b73aacdc51dd3f3ff8b035e44770360faaad73d963445b71aa627c32e34c5f5",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 13564,
+      "clips": [],
+      "embeddedTextures": [
+        {
+          "name": "paper-normal",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 16418
+        },
+        {
+          "name": "card-back",
+          "width": 1024,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 18370
+        },
+        {
+          "name": "paper-roughness",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 37743
+        },
+        {
+          "name": "joker-artwork",
+          "width": 512,
+          "height": 512,
+          "alpha": true,
+          "bytes": 7088
+        }
+      ],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/joker-frame-rare.glb",
+      "bytes": 537488,
+      "sha256": "13a1cda2aa057fce656452cfc6ba2939df09ffd30c2135bc618b36180cd1d9df",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 11872,
+      "clips": [],
+      "embeddedTextures": [
+        {
+          "name": "paper-normal",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 16418
+        },
+        {
+          "name": "card-back",
+          "width": 1024,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 18370
+        },
+        {
+          "name": "paper-roughness",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 37743
+        },
+        {
+          "name": "joker-artwork",
+          "width": 512,
+          "height": 512,
+          "alpha": true,
+          "bytes": 7088
+        }
+      ],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/joker-frame-special.glb",
+      "bytes": 905892,
+      "sha256": "ed50cc3ab7bce72a5c7c867562ee1a140c94d8bc66bda59784e0f416a271a44d",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 14588,
+      "clips": [],
+      "embeddedTextures": [
+        {
+          "name": "paper-normal",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 16418
+        },
+        {
+          "name": "card-back",
+          "width": 1024,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 18370
+        },
+        {
+          "name": "paper-roughness",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 37743
+        },
+        {
+          "name": "holographic-emissive",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 11633
+        },
+        {
+          "name": "holographic-normal",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 5526
+        },
+        {
+          "name": "holographic-basecolor",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 6190
+        },
+        {
+          "name": "holographic-metallic-holographic-roughness",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 102622
+        },
+        {
+          "name": "joker-artwork",
+          "width": 512,
+          "height": 512,
+          "alpha": true,
+          "bytes": 7088
+        }
+      ],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/material-kit.glb",
+      "bytes": 595996,
+      "sha256": "c7b22d9eef67adebb3d7d546757fc257a69773c56b9a4c6faa20784b0bdabe26",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 7812,
+      "clips": [],
+      "embeddedTextures": [
+        {
+          "name": "holographic-emissive",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 11633
+        },
+        {
+          "name": "holographic-normal",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 5526
+        },
+        {
+          "name": "holographic-basecolor",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 6190
+        },
+        {
+          "name": "holographic-metallic-holographic-roughness",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 102622
+        },
+        {
+          "name": "glass-emissive",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 9721
+        },
+        {
+          "name": "glass-basecolor",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 6354
+        },
+        {
+          "name": "glass-metallic-glass-roughness",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 81777
+        },
+        {
+          "name": "gilded-emissive",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 10131
+        },
+        {
+          "name": "gilded-basecolor",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 6465
+        },
+        {
+          "name": "gilded-metallic-gilded-roughness",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 99315
+        }
+      ],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/poker-card-master.glb",
+      "bytes": 1051028,
+      "sha256": "452654307f3a5720695a916ef452d785d5fcd4124c66d6a1bd4f7f02ec388421",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 9536,
+      "clips": [],
+      "embeddedTextures": [
+        {
+          "name": "paper-normal",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 16418
+        },
+        {
+          "name": "card-front",
+          "width": 1024,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 21298
+        },
+        {
+          "name": "paper-roughness",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "bytes": 37743
+        },
+        {
+          "name": "card-back",
+          "width": 1024,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 18370
+        }
+      ],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/prop-bell.glb",
+      "bytes": 124228,
+      "sha256": "744e763ee06c28fdee53ffb5f268d89bae5acaff7bc50ea48a869f635a8d6558",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 4320,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/prop-coin.glb",
+      "bytes": 134420,
+      "sha256": "25c97ba5ac7a094ac7d234b16a932ecf87a32a722a6e76388beccae4d6201c69",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 4352,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/prop-dice.glb",
+      "bytes": 91160,
+      "sha256": "321ca54bc533c2d02a7c9e0dac954f6ba2d1cc08239f45ef3d19f68b59544f1d",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 2708,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/prop-fan.glb",
+      "bytes": 105360,
+      "sha256": "928284b108d92fbb6bd59eb6c80672de92a7cbd763160095e85aa5f91992ecea",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 2836,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/prop-gold-ingot.glb",
+      "bytes": 75756,
+      "sha256": "4da4fc7c903de86d2e695dbe588488022f9681d4f059702c302cf5fe6d96b1e5",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 2480,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/prop-jade-plaque.glb",
+      "bytes": 78608,
+      "sha256": "5814de59330573f329e3ff2392f403e1a699d3b3610854ebd0923e3ec5e72932",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 2268,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/prop-opera-mask.glb",
+      "bytes": 107972,
+      "sha256": "4a7f14b40bdda68f615f84cebd43275716a258d1b7c7c6f70fa8a2c9573e67b2",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 3568,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/prop-seal.glb",
+      "bytes": 109300,
+      "sha256": "e3af10dd77988e09838c73cd4d7b0f7475682c6fce5c80580a4c50a50b868ed8",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 2644,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/prop-small-gong.glb",
+      "bytes": 95628,
+      "sha256": "7cd44d0b123759c729c4efee50c627929cb155b54d9486d7cf2721782bd801c8",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 3052,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/prop-talisman.glb",
+      "bytes": 57720,
+      "sha256": "6599e6ed17a658fd9c35b83d194ead9c6c840815aa82e1d359fcb6db50dae920",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 1532,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/prop-wine-bowl.glb",
+      "bytes": 136372,
+      "sha256": "4927424a001be9ca5ad01391f35cd260f64df2bcba209d8abc232795e6dbda4f",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 4476,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/stage-censer.glb",
+      "bytes": 140252,
+      "sha256": "bb38d1e6d29a3971bff4670e40d3617d8069d21c4afa7db7f7dc15c6fd052e9d",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 4340,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/stage-cloud-plinth.glb",
+      "bytes": 169988,
+      "sha256": "7f462079ca2b8d9db4354321de3c4c927f2109debfdb82ef0f45d02b85819020",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 5496,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/stage-drape.glb",
+      "bytes": 245860,
+      "sha256": "ea2f4dfb4f343087f31d923199a5341c82123d07b8410f891a26b4d5574e97be",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 5764,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/stage-drum.glb",
+      "bytes": 253668,
+      "sha256": "e5bd0b4750602b371e4d0414dfb240ad750221d4b4d6c88b01a786fcd7bb393d",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 6800,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/stage-gong.glb",
+      "bytes": 179592,
+      "sha256": "796592af598b727be81d6f33f4311ddce8cf86594d50b61549a2000efd2b75e7",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 4024,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/stage-lantern.glb",
+      "bytes": 248604,
+      "sha256": "18a0502871162be437b29cc4f034760aeb20da7fe10f62725ef0c6c40fdcbb09",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 8360,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/stage-neon-arch.glb",
+      "bytes": 508444,
+      "sha256": "6a973b6c2f40fb2e94ea116126577d8e001a240dcd57a75bd19ddfc17817c6e7",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 13088,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/stage-screen.glb",
+      "bytes": 750224,
+      "sha256": "7d82b3cb3f213273e1a712459bda26e51546e06c6d3af22baa09ac86d82859df",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 12528,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/stage-stage.glb",
+      "bytes": 643836,
+      "sha256": "c34fa7106c2d7d250a66534b191e1f032a631c9de88f5e632daa68c475d1f398",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 14624,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/stage-table-chairs.glb",
+      "bytes": 411500,
+      "sha256": "482d34fd491eeabe7a0f7b31a35f5194da757e267a8b2af2f31b030e27e0069a",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 7336,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/stage-wine-jar.glb",
+      "bytes": 182520,
+      "sha256": "12950b303fae27da9d14f66d9dbb330b6f4000f6199c8e3614a24889d4fde491",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 5816,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/stage-wood-arch.glb",
+      "bytes": 466076,
+      "sha256": "9d084e956920021c76080d3910fbc2ef89cea9e905b79deb09b9f328e3471d99",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 11712,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/word-critical.glb",
+      "bytes": 212736,
+      "sha256": "bd47f49a09da94070d38566d4fb936a17b37b71e02660f92b6c3ac3555edddf8",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 6266,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/word-double.glb",
+      "bytes": 295408,
+      "sha256": "49dde0961c9c10c113c9792f85901d1b4f566651f32be9ee0cf8b582caa67854",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 8738,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/word-east-wind.glb",
+      "bytes": 254756,
+      "sha256": "b7e30fcea1f9ff677e766a6eedac2841752b174697439d58d1a1b19b4d93859b",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 7556,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/word-full-house.glb",
+      "bytes": 387372,
+      "sha256": "8b145dc88eed1c3988bc10fb95b5340c99450a00ca556f33ed97b7293352eb32",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 11472,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/word-good-fortune.glb",
+      "bytes": 127336,
+      "sha256": "bea5a1b60c4291ec249d484aafdc54d17584c37b3d3675e05383ee3af7353c39",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 3746,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/word-out-of-control.glb",
+      "bytes": 346776,
+      "sha256": "2ff8a29b559819c2287f4607df36e78af0093cfe5c21ee5a5562f0a963c8c364",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 10292,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/word-times-2.glb",
+      "bytes": 88416,
+      "sha256": "93824b94039fbe83b06cb94c1848537f89a3957f859bcaaa606b1108eadd8fb6",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 2580,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/models/word-times-4.glb",
+      "bytes": 63252,
+      "sha256": "a06b4097b308be8049f819e9741d9be3fbe58ba4b95c52798b8f1f18a4a42eaa",
+      "width": null,
+      "height": null,
+      "alpha": null,
+      "triangles": 1840,
+      "clips": [],
+      "embeddedTextures": [],
+      "materialAlphaModes": [
+        "OPAQUE"
+      ],
+      "khronosErrors": 0,
+      "khronosWarnings": 0
+    },
+    {
+      "path": "public/assets/p00/card-back.svg",
+      "bytes": 4120,
+      "sha256": "b84113356c65b3e528c6b52b99efa50747d0296a997f7b687fe31dda5da9e5b7"
+    },
+    {
+      "path": "public/assets/p00/frame-common.svg",
+      "bytes": 1135,
+      "sha256": "a7108b5487a04115a34d23333554ee17cc29e9680c718ddefcfb7cf313a8d80b"
+    },
+    {
+      "path": "public/assets/p00/frame-rare.svg",
+      "bytes": 2008,
+      "sha256": "d17345c30a2a0622f9ae4463c3af5c4d2f6e48ceaf2d1b26d66d7efa73994548"
+    },
+    {
+      "path": "public/assets/p00/frame-uncommon.svg",
+      "bytes": 1596,
+      "sha256": "5b9160a14f8bb626f774188c2fd25a78f09459333e4b6940718a5552fc58b178"
+    },
+    {
+      "path": "public/assets/p00/manifest.json",
+      "bytes": 9895,
+      "sha256": "ddded39f9081cc74fad842bb16b19d36e5cc8ed34686428171579c91beae427b",
+      "textNormalization": "LF",
+      "canonicalBytes": 9895,
+      "canonicalSha256": "ddded39f9081cc74fad842bb16b19d36e5cc8ed34686428171579c91beae427b"
+    },
+    {
+      "path": "public/assets/p00/mark-joker.svg",
+      "bytes": 1197,
+      "sha256": "db1f865952c770e9d14a5fc157b0fe945844bb57ada0096b36f56d9d0ce6d1b0"
+    },
+    {
+      "path": "public/assets/p00/mark-plus.svg",
+      "bytes": 1034,
+      "sha256": "bffd262120c60902b380682866947a54978e82b7785d9b1328685adbc3c02977"
+    },
+    {
+      "path": "public/assets/p00/mark-times.svg",
+      "bytes": 1071,
+      "sha256": "9db59de4d96c8517969a220da5df77318f3b45efad07bc3d2c9767ace6684be1"
+    },
+    {
+      "path": "public/assets/p00/paper.svg",
+      "bytes": 985,
+      "sha256": "3b0aea1ddf1b8fbc8c4f25b5a4b0a265eda1d7f9c766da0f0f0c9a4f0534d949"
+    },
+    {
+      "path": "public/assets/p03/manifest.json",
+      "bytes": 652,
+      "sha256": "a24c20e4c8c359fcac79dee847e1ca1649631bd11238f7917d27214318c73cbc",
+      "textNormalization": "LF",
+      "canonicalBytes": 652,
+      "canonicalSha256": "a24c20e4c8c359fcac79dee847e1ca1649631bd11238f7917d27214318c73cbc"
+    },
+    {
+      "path": "public/assets/p03/stage-wide.webp",
+      "bytes": 131486,
+      "sha256": "06689cb284552d2ee38bc8da7bfa208a4c0568f628267ece853d09dab2401d6c",
+      "width": 1536,
+      "height": 864,
+      "alpha": false,
+      "decodedRgbaBytes": 5308416,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/renders/p0/background-far.webp",
+      "bytes": 875866,
+      "sha256": "fdc2d1e25ade0546a2e083e3109c0454e0dcdb37199d3fe41a92785ae898a789",
+      "width": 1920,
+      "height": 1080,
+      "alpha": false,
+      "decodedRgbaBytes": 8294400,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/renders/p0/background-mid.webp",
+      "bytes": 417880,
+      "sha256": "20ded73cf4b953b0050eaae184a18930b29be3b036e5b1ffbd15d59933962313",
+      "width": 1920,
+      "height": 1080,
+      "alpha": true,
+      "decodedRgbaBytes": 8294400,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/renders/p0/background-near.webp",
+      "bytes": 300360,
+      "sha256": "e2acb940327ab045546a20ed6984199e2164ad11a59de2e3c64b6b949841f440",
+      "width": 1920,
+      "height": 1080,
+      "alpha": true,
+      "decodedRgbaBytes": 8294400,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/sprites/p0/hit-cinnabar.json",
+      "bytes": 5819,
+      "sha256": "0a1b09cd07b96ad0a7dd163ddf47750bfd0ca6d1a1f0719fa51be138a986417e",
+      "textNormalization": "LF",
+      "canonicalBytes": 5819,
+      "canonicalSha256": "0a1b09cd07b96ad0a7dd163ddf47750bfd0ca6d1a1f0719fa51be138a986417e",
+      "frameCount": 16,
+      "frameRate": 30,
+      "alphaConvention": "straight"
+    },
+    {
+      "path": "public/assets/sprites/p0/hit-cinnabar.png",
+      "bytes": 179868,
+      "sha256": "ba82aa3215bcfd2bdb24cba1c2ed83ba875bad76851d177cf22420dfc08aad03",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "decodedRgbaBytes": 4194304,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/sprites/p0/play-ruyi.json",
+      "bytes": 5768,
+      "sha256": "1414da44a587719e2fa61d58ec81a8cbf5b9100038fbde47e530c2095ee2b488",
+      "textNormalization": "LF",
+      "canonicalBytes": 5768,
+      "canonicalSha256": "1414da44a587719e2fa61d58ec81a8cbf5b9100038fbde47e530c2095ee2b488",
+      "frameCount": 16,
+      "frameRate": 30,
+      "alphaConvention": "straight"
+    },
+    {
+      "path": "public/assets/sprites/p0/play-ruyi.png",
+      "bytes": 81080,
+      "sha256": "2f55fd1dc93a9d7065ce35be8d4c18f50ad0632bf09a8a911736e83b6c625e12",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "decodedRgbaBytes": 4194304,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/sprites/p0/score-gold.json",
+      "bytes": 5785,
+      "sha256": "20f625bb23e5b90da1736370525c623be11055b6cec3878f26b052d23c8348bd",
+      "textNormalization": "LF",
+      "canonicalBytes": 5785,
+      "canonicalSha256": "20f625bb23e5b90da1736370525c623be11055b6cec3878f26b052d23c8348bd",
+      "frameCount": 16,
+      "frameRate": 30,
+      "alphaConvention": "straight"
+    },
+    {
+      "path": "public/assets/sprites/p0/score-gold.png",
+      "bytes": 154312,
+      "sha256": "e6a74d76c326303c01cee34bf003258e37502543421d1d5b26a153bbd03016fd",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "decodedRgbaBytes": 4194304,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/card-back.png",
+      "bytes": 18370,
+      "sha256": "0e7f58f9f1f2722ad9153f3e861aae00e1e6991f46557b6f93da0599c3ed9f0c",
+      "width": 1024,
+      "height": 1024,
+      "alpha": false,
+      "decodedRgbaBytes": 4194304,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/card-front.png",
+      "bytes": 21298,
+      "sha256": "29d77c665bd9d710d8e8e2366ae2c8d1b81724af484f018e0ac036aa345fdbaf",
+      "width": 1024,
+      "height": 1024,
+      "alpha": false,
+      "decodedRgbaBytes": 4194304,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/gilded-basecolor.png",
+      "bytes": 6465,
+      "sha256": "33cf799f31010e45878816aa68b87ca9d311e160c1c3f66aa4e105d25a77f323",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/gilded-emissive.png",
+      "bytes": 10131,
+      "sha256": "a8d3224fa1ae2a323b66c6718280dada45ba743838243c27744a2efbd504bffe",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/gilded-mask.png",
+      "bytes": 2115,
+      "sha256": "53de5f13488511c972ab7631898988a4047d534fc8dc3e7ab5902be2ce302879",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/gilded-metallic.png",
+      "bytes": 919,
+      "sha256": "bcd735b2fd94028e2f7b9109c5d6a2180c7128ecaf1a8ccf2e0b08788fda9493",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/gilded-normal.png",
+      "bytes": 5526,
+      "sha256": "234132957eaa4b68b6592df17839b691dc56bc3655f5d665281d6ed86de358fe",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/gilded-roughness.png",
+      "bytes": 2776,
+      "sha256": "19ba0b6565d06946c18436b77e42ef15bd7bb334e6feafb5b79cf5755c412123",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/glass-basecolor.png",
+      "bytes": 6354,
+      "sha256": "fff1222ea60fb81d157b5918f221070b78afafe376e9a93adf19687c3f59d079",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/glass-emissive.png",
+      "bytes": 9721,
+      "sha256": "7647320d84591b109644912f6e1d03760d6e97f1a24683d95b2f3e96e20ce0c7",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/glass-mask.png",
+      "bytes": 2115,
+      "sha256": "53de5f13488511c972ab7631898988a4047d534fc8dc3e7ab5902be2ce302879",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/glass-metallic.png",
+      "bytes": 334,
+      "sha256": "f5df0628643ba99754cee39c30291c6fca5a9fe242838fbbb57dc7926aec76de",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/glass-normal.png",
+      "bytes": 5526,
+      "sha256": "234132957eaa4b68b6592df17839b691dc56bc3655f5d665281d6ed86de358fe",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/glass-roughness.png",
+      "bytes": 1930,
+      "sha256": "98e521d56e5f01e08aac5441fa73cbe73c0ffd87067350109dc68a09a9a1f0c2",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/holographic-basecolor.png",
+      "bytes": 6190,
+      "sha256": "ea5eca2d5e0d9bba059a58d1cb6215f4a8773f4f17a513622f2e9ae78ea6c155",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/holographic-emissive.png",
+      "bytes": 11633,
+      "sha256": "c6038d452a892c460b2c446fb06a5857ba14cc9fd94911cd49630879181de380",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/holographic-mask.png",
+      "bytes": 2115,
+      "sha256": "53de5f13488511c972ab7631898988a4047d534fc8dc3e7ab5902be2ce302879",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/holographic-metallic.png",
+      "bytes": 920,
+      "sha256": "554d0c8561105f555fb13a5970a5c3b806187bdf6b7df4e67184aba2a67db29e",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/holographic-normal.png",
+      "bytes": 5526,
+      "sha256": "234132957eaa4b68b6592df17839b691dc56bc3655f5d665281d6ed86de358fe",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/holographic-roughness.png",
+      "bytes": 1986,
+      "sha256": "d01a105c543e1bec8321eb422f1177d6bf540a46f6e78e9c3a1694109181466e",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/joker-artwork.png",
+      "bytes": 7088,
+      "sha256": "4117bc427c3baabb31e4a55a16af90491c2c97fcb56d016a2f52e098efe4eccf",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/paper-normal.png",
+      "bytes": 16418,
+      "sha256": "326fe0c6fa2c44aea33015b5ebbbc715060146df99f89b03e468bd93a133c3fe",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    },
+    {
+      "path": "public/assets/textures/p0/paper-roughness.png",
+      "bytes": 6482,
+      "sha256": "e1b56ea7e352886e2478b9dd118de0ceeb57ca12a046154066d43fefefffecc5",
+      "width": 512,
+      "height": 512,
+      "alpha": false,
+      "decodedRgbaBytes": 1048576,
+      "format": "png"
+    }
+  ]
+}

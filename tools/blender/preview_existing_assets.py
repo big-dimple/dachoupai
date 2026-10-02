@@ -17,6 +17,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--out', type=Path, required=True)
 parser.add_argument('--only', default='')
 parser.add_argument('--oblique', action='store_true', help='Oblique review angle for bend/edge inspection')
+parser.add_argument('--denoise', action='store_true', help='Requires a Blender build with Cycles denoising support')
 args = parser.parse_args(sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else [])
 out = args.out.resolve()
 if out == ROOT / 'public' or ROOT / 'public' in out.parents:
@@ -29,7 +30,9 @@ def setup(objects, card=False):
     scene = bpy.context.scene
     scene.render.engine = 'CYCLES'
     scene.cycles.samples = 8
-    scene.cycles.use_denoising = True
+    scene.cycles.device = 'CPU'
+    scene.cycles.seed = 0
+    scene.cycles.use_denoising = args.denoise
     scene.render.resolution_x = scene.render.resolution_y = 320
     scene.render.resolution_percentage = 100
     scene.render.image_settings.file_format = 'PNG'
@@ -107,4 +110,5 @@ for source in sorted((ROOT / 'public/assets/models').glob('*.glb')):
                         'sampleFrames': [0, 6, 12, 18, 24], 'renders': rendered})
     print('A00_RENDERED', source.name, flush=True)
     (out / 'render-log.json').write_text(json.dumps({'blender': bpy.app.version_string, 'engine': 'CYCLES',
+        'device': 'CPU', 'seed': 0, 'denoising': args.denoise,
         'samples': 8, 'size': [320, 320], 'records': records}, indent=2) + '\n', encoding='utf8')

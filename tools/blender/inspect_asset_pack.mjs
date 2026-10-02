@@ -1,5 +1,6 @@
 /** Read-only by default; --optimize is the explicit legacy asset-production mode.
- * build_asset_pack.py is the consumer of --optimize (writes GLBs/manifest/logs).
+ * This mode writes GLBs/manifest/logs and is never invoked by the Python builder.
+ * --write-inventory refreshes only the separate current inventory.
  * Default verification shares verify_assets.mjs and never repairs inputs.
  */
 import fs from 'node:fs/promises';
@@ -13,13 +14,17 @@ import validator from 'gltf-validator';
 import sharp from 'sharp';
 import mikktspace from 'mikktspace';
 
-import { runAssetVerificationCLI } from './verify_assets.mjs';
+import { runAssetVerificationCLI, filesIn, p0PublicationErrors, packManifestErrors } from './verify_assets.mjs';
 
 async function optimizePack() {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
   const assetsRoot = path.join(root, 'public/assets');
   const manifestPath = path.join(assetsRoot, 'models/asset-pack-v1.json');
   const manifest = JSON.parse(await fs.readFile(manifestPath, 'utf8'));
+  // Reject a stale producer manifest or public review files before the first write.
+  const actual = (await filesIn(assetsRoot)).map(file => path.relative(root, file).replaceAll('\\', '/'));
+  const errors = [...p0PublicationErrors(actual), ...await packManifestErrors(root, actual, { checkBytes: false })];
+  if (errors.length) throw new Error(errors.join('\n'));
   const io = new NodeIO().registerExtensions(ALL_EXTENSIONS);
   const temp = path.join(root, 'shots/p0-build');
   await fs.mkdir(temp, { recursive: true });
