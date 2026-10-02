@@ -18,10 +18,10 @@ function send(state:R2RunState,action:Action):R2RunState {
   assertRunInvariants(result.state);return result.state;
 }
 function enter(state=start(),ids:readonly string[]=K_HAND,joker?:'pengci'|'d01'):R2RunState {
+  if(joker)state.jokers=[{instanceId:`owned/${joker}`,definitionId:joker,paidPrice:r2Price(joker),growth:{}}];
   const table=send(send(state,{type:'LeaveShop'}),{type:'EnterStage'});
   // An invariant-valid card/equipment checkpoint, not a shop availability or balance claim.
   table.handOrder=[...ids];table.drawPile=table.deckInstances.filter(card=>!ids.includes(card.id)).map(card=>card.id);
-  if(joker)table.jokers=[{instanceId:`owned/${joker}`,definitionId:joker,paidPrice:r2Price(joker),growth:{}}];
   assertRunInvariants(table);return table;
 }
 function restore(state:R2RunState):R2RunState {
@@ -48,7 +48,7 @@ describe('P02 starting profile: independent D14 goldens through public commands'
     expect(run.handLevels['high-card']).toBe(3);
     for(const type of R2_HAND_TYPES.filter(type=>type!=='high-card'))expect(run.handLevels[type]??1).toBe(1);
     expect(Object.hasOwn(run.handLevels,'high-card')).toBe(true);
-    expect(run.contentVersion).toBe('quality-r2-content-v7');
+    expect(run.contentVersion).toBe('quality-r2-content-v8');
     expect(run.contentHash).not.toBe('json-fnv-v1:a1f6f62ddd627819');
   });
 

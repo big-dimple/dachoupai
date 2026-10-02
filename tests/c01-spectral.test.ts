@@ -17,8 +17,10 @@ const command=(state:R2RunState,action:Action):Command=>({runId:state.runId,comm
 function send(state:R2RunState,action:Action):R2RunState {
   const result=applyCommand(state,command(state,action));if(!result.ok)throw Error(result.code);return result.state;
 }
-function fixture(id:SpectralId,phase:Phase='shop'):R2RunState {
+function fixture(id:SpectralId,phase:Phase='shop',jokers:readonly R2JokerInstance[]=[]):R2RunState {
   let state=createRun({seed:'c01-spectral-goldens',runId:`c01-spectral/${id}/${phase}`,characterId:'amo',rulesVersion:'r2'});
+  // Explicit equipment is owned before entry, so the stage records its immutable identity set.
+  state.jokers=structuredClone([...jokers]);
   if(phase==='await-input')state=send(send(state,{type:'LeaveShop'}),{type:'EnterStage'});
   // These are explicit domain fixtures, not proof of natural tool acquisition or legacy migration.
   // Attach inventory only after normal phase entry, before adding any not-yet-supported specials.
@@ -75,7 +77,7 @@ function prepared(id:SpectralId):{state:R2RunState;action:Use} {
 
 describe('C01 eight spectral cost/benefit command goldens',()=>{
   it.each(['shop','await-input'] as const)('S01 sacrifices only its donor and draws two independent enhancements in %s without a sale or discard',phase=>{
-    const state=fixture('S01',phase),cards=knownCards(state),donor=cards[0],recipients=cards.slice(1,3);recipients[0].edition='foil';state.jokers=[watcher()];
+    const state=fixture('S01',phase,[watcher()]),cards=knownCards(state),donor=cards[0],recipients=cards.slice(1,3);recipients[0].edition='foil';
     const before=structuredClone(state),rng=SeededRng.restore(state.rng.rule),expected=recipients.map(()=>SEVEN_ENHANCEMENTS[rng.integer(0,6)]);
     const next=applied(state,use({sacrificeId:donor.id,targetIds:recipients.map(card=>card.id)}));
     expect(next.destroyedIds).toEqual([donor.id]);expect(next.deckInstances.length-next.destroyedIds.length).toBe(51);
@@ -105,7 +107,7 @@ describe('C01 eight spectral cost/benefit command goldens',()=>{
     expect(next.rng.rule).toEqual(rng.snapshot());noUnexpectedRng(next,before,'rule');expect(next.handOrder).toEqual(before.handOrder);expect(next.stage).toEqual(before.stage);
   });
   it.each(['shop','await-input'] as const)('S02 preserves a Joker paid price and growth while randomizing its ordinary edition in %s',phase=>{
-    const state=fixture('S02',phase);state.jokers=[{instanceId:'fixture/b03',definitionId:'b03',paidPrice:11,growth:{multiplier:{n:'3',d:'2'}},edition:'none'},watcher()];
+    const state=fixture('S02',phase,[{instanceId:'fixture/b03',definitionId:'b03',paidPrice:11,growth:{multiplier:{n:'3',d:'2'}},edition:'none'},watcher()]);
     const before=structuredClone(state),rng=SeededRng.restore(state.rng.rule),edition=EDITION_TEN[rng.integer(0,9)],next=applied(state,use({targetKind:'joker',targetIds:['fixture/b03']}));
     expect(next.jokers).toEqual([{...before.jokers[0],edition},before.jokers[1]]);expect(next.gold).toBe(15);expect(next.rng.rule).toEqual(rng.snapshot());noUnexpectedRng(next,before,'rule');
   });
@@ -200,7 +202,7 @@ describe('C01 eight spectral cost/benefit command goldens',()=>{
   it('S07 rejects an already-polychrome target, self sacrifice and in-stage use without refunds or sale growth',()=>{
     let preparedUse=prepared('S07');preparedUse.state.jokers[1].edition='polychrome';rejected(preparedUse.state,preparedUse.action);
     preparedUse=prepared('S07');rejected(preparedUse.state,use({sacrificeId:'fixture/donor',targetIds:['fixture/donor']}));
-    const state=fixture('S07','await-input');state.jokers=prepared('S07').state.jokers;rejected(state,use({sacrificeId:'fixture/donor',targetIds:['fixture/recipient']}));
+    const state=fixture('S07','await-input',prepared('S07').state.jokers);rejected(state,use({sacrificeId:'fixture/donor',targetIds:['fixture/recipient']}));
   });
   it('S08 rejects three doubly-special cards, a prior global use and in-stage use without clearing anything',()=>{
     let state=fixture('S08');for(const card of knownCards(state).slice(0,3)){card.enhancement='heat-paper';card.edition='foil';}rejected(state,use());

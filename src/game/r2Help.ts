@@ -136,6 +136,8 @@ export function r2ScoreOperationText(event:ScoreEvent):string {
   if(event.operation==='add-gold'&&event.rewardDefinitionId)return prize+' · 库存已满转 +'+value+' 金'+resource;
   if(event.operation==='add-gold'||event.operation==='add-gold-limited')return '+'+value+' 金'+resource;
   if(event.operation==='ordinary-points-suppressed')return '普通点数归零';
+  if(event.operation==='halve-base-heat')return '牌型基础热度 ÷2 · 点数与加成正常';
+  if(event.operation==='seal-joker')return '计分封禁 · 下一手生效';
   if(event.operation==='retrigger-card')return '额外重触发 '+value+' 次';
   if(event.operation==='retrigger-cap')return '重触发达到上限';
   if(event.operation==='consume-growth')return '+'+value+' 热度 · 蓄热已消费清空';

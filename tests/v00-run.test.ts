@@ -15,12 +15,15 @@ const fixtureBoss=(s:R2RunState,id:string,suit:Suit|null=null)=>{
   Object.assign(s,{stageIndex:2,boss:{definitionId:id,disabledSuit:suit},seenBossIds:[id]});
   makeR2Shop(s,true);return s;
 };
-const table=(id='B01',suit:Suit|null=null)=>send(send(fixtureBoss(start(),id,suit),{type:'LeaveShop'}),{type:'EnterStage'});
+const table=(id='B01',suit:Suit|null=null,jokerIds:readonly string[]=[])=>{
+  const s=fixtureBoss(start(),id,suit);s.jokers=jokerIds.map(own);
+  return send(send(s,{type:'LeaveShop'}),{type:'EnterStage'});
+};
 const futureStage=(s:R2RunState)=>s.stage as NonNullable<R2RunState['stage']>&{discardsUsed:number};
 const skip={type:'SkipStage'} as Action;
 const offer=(s:R2RunState,id:string)=>{s.shop!.offers[0]={...s.shop!.offers[0],definitionId:id,price:r2Price(id),edition:'none',consumed:false};return s.shop!.offers[0];};
 const fixtureLowDiscards=()=>{
-  let s=table();s.jokers=[own('d05')];
+  let s=table('B01',null,['d05']);
   s.consumables=[{instanceId:'quota/restore-first',definitionId:'T17'},{instanceId:'quota/restore-after-rejection',definitionId:'T17'}];
   // Reach quota1 through real spending and restoration, keeping the saved refund ledger valid.
   s=send(s,{type:'DiscardHand',selectedIds:[s.handOrder[0]]});
@@ -39,7 +42,7 @@ describe('V00 economic transactions and public chapter plans',()=>{
     let s=start();s.jokers=[own('e01')];s=send(send(s,{type:'LeaveShop'}),{type:'EnterStage'});s.stage!.heat='399'; // Last-point boundary, unchanged production target400.
     const cmd=command(s,{type:'PlayHand',selectedIds:[s.handOrder[0]]}),r=applyCommand(s,cmd);if(!r.ok)throw Error(r.code);
     expect(r.state.stage!.goldEarned).toBe(10);expect(r.state.gold).toBe(16);expect(r.state.phase).toBe('stage-cleared');expect(applyCommand(r.state,cmd).state).toBe(r.state);
-    let lost=table();lost.jokers=[own('e01')];lost.stage!.handsLeft=1;lost.stage!.playIndex=3;lost.stage!.previousHandType='high-card';lost=send(lost,{type:'PlayHand',selectedIds:[lost.handOrder[0]]});expect(lost.phase).toBe('run-lost');expect(lost.gold).toBe(6);
+    let lost=table('B01',null,['e01']);lost.stage!.handsLeft=1;lost.stage!.playIndex=3;lost.stage!.previousHandType='high-card';lost=send(lost,{type:'PlayHand',selectedIds:[lost.handOrder[0]]});expect(lost.phase).toBe('run-lost');expect(lost.gold).toBe(6);
   });
   it('D05 refunds only the first successful discard, but still disables F09; rejected intents do not count',()=>{
     let s=start();s.jokers=[own('d05'),own('f09')];s=send(send(s,{type:'LeaveShop'}),{type:'EnterStage'});
@@ -49,7 +52,7 @@ describe('V00 economic transactions and public chapter plans',()=>{
     s=send(s,{type:'PlayHand',selectedIds:[s.handOrder[0]]});expect(s.lastTrace!.events.some(e=>e.sourceDefinitionId==='f09')).toBe(false);
   });
   it('B01 charges2 before the first play, then1; refund is after payment and never bypasses insufficient quota',()=>{
-    let s=table();s.jokers=[own('d05')];s=send(s,{type:'DiscardHand',selectedIds:[s.handOrder[0]]});expect(s.stage!.discardsLeft).toBe(2);
+    let s=table('B01',null,['d05']);s=send(s,{type:'DiscardHand',selectedIds:[s.handOrder[0]]});expect(s.stage!.discardsLeft).toBe(2);
     s=send(s,{type:'DiscardHand',selectedIds:[s.handOrder[0]]});expect(s.stage!.discardsLeft).toBe(0);
     let low=fixtureLowDiscards();const before=JSON.stringify(low),fail=applyCommand(low,command(low,{type:'DiscardHand',selectedIds:[low.handOrder[0]]}));expect(fail.ok).toBe(false);expect(JSON.stringify(low)).toBe(before);
     low=send(low,{type:'UseConsumable',instanceId:'quota/restore-after-rejection',targetIds:[]});
@@ -64,15 +67,18 @@ describe('V00 economic transactions and public chapter plans',()=>{
   });
   it('ordinary public reorder changes B02 points while a fourth-position A still triggers iron',()=>{
     const arrange=(s:R2RunState,order:string[])=>{s.handOrder=order;s.drawPile=s.deckInstances.map(c=>c.id).filter(id=>!order.includes(id));s.playedPile=[];s.discardPile=[];return s;};
-    let s=arrange(table('B02'),['spades-14','clubs-2','hearts-3','diamonds-4','spades-5','hearts-8','clubs-9','spades-10']);s.jokers=[own('c04'),own('tiesuanpan')];const ids=s.handOrder.slice(0,5),first=send(s,{type:'PlayHand',selectedIds:ids});expect(first.lastTrace!.finalScore).toBe('864');
+    let s=arrange(table('B02',null,['c04','tiesuanpan']),['spades-14','clubs-2','hearts-3','diamonds-4','spades-5','hearts-8','clubs-9','spades-10']);const ids=s.handOrder.slice(0,5),first=send(s,{type:'PlayHand',selectedIds:ids});expect(first.lastTrace!.finalScore).toBe('864');
     s=send(s,{type:'ReorderHand',ids:[s.handOrder[1],s.handOrder[2],s.handOrder[3],s.handOrder[0],...s.handOrder.slice(4)]});const second=send(s,{type:'PlayHand',selectedIds:ids});expect(second.lastTrace!.finalScore).toBe('836');expect(second.lastTrace!.events.some(e=>e.sourceDefinitionId==='tiesuanpan'&&e.targetCardId==='spades-14')).toBe(true);
   });
   it('can explicitly abandon a skipped scene, its following shop, or its stage-ready phase',()=>{
     const skipped=send(start(),skip),shop=send(skipped,{type:'OpenShop'}),ready=send(shop,{type:'LeaveShop'});
     for(const s of [skipped,shop,ready]){const ended=send(s,{type:'AbandonRun'});expect(ended.phase).toBe('run-lost');expect(ended.outcome!.reason).toBe('abandoned');expect(ended.gold).toBe(s.gold);expect(ended.stage).toEqual(s.stage);}
   });
-  it('declares two complete chapters at unchanged targets, not eight-chapter/endless completion',()=>{
-    expect(Array.from({length:6},(_,i)=>getR2Stage(i)?.targetHeat)).toEqual(['400','600','800','1000','1500','2000']);expect(getR2Stage(6)).toBeUndefined();
+  it('declares all eight normal chapters at unchanged targets; endless remains NOT_IMPLEMENTED',()=>{
+    expect(Array.from({length:24},(_,i)=>getR2Stage(i)?.targetHeat)).toEqual([
+      '400','600','800','1000','1500','2000','2400','3600','4800','5600','8400','11200',
+      '13000','19500','26000','30000','45000','60000','70000','105000','140000','160000','240000','320000',
+    ]);expect(getR2Stage(24)).toBeUndefined();
   });
   it('locks and publicly exposes chapter Boss/skip reward before purchases or rerolls, with no repeats',()=>{
     for(let i=0;i<30;i++){let s=start('chapter-'+i);const v=s as R2RunState&{boss:{definitionId:string;disabledSuit:Suit|null};chapterSkipConsumable:string};expect(['B01','B02','B03','B04']).toContain(v.boss?.definitionId);expect(['T01','T03','T04','T05','T06','T17']).toContain(v.chapterSkipConsumable);

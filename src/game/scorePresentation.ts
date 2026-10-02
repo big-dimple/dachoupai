@@ -9,7 +9,8 @@ export function fourCardFormation(score:ScoreTrace):{instanceId:string;definitio
 }
 
 /** Resource/growth bookkeeping has no accumulator packet; coefficient reads really multiply M. */
-export function scorePacketSymbol(event:ScoreEvent):'+H'|'+M'|'×M'|undefined {
+export function scorePacketSymbol(event:ScoreEvent):'+H'|'+M'|'×M'|'÷H'|undefined {
+  if(event.operation==='halve-base-heat')return '÷H';
   if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)
     return event.operation==='multiply-multiplier'||event.operation==='read-coefficient'?'×M':'+M';
   if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)return '+H';

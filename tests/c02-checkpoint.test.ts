@@ -35,26 +35,27 @@ function holder(definitionId:string,growth:Record<string,{n:string;d:string}>={}
 function held(definitionId:string):Fixture {
   const fixture=start();fixture.state.jokers=[holder(definitionId,definitionId==='e11'||definitionId==='f12'?{coefficient:coefficient()}: {},definitionId==='e10'?{stageClears:0}:undefined)];return fixture;
 }
-function scoredSource(definitionId:string):Fixture {
-  let fixture=enter();const ids=fixture.state.handOrder.slice(0,5);
-  // Explicit legal known cards isolate parser metadata; no natural acquisition is claimed.
+function scoredSource(definitionId:string,overflow=false):Fixture {
+  let fixture=held(definitionId);
+  if(definitionId==='e10')fixture.state.jokers[0].counters={stageClears:1};
+  if(overflow)fixture.state.consumables=[{instanceId:'fixture/full/0',definitionId:'T01'},{instanceId:'fixture/full/1',definitionId:'T02'}];
+  fixture=send(send(fixture,{type:'LeaveShop'}),{type:'EnterStage'});
+  const ids=fixture.state.handOrder.slice(0,5);
+  // Known cards isolate parser metadata; actual entry and score commands bind the source.
   for(const id of ids)Object.assign(fixture.state.deckInstances.find(card=>card.id===id)!,{rank:14,suit:'hearts'});
+  if(definitionId==='f08')fixture.state.rng.rule={algorithm:'fnv1a-mulberry32-v1',state:2};
   fixture=send(fixture,{type:'PlayHand',selectedIds:ids});
-  Object.assign(fixture.state.stage!,{maxPlayedCount:5,ordinaryStraightSeen:false,ordinaryFlushSeen:false,quadRefundUsed:false,jokerSold:false});
-  const joker=holder(definitionId,definitionId==='e11'||definitionId==='f12'?{coefficient:coefficient()}: {},definitionId==='e10'?{stageClears:1}:undefined);
-  fixture.state.lastTrace=structuredClone(fixture.state.lastTrace!);
-  fixture.state.jokers=[structuredClone(joker)];fixture.state.lastTrace.sourceJokers=[structuredClone(joker)];fixture.state.lastTrace.jokers=[structuredClone(joker)];return fixture;
+  return fixture;
 }
 function append(fixture:Fixture,operation:string,value:{n:string;d:string},extra:Record<string,unknown>={}):ScoreEvent {
+  fixture.state.lastTrace=structuredClone(fixture.state.lastTrace!);
   const trace=fixture.state.lastTrace!,source=trace.sourceJokers[0],eventId=`${trace.rootId}/event/${trace.events.length}`;
   const event={eventId,rootId:trace.rootId,rootEventId:eventId,phase:'onStageClear',sourceType:'joker',sourceDefinitionId:source.definitionId,sourceInstanceId:source.instanceId,operation,value,before:trace.accumulator,after:trace.accumulator,reasonKey:`${source.definitionId}.${operation}`,visibleCondition:{kind:'always'},retriggerDepth:0,...extra} as ScoreEvent;
   const at=event.phase==='jokerScore'?trace.events.findIndex(event=>event.phase==='finalScore'):-1;
   trace.events=at<0?[...trace.events,event]:[...trace.events.slice(0,at),event,...trace.events.slice(at)];return event;
 }
 function growthSource():Fixture {
-  const fixture=scoredSource('e11');append(fixture,'read-coefficient',coefficient(),{phase:'jokerScore'});
-  append(fixture,'add-coefficient',coefficient('1','10'),{growthBefore:coefficient(),growthAfter:coefficient('11','10'),visibleCondition:{kind:'no-joker-sale-this-stage'}});
-  for(const joker of [...fixture.state.jokers,...fixture.state.lastTrace!.jokers])joker.growth.coefficient=coefficient('11','10');return fixture;
+  return scoredSource('e11');
 }
 function rewardSource(definitionId:'c12'|'e10',overflow=false):Fixture {
   if(definitionId==='c12'){
@@ -70,16 +71,10 @@ function rewardSource(definitionId:'c12'|'e10',overflow=false):Fixture {
     expect(fixture.state.stage).toMatchObject({ordinaryStraightSeen:true,ordinaryFlushSeen:true});
     return fixture;
   }
-  const fixture=scoredSource(definitionId),rewardDefinitionId='T01';
-  append(fixture,'increment-clear-cycle',coefficient(),{resourceBefore:1,resourceAfter:0});
-  const visibleCondition={kind:'always'};
-  if(overflow)append(fixture,'add-gold',coefficient('2'),{resourceBefore:fixture.state.gold-2,resourceAfter:fixture.state.gold,rewardDefinitionId,visibleCondition});
-  else append(fixture,'reward-consumable',coefficient(),{resourceBefore:0,resourceAfter:1,rewardDefinitionId,visibleCondition});
-  for(const joker of [...fixture.state.jokers,...fixture.state.lastTrace!.jokers])object(joker.counters).stageClears=0;
-  return fixture;
+  return scoredSource(definitionId,overflow);
 }
 
-describe('C02 explicit v7 checkpoint boundary without rewriting published v6',()=>{
+describe('C02 checkpoint boundary in explicit v8 without rewriting published v6',()=>{
   it('rejects a C12 prize contradicted by the saved stage history',()=>{
     const fixture=rewardSource('c12');expect(readCheckpoint(seal(fixture)).ok).toBe(true);
     for(const key of ['ordinaryStraightSeen','ordinaryFlushSeen'] as const)expect(readCheckpoint(damaged(fixture,state=>{state.stage![key]=false;})).ok).toBe(false);
@@ -115,8 +110,8 @@ describe('C02 explicit v7 checkpoint boundary without rewriting published v6',()
     const before=JSON.stringify(rawV6);expect(readCheckpoint(rawV6)).toEqual({ok:false,code:'incompatible-version'});
     const restored=restoreSlots({revision:9,current:rawV6,previous:null});expect(restored.status).toBe('invalid');expect(restored.raw).toBe(rawV6);expect(JSON.stringify(rawV6)).toBe(before);
   });
-  it.each(['shop','stage'] as const)('round trips required %s fields in an explicit v7 new run',phase=>{
-    const fixture=phase==='shop'?start():enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v7');
+  it.each(['shop','stage'] as const)('round trips required %s fields in an explicit v8 new run',phase=>{
+    const fixture=phase==='shop'?start():enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v8');
     const parsed=readCheckpoint(makeCheckpoint(fixture.state,fixture.journal));expect(parsed.ok&&parsed.checkpoint.state).toEqual(fixture.state);
   });
   it('requires shop.soldJoker and refuses a nonboolean sale snapshot',()=>{
@@ -163,9 +158,9 @@ describe('C02 explicit v7 checkpoint boundary without rewriting published v6',()
     const fixture=growthSource();expect(readCheckpoint(seal(fixture)).ok).toBe(true);expect(readCheckpoint(damaged(fixture,state=>{object(state.lastTrace!.events[0]).rewardDefinitionId='T01';})).ok).toBe(false);
   });
   it('checks F08 once per source and keeps a missed check separate from heat gain',()=>{
-    const fixture=scoredSource('f08');append(fixture,'chance-heat-check',coefficient('0'),{phase:'jokerScore'});expect(readCheckpoint(seal(fixture)).ok).toBe(true);
+    const fixture=scoredSource('f08');expect(fixture.state.lastTrace!.events.find(event=>event.operation==='chance-heat-check')?.value).toEqual(coefficient('0'));expect(readCheckpoint(seal(fixture)).ok).toBe(true);
     expect(readCheckpoint(damaged(fixture,state=>{object(state.lastTrace!.events.find(event=>event.operation==='chance-heat-check')).value=coefficient('2');})).ok).toBe(false);
     expect(readCheckpoint(damaged(fixture,state=>{const trace=state.lastTrace!,event=structuredClone(trace.events.find(event=>event.operation==='chance-heat-check')!);event.eventId+='duplicate';event.rootEventId=event.eventId;trace.events.push(event);})).ok).toBe(false);
-    const gained=scoredSource('f08');append(gained,'chance-heat-check',coefficient('0'),{phase:'jokerScore'});append(gained,'add-heat',coefficient('90'),{phase:'jokerScore'});expect(readCheckpoint(seal(gained)).ok).toBe(false);
+    const gained=scoredSource('f08');append(gained,'add-heat',coefficient('90'),{phase:'jokerScore'});expect(readCheckpoint(seal(gained)).ok).toBe(false);
   });
 });

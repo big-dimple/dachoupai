@@ -15,7 +15,7 @@ const resign=(value:ReturnType<typeof makeCheckpoint>)=>{const {checksum,...payl
 describe('C01 explicit new-game boundary and saved stage budgets',()=>{
   it('starts the current version with explicit empty modifier, reward and chapter counters',()=>{
     const state=start() as R2RunState&Record<string,unknown>;
-    expect(state.contentVersion).toBe('quality-r2-content-v7');
+    expect(state.contentVersion).toBe('quality-r2-content-v8');
     expect(state.spectralModifiers).toEqual({handsPenalty:0,handPenalty:0,cleanSlateBonus:0});
     expect(state.supplyRewardClaimed).toBe(false);expect(state.normalClearClaimed).toBe(false);
     expect(state.chapterHandUsage).toEqual({});expect(state.deckInstances).toHaveLength(52);

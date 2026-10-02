@@ -50,6 +50,8 @@ C02/D26的v7加入准备商店销售标记、本场最大出牌张数/普通顺�
 
 ## 4. RNG 与重放
 
+C03/D29使用显式v8新局；v7原文继续保留导出。stage增加boss（仅压轴非null）、initialTargetHeat、initialHandLimit、initialJokerIds和sealedJokerIds；初始身份最多5个，寿命销毁仍保留身份，S06仍只在商店创建。trace保存手开始bossContext={boss,previousHandType,sealedJokerIds}，不从新章或本手后封禁状态反推。恢复检查有序章池/不重复及fallback、初始资源和B11/B14精确账，封禁实例只引用真实入场名单且不超过实际出牌次数。新增halve-base-heat与seal-joker是有限Boss来源操作，不能放开任意rule字符串。
+
 固定并版本化现有算法，提供 snapshot/restore，不用“重建 seed 后猜消耗了多少次”恢复。随机域至少 deck、shop、rule、reward 四类；cosmetic 单独在表现层，禁止读取规则域。
 
 相同 seed、rulesVersion、contentHash、行动日志应得到完全相同结果；不是宣称同 seed 不管玩家操作都相同。稳定字符串派生算法需有黄金向量；不要使用语言平台不稳定的 hash 或数组对象迭代顺序。

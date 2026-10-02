@@ -35,17 +35,17 @@ describe('C03.1 pure eight-chapter specifications',()=>{
     ('rejects an invalid normal chapter %s',chapter=>expect(r2ChapterBossIds(chapter)).toBeUndefined());
 });
 
-describe('C03.1 metadata does not enable unfinished runtime content',()=>{
-  it('keeps the six playable stage specs and rejects the third chapter',()=>{
-    expect(R2_AVAILABLE_CHAPTERS).toBe(2);
-    expect(R2_BOSSES.map(boss=>boss.id)).toEqual(['B01','B02','B03','B04']);
-    for(const [index,name,targetHeat] of stages.slice(0,6))expect(getR2Stage(index)).toEqual({index,name,targetHeat,
+describe('C03.1 versioned eight-chapter runtime contract',()=>{
+  it('exposes all adopted normal stage specs and rejects an out-of-range next stage',()=>{
+    expect(R2_AVAILABLE_CHAPTERS).toBe(8);
+    expect(R2_BOSSES.map(boss=>boss.id)).toEqual(full);
+    for(const [index,name,targetHeat] of stages)expect(getR2Stage(index)).toEqual({index,name,targetHeat,
       intro:'打到目标热度即可过场，出牌和弃牌次数每场补满。'});
-    expect(getR2Stage(6)).toBeUndefined();expect(getR2Stage(23)).toBeUndefined();
+    expect(getR2Stage(24)).toBeUndefined();
   });
-  it('retains the published C02 content version and hash',()=>{
-    expect(R2_CONTENT_VERSION).toBe('quality-r2-content-v7');
-    expect(R2_CONTENT_HASH).toBe('json-fnv-v1:c84c147614b535da');
+  it('separates the explicit C03 new game from the published C02 content partition',()=>{
+    expect(R2_CONTENT_VERSION).toBe('quality-r2-content-v8');
+    expect(R2_CONTENT_HASH).toBe('json-fnv-v1:d49390df655bb6d3');
   });
   it.each([
     {seen:[],boss:{definitionId:'B02',disabledSuit:null},cursor:1831565813},

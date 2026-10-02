@@ -18,6 +18,9 @@ const equipped=(ids:readonly string[],seed='c00-transactions',characterId:'erxia
   return state;
 };
 const table=(ids:readonly string[]=[],seed='c00-transactions',characterId:'erxiang'|'xiemu'='erxiang')=>send(send(equipped(ids,seed,characterId),{type:'LeaveShop'}),{type:'EnterStage'});
+// Explicit final-opportunity boundary, including the required preceding-hand snapshot.
+// These fixtures isolate transactions; they do not claim a naturally played history.
+const lastOpportunity=(state:R2RunState)=>Object.assign(state.stage!,{handsLeft:1,playIndex:3,maxPlayedCount:1,previousHandType:'high-card',previousHandScore:'22'});
 const offer=(state:R2RunState,id:string)=>{
   const next=structuredClone(state);next.shop!.offers=[{offerId:`fixture-offer/${id}/${next.commandSeq}`,definitionId:id,price:r2Price(id),consumed:false}];return next;
 };
@@ -82,7 +85,7 @@ describe('C00 actual command transactions and lifecycle',()=>{
     let state=table(['a07','d05']);
     for(let n=0;n<4;n++)state=send(state,{type:'DiscardHand',selectedIds:[state.handOrder[0]]});
     expect(state.gold).toBe(8);expect(state.stage!.discardsLeft).toBe(0);expect(state.stage!.discardsUsed).toBe(4);restore(state);
-    state=table(['a07','d05'],'boss-discard');state.stageIndex=2;state.stage!.index=2;state.stage!.targetHeat='800';state.stage!.doubleDiscardBeforeFirstPlay=true;state.boss={definitionId:'B01',disabledSuit:null};state.seenBossIds=['B01'];
+    state=table(['a07','d05'],'boss-discard');state.stageIndex=2;state.stage!.index=2;state.stage!.targetHeat='800';state.stage!.initialTargetHeat='800';state.stage!.doubleDiscardBeforeFirstPlay=true;state.boss={definitionId:'B01',disabledSuit:null};state.stage!.boss={...state.boss};state.seenBossIds=['B01'];
     state=send(state,{type:'DiscardHand',selectedIds:[state.handOrder[0]]});expect(state.gold).toBe(7);expect(state.stage!.discardsLeft).toBe(2);expect(state.stage!.discardsUsed).toBe(1);restore(state);
   });
   it('C05 accumulates only same-suit discards, caps at 80 and consumes once at jokerScore',()=>{
@@ -150,7 +153,7 @@ describe('C00 actual command transactions and lifecycle',()=>{
   });
   it('E07 and the last-hand character reward happen only after success and once on duplicate commands',()=>{
     for(const clears of [true,false]){
-      let state=table(['e07'],'last-reward','xiemu');state=hand(state,['clubs-5']);state.stage!.handsLeft=1;state.stage!.playIndex=3;state.stage!.heat=clears?'350':'0';
+      let state=table(['e07'],'last-reward','xiemu');state=hand(state,['clubs-5']);lastOpportunity(state);state.stage!.heat=clears?'350':'0';
       const cmd=command(state,{type:'PlayHand',selectedIds:state.handOrder}),result=applyCommand(state,cmd);if(!result.ok)throw Error(result.code);state=result.state;assertRunInvariants(state);
       expect(state.phase).toBe(clears?'stage-cleared':'run-lost');expect(state.gold).toBe(clears?17:6);expect(state.stage!.goldEarned).toBe(clears?11:0);
       expect(result.events.filter(e=>e.type==='joker-transaction'&&e.definitionId==='e07')).toHaveLength(clears?1:0);
@@ -158,7 +161,7 @@ describe('C00 actual command transactions and lifecycle',()=>{
     }
   });
   it('persists actual B08/E07/E01 clear rewards in source order without changing the score or rewarding retries',()=>{
-    let state=table(['b08','e07','e01'],'clear-sources');state=hand(state,['clubs-2','spades-2']);state.stage!.handsLeft=1;state.stage!.playIndex=3;state.stage!.heat='264';
+    let state=table(['b08','e07','e01'],'clear-sources');state=hand(state,['clubs-2','spades-2']);lastOpportunity(state);state.stage!.heat='264';
     const cmd=command(state,{type:'PlayHand',selectedIds:state.handOrder}),result=applyCommand(state,cmd);if(!result.ok)throw Error(result.code);state=result.state;
     expect(state.phase).toBe('stage-cleared');expect(state.gold).toBe(20);expect(state.stage!.goldEarned).toBe(14);expect(state.lastTrace!.finalScore).toBe('136');expect(state.lastTrace!.accumulator).toEqual({H:{n:'39',d:'1'},M:{n:'7',d:'2'}});
     const rewards=state.lastTrace!.events.filter(e=>e.phase==='onStageClear');
@@ -171,7 +174,7 @@ describe('C00 actual command transactions and lifecycle',()=>{
     const retry=applyCommand(restored,cmd);expect(retry.ok&&retry.duplicate).toBe(true);expect(retry.state).toBe(restored);expect(retry.state.gold).toBe(20);if(retry.ok)expect(retry.events).toEqual([]);
   });
   it('rolls back score and gold together if clear reward sources exceed the trace budget',()=>{
-    const state=table(['b08','e07','e01'],'clear-source-cap');const rigged=hand(state,['clubs-2','spades-2']);rigged.stage!.handsLeft=1;rigged.stage!.playIndex=3;rigged.stage!.heat='264';const before=JSON.stringify(rigged),cap=SCORE_LIMITS.eventCount;
+    const state=table(['b08','e07','e01'],'clear-source-cap');const rigged=hand(state,['clubs-2','spades-2']);lastOpportunity(rigged);rigged.stage!.heat='264';const before=JSON.stringify(rigged),cap=SCORE_LIMITS.eventCount;
     try{
       // Base, two cards, character and final score have five events; rewards add three.
       Object.assign(SCORE_LIMITS,{eventCount:7});const result=applyCommand(rigged,command(rigged,{type:'PlayHand',selectedIds:rigged.handOrder}));
@@ -206,7 +209,7 @@ describe('C00 actual command transactions and lifecycle',()=>{
     }
   });
   it('F07 rescues resource exhaustion after refill, destroys once, records the source and excludes future sale',()=>{
-    let state=table(['f07']);state=hand(state,['clubs-2']);state.stage!.handsLeft=1;state.stage!.playIndex=3;
+    let state=table(['f07']);state=hand(state,['clubs-2']);lastOpportunity(state);
     const cmd=command(state,{type:'PlayHand',selectedIds:state.handOrder}),result=applyCommand(state,cmd);if(!result.ok)throw Error(result.code);state=result.state;assertRunInvariants(state);
     expect(state.phase).toBe('await-input');expect(state.stage!.handsLeft).toBe(1);expect(state.stage!.playIndex).toBe(4);expect(state.stage).toHaveProperty('rescueUsed',true);expect(state).toHaveProperty('safetyNetUsed',true);expect(state.jokers).toEqual([]);expect(state.gold).toBe(6);
     expect(result.events.some(e=>e.type==='joker-transaction'&&e.definitionId==='f07'&&e.instanceId==='owned/f07'&&e.operation==='rescue-hand')).toBe(true);
@@ -216,16 +219,17 @@ describe('C00 actual command transactions and lifecycle',()=>{
     const resumed=restore(state),retry=applyCommand(resumed,cmd);expect(retry.ok&&retry.duplicate).toBe(true);expect(retry.state).toBe(resumed);
     state=hand(resumed,['hearts-2']);state=send(state,{type:'PlayHand',selectedIds:state.handOrder});expect(state.phase).toBe('run-lost');expect(state.stage!.playIndex).toBe(5);expect(state.gold).toBe(6);
   });
-  it('F07 never triggers on successful final hands, empty decks, or only disabled remaining cards',()=>{
+  it('F07 avoids success and empty decks, but legally playable disabled cards remain eligible',()=>{
     for(const boundary of ['clear','empty','disabled'] as const){
-      let state=table(['f07']);state=hand(state,boundary==='disabled'?['clubs-2','clubs-11']:['clubs-2'],false);state.stage!.handsLeft=1;state.stage!.playIndex=3;
+      let state=table(['f07']);state=hand(state,boundary==='disabled'?['clubs-2','clubs-11']:['clubs-2'],false);lastOpportunity(state);
       if(boundary==='clear')state.stage!.heat='378';
-      if(boundary==='disabled'){state.stageIndex=2;state.stage!.index=2;state.stage!.targetHeat='800';state.boss={definitionId:'B04',disabledSuit:null};state.seenBossIds=['B04'];state.stage!.disabledIds=['clubs-11'];}
-      state=send(state,{type:'PlayHand',selectedIds:['clubs-2']});expect(state.phase).toBe(boundary==='clear'?'stage-cleared':'run-lost');expect(state).toHaveProperty('safetyNetUsed',false);expect(state.jokers[0].definitionId).toBe('f07');restore(state);
+      if(boundary==='disabled'){state.stageIndex=2;state.stage!.index=2;state.stage!.targetHeat='800';state.stage!.initialTargetHeat='800';state.boss={definitionId:'B04',disabledSuit:null};state.stage!.boss={...state.boss};state.seenBossIds=['B04'];state.stage!.disabledIds=['clubs-11'];}
+      state=send(state,{type:'PlayHand',selectedIds:['clubs-2']});expect(state.phase).toBe(boundary==='clear'?'stage-cleared':boundary==='disabled'?'await-input':'run-lost');expect(state).toHaveProperty('safetyNetUsed',boundary==='disabled');
+      if(boundary==='disabled')expect(state.jokers).toEqual([]);else expect(state.jokers[0].definitionId).toBe('f07');restore(state);
     }
   });
   it('the rescued fifth actual play may win with the last-resource rewards exactly once',()=>{
-    let state=table(['f07','e07'],'rescued-clear','xiemu');state=hand(state,['clubs-2']);state.stage!.handsLeft=1;state.stage!.playIndex=3;
+    let state=table(['f07','e07'],'rescued-clear','xiemu');state=hand(state,['clubs-2']);lastOpportunity(state);
     state=send(state,{type:'PlayHand',selectedIds:state.handOrder});expect(state.phase).toBe('await-input');expect(state.gold).toBe(6);
     state=hand(restore(state),['spades-2','spades-3','spades-4','spades-5','spades-6']);const cmd=command(state,{type:'PlayHand',selectedIds:state.handOrder}),result=applyCommand(state,cmd);
     if(!result.ok)throw Error(result.code);state=result.state;expect(state.phase).toBe('stage-cleared');expect(state.stage!.playIndex).toBe(5);expect(state.stage!.handsLeft).toBe(0);expect(state.gold).toBe(17);
@@ -233,7 +237,7 @@ describe('C00 actual command transactions and lifecycle',()=>{
     state=send(send(send(state,{type:'OpenShop'}),{type:'LeaveShop'}),{type:'EnterStage'});expect(state).toHaveProperty('safetyNetUsed',true);expect(state.stage).toHaveProperty('rescueUsed',false);expect(state.stage!.handsLeft).toBe(4);restore(state);
   });
   it('rolls back the full play when rescue sources would exceed the event budget',()=>{
-    const state=table(['f07']);state.stage!.handsLeft=1;state.stage!.playIndex=3;const before=JSON.stringify(state),cap=SCORE_LIMITS.eventCount;
+    const state=table(['f07']);lastOpportunity(state);const before=JSON.stringify(state),cap=SCORE_LIMITS.eventCount;
     // Three normal score events fit. The two failure-before-rescue events do not.
     try{
       Object.assign(SCORE_LIMITS,{eventCount:3});const result=applyCommand(state,command(state,{type:'PlayHand',selectedIds:[state.handOrder[0]]}));
@@ -242,7 +246,7 @@ describe('C00 actual command transactions and lifecycle',()=>{
     }finally{Object.assign(SCORE_LIMITS,{eventCount:cap});}
   });
   it('F07 stays unavailable in later shops and rejects a stale offer without charging resources',()=>{
-    let state=table(['f07']);state=hand(state,['clubs-2']);state.stage!.handsLeft=1;state.stage!.playIndex=3;state=send(state,{type:'PlayHand',selectedIds:state.handOrder});state=hand(state,['spades-2','spades-3','spades-4','spades-5','spades-6']);state=send(state,{type:'PlayHand',selectedIds:state.handOrder});state=send(state,{type:'OpenShop'});state.gold=100;
+    let state=table(['f07']);state=hand(state,['clubs-2']);lastOpportunity(state);state=send(state,{type:'PlayHand',selectedIds:state.handOrder});state=hand(state,['spades-2','spades-3','spades-4','spades-5','spades-6']);state=send(state,{type:'PlayHand',selectedIds:state.handOrder});state=send(state,{type:'OpenShop'});state.gold=100;
     for(let n=0;n<20;n++){state=send(state,{type:'RerollShop'});expect(state.shop!.offers.some(o=>o.definitionId==='f07')).toBe(false);state.gold=100;}
     state=offer(state,'f07');const before=stateHash(state),rejected=applyCommand(state,command(state,{type:'BuyOffer',offerId:state.shop!.offers[0].offerId}));expect(rejected.ok).toBe(false);expect(rejected.state).toBe(state);expect(stateHash(state)).toBe(before);
   });

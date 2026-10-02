@@ -20,7 +20,7 @@ const play=(state:R2RunState)=>({type:'PlayHand',selectedIds:[state.handOrder[0]
 
 describe('C01 committed hand resource and permanent lifecycle integration',()=>{
   it('pays lucky gold exactly once in a losing hand and restores the committed result',()=>{
-    const before=lucky();before.stage!.handsLeft=1;before.stage!.playIndex=3;
+    const before=lucky();Object.assign(before.stage!,{handsLeft:1,playIndex:3,maxPlayedCount:1,previousHandType:'high-card',previousHandScore:'22'});
     const cmd=command(before,play(before)),result=applyCommand(before,cmd);expect(result.ok).toBe(true);if(!result.ok)return;
     const state=result.state,trace=state.lastTrace as ScoreTrace&{goldDelta:number};
     expect(state.phase).toBe('run-lost');expect(trace.finalScore).toBe('110');expect(trace.goldDelta).toBe(10);

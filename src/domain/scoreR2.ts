@@ -5,6 +5,7 @@ import { R2_EDITIONS, R2_ENHANCEMENTS, R2_TOOL_CATALOG } from '../content/r2Tool
 import { CHARACTER_IDS, type CharacterId } from './characters';
 import { evaluateR2Hand, R2_HAND_TYPES, validateCardInstances, type HandRules, type R2HandType } from './evaluateR2';
 import { MAX_INTEGER_DIGITS, Rational, type Fraction } from './rational';
+import {r2BossPlanValid,type R2BossPlan} from './r2Chapter';
 
 export const SCORE_LIMITS = { eventCount: 512, extraRetriggers: 4, retriggerDepth: 1, handLevel: 30,
   handCount: R2_TOOL_CATALOG.limits.handMaximum, jokerCount: R2_TOOL_CATALOG.limits.jokerMaximum } as const;
@@ -15,6 +16,7 @@ export const SCORE_OPERATIONS = Object.freeze([
   'add-heat-per-empty-slot', 'ordinary-points-suppressed', 'lucky-multiplier-check', 'lucky-gold-check',
   'lucky-gold-cap', 'glass-check', 'destroy-card', 'upgrade-hand', 'reward-consumable',
   'chance-heat-check', 'read-coefficient', 'add-coefficient', 'reset-coefficient', 'refund-hand', 'increment-clear-cycle',
+  'halve-base-heat', 'seal-joker',
 ] as const);
 export type ScoreOperation = typeof SCORE_OPERATIONS[number];
 export const R2_BASE_SCORES: Record<R2HandType, readonly [number, Fraction, number, Fraction]> = {
@@ -34,12 +36,13 @@ export interface ScoreInput {
   gold?:number; discardsUsed?:number; ordinaryPointsSuppressedIds?:readonly string[];
   previousHandScore?:string|null;
   stageHeatBefore?:string; stageTargetHeat?:string;
+  boss?:R2BossPlan|null; sealedJokerIds?:readonly string[];
 }
 export interface Accumulator { H: Fraction; M: Fraction }
 export interface ScoreEvent {
   eventId: string; rootId: string; rootEventId: string; phase: ScorePhase;
   sourceType: 'rule' | 'card' | 'character' | 'joker'; sourceDefinitionId: string; sourceInstanceId: string;
-  targetCardId?: string; operation: string; value: Fraction; before: Accumulator; after: Accumulator;
+  targetCardId?: string; targetJokerInstanceId?:string; operation: string; value: Fraction; before: Accumulator; after: Accumulator;
   reasonKey: string; visibleCondition: Condition; retriggerDepth: number;
   resourceBefore?:number; resourceAfter?:number;
   targetHandType?:R2HandType;
@@ -51,6 +54,7 @@ export interface ScoreTrace {
   finalScore: string; accumulator: Accumulator; events: ScoreEvent[]; jokers: R2JokerInstance[]; rng: RngSnapshot;
   goldDelta:number; destroyedCardIds:string[]; destroyedJokerIds:string[];
   cards:PlayingCard[]; sourceJokers:R2JokerInstance[];
+  bossContext:{boss:R2BossPlan|null;previousHandType:R2HandType|null;sealedJokerIds:string[]};
 }
 export class ScoreFault extends Error {
   constructor(readonly code: string, readonly events: readonly ScoreEvent[]) { super(code); }
@@ -61,6 +65,16 @@ function immutable<T>(value: T): T {
     for (const child of Object.values(value)) immutable(child);
   }
   return value;
+}
+
+/** Only scoring hooks are stopped; the complete inventory remains authoritative. */
+export function r2ScoringDisabledJokerIds(boss:R2BossPlan|null|undefined,jokers:readonly R2JokerInstance[],definitions:readonly R2JokerDefinition[],sealedIds:readonly string[]=[]):string[] {
+  return jokers.filter((joker,index)=>{
+    if(boss?.definitionId==='B06')return index===1||index===3;
+    if(boss?.definitionId==='B15')return sealedIds.includes(joker.instanceId);
+    if(boss?.definitionId==='B16')return definitions.find(definition=>definition.id===joker.definitionId)?.rarity==='rare';
+    return false;
+  }).map(joker=>joker.instanceId);
 }
 
 type PublicScoreInput = Omit<ScoreInput, 'rng'>;
@@ -86,6 +100,12 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   const ordinarySuppressed=input.ordinaryPointsSuppressedIds??[];
   if(new Set(ordinarySuppressed).size!==ordinarySuppressed.length||ordinarySuppressed.some(id=>!input.selectedIds.includes(id)))throw new Error('invalid-ordinary-point-suppression');
   if (!Number.isSafeInteger(input.playIndex) || input.playIndex < 1 || !Number.isSafeInteger(input.handsBeforePlay) || input.handsBeforePlay < 1 || (input.previousHandType !== null && !R2_HAND_TYPES.includes(input.previousHandType)) || typeof input.wager !== 'boolean' || (input.wager && input.characterId !== 'touye')) throw new Error('invalid-score-context');
+  const sealedIds=input.sealedJokerIds===undefined?[]:input.sealedJokerIds;
+  // Only Shop creates Jokers; destroyed entry identities remain recorded for this stage.
+  const rosterMaximum=SCORE_LIMITS.jokerCount;
+  if((input.boss!==undefined&&input.boss!==null&&!r2BossPlanValid(input.boss))||!Array.isArray(sealedIds)||sealedIds.length>rosterMaximum
+    ||sealedIds.some(id=>typeof id!=='string'||!id)||new Set(sealedIds).size!==sealedIds.length)throw new Error('invalid-score-boss-context');
+  if(input.boss?.definitionId==='B08'&&input.wager)throw new Error('wager-disabled-by-boss');
   for (const [type, level] of Object.entries(input.handLevels)) if (!R2_HAND_TYPES.includes(type as R2HandType) || !Number.isInteger(level) || level! < 1 || level! > SCORE_LIMITS.handLevel) throw new Error('invalid-hand-level');
   const errors = validateR2Content(input.definitions);
   if (errors.length) throw new Error(`invalid-content: ${errors.join('; ')}`);
@@ -112,6 +132,8 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   }
   const cards = structuredClone(input.hand) as PlayingCard[];
   const sourceJokers = structuredClone(jokers);
+  const bossContext=structuredClone({boss:input.boss??null,previousHandType:input.previousHandType,sealedJokerIds:[...sealedIds]});
+  const scoringDisabledJokers=new Set(r2ScoringDisabledJokerIds(bossContext.boss,sourceJokers,input.definitions,bossContext.sealedJokerIds));
   const played = cards.filter(c => input.selectedIds.includes(c.id));
   const held = cards.filter(c => !input.selectedIds.includes(c.id));
   const validHeld = held.filter(c => !input.disabledIds.includes(c.id));
@@ -202,6 +224,11 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   const baseM = Rational.fromJSON(mult).add(Rational.fromJSON(multStep).multiply(new Rational(BigInt(level - 1))));
   const rule: Source = {sourceType:'rule',sourceDefinitionId:evaluated.type,sourceInstanceId:input.runId};
   emit('base', rule, 'base', baseH, () => { H = baseH; M = baseM; });
+  const boss=bossContext.boss;
+  if(boss?.definitionId==='B12'||boss?.definitionId==='B05'&&input.previousHandType===evaluated.type){
+    const half=new Rational(1n,2n);
+    emit('base',{sourceType:'rule',sourceDefinitionId:boss.definitionId,sourceInstanceId:input.runId},'halve-base-heat',half,()=>{H=H.multiply(half);});
+  }
   const matches = (c: Condition, card?: PlayingCard): boolean => {
     switch (c.kind) {
       case 'always': return true;
@@ -233,7 +260,9 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   };
   const hook = (phase: ScoreHookPhase, card?: PlayingCard, depth = 0, rootEventId?: string, initialRetriggers = 0): number => {
     let retriggers = initialRetriggers;
-    for (const joker of jokers) {
+    const ordered=phase==='jokerScore'&&boss?.definitionId==='B13'?[...jokers].reverse():jokers;
+    for (const joker of ordered) {
+      if((phase==='onCardScore'||phase==='onHeldCard'||phase==='jokerScore')&&scoringDisabledJokers.has(joker.instanceId))continue;
       const definition = input.definitions.find(d => d.id === joker.definitionId)!;
       const source: Source = {sourceType:'joker',sourceDefinitionId:definition.id,sourceInstanceId:joker.instanceId};
       for (const h of definition.hooks) if (h.phase === phase && matches(h.condition, card)) for (const op of h.operations) {
@@ -319,7 +348,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     else if (kind === 'add-multiplier') M = M.add(value);
     else M = M.multiply(value);
   }, condition);
-  switch (input.characterId) {
+  if(boss?.definitionId!=='B08')switch (input.characterId) {
     case 'amo': if (played.length === 1) char('multiply-multiplier', new Rational(3n), {kind:'played-count',equals:1}); break;
     case 'erxiang': if (['pair','two-pair','three-kind'].includes(evaluated.type)) char('add-multiplier', new Rational(3n,2n), {kind:'hand-type-in',values:['pair','two-pair','three-kind']}); break;
     case 'laohuan': if (['straight','flush','straight-flush'].includes(evaluated.type)) char('add-heat', new Rational(120n), {kind:'hand-type-in',values:['straight','flush','straight-flush']}); break;
@@ -345,7 +374,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   return immutable({ rulesVersion:'r2', rootId:input.rootId, handType:evaluated.type, level,
     sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id)},
     finalScore:final.toString(),accumulator:snapshot(),events,jokers:jokers.filter(j=>!destroyedJokerIds.includes(j.instanceId)),
-    ...(rng ? {rng:rng.snapshot()} : {}),goldDelta,destroyedCardIds,destroyedJokerIds,cards,sourceJokers });
+    ...(rng ? {rng:rng.snapshot()} : {}),goldDelta,destroyedCardIds,destroyedJokerIds,cards,sourceJokers,bossContext });
 }
 
 export type PublicRandomEffect =
@@ -364,7 +393,8 @@ export function previewR2Hand(input: PublicScoreInput): ScorePreview {
   const minimum = resolveScore(input, {kind:'preview',bound:'minimum'});
   const active = minimum.cards.filter(card => minimum.sets.activeScoringIds.includes(card.id));
   const lucky = active.some(card => card.enhancement === 'lucky-paper');
-  const chanceJokers=input.jokers.flatMap(joker=>input.definitions.find(definition=>definition.id===joker.definitionId)!.hooks
+  const disabledJokers=new Set(r2ScoringDisabledJokerIds(minimum.bossContext.boss,minimum.sourceJokers,input.definitions,minimum.bossContext.sealedJokerIds));
+  const chanceJokers=input.jokers.filter(joker=>!disabledJokers.has(joker.instanceId)).flatMap(joker=>input.definitions.find(definition=>definition.id===joker.definitionId)!.hooks
     .filter(hook=>hook.phase==='jokerScore').flatMap(hook=>hook.operations.filter(operation=>operation.kind==='chance-add-heat')
       .map(operation=>({joker,operation}))));
   const randomScore=lucky||input.wager||chanceJokers.length>0;
@@ -388,7 +418,7 @@ export function previewR2Hand(input: PublicScoreInput): ScorePreview {
   ]});
   for(const {joker,operation} of chanceJokers)if(operation.kind==='chance-add-heat')randomEffects.push({kind:'joker-heat',
     sourceDefinitionId:joker.definitionId,sourceInstanceId:joker.instanceId,probability:operation.probability,value:operation.value,timing:'jokerScore'});
-  return immutable({handType:minimum.handType,level:minimum.level,base:minimum.events[0].after,sets:minimum.sets,
+  return immutable({handType:minimum.handType,level:minimum.level,base:minimum.events.filter(event=>event.phase==='base').at(-1)!.after,sets:minimum.sets,
     possibleScores:randomScore ? [minimum.finalScore,maximum.finalScore] : [minimum.finalScore],
     scoreRange:{minimum:minimum.finalScore,maximum:maximum.finalScore},randomEffects});
 }

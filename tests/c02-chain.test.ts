@@ -153,11 +153,13 @@ describe('C02 current-content joint event proof',()=>{
     const result=contentCLI();expect(result.status,result.stderr).toBe(0);
     // Vite may prepend a dependency-optimizer status line before the CLI JSON.
     const report=JSON.parse(result.stdout.match(/\{\s*"status"[\s\S]*\}/)?.[0]??'');
-    expect(report.conservativeEventBound).toBe(318);
+    expect(report.conservativeEventBound).toBe(319); // C03 adds one bounded half-base or seal source; arithmetic goldens above stay fixed.
     expect(report.legalEventEnvelope.maximumEvents).toBe(91);
     expect(report.legalEventEnvelope.definitionCount).toBe(72);
     expect(report.legalEventEnvelope.retriggerCapNoticesReachable).toBe(false);
     expect(report.legalEventEnvelope.maximumEntryHand).toBe(13);
+    expect(report.legalEventEnvelope.abstractWitness.boss).toBe('B02');
+    expect(report.legalEventEnvelope.bossTraceBudgets).toEqual({B01:0,B02:0,B03:0,B04:0,B05:1,B06:0,B07:0,B08:0,B09:0,B10:0,B11:0,B12:1,B13:0,B14:0,B15:1,B16:0});
   },20000);
 
   it.each(['unknown-id','changed-card-condition'] as const)('refuses a tight proof for %s rather than silently carrying the old classification',(kind)=>{

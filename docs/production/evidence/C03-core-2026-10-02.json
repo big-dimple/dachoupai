@@ -1,0 +1,191 @@
+{
+  "taskId": "C03",
+  "date": "2026-10-02",
+  "status": "ENGINEERING_PASS_C03_1_3",
+  "completionScope": "C03.1–3 normal8 chapters/all16Boss/explicit v8 checkpoint/short public UX. Package remains IN_PROGRESS: C03.4 voluntary endless and long ordinary UI route are incomplete.",
+  "testedCommit": "c2def381a2bfcb3e3bbba70aafe5e835aa9a61e9",
+  "testedTree": "Reviewed main dirty source bound by sourceFingerprints; no reset/force push or pre-existing uncommitted work.",
+  "contentVersion": "quality-r2-content-v8",
+  "contentHash": "json-fnv-v1:d49390df655bb6d3",
+  "decision": "D29",
+  "sourceFingerprints": {
+    "scripts/verify-content.mjs": "b6bd1442c940aa8a62bb5adde73adc97a9c45c53c80cb799ef7335cfac4bf8d5",
+    "src/application/checkpoint.ts": "0cb756ffece844b3b2bce13af2af021e29b8b9c2b13997a798f59cc3699a7b3c",
+    "src/domain/r2Chapter.ts": "fdd2ca8734cb0bd33dbcbd1e16e7e6f205ba82b44bac434a1a30cda9b95f9ba9",
+    "src/domain/r2Resources.ts": "7152f32231c1e546c7759b63603d6a1f2e0ab7717a62f5e6337523da75a00c64",
+    "src/domain/r2Run.ts": "f826eabd3a80dccc0667ed2b59ca797bd9e27a5e748806dee56c3c5e2408f2c2",
+    "src/domain/run.ts": "cc091a3e43ddd9588ba2ce6547cccdde21c7182142ec5c9c9d2a0277621448c6",
+    "src/domain/scoreR2.ts": "192e8182da92ecf74fd241f0c5a0b49b89c9687c4b69f2a36c4f4098852e4ff7",
+    "src/game/GameScene.ts": "3930b998e99e30e3ea371a05b8aa97cbdf03f46d1477b0262ff3ef8337632196",
+    "src/game/IntermissionScene.ts": "ffda25a8a629758b6a87964f6db84acd99eded00cc20a2fdd77844e0ae7ce1a1",
+    "src/game/r2Help.ts": "d6104f9dc5ff8df653ff6fa32e5b6daf92298cd80990c950f96526377d301e47",
+    "src/game/scorePresentation.ts": "766bf94b8f989d3ea2ab8300dde94458ddda923832612c130a11bfc13b13d3eb",
+    "src/game/stageNotice.ts": "ce3242e2dce092e7c4acd3d9b7cdb97b32849de44287d7a17f970b8be0ffe0c0",
+    "tests/c00-transactions.test.ts": "7c74a90ff62c26fda28f6c3bf2fccb7c2d276af2380c86947c4b92c5eab136bf",
+    "tests/c01-boundary.test.ts": "80d817a227e9ea9926f2f2c4ab118d07abcd4290b2d530e20e800f2c3fd835c0",
+    "tests/c01-checkpoint.test.ts": "559f53c5eb31db4ca484c7fe6ccd500b169d865e8081cb0a0f6ca06c09395d28",
+    "tests/c01-hand-resources.test.ts": "f6f3eeea862e8f331bd560542bc906ff15175516027477c4d98b71a214baa9b7",
+    "tests/c01-spectral.test.ts": "0c548c66e9f1e77146d3f44c8817ba732ef55646df02eadec27fbe80f53d719b",
+    "tests/c02-chain.test.ts": "ae2eade9074bc01daecc4ebdddbbd7905798218d7b7babb6508919200ccac06e",
+    "tests/c02-checkpoint.test.ts": "2f2f532dcccbe164a566750c014f09d7e9d8937ca361a24428e79a8887031370",
+    "tests/c03-boss-notice.test.ts": "7c3e84d493c9c7b4c9bfb9cbabe316a4fb63f7398f96b6303e9aabe06ab1ba38",
+    "tests/c03-boss-plan.test.ts": "672f00af226d262439211b540e3c2343b420a13e5fa7b923177fe9bddb39ab06",
+    "tests/c03-boss-run.test.ts": "b8de4a1563235ef6113ca0df9c882344829f51ac07cf7c204284487291ea1127",
+    "tests/c03-boss-save.test.ts": "4c6ea94baccdb9738f8821feb08f5726001f30da166292c0bedc01d409b5f178",
+    "tests/c03-boss-score.test.ts": "7d4825e43c5aecdeb582c6989d2d4a418e6617717b11ad5e3159239a66dae41c",
+    "tests/c03-boss-tools.test.ts": "9ebe24e44d26b5f9b81836875c6169d6232989b0f5db10a8b4b621a43b1ddf1d",
+    "tests/c03-chapter-spec.test.ts": "7bd288c37575a0a4ecbc802bf9ed935f778d938bcf46ade8c13d93832e5492c6",
+    "tests/fixtures/c03-v7-checkpoint.json": "c237fc9a04e13088d23a395a6836fa2a5f591f2612bb325e639607a8cbb09fe7",
+    "tests/r2-starting-profile.test.ts": "76e2de7e72d747d1be333e6ccf4c1fb384e1ca1e8826bb93d9994c1975bf98ca",
+    "tests/stageNotice.test.ts": "97c6e0f63a20a7e4748a0ee607c13d6b1182ba6b199247da2c870635fdf47c0c",
+    "tests/v00-run.test.ts": "2236a1f9bc95470b2e68412a737c12da825ff1574ae743a0fa8315f98764574a"
+  },
+  "red": [
+    {
+      "command": "npx.cmd vitest run tests/c03-boss-score.test.ts",
+      "result": "35 FAIL /2 PASS before scoring implementation",
+      "chunk": "281421",
+      "log": "shots/c03-boss-score-red-final.log"
+    },
+    {
+      "command": "npx.cmd vitest run tests/c03-boss-run.test.ts",
+      "result": "17 FAIL before source snapshots and actual transactions",
+      "chunk": "c0a9e4",
+      "log": "shots/c03-boss-run-red.log"
+    },
+    {
+      "command": "npx.cmd vitest run tests/c03-boss-save.test.ts",
+      "result": "16 PASS /7 FAIL: five parser gaps plus two explicit input-fixture mistakes corrected",
+      "chunk": "af80e5",
+      "log": "shots/c03-boss-save-red.log"
+    },
+    {
+      "command": "node scripts/verify-content.mjs",
+      "result": "FAIL: previous four-Boss scope refused expanded content",
+      "chunk": "bbb3ac",
+      "log": "shots/c03-content-red.log"
+    },
+    {
+      "command": "npx.cmd vitest run tests/c03-boss-run.test.ts -t 'all-disabled cards eligible' --reporter=verbose",
+      "result": "2 FAIL /17 SKIP: four actual plays under B03/B04 wrongly failed instead of legal F07 rescue",
+      "chunk": "fead4f",
+      "log": "shots/c03-f07-disabled-red.log"
+    }
+  ],
+  "checks": [
+    {
+      "command": "npm.cmd test -- --maxWorkers=2 --reporter=dot",
+      "result": "1286 PASS /68 files before final F07 legality correction; original timeout/steps retained",
+      "startChunk": "16679e",
+      "log": "shots/c03-unit-two-workers.log"
+    },
+    {
+      "command": "npx.cmd vitest run tests/c03-boss-run.test.ts tests/c03-boss-save.test.ts tests/c00-transactions.test.ts --reporter=dot",
+      "result": "73 PASS after F07 correction; old score/RNG expectations unchanged",
+      "chunk": "085010",
+      "log": "shots/c03-f07-disabled-green.log"
+    },
+    {
+      "command": "npx.cmd vitest run tests/c03-boss-run.test.ts -t 'all-disabled cards eligible' --reporter=dot",
+      "result": "2 PASS /17 SKIP including genuine rescue checkpoint round trips",
+      "chunk": "d5cf0c",
+      "log": "shots/c03-f07-disabled-restore.log"
+    },
+    {
+      "command": "npm.cmd run build",
+      "result": "PASS final typecheck/production build; existing large-bundle warning retained",
+      "startChunk": "94727a",
+      "completionChunk": "9224ce",
+      "log": "shots/c03-build-final.log"
+    },
+    {
+      "command": "npm.cmd run verify:content",
+      "result": "PASS72 definitions/all16Boss/normal8 scope; exact legal maximum91/conservative319 within guard512",
+      "chunk": "d7960f",
+      "log": "shots/c03-content-final.log"
+    },
+    {
+      "command": "SHOT_PORT=5221 SHOT_PROFILES=desktop,shortmobile SMOKE_SHOTS=1 npm.cmd run verify:smoke",
+      "result": "PASS compiled1280x720 mouse/360x640 DPR3 touch: select/buy/sort/discard/play/refresh; selected rank visibility in both portrait directions",
+      "startChunk": "e580a2",
+      "completionChunk": "c21592",
+      "log": "shots/c03-smoke.log"
+    },
+    {
+      "command": "node shots/c03-boss-browser.mjs",
+      "result": "PASS compiled360x640 DPR3 real touch: B06 slots/details, B08 wager disabled, B13 source order/score110, B14 target140000→147000/HUD/exact refresh, B15 target/mark",
+      "startChunk": "378fee",
+      "completionChunk": "27ae0c",
+      "report": "shots/c03-boss-browser.json",
+      "log": "shots/c03-boss-browser.log",
+      "screenshots": [
+        "shots/c03-b14-mobile.png",
+        "shots/c03-b15-mobile.png"
+      ],
+      "provenance": "Explicit valid late-chapter fixtures imported via ordinary chooser; not natural acquisition/balance. Screenshots viewed. Final UI edit darkens seal text; final build passed, no repeat for color alone."
+    }
+  ],
+  "agentEvidence": [
+    "shots/c03-boss-plan-evidence.json",
+    "shots/c03-boss-score-meta.json",
+    "shots/c03-boss-save-meta.json",
+    "shots/c03-boss-notice-meta.json",
+    "shots/c03-boss-tools-evidence.json",
+    "shots/c03-fixture-closeout-meta.json",
+    "shots/c03-v00-evidence.json"
+  ],
+  "interimFailures": [
+    {
+      "command": "npm.cmd test -- --reporter=dot",
+      "result": "46 FAIL /1238 PASS: old post-entry source injection/missing prior-hand/six-stage fixtures and CPU policy timeout",
+      "completionChunk": "015857",
+      "log": "shots/c03-unit.log"
+    },
+    {
+      "command": "npm.cmd test -- --reporter=dot",
+      "result": "1 FAIL /1285 PASS: V00 groups original5s timeout during global-worker/build overlap; independent5/5 PASS and full suite then passed with2workers, no timeout/step changes",
+      "completionChunk": "bf173d",
+      "log": "shots/c03-unit-final.log"
+    },
+    {
+      "command": "npx.cmd vitest run tests/c00-transactions.test.ts tests/c01-hand-resources.test.ts tests/c02-checkpoint.test.ts --reporter=verbose",
+      "result": "65 PASS /1 FAIL: negative fixture mutated correctly frozen actual trace; copied deliberate invalid candidate, then66 PASS",
+      "failureChunk": "b9f60c",
+      "greenChunk": "bef29a",
+      "log": "shots/c03-root-fixture-interim.log"
+    },
+    {
+      "command": "node shots/c03-boss-browser.mjs (initial attempt)",
+      "result": "INTERRUPTED before report; no PASS claimed; progress-output rerun completed",
+      "terminationChunk": "bab091"
+    }
+  ],
+  "fixtureCorrections": "Source ownership moved before genuine EnterStage; explicit last-opportunity boundaries include prior-hand metadata. C02 coefficient/reward fixtures use actual commands. No old score/RNG oracle changed. One old F07 disabled-hand phase oracle corrected after D29 legal-play clarification and two actual REDs; conservative318→319 adds one Boss provenance event, not a score change.",
+  "saveCompatibility": {
+    "newGame": "explicit-v8",
+    "migration": "NONE",
+    "oldRaw": "retained/exportable",
+    "fixture": "tests/fixtures/c03-v7-checkpoint.json",
+    "sha256": "c237fc9a04e13088d23a395a6836fa2a5f591f2612bb325e639607a8cbb09fe7",
+    "checksum": "json-fnv-v1:ae0b20ea9d4cbb86"
+  },
+  "notRun": [
+    "Physical Android/listening/performance",
+    "Actual deployment/site (owner deploys)",
+    "Natural long eight-chapter UI completion",
+    "ContinueEndless (not implemented)",
+    "Runtime GLB",
+    "Future A03 approvals /B00 balance /formal V01/L01"
+  ],
+  "next": "C03.4 exact endless persistence/pool/numeric contract → independent RED → shared ContinueEndless command and ordinary UI/recovery.",
+  "publication": {
+    "status": "PENDING"
+  },
+  "closeout": {
+    "mode": "jiepi-clear lightweight",
+    "scope": "Actual diff only; no broad audit/new harness entry/remote SHA check",
+    "removed": "Unused future resource projection and roster assumption removed; one-off browser probe remains ignored evidence only",
+    "risk": "Endless/long ordinary route pending; formal gates unchanged",
+    "planCheck": "PASS fdd69d; shots/c03-plan-final.log"
+  }
+}

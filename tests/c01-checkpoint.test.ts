@@ -37,12 +37,14 @@ function bossRefund():Fixture {
   return send(fixture,{type:'DiscardHand',selectedIds:[fixture.state.handOrder[0]]});
 }
 function scored(kind:'ordinary'|'lucky'|'glass'|'edition'|'expired'='ordinary'):Fixture {
-  const fixture=enter(),card=fixture.state.deckInstances.find(card=>card.id===fixture.state.handOrder[0])!;card.rank=2;
-  fixture.state.jokers=[{instanceId:'checkpoint/pengci',definitionId:'pengci',paidPrice:4,growth:{}}];
+  const prepared=start();
+  prepared.state.jokers=kind==='expired'
+    ?[{instanceId:'checkpoint/expired',definitionId:'f06',paidPrice:8,growth:{},counters:{handsScored:3}}]
+    :[{instanceId:'checkpoint/pengci',definitionId:'pengci',paidPrice:4,growth:{}}];
+  const fixture=enter(prepared),card=fixture.state.deckInstances.find(card=>card.id===fixture.state.handOrder[0])!;card.rank=2;
   if(kind==='lucky'){card.enhancement='lucky-paper';fixture.state.rng.rule={algorithm:'fnv1a-mulberry32-v1',state:2068216773};}
   if(kind==='glass'){card.enhancement='glass-paper';fixture.state.rng.rule={algorithm:'fnv1a-mulberry32-v1',state:1413661181};}
   if(kind==='edition'){card.edition='foil';fixture.state.jokers[0].edition='polychrome';}
-  if(kind==='expired')fixture.state.jokers=[{instanceId:'checkpoint/expired',definitionId:'f06',paidPrice:8,growth:{},counters:{handsScored:3}}];
   return send(fixture,{type:'PlayHand',selectedIds:[card.id]});
 }
 
@@ -71,13 +73,13 @@ function clearSourceParserFixture(kind:ClearSourceKind):Fixture {
     if(fixture.state.boss.definitionId!=='B01')throw Error('missing-b01-clear-parser-fixture');
     for(const action of [{type:'SkipStage'},{type:'OpenShop'},{type:'SkipStage'},{type:'OpenShop'}] as const)fixture=send(fixture,action);
   }
+  fixture.state.jokers=kind==='e04'?[{instanceId:'parser/interest',definitionId:'e04',paidPrice:6,growth:{}}]:[];
   fixture=enter(fixture);
   for(const item of [...fixture.state.consumables])fixture=send(fixture,{type:'DestroyConsumable',instanceId:item.instanceId});
   // Explicit known hand, funding and owned items isolate actual clear trace serialization.
   // They are parser fixtures, not evidence that these cards or items were naturally acquired.
   fixture.state.gold=100;
   fixture.state.longTermItems=kind.startsWith('U')?[kind]:[];
-  fixture.state.jokers=kind==='e04'?[{instanceId:'parser/interest',definitionId:'e04',paidPrice:6,growth:{}}]:[];
   if(kind==='T16-overflow')fixture.state.consumables=[{instanceId:'parser/held/1',definitionId:'T03'},{instanceId:'parser/held/2',definitionId:'T04'}];
   const selectedIds=fixture.state.handOrder.slice(0,5);
   for(const id of selectedIds)Object.assign(fixture.state.deckInstances.find(card=>card.id===id)!,{rank:14,suit:'hearts'});
@@ -117,7 +119,7 @@ describe('C01 strict current checkpoint and retained historical raw',()=>{
   it('can restore a current-version backup while preserving the genuine v5 current raw for export',()=>{
     const restored=restoreSlots({revision:8,current:rawV5,previous:seal(start())});
     expect(restored.status).toBe('backup');expect(restored.code).toBe('incompatible-version');expect(restored.raw).toBe(rawV5);
-    expect(restored.checkpoint?.state.contentVersion).toBe('quality-r2-content-v7');
+    expect(restored.checkpoint?.state.contentVersion).toBe('quality-r2-content-v8');
   });
   it.each(['spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed'])('requires new state field %s',field=>{
     expect(readCheckpoint(damage(start(),state=>{delete object(state)[field];})).ok).toBe(false);
@@ -266,9 +268,15 @@ describe('C01 strict current checkpoint and retained historical raw',()=>{
     expect(readCheckpoint(damage(scored(),state=>{state.lastTrace!.events[0].operation='execute-arbitrary-script';})).ok).toBe(false);
   });
   it('retains the original rescued Joker as a start source while removing it from result Jokers',()=>{
-    const fixture=enter(),card=fixture.state.deckInstances.find(card=>card.id===fixture.state.handOrder[0])!;card.rank=2;
-    fixture.state.stage!.handsLeft=1;fixture.state.stage!.playIndex=3;
-    fixture.state.jokers=[{instanceId:'checkpoint/rescue',definitionId:'f07',paidPrice:8,growth:{}}];
+    const prepared=start();prepared.state.jokers=[{instanceId:'checkpoint/rescue',definitionId:'f07',paidPrice:8,growth:{}}];
+    let fixture=enter(prepared);
+    // Known two-card high hands stay below the target and establish the real last-hand ledger/context.
+    for(let index=0;index<3;index++){
+      const selectedIds=fixture.state.handOrder.slice(0,2);
+      selectedIds.forEach((id,position)=>{fixture.state.deckInstances.find(card=>card.id===id)!.rank=position===0?2:3;});
+      fixture=send(fixture,{type:'PlayHand',selectedIds});
+    }
+    const card=fixture.state.deckInstances.find(card=>card.id===fixture.state.handOrder[0])!;card.rank=2;
     const rescued=send(fixture,{type:'PlayHand',selectedIds:[card.id]}),trace=rescued.state.lastTrace as ScoreTrace;
     expect(rescued.state.safetyNetUsed).toBe(true);expect(trace.sourceJokers.map(joker=>joker.instanceId)).toEqual(['checkpoint/rescue']);
     expect(trace.destroyedJokerIds).toEqual(['checkpoint/rescue']);expect(trace.jokers).toEqual([]);

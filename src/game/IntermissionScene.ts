@@ -63,12 +63,12 @@ export class IntermissionScene extends Phaser.Scene {
   }
   private render():void {
     const v=this.view,l=v.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
-    const p=resultLayout(l.width,l.height,l.hud.y,bottom),run=runController(this)!.state,stage=getR2Stage(this.result.stageIndex)!,character=getCharacter(run.characterId);
+    const p=resultLayout(l.width,l.height,l.hud.y,bottom),run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
     const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex):undefined,skipped=run.stage?.skipResult,won=run.phase==='run-won',lost=!this.result.cleared&&!skipped&&!won;
     const gap=(BigInt(stage.targetHeat)>BigInt(this.result.stageHeat)?BigInt(stage.targetHeat)-BigInt(this.result.stageHeat):0n).toString(),accent=this.result.cleared?0x367f75:0xc6a46e,accentText=this.result.cleared?'#367f75':'#72532d';
     v.clear();v.paperBackground();
     if(lost)v.add(this.add.graphics().fillStyle(0xe7c38c,.1).fillEllipse(l.width/2,p.score.y+p.score.height/2,Math.min(l.width+120,1000),p.score.height+170));
-    v.text(p.x,p.top,skipped?'换一场，再登台':won?'两章演完了':this.result.cleared?'这场，撑住了':'好戏，可以再来',p.short?24:30,'#fff2da',p.w-72).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
+    v.text(p.x,p.top,skipped?'换一场，再登台':won?'八章，演完了':this.result.cleared?'这场，撑住了':'好戏，可以再来',p.short?24:30,'#fff2da',p.w-72).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     v.text(p.x,p.top+42,stage.name+' · '+character.name,14,'#d5ddc9',p.w);
     const s=p.score,lightAccent=this.result.cleared?'#b5dec8':'#f2dfb5';
     const animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -125,7 +125,7 @@ export class IntermissionScene extends Phaser.Scene {
       heading=`过关 +${this.result.goldEarned} 金`;
       body=`下一场：${nextStage.name} · 目标 ${heatText(nextStage.targetHeat)}\n去商店补构筑。出牌和弃牌次数会补满。`+(nextStage.index%3===2?'\n压轴规则：'+r2BossText(run.boss):'');
     }else if(won){
-      heading='两章试玩完成';body=`${character.name} · 累计 ${heatText(run.totalHeat)} 热度\n当前可玩内容为两章。返回选角，再换一位角色试试。`;
+      heading='八章通关';body=`${character.name} · 累计 ${heatText(run.totalHeat)} 热度\n这场演出完成了。返回选角，试试另一条构筑路线。`;
     }else {
       heading='带着这一手，再登台';const discards=run.stage?.discardsLeft??0;
       body=run.outcome?.reason==='no-legal-cards'?'这次牌堆已耗尽；下局留意牌组余量，再找一次成型机会。':discards>0?`这次还留着 ${discards} 次弃牌；下局可以更早找牌。`:'回看最后一手，调整选牌或大丑牌顺序，再试一次。';
@@ -173,7 +173,7 @@ export class IntermissionScene extends Phaser.Scene {
     v.add(g);
   }
   private inspectResult():void {
-    const run=runController(this)!.state,stage=getR2Stage(this.result.stageIndex)!;
+    const run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex)!,targetHeat:run.stage!.targetHeat};
     this.dialog.open('本场详情',`${stage.name}\n热度 ${heatText(this.result.stageHeat)} / ${heatText(stage.targetHeat)}\n${this.result.cleared?'过关收益':'本场收益'} ${this.result.goldEarned} 金 · 余额 ${run.gold} 金\n剩余出牌 ${this.result.handsLeft} · 剩余弃牌 ${run.stage?.discardsLeft??0}\n\n当前构筑：`+(run.jokers.map(j=>getR2Joker(j.definitionId).name).join('、')||'空')+'\n\n'+(this.result.stageIndex%3===2?'本场压轴：':'本章压轴预告：')+r2BossText(run.boss),run.lastTrace?[{label:'回看最后一手',run:()=>this.inspectLastHand()}]:[]);
   }
   private inspectLastHand():void {

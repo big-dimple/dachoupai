@@ -1,8 +1,9 @@
 import { readFile } from 'node:fs/promises';
 import { createServer } from 'vite';
 
-// A finite C02 envelope, separate from the arbitrary-content conservative guard below.
+// A finite C03 envelope, separate from the arbitrary-content conservative guard below.
 // It overcounts conditions, but keeps one set of five slots across every phase.
+const bossTraceBudgets={B01:0,B02:0,B03:0,B04:0,B05:1,B06:0,B07:0,B08:0,B09:0,B10:0,B11:0,B12:1,B13:0,B14:0,B15:1,B16:0};
 function legalEventEnvelope(definitions,catalog,limits,scoreLimits,chapter) {
   const sum=values=>values.reduce((total,value)=>total+value,0);
   const maximum=values=>Math.max(0,...values);
@@ -15,7 +16,7 @@ function legalEventEnvelope(definitions,catalog,limits,scoreLimits,chapter) {
   require(same(definitions.map(row=>row.id).sort(),approvedIds.sort()),'expected the exact adopted72 identities');
   require(limits.handSize===8&&limits.maxSelected===5&&limits.jokerSlots===5&&limits.longTermSlots===4
     &&scoreLimits.handCount===14&&scoreLimits.extraRetriggers===4&&scoreLimits.retriggerDepth===1,'resource/retrigger limits');
-  require(chapter.R2_AVAILABLE_CHAPTERS===2&&same(chapter.R2_BOSSES.map(row=>row.id),['B01','B02','B03','B04']),'C02 boss scope');
+  require(chapter.R2_AVAILABLE_CHAPTERS===8&&same(chapter.R2_BOSSES.map(row=>row.id),Object.keys(bossTraceBudgets)),'C03 normal eight-chapter/16-Boss scope');
   const normalConditions={
     tiesuanpan:{kind:'rank-in',values:[11,12,13,14]},a08:{kind:'rank-in',values:[2,3,4,5]},
     c02:{kind:'suit-in',values:['hearts','diamonds']},c03:{kind:'suit-in',values:['spades','clubs']},
@@ -122,10 +123,11 @@ function legalEventEnvelope(definitions,catalog,limits,scoreLimits,chapter) {
         for(const cleared of [false,true]){
           const rest=residual.map(row=>({definitionId:row.id,events:sourceCost(row,played,held,cleared)}))
             .sort((a,b)=>b.events-a.events).slice(0,slots);
-          const breakdown={baseCharacterFinal:3,cardEvents,ordinarySuppression:Math.min(2,active,Math.max(0,played-3)),
+          const suppression=Math.min(2,active,Math.max(0,played-3)),boss=suppression>=maximum(Object.values(bossTraceBudgets))?'B02':'B12';
+          const breakdown={baseCharacterFinal:3,cardEvents,ordinarySuppression:boss==='B02'?suppression:0,bossTrace:bossTraceBudgets[boss],
             heldEnhancementOrGold:held,jokerEdition:limits.jokerSlots,residualSources:sum(rest.map(row=>row.events)),clearRules:cleared?clearRules:0};
           const bound=sum(Object.values(breakdown));statesChecked++;
-          if(bound>maximumEvents){maximumEvents=bound;abstractWitness={played,active,normalCardGroups:normal,
+          if(bound>maximumEvents){maximumEvents=bound;abstractWitness={boss,played,active,normalCardGroups:normal,
             retriggerSources:ids,handModifierSources:modifiers.map(row=>row.id),held,cleared,residualSources:rest,breakdown};}
         }
       }
@@ -134,7 +136,7 @@ function legalEventEnvelope(definitions,catalog,limits,scoreLimits,chapter) {
   return {maximumEvents,definitionCount:definitions.length,statesChecked,
     maximumEntryHand:withoutJokerHandModifiers+sum(handModifiers.flatMap(row=>row.modifiers.map(modifier=>modifier.amount))),
     retriggerCapNoticesReachable:false,abstractWitness,
-    scope:'Current72 command-reachable configurations, entry resources and B01–B04; event count, not maximum score or natural acquisition probability.',
+    scope:'Current72 command-reachable configurations, normal eight-chapter entry resources and B01–B16; event count, not maximum score or natural acquisition probability.',bossTraceBudgets,
     proof:['Each equipped source spends one of the same five slots across all phases; A04/D06 spend slots to increase held count.',
       'The six normal card definitions provide at most four simultaneous groups; overlapping groups are overcounted with fewer slots.',
       'A11 requires played1; B06 requires pair and cannot coexist effectively with C07/D11. Other positions contribute at most three repeats.',
@@ -143,6 +145,8 @@ function legalEventEnvelope(definitions,catalog,limits,scoreLimits,chapter) {
       'Held voice and winning gold share a layer and contribute at most one event per held card; held editions do not score.',
       'Success and failure tails are alternatives; F06 count/destruction, F08 check/heat, E10 cycle/reward and rescue/destroy count two when applicable.',
       'U12 cannot coexist with boss-only U09/T16 on one clear; base reward, base interest and last-hand character gold add no separate trace.',
+      'Only one Boss applies: B02 adds at most two ordinary-suppression notices; B05/B12 halve-base or B15 seal adds at most one, never alongside B02.',
+      'Other Bosses add no score-trace entries: suppression and resource reductions cannot increase this overcounted source envelope; B13 reverses order only.',
       'An upper envelope is not an attained witness. Independent88 pure /91 shared goldens and the exported checkpoint provide attainment.']};
 }
 
@@ -206,6 +210,7 @@ try {
       .sort((a,b)=>b.weighted-a.weighted).slice(0,SCORE_LIMITS.jokerCount);
     const components={
       baseCharacterFinal:3, // One base, at most one character effect, one final score.
+      bossTrace:maximum(Object.values(bossTraceBudgets)), // One half-base or post-hand seal; discard transactions stay outside the score trace.
       cardPoints:played*passes,
       scoringEnhancement:played*passes*scoringEnhancement,
       cardEdition:played*passes*editionEvents,

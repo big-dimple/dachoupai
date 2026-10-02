@@ -117,6 +117,7 @@ export type DomainEvent =
   | { type: 'hand-scored-r2'; score: ScoreTrace; playedIds: string[]; playIndex: number }
   | { type: 'stage-ended'; cleared: boolean; stage: StageState | R2StageState }
   | { type: 'cards-discarded';cardIds:string[];discardsLeft:number }
+  | { type:'boss-transaction';definitionId:'B07'|'B14';operation:'charge-discard'|'increase-target';amount:string;resourceBefore:string;resourceAfter:string }
   | { type: 'run-abandoned' }
   | { type: 'stage-skipped';stage: R2StageState }
   | { type: 'consumable-used';definitionId:string;instanceId:string;targetIds:string[];createdCardIds:string[];destroyedCardIds:string[];createdJokerIds?:string[];destroyedJokerIds?:string[] }
