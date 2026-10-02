@@ -1,6 +1,6 @@
 {
   "taskId": "C04",
-  "status": "IN_PROGRESS",
+  "status": "BLOCKED",
   "scope": "D32 minimal C04.2 mode/save closure; stop new features and pause after main publication. C04.3/4 not completed.",
   "testedCommit": "ab8f376b99c91cd1e76593c1b631d1fb9b4e8976",
   "testedTree": "Uncommitted reviewed C04.2 tree. Source hashes below identify the candidate independently of the base SHA. Final production build and browser checks include the selector overlap fix; domain unchanged after full unit pass.",
@@ -164,6 +164,14 @@
       "localLog": "shots/closeout-sensitive-scan.json",
       "logSha256": "7416daecaf61ac3776f759efdc5af5d96d78e64c0b1e26dc0a19de1c6b520531",
       "summary": "62 staged files; no token/private-key/credential URL/personal path/email findings"
+    },
+    {
+      "name": "published-source-CI",
+      "command": "GitHub Actions CI (domain/browser/docs) + production-docs",
+      "status": "BLOCKED",
+      "testedCommit": "d687ee517042d9c52dfa1ff9483d420c7164ad14",
+      "evidence": "https://github.com/big-dimple/dachoupai/actions/runs/36989963670",
+      "summary": "domain/docs PASS; browser CANCELLED after maximum 10 minutes. Full CI did not pass."
     }
   ],
   "browserProfiles": [
@@ -284,6 +292,7 @@
     }
   ],
   "knownIssues": [
+    "Release validation BLOCKED by GitHub Actions browser timeout; first desktop profile completed, subsequent profiles have no completion evidence.",
     "C04.3 three-step tutorial/searchable library/cross-run highlights not implemented",
     "Full C04.2 fault/long-flow and C04.4 acceptance incomplete",
     "Legacy v9 bytes exportable but incompatible with v10; no automatic migration",
@@ -306,12 +315,77 @@
   },
   "nextTask": "PAUSED. dot leads one complete dynamic card sample for portrait mobile, using ART and Balatro/Hearthstone references. Do not auto-start another gameplay package.",
   "publication": {
-    "status": "PENDING_NORMAL_MAIN_PUSH",
+    "status": "PUSHED",
+    "codeCommit": "d687ee517042d9c52dfa1ff9483d420c7164ad14",
     "branch": "main",
-    "force": false
+    "command": "git push origin main",
+    "exitCode": 0,
+    "remoteHeadVerified": "d687ee517042d9c52dfa1ff9483d420c7164ad14",
+    "force": false,
+    "authorPrivacy": "Codex automation / public noreply identity; no personal author email published",
+    "receipt": "Following documentation-only commit records the CI block; production source is unchanged."
   },
   "ci": {
-    "status": "NOT_RUN",
-    "reason": "Verify the exact pushed SHA after publication; not a substitute for local checks."
+    "status": "BLOCKED",
+    "checkedCommit": "d687ee517042d9c52dfa1ff9483d420c7164ad14",
+    "checkedAt": "2026-10-02T09:44:25.124Z",
+    "runs": [
+      {
+        "id": 36989963743,
+        "name": "production-docs",
+        "head_sha": "d687ee517042d9c52dfa1ff9483d420c7164ad14",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/big-dimple/dachoupai/actions/runs/36989963743"
+      },
+      {
+        "id": 36989963670,
+        "name": "CI",
+        "head_sha": "d687ee517042d9c52dfa1ff9483d420c7164ad14",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "html_url": "https://github.com/big-dimple/dachoupai/actions/runs/36989963670"
+      }
+    ],
+    "jobs": [
+      {
+        "id": 110783618321,
+        "name": "docs",
+        "status": "completed",
+        "conclusion": "success",
+        "check_run_url": "https://api.github.com/repos/big-dimple/dachoupai/check-runs/110783618321"
+      },
+      {
+        "id": 110783618725,
+        "name": "browser",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "check_run_url": "https://api.github.com/repos/big-dimple/dachoupai/check-runs/110783618725"
+      },
+      {
+        "id": 110783618736,
+        "name": "domain",
+        "status": "completed",
+        "conclusion": "success",
+        "check_run_url": "https://api.github.com/repos/big-dimple/dachoupai/check-runs/110783618736"
+      }
+    ],
+    "annotations": [
+      {
+        "annotation_level": "failure",
+        "title": "",
+        "message": "The job has exceeded the maximum execution time of 10m0s"
+      },
+      {
+        "annotation_level": "failure",
+        "title": "",
+        "message": "The operation was canceled."
+      }
+    ],
+    "observedLogBoundary": "2026-10-02T09:31:58.2082861Z chromium/desktop: ok; no subsequent profile-completion record before cancellation",
+    "log": "shots/closeout-ci-browser.log",
+    "logSha256": "272890af1858e03f312a867f6892f468fb9ca31e7bd99471042ff72cda27c12a",
+    "reason": "Browser job exceeded its existing 10m0s maximum; overall CI and browser were cancelled, domain/docs and production-docs succeeded. Root cause NOT_DETERMINED; no CI timeout, assertion or deployment change made.",
+    "followingReceiptCI": "Verify the documentation-only pushed SHA separately; no success is inferred while it runs."
   }
 }
