@@ -48,7 +48,7 @@ describe.each(['shop','await-input'] as const)('C01 twelve dedicated planet comm
     expected.handLevels[handType]=DISCOVERED[handType]+1;expected.consumables=[];
     expected.commandSeq=next.commandSeq;expected.receipts=structuredClone(next.receipts);
     expect(next.handLevels[handType]).toBe(DISCOVERED[handType]+1);expect(next).toEqual(expected);
-    expect(Object.keys(next.rng).sort()).toEqual(['deck','reward','rule','shop']);expect(next.rng).toEqual(before.rng);
+    expect(Object.keys(next.rng).sort()).toEqual(['challenge','deck','program','reward','rule','shop']);expect(next.rng).toEqual(before.rng);
     expect(next.lastTrace).toEqual(before.lastTrace);expect(state).toEqual(before);
     const restored=readCheckpoint(JSON.parse(JSON.stringify(makeCheckpoint(next,[cmd]))));
     expect(restored.ok&&restored.checkpoint.state).toEqual(next);expect(restored.ok&&restored.checkpoint.journal).toEqual([cmd]);

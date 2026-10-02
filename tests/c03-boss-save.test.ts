@@ -14,7 +14,7 @@ function send(fixture:Fixture,action:Action):Fixture {
   const result=applyCommand(fixture.state,command);if(!result.ok)throw Error(result.code);
   return {state:result.state,journal:[...fixture.journal,command]};
 }
-function start():Fixture {return {state:createRun({seed:'c03-save',runId:'c03-save',characterId:'erxiang',rulesVersion:'r2'}),journal:[]};}
+function start():Fixture {return {state:createRun({seed:'c03-save',runId:'c03-save',characterId:'erxiang',rulesVersion:'r2',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}}),journal:[]};}
 function enter(boss?:R2BossId,definitions:string[]=[]):Fixture {
   let fixture=start();fixture.state.jokers=definitions.map(id=>r2CreateJoker(id,`c03/source/${id}`,8,'holographic'));
   if(!boss)return send(send(fixture,{type:'LeaveShop'}),{type:'EnterStage'});
@@ -59,7 +59,7 @@ describe('C03 Boss snapshots and finite saved sources in the current explicit ve
     const slots=restoreSlots({revision:2,current:rawV7,previous:null});expect(slots.status).toBe('invalid');expect(slots.raw).toBe(rawV7);expect(JSON.stringify(rawV7)).toBe(before);
   });
   it('round trips a real ordinary entry with empty Boss and seal snapshots',()=>{
-    const fixture=enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v9');
+    const fixture=enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v10');
     expect(fixture.state.stage).toMatchObject({boss:null,initialTargetHeat:'400',initialHandLimit:8,initialJokerIds:[],sealedJokerIds:[]});roundTrip(fixture);
   });
   it.each(['boss','initialTargetHeat','initialHandLimit','initialJokerIds','sealedJokerIds'])('requires the persisted stage.%s field',field=>{

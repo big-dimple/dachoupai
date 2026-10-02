@@ -7,6 +7,7 @@ import {r2ScoreContext,r2DiscardCost} from '../domain/r2Run';
 import {salePrice} from '../domain/r2Shop';
 import {SUITS} from '../cards/types';
 import type {publicR2View} from './r2Bot';
+import {r2JokerCapacity} from '../domain/r2Resources';
 
 export const V00_STYLES=['single-held','groups','suit'] as const;
 export type V00Style=typeof V00_STYLES[number];
@@ -26,9 +27,9 @@ export function chooseV00Action(view:View,style:V00Style):Action|null {
     const weakest=[...view.jokers].sort((a,b)=>rank(b.definitionId)-rank(a.definitionId)).find(j=>!Object.values(j.growth).some(f=>BigInt(f.n)>0n));
     const reserve=view.jokers.length===0?0:view.jokers.some(j=>j.definitionId==='e08')?20:8;
     const offer=[...view.offers].sort((a,b)=>rank(a.definitionId)-rank(b.definitionId)).find(o=>rank(o.definitionId)<100&&o.price<=view.gold&&(!view.jokers.length||view.gold-o.price>=reserve||rank(o.definitionId)<5&&view.jokers.length<3));
-    if(offer&&view.jokers.length<5)return {type:'BuyOffer',offerId:offer.offerId};
+    if(offer&&view.jokers.length<r2JokerCapacity(view))return {type:'BuyOffer',offerId:offer.offerId};
     if(offer&&weakest&&rank(offer.definitionId)+3<rank(weakest.definitionId)&&view.gold+salePrice(weakest.paidPrice)>=offer.price)return {type:'SellJoker',instanceId:weakest.instanceId};
-    if(view.rerollCost!==null&&view.rerollCount<1&&view.gold>=view.rerollCost+4+reserve&&view.jokers.length<5)return {type:'RerollShop'};
+    if(view.rerollCost!==null&&view.rerollCount<1&&view.gold>=view.rerollCost+4+reserve&&view.jokers.length<r2JokerCapacity(view))return {type:'RerollShop'};
     // Put +multiplier sources before ×multiplier sources, preserving order within each class.
     const tier=(id:string)=>R2_JOKERS.find(d=>d.id===id)!.hooks.some(h=>h.operations.some(o=>o.kind==='multiply-multiplier'))?1:0;
     const sorted=[...view.jokers].sort((a,b)=>tier(a.definitionId)-tier(b.definitionId));
@@ -47,7 +48,7 @@ export function chooseV00Action(view:View,style:V00Style):Action|null {
   const candidates:{ids:string[];score:bigint;type:R2HandType}[]=[];
   for(let mask=1;mask<1<<view.hand.length;mask++){
     const cards=view.hand.filter((_,i)=>mask&(1<<i));if(cards.length>5)continue;const ids=cards.map(c=>c.id);
-    const p=previewR2Hand({rulesVersion:'r2',runId:'visible-policy',rootId:'preview',characterId:view.characterId,hand:view.hand,selectedIds:ids,disabledIds:stage.disabledIds,jokers:view.jokers,definitions:R2_JOKERS,handLevels:view.handLevels,playIndex:stage.playIndex+1,handsBeforePlay:stage.handsLeft,previousHandType:stage.previousHandType,wager:false,...r2ScoreContext(view,view.hand,ids)});
+    const p=previewR2Hand({rulesVersion:'r2',runId:'visible-policy',rootId:'preview',hand:view.hand,selectedIds:ids,disabledIds:stage.disabledIds,jokers:view.jokers,definitions:R2_JOKERS,handLevels:view.handLevels,playIndex:stage.playIndex+1,handsBeforePlay:stage.handsLeft,previousHandType:stage.previousHandType,wager:false,...r2ScoreContext(view,view.hand,ids)});
     candidates.push({ids,score:p.possibleScores.map(BigInt).reduce((a,b)=>a<b?a:b),type:p.handType});
   }
   candidates.sort((a,b)=>a.score===b.score?a.ids.length-b.ids.length:a.score>b.score?-1:1);let best=candidates[0];if(!best)return {type:'AbandonRun'};

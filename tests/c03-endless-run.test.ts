@@ -17,7 +17,7 @@ const reject=(state:R2RunState,action:Action,code:string)=>{
 };
 
 function finalBoss():R2RunState {
-  const state=createRun({seed:'c03-endless-final',runId:'c03-endless',characterId:'erxiang',rulesVersion:'r2'});
+  const state=createRun({seed:'c03-endless-final',runId:'c03-endless',characterId:'erxiang',rulesVersion:'r2',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
   // Explicit valid late checkpoint. It tests commands, not natural acquisition or balance.
   state.chapter=8;state.stageIndex=23;state.phase='stage-ready';state.shop!.visitIndex=23;
   state.seenBossIds=['B01','B02','B03','B04','B05','B06','B07','B15'];state.boss={definitionId:'B15',disabledSuit:null};

@@ -1,7 +1,7 @@
 import {assertR2Invariants,R2_CONTENT_HASH,R2_CONTENT_VERSION,R2_LIMITS,R2_RESOURCE_CONTRACT} from '../domain/r2Run';
 import type {R2RunState,Command,Action} from '../domain/run';
 import {CHARACTER_IDS} from '../domain/characters';
-import {R2_HAND_TYPES} from '../domain/evaluateR2';
+import {R2_HAND_TYPES,type R2HandType} from '../domain/evaluateR2';
 import {R2_JOKERS,r2GrowthCaps,r2GrowthInitials,r2GrowthMinimums,supportsR2Joker,validR2JokerCounters,validR2Condition,type R2JokerInstance} from '../content/r2Schema';
 import {Rational,MAX_INTEGER_DIGITS} from '../domain/rational';
 import {SCORE_LIMITS,SCORE_OPERATIONS,r2ScoringDisabledJokerIds} from '../domain/scoreR2';
@@ -12,6 +12,9 @@ import {EDITIONS,ENHANCEMENTS,RANKS,SUITS,type PlayingCard} from '../cards/types
 import {R2_TOOL_CATALOG,type R2LongTermOperation} from '../content/r2Tools';
 import {R2_IMPLEMENTED_TOOL_FEATURES,r2CardSpecialsSupported,r2EditionSupported,r2ItemSupported,r2ToolSupported} from '../domain/r2ToolRuntime';
 import {r2Price,r2ToolPrice,r2ItemPrice} from '../domain/r2Shop';
+import {resolveR2ModeConfig,r2ModeSeedAllowed,r2ModeStorageKey,type R2ModeConfig} from '../content/r2Modes';
+import {r2ProgramStateValid,r2ProgramQualified,type R2ProgramState} from '../domain/r2Programs';
+import {r2HandsBudget,r2DiscardBudget} from '../domain/r2Resources';
 
 export const MAX_JOURNAL=256;
 export const MAX_IMPORT_BYTES=16*1024*1024;
@@ -27,6 +30,7 @@ const bossUpgradeEffect=R2_TOOL_CATALOG.longTermItems.map(item=>item.operation).
 const firstBossSupply=R2_TOOL_CATALOG.tools.find(tool=>tool.id==='T16')!.rewardSources.find(source=>source.source==='first-boss-clear')!;
 const handLifetimeEffect=R2_JOKERS.find(joker=>joker.id==='f06')!.hooks.flatMap(hook=>hook.operations).find(operation=>operation.kind==='expire-after-hands')!;
 const clearRuleDefinitions=['U04','U09','U12','T16'] as const;
+const programRuleDefinitions=['PG01','PG02','PG03','PG04'] as const;
 export interface Checkpoint {
   format:'dachoupai-checkpoint';formatVersion:1;state:R2RunState;
   journalBaseSeq:number;journal:Command[];checksum:string;
@@ -51,19 +55,20 @@ function score(value:unknown):void {if(typeof value!=='string'||!/^(0|[1-9]\d*)$
 function fraction(value:unknown):void {const v=record(value,['n','d']);const number=Rational.fromJSON(v);if(number.n<0n||number.d<=0n)fail('invalid-save-fraction');}
 function accumulator(value:unknown):void {const v=record(value,['H','M']);fraction(v.H);fraction(v.M);}
 function cursor(value:unknown):void {const v=record(value,['algorithm','state']);SeededRng.restore(v as unknown as ReturnType<SeededRng['snapshot']>);}
-function cards(value:unknown,max:number):void {
+function cards(value:unknown,max:number,enhancementsAllowed=true):void {
   const ids=new Set<unknown>();
   for(const item of array(value,max)){
     const card=record(item,['id','rank','suit'],['enhancement','edition']);text(card.id);oneOf(card.rank,RANKS);oneOf(card.suit,SUITS);
     if(card.enhancement!==undefined)oneOf(card.enhancement,ENHANCEMENTS);
+    if(!enhancementsAllowed&&card.enhancement!==undefined)fail('save-enhancement-forbidden');
     if(card.edition!==undefined)oneOf(card.edition,EDITIONS);
     if(ids.has(card.id))fail('duplicate-save-card');ids.add(card.id);
     if(!r2CardSpecialsSupported(card as unknown as PlayingCard))fail('save-card-special-not-enabled');
   }
 }
-function jokers(value:unknown):void {
+function jokers(value:unknown,maximum:number=R2_LIMITS.jokerSlots):void {
   const ids=new Set<unknown>(),definitions=new Set<unknown>();
-  for(const item of array(value,R2_LIMITS.jokerSlots)){
+  for(const item of array(value,maximum)){
     const j=record(item,['instanceId','definitionId','paidPrice','growth'],['counters','edition']);text(j.instanceId);integer(j.paidPrice);
     if(j.edition!==undefined){oneOf(j.edition,EDITIONS);if(!r2EditionSupported(j.edition as typeof EDITIONS[number]))fail('save-joker-edition-not-enabled');}
     const definition=R2_JOKERS.find(d=>d.id===j.definitionId);if(!definition)fail('unknown-save-joker');
@@ -77,9 +82,10 @@ function jokers(value:unknown):void {
     if(!validR2JokerCounters(j.definitionId as string,j.counters))fail('invalid-save-joker-counters');
   }
 }
-function shop(value:unknown,commandSeq:number,stageMaximum:number):void {
-  const s=record(value,['visitIndex','rerollCount','purchases','offers','toolOffers','itemOffers','soldJoker']);
+function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeConfig):void {
+  const s=record(value,['visitIndex','rerollCount','purchases','offers','toolOffers','itemOffers','soldJoker','freeRerolls']);
   integer(s.visitIndex,0,stageMaximum-1);integer(s.rerollCount);integer(s.purchases,0,commandSeq);bool(s.soldJoker);
+  oneOf(s.freeRerolls,[0,1]);if((!config.programsEnabled||!config.reroll.allowed)&&s.freeRerolls!==0)fail('invalid-save-free-rerolls');
   const ids=new Set<unknown>(),caps={offers:jokerShelfEffect.base+jokerShelfEffect.amount,toolOffers:1,itemOffers:itemShelfEffect.base+itemShelfEffect.amount};
   for(const name of ['offers','toolOffers','itemOffers'] as const)for(const item of array(s[name],caps[name])){
     const offer=record(item,['offerId','definitionId','price','consumed'],name==='offers'?['edition']:[]);
@@ -94,6 +100,8 @@ function shop(value:unknown,commandSeq:number,stageMaximum:number):void {
     }else if(name==='toolOffers'){
       const definition=R2_TOOL_CATALOG.tools.find(tool=>tool.id===definitionId);
       if(!definition||!r2ToolSupported(definitionId)||!definition.shopWeight)fail('save-tool-offer-not-enabled');
+      if(!config.enhancementsAllowed&&['set-enhancement','random-enhancement'].includes(definition!.operation.kind)||
+        !config.reroll.allowed&&definition!.operation.kind==='free-reroll')fail('save-tool-offer-mode-forbidden');
       if(offer.price!==r2ToolPrice(definitionId))fail('invalid-save-offer-price');
     }else{
       if(!r2ItemSupported(definitionId))fail('save-item-offer-not-enabled');
@@ -101,16 +109,17 @@ function shop(value:unknown,commandSeq:number,stageMaximum:number):void {
     }
   }
 }
-function trace(value:unknown,context:{runId:string;characterId:string;discoveredHands:readonly string[];stage:R2RunState['stage'];stageIndex:number;liveJokerIds?:readonly string[]}):void {
+function trace(value:unknown,context:{runId:string;characterId:string;discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[]}):void {
   if(value===null)return;
   const stage=context.stage;if(!stage)return fail('invalid-save-trace-stage');
   const successfulStage=stage.skipResult===null&&stage.clearId!==null&&stage.index+1===context.stageIndex&&BigInt(stage.heat)>=BigInt(stage.targetHeat);
   const t=record(value,['rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng','destroyedJokerIds','goldDelta','destroyedCardIds','cards','sourceJokers','bossContext']);
-  oneOf(t.rulesVersion,['r2']);text(t.rootId);oneOf(t.handType,R2_HAND_TYPES);integer(t.level,1,30);score(t.finalScore);accumulator(t.accumulator);cursor(t.rng);jokers(t.jokers);
-  const bossContext=record(t.bossContext,['boss','previousHandType','sealedJokerIds']);
+  oneOf(t.rulesVersion,['r2']);text(t.rootId);oneOf(t.handType,R2_HAND_TYPES);integer(t.level,1,30);score(t.finalScore);accumulator(t.accumulator);cursor(t.rng);jokers(t.jokers,context.config.jokerSlots);
+  const bossContext=record(t.bossContext,['boss','previousHandType','sealedJokerIds','challengeDisabledJokerId']);
+  if(bossContext.challengeDisabledJokerId!==stage.challengeDisabledJokerId)fail('invalid-save-trace-challenge-ban');
   if(bossContext.boss!==null)bossPlan(bossContext.boss);
   if(stableHash(bossContext.boss)!==stableHash(stage.boss))fail('invalid-save-trace-boss');
-  oneOf(bossContext.previousHandType,[null,...R2_HAND_TYPES]);uniqueIds(bossContext.sealedJokerIds,R2_LIMITS.jokerSlots);
+  oneOf(bossContext.previousHandType,[null,...R2_HAND_TYPES]);uniqueIds(bossContext.sealedJokerIds,context.config.jokerSlots);
   const startingSeals=bossContext.sealedJokerIds as string[],boss=bossContext.boss as R2BossPlan|null;
   if(startingSeals.length>Math.max(0,stage.playIndex-1)||startingSeals.some(id=>!stage.initialJokerIds.includes(id))||boss?.definitionId!=='B15'&&startingSeals.length)fail('invalid-save-trace-seals');
   if(stage.playIndex<1||(stage.playIndex===1)!==(bossContext.previousHandType===null))fail('invalid-save-trace-previous-hand');
@@ -118,25 +127,27 @@ function trace(value:unknown,context:{runId:string;characterId:string;discovered
   for(const [key,ids] of Object.entries(sets))strings(ids,key==='heldIds'?R2_RESOURCE_CONTRACT.handMaximum:R2_LIMITS.maxSelected);
   const played=sets.playedIds as string[],held=sets.heldIds as string[],scoring=sets.scoringIds as string[],active=sets.activeScoringIds as string[],all=[...played,...held];
   if(!played.length||all.length>R2_RESOURCE_CONTRACT.handMaximum||new Set(all).size!==all.length||new Set(scoring).size!==scoring.length||scoring.some(id=>!played.includes(id))||new Set(active).size!==active.length||active.some(id=>!scoring.includes(id)))fail('invalid-save-trace-cards');
-  integer(t.goldDelta,0,R2_TOOL_CATALOG.limits.luckyGoldPerHand);cards(t.cards,R2_RESOURCE_CONTRACT.handMaximum);jokers(t.sourceJokers);
+  integer(t.goldDelta,0,R2_TOOL_CATALOG.limits.luckyGoldPerHand);cards(t.cards,R2_RESOURCE_CONTRACT.handMaximum,context.config.enhancementsAllowed);jokers(t.sourceJokers,context.config.jokerSlots);
   const cardSources=new Map((t.cards as PlayingCard[]).map(card=>[card.id,card])),jokerSources=new Map((t.sourceJokers as R2JokerInstance[]).map(joker=>[joker.instanceId,joker]));
   if([...jokerSources.keys()].some(id=>!stage.initialJokerIds.includes(id)))fail('invalid-save-trace-initial-jokers');
-  const disabledJokers=new Set(r2ScoringDisabledJokerIds(boss,[...jokerSources.values()],R2_JOKERS,startingSeals));
+  const disabledJokers=new Set(r2ScoringDisabledJokerIds(boss,[...jokerSources.values()],R2_JOKERS,startingSeals,stage.challengeDisabledJokerId));
   if(all.length!==cardSources.size||all.some(id=>!cardSources.has(id)))fail('invalid-save-trace-cards');
   for(const ids of [played,held,scoring,active]){const order=(t.cards as PlayingCard[]).filter(card=>ids.includes(card.id)).map(card=>card.id);if(order.some((id,index)=>id!==ids[index]))fail('invalid-save-trace-order');}
   const events=array(t.events,SCORE_LIMITS.eventCount);if(!events.length)fail('empty-save-trace');
   const eventIds=new Set<unknown>(),rootEventIds:unknown[]=[],destroyedCards:string[]=[],destroyedJokers:string[]=[],glassHits=new Set<string>(),heldGoldSources=new Set<string>();let luckyGold=0n;
   const coefficients=new Map([...jokerSources.values()].filter(joker=>Object.hasOwn(joker.growth,'coefficient')).map(joker=>[joker.instanceId,Rational.fromJSON(joker.growth.coefficient)]));
   const coefficientReads=new Set<string>(),coefficientChanges=new Set<string>(),chanceChecks=new Map<string,boolean>(),chanceHeat=new Set<string>(),clearCycles=new Map<string,number>(),rewardSources=new Set<string>(),handRefunds=new Set<string>();
+  const emptySlotRewards=new Set<string>();
   const lifetimeCounts=new Map<string,number>(),rescues=new Set<string>();let previousEvent:Record<string,unknown>|undefined;
   const sealTargets:string[]=[];let halves=0,finalSeen=false,clearSeen=false;
+  let programReward:string|null=null;
   const halfRequired=boss?.definitionId==='B12'||boss?.definitionId==='B05'&&bossContext.previousHandType===t.handType;
   const unchanged=(before:unknown,after:unknown)=>{
     const a=before as Record<string,unknown>,b=after as Record<string,unknown>;
     if(['H','M'].some(key=>Rational.fromJSON(a[key]).compare(Rational.fromJSON(b[key]))!==0))fail('invalid-save-resource-score');
   };
   for(const item of events){
-    const e=record(item,['eventId','rootId','rootEventId','phase','sourceType','sourceDefinitionId','sourceInstanceId','operation','value','before','after','reasonKey','visibleCondition','retriggerDepth'],['targetCardId','targetJokerInstanceId','resourceBefore','resourceAfter','targetHandType','growthBefore','growthAfter','rewardDefinitionId']);
+    const e=record(item,['eventId','rootId','rootEventId','phase','sourceType','sourceDefinitionId','sourceInstanceId','operation','value','before','after','reasonKey','visibleCondition','retriggerDepth'],['targetCardId','targetJokerInstanceId','resourceBefore','resourceAfter','targetHandType','growthBefore','growthAfter','rewardDefinitionId','programGoldBeforeReward']);
     for(const k of ['eventId','rootId','rootEventId','sourceDefinitionId','sourceInstanceId','reasonKey'])text(e[k]);
     if(e.rootId!==t.rootId||eventIds.has(e.eventId))fail('invalid-save-trace-root');eventIds.add(e.eventId);rootEventIds.push(e.rootEventId);
     oneOf(e.phase,['base','onCardScore','onHeldCard','characterScore','jokerScore','finalScore','afterHand','beforeFailure','onStageClear']);
@@ -165,9 +176,20 @@ function trace(value:unknown,context:{runId:string;characterId:string;discovered
     if(e.sourceType==='joker'&&(!sourceJoker||sourceJoker.definitionId!==e.sourceDefinitionId))fail('invalid-save-joker-source');
     if(e.sourceType==='joker'&&disabledJokers.has(e.sourceInstanceId as string)&&(['onCardScore','onHeldCard','jokerScore'].includes(e.phase as string)||['add-heat','add-multiplier','multiply-multiplier','retrigger-card','retrigger-cap','read-growth','consume-growth','read-coefficient','chance-heat-check'].includes(e.operation as string)))fail('invalid-save-disabled-joker-event');
     if(e.sourceType==='character'&&(e.sourceDefinitionId!==context.characterId||e.sourceInstanceId!==`${context.runId}/character`))fail('invalid-save-character-source');
-    if(e.sourceType==='character'&&boss?.definitionId==='B08'&&e.phase==='characterScore')fail('invalid-save-disabled-character-event');
-    if(e.sourceType==='rule'&&(e.sourceInstanceId!==context.runId||![t.handType,'B02','B05','B12','B15',...clearRuleDefinitions].includes(e.sourceDefinitionId)))fail('invalid-save-rule-source');
+    if(e.sourceType==='character'&&(boss?.definitionId==='B08'||!context.config.characterAbilityEnabled)&&e.phase==='characterScore')fail('invalid-save-disabled-character-event');
+    if(e.sourceType==='rule'&&(e.sourceInstanceId!==context.runId||![t.handType,'B02','B05','B12','B15',...clearRuleDefinitions,...programRuleDefinitions].includes(e.sourceDefinitionId)))fail('invalid-save-rule-source');
     const amount=Rational.fromJSON(e.value);
+    if(e.operation==='add-heat-per-empty-slot'){
+      const operation=R2_JOKERS.find(definition=>definition.id===sourceJoker?.definitionId)?.hooks.flatMap(hook=>hook.operations).find(operation=>operation.kind==='add-heat-per-empty-slot');
+      if(e.sourceType!=='joker'||!sourceJoker||operation?.kind!=='add-heat-per-empty-slot'||e.phase!=='jokerScore'||
+        e.targetCardId!==undefined||e.retriggerDepth!==0||emptySlotRewards.has(sourceJoker.instanceId)||
+        Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter'))return fail('invalid-save-empty-slot-source');
+      const raw=Rational.fromJSON(operation.value).multiply(new Rational(BigInt(context.config.jokerSlots-jokerSources.size))),cap=Rational.fromJSON(operation.cap),expected=raw.compare(cap)>0?cap:raw;
+      const before=e.before as {H:unknown;M:unknown},after=e.after as {H:unknown;M:unknown};
+      if(amount.compare(expected)!==0||Rational.fromJSON(before.H).add(expected).compare(Rational.fromJSON(after.H))!==0||
+        Rational.fromJSON(before.M).compare(Rational.fromJSON(after.M))!==0)fail('invalid-save-empty-slot-reward');
+      emptySlotRewards.add(sourceJoker.instanceId);
+    }
     if(e.operation==='halve-base-heat'){
       const base=events[0] as Record<string,unknown>,before=e.before as {H:unknown;M:unknown},after=e.after as {H:unknown;M:unknown},original=base.after as {H:unknown;M:unknown};
       if(!halfRequired||e.sourceType!=='rule'||e.sourceDefinitionId!==boss?.definitionId||e.phase!=='base'||item!==events[1]||base.operation!=='base'||base.phase!=='base'||base.sourceType!=='rule'||base.sourceDefinitionId!==t.handType||++halves!==1||e.targetCardId!==undefined||e.retriggerDepth!==0||Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter')||amount.compare(new Rational(1n,2n))!==0)fail('invalid-save-boss-half-source');
@@ -188,7 +210,32 @@ function trace(value:unknown,context:{runId:string;characterId:string;discovered
       if(e.sourceType!=='joker'||sourceJoker?.definitionId!=='f07'||e.phase!=='beforeFailure'||!finalSeen||rescues.has(sourceJoker.instanceId)||amount.compare(new Rational(1n))!==0||e.targetCardId!==undefined||e.retriggerDepth!==0||e.resourceBefore!==0||e.resourceAfter!==1||!stage.rescueUsed||stage.handsLeft!==1||stage.index!==context.stageIndex||BigInt(stage.heat)>=BigInt(stage.targetHeat))fail('invalid-save-rescue-source');
       unchanged(e.before,e.after);rescues.add(sourceJoker!.instanceId);
     }
-    if(e.operation==='upgrade-hand'&&(e.sourceType!=='rule'||e.sourceDefinitionId!=='U09'))fail('invalid-save-clear-operation-source');
+    if(e.operation==='upgrade-hand'&&(e.sourceType!=='rule'||!['U09','PG03'].includes(e.sourceDefinitionId as string)))fail('invalid-save-clear-operation-source');
+    const fromProgram=programRuleDefinitions.includes(e.sourceDefinitionId as typeof programRuleDefinitions[number]);
+    if(fromProgram){
+      const programId=e.sourceDefinitionId as typeof programRuleDefinitions[number];
+      if(e.sourceType!=='rule'||e.phase!=='onStageClear'||!successfulStage||stage.index%3!==2||
+        !context.config.programsEnabled||!context.config.eligibleProgramIds.includes(programId)||programReward!==null||e.targetCardId!==undefined||e.retriggerDepth!==0)
+        fail('invalid-save-program-source');
+      integer(e.programGoldBeforeReward);unchanged(e.before,e.after);programReward=programId;
+      const sameChapter=context.program?.chapter===Math.floor(stage.index/3)+1;
+      if(sameChapter&&(!context.program!.claimed||context.program!.selectedId!==programId||
+        !r2ProgramQualified({...context.program!,claimed:false},context.usage,e.programGoldBeforeReward as number)))fail('invalid-save-program-qualification');
+      if(programId==='PG01'||programId==='PG02'){
+        if(e.operation!=='add-gold'||amount.compare(new Rational(4n))!==0)fail('invalid-save-program-gold');
+      }else if(programId==='PG03'){
+        integer(e.programGoldBeforeReward,15);
+        if(e.operation==='upgrade-hand'){
+          integer(e.resourceBefore,1,29);integer(e.resourceAfter,2,30);
+          if(amount.compare(new Rational(1n))!==0||e.resourceAfter!==(e.resourceBefore as number)+1||
+            sameChapter&&!Object.hasOwn(context.usage,e.targetHandType as string))fail('invalid-save-program-upgrade');
+        }else if(e.operation==='program-reward-skipped'){
+          if(amount.n!==0n||e.targetHandType!==undefined||sameChapter&&Object.entries(context.usage).some(([type,count])=>
+            count>0&&(context.levels[type as R2HandType]??1)<30))fail('invalid-save-program-skip');
+        }else fail('invalid-save-program-operation');
+      }else if(e.operation!=='reward-free-reroll'||amount.compare(new Rational(1n))!==0||e.resourceBefore!==0||e.resourceAfter!==1)
+        fail('invalid-save-program-reroll');
+    }else if(Object.hasOwn(e,'programGoldBeforeReward')||['reward-free-reroll','program-reward-skipped'].includes(e.operation as string))fail('invalid-save-program-metadata');
     const coefficientOperation=e.operation==='read-coefficient'||e.operation==='add-coefficient';
     if(e.operation==='reset-coefficient')fail('invalid-save-coefficient-phase'); // Sales have their own committed DomainEvent.
     if(coefficientOperation){
@@ -311,7 +358,7 @@ function trace(value:unknown,context:{runId:string;characterId:string;discovered
   if(stage.sealedJokerIds.length!==endingSeals.length||stage.sealedJokerIds.some((id,index)=>id!==endingSeals[index]))fail('invalid-save-boss-seal-result');
   if(rootEventIds.some(id=>!eventIds.has(id)))fail('invalid-save-trace-event-root');
   if(luckyGold!==BigInt(t.goldDelta as number)||heldGoldSources.size*heldGoldEffect.amount>heldGoldEffect.capPerStage)fail('invalid-save-trace-gold');
-  strings(t.destroyedJokerIds,R2_LIMITS.jokerSlots);strings(t.destroyedCardIds,R2_RESOURCE_CONTRACT.handMaximum);
+  strings(t.destroyedJokerIds,context.config.jokerSlots);strings(t.destroyedCardIds,R2_RESOURCE_CONTRACT.handMaximum);
   for(const [value,actual] of [[t.destroyedJokerIds,destroyedJokers],[t.destroyedCardIds,destroyedCards]] as const){
     const ids=value as string[];if(new Set(ids).size!==ids.length||new Set(actual).size!==actual.length||ids.length!==actual.length||ids.some(id=>!actual.includes(id)))fail('invalid-save-destruction-result');
   }
@@ -331,16 +378,23 @@ function trace(value:unknown,context:{runId:string;characterId:string;discovered
   for(const [id,cycle] of clearCycles)if((cycle===0)!==rewardSources.has(id))fail('invalid-save-clear-cycle-reward');
 }
 function action(value:unknown):void {
-  const a=record(value,['type'],['seed','characterId','rulesVersion','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind']);
-  const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],ContinueEndless:[],PlayHand:['selectedIds'],DiscardHand:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
+  const a=record(value,['type'],['seed','characterId','rulesVersion','modeConfig','programId','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind']);
+  const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],ContinueEndless:[],ChooseProgram:['programId'],AbandonProgram:[],PlayHand:['selectedIds'],DiscardHand:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
   if(typeof a.type!=='string'||!Object.hasOwn(keys,a.type))fail('unknown-save-command');
-  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:[]);
+  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='StartRun'?['modeConfig']:[]);
   if(a.handType!==undefined)oneOf(a.handType,R2_HAND_TYPES);
   if(a.secondaryHandType!==undefined)oneOf(a.secondaryHandType,R2_HAND_TYPES);
   if(a.suit!==undefined)oneOf(a.suit,SUITS);
   if(a.sacrificeId!==undefined)text(a.sacrificeId);
   if(a.targetKind!==undefined)oneOf(a.targetKind,['card','joker']);
-  if(a.type==='StartRun'){text(a.seed,4096);oneOf(a.characterId,CHARACTER_IDS);oneOf(a.rulesVersion,['r2']);}
+  if(a.type==='StartRun'){
+    text(a.seed,4096);oneOf(a.characterId,CHARACTER_IDS);oneOf(a.rulesVersion,['r2']);
+    if(a.modeConfig!==undefined){
+      const selection=record(a.modeConfig,['mode','difficulty','challengeId','programsEnabled']),config=resolveR2ModeConfig(selection);
+      if(!config.ok||!r2ModeSeedAllowed(config.config,a.seed)||config.config.mode==='tutorial'&&a.characterId!=='erxiang')fail('invalid-save-start-mode');
+    }
+  }
+  if(a.type==='ChooseProgram')oneOf(a.programId,[null,...programRuleDefinitions]);
   for(const k of ['selectedIds','targetIds','ids'])if(a[k]!==undefined)strings(a[k],14);
   for(const k of ['instanceId','offerId'])if(a[k]!==undefined)text(a[k]);
   if(a.enabled!==undefined)bool(a.enabled);
@@ -359,23 +413,37 @@ function safeTree(value:unknown):void {
 function validateState(value:unknown):asserts value is R2RunState {
   // Diagnose old versions before changed fields; retaining/exporting raw saves remains explicit.
   if(value&&typeof value==='object'&&!Array.isArray(value)){const tags=value as Record<string,unknown>;if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||tags.contentVersion!==R2_CONTENT_VERSION||tags.contentHash!==R2_CONTENT_HASH)fail('incompatible-version');}
-  const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','difficulty','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons','safetyNetUsed','spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed','tourMode','normalCompletion']);
+  const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','mode','difficulty','challengeId','programsEnabled','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons','safetyNetUsed','spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed','tourMode','normalCompletion','chapterDisabledJokerId','programRerollCoupon']);
   if(s.schemaVersion!==2||s.rulesVersion!=='r2'||s.contentVersion!==R2_CONTENT_VERSION||s.contentHash!==R2_CONTENT_HASH)fail('incompatible-version');
+  const selected=resolveR2ModeConfig({mode:s.mode,difficulty:s.difficulty,challengeId:s.challengeId,programsEnabled:s.programsEnabled});
+  const config=selected.ok?selected.config:fail('invalid-save-mode');
+  if(!r2ModeSeedAllowed(config,s.seed)||config.mode==='tutorial'&&s.characterId!=='erxiang')fail('invalid-save-mode-seed-character');
   oneOf(s.tourMode,['normal','endless']);const tourMode=s.tourMode as R2TourMode,chapterMaximum=tourMode==='endless'?R2_ENDLESS_MAX_CHAPTER:R2_AVAILABLE_CHAPTERS,stageMaximum=chapterMaximum*3;
-  text(s.runId);text(s.seed,4096);integer(s.commandSeq,1);oneOf(s.difficulty,[0]);oneOf(s.characterId,CHARACTER_IDS);integer(s.chapter,1,chapterMaximum);integer(s.stageIndex,0,stageMaximum);
+  if(config.mode!=='standard'&&tourMode==='endless')fail('invalid-save-mode-endless');
+  text(s.runId);text(s.seed,4096);integer(s.commandSeq,1);oneOf(s.characterId,CHARACTER_IDS);integer(s.chapter,config.startingChapter,chapterMaximum);integer(s.stageIndex,config.startingStageIndex,stageMaximum);
   oneOf(s.phase,['shop','stage-ready','await-input','stage-cleared','run-won','run-lost']);
-  cards(s.deckInstances,10000);
+  cards(s.deckInstances,R2_RESOURCE_CONTRACT.deckMaximum,config.enhancementsAllowed);
   for(const k of ['drawPile','handOrder','playedPile','discardPile','destroyedIds','longTermItems'])strings(s[k]);
-  score(s.totalHeat);integer(s.gold);jokers(s.jokers);
+  score(s.totalHeat);integer(s.gold);jokers(s.jokers,config.jokerSlots);
+  bool(s.programRerollCoupon);
+  if((!config.programsEnabled||!config.reroll.allowed)&&s.programRerollCoupon)fail('invalid-save-program-coupon');
+  if(config.chapterJokerBanCount===0?s.chapterDisabledJokerId!==null:!R2_JOKERS.some(joker=>joker.id===s.chapterDisabledJokerId))fail('invalid-save-chapter-challenge-ban');
   const completion=s.normalCompletion===null?null:record(s.normalCompletion,['clearId','totalHeat']);
   if(completion){
     text(completion.clearId);score(completion.totalHeat);
     if(completion.clearId!==`${s.runId}/clear/23`||BigInt(completion.totalHeat as string)===0n||BigInt(completion.totalHeat as string)>BigInt(s.totalHeat as string))fail('invalid-save-normal-completion');
   }
-  if(tourMode==='normal'){
+  if(config.mode!=='standard'){
+    if(completion!==null)fail('invalid-save-mode-completion');
+  }else if(tourMode==='normal'){
     if(s.phase==='run-won'?!completion||completion.totalHeat!==s.totalHeat:completion!==null)fail('invalid-save-normal-completion');
   }else if(!completion||(s.chapter as number)<R2_AVAILABLE_CHAPTERS+1||(s.stageIndex as number)<R2_AVAILABLE_CHAPTERS*3||s.phase==='run-won')fail('invalid-save-endless-qualification');
-  for(const c of array(s.consumables,R2_TOOL_CATALOG.limits.consumableSlotsMaximum)){const v=record(c,['instanceId','definitionId']);text(v.instanceId);text(v.definitionId);if(!r2ToolSupported(v.definitionId as string))fail('save-tool-not-enabled');}
+  for(const c of array(s.consumables,R2_TOOL_CATALOG.limits.consumableSlotsMaximum)){
+    const v=record(c,['instanceId','definitionId']);text(v.instanceId);text(v.definitionId);if(!r2ToolSupported(v.definitionId as string))fail('save-tool-not-enabled');
+    const definition=R2_TOOL_CATALOG.tools.find(tool=>tool.id===v.definitionId)!;
+    if(!config.enhancementsAllowed&&['set-enhancement','random-enhancement'].includes(definition.operation.kind)||
+      !config.reroll.allowed&&definition.operation.kind==='free-reroll')fail('save-tool-mode-forbidden');
+  }
   for(const id of s.longTermItems as string[])if(!r2ItemSupported(id))fail('save-item-not-enabled');
   const modifiers=record(s.spectralModifiers,['handsPenalty','handPenalty','cleanSlateBonus']);
   integer(modifiers.handsPenalty,0,R2_TOOL_CATALOG.limits.spectralHandsPenaltyMaximum);integer(modifiers.handPenalty,0,R2_TOOL_CATALOG.limits.spectralHandPenaltyMaximum);integer(modifiers.cleanSlateBonus,0,R2_TOOL_CATALOG.limits.oncePerRun);
@@ -386,16 +454,24 @@ function validateState(value:unknown):asserts value is R2RunState {
   const usage=record(s.chapterHandUsage,[],[...R2_HAND_TYPES]);let plays=0n;
   for(const [type,count] of Object.entries(usage)){integer(count);if(!Object.hasOwn(levels,type))fail('undiscovered-save-hand-usage');plays+=BigInt(count as number);}
   if(plays>BigInt(s.commandSeq as number))fail('invalid-save-hand-usage');
-  oneOf(s.program,[null]);bossPlan(s.boss);strings(s.seenBossIds,chapterMaximum);
+  if(!r2ProgramStateValid(s.program,config,s.chapter as number))fail('invalid-save-program');
+  bossPlan(s.boss);strings(s.seenBossIds,chapterMaximum);
   if(!r2BossHistoryValid(s.seenBossIds as string[],s.chapter as number,tourMode)||(s.seenBossIds as string[]).at(-1)!==s.boss.definitionId)fail('invalid-save-boss-history');
   oneOf(s.chapterSkipConsumable,R2_SKIP_CONSUMABLES);integer(s.purchaseCoupons,0,chapterMaximum);bool(s.safetyNetUsed);
-  if(s.stage!==null){const t=record(s.stage,['index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult','initialHands','initialDiscards','discardSpent','discardGained','doubleDiscardBeforeFirstPlay','maxPlayedCount','ordinaryStraightSeen','ordinaryFlushSeen','quadRefundUsed','jokerSold','boss','initialTargetHeat','initialHandLimit','initialJokerIds','sealedJokerIds']);
+  if(s.stage!==null){const t=record(s.stage,['index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult','initialHands','initialDiscards','discardSpent','discardGained','doubleDiscardBeforeFirstPlay','maxPlayedCount','ordinaryStraightSeen','ordinaryFlushSeen','quadRefundUsed','jokerSold','boss','initialTargetHeat','initialHandLimit','initialJokerIds','sealedJokerIds','challengeDisabledJokerId']);
     integer(t.index,0,stageMaximum-1);score(t.targetHeat);score(t.heat);integer(t.handLimit,R2_RESOURCE_CONTRACT.handMinimum,R2_RESOURCE_CONTRACT.handMaximum);bool(t.rescueUsed);if(t.previousHandScore!==null)score(t.previousHandScore);
-    score(t.initialTargetHeat);integer(t.initialHandLimit,R2_RESOURCE_CONTRACT.handMinimum,R2_RESOURCE_CONTRACT.handMaximum);uniqueIds(t.initialJokerIds,R2_LIMITS.jokerSlots);uniqueIds(t.sealedJokerIds,R2_LIMITS.jokerSlots);
+    score(t.initialTargetHeat);integer(t.initialHandLimit,R2_RESOURCE_CONTRACT.handMinimum,R2_RESOURCE_CONTRACT.handMaximum);uniqueIds(t.initialJokerIds,config.jokerSlots);uniqueIds(t.sealedJokerIds,config.jokerSlots);
+    if(config.chapterJokerBanCount===0?t.challengeDisabledJokerId!==null:!R2_JOKERS.some(joker=>joker.id===t.challengeDisabledJokerId))fail('invalid-save-stage-challenge-ban');
+    if(Math.floor((t.index as number)/3)+1===s.chapter&&t.challengeDisabledJokerId!==s.chapterDisabledJokerId)fail('invalid-save-stage-challenge-ban');
     if((t.index as number)%3===2){bossPlan(t.boss);if(t.boss.definitionId!==(s.seenBossIds as string[])[Math.floor((t.index as number)/3)])fail('invalid-save-stage-boss');}
     else if(t.boss!==null)fail('invalid-save-stage-boss');
-    if(t.initialTargetHeat!==r2StageSpec(t.index as number,tourMode)?.targetHeat)fail('invalid-save-initial-target');
-    integer(t.initialHands,R2_RESOURCE_CONTRACT.handsMinimum,R2_RESOURCE_CONTRACT.handsMaximum);integer(t.initialDiscards,R2_LIMITS.discards,R2_RESOURCE_CONTRACT.discardsMaximum);bool(t.doubleDiscardBeforeFirstPlay);
+    if(t.initialTargetHeat!==r2StageSpec(t.index as number,tourMode,config.difficulty)?.targetHeat)fail('invalid-save-initial-target');
+    integer(t.initialHands,R2_RESOURCE_CONTRACT.handsMinimum,config.baseHands+R2_RESOURCE_CONTRACT.handsMaximum-R2_LIMITS.hands);
+    integer(t.initialDiscards,config.baseDiscards,config.baseDiscards+R2_RESOURCE_CONTRACT.discardsMaximum-R2_LIMITS.discards);bool(t.doubleDiscardBeforeFirstPlay);
+    if(t.index===s.stageIndex&&['await-input','run-lost'].includes(s.phase as string)){
+      const live=value as R2RunState;
+      if(t.initialHands!==r2HandsBudget(live)||t.initialDiscards!==r2DiscardBudget(live))fail('invalid-save-mode-resource-budget');
+    }
     for(const field of ['ordinaryStraightSeen','ordinaryFlushSeen','quadRefundUsed','jokerSold'])bool(t[field]);integer(t.maxPlayedCount,0,R2_LIMITS.maxSelected);
     const handsBudget=(t.initialHands as number)+(t.rescueUsed?1:0)+(t.quadRefundUsed?1:0);
     integer(t.handsLeft,0,handsBudget);integer(t.discardsLeft,0,t.initialDiscards as number);integer(t.playIndex,0,handsBudget);integer(t.discardGained,0,R2_RESOURCE_CONTRACT.discardGainMaximum);integer(t.discardSpent,0,(t.initialDiscards as number)+(t.discardGained as number));integer(t.discardsUsed,0,t.discardSpent as number);
@@ -409,16 +485,29 @@ function validateState(value:unknown):asserts value is R2RunState {
   }
   if(tourMode==='normal'&&s.phase==='run-won'){
     const completed=s.stage as R2RunState['stage'];
-    if(s.chapter!==R2_AVAILABLE_CHAPTERS||s.stageIndex!==stageMaximum||!completed||completed.index!==stageMaximum-1||completed.clearId!==completion!.clearId||completed.skipResult!==null||BigInt(completed.heat)<BigInt(completed.targetHeat))fail('invalid-save-normal-completion');
+    if(s.chapter!==R2_AVAILABLE_CHAPTERS||s.stageIndex!==stageMaximum||!completed||completed.index!==stageMaximum-1||completed.clearId!==`${s.runId}/clear/23`||
+      config.mode==='standard'&&completed.clearId!==completion!.clearId||completed.skipResult!==null||BigInt(completed.heat)<BigInt(completed.targetHeat))fail('invalid-save-normal-completion');
   }
-  if(s.shop!==null)shop(s.shop,s.commandSeq as number,stageMaximum);
-  const rng=record(s.rng,['deck','shop','rule','reward']);Object.values(rng).forEach(cursor);
+  if(s.shop!==null){
+    shop(s.shop,s.commandSeq as number,stageMaximum,config);
+    if(s.phase!=='shop'&&(s.shop as Record<string,unknown>).freeRerolls!==0)fail('invalid-save-expired-free-rerolls');
+  }
+  const rng=record(s.rng,['deck','shop','rule','reward','program','challenge']);Object.values(rng).forEach(cursor);
   const receipts=array(s.receipts,100000);let seq=0;const ids=new Set();
   for(const r of receipts){const v=record(r,['commandId','fingerprint','seq']);text(v.commandId);text(v.fingerprint);integer(v.seq,1);if(v.seq!==++seq||ids.has(v.commandId))fail('invalid-save-receipts');ids.add(v.commandId);}
   if(seq!==s.commandSeq)fail('invalid-save-sequence');
   const stage=s.stage as R2RunState['stage'],sameStage=stage?.index===s.stageIndex&&['await-input','run-lost'].includes(s.phase as string);
-  trace(s.lastTrace,{runId:s.runId as string,characterId:s.characterId as string,discoveredHands:Object.keys(levels),stage,stageIndex:s.stageIndex as number,
+  trace(s.lastTrace,{runId:s.runId as string,characterId:s.characterId as string,discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
+    config,program:s.program as R2ProgramState|null,usage:usage as R2RunState['chapterHandUsage'],
     liveJokerIds:sameStage?(s.jokers as R2JokerInstance[]).map(joker=>joker.instanceId):undefined});
+  const program=s.program as R2ProgramState|null;
+  if(program?.claimed){
+    const last=value as R2RunState;
+    if(!stage||stage.index%3!==2||Math.floor(stage.index/3)+1!==program.chapter||stage.clearId!==`${s.runId}/clear/${stage.index}`||
+      stage.skipResult!==null||BigInt(stage.heat)<BigInt(stage.targetHeat)||!last.lastTrace?.events.some(event=>
+        event.sourceType==='rule'&&event.sourceDefinitionId===program.selectedId&&event.phase==='onStageClear'&&
+        ['add-gold','upgrade-hand','reward-free-reroll','program-reward-skipped'].includes(event.operation)))fail('invalid-save-program-claim');
+  }
   if(s.outcome!==null){const o=record(s.outcome,['reason','stageIndex']);oneOf(o.reason,['graybox-complete','all-stages-cleared','hands-exhausted','no-legal-cards','abandoned']);integer(o.stageIndex,0,stageMaximum);}
   assertR2Invariants(value as unknown as R2RunState);
 }
@@ -442,9 +531,21 @@ export function readCheckpoint(value:unknown):ReadResult {
     return {ok:true,checkpoint:structuredClone(value) as Checkpoint};
   } catch(error){return {ok:false,code:error instanceof Error?error.message:'invalid-save'};}
 }
+function rawPartition(value:unknown):string|undefined {
+  if(!value||typeof value!=='object'||Array.isArray(value))return;
+  const state=(value as Record<string,unknown>).state;
+  if(!state||typeof state!=='object'||Array.isArray(state))return;
+  const tags=state as Record<string,unknown>;
+  if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||tags.contentVersion!==R2_CONTENT_VERSION||tags.contentHash!==R2_CONTENT_HASH||
+    ['mode','difficulty','challengeId','programsEnabled'].some(field=>!Object.hasOwn(tags,field)))return;
+  const selected=resolveR2ModeConfig({mode:tags.mode,difficulty:tags.difficulty,challengeId:tags.challengeId,programsEnabled:tags.programsEnabled});
+  return selected.ok?r2ModeStorageKey(selected.config,R2_CONTENT_HASH):undefined;
+}
 export function restoreSlots(slots:{revision:number;current:unknown|null;previous:unknown|null}):{status:'empty'|'current'|'backup'|'invalid';checkpoint?:Checkpoint;code?:string;raw:unknown|null} {
   if(slots.current===null&&slots.previous===null)return {status:'empty',raw:null};
   const current=readCheckpoint(slots.current);if(current.ok)return {status:'current',checkpoint:current.checkpoint,raw:slots.current};
-  const previous=readCheckpoint(slots.previous);if(previous.ok)return {status:'backup',checkpoint:previous.checkpoint,code:current.code,raw:slots.current};
+  const previous=readCheckpoint(slots.previous);
+  if(previous.ok&&(slots.current===null||rawPartition(slots.current)===r2ModeStorageKey(previous.checkpoint.state,previous.checkpoint.state.contentHash)))
+    return {status:'backup',checkpoint:previous.checkpoint,code:current.code,raw:slots.current};
   return {status:'invalid',code:current.code,raw:slots.current};
 }

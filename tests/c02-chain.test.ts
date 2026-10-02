@@ -83,7 +83,7 @@ describe('C02 distinct-source legal resource/depth stress witnesses',()=>{
 function maxChainRequest():ScoreInput {
   const {state,selectedIds}=makeC02MaxChainFixture(),stage=state.stage!;
   const hand=state.handOrder.map(id=>state.deckInstances.find(card=>card.id===id)!);
-  return {rulesVersion:'r2',runId:state.runId,rootId:'c02-chain/oracle',characterId:state.characterId,
+  return {rulesVersion:'r2',runId:state.runId,rootId:'c02-chain/oracle',
     hand,selectedIds,disabledIds:stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS,
     handLevels:state.handLevels,playIndex:stage.playIndex+1,handsBeforePlay:stage.handsLeft,
     previousHandType:stage.previousHandType,wager:false,rng:state.rng.rule,...r2ScoreContext(state,hand,selectedIds)};
@@ -149,12 +149,16 @@ describe('C02 independent maximum event-chain goldens',()=>{
 
 const contentCLI=(path?:string)=>spawnSync(process.execPath,['scripts/verify-content.mjs',...(path?[path]:[])],{encoding:'utf8',timeout:20000});
 describe('C02 current-content joint event proof',()=>{
-  it('derives the attainable 91 envelope while retaining the independent conservative512 guard',()=>{
+  it('adds one bounded program reward to the C03 envelope while retaining the independent conservative512 guard',()=>{
     const result=contentCLI();expect(result.status,result.stderr).toBe(0);
     // Vite may prepend a dependency-optimizer status line before the CLI JSON.
     const report=JSON.parse(result.stdout.match(/\{\s*"status"[\s\S]*\}/)?.[0]??'');
-    expect(report.conservativeEventBound).toBe(319); // C03 adds one bounded half-base or seal source; arithmetic goldens above stay fixed.
-    expect(report.legalEventEnvelope.maximumEvents).toBe(91);
+    // One selected program can add one Boss-clear event. The attained 88/91
+    // arithmetic goldens above stay fixed; this is an upper envelope, not attainment.
+    expect(report.eventBoundModel.programRewardEventMaximum).toBe(1);
+    expect(report.conservativeEventBound).toBe(319+1);
+    expect(report.legalEventEnvelope.maximumEvents).toBe(91+1);
+    expect(report.legalEventEnvelope.abstractWitness.breakdown.clearRules).toBe(4);
     expect(report.legalEventEnvelope.definitionCount).toBe(72);
     expect(report.legalEventEnvelope.retriggerCapNoticesReachable).toBe(false);
     expect(report.legalEventEnvelope.maximumEntryHand).toBe(13);

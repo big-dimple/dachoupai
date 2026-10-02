@@ -10,7 +10,7 @@ interface Fixture {state:R2RunState;journal:Command[]}
 const object=(value:unknown)=>value as Record<string,unknown>;
 const coefficient=(n='1',d='1')=>({n,d});
 function start():Fixture {
-  const fixture={state:createRun({seed:'c02-checkpoint',runId:'c02-checkpoint',characterId:'erxiang',rulesVersion:'r2'}),journal:[] as Command[]};
+  const fixture={state:createRun({seed:'c02-checkpoint',runId:'c02-checkpoint',characterId:'erxiang',rulesVersion:'r2',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}}),journal:[] as Command[]};
   Object.assign(fixture.state.shop!,{soldJoker:false});return fixture;
 }
 function send(fixture:Fixture,action:Action):Fixture {
@@ -111,7 +111,7 @@ describe('C02 checkpoint boundary in the current explicit version without rewrit
     const restored=restoreSlots({revision:9,current:rawV6,previous:null});expect(restored.status).toBe('invalid');expect(restored.raw).toBe(rawV6);expect(JSON.stringify(rawV6)).toBe(before);
   });
   it.each(['shop','stage'] as const)('round trips required %s fields in an explicit new run',phase=>{
-    const fixture=phase==='shop'?start():enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v9');
+    const fixture=phase==='shop'?start():enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v10');
     const parsed=readCheckpoint(makeCheckpoint(fixture.state,fixture.journal));expect(parsed.ok&&parsed.checkpoint.state).toEqual(fixture.state);
   });
   it('requires shop.soldJoker and refuses a nonboolean sale snapshot',()=>{

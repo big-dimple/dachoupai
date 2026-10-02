@@ -10,7 +10,7 @@ function fixture(index:number,boss:R2BossPlan={definitionId:'B04',disabledSuit:n
     wagerSelected:false,wagerUsed:false,discardsUsed:0,skipResult:null,handLimit:8,previousHandScore:null,rescueUsed:false,
     initialHands:4,initialDiscards:3,discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:index%3===2&&boss.definitionId==='B01',
     maxPlayedCount:0,ordinaryStraightSeen:false,ordinaryFlushSeen:false,quadRefundUsed:false,jokerSold:false,
-    boss:index%3===2?structuredClone(boss):null,initialTargetHeat:'400',initialHandLimit:8,initialJokerIds:[],sealedJokerIds:[],
+    boss:index%3===2?structuredClone(boss):null,initialTargetHeat:'400',initialHandLimit:8,initialJokerIds:[],sealedJokerIds:[],challengeDisabledJokerId:null,
   }};
 }
 

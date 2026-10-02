@@ -4,7 +4,7 @@ import {r2DisabledCards} from './r2Chapter';
 import type {R2HandType} from './evaluateR2';
 import {makeR2Shop,R2_RESOURCE_CONTRACT,type R2RunState} from './r2Run';
 import {r2Pool,r2ToolAcquisitionPool} from './r2Shop';
-import {r2ToolSupported} from './r2ToolRuntime';
+import {r2CardSpecialsAllowed,r2ToolAllowed,r2ToolSupported} from './r2ToolRuntime';
 import {applyR2SpectralTool} from './r2SpectralTools';
 import type {Command,DomainEvent} from './run';
 
@@ -21,6 +21,7 @@ export function applyR2Tool(state:R2RunState,command:Command,events:DomainEvent[
   if(itemIndex<0)return 'unknown-consumable';
   const item=state.consumables[itemIndex],tool=R2_TOOLS.find(definition=>definition.id===item.definitionId);
   if(!tool||!r2ToolSupported(tool.id))return 'consumable-not-enabled';
+  if(!r2ToolAllowed(state,tool.id))return tool.operation.kind==='free-reroll'?'reroll-disabled':'enhancements-disabled';
   if(tool.family==='spectral')return applyR2SpectralTool(state,command,events);
   if(tool.costs.length)return 'consumable-not-enabled';
   if(!tool.phases.includes(state.phase))return 'wrong-consumable-target';
@@ -80,6 +81,7 @@ export function applyR2Tool(state:R2RunState,command:Command,events:DomainEvent[
     case 'copy-card': {
       if(state.deckInstances.length-state.destroyedIds.length+operation.copies>R2_TOOL_CATALOG.limits.deckMaximum)return 'deck-maximum';
       const source=targets[0];
+      if(!r2CardSpecialsAllowed(state,source))return 'enhancements-disabled';
       for(let copy=0;copy<operation.copies;copy++)createdCardIds.push(`${state.runId}/card/${command.commandId}/${copy}`);
       if(createdCardIds.some(id=>state.deckInstances.some(card=>card.id===id)))return 'duplicate-card-id';
       for(const id of createdCardIds){

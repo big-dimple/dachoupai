@@ -6,6 +6,9 @@ export type R2ModeId='standard'|'challenge'|'tutorial';
 export type R2Difficulty=0|1|2|3;
 export type R2ChallengeId='Q01'|'Q02'|'Q03'|'Q04'|'Q05'|'Q06'|'Q07'|'Q08'|'Q09'|'Q10'|'Q11'|'Q12';
 export type R2ProgramId='PG01'|'PG02'|'PG03'|'PG04';
+export interface R2ModeSelection {
+  readonly mode:R2ModeId;readonly difficulty:R2Difficulty;readonly challengeId:R2ChallengeId|null;readonly programsEnabled:boolean;
+}
 export interface R2ModeConfig {
   readonly mode:R2ModeId;readonly difficulty:R2Difficulty;readonly challengeId:R2ChallengeId|null;
   readonly targetMultiplier:{readonly n:string;readonly d:string};
@@ -248,6 +251,19 @@ export function resolveR2ModeConfig(input:unknown):{ok:true;config:R2ModeConfig}
 /** Free seeds preserve exact text; challenge/tutorial seeds must match an approved fixed entry. */
 export function r2ModeSeedAllowed(config:R2ModeConfig,seed:unknown):boolean {
   return text(seed)&&(config.seedPolicy.kind==='free'||config.seedPolicy.values.includes(seed));
+}
+
+/** A live v10 state must carry its explicit selection; restoration never silently supplies D0. */
+export function r2RunModeConfig(selection:R2ModeSelection):R2ModeConfig {
+  const result=resolveR2ModeConfig({mode:selection.mode,difficulty:selection.difficulty,
+    challengeId:selection.challengeId,programsEnabled:selection.programsEnabled});
+  if(!result.ok)throw Error(result.code);
+  return result.config;
+}
+
+export function r2ModeStorageKey(selection:R2ModeSelection,contentHash:string):string {
+  const config=r2RunModeConfig(selection);
+  return `r2:${contentHash}:${config.mode}:${config.challengeId??'none'}:d${config.difficulty}:program-${config.programsEnabled?'on':'off'}`;
 }
 
 /** Final cumulative ratio only. Callers combine every target factor before their single final ceil. */

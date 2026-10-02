@@ -11,7 +11,7 @@ function send(state:R2RunState,action:Action):R2RunState {
   const result=applyCommand(state,command(state,action));if(!result.ok)throw Error(result.code);return result.state;
 }
 function positioned(boss:R2BossId,index:number,modifiers:Partial<R2RunState['spectralModifiers']>={}):R2RunState {
-  const state=createRun({seed:'c03-boss-tools',runId:`c03-tools/${boss}/${index}`,characterId:'erxiang',rulesVersion:'r2'});
+  const state=createRun({seed:'c03-boss-tools',runId:`c03-tools/${boss}/${index}`,characterId:'erxiang',rulesVersion:'r2',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
   const chapter=Math.floor(index/3)+1;
   // Explicit chapter position/plan fixtures, not a natural acquisition or full-run claim.
   Object.assign(state,{stageIndex:index,chapter,phase:'stage-ready',shop:null,boss:{definitionId:boss,disabledSuit:null},

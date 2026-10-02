@@ -1,0 +1,317 @@
+{
+  "taskId": "C04",
+  "status": "IN_PROGRESS",
+  "scope": "D32 minimal C04.2 mode/save closure; stop new features and pause after main publication. C04.3/4 not completed.",
+  "testedCommit": "ab8f376b99c91cd1e76593c1b631d1fb9b4e8976",
+  "testedTree": "Uncommitted reviewed C04.2 tree. Source hashes below identify the candidate independently of the base SHA. Final production build and browser checks include the selector overlap fix; domain unchanged after full unit pass.",
+  "environment": {
+    "os": "win32 10.0.26200",
+    "node": "v22.20.0",
+    "physicalDevice": "NOT_RUN"
+  },
+  "rulesVersion": "r2",
+  "contentVersion": "quality-r2-content-v10",
+  "contentHash": "json-fnv-v1:24efe7a905216d85",
+  "inventory": {
+    "initialTrackedModified": 45,
+    "initialUntrackedSourceAndTests": 12,
+    "unrelatedChangesDiscarded": 0,
+    "separateIncompleteBranch": "NONE",
+    "preservedLocal": [
+      "shots/ (ignored logs, one-off probes and test builds)",
+      "dist/",
+      "node_modules/",
+      ".codex-remote-attachments/"
+    ],
+    "newAssets": "NONE",
+    "deploymentChanges": "NONE"
+  },
+  "sourceHashesLF": {
+    "scripts/verify-content.mjs": "5231dbc53297c65c1eaf21a1547acf0ec4ce2b19816f4305262b770027688831",
+    "src/application/checkpoint.ts": "437c1f1f3a02cd0c365fe4af968c52ca39cee040fe4cc722d99b5b6d2bdddced",
+    "src/content/r2Modes.ts": "d8a319543d4545b5d58a32e2f0fee35123bcc9ead849613a06464b546ac9aa3c",
+    "src/domain/r2Programs.ts": "686306b19d649d73b3f636623b63a8542dbf2aa7ab9df63d8208290066db0a20",
+    "src/domain/r2Progress.ts": "515363ca5e1680779115885e1df5a6473ade8cab01194d9119be7a4209bfca19",
+    "src/domain/r2Resources.ts": "dbceab37b31d555c480761b85ebb2b906511485e606696b1a6d09f48be7ff7ef",
+    "src/domain/r2Run.ts": "fae8f261801191f1c09bd12af23f42897b6a5b58c8f3f1325c408346c458388c",
+    "src/domain/r2Shop.ts": "0410a23d8765a2e9641d85d63f868bde61f8beaa214c59c24f78a68a8483877c",
+    "src/domain/r2SpectralTools.ts": "46349fd3d16b4d5638db6a70d585f92079eddc0ca25f01d80a7b82140d90a576",
+    "src/domain/r2ToolCommands.ts": "9bc8ab7c82caa46244a4e63a95a9b8ed6df650878ef3c632fdcff943399f4f27",
+    "src/domain/r2ToolRuntime.ts": "e0682c9ea5bf7720056c7e021f5f162976440c63bb676526228b2a5e37b00b1d",
+    "src/domain/run.ts": "d465753a53f86808c08cf32bfc966b0472f5a2c357bb3df6a944f7ee0a9193a1",
+    "src/domain/scoreR2.ts": "e29c37daa0ba90f39f89540bc613636f773cb269dda422ad545db0647e96b81a",
+    "src/game/CharacterSelectScene.ts": "031966107d18ad2c686a780591e772e3b73f42a51c3691a45dd18ee1481ce0dc",
+    "src/game/ConsumableDialog.ts": "e4e9b11df83292c7e690bba11d97e4e720bc9d3a0acf3fa843e4cfbde2a4967b",
+    "src/game/GameScene.ts": "b65970b8e7cea8ff3f9c55bdd31c4fa03014535d6bba853f9028069cd91265f1",
+    "src/game/IntermissionScene.ts": "d08abbbb02f709d334aecb5c1f6c158f94a803fcd88432ba26b5d21ebad8a067",
+    "src/game/ModeSelectDialog.ts": "b8fe0e9cb49e01b95c74328d51e0f0324dc4faa8502cbd8009ee6136812eed71",
+    "src/game/ProgramDialog.ts": "1ece82d7686411682bdc4b054112a08ac406a882f46b39477c9246866b76d8f2",
+    "src/game/ShopScene.ts": "21ae076cae1f90d10b32e911d4e91d959e53b09057d9a4f18bbed03cdd44892d",
+    "src/game/TitleScene.ts": "dd39b17a7b907a006d172249cd47427f5008fb11c3f031811c8291faacbcd8d1",
+    "src/game/r2Help.ts": "3f6af3bce16e7efdf6b138823cb3288aa9e20bcd824c165318a0e46507c38119",
+    "src/game/runAdapter.ts": "9c6921d29c96ca7e30d407880bd893c04a4f5dc97312797a7db241239d8d511d",
+    "src/game/session.ts": "467db0a0701b2a6b5c1065f74c6afcad1092082e3322ed823d1228663e2726f0",
+    "src/game/stageNotice.ts": "ea0381310a9dff366bf3f71cef13acd6ea004186324a9b5b4f8e65657bcbb802",
+    "src/platform/IndexedDbSave.ts": "be930b075aef42dece05d2c810ffb193b6932e78e7c37248b4a5107a8405d611",
+    "src/platform/RunProgress.ts": "1b1a87c88cbb275da0f823464f0394ef583aa94c564d75aafbf76bb7aba2c091",
+    "src/style.css": "9e2a1ef68febefd6c6c285a4ac4c499274b423912b748173eca4c708748e96e3",
+    "src/testing/r2Bot.ts": "38fd863f33e0f31c956e503c6150284000d4725b27756d95b17cb7f435b9a4c2",
+    "src/testing/v00Bot.ts": "bacf79f8de197b52c00c273d7c760271132c828923ff4dcde0d2c890d9a029d1",
+    "tests/c01-boundary.test.ts": "b477f0e23ca1293b1b5d3dd40a98c9f7fec7d9ea7c38d9c8a4e2bdd52f91533c",
+    "tests/c01-checkpoint.test.ts": "b8cadfa1369ce00db9b33f7fcdacafd6767dc09014bbafc3dfc1e178214a1f2d",
+    "tests/c01-enhancement-tools.test.ts": "c0a9873ac7e43fea659fa666a309e742cf30aa54ec8cddbccd0acfa7c89952e4",
+    "tests/c01-planets.test.ts": "e5d181546383eacaeea567511bb705c4e8fc67183a52b49947d5e4aae9754a6a",
+    "tests/c02-chain.test.ts": "029bf350c54d693250d9e6e4a39b2af32c40b30f69b597040d22e446e1c6a333",
+    "tests/c02-checkpoint.test.ts": "6f013e55a313061e425ecfdd515af7dc5a0328077609b19de2e29efcd847240a",
+    "tests/c02-economy.test.ts": "b5517289ac191188ac08887434c4e6c91989dc9e7351ce58569702852c11cb08",
+    "tests/c03-boss-notice.test.ts": "4e386bf57a591c3b504d7c8caa39b6394d3e86c5def02fcd1c86225af2c999ac",
+    "tests/c03-boss-run.test.ts": "d59aea82a8fb0d553ca7677d2481b689dab8a9019821acea419b04282680ed25",
+    "tests/c03-boss-save.test.ts": "6766d9789677fbb1a4defe85a9a7e9c354f186c0299ec9e9873d2ebec96ac2c8",
+    "tests/c03-boss-score.test.ts": "97dd4d9faf318bb73605f6e3649bcffcb16f92961ebf787008787538d95f47b3",
+    "tests/c03-boss-tools.test.ts": "bb65d6a0374fc859847acb1f4128c13a881759a823c01b6fdfeb145a85bc8987",
+    "tests/c03-chapter-spec.test.ts": "86471fad9b2ce051292985a77c5efad7f254b3b6d1cab5f7bd99e10e9d521888",
+    "tests/c03-endless-run.test.ts": "b20ac1f4d4ababba34f9c4351a5a8496a1a30a52f7fc33de0f5b405909be0c65",
+    "tests/c03-endless-save.test.ts": "eb636874393279663b21b4de1b99d74c122dc305f7db2dfd63c04ea30cd1d48c",
+    "tests/c04-mode-notice.test.ts": "91a507750b416999b354b7342624d0898ccba91705b015c4906833fd1f338dc8",
+    "tests/c04-mode-progress.test.ts": "e4e619fbcaa9147b2fe3b70d09a35ce72fcf0436143c979669fd992892679674",
+    "tests/c04-mode-resources.test.ts": "76393588437fbf0951ea7796c4af2006a6f4d865233ce0d4e0a2c7309e0d5300",
+    "tests/c04-mode-run.test.ts": "4c754bbad109d0e7c0f44da7a57d602625a9a4ce19040a7608b55c51cdfb2b79",
+    "tests/c04-mode-save.test.ts": "cefa20b4811b286da9069b8419cc0f7236ab2380f075c98e5863d3ee5a9b6fb0",
+    "tests/c04-program-rewards.test.ts": "68d55d1d2ef6ccdec8815c55eea17537d25774bfad6ce6b86bdda64f6e34260d",
+    "tests/c04-program-rules.test.ts": "69eacb36e7b314fe4cc91880c9334d9ce1ee41cde873d788194dd24d04d46995",
+    "tests/r2-starting-profile.test.ts": "4a999c5e3d17e5718bfa939e1acd161b5043305417163a0475bc7ca90cbe7533",
+    "tests/recovery-save.test.ts": "92087f8a7510db500e1b35b0e6893c98646922e82bbe19816a9c5acf88916423",
+    "tests/stageNotice.test.ts": "175110c5553789b429ffa4100a78f0edb3fbc09e5b7c4b33a067c4617928f371"
+  },
+  "checks": [
+    {
+      "name": "full-unit",
+      "command": "npm.cmd test -- --maxWorkers=2 --reporter=dot",
+      "status": "PASS",
+      "exitCode": 0,
+      "summary": "81 files / 1587 tests PASS",
+      "localLog": "shots/closeout-unit.log",
+      "logSha256": "412872bc480ce5bf91e9c3fd02e901fb6185420173af88bd320f2fffcb15e0f9"
+    },
+    {
+      "name": "typecheck",
+      "command": "npm.cmd run typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "summary": "TypeScript PASS; final production build also runs tsc --noEmit",
+      "localLog": "shots/closeout-typecheck.log",
+      "logSha256": "c0773d3812468c5e2fa6063bcf02e222f8835894e0bdc2eb5bda7953fb4c615b"
+    },
+    {
+      "name": "production-build",
+      "command": "npm.cmd run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "summary": "PASS; 82 modules, JS 1792.02 kB / gzip 509.21 kB; existing >500 kB warning retained",
+      "localLog": "shots/closeout-build.log",
+      "logSha256": "34483c68f8308f52152ac1e740210ee3c6fbd5e66c97bbd0e380efe7af95fbec"
+    },
+    {
+      "name": "content",
+      "command": "node scripts/verify-content.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "summary": "72 definitions, conservative 320, upper envelope 92; fixed attained score goldens retained",
+      "localLog": "shots/closeout-content.json",
+      "logSha256": "8d7894b796e37cd16f2e518983d0e7aee11c9417f5369a7c8b97034d889ec2a1"
+    },
+    {
+      "name": "compiled-smoke",
+      "command": "SMOKE_BROWSERS=chromium,firefox,webkit npm.cmd run verify:smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "summary": "Three engines each desktop mouse and 390x740 touch PASS",
+      "localLog": "shots/closeout-smoke-final.log",
+      "logSha256": "c29803d198d1d203df1d6fc23f1884e1abdb8e6d4ec66a7c3ebfdfafa53ab998"
+    },
+    {
+      "name": "affected-mode-flow",
+      "command": "node shots/closeout-modes.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "summary": "Chromium desktop mouse / portrait touch: locked entry, optional mode selection, tutorial skip/fixed run, program no-choice, exact reload and on/off partition resume PASS",
+      "localLog": "shots/closeout-modes-final.log",
+      "logSha256": "0195c82a24d166b878d75a3d9dec6bd94046a6a7744d446859b8efde5c9a6958"
+    },
+    {
+      "name": "plan-self-test",
+      "command": "node scripts/check-production-plan.mjs --self-test",
+      "status": "PASS",
+      "exitCode": 0,
+      "localLog": "shots/closeout-plan-self.log",
+      "logSha256": "17fa5b390a21e4fbefd6e36ca9cd8bd12fe5488a5ddaca9aa5ac2b7e74797722",
+      "summary": "PLAN_CHECKER_SELF_TEST_PASS: 1 valid and 13 invalid fixtures"
+    },
+    {
+      "name": "plan",
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "localLog": "shots/closeout-plan.log",
+      "logSha256": "8fc3a2fbad99a0d1cf0dea34b93a8ff2d2b6e9becfa2e0d0169445f30e750738",
+      "summary": "PLAN_VALID: 31 work packages; current=C04; not a gameplay acceptance"
+    },
+    {
+      "name": "commit-sensitive-scan",
+      "command": "node shots/closeout-sensitive-scan.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "localLog": "shots/closeout-sensitive-scan.json",
+      "logSha256": "7416daecaf61ac3776f759efdc5af5d96d78e64c0b1e26dc0a19de1c6b520531",
+      "summary": "62 staged files; no token/private-key/credential URL/personal path/email findings"
+    }
+  ],
+  "browserProfiles": [
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "profile": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "deviceScaleFactor": 1,
+      "status": "PASS",
+      "input": "mouse.click / DOM click"
+    },
+    {
+      "engine": "chromium",
+      "browserVersion": "153.0.8010.12",
+      "profile": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "deviceScaleFactor": 3,
+      "status": "PASS",
+      "input": "touchscreen.tap / DOM tap"
+    },
+    {
+      "engine": "firefox",
+      "browserVersion": "155.0",
+      "profile": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "deviceScaleFactor": 1,
+      "status": "PASS",
+      "input": "mouse.click / DOM click"
+    },
+    {
+      "engine": "firefox",
+      "browserVersion": "155.0",
+      "profile": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "deviceScaleFactor": 3,
+      "status": "PASS",
+      "input": "touchscreen.tap / DOM tap"
+    },
+    {
+      "engine": "webkit",
+      "browserVersion": "26.6",
+      "profile": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "deviceScaleFactor": 1,
+      "status": "PASS",
+      "input": "mouse.click / DOM click"
+    },
+    {
+      "engine": "webkit",
+      "browserVersion": "26.6",
+      "profile": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "deviceScaleFactor": 3,
+      "status": "PASS",
+      "input": "touchscreen.tap / DOM tap"
+    }
+  ],
+  "modeFlows": {
+    "profiles": [
+      {
+        "profile": "1280x720 mouse",
+        "status": "PASS"
+      },
+      {
+        "profile": "390x740 touch DPR3",
+        "status": "PASS"
+      }
+    ],
+    "covered": [
+      "default direct opening",
+      "locked D1/challenges",
+      "12 public challenge options",
+      "tutorial skip",
+      "program-off normal run",
+      "reload exact restoration",
+      "new mode confirmation",
+      "program no-choice committed",
+      "on/off partitions isolated",
+      "resume preserves sequence and all RNG cursors",
+      "fixed tutorial entry and return"
+    ]
+  },
+  "failuresResolved": [
+    {
+      "kind": "inherited-test-assertion",
+      "result": "1585 PASS / 2 FAIL before closeout",
+      "log": "shots/c04-mode-unit-final.log",
+      "resolution": "Updated the independent upper-envelope expectation for one program reward, and assert no standard-unlock recorder call for challenge/tutorial. No arithmetic score golden changed."
+    },
+    {
+      "kind": "actual-UI-regression",
+      "log": "shots/closeout-mode-diagnose.log",
+      "resolution": "Real mode button hit x1164/y31 reached the fixed fullscreen DOM button. Reserve header control space; verify the mode dialog by actual desktop/touch input."
+    },
+    {
+      "kind": "temporary-probe-error",
+      "log": "shots/closeout-modes-diagnostic.log",
+      "resolution": "The probe blindly toggled an already-open information menu closed. Use actual dialog state before opening it; final flow passes. Product notice hierarchy remains a dot follow-up."
+    }
+  ],
+  "knownIssues": [
+    "C04.3 three-step tutorial/searchable library/cross-run highlights not implemented",
+    "Full C04.2 fault/long-flow and C04.4 acceptance incomplete",
+    "Legacy v9 bytes exportable but incompatible with v10; no automatic migration",
+    "C03 build label retained while runtime content is v10",
+    "Success resume information may open the menu; continue closes it",
+    "Large Phaser application bundle warning retained",
+    "48 remaining Joker illustrations and other formal art batches are not complete"
+  ],
+  "notRun": [
+    "This candidate physical Android/iPhone operation",
+    "Hardware audio audition",
+    "Twelve challenge natural eight-chapter runs and balance holdout",
+    "Full fault matrix and long browser runs",
+    "New art batches and formal layered-source approval",
+    "V01/L01 multiplayer comparative acceptance"
+  ],
+  "humanReview": {
+    "status": "NOT_RUN",
+    "evidence": "Existing A01/D22/D25 acceptance keeps its original scope; no new approval is inferred."
+  },
+  "nextTask": "PAUSED. dot leads one complete dynamic card sample for portrait mobile, using ART and Balatro/Hearthstone references. Do not auto-start another gameplay package.",
+  "publication": {
+    "status": "PENDING_NORMAL_MAIN_PUSH",
+    "branch": "main",
+    "force": false
+  },
+  "ci": {
+    "status": "NOT_RUN",
+    "reason": "Verify the exact pushed SHA after publication; not a substitute for local checks."
+  }
+}

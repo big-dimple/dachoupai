@@ -48,15 +48,15 @@ C00/D23把进场锁定的手牌上限、本场前手分数/救场资格、商店
 
 C02/D26的v7加入准备商店销售标记、本场最大出牌张数/普通顺同资格/B12返手资格、E10实例模2成功次数和E11/F12显式有理数系数。创建入口（购买和幻灵赠牌）赋初值，恢复不补缺字段。出牌机会账同时包含F07与B12，概率及目标比较读取确定的开始快照。来源事件的资源值仍是整数，系数前后使用growthBefore/growthAfter有理数，奖品使用有限rewardDefinitionId；结果实例与开始sourceJokers分别保留。
 
-C04.1/D31先交付有限模式catalog和纯配置/seed验证、精确难度目标；当前v9新局仍仅普通D0。C04.2再将mode/challenge/difficulty/节目单开关、锁定合同及章内资格接入v10共享命令、快照和模式分区，先留真实v9原文再更版本，不把未接入选项默认为合法存档。解锁/教程/图鉴/历史独立持久化，但只在实际已保存的正常通关记录后更新资格，失败/重复/恢复不代发。
+C04.2/D31当前使用显式v10新局：mode/challengeId/difficulty/programsEnabled、节目单资格、Q11章/场/trace封禁快照接同一共享命令。存储键为`r2:${contentHash}:${mode}:${challengeId??'none'}:d${difficulty}:program-on|off`；备份只属于相同完整分区，旧v9原文保留导出、拒绝暗迁移。切换已存模式只保存原快照和当前指针，不重开或重抽；保存失败保留候选及原局。独立跨局进度仅存四档真实standard八章胜利布尔值，只在可写Session发布已保存胜利后更新，挑战/教程/无尽不授资格，重复恢复不重写。实际三步教程、搜索图鉴及跨局真实高光历史尚未实现，依D32暂停。
 
 ## 4. RNG 与重放
 
 C03/D30为显式v9新局，v8原文保留导出；新增tourMode和只写一次的normalCompletion={clearId,totalHeat}|null。ContinueEndless仅接受真实正常胜利资格，保存成功后路由第9章商店，不从Scene点击或phase名称自行赠奖。目标按精确12/5及最终ceil计算，章/索引/历史/券边界与有限数值上限一致；旧stage/trace快照仍保留原Boss与封禁来源。确认取消不提交命令，重试同收据不再锁章或发奖励。
 
-当前v9沿用C03/D29建立的stage与trace字段组。stage保存boss（仅压轴非null）、initialTargetHeat、initialHandLimit、initialJokerIds和sealedJokerIds；初始身份最多5个，寿命销毁仍保留身份，S06仍只在商店创建。trace保存手开始bossContext={boss,previousHandType,sealedJokerIds}，不从新章或本手后封禁状态反推。恢复检查有序章池/不重复及fallback、初始资源和B11/B14精确账，封禁实例只引用真实入场名单且不超过实际出牌次数。halve-base-heat与seal-joker是有限Boss来源操作，不能放开任意rule字符串。
+当前v10沿用C03/D29建立的stage与trace字段组，并加入challengeDisabledJokerId。stage保存boss（仅压轴非null）、initialTargetHeat、initialHandLimit、initialJokerIds和sealedJokerIds；初始身份受本模式槽位上限约束，寿命销毁仍保留身份，S06仍只在商店创建。trace保存手开始bossContext={boss,previousHandType,sealedJokerIds,challengeDisabledJokerId}，不从新章或本手后封禁状态反推。恢复检查有序章池/不重复及fallback、初始资源和B11/B14精确账，封禁实例只引用真实入场名单且不超过实际出牌次数。halve-base-heat与seal-joker是有限Boss来源操作，不能放开任意rule字符串。
 
-固定并版本化现有算法，提供 snapshot/restore，不用“重建 seed 后猜消耗了多少次”恢复。随机域至少 deck、shop、rule、reward 四类；cosmetic 单独在表现层，禁止读取规则域。
+固定并版本化现有算法，提供 snapshot/restore，不用“重建 seed 后猜消耗了多少次”恢复。v10随机域为deck、shop、rule、reward、program、challenge；新增流的种子见D31，节目单关闭不抽其游标且不改变原四流。cosmetic单独在表现层，禁止读取规则域。
 
 相同 seed、rulesVersion、contentHash、行动日志应得到完全相同结果；不是宣称同 seed 不管玩家操作都相同。稳定字符串派生算法需有黄金向量；不要使用语言平台不稳定的 hash 或数组对象迭代顺序。
 

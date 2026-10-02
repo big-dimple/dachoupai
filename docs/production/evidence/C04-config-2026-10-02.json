@@ -128,6 +128,12 @@
   ],
   "completion": "C04.1 complete only; C04 remains IN_PROGRESS. Existing A01/D22/D25 approval persists; future gates are not self-approved.",
   "publication": {
-    "status": "PENDING_NORMAL_MAIN_PUSH"
+    "status": "PUSHED",
+    "codeCommit": "ab8f376b99c91cd1e76593c1b631d1fb9b4e8976",
+    "branch": "main",
+    "command": "git push origin main",
+    "exitCode": 0,
+    "pushChunk": "01369d",
+    "prePushCloseoutChunk": "dbde23"
   }
 }

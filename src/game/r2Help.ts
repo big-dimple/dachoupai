@@ -131,6 +131,8 @@ export function r2ScoreOperationText(event:ScoreEvent):string {
   if(event.operation==='glass-check')return event.value.n==='1'?'玻璃裂纹（碎裂概率1/4）':'玻璃完好（碎裂概率1/4）';
   if(event.operation==='destroy-card')return '玻璃碎裂 · 永久离开牌组';
   if(event.operation==='upgrade-hand')return (event.targetHandType?HAND_LABELS[event.targetHandType]:'牌型')+'升'+value+'级'+resource;
+  if(event.operation==='reward-free-reroll')return '节目单兑现 · 下一商店免费换牌1次';
+  if(event.operation==='program-reward-skipped')return '本章用过的牌型均满级 · 不重复升级';
   const prize=event.rewardDefinitionId?getR2Tool(event.rewardDefinitionId).name:event.sourceType==='rule'&&event.sourceDefinitionId==='T16'?'小红包':'赠品';
   if(event.operation==='reward-consumable')return '获得'+prize+' · 库存 '+event.resourceBefore+' → '+event.resourceAfter;
   if(event.operation==='add-gold'&&event.rewardDefinitionId)return prize+' · 库存已满转 +'+value+' 金'+resource;

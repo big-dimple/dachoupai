@@ -42,7 +42,7 @@ describe.each(['shop','await-input'] as const)('C01 enhancement tool command gol
     const expected=structuredClone(before);for(const card of expected.deckInstances)if(ids.includes(card.id))card.enhancement=enhancement;
     expected.consumables=[];expected.commandSeq=before.commandSeq+1;expected.receipts.push(result.receipt);
     expect(result.state).toEqual(expected);expect(state).toEqual(before);
-    expect(Object.keys(result.state.rng).sort()).toEqual(['deck','reward','rule','shop']);expect(result.state.rng).toEqual(before.rng);
+    expect(Object.keys(result.state.rng).sort()).toEqual(['challenge','deck','program','reward','rule','shop']);expect(result.state.rng).toEqual(before.rng);
     expect(result.state.lastTrace).toEqual(before.lastTrace);
     expect(result.events).toEqual([{type:'consumable-used',definitionId,instanceId:'owned-enhancement',targetIds:ids,createdCardIds:[],destroyedCardIds:[]}]);
     let persisted=result.state;

@@ -1,5 +1,7 @@
 import type {SaveSlots,SaveStore} from '../application/SavedRun';
 import {readCheckpoint,type Checkpoint} from '../application/checkpoint';
+import {r2ModeStorageKey,type R2ModeSelection} from '../content/r2Modes';
+import {R2_CONTENT_HASH} from '../domain/r2Run';
 
 const DB_NAME='dachoupai-checkpoints';
 const STORE='saves';
@@ -21,13 +23,22 @@ export class IndexedDbSave implements SaveStore {
     void this.database.catch(()=>{}); // Boot reports the error after assets load; avoid an early unhandled rejection.
   }
   async read():Promise<SaveSlots> {
+    return this.readSlots();
+  }
+  /** Reading a selection does not change the globally published mode or its compare-and-swap revision. */
+  async readPartition(selection:R2ModeSelection):Promise<SaveSlots> {
+    return this.readSlots(r2ModeStorageKey(selection,R2_CONTENT_HASH));
+  }
+  private async readSlots(partitionKey?:string):Promise<SaveSlots> {
     const db=await this.database;
     return new Promise((resolve,reject)=>{
       const tx=db.transaction(STORE,'readonly'),store=tx.objectStore(STORE);
       let slots:SaveSlots={revision:0,current:null,previous:null};
       const meta=store.get('meta');meta.onsuccess=()=>{
-        const value=meta.result as Meta|undefined;if(!value)return;
-        slots.revision=value.revision;const saved=store.get(value.slotKey);
+        const value=meta.result as Meta|undefined;
+        if(value)slots.revision=value.revision;
+        const slotKey=partitionKey??value?.slotKey;if(!slotKey)return;
+        const saved=store.get(slotKey);
         saved.onsuccess=()=>{const found=saved.result as Slots|undefined;slots.current=found?.current??null;slots.previous=found?.previous??null;};
       };
       tx.oncomplete=()=>resolve(slots);tx.onabort=tx.onerror=()=>reject(tx.error??Error('storage-read-failed'));
@@ -35,6 +46,11 @@ export class IndexedDbSave implements SaveStore {
   }
   async commit(expectedRevision:number,current:Checkpoint,previous:Checkpoint|null):Promise<number> {
     if(!this.canWrite())throw Error('read-only');
+    const checked=readCheckpoint(current);if(!checked.ok)throw Error(checked.code);
+    const candidate=checked.checkpoint,slotKey=r2ModeStorageKey(candidate.state,candidate.state.contentHash);
+    const previousValid=previous?readCheckpoint(previous):null;
+    const backup=previousValid?.ok&&r2ModeStorageKey(previousValid.checkpoint.state,previousValid.checkpoint.state.contentHash)===slotKey?
+      previousValid.checkpoint:null;
     const db=await this.database;
     return new Promise((resolve,reject)=>{
       const tx=db.transaction(STORE,'readwrite'),store=tx.objectStore(STORE);let reason:unknown;
@@ -43,14 +59,16 @@ export class IndexedDbSave implements SaveStore {
         if(!this.canWrite())return abort(Error('read-only'));
         const value=meta.result as Meta|undefined;
         if((value?.revision??0)!==expectedRevision)return abort(Error('write-conflict'));
-        const slotKey=`${current.state.rulesVersion}:${current.state.contentHash}`;
         const existing=store.get(slotKey);existing.onsuccess=()=>{
           try {
             const old=existing.result as Slots|undefined;
             // Never erase the only copy of damaged/experimental data when starting a valid run.
-            if(old?.current&&!readCheckpoint(old.current).ok)store.put(old,`retained:${slotKey}:${expectedRevision}`);
-            const backup=previous?.state.contentHash===current.state.contentHash?previous:null;
-            store.put({current,previous:backup},slotKey);
+            if(old?.current){
+              const oldRead=readCheckpoint(old.current);
+              if(!oldRead.ok||r2ModeStorageKey(oldRead.checkpoint.state,oldRead.checkpoint.state.contentHash)!==slotKey)
+                store.put(old,`retained:${slotKey}:${expectedRevision}`);
+            }
+            store.put({current:candidate,previous:backup},slotKey);
             store.put({revision:expectedRevision+1,slotKey},'meta');
           } catch(error){abort(error);}
         };

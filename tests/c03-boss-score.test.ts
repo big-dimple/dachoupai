@@ -31,7 +31,7 @@ const publicInput=({rng:_rng,...request}:BossInput)=>request;
 describe('C03 Boss base and role literal goldens',()=>{
   it('keeps omitted Boss and Jokers ordinary and saves an explicit immutable empty context',()=>{
     const trace=score();expect(trace.finalScore).toBe('22');expect(trace.sourceJokers).toEqual([]);
-    expect(trace.bossContext).toEqual({boss:null,previousHandType:null,sealedJokerIds:[]});
+    expect(trace.bossContext).toEqual({boss:null,previousHandType:null,sealedJokerIds:[],challengeDisabledJokerId:null});
     expect(Object.isFrozen(trace.bossContext)).toBe(true);expect(Object.isFrozen(trace.bossContext.sealedJokerIds)).toBe(true);
     expect(SCORE_OPERATIONS).toContain('halve-base-heat');expect(SCORE_OPERATIONS).toContain('seal-joker');
   });
@@ -207,7 +207,7 @@ describe('C03 per-slot reversal, random transparency and immutable start provena
     const request=input(single,{boss:activeBoss,previousHandType:'pair',sealedJokerIds:sealed,jokers});const trace=resolve(request);
     expect(trace.finalScore).toBe('99');expect(trace.jokers.map(j=>j.definitionId)).toEqual(['pengci']);
     activeBoss.definitionId='B05';sealed[0]='other';request.previousHandType='high-card';jokers[1].edition='none';jokers[1].counters!.handsScored=0;
-    expect(trace.bossContext).toEqual({boss:{definitionId:'B15',disabledSuit:null},previousHandType:'pair',sealedJokerIds:['owned/f06']});
+    expect(trace.bossContext).toEqual({boss:{definitionId:'B15',disabledSuit:null},previousHandType:'pair',sealedJokerIds:['owned/f06'],challengeDisabledJokerId:null});
     expect(trace.sourceJokers[1]).toMatchObject({edition:'holographic',counters:{handsScored:3}});
     expect(trace.bossContext.boss).not.toBe(activeBoss);expect(trace.bossContext.sealedJokerIds).not.toBe(sealed);
     for(const value of [trace.bossContext,trace.bossContext.boss,trace.bossContext.sealedJokerIds,trace.sourceJokers,trace.sourceJokers[1].counters])expect(Object.isFrozen(value)).toBe(true);

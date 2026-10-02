@@ -13,7 +13,7 @@ function send(fixture:Fixture,action:Action):Fixture {
   expect(result.ok,result.ok?'':result.code).toBe(true);if(!result.ok)throw Error(result.code);
   return {state:result.state,journal:result.duplicate?fixture.journal:[...fixture.journal,cmd]};
 }
-function start():Fixture {return {state:createRun({seed:'c03-endless-save',runId:'c03-endless-save',characterId:'erxiang',rulesVersion:'r2'}),journal:[]};}
+function start():Fixture {return {state:createRun({seed:'c03-endless-save',runId:'c03-endless-save',characterId:'erxiang',rulesVersion:'r2',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}}),journal:[]};}
 function readyForNormalFinal():Fixture {
   const fixture=send(start(),{type:'LeaveShop'});
   // Artificial legal late-chapter deck/level boundary, not a naturally acquired eight-chapter run.
@@ -58,7 +58,7 @@ describe('C03 D30 explicit v9 endless qualification and checkpoint boundary',()=
     const slots=restoreSlots({revision:4,current:rawV8,previous:null});expect(slots.status).toBe('invalid');expect(slots.raw).toBe(rawV8);expect(JSON.stringify(rawV8)).toBe(before);
   });
   it('starts explicitly normal with no completion and requires both persisted fields',()=>{
-    const fixture=start();expect(fixture.state.contentVersion).toBe('quality-r2-content-v9');expect(fixture.state).toMatchObject({tourMode:'normal',normalCompletion:null});roundTrip(fixture);
+    const fixture=start();expect(fixture.state.contentVersion).toBe('quality-r2-content-v10');expect(fixture.state).toMatchObject({tourMode:'normal',normalCompletion:null});roundTrip(fixture);
     for(const field of ['tourMode','normalCompletion'])expect(readCheckpoint(damaged(fixture,state=>{delete object(state)[field];})).ok).toBe(false);
   });
   it('captures qualification from a real final normal Play and preserves the independent literal score',()=>{

@@ -15,7 +15,7 @@ const send=(state:R2RunState,action:Action):R2RunState=>{
   if(!result.ok)throw Error(result.code);assertRunInvariants(result.state);return result.state;
 };
 function fixture(ids:readonly string[]=[],tools:readonly string[]=[]):R2RunState {
-  const state=createRun({seed:'c02-economy',runId:'c02-economy',characterId:'erxiang',rulesVersion:'r2'});state.gold=20;
+  const state=createRun({seed:'c02-economy',runId:'c02-economy',characterId:'erxiang',rulesVersion:'r2',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});state.gold=20;
   // Specified ownership, card arrangement and levels are explicit valid fixtures, not natural acquisition evidence.
   state.jokers=ids.map(id=>{
     const growth:R2RunState['jokers'][number]['growth']=id==='e11'||id==='f12'?{coefficient:{n:'1',d:'1'}}:{};

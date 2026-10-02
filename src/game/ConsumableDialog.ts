@@ -8,7 +8,8 @@ import {R2_ENHANCEMENTS,R2_TOOLS,R2_TOOL_CATALOG,type R2ToolDefinition} from '..
 import {R2_JOKERS,type R2JokerInstance} from '../content/r2Schema';
 import {getR2Stage,r2ConsumableCapacity,r2HandLimit,r2HandsBudget,R2_RESOURCE_CONTRACT} from '../domain/r2Run';
 import {r2PaidRerollPrice,r2Pool,r2ToolAcquisitionPool} from '../domain/r2Shop';
-import {r2ToolSupported} from '../domain/r2ToolRuntime';
+import {r2ToolAllowed,r2ToolSupported} from '../domain/r2ToolRuntime';
+import {r2JokerCapacity} from '../domain/r2Resources';
 import {DetailDialog} from './DetailDialog';
 import {cardSpecialText,editionEffectText,editionLabel,itemInfo,toolInfo} from './r2ToolInfo';
 
@@ -34,6 +35,7 @@ const rarePool=(state:R2RunState)=>r2Pool(state.jokers.map(joker=>joker.definiti
 function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selection,known:readonly PlayingCard[],ready:boolean):string|undefined {
   if(!ready)return '当前正在结算或保存，完成后才能使用。';
   if(!r2ToolSupported(tool.id))return '当前局面不支持使用此工具。';
+  if(!r2ToolAllowed(state,tool.id))return state.challengeId==='Q06'?'本次挑战禁止免费和付费换牌。':'本次挑战禁止增强牌的获取与赋予。';
   if(!tool.phases.includes(state.phase as 'shop'|'await-input'))return tool.phases.length===1&&tool.phases[0]==='shop'?'请在商店使用。':'请在待出牌时使用。';
   const target=tool.target,operation=tool.operation,limits=R2_TOOL_CATALOG.limits,ids=[...selection.ids];
   const selected=known.filter(card=>selection.ids.has(card.id)),liveCount=state.deckInstances.length-state.destroyedIds.length;
@@ -80,12 +82,12 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
     if(cost.kind==='all-gold'&&state.gold<cost.minimum)return `至少持有 ${cost.minimum} 金才能孤注。`;
     if(cost.kind==='permanent-hands-penalty'){
       const modifiers={...state.spectralModifiers,handsPenalty:state.spectralModifiers.handsPenalty+cost.amount};
-      if(!getR2Stage(state.stageIndex,state.tourMode))return '已无下一场，无法支付永久出牌代价。';
+      if(!getR2Stage(state.stageIndex,state.tourMode,state.difficulty))return '已无下一场，无法支付永久出牌代价。';
       if(modifiers.handsPenalty>limits.spectralHandsPenaltyMaximum||r2HandsBudget(state)-r2HandsBudget({...state,spectralModifiers:modifiers})!==cost.amount)return '下一场出牌预算不能再实际减少，请保留此工具。';
     }
     if(cost.kind==='permanent-hand-penalty'){
       const modifiers={...state.spectralModifiers,handPenalty:state.spectralModifiers.handPenalty+cost.amount};
-      if(!getR2Stage(state.stageIndex,state.tourMode))return '已无下一场，无法支付永久手牌代价。';
+      if(!getR2Stage(state.stageIndex,state.tourMode,state.difficulty))return '已无下一场，无法支付永久手牌代价。';
       if(modifiers.handPenalty>limits.spectralHandPenaltyMaximum||r2HandLimit(state)-r2HandLimit({...state,spectralModifiers:modifiers})!==cost.amount)return '下一场手牌容量不能再实际减少，请保留此工具。';
     }
   }
@@ -104,13 +106,13 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
       if(!state.stage||state.stage.discardsLeft>=state.stage.initialDiscards)return '本场弃牌次数已达初始预算，无法恢复。';
       if(state.stage.discardGained+operation.amount>R2_RESOURCE_CONTRACT.discardGainMaximum)return '本场恢复弃牌已达上限，无法再次恢复。';break;
     case 'rare-joker-reward':
-      if(state.jokers.length>=limits.jokerMaximum)return '大丑牌槽已满，请先腾出一个槽位。';
+      if(state.jokers.length>=r2JokerCapacity(state))return '大丑牌槽已满，请先腾出一个槽位。';
       if(!rarePool(state).length)return '当前没有可获得的未持有稀有大丑牌。';break;
     case 'clear-deck-specials': {
       if(state.spectralModifiers.cleanSlateBonus)return '本局已使用过净台。';
       const modified=state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)&&(card.enhancement!==undefined||(card.edition??'none')!=='none'));
       if(modified.length<operation.minimumModifiedCards)return `至少 ${operation.minimumModifiedCards} 张不同牌有增强或特殊版次；当前 ${modified.length} 张。`;
-      if(!getR2Stage(state.stageIndex,state.tourMode)||r2HandLimit({...state,spectralModifiers:{...state.spectralModifiers,cleanSlateBonus:state.spectralModifiers.cleanSlateBonus+operation.handBonus}})-r2HandLimit(state)!==operation.handBonus)return '下一场手牌容量不能实际增加，无法净台。';break;
+      if(!getR2Stage(state.stageIndex,state.tourMode,state.difficulty)||r2HandLimit({...state,spectralModifiers:{...state.spectralModifiers,cleanSlateBonus:state.spectralModifiers.cleanSlateBonus+operation.handBonus}})-r2HandLimit(state)!==operation.handBonus)return '下一场手牌容量不能实际增加，无法净台。';break;
     }
     case 'free-reroll':if(!r2Pool(state.jokers.map(joker=>joker.definitionId),state.safetyNetUsed?['f07']:[]).length&&!r2ToolAcquisitionPool(state).length)return '当前没有可刷新的候选。';break;
     case 'add-gold':if(!Number.isSafeInteger(state.gold+operation.amount))return '金币已达可保存上限，无法继续增加。';break;

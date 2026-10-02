@@ -7,9 +7,13 @@ import {gameSession} from './session';
 import {routeSavedRun} from './RunMenu';
 import {SceneView} from './SceneView';
 import {DetailDialog} from './DetailDialog';
+import {ModeSelectDialog,DEFAULT_MODE_SELECTION,type ModeChoice} from './ModeSelectDialog';
+import {R2_MODE_CATALOG,r2RunModeConfig,type R2ModeSelection} from '../content/r2Modes';
+import {r2ModeUnlocked} from '../domain/r2Progress';
+import {readRunProgress} from '../platform/RunProgress';
 import type {Box} from './layout';
 
-interface SelectionOptions {freshSeed?:boolean;seed?:string;characterId?:CharacterId}
+interface SelectionOptions {freshSeed?:boolean;seed?:string;characterId?:CharacterId;modeConfig?:R2ModeSelection}
 const ROLE_STAGE:Record<CharacterId,number>={
   amo:0x64708c,
   touye:0x9b693d,
@@ -39,27 +43,35 @@ export class CharacterSelectScene extends Phaser.Scene {
   private lifecycle=0;
   private selectedId?:CharacterId;
   private seed?:string;
+  private modeConfig:R2ModeSelection=DEFAULT_MODE_SELECTION;
   private notice='';
   private animateChoice=false;
   private view!:SceneView;
   private readonly dialog=new DetailDialog();
+  private readonly modeDialog=new ModeSelectDialog();
   private readonly audio=AudioEngine.shared;
   constructor(){super('character-select');}
   init(data?:SelectionOptions):void {
-    this.selectedId=data?.characterId;
-    this.seed=data?.seed??(data?.freshSeed?String(Date.now()):undefined);
+    this.modeConfig=data?.modeConfig??DEFAULT_MODE_SELECTION;r2RunModeConfig(this.modeConfig);
+    this.selectedId=this.modeConfig.mode==='tutorial'?'erxiang':data?.characterId;
+    this.seed=this.modeConfig.mode==='tutorial'?R2_MODE_CATALOG.tutorial.config.seedPolicy.values[0]:data?.seed??(data?.freshSeed?String(Date.now()):undefined);
   }
   create():void {
     this.choosing=false;this.notice='';this.animateChoice=false;this.lifecycle++;
     this.cameras.main.setBackgroundColor('#153c40');this.audio.setScene('menu');
     this.view=new SceneView(this,()=>this.render());
-    this.events.once('shutdown',()=>{this.lifecycle++;this.dialog.close();});this.render();
+    this.events.once('shutdown',()=>{this.lifecycle++;this.dialog.close();this.modeDialog.close();});this.render();
   }
   private render():void {
     const v=this.view,l=v.layout,style=getComputedStyle(document.documentElement),bottom=parseFloat(style.getPropertyValue('--safe-bottom'))||0;
-    const p=selectionLayout(l.width,l.height,l.hud.y,bottom);v.clear();v.paperBackground();
+    const p=selectionLayout(l.width,l.height,l.hud.y,bottom),config=r2RunModeConfig(this.modeConfig);v.clear();v.paperBackground();
     v.text(p.x,p.top,'巡演选角',p.short||p.portrait?24:30,'#fff2da').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
-    if(!p.short)v.text(p.x,p.top+(p.portrait?34:42),'点选角色，再确认登台。',14,'#d5ddc9',p.w);
+    const modeLabel=this.modeConfig.mode==='standard'?`普通 D${this.modeConfig.difficulty}`:this.modeConfig.mode==='tutorial'?'教程':this.modeConfig.challengeId!;
+    const modeWidth=p.portrait?84:132;
+    // Keep the mode action clear of the fixed fullscreen/menu controls.
+    const controlsRight=Math.max(12,parseFloat(style.getPropertyValue('--safe-right'))||0);
+    v.button({x:Math.min(p.x+p.w-modeWidth,l.width-controlsRight-148-modeWidth),y:p.top-3,width:modeWidth,height:44},p.portrait?`模式·${this.modeConfig.mode==='standard'?`D${this.modeConfig.difficulty}`:modeLabel}`:`模式 · ${modeLabel}`,'action/select-mode',()=>this.selectMode(),!this.choosing);
+    if(!p.short)this.singleLine(p.x,p.top+(p.portrait?34:42),this.modeConfig.mode==='tutorial'?'固定二响 · 可跳过':'选角后确认登台',14,'#d5ddc9',p.w-142);
     CHARACTERS.forEach((character,i)=>{
       const base=p.cards[i],selected=character.id===this.selectedId,b={...base,y:base.y-(selected?4:0)},first=v.root.length,tone=ROLE_STAGE[character.id];
       const frame=v.add(this.add.graphics());
@@ -75,7 +87,8 @@ export class CharacterSelectScene extends Phaser.Scene {
       }
       const textY=b.y+b.height-bodyHeight+(condensed?3:6),name=this.singleLine(b.x+10,textY,character.name,condensed?18:20,'#203744',b.width-20,18,true);
       if(!condensed){
-        const entry=b.width<155?(character.id==='amo'?'单张Lv3':ROLE_ENTRY[character.id].replace(/、/g,'').replace('，','')):ROLE_ENTRY[character.id];
+        const entry=!config.characterAbilityEnabled?'本挑战关闭角色被动':this.modeConfig.mode==='tutorial'&&character.id!=='erxiang'?'跳过教程可自由选角':
+          b.width<155?(character.id==='amo'?'单张Lv3':ROLE_ENTRY[character.id].replace(/、/g,'').replace('，','')):ROLE_ENTRY[character.id];
         this.singleLine(b.x+10,name.y+name.height+3,entry,14,'#386d65',b.width-20);
       }
       const edge=v.add(this.add.graphics());
@@ -89,25 +102,26 @@ export class CharacterSelectScene extends Phaser.Scene {
         bg.setData('selected',true);
         if(this.animateChoice&&!this.reducedMotion()){const ty=wrap.art.y;wrap.art.y=ty+5;this.tweens.add({targets:wrap.art,y:ty,duration:180,ease:'Cubic.easeOut'});}
       }
-      v.target(bg,`character/${character.id}`,{tap:()=>this.select(character.id),detail:()=>this.inspect(character.id),enter:wrap.enter,leave:wrap.leave});
+      v.target(bg,`character/${character.id}`,{tap:()=>this.modeConfig.mode==='tutorial'&&character.id!=='erxiang'?this.inspect(character.id):this.select(character.id),detail:()=>this.inspect(character.id),enter:wrap.enter,leave:wrap.leave});
     });
     this.animateChoice=false;
     const c=this.selectedId?getCharacter(this.selectedId):undefined,s=p.summary;
     v.material(s,c?0x284f50:0x343c4d,0x192e38,7);
-    if(p.short)v.text(s.x+12,s.y+10,c?`${c.name} · ${c.passiveDescription}`:'点选一位角色；详情可查看完整能力。',14,'#fff1d8',s.width-24);
+    const passiveDescription=config.characterAbilityEnabled?c?.passiveDescription:'本色演出关闭角色被动与开局赠送，保留角色身份。';
+    if(p.short)v.text(s.x+12,s.y+10,c?`${c.name} · ${passiveDescription}`:'点选一位角色；详情可查看完整能力。',14,'#fff1d8',s.width-24);
     else {
       if(c){
         if(!p.portrait)addAvatar(this,v.root,c,s.x+42,s.y+s.height/2,64);
         const textX=s.x+(p.portrait?12:86),textWidth=s.width-(p.portrait?24:100);
-        this.singleLine(textX,s.y+(p.portrait?8:12),`${c.name} · ${c.passiveName}`,p.portrait?18:20,'#fff2da',textWidth,18);
-        v.text(textX,s.y+(p.portrait?34:43),c.passiveDescription,14,'#e7e8cf',textWidth).setLineSpacing(2);
+        this.singleLine(textX,s.y+(p.portrait?8:12),`${c.name} · ${config.characterAbilityEnabled?c.passiveName:'本挑战被动关闭'}`,p.portrait?18:20,'#fff2da',textWidth,18);
+        v.text(textX,s.y+(p.portrait?34:43),passiveDescription!,14,'#e7e8cf',textWidth).setLineSpacing(2);
       }else {
         v.text(s.x+16,s.y+(p.portrait?10:16),'这次，你用什么活儿撑场？',p.portrait?20:22,'#fff2da',s.width-32);
         v.text(s.x+16,s.y+(p.portrait?42:51),'确认角色后建立新局。',14,'#d5ddc9',s.width-32);
       }
     }
     const existing=gameSession().run,canReturn=!!existing&&!['run-won','run-lost'].includes(existing.state.phase);
-    v.button(p.cancel,this.selectedId?'取消选择':canReturn?'返回本局':'取消选择','action/cancel-character',()=>void this.cancelChoice(),!this.choosing&&(!!this.selectedId||canReturn));
+    v.button(p.cancel,this.modeConfig.mode==='tutorial'?'跳过教程':this.selectedId?'取消选择':canReturn?'返回本局':'返回标题','action/cancel-character',()=>void this.cancelChoice(),!this.choosing);
     v.button(p.details,'角色详情','action/character-details',()=>{if(this.selectedId)this.inspect(this.selectedId);},!this.choosing&&!!this.selectedId);
     v.button(p.confirm,this.choosing?'正在开局…':'确认角色','action/confirm-character',()=>void this.confirmChoice(),!this.choosing&&!!this.selectedId,true);
     v.text(p.x,p.noticeY,this.notice||(this.selectedId?'已选 '+getCharacter(this.selectedId).name+'，确认后进入商店。':'完整能力与构筑思路见角色详情。'),14,this.notice?'#ffd0b1':'#d5ddc9',p.w);
@@ -141,18 +155,31 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
   private select(id:CharacterId):void {
     if(this.choosing)return;
+    if(this.modeConfig.mode==='tutorial'&&id!=='erxiang'){this.notice='教程固定二响；跳过教程后可自由选角。';this.audio.invalid();this.render();return;}
     this.selectedId=id;this.notice='';this.animateChoice=true;this.audio.select();this.render();
   }
   private inspect(id:CharacterId):void {
     if(this.choosing)return;const c=getCharacter(id);
     const body=[c.passiveName+'\n'+c.passiveDescription,'构筑思路\n'+c.buildTip,'“'+c.quote+'”'];
+    if(!r2RunModeConfig(this.modeConfig).characterAbilityEnabled)body.unshift('当前挑战关闭角色被动与初始赠送，以下能力供普通局参考。');
+    const tutorialOther=this.modeConfig.mode==='tutorial'&&id!=='erxiang';if(tutorialOther)body.push('教程固定二响；跳过教程后可选用此角色。');
     if(this.selectedId===id)body.push('该角色已选中。关闭详情后，用底部「确认角色」进入商店。');
-    this.dialog.open(c.name+' · '+c.title,body.join('\n\n'),this.selectedId===id?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}],{portrait:{url:portraitURL(id),alt:c.name+'的完整巡演立绘'}});
+    this.dialog.open(c.name+' · '+c.title,body.join('\n\n'),this.selectedId===id||tutorialOther?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}],{portrait:{url:portraitURL(id),alt:c.name+'的完整巡演立绘'}});
+  }
+  private selectMode():void {
+    if(this.choosing)return;this.dialog.close();this.modeDialog.open({initial:{modeConfig:this.modeConfig,seed:this.seed},chooseLabel:'使用此模式',choose:choice=>this.applyModeChoice(choice),
+      resumed:()=>{if(this.scene.isActive())routeSavedRun(this.game);}});
+  }
+  private applyModeChoice(choice:ModeChoice):void {
+    if(this.choosing||!this.scene.isActive())return;this.modeConfig=choice.modeConfig;this.seed=choice.seed;
+    if(choice.modeConfig.mode==='tutorial'){this.selectedId='erxiang';this.seed=R2_MODE_CATALOG.tutorial.config.seedPolicy.values[0];}
+    this.notice='';this.render();
   }
   private async cancelChoice():Promise<void> {
     if(this.choosing)return;
+    if(this.modeConfig.mode==='tutorial'){this.modeConfig=DEFAULT_MODE_SELECTION;this.selectedId=undefined;this.seed=undefined;this.notice='已跳过教程，可自由选择角色。';this.audio.cancel();this.render();return;}
     if(this.selectedId){this.selectedId=undefined;this.notice='已取消选择，进度没有改变。';this.audio.cancel();this.render();return;}
-    const existing=gameSession().run;if(!existing)return;
+    const existing=gameSession().run;if(!existing){this.audio.cancel();this.scene.start('title');return;}
     if(existing.status!=='readonly'&&!await existing.flush()){this.notice='本局未保存，请从菜单重试保存或导出。';this.render();return;}
     this.audio.cancel();routeSavedRun(this.game);
   }
@@ -160,17 +187,18 @@ export class CharacterSelectScene extends Phaser.Scene {
     if(this.choosing||!this.selectedId)return;
     const existing=gameSession().run;
     if(existing&&!['run-won','run-lost'].includes(existing.state.phase)){
-      const d=this.dialog.open('开始新局？','确认将替换当前进行中的局。有效存档保留为备份；取消会保留当前进度。',[{label:'确认开始新局',primary:true,run:async()=>{if(await this.choose())this.dialog.close(d);}}],{closeLabel:'取消'});
+      const d=this.dialog.open('开始新局？','确认后保存所选模式的新局，并将其设为当前局。此选项的旧进度保留为备份；取消保留当前进度。',[{label:'确认开始新局',primary:true,run:async()=>{if(await this.choose())this.dialog.close(d);}}],{closeLabel:'取消'});
       return;
     }
     await this.choose();
   }
   private async choose():Promise<boolean> {
     if(this.choosing||!this.selectedId)return false;
+    if(!r2ModeUnlocked(readRunProgress().progress,this.modeConfig)){this.notice='此模式尚未解锁，请先完成对应标准八章首通，或继续已有模式存档。';this.audio.invalid();this.render();return false;}
     this.choosing=true;this.notice='';const lifecycle=this.lifecycle,id=this.selectedId;this.render();
-    const seed=this.seed??new URLSearchParams(location.search).get('seed')??String(Date.now());
+    const seed=this.seed??String(Date.now());
     try {
-      const controller=await startRun(this,seed,id);
+      const controller=await startRun(this,seed,id,this.modeConfig);
       if(lifecycle!==this.lifecycle||!this.scene.isActive())return false;
       if(!controller||controller.status!=='idle'){this.notice=gameSession().notice||'新局尚未保存，请从菜单重试保存。';this.audio.invalid();return false;}
       this.audio.select();this.scene.start('shop');return true;

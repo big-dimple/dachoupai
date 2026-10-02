@@ -7,7 +7,7 @@ import type {R2RunState} from '../domain/run';
 import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {heatText} from './scoreText';
 
-export type StageNoticeInput=Pick<R2RunState,'phase'|'stage'|'stageIndex'|'boss'|'handOrder'|'deckInstances'>&Partial<Pick<R2RunState,'jokers'>>;
+export type StageNoticeInput=Pick<R2RunState,'phase'|'stage'|'stageIndex'|'boss'|'handOrder'|'deckInstances'>&Partial<Pick<R2RunState,'jokers'|'challengeId'>>;
 export interface StageNotice {
   stageIndex:number;
   title:string;
@@ -26,7 +26,7 @@ export interface StageNotice {
 }
 
 /** Presentation of the entered stage only; chapter forecasts never disable current cards. */
-export function stageNotice(run:StageNoticeInput,selectedIds:readonly string[]=[]):StageNotice|undefined {
+function enteredNotice(run:StageNoticeInput,selectedIds:readonly string[]=[]):StageNotice|undefined {
   const stage=run.stage;
   if(run.phase!=='await-input'||!stage)return;
   const index=stage.index,discardCost=r2DiscardCost(run),normal:StageNotice={
@@ -87,4 +87,21 @@ export function stageNotice(run:StageNoticeInput,selectedIds:readonly string[]=[
     case 'B16':
       return {...notice,title:'不吃名气 · 稀有计分停用',description:'稀有牌的计分、版次与计分概率停用；静态、经济、成长和寿命正常。',symbol:'R×'};
   }
+}
+
+export function stageNotice(run:StageNoticeInput,selectedIds:readonly string[]=[]):StageNotice|undefined {
+  let notice=enteredNotice(run,selectedIds);if(!notice||!run.stage)return;
+  if(run.challengeId==='Q01')notice={...notice,warning:true,wagerDisabled:true,
+    title:notice.warning?notice.title+' · 被动关闭':'本色演出 · 角色被动关闭',
+    description:'本次挑战关闭角色被动与押注。'+(notice.warning?notice.description:''),
+    details:'本次挑战关闭角色被动、初始牌型等级赠送和押注；角色身份保留。\n\n'+notice.details};
+  const ban=run.stage.challengeDisabledJokerId;
+  if(ban){
+    const name=R2_JOKERS.find(row=>row.id===ban)!.name;
+    notice={...notice,warning:true,symbol:'封',title:notice.warning?notice.title+' · 封角':'封角 · '+name+'计分停用',
+      description:notice.description+' 本章'+name+'的计分与版次停用。',
+      details:'本章公开封角：'+name+'。仅暂停计分和版次，静态、经济、非数学生命周期仍正常。\n\n'+notice.details,
+      disabledJokerIds:r2ScoringDisabledJokerIds(run.stage.boss,run.jokers??[],R2_JOKERS,run.stage.sealedJokerIds,ban)};
+  }
+  return notice;
 }

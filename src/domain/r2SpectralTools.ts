@@ -2,9 +2,11 @@ import {SUITS,type PlayingCard} from '../cards/types';
 import {R2_LONG_TERM_ITEMS,R2_TOOL_CATALOG,R2_TOOLS} from '../content/r2Tools';
 import {SeededRng} from '../core/SeededRng';
 import {R2_HAND_TYPES} from './evaluateR2';
-import {getR2Stage,r2ConsumableCapacity,r2HandLimit,r2HandsBudget,r2CreateJoker,type R2RunState} from './r2Run';
+import {r2CreateJoker,type R2RunState} from './r2Run';
+import {r2StageSpec} from './r2Chapter';
+import {r2ConsumableCapacity,r2HandLimit,r2HandsBudget,r2JokerCapacity} from './r2Resources';
 import {r2Pool} from './r2Shop';
-import {r2ToolSupported} from './r2ToolRuntime';
+import {r2CardSpecialsAllowed,r2ToolAllowed,r2ToolSupported} from './r2ToolRuntime';
 import type {Command,DomainEvent} from './run';
 
 function weightedChoice<T extends string>(rng:SeededRng,choices:readonly {id:T;weight:number}[]):T {
@@ -22,6 +24,7 @@ export function applyR2SpectralTool(state:R2RunState,command:Command,events:Doma
   if(itemIndex<0)return 'unknown-consumable';
   const item=state.consumables[itemIndex],tool=R2_TOOLS.find(tool=>tool.id===item.definitionId);
   if(!tool||tool.family!=='spectral'||!r2ToolSupported(tool.id))return 'consumable-not-enabled';
+  if(!r2ToolAllowed(state,tool.id))return 'enhancements-disabled';
   if(!tool.phases.includes(state.phase))return 'wrong-phase';
 
   const parameters:Record<string,readonly string[]>={
@@ -75,7 +78,9 @@ export function applyR2SpectralTool(state:R2RunState,command:Command,events:Doma
       if(tool.target.kind!=='cards'||cost?.kind!=='permanent-hands-penalty')return 'invalid-spectral-contract';
       if(ids.length<tool.target.minimum||ids.length>tool.target.maximum)return 'invalid-targets';
       if(!knownTargets())return 'unavailable-target';
-      if(!getR2Stage(state.stageIndex,state.tourMode))return 'no-next-stage';
+      const source=selected()[0];
+      if(!r2CardSpecialsAllowed(state,source))return 'enhancements-disabled';
+      if(!r2StageSpec(state.stageIndex,state.tourMode,state.difficulty))return 'no-next-stage';
       if(living.length+operation.copies>limits.deckMaximum)return 'deck-maximum';
       const modifiers={...state.spectralModifiers,handsPenalty:state.spectralModifiers.handsPenalty+cost.amount};
       if(modifiers.handsPenalty>limits.spectralHandsPenaltyMaximum)return 'resource-floor';
@@ -83,7 +88,6 @@ export function applyR2SpectralTool(state:R2RunState,command:Command,events:Doma
       if(after<limits.handsMinimum||before-after!==cost.amount)return 'resource-floor';
       for(let copy=0;copy<operation.copies;copy++)createdCardIds.push(`${state.runId}/card/${command.commandId}/${copy}`);
       if(createdCardIds.some(id=>state.deckInstances.some(card=>card.id===id)))return 'duplicate-card-id';
-      const source=selected()[0];
       for(const id of createdCardIds)state.deckInstances.push({id,rank:source.rank,suit:source.suit,
         ...(source.enhancement===undefined?{}:{enhancement:source.enhancement}),...(source.edition===undefined?{}:{edition:source.edition})});
       state.drawPile.unshift(...createdCardIds);state.spectralModifiers=modifiers;break;
@@ -92,7 +96,7 @@ export function applyR2SpectralTool(state:R2RunState,command:Command,events:Doma
       if(tool.target.kind!=='suit'||cost?.kind!=='permanent-hand-penalty')return 'invalid-spectral-contract';
       if(ids.length||!action.suit||!SUITS.includes(action.suit))return 'invalid-targets';
       if(living.every(card=>card.suit===action.suit))return 'no-effect';
-      if(!getR2Stage(state.stageIndex,state.tourMode))return 'no-next-stage';
+      if(!r2StageSpec(state.stageIndex,state.tourMode,state.difficulty))return 'no-next-stage';
       const modifiers={...state.spectralModifiers,handPenalty:state.spectralModifiers.handPenalty+cost.amount};
       if(modifiers.handPenalty>limits.spectralHandPenaltyMaximum)return 'resource-floor';
       const before=r2HandLimit(state),after=r2HandLimit({...state,spectralModifiers:modifiers});
@@ -113,7 +117,7 @@ export function applyR2SpectralTool(state:R2RunState,command:Command,events:Doma
     case 'rare-joker-reward': {
       if(tool.target.kind!=='none'||cost?.kind!=='all-gold')return 'invalid-spectral-contract';
       if(ids.length)return 'invalid-targets';
-      if(state.jokers.length>=limits.jokerMaximum)return 'joker-slots-full';
+      if(state.jokers.length>=r2JokerCapacity(state))return 'joker-slots-full';
       const pool=r2Pool(state.jokers.map(joker=>joker.definitionId),state.safetyNetUsed?['f07']:[]).filter(definition=>definition.rarity==='rare');
       if(!pool.length)return 'empty-reward-pool';
       const instanceId=`${state.runId}/joker/${command.commandId}`;
@@ -138,7 +142,7 @@ export function applyR2SpectralTool(state:R2RunState,command:Command,events:Doma
       if(ids.length)return 'invalid-targets';
       if(state.spectralModifiers.cleanSlateBonus)return 'already-claimed';
       if(living.filter(card=>card.enhancement!==undefined||(card.edition??'none')!=='none').length<operation.minimumModifiedCards)return 'too-few-special-cards';
-      if(!getR2Stage(state.stageIndex,state.tourMode))return 'no-next-stage';
+      if(!r2StageSpec(state.stageIndex,state.tourMode,state.difficulty))return 'no-next-stage';
       const modifiers={...state.spectralModifiers,cleanSlateBonus:state.spectralModifiers.cleanSlateBonus+operation.handBonus};
       const before=r2HandLimit(state),after=r2HandLimit({...state,spectralModifiers:modifiers});
       if(after>limits.handMaximum||after-before!==operation.handBonus)return 'resource-cap';

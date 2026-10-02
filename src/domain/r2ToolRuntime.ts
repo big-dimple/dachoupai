@@ -1,5 +1,6 @@
 import {R2_TOOL_CATALOG,R2_TOOLS,R2_LONG_TERM_ITEMS,supportsR2Tool,type R2ToolFeature} from '../content/r2Tools';
 import type {PlayingCard,Edition} from '../cards/types';
+import {r2RunModeConfig,type R2ModeSelection} from '../content/r2Modes';
 
 /** Only executable capabilities may enter a shelf, command or restorable state. */
 export const R2_IMPLEMENTED_TOOL_FEATURES:readonly R2ToolFeature[]=Object.freeze([...R2_TOOL_CATALOG.initialSupportedFeatures,'card-delete','card-copy','rank-change','planet-upgrade','enhancements','lucky','editions','spectral','permanent-resources','hand-exchange','rare-reward','joker-sacrifice','specials-reset','gold-supply','free-reroll','long-term-items','first-boss-supply']);
@@ -12,3 +13,14 @@ export const r2ItemSupported=(id:string):boolean=>R2_IMPLEMENTED_ITEM_IDS.includ
 export const r2EditionSupported=(edition:Edition|undefined):boolean=>edition===undefined||edition==='none'||R2_IMPLEMENTED_TOOL_FEATURES.includes('editions');
 export const r2CardSpecialsSupported=(card:PlayingCard):boolean=>
   r2EditionSupported(card.edition)&&(card.enhancement===undefined||R2_IMPLEMENTED_TOOL_FEATURES.includes('enhancements')&&(card.enhancement!=='lucky-paper'||R2_IMPLEMENTED_TOOL_FEATURES.includes('lucky')));
+
+/** A mode restriction does not disable the engine capability for other runs. */
+export function r2ToolAllowed(state:R2ModeSelection,id:string):boolean {
+  const definition=R2_TOOLS.find(tool=>tool.id===id);
+  if(!definition||!r2ToolSupported(id))return false;
+  const config=r2RunModeConfig(state),kind=definition.operation.kind;
+  return (kind!=='free-reroll'||config.reroll.allowed)&&
+    (config.enhancementsAllowed||kind!=='set-enhancement'&&kind!=='random-enhancement');
+}
+export const r2CardSpecialsAllowed=(state:R2ModeSelection,card:PlayingCard):boolean=>
+  r2CardSpecialsSupported(card)&&(r2RunModeConfig(state).enhancementsAllowed||card.enhancement===undefined);

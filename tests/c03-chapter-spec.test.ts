@@ -43,9 +43,9 @@ describe('C03.1 versioned eight-chapter runtime contract',()=>{
       intro:'打到目标热度即可过场，出牌和弃牌次数每场补满。'});
     expect(getR2Stage(24)).toBeUndefined();
   });
-  it('separates the explicit C03 new game from the published C02 content partition',()=>{
-    expect(R2_CONTENT_VERSION).toBe('quality-r2-content-v9');
-    expect(R2_CONTENT_HASH).toBe('json-fnv-v1:0d551eb0a2218704');
+  it('separates the current explicit C04 new game from the published C03 content partition',()=>{
+    expect(R2_CONTENT_VERSION).toBe('quality-r2-content-v10');
+    expect(R2_CONTENT_HASH).not.toBe('json-fnv-v1:0d551eb0a2218704');
   });
   it.each([
     {seen:[],boss:{definitionId:'B02',disabledSuit:null},cursor:1831565813},

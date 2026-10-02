@@ -14,6 +14,7 @@ import { stableHash } from './hash';
 import { assertR2Invariants, R2_CONTENT_HASH, R2_CONTENT_VERSION, transactR2, type R2RunState, type R2StageState } from './r2Run';
 import type { ScoreTrace } from './scoreR2';
 import type { Condition } from '../content/r2Schema';
+import type {R2ModeSelection,R2ProgramId} from '../content/r2Modes';
 export type { R2RunState } from './r2Run';
 
 export const R1_LIMITS = { handSize: 8, maxSelected: 5, jokerSlots: MAX_JOKER_SLOTS } as const;
@@ -94,7 +95,7 @@ export interface RunState {
 }
 
 export type Action =
-  | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2' }
+  | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2';modeConfig?:R2ModeSelection }
   | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' | 'SkipStage' | 'ContinueEndless' }
   | { type: 'PlayHand'; selectedIds: readonly string[] }
   | { type: 'DiscardHand'; selectedIds: readonly string[] }
@@ -103,6 +104,8 @@ export type Action =
   | { type: 'DestroyConsumable'; instanceId:string }
   | { type: 'SetWager'; enabled: boolean }
   | { type: 'BuyOffer'; offerId: string }
+  | { type:'ChooseProgram';programId:R2ProgramId|null }
+  | { type:'AbandonProgram' }
   | { type: 'ReorderHand' | 'ReorderJokers'; ids: readonly string[] };
 
 export interface Command {
@@ -201,6 +204,7 @@ export function applyCommand(input: AnyRunState | null, command: Command): Comma
     if (input) return fail('wrong-phase');
     if (typeof action.seed !== 'string' || !action.seed.length || !CHARACTER_IDS.includes(action.characterId)) return fail('invalid-start');
     if (action.rulesVersion && action.rulesVersion !== 'r1') return fail('unsupported-rules-version');
+    if(action.modeConfig!==undefined)return fail('unsupported-mode-config');
     state = initial(command, action);
   } else {
     if (!input) return fail('run-not-started');
@@ -318,14 +322,14 @@ export function applyCommand(input: AnyRunState | null, command: Command): Comma
   return { ok: true, state, events, receipt, duplicate: false };
 }
 
-type StartOptions = { seed: string; characterId: CharacterId; runId: string };
+type StartOptions = { seed: string; characterId: CharacterId; runId: string;modeConfig?:R2ModeSelection };
 export function createRun(options: StartOptions & {rulesVersion:'r2'}): R2RunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'}): RunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState {
   const result = applyCommand(null, {
     runId: options.runId, commandId: `${options.runId}/start`, expectedSeq: 0,
-    action: { type: 'StartRun', seed: options.seed, characterId: options.characterId, ...(options.rulesVersion ? { rulesVersion: options.rulesVersion } : {}) },
+    action: { type: 'StartRun', seed: options.seed, characterId: options.characterId, ...(options.rulesVersion ? { rulesVersion: options.rulesVersion } : {}),...(options.modeConfig===undefined?{}:{modeConfig:options.modeConfig}) },
   });
   if (!result.ok) throw new Error(result.code);
   return result.state;

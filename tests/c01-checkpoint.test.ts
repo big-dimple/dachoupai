@@ -116,10 +116,10 @@ describe('C01 strict current checkpoint and retained historical raw',()=>{
     const restored=restoreSlots({revision:7,current:rawV5,previous:null});
     expect(restored.status).toBe('invalid');expect(restored.raw).toBe(rawV5);expect(JSON.stringify(rawV5)).toBe(before);
   });
-  it('can restore a current-version backup while preserving the genuine v5 current raw for export',()=>{
+  it('keeps the genuine v5 raw for export without attaching a different current-version partition as its backup',()=>{
     const restored=restoreSlots({revision:8,current:rawV5,previous:seal(start())});
-    expect(restored.status).toBe('backup');expect(restored.code).toBe('incompatible-version');expect(restored.raw).toBe(rawV5);
-    expect(restored.checkpoint?.state.contentVersion).toBe('quality-r2-content-v9');
+    expect(restored.status).toBe('invalid');expect(restored.code).toBe('incompatible-version');expect(restored.raw).toBe(rawV5);
+    expect(restored.checkpoint).toBeUndefined();
   });
   it.each(['spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed'])('requires new state field %s',field=>{
     expect(readCheckpoint(damage(start(),state=>{delete object(state)[field];})).ok).toBe(false);

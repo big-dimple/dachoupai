@@ -64,7 +64,8 @@ function legalEventEnvelope(definitions,catalog,limits,scoreLimits,chapter) {
   const bossTools=catalog.tools.filter(row=>row.rewardSources.some(source=>source.source==='first-boss-clear'));
   require(same([...interestItems,...bossItems,...normalItems,...bossTools].map(row=>row.id).sort(),['T16','U04','U09','U12']),'clear rule sources');
   // U12 is normal-only; U09/T16 are boss-only. Base reward/interest/谢幕金 are not extra trace entries.
-  const clearRules=interestItems.length+Math.max(bossItems.length+bossTools.length,normalItems.length);
+  const programRewardEvents=1; // Only the one selected contract can pay, and only at a chapter Boss clear.
+  const clearRules=interestItems.length+Math.max(bossItems.length+bossTools.length+programRewardEvents,normalItems.length);
   const retriggers=onCard.filter(row=>Object.hasOwn(retriggerConditions,row.id));
   const residual=definitions.filter(row=>!onCard.includes(row)&&!handModifiers.includes(row));
   const singleEvents=new Set(['add-heat','add-multiplier','multiply-multiplier','read-growth','consume-growth','add-growth',
@@ -136,7 +137,7 @@ function legalEventEnvelope(definitions,catalog,limits,scoreLimits,chapter) {
   return {maximumEvents,definitionCount:definitions.length,statesChecked,
     maximumEntryHand:withoutJokerHandModifiers+sum(handModifiers.flatMap(row=>row.modifiers.map(modifier=>modifier.amount))),
     retriggerCapNoticesReachable:false,abstractWitness,
-    scope:'Current72 command-reachable configurations, normal/endless entry resources and B01–B16; event count, not maximum score or natural acquisition probability.',bossTraceBudgets,
+    scope:'Current72 command-reachable configurations, v10 mode resources, B01–B16 and at most one selected program payout; upper event envelope, not attained maximum score or natural acquisition probability.',bossTraceBudgets,
     proof:['Each equipped source spends one of the same five slots across all phases; A04/D06 spend slots to increase held count.',
       'The six normal card definitions provide at most four simultaneous groups; overlapping groups are overcounted with fewer slots.',
       'A11 requires played1; B06 requires pair and cannot coexist effectively with C07/D11. Other positions contribute at most three repeats.',
@@ -233,7 +234,7 @@ try {
       jokerStageClear:sum(worst.map(cost=>cost.stageClear)),
       jokerInterest:sum(worst.map(cost=>cost.interest)),
       jokerEdition:worst.length*editionEvents,
-      clearRules:clearRuleDefinitions.length,
+      clearRules:clearRuleDefinitions.length+1,
       rescue:rescueEvents,
     };
     const bound=sum(Object.values(components));
@@ -245,14 +246,14 @@ try {
   if(tightProof&&tightProof.maximumEvents>SCORE_LIMITS.eventCount)errors.push(`legal content event envelope ${tightProof.maximumEvents} exceeds ${SCORE_LIMITS.eventCount}`);
   if(errors.length) {console.error(errors.join('\n'));process.exitCode=1;}
   else console.log(JSON.stringify({status:'PASS',definitions:input.length,contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH,
-    modeConfigurations:{scope:'C04.1 finite configuration only; v9 gameplay and saves remain standard D0.',
+    modeConfigurations:{scope:'C04.2 explicit v10 shared-command profiles and separate save partitions; UI/device acceptance is recorded separately.',
       modes:R2_MODE_CATALOG.modes.map(row=>row.id),difficulties:R2_MODE_CATALOG.difficulties.map(row=>row.id),
       challenges:R2_MODE_CATALOG.challenges.map(row=>row.id),programs:R2_MODE_CATALOG.programs.map(row=>row.id)},
     conservativeEventBound:eventBound,eventBoundBreakdown,eventBoundModel:{
       handLimit:SCORE_LIMITS.handCount,selectedLimit:R2_LIMITS.maxSelected,jokerLimit:SCORE_LIMITS.jokerCount,
       extraRetriggers:SCORE_LIMITS.extraRetriggers,maxScoringPasses:passes,scoringEnhancementEventsPerPass:scoringEnhancement,
       heldEnhancementEventsPerCard:heldEnhancement,postFinalCardEventsPerOriginal:postFinalCard,
-      winningHeldGoldEventCap:winningHeldCap,editionEventsPerSource:editionEvents,clearRuleDefinitions,
+      winningHeldGoldEventCap:winningHeldCap,editionEventsPerSource:editionEvents,clearRuleDefinitions,programRewardEventMaximum:1,
       jokerMaximumEvents:Object.fromEntries(['ordinaryCard','extraCard','held','jokerScore','afterHand','stageClear','interest']
         .map(phase=>[phase,maximum(costs.map(cost=>cost[phase]))])),
       maximizingPlayedCount,worstJokerSources,

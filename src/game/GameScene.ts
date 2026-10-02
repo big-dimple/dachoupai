@@ -1,4 +1,7 @@
 import Phaser from 'phaser';
+import {r2JokerCapacity} from '../domain/r2Resources';
+import {r2RunModeConfig,R2_MODE_CATALOG} from '../content/r2Modes';
+import {showPrograms} from './ProgramDialog';
 import { AudioEngine } from '../audio/AudioEngine';
 import { rankLabel, SUIT_SYMBOL, SUITS, type Suit, type PlayingCard } from '../cards/types';
 import {EffectQueue,type EffectContext} from '../core/EffectQueue';
@@ -191,7 +194,7 @@ export class GameScene extends Phaser.Scene {
     }
     this.run=controller.state;
     if(this.run.phase!=='await-input'||!this.run.stage){this.scene.start('character-select');return;}
-    this.stage=getStage(this.run.stage.index,this.run.tourMode)!;this.characterId=this.run.characterId;settings();this.audio.setScene(this.stage.index%3===2?'boss':'table');
+    this.stage=getStage(this.run.stage.index,this.run.tourMode,this.run.difficulty)!;this.characterId=this.run.characterId;settings();this.audio.setScene(this.stage.index%3===2?'boss':'table');
     this.cameras.main.setBackgroundColor(C.paper);
     this.view=new SceneView(this,()=>{
       if(this.presentation)this.fastForward();
@@ -295,9 +298,10 @@ export class GameScene extends Phaser.Scene {
   private renderJokerRack(jokers:readonly R2JokerInstance[]=this.run.jokers):void {
     const v=this.view,l=v.layout;this.jokerViews.clear();
     const context=this.presentation?.score.bossContext,boss=context?context.boss:this.run.stage?.boss;
-    const disabled=new Set(r2ScoringDisabledJokerIds(boss,jokers,R2_JOKERS,context?.sealedJokerIds??this.run.stage?.sealedJokerIds??[]));
+    const disabled=new Set(r2ScoringDisabledJokerIds(boss,jokers,R2_JOKERS,context?.sealedJokerIds??this.run.stage?.sealedJokerIds??[],context?.challengeDisabledJokerId??this.run.stage?.challengeDisabledJokerId??null));
     this.stopJokerIdle();
     l.slots.forEach((b,i)=>{
+      if(i>=r2JokerCapacity(this.run))return;
       const j=jokers[i],shadow=v.add(this.add.graphics());
       shadow.fillStyle(T.ink,.18).fillRoundedRect(b.x+2,b.y+4,b.width,b.height,5);
       if(!j){
@@ -338,7 +342,7 @@ export class GameScene extends Phaser.Scene {
     drawJokerMotif(this,marker,joker.definitionId,x,y,size);
   }
   private jokerValue(j:R2JokerInstance):string {
-    return r2JokerValue(j,{gold:this.run.gold,jokerCount:this.run.jokers.length,jokerSlots:R2_LIMITS.jokerSlots,deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,discardsUsed:this.run.stage?.discardsUsed,quadRefundUsed:this.run.stage?.quadRefundUsed});
+    return r2JokerValue(j,{gold:this.run.gold,jokerCount:this.run.jokers.length,jokerSlots:r2JokerCapacity(this.run),deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,discardsUsed:this.run.stage?.discardsUsed,quadRefundUsed:this.run.stage?.quadRefundUsed});
   }
   private roleCaption():string {const notice=stageNotice(this.run);return notice?.warning?notice.title:getCharacter(this.characterId).passiveName;}
   private cardPiece(card:PlayingCard,b:Box):CardView {
@@ -627,7 +631,7 @@ export class GameScene extends Phaser.Scene {
   }
   private preview(){
     const stage=this.run.stage!;
-    return previewR2Hand({rulesVersion:'r2',runId:this.run.runId,rootId:'preview',characterId:this.characterId,hand:this.hand,selectedIds:[...this.selectedIds],disabledIds:stage.disabledIds,jokers:this.run.jokers,definitions:R2_JOKERS,handLevels:this.run.handLevels,playIndex:stage.playIndex+1,handsBeforePlay:stage.handsLeft,previousHandType:stage.previousHandType,wager:stage.wagerSelected,...r2ScoreContext(this.run,this.hand,[...this.selectedIds])});
+    return previewR2Hand({rulesVersion:'r2',runId:this.run.runId,rootId:'preview',hand:this.hand,selectedIds:[...this.selectedIds],disabledIds:stage.disabledIds,jokers:this.run.jokers,definitions:R2_JOKERS,handLevels:this.run.handLevels,playIndex:stage.playIndex+1,handsBeforePlay:stage.handsLeft,previousHandType:stage.previousHandType,wager:stage.wagerSelected,...r2ScoreContext(this.run,this.hand,[...this.selectedIds])});
   }
   private inspectCard(id:string):void {
     const c=this.hand.find(c=>c.id===id);if(!c)return;
@@ -642,8 +646,11 @@ export class GameScene extends Phaser.Scene {
     });
   }
   private inspectRole():void {
-    const c=getCharacter(this.characterId),stage=this.run.stage!,notice=stageNotice(this.run),body=c.passiveDescription+'\n'+(notice?.wagerDisabled?'静场：本场角色计分与押注停用；非计分过关奖励保留。':this.characterId==='xiemu'?(stage.handsLeft===1?'当前为最后一手：倍率 ×2，过关额外 +2 金。':'距离最后一手还有 '+(stage.handsLeft-1)+' 次。'):this.characterId==='touye'?(stage.wagerUsed?'本场押注已用。':stage.wagerSelected?'本手已押注：50% ×2 / 50% ×0.75。':'本场押注未用；默认倍率 ×1.15。'):'')+'\n'+this.stage.name+'：'+this.stage.intro+'\n'+(stage.boss?'本场压轴':'本章压轴预告')+' '+r2BossText(stage.boss??this.run.boss)+'\n弃牌成本：'+r2DiscardCost(this.run)+(notice?.discardGoldCost?' 次 +1金币':' 次')+'；本场已弃 '+stage.discardsUsed+' 次。\n当前手牌上限 '+stage.handLimit+'，扩容修正后的硬上限14。\n'+(this.run.jokers.some(joker=>joker.definitionId==='c08')?'少一级：普通顺子可用4张，A234合法；同花顺仍须5张。\n':'')+(this.run.safetyNetUsed?'安全网本局已经使用，不会再次触发。':this.run.jokers.some(joker=>joker.definitionId==='f07')?'安全网：耗尽出牌且仍有可用手牌时救场一次，成功过关不触发。':'');
-    const dialog=this.dialog.open(c.name+' · 角色与本场规则',body,[{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},...(this.characterId==='touye'?[{label:notice?.wagerDisabled?'本场不能押注':stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed||notice?.wagerDisabled,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[])],{portrait:{url:portraitURL(c.id),alt:c.name+'完整立绘'}});
+    const c=getCharacter(this.characterId),stage=this.run.stage!,notice=stageNotice(this.run),ability=r2RunModeConfig(this.run).characterAbilityEnabled;
+    const challenge=R2_MODE_CATALOG.challenges.find(row=>row.id===this.run.challengeId);
+    const roleState=!ability?'本次挑战关闭角色被动、初始赠送与押注。':notice?.wagerDisabled?'静场：本场角色计分与押注停用；非计分过关奖励保留。':this.characterId==='xiemu'?(stage.handsLeft===1?'当前为最后一手：倍率 ×2，过关额外 +2 金。':'距离最后一手还有 '+(stage.handsLeft-1)+' 次。'):this.characterId==='touye'?(stage.wagerUsed?'本场押注已用。':stage.wagerSelected?'本手已押注：50% ×2 / 50% ×0.75。':'本场押注未用；默认倍率 ×1.15。'):'';
+    const body=(challenge?challenge.name+'：'+challenge.description+'\n\n':'')+(ability?c.passiveDescription+'\n':'')+roleState+'\n'+this.stage.name+'：'+this.stage.intro+'\n'+(notice?.warning?notice.details+'\n':'')+(stage.boss?'本场压轴':'本章压轴预告')+' '+r2BossText(stage.boss??this.run.boss)+'\n弃牌成本：'+r2DiscardCost(this.run)+(notice?.discardGoldCost?' 次 +1金币':' 次')+'；本场已弃 '+stage.discardsUsed+' 次。\n当前手牌上限 '+stage.handLimit+'，扩容修正后的硬上限14。\n'+(this.run.jokers.some(joker=>joker.definitionId==='c08')?'少一级：普通顺子可用4张，A234合法；同花顺仍须5张。\n':'')+(this.run.safetyNetUsed?'安全网本局已经使用，不会再次触发。':this.run.jokers.some(joker=>joker.definitionId==='f07')?'安全网：耗尽出牌且仍有可用手牌时救场一次，成功过关不触发。':'');
+    const dialog=this.dialog.open(c.name+' · 角色与本场规则',body,[{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},...(this.run.program?[{label:'本章节目单',run:()=>showPrograms(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))}]:[]),...(this.characterId==='touye'?[{label:notice?.wagerDisabled?'本场不能押注':stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed||notice?.wagerDisabled,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[])],{portrait:{url:portraitURL(c.id),alt:c.name+'完整立绘'}});
   }
   private inspectJoker(id:string):void {
     const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=getJoker(j.definitionId),index=this.run.jokers.indexOf(j),art=jokerArtUrl(d.id);
@@ -888,9 +895,9 @@ export class GameScene extends Phaser.Scene {
     if(event.sourceType==='joker')return edition+getJoker(event.sourceDefinitionId).name;
     if(event.sourceType==='character')return getCharacter(this.characterId).name;
     const card=(this.presentation?.score??this.run.lastTrace)?.cards.find(card=>card.id===event.targetCardId);
-    const item=R2_LONG_TERM_ITEMS.find(item=>item.id===event.sourceDefinitionId),tool=R2_TOOLS.find(tool=>tool.id===event.sourceDefinitionId);
+    const item=R2_LONG_TERM_ITEMS.find(item=>item.id===event.sourceDefinitionId),tool=R2_TOOLS.find(tool=>tool.id===event.sourceDefinitionId),program=R2_MODE_CATALOG.programs.find(program=>program.id===event.sourceDefinitionId);
     const boss=R2_BOSSES.find(boss=>boss.id===event.sourceDefinitionId),sealed=(this.presentation?.score??this.run.lastTrace)?.sourceJokers.find(joker=>joker.instanceId===event.targetJokerInstanceId);
-    return item?.name??tool?.name??(boss?boss.name+(sealed?' · '+getJoker(sealed.definitionId).name:''):card?edition+rankLabel(card.rank)+SUIT_SYMBOL[card.suit]:HAND_LABELS[event.sourceDefinitionId as keyof typeof HAND_LABELS]??'计分牌');
+    return item?.name??tool?.name??program?.name??(boss?boss.name+(sealed?' · '+getJoker(sealed.definitionId).name:''):card?edition+rankLabel(card.rank)+SUIT_SYMBOL[card.suit]:HAND_LABELS[event.sourceDefinitionId as keyof typeof HAND_LABELS]??'计分牌');
   }
   private setAccumulator(value:Accumulator):void {
     this.scoreHeat.setText(fractionText(value.H));this.scoreMult.setText('× '+fractionText(value.M));
@@ -1025,7 +1032,7 @@ export class GameScene extends Phaser.Scene {
     }else if(card&&event.sourceType==='rule'){
       card.background.setStrokeStyle(3,T.red);
       sourceEffects.push(this.focusSource(card.container,card.background,T.red,false,duration,context,timing,impact));
-    }else if(event.sourceType==='rule'&&(R2_LONG_TERM_ITEMS.some(item=>item.id===event.sourceDefinitionId)||R2_TOOLS.some(tool=>tool.id===event.sourceDefinitionId))){
+    }else if(event.sourceType==='rule'&&(R2_LONG_TERM_ITEMS.some(item=>item.id===event.sourceDefinitionId)||R2_TOOLS.some(tool=>tool.id===event.sourceDefinitionId)||R2_MODE_CATALOG.programs.some(program=>program.id===event.sourceDefinitionId))){
       const b=this.goldText.getBounds(),halo=this.view.add(this.add.graphics().lineStyle(3,T.brass,.9).strokeRoundedRect(b.x-4,b.y-4,b.width+8,b.height+8,8));
       sourceEffects.push(impact.then(()=>this.animate({targets:halo,alpha:{from:1,to:.15},duration:timing.impact,ease:'Sine.easeOut'},context)).then(()=>halo.destroy()));
       sourceEffects.push(this.floatNote(source,b.x+b.width/2,b.y-12,'#ffdda3',duration,context));
@@ -1049,6 +1056,7 @@ export class GameScene extends Phaser.Scene {
     if(event.operation==='destroy-card')this.audio.glassBreak();
     if(event.operation==='upgrade-hand')this.audio.toolUse('planet');
     if(event.operation==='reward-consumable')this.audio.rareReveal();
+    if(event.operation==='reward-free-reroll')this.audio.rareReveal();
     const impactDuration=timing.impact;
     const effects=[...sourceEffects,this.rollAccumulator(event,impactDuration,context),this.pulseAccumulator(event,impactDuration,context),this.impactAccumulator(event,impactDuration,context),this.wait(impactDuration,context)],notes:Promise<void>[]=[];
     if((event.operation==='rescue-hand'||event.operation==='refund-hand')&&this.presentation&&!this.presentation.replay&&event.resourceBefore!==undefined&&event.resourceAfter!==undefined){

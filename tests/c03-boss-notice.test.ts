@@ -11,7 +11,7 @@ const fixture=(id:R2BossId):StageNoticeInput=>({phase:'await-input',stageIndex:2
   wagerSelected:false,wagerUsed:false,discardsUsed:0,skipResult:null,handLimit:8,previousHandScore:null,rescueUsed:false,
   initialHands:4,initialDiscards:3,discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:id==='B01',
   maxPlayedCount:0,ordinaryStraightSeen:false,ordinaryFlushSeen:false,quadRefundUsed:false,jokerSold:false,
-  boss:{definitionId:id,disabledSuit:id==='B03'?'hearts':null},initialHandLimit:8,initialJokerIds:[],sealedJokerIds:[],
+  boss:{definitionId:id,disabledSuit:id==='B03'?'hearts':null},initialHandLimit:8,initialJokerIds:[],sealedJokerIds:[],challengeDisabledJokerId:null,
 }});
 const notice=(run:StageNoticeInput,selected:readonly string[]=ids):StageNotice=>stageNotice(run,selected)!;
 const withJokers=(id:R2BossId,definitions:readonly string[])=>({...fixture(id),jokers:definitions.map(owned)});

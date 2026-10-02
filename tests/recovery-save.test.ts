@@ -15,6 +15,7 @@ const next=(state:ReturnType<typeof initial>,action:Command['action']):Command=>
 class MemoryStore implements SaveStore {
   slots:SaveSlots={revision:0,current:null,previous:null};fail=false;writes=0;
   async read(){return structuredClone(this.slots);}
+  async readPartition(){return this.read();}
   async commit(expected:number,current:ReturnType<typeof makeCheckpoint>,previous:ReturnType<typeof makeCheckpoint>|null){
     this.writes++;if(this.fail)throw new DOMException('quota','QuotaExceededError');
     if(expected!==this.slots.revision)throw new Error('write-conflict');

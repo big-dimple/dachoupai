@@ -32,7 +32,7 @@ function restore(state:R2RunState):R2RunState {
 function previewAndSubmit(state:R2RunState,selectedIds:readonly string[]):R2RunState {
   const hand=state.handOrder.map(id=>state.deckInstances.find(card=>card.id===id)!);
   const before=stateHash(state),stage=state.stage!;
-  const preview=previewR2Hand({rulesVersion:'r2',runId:state.runId,rootId:'public-preview',characterId:state.characterId,
+  const preview=previewR2Hand({rulesVersion:'r2',runId:state.runId,rootId:'public-preview',
     hand,selectedIds,disabledIds:stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS,handLevels:state.handLevels,
     playIndex:stage.playIndex+1,handsBeforePlay:stage.handsLeft,previousHandType:stage.previousHandType,wager:stage.wagerSelected,
     ...r2ScoreContext(state,hand,selectedIds)});
@@ -48,7 +48,7 @@ describe('P02 starting profile: independent D14 goldens through public commands'
     expect(run.handLevels['high-card']).toBe(3);
     for(const type of R2_HAND_TYPES.filter(type=>type!=='high-card'))expect(run.handLevels[type]??1).toBe(1);
     expect(Object.hasOwn(run.handLevels,'high-card')).toBe(true);
-    expect(run.contentVersion).toBe('quality-r2-content-v9');
+    expect(run.contentVersion).toBe('quality-r2-content-v10');
     expect(run.contentHash).not.toBe('json-fnv-v1:a1f6f62ddd627819');
   });
 

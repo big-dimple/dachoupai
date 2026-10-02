@@ -13,7 +13,7 @@ const send=(state:R2RunState,action:Action):R2RunState=>{
 
 function beforeBoss(id:R2NominalBossId,jokerIds:readonly string[]=[],characterId:R2RunState['characterId']='erxiang'):R2RunState {
   const boss=R2_BOSSES.find(definition=>definition.id===id);if(!boss)throw Error(`missing-boss:${id}`);
-  const state=createRun({seed:`c03/${id}`,runId:`c03/${id}`,characterId,rulesVersion:'r2'});
+  const state=createRun({seed:`c03/${id}`,runId:`c03/${id}`,characterId,rulesVersion:'r2',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
   // Explicit valid late-chapter checkpoint boundary, not a natural acquisition or balance result.
   state.chapter=Number(id.slice(1))>=13?7:3;state.stageIndex=state.chapter*3-1;
   state.seenBossIds=state.chapter===7?['B01','B02','B03','B04','B05','B06',id]:['B01','B02',id];

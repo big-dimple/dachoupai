@@ -1,16 +1,18 @@
 import { createDeck } from '../cards/deck';
 import { R2_JOKERS,R2_IMPLEMENTED_FEATURES,readR2Modifiers,r2GrowthCaps,r2GrowthInitials,r2GrowthMinimums,validR2JokerCounters,supportsR2Joker,type Condition,type R2JokerInstance,type TransactionHookPhase } from '../content/r2Schema';
 import { SeededRng } from '../core/SeededRng';
+import {R2_MODE_CATALOG,resolveR2ModeConfig,r2RunModeConfig,r2ModeSeedAllowed,type R2ModeId,type R2Difficulty,type R2ChallengeId} from '../content/r2Modes';
+import {lockR2ProgramChapter,chooseR2Program,abandonR2Program,sealR2ProgramChoice,r2ProgramQualified,r2ProgramUpgradeCandidates,r2ProgramStateValid,type R2ProgramState} from './r2Programs';
 import { CHARACTER_IDS, type CharacterId } from './characters';
 import { R2_HAND_TYPES,validateCardInstances, type R2HandType } from './evaluateR2';
 import { stableHash } from './hash';
 import { MAX_INTEGER_DIGITS,Rational } from './rational';
 import type {PlayingCard} from '../cards/types';
 import {EDITIONS,type Edition} from '../cards/types';
-import {R2_LIMITS,R2_RESOURCE_CONTRACT,r2HandLimit,r2HandsBudget,r2DiscardBudget,r2ConsumableCapacity,r2InterestCap,r2ItemAmount as itemAmount} from './r2Resources';
+import {R2_LIMITS,R2_RESOURCE_CONTRACT,r2HandLimit,r2HandsBudget,r2DiscardBudget,r2ConsumableCapacity,r2InterestCap,r2JokerCapacity,r2ItemAmount as itemAmount} from './r2Resources';
 export {R2_LIMITS,R2_RESOURCE_CONTRACT,r2HandLimit,r2HandsBudget,r2DiscardBudget,r2ConsumableCapacity,r2InterestCap} from './r2Resources';
 import {R2_ENHANCEMENTS,R2_LONG_TERM_ITEMS,R2_TOOLS,R2_TOOL_CATALOG} from '../content/r2Tools';
-import {R2_IMPLEMENTED_TOOL_FEATURES,R2_IMPLEMENTED_ITEM_IDS,r2CardSpecialsSupported,r2EditionSupported,r2ItemSupported,r2ToolSupported} from './r2ToolRuntime';
+import {R2_IMPLEMENTED_TOOL_FEATURES,R2_IMPLEMENTED_ITEM_IDS,r2CardSpecialsSupported,r2CardSpecialsAllowed,r2ToolAllowed,r2EditionSupported,r2ItemSupported,r2ToolSupported} from './r2ToolRuntime';
 import {applyR2Tool} from './r2ToolCommands';
 import {R2_TARGETS,R2_AVAILABLE_CHAPTERS,R2_ENDLESS_MAX_CHAPTER,R2_ENDLESS_CONTRACT,R2_BOSSES,R2_SKIP_CONSUMABLES,r2StageSpec,drawR2Boss,r2BossHistoryValid,r2BossPlanValid,r2DisabledCards,r2OrdinarySuppression,type R2TourMode,type R2BossPlan,type R2SkipConsumable,type R2SkipResult} from './r2Chapter';
 export {R2_TARGETS} from './r2Chapter';
@@ -19,22 +21,29 @@ import type { Command, DomainEvent, RunState, StageState } from './run';
 import {drawR2Shelf,drawR2Edition,drawR2Tool,drawR2Items,R2_ECONOMY,r2Price,r2ToolPrice,r2ItemPrice,r2ToolAcquisitionPool,r2Pool,r2PaidRerollPrice,salePrice,r2PurchasePrice,type R2ShopState} from './r2Shop';
 
 export const R2_STARTING_HAND_LEVELS:Partial<Record<CharacterId,Partial<Record<R2HandType,number>>>> = {amo:{'high-card':3}};
-export const R2_CONTENT_VERSION = 'quality-r2-content-v9';
-export const R2_CONTENT_HASH = stableHash({jokers:R2_JOKERS,features:R2_IMPLEMENTED_FEATURES,tools:R2_TOOL_CATALOG,toolFeatures:R2_IMPLEMENTED_TOOL_FEATURES,itemIds:R2_IMPLEMENTED_ITEM_IDS,resources:R2_RESOURCE_CONTRACT,limits:R2_LIMITS,economy:R2_ECONOMY,targets:R2_TARGETS,hands:R2_BASE_SCORES,startingHandLevels:R2_STARTING_HAND_LEVELS,score:SCORE_LIMITS,bosses:R2_BOSSES,chapters:R2_AVAILABLE_CHAPTERS,endless:R2_ENDLESS_CONTRACT,skip:R2_SKIP_CONSUMABLES});
+export const R2_MODE_RUNTIME_CONTRACT=Object.freeze({version:'explicit-v10',programStream:'seed/r2/program/0',challengeStream:'seed/r2/challenge/0',
+  programChoice:'once-before-first-stage',programPayout:'once-on-chapter-boss-success',programCoupon:'next-shop-only',challengeBan:'published72-definition-scoring-and-edition',
+  legacy:'preserve-original-no-migration',partition:'mode-challenge-difficulty-program-flag'});
+export const R2_CONTENT_VERSION = 'quality-r2-content-v10';
+export const R2_CONTENT_HASH = stableHash({jokers:R2_JOKERS,features:R2_IMPLEMENTED_FEATURES,tools:R2_TOOL_CATALOG,toolFeatures:R2_IMPLEMENTED_TOOL_FEATURES,itemIds:R2_IMPLEMENTED_ITEM_IDS,resources:R2_RESOURCE_CONTRACT,limits:R2_LIMITS,economy:R2_ECONOMY,targets:R2_TARGETS,hands:R2_BASE_SCORES,startingHandLevels:R2_STARTING_HAND_LEVELS,score:SCORE_LIMITS,bosses:R2_BOSSES,chapters:R2_AVAILABLE_CHAPTERS,endless:R2_ENDLESS_CONTRACT,skip:R2_SKIP_CONSUMABLES,modes:R2_MODE_CATALOG,modeRuntime:R2_MODE_RUNTIME_CONTRACT});
 export interface R2StageState extends Omit<StageState,'targetHeat'|'heat'|'previousHandType'> {
   targetHeat:string; heat:string; previousHandType:R2HandType|null; disabledIds:string[]; wagerSelected:boolean; wagerUsed:boolean;
   discardsUsed:number;skipResult:R2SkipResult|null;handLimit:number;previousHandScore:string|null;rescueUsed:boolean;
   initialHands:number;initialDiscards:number;discardSpent:number;discardGained:number;doubleDiscardBeforeFirstPlay:boolean;
   maxPlayedCount:number;ordinaryStraightSeen:boolean;ordinaryFlushSeen:boolean;quadRefundUsed:boolean;jokerSold:boolean;
   boss:R2BossPlan|null;initialTargetHeat:string;initialHandLimit:number;initialJokerIds:string[];sealedJokerIds:string[];
+  challengeDisabledJokerId:string|null;
 }
-export interface R2RunState extends Omit<RunState,'schemaVersion'|'rulesVersion'|'stage'|'totalHeat'|'jokers'|'lastScore'|'shop'|'boss'|'outcome'> {
+export interface R2RunState extends Omit<RunState,'schemaVersion'|'rulesVersion'|'stage'|'totalHeat'|'jokers'|'lastScore'|'shop'|'boss'|'outcome'|'difficulty'|'program'|'rng'> {
   schemaVersion:2; rulesVersion:'r2'; stage:R2StageState|null; totalHeat:string; jokers:R2JokerInstance[];
   lastTrace:ScoreTrace|null; handLevels:Partial<Record<R2HandType,number>>;shop:R2ShopState|null;
   boss:R2BossPlan;seenBossIds:string[];chapterSkipConsumable:R2SkipConsumable;purchaseCoupons:number;safetyNetUsed:boolean;
   spectralModifiers:{handsPenalty:number;handPenalty:number;cleanSlateBonus:number};supplyRewardClaimed:boolean;
   chapterHandUsage:Partial<Record<R2HandType,number>>;normalClearClaimed:boolean;
   tourMode:R2TourMode;normalCompletion:{clearId:string;totalHeat:string}|null;
+  mode:R2ModeId;difficulty:R2Difficulty;challengeId:R2ChallengeId|null;programsEnabled:boolean;
+  program:R2ProgramState|null;programRerollCoupon:boolean;chapterDisabledJokerId:string|null;
+  rng:RunState['rng']&{program:RunState['rng']['rule'];challenge:RunState['rng']['rule']};
   outcome:{reason:NonNullable<RunState['outcome']>['reason']|'graybox-complete';stageIndex:number}|null;
 }
 type Transaction = {ok:true;state:R2RunState;events:DomainEvent[]} | {ok:false;code:string;diagnostic?:{code:string;events:readonly unknown[]}};
@@ -53,13 +62,19 @@ export function r2CreateJoker(definitionId:string,instanceId:string,paidPrice:nu
 export function assertR2Invariants(state:R2RunState):void {
   const check=(condition:boolean,label:string)=>{if(!condition)throw new Error(`Run invariant: ${label}`);};
   check(state.schemaVersion===2 && state.rulesVersion==='r2' && state.contentVersion===R2_CONTENT_VERSION && state.contentHash===R2_CONTENT_HASH,'r2 versions');
+  const config=r2RunModeConfig(state);
+  check(r2ModeSeedAllowed(config,state.seed)&&(config.mode!=='tutorial'||state.characterId==='erxiang'),'mode seed/identity');
+  check(state.mode==='standard'||state.tourMode==='normal','mode tour');
+  check(r2ProgramStateValid(state.program,config,state.chapter),'program snapshot');
+  check(typeof state.programRerollCoupon==='boolean'&&(!state.programRerollCoupon||config.reroll.allowed),'program coupon');
+  check(config.chapterJokerBanCount===1?R2_JOKERS.some(definition=>definition.id===state.chapterDisabledJokerId):state.chapterDisabledJokerId===null,'chapter challenge ban');
   const ids=state.deckInstances.map(c=>c.id), zones=[...state.drawPile,...state.handOrder,...state.playedPile,...state.discardPile];
   validateCardInstances(state.deckInstances);
-  check(state.deckInstances.length-state.destroyedIds.length<=R2_RESOURCE_CONTRACT.deckMaximum&&state.deckInstances.every(r2CardSpecialsSupported),'executable card specials/deck maximum');
+  check(state.deckInstances.length-state.destroyedIds.length<=R2_RESOURCE_CONTRACT.deckMaximum&&state.deckInstances.every(card=>r2CardSpecialsSupported(card)&&r2CardSpecialsAllowed(state,card)),'executable card specials/deck maximum');
   check(new Set(ids).size===ids.length && new Set(zones).size===zones.length && zones.every(id=>ids.includes(id)) && ids.every(id=>zones.includes(id)||state.destroyedIds.includes(id)),'card conservation');
   check(new Set(state.destroyedIds).size===state.destroyedIds.length && state.destroyedIds.every(id=>ids.includes(id)&&!zones.includes(id)),'destroyed IDs');
-  check(state.handOrder.length<=(state.stage?.handLimit??R2_LIMITS.handSize) && integer(state.gold)&&integer(state.commandSeq)&&scoreString(state.totalHeat),'r2 resources');
-  check(state.jokers.length<=R2_LIMITS.jokerSlots && new Set(state.jokers.map(j=>j.instanceId)).size===state.jokers.length && new Set(state.jokers.map(j=>j.definitionId)).size===state.jokers.length,'joker slots/IDs');
+  check(state.handOrder.length<=(state.stage?.handLimit??config.baseHandSize) && integer(state.gold)&&integer(state.commandSeq)&&scoreString(state.totalHeat),'r2 resources');
+  check(state.jokers.length<=r2JokerCapacity(state) && new Set(state.jokers.map(j=>j.instanceId)).size===state.jokers.length && new Set(state.jokers.map(j=>j.definitionId)).size===state.jokers.length,'joker slots/IDs');
   check(state.jokers.every(j=>R2_JOKERS.some(d=>d.id===j.definitionId)&&integer(j.paidPrice)&&(j.edition===undefined||EDITIONS.includes(j.edition))&&r2EditionSupported(j.edition)),'joker references/edition');
   for(const j of state.jokers){const caps=r2GrowthCaps(R2_JOKERS.find(d=>d.id===j.definitionId)!);
     for(const [key,fraction] of Object.entries(j.growth)){const value=Rational.fromJSON(fraction);check(Object.hasOwn(caps,key)&&value.n>=0n&&value.compare(Rational.fromJSON(caps[key]))<=0,'joker growth/cap');}
@@ -71,7 +86,7 @@ export function assertR2Invariants(state:R2RunState):void {
     }
   }
   check(typeof state.safetyNetUsed==='boolean'&&(!state.safetyNetUsed||state.jokers.every(j=>j.definitionId!=='f07')),'safety-net lifetime');
-  check(state.consumables.length<=r2ConsumableCapacity(state)&&new Set(state.consumables.map(c=>c.instanceId)).size===state.consumables.length&&state.consumables.every(c=>!!c.instanceId&&r2ToolSupported(c.definitionId)),'consumable schema/slots/capability');
+  check(state.consumables.length<=r2ConsumableCapacity(state)&&new Set(state.consumables.map(c=>c.instanceId)).size===state.consumables.length&&state.consumables.every(c=>!!c.instanceId&&r2ToolSupported(c.definitionId)&&r2ToolAllowed(state,c.definitionId)),'consumable schema/slots/capability');
   check(state.tourMode==='normal'||state.tourMode==='endless','tour mode');
   const chapterMaximum=state.tourMode==='endless'?R2_ENDLESS_MAX_CHAPTER:R2_AVAILABLE_CHAPTERS;
   check(integer(state.purchaseCoupons)&&state.purchaseCoupons<=chapterMaximum&&R2_SKIP_CONSUMABLES.includes(state.chapterSkipConsumable),'chapter reward/coupon');
@@ -90,21 +105,23 @@ export function assertR2Invariants(state:R2RunState):void {
   const completion=state.normalCompletion;
   if(completion!==null)check(!!completion&&Object.keys(completion).length===2&&completion.clearId===`${state.runId}/clear/23`&&scoreString(completion.totalHeat)&&BigInt(completion.totalHeat)>0n&&BigInt(completion.totalHeat)<=BigInt(state.totalHeat),'normal clear qualification');
   if(state.tourMode==='endless')check(completion!==null&&state.chapter>=9&&state.stageIndex>=24&&state.phase!=='run-won','qualified endless tour');
-  else check(state.phase==='run-won'?completion!==null&&completion.totalHeat===state.totalHeat:completion===null,'normal completion lifetime');
+  else check(state.phase==='run-won'&&state.mode==='standard'?completion!==null&&completion.totalHeat===state.totalHeat:completion===null,'normal completion lifetime');
   if(state.phase==='await-input'||state.phase==='run-lost'&&state.outcome?.reason!=='abandoned')check(state.stage?.index===state.stageIndex,'active stage pointer');
   if(['stage-cleared','run-won'].includes(state.phase))check(state.stage!==null&&state.stage.index+1===state.stageIndex,'completed stage pointer');
-  if(state.phase==='run-won')check(state.tourMode==='normal'&&state.stageIndex===R2_AVAILABLE_CHAPTERS*3&&state.outcome?.reason==='all-stages-cleared'&&state.stage?.clearId===completion?.clearId,'normal completion');
+  if(state.phase==='run-won')check(state.tourMode==='normal'&&state.stageIndex===R2_AVAILABLE_CHAPTERS*3&&state.outcome?.reason==='all-stages-cleared'&&!!state.stage?.clearId&&(state.mode!=='standard'||state.stage.clearId===completion?.clearId),'normal completion');
   if(state.stage) {
     check(scoreString(state.stage.heat)&&scoreString(state.stage.targetHeat)&&[state.stage.handsLeft,state.stage.discardsLeft,state.stage.playIndex,state.stage.goldEarned,state.stage.discardsUsed].every(integer),'stage resources');
     check(integer(state.stage.initialHandLimit)&&state.stage.initialHandLimit>=R2_RESOURCE_CONTRACT.handMinimum&&state.stage.initialHandLimit<=R2_RESOURCE_CONTRACT.handMaximum,'initial hand limit');
     check(state.stage.handLimit===(state.stage.boss?.definitionId==='B11'?Math.max(R2_RESOURCE_CONTRACT.handMinimum,state.stage.initialHandLimit-state.stage.playIndex):state.stage.initialHandLimit),'stage hand limit');
-    check(integer(state.stage.initialHands)&&state.stage.initialHands>=2&&state.stage.initialHands<=5&&integer(state.stage.initialDiscards)&&state.stage.initialDiscards>=3&&state.stage.initialDiscards<=4,'entry budgets');
+    check(integer(state.stage.initialHands)&&state.stage.initialHands>=2&&state.stage.initialHands<=5&&integer(state.stage.initialDiscards)&&state.stage.initialDiscards>=config.baseDiscards&&state.stage.initialDiscards<=4,'entry budgets');
+    check(config.chapterJokerBanCount===1?R2_JOKERS.some(definition=>definition.id===state.stage!.challengeDisabledJokerId):state.stage.challengeDisabledJokerId===null,'stage challenge ban');
+    if(state.phase==='await-input')check(state.stage.challengeDisabledJokerId===state.chapterDisabledJokerId,'active challenge snapshot');
     check(typeof state.stage.doubleDiscardBeforeFirstPlay==='boolean','discard rule snapshot');
     check(state.stage.index%3===2?r2BossPlanValid(state.stage.boss)&&state.stage.boss.definitionId===state.seenBossIds[Math.floor(state.stage.index/3)]:state.stage.boss===null,'entry boss snapshot');
     if(state.stage.index===state.stageIndex&&state.phase==='await-input'&&state.stage.boss)check(stableHash(state.stage.boss)===stableHash(state.boss),'active boss snapshot');
     check(state.stage.doubleDiscardBeforeFirstPlay===(state.stage.boss?.definitionId==='B01'),'active discard rule');
     const validIds=(values:readonly string[],maximum:number)=>Array.isArray(values)&&values.length<=maximum&&new Set(values).size===values.length&&values.every(id=>typeof id==='string'&&id.length>0&&id.length<=512);
-    check(validIds(state.stage.initialJokerIds,R2_LIMITS.jokerSlots),'entry joker identities');
+    check(validIds(state.stage.initialJokerIds,r2JokerCapacity(state)),'entry joker identities');
     check(validIds(state.stage.sealedJokerIds,state.stage.playIndex)&&state.stage.sealedJokerIds.every(id=>state.stage!.initialJokerIds.includes(id))&&(state.stage.boss?.definitionId==='B15'||state.stage.sealedJokerIds.length===0),'sealed joker ledger');
     if(state.phase==='await-input')check(state.jokers.every(joker=>state.stage!.initialJokerIds.includes(joker.instanceId)),'live stage joker identities');
     check(state.stage.boss?.definitionId!=='B08'||!state.stage.wagerSelected&&!state.stage.wagerUsed,'disabled character wager');
@@ -113,7 +130,7 @@ export function assertR2Invariants(state:R2RunState):void {
     check(integer(state.stage.maxPlayedCount)&&state.stage.maxPlayedCount<=R2_LIMITS.maxSelected&&(state.stage.playIndex===0?state.stage.maxPlayedCount===0:state.stage.maxPlayedCount>=1),'stage played qualification');
     check([state.stage.ordinaryStraightSeen,state.stage.ordinaryFlushSeen,state.stage.quadRefundUsed,state.stage.jokerSold].every(value=>typeof value==='boolean'),'stage saved qualifications');
     check(state.stage.playIndex>0||!state.stage.ordinaryStraightSeen&&!state.stage.ordinaryFlushSeen&&!state.stage.quadRefundUsed,'unused stage qualifications');
-    check(state.stage.initialTargetHeat===getR2Stage(state.stage.index,state.tourMode)?.targetHeat&&scoreString(state.stage.initialTargetHeat),'initial target');
+    check(state.stage.initialTargetHeat===getR2Stage(state.stage.index,state.tourMode,state.difficulty)?.targetHeat&&scoreString(state.stage.initialTargetHeat),'initial target');
     const target=BigInt(state.stage.initialTargetHeat),targetIncrease=state.stage.boss?.definitionId==='B14'?((target+19n)/20n)*BigInt(state.stage.discardsUsed):0n;
     check(state.stage.targetHeat===(target+targetIncrease).toString()&&state.stage.handsLeft<=state.stage.initialHands&&state.stage.handsLeft+state.stage.playIndex===state.stage.initialHands+(state.stage.rescueUsed?1:0)+(state.stage.quadRefundUsed?1:0),'stage target/play budget');
     const s=state.stage;
@@ -133,25 +150,31 @@ export function assertR2Invariants(state:R2RunState):void {
     check(typeof s.soldJoker==='boolean','shop sales qualification');
     check(integer(s.rerollCount)&&integer(s.purchases)&&integer(s.visitIndex)&&s.visitIndex===state.stageIndex&&s.offers.length<=4&&s.toolOffers.length<=1&&s.itemOffers.length<=2&&new Set(offers.map(o=>o.offerId)).size===offers.length&&offers.every(o=>!!o.offerId&&typeof o.consumed==='boolean'),'shelf references/capacity');
     check(s.offers.every(o=>R2_JOKERS.some(d=>d.id===o.definitionId&&supportsR2Joker(d))&&(o.edition===undefined||EDITIONS.includes(o.edition))&&o.price===r2Price(o.definitionId,o.edition)),'joker shelf prices/edition');
-    check(s.toolOffers.every(o=>r2ToolSupported(o.definitionId)&&R2_TOOLS.some(t=>t.id===o.definitionId&&t.shopWeight>0)&&o.edition===undefined&&o.price===r2ToolPrice(o.definitionId)),'tool shelf prices');
+    check(s.toolOffers.every(o=>r2ToolSupported(o.definitionId)&&r2ToolAllowed(state,o.definitionId)&&R2_TOOLS.some(t=>t.id===o.definitionId&&t.shopWeight>0)&&o.edition===undefined&&o.price===r2ToolPrice(o.definitionId)),'tool shelf prices');
+    check([0,1].includes(s.freeRerolls)&&(!s.freeRerolls||config.reroll.allowed),'shop program coupon');
     check(s.itemOffers.every(o=>r2ItemSupported(o.definitionId)&&o.edition===undefined&&o.price===r2ItemPrice(o.definitionId)),'item shelf prices');
   }
   check(!['run-won','run-lost'].includes(state.phase)||state.outcome!==null,'terminal reason');
   for(const cursor of Object.values(state.rng))SeededRng.restore(cursor);
 }
-function refill(state:R2RunState):void {while(state.handOrder.length<(state.stage?.handLimit??R2_LIMITS.handSize)&&state.drawPile.length)state.handOrder.push(state.drawPile.pop()!);}
-export function getR2Stage(index:number,tourMode:R2TourMode='normal'):{index:number;name:string;intro:string;targetHeat:string}|undefined {
-  return r2StageSpec(index,tourMode);
+function refill(state:R2RunState):void {while(state.handOrder.length<(state.stage?.handLimit??r2RunModeConfig(state).baseHandSize)&&state.drawPile.length)state.handOrder.push(state.drawPile.pop()!);}
+export function getR2Stage(index:number,tourMode:R2TourMode='normal',difficulty:number=0):{index:number;name:string;intro:string;targetHeat:string}|undefined {
+  return r2StageSpec(index,tourMode,difficulty);
 }
 function makeChapter(state:R2RunState):void {
   const rule=SeededRng.restore(state.rng.rule),reward=SeededRng.restore(state.rng.reward);
   state.chapter=Math.floor(state.stageIndex/3)+1;state.chapterHandUsage={};state.normalClearClaimed=false;state.boss=drawR2Boss(rule,state.seenBossIds,state.chapter,state.tourMode);state.seenBossIds.push(state.boss.definitionId);
   state.chapterSkipConsumable=R2_SKIP_CONSUMABLES[reward.integer(0,R2_SKIP_CONSUMABLES.length-1)];state.rng.rule=rule.snapshot();state.rng.reward=reward.snapshot();
+  const config=r2RunModeConfig(state),locked=lockR2ProgramChapter(config,state.chapter,state.rng.program);
+  state.program=locked.program;state.rng.program=locked.cursor;
+  if(config.chapterJokerBanCount){const challenge=SeededRng.restore(state.rng.challenge);state.chapterDisabledJokerId=R2_JOKERS[challenge.integer(0,R2_JOKERS.length-1)].id;state.rng.challenge=challenge.snapshot();}
+  else state.chapterDisabledJokerId=null;
 }
 function refreshDisabled(state:R2RunState):void {if(state.stage)state.stage.disabledIds=state.stage.boss?r2DisabledCards(state.stage.boss,state.stage.index,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!)):[];}
-export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stageIndex'|'jokers'>,hand:readonly PlayingCard[],ids:readonly string[]) {
+export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stageIndex'|'jokers'|'characterId'|'mode'|'difficulty'|'challengeId'|'programsEnabled'>,hand:readonly PlayingCard[],ids:readonly string[]) {
   const modifiers=readR2Modifiers(state.jokers,R2_JOKERS);
-  return {gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],
+  const config=r2RunModeConfig(state);
+  return {characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
     ...(state.stage?{stageHeatBefore:state.stage.heat,stageTargetHeat:state.stage.targetHeat}:{}),
     handRules:{fourStraight:modifiers.fourStraight,fourFlush:modifiers.fourFlush},ordinaryPointsSuppressedIds:r2OrdinarySuppression(state.boss,state.stage?.index??state.stageIndex,hand,ids)};
 }
@@ -160,7 +183,7 @@ function entryStage(state:R2RunState,targetHeat:string,skipResult:R2SkipResult|n
   const boss=state.stageIndex%3===2?structuredClone(state.boss):null;
   return {index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
     discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:boss?.definitionId==='B01',discardsUsed:0,skipResult,playIndex:0,previousHandType:null,previousHandScore:null,
-    handLimit,initialHandLimit:handLimit,boss,initialJokerIds,sealedJokerIds:[],rescueUsed:false,clearId:null,goldEarned:0,disabledIds:[],wagerSelected:false,wagerUsed:false,
+    handLimit,initialHandLimit:handLimit,boss,initialJokerIds,sealedJokerIds:[],challengeDisabledJokerId:state.chapterDisabledJokerId,rescueUsed:false,clearId:null,goldEarned:0,disabledIds:[],wagerSelected:false,wagerUsed:false,
     maxPlayedCount:0,ordinaryStraightSeen:false,ordinaryFlushSeen:false,quadRefundUsed:false,jokerSold:state.shop?.soldJoker??false};
 }
 /** Records the actual post-hand survivor; the trace keeps the distinct start-of-hand seal list. */
@@ -256,7 +279,9 @@ export function makeR2Shop(state:R2RunState,reset:boolean):void {
   const toolId=drawR2Tool(rng,r2ToolAcquisitionPool(state));
   const toolOffers=toolId?[{offerId:`${prefix}/tool/0`,definitionId:toolId,price:r2ToolPrice(toolId),consumed:false}]:[];
   const itemOffers=reset?drawR2Items(rng,state.longTermItems,1+itemAmount(state,'item-offer-count')).map((id,slot)=>({offerId:`${prefix}/item/${slot}`,definitionId:id,price:r2ItemPrice(id),consumed:false})):state.shop!.itemOffers;
-  state.shop={visitIndex:state.stageIndex,rerollCount:count,purchases:reset?0:state.shop!.purchases,soldJoker:reset?false:state.shop!.soldJoker,offers,toolOffers,itemOffers};
+  const freeRerolls=reset?(state.programRerollCoupon?1:0):state.shop!.freeRerolls;
+  if(reset)state.programRerollCoupon=false;
+  state.shop={visitIndex:state.stageIndex,rerollCount:count,purchases:reset?0:state.shop!.purchases,soldJoker:reset?false:state.shop!.soldJoker,freeRerolls,offers,toolOffers,itemOffers};
   state.rng.shop=rng.snapshot();
 }
 function noCards(state:R2RunState,events:DomainEvent[]):void {
@@ -330,11 +355,11 @@ function grantHeldGoldPaper(state:R2RunState):void {
   if(grants.length){const rewardedTrace={...trace,events:[...trace.events,...grants]};Object.freeze(rewardedTrace.events);state.lastTrace=Object.freeze(rewardedTrace);}
 }
 
-function clearResourceSource(state:R2RunState,definitionId:string,operation:'add-gold'|'upgrade-hand'|'reward-consumable',amount:number,before:number,after:number,jokerId?:string,targetHandType?:R2HandType,rewardDefinitionId?:string):void {
+function clearResourceSource(state:R2RunState,definitionId:string,operation:'add-gold'|'upgrade-hand'|'reward-consumable'|'reward-free-reroll'|'program-reward-skipped',amount:number,before:number,after:number,jokerId?:string,targetHandType?:R2HandType,rewardDefinitionId?:string,programGoldBeforeReward?:number):void {
   const trace=state.lastTrace!;
   if(trace.events.length>=SCORE_LIMITS.eventCount)throw new ScoreFault('event-limit',trace.events);
   const eventId=`${trace.rootId}/event/${trace.events.length}`;
-  const event:ScoreEvent=Object.freeze({eventId,rootId:trace.rootId,rootEventId:eventId,phase:'onStageClear',sourceType:jokerId?'joker':'rule',sourceDefinitionId:definitionId,sourceInstanceId:jokerId??state.runId,operation,value:Object.freeze({n:String(amount),d:'1'}),before:trace.accumulator,after:trace.accumulator,reasonKey:`${definitionId}.${operation}`,visibleCondition:Object.freeze({kind:'always'}),retriggerDepth:0,resourceBefore:before,resourceAfter:after,...(targetHandType?{targetHandType}:{}),...(rewardDefinitionId?{rewardDefinitionId}:{})});
+  const event:ScoreEvent=Object.freeze({eventId,rootId:trace.rootId,rootEventId:eventId,phase:'onStageClear',sourceType:jokerId?'joker':'rule',sourceDefinitionId:definitionId,sourceInstanceId:jokerId??state.runId,operation,value:Object.freeze({n:String(amount),d:'1'}),before:trace.accumulator,after:trace.accumulator,reasonKey:`${definitionId}.${operation}`,visibleCondition:Object.freeze({kind:'always'}),retriggerDepth:0,resourceBefore:before,resourceAfter:after,...(targetHandType?{targetHandType}:{}),...(rewardDefinitionId?{rewardDefinitionId}:{}),...(programGoldBeforeReward===undefined?{}:{programGoldBeforeReward})});
   const events=[...trace.events,event];Object.freeze(events);state.lastTrace=Object.freeze({...trace,events});
 }
 function clearGoldSource(state:R2RunState,definitionId:string,amount:number,jokerId?:string,rewardDefinitionId?:string):void {
@@ -365,6 +390,28 @@ function grantClearItems(state:R2RunState):void {
   }
 }
 
+function grantProgramReward(state:R2RunState,goldBeforeRewards:number):void {
+  const program=state.program;
+  if(state.stageIndex%3!==2||!program||!r2ProgramQualified(program,state.chapterHandUsage,goldBeforeRewards))return;
+  const definition=R2_MODE_CATALOG.programs.find(row=>row.id===program.selectedId)!;
+  program.claimed=true;
+  switch(definition.reward.kind){
+    case 'gold':{
+      const before=state.gold;state.gold+=definition.reward.amount;state.stage!.goldEarned+=definition.reward.amount;
+      clearResourceSource(state,definition.id,'add-gold',definition.reward.amount,before,state.gold,undefined,undefined,undefined,goldBeforeRewards);break;
+    }
+    case 'used-hand-upgrade':{
+      const candidates=r2ProgramUpgradeCandidates(state.chapterHandUsage,state.handLevels);
+      if(!candidates.length){clearResourceSource(state,definition.id,'program-reward-skipped',0,0,0,undefined,undefined,undefined,goldBeforeRewards);break;}
+      const rng=SeededRng.restore(state.rng.program),type=candidates[rng.integer(0,candidates.length-1)],before=state.handLevels[type]??1;
+      state.rng.program=rng.snapshot();state.handLevels[type]=before+definition.reward.levels;
+      clearResourceSource(state,definition.id,'upgrade-hand',1,before,state.handLevels[type]!,undefined,type,undefined,goldBeforeRewards);break;
+    }
+    case 'next-shop-free-reroll':
+      state.programRerollCoupon=true;clearResourceSource(state,definition.id,'reward-free-reroll',1,0,1,undefined,undefined,undefined,goldBeforeRewards);break;
+  }
+}
+
 /** r2 transactions; the caller appends the receipt and publishes only complete states. */
 export function transactR2(input:R2RunState|null,command:Command):Transaction {
   const fail=(code:string):Transaction=>({ok:false,code});
@@ -373,12 +420,18 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
   if(action.type==='StartRun') {
     if(input)return fail('wrong-phase');
     if(action.rulesVersion!=='r2'||typeof action.seed!=='string'||!action.seed||!CHARACTER_IDS.includes(action.characterId))return fail('invalid-start');
-    const cards=createDeck();
-    state={schemaVersion:2,rulesVersion:'r2',contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH,runId:command.runId,seed:action.seed,commandSeq:0,difficulty:0,characterId:action.characterId,
-      chapter:1,stageIndex:0,phase:'shop',deckInstances:cards,drawPile:cards.map(c=>c.id),handOrder:[],playedPile:[],discardPile:[],destroyedIds:[],stage:null,totalHeat:'0',gold:R2_ECONOMY.initialGold,jokers:[],consumables:[],longTermItems:[],program:null,boss:{definitionId:'B01',disabledSuit:null},seenBossIds:[],chapterSkipConsumable:'T01',purchaseCoupons:0,safetyNetUsed:false,shop:null,
+    const selection=resolveR2ModeConfig(action.modeConfig===undefined?{mode:'standard'}:action.modeConfig);
+    if(!selection.ok)return fail(selection.code);
+    const config=selection.config;
+    if(!r2ModeSeedAllowed(config,action.seed)||config.mode==='tutorial'&&action.characterId!=='erxiang')return fail('invalid-mode-seed-or-character');
+    const cards=createDeck().filter(card=>config.startingRanks.includes(card.rank));
+    state={schemaVersion:2,rulesVersion:'r2',contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH,runId:command.runId,seed:action.seed,commandSeq:0,difficulty:config.difficulty,characterId:action.characterId,
+      mode:config.mode,challengeId:config.challengeId,programsEnabled:config.programsEnabled,programRerollCoupon:false,chapterDisabledJokerId:null,
+      chapter:config.startingChapter,stageIndex:config.startingStageIndex,phase:'shop',deckInstances:cards,drawPile:cards.map(c=>c.id),handOrder:[],playedPile:[],discardPile:[],destroyedIds:[],stage:null,totalHeat:'0',gold:config.initialGold,jokers:config.startingJokers.map((joker,index)=>r2CreateJoker(joker.definitionId,`${command.runId}/initial/${index}`,joker.paidPrice,joker.edition)),consumables:[],longTermItems:[],program:null,boss:{definitionId:'B01',disabledSuit:null},seenBossIds:[],chapterSkipConsumable:'T01',purchaseCoupons:0,safetyNetUsed:false,shop:null,
       spectralModifiers:{handsPenalty:0,handPenalty:0,cleanSlateBonus:0},supplyRewardClaimed:false,chapterHandUsage:{},normalClearClaimed:false,tourMode:'normal',normalCompletion:null,
-      rng:{deck:new SeededRng(`${action.seed}/r2/deck/0`).snapshot(),rule:new SeededRng(`${action.seed}/r2/rule/0`).snapshot(),shop:new SeededRng(`${action.seed}/r2/shop/0`).snapshot(),reward:new SeededRng(`${action.seed}/r2/reward/0`).snapshot()},
-      receipts:[],lastTrace:null,handLevels:structuredClone(R2_STARTING_HAND_LEVELS[action.characterId]??{}),outcome:null};
+      rng:{deck:new SeededRng(`${action.seed}/r2/deck/0`).snapshot(),rule:new SeededRng(`${action.seed}/r2/rule/0`).snapshot(),shop:new SeededRng(`${action.seed}/r2/shop/0`).snapshot(),reward:new SeededRng(`${action.seed}/r2/reward/0`).snapshot(),program:new SeededRng(`${action.seed}/r2/program/0`).snapshot(),challenge:new SeededRng(`${action.seed}/r2/challenge/0`).snapshot()},
+      receipts:[],lastTrace:null,handLevels:config.characterAbilityEnabled?structuredClone(R2_STARTING_HAND_LEVELS[action.characterId]??{}):{},outcome:null};
+    if(config.startingChapter>1){const rule=SeededRng.restore(state.rng.rule);for(let chapter=1;chapter<config.startingChapter;chapter++)state.seenBossIds.push(drawR2Boss(rule,state.seenBossIds,chapter).definitionId);state.rng.rule=rule.snapshot();}
     makeChapter(state);makeR2Shop(state,true);
   } else {
     if(!input)return fail('run-not-started');
@@ -386,14 +439,14 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
     if(state.longTermItems.some(id=>!r2ItemSupported(id))&&action.type!=='AbandonRun')return fail('long-term-not-enabled');
     switch(action.type) {
       case 'LeaveShop':
-        if(state.phase!=='shop')return fail('wrong-phase');state.phase='stage-ready';break;
+        if(state.phase!=='shop')return fail('wrong-phase');if(state.shop)state.shop.freeRerolls=0;state.phase='stage-ready';break;
       case 'OpenShop':
         if(state.phase!=='stage-cleared')return fail('wrong-phase');
-        if(!getR2Stage(state.stageIndex,state.tourMode))return fail('numeric-length-limit');
+        if(!getR2Stage(state.stageIndex,state.tourMode,state.difficulty))return fail('numeric-length-limit');
         state.phase='shop';if(state.stageIndex%3===0)makeChapter(state);makeR2Shop(state,true);break;
       case 'ContinueEndless': {
         const completion=state.normalCompletion;
-        if(state.tourMode!=='normal'||state.phase!=='run-won'||state.stageIndex!==24||state.chapter!==8||state.stage?.index!==23||state.stage.clearId!==`${state.runId}/clear/23`||state.outcome?.reason!=='all-stages-cleared'||!completion||completion.clearId!==state.stage.clearId||completion.totalHeat!==state.totalHeat)return fail('not-normal-win');
+        if(state.mode!=='standard'||state.tourMode!=='normal'||state.phase!=='run-won'||state.stageIndex!==24||state.chapter!==8||state.stage?.index!==23||state.stage.clearId!==`${state.runId}/clear/23`||state.outcome?.reason!=='all-stages-cleared'||!completion||completion.clearId!==state.stage.clearId||completion.totalHeat!==state.totalHeat)return fail('not-normal-win');
         state.tourMode='endless';state.outcome=null;makeChapter(state);makeR2Shop(state,true);state.phase='shop';break;
       }
       case 'BuyOffer': {
@@ -405,10 +458,11 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(offer.consumed)return fail('consumed-offer');
         if(shelf==='offers'){
           if(!R2_JOKERS.some(d=>d.id===offer.definitionId&&supportsR2Joker(d))||state.safetyNetUsed&&offer.definitionId==='f07')return fail('joker-unavailable');
-          if(state.jokers.length>=R2_LIMITS.jokerSlots)return fail('slots-full');
+          if(state.jokers.length>=r2JokerCapacity(state))return fail('slots-full');
           if(state.jokers.some(j=>j.definitionId===offer.definitionId))return fail('already-owned');
           if(offer.edition!==undefined&&!EDITIONS.includes(offer.edition)||offer.price!==r2Price(offer.definitionId,offer.edition))return fail('invalid-offer');
         }else if(shelf==='toolOffers'){
+          if(!r2ToolAllowed(state,offer.definitionId))return fail('tool-disabled-in-mode');
           if(offer.edition!==undefined||!r2ToolAcquisitionPool(state).some(t=>t.id===offer.definitionId)||offer.price!==r2ToolPrice(offer.definitionId))return fail('invalid-offer');
           if(state.consumables.length>=r2ConsumableCapacity(state))return fail('consumable-slots-full');
         }else{
@@ -434,14 +488,28 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
       }
       case 'RerollShop': {
         if(state.phase!=='shop'||!state.shop)return fail('wrong-phase');
+        if(!r2RunModeConfig(state).reroll.allowed)return fail('reroll-disabled');
         if(!r2Pool(state.jokers.map(j=>j.definitionId),state.safetyNetUsed?['f07']:[]).length)return fail('no-reroll-candidates');
-        const cost=r2PaidRerollPrice(state);if(state.gold<cost)return fail('not-enough-gold');
-        state.gold-=cost;makeR2Shop(state,false);economicHooks(state,'onReroll',events);break;
+        const cost=state.shop.freeRerolls?0:r2PaidRerollPrice(state);if(state.gold<cost)return fail('not-enough-gold');
+        if(state.shop.freeRerolls)state.shop.freeRerolls--;
+        state.gold-=cost;makeR2Shop(state,false);if(cost>0)economicHooks(state,'onReroll',events);break;
+      }
+      case 'ChooseProgram':{
+        if(!state.program)return fail('programs-disabled');
+        if(!['shop','stage-ready'].includes(state.phase))return fail('program-choice-closed');
+        const result=chooseR2Program(state.program,action.programId);if(!result.ok)return fail(result.code);
+        state.program=result.program;break;
+      }
+      case 'AbandonProgram':{
+        if(!state.program||['run-won','run-lost'].includes(state.phase))return fail('no-active-program');
+        const result=abandonR2Program(state.program);if(!result.ok)return fail(result.code);
+        state.program=result.program;break;
       }
       case 'EnterStage': {
         if(state.phase!=='stage-ready')return fail('wrong-phase');
-        const chapter=Math.floor(state.stageIndex/3),definition=getR2Stage(state.stageIndex,state.tourMode);
+        const chapter=Math.floor(state.stageIndex/3),definition=getR2Stage(state.stageIndex,state.tourMode,state.difficulty);
         if(!definition)return fail('unknown-stage');
+        if(state.program)state.program=sealR2ProgramChoice(state.program);
         const rng=new SeededRng(`${state.seed}/r2/deck/${state.stageIndex}`);
         state.drawPile=rng.shuffle(state.deckInstances.filter(c=>!state.destroyedIds.includes(c.id))).map(c=>c.id);
         state.handOrder=[];state.playedPile=[];state.discardPile=[];
@@ -455,6 +523,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(state.phase!=='await-input'||!state.stage)return fail('wrong-phase');
         if(state.characterId!=='touye'||typeof action.enabled!=='boolean')return fail('invalid-wager');
         if(state.stage.boss?.definitionId==='B08')return fail('wager-disabled-by-boss');
+        if(!r2RunModeConfig(state).characterAbilityEnabled)return fail('character-ability-disabled');
         if(state.stage.wagerUsed)return fail('wager-used');
         state.stage.wagerSelected=action.enabled;break;
       case 'ReorderHand':
@@ -506,7 +575,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(ids.some(id=>!state.handOrder.includes(id)))return fail('unknown-card');
         if(state.stage.handsLeft<=0)return fail('no-hands-left');
         let trace:ScoreTrace;
-        try {trace=scoreR2Hand({rulesVersion:'r2',runId:state.runId,rootId:`${state.runId}/hand/${command.commandId}`,characterId:state.characterId,
+        try {trace=scoreR2Hand({rulesVersion:'r2',runId:state.runId,rootId:`${state.runId}/hand/${command.commandId}`,
           hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),selectedIds:ids,disabledIds:state.stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS,
           handLevels:state.handLevels,playIndex:state.stage.playIndex+1,handsBeforePlay:state.stage.handsLeft,previousHandType:state.stage.previousHandType,wager:state.stage.wagerSelected,rng:state.rng.rule,...r2ScoreContext(state,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),ids)});}
         catch(error) {return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
@@ -525,13 +594,15 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(state.stage.boss?.definitionId==='B11')state.stage.handLimit=Math.max(R2_RESOURCE_CONTRACT.handMinimum,state.stage.initialHandLimit-state.stage.playIndex);
         const scoredEvent:Extract<DomainEvent,{type:'hand-scored-r2'}>={type:'hand-scored-r2',score:trace,playedIds:trace.sets.playedIds,playIndex:state.stage.playIndex};events.push(scoredEvent);
         if(BigInt(state.stage.heat)>=BigInt(state.stage.targetHeat)) {
+          const goldBeforeRewards=state.gold;
+          if(state.program)state.program.lastOpportunityClear ||= state.stage.handsLeft===0;
           const total=(BigInt(state.totalHeat)+BigInt(state.stage.heat)).toString();
           if(!scoreString(total))return {ok:false,code:'score-diagnostic',diagnostic:{code:'numeric-length-limit',events:trace.events}};
           try {sealBossJoker(state);scoredEvent.score=state.lastTrace!;}
           catch(error){return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
-          const interest=Math.floor(state.gold/5),baseInterest=Math.min(5,interest),jokerBonus=readR2Modifiers(state.jokers,R2_JOKERS).interestCapBonus;
-          const jokerInterest=Math.min(5+jokerBonus,interest)-baseInterest,itemInterest=Math.min(r2InterestCap(state),interest)-baseInterest-jokerInterest;
-          const reward=[4,5,7][state.stageIndex%3]+state.stage.handsLeft+baseInterest+(state.characterId==='xiemu'&&state.stage.handsLeft===0?2:0);
+          const config=r2RunModeConfig(state),interest=Math.floor(state.gold/5),baseInterest=Math.min(config.baseInterestCap,interest),jokerBonus=readR2Modifiers(state.jokers,R2_JOKERS).interestCapBonus;
+          const jokerInterest=Math.min(config.baseInterestCap+jokerBonus,interest)-baseInterest,itemInterest=Math.min(r2InterestCap(state),interest)-baseInterest-jokerInterest;
+          const reward=[4,5,7][state.stageIndex%3]+state.stage.handsLeft+baseInterest+(config.characterAbilityEnabled&&state.characterId==='xiemu'&&state.stage.handsLeft===0?2:0);
           state.stage.goldEarned=reward;state.stage.clearId=`${state.runId}/clear/${state.stageIndex}`;
           state.gold+=reward;
           try{
@@ -539,13 +610,14 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
             if(interestJoker)clearGoldSource(state,'e04',jokerInterest,interestJoker.instanceId);
             clearGoldSource(state,'U04',itemInterest);grantHeldGoldPaper(state);grantClearItems(state);
             economicHooks(state,'onStageClear',events);persistJokerSources(state,events,'onStageClear');scoredEvent.score=state.lastTrace!;
+            grantProgramReward(state,goldBeforeRewards);scoredEvent.score=state.lastTrace!;
           }
           catch(error){return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
           clearStageEffects(state);state.totalHeat=total;state.stageIndex++;
           state.phase=state.tourMode==='normal'&&state.stageIndex===R2_AVAILABLE_CHAPTERS*3?'run-won':'stage-cleared';
           if(state.phase==='run-won'){
             state.outcome={reason:'all-stages-cleared',stageIndex:state.stage.index};
-            state.normalCompletion={clearId:state.stage.clearId,totalHeat:state.totalHeat};
+            if(state.mode==='standard')state.normalCompletion={clearId:state.stage.clearId,totalHeat:state.totalHeat};
           }
           events.push({type:'stage-ended',cleared:true,stage:structuredClone(state.stage)});
         } else {
@@ -562,7 +634,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
       case 'SkipStage': {
         if(!['shop','stage-ready'].includes(state.phase))return fail('wrong-phase');
         if(state.stageIndex%3===2)return fail('boss-cannot-skip');
-        const definition=getR2Stage(state.stageIndex,state.tourMode);if(!definition)return fail('unknown-stage');
+        const definition=getR2Stage(state.stageIndex,state.tourMode,state.difficulty);if(!definition)return fail('unknown-stage');
         let skipResult:R2SkipResult;
         if(state.stageIndex%3===0){state.purchaseCoupons++;skipResult={kind:'coupon',amount:2};}
         else if(state.consumables.length<r2ConsumableCapacity(state)){state.consumables.push({instanceId:`${state.runId}/skip/${state.stageIndex}`,definitionId:state.chapterSkipConsumable});skipResult={kind:'consumable',definitionId:state.chapterSkipConsumable};}
