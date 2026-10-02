@@ -47,7 +47,7 @@ try {
     let fullscreen='NOT_RUN';
     if(touch&&await page.evaluate(()=>document.fullscreenEnabled)){
       const full=page.locator('.run-fullscreen-toggle');await full.tap();await page.waitForFunction(()=>document.fullscreenElement===document.documentElement);
-      assert.equal(await full.getAttribute('aria-pressed'),'true');await full.tap();await page.waitForFunction(()=>document.fullscreenElement===null);fullscreen='PASS (browser API; physical toolbar/orientation NOT_RUN)';
+      assert.equal(await full.getAttribute('aria-pressed'),'true');await page.getByRole('button',{name:'展开全屏控制',exact:true}).tap();await page.getByRole('button',{name:'退出全屏',exact:true}).tap();await page.waitForFunction(()=>document.fullscreenElement===null);fullscreen='PASS (browser API; physical toolbar/orientation NOT_RUN)';
     }
     await tapUI(page,'title','action/title-start',touch);await waitScene(page,'character-select');
     const count=await page.evaluate(()=>{const s=window.__harness.game.scene.getScene('character-select');const walk=list=>list.reduce((n,o)=>n+(o.name.startsWith('character/')?1:0)+(o.list?walk(o.list):0),0);return walk(s.children.list);});assert.equal(count,6);

@@ -8,7 +8,7 @@ export function modalBlocksCanvas(x:number,y:number):boolean {
   return !!document.querySelector('dialog[open]')||!!dismissedPointer&&performance.now()<dismissedPointer.until&&Math.hypot(x-dismissedPointer.x,y-dismissedPointer.y)<24;
 }
 interface DialogAction {label:string;run:()=>void|Promise<void>;disabled?:boolean;primary?:boolean}
-interface DialogOptions {summaryBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;f09?:{inactive:boolean;bodyInactive?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:'common'|'uncommon'|'rare';portrait?:{url:string;thumbnailUrl?:string;alt:string;layout?:'card';caption?:string}}
+interface DialogOptions {summaryBody?:string;effectBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;f09?:{inactive:boolean;bodyInactive?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:'common'|'uncommon'|'rare';portrait?:{url:string;thumbnailUrl?:string;alt:string;layout?:'card';caption?:string}}
 export class DetailDialog {
   private dialog?:HTMLDialogElement;
   private lastPointer?:{x:number;y:number};
@@ -16,11 +16,11 @@ export class DetailDialog {
   private stopArt?:()=>void;
   active(dialog:HTMLDialogElement):boolean {return this.dialog===dialog;}
   /** Reuse the actual Phaser card face for readable poker details, after snapshot resolves. */
-  attachCardArt(dialog:HTMLDialogElement,url:string,alt:string):void {
+  attachCardArt(dialog:HTMLDialogElement,url:string,alt:string,variant:'poker'|'mechanism'='poker'):void {
     if(!this.active(dialog))return;
     const frame=document.createElement('figure'),image=document.createElement('img');
-    image.width=240;image.height=336;frame.className='dialog-card-art dialog-poker-art';image.className='dialog-card-image';image.src=url;image.alt=alt;
-    frame.append(image);dialog.querySelector('.dialog-content')?.prepend(frame);dialog.classList.add('detail-dialog--illustrated');
+    image.width=240;image.height=336;frame.className='dialog-card-art dialog-poker-art'+(variant==='mechanism'?' dialog-mechanism-art':'');image.className='dialog-card-image';image.src=url;image.alt=alt;
+    frame.append(image);const intro=dialog.querySelector('.dialog-intro');if(intro)intro.insertAdjacentElement('afterend',frame);else dialog.querySelector('.dialog-content')?.prepend(frame);dialog.classList.add('detail-dialog--illustrated');
   }
   close(expected?:HTMLDialogElement):void {
     if(expected&&!this.active(expected))return;
@@ -34,7 +34,7 @@ export class DetailDialog {
     const dialog=document.createElement('dialog'),header=document.createElement('header'),heading=document.createElement('h2'),content=document.createElement('p'),layout=document.createElement('div'),copy=document.createElement('div'),row=document.createElement('div'),status=document.createElement('p');
     dialog.className='detail-dialog';dialog.setAttribute('aria-label',title);heading.textContent=title;content.textContent=body;content.className='dialog-body';row.className='dialog-actions';
     status.className='dialog-status';status.setAttribute('role','status');status.hidden=true;
-    header.className='dialog-header';layout.className='dialog-content';copy.className='dialog-copy';
+    header.className='dialog-header';layout.className='dialog-content';copy.className='dialog-copy';const intro=document.createElement('div');intro.className='dialog-intro';
     const eyebrow=document.createElement('span');eyebrow.className='dialog-eyebrow';eyebrow.textContent=options.portrait?'巡演藏牌':'牌桌手记';header.append(eyebrow,heading);
     if(options.rarity){
       const badge=document.createElement('span');badge.className='dialog-rarity';badge.dataset.rarity=options.rarity;
@@ -60,13 +60,14 @@ export class DetailDialog {
     }
     if(options.ability){
       const ability=document.createElement('section'),condition=document.createElement('span'),value=document.createElement('strong'),state=document.createElement('small');
-      ability.className='card-ability f09-ability';ability.dataset.inactive=String(!!options.f09?.inactive);condition.textContent=options.ability.condition;value.textContent=options.ability.value;state.textContent=options.ability.state??'';ability.append(condition,value,state);dialog.append(ability);
+      ability.className='card-ability f09-ability';ability.dataset.inactive=String(!!options.f09?.inactive);condition.textContent=options.ability.condition;value.textContent=options.ability.value;state.textContent=options.ability.state??'';ability.append(condition,value,state);intro.append(ability);
       const flavor=document.createElement('p');flavor.className='card-flavor';flavor.textContent=options.ability.flavor;copy.append(flavor);
     }
-    if(options.summaryBody){const summary=document.createElement('p');summary.className='dialog-body';summary.textContent=options.summaryBody;copy.append(summary);}
+    if(options.effectBody&&!options.ability){const effect=document.createElement('p');effect.className='dialog-effect';effect.textContent=options.effectBody;intro.append(effect);}
+    if(options.summaryBody){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;intro.append(summary);}
     if(options.collapseRules){const rules=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('p');rules.className='card-rules';summary.textContent='规则与操作';text.textContent=(options.ability?.rules??'')+'\n\n'+body;rules.append(summary,text);copy.append(rules,status);}
     else copy.append(content,status);
-    layout.append(copy);dialog.append(layout,row);document.body.append(dialog);
+    layout.append(copy);if(intro.childElementCount)layout.prepend(intro);dialog.append(layout,row);document.body.append(dialog);
     dialog.addEventListener('cancel',event=>{event.preventDefault();this.close(dialog);});
     dialog.addEventListener('pointerup',event=>{this.lastPointer={x:event.clientX,y:event.clientY};});
     dialog.showModal();this.dialog=dialog;close.focus({preventScroll:true});dialog.scrollTop=0;return dialog;

@@ -1,0 +1,296 @@
+{
+  "task": "P08 / D35 structural UI and result presentation",
+  "date": "2026-10-02",
+  "baseCommit": "288eb75b7a9b5f4a6dac7b80411a2f1a0758382e",
+  "status": "ENGINEERING_PASS_HUMAN_ACCEPTANCE_PENDING",
+  "scope": [
+    "portrait table / larger hand / compact sorting",
+    "two proportional mobile shop offers with pager and compact owned rack",
+    "ability and actual purchase price before art; scrolling content and separate footer",
+    "fullscreen touch dock with explicit exit, no orientation lock",
+    "saved-trace outcome classification and one-second skippable celebration",
+    "concise failure with same-seed retry and character-selection return"
+  ],
+  "invariants": "No domain rules, RNG, save schema/content hash, deployment configuration or original asset changes.",
+  "verification": {
+    "aggregate": {
+      "scope": "all",
+      "testedCommit": "288eb75b7a9b5f4a6dac7b80411a2f1a0758382e",
+      "status": "PASS",
+      "exitCode": 0,
+      "before": {
+        "source": "ca9ef2fb8e7f83de01f7a535ca14fc3edf6bea9e985523f4b745f8b2e7e1609b",
+        "index": "8baa9ed2d46c0b805cde48ab91dad0c4dd15f9f5f98eda82d6495dbb1a26b773",
+        "head": "288eb75b7a9b5f4a6dac7b80411a2f1a0758382e",
+        "branch": "refs/heads/dot/stage-layout"
+      },
+      "after": {
+        "source": "ca9ef2fb8e7f83de01f7a535ca14fc3edf6bea9e985523f4b745f8b2e7e1609b",
+        "index": "8baa9ed2d46c0b805cde48ab91dad0c4dd15f9f5f98eda82d6495dbb1a26b773",
+        "head": "288eb75b7a9b5f4a6dac7b80411a2f1a0758382e",
+        "branch": "refs/heads/dot/stage-layout"
+      },
+      "steps": [
+        {
+          "name": "test",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 67650
+        },
+        {
+          "name": "verify:content",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 4641
+        },
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 25097
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 79013
+        },
+        {
+          "name": "production-plan",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 363
+        }
+      ],
+      "notIncluded": [
+        {
+          "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+          "status": "NOT_INCLUDED",
+          "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+        },
+        {
+          "name": "balance/benchmark acceptance",
+          "status": "NOT_INCLUDED",
+          "reason": "later work packages; no gameplay approval inferred from checks"
+        },
+        {
+          "name": "physical devices / human / art approval",
+          "status": "NOT_RUN"
+        }
+      ]
+    },
+    "command": "VITEST_MAX_WORKERS=1 NODE_OPTIONS=--import=/workspace/.cloud-tools/release-canvas-adapter.mjs npm run verify:ci",
+    "unitTests": 1604,
+    "renderer": "Canvas, external-only Chromium launch adapter; not WebGL evidence"
+  },
+  "naturalF09": {
+    "rendererRequested": "canvas",
+    "args": [
+      "--disable-gpu",
+      "--disable-software-rasterizer"
+    ],
+    "browser": "151.0.7922.173",
+    "physicalDevice": "NOT_RUN",
+    "humanAcceptance": "NOT_RUN",
+    "runs": [
+      {
+        "name": "desktop",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "deviceScaleFactor": 1,
+        "checks": [
+          "49 × 6.75 = floor(330.75), all four sources visible",
+          "play clicked after modal dismissal guard",
+          "cancel selection and replay preserve full committed state",
+          "F09 triggers, successful discard disables both UI and actual next score",
+          "refresh restores full state and RNG exactly"
+        ],
+        "samples": [
+          {
+            "stage": "ready",
+            "renderer": "Canvas",
+            "fps": 30.181640625,
+            "framebuffer": [
+              1280,
+              800
+            ],
+            "gpu": null
+          },
+          {
+            "stage": "play-complete",
+            "elapsedMs": 5825,
+            "renderer": "Canvas",
+            "fps": 23.52446835488081,
+            "framebuffer": [
+              1280,
+              800
+            ],
+            "gpu": null
+          }
+        ],
+        "status": "PASS"
+      },
+      {
+        "name": "mobile",
+        "viewport": {
+          "width": 412,
+          "height": 820
+        },
+        "deviceScaleFactor": 3,
+        "checks": [
+          "49 × 6.75 = floor(330.75), all four sources visible",
+          "toolbar viewport resize retains state; fullscreen never requests orientation lock",
+          "play clicked after modal dismissal guard",
+          "cancel selection and replay preserve full committed state",
+          "F09 triggers, successful discard disables both UI and actual next score",
+          "refresh restores full state and RNG exactly"
+        ],
+        "samples": [
+          {
+            "stage": "ready",
+            "renderer": "Canvas",
+            "fps": 23.43548583984375,
+            "framebuffer": [
+              824,
+              1640
+            ],
+            "gpu": null
+          },
+          {
+            "stage": "play-complete",
+            "elapsedMs": 6462,
+            "renderer": "Canvas",
+            "fps": 19.752905920907608,
+            "framebuffer": [
+              824,
+              1640
+            ],
+            "gpu": null
+          }
+        ],
+        "status": "PASS"
+      }
+    ]
+  },
+  "resultAndLayoutFixtures": {
+    "renderer": "Canvas",
+    "fixtureOnly": true,
+    "physicalDevice": "NOT_RUN",
+    "runs": [
+      {
+        "name": "desktop",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "reducedMotion": "no-preference",
+        "checks": [
+          "mechanism/detail/footer geometry",
+          "actual shelf pagination and F09 purchase",
+          "comeback fixture with exact formula and no save mutation",
+          "celebration skip / reduced motion / immediately enabled continue",
+          "concise failure and same-seed retry"
+        ],
+        "status": "PASS"
+      },
+      {
+        "name": "mobile",
+        "viewport": {
+          "width": 412,
+          "height": 820
+        },
+        "reducedMotion": "no-preference",
+        "checks": [
+          "mechanism/detail/footer geometry",
+          "actual shelf pagination and F09 purchase",
+          "comeback fixture with exact formula and no save mutation",
+          "celebration skip / reduced motion / immediately enabled continue",
+          "concise failure and same-seed retry"
+        ],
+        "status": "PASS"
+      },
+      {
+        "name": "mobile-bars",
+        "viewport": {
+          "width": 390,
+          "height": 640
+        },
+        "reducedMotion": "reduce",
+        "checks": [
+          "mechanism/detail/footer geometry",
+          "actual shelf pagination and F09 purchase",
+          "comeback fixture with exact formula and no save mutation",
+          "celebration skip / reduced motion / immediately enabled continue",
+          "concise failure and same-seed retry"
+        ],
+        "status": "PASS"
+      }
+    ]
+  },
+  "userResultFixture": {
+    "total": "12632",
+    "target": "3600",
+    "lastScore": "9703",
+    "heat": "599",
+    "multiplier": "16.2",
+    "beforeLast": "2929",
+    "handsLeft": 0,
+    "playIndex": 4,
+    "classification": "comeback",
+    "note": "Pure presentation fixture plus classifier tests; no long run invented, no fixture saved to IndexedDB."
+  },
+  "failuresRetained": [
+    {
+      "log": "shots/f09/redesign-tests.log",
+      "cause": "Desktop sorting box overlapped pile row; fixed spacing, 26 layout/outcome tests pass."
+    },
+    {
+      "log": "shots/f09/redesign-f09.log",
+      "cause": "Desktop Close and Play coordinates fell within the existing 350ms anti-double-tap guard. Harness respects guard; actual control guard unchanged. Both natural routes pass."
+    },
+    {
+      "log": "shots/f09/redesign-verify-ci.log",
+      "cause": "Four existing CPU-heavy test timeouts while browser recording ran."
+    },
+    {
+      "log": "shots/f09/redesign-verify-ci-sequential.log",
+      "cause": "Default multi-worker CPU timeouts persisted. One-worker original aggregate passed; no timeout, assertion or test removal."
+    }
+  ],
+  "inspectedScreenshots": [
+    "shots/f09/final-canvas-desktop-ready.png",
+    "shots/f09/final-canvas-mobile-ready.png",
+    "shots/f09/final-canvas-mobile-browser-bars.png",
+    "shots/f09/final-canvas-mobile-fullscreen-controls.png",
+    "shots/stage-layout/desktop-shop.png",
+    "shots/stage-layout/mobile-shop.png",
+    "shots/stage-layout/desktop-mechanism-detail.png",
+    "shots/stage-layout/mobile-purchase-detail.png",
+    "shots/stage-layout/desktop-comeback.png",
+    "shots/stage-layout/desktop-comeback-burst.png",
+    "shots/stage-layout/desktop-loss.png",
+    "shots/stage-layout/mobile-comeback.png",
+    "shots/stage-layout/mobile-loss.png",
+    "shots/stage-layout/mobile-bars-comeback.png",
+    "shots/stage-layout/mobile-bars-loss.png"
+  ],
+  "recordings": [
+    "shots/f09/desktop-play.webm",
+    "shots/f09/mobile-play.webm",
+    "shots/stage-layout/desktop.webm",
+    "shots/stage-layout/mobile.webm",
+    "shots/stage-layout/mobile-bars.webm"
+  ],
+  "limitations": [
+    "D35 software WebGL not rerun: earlier poor SwiftShader performance remains recorded in F09 evidence; Canvas success does not prove WebGL speed.",
+    "Physical OnePlus 15 / Android browser bars / real touch and sound acceptance NOT_RUN.",
+    "Original painting and true separate painted layers remain incomplete; no new art approval inferred.",
+    "Two-way swipe selection and stable selection overlap explicitly deferred to next independent task.",
+    "No public-site deployment wait or validation in this release; stop after GitHub push per user."
+  ],
+  "taskId": "P08",
+  "testedCommit": "288eb75b7a9b5f4a6dac7b80411a2f1a0758382e",
+  "testedTree": "Uncommitted D35 worktree on testedCommit; exact immutable source fingerprint is verification.aggregate.before.source. Only evidence/handoff/plan metadata added after aggregate."
+}

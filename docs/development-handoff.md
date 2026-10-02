@@ -1,10 +1,12 @@
 # 当前交接：P08单卡体验样板
 
-- `plan.currentTask = P08 / in_progress`。实现提交 `9481e873097b1bb09bd1a0a4f9226ceb14917ced`，分支 `dot/f09-experience`，**D34现已授权检查后正常push main**，由既有链路自动部署，用户在网站直接试玩；部署链路不改。
-- 基线main `209b9073c90778bf57a1736bed9266f305b995f5`；接管时本地干净，远端核对一致。C04历史仍未完/BLOCKED，C04.3/4、新玩法与全卡重画不自动推进。最新决定见[D34](production/DECISIONS.md)。
+- `plan.currentTask = P08 / in_progress`。当前D35结构版分支 `dot/stage-layout`，基于main `288eb75`；首版实现 `9481e873`。**D34现已授权检查后正常push main**，由既有链路自动部署，用户在网站直接试玩；部署链路不改。
+- 基线main `209b9073c90778bf57a1736bed9266f305b995f5`；接管时本地干净，远端核对一致。C04历史仍未完/BLOCKED，C04.3/4、新玩法与全卡重画不自动推进。最新决定见[D35](production/DECISIONS.md)。
 - 当前工作：f09三态与真实计分来源、主能力置顶/折叠细则、f04加3文案对照、按需小图/有界高清升级、手机非全屏与用户自主方向。机制、RNG、存档格式、v10内容hash保持不变。
 
 ## 证据与限制
+
+最新[D35证据](production/evidence/D35-2026-10-02.json)：1604项测试、content/build、PC/手机Canvas smoke、plan全部PASS；录屏并发与默认多worker曾使旧CPU重测试超时，保留日志，最终以环境变量单worker跑同一完整门禁通过，未改断言或超时。PC1280×800、触摸412×820、短视口390×640的新商店/详情/胜负fixture与同种子重试通过，截图已检查。全屏控制收纳与f09自然操作链通过。该结果不代表WebGL/真机/新美术验收。双向滑选与稳定遮挡由用户确认留到下一独立提交，尚未实现。
 
 本轮D34发布复核见[发布证据](production/evidence/F09-release-2026-10-02.json)：96b3a42完整聚合PASS（1594单测、content/build、PC/手机SwiftShader smoke、plan）。最后仅修正本体/版次提示与视觉区分：112专项和build通过，PC/手机Canvas取消选择、回看、刷新自然路线通过。弃牌显示“不再×1.5”，详情明确“已弃牌 · 本场不再×1.5；特殊版次仍正常结算”；只有Boss计分封禁同时压暗本体与版次。没有机制或存档变更。公开站点本环境CONNECT代理403，未取得站点响应，不能宣称线上已更新。
 
@@ -22,6 +24,6 @@
 
 单卡浏览器入口：`harness/f09.mjs`（`F09_RENDERER=canvas/webgl`分开记录）；加载/文案专项：`harness/f09-loading.mjs`需5201的e2e开发构建。不要只为重复获取相同失败证据空跑。检查按AGENTS变更矩阵执行，最终发布聚合与开发targeted分开。
 
-下一步对最终代码运行发布检查、正常push main并核对公开网站；用户直接上线体验后反馈。原画重绘暂缓，重新附图/Library/ZIP均不是发布前置。独立文档精简只改入口、任务指针、renderer口径与发布脚本说明，不删工作包/金样/测试门禁。
+D35结构重排已纳入当前候选；胜利按真实末手分类，失败收敛为直接操作。下一步运行必要检查并正常push main，确认GitHub SHA即结束，不等待或探测公开网站；用户直接上线体验后反馈。原画重绘暂缓，重新附图/Library/ZIP均不是发布前置。独立文档精简只改入口、任务指针、renderer口径与发布脚本说明，不删工作包/金样/测试门禁。
 
 历史C04源码/CI/旧存档细节以[收尾证据](production/evidence/C04-closeout-2026-10-02.json)及[基线handoff](https://github.com/big-dimple/dachoupai/blob/209b9073c90778bf57a1736bed9266f305b995f5/docs/development-handoff.md)追溯；本地通过不改写其远端CI取消的历史。

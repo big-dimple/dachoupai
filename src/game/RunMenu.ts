@@ -33,7 +33,11 @@ export function routeSavedRun(game:Phaser.Game):void {
 export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|undefined=()=>game.registry.get('runMenuActions') as RunMenuActions|undefined):void {
   const session=gameSession(),audio=AudioEngine.shared,fullscreen=installFullscreen();
   const host=document.createElement('div'),toggle=document.createElement('button'),fullButton=document.createElement('button'),modal=document.createElement('dialog'),panel=document.createElement('section'),status=document.createElement('p');
-  const fullscreenInfo=document.createElement('p'),fullscreenNotice=document.createElement('p');
+  const fullscreenInfo=document.createElement('p'),fullscreenNotice=document.createElement('p'),dock=document.createElement('button'),dockPanel=document.createElement('div');
+  dock.className='fullscreen-dock';dock.type='button';dock.textContent='⛶';dock.hidden=true;dock.setAttribute('aria-label','展开全屏控制');dock.setAttribute('aria-expanded','false');dockPanel.className='fullscreen-dock-panel';dockPanel.hidden=true;
+  const collapseDock=()=>{dockPanel.hidden=true;dock.setAttribute('aria-expanded','false');};
+  const syncDock=()=>{const active=fullscreen.getState().active;dock.hidden=!active||modal.open;fullButton.hidden=active;toggle.hidden=active&&!modal.open;collapseDock();};
+  dock.onclick=()=>{dockPanel.hidden=!dockPanel.hidden;dock.setAttribute('aria-expanded',String(!dockPanel.hidden));};
   let previousFocus:HTMLElement|undefined,attentionKey='',noticeTimer:ReturnType<typeof setTimeout>|undefined;
   const stored=(key:string):unknown=>{try{return JSON.parse(localStorage.getItem(key)??'null');}catch{return null;}};
   const audioPreferences=readAudioPreferences(stored('dachoupai-audio-v2'),stored('dachoupai-audio-v1'),stored('dachoupai-presentation-v1'));
@@ -47,9 +51,9 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   fullscreenInfo.className='run-menu-fullscreen-info';fullscreenInfo.hidden=true;
   fullscreenNotice.className='run-fullscreen-notice';fullscreenNotice.hidden=true;fullscreenNotice.setAttribute('role','status');
   const restoreAnchor=()=>{
-    host.prepend(fullButton,toggle);toggle.textContent='菜单';toggle.setAttribute('aria-expanded','false');
+    host.prepend(fullButton,toggle);syncDock();toggle.textContent='菜单';toggle.setAttribute('aria-expanded','false');
     toggle.setAttribute('aria-label',toggle.classList.contains('needs-attention')?'菜单，有进度提示待处理':'菜单');
-    if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});else toggle.focus({preventScroll:true});previousFocus=undefined;
+    if(previousFocus?.isConnected&&!previousFocus.hidden)previousFocus.focus({preventScroll:true});else (dock.hidden?toggle:dock).focus({preventScroll:true});previousFocus=undefined;
   };
   const close=()=>{if(modal.open){if(typeof modal.close==='function')modal.close();else modal.removeAttribute('open');}restoreAnchor();};
   const open=()=>{
@@ -57,7 +61,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
     refreshPlayback();
     // The same two fixed buttons enter the modal top layer; their viewport anchors do not move.
     modal.prepend(fullButton,toggle);toggle.textContent='关闭';toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','关闭菜单');fullscreenNotice.hidden=true;clearTimeout(noticeTimer);
-    if(typeof modal.showModal==='function')modal.showModal();else modal.setAttribute('open','');
+    if(typeof modal.showModal==='function')modal.showModal();else modal.setAttribute('open','');syncDock();
     const action=[retry,reload,takeover,resume].find(button=>!button.hidden&&!button.disabled);(action??toggle).focus({preventScroll:true});
   };
   toggle.onclick=()=>modal.open?close():open();
@@ -172,13 +176,14 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   }
   fullButton.onclick=()=>{if(modal.open)close();void fullscreen.toggle();};
   const unsubscribeFullscreen=fullscreen.subscribe(state=>{
-    fullButton.textContent=state.active?'退出':'全屏';fullButton.setAttribute('aria-label',state.active?'退出全屏':'进入全屏，优先横屏');fullButton.setAttribute('aria-pressed',String(state.active));fullButton.setAttribute('aria-busy',String(state.pending));fullButton.disabled=state.pending;
+    fullButton.textContent=state.active?'退出全屏':'全屏';fullButton.setAttribute('aria-label',state.active?'退出全屏':'进入全屏');syncDock();fullButton.setAttribute('aria-pressed',String(state.active));fullButton.setAttribute('aria-busy',String(state.pending));fullButton.disabled=state.pending;
     fullButton.title=state.active?'退出浏览器全屏':'全屏游玩，减少浏览器工具栏占用';
     fullscreenInfo.textContent=state.message;fullscreenInfo.hidden=!state.message;
     clearTimeout(noticeTimer);fullscreenNotice.textContent=state.message;fullscreenNotice.hidden=!state.message||modal.open;
     if(state.message&&!modal.open)noticeTimer=setTimeout(()=>{fullscreenNotice.hidden=true;},7000);
   });
-  modal.append(panel);host.append(fullButton,toggle,fullscreenNotice,modal);document.body.append(host);
+  button('菜单',()=>{collapseDock();open();},dockPanel);button('退出全屏',()=>{collapseDock();void fullscreen.toggle();},dockPanel);
+  modal.append(panel);host.append(fullButton,toggle,dock,dockPanel,fullscreenNotice,modal);document.body.append(host);
   const unsubscribe=session.subscribe(refreshState);refreshState();
   const refreshMenuActions=(_parent:unknown,key:string)=>{if(key==='runMenuActions')refreshPlayback();};
   for(const event of ['setdata','changedata','removedata'])game.registry.events.on(event,refreshMenuActions);

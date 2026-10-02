@@ -233,9 +233,9 @@ export class GameScene extends Phaser.Scene {
     this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.playAura=undefined;
     if(this.progressBar)this.tweens.killTweensOf(this.progressBar);this.progressTarget=Number.NaN;
     const h=l.hud,c=getCharacter(this.characterId),portrait=l.mode==='portrait',short=l.mode==='landscape';
-    v.material(h,0x193a43,0x132c37,10);
-    v.add(this.add.graphics().lineStyle(1,0x719586,.5).strokeRoundedRect(h.x,h.y,h.width,h.height,10));
-    const avatarSize=portrait?40:short?44:64,avatarY=h.y+(portrait?6:short?34:66);
+    v.material(h,0x17373c,0x17373c,4);
+
+    const avatarSize=portrait?30:short?44:64,avatarY=h.y+(portrait?6:short?34:66);
     this.roleAvatar=v.add(this.add.container(h.x+12+avatarSize/2,avatarY+avatarSize/2)).setData('baseY',avatarY+avatarSize/2);
     addAvatar(this,this.roleAvatar,c,0,0,avatarSize);
     this.roleFrame=this.add.rectangle(0,0,avatarSize+4,avatarSize+4,T.brass).setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);this.roleAvatar.add(this.roleFrame);
@@ -244,8 +244,8 @@ export class GameScene extends Phaser.Scene {
     v.text(h.x+(portrait?64:76),avatarY,(portrait&&this.run.tourMode==='endless'?'无尽 · ':'')+c.name,portrait?18:short?20:22,C.paper,portrait?h.width-160:h.width-88);
     this.roleText=v.text(h.x+(portrait?64:76),avatarY+(portrait?23:28),this.roleCaption(),14,C.brass,portrait?h.width-160:h.width-88);
     if(!portrait&&!l.shortLandscape)v.text(h.x+12,h.y+(short?96:154),this.stage.index%3===2?'压轴 · '+bossName:this.stage.name,14,C.paper,h.width-24);
-    this.heatText=v.text(h.x+12,h.y+(portrait?47:l.shortLandscape?94:short?108:214),'',portrait?24:short?28:42,C.paper,h.width-24).setFontStyle('bold');
-    const goldY=h.y+(portrait?80:l.shortLandscape?11:short?180:336);
+    this.heatText=v.text(h.x+12,h.y+(portrait?27:l.shortLandscape?94:short?108:214),'',portrait?20:short?28:36,C.paper,h.width-24).setFontStyle('bold');
+    const goldY=h.y+(portrait?31:l.shortLandscape?11:short?180:336);
     this.goldText=l.shortLandscape?v.text(h.x+h.width-12,goldY,'',14,C.brass).setOrigin(1,0):v.text(h.x+12,goldY,'',14,C.brass,h.width-24);
     if(!portrait){
       if(!short)v.text(h.x+12,h.y+191,'本场热度',14,C.paper);
@@ -253,22 +253,23 @@ export class GameScene extends Phaser.Scene {
       const progressY=h.y+(l.shortLandscape?152:short?168:311);v.rect({x:h.x+12,y:progressY,width:h.width-24,height:5},0x45595b).setStrokeStyle();
       this.progressBar=v.rect({x:h.x+12,y:progressY,width:1,height:5},T.jade).setOrigin(0,.5).setPosition(h.x+12,progressY+2.5).setStrokeStyle();
     }
+    if(portrait){this.roleText.setVisible(false);this.goldText.setPosition(h.x+h.width-4,h.y+46).setOrigin(1,0).setFontSize(12);this.heatText.setPosition(h.x+64,h.y+28).setFontSize(16).setWordWrapWidth(h.width-168);}
     this.renderJokerRack();
     const s=l.scoreBoard,roomy=s.height>=92,labeled=s.height>=70;
     v.material(s,0x1c3b49,0x132d38,8);
     v.add(this.add.graphics().lineStyle(1,0xa99267,.5).strokeRoundedRect(s.x,s.y,s.width,s.height,8));
-    this.resultText=v.text(s.x+12,s.y+4,'当前选择 · 选 1～5 张牌',portrait?18:roomy?24:18,'#f7ecd4',s.width-24);
-    const metricY=s.y+(labeled?46:short?26:28),metricSize=portrait?24:roomy?30:22,metricWidth=s.width/3;
+    this.resultText=v.text(s.x+12,s.y+4,'选牌，准备开演',portrait?15:roomy?20:16,'#f7ecd4',s.width-24);
+    const metricY=s.y+(labeled?46:short?26:30),metricSize=portrait?24:roomy?30:22,metricWidth=s.width/3;
     const tileY=s.y+(labeled?27:25),tileHeight=labeled?Math.min(58,s.height-30):Math.min(36,s.height-26);
     [0,1].forEach(i=>{const tile={x:s.x+metricWidth*i+7,y:tileY,width:metricWidth-14,height:tileHeight};v.material(tile,i===0?0x438d7e:0xc16c50,i===0?0x245955:0x85372f,5);v.rect(tile).setFillStyle(0,0).setStrokeStyle(1,i===0?0xa6cab0:0xe9b089,.9);});
-    this.scoreLabels=['基础热度','基础倍率','预计本手'].map((label,i)=>v.text(s.x+metricWidth*(i+.5),s.y+28,label,14,i===0?'#e6f4e1':i===1?'#ffe8d5':'#e0e9db').setOrigin(.5,0).setVisible(labeled));
+    this.scoreLabels=['热度','倍率','预计本手'].map((label,i)=>v.text(s.x+metricWidth*(i+.5),s.y+28,label,14,i===0?'#e6f4e1':i===1?'#ffe8d5':'#e0e9db').setOrigin(.5,0).setVisible(labeled));
     this.scoreHeat=v.text(s.x+metricWidth*.5,metricY,'—',metricSize,'#fff3d3').setOrigin(.5,0).setShadow(0,1,'#163a3b',2,true,true);
     this.scoreMult=v.text(s.x+metricWidth*1.5,metricY,'—',metricSize,'#fff0ca').setOrigin(.5,0).setShadow(0,1,'#632a28',2,true,true);
     this.scoreTotal=v.text(s.x+metricWidth*2.5,metricY,'—',metricSize,'#ffe3a4').setOrigin(.5,0);
     this.breakdownText=v.text(s.x+12,s.y+88,'',14,'#c1d2cb',s.width-24).setVisible(roomy&&!portrait);
     const p=l.playedArea;
-    v.material(p,0x2a5653,0x183c41,12);
-    v.add(this.add.graphics().lineStyle(1,0x88a596,.3).strokeRoundedRect(p.x,p.y,p.width,p.height,12));
+    v.material(p,0x244e4b,0x1a4242,4);
+
     if(p.height>130&&this.textures.exists('p00-mark-joker'))v.add(this.add.image(p.x+p.width/2,p.y+p.height/2,'p00-mark-joker').setDisplaySize(100,100).setAlpha(.055));
     this.previousHandText=v.text(portrait?p.x+10:h.x+12,portrait?p.y+p.height-20:h.y+(short?301:510),'',14,portrait?'#eddfbf':C.brass,portrait?p.width-20:h.width-24).setVisible(!portrait&&!l.shortLandscape);
     this.handCountText=v.text(l.handLabel.x,l.handLabel.y,'',14,'#f0e6cb').setVisible(!portrait);
@@ -330,12 +331,12 @@ export class GameScene extends Phaser.Scene {
       const headHeight=Math.max(26,name.height+8),head=sideLabels?undefined:v.material({x:-b.width/2+2,y:-b.height/2+2,width:b.width-4,height:headHeight},d.rarity==='rare'?0x854f53:0x46776e,0x213f49,3);
       marker.add([paper,...(head?[head]:[])]);
       const artTop=sideLabels?-b.height/2+5:-b.height/2+headHeight+4,artHeight=sideLabels?b.height-10:Math.max(14,b.height-headHeight-30),artSize=Math.min(b.width-10,artHeight),key=jokerArtKey(j.definitionId);
-      if(j.definitionId==='f09'&&key&&this.textures.exists(key)){
-        const art=this.add.container(0,0);mountF09Art(this,art,b.width-6,b.height-6,()=>this.reducedMotion);marker.add(art);marker.setData('f09-art',art);
+      if(key&&this.textures.exists(key)){
+        const art=this.add.container(0,0);if(j.definitionId==='f09')mountF09Art(this,art,b.width-6,b.height-6,()=>this.reducedMotion);else{const image=this.add.image(0,0,key);image.setScale(Math.min((b.width-6)/image.width,(b.height-6)/image.height));art.add(image);}marker.add(art);if(j.definitionId==='f09')marker.setData('f09-art',art);
         art.setData('f09-active',(this.run.stage?.discardsUsed??0)===0&&!disabled.has(j.instanceId)).setData('f09-sealed',disabled.has(j.instanceId));
         if(!sideLabels){
-          marker.add(this.add.rectangle(0,b.height/2-20,b.width-6,36,0x173c3d,.88));
-          name.setY(b.height/2-38);current.setY(b.height/2-23).setColor('#ffe3a4').setFontSize(14);rarity.setVisible(false);
+          marker.add(this.add.rectangle(0,b.height/2-15,b.width-6,28,0x173c3d,.88));
+          name.setY(b.height/2-30).setFontSize(12).setText(d.name.length>4?d.name.slice(0,3)+'…':d.name);current.setY(b.height/2-16).setColor('#ffe3a4').setFontSize(12);rarity.setVisible(false);
         }
       }else if(key&&this.textures.exists(key)){const art=this.add.image(0,artTop+artHeight/2,key);art.setScale(Math.min((b.width-10)/art.width,artHeight/art.height));marker.add(art);}
       else this.jokerMechanism(marker,0,artTop+artHeight/2,artSize,j);
@@ -620,13 +621,13 @@ export class GameScene extends Phaser.Scene {
     const entries=preview.breakdown.events.filter(e=>e.phase!=='base'&&e.phase!=='finalScore'&&e.phase!=='afterHand');
     const source=(e:ScoreEvent)=>e.sourceType==='joker'?getJoker(e.sourceDefinitionId).name:e.sourceType==='character'?getCharacter(this.characterId).name:this.hand.some(c=>c.id===e.targetCardId)?(()=>{const c=this.hand.find(c=>c.id===e.targetCardId)!;return rankLabel(c.rank)+SUIT_SYMBOL[c.suit];})():HAND_LABELS[e.sourceDefinitionId as keyof typeof HAND_LABELS]??'牌型';
     const summary='牌型 '+fractionText(preview.base.H)+' × '+fractionText(preview.base.M)+'  →  '+entries.map(e=>source(e)+' '+this.operationText(e)).join('  →  ');
-    const ledger=this.add.text(p.x+12,p.y+8,summary,{fontFamily:UI_FONT,fontSize:'14px',color:'#f4e5c6',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1.5,1/this.scale.zoom)});
+    const ledger=this.add.text(p.x+12,p.y+8,'计分来源  ›',{fontFamily:UI_FONT,fontSize:'14px',color:'#f4e5c6',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1.5,1/this.scale.zoom)});
     // The expanded native ledger remains reachable on shallow browser viewports.
     const maxHeight=Math.max(22,p.height-28);if(ledger.height>maxHeight)ledger.setText('来源明细 · 牌型、点数、角色与大丑牌（点击展开）');
     this.previewCards.add(ledger);
     const hit=this.view.rect({x:p.x,y:p.y,width:p.width,height:Math.max(44,ledger.height+16)},T.ink).setFillStyle(T.ink,.001).setStrokeStyle();this.previewCards.add(hit);
     this.view.target(hit,'score/sources',{tap:()=>this.dialog.open('本手计分来源',summary.replaceAll('  →  ','\n→ ')+(preview.scoreRange.minimum!==preview.scoreRange.maximum?'\n概率分支显示上下界，不预知随机结果。':'\n最终向下取整 = '+heatText(preview.scoreRange.minimum)))});
-    const reserved=ledger.height+18;
+    const reserved=36;
     if(p.height-reserved<52)return;
     const cards=this.hand.filter(card=>this.selectedIds.has(card.id)),boxes=this.landingBoxes(cards.length,reserved);
     cards.forEach((card,i)=>{const cv=this.cardPiece(card,boxes[i]);this.previewCards!.add(cv.container);cv.container.setAlpha(.86);cv.background.setStrokeStyle(2,preview.sets.activeScoringIds.includes(card.id)?T.jade:T.brass);cv.scoringMark.setVisible(preview.sets.activeScoringIds.includes(card.id));});
@@ -688,7 +689,7 @@ export class GameScene extends Phaser.Scene {
     face.add([paper,this.add.text(120,14,getJoker(definitionId).name,{fontFamily:UI_FONT,fontSize:'20px',color:'#203744'}).setOrigin(.5,0),this.add.text(120,302,'机制示意',{fontFamily:UI_FONT,fontSize:'14px',color:'#48685f'}).setOrigin(.5,0)]);
     drawJokerMotif(this,face,definitionId,120,166,192);
     const image=this.add.renderTexture(0,0,240,336).setVisible(false);image.draw(face);face.destroy();
-    image.snapshot(snapshot=>{if(snapshot instanceof HTMLImageElement)this.dialog.attachCardArt(dialog,snapshot.src,getJoker(definitionId).name+'机制示意卡面');image.destroy();});
+    image.snapshot(snapshot=>{if(snapshot instanceof HTMLImageElement)this.dialog.attachCardArt(dialog,snapshot.src,getJoker(definitionId).name+'机制示意卡面','mechanism');image.destroy();});
   }
   private inspectDeck():void {
     const state=this.run,dialog=this.dialog.open('牌组查看',''),content=dialog.querySelector('p')!,controls=document.createElement('div');

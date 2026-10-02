@@ -13,6 +13,9 @@ import {r2ScoreOperationText} from './r2Help';
 import {runController,dispatchRun,startRun} from './runAdapter';
 import {gameSession} from './session';
 import {getCharacter} from './characters';
+import {selectionPortraitKey} from './portraits';
+import {stageOutcome} from './stageOutcome';
+import {ScoreFlame} from './ScoreFlame';
 import {SceneView} from './SceneView';
 import {DetailDialog} from './DetailDialog';
 import {SKIP_ITEM_LABELS} from './ConsumableDialog';
@@ -20,20 +23,13 @@ import type {Box} from './layout';
 
 export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue}
 function resultLayout(width:number,height:number,top:number,bottom:number){
-  const short=height<500,w=Math.min(980,width-24),x=(width-w)/2,footerY=height-bottom-104;
-  const bodyY=top+(short?62:82),available=footerY-18-bodyY;
-  let score:Box,resources:Box,last:Box,next:Box;
-  if(short){
-    const leftWidth=(w-12)*.54,rightX=x+leftWidth+12,rightWidth=w-leftWidth-12,scoreHeight=available-70;
-    score={x,y:bodyY,width:leftWidth,height:scoreHeight};resources={x,y:bodyY+scoreHeight+10,width:leftWidth,height:60};
-    const lastHeight=Math.floor((available-12)*.55);last={x:rightX,y:bodyY,width:rightWidth,height:lastHeight};next={x:rightX,y:bodyY+lastHeight+12,width:rightWidth,height:available-lastHeight-12};
-  }else {
-    const resourceHeight=62,flex=available-resourceHeight-36,scoreHeight=Math.min(174,flex*.4),lastHeight=Math.min(126,flex*.3);
-    score={x,y:bodyY,width:w,height:scoreHeight};resources={x,y:bodyY+scoreHeight+12,width:w,height:resourceHeight};
-    last={x,y:resources.y+resourceHeight+12,width:w,height:lastHeight};next={x,y:last.y+lastHeight+12,width:w,height:flex-scoreHeight-lastHeight};
-  }
+  const short=height<500,portrait=width<700&&height>width,w=Math.min(980,width-24),x=(width-w)/2;
+  const footerY=height-bottom-(portrait?148:104),bodyY=top+(short?64:portrait?108:94),available=footerY-16-bodyY;
+  const nextHeight=short?available:Math.min(portrait?100:112,available*.26);
+  const score:Box=short?{x,y:bodyY,width:w*.64-12,height:available}:{x,y:bodyY,width:w,height:available-nextHeight-12};
+  const next:Box=short?{x:x+w*.64,y:bodyY,width:w*.36,height:available}:{x,y:score.y+score.height+12,width:w,height:nextHeight};
   const sideWidth=Math.floor(w*.28),primaryWidth=Math.floor(w*.43),rightWidth=w-sideWidth-primaryWidth-16;
-  return {x,w,top,short,score,resources,last,next,left:{x,y:footerY,width:sideWidth,height:48},primary:{x:x+sideWidth+8,y:footerY,width:primaryWidth,height:48},right:{x:x+sideWidth+primaryWidth+16,y:footerY,width:rightWidth,height:48},noticeY:footerY+56};
+  return {x,w,top,short,portrait,score,next,left:{x,y:footerY,width:portrait?w/2-4:sideWidth,height:44},primary:portrait?{x,y:footerY+52,width:w,height:48}:{x:x+sideWidth+8,y:footerY,width:primaryWidth,height:48},right:portrait?{x:x+w/2+4,y:footerY,width:w/2-4,height:44}:{x:x+sideWidth+primaryWidth+16,y:footerY,width:rightWidth,height:44},noticeY:footerY+(portrait?108:56)};
 }
 
 export class IntermissionScene extends Phaser.Scene {
@@ -43,89 +39,53 @@ export class IntermissionScene extends Phaser.Scene {
   private busy=false;
   private notice='';
   private firstRender=true;
+  private celebration?:ScoreFlame;
+  private celebrationTimer?:Phaser.Time.TimerEvent;
   private readonly dialog=new DetailDialog();
   private readonly audio=AudioEngine.shared;
   constructor(){super('intermission');}
   init(data:IntermissionResult):void {this.result=data;}
   private get ready():boolean {const session=gameSession();return !this.busy&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
   create():void {
-    this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;this.events.once('shutdown',()=>{this.lifecycle++;this.dialog.close();});
+    this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;this.events.once('shutdown',()=>{this.lifecycle++;this.dialog.close();this.stopCelebration();});
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
     this.cameras.main.setBackgroundColor('#153c40');
     const skipped=!!run.stage.skipResult;this.audio.setScene(this.result.cleared?'success':'failure');
     if(!skipped){
-      if(this.result.cleared)this.audio.success();
+      if(this.result.cleared){const outcome=stageOutcome(run.stage,run.lastTrace);if(outcome.intensity>1)this.audio.overkill(outcome.intensity);else this.audio.success();}
       else {
         const cue=this.result.failureCue;
         if(run.phase==='run-lost'&&run.outcome?.reason!=='abandoned'&&cue?.runId===run.runId&&cue.commandSeq===run.commandSeq)this.audio.failure(cue);
       }
     }
     this.view=new SceneView(this,()=>this.render());this.render();
-    if(!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){this.view.root.setAlpha(.35);this.tweens.add({targets:this.view.root,alpha:1,duration:260,ease:'Cubic.easeOut'});}
   }
   private render():void {
     const v=this.view,l=v.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
     const p=resultLayout(l.width,l.height,l.hud.y,bottom),run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
     const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex,run.tourMode,run.difficulty):undefined,skipped=run.stage?.skipResult,won=run.phase==='run-won',capped=this.result.cleared&&run.phase==='stage-cleared'&&!nextStage,lost=!this.result.cleared&&!skipped&&!won;
-    const gap=(BigInt(stage.targetHeat)>BigInt(this.result.stageHeat)?BigInt(stage.targetHeat)-BigInt(this.result.stageHeat):0n).toString(),accent=this.result.cleared?0x367f75:0xc6a46e,accentText=this.result.cleared?'#367f75':'#72532d';
-    v.clear();v.paperBackground();
-    if(lost)v.add(this.add.graphics().fillStyle(0xe7c38c,.1).fillEllipse(l.width/2,p.score.y+p.score.height/2,Math.min(l.width+120,1000),p.score.height+170));
-    v.text(p.x,p.top,capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?'八章，演完了':this.result.cleared?'这场，撑住了':'好戏，可以再来',p.short?24:30,'#fff2da',p.w-72).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
-    v.text(p.x,p.top+42,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,'#d5ddc9',p.w);
-    const s=p.score,lightAccent=this.result.cleared?'#b5dec8':'#f2dfb5';
-    const animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    this.panel(s,this.result.cleared?0x3b716d:0x55766b,this.result.cleared?0x183944:0x28484d,0xcda96e,true);
-    v.text(s.x+16,s.y+11,lost?'这一轮的积累':'本场热度',14,'#f1dbaa').setFontStyle('bold');
-    const scoreSize=Math.max(24,Math.min(p.short?42:56,(s.height-78)/1.2));
-    const score=v.text(s.x+16,s.y+31,heatText(this.result.stageHeat),scoreSize,'#fff3d4').setName('result/score').setFontStyle('bold').setShadow(0,2,'#142b34',2,true,true);
-    for(let font=scoreSize;score.width>s.width-96&&font>24;)score.setFontSize(--font);
-    if(animateIn){
-      const target=BigInt(this.result.stageHeat),roll={t:0};
-      if(target>0n&&target<10000000000n)this.tweens.add({targets:roll,t:1,duration:560,ease:'Cubic.easeOut',onUpdate:()=>{if(score.active)score.setText(heatText(BigInt(Math.floor(Number(target)*roll.t)).toString()));},onComplete:()=>{if(score.active){score.setText(heatText(this.result.stageHeat));}}});
+    const outcome=stageOutcome(run.stage!,run.lastTrace),animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.stopCelebration();v.clear();v.paperBackground();
+    v.text(p.x,p.top,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,'#d5ddc9',p.w-116);
+    const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?'八章好戏，满堂喝彩！':this.result.cleared?outcome.title:'演出失败';
+    v.text(lost?l.width/2:p.x,lost?Math.max(p.top+34,l.height*.18):p.top+(p.short?23:34),title,p.short?22:p.portrait?26:34,'#fff2da',p.w).setOrigin(lost?.5:0,0).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
+    if(lost){
+      const groupWidth=Math.min(p.w,420),groupX=(l.width-groupWidth)/2;
+      Object.assign(p.score,{x:(l.width-Math.min(p.w,680))/2,y:Math.max(p.top+34,l.height*.18)+46,width:Math.min(p.w,680),height:Math.min(190,l.height*.25)});
+      Object.assign(p.primary,{x:groupX,y:p.score.y+p.score.height+12,width:groupWidth,height:48});
+      Object.assign(p.left,{x:groupX,y:p.primary.y+56,width:(groupWidth-8)/2,height:44});
+      Object.assign(p.right,{x:groupX+(groupWidth+8)/2,y:p.left.y,width:(groupWidth-8)/2,height:44});p.noticeY=p.left.y+54;
     }
-    const seal={x:s.x+s.width-66,y:s.y+14,width:48,height:48};
-    this.panel(seal,0xffe6a5,0xbc8f51,0xf0cc8f);
-    const sealStamp=v.text(seal.x+24,seal.y+24,skipped?'跳':this.result.cleared?'过':'再',28,accentText).setOrigin(.5).setAngle(-6).setFontStyle('bold');
-    if(animateIn){
-      sealStamp.setScale(1.8).setAngle(-28).setAlpha(0);
-      this.tweens.add({targets:sealStamp,scale:1,angle:-6,alpha:1,duration:290,delay:240,ease:'Back.easeOut',onComplete:()=>{if(sealStamp.active&&this.scene.isActive())this.audio.cardLand();}});
-    }
-    if(this.result.cleared&&!skipped&&s.height>=150){
-      v.text(seal.x+24,s.y+68,'过关奖励',14,'#e4c894').setOrigin(.5,0);
-      const reward=v.text(seal.x+24,s.y+87,'+'+this.result.goldEarned+' 金',24,'#ffdf92').setOrigin(.5,0).setFontStyle('bold').setShadow(0,1,'#142b34',1,true,true);
-      for(let font=24;reward.width>80&&font>18;)reward.setFontSize(--font);
-      if(animateIn)this.tweens.add({targets:reward,scale:{from:.3,to:1},duration:260,delay:380,ease:'Back.easeOut'});
-    }
-    v.text(s.x+16,s.y+s.height-46,`目标 ${heatText(stage.targetHeat)} · `+(skipped?'本场跳过':this.result.cleared?'已达标':`差 ${heatText(gap)}`),14,lightAccent,s.width-32).setName('result/gap');
-    const bar={x:s.x+16,y:s.y+s.height-18,width:s.width-32,height:7};v.rect(bar,0x142f38).setStrokeStyle(1,0x7f7c66,.65);
-    const target=BigInt(stage.targetHeat),current=BigInt(this.result.stageHeat),progress=current>=target?1:Number(current*1000n/target)/1000;
-    if(progress>0){
-      const fill=v.material({...bar,width:Math.max(1,bar.width*progress)},this.result.cleared?0xb5dcb9:0xf0d79e,this.result.cleared?0x65a895:0xc29a59,2);
-      if(animateIn){const full=fill.displayWidth;fill.displayWidth=1;this.tweens.add({targets:fill,displayWidth:full,duration:520,delay:260,ease:'Cubic.easeOut'});}
-    }
-    const values=[['金币',run.gold],['剩余出牌',this.result.handsLeft],['剩余弃牌',run.stage?.discardsLeft??0],['本场出牌',run.stage?.playIndex??0]] as const;
-    v.material(p.resources,0x2a4c52,0x1a323d,6);
-    const resourceWidth=(p.resources.width-24)/4;
-    values.forEach(([label,value],i)=>{
-      const b={x:p.resources.x+i*(resourceWidth+8),y:p.resources.y,width:resourceWidth,height:p.resources.height};
-      if(i>0)v.add(this.add.graphics().lineStyle(1,0x809a93,.4).lineBetween(b.x-4,b.y+12,b.x-4,b.y+b.height-12));
-      v.text(b.x+8,b.y+7,label,14,i===0?'#f3d59a':'#d1dccb');v.text(b.x+8,b.y+30,String(value),22,i===0?'#ffe4a8':'#fff0d3').setFontStyle('bold');
-    });
-    const trace=run.lastTrace,a=p.last;this.panel(a,0xfff8e6,0xead7b5,0xbca578);v.text(a.x+14,a.y+10,lost?'这手的亮点 · 最后一手':'最后一手',14,'#48685f').setFontStyle('bold');
-    if(trace&&lost&&!p.short&&a.height>=86)this.drawHighlights(trace,a,animateIn);
-    else if(trace){
-      v.text(a.x+14,a.y+35,HAND_LABELS[trace.handType]+' · +'+heatText(trace.finalScore),p.short?20:22,'#203744',a.width-28);
-      const sources=this.traceSources(trace);
-      v.text(a.x+14,a.y+66,`${fractionText(trace.accumulator.H)} 热度 × ${fractionText(trace.accumulator.M)} 倍率\n`+(sources.length?'实际触发：'+sources.join('、'):'本手来源：牌型与计分牌'),14,'#48685f',a.width-28).setStyle({maxLines:Math.max(1,Math.floor((a.height-72)/18))});
-    }else v.text(a.x+14,a.y+38,skipped?'本场跳过，没有出牌结算。':'本场尚未打出一手。',14,'#203744',a.width-28);
-    const n=p.next;this.panel(n,this.result.cleared?0x446f67:0x73634c,this.result.cleared?0x26484f:0x3d4e49,accent);
+    this.drawResultHero(p.score,outcome,!!skipped,lost,animateIn);
+    const trace=run.lastTrace;
+    const n=p.next;
     let heading='下一步',body='';
     if(skipped){
       const reward=skipped.kind==='coupon'?'下次买牌减2金券':skipped.kind==='gold'?'库存已满，+1金币':SKIP_ITEM_LABELS[skipped.definitionId];
       heading='跳场所得';body=reward+'。没有过关奖金或利息。'+(nextStage?'\n下一场：'+nextStage.name+' · 目标 '+heatText(nextStage.targetHeat):'');
     }else if(nextStage){
-      heading=`过关 +${this.result.goldEarned} 金`;
-      body=`下一场：${nextStage.name} · 目标 ${heatText(nextStage.targetHeat)}\n去商店补构筑。出牌和弃牌次数会补满。`+(nextStage.index%3===2?'\n压轴规则：'+r2BossText(run.boss):'');
+      heading='准备下一场';
+      body=`${nextStage.name} · 目标 ${heatText(nextStage.targetHeat)}\n后台补牌后，出牌与弃牌次数补满。`+(nextStage.index%3===2?'\n压轴规则：'+r2BossText(run.boss):'');
     }else if(won){
       const progress=readRunProgress(),qualified=run.mode==='standard'&&!!run.normalCompletion;
       heading=run.mode==='challenge'?R2_MODE_CATALOG.challenges.find(row=>row.id===run.challengeId)!.name+' · 通关':run.mode==='tutorial'?'教学巡演通关':'八章通关';
@@ -133,16 +93,13 @@ export class IntermissionScene extends Phaser.Scene {
       if(qualified&&progress.ok&&progress.progress.standardWins[run.difficulty])body+='\n'+(run.difficulty<3?`D${run.difficulty+1} 与挑战已解锁。`:'四档难度已达最高档；挑战已解锁。');
     }else if(capped){
       heading='已达数值上限';body='进度已保存。可查看本场、在菜单导出，或返回选角。';
-    }else {
-      heading='带着这一手，再登台';const discards=run.stage?.discardsLeft??0;
-      body=run.outcome?.reason==='no-legal-cards'?'这次牌堆已耗尽；下局留意牌组余量，再找一次成型机会。':discards>0?`这次还留着 ${discards} 次弃牌；下局可以更早找牌。`:'回看最后一手，调整选牌或大丑牌顺序，再试一次。';
-      const sources=trace?this.traceSources(trace):[];
-      if(sources.length)body+='\n这一手实际触发：'+sources.slice(0,2).join('、')+(sources.length>2?'等'+sources.length+'个来源。':'。');
-      else body+='\n同局再试会保留角色与开局种子。';
     }
-    const nextHeading=v.text(n.x+14,n.y+10,heading,!p.short&&nextStage&&!skipped?26:18,this.result.cleared?'#ffdf9e':'#ffe2ae',n.width-28).setFontStyle('bold');
-    const bodyY=nextHeading.y+nextHeading.height+8;
-    v.text(n.x+14,bodyY,body,14,'#fff0d0',n.width-28).setLineSpacing(2).setStyle({maxLines:Math.max(1,Math.floor((n.y+n.height-12-bodyY)/19))});
+    if(!lost){
+      v.material(n,0x21474a,0x21474a,4);
+      const nextHeading=v.text(n.x+14,n.y+10,heading,18,'#ffdf9e',n.width-28).setFontStyle('bold');
+      const bodyY=nextHeading.y+nextHeading.height+8;
+      v.text(n.x+14,bodyY,body,14,'#fff0d0',n.width-28).setLineSpacing(2).setStyle({maxLines:Math.max(1,Math.floor((n.y+n.height-12-bodyY)/19))});
+    }
     if(nextStage){
       v.button(p.left,'本场详情','action/result-details',()=>this.inspectResult());
       v.button(p.primary,'前往商店','action/continue-stage',()=>void this.next(),this.ready,true);
@@ -154,37 +111,59 @@ export class IntermissionScene extends Phaser.Scene {
       v.button(p.left,'本场详情','action/result-details',()=>this.inspectResult(),!this.busy);
       v.button(p.primary,'返回选角','action/return-select',()=>this.returnToSelect(),!this.busy,true);
     }else {
-      v.button(p.left,'新局选角','action/continue-stage',()=>void this.next(),!this.busy);
-      v.button(p.primary,this.busy?'正在开局…':lost?'同局再试':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
+      v.button(p.left,'返回选角','action/continue-stage',()=>void this.next(),!this.busy);
+      v.button(p.primary,this.busy?'正在开局…':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }
     v.button(p.right,lost?'本场详情':'回看上手','action/last-hand',()=>lost?this.inspectResult():this.inspectLastHand(),!this.busy&&(lost||!!trace));
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?'结果已保存，进入商店准备下一场。':'同局重试保留角色、模式和 seed。'),14,this.notice?'#ffd0b1':'#d5ddc9',p.w);
+    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?'':lost?'同局重试沿用角色与开局种子。':''),14,this.notice?'#ffd0b1':'#d5ddc9',p.w);
     this.firstRender=false;
   }
   private traceSources(trace:ScoreTrace):string[] {
     const character=getCharacter(runController(this)!.state.characterId);
     return [...new Set(trace.events.filter(e=>(e.sourceType==='joker'||e.sourceType==='character')&&e.phase!=='afterHand'&&(e.before.H.n!==e.after.H.n||e.before.H.d!==e.after.H.d||e.before.M.n!==e.after.M.n||e.before.M.d!==e.after.M.d||e.operation==='retrigger-card'&&BigInt(e.value.n)>0n)).map(e=>e.sourceType==='character'?character.name:getR2Joker(e.sourceDefinitionId).name))];
   }
-  /** Highlight facts from the saved last trace, without inventing a best-score history. */
-  private drawHighlights(trace:ScoreTrace,b:Box,animate:boolean):void {
-    const v=this.view,sources=this.traceSources(trace),facts=[['牌型',HAND_LABELS[trace.handType]],['这一手得分',heatText(trace.finalScore)],[sources.length?'触发来源':'实际计分',sources.length?sources.length+' 个':trace.sets.activeScoringIds.length+' 张']],width=(b.width-40)/3,height=Math.min(74,b.height-40);
-    facts.forEach(([label,value],i)=>{
-      const x=b.x+12+i*(width+8),y=b.y+34,first=v.root.length;
-      v.material({x,y,width,height},i===1?0xffedba:0xf3e9d1,i===1?0xe9ca87:0xe1d6b7,4);
-      v.text(x+8,y+4,label,14,'#5a6b5c',width-16).setStyle({maxLines:1});
-      const number=v.text(x+width/2,y+25,value,i===1?24:20,'#624e30').setOrigin(.5,0).setFontStyle('bold');
-      for(let font=i===1?24:20;number.width>width-12&&font>14;)number.setFontSize(--font);
-      const badge=this.add.container();for(const child of v.root.list.slice(first))badge.add(child);v.add(badge);
-      badge.once('destroy',()=>this.tweens.killTweensOf([badge,number]));
-      if(animate){badge.setY(9).setAlpha(0);this.tweens.add({targets:badge,y:0,alpha:1,duration:260,delay:170+i*100,ease:'Cubic.easeOut',onStart:()=>{if(i===1&&this.scene.isActive())this.audio.cardLand();}});number.setScale(.88);this.tweens.add({targets:number,scale:1,duration:240,delay:230+i*100,ease:'Back.easeOut'});}
-    });
+  private stopCelebration():void {
+    this.celebrationTimer?.remove();this.celebrationTimer=undefined;this.celebration?.destroy();this.celebration=undefined;
+    this.tweens.killAll();
   }
-  private panel(b:Box,top:number,bottom:number,edge:number,heavy=false):void {
-    const v=this.view,g=this.add.graphics(),radius=heavy?8:5;
-    v.add(this.add.graphics().fillStyle(0x18353d,.17).fillRoundedRect(b.x+1,b.y+4,b.width,b.height,radius));
-    v.material(b,top,bottom,radius);
-    g.lineStyle(heavy?1.5:1,edge,heavy?.8:.45).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,radius);
-    v.add(g);
+  private drawResultHero(b:Box,outcome:ReturnType<typeof stageOutcome>,skipped:boolean,lost:boolean,animate:boolean):void {
+    const v=this.view,run=runController(this)!.state,compact=b.height<220,cx=b.x+b.width/2,cy=b.y+b.height/2;
+    // The stage and performer stay behind the finished hand; only the cards/info use paper panels.
+    if(this.textures.exists('p03-stage'))v.add(this.add.image(cx,cy,'p03-stage').setDisplaySize(b.width,b.height).setAlpha(.2));
+    const portrait=selectionPortraitKey(run.characterId);
+    if((!compact||lost)&&this.textures.exists(portrait)){const actor=v.add(this.add.image(b.x+b.width*.81,b.y+b.height*.5,portrait));actor.setScale(Math.min(b.width*.48/actor.width,b.height/actor.height)).setAlpha(.4);}
+    v.add(this.add.graphics().fillStyle(0x102f35,.68).fillRect(b.x,b.y,b.width*.6,b.height));
+    if(lost){
+      const gap=(BigInt(run.stage!.targetHeat)-BigInt(this.result.stageHeat)).toString();
+      v.text(cx,b.y+b.height*.68,`${heatText(this.result.stageHeat)} / ${heatText(run.stage!.targetHeat)} · 差 ${heatText(gap)}`,b.width<420?16:22,'#eadbbd',b.width-24).setOrigin(.5,0).setName('result/gap');
+      if(animate){const curtain=v.add(this.add.rectangle(cx,b.y+b.height*.3,b.width,b.height*.6,0x122c33,.65));this.tweens.add({targets:curtain,alpha:0,duration:280,ease:'Cubic.easeOut',onComplete:()=>curtain.destroy()});}
+      return;
+    }
+    const trace=!skipped&&this.result.cleared?outcome.last:null,top=b.y+(compact?6:18);
+    const hand=trace?HAND_LABELS[trace.handType]:'本场热度';
+    v.text(cx,top,hand,compact?18:24,'#f3d899').setOrigin(.5,0).setFontStyle('bold');
+    if(trace)v.text(cx,top+(compact?24:34),`${fractionText(trace.accumulator.H)} 热度 × ${fractionText(trace.accumulator.M)}`,compact?18:22,'#ffdca0').setOrigin(.5,0).setName('result/formula');
+    const scoreY=top+(trace?(compact?46:68):(compact?24:42)),scoreSize=compact?32:Math.min(68,Math.max(42,b.height*.19));
+    const score=v.text(cx,scoreY,(trace?'+':'')+heatText(trace?.finalScore??this.result.stageHeat),scoreSize,'#fff2c7').setOrigin(.5,0).setName('result/score').setFontStyle('bold').setShadow(0,3,'#10272d',5,true,true);
+    for(let font=scoreSize;score.width>b.width-28&&font>24;)score.setFontSize(--font);
+    const totalY=b.y+b.height-(compact?46:85),target=run.stage!.targetHeat;
+    if(!compact&&trace){
+      const sources=this.traceSources(trace).slice(0,3),line=v.text(cx,Math.min(totalY-25,scoreY+score.height+16),sources.length?sources.join(' · '):'牌型与计分牌共同结算',13,'#c9dacc',b.width-28).setOrigin(.5,0);
+      if(animate){line.setAlpha(0);this.tweens.add({targets:line,alpha:1,y:{from:line.y-12,to:line.y},duration:280,delay:180,ease:'Cubic.easeOut'});}
+    }
+    const gap=BigInt(target)>BigInt(this.result.stageHeat)?(BigInt(target)-BigInt(this.result.stageHeat)).toString():'0';
+    v.text(cx,totalY,skipped?'本场跳过':lost?`目标 ${heatText(target)} · 差 ${heatText(gap)}`:`全场 ${heatText(this.result.stageHeat)} / ${heatText(target)}`,compact?14:20,'#e3e9d9').setOrigin(.5,0).setName('result/gap');
+    if(this.result.cleared&&!skipped)v.text(cx,totalY+(compact?22:33),'过关奖励  +'+this.result.goldEarned+' 金',compact?16:22,'#ffdc91').setOrigin(.5,0).setFontStyle('bold');
+    if(animate&&this.result.cleared&&!skipped){
+      const centerY=scoreY+score.height*.55,flare=v.add(this.add.graphics().lineStyle(outcome.intensity,0xffd588,.55).strokeEllipse(0,0,Math.min(320,b.width-20),68).setPosition(cx,centerY));
+      this.tweens.add({targets:flare,scaleX:{from:.3,to:1.1},scaleY:{from:.5,to:1.4},alpha:{from:.8,to:0},duration:550,ease:'Cubic.easeOut',onComplete:()=>flare.destroy()});
+      score.setScale(.72);this.tweens.add({targets:score,scale:1,duration:480,ease:'Back.easeOut'});
+      if(outcome.intensity>1){this.celebration=new ScoreFlame(this,v.root,{x:cx-Math.min(160,b.width*.4),y:scoreY+score.height-22,width:Math.min(320,b.width*.8),height:40});this.celebration.set(outcome.intensity);}
+      const skip=v.button({x:b.x+b.width-94,y:b.y+2,width:88,height:44},'跳过动效','action/skip-celebration',()=>{this.firstRender=false;this.audio.cancelPresentation();this.render();});
+      (skip.getData('label') as Phaser.GameObjects.Text).setFontSize(12);
+      const skipLabel=skip.getData('label') as Phaser.GameObjects.Text,skipArt=skip.getData('buttonArt') as Phaser.GameObjects.Container;
+      this.celebrationTimer=this.time.delayedCall(1000,()=>{this.celebration?.destroy();this.celebration=undefined;skipLabel.destroy();skipArt.destroy();skip.destroy();});
+    }
   }
   private inspectResult():void {
     const run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty)!,targetHeat:run.stage!.targetHeat};
