@@ -7,7 +7,7 @@ import {R2_JOKERS,type R2JokerInstance} from '../content/r2Schema';
 import {HAND_LABELS} from '../content/handLabels';
 import {heatText,fractionText} from './scoreText';
 import {scoreCelebration} from './scoreCelebration';
-import {scoreBeat,scoreFireLevel,type ScoreBeat} from './scorePresentation';
+import {scoreBeat,scoreFireLevel,fourCardFormation,scorePacketSymbol,type ScoreBeat} from './scorePresentation';
 import {ScoreFlame} from './ScoreFlame';
 import {stageNotice} from './stageNotice';
 import type {R2RunState as RunState,DomainEvent} from '../domain/run';
@@ -941,20 +941,20 @@ export class GameScene extends Phaser.Scene {
   }
   private transferToAccumulator(event:ScoreEvent,card:CardView|undefined,duration:number,context:EffectContext):Promise<void> {
     if(this.reducedMotion||context.signal.aborted)return Promise.resolve();
-    const heatChanged=event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d,multChanged=event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d;
-    if(!heatChanged&&!multChanged)return Promise.resolve();
+    const packetSymbol=scorePacketSymbol(event);if(!packetSymbol)return Promise.resolve();
+    const multChanged=packetSymbol!=='+H';
     const jokerFrame=this.jokerViews.get(event.sourceInstanceId)?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;
     const source=event.sourceType==='joker'?jokerFrame:event.sourceType==='character'?this.roleFrame:card?.background;
     if(!source)return Promise.resolve();
     const b=source.getBounds(),target=multChanged?this.scoreMult:this.scoreHeat,start={x:b.centerX,y:b.centerY},end={x:target.x,y:target.y-7};
-    const multiply=event.operation==='multiply-multiplier',color=multiply?T.red:multChanged?T.jade:T.brass,light=multiply?0xffb995:multChanged?0xc4f0d8:0xffdf9d;
+    const multiply=packetSymbol==='×M',color=multiply?T.red:multChanged?T.jade:T.brass,light=multiply?0xffb995:multChanged?0xc4f0d8:0xffdf9d;
     const mid={x:(start.x+end.x)/2+(start.x<end.x?-22:22),y:(start.y+end.y)/2-22},trail=this.view.add(this.add.graphics());
     trail.lineStyle(multiply?4:2,color,.72).beginPath().moveTo(start.x,start.y);
     for(let i=1;i<=16;i++){const t=i/16,u=1-t;trail.lineTo(u*u*start.x+2*u*t*mid.x+t*t*end.x,u*u*start.y+2*u*t*mid.y+t*t*end.y);}trail.strokePath();
     const packet=this.view.add(this.add.container(start.x,start.y)),shape=this.add.graphics();
     if(multiply){shape.fillStyle(0x762f32,.96).fillPoints([{x:0,y:-15},{x:20,y:0},{x:0,y:15},{x:-20,y:0}],true);shape.lineStyle(2,T.brass,.9).strokePoints([{x:0,y:-15},{x:20,y:0},{x:0,y:15},{x:-20,y:0}],true);}
     else shape.fillStyle(multChanged?0x285a54:0x715736,.96).fillRoundedRect(-18,-13,36,26,10).lineStyle(1,light,.85).strokeRoundedRect(-18,-13,36,26,10);
-    const symbol=this.add.text(0,-1,multiply?'×M':multChanged?'+M':'+H',{fontFamily:UI_FONT,fontSize:multiply?'18px':'16px',fontStyle:'bold',color:'#fff3d0',resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5);
+    const symbol=this.add.text(0,-1,packetSymbol,{fontFamily:UI_FONT,fontSize:multiply?'18px':'16px',fontStyle:'bold',color:'#fff3d0',resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5);
     packet.add([shape,symbol]);this.keepScoreReadable();
     const flight={t:0};
     return Promise.all([
@@ -1236,10 +1236,12 @@ export class GameScene extends Phaser.Scene {
         await this.animate({targets:view.container,scaleX:sx,scaleY:sy,duration:110,ease:'Back.easeOut'},context);
       })]);
       if(context.signal.aborted)return;this.setAccumulator(score.events[0].after);this.breakdownText.setText('牌型 '+HAND_LABELS[score.handType]+' · ★ '+score.sets.activeScoringIds.length+' 张计分');
-      if(score.handType==='straight'&&score.sets.scoringIds.length===4){
-        const source=score.sourceJokers.find(joker=>joker.definitionId==='c08'),view=source&&this.jokerViews.get(source.instanceId),frame=view?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;
-        this.resultText.setText('少一级 · 四张普通顺子');this.breakdownText.setText('少一级允许4张普通顺子；同花顺仍须5张。');
-        if(view&&frame){this.audio.sourceCue('joker');await Promise.all([this.focusSource(view,frame,T.brass,false,380,context),this.floatNote('四张顺子',view.x,view.y-frame.height/2-8,'#ffe3ae',380,context)]);}
+      const formation=fourCardFormation(score);
+      if(formation){
+        const view=this.jokerViews.get(formation.instanceId),frame=view?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;
+        const type=HAND_LABELS[formation.handType],name=getJoker(formation.definitionId).name;
+        this.resultText.setText(name+' · 四张普通'+type);this.breakdownText.setText(name+'允许4张普通'+type+'；同花顺仍须5张。');
+        if(view&&frame){this.audio.sourceCue('joker');await Promise.all([this.focusSource(view,frame,T.brass,false,380,context),this.floatNote('四张'+type,view.x,view.y-frame.height/2-8,'#ffe3ae',380,context)]);}
       }
     });
     this.effects.enqueue(context=>this.wait(this.reducedMotion?120:460,context));

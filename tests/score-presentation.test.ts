@@ -1,5 +1,5 @@
 import {describe,it,expect} from 'vitest';
-import {scoreBeat,scoreFireLevel} from '../src/game/scorePresentation';
+import {scoreBeat,scoreFireLevel,scorePacketSymbol} from '../src/game/scorePresentation';
 import type {ScoreEvent} from '../src/domain/scoreR2';
 
 const event=(sourceType:ScoreEvent['sourceType'],operation:string,phase:ScoreEvent['phase']='onCardScore'):ScoreEvent=>({
@@ -13,6 +13,18 @@ const multiplier=(sourceType:ScoreEvent['sourceType'],operation:string,phase:Sco
 });
 
 describe('progressive one-source scoring presentation',()=>{
+  it('persistent coefficients send a multiplication packet rather than an additive one',()=>{
+    for(const id of ['e11','f12']){
+      const coefficient={...multiplier('joker','read-coefficient'),sourceDefinitionId:id};
+      expect(scorePacketSymbol(coefficient)).toBe('×M');
+      expect(scoreBeat(coefficient,8).strength).toBe('multiply');
+    }
+    expect(scorePacketSymbol(multiplier('joker','add-multiplier'))).toBe('+M');
+    expect(scorePacketSymbol(multiplier('joker','read-growth'))).toBe('+M');
+    expect(scorePacketSymbol(event('card','add-heat'))).toBe('+H');
+    const unchanged=event('joker','add-coefficient','onStageClear');unchanged.after=unchanged.before;
+    expect(scorePacketSymbol(unchanged)).toBeUndefined();
+  });
   it('accelerates by committed trace position and stops at a readable ordinary-card floor',()=>{
     const card=event('card','add-heat'),lengths=Array.from({length:20},(_,ordinal)=>length(card,ordinal));
     expect(lengths[0]).toBe(500);expect(lengths[8]).toBe(300);expect(lengths[19]).toBe(300);

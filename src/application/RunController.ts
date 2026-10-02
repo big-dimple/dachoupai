@@ -1,9 +1,13 @@
 import { applyCommand, type Action, type AnyRunState, type Command, type CommandResult, type RunState } from '../domain/run';
 
 export function freezeCheckpoint<T extends object>(value: T): T {
-  if (!Object.isFrozen(value)) {
-    Object.freeze(value);
-    for (const child of Object.values(value)) if (child && typeof child === 'object') freezeCheckpoint(child);
+  const pending: object[] = [value], seen = new WeakSet<object>();
+  while (pending.length) {
+    const current = pending.pop()!;
+    if (seen.has(current)) continue;
+    seen.add(current);
+    if (!Object.isFrozen(current)) Object.freeze(current);
+    for (const child of Object.values(current)) if (child && typeof child === 'object') pending.push(child);
   }
   return value;
 }

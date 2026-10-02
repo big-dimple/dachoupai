@@ -1,11 +1,17 @@
-import {describe, expect, it} from 'vitest';
-import type {PlayingCard, Rank, Suit} from '../src/cards/types';
+import {spawnSync} from 'node:child_process';
+import {mkdtempSync,rmSync,writeFileSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {describe,expect,it} from 'vitest';
 import {R2_JOKERS} from '../src/content/r2Schema';
+import {r2ScoreContext,r2CreateJoker} from '../src/domain/r2Run';
+import {scoreR2Hand,type ScoreInput} from '../src/domain/scoreR2';
+import {makeC02MaxChainFixture} from './fixtures/c02-max-chain';
+
+import type {PlayingCard,Rank,Suit} from '../src/cards/types';
 import {createRun} from '../src/domain/run';
-import {r2CreateJoker} from '../src/domain/r2Run';
 import {r2HandLimit} from '../src/domain/r2Resources';
 import {r2DisabledCards} from '../src/domain/r2Chapter';
-import {scoreR2Hand, type ScoreInput} from '../src/domain/scoreR2';
 
 function poker(id:string,rank:Rank,suit:Suit='hearts',enhancement:PlayingCard['enhancement']='voice-paper',edition:PlayingCard['edition']='none'):PlayingCard {
   return {id,rank,suit,enhancement,edition};
@@ -72,4 +78,99 @@ describe('C02 distinct-source legal resource/depth stress witnesses',()=>{
     expect(trace.finalScore).toBe('67204');
     expect(trace.rng).toEqual({algorithm:'fnv1a-mulberry32-v1',state:1071847749});
   });
+});
+
+function maxChainRequest():ScoreInput {
+  const {state,selectedIds}=makeC02MaxChainFixture(),stage=state.stage!;
+  const hand=state.handOrder.map(id=>state.deckInstances.find(card=>card.id===id)!);
+  return {rulesVersion:'r2',runId:state.runId,rootId:'c02-chain/oracle',characterId:state.characterId,
+    hand,selectedIds,disabledIds:stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS,
+    handLevels:state.handLevels,playIndex:stage.playIndex+1,handsBeforePlay:stage.handsLeft,
+    previousHandType:stage.previousHandType,wager:false,rng:state.rng.rule,...r2ScoreContext(state,hand,selectedIds)};
+}
+
+describe('C02 independent maximum event-chain goldens',()=>{
+  it('uses one legal five-source build and mixed enhancements to attain 88 pure events',()=>{
+    const input=maxChainRequest(),before=structuredClone(input),trace=scoreR2Hand(input);
+    // Five hearts Q: first lucky+d04 twice, the other four encore twice; ten passes.
+    // B02 suppresses the last two originals and their repeats, but adds only two notices.
+    // H=1200+6*10+10*(25+15+8)=1740.
+    // M=(15+10*(2+1/4)+2*4+5)*2*(3/2)^5=24543/32.
+    expect(trace.finalScore).toBe('1334525');
+    expect(trace.accumulator).toEqual({H:{n:'1740',d:'1'},M:{n:'24543',d:'32'}});
+    expect(trace.events).toHaveLength(88);
+    expect(trace.events.reduce<Record<string,number>>((totals,event)=>{
+      totals[event.phase]=(totals[event.phase]??0)+1;return totals;
+    },{})).toEqual({base:1,onCardScore:75,onHeldCard:5,characterScore:1,jokerScore:5,finalScore:1});
+    expect(trace.events.filter(event=>event.sourceDefinitionId==='rank-12')).toHaveLength(10);
+    expect(trace.events.filter(event=>event.operation==='retrigger-card')).toHaveLength(5);
+    expect(trace.events.some(event=>event.operation==='retrigger-cap')).toBe(false);
+    expect(trace.sets.activeScoringIds).toEqual(input.selectedIds);
+    expect(trace.sets.heldIds).toEqual(['diamonds-2','diamonds-3','diamonds-4','diamonds-5','diamonds-6']);
+    // Independently computed Mulberry uint vector from literal cursor16697:
+    // 260915538,34794290,382425058,142180176; M,G,M,G all hit.
+    expect(trace.rng).toEqual({algorithm:'fnv1a-mulberry32-v1',state:3031312653});
+    expect(trace.goldDelta).toBe(20);
+    expect(trace.events.filter(event=>event.operation==='add-gold').map(event=>[event.resourceBefore,event.resourceAfter])).toEqual([[100,110],[110,120]]);
+    expect(trace.destroyedCardIds).toEqual([]);
+    expect(trace.destroyedJokerIds).toEqual([]);
+    expect(input).toEqual(before);
+    expect(trace.sourceJokers.map(joker=>joker.definitionId)).toEqual(['d04','b02','b05','tiesuanpan','c02']);
+    expect(Object.isFrozen(trace.cards[0])).toBe(true);
+  });
+
+  it('all encore on the same build is one event shorter, so a local enhancement maximum is insufficient',()=>{
+    const input=maxChainRequest();input.hand=input.hand.map(card=>card.id===input.selectedIds[0]?{...card,enhancement:'encore-paper' as const}:card);
+    const trace=scoreR2Hand(input);
+    // H1200+7*10+11*48=1798; M=(15+11*9/4+5)*2*243/32=43497/64.
+    expect(trace.finalScore).toBe('1221993');
+    expect(trace.accumulator).toEqual({H:{n:'1798',d:'1'},M:{n:'43497',d:'64'}});
+    expect(trace.events).toHaveLength(87);
+    expect(trace.goldDelta).toBe(0);
+    expect(trace.rng).toEqual(input.rng);
+  });
+
+  it('a glass replacement contributes only one post-final lifecycle check per original, and stays below the maximum',()=>{
+    const input=maxChainRequest();input.hand=input.hand.map(card=>card.id===input.selectedIds[0]?{...card,enhancement:'glass-paper' as const}:card);
+    // Cursor2 first uint3153583793 misses glass; no lucky draws remain.
+    input.rng={algorithm:'fnv1a-mulberry32-v1',state:2};
+    const trace=scoreR2Hand(input);
+    // First M:15*3/2+9/4 ->99/4; replay:*3/2+9/4 ->315/8.
+    // Then eight passes add18, held add5, xiemu*2, five editions*243/32.
+    expect(trace.finalScore).toBe('1648337');
+    expect(trace.accumulator).toEqual({H:{n:'1740',d:'1'},M:{n:'121257',d:'128'}});
+    expect(trace.events).toHaveLength(83);
+    expect(trace.events.filter(event=>event.operation==='glass-check')).toHaveLength(1);
+    expect(trace.events.at(-1)?.operation).toBe('glass-check');
+    expect(trace.destroyedCardIds).toEqual([]);
+    expect(trace.rng).toEqual({algorithm:'fnv1a-mulberry32-v1',state:1831565815});
+  });
+});
+
+const contentCLI=(path?:string)=>spawnSync(process.execPath,['scripts/verify-content.mjs',...(path?[path]:[])],{encoding:'utf8',timeout:20000});
+describe('C02 current-content joint event proof',()=>{
+  it('derives the attainable 91 envelope while retaining the independent conservative512 guard',()=>{
+    const result=contentCLI();expect(result.status,result.stderr).toBe(0);
+    // Vite may prepend a dependency-optimizer status line before the CLI JSON.
+    const report=JSON.parse(result.stdout.match(/\{\s*"status"[\s\S]*\}/)?.[0]??'');
+    expect(report.conservativeEventBound).toBe(318);
+    expect(report.legalEventEnvelope.maximumEvents).toBe(91);
+    expect(report.legalEventEnvelope.definitionCount).toBe(72);
+    expect(report.legalEventEnvelope.retriggerCapNoticesReachable).toBe(false);
+    expect(report.legalEventEnvelope.maximumEntryHand).toBe(13);
+  },20000);
+
+  it.each(['unknown-id','changed-card-condition'] as const)('refuses a tight proof for %s rather than silently carrying the old classification',(kind)=>{
+    const altered=structuredClone(R2_JOKERS);
+    if(kind==='unknown-id')altered.find(definition=>definition.id==='a08')!.id='c02-unclassified';
+    else altered.find(definition=>definition.id==='tiesuanpan')!.hooks[0].condition={kind:'always'};
+    expect(altered).toHaveLength(72);
+    const directory=mkdtempSync(join(tmpdir(),'dachoupai-c02-'));
+    try {
+      const path=join(directory,`${kind}.json`);writeFileSync(path,JSON.stringify(altered));
+      const result=contentCLI(path);
+      expect(result.status).toBe(1);
+      expect(result.stderr).toContain('unclassified tight-bound content');
+    } finally {rmSync(directory,{recursive:true,force:true});}
+  },20000);
 });

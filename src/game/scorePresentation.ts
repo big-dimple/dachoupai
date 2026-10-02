@@ -1,4 +1,19 @@
-import type {ScoreEvent} from '../domain/scoreR2';
+import type {ScoreEvent,ScoreTrace} from '../domain/scoreR2';
+
+/** Only the modifier which enabled the committed four-card type receives the formation cue. */
+export function fourCardFormation(score:ScoreTrace):{instanceId:string;definitionId:'c08'|'c09';handType:'straight'|'flush'}|undefined {
+  if(score.sets.scoringIds.length!==4||score.handType!=='straight'&&score.handType!=='flush')return;
+  const definitionId=score.handType==='straight'?'c08':'c09';
+  const source=score.sourceJokers.find(joker=>joker.definitionId===definitionId);
+  if(source)return {instanceId:source.instanceId,definitionId,handType:score.handType};
+}
+
+/** Resource/growth bookkeeping has no accumulator packet; coefficient reads really multiply M. */
+export function scorePacketSymbol(event:ScoreEvent):'+H'|'+M'|'×M'|undefined {
+  if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)
+    return event.operation==='multiply-multiplier'||event.operation==='read-coefficient'?'×M':'+M';
+  if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)return '+H';
+}
 
 export type ScoreBeat={windup:number;flight:number;impact:number;rest:number;strength:'light'|'medium'|'role'|'multiply'|'retrigger'};
 

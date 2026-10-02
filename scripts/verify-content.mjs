@@ -1,12 +1,158 @@
 import { readFile } from 'node:fs/promises';
 import { createServer } from 'vite';
 
+// A finite C02 envelope, separate from the arbitrary-content conservative guard below.
+// It overcounts conditions, but keeps one set of five slots across every phase.
+function legalEventEnvelope(definitions,catalog,limits,scoreLimits,chapter) {
+  const sum=values=>values.reduce((total,value)=>total+value,0);
+  const maximum=values=>Math.max(0,...values);
+  const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+  const require=(accepted,detail)=>{if(!accepted)throw Error(`unclassified tight-bound content: ${detail}`);};
+  const approvedIds=['pengci','mantangcai','tiesuanpan','huimaqiang','jiedongfeng','a03','a05','b02','b03','b04',
+    'c02','c04','c06','d01','d03','d05','d10','e01','e03','e05','e08','f02','f03','f09',
+    'a04','a06','a07','a08','b05','b06','b07','b08','c03','c05','c07','c08','d02','d04','d06','d07','e02','e04','e06','e07','f04','f05','f06','f07',
+    'a09','a10','a11','a12','b09','b10','b11','b12','c09','c10','c11','c12','d08','d09','d11','d12','e09','e10','e11','e12','f08','f10','f11','f12'];
+  require(same(definitions.map(row=>row.id).sort(),approvedIds.sort()),'expected the exact adopted72 identities');
+  require(limits.handSize===8&&limits.maxSelected===5&&limits.jokerSlots===5&&limits.longTermSlots===4
+    &&scoreLimits.handCount===14&&scoreLimits.extraRetriggers===4&&scoreLimits.retriggerDepth===1,'resource/retrigger limits');
+  require(chapter.R2_AVAILABLE_CHAPTERS===2&&same(chapter.R2_BOSSES.map(row=>row.id),['B01','B02','B03','B04']),'C02 boss scope');
+  const normalConditions={
+    tiesuanpan:{kind:'rank-in',values:[11,12,13,14]},a08:{kind:'rank-in',values:[2,3,4,5]},
+    c02:{kind:'suit-in',values:['hearts','diamonds']},c03:{kind:'suit-in',values:['spades','clubs']},
+    b02:{kind:'paired-rank',minimum:2},b05:{kind:'paired-rank',minimum:3},
+  };
+  const retriggerConditions={
+    a11:{kind:'played-count',equals:1},b06:{kind:'hand-type-in',values:['pair']},
+    c07:{kind:'scoring-position',position:'last',handTypes:['flush','straight-flush']},
+    d04:{kind:'scoring-position',position:'first',playModulo:{divisor:2,remainder:0}},
+    d11:{kind:'scoring-position',position:'third-original'},
+  };
+  const onCard=definitions.filter(row=>row.hooks.some(hook=>hook.phase==='onCardScore'));
+  require(same(onCard.map(row=>row.id).sort(),[...Object.keys(normalConditions),...Object.keys(retriggerConditions)].sort()),'card-source classes');
+  for(const definition of onCard){
+    const hook=definition.hooks[0],normal=normalConditions[definition.id];
+    require(definition.hooks.length===1&&hook.operations.length===1
+      &&same(hook.condition,normal??retriggerConditions[definition.id]),`${definition.id} card condition`);
+    require(normal?['add-heat','add-multiplier'].includes(hook.operations[0].kind)
+      :same(hook.operations[0],{kind:'retrigger-card',count:1}),`${definition.id} card operation`);
+  }
+  const handModifiers=definitions.filter(row=>row.modifiers?.some(modifier=>modifier.kind==='hand-limit'));
+  require(same(handModifiers.map(row=>row.id).sort(),['a04','d06'])
+    &&same(handModifiers.find(row=>row.id==='a04').modifiers,[{kind:'hand-limit',amount:2,deckMaximum:40}])
+    &&same(handModifiers.find(row=>row.id==='d06').modifiers,[{kind:'hand-limit',amount:1}]),'entry hand modifiers');
+  require(handModifiers.every(row=>row.hooks.length===0),'hand modifiers have no other scoring hooks');
+  const handItem=catalog.longTermItems.filter(row=>row.operation.kind==='hand-limit');
+  const cleanSlate=catalog.tools.find(row=>row.id==='S08');
+  require(handItem.length===1&&same(handItem[0].operation,{kind:'hand-limit',amount:1})
+    &&cleanSlate.operation.handBonus===1&&cleanSlate.phases.length===1&&cleanSlate.phases[0]==='shop'
+    &&cleanSlate.caps.includes('oncePerRun')&&catalog.limits.oncePerRun===1,'U01/S08 entry-only hand additions');
+  const signatures={
+    'heat-paper':['onCardScore:add-heat'],'multiplier-paper':['onCardScore:add-multiplier'],
+    'glass-paper':['onCardScore:multiply-multiplier','afterHand:chance-destroy'],
+    'voice-paper':['onHeldCard:add-multiplier'],'gold-paper':['onStageClear:add-gold'],
+    'encore-paper':['onCardScore:retrigger-card'],'lucky-paper':['onCardScore:chance-add-multiplier','onCardScore:chance-add-gold'],
+  };
+  require(catalog.enhancements.length===7&&catalog.enhancements.every(row=>same(row.effects.map(effect=>`${effect.phase}:${effect.kind}`),signatures[row.id])),'enhancement event classes');
+  require(catalog.enhancements.find(row=>row.id==='encore-paper').effects[0].count===1
+    &&catalog.enhancements.find(row=>row.id==='glass-paper').effects[1].oncePerOriginalCard===true
+    &&catalog.enhancements.find(row=>row.id==='lucky-paper').effects[1].drawWhenCapped===true,'enhancement repeat/cap policy');
+  require(catalog.editions.length===4&&catalog.editions.every(row=>!row.effect||['add-heat','add-multiplier','multiply-multiplier'].includes(row.effect.kind)),'one edition event per scoring source');
+  const interestItems=catalog.longTermItems.filter(row=>row.operation.kind==='interest-cap');
+  const bossItems=catalog.longTermItems.filter(row=>row.operation.kind==='boss-most-used-hand-upgrade');
+  const normalItems=catalog.longTermItems.filter(row=>row.operation.kind==='first-normal-clear-per-chapter');
+  const bossTools=catalog.tools.filter(row=>row.rewardSources.some(source=>source.source==='first-boss-clear'));
+  require(same([...interestItems,...bossItems,...normalItems,...bossTools].map(row=>row.id).sort(),['T16','U04','U09','U12']),'clear rule sources');
+  // U12 is normal-only; U09/T16 are boss-only. Base reward/interest/谢幕金 are not extra trace entries.
+  const clearRules=interestItems.length+Math.max(bossItems.length+bossTools.length,normalItems.length);
+  const retriggers=onCard.filter(row=>Object.hasOwn(retriggerConditions,row.id));
+  const residual=definitions.filter(row=>!onCard.includes(row)&&!handModifiers.includes(row));
+  const singleEvents=new Set(['add-heat','add-multiplier','multiply-multiplier','read-growth','consume-growth','add-growth',
+    'update-score-growth','read-coefficient','add-coefficient','refund-hand-limited','reward-consumable-pool',
+    'add-gold','add-heat-per-gold','add-heat-per-empty-slot']);
+  const doubleEvents=new Set(['expire-after-hands','chance-add-heat','reward-consumable-every-clears','rescue-hand']);
+  const operationCost=operation=>{
+    require(singleEvents.has(operation.kind)||doubleEvents.has(operation.kind),operation.kind);
+    return doubleEvents.has(operation.kind)?2:1;
+  };
+  const sourceCost=(definition,played,held,cleared)=>{
+    let total=0;
+    for(const phase of ['jokerScore','onHeldCard','afterHand',...(cleared?['onStageClear']:['beforeFailure'])]){
+      const hooks=definition.hooks.filter(hook=>hook.phase===phase);
+      const costs=hooks.map(hook=>{
+        let instances=1;
+        if(phase==='onHeldCard'){
+          require(['held-rank-first','held-scoring-rank-first','held-enhancement-first'].includes(hook.condition.kind),`${definition.id} held condition`);
+          instances=Math.min(held,hook.condition.limit);
+          if(hook.condition.playedEquals!==undefined&&played!==hook.condition.playedEquals)instances=0;
+        }
+        return instances*sum(hook.operations.map(operationCost));
+      });
+      if(phase==='jokerScore'&&hooks.length>1){
+        require(definition.id==='c11'&&hooks.length===2
+          &&same(hooks.map(hook=>hook.condition),[{kind:'hand-type-transition',current:'straight',previous:'flush'},
+            {kind:'hand-type-transition',current:'flush',previous:'straight'}]),'mutually exclusive C11 branches');
+        total+=maximum(costs);
+      }else total+=sum(costs);
+    }
+    if(cleared)total+=(definition.modifiers??[]).filter(modifier=>modifier.kind==='interest-cap').length;
+    return total;
+  };
+  let maximumEvents=0,abstractWitness,statesChecked=0;
+  const withoutJokerHandModifiers=limits.handSize+handItem[0].operation.amount+cleanSlate.operation.handBonus;
+  for(let played=1;played<=limits.maxSelected;played++)for(let active=0;active<=played;active++)for(let normal=0;normal<=4;normal++){
+    // At most one rank source, one suit source, paired2 and paired3 can hit a pass.
+    // Extra overlapping equipped normals can only lower this idealized slot cost.
+    for(let retMask=0;retMask<2**retriggers.length;retMask++){
+      const sources=retriggers.filter((_,index)=>retMask&(1<<index)),ids=sources.map(row=>row.id);
+      if(normal+sources.length>limits.jokerSlots||sources.length&&active===0)continue;
+      if(ids.includes('a11')&&(played!==1||active!==1))continue;
+      if(ids.includes('b06')&&(played<2||active>2||ids.some(id=>['a11','c07','d11'].includes(id))))continue;
+      if(ids.includes('c07')&&played<4||ids.includes('d11')&&played<3)continue;
+      const extra=sum(sources.map(row=>row.id==='b06'?active:1));
+      const targets=ids.includes('b06')?active:extra>0?1:0; // Other positions may coincide; allow that upper bound.
+      // Per card with q Joker repeats: encore=(q+2)*(2+k)+1, lucky=(q+1)*(6+k),
+      // glass=(q+1)*(3+k)+2. Glass cannot exceed lucky; held voice/gold together <= held.
+      // With k>=1 encore wins at q=0; lucky wins at q>=1. Concentrating repeats overcounts.
+      const cardEvents=normal===0?6*active+7*extra:active*(5+2*normal)+extra*(7+normal)-targets*(normal-1);
+      for(let handMask=0;handMask<2**handModifiers.length;handMask++){
+        const modifiers=handModifiers.filter((_,index)=>handMask&(1<<index));
+        const slots=limits.jokerSlots-normal-sources.length-modifiers.length;if(slots<0)continue;
+        const hand=withoutJokerHandModifiers+sum(modifiers.flatMap(row=>row.modifiers.map(modifier=>modifier.amount)));
+        const held=hand-played;
+        for(const cleared of [false,true]){
+          const rest=residual.map(row=>({definitionId:row.id,events:sourceCost(row,played,held,cleared)}))
+            .sort((a,b)=>b.events-a.events).slice(0,slots);
+          const breakdown={baseCharacterFinal:3,cardEvents,ordinarySuppression:Math.min(2,active,Math.max(0,played-3)),
+            heldEnhancementOrGold:held,jokerEdition:limits.jokerSlots,residualSources:sum(rest.map(row=>row.events)),clearRules:cleared?clearRules:0};
+          const bound=sum(Object.values(breakdown));statesChecked++;
+          if(bound>maximumEvents){maximumEvents=bound;abstractWitness={played,active,normalCardGroups:normal,
+            retriggerSources:ids,handModifierSources:modifiers.map(row=>row.id),held,cleared,residualSources:rest,breakdown};}
+        }
+      }
+    }
+  }
+  return {maximumEvents,definitionCount:definitions.length,statesChecked,
+    maximumEntryHand:withoutJokerHandModifiers+sum(handModifiers.flatMap(row=>row.modifiers.map(modifier=>modifier.amount))),
+    retriggerCapNoticesReachable:false,abstractWitness,
+    scope:'Current72 command-reachable configurations, entry resources and B01–B04; event count, not maximum score or natural acquisition probability.',
+    proof:['Each equipped source spends one of the same five slots across all phases; A04/D06 spend slots to increase held count.',
+      'The six normal card definitions provide at most four simultaneous groups; overlapping groups are overcounted with fewer slots.',
+      'A11 requires played1; B06 requires pair and cannot coexist effectively with C07/D11. Other positions contribute at most three repeats.',
+      'Encore adds at most one intrinsic repeat: at most four extras, so no legal retrigger-cap rejection event is omitted.',
+      'Enhancement is one layer: lucky can emit four per pass including a gold-cap notice; glass destruction is counted once per original.',
+      'Held voice and winning gold share a layer and contribute at most one event per held card; held editions do not score.',
+      'Success and failure tails are alternatives; F06 count/destruction, F08 check/heat, E10 cycle/reward and rescue/destroy count two when applicable.',
+      'U12 cannot coexist with boss-only U09/T16 on one clear; base reward, base interest and last-hand character gold add no separate trace.',
+      'An upper envelope is not an attained witness. Independent88 pure /91 shared goldens and the exported checkpoint provide attainment.']};
+}
+
 const server=await createServer({server:{middlewareMode:true},appType:'custom'});
 try {
   const {validateR2Content,R2_JOKERS}=await server.ssrLoadModule('/src/content/r2Schema.ts');
   const {R2_CONTENT_VERSION,R2_CONTENT_HASH,R2_LIMITS}=await server.ssrLoadModule('/src/domain/r2Run.ts');
   const {SCORE_LIMITS}=await server.ssrLoadModule('/src/domain/scoreR2.ts');
   const {R2_TOOL_CATALOG}=await server.ssrLoadModule('/src/content/r2Tools.ts');
+  const chapter=await server.ssrLoadModule('/src/domain/r2Chapter.ts');
   const input=process.argv[2] ? JSON.parse(await readFile(process.argv[2],'utf8')) : R2_JOKERS;
   const errors=validateR2Content(input);
   const sum=values=>values.reduce((total,value)=>total+value,0);
@@ -82,6 +228,8 @@ try {
       worstJokerSources=worst.map(cost=>({definitionId:cost.id,events:cost.weighted}));}
   }
   if(eventBound>SCORE_LIMITS.eventCount)errors.push(`content event bound ${eventBound} exceeds ${SCORE_LIMITS.eventCount}`);
+  const tightProof=errors.length?null:legalEventEnvelope(input,R2_TOOL_CATALOG,R2_LIMITS,SCORE_LIMITS,chapter);
+  if(tightProof&&tightProof.maximumEvents>SCORE_LIMITS.eventCount)errors.push(`legal content event envelope ${tightProof.maximumEvents} exceeds ${SCORE_LIMITS.eventCount}`);
   if(errors.length) {console.error(errors.join('\n'));process.exitCode=1;}
   else console.log(JSON.stringify({status:'PASS',definitions:input.length,contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH,
     conservativeEventBound:eventBound,eventBoundBreakdown,eventBoundModel:{
@@ -96,6 +244,6 @@ try {
         'Maximum repeated lucky/edition, once-only glass, held voice/gold and success/failure rewards are overcounted together.',
         'One edition and enhancement per source; held editions do not score; all extras share the fixed per-card cap.',
         'This is a definition-based conservative trace bound, not an observed maximum or a seed search.'],
-    },readOnly:true},null,2));
+    },legalEventEnvelope:tightProof,readOnly:true},null,2));
 } catch(error) {console.error(error.stack);process.exitCode=1;}
 finally {await server.close();}

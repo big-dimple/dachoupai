@@ -1,0 +1,266 @@
+{
+  "taskId": "C02",
+  "date": "2026-10-02",
+  "status": "PASS_ENGINEERING_SCOPE",
+  "testedCommit": "5d2d9dee439437567b9ccf49e748b2556d39eb35",
+  "testedWorktree": "Actual main checkout with the reviewed changes fingerprinted below; browser ran the same production source via a disposable preview build.",
+  "fixes": [
+    "C09 four-card flush responds from the enabling Joker, preserving the committed ordinary-hand choice.",
+    "E11/F12 coefficient packets display multiplication, matching the committed M calculation.",
+    "RunController traverses already-frozen parents and freezes nested rule state."
+  ],
+  "maximum": {
+    "scope": "Current72, B01-B04 and command-reachable entry resources, same unique five Joker slots; maximum event count, not maximum score or acquisition probability.",
+    "abstractStates": 3280,
+    "conservativeGuard": 318,
+    "hardLimit": 512,
+    "legalMaximum": 91,
+    "attainedPureEvents": 88,
+    "attainedSharedEvents": 91,
+    "fixture": "tests/fixtures/c02-max-chain.ts",
+    "artificialAcquisitionAndDrawOrder": true,
+    "realSharedPreparationAndScoringCommands": true,
+    "score": "1334525",
+    "H": "1740",
+    "M": "24543/32",
+    "luckyGold": 20,
+    "endingGold": 136,
+    "ruleStart": 16697,
+    "ruleEnd": 3031312653,
+    "stateHash": "json-fnv-v1:33da524b3d4706d7",
+    "independentFractionOracle": "shots/c02-independent-fraction.log",
+    "unknownOrChangedScopeRejected": true
+  },
+  "checks": [
+    {
+      "command": "npm.cmd test",
+      "result": "PASS: 1006 tests / 59 files",
+      "launchChunk": "a41666",
+      "completionChunk": "ee2f7c",
+      "log": "shots/c02-closeout-unit.log"
+    },
+    {
+      "command": "npm.cmd run build",
+      "result": "PASS; existing bundle-size warning retained",
+      "launchChunk": "3a8848",
+      "completionChunk": "412df0",
+      "log": "shots/c02-chain-build.log"
+    },
+    {
+      "command": "npm.cmd run typecheck",
+      "result": "PASS",
+      "chunk": "bdc6ec",
+      "log": "shots/c02-recovery-final-typecheck.log"
+    },
+    {
+      "command": "node scripts/verify-content.mjs",
+      "result": "PASS: 72 definitions,318 conservative,91 current legal",
+      "chunk": "6e7601",
+      "log": "shots/c02-chain-content.log"
+    },
+    {
+      "command": "npx.cmd vitest run tests/c02-chain.test.ts tests/c01-score.test.ts --reporter=verbose",
+      "result": "PASS49/49; original3/C01forty unchanged",
+      "chunk": "c9f33f",
+      "log": "shots/c02-chain-green-final.log"
+    },
+    {
+      "command": "npx vitest run tests/c02-recovery.test.ts --reporter=verbose --reporter=json --outputFile=shots/c02-recovery-final.json",
+      "result": "PASS5/5; quota/retry,duplicate/stale and all four RNG domains",
+      "chunk": "6c20f0",
+      "log": "shots/c02-recovery-final.log"
+    },
+    {
+      "command": "node shots/c02-dense-browser.mjs",
+      "result": "PASS scoped playback/recovery; background hidden NOT_RUN",
+      "launchChunk": "9ce5b8",
+      "completionChunk": "013dc4",
+      "log": "shots/c02-dense-browser.log",
+      "report": "shots/c02-dense-browser-result.json",
+      "scriptSHA256": "5557b67de61967d0ce9e3dfdeebaac85bce60376057f6d9b0c69010845bc49b9"
+    },
+    {
+      "command": "npm.cmd run typecheck",
+      "result": "PASS final candidate",
+      "chunk": "d1672f",
+      "log": "shots/c02-closeout-typecheck.log"
+    },
+    {
+      "command": "node scripts/check-production-plan.mjs",
+      "result": "PLAN_VALID31 currentC03; not gameplay acceptance",
+      "chunk": "903d32",
+      "log": "shots/c02-closeout-plan.log"
+    },
+    {
+      "command": "npx.cmd vitest run tests/c02-chain.test.ts --reporter=verbose -t 'refuses a tight proof'",
+      "result": "PASS2/2 changed temporary-file lifecycle, seven unrelated tests skipped",
+      "launchChunk": "184664",
+      "completionChunk": "8e3415",
+      "log": "shots/c02-closeout-temp-clean.log"
+    },
+    {
+      "command": "git -c core.safecrlf=false diff --check",
+      "result": "PASS",
+      "chunk": "ad7736"
+    }
+  ],
+  "actualFailuresBeforeFix": [
+    {
+      "log": "shots/c02-formation-valid-red.log",
+      "chunk": "c098d6",
+      "reason": "Missing fourCardFormation export; prior invalid none enhancement test input corrected, rule unchanged."
+    },
+    {
+      "log": "shots/c02-coefficient-packet-red.log",
+      "chunk": "a64437",
+      "reason": "Missing scorePacketSymbol mapping for coefficient multiplications."
+    },
+    {
+      "log": "shots/c02-recovery-red.log",
+      "chunk": "3d73f0",
+      "reason": "Nested rule cursor mutation succeeded under shallow-frozen parent."
+    },
+    {
+      "log": "shots/c02-chain-proof-red.log",
+      "reason": "CLI had no legal maximum envelope; conservative guard already passed."
+    },
+    {
+      "log": "shots/c02-recovery-green.log",
+      "reason": "Interim stale fixture used already-consumed command ID; corrected input ID, retained expected stale-sequence."
+    },
+    {
+      "log": "shots/c02-chain-green.log",
+      "reason": "One subprocess exceeded initial5s test timeout; scoped20s budget then passed, assertions unchanged."
+    }
+  ],
+  "actualBrowser": {
+    "testedCommit": "5d2d9dee439437567b9ccf49e748b2556d39eb35",
+    "dirty": "M src/application/RunController.ts\n M src/game/GameScene.ts\n M src/game/scorePresentation.ts\n M tests/score-presentation.test.ts\n?? tests/c02-formation-feedback.test.ts\n?? tests/c02-recovery.test.ts\n?? tests/fixtures/c02-max-chain.ts",
+    "checks": [
+      {
+        "name": "dense/full-1x-all-sources",
+        "status": "PASS",
+        "traceEvents": 91,
+        "sourceEvents": 89,
+        "score": "1334525",
+        "stateHash": "json-fnv-v1:33da524b3d4706d7",
+        "durationMs": 51956.30000001192,
+        "frameMs": {
+          "median": 18.400000005960464,
+          "p95": 19.399999976158142,
+          "p99": 20.400000005960464
+        },
+        "fps": 54.180147547060784,
+        "longTasks": [
+          {
+            "start": 58014.70000001788,
+            "duration": 85
+          }
+        ],
+        "peakVoices": 15,
+        "peakChildren": 127
+      },
+      {
+        "name": "dense/reload-after-all-sources",
+        "status": "PASS",
+        "stateHash": "json-fnv-v1:33da524b3d4706d7"
+      },
+      {
+        "name": "dense/refresh-mid-source",
+        "status": "PASS",
+        "stateHash": "json-fnv-v1:33da524b3d4706d7"
+      },
+      {
+        "name": "dense/fast-forward",
+        "status": "PASS",
+        "stateHash": "json-fnv-v1:33da524b3d4706d7"
+      },
+      {
+        "name": "dense/rotate",
+        "status": "PASS",
+        "stateHash": "json-fnv-v1:33da524b3d4706d7"
+      },
+      {
+        "name": "dense/background",
+        "status": "NOT_RUN",
+        "reason": "headless tab focus did not emit document.hidden"
+      },
+      {
+        "name": "C09-and-persistent-multiply-packets",
+        "status": "PASS",
+        "score": "3332",
+        "formation": true,
+        "coefficientPacket": true,
+        "stateHash": "json-fnv-v1:f9fbdbb81bc81d2c"
+      }
+    ],
+    "limitations": [
+      "Windows full Chromium / Intel GPU; phone-size touch and DPR3, physical Android/audio listening NOT_RUN.",
+      "A legal prepared checkpoint imported by the player route, not a natural acquisition or balance claim."
+    ],
+    "browser": "153.0.8010.12",
+    "status": "PASS"
+  },
+  "retainedContracts": [
+    "C01forty and originalC02three literal numeric goldens",
+    "512 rollback guard",
+    "domain does not depend on animation",
+    "v7 explicit-new-game compatibility",
+    "owner A01/D22/D25 acceptance"
+  ],
+  "limitations": [
+    "Windows Chromium / Intel GPU at390x740 DPR3 touch, physical Android and audio listening NOT_RUN.",
+    "Background tab focus did not produce document.hidden; NOT_RUN.",
+    "New48 full illustrations require A03; mechanism motifs are not approved illustrations.",
+    "C03 must reclassify expanded Boss scope;91 cannot be silently reused.",
+    "Ignored shots logs/probe are local evidence, not a new permanent harness or repository screenshot archive."
+  ],
+  "sourceFingerprints": [
+    {
+      "path": "scripts/verify-content.mjs",
+      "sha256": "175cebd241fd17eb941e562ab2ab2a189deaa69506c6be632b35edb647b3c934"
+    },
+    {
+      "path": "src/application/RunController.ts",
+      "sha256": "35377101ad5a77091a7626044507fc2d5cff03cd9ced7ce12fc289d7f07b5745"
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "sha256": "d44875898b579384f2f4b2b8db8ffb9bf4da603720f12fb11e6d8f616dab372a"
+    },
+    {
+      "path": "src/game/scorePresentation.ts",
+      "sha256": "443da6505f438c10c4439178c1e5190ca1d2ca3c82d6703fd1d48854d47460c6"
+    },
+    {
+      "path": "tests/c02-chain.test.ts",
+      "sha256": "c6f5c26f79ea14a2a988a8e2e7253ce96e22adf0f6b40c02cad749790c9d3fde"
+    },
+    {
+      "path": "tests/score-presentation.test.ts",
+      "sha256": "c01e57ec682036432d90c5957d9cf8fc6b744381a487126c8fec1215f4fdc13e"
+    },
+    {
+      "path": "tests/c02-formation-feedback.test.ts",
+      "sha256": "1f3cc7711b724e4a92612a2fce2a37e2830fd352a0808ff974604b1a539ef572"
+    },
+    {
+      "path": "tests/c02-recovery.test.ts",
+      "sha256": "5416dec05d0fd55f92e15b409c358e0a22143cd3dcd3423c08f5ecbf26ad8dc9"
+    },
+    {
+      "path": "tests/fixtures/c02-max-chain.ts",
+      "sha256": "9e3df70359144e48dcd0ed62130c987de607812f12993c2f4598dca0bcb64a60"
+    }
+  ],
+  "publication": {
+    "status": "PENDING_NORMAL_MAIN_COMMIT_AND_PUSH"
+  },
+  "nextStep": "C03.1: eight-chapter targets and public Boss contract/goldens, before implementation.",
+  "cleanup": {
+    "mode": "jiepi-clear lightweight pre-commit",
+    "reviewed": "Only changed runtime, meaningful regression/golden tests and affected plan/handoff/rules; no generic permanent harness, maps or screenshot archives added.",
+    "removed": "Two generated negative-test input JSON files; future runs use automatically cleaned temporary directories.",
+    "checks": "Actual full unit, production build, targeted playback and final type/content/plan/diff already completed."
+  }
+}
