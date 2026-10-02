@@ -17,12 +17,14 @@ import {getCharacter} from './characters';
 import {selectionPortraitKey} from './portraits';
 import {stageOutcome} from './stageOutcome';
 import {ScoreFlame} from './ScoreFlame';
+import {EffectQueue} from '../core/EffectQueue';
+import {REWARD_COIN,RewardCoinCue,loadRewardCoin,addRewardCoin,animateRewardCoin} from './RewardCoin';
 import {SceneView} from './SceneView';
 import {DetailDialog} from './DetailDialog';
 import {SKIP_ITEM_LABELS} from './ConsumableDialog';
 import type {Box} from './layout';
 
-export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue}
+export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue;rewardClearId?:string}
 function resultLayout(width:number,height:number,top:number,bottom:number){
   const short=height<500,portrait=width<700&&height>width,w=Math.min(980,width-24),x=(width-w)/2;
   const footerY=height-bottom-(portrait?148:104),bodyY=top+(short?64:portrait?108:94),available=footerY-16-bodyY;
@@ -41,6 +43,8 @@ export class IntermissionScene extends Phaser.Scene {
   private notice='';
   private firstRender=true;
   private celebration?:ScoreFlame;
+  private readonly rewardCue=new RewardCoinCue();
+  private readonly rewardEffects=new EffectQueue();
   private celebrationTimer?:Phaser.Time.TimerEvent;
   private readonly dialog=new DetailDialog();
   private readonly audio=AudioEngine.shared;
@@ -124,6 +128,7 @@ export class IntermissionScene extends Phaser.Scene {
     return [...new Set(trace.events.filter(e=>(e.sourceType==='joker'||e.sourceType==='character')&&e.phase!=='afterHand'&&(e.before.H.n!==e.after.H.n||e.before.H.d!==e.after.H.d||e.before.M.n!==e.after.M.n||e.before.M.d!==e.after.M.d||e.operation==='retrigger-card'&&BigInt(e.value.n)>0n)).map(e=>e.sourceType==='character'?character.name:getR2Joker(e.sourceDefinitionId).name))];
   }
   private stopCelebration():void {
+    this.rewardEffects.clear();
     this.celebrationTimer?.remove();this.celebrationTimer=undefined;this.celebration?.destroy();this.celebration=undefined;
     this.tweens.killAll();
   }
@@ -147,14 +152,30 @@ export class IntermissionScene extends Phaser.Scene {
     const scoreY=top+(trace?(compact?46:68):(compact?24:42)),scoreSize=compact?32:Math.min(68,Math.max(42,b.height*.19));
     const score=v.text(cx,scoreY,(trace?'+':'')+heatText(trace?.finalScore??this.result.stageHeat),scoreSize,'#fff2c7').setOrigin(.5,0).setName('result/score').setFontStyle('bold').setShadow(0,3,'#10272d',5,true,true);
     for(let font=scoreSize;score.width>b.width-28&&font>24;)score.setFontSize(--font);
-    const totalY=b.y+b.height-(compact?46:85),target=run.stage!.targetHeat;
+    // Reserve visible coin height above the reward row; transparent cell padding is not a text gap.
+    const coinRow=this.result.cleared&&!skipped&&this.result.goldEarned>0,coinSize=compact?(b.height<190?56:72):96;
+    const totalY=b.y+b.height-(coinRow?(compact?(coinSize===56?70:88):120):(compact?46:85)),target=run.stage!.targetHeat;
     if(!compact&&trace){
       const sources=this.traceSources(trace).slice(0,3),line=v.text(cx,Math.min(totalY-25,scoreY+score.height+16),sources.length?sources.join(' · '):'牌型与计分牌共同结算',13,'#c9dacc',b.width-28).setOrigin(.5,0);
       if(animate){line.setAlpha(0);this.tweens.add({targets:line,alpha:1,y:{from:line.y-12,to:line.y},duration:280,delay:180,ease:'Cubic.easeOut'});}
     }
     const gap=BigInt(target)>BigInt(this.result.stageHeat)?(BigInt(target)-BigInt(this.result.stageHeat)).toString():'0';
     v.text(cx,totalY,skipped?'本场跳过':lost?`目标 ${heatText(target)} · 差 ${heatText(gap)}`:`全场 ${heatText(this.result.stageHeat)} / ${heatText(target)}`,compact?14:20,'#e3e9d9').setOrigin(.5,0).setName('result/gap');
-    if(this.result.cleared&&!skipped)v.text(cx,totalY+(compact?22:33),'过关奖励  +'+this.result.goldEarned+' 金',compact?16:22,'#ffdc91').setOrigin(.5,0).setFontStyle('bold');
+    if(this.result.cleared&&!skipped){
+      const reward=v.text(cx,b.y+b.height-(compact?(coinSize===56?32:40):52),'过关奖励  +'+this.result.goldEarned+' 金',compact?16:22,'#ffdc91').setOrigin(.5,0).setFontStyle('bold').setName('result/reward');
+      const cue=this.firstRender&&this.rewardCue.claim(run,this.result),size=coinSize,diameter=size*.7,gap=8;
+      const x=cx-(reward.width+diameter+gap)/2+diameter/2,y=reward.y+reward.height/2-size*.04;
+      const show=()=>{reward.x=cx+(diameter+gap)/2;return addRewardCoin(this,v.root,x,y,size,run.stage!.clearId!);};
+      if(this.result.goldEarned>0&&this.textures.exists(REWARD_COIN.key)&&run.stage?.clearId){
+        const coin=show();if(cue)this.rewardEffects.enqueue(context=>animateRewardCoin(this,coin,context.signal,gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches));
+      }else if(cue){
+        this.rewardEffects.enqueue(async context=>{
+          if(!await loadRewardCoin(this,context.signal)||context.signal.aborted)return;
+          const coin=show();await animateRewardCoin(this,coin,context.signal,gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+        });
+      }
+      if(cue)void this.rewardEffects.drain().catch(()=>{});
+    }
     if(animate&&this.result.cleared&&!skipped){
       const centerY=scoreY+score.height*.55,flare=v.add(this.add.graphics().lineStyle(outcome.intensity,0xffd588,.55).strokeEllipse(0,0,Math.min(320,b.width-20),68).setPosition(cx,centerY));
       this.tweens.add({targets:flare,scaleX:{from:.3,to:1.1},scaleY:{from:.5,to:1.4},alpha:{from:.8,to:0},duration:550,ease:'Cubic.easeOut',onComplete:()=>flare.destroy()});
@@ -194,7 +215,7 @@ export class IntermissionScene extends Phaser.Scene {
   }
   private exitResult(destination:'shop'|'character-select',data?:{freshSeed:true}):void {
     // Phaser queues the switch; retire this view before async finally can repaint a new run.
-    this.lifecycle++;this.dialog.close();this.audio.select();
+    this.lifecycle++;this.rewardEffects.clear();this.dialog.close();this.audio.select();
     if(data)this.scene.start(destination,data);else this.scene.start(destination);
   }
   private confirmEndless():void {

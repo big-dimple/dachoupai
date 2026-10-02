@@ -1386,7 +1386,7 @@ export class GameScene extends Phaser.Scene {
     if(!this.alive(presentation.lifecycle,presentation.intent))return;
     this.stopScoreFire();
     this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.statusMessage='';this.updateHud();
-    if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true);return;}
+    if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true,true,!presentation.replay);return;}
     if(this.run.phase==='run-lost'){this.finishStage(false,!presentation.replay);return;}
     this.playing=false;this.render();this.revealDrawnCards(presentation.hand.map(card=>card.id));
   }
@@ -1409,12 +1409,12 @@ export class GameScene extends Phaser.Scene {
   }
 
   /** 本关结束：先让玩家看清结果，再进入明确的过场状态 */
-  private finishStage(cleared: boolean,cueFailure=true): void {
+  private finishStage(cleared: boolean,cueFailure=true,cueReward=false): void {
     this.playing=true;this.playButton.disableInteractive();
     const lifecycle=this.lifecycle,handsLeft=this.handsLeft;
     const completedIndex = this.run.stage!.index;
     const stageHeat = this.heat;
-    const goldEarned = this.run.stage!.goldEarned;
+    const goldEarned = this.run.stage!.goldEarned, rewardClearId=cleared&&cueReward?this.run.stage!.clearId:undefined;
 
     if (cleared) {
       this.resultText.setText(`过关 · ${heatText(stageHeat)} 热度`);
@@ -1433,6 +1433,7 @@ export class GameScene extends Phaser.Scene {
         stageHeat,
         handsLeft,
         goldEarned,
+        ...(rewardClearId?{rewardClearId}:{}),
         ...(!cleared&&cueFailure?{failureCue:{runId:this.run.runId,commandSeq:this.run.commandSeq}}:{})
       } satisfies IntermissionResult);
     }});
