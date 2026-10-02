@@ -7,9 +7,10 @@ export interface HandSelectionHitBox {
   visible?:boolean;
 }
 
-export type HandSelectionCancelReason='cancel'|'outside'|'vertical'|'multitouch';
+export type HandSelectionInterruptReason='outside'|'viewport'|'vertical'|'multitouch'|'capture'|'pointercancel'|'blur'|'hidden'|'modal'|'resize'|'reset'|'hold';
+export type HandSelectionCancelReason='cancel'|'escape'|HandSelectionInterruptReason;
 export interface HandSelectionUpdate {
-  phase:'pending'|'sweeping'|'committed'|'cancelled';
+  phase:'pending'|'sweeping'|'committed'|'interrupted'|'cancelled';
   pointerId:number;
   mode:'select'|'deselect';
   selectedIds:readonly string[];
@@ -56,7 +57,7 @@ export class HandSelectionGesture {
   get state():HandSelectionUpdate|undefined {return this.gesture?this.snapshot(this.gesture):undefined;}
 
   begin(pointerId:number,x:number,y:number,startCardId:string,initialSelected:Iterable<string>,orderedBoxes:readonly HandSelectionHitBox[],max=5):HandSelectionUpdate|undefined {
-    if(this.gesture)return this.gesture.pointerId===pointerId?undefined:this.cancel('multitouch');
+    if(this.gesture)return this.gesture.pointerId===pointerId?undefined:this.interrupt('multitouch');
     if(!orderedBoxes.some(box=>box.id===startCardId&&box.visible!==false))return undefined;
     const initial=new Set(initialSelected),limit=Number.isFinite(max)?Math.max(0,Math.min(5,Math.floor(max))):5;
     if(initial.size>limit)return undefined;
@@ -71,7 +72,7 @@ export class HandSelectionGesture {
     if(gesture.phase==='pending'){
       const dx=Math.abs(x-gesture.startX),dy=Math.abs(y-gesture.startY);
       if(Math.max(dx,dy)<10)return this.snapshot(gesture);
-      if(dx<=dy)return this.cancel('vertical');
+      if(dx<=dy)return this.interrupt('vertical');
       gesture.phase='sweeping';this.visit(gesture,gesture.startCardId);
     }
     const crossed=gesture.boxes.flatMap((box,index)=>{
@@ -92,8 +93,15 @@ export class HandSelectionGesture {
     return result;
   }
 
-  /** Canvas departure, pointercancel, multitouch and long-press routing all restore the snapshot. */
-  cancel(reason:HandSelectionCancelReason='cancel'):HandSelectionUpdate|undefined {
+  /** Stop tracking without applying a pending tap or an unseen final segment. */
+  interrupt(reason:HandSelectionInterruptReason):HandSelectionUpdate|undefined {
+    const gesture=this.gesture;if(!gesture)return undefined;
+    const result=this.snapshot(gesture,'interrupted',reason);this.gesture=undefined;
+    return result;
+  }
+
+  /** Explicit cancellation (Escape) alone restores the starting selection. */
+  cancel(reason:'cancel'|'escape'='cancel'):HandSelectionUpdate|undefined {
     const gesture=this.gesture;if(!gesture)return undefined;
     const result=this.snapshot(gesture,'cancelled',reason);this.gesture=undefined;
     return result;

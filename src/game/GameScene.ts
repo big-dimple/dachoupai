@@ -227,7 +227,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private readonly keyboard=(event:KeyboardEvent)=>{
-    if(this.handInput?.active){if(event.key==='Escape'){event.preventDefault();this.handInput.cancel();}return;}
+    if(this.handInput?.active){if(event.key==='Escape'){event.preventDefault();this.handInput.cancel('escape');}return;}
     if(this.playing||document.querySelector('dialog[open]')||!this.scene.isActive()||document.activeElement?.matches('input,select,textarea,button'))return;
     if((event.key==='ArrowRight'||event.key==='ArrowLeft')&&this.hand.length){event.preventDefault();this.focusIndex=(this.focusIndex+(event.key==='ArrowRight'?1:this.hand.length-1))%this.hand.length;this.showFocusedCard();this.refreshSelection();}
     else if(event.key===' '&&this.hand[this.focusIndex]){event.preventDefault();this.toggleCard(this.hand[this.focusIndex].id);}
@@ -558,7 +558,12 @@ export class GameScene extends Phaser.Scene {
     const angle=0,y=b.y+b.height/2-(selected?16:0)-(hovered&&!this.reducedMotion?4:0),scale=1;
     this.tweens.killTweensOf(view.container);view.container.setAlpha(1);view.faceGlow?.setAlpha(0);
     if(animate&&!this.reducedMotion)this.tweens.add({targets:view.container,x:b.x+b.width/2,y,angle,scaleX:scale,scaleY:scale,duration:selected?150:115,ease:selected?'Back.easeOut':'Sine.easeOut'});else view.container.setPosition(b.x+b.width/2,y).setScale(scale).setAngle(angle);
-    view.background.setStrokeStyle(hovered||focused||selected||scoring?4:1,hovered||focused?0xffd990:scoring?T.jade:selected?T.red:T.brass);view.edgeGlow?.setAlpha(hovered||focused?1:selected?0.85:0);
+    // A thick square backing showed colored corner patches around the rounded face.
+    // Keep the paper edge neutral and draw state feedback along the rounded contour.
+    view.background.setStrokeStyle(1,T.brass);
+    view.edgeGlow?.clear().lineStyle(hovered||focused?3:2,hovered||focused?0xffd990:scoring?T.jade:T.red,.95)
+      .strokeRoundedRect(-b.width/2-1,-b.height/2-1,b.width+2,b.height+2,Math.min(7,b.width*.09))
+      .setAlpha(hovered||focused?1:(selected||scoring)?0.85:0);
     this.view.root.bringToTop(this.handCountText);this.view.root.bringToTop(this.pileText);
   }
   private hoverJoker(id:string,enter:boolean):void {

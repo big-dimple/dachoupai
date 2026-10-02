@@ -95,20 +95,33 @@ describe('hand press-sweep selection',()=>{
 
   it.each([[3,10],[10,10],[-11,-14]])('rejects vertical intent (%s,%s) and leaves its release inert',(dx,dy)=>{
     const gesture=new HandSelectionGesture();start(gesture,'c',['b','f']);
-    expect(gesture.move(1,center('c')+dx,160+dy)).toMatchObject({phase:'cancelled',reason:'vertical',selectedIds:['b','f'],visitedIds:[]});
+    expect(gesture.move(1,center('c')+dx,160+dy)).toMatchObject({phase:'interrupted',reason:'vertical',selectedIds:['b','f'],visitedIds:[]});
     expect(gesture.state).toBeUndefined();
     expect(gesture.up(1,center('e'),160)).toBeUndefined();
   });
 
-  it.each(['cancel','outside','multitouch'] as const)('%s restores the snapshot after a preview and allows a fresh gesture',reason=>{
+  it('explicit Escape restores the snapshot after a preview and allows a fresh gesture',()=>{
     const gesture=new HandSelectionGesture(),selected=new Set(['b','f']);start(gesture,'c',selected);
     expect(gesture.move(1,center('e'),160)?.selectedIds).toEqual(['b','c','d','e','f']);
-    expect(gesture.cancel(reason)).toMatchObject({phase:'cancelled',reason,selectedIds:['b','f']});
+    expect(gesture.cancel('escape')).toMatchObject({phase:'cancelled',reason:'escape',selectedIds:['b','f']});
     expect([...selected]).toEqual(['b','f']);
     expect(gesture.state).toBeUndefined();
     expect(gesture.up(1,center('e'),160)).toBeUndefined();
     start(gesture,'h',selected);
     expect(gesture.up(1,center('h'),160)?.selectedIds).toEqual(['b','f','h']);
+  });
+
+  it.each([false,true])('departure preserves applied selection and deselection (deselect: %s)',deselect=>{
+    const gesture=new HandSelectionGesture();start(gesture,'b',deselect?['b','c','d','f']:['f']);
+    gesture.move(1,center('d'),160);
+    expect(gesture.interrupt('outside')).toMatchObject({phase:'interrupted',reason:'outside',selectedIds:deselect?['f']:['b','c','d','f'],visitedIds:['b','c','d']});
+    expect(gesture.state).toBeUndefined();expect(gesture.up(1,center('h'),160)).toBeUndefined();
+  });
+
+  it('viewport departure ends a pending tap without visiting the pressed card',()=>{
+    const gesture=new HandSelectionGesture();start(gesture,'b',['f']);
+    expect(gesture.interrupt('viewport')).toMatchObject({phase:'interrupted',selectedIds:['f'],visitedIds:[]});
+    expect(gesture.up(1,center('b'),160)).toBeUndefined();
   });
 
   it('rolls back a deselection preview as well as a selection preview',()=>{
@@ -117,9 +130,9 @@ describe('hand press-sweep selection',()=>{
     expect(gesture.cancel()?.selectedIds).toEqual(['b','d','f']);
   });
 
-  it('a second pointer cancels without replacing the original snapshot',()=>{
+  it('a second pointer interrupts without changing the already-applied selection',()=>{
     const gesture=new HandSelectionGesture();start(gesture,'b',['f']);gesture.move(1,center('d'),160);
-    expect(gesture.begin(2,center('h'),160,'h',[],boxes)).toMatchObject({phase:'cancelled',reason:'multitouch',pointerId:1,selectedIds:['f']});
+    expect(gesture.begin(2,center('h'),160,'h',[],boxes)).toMatchObject({phase:'interrupted',reason:'multitouch',pointerId:1,selectedIds:['b','c','d','f']});
     expect(gesture.up(2,center('h'),160)).toBeUndefined();
     expect(gesture.up(1,center('d'),160)).toBeUndefined();
   });

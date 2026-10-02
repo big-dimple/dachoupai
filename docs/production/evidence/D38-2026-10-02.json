@@ -1,0 +1,200 @@
+{
+  "taskId": "P08",
+  "task": "D38 hand sweep feedback and interruption retention",
+  "date": "2026-10-02",
+  "baseCommit": "a5afc33963beffc94ffd8e4639dda98bdf345af9",
+  "status": "LOCAL_ENGINEERING_PASS_REMOTE_CI_CHECK_AFTER_PUSH",
+  "scope": [
+    "Replace demonstrated square colored hand-card backing with thin rounded state outlines",
+    "Preserve applied selection on implicit interruption and safely recover physical pointer ownership"
+  ],
+  "invariants": "No rules, RNG, command/save format, artwork, dependencies or deployment changes.",
+  "baseline": {
+    "remoteCI": {
+      "status": "success",
+      "url": "https://github.com/big-dimple/dachoupai/actions/runs/37031831645"
+    },
+    "report": "shots/hand-polish/baseline/report.json",
+    "diagnosis": "shots/hand-polish/baseline/review.json",
+    "isolation": "shots/hand-polish/baseline/isolation.json",
+    "cause": "Same held sweep: edgeGlow-off retains square colored patches; changing only the 4px Rectangle stroke to a thin neutral edge removes them. Raw Canvas and full-page screenshots agree; checkmarks, lift, selected set and exported controller state unchanged.",
+    "departure": "Native mouse/CDP touch reproduce one selected -> live five -> one after old cancellation on hand/viewport exit and reentry.",
+    "nativeTapHighlight": "UNCONFIRMED. CSS-only transparent tap highlight did not remove demonstrated Canvas artifact. Stationary screenshot round trips exceeded the long-press threshold; no claim of sub-threshold or physical-phone reproduction.",
+    "setupFailure": "One isolated diagnostic clicked shop entry during its readiness transition; corrected by waiting actual ready state, without changing timeout. Failed attempt retained in baseline/isolation-setup-failure.json."
+  },
+  "behavior": {
+    "implicit": "Hand/viewport exit, capture loss, pointercancel, multi-contact, blur/hidden, modal and resize/reset preserve already-applied set and end tracking. Pending taps/holds never acquire a card on interruption.",
+    "physical": "Leave/capture loss retain suppression until corresponding up/cancel; same-type fresh primary or same-ID mouse/pen zero-button return recover a missed release. Other types/nonprimary contacts do not prove release.",
+    "explicitEscape": "Restores gesture starting snapshot and consumes subsequent release.",
+    "feedback": "Neutral 1px base edge; thin rounded red/jade selection/scoring contour and visible gold hover/focus. Lift, checkmark, scoring symbol and keyboard focus preserved."
+  },
+  "verification": {
+    "focused": {
+      "status": "PASS",
+      "tests": 45,
+      "files": [
+        "tests/hand-selection-gesture.test.ts",
+        "tests/hand-selection-input.test.ts"
+      ]
+    },
+    "typecheck": "PASS",
+    "browser": {
+      "status": "PASS",
+      "report": "shots/hand-polish/after/report.json",
+      "checks": 102,
+      "environment": {
+        "platform": "linux",
+        "node": "v22.23.3",
+        "executable": "/usr/bin/chromium",
+        "args": [
+          "--disable-gpu",
+          "--disable-software-rasterizer"
+        ],
+        "browser": "151.0.7922.173"
+      },
+      "bundleFiles": [
+        {
+          "file": "index-DRfuvi27.js",
+          "sha256": "e91b3f3b8d2be6964a685e0305a6f9acd6b495c89d403fad91fd0fe30cf8c891"
+        },
+        {
+          "file": "index-DpZl-qb0.css",
+          "sha256": "17f5ea4db0751489ee087a03adba9b48ea8f52eb0fe697bba35b44bd8ec70eda"
+        }
+      ],
+      "runs": [
+        {
+          "name": "desktop",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "dpr": 1,
+          "renderer": "Canvas",
+          "observedFps": 38.1875,
+          "checks": 28
+        },
+        {
+          "name": "touch",
+          "viewport": {
+            "width": 412,
+            "height": 820
+          },
+          "dpr": 3,
+          "renderer": "Canvas",
+          "observedFps": 35.48046875,
+          "checks": 37
+        },
+        {
+          "name": "touch-bars",
+          "viewport": {
+            "width": 390,
+            "height": 640
+          },
+          "dpr": 3,
+          "renderer": "Canvas",
+          "observedFps": 40.421875,
+          "checks": 37
+        }
+      ],
+      "fpsNote": "Read from Phaser at a single functional checkpoint, not a hardware or physical-device performance benchmark.",
+      "inputNotes": "Mouse/CDP touch native events. Capture-release API and dispatched blur are labelled lifecycle injections; missed physical release recovery additionally covered by isolated input unit tests."
+    },
+    "releaseAggregate": {
+      "status": "PASS",
+      "report": "shots/ci/all.json",
+      "log": "shots/hand-polish/release-ci.log",
+      "tests": 1693,
+      "testFiles": 89,
+      "steps": [
+        {
+          "name": "test",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 62527
+        },
+        {
+          "name": "verify:content",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 4106
+        },
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 17918
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 62355
+        },
+        {
+          "name": "production-plan",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 319
+        }
+      ],
+      "sourceUnchangedDuringGate": true,
+      "before": {
+        "source": "6246df0c2f155fb16bca7210498bd8a311b352d4ab2c3b00f455374627620353",
+        "index": "8dbc64aa25227a6c413dcbb29ad5c286ebb50c919a5e5c37b8e73030afdfe4a7",
+        "head": "a5afc33963beffc94ffd8e4639dda98bdf345af9",
+        "branch": "refs/heads/dot/hand-polish"
+      },
+      "after": {
+        "source": "6246df0c2f155fb16bca7210498bd8a311b352d4ab2c3b00f455374627620353",
+        "index": "8dbc64aa25227a6c413dcbb29ad5c286ebb50c919a5e5c37b8e73030afdfe4a7",
+        "head": "a5afc33963beffc94ffd8e4639dda98bdf345af9",
+        "branch": "refs/heads/dot/hand-polish"
+      },
+      "smoke": "Canvas desktop1280x720 and touch390x740/DPR3, external system-Chromium adapter. No assertion/timeout changes.",
+      "documentationAfterGate": "Only this result and handoff were finalized after the frozen aggregate; runtime/test/harness hashes rechecked unchanged, then plan/diff checked."
+    },
+    "nativePan": {
+      "status": "PASS",
+      "report": "shots/hand-polish/after/native-pan-report.json",
+      "scope": "Same frozen bundle, native CDP touch creates trusted pointercancel and scroll 0 to 93px. Production app overflow:hidden; explicitly labelled browser-local scrolling scaffold exercises browser-owned pan without injected cancellation.",
+      "result": "Selection and complete persisted state remain unchanged; contact/capture/owner clear, input restores, next tap works."
+    }
+  },
+  "limits": [
+    "Linux Chromium Canvas with GPU and software rasterization disabled is a functional route, not WebGL or hardware performance evidence.",
+    "Physical OnePlus/Android browser chrome and native phone-specific highlight remain NOT_RUN/UNCONFIRMED.",
+    "Unchanged software-WebGL performance limitation retained; no repeat stress run.",
+    "New f04/e07 source art remains excluded pending independent publication approval; no restricted asset access or alternative transfer route."
+  ],
+  "publication": {
+    "status": "LOCAL_GATES_PASSED",
+    "method": "Normal fast-forward main push only; verify exact remote SHA and CI; no deployment configuration change.",
+    "note": "Evidence finalized before the single normal main release commit. Exact published SHA and remote CI status are recorded in delivery and ignored shots/hand-polish/publication.json."
+  },
+  "screenshots": {
+    "inspected": true,
+    "desktopBefore": "shots/hand-polish/baseline/desktop-original-sweep.png",
+    "desktopAfter": "shots/hand-polish/after/desktop-sweep-right-to-left.png",
+    "touchBefore": "shots/hand-polish/baseline/touch-original-sweep.png",
+    "touchAfter": "shots/hand-polish/after/touch-held-sweep-left.png",
+    "touchExitRetained": "shots/hand-polish/after/touch-outside-released-left.png",
+    "shortViewport": "shots/hand-polish/after/touch-bars-outside-released-right.png",
+    "touchMatchedAfter": "shots/hand-polish/after/touch-matched-sweep.png",
+    "touchMatchedExit": "shots/hand-polish/after/touch-matched-exit.png",
+    "review": "shots/hand-polish/after/review.json"
+  },
+  "testedCommit": "a5afc33963beffc94ffd8e4639dda98bdf345af9",
+  "testedWorkingTree": {
+    "note": "Focused checks and final aggregate use the frozen D38 working-tree candidate based on testedCommit; listed source hashes identify the runtime. Documentation evidence is finalized after checks, before the single release commit.",
+    "files": {
+      "src/game/GameScene.ts": "193f80dca9ca121d180ea9e91b06e8aca26a1d2acc0ea036c884c5510680b8c1",
+      "src/game/HandSelectionGesture.ts": "a190e9eb304a9306e9e5218c7c218298df9104cd1cf6e719d0870f91f3ddcab1",
+      "src/game/HandSelectionInput.ts": "ce0d501cfa2ba37422cd54677861894770ed20eea10bd1797ef66b34d152c607",
+      "tests/hand-selection-gesture.test.ts": "bd4dcbba94d0f30bc61cf942caae4c12fbd4c709879c8aa7ea159b5a9b3af967",
+      "tests/hand-selection-input.test.ts": "857924bf383384c0544f4b474760356b7fa68d7ac75756a8f38f5a0b9db609e5",
+      "harness/hand-selection.mjs": "b176d248d1275da34de25e3844baf48ef74e6a30ba527f366c7414aa5ca440be"
+    }
+  },
+  "nextScope": "End this bounded round. Parent/user reviews actual OnePlus background and edge behavior; new f04/e07 art remains dependent on separate source approval, and no C04 work starts."
+}

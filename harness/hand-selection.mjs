@@ -15,7 +15,7 @@ const digest=value=>createHash('sha256').update(typeof value==='string'?value:JS
 const args=['--disable-gpu','--disable-software-rasterizer'];
 const report={testedCommit:git('rev-parse','HEAD'),dirtyState:git('status','--porcelain=v1'),seed,
   environment:{platform:process.platform,node:process.version,executable:process.env.HAND_SELECTION_CHROMIUM||'/usr/bin/chromium',args},
-  scope:'Natural suit-sorted hand; selection, layering, cancellation and explicit detail reorder',
+  scope:'Natural suit-sorted hand; selection, layering, retained interruptions, recovery and explicit detail reorder',
   limitations:['Canvas functional adapter with GPU and software rasterization disabled; WebGL NOT_RUN.',
     'Linux Chromium mouse and CDP touch emulation; physical Android/iPhone, hardware GPU and device performance NOT_RUN.',
     '390×640 is a constrained CSS viewport, not a real browser address bar or physical-device acceptance.',
@@ -61,6 +61,7 @@ async function observation(page){return page.evaluate(()=>{
     layers:ordered.map(o=>views.find(v=>v.container===o).card.id),focusIndex:s.focusIndex,
     preview:{result:s.resultText.text,breakdown:s.breakdownText.text,heat:s.scoreHeat.text,mult:s.scoreMult.text,total:s.scoreTotal.text},
     status:s.statusText.text,playing:s.playing,presenting:!!s.presentation,handOrder:[...s.run.handOrder],
+    input:{enabled:s.input.enabled,active:s.handInput.active,owner:s.handInput.owner??null,pointers:[...s.handInput.pointers],contacts:[...s.handInput.contacts.keys()],captured:[...s.handInput.pointers].filter(id=>s.handInput.surface.hasPointerCapture(id)),phase:s.handInput.gesture.state?.phase??null},
     layout:{mode:s.view.layout.mode,hand:s.view.layout.hand,visibleCardCount:s.view.layout.visibleCardCount},
     renderer:game.renderer.gl?'WebGL':'Canvas',fps:game.loop.actualFps,framebuffer:[game.canvas.width,game.canvas.height],
     viewport:{width:innerWidth,height:innerHeight,dpr:devicePixelRatio},canvas:{x:canvas.x,y:canvas.y,width:canvas.width,height:canvas.height}};
@@ -77,7 +78,7 @@ const signature=o=>({selected:o.selected,layers:o.layers,cards:o.cards.map(({id,
 const assertExposed=o=>{for(const card of o.cards){assert.equal(card.rankSuitPoints.length,2,card.id+': rank and suit measured');assert.deepEqual(card.coveredBy,[[],[]],card.id+': rank/suit samples are not covered by a higher card');assert.equal(card.hitEnabled,true,card.id+': independent strip enabled');}};
 
 async function scenario(spec){
-  const {name,viewport,touch,reducedMotion}=spec,context=await browser.newContext({viewport,hasTouch:touch,deviceScaleFactor:touch?3:1,reducedMotion});
+  const {name,viewport,touch,reducedMotion}=spec,context=await browser.newContext({viewport,hasTouch:touch,isMobile:touch,deviceScaleFactor:touch?3:1,reducedMotion});
   const page=await context.newPage(),cdp=touch?await context.newCDPSession(page):undefined,errors=[];
   const run={...spec,input:touch?'CDP Input.dispatchTouchEvent + touchscreen tap':'Playwright mouse + keyboard',checks:[],trace:[],screenshots:[]};report.runs.push(run);
   page.on('pageerror',error=>errors.push(String(error)));
@@ -94,11 +95,13 @@ async function scenario(spec){
     const value=await persisted(page);assert.deepEqual(value,baseline,label+': full state, RNG, journal, exported save and IndexedDB stay unchanged');
     assert.equal(await page.evaluate(()=>window.__harness.game.scene.isActive('game')),true,label+': stays on table');
     const o=await observation(page);assert.equal(o.playing,false,label+': no play/discard');assert.equal(o.presenting,false,label+': no score presentation');
+    assert.deepEqual(o.input,{enabled:true,active:false,owner:null,pointers:[],contacts:[],captured:[],phase:null},label+': all contact/capture ownership cleared and input restored');
     run.checks.push({name:label,status:'PASS',selected:o.selected,persistedSha256:digest(value)});return o;
   };
   const clear=async()=>{for(const id of await selected(page))await tap(id);await settle(page,touch);await assertSelected(page,[],'clear by actual taps');};
   try{
     await page.goto(`http://127.0.0.1:${port}/?harness=1&seed=${seed}`);await chooseCharacter(page,'amo',touch);
+    await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);
     await tapUI(page,'shop','action/start-stage',touch);await waitScene(page,'game');
     await page.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.ready&&s.cardViews.length===8;});await settle(page,touch);
     const beforeSort=await persisted(page);trace('sort-suit');await tapUI(page,'game','action/sort-suit',touch);
@@ -141,28 +144,44 @@ async function scenario(spec){
     }
     await settle(page,touch);await invariant('rank-suit-visible-and-unselected-strips-selectable');await shot('partial-selection-readable');
 
-    // Provisional sweep preview is rolled back by genuine touchCancel / Escape.
+    // System touch cancellation preserves the applied set; explicit Escape rolls it back.
     await clear();for(const id of [ids[1],ids[5]])await tap(id);await settle(page,touch);const beforeCancel=signature(await observation(page));
     let p0=await point(page,'game','card/'+ids[0]),p3=await point(page,'game','card/'+ids[3]);await down(p0);await move(p3);
     await assertSelected(page,[ids[0],ids[1],ids[2],ids[3],ids[5]],'sweep updates preview before release');
     assert.deepEqual(await persisted(page),baseline,'live sweep cannot mutate full persistent state');
+    const appliedCancel=signature(await observation(page));
     if(touch)await touchEvent('touchCancel',[]);else{trace('Escape');await page.keyboard.press('Escape');await page.mouse.up();}
-    await settle(page,touch);assert.deepEqual(signature(await observation(page)),beforeCancel,'cancel restores initial selection, layers and preview');await invariant(touch?'touch-cancel-restores-preview':'escape-cancel-restores-preview');await shot('cancel-restored');
+    await settle(page,touch);assert.deepEqual(signature(await observation(page)),touch?appliedCancel:beforeCancel,'system interruption preserves applied set; Escape restores initial set');await invariant(touch?'touch-cancel-preserves-preview':'escape-cancel-restores-preview');await shot('interruption-result');
 
     // A release over either command button must not be interpreted as its click.
     for(const action of ['action/play','action/discard']){
       p0=await point(page,'game','card/'+ids[0]);p3=await point(page,'game','card/'+ids[3]);const target=await point(page,'game',action);
-      await down(p0);await move(p3);await move(target);await up();await settle(page,touch);await invariant('sweep-release-over-'+action.slice(7));
+      await down(p0);await move(p3);const applied=await selected(page);await move(target);await up();await settle(page,touch);await assertSelected(page,applied,'release over command retains applied set');await invariant('sweep-release-over-'+action.slice(7));
       await clear();for(const id of [ids[1],ids[5]])await tap(id);await settle(page,touch);
     }
-    const beforeOutside=signature(await observation(page));p0=await point(page,'game','card/'+ids[0]);p3=await point(page,'game','card/'+ids[3]);
-    await down(p0);await move(p3);await move({x:-12,y:200});await up();await settle(page,touch);
-    assert.deepEqual(signature(await observation(page)),beforeOutside,'outside release cancels and restores preview');await invariant('outside-release-does-not-play');
+    for(const direction of ['left','right']){
+      await clear();p0=await point(page,'game','card/'+ids[direction==='left'?3:0]);p3=await point(page,'game','card/'+ids[direction==='left'?0:3]);
+      await down(p0);await move(p3);const applied=signature(await observation(page));await shot('held-sweep-'+direction);
+      await move({x:direction==='left'?-12:viewport.width+12,y:p3.y});await shot('outside-held-'+direction);
+      await move(await point(page,'game','card/'+ids[6]));await assertSelected(page,applied.selected,'reentry cannot extend an ended sweep');
+      await move({x:direction==='left'?-12:viewport.width+12,y:p3.y});await up();await settle(page,touch);
+      assert.deepEqual(signature(await observation(page)),applied,'outside release preserves selection, stable layers and preview');await invariant('outside-'+direction+'-release-does-not-play');await shot('outside-released-'+direction);
+      await tap(ids[6]);await assertSelected(page,[...applied.selected,ids[6]],'fresh tap works after outside release');await invariant('outside-'+direction+'-fresh-tap-recovers');
+    }
+
+    // Browser lifecycle events are deliberately dispatched; pointer input remains native.
+    for(const interruption of ['capture','blur']){
+      await clear();p0=await point(page,'game','card/'+ids[0]);p3=await point(page,'game','card/'+ids[3]);await down(p0);await move(p3);const applied=await selected(page);
+      trace('lifecycle-injection',{interruption});await page.evaluate(kind=>{const h=window.__harness.game.scene.getScene('game').handInput;if(kind==='capture')h.surface.releasePointerCapture(h.owner);else window.dispatchEvent(new Event('blur'));},interruption);
+      await move(await point(page,'game','card/'+ids[6]));await assertSelected(page,applied,'interrupted gesture cannot resume');
+      await move(await point(page,'game','action/play'));await up();await settle(page,touch);await assertSelected(page,applied,'capture/blur retain applied selection');await invariant(interruption+'-release-no-command');
+      await tap(ids[6]);await assertSelected(page,[...applied,ids[6]],'fresh tap after '+interruption);await invariant(interruption+'-fresh-tap-recovers');
+    }
 
     if(touch){
-      const beforeMulti=signature(await observation(page));p0=await point(page,'game','card/'+ids[0]);p3=await point(page,'game','card/'+ids[3]);
-      await down(p0);await move(p3);await touchEvent('touchStart',[{...p3,id:1},{...await point(page,'game','card/'+ids[6]),id:2}]);await touchEvent('touchEnd',[]);await settle(page,touch);
-      assert.deepEqual(signature(await observation(page)),beforeMulti,'additional touch cancels whole selection gesture');await invariant('multitouch-cancels-no-play');
+      await clear();p0=await point(page,'game','card/'+ids[0]);p3=await point(page,'game','card/'+ids[3]);
+      await down(p0);await move(p3);const appliedMulti=signature(await observation(page));await touchEvent('touchStart',[{...p3,id:1},{...await point(page,'game','card/'+ids[6]),id:2}]);await touchEvent('touchEnd',[]);await settle(page,touch);
+      assert.deepEqual(signature(await observation(page)),appliedMulti,'additional touch preserves applied selection');await invariant('multitouch-preserves-no-play');
       // A pre-existing control press must be canceled before a second finger enters the hand.
       for(const action of ['action/play','action/discard'])for(const releaseFirst of ['control','hand']){
         const beforeContact=signature(await observation(page)),control={...await point(page,'game',action),id:1},hand={...await point(page,'game','card/'+ids[0]),id:2};
