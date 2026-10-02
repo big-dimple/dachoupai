@@ -8,7 +8,7 @@ export function modalBlocksCanvas(x:number,y:number):boolean {
   return !!document.querySelector('dialog[open]')||!!dismissedPointer&&performance.now()<dismissedPointer.until&&Math.hypot(x-dismissedPointer.x,y-dismissedPointer.y)<24;
 }
 interface DialogAction {label:string;run:()=>void|Promise<void>;disabled?:boolean;primary?:boolean}
-interface DialogOptions {summaryBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;f09?:{inactive:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:'common'|'uncommon'|'rare';portrait?:{url:string;thumbnailUrl?:string;alt:string;layout?:'card';caption?:string}}
+interface DialogOptions {summaryBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;f09?:{inactive:boolean;bodyInactive?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:'common'|'uncommon'|'rare';portrait?:{url:string;thumbnailUrl?:string;alt:string;layout?:'card';caption?:string}}
 export class DetailDialog {
   private dialog?:HTMLDialogElement;
   private lastPointer?:{x:number;y:number};
@@ -53,7 +53,7 @@ export class DetailDialog {
         const frame=document.createElement('figure');frame.className='dialog-card-art';frame.append(image);
         image.width=615;image.height=768;
         if(options.portrait.thumbnailUrl)this.stopArt=progressiveArt(frame,image,options.portrait.url,()=>{frame.querySelectorAll<HTMLImageElement>('.f09-layer').forEach(layer=>layer.src=image.src);});
-        if(options.f09){mountF09Detail(frame,image,options.f09.inactive,options.f09.reduced);dialog.classList.add('f09-detail');}
+        if(options.f09){mountF09Detail(frame,image,options.f09.inactive,options.f09.reduced,options.f09.bodyInactive);dialog.classList.add('f09-detail');}
         if(options.portrait.caption){const caption=document.createElement('figcaption');caption.textContent=options.portrait.caption;frame.append(caption);}
         image.onerror=()=>{image.alt='卡面暂未加载';frame.classList.add('art-unavailable');};layout.append(frame);
       }else {image.onerror=()=>image.remove();layout.append(image);}

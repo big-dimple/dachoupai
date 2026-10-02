@@ -20,16 +20,16 @@ export function mountF09Art(scene:Phaser.Scene,parent:Phaser.GameObjects.Contain
   });
   const light=scene.add.graphics();light.fillStyle(0xffd48b,.12).fillEllipse(-width*.35,-height*.34,width*.23,height*.27);parent.add(light);
   const update=(_time:number)=>{
-    const enabled=parent.getData('f09-active')!==false,still=reduced()||!enabled;
+    const enabled=parent.getData('f09-active')!==false,sealed=parent.getData('f09-sealed')===true,still=reduced()||!enabled;
     const wave=still?0:Math.sin(_time/1750),pulse=parent.getData('f09-trigger')?1.7:1;
-    for(const {image,region} of layers)image.setPosition(wave*width*region.dx*pulse,wave*height*region.dy*pulse).setAngle(wave*region.angle*pulse).setAlpha(enabled?1:.4);
-    light.setAlpha(still?0:.35+.3*Math.sin(_time/2400));base.setTint(enabled?0xffffff:0x999e96);
+    for(const {image,region} of layers)image.setPosition(wave*width*region.dx*pulse,wave*height*region.dy*pulse).setAngle(wave*region.angle*pulse).setAlpha(sealed?.4:1);
+    light.setAlpha(still?0:.35+.3*Math.sin(_time/2400));base.setTint(sealed?0x999e96:0xffffff);
   };
   scene.events.on('update',update);parent.once('destroy',()=>scene.events.off('update',update));
 }
 
-export function mountF09Detail(frame:HTMLElement,image:HTMLImageElement,inactive:boolean,reduced:boolean):void {
-  const window=document.createElement('div');window.className='f09-art-window';window.dataset.inactive=String(inactive);window.dataset.reduced=String(reduced);
+export function mountF09Detail(frame:HTMLElement,image:HTMLImageElement,inactive:boolean,reduced:boolean,bodyInactive=false):void {
+  const window=document.createElement('div');window.className='f09-art-window';window.dataset.inactive=String(inactive);window.dataset.reduced=String(reduced||bodyInactive);
   image.replaceWith(window);window.append(image);image.width=615;image.height=768;
   for(const region of regions){const layer=image.cloneNode() as HTMLImageElement;layer.alt='';layer.setAttribute('aria-hidden','true');layer.className='f09-layer f09-'+region.name;window.append(layer);}
   const lamp=document.createElement('span');lamp.className='f09-lamp';window.append(lamp);

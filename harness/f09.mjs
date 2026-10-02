@@ -26,6 +26,7 @@ try{
  s=await state(page);const joker=s.jokers[0].instanceId,chosen=s.handOrder[0];
  await tapUI(page,'game','card/'+chosen,mobile);await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(c=>!c.back?.visible));
  const values=await page.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return [s.scoreHeat.text,s.scoreMult.text,s.scoreTotal.text];});assert.deepEqual(values,['49','× 6.75','330']);report.checks.push('49 × 6.75 = floor(330.75), all four sources visible');
+ const uncommitted=await state(page);await tapUI(page,'game','card/'+chosen,mobile);assert.deepEqual(await state(page),uncommitted,'cancel selection cannot commit a discard');await tapUI(page,'game','card/'+chosen,mobile);
  await shot('ready');report.samples.push({stage:'ready',...await metrics(page)});
  await tapUI(page,'game','score/sources',mobile);const body=await page.locator('.dialog-body').innerText();assert.match(body,/9♥.*\+9/);assert.match(body,/阿默.*×3/);assert.match(body,/不换词.*×1.5/);assert.doesNotMatch(body,/\+330 倍率/);await page.getByRole('button',{name:'关闭',exact:true}).click();
  await tapUI(page,'game','joker/'+joker,mobile);await page.locator('.f09-art-window .dialog-card-image').evaluate(i=>i.decode());await shot('detail');
@@ -37,8 +38,9 @@ try{
  await shot('trigger');await page.waitForFunction(()=>!window.__harness.game.scene.getScene('game').playing);
  s=await state(page);assert.equal(s.lastTrace.finalScore,'330');assert.ok(s.lastTrace.events.some(e=>e.sourceDefinitionId==='f09'));report.samples.push({stage:'play-complete',elapsedMs:Date.now()-started,...await metrics(page)});
  await tapUI(page,'game','card/'+s.handOrder[0],mobile);await tapUI(page,'game','action/discard',mobile);await page.waitForFunction(()=>!window.__harness.game.scene.getScene('game').playing);
- s=await state(page);assert.equal(s.stage.discardsUsed,1);assert.deepEqual(await page.evaluate(()=>[...window.__harness.game.scene.getScene('game').jokerViews.values()].map(v=>v.getData('valueLabel').text)),['已失效']);await shot('inactive');
- await tapUI(page,'game','joker/'+joker,mobile);assert.equal(await page.locator('.f09-ability strong').innerText(),'本场不再加成');await shot('inactive-detail');await page.getByRole('button',{name:'关闭',exact:true}).click();
+ s=await state(page);assert.equal(s.stage.discardsUsed,1);assert.deepEqual(await page.evaluate(()=>[...window.__harness.game.scene.getScene('game').jokerViews.values()].map(v=>v.getData('valueLabel').text)),['不再×1.5']);await shot('inactive');
+ await tapUI(page,'game','joker/'+joker,mobile);assert.equal(await page.locator('.f09-ability strong').innerText(),'本场不再×1.5');assert.equal(await page.locator('.f09-art-window').getAttribute('data-inactive'),'false','discard does not visually seal the edition');await shot('inactive-detail');await page.getByRole('button',{name:'关闭',exact:true}).click();
+ await openMenuSection(page,'playback',mobile);await page.getByRole('button',{name:'回看上一手',exact:true}).click();await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').playing);await page.waitForFunction(()=>!window.__harness.game.scene.getScene('game').playing);assert.deepEqual(await state(page),s,'replay cannot restore eligibility, re-score or spend RNG');report.checks.push('cancel selection and replay preserve full committed state');
  await tapUI(page,'game','card/'+s.handOrder[0],mobile);await tapUI(page,'game','action/play',mobile);await page.waitForFunction(()=>!window.__harness.game.scene.getScene('game').playing);
  s=await state(page);assert.ok(!s.lastTrace.events.some(e=>e.sourceDefinitionId==='f09'));report.checks.push('F09 triggers, successful discard disables both UI and actual next score');
  await page.reload();await openSelector(page);assert.deepEqual(await state(page),s);report.checks.push('refresh restores full state and RNG exactly');

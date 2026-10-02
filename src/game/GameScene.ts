@@ -332,7 +332,7 @@ export class GameScene extends Phaser.Scene {
       const artTop=sideLabels?-b.height/2+5:-b.height/2+headHeight+4,artHeight=sideLabels?b.height-10:Math.max(14,b.height-headHeight-30),artSize=Math.min(b.width-10,artHeight),key=jokerArtKey(j.definitionId);
       if(j.definitionId==='f09'&&key&&this.textures.exists(key)){
         const art=this.add.container(0,0);mountF09Art(this,art,b.width-6,b.height-6,()=>this.reducedMotion);marker.add(art);marker.setData('f09-art',art);
-        art.setData('f09-active',(this.run.stage?.discardsUsed??0)===0&&!disabled.has(j.instanceId));
+        art.setData('f09-active',(this.run.stage?.discardsUsed??0)===0&&!disabled.has(j.instanceId)).setData('f09-sealed',disabled.has(j.instanceId));
         if(!sideLabels){
           marker.add(this.add.rectangle(0,b.height/2-20,b.width-6,36,0x173c3d,.88));
           name.setY(b.height/2-38);current.setY(b.height/2-23).setColor('#ffe3a4').setFontSize(14);rarity.setVisible(false);
@@ -680,7 +680,7 @@ export class GameScene extends Phaser.Scene {
     const body=j.definitionId==='f09'?'守住原稿，不换一词。\n返还弃牌次数，也不会恢复本场资格。'+restriction+'\n'+(j.edition!=='none'?editionEffectText(j.edition)+'\n':'')+'第 '+(index+1)+' 槽 · 长按后拖动调序。\n出售须在商店确认。':(d.rarity==='rare'?'★ 稀有':d.rarity==='uncommon'?'◇ 罕见':'□ 普通')+' · 当前 '+this.jokerValue(j)+restriction+'\n'+editionEffectText(j.edition)+'\n'+d.description+r2JokerExtraHelp(d)+'\n当前实例：'+r2JokerStateText(j)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 整手计分从右向左':' · 整手计分从左向右')+'；长按后拖动可调序，出售只在商店确认。';
     const dialog=this.dialog.open(d.name,body,[
       {label:'左移',disabled:!this.ready||index===0,run:()=>move(-1)},{label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:()=>move(1)},
-    ],{rarity:d.rarity,ability:cardAbilityCopy(j.definitionId,{gold:this.run.gold,discardsUsed:this.run.stage?.discardsUsed,inStage:true,disabledReason:restriction||undefined}),collapseRules:!!cardAbilityCopy(j.definitionId,{gold:this.run.gold}),...(j.definitionId==='f09'?{f09:{inactive:(this.run.stage?.discardsUsed??0)>0||!!restriction,reduced:this.reducedMotion,reason:restriction||undefined}}:{}),...(art?{portrait:{url:art,thumbnailUrl:jokerArtPreviewUrl(d.id),alt:d.name+'完整卡面',layout:'card' as const,caption:d.name+' · '+this.jokerValue(j)}}:{})});
+    ],{rarity:d.rarity,ability:cardAbilityCopy(j.definitionId,{gold:this.run.gold,discardsUsed:this.run.stage?.discardsUsed,inStage:true,disabledReason:restriction||undefined}),collapseRules:!!cardAbilityCopy(j.definitionId,{gold:this.run.gold}),...(j.definitionId==='f09'?{f09:{inactive:!!restriction,bodyInactive:(this.run.stage?.discardsUsed??0)>0,reduced:this.reducedMotion,reason:restriction||undefined}}:{}),...(art?{portrait:{url:art,thumbnailUrl:jokerArtPreviewUrl(d.id),alt:d.name+'完整卡面',layout:'card' as const,caption:d.name+' · '+this.jokerValue(j)}}:{})});
     if(!art)this.attachJokerFallback(dialog,d.id);
   }
   private attachJokerFallback(dialog:HTMLDialogElement,definitionId:string):void {

@@ -6,6 +6,8 @@
 
 ## 证据与限制
 
+本轮D34发布复核见[发布证据](production/evidence/F09-release-2026-10-02.json)：96b3a42完整聚合PASS（1594单测、content/build、PC/手机SwiftShader smoke、plan）。最后仅修正本体/版次提示与视觉区分：112专项和build通过，PC/手机Canvas取消选择、回看、刷新自然路线通过。弃牌显示“不再×1.5”，详情明确“已弃牌 · 本场不再×1.5；特殊版次仍正常结算”；只有Boss计分封禁同时压暗本体与版次。没有机制或存档变更。公开站点本环境CONNECT代理403，未取得站点响应，不能宣称线上已更新。
+
 [完整证据](production/evidence/F09-2026-10-02.json)：1590项原阶段单测通过，后续新增文案/加载相关7项通过；typecheck/build/content通过。实际Canvas/软件WebGL单卡路线通过，原desktop/mobile smoke两种renderer分别通过，未改超时。WebGL完整smoke在后续文案/加载修改前运行；这些新改动由Canvas操作和故障注入覆盖，未重复整套软件渲染压力运行。
 
 冻结旧构建的手机SwiftShader约1.1–1.7FPS、首手30秒超时；修正后单卡手机约3FPS、首手23.7秒完成。**软件渲染仍不流畅，真机性能未验收。** 手机证据是Linux Chromium、412×820 CSS/DPR3触摸模拟，不是真OnePlus或Android UA。真实浏览器栏、实体触控/扬声器、Firefox/WebKit本轮未跑。

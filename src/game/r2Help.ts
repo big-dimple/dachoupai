@@ -65,7 +65,7 @@ export function r2MechanismBadge(definition:R2JokerDefinition){
 
 export function r2JokerValue(joker:R2JokerInstance,context:{gold:number;jokerCount:number;jokerSlots:number;deckSize:number;discardsUsed?:number;quadRefundUsed?:boolean}):string {
   const definition=getR2Joker(joker.definitionId),operations=definition.hooks.flatMap(hook=>hook.operations);
-  if(joker.definitionId==='f09'&&(context.discardsUsed??0)>0)return '已失效';
+  if(joker.definitionId==='f09'&&(context.discardsUsed??0)>0)return '不再×1.5';
   const lifetime=operations.find(operation=>operation.kind==='expire-after-hands');
   if(lifetime?.kind==='expire-after-hands')return '余'+Math.max(0,lifetime.limit-(joker.counters?.handsScored??0))+'手';
   const limited=operations.find(operation=>operation.kind==='add-gold-limited');
