@@ -1,7 +1,7 @@
 # 当前交接：P08单卡体验样板
 
-- `plan.currentTask = P08 / blocked`。实现提交 `9481e873097b1bb09bd1a0a4f9226ceb14917ced`，分支 `dot/f09-experience`，**只本地提交、未push**。父会话验视觉后另行指令；部署链路不改。
-- 基线main `209b9073c90778bf57a1736bed9266f305b995f5`；接管时本地干净，远端核对一致。C04历史仍未完/BLOCKED，C04.3/4、新玩法与全卡重画不自动推进。最新决定见[D33](production/DECISIONS.md)。
+- `plan.currentTask = P08 / in_progress`。实现提交 `9481e873097b1bb09bd1a0a4f9226ceb14917ced`，分支 `dot/f09-experience`，**D34现已授权检查后正常push main**，由既有链路自动部署，用户在网站直接试玩；部署链路不改。
+- 基线main `209b9073c90778bf57a1736bed9266f305b995f5`；接管时本地干净，远端核对一致。C04历史仍未完/BLOCKED，C04.3/4、新玩法与全卡重画不自动推进。最新决定见[D34](production/DECISIONS.md)。
 - 当前工作：f09三态与真实计分来源、主能力置顶/折叠细则、f04加3文案对照、按需小图/有界高清升级、手机非全屏与用户自主方向。机制、RNG、存档格式、v10内容hash保持不变。
 
 ## 证据与限制
@@ -20,6 +20,6 @@
 
 单卡浏览器入口：`harness/f09.mjs`（`F09_RENDERER=canvas/webgl`分开记录）；加载/文案专项：`harness/f09-loading.mjs`需5201的e2e开发构建。不要只为重复获取相同失败证据空跑。检查按AGENTS变更矩阵执行，最终发布聚合与开发targeted分开。
 
-下一步待用户重新附加/选择原图后，由父会话恢复改画，再接收授权范围内的候选并实际验图；随后用户真机体验/视觉确认，再决定是否push或扩批。独立文档精简只改入口、任务指针、renderer口径与发布脚本说明，不删工作包/金样/测试门禁。
+下一步对最终代码运行发布检查、正常push main并核对公开网站；用户直接上线体验后反馈。原画重绘暂缓，重新附图/Library/ZIP均不是发布前置。独立文档精简只改入口、任务指针、renderer口径与发布脚本说明，不删工作包/金样/测试门禁。
 
 历史C04源码/CI/旧存档细节以[收尾证据](production/evidence/C04-closeout-2026-10-02.json)及[基线handoff](https://github.com/big-dimple/dachoupai/blob/209b9073c90778bf57a1736bed9266f305b995f5/docs/development-handoff.md)追溯；本地通过不改写其远端CI取消的历史。
