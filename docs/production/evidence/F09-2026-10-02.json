@@ -1,7 +1,7 @@
 {
-  "task": "C04-F09-D33",
+  "task": "P08",
   "date": "2026-10-02",
-  "status": "IN_PROGRESS_PENDING_PARENT_VISUAL_REVIEW",
+  "status": "BLOCKED_PENDING_AUTHORIZED_ART_AND_PARENT_VISUAL_REVIEW",
   "baseline": "209b9073c90778bf57a1736bed9266f305b995f5",
   "branch": "dot/f09-experience",
   "push": "NOT_RUN_BY_INSTRUCTION",
@@ -382,8 +382,8 @@
     ]
   },
   "taskId": "P08",
-  "testedCommit": "209b9073c90778bf57a1736bed9266f305b995f5",
-  "testedWorktree": "Baseline plus scoped sample diff; local implementation commit follows this evidence file.",
+  "testedCommit": "9481e873097b1bb09bd1a0a4f9226ceb14917ced",
+  "testedWorktree": "Implementation commit 9481e873097b1bb09bd1a0a4f9226ceb14917ced; subsequent commit only updates documentation/release-check description.",
   "copyAndLoading": {
     "primary": "Condition + numeric benefit before artwork; flavor separate; rules folded. Only f09/f04 authored.",
     "f04": "coins<=3 => +3, not ×3. Natural shelf seed f04-copy-70.",
@@ -396,7 +396,7 @@
     "bundleFileId": "file_000000005ac48211b8f48327dc029221",
     "filename": "f09-review-20261002.zip",
     "helperLimit": "Prepared helper failed before tools/list, no upload sessions. Single 10MB review archive saved with small-file create; identity persisted.",
-    "newArtStatus": "NOT_COMPLETED; parent offered image editing; original mask candidate not accepted as art improvement"
+    "newArtStatus": "NOT_COMPLETED; parent original read returned 403 scope_violation, stopped pending user reattachment/selection. Do not retransmit original through another route. Review ZIP contains screenshots/video, not original PNG."
   },
   "artifactHashes": {
     "f09-review-20261002.zip": {

@@ -132,7 +132,7 @@ plan.json 是唯一任务状态；每条依赖必须存在且无环，只有一�
 
 check-production-plan 只证明协议结构：ID/依赖/路径/当前状态等，**不证明游戏质量、文件内容真实性或真人签收**。其反例测试必须能捕获重复 ID、环、完成依赖缺失、缺证据和双当前任务。
 
-P04反馈专项在既有短路径中按需设置 `SMOKE_FEEDBACK=1`，核对耗尽弃牌、最后出牌及自然三倍目标；`only` 只重跑三倍金样。Windows默认headless-shell可能使用SwiftShader，`SMOKE_CHROMIUM_CHANNEL=chromium` 可选择完整Chromium的真实硬件加速；应记录实际版本、帧率和限制，不修改规则或动画来迁就软件渲染，也不把桌面GPU帧率当手机性能通过。
+P04反馈专项在既有短路径中按需设置 `SMOKE_FEEDBACK=1`，核对耗尽弃牌、最后出牌及自然三倍目标；`only` 只重跑三倍金样。完整Chromium和headless-shell都可能使用SwiftShader；`SMOKE_CHROMIUM_CHANNEL=chromium`只选择发行通道，不保证硬件加速。必须记录实际renderer、GPU标识、视口/DPR、帧率及限制。Canvas功能检查、软件WebGL诊断、真实目标设备验收是三种证据，不互相替代。不得修改规则、删断言或提高超时洗绿；表现时钟/资源预算的修复应说明依据并保存前后证据。
 
 工程 Agent 的完成报告不写“预计能过”。要写实际跑了什么、没跑什么、为何没跑、谁负责后续验证。新会话不得把未运行项目从上一次 handoff 复制成通过。
 

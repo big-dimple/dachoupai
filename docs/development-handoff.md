@@ -1,66 +1,25 @@
-# 开发交接：dot接手
+# 当前交接：P08单卡体验样板
 
-## dot本地样板候选（D33，2026-10-02）
+- `plan.currentTask = P08 / blocked`。实现提交 `9481e873097b1bb09bd1a0a4f9226ceb14917ced`，分支 `dot/f09-experience`，**只本地提交、未push**。父会话验视觉后另行指令；部署链路不改。
+- 基线main `209b9073c90778bf57a1736bed9266f305b995f5`；接管时本地干净，远端核对一致。C04历史仍未完/BLOCKED，C04.3/4、新玩法与全卡重画不自动推进。最新决定见[D33](production/DECISIONS.md)。
+- 当前工作：f09三态与真实计分来源、主能力置顶/折叠细则、f04加3文案对照、按需小图/有界高清升级、手机非全屏与用户自主方向。机制、RNG、存档格式、v10内容hash保持不变。
 
-在`209b9073`恢复，远端main核对一致、无脏工作。分支`dot/f09-experience`只本地提交，**未push，等待父会话视觉验收后再指令**。C04原BLOCKED及C04.3/4暂停不变；当前插入工作为C04-F09-D33 / IN_PROGRESS，禁止自动扩批。
+## 证据与限制
 
-样板自然获取路线：seed `f09-sample-30` → 阿默 → 买「不换词」→ 入场 → 首张9♥。真实预览为牌型40×1.5、9♥+9、阿默×3、不换词×1.5，合计49×6.75，最终向下取整330。首手后弃牌会灰化卡面、显示已失效，下一手trace不含f09。`harness/f09.mjs`覆盖这条路线、详情、全屏不锁方向、手机可用视口收缩和精确刷新恢复；录像/截图/日志在`shots/f09/`，正式记录见`docs/production/evidence/F09-2026-10-02.json`。
+[完整证据](production/evidence/F09-2026-10-02.json)：1590项原阶段单测通过，后续新增文案/加载相关7项通过；typecheck/build/content通过。实际Canvas/软件WebGL单卡路线通过，原desktop/mobile smoke两种renderer分别通过，未改超时。WebGL完整smoke在后续文案/加载修改前运行；这些新改动由Canvas操作和故障注入覆盖，未重复整套软件渲染压力运行。
 
-原画文件未修改。局部稿纸/袖摆羽化遮罩是运行时原像素，幅度受限，脸及外轮廓保持静止；没有伪造透明人物源、补绘底板、真实3D背面或新生成模型身份。详情固定4:5、主能力与状态先读；减少动态降级保留静态原画。更大幅度、脱离轮廓的动画必须另补素材，当前不扩成全卡工程。
+冻结旧构建的手机SwiftShader约1.1–1.7FPS、首手30秒超时；修正后单卡手机约3FPS、首手23.7秒完成。**软件渲染仍不流畅，真机性能未验收。** 手机证据是Linux Chromium、412×820 CSS/DPR3触摸模拟，不是真OnePlus或Android UA。真实浏览器栏、实体触控/扬声器、Firefox/WebKit本轮未跑。
 
-重建：`PATH=/workspace/.cloud-tools/node_modules/.bin:$PATH npm ci --cache /workspace/.npm`；开发`npm run dev -- --host 127.0.0.1 --port 5201 --strictPort`。默认HOME缓存不可写，必须显式缓存路径。系统`/usr/bin/chromium`可用；Playwright浏览器缓存没有原生浏览器二进制，`/workspace/.cloud-tools/system-chromium.mjs`仅是禁GPU/禁software-rasterizer的Canvas外部适配器。单卡专项明确传`F09_RENDERER=canvas`或`webgl`并记录renderer/GPU/FPS。录屏使用系统ffmpeg，映射在工作区Playwright ffmpeg-1011缓存，不入库。不存在项目`.agents/skills`或executor skills；未发现jiepi-clear定义，使用手动轻量diff/范围/无凭据检查，不能声称运行过缺失skill。
+原图未改。原像素局部遮罩仅为程序化动效候选，用户仍不满意原画，不能记为美术完成。父会话读取旧原图遇到403 scope_violation，已停止并等待用户重新附加/选择素材；本环境不通过另一路复制原图绕过拒绝。改画和分层/补绘尚未完成；不能把多张独立生图冒充对齐层。原图Library：`libfile_e804e2b3289881918c099c138a8d36e7`；审阅包（前后截图/录屏/分层需求）：`libfile_33095e051cac8191901b4f316046b50a`，`f09-review-20261002.zip`。本地完整诊断保存在忽略的`shots/f09/`。Library多文件助手在工具发现阶段网络失败、无会话；单个10MB包保存成功，身份已落本地。
 
+自然复现：seed `f09-sample-30` → 阿默 → 买不换词 → 入场 → 首张9♥；floor((40+9)×1.5×3×1.5)=330。首手后弃牌，标签已失效，下一手trace没有f09。f04对照seed `f04-copy-70`，金币≤3时整手倍率**+3**。
 
-用户已要求停止扩功能，收尾后暂停。**接下来由dot主导美术与交互提升，参考小丑牌和炉石，优先做一张卡的完整动态体验样板；不自动启动C04.3或新玩法。** 最新决定见D32。`plan.json.currentTask`为C04 / BLOCKED：源码已发布，但远端浏览器CI超时，完整发布校验未通过。C04.2未宣称整包验收完成；C03与C04.1已完成。
+## 启动与下一步
 
-收尾基线为main `ab8f376b99c91cd1e76593c1b631d1fb9b4e8976`。原有45个已跟踪修改和12个未跟踪源/测试文件属于同一C04.2接线批次，保留并整合，没有reset、覆盖或丢弃其他人的工作。被测工作树指纹、命令、结果及发布回执见[收尾证据](production/evidence/C04-closeout-2026-10-02.json)。发布只正常提交并push main，既有自动部署链路未修改。
+云环境：Node22.23.3位于`/workspace/.cloud-tools/node_modules/.bin`；`npm ci --cache /workspace/.npm`可重建，默认HOME缓存不可写。开发：`npm run dev -- --host 127.0.0.1 --port 5201 --strictPort`。系统Chromium可用，Playwright自带浏览器二进制未恢复；外部`system-chromium.mjs`禁GPU只验证Canvas，`system-chromium-webgl.mjs`显式SwiftShader。均不进仓库。ffmpeg为系统程序，录屏所需映射在工作区缓存。
 
-已核对的远端源码提交为`d687ee517042d9c52dfa1ff9483d420c7164ad14`。该SHA的[CI 36989963670](https://github.com/big-dimple/dachoupai/actions/runs/36989963670)中domain/docs通过，browser超过既有10分钟限制被取消，整体conclusion为cancelled；[production-docs 36989963743](https://github.com/big-dimple/dachoupai/actions/runs/36989963743)通过。日志最后完成记录为`chromium/desktop: ok`，之后未有其他profile完成证据；具体停滞原因尚未确定，未改超时、断言或部署链路。后续提交仅补这份文档回执，生产源码不变；回执提交自身的CI仍需单独核对，不把进行中或取消写成通过。**发布校验仍BLOCKED，不能将此候选作为已通过全部检查的正式发布。**
+单卡浏览器入口：`harness/f09.mjs`（`F09_RENDERER=canvas/webgl`分开记录）；加载/文案专项：`harness/f09-loading.mjs`需5201的e2e开发构建。不要只为重复获取相同失败证据空跑。检查按AGENTS变更矩阵执行，最终发布聚合与开发targeted分开。
 
-已实现的最小闭环：显式v10配置接共享StartRun、四难度资源/目标、十二挑战限制和节目单选择/章末奖励；选角页可选模式，普通D0仍可直接开局；模式/挑战/难度/节目单开关分别保存，恢复不重开、不重抽、不串备份。只有可写Session实际保存的standard八章胜利更新解锁记录。PG04免费换牌计次数、离店过期，不触发E12付费成长。Q02真实三槽、Q06全渠道禁换牌、Q10禁增强、Q11公开封角及旧trace快照保留。收尾修正了模式按钮被全屏控件遮挡、三槽商店提示及禁换牌时的金币提示。
+下一步待用户重新附加/选择原图后，由父会话恢复改画，再接收授权范围内的候选并实际验图；随后用户真机体验/视觉确认，再决定是否push或扩批。独立文档精简只改入口、任务指针、renderer口径与发布脚本说明，不删工作包/金样/测试门禁。
 
-v10内容hash为`json-fnv-v1:24efe7a905216d85`。真实v9及更旧存档原文保留、可导出，**不支持v9直接续局或暗迁移到v10**；开始v10新局不删除旧分区。真实v9夹具`tests/fixtures/c04-v9-checkpoint.json`未改写，SHA256 `c266fb4a2d9ac25cf145e099c1e7abca48206e1dcf3c019cbb01ee5b3fbd5900`。
-
-本地检查：81文件/1,587单测、类型检查、生产构建、72定义内容检查通过；事件保守界320、上界92来自最多一个节目单奖励，原88/91实际计分金样未改。Chromium/Firefox/WebKit各桌面鼠标和390×740触摸短流程通过，覆盖确认/取消、购买/取消、排序、弃牌补牌与次数呼应、出牌、刷新续局、菜单锚点和双向选牌。Chromium桌面/触摸模式专项通过，覆盖锁定入口、教程跳过、节目单不接、开关分区、固定教程入桌及精确恢复。本次CI与发布结果见收尾证据；机器检查不等于美术、真机或真人验收。
-
-尚未完成或已知限制：
-
-- C04.3实际三步教学、搜索图鉴、跨局真实高光/历史尚未做；当前“教程”只有固定二响/固定种子/可跳的练习局，不能当成新手教学验收。
-- C04.2完整故障/长流程与十二挑战自然八章体验、C04.4整包验收未完成。本候选Android/iPhone真机、实体扬声器试听、自然平衡、多人专题对标均NOT_RUN。既有A01/D22/D25真人认可有效，不扩大到本候选及未来素材。
-- 生产JS约1.79MB、gzip约509KB，Vite保留大chunk提示；本轮未拆包或调整预算。构建标签仍为C03，实际规则内容为v10。模式恢复成功的信息提示可能打开菜单，可点“继续本局”关闭；提示层级与详情精致度由dot统一收敛。
-- 六角色/原24张Joker插画仍是已认可范围内的候选，剩余48张Joker及功能牌/物品/Boss资源、正式分层源规格和未来批次批准仍缺；机制示意图不算正式插画。A03、B00、V01、L01保持原门禁。
-
-启动与验证命令（Node22、npm；Windows可用`npm.cmd`）：
-
-```bash
-npm ci
-npm run dev -- --host 127.0.0.1 --port 5201
-npm run typecheck
-npm test -- --maxWorkers=2
-npm run build
-npx playwright install chromium firefox webkit
-npm run verify:smoke
-npm run verify:content
-node scripts/check-production-plan.mjs --self-test
-node scripts/check-production-plan.mjs
-npm run verify:ci
-```
-
-`verify:ci`是实际CI组合入口；多引擎短流程用`SMOKE_BROWSERS=chromium,firefox,webkit`。领域改动跑对应单测；只改表现不重复全仓长harness。本地生产预览用`npm run preview -- --host 127.0.0.1 --port 5202`。部署仍由用户现有自动部署负责。
-
-素材与代码入口：
-
-| 用途 | 位置 |
-| --- | --- |
-| 六东方角色原图/来源与认可 | `art/sources/p07-characters/manifest.json`及同目录PNG |
-| 原24张Joker原图/来源 | `art/sources/p07-jokers/manifest.json`、`part-a/b/c.json`及PNG |
-| 运行头像/选角/完整详情 | `public/assets/characters-p07`；注册`src/game/characters.ts` |
-| 运行Joker缩略/完整详情 | `public/assets/jokers-p07`；注册`src/game/jokerArt.ts` |
-| 戏台、卡背、基础框 | `public/assets/p03`、`public/assets/p00` |
-| GLB母版/离线帧/纹理 | `public/assets/models/asset-pack-v1.json`、`public/assets/renders/p0`、`public/assets/textures/p0`、`tools/blender` |
-| 舒伯特钢琴音轨/来源 | `public/assets/audio/p06/recording.json`及MP3；录音为Pixabay许可，不是CC0 |
-| 逐事件演出/声音/详情 | `src/game/GameScene.ts`、`src/core/EffectQueue.ts`、`src/audio/AudioEngine.ts`、`src/game/DetailDialog.ts`、`src/style.css` |
-
-美术方向沿用ART/D20及D22/D25：东方人物，性别/年龄/职业/表情/角度明确不同；印刷巡演牌桌，玉青、暖白、朱红、旧金共用左上暖光。扑克点数/花色由程序清晰绘制，头像独立裁切，详情完整展示立绘。参考竞品的反馈节奏与材质细节，保留npm/TypeScript/Phaser H5主线，不为复用GLB改全3D。新生图只用可证明模型身份的ChatGPT Images 2.5；未来素材批次仍需用户认可，不能自行签收。
-
-本地遗留：忽略的`shots/`保存RED/GREEN日志、浏览器临时诊断与测试构建，`dist/`、`node_modules/`及`.codex-remote-attachments/`保留；这些不进入发布提交，未做全目录清场。没有需要另藏分支的半成品。**唯一下一步：dot选择一张现有卡，完成手机竖屏可操作、逐事件可听可看的动态样板，再决定后续美术与交互改造；本Agent收尾后暂停。**
+历史C04源码/CI/旧存档细节以[收尾证据](production/evidence/C04-closeout-2026-10-02.json)及[基线handoff](https://github.com/big-dimple/dachoupai/blob/209b9073c90778bf57a1736bed9266f305b995f5/docs/development-handoff.md)追溯；本地通过不改写其远端CI取消的历史。
