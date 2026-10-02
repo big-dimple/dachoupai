@@ -77,7 +77,8 @@
       "command": "npm.cmd test -- --maxWorkers=2 --reporter=dot",
       "result": "1286 PASS /68 files before final F07 legality correction; original timeout/steps retained",
       "startChunk": "16679e",
-      "log": "shots/c03-unit-two-workers.log"
+      "log": "shots/c03-unit-two-workers.log",
+      "completionChunk": "acfe0c"
     },
     {
       "command": "npx.cmd vitest run tests/c03-boss-run.test.ts tests/c03-boss-save.test.ts tests/c00-transactions.test.ts --reporter=dot",
@@ -179,7 +180,15 @@
   ],
   "next": "C03.4 exact endless persistence/pool/numeric contract → independent RED → shared ContinueEndless command and ordinary UI/recovery.",
   "publication": {
-    "status": "PENDING"
+    "status": "PUBLISHED",
+    "branch": "main",
+    "baseCommit": "c2def381a2bfcb3e3bbba70aafe5e835aa9a61e9",
+    "codeCommit": "a226dd9151230e5bbc423db9831199b40095bb0d",
+    "commitChunk": "ac1a32",
+    "pushChunk": "a0a377",
+    "result": "Normal push c2def38..a226dd9 main -> main",
+    "publishedAt": "2026-10-02T12:19:15.2216229+08:00",
+    "deployment": "Owner-managed; NOT_RUN by this agent"
   },
   "closeout": {
     "mode": "jiepi-clear lightweight",
