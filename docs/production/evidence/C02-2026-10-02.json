@@ -17,7 +17,7 @@
   },
   "milestone": {
     "id": "C02.4-D27",
-    "status": "PASS",
+    "status": "DELIVERED",
     "scope": "Two sorting/two primary buttons, button remaining-count response, low-frequency menu inspection, exact two-tier cached heat-flow fire and lowpass rumble"
   },
   "checks": [
@@ -167,11 +167,20 @@
     "No new permanent browser harness/3D runtime/synthetic BGM"
   ],
   "publication": {
-    "status": "NOT_RUN",
+    "status": "PASS",
     "branch": "main",
-    "note": "Await actual normal push receipt"
+    "codeCommit": "8949d14001f985db5ed4e940c40a3847f343e3fe",
+    "command": "git push origin main",
+    "toolChunk": "66c347",
+    "log": "shots/c02-code-push.log",
+    "normalizedInputBindings": {
+      "status": "PASS",
+      "files": 48,
+      "toolChunk": "e6c220"
+    },
+    "deployment": "User-owned; not operated or polled"
   },
-  "nextStep": "Push verified D27 candidate to main, then C02.3 shared-command legal dense-chain playback/performance and interruption/restore; no C03 expansion",
+  "nextStep": "C02.3 shared-command legal dense-chain playback/performance and interruption/restore; finish the package before C03",
   "inputFingerprints": {
     "harness/e2e.mjs": "1352b71daadf287afff7ec631e07e84d7de50e35d737e07e03d685aeff1c3a0d",
     "harness/layout.mjs": "d6466f642e4dbd5a28023331d078cdca45ed8b0ab06a6faa7730a515770aef7c",
