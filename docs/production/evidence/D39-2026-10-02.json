@@ -1,0 +1,331 @@
+{
+  "taskId": "P08",
+  "task": "D39 five-Joker condition and benefit clarity",
+  "date": "2026-10-02",
+  "baseCommit": "5cf35ab1a4eebcedb4f8b48effda5b3be3a4560f",
+  "status": "LOCAL_VALIDATION_PASS",
+  "scope": [
+    "f09 不换词",
+    "f04 兜比脸净",
+    "a03 一束光",
+    "pengci 碰瓷",
+    "huimaqiang 回马枪"
+  ],
+  "invariants": "No domain/content/hash/RNG/save/artwork/dependencies/deployment changes.",
+  "baseline": {
+    "report": "shots/joker-clarity/baseline/report.json",
+    "review": "shots/joker-clarity/baseline/findings.json",
+    "buildNote": "Frozen D38 working-tree build has a5afc339 modified build-info; source corresponds to committed D38 runtime.",
+    "remoteCI": "Inherited D38 CI failure: Chromium and Firefox desktop/mobile pass; WebKit desktop first-character assertion fails; domain/docs pass.",
+    "remoteCIUrl": "https://github.com/big-dimple/dachoupai/actions/runs/37035323184"
+  },
+  "behavior": {
+    "main": "One conditional benefit, separate permanent rarity and edition, optional single flavor line, folded rules.",
+    "selection": "Actual public ledger identifies body and edition by instance/reasonKey; table summary is at most two lines. No selection keeps single/high-card conditions undecided.",
+    "timing": "f04 reads hand-start gold; huimaqiang uses completed stage plays+1; f09 successful discard excludes refunds.",
+    "history": "Recaps and presentation read recorded events and hand-start boss context, not later gold/discards/seals. Preview skips command transitions with stale selections.",
+    "shopBan": "Known Q11 ban uses chapterDisabledJokerId for both offers and owned cards; prior stage context is not reused.",
+    "inputTiming": "SceneView release classification bridges native down/up elapsed time into the existing intent clock. Keeps350ms hold threshold, fired hold, drag/cancel, and invalid-timestamp fallback; PointerIntent and harness inputs/assertions/timeouts unchanged. Pending real holds are recognized on release after final movement, without duplicating timer-fired details."
+  },
+  "verification": {
+    "focused": {
+      "status": "PASS",
+      "tests": 43,
+      "files": [
+        "tests/card-copy.test.ts",
+        "tests/f09-presentation.test.ts",
+        "tests/detail-dialog.test.ts"
+      ]
+    },
+    "typecheckBuild": "PASS",
+    "browser": {
+      "status": "PASS",
+      "report": "shots/joker-clarity/after/report.json",
+      "review": "shots/joker-clarity/after/review.json",
+      "checks": 29,
+      "browser": "151.0.7922.173",
+      "bundles": [
+        {
+          "file": "index-Cn8DuwLn.css",
+          "sha256": "5b2acfc670dedee3039e2bc41019440195f37ff9bd3e26e066bce5a8dd34efbd"
+        },
+        {
+          "file": "index-DAXrNydX.js",
+          "sha256": "5f0a8fb0245aeab13b9706cd7784a741921094cb3b0dbe0c9fcfee666421f011"
+        }
+      ],
+      "profiles": [
+        {
+          "name": "desktop-natural",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "dpr": 1,
+          "checks": 6,
+          "observedFps": [
+            {
+              "label": "selection",
+              "fps": 35.783203125,
+              "renderer": "Canvas"
+            }
+          ]
+        },
+        {
+          "name": "touch-natural",
+          "viewport": {
+            "width": 412,
+            "height": 820
+          },
+          "dpr": 3,
+          "checks": 6,
+          "observedFps": [
+            {
+              "label": "selection",
+              "fps": 21.43994140625,
+              "renderer": "Canvas"
+            }
+          ]
+        },
+        {
+          "name": "desktop-fixture",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "dpr": 1,
+          "checks": 8,
+          "observedFps": [
+            {
+              "label": "single",
+              "fps": 44.9375,
+              "renderer": "Canvas"
+            },
+            {
+              "label": "two-unmatched",
+              "fps": 43.203125,
+              "renderer": "Canvas"
+            },
+            {
+              "label": "pair",
+              "fps": 42.65234375,
+              "renderer": "Canvas"
+            }
+          ]
+        },
+        {
+          "name": "touch-fixture",
+          "viewport": {
+            "width": 412,
+            "height": 820
+          },
+          "dpr": 3,
+          "checks": 9,
+          "observedFps": [
+            {
+              "label": "single",
+              "fps": 40.171875,
+              "renderer": "Canvas"
+            },
+            {
+              "label": "two-unmatched",
+              "fps": 32.6591796875,
+              "renderer": "Canvas"
+            },
+            {
+              "label": "pair",
+              "fps": 29.12078857421875,
+              "renderer": "Canvas"
+            },
+            {
+              "label": "narrow-landscape",
+              "fps": 22.04025833704509,
+              "renderer": "Canvas"
+            }
+          ]
+        }
+      ],
+      "natural": "Real shop purchase/equip/select/presentation detail/330 score/recap/discard on PC and touch; no fixture acquisition claim.",
+      "fixtures": "Separately validated checksum/invariants and imported through actual file UI: five owned cards, gold3/4, single/two-unmatched/pair, two real warmups, real discard, actual third play992 and recap. Enriched inputs are labelled fixtures.",
+      "readOnly": "Full controller state/RNG/journal/export/IndexedDB unchanged by detail, preview and recap; 29 named checks include additional numeric/layout assertions.",
+      "fpsNote": "Single functional checkpoints, not a performance benchmark. Linux Chromium151 with GPU/software rasterization disabled; Canvas."
+    },
+    "releaseAggregate": {
+      "status": "PASS",
+      "report": "shots/joker-clarity/release-ci.json",
+      "log": "shots/joker-clarity/release-ci.log",
+      "tests": 1735,
+      "testFiles": 91,
+      "steps": [
+        {
+          "name": "test",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 64142
+        },
+        {
+          "name": "verify:content",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 5124
+        },
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 17342
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 66675
+        },
+        {
+          "name": "production-plan",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 311
+        }
+      ],
+      "sourceUnchangedDuringGate": true,
+      "before": {
+        "source": "74e9d15ca4148edc20f16b538be5688adaacce8fdcccb4952d516c8821c1d3c7",
+        "index": "18d5126bed326ef6382561d71512491c32b02c4710ffd6fecfc84b20e5c8cf1a",
+        "head": "5cf35ab1a4eebcedb4f8b48effda5b3be3a4560f",
+        "branch": "refs/heads/dot/joker-clarity"
+      },
+      "after": {
+        "source": "74e9d15ca4148edc20f16b538be5688adaacce8fdcccb4952d516c8821c1d3c7",
+        "index": "18d5126bed326ef6382561d71512491c32b02c4710ffd6fecfc84b20e5c8cf1a",
+        "head": "5cf35ab1a4eebcedb4f8b48effda5b3be3a4560f",
+        "branch": "refs/heads/dot/joker-clarity"
+      },
+      "environment": "Node22.23.3; single Vitest worker; external launch-only adapter uses system Chromium151 with --disable-gpu --disable-software-rasterizer. Canvas desktop/mobile functionality; shared smoke inputs/assertions/timeouts unchanged."
+    },
+    "inheritedWebKit": {
+      "status": "LOCAL_MINIMAL_AB_PASS_REMOTE_CAUSE_UNPROVEN",
+      "attribution": "CI environment engines=chromium,firefox,webkit and engine-outer/profile-inner loop proves WebKit desktop follows Firefox mobile; WebKit mobile was never reached.",
+      "exactLog": "shots/joker-clarity/baseline/remote-browser-job-110931981137.log",
+      "failure": "harness/screenshot.mjs:56 selectedId undefined !== amo",
+      "scope": "Parent explicitly requested bounded diagnosis before final release; no assertion/timeout weakening or unchanged full multi-engine matrix.",
+      "findings": "shots/webkit-character/findings.json",
+      "controlledBefore": "shots/webkit-character/pre-fix-stall/report.json",
+      "observed": "Instrumented reselect had native0ms / handler420ms; controlled first click had native2ms / handler810ms after explicit420ms main-thread stall. Old UI left selection empty; no delayed selection, dialog or resize.",
+      "limits": "Remote CI lacks input timestamps: original remote failure may share this mechanism, but same cause is unproven. Uninstrumented old local route passed3/3. Linux Debian13 and remote Ubuntu24 differ.",
+      "controlledAfter": "shots/webkit-character/final-stall/report.json",
+      "trueHold": "shots/webkit-character/final-hold/report.json",
+      "normalRoutes": "shots/webkit-character/fixed-normal/report.json",
+      "result": "Same controlled stall now immediately selects amo and confirms shop; genuine400ms hold opens detail without selecting; three normal routes passed after native-clock correction. Original shared smoke assertions/timeouts unchanged.",
+      "holdEdge": "Intermediate native-clock-only candidate exposed pending355ms hold timer on native414ms hold; preserved failure in fixed-hold. Final release fallback recognizes real hold once without converting it to a tap.",
+      "holdCoverage": "Final browser genuine-hold trace had held=true before release, validating existing timer-fired hold with one detail and no tap. The pending-timer release fallback is covered by focused unit tests; its final browser branch was not directly observed.",
+      "environment": "Playwright WebKit26.6 revision2359 on Debian13; six missing runtime libraries extracted from official Debian packages into workspace only. WebGL context exposes masked Apple GPU identity without /dev/dri; not Apple/physical-device hardware evidence. Full setup and launch failures retained in findings.json."
+    },
+    "inputTimingFocused": {
+      "status": "PASS",
+      "tests": 38,
+      "files": [
+        "tests/pointer-release-time.test.ts",
+        "tests/layout.test.ts"
+      ],
+      "newRegressionTests": 18
+    },
+    "preWebKitAggregate": {
+      "status": "PASS_BEFORE_WEBKIT_DIAGNOSTIC",
+      "report": "shots/joker-clarity/pre-webkit-ci.json",
+      "log": "shots/joker-clarity/pre-webkit-ci.log",
+      "tests": 1717,
+      "testFiles": 90,
+      "steps": [
+        {
+          "name": "test",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 57930
+        },
+        {
+          "name": "verify:content",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 2933
+        },
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 14761
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 55104
+        },
+        {
+          "name": "production-plan",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 299
+        }
+      ],
+      "sourceUnchangedDuringGate": true,
+      "before": {
+        "source": "97cf7dcbe567e65bc145737fc45d0c1923d73fb1cb402658d00d51d8d9fa5c3d",
+        "index": "18d5126bed326ef6382561d71512491c32b02c4710ffd6fecfc84b20e5c8cf1a",
+        "head": "5cf35ab1a4eebcedb4f8b48effda5b3be3a4560f",
+        "branch": "refs/heads/dot/joker-clarity"
+      },
+      "after": {
+        "source": "97cf7dcbe567e65bc145737fc45d0c1923d73fb1cb402658d00d51d8d9fa5c3d",
+        "index": "18d5126bed326ef6382561d71512491c32b02c4710ffd6fecfc84b20e5c8cf1a",
+        "head": "5cf35ab1a4eebcedb4f8b48effda5b3be3a4560f",
+        "branch": "refs/heads/dot/joker-clarity"
+      }
+    }
+  },
+  "visualRevision": {
+    "firstPass": "shots/joker-clarity/v1/review.json",
+    "reason": "29 functional checks passed; actual images exposed long edition rule paragraphs and f04 mechanism/value overlap. Shortened only main edition lines, kept full rules folded, reserved fallback-art space."
+  },
+  "limits": [
+    "Linux Chromium Canvas is a functional route, not WebGL or hardware performance evidence.",
+    "Physical OnePlus, Android browser chrome, subjective comprehension/fun/audio and new artwork acceptance NOT_RUN.",
+    "Unchanged slow software-WebGL evidence retained; no repeat stress run.",
+    "New source artwork remains excluded pending independent approval; no restricted asset reads or transfer workarounds."
+  ],
+  "publication": {
+    "status": "READY_FOR_AUTHORIZED_MAIN_PUSH",
+    "method": "Authorized normal fast-forward main push after final checks, then verify exact SHA/CI; no website/deployment polling.",
+    "record": "shots/joker-clarity/publication.json (created after push; result SHA/CI also returned to parent)"
+  },
+  "nextScope": "End this bounded round and return to parent/user; P08 stays in_progress. No automatic C04 or additional card rewrites.",
+  "testedCommit": "5cf35ab1a4eebcedb4f8b48effda5b3be3a4560f",
+  "testedWorkingTree": {
+    "note": "Frozen working-tree runtime based on testedCommit; source hashes identify the candidate. Result-only documentation is finalized after final checks.",
+    "files": {
+      "harness/joker-clarity.mjs": "0b1729c196508121a12c709a3c3513bea50976c26fa6374b6094c0db24164e1c",
+      "src/game/CardCopy.ts": "3e6b959c199aa776859f37d764c66a7a608e2dc8832455077df772e1bb4b6c1d",
+      "src/game/DetailDialog.ts": "9535bbda4bd8ff57919596558a3fb4bb086d02ea9f76c5d3f3d253659774c8c4",
+      "src/game/GameScene.ts": "ccff19938703069340b9c4afb7bdc20ad7bc8aba2852f6d06182acd540526ae1",
+      "src/game/IntermissionScene.ts": "6f1034bab19f186b8fea1b15c33f8a78fb6f09cd501ccf997b2edf04673ab1e0",
+      "src/game/PointerReleaseTime.ts": "ea88bd0786de55fbd8ce6e3c5bf41a1e9c7ab21e597e62957f674790de1695ba",
+      "src/game/SceneView.ts": "f582975b0044fce53cba771dff5b60f908c9ffb2a1a5d1ed950321f837895ff8",
+      "src/game/ShopScene.ts": "d2af03c2ac497950a9ccdc0a716a8ba0b121bd8604edc736bc6e08afad386a71",
+      "src/style.css": "3afb5baab0c463f3534f8352e4a1bd105a1531d9ca39bc95268fd8165cbc2d95",
+      "tests/card-copy.test.ts": "b2222c4d96616923fbd0a5f52e81f8e92c3c786863d7e511260fd6ac9e3bab6b",
+      "tests/detail-dialog.test.ts": "55672747e612cd0b74408bc1849e9ef053afc07fb6cbd5e17648c62fc0de7829",
+      "tests/pointer-release-time.test.ts": "2a56fcb920f3cd193ef75d0f01461f8c0ca2cc6fc24153fd1d5ab2d75add1a70"
+    }
+  },
+  "screenshots": {
+    "inspected": true,
+    "desktopBefore": "shots/joker-clarity/baseline/desktop-current-selection.png",
+    "touchBefore": "shots/joker-clarity/baseline/touch-current-selection.png",
+    "desktopAfter": "shots/joker-clarity/after/desktop-natural-current-selection.png",
+    "touchAfter": "shots/joker-clarity/after/touch-natural-current-selection.png",
+    "fiveCardFixture": "shots/joker-clarity/after/touch-fixture-single.png",
+    "editionOnlyFixture": "shots/joker-clarity/after/touch-fixture-third-edition-only-sources.png",
+    "thirdPlayRecapFixture": "shots/joker-clarity/after/touch-fixture-fixture-committed-recap.png",
+    "timingNote": "Five-card screenshots show the candidate before the isolated input-clock correction; all rendering source hashes are unchanged. Final role screenshots and full smoke validate corrected input."
+  }
+}

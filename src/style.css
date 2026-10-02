@@ -195,6 +195,7 @@ button:active { box-shadow:none;transform:translateY(1px); }
 .card-ability > span { font-size:15px; }
 .dialog-effect { margin:0 0 12px!important;font-size:17px;line-height:1.6;font-weight:600; }
 .dialog-purchase-summary { margin:12px 0 0!important;padding:10px 12px;border-radius:5px;background:#e0e7d9;color:#24483f;font-size:15px;font-weight:600; }
+.dialog-edition-summary { margin:10px 0 0!important;padding:8px 10px;border-left:3px solid #a48b60;background:#e9e2d3;color:#514937;font-size:14px;line-height:1.5; }
 .dialog-card-art { padding:3px;border:0;border-radius:5px;background:#d9cbb1;box-shadow:0 3px 8px #233c4426; }
 .dialog-card-art figcaption { font-size:13px;padding:5px; }
 .dialog-mechanism-art { max-width:112px!important;justify-self:center;box-shadow:none; }

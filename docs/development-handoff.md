@@ -1,6 +1,10 @@
 # 当前交接：P08单卡体验样板
 
-D38 当前回合（2026-10-02）：基于已通过远端CI的main `a5afc339`，仅处理用户试玩反馈的滑选色块与越界丢选择。实证来源是圆角卡面外的4px彩色矩形描边，改为细圆角反馈；隐式中断保留已应用选择，捕获与物理释放分开清理，Esc保留主动撤销。45项专项单测、类型检查、102项PC/手机/短视口Canvas浏览器检查和真实浏览器接管纵向滚动后的恢复通过，见[D38证据](production/evidence/D38-2026-10-02.json)。源码冻结后的最终verify:ci已通过：1693项测试/content/build/Canvas桌面与手机smoke/plan，运行前后源码指纹一致。按授权正常push main并核对SHA/CI，不改部署。原生手机tap highlight未确认，OnePlus真机仍待用户体验。新图继续等待独立source审批，不读受限原图、不另寻传输路径；本回合结束后交回父会话。
+D39 当前回合（2026-10-02）：基线D38 `5cf35ab`，仅改善 f09、f04、a03、pengci、huimaqiang 五张的条件与收益说明。商店/详情共用主能力，版次独立、细则折叠；牌桌显示当前资格与本手收益，来源和复盘读取对应实例的实际事件。未选牌保持待判断，f04读手开始金币，huimaqiang读下一次成功出牌序号；封禁和f09历史状态取当手快照，出弃牌过渡不以旧选择重算新手牌。内容数值/hash、规则、RNG、存档、素材和部署均不变。五卡29项PC/手机Canvas浏览器检查通过；另按父会话要求修复原生短点击被主线程处理延迟误判为长按的问题，受控WebKit首次选角前后对照与真实长按检查通过。最终冻结源码1735项测试/content/build/桌面手机Canvas smoke/plan全部通过，前后源码指纹一致，见[D39证据](production/evidence/D39-2026-10-02.json)。远端原失败同因仍未证实；P08保持in_progress。必要检查后按既有授权正常push main并核对SHA/CI，真机与真人理解/视觉验收仍独立。
+
+D38基线远端CI已结束为FAILURE：run `37035323184` / browser job `110931981137`。日志记录Chromium桌面/手机、Firefox桌面/手机通过，WebKit桌面在 `harness/screenshot.mjs:56` 首次角色断言失败（`undefined !== amo`）；domain/docs通过。此为继承基线状态，不记作D39验证通过；父会话明确要求在发布前最小复现角色选择/状态断言，不删断言、不延长超时、不重跑无变化的全矩阵。
+
+D38 上一回合（2026-10-02）：基于已通过远端CI的main `a5afc339`，仅处理用户试玩反馈的滑选色块与越界丢选择。实证来源是圆角卡面外的4px彩色矩形描边，改为细圆角反馈；隐式中断保留已应用选择，捕获与物理释放分开清理，Esc保留主动撤销。45项专项单测、类型检查、102项PC/手机/短视口Canvas浏览器检查和真实浏览器接管纵向滚动后的恢复通过，见[D38证据](production/evidence/D38-2026-10-02.json)。源码冻结后的最终verify:ci已通过：1693项测试/content/build/Canvas桌面与手机smoke/plan，运行前后源码指纹一致。按授权正常push main并核对SHA/CI，不改部署。原生手机tap highlight未确认，OnePlus真机仍待用户体验。新图继续等待独立source审批，不读受限原图、不另寻传输路径；本回合结束后交回父会话。
 
 D37 已发布候选（2026-10-02）：基于资产维护main `0f1f0a6`，代码提交 `f72ffc5`统一固定稀有度标志并修复缩略图一次失败后不恢复。47项专项测试、类型/构建、7组Canvas浏览器检查通过；自然首屏、自动/人工重试与状态同步已验证，见[D37证据](production/evidence/D37-2026-10-02.json)。父会话明确本轮只发布这些修复，停止等待新图：f04/e07的Library消费有界失败，原创source仓库发布另触发产品审批，未获批准前不继续、不换路绕过；两张仍为机制示意。本轮不包含用户新反馈的滑选背景色/滑出屏幕保留选择，留下一有界回合。最终verify:ci已通过：1675项测试、content、build、Canvas桌面/手机smoke、plan；后续仅记录文档证据。按既有授权正常push main并核对SHA/CI，P08保持in_progress；不把Canvas通过视作WebGL或真机验收。
 
@@ -8,9 +12,9 @@ D36继承提交 `0f1f0a6` 的远端Chromium两视口、Firefox两视口、WebKit
 
 资产维护整合（2026-10-02）：原独立提交 `bb53b01651854f29daa9ec87210df20a81aac7be` 已按用户新授权整合到 D36 main `beb91fd668276bb8bbf4cab59572b501af93a191`；只做 Linux 离线复建、53 张旧 P0 预览清理与当前清单校验，保留最新 UI 手势代码、部署配置及历史 A00。原[维护证据](assets/maintenance-2026-10-02.json)保留当时本地交付状态，最新整合/发布范围另记[整合证据](assets/integration-2026-10-02.json)，命令见[Blender说明](../tools/blender/README.md)。本轮已明确授权必要检查后正常 push main 并核对 SHA/CI；不 push 旁支，不等网站部署。`plan.currentTask` 仍为 P08，不扩模型、动画、UI 或玩法。
 
-- `plan.currentTask = P08 / in_progress`。D35已发布main `c90a9fc5d704874a52bddda3e4d991aef92c29fb`；D36已发布 `beb91fd`；D37已发布 `a5afc339`；D38基于该main完成独立回合。**用户最新授权解除逐轮等待，检查后正常push main并核对SHA/CI**，由既有链路自动部署，用户在网站直接试玩；部署链路不改。
-- 基线main `209b9073c90778bf57a1736bed9266f305b995f5`；接管时本地干净，远端核对一致。C04历史仍未完/BLOCKED，C04.3/4、新玩法与全卡重画不自动推进。最新决定见[D37](production/DECISIONS.md)。
-- 当前工作：f09三态与真实计分来源、主能力置顶/折叠细则、f04加3文案对照、按需小图/有界高清升级、手机非全屏与用户自主方向。机制、RNG、存档格式、v10内容hash保持不变。
+- `plan.currentTask = P08 / in_progress`。D35已发布main `c90a9fc5d704874a52bddda3e4d991aef92c29fb`；D36已发布 `beb91fd`；D37已发布 `a5afc339`；D39基于D38 `5cf35ab`独立推进。**用户最新授权解除逐轮等待，检查后正常push main并核对SHA/CI**，由既有链路自动部署，用户在网站直接试玩；部署链路不改。
+- 历史接管基线main `209b9073c90778bf57a1736bed9266f305b995f5`；当时本地干净、远端一致。C04历史仍未完/BLOCKED，C04.3/4、新玩法与全卡重画不自动推进。当前决定见[D39](production/DECISIONS.md#d39--五张大丑牌的条件与本手收益2026-10-02采用)。
+- 当前工作仅为D39五张条件/收益共享说明与实际来源；保留已交付的稀有度、加载恢复和手势。新图继续等待独立source审批，不读取受限源图、不换传输路径；素材不是本次发布前置。
 
 ## 证据与限制
 
@@ -30,10 +34,10 @@ D36继承提交 `0f1f0a6` 的远端Chromium两视口、Firefox两视口、WebKit
 
 ## 启动与下一步
 
-云环境：Node22.23.3位于`/workspace/.cloud-tools/node_modules/.bin`；`npm ci --cache /workspace/.npm`可重建，默认HOME缓存不可写。开发：`npm run dev -- --host 127.0.0.1 --port 5201 --strictPort`。系统Chromium可用，Playwright自带浏览器二进制未恢复；外部`system-chromium.mjs`禁GPU只验证Canvas，`system-chromium-webgl.mjs`显式SwiftShader。均不进仓库。ffmpeg为系统程序，录屏所需映射在工作区缓存。
+云环境：Node22.23.3位于`/workspace/.cloud-tools/node_modules/.bin`；`npm ci --cache /workspace/.npm`可重建，默认HOME缓存不可写。开发：`npm run dev -- --host 127.0.0.1 --port 5201 --strictPort`。系统Chromium可用；D39在工作区恢复Playwright WebKit26.6及缺失共享库，最小诊断启动方法见shots/webkit-character/findings.json，未改系统或部署配置；外部`system-chromium.mjs`禁GPU只验证Canvas，`system-chromium-webgl.mjs`显式SwiftShader。均不进仓库。ffmpeg为系统程序，录屏所需映射在工作区缓存。
 
-单卡浏览器入口：`harness/f09.mjs`（`F09_RENDERER=canvas/webgl`分开记录）；加载/文案专项：`harness/f09-loading.mjs`需5201的e2e开发构建。不要只为重复获取相同失败证据空跑。检查按AGENTS变更矩阵执行，最终发布聚合与开发targeted分开。
+单卡浏览器入口：`harness/f09.mjs`（`F09_RENDERER=canvas/webgl`分开记录）；加载/文案专项：`harness/f09-loading.mjs`；D39五张说明专项：`harness/joker-clarity.mjs`。均按各入口要求使用e2e开发构建，不只为重复获取相同失败证据空跑。检查按AGENTS变更矩阵执行，最终发布聚合与开发targeted分开。
 
-D35结构版已发布，D36只收尾遮挡/手势有界回合；正常push后核对GitHub SHA/CI，不等待或探测公开网站。后续父会话安排美术/UX基础与小批素材；独立Linux3D重建/旧预览清理任务拥有tools/blender和资产manifest/inventory，避免改同一文件。原画重绘暂缓，重新附图/Library/ZIP均不是发布前置。独立文档精简只改入口、任务指针、renderer口径与发布脚本说明，不删工作包/金样/测试门禁。
+D39五张说明专项、真实浏览器和最终冻结源码门禁已通过；原WebKit选角回归已做最小诊断及输入时钟修正。正常push后核对GitHub SHA/CI，实际结果写入忽略目录shots/joker-clarity/publication.json并交回父会话，不等待或探测公开网站。后续范围由父会话安排，不自动扩展到全库、C04或美术。原画重绘暂缓，重新附图/Library/ZIP均不是发布前置；不删工作包、金样或测试门禁。
 
 历史C04源码/CI/旧存档细节以[收尾证据](production/evidence/C04-closeout-2026-10-02.json)及[基线handoff](https://github.com/big-dimple/dachoupai/blob/209b9073c90778bf57a1736bed9266f305b995f5/docs/development-handoff.md)追溯；本地通过不改写其远端CI取消的历史。

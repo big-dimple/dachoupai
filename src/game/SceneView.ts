@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import {layout,type Box,type TableLayout,type HandWindow} from './layout';
 import {PointerIntent} from './PointerIntent';
+import {pointerReleaseTime,releasePointerIntent} from './PointerReleaseTime';
 import {modalBlocksCanvas} from './DetailDialog';
 import {PAPER_THEME,PAPER_CSS,UI_FONT} from './theme';
 import {alignViewportCamera,cssViewport} from '../platform/Viewport';
@@ -10,7 +11,7 @@ export class SceneView {
   readonly root:Phaser.GameObjects.Container;
   private gestures=new Map<Phaser.GameObjects.GameObject,TouchActions>();
   private intent=new PointerIntent();
-  private pressed?:{object:Phaser.GameObjects.GameObject;actions:TouchActions;id:number;held:boolean;touch:boolean;x:number;y:number;dragging:boolean};
+  private pressed?:{object:Phaser.GameObjects.GameObject;actions:TouchActions;id:number;held:boolean;touch:boolean;x:number;y:number;dragging:boolean;at:number;downTime:number};
   private timer?:ReturnType<typeof setTimeout>;
   private reset(canceled:boolean):void {const pressed=this.pressed;this.intent.cancel();this.pressed=undefined;clearTimeout(this.timer);pressed?.actions.release?.();if(canceled)pressed?.actions.cancel?.();}
   private readonly cancel=()=>this.reset(true);
@@ -20,7 +21,7 @@ export class SceneView {
     if(modalBlocksCanvas(canvas.left+p.x*canvas.width/this.scene.scale.width,canvas.top+p.y*canvas.height/this.scene.scale.height)){this.cancel();return;}
     const object=over.find(o=>this.gestures.has(o));if(!object)return;this.cancel();
     const {x,y}=p.positionToCamera(this.scene.cameras.main) as Phaser.Math.Vector2;
-    const actions=this.gestures.get(object)!,inspectable=!!actions.detail||!!actions.holdToDrag;this.pressed={object,actions,id:p.id,held:false,touch:p.wasTouch,x,y,dragging:false};this.intent.down(p.id,x,y,performance.now(),inspectable);actions.press?.();
+    const actions=this.gestures.get(object)!,inspectable=!!actions.detail||!!actions.holdToDrag,at=performance.now();this.pressed={object,actions,id:p.id,held:false,touch:p.wasTouch,x,y,dragging:false,at,downTime:p.downTime};this.intent.down(p.id,x,y,at,inspectable);actions.press?.();
     if(inspectable)this.timer=setTimeout(()=>{if(this.intent.hold(performance.now())){if(this.pressed)this.pressed.held=true;if(!actions.holdToDrag)actions.detail?.();}},355);
   };
   private readonly move=(p:Phaser.Input.Pointer)=>{
@@ -33,11 +34,12 @@ export class SceneView {
   private readonly up=(p:Phaser.Input.Pointer)=>{
     if(this.pressed?.id!==p.id)return;
     const {x,y}=p.positionToCamera(this.scene.cameras.main) as Phaser.Math.Vector2;
-    const pressed=this.pressed,kind=this.intent.up(p.id,x,y,performance.now());this.reset(false);if(!pressed)return;
+    const pressed=this.pressed,at=pointerReleaseTime(pressed.at,pressed.downTime,p.upTime,performance.now());
+    const {kind,newlyHeld}=releasePointerIntent(this.intent,p.id,x,y,at);pressed.held||=newlyHeld;this.reset(false);
     if(kind==='drag'&&pressed.actions.holdToDrag&&pressed.touch&&!pressed.held&&pressed.actions.swipe)pressed.actions.swipe(x-pressed.x,y-pressed.y);
     else if(kind==='drag'&&(!pressed.actions.holdToDrag||!pressed.touch||pressed.held))pressed.actions.drag?.(x,y);
     else if(kind==='tap'&&(pressed.object as Phaser.GameObjects.Rectangle).getBounds().contains(x,y))pressed.actions.tap();
-    else if(kind==='none'&&pressed.held&&pressed.actions.holdToDrag)pressed.actions.detail?.();
+    else if(kind==='none'&&pressed.held&&(pressed.actions.holdToDrag||newlyHeld))pressed.actions.detail?.();
     else pressed.actions.cancel?.();
   };
   private readonly resize=()=>{if(this.scene.scene.isActive()){alignViewportCamera(this.scene);this.redraw();}};

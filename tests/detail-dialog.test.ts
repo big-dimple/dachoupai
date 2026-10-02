@@ -1,5 +1,6 @@
 import {afterEach,beforeEach,describe,expect,it,vi} from 'vitest';
 import {DetailDialog} from '../src/game/DetailDialog';
+import {cardAbilityCopy} from '../src/game/CardCopy';
 
 const art=vi.hoisted(()=>({progressive:vi.fn(),decode:vi.fn(),mountF09:vi.fn()}));
 vi.mock('../src/game/DetailArt',()=>({progressiveArt:art.progressive,decodeArtImage:art.decode}));
@@ -81,6 +82,26 @@ beforeEach(()=>{
 afterEach(()=>{vi.unstubAllGlobals();});
 
 describe('detail art recovery and stable rarity',()=>{
+  it.each(['f09','f04','a03','pengci','huimaqiang'])('keeps %s ability and edition above art with one flavor and collapsed rules',id=>{
+    const owner=new DetailDialog(),ability=cardAbilityCopy(id,{gold:3,inStage:false})!;
+    const operations='出售可得 2 金。调序不花金币。',editionBody='版次：闪箔（热度+25） · 独立于本体条件';
+    const dialog=owner.open(id,operations,[],{portrait,rarity:'common',ability,editionBody,summaryBody:'实付 4 金 · 余额 7 → 3 金'});
+    const layout=find(dialog,'.dialog-content'),intro=find(layout,'.dialog-intro'),main=find(intro,'.card-ability'),edition=find(intro,'.dialog-edition-summary'),frame=find(dialog,'.dialog-card-art'),rules=find(dialog,'.card-rules');
+    expect(find(main,'span').textContent).toBe(ability.condition);expect(find(main,'strong').textContent).toBe(ability.value);expect(find(main,'small').textContent).toBe(ability.state);
+    expect(edition.textContent).toBe(editionBody);expect(main.contains(edition)).toBe(false);expect(layout.children.indexOf(intro)).toBeLessThan(layout.children.indexOf(frame));
+    expect(node(dialog).querySelectorAll('.card-flavor')).toHaveLength(1);expect(node(dialog).textContent.split(ability.flavor)).toHaveLength(2);
+    expect(rules.getAttribute('open')).toBeNull();expect(find(rules,'p').textContent).toBe(ability.rules+'\n\n'+operations);
+    expect(find(frame,'.joker-rarity-badge').dataset.rarity).toBe('common');expect(node(dialog).querySelectorAll('.dialog-card-art')).toHaveLength(1);
+  });
+
+  it('keeps inactive ability separate from edition and supports a specifically named folded ledger',()=>{
+    const owner=new DetailDialog(),ability={...cardAbilityCopy('f09',{gold:3,inStage:true,disabledReason:'本场封禁'})!,flavor:' ',state:undefined};
+    const dialog=owner.open('本手来源','实际来源一\n实际来源二',[],{portrait,rarity:'rare',ability,editionBody:'版次：闪箔 · 本场计分封禁',f09:{inactive:true,reduced:true},rulesLabel:'完整计分明细'});
+    const main=find(dialog,'.card-ability'),edition=find(dialog,'.dialog-edition-summary'),rules=find(dialog,'.card-rules');
+    expect(main.dataset.inactive).toBe('true');expect(main.contains(edition)).toBe(false);expect(main.querySelectorAll('small')).toHaveLength(0);expect(node(dialog).querySelectorAll('.card-flavor')).toHaveLength(0);
+    expect(find(rules,'summary').textContent).toBe('完整计分明细');expect(rules.getAttribute('open')).toBeNull();expect(find(dialog,'.joker-rarity-badge').dataset.rarity).toBe('rare');
+  });
+
   it('tracks automatic Phaser retry and recovery without reopening the modal or marking recovered art failed',()=>{
     let currentStatus:'failed'|'loading'|'loaded'='failed';const readStatus=vi.fn(()=>currentStatus),owner=new DetailDialog();
     const dialog=owner.open('不换词','规则',[],{portrait,artLoad:{status:currentStatus,readStatus}}),frame=find(dialog,'.dialog-card-art'),image=find(frame,'.dialog-card-image');

@@ -10,7 +10,7 @@ export function modalBlocksCanvas(x:number,y:number):boolean {
 }
 interface DialogAction {label:string;run:()=>void|Promise<void>;disabled?:boolean;primary?:boolean}
 type ArtLoadStatus='unregistered'|'idle'|'loading'|'loaded'|'failed';
-interface DialogOptions {summaryBody?:string;effectBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;f09?:{inactive:boolean;bodyInactive?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;alt:string;layout?:'card';caption?:string}}
+interface DialogOptions {summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;alt:string;layout?:'card';caption?:string}}
 export class DetailDialog {
   private dialog?:HTMLDialogElement;
   private lastPointer?:{x:number;y:number};
@@ -123,12 +123,14 @@ export class DetailDialog {
     }
     if(options.ability){
       const ability=document.createElement('section'),condition=document.createElement('span'),value=document.createElement('strong'),state=document.createElement('small');
-      ability.className='card-ability f09-ability';ability.dataset.inactive=String(!!options.f09?.inactive);condition.textContent=options.ability.condition;value.textContent=options.ability.value;state.textContent=options.ability.state??'';ability.append(condition,value,state);intro.append(ability);
-      const flavor=document.createElement('p');flavor.className='card-flavor';flavor.textContent=options.ability.flavor;copy.append(flavor);
+      ability.className='card-ability f09-ability';ability.dataset.inactive=String(!!options.f09?.inactive);condition.textContent=options.ability.condition;value.textContent=options.ability.value;ability.append(condition,value);
+      if(options.ability.state){state.textContent=options.ability.state;ability.append(state);}intro.append(ability);
+      if(options.ability.flavor.trim()){const flavor=document.createElement('p');flavor.className='card-flavor';flavor.textContent=options.ability.flavor;copy.append(flavor);}
     }
     if(options.effectBody&&!options.ability){const effect=document.createElement('p');effect.className='dialog-effect';effect.textContent=options.effectBody;intro.append(effect);}
+    if(options.editionBody){const edition=document.createElement('p');edition.className='dialog-edition-summary';edition.textContent=options.editionBody;intro.append(edition);}
     if(options.summaryBody){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;intro.append(summary);}
-    if(options.collapseRules){const rules=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('p');rules.className='card-rules';summary.textContent='规则与操作';text.textContent=(options.ability?.rules??'')+'\n\n'+body;rules.append(summary,text);copy.append(rules,status);}
+    if(options.collapseRules||options.ability){const rules=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('p');rules.className='card-rules';summary.textContent=options.rulesLabel??'规则与操作';text.textContent=[options.ability?.rules,body].filter(Boolean).join('\n\n');rules.append(summary,text);copy.append(rules,status);}
     else copy.append(content,status);
     layout.append(copy);if(intro.childElementCount)layout.prepend(intro);dialog.append(layout,row);document.body.append(dialog);
     dialog.addEventListener('cancel',event=>{event.preventDefault();this.close(dialog);});

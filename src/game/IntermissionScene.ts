@@ -10,6 +10,7 @@ import {rankLabel,SUIT_SYMBOL} from '../cards/types';
 import type {ScoreTrace} from '../domain/scoreR2';
 import {heatText,fractionText} from './scoreText';
 import {r2ScoreOperationText} from './r2Help';
+import {cardAbilityCopy} from './CardCopy';
 import {runController,dispatchRun,startRun} from './runAdapter';
 import {gameSession} from './session';
 import {getCharacter} from './characters';
@@ -179,8 +180,14 @@ export class IntermissionScene extends Phaser.Scene {
       const operation=r2ScoreOperationText(e),status=['afterHand','beforeFailure','onStageClear'].includes(e.phase);
       return `${source} · ${operation}`+(status?'':` → ${fractionText(e.after.H)} 热度 × ${fractionText(e.after.M)} 倍率`);
     });
-    const body=`${HAND_LABELS[trace.handType]} Lv.${trace.level} · ${heatText(trace.finalScore)} 热度\n打出：${trace.sets.playedIds.map(cardName).join('、')}\n实际计分：${trace.sets.activeScoringIds.map(cardName).join('、')||'无'}\n\n${fractionText(trace.accumulator.H)} × ${fractionText(trace.accumulator.M)} = ${heatText(trace.finalScore)}\n\n`+lines.join('\n');
-    this.dialog.open('最后一手 · 已保存的结算',body);
+    const summary=`${HAND_LABELS[trace.handType]} Lv.${trace.level} · ${heatText(trace.finalScore)} 热度\n打出：${trace.sets.playedIds.map(cardName).join('、')}\n实际计分：${trace.sets.activeScoringIds.map(cardName).join('、')||'无'}\n\n${fractionText(trace.accumulator.H)} × ${fractionText(trace.accumulator.M)} = ${heatText(trace.finalScore)}`;
+    // Read saved activity only; current gold and next-hand eligibility cannot explain this hand.
+    const benefits=trace.sourceJokers.flatMap(joker=>{
+      const copy=cardAbilityCopy(joker.definitionId,{gold:run.gold,instanceId:joker.instanceId,events:trace.events});if(!copy)return [];
+      const edition=trace.events.filter(event=>event.sourceType==='joker'&&event.sourceInstanceId===joker.instanceId&&event.reasonKey.startsWith('edition.')).map(event=>r2ScoreOperationText(event)).join('、');
+      return [getR2Joker(joker.definitionId).name+'：'+(copy.bodyActive?copy.benefit:'本体未触发')+(edition?'；版次 '+edition:'')];
+    });
+    this.dialog.open('最后一手 · 已保存的结算',summary+'\n\n'+lines.join('\n'),[],benefits.length?{effectBody:summary+'\n\n'+benefits.join('\n'),collapseRules:true,rulesLabel:'完整计分明细'}:{});
   }
   private returnToSelect():void {
     if(this.busy)return;this.exitResult('character-select',{freshSeed:true});
