@@ -1,12 +1,12 @@
 import { createDeck } from '../cards/deck';
-import { R2_JOKERS,R2_IMPLEMENTED_FEATURES,readR2Modifiers,r2GrowthCaps,validR2JokerCounters,supportsR2Joker,type Condition,type R2JokerInstance,type TransactionHookPhase } from '../content/r2Schema';
+import { R2_JOKERS,R2_IMPLEMENTED_FEATURES,readR2Modifiers,r2GrowthCaps,r2GrowthInitials,r2GrowthMinimums,validR2JokerCounters,supportsR2Joker,type Condition,type R2JokerInstance,type TransactionHookPhase } from '../content/r2Schema';
 import { SeededRng } from '../core/SeededRng';
 import { CHARACTER_IDS, type CharacterId } from './characters';
 import { R2_HAND_TYPES,validateCardInstances, type R2HandType } from './evaluateR2';
 import { stableHash } from './hash';
 import { MAX_INTEGER_DIGITS,Rational } from './rational';
 import type {PlayingCard} from '../cards/types';
-import {EDITIONS,SUITS} from '../cards/types';
+import {EDITIONS,SUITS,type Edition} from '../cards/types';
 import {R2_LIMITS,R2_RESOURCE_CONTRACT,r2HandLimit,r2HandsBudget,r2DiscardBudget,r2ConsumableCapacity,r2InterestCap,r2ItemAmount as itemAmount} from './r2Resources';
 export {R2_LIMITS,R2_RESOURCE_CONTRACT,r2HandLimit,r2HandsBudget,r2DiscardBudget,r2ConsumableCapacity,r2InterestCap} from './r2Resources';
 import {R2_ENHANCEMENTS,R2_LONG_TERM_ITEMS,R2_TOOLS,R2_TOOL_CATALOG} from '../content/r2Tools';
@@ -19,12 +19,13 @@ import {drawR2Shelf,drawR2Edition,drawR2Tool,drawR2Items,R2_ECONOMY,r2Price,r2To
 
 export const R2_TARGETS = [400,1000,2400,5600,13000,30000,70000,160000] as const;
 export const R2_STARTING_HAND_LEVELS:Partial<Record<CharacterId,Partial<Record<R2HandType,number>>>> = {amo:{'high-card':3}};
-export const R2_CONTENT_VERSION = 'quality-r2-content-v6';
+export const R2_CONTENT_VERSION = 'quality-r2-content-v7';
 export const R2_CONTENT_HASH = stableHash({jokers:R2_JOKERS,features:R2_IMPLEMENTED_FEATURES,tools:R2_TOOL_CATALOG,toolFeatures:R2_IMPLEMENTED_TOOL_FEATURES,itemIds:R2_IMPLEMENTED_ITEM_IDS,resources:R2_RESOURCE_CONTRACT,limits:R2_LIMITS,economy:R2_ECONOMY,targets:R2_TARGETS,hands:R2_BASE_SCORES,startingHandLevels:R2_STARTING_HAND_LEVELS,score:SCORE_LIMITS,bosses:R2_BOSSES,chapters:R2_AVAILABLE_CHAPTERS,skip:R2_SKIP_CONSUMABLES});
 export interface R2StageState extends Omit<StageState,'targetHeat'|'heat'|'previousHandType'> {
   targetHeat:string; heat:string; previousHandType:R2HandType|null; disabledIds:string[]; wagerSelected:boolean; wagerUsed:boolean;
   discardsUsed:number;skipResult:R2SkipResult|null;handLimit:number;previousHandScore:string|null;rescueUsed:boolean;
   initialHands:number;initialDiscards:number;discardSpent:number;discardGained:number;doubleDiscardBeforeFirstPlay:boolean;
+  maxPlayedCount:number;ordinaryStraightSeen:boolean;ordinaryFlushSeen:boolean;quadRefundUsed:boolean;jokerSold:boolean;
 }
 export interface R2RunState extends Omit<RunState,'schemaVersion'|'rulesVersion'|'stage'|'totalHeat'|'jokers'|'lastScore'|'shop'|'boss'|'outcome'> {
   schemaVersion:2; rulesVersion:'r2'; stage:R2StageState|null; totalHeat:string; jokers:R2JokerInstance[];
@@ -38,6 +39,14 @@ type Transaction = {ok:true;state:R2RunState;events:DomainEvent[]} | {ok:false;c
 const integer = (n:number) => Number.isSafeInteger(n) && n >= 0;
 const scoreString = (n:string) => typeof n==='string' && /^(0|[1-9]\d*)$/.test(n) && n.length<=MAX_INTEGER_DIGITS;
 const permutation = (a:readonly string[],b:readonly string[]) => a.length===b.length && new Set(a).size===a.length && a.every(id=>b.includes(id));
+
+/** Initial values belong to creation, never restoration of an incomplete instance. */
+export function r2CreateJoker(definitionId:string,instanceId:string,paidPrice:number,edition?:Edition):R2JokerInstance {
+  const definition=R2_JOKERS.find(definition=>definition.id===definitionId);
+  if(!definition||!supportsR2Joker(definition))throw Error('unavailable-joker-definition');
+  return {instanceId,definitionId,paidPrice,growth:structuredClone(r2GrowthInitials(definition)),
+    ...(definitionId==='e10'?{counters:{stageClears:0 as const}}:{}),...(edition===undefined?{}:{edition})};
+}
 
 export function assertR2Invariants(state:R2RunState):void {
   const check=(condition:boolean,label:string)=>{if(!condition)throw new Error(`Run invariant: ${label}`);};
@@ -53,6 +62,11 @@ export function assertR2Invariants(state:R2RunState):void {
   for(const j of state.jokers){const caps=r2GrowthCaps(R2_JOKERS.find(d=>d.id===j.definitionId)!);
     for(const [key,fraction] of Object.entries(j.growth)){const value=Rational.fromJSON(fraction);check(Object.hasOwn(caps,key)&&value.n>=0n&&value.compare(Rational.fromJSON(caps[key]))<=0,'joker growth/cap');}
     check(validR2JokerCounters(j.definitionId,j.counters),'joker counters/cap');
+    const definition=R2_JOKERS.find(d=>d.id===j.definitionId)!,initials=r2GrowthInitials(definition);
+    for(const [key,minimum] of Object.entries(r2GrowthMinimums(definition))){
+      check(!Object.hasOwn(initials,key)||Object.hasOwn(j.growth,key),'joker required growth');
+      if(Object.hasOwn(j.growth,key))check(Rational.fromJSON(j.growth[key]).compare(Rational.fromJSON(minimum))>=0,'joker growth/minimum');
+    }
   }
   check(typeof state.safetyNetUsed==='boolean'&&(!state.safetyNetUsed||state.jokers.every(j=>j.definitionId!=='f07')),'safety-net lifetime');
   check(state.consumables.length<=r2ConsumableCapacity(state)&&new Set(state.consumables.map(c=>c.instanceId)).size===state.consumables.length&&state.consumables.every(c=>!!c.instanceId&&r2ToolSupported(c.definitionId)),'consumable schema/slots/capability');
@@ -79,7 +93,10 @@ export function assertR2Invariants(state:R2RunState):void {
     if(state.stage.index===state.stageIndex&&state.phase==='await-input')check(state.stage.doubleDiscardBeforeFirstPlay===(state.stage.index%3===2&&state.boss.definitionId==='B01'),'active discard rule');
     check(typeof state.stage.rescueUsed==='boolean'&&(!state.stage.rescueUsed||state.safetyNetUsed),'stage rescue');
     check(state.stage.previousHandScore===null||scoreString(state.stage.previousHandScore),'previous hand score');
-    check(state.stage.targetHeat===getR2Stage(state.stage.index)?.targetHeat&&state.stage.handsLeft<=state.stage.initialHands&&state.stage.handsLeft+state.stage.playIndex===state.stage.initialHands+(state.stage.rescueUsed?1:0),'stage target/play budget');
+    check(integer(state.stage.maxPlayedCount)&&state.stage.maxPlayedCount<=R2_LIMITS.maxSelected&&(state.stage.playIndex===0?state.stage.maxPlayedCount===0:state.stage.maxPlayedCount>=1),'stage played qualification');
+    check([state.stage.ordinaryStraightSeen,state.stage.ordinaryFlushSeen,state.stage.quadRefundUsed,state.stage.jokerSold].every(value=>typeof value==='boolean'),'stage saved qualifications');
+    check(state.stage.playIndex>0||!state.stage.ordinaryStraightSeen&&!state.stage.ordinaryFlushSeen&&!state.stage.quadRefundUsed,'unused stage qualifications');
+    check(state.stage.targetHeat===getR2Stage(state.stage.index)?.targetHeat&&state.stage.handsLeft<=state.stage.initialHands&&state.stage.handsLeft+state.stage.playIndex===state.stage.initialHands+(state.stage.rescueUsed?1:0)+(state.stage.quadRefundUsed?1:0),'stage target/play budget');
     const s=state.stage;
     check(integer(s.discardSpent)&&integer(s.discardGained)&&s.discardGained<=5&&s.discardsLeft<=s.initialDiscards&&s.discardsLeft+s.discardSpent===s.initialDiscards+s.discardGained,'discard budget with exact refund ledger');
     check(s.discardSpent>=s.discardsUsed&&s.discardSpent<=(s.doubleDiscardBeforeFirstPlay?2:1)*s.discardsUsed&&(!s.doubleDiscardBeforeFirstPlay||s.playIndex>0||s.discardSpent===2*s.discardsUsed),'discard action/spending ledger');
@@ -94,6 +111,7 @@ export function assertR2Invariants(state:R2RunState):void {
   check(state.phase!=='shop'||state.shop!==null,'shop shelf');
   if(state.shop){
     const s=state.shop,offers=[...s.offers,...s.toolOffers,...s.itemOffers];
+    check(typeof s.soldJoker==='boolean','shop sales qualification');
     check(integer(s.rerollCount)&&integer(s.purchases)&&integer(s.visitIndex)&&s.visitIndex===state.stageIndex&&s.offers.length<=4&&s.toolOffers.length<=1&&s.itemOffers.length<=2&&new Set(offers.map(o=>o.offerId)).size===offers.length&&offers.every(o=>!!o.offerId&&typeof o.consumed==='boolean'),'shelf references/capacity');
     check(s.offers.every(o=>R2_JOKERS.some(d=>d.id===o.definitionId&&supportsR2Joker(d))&&(o.edition===undefined||EDITIONS.includes(o.edition))&&o.price===r2Price(o.definitionId,o.edition)),'joker shelf prices/edition');
     check(s.toolOffers.every(o=>r2ToolSupported(o.definitionId)&&R2_TOOLS.some(t=>t.id===o.definitionId&&t.shopWeight>0)&&o.edition===undefined&&o.price===r2ToolPrice(o.definitionId)),'tool shelf prices');
@@ -114,7 +132,10 @@ function makeChapter(state:R2RunState):void {
 }
 function refreshDisabled(state:R2RunState):void {if(state.stage)state.stage.disabledIds=r2DisabledCards(state.boss,state.stage.index,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!));}
 export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stageIndex'|'jokers'>,hand:readonly PlayingCard[],ids:readonly string[]) {
-  return {gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,handRules:{fourStraight:readR2Modifiers(state.jokers,R2_JOKERS).fourStraight},ordinaryPointsSuppressedIds:r2OrdinarySuppression(state.boss,state.stage?.index??state.stageIndex,hand,ids)};
+  const modifiers=readR2Modifiers(state.jokers,R2_JOKERS);
+  return {gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,
+    ...(state.stage?{stageHeatBefore:state.stage.heat,stageTargetHeat:state.stage.targetHeat}:{}),
+    handRules:{fourStraight:modifiers.fourStraight,fourFlush:modifiers.fourFlush},ordinaryPointsSuppressedIds:r2OrdinarySuppression(state.boss,state.stage?.index??state.stageIndex,hand,ids)};
 }
 export const r2DiscardCost=(state:Pick<R2RunState,'stage'|'boss'>):number=>state.stage?.doubleDiscardBeforeFirstPlay&&state.stage.playIndex===0?2:1;
 function transactionMatches(state:R2RunState,condition:Condition,discarded:readonly PlayingCard[]):boolean {
@@ -124,22 +145,59 @@ function transactionMatches(state:R2RunState,condition:Condition,discarded:reado
     case 'hand-type-in':return !!state.stage?.previousHandType&&condition.values.includes(state.stage.previousHandType);
     case 'discard-count':return discarded.length===condition.equals;
     case 'discard-same-suit':return discarded.length>=condition.minimum&&discarded.every(c=>c.suit===discarded[0].suit);
+    case 'stage-played-maximum':return !!state.stage&&state.stage.playIndex>0&&state.stage.maxPlayedCount<=condition.maximum;
+    case 'stage-hand-types-all':return !!state.stage&&condition.values.every(type=>type==='straight'?state.stage!.ordinaryStraightSeen:type==='flush'&&state.stage!.ordinaryFlushSeen);
+    case 'no-joker-sale-this-stage':return !!state.stage&&!state.stage.jokerSold;
+    case 'held-count':return !!state.lastTrace&&state.lastTrace.sets.heldIds.length>=condition.minimum;
+    case 'hand-type-unfinished':return !!state.stage&&!!state.lastTrace&&condition.values.includes(state.lastTrace.handType)&&BigInt(state.stage.heat)<BigInt(state.stage.targetHeat);
     default:throw Error('invalid-economic-condition');
   }
 }
 function economicHooks(state:R2RunState,phase:TransactionHookPhase,events:DomainEvent[],sources=state.jokers,discarded:readonly PlayingCard[]=[]):void {
   for(const j of sources)for(const hook of R2_JOKERS.find(d=>d.id===j.definitionId)!.hooks){
     if(hook.phase!==phase||!transactionMatches(state,hook.condition,discarded))continue;
+    type Source=Extract<DomainEvent,{type:'joker-transaction'}>;
+    const emit=(operation:string,amount:string,details:Partial<Pick<Source,'resourceBefore'|'resourceAfter'|'growthBefore'|'growthAfter'|'rewardDefinitionId'>>={})=>events.push({type:'joker-transaction',phase,definitionId:j.definitionId,instanceId:j.instanceId,operation,amount,visibleCondition:structuredClone(hook.condition),...details});
+    const grantGold=(amount:number,rewardDefinitionId?:string):void=>{
+      const resourceBefore=state.gold;state.gold+=amount;if(phase==='onStageClear')state.stage!.goldEarned+=amount;
+      emit('add-gold',String(amount),{resourceBefore,resourceAfter:state.gold,...(rewardDefinitionId?{rewardDefinitionId}:{})});
+    };
+    const grantTool=(definitionId:string,fallbackGold:number):void=>{
+      if(!r2ToolSupported(definitionId))throw Error('unavailable-reward-tool');
+      if(state.consumables.length>=r2ConsumableCapacity(state)){grantGold(fallbackGold,definitionId);return;}
+      const resourceBefore=state.consumables.length;
+      state.consumables.push({instanceId:`${state.stage!.clearId}/joker-reward/${j.instanceId}/${definitionId}`,definitionId});
+      emit('reward-consumable','1',{resourceBefore,resourceAfter:state.consumables.length,rewardDefinitionId:definitionId});
+    };
     for(const op of hook.operations){let amount='0',resourceBefore:number|undefined,resourceAfter:number|undefined;
-      if(op.kind==='add-gold'){resourceBefore=state.gold;state.gold+=op.amount;if(phase==='onStageClear')state.stage!.goldEarned+=op.amount;resourceAfter=state.gold;amount=String(op.amount);}
+      if(op.kind==='add-gold'){grantGold(op.amount);continue;}
       else if(op.kind==='add-gold-limited'){
         const count=j.counters?.singleDiscards??0;if(count>=op.limit)continue;
-        j.counters={singleDiscards:count+1};resourceBefore=state.gold;state.gold+=op.amount;resourceAfter=state.gold;amount=String(op.amount);
+        j.counters={...j.counters,singleDiscards:count+1};resourceBefore=state.gold;state.gold+=op.amount;resourceAfter=state.gold;amount=String(op.amount);
       }
       else if(op.kind==='refund-discard'){resourceBefore=state.stage!.discardsLeft;state.stage!.discardsLeft=Math.min(state.stage!.initialDiscards,resourceBefore+op.amount);resourceAfter=state.stage!.discardsLeft;state.stage!.discardGained+=resourceAfter-resourceBefore;amount=String(resourceAfter-resourceBefore);}
-      else if(op.kind==='add-growth'){const before=Rational.fromJSON(j.growth[op.key]??{n:'0',d:'1'}),raw=before.add(Rational.fromJSON(op.value)),cap=Rational.fromJSON(op.cap),next=raw.compare(cap)>0?cap:raw;j.growth[op.key]=next.toJSON();const delta=next.add(before.multiply(new Rational(-1n))).toJSON();amount=`${delta.n}/${delta.d}`;}
+      else if(op.kind==='add-growth'){const before=Rational.fromJSON(j.growth[op.key]??{n:'0',d:'1'}),raw=before.add(Rational.fromJSON(op.value)),cap=Rational.fromJSON(op.cap),next=raw.compare(cap)>0?cap:raw;j.growth[op.key]=next.toJSON();const delta=next.add(before.multiply(new Rational(-1n))).toJSON();if(phase==='onReroll'&&delta.n==='0')continue;amount=`${delta.n}/${delta.d}`;}
+      else if(op.kind==='reward-consumable-pool'){
+        const rng=SeededRng.restore(state.rng.reward),definitionId=op.definitionIds[rng.integer(0,op.definitionIds.length-1)];
+        state.rng.reward=rng.snapshot();grantTool(definitionId,op.fallbackGold);continue;
+      }
+      else if(op.kind==='reward-consumable-every-clears'){
+        const resourceBefore=j.counters?.stageClears;if(resourceBefore!==0&&resourceBefore!==1)throw Error('missing-clear-cycle');
+        const resourceAfter=resourceBefore===0?1:0;j.counters={...j.counters,stageClears:resourceAfter};
+        emit('increment-clear-cycle','1',{resourceBefore,resourceAfter});
+        if(resourceAfter===0)grantTool(op.definitionId,op.fallbackGold);continue;
+      }
+      else if(op.kind==='add-coefficient'||op.kind==='reset-coefficient'){
+        if(!Object.hasOwn(j.growth,op.key))throw Error('missing-joker-coefficient');
+        const before=Rational.fromJSON(j.growth[op.key]);let next: Rational;
+        if(op.kind==='reset-coefficient')next=Rational.fromJSON(op.initial);
+        else {const raw=before.add(Rational.fromJSON(op.value)),cap=Rational.fromJSON(op.cap);next=raw.compare(cap)>0?cap:raw;}
+        const delta=next.add(before.multiply(new Rational(-1n))).toJSON();if(delta.n==='0')continue;
+        const growthBefore=before.toJSON(),growthAfter=next.toJSON();j.growth[op.key]=growthAfter;
+        emit(op.kind,`${delta.n}/${delta.d}`,{growthBefore,growthAfter});continue;
+      }
       else throw Error('invalid-economic-operation');
-      events.push({type:'joker-transaction',phase,definitionId:j.definitionId,instanceId:j.instanceId,operation:op.kind,amount,visibleCondition:structuredClone(hook.condition),...(resourceBefore===undefined?{}:{resourceBefore,resourceAfter:resourceAfter!})});
+      emit(op.kind,amount,resourceBefore===undefined?{}:{resourceBefore,resourceAfter:resourceAfter!});
     }
   }
 }
@@ -159,7 +217,7 @@ export function makeR2Shop(state:R2RunState,reset:boolean):void {
   const toolId=drawR2Tool(rng,r2ToolAcquisitionPool(state));
   const toolOffers=toolId?[{offerId:`${prefix}/tool/0`,definitionId:toolId,price:r2ToolPrice(toolId),consumed:false}]:[];
   const itemOffers=reset?drawR2Items(rng,state.longTermItems,1+itemAmount(state,'item-offer-count')).map((id,slot)=>({offerId:`${prefix}/item/${slot}`,definitionId:id,price:r2ItemPrice(id),consumed:false})):state.shop!.itemOffers;
-  state.shop={visitIndex:state.stageIndex,rerollCount:count,purchases:reset?0:state.shop!.purchases,offers,toolOffers,itemOffers};
+  state.shop={visitIndex:state.stageIndex,rerollCount:count,purchases:reset?0:state.shop!.purchases,soldJoker:reset?false:state.shop!.soldJoker,offers,toolOffers,itemOffers};
   state.rng.shop=rng.snapshot();
 }
 function noCards(state:R2RunState,events:DomainEvent[]):void {
@@ -182,18 +240,38 @@ function rescueHand(state:R2RunState,events:DomainEvent[]):boolean {
   events.push({type:'joker-transaction',phase:'beforeFailure',definitionId:joker.definitionId,instanceId:joker.instanceId,operation:'rescue-hand',amount:'1',resourceBefore:0,resourceAfter:1},{type:'joker-transaction',phase:'beforeFailure',definitionId:joker.definitionId,instanceId:joker.instanceId,operation:'destroy-joker',amount:'0'});
   return true;
 }
-function persistStageClearSources(state:R2RunState,events:readonly DomainEvent[]):void {
-  const sources=events.filter((event):event is Extract<DomainEvent,{type:'joker-transaction'}>=>event.type==='joker-transaction'&&event.phase==='onStageClear'&&event.operation==='add-gold');
+function refundHand(state:R2RunState,events:DomainEvent[]):void {
+  if(state.stage!.quadRefundUsed)return;
+  for(const joker of state.jokers)for(const hook of R2_JOKERS.find(definition=>definition.id===joker.definitionId)!.hooks){
+    if(hook.phase!=='afterHand')continue;
+    const op=hook.operations.find(operation=>operation.kind==='refund-hand-limited');
+    if(!op||op.kind!=='refund-hand-limited'||!transactionMatches(state,hook.condition,[]))continue;
+    const resourceBefore=state.stage!.handsLeft;state.stage!.handsLeft+=op.amount;state.stage!.quadRefundUsed=true;
+    events.push({type:'joker-transaction',phase:'afterHand',definitionId:joker.definitionId,instanceId:joker.instanceId,operation:'refund-hand',amount:String(op.amount),resourceBefore,resourceAfter:state.stage!.handsLeft,visibleCondition:structuredClone(hook.condition)});
+    persistJokerSources(state,events,'afterHand');return;
+  }
+}
+function persistJokerSources(state:R2RunState,events:readonly DomainEvent[],phase:'afterHand'|'onStageClear'):void {
+  const sources=events.filter((event):event is Extract<DomainEvent,{type:'joker-transaction'}>=>event.type==='joker-transaction'&&event.phase===phase);
   if(!sources.length)return;
   const trace=state.lastTrace!;
   if(trace.events.length+sources.length>SCORE_LIMITS.eventCount)throw new ScoreFault('event-limit',trace.events);
   const rewards=sources.map((source,index)=>{
-    if(source.resourceBefore===undefined||source.resourceAfter===undefined||!source.visibleCondition)throw Error('missing-transaction-source');
-    const visibleCondition=structuredClone(source.visibleCondition);if(visibleCondition.kind==='hand-type-in')Object.freeze(visibleCondition.values);Object.freeze(visibleCondition);
+    if(!source.visibleCondition)throw Error('missing-transaction-source');
+    const visibleCondition=structuredClone(source.visibleCondition);if(visibleCondition.kind==='hand-type-in'||visibleCondition.kind==='hand-type-unfinished'||visibleCondition.kind==='stage-hand-types-all')Object.freeze(visibleCondition.values);Object.freeze(visibleCondition);
     const eventId=`${trace.rootId}/event/${trace.events.length+index}`;
-    return Object.freeze({eventId,rootId:trace.rootId,rootEventId:eventId,phase:'onStageClear' as const,sourceType:'joker' as const,sourceDefinitionId:source.definitionId,sourceInstanceId:source.instanceId,operation:'add-gold',value:Object.freeze({n:source.amount,d:'1'}),before:trace.accumulator,after:trace.accumulator,reasonKey:`${source.definitionId}.add-gold`,visibleCondition,retriggerDepth:0,resourceBefore:source.resourceBefore,resourceAfter:source.resourceAfter});
+    let value:import('./rational').Fraction;
+    if(source.operation==='add-coefficient'){
+      if(!source.growthBefore||!source.growthAfter)throw Error('missing-coefficient-source');
+      value=Rational.fromJSON(source.growthAfter).add(Rational.fromJSON(source.growthBefore).multiply(new Rational(-1n))).toJSON();
+    }else {const [n,d='1']=source.amount.split('/');value=Rational.fromJSON({n,d}).toJSON();}
+    const growth=source.growthBefore&&source.growthAfter?{growthBefore:Object.freeze({...source.growthBefore}),growthAfter:Object.freeze({...source.growthAfter})}:{};
+    return Object.freeze({eventId,rootId:trace.rootId,rootEventId:eventId,phase,sourceType:'joker' as const,sourceDefinitionId:source.definitionId,sourceInstanceId:source.instanceId,operation:source.operation,value:Object.freeze(value),before:trace.accumulator,after:trace.accumulator,reasonKey:`${source.definitionId}.${source.operation}`,visibleCondition,retriggerDepth:0,
+      ...(source.resourceBefore===undefined?{}:{resourceBefore:source.resourceBefore,resourceAfter:source.resourceAfter!}),...growth,...(source.rewardDefinitionId?{rewardDefinitionId:source.rewardDefinitionId}:{})});
   });
-  const rewardedTrace={...trace,events:[...trace.events,...rewards]};Object.freeze(rewardedTrace.events);state.lastTrace=Object.freeze(rewardedTrace);
+  const jokers=structuredClone(state.jokers);
+  for(const joker of jokers){for(const value of Object.values(joker.growth))Object.freeze(value);Object.freeze(joker.growth);if(joker.counters)Object.freeze(joker.counters);Object.freeze(joker);}Object.freeze(jokers);
+  const rewardedTrace={...trace,events:[...trace.events,...rewards],jokers};Object.freeze(rewardedTrace.events);state.lastTrace=Object.freeze(rewardedTrace);
 }
 function grantHeldGoldPaper(state:R2RunState):void {
   const trace=state.lastTrace!,stage=state.stage!;
@@ -212,17 +290,17 @@ function grantHeldGoldPaper(state:R2RunState):void {
   if(grants.length){const rewardedTrace={...trace,events:[...trace.events,...grants]};Object.freeze(rewardedTrace.events);state.lastTrace=Object.freeze(rewardedTrace);}
 }
 
-function clearResourceSource(state:R2RunState,definitionId:string,operation:'add-gold'|'upgrade-hand'|'reward-consumable',amount:number,before:number,after:number,jokerId?:string,targetHandType?:R2HandType):void {
+function clearResourceSource(state:R2RunState,definitionId:string,operation:'add-gold'|'upgrade-hand'|'reward-consumable',amount:number,before:number,after:number,jokerId?:string,targetHandType?:R2HandType,rewardDefinitionId?:string):void {
   const trace=state.lastTrace!;
   if(trace.events.length>=SCORE_LIMITS.eventCount)throw new ScoreFault('event-limit',trace.events);
   const eventId=`${trace.rootId}/event/${trace.events.length}`;
-  const event:ScoreEvent=Object.freeze({eventId,rootId:trace.rootId,rootEventId:eventId,phase:'onStageClear',sourceType:jokerId?'joker':'rule',sourceDefinitionId:definitionId,sourceInstanceId:jokerId??state.runId,operation,value:Object.freeze({n:String(amount),d:'1'}),before:trace.accumulator,after:trace.accumulator,reasonKey:`${definitionId}.${operation}`,visibleCondition:Object.freeze({kind:'always'}),retriggerDepth:0,resourceBefore:before,resourceAfter:after,...(targetHandType?{targetHandType}:{})});
+  const event:ScoreEvent=Object.freeze({eventId,rootId:trace.rootId,rootEventId:eventId,phase:'onStageClear',sourceType:jokerId?'joker':'rule',sourceDefinitionId:definitionId,sourceInstanceId:jokerId??state.runId,operation,value:Object.freeze({n:String(amount),d:'1'}),before:trace.accumulator,after:trace.accumulator,reasonKey:`${definitionId}.${operation}`,visibleCondition:Object.freeze({kind:'always'}),retriggerDepth:0,resourceBefore:before,resourceAfter:after,...(targetHandType?{targetHandType}:{}),...(rewardDefinitionId?{rewardDefinitionId}:{})});
   const events=[...trace.events,event];Object.freeze(events);state.lastTrace=Object.freeze({...trace,events});
 }
-function clearGoldSource(state:R2RunState,definitionId:string,amount:number,jokerId?:string):void {
+function clearGoldSource(state:R2RunState,definitionId:string,amount:number,jokerId?:string,rewardDefinitionId?:string):void {
   if(!amount)return;
   const before=state.gold;state.gold+=amount;state.stage!.goldEarned+=amount;
-  clearResourceSource(state,definitionId,'add-gold',amount,before,state.gold,jokerId);
+  clearResourceSource(state,definitionId,'add-gold',amount,before,state.gold,jokerId,undefined,rewardDefinitionId);
 }
 function grantClearItems(state:R2RunState):void {
   if(state.stageIndex%3!==2){
@@ -242,8 +320,8 @@ function grantClearItems(state:R2RunState):void {
     state.supplyRewardClaimed=true;
     if(state.consumables.length<r2ConsumableCapacity(state)){
       const before=state.consumables.length;state.consumables.push({instanceId:`${state.runId}/first-boss/supply`,definitionId:'T16'});
-      clearResourceSource(state,'T16','reward-consumable',1,before,state.consumables.length);
-    }else clearGoldSource(state,'T16',source.overflowGold);
+      clearResourceSource(state,'T16','reward-consumable',1,before,state.consumables.length,undefined,undefined,'T16');
+    }else clearGoldSource(state,'T16',source.overflowGold,undefined,'T16');
   }
 }
 
@@ -295,7 +373,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         state.gold-=price;offer.consumed=true;state.shop.purchases++;if(state.purchaseCoupons>0)state.purchaseCoupons--;
         if(shelf==='offers'){
           economicHooks(state,'onBuyOffer',events,[...state.jokers]);
-          state.jokers.push({instanceId:`${state.runId}/joker/${command.commandId}`,definitionId:offer.definitionId,paidPrice:price,growth:{},...(offer.edition===undefined?{}:{edition:offer.edition})});
+          state.jokers.push(r2CreateJoker(offer.definitionId,`${state.runId}/joker/${command.commandId}`,price,offer.edition));
         }else if(shelf==='toolOffers')state.consumables.push({instanceId:`${state.runId}/tool/${command.commandId}`,definitionId:offer.definitionId});
         else state.longTermItems.push(offer.definitionId);
         break;
@@ -303,13 +381,15 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
       case 'SellJoker': {
         if(state.phase!=='shop')return fail('wrong-phase');
         const index=state.jokers.findIndex(j=>j.instanceId===action.instanceId);if(index<0)return fail('unknown-joker-instance');
-        state.gold+=salePrice(state.jokers[index].paidPrice);state.jokers.splice(index,1);economicHooks(state,'onSellJoker',events);break;
+        const remaining=state.jokers.filter((_,slot)=>slot!==index);
+        if(state.consumables.length>r2ConsumableCapacity({...state,jokers:remaining}))return fail('over-capacity-after-sale');
+        state.gold+=salePrice(state.jokers[index].paidPrice);state.jokers=remaining;state.shop!.soldJoker=true;economicHooks(state,'onSellJoker',events);break;
       }
       case 'RerollShop': {
         if(state.phase!=='shop'||!state.shop)return fail('wrong-phase');
         if(!r2Pool(state.jokers.map(j=>j.definitionId),state.safetyNetUsed?['f07']:[]).length)return fail('no-reroll-candidates');
         const cost=r2PaidRerollPrice(state);if(state.gold<cost)return fail('not-enough-gold');
-        state.gold-=cost;makeR2Shop(state,false);break;
+        state.gold-=cost;makeR2Shop(state,false);economicHooks(state,'onReroll',events);break;
       }
       case 'EnterStage': {
         if(state.phase!=='stage-ready')return fail('wrong-phase');
@@ -319,7 +399,8 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         state.drawPile=rng.shuffle(state.deckInstances.filter(c=>!state.destroyedIds.includes(c.id))).map(c=>c.id);
         state.handOrder=[];state.playedPile=[];state.discardPile=[];
         state.rng.deck=rng.snapshot();
-        state.stage={index:state.stageIndex,targetHeat:definition.targetHeat,heat:'0',handsLeft:r2HandsBudget(state),discardsLeft:r2DiscardBudget(state),initialHands:r2HandsBudget(state),initialDiscards:r2DiscardBudget(state),discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:state.stageIndex%3===2&&state.boss.definitionId==='B01',discardsUsed:0,skipResult:null,playIndex:0,previousHandType:null,previousHandScore:null,handLimit:r2HandLimit(state),rescueUsed:false,clearId:null,goldEarned:0,disabledIds:[],wagerSelected:false,wagerUsed:false};
+        state.stage={index:state.stageIndex,targetHeat:definition.targetHeat,heat:'0',handsLeft:r2HandsBudget(state),discardsLeft:r2DiscardBudget(state),initialHands:r2HandsBudget(state),initialDiscards:r2DiscardBudget(state),discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:state.stageIndex%3===2&&state.boss.definitionId==='B01',discardsUsed:0,skipResult:null,playIndex:0,previousHandType:null,previousHandScore:null,handLimit:r2HandLimit(state),rescueUsed:false,clearId:null,goldEarned:0,disabledIds:[],wagerSelected:false,wagerUsed:false,
+          maxPlayedCount:0,ordinaryStraightSeen:false,ordinaryFlushSeen:false,quadRefundUsed:false,jokerSold:state.shop?.soldJoker??false};
         clearStageEffects(state);for(const joker of state.jokers)if(joker.definitionId==='a07')joker.counters={singleDiscards:0};refill(state);
         refreshDisabled(state);
         state.chapter=chapter+1;state.phase='await-input';state.shop=null;state.lastTrace=null;break;
@@ -379,6 +460,8 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(!scoreString(heat))return {ok:false,code:'score-diagnostic',diagnostic:{code:'numeric-length-limit',events:trace.events}};
         state.stage.heat=heat;
         state.stage.handsLeft--;state.stage.playIndex++;state.stage.previousHandType=trace.handType;state.stage.previousHandScore=trace.finalScore;
+        state.stage.maxPlayedCount=Math.max(state.stage.maxPlayedCount,trace.sets.playedIds.length);
+        state.stage.ordinaryStraightSeen ||= trace.handType==='straight';state.stage.ordinaryFlushSeen ||= trace.handType==='flush';
         if(state.stage.wagerSelected)state.stage.wagerUsed=true;
         state.stage.wagerSelected=false;
         state.handOrder=[...trace.sets.heldIds];state.playedPile.push(...trace.sets.playedIds.filter(id=>!trace.destroyedCardIds.includes(id)));
@@ -395,21 +478,25 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
             const interestJoker=state.jokers.find(j=>j.definitionId==='e04');
             if(interestJoker)clearGoldSource(state,'e04',jokerInterest,interestJoker.instanceId);
             clearGoldSource(state,'U04',itemInterest);grantHeldGoldPaper(state);grantClearItems(state);
-            economicHooks(state,'onStageClear',events);persistStageClearSources(state,events);scoredEvent.score=state.lastTrace!;
+            economicHooks(state,'onStageClear',events);persistJokerSources(state,events,'onStageClear');scoredEvent.score=state.lastTrace!;
           }
           catch(error){return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
           clearStageEffects(state);state.totalHeat=total;state.stageIndex++;
           state.phase=state.stageIndex===R2_AVAILABLE_CHAPTERS*3?'run-won':'stage-cleared';
           if(state.phase==='run-won')state.outcome={reason:'graybox-complete',stageIndex:state.stage.index};
           events.push({type:'stage-ended',cleared:true,stage:structuredClone(state.stage)});
-        } else if(state.stage.handsLeft===0) {
+        } else {
+          try {refundHand(state,events);scoredEvent.score=state.lastTrace!;}
+          catch(error){return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
+          if(state.stage.handsLeft===0) {
           try {
             if(rescueHand(state,events))scoredEvent.score=state.lastTrace!;
             else{clearStageEffects(state);state.phase='run-lost';state.outcome={reason:'hands-exhausted',stageIndex:state.stage.index};events.push({type:'stage-ended',cleared:false,stage:structuredClone(state.stage)});}
           } catch(error){return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
-        } else {
+          } else {
           refill(state);refreshDisabled(state);
           noCards(state,events);
+          }
         }
         break;
       }
@@ -422,7 +509,8 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         else if(state.consumables.length<r2ConsumableCapacity(state)){state.consumables.push({instanceId:`${state.runId}/skip/${state.stageIndex}`,definitionId:state.chapterSkipConsumable});skipResult={kind:'consumable',definitionId:state.chapterSkipConsumable};}
         else{state.gold++;skipResult={kind:'gold',amount:1};}
         state.discardPile.push(...state.handOrder);state.handOrder=[];clearStageEffects(state);
-        state.stage={index:state.stageIndex,targetHeat:definition.targetHeat,heat:'0',handsLeft:r2HandsBudget(state),discardsLeft:r2DiscardBudget(state),initialHands:r2HandsBudget(state),initialDiscards:r2DiscardBudget(state),discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:state.stageIndex%3===2&&state.boss.definitionId==='B01',discardsUsed:0,skipResult,playIndex:0,previousHandType:null,previousHandScore:null,handLimit:r2HandLimit(state),rescueUsed:false,clearId:null,goldEarned:0,disabledIds:[],wagerSelected:false,wagerUsed:false};
+        state.stage={index:state.stageIndex,targetHeat:definition.targetHeat,heat:'0',handsLeft:r2HandsBudget(state),discardsLeft:r2DiscardBudget(state),initialHands:r2HandsBudget(state),initialDiscards:r2DiscardBudget(state),discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:state.stageIndex%3===2&&state.boss.definitionId==='B01',discardsUsed:0,skipResult,playIndex:0,previousHandType:null,previousHandScore:null,handLimit:r2HandLimit(state),rescueUsed:false,clearId:null,goldEarned:0,disabledIds:[],wagerSelected:false,wagerUsed:false,
+          maxPlayedCount:0,ordinaryStraightSeen:false,ordinaryFlushSeen:false,quadRefundUsed:false,jokerSold:state.shop?.soldJoker??false};
         state.stageIndex++;state.phase='stage-cleared';state.shop=null;state.lastTrace=null;events.push({type:'stage-skipped',stage:structuredClone(state.stage)});break;
       }
       case 'AbandonRun':

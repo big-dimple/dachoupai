@@ -6,7 +6,7 @@ import {createServer} from 'node:http';
 import path from 'node:path';
 import {chromium,firefox,webkit} from 'playwright';
 import {createServer as createViteServer} from 'vite';
-import {openSelector,waitScene,tapUI,chooseCharacter} from './ui.mjs';
+import {openSelector,waitScene,tapUI,chooseCharacter,tapMenuAction,openMenuSection} from './ui.mjs';
 
 const root=process.cwd(),dir=path.resolve(process.env.V00_EVIDENCE_DIR||'shots/v00-ui'),out=path.join(root,'shots/build-v00');
 fs.mkdirSync(dir,{recursive:true});
@@ -27,7 +27,7 @@ async function rackFits(page){
     for(const l of labels){for(const b of [l.name,l.value])assert.ok(b.x>=l.slot.x&&b.right<=l.slot.right+1&&b.bottom<=l.slot.bottom+1,'360px equipped-card label stays inside its slot: '+JSON.stringify(l));assert.ok(l.name.bottom<=l.value.y,'equipped-card name and full value cannot overlap: '+JSON.stringify(l));}
   }finally{await page.setViewportSize(original);await page.waitForFunction(w=>window.__harness.game.scale.width===w,original.width);}
 }
-async function menu(page,touch){if(await page.getByRole('button',{name:'菜单',exact:true}).getAttribute('aria-expanded')!=='true')await dom(page,'菜单',touch);}
+async function menu(page,touch){if(await page.getByRole('button',{name:'菜单',exact:true}).getAttribute('aria-expanded')!=='true')await page.locator('.run-menu-toggle')[touch?'tap':'click']();}
 async function restore(page,touch,key){const before=await read(page);await page.reload();await openSelector(page);assert.deepEqual(await read(page),before,'reload restores complete checkpoint');await menu(page,touch);await dom(page,'继续本局',touch);await waitScene(page,key);assert.deepEqual(await read(page),before,'continuing cannot change score or RNG');}
 async function chapterSkip(page,touch,url){
   await page.goto(url+'&seed=v00-ui-minimal');await chooseCharacter(page,'erxiang',touch);
@@ -65,7 +65,7 @@ async function inputs(page,touch,action){
     if(action.type==='PlayHand'){
       assert.equal(after.lastTrace.finalScore,predicted[0],'visible preview uses the same gold/discard/Boss context as commit');assert.equal(after.stage.handsLeft,before.stage.handsLeft-1);
       if(['stage-cleared','run-won'].includes(after.phase)){const expected=[4,5,7][before.stageIndex%3]+after.stage.handsLeft+Math.min(5,Math.floor(before.gold/5))+2*before.jokers.filter(j=>j.definitionId==='e01').length;assert.equal(after.stage.goldEarned,expected,'independent successful reward');assert.equal(after.gold,before.gold+expected);}
-      if(await page.evaluate(()=>!!window.__harness.game.scene.getScene('game').presentation))await tapUI(page,'game','action/forward',touch);await idle(page);
+      if(await page.evaluate(()=>!!window.__harness.game.scene.getScene('game').presentation))await tapMenuAction(page,'快进当前手',touch);await idle(page);
     }else{const refund=before.stage.discardsUsed===0&&before.jokers.some(j=>j.definitionId==='d05')?1:0;assert.equal(after.stage.discardsLeft,Math.min(3,before.stage.discardsLeft-rules.r2DiscardCost(before)+refund));assert.equal(after.stage.discardsUsed,before.stage.discardsUsed+1);}
   }else throw Error('unsupported ordinary UI action '+action.type);
   await advance(page,before.commandSeq);
@@ -74,7 +74,7 @@ async function inputs(page,touch,action){
   return after;
 }
 async function fullRun(page,touch,url,fixture,engine){
-  const {style,seed,characterId}=fixture;await page.goto(url+'&seed='+seed);await chooseCharacter(page,characterId,touch);await menu(page,touch);await page.getByLabel('演出速度').selectOption('4');await page.getByLabel('背景音量',{exact:true}).press('Home');await page.getByLabel('音效音量',{exact:true}).press('Home');await dom(page,'菜单',touch);
+  const {style,seed,characterId}=fixture;await page.goto(url+'&seed='+seed);await chooseCharacter(page,characterId,touch);await openMenuSection(page,'settings',touch);await page.getByLabel('演出速度').selectOption('4');await page.getByLabel('背景音量',{exact:true}).press('Home');await page.getByLabel('音效音量',{exact:true}).press('Home');await page.locator('.run-menu-toggle')[touch?'tap':'click']();
   const checkpoints=[],bosses=[],observations=[],restored=new Set();let fullSlot=false;
   for(let step=0;step<180;step++){
     const observed=await read(page),s=observed.state;checkpoints.push({seq:s.commandSeq,hash:domain.stateHash(s)});assert.notEqual(s.phase,'run-lost','selected natural representative must still finish');if(s.phase==='run-won')break;
@@ -86,7 +86,7 @@ async function fullRun(page,touch,url,fixture,engine){
     if(action.type==='LeaveShop'&&next.stageIndex%3===2){
       bosses.push(next.boss);const cards=await page.evaluate(()=>window.__harness.game.scene.getScene('game').cardViews.map(v=>({id:v.card.id,mark:v.scoringMark.text,visible:v.scoringMark.visible})));
       for(const id of next.stage.disabledIds){const card=cards.find(c=>c.id===id);assert.ok(card.visible&&card.mark==='失效','Boss-disabled cards need a visible persistent mark');}
-      await tapUI(page,'game','action/details',touch);assert.ok((await page.getByRole('dialog').innerText()).includes(next.boss.definitionId));await dom(page,'关闭',touch);await page.screenshot({path:path.join(dir,`${engine}-${style}-boss-${next.stageIndex}.png`)});
+      await tapMenuAction(page,'规则 / 物品',touch);assert.ok((await page.getByRole('dialog').innerText()).includes(next.boss.definitionId));await dom(page,'关闭',touch);await page.screenshot({path:path.join(dir,`${engine}-${style}-boss-${next.stageIndex}.png`)});
     }
     if(action.type==='PlayHand'&&!restored.has('growth')&&next.jokers.some(j=>Object.values(j.growth).some(f=>BigInt(f.n)>0n))){await restore(page,touch,next.phase==='await-input'?'game':'intermission');restored.add('growth');}
     if(action.type==='BuyOffer'&&!restored.has('buy')){await restore(page,touch,'shop');restored.add('buy');}
@@ -103,7 +103,7 @@ async function itemUse(page,touch,url,fixture){
   if(!dye){await inputs(page,touch,{type:'LeaveShop'});before=(await read(page)).state;
     if(fixture.id==='T01')await inputs(page,touch,{type:'PlayHand',selectedIds:[before.handOrder[0]]});else await inputs(page,touch,{type:'DiscardHand',selectedIds:[before.handOrder[0]]});
   }
-  before=(await read(page)).state;if(dye)await tapUI(page,'shop','action/items',touch);else{await tapUI(page,'game','action/details',touch);await dom(page,'查看物品',touch);}await dom(page,itemNames[fixture.id]+' · 查看',touch);
+  before=(await read(page)).state;if(dye)await tapUI(page,'shop','action/items',touch);else{await tapMenuAction(page,'规则 / 物品',touch);await dom(page,'查看物品',touch);}await dom(page,itemNames[fixture.id]+' · 查看',touch);
   let targets=[];if(dye){const suit={T03:'hearts',T04:'diamonds',T05:'clubs',T06:'spades'}[fixture.id];assert.equal(await page.getByRole('button',{name:'确认使用',exact:true}).isDisabled(),true,'empty dye selection cannot submit');const same=before.deckInstances.find(c=>c.suit===suit).id,sameBox=page.getByRole('checkbox',{name:same,exact:true});await sameBox.tap();assert.equal(await page.getByRole('button',{name:'确认使用',exact:true}).isDisabled(),true,'unchanged dye target cannot consume');await sameBox.tap();targets=before.deckInstances.filter(c=>c.suit!==suit).slice(0,3).map(c=>c.id);for(const id of targets){const checkbox=page.getByRole('checkbox',{name:id,exact:true});if(touch)await checkbox.tap();else await checkbox.check();}}else if(fixture.id==='T01')await page.getByLabel('升级牌型').selectOption('high-card');
   await dom(page,'确认使用',touch);await advance(page,before.commandSeq);await page.locator('dialog[open]').waitFor({state:'detached'});const after=(await read(page)).state;assert.equal(after.consumables.length,0);assert.deepEqual(after.rng,before.rng,'item use does not draw or reroll');
   if(dye)for(const id of targets)assert.equal(after.deckInstances.find(c=>c.id===id).suit,{T03:'hearts',T04:'diamonds',T05:'clubs',T06:'spades'}[fixture.id]);else if(fixture.id==='T01')assert.equal(after.handLevels['high-card'],2);else{assert.equal(after.stage.discardsLeft,before.stage.discardsLeft+1);assert.equal(after.stage.discardsUsed,before.stage.discardsUsed);}

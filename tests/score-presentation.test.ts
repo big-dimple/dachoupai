@@ -75,6 +75,13 @@ describe('progressive one-source scoring presentation',()=>{
 });
 
 describe('flames follow the displayed exact total, never the final future result',()=>{
+  it('D27 uses only small and large fire: a finished below-target hand is dark and every >=2x score stays large',()=>{
+    expect(scoreFireLevel('0','399','400')).toBe(0);
+    expect(scoreFireLevel('0','799','400')).toBe(1);
+    expect(scoreFireLevel('0','800','400')).toBe(2);
+    expect(scoreFireLevel('0','1200','400')).toBe(2);
+    expect(scoreFireLevel('0','40000','400')).toBe(2);
+  });
   it('starts strictly over target and includes earlier credited hands',()=>{
     expect(scoreFireLevel('0','400','400')).toBe(0);
     expect(scoreFireLevel('0','401','400')).toBe(1);
@@ -90,6 +97,6 @@ describe('flames follow the displayed exact total, never the final future result
     const t=10n**100n;
     expect(scoreFireLevel('0',(t*2n-1n).toString(),t.toString())).toBe(1);
     expect(scoreFireLevel('0',(t*2n).toString(),t.toString())).toBe(2);
-    expect(scoreFireLevel('0',(t*3n).toString(),t.toString())).toBe(3);
+    expect(scoreFireLevel('0',(t*3n).toString(),t.toString())).toBe(2);
   });
 });

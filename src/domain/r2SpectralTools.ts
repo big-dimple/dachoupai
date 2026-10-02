@@ -2,7 +2,7 @@ import {SUITS,type PlayingCard} from '../cards/types';
 import {R2_LONG_TERM_ITEMS,R2_TOOL_CATALOG,R2_TOOLS} from '../content/r2Tools';
 import {SeededRng} from '../core/SeededRng';
 import {R2_HAND_TYPES} from './evaluateR2';
-import {getR2Stage,r2ConsumableCapacity,r2HandLimit,r2HandsBudget,type R2RunState} from './r2Run';
+import {getR2Stage,r2ConsumableCapacity,r2HandLimit,r2HandsBudget,r2CreateJoker,type R2RunState} from './r2Run';
 import {r2Pool} from './r2Shop';
 import {r2ToolSupported} from './r2ToolRuntime';
 import type {Command,DomainEvent} from './run';
@@ -119,7 +119,7 @@ export function applyR2SpectralTool(state:R2RunState,command:Command,events:Doma
       const instanceId=`${state.runId}/joker/${command.commandId}`;
       if(state.jokers.some(joker=>joker.instanceId===instanceId))return 'duplicate-joker-id';
       const rng=SeededRng.restore(state.rng.reward),definition=pool[rng.integer(0,pool.length-1)];
-      state.jokers.push({instanceId,definitionId:definition.id,paidPrice:operation.paidPrice,growth:{},edition:operation.edition});
+      state.jokers.push(r2CreateJoker(definition.id,instanceId,operation.paidPrice,operation.edition));
       createdJokerIds.push(instanceId);state.rng.reward=rng.snapshot();break;
     }
     case 'set-joker-edition': {

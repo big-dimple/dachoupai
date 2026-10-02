@@ -1,4 +1,4 @@
-import {openSelector,tapUI,chooseCharacter,buyOffer} from './ui.mjs';
+import {openSelector,tapUI,chooseCharacter,buyOffer,openMenuSection,tapMenuAction} from './ui.mjs';
 /** Actual user inputs and storage fault injection; no private game actions or resource/state shortcuts. */
 import assert from 'node:assert/strict';
 import {spawn,execFileSync} from 'node:child_process';
@@ -55,7 +55,7 @@ async function refreshMatrix(){
       }
       const before=await read(page),result=await restored(page,before,name);
       if(name==='play-committed'){
-        await menu(page);await page.getByRole('button',{name:'回看上一手',exact:true}).click();await page.waitForFunction(()=>!window.__harness.game.scene.getScene('game').playing);assert.deepEqual((await read(page)).state,before.state);
+        await tapMenuAction(page,'回看上一手');await page.waitForFunction(()=>!window.__harness.game.scene.getScene('game').playing);assert.deepEqual((await read(page)).state,before.state);
       }
       if(name==='reward-published'){
         await tapUI(page,'intermission','action/continue-stage');await waitScene(page,'shop');assert.equal((await read(page)).state.gold,before.state.gold);assert.equal((await read(page)).state.commandSeq,before.state.commandSeq+1);
@@ -69,9 +69,9 @@ async function speeds(){
   for(const mode of ['1','2','4','fast-forward','audio-denied']){
     const test=await start(`playback-${mode}`,{amo:true,audioFailure:mode==='audio-denied'}),{page}=test;
     try {
-      await enter(page);if(['2','4'].includes(mode)){await menu(page);await page.getByLabel('演出速度').selectOption(mode);await page.getByRole('button',{name:'菜单',exact:true}).click();}
+      await enter(page);if(['2','4'].includes(mode)){await openMenuSection(page,'settings');await page.getByLabel('演出速度').selectOption(mode);await page.locator('.run-menu-toggle').click();}
       const before=await read(page);await play(page,[before.state.handOrder[0]]);
-      if(mode==='fast-forward'){await menu(page);await page.getByRole('button',{name:'快进当前手',exact:true}).click();}
+      if(mode==='fast-forward'){await tapMenuAction(page,'快进当前手');}
       await page.waitForFunction(()=>!window.__harness.game.scene.getScene('game').playing);
       const after=await read(page);if(!expected)expected=after.state;else assert.deepEqual(after.state,expected);
       if(mode==='4'){await page.reload();await openSelector(page);await menu(page);assert.equal(await page.getByLabel('演出速度').inputValue(),'4');}
@@ -109,7 +109,7 @@ async function badData(){
       else {assert.equal(await read(page),null);await page.getByText(/存档损坏或版本不兼容/).waitFor();}
       assert.deepEqual(await slots(page),raw);
       const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'导出保留数据',exact:true}).click()]);const file=path.join(output,`retained-${mode}.json`);await download.saveAs(file);const exported=JSON.parse(await readFile(file,'utf8'));assert.ok(exported.records.some(r=>JSON.stringify(r.value).includes(mode==='corrupt'?'broken':'old-content')));
-      await page.getByRole('button',{name:'菜单',exact:true}).click();await chooseCharacter(page,'amo');const current=await read(page);assert.equal(current.state.gold,6);
+      await page.locator('.run-menu-toggle').click();await chooseCharacter(page,'amo');const current=await read(page);assert.equal(current.state.gold,6);
       const retained=await page.evaluate(async()=>{const {IndexedDbSave}=await import('/src/platform/IndexedDbSave.ts');return new IndexedDbSave().exportRetained();});assert.ok(retained.includes(mode==='corrupt'?'broken':'old-content'));
       mark({name:`data/${mode}-backup-retained`,status:'PASS'});
     }finally{await close(test);}

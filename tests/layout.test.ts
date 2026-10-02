@@ -8,7 +8,7 @@ describe('CSS layout contract',()=>{
   for(const [width,height] of sizes)it(`${width}×${height}: readable, visible and distinct hit areas`,()=>{
     const l=layout({width,height},{top:0,right:0,bottom:0,left:0});
     for(const b of [l.hud,l.jokers,l.preview,l.tools,l.hand,l.actions,l.status])expect(inside(b,width,height)).toBe(true);
-    const buttons=[l.buttons.rank,l.buttons.suit,l.buttons.deck,l.buttons.details,...Object.values(l.tableActions),...(l.mode==='portrait'?[]:[l.buttons.forward])];
+    const buttons=[...Object.values(l.buttons),...Object.values(l.tableActions)];
     for(const b of buttons){expect(inside(b,width,height)).toBe(true);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.width).toBeGreaterThanOrEqual(44);}
     expect(l.tableActions.play.height).toBeGreaterThanOrEqual(48);expect(l.tableActions.discard.height).toBeGreaterThanOrEqual(48);
     expect(intersects(l.hand,l.actions)).toBe(false);expect(intersects(l.tools,l.hand)).toBe(false);expect(intersects(l.preview,l.tools)).toBe(false);
@@ -20,6 +20,22 @@ describe('CSS layout contract',()=>{
     const l=layout({width:390,height:844},{top:24,right:0,bottom:34,left:0});
     expect(l.hud.y).toBeGreaterThanOrEqual(24);expect(l.tableActions.play.y+l.tableActions.play.height).toBeLessThanOrEqual(810);
     const narrow=layout({width:320,height:568},{top:0,right:0,bottom:0,left:0});expect(narrow.compact).toBe(true);expect(narrow.height).toBe(568);
+  });
+  it('D27 keeps only two sorting targets and two primary targets within the dynamic safe viewport',()=>{
+    for(const [width,height] of [[320,568],[390,740],[390,844],[640,320],[844,300],[844,390],[1280,720]]){
+      const safe={top:8,right:12,bottom:12,left:8},l=layout({width,height},safe,undefined,{count:14});
+      expect(Object.keys(l.buttons).sort()).toEqual(['rank','suit']);expect(Object.keys(l.tableActions).sort()).toEqual(['discard','play']);
+      const controls=[...Object.values(l.buttons),...Object.values(l.tableActions)];
+      for(const b of controls){
+        expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);
+        expect(b.x).toBeGreaterThanOrEqual(safe.left);expect(b.y).toBeGreaterThanOrEqual(safe.top);
+        expect(b.x+b.width).toBeLessThanOrEqual(width-safe.right);expect(b.y+b.height).toBeLessThanOrEqual(height-safe.bottom);
+        expect(intersects(b,l.hand)).toBe(false);
+      }
+      for(let i=0;i<controls.length;i++)for(let j=i+1;j<controls.length;j++)expect(intersects(controls[i],controls[j])).toBe(false);
+      expect(l.tableActions.discard.x).toBe(l.actions.x);
+      expect(l.tableActions.play.x+l.tableActions.play.width).toBeCloseTo(l.actions.x+l.actions.width);
+    }
   });
   it('expanded hands keep every seat and use a bounded horizontal window on narrow screens',()=>{
     for(const [width,height] of [[320,568],[390,844],[844,390],[1280,720]])for(const count of [9,10,14]){

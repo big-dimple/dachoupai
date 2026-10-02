@@ -59,7 +59,7 @@ describe('r2 run economy and resources',()=>{
     const bought=send(run,{type:'BuyOffer',offerId:offer.offerId}),instance=bought.jokers[0];
     const sold=send(bought,{type:'SellJoker',instanceId:instance.instanceId});
     expect(sold.gold).toBe(bought.gold+Math.max(1,Math.floor(instance.paidPrice/2)));
-    expect(sold.jokers).toEqual([]);expect(sold.shop).toEqual(bought.shop);expect(sold.rng).toEqual(bought.rng);
+    expect(sold.jokers).toEqual([]);expect(sold.shop).toEqual({...bought.shop,soldJoker:true});expect(sold.rng).toEqual(bought.rng);
     const repeat=applyCommand(sold,command(sold,{type:'SellJoker',instanceId:instance.instanceId}));expect(repeat.ok).toBe(false);expect(repeat.state).toBe(sold);
     const free=structuredClone(bought);free.jokers[0].paidPrice=0;
     expect(send(free,{type:'SellJoker',instanceId:instance.instanceId}).gold).toBe(free.gold+1);

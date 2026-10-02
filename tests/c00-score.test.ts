@@ -28,8 +28,10 @@ const score = (hand:readonly PlayingCard[], ids:string[], extra:Partial<ScoreInp
   scoreR2Hand(input(hand, ids.map(id=>owned(id)), extra));
 
 describe('C00 independently calculated score and set goldens', () => {
-  it('publishes only the original 24 and the exact authorized second batch', () => {
-    expect(R2_JOKERS.map(d=>d.id).sort()).toEqual([...originalBatch, ...secondBatch].sort());
+  it('retains the original 48 and the exact authorized final 24', () => {
+    const finalBatch=['a09','a10','a11','a12','b09','b10','b11','b12','c09','c10','c11','c12',
+      'd08','d09','d11','d12','e09','e10','e11','e12','f08','f10','f11','f12'];
+    expect(R2_JOKERS.map(d=>d.id).sort()).toEqual([...originalBatch, ...secondBatch, ...finalBatch].sort());
     expect(schema.validateR2Content(R2_JOKERS)).toEqual([]);
   });
 
@@ -248,10 +250,10 @@ describe('C00 bounded static and state schema', () => {
     const read=schema.readR2Modifiers;
     const jokers=['a04','d06','e02','e04','c08'].map(id=>owned(id));
     const yes=read(jokers,R2_JOKERS,{deckSize:40});
-    expect(yes).toEqual({handLimitBonus:3,fourStraight:true,firstPurchaseDiscount:1,interestCapBonus:2});
+    expect(yes).toEqual({handLimitBonus:3,fourStraight:true,fourFlush:false,consumableCapacityBonus:0,firstPurchaseDiscount:1,interestCapBonus:2});
     expect(read(jokers,R2_JOKERS,{deckSize:41}).handLimitBonus).toBe(1);
     expect(read([owned('a04')],R2_JOKERS).handLimitBonus).toBe(0);
-    expect(read([],R2_JOKERS,{deckSize:40})).toEqual({handLimitBonus:0,fourStraight:false,firstPurchaseDiscount:0,interestCapBonus:0});
+    expect(read([],R2_JOKERS,{deckSize:40})).toEqual({handLimitBonus:0,fourStraight:false,fourFlush:false,consumableCapacityBonus:0,firstPurchaseDiscount:0,interestCapBonus:0});
     expect(read(JSON.parse(JSON.stringify(jokers)),R2_JOKERS,{deckSize:40})).toEqual(yes);
     expect(()=>read(jokers,R2_JOKERS,{deckSize:NaN})).toThrow('invalid-modifier-context');
   });

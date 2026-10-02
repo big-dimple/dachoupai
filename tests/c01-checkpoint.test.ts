@@ -5,7 +5,7 @@ import {stableHash} from '../src/domain/hash';
 import {R2_IMPLEMENTED_TOOL_FEATURES,r2CardSpecialsSupported,r2EditionSupported,r2ItemSupported,r2ToolSupported} from '../src/domain/r2ToolRuntime';
 import type {Edition,Enhancement} from '../src/cards/types';
 import type {ScoreEvent,ScoreTrace} from '../src/domain/scoreR2';
-import rawV5 from '../shots/c01-v5-raw.json';
+import rawV5 from './fixtures/c01-v5-checkpoint.json';
 
 interface Fixture {state:R2RunState;journal:Command[]}
 const start=(seed='c01-checkpoint'):Fixture=>({state:createRun({seed,runId:seed,characterId:'amo',rulesVersion:'r2'}),journal:[]});
@@ -89,7 +89,7 @@ function clearSourceEvent(state:R2RunState,kind:ClearSourceKind):ScoreEvent {
   if(!event)throw Error(`missing-clear-source-${kind}`);return event;
 }
 
-describe('C01 strict v6 checkpoint and retained historical raw',()=>{
+describe('C01 strict current checkpoint and retained historical raw',()=>{
   it.each(['new','entered','skipped'] as const)('round trips the actual %s v6 state and its command receipts',kind=>{
     const fixture=kind==='entered'?enter():kind==='skipped'?send(start(),{type:'SkipStage'}):start();
     const checkpoint=makeCheckpoint(fixture.state,fixture.journal),read=readCheckpoint(JSON.parse(JSON.stringify(checkpoint)));
@@ -114,10 +114,10 @@ describe('C01 strict v6 checkpoint and retained historical raw',()=>{
     const restored=restoreSlots({revision:7,current:rawV5,previous:null});
     expect(restored.status).toBe('invalid');expect(restored.raw).toBe(rawV5);expect(JSON.stringify(rawV5)).toBe(before);
   });
-  it('can restore a valid v6 backup while preserving the genuine v5 current raw for export',()=>{
+  it('can restore a current-version backup while preserving the genuine v5 current raw for export',()=>{
     const restored=restoreSlots({revision:8,current:rawV5,previous:seal(start())});
     expect(restored.status).toBe('backup');expect(restored.code).toBe('incompatible-version');expect(restored.raw).toBe(rawV5);
-    expect(restored.checkpoint?.state.contentVersion).toBe('quality-r2-content-v6');
+    expect(restored.checkpoint?.state.contentVersion).toBe('quality-r2-content-v7');
   });
   it.each(['spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed'])('requires new state field %s',field=>{
     expect(readCheckpoint(damage(start(),state=>{delete object(state)[field];})).ok).toBe(false);

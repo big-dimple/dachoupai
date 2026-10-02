@@ -15,6 +15,11 @@ function download(text:string,name:string):void {
   const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),link=document.createElement('a');
   link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
+export interface RunMenuActions {
+  viewDeck?:()=>void;
+  viewRules?:()=>void;
+  viewLastHand?:()=>void;
+}
 export function routeSavedRun(game:Phaser.Game):void {
   const session=gameSession(),run=session.run;if(!run||session.pendingRun||session.working)return;
   game.registry.set('runController',run);game.registry.set('runState',run.state);game.registry.set('characterId',run.state.characterId);game.registry.set('seed',run.state.seed);
@@ -25,7 +30,7 @@ export function routeSavedRun(game:Phaser.Game):void {
 }
 
 /** Progress and presentation preferences survive scene changes. */
-export function installRunMenu(game:Phaser.Game):void {
+export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|undefined=()=>game.registry.get('runMenuActions') as RunMenuActions|undefined):void {
   const session=gameSession(),audio=AudioEngine.shared,fullscreen=installFullscreen();
   const host=document.createElement('div'),toggle=document.createElement('button'),fullButton=document.createElement('button'),modal=document.createElement('dialog'),panel=document.createElement('section'),status=document.createElement('p');
   const fullscreenInfo=document.createElement('p'),fullscreenNotice=document.createElement('p');
@@ -72,6 +77,14 @@ export function installRunMenu(game:Phaser.Game):void {
     // Closing a menu on the current scene preserves the player's unsubmitted card selection.
     if(game.registry.get('runController')!==run||!game.scene.isActive(target))routeSavedRun(game);close();
   },primary);resume.className='dialog-primary';
+  const inspect=document.createElement('div');inspect.className='run-menu-inspect';panel.append(inspect);
+  const inspectButtons=(['viewDeck','viewRules','viewLastHand'] as const).map((key,index)=>{
+    const action=button(['查看牌组','规则 / 物品','上手详情'][index],()=>{
+      const callback=getActions()?.[key];if(typeof callback!=='function'){refreshPlayback();return;}
+      close();callback();
+    },inspect);
+    action.dataset.menuAction=key;return {key,button:action};
+  });
   const recovery=document.createElement('div');recovery.className='run-menu-recovery';panel.append(recovery);
   const retry=button('重试保存',async()=>{if(await session.retry()){routeSavedRun(game);close();}},recovery);
   const exportCandidate=button('导出未保存候选',()=>{if(session.pendingRun)download(session.pendingRun.exportJSON(),'dachoupai-unsaved-candidate.json');},recovery);
@@ -85,7 +98,8 @@ export function installRunMenu(game:Phaser.Game):void {
     routeSavedRun(game);
     await new Promise<void>(resolve=>game.events.once('poststep',resolve));close();
   },recovery);
-  const settings=document.createElement('fieldset'),legend=document.createElement('legend');legend.textContent='画面与声音';settings.className='run-menu-settings';settings.append(legend);panel.append(settings);
+  const settingsTools=document.createElement('details'),settingsSummary=document.createElement('summary');settingsSummary.textContent='画面与声音';settingsTools.className='run-menu-settings-tools';settingsTools.append(settingsSummary);
+  const settings=document.createElement('fieldset'),legend=document.createElement('legend');legend.textContent='演出与音量';settings.className='run-menu-settings';settings.append(legend);settingsTools.append(settings);panel.append(settingsTools);
   panel.append(fullscreenInfo);
   const saveTools=document.createElement('details'),saveSummary=document.createElement('summary');saveSummary.textContent='进度与存档';saveTools.append(saveSummary);
   const start=button('开始新局',async()=>{
@@ -124,7 +138,8 @@ export function installRunMenu(game:Phaser.Game):void {
   const audioHint=document.createElement('small');audioHint.className='audio-controls-hint';audioHint.textContent='拖到 0% 即关闭这一类声音';audioControls.append(audioHint);
   function saveAudio():void {try{localStorage.setItem('dachoupai-audio-v2',JSON.stringify({version:2,music:audio.getVolume('music'),sfx:audio.getVolume('sfx')}));}catch{/* Audio preferences are optional. */}}
   saveAudio();
-  const playback=document.createElement('div');playback.className='run-menu-playback';panel.append(playback);
+  const playbackTools=document.createElement('details'),playbackSummary=document.createElement('summary');playbackSummary.textContent='回看与演出';playbackTools.className='run-menu-playback-tools';playbackTools.append(playbackSummary);panel.append(playbackTools);
+  const playback=document.createElement('div');playback.className='run-menu-playback';playbackTools.append(playback);
   const forward=button('快进当前手',()=>{const scene=game.scene.getScene('game') as GameScene;if(scene.scene.isActive())scene.fastForward();close();},playback);
   const replay=button('回看上一手',()=>{
     const state=session.state();if(!state?.lastTrace)return;
@@ -135,6 +150,8 @@ export function installRunMenu(game:Phaser.Game):void {
   function refreshPlayback():void {
     const presenting=game.scene.isActive('game')&&(game.scene.getScene('game') as GameScene).isPresenting;
     forward.disabled=!presenting;replay.disabled=presenting||!session.run?.state.lastTrace;
+    const actions=getActions();for(const entry of inspectButtons)entry.button.hidden=typeof actions?.[entry.key]!=='function';
+    inspect.hidden=inspectButtons.every(entry=>entry.button.hidden);
   }
   panel.append(saveTools);
   const infoTools=document.createElement('details'),infoSummary=document.createElement('summary'),info=document.createElement('p');infoSummary.textContent='本局与版本';infoTools.append(infoSummary);panel.append(infoTools);
@@ -163,5 +180,7 @@ export function installRunMenu(game:Phaser.Game):void {
   });
   modal.append(panel);host.append(fullButton,toggle,fullscreenNotice,modal);document.body.append(host);
   const unsubscribe=session.subscribe(refreshState);refreshState();
-  game.events.once('destroy',()=>{unsubscribe();unsubscribeFullscreen();clearTimeout(noticeTimer);fullscreen.dispose();if(modal.open)modal.close();host.remove();});
+  const refreshMenuActions=(_parent:unknown,key:string)=>{if(key==='runMenuActions')refreshPlayback();};
+  for(const event of ['setdata','changedata','removedata'])game.registry.events.on(event,refreshMenuActions);
+  game.events.once('destroy',()=>{unsubscribe();unsubscribeFullscreen();for(const event of ['setdata','changedata','removedata'])game.registry.events.off(event,refreshMenuActions);clearTimeout(noticeTimer);fullscreen.dispose();if(modal.open)modal.close();host.remove();});
 }

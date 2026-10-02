@@ -5,7 +5,7 @@ import {access,mkdir,writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {chromium,firefox,webkit} from 'playwright';
 import {build,preview} from 'vite';
-import {waitScene,tapUI,point} from './ui.mjs';
+import {waitScene,tapUI,point,tapMenuAction} from './ui.mjs';
 const root=process.cwd(),port=Number(process.env.SHOT_PORT||5199),outDir=path.join(root,'shots/smoke-build'),verify=process.argv.includes('--verify-smoke');
 const saveScreens=!verify||process.env.SMOKE_SHOTS==='1';
 const engines={chromium,firefox,webkit},selected=(process.env.SMOKE_BROWSERS||'chromium').split(',');
@@ -78,6 +78,17 @@ try {
     if(saveScreens&&touch&&engine===selected[0])await page.screenshot({path:`shots/${name}-menu.png`});
     await dom(page,'继续本局',touch);
     assert.ok(await page.evaluate(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),chosen),'opening / closing menu preserves selected cards');
+    const beforeInspect=await state(page);
+    for(const label of ['查看牌组','规则 / 物品']){
+      await tapMenuAction(page,label,touch);assert.equal(await page.locator('.run-menu-modal').evaluate(dialog=>dialog.open),false,'inspection replaces the menu without stacking dialogs');
+      assert.ok(await page.locator('dialog[open]').count());await dom(page,'关闭',touch);
+      assert.deepEqual(await state(page),beforeInspect,'low-frequency inspection cannot spend resources or RNG');
+    }
+    await page.waitForTimeout(370);
+    const tableNames=await page.evaluate(()=>{
+      const scene=window.__harness.game.scene.getScene('game'),names=[],walk=list=>{for(const object of list){if(object.input?.enabled&&object.name.startsWith('action/'))names.push(object.name);if(object.list)walk(object.list);}};walk(scene.children.list);return names;
+    });
+    assert.deepEqual(tableNames.filter(name=>!name.startsWith('action/hand-')).sort(),['action/discard','action/play','action/sort-rank','action/sort-suit'],'only common actions occupy the table');
     for(const name of ['action/sort-rank','action/sort-suit']){
       const before=await state(page);await tapUI(page,'game',name,touch);await next(page,before.commandSeq);const after=await state(page);
       assert.deepEqual(after.rng,before.rng);assert.deepEqual(after.stage,before.stage);
@@ -90,7 +101,7 @@ try {
       await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await cdp.detach();
     }else await tapUI(page,'game','action/discard',touch);
     await next(page,beforeDiscard.commandSeq);
-    await page.waitForFunction(expected=>{const s=window.__harness.game.scene.getScene('game'),count=s.resourceCounts.discard;return count.text===String(expected)&&count.scaleX>1.05;},beforeDiscard.stage.discardsLeft-1,{timeout:5000});
+    await page.waitForFunction(expected=>{const s=window.__harness.game.scene.getScene('game'),count=s.resourceCounts.discard;return count.text===expected+' 次'&&count.scaleX>1.05;},beforeDiscard.stage.discardsLeft-1,{timeout:5000});
     if(saveScreens&&touch&&engine===selected[0])await page.screenshot({path:`shots/${name}-discard-feedback.png`});
     await ready(page);const discarded=await state(page);
     await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(c=>!c.back?.visible&&c.container.alpha===1));
@@ -101,7 +112,7 @@ try {
     await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),discarded.handOrder[0]);
     if(saveScreens&&engine===selected[0])await page.screenshot({path:`shots/${name}-game.png`});
     await tapUI(page,'game','action/play',touch);await next(page,discarded.commandSeq);
-    await page.waitForFunction(expected=>{const s=window.__harness.game.scene.getScene('game'),count=s.resourceCounts.play;return count.text===String(expected)&&count.scaleX>1.05;},discarded.stage.handsLeft-1,{timeout:5000});
+    await page.waitForFunction(expected=>{const s=window.__harness.game.scene.getScene('game'),count=s.resourceCounts.play;return count.text===expected+' 次'&&count.scaleX>1.05;},discarded.stage.handsLeft-1,{timeout:5000});
     await ready(page);const played=await state(page);
     assert.equal(played.stage.handsLeft,discarded.stage.handsLeft-1);assert.equal(played.stage.discardsLeft,discarded.stage.discardsLeft);assert.ok(BigInt(played.stage.heat)>BigInt(discarded.stage.heat));assert.ok(played.lastTrace);
     await page.reload();await waitScene(page,'title');assert.deepEqual(await state(page),played,'refresh restores the full determined result');
@@ -125,7 +136,7 @@ try {
     await tapUI(page,'title','action/title-start',true);await waitScene(page,'character-select');
     await tapUI(page,'character-select','character/touye',true);await tapUI(page,'character-select','action/confirm-character',true);await waitScene(page,'shop');
     await tapUI(page,'shop','action/start-stage',true);await waitScene(page,'game');await ready(page);
-    await tapUI(page,'game','action/forward',true);const beforeWager=await state(page);await dom(page,'押注本手',true);await next(page,beforeWager.commandSeq);await dom(page,'关闭',true);
+    await tapMenuAction(page,'规则 / 物品',true);const beforeWager=await state(page);await dom(page,'押注本手',true);await next(page,beforeWager.commandSeq);await dom(page,'关闭',true);
     // The first card is behind the dismiss button; respect the 350ms anti-click-through guard.
     await page.waitForTimeout(370);
     await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(c=>!c.back?.visible&&c.container.alpha===1));
@@ -140,12 +151,14 @@ try {
         const id=s.scoreTotal.getData('eventId'),phase=s.scoreTotal.getData('eventPhase');
         if(id&&!observation.events.some(e=>e.id===id&&e.phase===phase))observation.events.push({id,phase,at:performance.now()-observation.started,label:s.resultText.text,heat:s.scoreHeat.text,mult:s.scoreMult.text});
         const level=s.scoreFlame?.graphic?.getData('intensity')??0;
-        if(level&&!observation.fire.some(f=>f.level===level))observation.fire.push({level,at:performance.now()-observation.started,voices:s.audio.fireVoices.size,shown:s.scoreTotal.text,heat:s.scoreHeat.text,mult:s.scoreMult.text,id,phase});
+        if(level&&!observation.fire.some(f=>f.level===level))observation.fire.push({level,at:performance.now()-observation.started,voices:s.audio.fireVoices.size,audio:[...s.audio.fireVoices].map(voice=>({layer:voice.fireLayer,filter:voice.filter.type,frequency:voice.filter.frequency.value,gain:voice.gain.gain.value})),shown:s.scoreTotal.text,heat:s.scoreHeat.text,mult:s.scoreMult.text,id,phase});
       },30);
     });
     await tapUI(page,'game','action/play',true);await next(page,beforePlay.commandSeq);
     if(saveScreens){
-      await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').scoreFlame?.graphic?.getData('intensity')===3,{},{timeout:30000});
+      await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').scoreFlame?.graphic?.getData('intensity')===1,{},{timeout:30000});
+      await page.screenshot({path:'shots/mobile-score-small-fire.png'});
+      await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').scoreFlame?.graphic?.getData('intensity')===2,{},{timeout:30000});
       await page.screenshot({path:'shots/mobile-score-fire.png'});
     }
     await page.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.resultText.text.includes('三倍爆场')&&s.scoreTotal.text==='1,200'&&s.scoreTotal.scaleX>1.05&&s.view.root.list.some(o=>o.name==='score/celebration');},{},{timeout:30000});
@@ -158,11 +171,11 @@ try {
     report.naturalScoreObservation={renderFps,burstElapsedMs,linkedAudio,...observation};
     const expected=after.lastTrace.events.filter(e=>e.phase!=='base'&&e.phase!=='finalScore');
     assert.deepEqual(observation.events.filter(e=>e.phase==='impact').map(e=>e.id),expected.map(e=>e.eventId),'every actual source gets its own ordered impact');
-    assert.ok(observation.fire.some(f=>f.level===3&&f.voices>0),'actual 3x score has flame rendering and real scheduled burning voices');
-    assert.deepEqual(observation.fire.map(f=>f.level),[1,2,3],'natural score roll crosses each displayed flame threshold in order');
+    assert.ok(observation.fire.some(f=>f.level===2&&f.voices>0),'actual >=2x score has large flame rendering and real scheduled burning voices');
+    assert.deepEqual(observation.fire.map(f=>f.level),[1,2],'natural score roll crosses the two D27 displayed flame thresholds in order');
     for(const frame of observation.fire){
       const shown=BigInt(frame.shown.replaceAll(',','')),total=BigInt(beforePlay.stage.heat)+shown,target=BigInt(after.stage.targetHeat);
-      const level=total<=target?0:total>=target*3n?3:total>=target*2n?2:1;
+      const level=total<=target?0:total>=target*2n?2:1;
       assert.equal(frame.level,level,'flame level follows the score visible in this same browser tick, never a future roll result');
     }
     for(const event of expected){
@@ -215,7 +228,7 @@ try {
           await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(c=>!c.back?.visible&&c.container.alpha===1));
           const before=await state(page),id=before.handOrder[0];await revealCard(page,id);await tapUI(page,'game','card/'+id,true);
           await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),id);await tapUI(page,'game','action/discard',true);await next(page,before.commandSeq);
-          await page.waitForFunction(expected=>{const count=window.__harness.game.scene.getScene('game').resourceCounts.discard;return count.text===String(expected)&&count.scaleX>1.05&&(expected>1||count.style.color==='#ffb391');},before.stage.discardsLeft-1,{timeout:5000});
+          await page.waitForFunction(expected=>{const count=window.__harness.game.scene.getScene('game').resourceCounts.discard;return count.text===expected+' 次'&&count.scaleX>1.05&&(expected>1||count.style.color==='#ffb391');},before.stage.discardsLeft-1,{timeout:5000});
           await ready(page);assert.equal((await state(page)).stage.handsLeft,4);
         }
         const noDiscards=await state(page),held=noDiscards.handOrder[0];assert.equal(noDiscards.stage.discardsLeft,0);await revealCard(page,held);await tapUI(page,'game','card/'+held,true);
@@ -234,7 +247,7 @@ try {
         const observation=await page.evaluate(()=>{clearInterval(window.__c00RescueTimer);return window.__c00RescueObservation;});for(const event of events)assert.ok(observation.some(o=>o.id===event.eventId),'each rescue source has an actual ordered impact');
         if(saveScreens)await page.screenshot({path:'shots/c00-last-hand-rescue.png'});
         await page.reload();await waitScene(page,'title');assert.deepEqual(await state(page),rescued);await tapUI(page,'title','action/title-continue',true);await waitScene(page,'game');await ready(page);assert.deepEqual(await state(page),rescued);
-        await dom(page,'菜单',true);await dom(page,'回看上一手',true);await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').isPresenting);await ready(page);assert.deepEqual(await state(page),rescued,'replay uses persisted destroyed source and never refunds again');
+        await tapMenuAction(page,'回看上一手',true);await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').isPresenting);await ready(page);assert.deepEqual(await state(page),rescued,'replay uses persisted destroyed source and never refunds again');
         const last=rescued.handOrder.map(id=>rescued.deckInstances.find(c=>c.id===id)).sort((a,b)=>a.rank-b.rank)[0];await revealCard(page,last.id);await tapUI(page,'game','card/'+last.id,true);await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),last.id);await tapUI(page,'game','action/play',true);await next(page,rescued.commandSeq);await waitScene(page,'intermission');const lost=await state(page);
         assert.equal(lost.phase,'run-lost');assert.equal(lost.stage.handsLeft,0);assert.equal(lost.stage.playIndex,5);assert.equal(lost.gold,0);assert.equal(lost.lastTrace.events.some(e=>e.operation==='rescue-hand'),false);
         report.checks.push({engine,browserVersion:browser.version(),profile:fixture.profile,status:'PASS',seed:fixture.seed,observation,rescueEvents:events,viewport,deviceScaleFactor:3,covered:['natural-6-gold-buy','last-discard-pulse','exhausted-discards-disabled','last-play-warning','four-real-single-plays','0-to-1-rescue-source-impact','original-source-destroyed-once','persisted-trace-after-refresh','replay-never-refunds','fifth-play-fails-without-second-rescue'],physicalDevice:'NOT_RUN'});

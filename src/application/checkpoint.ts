@@ -2,7 +2,7 @@ import {assertR2Invariants,R2_CONTENT_HASH,R2_CONTENT_VERSION,R2_LIMITS,R2_RESOU
 import type {R2RunState,Command,Action} from '../domain/run';
 import {CHARACTER_IDS} from '../domain/characters';
 import {R2_HAND_TYPES} from '../domain/evaluateR2';
-import {R2_JOKERS,r2GrowthCaps,supportsR2Joker,validR2JokerCounters,validR2Condition,type R2JokerInstance} from '../content/r2Schema';
+import {R2_JOKERS,r2GrowthCaps,r2GrowthInitials,r2GrowthMinimums,supportsR2Joker,validR2JokerCounters,validR2Condition,type R2JokerInstance} from '../content/r2Schema';
 import {Rational,MAX_INTEGER_DIGITS} from '../domain/rational';
 import {SCORE_LIMITS,SCORE_OPERATIONS} from '../domain/scoreR2';
 import {SeededRng} from '../core/SeededRng';
@@ -65,15 +65,18 @@ function jokers(value:unknown):void {
     if(j.edition!==undefined){oneOf(j.edition,EDITIONS);if(!r2EditionSupported(j.edition as typeof EDITIONS[number]))fail('save-joker-edition-not-enabled');}
     const definition=R2_JOKERS.find(d=>d.id===j.definitionId);if(!definition)fail('unknown-save-joker');
     if(ids.has(j.instanceId)||definitions.has(j.definitionId))fail('duplicate-save-joker');ids.add(j.instanceId);definitions.add(j.definitionId);
-    const caps=r2GrowthCaps(definition!),keys=Object.keys(caps);
-    const growth=record(j.growth,[],keys);Object.values(growth).forEach(fraction);
-    for(const [key,value] of Object.entries(growth))if(Rational.fromJSON(value).compare(Rational.fromJSON(caps[key]))>0)fail('save-joker-growth-cap');
+    const caps=r2GrowthCaps(definition!),minimums=r2GrowthMinimums(definition!),keys=Object.keys(caps);
+    const growth=record(j.growth,Object.keys(r2GrowthInitials(definition!)),keys);Object.values(growth).forEach(fraction);
+    for(const [key,value] of Object.entries(growth)){
+      const number=Rational.fromJSON(value);
+      if(number.compare(Rational.fromJSON(minimums[key]))<0||number.compare(Rational.fromJSON(caps[key]))>0)fail('save-joker-growth-cap');
+    }
     if(!validR2JokerCounters(j.definitionId as string,j.counters))fail('invalid-save-joker-counters');
   }
 }
 function shop(value:unknown,commandSeq:number):void {
-  const s=record(value,['visitIndex','rerollCount','purchases','offers','toolOffers','itemOffers']);
-  integer(s.visitIndex,0,R2_TARGETS.length*3-1);integer(s.rerollCount);integer(s.purchases,0,commandSeq);
+  const s=record(value,['visitIndex','rerollCount','purchases','offers','toolOffers','itemOffers','soldJoker']);
+  integer(s.visitIndex,0,R2_TARGETS.length*3-1);integer(s.rerollCount);integer(s.purchases,0,commandSeq);bool(s.soldJoker);
   const ids=new Set<unknown>(),caps={offers:jokerShelfEffect.base+jokerShelfEffect.amount,toolOffers:1,itemOffers:itemShelfEffect.base+itemShelfEffect.amount};
   for(const name of ['offers','toolOffers','itemOffers'] as const)for(const item of array(s[name],caps[name])){
     const offer=record(item,['offerId','definitionId','price','consumed'],name==='offers'?['edition']:[]);
@@ -95,8 +98,10 @@ function shop(value:unknown,commandSeq:number):void {
     }
   }
 }
-function trace(value:unknown,context:{runId:string;characterId:string;discoveredHands:readonly string[]}):void {
+function trace(value:unknown,context:{runId:string;characterId:string;discoveredHands:readonly string[];stage:R2RunState['stage'];stageIndex:number}):void {
   if(value===null)return;
+  const stage=context.stage;if(!stage)return fail('invalid-save-trace-stage');
+  const successfulStage=stage.skipResult===null&&stage.clearId!==null&&stage.index+1===context.stageIndex&&BigInt(stage.heat)>=BigInt(stage.targetHeat);
   const t=record(value,['rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng','destroyedJokerIds','goldDelta','destroyedCardIds','cards','sourceJokers']);
   oneOf(t.rulesVersion,['r2']);text(t.rootId);oneOf(t.handType,R2_HAND_TYPES);integer(t.level,1,30);score(t.finalScore);accumulator(t.accumulator);cursor(t.rng);jokers(t.jokers);
   const sets=record(t.sets,['playedIds','scoringIds','activeScoringIds','heldIds']);
@@ -109,12 +114,14 @@ function trace(value:unknown,context:{runId:string;characterId:string;discovered
   for(const ids of [played,held,scoring,active]){const order=(t.cards as PlayingCard[]).filter(card=>ids.includes(card.id)).map(card=>card.id);if(order.some((id,index)=>id!==ids[index]))fail('invalid-save-trace-order');}
   const events=array(t.events,SCORE_LIMITS.eventCount);if(!events.length)fail('empty-save-trace');
   const eventIds=new Set<unknown>(),rootEventIds:unknown[]=[],destroyedCards:string[]=[],destroyedJokers:string[]=[],glassHits=new Set<string>(),heldGoldSources=new Set<string>();let luckyGold=0n;
+  const coefficients=new Map([...jokerSources.values()].filter(joker=>Object.hasOwn(joker.growth,'coefficient')).map(joker=>[joker.instanceId,Rational.fromJSON(joker.growth.coefficient)]));
+  const coefficientReads=new Set<string>(),coefficientChanges=new Set<string>(),chanceChecks=new Map<string,boolean>(),chanceHeat=new Set<string>(),clearCycles=new Map<string,number>(),rewardSources=new Set<string>(),handRefunds=new Set<string>();
   const unchanged=(before:unknown,after:unknown)=>{
     const a=before as Record<string,unknown>,b=after as Record<string,unknown>;
     if(['H','M'].some(key=>Rational.fromJSON(a[key]).compare(Rational.fromJSON(b[key]))!==0))fail('invalid-save-resource-score');
   };
   for(const item of events){
-    const e=record(item,['eventId','rootId','rootEventId','phase','sourceType','sourceDefinitionId','sourceInstanceId','operation','value','before','after','reasonKey','visibleCondition','retriggerDepth'],['targetCardId','resourceBefore','resourceAfter','targetHandType']);
+    const e=record(item,['eventId','rootId','rootEventId','phase','sourceType','sourceDefinitionId','sourceInstanceId','operation','value','before','after','reasonKey','visibleCondition','retriggerDepth'],['targetCardId','resourceBefore','resourceAfter','targetHandType','growthBefore','growthAfter','rewardDefinitionId']);
     for(const k of ['eventId','rootId','rootEventId','sourceDefinitionId','sourceInstanceId','reasonKey'])text(e[k]);
     if(e.rootId!==t.rootId||eventIds.has(e.eventId))fail('invalid-save-trace-root');eventIds.add(e.eventId);rootEventIds.push(e.rootEventId);
     oneOf(e.phase,['base','onCardScore','onHeldCard','characterScore','jokerScore','finalScore','afterHand','beforeFailure','onStageClear']);
@@ -135,11 +142,71 @@ function trace(value:unknown,context:{runId:string;characterId:string;discovered
       const scope=e.phase==='onCardScore'||e.phase==='afterHand'?active:e.phase==='onHeldCard'||e.phase==='onStageClear'?held:[];
       if(!scope.includes(sourceCard!.id))fail('invalid-save-card-source-set');
     }
-    if(e.sourceType==='joker'){const source=jokerSources.get(e.sourceInstanceId as string);if(!source||source.definitionId!==e.sourceDefinitionId)fail('invalid-save-joker-source');}
+    const sourceJoker=jokerSources.get(e.sourceInstanceId as string);
+    if(e.sourceType==='joker'&&(!sourceJoker||sourceJoker.definitionId!==e.sourceDefinitionId))fail('invalid-save-joker-source');
     if(e.sourceType==='character'&&(e.sourceDefinitionId!==context.characterId||e.sourceInstanceId!==`${context.runId}/character`))fail('invalid-save-character-source');
     if(e.sourceType==='rule'&&(e.sourceInstanceId!==context.runId||![t.handType,'B02',...clearRuleDefinitions].includes(e.sourceDefinitionId)))fail('invalid-save-rule-source');
     const amount=Rational.fromJSON(e.value);
-    if(e.operation==='upgrade-hand'&&(e.sourceType!=='rule'||e.sourceDefinitionId!=='U09')||e.operation==='reward-consumable'&&(e.sourceType!=='rule'||e.sourceDefinitionId!=='T16'))fail('invalid-save-clear-operation-source');
+    if(e.operation==='upgrade-hand'&&(e.sourceType!=='rule'||e.sourceDefinitionId!=='U09'))fail('invalid-save-clear-operation-source');
+    const coefficientOperation=e.operation==='read-coefficient'||e.operation==='add-coefficient';
+    if(e.operation==='reset-coefficient')fail('invalid-save-coefficient-phase'); // Sales have their own committed DomainEvent.
+    if(coefficientOperation){
+      if(e.sourceType!=='joker'||!sourceJoker||!['e11','f12'].includes(sourceJoker.definitionId)||e.targetCardId!==undefined||e.retriggerDepth!==0||Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter'))fail('invalid-save-coefficient-source');
+      const definition=R2_JOKERS.find(definition=>definition.id===sourceJoker!.definitionId)!;
+      const current=coefficients.get(sourceJoker!.instanceId)!;
+      if(e.operation==='read-coefficient'){
+        if(e.phase!=='jokerScore'||coefficientReads.has(sourceJoker!.instanceId)||amount.compare(Rational.fromJSON(sourceJoker!.growth.coefficient))!==0)fail('invalid-save-coefficient-read');
+        coefficientReads.add(sourceJoker!.instanceId);
+      }else{
+        const writer=definition.hooks.flatMap(hook=>hook.operations).find(operation=>operation.kind==='add-coefficient')!;
+        if(writer.kind!=='add-coefficient'||e.phase!=='onStageClear'||coefficientChanges.has(sourceJoker!.instanceId))fail('invalid-save-coefficient-phase');
+        if(!successfulStage||sourceJoker!.definitionId==='e11'&&stage.jokerSold||sourceJoker!.definitionId==='f12'&&stage.handsLeft!==0)fail('invalid-save-coefficient-qualification');
+        fraction(e.growthBefore);fraction(e.growthAfter);unchanged(e.before,e.after);
+        const before=Rational.fromJSON(e.growthBefore),after=Rational.fromJSON(e.growthAfter),cap=Rational.fromJSON(writer.cap),grown=before.add(Rational.fromJSON(writer.value)),expected=grown.compare(cap)>0?cap:grown;
+        if(before.compare(current)!==0||after.compare(expected)!==0||after.add(before.multiply(new Rational(-1n))).compare(amount)!==0)fail('invalid-save-coefficient-delta');
+        coefficients.set(sourceJoker!.instanceId,after);coefficientChanges.add(sourceJoker!.instanceId);
+      }
+    }
+    if((Object.hasOwn(e,'growthBefore')||Object.hasOwn(e,'growthAfter'))&&e.operation!=='add-coefficient')fail('invalid-save-growth-operation');
+    if(e.operation==='chance-heat-check'){
+      if(e.sourceType!=='joker'||sourceJoker?.definitionId!=='f08'||e.phase!=='jokerScore'||e.targetCardId!==undefined||e.retriggerDepth!==0||chanceChecks.has(sourceJoker.instanceId)||amount.d!==1n||amount.n!==0n&&amount.n!==1n||Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter'))fail('invalid-save-chance-source');
+      unchanged(e.before,e.after);chanceChecks.set(sourceJoker!.instanceId,amount.n===1n);
+    }
+    if(e.sourceType==='joker'&&sourceJoker?.definitionId==='f08'&&e.operation==='add-heat'){
+      const foil=R2_TOOL_CATALOG.editions.find(edition=>edition.id===sourceJoker.edition)?.effect;
+      const fromEdition=foil?.kind==='add-heat'&&e.reasonKey===`edition.${sourceJoker.edition}.add-heat`&&amount.compare(Rational.fromJSON(foil.value))===0;
+      if(!fromEdition){
+        const operation=R2_JOKERS.find(joker=>joker.id==='f08')!.hooks.flatMap(hook=>hook.operations).find(operation=>operation.kind==='chance-add-heat')!;
+        if(operation.kind!=='chance-add-heat'||e.phase!=='jokerScore'||!chanceChecks.get(sourceJoker.instanceId)||chanceHeat.has(sourceJoker.instanceId)||amount.compare(Rational.fromJSON(operation.value))!==0)fail('invalid-save-chance-heat');
+        chanceHeat.add(sourceJoker.instanceId);
+      }
+    }
+    if(e.operation==='increment-clear-cycle'){
+      if(e.sourceType!=='joker'||sourceJoker?.definitionId!=='e10'||e.phase!=='onStageClear'||e.targetCardId!==undefined||e.retriggerDepth!==0||clearCycles.has(sourceJoker.instanceId)||amount.compare(new Rational(1n))!==0)fail('invalid-save-clear-cycle-source');
+      if(!successfulStage)fail('invalid-save-clear-cycle-qualification');
+      integer(e.resourceBefore,0,1);integer(e.resourceAfter,0,1);unchanged(e.before,e.after);
+      if(e.resourceBefore!==sourceJoker!.counters!.stageClears||e.resourceAfter!==1-(e.resourceBefore as number))fail('invalid-save-clear-cycle');
+      clearCycles.set(sourceJoker!.instanceId,e.resourceAfter as number);
+    }
+    if(e.operation==='refund-hand'){
+      if(e.sourceType!=='joker'||sourceJoker?.definitionId!=='b12'||e.phase!=='afterHand'||e.targetCardId!==undefined||e.retriggerDepth!==0||t.handType!=='four-kind'||handRefunds.has(sourceJoker.instanceId)||amount.compare(new Rational(1n))!==0)fail('invalid-save-hand-refund-source');
+      integer(e.resourceBefore,0,R2_RESOURCE_CONTRACT.handsMaximum);integer(e.resourceAfter,1,R2_RESOURCE_CONTRACT.handsMaximum+1);unchanged(e.before,e.after);
+      if(!stage.quadRefundUsed||stage.skipResult!==null||stage.index!==context.stageIndex||e.resourceAfter!==stage.handsLeft||BigInt(stage.heat)>=BigInt(stage.targetHeat))fail('invalid-save-hand-refund-qualification');
+      if(e.resourceAfter!==(e.resourceBefore as number)+1)fail('invalid-save-hand-refund');handRefunds.add(sourceJoker!.instanceId);
+    }
+    const prizeSource=e.sourceType==='rule'&&e.sourceDefinitionId==='T16'||e.sourceType==='joker'&&['c12','e10'].includes(e.sourceDefinitionId as string);
+    if(e.operation==='reward-consumable'||prizeSource&&e.operation==='add-gold'||Object.hasOwn(e,'rewardDefinitionId')){
+      if(!prizeSource||e.phase!=='onStageClear'||!['reward-consumable','add-gold'].includes(e.operation as string)||e.targetCardId!==undefined||e.retriggerDepth!==0||rewardSources.has(e.sourceInstanceId as string))fail('invalid-save-reward-source');
+      if(e.sourceType==='joker'&&(!successfulStage||e.sourceDefinitionId==='c12'&&(!stage.ordinaryStraightSeen||!stage.ordinaryFlushSeen)))fail('invalid-save-reward-qualification');
+      oneOf(e.rewardDefinitionId,e.sourceDefinitionId==='c12'?['T03','T04','T05','T06']:e.sourceDefinitionId==='e10'?['T01']:['T16']);
+      if(e.sourceDefinitionId==='e10'&&clearCycles.get(e.sourceInstanceId as string)!==0)fail('invalid-save-clear-cycle-reward');
+      unchanged(e.before,e.after);rewardSources.add(e.sourceInstanceId as string);
+      if(e.operation==='reward-consumable'){
+        if(amount.compare(new Rational(1n))!==0)fail('invalid-save-reward-count');
+        integer(e.resourceBefore,0,R2_TOOL_CATALOG.limits.consumableSlotsMaximum);integer(e.resourceAfter,1,R2_TOOL_CATALOG.limits.consumableSlotsMaximum);
+        if(e.resourceAfter!==(e.resourceBefore as number)+1)fail('invalid-save-reward-delta');
+      }else if(amount.compare(new Rational(BigInt(firstBossSupply.overflowGold)))!==0)fail('invalid-save-reward-overflow');
+    }
     if(e.sourceType==='rule'&&clearRuleDefinitions.includes(e.sourceDefinitionId as typeof clearRuleDefinitions[number])){
       if(e.phase!=='onStageClear'||e.targetCardId!==undefined)fail('invalid-save-clear-source-phase');
       if(e.sourceDefinitionId==='T16'?!r2ToolSupported('T16'):!r2ItemSupported(e.sourceDefinitionId as string))fail('save-clear-source-not-enabled');
@@ -195,7 +262,15 @@ function trace(value:unknown,context:{runId:string;characterId:string;discovered
   }
   const survivors=(t.jokers as R2JokerInstance[]),expected=[...jokerSources.keys()].filter(id=>!destroyedJokers.includes(id));
   if(survivors.length!==expected.length||survivors.some(joker=>!expected.includes(joker.instanceId)))fail('invalid-save-joker-result');
-  for(const joker of survivors){const source=jokerSources.get(joker.instanceId)!;if(joker.definitionId!==source.definitionId||joker.paidPrice!==source.paidPrice||(joker.edition??'none')!==(source.edition??'none'))fail('invalid-save-joker-result-identity');}
+  for(const joker of survivors){
+    const source=jokerSources.get(joker.instanceId)!;
+    if(joker.definitionId!==source.definitionId||joker.paidPrice!==source.paidPrice||(joker.edition??'none')!==(source.edition??'none'))fail('invalid-save-joker-result-identity');
+    const coefficient=coefficients.get(joker.instanceId);
+    if(coefficient&&(Rational.fromJSON(joker.growth.coefficient).compare(coefficient)!==0||!coefficientReads.has(joker.instanceId)))fail('invalid-save-coefficient-result');
+    if(source.definitionId==='e10'&&joker.counters!.stageClears!==(clearCycles.get(joker.instanceId)??source.counters!.stageClears))fail('invalid-save-clear-cycle-result');
+    if(source.definitionId==='f08'&&(!chanceChecks.has(joker.instanceId)||chanceChecks.get(joker.instanceId)!==chanceHeat.has(joker.instanceId)))fail('invalid-save-chance-result');
+  }
+  for(const [id,cycle] of clearCycles)if((cycle===0)!==rewardSources.has(id))fail('invalid-save-clear-cycle-reward');
 }
 function action(value:unknown):void {
   const a=record(value,['type'],['seed','characterId','rulesVersion','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind']);
@@ -245,10 +320,13 @@ function validateState(value:unknown):asserts value is R2RunState {
   for(const [type,count] of Object.entries(usage)){integer(count);if(!Object.hasOwn(levels,type))fail('undiscovered-save-hand-usage');plays+=BigInt(count as number);}
   if(plays>BigInt(s.commandSeq as number))fail('invalid-save-hand-usage');
   oneOf(s.program,[null]);const boss=record(s.boss,['definitionId','disabledSuit']);oneOf(boss.definitionId,R2_BOSSES.map(b=>b.id));oneOf(boss.disabledSuit,[null,...SUITS]);strings(s.seenBossIds,R2_AVAILABLE_CHAPTERS);oneOf(s.chapterSkipConsumable,R2_SKIP_CONSUMABLES);integer(s.purchaseCoupons,0,R2_AVAILABLE_CHAPTERS);bool(s.safetyNetUsed);
-  if(s.stage!==null){const t=record(s.stage,['index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult','initialHands','initialDiscards','discardSpent','discardGained','doubleDiscardBeforeFirstPlay']);
+  if(s.stage!==null){const t=record(s.stage,['index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult','initialHands','initialDiscards','discardSpent','discardGained','doubleDiscardBeforeFirstPlay','maxPlayedCount','ordinaryStraightSeen','ordinaryFlushSeen','quadRefundUsed','jokerSold']);
     integer(t.index,0,R2_AVAILABLE_CHAPTERS*3-1);score(t.targetHeat);score(t.heat);integer(t.handLimit,R2_RESOURCE_CONTRACT.handMinimum,R2_RESOURCE_CONTRACT.handMaximum);bool(t.rescueUsed);if(t.previousHandScore!==null)score(t.previousHandScore);
     integer(t.initialHands,R2_RESOURCE_CONTRACT.handsMinimum,R2_RESOURCE_CONTRACT.handsMaximum);integer(t.initialDiscards,R2_LIMITS.discards,R2_RESOURCE_CONTRACT.discardsMaximum);bool(t.doubleDiscardBeforeFirstPlay);
-    integer(t.handsLeft,0,t.initialHands as number);integer(t.discardsLeft,0,t.initialDiscards as number);integer(t.playIndex,0,(t.initialHands as number)+(t.rescueUsed?1:0));integer(t.discardGained,0,R2_RESOURCE_CONTRACT.discardGainMaximum);integer(t.discardSpent,0,(t.initialDiscards as number)+(t.discardGained as number));integer(t.discardsUsed,0,t.discardSpent as number);
+    for(const field of ['ordinaryStraightSeen','ordinaryFlushSeen','quadRefundUsed','jokerSold'])bool(t[field]);integer(t.maxPlayedCount,0,R2_LIMITS.maxSelected);
+    const handsBudget=(t.initialHands as number)+(t.rescueUsed?1:0)+(t.quadRefundUsed?1:0);
+    integer(t.handsLeft,0,handsBudget);integer(t.discardsLeft,0,t.initialDiscards as number);integer(t.playIndex,0,handsBudget);integer(t.discardGained,0,R2_RESOURCE_CONTRACT.discardGainMaximum);integer(t.discardSpent,0,(t.initialDiscards as number)+(t.discardGained as number));integer(t.discardsUsed,0,t.discardSpent as number);
+    if((t.playIndex===0)!==(t.maxPlayedCount===0)||t.playIndex===0&&(t.ordinaryStraightSeen||t.ordinaryFlushSeen||t.quadRefundUsed)||t.skipResult===null&&(t.handsLeft as number)+(t.playIndex as number)!==handsBudget)fail('invalid-save-stage-history');
     integer(t.goldEarned);strings(t.disabledIds);bool(t.wagerSelected);bool(t.wagerUsed);oneOf(t.previousHandType,[null,...R2_HAND_TYPES]);if(t.clearId!==null)text(t.clearId);
     if(t.skipResult!==null){const r=record(t.skipResult,['kind'],['amount','definitionId']);oneOf(r.kind,['coupon','consumable','gold']);if(r.kind==='consumable'){record(r,['kind','definitionId']);oneOf(r.definitionId,R2_SKIP_CONSUMABLES);}else{record(r,['kind','amount']);oneOf(r.amount,r.kind==='coupon'?[2]:[1]);}}
   }
@@ -257,7 +335,7 @@ function validateState(value:unknown):asserts value is R2RunState {
   const receipts=array(s.receipts,100000);let seq=0;const ids=new Set();
   for(const r of receipts){const v=record(r,['commandId','fingerprint','seq']);text(v.commandId);text(v.fingerprint);integer(v.seq,1);if(v.seq!==++seq||ids.has(v.commandId))fail('invalid-save-receipts');ids.add(v.commandId);}
   if(seq!==s.commandSeq)fail('invalid-save-sequence');
-  trace(s.lastTrace,{runId:s.runId as string,characterId:s.characterId as string,discoveredHands:Object.keys(levels)});
+  trace(s.lastTrace,{runId:s.runId as string,characterId:s.characterId as string,discoveredHands:Object.keys(levels),stage:s.stage as R2RunState['stage'],stageIndex:s.stageIndex as number});
   if(s.outcome!==null){const o=record(s.outcome,['reason','stageIndex']);oneOf(o.reason,['graybox-complete','all-stages-cleared','hands-exhausted','no-legal-cards','abandoned']);integer(o.stageIndex,0,R2_AVAILABLE_CHAPTERS*3);}
   assertR2Invariants(value as unknown as R2RunState);
 }

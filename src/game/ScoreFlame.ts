@@ -1,56 +1,58 @@
 import Phaser from 'phaser';
 import type {Box} from './layout';
 
-type Point={x:number;y:number};
-const points=(count:number):Point[]=>Array.from({length:count},()=>({x:0,y:0}));
-// Broad, uneven lobes rise beside the numbers and between the three score columns.
-const LOBES=[
-  [.018,.95,.72],[.087,.54,-.40],[.270,.50,.60],[.335,.79,-.67],
-  [.440,.25,.45],[.560,.28,-.32],[.655,.83,.63],[.735,.47,-.55],
-  [.912,.58,.36],[.982,.98,-.75],
+const NOISE_SIZE=64,NOISE_MASK=NOISE_SIZE-1,FRAME_MS=50;
+const LARGE_ANCHORS=[.026,1/3,2/3,.974] as const;
+const SMALL_ANCHORS=[.035,.965] as const;
+const COLORS=[
+  [0,58,68,75,0],[.12,84,88,91,8],[.23,134,46,28,30],
+  [.38,231,70,20,112],[.57,255,142,36,186],
+  [.78,255,212,100,222],[1,255,248,188,244],
 ] as const;
-const WAVE_ANCHORS=[.04,.325,.665,.96] as const;
-const EMBER_ANCHORS=[.025,.325,.665,.975] as const;
-const FLAME_COLORS=[
-  ['rgba(196,45,22,0)','rgba(220,67,24,.30)','rgba(249,104,31,.70)','rgba(255,168,65,.90)'],
-  ['rgba(235,74,20,0)','rgba(251,109,31,.24)','rgba(255,171,63,.82)','rgba(255,224,149,.96)'],
-  ['rgba(255,177,68,0)','rgba(255,184,69,.20)','rgba(255,221,139,.78)','rgba(255,245,203,.97)'],
-] as const;
+const clamp=(value:number,minimum=0,maximum=1)=>Math.max(minimum,Math.min(maximum,value));
 let flameId=0;
 
-/** Original bounded 2D flame. Decorative time never touches rule RNG or saved scores. */
+/** Cached, bounded 2D heat advection. Its cosmetic noise never accesses rule RNG. */
 export class ScoreFlame {
   readonly graphic:Phaser.GameObjects.Graphics;
-  private readonly glow?:Phaser.GameObjects.Image;
+  private readonly flame?:Phaser.GameObjects.Image;
   private readonly material?:Phaser.Textures.CanvasTexture;
-  private readonly lights:CanvasGradient[]=[];
-  private readonly glowKey:string;
-  private readonly tonguePoints=points(26);
-  private readonly ribbonPoints=points(35);
-  private readonly wavePoints=points(12);
-  private level:0|1|2|3=0;
+  private readonly textureKey:string;
+  private readonly noise=new Float32Array(NOISE_SIZE*NOISE_SIZE);
+  private readonly palette=new Uint8ClampedArray(256*4);
+  private heat=new Float32Array(0);
+  private nextHeat=new Float32Array(0);
+  private smallFuel=new Float32Array(0);
+  private largeFuel=new Float32Array(0);
+  private smallMask=new Float32Array(0);
+  private largeMask=new Float32Array(0);
+  private pixels?:ImageData;
+  private width=0;
+  private height=0;
+  private level:0|1|2=0;
   private elapsed=0;
   private redrawAfter=0;
+  private step=0;
   private surge=0;
   private reduced=false;
   private destroyed=false;
 
   constructor(private readonly scene:Phaser.Scene,root:Phaser.GameObjects.Container,private readonly box:Box){
-    this.glowKey='score-flame-light-'+flameId++;
-    const texture=scene.textures.createCanvas(this.glowKey,Math.min(512,Math.max(16,Math.ceil(box.width))),Math.min(96,Math.max(16,Math.ceil(box.height))));
+    this.textureKey='score-flame-heat-'+flameId++;
+    this.cacheNoiseAndPalette();
+    const w=Math.min(224,Math.max(64,Math.ceil(box.width*.5))),h=Math.min(72,Math.max(32,Math.ceil(box.height)));
+    const texture=scene.textures.createCanvas(this.textureKey,w,h);
     if(texture){
-      this.material=texture;
-      const ctx=texture.context,w=texture.width,h=texture.height;
-      const base=ctx.createLinearGradient(0,h*.45,0,h);
-      base.addColorStop(0,'rgba(195,57,17,0)');base.addColorStop(.58,'rgba(224,77,22,.12)');base.addColorStop(1,'rgba(255,173,60,.72)');
-      this.lights.push(base);
-      for(const x of [0,w]){
-        const light=ctx.createRadialGradient(x,h*.8,0,x,h*.8,Math.min(w*.27,h*1.7));
-        light.addColorStop(0,'rgba(255,153,46,.60)');light.addColorStop(.35,'rgba(246,81,24,.25)');light.addColorStop(1,'rgba(176,40,20,0)');
-        this.lights.push(light);
-      }
-      this.glow=scene.add.image(box.x+box.width/2,box.y+box.height/2,this.glowKey).setDisplaySize(box.width,box.height).setVisible(false);
-      root.add(this.glow);
+      this.material=texture;this.width=w;this.height=h;
+      this.heat=new Float32Array(w*h);this.nextHeat=new Float32Array(w*h);
+      this.smallFuel=new Float32Array(w);this.largeFuel=new Float32Array(w);
+      this.smallMask=new Float32Array(w*h);this.largeMask=new Float32Array(w*h);
+      this.pixels=texture.context.createImageData(w,h);
+      this.cacheFuelAndMasks();
+      texture.setFilter(Phaser.Textures.FilterMode.LINEAR);
+      this.flame=scene.add.image(box.x+box.width/2,box.y+box.height/2,this.textureKey)
+        .setName('score/fire-heat').setDisplaySize(box.width,box.height).setVisible(false);
+      root.add(this.flame);
     }
     this.graphic=scene.add.graphics().setName('score/fire').setVisible(false).setData('intensity',0);
     root.add(this.graphic);
@@ -60,124 +62,132 @@ export class ScoreFlame {
   }
 
   set(level:0|1|2|3,reduced=false):void {
-    if(this.destroyed||(level===this.level&&reduced===this.reduced))return;
-    // A brief heating crest belongs to a real upward threshold crossing only.
-    this.surge=!reduced&&level>this.level?Math.min(1,.65+(level-this.level)*.15):0;
-    this.level=level;this.reduced=reduced;this.redrawAfter=0;
-    if(!level)this.elapsed=0;
-    this.graphic.setData('intensity',level).setVisible(level>0);
-    this.glow?.setVisible(level>0&&!reduced);
+    const next=level===3?2:level;
+    if(this.destroyed||(next===this.level&&reduced===this.reduced))return;
+    const previous=this.level;
+    this.surge=!reduced&&next>previous ? (next===2 ? .42 : .10) : 0;
+    this.level=next;this.reduced=reduced;this.redrawAfter=0;
+    this.graphic.setData('intensity',next).setVisible(next>0);
+    this.flame?.setVisible(next>0&&!reduced);
+    if(!next){this.elapsed=0;this.step=0;this.heat.fill(0);this.nextHeat.fill(0);}
+    else if(!reduced){
+      // A bounded warm-up produces a continuous plume immediately, not a flash.
+      if(next!==previous){this.heat.fill(0);this.nextHeat.fill(0);}
+      for(let i=0;i<(next===2?24:12);i++)this.advanceHeat();
+    }
     this.draw();
   }
 
   private update(_time:number,delta:number):void {
     if(this.destroyed||!this.graphic.active||!this.level||this.reduced)return;
-    const dt=Math.max(0,Math.min(delta,50));
-    this.elapsed+=dt*.001;this.surge=Math.max(0,this.surge-dt*.0024);
-    // Bound decorative geometry work to 30Hz; the scene and score still run at their own cadence.
+    const dt=clamp(delta,0,50);
+    this.elapsed+=dt*.001;this.surge=Math.max(0,this.surge-dt*.0015);
     this.redrawAfter+=dt;
-    if(this.redrawAfter<32)return;
-    this.redrawAfter%=32;this.draw();
+    if(this.redrawAfter<FRAME_MS)return;
+    this.redrawAfter%=FRAME_MS;
+    this.advanceHeat();this.draw();
+  }
+
+  private cacheNoiseAndPalette():void {
+    let seed=0x48a3c19d;
+    for(let i=0;i<this.noise.length;i++){
+      seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;
+      this.noise[i]=(seed>>>0)/4294967296;
+    }
+    let stop=0;
+    for(let i=0;i<256;i++){
+      const temperature=i/255;
+      while(stop<COLORS.length-2&&temperature>COLORS[stop+1][0])stop++;
+      const a=COLORS[stop],b=COLORS[stop+1],mix=(temperature-a[0])/(b[0]-a[0]);
+      for(let channel=0;channel<4;channel++)this.palette[i*4+channel]=a[channel+1]+(b[channel+1]-a[channel+1])*mix;
+    }
+  }
+
+  private cacheFuelAndMasks():void {
+    const w=this.width,h=this.height;
+    for(let x=0;x<w;x++){
+      const u=x/(w-1);
+      const smallDistance=Math.min(...SMALL_ANCHORS.map(anchor=>Math.abs(u-anchor)));
+      const largeDistance=Math.min(...LARGE_ANCHORS.map(anchor=>Math.abs(u-anchor)));
+      this.smallFuel[x]=Math.pow(clamp(1-smallDistance/.075),2);
+      this.largeFuel[x]=.27+.73*Math.pow(clamp(1-largeDistance/.092),1.4);
+      const digitDistance=Math.min(Math.abs(u-1/6),Math.abs(u-.5),Math.abs(u-5/6));
+      const digitClear=clamp(digitDistance/.12);
+      for(let y=0;y<h;y++){
+        const rise=(h-1-y)/(h-1),index=y*w+x;
+        // Quiet columns leave labels and all three numbers legible before bringToTop.
+        const numberGuard=rise>.13&&rise<.93 ? .10+.90*digitClear*digitClear : 1;
+        const edge=clamp(Math.min(x,w-1-x,y,h-1-y)/1.5);
+        this.smallMask[index]=edge*numberGuard*clamp((.34-rise)/.12)*.60;
+        this.largeMask[index]=edge*numberGuard*clamp((.94-rise)/.20)*.92;
+      }
+    }
+  }
+
+  private advanceHeat():void {
+    if(!this.width||!this.level)return;
+    const w=this.width,h=this.height,field=this.heat,next=this.nextHeat;
+    const small=this.level===1,fuel=small?this.smallFuel:this.largeFuel,cooling=small?.105:.039;
+    const frame=this.step++;
+    for(let y=0;y<h-3;y++){
+      const row=y*w,below=(y+2)*w,farther=(y+3)*w;
+      const wind=Math.sin(y*.115-this.elapsed*1.4)*(small?.45:1.25);
+      const noiseRow=((y+frame*2)&NOISE_MASK)*NOISE_SIZE;
+      for(let x=0;x<w;x++){
+        const noise=this.noise[noiseRow+((x+frame)&NOISE_MASK)];
+        const drift=clamp(x+wind+(noise-.5)*(small?.7:2.5),0,w-1);
+        const left=Math.floor(drift),right=Math.min(w-1,left+1),mix=drift-left;
+        const carried=field[below+left]*(1-mix)+field[below+right]*mix;
+        const diffused=(field[farther+left]+field[farther+right])*.5;
+        next[row+x]=Math.max(0,carried*.70+diffused*.30-cooling*(.72+noise*.55));
+      }
+    }
+    for(let y=h-3;y<h;y++)for(let x=0;x<w;x++){
+      const noise=this.noise[((frame*3+y)&NOISE_MASK)*NOISE_SIZE+((x+frame)&NOISE_MASK)];
+      next[y*w+x]=fuel[x]*(small ? .58+noise*.22 : .60+noise*.31)+this.surge*fuel[x]*.08;
+    }
+    this.heat=next;this.nextHeat=field;
   }
 
   private draw():void {
-    const g=this.graphic;g.clear();if(!this.level)return;
-    const b=this.box,base=b.y+b.height-2,heat=.62+this.level*.13;
-    g.lineStyle(3,0xe35d28,.10+this.level*.025).strokeRoundedRect(b.x+2,b.y+2,b.width-4,b.height-4,6);
-    g.lineStyle(1.2,0xffbb63,.48+this.level*.09+this.surge*.16).strokeRoundedRect(b.x+1.5,b.y+1.5,b.width-3,b.height-3,6);
-    if(this.reduced)return;
-    this.glow?.setAlpha(.82+this.level*.035+this.surge*.06+Math.sin(this.elapsed*2.3)*.02);
-    const height=Math.min(66,b.height*.88)*(heat+this.surge*.15);
-    const width=Math.min(46,b.width*.057);
-    this.drawMaterial(base,height,width);
-    this.drawRibbon(base,Math.min(13,b.height*.18)*(heat+this.surge*.18),0xa92e21,.31);
-    this.drawHeatWaves(base,height);
-    this.drawRibbon(base,Math.min(7,b.height*.10)*(heat+this.surge*.2),0xffab49,.59);
-    this.drawRibbon(base,Math.min(3.2,b.height*.05),0xffe1a0,.81);
-    this.drawEmbers(base,height);
-    // The crest brightens the existing edge for <0.5s; no screen flash or extra emitter.
-    if(this.surge>0)g.lineStyle(1.6,0xffe7b0,this.surge*.55).beginPath().moveTo(b.x+7,base).lineTo(b.x+b.width-7,base).strokePath();
-  }
-
-  private drawMaterial(base:number,height:number,width:number):void {
-    const texture=this.material;if(!texture)return;
-    const ctx=texture.context,b=this.box;
-    ctx.setTransform(1,0,0,1,0,0);ctx.globalCompositeOperation='source-over';ctx.clearRect(0,0,texture.width,texture.height);
-    ctx.globalAlpha=.56+this.level*.09+this.surge*.16;
-    for(const light of this.lights){ctx.fillStyle=light;ctx.fillRect(0,0,texture.width,texture.height);}
-    ctx.globalCompositeOperation='lighter';
-    ctx.setTransform(texture.width/b.width,0,0,texture.height/b.height,-b.x*texture.width/b.width,-b.y*texture.height/b.height);
-    for(let i=0;i<LOBES.length;i++){
-      const [position,size,lean]=LOBES[i],phase=this.elapsed*(2.1+(i%3)*.22)+i*2.17;
-      const x=b.x+b.width*position,h=height*size*(.88+.10*Math.sin(phase)+.07*Math.sin(phase*.57));
-      const w=width*(.72+.17*Math.sin(phase*.73+i)),bend=w*(lean+Math.sin(phase*.82)*.38);
-      // Gradients dissolve the curling tips; the hotter, shorter folds leave the digits calm.
-      this.paintTongue(ctx,x,base,w*1.2,h,bend,0,.70);
-      this.paintTongue(ctx,x-w*.10,base,w*.72,h*.83,bend*.82,1,.74+this.surge*.10);
-      this.paintTongue(ctx,x+w*.07,base,w*.35,h*.48,bend*.44,2,.82);
+    const g=this.graphic,b=this.box;
+    g.clear();if(!this.level)return;
+    if(this.reduced){
+      // Reduced motion is a static thin warm edge, with no heat uploads or sparks.
+      g.lineStyle(1,0xeab472,this.level===1?.35:.62)
+        .beginPath().moveTo(b.x+5,b.y+b.height-2).lineTo(b.x+b.width-5,b.y+b.height-2).strokePath();
+      return;
     }
-    ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';ctx.setTransform(1,0,0,1,0,0);texture.refresh();
+    this.drawMaterial();
+    const base=b.y+b.height-3;
+    g.lineStyle(1,0xffc46d,this.level===1?.12:.30)
+      .beginPath().moveTo(b.x+5,base).lineTo(b.x+b.width-5,base).strokePath();
+    this.drawEmbers(base);
   }
 
-  private paintTongue(ctx:CanvasRenderingContext2D,x:number,y:number,w:number,h:number,bend:number,layer:number,alpha:number):void {
-    const p=this.tongue(x,y,w,h,bend),colors=FLAME_COLORS[layer],fill=ctx.createLinearGradient(0,y-h,0,y);
-    fill.addColorStop(0,colors[0]);fill.addColorStop(.25,colors[1]);fill.addColorStop(.70,colors[2]);fill.addColorStop(1,colors[3]);
-    ctx.globalAlpha=alpha;ctx.fillStyle=fill;ctx.beginPath();ctx.moveTo(p[0].x,p[0].y);
-    for(let i=1;i<p.length;i++)ctx.lineTo(p[i].x,p[i].y);
-    ctx.closePath();ctx.fill();
-  }
-
-  private drawRibbon(base:number,height:number,color:number,alpha:number):void {
-    const b=this.box,p=this.ribbonPoints;
-    for(let i=0;i<33;i++){
-      const t=i/32;
-      p[i].x=b.x+2+t*(b.width-4);
-      p[i].y=base-height*(.78+.16*Math.sin(t*19-this.elapsed*3.1)+.09*Math.sin(t*37+this.elapsed*2.4));
+  private drawMaterial():void {
+    const texture=this.material,pixels=this.pixels;
+    if(!texture||!pixels)return;
+    const data=pixels.data,mask=this.level===1?this.smallMask:this.largeMask;
+    for(let i=0;i<this.heat.length;i++){
+      const color=Math.round(clamp(this.heat[i])*255)*4,pixel=i*4;
+      data[pixel]=this.palette[color];data[pixel+1]=this.palette[color+1];data[pixel+2]=this.palette[color+2];
+      data[pixel+3]=this.palette[color+3]*mask[i];
     }
-    p[33].x=b.x+b.width-2;p[33].y=base;p[34].x=b.x+2;p[34].y=base;
-    this.graphic.fillStyle(color,alpha).fillPoints(p,true);
+    texture.context.putImageData(pixels,0,0);texture.refresh();
   }
 
-  /** Reuse sampled S-curves; clamp every vertex to this score tile without a mask. */
-  private tongue(x:number,y:number,w:number,h:number,bend:number):Point[] {
-    this.curve(0,x-w,y,x-w*.94,y-h*.25,x+bend+w*.70,y-h*.65,x+bend,y-h);
-    this.curve(13,x+bend,y-h,x+bend+w*.62,y-h*.83,x-w*.16,y-h*.35,x+w,y);
-    return this.tonguePoints;
-  }
-
-  private curve(offset:number,ax:number,ay:number,bx:number,by:number,cx:number,cy:number,dx:number,dy:number):void {
-    const b=this.box;
-    for(let i=0;i<=12;i++){
-      const t=i/12,u=1-t,p=this.tonguePoints[offset+i];
-      p.x=Math.max(b.x+2,Math.min(b.x+b.width-2,u*u*u*ax+3*u*u*t*bx+3*u*t*t*cx+t*t*t*dx));
-      p.y=Math.max(b.y+2,Math.min(b.y+b.height-2,u*u*u*ay+3*u*u*t*by+3*u*t*t*cy+t*t*t*dy));
-    }
-  }
-
-  private drawHeatWaves(base:number,height:number):void {
-    const b=this.box,p=this.wavePoints;
-    for(let i=0;i<4;i++){
-      const x=b.x+b.width*WAVE_ANCHORS[i],cycle=(this.elapsed*.22+i*.27)%1;
-      const drift=Math.sin(cycle*Math.PI),rise=height*(.32+cycle*.64),span=Math.min(14,b.width*.026);
-      for(let j=0;j<p.length;j++){
-        const t=j/(p.length-1);
-        p[j].x=Math.max(b.x+3,Math.min(b.x+b.width-3,x+Math.sin(t*Math.PI*1.7+this.elapsed*1.1+i)*span*drift));
-        p[j].y=Math.max(b.y+3,base-rise+t*height*.28);
-      }
-      this.graphic.lineStyle(.9,0xf8bb78,.10*drift).strokePoints(p,false);
-    }
-  }
-
-  private drawEmbers(base:number,height:number):void {
-    const b=this.box,g=this.graphic,count=6+this.level*4;
+  private drawEmbers(base:number):void {
+    const b=this.box,g=this.graphic,small=this.level===1,anchors=small?SMALL_ANCHORS:LARGE_ANCHORS;
+    const height=b.height*(small?.28:.88),count=small?2:6;
     for(let i=0;i<count;i++){
-      const cycle=(this.elapsed*(.34+(i%4)*.037)+i*.618)%1,alpha=Math.sin(cycle*Math.PI)*(.45+this.level*.10);
-      const anchor=EMBER_ANCHORS[i%4],drift=Math.sin(cycle*5.3+i*2.4)*Math.min(12,b.width*.024);
-      const x=Math.max(b.x+4,Math.min(b.x+b.width-4,b.x+b.width*anchor+drift));
-      const y=Math.max(b.y+4,base-3-cycle*height*(.75+(i%3)*.09)),radius=.65+(i%3)*.26;
-      g.lineStyle(.75,0xfaa849,alpha*.30).beginPath().moveTo(x,y+Math.min(5,cycle*7)).lineTo(x,y).strokePath();
-      g.fillStyle(0xffab49,alpha*.14).fillCircle(x,y,radius*2.3);
-      g.fillStyle(i%3===0?0xffefba:0xffca6a,alpha).fillCircle(x,y,radius);
+      const cycle=(this.elapsed*(.23+(i%3)*.047)+i*.618)%1,life=Math.sin(cycle*Math.PI);
+      const x=clamp(b.x+b.width*anchors[i%anchors.length]+Math.sin(cycle*5+i*2.2)*(small?2:6),b.x+4,b.x+b.width-4);
+      const y=clamp(base-cycle*height,b.y+4,base),alpha=life*(small?.22:.62);
+      const radius=small?.45:.55+(i%3)*.17;
+      g.lineStyle(.6,0xfa9841,alpha*.18).beginPath().moveTo(x,y+Math.min(3,cycle*4)).lineTo(x,y).strokePath();
+      g.fillStyle(0xff9b35,alpha*.10).fillCircle(x,y,radius*2.2);
+      g.fillStyle(0xffdfa0,alpha).fillCircle(x,y,radius);
     }
   }
 
@@ -186,7 +196,10 @@ export class ScoreFlame {
     this.scene.events.off(Phaser.Scenes.Events.UPDATE,this.update,this);
     this.scene.events.off(Phaser.Scenes.Events.SHUTDOWN,this.destroy,this);
     this.scene.events.off(Phaser.Scenes.Events.DESTROY,this.destroy,this);
-    this.glow?.destroy();this.graphic.destroy();
-    if(this.scene.textures.exists(this.glowKey))this.scene.textures.remove(this.glowKey);
+    this.flame?.destroy();this.graphic.destroy();
+    if(this.scene.textures.exists(this.textureKey))this.scene.textures.remove(this.textureKey);
+    this.heat=new Float32Array(0);this.nextHeat=new Float32Array(0);
+    this.smallFuel=new Float32Array(0);this.largeFuel=new Float32Array(0);
+    this.smallMask=new Float32Array(0);this.largeMask=new Float32Array(0);this.pixels=undefined;
   }
 }

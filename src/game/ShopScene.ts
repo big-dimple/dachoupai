@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import {AudioEngine} from '../audio/AudioEngine';
 import {getR2Joker,r2PaidRerollPrice,salePrice,r2Pool,r2PurchasePrice,r2PurchaseDiscount,r2ToolAcquisitionPool,type R2Offer} from '../domain/r2Shop';
 import type {R2RunState,Action,DomainEvent} from '../domain/run';
-import {getR2Stage,R2_LIMITS,r2InterestCap,r2ConsumableCapacity} from '../domain/r2Run';
+import {getR2Stage,R2_LIMITS,r2InterestCap,r2ConsumableCapacity,r2CreateJoker} from '../domain/r2Run';
 import {dispatchRun,runController} from './runAdapter';
 import {heatText} from './scoreText';
 import {toolInfo,itemInfo,editionLabel,editionEffectText,toolFamilyLabel} from './r2ToolInfo';
@@ -367,7 +367,7 @@ export class ShopScene extends Phaser.Scene {
     const found=this.findOffer(id);if(!found||found.offer.consumed||this.busy)return;const {kind,offer:o}=found,seq=this.run.commandSeq;
     this.selectedOfferId=id;this.notice='';this.audio.select();this.render();
     const price=r2PurchasePrice(this.run,o),after=this.run.gold-price,reason=this.purchaseReason(o),d=kind==='jokers'?getR2Joker(o.definitionId):undefined,info=kind==='tools'?toolInfo(o.definitionId):kind==='items'?itemInfo(o.definitionId):undefined;
-    const cap=r2InterestCap(this.run),afterState=kind==='jokers'?{...this.run,jokers:[...this.run.jokers,{instanceId:'preview/'+o.offerId,definitionId:o.definitionId,paidPrice:price,growth:{},edition:o.edition}]}:kind==='items'?{...this.run,longTermItems:[...this.run.longTermItems,o.definitionId]}:this.run,afterCap=r2InterestCap(afterState);
+    const cap=r2InterestCap(this.run),afterState=kind==='jokers'?{...this.run,jokers:[...this.run.jokers,r2CreateJoker(o.definitionId,'preview/'+o.offerId,price,o.edition)]}:kind==='items'?{...this.run,longTermItems:[...this.run.longTermItems,o.definitionId]}:this.run,afterCap=r2InterestCap(afterState);
     const money=after<0?`现有 ${this.run.gold} 金，尚差 ${-after} 金。`:`余额 ${this.run.gold} → ${after} 金。\n过关利息档 ${Math.min(cap,Math.floor(this.run.gold/5))} → ${Math.min(afterCap,Math.floor(after/5))} 金。`;
     const discount=r2PurchaseDiscount(this.run),discountText=discount?`原价 ${o.price} 金，当前优惠 ${discount} 金，最低实付1金。\n${this.run.purchaseCoupons?'本次会使用1张减2金券。\n':''}`:'';
     const effect=d?d.description+r2JokerExtraHelp(d)+'\n版次：'+editionEffectText(o.edition):kind==='tools'?(()=>{const tool=toolInfo(o.definitionId);return [tool.description,tool.cost,tool.risk,'购买后收入消耗品库存，使用时另选目标并确认额外代价。'].filter(Boolean).join('\n\n');})():info!.description;

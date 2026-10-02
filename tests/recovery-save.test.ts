@@ -9,8 +9,8 @@ vi.mock('../src/platform/IndexedDbSave',()=>({IndexedDbSave:class {constructor()
 vi.mock('../src/platform/WriteLease',()=>({WriteLease:class {writable=true;onChange=()=>{};async claim(){return true;}}}));
 afterEach(()=>vi.unstubAllGlobals());
 
-// First searched natural 24-card fixture with the same pair-of-aces 514 golden; no state injection.
-const initial=()=>createRun({seed:'r03-651',characterId:'erxiang',runId:'recovery-fixture',rulesVersion:'r2'});
+// Natural 72-card shop fixture; the original pair-of-aces 514 golden is unchanged.
+const initial=()=>createRun({seed:'r03-1',characterId:'erxiang',runId:'recovery-fixture',rulesVersion:'r2'});
 const next=(state:ReturnType<typeof initial>,action:Command['action']):Command=>({runId:state.runId,commandId:`cmd-${state.commandSeq+1}`,expectedSeq:state.commandSeq,action});
 class MemoryStore implements SaveStore {
   slots:SaveSlots={revision:0,current:null,previous:null};fail=false;writes=0;

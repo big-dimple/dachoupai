@@ -5,7 +5,7 @@ export type ScoreBeat={windup:number;flight:number;impact:number;rest:number;str
 /** Zero-based presented trace position, never chain length or a rule clock. Long chains retain every beat. */
 export function scoreBeat(event:ScoreEvent,ordinal=0):ScoreBeat {
   let start:ScoreBeat,fast:ScoreBeat;
-  if(event.operation==='lucky-multiplier-check'||event.operation==='lucky-gold-check'||event.operation==='lucky-gold-cap'){
+  if(event.operation==='lucky-multiplier-check'||event.operation==='lucky-gold-check'||event.operation==='lucky-gold-cap'||event.operation==='chance-heat-check'){
     start={windup:90,flight:0,impact:170,rest:100,strength:'light'};fast={windup:70,flight:0,impact:140,rest:90,strength:'light'};
   }else if(event.operation==='glass-check'){
     start={windup:110,flight:0,impact:190,rest:120,strength:'light'};fast={windup:80,flight:0,impact:150,rest:90,strength:'light'};
@@ -21,7 +21,7 @@ export function scoreBeat(event:ScoreEvent,ordinal=0):ScoreBeat {
     start={windup:100,flight:0,impact:180,rest:120,strength:'light'};fast={windup:60,flight:0,impact:150,rest:90,strength:'light'};
   }else if(event.operation==='retrigger-card'){
     start={windup:140,flight:0,impact:220,rest:140,strength:'retrigger'};fast={windup:100,flight:0,impact:160,rest:100,strength:'retrigger'};
-  }else if(event.operation==='multiply-multiplier'){
+  }else if(event.operation==='multiply-multiplier'||event.operation==='read-coefficient'){
     start={windup:360,flight:180,impact:340,rest:220,strength:'multiply'};fast={windup:300,flight:150,impact:270,rest:180,strength:'multiply'};
   }else if(event.sourceType==='character'){
     start={windup:220,flight:160,impact:260,rest:160,strength:'role'};fast={windup:160,flight:120,impact:200,rest:120,strength:'role'};
@@ -41,8 +41,8 @@ export function scoreBeat(event:ScoreEvent,ordinal=0):ScoreBeat {
 }
 
 /** The provisional displayed product may fall later (e.g. wager ×0.75); no prediction or credit. */
-export function scoreFireLevel(beforeHeat:string,displayedHandScore:string,targetHeat:string):0|1|2|3 {
+export function scoreFireLevel(beforeHeat:string,displayedHandScore:string,targetHeat:string):0|1|2 {
   const total=BigInt(beforeHeat)+BigInt(displayedHandScore),target=BigInt(targetHeat);
   if(target<=0n||total<=target)return 0;
-  return total>=target*3n?3:total>=target*2n?2:1;
+  return total>=target*2n?2:1;
 }

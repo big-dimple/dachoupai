@@ -1,0 +1,226 @@
+{
+  "taskId": "C02",
+  "status": "IN_PROGRESS",
+  "testedCommit": "fff296980819dae9361fa57f1de811fa32a3a10d",
+  "testedWorktree": "main + reviewed C02/D27 changes; actual precommit HEAD, paired with normalized input hashes",
+  "date": "2026-10-02",
+  "decisions": [
+    "D26",
+    "D27"
+  ],
+  "content": {
+    "version": "quality-r2-content-v7",
+    "hash": "json-fnv-v1:c84c147614b535da",
+    "jokers": 72,
+    "original48DataAnd40MathGoldens": "PRESERVED",
+    "conservativeEventBound": 318
+  },
+  "milestone": {
+    "id": "C02.4-D27",
+    "status": "PASS",
+    "scope": "Two sorting/two primary buttons, button remaining-count response, low-frequency menu inspection, exact two-tier cached heat-flow fire and lowpass rumble"
+  },
+  "checks": [
+    {
+      "name": "Independent new math RED",
+      "status": "FAIL",
+      "command": "npx vitest run tests/c02-score.test.ts tests/c02-catalog.test.ts",
+      "result": "53F/2P before implementation",
+      "log": "shots/c02-score-catalog-red.log",
+      "toolChunk": "047670"
+    },
+    {
+      "name": "Old/new math GREEN",
+      "status": "PASS",
+      "command": "npx.cmd vitest run tests/c02-score.test.ts tests/c02-catalog.test.ts tests/c01-score.test.ts tests/c00-score.test.ts tests/v00-score.test.ts tests/rules.test.ts tests/rational.test.ts",
+      "result": "184 passed; old score expectations preserved",
+      "log": "shots/c02-math-green.log",
+      "toolChunk": "613daa"
+    },
+    {
+      "name": "Natural command acquisition",
+      "status": "PASS",
+      "command": "npx vitest run tests/c02-acquisition.test.ts tests/c02-preview.test.ts",
+      "result": "All72 bought from unchanged initial/earned shops, saved, entered, played and restored; 10 tests. Independent domain branches, not one human UI run.",
+      "log": "shots/c02-acquisition-green.log",
+      "toolChunk": "494a40"
+    },
+    {
+      "name": "Economy/resource lifecycle",
+      "status": "PASS",
+      "command": "npx vitest run tests/c02-economy.test.ts tests/c02-resources.test.ts",
+      "result": "39 passed",
+      "log": "shots/c02-economy-resources-green.log",
+      "toolChunk": "a19423"
+    },
+    {
+      "name": "Bounded chain witnesses",
+      "status": "PASS",
+      "command": "npx vitest run tests/c02-chain.test.ts",
+      "result": "3 goldens: legal hand13/four extras, dense74 events, mixed55 events. Not a global-maximum benchmark.",
+      "log": "shots/c02-chain-goldens.log",
+      "toolChunk": "599323"
+    },
+    {
+      "name": "D27 layout RED/GREEN",
+      "status": "PASS",
+      "command": "npx vitest run tests/layout.test.ts",
+      "result": "12F8P ->20P",
+      "log": "shots/c02-layout-green.log",
+      "toolChunk": "0d6e36"
+    },
+    {
+      "name": "D27 two-tier fire RED",
+      "status": "FAIL",
+      "command": "npx vitest run tests/score-presentation.test.ts",
+      "result": "1F8P; old third tier fails adopted two-tier contract",
+      "log": "shots/c02-two-fire-red.log",
+      "toolChunk": "3d0af3"
+    },
+    {
+      "name": "Strict stage qualification",
+      "status": "PASS",
+      "command": "npx vitest run tests/c02-checkpoint.test.ts tests/c02-source-copy.test.ts tests/c02-economy.test.ts tests/c01-checkpoint.test.ts tests/recovery-save.test.ts",
+      "result": "249 passed; rejects contradictory C12/E11/F12/B12 trace-stage fields",
+      "log": "shots/c02-recovery-stage-green.log",
+      "toolChunk": "d14128"
+    },
+    {
+      "name": "Final unit suite",
+      "status": "PASS",
+      "command": "npm test",
+      "result": "57 files /991 passed",
+      "log": "shots/c02-unit-final.log",
+      "toolChunk": "45221b"
+    },
+    {
+      "name": "Production build",
+      "status": "PASS",
+      "command": "npm run build",
+      "result": "TypeScript/Vite pass; existing >500kB bundle warning retained",
+      "log": "shots/c02-build-final.log",
+      "toolChunk": "d30ca0"
+    },
+    {
+      "name": "Derived current content bound",
+      "status": "PASS",
+      "command": "node scripts/verify-content.mjs",
+      "result": "72 v7 /conservative318 <512; not observed maximum",
+      "log": "shots/c02-content-final.log",
+      "toolChunk": "7f411c"
+    },
+    {
+      "name": "Desktop/touch short path",
+      "status": "PASS",
+      "command": "SMOKE_REUSE_BUILD=1 SMOKE_CHROMIUM_CHANNEL=chromium SHOT_PROFILES=desktop,mobile npm run verify:smoke",
+      "result": "Mouse1280x720/touch390x740DPR3: selection/buy cancel/sort/discard/play/menu/refresh/rotation",
+      "log": "shots/c02-smoke-integrated.log",
+      "toolChunk": "29eca6"
+    },
+    {
+      "name": "Natural two-tier fire browser",
+      "status": "PASS",
+      "command": "SMOKE_REUSE_BUILD=1 SMOKE_CHROMIUM_CHANNEL=chromium SMOKE_FEEDBACK=only SMOKE_SHOTS=1 npm run verify:smoke",
+      "result": "p04-golden-02 /real touch wager /1200 vs400 /ordered source impacts /levels[1,2] /2 lowpass voices /Chromium153.0.8010.12 /51.65FPS",
+      "log": "shots/c02-fire-browser.log",
+      "toolChunk": "2c42f1"
+    },
+    {
+      "name": "Final mobile route after qualification fix",
+      "status": "PASS",
+      "command": "SMOKE_REUSE_BUILD=1 SMOKE_CHROMIUM_CHANNEL=chromium SHOT_PROFILES=mobile npm run verify:smoke",
+      "result": "Stable final bundle: touch discard/play counts, menu/deck/rules, selection, refresh/continue and rotation PASS",
+      "log": "shots/c02-smoke-final.log",
+      "toolChunk": "fd5166"
+    },
+    {
+      "name": "Production plan",
+      "status": "PASS",
+      "command": "node scripts/check-production-plan.mjs",
+      "result": "31 packages /current C02 /structural validation only",
+      "toolChunk": "f41dba"
+    }
+  ],
+  "earlierFailures": [
+    "shots/c02-unit-first.log:967P15F; true growth-required/schema gaps plus setup catalog seed changes; original score expectations retained",
+    "shots/c02-recovery-stage-red.log:actual E11/F12 qualification holes; C12 straight-flush and B12 wager setup corrected independently",
+    "shots/c02-smoke.log:obsolete bare-count selector; production discard completed; now checks D27 suffix",
+    "shots/c02-menu-dom-status.json:development HMR interrupted optional probe; stable built route subsequently passed"
+  ],
+  "browserArtifacts": [
+    "shots/c02-smoke-result.json",
+    "shots/c02-fire-browser-result.json",
+    "shots/mobile-score-small-fire.png",
+    "shots/mobile-score-fire.png"
+  ],
+  "remaining": {
+    "globalMaximumLegalChainPerformance": "NOT_RUN; bounded witness goldens/conservative bound do not prove global maximum",
+    "new48FullIllustrations": "NOT_RUN; labeled mechanism motifs pending A03, original24 full art retained; no unknown image model used",
+    "candidatePhysicalAndroid": "NOT_RUN; prior A01/D22/D25 owner acceptance remains PASS and releases engineering",
+    "physicalLongListening": "NOT_RUN; live voices/filter/gain observed, not physical listening",
+    "runtimeGLB": "NOT_RUN; D25/A03 limited candidates",
+    "eightChaptersBoss16": "NOT_RUN; C03 dependency not complete"
+  },
+  "cleanup": [
+    "Removed duplicate table deck/rules/forward/role controls and obsolete layout boxes; existing browser routes adapted",
+    "Real v5/v6 save fixtures moved from ignored shots into tests/fixtures so clean checkouts can run them",
+    "No new permanent browser harness/3D runtime/synthetic BGM"
+  ],
+  "publication": {
+    "status": "NOT_RUN",
+    "branch": "main",
+    "note": "Await actual normal push receipt"
+  },
+  "nextStep": "Push verified D27 candidate to main, then C02.3 shared-command legal dense-chain playback/performance and interruption/restore; no C03 expansion",
+  "inputFingerprints": {
+    "harness/e2e.mjs": "1352b71daadf287afff7ec631e07e84d7de50e35d737e07e03d685aeff1c3a0d",
+    "harness/layout.mjs": "d6466f642e4dbd5a28023331d078cdca45ed8b0ab06a6faa7730a515770aef7c",
+    "harness/recovery.mjs": "2d778887238359d178913a90e8a4e14ad5a229f3099f5733b892cdb7d9b9ffd1",
+    "harness/screenshot.mjs": "a0bc8f66e4de3eeed5816a622435a93f9b32a94d6150b526a435d7f93d3a1b33",
+    "harness/ui.mjs": "94395b6772c02d14e2463715659616228dd1841c18c41ff7ac1308765241d87d",
+    "harness/v00.mjs": "8785b3bc307fa70abc78135df5462cea2fe9fce9153776b2601dec33ff8ef6d3",
+    "scripts/verify-content.mjs": "13e6a5f77b2ec3d2d845758cc791823d5facd5f685e0a3a47bffdad365f10eec",
+    "src/application/checkpoint.ts": "7a1d20e8c409119bb3d98aa88ae6eee0c187fbab02cf5d3fefceb54a386bcdc6",
+    "src/audio/AudioEngine.ts": "566f6a2924d917ee010bae02b807fab28bd850a6689c4bf53c3c510965231743",
+    "src/content/r2-jokers.json": "0b7a806cb196d6d7774d76caa4cb2f70790dd81890c7a47035e315a8e999a947",
+    "src/content/r2Schema.ts": "32f131864c4fa047f60384b749ca230a649820db534ad8890a0e21215e663698",
+    "src/domain/r2Resources.ts": "8f6e5bafb789d435f232a667e404d1ebc6b01557170b7663614e3446ea2e3703",
+    "src/domain/r2Run.ts": "2e1e7828a7f61c9f1a31f7ca549e7a19d271c0758856e125e1ad93d3c3f09878",
+    "src/domain/r2Shop.ts": "790fa9edb67a18670567e0942e47a4e142d05cd66766ce5af73c1bc91dd76bd8",
+    "src/domain/r2SpectralTools.ts": "7d871095baeaf3b7b1497e9b17153256a02c9e44ade7f8e60abc36dd00b68cf9",
+    "src/domain/run.ts": "ca26c1c2c294b1c14244744ff224e4e3d9faaa1f7f8e2ddccac5825554b6ba2b",
+    "src/domain/scoreR2.ts": "6286d224a13f2e944b690952306d7113aec6bc89c3bde20392b41f9c8375d9cd",
+    "src/game/GameScene.ts": "ff4766287c36a1597ed084aeb3fcaa9b32967419a04d7c78cee896caacccf15d",
+    "src/game/JokerMotif.ts": "b80e719660b9873311d53ccdcad01206972cd54ed55360fa4ab021704a0dad6d",
+    "src/game/RunMenu.ts": "4e33d70ec5f866df1e73375d71e7ad7f946f9cd7c270fd20b3bf3f7db8f8ec5d",
+    "src/game/ScoreFlame.ts": "034c6575c951cac718d9207478d8a2cd0b1f504204f28ea5d78e0712b27928e6",
+    "src/game/ShopScene.ts": "47733837024a1e1c3ceaf4dba5c6db923e9b401536ae1cfc7d5b8cf1110418be",
+    "src/game/layout.ts": "90b1081eebab52e848b34aff12f8e1166855a8ca743e6eb3c6d8e5c076128871",
+    "src/game/r2Help.ts": "b3e5acd954740e72fed5e1627cabd97b1dfce3ac0cb70bcd3b4646b0b975af78",
+    "src/game/scorePresentation.ts": "b27e2d6a370c1b38a59ff76c2d4f527de3b94a313bff3aa292c511ed3586f8ce",
+    "src/style.css": "fc3215842b66497721fa5239953f730c743d29caf22ed8027014d89150ee64b5",
+    "tests/c00-score.test.ts": "e734d8e6743ba90e59eb0bd5a441812f654ec57f6990a9219af0cd3fce6311a9",
+    "tests/c01-boundary.test.ts": "f61a1d174717ffb86383f385fb99cf23aafcb3c4052aa5ef6c8c984036e8f958",
+    "tests/c01-checkpoint.test.ts": "5cf59cdeaa69af0bf7894fc6838fb584496cf76fb5fa13b6b91342bf2ca2f1b9",
+    "tests/c01-spectral.test.ts": "a641c124637d3ec6abb7eeff8939d43c14ff2b4028352db30ea76b7c8601df6d",
+    "tests/c02-acquisition.test.ts": "3826b45f6d059a96b99b23564f9ed635edd36afda296a75cdcd6f038b70ffcc4",
+    "tests/c02-catalog.test.ts": "49ec3241a03030de9c7e9964cad6ff22bb365d7dae6f4b0ee182c1c884e5a124",
+    "tests/c02-chain.test.ts": "dd48851dc41931ac7c3a2825ead3f36aac9b23ef7c9c171a9a67b8b6a8581f96",
+    "tests/c02-checkpoint.test.ts": "f067691e37e3cdb8daa375305817c18e7945459f79650df16f77a26a4cf29a9a",
+    "tests/c02-economy.test.ts": "d2d96ab27da942588eda43f70dcf9861e2232174a6f2d992d4d4ff5e9e598653",
+    "tests/c02-preview.test.ts": "ee215b2060a2aeeaec04897f58908f5fe3b7e86f4a7501f5b12f6850e86e41df",
+    "tests/c02-resources.test.ts": "ba90ddef42696fb806309dd67b2bb5d82224a5d5ec7478fcb9006311b7128f8a",
+    "tests/c02-score.test.ts": "49240704266fc2cc9ffad321aba632edd4013b5be06503b41313aa3612271119",
+    "tests/c02-source-copy.test.ts": "70c0e5a24ddfc9bd344157835607ad7ccfe9865719f42f7114e886d11940d10e",
+    "tests/fixtures/c01-v5-checkpoint.json": "16fd98577f9c6d0f9dd226d6b175a5baa159fc326937267f5ef86a278bffa34d",
+    "tests/fixtures/c02-v6-checkpoint.json": "8f14fcefb819cfcee8a47f6335e11fdea6b7703efc16f6799e1fa2ef9212f669",
+    "tests/joker-art.test.ts": "5f6ce941afffd6fa1aa64c35d62f5ceac8306854416ef37d8c549d8162375eb0",
+    "tests/layout.test.ts": "eedd941dd2ff80afc636b983121fc89d7a885582b271d0dd253a024b6a05c8cb",
+    "tests/r2-run.test.ts": "53542c5b8a620cc0815ca48aa0dbf1db812c1153fce839491c8dba95e95812b4",
+    "tests/r2-starting-profile.test.ts": "2e8392ec57a05437376c203d5b06e42fec48bc64a3de71e968ef731daa005021",
+    "tests/recovery-save.test.ts": "ef6cb3fcf76a24b551af1219e3a4ae045ec187c9da00ab1bb05aeb46dd67aeee",
+    "tests/score-presentation.test.ts": "eff91a20bc10ea14209b217f70e005f81e74747d2e4a24bd37bae08687b17ea0",
+    "tests/stageNotice.test.ts": "aef79292ddcd99271e078ba950ab53191d683e207e7065d4cd93432b86a67cc9"
+  },
+  "fingerprintFormat": "SHA256 of LF-normalized UTF-8; precommit candidate, not a fabricated published SHA"
+}

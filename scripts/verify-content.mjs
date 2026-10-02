@@ -15,6 +15,9 @@ try {
   const operationEvents=(op,extra=false)=>{
     if(op.kind==='retrigger-card')return extra?0:2; // Cue plus possible shared-cap notice; extras cannot recurse.
     if(op.kind==='expire-after-hands')return 2; // Count update plus possible destruction.
+    if(op.kind==='chance-add-heat')return 2; // Independent check plus a possible heat addition.
+    if(op.kind==='reward-consumable-every-clears')return 2; // Persisted modulo counter plus reward or overflow gold.
+    if(op.kind==='reward-consumable-pool'||op.kind==='refund-hand-limited')return 1; // Exactly one determined resource source.
     return 1; // Growth baseline/update/reset branches are alternatives, each one event.
   };
   const phaseEvents=(definition,phase,extra=false)=>sum(definition.hooks.filter(h=>h.phase===phase)

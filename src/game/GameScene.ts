@@ -22,6 +22,7 @@ import {SceneView} from './SceneView';
 import {DetailDialog} from './DetailDialog';
 import {dispatchRun,runController} from './runAdapter';
 import {gameSession} from './session';
+import type {RunMenuActions} from './RunMenu';
 import {r2BossText,r2DisabledCards} from '../domain/r2Chapter';
 import {showConsumables} from './ConsumableDialog';
 import {PAPER_THEME as T,PAPER_CSS as C,UI_FONT,P00_ASSETS,assetUrl} from './theme';
@@ -119,7 +120,7 @@ export class GameScene extends Phaser.Scene {
   private discardButton!: Phaser.GameObjects.Rectangle;
   private rankButton!: Phaser.GameObjects.Rectangle;
   private suitButton!: Phaser.GameObjects.Rectangle;
-  private forwardButton!: Phaser.GameObjects.Rectangle;
+  private menuActions?:RunMenuActions;
   private statusText!: Phaser.GameObjects.Text;
   private scoreHeat!:Phaser.GameObjects.Text;
   private scoreMult!:Phaser.GameObjects.Text;
@@ -173,6 +174,8 @@ export class GameScene extends Phaser.Scene {
     window.addEventListener('dachoupai-presentation',settings);
     this.events.once('shutdown',()=>{
       this.controlsLive=false;this.stopScoreFire();
+      if(this.registry.get('runMenuActions')===this.menuActions)this.registry.remove('runMenuActions');
+      this.menuActions=undefined;
       this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.stopJokerIdle();this.tweens.killAll();this.time.removeAllEvents();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.draggingCardId=undefined;this.previewCards=undefined;this.dropMarker=undefined;this.presentation=undefined;this.playAuraPulse=undefined;this.playing=false;this.rollingHeat=false;this.dialog.close();
       window.removeEventListener('keydown',this.keyboard);
       window.removeEventListener('dachoupai-presentation',settings);
@@ -195,6 +198,8 @@ export class GameScene extends Phaser.Scene {
       if(this.toolHand){this.effects.clear();this.toolHand=undefined;}
       this.render();
     },()=>({count:this.hand.length,start:this.handStart}));
+    this.menuActions={viewDeck:()=>this.inspectDeck(),viewRules:()=>this.inspectRole()};
+    this.registry.set('runMenuActions',this.menuActions);
     window.addEventListener('keydown',this.keyboard);
     this.render();
     if(enteredStage)this.revealDrawnCards([]);
@@ -229,20 +234,13 @@ export class GameScene extends Phaser.Scene {
     this.roleText=v.text(h.x+(portrait?64:76),avatarY+(portrait?23:28),this.roleCaption(),14,C.brass,portrait?h.width-160:h.width-88);
     if(!portrait&&!l.shortLandscape)v.text(h.x+12,h.y+(short?96:154),this.stage.index%3===2?'压轴 · '+bossName:this.stage.name,14,C.paper,h.width-24);
     this.heatText=v.text(h.x+12,h.y+(portrait?47:l.shortLandscape?94:short?108:214),'',portrait?24:short?28:42,C.paper,h.width-24).setFontStyle('bold');
-    const resourceY=h.y+(portrait?78:l.shortLandscape?158:short?178:328),columns=portrait?3:2,columnWidth=(h.width-24)/columns;
-    this.resourceCounts={} as Record<'play'|'discard',Phaser.GameObjects.Text>;
-    (['play','discard'] as const).forEach((kind,i)=>{
-      const x=h.x+12+i*columnWidth;
-      v.text(x+2,resourceY+7,kind==='play'?'出牌':'弃牌',14,'#d1ddd3');
-      this.resourceCounts[kind]=v.text(x+columnWidth*.73,resourceY+14,'',portrait||short?24:30,C.paper).setOrigin(.5).setFontStyle('bold').setName('hud/'+kind+'-left');
-    });
-    this.goldText=portrait?v.text(h.x+12+columnWidth*2+2,resourceY+7,'',14,C.brass,columnWidth-2):l.shortLandscape?v.text(h.x+h.width-12,h.y+11,'',14,C.brass).setOrigin(1,0):v.text(h.x+12,resourceY+31,'',14,C.brass,h.width-24);
+    const goldY=h.y+(portrait?80:l.shortLandscape?11:short?180:336);
+    this.goldText=l.shortLandscape?v.text(h.x+h.width-12,goldY,'',14,C.brass).setOrigin(1,0):v.text(h.x+12,goldY,'',14,C.brass,h.width-24);
     if(!portrait){
       if(!short)v.text(h.x+12,h.y+191,'本场热度',14,C.paper);
       v.text(h.x+12,h.y+(l.shortLandscape?130:short?146:274),'目标 '+heatText(this.stage.targetHeat),short?14:22,C.brass,h.width-24);
       const progressY=h.y+(l.shortLandscape?152:short?168:311);v.rect({x:h.x+12,y:progressY,width:h.width-24,height:5},0x45595b).setStrokeStyle(0);
       this.progressBar=v.rect({x:h.x+12,y:progressY,width:1,height:5},T.jade).setOrigin(0,.5).setPosition(h.x+12,progressY+2.5).setStrokeStyle(0);
-      if(!l.shortLandscape)v.button({x:h.x+12,y:h.y+(short?250:432),width:h.width-24,height:44},'角色 / 本场规则','action/role',()=>this.inspectRole());
     }
     this.renderJokerRack();
     const s=l.scoreBoard,roomy=s.height>=92,labeled=s.height>=70;
@@ -267,11 +265,16 @@ export class GameScene extends Phaser.Scene {
     const brief=portrait||l.shortLandscape;
     this.rankButton=v.button(l.buttons.rank,brief?'点数':'点数排序','action/sort-rank',()=>void this.sortHand('rank'),this.ready);
     this.suitButton=v.button(l.buttons.suit,brief?'花色':'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready);
-    v.button(l.buttons.deck,brief?'牌组':'查看牌组','action/deck',()=>this.inspectDeck());
-    if(!portrait)v.button(l.buttons.details,brief?'规则':'规则 / 物品','action/details',()=>this.inspectRole());
     this.discardButton=v.button(l.tableActions.discard,'弃牌','action/discard',()=>void this.discardSelected(),this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run));
     this.playButton=v.button(l.tableActions.play,'出牌','action/play',()=>void this.playSelected(),this.ready&&this.selectedIds.size>0&&this.handsLeft>0,true);
-    this.forwardButton=v.button(portrait?l.buttons.details:l.buttons.forward,portrait?'规则':'快进','action/forward',()=>this.presentation?this.fastForward():portrait?this.inspectRole():this.inspectLastTrace(),portrait||!!this.presentation);
+    this.resourceCounts={} as Record<'play'|'discard',Phaser.GameObjects.Text>;
+    for(const kind of ['play','discard'] as const){
+      const b=l.tableActions[kind],button=kind==='play'?this.playButton:this.discardButton;
+      (button.getData('label') as Phaser.GameObjects.Text).setX(b.x+(b.width-62)/2);
+      const badgeX=b.x+b.width-31,badgeY=b.y+b.height/2-1;
+      v.add(this.add.graphics().fillStyle(0x10272c,.35).fillRoundedRect(badgeX-26,badgeY-16,52,32,8).lineStyle(1,kind==='play'?0xf0c18a:0x8aa59f,.55).strokeRoundedRect(badgeX-26,badgeY-16,52,32,8));
+      this.resourceCounts[kind]=v.text(badgeX,badgeY,'',kind==='play'?21:18,C.paper).setOrigin(.5).setFontStyle('bold').setName('button/'+kind+'-left');
+    }
     const play=l.tableActions.play;
     this.playAura=v.add(this.add.graphics().lineStyle(3,0xffd98e,.9).strokeRoundedRect(play.x-3,play.y-3,play.width+6,play.height+6,9).setAlpha(0));
     this.statusText=v.text(l.status.x,l.status.y,'',14,'#f3d5ab',l.status.width);
@@ -327,7 +330,7 @@ export class GameScene extends Phaser.Scene {
     drawJokerMotif(this,marker,joker.definitionId,x,y,size);
   }
   private jokerValue(j:R2JokerInstance):string {
-    return r2JokerValue(j,{gold:this.run.gold,jokerCount:this.run.jokers.length,jokerSlots:R2_LIMITS.jokerSlots,deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,discardsUsed:this.run.stage?.discardsUsed});
+    return r2JokerValue(j,{gold:this.run.gold,jokerCount:this.run.jokers.length,jokerSlots:R2_LIMITS.jokerSlots,deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,discardsUsed:this.run.stage?.discardsUsed,quadRefundUsed:this.run.stage?.quadRefundUsed});
   }
   private roleCaption():string {const notice=stageNotice(this.run);return notice?.warning?notice.title:getCharacter(this.characterId).passiveName;}
   private cardPiece(card:PlayingCard,b:Box):CardView {
@@ -595,12 +598,10 @@ export class GameScene extends Phaser.Scene {
     if(!this.controlsLive)return;
     this.view.setEnabled(this.rankButton,this.ready);this.view.setEnabled(this.suitButton,this.ready);
     const handWindow=this.view.layout;this.handNavigationButtons.forEach((button,i)=>this.view.setEnabled(button,this.ready&&(i===0?handWindow.handStart>0:handWindow.handStart+handWindow.visibleCardCount<this.hand.length)));
-    (this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(r2DiscardCost(this.run)===2?'弃牌 ×2':'弃牌换新');
+    (this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(r2DiscardCost(this.run)===2?'弃牌 ×2':'弃牌');
     this.view.setEnabled(this.discardButton,this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run));
     this.view.setEnabled(this.playButton,this.ready&&this.selectedIds.size>0&&this.handsLeft>0);
     const portrait=this.view.layout.mode==='portrait';
-    const forwardLabel=this.forwardButton.getData('label') as Phaser.GameObjects.Text;forwardLabel.setText(this.presentation?(portrait?'快进':'快进结算'):portrait?'规则':'上手详情');
-    this.view.setEnabled(this.forwardButton,!!this.presentation||this.ready&&(portrait||!!this.run.lastTrace));
     const reason=this.playing?this.presentation?'正在结算 · 可快进':'正在换牌':this.handsLeft===1?'最后 1 次出牌 · 达到目标才能过关':!this.selectedIds.size?(handWindow.handOverflow?'横滑查看更多；长按拖动调序':portrait?'':'选 1～5 张牌后出牌 / 弃牌'):this.run.stage!.discardsLeft<r2DiscardCost(this.run)?'弃牌次数已用完':this.handsLeft<=0?'出牌次数已用完':'已选 '+this.selectedIds.size+' / 5';
     this.statusText.setText(this.statusMessage||reason);
     // Balatro-style call-to-action: the playable state breathes a warm aura.
@@ -758,7 +759,7 @@ export class GameScene extends Phaser.Scene {
 
   private animateJoker(joker:Pick<ScoreEvent,'sourceInstanceId'|'operation'>,duration:number,context:EffectContext,beat?:ScoreBeat,impact?:Promise<void>):Promise<void> {
     const view=this.jokerViews.get(joker.sourceInstanceId);if(!view)return this.wait(duration,context);
-    const frame=view.getData('frame') as Phaser.GameObjects.Rectangle,multiply=joker.operation==='multiply-multiplier';frame.setStrokeStyle(4,multiply?T.red:T.brass);
+    const frame=view.getData('frame') as Phaser.GameObjects.Rectangle,multiply=joker.operation==='multiply-multiplier'||joker.operation==='read-coefficient';frame.setStrokeStyle(4,multiply?T.red:T.brass);
     return this.focusSource(view,frame,multiply?T.red:T.brass,multiply,duration,context,beat,impact).then(()=>{if(frame.active)frame.setStrokeStyle(2,Number(view.getData('frameColor')));});
   }
   private async focusSource(source:Phaser.GameObjects.Container,frame:Phaser.GameObjects.Rectangle,color:number,strong:boolean,duration:number,context:EffectContext,beat?:ScoreBeat,impact?:Promise<void>):Promise<void> {
@@ -805,11 +806,12 @@ export class GameScene extends Phaser.Scene {
       return;
     }
     const fourStraight=preview.handType==='straight'&&preview.sets.scoringIds.length===4;
-    this.resultText.setText('当前选择 · '+(fourStraight?'四张普通顺子':HAND_LABELS[preview.handType])+' Lv.'+preview.level);
+    const fourFlush=preview.handType==='flush'&&preview.sets.scoringIds.length===4;
+    this.resultText.setText('当前选择 · '+(fourStraight?'四张普通顺子':fourFlush?'四张普通同花':HAND_LABELS[preview.handType])+' Lv.'+preview.level);
     this.scoreHeat.setText(fractionText(preview.base.H));this.scoreMult.setText('× '+fractionText(preview.base.M));
-    const lucky=preview.randomEffects.some(effect=>effect.kind==='lucky-paper'),wager=preview.randomEffects.some(effect=>effect.kind==='wager'),glass=preview.randomEffects.some(effect=>effect.kind==='glass-paper');
+    const lucky=preview.randomEffects.some(effect=>effect.kind==='lucky-paper'),wager=preview.randomEffects.some(effect=>effect.kind==='wager'),glass=preview.randomEffects.some(effect=>effect.kind==='glass-paper'),jokerChance=preview.randomEffects.some(effect=>effect.kind==='joker-heat');
     this.scoreTotal.setText(preview.scoreRange.minimum===preview.scoreRange.maximum?heatText(preview.scoreRange.minimum):heatText(preview.scoreRange.minimum)+'–'+heatText(preview.scoreRange.maximum));
-    this.breakdownText.setText(lucky?'含幸运概率 · 显示分数范围，长按牌看概率':wager?'押注各50%：'+preview.possibleScores.map(heatText).join(' / '):(fourStraight?'少一级 · ':'')+'★ '+preview.sets.activeScoringIds.length+' 张计分'+(glass?' · 玻璃有碎裂风险':' · 共选 '+this.selectedIds.size+' / 5 张'));
+    this.breakdownText.setText(jokerChance?'试试手气 · 每手 1/3 +90 热度'+(lucky?' · 含幸运范围':wager?' · 含押注范围':' · 显示可能范围'):lucky?'含幸运概率 · 显示分数范围，长按牌看概率':wager?'押注各50%：'+preview.possibleScores.map(heatText).join(' / '):(fourStraight?'少一级 · ':fourFlush?'少一块布 · ':'')+'★ '+preview.sets.activeScoringIds.length+' 张计分'+(glass?' · 玻璃有碎裂风险':' · 共选 '+this.selectedIds.size+' / 5 张'));
   }
   private async showJokerTransaction(event:Extract<DomainEvent,{type:'joker-transaction'}>,context:EffectContext):Promise<void> {
     if(context.signal.aborted)return;
@@ -927,7 +929,7 @@ export class GameScene extends Phaser.Scene {
     if(this.reducedMotion||context.signal.aborted)return Promise.resolve();
     const multChanged=event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d,heatChanged=event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d;
     if(!multChanged&&!heatChanged)return Promise.resolve();
-    const target=multChanged?this.scoreMult:this.scoreHeat,b=target.getBounds(),strong=event.operation==='multiply-multiplier',width=Math.min(this.view.layout.scoreBoard.width/3-18,Math.max(42,b.width+16)),height=b.height+8;
+    const target=multChanged?this.scoreMult:this.scoreHeat,b=target.getBounds(),strong=event.operation==='multiply-multiplier'||event.operation==='read-coefficient',width=Math.min(this.view.layout.scoreBoard.width/3-18,Math.max(42,b.width+16)),height=b.height+8;
     const impact=this.view.add(this.add.graphics().setPosition(b.centerX,b.centerY));
     impact.fillStyle(strong?T.red:multChanged?T.jade:T.brass,.18).fillRoundedRect(-width/2,-height/2,width,height,5);
     impact.lineStyle(strong?4:event.sourceType==='card'?1:2,strong?0xffd3a6:0xc7f1d8,.95).strokeRoundedRect(-width/2,-height/2,width,height,5);
@@ -999,7 +1001,7 @@ export class GameScene extends Phaser.Scene {
       card.background.setStrokeStyle(3,T.red);
       sourceEffects.push(this.focusSource(card.container,card.background,T.red,false,duration,context,timing,impact));
     }else if(event.sourceType==='rule'&&(R2_LONG_TERM_ITEMS.some(item=>item.id===event.sourceDefinitionId)||R2_TOOLS.some(tool=>tool.id===event.sourceDefinitionId))){
-      const b=this.view.layout.buttons.details,halo=this.view.add(this.add.graphics().lineStyle(3,T.brass,.9).strokeRoundedRect(b.x-2,b.y-2,b.width+4,b.height+4,8));
+      const b=this.goldText.getBounds(),halo=this.view.add(this.add.graphics().lineStyle(3,T.brass,.9).strokeRoundedRect(b.x-4,b.y-4,b.width+8,b.height+8,8));
       sourceEffects.push(impact.then(()=>this.animate({targets:halo,alpha:{from:1,to:.15},duration:timing.impact,ease:'Sine.easeOut'},context)).then(()=>halo.destroy()));
       sourceEffects.push(this.floatNote(source,b.x+b.width/2,b.y-12,'#ffdda3',duration,context));
     }
@@ -1014,16 +1016,17 @@ export class GameScene extends Phaser.Scene {
     else if(event.sourceType==='joker')this.audio.sourceCue(event.phase==='onHeldCard'?'held':'joker',index);
     else if(event.sourceType==='card'&&event.value.n!=='0')this.audio.sourceCue('card',index);
     else if(event.sourceType==='rule')this.audio.sourceCue(event.phase==='onStageClear'?'held':'boss');
-    if(event.operation==='multiply-multiplier'){this.audio.multiplier('multiply',index);if(!this.reducedMotion)this.cameras.main.shake(70,.0008);}
+    if(event.operation==='multiply-multiplier'||event.operation==='read-coefficient'){this.audio.multiplier('multiply',index);if(!this.reducedMotion)this.cameras.main.shake(70,.0008);}
     else if(event.operation==='add-multiplier'||event.operation==='read-growth'&&(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d))this.audio.multiplier('add',index);
     else if(event.operation==='retrigger-card')this.audio.retrigger(index);
     if(['lucky-multiplier-check','lucky-gold-check','glass-check'].includes(event.operation))this.audio.chanceRoll(event.operation==='glass-check'?'glass':'lucky',event.value.n==='1');
+    if(event.operation==='chance-heat-check')this.audio.chanceRoll('joker',event.value.n==='1');
     if(event.operation==='destroy-card')this.audio.glassBreak();
     if(event.operation==='upgrade-hand')this.audio.toolUse('planet');
     if(event.operation==='reward-consumable')this.audio.rareReveal();
     const impactDuration=timing.impact;
     const effects=[...sourceEffects,this.rollAccumulator(event,impactDuration,context),this.pulseAccumulator(event,impactDuration,context),this.impactAccumulator(event,impactDuration,context),this.wait(impactDuration,context)],notes:Promise<void>[]=[];
-    if(event.operation==='rescue-hand'&&this.presentation&&!this.presentation.replay&&event.resourceBefore!==undefined&&event.resourceAfter!==undefined){
+    if((event.operation==='rescue-hand'||event.operation==='refund-hand')&&this.presentation&&!this.presentation.replay&&event.resourceBefore!==undefined&&event.resourceAfter!==undefined){
       this.presentation.resourcePlayLeft=event.resourceAfter;
       effects.push(this.pulseResource('play',event.resourceBefore,context,event.resourceAfter));this.audio.select();
     }
@@ -1035,7 +1038,7 @@ export class GameScene extends Phaser.Scene {
     }
     if(event.sourceType==='joker'){
       const jv=this.jokerViews.get(event.sourceInstanceId);
-      if(jv){const frame=jv.getData('frame') as Phaser.GameObjects.Rectangle;notes.push(this.floatNote(note,Number(jv.getData('baseX')),Number(jv.getData('baseY'))-frame.height/2-8,event.operation==='multiply-multiplier'?'#f6c0a4':'#ffe3ae',impactDuration+timing.rest,context));}
+      if(jv){const frame=jv.getData('frame') as Phaser.GameObjects.Rectangle;notes.push(this.floatNote(note,Number(jv.getData('baseX')),Number(jv.getData('baseY'))-frame.height/2-8,event.operation==='multiply-multiplier'||event.operation==='read-coefficient'?'#f6c0a4':'#ffe3ae',impactDuration+timing.rest,context));}
     }else if(event.sourceType==='character'){
       notes.push(this.floatNote(note,this.roleAvatar.x,this.roleAvatar.y-this.roleFrame.height/2-8,'#ffe3ae',impactDuration+timing.rest,context));
     }else if(card)effects.push(this.floatNote(note,card.container.x,card.container.y,'#d3f0d3',impactDuration,context));
@@ -1056,7 +1059,7 @@ export class GameScene extends Phaser.Scene {
     if(event.operation==='increment-hands-scored'){
       const lifetime=getJoker(event.sourceDefinitionId).hooks.flatMap(hook=>hook.operations).find(operation=>operation.kind==='expire-after-hands');
       if(lifetime?.kind==='expire-after-hands')label?.setText('余'+Math.max(0,lifetime.limit-Number(event.value.n)/Number(event.value.d))+'手');
-    }else if(joker&&['consume-growth','add-growth','reset-growth'].includes(event.operation))label?.setText(this.jokerValue(joker));
+    }else if(joker&&['consume-growth','add-growth','reset-growth','add-coefficient','reset-coefficient','increment-clear-cycle'].includes(event.operation))label?.setText(this.jokerValue(joker));
     if(event.operation==='destroy-joker'&&jokerView){
       label?.setText('已销毁');
       await this.animate({targets:jokerView,alpha:0,scale:{from:1,to:.8},duration:this.reducedMotion?40:180},context);
@@ -1095,13 +1098,13 @@ export class GameScene extends Phaser.Scene {
   }
   private async pulseResource(kind:'play'|'discard',before:number,context:EffectContext,after?:number):Promise<void> {
     if(context.signal.aborted)return;
-    const count=this.resourceCounts[kind],remaining=after??(kind==='play'?this.handsLeft:this.run.stage!.discardsLeft),amount=before-remaining,cost=kind==='play'?1:r2DiscardCost(this.run);count.setText(String(remaining));
+    const count=this.resourceCounts[kind],remaining=after??(kind==='play'?this.handsLeft:this.run.stage!.discardsLeft),amount=before-remaining,cost=kind==='play'?1:r2DiscardCost(this.run);count.setText(remaining+' 次');
     this.audio.resourceSpend(kind,remaining,amount,cost);
     const critical=remaining<2*cost,color=critical?0xf7a281:0xbfe4b7;
     const note=(kind==='play'?'出牌':'弃牌')+(amount>0?' −'+amount+' 次':amount===0?'次数已返还':' +'+(-amount)+' 次')+(remaining<cost?' · 次数已用完':critical?' · 只剩最后一次':'');
     this.statusMessage=note;this.updateControls();
     const halo=this.view.add(this.add.graphics().setPosition(count.x,count.y));
-    halo.fillStyle(color,.18).fillRoundedRect(-20,-13,40,26,8).lineStyle(2,color,.85).strokeRoundedRect(-20,-13,40,26,8);
+    halo.fillStyle(color,.18).fillRoundedRect(-26,-16,52,32,8).lineStyle(2,color,.85).strokeRoundedRect(-26,-16,52,32,8);
     this.view.root.bringToTop(count);
     try {
       if(this.reducedMotion){halo.setVisible(false);await this.wait(180,context);return;}
@@ -1306,7 +1309,8 @@ export class GameScene extends Phaser.Scene {
     const l=this.view.layout,displayHeat=this.presentation?.displayHeat??this.heat,remaining=(BigInt(this.stage.targetHeat)>BigInt(displayHeat)?BigInt(this.stage.targetHeat)-BigInt(displayHeat):0n).toString();
     this.heatText.setText(l.mode==='portrait'?'目标 '+heatText(displayHeat)+' / '+heatText(this.stage.targetHeat):heatText(displayHeat));
     const discardCost=r2DiscardCost(this.run),discards=this.run.stage!.discardsLeft,plays=this.presentation?.resourcePlayLeft??this.handsLeft;
-    this.resourceCounts.play.setText(String(plays));this.resourceCounts.discard.setText(String(discards));
+    this.resourceCounts.play.setText(plays+' 次');this.resourceCounts.discard.setText(discards+' 次');
+    if(this.menuActions)this.menuActions.viewLastHand=!this.presentation&&this.run.lastTrace?()=>this.inspectLastTrace():undefined;
     const playColor=plays<=1?'#ffb391':'#f4e9ce',discardColor=discards<2*discardCost?'#ffb391':'#f4e9ce';
     if(this.resourceCounts.play.style.color!==playColor)this.resourceCounts.play.setColor(playColor);
     if(this.resourceCounts.discard.style.color!==discardColor)this.resourceCounts.discard.setColor(discardColor);

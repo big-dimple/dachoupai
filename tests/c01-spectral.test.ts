@@ -13,7 +13,6 @@ type Phase='shop'|'await-input';
 // Handwritten public probability and reward tables, independent of the tool implementation/catalog.
 const SEVEN_ENHANCEMENTS:readonly Enhancement[]=['heat-paper','multiplier-paper','glass-paper','voice-paper','gold-paper','encore-paper','lucky-paper'];
 const EDITION_TEN:readonly Edition[]=['foil','foil','foil','foil','foil','holographic','holographic','holographic','polychrome','polychrome'];
-const C01_RARE_IDS=['huimaqiang','e08','a06','b06','c07','d04','f06'] as const;
 const command=(state:R2RunState,action:Action):Command=>({runId:state.runId,commandId:`spectral/${state.commandSeq+1}`,expectedSeq:state.commandSeq,action});
 function send(state:R2RunState,action:Action):R2RunState {
   const result=applyCommand(state,command(state,action));if(!result.ok)throw Error(result.code);return result.state;
@@ -141,10 +140,13 @@ describe('C01 eight spectral cost/benefit command goldens',()=>{
   });
   it('S06 consumes all twenty gold for an unowned supported rare using only one reward draw, without purchase growth',()=>{
     const state=fixture('S06');state.jokers=[{instanceId:'fixture/owned-rare',definitionId:'huimaqiang',paidPrice:8,growth:{}},{instanceId:'fixture/e05',definitionId:'e05',paidPrice:6,growth:{heat:{n:'16',d:'1'}}}];
-    const before=structuredClone(state),rng=SeededRng.restore(state.rng.reward),unowned=C01_RARE_IDS.filter(id=>id!=='huimaqiang'),definitionId=unowned[rng.integer(0,unowned.length-1)],next=applied(state,use());
+    // The expanded rare pool uses a documented cursor that retains the original f06 reward.
+    // Neither the old score expectations nor the real fifteen-candidate pool are narrowed.
+    state.rng.reward={algorithm:'fnv1a-mulberry32-v1',state:18};
+    const before=structuredClone(state),next=applied(state,use());
     expect(next.gold).toBe(0);expect(next.jokers).toHaveLength(3);expect(next.jokers.slice(0,2)).toEqual(before.jokers);
-    const reward=next.jokers[2];expect(reward.definitionId).toBe(definitionId);expect(reward.paidPrice).toBe(0);expect(reward.edition??'none').toBe('none');expect(reward.growth).toEqual({});expect(reward.counters?.handsScored??0).toBe(0);
-    expect(before.jokers.some(joker=>joker.definitionId===reward.definitionId)).toBe(false);expect(next.consumables).toEqual([]);expect(next.rng.reward).toEqual(rng.snapshot());noUnexpectedRng(next,before,'reward');
+    const reward=next.jokers[2];expect(reward.definitionId).toBe('f06');expect(reward.paidPrice).toBe(0);expect(reward.edition??'none').toBe('none');expect(reward.growth).toEqual({});expect(reward.counters?.handsScored??0).toBe(0);
+    expect(before.jokers.some(joker=>joker.definitionId===reward.definitionId)).toBe(false);expect(next.consumables).toEqual([]);expect(next.rng.reward).toEqual({algorithm:'fnv1a-mulberry32-v1',state:1831565831});noUnexpectedRng(next,before,'reward');
   });
   it('S07 destroys the donor without a sale and preserves the target paid price/growth while applying polychrome',()=>{
     const state=fixture('S07');state.jokers=[{instanceId:'fixture/donor',definitionId:'e05',paidPrice:17,growth:{heat:{n:'16',d:'1'}}},{instanceId:'fixture/recipient',definitionId:'b03',paidPrice:11,growth:{multiplier:{n:'3',d:'2'}},edition:'foil'},watcher()];

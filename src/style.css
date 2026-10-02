@@ -25,6 +25,10 @@ button:disabled { opacity:.5;cursor:default;box-shadow:none; }
 .run-menu-status[data-tone=pending] { color:#694530;background:#f0e0bd; }
 .run-menu-primary { margin-bottom:8px; }
 .run-menu-primary button { width:100%; }
+.run-menu-inspect { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0; }
+.run-menu-inspect[hidden],.run-menu-inspect button[hidden] { display:none; }
+.run-menu-inspect button { min-width:44px;min-height:44px;padding:8px; }
+.run-menu-inspect button:last-child { grid-column:1/-1; }
 .run-menu-recovery,.run-menu-playback { display:flex;flex-wrap:wrap;gap:8px;margin:8px 0; }
 .run-menu-recovery button,.run-menu-playback button { flex:1 1 120px;min-height:44px; }
 .run-menu-settings { min-width:0;margin:12px 0;padding:6px 12px 10px;border:1px solid #c7b89d;border-radius:7px; }

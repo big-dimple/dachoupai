@@ -1,6 +1,7 @@
 import { createDeck } from '../cards/deck';
 import { evaluateHand, type HandType } from '../cards/handEvaluator';
 import type { PlayingCard } from '../cards/types';
+import type {Fraction} from './rational';
 import { SeededRng, type RngSnapshot } from '../core/SeededRng';
 import { JOKERS } from '../jokers/JokerEngine';
 import type { JokerId } from '../jokers/types';
@@ -119,7 +120,7 @@ export type DomainEvent =
   | { type: 'run-abandoned' }
   | { type: 'stage-skipped';stage: R2StageState }
   | { type: 'consumable-used';definitionId:string;instanceId:string;targetIds:string[];createdCardIds:string[];destroyedCardIds:string[];createdJokerIds?:string[];destroyedJokerIds?:string[] }
-  | { type: 'joker-transaction';phase:'onDiscard'|'onStageClear'|'onBuyOffer'|'onSellJoker'|'beforeFailure';definitionId:string;instanceId:string;operation:string;amount:string;resourceBefore?:number;resourceAfter?:number;visibleCondition?:Condition };
+  | { type: 'joker-transaction';phase:'onDiscard'|'onStageClear'|'onBuyOffer'|'onSellJoker'|'onReroll'|'afterHand'|'beforeFailure';definitionId:string;instanceId:string;operation:string;amount:string;resourceBefore?:number;resourceAfter?:number;growthBefore?:Fraction;growthAfter?:Fraction;rewardDefinitionId?:string;visibleCondition?:Condition };
 
 export type CommandResult<S = RunState> =
   | { ok: true; state: Exclude<S, null>; events: DomainEvent[]; receipt: Receipt; duplicate: boolean }

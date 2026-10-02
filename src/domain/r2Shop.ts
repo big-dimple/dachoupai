@@ -7,7 +7,7 @@ import {r2ItemSupported,r2ToolSupported} from './r2ToolRuntime';
 import {R2_AVAILABLE_CHAPTERS} from './r2Chapter';
 export const R2_ECONOMY={initialGold:6,shelfSlots:3,prices:{common:4,uncommon:6,rare:8},weights:{common:5,uncommon:3,rare:2},rerollStart:2,rerollCap:10} as const;
 export interface R2Offer {offerId:string;definitionId:string;price:number;consumed:boolean;edition?:R2Edition}
-export interface R2ShopState {visitIndex:number;rerollCount:number;purchases:number;offers:R2Offer[];toolOffers:R2Offer[];itemOffers:R2Offer[]}
+export interface R2ShopState {visitIndex:number;rerollCount:number;purchases:number;soldJoker:boolean;offers:R2Offer[];toolOffers:R2Offer[];itemOffers:R2Offer[]}
 interface PurchaseContext {purchaseCoupons:number;jokers?:readonly R2JokerInstance[];longTermItems?:readonly string[];shop?:Pick<R2ShopState,'purchases'>|null}
 export function getR2Joker(id:string):R2JokerDefinition {
   const definition=R2_JOKERS.find(d=>d.id===id);if(!definition)throw new Error(`unknown-joker: ${id}`);return definition;

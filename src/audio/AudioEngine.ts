@@ -3,7 +3,7 @@ import recording from '../../public/assets/audio/p06/recording.json';
 export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
 export type AudioScene = 'menu' | 'shop' | 'table' | 'boss' | 'success' | 'failure';
 type VoiceBus = Exclude<AudioBus, 'master'>;
-type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; fire?: boolean; roll?: ScoreRollKind };
+type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; fire?: boolean; fireLayer?: 'bed'|'rumble'; roll?: ScoreRollKind };
 export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 'retrigger';
 export type ScoreRollKind = 'heat' | 'mult' | 'total';
 
@@ -23,10 +23,10 @@ export class AudioEngine {
   private leadWave?: PeriodicWave;
   private pianoWave?: PeriodicWave;
   private fireBed?: AudioBuffer;
-  private fireCrackles?: AudioBuffer;
+  private fireRumble?: AudioBuffer;
   private rollBuffer?: AudioBuffer;
   private fireVoices = new Set<Voice>();
-  private fireIntensity: 0 | 1 | 2 | 3 = 0;
+  private fireIntensity: 0 | 1 | 2 = 0;
   private voices = new Set<Voice>();
   private volumes: Record<AudioBus, number> = { master: 1, music: .22, sfx: 1, ui: 1 };
   private masterMuted = false;
@@ -296,54 +296,54 @@ export class AudioEngine {
 
   private createFireBuffers(context: AudioContext): void {
     const bed = context.createBuffer(1, Math.ceil(context.sampleRate * 2.4), context.sampleRate);
-    const crackles = context.createBuffer(1, Math.ceil(context.sampleRate * 1.79), context.sampleRate);
-    let seed = 0x46495245, pink = 0, grain = 0;
+    const rumble = context.createBuffer(1, Math.ceil(context.sampleRate * 3.17), context.sampleRate);
+    let seed = 0x46495245, brown = 0, turbulence = 0;
     const sample = (): number => {
       seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
       return seed / 0xffffffff * 2 - 1;
     };
-    const bedData = bed.getChannelData(0), crackleData = crackles.getChannelData(0);
+    const bedData = bed.getChannelData(0), rumbleData = rumble.getChannelData(0);
     for (let i = 0; i < bedData.length; i++) {
-      const white = sample(); pink = pink * .985 + white * .035;
-      const edge = Math.min(1, i / (context.sampleRate * .025), (bedData.length - i) / (context.sampleRate * .025));
-      bedData[i] = (pink * .65 + white * .15) * edge;
+      brown = brown * .998 + sample() * .065;
+      const edge = Math.min(1, i / (context.sampleRate * .08), (bedData.length - i) / (context.sampleRate * .08));
+      bedData[i] = Math.tanh(brown) * .72 * edge;
     }
-    const interval = Math.max(1, Math.floor(context.sampleRate * .023));
-    for (let i = 0; i < crackleData.length; i++) {
-      const white = sample();
-      if (i % interval === 0 && white > .38) grain = .4 + white * .6;
-      grain *= .988;
-      const edge = Math.min(1, i / (context.sampleRate * .015), (crackleData.length - i) / (context.sampleRate * .015));
-      crackleData[i] = white * grain * edge;
+    for (let i = 0; i < rumbleData.length; i++) {
+      turbulence = turbulence * .975 + sample() * .095;
+      const time = i / context.sampleRate;
+      const swell = .64 + .22 * Math.sin(time * 5.1) + .12 * Math.sin(time * 12.7);
+      const edge = Math.min(1, time / .08, (rumbleData.length - i) / (context.sampleRate * .08));
+      rumbleData[i] = Math.tanh(turbulence) * swell * edge;
     }
     this.fireBed = bed;
-    this.fireCrackles = crackles;
+    this.fireRumble = rumble;
   }
 
   /** Two bounded SFX sources for the actual score-fire state, never a second context. */
-  setScoreFire(intensity: 0 | 1 | 2 | 3): void {
-    if (intensity === 0 || ![1, 2, 3].includes(intensity) || !this.canPlay('sfx')) { this.stopScoreFire(); return; }
+  setScoreFire(intensity: 0 | 1 | 2): void {
+    if (intensity === 0 || ![1, 2].includes(intensity) || !this.canPlay('sfx')) { this.stopScoreFire(); return; }
     if (this.fireIntensity === intensity && this.fireVoices.size === 2) return;
     try {
       const context = this.context!;
       if (this.fireVoices.size !== 2) {
         this.stopScoreFire();
-        for (const [buffer, type] of [[this.fireBed, 'lowpass'], [this.fireCrackles, 'bandpass']] as const) {
+        for (const [buffer, layer] of [[this.fireBed, 'bed'], [this.fireRumble, 'rumble']] as const) {
           if (!buffer) { this.stopScoreFire(); return; }
           const source = context.createBufferSource(), gain = context.createGain(), filter = context.createBiquadFilter();
           source.buffer = buffer; source.loop = true;
-          filter.type = type; filter.Q.value = type === 'lowpass' ? .4 : .65;
+          filter.type = 'lowpass'; filter.Q.value = .35;
           gain.gain.setValueAtTime(0, context.currentTime);
           source.connect(filter); filter.connect(gain); gain.connect(this.gains!.sfx);
-          const voice: Voice = {source, gain, filter, bus: 'sfx', fire: true};
+          const voice: Voice = {source, gain, filter, bus: 'sfx', fire: true, fireLayer: layer};
           this.fireVoices.add(voice); this.retain(voice); source.start();
         }
       }
       this.fireIntensity = intensity;
       for (const voice of this.fireVoices) {
-        const bed = voice.filter!.type === 'lowpass';
-        voice.gain.gain.setTargetAtTime((bed ? [.14, .20, .26] : [.12, .19, .28])[intensity - 1], context.currentTime, .025);
-        voice.filter!.frequency.setTargetAtTime(bed ? 290 + intensity * 120 : 760 + intensity * 270, context.currentTime, .04);
+        const bed = voice.fireLayer === 'bed';
+        voice.gain.gain.setTargetAtTime((bed ? [.055, .16] : [.02, .065])[intensity - 1], context.currentTime, .07);
+        voice.filter!.frequency.setTargetAtTime((bed ? [170, 210] : [290, 420])[intensity - 1], context.currentTime, .08);
+        (voice.source as AudioBufferSourceNode).playbackRate.setTargetAtTime(intensity === 1 ? .8 : .92, context.currentTime, .1);
       }
     } catch { this.stopScoreFire(); }
   }
@@ -582,10 +582,11 @@ export class AudioEngine {
     this.note(n, .07, .059, 'sfx', 0, 'triangle', undefined, undefined, 'pluck');
     this.note(n, .11, .064, 'sfx', .072, 'triangle', undefined, undefined, 'piano');
   }
-  chanceRoll(kind:'lucky'|'glass',hit:boolean):void {
+  chanceRoll(kind:'lucky'|'glass'|'joker',hit:boolean):void {
     this.duckMusic(.22);
-    this.whoosh(.12,.032,kind==='lucky');
-    const pitches=kind==='glass'?[81,88]:hit?[69,76,81]:[64,62];
+    this.whoosh(.12,.032,kind!=='glass');
+    if(kind==='joker')this.paper(.08,.022,0,'sfx',undefined,1600);
+    const pitches=kind==='glass'?[81,88]:kind==='joker'?(hit?[62,74,81]:[65,62]):hit?[69,76,81]:[64,62];
     pitches.forEach((pitch,i)=>this.note(pitch,.09,.032,'sfx',i*.035,kind==='glass'?'sine':'triangle',undefined,undefined,'pluck'));
   }
   glassBreak():void {

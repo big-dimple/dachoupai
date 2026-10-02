@@ -23,13 +23,13 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const hand=centered(1100,actions.y-(landscape?8:12)-handHeight,handHeight);
   const handLabel=box(hand.x,hand.y-22,Math.min(116,hand.width*.3),18);
   const piles=box(handLabel.x+handLabel.width,handLabel.y,hand.width-handLabel.width,18);
-  const tools=shortLandscape?box(hud.x,hud.y+hud.height-44,side,44):centered(744,hand.y-(portrait?52:landscape?66:74),44);
+  const tools=shortLandscape?box(hud.x,hud.y+hud.height-44,side,44):centered(344,hand.y-(portrait?52:landscape?66:74),44);
   const preview=centered(1100,jokers.y+jokers.height+8,(shortLandscape?handLabel.y:tools.y)-jokers.y-jokers.height-16);
   // Short horizontal screens keep the score and landing cards beside one another.
   const scoreBoard=landscape?box(preview.x,preview.y,preview.width*.5-4,preview.height):box(preview.x,preview.y,preview.width,portrait?Math.min(92,preview.height-56):preview.height>=180?108:Math.min(108,Math.max(50,preview.height*.4)));
   const playedArea=landscape?box(scoreBoard.x+scoreBoard.width+8,preview.y,preview.width-scoreBoard.width-8,preview.height):box(preview.x,scoreBoard.y+scoreBoard.height+8,preview.width,preview.height-scoreBoard.height-8);
-  const gap=shortLandscape?4:8,toolWidth=(tools.width-3*gap)/4,actionWidth=(actions.width-2*8)/3;
-  const buttons={rank:box(tools.x,tools.y,toolWidth,44),suit:box(tools.x+toolWidth+gap,tools.y,toolWidth,44),deck:box(tools.x+2*(toolWidth+gap),tools.y,toolWidth,44),details:box(tools.x+3*(toolWidth+gap),tools.y,toolWidth,44),discard:box(actions.x,actions.y,actionWidth,actions.height),play:box(actions.x+actionWidth+gap,actions.y,actionWidth,actions.height),forward:box(actions.x+2*(actionWidth+gap),actions.y,actionWidth,actions.height)};
+  const gap=shortLandscape?4:8,toolWidth=(tools.width-gap)/2;
+  const buttons={rank:box(tools.x,tools.y,toolWidth,44),suit:box(tools.x+toolWidth+gap,tools.y,toolWidth,44)};
   // Keep poker faces vertical even when the hand row has little height.
   const cardWidth=Math.min(portrait?112:132,(hand.height-22)/1.4,hand.width-7*36);
   const count=Number.isSafeInteger(handWindow.count)&&handWindow.count>=0?handWindow.count:8;
@@ -47,7 +47,8 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const slots=Array.from({length:5},(_,i)=>box(landscape?jokers.x+i*jokers.width/5+2:jokers.x+(jokers.width-rackWidth)/2+i*(slotWidth+slotGap),jokers.y,slotWidth,jokers.height));
   // Short horizontal screens keep the illustration vertical and its readable labels beside it.
   const jokerLabels=landscape?slots.map((slot,i)=>box(slot.x+slot.width+6,jokers.y,jokers.width/5-slot.width-12,jokers.height)):slots;
-  const tableActions=portrait?{discard:box(actions.x,actions.y,Math.floor((actions.width-8)*.36),actions.height),play:box(actions.x+Math.floor((actions.width-8)*.36)+8,actions.y,actions.width-Math.floor((actions.width-8)*.36)-8,actions.height)}:{discard:buttons.discard,play:buttons.play};
+  const discardWidth=Math.floor((actions.width-8)*.36);
+  const tableActions={discard:box(actions.x,actions.y,discardWidth,actions.height),play:box(actions.x+discardWidth+8,actions.y,actions.width-discardWidth-8,actions.height)};
   return {mode,compact,shortLandscape,width,height,hud,jokers,preview,scoreBoard,playedArea,handLabel,piles,tools,hand,actions,status,buttons,tableActions,cards,handOverflow,handStart,visibleCardCount,handNavigation,slots,jokerLabels};
 }
 export type TableLayout=ReturnType<typeof layout>;

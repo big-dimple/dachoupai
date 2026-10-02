@@ -7,7 +7,7 @@ import {createServer as httpServer} from 'node:http';
 import path from 'node:path';
 import {createServer} from 'vite';
 import {chromium,firefox,webkit} from 'playwright';
-import {openSelector,waitScene,point,tapUI,chooseCharacter} from './ui.mjs';
+import {openSelector,waitScene,point,tapUI,chooseCharacter,tapMenuAction,openMenuSection} from './ui.mjs';
 
 const root=process.cwd(),dir=path.resolve(process.env.E2E_EVIDENCE_DIR||'shots/e2e');fs.mkdirSync(dir,{recursive:true});
 const engines={chromium,firefox,webkit},selected=(process.env.E2E_BROWSERS||'chromium,firefox,webkit').split(','),scope=process.env.E2E_SCENARIO||'all';
@@ -37,9 +37,9 @@ async function serve(directory){
 const read=page=>page.evaluate(()=>{const c=window.__harness?.game.registry.get('runController');return c?{state:c.state,journal:c.journal,status:c.status}:null;});
 const dom=async(page,name,touch)=>{const button=page.getByRole('button',{name,exact:true});if(touch)await button.tap();else await button.click();};
 const advance=(page,seq)=>page.waitForFunction(seq=>window.__harness.game.registry.get('runController')?.state.commandSeq>seq,seq);
-async function menu(page,touch){const b=page.getByRole('button',{name:'菜单',exact:true});if(await b.getAttribute('aria-expanded')!=='true')await dom(page,'菜单',touch);}
+async function menu(page,touch){const b=page.getByRole('button',{name:'菜单',exact:true});if(await b.getAttribute('aria-expanded')!=='true')await page.locator('.run-menu-toggle')[touch?'tap':'click']();}
 async function settings(page,touch,speed='4'){
-  const before=await read(page);await menu(page,touch);await page.getByLabel('演出速度').selectOption(speed);await page.getByLabel('背景音量',{exact:true}).press('Home');await page.getByLabel('音效音量',{exact:true}).press('Home');await dom(page,'菜单',touch);
+  const before=await read(page);await openMenuSection(page,'settings',touch);await page.getByLabel('演出速度').selectOption(speed);await page.getByLabel('背景音量',{exact:true}).press('Home');await page.getByLabel('音效音量',{exact:true}).press('Home');await page.locator('.run-menu-toggle')[touch?'tap':'click']();
   assert.deepEqual(await read(page),before,'presentation settings do not consume commands or RNG');
 }
 async function idle(page){await page.waitForFunction(()=>{const g=window.__harness.game,s=g.scene.getScene('game');return g.scene.isActive('intermission')||(g.scene.isActive('game')&&!s.playing&&s.cardViews.length>0);});}
@@ -80,7 +80,7 @@ async function perform(page,touch,action,{double=false,interrupt=false,rotate=fa
         await menu(page,touch);await dom(page,'继续本局',touch);await idle(page);assert.deepEqual((await read(page)).state,committed.state,'continue cannot re-award');
       }else if(rotate){
         await page.setViewportSize({width:844,height:390});await idle(page);assert.deepEqual((await read(page)).state,committed.state,'rotation cannot rescore');await page.setViewportSize({width:390,height:844});
-      }else{await menu(page,touch);await dom(page,'快进当前手',touch);await idle(page);assert.deepEqual((await read(page)).state,committed.state,'fast forward cannot rescore');}
+      }else{await tapMenuAction(page,'快进当前手',touch);await idle(page);assert.deepEqual((await read(page)).state,committed.state,'fast forward cannot rescore');}
     }else{assert.equal(committed.state.stage.discardsLeft,before.state.stage.discardsLeft-1);assert.equal(committed.state.stage.handsLeft,before.state.stage.handsLeft);}
   }else throw Error('unsupported UI action '+action.type);
   return read(page);
@@ -135,7 +135,7 @@ async function workflow(page,record,url,touch,fixture){
   while((await read(page)).state.jokers.length)await perform(page,touch,{type:'SellJoker',instanceId:(await read(page)).state.jokers[0].instanceId});
   await perform(page,touch,{type:'RerollShop'});await restart(page,touch);await perform(page,touch,{type:'LeaveShop'});await restart(page,touch);await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.length===8);
   const beforeDetails=await read(page),id=beforeDetails.state.handOrder[0];await tapUI(page,'game','card/'+id,touch);await tapUI(page,'game','card/'+id,touch);assert.deepEqual(await read(page),beforeDetails,'select/cancel does not consume state');
-  await tapUI(page,'game','action/deck',touch);assert.ok((await page.locator('dialog').textContent()).includes('剩余'));await dom(page,'关闭',touch);assert.deepEqual(await read(page),beforeDetails,'deck inspection is read-only');
+  await tapMenuAction(page,'查看牌组',touch);assert.ok((await page.locator('dialog').textContent()).includes('剩余'));await dom(page,'关闭',touch);assert.deepEqual(await read(page),beforeDetails,'deck inspection is read-only');
   for(let hand=0;hand<4;hand++){const before=await read(page);assert.equal(before.state.phase,'await-input');await perform(page,touch,{type:'PlayHand',selectedIds:[before.state.handOrder[0]]},{double:hand===0,rotate:touch&&hand===0});}
   observed=await read(page);assert.equal(observed.state.phase,'run-lost');assert.equal(observed.state.outcome.reason,'hands-exhausted');assert.equal(observed.state.stage.handsLeft,0);assert.equal(observed.state.stage.goldEarned,0,'loss gives no clear reward');
   let replay=domain.createRun({seed:observed.state.seed,characterId:observed.state.characterId,runId:observed.state.runId,rulesVersion:'r2'});const hashes=new Map([[replay.commandSeq,domain.stateHash(replay)]]);

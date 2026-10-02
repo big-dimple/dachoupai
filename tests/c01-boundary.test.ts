@@ -13,9 +13,9 @@ const send=(state:R2RunState,action:Action)=>{
 const resign=(value:ReturnType<typeof makeCheckpoint>)=>{const {checksum,...payload}=value;return {...payload,checksum:stableHash(payload)};};
 
 describe('C01 explicit new-game boundary and saved stage budgets',()=>{
-  it('starts v6 with explicit empty modifier, reward and chapter counters',()=>{
+  it('starts the current version with explicit empty modifier, reward and chapter counters',()=>{
     const state=start() as R2RunState&Record<string,unknown>;
-    expect(state.contentVersion).toBe('quality-r2-content-v6');
+    expect(state.contentVersion).toBe('quality-r2-content-v7');
     expect(state.spectralModifiers).toEqual({handsPenalty:0,handPenalty:0,cleanSlateBonus:0});
     expect(state.supplyRewardClaimed).toBe(false);expect(state.normalClearClaimed).toBe(false);
     expect(state.chapterHandUsage).toEqual({});expect(state.deckInstances).toHaveLength(52);

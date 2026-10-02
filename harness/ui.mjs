@@ -15,6 +15,20 @@ export async function point(page,key,name){
   },{key,name});assert.ok(p,'visible named UI');return p;
 }
 export async function tapUI(page,key,name,touch=false){const p=await point(page,key,name);if(touch)await page.touchscreen.tap(p.x,p.y);else await page.mouse.click(p.x,p.y);}
+/** Low-frequency table actions follow the actual D27 menu route. */
+export async function openMenuSection(page,section,touch=false){
+  const tap=async locator=>touch?locator.tap():locator.click();
+  if(!await page.locator('.run-menu-modal').evaluate(dialog=>dialog.open))await tap(page.locator('.run-menu-toggle'));
+  assert.ok(['settings','playback'].includes(section),'known menu section');
+  const details=page.locator('.run-menu-'+section+'-tools');
+  if(!await details.evaluate(element=>element.open))await tap(details.locator('summary'));
+}
+export async function tapMenuAction(page,label,touch=false){
+  const tap=async locator=>touch?locator.tap():locator.click();
+  if(!await page.locator('.run-menu-modal').evaluate(dialog=>dialog.open))await tap(page.locator('.run-menu-toggle'));
+  if(['快进当前手','回看上一手'].includes(label))await openMenuSection(page,'playback',touch);
+  await tap(page.getByRole('button',{name:label,exact:true}));
+}
 /** Open the real title control when present; never bypass the production opening scene. */
 export async function openSelector(page,touch=false){
   await page.waitForFunction(()=>window.__harness?.game.scene.isActive('title')||window.__harness?.game.scene.isActive('character-select'));

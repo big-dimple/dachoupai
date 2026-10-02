@@ -46,6 +46,8 @@ RunState 至少包含：schemaVersion、rulesVersion、contentVersion/hash、run
 
 C00/D23把进场锁定的手牌上限、本场前手分数/救场资格、商店成功购买计数及实例有限寿命写入状态。`readR2Modifiers`是有限类型联合，UI与领域共用资源/预览入口；定义的实际能力和声明均由`supportsR2Joker`检查，不支持的内容不进商店。新增字段由内容版本分区，不静默迁移旧局。
 
+C02/D26的v7加入准备商店销售标记、本场最大出牌张数/普通顺同资格/B12返手资格、E10实例模2成功次数和E11/F12显式有理数系数。创建入口（购买和幻灵赠牌）赋初值，恢复不补缺字段。出牌机会账同时包含F07与B12，概率及目标比较读取确定的开始快照。来源事件的资源值仍是整数，系数前后使用growthBefore/growthAfter有理数，奖品使用有限rewardDefinitionId；结果实例与开始sourceJokers分别保留。
+
 ## 4. RNG 与重放
 
 固定并版本化现有算法，提供 snapshot/restore，不用“重建 seed 后猜消耗了多少次”恢复。随机域至少 deck、shop、rule、reward 四类；cosmetic 单独在表现层，禁止读取规则域。
