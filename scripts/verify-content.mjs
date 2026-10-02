@@ -156,9 +156,17 @@ try {
   const {R2_CONTENT_VERSION,R2_CONTENT_HASH,R2_LIMITS}=await server.ssrLoadModule('/src/domain/r2Run.ts');
   const {SCORE_LIMITS}=await server.ssrLoadModule('/src/domain/scoreR2.ts');
   const {R2_TOOL_CATALOG}=await server.ssrLoadModule('/src/content/r2Tools.ts');
+  const {R2_MODE_CATALOG,validateR2ModeCatalog}=await server.ssrLoadModule('/src/content/r2Modes.ts');
   const chapter=await server.ssrLoadModule('/src/domain/r2Chapter.ts');
   const input=process.argv[2] ? JSON.parse(await readFile(process.argv[2],'utf8')) : R2_JOKERS;
   const errors=validateR2Content(input);
+  errors.push(...validateR2ModeCatalog(R2_MODE_CATALOG).map(error=>`mode catalog: ${error}`));
+  for(const challenge of R2_MODE_CATALOG.challenges){
+    for(const joker of challenge.config.startingJokers){
+      const definition=R2_JOKERS.find(row=>row.id===joker.definitionId);
+      if(!definition||definition.rarity!=='rare')errors.push(`challenge ${challenge.id}: unavailable starting rare Joker ${joker.definitionId}`);
+    }
+  }
   const sum=values=>values.reduce((total,value)=>total+value,0);
   const maximum=values=>Math.max(0,...values);
   // Counts emitted trace entries, not requested retriggers or RNG draws.
@@ -237,6 +245,9 @@ try {
   if(tightProof&&tightProof.maximumEvents>SCORE_LIMITS.eventCount)errors.push(`legal content event envelope ${tightProof.maximumEvents} exceeds ${SCORE_LIMITS.eventCount}`);
   if(errors.length) {console.error(errors.join('\n'));process.exitCode=1;}
   else console.log(JSON.stringify({status:'PASS',definitions:input.length,contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH,
+    modeConfigurations:{scope:'C04.1 finite configuration only; v9 gameplay and saves remain standard D0.',
+      modes:R2_MODE_CATALOG.modes.map(row=>row.id),difficulties:R2_MODE_CATALOG.difficulties.map(row=>row.id),
+      challenges:R2_MODE_CATALOG.challenges.map(row=>row.id),programs:R2_MODE_CATALOG.programs.map(row=>row.id)},
     conservativeEventBound:eventBound,eventBoundBreakdown,eventBoundModel:{
       handLimit:SCORE_LIMITS.handCount,selectedLimit:R2_LIMITS.maxSelected,jokerLimit:SCORE_LIMITS.jokerCount,
       extraRetriggers:SCORE_LIMITS.extraRetriggers,maxScoringPasses:passes,scoringEnhancementEventsPerPass:scoringEnhancement,

@@ -1,5 +1,6 @@
 import type {PlayingCard,Suit} from '../cards/types';
 import {SUITS,SUIT_SYMBOL} from '../cards/types';
+import {r2DifficultyTargetMultiplier} from '../content/r2Modes';
 import type {SeededRng} from '../core/SeededRng';
 import {MAX_INTEGER_DIGITS} from './rational';
 
@@ -15,10 +16,10 @@ export const R2_ENDLESS_CONTRACT=Object.freeze({
 const chapterMaximum=(tourMode:R2TourMode):number|undefined=>tourMode==='normal'?R2_TARGETS.length:tourMode==='endless'?R2_ENDLESS_MAX_CHAPTER:undefined;
 export interface R2StageSpec {index:number;name:string;intro:string;targetHeat:string}
 
-/** Only an explicit endless lookup exposes later chapters; rounding occurs once at the final target. */
-export function r2StageSpec(index:number,tourMode:R2TourMode='normal'):R2StageSpec|undefined {
-  const maximum=chapterMaximum(tourMode);
-  if(maximum===undefined||!Number.isSafeInteger(index)||index<0||index>=maximum*3)return undefined;
+/** Difficulty and explicit endless lookup share one final ceiling; current runs still default to D0. */
+export function r2StageSpec(index:number,tourMode:R2TourMode='normal',difficulty:number=0):R2StageSpec|undefined {
+  const maximum=chapterMaximum(tourMode),difficultyMultiplier=r2DifficultyTargetMultiplier(difficulty);
+  if(maximum===undefined||!difficultyMultiplier||!Number.isSafeInteger(index)||index<0||index>=maximum*3)return undefined;
   const chapter=Math.floor(index/3)+1,multiplier=R2_ENDLESS_CONTRACT.stageMultipliers[index%3];
   let numerator:bigint,denominator:bigint;
   if(chapter<=R2_TARGETS.length){numerator=BigInt(R2_TARGETS[chapter-1]);denominator=1n;}
@@ -28,7 +29,8 @@ export function r2StageSpec(index:number,tourMode:R2TourMode='normal'):R2StageSp
     numerator=BigInt(R2_ENDLESS_CONTRACT.baseHeat)*(BigInt(R2_ENDLESS_CONTRACT.multiplier.n)**exponent);
     denominator=BigInt(R2_ENDLESS_CONTRACT.multiplier.d)**exponent;
   }
-  numerator*=BigInt(multiplier.n);denominator*=BigInt(multiplier.d);
+  numerator*=BigInt(multiplier.n)*BigInt(difficultyMultiplier.n);
+  denominator*=BigInt(multiplier.d)*BigInt(difficultyMultiplier.d);
   const targetHeat=((numerator+denominator-1n)/denominator).toString();
   if(targetHeat.length>R2_ENDLESS_CONTRACT.integerDigits)return undefined;
   return {index,name:`第 ${chapter} 章 · ${['暖场','正场','压轴'][index%3]}`,intro:'打到目标热度即可过场，出牌和弃牌次数每场补满。',targetHeat};

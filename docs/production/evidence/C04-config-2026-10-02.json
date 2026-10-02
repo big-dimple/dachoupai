@@ -1,0 +1,133 @@
+{
+  "taskId": "C04",
+  "step": "C04.1",
+  "date": "2026-10-02",
+  "status": "ENGINEERING_PASS_CONFIG_ONLY",
+  "decision": "D31",
+  "testedCommit": "836da722fbc6204e6ca4ac4fd16af1152bfc923b",
+  "testedTree": "Reviewed main dirty tree; final source byte fingerprints below. No mode activation, state parser change, scoring golden change or runtime content-version change.",
+  "contentVersion": "quality-r2-content-v9",
+  "contentHash": "json-fnv-v1:0d551eb0a2218704",
+  "scope": "Finite standard/challenge/tutorial catalog, final four difficulties, 12 isolated challenge starts and 4 program contracts; target helper accepts exact optional numeric difficulty. Actual v9 runs still standard D0.",
+  "sourceFingerprints": {
+    "src/content/r2Modes.ts": "31aff32c68f13603359ed25fbaddeed49ba93307304236e2cd20902d9e50d72e",
+    "src/domain/r2Chapter.ts": "29fb431849bed29a709785f4647fedd757d91ad39540f4fb2d7aaa58afbf2258",
+    "scripts/verify-content.mjs": "769e476e864b4614dcb7eec2caded6cc0af1bf911ef6b3916042f698084a764d",
+    "tests/c04-mode-config.test.ts": "791b351d4893809be1915841f09cd7879d3c932315d7c9daa1869d2b5ae8bdf6",
+    "tests/c04-difficulty-target.test.ts": "89bbb33e2c123f07e5292899dd31ae726223ded819235c76e65f7c5bdea2238b",
+    "tests/fixtures/c04-v9-checkpoint.json": "c266fb4a2d9ac25cf145e099c1e7abca48206e1dcf3c019cbb01ee5b3fbd5900"
+  },
+  "red": [
+    {
+      "command": "npm test -- tests/c04-mode-config.test.ts",
+      "exitCode": 1,
+      "result": "27 FAIL / 2 PASS before config implementation",
+      "log": "shots/c04-config-red.txt"
+    },
+    {
+      "command": "npx.cmd vitest run tests/c04-difficulty-target.test.ts --reporter=dot",
+      "exitCode": 1,
+      "result": "18 FAIL / 4 PASS before exact difficulty composition",
+      "chunk": "bc4deb",
+      "log": "C:/Users/wanghongping/AppData/Local/Temp/dachoupai-c04.1-difficulty-red.log"
+    },
+    {
+      "command": "npm test -- tests/c04-mode-config.test.ts",
+      "exitCode": 1,
+      "result": "1 FAIL / 28 PASS after correcting tutorial protocol golden, before correcting module",
+      "chunk": "1f2cd4",
+      "log": "shots/c04-config-action-red.txt"
+    }
+  ],
+  "corrections": [
+    "First catalog typecheck found TS18046 in a narrowed value captured by closure; bound const catalog, without changing contract values.",
+    "Initial tutorial descriptors invented DiscardCards/BuyJoker. Source protocol uses DiscardHand/BuyOffer. Corrected command labels only, demonstrated RED first and added type-only Action constraint; three real successful behaviors, all score/resource/seed expectations unchanged."
+  ],
+  "checks": [
+    {
+      "command": "npm.cmd test -- --run tests/c04-mode-config.test.ts tests/c04-difficulty-target.test.ts tests/c03-endless-target.test.ts tests/c03-chapter-spec.test.ts tests/c03-endless-save.test.ts --maxWorkers=2 --reporter=dot",
+      "exitCode": 0,
+      "result": "185 PASS / 5 files; 29 config + 22 difficulty + 63 existing endless-target + 49 existing chapter + 22 existing save",
+      "chunk": "68a948",
+      "log": "shots/c04-config-integrated-tests.log"
+    },
+    {
+      "command": "node scripts/verify-content.mjs",
+      "exitCode": 0,
+      "result": "72 definitions; finite 3/4/12/4 catalog and initial rare references valid; existing 319 conservative / 91 finite v9 event bounds unchanged",
+      "chunk": "5ac46f",
+      "log": "shots/c04-config-content.json"
+    },
+    {
+      "command": "npm.cmd run build",
+      "exitCode": 0,
+      "result": "TypeScript and production build PASS; existing >500KB chunk warning retained",
+      "startChunk": "ede283",
+      "completionChunk": "228b09",
+      "log": "shots/c04-config-build.log"
+    },
+    {
+      "command": "node scripts/check-production-plan.mjs --self-test; node scripts/check-production-plan.mjs",
+      "exitCode": 0,
+      "result": "1 valid / 13 invalid fixtures; 31 tasks valid, current C04",
+      "chunk": "b26352"
+    },
+    {
+      "command": "node shots/c04-v9-capture.mjs",
+      "exitCode": 0,
+      "result": "Real v9 StartRun + LeaveShop + EnterStage, make/read checkpoint and state-hash roundtrip; no edited state or version fields",
+      "chunk": "bd830f"
+    }
+  ],
+  "legacyCapture": {
+    "status": "PASS",
+    "path": "tests/fixtures/c04-v9-checkpoint.json",
+    "baselineCommit": "836da722fbc6204e6ca4ac4fd16af1152bfc923b",
+    "runtime": "actual-v9, standard D0, no edited state or version fields",
+    "contentVersion": "quality-r2-content-v9",
+    "contentHash": "json-fnv-v1:0d551eb0a2218704",
+    "commandSeq": 3,
+    "commands": [
+      "LeaveShop",
+      "EnterStage"
+    ],
+    "checksum": "json-fnv-v1:25a4956536aab449",
+    "stateHash": "json-fnv-v1:268c164c5781b438",
+    "sha256": "c266fb4a2d9ac25cf145e099c1e7abca48206e1dcf3c019cbb01ee5b3fbd5900",
+    "capturedAt": "2026-10-02T06:36:29.209Z"
+  },
+  "independentTargetOracle": {
+    "tool": "Python fractions.Fraction",
+    "chunk": "668a64",
+    "roundingCounterexample": {
+      "stage": 39,
+      "correct": "36691772",
+      "incorrectIntermediateCeil": "36691773"
+    },
+    "largeBoundary": "Full independently hashed exact D1–D3 target at chapter10766 has4096 digits; chapter10767 rejected."
+  },
+  "logFingerprints": {
+    "shots/c04-config-red.txt": "2f22b26ea0012b854ca13c3ed720081db25ba1ea7539fe50185bd81674905ac9",
+    "shots/c04-config-action-red.txt": "8d2f6d872ad021c877e37cf283a518a9a9702cd4863d009735b06cb8dbcadd6a",
+    "shots/c04-config-final-green.txt": "39966853ff7a3ca32c3a2c5732a547dca78eac24cab70deabd476ea260cecc4c",
+    "shots/c04-config-final-typecheck.txt": "c0773d3812468c5e2fa6063bcf02e222f8835894e0bdc2eb5bda7953fb4c615b",
+    "shots/c04-config-integrated-tests.log": "41a8f6d17ecb205dad79adb3b2785e713694ea498cadfda1cb3b4c39df0c950c",
+    "shots/c04-config-content.json": "e8d031173e431f630d76c91447f840482495ae3bd9c1b56d6d2764eea13a0128",
+    "shots/c04-config-build.log": "b22215dece5d5bed2fb01ed394563f1bb40ef005389bc87bdf71e5bd17280646",
+    "C:/Users/wanghongping/AppData/Local/Temp/dachoupai-c04.1-difficulty-red.log": "56d1f3abedd1bbcc4f129abc10412ee795ea957fe89c53e5838e0113566d6a13",
+    "C:/Users/wanghongping/AppData/Local/Temp/dachoupai-c04.1-difficulty-green.log": "9e976ab828059230397251dc8f22312c9dd4a928461c8ef181de940558eab196"
+  },
+  "notRun": [
+    "C04.2 mode entry/save activation and fault recovery",
+    "C04.3 tutorial/encyclopedia/history",
+    "C04.4 ordinary UI roundtrip",
+    "Physical Android Chrome for this candidate",
+    "Natural balance/holdout samples",
+    "New art/human/launch gates",
+    "Runtime GLB/deployment"
+  ],
+  "completion": "C04.1 complete only; C04 remains IN_PROGRESS. Existing A01/D22/D25 approval persists; future gates are not self-approved.",
+  "publication": {
+    "status": "PENDING_NORMAL_MAIN_PUSH"
+  }
+}

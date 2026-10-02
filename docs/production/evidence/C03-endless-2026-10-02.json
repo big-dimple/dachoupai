@@ -564,7 +564,14 @@
       "Physical device/natural long-campaign balance"
     ],
     "publication": {
-      "status": "PENDING_NORMAL_MAIN_PUSH"
+      "status": "PUSHED",
+      "codeCommit": "836da722fbc6204e6ca4ac4fd16af1152bfc923b",
+      "branch": "main",
+      "pushCommand": "git push origin main",
+      "exitCode": 0,
+      "pushChunk": "85eabc",
+      "publishedAt": "2026-10-02T06:30:25.979Z",
+      "closeout": "jiepi-clear lightweight; actual two-line mode pool diff, scoped tests/build/plan reviewed"
     }
   }
 }
