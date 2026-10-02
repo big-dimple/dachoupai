@@ -1,0 +1,184 @@
+{
+  "taskId": "A00",
+  "testedCommit": "eb7a75773d9ee295f9de1d9ffddbdd3423c25f46",
+  "status": "INTEGRATION_CHECKS_PASS",
+  "originalAssetCommit": "bb53b01651854f29daa9ec87210df20a81aac7be",
+  "integratedMainBase": "beb91fd668276bb8bbf4cab59572b501af93a191",
+  "authorization": "User explicitly authorizes normal main push after scoped integration checks; no side-branch push, force push, deployment changes or website wait.",
+  "rebase": {
+    "conflicts": [
+      "docs/development-handoff.md"
+    ],
+    "resolution": "Preserved complete D36 handoff from latest main and added current explicit asset integration authorization. No runtime code conflict.",
+    "newUiPreserved": true
+  },
+  "independentReview": {
+    "status": "PASS",
+    "comparedWith": "beb91fd668276bb8bbf4cab59572b501af93a191",
+    "unchangedGitBlobs": {
+      "glb": 39,
+      "p0Textures": 23,
+      "p0Sprites": 6,
+      "p0BackgroundLayers": 3,
+      "historicalA00": 27
+    },
+    "unchangedTotal": 98,
+    "deletedFiles": 53,
+    "deletedBytes": 1401090,
+    "deletedPathSet": "Exactly matches original bb53 asset commit",
+    "runtimeUiCssAndDeploymentDiff": "empty",
+    "assetToolsManifestInventoryVsOriginalCommit": "identical"
+  },
+  "checks": [
+    {
+      "command": "npm run verify:assets",
+      "status": "PASS",
+      "assets": 151
+    },
+    {
+      "command": "npm run test:assets",
+      "status": "PASS",
+      "tests": 6
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "includes": "tsc --noEmit and production Vite build"
+    },
+    {
+      "command": "node tools/blender/verify_publication.mjs --build-dir dist",
+      "status": "PASS"
+    },
+    {
+      "command": "node node_modules/vite/bin/vite.js build --mode e2e --outDir shots/asset-integration/e2e",
+      "status": "PASS"
+    },
+    {
+      "command": "node harness/asset-cleanup.mjs --build-dir shots/asset-integration/e2e --output shots/asset-integration/browser --chromium-executable /usr/bin/chromium",
+      "status": "PASS"
+    },
+    {
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS"
+    }
+  ],
+  "production": {
+    "files": 116,
+    "bytes": 11898479,
+    "status": "PASS",
+    "buildDir": "dist",
+    "retainedP0Renders": [
+      "background-far.webp",
+      "background-mid.webp",
+      "background-near.webp"
+    ],
+    "renders": {
+      "public": [
+        "assets/renders/p0/background-far.webp",
+        "assets/renders/p0/background-mid.webp",
+        "assets/renders/p0/background-near.webp"
+      ],
+      "build": [
+        "assets/renders/p0/background-far.webp",
+        "assets/renders/p0/background-mid.webp",
+        "assets/renders/p0/background-near.webp"
+      ]
+    },
+    "sourceModelCount": 39,
+    "publishedModels": [],
+    "references": [],
+    "errors": [],
+    "limitations": [
+      "Literal source/bundle scan; use harness/asset-cleanup.mjs for observed runtime requests."
+    ]
+  },
+  "browser": {
+    "version": "151.0.7922.173",
+    "scope": "Title → character selection → confirm → shop → enter stage; no purchase/details/long run.",
+    "profiles": [
+      {
+        "profile": {
+          "name": "desktop",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "deviceScaleFactor": 1,
+          "hasTouch": false
+        },
+        "status": "PASS",
+        "graphics": {
+          "renderer": "Canvas2D",
+          "gpu": null,
+          "framebuffer": {
+            "width": 1280,
+            "height": 800
+          },
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36"
+        },
+        "requests": 27,
+        "httpErrors": [],
+        "failedRequests": [],
+        "removedPreviewRequests": [],
+        "glbRequests": [],
+        "pageErrors": []
+      },
+      {
+        "profile": {
+          "name": "mobile",
+          "viewport": {
+            "width": 412,
+            "height": 820
+          },
+          "deviceScaleFactor": 3,
+          "hasTouch": true
+        },
+        "status": "PASS",
+        "graphics": {
+          "renderer": "Canvas2D",
+          "gpu": null,
+          "framebuffer": {
+            "width": 824,
+            "height": 1640
+          },
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36"
+        },
+        "requests": 27,
+        "httpErrors": [],
+        "failedRequests": [],
+        "removedPreviewRequests": [],
+        "glbRequests": [],
+        "pageErrors": []
+      }
+    ],
+    "screenshots": "Both desktop and mobile actual stage screenshots visually inspected; local shots/asset-integration/browser/.",
+    "limitations": [
+      "Linux headless Chromium; physical devices, listening, WebGL performance and visual acceptance NOT_RUN.",
+      "Canvas requested with GPU and software rasterizer disabled; actual renderer is recorded per profile.",
+      "Long music streams need successful response headers, not transfer completion; all other observed resources must finish.",
+      "Only requests from this bounded route are runtime evidence; literal source scanning is recorded separately."
+    ]
+  },
+  "reusedRebuildEvidence": {
+    "path": "docs/assets/maintenance-2026-10-02.json",
+    "reason": "All Blender tools and retained source inputs unchanged versus validated bb53; no repeated model rebuild needed for this UI-base rebase.",
+    "originalChineseVariableFont": "Still unavailable; no fallback selected, no asset regeneration or font download."
+  },
+  "notRun": [
+    "Full long-session/balance suite; latest user asks only affected checks.",
+    "Full asset regeneration, new models/UI/animation engineering, font substitution.",
+    "Website deployment polling."
+  ],
+  "publish": {
+    "target": "origin main",
+    "method": "normal fast-forward git push HEAD:main",
+    "sideBranchPush": false,
+    "stateAtEvidenceCommit": "Ready; remote SHA and Actions state will be verified immediately after push and reported in the delivery message. No claim of completed remote CI here."
+  },
+  "localDiagnostics": "shots/asset-integration/",
+  "rollback": "Normal revert of asset/integration commits; latest main UI remains an ancestor. No history rewrite."
+}
