@@ -1,5 +1,7 @@
 # 当前交接：P08单卡体验样板
 
+铜钱候选资产整合（2026-10-02）：在独占main写入窗口内，基于D40 `cb825f8` 合入已核验旁支提交 `a833929` 的源脚本、元数据、联系表和两项图集资源。16帧/800ms，atlas+JSON共143,518字节；游戏运行代码未接入该候选。保留本文件D40交接与plan当前状态，制作阶段[原证据](assets/coin-reward-2026-10-02.json)保持原文，最新范围见[整合证据](assets/coin-reward-integration-2026-10-02.json)。本轮明确授权最小资源/构建检查后正常push main并核对远端SHA；不push旁支。P08仍current/in_progress，A03仍planned，视觉与真机批准仍待后续。
+
 D40当前回合（2026-10-02）：main基线 `b85a5c2`，精确SHA远端[CI37043920217](https://github.com/big-dimple/dachoupai/actions/runs/37043920217)已成功，旧选角回归不再阻塞当前候选。本轮只修复实测过时高清占请求槽；既有缩略优先/预取/重试保留，最后使用者关详情、换货架或退场后取消。56项专项和类型检查通过，代码保存在本地恢复提交 `97403ee`，五组PC/触摸Canvas自然及模拟慢请求对照已通过；测量扣除原200ms弹窗变换，卡框局部尺寸/对齐断言保留，基线已有8px整框垂直位移另记录；最终冻结源码1742项测试/content/build/双端Canvas smoke/plan全部通过，前后源码指纹一致。必要检查后正常push并核对SHA/CI，发布结果写入shots/resource-flow/publication.json，见[D40证据](production/evidence/D40-2026-10-02.json)。新图source审批仍独立；铜钱atlas资产线程本地a833929待后续集成，不在本轮接入，P08保持in_progress。
 
 D39 上一回合（2026-10-02）：基线D38 `5cf35ab`，仅改善 f09、f04、a03、pengci、huimaqiang 五张的条件与收益说明。商店/详情共用主能力，版次独立、细则折叠；牌桌显示当前资格与本手收益，来源和复盘读取对应实例的实际事件。未选牌保持待判断，f04读手开始金币，huimaqiang读下一次成功出牌序号；封禁和f09历史状态取当手快照，出弃牌过渡不以旧选择重算新手牌。内容数值/hash、规则、RNG、存档、素材和部署均不变。五卡29项PC/手机Canvas浏览器检查通过；另按父会话要求修复原生短点击被主线程处理延迟误判为长按的问题，受控WebKit首次选角前后对照与真实长按检查通过。最终冻结源码1735项测试/content/build/桌面手机Canvas smoke/plan全部通过，前后源码指纹一致，见[D39证据](production/evidence/D39-2026-10-02.json)。远端原失败同因仍未证实；P08保持in_progress。必要检查后按既有授权正常push main并核对SHA/CI，真机与真人理解/视觉验收仍独立。

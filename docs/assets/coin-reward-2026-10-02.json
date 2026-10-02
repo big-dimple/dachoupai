@@ -1,0 +1,1516 @@
+{
+  "taskId": "A03",
+  "testedCommit": "b85a5c2b936599e43b4809a76d823486e921d735",
+  "testedCommitMeaning": "Unchanged runtime baseline; this evidence describes the new coin asset worktree committed with this file.",
+  "status": "CANDIDATE_PRODUCED_NOT_INTEGRATED",
+  "branch": "art/coin-reward-clip",
+  "authorization": "Bounded existing-GLB reward clip; save local commit only. No branch/main push, no paid tools, no restricted source image access.",
+  "scope": "One original coin spun and settled by offline Blender; no runtime, rules, shared UI/CSS, model, original license or deployment changes.",
+  "newPublicFiles": 2,
+  "deletedFiles": 0,
+  "retainedModels": 39,
+  "source": {
+    "path": "public/assets/models/prop-coin.glb",
+    "sha256": "25c97ba5ac7a094ac7d234b16a932ecf87a32a722a6e76388beccae4d6201c69",
+    "bytes": 134420,
+    "unchanged": true
+  },
+  "specification": {
+    "frames": 16,
+    "fps": 20,
+    "durationMs": 800,
+    "repeat": 0,
+    "atlasPixels": [
+      1024,
+      1024
+    ],
+    "cellPixels": [
+      256,
+      256
+    ],
+    "quality": 95,
+    "publicationBytes": 143518,
+    "publicationBudgetBytes": 163840,
+    "decodedRgbaBytes": 4194304,
+    "alphaMode": "straight"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "CPU",
+    "samples": 128,
+    "seed": 0,
+    "denoise": false,
+    "viewTransform": "AgX",
+    "exposureEV": 0,
+    "tealRimWatts": 80,
+    "size": [
+      384,
+      384
+    ],
+    "alpha": "straight RGBA"
+  },
+  "visualReview": {
+    "status": "AGENT_REVIEW_ONLY",
+    "views": [
+      "Raw key poses",
+      "All 16 final frames at 96 CSS px on dark, paper and checker backgrounds",
+      "Final demo at 72/96 CSS px"
+    ],
+    "findings": "Coin thickness and square hole remain legible; no visible crop or dark matte fringe. Original mesh faceting and changing metallic reflection remain.",
+    "boundedCorrection": "One lighting correction: tested global -0.7EV on three review frames, rejected because it darkened every pose without resolving relative glare. Final full render retains exposure0 and reduces TealRim260W to80W; material and poses unchanged. No further revision.",
+    "frame5OpaqueMeanLuma": {
+      "before": 223.45,
+      "final": 199.83
+    },
+    "finalNearWhitePixels": 0,
+    "humanVisualApproval": "NOT_GRANTED"
+  },
+  "checks": [
+    {
+      "command": "blender --background --factory-startup --python-exit-code 1 --python art/sources/coin-reward/render.py",
+      "status": "PASS",
+      "renderedFrames": 16,
+      "tool": "Blender4.3.2 Cycles CPU"
+    },
+    {
+      "command": "node art/sources/coin-reward/pack.mjs",
+      "status": "PASS",
+      "alphaMaxError": 0,
+      "minimumTransparentPaddingPixels": 18
+    },
+    {
+      "command": "node art/sources/coin-reward/verify.mjs --browser --chromium-executable /usr/bin/chromium",
+      "status": "PASS"
+    },
+    {
+      "command": "npm run test:assets",
+      "status": "PASS",
+      "tests": 6
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "includes": "TypeScript noEmit and production Vite build"
+    },
+    {
+      "command": "npm run verify:assets",
+      "status": "PASS",
+      "assets": 153
+    },
+    {
+      "command": "node tools/blender/verify_publication.mjs --build-dir dist",
+      "status": "PASS"
+    },
+    {
+      "command": "git diff --exit-code -- src public/assets/models .github vite.config.ts",
+      "status": "PASS"
+    },
+    {
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "currentTask": "P08"
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS"
+    }
+  ],
+  "browser": {
+    "status": "PASS",
+    "server": {
+      "host": "127.0.0.1",
+      "allowedPaths": [
+        "/art/sources/coin-reward/demo.html",
+        "/public/assets/effects/coin-reward/coin-reward.webp",
+        "/assets/effects/coin-reward/coin-reward.webp",
+        "/public/assets/effects/coin-reward/atlas.json",
+        "/assets/effects/coin-reward/atlas.json"
+      ],
+      "missingFiles": "HTTP 404, no SPA fallback"
+    },
+    "launchOptions": {
+      "executablePath": "/usr/bin/chromium"
+    },
+    "browserVersion": "151.0.7922.173",
+    "profile": {
+      "viewport": {
+        "width": 1000,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "reducedMotion": "no-preference"
+    },
+    "graphics": {
+      "renderer": "Canvas2D",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+      "cssViewport": {
+        "width": 1000,
+        "height": 900
+      },
+      "devicePixelRatio": 1,
+      "prefersReducedMotion": false
+    },
+    "ready": {
+      "state": "ready",
+      "frame": 15,
+      "canvases": [
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        }
+      ]
+    },
+    "playing": {
+      "state": "playing",
+      "frame": 1,
+      "canvases": [
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 7830,
+          "pixelHash": "3d2140f2"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 7830,
+          "pixelHash": "3d2140f2"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 7830,
+          "pixelHash": "3d2140f2"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 7830,
+          "pixelHash": "3d2140f2"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 7830,
+          "pixelHash": "3d2140f2"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 7830,
+          "pixelHash": "3d2140f2"
+        }
+      ]
+    },
+    "finished": {
+      "state": "finished",
+      "frame": 15,
+      "canvases": [
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        }
+      ]
+    },
+    "afterOneSecond": {
+      "state": "finished",
+      "frame": 15,
+      "canvases": [
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        }
+      ]
+    },
+    "screenshot": "shots/coin-reward/demo.png",
+    "replaying": {
+      "state": "playing",
+      "frame": 1,
+      "canvases": [
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 7830,
+          "pixelHash": "3d2140f2"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 7830,
+          "pixelHash": "3d2140f2"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 7830,
+          "pixelHash": "3d2140f2"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 7830,
+          "pixelHash": "3d2140f2"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 7830,
+          "pixelHash": "3d2140f2"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 7830,
+          "pixelHash": "3d2140f2"
+        }
+      ]
+    },
+    "reduced": {
+      "state": "reduced",
+      "frame": 15,
+      "canvases": [
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        }
+      ]
+    },
+    "reducedAfterOneSecond": {
+      "state": "reduced",
+      "frame": 15,
+      "canvases": [
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "dark",
+          "paintedBackground": {
+            "color": "rgb(20, 59, 62)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "light",
+          "paintedBackground": {
+            "color": "rgb(243, 234, 219)",
+            "image": "none"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 72,
+          "cssWidth": 72,
+          "cssHeight": 72,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        },
+        {
+          "size": 96,
+          "cssWidth": 96,
+          "cssHeight": 96,
+          "width": 256,
+          "height": 256,
+          "background": "checker",
+          "paintedBackground": {
+            "color": "rgb(213, 216, 214)",
+            "image": "conic-gradient(rgb(135, 148, 142) 25%, rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 50%, rgb(135, 148, 142) 0deg, rgb(135, 148, 142) 75%, rgba(0, 0, 0, 0) 0deg)"
+          },
+          "nontransparentPixels": 21905,
+          "pixelHash": "41d0fdbc"
+        }
+      ]
+    },
+    "timeline": [
+      {
+        "atMs": 303,
+        "state": "playing",
+        "frame": 0
+      },
+      {
+        "atMs": 311.7000000011176,
+        "state": "playing",
+        "frame": 0
+      },
+      {
+        "atMs": 329.80000000074506,
+        "state": "playing",
+        "frame": 0
+      },
+      {
+        "atMs": 344.7000000011176,
+        "state": "playing",
+        "frame": 0
+      },
+      {
+        "atMs": 361.40000000037253,
+        "state": "playing",
+        "frame": 1
+      },
+      {
+        "atMs": 378.09999999962747,
+        "state": "playing",
+        "frame": 1
+      },
+      {
+        "atMs": 394.7000000011176,
+        "state": "playing",
+        "frame": 1
+      },
+      {
+        "atMs": 411.59999999962747,
+        "state": "playing",
+        "frame": 1
+      },
+      {
+        "atMs": 428.30000000074506,
+        "state": "playing",
+        "frame": 2
+      },
+      {
+        "atMs": 444.90000000037253,
+        "state": "playing",
+        "frame": 2
+      },
+      {
+        "atMs": 461.40000000037253,
+        "state": "playing",
+        "frame": 2
+      },
+      {
+        "atMs": 478,
+        "state": "playing",
+        "frame": 3
+      },
+      {
+        "atMs": 494.7000000011176,
+        "state": "playing",
+        "frame": 3
+      },
+      {
+        "atMs": 511.30000000074506,
+        "state": "playing",
+        "frame": 3
+      },
+      {
+        "atMs": 528.5,
+        "state": "playing",
+        "frame": 4
+      },
+      {
+        "atMs": 544.8000000007451,
+        "state": "playing",
+        "frame": 4
+      },
+      {
+        "atMs": 561.5999999996275,
+        "state": "playing",
+        "frame": 4
+      },
+      {
+        "atMs": 578.3000000007451,
+        "state": "playing",
+        "frame": 5
+      },
+      {
+        "atMs": 594.7000000011176,
+        "state": "playing",
+        "frame": 5
+      },
+      {
+        "atMs": 611.3000000007451,
+        "state": "playing",
+        "frame": 6
+      },
+      {
+        "atMs": 628,
+        "state": "playing",
+        "frame": 6
+      },
+      {
+        "atMs": 644.7000000011176,
+        "state": "playing",
+        "frame": 6
+      },
+      {
+        "atMs": 662,
+        "state": "playing",
+        "frame": 6
+      },
+      {
+        "atMs": 678,
+        "state": "playing",
+        "frame": 7
+      },
+      {
+        "atMs": 694.7000000011176,
+        "state": "playing",
+        "frame": 7
+      },
+      {
+        "atMs": 711.4000000003725,
+        "state": "playing",
+        "frame": 7
+      },
+      {
+        "atMs": 728,
+        "state": "playing",
+        "frame": 8
+      },
+      {
+        "atMs": 744.7000000011176,
+        "state": "playing",
+        "frame": 8
+      },
+      {
+        "atMs": 761.8000000007451,
+        "state": "playing",
+        "frame": 9
+      },
+      {
+        "atMs": 778.0999999996275,
+        "state": "playing",
+        "frame": 9
+      },
+      {
+        "atMs": 795.7000000011176,
+        "state": "playing",
+        "frame": 9
+      },
+      {
+        "atMs": 811.5,
+        "state": "playing",
+        "frame": 9
+      },
+      {
+        "atMs": 828.0999999996275,
+        "state": "playing",
+        "frame": 10
+      },
+      {
+        "atMs": 844.7000000011176,
+        "state": "playing",
+        "frame": 10
+      },
+      {
+        "atMs": 861.4000000003725,
+        "state": "playing",
+        "frame": 11
+      },
+      {
+        "atMs": 878.4000000003725,
+        "state": "playing",
+        "frame": 11
+      },
+      {
+        "atMs": 895,
+        "state": "playing",
+        "frame": 11
+      },
+      {
+        "atMs": 911.7000000011176,
+        "state": "playing",
+        "frame": 11
+      },
+      {
+        "atMs": 928.4000000003725,
+        "state": "playing",
+        "frame": 12
+      },
+      {
+        "atMs": 944.9000000003725,
+        "state": "playing",
+        "frame": 12
+      },
+      {
+        "atMs": 961.3000000007451,
+        "state": "playing",
+        "frame": 13
+      },
+      {
+        "atMs": 978,
+        "state": "playing",
+        "frame": 13
+      },
+      {
+        "atMs": 994.9000000003725,
+        "state": "playing",
+        "frame": 13
+      },
+      {
+        "atMs": 1011.3000000007451,
+        "state": "playing",
+        "frame": 13
+      },
+      {
+        "atMs": 1027.9000000003725,
+        "state": "playing",
+        "frame": 14
+      },
+      {
+        "atMs": 1044.5999999996275,
+        "state": "playing",
+        "frame": 14
+      },
+      {
+        "atMs": 1061.300000000745,
+        "state": "playing",
+        "frame": 14
+      },
+      {
+        "atMs": 1078.0999999996275,
+        "state": "playing",
+        "frame": 15
+      },
+      {
+        "atMs": 1094.5999999996275,
+        "state": "playing",
+        "frame": 15
+      },
+      {
+        "atMs": 1111.2000000011176,
+        "state": "playing",
+        "frame": 15
+      },
+      {
+        "atMs": 1128,
+        "state": "finished",
+        "frame": 15
+      },
+      {
+        "atMs": 2232.4000000003725,
+        "state": "playing",
+        "frame": 0
+      },
+      {
+        "atMs": 2244.5999999996275,
+        "state": "playing",
+        "frame": 0
+      },
+      {
+        "atMs": 2261.5999999996275,
+        "state": "playing",
+        "frame": 0
+      },
+      {
+        "atMs": 2278.2000000011176,
+        "state": "playing",
+        "frame": 0
+      },
+      {
+        "atMs": 2294.800000000745,
+        "state": "playing",
+        "frame": 0
+      },
+      {
+        "atMs": 2311.5999999996275,
+        "state": "playing",
+        "frame": 1
+      },
+      {
+        "atMs": 2328.0999999996275,
+        "state": "playing",
+        "frame": 1
+      },
+      {
+        "atMs": 2344.9000000003725,
+        "state": "playing",
+        "frame": 1
+      },
+      {
+        "atMs": 2349.7000000011176,
+        "state": "reduced",
+        "frame": 15
+      }
+    ],
+    "requests": [
+      {
+        "url": "http://127.0.0.1:38593/art/sources/coin-reward/demo.html",
+        "type": "document",
+        "status": 200,
+        "complete": true
+      },
+      {
+        "url": "http://127.0.0.1:38593/public/assets/effects/coin-reward/atlas.json",
+        "type": "fetch",
+        "status": 200,
+        "complete": true
+      },
+      {
+        "url": "http://127.0.0.1:38593/public/assets/effects/coin-reward/coin-reward.webp",
+        "type": "image",
+        "status": 200,
+        "complete": true
+      }
+    ],
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  "staticVerification": {
+    "status": "PASS",
+    "image": {
+      "path": "public/assets/effects/coin-reward/coin-reward.webp",
+      "bytes": 137780,
+      "sha256": "77ae15ae77371af135dc2239def5c485ae6d8a256bdf6a968965d3481fca7bd6",
+      "format": "webp",
+      "width": 1024,
+      "height": 1024,
+      "channels": 4,
+      "hasAlpha": true
+    },
+    "atlas": {
+      "path": "public/assets/effects/coin-reward/atlas.json",
+      "bytes": 5738,
+      "sha256": "56ee45c730dab22048e7f97e005e480419be7ca9c4f91995a4da8d98aec23fd3",
+      "meta": {
+        "app": "dachoupai offline Blender coin reward",
+        "version": "1",
+        "image": "coin-reward.webp",
+        "format": "RGBA8888",
+        "size": {
+          "w": 1024,
+          "h": 1024
+        },
+        "scale": "1",
+        "frameRate": 20,
+        "durationMs": 800,
+        "repeat": 0,
+        "alphaMode": "straight"
+      }
+    },
+    "budget": {
+      "combinedBytes": 143518,
+      "maximumBytes": 163840,
+      "includes": [
+        "public/assets/effects/coin-reward/coin-reward.webp",
+        "public/assets/effects/coin-reward/atlas.json"
+      ]
+    },
+    "frames": [
+      {
+        "name": "coin-000",
+        "nontransparentPixels": 7787,
+        "transparentPixels": 57749,
+        "partialAlphaPixels": 1358,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 60,
+          "y": 40,
+          "w": 89,
+          "h": 122
+        },
+        "transparentPadding": {
+          "left": 60,
+          "top": 40,
+          "right": 107,
+          "bottom": 94
+        },
+        "decodedSha256": "9cc16016f1d523bf272957f95bb52274785af8493e01e3381c81dc8c7fa44717"
+      },
+      {
+        "name": "coin-001",
+        "nontransparentPixels": 7830,
+        "transparentPixels": 57706,
+        "partialAlphaPixels": 1325,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 64,
+          "y": 25,
+          "w": 86,
+          "h": 131
+        },
+        "transparentPadding": {
+          "left": 64,
+          "top": 25,
+          "right": 106,
+          "bottom": 100
+        },
+        "decodedSha256": "3074d9318c27ea01a3eac945f83aba1f3acd25e96610f9b9639444dabaa17b96"
+      },
+      {
+        "name": "coin-002",
+        "nontransparentPixels": 4960,
+        "transparentPixels": 60576,
+        "partialAlphaPixels": 1028,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 70,
+          "y": 18,
+          "w": 78,
+          "h": 138
+        },
+        "transparentPadding": {
+          "left": 70,
+          "top": 18,
+          "right": 108,
+          "bottom": 100
+        },
+        "decodedSha256": "723f1ed1b8593a24d1a1531d219a40d512aac04cc591b2d3e68cb04b8f089788"
+      },
+      {
+        "name": "coin-003",
+        "nontransparentPixels": 8520,
+        "transparentPixels": 57016,
+        "partialAlphaPixels": 1370,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 55,
+          "y": 21,
+          "w": 111,
+          "h": 137
+        },
+        "transparentPadding": {
+          "left": 55,
+          "top": 21,
+          "right": 90,
+          "bottom": 98
+        },
+        "decodedSha256": "ed60c51e6705608f0ecfbfed301154f3eb9c3c4b71c7bf1f80113ee41d32738b"
+      },
+      {
+        "name": "coin-004",
+        "nontransparentPixels": 16579,
+        "transparentPixels": 48957,
+        "partialAlphaPixels": 2051,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 33,
+          "y": 25,
+          "w": 163,
+          "h": 143
+        },
+        "transparentPadding": {
+          "left": 33,
+          "top": 25,
+          "right": 60,
+          "bottom": 88
+        },
+        "decodedSha256": "c239b3b16b621383cb1cd0519fdcf0f276f92410220bf926d8c3a1df350149ea"
+      },
+      {
+        "name": "coin-005",
+        "nontransparentPixels": 17957,
+        "transparentPixels": 47579,
+        "partialAlphaPixels": 2128,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 42,
+          "y": 23,
+          "w": 155,
+          "h": 164
+        },
+        "transparentPadding": {
+          "left": 42,
+          "top": 23,
+          "right": 59,
+          "bottom": 69
+        },
+        "decodedSha256": "8bc4bc9db2703ddabcb2e0fade0f2968931375b9329dc5b6868b696f3935bb3a"
+      },
+      {
+        "name": "coin-006",
+        "nontransparentPixels": 8744,
+        "transparentPixels": 56792,
+        "partialAlphaPixels": 1323,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 90,
+          "y": 27,
+          "w": 63,
+          "h": 178
+        },
+        "transparentPadding": {
+          "left": 90,
+          "top": 27,
+          "right": 103,
+          "bottom": 51
+        },
+        "decodedSha256": "a951f3f37399d9086ec23d78fcc51f2c5de3206cf3da93912652c6c6c395efac"
+      },
+      {
+        "name": "coin-007",
+        "nontransparentPixels": 11869,
+        "transparentPixels": 53667,
+        "partialAlphaPixels": 1686,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 79,
+          "y": 38,
+          "w": 90,
+          "h": 178
+        },
+        "transparentPadding": {
+          "left": 79,
+          "top": 38,
+          "right": 87,
+          "bottom": 40
+        },
+        "decodedSha256": "6d3e0ba9ce41e8c14d22f3b5741d39f0aa0233650911beec6923de87b47e88b7"
+      },
+      {
+        "name": "coin-008",
+        "nontransparentPixels": 18756,
+        "transparentPixels": 46780,
+        "partialAlphaPixels": 2194,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 52,
+          "y": 48,
+          "w": 148,
+          "h": 176
+        },
+        "transparentPadding": {
+          "left": 52,
+          "top": 48,
+          "right": 56,
+          "bottom": 32
+        },
+        "decodedSha256": "496eb70d62abe57e3afb3b47a1085475956ce6b7f24ab094bec00417a6b8369c"
+      },
+      {
+        "name": "coin-009",
+        "nontransparentPixels": 22361,
+        "transparentPixels": 43175,
+        "partialAlphaPixels": 2435,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 40,
+          "y": 54,
+          "w": 175,
+          "h": 181
+        },
+        "transparentPadding": {
+          "left": 40,
+          "top": 54,
+          "right": 41,
+          "bottom": 21
+        },
+        "decodedSha256": "3ea194173354e014f905f4eb051f7232c4d0370f294e55e3ea8ccac56266e57a"
+      },
+      {
+        "name": "coin-010",
+        "nontransparentPixels": 21504,
+        "transparentPixels": 44032,
+        "partialAlphaPixels": 2431,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 41,
+          "y": 48,
+          "w": 175,
+          "h": 174
+        },
+        "transparentPadding": {
+          "left": 41,
+          "top": 48,
+          "right": 40,
+          "bottom": 34
+        },
+        "decodedSha256": "8955b55cf128b82dbe3d4b3db428bb62f033de2c4dc8cacb14b462cd99ba79c7"
+      },
+      {
+        "name": "coin-011",
+        "nontransparentPixels": 22494,
+        "transparentPixels": 43042,
+        "partialAlphaPixels": 2467,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 39,
+          "y": 50,
+          "w": 179,
+          "h": 177
+        },
+        "transparentPadding": {
+          "left": 39,
+          "top": 50,
+          "right": 38,
+          "bottom": 29
+        },
+        "decodedSha256": "33c52fda39406f67aa0158ec910f8e82cfd6b7ba3d75777a6b3cbe86b24f76fb"
+      },
+      {
+        "name": "coin-012",
+        "nontransparentPixels": 21981,
+        "transparentPixels": 43555,
+        "partialAlphaPixels": 2426,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 40,
+          "y": 52,
+          "w": 177,
+          "h": 177
+        },
+        "transparentPadding": {
+          "left": 40,
+          "top": 52,
+          "right": 39,
+          "bottom": 27
+        },
+        "decodedSha256": "549f93ed3a70f61cdb5f267bc6789bab1e843be6d4f0bbc45e172e29f522d722"
+      },
+      {
+        "name": "coin-013",
+        "nontransparentPixels": 21905,
+        "transparentPixels": 43631,
+        "partialAlphaPixels": 2426,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 41,
+          "y": 52,
+          "w": 176,
+          "h": 177
+        },
+        "transparentPadding": {
+          "left": 41,
+          "top": 52,
+          "right": 39,
+          "bottom": 27
+        },
+        "decodedSha256": "a2ada718d2a3bfbf0108292d7c43444faa4ec1b67eacc895a38e425837f5afd8"
+      },
+      {
+        "name": "coin-014",
+        "nontransparentPixels": 21905,
+        "transparentPixels": 43631,
+        "partialAlphaPixels": 2426,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 41,
+          "y": 52,
+          "w": 176,
+          "h": 177
+        },
+        "transparentPadding": {
+          "left": 41,
+          "top": 52,
+          "right": 39,
+          "bottom": 27
+        },
+        "decodedSha256": "4d50f5c68d9bed4b2d737663d040ac941dfc1689ec488a1aff914f4b088cdd50"
+      },
+      {
+        "name": "coin-015",
+        "nontransparentPixels": 21905,
+        "transparentPixels": 43631,
+        "partialAlphaPixels": 2426,
+        "maxAlpha": 255,
+        "alphaBounds": {
+          "x": 41,
+          "y": 52,
+          "w": 176,
+          "h": 177
+        },
+        "transparentPadding": {
+          "left": 41,
+          "top": 52,
+          "right": 39,
+          "bottom": 27
+        },
+        "decodedSha256": "4d50f5c68d9bed4b2d737663d040ac941dfc1689ec488a1aff914f4b088cdd50"
+      }
+    ],
+    "uniqueDecodedFrames": 15
+  },
+  "production": {
+    "status": "PASS",
+    "buildDir": "dist",
+    "retainedP0Renders": [
+      "background-far.webp",
+      "background-mid.webp",
+      "background-near.webp"
+    ],
+    "renders": {
+      "public": [
+        "assets/renders/p0/background-far.webp",
+        "assets/renders/p0/background-mid.webp",
+        "assets/renders/p0/background-near.webp"
+      ],
+      "build": [
+        "assets/renders/p0/background-far.webp",
+        "assets/renders/p0/background-mid.webp",
+        "assets/renders/p0/background-near.webp"
+      ]
+    },
+    "sourceModelCount": 39,
+    "publishedModels": [],
+    "references": [],
+    "errors": [],
+    "limitations": [
+      "Literal source/bundle scan; use harness/asset-cleanup.mjs for observed runtime requests."
+    ]
+  },
+  "evidenceFiles": {
+    "source": "art/sources/coin-reward/source.json",
+    "pack": "art/sources/coin-reward/pack-report.json",
+    "contact": "art/sources/coin-reward/review-contact.webp",
+    "demo": "art/sources/coin-reward/demo.html",
+    "ignoredRawAndDiagnostics": "shots/coin-reward/"
+  },
+  "limitations": [
+    "No actual reward-event registration or gameplay integration. Future use must reflect a committed positive reward and deduplicate event/receipt identities.",
+    "No physical phone, WebGL performance, full game CI or human visual approval in this asset-only task.",
+    "Browser is Linux Chromium151 Canvas2D, 1000x900 CSS/DPR1; no hardware GPU claim.",
+    "Source coin is font-free. No missing-font substitution or new font download was required.",
+    "Reproduction targets recorded Blender/Sharp versions; cross-version or cross-device byte identity is not guaranteed.",
+    "A03 remains planned and P08 remains current; this candidate does not close the full art package."
+  ]
+}

@@ -1,0 +1,327 @@
+{
+  "schemaVersion": 1,
+  "id": "coin-reward",
+  "status": "candidate_not_integrated",
+  "baseCommit": "b85a5c2b936599e43b4809a76d823486e921d735",
+  "source": "public/assets/models/prop-coin.glb",
+  "sourceSha256": "25c97ba5ac7a094ac7d234b16a932ecf87a32a722a6e76388beccae4d6201c69",
+  "sourceBytes": 134420,
+  "geometrySource": "tools/blender/build_asset_pack.py:coin()",
+  "originalAttribution": "Original procedural geometry/art; existing project portraits; Noto Serif SC mesh outlines (SIL OFL 1.1). No font files redistributed.",
+  "rights": "Existing repository procedural coin reused with explicit user authorization; existing rights retained, no new copyright license granted. Noto OFL applies to font assets in the original pack, not to this font-free coin.",
+  "inputs": "Only the existing coin GLB; no character images, fonts, new models or third-party downloads.",
+  "render": {
+    "source": "public/assets/models/prop-coin.glb",
+    "sourceSha256": "25c97ba5ac7a094ac7d234b16a932ecf87a32a722a6e76388beccae4d6201c69",
+    "blender": "4.3.2",
+    "render": {
+      "engine": "CYCLES",
+      "device": "CPU",
+      "samples": 128,
+      "seed": 0,
+      "denoise": false,
+      "viewTransform": "AgX",
+      "exposureEV": 0,
+      "tealRimWatts": 80,
+      "size": [
+        384,
+        384
+      ],
+      "alpha": "straight RGBA"
+    },
+    "action": "single coin arrival, one turn and settle; last pose holds",
+    "frames": 16,
+    "fps": 20,
+    "durationMs": 800,
+    "loop": false,
+    "material": "Original imported gold material unchanged; lighting only",
+    "poses": [
+      {
+        "frame": 0,
+        "timeMs": 0,
+        "rotationDegrees": [
+          10,
+          -300,
+          -18.0
+        ],
+        "translation": [
+          -0.11999999731779099,
+          0.23000000417232513,
+          0.0
+        ],
+        "scale": 0.68
+      },
+      {
+        "frame": 1,
+        "timeMs": 50,
+        "rotationDegrees": [
+          10,
+          -291,
+          -16.833333333333332
+        ],
+        "translation": [
+          -0.1080000028014183,
+          0.28999999165534973,
+          0.0
+        ],
+        "scale": 0.74
+      },
+      {
+        "frame": 2,
+        "timeMs": 100,
+        "rotationDegrees": [
+          10,
+          -270,
+          -15.666666666666668
+        ],
+        "translation": [
+          -0.09600000083446503,
+          0.3100000023841858,
+          0.0
+        ],
+        "scale": 0.81
+      },
+      {
+        "frame": 3,
+        "timeMs": 150,
+        "rotationDegrees": [
+          10,
+          -238,
+          -14.5
+        ],
+        "translation": [
+          -0.08399999886751175,
+          0.28999999165534973,
+          0.0
+        ],
+        "scale": 0.87
+      },
+      {
+        "frame": 4,
+        "timeMs": 200,
+        "rotationDegrees": [
+          10,
+          -196,
+          -13.333333333333334
+        ],
+        "translation": [
+          -0.07199999690055847,
+          0.25,
+          0.0
+        ],
+        "scale": 0.92
+      },
+      {
+        "frame": 5,
+        "timeMs": 250,
+        "rotationDegrees": [
+          10,
+          -150,
+          -12.166666666666666
+        ],
+        "translation": [
+          -0.05999999865889549,
+          0.20000000298023224,
+          0.0
+        ],
+        "scale": 0.97
+      },
+      {
+        "frame": 6,
+        "timeMs": 300,
+        "rotationDegrees": [
+          10,
+          -104,
+          -11.0
+        ],
+        "translation": [
+          -0.04800000041723251,
+          0.14000000059604645,
+          0.0
+        ],
+        "scale": 1
+      },
+      {
+        "frame": 7,
+        "timeMs": 350,
+        "rotationDegrees": [
+          10,
+          -66,
+          -9.833333333333332
+        ],
+        "translation": [
+          -0.035999998450279236,
+          0.07999999821186066,
+          0.0
+        ],
+        "scale": 1
+      },
+      {
+        "frame": 8,
+        "timeMs": 400,
+        "rotationDegrees": [
+          10,
+          -38,
+          -8.666666666666668
+        ],
+        "translation": [
+          -0.024000000208616257,
+          0.02500000037252903,
+          0.0
+        ],
+        "scale": 1
+      },
+      {
+        "frame": 9,
+        "timeMs": 450,
+        "rotationDegrees": [
+          10,
+          -20,
+          -7.5
+        ],
+        "translation": [
+          -0.012000000104308128,
+          -0.02500000037252903,
+          0.0
+        ],
+        "scale": 1.025
+      },
+      {
+        "frame": 10,
+        "timeMs": 500,
+        "rotationDegrees": [
+          10,
+          -11,
+          -6.333333333333332
+        ],
+        "translation": [
+          -0.0,
+          0.03500000014901161,
+          0.0
+        ],
+        "scale": 0.99
+      },
+      {
+        "frame": 11,
+        "timeMs": 550,
+        "rotationDegrees": [
+          10,
+          -6,
+          -5.166666666666668
+        ],
+        "translation": [
+          -0.0,
+          0.012000000104308128,
+          0.0
+        ],
+        "scale": 1.01
+      },
+      {
+        "frame": 12,
+        "timeMs": 600,
+        "rotationDegrees": [
+          10,
+          -10,
+          -4.0
+        ],
+        "translation": [
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1
+      },
+      {
+        "frame": 13,
+        "timeMs": 650,
+        "rotationDegrees": [
+          10,
+          -12,
+          -4
+        ],
+        "translation": [
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1
+      },
+      {
+        "frame": 14,
+        "timeMs": 700,
+        "rotationDegrees": [
+          10,
+          -12,
+          -4
+        ],
+        "translation": [
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1
+      },
+      {
+        "frame": 15,
+        "timeMs": 750,
+        "rotationDegrees": [
+          10,
+          -12,
+          -4
+        ],
+        "translation": [
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1
+      }
+    ]
+  },
+  "outputs": {
+    "atlas": {
+      "path": "public/assets/effects/coin-reward/coin-reward.webp",
+      "bytes": 137780,
+      "sha256": "77ae15ae77371af135dc2239def5c485ae6d8a256bdf6a968965d3481fca7bd6"
+    },
+    "metadata": {
+      "path": "public/assets/effects/coin-reward/atlas.json",
+      "bytes": 5738,
+      "sha256": "56ee45c730dab22048e7f97e005e480419be7ca9c4f91995a4da8d98aec23fd3"
+    },
+    "contact": {
+      "path": "art/sources/coin-reward/review-contact.webp",
+      "bytes": 71340,
+      "sha256": "6acb6540855a9ffbba2292e130243876ca16c975b908cb4289a4f8b504f185f5"
+    }
+  },
+  "playback": {
+    "frameCount": 16,
+    "fps": 20,
+    "durationMs": 800,
+    "repeat": 0,
+    "finalFrame": "coin-015",
+    "anchor": [
+      0.5,
+      0.5
+    ],
+    "cellPixels": 256,
+    "recommendedSpriteCssPixels": [
+      72,
+      96
+    ]
+  },
+  "publicationBytes": 143518,
+  "decodedRgbaBytes": 4194304,
+  "tools": {
+    "blender": "4.3.2",
+    "packerNode": "v22.23.3",
+    "sharp": "0.35.5"
+  },
+  "rebuild": [
+    "blender --background --factory-startup --python-exit-code 1 --python art/sources/coin-reward/render.py",
+    "node art/sources/coin-reward/pack.mjs",
+    "node art/sources/coin-reward/verify.mjs --browser --chromium-executable /usr/bin/chromium"
+  ],
+  "review": "review-contact.webp; runtime contract and local demo commands in README.md"
+}

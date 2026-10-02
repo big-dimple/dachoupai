@@ -1,0 +1,110 @@
+{
+  "taskId": "A03",
+  "status": "INTEGRATION_CHECKS_PASS",
+  "baseCommit": "cb825f852714df7298bd2ea599d06089a772b6b7",
+  "originalCandidateCommit": "a833929229b1b28dcd034ba1dc4064d50c08962b",
+  "authorization": "Exclusive main write window; integrate coin candidate sources/assets/inventory and necessary provenance, scoped checks then normal main push and exact remote SHA verification. No side-branch push or runtime/UI/rule edits.",
+  "scope": "Candidate source assets only; no reward-event wiring.",
+  "integration": "Restored candidate files onto current D40 main; handoff/plan amended minimally while preserving all D40 changes. Original candidate evidence retained as historical production/preview record.",
+  "publicationBytes": 143518,
+  "frameCount": 16,
+  "durationMs": 800,
+  "newPublicFiles": 2,
+  "deletedFiles": 0,
+  "checks": [
+    {
+      "command": "npm run verify:assets",
+      "status": "PASS",
+      "assets": 153
+    },
+    {
+      "command": "node art/sources/coin-reward/verify.mjs",
+      "status": "PASS",
+      "scope": "Static atlas/alpha/budget validation only; original browser evidence retained separately."
+    },
+    {
+      "command": "npm run test:assets",
+      "status": "PASS",
+      "tests": 6
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "includes": "TypeScript noEmit and production Vite build"
+    },
+    {
+      "command": "node tools/blender/verify_publication.mjs --build-dir dist",
+      "status": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS"
+    },
+    {
+      "command": "git diff --exit-code -- src .github vite.config.ts package.json package-lock.json public/assets/models",
+      "status": "PASS"
+    },
+    {
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "currentTask": "P08"
+    }
+  ],
+  "inheritedValidation": "Original Blender rebuild, key-frame/contact/demo visual review, Chromium once/replay/reduced-motion checks passed at a833929; unchanged candidate hashes verified on restoration. Not rerun.",
+  "limitations": [
+    "Asset source and atlas are available on main; game does not load/play them yet.",
+    "Human visual and physical-device approval not granted.",
+    "No full game verify:ci, rerender, GPU or browser matrix rerun for unchanged runtime.",
+    "Remote SHA confirmation is recorded after push in ignored local publication evidence and final response, not represented as a self-referential pre-push commit record."
+  ],
+  "testedCommit": "cb825f852714df7298bd2ea599d06089a772b6b7",
+  "testedCommitMeaning": "Unchanged D40 runtime baseline plus the candidate asset worktree committed with this evidence.",
+  "preservation": {
+    "status": "PASS",
+    "candidateByteIdenticalFiles": [
+      "art/sources/coin-reward/README.md",
+      "art/sources/coin-reward/demo.html",
+      "art/sources/coin-reward/pack-report.json",
+      "art/sources/coin-reward/pack.mjs",
+      "art/sources/coin-reward/render.py",
+      "art/sources/coin-reward/review-contact.webp",
+      "art/sources/coin-reward/source.json",
+      "art/sources/coin-reward/verify.mjs",
+      "docs/assets/coin-reward-2026-10-02.json",
+      "docs/assets/inventory.json",
+      "public/assets/effects/coin-reward/atlas.json",
+      "public/assets/effects/coin-reward/coin-reward.webp"
+    ],
+    "D40HandoffPreserved": true,
+    "D40PlanPreserved": true,
+    "originalCoinSha256": "25c97ba5ac7a094ac7d234b16a932ecf87a32a722a6e76388beccae4d6201c69"
+  },
+  "production": {
+    "status": "PASS",
+    "buildDir": "dist",
+    "retainedP0Renders": [
+      "background-far.webp",
+      "background-mid.webp",
+      "background-near.webp"
+    ],
+    "renders": {
+      "public": [
+        "assets/renders/p0/background-far.webp",
+        "assets/renders/p0/background-mid.webp",
+        "assets/renders/p0/background-near.webp"
+      ],
+      "build": [
+        "assets/renders/p0/background-far.webp",
+        "assets/renders/p0/background-mid.webp",
+        "assets/renders/p0/background-near.webp"
+      ]
+    },
+    "sourceModelCount": 39,
+    "publishedModels": [],
+    "references": [],
+    "errors": [],
+    "limitations": [
+      "Literal source/bundle scan; use harness/asset-cleanup.mjs for observed runtime requests."
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>铜钱 · 单次奖励动效预览</title>
+<link rel="icon" href="data:,">
+<style>
+  :root { color-scheme: dark; font-family: system-ui, sans-serif; color: #f3eadb; background: #10292e; }
+  * { box-sizing: border-box; }
+  body { max-width: 880px; margin: 0 auto; padding: 32px 24px; }
+  h1 { margin: 0 0 10px; font-size: 26px; font-weight: 600; }
+  p { line-height: 1.6; color: #c2d3d0; }
+  .controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 24px 0; }
+  button { border: 1px solid #85aea4; border-radius: 8px; padding: 10px 18px; color: #f3eadb; background: #255851; font: inherit; cursor: pointer; }
+  button:disabled { opacity: .5; cursor: wait; }
+  button:focus-visible, input:focus-visible { outline: 3px solid #efca83; outline-offset: 3px; }
+  label { display: flex; gap: 7px; align-items: center; }
+  #status { display: block; min-height: 26px; margin-bottom: 16px; color: #efca83; }
+  .previews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .panel { overflow: hidden; border: 1px solid #45615f; border-radius: 12px; }
+  .caption { padding: 10px 12px; margin: 0; color: #e0e6dd; background: #1d353b; font-size: 14px; }
+  .samples { display: flex; align-items: end; justify-content: space-evenly; min-height: 174px; padding: 22px 10px; gap: 8px; }
+  .sample { text-align: center; }
+  .sample span { display: block; padding-top: 12px; font-size: 12px; }
+  .dark { background: #143b3e; color: #f3eadb; }
+  .light { background: #f3eadb; color: #24313b; }
+  .checker { background-color: #d5d8d6; background-image: conic-gradient(#87948e 25%, transparent 0 50%, #87948e 0 75%, transparent 0); background-size: 16px 16px; color: #172d31; }
+  canvas { display: block; width: 72px; height: 72px; }
+  canvas[data-size="96"] { width: 96px; height: 96px; }
+  .note { margin-top: 22px; font-size: 14px; }
+  @media (max-width: 760px) { .previews { grid-template-columns: 1fr; } .samples { min-height: 152px; justify-content: center; gap: 42px; } }
+</style>
+<body data-state="loading" data-frame="15">
+  <h1>一枚铜钱，旋转落位</h1>
+  <p>16 帧 · 800 毫秒 · 播放一次后停在末帧。这里仅预览动效，不显示或改变奖励数值。</p>
+  <div class="controls">
+    <button id="play" disabled>播放一次</button>
+    <button id="replay" disabled>重播</button>
+    <label><input id="reduced-motion" type="checkbox">减少动态：只显示末帧</label>
+  </div>
+  <output id="status" aria-live="polite">正在载入铜钱贴图…</output>
+  <main class="previews">
+    <section class="panel"><h2 class="caption">深青背景</h2><div class="samples dark">
+      <div class="sample"><canvas width="256" height="256" data-size="72" data-background="dark" aria-label="深青背景，72 像素铜钱"></canvas><span>72 CSS px</span></div>
+      <div class="sample"><canvas width="256" height="256" data-size="96" data-background="dark" aria-label="深青背景，96 像素铜钱"></canvas><span>96 CSS px</span></div>
+    </div></section>
+    <section class="panel"><h2 class="caption">浅纸背景</h2><div class="samples light">
+      <div class="sample"><canvas width="256" height="256" data-size="72" data-background="light" aria-label="浅纸背景，72 像素铜钱"></canvas><span>72 CSS px</span></div>
+      <div class="sample"><canvas width="256" height="256" data-size="96" data-background="light" aria-label="浅纸背景，96 像素铜钱"></canvas><span>96 CSS px</span></div>
+    </div></section>
+    <section class="panel"><h2 class="caption">透明棋盘</h2><div class="samples checker">
+      <div class="sample"><canvas width="256" height="256" data-size="72" data-background="checker" aria-label="棋盘背景，72 像素铜钱"></canvas><span>72 CSS px</span></div>
+      <div class="sample"><canvas width="256" height="256" data-size="96" data-background="checker" aria-label="棋盘背景，96 像素铜钱"></canvas><span>96 CSS px</span></div>
+    </div></section>
+  </main>
+  <p class="note">标注尺寸为完整贴图的显示框；铜钱可见轮廓随角度和位置变化，四周留有移动余量。减少动态默认跟随系统设置；不自动播放，也不循环。</p>
+  <script type="module">
+    const status = document.querySelector('#status'), reduced = document.querySelector('#reduced-motion');
+    const buttons = [document.querySelector('#play'), document.querySelector('#replay')];
+    const canvases = [...document.querySelectorAll('canvas')], media = matchMedia('(prefers-reduced-motion: reduce)');
+    reduced.checked = media.matches;
+    let request = 0, image, frames, start = null;
+    const finalFrame = 15, frameMs = 50, duration = 800;
+    function draw(index) {
+      if (!image || !frames) return;
+      const frame = frames[`coin-${String(index).padStart(3, '0')}`].frame;
+      for (const canvas of canvases) {
+        const context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(image, frame.x, frame.y, frame.w, frame.h, 0, 0, canvas.width, canvas.height);
+      }
+      document.body.dataset.frame = String(index);
+    }
+    function stop(state, message) {
+      cancelAnimationFrame(request); request = 0; start = null;
+      draw(finalFrame); document.body.dataset.state = state; status.textContent = message;
+    }
+    function animate(now) {
+      if (reduced.checked) { stop('reduced', '减少动态已启用：显示静态末帧。'); return; }
+      start ??= now;
+      const elapsed = now - start;
+      if (elapsed >= duration) { stop('finished', '播放完成 · 停在末帧。'); return; }
+      draw(Math.min(finalFrame, Math.floor(elapsed / frameMs)));
+      request = requestAnimationFrame(animate);
+    }
+    function play() {
+      if (reduced.checked) { stop('reduced', '减少动态已启用：显示静态末帧。'); return; }
+      cancelAnimationFrame(request); start = null; draw(0);
+      document.body.dataset.state = 'playing'; status.textContent = '正在播放一次 · 800 毫秒';
+      request = requestAnimationFrame(animate);
+    }
+    reduced.addEventListener('change', () => stop(reduced.checked ? 'reduced' : 'ready', reduced.checked ? '减少动态已启用：显示静态末帧。' : '准备好 · 点击播放一次。'));
+    media.addEventListener('change', event => { reduced.checked = event.matches; reduced.dispatchEvent(new Event('change')); });
+    for (const button of buttons) button.addEventListener('click', play);
+    try {
+      const url = new URL('../../../public/assets/effects/coin-reward/atlas.json', location.href);
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`atlas.json: HTTP ${response.status}`);
+      const atlas = await response.json(); frames = atlas.frames;
+      image = new Image(); image.src = new URL(atlas.meta.image, url).href; await image.decode();
+      stop(reduced.checked ? 'reduced' : 'ready', reduced.checked ? '减少动态已启用：显示静态末帧。' : '准备好 · 点击播放一次。');
+      for (const button of buttons) button.disabled = false;
+    } catch (error) {
+      document.body.dataset.state = 'error'; status.textContent = `预览载入失败：${error.message}`; console.error(error);
+    }
+  </script>
+</body>
+</html>

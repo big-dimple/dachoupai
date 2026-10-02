@@ -1,0 +1,544 @@
+{
+  "status": "PASS",
+  "tools": {
+    "node": "v22.23.3",
+    "sharp": {
+      "aom": "3.15.1",
+      "archive": "3.8.9",
+      "cairo": "1.18.6",
+      "cgif": "0.5.4",
+      "exif": "0.6.26",
+      "expat": "2.8.5",
+      "ffi": "3.8.0",
+      "fontconfig": "2.18.3",
+      "freetype": "2.14.3",
+      "fribidi": "1.0.17",
+      "glib": "2.90.0",
+      "harfbuzz": "14.5.0",
+      "heif": "1.23.5",
+      "highway": "1.4.0",
+      "imagequant": "2.4.1",
+      "lcms": "2.19.1",
+      "mozjpeg": "0826579",
+      "pango": "1.58.2",
+      "pixman": "0.46.4",
+      "png": "1.6.58",
+      "proxy-libintl": "0.5",
+      "rsvg": "2.63.2",
+      "tiff": "4.7.2",
+      "uhdr": "2.0.2",
+      "vips": "8.18.7",
+      "webp": "1.6.0",
+      "xml2": "2.15.4",
+      "zlib-ng": "2.3.3",
+      "sharp": "0.35.5"
+    }
+  },
+  "inputDirectory": "shots/coin-reward/frames",
+  "frameCount": 16,
+  "fps": 20,
+  "durationMs": 800,
+  "repeat": 0,
+  "cell": 256,
+  "atlasSize": {
+    "width": 1024,
+    "height": 1024
+  },
+  "decodedRgbaBytes": 4194304,
+  "publicationBudgetBytes": 163840,
+  "publicationBytes": 143518,
+  "alphaMode": "straight",
+  "resize": {
+    "kernel": "lanczos3",
+    "width": 256,
+    "height": 256
+  },
+  "encoding": {
+    "alphaQuality": 100,
+    "effort": 6,
+    "smartSubsample": true,
+    "lossless": false
+  },
+  "candidates": [
+    {
+      "quality": 80,
+      "bytes": 88740,
+      "sha256": "248b0aa0d647bb2e24d4e2cdee614a6854b04c53a1d4e01dfda2c21c8f1f52b4",
+      "visibleRgbRmse": 4.785,
+      "alphaMaxError": 0,
+      "publicationBytes": 94478,
+      "withinBudget": true,
+      "diagnosticPath": "shots/coin-reward/pack-candidates/coin-reward-q80.webp"
+    },
+    {
+      "quality": 85,
+      "bytes": 98718,
+      "sha256": "733e3143ebcaba67217e390db0813da0b84c0ea50fd75393d572083ca595e5ba",
+      "visibleRgbRmse": 4.2692,
+      "alphaMaxError": 0,
+      "publicationBytes": 104456,
+      "withinBudget": true,
+      "diagnosticPath": "shots/coin-reward/pack-candidates/coin-reward-q85.webp"
+    },
+    {
+      "quality": 90,
+      "bytes": 114052,
+      "sha256": "0a8f28b530f99ff047e79078c64754eac7f5092c895e0d06de4ef471183ea041",
+      "visibleRgbRmse": 3.7699,
+      "alphaMaxError": 0,
+      "publicationBytes": 119790,
+      "withinBudget": true,
+      "diagnosticPath": "shots/coin-reward/pack-candidates/coin-reward-q90.webp"
+    },
+    {
+      "quality": 95,
+      "bytes": 137780,
+      "sha256": "77ae15ae77371af135dc2239def5c485ae6d8a256bdf6a968965d3481fca7bd6",
+      "visibleRgbRmse": 3.4144,
+      "alphaMaxError": 0,
+      "publicationBytes": 143518,
+      "withinBudget": true,
+      "diagnosticPath": "shots/coin-reward/pack-candidates/coin-reward-q95.webp"
+    }
+  ],
+  "selectedQuality": 95,
+  "outputs": {
+    "atlas": {
+      "path": "public/assets/effects/coin-reward/coin-reward.webp",
+      "bytes": 137780,
+      "sha256": "77ae15ae77371af135dc2239def5c485ae6d8a256bdf6a968965d3481fca7bd6"
+    },
+    "metadata": {
+      "path": "public/assets/effects/coin-reward/atlas.json",
+      "bytes": 5738,
+      "sha256": "56ee45c730dab22048e7f97e005e480419be7ca9c4f91995a4da8d98aec23fd3"
+    },
+    "contact": {
+      "path": "art/sources/coin-reward/review-contact.webp",
+      "bytes": 71340,
+      "sha256": "6acb6540855a9ffbba2292e130243876ca16c975b908cb4289a4f8b504f185f5"
+    }
+  },
+  "frames": [
+    {
+      "name": "coin-000",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-000.png",
+      "sourceSha256": "07151093435a8d365f33a2b557145d6ea3bf574ee53916cb4829a0f54be5ee02",
+      "sourceBounds": {
+        "left": 93,
+        "top": 63,
+        "right": 220,
+        "bottom": 239,
+        "width": 128,
+        "height": 177,
+        "visiblePixels": 16646,
+        "padding": 63
+      },
+      "bounds": {
+        "left": 60,
+        "top": 40,
+        "right": 148,
+        "bottom": 161,
+        "width": 89,
+        "height": 122,
+        "visiblePixels": 7787,
+        "padding": 40
+      }
+    },
+    {
+      "name": "coin-001",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-001.png",
+      "sourceSha256": "4834e975d66c389cb105df6c2da7ff537ae267b06818aee7087896b7c319bb4a",
+      "sourceBounds": {
+        "left": 98,
+        "top": 41,
+        "right": 221,
+        "bottom": 230,
+        "width": 124,
+        "height": 190,
+        "visiblePixels": 16797,
+        "padding": 41
+      },
+      "bounds": {
+        "left": 64,
+        "top": 25,
+        "right": 149,
+        "bottom": 155,
+        "width": 86,
+        "height": 131,
+        "visiblePixels": 7830,
+        "padding": 25
+      }
+    },
+    {
+      "name": "coin-002",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-002.png",
+      "sourceSha256": "8c577568f3d21bb356533627ee66ce1cd43db5e3a590a6430935f85b6a7d3118",
+      "sourceBounds": {
+        "left": 108,
+        "top": 30,
+        "right": 218,
+        "bottom": 230,
+        "width": 111,
+        "height": 201,
+        "visiblePixels": 10517,
+        "padding": 30
+      },
+      "bounds": {
+        "left": 70,
+        "top": 18,
+        "right": 147,
+        "bottom": 155,
+        "width": 78,
+        "height": 138,
+        "visiblePixels": 4960,
+        "padding": 18
+      }
+    },
+    {
+      "name": "coin-003",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-003.png",
+      "sourceSha256": "0a9fd45ef94d8ee4dae670c7f81fe3c4c2a17c650d71d0999f05c7df131668d1",
+      "sourceBounds": {
+        "left": 85,
+        "top": 35,
+        "right": 246,
+        "bottom": 234,
+        "width": 162,
+        "height": 200,
+        "visiblePixels": 18349,
+        "padding": 35
+      },
+      "bounds": {
+        "left": 55,
+        "top": 21,
+        "right": 165,
+        "bottom": 157,
+        "width": 111,
+        "height": 137,
+        "visiblePixels": 8520,
+        "padding": 21
+      }
+    },
+    {
+      "name": "coin-004",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-004.png",
+      "sourceSha256": "76b5ab8ad2b09eceacd5d45af54b43157c4fb341bda7dda8270b8f15ae6ce7e3",
+      "sourceBounds": {
+        "left": 52,
+        "top": 40,
+        "right": 289,
+        "bottom": 247,
+        "width": 238,
+        "height": 208,
+        "visiblePixels": 35977,
+        "padding": 40
+      },
+      "bounds": {
+        "left": 33,
+        "top": 25,
+        "right": 195,
+        "bottom": 167,
+        "width": 163,
+        "height": 143,
+        "visiblePixels": 16579,
+        "padding": 25
+      }
+    },
+    {
+      "name": "coin-005",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-005.png",
+      "sourceSha256": "720f81968045cd0dede84085dfc6264b8e5ac61b62d0ecf41007becf22ef3d2f",
+      "sourceBounds": {
+        "left": 65,
+        "top": 37,
+        "right": 291,
+        "bottom": 277,
+        "width": 227,
+        "height": 241,
+        "visiblePixels": 39062,
+        "padding": 37
+      },
+      "bounds": {
+        "left": 42,
+        "top": 23,
+        "right": 196,
+        "bottom": 186,
+        "width": 155,
+        "height": 164,
+        "visiblePixels": 17957,
+        "padding": 23
+      }
+    },
+    {
+      "name": "coin-006",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-006.png",
+      "sourceSha256": "e286bdbc64c1c23ac81f01e00f188a73aecbbd4e3339ec66b54fd25c419104de",
+      "sourceBounds": {
+        "left": 137,
+        "top": 43,
+        "right": 226,
+        "bottom": 304,
+        "width": 90,
+        "height": 262,
+        "visiblePixels": 18831,
+        "padding": 43
+      },
+      "bounds": {
+        "left": 90,
+        "top": 27,
+        "right": 152,
+        "bottom": 204,
+        "width": 63,
+        "height": 178,
+        "visiblePixels": 8744,
+        "padding": 27
+      }
+    },
+    {
+      "name": "coin-007",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-007.png",
+      "sourceSha256": "6facf606d9d55d428dabec0c131e7324e07ff026a534a301be94cc58be4fbf2d",
+      "sourceBounds": {
+        "left": 122,
+        "top": 60,
+        "right": 249,
+        "bottom": 320,
+        "width": 128,
+        "height": 261,
+        "visiblePixels": 25699,
+        "padding": 60
+      },
+      "bounds": {
+        "left": 79,
+        "top": 38,
+        "right": 168,
+        "bottom": 215,
+        "width": 90,
+        "height": 178,
+        "visiblePixels": 11869,
+        "padding": 38
+      }
+    },
+    {
+      "name": "coin-008",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-008.png",
+      "sourceSha256": "5ce86fb91cf4ca0c3e44569bb20e0fd400032cce607231ba204b23cb7519d91c",
+      "sourceBounds": {
+        "left": 81,
+        "top": 75,
+        "right": 297,
+        "bottom": 333,
+        "width": 217,
+        "height": 259,
+        "visiblePixels": 40795,
+        "padding": 50
+      },
+      "bounds": {
+        "left": 52,
+        "top": 48,
+        "right": 199,
+        "bottom": 223,
+        "width": 148,
+        "height": 176,
+        "visiblePixels": 18756,
+        "padding": 32
+      }
+    },
+    {
+      "name": "coin-009",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-009.png",
+      "sourceSha256": "e0272034ddc83f3d97df736f65c9b5e80f826d5f7b6b4f89fe166efaade3471c",
+      "sourceBounds": {
+        "left": 62,
+        "top": 85,
+        "right": 318,
+        "bottom": 348,
+        "width": 257,
+        "height": 264,
+        "visiblePixels": 48762,
+        "padding": 35
+      },
+      "bounds": {
+        "left": 40,
+        "top": 54,
+        "right": 214,
+        "bottom": 234,
+        "width": 175,
+        "height": 181,
+        "visiblePixels": 22361,
+        "padding": 21
+      }
+    },
+    {
+      "name": "coin-010",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-010.png",
+      "sourceSha256": "c29fc4e6720c3d3e61581c98b785388e90dda408599d04ba20b30fc6ce24f6de",
+      "sourceBounds": {
+        "left": 65,
+        "top": 74,
+        "right": 321,
+        "bottom": 329,
+        "width": 257,
+        "height": 256,
+        "visiblePixels": 46838,
+        "padding": 54
+      },
+      "bounds": {
+        "left": 41,
+        "top": 48,
+        "right": 215,
+        "bottom": 221,
+        "width": 175,
+        "height": 174,
+        "visiblePixels": 21504,
+        "padding": 34
+      }
+    },
+    {
+      "name": "coin-011",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-011.png",
+      "sourceSha256": "46764c737e8a0050a9bab833c78e49886919d66aa938ffa621efb4043f37e071",
+      "sourceBounds": {
+        "left": 61,
+        "top": 77,
+        "right": 324,
+        "bottom": 337,
+        "width": 264,
+        "height": 261,
+        "visiblePixels": 49050,
+        "padding": 46
+      },
+      "bounds": {
+        "left": 39,
+        "top": 50,
+        "right": 217,
+        "bottom": 226,
+        "width": 179,
+        "height": 177,
+        "visiblePixels": 22494,
+        "padding": 29
+      }
+    },
+    {
+      "name": "coin-012",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-012.png",
+      "sourceSha256": "212133afadd436c41022c9563b9ce0909b67072d04bc9bf8b5c4230dab6106a5",
+      "sourceBounds": {
+        "left": 63,
+        "top": 81,
+        "right": 322,
+        "bottom": 339,
+        "width": 260,
+        "height": 259,
+        "visiblePixels": 47900,
+        "padding": 44
+      },
+      "bounds": {
+        "left": 40,
+        "top": 52,
+        "right": 216,
+        "bottom": 228,
+        "width": 177,
+        "height": 177,
+        "visiblePixels": 21981,
+        "padding": 27
+      }
+    },
+    {
+      "name": "coin-013",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-013.png",
+      "sourceSha256": "8111d07de3fab785d2b05a96d36d22dc3ccd49be2f1b036693b1d29f4cf00887",
+      "sourceBounds": {
+        "left": 64,
+        "top": 81,
+        "right": 321,
+        "bottom": 339,
+        "width": 258,
+        "height": 259,
+        "visiblePixels": 47775,
+        "padding": 44
+      },
+      "bounds": {
+        "left": 41,
+        "top": 52,
+        "right": 216,
+        "bottom": 228,
+        "width": 176,
+        "height": 177,
+        "visiblePixels": 21905,
+        "padding": 27
+      }
+    },
+    {
+      "name": "coin-014",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-014.png",
+      "sourceSha256": "ca33cefdbb546519ba3f48c73c73cf66de3db4170aaa63360c5da33352e1c8f4",
+      "sourceBounds": {
+        "left": 64,
+        "top": 81,
+        "right": 321,
+        "bottom": 339,
+        "width": 258,
+        "height": 259,
+        "visiblePixels": 47775,
+        "padding": 44
+      },
+      "bounds": {
+        "left": 41,
+        "top": 52,
+        "right": 216,
+        "bottom": 228,
+        "width": 176,
+        "height": 177,
+        "visiblePixels": 21905,
+        "padding": 27
+      }
+    },
+    {
+      "name": "coin-015",
+      "sourceSize": 384,
+      "sourcePath": "shots/coin-reward/frames/coin-015.png",
+      "sourceSha256": "1273f6735486e6f2a84e594a2b69c4f51840258e72cd0707eab2614576f4c7ba",
+      "sourceBounds": {
+        "left": 64,
+        "top": 81,
+        "right": 321,
+        "bottom": 339,
+        "width": 258,
+        "height": 259,
+        "visiblePixels": 47775,
+        "padding": 44
+      },
+      "bounds": {
+        "left": 41,
+        "top": 52,
+        "right": 216,
+        "bottom": 228,
+        "width": 176,
+        "height": 177,
+        "visiblePixels": 21905,
+        "padding": 27
+      }
+    }
+  ],
+  "limitations": [
+    "Offline candidate only; no game code, reward amount, trigger binding or runtime loading is added.",
+    "Pixel padding and exact alpha are technical checks; visual acceptance and physical-device performance remain separate."
+  ]
+}

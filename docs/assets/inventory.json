@@ -378,9 +378,9 @@
     "No new visual or rights approval. Decoded RGBA sizes are estimates, not measured GPU memory."
   ],
   "totals": {
-    "files": 151,
-    "bytes": 23219573,
-    "decodedRgbaBytes": 141264896,
+    "files": 153,
+    "bytes": 23363091,
+    "decodedRgbaBytes": 145459200,
     "groups": {
       "audio": {
         "count": 2,
@@ -391,6 +391,11 @@
         "count": 18,
         "bytes": 810824,
         "decodedRgbaBytes": 14874624
+      },
+      "effects": {
+        "count": 2,
+        "bytes": 143518,
+        "decodedRgbaBytes": 4194304
       },
       "jokers-p07": {
         "count": 48,
@@ -621,6 +626,24 @@
       "height": 320,
       "alpha": false,
       "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/effects/coin-reward/atlas.json",
+      "bytes": 5738,
+      "sha256": "56ee45c730dab22048e7f97e005e480419be7ca9c4f91995a4da8d98aec23fd3",
+      "textNormalization": "LF",
+      "canonicalBytes": 5738,
+      "canonicalSha256": "56ee45c730dab22048e7f97e005e480419be7ca9c4f91995a4da8d98aec23fd3"
+    },
+    {
+      "path": "public/assets/effects/coin-reward/coin-reward.webp",
+      "bytes": 137780,
+      "sha256": "77ae15ae77371af135dc2239def5c485ae6d8a256bdf6a968965d3481fca7bd6",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "decodedRgbaBytes": 4194304,
       "format": "webp"
     },
     {
