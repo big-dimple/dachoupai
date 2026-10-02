@@ -126,7 +126,7 @@ describe('registered Joker thumbnail recovery',()=>{
     vi.advanceTimersByTime(300);expect(scene.load.requests).toHaveLength(2);
     scene.load.succeed(scene.load.requests[1]);vi.advanceTimersByTime(0);
     expect(jokerArtLoadState(scene.phaser,ids[0])).toEqual({status:'loaded',attempts:2});
-    expect(refresh).toHaveBeenCalled();expect(prefetchDetailArt).toHaveBeenCalledWith([jokerArtUrl(ids[0])]);
+    expect(refresh).toHaveBeenCalled();expect(prefetchDetailArt).toHaveBeenCalledWith([jokerArtUrl(ids[0])],expect.any(AbortSignal));
   });
 
   it('never re-arms automatic retry through repeated failed redraws',()=>{
@@ -172,8 +172,8 @@ describe('registered Joker thumbnail recovery',()=>{
     scene.load.succeed(scene.load.requests[0]);expect(prefetchDetailArt).not.toHaveBeenCalled();expect(scene.load.inflight.size).toBe(2);
     scene.load.succeed(scene.load.requests[1]);expect(prefetchDetailArt).not.toHaveBeenCalled();
     scene.load.succeed(scene.load.requests[2]);expect(scene.load.peak).toBe(2);
-    expect(prefetchDetailArt).toHaveBeenCalledExactlyOnceWith(ids.slice(0,2).map(id=>jokerArtUrl(id)));
-    requestJokerArt(scene.phaser,ids,vi.fn());expect(prefetchDetailArt).toHaveBeenCalledTimes(1);
+    expect(vi.mocked(prefetchDetailArt).mock.calls.map(call=>call[0])).toEqual(ids.slice(0,2).map(id=>[jokerArtUrl(id)]));
+    requestJokerArt(scene.phaser,ids,vi.fn());expect(prefetchDetailArt).toHaveBeenCalledTimes(2);
   });
 
   it('retries one failed image while the same loader still has unrelated work',()=>{
@@ -263,4 +263,21 @@ describe('registered Joker thumbnail recovery',()=>{
     scene.load.succeed(scene.load.requests[2]);await expect(result).resolves.toBe(true);
     expect(jokerArtLoadState(scene.phaser,ids[1]).status).toBe('failed');expect(prefetchDetailArt).not.toHaveBeenCalled();
   });
+});
+
+
+it('releases only obsolete prefetch consumers on shelf changes and all of them on shutdown',()=>{
+  const scene=new FakeScene();ids.forEach(id=>scene.cached.add(key(id)));requestJokerArt(scene.phaser,ids,vi.fn());
+  const first=vi.mocked(prefetchDetailArt).mock.calls[0][1]!,second=vi.mocked(prefetchDetailArt).mock.calls[1][1]!;
+  requestJokerArt(scene.phaser,[ids[1],ids[2]],vi.fn());
+  expect(first.aborted).toBe(true);expect(second.aborted).toBe(false);expect(prefetchDetailArt).toHaveBeenCalledTimes(3);
+  const third=vi.mocked(prefetchDetailArt).mock.calls[2][1]!;
+  scene.shutdown();expect(second.aborted).toBe(true);expect(third.aborted).toBe(true);
+});
+
+it('cancels prefetch when the shelf has no registered cards and can revisit the same shelf',()=>{
+  const scene=new FakeScene();scene.cached.add(key(ids[0]));requestJokerArt(scene.phaser,[ids[0]],vi.fn());
+  const first=vi.mocked(prefetchDetailArt).mock.calls[0][1]!;
+  requestJokerArt(scene.phaser,[],vi.fn());expect(first.aborted).toBe(true);
+  requestJokerArt(scene.phaser,[ids[0]],vi.fn());expect(prefetchDetailArt).toHaveBeenCalledTimes(2);expect(vi.mocked(prefetchDetailArt).mock.calls[1][1]!.aborted).toBe(false);
 });

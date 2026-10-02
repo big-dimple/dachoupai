@@ -98,3 +98,38 @@ it('closing before transfer finishes does not cancel the shared request or decod
  finish(new Response(new Blob(['art'])));await expect(shared).resolves.toMatch(/^blob:/);await flush();
  expect(decode).not.toHaveBeenCalled();expect(ready).not.toHaveBeenCalled();expect(image.src).toBe('/thumbnail.webp');
 });
+
+it('releases the last closed dialog transfer so a newer detail does not wait for its deadline',async()=>{
+ vi.useFakeTimers();bitmap();const signals:AbortSignal[]=[];const fetch=vi.fn((_url:string,options:RequestInit)=>{signals.push(options.signal!);return new Promise<Response>(()=>{});});vi.stubGlobal('fetch',fetch);
+ const {progressiveArt,detailArt}=await import('../src/game/DetailArt');const a=artUI(),b=artUI();
+ const stopA=progressiveArt(a.frame,a.image,'/old-a',vi.fn()),stopB=progressiveArt(b.frame,b.image,'/old-b',vi.fn());
+ const next=detailArt('/current').catch(()=>{});expect(fetch).toHaveBeenCalledTimes(2);
+ stopA();await flush();expect(signals[0].aborted).toBe(true);expect(fetch.mock.calls.map(c=>c[0])).toEqual(['/old-a','/old-b','/current']);stopB();await vi.advanceTimersByTimeAsync(6001);await next;
+});
+
+it('removes a canceled queued consumer without fetching it',async()=>{
+ vi.useFakeTimers();bitmap();const fetch=vi.fn(()=>new Promise<Response>(()=>{}));vi.stubGlobal('fetch',fetch);
+ const {detailArt}=await import('../src/game/DetailArt');const a=detailArt('/a').catch(()=>{}),b=detailArt('/b').catch(()=>{}),controller=new AbortController();
+ const canceled=expect(detailArt('/queued',true,controller.signal)).rejects.toThrow('detail-image-aborted');controller.abort();await canceled;
+ await vi.advanceTimersByTimeAsync(6001);await Promise.all([a,b]);expect(fetch).toHaveBeenCalledTimes(2);
+});
+
+it('aborts shared work only after its final scoped consumer leaves',async()=>{
+ bitmap();const signals:AbortSignal[]=[];vi.stubGlobal('fetch',(_url:string,options:RequestInit)=>{signals.push(options.signal!);return new Promise<Response>(()=>{});});
+ const {detailArt}=await import('../src/game/DetailArt'),a=new AbortController(),b=new AbortController();
+ const first=expect(detailArt('/shared',false,a.signal)).rejects.toThrow('detail-image-aborted'),second=expect(detailArt('/shared',true,b.signal)).rejects.toThrow('detail-image-aborted');
+ a.abort();await first;expect(signals[0].aborted).toBe(false);b.abort();await second;expect(signals[0].aborted).toBe(true);
+});
+
+it('does not cache or replace a new request when an aborted bitmap finishes late',async()=>{
+ bitmap();vi.stubGlobal('fetch',async()=>new Response(new Blob(['art'])));let finish!:()=>void;const close=vi.fn();
+ const decode=vi.fn().mockImplementationOnce(()=>new Promise(resolve=>{finish=()=>resolve({width:615,height:768,close});})).mockResolvedValue({width:615,height:768,close:vi.fn()});vi.stubGlobal('createImageBitmap',decode);
+ const create=vi.spyOn(URL,'createObjectURL'),{detailArt}=await import('../src/game/DetailArt'),controller=new AbortController();
+ const old=expect(detailArt('/again',true,controller.signal)).rejects.toThrow('detail-image-aborted');await vi.waitFor(()=>expect(decode).toHaveBeenCalledOnce());controller.abort();await old;
+ const current=await detailArt('/again');finish();await flush();expect(close).toHaveBeenCalledOnce();expect(await detailArt('/again')).toBe(current);expect(create).toHaveBeenCalledOnce();
+});
+
+it('cancels a scheduled prefetch before it creates a request',async()=>{
+ vi.useFakeTimers();bitmap();const fetch=vi.fn();vi.stubGlobal('fetch',fetch);vi.stubGlobal('navigator',{});vi.stubGlobal('window',{});
+ const {prefetchDetailArt}=await import('../src/game/DetailArt'),controller=new AbortController();prefetchDetailArt(['/unseen'],controller.signal);controller.abort();await vi.advanceTimersByTimeAsync(1500);expect(fetch).not.toHaveBeenCalled();
+});

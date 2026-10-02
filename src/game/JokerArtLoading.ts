@@ -23,7 +23,7 @@ const transient=(status:number)=>status===0||status===408||status===429||status>
 class ThumbnailLoads {
   readonly entries=new Map<string,Entry>();
   private wanted:string[]=[];
-  private prefetched=new Set<string>();
+  private prefetched=new Map<string,AbortController>();
   private readonly completions=new Set<Completion>();
   private refresh:()=>void=()=>{};
   private refreshTimer?:ReturnType<typeof setTimeout>;
@@ -122,13 +122,15 @@ class ThumbnailLoads {
     this.refreshTimer=setTimeout(()=>{this.refreshTimer=undefined;if(!this.disposed&&this.scene.scene.isActive())this.refresh();},0);
   }
   private prefetch():void {
-    const needed=this.wanted.map(id=>registered(id)!);
+    const needed=this.wanted.map(id=>registered(id)!),desired=needed.slice(0,2).flatMap(art=>jokerArtUrl(art.id)??[]);
+    for(const [url,controller] of this.prefetched)if(!desired.includes(url)){controller.abort();this.prefetched.delete(url);}
     if(!needed.length||needed.some(art=>!this.scene.textures.exists(art.key)))return;
     const urls=needed.slice(0,2).flatMap(art=>{const url=jokerArtUrl(art.id);return url&&!this.prefetched.has(url)?[url]:[];});
-    if(urls.length){urls.forEach(url=>this.prefetched.add(url));prefetchDetailArt(urls);}
+    for(const url of urls){const controller=new AbortController();this.prefetched.set(url,controller);prefetchDetailArt([url],controller.signal);}
   }
   private readonly shutdown=()=>{
     if(this.disposed)return;this.disposed=true;clearTimeout(this.refreshTimer);
+    for(const controller of this.prefetched.values())controller.abort();this.prefetched.clear();
     this.scene.load.off('addfile',this.added);this.scene.load.off('filecomplete',this.loaded);this.scene.load.off('loaderror',this.failed);this.scene.load.off('complete',this.complete);
     this.scene.events.off('shutdown',this.shutdown);this.scene.events.off('destroy',this.shutdown);
     for(const entry of this.entries.values()){
