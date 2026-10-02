@@ -501,9 +501,16 @@
   "ownerPriorAcceptance": "A01/D22/D25 remains accepted at its recorded scope; this receipt does not grant new art batches or future formal device/human gates.",
   "next": "C04.1: read task inputs, define finite mode/program/four-difficulty/twelve-challenge contracts and independent failure goldens; no A03 batch expansion.",
   "publication": {
-    "status": "PENDING_NORMAL_MAIN_PUSH",
+    "status": "PUSHED",
     "branch": "main",
-    "baseCommit": "e634e03857523212bfa534990b3a1e8c26e759e6"
+    "baseCommit": "e634e03857523212bfa534990b3a1e8c26e759e6",
+    "codeCommit": "59d7df47bb512bad4d8f699b9d8b5fd438a180d7",
+    "pushCommand": "git push origin main",
+    "pushExitCode": 0,
+    "pushChunk": "8d883c",
+    "publishedAt": "2026-10-02T06:00:53.882Z",
+    "commitCloseoutChunk": "f500c0",
+    "pushCloseoutChunk": "1b5514"
   },
   "closeout": {
     "skill": "jiepi-clear",
