@@ -27,6 +27,8 @@ import type { IntermissionResult } from './IntermissionScene';
 import {addAvatar,avatarKey,portraitURL} from './portraits';
 import {SceneView} from './SceneView';
 import {HandSelectionInput} from './HandSelectionInput';
+import {paintCardFeedback} from './CardFeedback';
+import {HandSweepHint} from './HandSweepHint';
 import type {HandSelectionUpdate} from './HandSelectionGesture';
 import {DetailDialog} from './DetailDialog';
 import {dispatchRun,runController} from './runAdapter';
@@ -116,6 +118,10 @@ export class GameScene extends Phaser.Scene {
   private handInput?:HandSelectionInput;
   private readonly dialog=new DetailDialog();
   private focusIndex=0;
+  private keyboardFocus=false;
+  private readonly sweepHint=new HandSweepHint();
+  private handHint?:Phaser.GameObjects.Container;
+  private handHintTimer?:Phaser.Time.TimerEvent;
   private handStart=0;
   private handNavigationButtons:Phaser.GameObjects.Rectangle[]=[];
   private statusMessage='';
@@ -167,8 +173,9 @@ export class GameScene extends Phaser.Scene {
     // Keep committed score playback moving on slow renderers; bound background gaps to 1s.
     this.tweens.setLagSmooth(1000,1000);
     const lifecycle=++this.lifecycle;this.intent++;
-    this.effects.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.handStart=0;this.handNavigationButtons=[];
+    this.effects.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.keyboardFocus=false;this.handStart=0;this.handNavigationButtons=[];
     const settings=()=>{
+      const hintVisible=!!this.handHint;this.stopHandHint();if(hintVisible&&this.reducedMotion)this.showHandHint(false);
       this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;
       if(this.reducedMotion){
         if(this.toolHand){this.effects.clear();this.toolHand=undefined;this.render();}
@@ -184,6 +191,7 @@ export class GameScene extends Phaser.Scene {
     };
     window.addEventListener('dachoupai-presentation',settings);
     this.events.once('shutdown',()=>{
+      this.stopHandHint();window.removeEventListener('pointerdown',this.pointerFocus,true);document.removeEventListener('focusin',this.focusFeedback);document.removeEventListener('focusout',this.focusFeedback);window.removeEventListener('blur',this.stopHandHint);document.removeEventListener('visibilitychange',this.hintVisibility);
       this.handInput?.destroy();this.handInput=undefined;this.controlsLive=false;this.stopScoreFire();
       if(this.registry.get('runMenuActions')===this.menuActions)this.registry.remove('runMenuActions');
       this.menuActions=undefined;
@@ -211,6 +219,7 @@ export class GameScene extends Phaser.Scene {
     },()=>({count:this.hand.length,start:this.handStart}));
     this.handInput=new HandSelectionInput(this,{
       cancelCanvas:()=>this.view.cancelInteraction(),
+      pointerCard:id=>{const index=this.hand.findIndex(card=>card.id===id);if(index>=0)this.focusIndex=index;},
       ready:()=>this.ready,cards:()=>this.hand.map((card,i)=>({id:card.id,...this.view.layout.cards[i].hit,visible:this.view.layout.cards[i].visible})),selected:()=>this.selectedIds,
       update:update=>this.applyHandSelection(update),detail:id=>this.inspectCard(id),hover:id=>{
         if(this.hoveredCardId===id)return;
@@ -220,6 +229,7 @@ export class GameScene extends Phaser.Scene {
     this.menuActions={viewDeck:()=>this.inspectDeck(),viewRules:()=>this.inspectRole()};
     this.registry.set('runMenuActions',this.menuActions);
     window.addEventListener('keydown',this.keyboard);
+    window.addEventListener('pointerdown',this.pointerFocus,true);document.addEventListener('focusin',this.focusFeedback);document.addEventListener('focusout',this.focusFeedback);window.addEventListener('blur',this.stopHandHint);document.addEventListener('visibilitychange',this.hintVisibility);
     this.render();
     if(enteredStage)this.revealDrawnCards([]);
     const notice=stageNotice(this.run);
@@ -227,15 +237,25 @@ export class GameScene extends Phaser.Scene {
   }
 
   private readonly keyboard=(event:KeyboardEvent)=>{
+    if(!this.scene.isActive())return;
+    if(event.key==='Tab'){this.keyboardFocus=true;this.stopHandHint();return;}
     if(this.handInput?.active){if(event.key==='Escape'){event.preventDefault();this.handInput.cancel('escape');}return;}
     if(this.playing||document.querySelector('dialog[open]')||!this.scene.isActive()||document.activeElement?.matches('input,select,textarea,button'))return;
+    if(['ArrowRight','ArrowLeft',' ','Enter'].includes(event.key)){this.keyboardFocus=true;this.stopHandHint();this.game.canvas.focus({preventScroll:true});this.focusFeedback();}
     if((event.key==='ArrowRight'||event.key==='ArrowLeft')&&this.hand.length){event.preventDefault();this.focusIndex=(this.focusIndex+(event.key==='ArrowRight'?1:this.hand.length-1))%this.hand.length;this.showFocusedCard();this.refreshSelection();}
     else if(event.key===' '&&this.hand[this.focusIndex]){event.preventDefault();this.toggleCard(this.hand[this.focusIndex].id);}
     else if(event.key==='Enter'&&this.hand[this.focusIndex]){event.preventDefault();this.inspectCard(this.hand[this.focusIndex].id);}
   };
+  private readonly pointerFocus=()=>{this.keyboardFocus=false;this.stopHandHint();this.focusFeedback();};
+  private readonly focusFeedback=()=>{this.cardViews.forEach((view,i)=>this.paintHandFeedback(view,i));};
+  private paintHandFeedback(view:CardView,index:number):void {
+    if(!view.container.active)return;
+    paintCardFeedback(view,{selected:this.selectedIds.has(view.card.id),scoring:!!view.container.getData('activeScoring'),hovered:this.hoveredCardId===view.card.id,focused:this.keyboardFocus&&document.activeElement===this.game.canvas&&index===this.focusIndex});
+  }
   private get ready():boolean {const session=gameSession();return !this.playing&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
   get isPresenting():boolean {return !!this.presentation;}
   private render():void {
+    this.stopHandHint();
     this.dialog.refreshArtLoad();
     this.handInput?.cancel();
     requestJokerArt(this,this.run.jokers.map(j=>j.definitionId),()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();});
@@ -398,11 +418,11 @@ export class GameScene extends Phaser.Scene {
   }
   private roleCaption():string {const notice=stageNotice(this.run);return notice?.warning?notice.title:getCharacter(this.characterId).passiveName;}
   private cardPiece(card:PlayingCard,b:Box):CardView {
-    const c=this.view.add(this.add.container(b.x+b.width/2,b.y+b.height/2)).setData('width',b.width).setData('height',b.height);
+    const c=this.view.add(this.add.container(b.x+b.width/2,b.y+b.height/2)).setData('width',b.width).setData('height',b.height).setData('cardFace',true).setData('cardId',card.id);
     const radius=Math.min(7,b.width*.09),shadow=this.add.graphics(),edgeGlow=this.add.graphics();
     shadow.fillStyle(0x10262e,.12).fillRoundedRect(-b.width/2+2,-b.height/2+6,b.width,b.height,radius);
     shadow.fillStyle(0x10262e,.2).fillRoundedRect(-b.width/2+1,-b.height/2+3,b.width,b.height,radius);
-    edgeGlow.lineStyle(3,0xffe0a2,.95).strokeRoundedRect(-b.width/2-1,-b.height/2-1,b.width+2,b.height+2,radius).setAlpha(0);
+    edgeGlow.setName('card/feedback').lineStyle(3,0xffe0a2,.95).strokeRoundedRect(-b.width/2-1,-b.height/2-1,b.width+2,b.height+2,radius).setAlpha(0);
     const bg=this.add.rectangle(0,0,b.width,b.height,T.paper).setStrokeStyle(1,T.brass);
     const face=this.view.material({x:-b.width/2+1,y:-b.height/2+1,width:b.width-2,height:b.height-2},0xfff8e8,0xe8d6b9,radius).setAlpha(.72);
     c.add([shadow,edgeGlow,bg,face]);
@@ -568,18 +588,13 @@ export class GameScene extends Phaser.Scene {
   }
   /** Stable seats and left-to-right layers keep every exposed index reachable. */
   private restingCard(view:CardView,index:number,animate:boolean):void {
+    this.paintHandFeedback(view,index);
     if(!view.container.active||view.dealing||this.playing||this.presentation)return;
     const b=this.view.layout.cards[index]?.visual;if(!b)return;
-    const selected=this.selectedIds.has(view.card.id),hovered=this.hoveredCardId===view.card.id,scoring=!!view.container.getData('activeScoring'),focused=document.activeElement===this.game.canvas&&index===this.focusIndex;
+    const selected=this.selectedIds.has(view.card.id),hovered=this.hoveredCardId===view.card.id;
     const angle=0,y=b.y+b.height/2-(selected?16:0)-(hovered&&!this.reducedMotion?4:0),scale=1;
     this.tweens.killTweensOf(view.container);view.container.setAlpha(1);view.faceGlow?.setAlpha(0);
     if(animate&&!this.reducedMotion)this.tweens.add({targets:view.container,x:b.x+b.width/2,y,angle,scaleX:scale,scaleY:scale,duration:selected?150:115,ease:selected?'Back.easeOut':'Sine.easeOut'});else view.container.setPosition(b.x+b.width/2,y).setScale(scale).setAngle(angle);
-    // A thick square backing showed colored corner patches around the rounded face.
-    // Keep the paper edge neutral and draw state feedback along the rounded contour.
-    view.background.setStrokeStyle(1,T.brass);
-    view.edgeGlow?.clear().lineStyle(hovered||focused?3:2,hovered||focused?0xffd990:scoring?T.jade:T.red,.95)
-      .strokeRoundedRect(-b.width/2-1,-b.height/2-1,b.width+2,b.height+2,Math.min(7,b.width*.09))
-      .setAlpha(hovered||focused?1:(selected||scoring)?0.85:0);
     this.view.root.bringToTop(this.handCountText);this.view.root.bringToTop(this.pileText);
   }
   private hoverJoker(id:string,enter:boolean):void {
@@ -631,13 +646,11 @@ export class GameScene extends Phaser.Scene {
     const active=this.presentation?.score.sets.activeScoringIds??preview?.sets.activeScoringIds??[];
     const disabledIds=r2DisabledCards(this.run.boss,this.stage.index,this.hand),suppressed=this.presentation?.score.events.filter(e=>e.operation==='ordinary-points-suppressed').map(e=>e.targetCardId)??r2ScoreContext(this.run,this.hand,[...this.selectedIds]).ordinaryPointsSuppressedIds;
     this.cardViews.forEach((v,i)=>{
-      const selected=this.selectedIds.has(v.card.id),scoring=active.includes(v.card.id),focused=document.activeElement===this.game.canvas&&i===this.focusIndex;
+      const selected=this.selectedIds.has(v.card.id),scoring=active.includes(v.card.id);
       v.container.setData('selected',selected).setData('activeScoring',scoring);
       v.selectionMark?.setVisible(selected);
       const disabled=disabledIds.includes(v.card.id),pointsZero=suppressed.includes(v.card.id);v.background.setFillStyle(disabled?0xd2d0cb:T.paper);
-      v.background.setStrokeStyle(focused||selected||scoring?4:1,focused?T.brass:scoring?T.jade:selected?T.red:T.brass);
-      v.edgeGlow?.setAlpha(focused?1:selected?0.85:0);
-      if(!this.presentation)this.restingCard(v,i,animateId===v.card.id);
+      this.restingCard(v,i,animateId===v.card.id);
       v.scoringMark.setText(disabled?'失效':pointsZero?'点数0':'★').setVisible(disabled||pointsZero||scoring);
       if(v.hit)v.hit.input!.enabled=this.ready&&this.view.layout.cards[i].visible;
     });
@@ -674,7 +687,7 @@ export class GameScene extends Phaser.Scene {
     const reserved=Math.max(36,ledger.height+16);
     if(p.height-reserved<52)return;
     const cards=this.hand.filter(card=>this.selectedIds.has(card.id)),boxes=this.landingBoxes(cards.length,reserved);
-    cards.forEach((card,i)=>{const cv=this.cardPiece(card,boxes[i]);this.previewCards!.add(cv.container);cv.container.setAlpha(.86);cv.background.setStrokeStyle(2,preview.sets.activeScoringIds.includes(card.id)?T.jade:T.brass);cv.scoringMark.setVisible(preview.sets.activeScoringIds.includes(card.id));});
+    cards.forEach((card,i)=>{const cv=this.cardPiece(card,boxes[i]);this.previewCards!.add(cv.container);cv.container.setAlpha(.86);paintCardFeedback(cv,{scoring:preview.sets.activeScoringIds.includes(card.id)});cv.scoringMark.setVisible(preview.sets.activeScoringIds.includes(card.id));});
   }
   private updateControls():void {
     if(!this.controlsLive)return;
@@ -804,7 +817,25 @@ export class GameScene extends Phaser.Scene {
   private async sortHand(mode:'rank'|'suit'):Promise<void> {
     const cards=[...this.hand].sort((a,b)=>mode==='rank'?b.rank-a.rank||SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit):SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit)||b.rank-a.rank);
     const before=this.handPositions();
-    if(await this.command({type:'ReorderHand',ids:cards.map(c=>c.id)})){this.statusMessage=(mode==='rank'?'点数':'花色')+'已排序 · 选择已保留';this.slideHandFrom(before);this.updateControls();}
+    if(await this.command({type:'ReorderHand',ids:cards.map(c=>c.id)})){this.statusMessage=(mode==='rank'?'点数':'花色')+'已排序 · 选择已保留';this.slideHandFrom(before);this.updateControls();this.showHandHint();}
+  }
+  private readonly stopHandHint=():void=>{
+    this.handHintTimer?.remove();this.handHintTimer=undefined;
+    if(this.handHint){const cursor=this.handHint.getData('cursor');if(cursor)this.tweens.killTweensOf(cursor);this.tweens.killTweensOf(this.handHint);this.handHint.destroy();this.handHint=undefined;}
+  };
+  private readonly hintVisibility=()=>{if(document.hidden)this.stopHandHint();};
+  private showHandHint(claim=true):void {
+    if(!this.view||!this.ready||this.handHint)return;
+    const l=this.view.layout,cards=l.cards.filter(card=>card.visible);if(cards.length<2||claim&&!this.sweepHint.claim())return;
+    const root=this.view.add(this.add.container(0,0)).setName('hand/sweep-hint');this.handHint=root;
+    const cx=l.hand.x+l.hand.width/2,y=l.hand.y+l.hand.height-19,w=Math.min(l.hand.width-8,360);
+    root.add(this.add.graphics().fillStyle(0x102f35,.86).fillRoundedRect(cx-w/2,y-23,w,20,6));
+    root.add(this.add.text(cx,y-13,'按住横滑选牌 ↔ 从已选牌开始可取消',{fontFamily:UI_FONT,fontSize:'12px',color:'#fff1cc',resolution:1.5}).setOrigin(.5));
+    if(this.reducedMotion){this.handHintTimer=this.time.delayedCall(3000*gameSession().speed,this.stopHandHint);return;}
+    const from=cards[0].hit.x+cards[0].hit.width/2,last=cards[Math.min(4,cards.length-1)],to=last.hit.x+last.hit.width/2;
+    root.add(this.add.graphics().lineStyle(1,0xe9d59a,.4).beginPath().moveTo(from,y).lineTo(to,y).strokePath());
+    const cursor=this.add.graphics().fillStyle(0xffe9b4,.8).fillCircle(0,0,4).lineStyle(2,0xffe9b4,.9).strokeCircle(0,0,7).setPosition(from,y);root.add(cursor);root.setData('cursor',cursor);
+    this.tweens.add({targets:cursor,x:to,duration:650,delay:280,hold:100,yoyo:true,ease:'Sine.easeInOut',onComplete:()=>{if(root.active)this.tweens.add({targets:root,alpha:0,duration:180,onComplete:this.stopHandHint}).setTimeScale(1/gameSession().speed);}}).setTimeScale(1/gameSession().speed);
   }
   private async moveHandCard(id:string,delta:-1|1):Promise<void> {const ids=[...this.run.handOrder],from=ids.indexOf(id),to=from+delta;if(from<0||to<0||to>=ids.length)return;const before=this.handPositions();ids.splice(from,1);ids.splice(to,0,id);if(await this.command({type:'ReorderHand',ids}))this.slideHandFrom(before);}
   private async reorderJoker(id:string,x:number):Promise<void> {const ids=this.run.jokers.map(j=>j.instanceId),from=ids.indexOf(id),l=this.view.layout,to=l.slots.findIndex((b,i)=>x>=b.x&&x<=b.x+b.width+(l.mode==='landscape'?l.jokerLabels[i].width+6:0));if(to<0||to>=ids.length||from===to)return;ids.splice(from,1);ids.splice(to,0,id);await this.command({type:'ReorderJokers',ids});}
@@ -818,6 +849,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private applyHandSelection(update:HandSelectionUpdate):void {
+    this.sweepHint.observe(update);
     const previous=this.selectedIds,next=new Set(update.selectedIds),changed=previous.size!==next.size||[...previous].some(id=>!next.has(id));
     this.statusMessage=update.limitReached?'每手最多选择 5 张牌':'';
     if(!changed){if(update.limitReached)this.updateControls();return;}
@@ -874,6 +906,10 @@ export class GameScene extends Phaser.Scene {
     if(context.signal.aborted)return;
     this.stopJokerIdle(source);this.tweens.killTweensOf(source);
     if(this.reducedMotion){
+      if(source.getData('cardFace')){
+        const width=frame.width,height=frame.height,glow=this.add.graphics().lineStyle(2,color,.95).strokeRoundedRect(-width/2-1,-height/2-1,width+2,height+2,Math.min(7,width*.09));source.addAt(glow,1);
+        try{if(impact)await impact;await this.wait(beat?.impact??duration,context);}finally{glow.destroy();}return;
+      }
       const line={width:frame.lineWidth,color:frame.strokeColor,alpha:frame.strokeAlpha};frame.setStrokeStyle(4,color,1);
       try{if(impact)await impact;await this.wait(beat?.impact??duration,context);}finally{if(frame.active)frame.setStrokeStyle(line.width,line.color,line.alpha);}return;
     }
@@ -1116,10 +1152,8 @@ export class GameScene extends Phaser.Scene {
         (view.getData('valueLabel') as Phaser.GameObjects.Text).setText(this.view.layout.mode==='landscape'?'计分封禁':'封禁').setColor(C.red);
       }));
     }else if(card&&cardResponds){
-      card.background.setStrokeStyle(4,event.retriggerDepth?T.brass:T.jade);
       sourceEffects.push(this.focusSource(card.container,card.background,event.retriggerDepth?T.brass:T.jade,false,duration,context,timing,impact));
     }else if(card&&event.sourceType==='rule'){
-      card.background.setStrokeStyle(3,T.red);
       sourceEffects.push(this.focusSource(card.container,card.background,T.red,false,duration,context,timing,impact));
     }else if(event.sourceType==='rule'&&(R2_LONG_TERM_ITEMS.some(item=>item.id===event.sourceDefinitionId)||R2_TOOLS.some(tool=>tool.id===event.sourceDefinitionId)||R2_MODE_CATALOG.programs.some(program=>program.id===event.sourceDefinitionId))){
       const b=this.goldText.getBounds(),halo=this.view.add(this.add.graphics().lineStyle(3,T.brass,.9).strokeRoundedRect(b.x-4,b.y-4,b.width+8,b.height+8,8));

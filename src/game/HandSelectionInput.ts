@@ -11,6 +11,7 @@ interface HandInputOptions {
   hover:(id:string|undefined)=>void;
   detail:(id:string)=>void;
   cancelCanvas:()=>void;
+  pointerCard?:(id:string)=>void;
 }
 /** A hand-only surface lets the browser own vertical pan and pointer cancellation. */
 export class HandSelectionInput {
@@ -56,6 +57,7 @@ export class HandSelectionInput {
     if(event.button!==0||this.active||!this.options.ready()||modalBlocksCanvas(event.clientX,event.clientY))return;
     const {x,y}=this.coordinates(event),card=this.cardAt(x,y);if(!card)return;
     this.options.cancelCanvas();
+    this.options.pointerCard?.(card.id);
     this.owner=event.pointerId;this.pointers.add(event.pointerId);this.savedInput=this.scene.input.enabled;this.scene.input.enabled=false;
     this.options.hover(undefined);this.scene.game.canvas.focus({preventScroll:true});
     try {this.surface.setPointerCapture(event.pointerId);}catch {/* Window events still own this contact. */}

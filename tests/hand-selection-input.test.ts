@@ -33,9 +33,9 @@ afterEach(()=>{inputs.splice(0).forEach(input=>input.destroy());vi.clearAllTimer
 function setup(initial=['h']){
   const scene={game:{canvas:new Surface()},scale:{width:400,height:300,zoom:1},input:{enabled:true}},updates:HandSelectionUpdate[]=[];
   let selected=new Set(initial),canvasPressed=false;
-  const detail=vi.fn(),cancelCanvas=vi.fn(()=>{canvasPressed=false;});
+  const detail=vi.fn(),pointerCard=vi.fn(),cancelCanvas=vi.fn(()=>{canvasPressed=false;});
   const input=new HandSelectionInput(scene as unknown as Phaser.Scene,{ready:()=>true,cards:()=>Array.from('abcdefgh',(id,i)=>({id,x:i*40,y:100,width:40,height:120})),selected:()=>selected,
-    update:update=>{updates.push(update);selected=new Set(update.selectedIds);},hover:vi.fn(),detail,cancelCanvas});
+    update:update=>{updates.push(update);selected=new Set(update.selectedIds);},hover:vi.fn(),detail,cancelCanvas,pointerCard});
   inputs.push(input);input.setBounds({x:0,y:100,width:320,height:120});
   const surface=input.surface as unknown as Surface;
   // Native capture phase runs on window before the surface receives an event.
@@ -43,10 +43,14 @@ function setup(initial=['h']){
     const event=new Pointer(type,values);win.dispatchEvent(event);if(onSurface&&!event.stopped)surface.dispatchEvent(event);return event;
   };
   const sweep=(pointerType='mouse')=>{send('pointerdown',{pointerType});send('pointermove',{pointerType,clientX:140});};
-  return {scene,input,surface,updates,detail,send,sweep,selection:()=>[...selected],pressCanvas:()=>{canvasPressed=true;},canvasPressed:()=>canvasPressed};
+  return {scene,input,surface,updates,detail,pointerCard,send,sweep,selection:()=>[...selected],pressCanvas:()=>{canvasPressed=true;},canvasPressed:()=>canvasPressed};
 }
 
 describe('hand native contact lifecycle',()=>{
+  it.each(['mouse','touch'])('anchors future keyboard navigation to the actual accepted %s card without selecting on down',pointerType=>{
+    const f=setup();f.send('pointerdown',{pointerType,clientX:140});expect(f.pointerCard).toHaveBeenCalledExactlyOnceWith('d');expect(f.selection()).toEqual(['h']);
+    f.send('pointerup',{pointerType,clientX:140});expect(f.selection()).toEqual(['d','h']);
+  });
   it.each(['outside','viewport','pointerleave'])('%s freezes applied selection, consumes release, and cannot resume on reentry',kind=>{
     const f=setup();f.sweep();expect(f.selection()).toEqual(['b','c','d','h']);
     if(kind==='pointerleave')f.send('pointerleave');
