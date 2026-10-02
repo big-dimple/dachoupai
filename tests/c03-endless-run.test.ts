@@ -1,6 +1,7 @@
 import {describe,expect,it} from 'vitest';
 import {applyCommand,assertRunInvariants,createRun,stateHash,type Action,type Command,type R2RunState} from '../src/domain/run';
 import {getR2Stage,r2CreateJoker} from '../src/domain/r2Run';
+import {r2ToolAcquisitionPool} from '../src/domain/r2Shop';
 
 const command=(state:R2RunState,action:Action):Command=>({runId:state.runId,commandId:`endless/${state.commandSeq+1}`,expectedSeq:state.commandSeq,action});
 const send=(state:R2RunState,action:Action):R2RunState=>{
@@ -95,6 +96,9 @@ describe('C03.4 voluntary endless uses atomic shared commands',()=>{
     let state=send(normalWin(),continueAction);
     state.consumables=[{instanceId:'endless/spectral',definitionId}];
     if(definitionId==='S08')for(const card of state.deckInstances.slice(0,4))card.enhancement='heat-paper';
+    const beforePool=stateHash(state);
+    expect(r2ToolAcquisitionPool(state).map(tool=>tool.id)).toContain(definitionId);
+    expect(stateHash(state)).toBe(beforePool);
     const selected=definitionId==='S03'?[state.deckInstances[0].id]:[];
     const action:Action={type:'UseConsumable',instanceId:'endless/spectral',targetIds:selected,...(definitionId==='S04'?{suit:'hearts' as const}:{})};
     const completion=structuredClone(state.normalCompletion);state=send(state,action);

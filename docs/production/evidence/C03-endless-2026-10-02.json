@@ -517,5 +517,54 @@
     "mode": "lightweight pre-commit",
     "status": "PASS",
     "scope": "Actual owned diff reviewed; stale test titles/current engineering pointer reconciled; original compact plan layout preserved; one-off probes/logs/screenshots remain ignored and no new harness or npm command added. Final build, scoped tests and bounded browser tail are sufficient after the late view-only fix."
+  },
+  "acquisitionFollowup": {
+    "status": "PASS",
+    "testedCommit": "75ea0d25a94aeefb99ed6df11cab432cebdda63d",
+    "reason": "During C04 resource review, natural acquisition still used the old8-chapter guard even though S03/S04/S08 could be used in endless. Resolve next stage through the same explicit mode/finite target contract; existing stored offers are retained, not redrawn.",
+    "sourceFingerprints": {
+      "src/domain/r2Shop.ts": "b37f0712e2a8a88b73cc15ce10713f61add52ef3fa888f2e6848046e7343c973",
+      "tests/c03-endless-run.test.ts": "18946719fbc25b009b801fccb44a02fe5147ab0cd1a9cfcbb92e8af69308eb56"
+    },
+    "red": {
+      "command": "npm.cmd test -- --run tests/c03-endless-run.test.ts --reporter=dot",
+      "status": "FAIL",
+      "result": "3 FAIL/11 PASS: S03/S04/S08 missing from endless acquisition pool",
+      "chunk": "b21d0d",
+      "log": "shots/c03-endless-acquisition-red.log"
+    },
+    "checks": [
+      {
+        "command": "npm.cmd test -- --run tests/c03-endless-run.test.ts tests/c03-endless-save.test.ts tests/c01-tool-acquisition.test.ts --reporter=dot",
+        "status": "PASS",
+        "exitCode": 0,
+        "result": "36 cases in the two existing selected suites; third selector matched no file and is not claimed as run.",
+        "chunk": "fdc02f",
+        "log": "shots/c03-endless-acquisition-green.log"
+      },
+      {
+        "command": "npm.cmd test -- --run tests/c01-tools.test.ts tests/c02-acquisition.test.ts tests/r2-shop.test.ts --reporter=dot",
+        "status": "PASS",
+        "exitCode": 0,
+        "result": "26 tests/3 suites; normal tool and72-Joker earned-shop regression.",
+        "chunk": "a49fd2",
+        "log": "shots/c03-endless-acquisition-shop-regression.log"
+      },
+      {
+        "command": "npm.cmd run build",
+        "status": "PASS",
+        "exitCode": 0,
+        "result": "Types and production build; existing size warning retained.",
+        "chunk": "6369ff",
+        "log": "shots/c03-endless-acquisition-build.log"
+      }
+    ],
+    "notRun": [
+      "No repeat full unit or long browser run for this two-line pure acquisition correction; prior evidence retains its own tested tree.",
+      "Physical device/natural long-campaign balance"
+    ],
+    "publication": {
+      "status": "PENDING_NORMAL_MAIN_PUSH"
+    }
   }
 }
