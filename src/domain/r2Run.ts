@@ -12,12 +12,12 @@ export {R2_LIMITS,R2_RESOURCE_CONTRACT,r2HandLimit,r2HandsBudget,r2DiscardBudget
 import {R2_ENHANCEMENTS,R2_LONG_TERM_ITEMS,R2_TOOLS,R2_TOOL_CATALOG} from '../content/r2Tools';
 import {R2_IMPLEMENTED_TOOL_FEATURES,R2_IMPLEMENTED_ITEM_IDS,r2CardSpecialsSupported,r2EditionSupported,r2ItemSupported,r2ToolSupported} from './r2ToolRuntime';
 import {applyR2Tool} from './r2ToolCommands';
-import {R2_AVAILABLE_CHAPTERS,R2_BOSSES,R2_SKIP_CONSUMABLES,drawR2Boss,r2DisabledCards,r2OrdinarySuppression,type R2BossPlan,type R2SkipConsumable,type R2SkipResult} from './r2Chapter';
+import {R2_TARGETS,R2_AVAILABLE_CHAPTERS,R2_BOSSES,R2_SKIP_CONSUMABLES,r2StageSpec,drawR2Boss,r2DisabledCards,r2OrdinarySuppression,type R2BossPlan,type R2SkipConsumable,type R2SkipResult} from './r2Chapter';
+export {R2_TARGETS} from './r2Chapter';
 import { scoreR2Hand, ScoreFault, SCORE_LIMITS, R2_BASE_SCORES, type ScoreTrace, type ScoreEvent } from './scoreR2';
 import type { Command, DomainEvent, RunState, StageState } from './run';
 import {drawR2Shelf,drawR2Edition,drawR2Tool,drawR2Items,R2_ECONOMY,r2Price,r2ToolPrice,r2ItemPrice,r2ToolAcquisitionPool,r2Pool,r2PaidRerollPrice,salePrice,r2PurchasePrice,type R2ShopState} from './r2Shop';
 
-export const R2_TARGETS = [400,1000,2400,5600,13000,30000,70000,160000] as const;
 export const R2_STARTING_HAND_LEVELS:Partial<Record<CharacterId,Partial<Record<R2HandType,number>>>> = {amo:{'high-card':3}};
 export const R2_CONTENT_VERSION = 'quality-r2-content-v7';
 export const R2_CONTENT_HASH = stableHash({jokers:R2_JOKERS,features:R2_IMPLEMENTED_FEATURES,tools:R2_TOOL_CATALOG,toolFeatures:R2_IMPLEMENTED_TOOL_FEATURES,itemIds:R2_IMPLEMENTED_ITEM_IDS,resources:R2_RESOURCE_CONTRACT,limits:R2_LIMITS,economy:R2_ECONOMY,targets:R2_TARGETS,hands:R2_BASE_SCORES,startingHandLevels:R2_STARTING_HAND_LEVELS,score:SCORE_LIMITS,bosses:R2_BOSSES,chapters:R2_AVAILABLE_CHAPTERS,skip:R2_SKIP_CONSUMABLES});
@@ -122,8 +122,8 @@ export function assertR2Invariants(state:R2RunState):void {
 }
 function refill(state:R2RunState):void {while(state.handOrder.length<(state.stage?.handLimit??R2_LIMITS.handSize)&&state.drawPile.length)state.handOrder.push(state.drawPile.pop()!);}
 export function getR2Stage(index:number):{index:number;name:string;intro:string;targetHeat:string}|undefined {
-  const base=R2_TARGETS[Math.floor(index/3)];if(!Number.isInteger(index)||index<0||index>=R2_AVAILABLE_CHAPTERS*3||!base)return undefined;
-  return {index,name:`第 ${Math.floor(index/3)+1} 章 · ${['暖场','正场','压轴'][index%3]}`,intro:'打到目标热度即可过场，出牌和弃牌次数每场补满。',targetHeat:String(Math.ceil(base*[1,1.5,2][index%3]))};
+  if(!Number.isInteger(index)||index<0||index>=R2_AVAILABLE_CHAPTERS*3)return undefined;
+  return r2StageSpec(index);
 }
 function makeChapter(state:R2RunState):void {
   const rule=SeededRng.restore(state.rng.rule),reward=SeededRng.restore(state.rng.reward);

@@ -502,6 +502,7 @@ export class GameScene extends Phaser.Scene {
     const index=this.cardViews.findIndex(view=>view.card.id===id),view=this.cardViews[index];if(!view)return;
     if(enter){const previous=this.cardViews.find(card=>card.card.id===this.hoveredCardId);this.hoveredCardId=id;if(previous&&previous!==view)this.restingCard(previous,this.cardViews.indexOf(previous),true);this.revealCard(view);this.sweepSheen(view);this.audio.hoverTick();}else if(this.hoveredCardId===id)this.hoveredCardId=undefined;
     this.restingCard(view,index,true);
+    this.orderSelectedCards();
   }
   /** Cards rest in a slight fan; hover lifts, enlarges and tilts toward the pointer. */
   private restingCard(view:CardView,index:number,animate:boolean):void {
@@ -515,7 +516,7 @@ export class GameScene extends Phaser.Scene {
     this.tweens.killTweensOf(view.container);view.container.setAlpha(1);view.faceGlow?.setAlpha(0);
     if(animate&&!this.reducedMotion)this.tweens.add({targets:view.container,x:b.x+b.width/2,y,angle,scaleX:scale,scaleY:scale,duration:selected?150:115,ease:selected?'Back.easeOut':'Sine.easeOut'});else view.container.setPosition(b.x+b.width/2,y).setScale(scale).setAngle(angle);
     view.background.setStrokeStyle(hovered||focused||selected||scoring?4:1,hovered||focused?0xffd990:scoring?T.jade:selected?T.red:T.brass);view.edgeGlow?.setAlpha(hovered||focused?1:selected?0.85:0);
-    if(hovered)this.view.root.bringToTop(view.container);else if(view.hit?.active)this.view.root.moveBelow<Phaser.GameObjects.GameObject>(view.container,view.hit);
+    if(hovered)this.view.root.bringToTop(view.container);else if(!selected&&view.hit?.active)this.view.root.moveBelow<Phaser.GameObjects.GameObject>(view.container,view.hit);
     this.view.root.bringToTop(this.handCountText);this.view.root.bringToTop(this.pileText);
   }
   private hoverJoker(id:string,enter:boolean):void {
@@ -551,7 +552,14 @@ export class GameScene extends Phaser.Scene {
     if(animate&&!this.reducedMotion)this.tweens.add({targets:view,x,y,angle:0,scaleX:scale,scaleY:scale,duration:120,ease:'Sine.easeOut',onComplete:idle});else {view.setPosition(x,y).setAngle(0).setScale(scale);idle();}
     if(hovered)this.view.root.bringToTop(view);else if(hit?.active)this.view.root.moveBelow<Phaser.GameObjects.GameObject>(view,hit);
   }
-  private clearHover():void {this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview?.destroy();this.jokerHoverPreview=undefined;this.draggingCardId=undefined;this.cardViews.forEach((view,i)=>{this.revealCard(view);this.restingCard(view,i,false);});this.stopJokerIdle();this.jokerViews.forEach(view=>this.restingJoker(view,false,false));}
+  private clearHover():void {this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview?.destroy();this.jokerHoverPreview=undefined;this.draggingCardId=undefined;this.cardViews.forEach((view,i)=>{this.revealCard(view);this.restingCard(view,i,false);});this.orderSelectedCards();this.stopJokerIdle();this.jokerViews.forEach(view=>this.restingJoker(view,false,false));}
+  /** Pointer-out must not lower one chosen card beneath its overlapping neighbours. */
+  private orderSelectedCards():void {
+    if(this.presentation)return;
+    this.cardViews.filter(view=>this.selectedIds.has(view.card.id)).forEach(view=>this.view.root.bringToTop(view.container));
+    const hovered=this.cardViews.find(view=>view.card.id===this.hoveredCardId);if(hovered)this.view.root.bringToTop(hovered.container);
+    this.view.root.bringToTop(this.handCountText);this.view.root.bringToTop(this.pileText);
+  }
   private refreshSelection(animateId?:string):void {
     const preview=!this.presentation&&this.selectedIds.size?this.preview():undefined;
     const active=this.presentation?.score.sets.activeScoringIds??preview?.sets.activeScoringIds??[];
@@ -567,11 +575,7 @@ export class GameScene extends Phaser.Scene {
       v.scoringMark.setText(disabled?'失效':pointsZero?'点数0':'★').setVisible(disabled||pointsZero||scoring);
       if(v.hit)v.hit.input!.enabled=this.ready&&this.view.layout.cards[i].visible;
     });
-    if(!this.presentation){
-      this.cardViews.filter(view=>this.selectedIds.has(view.card.id)).forEach(view=>this.view.root.bringToTop(view.container));
-      const hovered=this.cardViews.find(view=>view.card.id===this.hoveredCardId);if(hovered)this.view.root.bringToTop(hovered.container);
-      this.view.root.bringToTop(this.handCountText);this.view.root.bringToTop(this.pileText);
-    }
+    this.orderSelectedCards();
     if(!this.presentation){this.previewSelection(preview);this.renderSelectedCards(preview);}
     this.updateControls();
   }
@@ -883,7 +887,7 @@ export class GameScene extends Phaser.Scene {
   private refreshScoreFire(product:string):void {
     const presentation=this.presentation;if(!presentation)return;
     const level=scoreFireLevel(presentation.originHeat,product,this.stage.targetHeat),b=this.view.layout.scoreBoard;
-    if(level&&!this.scoreFlame)this.scoreFlame=new ScoreFlame(this,this.view.root,{x:b.x+3,y:b.y+25,width:b.width-6,height:Math.max(20,b.height-27)});
+    if(level&&!this.scoreFlame){const l=this.view.layout;this.scoreFlame=new ScoreFlame(this,this.view.root,{x:b.x+3,y:b.y+25,width:b.width-6,height:Math.max(20,b.height-27)},{x:8,y:8,width:l.width-16,height:l.height-16});}
     this.scoreFlame?.set(level,this.reducedMotion);this.audio.setScoreFire(level);
     this.scoreTotal.setColor(level?'#fff2c1':'#ffe3a4');this.keepScoreReadable();
   }
@@ -1263,7 +1267,7 @@ export class GameScene extends Phaser.Scene {
     this.stopScoreFire();
     this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.statusMessage='';this.updateHud();
     if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true);return;}
-    if(this.run.phase==='run-lost'){this.finishStage(false);return;}
+    if(this.run.phase==='run-lost'){this.finishStage(false,!presentation.replay);return;}
     this.playing=false;this.render();this.revealDrawnCards(presentation.hand.map(card=>card.id));
   }
 
@@ -1279,7 +1283,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   /** 本关结束：先让玩家看清结果，再进入明确的过场状态 */
-  private finishStage(cleared: boolean): void {
+  private finishStage(cleared: boolean,cueFailure=true): void {
     this.playing=true;this.playButton.disableInteractive();
     const lifecycle=this.lifecycle,handsLeft=this.handsLeft;
     const completedIndex = this.run.stage!.index;
@@ -1303,6 +1307,7 @@ export class GameScene extends Phaser.Scene {
         stageHeat,
         handsLeft,
         goldEarned,
+        ...(!cleared&&cueFailure?{failureCue:{runId:this.run.runId,commandSeq:this.run.commandSeq}}:{})
       } satisfies IntermissionResult);
     }});
   }

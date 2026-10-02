@@ -72,6 +72,27 @@ try {
       const indices=await page.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return s.cardViews.map(c=>{const index=c.container.list.find(o=>o.name==='rank-index'),a=index.getBounds(),intersects=b=>a.left<b.right&&b.left<a.right&&a.top<b.bottom&&b.top<a.bottom;return {rank:c.card.rank,text:index.text,pipOverlap:c.container.list.filter(o=>o.name==='card-pip').some(p=>intersects(p.getBounds()))};});});
       assert.ok(indices.every(c=>!c.pipOverlap),'suit art never covers a rank index');
       for(const c of indices.filter(c=>c.rank===10))assert.ok(c.text.startsWith('10\n'),'ten is printed as the complete rank');
+      await tapUI(page,'game','card/'+chosen,true);
+      const row=initial.handOrder.slice(0,5);
+      for(const order of [row,[...row].reverse()]){
+        for(const id of order)await tapUI(page,'game','card/'+id,true);
+        await page.waitForTimeout(260);
+        const blocked=await page.evaluate(()=>{
+          const s=window.__harness.game.scene.getScene('game'),views=s.cardViews.filter(c=>c.container.visible);
+          return views.filter(c=>c.container.getData('selected')).filter(c=>{
+            const a=c.container.list.find(o=>o.name==='rank-index').getBounds(),z=s.view.root.getIndex(c.container);
+            return views.some(other=>{
+              if(other===c||s.view.root.getIndex(other.container)<=z)return false;
+              const b=other.background.getBounds();
+              return Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top))>a.width*a.height*.06;
+            });
+          }).map(c=>c.card.id);
+        });
+        assert.deepEqual(blocked,[],'touching cards in either direction keeps all selected rank/suit indices visible');
+        for(const id of row)await tapUI(page,'game','card/'+id,true);
+      }
+      assert.deepEqual(await state(page),initial,'selection order cannot spend resources or advance RNG');
+      await tapUI(page,'game','card/'+chosen,true);
     }
     assert.ok(await page.evaluate(id=>{const s=window.__harness.game.scene.getScene('game'),c=s.cardViews.find(c=>c.card.id===id);return s.selectedIds.has(id)&&c.container.getData('selected')&&s.resultText.text.includes('当前选择');},chosen),'selection immediately changes both card and preview');
     await dom(page,'菜单',touch);
@@ -128,7 +149,7 @@ try {
       await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').selectedIds.size===0);
       if(saveScreens&&engine===selected[0])await page.screenshot({path:`shots/${name}-short.png`});
     }
-    assert.deepEqual(errors,[]);report.checks.push({engine,browserVersion:browser.version(),profile:name,viewport,deviceScaleFactor,framebufferDensity:density,fullscreen,status:'PASS',input:touch?'touchscreen.tap / DOM tap':'mouse.click / DOM click',covered:['select-confirm-cancel','buy-cancel','rank/suit-sort','discard-refill','live-discard-count-pulse','live-play-count-pulse','play-preview-feedback','reload-continue','fixed-menu-anchor','menu-preserves-selection',...(touch?['high-DPR','rotation-preserves-state']:[])]});const video=page.video();await context.close();if(recordVideo)await video.saveAs('shots/p00-play.webm');console.log(`${engine}/${name}: ok`);
+    assert.deepEqual(errors,[]);report.checks.push({engine,browserVersion:browser.version(),profile:name,viewport,deviceScaleFactor,framebufferDensity:density,fullscreen,status:'PASS',input:touch?'touchscreen.tap / DOM tap':'mouse.click / DOM click',covered:['select-confirm-cancel','buy-cancel','rank/suit-sort','discard-refill','live-discard-count-pulse','live-play-count-pulse','play-preview-feedback','reload-continue','fixed-menu-anchor','menu-preserves-selection',...(touch?['high-DPR','left/right-selected-rank-visible','rotation-preserves-state']:[])]});const video=page.video();await context.close();if(recordVideo)await video.saveAs('shots/p00-play.webm');console.log(`${engine}/${name}: ok`);
   }
   if(checkFeedback&&engine===selected[0]){
     const viewport={width:390,height:740},context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:3}),page=await context.newPage(),errors=[];activePage=page;
@@ -151,7 +172,10 @@ try {
         const id=s.scoreTotal.getData('eventId'),phase=s.scoreTotal.getData('eventPhase');
         if(id&&!observation.events.some(e=>e.id===id&&e.phase===phase))observation.events.push({id,phase,at:performance.now()-observation.started,label:s.resultText.text,heat:s.scoreHeat.text,mult:s.scoreMult.text});
         const level=s.scoreFlame?.graphic?.getData('intensity')??0;
-        if(level&&!observation.fire.some(f=>f.level===level))observation.fire.push({level,at:performance.now()-observation.started,voices:s.audio.fireVoices.size,audio:[...s.audio.fireVoices].map(voice=>({layer:voice.fireLayer,filter:voice.filter.type,frequency:voice.filter.frequency.value,gain:voice.gain.gain.value})),shown:s.scoreTotal.text,heat:s.scoreHeat.text,mult:s.scoreMult.text,id,phase});
+        if(level&&!observation.fire.some(f=>f.level===level)){
+          const frame=s.view.root.list.filter(o=>o.name.startsWith('score/fire-frame-')&&o.visible).map(o=>{const b=o.getBounds();return {name:o.name,x:b.x,y:b.y,width:b.width,height:b.height,interactive:!!o.input};});
+          observation.fire.push({level,frame,at:performance.now()-observation.started,voices:s.audio.fireVoices.size,audio:[...s.audio.fireVoices].map(voice=>({layer:voice.fireLayer,filter:voice.filter.type,frequency:voice.filter.frequency.value,gain:voice.gain.gain.value})),shown:s.scoreTotal.text,heat:s.scoreHeat.text,mult:s.scoreMult.text,id,phase});
+        }
       },30);
     });
     await tapUI(page,'game','action/play',true);await next(page,beforePlay.commandSeq);
@@ -177,6 +201,11 @@ try {
       const shown=BigInt(frame.shown.replaceAll(',','')),total=BigInt(beforePlay.stage.heat)+shown,target=BigInt(after.stage.targetHeat);
       const level=total<=target?0:total>=target*2n?2:1;
       assert.equal(frame.level,level,'flame level follows the score visible in this same browser tick, never a future roll result');
+      assert.equal(frame.frame.length,level===2?4:0,'only large fire ignites all four table edges');
+      for(const band of frame.frame){
+        assert.equal(band.interactive,false,'fire never intercepts the player input');
+        assert.ok(Math.min(band.width,band.height)<=12.01&&band.x>=-.01&&band.y>=-.01&&band.x+band.width<=390.01&&band.y+band.height<=740.01,'visible flame stays in the portrait table gutter');
+      }
     }
     for(const event of expected){
       const phases=['windup','impact','rest'].map(phase=>observation.events.find(e=>e.id===event.eventId&&e.phase===phase));
@@ -196,7 +225,7 @@ try {
     assert.equal((await state(page)).stage.index,1);assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('game').cardViews.length),8);
     assert.deepEqual(errors,[],'second table entry must not touch destroyed controls');
     assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('game').audio.fireVoices.size),0,'finished scoring does not leak fire audio into the next table');
-    report.checks.push({engine,browserVersion:browser.version(),channel:process.env.SMOKE_CHROMIUM_CHANNEL||'default',profile:'natural-three-times-target',status:'PASS',seed:'p04-golden-02',character:'touye',selectedIds:ids,finalScore:'1200',target:'400',burstElapsedMs,renderFps,linkedAudio,observation,ordinaryPacing,covered:['natural-wager-straight','every-source-ordered-impact','progressive-individual-card-pace','displayed-score-fire-thresholds','3x-flame-and-burning-audio','real-3x-stamp','score-number-bounce','scheduled-overkill-audio','exact-credit-once','second-table-entry-after-clear','fire-cleanup'],physicalListening:'NOT_RUN',physicalPerformance:'NOT_RUN'});
+    report.checks.push({engine,browserVersion:browser.version(),channel:process.env.SMOKE_CHROMIUM_CHANNEL||'default',profile:'natural-three-times-target',status:'PASS',seed:'p04-golden-02',character:'touye',selectedIds:ids,finalScore:'1200',target:'400',burstElapsedMs,renderFps,linkedAudio,observation,ordinaryPacing,covered:['natural-wager-straight','every-source-ordered-impact','progressive-individual-card-pace','displayed-score-fire-thresholds','3x-flame-and-burning-audio','four-visible-noninteractive-frame-flames','real-3x-stamp','score-number-bounce','scheduled-overkill-audio','exact-credit-once','second-table-entry-after-clear','fire-cleanup'],physicalListening:'NOT_RUN',physicalPerformance:'NOT_RUN'});
     await context.close();console.log(`${engine}/natural-3x: ok`);
   }
   if((checkC00||process.env.SMOKE_FEEDBACK==='1')&&engine===selected[0]){

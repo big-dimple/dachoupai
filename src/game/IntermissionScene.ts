@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import {AudioEngine} from '../audio/AudioEngine';
+import {AudioEngine,type FailureCue} from '../audio/AudioEngine';
 import {getR2Stage} from '../domain/r2Run';
 import {getR2Joker} from '../domain/r2Shop';
 import {r2BossText} from '../domain/r2Chapter';
@@ -16,7 +16,7 @@ import {DetailDialog} from './DetailDialog';
 import {SKIP_ITEM_LABELS} from './ConsumableDialog';
 import type {Box} from './layout';
 
-export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number}
+export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue}
 function resultLayout(width:number,height:number,top:number,bottom:number){
   const short=height<500,w=Math.min(980,width-24),x=(width-w)/2,footerY=height-bottom-104;
   const bodyY=top+(short?62:82),available=footerY-18-bodyY;
@@ -51,7 +51,13 @@ export class IntermissionScene extends Phaser.Scene {
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
     this.cameras.main.setBackgroundColor('#153c40');
     const skipped=!!run.stage.skipResult;this.audio.setScene(this.result.cleared?'success':'failure');
-    if(!skipped){if(this.result.cleared)this.audio.success();else this.audio.failure();}
+    if(!skipped){
+      if(this.result.cleared)this.audio.success();
+      else {
+        const cue=this.result.failureCue;
+        if(run.phase==='run-lost'&&run.outcome?.reason!=='abandoned'&&cue?.runId===run.runId&&cue.commandSeq===run.commandSeq)this.audio.failure(cue);
+      }
+    }
     this.view=new SceneView(this,()=>this.render());this.render();
     if(!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){this.view.root.setAlpha(.35);this.tweens.add({targets:this.view.root,alpha:1,duration:260,ease:'Cubic.easeOut'});}
   }

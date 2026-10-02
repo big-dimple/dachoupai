@@ -2,6 +2,7 @@ import recording from '../../public/assets/audio/p06/recording.json';
 
 export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
 export type AudioScene = 'menu' | 'shop' | 'table' | 'boss' | 'success' | 'failure';
+export type FailureCue = { runId: string; commandSeq: number };
 type VoiceBus = Exclude<AudioBus, 'master'>;
 type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; fire?: boolean; fireLayer?: 'bed'|'rumble'; roll?: ScoreRollKind };
 export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 'retrigger';
@@ -41,6 +42,7 @@ export class AudioEngine {
   private musicGeneration = 0;
   private musicFailed = false;
   private duckUntil = 0;
+  private readonly failureCues = new WeakSet<FailureCue>();
 
   get muted(): boolean { return this.masterMuted; }
   set muted(value: boolean) {
@@ -628,5 +630,17 @@ export class AudioEngine {
   reroll(): void { this.paper(.08, .036); this.paper(.08, .03, .075); [67, 74].forEach((n, i) => this.note(n, .11, .027, 'ui', .05 + i * .075)); }
   rareReveal(): void { this.duckMusic(.65); [62, 69, 78, 81].forEach((n, i) => this.note(n, .36, .038, 'sfx', i * .075, 'sine')); }
   success(): void { this.duckMusic(.9); [62, 66, 69, 74, 78, 81].forEach((n, i) => this.note(n, .38, .045, 'sfx', i * .07)); }
-  failure(): void { this.duckMusic(1); [69, 65, 62].forEach((n, i) => this.note(n, .4, .033, 'sfx', i * .16, 'sine')); }
+  /** A transient committed ending, never a saved result being reopened. */
+  failure(cue: FailureCue): void {
+    if (!cue || this.failureCues.has(cue)) return;
+    // Muted/background endings are consumed, not queued for a later scene redraw.
+    this.failureCues.add(cue);
+    if (!this.canPlay('sfx')) return;
+    this.duckMusic(.75);
+    this.note(50, .30, .062, 'sfx', 0, 'sine', undefined, undefined, 'warm');
+    this.note(69, .16, .061, 'sfx', 0, 'triangle', undefined, undefined, 'piano');
+    this.note(66, .16, .054, 'sfx', .11, 'triangle', undefined, undefined, 'piano');
+    this.note(62, .28, .058, 'sfx', .23, 'triangle', undefined, undefined, 'piano');
+    this.note(69, .26, .028, 'sfx', .25, 'sine');
+  }
 }

@@ -1,0 +1,188 @@
+{
+  "taskId": "C03",
+  "insertedFix": "C03-PRESENTATION-20261002",
+  "date": "2026-10-02",
+  "status": "ENGINEERING_PASS_PUBLICATION_PENDING",
+  "testedCommit": "bf4d7993077255c2a642564402d22bf9016d41c9",
+  "testedTree": "main dirty tree bound by sourceFingerprints; no reset, force push or unrelated files",
+  "sourceFingerprints": {
+    "src/game/GameScene.ts": "30b88d1987ab9e6dcc1e6de6c74fdbbcd1b7d971075e62c4ed5b2c28581f8169",
+    "src/game/ScoreFlame.ts": "9979118e843c62bac70246feb9b7730ffb9debb021b283e9787f952b61bc6d7b",
+    "src/audio/AudioEngine.ts": "a4fcd2c156c5fe329125ad315e94c7647583fa3976e5dd7d6a92c8f297d46f50",
+    "src/game/IntermissionScene.ts": "fb88a88a5c71cd60d562fae00c7904ecd562debef054f1235a18a54bd82d9fde",
+    "src/domain/r2Chapter.ts": "f956ff77c92d30c482b8715b8388152d0e8cd0e9cbe8da75a92235ca19e00198",
+    "src/domain/r2Run.ts": "00c9efb7e522efd5cc13f961a93d3decbdb939e98b9f206895dde2f544a48006",
+    "harness/screenshot.mjs": "f74930b0c4b87a1dffe92b3fd7d766d2c578c5fa48df069fd43bb27f0a8dd6df",
+    "tests/score-flame.test.ts": "1af41f06e035f955edd984d4eca68ea5c600601818310d7f85179972371d2c23",
+    "tests/failure-audio.test.ts": "f18332c4176e4d7b714e7db2579432ca22c93d1c087aa633a7b8634b6c228db8",
+    "tests/c03-chapter-spec.test.ts": "2a72b3516a646c26ed208bd6e4c5946e6c25a460778419e684bd16512263c6e1"
+  },
+  "red": [
+    {
+      "command": "FIX_PHASE=red node shots/c03-insert-browser.mjs",
+      "result": "FAIL: left-to-right selected clubs-8 rank fully covered; reverse PASS",
+      "screenshot": "shots/c03-insert-red-left-to-right.png",
+      "chunk": "2e237d",
+      "log": "shots/c03-insert-red.log"
+    },
+    {
+      "command": "npx.cmd vitest run tests/failure-audio.test.ts",
+      "result": "2 FAIL / 2 PASS: identical deterministic fields in a new attempt lost its sound, including after a muted attempt",
+      "chunk": "7742ee",
+      "log": "shots/c03-failure-audio-identity-red-final.log"
+    },
+    {
+      "command": "npx.cmd vitest run tests/score-flame.test.ts",
+      "result": "2 FAIL / 1 PASS",
+      "chunk": "99fc68",
+      "log": "shots/c02-fire-frame-red.log"
+    },
+    {
+      "command": "npx.cmd vitest run tests/c03-chapter-spec.test.ts --reporter=verbose",
+      "result": "45 FAIL / 4 PASS",
+      "chunk": "131e6f",
+      "log": "shots/c03-chapter-spec-red.log"
+    }
+  ],
+  "green": [
+    {
+      "command": "npx.cmd vitest run tests/failure-audio.test.ts",
+      "result": "4 PASS",
+      "limitation": "Scene entry is real; draw and audio scheduling are mocked. Listening is NOT_RUN.",
+      "chunk": "abb2a5",
+      "log": "shots/c03-failure-audio-identity-green.log"
+    },
+    {
+      "command": "npx.cmd vitest run tests/score-flame.test.ts tests/score-presentation.test.ts",
+      "result": "14 PASS",
+      "chunk": "39414f",
+      "log": "shots/c02-fire-frame-green.log"
+    },
+    {
+      "command": "npx.cmd vitest run tests/c03-chapter-spec.test.ts tests/c02-chain.test.ts tests/c01-score.test.ts --reporter=verbose",
+      "result": "98 PASS; existing score goldens retained",
+      "chunk": "9850e6",
+      "log": "shots/c03-chapter-spec-green.log"
+    },
+    {
+      "command": "npm.cmd run build",
+      "result": "PASS: tsc --noEmit and production bundle",
+      "chunk": "47fb09",
+      "log": "shots/c03-presentation-build.log"
+    },
+    {
+      "command": "FIX_PHASE=green node shots/c03-insert-browser.mjs",
+      "result": "PASS",
+      "chunk": "97097f",
+      "screenshot": "shots/c03-insert-green-left-to-right.png",
+      "details": "390x740 DPR3 real touch: both selection directions; actual failure SFX waveform, same-seed retry, rotation/result inspection and restore",
+      "log": "shots/c03-insert-green.log"
+    },
+    {
+      "command": "SMOKE_REUSE_BUILD=1 SMOKE_CHROMIUM_CHANNEL=chromium SHOT_PROFILES=desktop,shortmobile npm.cmd run verify:smoke",
+      "profiles": [
+        "1280x720 mouse",
+        "360x640 DPR3 touch"
+      ],
+      "result": "PASS",
+      "chunk": "0abb9c",
+      "details": "Selection/purchase/cancel/two sorts/discard and play count pulses/refresh restore; left-right rank visibility added to existing touch path",
+      "log": "shots/c03-selection-smoke.log"
+    },
+    {
+      "command": "SMOKE_REUSE_BUILD=1 SMOKE_CHROMIUM_CHANNEL=chromium SMOKE_FEEDBACK=only SMOKE_SHOTS=1 npm.cmd run verify:smoke",
+      "result": "PASS",
+      "chunk": "0abb9c",
+      "screenshot": "shots/mobile-score-fire.png",
+      "details": "Natural seed p04-golden-02: 1200/400; ordered sources, small then large fire, four noninteractive outer bands, second table and audio cleanup",
+      "log": "shots/c03-frame-final.log"
+    }
+  ],
+  "observed": {
+    "browser": "153.0.8010.12",
+    "physicalDevice": "NOT_RUN",
+    "physicalListening": "NOT_RUN",
+    "failureBassSources": [
+      1,
+      2
+    ],
+    "failurePeakRMS": [
+      0.19650713509314105,
+      0.2788887369844427
+    ],
+    "naturalFireScore": "1200",
+    "target": "400",
+    "browserFPS": 51.4744873046875,
+    "displayedFire": [
+      {
+        "level": 1,
+        "shown": "500",
+        "voices": 2,
+        "frame": []
+      },
+      {
+        "level": 2,
+        "shown": "903",
+        "voices": 2,
+        "frame": [
+          {
+            "name": "score/fire-frame-top",
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 12,
+            "interactive": false
+          },
+          {
+            "name": "score/fire-frame-right",
+            "x": 378,
+            "y": 0,
+            "width": 12,
+            "height": 740,
+            "interactive": false
+          },
+          {
+            "name": "score/fire-frame-bottom",
+            "x": 0,
+            "y": 728,
+            "width": 390,
+            "height": 12,
+            "interactive": false
+          },
+          {
+            "name": "score/fire-frame-left",
+            "x": -2.3092638912203256E-14,
+            "y": 0,
+            "width": 12.000000000000046,
+            "height": 740,
+            "interactive": false
+          }
+        ]
+      }
+    ],
+    "textureBudget": "two shared cached heat textures <=224x72 and 256x64; refresh <=30Hz; frame inside outer12px",
+    "visualInspection": "root viewed actual portrait selection and large fire screenshots; not human approval"
+  },
+  "continuingC03": {
+    "completedSubstep": "24 normal stage specs and nominal chapter pools, independent golden values",
+    "stillInProgress": "C03.1 versioned public Boss selection/parameters; C03.2-4 remain planned",
+    "runtimeAvailability": "two chapters / B01-B04 unchanged",
+    "contentVersion": "quality-r2-content-v7",
+    "contentHash": "json-fnv-v1:c84c147614b535da",
+    "priorC02": "91 scoped event maximum/318 conservative bound and original mathematical results unchanged"
+  },
+  "findings": [
+    "Interim typecheck b9098f failed on concurrent old flame constructor arity; final production typecheck PASS.",
+    "Browser cb44d1 exposed deterministic same-seed retry identity; a unique-runId test assumption was corrected and actual cue dedupe bug independently reproduced in RED7742ee.",
+    "Browser daf245 failed because counting all matching queued SFX also counted unrelated default-frequency sources. Probe now observes the distinct low failure source; original gameplay expectations unchanged."
+  ],
+  "notRun": [
+    "Full harness suites / three-engine matrix / balance long runs: not needed for this presentation insert.",
+    "New phone physical listening or performance / future formal artwork approval / runtime GLB adoption: NOT_RUN."
+  ],
+  "publication": {
+    "branch": "main",
+    "codeCommit": null,
+    "normalPush": "PENDING"
+  }
+}
