@@ -208,7 +208,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       probability.textContent='公开概率：'+operation.choices.map(choice=>`${operation.kind==='random-enhancement'?R2_ENHANCEMENTS.find(enhancement=>enhancement.id===choice.id)!.name:editionLabel(choice.id as 'foil'|'holographic'|'polychrome')} ${choice.weight}/${total}`).join('、')+'。使用后揭晓结果。';panel.append(probability);
     }
     const risks=document.createElement('details'),riskTitle=document.createElement('summary'),riskText=document.createElement('p');risks.className='tool-full-risk';riskTitle.textContent='风险与完整说明';riskText.textContent=info.risk;risks.append(riskTitle,riskText);
-    panel.append(preview,hint,risks);d.querySelector('.dialog-content')!.append(panel);
+    panel.append(preview,hint,risks);d.querySelector('.dialog-scroll')!.append(panel);
     function refresh():void {
       const issue=selectionIssue(tool,state,selection,known,ready),selected=targetChoices().filter(choice=>selection.ids.has(choice.id));
       for(const control of controls){

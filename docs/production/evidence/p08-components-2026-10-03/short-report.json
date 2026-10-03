@@ -1,0 +1,686 @@
+{
+  "browser": "151.0.7922.173",
+  "renderer": "Canvas",
+  "limits": [
+    "Natural actual clear/score for all fire tiers; the large-number case changes only three UI Text objects and immediately restores the real preview, never rule/save values.",
+    "Reference JPEG pixels NOT_VIEWED by this consumer; user delegated aesthetics to reviewers who viewed them. Physical OnePlus/Android chrome, hardware GPU, audio listening, recording and new pictures NOT_RUN."
+  ],
+  "status": "PASS",
+  "runs": [
+    {
+      "name": "844x300-tier3-safe",
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "dpr": 3,
+      "seed": "d43-fire-267",
+      "character": "laohuan",
+      "ids": [
+        "diamonds-11",
+        "diamonds-13",
+        "diamonds-12",
+        "diamonds-10",
+        "diamonds-14"
+      ],
+      "score": "5589",
+      "tier": 3,
+      "bottom": 34,
+      "top": 12,
+      "checks": [
+        "Actual all-frame text/control/fire bounds; long UI-only values; natural exact once saved clear"
+      ],
+      "errors": [],
+      "phase": "play-to-intermission",
+      "preview": {
+        "layout": {
+          "mode": "landscape",
+          "compact": false,
+          "shortLandscape": true,
+          "width": 844,
+          "height": 300,
+          "hud": {
+            "x": 12,
+            "y": 24,
+            "width": 160,
+            "height": 198
+          },
+          "jokers": {
+            "x": 188,
+            "y": 24,
+            "width": 500,
+            "height": 44
+          },
+          "preview": {
+            "x": 188,
+            "y": 72,
+            "width": 644,
+            "height": 58
+          },
+          "scoreBoard": {
+            "x": 188,
+            "y": 72,
+            "width": 318,
+            "height": 58
+          },
+          "playedArea": {
+            "x": 514,
+            "y": 72,
+            "width": 318,
+            "height": 58
+          },
+          "handLabel": {
+            "x": 188,
+            "y": 134,
+            "width": 116,
+            "height": 18
+          },
+          "piles": {
+            "x": 304,
+            "y": 134,
+            "width": 528,
+            "height": 18
+          },
+          "tools": {
+            "x": 12,
+            "y": 178,
+            "width": 160,
+            "height": 44
+          },
+          "hand": {
+            "x": 188,
+            "y": 134,
+            "width": 644,
+            "height": 64
+          },
+          "actions": {
+            "x": 188,
+            "y": 202,
+            "width": 644,
+            "height": 52
+          },
+          "status": {
+            "x": 12,
+            "y": 226,
+            "width": 160,
+            "height": 28
+          },
+          "scoreFire": {
+            "x": 355.36,
+            "y": 74,
+            "width": 148.64,
+            "height": 19
+          },
+          "toolsInHud": true,
+          "labelHeight": 0,
+          "buttons": {
+            "rank": {
+              "x": 12,
+              "y": 178,
+              "width": 78,
+              "height": 44
+            },
+            "suit": {
+              "x": 94,
+              "y": 178,
+              "width": 78,
+              "height": 44
+            }
+          },
+          "tableActions": {
+            "discard": {
+              "x": 188,
+              "y": 202,
+              "width": 228,
+              "height": 52
+            },
+            "play": {
+              "x": 424,
+              "y": 202,
+              "width": 408,
+              "height": 52
+            }
+          },
+          "cards": [
+            {
+              "visible": true,
+              "visual": {
+                "x": 188,
+                "y": 156,
+                "width": 30.000000000000004,
+                "height": 42
+              },
+              "hit": {
+                "x": 188,
+                "y": 134,
+                "width": 30.000000000000004,
+                "height": 64
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 275.7142857142857,
+                "y": 156,
+                "width": 30.000000000000004,
+                "height": 42
+              },
+              "hit": {
+                "x": 275.7142857142857,
+                "y": 134,
+                "width": 30.000000000000004,
+                "height": 64
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 363.42857142857144,
+                "y": 156,
+                "width": 30.000000000000004,
+                "height": 42
+              },
+              "hit": {
+                "x": 363.42857142857144,
+                "y": 134,
+                "width": 30.000000000000004,
+                "height": 64
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 451.1428571428571,
+                "y": 156,
+                "width": 30.000000000000004,
+                "height": 42
+              },
+              "hit": {
+                "x": 451.1428571428571,
+                "y": 134,
+                "width": 30.000000000000004,
+                "height": 64
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 538.8571428571429,
+                "y": 156,
+                "width": 30.000000000000004,
+                "height": 42
+              },
+              "hit": {
+                "x": 538.8571428571429,
+                "y": 134,
+                "width": 30.000000000000004,
+                "height": 64
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 626.5714285714286,
+                "y": 156,
+                "width": 30.000000000000004,
+                "height": 42
+              },
+              "hit": {
+                "x": 626.5714285714286,
+                "y": 134,
+                "width": 30.000000000000004,
+                "height": 64
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 714.2857142857142,
+                "y": 156,
+                "width": 30.000000000000004,
+                "height": 42
+              },
+              "hit": {
+                "x": 714.2857142857142,
+                "y": 134,
+                "width": 30.000000000000004,
+                "height": 64
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 802,
+                "y": 156,
+                "width": 30.000000000000004,
+                "height": 42
+              },
+              "hit": {
+                "x": 802,
+                "y": 134,
+                "width": 30.000000000000004,
+                "height": 64
+              }
+            }
+          ],
+          "handRows": 1,
+          "handOverflow": false,
+          "handStart": 0,
+          "visibleCardCount": 8,
+          "handNavigation": {
+            "previous": {
+              "x": 188,
+              "y": 144,
+              "width": 44,
+              "height": 44
+            },
+            "next": {
+              "x": 788,
+              "y": 144,
+              "width": 44,
+              "height": 44
+            }
+          },
+          "slots": [
+            {
+              "x": 190,
+              "y": 24,
+              "width": 34,
+              "height": 44
+            },
+            {
+              "x": 290,
+              "y": 24,
+              "width": 34,
+              "height": 44
+            },
+            {
+              "x": 390,
+              "y": 24,
+              "width": 34,
+              "height": 44
+            },
+            {
+              "x": 490,
+              "y": 24,
+              "width": 34,
+              "height": 44
+            },
+            {
+              "x": 590,
+              "y": 24,
+              "width": 34,
+              "height": 44
+            }
+          ],
+          "jokerLabels": [
+            {
+              "x": 230,
+              "y": 24,
+              "width": 54,
+              "height": 44
+            },
+            {
+              "x": 330,
+              "y": 24,
+              "width": 54,
+              "height": 44
+            },
+            {
+              "x": 430,
+              "y": 24,
+              "width": 54,
+              "height": 44
+            },
+            {
+              "x": 530,
+              "y": 24,
+              "width": 54,
+              "height": 44
+            },
+            {
+              "x": 630,
+              "y": 24,
+              "width": 54,
+              "height": 44
+            }
+          ]
+        },
+        "cards": [
+          {
+            "face": {
+              "x": 578.4285975864956,
+              "y": 79,
+              "width": 31.42857142857133,
+              "height": 44
+            },
+            "rank": [
+              {
+                "bounds": {
+                  "x": 582.4285975864956,
+                  "y": 83,
+                  "width": 8,
+                  "height": 30
+                },
+                "font": "14px",
+                "text": "J\n♦"
+              }
+            ],
+            "bounds": {
+              "x": 578.4285975864956,
+              "y": 79,
+              "width": 31.42857142857133,
+              "height": 54.5
+            }
+          },
+          {
+            "face": {
+              "x": 617.8571254185268,
+              "y": 79,
+              "width": 31.42857142857133,
+              "height": 44
+            },
+            "rank": [
+              {
+                "bounds": {
+                  "x": 621.8571254185268,
+                  "y": 83,
+                  "width": 11,
+                  "height": 30
+                },
+                "font": "14px",
+                "text": "K\n♦"
+              }
+            ],
+            "bounds": {
+              "x": 617.8571254185268,
+              "y": 79,
+              "width": 31.42857142857133,
+              "height": 54.5
+            }
+          },
+          {
+            "face": {
+              "x": 657.2857142857143,
+              "y": 79,
+              "width": 31.42857142857133,
+              "height": 44
+            },
+            "rank": [
+              {
+                "bounds": {
+                  "x": 661.2857142857143,
+                  "y": 83,
+                  "width": 11,
+                  "height": 30
+                },
+                "font": "14px",
+                "text": "Q\n♦"
+              }
+            ],
+            "bounds": {
+              "x": 657.2857142857143,
+              "y": 79,
+              "width": 31.42857142857133,
+              "height": 54.5
+            }
+          },
+          {
+            "face": {
+              "x": 696.7143031529018,
+              "y": 79,
+              "width": 31.42857142857133,
+              "height": 44
+            },
+            "rank": [
+              {
+                "bounds": {
+                  "x": 700.7143031529018,
+                  "y": 83,
+                  "width": 14,
+                  "height": 30
+                },
+                "font": "14px",
+                "text": "10\n♦"
+              }
+            ],
+            "bounds": {
+              "x": 696.7143031529018,
+              "y": 79,
+              "width": 31.42857142857133,
+              "height": 54.5
+            }
+          },
+          {
+            "face": {
+              "x": 736.1428309849331,
+              "y": 79,
+              "width": 31.42857142857133,
+              "height": 44
+            },
+            "rank": [
+              {
+                "bounds": {
+                  "x": 740.1428309849331,
+                  "y": 83,
+                  "width": 11,
+                  "height": 30
+                },
+                "font": "14px",
+                "text": "A\n♦"
+              }
+            ],
+            "bounds": {
+              "x": 736.1428309849331,
+              "y": 79,
+              "width": 31.42857142857133,
+              "height": 54.5
+            }
+          }
+        ]
+      },
+      "longNumber": {
+        "at": 5662.79999999702,
+        "fps": 48.7421875,
+        "renderer": "Canvas",
+        "level": 0,
+        "texts": [
+          {
+            "text": "合计热度",
+            "full": "合计热度",
+            "bounds": {
+              "x": 202.34,
+              "y": 90,
+              "width": 56.00000000000003,
+              "height": 16
+            },
+            "font": "14px"
+          },
+          {
+            "text": "合计倍率",
+            "full": "合计倍率",
+            "bounds": {
+              "x": 282.02,
+              "y": 90,
+              "width": 56,
+              "height": 16
+            },
+            "font": "14px"
+          },
+          {
+            "text": "1.23e14",
+            "full": "123,456,789,012,345",
+            "bounds": {
+              "x": 204.84,
+              "y": 108,
+              "width": 51,
+              "height": 16
+            },
+            "font": "14px"
+          },
+          {
+            "text": "× 1e8–9e8",
+            "full": "× 100,000,000–999,999,999",
+            "bounds": {
+              "x": 276.52,
+              "y": 108,
+              "width": 67,
+              "height": 16
+            },
+            "font": "14px"
+          },
+          {
+            "text": "999,999,999,999,999",
+            "full": "999,999,999,999,999",
+            "bounds": {
+              "x": 363.18,
+              "y": 95,
+              "width": 133,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        ],
+        "fireBox": {
+          "x": 355.36,
+          "y": 74,
+          "width": 148.64,
+          "height": 19
+        },
+        "safePieces": [],
+        "controls": [
+          {
+            "x": 12,
+            "y": 178,
+            "width": 78,
+            "height": 44
+          },
+          {
+            "x": 94,
+            "y": 178,
+            "width": 78,
+            "height": 44
+          },
+          {
+            "x": 188,
+            "y": 202,
+            "width": 228,
+            "height": 52
+          },
+          {
+            "x": 424,
+            "y": 202,
+            "width": 408,
+            "height": 52
+          }
+        ],
+        "cards": [
+          {
+            "x": 188,
+            "y": 140,
+            "width": 30,
+            "height": 54.5
+          },
+          {
+            "x": 275.71429443359375,
+            "y": 156,
+            "width": 30,
+            "height": 54.5
+          },
+          {
+            "x": 363.4285583496094,
+            "y": 140,
+            "width": 30,
+            "height": 54.5
+          },
+          {
+            "x": 451.1428527832031,
+            "y": 156,
+            "width": 30,
+            "height": 54.5
+          },
+          {
+            "x": 538.8571166992188,
+            "y": 140,
+            "width": 30,
+            "height": 54.5
+          },
+          {
+            "x": 626.5714111328125,
+            "y": 140,
+            "width": 30,
+            "height": 54.5
+          },
+          {
+            "x": 714.2857055664062,
+            "y": 156,
+            "width": 30,
+            "height": 54.5
+          },
+          {
+            "x": 802,
+            "y": 140,
+            "width": 30,
+            "height": 54.5
+          }
+        ],
+        "bands": [],
+        "reduced": false,
+        "edgeFlash": 0,
+        "impacts": 0,
+        "surge": 0,
+        "maskedFire": [],
+        "flights": [],
+        "gpu": null
+      },
+      "rasters": [
+        {
+          "level": 3,
+          "settled": false,
+          "pixels": {
+            "density": 2,
+            "height": 19,
+            "visibleHeight": 18,
+            "peaks": [
+              11.5,
+              14,
+              18,
+              14,
+              14.5
+            ],
+            "valleys": [
+              5
+            ]
+          }
+        },
+        {
+          "level": 3,
+          "settled": true,
+          "pixels": {
+            "density": 2,
+            "height": 19,
+            "visibleHeight": 17,
+            "peaks": [
+              11,
+              12,
+              17,
+              12.5,
+              13.5
+            ],
+            "valleys": [
+              5.5
+            ]
+          }
+        }
+      ],
+      "cleanup": {
+        "flame": false,
+        "textures": [],
+        "voices": 0
+      },
+      "measuredFrames": 424,
+      "finalScore": "5589"
+    }
+  ],
+  "originalReportSHA256": "52a3c0ae271dc96ca46c04f0bc58ffa259298a14ed343ca652443fee03ae4304"
+}

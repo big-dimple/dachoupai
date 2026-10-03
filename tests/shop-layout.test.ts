@@ -10,3 +10,12 @@ it('three visible modest 5:7 goods, separate readable copy, inventory below, one
   expect(l.slots[0].y+l.slots[0].height).toBeLessThan(l.reroll.y);
  }
 });
+
+it('short landscape has three discoverable goods/copy clear of every action through safe34',()=>{
+ for(const bottom of [0,12,34]){const l=shopLayout(844,300,12,bottom,3);
+  expect(l.shelf).toHaveLength(3);for(const b of l.shelf){const seat=(l.tabs.width-16)/3,tile={...b,width:seat-2};
+   for(const action of [l.play,l.reroll,l.build])expect(intersects(tile,action)).toBe(false);expect(b.y+b.height).toBeLessThan(300-bottom);
+  }
+  for(const b of l.slots)for(const a of [l.play,l.reroll,l.build])expect(intersects(b,a)).toBe(false);expect(l.play.height).toBe(56);
+ }
+});

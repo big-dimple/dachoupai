@@ -1,0 +1,122 @@
+{
+  "source": "2870c6234d42c622820d3d151c8bdde8d54778f0",
+  "browser": "151.0.7922.173",
+  "renderer": "Canvas",
+  "physicalDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "aesthetic": "PENDING_INDEPENDENT_REVIEW",
+  "newArt": "NOT_INTEGRATED",
+  "status": "PASS",
+  "runs": [
+    {
+      "width": 1280,
+      "height": 720,
+      "checks": [
+        "natural all3/5:7/tap opens shared detail/cancel preserves gold, RNG, save",
+        "legal explicit purchase commits exactly once"
+      ],
+      "errors": [],
+      "shopGeometry": {
+        "x": 12,
+        "w": 1256,
+        "top": 8,
+        "short": false,
+        "copyBeside": false,
+        "inventoryCollapsed": false,
+        "compact": false,
+        "wideHeader": false,
+        "portrait": false,
+        "slots": [
+          {
+            "x": 468,
+            "y": 363.2,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 538,
+            "y": 363.2,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 608,
+            "y": 363.2,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 678,
+            "y": 363.2,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 748,
+            "y": 363.2,
+            "width": 64,
+            "height": 89.6
+          }
+        ],
+        "shelf": [
+          {
+            "x": 443.3333333333333,
+            "y": 112,
+            "width": 108,
+            "height": 151.2
+          },
+          {
+            "x": 586,
+            "y": 112,
+            "width": 108,
+            "height": 151.2
+          },
+          {
+            "x": 728.6666666666666,
+            "y": 112,
+            "width": 108,
+            "height": 151.2
+          }
+        ],
+        "tabs": {
+          "x": 430,
+          "y": 60,
+          "width": 420,
+          "height": 44
+        },
+        "chapter": {
+          "x": 12,
+          "y": 112,
+          "width": 200,
+          "height": 44
+        },
+        "items": {
+          "x": 12,
+          "y": 164,
+          "width": 200,
+          "height": 44
+        },
+        "reroll": {
+          "x": 430,
+          "y": 472.79999999999995,
+          "width": 206,
+          "height": 44
+        },
+        "build": {
+          "x": 644,
+          "y": 472.79999999999995,
+          "width": 206,
+          "height": 44
+        },
+        "play": {
+          "x": 430,
+          "y": 524.8,
+          "width": 420,
+          "height": 56
+        },
+        "noticeY": 588.8
+      }
+    }
+  ],
+  "originalReportSHA256": "4c3464e2889ed7f22204058a71870ab141f72fd9ee11978a3de7b56eac2b0a42"
+}

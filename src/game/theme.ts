@@ -13,7 +13,7 @@ export const PAPER_THEME = {
   divider: 0xc7b89d,
   shadow: 0x26313a,
   disabled: 0xd8d1c3,
-  disabledInk: 0x706d63,
+  disabledInk: 0x595b59,
   focus: 0x3f606b,
 } as const;
 

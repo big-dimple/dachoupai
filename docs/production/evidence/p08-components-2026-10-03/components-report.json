@@ -1,0 +1,151 @@
+{
+  "renderer": "Canvas",
+  "browser": "151.0.7922.173",
+  "build": {
+    "version": "C03",
+    "revision": "2870c6234d42c622820d3d151c8bdde8d54778f0",
+    "modified": true,
+    "builtAt": "2026-10-03T15:00:57.507Z"
+  },
+  "newArt": "NOT_INTEGRATED",
+  "independentAesthetic": "PENDING",
+  "physicalDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audioListening": "NOT_RUN",
+  "status": "PASS",
+  "runs": [
+    {
+      "width": 390,
+      "checks": [
+        "six native choices; selected role survives detail cancel and actual resize",
+        "failed HD preserves thumbnail/text/selection; explicit retry succeeds; closing keeps selected role",
+        "menu reachable; fresh30/80 defaults; existing speed selector",
+        "natural1200 clear; actual reward unchanged by resize/reload/continue"
+      ],
+      "errors": [],
+      "characterDetail": {
+        "dialog": {
+          "x": 19,
+          "y": 12,
+          "width": 352,
+          "height": 716
+        },
+        "actions": [
+          {
+            "x": 36,
+            "y": 673,
+            "width": 318,
+            "height": 44
+          }
+        ],
+        "image": {
+          "bounds": {
+            "x": 100.671875,
+            "y": 85.5,
+            "width": 188.65625,
+            "height": 235.828125
+          },
+          "fit": "contain"
+        },
+        "scroll": {
+          "x": 36,
+          "y": 332.328125,
+          "width": 318,
+          "height": 313.671875
+        },
+        "scrollStyle": "auto",
+        "contentStyle": "hidden",
+        "viewport": {
+          "width": 390,
+          "height": 740
+        }
+      }
+    },
+    {
+      "width": 1280,
+      "checks": [
+        "six native choices; selected role survives detail cancel and actual resize",
+        "natural1200 clear; actual reward unchanged by resize/reload/continue"
+      ],
+      "errors": [],
+      "characterDetail": {
+        "dialog": {
+          "x": 200,
+          "y": 12,
+          "width": 880,
+          "height": 696
+        },
+        "actions": [
+          {
+            "x": 221,
+            "y": 651,
+            "width": 838,
+            "height": 44
+          }
+        ],
+        "image": {
+          "bounds": {
+            "x": 271.296875,
+            "y": 89.5,
+            "width": 240,
+            "height": 300
+          },
+          "fit": "contain"
+        },
+        "scroll": {
+          "x": 581.59375,
+          "y": 88.5,
+          "width": 481.390625,
+          "height": 533.5
+        },
+        "scrollStyle": "auto",
+        "contentStyle": "hidden",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "width": 390,
+      "route": "natural-failure",
+      "checks": [
+        "natural low-hand failure and legal same-seed new-run retry"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "safeTop": 12,
+      "safeBottom": 0,
+      "checks": [
+        "all3 discovery; no goods/main action intersection; actual card tap/cancel never charges"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "safeTop": 12,
+      "safeBottom": 12,
+      "checks": [
+        "all3 discovery; no goods/main action intersection; actual card tap/cancel never charges"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "safeTop": 12,
+      "safeBottom": 34,
+      "checks": [
+        "all3 discovery; no goods/main action intersection; actual card tap/cancel never charges"
+      ]
+    }
+  ],
+  "originalReportSHA256": "e3ad139429d3adeb56737a377cbe95f407dc90019926485a3aa0d54fd7928d8f"
+}

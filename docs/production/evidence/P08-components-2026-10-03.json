@@ -1,0 +1,651 @@
+{
+  "taskId": "P08",
+  "testedCommit": "2870c6234d42c622820d3d151c8bdde8d54778f0",
+  "baseline": "2870c6234d42c622820d3d151c8bdde8d54778f0",
+  "candidateSource": {
+    "baseCommit": "2870c6234d42c622820d3d151c8bdde8d54778f0",
+    "srcSHA256": "9eee5a2627daa2d9176c8aee7c679e43fa83c7a66063fa88a3493380b12d77a2",
+    "method": "sorted src paths, NUL + full file bytes + NUL"
+  },
+  "scope": "Batch2 existing-flow components, rear fire/opaque score pedestal, bounded played visual footprint, desktop anchors and exact short-shop safe-inset boundary. No new art/rules/RNG/save/deployment changes.",
+  "states": {
+    "implementation": "COMPLETE_FOR_BATCH2",
+    "technical": "100 affected tests/type and bounded browser routes PASS; frozen aggregate pending",
+    "engineeringPixelInspection": "ALL_21_ACTUAL_PNGS_VIEWED",
+    "independentAesthetic": "DIRECTION_ONLY_APPROVED_4472366d; overall final batch2 PENDING_INDEPENDENT_REVIEW",
+    "targetDevice": "NOT_RUN: OnePlus / hardware GPU / audio listening",
+    "newArtwork": "NOT_INTEGRATED; new face/contact-sheet acceptance BLOCKED pending readable approved assets"
+  },
+  "environment": {
+    "node": "22.23.3",
+    "chromium": "151.0.7922.173",
+    "renderer": "Canvas; external Playwright disables GPU/software-rasterizer; no hardware performance acceptance",
+    "viewportUnits": "CSS pixels, no DPR multiplication in geometry",
+    "softwareWebGLPerformance": "NOT_RUN this round; no recording"
+  },
+  "reports": {
+    "components": "components-report.json",
+    "table390": "table390-report.json",
+    "table1280": "table1280-report.json",
+    "fire": "fire-report.json",
+    "short": "short-report.json",
+    "interrupt": "interrupt-report.json",
+    "hand": "hand-report.json"
+  },
+  "builds": {
+    "components": {
+      "embedded": {
+        "version": "C03",
+        "revision": "2870c6234d42c622820d3d151c8bdde8d54778f0",
+        "modified": true,
+        "builtAt": "2026-10-03T15:00:57.507Z"
+      },
+      "bundleFiles": [
+        {
+          "file": "index-Bos3r1gd.js",
+          "sha256": "c84244974a0516502f8decd12ddd86b6693f8fbf4b21062cd8516ab038104b3d"
+        }
+      ]
+    },
+    "table390": {
+      "embedded": {
+        "version": "C03",
+        "revision": "2870c6234d42c622820d3d151c8bdde8d54778f0",
+        "modified": true,
+        "builtAt": "2026-10-03T14:58:19.967Z"
+      },
+      "bundleFiles": [
+        {
+          "file": "index-D4EYVLnD.js",
+          "sha256": "9c33d5945c526d0ec0e5029878754bdbb8822adec221b836ea40b26c52e2ca52"
+        }
+      ]
+    },
+    "table1280": {
+      "embedded": {
+        "version": "C03",
+        "revision": "2870c6234d42c622820d3d151c8bdde8d54778f0",
+        "modified": true,
+        "builtAt": "2026-10-03T14:58:19.967Z"
+      },
+      "bundleFiles": [
+        {
+          "file": "index-D4EYVLnD.js",
+          "sha256": "9c33d5945c526d0ec0e5029878754bdbb8822adec221b836ea40b26c52e2ca52"
+        }
+      ]
+    },
+    "fire": {
+      "embedded": {
+        "version": "C03",
+        "revision": "2870c6234d42c622820d3d151c8bdde8d54778f0",
+        "modified": true,
+        "builtAt": "2026-10-03T15:06:41.326Z"
+      },
+      "bundleFiles": [
+        {
+          "file": "index-DnnfzUGO.js",
+          "sha256": "3b5971516d1f7233d8cfac800f9adc26f453a7f864e55a9fb3f8ba1ad65411a7"
+        }
+      ]
+    },
+    "short": {
+      "embedded": {
+        "version": "C03",
+        "revision": "2870c6234d42c622820d3d151c8bdde8d54778f0",
+        "modified": true,
+        "builtAt": "2026-10-03T14:58:19.967Z"
+      },
+      "bundleFiles": [
+        {
+          "file": "index-D4EYVLnD.js",
+          "sha256": "9c33d5945c526d0ec0e5029878754bdbb8822adec221b836ea40b26c52e2ca52"
+        }
+      ]
+    },
+    "interrupt": {
+      "embedded": {
+        "version": "C03",
+        "revision": "2870c6234d42c622820d3d151c8bdde8d54778f0",
+        "modified": true,
+        "builtAt": "2026-10-03T14:45:31.518Z"
+      },
+      "bundleFiles": [
+        {
+          "file": "index-Ch5uKrd5.js",
+          "sha256": "1c5a246a664025ae5e0790a098533331807e2d2d95eca5a2418a1c8e0c14bf0f"
+        }
+      ]
+    },
+    "hand": {
+      "embedded": {
+        "version": "C03",
+        "revision": "2870c6234d42c622820d3d151c8bdde8d54778f0",
+        "modified": true,
+        "builtAt": "2026-10-03T14:45:48.067Z"
+      },
+      "bundleFiles": [
+        {
+          "file": "index-CG6ojw0Q.js",
+          "sha256": "de85124ab13f4c49b591089474fc001fbd5adf932d91950a873b5eedf2ac625e"
+        }
+      ]
+    }
+  },
+  "images": [
+    {
+      "file": "390-menu-audio.png",
+      "group": "components",
+      "bytes": 147783,
+      "sha256": "d1e53e7c1f5967d43f0f7240c8778b763758655aba1778d86d3581b59d35c7ae",
+      "pixelSize": [
+        1170,
+        2220
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "1280-character-detail.png",
+      "group": "components",
+      "bytes": 334768,
+      "sha256": "73b832910ab5b7f304b8bcf3c1c9d457b97ec81e97e6f58d586e7cfe4f3a9d7e",
+      "pixelSize": [
+        1280,
+        720
+      ],
+      "viewport": [
+        1280,
+        720
+      ],
+      "DPR": 1,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-victory.png",
+      "group": "components",
+      "bytes": 313002,
+      "sha256": "7634d151d721d8bc98146e52a34a8c6d2c326daec0eb5a19305a14ccfd398a9a",
+      "pixelSize": [
+        1170,
+        2220
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-art-recovery.png",
+      "group": "components",
+      "bytes": 683562,
+      "sha256": "7433c5c8b7ea6c7c5daa42934871d94e92a1d33c30a5fbf7b948d2fe5be60c1d",
+      "pixelSize": [
+        1170,
+        2220
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-character-detail.png",
+      "group": "components",
+      "bytes": 821945,
+      "sha256": "5121d1ae3153b958e4be0cb0f54b36b775ab2de0dfaa4a7110efa4c5a716fee0",
+      "pixelSize": [
+        1170,
+        2220
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-failure-retry.png",
+      "group": "components",
+      "bytes": 133435,
+      "sha256": "c0271e352a062becb39e8d221c12548bee664d0175b276a746811c7648c2ef71",
+      "pixelSize": [
+        1170,
+        2220
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "844-shop-safe34.png",
+      "group": "components",
+      "bytes": 73706,
+      "sha256": "0f935585e036a13b7c248d1cecd2d83b731c6102d622d3339eabf78a2faa80f3",
+      "pixelSize": [
+        844,
+        300
+      ],
+      "viewport": [
+        844,
+        300
+      ],
+      "DPR": 1,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 12,
+        "right": 0,
+        "bottom": 34,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-selector.png",
+      "group": "components",
+      "bytes": 1333257,
+      "sha256": "4bcdb50cddebe91ff9ba1a06c26f53d86482b048b1a7a930487e6d4fd78caf4e",
+      "pixelSize": [
+        1170,
+        2220
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "1280-victory.png",
+      "group": "components",
+      "bytes": 67144,
+      "sha256": "fdd64857e8e75eb3e750ce3a44131157697363dbdc2a68009762ee84d77b0c76",
+      "pixelSize": [
+        1280,
+        720
+      ],
+      "viewport": [
+        1280,
+        720
+      ],
+      "DPR": 1,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-table-rest.png",
+      "group": "table390",
+      "bytes": 336163,
+      "sha256": "d68bdd23542c01432d3f94cb37d9d12717cf7bfda1d7af575a23b3b6505b3488",
+      "pixelSize": [
+        1170,
+        2220
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-table-five.png",
+      "group": "table390",
+      "bytes": 337866,
+      "sha256": "d56c41da6c99e3bf033fd58ed949f8cd52cbafeaaf094075fa5455adf9ed9a86",
+      "pixelSize": [
+        1170,
+        2220
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-table-fourteen.png",
+      "group": "table390",
+      "bytes": 365880,
+      "sha256": "ce15158e5580e46b6b97bc406ad0163f11c206a597e99a6036040288538c5596",
+      "pixelSize": [
+        1170,
+        2220
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-shop.png",
+      "group": "table390",
+      "bytes": 514580,
+      "sha256": "57f6a34a667b9fdfde3d882cf7bb23d6bff11c859b6087f358460300e42b1bb1",
+      "pixelSize": [
+        1170,
+        2220
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-shop-detail.png",
+      "group": "table390",
+      "bytes": 588624,
+      "sha256": "9233ede92a17c6c3b51bd4ea1837f3a50289a233d0a7b207e91eb5c5c8dc0bc4",
+      "pixelSize": [
+        1170,
+        2220
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "1280-table-rest.png",
+      "group": "table390",
+      "bytes": 82541,
+      "sha256": "4acccad47a172909fb02216526cd25840d99588954f99d9c5c031a7c40aba4c0",
+      "pixelSize": [
+        1280,
+        720
+      ],
+      "viewport": [
+        1280,
+        720
+      ],
+      "DPR": 1,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "1280-shop.png",
+      "group": "table390",
+      "bytes": 111082,
+      "sha256": "32c85103994ec56ca1c6d4555a4497fd45b31cda3abefe084035c0609beea35a",
+      "pixelSize": [
+        1280,
+        720
+      ],
+      "viewport": [
+        1280,
+        720
+      ],
+      "DPR": 1,
+      "canvasDensity": null,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-fire2.png",
+      "group": "fire",
+      "bytes": 181950,
+      "sha256": "e9ff7afcca4445c3d996b8977bce02d5cc9083e688b1c32f17ddbb88ee5f40ed",
+      "pixelSize": [
+        780,
+        1480
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": 2,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-fire3.png",
+      "group": "fire",
+      "bytes": 208483,
+      "sha256": "472c779881e422f7c78ad7704fb18de024a809924f97a6253af24ce5ce0999f6",
+      "pixelSize": [
+        780,
+        1480
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": 2,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-fire1.png",
+      "group": "fire",
+      "bytes": 175470,
+      "sha256": "267152b29ebf0c40e5c7261a99439985366ce3ff63932f200bdd03f7ecd51efa",
+      "pixelSize": [
+        780,
+        1480
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": 2,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "390-fire2-reduced.png",
+      "group": "fire",
+      "bytes": 190034,
+      "sha256": "c23229a5df77dc2022054db3f345b44c5f901fdc8bc0b609952664508faceaa8",
+      "pixelSize": [
+        780,
+        1480
+      ],
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "canvasDensity": 2,
+      "safeInset": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    },
+    {
+      "file": "844x300-tier3-safe-fire3-settled.png",
+      "group": "short",
+      "bytes": 171159,
+      "sha256": "4fc9982add376f1683c94be4b25597b0bad30179623882e1fbdc49dab097a0b1",
+      "pixelSize": [
+        1688,
+        600
+      ],
+      "viewport": [
+        844,
+        300
+      ],
+      "DPR": 3,
+      "canvasDensity": 2,
+      "safeInset": {
+        "top": 12,
+        "right": 0,
+        "bottom": 34,
+        "left": 0
+      },
+      "renderer": "Canvas"
+    }
+  ],
+  "preservedContracts": [
+    "Original index/pip bounds",
+    ">=14px ranks /44px taps /56px primary actions",
+    "Nine one-screen /14 two-row223.2px plus22px row lift",
+    "Large/small3x area+alpha and extreme/large1.2x strength",
+    "All-texture shared guard mask and flights outside number cell",
+    "Wall-clock260ms ignition,200ms bounded impact,eventId dedupe,replay/reduced no impulse",
+    "Cancellation/fast-forward/recap/refresh never repeat score/RNG/save/reward"
+  ],
+  "geometryNotes": [
+    "Legacy58px minimum locked the old fire rectangle; new tests require rear field/foreground containment/actual text safety plus unchanged contour40/60% and peak-to-valley25% contracts.",
+    "390x740 score132px has36px rear field and opaque69px foreground, no main-number hole.",
+    "844x300/top12/bottom34 readable capacity fallback: score58px/rear field19px, actual composited17–18px with independently detected peaks and safe measured text/control bounds. Short PNG is intermediate4050 on natural5589 route.",
+    "Hand native browser regression predates only final color-only follow-up; no hand/gesture logic changed afterward. Current source also passes final frozen browser gate, once recorded."
+  ],
+  "resolvedFailures": [
+    "Modal reveal scaled44px hit to43.48px: removed scaling.",
+    "Portrait status/retry overflow and missing upgrade callback: stable art window, callback supplied, status/retry in sole body scroll.",
+    "Same-seed retry uses deterministic runId: test verifies same id/seed,fresh shop/reset sequence and cleared trace; no gameplay change.",
+    "Full-slot import could click pre-rebuild shop: wait actual replacement SceneView+ready; original full-slot/disabled purchase/cancel/save assertions retained."
+  ],
+  "release": {
+    "status": "PENDING_FROZEN_GATE_AND_NORMAL_FF_PUSH",
+    "oldCI": "Not queried"
+  },
+  "exclusions": [
+    "No Library retry/newWebP/sourcePNG integration",
+    "No PC/domain/deployment actions",
+    "No new C04/tutorial/encyclopedia/history features",
+    "No hardware/OnePlus/audio acceptance claims"
+  ]
+}

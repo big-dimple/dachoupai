@@ -14,7 +14,6 @@ import {cardAbilityCopy} from './CardCopy';
 import {runController,dispatchRun,startRun} from './runAdapter';
 import {gameSession} from './session';
 import {getCharacter} from './characters';
-import {selectionPortraitKey} from './portraits';
 import {stageOutcome} from './stageOutcome';
 import {ScoreFlame} from './ScoreFlame';
 import {EffectQueue} from '../core/EffectQueue';
@@ -32,7 +31,7 @@ function resultLayout(width:number,height:number,top:number,bottom:number){
   const score:Box=short?{x,y:bodyY,width:w*.64-12,height:available}:{x,y:bodyY,width:w,height:available-nextHeight-12};
   const next:Box=short?{x:x+w*.64,y:bodyY,width:w*.36,height:available}:{x,y:score.y+score.height+12,width:w,height:nextHeight};
   const sideWidth=Math.floor(w*.28),primaryWidth=Math.floor(w*.43),rightWidth=w-sideWidth-primaryWidth-16;
-  return {x,w,top,short,portrait,score,next,left:{x,y:footerY,width:portrait?w/2-4:sideWidth,height:44},primary:portrait?{x,y:footerY+52,width:w,height:48}:{x:x+sideWidth+8,y:footerY,width:primaryWidth,height:48},right:portrait?{x:x+w/2+4,y:footerY,width:w/2-4,height:44}:{x:x+sideWidth+primaryWidth+16,y:footerY,width:rightWidth,height:44},noticeY:footerY+(portrait?108:56)};
+  return {x,w,top,short,portrait,score,next,left:{x,y:footerY,width:portrait?w/2-4:sideWidth,height:44},primary:portrait?{x,y:footerY+52,width:w,height:56}:{x:x+sideWidth+8,y:footerY,width:primaryWidth,height:56},right:portrait?{x:x+w/2+4,y:footerY,width:w/2-4,height:44}:{x:x+sideWidth+primaryWidth+16,y:footerY,width:rightWidth,height:44},noticeY:footerY+(portrait?116:64)};
 }
 
 export class IntermissionScene extends Phaser.Scene {
@@ -71,14 +70,14 @@ export class IntermissionScene extends Phaser.Scene {
     const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex,run.tourMode,run.difficulty):undefined,skipped=run.stage?.skipResult,won=run.phase==='run-won',capped=this.result.cleared&&run.phase==='stage-cleared'&&!nextStage,lost=!this.result.cleared&&!skipped&&!won;
     const outcome=stageOutcome(run.stage!,run.lastTrace),animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.stopCelebration();v.clear();v.paperBackground();
-    v.text(p.x,p.top,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,'#d5ddc9',p.w-116);
+    v.text(p.x,p.top,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,'#3F606B',p.w-116);
     const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?'八章好戏，满堂喝彩！':this.result.cleared?outcome.title:'演出失败';
-    v.text(lost?l.width/2:p.x,lost?Math.max(p.top+34,l.height*.18):p.top+(p.short?23:34),title,p.short?22:p.portrait?26:34,'#fff2da',p.w).setOrigin(lost?.5:0,0).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
+    v.text(lost?l.width/2:p.x,lost?Math.max(p.top+34,l.height*.18):p.top+(p.short?23:34),title,p.short?22:p.portrait?26:34,'#26313A',p.w).setOrigin(lost?.5:0,0).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     if(lost){
       const groupWidth=Math.min(p.w,420),groupX=(l.width-groupWidth)/2;
       Object.assign(p.score,{x:(l.width-Math.min(p.w,680))/2,y:Math.max(p.top+34,l.height*.18)+46,width:Math.min(p.w,680),height:Math.min(190,l.height*.25)});
-      Object.assign(p.primary,{x:groupX,y:p.score.y+p.score.height+12,width:groupWidth,height:48});
-      Object.assign(p.left,{x:groupX,y:p.primary.y+56,width:(groupWidth-8)/2,height:44});
+      Object.assign(p.primary,{x:groupX,y:p.score.y+p.score.height+12,width:groupWidth,height:56});
+      Object.assign(p.left,{x:groupX,y:p.primary.y+64,width:(groupWidth-8)/2,height:44});
       Object.assign(p.right,{x:groupX+(groupWidth+8)/2,y:p.left.y,width:(groupWidth-8)/2,height:44});p.noticeY=p.left.y+54;
     }
     this.drawResultHero(p.score,outcome,!!skipped,lost,animateIn);
@@ -101,9 +100,9 @@ export class IntermissionScene extends Phaser.Scene {
     }
     if(!lost){
       v.material(n,0x21474a,0x21474a,4);
-      const nextHeading=v.text(n.x+14,n.y+10,heading,18,'#ffdf9e',n.width-28).setFontStyle('bold');
+      const nextHeading=v.text(n.x+14,n.y+10,heading,18,'#26313A',n.width-28).setFontStyle('bold');
       const bodyY=nextHeading.y+nextHeading.height+8;
-      v.text(n.x+14,bodyY,body,14,'#fff0d0',n.width-28).setLineSpacing(2).setStyle({maxLines:Math.max(1,Math.floor((n.y+n.height-12-bodyY)/19))});
+      v.text(n.x+14,bodyY,body,14,'#26313A',n.width-28).setLineSpacing(2).setStyle({maxLines:Math.max(1,Math.floor((n.y+n.height-12-bodyY)/19))});
     }
     if(nextStage){
       v.button(p.left,'本场详情','action/result-details',()=>this.inspectResult());
@@ -120,7 +119,7 @@ export class IntermissionScene extends Phaser.Scene {
       v.button(p.primary,this.busy?'正在开局…':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }
     v.button(p.right,lost?'本场详情':'回看上手','action/last-hand',()=>lost?this.inspectResult():this.inspectLastHand(),!this.busy&&(lost||!!trace));
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?'':lost?'同局重试沿用角色与开局种子。':''),14,this.notice?'#ffd0b1':'#d5ddc9',p.w);
+    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?'':lost?'同局重试沿用角色与开局种子。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w);
     this.firstRender=false;
   }
   private traceSources(trace:ScoreTrace):string[] {
@@ -134,11 +133,6 @@ export class IntermissionScene extends Phaser.Scene {
   }
   private drawResultHero(b:Box,outcome:ReturnType<typeof stageOutcome>,skipped:boolean,lost:boolean,animate:boolean):void {
     const v=this.view,run=runController(this)!.state,compact=b.height<220,cx=b.x+b.width/2,cy=b.y+b.height/2;
-    // The stage and performer stay behind the finished hand; only the cards/info use paper panels.
-    // The result keeps the same quiet paper stage; no separate timber backdrop.
-    const portrait=selectionPortraitKey(run.characterId);
-    if((!compact||lost)&&this.textures.exists(portrait)){const actor=v.add(this.add.image(b.x+b.width*.81,b.y+b.height*.5,portrait));actor.setScale(Math.min(b.width*.48/actor.width,b.height/actor.height)).setAlpha(.4);}
-    v.add(this.add.graphics().fillStyle(0xe2e8e5,.6).fillRect(b.x,b.y,b.width*.6,b.height));
     if(lost){
       const gap=(BigInt(run.stage!.targetHeat)-BigInt(this.result.stageHeat)).toString();
       v.text(cx,b.y+b.height*.68,`${heatText(this.result.stageHeat)} / ${heatText(run.stage!.targetHeat)} · 差 ${heatText(gap)}`,b.width<420?16:22,'#eadbbd',b.width-24).setOrigin(.5,0).setName('result/gap');
@@ -156,7 +150,7 @@ export class IntermissionScene extends Phaser.Scene {
     const coinRow=this.result.cleared&&!skipped&&this.result.goldEarned>0,coinSize=compact?(b.height<190?56:72):96;
     const totalY=b.y+b.height-(coinRow?(compact?(coinSize===56?70:88):120):(compact?46:85)),target=run.stage!.targetHeat;
     if(!compact&&trace){
-      const sources=this.traceSources(trace).slice(0,3),line=v.text(cx,Math.min(totalY-25,scoreY+score.height+16),sources.length?sources.join(' · '):'牌型与计分牌共同结算',13,'#c9dacc',b.width-28).setOrigin(.5,0);
+      const sources=this.traceSources(trace).slice(0,3),line=v.text(cx,Math.min(totalY-25,scoreY+score.height+16),sources.length?sources.join(' · '):'牌型与计分牌共同结算',14,'#3F606B',b.width-28).setOrigin(.5,0);
       if(animate){line.setAlpha(0);this.tweens.add({targets:line,alpha:1,y:{from:line.y-12,to:line.y},duration:280,delay:180,ease:'Cubic.easeOut'});}
     }
     const gap=BigInt(target)>BigInt(this.result.stageHeat)?(BigInt(target)-BigInt(this.result.stageHeat)).toString():'0';
@@ -182,7 +176,7 @@ export class IntermissionScene extends Phaser.Scene {
       score.setScale(.72);this.tweens.add({targets:score,scale:1,duration:480,ease:'Back.easeOut'});
       if(outcome.intensity>1){this.celebration=new ScoreFlame(this,v.root,{x:cx-Math.min(160,b.width*.4),y:scoreY+score.height-22,width:Math.min(320,b.width*.8),height:40});this.celebration.set(outcome.intensity);}
       const skip=v.button({x:b.x+b.width-94,y:b.y+2,width:88,height:44},'跳过动效','action/skip-celebration',()=>{this.firstRender=false;this.audio.cancelPresentation();this.render();});
-      (skip.getData('label') as Phaser.GameObjects.Text).setFontSize(12);
+      (skip.getData('label') as Phaser.GameObjects.Text).setFontSize(14);
       const skipLabel=skip.getData('label') as Phaser.GameObjects.Text,skipArt=skip.getData('buttonArt') as Phaser.GameObjects.Container;
       this.celebrationTimer=this.time.delayedCall(1000,()=>{this.celebration?.destroy();this.celebration=undefined;skipLabel.destroy();skipArt.destroy();skip.destroy();});
     }

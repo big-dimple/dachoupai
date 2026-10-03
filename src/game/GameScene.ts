@@ -40,7 +40,7 @@ import {showConsumables} from './ConsumableDialog';
 import {fitScoreLine,scoreFlightLanding} from './ScoreTextLayout';
 import {PAPER_THEME as T,PAPER_CSS as C,UI_FONT,P00_ASSETS,assetUrl} from './theme';
 import {cardPipRowOffset} from './CardPipLayout';
-import {scoreCells} from './layout';
+import {scoreCells,scorePedestal,playedFootprint} from './layout';
 import type {Box} from './layout';
 import {jokerArtKey,jokerArtUrl,jokerArtPreviewUrl} from './jokerArt';
 import {drawJokerMotif} from './JokerMotif';
@@ -297,14 +297,22 @@ export class GameScene extends Phaser.Scene {
     v.material(s,T.paperLight,T.paperLight,4);
     v.add(this.add.graphics().lineStyle(1,T.ink,.26).strokeRoundedRect(s.x,s.y,s.width,s.height,4));
     this.resultText=v.text(s.x+8,s.y+6,'选牌，准备开演',17,C.ink).setName('score/source');
+    const pedestal=scorePedestal(s);
+    if(pedestal){
+      const base=this.add.graphics().setName('score/total-pedestal').setData('bounds',pedestal);
+      base.fillStyle(T.ink,.08).fillRoundedRect(pedestal.x,pedestal.y+2,pedestal.width,pedestal.height,5);
+      base.fillStyle(0xfff9ee,1).fillRoundedRect(pedestal.x,pedestal.y,pedestal.width,pedestal.height,5);
+      base.lineStyle(1,0xb8473a,.55).strokeRoundedRect(pedestal.x,pedestal.y,pedestal.width,pedestal.height,5);v.add(base);
+    }
     this.scoreLabels=['热度','倍率','预计本手'].map(label=>v.text(0,0,label,14,C.mutedInk).setOrigin(.5,0));
     this.scoreHeat=v.text(0,0,'—',26,C.jade).setOrigin(.5,0).setName('score/heat');
     this.scoreMult=v.text(0,0,'—',26,C.red).setOrigin(.5,0).setName('score/multiplier');
     this.scoreTotal=v.text(0,0,'—',36,C.ink).setOrigin(.5,0).setName('score/total');
     this.breakdownText=v.text(0,0,'',14,C.mutedInk).setVisible(false);
     this.fitScoreReadouts();
-    const p=l.playedArea;
-    v.rect(p,T.jadeSoft).setStrokeStyle(1,T.jade,.28).setName('table/played-workplane');
+    const p=playedFootprint(l.playedArea,portrait);
+    v.material(p,T.jadeSoft,T.jadeSoft,6);
+    v.rect(p,T.jadeSoft).setFillStyle(0,0).setStrokeStyle(1,T.jade,.22).setName('table/played-workplane');
     if(l.mode!=='landscape')v.text(p.x,p.y-18,'待出牌',14,C.jade).setName('table/played-label');
     this.previousHandText=v.text(portrait?p.x+10:h.x+12,portrait?p.y+p.height-20:h.y+(short?301:510),'',14,portrait?'#eddfbf':C.brass,portrait?p.width-20:h.width-24).setVisible(!portrait&&!l.shortLandscape);
     this.handCountText=v.text(l.handLabel.x,l.handLabel.y,'',14,'#f0e6cb').setVisible(!portrait&&l.labelHeight>0);
@@ -359,11 +367,11 @@ export class GameScene extends Phaser.Scene {
       const r=this.add.rectangle(0,0,b.width,b.height,T.paperLight).setStrokeStyle(1,T.ink,.5);
       marker.add(r);
       const resolution=Math.max(1.5,1/this.scale.zoom),labelX=sideLabels?labelBox.x-b.x-b.width/2:-b.width/2+3;
-      const name=this.add.text(labelX,-b.height/2+3,d.name,{fontFamily:UI_FONT,fontSize:'14px',color:C.ink,resolution});
-      const current=this.add.text(labelX,b.height/2-19,disabled.has(j.instanceId)?'封禁':this.jokerValue(j),{fontFamily:UI_FONT,fontSize:'14px',color:C.red,resolution});
+      const name=this.add.text(labelX,-b.height/2+1,d.name,{fontFamily:UI_FONT,fontSize:'14px',color:C.ink,resolution});
+      const current=this.add.text(labelX,b.height/2-16,disabled.has(j.instanceId)?'封禁':this.jokerValue(j),{fontFamily:UI_FONT,fontSize:'14px',color:C.red,resolution});
       const room=sideLabels?labelBox.width:b.width-6;
       for(const text of [name,current]){text.setData('fullText',text.text);let copy=text.text;while(text.width>room&&copy.length){copy=copy.slice(0,-1);text.setText(copy+'…');}}
-      const artTop=-b.height/2+22,artHeight=Math.max(8,b.height-44),key=jokerArtKey(j.definitionId);
+      const artTop=-b.height/2+18,artHeight=Math.max(8,b.height-35),key=jokerArtKey(j.definitionId);
       if(key&&this.textures.exists(key)){
         const art=this.add.container(0,artTop+artHeight/2),artWidth=Math.min(b.width-6,artHeight*.8);
         if(j.definitionId==='f09'){mountF09Art(this,art,artWidth,artWidth/.8,()=>this.reducedMotion);marker.setData('f09-art',art);}
@@ -372,7 +380,7 @@ export class GameScene extends Phaser.Scene {
       }else this.jokerMechanism(marker,0,artTop+artHeight/2,Math.min(b.width-8,artHeight),j);
       // A small rarity symbol stays separate from the name/state; full rarity is in details.
       marker.add(createJokerRarityBadge(this,d.rarity,{x:b.width/2-31,y:artTop+artHeight-18,compact:true,resolution}).setData('definitionId',d.id).setData('surface','table'));
-      marker.add([name,current]).setData('frame',r).setData('frameColor',disabled.has(j.instanceId)?T.red:rarityStyle.edge).setData('nameLabel',name).setData('valueLabel',current).setData('slotIndex',i);
+      current.setBackgroundColor(C.paperLight);marker.add([name,current]).setData('frame',r).setData('frameColor',disabled.has(j.instanceId)?T.red:rarityStyle.edge).setData('nameLabel',name).setData('valueLabel',current).setData('slotIndex',i);
       if(disabled.has(j.instanceId)){r.setStrokeStyle(2,T.red);marker.setData('bossDisabled',true);}
       this.jokerViews.set(j.instanceId,marker);
       this.armJokerIdle(marker,i);
@@ -685,6 +693,7 @@ export class GameScene extends Phaser.Scene {
     (this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(discardGoldCost?'弃 -1金':r2DiscardCost(this.run)===2?'弃 ×2':'弃牌');
     this.view.setEnabled(this.discardButton,this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run)&&this.run.gold>=discardGoldCost);
     this.view.setEnabled(this.playButton,this.ready&&this.selectedIds.size>0&&this.handsLeft>0);
+    this.resourceCounts.play.setColor(this.playButton.input?.enabled?C.paperLight:C.mutedInk);
     const portrait=this.view.layout.mode==='portrait';
     const reason=this.playing?this.presentation?'正在结算 · 可快进':'正在换牌':this.handsLeft===1?'最后 1 次出牌 · 达到目标才能过关':!this.selectedIds.size?(handWindow.handOverflow?'‹ › 翻页 · 按住横滑选牌':portrait?'按住横滑选牌 · 长按看详情':'按住横滑选牌 · 最多 5 张'):this.run.gold<discardGoldCost?'弃牌需1金币 · 仍可出牌':this.run.stage!.discardsLeft<r2DiscardCost(this.run)?'弃牌次数已用完':this.handsLeft<=0?'出牌次数已用完':'已选 '+this.selectedIds.size+' / 5';
     this.statusText.setText(this.statusMessage||reason);
@@ -951,11 +960,15 @@ export class GameScene extends Phaser.Scene {
   private fitScoreReadouts():void {
     if(!this.scoreHeat?.active)return;
     const l=this.view.layout,s=l.scoreBoard;
-    fitScoreLine(this.resultText,{x:s.x+8,y:s.y+4,width:s.width-16,height:20},14);
+    const caption={x:s.x+8,y:s.y+(s.height>=108?4:1),width:s.height>=108?s.width-16:s.width*.52-16,height:s.height>=108?20:17};
+    fitScoreLine(this.resultText,caption,14);
     const cells=scoreCells(s),texts=[this.scoreHeat,this.scoreMult,this.scoreTotal];
-    this.scoreLabels.forEach((text,i)=>{text.setVisible(true);fitScoreLine(text,{x:cells[i].x,y:cells[i].y-18,width:cells[i].width,height:18},14);});
+    this.scoreLabels.forEach((text,i)=>{text.setVisible(i!==2||s.height>=108);fitScoreLine(text,{x:cells[i].x,y:cells[i].y-18,width:cells[i].width,height:18},14);});
     texts.forEach((text,i)=>fitScoreLine(text,cells[i],i===2?(s.height>=108?36:24):18,true));
-    this.scoreFlame?.setGuards([{getBounds:()=>({x:s.x+8,y:s.y+4,width:s.width-16,height:20}),visible:true},this.resultText,...this.scoreLabels,...texts].filter(t=>t.visible).map(t=>{const b=t.getBounds();return {x:b.x-5-b.width*.04,y:b.y-3,width:b.width*1.08+10,height:b.height*1.08+6};}).concat([...Object.values(l.buttons),...Object.values(l.tableActions)].map(b=>({x:b.x-3,y:b.y-3,width:b.width+6,height:b.height+6}))));
+    const pedestal=scorePedestal(s);
+    // Total digits/label have an opaque foreground, not a hole in the fire field.
+    const guarded=pedestal?[this.scoreHeat,this.scoreMult,this.scoreLabels[0],this.scoreLabels[1]]:[...this.scoreLabels,...texts];
+    this.scoreFlame?.setGuards([{getBounds:()=>caption,visible:true},this.resultText,...guarded].filter(t=>t.visible).map(t=>{const b=t.getBounds();return {x:b.x-5-b.width*.04,y:b.y-3,width:b.width*1.08+10,height:b.height*1.08+6};}).concat([...Object.values(l.buttons),...Object.values(l.tableActions)].map(b=>({x:b.x-3,y:b.y-3,width:b.width+6,height:b.height+6}))));
   }
 
   private async showJokerTransaction(event:Extract<DomainEvent,{type:'joker-transaction'}>,context:EffectContext):Promise<void> {
@@ -1097,6 +1110,7 @@ export class GameScene extends Phaser.Scene {
   }
   private keepScoreReadable():void {
     this.fitScoreReadouts();
+    const base=this.view.root.list.find(o=>o.name==='score/total-pedestal');if(base)this.view.root.bringToTop(base);
     for(const text of [this.resultText,...this.scoreLabels,this.scoreHeat,this.scoreMult,this.scoreTotal,this.breakdownText,this.previousHandText])if(text.active)this.view.root.bringToTop(text);
   }
   private transferToAccumulator(event:ScoreEvent,card:CardView|undefined,duration:number,context:EffectContext):Promise<void> {
@@ -1503,7 +1517,7 @@ export class GameScene extends Phaser.Scene {
     const discardCost=r2DiscardCost(this.run),discards=this.run.stage!.discardsLeft,plays=this.presentation?.resourcePlayLeft??this.handsLeft;
     this.resourceCounts.play.setText(plays+' 次');this.resourceCounts.discard.setText(discards+' 次');
     if(this.menuActions)this.menuActions.viewLastHand=!this.presentation&&this.run.lastTrace?()=>this.inspectLastTrace():undefined;
-    const playColor=C.paperLight,discardColor=discards<2*discardCost?C.red:C.jade;
+    const playColor=this.playButton.input?.enabled?C.paperLight:C.mutedInk,discardColor=discards<2*discardCost?C.red:C.jade;
     if(this.resourceCounts.play.style.color!==playColor)this.resourceCounts.play.setColor(playColor);
     if(this.resourceCounts.discard.style.color!==discardColor)this.resourceCounts.discard.setColor(discardColor);
     const gold=this.presentation?.resourceGold??this.run.gold;

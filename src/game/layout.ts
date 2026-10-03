@@ -90,9 +90,13 @@ function capacityLayout(viewport:{width:number;height:number},safe:Insets,reques
 }
 /** Numeric cells share the total's fire base, rather than an equal-width table. */
 export function scoreCells(s:Box){
-  if(s.height<108){const secondary=s.width*.52;return [box(s.x+6,s.y+40,secondary/2-10,24),box(s.x+secondary/2+2,s.y+40,secondary/2-8,24),box(s.x+secondary+6,s.y+40,s.width-secondary-12,32)];}
+  if(s.height<108){const secondary=s.width*.52;return [box(s.x+6,s.y+36,secondary/2-10,24),box(s.x+secondary/2+2,s.y+36,secondary/2-8,24),box(s.x+secondary+6,s.y+s.height-35,s.width-secondary-12,32)];}
   const narrow=s.width<260,split=narrow?.43:.38,secondary=s.width*split;
-  return [box(s.x+8,s.y+43,secondary-12,24),box(s.x+8,s.y+Math.min(88,s.height-25),secondary-12,24),box(s.x+secondary+4,s.y+s.height-65,s.width-secondary-12,43)];
+  return [box(s.x+8,s.y+43,secondary-12,24),box(s.x+8,s.y+Math.min(88,s.height-25),secondary-12,24),box(s.x+secondary+4,s.y+s.height-49,s.width-secondary-12,43)];
+}
+/** Opaque foreground protects the total; the fire is a continuous background. */
+export function scorePedestal(s:Box):Box|undefined {
+  const total=scoreCells(s)[2];return s.height<108?box(total.x-4,total.y-3,total.width+8,36):box(total.x-4,total.y-22,total.width+8,69);
 }
 export function layout(viewport:{width:number;height:number},safe:Insets,requested?:LayoutMode,handWindow:HandWindow={count:8}){
   const l=capacityLayout(viewport,safe,requested,handWindow),{width,height}=viewport,count=l.cards.length;
@@ -122,14 +126,21 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
     l.tools=box(sortX,l.actions.y,94,56);l.toolsInHud=false;l.labelHeight=0;
     l.handLabel=box(mainX,l.hand.y-18,116,18);l.piles=box(mainX+116,l.hand.y-18,mainW-116,18);
     l.handRows=rows;l.handOverflow=false;l.handStart=0;l.visibleCardCount=count;
-    const columns=rows===2?Math.ceil(count/2):count,pitch=columns>1?(mainW-cardWidth)/(columns-1):0,rowHeight=handHeight/rows;
-    l.cards=Array.from({length:count},(_,i)=>{const row=rows===2?Math.floor(i/columns):0,col=i%columns,last=col===columns-1||i===count-1,seatX=mainX+(columns===1?(mainW-cardWidth)/2:col*pitch),seatY=l.hand.y+row*rowHeight;return {visible:true,visual:box(seatX,seatY+22,cardWidth,cardWidth*1.4),hit:box(seatX,seatY,last?cardWidth:Math.min(cardWidth,pitch),rowHeight)};});
+    const columns=rows===2?Math.ceil(count/2):count,bandWidth=portrait?mainW:Math.min(mainW,cardWidth*columns+8*(columns-1)),bandX=mainX+(mainW-bandWidth)/2,pitch=columns>1?(bandWidth-cardWidth)/(columns-1):0,rowHeight=handHeight/rows;
+    l.cards=Array.from({length:count},(_,i)=>{const row=rows===2?Math.floor(i/columns):0,col=i%columns,last=col===columns-1||i===count-1,seatX=bandX+(columns===1?(bandWidth-cardWidth)/2:col*pitch),seatY=l.hand.y+row*rowHeight;return {visible:true,visual:box(seatX,seatY+22,cardWidth,cardWidth*1.4),hit:box(seatX,seatY,last?cardWidth:Math.min(cardWidth,pitch),rowHeight)};});
   }
   // On capacity-limited short screens retain the established readable window.
   // Every troupe exterior still has the same 5:7 proportion.
   if(!(portrait&&scoreBudget>=108)&&!desktop)l.slots=l.slots.map(b=>({...b,height:Math.min(b.height,b.width*1.4)}));
   const s=l.scoreBoard,primary=scoreCells(s)[2];
-  l.scoreFire=box(primary.x-3,s.y+(s.height>=108?34:28),primary.width+6,s.height-(s.height>=108?50:32));
+  const pedestal=scorePedestal(s);
+  const fireTop=s.y+(s.height>=108?26:2);
+  l.scoreFire=pedestal?box(pedestal.x,fireTop,pedestal.width,pedestal.y+1-fireTop):box(primary.x-3,s.y+28,primary.width+6,s.height-32);
   return l;
 }
 export type TableLayout=ReturnType<typeof layout>;
+
+/** Visual mat follows the five-card footprint; logical played area stays unchanged. */
+export function playedFootprint(area:Box,portrait:boolean):Box {
+ const width=Math.min(area.width,portrait?316:480),height=Math.min(area.height,portrait?100:136);return box(area.x+(area.width-width)/2,area.y+(area.height-height)/2,width,height);
+}

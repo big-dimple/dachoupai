@@ -1,5 +1,5 @@
 import {describe,it,expect} from 'vitest';
-import {layout,intersects,type Box} from '../src/game/layout';
+import {layout,intersects,scorePedestal,scoreCells,playedFootprint,type Box} from '../src/game/layout';
 import {PointerIntent} from '../src/game/PointerIntent';
 
 const sizes=[[320,568],[360,640],[390,740],[390,844],[430,932],[844,300],[844,360],[844,390],[1024,768],[1280,720],[1920,1080],[768,1024]];
@@ -10,7 +10,8 @@ describe('CSS layout contract',()=>{
       const l=layout({width,height:740},{top:0,right:0,bottom:0,left:0},undefined,{count});
       expect(l.playedArea.height).toBeGreaterThanOrEqual(88);
       expect(l.scoreBoard.height).toBeLessThanOrEqual(132);
-      expect(l.scoreFire.height).toBeGreaterThanOrEqual(58);expect(l.scoreFire.width).toBeLessThan(l.scoreBoard.width*.7);
+      const base=scorePedestal(l.scoreBoard)!;expect(base).toBeDefined();expect(l.scoreFire.y).toBeGreaterThanOrEqual(l.scoreBoard.y+24);expect(l.scoreFire.y+l.scoreFire.height).toBeCloseTo(base.y+1);expect(l.scoreFire.height).toBeGreaterThan(0);
+      const total=scoreCells(l.scoreBoard)[2];expect(total.y).toBeGreaterThan(base.y);expect(total.y+total.height).toBeLessThan(base.y+base.height);expect(l.scoreFire.y+l.scoreFire.height).toBeLessThan(total.y);
       expect(l.hand.height).toBeCloseTo(count===9?(width===360?52:64)*1.4+22:223.2);
       expect(intersects(l.playedArea,l.hand)).toBe(false);
       expect(intersects(l.scoreFire,l.playedArea)).toBe(false);
@@ -172,4 +173,12 @@ describe('pointer intent prevents accidental commands',()=>{
   it('cancelled drag releases the lock; a different pointer cannot complete it',()=>{
     const p=new PointerIntent();p.down(1,10,10,0);expect(p.up(2,10,10,30)).toBe('none');p.cancel();p.down(2,10,10,50);expect(p.up(2,10,10,70)).toBe('tap');
   });
+});
+
+it('foreground total protects digits without holes in short and safe-inset layouts',()=>{
+ for(const [width,height,count] of [[360,740,14],[390,740,9],[844,300,9],[1280,720,9]])for(const bottom of [0,12,34]){
+  const l=layout({width,height},{top:12,left:0,right:0,bottom},undefined,{count}),base=scorePedestal(l.scoreBoard)!,total=scoreCells(l.scoreBoard)[2];
+  expect(l.scoreFire.height).toBeGreaterThan(0);expect(base.y+base.height).toBeLessThanOrEqual(l.scoreBoard.y+l.scoreBoard.height);expect(l.scoreFire.y+l.scoreFire.height).toBeLessThan(total.y);expect(intersects(base,l.playedArea)).toBe(false);
+  const mat=playedFootprint(l.playedArea,l.mode==='portrait');expect(mat.width).toBeLessThanOrEqual(l.mode==='portrait'?316:480);expect(mat.height).toBeLessThanOrEqual(l.playedArea.height);
+ }
 });

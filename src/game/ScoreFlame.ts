@@ -5,7 +5,9 @@ import {subtractBoxes} from './ScoreGeometry';
 const NOISE_SIZE=64,NOISE_MASK=NOISE_SIZE-1,FRAME_MS=1000/30;
 const FRAME_WIDTH=256,FRAME_HEIGHT=64;
 // Slender, curved polygon tongues. Shape coordinates are cosmetic and never use rule RNG.
-const TONGUES=[ [.14,.068,.91,.075,0], [.43,.040,.67,-.052,1.7], [.77,.080,1,.035,3.2], [.30,.025,.43,.070,.8], [.88,.028,.55,-.044,2.5] ] as const;
+const SMALL_TONGUES=[ [.20,.040,.80,-.030,0], [.55,.060,1,.045,1.7], [.83,.025,.56,-.018,3.2] ] as const;
+const LARGE_TONGUES=[ [.11,.036,.62,-.018,0], [.37,.093,1,.075,1.7], [.70,.051,.78,-.042,3.2], [.56,.023,.48,.053,.8], [.89,.035,.53,-.050,2.5] ] as const;
+const EXTREME_TONGUES=[...LARGE_TONGUES,[.23,.042,.73,.041,2.1],[.80,.048,.85,.042,4.3]] as const;
 const LARGE_ANCHORS=[.14,.43,.77] as const;
 const SMALL_ANCHORS=LARGE_ANCHORS;
 const COLORS=[
@@ -46,6 +48,7 @@ export class ScoreFlame {
   private nextHeat=new Float32Array(0);
   private smallMask=new Float32Array(0);
   private largeMask=new Float32Array(0);
+  private coverage=new Float32Array(0);
   private pixels?:ImageData;
   private frameHeat=new Float32Array(0);
   private nextFrameHeat=new Float32Array(0);
@@ -77,6 +80,7 @@ export class ScoreFlame {
       this.material=texture;this.width=w;this.height=h;
       this.heat=new Float32Array(w*h);this.nextHeat=new Float32Array(w*h);
       this.smallMask=new Float32Array(w*h);this.largeMask=new Float32Array(w*h);
+      this.coverage=new Float32Array(w*h);
       this.pixels=texture.context.createImageData(w,h);
       this.cacheMasks();
       texture.setFilter(Phaser.Textures.FilterMode.LINEAR);
@@ -203,8 +207,8 @@ export class ScoreFlame {
     const polygons:{x:number;y:number}[][]=[];
     const cubic=(a:number,b:number,c:number,d:number,u:number)=>{const v=1-u;return v*v*v*a+3*v*v*u*b+3*v*u*u*c+u*u*u*d;};
     const tierHeight=small?.60:this.level===2?.84:.98;
-    for(const [i,[anchor,radius,tall,lean,phase]] of TONGUES.entries()){
-      if(small&&i>=3)continue;
+    const tongues=small?SMALL_TONGUES:this.level===2?LARGE_TONGUES:EXTREME_TONGUES;
+    for(const [i,[anchor,radius,tall,lean,phase]] of tongues.entries()){
       const root=anchor+Math.sin(t*(1.6+i*.31)+phase)*.012,wide=radius*(small?.42:this.level===2?.80:1.18),peak=Math.min(.98,tierHeight*tall*(.94+.06*Math.sin(t*2.2+phase))+this.surge*.12);
       const tip=root+lean*(small?.7:1)+Math.sin(t*2.7+phase)*.01,points:{x:number;y:number}[]=[];
       for(let j=0;j<=12;j++){const u=j/12;points.push({x:cubic(root-wide,root-wide*.75,tip-.052,tip,u),y:cubic(0,peak*.32,peak*.76,peak,u)});}
@@ -212,16 +216,22 @@ export class ScoreFlame {
       polygons.push(points);
     }
     const field=this.heat,next=this.nextHeat;
-    const rootHeight=small?.038:this.level===2?.10:.15;
+    const rootHeight=small?.08:this.level===2?.24:.32;
     for(let x=0;x<w;x++){
       const u=x/(w-1),intervals:{lo:number;hi:number}[]=[];
       for(const points of polygons){const crossings:number[]=[];for(let i=0;i<points.length;i++){const a=points[i],b=points[(i+1)%points.length];if((a.x<=u&&b.x>u)||(b.x<=u&&a.x>u))crossings.push(a.y+(u-a.x)/(b.x-a.x)*(b.y-a.y));}crossings.sort((a,b)=>a-b);for(let i=0;i+1<crossings.length;i+=2)intervals.push({lo:crossings[i],hi:crossings[i+1]});}
       for(let y=0;y<h;y++){
-        const rise=(h-1-y)/(h-1),base=rootHeight*(1+.24*Math.sin(u*29+t)+.15*Math.sin(u*47-t));let tone=rise<base?.70:0;
-        for(const span of intervals)if(rise>=span.lo&&rise<=span.hi){const distance=Math.min(rise-span.lo,span.hi-rise),edge=clamp(distance*h*1.5);tone=Math.max(tone,edge*(.45+.53*clamp(distance*h/5)));}
-        next[y*w+x]=tone;
+        const rise=(h-1-y)/(h-1),base=rootHeight*(1+.12*Math.sin(u*19+t)+.08*Math.sin(u*37-t));
+        let coverage=clamp((base-rise)*h+.5);
+        for(const span of intervals)coverage=Math.max(coverage,clamp((Math.min(rise+.5/h,span.hi)-Math.max(rise-.5/h,span.lo))*h));
+        this.coverage[y*w+x]=coverage;next[y*w+x]=coverage>0?1000:0;
       }
     }
+    // Two cheap distance passes: red-orange silhouette, yellow inner core.
+    // No number-shaped cutouts, blurred hills, or separate footer line.
+    for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=y*w+x;if(next[i])next[i]=Math.min(x?next[i-1]+1:1,y?next[i-w]+1:1);}
+    for(let y=h-1;y>=0;y--)for(let x=w-1;x>=0;x--){const i=y*w+x;if(next[i])next[i]=Math.min(next[i],x<w-1?next[i+1]+1:1,y<h-1?next[i+w]+1:1);}
+    for(let i=0;i<next.length;i++)if(next[i])next[i]=.30+.68*clamp((next[i]-1)/4);
     this.step++;this.heat=next;this.nextHeat=field;
   }
 
@@ -265,8 +275,6 @@ export class ScoreFlame {
     this.drawMaterial();
     if(this.reduced)return;
     const base=b.y+b.height-3;
-    g.lineStyle(1,0xffc46d,this.level===1?.12:.30)
-      .beginPath().moveTo(b.x+5,base).lineTo(b.x+b.width-5,base).strokePath();
     this.drawEmbers(base);
   }
 
@@ -281,7 +289,7 @@ export class ScoreFlame {
     for(let i=0;i<heat.length;i++){
       const color=Math.round(clamp(heat[i])*255)*4,pixel=i*4;
       data[pixel]=this.palette[color];data[pixel+1]=this.palette[color+1];data[pixel+2]=this.palette[color+2];
-      data[pixel+3]=this.palette[color+3]*mask[i];
+      data[pixel+3]=this.palette[color+3]*mask[i]*(texture===this.material?this.coverage[i]:1);
     }
     texture.context.putImageData(pixels,0,0);texture.refresh();
   }

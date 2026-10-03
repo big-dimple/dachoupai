@@ -84,8 +84,8 @@ export class ShopScene extends Phaser.Scene {
     this.goldText=gold;
     if(!p.portrait&&!p.short)v.text(p.x,p.top+37,`${stage.name} · 目标 ${heatText(stage.targetHeat)}`,14,'#3F606B',p.short?p.slots[4].x+p.slots[4].width-p.x:p.w-24);
     if(!p.short){
-      const ownedLabel=p.portrait?`${stage.name} · 随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:`随身大丑牌 ${this.run.jokers.length} / ${r2JokerCapacity(this.run)} · 点牌可出售或调序`;
-      v.text(p.wideHeader?p.slots[0].x:p.x,p.slots[0].y-22,ownedLabel,14,'#3F606B',p.wideHeader?p.slots[4].x+p.slots[4].width-p.slots[0].x:p.w);
+      const ownedLabel=p.portrait?`${stage.name} · 随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:`随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)} · 点牌出售／调序`;
+      v.text(p.slots[0].x,p.slots[0].y-22,ownedLabel,14,'#3F606B',p.slots[4].x+p.slots[4].width-p.slots[0].x);
     }
     if(!p.inventoryCollapsed)this.run.jokers.forEach((j,i)=>{
       const b=p.slots[i],d=getR2Joker(j.definitionId),ability=this.jokerCopy(j.definitionId),first=v.root.length;
@@ -112,7 +112,7 @@ export class ShopScene extends Phaser.Scene {
       const copyX=p.copyBeside?b.x+b.width+6:b.x,copyY=p.copyBeside?b.y:b.y+b.height,copyWidth=p.copyBeside?(p.tabs.width-8*(p.shelf.length-1))/p.shelf.length-b.width-8:b.width+6;
       const name=v.text(copyX,copyY+4,d.name,14,'#26313A').setName('shop/offer-name');this.ellipsis(name,copyWidth);
       const purpose=v.text(copyX,copyY+23,ability?.summary??getR2Joker(o.definitionId).description,14,'#3F606B',b.width+8).setStyle({maxLines:2}).setName('shop/offer-purpose');this.twoLines(purpose,copyWidth);
-      const price=r2PurchasePrice(this.run,o);v.text(copyX,copyY+58,o.consumed?'已收入':price+' 金',16,'#26313A').setName('shop/offer-price');
+      const price=r2PurchasePrice(this.run,o);v.text(copyX,copyY+58,o.consumed?'已收入':price+' 金 · 查看',16,'#26313A').setName('shop/offer-price');
       v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21,compact:true}).setData('definitionId',o.definitionId).setData('surface','offer'));
       const tile={...b,width:p.copyBeside?b.width+6+copyWidth:b.width,height:p.copyBeside?b.height:b.height+76},hover=this.hoverCard(first,tile,o.definitionId),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);
       this.offerArts.push(hover.art);v.target(r,`offer/${o.offerId}`,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
@@ -124,7 +124,7 @@ export class ShopScene extends Phaser.Scene {
     v.button(p.play,'进入牌桌','action/start-stage',()=>void this.send({type:'LeaveShop'}),this.ready,true);
     v.button(p.build,p.inventoryCollapsed?`构筑 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:'构筑详情','action/build',()=>this.inspectBuild());
     const reason=!this.ready?'当前进度未保存或只读，请查看菜单。':allowed&&this.run.gold<cost?`换牌还差 ${cost-this.run.gold} 金。可直接入场。`:this.shelfKind==='jokers'&&this.run.jokers.length===r2JokerCapacity(this.run)?`${r2JokerCapacity(this.run)}槽已满，点随身牌出售后再买。`:this.shelfKind==='tools'?'购买后收入库存；查看详情，再确认使用。':this.shelfKind==='items'?'道具本局生效；换牌不重抽道具货架。':p.portrait?'点卡牌看详情，确认后扣款。':'点卡牌不会扣钱；点随身牌可出售或左移、右移。';
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||reason,14,this.notice?'#B8473A':'#3F606B',p.w).setStyle({maxLines:p.short?1:2});
+    v.text(p.short?p.x:p.tabs.x,p.noticeY,this.busy?'正在保存…':this.notice||reason,14,this.notice?'#B8473A':'#3F606B',p.short?p.w:p.tabs.width).setStyle({maxLines:p.short?1:2});
   }
   private drawShelfTabs(b:Box):void {
     const v=this.view,pages=Math.ceil(this.shelfOffers().length/this.pageSize),pagerWidth=pages>1?44:0,gap=6,width=(b.width-pagerWidth-gap*(pagerWidth?3:2))/3;

@@ -60,7 +60,8 @@ export class SceneView {
   material(b:Box,top:number,_bottom:number,radius=6):Phaser.GameObjects.Image {
     const r=top>>16&255,g=top>>8&255,blue=top&255;
     const light=(r+g+blue)/3;
-    const tone=light>200?PAPER_THEME.paperLight:r>g*1.25&&r>blue*1.25?PAPER_THEME.redSoft:light<150?PAPER_THEME.jadeSoft:PAPER_THEME.paper;
+    const knownPaper=top===PAPER_THEME.paper||top===PAPER_THEME.paperLight||top===PAPER_THEME.jadeSoft||top===PAPER_THEME.redSoft;
+    const tone=knownPaper?top:light>200?PAPER_THEME.paperLight:r>g*1.25&&r>blue*1.25?PAPER_THEME.redSoft:light<150?PAPER_THEME.jadeSoft:PAPER_THEME.paper;
     const rx=Math.min(24,radius*256/b.width),ry=Math.min(24,radius*128/b.height),key=`d44-paper-${tone}-${rx.toFixed(1)}-${ry.toFixed(1)}`;
     if(!this.scene.textures.exists(key)){
       const texture=this.scene.textures.createCanvas(key,256,128)!,c=texture.getContext();
@@ -99,15 +100,18 @@ export class SceneView {
     art.add([g,edge,glow]);
     const t=this.text(b.x+b.width/2,b.y+b.height/2-1,label,primary?22:15).setOrigin(.5).setFontStyle('bold').setColor(primary?PAPER_CSS.paperLight:PAPER_CSS.jade);
     const r=this.rect(b).setFillStyle(0,0).setStrokeStyle();
-    r.setData('label',t).setData('buttonArt',art);
+    r.setData('label',t).setData('buttonArt',art).setData('buttonFace',g).setData('buttonBounds',b).setData('buttonPrimary',primary);
     const rest=()=>{art.y=b.y;t.y=Number(t.getData('restY')??b.y+b.height/2-1);glow.setAlpha(0);};
     this.target(r,name,{tap:action,press:()=>{art.y=b.y+2;t.y=Number(t.getData('restY')??b.y+b.height/2-1)+2;glow.setAlpha(.6);},release:rest,cancel:rest});
     r.on('pointerover',()=>{if(r.input?.enabled)glow.setAlpha(.8);});r.on('pointerout',rest);
     this.setEnabled(r,enabled);return r;
   }
   setEnabled(object:Phaser.GameObjects.Rectangle,enabled:boolean):void {
-    object.input!.enabled=enabled;object.setAlpha(enabled?1:.45);
-    const label=object.getData('label') as Phaser.GameObjects.Text|undefined;label?.setAlpha(enabled?1:.65);
-    const art=object.getData('buttonArt') as Phaser.GameObjects.Container|undefined;art?.setAlpha(enabled?1:.42);
+    object.input!.enabled=enabled;object.setAlpha(1);
+    const primary=!!object.getData('buttonPrimary'),label=object.getData('label') as Phaser.GameObjects.Text|undefined;
+    label?.setAlpha(1).setColor(enabled?(primary?PAPER_CSS.paperLight:PAPER_CSS.jade):PAPER_CSS.disabledInk);
+    const art=object.getData('buttonArt') as Phaser.GameObjects.Container|undefined;art?.setAlpha(1);
+    const face=object.getData('buttonFace') as Phaser.GameObjects.Graphics|undefined,b=object.getData('buttonBounds') as Box|undefined;
+    if(face&&b){face.clear().fillStyle(PAPER_THEME.ink,.08).fillRoundedRect(0,2,b.width,b.height,6);face.fillStyle(enabled?(primary?PAPER_THEME.red:PAPER_THEME.paperLight):PAPER_THEME.disabled).fillRoundedRect(0,0,b.width,b.height,6);}
   }
 }

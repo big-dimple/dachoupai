@@ -261,3 +261,39 @@ button,select { border-radius:6px;font-size:14px; }
 .dialog-card-art .dialog-art-visual>.dialog-card-image { width:100%;height:100%;object-fit:contain; }
 .dialog-card-art .dialog-art-visual>.f09-art-frame { height:100%;aspect-ratio:auto; }
 .dialog-card-art figcaption,.dialog-rarity,.detail-art-status { font-size:14px; }
+
+/* P08 batch2: one body scroll, stable art window and fixed actions across details. */
+.detail-dialog[open] { width:min(880px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:min(780px,calc(100dvh - var(--safe-top) - var(--safe-bottom) - 24px));max-height:calc(100dvh - var(--safe-top) - var(--safe-bottom) - 24px); }
+.detail-dialog .dialog-content { overflow:hidden;min-height:0;padding:16px; }
+.detail-dialog .dialog-scroll { min-height:0;min-width:0;height:100%;overflow:auto;overscroll-behavior:contain;font-size:15px; }
+.detail-dialog--illustrated .dialog-content { grid-template-columns:minmax(0,.42fr) minmax(0,.58fr);align-items:stretch;gap:16px; }
+.dialog-card-art,.dialog-portrait-art { margin:0;justify-self:center;align-self:start;width:min(100%,240px);max-height:100%;background:#FFF9EE; }
+.dialog-portrait-art { aspect-ratio:4/5;border:1px solid #3F606B;border-radius:5px; }
+.dialog-portrait-art .dialog-portrait { width:100%;height:100%;max-height:100%;object-fit:contain;border:0;box-shadow:none; }
+.dialog-card-art .dialog-art-visual { max-height:100%; }
+.detail-dialog .dialog-card-image { max-height:100%; }
+.dialog-actions button { min-height:44px;border-radius:6px; }
+.dialog-actions .dialog-primary { min-height:56px; }
+.dialog-body,.dialog-copy,.card-flavor,.card-ability small { color:#26313A;font-size:15px; }
+.run-menu-panel { border-radius:8px;box-shadow:0 3px 0 #26313A1a; }
+.run-menu-panel summary { min-height:44px;box-sizing:border-box;padding:10px 0;color:#3F606B;font-size:15px; }
+.run-menu-primary button { min-height:56px;background:#B8473A;color:#FFF9EE;border-color:#B8473A; }
+button:disabled { opacity:1;background:#D8D1C3;color:#595B59;border-color:#858B89; }
+button[aria-busy=true] { border-style:dashed; }
+.audio-controls,.run-menu-settings { background:#FFF9EE;border:1px solid #3F606B;box-shadow:none; }
+@media(max-width:560px) and (orientation:portrait) {
+ .detail-dialog--illustrated .dialog-content { grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,42%) minmax(0,1fr);gap:12px; }
+ .dialog-card-art,.dialog-portrait-art { height:100%;width:auto;max-width:100%; }
+ .dialog-card-art .dialog-art-visual { height:100%;width:auto; }
+ .detail-dialog .dialog-scroll { height:100%; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+ .detail-dialog { width:calc(100vw - 24px); }
+ .detail-dialog--illustrated .dialog-content { grid-template-columns:minmax(0,.32fr) minmax(0,.68fr);grid-template-rows:minmax(0,1fr); }
+ .dialog-card-art,.dialog-portrait-art { height:100%;width:auto;max-width:100%; }
+ .dialog-header { padding:8px 16px; }.detail-dialog h2 { font-size:18px; }.dialog-actions { padding:6px 16px; }
+}
+
+/* Modal reveal never scales the 44px native hit targets. */
+.detail-dialog { animation:none; }
+.detail-dialog .tool-choice-grid { max-height:none;overflow:visible; }

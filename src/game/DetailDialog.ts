@@ -34,8 +34,8 @@ export class DetailDialog {
     const frame=document.createElement('figure'),image=document.createElement('img');
     image.width=240;image.height=336;frame.className='dialog-card-art dialog-poker-art'+(variant==='mechanism'?' dialog-mechanism-art':'');image.className='dialog-card-image';image.src=url;image.alt=alt;
     frame.append(this.artVisual(image));
-    if(variant==='mechanism'){const caption=document.createElement('figcaption');caption.textContent='机制示意';frame.append(caption);}
-    const intro=dialog.querySelector('.dialog-intro');if(intro)intro.insertAdjacentElement('afterend',frame);else dialog.querySelector('.dialog-content')?.prepend(frame);dialog.classList.add('detail-dialog--illustrated');
+    if(variant==='mechanism'){const caption=document.createElement('figcaption');caption.textContent='机制示意';dialog.querySelector('.dialog-scroll')?.prepend(caption);}
+    dialog.querySelector('.dialog-content')?.prepend(frame);dialog.classList.add('detail-dialog--illustrated');
   }
   close(expected?:HTMLDialogElement):void {
     if(expected&&!this.active(expected))return;
@@ -119,7 +119,15 @@ export class DetailDialog {
         frame.append(loadStatus,retry);updateStatus();
         if(portrait.thumbnailUrl)cleanups.push(progressiveArt(frame,image,portrait.url,()=>{if(closed)return;detailReady=true;showReal();}));
         cleanups.push(()=>{closed=true;retryDecode?.abort();image.onerror=null;image.onload=null;retry.onclick=null;});layout.append(frame);
-      }else {image.src=portrait.thumbnailUrl??portrait.url;image.onerror=()=>image.remove();cleanups.push(()=>{image.onerror=null;});layout.append(options.rarity?this.artVisual(image):image);}
+      }else {
+        const frame=document.createElement('figure'),message=document.createElement('div'),retry=document.createElement('button');frame.className='dialog-portrait-art';image.width=615;image.height=768;
+        message.className='detail-art-status';message.hidden=true;retry.className='detail-art-retry';retry.textContent='重试立绘';retry.hidden=true;let closed=false,controller:AbortController|undefined;
+        image.src=portrait.thumbnailUrl??portrait.url;image.onerror=()=>{message.textContent='立绘暂未加载，文字和操作仍可用';message.hidden=false;retry.hidden=false;};image.onload=()=>{message.hidden=true;retry.hidden=true;};
+        retry.onclick=async()=>{controller?.abort();controller=new AbortController();retry.disabled=true;try{await decodeArtImage(portrait.url,controller.signal);if(!closed)image.src=portrait.url;}catch{if(!closed)message.textContent='立绘仍未加载，可取消或重试';}finally{if(!closed)retry.disabled=false;}};
+        frame.append(image,message,retry);layout.append(frame);
+        if(portrait.thumbnailUrl)cleanups.push(progressiveArt(frame,image,portrait.url,()=>{}));
+        cleanups.push(()=>{closed=true;controller?.abort();image.onerror=null;image.onload=null;retry.onclick=null;});
+      }
     }
     if(options.ability){
       const ability=document.createElement('section'),condition=document.createElement('span'),value=document.createElement('strong'),state=document.createElement('small');
@@ -132,7 +140,7 @@ export class DetailDialog {
     if(options.summaryBody){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;intro.append(summary);}
     if(options.collapseRules||options.ability){const rules=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('p');rules.className='card-rules';summary.textContent=options.rulesLabel??'规则与操作';text.textContent=[options.ability?.rules,body].filter(Boolean).join('\n\n');rules.append(summary,text);copy.append(rules,status);}
     else copy.append(content,status);
-    layout.append(copy);if(intro.childElementCount)layout.prepend(intro);dialog.append(layout,row);document.body.append(dialog);
+    const scroll=document.createElement('div');scroll.className='dialog-scroll';if(intro.childElementCount)scroll.append(intro);for(const selector of ['figcaption','.detail-art-status','.detail-art-retry'])for(const node of layout.querySelectorAll(selector))scroll.append(node);scroll.append(copy);layout.append(scroll);dialog.append(layout,row);document.body.append(dialog);
     dialog.addEventListener('cancel',event=>{event.preventDefault();this.close(dialog);});
     dialog.addEventListener('pointerup',event=>{this.lastPointer={x:event.clientX,y:event.clientY};});
     dialog.showModal();this.dialog=dialog;close.focus({preventScroll:true});dialog.scrollTop=0;return dialog;

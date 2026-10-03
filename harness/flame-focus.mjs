@@ -24,11 +24,11 @@ function validate(frame){
 }
 try{
   const allCases=[{viewport:{width:360,height:740},spec:specs[0]},...specs.map(spec=>({viewport:{width:390,height:740},spec})),{viewport:{width:844,height:300},spec:specs[2]},{viewport:{width:1280,height:720},spec:specs[1]},{viewport:{width:390,height:740},spec:{...specs[1],reduced:true}},{viewport:{width:360,height:740},spec:{...specs[0],fastForward:true}}];
-  const cases=process.env.FLAME_FOCUS_SCOPE==='interrupt'?allCases.filter(c=>c.spec.fastForward):allCases;
+  const cases=process.env.FLAME_FOCUS_SCOPE==='interrupt'?allCases.filter(c=>c.spec.fastForward):process.env.FLAME_FOCUS_SCOPE==='short'?[{viewport:{width:844,height:300},spec:{...specs[2],bottom:34,top:12}}]:allCases;
   for(const {viewport,spec} of cases){
     const touch=viewport.width<1000,name=`${viewport.width}x${viewport.height}-tier${spec.tier}${spec.reduced?'-reduced':''}${spec.bottom?'-safe':''}${spec.fastForward?'-fast-forward':''}`,context=await browser.newContext({viewport,hasTouch:touch,isMobile:touch,deviceScaleFactor:touch?3:1,reducedMotion:spec.reduced?'reduce':'no-preference',}),p=await context.newPage(),r={name,viewport,dpr:touch?3:1,...spec,checks:[],errors:[]};report.runs.push(r);
     p.on('pageerror',e=>r.errors.push(String(e)));
-    if(spec.bottom)await p.addInitScript(bottom=>document.addEventListener('DOMContentLoaded',()=>document.documentElement.style.setProperty('--safe-bottom',bottom+'px')),spec.bottom);
+    if(spec.bottom)await p.addInitScript(({bottom,top})=>document.addEventListener('DOMContentLoaded',()=>{document.documentElement.style.setProperty('--safe-bottom',bottom+'px');if(top)document.documentElement.style.setProperty('--safe-top',top+'px');}),spec);
     try{
       r.phase='choose';await p.goto((process.env.PAPER_FIRE_URL||'http://127.0.0.1:5260/')+'?harness=1&seed='+spec.seed);await chooseCharacter(p,spec.character,touch);await p.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);await p.waitForTimeout(370);await tapUI(p,'shop','action/start-stage',touch);await waitScene(p,'game');
       await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.ready&&s.cardViews.every(v=>!v.dealing&&!s.tweens.isTweening(v.container));});
@@ -41,7 +41,7 @@ try{
         assert.equal(overlaps(b,r.preview.layout.hand),false,'preview never intrudes into hand');
         for(const rank of card.rank)assert.ok(parseFloat(rank.font)>=14,'rank font remains legible');
       }
-      if(!spec.fastForward)await p.screenshot({path:`${dir}/${name}-five-preview.png`});
+      if(!spec.fastForward&&process.env.FLAME_FOCUS_SCOPE!=='short')await p.screenshot({path:`${dir}/${name}-five-preview.png`});
       await p.evaluate(()=>{
         const g=window.__harness.game,s=g.scene.getScene('game'),frames=[],rasters=[],seen=new Map();
         const bound=o=>{const b=o.getBounds();return{x:b.x,y:b.y,width:b.width,height:b.height};};
@@ -64,7 +64,7 @@ try{
       const original=await p.evaluate(()=>window.__harness.game.registry.get('runController').state);
       r.longNumber=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');s.scoreHeat.setText('123,456,789,012,345');s.scoreMult.setText('× 100,000,000–999,999,999');s.scoreTotal.setText('999,999,999,999,999');s.fitScoreReadouts();return window.__paperFire.inspect();});
       validate(r.longNumber);assert.deepEqual(await p.evaluate(()=>window.__harness.game.registry.get('runController').state),original);
-      if(!spec.fastForward)await p.screenshot({path:`${dir}/${name}-long-ui-only.png`});await p.evaluate(()=>window.__harness.game.scene.getScene('game').refreshSelection());
+      if(!spec.fastForward&&process.env.FLAME_FOCUS_SCOPE!=='short')await p.screenshot({path:`${dir}/${name}-long-ui-only.png`});await p.evaluate(()=>window.__harness.game.scene.getScene('game').refreshSelection());
       r.phase='play-to-intermission';await tapUI(p,'game','action/play',touch);
       if(spec.fastForward){await p.waitForFunction(()=>window.__harness.game.scene.getScene('game').scoreFlame?.graphic.getData('intensity')>0);await tapMenuAction(p,'快进当前手',touch);}
       await waitScene(p,'intermission');
@@ -84,8 +84,8 @@ try{
         const hits=r.frames.filter(f=>f.hit);assert.ok(hits.length,'natural positive source reaches impact integration');
         assert.ok(hits.some(f=>f.surge>0),'source landing creates a local impulse');
       }
-      if(!spec.fastForward)for(const image of captured.rasters)await writeFile(`${dir}/${name}-fire${image.level}${image.settled?'-settled':''}.png`,Buffer.from(image.png.split(',')[1],'base64'));
-      if(!spec.fastForward)await p.screenshot({path:`${dir}/${name}-result.png`});assert.deepEqual(r.errors,[]);
+      if(!spec.fastForward)for(const image of process.env.FLAME_FOCUS_SCOPE==='short'?captured.rasters.filter(i=>i.level===spec.tier).slice(-1):captured.rasters)await writeFile(`${dir}/${name}-fire${image.level}${image.settled?'-settled':''}.png`,Buffer.from(image.png.split(',')[1],'base64'));
+      if(!spec.fastForward&&process.env.FLAME_FOCUS_SCOPE!=='short')await p.screenshot({path:`${dir}/${name}-result.png`});assert.deepEqual(r.errors,[]);
       r.cleanup=await p.evaluate(()=>{const g=window.__harness.game,s=g.scene.getScene('game');return{flame:!!s.scoreFlame,textures:g.textures.getTextureKeys().filter(k=>k.startsWith('score-flame-heat-')),voices:s.audio.fireVoices.size};});
       assert.equal(r.cleanup.flame,false);assert.deepEqual(r.cleanup.textures,[]);assert.equal(r.cleanup.voices,0);
       if(spec.fastForward){
@@ -99,7 +99,7 @@ try{
         r.checks.push('Fast-forward/duplicate completion/recap/refresh preserves saved score/RNG and destroys owned flame');
       }
       r.checks.push('Actual all-frame text/control/fire bounds; long UI-only values; natural exact once saved clear');
-    }catch(error){r.error=String(error);r.failure=await p.evaluate(()=>({scenes:window.__harness?.game.scene.getScenes(true).map(s=>s.scene.key),phase:window.__harness?.game.registry.get('runController')?.state?.phase}));if(!spec.fastForward)await p.screenshot({path:`dir/${name}-failure.png`.replace('dir/',dir+'/')});throw error;}finally{await context.close();}
+    }catch(error){r.error=String(error);r.failure=await p.evaluate(()=>({scenes:window.__harness?.game.scene.getScenes(true).map(s=>s.scene.key),phase:window.__harness?.game.registry.get('runController')?.state?.phase}));if(!spec.fastForward&&process.env.FLAME_FOCUS_SCOPE!=='short')await p.screenshot({path:`dir/${name}-failure.png`.replace('dir/',dir+'/')});throw error;}finally{await context.close();}
   }
   report.status='PASS';
 }catch(error){report.status='FAIL';report.error=String(error);process.exitCode=1;}

@@ -91,10 +91,10 @@ try{
     const chooser=p.waitForEvent('filechooser');await p.getByRole('button',{name:'导入本局',exact:true}).tap();await (await chooser).setFiles({name:'hand-'+count+'.json',mimeType:'application/json',buffer:Buffer.from(fixtures[count])});
     await waitScene(p,'game');await p.waitForFunction(n=>{const g=window.__harness.game;return g.registry.get('runController').state.handOrder.length===n&&g.scene.getScene('game').cardViews.length===n;},count);await ready(p);const initial=await state(p),ids=initial.state.handOrder,columns=Math.ceil(count/2);
     let rest=await observe(p);validate(rest,count);r.checks.push({count,name:'all rank/suit/mark/hit/score geometry',status:'PASS',rows:rest.layout.handRows});
-    if([9,10,14].includes(count))await p.screenshot({path:`${dir}/${engine}-${width}-${count}-rest.png`});
+    if(process.env.TWO_ROW_SCREENSHOTS!=='0'&&[9,10,14].includes(count))await p.screenshot({path:`${dir}/${engine}-${width}-${count}-rest.png`});
     const path=count===9?[0,1,2,3,4]:[0,columns,columns+1,columns+2,2];
     await route(path);assert.deepEqual(new Set(await selected()),new Set(path.map(i=>ids[i])));validate(await observe(p),count);assert.deepEqual(await state(p),initial,'selection cannot change save or RNG');
-    if([9,10,14].includes(count))await p.screenshot({path:`${dir}/${engine}-${width}-${count}-five.png`});
+    if(process.env.TWO_ROW_SCREENSHOTS!=='0'&&[9,10,14].includes(count))await p.screenshot({path:`${dir}/${engine}-${width}-${count}-five.png`});
     await route([...path].reverse());assert.deepEqual(await selected(),[]);await route(path);await route([...path].reverse());assert.deepEqual(await selected(),[],'repeat release never double toggles');
     await route(Array.from({length:count},(_,i)=>i));assert.equal((await selected()).length,5);await clear();assert.deepEqual(await state(p),initial);
     if(count===14){

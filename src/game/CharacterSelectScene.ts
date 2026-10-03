@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import {AudioEngine} from '../audio/AudioEngine';
 import {CHARACTERS,getCharacter,type CharacterId} from './characters';
-import {addAvatar,selectionPortraitKey,portraitURL} from './portraits';
+import {addAvatar,selectionPortraitKey,selectionPortraitURL,portraitURL} from './portraits';
 import {startRun} from './runAdapter';
 import {gameSession} from './session';
 import {routeSavedRun} from './RunMenu';
@@ -12,31 +12,14 @@ import {R2_MODE_CATALOG,r2RunModeConfig,type R2ModeSelection} from '../content/r
 import {r2ModeUnlocked} from '../domain/r2Progress';
 import {readRunProgress} from '../platform/RunProgress';
 import type {Box} from './layout';
+import {selectionLayout} from './SelectionLayout';
 
 interface SelectionOptions {freshSeed?:boolean;seed?:string;characterId?:CharacterId;modeConfig?:R2ModeSelection}
-const ROLE_STAGE:Record<CharacterId,number>={
-  amo:0x64708c,
-  touye:0x9b693d,
-  laohuan:0x3f7978,
-  erxiang:0x9c5960,
-  azao:0x58764c,
-  xiemu:0xa74a3e,
-};
 const ROLE_ENTRY:Record<CharacterId,string>={
   amo:'单张高牌 · Lv3',touye:'稳分，可押一手',laohuan:'顺子或同花',erxiang:'对子、两对、三条',azao:'轮换两种牌型',xiemu:'末次出牌翻倍',
 };
 
 /** The selector reserves its action row before sizing cards; it never borrows table space. */
-function selectionLayout(width:number,height:number,top:number,bottom:number){
-  const portrait=width<640&&height>width,short=height<500;
-  const w=Math.min(1180,width-24),x=(width-w)/2,footerY=height-bottom-104;
-  const summaryHeight=short?42:portrait?78:90,summaryY=footerY-summaryHeight-12;
-  const gridTop=top+(short?50:portrait?58:72),gap=portrait?10:14,cols=short&&width>=700||width>=1120?6:width>=640?3:2,rows=6/cols;
-  const cardWidth=(w-gap*(cols-1))/cols,cardHeight=Math.min(390,(summaryY-14-gridTop-gap*(rows-1))/rows);
-  const cards:Box[]=Array.from({length:6},(_,i)=>({x:x+(i%cols)*(cardWidth+gap),y:gridTop+Math.floor(i/cols)*(cardHeight+gap),width:cardWidth,height:cardHeight}));
-  const cancelWidth=Math.floor(w*.22),detailWidth=Math.floor(w*.25),confirmWidth=w-cancelWidth-detailWidth-16;
-  return {x,w,top,short,portrait,cards,summary:{x,y:summaryY,width:w,height:summaryHeight},cancel:{x,y:footerY,width:cancelWidth,height:48},details:{x:x+cancelWidth+8,y:footerY,width:detailWidth,height:48},confirm:{x:x+cancelWidth+detailWidth+16,y:footerY,width:confirmWidth,height:48},noticeY:footerY+56};
-}
 
 export class CharacterSelectScene extends Phaser.Scene {
   private choosing=false;
@@ -65,38 +48,29 @@ export class CharacterSelectScene extends Phaser.Scene {
   private render():void {
     const v=this.view,l=v.layout,style=getComputedStyle(document.documentElement),bottom=parseFloat(style.getPropertyValue('--safe-bottom'))||0;
     const p=selectionLayout(l.width,l.height,l.hud.y,bottom),config=r2RunModeConfig(this.modeConfig);v.clear();v.paperBackground();
-    v.text(p.x,p.top,'巡演选角',p.short||p.portrait?24:30,'#fff2da').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
+    v.text(p.x,p.top,'巡演选角',p.short||p.portrait?24:30,'#26313A').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     const modeLabel=this.modeConfig.mode==='standard'?`普通 D${this.modeConfig.difficulty}`:this.modeConfig.mode==='tutorial'?'教程':this.modeConfig.challengeId!;
     const modeWidth=p.portrait?84:132;
     // Keep the mode action clear of the fixed fullscreen/menu controls.
     const controlsRight=Math.max(12,parseFloat(style.getPropertyValue('--safe-right'))||0);
     v.button({x:Math.min(p.x+p.w-modeWidth,l.width-controlsRight-148-modeWidth),y:p.top-3,width:modeWidth,height:44},p.portrait?`模式·${this.modeConfig.mode==='standard'?`D${this.modeConfig.difficulty}`:modeLabel}`:`模式 · ${modeLabel}`,'action/select-mode',()=>this.selectMode(),!this.choosing);
-    if(!p.short)this.singleLine(p.x,p.top+(p.portrait?34:42),this.modeConfig.mode==='tutorial'?'固定二响 · 可跳过':'选角后确认登台',14,'#d5ddc9',p.w-142);
+    if(!p.short)this.singleLine(p.x,p.top+(p.portrait?34:42),this.modeConfig.mode==='tutorial'?'固定二响 · 可跳过':'选角后确认登台',14,'#3F606B',p.w-142);
     CHARACTERS.forEach((character,i)=>{
-      const base=p.cards[i],selected=character.id===this.selectedId,b={...base,y:base.y-(selected?4:0)},first=v.root.length,tone=ROLE_STAGE[character.id];
+      const base=p.cards[i],selected=character.id===this.selectedId,b={...base,y:base.y-(selected?4:0)},first=v.root.length;
       const frame=v.add(this.add.graphics());
       frame.fillStyle(0x26313a,.08).fillRoundedRect(b.x+2,b.y+6,b.width,b.height,8);
       v.material(b,0xf9efdb,0xe8d8bb,8);
-      const condensed=p.short&&b.height<125,bodyHeight=condensed?30:p.portrait?56:64,picture={x:b.x+4,y:b.y+4,width:b.width-8,height:Math.max(1,b.height-bodyHeight-4)};
-      v.material(picture,tone,0x203e46,5);
+      const condensed=p.short&&b.height<125,bodyHeight=condensed?30:p.portrait?26:58,picture={x:b.x+4,y:b.y+4,width:b.width-8,height:Math.max(1,b.height-bodyHeight-4)};
+      v.material(picture,0xfff9ee,0xfff9ee,5);
       this.drawPortrait(character.id,picture);
-      if(!p.portrait&&picture.height>=100){
-        const badge={x:b.x+10,y:b.y+10,width:Math.min(76,b.width-20),height:26};
-        v.material(badge,0x3b3649,0x1b3039,4).setAlpha(.94);
-        this.singleLine(badge.x+7,badge.y+4,character.title,14,'#fbe2ae',badge.width-14);
-      }
-      const textY=b.y+b.height-bodyHeight+(condensed?3:6),name=this.singleLine(b.x+10,textY,character.name,condensed?18:20,'#203744',b.width-20,18,true);
-      if(!condensed){
+      const textY=b.y+b.height-bodyHeight+(condensed?3:6),name=this.singleLine(b.x+10,textY,character.name,p.portrait?14:18,'#203744',b.width-20,18,true);
+      if(!condensed&&!p.portrait){
         const entry=!config.characterAbilityEnabled?'本挑战关闭角色被动':this.modeConfig.mode==='tutorial'&&character.id!=='erxiang'?'跳过教程可自由选角':
           b.width<155?(character.id==='amo'?'单张Lv3':ROLE_ENTRY[character.id].replace(/、/g,'').replace('，','')):ROLE_ENTRY[character.id];
         this.singleLine(b.x+10,name.y+name.height+3,entry,14,'#386d65',b.width-20);
       }
       const edge=v.add(this.add.graphics());
       edge.lineStyle(selected?2:1,selected?0xb8473a:0x3f606b,.95).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,8);
-      if(selected){
-        v.material({x:b.x+b.width-54,y:b.y+10,width:44,height:26},0xf9dca3,0xc59658,4);
-        v.text(b.x+b.width-32,b.y+14,'✓ 已选',14,'#3b382d').setOrigin(.5,0).setFontStyle('bold');
-      }
       const wrap=this.wrapCard(first,b),bg=v.rect(base,0xfff8e8).setFillStyle(0,0).setStrokeStyle(0);
       if(selected){
         bg.setData('selected',true);
@@ -106,32 +80,31 @@ export class CharacterSelectScene extends Phaser.Scene {
     });
     this.animateChoice=false;
     const c=this.selectedId?getCharacter(this.selectedId):undefined,s=p.summary;
-    v.material(s,c?0x284f50:0x343c4d,0x192e38,7);
+    v.material(s,0xe2e8e5,0xe2e8e5,6);
     const passiveDescription=config.characterAbilityEnabled?c?.passiveDescription:'本色演出关闭角色被动与开局赠送，保留角色身份。';
-    if(p.short)v.text(s.x+12,s.y+10,c?`${c.name} · ${passiveDescription}`:'点选一位角色；详情可查看完整能力。',14,'#fff1d8',s.width-24);
+    if(p.short)v.text(s.x+12,s.y+10,c?`${c.name} · ${passiveDescription}`:'点选一位角色；详情可查看完整能力。',14,'#26313A',s.width-24);
     else {
       if(c){
         if(!p.portrait)addAvatar(this,v.root,c,s.x+42,s.y+s.height/2,64);
         const textX=s.x+(p.portrait?12:86),textWidth=s.width-(p.portrait?24:100);
-        this.singleLine(textX,s.y+(p.portrait?8:12),`${c.name} · ${config.characterAbilityEnabled?c.passiveName:'本挑战被动关闭'}`,p.portrait?18:20,'#fff2da',textWidth,18);
-        v.text(textX,s.y+(p.portrait?34:43),passiveDescription!,14,'#e7e8cf',textWidth).setLineSpacing(2);
+        this.singleLine(textX,s.y+(p.portrait?8:12),`${c.name} · ${config.characterAbilityEnabled?c.passiveName:'本挑战被动关闭'}`,p.portrait?16:20,'#26313A',textWidth,18);
+        v.text(textX,s.y+(p.portrait?34:43),passiveDescription!,14,'#26313A',textWidth).setLineSpacing(2);
       }else {
-        v.text(s.x+16,s.y+(p.portrait?10:16),'这次，你用什么活儿撑场？',p.portrait?20:22,'#fff2da',s.width-32);
-        v.text(s.x+16,s.y+(p.portrait?42:51),'确认角色后建立新局。',14,'#d5ddc9',s.width-32);
+        v.text(s.x+16,s.y+(p.portrait?10:16),'这次，你用什么活儿撑场？',p.portrait?20:22,'#26313A',s.width-32);
+        v.text(s.x+16,s.y+(p.portrait?42:51),'确认角色后建立新局。',14,'#3F606B',s.width-32);
       }
     }
     const existing=gameSession().run,canReturn=!!existing&&!['run-won','run-lost'].includes(existing.state.phase);
     v.button(p.cancel,this.modeConfig.mode==='tutorial'?'跳过教程':this.selectedId?'取消选择':canReturn?'返回本局':'返回标题','action/cancel-character',()=>void this.cancelChoice(),!this.choosing);
     v.button(p.details,'角色详情','action/character-details',()=>{if(this.selectedId)this.inspect(this.selectedId);},!this.choosing&&!!this.selectedId);
     v.button(p.confirm,this.choosing?'正在开局…':'确认角色','action/confirm-character',()=>void this.confirmChoice(),!this.choosing&&!!this.selectedId,true);
-    v.text(p.x,p.noticeY,this.notice||(this.selectedId?'已选 '+getCharacter(this.selectedId).name+'，确认后进入商店。':'完整能力与构筑思路见角色详情。'),14,this.notice?'#ffd0b1':'#d5ddc9',p.w);
+    v.text(p.x,p.noticeY,this.notice||(this.selectedId?'已选 '+getCharacter(this.selectedId).name+'，确认后进入商店。':'完整能力与构筑思路见角色详情。'),14,this.notice?'#B8473A':'#3F606B',p.w);
   }
   private reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
   private drawPortrait(id:CharacterId,b:Box):void {
     const key=selectionPortraitKey(id);if(!this.textures.exists(key)){addAvatar(this,this.view.root,getCharacter(id),b.x+b.width/2,b.y+b.height/2,Math.min(b.width,b.height));return;}
-    const image=this.add.image(0,0,key),sourceWidth=image.width,sourceHeight=image.height,scale=Math.max(b.width/sourceWidth,b.height/sourceHeight);
-    const character=getCharacter(id),cw=b.width/scale,ch=b.height/scale,cx=Phaser.Math.Clamp(sourceWidth*character.portraitFocusX-cw/2,0,sourceWidth-cw),cy=Phaser.Math.Clamp(sourceHeight*character.portraitFocusY-ch/2,0,sourceHeight-ch);
-    image.setCrop(cx,cy,cw,ch).setScale(scale).setPosition(b.x-cx*scale+sourceWidth*scale/2,b.y-cy*scale+sourceHeight*scale/2);this.view.add(image);
+    const image=this.add.image(0,0,key),sourceWidth=image.width,sourceHeight=image.height,scale=Math.min(b.width/sourceWidth,b.height/sourceHeight);
+    image.setScale(scale).setPosition(b.x+b.width/2,b.y+b.height/2);this.view.add(image);
   }
   /** Card content drawn since `first` is wrapped into one hoverable, liftable container. */
   private wrapCard(first:number,b:Box):{art:Phaser.GameObjects.Container;enter:()=>void;leave:()=>void} {
@@ -142,7 +115,7 @@ export class CharacterSelectScene extends Phaser.Scene {
       }
     }
     v.add(art);
-    const glow=this.add.graphics().lineStyle(3,0xffe2a1,.92).strokeRoundedRect(-b.width/2-1,-b.height/2-1,b.width+2,b.height+2,8).setAlpha(0);art.add(glow);
+    const glow=this.add.graphics().lineStyle(3,0x3f606b,.92).strokeRoundedRect(-b.width/2-1,-b.height/2-1,b.width+2,b.height+2,8).setAlpha(0);art.add(glow);
     const reduced=()=>gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const leave=()=>{if(!art.active)return;this.tweens.killTweensOf(art);glow.setAlpha(0);if(reduced())art.setPosition(cx,cy).setScale(1);else this.tweens.add({targets:art,x:cx,y:cy,scaleX:1,scaleY:1,duration:120,ease:'Sine.easeOut'});};
     art.once('destroy',()=>this.tweens.killTweensOf(art));
@@ -164,7 +137,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     if(!r2RunModeConfig(this.modeConfig).characterAbilityEnabled)body.unshift('当前挑战关闭角色被动与初始赠送，以下能力供普通局参考。');
     const tutorialOther=this.modeConfig.mode==='tutorial'&&id!=='erxiang';if(tutorialOther)body.push('教程固定二响；跳过教程后可选用此角色。');
     if(this.selectedId===id)body.push('该角色已选中。关闭详情后，用底部「确认角色」进入商店。');
-    this.dialog.open(c.name+' · '+c.title,body.join('\n\n'),this.selectedId===id||tutorialOther?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}],{portrait:{url:portraitURL(id),alt:c.name+'的完整巡演立绘'}});
+    this.dialog.open(c.name+' · '+c.title,body.join('\n\n'),this.selectedId===id||tutorialOther?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}],{portrait:{url:portraitURL(id),thumbnailUrl:selectionPortraitURL(id),alt:c.name+'的完整巡演立绘'}});
   }
   private selectMode():void {
     if(this.choosing)return;this.dialog.close();this.modeDialog.open({initial:{modeConfig:this.modeConfig,seed:this.seed},chooseLabel:'使用此模式',choose:choice=>this.applyModeChoice(choice),
