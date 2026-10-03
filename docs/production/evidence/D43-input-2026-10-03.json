@@ -1,0 +1,67 @@
+{
+  "decision": "D43-input",
+  "status": "INPUT_LOCAL_PASS_FIRE_PENDING",
+  "baseline": "700caab1579dc051c17de144beb32309e431899b",
+  "baselineCI": {
+    "id": 37080661804,
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "scope": [
+    "Native tap highlight suppressed on canvas and transparent hand surface",
+    "Pointer capture clears native focus outline immediately, including inherited focus-visible before release",
+    "Keyboard navigation keeps native and card-level visible focus; clears stale pointer hover"
+  ],
+  "browser": {
+    "report": "shots/d43/input/final-deferred-encoding/report.json",
+    "baselineReport": "shots/d43/input/baseline-continuous/report.json",
+    "version": "151.0.7922.173",
+    "runs": [
+      {
+        "name": "desktop",
+        "status": "PASS",
+        "frames": 182,
+        "rasterFrames": 182,
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "dpr": 1
+      },
+      {
+        "name": "touch",
+        "status": "PASS",
+        "frames": 242,
+        "rasterFrames": 242,
+        "viewport": {
+          "width": 412,
+          "height": 820
+        },
+        "dpr": 3
+      }
+    ]
+  },
+  "evidence": [
+    "shots/d43/input/final-deferred-encoding/touch-frame-contact.png",
+    "shots/d43/input/final-deferred-encoding/desktop-frame-contact.png",
+    "shots/d43/input/final-deferred-encoding/touch-input-short.mp4"
+  ],
+  "checks": [
+    "54 focused hand tests PASS",
+    "typecheck/build PASS via e2e build",
+    "every postrender neutral1px paper and four rounded feedback corners; no face-wide pressed fill",
+    "pointerdown/held/up/cancel/rapid switch/keyboard-pointer-keyboard phases inspected",
+    "actual raster contacts and native video contact inspected"
+  ],
+  "measurementNotes": [
+    "Initial screenshots while held exceeded355ms and opened valid details; removed active-contact screenshot I/O, preserved failure",
+    "Actual outline style none can retain computed3px width; explicit pointer outline0 now verifies both style and width",
+    "Per-frame PNG encoding stalled native touch and legitimately triggered long hold; encode retained rasters after input, preserve failure",
+    "One browser launch preceded build-info readiness; saved build-readiness-failure log, reran after completed build"
+  ],
+  "limits": [
+    "Physical OnePlus/Android native compositor NOT_RUN",
+    "Software WebGL diagnostic reported separately; Canvas PASS is not GPU/physical acceptance",
+    "D43 fire/audio batch still pending; no final release gate or push claimed"
+  ]
+}

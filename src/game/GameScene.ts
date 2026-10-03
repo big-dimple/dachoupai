@@ -191,7 +191,7 @@ export class GameScene extends Phaser.Scene {
     };
     window.addEventListener('dachoupai-presentation',settings);
     this.events.once('shutdown',()=>{
-      this.stopHandHint();window.removeEventListener('pointerdown',this.pointerFocus,true);document.removeEventListener('focusin',this.focusFeedback);document.removeEventListener('focusout',this.focusFeedback);window.removeEventListener('blur',this.stopHandHint);document.removeEventListener('visibilitychange',this.hintVisibility);
+      this.game.canvas.removeAttribute('data-hand-input');this.stopHandHint();window.removeEventListener('pointerdown',this.pointerFocus,true);document.removeEventListener('focusin',this.focusFeedback);document.removeEventListener('focusout',this.focusFeedback);window.removeEventListener('blur',this.stopHandHint);document.removeEventListener('visibilitychange',this.hintVisibility);
       this.handInput?.destroy();this.handInput=undefined;this.controlsLive=false;this.stopScoreFire();
       if(this.registry.get('runMenuActions')===this.menuActions)this.registry.remove('runMenuActions');
       this.menuActions=undefined;
@@ -229,6 +229,7 @@ export class GameScene extends Phaser.Scene {
     this.menuActions={viewDeck:()=>this.inspectDeck(),viewRules:()=>this.inspectRole()};
     this.registry.set('runMenuActions',this.menuActions);
     window.addEventListener('keydown',this.keyboard);
+    this.game.canvas.setAttribute('data-hand-input','pointer');
     window.addEventListener('pointerdown',this.pointerFocus,true);document.addEventListener('focusin',this.focusFeedback);document.addEventListener('focusout',this.focusFeedback);window.addEventListener('blur',this.stopHandHint);document.addEventListener('visibilitychange',this.hintVisibility);
     this.render();
     if(enteredStage)this.revealDrawnCards([]);
@@ -238,15 +239,15 @@ export class GameScene extends Phaser.Scene {
 
   private readonly keyboard=(event:KeyboardEvent)=>{
     if(!this.scene.isActive())return;
-    if(event.key==='Tab'){this.keyboardFocus=true;this.stopHandHint();return;}
+    if(event.key==='Tab'){this.keyboardFocus=true;this.game.canvas.setAttribute('data-hand-input','keyboard');this.hoveredCardId=undefined;this.stopHandHint();this.focusFeedback();return;}
     if(this.handInput?.active){if(event.key==='Escape'){event.preventDefault();this.handInput.cancel('escape');}return;}
     if(this.playing||document.querySelector('dialog[open]')||!this.scene.isActive()||document.activeElement?.matches('input,select,textarea,button'))return;
-    if(['ArrowRight','ArrowLeft',' ','Enter'].includes(event.key)){this.keyboardFocus=true;this.stopHandHint();this.game.canvas.focus({preventScroll:true});this.focusFeedback();}
+    if(['ArrowRight','ArrowLeft',' ','Enter'].includes(event.key)){this.keyboardFocus=true;this.game.canvas.setAttribute('data-hand-input','keyboard');this.hoveredCardId=undefined;this.stopHandHint();this.game.canvas.focus({preventScroll:true});this.focusFeedback();}
     if((event.key==='ArrowRight'||event.key==='ArrowLeft')&&this.hand.length){event.preventDefault();this.focusIndex=(this.focusIndex+(event.key==='ArrowRight'?1:this.hand.length-1))%this.hand.length;this.showFocusedCard();this.refreshSelection();}
     else if(event.key===' '&&this.hand[this.focusIndex]){event.preventDefault();this.toggleCard(this.hand[this.focusIndex].id);}
     else if(event.key==='Enter'&&this.hand[this.focusIndex]){event.preventDefault();this.inspectCard(this.hand[this.focusIndex].id);}
   };
-  private readonly pointerFocus=()=>{this.keyboardFocus=false;this.stopHandHint();this.focusFeedback();};
+  private readonly pointerFocus=()=>{this.keyboardFocus=false;this.game.canvas.setAttribute('data-hand-input','pointer');this.hoveredCardId=undefined;this.stopHandHint();this.focusFeedback();};
   private readonly focusFeedback=()=>{this.cardViews.forEach((view,i)=>this.paintHandFeedback(view,i));};
   private paintHandFeedback(view:CardView,index:number):void {
     if(!view.container.active)return;
