@@ -15,12 +15,12 @@ const COLORS=[
 const clamp=(value:number,minimum=0,maximum=1)=>Math.max(minimum,Math.min(maximum,value));
 let flameId=0;
 
-/** The usual 8px table inset leaves flame entirely in the outer 12px gutter. */
+/** D44: eight pixels of protected outer margin, including the 360px hand seats. */
 export function scoreFlameFrameBands(frame:Box):{outer:Box;depth:number;bands:Box[]}|undefined {
   if(![frame.x,frame.y,frame.width,frame.height].every(Number.isFinite)||frame.width<=0||frame.height<=0)return;
   const outset=clamp(Math.min(frame.x,frame.y),0,8);
   const outer={x:frame.x-outset,y:frame.y-outset,width:frame.width+outset*2,height:frame.height+outset*2};
-  const depth=Math.min(12,outset+4,outer.width/2,outer.height/2);
+  const depth=Math.min(8,outset+4,outer.width/2,outer.height/2);
   return {outer,depth,bands:[
     {x:outer.x,y:outer.y,width:outer.width,height:depth},
     {x:outer.x+outer.width-depth,y:outer.y,width:depth,height:outer.height},
@@ -63,6 +63,8 @@ export class ScoreFlame {
   private surge=0;
   private reduced=false;
   private destroyed=false;
+  private readonly safetyGraphic:Phaser.GameObjects.Graphics;
+  private readonly safetyMask:Phaser.Display.Masks.GeometryMask;
 
   constructor(private readonly scene:Phaser.Scene,root:Phaser.GameObjects.Container,private readonly box:Box,private readonly frameBox?:Box){
     this.textureKey='score-flame-heat-'+flameId++;
@@ -106,6 +108,13 @@ export class ScoreFlame {
     }
     this.graphic=scene.add.graphics().setName('score/fire').setVisible(false).setData('intensity',0);
     root.add(this.graphic);
+    // One CSS-world-space mask protects numbers/buttons from textures, halos AND embers.
+    // Never multiply these layout coordinates by devicePixelRatio or scale.zoom.
+    this.safetyGraphic=scene.add.graphics().setName('score/fire-safe-area').setVisible(false);
+    this.safetyGraphic.fillStyle(0xffffff).fillRect(box.x,box.y,box.width,box.height);
+    for(const band of this.frameBands?.bands??[])this.safetyGraphic.fillRect(band.x,band.y,band.width,band.height);
+    this.safetyMask=this.safetyGraphic.createGeometryMask();
+    for(const object of [this.graphic,this.flame,this.frameGraphic,...this.frameFlames])object?.setMask(this.safetyMask);
     scene.events.on(Phaser.Scenes.Events.UPDATE,this.update,this);
     scene.events.once(Phaser.Scenes.Events.SHUTDOWN,this.destroy,this);
     scene.events.once(Phaser.Scenes.Events.DESTROY,this.destroy,this);
@@ -165,12 +174,12 @@ export class ScoreFlame {
       this.largeFuel[x]=.40+.60*lobes;
       for(let y=0;y<h;y++){
         const rise=(h-1-y)/(h-1),index=y*w+x;
-        // A quiet horizontal middle keeps digits readable without carving the fire
-        // into four regularly spaced columns. Text is also drawn above this material.
-        const numberGuard=rise>.15&&rise<.93 ? .40 : 1;
+        // Tone shaping only. Text protection comes from the reserved footer and
+        // the shared geometry mask, never from reducing texture alpha.
+        const interiorTone=rise>.15&&rise<.93 ? .40 : 1;
         const edge=clamp(Math.min(x,w-1-x,y,h-1-y)/1.5);
-        this.smallMask[index]=edge*numberGuard*clamp((.30-rise)/.11)*.85;
-        this.largeMask[index]=edge*numberGuard*clamp((.94-rise)/.20)*.92;
+        this.smallMask[index]=edge*interiorTone*clamp((.30-rise)/.11)*.85;
+        this.largeMask[index]=edge*interiorTone*clamp((.94-rise)/.20)*.92;
       }
     }
   }
@@ -269,8 +278,8 @@ export class ScoreFlame {
   private drawFrame():void {
     const g=this.frameGraphic,b=this.frameBox;
     g?.clear();if(!g||!b||this.level<2)return;
-    g.lineStyle(8,0xf47e2b,this.reduced?.06:.12).strokeRect(b.x,b.y,b.width,b.height);
-    g.lineStyle(4,0xffba59,this.reduced?.16:.32).strokeRect(b.x,b.y,b.width,b.height);
+    g.lineStyle(4,0xf47e2b,this.reduced?.06:.12).strokeRect(b.x,b.y,b.width,b.height);
+    g.lineStyle(2,0xffba59,this.reduced?.16:.32).strokeRect(b.x,b.y,b.width,b.height);
     g.lineStyle(this.reduced?1:1.3,0xffe4a7,this.reduced?.56:.76).strokeRect(b.x,b.y,b.width,b.height);
     if(this.reduced)return;
     if(this.frameMaterial&&this.framePixels)this.uploadHeat(this.frameMaterial,this.framePixels,this.frameHeat,this.frameMask);
@@ -312,6 +321,7 @@ export class ScoreFlame {
     this.scene.events.off(Phaser.Scenes.Events.SHUTDOWN,this.destroy,this);
     this.scene.events.off(Phaser.Scenes.Events.DESTROY,this.destroy,this);
     this.flame?.destroy();this.graphic.destroy();
+    this.safetyMask.destroy();this.safetyGraphic.destroy();
     for(const image of this.frameFlames)image.destroy();this.frameFlames.length=0;this.frameGraphic?.destroy();
     if(this.scene.textures.exists(this.textureKey))this.scene.textures.remove(this.textureKey);
     if(this.scene.textures.exists(this.frameTextureKey))this.scene.textures.remove(this.frameTextureKey);

@@ -49,7 +49,7 @@ async function run(name,touch){
           keyboard:s.keyboardFocus,active:s.handInput.active,selected:[...s.selectedIds],
           canvas:{tap:canvas.webkitTapHighlightColor,outline:canvas.outlineWidth,outlineStyle:canvas.outlineStyle,focus:g.canvas.matches(':focus'),focusVisible:g.canvas.matches(':focus-visible'),handInput:g.canvas.dataset.handInput,inline:g.canvas.style.cssText},
           surface:{tap:surface.webkitTapHighlightColor,outline:surface.outlineWidth,active:s.handInput.surface.matches(':active')},
-          cards:s.cardViews.map(v=>({id:v.card.id,rectWidth:v.background.lineWidth,rectColor:v.background.strokeColor,rectAlpha:v.background.strokeAlpha,edgeAlpha:v.edgeGlow.alpha,...stroke(v.edgeGlow),feedback:v.edgeGlow.getData('feedback'),faceAlpha:v.faceGlow.alpha,selected:s.selectedIds.has(v.card.id)})),
+          cards:s.cardViews.map(v=>({id:v.card.id,rectWidth:v.background.lineWidth,rectColor:v.background.strokeColor,paperEdge:s.roleFrame.strokeColor,rectAlpha:v.background.strokeAlpha,edgeAlpha:v.edgeGlow.alpha,...stroke(v.edgeGlow),feedback:v.edgeGlow.getData('feedback'),faceAlpha:v.faceGlow.alpha,selected:s.selectedIds.has(v.card.id)})),
         };
       };
       const capture=()=>{
@@ -93,7 +93,7 @@ async function run(name,touch){
     r.frames=captured.frames;r.frameCount=captured.frames.length;r.rasterFrames=captured.images.length;
     assert.ok(r.frameCount>0);assert.ok(r.frames.every(f=>f.renderer===(webgl?'WebGL':'Canvas')));
     for(const frame of r.frames){
-      for(const card of frame.cards){assert.equal(card.rectWidth,1,'every frame keeps neutral paper1px');assert.equal(card.rectColor,0xb78a4f,'every frame keeps neutral brass paper');assert.ok(card.width<=3);assert.equal(card.arcs,4);assert.equal(card.faceAlpha,0,'no face-wide pressed fill');if(!frame.keyboard)assert.ok(!card.feedback.focused);}
+      for(const card of frame.cards){assert.equal(card.rectWidth,1,'every frame keeps neutral paper1px');assert.equal(card.rectColor,card.paperEdge,'every frame keeps the theme neutral paper edge');assert.ok(card.width<=3);assert.equal(card.arcs,4);assert.equal(card.faceAlpha,0,'no face-wide pressed fill');if(!frame.keyboard)assert.ok(!card.feedback.focused);}
       if(!baseline){assert.equal(frame.canvas.tap,'rgba(0, 0, 0, 0)');assert.equal(frame.surface.tap,'rgba(0, 0, 0, 0)');if(!frame.keyboard)assert.equal(frame.canvas.outline,'0px');}
     }
     if(baseline){r.nativeRisk=r.phases.some(f=>f.surface.tap!=='rgba(0, 0, 0, 0)')&&r.phases.some(f=>!f.keyboard&&f.canvas.outline!=='0px');assert.ok(r.nativeRisk,'baseline native highlight and inherited focus-visible risk reproduced');}

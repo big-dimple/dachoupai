@@ -17,9 +17,9 @@ function fixture(){
   };
   const object=()=>{
     const node:typeof objects[number]={name:'',visible:true,active:true,destroyed:0};objects.push(node);
-    for(const method of ['clear','lineStyle','beginPath','moveTo','lineTo','strokePath','fillStyle','fillCircle','strokeRect','add'])node[method]=()=>node;
+    for(const method of ['clear','lineStyle','beginPath','moveTo','lineTo','strokePath','fillStyle','fillCircle','strokeRect','fillRect','setMask','add'])node[method]=()=>node;
     node.setName=(name:string)=>{node.name=name;return node;};node.setVisible=(visible:boolean)=>{node.visible=visible;return node;};
-    node.setData=()=>node;node.setDisplaySize=()=>node;node.setAngle=()=>node;node.setFlipX=()=>node;
+    node.createGeometryMask=()=>({destroy:vi.fn()});node.setMask=(mask:unknown)=>{node.mask=mask;return node;};node.setData=()=>node;node.setDisplaySize=()=>node;node.setAngle=()=>node;node.setFlipX=()=>node;
     node.destroy=()=>{node.active=false;node.destroyed++;};return node;
   };
   const scene={events,add:{graphics:object,image:object},textures:{
@@ -36,10 +36,18 @@ function fixture(){
 }
 
 describe('bounded foreground score fire',()=>{
-  it('keeps all four frame bands in the outer 12px without covering hand or action bodies',()=>{
+  it('clips heat texture, frame halo and all ember graphics with the same owned CSS-space safety mask',()=>{
+    const f=fixture(),masked=f.objects.filter(o=>o.name==='score/fire'||o.name==='score/fire-heat'||o.name==='score/fire-frame'||o.name.startsWith('score/fire-frame-'));
+    expect(masked.length).toBe(7);expect(masked.every(o=>!!o.mask&&o.mask===masked[0].mask)).toBe(true);
+    const mask=masked[0].mask as {destroy:ReturnType<typeof vi.fn>};
+    expect(f.objects.find(o=>o.name==='score/fire-safe-area')?.visible).toBe(false);
+    f.flame.destroy();expect(mask.destroy).toHaveBeenCalledOnce();
+    expect(f.objects.find(o=>o.name==='score/fire-safe-area')?.destroyed).toBe(1);
+  });
+  it('keeps all four frame bands in the outer 8px without covering hand or action bodies',()=>{
     for(const [width,height] of [[320,568],[390,844],[844,390],[1440,900]]){
       const frame=scoreFlameFrameBands({x:8,y:8,width:width-16,height:height-16})!;
-      expect(frame.outer).toEqual({x:0,y:0,width,height});expect(frame.depth).toBe(12);
+      expect(frame.outer).toEqual({x:0,y:0,width,height});expect(frame.depth).toBe(8);
       const table=layout({width,height},{top:0,right:0,bottom:0,left:0});
       for(const band of frame.bands){
         expect(band.x).toBeGreaterThanOrEqual(0);expect(band.y).toBeGreaterThanOrEqual(0);

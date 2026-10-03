@@ -58,7 +58,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
   create():void {
     this.choosing=false;this.notice='';this.animateChoice=false;this.lifecycle++;
-    this.cameras.main.setBackgroundColor('#153c40');this.audio.setScene('menu');
+    this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene('menu');
     this.view=new SceneView(this,()=>this.render());
     this.events.once('shutdown',()=>{this.lifecycle++;this.dialog.close();this.modeDialog.close();});this.render();
   }
@@ -75,7 +75,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     CHARACTERS.forEach((character,i)=>{
       const base=p.cards[i],selected=character.id===this.selectedId,b={...base,y:base.y-(selected?4:0)},first=v.root.length,tone=ROLE_STAGE[character.id];
       const frame=v.add(this.add.graphics());
-      frame.fillStyle(0x071c25,.5).fillRoundedRect(b.x+2,b.y+6,b.width,b.height,8);
+      frame.fillStyle(0x26313a,.08).fillRoundedRect(b.x+2,b.y+6,b.width,b.height,8);
       v.material(b,0xf9efdb,0xe8d8bb,8);
       const condensed=p.short&&b.height<125,bodyHeight=condensed?30:p.portrait?56:64,picture={x:b.x+4,y:b.y+4,width:b.width-8,height:Math.max(1,b.height-bodyHeight-4)};
       v.material(picture,tone,0x203e46,5);
@@ -92,7 +92,7 @@ export class CharacterSelectScene extends Phaser.Scene {
         this.singleLine(b.x+10,name.y+name.height+3,entry,14,'#386d65',b.width-20);
       }
       const edge=v.add(this.add.graphics());
-      edge.lineStyle(selected?3:1,selected?0xf6d794:0xa88d60,.95).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,8);
+      edge.lineStyle(selected?2:1,selected?0xb8473a:0x3f606b,.95).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,8);
       if(selected){
         v.material({x:b.x+b.width-54,y:b.y+10,width:44,height:26},0xf9dca3,0xc59658,4);
         v.text(b.x+b.width-32,b.y+14,'✓ 已选',14,'#3b382d').setOrigin(.5,0).setFontStyle('bold');

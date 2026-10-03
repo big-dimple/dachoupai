@@ -44,8 +44,8 @@ function shopLayout(width:number,height:number,top:number,bottom:number,cols:num
   let chapter:Box={x,y:toolsY,width:toolWidth,height:44},items:Box={x:x+toolWidth+8,y:toolsY,width:toolWidth,height:44};
   if(wideHeader){const available=slotX-x-24,width=(available-8)/2;chapter={x,y:top+108,width,height:44};items={...chapter,x:x+width+8};}
   const shelfX=short?x+slotGroupWidth+24:x,shelfWidth=short?w-slotGroupWidth-24:w;
-  const shelfTop=short?top+92:wideHeader?slotY+slotHeight+84:toolsY+104,gap=12;
-  const availableWidth=(shelfWidth-gap*(cols-1))/cols,cardWidth=Math.min(228,availableWidth,(footerY-36-shelfTop)/1.4),cardHeight=cardWidth*1.4,startX=shelfX+(shelfWidth-cardWidth*cols-gap*(cols-1))/2;
+  const shelfTop=short?top+84:wideHeader?slotY+slotHeight+84:toolsY+104,gap=12;
+  const availableWidth=(shelfWidth-gap*(cols-1))/cols,cardWidth=Math.min(228,availableWidth,(footerY-(short?8:36)-shelfTop)/1.4),cardHeight=cardWidth*1.4,startX=shelfX+(shelfWidth-cardWidth*cols-gap*(cols-1))/2;
   const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:startX+i*(cardWidth+gap),y:shelfTop,width:cardWidth,height:cardHeight}));
   const rerollWidth=Math.floor(w*.29),buildWidth=Math.floor(w*.25),playWidth=w-rerollWidth-buildWidth-16;
   return {x,w,top,short,compact,wideHeader,portrait,slots,chapter,items,shelf,tabs:{x:shelfX,y:shelfTop-52,width:shelfWidth,height:44},reroll:{x,y:footerY,width:rerollWidth,height:48},play:{x:x+rerollWidth+8,y:footerY,width:playWidth,height:48},build:{x:x+w-buildWidth,y:footerY,width:buildWidth,height:48},noticeY:footerY+56};
@@ -85,7 +85,7 @@ export class ShopScene extends Phaser.Scene {
     this.pendingGoldRoll=undefined;this.pendingRerollFlip=false;this.pendingPurchaseFlight=undefined;this.pendingToolCue=undefined;this.pendingTransactions=[];this.lastTransactionNotes=[];
     this.events.once('shutdown',()=>{this.lifecycle++;this.hideHoverPicture();this.dialog.close();for(const [key,listener] of this.artRefreshListeners)this.textures.off('addtexture-'+key,listener);this.artRefreshListeners.clear();this.artTargets.clear();});
     const run=runController(this)?.state;if(!run||run.phase!=='shop'){this.scene.start('character-select');return;}this.run=run;
-    this.cameras.main.setBackgroundColor('#153c40');this.audio.setScene('shop');this.view=new SceneView(this,()=>this.render());this.render();
+    this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene('shop');this.view=new SceneView(this,()=>this.render());this.render();
     if(!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       this.view.root.setAlpha(.35);this.tweens.add({targets:this.view.root,alpha:1,duration:220,ease:'Cubic.easeOut'});
       this.offerArts.forEach((art,i)=>{const ty=art.y;art.setPosition(art.x,ty+26).setAlpha(0);this.tweens.add({targets:art,y:ty,alpha:1,duration:260,delay:110+i*70,ease:'Cubic.easeOut'});});
@@ -131,18 +131,25 @@ export class ShopScene extends Phaser.Scene {
     offers.forEach((o,i)=>{
       if(this.shelfKind!=='jokers'){this.drawGoodsOffer(o,p.shelf[i],p.short,p.portrait);return;}
       const selected=this.selectedOfferId===o.offerId,raw=p.shelf[i],b=selected?{...raw,y:raw.y-4}:raw,d=getR2Joker(o.definitionId),ability=this.jokerCopy(o.definitionId),first=v.root.length;
-      const headerHeight=ability?52:30,footerHeight=40;
+      const headerHeight=ability?(p.short?46:52):(p.short?26:30),footerHeight=p.short?28:40;
       this.drawOfferCard(b,d.rarity,selected,o.consumed,p.short,headerHeight,footerHeight);
       const name=v.text(b.x+10,b.y+5,d.name,16,o.consumed?'#c6c5af':'#fff2d4').setFontStyle('bold');
-      for(let font=16;name.width>b.width-20&&font>12;)name.setFontSize(--font);
+      for(let font=16;name.width>b.width-20&&font>14;)name.setFontSize(--font);
       if(ability)this.jokerAbilityLine(o.definitionId,'offer',b.x+8,b.y+29,b.width-16,ability.summary,ability.compact);
       const picture={x:b.x+8,y:b.y+headerHeight+4,width:b.width-16,height:b.height-headerHeight-footerHeight-8};
-      this.drawJokerPicture(o.definitionId,picture,o.consumed?.35:1);
+      if(picture.height>=16&&picture.width>=16)this.drawJokerPicture(o.definitionId,picture,o.consumed?.35:1);
       if(o.edition&&o.edition!=='none')v.text(b.x+8,picture.y+picture.height-20,editionLabel(o.edition),12,'#ffebbb',b.width-16).setShadow(0,1,'#17323c',2,true,true);
       const reason=o.consumed?'':this.purchaseReason(o,true),price=r2PurchasePrice(this.run,o);
-      v.text(b.x+8,b.y+b.height-footerHeight+3,o.consumed?'已收入':price+' 金',16,'#ffe2a2').setFontStyle('bold');
-      if(reason)v.text(b.x+8,b.y+b.height-17,reason,11,'#f6bba6',b.width-76).setStyle({maxLines:1});
-      v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-63,y:b.y+b.height-27}).setData('definitionId',o.definitionId).setData('surface','offer'));
+      v.text(b.x+8,b.y+b.height-footerHeight+3,o.consumed?'已收入':price+' 金',p.short?14:16,'#ffe2a2').setFontStyle('bold');
+      if(reason){
+        // On a short shelf the rarity moves beside the price. Give the reason
+        // its own full-width line, measured without an invalid tiny wrap box.
+        const label=v.text(b.x+8,b.y+b.height-17,reason,11,'#f6bba6');
+        const room=Math.max(0,b.width-(p.short?16:76));let copy=reason;
+        while(label.width>room&&copy.length){copy=copy.slice(0,-1);label.setText(copy+'…');}
+        if(label.width>room)label.setVisible(false);
+      }
+      v.add(createJokerRarityBadge(this,d.rarity,p.short?{x:b.x+b.width-31,y:b.y+b.height-23,compact:true}:{x:b.x+b.width-63,y:b.y+b.height-27}).setData('definitionId',o.definitionId).setData('surface','offer'));
       const hover=this.hoverCard(first,b,o.definitionId),r=v.rect(raw).setFillStyle(0,0).setStrokeStyle(0).setData('selected',selected);
       this.offerArts.push(hover.art);
       v.target(r,`offer/${o.offerId}`,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});

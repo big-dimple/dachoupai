@@ -15,7 +15,7 @@ export class TitleScene extends Phaser.Scene {
   init(data?:{seed?:string}):void {this.seed=data?.seed??new URLSearchParams(location.search).get('seed')??undefined;}
   create():void {
     this.leaving=false;this.firstRender=true;this.audio.setScene('menu');
-    this.cameras.main.setBackgroundColor('#153b40');this.view=new SceneView(this,()=>this.render());this.render();
+    this.cameras.main.setBackgroundColor('#F3EADB');this.view=new SceneView(this,()=>this.render());this.render();
     const keyboardOpen=(event:KeyboardEvent)=>{
       const element=document.activeElement;
       if(element!==document.body&&element!==this.game.canvas||document.querySelector('dialog[open]'))return;
@@ -39,22 +39,18 @@ export class TitleScene extends Phaser.Scene {
     const session=gameSession(),saved=session.run,canContinue=!!saved&&['idle','readonly'].includes(saved.status);
     const buttonWidth=short?Math.min(340,(w-left-right-64)*.44):Math.min(360,w-48),x=short?w-right-24-buttonWidth:(w-buttonWidth)/2,visualX=short?(left+x)/2:w/2;
     v.clear();v.paperBackground();
-    if(this.textures.exists('p03-stage')){
-      const stage=this.add.image(w/2,h/2,'p03-stage'),scale=Math.max(w/stage.width,h/stage.height);
-      v.add(stage.setScale(scale).setAlpha(.85));
-    }
     const titleSize=short?Math.max(32,Math.min(50,(h-l.hud.y-bottom)*.2)):Math.max(38,Math.min(w<700?56:94,w*.18,h*.15)),titleY=short?l.hud.y+titleSize*.6+4:h*.23;
     const title=v.text(visualX,titleY,'大丑牌',titleSize,'#203944').setOrigin(.5).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setShadow(0,2,'#fff3d9',4,true,true);
-    const hasStage=this.textures.exists('p03-stage'),textColor=hasStage?'#345057':'#e8cf9e';
-    if(!hasStage)title.setColor('#fff0ce').setShadow(0,3,'#122331',7,true,true);
+    const textColor='#3F606B';
+    title.setColor('#26313A').setShadow(0,0,'#000',0,false,false);
     v.text(visualX,titleY+titleSize*.75,'一出戏 · 一副牌',16,textColor).setOrigin(.5);
     const fanTop=titleY+titleSize*.75+28,fanRoom=Math.max(24,h-bottom-18-fanTop),fanY=short?fanTop+fanRoom/2:h*.56,cardWidth=short?Math.min(82,(x-left-48)/3.5,fanRoom/1.9):Math.min(112,w*.2),cardHeight=cardWidth*1.42;
     const fan=v.add(this.add.container(visualX,fanY));
     [-1,0,1].forEach((side,i)=>{
       const card=this.add.container(side*cardWidth*.69,Math.abs(side)*9).setAngle(side*13),g=this.add.graphics();
       g.fillStyle(0x071b24,.4).fillRoundedRect(-cardWidth/2+3,-cardHeight/2+6,cardWidth,cardHeight,7);
-      g.fillStyle(i===1?0xf2e4c9:0x315f60).fillRoundedRect(-cardWidth/2,-cardHeight/2,cardWidth,cardHeight,7);
-      g.lineStyle(1.5,0xc6ad78).strokeRoundedRect(-cardWidth/2,-cardHeight/2,cardWidth,cardHeight,7);card.add(g);
+      g.fillStyle(i===1?0xf2e4c9:0xe2e8e5).fillRoundedRect(-cardWidth/2,-cardHeight/2,cardWidth,cardHeight,7);
+      g.lineStyle(1.5,0x26313a).strokeRoundedRect(-cardWidth/2,-cardHeight/2,cardWidth,cardHeight,7);card.add(g);
       if(i!==1&&this.textures.exists('p00-card-back'))card.add(this.add.image(0,0,'p00-card-back').setDisplaySize(cardWidth-6,cardHeight-6).setAlpha(.9));
       else {
         const mark=this.add.graphics().fillStyle(0xa24843);

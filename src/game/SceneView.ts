@@ -56,38 +56,27 @@ export class SceneView {
   }
   clear():void {this.cancel();this.gestures.clear();this.root.removeAll(true);}
   add<T extends Phaser.GameObjects.GameObject>(object:T):T {this.root.add(object);return object;}
-  /** A cached continuous material gradient avoids Graphics' triangulated rounded fills. */
-  material(b:Box,top:number,bottom:number,radius=6):Phaser.GameObjects.Image {
-    const rx=Math.min(24,radius*256/b.width),ry=Math.min(24,radius*128/b.height);
-    const key=`p00-material-${top}-${bottom}-${rx.toFixed(1)}-${ry.toFixed(1)}`;
+  /** Cache a handful of flat paper tones; historical scene palettes share this language. */
+  material(b:Box,top:number,_bottom:number,radius=6):Phaser.GameObjects.Image {
+    const r=top>>16&255,g=top>>8&255,blue=top&255;
+    const light=(r+g+blue)/3;
+    const tone=light>200?PAPER_THEME.paperLight:r>g*1.25&&r>blue*1.25?PAPER_THEME.redSoft:light<150?PAPER_THEME.jadeSoft:PAPER_THEME.paper;
+    const rx=Math.min(24,radius*256/b.width),ry=Math.min(24,radius*128/b.height),key=`d44-paper-${tone}-${rx.toFixed(1)}-${ry.toFixed(1)}`;
     if(!this.scene.textures.exists(key)){
-      const texture=this.scene.textures.createCanvas(key,256,128)!;const c=texture.getContext();
-      c.beginPath();c.moveTo(rx,0);c.lineTo(256-rx,0);c.quadraticCurveTo(256,0,256,ry);c.lineTo(256,128-ry);c.quadraticCurveTo(256,128,256-rx,128);c.lineTo(rx,128);c.quadraticCurveTo(0,128,0,128-ry);c.lineTo(0,ry);c.quadraticCurveTo(0,0,rx,0);c.closePath();c.clip();
-      const hex=(color:number)=>`#${color.toString(16).padStart(6,'0')}`,gradient=c.createLinearGradient(0,0,0,128);
-      gradient.addColorStop(0,hex(top));gradient.addColorStop(1,hex(bottom));c.fillStyle=gradient;c.fillRect(0,0,256,128);
-      c.fillStyle='rgba(255,245,216,.18)';c.fillRect(rx,1,256-rx*2,1);texture.refresh();
+      const texture=this.scene.textures.createCanvas(key,256,128)!,c=texture.getContext();
+      c.beginPath();c.moveTo(rx,0);c.lineTo(256-rx,0);c.quadraticCurveTo(256,0,256,ry);c.lineTo(256,128-ry);c.quadraticCurveTo(256,128,256-rx,128);c.lineTo(rx,128);c.quadraticCurveTo(0,128,0,128-ry);c.lineTo(0,ry);c.quadraticCurveTo(0,0,rx,0);c.closePath();
+      c.fillStyle='#'+tone.toString(16).padStart(6,'0');c.fill();texture.refresh();
     }
     return this.add(this.scene.add.image(b.x,b.y,key).setOrigin(0).setDisplaySize(b.width,b.height));
   }
   paperBackground():void {
     const {width,height}=this.layout;
-    this.material({x:0,y:0,width,height},0x254f52,0x0d252e,0);
-    if(this.scene.textures.exists('p03-stage')){
-      const backdrop=this.add(this.scene.add.image(width/2,height/2,'p03-stage'));
-      backdrop.setScale(Math.max(width/backdrop.width,height/backdrop.height)).setAlpha(.2);
-    }
-    if(this.scene.textures.exists('p00-paper'))this.add(this.scene.add.tileSprite(0,0,width,height,'p00-paper').setOrigin(0).setAlpha(.035).setTint(0x79a89b));
-    // Dark timber rail frames the felt; card faces carry the bright paper material.
-    const rail=this.scene.add.graphics();
-    rail.lineStyle(8,0x111f29,.9).strokeRoundedRect(4,4,width-8,height-8,16);
-    rail.lineStyle(1,0xbda473,.6).strokeRoundedRect(7,7,width-14,height-14,12);
-    rail.lineStyle(1,0x9cc7ae,.12).strokeRoundedRect(10,10,width-20,height-20,10);
-    for(const [cx,cy,sx,sy] of [[19,19,1,1],[width-19,19,-1,1],[19,height-19,1,-1],[width-19,height-19,-1,-1]]){
-      rail.lineStyle(1,0xc9ac78,.6).beginPath().moveTo(cx,cy+12*sy).lineTo(cx,cy).lineTo(cx+12*sx,cy).strokePath();
-    }
-    this.add(rail);
+    this.add(this.scene.add.rectangle(0,0,width,height,PAPER_THEME.paper).setOrigin(0));
+    if(this.scene.textures.exists('p00-paper'))this.add(this.scene.add.tileSprite(0,0,width,height,'p00-paper').setOrigin(0).setAlpha(.06));
+    this.add(this.scene.add.graphics().lineStyle(1,PAPER_THEME.ink,.16).beginPath().moveTo(8,4).lineTo(width-8,4).strokePath());
   }
   text(x:number,y:number,value:string,size=14,color=PAPER_CSS.ink,wrap?:number):Phaser.GameObjects.Text {
+    const rgb=parseInt(color.replace('#',''),16);if(color.startsWith('#')&&((rgb>>16&255)+(rgb>>8&255)+(rgb&255))/3>150)color=PAPER_CSS.ink;
     return this.add(this.scene.add.text(Math.round(x),Math.round(y),value,{fontFamily:UI_FONT,fontSize:`${size}px`,color,resolution:Math.max(1.5,1/this.scene.scale.zoom),wordWrap:wrap?{width:wrap,useAdvancedWrap:true}:undefined}));
   }
   rect(b:Box,color:number=PAPER_THEME.paper):Phaser.GameObjects.Rectangle {return this.add(this.scene.add.rectangle(b.x+b.width/2,b.y+b.height/2,b.width,b.height,color).setStrokeStyle(1,PAPER_THEME.jade,.65));}
@@ -103,17 +92,13 @@ export class SceneView {
     object.once('destroy',()=>{this.gestures.delete(object);if(this.pressed?.object===object)this.cancel();});
   }
   button(b:Box,label:string,name:string,action:()=>void,enabled=true,primary=false):Phaser.GameObjects.Rectangle {
-    const art=this.add(this.scene.add.container(b.x,b.y)),g=this.scene.add.graphics(),radius=Math.min(9,b.height/5);
-    g.fillStyle(0x061b24,.65).fillRoundedRect(0,4,b.width,b.height,radius);
-    g.fillStyle(primary?0x71452f:0x233b42).fillRoundedRect(0,0,b.width,b.height,radius);
-    const fill=this.material({x:1,y:1,width:b.width-2,height:b.height-5},primary?0xc9694a:0x37646b,primary?0x983d32:0x213f49,radius-1),edge=this.scene.add.graphics();
-    edge.lineStyle(1,primary?0xf0c18a:0x8aa59f,.85).strokeRoundedRect(.5,.5,b.width-1,b.height-3,radius);
-    edge.lineStyle(1,primary?0xefa87a:0x87b2aa,.45).beginPath().moveTo(10,3).lineTo(b.width-10,3).strokePath();
-    edge.lineStyle(1,0x09222a,.6).beginPath().moveTo(10,b.height-6).lineTo(b.width-10,b.height-6).strokePath();
-    if(primary)for(const px of [10,b.width-10])edge.fillStyle(0xf0cc94,.75).fillCircle(px,b.height/2,1.5);
-    const glow=this.scene.add.graphics().lineStyle(2,0xffedb8,.8).strokeRoundedRect(1,1,b.width-2,b.height-3,radius).setAlpha(0);
-    art.add([g,fill,edge,glow]);
-    const t=this.text(b.x+b.width/2,b.y+b.height/2-1,label,primary?22:15,'#fff4de').setOrigin(.5).setFontStyle('bold').setShadow(0,1,'#10232b',2,true,false);
+    const art=this.add(this.scene.add.container(b.x,b.y)),g=this.scene.add.graphics(),radius=4;
+    g.fillStyle(PAPER_THEME.ink,.08).fillRoundedRect(0,2,b.width,b.height,radius);
+    g.fillStyle(primary?PAPER_THEME.red:PAPER_THEME.paperLight).fillRoundedRect(0,0,b.width,b.height,radius);
+    const edge=this.scene.add.graphics().lineStyle(1,primary?PAPER_THEME.red:PAPER_THEME.jade,.9).strokeRoundedRect(.5,.5,b.width-1,b.height-1,radius);
+    const glow=this.scene.add.graphics().lineStyle(2,PAPER_THEME.jade,.75).strokeRoundedRect(1,1,b.width-2,b.height-2,radius).setAlpha(0);
+    art.add([g,edge,glow]);
+    const t=this.text(b.x+b.width/2,b.y+b.height/2-1,label,primary?22:15).setOrigin(.5).setFontStyle('bold').setColor(primary?PAPER_CSS.paperLight:PAPER_CSS.jade);
     const r=this.rect(b).setFillStyle(0,0).setStrokeStyle();
     r.setData('label',t).setData('buttonArt',art);
     const rest=()=>{art.y=b.y;t.y=b.y+b.height/2-1;glow.setAlpha(0);};

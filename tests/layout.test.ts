@@ -2,9 +2,35 @@ import {describe,it,expect} from 'vitest';
 import {layout,intersects,type Box} from '../src/game/layout';
 import {PointerIntent} from '../src/game/PointerIntent';
 
-const sizes=[[320,568],[360,640],[390,740],[390,844],[430,932],[844,300],[844,390],[1024,768],[1280,720],[1920,1080],[768,1024]];
+const sizes=[[320,568],[360,640],[390,740],[390,844],[430,932],[844,300],[844,360],[844,390],[1024,768],[1280,720],[1920,1080],[768,1024]];
 const inside=(b:Box,w:number,h:number)=>b.x>=0&&b.y>=0&&b.x+b.width<=w+.01&&b.y+b.height<=h+.01;
 describe('CSS layout contract',()=>{
+  it('D44 reserves readable score and independent fire space through short-landscape boundary and safe insets',()=>{
+    for(const height of [300,320,359,360,361,390,430])for(const bottom of [0,12]){
+      const l=layout({width:844,height},{top:0,left:0,right:0,bottom},undefined,{count:9});
+      expect(l.scoreBoard.height).toBeGreaterThanOrEqual(80);
+      expect(l.scoreFire.y).toBeGreaterThan(l.scoreBoard.y+48);
+      expect(l.scoreFire.y+l.scoreFire.height).toBeLessThan(l.scoreBoard.y+l.scoreBoard.height);
+      for(const control of [...Object.values(l.buttons),...Object.values(l.tableActions),l.hand]){
+        expect(intersects(l.scoreBoard,control)).toBe(false);
+        expect(intersects(l.scoreFire,control)).toBe(false);
+      }
+      expect(l.toolsInHud).toBe(true);
+    }
+  });
+  it('D44 keeps nine cards in one row at 320–430px without changing seats on selection',()=>{
+    for(const width of [320,360,390,430]){
+      const l=layout({width,height:640},{top:0,left:0,right:0,bottom:0},undefined,{count:9,start:8});
+      expect(l.handOverflow).toBe(false);expect(l.visibleCardCount).toBe(9);expect(l.handStart).toBe(0);
+      for(const card of l.cards){
+        expect(card.visible).toBe(true);expect(card.hit.width).toBeGreaterThanOrEqual(width<360?30:36);
+        expect(card.hit.height).toBeGreaterThanOrEqual(90);
+        expect(card.visual.height).toBeCloseTo(card.visual.width*1.4);
+        // Sixteen pixels of selection lift stay within the original seat's vertical reserve.
+        expect(card.visual.y-16).toBeGreaterThan(card.hit.y);
+      }
+    }
+  });
   for(const [width,height] of sizes)it(`${width}×${height}: readable, visible and distinct hit areas`,()=>{
     const l=layout({width,height},{top:0,right:0,bottom:0,left:0});
     for(const b of [l.hud,l.jokers,l.preview,l.tools,l.hand,l.actions,l.status])expect(inside(b,width,height)).toBe(true);
@@ -47,7 +73,7 @@ describe('CSS layout contract',()=>{
       expect(l.cards.findIndex(card=>card.visible)).toBe(l.handStart);
       for(const card of visible){
         expect(inside(card.hit,width,height)).toBe(true);
-        expect(card.hit.width).toBeGreaterThanOrEqual(36);
+        expect(card.hit.width).toBeGreaterThanOrEqual(width<360&&count===9?30:36);
         expect(card.visual.height/card.visual.width).toBeGreaterThanOrEqual(1.4-1e-6);
       }
       for(let i=0;i<visible.length;i++)for(let j=i+1;j<visible.length;j++)expect(intersects(visible[i].hit,visible[j].hit)).toBe(false);
@@ -80,7 +106,7 @@ describe('CSS layout contract',()=>{
       expect(l.playedArea.height).toBeGreaterThanOrEqual(48);
       expect(intersects(l.scoreBoard,l.playedArea)).toBe(false);
       // D16 moves the mobile pile/history row into details; score and landing remain on the table.
-      const visible=l.mode==='portrait'?[l.scoreBoard,l.playedArea]:[l.scoreBoard,l.playedArea,l.handLabel,l.piles];
+      const visible=l.mode==='portrait'||!l.labelHeight?[l.scoreBoard,l.playedArea]:[l.scoreBoard,l.playedArea,l.handLabel,l.piles];
       for(const b of visible)for(const control of [l.tools,l.hand,l.actions])expect(intersects(b,control)).toBe(false);
       for(const action of Object.values(l.tableActions)){expect(inside(action,width,height)).toBe(true);expect(action.height).toBeGreaterThanOrEqual(48);}
       expect(intersects(l.tableActions.play,l.tableActions.discard)).toBe(false);

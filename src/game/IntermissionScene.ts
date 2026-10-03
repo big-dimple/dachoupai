@@ -54,7 +54,7 @@ export class IntermissionScene extends Phaser.Scene {
   create():void {
     this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;this.events.once('shutdown',()=>{this.lifecycle++;this.dialog.close();this.stopCelebration();});
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
-    this.cameras.main.setBackgroundColor('#153c40');
+    this.cameras.main.setBackgroundColor('#F3EADB');
     const skipped=!!run.stage.skipResult;this.audio.setScene(this.result.cleared?'success':'failure');
     if(!skipped){
       if(this.result.cleared){const outcome=stageOutcome(run.stage,run.lastTrace);if(outcome.intensity>1)this.audio.overkill(outcome.intensity);else this.audio.success();}
@@ -135,14 +135,14 @@ export class IntermissionScene extends Phaser.Scene {
   private drawResultHero(b:Box,outcome:ReturnType<typeof stageOutcome>,skipped:boolean,lost:boolean,animate:boolean):void {
     const v=this.view,run=runController(this)!.state,compact=b.height<220,cx=b.x+b.width/2,cy=b.y+b.height/2;
     // The stage and performer stay behind the finished hand; only the cards/info use paper panels.
-    if(this.textures.exists('p03-stage'))v.add(this.add.image(cx,cy,'p03-stage').setDisplaySize(b.width,b.height).setAlpha(.2));
+    // The result keeps the same quiet paper stage; no separate timber backdrop.
     const portrait=selectionPortraitKey(run.characterId);
     if((!compact||lost)&&this.textures.exists(portrait)){const actor=v.add(this.add.image(b.x+b.width*.81,b.y+b.height*.5,portrait));actor.setScale(Math.min(b.width*.48/actor.width,b.height/actor.height)).setAlpha(.4);}
-    v.add(this.add.graphics().fillStyle(0x102f35,.68).fillRect(b.x,b.y,b.width*.6,b.height));
+    v.add(this.add.graphics().fillStyle(0xe2e8e5,.6).fillRect(b.x,b.y,b.width*.6,b.height));
     if(lost){
       const gap=(BigInt(run.stage!.targetHeat)-BigInt(this.result.stageHeat)).toString();
       v.text(cx,b.y+b.height*.68,`${heatText(this.result.stageHeat)} / ${heatText(run.stage!.targetHeat)} · 差 ${heatText(gap)}`,b.width<420?16:22,'#eadbbd',b.width-24).setOrigin(.5,0).setName('result/gap');
-      if(animate){const curtain=v.add(this.add.rectangle(cx,b.y+b.height*.3,b.width,b.height*.6,0x122c33,.65));this.tweens.add({targets:curtain,alpha:0,duration:280,ease:'Cubic.easeOut',onComplete:()=>curtain.destroy()});}
+      if(animate){const curtain=v.add(this.add.rectangle(cx,b.y+b.height*.3,b.width,b.height*.6,0xe2e8e5,.45));this.tweens.add({targets:curtain,alpha:0,duration:280,ease:'Cubic.easeOut',onComplete:()=>curtain.destroy()});}
       return;
     }
     const trace=!skipped&&this.result.cleared?outcome.last:null,top=b.y+(compact?6:18);
@@ -150,7 +150,7 @@ export class IntermissionScene extends Phaser.Scene {
     v.text(cx,top,hand,compact?18:24,'#f3d899').setOrigin(.5,0).setFontStyle('bold');
     if(trace)v.text(cx,top+(compact?24:34),`${fractionText(trace.accumulator.H)} 热度 × ${fractionText(trace.accumulator.M)}`,compact?18:22,'#ffdca0').setOrigin(.5,0).setName('result/formula');
     const scoreY=top+(trace?(compact?46:68):(compact?24:42)),scoreSize=compact?32:Math.min(68,Math.max(42,b.height*.19));
-    const score=v.text(cx,scoreY,(trace?'+':'')+heatText(trace?.finalScore??this.result.stageHeat),scoreSize,'#fff2c7').setOrigin(.5,0).setName('result/score').setFontStyle('bold').setShadow(0,3,'#10272d',5,true,true);
+    const score=v.text(cx,scoreY,(trace?'+':'')+heatText(trace?.finalScore??this.result.stageHeat),scoreSize,'#fff2c7').setOrigin(.5,0).setName('result/score').setFontStyle('bold');
     for(let font=scoreSize;score.width>b.width-28&&font>24;)score.setFontSize(--font);
     // Reserve visible coin height above the reward row; transparent cell padding is not a text gap.
     const coinRow=this.result.cleared&&!skipped&&this.result.goldEarned>0,coinSize=compact?(b.height<190?56:72):96;

@@ -6,7 +6,7 @@ export interface CardFeedbackState {selected?:boolean;scoring?:boolean;hovered?:
 /** Every hand/preview state keeps its rectangular backing neutral, even during dealing. */
 export function paintCardFeedback(view:CardSurface,state:CardFeedbackState):void {
   const width=Number(view.container.getData('width')),height=Number(view.container.getData('height'));
-  const emphasized=!!(state.hovered||state.focused),lineWidth=emphasized?3:2,color=emphasized?0xffd990:state.scoring?T.jade:T.red;
+  const emphasized=!!(state.hovered||state.focused),lineWidth=emphasized?3:2,color=emphasized?T.focus:state.scoring?T.jade:T.red;
   view.background.setStrokeStyle(1,T.brass);
   view.edgeGlow?.clear().lineStyle(lineWidth,color,.95)
     .strokeRoundedRect(-width/2-1,-height/2-1,width+2,height+2,Math.min(7,width*.09))

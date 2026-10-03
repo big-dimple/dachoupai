@@ -17,7 +17,7 @@ const config: Phaser.Types.Core.GameConfig = {
   parent: 'app',
   width: viewport.width*viewport.density,
   height: viewport.height*viewport.density,
-  backgroundColor: '#153b40',
+  backgroundColor: '#F3EADB',
   scene: [BootScene, TitleScene, CharacterSelectScene, GameScene, IntermissionScene, ShopScene],
   scale: {
     mode: Phaser.Scale.NONE,

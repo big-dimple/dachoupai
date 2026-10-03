@@ -23,7 +23,7 @@ export class BootScene extends Phaser.Scene {
     });
     queueCharacterPreviewLoads(this, CHARACTERS,imageXHR);
     for(const asset of P00_ASSETS)this.load.svg(asset.key,assetUrl(asset.path),{width:asset.width,height:asset.height},svgXHR);
-    this.load.image('p03-stage',assetUrl('assets/p03/stage-wide.webp'),imageXHR);
+    // D44: the paper stage is procedural; the former heavy timber backdrop is not preloaded.
   }
 
   async create(): Promise<void> {
