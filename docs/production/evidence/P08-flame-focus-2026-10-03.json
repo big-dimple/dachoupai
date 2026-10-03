@@ -1,0 +1,676 @@
+{
+  "taskId": "P08",
+  "testedCommit": "a423dc51cc326476a9c6729ff068fc4789aa5f34",
+  "rulesVersion": "r2",
+  "contentVersion": "quality-r2-content-v10",
+  "contentHash": "json-fnv-v1:24efe7a905216d85",
+  "baseline": "38f16c2984a2591af0bb918e5350a61515b8777c",
+  "environment": {
+    "os": "cloud Linux",
+    "node": "22.23.3",
+    "browser": "151.0.7922.173",
+    "renderer": "Canvas; system Chromium launched with GPU/software rasterizer disabled in external test tooling",
+    "physicalDevice": "NOT_RUN",
+    "hardwareGPU": "NOT_RUN"
+  },
+  "scope": "Bounded procedural score fire and same-tier positive source impacts. No new assets, gameplay, RNG/save/scoring/deployment/PC/domain changes.",
+  "rootCause": {
+    "sourceProven": "Local16CSSpx; small30%/large94% interior mask, tone0.40, minimum32px heat texture compressed to16px; same-tier set returns without new impulse.",
+    "referencePixels": "NOT_VIEWED by this consumer. User explicitly assigned reference aesthetics to reviewers who saw the inputs; all further input transfer stopped.",
+    "oldScreenshotRevision": "Not proven by the supplied screenshots; no claim that they show baseline SHA."
+  },
+  "budget": {
+    "portrait360And390x740TwoRows": {
+      "scoreBoardCSSHeight": 104.8,
+      "playedAreaCSSHeight": 104,
+      "handCSSHeight": 223.2,
+      "fireCSSHeight": 24
+    },
+    "roomyScoreCapCSS": 132,
+    "roomyFireCSS": 40,
+    "shortLandscapeFireCSS": 24,
+    "fiveCardPreview": "Full faces/rank>=14px inside played area, never inside hand. Preserve existing hand geometry; do not spend preview height below104px to obtain40px fire."
+  },
+  "implementation": [
+    "Three unequal pointed asymmetric independently phased tongues, yellow cores/red-orange outer heat; no large image or shader. Vertical texture uses actual CSS fire height.",
+    "Positive saved-source landing produces bounded120–200ms local impulse, eventId-deduplicated within presentation. Replay/reduced/aborted contexts do not add it.",
+    "Four-edge glow only a low-opacity260ms ignition accent; same-tier impacts never restart it. Expiry immediately hides sprites even between30Hz uploads.",
+    "Texture/halo/embers share CSS-space geometry safety mask. Number/controls bounds and source-flight endpoints remain protected.",
+    "Reduced motion renders a static recognizable silhouette and stops animation uploads/embers/outer glow. Owned textures/listeners/mask/eventIds are destroyed on completion/cancellation."
+  ],
+  "checks": [
+    {
+      "name": "affected unit/type",
+      "command": "npm test -- tests/score-flame.test.ts tests/layout.test.ts tests/score-presentation.test.ts; npm run typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "tests": 44,
+      "originalAssertions": "Original3x large/small area+alpha, rank/pip overlap assertions and timeouts retained."
+    },
+    {
+      "name": "actual static score frames",
+      "command": "node harness/flame-focus.mjs (seven static cases before adding separate interruption route)",
+      "status": "PASS",
+      "exitCode": 0,
+      "cases": [
+        {
+          "name": "360x740-tier1",
+          "exactSavedScore": "600",
+          "renderer": "Canvas",
+          "rasters": [
+            {
+              "level": 1,
+              "settled": false,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 18,
+                "peaks": [
+                  18,
+                  10.5,
+                  15
+                ],
+                "valleys": [
+                  3.5,
+                  1.5,
+                  2.5,
+                  2
+                ]
+              }
+            },
+            {
+              "level": 1,
+              "settled": true,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 19,
+                "peaks": [
+                  16,
+                  11,
+                  11.5
+                ],
+                "valleys": [
+                  2.5,
+                  1.5,
+                  2.5,
+                  1.5
+                ]
+              }
+            }
+          ],
+          "maxNaturalDeduplicatedImpacts": 5
+        },
+        {
+          "name": "390x740-tier1",
+          "exactSavedScore": "600",
+          "renderer": "Canvas",
+          "rasters": [
+            {
+              "level": 1,
+              "settled": false,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 18,
+                "peaks": [
+                  18,
+                  11.5,
+                  15.5
+                ],
+                "valleys": [
+                  3.5,
+                  1.5,
+                  2.5,
+                  2
+                ]
+              }
+            },
+            {
+              "level": 1,
+              "settled": true,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 19,
+                "peaks": [
+                  16.5,
+                  12,
+                  11
+                ],
+                "valleys": [
+                  2.5,
+                  1.5,
+                  2.5,
+                  1.5
+                ]
+              }
+            }
+          ],
+          "maxNaturalDeduplicatedImpacts": 5
+        },
+        {
+          "name": "390x740-tier2",
+          "exactSavedScore": "1200",
+          "renderer": "Canvas",
+          "rasters": [
+            {
+              "level": 1,
+              "settled": false,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 18,
+                "peaks": [
+                  18,
+                  11.5,
+                  15.5
+                ],
+                "valleys": [
+                  3.5,
+                  1.5,
+                  2.5,
+                  2
+                ]
+              }
+            },
+            {
+              "level": 1,
+              "settled": true,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 19,
+                "peaks": [
+                  16.5,
+                  11.5,
+                  11
+                ],
+                "valleys": [
+                  2.5,
+                  1.5,
+                  2.5,
+                  1.5
+                ]
+              }
+            },
+            {
+              "level": 2,
+              "settled": false,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 33.5,
+                "peaks": [
+                  33.5,
+                  24.5,
+                  29
+                ],
+                "valleys": [
+                  15,
+                  9.5,
+                  13,
+                  10.5
+                ]
+              }
+            },
+            {
+              "level": 2,
+              "settled": true,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 26.5,
+                "peaks": [
+                  25,
+                  20.5,
+                  21
+                ],
+                "valleys": [
+                  10.5,
+                  7.5,
+                  9,
+                  8.5
+                ]
+              }
+            }
+          ],
+          "maxNaturalDeduplicatedImpacts": 6
+        },
+        {
+          "name": "390x740-tier3",
+          "exactSavedScore": "5589",
+          "renderer": "Canvas",
+          "rasters": [
+            {
+              "level": 3,
+              "settled": false,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 36.5,
+                "peaks": [
+                  36.5,
+                  27.5,
+                  32
+                ],
+                "valleys": [
+                  16.5,
+                  10,
+                  14,
+                  11.5
+                ]
+              }
+            },
+            {
+              "level": 3,
+              "settled": true,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 36,
+                "peaks": [
+                  33.5,
+                  24,
+                  24
+                ],
+                "valleys": [
+                  13.5,
+                  9.5,
+                  12,
+                  8
+                ]
+              }
+            }
+          ],
+          "maxNaturalDeduplicatedImpacts": 6
+        },
+        {
+          "name": "844x300-tier3",
+          "exactSavedScore": "5589",
+          "renderer": "Canvas",
+          "rasters": [
+            {
+              "level": 3,
+              "settled": false,
+              "pixels": {
+                "density": 2,
+                "height": 24,
+                "visibleHeight": 22,
+                "peaks": [
+                  22,
+                  16,
+                  19
+                ],
+                "valleys": [
+                  9.5,
+                  6,
+                  8.5,
+                  7
+                ]
+              }
+            },
+            {
+              "level": 3,
+              "settled": true,
+              "pixels": {
+                "density": 2,
+                "height": 24,
+                "visibleHeight": 21,
+                "peaks": [
+                  20,
+                  14,
+                  14
+                ],
+                "valleys": [
+                  8,
+                  5.5,
+                  7,
+                  4.5
+                ]
+              }
+            }
+          ],
+          "maxNaturalDeduplicatedImpacts": 6
+        },
+        {
+          "name": "1280x720-tier2",
+          "exactSavedScore": "1200",
+          "renderer": "Canvas",
+          "rasters": [
+            {
+              "level": 1,
+              "settled": false,
+              "pixels": {
+                "density": 1,
+                "height": 40,
+                "visibleHeight": 18,
+                "peaks": [
+                  18,
+                  13,
+                  15
+                ],
+                "valleys": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            },
+            {
+              "level": 1,
+              "settled": true,
+              "pixels": {
+                "density": 1,
+                "height": 40,
+                "visibleHeight": 18,
+                "peaks": [
+                  18,
+                  12,
+                  13
+                ],
+                "valleys": [
+                  2,
+                  2,
+                  2,
+                  0
+                ]
+              }
+            },
+            {
+              "level": 2,
+              "settled": false,
+              "pixels": {
+                "density": 1,
+                "height": 40,
+                "visibleHeight": 33,
+                "peaks": [
+                  33,
+                  24,
+                  29
+                ],
+                "valleys": [
+                  9,
+                  8,
+                  8,
+                  7
+                ]
+              }
+            },
+            {
+              "level": 2,
+              "settled": true,
+              "pixels": {
+                "density": 1,
+                "height": 40,
+                "visibleHeight": 26,
+                "peaks": [
+                  26,
+                  23,
+                  21
+                ],
+                "valleys": [
+                  7,
+                  6,
+                  6,
+                  5
+                ]
+              }
+            }
+          ],
+          "maxNaturalDeduplicatedImpacts": 6
+        },
+        {
+          "name": "390x740-tier2-reduced",
+          "exactSavedScore": "1200",
+          "renderer": "Canvas",
+          "rasters": [
+            {
+              "level": 1,
+              "settled": false,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 17,
+                "peaks": [
+                  17,
+                  10.5,
+                  14.5
+                ],
+                "valleys": [
+                  2.5,
+                  1.5,
+                  2.5,
+                  1.5
+                ]
+              }
+            },
+            {
+              "level": 1,
+              "settled": true,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 17,
+                "peaks": [
+                  17,
+                  10.5,
+                  14.5
+                ],
+                "valleys": [
+                  2.5,
+                  1.5,
+                  2.5,
+                  1.5
+                ]
+              }
+            },
+            {
+              "level": 2,
+              "settled": false,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 28.5,
+                "peaks": [
+                  28.5,
+                  21,
+                  25
+                ],
+                "valleys": [
+                  12,
+                  7,
+                  10.5,
+                  8
+                ]
+              }
+            },
+            {
+              "level": 2,
+              "settled": true,
+              "pixels": {
+                "density": 2,
+                "height": 40,
+                "visibleHeight": 28.5,
+                "peaks": [
+                  28.5,
+                  21,
+                  25
+                ],
+                "valleys": [
+                  12,
+                  7,
+                  10.5,
+                  8
+                ]
+              }
+            }
+          ],
+          "maxNaturalDeduplicatedImpacts": 0
+        }
+      ],
+      "evidence": "shots/flame-focus/report.json"
+    },
+    {
+      "name": "9/14 hand regression",
+      "command": "TWO_ROW_DIR=shots/flame-focus/hand TWO_ROW_REUSE_BUILD=1 TWO_ROW_COUNTS=9,14 TWO_ROW_PORT=5261 node harness/two-row-hand.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "coverage": "360/390x740,9 and14, full five-card previews, cross-row forward/reverse/cancel/max5, sort, resize/rotation, interrupted contact, reduced motion, discard/redraw/save restore. All quantities10–14 remain in unit coverage.",
+      "evidence": "shots/flame-focus/hand/report.json"
+    },
+    {
+      "name": "fast-forward/duplicate/recap/restore cleanup",
+      "command": "PAPER_FIRE_DIR=shots/flame-focus/interrupt FLAME_FOCUS_SCOPE=interrupt node harness/flame-focus.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "shots/flame-focus/interrupt/report.json"
+    },
+    {
+      "name": "frozen final aggregate",
+      "command": "VITEST_MAX_WORKERS=1 NODE_OPTIONS='--import /workspace/.cloud-tools/release-canvas-adapter.mjs' SMOKE_BROWSERS=chromium npm run verify:ci",
+      "status": "PASS",
+      "exitCode": 0,
+      "testedCommit": "a423dc51cc326476a9c6729ff068fc4789aa5f34",
+      "tests": 1800,
+      "steps": [
+        "test",
+        "content",
+        "type/build",
+        "Chromium desktop/mobile Canvas smoke",
+        "plan"
+      ],
+      "beforeEqualsAfter": true,
+      "evidence": "shots/ci/all.json"
+    }
+  ],
+  "images": [
+    {
+      "path": "docs/production/evidence/p08-flame-focus-2026-10-03/P08-360x740-five-card-small-fire.png",
+      "sha256": "fefa689e92fe5a7a22b6072562524acdc3d6899f2f98d3f2964a254cfcca50d1",
+      "bytes": 206916,
+      "pngPixels": [
+        720,
+        1480
+      ],
+      "cssViewport": {
+        "width": 360,
+        "height": 740
+      },
+      "requestedDPR": 3,
+      "canvasDensity": 2,
+      "safeInsets": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas",
+      "testedSourceCommit": "a423dc51cc326476a9c6729ff068fc4789aa5f34",
+      "actualCompositedFireCSS": {
+        "density": 2,
+        "height": 40,
+        "visibleHeight": 19,
+        "peaks": [
+          16,
+          11,
+          11.5
+        ],
+        "valleys": [
+          2.5,
+          1.5,
+          2.5,
+          1.5
+        ]
+      },
+      "capture": "Actual postrender Phaser canvas copied unchanged; DOM menu overlay is not part of the canvas PNG."
+    },
+    {
+      "path": "docs/production/evidence/p08-flame-focus-2026-10-03/P08-844x300-five-card-extreme-fire.png",
+      "sha256": "af43e9923fe6d1fd6489559383fc68dc69aa26e456a2bf662ea89017d39517b9",
+      "bytes": 205028,
+      "pngPixels": [
+        1688,
+        600
+      ],
+      "cssViewport": {
+        "width": 844,
+        "height": 300
+      },
+      "requestedDPR": 3,
+      "canvasDensity": 2,
+      "safeInsets": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "renderer": "Canvas",
+      "testedSourceCommit": "a423dc51cc326476a9c6729ff068fc4789aa5f34",
+      "actualCompositedFireCSS": {
+        "density": 2,
+        "height": 24,
+        "visibleHeight": 21,
+        "peaks": [
+          20,
+          14,
+          14
+        ],
+        "valleys": [
+          8,
+          5.5,
+          7,
+          4.5
+        ]
+      },
+      "capture": "Actual postrender Phaser canvas copied unchanged; DOM menu overlay is not part of the canvas PNG."
+    }
+  ],
+  "bundleMetadata": {
+    "capturedBundle": {
+      "version": "C03",
+      "revision": "38f16c2984a2591af0bb918e5350a61515b8777c",
+      "modified": true,
+      "builtAt": "2026-10-03T11:54:28.626Z"
+    },
+    "sourceNote": "Captured e2e build used the candidate working runtime source subsequently committed unchanged as a423dc5; its header still reports predecessor38f16c2 + modified=true. These are local candidate renders, not proof of a public deployment.",
+    "frozenReleaseBuild": {
+      "version": "C03",
+      "revision": "a423dc51cc326476a9c6729ff068fc4789aa5f34",
+      "modified": false,
+      "builtAt": "2026-10-03T11:58:41.340Z"
+    }
+  },
+  "pixelInspection": {
+    "status": "PASS",
+    "reviewer": "implementation executor",
+    "observations": "Opened small360, short844, portrait tiers, static reduced, PC, and two-row five-preview PNGs. Full played faces and indices, separated numbers/controls/fire, unequal readable peaks. Warm-pixel height includes embers; main-contour peak values are separately listed.",
+    "independentVisualApproval": "NOT_RUN; parent has not received pixels yet."
+  },
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": "",
+    "evidence": ""
+  },
+  "outputDelivery": {
+    "library": "FAILED before any identity: hosted apps tools/list request failed: network. Not a permission rejection; no retry.",
+    "gitEvidence": "User explicitly approved these two existing gameplay-only PNGs in docs/production/evidence. They are not runtime assets/public files or source-art branch publication."
+  },
+  "futureMainlineFeedback": {
+    "status": "PLANNED_SCOPE_REVIEW",
+    "items": [
+      "Distinct troupe/played/hand zones and independent played area",
+      "Jokers at ordinary playing-card scale",
+      "All three shop products visible together and card-shaped, not two posters plus an arrow"
+    ],
+    "implementationThisRound": "NOT_RUN; parent read-only reviewers are checking exact dimensions first."
+  },
+  "limitations": [
+    "27 new WebP still not readable/integrated; no whole-game art completion claim.",
+    "OnePlus/Android native browser bars, hardware GPU/performance, real motion/audio and independent visual acceptance NOT_RUN.",
+    "No repeated software WebGL performance recording, no PC/domain/deployment operation.",
+    "Old baseline CI not queried. New exact release CI is reported separately after normal fast-forward push."
+  ],
+  "nextTask": "Parent independent two-PNG review; follow-up scope/asset intake under P08, no automatic C04 continuation."
+}

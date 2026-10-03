@@ -1,5 +1,9 @@
 # 当前交接：P08全游戏手绘墨线／纸色主线
 
+P08局部火焰本轮（2026-10-03）：基线main38f16c2；源码冻结 `a423dc51cc326476a9c6729ff068fc4789aa5f34`，44专项与1800 tests/content/type/build/Canvas双端smoke/plan PASS，前后源码／索引／HEAD指纹相同。实际七组各档／横竖／减少动态静帧、360／390九牌与14牌回归、单独不录屏快进／重复完成／回看／恢复通过。完整出牌优先，两行保持出牌104px／手牌223.2px，仅24px局部火；有余量才32–40px。三非对称错相火舌、同档正向来源短冲量／eventId去重、外缘260ms低亮辅助，共用CSS安全mask。旧3x面积／亮度、角标遮挡及超时均保留。
+
+两张真实代表PNG已按最新用户明确授权放仓库[证据目录](production/evidence/p08-flame-focus-2026-10-03/README.md)，renderer／DPR／CSS视口／safeInset／候选SHA与原bundle metadata见[证据](production/evidence/P08-flame-focus-2026-10-03.json)。Library保存止于tools/list network、未返回身份，不重复上传；不进runtime/public，不触碰原画支线。父协调此前只见加载占位，独立视觉批准仍NOT_RUN。正常FF main后报告精确SHA／UTC／CI并跟进终态；旧已绿CI不查询。新27WebP仍未接入，未见三张参考像素，不操作PC／域名。三区、普通扑克牌体量Joker、商店三项同屏只归档，下一批待父协调范围；P08整体继续in_progress。下方为历史交接。
+
 D44两行手牌交付（2026-10-03）：以用户确认全绿的main `e402ade5b8b444fedc93cef0ab1bace58c06cd7b` 接续P08；旧CI本轮未查询。360／390×740的10–14牌两行全部可见，卡64×89.6、每行独立22px预留，稳定座位／牌序／命中，最多选五张；九牌保持原一行。只在两行手牌表面接管纵向触控，修复初始纵移中断，跨行双向选择／取消、Escape回滚、原生取消、resize中断、重复接触均验证。排序、旋转、弃牌补牌、刷新恢复保持选择／存档／RNG合同。极短视口照实保留容量窗口，不改牌数／规则。
 
 115受影响检查、类型及构建通过；源码冻结 `77b7e7234b8d13006f2a28c869d409314fac862b` 的1796测试／content／build／双端Canvas smoke／plan全部PASS，前后源码／索引／HEAD指纹一致。默认并行首轮3条既有生成用例超时，保留失败记录，改支持的单worker后原超时／断言不变全过。Chromium151 Canvas与WebKit26.6云端WebGL各360／390×740、9–14张真实输入52组检查通过，另补两组14牌减少动态／尺寸变化。实际检查五张九牌／10牌／14牌截图；WebKit旋转先读旧844×300的测试竞态已用等待实际CSS视口修正，未放宽几何断言。见[D44两行证据](production/evidence/D44-two-row-2026-10-03.json)，复跑入口 `node harness/two-row-hand.mjs`。受控存档通过既有校验器并从真实导入UI进入，不声称自然获取所有数量。
