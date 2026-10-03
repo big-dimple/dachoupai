@@ -1,0 +1,164 @@
+{
+  "taskId": "P08",
+  "task": "D42 hand input modality, rounded feedback and first-sort teaching",
+  "date": "2026-10-02",
+  "baseCommit": "88ec83b59b44a12e6d54b37e14fcae366a1a731b",
+  "testedCommit": "1922bf000c67b84f536ff084261e6b98f3582a70",
+  "status": "LOCAL_VALIDATION_PASS",
+  "baselineCI": {
+    "run": 37077643923,
+    "status": "SUCCESS",
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37077643923"
+  },
+  "scope": "Only pointer/keyboard feedback, hand/preview/dealing contours and optional first-sort sweep cue. No real selection by cue, no domain/content/RNG/save/art/dependency/deployment change.",
+  "libraryReference": {
+    "fileName": "16020.jpg",
+    "metadata": "CONFIRMED",
+    "pixelRead": "UNAVAILABLE",
+    "standardMaterialization": "FAILED_download_failed",
+    "viewedInThisEnvironment": false,
+    "alternateTransfer": "NOT_ATTEMPTED"
+  },
+  "baseline": {
+    "naturalWrongFocus": "shots/single-selection/baseline-final/report.json",
+    "controlledDealing": "shots/single-selection/baseline-controlled/report.json",
+    "finding": "Actual native selection4spades left unrelated unselected9hearts gold outline; controlled real-deal pointer reproduces4px square backing on desktop/touch."
+  },
+  "verification": {
+    "focused": {
+      "status": "PASS",
+      "tests": 62,
+      "files": 4,
+      "log": "shots/single-selection/focused.log"
+    },
+    "typecheck": "PASS",
+    "browser": {
+      "status": "PASS",
+      "report": "shots/single-selection/final-controlled/report.json",
+      "contexts": 3,
+      "checks": 18,
+      "browser": "151.0.7922.173",
+      "buildInfo": {
+        "version": "C03",
+        "revision": "88ec83b59b44a12e6d54b37e14fcae366a1a731b",
+        "modified": true,
+        "builtAt": "2026-10-02T23:45:29.565Z"
+      },
+      "dealingFixture": "Only initial non-reduced deal: pause the real scene tween clock at PRE_UPDATE after real cards enter dealing, send native pointer input, assert strokes, then resume before the ordinary route. No rules/state mutation; controlled presentation timing is distinct from natural performance.",
+      "hintPixels": {
+        "desktop": {
+          "darkFraction": 1
+        },
+        "touch": {
+          "darkFraction": 1
+        },
+        "touch-bars-reduced": {
+          "darkFraction": 1
+        }
+      },
+      "observedFps": {
+        "desktop": 40.1298828125,
+        "touch": 31.758544921875,
+        "touch-bars-reduced": 42.11328125
+      },
+      "note": "Native input; only initial-deal presentation clock held explicitly. Actual four ARC commands and LINE_STYLE widths, real raster pixels and CSS/layer containment. Full state/RNG/journal/export/IndexedDB unchanged outside intentional sorting.",
+      "bundle": {
+        "asset": "./assets/index-a_gQHP-g.js",
+        "sha256": "8a8f1abccc27471e84233a3e43b5595da80ac783204e3d74c3360aa6c71bf774"
+      }
+    },
+    "releaseAggregate": {
+      "status": "PASS",
+      "tests": 1770,
+      "testFiles": 93,
+      "steps": [
+        {
+          "name": "test",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 55413
+        },
+        {
+          "name": "verify:content",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 3638
+        },
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 12828
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 49631
+        },
+        {
+          "name": "production-plan",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 249
+        }
+      ],
+      "before": {
+        "source": "f764cea863cd6040891da4da6cd32fb59c9464505edf1e15b0af5c6f60ed28a9",
+        "index": "31f621d5a85584313ee045147c03985430a3644452132d2341af0a426908114f",
+        "head": "1922bf000c67b84f536ff084261e6b98f3582a70",
+        "branch": "refs/heads/dot/single-selection"
+      },
+      "after": {
+        "source": "f764cea863cd6040891da4da6cd32fb59c9464505edf1e15b0af5c6f60ed28a9",
+        "index": "31f621d5a85584313ee045147c03985430a3644452132d2341af0a426908114f",
+        "head": "1922bf000c67b84f536ff084261e6b98f3582a70",
+        "branch": "refs/heads/dot/single-selection"
+      },
+      "report": "shots/ci/all.json",
+      "log": "shots/single-selection/release-ci.log",
+      "renderer": "External adapter selects system Chromium Canvas only, all original assertions/timeouts retained."
+    },
+    "completedAt": "2026-10-03T00:06:02.273194+00:00"
+  },
+  "measurementHistory": {
+    "firstMobileStart": "Initial context clicked Start within inherited350ms same-coordinate guard after confirm; screenshot shows shop. Corrected harness uses ready+400ms, no production control or timeout change. shots/single-selection/before/report.json",
+    "graphicsWidth": "Graphics uses command-buffer LINE_STYLE, not Rectangle.lineWidth. First observer failed on undefined; corrected read retains <=3px and actual four-arc assertion. shots/single-selection/measurement-property-failure/report.json",
+    "briefHintScreenshot": "DPR3 full-page screenshot can capture after a brief cue ends. Independent probe showed visible cue; final native canvas snapshot plus actual dark pixel fraction proves visibility without changing product timing. shots/single-selection/probe-hint.png",
+    "naturalDealingTiming": "One touch rerun arrived after all deals ended and failed the actual-dealing assertion. Reproducible final case pauses only the actual initial-deal tween clock at PRE_UPDATE, applies native input, checks original assertion/strokes, resumes; all other route inputs normal. shots/single-selection/final-matched/report.json"
+  },
+  "testedWorkingTree": {
+    "files": {
+      "src/game/GameScene.ts": "21880772e3c6ab5255b7af9c657415b3ca0f3dfdccd545434e9d244558e0610b",
+      "src/game/HandSelectionInput.ts": "32e20db86c95d14d18f21076a357b6a798db0b314aa2f458352e5f192f455868",
+      "src/game/CardFeedback.ts": "93170b02242b3dd7eddd107065e93e2525b8936bfa92e5acb308cc1c443ca3a1",
+      "src/game/HandSweepHint.ts": "d79b6f4811c65dc4c182b8b89816dbc8017f04db27bc7d1f0e25611975f6d5a3",
+      "tests/hand-selection-input.test.ts": "0971489b5d2f9933dd5241c8bc632a9a4319acfc6c1c8a3e64127c23988a8a34",
+      "tests/hand-sweep-hint.test.ts": "d3be2daea2cde00f7ad8526ad7dcfa7750a5ed47934a342fe1417d1fdd51065a",
+      "harness/selection-feedback.mjs": "dc5494485908c2b53f3a19bd92d8d034ace84d5e134c09e2b96edb7b34fbe1a0"
+    }
+  },
+  "limits": [
+    "Linux Chromium Canvas functional evidence, no new WebGL/hardware/physical OnePlus claim.",
+    "Initial-deal controlled timing is explicitly separate from natural execution/performance.",
+    "Parent viewed user screenshot; this environment did not obtain its pixels.",
+    "No JQK artwork change. Optional presentation preference is independent of run saves; if preference storage fails, same-scene one-shot behavior remains."
+  ],
+  "screenshots": {
+    "inspected": true,
+    "beforePC": "shots/single-selection/baseline-controlled/desktop-single-selected.png",
+    "beforeTouch": "shots/single-selection/baseline-controlled/touch-single-selected.png",
+    "afterPC": "shots/single-selection/final-controlled/desktop-single-selected.png",
+    "afterTouch": "shots/single-selection/final-controlled/touch-single-selected.png",
+    "keyboard": "shots/single-selection/final-controlled/desktop-keyboard-focus.png",
+    "hintTouch": "shots/single-selection/final-controlled/touch-hint-current-frame.png",
+    "hintReduced": "shots/single-selection/final-controlled/touch-bars-reduced-hint-current-frame.png",
+    "video": "shots/single-selection/final-controlled/touch.webm",
+    "shortVideo": "shots/single-selection/final-controlled/touch-sort-teaching-short.mp4"
+  },
+  "publication": {
+    "status": "READY_FOR_AUTHORIZED_NORMAL_MAIN_PUSH",
+    "remoteSHA": "RECORDED_AFTER_PUSH_IN_shots/single-selection/publication.json",
+    "remoteCI": "NOT_YET_RUN"
+  }
+}
