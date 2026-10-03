@@ -35,6 +35,7 @@ interface Gesture {
   order:string[];
   max:number;
   limitReached:boolean;
+  allowVertical:boolean;
 }
 
 /** Entry along a segment, so sparse moves visit cards in either traversal direction. */
@@ -56,13 +57,13 @@ export class HandSelectionGesture {
 
   get state():HandSelectionUpdate|undefined {return this.gesture?this.snapshot(this.gesture):undefined;}
 
-  begin(pointerId:number,x:number,y:number,startCardId:string,initialSelected:Iterable<string>,orderedBoxes:readonly HandSelectionHitBox[],max=5):HandSelectionUpdate|undefined {
+  begin(pointerId:number,x:number,y:number,startCardId:string,initialSelected:Iterable<string>,orderedBoxes:readonly HandSelectionHitBox[],max=5,allowVertical=false):HandSelectionUpdate|undefined {
     if(this.gesture)return this.gesture.pointerId===pointerId?undefined:this.interrupt('multitouch');
     if(!orderedBoxes.some(box=>box.id===startCardId&&box.visible!==false))return undefined;
     const initial=new Set(initialSelected),limit=Number.isFinite(max)?Math.max(0,Math.min(5,Math.floor(max))):5;
     if(initial.size>limit)return undefined;
     const gesture:Gesture={pointerId,startX:x,startY:y,x,y,startCardId,mode:initial.has(startCardId)?'deselect':'select',phase:'pending',
-      initial,selected:new Set(initial),visited:new Set(),boxes:orderedBoxes.map(box=>({...box})),order:[...new Set([...orderedBoxes.map(box=>box.id),...initial])],max:limit,limitReached:false};
+      initial,selected:new Set(initial),visited:new Set(),boxes:orderedBoxes.map(box=>({...box})),order:[...new Set([...orderedBoxes.map(box=>box.id),...initial])],max:limit,limitReached:false,allowVertical};
     this.gesture=gesture;
     return this.snapshot(gesture);
   }
@@ -72,7 +73,7 @@ export class HandSelectionGesture {
     if(gesture.phase==='pending'){
       const dx=Math.abs(x-gesture.startX),dy=Math.abs(y-gesture.startY);
       if(Math.max(dx,dy)<10)return this.snapshot(gesture);
-      if(dx<=dy)return this.interrupt('vertical');
+      if(dx<=dy&&!gesture.allowVertical)return this.interrupt('vertical');
       gesture.phase='sweeping';this.visit(gesture,gesture.startCardId);
     }
     const crossed=gesture.boxes.flatMap((box,index)=>{

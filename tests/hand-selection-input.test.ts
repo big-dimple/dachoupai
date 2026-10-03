@@ -30,13 +30,13 @@ beforeEach(()=>{
 });
 afterEach(()=>{inputs.splice(0).forEach(input=>input.destroy());vi.clearAllTimers();vi.useRealTimers();vi.unstubAllGlobals();});
 
-function setup(initial=['h']){
+function setup(initial=['h'],twoRows=false){
   const scene={game:{canvas:new Surface()},scale:{width:400,height:300,zoom:1},input:{enabled:true}},updates:HandSelectionUpdate[]=[];
   let selected=new Set(initial),canvasPressed=false;
   const detail=vi.fn(),pointerCard=vi.fn(),cancelCanvas=vi.fn(()=>{canvasPressed=false;});
-  const input=new HandSelectionInput(scene as unknown as Phaser.Scene,{ready:()=>true,cards:()=>Array.from('abcdefgh',(id,i)=>({id,x:i*40,y:100,width:40,height:120})),selected:()=>selected,
+  const input=new HandSelectionInput(scene as unknown as Phaser.Scene,{ready:()=>true,cards:()=>Array.from('abcdefgh',(id,i)=>({id,x:(twoRows?i%4:i)*40,y:100+(twoRows?Math.floor(i/4)*60:0),width:40,height:twoRows?60:120})),selected:()=>selected,
     update:update=>{updates.push(update);selected=new Set(update.selectedIds);},hover:vi.fn(),detail,cancelCanvas,pointerCard});
-  inputs.push(input);input.setBounds({x:0,y:100,width:320,height:120});
+  inputs.push(input);input.setBounds({x:0,y:100,width:twoRows?160:320,height:120},twoRows);
   const surface=input.surface as unknown as Surface;
   // Native capture phase runs on window before the surface receives an event.
   const send=(type:string,values:Partial<Pointer>={},onSurface=true)=>{
@@ -133,4 +133,18 @@ describe('hand native contact lifecycle',()=>{
     f.send('pointerdown',{pointerId:2,pointerType:'touch',isPrimary:false});expect(f.canvasPressed()).toBe(false);expect(f.selection()).toEqual(['h']);
     f.send('pointerup',{pointerId:2,pointerType:'touch'});f.send('pointerup',{pointerType:'touch'},false);expect(f.input.active).toBe(false);
   });
+  it('owns two-row vertical touch, clears the hold timer and restores one-row panning',()=>{
+    const f=setup([],true);expect(f.surface.style).toMatchObject({touchAction:'none'});
+    f.send('pointerdown',{pointerType:'touch',clientX:20,clientY:130});
+    const move=f.send('pointermove',{pointerType:'touch',clientX:20,clientY:190});
+    expect(move.defaultPrevented).toBe(true);expect(f.selection()).toEqual(['a','e']);
+    vi.advanceTimersByTime(400);expect(f.detail).not.toHaveBeenCalled();
+    f.input.setBounds({x:0,y:100,width:320,height:120});
+    expect(f.surface.style).toMatchObject({touchAction:'pan-y'});
+    f.send('pointerup',{pointerType:'touch',clientX:20,clientY:190});
+    expect(f.selection()).toEqual(['a','e']);expect(f.input.active).toBe(false);expect(f.scene.input.enabled).toBe(true);
+    f.send('pointerdown',{pointerType:'touch',clientX:20,clientY:130});f.send('pointerup',{pointerType:'touch',clientX:20,clientY:130});
+    expect(f.selection()).toEqual(['e']);
+  });
+
 });

@@ -5,6 +5,24 @@ import {PointerIntent} from '../src/game/PointerIntent';
 const sizes=[[320,568],[360,640],[390,740],[390,844],[430,932],[844,300],[844,360],[844,390],[1024,768],[1280,720],[1920,1080],[768,1024]];
 const inside=(b:Box,w:number,h:number)=>b.x>=0&&b.y>=0&&b.x+b.width<=w+.01&&b.y+b.height<=h+.01;
 describe('CSS layout contract',()=>{
+  it('shows all10–14 cards in two stable rows with independent lift and hit space',()=>{
+    for(const width of [360,390])for(const count of [10,11,12,13,14])for(const bottom of [0,12]){
+      const l=layout({width,height:740},{top:0,left:0,right:0,bottom},undefined,{count,start:14});
+      expect(l.handRows).toBe(2);expect(l.handOverflow).toBe(false);expect(l.handStart).toBe(0);
+      expect(l.visibleCardCount).toBe(count);expect(l.cards.every(c=>c.visible)).toBe(true);
+      expect(new Set(l.cards.map(c=>c.hit.y)).size).toBe(2);
+      const columns=Math.ceil(count/2),first=l.cards.slice(0,columns),second=l.cards.slice(columns);
+      for(const card of l.cards){
+        expect(inside(card.visual,width,740)).toBe(true);expect(inside(card.hit,width,740)).toBe(true);
+        expect(card.visual.width).toBeGreaterThanOrEqual(52);expect(card.hit.width).toBeGreaterThanOrEqual(36);
+        expect(card.visual.y-16).toBeGreaterThanOrEqual(card.hit.y);
+        for(const control of [l.scoreBoard,...Object.values(l.buttons),...Object.values(l.tableActions)])expect(intersects(card.hit,control)).toBe(false);
+      }
+      for(let i=0;i<l.cards.length;i++)for(let j=i+1;j<l.cards.length;j++)expect(intersects(l.cards[i].hit,l.cards[j].hit)).toBe(false);
+      for(const lower of second)for(const upper of first)expect(intersects({...lower.visual,y:lower.visual.y-16},upper.visual)).toBe(false);
+    }
+  });
+
   it('D44 reserves readable score and independent fire space through short-landscape boundary and safe insets',()=>{
     for(const height of [300,320,359,360,361,390,430])for(const bottom of [0,12]){
       const l=layout({width:844,height},{top:0,left:0,right:0,bottom},undefined,{count:9});
@@ -88,7 +106,7 @@ describe('CSS layout contract',()=>{
     }
   });
   it('expanded hand windows keep all indices reachable without shrinking the original eight-card faces',()=>{
-    const viewport={width:390,height:844},safe={top:0,right:0,bottom:0,left:0};
+    const viewport={width:390,height:568},safe={top:0,right:0,bottom:0,left:0};
     const baseline=layout(viewport,safe),first=layout(viewport,safe,undefined,{count:14,start:0}),last=layout(viewport,safe,undefined,{count:14,start:14});
     expect(first.handOverflow).toBe(true);expect(first.handStart).toBe(0);
     expect(first.cards.filter(card=>card.visible)[0].visual.width).toBe(baseline.cards[0].visual.width);

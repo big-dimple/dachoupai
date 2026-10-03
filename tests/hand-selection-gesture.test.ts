@@ -163,4 +163,24 @@ describe('hand press-sweep selection',()=>{
     gesture.begin(1,15,40,'a',[],pathBoxes);
     expect(gesture.up(1,165,70)).toMatchObject({selectedIds:['a','d'],visitedIds:['a','d']});
   });
+  it('starts vertically in two rows, traverses both ways, deduplicates and cancels',()=>{
+    const twoRows=Array.from('abcdefgh',(id,i)=>({id,x:(i%4)*40,y:100+Math.floor(i/4)*60,width:40,height:60}));
+    const g=new HandSelectionGesture();g.begin(1,20,130,'a',[],twoRows,5,true);
+    expect(g.move(1,20,190)).toMatchObject({phase:'sweeping',selectedIds:['a','e']});
+    expect(g.move(1,100,190)).toMatchObject({selectedIds:['a','e','f','g']});
+    expect(g.move(1,100,130)).toMatchObject({selectedIds:['a','c','e','f','g']});
+    expect(g.move(1,20,130)).toMatchObject({selectedIds:['a','c','e','f','g'],limitReached:true});
+    g.up(1,20,130);g.begin(1,100,190,'g',['a','c','e','f','g'],twoRows,5,true);
+    g.move(1,100,130);g.move(1,20,130);g.move(1,20,190);g.move(1,100,190);
+    expect(g.up(1,100,190)?.selectedIds).toEqual([]);
+    g.begin(1,20,130,'a',['h'],twoRows,5,true);g.move(1,20,190);
+    expect(g.cancel('escape')?.selectedIds).toEqual(['h']);expect(g.up(1,100,190)).toBeUndefined();
+  });
+  it.each(['resize','capture','pointercancel','outside'] as const)('retains cross-row applied choices on %s and ignores the old release',reason=>{
+    const twoRows=[{id:'a',x:0,y:0,width:40,height:60},{id:'b',x:0,y:60,width:40,height:60}];
+    const g=new HandSelectionGesture();g.begin(1,20,30,'a',[],twoRows,5,true);g.move(1,20,90);
+    expect(g.interrupt(reason)?.selectedIds).toEqual(['a','b']);expect(g.up(1,20,30)).toBeUndefined();
+    g.begin(2,20,90,'b',['a','b'],twoRows,5,true);expect(g.up(2,20,90)?.selectedIds).toEqual(['a']);
+  });
+
 });

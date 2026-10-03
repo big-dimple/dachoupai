@@ -24,6 +24,7 @@ export class HandSelectionInput {
   private timer?:ReturnType<typeof setTimeout>;
   private savedInput=true;
   private bounds?:Box;
+  private allowVertical=false;
   private destroyed=false;
   constructor(private readonly scene:Phaser.Scene,private readonly options:HandInputOptions){
     this.surface.className='hand-input-surface';this.surface.setAttribute('aria-hidden','true');
@@ -61,7 +62,7 @@ export class HandSelectionInput {
     this.owner=event.pointerId;this.pointers.add(event.pointerId);this.savedInput=this.scene.input.enabled;this.scene.input.enabled=false;
     this.options.hover(undefined);this.scene.game.canvas.focus({preventScroll:true});
     try {this.surface.setPointerCapture(event.pointerId);}catch {/* Window events still own this contact. */}
-    this.apply(this.gesture.begin(event.pointerId,x,y,card.id,this.options.selected(),this.options.cards(),5));
+    this.apply(this.gesture.begin(event.pointerId,x,y,card.id,this.options.selected(),this.options.cards(),5,this.allowVertical));
     // Stationary hold still inspects. A moved pointer clears this timer before it can open.
     this.timer=setTimeout(()=>{if(this.gesture.state?.phase==='pending'){this.cancel('hold');if(this.options.ready()&&!document.querySelector('dialog[open]'))this.options.detail(card.id);}},355);
     if(event.pointerType==='mouse')event.preventDefault();
@@ -130,8 +131,9 @@ export class HandSelectionInput {
     clearTimeout(this.timer);this.options.cancelCanvas();this.options.hover(undefined);
     this.apply(reason==='escape'?this.gesture.cancel('escape'):this.gesture.interrupt(reason));
   }
-  setBounds(bounds:Box|undefined):void {
+  setBounds(bounds:Box|undefined,allowVertical=false):void {
     this.cancel('resize');this.bounds=bounds;this.surface.hidden=!bounds;
+    this.allowVertical=allowVertical;this.surface.style.touchAction=allowVertical?'none':'pan-y';
     if(!bounds)return;
     const canvas=this.scene.game.canvas.getBoundingClientRect(),sx=canvas.width/(this.scene.scale.width*this.scene.scale.zoom),sy=canvas.height/(this.scene.scale.height*this.scene.scale.zoom);
     Object.assign(this.surface.style,{left:canvas.left+bounds.x*sx+'px',top:canvas.top+bounds.y*sy+'px',width:bounds.width*sx+'px',height:bounds.height*sy+'px'});

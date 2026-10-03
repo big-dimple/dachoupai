@@ -18,7 +18,8 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const side=portrait?0:Math.min(landscape?160:184,w*.26),cx=portrait?x:x+side+16,cw=portrait?w:w-side-16;
   const centered=(max:number,top:number,tall:number)=>box(cx+(cw-Math.min(cw,max))/2,top,Math.min(cw,max),tall);
   const count=Number.isSafeInteger(handWindow.count)&&handWindow.count>=0?handWindow.count:8;
-  const narrow=portrait&&h<580,gap=narrow||landscape?4:8;
+  const expanded=portrait&&count>=10&&count<=14;
+  const narrow=portrait&&h<580,gap=narrow||landscape||expanded?4:8;
   const status=portrait?box(cx,y+h-20,cw,20):box(x,y+h-28,side,28);
   const actions=centered(744,y+h-(portrait?76:landscape?52:56),portrait?54:landscape?52:56);
   // 44px browser/menu controls plus the measured 14px coin line and a 2px gap.
@@ -28,7 +29,9 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   // Allocate the score's actual three text rows and a separate fire edge before
   // spending spare height on illustrations. Short screens move sorting into HUD.
   const minScoreHeight=landscape?80:narrow?76:88;
-  const desiredHandHeight=portrait?Math.max(48,preferredCardWidth)*1.4+22:landscape?122:184;
+  const singleHandHeight=portrait?Math.max(48,preferredCardWidth)*1.4+22:landscape?122:184;
+  const twoRowCardWidth=Math.min(64,handWidth-6*36);
+  const desiredHandHeight=expanded?2*(twoRowCardWidth*1.4+22):singleHandHeight;
   // One name row, up to two benefit rows and an independent 18px rarity footer.
   const desiredJokerHeight=portrait?80:landscape?72:112;
   const mainTop=portrait?hud.y+hud.height+gap:y;
@@ -36,11 +39,14 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const toolsInHud=landscape&&mainHeight-desiredJokerHeight-desiredHandHeight-22-44-gap*4<minScoreHeight;
   const shortLandscape=landscape&&toolsInHud;
   const labelHeight=landscape&&mainHeight<300?0:portrait?0:22;
-  const minPlayedHeight=portrait?(narrow?26:48):0;
+  const minPlayedHeight=portrait?(narrow||expanded?26:48):0;
   const toolsHeight=toolsInHud?0:44;
   const available=mainHeight-minScoreHeight-minPlayedHeight-toolsHeight-labelHeight-gap*(toolsInHud?2:4);
+  // Keep two complete 52px faces plus each row's independent 22px lift reserve.
+  // Very short viewports retain a reachable window instead of clipping either row.
+  const handRows=expanded&&available-desiredJokerHeight>=2*(52*1.4+22)?2:1;
   const jokerHeight=Math.min(desiredJokerHeight,Math.max(landscape?44:portrait?80:56,available-desiredHandHeight));
-  const handHeight=Math.min(desiredHandHeight,Math.max(landscape?64:78,available-jokerHeight));
+  const handHeight=Math.min(handRows===2?desiredHandHeight:singleHandHeight,Math.max(landscape?64:78,available-jokerHeight));
   const jokers=landscape?box(cx,mainTop,cw-144,jokerHeight):centered(1100,mainTop,jokerHeight);
   const hand=centered(1100,actions.y-gap-handHeight,handHeight);
   const handLabel=box(hand.x,hand.y-labelHeight,Math.min(116,hand.width*.3),labelHeight||18);
@@ -56,16 +62,19 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const toolGap=4,toolWidth=(tools.width-toolGap)/2;
   const buttons={rank:box(tools.x,tools.y,toolWidth,44),suit:box(tools.x+toolWidth+toolGap,tools.y,toolWidth,44)};
   const seatPitch=portrait&&count<=9?ninePitch:36;
-  const cardWidth=Math.min(portrait?Math.max(48,preferredCardWidth):132,(hand.height-22)/1.4,hand.width-7*36);
-  const handOverflow=count>Math.floor((hand.width-cardWidth)/seatPitch)+1;
+  const rowHeight=hand.height/handRows,columns=handRows===2?Math.ceil(count/2):count;
+  const cardWidth=Math.min(handRows===2?twoRowCardWidth:portrait?Math.max(48,preferredCardWidth):132,(rowHeight-22)/1.4,hand.width-(handRows===2?6:7)*36);
+  const handOverflow=handRows===1&&count>Math.floor((hand.width-cardWidth)/seatPitch)+1;
   const cardArea=handOverflow?box(hand.x+48,hand.y,hand.width-96,hand.height):hand;
-  const visibleCardCount=Math.min(count,Math.max(1,Math.floor((cardArea.width-cardWidth)/seatPitch)+1));
+  const visibleCardCount=handRows===2?count:Math.min(count,Math.max(1,Math.floor((cardArea.width-cardWidth)/seatPitch)+1));
   const handStart=Math.max(0,Math.min(count-visibleCardCount,Number.isSafeInteger(handWindow.start)?handWindow.start!:0));
-  const pitch=visibleCardCount>1?(cardArea.width-cardWidth)/(visibleCardCount-1):0;
+  const pitch=(handRows===2?columns:visibleCardCount)>1?(cardArea.width-cardWidth)/((handRows===2?columns:visibleCardCount)-1):0;
   const cardHeight=cardWidth*1.4;
   const cards=Array.from({length:count},(_,i)=>{
-    const visible=i>=handStart&&i<handStart+visibleCardCount,cardX=cardArea.x+(visibleCardCount===1?(cardArea.width-cardWidth)/2:(i-handStart)*pitch);
-    return {visible,visual:box(cardX,hand.y+22,cardWidth,cardHeight),hit:box(cardX,hand.y,Math.min(cardWidth,i===handStart+visibleCardCount-1?cardWidth:pitch||cardWidth),hand.height)};
+    const row=handRows===2?Math.floor(i/columns):0,column=handRows===2?i%columns:i-handStart;
+    const visible=i>=handStart&&i<handStart+visibleCardCount,cardX=cardArea.x+(visibleCardCount===1?(cardArea.width-cardWidth)/2:column*pitch),rowY=hand.y+row*rowHeight;
+    const rowLast=handRows===2?column===columns-1||i===count-1:i===handStart+visibleCardCount-1;
+    return {visible,visual:box(cardX,rowY+22,cardWidth,cardHeight),hit:box(cardX,rowY,Math.min(cardWidth,rowLast?cardWidth:pitch||cardWidth),rowHeight)};
   });
   const handNavigation={previous:box(hand.x,hand.y+(hand.height-44)/2,44,44),next:box(hand.x+hand.width-44,hand.y+(hand.height-44)/2,44,44)};
   const slotGap=portrait?8:14,slotWidth=Math.min(shortLandscape?34:landscape?48:portrait?90:104,(jokers.width-4*slotGap)/5),rackWidth=5*slotWidth+4*slotGap;
@@ -74,6 +83,6 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const jokerLabels=landscape?slots.map((slot,i)=>box(slot.x+slot.width+6,jokers.y,jokers.width/5-slot.width-12,jokers.height)):slots;
   const discardWidth=Math.floor((actions.width-8)*.36);
   const tableActions={discard:box(actions.x,actions.y,discardWidth,actions.height),play:box(actions.x+discardWidth+8,actions.y,actions.width-discardWidth-8,actions.height)};
-  return {mode,compact,shortLandscape,width,height,hud,jokers,preview,scoreBoard,playedArea,handLabel,piles,tools,hand,actions,status,scoreFire,toolsInHud,labelHeight,buttons,tableActions,cards,handOverflow,handStart,visibleCardCount,handNavigation,slots,jokerLabels};
+  return {mode,compact,shortLandscape,width,height,hud,jokers,preview,scoreBoard,playedArea,handLabel,piles,tools,hand,actions,status,scoreFire,toolsInHud,labelHeight,buttons,tableActions,cards,handRows,handOverflow,handStart,visibleCardCount,handNavigation,slots,jokerLabels};
 }
 export type TableLayout=ReturnType<typeof layout>;

@@ -582,8 +582,8 @@ export class GameScene extends Phaser.Scene {
     }
     this.updateHandCount();
     this.refreshSelection();
-    const visible=l.cards.filter(card=>card.visible),first=visible[0],last=visible.at(-1);
-    this.handInput?.setBounds(first&&last?{x:first.hit.x,y:l.hand.y,width:last.hit.x+last.hit.width-first.hit.x,height:l.hand.height}:undefined);
+    const visibleSeats=l.cards.filter(card=>card.visible),left=Math.min(...visibleSeats.map(card=>card.hit.x)),right=Math.max(...visibleSeats.map(card=>card.hit.x+card.hit.width));
+    this.handInput?.setBounds(visibleSeats.length?{x:left,y:l.hand.y,width:right-left,height:l.hand.height}:undefined,l.handRows>1);
   }
   private scrollHand(delta:number):void {if(!this.ready)return;const l=this.view.layout,next=Math.max(0,Math.min(this.hand.length-l.visibleCardCount,l.handStart+delta));if(next===this.handStart)return;this.handStart=next;this.renderHand();}
   private showFocusedCard():void {const l=this.view.layout;if(this.focusIndex>=l.handStart&&this.focusIndex<l.handStart+l.visibleCardCount)return;this.handStart=this.focusIndex<l.handStart?this.focusIndex:this.focusIndex-l.visibleCardCount+1;if(!this.playing)this.renderHand();}
