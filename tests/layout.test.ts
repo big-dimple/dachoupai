@@ -5,6 +5,17 @@ import {PointerIntent} from '../src/game/PointerIntent';
 const sizes=[[320,568],[360,640],[390,740],[390,844],[430,932],[844,300],[844,360],[844,390],[1024,768],[1280,720],[1920,1080],[768,1024]];
 const inside=(b:Box,w:number,h:number)=>b.x>=0&&b.y>=0&&b.x+b.width<=w+.01&&b.y+b.height<=h+.01;
 describe('CSS layout contract',()=>{
+  it('spends spare score height while preserving full five-card previews and existing hand budgets',()=>{
+    for(const width of [360,390])for(const count of [9,10,14]){
+      const l=layout({width,height:740},{top:0,right:0,bottom:0,left:0},undefined,{count});
+      expect(l.playedArea.height).toBeGreaterThanOrEqual(104);
+      expect(l.scoreBoard.height).toBeLessThanOrEqual(132);
+      expect(l.scoreFire.height).toBe(count===9?40:24);
+      expect(l.hand.height).toBeCloseTo(count===9?(width===360?56:72)*1.4+22:223.2);
+      expect(intersects(l.playedArea,l.hand)).toBe(false);
+      expect(intersects(l.scoreFire,l.playedArea)).toBe(false);
+    }
+  });
   it('shows all10–14 cards in two stable rows with independent lift and hit space',()=>{
     for(const width of [360,390])for(const count of [10,11,12,13,14])for(const bottom of [0,12]){
       const l=layout({width,height:740},{top:0,left:0,right:0,bottom},undefined,{count,start:14});

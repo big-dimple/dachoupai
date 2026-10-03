@@ -54,11 +54,14 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const tools=toolsInHud?box(hud.x,hud.y+hud.height-44,side,44):centered(portrait?168:240,hand.y-labelHeight-gap-44,44);
   const previewBottom=toolsInHud?hand.y-labelHeight-gap:tools.y-gap;
   const preview=centered(1100,jokers.y+jokers.height+gap,previewBottom-jokers.y-jokers.height-gap);
-  const scoreHeight=landscape?preview.height:Math.min(108,preview.height-minPlayedHeight-gap);
+  // A complete five-card preview also needs its source row (36px) and padding.
+  // Spend only spare preview height on fire, never the existing hand geometry.
+  const scoreHeight=landscape?preview.height:Math.min(132,preview.height-minPlayedHeight-gap,Math.max(minScoreHeight,preview.height-104-gap));
   const scoreBoard=landscape?box(preview.x,preview.y,preview.width*.5-4,scoreHeight):box(preview.x,preview.y,preview.width,scoreHeight);
   const playedArea=landscape?box(scoreBoard.x+scoreBoard.width+8,preview.y,preview.width-scoreBoard.width-8,preview.height):box(preview.x,scoreBoard.y+scoreBoard.height+gap,preview.width,preview.height-scoreBoard.height-gap);
   // Rendering also checks real font bounds; this footer is reserved, not a z-order trick.
-  const scoreFire=box(scoreBoard.x+3,scoreBoard.y+scoreBoard.height-18,scoreBoard.width-6,16);
+  const fireHeight=scoreBoard.height>=124?40:scoreBoard.height>=116?32:24;
+  const scoreFire=box(scoreBoard.x+3,scoreBoard.y+scoreBoard.height-fireHeight-2,scoreBoard.width-6,fireHeight);
   const toolGap=4,toolWidth=(tools.width-toolGap)/2;
   const buttons={rank:box(tools.x,tools.y,toolWidth,44),suit:box(tools.x+toolWidth+toolGap,tools.y,toolWidth,44)};
   const seatPitch=portrait&&count<=9?ninePitch:36;

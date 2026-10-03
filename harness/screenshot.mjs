@@ -177,7 +177,7 @@ try {
         const level=s.scoreFlame?.graphic?.getData('intensity')??0;
         if(level&&!observation.fire.some(f=>f.level===level)){
           const frame=s.view.root.list.filter(o=>o.name.startsWith('score/fire-frame-')&&o.visible).map(o=>{const b=o.getBounds();return {name:o.name,x:b.x,y:b.y,width:b.width,height:b.height,interactive:!!o.input};});
-          observation.fire.push({level,frame,at:performance.now()-observation.started,voices:s.audio.fireVoices.size,audio:[...s.audio.fireVoices].map(voice=>({layer:voice.fireLayer,filter:voice.filter.type,frequency:voice.filter.frequency.value,gain:voice.gain.gain.value})),shown:s.scoreTotal.text,heat:s.scoreHeat.text,mult:s.scoreMult.text,id,phase});
+          observation.fire.push({level,frame,edgeFlash:s.scoreFlame?.frameFlash??0,at:performance.now()-observation.started,voices:s.audio.fireVoices.size,audio:[...s.audio.fireVoices].map(voice=>({layer:voice.fireLayer,filter:voice.filter.type,frequency:voice.filter.frequency.value,gain:voice.gain.gain.value})),shown:s.scoreTotal.text,heat:s.scoreHeat.text,mult:s.scoreMult.text,id,phase});
         }
       },30);
     });
@@ -204,7 +204,7 @@ try {
       const shown=BigInt(frame.shown.replaceAll(',','')),total=BigInt(beforePlay.stage.heat)+shown,target=BigInt(after.stage.targetHeat);
       const level=total<target?0:total>=target*5n?3:total>=target*2n?2:1;
       assert.equal(frame.level,level,'flame level follows the score visible in this same browser tick, never a future roll result');
-      assert.equal(frame.frame.length,level>=2?4:0,'only large/extreme fire ignites all four table edges');
+      assert.equal(frame.frame.length,level>=2&&frame.edgeFlash>0?4:0,'only the bounded large/extreme ignition lights the four table edges');
       for(const band of frame.frame){
         assert.equal(band.interactive,false,'fire never intercepts the player input');
         assert.ok(Math.min(band.width,band.height)<=12.01&&band.x>=-.01&&band.y>=-.01&&band.x+band.width<=390.01&&band.y+band.height<=740.01,'visible flame stays in the portrait table gutter');

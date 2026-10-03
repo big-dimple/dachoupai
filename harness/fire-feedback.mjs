@@ -57,7 +57,7 @@ async function run(spec){
         const presentation=s.presentation;
         const row={at:performance.now(),renderer:g.renderer.gl?'WebGL':'Canvas',fps:g.loop.actualFps,level,product:s.scoreTotal.text,origin:presentation?.originHeat,credited:presentation?.credited,replay:presentation?.replay,
           phase:window.__harness.game.registry.get('runController').state.phase,heat:window.__harness.game.registry.get('runController').state.stage?.heat,
-          voices:s.audio.fireVoices.size,ignition:!!s.audio.fireIgnition,fire:s.scoreFlame?{reduced:s.scoreFlame.reduced,textures:[s.scoreFlame.material,s.scoreFlame.frameMaterial].filter(Boolean).map(t=>({width:t.width,height:t.height})),bands:s.view.root.list.filter(o=>o.name.startsWith('score/fire-frame-')&&o.visible).map(o=>({name:o.name,interactive:!!o.input,bounds:o.getBounds()}))}:null};
+          voices:s.audio.fireVoices.size,ignition:!!s.audio.fireIgnition,fire:s.scoreFlame?{reduced:s.scoreFlame.reduced,edgeFlash:s.scoreFlame.frameFlash,textures:[s.scoreFlame.material,s.scoreFlame.frameMaterial].filter(Boolean).map(t=>({width:t.width,height:t.height})),bands:s.view.root.list.filter(o=>o.name.startsWith('score/fire-frame-')&&o.visible).map(o=>({name:o.name,interactive:!!o.input,bounds:o.getBounds()}))}:null};
         frames.push(row);
         if(level&&!seen.has(level)){seen.add(level);const copy=document.createElement('canvas');copy.width=g.canvas.width;copy.height=g.canvas.height;copy.getContext('2d').drawImage(g.canvas,0,0);rasters.push({level,at:row.at,canvas:copy});}
         // A later actual frame shows evolved plume shape, not only the first warm-up.
@@ -76,7 +76,7 @@ async function run(spec){
     for(const f of r.frames.filter(f=>f.level)){
       const total=BigInt(f.origin)+BigInt(f.product.replaceAll(',','')),target=400n;
       const expected=baseline?(total<=target?0:total>=2n*target?2:1):(total<target?0:total>=5n*target?3:total>=2n*target?2:1);
-      assert.equal(f.level,expected,'fire follows same-frame displayed score, never future RNG');assert.equal(f.fire.bands.length,f.level>=2&&!spec.reduced?4:0);
+      assert.equal(f.level,expected,'fire follows same-frame displayed score, never future RNG');assert.equal(f.fire.bands.length,f.level>=2&&!spec.reduced&&f.fire.edgeFlash>0?4:0);
       for(const band of f.fire.bands){assert.equal(band.interactive,false);assert.ok(Math.min(band.bounds.width,band.bounds.height)<=12.01);}
       if(spec.preferences?.sfx===0)assert.equal(f.voices,0);else assert.equal(f.voices,2,'exactly two owned burning loops');
     }

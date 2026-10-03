@@ -984,7 +984,7 @@ export class GameScene extends Phaser.Scene {
     if(!this.scoreHeat?.active)return;
     const l=this.view.layout,s=l.scoreBoard,columns=s.width/3;
     fitScoreLine(this.resultText,{x:s.x+8,y:s.y+5,width:s.width-16,height:24},17);
-    const labeled=s.height>=96,labelY=this.resultText.getBounds().bottom+3;
+    const labeled=s.height-l.scoreFire.height>=84,labelY=this.resultText.getBounds().bottom+3;
     this.scoreLabels.forEach((text,i)=>{
       text.setVisible(labeled);fitScoreLine(text,{x:s.x+columns*i+5,y:labelY,width:columns-10,height:18},14);
     });
@@ -1120,6 +1120,8 @@ export class GameScene extends Phaser.Scene {
     if(this.reducedMotion||context.signal.aborted)return Promise.resolve();
     const multChanged=event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d,heatChanged=event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d;
     if(!multChanged&&!heatChanged)return Promise.resolve();
+    const positive=Rational.fromJSON(event.after.H).compare(Rational.fromJSON(event.before.H))>0||Rational.fromJSON(event.after.M).compare(Rational.fromJSON(event.before.M))>0;
+    if(positive&&!this.presentation?.replay)this.scoreFlame?.impact(event.eventId,scoreBeat(event).strength==='multiply'?1:event.sourceType==='character'?.75:.5);
     const target=multChanged?this.scoreMult:this.scoreHeat,b=target.getBounds(),strong=event.operation==='multiply-multiplier'||event.operation==='read-coefficient',width=Math.min(this.view.layout.scoreBoard.width/3-18,Math.max(42,b.width+16)),height=b.height+8;
     const impact=this.view.add(this.add.graphics().setPosition(b.centerX,b.centerY));
     impact.fillStyle(strong?T.red:multChanged?T.jade:T.brass,.18).fillRoundedRect(-width/2,-height/2,width,height,5);

@@ -43,12 +43,23 @@ const state=p=>p.evaluate(()=>{const c=window.__harness.game.registry.get('runCo
 async function observe(p){return p.evaluate(()=>{
  const g=window.__harness.game,s=g.scene.getScene('game'),box=o=>{const b=o.getBounds();return {x:b.x,y:b.y,width:b.width,height:b.height};};
  return {renderer:g.renderer.gl?'WebGL':'Canvas',fps:g.loop.actualFps,layout:s.view.layout,selected:[...s.selectedIds],surface:{rect:s.handInput.surface.getBoundingClientRect().toJSON(),touchAction:getComputedStyle(s.handInput.surface).touchAction,active:s.handInput.active},input:s.input.enabled,
+  preview:s.previewCards?.list.filter(c=>c.type==='Container').map(c=>({face:box(c.list.find(o=>o.type==='Rectangle')),rank:c.list.filter(o=>o.name==='rank-index').map(o=>({bounds:box(o),font:o.style.fontSize}))}))??[],
   cards:s.cardViews.map(v=>({id:v.card.id,visible:v.container.visible,x:v.container.x,y:v.container.y,scale:v.container.scaleX,rank:box(v.container.list.find(o=>o.name==='rank-index')),mark:v.selectionMark.visible?box(v.selectionMark):null,layer:s.view.root.getIndex(v.container),face:box(v.background),pips:v.container.list.filter(o=>o.name==='card-pip').map(box)})),
   score:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal,s.breakdownText].filter(o=>o.visible&&o.text).map(o=>({text:o.text,bounds:box(o)}))};
  });}
 const intersect=(a,b)=>a.x<b.x+b.width&&b.x<a.x+a.width&&a.y<b.y+b.height&&b.y<a.y+a.height;
 function validate(o,count){
- const l=o.layout;assert.equal(l.handOverflow,false);assert.equal(l.visibleCardCount,count);assert.equal(l.handRows,count===9?1:2);
+ const l=o.layout;
+ if(o.selected.length===5){
+  assert.equal(o.preview.length,5,'five full preview faces survive the fire budget');
+  for(const card of o.preview){
+   const b=card.face,a=l.playedArea;
+   assert.ok(b.x>=a.x&&b.y>=a.y&&b.x+b.width<=a.x+a.width+.01&&b.y+b.height<=a.y+a.height+.01,'preview remains inside played area');
+   assert.equal(intersect(b,l.hand),false,'preview outside hand');
+   assert.ok(card.rank.every(r=>parseFloat(r.font)>=14),'readable preview index');
+  }
+ }
+ assert.equal(l.handOverflow,false);assert.equal(l.visibleCardCount,count);assert.equal(l.handRows,count===9?1:2);
  assert.ok(o.cards.every(c=>c.visible));assert.equal(o.surface.touchAction,count===9?'pan-y':'none');
  for(let i=0;i<count;i++){
   const c=o.cards[i],seat=l.cards[i].hit;assert.equal(c.scale,1);assert.ok(seat.width>=36,'readable exposed hit column');

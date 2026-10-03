@@ -5,7 +5,7 @@ import {layout,intersects} from '../src/game/layout';
 vi.mock('phaser',()=>({default:{Scenes:{Events:{UPDATE:'update',SHUTDOWN:'shutdown',DESTROY:'destroy'}},Textures:{FilterMode:{LINEAR:0}}}}));
 import {ScoreFlame,scoreFlameFrameBands} from '../src/game/ScoreFlame';
 
-function fixture(){
+function fixture(box={x:15,y:125,width:360,height:40}){
   const objects:{name:string;visible:boolean;active:boolean;destroyed:number;[key:string]:unknown}[]=[],textures=new Map<string,{width:number;height:number;pixels?:ImageData}>();
   let uploads=0,allocations=0;
   const callbacks=new Map<string,{fn:Function;context:unknown}[]>();
@@ -18,7 +18,7 @@ function fixture(){
   const object=()=>{
     const node:typeof objects[number]={name:'',visible:true,active:true,destroyed:0};objects.push(node);
     for(const method of ['clear','lineStyle','beginPath','moveTo','lineTo','strokePath','fillStyle','fillCircle','strokeRect','fillRect','setMask','add'])node[method]=()=>node;
-    node.setName=(name:string)=>{node.name=name;return node;};node.setVisible=(visible:boolean)=>{node.visible=visible;return node;};
+    node.setName=(name:string)=>{node.name=name;return node;};node.setVisible=(visible:boolean)=>{node.visible=visible;return node;};node.setAlpha=(alpha:number)=>{node.alpha=alpha;return node;};
     node.createGeometryMask=()=>({destroy:vi.fn()});node.setMask=(mask:unknown)=>{node.mask=mask;return node;};node.setData=()=>node;node.setDisplaySize=()=>node;node.setAngle=()=>node;node.setFlipX=()=>node;
     node.destroy=()=>{node.active=false;node.destroyed++;};return node;
   };
@@ -31,7 +31,7 @@ function fixture(){
     },exists:(key:string)=>textures.has(key),remove:(key:string)=>textures.delete(key),
   }};
   const flame=new ScoreFlame(scene as unknown as Phaser.Scene,{add(){}} as unknown as Phaser.GameObjects.Container,
-    {x:15,y:125,width:360,height:65},{x:8,y:8,width:374,height:828});
+    box,{x:8,y:8,width:374,height:828});
   return {flame,objects,textures,events,callbacks,uploads:()=>uploads,allocations:()=>allocations};
 }
 
@@ -82,7 +82,8 @@ describe('bounded foreground score fire',()=>{
     f.flame.set(1);const small=measure(local);
     f.flame.set(3);const large=measure(local),border=measure(frame);
     expect(large.area).toBeGreaterThan(small.area*3);expect(large.alpha).toBeGreaterThan(small.alpha*3);
-    expect(large.height).toBeGreaterThan(small.height*3);expect(large.height).toBeGreaterThanOrEqual(local.height*.7);
+    expect(small.height).toBeGreaterThanOrEqual(18);
+    expect(large.height).toBeGreaterThan(small.height+8);expect(large.height).toBeGreaterThanOrEqual(local.height*.7);
     expect(border.area).toBeGreaterThan(frame.width*frame.height*.5);
     expect(f.objects.filter(object=>object.name.startsWith('score/fire-frame-')).every(image=>image.visible)).toBe(true);
     f.flame.destroy();
@@ -93,7 +94,7 @@ describe('bounded foreground score fire',()=>{
     for(let x=3;x<w-3;x++){
       let top=h,base=false;
       for(let y=0;y<h;y++)if(pixels[(y*w+x)*4+3]>=12){top=Math.min(top,y);if(y>=h-8)base=true;}
-      expect(base,'no empty breaks between four isolated tufts').toBe(true);heights.push(h-top);
+      expect(base,'no empty breaks between three tongues').toBe(true);heights.push(h-top);
     }
     expect(new Set(heights).size).toBeGreaterThan(12);
     f.flame.set(3);expect(f.allocations()).toBe(2);f.flame.destroy();
@@ -106,5 +107,43 @@ describe('bounded foreground score fire',()=>{
     f.flame.destroy();f.flame.destroy();f.events.emit('shutdown');f.events.emit('destroy');
     expect(f.textures.size).toBe(0);expect([...f.callbacks.values()].every(entries=>entries.length===0)).toBe(true);
     expect(f.objects.every(object=>object.destroyed===1)).toBe(true);
+  });
+  it('preserves real-layout CSS height and multiple unequal peaks for every tier, including static reduced motion',()=>{
+    for(const [width,height,count] of [[390,740,9],[360,740,14],[844,300,9],[1280,720,8]]){
+      const b=layout({width,height},{top:0,right:0,bottom:0,left:0},undefined,{count}).scoreFire;
+      expect(b.height).toBeGreaterThanOrEqual(24);
+      const f=fixture(b),local=[...f.textures.values()][0];expect(local.height).toBe(Math.ceil(b.height));
+      for(const tier of [1,2,3] as const){
+        f.flame.set(tier,true);const p=local.pixels!,tops:number[]=[];
+        for(let x=2;x<p.width-2;x++){let top=p.height;for(let y=0;y<p.height;y++)if(p.data[(y*p.width+x)*4+3]>=24){top=y;break;}tops.push(p.height-top);}
+        expect(Math.max(...tops)).toBeGreaterThanOrEqual(b.height*(tier===1?.40:.60));
+        expect(Math.max(...tops)-Math.min(...tops)).toBeGreaterThanOrEqual(b.height*.25);
+        for(const [peak,left,right] of [[.20,.06,.35],[.52,.39,.64],[.81,.67,.95]]){
+          const at=(u:number)=>tops[Math.round(u*(tops.length-1))];expect(at(peak)).toBeGreaterThan(Math.max(at(left),at(right))+2);
+        }
+        const uploads=f.uploads();f.events.emit('update',1000);expect(f.uploads()).toBe(uploads);
+      }
+      f.flame.destroy();
+    }
+  });
+  it('ends the edge ignition at260ms even between30Hz texture redraws',()=>{
+    const f=fixture();f.flame.set(2);
+    for(let i=0;i<5;i++)f.events.emit('update',50);
+    expect(f.objects.filter(o=>o.name.startsWith('score/fire-frame-')).every(o=>o.visible)).toBe(true);
+    f.events.emit('update',11);
+    expect(f.objects.filter(o=>o.name.startsWith('score/fire-frame-')).every(o=>!o.visible)).toBe(true);
+    f.flame.destroy();
+  });
+  it('gives same-tier positive landings a bounded one-shot plume, without persistent frame light',()=>{
+    const f=fixture();f.flame.set(2);for(let i=0;i<10;i++)f.events.emit('update',50);
+    expect(f.objects.filter(o=>o.name.startsWith('score/fire-frame-')).every(o=>!o.visible)).toBe(true);
+    const pixels=()=>[...f.textures.values()][0].pixels!.data.slice();const steady=pixels();
+    f.flame.impact('source-1',1);expect(pixels()).not.toEqual(steady);const once=pixels(),uploads=f.uploads();
+    f.flame.impact('source-1',1);expect(f.uploads()).toBe(uploads);expect(pixels()).toEqual(once);
+    expect(f.objects.filter(o=>o.name.startsWith('score/fire-frame-')).every(o=>!o.visible)).toBe(true);
+    for(let i=0;i<5;i++)f.events.emit('update',50);
+    expect((f.flame as unknown as {surge:number}).surge).toBe(0);
+    f.flame.set(2,true);const reduced=pixels();f.flame.impact('source-2',1);expect(pixels()).toEqual(reduced);
+    f.flame.destroy();
   });
 });

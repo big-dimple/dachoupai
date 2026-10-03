@@ -3,14 +3,13 @@ import type {Box} from './layout';
 
 const NOISE_SIZE=64,NOISE_MASK=NOISE_SIZE-1,FRAME_MS=1000/30;
 const FRAME_WIDTH=256,FRAME_HEIGHT=64;
-// Unequal positions, widths and heights feed one connected fire bed rather than four identical tufts.
-const LOBES=[ [.018,.10,1], [.13,.075,.48], [.305,.15,.73], [.405,.065,.36], [.635,.125,.88], [.79,.09,.52], [.972,.105,.94] ] as const;
-const LARGE_ANCHORS=[.018,.13,.305,.405,.635,.79,.972] as const;
-const SMALL_ANCHORS=[.018,.305,.79,.972] as const;
+// Three unequal, independently phased tongues share a low connected fuel bed.
+const LOBES=[ [.20,.11,1,0], [.52,.08,.72,1.7], [.81,.12,.85,3.2] ] as const;
+const LARGE_ANCHORS=[.20,.52,.81] as const;
+const SMALL_ANCHORS=LARGE_ANCHORS;
 const COLORS=[
-  [0,58,68,75,0],[.12,84,88,91,8],[.23,134,46,28,30],
-  [.38,231,70,20,112],[.57,255,142,36,186],
-  [.78,255,212,100,222],[1,255,248,188,244],
+  [0,184,71,58,0],[.25,184,71,58,150],[.45,237,116,44,210],
+  [.65,255,172,69,235],[.83,255,213,115,244],[1,255,240,168,250],
 ] as const;
 const clamp=(value:number,minimum=0,maximum=1)=>Math.max(minimum,Math.min(maximum,value));
 let flameId=0;
@@ -29,7 +28,7 @@ export function scoreFlameFrameBands(frame:Box):{outer:Box;depth:number;bands:Bo
   ]};
 }
 
-/** Cached, bounded 2D heat advection. Its cosmetic noise never accesses rule RNG. */
+/** Bounded procedural heat silhouettes. Cosmetic noise never accesses rule RNG. */
 export class ScoreFlame {
   readonly graphic:Phaser.GameObjects.Graphics;
   private readonly flame?:Phaser.GameObjects.Image;
@@ -44,8 +43,6 @@ export class ScoreFlame {
   private readonly palette=new Uint8ClampedArray(256*4);
   private heat=new Float32Array(0);
   private nextHeat=new Float32Array(0);
-  private smallFuel=new Float32Array(0);
-  private largeFuel=new Float32Array(0);
   private smallMask=new Float32Array(0);
   private largeMask=new Float32Array(0);
   private pixels?:ImageData;
@@ -61,6 +58,8 @@ export class ScoreFlame {
   private redrawAfter=0;
   private step=0;
   private surge=0;
+  private frameFlash=0;
+  private readonly hitIds=new Set<string>();
   private reduced=false;
   private destroyed=false;
   private readonly safetyGraphic:Phaser.GameObjects.Graphics;
@@ -70,15 +69,14 @@ export class ScoreFlame {
     this.textureKey='score-flame-heat-'+flameId++;
     this.frameTextureKey=this.textureKey+'-frame';
     this.cacheNoiseAndPalette();
-    const w=Math.min(224,Math.max(64,Math.ceil(box.width*.5))),h=Math.min(72,Math.max(32,Math.ceil(box.height)));
+    const w=Math.min(224,Math.max(64,Math.ceil(box.width*.5))),h=Math.min(72,Math.max(16,Math.ceil(box.height)));
     const texture=scene.textures.createCanvas(this.textureKey,w,h);
     if(texture){
       this.material=texture;this.width=w;this.height=h;
       this.heat=new Float32Array(w*h);this.nextHeat=new Float32Array(w*h);
-      this.smallFuel=new Float32Array(w);this.largeFuel=new Float32Array(w);
       this.smallMask=new Float32Array(w*h);this.largeMask=new Float32Array(w*h);
       this.pixels=texture.context.createImageData(w,h);
-      this.cacheFuelAndMasks();
+      this.cacheMasks();
       texture.setFilter(Phaser.Textures.FilterMode.LINEAR);
       this.flame=scene.add.image(box.x+box.width/2,box.y+box.height/2,this.textureKey)
         .setName('score/fire-heat').setDisplaySize(box.width,box.height).setVisible(false);
@@ -125,29 +123,38 @@ export class ScoreFlame {
     if(this.destroyed||(next===this.level&&reduced===this.reduced))return;
     const previous=this.level;
     this.surge=!reduced&&next>previous ? (next>=2 ? .42 : .10) : 0;
+    this.frameFlash=!reduced&&next>previous&&next>=2?1:0;
     this.level=next;this.reduced=reduced;this.redrawAfter=0;
     this.graphic.setData('intensity',next).setVisible(next>0);
-    this.flame?.setVisible(next>0&&!reduced);
-    for(const image of this.frameFlames)image.setVisible(next>=2&&!reduced);
-    this.frameGraphic?.setVisible(next>=2);
+    this.flame?.setVisible(next>0);
     if(next<2||next!==previous){this.frameHeat.fill(0);this.nextFrameHeat.fill(0);}
     if(!next){this.elapsed=0;this.step=0;this.heat.fill(0);this.nextHeat.fill(0);}
-    else if(!reduced){
-      // A bounded warm-up produces a continuous plume immediately, not a flash.
-      if(next!==previous){this.heat.fill(0);this.nextHeat.fill(0);}
-      for(let i=0;i<(next>=2?40:18);i++){this.advanceHeat();if(next>=2)this.advanceFrameHeat();}
+    else{
+      this.advanceHeat();
+      if(this.frameFlash)for(let i=0;i<24;i++)this.advanceFrameHeat();
     }
     this.draw();
+  }
+
+  /** One positive source landing, owned by this presentation; never a tier change. */
+  impact(eventId:string,strength=.5):void {
+    if(this.destroyed||!this.level||this.reduced||this.hitIds.has(eventId)||this.hitIds.size>=512)return;
+    this.hitIds.add(eventId);
+    this.surge=Math.max(this.surge,.12+.12*clamp(strength));
+    this.graphic.setData('lastImpact',eventId).setData('impactCount',this.hitIds.size);
+    this.advanceHeat();this.draw();
   }
 
   private update(_time:number,delta:number):void {
     if(this.destroyed||!this.graphic.active||!this.level||this.reduced)return;
     const dt=clamp(delta,0,50);
-    this.elapsed+=dt*.001;this.surge=Math.max(0,this.surge-dt*.0015);
+    const previousFlash=this.frameFlash;
+    this.elapsed+=dt*.001;this.surge=Math.max(0,this.surge-dt*.0012);this.frameFlash=Math.max(0,this.frameFlash-dt/260);
+    if(previousFlash>0&&!this.frameFlash)this.drawFrame();
     this.redrawAfter+=dt;
     if(this.redrawAfter<FRAME_MS)return;
     this.redrawAfter%=FRAME_MS;
-    this.advanceHeat();if(this.level>=2)this.advanceFrameHeat();this.draw();
+    this.advanceHeat();if(this.frameFlash>0)this.advanceFrameHeat();this.draw();
   }
 
   private cacheNoiseAndPalette():void {
@@ -165,46 +172,37 @@ export class ScoreFlame {
     }
   }
 
-  private cacheFuelAndMasks():void {
+  private cacheMasks():void {
     const w=this.width,h=this.height;
     for(let x=0;x<w;x++){
-      const u=x/(w-1);
-      const lobes=Math.max(...LOBES.map(([anchor,width,height])=>height*Math.exp(-(((u-anchor)/width)**2))));
-      this.smallFuel[x]=.42+.48*lobes;
-      this.largeFuel[x]=.40+.60*lobes;
       for(let y=0;y<h;y++){
-        const rise=(h-1-y)/(h-1),index=y*w+x;
-        // Tone shaping only. Text protection comes from the reserved footer and
-        // the shared geometry mask, never from reducing texture alpha.
-        const interiorTone=rise>.15&&rise<.93 ? .40 : 1;
+        const index=y*w+x;
+        // Text protection is geometric. Preserve the full allocated silhouette.
         const edge=clamp(Math.min(x,w-1-x,y,h-1-y)/1.5);
-        this.smallMask[index]=edge*interiorTone*clamp((.30-rise)/.11)*.85;
-        this.largeMask[index]=edge*interiorTone*clamp((.94-rise)/.20)*.92;
+        this.smallMask[index]=edge*.90;
+        this.largeMask[index]=edge;
       }
     }
   }
 
   private advanceHeat():void {
     if(!this.width||!this.level)return;
-    const w=this.width,h=this.height,field=this.heat,next=this.nextHeat;
-    const small=this.level===1,fuel=small?this.smallFuel:this.largeFuel,cooling=small?.060:this.level===3?.017:.024;
-    const frame=this.step++;
-    for(let y=0;y<h-3;y++){
-      const row=y*w,below=(y+2)*w,farther=(y+3)*w;
-      const wind=Math.sin(y*.115-this.elapsed*1.4)*(small?.45:1.25);
-      const noiseRow=((y+frame*2)&NOISE_MASK)*NOISE_SIZE;
-      for(let x=0;x<w;x++){
-        const noise=this.noise[noiseRow+((x+frame)&NOISE_MASK)];
-        const drift=clamp(x+wind+(noise-.5)*(small?.7:2.5),0,w-1);
-        const left=Math.floor(drift),right=Math.min(w-1,left+1),mix=drift-left;
-        const carried=field[below+left]*(1-mix)+field[below+right]*mix;
-        const diffused=(field[farther+left]+field[farther+right])*.5;
-        next[row+x]=Math.max(0,carried*.70+diffused*.30-cooling*(.72+noise*.55));
+    const w=this.width,h=this.height,field=this.heat,next=this.nextHeat,t=this.reduced?0:this.elapsed,frame=this.reduced?0:this.step++;
+    const tierHeight=this.level===1?.58:this.level===2?.86:.98;
+    for(let x=0;x<w;x++){
+      const u=x/(w-1);let lobe=0;
+      for(let i=0;i<LOBES.length;i++){
+        const [anchor,width,height,phase]=LOBES[i],sway=Math.sin(t*(1.7+i*.37)+phase)*Math.min(.018,6/this.box.width);
+        const offset=u-anchor-sway,flank=Math.min(width,64/this.box.width)*(this.level===1?.55:1)*(offset<0?1.12:.72);
+        // Pointed, unequal flanks avoid a row of symmetric orange hills.
+        lobe=Math.max(lobe,height*(.90+.10*Math.sin(t*(2.4+i*.43)+phase))*Math.exp(-Math.pow(Math.abs(offset/flank),1.15)));
       }
-    }
-    for(let y=h-3;y<h;y++)for(let x=0;x<w;x++){
-      const noise=this.noise[((frame*3+y)&NOISE_MASK)*NOISE_SIZE+((x+frame)&NOISE_MASK)];
-      next[y*w+x]=fuel[x]*(small ? .72+noise*.25 : .78+noise*.25)+this.surge*fuel[x]*.08;
+      const top=clamp(tierHeight*((this.level===1?.06:.14)+.80*lobe)+this.surge*.24*(.45+.55*lobe),.05,.97);
+      for(let y=0;y<h;y++){
+        const rise=(h-1-y)/(h-1),edge=clamp((top-rise)*h/1.4);
+        const noise=this.noise[((y+frame)&NOISE_MASK)*NOISE_SIZE+((x+frame)&NOISE_MASK)];
+        next[y*w+x]=edge*clamp(.40+.57*Math.pow(clamp(1-rise/top),.8)+(noise-.5)*.04+this.surge*.12);
+      }
     }
     this.heat=next;this.nextHeat=field;
   }
@@ -246,13 +244,8 @@ export class ScoreFlame {
     const g=this.graphic,b=this.box;
     this.drawFrame();
     g.clear();if(!this.level)return;
-    if(this.reduced){
-      // Reduced motion is a static thin warm edge, with no heat uploads or sparks.
-      g.lineStyle(1,0xeab472,this.level===1?.35:.62)
-        .beginPath().moveTo(b.x+5,b.y+b.height-2).lineTo(b.x+b.width-5,b.y+b.height-2).strokePath();
-      return;
-    }
     this.drawMaterial();
+    if(this.reduced)return;
     const base=b.y+b.height-3;
     g.lineStyle(1,0xffc46d,this.level===1?.12:.30)
       .beginPath().moveTo(b.x+5,base).lineTo(b.x+b.width-5,base).strokePath();
@@ -277,11 +270,12 @@ export class ScoreFlame {
 
   private drawFrame():void {
     const g=this.frameGraphic,b=this.frameBox;
-    g?.clear();if(!g||!b||this.level<2)return;
-    g.lineStyle(4,0xf47e2b,this.reduced?.06:.12).strokeRect(b.x,b.y,b.width,b.height);
-    g.lineStyle(2,0xffba59,this.reduced?.16:.32).strokeRect(b.x,b.y,b.width,b.height);
-    g.lineStyle(this.reduced?1:1.3,0xffe4a7,this.reduced?.56:.76).strokeRect(b.x,b.y,b.width,b.height);
-    if(this.reduced)return;
+    const visible=this.level>=2&&!this.reduced&&this.frameFlash>0;
+    for(const image of this.frameFlames)image.setVisible(visible).setAlpha(this.frameFlash*.12);
+    g?.clear();g?.setVisible(visible);if(!g||!b||!visible)return;
+    this.graphic.setData('frameFlash',this.frameFlash);
+    g.lineStyle(2,0xf47e2b,this.frameFlash*.08).strokeRect(b.x,b.y,b.width,b.height);
+    g.lineStyle(1,0xffba59,this.frameFlash*.18).strokeRect(b.x,b.y,b.width,b.height);
     if(this.frameMaterial&&this.framePixels)this.uploadHeat(this.frameMaterial,this.framePixels,this.frameHeat,this.frameMask);
     const outer=this.frameBands!.outer,depth=this.frameBands!.depth;
     for(let i=0;i<12;i++){
@@ -303,7 +297,7 @@ export class ScoreFlame {
 
   private drawEmbers(base:number):void {
     const b=this.box,g=this.graphic,small=this.level===1,anchors=small?SMALL_ANCHORS:LARGE_ANCHORS;
-    const height=b.height*(small?.28:.88),count=small?2:6;
+    const height=b.height*(small?.52:.88),count=small?2:4;
     for(let i=0;i<count;i++){
       const cycle=(this.elapsed*(.23+(i%3)*.047)+i*.618)%1,life=Math.sin(cycle*Math.PI);
       const x=clamp(b.x+b.width*anchors[i%anchors.length]+Math.sin(cycle*5+i*2.2)*(small?2:6),b.x+4,b.x+b.width-4);
@@ -326,8 +320,8 @@ export class ScoreFlame {
     if(this.scene.textures.exists(this.textureKey))this.scene.textures.remove(this.textureKey);
     if(this.scene.textures.exists(this.frameTextureKey))this.scene.textures.remove(this.frameTextureKey);
     this.heat=new Float32Array(0);this.nextHeat=new Float32Array(0);
-    this.smallFuel=new Float32Array(0);this.largeFuel=new Float32Array(0);
     this.smallMask=new Float32Array(0);this.largeMask=new Float32Array(0);this.pixels=undefined;
+    this.hitIds.clear();
     this.frameHeat=new Float32Array(0);this.nextFrameHeat=new Float32Array(0);
     this.frameFuel=new Float32Array(0);this.frameMask=new Float32Array(0);this.framePixels=undefined;
   }
