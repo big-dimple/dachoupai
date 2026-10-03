@@ -38,6 +38,7 @@ import {R2_BOSSES,r2BossText,r2DisabledCards} from '../domain/r2Chapter';
 import {showConsumables} from './ConsumableDialog';
 import {fitScoreLine,scoreFlightLanding} from './ScoreTextLayout';
 import {PAPER_THEME as T,PAPER_CSS as C,UI_FONT,P00_ASSETS,assetUrl} from './theme';
+import {cardPipRowOffset} from './CardPipLayout';
 import type {Box} from './layout';
 import {jokerArtKey,jokerArtUrl,jokerArtPreviewUrl} from './jokerArt';
 import {drawJokerMotif} from './JokerMotif';
@@ -459,10 +460,16 @@ export class GameScene extends Phaser.Scene {
       }else{
         // Classic symmetric pip layouts; lower-half pips draw inverted like a printed deck.
         const pipSize=Math.min(b.width*(card.rank>=7?.24:.3),b.height*.21,pipWidth*.42);
+        const rows=new Map<number,Phaser.GameObjects.Text[]>();
         for(const [ux,uy] of PIP_LAYOUTS[card.rank]??[]){
           const pip=this.add.text(ux*pipWidth,uy*b.height*.72,SUIT_SYMBOL[card.suit],{fontFamily:'Georgia,serif',fontSize:`${pipSize}px`,color:ink,resolution}).setOrigin(.5).setName('card-pip');
           if(uy>0)pip.setAngle(180);
+          const row=rows.get(uy)??[];row.push(pip);rows.set(uy,row);
           faceArt.push(pip);
+        }
+        for(const row of rows.values()){
+          const offset=cardPipRowOffset(label.getBounds(),row.map(p=>p.getBounds()));
+          for(const pip of row)pip.x+=offset;
         }
       }
     }else if(card.rank===14){
