@@ -1,6 +1,6 @@
 {
   "taskId": "P08",
-  "testedCommit": "2870c6234d42c622820d3d151c8bdde8d54778f0",
+  "testedCommit": "1929ba02e469574eb38b856538459f25f81703c2",
   "baseline": "2870c6234d42c622820d3d151c8bdde8d54778f0",
   "candidateSource": {
     "baseCommit": "2870c6234d42c622820d3d151c8bdde8d54778f0",
@@ -10,7 +10,7 @@
   "scope": "Batch2 existing-flow components, rear fire/opaque score pedestal, bounded played visual footprint, desktop anchors and exact short-shop safe-inset boundary. No new art/rules/RNG/save/deployment changes.",
   "states": {
     "implementation": "COMPLETE_FOR_BATCH2",
-    "technical": "100 affected tests/type and bounded browser routes PASS; frozen aggregate pending",
+    "technical": "PASS:100 affected tests/type,bounded routes and frozen1809 tests/content/type/build/Chromium Canvas desktop+mobile smoke/plan",
     "engineeringPixelInspection": "ALL_21_ACTUAL_PNGS_VIEWED",
     "independentAesthetic": "DIRECTION_ONLY_APPROVED_4472366d; overall final batch2 PENDING_INDEPENDENT_REVIEW",
     "targetDevice": "NOT_RUN: OnePlus / hardware GPU / audio listening",
@@ -639,7 +639,7 @@
     "Full-slot import could click pre-rebuild shop: wait actual replacement SceneView+ready; original full-slot/disabled purchase/cancel/save assertions retained."
   ],
   "release": {
-    "status": "PENDING_FROZEN_GATE_AND_NORMAL_FF_PUSH",
+    "status": "FROZEN_PASS; final evidence-only commit /normalFF main push and exactCI reported separately",
     "oldCI": "Not queried"
   },
   "exclusions": [
@@ -647,5 +647,14 @@
     "No PC/domain/deployment actions",
     "No new C04/tutorial/encyclopedia/history features",
     "No hardware/OnePlus/audio acceptance claims"
-  ]
+  ],
+  "sourceTree": "5411369f6859cc03eae459fb0ea5b3f8371e64a3",
+  "frozenGate": {
+    "status": "PASS",
+    "tests": 1809,
+    "testFiles": 99,
+    "command": "VITEST_MAX_WORKERS=1 NODE_OPTIONS='--import /workspace/.cloud-tools/release-canvas-adapter.mjs' SMOKE_BROWSERS=chromium npm run verify:ci",
+    "sourceIndexHeadUnchanged": true,
+    "report": "p08-components-2026-10-03/frozen-ci.json"
+  }
 }
