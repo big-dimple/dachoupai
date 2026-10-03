@@ -1,6 +1,6 @@
 # 当前交接：P08单卡体验样板
 
-D43当前回合（2026-10-03）：基于D42 `700caab`，其远端CI37080661804已成功。本轮先提交输入瞬态 `ed15737`：原生tap highlight透明，指针按下即时关闭局部canvas焦点框，键盘焦点保留。PC/触摸182/242实际渲染帧与短录屏已查看；软件WebGL桌面DPR1通过65帧，手机DPR1因低FPS真实长按打开详情而未通过，不能算真机。后续完成达标/2倍/5倍连贯非等距火势、一次400ms起燃和可辨识暖风；首次30%/80%音量，已保存原值不改。七条自然600/1200/5589与减少动态/静音/结果回看/快进/恢复、五条音量兼容、32专项和原来源演出检查通过，见[D43证据](production/evidence/D43-2026-10-03.json)。当前冻结源码跑发布门禁后正常push并核对SHA/CI，不改部署；P08/OnePlus/物理听感/新美术边界保持。
+D43当前回合（2026-10-03）：基于D42 `700caab`，其远端CI37080661804已成功。本轮先提交输入瞬态 `ed15737`：原生tap highlight透明，指针按下即时关闭局部canvas焦点框，键盘焦点保留。PC/触摸182/242实际渲染帧与短录屏已查看；软件WebGL桌面DPR1通过65帧，手机DPR1因低FPS真实长按打开详情而未通过，不能算真机。后续完成达标/2倍/5倍连贯非等距火势、一次400ms起燃和可辨识暖风；首次30%/80%音量，已保存原值不改。七条自然600/1200/5589与减少动态/静音/结果回看/快进/恢复、五条音量兼容、32专项和原来源演出检查通过，见[D43证据](production/evidence/D43-2026-10-03.json)。冻结源码 `004458d` 的1778测试/content/build/双端Canvas smoke/plan全部通过，前后源码/索引/HEAD指纹一致；后续仅补证据文档，正常push并核对SHA/CI，不改部署；P08/OnePlus/物理听感/新美术边界保持。
 
 D42当前回合（2026-10-02）：基于D41 `88ec83b`，远端CI37077643923已成功。本轮只修正DOM焦点误作键盘焦点、发牌早退遗留4px矩形与预览矩形；状态实际绘制四个圆角，选择/计分2px、悬停/键盘焦点3px，纸背1px中性。首次成功点数/花色排序显示短双向滑选游标，不替用户选择，不拦操作；独立shown/learned展示偏好恢复，减少动态静态提示，真实连续滑选才学习。62项专项及类型检查通过，运行时代码与浏览器入口保存本地恢复提交 `1922bf0`；三组浏览器18项检查、PC/手机前后截图、及时canvas像素及录屏已查看；最终冻结源码1770项测试/content/build/双端Canvas smoke/plan全部通过，前后指纹相同，见[D42证据](production/evidence/D42-2026-10-02.json)。用户截图Library元数据确认，像素读取/标准下载失败，本环境未查看该原图且未换路径；父会话原截图审查独立保留。JQK资源交独立素材任务，本轮不改；源代码、UI与main为独占窗口，必要检查后正常push。规则/RNG/存档/依赖/部署不变，P08/真机边界不变。
 
@@ -48,6 +48,6 @@ D36继承提交 `0f1f0a6` 的远端Chromium两视口、Firefox两视口、WebKit
 
 单卡浏览器入口：`harness/f09.mjs`（`F09_RENDERER=canvas/webgl`分开记录）；加载/文案专项：`harness/f09-loading.mjs`；D39五张说明专项：`harness/joker-clarity.mjs`。均按各入口要求使用e2e开发构建，不只为重复获取相同失败证据空跑。检查按AGENTS变更矩阵执行，最终发布聚合与开发targeted分开。
 
-D39已push并通过远端CI；D40已push，CI后来被资产main取代。D41已push且最终CI37077643923成功，结果写入shots/reward-runtime/publication.json。D42完成最终门禁后正常push，核对GitHub SHA/CI，结果写入shots/single-selection/publication.json并交回父会话，不等待或探测公开网站。后续范围由父会话安排，不自动扩展到全库、C04或美术；不删工作包、金样或测试门禁。
+D39已push并通过远端CI；D40已push，CI后来被资产main取代。D41已push且最终CI37077643923成功，结果写入shots/reward-runtime/publication.json。D42已push `700caab`且CI37080661804最终成功。D43已完成最终门禁，正常push后核对GitHub精确SHA/CI，结果写入shots/d43/publication.json并交回父会话，不等待或探测公开网站。后续范围由父会话安排，不自动扩展到全库、C04或美术；不删工作包、金样或测试门禁。
 
 历史C04源码/CI/旧存档细节以[收尾证据](production/evidence/C04-closeout-2026-10-02.json)及[基线handoff](https://github.com/big-dimple/dachoupai/blob/209b9073c90778bf57a1736bed9266f305b995f5/docs/development-handoff.md)追溯；本地通过不改写其远端CI取消的历史。

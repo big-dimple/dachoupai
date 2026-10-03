@@ -4,7 +4,7 @@
   "date": "2026-10-03",
   "baseCommit": "700caab1579dc051c17de144beb32309e431899b",
   "inputCommit": "ed157379f7e64b7c92595b8ab62b3792ba018b8f",
-  "status": "TARGETED_PASS_RELEASE_PENDING",
+  "status": "LOCAL_VALIDATION_PASS",
   "baselineCI": {
     "run": 37080661804,
     "status": "SUCCESS",
@@ -333,7 +333,58 @@
       "report": "shots/d43/fire/original-feedback-pass.json",
       "meaning": "Original ordered sources, >=300ms ordinary floor, progressive first-vs-fifth beat, exact1200 credit and next-table cleanup retained. Assertion threshold updated to explicit D43 >=/5x behavior; no timeout or assertion removed."
     },
-    "releaseGate": "PENDING"
+    "releaseGate": {
+      "status": "PASS",
+      "log": "shots/d43/release-ci.log",
+      "report": "shots/ci/all.json",
+      "tests": 1778,
+      "testFiles": 94,
+      "before": {
+        "source": "04e02062e59429c534e9d831914eef8b67cf5830ebce534973da2874f0a5ee67",
+        "index": "ca359049ed55135981b7fd9f675701f24c4f918905dd00ea615a4b0309d939bb",
+        "head": "004458d359948bf68318a0f45534582114a401b4",
+        "branch": "refs/heads/dot/d43"
+      },
+      "after": {
+        "source": "04e02062e59429c534e9d831914eef8b67cf5830ebce534973da2874f0a5ee67",
+        "index": "ca359049ed55135981b7fd9f675701f24c4f918905dd00ea615a4b0309d939bb",
+        "head": "004458d359948bf68318a0f45534582114a401b4",
+        "branch": "refs/heads/dot/d43"
+      },
+      "steps": [
+        {
+          "name": "test",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 52544
+        },
+        {
+          "name": "verify:content",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 4132
+        },
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 13762
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 49544
+        },
+        {
+          "name": "production-plan",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 242
+        }
+      ],
+      "externalAdapter": "Existing outside-repo system Chromium Canvas launch adapter only; no assertion or timeout overrides."
+    }
   },
   "measurementNotes": [
     "Input failure/encoding corrections remain in D43-input evidence. Software WebGL touch did not pass.",
@@ -358,6 +409,8 @@
     "Procedural fire presentation adjustment is not new card artwork or A03 visual acceptance",
     "P08 remains in_progress; C04.3/4/new gameplay/all-card redraw paused; deployment unchanged"
   ],
-  "testedCommit": "ed157379f7e64b7c92595b8ab62b3792ba018b8f",
-  "testedWorktreeModified": true
+  "testedCommit": "004458d359948bf68318a0f45534582114a401b4",
+  "testedWorktreeModified": false,
+  "completedAt": "2026-10-03T01:11:53.198683+00:00",
+  "postGate": "Only evidence/handoff/plan prose updated after the frozen candidate; runtime hashes reasserted. Final main SHA and remote CI are recorded in ignored shots/d43/publication.json."
 }
