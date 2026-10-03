@@ -4,7 +4,7 @@ import {mkdir,writeFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import {createServer,build,preview} from 'vite';
 import {chromium,webkit,firefox} from 'playwright';
-import {tapUI,waitScene,point} from './ui.mjs';
+import {tapUI,waitScene,point,openMenuSection} from './ui.mjs';
 const dir=process.env.TWO_ROW_DIR||'shots/two-row',outDir=dir+'/build',port=Number(process.env.TWO_ROW_PORT||5256);
 await mkdir(dir,{recursive:true});
 const ssr=await createServer({server:{middlewareMode:true},logLevel:'error'}),fixtures={};
@@ -31,6 +31,14 @@ if(process.env.TWO_ROW_REUSE_BUILD!=='1')await build({mode:'e2e',build:{outDir,e
 const server=await preview({build:{outDir},preview:{host:'127.0.0.1',port,strictPort:true},logLevel:'warn'});
 const report={testedCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),fixture:'Controlled 9–14 entry snapshots within existing hand-maximum contract and card conservation; unchanged save validator and actual import UI. Not natural acquisition.',runs:[],physicalDevice:'NOT_RUN',hardwareGPU:'NOT_RUN',recording:'NOT_RUN'};
 const ready=p=>p.waitForFunction(()=>{const s=window.__harness?.game.scene.getScene('game');return s?.ready&&s.cardViews.every(v=>!v.dealing&&!s.tweens.isTweening(v.container));});
+async function resize(p,size,r){
+ await p.setViewportSize(size);await ready(p);
+ const before=await p.evaluate(()=>{const l=window.__harness.game.scene.getScene('game').view.layout;return {width:l.width,height:l.height,rows:l.handRows};});
+ (r.resizes??=[]).push({requested:size,beforeObserver:before});
+ // ResizeObserver updates Phaser asynchronously. Read rendered geometry only
+ // after its CSS viewport matches the requested size; no fixed delay or waiver.
+ await p.waitForFunction(size=>{const l=window.__harness.game.scene.getScene('game').view.layout;return l.width===size.width&&l.height===size.height;},size);await ready(p);
+}
 const state=p=>p.evaluate(()=>{const c=window.__harness.game.registry.get('runController');return {state:c.state,save:c.exportJSON()};});
 async function observe(p){return p.evaluate(()=>{
  const g=window.__harness.game,s=g.scene.getScene('game'),box=o=>{const b=o.getBounds();return {x:b.x,y:b.y,width:b.width,height:b.height};};
@@ -56,7 +64,7 @@ let browser;
 try{
  for(const engine of (process.env.TWO_ROW_ENGINES||'chromium').split(',')){
   assert.ok({chromium,webkit,firefox}[engine]);browser=await ({chromium,webkit,firefox}[engine]).launch(engine==='chromium'?{executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']}:{});
-  for(const width of [360,390]){
+  for(const width of (process.env.TWO_ROW_WIDTHS||'360,390').split(',').map(Number)){
    const context=await browser.newContext({viewport:{width,height:740},hasTouch:true,deviceScaleFactor:3}),p=await context.newPage(),cdp=engine==='chromium'?await context.newCDPSession(p):undefined;
    const r={engine,version:browser.version(),width,height:740,dpr:3,input:cdp?'native CDP touch + DOM tap':'native mouse cross-row + touchscreen tap',checks:[],errors:[]};report.runs.push(r);p.on('pageerror',e=>r.errors.push(String(e)));p.on('dialog',d=>d.accept());
    const touch=async(type,points)=>cdp.send('Input.dispatchTouchEvent',{type,touchPoints:points.map(q=>({x:q.x,y:q.y,id:1}))});
@@ -67,7 +75,7 @@ try{
    const selected=async()=> (await observe(p)).selected;
    const clear=async()=>{for(const id of await selected())await tapUI(p,'game','card/'+id,true);await ready(p);};
    await p.goto(`http://127.0.0.1:${port}/?harness=1`);await waitScene(p,'title');
-   for(const count of [9,10,11,12,13,14]){
+   for(const count of (process.env.TWO_ROW_COUNTS||'9,10,11,12,13,14').split(',').map(Number)){
     await p.locator('.run-menu-toggle').tap();const section=p.getByText('进度与存档',{exact:true}).locator('..');if(!await section.evaluate(e=>e.open))await section.locator('summary').tap();
     const chooser=p.waitForEvent('filechooser');await p.getByRole('button',{name:'导入本局',exact:true}).tap();await (await chooser).setFiles({name:'hand-'+count+'.json',mimeType:'application/json',buffer:Buffer.from(fixtures[count])});
     await waitScene(p,'game');await p.waitForFunction(n=>{const g=window.__harness.game;return g.registry.get('runController').state.handOrder.length===n&&g.scene.getScene('game').cardViews.length===n;},count);await ready(p);const initial=await state(p),ids=initial.state.handOrder,columns=Math.ceil(count/2);
@@ -82,11 +90,12 @@ try{
      const a=await point(p,'game','card/'+ids[0]),b=await point(p,'game','card/'+ids[columns]);
      await down(a);await move(b);await p.keyboard.press('Escape');await up();assert.deepEqual(await selected(),[],'Escape restores initial selection');
      if(cdp){await down(a);await move(b);await touch('touchCancel',[]);assert.deepEqual(new Set(await selected()),new Set([ids[0],ids[columns]]));await clear();}
-     await down(a);await move(b);const snapshot=await state(p);await p.setViewportSize({width:width===360?390:360,height:740});await ready(p);await up();
+     await down(a);await move(b);const snapshot=await state(p);await resize(p,{width:width===360?390:360,height:740},r);await up();
      assert.deepEqual(new Set(await selected()),new Set([ids[0],ids[columns]]));assert.deepEqual(await state(p),snapshot);validate(await observe(p),count);
      await tapUI(p,'game','card/'+ids[columns],true);assert.deepEqual(await selected(),[ids[0]],'fresh contact after resize');
      for(const action of ['action/sort-rank','action/sort-suit']){const before=await state(p);await tapUI(p,'game',action,true);await ready(p);assert.deepEqual((await state(p)).state.rng,before.state.rng);assert.deepEqual(await selected(),[ids[0]]);validate(await observe(p),count);}
-     for(const size of [{width,height:640},{width:844,height:300},{width,height:740}]){const before=await state(p);await p.setViewportSize(size);await ready(p);assert.deepEqual(await state(p),before);assert.deepEqual(await selected(),[ids[0]]);if(size.height===740)validate(await observe(p),count);}
+     for(const size of [{width,height:640},{width:844,height:300},{width,height:740}]){const before=await state(p);await resize(p,size,r);assert.deepEqual(await state(p),before);assert.deepEqual(await selected(),[ids[0]]);if(size.height===740)validate(await observe(p),count);}
+     const beforePreference=await state(p);await openMenuSection(p,'settings',true);await p.getByLabel('减少动态',{exact:true}).check();await p.locator('.run-menu-toggle').tap();await ready(p);validate(await observe(p),count);assert.deepEqual(await selected(),[ids[0]]);assert.deepEqual(await state(p),beforePreference,'presentation preference cannot alter save');
      const before=await state(p);await tapUI(p,'game','action/discard',true);await ready(p);const after=await state(p);assert.equal(after.state.handOrder.length,count);assert.equal(after.state.stage.discardsLeft,before.state.stage.discardsLeft-1);assert.ok(after.state.discardPile.includes(ids[0]));assert.deepEqual(await selected(),[]);validate(await observe(p),count);
      await p.reload();await waitScene(p,'title');assert.deepEqual(await state(p),after);await tapUI(p,'title','action/title-continue',true);await waitScene(p,'game');await ready(p);assert.deepEqual(await state(p),after);validate(await observe(p),count);
      r.checks.push({count,name:'Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload',status:'PASS'});
