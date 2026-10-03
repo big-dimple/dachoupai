@@ -1035,7 +1035,10 @@ export class GameScene extends Phaser.Scene {
     const presentation=this.presentation;if(!presentation)return;
     const level=scoreFireLevel(presentation.originHeat,product,this.stage.targetHeat),b=this.view.layout.scoreBoard;
     if(level&&!this.scoreFlame){const l=this.view.layout;this.scoreFlame=new ScoreFlame(this,this.view.root,{x:b.x+3,y:b.y+25,width:b.width-6,height:Math.max(20,b.height-27)},{x:8,y:8,width:l.width-16,height:l.height-16});}
-    this.scoreFlame?.set(level,this.reducedMotion);this.audio.setScoreFire(level);
+    this.scoreFlame?.set(level,this.reducedMotion);
+    // Same ephemeral presentation identity: no ignition on redraw, repeated final
+    // accumulator updates, or replay. Restored results never create a presentation.
+    this.audio.setScoreFire(presentation.replay?0:level,presentation);
     this.scoreTotal.setColor(level?'#fff2c1':'#ffe3a4');this.keepScoreReadable();
   }
   private stopScoreFire():void {this.scoreFlame?.destroy();this.scoreFlame=undefined;this.audio.stopScoreFire();}
@@ -1310,7 +1313,7 @@ export class GameScene extends Phaser.Scene {
     this.resultText.setText((presentation.replay?'回看 · ':celebration.cleared?celebration.label+' · ':HAND_LABELS[score.handType]+' · ')+'+'+heatText(score.finalScore));
     this.breakdownText.setText(fractionText(score.accumulator.H)+' 热度 × '+fractionText(score.accumulator.M)+' 倍率 = '+heatText(score.finalScore));
     presentation.credited=true;this.updateHud();
-    if(celebration.cleared&&celebration.tier!==0&&!presentation.replay)this.audio.overkill(celebration.tier);else this.audio.score(celebration.cleared?1:0);
+    if(!presentation.replay){if(celebration.cleared&&celebration.tier!==0)this.audio.overkill(celebration.tier);else this.audio.score(celebration.cleared?1:0);}
     if(!this.reducedMotion&&celebration.tier>0){this.cameras.main.shake(150+celebration.tier*35,.0015+celebration.tier*.0006);try{navigator.vibrate?.(celebration.tier>=2?[20,25,20]:20);}catch{/* Optional haptics never block presentation. */}}
     const effects:Promise<void>[]=[this.burst(tier,context),this.shockwave(tier,context)];
     // The credited heat rolls up in the HUD; the exact saved value always lands last.

@@ -87,17 +87,19 @@ describe('progressive one-source scoring presentation',()=>{
 });
 
 describe('flames follow the displayed exact total, never the final future result',()=>{
-  it('D27 uses only small and large fire: a finished below-target hand is dark and every >=2x score stays large',()=>{
+  it('D43 uses achieved, double and fivefold tiers without changing any score',()=>{
     expect(scoreFireLevel('0','399','400')).toBe(0);
     expect(scoreFireLevel('0','799','400')).toBe(1);
     expect(scoreFireLevel('0','800','400')).toBe(2);
     expect(scoreFireLevel('0','1200','400')).toBe(2);
-    expect(scoreFireLevel('0','40000','400')).toBe(2);
+    expect(scoreFireLevel('0','1999','400')).toBe(2);
+    expect(scoreFireLevel('0','2000','400')).toBe(3);
+    expect(scoreFireLevel('0','40000','400')).toBe(3);
   });
-  it('starts strictly over target and includes earlier credited hands',()=>{
-    expect(scoreFireLevel('0','400','400')).toBe(0);
+  it('starts at the exact target, including one-hand clears and earlier credited hands',()=>{
+    expect(scoreFireLevel('0','400','400')).toBe(1);
     expect(scoreFireLevel('0','401','400')).toBe(1);
-    expect(scoreFireLevel('399','1','400')).toBe(0);
+    expect(scoreFireLevel('399','1','400')).toBe(1);
     expect(scoreFireLevel('399','2','400')).toBe(1);
   });
   it('can cool down after a negative wager and never adds the replay twice',()=>{
@@ -110,5 +112,6 @@ describe('flames follow the displayed exact total, never the final future result
     expect(scoreFireLevel('0',(t*2n-1n).toString(),t.toString())).toBe(1);
     expect(scoreFireLevel('0',(t*2n).toString(),t.toString())).toBe(2);
     expect(scoreFireLevel('0',(t*3n).toString(),t.toString())).toBe(2);
+    expect(scoreFireLevel('0',(t*5n).toString(),t.toString())).toBe(3);
   });
 });

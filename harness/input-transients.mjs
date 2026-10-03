@@ -98,7 +98,9 @@ async function run(name,touch){
     }
     if(baseline){r.nativeRisk=r.phases.some(f=>f.surface.tap!=='rgba(0, 0, 0, 0)')&&r.phases.some(f=>!f.keyboard&&f.canvas.outline!=='0px');assert.ok(r.nativeRisk,'baseline native highlight and inherited focus-visible risk reproduced');}
     assert.deepEqual(r.errors,[]);r.status='PASS';
-  }catch(e){r.status='FAIL';r.error=String(e);r.stack=e.stack;process.exitCode=1;await page.screenshot({path:`${dir}/${name}-failure.png`}).catch(()=>{});}
+  }catch(e){r.status='FAIL';r.error=String(e);r.stack=e.stack;process.exitCode=1;
+    r.diagnosticFrames=await page.evaluate(()=>{const t=window.__transient;if(!t)return[];window.__harness.game.events.off('postrender',t.capture);return t.frames;}).catch(()=>[]);
+    await page.screenshot({path:`${dir}/${name}-failure.png`}).catch(()=>{});}
   finally{const video=page.video();await context.close();await video.saveAs(`${dir}/${name}.webm`);await writeFile(dir+'/report.json',JSON.stringify(report,null,2));console.log(JSON.stringify({name,status:r.status,frames:r.frameCount,error:r.error}));}
 }
 try{for(const [name,touch] of [['desktop',false],['touch',true]])if(!process.env.TRANSIENT_PROFILE||process.env.TRANSIENT_PROFILE===name)await run(name,touch);}

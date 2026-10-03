@@ -61,7 +61,7 @@ describe('bounded foreground score fire',()=>{
     f.events.emit('update',16);expect(f.uploads()).toBe(before+2);expect(f.allocations()).toBe(2);
     f.flame.set(1);expect(images().every(image=>!image.visible)).toBe(true);f.flame.destroy();
   });
-  it('increases the large plume area, brightness and height while keeping legacy level 3 compatible',()=>{
+  it('increases large/extreme plume area, brightness and height with the same texture budget',()=>{
     const f=fixture(),[local,frame]=[...f.textures.values()];
     const measure=(texture:typeof local)=>{
       let area=0,alpha=0,firstRow=texture.height;
@@ -78,6 +78,17 @@ describe('bounded foreground score fire',()=>{
     expect(border.area).toBeGreaterThan(frame.width*frame.height*.5);
     expect(f.objects.filter(object=>object.name.startsWith('score/fire-frame-')).every(image=>image.visible)).toBe(true);
     f.flame.destroy();
+  });
+  it('paints a connected warm base across the score board with uneven rising lobes',()=>{
+    const f=fixture(),local=[...f.textures.values()][0];f.flame.set(2);
+    const pixels=local.pixels!.data,w=local.width,h=local.height,heights:number[]=[];
+    for(let x=3;x<w-3;x++){
+      let top=h,base=false;
+      for(let y=0;y<h;y++)if(pixels[(y*w+x)*4+3]>=12){top=Math.min(top,y);if(y>=h-8)base=true;}
+      expect(base,'no empty breaks between four isolated tufts').toBe(true);heights.push(h-top);
+    }
+    expect(new Set(heights).size).toBeGreaterThan(12);
+    f.flame.set(3);expect(f.allocations()).toBe(2);f.flame.destroy();
   });
   it('stops uploads and sparks for reduced motion, then hides and fully releases on cancellation',()=>{
     const f=fixture();f.flame.set(2);f.flame.set(2,true);const uploads=f.uploads();

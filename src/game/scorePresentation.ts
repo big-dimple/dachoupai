@@ -57,8 +57,8 @@ export function scoreBeat(event:ScoreEvent,ordinal=0):ScoreBeat {
 }
 
 /** The provisional displayed product may fall later (e.g. wager ×0.75); no prediction or credit. */
-export function scoreFireLevel(beforeHeat:string,displayedHandScore:string,targetHeat:string):0|1|2 {
+export function scoreFireLevel(beforeHeat:string,displayedHandScore:string,targetHeat:string):0|1|2|3 {
   const total=BigInt(beforeHeat)+BigInt(displayedHandScore),target=BigInt(targetHeat);
-  if(target<=0n||total<=target)return 0;
-  return total>=target*2n?2:1;
+  if(target<=0n||total<target)return 0;
+  return total>=target*5n?3:total>=target*2n?2:1;
 }

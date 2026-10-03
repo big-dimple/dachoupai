@@ -156,6 +156,9 @@ try {
     page.on('pageerror',e=>errors.push(String(e)));await page.goto(`http://127.0.0.1:${port}/?harness=1&seed=p04-golden-02`);await waitScene(page,'title');
     await tapUI(page,'title','action/title-start',true);await waitScene(page,'character-select');
     await tapUI(page,'character-select','character/touye',true);await tapUI(page,'character-select','action/confirm-character',true);await waitScene(page,'shop');
+    // Confirm and Start-stage overlap on portrait. Respect the production350ms
+    // click-through guard before this feedback-only route's next deliberate tap.
+    await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);await page.waitForTimeout(370);
     await tapUI(page,'shop','action/start-stage',true);await waitScene(page,'game');await ready(page);
     await tapMenuAction(page,'规则 / 物品',true);const beforeWager=await state(page);await dom(page,'押注本手',true);await next(page,beforeWager.commandSeq);await dom(page,'关闭',true);
     // The first card is behind the dismiss button; respect the 350ms anti-click-through guard.
@@ -199,9 +202,9 @@ try {
     assert.deepEqual(observation.fire.map(f=>f.level),[1,2],'natural score roll crosses the two D27 displayed flame thresholds in order');
     for(const frame of observation.fire){
       const shown=BigInt(frame.shown.replaceAll(',','')),total=BigInt(beforePlay.stage.heat)+shown,target=BigInt(after.stage.targetHeat);
-      const level=total<=target?0:total>=target*2n?2:1;
+      const level=total<target?0:total>=target*5n?3:total>=target*2n?2:1;
       assert.equal(frame.level,level,'flame level follows the score visible in this same browser tick, never a future roll result');
-      assert.equal(frame.frame.length,level===2?4:0,'only large fire ignites all four table edges');
+      assert.equal(frame.frame.length,level>=2?4:0,'only large/extreme fire ignites all four table edges');
       for(const band of frame.frame){
         assert.equal(band.interactive,false,'fire never intercepts the player input');
         assert.ok(Math.min(band.width,band.height)<=12.01&&band.x>=-.01&&band.y>=-.01&&band.x+band.width<=390.01&&band.y+band.height<=740.01,'visible flame stays in the portrait table gutter');
@@ -221,7 +224,9 @@ try {
     });
     assert.ok(ordinaryPacing[0].beatMs>ordinaryPacing[4].beatMs,'ordinary cards progressively accelerate within the same committed trace');
     // Regression for the reported blue screen: reuse the same Phaser Scene after a real clear.
-    await tapUI(page,'intermission','action/continue-stage',true);await waitScene(page,'shop');await tapUI(page,'shop','action/start-stage',true);await ready(page);
+    await tapUI(page,'intermission','action/continue-stage',true);await waitScene(page,'shop');
+    await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);await page.waitForTimeout(370);
+    await tapUI(page,'shop','action/start-stage',true);await ready(page);
     assert.equal((await state(page)).stage.index,1);assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('game').cardViews.length),8);
     assert.deepEqual(errors,[],'second table entry must not touch destroyed controls');
     assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('game').audio.fireVoices.size),0,'finished scoring does not leak fire audio into the next table');

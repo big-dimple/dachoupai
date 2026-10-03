@@ -3,7 +3,7 @@ import {readAudioPreferences} from '../src/audio/preferences';
 
 describe('the two user-facing audio sliders',()=>{
   it('starts with quiet background and clear effects',()=>{
-    expect(readAudioPreferences(null)).toEqual({music:.22,sfx:1});
+    expect(readAudioPreferences(null)).toEqual({music:.30,sfx:.80});
   });
   it('preserves independent exact zero and positive values on reload',()=>{
     expect(readAudioPreferences({version:2,music:0,sfx:.63},{master:1})).toEqual({music:0,sfx:.63});
@@ -21,7 +21,7 @@ describe('the two user-facing audio sliders',()=>{
   });
   it('bounds numeric settings and does not accept invalid gain values',()=>{
     expect(readAudioPreferences({version:2,music:2,sfx:-1})).toEqual({music:1,sfx:0});
-    expect(readAudioPreferences({version:2,music:NaN,sfx:Infinity})).toEqual({music:.22,sfx:1});
-    expect(readAudioPreferences({version:2,music:'0',sfx:null})).toEqual({music:.22,sfx:1});
+    expect(readAudioPreferences({version:2,music:NaN,sfx:Infinity})).toEqual({music:.30,sfx:.80});
+    expect(readAudioPreferences({version:2,music:'0',sfx:null})).toEqual({music:.30,sfx:.80});
   });
 });

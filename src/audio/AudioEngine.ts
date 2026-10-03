@@ -1,4 +1,5 @@
 import recording from '../../public/assets/audio/p06/recording.json';
+import {DEFAULT_AUDIO} from './preferences';
 
 export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
 export type AudioScene = 'menu' | 'shop' | 'table' | 'boss' | 'success' | 'failure';
@@ -27,9 +28,11 @@ export class AudioEngine {
   private fireRumble?: AudioBuffer;
   private rollBuffer?: AudioBuffer;
   private fireVoices = new Set<Voice>();
-  private fireIntensity: 0 | 1 | 2 = 0;
+  private fireIntensity: 0 | 1 | 2 | 3 = 0;
+  private fireIgnition?:Voice;
+  private readonly fireCues=new WeakSet<object>();
   private voices = new Set<Voice>();
-  private volumes: Record<AudioBus, number> = { master: 1, music: .22, sfx: 1, ui: 1 };
+  private volumes: Record<AudioBus, number> = { master: 1, music: DEFAULT_AUDIO.music, sfx: DEFAULT_AUDIO.sfx, ui: DEFAULT_AUDIO.sfx };
   private masterMuted = false;
   private musicIsMuted = false;
   private suspended = false;
@@ -224,6 +227,7 @@ export class AudioEngine {
   private release(voice: Voice): void {
     this.voices.delete(voice);
     this.fireVoices.delete(voice);
+    if(this.fireIgnition===voice)this.fireIgnition=undefined;
     voice.source.onended = null;
     try { voice.source.stop(); } catch { /* The source may already have ended. */ }
     try { voice.source.disconnect(); voice.gain.disconnect(); voice.filter?.disconnect(); } catch { /* Device teardown. */ }
@@ -306,9 +310,10 @@ export class AudioEngine {
     };
     const bedData = bed.getChannelData(0), rumbleData = rumble.getChannelData(0);
     for (let i = 0; i < bedData.length; i++) {
-      brown = brown * .998 + sample() * .065;
+      const white=sample();brown = brown * .992 + white * .072;
       const edge = Math.min(1, i / (context.sampleRate * .08), (bedData.length - i) / (context.sampleRate * .08));
-      bedData[i] = Math.tanh(brown) * .72 * edge;
+      // Warm wind retains an audible middle band for small speakers; no sharp crackle transients.
+      bedData[i] = (Math.tanh(brown)*.78+white*.12) * edge;
     }
     for (let i = 0; i < rumbleData.length; i++) {
       turbulence = turbulence * .975 + sample() * .095;
@@ -322,8 +327,11 @@ export class AudioEngine {
   }
 
   /** Two bounded SFX sources for the actual score-fire state, never a second context. */
-  setScoreFire(intensity: 0 | 1 | 2): void {
-    if (intensity === 0 || ![1, 2].includes(intensity) || !this.canPlay('sfx')) { this.stopScoreFire(); return; }
+  setScoreFire(intensity: 0 | 1 | 2 | 3,cue?:object): void {
+    const ignite=!!cue&&intensity>0&&!this.fireCues.has(cue);
+    // Consume a silent cue too: changing volume or foregrounding must not queue an old ignition.
+    if(ignite)this.fireCues.add(cue!);
+    if (intensity === 0 || ![1, 2, 3].includes(intensity) || !this.canPlay('sfx')) { this.stopScoreFire(); return; }
     if (this.fireIntensity === intensity && this.fireVoices.size === 2) return;
     try {
       const context = this.context!;
@@ -343,16 +351,29 @@ export class AudioEngine {
       this.fireIntensity = intensity;
       for (const voice of this.fireVoices) {
         const bed = voice.fireLayer === 'bed';
-        voice.gain.gain.setTargetAtTime((bed ? [.055, .16] : [.02, .065])[intensity - 1], context.currentTime, .07);
-        voice.filter!.frequency.setTargetAtTime((bed ? [170, 210] : [290, 420])[intensity - 1], context.currentTime, .08);
-        (voice.source as AudioBufferSourceNode).playbackRate.setTargetAtTime(intensity === 1 ? .8 : .92, context.currentTime, .1);
+        voice.gain.gain.setTargetAtTime((bed ? [.18, .25, .32] : [.06, .085, .11])[intensity - 1], context.currentTime, .05);
+        voice.filter!.frequency.setTargetAtTime((bed ? [1000, 1250, 1500] : [340, 430, 520])[intensity - 1], context.currentTime, .06);
+        (voice.source as AudioBufferSourceNode).playbackRate.setTargetAtTime([.92, 1, 1.07][intensity-1], context.currentTime, .1);
       }
+      if(ignite)this.igniteScoreFire(intensity);
     } catch { this.stopScoreFire(); }
+  }
+
+  private igniteScoreFire(intensity:1|2|3):void {
+    if(this.fireIgnition)this.release(this.fireIgnition);
+    const context=this.context!,source=context.createBufferSource(),gain=context.createGain(),filter=context.createBiquadFilter(),at=context.currentTime;
+    source.buffer=this.fireBed!;filter.type='bandpass';filter.Q.value=.5;
+    filter.frequency.setValueAtTime(360,at);filter.frequency.exponentialRampToValueAtTime(1100,at+.09);filter.frequency.exponentialRampToValueAtTime(480,at+.34);
+    gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime([.32,.38,.44][intensity-1],at+.045);gain.gain.exponentialRampToValueAtTime(.001,at+.38);
+    source.connect(filter);filter.connect(gain);gain.connect(this.gains!.sfx);
+    const voice:Voice={source,gain,filter,bus:'sfx',fire:true};this.fireIgnition=voice;this.retain(voice);
+    source.start(at,.24,.4);source.stop(at+.4);this.duckMusic(.48);
   }
 
   /** Stop now on fast-forward, shutdown, new stage or background; no stale auto-resume. */
   stopScoreFire(): void {
     this.fireIntensity = 0;
+    if(this.fireIgnition)this.release(this.fireIgnition);
     for (const voice of this.fireVoices) this.release(voice);
   }
 

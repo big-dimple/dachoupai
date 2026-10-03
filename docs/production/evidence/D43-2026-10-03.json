@@ -1,0 +1,363 @@
+{
+  "taskId": "P08",
+  "task": "D43 native input transients and deterministic clear fire/audio",
+  "date": "2026-10-03",
+  "baseCommit": "700caab1579dc051c17de144beb32309e431899b",
+  "inputCommit": "ed157379f7e64b7c92595b8ab62b3792ba018b8f",
+  "status": "TARGETED_PASS_RELEASE_PENDING",
+  "baselineCI": {
+    "run": 37080661804,
+    "status": "SUCCESS",
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37080661804"
+  },
+  "scope": "Only native tap/focus transients, display-driven >=target/2x/5x fire, original bounded fire synthesis/ignition and30%/80% fresh preferences. No new artwork, domain, RNG, checkpoints, dependencies or deployment edits. Existing user volumes remain authoritative.",
+  "runtimeSourceHashes": {
+    "src/style.css": "9cc307505398609d29c6cafe5a54510130fabcd4d6e35cf56fe7b38009165932",
+    "src/game/GameScene.ts": "1b52d00817a4c315293ceef721f4351cd07c210f7e451099191466d356af2cc4",
+    "src/game/CardFeedback.ts": "93170b02242b3dd7eddd107065e93e2525b8936bfa92e5acb308cc1c443ca3a1",
+    "src/game/HandSelectionInput.ts": "32e20db86c95d14d18f21076a357b6a798db0b314aa2f458352e5f192f455868",
+    "src/game/ScoreFlame.ts": "86e241607fbcb583e05c40b9ce9064c0637331f974a89e14b17358968f9916c4",
+    "src/game/scorePresentation.ts": "2af31db66127a954a68c13fed6eeb2e8754efd39da88fbfa6bbd0315462aa432",
+    "src/audio/AudioEngine.ts": "24b90ab391f420f2c149873ff0f09cd9234deba8ea3fdc2063fa51ac7eff1540",
+    "src/audio/preferences.ts": "f5737c43ec14c1f999cbc7971e296466e194635cd89bb9ca480c34d1e19208f1"
+  },
+  "input": {
+    "report": "shots/d43/input/final-deferred-encoding/report.json",
+    "baselineReport": "shots/d43/input/baseline-continuous/report.json",
+    "runs": [
+      {
+        "name": "desktop",
+        "status": "PASS",
+        "frames": 182,
+        "renderer": "Canvas",
+        "dpr": 1
+      },
+      {
+        "name": "touch",
+        "status": "PASS",
+        "frames": 242,
+        "renderer": "Canvas",
+        "dpr": 3
+      }
+    ],
+    "actualInspected": [
+      "touch-frame-contact.png",
+      "desktop-frame-contact.png",
+      "video-contact.png"
+    ],
+    "nativeFinding": "After keyboard navigation, browser focus-visible survives pointerdown while custom card focus is already cleared. Default rgba(0,0,0,.18) tap highlight on hand surface. Scoped pointer outline0 and transparent tap highlight close these native layers. Every sampled custom frame retained neutral1px backing, four rounded feedback corners, no face-wide pressed fill.",
+    "softwareWebGL": {
+      "report": "shots/d43/input/software-webgl-dpr1/report.json",
+      "desktop": "PASS65 rendered frames atDPR1; software FPS fell18 to4",
+      "touch": "FAIL atDPR1: slow native held-deselect crossed355ms, legitimate detail blocks subsequent keyboard assertion; about18 to6FPS. Not treated as functional/physical success. No unchanged DPR3 stress rerun."
+    }
+  },
+  "fire": {
+    "report": "shots/d43/fire/final/report.json",
+    "runs": [
+      {
+        "name": "ordinary-desktop",
+        "status": "PASS",
+        "score": "600",
+        "target": "400",
+        "levels": [
+          1
+        ],
+        "checks": [
+          "Natural first-hand score/clear and same-frame deterministic level; two bounded loops and noninteractive gutter",
+          "Result-page public recap keeps score/RNG and does not restart ignition/burning",
+          "Committed clear cleans burning; refresh/continue preserves result and preferences without fire replay"
+        ]
+      },
+      {
+        "name": "ordinary-touch",
+        "status": "PASS",
+        "score": "600",
+        "target": "400",
+        "levels": [
+          1
+        ],
+        "checks": [
+          "Natural first-hand score/clear and same-frame deterministic level; two bounded loops and noninteractive gutter",
+          "Result-page public recap keeps score/RNG and does not restart ignition/burning",
+          "Committed clear cleans burning; refresh/continue preserves result and preferences without fire replay"
+        ]
+      },
+      {
+        "name": "over-touch",
+        "status": "PASS",
+        "score": "1200",
+        "target": "400",
+        "levels": [
+          1,
+          2
+        ],
+        "checks": [
+          "Natural first-hand score/clear and same-frame deterministic level; two bounded loops and noninteractive gutter",
+          "Result-page public recap keeps score/RNG and does not restart ignition/burning",
+          "Committed clear cleans burning; refresh/continue preserves result and preferences without fire replay"
+        ]
+      },
+      {
+        "name": "extreme-touch",
+        "status": "PASS",
+        "score": "5589",
+        "target": "400",
+        "levels": [
+          3
+        ],
+        "checks": [
+          "Natural first-hand score/clear and same-frame deterministic level; two bounded loops and noninteractive gutter",
+          "Result-page public recap keeps score/RNG and does not restart ignition/burning",
+          "Committed clear cleans burning; refresh/continue preserves result and preferences without fire replay"
+        ]
+      },
+      {
+        "name": "reduced-touch",
+        "status": "PASS",
+        "score": "600",
+        "target": "400",
+        "levels": [
+          1
+        ],
+        "checks": [
+          "Natural first-hand score/clear and same-frame deterministic level; two bounded loops and noninteractive gutter",
+          "Result-page public recap keeps score/RNG and does not restart ignition/burning",
+          "Committed clear cleans burning; refresh/continue preserves result and preferences without fire replay"
+        ]
+      },
+      {
+        "name": "muted-touch",
+        "status": "PASS",
+        "score": "600",
+        "target": "400",
+        "levels": [
+          1
+        ],
+        "checks": [
+          "Natural first-hand score/clear and same-frame deterministic level; two bounded loops and noninteractive gutter",
+          "Result-page public recap keeps score/RNG and does not restart ignition/burning",
+          "Committed clear cleans burning; refresh/continue preserves result and preferences without fire replay"
+        ]
+      },
+      {
+        "name": "fast-forward-touch",
+        "status": "PASS",
+        "score": "600",
+        "target": "400",
+        "levels": [
+          1
+        ],
+        "checks": [
+          "Natural first-hand score/clear and same-frame deterministic level; two bounded loops and noninteractive gutter",
+          "Result-page public recap keeps score/RNG and does not restart ignition/burning",
+          "Committed clear cleans burning; refresh/continue preserves result and preferences without fire replay"
+        ]
+      }
+    ],
+    "boundary": "Exact400 is covered by integer mapping test; natural browser one-hand clears are600/1200/5589. No fixture-injected score/target.",
+    "budget": "Two shared textures <=256x72,30Hz uploads, two owned burning loops plus one <=400ms ignition. Frame stays in12px outer gutter; reduced motion static without uploads.",
+    "visualInspection": "Before/after ordinary, updated over/extreme, reduced and video contact actually viewed. Removed equal number-column masks in final candidate; connected base and unequal fuel lobes."
+  },
+  "audio": {
+    "historyCompared": [
+      "d7c503b",
+      "4bf6a7d",
+      "8949d14"
+    ],
+    "finding": "Old exact-target exclusion can prevent ignition. D27 replaced audible broadband/crackles with darker bed/rumble, cut small bed gain.14 to.055 and lowpass410Hz to170Hz. Warm low/mid wind and one bounded bandpassed ignition restore clarity without crisp crackle or unlimited gain. Physical cause is not asserted.",
+    "oldSmall": {
+      "rate": 48000,
+      "peak": 0.07512255758047104,
+      "rms": 0.029592894356949385,
+      "loops": 2,
+      "ignition": false,
+      "path": "shots/d43/fire/before/ordinary-before-isolated-fire.wav"
+    },
+    "newSmall": {
+      "rate": 48000,
+      "peak": 0.19501203298568726,
+      "rms": 0.05978400790510373,
+      "loops": 2,
+      "ignition": true,
+      "path": "shots/d43/fire/final/ordinary-touch-isolated-fire.wav"
+    },
+    "newExtreme": {
+      "rate": 48000,
+      "peak": 0.33702903985977173,
+      "rms": 0.10372465077749908,
+      "loops": 2,
+      "ignition": true,
+      "path": "shots/d43/fire/final/extreme-touch-isolated-fire.wav"
+    },
+    "phoneBandEngineering": {
+      "rangeHz": [
+        250,
+        1800
+      ],
+      "oldRmsDb": -49.053406,
+      "newRmsDb": -32.508196,
+      "method": "Runtime buffers through equivalent offline master compressor/ceiling then ffmpeg band filters; not physical listening"
+    },
+    "mute": "Captured actual app final mix decodes to peak/RMS -inf dB",
+    "preferencesReport": "shots/d43/fire/after/report.json",
+    "preferencesRuns": [
+      {
+        "name": "preferences/fresh",
+        "status": "PASS",
+        "initial": {
+          "music": 0.3,
+          "sfx": 0.8,
+          "ui": 0.8,
+          "saved": {
+            "version": 2,
+            "music": 0.3,
+            "sfx": 0.8
+          }
+        },
+        "restored": {
+          "music": 0.07,
+          "sfx": 0.12,
+          "ui": 0.12,
+          "saved": {
+            "version": 2,
+            "music": 0.07,
+            "sfx": 0.12
+          }
+        }
+      },
+      {
+        "name": "preferences/saved-v2",
+        "status": "PASS",
+        "initial": {
+          "music": 0.22,
+          "sfx": 1,
+          "ui": 1,
+          "saved": {
+            "version": 2,
+            "music": 0.22,
+            "sfx": 1
+          }
+        },
+        "restored": {
+          "music": 0.22,
+          "sfx": 1,
+          "ui": 1,
+          "saved": {
+            "version": 2,
+            "music": 0.22,
+            "sfx": 1
+          }
+        }
+      },
+      {
+        "name": "preferences/saved-v1",
+        "status": "PASS",
+        "initial": {
+          "music": 0.08800000000000001,
+          "sfx": 0.4,
+          "ui": 0.4,
+          "saved": {
+            "version": 2,
+            "music": 0.08800000000000001,
+            "sfx": 0.4
+          }
+        },
+        "restored": {
+          "music": 0.08800000000000001,
+          "sfx": 0.4,
+          "ui": 0.4,
+          "saved": {
+            "version": 2,
+            "music": 0.08800000000000001,
+            "sfx": 0.4
+          }
+        }
+      },
+      {
+        "name": "preferences/muted-v2",
+        "status": "PASS",
+        "initial": {
+          "music": 0.35,
+          "sfx": 0,
+          "ui": 0,
+          "saved": {
+            "version": 2,
+            "music": 0.35,
+            "sfx": 0
+          }
+        },
+        "restored": {
+          "music": 0.35,
+          "sfx": 0,
+          "ui": 0,
+          "saved": {
+            "version": 2,
+            "music": 0.35,
+            "sfx": 0
+          }
+        }
+      },
+      {
+        "name": "preferences/legacy-muted",
+        "status": "PASS",
+        "initial": {
+          "music": 0,
+          "sfx": 0,
+          "ui": 0,
+          "saved": {
+            "version": 2,
+            "music": 0,
+            "sfx": 0
+          }
+        },
+        "restored": {
+          "music": 0,
+          "sfx": 0,
+          "ui": 0,
+          "saved": {
+            "version": 2,
+            "music": 0,
+            "sfx": 0
+          }
+        }
+      }
+    ]
+  },
+  "checks": {
+    "handFocused": "54PASS",
+    "fireFocused": "32PASS",
+    "typecheckBuild": "PASS",
+    "originalFeedback": {
+      "status": "PASS",
+      "report": "shots/d43/fire/original-feedback-pass.json",
+      "meaning": "Original ordered sources, >=300ms ordinary floor, progressive first-vs-fifth beat, exact1200 credit and next-table cleanup retained. Assertion threshold updated to explicit D43 >=/5x behavior; no timeout or assertion removed."
+    },
+    "releaseGate": "PENDING"
+  },
+  "measurementNotes": [
+    "Input failure/encoding corrections remain in D43-input evidence. Software WebGL touch did not pass.",
+    "Original optional feedback entry initially hit350ms click-through guard at first table; explicit370ms deliberate reentry gap added. No product threshold/timeout changed.",
+    "Concurrent optional feedback run failed first-vs-fifth beat comparison672ms vs680ms; saved full failure. Serial same bundle passed original pacing assertion, then hit same guard at next table. Guard respected at both entries; final same bundle complete PASS. Contention explanation is an inference, not a proven device-performance result.",
+    "Initial flame height/brightness requirements failed after visual changes; tuned material within same budget, preserved original assertions, then32 focused checks passed."
+  ],
+  "deliverables": {
+    "inputClip": "shots/d43/input/final-deferred-encoding/touch-input-short.mp4",
+    "inputFrameContact": "shots/d43/input/final-deferred-encoding/touch-frame-contact.png",
+    "ordinaryBefore": "shots/d43/fire/before/ordinary-before-fire-1-settled.png",
+    "ordinaryAfter": "shots/d43/fire/final/ordinary-touch-fire-1-settled.png",
+    "overAfter": "shots/d43/fire/final/over-touch-fire-2-settled.png",
+    "extremeAfter": "shots/d43/fire/final/extreme-touch-fire-3-settled.png",
+    "audioVideoClip": "shots/d43/fire/final/ordinary-touch-short.mp4",
+    "originalMixedAudio": "shots/d43/fire/final/ordinary-touch-mixed-audio.webm",
+    "clipTiming": "Actual browser video and same-run final mix; approximate alignment from recorded start performance timestamp, not physical A/V synchronization."
+  },
+  "limits": [
+    "OnePlus15/Android physical tap compositor, real address bars/speakers and hardware WebGL NOT_RUN",
+    "Software WebGL mobile input remains too slow for this diagnostic; Canvas success does not close it",
+    "Procedural fire presentation adjustment is not new card artwork or A03 visual acceptance",
+    "P08 remains in_progress; C04.3/4/new gameplay/all-card redraw paused; deployment unchanged"
+  ],
+  "testedCommit": "ed157379f7e64b7c92595b8ab62b3792ba018b8f",
+  "testedWorktreeModified": true
+}
