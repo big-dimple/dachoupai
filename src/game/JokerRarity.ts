@@ -14,7 +14,7 @@ function rarityStyle(label:string,compactLabel:string,symbol:string,shape:Rarity
 export const JOKER_RARITY = {
   common:rarityStyle('普通','普','●','circle',0x26313a,0xf3eadb,0x59646a),
   uncommon:rarityStyle('特别','特','◆','diamond',0x3f606b,0xe2e8e5,0x3f606b),
-  rare:rarityStyle('稀有','稀','✦','star',0xb8473a,0xf0d3c7,0xb8473a),
+  rare:rarityStyle('稀有','稀','✦','star',0x26313a,0xf0d3c7,0xb8473a),
 } as const satisfies Record<JokerRarity,ReturnType<typeof rarityStyle>>;
 
 interface RarityBadgeSizeOptions {width?:number;compact?:boolean}
