@@ -1,0 +1,212 @@
+{
+  "taskId": "P08",
+  "task": "D44 release gate: measured pip rows clear the rank index",
+  "date": "2026-10-03",
+  "status": "LOCAL_AFFECTED_GATES_PASS_REMOTE_CI_PENDING",
+  "baseCommit": "ca4104f6e6357d7d15785b02d477a42785352087",
+  "testedCommit": "9c1047aa71f96f9bb3817d713813a5789be6637d",
+  "scope": "Only measured card-pip row placement, 3 regression unit tests, and evidence/handoff. Original screenshot.mjs assertion and intersection threshold unchanged. No rules/RNG/save/score/assets/dependencies/deployment changes; no recording, public domain or user computer operations.",
+  "inheritedCI": {
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37104997171",
+    "job": 111151655412,
+    "status": "FAILURE",
+    "source": "User confirmed exact run/step log: build and first five engine/profiles passed; WebKit mobile failed screenshot.mjs suit art never covers a rank index. Not a timeout/GPU performance classification."
+  },
+  "diagnosis": {
+    "engine": "WebKit26.6 Linux",
+    "profile": {
+      "width": 390,
+      "height": 740,
+      "DPR": 3,
+      "framebufferDensity": 2
+    },
+    "renderer": "Phaser renderer type2 (WebGL); not physical GPU/OnePlus acceptance",
+    "input": "Same original natural p00-core-ui select/cancel/buy/start/first-card-select route; observer-only bounds logging. No domain fixture or RNG mutation.",
+    "fontControl": "Default cloud Georgia fallback and Liberation Serif passed baseline. Workspace-only FONTCONFIG_FILE selected DejaVu Serif for Georgia/serif to reproduce the same engine/profile geometry failure. Exact CI font selection is not established; this reproduces the defect mechanism, not a claim to clone every CI environment detail. Font configuration and launch adapter are ignored diagnostics, never product/deployment settings.",
+    "cardId": "diamonds-10",
+    "rank": 10,
+    "selected": false,
+    "firstSelected": "clubs-3",
+    "indexFont": "bold 16.560000000000002px Georgia,serif",
+    "resolvedSerif": "DejaVu Serif",
+    "rankAdvanceWidth": 23.02667236328125,
+    "indexSize": {
+      "width": 24,
+      "height": 38
+    },
+    "indexFontMetrics": {
+      "ascent": 17,
+      "descent": 4,
+      "fontSize": 21
+    },
+    "pipFont": "6.72px Georgia,serif",
+    "pipSize": {
+      "width": 7,
+      "height": 9
+    },
+    "indexBoundsBefore": {
+      "x": 142,
+      "y": 547.1999755859375,
+      "width": 24,
+      "height": 38
+    },
+    "pipBoundsBefore": {
+      "x": 165.06,
+      "y": 552.8119755859375,
+      "width": 7,
+      "height": 9
+    },
+    "localOverlapBefore": 0.94,
+    "rootCause": "The symmetric pip lane was forced to minimum16 even when actual index text used more width. Top/second-row left pips entered the measured two-line index rectangle. The original conservative no-intersection contract is retained rather than reclassified or weakened.",
+    "fix": "Measure actual index and each complete pip row before container attachment. Move only rows beside the index right as one row to leave3 card-CSS-pixel clearance; preserve glyph size, count, row spacing, deal transforms and selection semantics.",
+    "pipBoundsAfter": {
+      "x": 169,
+      "y": 552.8119755859375,
+      "width": 7,
+      "height": 9
+    },
+    "clearanceAfter": 3,
+    "transformAtSnapshot": {
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0
+    },
+    "fullMeasurements": [
+      "shots/d44-gate/before-dejavu/bounds.json",
+      "shots/d44-gate/after-dejavu/bounds.json"
+    ],
+    "artifacts": "Attempted gh download of original CI browser artifact returned Forbidden; stopped that action, no alternate retrieval. Local actual rendered evidence available."
+  },
+  "screenshotsActuallyViewed": [
+    "shots/d44-gate/before-ten.png",
+    "shots/d44-gate/after-ten.png",
+    "shots/d44-gate/before-settled.png",
+    "shots/d44-gate/after-settled.png"
+  ],
+  "screenshotsNote": "Ten crops are native browser clip screenshots, not retouched or fabricated images. Baseline controlled-font full screenshot has missing Chinese glyphs due restricted font dirs; final font config includes Noto CJK. Index/pip font and geometry are identical between the ten crops.",
+  "checks": {
+    "focusedUnits": {
+      "status": "PASS",
+      "count": 26,
+      "command": "npm test -- tests/card-pip-layout.test.ts tests/layout.test.ts",
+      "newRegressionTests": 3
+    },
+    "frozenBrowserGate": {
+      "scope": "browser",
+      "testedCommit": "9c1047aa71f96f9bb3817d713813a5789be6637d",
+      "status": "PASS",
+      "exitCode": 0,
+      "before": {
+        "source": "d5a2e294dab1800495c91e11a3f6dc703b43f5c7ba2ec5d336e9e40d38f027b7",
+        "index": "c1dbc6a2f1f080d46bc730ae330a571979c88317742a293f6d21eb1165dba989",
+        "head": "9c1047aa71f96f9bb3817d713813a5789be6637d",
+        "branch": "refs/heads/dot/d44-layout"
+      },
+      "after": {
+        "source": "d5a2e294dab1800495c91e11a3f6dc703b43f5c7ba2ec5d336e9e40d38f027b7",
+        "index": "c1dbc6a2f1f080d46bc730ae330a571979c88317742a293f6d21eb1165dba989",
+        "head": "9c1047aa71f96f9bb3817d713813a5789be6637d",
+        "branch": "refs/heads/dot/d44-layout"
+      },
+      "steps": [
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 16534
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 115764
+        }
+      ],
+      "notIncluded": [
+        {
+          "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+          "status": "NOT_INCLUDED",
+          "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+        },
+        {
+          "name": "balance/benchmark acceptance",
+          "status": "NOT_INCLUDED",
+          "reason": "later work packages; no gameplay approval inferred from checks"
+        },
+        {
+          "name": "physical devices / human / art approval",
+          "status": "NOT_RUN"
+        }
+      ]
+    },
+    "smoke": {
+      "testedCommit": "9c1047aa71f96f9bb3817d713813a5789be6637d",
+      "dirty": "",
+      "checks": [
+        {
+          "engine": "webkit",
+          "browserVersion": "26.6",
+          "profile": "desktop",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "deviceScaleFactor": 1,
+          "framebufferDensity": 1,
+          "fullscreen": "NOT_RUN",
+          "status": "PASS",
+          "input": "mouse.click / DOM click",
+          "covered": [
+            "select-confirm-cancel",
+            "buy-cancel",
+            "rank/suit-sort",
+            "discard-refill",
+            "live-discard-count-pulse",
+            "live-play-count-pulse",
+            "play-preview-feedback",
+            "reload-continue",
+            "fixed-menu-anchor",
+            "menu-preserves-selection"
+          ]
+        },
+        {
+          "engine": "webkit",
+          "browserVersion": "26.6",
+          "profile": "mobile",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "deviceScaleFactor": 3,
+          "framebufferDensity": 2,
+          "fullscreen": "PASS (browser API; physical toolbar/orientation NOT_RUN)",
+          "status": "PASS",
+          "input": "touchscreen.tap / DOM tap",
+          "covered": [
+            "select-confirm-cancel",
+            "buy-cancel",
+            "rank/suit-sort",
+            "discard-refill",
+            "live-discard-count-pulse",
+            "live-play-count-pulse",
+            "play-preview-feedback",
+            "reload-continue",
+            "fixed-menu-anchor",
+            "menu-preserves-selection",
+            "high-DPR",
+            "left/right-selected-rank-visible",
+            "rotation-preserves-state"
+          ]
+        }
+      ],
+      "physicalDevice": "NOT_RUN",
+      "humanAcceptance": "NOT_RUN"
+    },
+    "fullLocalDomainAndOtherEngineReruns": "NOT_RUN; unaffected and remote CI will run its existing matrix",
+    "docsPlan": "PASS: PLAN_VALID32 work packages; current P08; not gameplay/art acceptance",
+    "physicalDevice": "NOT_RUN",
+    "humanAcceptance": "NOT_RUN",
+    "newArt": "NOT_INTEGRATED"
+  },
+  "publication": "Latest user explicitly authorizes normal fast-forward main push after affected gates and unchanged remote baseline; exact final SHA/status reported separately. No force or deployment changes."
+}
