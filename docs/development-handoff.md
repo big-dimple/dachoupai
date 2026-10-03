@@ -1,5 +1,7 @@
 # 当前交接：P08全游戏手绘墨线／纸色主线
 
+P08批1最新交付（2026-10-03）：基线50adc8f；源码冻结 `584fe4bee541f5d13192828a2f2d52ee8f05a190`，1805 tests/content/type/build/Canvas smoke/plan PASS，源码／索引／HEAD指纹不变。完整牌桌三区、主总分火底座、5:7紧凑戏班、自然三货同屏与共享详情确认购买落地。真实600／1200／5589按1×／2×／4×、减少动态0冲量、360／390 Chromium/WebKit九／14牌手势、快进／重复完成／回看／刷新恢复通过；11张实际PNG已工程看图，PC顶部重叠修复后替换原图，见[批1证据](production/evidence/P08-table-shop-2026-10-03.json)。实现／技术通过，独立整体审美及OnePlus／真GPU／听感待验；新WebP未接入。按授权核远端不变后正常FF push main并跟进精确新CI终态，结果另报，不操作域名／PC。批2全流程组件／批3缺图小批仍按P08顺序，不混入本次。
+
 P08局部火焰本轮（2026-10-03）：基线main38f16c2；源码冻结 `a423dc51cc326476a9c6729ff068fc4789aa5f34`，44专项与1800 tests/content/type/build/Canvas双端smoke/plan PASS，前后源码／索引／HEAD指纹相同。实际七组各档／横竖／减少动态静帧、360／390九牌与14牌回归、单独不录屏快进／重复完成／回看／恢复通过。完整出牌优先，两行保持出牌104px／手牌223.2px，仅24px局部火；有余量才32–40px。三非对称错相火舌、同档正向来源短冲量／eventId去重、外缘260ms低亮辅助，共用CSS安全mask。旧3x面积／亮度、角标遮挡及超时均保留。
 
 两张真实代表PNG已按最新用户明确授权放仓库[证据目录](production/evidence/p08-flame-focus-2026-10-03/README.md)，renderer／DPR／CSS视口／safeInset／候选SHA与原bundle metadata见[证据](production/evidence/P08-flame-focus-2026-10-03.json)。Library保存止于tools/list network、未返回身份，不重复上传；不进runtime/public，不触碰原画支线。父协调此前只见加载占位，独立视觉批准仍NOT_RUN。正常FF main后报告精确SHA／UTC／CI并跟进终态；旧已绿CI不查询。新27WebP仍未接入，未见三张参考像素，不操作PC／域名。三区、普通扑克牌体量Joker、商店三项同屏只归档，下一批待父协调范围；P08整体继续in_progress。下方为历史交接。

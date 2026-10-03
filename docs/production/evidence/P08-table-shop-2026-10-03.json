@@ -1,0 +1,1638 @@
+{
+  "taskId": "P08",
+  "testedCommit": "584fe4bee541f5d13192828a2f2d52ee8f05a190",
+  "baseline": "50adc8fd0f7325e7f6d7b0a18bef3f681765f687",
+  "sourceTree": "985f6ce02e25cc3f82f0abd0d1da80247bae9c57",
+  "scope": "Batch1 complete table and discoverable three-offer shop; existing images only. No RNG/save/scoring/balance/deployment change.",
+  "states": {
+    "implementation": "COMPLETE_FOR_BATCH1",
+    "technical": "PASS_LOCAL_FROZEN_AND_AFFECTED_CHECKS; exact new remote CI reported separately",
+    "engineeringPixelInspection": "ALL_11_ACTUAL_PNGS_VIEWED; PC header collision found and corrected",
+    "independentAesthetic": "PENDING; previous 50adc8f flame aesthetics explicitly REJECTED, not overruled by tests",
+    "targetDevice": "NOT_RUN: OnePlus/physical GPU/audio listening",
+    "newArtwork": "NOT_INTEGRATED: 27 WebP not readable in this consumer"
+  },
+  "environment": {
+    "os": "cloud Linux",
+    "node": "22.23.3",
+    "renderer": "Canvas",
+    "chromium": "151.0.7922.173",
+    "handEngines": [
+      {
+        "engine": "chromium",
+        "version": "151.0.7922.173",
+        "width": 360,
+        "height": 740,
+        "dpr": 3,
+        "input": "native CDP touch + DOM tap"
+      },
+      {
+        "engine": "chromium",
+        "version": "151.0.7922.173",
+        "width": 390,
+        "height": 740,
+        "dpr": 3,
+        "input": "native CDP touch + DOM tap"
+      },
+      {
+        "engine": "webkit",
+        "version": "26.6",
+        "width": 360,
+        "height": 740,
+        "dpr": 3,
+        "input": "native mouse cross-row + touchscreen tap"
+      },
+      {
+        "engine": "webkit",
+        "version": "26.6",
+        "width": 390,
+        "height": 740,
+        "dpr": 3,
+        "input": "native mouse cross-row + touchscreen tap"
+      }
+    ],
+    "hardwareGPU": "NOT_RUN",
+    "softwareWebGL": "NOT_RUN this round; no video/performance acceptance"
+  },
+  "budgets": {
+    "portrait390x740": {
+      "mode": "portrait",
+      "compact": true,
+      "shortLandscape": false,
+      "width": 390,
+      "height": 740,
+      "hud": {
+        "x": 12,
+        "y": 8,
+        "width": 366,
+        "height": 52
+      },
+      "jokers": {
+        "x": 12,
+        "y": 62,
+        "width": 366,
+        "height": 89.6
+      },
+      "preview": {
+        "x": 12,
+        "y": 153.6,
+        "width": 366,
+        "height": 378.79999999999995
+      },
+      "scoreBoard": {
+        "x": 12,
+        "y": 153.6,
+        "width": 366,
+        "height": 132
+      },
+      "playedArea": {
+        "x": 12,
+        "y": 305.6,
+        "width": 366,
+        "height": 226.79999999999995
+      },
+      "handLabel": {
+        "x": 12,
+        "y": 518.4,
+        "width": 116,
+        "height": 18
+      },
+      "piles": {
+        "x": 128,
+        "y": 518.4,
+        "width": 250,
+        "height": 18
+      },
+      "tools": {
+        "x": 88,
+        "y": 652,
+        "width": 94,
+        "height": 56
+      },
+      "hand": {
+        "x": 12,
+        "y": 536.4,
+        "width": 366,
+        "height": 111.6
+      },
+      "actions": {
+        "x": 12,
+        "y": 652,
+        "width": 366,
+        "height": 56
+      },
+      "status": {
+        "x": 12,
+        "y": 712,
+        "width": 366,
+        "height": 20
+      },
+      "scoreFire": {
+        "x": 152.08,
+        "y": 187.6,
+        "width": 220.92,
+        "height": 82
+      },
+      "toolsInHud": false,
+      "labelHeight": 0,
+      "buttons": {
+        "rank": {
+          "x": 88,
+          "y": 652,
+          "width": 44,
+          "height": 56
+        },
+        "suit": {
+          "x": 138,
+          "y": 652,
+          "width": 44,
+          "height": 56
+        }
+      },
+      "tableActions": {
+        "discard": {
+          "x": 12,
+          "y": 652,
+          "width": 70,
+          "height": 56
+        },
+        "play": {
+          "x": 188,
+          "y": 652,
+          "width": 190,
+          "height": 56
+        }
+      },
+      "cards": [
+        {
+          "visible": true,
+          "visual": {
+            "x": 12,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 12,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 55.142857142857146,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 55.142857142857146,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 98.28571428571429,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 98.28571428571429,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 141.42857142857144,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 141.42857142857144,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 184.57142857142858,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 184.57142857142858,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 227.71428571428572,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 227.71428571428572,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 270.8571428571429,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 270.8571428571429,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 314,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 314,
+            "y": 536.4,
+            "width": 64,
+            "height": 111.6
+          }
+        }
+      ],
+      "handRows": 1,
+      "handOverflow": false,
+      "handStart": 0,
+      "visibleCardCount": 8,
+      "handNavigation": {
+        "previous": {
+          "x": 12,
+          "y": 560.6,
+          "width": 44,
+          "height": 44
+        },
+        "next": {
+          "x": 334,
+          "y": 560.6,
+          "width": 44,
+          "height": 44
+        }
+      },
+      "slots": [
+        {
+          "x": 23,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 93,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 163,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 233,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 303,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        }
+      ],
+      "jokerLabels": [
+        {
+          "x": 23,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 93,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 163,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 233,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 303,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        }
+      ]
+    },
+    "portrait390x740Fourteen": {
+      "mode": "portrait",
+      "compact": true,
+      "shortLandscape": false,
+      "width": 390,
+      "height": 740,
+      "hud": {
+        "x": 12,
+        "y": 8,
+        "width": 366,
+        "height": 52
+      },
+      "jokers": {
+        "x": 12,
+        "y": 62,
+        "width": 366,
+        "height": 89.6
+      },
+      "preview": {
+        "x": 12,
+        "y": 153.6,
+        "width": 366,
+        "height": 267.20000000000005
+      },
+      "scoreBoard": {
+        "x": 12,
+        "y": 153.6,
+        "width": 366,
+        "height": 120
+      },
+      "playedArea": {
+        "x": 12,
+        "y": 293.6,
+        "width": 366,
+        "height": 127.19999999999999
+      },
+      "handLabel": {
+        "x": 12,
+        "y": 406.8,
+        "width": 116,
+        "height": 18
+      },
+      "piles": {
+        "x": 128,
+        "y": 406.8,
+        "width": 250,
+        "height": 18
+      },
+      "tools": {
+        "x": 88,
+        "y": 652,
+        "width": 94,
+        "height": 56
+      },
+      "hand": {
+        "x": 12,
+        "y": 424.8,
+        "width": 366,
+        "height": 223.2
+      },
+      "actions": {
+        "x": 12,
+        "y": 652,
+        "width": 366,
+        "height": 56
+      },
+      "status": {
+        "x": 12,
+        "y": 712,
+        "width": 366,
+        "height": 20
+      },
+      "scoreFire": {
+        "x": 152.08,
+        "y": 187.6,
+        "width": 220.92,
+        "height": 70
+      },
+      "toolsInHud": false,
+      "labelHeight": 0,
+      "buttons": {
+        "rank": {
+          "x": 88,
+          "y": 652,
+          "width": 44,
+          "height": 56
+        },
+        "suit": {
+          "x": 138,
+          "y": 652,
+          "width": 44,
+          "height": 56
+        }
+      },
+      "tableActions": {
+        "discard": {
+          "x": 12,
+          "y": 652,
+          "width": 70,
+          "height": 56
+        },
+        "play": {
+          "x": 188,
+          "y": 652,
+          "width": 190,
+          "height": 56
+        }
+      },
+      "cards": [
+        {
+          "visible": true,
+          "visual": {
+            "x": 12,
+            "y": 446.8,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 12,
+            "y": 424.8,
+            "width": 50.333333333333336,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 62.333333333333336,
+            "y": 446.8,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 62.333333333333336,
+            "y": 424.8,
+            "width": 50.333333333333336,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 112.66666666666667,
+            "y": 446.8,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 112.66666666666667,
+            "y": 424.8,
+            "width": 50.333333333333336,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 163,
+            "y": 446.8,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 163,
+            "y": 424.8,
+            "width": 50.333333333333336,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 213.33333333333334,
+            "y": 446.8,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 213.33333333333334,
+            "y": 424.8,
+            "width": 50.333333333333336,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 263.6666666666667,
+            "y": 446.8,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 263.6666666666667,
+            "y": 424.8,
+            "width": 50.333333333333336,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 314,
+            "y": 446.8,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 314,
+            "y": 424.8,
+            "width": 64,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 12,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 12,
+            "y": 536.4,
+            "width": 50.333333333333336,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 62.333333333333336,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 62.333333333333336,
+            "y": 536.4,
+            "width": 50.333333333333336,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 112.66666666666667,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 112.66666666666667,
+            "y": 536.4,
+            "width": 50.333333333333336,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 163,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 163,
+            "y": 536.4,
+            "width": 50.333333333333336,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 213.33333333333334,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 213.33333333333334,
+            "y": 536.4,
+            "width": 50.333333333333336,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 263.6666666666667,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 263.6666666666667,
+            "y": 536.4,
+            "width": 50.333333333333336,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 314,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 314,
+            "y": 536.4,
+            "width": 64,
+            "height": 111.6
+          }
+        }
+      ],
+      "handRows": 2,
+      "handOverflow": false,
+      "handStart": 0,
+      "visibleCardCount": 14,
+      "handNavigation": {
+        "previous": {
+          "x": 12,
+          "y": 514.4,
+          "width": 44,
+          "height": 44
+        },
+        "next": {
+          "x": 334,
+          "y": 514.4,
+          "width": 44,
+          "height": 44
+        }
+      },
+      "slots": [
+        {
+          "x": 23,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 93,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 163,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 233,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 303,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        }
+      ],
+      "jokerLabels": [
+        {
+          "x": 23,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 93,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 163,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 233,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 303,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        }
+      ]
+    },
+    "desktop1280x720": {
+      "mode": "desktop",
+      "compact": false,
+      "shortLandscape": false,
+      "width": 1280,
+      "height": 720,
+      "hud": {
+        "x": 12,
+        "y": 8,
+        "width": 224,
+        "height": 180
+      },
+      "jokers": {
+        "x": 252,
+        "y": 12,
+        "width": 1016,
+        "height": 89.6
+      },
+      "preview": {
+        "x": 252,
+        "y": 124,
+        "width": 1016,
+        "height": 366
+      },
+      "scoreBoard": {
+        "x": 12,
+        "y": 210,
+        "width": 224,
+        "height": 164
+      },
+      "playedArea": {
+        "x": 252,
+        "y": 124,
+        "width": 1016,
+        "height": 366
+      },
+      "handLabel": {
+        "x": 252,
+        "y": 476,
+        "width": 116,
+        "height": 18
+      },
+      "piles": {
+        "x": 368,
+        "y": 476,
+        "width": 900,
+        "height": 18
+      },
+      "tools": {
+        "x": 596,
+        "y": 632,
+        "width": 94,
+        "height": 56
+      },
+      "hand": {
+        "x": 252,
+        "y": 494,
+        "width": 1016,
+        "height": 134
+      },
+      "actions": {
+        "x": 520,
+        "y": 632,
+        "width": 480,
+        "height": 56
+      },
+      "status": {
+        "x": 252,
+        "y": 692,
+        "width": 1016,
+        "height": 20
+      },
+      "scoreFire": {
+        "x": 109.32,
+        "y": 244,
+        "width": 121.68,
+        "height": 114
+      },
+      "toolsInHud": false,
+      "labelHeight": 0,
+      "buttons": {
+        "rank": {
+          "x": 596,
+          "y": 632,
+          "width": 44,
+          "height": 56
+        },
+        "suit": {
+          "x": 646,
+          "y": 632,
+          "width": 44,
+          "height": 56
+        }
+      },
+      "tableActions": {
+        "discard": {
+          "x": 520,
+          "y": 632,
+          "width": 70,
+          "height": 56
+        },
+        "play": {
+          "x": 696,
+          "y": 632,
+          "width": 304,
+          "height": 56
+        }
+      },
+      "cards": [
+        {
+          "visible": true,
+          "visual": {
+            "x": 252,
+            "y": 516,
+            "width": 80,
+            "height": 112
+          },
+          "hit": {
+            "x": 252,
+            "y": 494,
+            "width": 80,
+            "height": 134
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 385.7142857142857,
+            "y": 516,
+            "width": 80,
+            "height": 112
+          },
+          "hit": {
+            "x": 385.7142857142857,
+            "y": 494,
+            "width": 80,
+            "height": 134
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 519.4285714285714,
+            "y": 516,
+            "width": 80,
+            "height": 112
+          },
+          "hit": {
+            "x": 519.4285714285714,
+            "y": 494,
+            "width": 80,
+            "height": 134
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 653.1428571428571,
+            "y": 516,
+            "width": 80,
+            "height": 112
+          },
+          "hit": {
+            "x": 653.1428571428571,
+            "y": 494,
+            "width": 80,
+            "height": 134
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 786.8571428571429,
+            "y": 516,
+            "width": 80,
+            "height": 112
+          },
+          "hit": {
+            "x": 786.8571428571429,
+            "y": 494,
+            "width": 80,
+            "height": 134
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 920.5714285714287,
+            "y": 516,
+            "width": 80,
+            "height": 112
+          },
+          "hit": {
+            "x": 920.5714285714287,
+            "y": 494,
+            "width": 80,
+            "height": 134
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 1054.2857142857142,
+            "y": 516,
+            "width": 80,
+            "height": 112
+          },
+          "hit": {
+            "x": 1054.2857142857142,
+            "y": 494,
+            "width": 80,
+            "height": 134
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 1188,
+            "y": 516,
+            "width": 80,
+            "height": 112
+          },
+          "hit": {
+            "x": 1188,
+            "y": 494,
+            "width": 80,
+            "height": 134
+          }
+        }
+      ],
+      "handRows": 1,
+      "handOverflow": false,
+      "handStart": 0,
+      "visibleCardCount": 8,
+      "handNavigation": {
+        "previous": {
+          "x": 212,
+          "y": 530,
+          "width": 44,
+          "height": 44
+        },
+        "next": {
+          "x": 1224,
+          "y": 530,
+          "width": 44,
+          "height": 44
+        }
+      },
+      "slots": [
+        {
+          "x": 588,
+          "y": 12,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 658,
+          "y": 12,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 728,
+          "y": 12,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 798,
+          "y": 12,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 868,
+          "y": 12,
+          "width": 64,
+          "height": 89.6
+        }
+      ],
+      "jokerLabels": [
+        {
+          "x": 588,
+          "y": 12,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 658,
+          "y": 12,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 728,
+          "y": 12,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 798,
+          "y": 12,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 868,
+          "y": 12,
+          "width": 64,
+          "height": 89.6
+        }
+      ]
+    },
+    "safeInsets": "PNG browser safeInset0; top12/bottom34 unit budget preserves played>=88 and fourteen223.2. Short640/844x300 uses readable capacity fallback, not all14 visible certification."
+  },
+  "checks": [
+    {
+      "name": "frozen aggregate",
+      "command": "VITEST_MAX_WORKERS=1 NODE_OPTIONS='--import /workspace/.cloud-tools/release-canvas-adapter.mjs' SMOKE_BROWSERS=chromium npm run verify:ci",
+      "status": "PASS",
+      "tests": 1805,
+      "steps": [
+        {
+          "name": "test",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 75645
+        },
+        {
+          "name": "verify:content",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 6016
+        },
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 15766
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 37911
+        },
+        {
+          "name": "production-plan",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 258
+        }
+      ],
+      "before": {
+        "source": "0c9760c131c96e415f9995df98cb10189ec1f2c460bda5977e6e417a528fda30",
+        "index": "23bba09641a8d43c36ad25b7a7a51ed5edead6db7c97135e17ca8eacf7ca0af4",
+        "head": "584fe4bee541f5d13192828a2f2d52ee8f05a190",
+        "branch": "refs/heads/dot/d44-layout"
+      },
+      "after": {
+        "source": "0c9760c131c96e415f9995df98cb10189ec1f2c460bda5977e6e417a528fda30",
+        "index": "23bba09641a8d43c36ad25b7a7a51ed5edead6db7c97135e17ca8eacf7ca0af4",
+        "head": "584fe4bee541f5d13192828a2f2d52ee8f05a190",
+        "branch": "refs/heads/dot/d44-layout"
+      }
+    },
+    {
+      "name": "finite table/shop/fire frames",
+      "command": "P08_DIR=shots/p08-batch1-final node harness/p08-table-shop.mjs",
+      "status": "PASS",
+      "runs": [
+        {
+          "width": 390,
+          "height": 740,
+          "checks": [
+            "natural all3/5:7/tap opens shared detail/cancel preserves gold, RNG, save",
+            "legal explicit purchase commits exactly once",
+            "poor reason visible, disabled purchase, cancel preserves resources",
+            "full reason visible, disabled purchase, cancel preserves resources"
+          ]
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "checks": [
+            "natural all3/5:7/tap opens shared detail/cancel preserves gold, RNG, save",
+            "legal explicit purchase commits exactly once"
+          ]
+        },
+        {
+          "tier": 1,
+          "speed": 1,
+          "reduced": false,
+          "impactCount": 5,
+          "checks": [
+            "natural score exact; each rendered frame mask excludes actual text; cleanup"
+          ]
+        },
+        {
+          "tier": 2,
+          "speed": 2,
+          "reduced": false,
+          "impactCount": 6,
+          "checks": [
+            "natural score exact; each rendered frame mask excludes actual text; cleanup"
+          ]
+        },
+        {
+          "tier": 3,
+          "speed": 4,
+          "reduced": false,
+          "impactCount": 6,
+          "checks": [
+            "natural score exact; each rendered frame mask excludes actual text; cleanup"
+          ]
+        },
+        {
+          "tier": 2,
+          "speed": 1,
+          "reduced": true,
+          "impactCount": 0,
+          "checks": [
+            "natural score exact; each rendered frame mask excludes actual text; cleanup"
+          ]
+        }
+      ],
+      "sourceAtCapture": "Pre-commit batch1 candidate, later frozen unchanged as ffcd9a1. Original raw report intentionally retains baseline HEAD + dirty working tree. No claim screenshots display final release SHA."
+    },
+    {
+      "name": "nine/fourteen hand regression",
+      "status": "PASS",
+      "runs": [
+        {
+          "engine": "chromium",
+          "width": 360,
+          "checks": [
+            {
+              "count": 9,
+              "name": "all rank/suit/mark/hit/score geometry",
+              "status": "PASS",
+              "rows": 1
+            },
+            {
+              "count": 9,
+              "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+              "status": "PASS"
+            },
+            {
+              "count": 14,
+              "name": "all rank/suit/mark/hit/score geometry",
+              "status": "PASS",
+              "rows": 2
+            },
+            {
+              "count": 14,
+              "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+              "status": "PASS"
+            },
+            {
+              "count": 14,
+              "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+              "status": "PASS"
+            }
+          ]
+        },
+        {
+          "engine": "chromium",
+          "width": 390,
+          "checks": [
+            {
+              "count": 9,
+              "name": "all rank/suit/mark/hit/score geometry",
+              "status": "PASS",
+              "rows": 1
+            },
+            {
+              "count": 9,
+              "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+              "status": "PASS"
+            },
+            {
+              "count": 14,
+              "name": "all rank/suit/mark/hit/score geometry",
+              "status": "PASS",
+              "rows": 2
+            },
+            {
+              "count": 14,
+              "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+              "status": "PASS"
+            },
+            {
+              "count": 14,
+              "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+              "status": "PASS"
+            }
+          ]
+        },
+        {
+          "engine": "webkit",
+          "width": 360,
+          "checks": [
+            {
+              "count": 9,
+              "name": "all rank/suit/mark/hit/score geometry",
+              "status": "PASS",
+              "rows": 1
+            },
+            {
+              "count": 9,
+              "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+              "status": "PASS"
+            },
+            {
+              "count": 14,
+              "name": "all rank/suit/mark/hit/score geometry",
+              "status": "PASS",
+              "rows": 2
+            },
+            {
+              "count": 14,
+              "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+              "status": "PASS"
+            },
+            {
+              "count": 14,
+              "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+              "status": "PASS"
+            }
+          ]
+        },
+        {
+          "engine": "webkit",
+          "width": 390,
+          "checks": [
+            {
+              "count": 9,
+              "name": "all rank/suit/mark/hit/score geometry",
+              "status": "PASS",
+              "rows": 1
+            },
+            {
+              "count": 9,
+              "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+              "status": "PASS"
+            },
+            {
+              "count": 14,
+              "name": "all rank/suit/mark/hit/score geometry",
+              "status": "PASS",
+              "rows": 2
+            },
+            {
+              "count": 14,
+              "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+              "status": "PASS"
+            },
+            {
+              "count": 14,
+              "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+              "status": "PASS"
+            }
+          ]
+        }
+      ],
+      "sourceAtCapture": "Batch1 pre-commit candidate. Later changes only played label/fire button-guard padding and removal of redundant desktop shop guidance; hand geometry/input unchanged."
+    },
+    {
+      "name": "desktop measured header replacement",
+      "status": "PASS",
+      "command": "node shots/p08-shop-final-check.mjs",
+      "source": "584fe4bee541f5d13192828a2f2d52ee8f05a190"
+    },
+    {
+      "name": "fast-forward/duplicate/recap/restore",
+      "status": "PASS",
+      "command": "PAPER_FIRE_DIR=shots/p08-interrupt FLAME_FOCUS_SCOPE=interrupt node harness/flame-focus.mjs",
+      "source": "584fe4bee541f5d13192828a2f2d52ee8f05a190"
+    }
+  ],
+  "limitations": [
+    "Fire tests retain old3x area/alpha strength, geometry exclusion, cleanup and reduced upload contracts; contour checks have no fixed peak coordinates. These are technical checks, not a judgement that the final shape looks like flame.",
+    "Engineering inspection: real number safety clipping leaves visible flank tongues; independent assessment of silhouette, tier distinction and total/fire coherence remains pending.",
+    "All three reference JPEG pixels NOT_VIEWED in this consumer; user assigned their aesthetic interpretation to independent reviewers and stopped transfer.",
+    "No new artwork, device, hardware GPU, domain, deployment or recording work this batch.",
+    "No lint script exists; TypeScript and build are the configured source gates."
+  ],
+  "artifacts": [
+    {
+      "file": "p08-table-shop-2026-10-03/390-table-rest.png",
+      "caption": "同seed未选；独立出牌工作面",
+      "bytes": 322442,
+      "sha256": "bbae655e5b3061e06b39248d1fbf982fd6369ac478e9075afad19398307485a9",
+      "imagePixels": {
+        "width": 1170,
+        "height": 2220
+      },
+      "viewportCSS": {
+        "width": 390,
+        "height": 740
+      },
+      "requestedDPR": 3,
+      "canvasDensity": 2,
+      "safeInsetCSS": {
+        "top": 0,
+        "bottom": 0
+      },
+      "renderer": "Canvas",
+      "capture": "actual browser page PNG, unedited",
+      "candidateSource": "ffcd9a10f74f1b49408b963ef00d8f832a624027",
+      "embeddedRevision": "50adc8fd0f7325e7f6d7b0a18bef3f681765f687",
+      "embeddedModified": true
+    },
+    {
+      "file": "p08-table-shop-2026-10-03/390-table-five.png",
+      "caption": "选五张；完整五张52×72.8预览",
+      "bytes": 328848,
+      "sha256": "286d5a8639dbdd511ce5268dd2ddd6f89d555ba2354e87a2c1f59231e0d75802",
+      "imagePixels": {
+        "width": 1170,
+        "height": 2220
+      },
+      "viewportCSS": {
+        "width": 390,
+        "height": 740
+      },
+      "requestedDPR": 3,
+      "canvasDensity": 2,
+      "safeInsetCSS": {
+        "top": 0,
+        "bottom": 0
+      },
+      "renderer": "Canvas",
+      "capture": "actual browser page PNG, unedited",
+      "candidateSource": "ffcd9a10f74f1b49408b963ef00d8f832a624027",
+      "embeddedRevision": "50adc8fd0f7325e7f6d7b0a18bef3f681765f687",
+      "embeddedModified": true
+    },
+    {
+      "file": "p08-table-shop-2026-10-03/390-fire1.png",
+      "caption": "自然600结算／小火／1×",
+      "bytes": 172217,
+      "sha256": "d234f2c309432f5df93313d3e96aeecb78deecfb14a1b61d608d51df28a14914",
+      "imagePixels": {
+        "width": 780,
+        "height": 1480
+      },
+      "viewportCSS": {
+        "width": 390,
+        "height": 740
+      },
+      "requestedDPR": 3,
+      "canvasDensity": 2,
+      "safeInsetCSS": {
+        "top": 0,
+        "bottom": 0
+      },
+      "renderer": "Canvas",
+      "capture": "actual game canvas at final score frame; excludes DOM toolbar",
+      "candidateSource": "ffcd9a10f74f1b49408b963ef00d8f832a624027",
+      "embeddedRevision": "50adc8fd0f7325e7f6d7b0a18bef3f681765f687",
+      "embeddedModified": true
+    },
+    {
+      "file": "p08-table-shop-2026-10-03/390-table-fourteen.png",
+      "caption": "受验证14牌快照，两行223.2px",
+      "bytes": 362144,
+      "sha256": "36645f1d70fb4023da0a8c366d0537b7d48fc201b566b2bc49a236b49d2fabfe",
+      "imagePixels": {
+        "width": 1170,
+        "height": 2220
+      },
+      "viewportCSS": {
+        "width": 390,
+        "height": 740
+      },
+      "requestedDPR": 3,
+      "canvasDensity": 2,
+      "safeInsetCSS": {
+        "top": 0,
+        "bottom": 0
+      },
+      "renderer": "Canvas",
+      "capture": "actual browser page PNG, unedited",
+      "candidateSource": "ffcd9a10f74f1b49408b963ef00d8f832a624027",
+      "embeddedRevision": "50adc8fd0f7325e7f6d7b0a18bef3f681765f687",
+      "embeddedModified": true
+    },
+    {
+      "file": "p08-table-shop-2026-10-03/390-shop.png",
+      "caption": "自然三货同屏，5:7卡片与独立价格",
+      "bytes": 505123,
+      "sha256": "73fec71dda5bee4f0132592d996440e3f15c538bc2278e5606d86f1b0284205b",
+      "imagePixels": {
+        "width": 1170,
+        "height": 2220
+      },
+      "viewportCSS": {
+        "width": 390,
+        "height": 740
+      },
+      "requestedDPR": 3,
+      "canvasDensity": 2,
+      "safeInsetCSS": {
+        "top": 0,
+        "bottom": 0
+      },
+      "renderer": "Canvas",
+      "capture": "actual browser page PNG, unedited",
+      "candidateSource": "ffcd9a10f74f1b49408b963ef00d8f832a624027",
+      "embeddedRevision": "50adc8fd0f7325e7f6d7b0a18bef3f681765f687",
+      "embeddedModified": true
+    },
+    {
+      "file": "p08-table-shop-2026-10-03/390-shop-detail.png",
+      "caption": "点商品只开共享详情；确认才扣款",
+      "bytes": 850848,
+      "sha256": "35af33df5db1eb51d0120f76d71037f3f31e44c26b703fb95d7c88f6bbb5403c",
+      "imagePixels": {
+        "width": 1170,
+        "height": 2220
+      },
+      "viewportCSS": {
+        "width": 390,
+        "height": 740
+      },
+      "requestedDPR": 3,
+      "canvasDensity": 2,
+      "safeInsetCSS": {
+        "top": 0,
+        "bottom": 0
+      },
+      "renderer": "Canvas",
+      "capture": "actual browser page PNG, unedited",
+      "candidateSource": "ffcd9a10f74f1b49408b963ef00d8f832a624027",
+      "embeddedRevision": "50adc8fd0f7325e7f6d7b0a18bef3f681765f687",
+      "embeddedModified": true
+    },
+    {
+      "file": "p08-table-shop-2026-10-03/1280-table-rest.png",
+      "caption": "PC左局信息／计分，右戏班／独立出牌／手牌",
+      "bytes": 82809,
+      "sha256": "deaf3b4c8c4d281fd978b45e22006f83e19e571e080275f74434655f5ef2b397",
+      "imagePixels": {
+        "width": 1280,
+        "height": 720
+      },
+      "viewportCSS": {
+        "width": 1280,
+        "height": 720
+      },
+      "requestedDPR": 1,
+      "canvasDensity": 1,
+      "safeInsetCSS": {
+        "top": 0,
+        "bottom": 0
+      },
+      "renderer": "Canvas",
+      "capture": "actual browser page PNG, unedited",
+      "candidateSource": "ffcd9a10f74f1b49408b963ef00d8f832a624027",
+      "embeddedRevision": "50adc8fd0f7325e7f6d7b0a18bef3f681765f687",
+      "embeddedModified": true
+    },
+    {
+      "file": "p08-table-shop-2026-10-03/1280-shop.png",
+      "caption": "PC三货正常卡片体量；重复说明已移除",
+      "bytes": 111682,
+      "sha256": "29f1abdab2828234ae3312c927fc87ccb7f05b3788e3b6b7bb0b43ac38ae29b6",
+      "imagePixels": {
+        "width": 1280,
+        "height": 720
+      },
+      "viewportCSS": {
+        "width": 1280,
+        "height": 720
+      },
+      "requestedDPR": 1,
+      "canvasDensity": 1,
+      "safeInsetCSS": {
+        "top": 0,
+        "bottom": 0
+      },
+      "renderer": "Canvas",
+      "capture": "actual browser page PNG, unedited",
+      "candidateSource": "584fe4bee541f5d13192828a2f2d52ee8f05a190",
+      "embeddedRevision": "584fe4bee541f5d13192828a2f2d52ee8f05a190",
+      "embeddedModified": false
+    },
+    {
+      "file": "p08-table-shop-2026-10-03/390-fire2.png",
+      "caption": "自然1200结算／大火／2×",
+      "bytes": 180092,
+      "sha256": "9f15f91ccc32f715c0bb51a27a0f628a3767be74200b4c139c78de6f45be1437",
+      "imagePixels": {
+        "width": 780,
+        "height": 1480
+      },
+      "viewportCSS": {
+        "width": 390,
+        "height": 740
+      },
+      "requestedDPR": 3,
+      "canvasDensity": 2,
+      "safeInsetCSS": {
+        "top": 0,
+        "bottom": 0
+      },
+      "renderer": "Canvas",
+      "capture": "actual game canvas at final score frame; excludes DOM toolbar",
+      "candidateSource": "ffcd9a10f74f1b49408b963ef00d8f832a624027",
+      "embeddedRevision": "50adc8fd0f7325e7f6d7b0a18bef3f681765f687",
+      "embeddedModified": true
+    },
+    {
+      "file": "p08-table-shop-2026-10-03/390-fire3.png",
+      "caption": "自然5589结算／极高火／4×",
+      "bytes": 204463,
+      "sha256": "0c2feccaa7862b6f00b2988bbe06842a4cbd066c90af8fade0b5b2dc3907c4bd",
+      "imagePixels": {
+        "width": 780,
+        "height": 1480
+      },
+      "viewportCSS": {
+        "width": 390,
+        "height": 740
+      },
+      "requestedDPR": 3,
+      "canvasDensity": 2,
+      "safeInsetCSS": {
+        "top": 0,
+        "bottom": 0
+      },
+      "renderer": "Canvas",
+      "capture": "actual game canvas at final score frame; excludes DOM toolbar",
+      "candidateSource": "ffcd9a10f74f1b49408b963ef00d8f832a624027",
+      "embeddedRevision": "50adc8fd0f7325e7f6d7b0a18bef3f681765f687",
+      "embeddedModified": true
+    },
+    {
+      "file": "p08-table-shop-2026-10-03/390-fire2-reduced.png",
+      "caption": "减少动态静态1200；冲量为0",
+      "bytes": 186947,
+      "sha256": "900b186415b7c20f45b8b2dedbe451f5ad936f6508a35417271dc1e422c0819d",
+      "imagePixels": {
+        "width": 780,
+        "height": 1480
+      },
+      "viewportCSS": {
+        "width": 390,
+        "height": 740
+      },
+      "requestedDPR": 3,
+      "canvasDensity": 2,
+      "safeInsetCSS": {
+        "top": 0,
+        "bottom": 0
+      },
+      "renderer": "Canvas",
+      "capture": "actual game canvas at final score frame; excludes DOM toolbar",
+      "candidateSource": "ffcd9a10f74f1b49408b963ef00d8f832a624027",
+      "embeddedRevision": "50adc8fd0f7325e7f6d7b0a18bef3f681765f687",
+      "embeddedModified": true
+    }
+  ]
+}

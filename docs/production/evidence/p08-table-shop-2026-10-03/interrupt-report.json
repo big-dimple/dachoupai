@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "source": "584fe4bee541f5d13192828a2f2d52ee8f05a190",
+  "renderer": "Canvas",
+  "browser": "151.0.7922.173",
+  "runs": [
+    {
+      "name": "360x740-tier1-fast-forward",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "dpr": 3,
+      "score": "600",
+      "checks": [
+        "Fast-forward/duplicate completion/recap/refresh preserves saved score/RNG and destroys owned flame",
+        "Actual all-frame text/control/fire bounds; long UI-only values; natural exact once saved clear"
+      ],
+      "cleanup": {
+        "flame": false,
+        "textures": [],
+        "voices": 0
+      },
+      "rasters": [
+        {
+          "level": 1,
+          "settled": false,
+          "pixels": {
+            "density": 2,
+            "height": 82,
+            "visibleHeight": 47,
+            "peaks": [
+              42.5,
+              41.5,
+              42,
+              42,
+              47
+            ],
+            "valleys": [
+              1.5
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "physicalDevice": "NOT_RUN"
+}

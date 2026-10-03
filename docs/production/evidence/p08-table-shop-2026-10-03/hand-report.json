@@ -1,0 +1,4734 @@
+{
+  "testedCommit": "50adc8fd0f7325e7f6d7b0a18bef3f681765f687",
+  "fixture": "Controlled 9–14 entry snapshots within existing hand-maximum contract and card conservation; unchanged save validator and actual import UI. Not natural acquisition.",
+  "runs": [
+    {
+      "engine": "chromium",
+      "version": "151.0.7922.173",
+      "width": 360,
+      "height": 740,
+      "dpr": 3,
+      "input": "native CDP touch + DOM tap",
+      "checks": [
+        {
+          "count": 9,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 1
+        },
+        {
+          "count": 9,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 14,
+          "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "resizes": [
+        {
+          "requested": {
+            "width": 390,
+            "height": 740
+          },
+          "beforeObserver": {
+            "width": 360,
+            "height": 740,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 360,
+            "height": 640
+          },
+          "beforeObserver": {
+            "width": 360,
+            "height": 640,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 844,
+            "height": 300
+          },
+          "beforeObserver": {
+            "width": 360,
+            "height": 640,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 360,
+            "height": 740
+          },
+          "beforeObserver": {
+            "width": 360,
+            "height": 740,
+            "rows": 2
+          }
+        }
+      ],
+      "final": {
+        "renderer": "Canvas",
+        "fps": 60,
+        "layout": {
+          "mode": "portrait",
+          "compact": true,
+          "shortLandscape": false,
+          "width": 360,
+          "height": 740,
+          "hud": {
+            "x": 8,
+            "y": 8,
+            "width": 344,
+            "height": 52
+          },
+          "jokers": {
+            "x": 8,
+            "y": 62,
+            "width": 344,
+            "height": 89.6
+          },
+          "preview": {
+            "x": 8,
+            "y": 153.6,
+            "width": 344,
+            "height": 267.20000000000005
+          },
+          "scoreBoard": {
+            "x": 8,
+            "y": 153.6,
+            "width": 344,
+            "height": 120
+          },
+          "playedArea": {
+            "x": 8,
+            "y": 293.6,
+            "width": 344,
+            "height": 127.19999999999999
+          },
+          "handLabel": {
+            "x": 8,
+            "y": 406.8,
+            "width": 116,
+            "height": 18
+          },
+          "piles": {
+            "x": 124,
+            "y": 406.8,
+            "width": 228,
+            "height": 18
+          },
+          "tools": {
+            "x": 84,
+            "y": 652,
+            "width": 94,
+            "height": 56
+          },
+          "hand": {
+            "x": 8,
+            "y": 424.8,
+            "width": 344,
+            "height": 223.2
+          },
+          "actions": {
+            "x": 8,
+            "y": 652,
+            "width": 344,
+            "height": 56
+          },
+          "status": {
+            "x": 8,
+            "y": 712,
+            "width": 344,
+            "height": 20
+          },
+          "scoreFire": {
+            "x": 139.72,
+            "y": 187.6,
+            "width": 207.28,
+            "height": 70
+          },
+          "toolsInHud": false,
+          "labelHeight": 0,
+          "buttons": {
+            "rank": {
+              "x": 84,
+              "y": 652,
+              "width": 44,
+              "height": 56
+            },
+            "suit": {
+              "x": 134,
+              "y": 652,
+              "width": 44,
+              "height": 56
+            }
+          },
+          "tableActions": {
+            "discard": {
+              "x": 8,
+              "y": 652,
+              "width": 70,
+              "height": 56
+            },
+            "play": {
+              "x": 184,
+              "y": 652,
+              "width": 168,
+              "height": 56
+            }
+          },
+          "cards": [
+            {
+              "visible": true,
+              "visual": {
+                "x": 8,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 8,
+                "y": 424.8,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 54.666666666666664,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 54.666666666666664,
+                "y": 424.8,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 101.33333333333333,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 101.33333333333333,
+                "y": 424.8,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 148,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 148,
+                "y": 424.8,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 194.66666666666666,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 194.66666666666666,
+                "y": 424.8,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 241.33333333333331,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 241.33333333333331,
+                "y": 424.8,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 288,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 288,
+                "y": 424.8,
+                "width": 64,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 8,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 8,
+                "y": 536.4,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 54.666666666666664,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 54.666666666666664,
+                "y": 536.4,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 101.33333333333333,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 101.33333333333333,
+                "y": 536.4,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 148,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 148,
+                "y": 536.4,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 194.66666666666666,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 194.66666666666666,
+                "y": 536.4,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 241.33333333333331,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 241.33333333333331,
+                "y": 536.4,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 288,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 288,
+                "y": 536.4,
+                "width": 64,
+                "height": 111.6
+              }
+            }
+          ],
+          "handRows": 2,
+          "handOverflow": false,
+          "handStart": 0,
+          "visibleCardCount": 14,
+          "handNavigation": {
+            "previous": {
+              "x": 8,
+              "y": 514.4,
+              "width": 44,
+              "height": 44
+            },
+            "next": {
+              "x": 308,
+              "y": 514.4,
+              "width": 44,
+              "height": 44
+            }
+          },
+          "slots": [
+            {
+              "x": 8,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 78,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 148,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 218,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 288,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "jokerLabels": [
+            {
+              "x": 8,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 78,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 148,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 218,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 288,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            }
+          ]
+        },
+        "selected": [],
+        "surface": {
+          "rect": {
+            "x": 8,
+            "y": 424.796875,
+            "width": 344,
+            "height": 223.1875,
+            "top": 424.796875,
+            "right": 352,
+            "bottom": 647.984375,
+            "left": 8
+          },
+          "touchAction": "none",
+          "active": false
+        },
+        "input": true,
+        "preview": [],
+        "cards": [
+          {
+            "id": "spades-14",
+            "visible": true,
+            "x": 40,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 12,
+              "y": 450.8000061035156,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 70,
+            "face": {
+              "x": 8,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": []
+          },
+          {
+            "id": "spades-7",
+            "visible": true,
+            "x": 86.66666666666666,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 58.666664123535156,
+              "y": 450.8000061035156,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 71,
+            "face": {
+              "x": 54.666664123535156,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 77.04666412353515,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 89.28666412353516,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 83.16666412353516,
+                "y": 472.2622461035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 77.04666412353515,
+                "y": 487.1000061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 89.28666412353516,
+                "y": 487.1000061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 77.04666412353515,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 89.28666412353516,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "spades-5",
+            "visible": true,
+            "x": 133.33333333333331,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 105.33332824707031,
+              "y": 450.8000061035156,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 72,
+            "face": {
+              "x": 101.33332824707031,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 123.71332824707031,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 135.95332824707032,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 129.8333282470703,
+                "y": 487.1000061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 123.71332824707031,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 135.95332824707032,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "hearts-13",
+            "visible": true,
+            "x": 180,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 152,
+              "y": 450.8000061035156,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 73,
+            "face": {
+              "x": 148,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": []
+          },
+          {
+            "id": "hearts-4",
+            "visible": true,
+            "x": 226.66666666666666,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 198.6666717529297,
+              "y": 450.8000061035156,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 74,
+            "face": {
+              "x": 194.6666717529297,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 217.04667175292968,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 229.2866717529297,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 217.04667175292968,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 229.2866717529297,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "hearts-2",
+            "visible": true,
+            "x": 273.3333333333333,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 245.33334350585938,
+              "y": 450.8000061035156,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 75,
+            "face": {
+              "x": 241.33334350585938,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 269.8333435058594,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 269.8333435058594,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "clubs-10",
+            "visible": true,
+            "x": 320,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 292,
+              "y": 450.8000061035156,
+              "width": 20,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 76,
+            "face": {
+              "x": 288,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 315,
+                "y": 455.34400610351565,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 325.88,
+                "y": 455.34400610351565,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 317,
+                "y": 465.98848610351564,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 315,
+                "y": 476.6329661035156,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 325.88,
+                "y": 476.6329661035156,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 311.56,
+                "y": 498.5670461035156,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 322.44,
+                "y": 498.5670461035156,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 317,
+                "y": 509.2115261035156,
+                "width": 6,
+                "height": 8.000000000000057
+              },
+              {
+                "x": 311.56,
+                "y": 519.8560061035156,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 322.44,
+                "y": 519.8560061035156,
+                "width": 6,
+                "height": 8
+              }
+            ]
+          },
+          {
+            "id": "clubs-7",
+            "visible": true,
+            "x": 40,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 12,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 77,
+            "face": {
+              "x": 8,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 30.38,
+                "y": 569.0244922070312,
+                "width": 6.9999999999999964,
+                "height": 9
+              },
+              {
+                "x": 42.62,
+                "y": 569.0244922070312,
+                "width": 7.000000000000007,
+                "height": 9
+              },
+              {
+                "x": 36.5,
+                "y": 583.8622522070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 30.38,
+                "y": 598.7000122070312,
+                "width": 6.9999999999999964,
+                "height": 9
+              },
+              {
+                "x": 42.62,
+                "y": 598.7000122070312,
+                "width": 7.000000000000007,
+                "height": 9
+              },
+              {
+                "x": 30.380000000000003,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 42.62,
+                "y": 628.3755322070313,
+                "width": 7.000000000000007,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "clubs-5",
+            "visible": true,
+            "x": 86.66666666666666,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 58.666664123535156,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 78,
+            "face": {
+              "x": 54.666664123535156,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 77.04666412353515,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 89.28666412353516,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 83.16666412353516,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 77.04666412353515,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 89.28666412353516,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "diamonds-14",
+            "visible": true,
+            "x": 133.33333333333331,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 105.33332824707031,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 79,
+            "face": {
+              "x": 101.33332824707031,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": []
+          },
+          {
+            "id": "diamonds-13",
+            "visible": true,
+            "x": 180,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 152,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 80,
+            "face": {
+              "x": 148,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": []
+          },
+          {
+            "id": "diamonds-11",
+            "visible": true,
+            "x": 226.66666666666666,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 198.6666717529297,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 81,
+            "face": {
+              "x": 194.6666717529297,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": []
+          },
+          {
+            "id": "diamonds-3",
+            "visible": true,
+            "x": 273.3333333333333,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 245.33334350585938,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 82,
+            "face": {
+              "x": 241.33334350585938,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 269.8333435058594,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 269.8333435058594,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 269.8333435058594,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "hearts-5",
+            "visible": true,
+            "x": 320,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 292,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 83,
+            "face": {
+              "x": 288,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 310.38,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 322.62,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 316.5,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 310.38,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 322.62,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          }
+        ],
+        "firePieces": [],
+        "score": [
+          {
+            "text": "当前选择 · 选 1～5 张牌",
+            "bounds": {
+              "x": 105,
+              "y": 157.6,
+              "width": 150,
+              "height": 17
+            }
+          },
+          {
+            "text": "合计热度",
+            "bounds": {
+              "x": 47.36,
+              "y": 178.6,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "text": "合计倍率",
+            "bounds": {
+              "x": 47.36,
+              "y": 223.6,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "text": "预计本手",
+            "bounds": {
+              "x": 215.36,
+              "y": 190.60000000000002,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "text": "—",
+            "bounds": {
+              "x": 66.36,
+              "y": 196.6,
+              "width": 18,
+              "height": 20
+            }
+          },
+          {
+            "text": "× —",
+            "bounds": {
+              "x": 55.86,
+              "y": 241.6,
+              "width": 39,
+              "height": 20.00000000000003
+            }
+          },
+          {
+            "text": "—",
+            "bounds": {
+              "x": 225.36,
+              "y": 208.60000000000002,
+              "width": 36,
+              "height": 43
+            }
+          }
+        ]
+      }
+    },
+    {
+      "engine": "chromium",
+      "version": "151.0.7922.173",
+      "width": 390,
+      "height": 740,
+      "dpr": 3,
+      "input": "native CDP touch + DOM tap",
+      "checks": [
+        {
+          "count": 9,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 1
+        },
+        {
+          "count": 9,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 14,
+          "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "resizes": [
+        {
+          "requested": {
+            "width": 360,
+            "height": 740
+          },
+          "beforeObserver": {
+            "width": 360,
+            "height": 740,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 390,
+            "height": 640
+          },
+          "beforeObserver": {
+            "width": 360,
+            "height": 740,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 844,
+            "height": 300
+          },
+          "beforeObserver": {
+            "width": 844,
+            "height": 300,
+            "rows": 1
+          }
+        },
+        {
+          "requested": {
+            "width": 390,
+            "height": 740
+          },
+          "beforeObserver": {
+            "width": 390,
+            "height": 740,
+            "rows": 2
+          }
+        }
+      ],
+      "final": {
+        "renderer": "Canvas",
+        "fps": 60,
+        "layout": {
+          "mode": "portrait",
+          "compact": true,
+          "shortLandscape": false,
+          "width": 390,
+          "height": 740,
+          "hud": {
+            "x": 12,
+            "y": 8,
+            "width": 366,
+            "height": 52
+          },
+          "jokers": {
+            "x": 12,
+            "y": 62,
+            "width": 366,
+            "height": 89.6
+          },
+          "preview": {
+            "x": 12,
+            "y": 153.6,
+            "width": 366,
+            "height": 267.20000000000005
+          },
+          "scoreBoard": {
+            "x": 12,
+            "y": 153.6,
+            "width": 366,
+            "height": 120
+          },
+          "playedArea": {
+            "x": 12,
+            "y": 293.6,
+            "width": 366,
+            "height": 127.19999999999999
+          },
+          "handLabel": {
+            "x": 12,
+            "y": 406.8,
+            "width": 116,
+            "height": 18
+          },
+          "piles": {
+            "x": 128,
+            "y": 406.8,
+            "width": 250,
+            "height": 18
+          },
+          "tools": {
+            "x": 88,
+            "y": 652,
+            "width": 94,
+            "height": 56
+          },
+          "hand": {
+            "x": 12,
+            "y": 424.8,
+            "width": 366,
+            "height": 223.2
+          },
+          "actions": {
+            "x": 12,
+            "y": 652,
+            "width": 366,
+            "height": 56
+          },
+          "status": {
+            "x": 12,
+            "y": 712,
+            "width": 366,
+            "height": 20
+          },
+          "scoreFire": {
+            "x": 152.08,
+            "y": 187.6,
+            "width": 220.92,
+            "height": 70
+          },
+          "toolsInHud": false,
+          "labelHeight": 0,
+          "buttons": {
+            "rank": {
+              "x": 88,
+              "y": 652,
+              "width": 44,
+              "height": 56
+            },
+            "suit": {
+              "x": 138,
+              "y": 652,
+              "width": 44,
+              "height": 56
+            }
+          },
+          "tableActions": {
+            "discard": {
+              "x": 12,
+              "y": 652,
+              "width": 70,
+              "height": 56
+            },
+            "play": {
+              "x": 188,
+              "y": 652,
+              "width": 190,
+              "height": 56
+            }
+          },
+          "cards": [
+            {
+              "visible": true,
+              "visual": {
+                "x": 12,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 12,
+                "y": 424.8,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 62.333333333333336,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 62.333333333333336,
+                "y": 424.8,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 112.66666666666667,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 112.66666666666667,
+                "y": 424.8,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 163,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 163,
+                "y": 424.8,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 213.33333333333334,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 213.33333333333334,
+                "y": 424.8,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 263.6666666666667,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 263.6666666666667,
+                "y": 424.8,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 314,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 314,
+                "y": 424.8,
+                "width": 64,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 12,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 12,
+                "y": 536.4,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 62.333333333333336,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 62.333333333333336,
+                "y": 536.4,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 112.66666666666667,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 112.66666666666667,
+                "y": 536.4,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 163,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 163,
+                "y": 536.4,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 213.33333333333334,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 213.33333333333334,
+                "y": 536.4,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 263.6666666666667,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 263.6666666666667,
+                "y": 536.4,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 314,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 314,
+                "y": 536.4,
+                "width": 64,
+                "height": 111.6
+              }
+            }
+          ],
+          "handRows": 2,
+          "handOverflow": false,
+          "handStart": 0,
+          "visibleCardCount": 14,
+          "handNavigation": {
+            "previous": {
+              "x": 12,
+              "y": 514.4,
+              "width": 44,
+              "height": 44
+            },
+            "next": {
+              "x": 334,
+              "y": 514.4,
+              "width": 44,
+              "height": 44
+            }
+          },
+          "slots": [
+            {
+              "x": 23,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "jokerLabels": [
+            {
+              "x": 23,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            }
+          ]
+        },
+        "selected": [],
+        "surface": {
+          "rect": {
+            "x": 12,
+            "y": 424.796875,
+            "width": 366,
+            "height": 223.1875,
+            "top": 424.796875,
+            "right": 378,
+            "bottom": 647.984375,
+            "left": 12
+          },
+          "touchAction": "none",
+          "active": false
+        },
+        "input": true,
+        "preview": [],
+        "cards": [
+          {
+            "id": "spades-14",
+            "visible": true,
+            "x": 44,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 16,
+              "y": 450.8000061035156,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 70,
+            "face": {
+              "x": 12,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": []
+          },
+          {
+            "id": "spades-7",
+            "visible": true,
+            "x": 94.33333333333334,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 66.33333587646484,
+              "y": 450.8000061035156,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 71,
+            "face": {
+              "x": 62.333335876464844,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 84.71333587646484,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 96.95333587646485,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 90.83333587646484,
+                "y": 472.2622461035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 84.71333587646484,
+                "y": 487.1000061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 96.95333587646485,
+                "y": 487.1000061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 84.71333587646484,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 96.95333587646485,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "spades-5",
+            "visible": true,
+            "x": 144.66666666666669,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 116.66667175292969,
+              "y": 450.8000061035156,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 72,
+            "face": {
+              "x": 112.66667175292969,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 135.04667175292968,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 147.2866717529297,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 141.1666717529297,
+                "y": 487.1000061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 135.04667175292968,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 147.2866717529297,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "hearts-13",
+            "visible": true,
+            "x": 195,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 167,
+              "y": 450.8000061035156,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 73,
+            "face": {
+              "x": 163,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": []
+          },
+          {
+            "id": "hearts-4",
+            "visible": true,
+            "x": 245.33333333333334,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 217.3333282470703,
+              "y": 450.8000061035156,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 74,
+            "face": {
+              "x": 213.3333282470703,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 235.7133282470703,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 247.95332824707032,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 235.7133282470703,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 247.95332824707032,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "hearts-2",
+            "visible": true,
+            "x": 295.6666666666667,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 267.6666564941406,
+              "y": 450.8000061035156,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 75,
+            "face": {
+              "x": 263.6666564941406,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 292.1666564941406,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 292.1666564941406,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "clubs-10",
+            "visible": true,
+            "x": 346,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 318,
+              "y": 450.8000061035156,
+              "width": 20,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 76,
+            "face": {
+              "x": 314,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 341,
+                "y": 455.34400610351565,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 351.88,
+                "y": 455.34400610351565,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 343,
+                "y": 465.98848610351564,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 341,
+                "y": 476.6329661035156,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 351.88,
+                "y": 476.6329661035156,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 337.56,
+                "y": 498.5670461035156,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 348.44,
+                "y": 498.5670461035156,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 343,
+                "y": 509.2115261035156,
+                "width": 6,
+                "height": 8.000000000000057
+              },
+              {
+                "x": 337.56,
+                "y": 519.8560061035156,
+                "width": 6,
+                "height": 8
+              },
+              {
+                "x": 348.44,
+                "y": 519.8560061035156,
+                "width": 6,
+                "height": 8
+              }
+            ]
+          },
+          {
+            "id": "clubs-7",
+            "visible": true,
+            "x": 44,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 16,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 77,
+            "face": {
+              "x": 12,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 34.379999999999995,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 46.62,
+                "y": 569.0244922070312,
+                "width": 7.000000000000007,
+                "height": 9
+              },
+              {
+                "x": 40.5,
+                "y": 583.8622522070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 34.379999999999995,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 46.62,
+                "y": 598.7000122070312,
+                "width": 7.000000000000007,
+                "height": 9
+              },
+              {
+                "x": 34.38,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 46.62,
+                "y": 628.3755322070313,
+                "width": 7.000000000000007,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "clubs-5",
+            "visible": true,
+            "x": 94.33333333333334,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 66.33333587646484,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 78,
+            "face": {
+              "x": 62.333335876464844,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 84.71333587646484,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 96.95333587646485,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 90.83333587646484,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 84.71333587646484,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 96.95333587646485,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "diamonds-14",
+            "visible": true,
+            "x": 144.66666666666669,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 116.66667175292969,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 79,
+            "face": {
+              "x": 112.66667175292969,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": []
+          },
+          {
+            "id": "diamonds-13",
+            "visible": true,
+            "x": 195,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 167,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 80,
+            "face": {
+              "x": 163,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": []
+          },
+          {
+            "id": "diamonds-11",
+            "visible": true,
+            "x": 245.33333333333334,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 217.3333282470703,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 81,
+            "face": {
+              "x": 213.3333282470703,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": []
+          },
+          {
+            "id": "diamonds-3",
+            "visible": true,
+            "x": 295.6666666666667,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 267.6666564941406,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 82,
+            "face": {
+              "x": 263.6666564941406,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 292.1666564941406,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 292.1666564941406,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 292.1666564941406,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "hearts-5",
+            "visible": true,
+            "x": 346,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 318,
+              "y": 562.4000122070313,
+              "width": 13,
+              "height": 32
+            },
+            "mark": null,
+            "layer": 83,
+            "face": {
+              "x": 314,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 336.38,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 348.62,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 342.5,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 336.38,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 348.62,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          }
+        ],
+        "firePieces": [],
+        "score": [
+          {
+            "text": "当前选择 · 选 1～5 张牌",
+            "bounds": {
+              "x": 120,
+              "y": 157.6,
+              "width": 150,
+              "height": 17
+            }
+          },
+          {
+            "text": "合计热度",
+            "bounds": {
+              "x": 55.540000000000006,
+              "y": 178.6,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "text": "合计倍率",
+            "bounds": {
+              "x": 55.540000000000006,
+              "y": 223.6,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "text": "预计本手",
+            "bounds": {
+              "x": 234.54000000000002,
+              "y": 190.60000000000002,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "text": "—",
+            "bounds": {
+              "x": 74.54,
+              "y": 196.6,
+              "width": 18,
+              "height": 20
+            }
+          },
+          {
+            "text": "× —",
+            "bounds": {
+              "x": 64.04,
+              "y": 241.6,
+              "width": 39,
+              "height": 20.00000000000003
+            }
+          },
+          {
+            "text": "—",
+            "bounds": {
+              "x": 244.54000000000002,
+              "y": 208.60000000000002,
+              "width": 36,
+              "height": 43
+            }
+          }
+        ]
+      }
+    },
+    {
+      "engine": "webkit",
+      "version": "26.6",
+      "width": 360,
+      "height": 740,
+      "dpr": 3,
+      "input": "native mouse cross-row + touchscreen tap",
+      "checks": [
+        {
+          "count": 9,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 1
+        },
+        {
+          "count": 9,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 14,
+          "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "resizes": [
+        {
+          "requested": {
+            "width": 390,
+            "height": 740
+          },
+          "beforeObserver": {
+            "width": 390,
+            "height": 740,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 360,
+            "height": 640
+          },
+          "beforeObserver": {
+            "width": 360,
+            "height": 640,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 844,
+            "height": 300
+          },
+          "beforeObserver": {
+            "width": 360,
+            "height": 640,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 360,
+            "height": 740
+          },
+          "beforeObserver": {
+            "width": 844,
+            "height": 300,
+            "rows": 1
+          }
+        }
+      ],
+      "final": {
+        "renderer": "WebGL",
+        "fps": 46.75,
+        "layout": {
+          "mode": "portrait",
+          "compact": true,
+          "shortLandscape": false,
+          "width": 360,
+          "height": 740,
+          "hud": {
+            "x": 8,
+            "y": 8,
+            "width": 344,
+            "height": 52
+          },
+          "jokers": {
+            "x": 8,
+            "y": 62,
+            "width": 344,
+            "height": 89.6
+          },
+          "preview": {
+            "x": 8,
+            "y": 153.6,
+            "width": 344,
+            "height": 267.20000000000005
+          },
+          "scoreBoard": {
+            "x": 8,
+            "y": 153.6,
+            "width": 344,
+            "height": 120
+          },
+          "playedArea": {
+            "x": 8,
+            "y": 293.6,
+            "width": 344,
+            "height": 127.19999999999999
+          },
+          "handLabel": {
+            "x": 8,
+            "y": 406.8,
+            "width": 116,
+            "height": 18
+          },
+          "piles": {
+            "x": 124,
+            "y": 406.8,
+            "width": 228,
+            "height": 18
+          },
+          "tools": {
+            "x": 84,
+            "y": 652,
+            "width": 94,
+            "height": 56
+          },
+          "hand": {
+            "x": 8,
+            "y": 424.8,
+            "width": 344,
+            "height": 223.2
+          },
+          "actions": {
+            "x": 8,
+            "y": 652,
+            "width": 344,
+            "height": 56
+          },
+          "status": {
+            "x": 8,
+            "y": 712,
+            "width": 344,
+            "height": 20
+          },
+          "scoreFire": {
+            "x": 139.72,
+            "y": 187.6,
+            "width": 207.28,
+            "height": 70
+          },
+          "toolsInHud": false,
+          "labelHeight": 0,
+          "buttons": {
+            "rank": {
+              "x": 84,
+              "y": 652,
+              "width": 44,
+              "height": 56
+            },
+            "suit": {
+              "x": 134,
+              "y": 652,
+              "width": 44,
+              "height": 56
+            }
+          },
+          "tableActions": {
+            "discard": {
+              "x": 8,
+              "y": 652,
+              "width": 70,
+              "height": 56
+            },
+            "play": {
+              "x": 184,
+              "y": 652,
+              "width": 168,
+              "height": 56
+            }
+          },
+          "cards": [
+            {
+              "visible": true,
+              "visual": {
+                "x": 8,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 8,
+                "y": 424.8,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 54.666666666666664,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 54.666666666666664,
+                "y": 424.8,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 101.33333333333333,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 101.33333333333333,
+                "y": 424.8,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 148,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 148,
+                "y": 424.8,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 194.66666666666666,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 194.66666666666666,
+                "y": 424.8,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 241.33333333333331,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 241.33333333333331,
+                "y": 424.8,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 288,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 288,
+                "y": 424.8,
+                "width": 64,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 8,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 8,
+                "y": 536.4,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 54.666666666666664,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 54.666666666666664,
+                "y": 536.4,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 101.33333333333333,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 101.33333333333333,
+                "y": 536.4,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 148,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 148,
+                "y": 536.4,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 194.66666666666666,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 194.66666666666666,
+                "y": 536.4,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 241.33333333333331,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 241.33333333333331,
+                "y": 536.4,
+                "width": 46.666666666666664,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 288,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 288,
+                "y": 536.4,
+                "width": 64,
+                "height": 111.6
+              }
+            }
+          ],
+          "handRows": 2,
+          "handOverflow": false,
+          "handStart": 0,
+          "visibleCardCount": 14,
+          "handNavigation": {
+            "previous": {
+              "x": 8,
+              "y": 514.4,
+              "width": 44,
+              "height": 44
+            },
+            "next": {
+              "x": 308,
+              "y": 514.4,
+              "width": 44,
+              "height": 44
+            }
+          },
+          "slots": [
+            {
+              "x": 8,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 78,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 148,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 218,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 288,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "jokerLabels": [
+            {
+              "x": 8,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 78,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 148,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 218,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 288,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            }
+          ]
+        },
+        "selected": [],
+        "surface": {
+          "rect": {
+            "x": 8,
+            "y": 424.796875,
+            "width": 344,
+            "height": 223.1875,
+            "top": 424.796875,
+            "right": 352,
+            "bottom": 647.984375,
+            "left": 8
+          },
+          "touchAction": "none",
+          "active": false
+        },
+        "input": true,
+        "preview": [],
+        "cards": [
+          {
+            "id": "spades-14",
+            "visible": true,
+            "x": 40,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 12,
+              "y": 450.8000061035156,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 70,
+            "face": {
+              "x": 8,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": []
+          },
+          {
+            "id": "spades-7",
+            "visible": true,
+            "x": 86.66666666666666,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 58.666664123535156,
+              "y": 450.8000061035156,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 71,
+            "face": {
+              "x": 54.666664123535156,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 77.72666412353516,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 88.60666412353515,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 83.16666412353516,
+                "y": 472.2622461035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 77.72666412353516,
+                "y": 487.1000061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 88.60666412353515,
+                "y": 487.1000061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 77.72666412353516,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 88.60666412353515,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "spades-5",
+            "visible": true,
+            "x": 133.33333333333331,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 105.33332824707031,
+              "y": 450.8000061035156,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 72,
+            "face": {
+              "x": 101.33332824707031,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 124.39332824707031,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 135.2733282470703,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 129.8333282470703,
+                "y": 487.1000061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 124.39332824707031,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 135.2733282470703,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "hearts-13",
+            "visible": true,
+            "x": 180,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 152,
+              "y": 450.8000061035156,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 73,
+            "face": {
+              "x": 148,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": []
+          },
+          {
+            "id": "hearts-4",
+            "visible": true,
+            "x": 226.66666666666666,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 198.6666717529297,
+              "y": 450.8000061035156,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 74,
+            "face": {
+              "x": 194.6666717529297,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 217.7266717529297,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 228.60667175292969,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 217.7266717529297,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 228.60667175292969,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "hearts-2",
+            "visible": true,
+            "x": 273.3333333333333,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 245.33334350585938,
+              "y": 450.8000061035156,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 75,
+            "face": {
+              "x": 241.33334350585938,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 269.8333435058594,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 269.8333435058594,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "clubs-10",
+            "visible": true,
+            "x": 320,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 292,
+              "y": 450.8000061035156,
+              "width": 21,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 76,
+            "face": {
+              "x": 288,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 316,
+                "y": 454.84400610351565,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 326.88,
+                "y": 454.84400610351565,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 316.5,
+                "y": 465.48848610351564,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 316,
+                "y": 476.1329661035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 326.88,
+                "y": 476.1329661035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 311.06,
+                "y": 498.0670461035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 321.94,
+                "y": 498.0670461035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 316.5,
+                "y": 508.7115261035156,
+                "width": 7,
+                "height": 9.000000000000057
+              },
+              {
+                "x": 311.06,
+                "y": 519.3560061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 321.94,
+                "y": 519.3560061035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "clubs-7",
+            "visible": true,
+            "x": 40,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 12,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 77,
+            "face": {
+              "x": 8,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 31.06,
+                "y": 569.0244922070312,
+                "width": 7.0000000000000036,
+                "height": 9
+              },
+              {
+                "x": 41.94,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 36.5,
+                "y": 583.8622522070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 31.06,
+                "y": 598.7000122070312,
+                "width": 7.0000000000000036,
+                "height": 9
+              },
+              {
+                "x": 41.94,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 31.060000000000002,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 41.94,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "clubs-5",
+            "visible": true,
+            "x": 86.66666666666666,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 58.666664123535156,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 78,
+            "face": {
+              "x": 54.666664123535156,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 77.72666412353516,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 88.60666412353515,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 83.16666412353516,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 77.72666412353516,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 88.60666412353515,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "diamonds-14",
+            "visible": true,
+            "x": 133.33333333333331,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 105.33332824707031,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 79,
+            "face": {
+              "x": 101.33332824707031,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": []
+          },
+          {
+            "id": "diamonds-13",
+            "visible": true,
+            "x": 180,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 152,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 80,
+            "face": {
+              "x": 148,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": []
+          },
+          {
+            "id": "diamonds-11",
+            "visible": true,
+            "x": 226.66666666666666,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 198.6666717529297,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 81,
+            "face": {
+              "x": 194.6666717529297,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": []
+          },
+          {
+            "id": "diamonds-3",
+            "visible": true,
+            "x": 273.3333333333333,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 245.33334350585938,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 82,
+            "face": {
+              "x": 241.33334350585938,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 269.8333435058594,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 269.8333435058594,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 269.8333435058594,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "hearts-5",
+            "visible": true,
+            "x": 320,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 292,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 83,
+            "face": {
+              "x": 288,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 311.06,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 321.94,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 316.5,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 311.06,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 321.94,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          }
+        ],
+        "firePieces": [],
+        "score": [
+          {
+            "text": "当前选择 · 选 1～5 张牌",
+            "bounds": {
+              "x": 103.5,
+              "y": 157.6,
+              "width": 153,
+              "height": 17
+            }
+          },
+          {
+            "text": "合计热度",
+            "bounds": {
+              "x": 47.36,
+              "y": 178.6,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "text": "合计倍率",
+            "bounds": {
+              "x": 47.36,
+              "y": 223.6,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "text": "预计本手",
+            "bounds": {
+              "x": 215.36,
+              "y": 190.60000000000002,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "text": "—",
+            "bounds": {
+              "x": 66.36,
+              "y": 196.6,
+              "width": 18,
+              "height": 21
+            }
+          },
+          {
+            "text": "× —",
+            "bounds": {
+              "x": 55.86,
+              "y": 241.6,
+              "width": 39,
+              "height": 21.00000000000003
+            }
+          },
+          {
+            "text": "—",
+            "bounds": {
+              "x": 225.36,
+              "y": 208.60000000000002,
+              "width": 36,
+              "height": 42
+            }
+          }
+        ]
+      }
+    },
+    {
+      "engine": "webkit",
+      "version": "26.6",
+      "width": 390,
+      "height": 740,
+      "dpr": 3,
+      "input": "native mouse cross-row + touchscreen tap",
+      "checks": [
+        {
+          "count": 9,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 1
+        },
+        {
+          "count": 9,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 14,
+          "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "resizes": [
+        {
+          "requested": {
+            "width": 360,
+            "height": 740
+          },
+          "beforeObserver": {
+            "width": 390,
+            "height": 740,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 390,
+            "height": 640
+          },
+          "beforeObserver": {
+            "width": 360,
+            "height": 740,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 844,
+            "height": 300
+          },
+          "beforeObserver": {
+            "width": 390,
+            "height": 640,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 390,
+            "height": 740
+          },
+          "beforeObserver": {
+            "width": 844,
+            "height": 300,
+            "rows": 1
+          }
+        }
+      ],
+      "final": {
+        "renderer": "WebGL",
+        "fps": 46.75,
+        "layout": {
+          "mode": "portrait",
+          "compact": true,
+          "shortLandscape": false,
+          "width": 390,
+          "height": 740,
+          "hud": {
+            "x": 12,
+            "y": 8,
+            "width": 366,
+            "height": 52
+          },
+          "jokers": {
+            "x": 12,
+            "y": 62,
+            "width": 366,
+            "height": 89.6
+          },
+          "preview": {
+            "x": 12,
+            "y": 153.6,
+            "width": 366,
+            "height": 267.20000000000005
+          },
+          "scoreBoard": {
+            "x": 12,
+            "y": 153.6,
+            "width": 366,
+            "height": 120
+          },
+          "playedArea": {
+            "x": 12,
+            "y": 293.6,
+            "width": 366,
+            "height": 127.19999999999999
+          },
+          "handLabel": {
+            "x": 12,
+            "y": 406.8,
+            "width": 116,
+            "height": 18
+          },
+          "piles": {
+            "x": 128,
+            "y": 406.8,
+            "width": 250,
+            "height": 18
+          },
+          "tools": {
+            "x": 88,
+            "y": 652,
+            "width": 94,
+            "height": 56
+          },
+          "hand": {
+            "x": 12,
+            "y": 424.8,
+            "width": 366,
+            "height": 223.2
+          },
+          "actions": {
+            "x": 12,
+            "y": 652,
+            "width": 366,
+            "height": 56
+          },
+          "status": {
+            "x": 12,
+            "y": 712,
+            "width": 366,
+            "height": 20
+          },
+          "scoreFire": {
+            "x": 152.08,
+            "y": 187.6,
+            "width": 220.92,
+            "height": 70
+          },
+          "toolsInHud": false,
+          "labelHeight": 0,
+          "buttons": {
+            "rank": {
+              "x": 88,
+              "y": 652,
+              "width": 44,
+              "height": 56
+            },
+            "suit": {
+              "x": 138,
+              "y": 652,
+              "width": 44,
+              "height": 56
+            }
+          },
+          "tableActions": {
+            "discard": {
+              "x": 12,
+              "y": 652,
+              "width": 70,
+              "height": 56
+            },
+            "play": {
+              "x": 188,
+              "y": 652,
+              "width": 190,
+              "height": 56
+            }
+          },
+          "cards": [
+            {
+              "visible": true,
+              "visual": {
+                "x": 12,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 12,
+                "y": 424.8,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 62.333333333333336,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 62.333333333333336,
+                "y": 424.8,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 112.66666666666667,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 112.66666666666667,
+                "y": 424.8,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 163,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 163,
+                "y": 424.8,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 213.33333333333334,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 213.33333333333334,
+                "y": 424.8,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 263.6666666666667,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 263.6666666666667,
+                "y": 424.8,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 314,
+                "y": 446.8,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 314,
+                "y": 424.8,
+                "width": 64,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 12,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 12,
+                "y": 536.4,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 62.333333333333336,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 62.333333333333336,
+                "y": 536.4,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 112.66666666666667,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 112.66666666666667,
+                "y": 536.4,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 163,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 163,
+                "y": 536.4,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 213.33333333333334,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 213.33333333333334,
+                "y": 536.4,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 263.6666666666667,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 263.6666666666667,
+                "y": 536.4,
+                "width": 50.333333333333336,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 314,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 314,
+                "y": 536.4,
+                "width": 64,
+                "height": 111.6
+              }
+            }
+          ],
+          "handRows": 2,
+          "handOverflow": false,
+          "handStart": 0,
+          "visibleCardCount": 14,
+          "handNavigation": {
+            "previous": {
+              "x": 12,
+              "y": 514.4,
+              "width": 44,
+              "height": 44
+            },
+            "next": {
+              "x": 334,
+              "y": 514.4,
+              "width": 44,
+              "height": 44
+            }
+          },
+          "slots": [
+            {
+              "x": 23,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "jokerLabels": [
+            {
+              "x": 23,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            }
+          ]
+        },
+        "selected": [],
+        "surface": {
+          "rect": {
+            "x": 12,
+            "y": 424.796875,
+            "width": 366,
+            "height": 223.1875,
+            "top": 424.796875,
+            "right": 378,
+            "bottom": 647.984375,
+            "left": 12
+          },
+          "touchAction": "none",
+          "active": false
+        },
+        "input": true,
+        "preview": [],
+        "cards": [
+          {
+            "id": "spades-14",
+            "visible": true,
+            "x": 44,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 16,
+              "y": 450.8000061035156,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 70,
+            "face": {
+              "x": 12,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": []
+          },
+          {
+            "id": "spades-7",
+            "visible": true,
+            "x": 94.33333333333334,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 66.33333587646484,
+              "y": 450.8000061035156,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 71,
+            "face": {
+              "x": 62.333335876464844,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 85.39333587646485,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 96.27333587646484,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 90.83333587646484,
+                "y": 472.2622461035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 85.39333587646485,
+                "y": 487.1000061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 96.27333587646484,
+                "y": 487.1000061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 85.39333587646485,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 96.27333587646484,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "spades-5",
+            "visible": true,
+            "x": 144.66666666666669,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 116.66667175292969,
+              "y": 450.8000061035156,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 72,
+            "face": {
+              "x": 112.66667175292969,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 135.7266717529297,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 146.60667175292969,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 141.1666717529297,
+                "y": 487.1000061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 135.7266717529297,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 146.60667175292969,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "hearts-13",
+            "visible": true,
+            "x": 195,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 167,
+              "y": 450.8000061035156,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 73,
+            "face": {
+              "x": 163,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": []
+          },
+          {
+            "id": "hearts-4",
+            "visible": true,
+            "x": 245.33333333333334,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 217.3333282470703,
+              "y": 450.8000061035156,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 74,
+            "face": {
+              "x": 213.3333282470703,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 236.39332824707031,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 247.2733282470703,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 236.39332824707031,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 247.2733282470703,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "hearts-2",
+            "visible": true,
+            "x": 295.6666666666667,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 267.6666564941406,
+              "y": 450.8000061035156,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 75,
+            "face": {
+              "x": 263.6666564941406,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 292.1666564941406,
+                "y": 457.4244861035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 292.1666564941406,
+                "y": 516.7755261035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "clubs-10",
+            "visible": true,
+            "x": 346,
+            "y": 491.6,
+            "scale": 1,
+            "rank": {
+              "x": 318,
+              "y": 450.8000061035156,
+              "width": 21,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 76,
+            "face": {
+              "x": 314,
+              "y": 446.8000061035156,
+              "width": 64,
+              "height": 89.59999999999997
+            },
+            "pips": [
+              {
+                "x": 342,
+                "y": 454.84400610351565,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 352.88,
+                "y": 454.84400610351565,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 342.5,
+                "y": 465.48848610351564,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 342,
+                "y": 476.1329661035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 352.88,
+                "y": 476.1329661035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 337.06,
+                "y": 498.0670461035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 347.94,
+                "y": 498.0670461035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 342.5,
+                "y": 508.7115261035156,
+                "width": 7,
+                "height": 9.000000000000057
+              },
+              {
+                "x": 337.06,
+                "y": 519.3560061035156,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 347.94,
+                "y": 519.3560061035156,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "clubs-7",
+            "visible": true,
+            "x": 44,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 16,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 77,
+            "face": {
+              "x": 12,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 35.06,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 45.94,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 40.5,
+                "y": 583.8622522070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 35.06,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 45.94,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 35.06,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 45.94,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "clubs-5",
+            "visible": true,
+            "x": 94.33333333333334,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 66.33333587646484,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 78,
+            "face": {
+              "x": 62.333335876464844,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 85.39333587646485,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 96.27333587646484,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 90.83333587646484,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 85.39333587646485,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 96.27333587646484,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "diamonds-14",
+            "visible": true,
+            "x": 144.66666666666669,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 116.66667175292969,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 79,
+            "face": {
+              "x": 112.66667175292969,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": []
+          },
+          {
+            "id": "diamonds-13",
+            "visible": true,
+            "x": 195,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 167,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 80,
+            "face": {
+              "x": 163,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": []
+          },
+          {
+            "id": "diamonds-11",
+            "visible": true,
+            "x": 245.33333333333334,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 217.3333282470703,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 81,
+            "face": {
+              "x": 213.3333282470703,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": []
+          },
+          {
+            "id": "diamonds-3",
+            "visible": true,
+            "x": 295.6666666666667,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 267.6666564941406,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 82,
+            "face": {
+              "x": 263.6666564941406,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 292.1666564941406,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 292.1666564941406,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 292.1666564941406,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          },
+          {
+            "id": "hearts-5",
+            "visible": true,
+            "x": 346,
+            "y": 603.1999999999999,
+            "scale": 1,
+            "rank": {
+              "x": 318,
+              "y": 562.4000122070313,
+              "width": 14,
+              "height": 34
+            },
+            "mark": null,
+            "layer": 83,
+            "face": {
+              "x": 314,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "pips": [
+              {
+                "x": 337.06,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 347.94,
+                "y": 569.0244922070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 342.5,
+                "y": 598.7000122070312,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 337.06,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              },
+              {
+                "x": 347.94,
+                "y": 628.3755322070313,
+                "width": 7,
+                "height": 9
+              }
+            ]
+          }
+        ],
+        "firePieces": [],
+        "score": [
+          {
+            "text": "当前选择 · 选 1～5 张牌",
+            "bounds": {
+              "x": 118.5,
+              "y": 157.6,
+              "width": 153,
+              "height": 17
+            }
+          },
+          {
+            "text": "合计热度",
+            "bounds": {
+              "x": 55.540000000000006,
+              "y": 178.6,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "text": "合计倍率",
+            "bounds": {
+              "x": 55.540000000000006,
+              "y": 223.6,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "text": "预计本手",
+            "bounds": {
+              "x": 234.54000000000002,
+              "y": 190.60000000000002,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "text": "—",
+            "bounds": {
+              "x": 74.54,
+              "y": 196.6,
+              "width": 18,
+              "height": 21
+            }
+          },
+          {
+            "text": "× —",
+            "bounds": {
+              "x": 64.04,
+              "y": 241.6,
+              "width": 39,
+              "height": 21.00000000000003
+            }
+          },
+          {
+            "text": "—",
+            "bounds": {
+              "x": 244.54000000000002,
+              "y": 208.60000000000002,
+              "width": 36,
+              "height": 42
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "hardwareGPU": "NOT_RUN",
+  "recording": "NOT_RUN",
+  "status": "PASS"
+}

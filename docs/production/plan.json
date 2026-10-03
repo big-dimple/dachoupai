@@ -3,39 +3,1145 @@
   "auditCommit": "9fd6e0bdb20c7e6114e045ca336c27afe5d47e9e",
   "currentTask": "P08",
   "selectionPolicy": "P08 unified batch1 full table and discoverable three-offer shop on50adc8f. Primary score/fire base, independent played workplane >=88px, 5:7 paper cards, preserved nine-card and223.2px two-row input. Existing art unchanged. Technical, independent aesthetic and target-device gates remain separate. Freeze/check, unchanged-remote FF main push and new exactCI terminal; no PC/domain/deploy/rules/RNG/save.",
-  "resumeContract": {"candidateCommit":"4bf6a7d63d7738d3c415d09439a1bdca878dc685","gateTask":"A01","decisionId":"D22","decision":"docs/production/DECISIONS.md","afterOwnerAcceptance":"Historical A01 acceptance stays valid within its recorded scope. The later D32 owner instruction pauses development after closeout; dot takes over art/interaction with one dynamic card sample. Do not auto-advance the remaining gameplay work or replace formal V01/L01 studies with owner feedback.","milestones":"docs/production/WORK_PACKAGES.md#玩家可检验的里程碑","approvalEvidence":"docs/production/evidence/A01-2026-10-02.json"},
+  "resumeContract": {
+    "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
+    "gateTask": "A01",
+    "decisionId": "D22",
+    "decision": "docs/production/DECISIONS.md",
+    "afterOwnerAcceptance": "Historical A01 acceptance stays valid within its recorded scope. The later D32 owner instruction pauses development after closeout; dot takes over art/interaction with one dynamic card sample. Do not auto-advance the remaining gameplay work or replace formal V01/L01 studies with owner feedback.",
+    "milestones": "docs/production/WORK_PACKAGES.md#玩家可检验的里程碑",
+    "approvalEvidence": "docs/production/evidence/A01-2026-10-02.json"
+  },
   "tasks": [
-    {"id":"P08","title":"全游戏手绘墨线与纸色体验主线","priority":35,"status":"in_progress","dependsOn":["A02","C03"],"reads":["docs/production/UX.md","docs/production/ART.md","docs/production/ENGINEERING.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#p08","humanGate":false,"completionScope":"Playable UI/state/loading candidate authorized for normal main push after checks (D34). D35-D38 layout, rarity/recovery and hand interaction remain included. D39 adds five-card condition/benefit clarity, event-based preview/recap and the explicitly requested inherited WebKit input-clock correction; local 29-check five-card browser validation, WebKit minimal A/B and 1735-test aggregate passed. Remote CI reported separately. No content/RNG/save/art changes; f04/e07 artwork remains excluded pending approved source publication. Physical OnePlus, human comprehension and visual acceptance remain outstanding. D40 scopes detail-request cancellation to active consumers; 56 focused tests, five browser contexts and frozen-source1742-test aggregate passed. D41 adds only a committed-total, one-shot800ms reward coin using the integrated atlas, deferred loading and owned cancellation; save/RNG unchanged, 34 focused tests,9 browser contexts/48 checks and frozen-source1761-test aggregate passed; remote CI recorded separately. D42 adds only hand input-modality focus, rounded hand/preview feedback and first-sort noninteractive sweep teaching with independent UI preferences; no JQK art or run-save changes. 62 focused tests,3 browser contexts/18 checks and frozen-source1770-test aggregate passed; final remote CI recorded separately. D43 adds scoped native pointer highlight suppression, deterministic inclusive-target/2x/5x continuous fire, bounded one-shot ignition and fresh30%/80% audio with saved values preserved. Actual continuous input frames and natural clear/cleanup/preference routes pass; frozen-source1778-test aggregate passed; release evidence records remaining software WebGL/mobile and human limits. D44 latest authorization supersedes the old whole-deck art pause; first shared-layout/theme batch locally delivered on dot/d44-layout, frozen a3f7332 with1786-test/content/build/Canvas smoke/plan PASS. Whole-game artwork/device acceptance remains in_progress. New pictures pending independent art SHA; Initial local boundary superseded by explicit publication authorization; ca4104f published. Exact CI failed WebKit mobile index/pip intersection. D44 gate fix9c1047a reproduces font fallback bounds and clears measured rows without changing original assertion;26 focused tests and frozen WebKit desktop/mobile browser aggregate pass. User authorizes normal fast-forward main push after affected checks and unchanged remote; no new art or deployment changes. D44 two-row follow-up:10–14 visible at360/390x740, independent22px lift reserves, vertical-first select/cancel and interruption ownership; stable seats/order/max5.115 focused checks and frozen77b7e72 aggregate1796 tests/content/type/build/Canvas smoke/plan pass; actual Chromium/WebKit both widths9–14 checks pass. ResizeObserver delivery is awaited, strict geometry assertions preserved. New art and physical/GPU acceptance remain outstanding; authorized normal main push and exact newCI terminal follow-up. P08 local-fire follow-up: candidate a423dc5,44 affected tests and1800 frozen aggregate/content/type/build/Canvas smoke/plan PASS; actual static eight total routes plus9/14 input regression. Full played preview preserved at104px and hand223.2px; short/two-row fire24px. Two unchanged candidate PNGs are explicit user-authorized Git evidence; independent visual/device approval pending. Three-zone/shop/Joker-scale feedback recorded for later scope review, no implementation this round. P08 batch1 authorized complete table/three-offer shop; preceding flame focus technically passed but independent aesthetics REJECTED. Current implementation/technical checks IN_PROGRESS; aesthetics/device PENDING. New art NOT_INTEGRATED.","evidence":["docs/production/evidence/P08-flame-focus-2026-10-03.json","docs/production/evidence/D44-two-row-2026-10-03.json","docs/production/evidence/D44-gate-2026-10-03.json","docs/production/evidence/D44-2026-10-03.json","docs/production/evidence/D43-2026-10-03.json","docs/production/evidence/F09-2026-10-02.json","docs/production/evidence/F09-release-2026-10-02.json","docs/production/evidence/D35-2026-10-02.json","docs/production/evidence/D36-2026-10-02.json","docs/production/evidence/D37-2026-10-02.json","docs/production/evidence/D38-2026-10-02.json","docs/production/evidence/D39-2026-10-02.json","docs/production/evidence/D40-2026-10-02.json","docs/production/evidence/D41-2026-10-02.json","docs/production/evidence/D42-2026-10-02.json"]},
-    {"id":"P07","title":"ChatGPT Images 2.5 东方人物与全当前牌面","priority":17,"status":"done","dependsOn":["P06"],"reads":["docs/production/ART.md","docs/production/UX.md","docs/production/ENGINEERING.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#p07","humanGate":false,"completionScope":"Current six-character/24-Joker appearance candidate only; formal human/device/audio approval not granted.","steps":[{"id":"P07.1","title":"东方方向与真实入口","status":"done"},{"id":"P07.2","title":"六个开局角色","status":"done"},{"id":"P07.3","title":"当前24张大丑牌","status":"done"},{"id":"P07.4","title":"接续与删减","status":"done"},{"id":"P07.5","title":"真实画面与main交付","status":"done"}],"evidence":["docs/production/evidence/P07-2026-10-01.json"]},
-    {"id":"P06","title":"两路音量、完整小夜曲与当前牌池插画","priority":16,"status":"done","dependsOn":["P05"],"reads":["docs/production/UX.md","docs/production/ART.md","docs/production/ENGINEERING.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#p06","humanGate":false,"completionScope":"Current24-card presentation candidate only; no formal human visual, physical Android or listening approval.","steps":[{"id":"P06.1","title":"诉求与缺项对齐","status":"done"},{"id":"P06.2","title":"两路音量","status":"done"},{"id":"P06.3","title":"真实钢琴录音与事件SFX","status":"done"},{"id":"P06.4","title":"前半8插画","status":"done"},{"id":"P06.5","title":"后半8插画","status":"done"},{"id":"P06.6","title":"全牌池视觉整合","status":"done"},{"id":"P06.7","title":"必要验证与main交付","status":"done"}],"evidence":["docs/production/evidence/P06-2026-10-01.json"]},
-    {"id":"P05","title":"阻断蓝屏、逐来源演出、燃烧音乐与精致卡面","priority":15,"status":"done","dependsOn":["P04"],"reads":["docs/production/UX.md","docs/production/ART.md","docs/production/ENGINEERING.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#p05","humanGate":false,"completionScope":"Presentation engineering candidate only; physical-device/listening/visual acceptance NOT_GRANTED. New gameplay frozen.","steps":[{"id":"P05.1","title":"阻断蓝屏与失败金样","owner":"root","status":"done"},{"id":"P05.2","title":"逐来源计分演出","owner":"root","status":"done"},{"id":"P05.3","title":"火焰与肖邦改编音频","owner":"root / audio agent","status":"done"},{"id":"P05.4","title":"当前卡面徽章与精致详情","owner":"art / flow / root","status":"done"},{"id":"P05.5","title":"开场限制和未来计划核对","owner":"flow / root","status":"done"},{"id":"P05.6","title":"失败后的鼓励与真实高光","owner":"flow agent","status":"done"},{"id":"P05.7","title":"实际操作证据与main交付","owner":"root","status":"done"}],"evidence":["docs/production/evidence/P05-2026-10-01.json"]},
-    {"id":"P04","title":"移动体验、剩余机会与爆分音画整改","priority":14,"status":"done","dependsOn":["P03"],"reads":["docs/production/UX.md","docs/production/ART.md","docs/production/ENGINEERING.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#p04","humanGate":false,"completionScope":"Targeted engineering candidate only: mobile readability/input, exact opportunity feedback and original over-target audio. Physical Android operation, listening and human visual reacceptance are NOT_RUN / NOT_GRANTED.","steps":[{"id":"P04.1","title":"真机失败金样与原因","owner":"root","status":"done"},{"id":"P04.2","title":"清晰文字与10角标","owner":"root","status":"done"},{"id":"P04.3","title":"固定菜单与横屏全屏","owner":"table agent","status":"done"},{"id":"P04.4","title":"牌桌与商店信息主次","owner":"root / flow agent","status":"done"},{"id":"P04.5","title":"次数与真实爆分联动","owner":"root","status":"done"},{"id":"P04.6","title":"原创音乐与混音","owner":"audio agent","status":"done"},{"id":"P04.7","title":"实际操作与main交付","owner":"root","status":"done"}],"evidence":["docs/production/evidence/P04-2026-10-01.json"]},
-    {"id":"R00","title":"采用基线与复现证据","priority":0,"status":"done","dependsOn":[],"reads":["docs/production/AUDIT.md","docs/production/DECISIONS.md","docs/production/QUALITY.md"],"package":"docs/production/WORK_PACKAGES.md#r00","humanGate":false,"evidence":["docs/production/evidence/R00-2026-09-30.json"]},
-    {"id":"R01","title":"唯一领域命令与完整状态","priority":1,"status":"done","dependsOn":["R00"],"reads":["docs/production/ENGINEERING.md","docs/production/RULES.md"],"package":"docs/production/WORK_PACKAGES.md#r01","humanGate":false,"evidence":["docs/production/evidence/R01-2026-09-30.json"]},
-    {"id":"R02","title":"r2计分角色与内容schema","priority":2,"status":"done","dependsOn":["R01"],"reads":["docs/production/RULES.md","docs/production/CONTENT.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#r02","humanGate":false,"evidence":["docs/production/evidence/R02-2026-10-01.json"]},
-    {"id":"R03","title":"出弃牌与构筑经济","priority":3,"status":"done","dependsOn":["R02"],"reads":["docs/production/RULES.md","docs/production/ENGINEERING.md","docs/production/UX.md"],"package":"docs/production/WORK_PACKAGES.md#r03","humanGate":false,"evidence":["docs/production/evidence/R03-2026-10-01.json"]},
-    {"id":"R04","title":"存档恢复与演出取消","priority":4,"status":"done","dependsOn":["R03"],"reads":["docs/production/ENGINEERING.md","docs/production/UX.md","docs/production/QUALITY.md"],"package":"docs/production/WORK_PACKAGES.md#r04","humanGate":false,"evidence":["docs/production/evidence/R04-2026-10-01.json"]},
-    {"id":"R05","title":"真实移动布局与操作","priority":5,"status":"done","dependsOn":["R04"],"reads":["docs/production/UX.md","docs/production/ART.md","docs/production/ENGINEERING.md"],"package":"docs/production/WORK_PACKAGES.md#r05","humanGate":false,"completionScope":"Automatic layout/input subitems only; physical device acceptance NOT_RUN","evidence":["docs/production/evidence/R05-2026-10-01.json"]},
-    {"id":"R06","title":"CI与执行门禁","priority":6,"status":"done","dependsOn":["R05"],"reads":["docs/production/QUALITY.md","docs/production/ENGINEERING.md","docs/production/AUDIT.md"],"package":"docs/production/WORK_PACKAGES.md#r06","humanGate":false,"evidence":["docs/production/evidence/R06-2026-10-01.json"]},
-    {"id":"V00","title":"24牌两章核心灰盒","priority":10,"status":"done","dependsOn":["R06"],"reads":["docs/production/PRODUCT.md","docs/production/CONTENT.md","docs/production/RULES.md","docs/production/QUALITY.md"],"package":"docs/production/WORK_PACKAGES.md#v00","humanGate":false,"completionScope":"Engineering graybox only; V01 human/physical-device approval NOT_RUN","evidence":["docs/production/evidence/V00-2026-10-01.json"]},
-    {"id":"P00","title":"可实测版本：选角商店、出弃牌排序、音画与流程整改","priority":9,"status":"done","dependsOn":["V00"],"reads":["docs/production/WORK_PACKAGES.md","docs/production/UX.md","docs/production/ART.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#p00","humanGate":false,"completionScope":"A runnable review candidate; physical Android operation, visual approval and gameplay acceptance remain separate human gates.","steps":[{"id":"P00.1","title":"核对真实版本并收缩重复检查","owner":"root","status":"done"},{"id":"P00.2","title":"选角确认与商店买卖流程","owner":"flow agent","status":"done"},{"id":"P00.3","title":"牌桌弃牌、排序、牌区与可读计分","owner":"table agent","status":"done"},{"id":"P00.4","title":"统一视觉小套件与原创声音","owner":"art/audio agent","status":"done"},{"id":"P00.5","title":"首次操作指引与胜败复盘","owner":"flow agent","status":"done"},{"id":"P00.6","title":"实际构建走查并交付main","owner":"root","status":"done"}],"evidence":["docs/production/evidence/P00-2026-10-01.json"]},
-    {"id":"P01","title":"精致牌桌第二轮：大丑牌卡面、空槽与计分联动","priority":11,"status":"done","dependsOn":["P00"],"reads":["docs/production/UX.md","docs/production/ART.md","docs/production/ENGINEERING.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#p01","humanGate":false,"completionScope":"The requested next playable presentation candidate; not formal visual or gameplay approval.","steps":[{"id":"P01.1","title":"对照官方画面拆解材质、层级与事件时序","owner":"root","status":"done"},{"id":"P01.2","title":"后台商店、真实牌形槽位与图案","owner":"flow/table agents","status":"done"},{"id":"P01.3","title":"来源牌抖动、光束、音效和数字命中同步","owner":"table agent","status":"done"},{"id":"P01.4","title":"三种机制的原创卡面金样接入","owner":"art agent/root","status":"done"},{"id":"P01.5","title":"一次构建、实际画面走查与main交付","owner":"root","status":"done"}],"evidence":["docs/production/evidence/P01-2026-10-01.json"]},
-    {"id":"P02","title":"角色入口修复与真实构筑路线","priority":12,"status":"done","dependsOn":["P01"],"reads":["docs/production/RULES.md","docs/production/PRODUCT.md","docs/production/ENGINEERING.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#p02","humanGate":false,"completionScope":"A targeted starting-profile repair, not six-role balance acceptance.","evidence":["docs/production/evidence/P02-2026-10-01.json"]},
-    {"id":"P03","title":"接续美术与交互打磨，暂停后续内容","priority":13,"status":"done","dependsOn":["P02","A00"],"reads":["docs/production/ART.md","docs/production/UX.md","docs/production/ENGINEERING.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#p03","humanGate":false,"completionScope":"Current-build presentation candidate only. Later development frozen; physical Android, listening and human visual approval remain separate.","evidence":["docs/production/evidence/P03-2026-10-01.json"],"steps":[{"id":"P03.1","title":"接管与失败金样","owner":"root","status":"done"},{"id":"P03.2","title":"舞台与卡面工艺","owner":"root / art-audio agent","status":"done"},{"id":"P03.3","title":"开场与流程交互","owner":"root / flow agent","status":"done"},{"id":"P03.4","title":"候选main交付","owner":"root","status":"done"}]},
-    {"id":"V01","title":"独立真人核心体验专题验证","priority":23,"status":"blocked","dependsOn":["V00","A02"],"reads":["docs/production/QUALITY.md","docs/production/UX.md","docs/production/PRODUCT.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#v01","humanGate":true,"blockedReason":"The 8–12-person study and explicit study acceptance have not run. D21 separates it from owner A01 Android acceptance: it does not block approved content engineering, remains required before L00, and cannot be marked PASS by AI or single-owner feedback.","evidence":["docs/production/evidence/V01-2026-10-01.json"]},
-    {"id":"A00","title":"旧资产盘点与只读校验","priority":20,"status":"done","dependsOn":["R05"],"reads":["docs/production/ART.md","docs/production/ENGINEERING.md","docs/production/QUALITY.md"],"package":"docs/production/WORK_PACKAGES.md#a00","humanGate":false,"completionScope":"Inventory/read-only CLI adoption; visual approval NOT_GRANTED, allowlist empty.","evidence":["docs/production/evidence/A00-2026-10-01.json","docs/assets/maintenance-2026-10-02.json","docs/assets/integration-2026-10-02.json"],"maintenance":{"status":"done","scope":"Bounded Linux rebuild and unused P0 preview cleanup; integrated on D36 main under explicit normal-push authorization; P08 remains current."}},
-    {"id":"A01","title":"当前候选视觉与Android体验批准","priority":21,"status":"done","dependsOn":["P00","P01","P02","A00","P03","P04","P05","P06","P07"],"reads":["docs/production/ART.md","docs/production/UX.md","docs/production/DECISIONS.md","docs/production/QUALITY.md"],"package":"docs/production/WORK_PACKAGES.md#a01","humanGate":true,"evidence":["docs/production/evidence/A01-2026-10-01-plan.json","docs/production/evidence/A01-2026-10-02.json"],"completionScope":"Owner reports human verification completed and authorizes engineering continuation; pacing/fire corrections transferred to A02. No formal multi-player, iPhone or A03 approval."},
-    {"id":"A02","title":"金样运行时接入","priority":22,"status":"done","dependsOn":["A01"],"reads":["docs/production/ART.md","docs/production/UX.md","docs/production/ENGINEERING.md","docs/production/QUALITY.md"],"package":"docs/production/WORK_PACKAGES.md#a02","humanGate":false,"evidence":["docs/production/evidence/A02-2026-10-02.json"],"steps":[{"id":"A02.1","title":"渐进节奏失败用例与逐来源实现","status":"done"},{"id":"A02.2","title":"分层火焰与降级清理","status":"done"},{"id":"A02.3","title":"子路径、资源失败和预算核对","status":"done"},{"id":"A02.4","title":"自然局证据、文档和main交付","status":"done"}],"completionScope":"D22 presentation and runtime integration, proportional real checks; formal physical performance/listening/source approval remain separate."},
-    {"id":"C00","title":"六角色与累计48牌","priority":30,"status":"done","dependsOn":["A02"],"reads":["docs/production/CONTENT.md","docs/production/RULES.md","docs/production/ENGINEERING.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#c00","humanGate":false,"steps":[{"id":"C00.1","title":"核对第二批24个ID和能力合同","status":"done"},{"id":"C00.2","title":"重触发、退款、救场与四张顺子","status":"done"},{"id":"C00.3","title":"首购、成长买卖、销毁与六角色入口","status":"done"},{"id":"C00.4","title":"自然局操作、恢复和main交付","status":"done"}],"evidence":["docs/production/evidence/C00-2026-10-02.json"],"completionScope":"48-card engineering candidate with deterministic lifecycle/economy/source trace and actual desktop/touch/restore checks; new24 art remains a labeled mechanism fallback pending A03, physical and formal human acceptance remain separate."},
-    {"id":"C01","title":"塔罗星球幻灵、牌组改造、增强版次与道具","priority":31,"status":"done","dependsOn":["C00"],"reads":["docs/production/CONTENT.md","docs/production/RULES.md","docs/production/UX.md","docs/production/ENGINEERING.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#c01","humanGate":false,"steps":[{"id":"C01.1","title":"家族条目、获取池、数值及叠加合同定稿","status":"done"},{"id":"C01.2","title":"安全目标事务、内容版本与存档迁移","status":"done"},{"id":"C01.3","title":"塔罗和持久牌组改造","status":"done"},{"id":"C01.4","title":"12牌型的星球升级","status":"done"},{"id":"C01.5","title":"六既有增强和幸运牌","status":"done"},{"id":"C01.6","title":"闪箔全息多彩三版次","status":"done"},{"id":"C01.7","title":"幻灵代价收益和随机边界","status":"done"},{"id":"C01.8","title":"12长期道具、容量和经济叠加","status":"done"},{"id":"C01.9","title":"来源音画、组合恢复与main交付","status":"done"}],"evidence":["docs/production/evidence/C01-2026-10-02.json"],"completionScope":"C01 engineering package on current48/two-chapter scope. Owner D22/D25 acceptance remains PASS. Actual phone/background visibility, long listening, formal future A03 art, balance and maximum72-chain checks remain explicitly separate; no AI human approval."},
-    {"id":"C02","title":"72牌与组合完整性","priority":32,"status":"done","dependsOn":["C01"],"reads":["docs/production/CONTENT.md","docs/production/RULES.md","docs/production/QUALITY.md","docs/production/ENGINEERING.md","docs/production/UX.md"],"package":"docs/production/WORK_PACKAGES.md#c02","humanGate":false,"steps":[{"id":"C02.1","title":"最后24个ID、能力依赖与版本合同","status":"done"},{"id":"C02.2","title":"持牌增强、概率、奖品与持久成长","status":"done"},{"id":"C02.3","title":"跨族调序与重触发极端金样","status":"done"},{"id":"C02.4","title":"72牌自然获取、显示、恢复及main交付（D27表现里程碑）","status":"done"}],"evidence":["docs/production/evidence/C02-2026-10-02.json","docs/production/evidence/C02-closeout-2026-10-02.json"],"completionScope":"72-card engineering candidate: all four steps complete, exact scoped91-event maximum attained through shared commands, production playback and deterministic interruption/recovery verified. A03 full illustration approval, physical listening/performance and formal human studies remain separate; prior owner A01/D22/D25 acceptance persists.","deliveredMilestone":{"id":"C02.4-D27","title":"两排序两主操作、按钮余次、两档热流和低沉火声","status":"done","codeCommit":"8949d14001f985db5ed4e940c40a3847f343e3fe","evidence":"docs/production/evidence/C02-2026-10-02.json"}},
-    {"id":"C03","title":"八章盲注、16Boss限制与无尽","priority":33,"status":"done","dependsOn":["C02"],"reads":["docs/production/RULES.md","docs/production/CONTENT.md","docs/production/UX.md","docs/production/ENGINEERING.md"],"package":"docs/production/WORK_PACKAGES.md#c03","humanGate":false,"steps":[{"id":"C03.1","title":"八章目标和公开盲注参数","status":"done","completedScope":"24 normal stages, chapter-locked public16Boss/parameters and pool-exhaustion fallback; strict v8 history/save."},{"id":"C03.2","title":"16Boss失效集合和防软锁","status":"done","completedScope":"All16 shared-command rules; disabled-card legal play/F07 rescue, finite source restore and updated envelope."},{"id":"C03.3","title":"开场提示、牌面理由、调序和应对","status":"done","completedScope":"All16 short reason/response maps; compiled mobile slot/seal/reversal/wager/target and restore checks."},{"id":"C03.4","title":"跳场、八章胜败、无尽及恢复","status":"done","completedScope":"Explicit v9 normal qualification, voluntary ContinueEndless, exact final-ceil targets, finite mode-aware save/resources, duplicate/retry/source preservation and real compiled24-stage/win/cancel/endless/loss/new-game UI route. Controlled build is not natural acquisition/balance.","acquisitionScope":"S03/S04/S08 remain eligible in legal endless shops; same finite mode target lookup, no RNG consumed by pool inspection."}],"evidence":["docs/production/evidence/C03-presentation-2026-10-02.json","docs/production/evidence/C03-core-2026-10-02.json","docs/production/evidence/C03-endless-2026-10-02.json"],"insertedFix":{"id":"C03-PRESENTATION-20261002","title":"用户插入：竖屏选牌不遮挡、一次失败声、熊熊外框火","status":"done","scope":"Small presentation correction; keep C03.1–4 and all dependencies unchanged."}},
-    {"id":"C04","title":"模式图鉴教程与节目单","priority":34,"status":"blocked","blockedReason":"D32 closeout source is published, but GitHub CI browser exceeded 10m and was cancelled (36989963670). Local checks passed; full release validation is not green. Execution paused for dot takeover; source and deployment unchanged.","dependsOn":["C03"],"reads":["docs/production/PRODUCT.md","docs/production/RULES.md","docs/production/UX.md","docs/production/QUALITY.md","docs/production/ENGINEERING.md","docs/production/DECISIONS.md"],"package":"docs/production/WORK_PACKAGES.md#c04","humanGate":false,"completionScope":"D32 minimal C04.2 v10 runtime/save closure only; remaining tutorial/library/history/full-flow acceptance is incomplete and execution is paused for dot takeover.","steps":[{"id":"C04.1","title":"模式、节目单、四难度与十二挑战配置合同","status":"done"},{"id":"C04.2","title":"真实模式入口与存档隔离","status":"in_progress"},{"id":"C04.3","title":"可跳教程、图鉴与真实高光历史","status":"planned"},{"id":"C04.4","title":"完整流程、错误状态与main交付","status":"planned"}],"evidence":["docs/production/evidence/C04-config-2026-10-02.json","docs/production/evidence/C04-closeout-2026-10-02.json"]},
-    {"id":"A03","title":"正式素材与音画量产","priority":40,"status":"planned","dependsOn":["A02","C03"],"reads":["docs/production/ART.md","docs/production/UX.md","docs/production/CONTENT.md","docs/production/QUALITY.md"],"package":"docs/production/WORK_PACKAGES.md#a03","humanGate":true,"completionScope":"All in-scope small batches require explicit human visual approval and source/runtime checks; making assets or passing CLI alone cannot close this package.","steps":[{"id":"A03.1","title":"认可方向、源规格与未来缺项","status":"planned"},{"id":"A03.2","title":"小批制作、来源和逐批批准","status":"planned"},{"id":"A03.3","title":"资产注册、音画接入与资源降级","status":"planned"},{"id":"A03.4","title":"全部批次批准与实际音画核对","status":"planned"}],"evidence":["docs/assets/coin-reward-2026-10-02.json","docs/assets/coin-reward-integration-2026-10-02.json"],"candidate":{"id":"coin-reward","status":"source_assets_integrated_runtime_not_wired","scope":"Existing-GLB16-frame coin candidate integrated under explicit main-push authorization; human visual approval and runtime integration remain outstanding."}},
-    {"id":"B00","title":"全局平衡与独立留出","priority":41,"status":"planned","dependsOn":["C04"],"reads":["docs/production/QUALITY.md","docs/production/CONTENT.md","docs/production/RULES.md","docs/production/ENGINEERING.md"],"package":"docs/production/WORK_PACKAGES.md#b00","humanGate":false,"evidence":[]},
-    {"id":"B01","title":"完整体验与性能打磨","priority":42,"status":"planned","dependsOn":["B00","A03"],"reads":["docs/production/QUALITY.md","docs/production/UX.md","docs/production/ART.md"],"package":"docs/production/WORK_PACKAGES.md#b01","humanGate":false,"evidence":[]},
-    {"id":"L00","title":"候选构建与回退演练","priority":50,"status":"planned","dependsOn":["B01","V01"],"reads":["docs/production/QUALITY.md","docs/production/ENGINEERING.md","docs/production/PRODUCT.md"],"package":"docs/production/WORK_PACKAGES.md#l00","humanGate":false,"evidence":[]},
-    {"id":"L01","title":"最终真人对标与签收","priority":51,"status":"planned","dependsOn":["L00"],"reads":["docs/production/QUALITY.md","docs/production/UX.md","docs/production/PRODUCT.md"],"package":"docs/production/WORK_PACKAGES.md#l01","humanGate":true,"evidence":[]},
-    {"id":"L02","title":"发布或可部署交付","priority":52,"status":"planned","dependsOn":["L01"],"reads":["docs/production/QUALITY.md","docs/production/ENGINEERING.md"],"package":"docs/production/WORK_PACKAGES.md#l02","humanGate":false,"evidence":[]}
+    {
+      "id": "P08",
+      "title": "全游戏手绘墨线与纸色体验主线",
+      "priority": 35,
+      "status": "in_progress",
+      "dependsOn": [
+        "A02",
+        "C03"
+      ],
+      "reads": [
+        "docs/production/UX.md",
+        "docs/production/ART.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#p08",
+      "humanGate": false,
+      "completionScope": "Playable UI/state/loading candidate authorized for normal main push after checks (D34). D35-D38 layout, rarity/recovery and hand interaction remain included. D39 adds five-card condition/benefit clarity, event-based preview/recap and the explicitly requested inherited WebKit input-clock correction; local 29-check five-card browser validation, WebKit minimal A/B and 1735-test aggregate passed. Remote CI reported separately. No content/RNG/save/art changes; f04/e07 artwork remains excluded pending approved source publication. Physical OnePlus, human comprehension and visual acceptance remain outstanding. D40 scopes detail-request cancellation to active consumers; 56 focused tests, five browser contexts and frozen-source1742-test aggregate passed. D41 adds only a committed-total, one-shot800ms reward coin using the integrated atlas, deferred loading and owned cancellation; save/RNG unchanged, 34 focused tests,9 browser contexts/48 checks and frozen-source1761-test aggregate passed; remote CI recorded separately. D42 adds only hand input-modality focus, rounded hand/preview feedback and first-sort noninteractive sweep teaching with independent UI preferences; no JQK art or run-save changes. 62 focused tests,3 browser contexts/18 checks and frozen-source1770-test aggregate passed; final remote CI recorded separately. D43 adds scoped native pointer highlight suppression, deterministic inclusive-target/2x/5x continuous fire, bounded one-shot ignition and fresh30%/80% audio with saved values preserved. Actual continuous input frames and natural clear/cleanup/preference routes pass; frozen-source1778-test aggregate passed; release evidence records remaining software WebGL/mobile and human limits. D44 latest authorization supersedes the old whole-deck art pause; first shared-layout/theme batch locally delivered on dot/d44-layout, frozen a3f7332 with1786-test/content/build/Canvas smoke/plan PASS. Whole-game artwork/device acceptance remains in_progress. New pictures pending independent art SHA; Initial local boundary superseded by explicit publication authorization; ca4104f published. Exact CI failed WebKit mobile index/pip intersection. D44 gate fix9c1047a reproduces font fallback bounds and clears measured rows without changing original assertion;26 focused tests and frozen WebKit desktop/mobile browser aggregate pass. User authorizes normal fast-forward main push after affected checks and unchanged remote; no new art or deployment changes. D44 two-row follow-up:10–14 visible at360/390x740, independent22px lift reserves, vertical-first select/cancel and interruption ownership; stable seats/order/max5.115 focused checks and frozen77b7e72 aggregate1796 tests/content/type/build/Canvas smoke/plan pass; actual Chromium/WebKit both widths9–14 checks pass. ResizeObserver delivery is awaited, strict geometry assertions preserved. New art and physical/GPU acceptance remain outstanding; authorized normal main push and exact newCI terminal follow-up. P08 local-fire follow-up: candidate a423dc5,44 affected tests and1800 frozen aggregate/content/type/build/Canvas smoke/plan PASS; actual static eight total routes plus9/14 input regression. Full played preview preserved at104px and hand223.2px; short/two-row fire24px. Two unchanged candidate PNGs are explicit user-authorized Git evidence; independent visual/device approval pending. Three-zone/shop/Joker-scale feedback recorded for later scope review, no implementation this round. P08 batch1 authorized complete table/three-offer shop; preceding flame focus technically passed but independent aesthetics REJECTED. Batch1 implemented and locally verified: frozen584fe4b1805 tests/content/type/build/Canvas smoke/plan PASS; natural600/1200/5589 at1x/2x/4x, reduced0impulse, all3 shop/cancel/legal purchase/poor/full, Chromium/WebKit360/390 nine14 input, fast-forward/duplicate/recap/restore pass. Eleven actual PNGs viewed and archived; desktop redundant header overlap corrected. Aesthetics/device PENDING. New art NOT_INTEGRATED. Exact remote publication/CI reported separately; batch2/3 remain the same P08 plan.",
+      "evidence": [
+        "docs/production/evidence/P08-table-shop-2026-10-03.json",
+        "docs/production/evidence/P08-flame-focus-2026-10-03.json",
+        "docs/production/evidence/D44-two-row-2026-10-03.json",
+        "docs/production/evidence/D44-gate-2026-10-03.json",
+        "docs/production/evidence/D44-2026-10-03.json",
+        "docs/production/evidence/D43-2026-10-03.json",
+        "docs/production/evidence/F09-2026-10-02.json",
+        "docs/production/evidence/F09-release-2026-10-02.json",
+        "docs/production/evidence/D35-2026-10-02.json",
+        "docs/production/evidence/D36-2026-10-02.json",
+        "docs/production/evidence/D37-2026-10-02.json",
+        "docs/production/evidence/D38-2026-10-02.json",
+        "docs/production/evidence/D39-2026-10-02.json",
+        "docs/production/evidence/D40-2026-10-02.json",
+        "docs/production/evidence/D41-2026-10-02.json",
+        "docs/production/evidence/D42-2026-10-02.json"
+      ]
+    },
+    {
+      "id": "P07",
+      "title": "ChatGPT Images 2.5 东方人物与全当前牌面",
+      "priority": 17,
+      "status": "done",
+      "dependsOn": [
+        "P06"
+      ],
+      "reads": [
+        "docs/production/ART.md",
+        "docs/production/UX.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#p07",
+      "humanGate": false,
+      "completionScope": "Current six-character/24-Joker appearance candidate only; formal human/device/audio approval not granted.",
+      "steps": [
+        {
+          "id": "P07.1",
+          "title": "东方方向与真实入口",
+          "status": "done"
+        },
+        {
+          "id": "P07.2",
+          "title": "六个开局角色",
+          "status": "done"
+        },
+        {
+          "id": "P07.3",
+          "title": "当前24张大丑牌",
+          "status": "done"
+        },
+        {
+          "id": "P07.4",
+          "title": "接续与删减",
+          "status": "done"
+        },
+        {
+          "id": "P07.5",
+          "title": "真实画面与main交付",
+          "status": "done"
+        }
+      ],
+      "evidence": [
+        "docs/production/evidence/P07-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "P06",
+      "title": "两路音量、完整小夜曲与当前牌池插画",
+      "priority": 16,
+      "status": "done",
+      "dependsOn": [
+        "P05"
+      ],
+      "reads": [
+        "docs/production/UX.md",
+        "docs/production/ART.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#p06",
+      "humanGate": false,
+      "completionScope": "Current24-card presentation candidate only; no formal human visual, physical Android or listening approval.",
+      "steps": [
+        {
+          "id": "P06.1",
+          "title": "诉求与缺项对齐",
+          "status": "done"
+        },
+        {
+          "id": "P06.2",
+          "title": "两路音量",
+          "status": "done"
+        },
+        {
+          "id": "P06.3",
+          "title": "真实钢琴录音与事件SFX",
+          "status": "done"
+        },
+        {
+          "id": "P06.4",
+          "title": "前半8插画",
+          "status": "done"
+        },
+        {
+          "id": "P06.5",
+          "title": "后半8插画",
+          "status": "done"
+        },
+        {
+          "id": "P06.6",
+          "title": "全牌池视觉整合",
+          "status": "done"
+        },
+        {
+          "id": "P06.7",
+          "title": "必要验证与main交付",
+          "status": "done"
+        }
+      ],
+      "evidence": [
+        "docs/production/evidence/P06-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "P05",
+      "title": "阻断蓝屏、逐来源演出、燃烧音乐与精致卡面",
+      "priority": 15,
+      "status": "done",
+      "dependsOn": [
+        "P04"
+      ],
+      "reads": [
+        "docs/production/UX.md",
+        "docs/production/ART.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#p05",
+      "humanGate": false,
+      "completionScope": "Presentation engineering candidate only; physical-device/listening/visual acceptance NOT_GRANTED. New gameplay frozen.",
+      "steps": [
+        {
+          "id": "P05.1",
+          "title": "阻断蓝屏与失败金样",
+          "owner": "root",
+          "status": "done"
+        },
+        {
+          "id": "P05.2",
+          "title": "逐来源计分演出",
+          "owner": "root",
+          "status": "done"
+        },
+        {
+          "id": "P05.3",
+          "title": "火焰与肖邦改编音频",
+          "owner": "root / audio agent",
+          "status": "done"
+        },
+        {
+          "id": "P05.4",
+          "title": "当前卡面徽章与精致详情",
+          "owner": "art / flow / root",
+          "status": "done"
+        },
+        {
+          "id": "P05.5",
+          "title": "开场限制和未来计划核对",
+          "owner": "flow / root",
+          "status": "done"
+        },
+        {
+          "id": "P05.6",
+          "title": "失败后的鼓励与真实高光",
+          "owner": "flow agent",
+          "status": "done"
+        },
+        {
+          "id": "P05.7",
+          "title": "实际操作证据与main交付",
+          "owner": "root",
+          "status": "done"
+        }
+      ],
+      "evidence": [
+        "docs/production/evidence/P05-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "P04",
+      "title": "移动体验、剩余机会与爆分音画整改",
+      "priority": 14,
+      "status": "done",
+      "dependsOn": [
+        "P03"
+      ],
+      "reads": [
+        "docs/production/UX.md",
+        "docs/production/ART.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#p04",
+      "humanGate": false,
+      "completionScope": "Targeted engineering candidate only: mobile readability/input, exact opportunity feedback and original over-target audio. Physical Android operation, listening and human visual reacceptance are NOT_RUN / NOT_GRANTED.",
+      "steps": [
+        {
+          "id": "P04.1",
+          "title": "真机失败金样与原因",
+          "owner": "root",
+          "status": "done"
+        },
+        {
+          "id": "P04.2",
+          "title": "清晰文字与10角标",
+          "owner": "root",
+          "status": "done"
+        },
+        {
+          "id": "P04.3",
+          "title": "固定菜单与横屏全屏",
+          "owner": "table agent",
+          "status": "done"
+        },
+        {
+          "id": "P04.4",
+          "title": "牌桌与商店信息主次",
+          "owner": "root / flow agent",
+          "status": "done"
+        },
+        {
+          "id": "P04.5",
+          "title": "次数与真实爆分联动",
+          "owner": "root",
+          "status": "done"
+        },
+        {
+          "id": "P04.6",
+          "title": "原创音乐与混音",
+          "owner": "audio agent",
+          "status": "done"
+        },
+        {
+          "id": "P04.7",
+          "title": "实际操作与main交付",
+          "owner": "root",
+          "status": "done"
+        }
+      ],
+      "evidence": [
+        "docs/production/evidence/P04-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "R00",
+      "title": "采用基线与复现证据",
+      "priority": 0,
+      "status": "done",
+      "dependsOn": [],
+      "reads": [
+        "docs/production/AUDIT.md",
+        "docs/production/DECISIONS.md",
+        "docs/production/QUALITY.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#r00",
+      "humanGate": false,
+      "evidence": [
+        "docs/production/evidence/R00-2026-09-30.json"
+      ]
+    },
+    {
+      "id": "R01",
+      "title": "唯一领域命令与完整状态",
+      "priority": 1,
+      "status": "done",
+      "dependsOn": [
+        "R00"
+      ],
+      "reads": [
+        "docs/production/ENGINEERING.md",
+        "docs/production/RULES.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#r01",
+      "humanGate": false,
+      "evidence": [
+        "docs/production/evidence/R01-2026-09-30.json"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "r2计分角色与内容schema",
+      "priority": 2,
+      "status": "done",
+      "dependsOn": [
+        "R01"
+      ],
+      "reads": [
+        "docs/production/RULES.md",
+        "docs/production/CONTENT.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#r02",
+      "humanGate": false,
+      "evidence": [
+        "docs/production/evidence/R02-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "出弃牌与构筑经济",
+      "priority": 3,
+      "status": "done",
+      "dependsOn": [
+        "R02"
+      ],
+      "reads": [
+        "docs/production/RULES.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/UX.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#r03",
+      "humanGate": false,
+      "evidence": [
+        "docs/production/evidence/R03-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "存档恢复与演出取消",
+      "priority": 4,
+      "status": "done",
+      "dependsOn": [
+        "R03"
+      ],
+      "reads": [
+        "docs/production/ENGINEERING.md",
+        "docs/production/UX.md",
+        "docs/production/QUALITY.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#r04",
+      "humanGate": false,
+      "evidence": [
+        "docs/production/evidence/R04-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "真实移动布局与操作",
+      "priority": 5,
+      "status": "done",
+      "dependsOn": [
+        "R04"
+      ],
+      "reads": [
+        "docs/production/UX.md",
+        "docs/production/ART.md",
+        "docs/production/ENGINEERING.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#r05",
+      "humanGate": false,
+      "completionScope": "Automatic layout/input subitems only; physical device acceptance NOT_RUN",
+      "evidence": [
+        "docs/production/evidence/R05-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "CI与执行门禁",
+      "priority": 6,
+      "status": "done",
+      "dependsOn": [
+        "R05"
+      ],
+      "reads": [
+        "docs/production/QUALITY.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/AUDIT.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#r06",
+      "humanGate": false,
+      "evidence": [
+        "docs/production/evidence/R06-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "V00",
+      "title": "24牌两章核心灰盒",
+      "priority": 10,
+      "status": "done",
+      "dependsOn": [
+        "R06"
+      ],
+      "reads": [
+        "docs/production/PRODUCT.md",
+        "docs/production/CONTENT.md",
+        "docs/production/RULES.md",
+        "docs/production/QUALITY.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#v00",
+      "humanGate": false,
+      "completionScope": "Engineering graybox only; V01 human/physical-device approval NOT_RUN",
+      "evidence": [
+        "docs/production/evidence/V00-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "P00",
+      "title": "可实测版本：选角商店、出弃牌排序、音画与流程整改",
+      "priority": 9,
+      "status": "done",
+      "dependsOn": [
+        "V00"
+      ],
+      "reads": [
+        "docs/production/WORK_PACKAGES.md",
+        "docs/production/UX.md",
+        "docs/production/ART.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#p00",
+      "humanGate": false,
+      "completionScope": "A runnable review candidate; physical Android operation, visual approval and gameplay acceptance remain separate human gates.",
+      "steps": [
+        {
+          "id": "P00.1",
+          "title": "核对真实版本并收缩重复检查",
+          "owner": "root",
+          "status": "done"
+        },
+        {
+          "id": "P00.2",
+          "title": "选角确认与商店买卖流程",
+          "owner": "flow agent",
+          "status": "done"
+        },
+        {
+          "id": "P00.3",
+          "title": "牌桌弃牌、排序、牌区与可读计分",
+          "owner": "table agent",
+          "status": "done"
+        },
+        {
+          "id": "P00.4",
+          "title": "统一视觉小套件与原创声音",
+          "owner": "art/audio agent",
+          "status": "done"
+        },
+        {
+          "id": "P00.5",
+          "title": "首次操作指引与胜败复盘",
+          "owner": "flow agent",
+          "status": "done"
+        },
+        {
+          "id": "P00.6",
+          "title": "实际构建走查并交付main",
+          "owner": "root",
+          "status": "done"
+        }
+      ],
+      "evidence": [
+        "docs/production/evidence/P00-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "P01",
+      "title": "精致牌桌第二轮：大丑牌卡面、空槽与计分联动",
+      "priority": 11,
+      "status": "done",
+      "dependsOn": [
+        "P00"
+      ],
+      "reads": [
+        "docs/production/UX.md",
+        "docs/production/ART.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#p01",
+      "humanGate": false,
+      "completionScope": "The requested next playable presentation candidate; not formal visual or gameplay approval.",
+      "steps": [
+        {
+          "id": "P01.1",
+          "title": "对照官方画面拆解材质、层级与事件时序",
+          "owner": "root",
+          "status": "done"
+        },
+        {
+          "id": "P01.2",
+          "title": "后台商店、真实牌形槽位与图案",
+          "owner": "flow/table agents",
+          "status": "done"
+        },
+        {
+          "id": "P01.3",
+          "title": "来源牌抖动、光束、音效和数字命中同步",
+          "owner": "table agent",
+          "status": "done"
+        },
+        {
+          "id": "P01.4",
+          "title": "三种机制的原创卡面金样接入",
+          "owner": "art agent/root",
+          "status": "done"
+        },
+        {
+          "id": "P01.5",
+          "title": "一次构建、实际画面走查与main交付",
+          "owner": "root",
+          "status": "done"
+        }
+      ],
+      "evidence": [
+        "docs/production/evidence/P01-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "P02",
+      "title": "角色入口修复与真实构筑路线",
+      "priority": 12,
+      "status": "done",
+      "dependsOn": [
+        "P01"
+      ],
+      "reads": [
+        "docs/production/RULES.md",
+        "docs/production/PRODUCT.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#p02",
+      "humanGate": false,
+      "completionScope": "A targeted starting-profile repair, not six-role balance acceptance.",
+      "evidence": [
+        "docs/production/evidence/P02-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "P03",
+      "title": "接续美术与交互打磨，暂停后续内容",
+      "priority": 13,
+      "status": "done",
+      "dependsOn": [
+        "P02",
+        "A00"
+      ],
+      "reads": [
+        "docs/production/ART.md",
+        "docs/production/UX.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#p03",
+      "humanGate": false,
+      "completionScope": "Current-build presentation candidate only. Later development frozen; physical Android, listening and human visual approval remain separate.",
+      "evidence": [
+        "docs/production/evidence/P03-2026-10-01.json"
+      ],
+      "steps": [
+        {
+          "id": "P03.1",
+          "title": "接管与失败金样",
+          "owner": "root",
+          "status": "done"
+        },
+        {
+          "id": "P03.2",
+          "title": "舞台与卡面工艺",
+          "owner": "root / art-audio agent",
+          "status": "done"
+        },
+        {
+          "id": "P03.3",
+          "title": "开场与流程交互",
+          "owner": "root / flow agent",
+          "status": "done"
+        },
+        {
+          "id": "P03.4",
+          "title": "候选main交付",
+          "owner": "root",
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "V01",
+      "title": "独立真人核心体验专题验证",
+      "priority": 23,
+      "status": "blocked",
+      "dependsOn": [
+        "V00",
+        "A02"
+      ],
+      "reads": [
+        "docs/production/QUALITY.md",
+        "docs/production/UX.md",
+        "docs/production/PRODUCT.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#v01",
+      "humanGate": true,
+      "blockedReason": "The 8–12-person study and explicit study acceptance have not run. D21 separates it from owner A01 Android acceptance: it does not block approved content engineering, remains required before L00, and cannot be marked PASS by AI or single-owner feedback.",
+      "evidence": [
+        "docs/production/evidence/V01-2026-10-01.json"
+      ]
+    },
+    {
+      "id": "A00",
+      "title": "旧资产盘点与只读校验",
+      "priority": 20,
+      "status": "done",
+      "dependsOn": [
+        "R05"
+      ],
+      "reads": [
+        "docs/production/ART.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/QUALITY.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#a00",
+      "humanGate": false,
+      "completionScope": "Inventory/read-only CLI adoption; visual approval NOT_GRANTED, allowlist empty.",
+      "evidence": [
+        "docs/production/evidence/A00-2026-10-01.json",
+        "docs/assets/maintenance-2026-10-02.json",
+        "docs/assets/integration-2026-10-02.json"
+      ],
+      "maintenance": {
+        "status": "done",
+        "scope": "Bounded Linux rebuild and unused P0 preview cleanup; integrated on D36 main under explicit normal-push authorization; P08 remains current."
+      }
+    },
+    {
+      "id": "A01",
+      "title": "当前候选视觉与Android体验批准",
+      "priority": 21,
+      "status": "done",
+      "dependsOn": [
+        "P00",
+        "P01",
+        "P02",
+        "A00",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07"
+      ],
+      "reads": [
+        "docs/production/ART.md",
+        "docs/production/UX.md",
+        "docs/production/DECISIONS.md",
+        "docs/production/QUALITY.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#a01",
+      "humanGate": true,
+      "evidence": [
+        "docs/production/evidence/A01-2026-10-01-plan.json",
+        "docs/production/evidence/A01-2026-10-02.json"
+      ],
+      "completionScope": "Owner reports human verification completed and authorizes engineering continuation; pacing/fire corrections transferred to A02. No formal multi-player, iPhone or A03 approval."
+    },
+    {
+      "id": "A02",
+      "title": "金样运行时接入",
+      "priority": 22,
+      "status": "done",
+      "dependsOn": [
+        "A01"
+      ],
+      "reads": [
+        "docs/production/ART.md",
+        "docs/production/UX.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/QUALITY.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#a02",
+      "humanGate": false,
+      "evidence": [
+        "docs/production/evidence/A02-2026-10-02.json"
+      ],
+      "steps": [
+        {
+          "id": "A02.1",
+          "title": "渐进节奏失败用例与逐来源实现",
+          "status": "done"
+        },
+        {
+          "id": "A02.2",
+          "title": "分层火焰与降级清理",
+          "status": "done"
+        },
+        {
+          "id": "A02.3",
+          "title": "子路径、资源失败和预算核对",
+          "status": "done"
+        },
+        {
+          "id": "A02.4",
+          "title": "自然局证据、文档和main交付",
+          "status": "done"
+        }
+      ],
+      "completionScope": "D22 presentation and runtime integration, proportional real checks; formal physical performance/listening/source approval remain separate."
+    },
+    {
+      "id": "C00",
+      "title": "六角色与累计48牌",
+      "priority": 30,
+      "status": "done",
+      "dependsOn": [
+        "A02"
+      ],
+      "reads": [
+        "docs/production/CONTENT.md",
+        "docs/production/RULES.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#c00",
+      "humanGate": false,
+      "steps": [
+        {
+          "id": "C00.1",
+          "title": "核对第二批24个ID和能力合同",
+          "status": "done"
+        },
+        {
+          "id": "C00.2",
+          "title": "重触发、退款、救场与四张顺子",
+          "status": "done"
+        },
+        {
+          "id": "C00.3",
+          "title": "首购、成长买卖、销毁与六角色入口",
+          "status": "done"
+        },
+        {
+          "id": "C00.4",
+          "title": "自然局操作、恢复和main交付",
+          "status": "done"
+        }
+      ],
+      "evidence": [
+        "docs/production/evidence/C00-2026-10-02.json"
+      ],
+      "completionScope": "48-card engineering candidate with deterministic lifecycle/economy/source trace and actual desktop/touch/restore checks; new24 art remains a labeled mechanism fallback pending A03, physical and formal human acceptance remain separate."
+    },
+    {
+      "id": "C01",
+      "title": "塔罗星球幻灵、牌组改造、增强版次与道具",
+      "priority": 31,
+      "status": "done",
+      "dependsOn": [
+        "C00"
+      ],
+      "reads": [
+        "docs/production/CONTENT.md",
+        "docs/production/RULES.md",
+        "docs/production/UX.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#c01",
+      "humanGate": false,
+      "steps": [
+        {
+          "id": "C01.1",
+          "title": "家族条目、获取池、数值及叠加合同定稿",
+          "status": "done"
+        },
+        {
+          "id": "C01.2",
+          "title": "安全目标事务、内容版本与存档迁移",
+          "status": "done"
+        },
+        {
+          "id": "C01.3",
+          "title": "塔罗和持久牌组改造",
+          "status": "done"
+        },
+        {
+          "id": "C01.4",
+          "title": "12牌型的星球升级",
+          "status": "done"
+        },
+        {
+          "id": "C01.5",
+          "title": "六既有增强和幸运牌",
+          "status": "done"
+        },
+        {
+          "id": "C01.6",
+          "title": "闪箔全息多彩三版次",
+          "status": "done"
+        },
+        {
+          "id": "C01.7",
+          "title": "幻灵代价收益和随机边界",
+          "status": "done"
+        },
+        {
+          "id": "C01.8",
+          "title": "12长期道具、容量和经济叠加",
+          "status": "done"
+        },
+        {
+          "id": "C01.9",
+          "title": "来源音画、组合恢复与main交付",
+          "status": "done"
+        }
+      ],
+      "evidence": [
+        "docs/production/evidence/C01-2026-10-02.json"
+      ],
+      "completionScope": "C01 engineering package on current48/two-chapter scope. Owner D22/D25 acceptance remains PASS. Actual phone/background visibility, long listening, formal future A03 art, balance and maximum72-chain checks remain explicitly separate; no AI human approval."
+    },
+    {
+      "id": "C02",
+      "title": "72牌与组合完整性",
+      "priority": 32,
+      "status": "done",
+      "dependsOn": [
+        "C01"
+      ],
+      "reads": [
+        "docs/production/CONTENT.md",
+        "docs/production/RULES.md",
+        "docs/production/QUALITY.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/UX.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#c02",
+      "humanGate": false,
+      "steps": [
+        {
+          "id": "C02.1",
+          "title": "最后24个ID、能力依赖与版本合同",
+          "status": "done"
+        },
+        {
+          "id": "C02.2",
+          "title": "持牌增强、概率、奖品与持久成长",
+          "status": "done"
+        },
+        {
+          "id": "C02.3",
+          "title": "跨族调序与重触发极端金样",
+          "status": "done"
+        },
+        {
+          "id": "C02.4",
+          "title": "72牌自然获取、显示、恢复及main交付（D27表现里程碑）",
+          "status": "done"
+        }
+      ],
+      "evidence": [
+        "docs/production/evidence/C02-2026-10-02.json",
+        "docs/production/evidence/C02-closeout-2026-10-02.json"
+      ],
+      "completionScope": "72-card engineering candidate: all four steps complete, exact scoped91-event maximum attained through shared commands, production playback and deterministic interruption/recovery verified. A03 full illustration approval, physical listening/performance and formal human studies remain separate; prior owner A01/D22/D25 acceptance persists.",
+      "deliveredMilestone": {
+        "id": "C02.4-D27",
+        "title": "两排序两主操作、按钮余次、两档热流和低沉火声",
+        "status": "done",
+        "codeCommit": "8949d14001f985db5ed4e940c40a3847f343e3fe",
+        "evidence": "docs/production/evidence/C02-2026-10-02.json"
+      }
+    },
+    {
+      "id": "C03",
+      "title": "八章盲注、16Boss限制与无尽",
+      "priority": 33,
+      "status": "done",
+      "dependsOn": [
+        "C02"
+      ],
+      "reads": [
+        "docs/production/RULES.md",
+        "docs/production/CONTENT.md",
+        "docs/production/UX.md",
+        "docs/production/ENGINEERING.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#c03",
+      "humanGate": false,
+      "steps": [
+        {
+          "id": "C03.1",
+          "title": "八章目标和公开盲注参数",
+          "status": "done",
+          "completedScope": "24 normal stages, chapter-locked public16Boss/parameters and pool-exhaustion fallback; strict v8 history/save."
+        },
+        {
+          "id": "C03.2",
+          "title": "16Boss失效集合和防软锁",
+          "status": "done",
+          "completedScope": "All16 shared-command rules; disabled-card legal play/F07 rescue, finite source restore and updated envelope."
+        },
+        {
+          "id": "C03.3",
+          "title": "开场提示、牌面理由、调序和应对",
+          "status": "done",
+          "completedScope": "All16 short reason/response maps; compiled mobile slot/seal/reversal/wager/target and restore checks."
+        },
+        {
+          "id": "C03.4",
+          "title": "跳场、八章胜败、无尽及恢复",
+          "status": "done",
+          "completedScope": "Explicit v9 normal qualification, voluntary ContinueEndless, exact final-ceil targets, finite mode-aware save/resources, duplicate/retry/source preservation and real compiled24-stage/win/cancel/endless/loss/new-game UI route. Controlled build is not natural acquisition/balance.",
+          "acquisitionScope": "S03/S04/S08 remain eligible in legal endless shops; same finite mode target lookup, no RNG consumed by pool inspection."
+        }
+      ],
+      "evidence": [
+        "docs/production/evidence/C03-presentation-2026-10-02.json",
+        "docs/production/evidence/C03-core-2026-10-02.json",
+        "docs/production/evidence/C03-endless-2026-10-02.json"
+      ],
+      "insertedFix": {
+        "id": "C03-PRESENTATION-20261002",
+        "title": "用户插入：竖屏选牌不遮挡、一次失败声、熊熊外框火",
+        "status": "done",
+        "scope": "Small presentation correction; keep C03.1–4 and all dependencies unchanged."
+      }
+    },
+    {
+      "id": "C04",
+      "title": "模式图鉴教程与节目单",
+      "priority": 34,
+      "status": "blocked",
+      "blockedReason": "D32 closeout source is published, but GitHub CI browser exceeded 10m and was cancelled (36989963670). Local checks passed; full release validation is not green. Execution paused for dot takeover; source and deployment unchanged.",
+      "dependsOn": [
+        "C03"
+      ],
+      "reads": [
+        "docs/production/PRODUCT.md",
+        "docs/production/RULES.md",
+        "docs/production/UX.md",
+        "docs/production/QUALITY.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/DECISIONS.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#c04",
+      "humanGate": false,
+      "completionScope": "D32 minimal C04.2 v10 runtime/save closure only; remaining tutorial/library/history/full-flow acceptance is incomplete and execution is paused for dot takeover.",
+      "steps": [
+        {
+          "id": "C04.1",
+          "title": "模式、节目单、四难度与十二挑战配置合同",
+          "status": "done"
+        },
+        {
+          "id": "C04.2",
+          "title": "真实模式入口与存档隔离",
+          "status": "in_progress"
+        },
+        {
+          "id": "C04.3",
+          "title": "可跳教程、图鉴与真实高光历史",
+          "status": "planned"
+        },
+        {
+          "id": "C04.4",
+          "title": "完整流程、错误状态与main交付",
+          "status": "planned"
+        }
+      ],
+      "evidence": [
+        "docs/production/evidence/C04-config-2026-10-02.json",
+        "docs/production/evidence/C04-closeout-2026-10-02.json"
+      ]
+    },
+    {
+      "id": "A03",
+      "title": "正式素材与音画量产",
+      "priority": 40,
+      "status": "planned",
+      "dependsOn": [
+        "A02",
+        "C03"
+      ],
+      "reads": [
+        "docs/production/ART.md",
+        "docs/production/UX.md",
+        "docs/production/CONTENT.md",
+        "docs/production/QUALITY.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#a03",
+      "humanGate": true,
+      "completionScope": "All in-scope small batches require explicit human visual approval and source/runtime checks; making assets or passing CLI alone cannot close this package.",
+      "steps": [
+        {
+          "id": "A03.1",
+          "title": "认可方向、源规格与未来缺项",
+          "status": "planned"
+        },
+        {
+          "id": "A03.2",
+          "title": "小批制作、来源和逐批批准",
+          "status": "planned"
+        },
+        {
+          "id": "A03.3",
+          "title": "资产注册、音画接入与资源降级",
+          "status": "planned"
+        },
+        {
+          "id": "A03.4",
+          "title": "全部批次批准与实际音画核对",
+          "status": "planned"
+        }
+      ],
+      "evidence": [
+        "docs/assets/coin-reward-2026-10-02.json",
+        "docs/assets/coin-reward-integration-2026-10-02.json"
+      ],
+      "candidate": {
+        "id": "coin-reward",
+        "status": "source_assets_integrated_runtime_not_wired",
+        "scope": "Existing-GLB16-frame coin candidate integrated under explicit main-push authorization; human visual approval and runtime integration remain outstanding."
+      }
+    },
+    {
+      "id": "B00",
+      "title": "全局平衡与独立留出",
+      "priority": 41,
+      "status": "planned",
+      "dependsOn": [
+        "C04"
+      ],
+      "reads": [
+        "docs/production/QUALITY.md",
+        "docs/production/CONTENT.md",
+        "docs/production/RULES.md",
+        "docs/production/ENGINEERING.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#b00",
+      "humanGate": false,
+      "evidence": []
+    },
+    {
+      "id": "B01",
+      "title": "完整体验与性能打磨",
+      "priority": 42,
+      "status": "planned",
+      "dependsOn": [
+        "B00",
+        "A03"
+      ],
+      "reads": [
+        "docs/production/QUALITY.md",
+        "docs/production/UX.md",
+        "docs/production/ART.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#b01",
+      "humanGate": false,
+      "evidence": []
+    },
+    {
+      "id": "L00",
+      "title": "候选构建与回退演练",
+      "priority": 50,
+      "status": "planned",
+      "dependsOn": [
+        "B01",
+        "V01"
+      ],
+      "reads": [
+        "docs/production/QUALITY.md",
+        "docs/production/ENGINEERING.md",
+        "docs/production/PRODUCT.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#l00",
+      "humanGate": false,
+      "evidence": []
+    },
+    {
+      "id": "L01",
+      "title": "最终真人对标与签收",
+      "priority": 51,
+      "status": "planned",
+      "dependsOn": [
+        "L00"
+      ],
+      "reads": [
+        "docs/production/QUALITY.md",
+        "docs/production/UX.md",
+        "docs/production/PRODUCT.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#l01",
+      "humanGate": true,
+      "evidence": []
+    },
+    {
+      "id": "L02",
+      "title": "发布或可部署交付",
+      "priority": 52,
+      "status": "planned",
+      "dependsOn": [
+        "L01"
+      ],
+      "reads": [
+        "docs/production/QUALITY.md",
+        "docs/production/ENGINEERING.md"
+      ],
+      "package": "docs/production/WORK_PACKAGES.md#l02",
+      "humanGate": false,
+      "evidence": []
+    }
   ]
 }
