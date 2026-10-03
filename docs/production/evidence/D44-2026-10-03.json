@@ -1,0 +1,216 @@
+{
+  "taskId": "P08",
+  "task": "D44 first batch: shared ink/paper theme and responsive playable layout",
+  "date": "2026-10-03",
+  "status": "LOCAL_VALIDATION_PASS",
+  "baseCommit": "77d8305fe87008da933ff9c171bec9b775bd7ffa",
+  "testedCommit": "a3f7332986a01c460ee0f34306167ddcf436b3e2",
+  "branch": "dot/d44-layout",
+  "publication": "LOCAL_ONLY_NO_PUSH; parent coordinates release; main/deployment unchanged",
+  "localCodeCommits": [
+    "773c1d8c1bd379bbee02a61e7aafa9fad8db5a7a",
+    "96c9891f1c453b4550e1b97d5bab3c44edb25284",
+    "a3f7332986a01c460ee0f34306167ddcf436b3e2"
+  ],
+  "scope": "User approved whole-game hand-drawn ink/paper direction. This first batch implements shared UI/theme/layout only. Six characters, J/Q/K and f04/e07/f09 were reported produced and source-saved by user/parent; independent asset SHA and existing GitHub approval still pending. No new pictures integrated or restricted original sources accessed. Rules/RNG/score/save/audio/dependencies/deployment unchanged; no C04 or new gameplay.",
+  "baseline": {
+    "remoteMainAtStartAndEnd": "77d8305fe87008da933ff9c171bec9b775bd7ffa",
+    "dirtyWork": "clean at start; independent local branch; no existing work discarded",
+    "before": "shots/d44/before-77d8305/report.json",
+    "reproduction": "Known frozen baseline worktree independently reproduced nine-card pagination and844x360 net336/score22px collision. The four user screenshots do not show a revision and are not attributed to this SHA.",
+    "D43CI": "User confirmed exact77d8305 second CI rerun green; not rerun here."
+  },
+  "visibleChanges": [
+    "Paper#F3EADB, blue#3F606B, red#B8473A, ink#26313A; no runtime timber stage, metallic panel gradients or redundant landing/HUD panels. Thin procedural card borders and quiet press feedback; shared title/select/shop/result/dialog/tool/fullscreen surfaces.",
+    "360/390/430 nine cards:56x78.4/pitch36,72x100.8/pitch36.75,72x100.8/pitch41.75. 320 uses52x72.8/pitch31.5. All nine seats visible, complete rank/suit indices, original hit seats and fixed layer order; selected only lifts16px, scale1.",
+    "844x360 scoreboard80px versus baseline22; minimum allocation and real measured Text bounds, HUD sorting when spare height insufficient. Separate16px fire footer and8px outer gutter; safe-bottom12/844x300 handled.",
+    "Source flights terminate outside numeric cells; trail and packet subtract measured numeric areas. All fire texture/halo/ember layers share one CSS-world geometry mask; alpha shaping is only visual tone. No new DPR multiplication.",
+    "Numeric impacts bounded to actual available room/max1.08 instead of1.68. Long UI values compact without changing exact trace/save; source rows ellipsize at measured width.",
+    "Portrait HUD60px protects coin line from44px browser/menu buttons; owned Joker80px reserves name/benefit/rarity rows. Names ellipsize on one measured row; decorative motifs occupy only genuinely spare text space. Rare small text uses ink to retain >=4.5 contrast."
+  ],
+  "checks": {
+    "release": {
+      "report": "shots/d44/release-ci-accepted.json",
+      "log": "shots/d44/release-ci-accepted.log",
+      "testedCommit": "a3f7332986a01c460ee0f34306167ddcf436b3e2",
+      "unitTests": 1786,
+      "status": "PASS",
+      "steps": [
+        {
+          "name": "test",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 57562
+        },
+        {
+          "name": "verify:content",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 4780
+        },
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 15211
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 36254
+        },
+        {
+          "name": "production-plan",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 264
+        }
+      ],
+      "frozenBefore": {
+        "source": "0bb5ac70be866a6f4d60821ba90730ee91bcd592f11f0dee29035b6f8208f0a3",
+        "index": "5cd6ffb9455b6c5a06523b1c18796f9edcc2ca2f7fbb9de29aa0b1488a558b06",
+        "head": "a3f7332986a01c460ee0f34306167ddcf436b3e2",
+        "branch": "refs/heads/dot/d44-layout"
+      },
+      "frozenAfter": {
+        "source": "0bb5ac70be866a6f4d60821ba90730ee91bcd592f11f0dee29035b6f8208f0a3",
+        "index": "5cd6ffb9455b6c5a06523b1c18796f9edcc2ca2f7fbb9de29aa0b1488a558b06",
+        "head": "a3f7332986a01c460ee0f34306167ddcf436b3e2",
+        "branch": "refs/heads/dot/d44-layout"
+      },
+      "rendererBoundary": "External-only existing system Chromium adapter disables GPU/software-rasterizer for Canvas functional smoke. No tracked adapter, increased timeout or removed assertion."
+    },
+    "layout": {
+      "report": "shots/d44/after-complete/report.json",
+      "status": "PASS",
+      "contexts": 6,
+      "checks": 48,
+      "source": "Final geometry/GameScene code, pre-final CSS-only cleanup of tool/fullscreen colours. Frozen-candidate same-seed screenshots and native fullscreen independently repeated below.",
+      "coverage": "320–430 portrait,844x360,1280x720; natural d06 purchase for nine cards; native bidirectional slide select/cancel; five limit; original seat hits; single ninth tap; rank/suit sorting; state/RNG unchanged; repeated844x300/360/390 and390x640/844 resize; actual numeric/Joker/coin/DOM-control bounds."
+    },
+    "inputTransients": {
+      "report": "shots/d44/input-final/report.json",
+      "status": "PASS",
+      "renderedFrames": {
+        "PC": 153,
+        "touch": 248
+      },
+      "source": "773c1d8 preliminary frozen bundle; later compact layout affects positions only. Final smoke/layout/fullscreen retested. Original keyboard/native pointer/round feedback assertions retained; expected neutral edge reads theme colour."
+    },
+    "naturalScoreFire": {
+      "scores": [
+        "600",
+        "1200",
+        "5589"
+      ],
+      "tierThresholds": "unchanged inclusive target/2x/5x",
+      "portraitFinal": "shots/d44/fire-accepted-portrait/report.json",
+      "shortAndPC": "shots/d44/fire-frozen-finish/report.json",
+      "shortTier1Tier2": "shots/d44/fire-final-remaining/report.json (first2 runs PASS; third run interrupted in dev route)",
+      "844x360": "shots/d44/fire-v4/report.json (three844x360 runs PASS; later844x300 failed shop wrap)",
+      "safeBottom12": "shots/d44/safe-final/report.json",
+      "reducedFinal": "shots/d44/reduced-accepted/report.json",
+      "reducedShort": "shots/d44/reduced/report.json",
+      "method": "Natural real taps and exact saved clear/playIndex1. Actual every-render Text/control/footer bounds, common fire masks and flights outside numeric cells. UI-only long-number stress changes three Text objects then restores preview; full domain state equal. Landscape geometry/fire code unchanged by final portrait readability fix; affected three portrait tiers rerun on final frozen source."
+    },
+    "fullscreenAndRare": {
+      "report": "shots/d44/surface-accepted/report.json",
+      "status": "PASS",
+      "testedCommit": "a3f7332986a01c460ee0f34306167ddcf436b3e2",
+      "coverage": "Native browser Fullscreen API enter/exit through normal fullscreen dock; portrait retained, nine cards and five selections/run state preserved. Rare purchase details at390x740,1280x720,844x300; dark ink readable and saved state unchanged."
+    },
+    "nativeDesktopFinal": {
+      "report": "shots/d44/surface-accepted/pc-report.json",
+      "status": "PASS",
+      "testedCommit": "a3f7332986a01c460ee0f34306167ddcf436b3e2",
+      "viewport": "1280x720 CSS, DPR1, native mouse",
+      "coverage": "Natural nine cards, five selections, state/RNG equal. This is separate from the DPR3 mobile context resized to a wide viewport."
+    },
+    "softwareWebGL": {
+      "desktopReport": "shots/d44/software-webgl-final/report.json",
+      "status": "PASS narrow natural600 route",
+      "actualFrames": 100,
+      "fpsRange": [
+        4.2986,
+        19.1338
+      ],
+      "desktop": "1280x720 DPR1 SwiftShader; actual WebGL renderer confirmed",
+      "mobileReport": "shots/d44/software-webgl-mobile/report.json",
+      "mobileStatus": "PASS narrow natural600 route, not full smoke",
+      "mobile": "390x740 CSS/DPR3, framebuffer780x1480 (existing2x cap), ANGLE SwiftShader/Vulkan software device",
+      "firstHandMs": 25970,
+      "mobileDuringScoreFps": "approximately3.69–5.08; startup rolling average18.65 down to8.49",
+      "source": "773c1d8; final changes are portrait text spacing and rare/secondary-control colours. No repeated unchanged high-DPI full software smoke or hardware-performance claim."
+    },
+    "startup": "Existing verified Node22.23.3/npm-ci environment reused; actual Vite dev, frozen e2e and production builds/startups succeeded. No dependency install or deployment edits this batch."
+  },
+  "assetLoad": {
+    "report": "shots/d44/boot-assets.json",
+    "runtimeArtRequests": {
+      "before": 21,
+      "after": 16
+    },
+    "runtimeArtRawFileBytes": {
+      "before": 383418,
+      "after": 243073
+    },
+    "removedRawBytes": 140345,
+    "meaning": "Only old stage-wide.webp plus four old frame/back HTTP requests omitted. New small procedural borders are in JS. Dev/preview transfer compression differs; encoded totals are not comparable. Existing source files remain in public/package; no claim that the whole asset package or new illustrations were compressed."
+  },
+  "reviewedDeliverables": {
+    "before": [
+      "shots/d44/before-77d8305/360x640-rest.png",
+      "shots/d44/before-77d8305/844x360-rest.png",
+      "shots/d44/before-77d8305/1280x720-rest.png"
+    ],
+    "frozenAfter": [
+      "shots/d44/surface-accepted/360x640-rest.png",
+      "shots/d44/surface-accepted/360x640-five.png",
+      "shots/d44/surface-accepted/844x360-five.png",
+      "shots/d44/surface-accepted/pc-1280x720-rest.png",
+      "shots/d44/surface-accepted/pc-1280x720-five.png",
+      "shots/d44/surface-accepted/fullscreen-enter.png"
+    ],
+    "extra": [
+      "shots/d44/after-complete/320x568-rest.png",
+      "shots/d44/fire-accepted-portrait/390x740-tier3-fire3-settled.png",
+      "shots/d44/safe-final/844x300-tier1-safe-fire1-settled.png",
+      "shots/d44/surface-accepted/rare-390.png"
+    ],
+    "video": "shots/d44/d44-score-accepted-8s.webm (actual frozen-candidate natural5589 recording,8s excerpt; not generated animation)",
+    "preview": "Frozen e2e local preview127.0.0.1:5249; not a public deployment."
+  },
+  "retainedFailures": [
+    "Historical nine-card seed no longer offered d06; used naturally found d44-nine-69, no rule/RNG injection.",
+    "Phaser atob rejected percent-encoded SVG data URI; fixed actual base64 format. ffmpeg existing workspace cache selected, no new purchase/install.",
+    "Low844x300 shop picture previously negative radius; shelf/card header/footer allocated, no tiny picture drawn. Next shop reason wrap width below one glyph raised Phaser error; measured single-line truncation fixed, original wait/assertions kept.",
+    "Continuous tier3 award1.68 scale crossed protected numeric footer; max1.08 bounded pulse fixed.",
+    "773c1d8 first aggregate failed rare text contrast3.711<4.5; ink fix, unchanged contrast test passed. Recorded shots/d44/release-ci-first.json/log.",
+    "Dev route returned title/stage-cleared during source changes; frozen-bundle matching route passed. Preserved report, do not interpret as unchanged-source performance success.",
+    "First fullscreen script tried hidden top control for exit; actual supported dock exit used and passed, not an application fix.",
+    "Actual320 screenshot exposed Joker/name/value and HUD-overlay collisions missed by initial harness. Added real bounds assertions; final HUD/Joker/motif placement and final aggregate passed."
+  ],
+  "limits": [
+    "Physical OnePlus15, Android Chrome browser bars/compositor/touch, hardware GPU and speaker/human visual acceptance NOT_RUN. Desktop/touch simulation, Canvas function and software WebGL are separate evidence.",
+    "New illustrations not integrated; parent must supply authorized art branch SHA and inspect/optimise/runtime-register assets in next batch. No permission bypass or restricted original read.",
+    "Nine cards never page. 320 uses31.5px exposed columns honestly. 10–14 currently retain explicit horizontal window; proposed two rows of <=7 at360 uses56x78.4 cards/pitch48, reserves200.8px hand height (two100.4px rows including22px lift/hit reserve). This is a proposal, not implemented/claimed tested; cross-row gesture and low-height allocation need independent validation without changing rules/counts.",
+    "No push/merge/remote CI/deployment performed. Parent decides publication after visual review; P08 remains in_progress for whole-game artwork/device acceptance."
+  ],
+  "reproductionCommands": [
+    "PATH=/workspace/.cloud-tools/node_modules/.bin:$PATH npm run dev -- --mode e2e --host 127.0.0.1 --port 5244 --strictPort",
+    "PLAYWRIGHT_BROWSERS_PATH=/workspace/.cache/ms-playwright node harness/paper-layout.mjs",
+    "PAPER_FIRE_URL=http://127.0.0.1:5249/ PAPER_FIRE_SCOPE=portrait node harness/paper-fire.mjs",
+    "External local evidence runners retained in shots/d44/*-runner.mjs; frozen build-info pins tested SHA."
+  ],
+  "runtimeSourceHashes": {
+    "src/game/GameScene.ts": "21ae695b17431517a574ec2400c55cf38ef181f60c1e34bf1e6daf7f38b00413",
+    "src/game/layout.ts": "60b49a296575e335d746ecf0617c4c6d0153527f7c65887da67c2032288bc096",
+    "src/game/theme.ts": "04ef496198cf031eadc5aa60e8736b43d11ae2cdc2c53687d0cfee22684353a7",
+    "src/game/SceneView.ts": "9ef56a04878e7c129a84a62f6483c802d5ad8c7dd8a552c67c8455936d4f7c94",
+    "src/game/ScoreFlame.ts": "f74e68fcc6eb75914a64f2aa62b2593b6b8b3a2489d74e80869f651a0c0f4ff6",
+    "src/game/ScoreTextLayout.ts": "d2ff4beb79ee3887f1e9d2679cf3a99f2f1232bf3a14eba2ca6054ab86260201",
+    "src/game/JokerRarity.ts": "99193f706cfe12cfb51e0dc4433b4cbdb38c22f5a2a776ab972074e912f74b7c",
+    "src/style.css": "206903791b37ef167bc0dffdb78abe7312cf02caf68e235693ddacdf17081445"
+  }
+}
