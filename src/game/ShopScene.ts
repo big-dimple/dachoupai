@@ -84,7 +84,6 @@ export class ShopScene extends Phaser.Scene {
     this.goldText=gold;
     if(!p.portrait&&!p.short)v.text(p.x,p.top+37,`${stage.name} · 目标 ${heatText(stage.targetHeat)}`,14,'#3F606B',p.short?p.slots[4].x+p.slots[4].width-p.x:p.w-24);
     if(!p.short){
-      if(!p.compact&&!p.portrait)v.text(p.x,p.top+34,this.run.stageIndex===0?'点卡牌看大图与效果，再确认购买。':'补一张、卖一张，或留着金币赚利息。',14,'#3F606B',p.wideHeader?p.slots[0].x-p.x-24:p.w);
       const ownedLabel=p.portrait?`${stage.name} · 随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:`随身大丑牌 ${this.run.jokers.length} / ${r2JokerCapacity(this.run)} · 点牌可出售或调序`;
       v.text(p.wideHeader?p.slots[0].x:p.x,p.slots[0].y-22,ownedLabel,14,'#3F606B',p.wideHeader?p.slots[4].x+p.slots[4].width-p.slots[0].x:p.w);
     }
