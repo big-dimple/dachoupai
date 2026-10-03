@@ -230,6 +230,9 @@ button:hover { filter:none;background:#e2e8e5; }
 button:active { transform:translateY(1px);box-shadow:none; }
 :focus-visible { outline-color:#3F606B; }
 .run-menu-toggle,.run-fullscreen-toggle { background:#F3EADB;color:#3F606B;border-color:#3F606B;box-shadow:none; }
+.fullscreen-dock { background:#fff9ee;color:#3F606B;border-color:#3F606B;box-shadow:none; }
+.fullscreen-dock-panel { background:#F3EADB;border-color:#3F606B;border-radius:4px;box-shadow:0 6px 20px #26313A26; }
+.fullscreen-dock-panel button { background:#fff9ee;color:#3F606B; }
 .run-menu-panel,.audio-controls,.run-fullscreen-notice { background:#F3EADB;border-color:#3F606B;box-shadow:0 6px 20px #26313A26; }
 .detail-dialog { background:#F3EADB;border:1px solid #26313A;border-radius:6px;color:#26313A;box-shadow:0 8px 28px #26313A30; }
 .detail-dialog::backdrop,.run-menu-modal::backdrop { background:#26313A80;backdrop-filter:none; }
@@ -243,3 +246,9 @@ button:active { transform:translateY(1px);box-shadow:none; }
 .dialog-close { background:#fff9ee;color:#3F606B;border-color:#3F606B; }
 .dialog-edition-summary { border-color:#3F606B;background:#e2e8e5; }
 .card-ability>strong,.card-ability>span { color:#26313A; }
+.detail-dialog[data-dialog-kind=mode-select] input[type=text],.detail-dialog[data-dialog-kind=mode-select] select,
+.tool-inventory .tool-inventory-card,.tool-detail .tool-card-option,.tool-detail .tool-preview { background:#fff9ee;border-color:#3F606B;box-shadow:none;color:#26313A; }
+.tool-detail .tool-card-option[data-edition=foil],.tool-detail .tool-card-option[data-edition=holographic] { background:#e2e8e5; }
+.tool-detail .tool-card-option[data-edition=polychrome] { background:#f0d3c7; }
+.tool-detail .tool-card-option.is-selected { border-color:#B8473A;box-shadow:none; }
+.run-menu-panel input,.detail-dialog input { accent-color:#3F606B; }

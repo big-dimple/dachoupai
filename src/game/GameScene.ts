@@ -288,7 +288,7 @@ export class GameScene extends Phaser.Scene {
       const progressY=h.y+(l.shortLandscape?152:short?168:311);v.rect({x:h.x+12,y:progressY,width:h.width-24,height:5},0x45595b).setStrokeStyle();
       this.progressBar=v.rect({x:h.x+12,y:progressY,width:1,height:5},T.jade).setOrigin(0,.5).setPosition(h.x+12,progressY+2.5).setStrokeStyle();
     }
-    if(portrait){this.roleText.setVisible(false);this.goldText.setPosition(h.x+h.width-4,h.y+46).setOrigin(1,0).setFontSize(12);this.heatText.setPosition(h.x+64,h.y+28).setFontSize(16).setWordWrapWidth(h.width-168);}
+    if(portrait){this.roleText.setVisible(false);this.goldText.setFontSize(12).setOrigin(1,0).setPosition(h.x+h.width-4,h.y+h.height-this.goldText.height);this.heatText.setPosition(h.x+64,h.y+28).setFontSize(16).setWordWrapWidth(h.width-168);}
     this.renderJokerRack();
     const s=l.scoreBoard;
     v.material(s,T.paperLight,T.paperLight,4);
@@ -360,6 +360,14 @@ export class GameScene extends Phaser.Scene {
       const paper=v.material({x:-b.width/2,y:-b.height/2,width:b.width,height:b.height},0xfff6df,0xd9c29f,5),resolution=1/this.scale.zoom;
       const nameText=(b.height<70&&!sideLabels||l.shortLandscape)&&d.name.length>2?d.name.slice(0,2)+'…':d.name;
       const name=this.add.text(labelX,-b.height/2+(sideLabels?2:5),nameText,{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:C.ink,wordWrap:{width:sideLabels?labelBox.width:b.width-((j.edition??'none')!=='none'?30:10),useAdvancedWrap:true},resolution,maxLines:l.shortLandscape?1:2});
+      const fitCompactName=()=>{
+        if(sideLabels||!stackValue)return;
+        name.setWordWrapWidth(0).setFontSize(14);let copy=d.name;
+        const room=b.width-((j.edition??'none')!=='none'?30:10);name.setText(copy);
+        while(name.width>room&&copy.length){copy=copy.slice(0,-1);name.setText(copy+'…');}
+        if(name.width>room)name.setFontSize(12);
+      };
+      fitCompactName();
       const current=this.add.text(labelX,sideLabels?-b.height/2+(l.shortLandscape?26:38):b.height/2-(stackValue?24:3),this.jokerValue(j),{fontFamily:UI_FONT,fontSize:sideLabels?(l.shortLandscape?'12px':'14px'):b.width<80?'12px':'20px',fontStyle:'bold',color:C.red,resolution,wordWrap:{width:valueWidth,useAdvancedWrap:true},maxLines:l.shortLandscape?1:2}).setOrigin(0,sideLabels?0:1);
       const headHeight=Math.max(26,name.height+8),head=sideLabels?undefined:v.material({x:-b.width/2+2,y:-b.height/2+2,width:b.width-4,height:headHeight},rarityStyle.ink,rarityStyle.edge,3);
       marker.add([paper,...(head?[head]:[])]);
@@ -379,7 +387,12 @@ export class GameScene extends Phaser.Scene {
           if(!stackValue)name.setWordWrapWidth(b.width-10,true);
           current.setColor(C.red).setFontSize(12);
         }
+      }else if(!sideLabels&&stackValue){
+        // A decorative motif only uses genuine spare room between text rows.
+        const top=name.y+name.height+2,bottom=current.y-current.height-2,size=Math.min(artSize,bottom-top);
+        if(size>=8)this.jokerMechanism(marker,0,(top+bottom)/2,size,j);
       }else this.jokerMechanism(marker,0,artTop+artHeight/2,artSize,j);
+      fitCompactName();
       const trim=this.textures.exists('p00-frame-'+d.rarity)?this.add.image(0,0,'p00-frame-'+d.rarity).setDisplaySize(b.width,b.height).setAlpha(.58):undefined;
       marker.add([...(trim?[trim]:[]),r,name,current]).setData('frame',r).setData('frameColor',rarityStyle.edge).setData('nameLabel',name).setData('valueLabel',current).setData('slotIndex',i);this.jokerViews.set(j.instanceId,marker);
       this.editionTrim(marker,b.width,b.height,j.edition,true);

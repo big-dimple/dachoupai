@@ -16,6 +16,9 @@ async function observe(p){return p.evaluate(()=>{
     score:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal,s.breakdownText].filter(o=>o.visible&&o.text).map(o=>({text:o.text,bounds:bounds(o),font:o.style.fontSize})),
     cards:s.cardViews.map(v=>({id:v.card.id,visible:v.container.visible,x:v.container.x,y:v.container.y,scale:v.container.scaleX,hit:bounds(v.hit),rank:bounds(v.container.list.find(o=>o.name==='rank-index')),selection:v.selectionMark.visible?bounds(v.selectionMark):null})),
     assets:performance.getEntriesByType('resource').filter(e=>e.name.includes('/assets/')).map(e=>({path:new URL(e.name).pathname,bytes:e.encodedBodySize})),
+    gold:bounds(s.goldText),
+    overlays:[...document.querySelectorAll('.run-menu-toggle,.run-fullscreen-toggle')].filter(e=>!e.hidden).map(e=>{const b=e.getBoundingClientRect();return{x:b.x,y:b.y,width:b.width,height:b.height};}),
+    jokers:[...s.jokerViews.values()].map(v=>({name:bounds(v.getData('nameLabel')),value:bounds(v.getData('valueLabel')),badge:bounds(v.list.find(o=>o.name==='rarity-badge'))})),
     labels:[s.handCountText,s.pileText,s.rankButton.getData('label'),s.suitButton.getData('label')].filter(o=>o.visible).map(o=>({text:o.text,bounds:bounds(o)}))};
 });}
 function intersect(a,b){return a.x<b.x+b.width-.01&&b.x<a.x+a.width-.01&&a.y<b.y+b.height-.01&&b.y<a.y+a.height-.01;}
@@ -23,6 +26,11 @@ function validate(o){
   assert.equal(o.layout.handOverflow,false,'nine cards never page');assert.equal(o.cards.filter(c=>c.visible).length,9);
   for(const c of o.cards){assert.equal(c.scale,1);assert.ok(c.hit.width>=(o.layout.width<360?30:36)-.01);assert.ok(c.rank.x+c.rank.width<=c.hit.x+c.hit.width+.01,'whole rank/suit remains in exposed seat');}
   const controls=[...Object.values(o.layout.buttons),...Object.values(o.layout.tableActions)];
+  if(o.layout.mode==='portrait'){
+    assert.ok(o.gold.y+o.gold.height<=o.layout.hud.y+o.layout.hud.height+.01,'gold stays inside the HUD');
+    for(const control of o.overlays)assert.ok(!intersect(o.gold,control),'gold outside browser/menu buttons');
+    for(const j of o.jokers){assert.ok(!intersect(j.name,j.value),'Joker name and benefit have separate actual rows');assert.ok(!intersect(j.value,j.badge),'Joker benefit outside rarity badge');assert.ok(!intersect(o.gold,j.name),'gold outside Joker text');}
+  }
   for(const text of o.score){assert.ok(!intersect(text.bounds,o.layout.scoreFire),'real text outside fire footer: '+text.text);for(const control of controls)assert.ok(!intersect(text.bounds,control),'score text never covers control: '+text.text);assert.ok(!intersect(text.bounds,o.layout.hand),'score above hand');}
   for(let i=0;i<o.score.length;i++)for(let j=i+1;j<o.score.length;j++)assert.ok(!intersect(o.score[i].bounds,o.score[j].bounds),'distinct actual score text: '+o.score[i].text+' / '+o.score[j].text);
 }

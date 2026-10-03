@@ -21,14 +21,16 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const narrow=portrait&&h<580,gap=narrow||landscape?4:8;
   const status=portrait?box(cx,y+h-20,cw,20):box(x,y+h-28,side,28);
   const actions=centered(744,y+h-(portrait?76:landscape?52:56),portrait?54:landscape?52:56);
-  const hud=portrait?box(x,y,w,narrow?48:56):box(x,y,side,h-32);
+  // 44px browser/menu controls plus the measured 14px coin line and a 2px gap.
+  const hud=portrait?box(x,y,w,60):box(x,y,side,h-32);
   const handWidth=Math.min(1100,cw),ninePitch=width<360?30:36;
   const preferredCardWidth=portrait?Math.min(72,handWidth-8*ninePitch):132;
   // Allocate the score's actual three text rows and a separate fire edge before
   // spending spare height on illustrations. Short screens move sorting into HUD.
   const minScoreHeight=landscape?80:narrow?76:88;
   const desiredHandHeight=portrait?Math.max(48,preferredCardWidth)*1.4+22:landscape?122:184;
-  const desiredJokerHeight=portrait?(narrow?44:72):landscape?72:112;
+  // One name row, up to two benefit rows and an independent 18px rarity footer.
+  const desiredJokerHeight=portrait?80:landscape?72:112;
   const mainTop=portrait?hud.y+hud.height+gap:y;
   const mainHeight=actions.y-gap-mainTop;
   const toolsInHud=landscape&&mainHeight-desiredJokerHeight-desiredHandHeight-22-44-gap*4<minScoreHeight;
@@ -37,7 +39,7 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const minPlayedHeight=portrait?(narrow?26:48):0;
   const toolsHeight=toolsInHud?0:44;
   const available=mainHeight-minScoreHeight-minPlayedHeight-toolsHeight-labelHeight-gap*(toolsInHud?2:4);
-  const jokerHeight=Math.min(desiredJokerHeight,Math.max(landscape?44:narrow?44:56,available-desiredHandHeight));
+  const jokerHeight=Math.min(desiredJokerHeight,Math.max(landscape?44:portrait?80:56,available-desiredHandHeight));
   const handHeight=Math.min(desiredHandHeight,Math.max(landscape?64:78,available-jokerHeight));
   const jokers=landscape?box(cx,mainTop,cw-144,jokerHeight):centered(1100,mainTop,jokerHeight);
   const hand=centered(1100,actions.y-gap-handHeight,handHeight);
