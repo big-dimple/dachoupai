@@ -1,15 +1,16 @@
 import Phaser from 'phaser';
 import type {Box} from './layout';
+import {subtractBoxes} from './ScoreGeometry';
 
 const NOISE_SIZE=64,NOISE_MASK=NOISE_SIZE-1,FRAME_MS=1000/30;
 const FRAME_WIDTH=256,FRAME_HEIGHT=64;
-// Three unequal, independently phased tongues share a low connected fuel bed.
-const LOBES=[ [.20,.11,1,0], [.52,.08,.72,1.7], [.81,.12,.85,3.2] ] as const;
-const LARGE_ANCHORS=[.20,.52,.81] as const;
+// Slender, curved polygon tongues. Shape coordinates are cosmetic and never use rule RNG.
+const TONGUES=[ [.14,.068,.91,.075,0], [.43,.040,.67,-.052,1.7], [.77,.080,1,.035,3.2], [.30,.025,.43,.070,.8], [.88,.028,.55,-.044,2.5] ] as const;
+const LARGE_ANCHORS=[.14,.43,.77] as const;
 const SMALL_ANCHORS=LARGE_ANCHORS;
 const COLORS=[
   [0,184,71,58,0],[.25,184,71,58,150],[.45,237,116,44,210],
-  [.65,255,172,69,235],[.83,255,213,115,244],[1,255,240,168,250],
+  [.65,255,142,32,235],[.83,255,194,50,244],[1,255,231,80,250],
 ] as const;
 const clamp=(value:number,minimum=0,maximum=1)=>Math.max(minimum,Math.min(maximum,value));
 let flameId=0;
@@ -55,6 +56,7 @@ export class ScoreFlame {
   private height=0;
   private level:0|1|2|3=0;
   private elapsed=0;
+  private lastWall?:number;
   private redrawAfter=0;
   private step=0;
   private surge=0;
@@ -69,7 +71,7 @@ export class ScoreFlame {
     this.textureKey='score-flame-heat-'+flameId++;
     this.frameTextureKey=this.textureKey+'-frame';
     this.cacheNoiseAndPalette();
-    const w=Math.min(224,Math.max(64,Math.ceil(box.width*.5))),h=Math.min(72,Math.max(16,Math.ceil(box.height)));
+    const w=Math.min(224,Math.max(64,Math.ceil(box.width))),h=Math.min(72,Math.max(16,Math.ceil(box.height)));
     const texture=scene.textures.createCanvas(this.textureKey,w,h);
     if(texture){
       this.material=texture;this.width=w;this.height=h;
@@ -124,7 +126,7 @@ export class ScoreFlame {
     const previous=this.level;
     this.surge=!reduced&&next>previous ? (next>=2 ? .42 : .10) : 0;
     this.frameFlash=!reduced&&next>previous&&next>=2?1:0;
-    this.level=next;this.reduced=reduced;this.redrawAfter=0;
+    this.level=next;this.reduced=reduced;this.redrawAfter=0;this.lastWall=this.scene.sys?.game?.loop.now;
     this.graphic.setData('intensity',next).setVisible(next>0);
     this.flame?.setVisible(next>0);
     if(next<2||next!==previous){this.frameHeat.fill(0);this.nextFrameHeat.fill(0);}
@@ -147,9 +149,10 @@ export class ScoreFlame {
 
   private update(_time:number,delta:number):void {
     if(this.destroyed||!this.graphic.active||!this.level||this.reduced)return;
-    const dt=clamp(delta,0,50);
+    const lifetime=Number.isFinite(_time)&&this.lastWall!==undefined&&_time>this.lastWall?_time-this.lastWall:Number.isFinite(delta)?Math.max(0,delta):0,dt=clamp(delta,0,50);
+    if(Number.isFinite(_time))this.lastWall=_time;
     const previousFlash=this.frameFlash;
-    this.elapsed+=dt*.001;this.surge=Math.max(0,this.surge-dt*.0012);this.frameFlash=Math.max(0,this.frameFlash-dt/260);
+    this.elapsed+=dt*.001;this.surge=Math.max(0,this.surge-lifetime*.0012);this.frameFlash=Math.max(0,this.frameFlash-lifetime/260);
     if(previousFlash>0&&!this.frameFlash)this.drawFrame();
     this.redrawAfter+=dt;
     if(this.redrawAfter<FRAME_MS)return;
@@ -185,26 +188,41 @@ export class ScoreFlame {
     }
   }
 
+  /** Subtract actual text/button rectangles from every owned fire layer. */
+  setGuards(guards:readonly Box[]):void {
+    if(this.destroyed)return;
+    const pieces=[this.box,...(this.frameBands?.bands??[])].flatMap(b=>subtractBoxes(b,guards));
+    this.safetyGraphic.clear().fillStyle(0xffffff);
+    for(const b of pieces)this.safetyGraphic.fillRect(b.x,b.y,b.width,b.height);
+    this.graphic.setData('safePieces',pieces).setData('textGuards',guards);
+  }
+
   private advanceHeat():void {
     if(!this.width||!this.level)return;
-    const w=this.width,h=this.height,field=this.heat,next=this.nextHeat,t=this.reduced?0:this.elapsed,frame=this.reduced?0:this.step++;
-    const tierHeight=this.level===1?.58:this.level===2?.86:.98;
+    const w=this.width,h=this.height,t=this.reduced?0:this.elapsed,small=this.level===1;
+    const polygons:{x:number;y:number}[][]=[];
+    const cubic=(a:number,b:number,c:number,d:number,u:number)=>{const v=1-u;return v*v*v*a+3*v*v*u*b+3*v*u*u*c+u*u*u*d;};
+    const tierHeight=small?.60:this.level===2?.84:.98;
+    for(const [i,[anchor,radius,tall,lean,phase]] of TONGUES.entries()){
+      if(small&&i>=3)continue;
+      const root=anchor+Math.sin(t*(1.6+i*.31)+phase)*.012,wide=radius*(small?.42:this.level===2?.80:1.18),peak=Math.min(.98,tierHeight*tall*(.94+.06*Math.sin(t*2.2+phase))+this.surge*.12);
+      const tip=root+lean*(small?.7:1)+Math.sin(t*2.7+phase)*.01,points:{x:number;y:number}[]=[];
+      for(let j=0;j<=12;j++){const u=j/12;points.push({x:cubic(root-wide,root-wide*.75,tip-.052,tip,u),y:cubic(0,peak*.32,peak*.76,peak,u)});}
+      for(let j=1;j<=12;j++){const u=j/12;points.push({x:cubic(tip,tip+.013,root+wide*.75,root+wide,u),y:cubic(peak,peak*.64,peak*.13,0,u)});}
+      polygons.push(points);
+    }
+    const field=this.heat,next=this.nextHeat;
+    const rootHeight=small?.038:this.level===2?.10:.15;
     for(let x=0;x<w;x++){
-      const u=x/(w-1);let lobe=0;
-      for(let i=0;i<LOBES.length;i++){
-        const [anchor,width,height,phase]=LOBES[i],sway=Math.sin(t*(1.7+i*.37)+phase)*Math.min(.018,6/this.box.width);
-        const offset=u-anchor-sway,flank=Math.min(width,64/this.box.width)*(this.level===1?.55:1)*(offset<0?1.12:.72);
-        // Pointed, unequal flanks avoid a row of symmetric orange hills.
-        lobe=Math.max(lobe,height*(.90+.10*Math.sin(t*(2.4+i*.43)+phase))*Math.exp(-Math.pow(Math.abs(offset/flank),1.15)));
-      }
-      const top=clamp(tierHeight*((this.level===1?.06:.14)+.80*lobe)+this.surge*.24*(.45+.55*lobe),.05,.97);
+      const u=x/(w-1),intervals:{lo:number;hi:number}[]=[];
+      for(const points of polygons){const crossings:number[]=[];for(let i=0;i<points.length;i++){const a=points[i],b=points[(i+1)%points.length];if((a.x<=u&&b.x>u)||(b.x<=u&&a.x>u))crossings.push(a.y+(u-a.x)/(b.x-a.x)*(b.y-a.y));}crossings.sort((a,b)=>a-b);for(let i=0;i+1<crossings.length;i+=2)intervals.push({lo:crossings[i],hi:crossings[i+1]});}
       for(let y=0;y<h;y++){
-        const rise=(h-1-y)/(h-1),edge=clamp((top-rise)*h/1.4);
-        const noise=this.noise[((y+frame)&NOISE_MASK)*NOISE_SIZE+((x+frame)&NOISE_MASK)];
-        next[y*w+x]=edge*clamp(.40+.57*Math.pow(clamp(1-rise/top),.8)+(noise-.5)*.04+this.surge*.12);
+        const rise=(h-1-y)/(h-1),base=rootHeight*(1+.24*Math.sin(u*29+t)+.15*Math.sin(u*47-t));let tone=rise<base?.70:0;
+        for(const span of intervals)if(rise>=span.lo&&rise<=span.hi){const distance=Math.min(rise-span.lo,span.hi-rise),edge=clamp(distance*h*1.5);tone=Math.max(tone,edge*(.45+.53*clamp(distance*h/5)));}
+        next[y*w+x]=tone;
       }
     }
-    this.heat=next;this.nextHeat=field;
+    this.step++;this.heat=next;this.nextHeat=field;
   }
 
   private cacheFrameFuelAndMask():void {

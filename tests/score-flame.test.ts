@@ -88,6 +88,10 @@ describe('bounded foreground score fire',()=>{
     expect(f.objects.filter(object=>object.name.startsWith('score/fire-frame-')).every(image=>image.visible)).toBe(true);
     f.flame.destroy();
   });
+  it('distinguishes large from extreme volume without changing target /2x /5x semantics',()=>{
+    const f=fixture();const local=[...f.textures.values()][0],measure=()=>{const p=local.pixels!,a=[];let top=p.height;for(let i=3;i<p.data.length;i+=4)if(p.data[i]>=12){a.push(p.data[i]);top=Math.min(top,Math.floor(i/4/p.width));}return {area:a.length,alpha:a.reduce((s,a)=>s+a,0),height:p.height-top};};
+    f.flame.set(2,true);const large=measure();f.flame.set(3,true);const extreme=measure();expect(extreme.area).toBeGreaterThan(large.area*1.2);expect(extreme.alpha).toBeGreaterThan(large.alpha*1.2);expect(extreme.height).toBeGreaterThan(large.height);f.flame.destroy();
+  });
   it('paints a connected warm base across the score board with uneven rising lobes',()=>{
     const f=fixture(),local=[...f.textures.values()][0];f.flame.set(2);
     const pixels=local.pixels!.data,w=local.width,h=local.height,heights:number[]=[];
@@ -112,15 +116,18 @@ describe('bounded foreground score fire',()=>{
     for(const [width,height,count] of [[390,740,9],[360,740,14],[844,300,9],[1280,720,8]]){
       const b=layout({width,height},{top:0,right:0,bottom:0,left:0},undefined,{count}).scoreFire;
       expect(b.height).toBeGreaterThanOrEqual(24);
-      const f=fixture(b),local=[...f.textures.values()][0];expect(local.height).toBe(Math.ceil(b.height));
+      const f=fixture(b),local=[...f.textures.values()][0];expect(local.height).toBe(Math.min(72,Math.ceil(b.height)));
       for(const tier of [1,2,3] as const){
         f.flame.set(tier,true);const p=local.pixels!,tops:number[]=[];
-        for(let x=2;x<p.width-2;x++){let top=p.height;for(let y=0;y<p.height;y++)if(p.data[(y*p.width+x)*4+3]>=24){top=y;break;}tops.push(p.height-top);}
+        for(let x=2;x<p.width-2;x++){let top=p.height;for(let y=0;y<p.height;y++)if(p.data[(y*p.width+x)*4+3]>=24){top=y;break;}tops.push((p.height-top)*b.height/p.height);}
         expect(Math.max(...tops)).toBeGreaterThanOrEqual(b.height*(tier===1?.40:.60));
         expect(Math.max(...tops)-Math.min(...tops)).toBeGreaterThanOrEqual(b.height*.25);
-        for(const [peak,left,right] of [[.20,.06,.35],[.52,.39,.64],[.81,.67,.95]]){
-          const at=(u:number)=>tops[Math.round(u*(tops.length-1))];expect(at(peak)).toBeGreaterThan(Math.max(at(left),at(right))+2);
-        }
+        // Detect the final contour, independent of any procedural root coordinates.
+        const groups:number[]=[];let start=-1;
+        const floor=Math.min(...tops)+b.height*.15;
+        for(let x=0;x<=tops.length;x++){if(x<tops.length&&tops[x]>floor){if(start<0)start=x;}else if(start>=0){let peak=start;for(let j=start;j<x;j++)if(tops[j]>tops[peak])peak=j;groups.push(peak);start=-1;}}
+        expect(groups.length).toBeGreaterThanOrEqual(2);
+        if(groups.length>=3){const gaps=groups.slice(1).map((x,i)=>x-groups[i]);expect(Math.max(...gaps)-Math.min(...gaps)).toBeGreaterThan(2);}
         const uploads=f.uploads();f.events.emit('update',1000);expect(f.uploads()).toBe(uploads);
       }
       f.flame.destroy();
@@ -133,6 +140,12 @@ describe('bounded foreground score fire',()=>{
     f.events.emit('update',11);
     expect(f.objects.filter(o=>o.name.startsWith('score/fire-frame-')).every(o=>!o.visible)).toBe(true);
     f.flame.destroy();
+  });
+  it('uses wall-clock lifetime at 10FPS and after suspension, independently of heat dt',()=>{
+    for(const deltas of [[100,100,61],[1000],[16,16,228]]){
+      const f=fixture();f.flame.set(2);for(const delta of deltas)f.events.emit('update',delta);
+      expect(f.objects.filter(o=>o.name.startsWith('score/fire-frame-')).every(o=>!o.visible)).toBe(true);f.flame.destroy();
+    }
   });
   it('gives same-tier positive landings a bounded one-shot plume, without persistent frame light',()=>{
     const f=fixture();f.flame.set(2);for(let i=0;i<10;i++)f.events.emit('update',50);

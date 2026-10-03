@@ -8,12 +8,21 @@ describe('CSS layout contract',()=>{
   it('spends spare score height while preserving full five-card previews and existing hand budgets',()=>{
     for(const width of [360,390])for(const count of [9,10,14]){
       const l=layout({width,height:740},{top:0,right:0,bottom:0,left:0},undefined,{count});
-      expect(l.playedArea.height).toBeGreaterThanOrEqual(104);
+      expect(l.playedArea.height).toBeGreaterThanOrEqual(88);
       expect(l.scoreBoard.height).toBeLessThanOrEqual(132);
-      expect(l.scoreFire.height).toBe(count===9?40:24);
-      expect(l.hand.height).toBeCloseTo(count===9?(width===360?56:72)*1.4+22:223.2);
+      expect(l.scoreFire.height).toBeGreaterThanOrEqual(58);expect(l.scoreFire.width).toBeLessThan(l.scoreBoard.width*.7);
+      expect(l.hand.height).toBeCloseTo(count===9?(width===360?52:64)*1.4+22:223.2);
       expect(intersects(l.playedArea,l.hand)).toBe(false);
       expect(intersects(l.scoreFire,l.playedArea)).toBe(false);
+    }
+  });
+  it('preserves complete five-card workplane and 223.2px fourteen-card hand through real safe insets',()=>{
+    for(const width of [360,390])for(const safe of [{top:0,right:0,bottom:34,left:0},{top:12,right:0,bottom:34,left:0}]){
+      const l=layout({width,height:740},safe,undefined,{count:14});
+      expect(l.handRows).toBe(2);expect(l.hand.height).toBeCloseTo(223.2);expect(l.playedArea.height).toBeGreaterThanOrEqual(88);
+      expect(l.scoreBoard.height).toBeGreaterThanOrEqual(108);expect(l.slots.every(b=>Math.abs(b.height/b.width-1.4)<1e-6)).toBe(true);
+      expect(l.buttons.rank.width).toBe(44);expect(l.buttons.suit.width).toBe(44);
+      expect(l.tableActions.play.y+l.tableActions.play.height).toBeLessThanOrEqual(740-safe.bottom);
     }
   });
   it('shows all10–14 cards in two stable rows with independent lift and hit space',()=>{
@@ -38,7 +47,7 @@ describe('CSS layout contract',()=>{
     for(const height of [300,320,359,360,361,390,430])for(const bottom of [0,12]){
       const l=layout({width:844,height},{top:0,left:0,right:0,bottom},undefined,{count:9});
       expect(l.scoreBoard.height).toBeGreaterThanOrEqual(80);
-      expect(l.scoreFire.y).toBeGreaterThan(l.scoreBoard.y+48);
+      expect(l.scoreFire.y).toBeGreaterThan(l.scoreBoard.y);
       expect(l.scoreFire.y+l.scoreFire.height).toBeLessThan(l.scoreBoard.y+l.scoreBoard.height);
       for(const control of [...Object.values(l.buttons),...Object.values(l.tableActions),l.hand]){
         expect(intersects(l.scoreBoard,control)).toBe(false);

@@ -72,7 +72,6 @@ export class SceneView {
   paperBackground():void {
     const {width,height}=this.layout;
     this.add(this.scene.add.rectangle(0,0,width,height,PAPER_THEME.paper).setOrigin(0));
-    if(this.scene.textures.exists('p00-paper'))this.add(this.scene.add.tileSprite(0,0,width,height,'p00-paper').setOrigin(0).setAlpha(.06));
     this.add(this.scene.add.graphics().lineStyle(1,PAPER_THEME.ink,.16).beginPath().moveTo(8,4).lineTo(width-8,4).strokePath());
   }
   text(x:number,y:number,value:string,size=14,color=PAPER_CSS.ink,wrap?:number):Phaser.GameObjects.Text {
@@ -92,7 +91,7 @@ export class SceneView {
     object.once('destroy',()=>{this.gestures.delete(object);if(this.pressed?.object===object)this.cancel();});
   }
   button(b:Box,label:string,name:string,action:()=>void,enabled=true,primary=false):Phaser.GameObjects.Rectangle {
-    const art=this.add(this.scene.add.container(b.x,b.y)),g=this.scene.add.graphics(),radius=4;
+    const art=this.add(this.scene.add.container(b.x,b.y)),g=this.scene.add.graphics(),radius=6;
     g.fillStyle(PAPER_THEME.ink,.08).fillRoundedRect(0,2,b.width,b.height,radius);
     g.fillStyle(primary?PAPER_THEME.red:PAPER_THEME.paperLight).fillRoundedRect(0,0,b.width,b.height,radius);
     const edge=this.scene.add.graphics().lineStyle(1,primary?PAPER_THEME.red:PAPER_THEME.jade,.9).strokeRoundedRect(.5,.5,b.width-1,b.height-1,radius);
@@ -101,8 +100,8 @@ export class SceneView {
     const t=this.text(b.x+b.width/2,b.y+b.height/2-1,label,primary?22:15).setOrigin(.5).setFontStyle('bold').setColor(primary?PAPER_CSS.paperLight:PAPER_CSS.jade);
     const r=this.rect(b).setFillStyle(0,0).setStrokeStyle();
     r.setData('label',t).setData('buttonArt',art);
-    const rest=()=>{art.y=b.y;t.y=b.y+b.height/2-1;glow.setAlpha(0);};
-    this.target(r,name,{tap:action,press:()=>{art.y=b.y+2;t.y=b.y+b.height/2+1;glow.setAlpha(.6);},release:rest,cancel:rest});
+    const rest=()=>{art.y=b.y;t.y=Number(t.getData('restY')??b.y+b.height/2-1);glow.setAlpha(0);};
+    this.target(r,name,{tap:action,press:()=>{art.y=b.y+2;t.y=Number(t.getData('restY')??b.y+b.height/2-1)+2;glow.setAlpha(.6);},release:rest,cancel:rest});
     r.on('pointerover',()=>{if(r.input?.enabled)glow.setAlpha(.8);});r.on('pointerout',rest);
     this.setEnabled(r,enabled);return r;
   }

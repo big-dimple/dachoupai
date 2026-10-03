@@ -7,7 +7,7 @@ export const intersects=(a:Box,b:Box):boolean=>a.x<b.x+b.width-1e-6&&b.x<a.x+a.w
 const box=(x:number,y:number,width:number,height:number):Box=>({x,y,width,height});
 
 /** All coordinates and font sizes are CSS pixels, independent of texture DPR. */
-export function layout(viewport:{width:number;height:number},safe:Insets,requested?:LayoutMode,handWindow:HandWindow={count:8}){
+function capacityLayout(viewport:{width:number;height:number},safe:Insets,requested?:LayoutMode,handWindow:HandWindow={count:8}){
   const mode=requested??(viewport.width<700&&viewport.height>viewport.width?'portrait':viewport.height<500?'landscape':'desktop');
   const width=viewport.width,height=viewport.height,portrait=mode==='portrait',landscape=mode==='landscape';
   const compact=portrait&&(width<360||height-safe.top-safe.bottom<760);
@@ -87,5 +87,49 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const discardWidth=Math.floor((actions.width-8)*.36);
   const tableActions={discard:box(actions.x,actions.y,discardWidth,actions.height),play:box(actions.x+discardWidth+8,actions.y,actions.width-discardWidth-8,actions.height)};
   return {mode,compact,shortLandscape,width,height,hud,jokers,preview,scoreBoard,playedArea,handLabel,piles,tools,hand,actions,status,scoreFire,toolsInHud,labelHeight,buttons,tableActions,cards,handRows,handOverflow,handStart,visibleCardCount,handNavigation,slots,jokerLabels};
+}
+/** Numeric cells share the total's fire base, rather than an equal-width table. */
+export function scoreCells(s:Box){
+  if(s.height<108){const secondary=s.width*.52;return [box(s.x+6,s.y+40,secondary/2-10,24),box(s.x+secondary/2+2,s.y+40,secondary/2-8,24),box(s.x+secondary+6,s.y+40,s.width-secondary-12,32)];}
+  const narrow=s.width<260,split=narrow?.43:.38,secondary=s.width*split;
+  return [box(s.x+8,s.y+43,secondary-12,24),box(s.x+8,s.y+Math.min(88,s.height-25),secondary-12,24),box(s.x+secondary+4,s.y+s.height-65,s.width-secondary-12,43)];
+}
+export function layout(viewport:{width:number;height:number},safe:Insets,requested?:LayoutMode,handWindow:HandWindow={count:8}){
+  const l=capacityLayout(viewport,safe,requested,handWindow),{width,height}=viewport,count=l.cards.length;
+  const portrait=l.mode==='portrait',desktop=l.mode==='desktop';
+  const handWidth=l.hand.width,cardWidth=portrait?(count>=10?64:width<380?52:64):80;
+  const rows=portrait&&count>=10&&count<=14?2:1,handHeight=rows*(cardWidth*1.4+22);
+  const net=height-safe.top-safe.bottom;
+  const scoreBudget=net-(52+89.6+18+88+handHeight+56+20+16+18)-.01;
+  if((portrait&&width>=360&&count<=14&&scoreBudget>=108)||desktop){
+    const x=safe.left+(portrait?(width<380?8:12):12),w=width-safe.left-safe.right-2*(portrait?(width<380?8:12):12);
+    const mainW=portrait?w:Math.min(1100,w-240),mainX=portrait?x:x+240+(w-240-mainW)/2;
+    l.hud=box(x,safe.top+8,portrait?w:224,portrait?52:180);
+    l.status=box(mainX,height-safe.bottom-28,mainW,20);
+    const actionW=portrait?mainW:Math.min(480,mainW),actionX=mainX+(mainW-actionW)/2;
+    l.actions=box(actionX,l.status.y-60,actionW,56);
+    l.hand=box(mainX,l.actions.y-4-handHeight,mainW,handHeight);
+    l.jokers=box(mainX,portrait?l.hud.y+54:safe.top+12,mainW,89.6);
+    const slotGap=6,slotWidth=Math.min(64,(mainW-4*slotGap)/5),rackWidth=5*slotWidth+4*slotGap;
+    l.slots=Array.from({length:5},(_,i)=>box(mainX+(mainW-rackWidth)/2+i*(slotWidth+slotGap),l.jokers.y,slotWidth,slotWidth*1.4));l.jokerLabels=l.slots;
+    l.scoreBoard=portrait?box(mainX,l.jokers.y+91.6,mainW,Math.min(rows===2?120:132,scoreBudget)):box(x,safe.top+210,224,164);
+    const playedTop=portrait?l.scoreBoard.y+l.scoreBoard.height+20:l.jokers.y+112;
+    l.playedArea=box(mainX,playedTop,mainW,l.hand.y-4-playedTop);
+    l.preview=portrait?box(mainX,l.scoreBoard.y,mainW,l.hand.y-4-l.scoreBoard.y):l.playedArea;
+    const sortX=l.actions.x+76;
+    l.buttons={rank:box(sortX,l.actions.y,44,56),suit:box(sortX+50,l.actions.y,44,56)};
+    l.tableActions={discard:box(l.actions.x,l.actions.y,70,56),play:box(sortX+100,l.actions.y,l.actions.width-176,56)};
+    l.tools=box(sortX,l.actions.y,94,56);l.toolsInHud=false;l.labelHeight=0;
+    l.handLabel=box(mainX,l.hand.y-18,116,18);l.piles=box(mainX+116,l.hand.y-18,mainW-116,18);
+    l.handRows=rows;l.handOverflow=false;l.handStart=0;l.visibleCardCount=count;
+    const columns=rows===2?Math.ceil(count/2):count,pitch=columns>1?(mainW-cardWidth)/(columns-1):0,rowHeight=handHeight/rows;
+    l.cards=Array.from({length:count},(_,i)=>{const row=rows===2?Math.floor(i/columns):0,col=i%columns,last=col===columns-1||i===count-1,seatX=mainX+(columns===1?(mainW-cardWidth)/2:col*pitch),seatY=l.hand.y+row*rowHeight;return {visible:true,visual:box(seatX,seatY+22,cardWidth,cardWidth*1.4),hit:box(seatX,seatY,last?cardWidth:Math.min(cardWidth,pitch),rowHeight)};});
+  }
+  // On capacity-limited short screens retain the established readable window.
+  // Every troupe exterior still has the same 5:7 proportion.
+  if(!(portrait&&scoreBudget>=108)&&!desktop)l.slots=l.slots.map(b=>({...b,height:Math.min(b.height,b.width*1.4)}));
+  const s=l.scoreBoard,primary=scoreCells(s)[2];
+  l.scoreFire=box(primary.x-3,s.y+(s.height>=108?34:28),primary.width+6,s.height-(s.height>=108?50:32));
+  return l;
 }
 export type TableLayout=ReturnType<typeof layout>;

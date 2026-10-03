@@ -45,7 +45,7 @@ async function observe(p){return p.evaluate(()=>{
  return {renderer:g.renderer.gl?'WebGL':'Canvas',fps:g.loop.actualFps,layout:s.view.layout,selected:[...s.selectedIds],surface:{rect:s.handInput.surface.getBoundingClientRect().toJSON(),touchAction:getComputedStyle(s.handInput.surface).touchAction,active:s.handInput.active},input:s.input.enabled,
   preview:s.previewCards?.list.filter(c=>c.type==='Container').map(c=>({face:box(c.list.find(o=>o.type==='Rectangle')),rank:c.list.filter(o=>o.name==='rank-index').map(o=>({bounds:box(o),font:o.style.fontSize}))}))??[],
   cards:s.cardViews.map(v=>({id:v.card.id,visible:v.container.visible,x:v.container.x,y:v.container.y,scale:v.container.scaleX,rank:box(v.container.list.find(o=>o.name==='rank-index')),mark:v.selectionMark.visible?box(v.selectionMark):null,layer:s.view.root.getIndex(v.container),face:box(v.background),pips:v.container.list.filter(o=>o.name==='card-pip').map(box)})),
-  score:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal,s.breakdownText].filter(o=>o.visible&&o.text).map(o=>({text:o.text,bounds:box(o)}))};
+  firePieces:s.scoreFlame?.graphic.getData('safePieces')??[],score:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal,s.breakdownText].filter(o=>o.visible&&o.text).map(o=>({text:o.text,bounds:box(o)}))};
  });}
 const intersect=(a,b)=>a.x<b.x+b.width&&b.x<a.x+a.width&&a.y<b.y+b.height&&b.y<a.y+a.height;
 function validate(o,count){
@@ -69,7 +69,7 @@ function validate(o,count){
   for(const t of o.score)assert.ok(!intersect(t.bounds,seat),'actual score text outside hand');
   assert.ok(seat.x>=o.surface.rect.x-.01&&seat.x+seat.width<=o.surface.rect.right+.01,'surface contains every row including odd final row');
  }
- for(const t of o.score)for(const b of [...Object.values(l.buttons),...Object.values(l.tableActions),l.scoreFire])assert.ok(!intersect(t.bounds,b),'score text outside controls/fire');
+ for(const t of o.score)for(const b of [...Object.values(l.buttons),...Object.values(l.tableActions),...o.firePieces])assert.ok(!intersect(t.bounds,b),'score text outside controls/fire');
 }
 let browser;
 try{

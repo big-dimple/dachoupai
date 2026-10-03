@@ -1,3 +1,4 @@
+import {shopLayout} from './ShopLayout';
 import {requestJokerArt,jokerArtLoadState,retryJokerArt} from './JokerArtLoading';
 import {JOKER_RARITY,createJokerRarityBadge,type JokerRarity} from './JokerRarity';
 import {cardAbilityCopy} from './CardCopy';
@@ -26,30 +27,6 @@ import {r2MechanismBadge as mechanismBadge,r2JokerStateText,r2JokerExtraHelp,r2T
 
 type ShelfKind='jokers'|'tools'|'items';
 const SHELF_FIELDS={jokers:'offers',tools:'toolOffers',items:'itemOffers'} as const;
-function shopLayout(width:number,height:number,top:number,bottom:number,cols:number,ownedCopy=false){
-  const portrait=width<700&&height>width,short=height<500,wideHeader=width>=1000&&!short,compact=portrait&&height-bottom-top<760,w=Math.min(1180,width-24),x=(width-w)/2;
-  if(portrait){
-    const slotY=top+64,slotHeight=60,slotWidth=44,groupWidth=slotWidth*5+24,slotX=x+(w-groupWidth)/2;
-    const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+6),y:slotY,width:slotWidth,height:slotHeight}));
-    const shelfTop=slotY+slotHeight+58+(ownedCopy?18:0),secondaryY=height-bottom-128,toolWidth=(w-8)/2;
-    const cardWidth=Math.min((w-12*(cols-1))/cols,(secondaryY-shelfTop-16)/1.4),cardHeight=cardWidth*1.4,shelfX=x+(w-cardWidth*cols-12*(cols-1))/2;
-    const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:shelfX+i*(cardWidth+12),y:shelfTop,width:cardWidth,height:cardHeight}));
-    return {x,w,top,short,compact,wideHeader,portrait,slots,chapter:{x,y:secondaryY,width:toolWidth,height:44},items:{x:x+toolWidth+8,y:secondaryY,width:toolWidth,height:44},shelf,tabs:{x,y:shelfTop-50,width:w,height:44},
-      reroll:{x,y:secondaryY,width:toolWidth,height:44},build:{x:x+toolWidth+8,y:secondaryY,width:toolWidth,height:44},play:{x,y:secondaryY+52,width:w,height:48},noticeY:secondaryY+104};
-  }
-  const footerY=height-bottom-(short?84:104),slotY=top+(short?58:wideHeader?64:compact?88:112),slotHeight=short?72:compact?72:portrait||wideHeader?112:128,slotWidth=Math.min(short?48:86,(w-32)/5),slotGroupWidth=slotWidth*5+32;
-  const slotX=short?x:wideHeader?x+w-slotGroupWidth:x+(w-slotGroupWidth)/2;
-  const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+8),y:slotY,width:slotWidth,height:slotHeight}));
-  const toolsY=slotY+slotHeight+26,toolWidth=short?(slotGroupWidth-8)/2:(w-8)/2;
-  let chapter:Box={x,y:toolsY,width:toolWidth,height:44},items:Box={x:x+toolWidth+8,y:toolsY,width:toolWidth,height:44};
-  if(wideHeader){const available=slotX-x-24,width=(available-8)/2;chapter={x,y:top+108,width,height:44};items={...chapter,x:x+width+8};}
-  const shelfX=short?x+slotGroupWidth+24:x,shelfWidth=short?w-slotGroupWidth-24:w;
-  const shelfTop=short?top+84:wideHeader?slotY+slotHeight+84:toolsY+104,gap=12;
-  const availableWidth=(shelfWidth-gap*(cols-1))/cols,cardWidth=Math.min(228,availableWidth,(footerY-(short?8:36)-shelfTop)/1.4),cardHeight=cardWidth*1.4,startX=shelfX+(shelfWidth-cardWidth*cols-gap*(cols-1))/2;
-  const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:startX+i*(cardWidth+gap),y:shelfTop,width:cardWidth,height:cardHeight}));
-  const rerollWidth=Math.floor(w*.29),buildWidth=Math.floor(w*.25),playWidth=w-rerollWidth-buildWidth-16;
-  return {x,w,top,short,compact,wideHeader,portrait,slots,chapter,items,shelf,tabs:{x:shelfX,y:shelfTop-52,width:shelfWidth,height:44},reroll:{x,y:footerY,width:rerollWidth,height:48},play:{x:x+rerollWidth+8,y:footerY,width:playWidth,height:48},build:{x:x+w-buildWidth,y:footerY,width:buildWidth,height:48},noticeY:footerY+56};
-}
 
 export class ShopScene extends Phaser.Scene {
   private run!:R2RunState;
@@ -77,9 +54,9 @@ export class ShopScene extends Phaser.Scene {
   constructor(){super('shop');}
   private get ready():boolean {const session=gameSession();return this.run?.phase==='shop'&&!this.busy&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
   private shelfOffers(kind=this.shelfKind):R2Offer[]{return this.run.shop![SHELF_FIELDS[kind]];}
-  private get pageSize():number{return this.view.layout.width<700?2:4;}
+  private get pageSize():number{return 3;}
   private visibleOffers():R2Offer[]{return this.shelfOffers().slice(this.shelfPage*this.pageSize,(this.shelfPage+1)*this.pageSize);}
-  private geometry(){const l=this.view.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0,cols=this.shelfKind==='jokers'?Math.max(2,Math.min(this.pageSize,this.shelfOffers().length)):Math.max(1,Math.min(2,this.shelfOffers().length));return shopLayout(l.width,l.height,l.hud.y,bottom,cols,this.run.jokers.some(j=>!!this.jokerCopy(j.definitionId)));}
+  private geometry(){const l=this.view.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0,cols=this.shelfKind==='jokers'?Math.max(3,Math.min(this.pageSize,this.shelfOffers().length)):Math.max(1,Math.min(2,this.shelfOffers().length));return shopLayout(l.width,l.height,l.hud.y,bottom,cols,this.run.jokers.some(j=>!!this.jokerCopy(j.definitionId)));}
   create():void {
     this.busy=false;this.selectedOfferId=undefined;this.shelfKind='jokers';this.shelfPage=0;this.notice='';this.lifecycle++;
     this.pendingGoldRoll=undefined;this.pendingRerollFlip=false;this.pendingPurchaseFlight=undefined;this.pendingToolCue=undefined;this.pendingTransactions=[];this.lastTransactionNotes=[];
@@ -97,70 +74,58 @@ export class ShopScene extends Phaser.Scene {
     const selectedIndex=this.shelfOffers().findIndex(offer=>offer.offerId===this.selectedOfferId);if(selectedIndex>=0)this.shelfPage=Math.floor(selectedIndex/this.pageSize);
     this.shelfPage=Math.min(this.shelfPage,Math.max(0,Math.ceil(this.shelfOffers().length/this.pageSize)-1));
     const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty)!;this.hideHoverPicture();v.clear();v.paperBackground();this.offerArts=[];this.artTargets.clear();
-    v.text(p.x,p.top,this.run.tourMode==='endless'?'无尽后台':'后台',p.short||p.portrait?20:26,'#fff2da').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
+    v.text(p.x,p.top,this.run.tourMode==='endless'?'无尽后台':'后台',20,'#26313A').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     const purse={x:p.x+p.w-(this.view.layout.width<=700?96:136)-124,y:p.top-1,width:116,height:34},purseArt=this.add.graphics();
     v.add(this.add.graphics().fillStyle(0x213d45,.2).fillRoundedRect(purse.x+1,purse.y+3,purse.width,purse.height,7));
-    v.material(purse,0xfbe1a6,0xc99455,7);
+    v.material(purse,0xfff9ee,0xfff9ee,7);
     purseArt.lineStyle(1,0x916738).strokeRoundedRect(purse.x+.5,purse.y+.5,purse.width-1,purse.height-1,7);v.add(purseArt);
-    const gold=v.text(purse.x+10,purse.y+5,'金币 '+this.run.gold,22,'#614321').setName('shop/gold').setFontStyle('bold');
+    const gold=v.text(purse.x+10,purse.y+5,'金币 '+this.run.gold,16,'#26313A').setName('shop/gold').setFontStyle('bold');
     for(let font=22;gold.width>purse.width-20&&font>14;)gold.setFontSize(--font);
     this.goldText=gold;
-    if(!p.portrait)v.text(p.x,p.top+37,`${stage.name} · 目标 ${heatText(stage.targetHeat)}`,14,'#d5ddc9',p.short?p.slots[4].x+p.slots[4].width-p.x:p.w-24);
+    if(!p.portrait&&!p.short)v.text(p.x,p.top+37,`${stage.name} · 目标 ${heatText(stage.targetHeat)}`,14,'#3F606B',p.short?p.slots[4].x+p.slots[4].width-p.x:p.w-24);
     if(!p.short){
-      if(!p.compact&&!p.portrait)v.text(p.x,p.top+64,this.run.stageIndex===0?'点卡牌看大图与效果，再确认购买。':'补一张、卖一张，或留着金币赚利息。',14,'#d5ddc9',p.wideHeader?p.slots[0].x-p.x-24:p.w);
+      if(!p.compact&&!p.portrait)v.text(p.x,p.top+34,this.run.stageIndex===0?'点卡牌看大图与效果，再确认购买。':'补一张、卖一张，或留着金币赚利息。',14,'#3F606B',p.wideHeader?p.slots[0].x-p.x-24:p.w);
       const ownedLabel=p.portrait?`${stage.name} · 随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:`随身大丑牌 ${this.run.jokers.length} / ${r2JokerCapacity(this.run)} · 点牌可出售或调序`;
-      v.text(p.wideHeader?p.slots[0].x:p.x,p.slots[0].y-22,ownedLabel,14,'#d7ddc8',p.wideHeader?p.slots[4].x+p.slots[4].width-p.slots[0].x:p.w);
+      v.text(p.wideHeader?p.slots[0].x:p.x,p.slots[0].y-22,ownedLabel,14,'#3F606B',p.wideHeader?p.slots[4].x+p.slots[4].width-p.slots[0].x:p.w);
     }
-    this.run.jokers.forEach((j,i)=>{
+    if(!p.inventoryCollapsed)this.run.jokers.forEach((j,i)=>{
       const b=p.slots[i],d=getR2Joker(j.definitionId),ability=this.jokerCopy(j.definitionId),first=v.root.length;
       this.drawSlot(b,true,d.rarity);
-      this.drawJokerPicture(j.definitionId,{x:b.x+2,y:b.y+2,width:b.width-4,height:b.height-4});
-      if(!p.portrait){v.material({x:b.x,y:b.y+b.height-38,width:b.width,height:38},0x183d40,0x183d40,2);v.text(b.x+5,b.y+b.height-37,d.name,12,'#fff0d0',b.width-10);}
+      this.drawJokerPicture(j.definitionId,{x:b.x+3,y:b.y+22,width:b.width-6,height:b.height-25});
+      const ownedName=v.text(b.x+3,b.y+3,d.name,14,'#26313A');this.ellipsis(ownedName,b.width-6);
       v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21,compact:true}).setData('definitionId',j.definitionId).setData('surface','owned'));
-      if(ability)this.jokerAbilityLine(j.definitionId,'owned',b.x+b.width/2,b.y+b.height+3,b.width+(p.portrait?6:8),ability.compact,b.width<60?ability.narrow:ability.benefit).setOrigin(.5,0);
-      const hover=this.hoverCard(first,b,j.definitionId),r=v.rect({...b,height:b.height+(ability||!p.portrait?22:0)}).setFillStyle(0,0).setStrokeStyle(0);
+
+      const hover=this.hoverCard(first,b,j.definitionId),r=v.rect({...b,height:b.height+(ability||!p.portrait?22:0)}).setFillStyle(0,0).setStrokeStyle();
       v.target(r,`joker/${j.instanceId}`,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:(x)=>this.moveJoker(j.instanceId,x),holdToDrag:true,...hover});
     });
-    for(let i=this.run.jokers.length;i<r2JokerCapacity(this.run);i++){
+    for(let i=this.run.jokers.length;!p.inventoryCollapsed&&i<r2JokerCapacity(this.run);i++){
       const b=p.slots[i];this.drawSlot(b,false);v.text(b.x+b.width/2,b.y+b.height-21,p.portrait?String(i+1):`空槽 ${i+1}`,14,'#a6bab0').setOrigin(.5,0);
     }
-    if(!p.portrait)v.button(p.chapter,p.portrait?(this.run.program&&!this.run.program.choiceMade?'接节目单':'本章'):'本章节目','action/chapter',()=>this.inspectChapter());
-    if(!p.portrait)v.button(p.items,`物品 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)} · 道具${this.run.longTermItems.length}`,'action/items',()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq)));
+    if(!p.portrait&&!p.short)v.button(p.chapter,p.portrait?(this.run.program&&!this.run.program.choiceMade?'接节目单':'本章'):'本章节目','action/chapter',()=>this.inspectChapter());
+    if(!p.portrait&&!p.short)v.button(p.items,`物品 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)} · 道具${this.run.longTermItems.length}`,'action/items',()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq)));
     this.drawShelfTabs(p.tabs);
     const offers=this.visibleOffers();
     offers.forEach((o,i)=>{
       if(this.shelfKind!=='jokers'){this.drawGoodsOffer(o,p.shelf[i],p.short,p.portrait);return;}
-      const selected=this.selectedOfferId===o.offerId,raw=p.shelf[i],b=selected?{...raw,y:raw.y-4}:raw,d=getR2Joker(o.definitionId),ability=this.jokerCopy(o.definitionId),first=v.root.length;
-      const headerHeight=ability?(p.short?46:52):(p.short?26:30),footerHeight=p.short?28:40;
-      this.drawOfferCard(b,d.rarity,selected,o.consumed,p.short,headerHeight,footerHeight);
-      const name=v.text(b.x+10,b.y+5,d.name,16,o.consumed?'#c6c5af':'#fff2d4').setFontStyle('bold');
-      for(let font=16;name.width>b.width-20&&font>14;)name.setFontSize(--font);
-      if(ability)this.jokerAbilityLine(o.definitionId,'offer',b.x+8,b.y+29,b.width-16,ability.summary,ability.compact);
-      const picture={x:b.x+8,y:b.y+headerHeight+4,width:b.width-16,height:b.height-headerHeight-footerHeight-8};
-      if(picture.height>=16&&picture.width>=16)this.drawJokerPicture(o.definitionId,picture,o.consumed?.35:1);
-      if(o.edition&&o.edition!=='none')v.text(b.x+8,picture.y+picture.height-20,editionLabel(o.edition),12,'#ffebbb',b.width-16).setShadow(0,1,'#17323c',2,true,true);
-      const reason=o.consumed?'':this.purchaseReason(o,true),price=r2PurchasePrice(this.run,o);
-      v.text(b.x+8,b.y+b.height-footerHeight+3,o.consumed?'已收入':price+' 金',p.short?14:16,'#ffe2a2').setFontStyle('bold');
-      if(reason){
-        // On a short shelf the rarity moves beside the price. Give the reason
-        // its own full-width line, measured without an invalid tiny wrap box.
-        const label=v.text(b.x+8,b.y+b.height-17,reason,11,'#f6bba6');
-        const room=Math.max(0,b.width-(p.short?16:76));let copy=reason;
-        while(label.width>room&&copy.length){copy=copy.slice(0,-1);label.setText(copy+'…');}
-        if(label.width>room)label.setVisible(false);
-      }
-      v.add(createJokerRarityBadge(this,d.rarity,p.short?{x:b.x+b.width-31,y:b.y+b.height-23,compact:true}:{x:b.x+b.width-63,y:b.y+b.height-27}).setData('definitionId',o.definitionId).setData('surface','offer'));
-      const hover=this.hoverCard(first,b,o.definitionId),r=v.rect(raw).setFillStyle(0,0).setStrokeStyle(0).setData('selected',selected);
-      this.offerArts.push(hover.art);
-      v.target(r,`offer/${o.offerId}`,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
+      const selected=this.selectedOfferId===o.offerId,b=p.shelf[i],d=getR2Joker(o.definitionId),ability=this.jokerCopy(o.definitionId),first=v.root.length;
+      this.drawOfferCard(b,d.rarity,selected,o.consumed,p.short);
+      this.drawJokerPicture(o.definitionId,{x:b.x+4,y:b.y+4,width:b.width-8,height:b.height-8},o.consumed?.35:1);
+      const copyX=p.copyBeside?b.x+b.width+6:b.x,copyY=p.copyBeside?b.y:b.y+b.height,copyWidth=p.copyBeside?(p.tabs.width-8*(p.shelf.length-1))/p.shelf.length-b.width-8:b.width+6;
+      const name=v.text(copyX,copyY+4,d.name,14,'#26313A').setName('shop/offer-name');this.ellipsis(name,copyWidth);
+      const purpose=v.text(copyX,copyY+23,ability?.summary??getR2Joker(o.definitionId).description,14,'#3F606B',b.width+8).setStyle({maxLines:2}).setName('shop/offer-purpose');this.twoLines(purpose,copyWidth);
+      const price=r2PurchasePrice(this.run,o);v.text(copyX,copyY+58,o.consumed?'已收入':price+' 金',16,'#26313A').setName('shop/offer-price');
+      v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21,compact:true}).setData('definitionId',o.definitionId).setData('surface','offer'));
+      const tile={...b,width:p.copyBeside?b.width+6+copyWidth:b.width,height:p.copyBeside?b.height:b.height+76},hover=this.hoverCard(first,tile,o.definitionId),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);
+      this.offerArts.push(hover.art);v.target(r,`offer/${o.offerId}`,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
+
     });
-    if(!offers.length)v.text(p.shelf[0].x,p.shelf[0].y,this.shelfKind==='items'?'本店暂无可购道具；换牌会保留此货架。':'本货架暂无商品，可换一批或进入牌桌。',14,'#d5ddc9',p.w);
+    if(!offers.length)v.text(p.shelf[0].x,p.shelf[0].y,this.shelfKind==='items'?'本店暂无可购道具；换牌会保留此货架。':'本货架暂无商品，可换一批或进入牌桌。',14,'#3F606B',p.w);
     const allowed=r2RunModeConfig(this.run).reroll.allowed,cost=this.run.shop?.freeRerolls?0:r2PaidRerollPrice(this.run),canReroll=this.ready&&allowed&&this.run.gold>=cost&&r2Pool(this.run.jokers.map(j=>j.definitionId),this.run.safetyNetUsed?['f07']:[]).length>0;
     v.button(p.reroll,!allowed?'禁止换牌':this.run.shop?.freeRerolls?'免费换牌':`换牌 ${cost} 金`,'action/reroll',()=>void this.send({type:'RerollShop'}),canReroll);
     v.button(p.play,'进入牌桌','action/start-stage',()=>void this.send({type:'LeaveShop'}),this.ready,true);
-    v.button(p.build,'构筑详情','action/build',()=>this.inspectBuild());
+    v.button(p.build,p.inventoryCollapsed?`构筑 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:'构筑详情','action/build',()=>this.inspectBuild());
     const reason=!this.ready?'当前进度未保存或只读，请查看菜单。':allowed&&this.run.gold<cost?`换牌还差 ${cost-this.run.gold} 金。可直接入场。`:this.shelfKind==='jokers'&&this.run.jokers.length===r2JokerCapacity(this.run)?`${r2JokerCapacity(this.run)}槽已满，点随身牌出售后再买。`:this.shelfKind==='tools'?'购买后收入库存；查看详情，再确认使用。':this.shelfKind==='items'?'道具本局生效；换牌不重抽道具货架。':p.portrait?'点卡牌看详情，确认后扣款。':'点卡牌不会扣钱；点随身牌可出售或左移、右移。';
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||reason,14,this.notice?'#f4da9e':'#d5ddc9',p.w).setStyle({maxLines:p.short?1:2});
+    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||reason,14,this.notice?'#B8473A':'#3F606B',p.w).setStyle({maxLines:p.short?1:2});
   }
   private drawShelfTabs(b:Box):void {
     const v=this.view,pages=Math.ceil(this.shelfOffers().length/this.pageSize),pagerWidth=pages>1?44:0,gap=6,width=(b.width-pagerWidth-gap*(pagerWidth?3:2))/3;
@@ -168,7 +133,8 @@ export class ShopScene extends Phaser.Scene {
     (['jokers','tools','items'] as const).forEach((kind,i)=>{
       const button=v.button({x:b.x+i*(width+gap),y:b.y,width,height:b.height},labels[kind]+' '+this.shelfOffers(kind).length,'action/shelf-'+kind,()=>{
         if(this.busy)return;this.shelfKind=kind;this.shelfPage=0;this.selectedOfferId=undefined;this.audio.select();this.render();
-      },!this.busy,this.shelfKind===kind);
+      },!this.busy,false);
+      if(this.shelfKind===kind)(button.getData('buttonArt') as Phaser.GameObjects.Container).add(this.add.graphics().lineStyle(2,0x3f606b).strokeRoundedRect(1,1,width-2,b.height-2,6));
       (button.getData('label') as Phaser.GameObjects.Text).setFontSize(14);
     });
     if(pages>1){
@@ -193,26 +159,25 @@ export class ShopScene extends Phaser.Scene {
     const image=this.add.image(0,0,key),scale=Math.min(target.box.width/image.width,target.box.height/image.height);
     target.holder.removeAll(true);target.holder.add(image.setScale(scale).setAlpha(target.alpha));
   }
+  private ellipsis(text:Phaser.GameObjects.Text,width:number):void {text.setData('fullText',text.text);let copy=text.text;while(text.width>width&&copy.length){copy=copy.slice(0,-1);text.setText(copy+'…');}}
+  private twoLines(text:Phaser.GameObjects.Text,width:number):void {
+    const full=text.text;let line='',lines:string[]=[];text.setWordWrapWidth(0);
+    for(const char of full.replaceAll('\n',' ')){text.setText(line+char);if(text.width>width&&line){lines.push(line);line=char;if(lines.length===2)break;}else line+=char;}
+    if(lines.length<2)lines.push(line);else{let last=lines[1];text.setText(last+'…');while(text.width>width&&last.length){last=last.slice(0,-1);text.setText(last+'…');}lines[1]=last+'…';}
+    text.setText(lines.join('\n')).setData('fullText',full);
+  }
   private drawGoodsOffer(o:R2Offer,raw:Box,short:boolean,portrait:boolean):void {
-    const v=this.view,selected=this.selectedOfferId===o.offerId,b=selected?{...raw,y:raw.y-4}:raw,isTool=this.shelfKind==='tools',info=isTool?toolInfo(o.definitionId):itemInfo(o.definitionId),first=v.root.length;
-    const family=isTool?toolFamilyLabel(toolInfo(o.definitionId).family):'长期道具',headerHeight=short?28:36,footerHeight=short?48:64;
-    this.drawOfferCard(b,isTool?'uncommon':'common',selected,o.consumed,short,headerHeight,footerHeight);
-    const name=v.text(b.x+10,b.y+5,info.name,short?20:22,o.consumed?'#c6c5af':'#fff2d4',b.width-20).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setShadow(0,1,'#12282e',1,true,true);
-    for(let font=short?20:22;name.width>b.width-20&&font>14;)name.setFontSize(--font);
-    const bodyTop=b.y+headerHeight+8,bodyHeight=b.height-headerHeight-footerHeight-16;
-    const description=v.text(b.x+12,bodyTop,info.description.split('\n')[0],14,o.consumed?'#686e65':'#203744',b.width-24).setLineSpacing(2).setStyle({maxLines:short?1:3});
-    const pictureSize=Math.max(0,Math.min(180,b.width-24,bodyHeight-description.height-8));
-    if(pictureSize>0)this.drawGoodsArt(o.definitionId,info.artUrl,{x:b.x+(b.width-pictureSize)/2,y:bodyTop,width:pictureSize,height:pictureSize},o.consumed ? .55 : 1);
-    description.y=bodyTop+pictureSize+(pictureSize?8:0);
-    const readableHeight=b.y+b.height-footerHeight-6-description.y;if(description.height>readableHeight)description.setStyle({maxLines:Math.max(1,Math.floor((readableHeight+2)/19))});
-    v.text(b.x+b.width-10,b.y+b.height-footerHeight+8,family,14,'#ecd6a4').setOrigin(1,0).setFontStyle('bold');
-    if(o.consumed){v.text(b.x+10,b.y+b.height-footerHeight+8,'✓ 已买',14,'#d3e9cb').setFontStyle('bold');return;}
-    const reason=this.purchaseReason(o,true),price=r2PurchasePrice(this.run,o);
-    const priceText=v.text(b.x+10,b.y+b.height-footerHeight+6,price+' 金',portrait?22:20,'#f6d28c').setFontStyle('bold');
-    v.text(b.x+10,priceText.y+priceText.height+2,reason||(isTool?'购买后收入库存':'本局生效'),14,reason?'#ffc6a4':'#d3e9cb',b.width-20).setStyle({maxLines:1});
-    const hover=this.hoverCard(first,b),r=v.rect(raw).setFillStyle(0,0).setStrokeStyle(0).setData('selected',selected);this.offerArts.push(hover.art);
+    const v=this.view,selected=this.selectedOfferId===o.offerId,b=raw,isTool=this.shelfKind==='tools',info=isTool?toolInfo(o.definitionId):itemInfo(o.definitionId),first=v.root.length;
+    this.drawOfferCard(b,isTool?'uncommon':'common',selected,o.consumed,short);
+    this.drawGoodsArt(o.definitionId,info.artUrl,{x:b.x+5,y:b.y+5,width:b.width-10,height:b.height-10},o.consumed?.55:1);
+    const p=this.geometry(),copyX=p.copyBeside?b.x+b.width+6:b.x,copyY=p.copyBeside?b.y:b.y+b.height,copyWidth=p.copyBeside?(p.tabs.width-8*(p.shelf.length-1))/p.shelf.length-b.width-8:b.width+6;
+    const name=v.text(copyX,copyY+4,info.name,14,'#26313A');this.ellipsis(name,copyWidth);
+    const purpose=v.text(copyX,copyY+23,info.description.split('\n')[0],14,'#3F606B');this.twoLines(purpose,copyWidth);
+    v.text(copyX,copyY+58,o.consumed?'已收入':r2PurchasePrice(this.run,o)+' 金',16,'#26313A');
+    const tile={...b,width:p.copyBeside?b.width+6+copyWidth:b.width,height:p.copyBeside?b.height:b.height+76},hover=this.hoverCard(first,tile),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);this.offerArts.push(hover.art);
     v.target(r,'offer/'+o.offerId,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
   }
+
   private hoverCard(first:number,b:Box,definitionId?:string):{enter:()=>void;leave:()=>void;art:Phaser.GameObjects.Container} {
     const v=this.view,cx=b.x+b.width/2,cy=b.y+b.height/2,members=v.root.list.slice(first),art=this.add.container(cx,cy);
     for(const child of members){
@@ -221,7 +186,7 @@ export class ShopScene extends Phaser.Scene {
       }
     }
     v.add(art);
-    const glow=this.add.graphics().lineStyle(3,0xffe2a1,.92).strokeRoundedRect(-b.width/2-1,-b.height/2-1,b.width+2,b.height+2,6).setAlpha(0);art.add(glow);
+    const glow=this.add.graphics().lineStyle(3,0x3f606b,.7).strokeRoundedRect(-b.width/2-1,-b.height/2-1,b.width+2,b.height+2,6).setAlpha(0);art.add(glow);
     const reduced=()=>gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const leave=()=>{
       this.hideHoverPicture();if(!art.active)return;this.tweens.killTweensOf(art);glow.setAlpha(0);
@@ -231,7 +196,7 @@ export class ShopScene extends Phaser.Scene {
     art.once('destroy',()=>this.tweens.killTweensOf(art));
     return {enter:()=>{
       if(!art.active||!this.scene.isActive())return;this.hideHoverPicture();this.tweens.killTweensOf(art);glow.setAlpha(1);v.root.bringToTop(art);
-      if(!reduced())this.tweens.add({targets:art,y:cy-6,angle:cx>this.view.layout.width/2?-1.6:1.6,scaleX:1.03,scaleY:1.03,duration:130,ease:'Sine.easeOut'});
+      if(!reduced())this.tweens.add({targets:art,y:cy-2,angle:0,scaleX:1,scaleY:1,duration:130,ease:'Sine.easeOut'});
       if(definitionId)this.hoverDelay=this.time.delayedCall(280,()=>{this.hoverDelay=undefined;if(art.active&&this.scene.isActive()&&!document.querySelector('dialog[open]'))this.showHoverPicture(definitionId,b);});
     },leave,art};
   }
@@ -286,20 +251,11 @@ export class ShopScene extends Phaser.Scene {
     image.snapshot(snapshot=>{if(snapshot instanceof HTMLImageElement)this.dialog.attachCardArt(dialog,snapshot.src,getR2Joker(definitionId).name+'机制示意卡面','mechanism');image.destroy();});
   }
   private drawSlot(b:Box,occupied:boolean,rarity:JokerRarity='common'):void {
-    const v=this.view,g=this.add.graphics(),edge=JOKER_RARITY[rarity].edge;
-    if(!occupied){
-      v.material(b,0x28494c,0x193940,5);
-      if(this.textures.exists('p00-card-back'))v.add(this.add.image(b.x+b.width/2,b.y+b.height/2,'p00-card-back').setDisplaySize(b.width-4,b.height-4).setTint(0x9fb8ad).setAlpha(.16));
-      else g.lineStyle(1,0x6b8b80,.3).strokeRect(b.x+8,b.y+10,b.width-16,b.height-32);
-      g.lineStyle(1,0x769487,.35).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,5);v.add(g);return;
-    }
-    v.add(this.add.graphics().fillStyle(0x263d40,.2).fillRoundedRect(b.x+2,b.y+4,b.width,b.height,5));
-    v.material({...b,x:b.x-1,y:b.y-1},0xfaf1db,0xc8af85,5);
-    v.material(b,JOKER_RARITY[rarity].paper,0xe2cda6,5);
-    v.material({x:b.x+2,y:b.y+b.height-25,width:b.width-4,height:23},0x426a62,0x203e49,3);
-    g.lineStyle(1.5,edge).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,5);
-    g.lineStyle(1,0xc5ab74).beginPath().moveTo(b.x+6,b.y+b.height-25).lineTo(b.x+b.width-6,b.y+b.height-25).strokePath();v.add(g);
+    const v=this.view;v.add(this.add.graphics().fillStyle(0x26313a,.08).fillRoundedRect(b.x+1,b.y+3,b.width,b.height,5));
+    v.material(b,0xfff9ee,0xfff9ee,5);v.add(this.add.graphics().lineStyle(1,0x3f606b,.5).strokeRoundedRect(b.x,b.y,b.width,b.height,5));
+    if(!occupied&&this.textures.exists('p00-card-back'))v.add(this.add.image(b.x+b.width/2,b.y+b.height/2,'p00-card-back').setDisplaySize(b.width-6,b.height-6).setAlpha(.14));
   }
+
   private drawJokerPicture(definitionId:string,b:Box,alpha=1):void {
     const v=this.view,d=getR2Joker(definitionId),badge=mechanismBadge(d),key=jokerArtKey(definitionId),g=this.add.graphics();
     v.material(b,badge.paper,0xcbb591,3).setAlpha(alpha);
@@ -318,23 +274,11 @@ export class ShopScene extends Phaser.Scene {
     g.lineStyle(1,0xa69778,.45).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,3);v.add(g.setAlpha(alpha));
   }
   private drawOfferCard(b:Box,rarity:JokerRarity,selected:boolean,consumed:boolean,short:boolean,headerHeight=64,footerHeight=short?44:64):void {
-    const g=this.add.graphics(),shadow=this.add.graphics(),edge=JOKER_RARITY[rarity].edge,metal=rarity==='common'?0xbda171:0xe4c186;
-    shadow.fillStyle(0x172e36,.16).fillRoundedRect(b.x+2,b.y+6,b.width,b.height,6);
-    shadow.fillStyle(0x172e36,.12).fillRoundedRect(b.x+1,b.y+3,b.width,b.height,6);
-    if(selected){
-      shadow.lineStyle(6,0x367f75,.22).strokeRoundedRect(b.x-1,b.y-1,b.width+2,b.height+2,7);
-      shadow.lineStyle(2,0xeac888,1).strokeRoundedRect(b.x-2,b.y-2,b.width+4,b.height+4,7);
-    }
-    this.view.add(shadow);
-    this.view.material(b,consumed?0xe5dfcc:0xfff7e5,consumed?0xcfc9b5:0xeedbb8);
-    this.view.material({x:b.x,y:b.y,width:b.width,height:headerHeight},edge,JOKER_RARITY[rarity].ink);
-    this.view.material({x:b.x,y:b.y+b.height-footerHeight,width:b.width,height:footerHeight},consumed?0x607673:0x365d61,consumed?0x435c59:0x1c3542);
-    g.lineStyle(1.5,edge,.95).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,6);
-    g.lineStyle(1,0xffedbf,.45).beginPath().moveTo(b.x+6,b.y+5).lineTo(b.x+b.width-6,b.y+5).moveTo(b.x+8,b.y+headerHeight).lineTo(b.x+b.width-8,b.y+headerHeight).strokePath();
-    g.lineStyle(1,0xcdb784,.7).beginPath().moveTo(b.x+8,b.y+b.height-footerHeight).lineTo(b.x+b.width-8,b.y+b.height-footerHeight).strokePath();
-    if(rarity==='rare')g.fillStyle(metal).fillTriangle(b.x+b.width/2-5,b.y+2,b.x+b.width/2+5,b.y+2,b.x+b.width/2,b.y+7);
-    this.view.add(g);
+    const shadow=this.add.graphics().fillStyle(0x26313a,.08).fillRoundedRect(b.x+1,b.y+3,b.width,b.height,5);
+    this.view.add(shadow);this.view.material(b,consumed?0xe2e8e5:0xfff9ee,0xfff9ee,5);
+    this.view.add(this.add.graphics().lineStyle(selected?2:1,selected?0x3f606b:0x26313a,.55).strokeRoundedRect(b.x,b.y,b.width,b.height,5));
   }
+
   private purchaseReason(o:R2Offer,short=false):string {
     if(!this.ready)return short?'暂不可购买':'当前只读或未保存，请查看菜单。';
     const kind=this.findOffer(o.offerId)?.kind;if(!kind)return '商品已变化，请重新查看';
