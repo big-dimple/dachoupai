@@ -10,4 +10,4 @@
 
 390×740／1280×720真实range各152×44px；y=上边+4和下边−4位于可视中心轨道外但input内，原生tap／mouse取得16／84，touch／mouse拖动28；min0/max100/step1/aria与Home/ArrowRight保留。fresh30/80、saved37/62 reload验证后还原测试初始值，run未变；只在隔离浏览器context操作，无用户常用值写入。
 
-8受影响布局／音量偏好单测及type PASS。冻结聚合结果随后记录；新精确远端CI另报。整体审美不据此宣称通过；OnePlus／真GPU／听感NOT_RUN，新27WebP未接入。
+8受影响布局／音量偏好单测及type PASS。源码冻结5482279d968d29361218031b73afce64aa85a209的99文件／1809 tests、content、type/build、Chromium Canvas双端smoke、plan全部PASS，前后源码／索引／HEAD不变，且src指纹与两张候选截图一致（见[frozen](frozen-ci.json)）；最终仅证据记录改动，新精确远端CI另报。整体审美不据此宣称通过；OnePlus／真GPU／听感NOT_RUN，新27WebP未接入。

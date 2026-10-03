@@ -885,7 +885,32 @@
       "bytes": 35430
     }
   ],
-  "frozenGate": "PENDING",
+  "frozenGate": {
+    "status": "PASS",
+    "testedCommit": "5482279d968d29361218031b73afce64aa85a209",
+    "testFiles": 99,
+    "tests": 1809,
+    "sourceTree": "b2ba532a25bb0402c1e590d4ec58088008e38af5",
+    "before": {
+      "source": "bf53488f55449d86afcbba24af1dd92b1c6fb392b0afbe49223f824364348c21",
+      "index": "e7da21beafb03823675fbbf000f6dd4f7f78f0285f050b7b2389035d2d913b41",
+      "head": "5482279d968d29361218031b73afce64aa85a209",
+      "branch": "refs/heads/dot/d44-layout"
+    },
+    "after": {
+      "source": "bf53488f55449d86afcbba24af1dd92b1c6fb392b0afbe49223f824364348c21",
+      "index": "e7da21beafb03823675fbbf000f6dd4f7f78f0285f050b7b2389035d2d913b41",
+      "head": "5482279d968d29361218031b73afce64aa85a209",
+      "branch": "refs/heads/dot/d44-layout"
+    },
+    "checks": [
+      "content",
+      "type/build",
+      "Chromium Canvas desktop/mobile smoke",
+      "production-plan"
+    ],
+    "sourceMatchesCapturedCandidate": true
+  },
   "independentAesthetic": "NOT_CLAIMED",
   "scope": "Two public touch contracts; no new art or gameplay",
   "taskId": "P08",
