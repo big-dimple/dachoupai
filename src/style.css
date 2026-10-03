@@ -42,7 +42,7 @@ button:disabled { opacity:.5;cursor:default;box-shadow:none; }
 .run-menu-panel input[type=checkbox] { flex:0 0 20px;width:20px;height:20px;margin:0;accent-color:#367f75; }
 .audio-controls { margin-top:12px;padding:8px 10px 10px;border:1px solid #bca97b;border-radius:8px;background:linear-gradient(#fffaee,#e9dbc0);box-shadow:inset 0 1px 0 #fff; }
 .run-menu-panel .audio-volume-label { display:grid;grid-template-columns:72px minmax(80px,1fr) 38px;gap:8px;min-height:48px; }
-.audio-volume-label input[type=range] { width:100%;min-width:0;max-width:none;height:28px;margin:0;cursor:pointer; }
+.audio-volume-label input[type=range] { width:100%;min-width:0;max-width:none;height:44px;margin:0;cursor:pointer; }
 .audio-volume-value { color:#315e59;font-size:14px;font-variant-numeric:tabular-nums;text-align:right; }
 .audio-controls-hint { display:block;color:#6b624c;font-size:12px; }
 .run-menu-panel details { margin:12px 0 0;border-top:1px solid #c7b89d; }

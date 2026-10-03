@@ -1,0 +1,894 @@
+{
+  "source": "8987e63b3bc32a89c569b410418f594cd659b5ff938d0afd215055c8f86336cd",
+  "build": {
+    "version": "C03",
+    "revision": "d24ff178eac1a861ec463adf3a7392d602d79044",
+    "modified": true,
+    "builtAt": "2026-10-03T15:50:28.207Z"
+  },
+  "browser": "151.0.7922.173",
+  "renderer": "Canvas",
+  "DPR": 1,
+  "runs": [
+    {
+      "kind": "short-shop",
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "safeInset": {
+        "top": 12,
+        "bottom": 0
+      },
+      "checks": [
+        "actual DOM toolbar + all three shelf tabs separated by >=4px",
+        "three goods/copy/main action safe at bottom0",
+        "native tab switching opens correct shelf, no menu interception",
+        "card/cancel unchanged save; explicit affordable purchase once"
+      ],
+      "measured": {
+        "layout": {
+          "x": 12,
+          "w": 820,
+          "top": 24,
+          "short": true,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": false,
+          "copyBeside": true,
+          "inventoryCollapsed": false,
+          "slots": [
+            {
+              "x": 12,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 64,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 116,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 168,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 220,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 280,
+              "y": 118,
+              "width": 88,
+              "height": 123.2
+            },
+            {
+              "x": 466.66666666666663,
+              "y": 118,
+              "width": 88,
+              "height": 123.2
+            },
+            {
+              "x": 653.3333333333333,
+              "y": 118,
+              "width": 88,
+              "height": 123.2
+            }
+          ],
+          "tabs": {
+            "x": 280,
+            "y": 72,
+            "width": 552,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 168,
+            "width": 252,
+            "height": 44
+          },
+          "items": {
+            "x": 12,
+            "y": 168,
+            "width": 252,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 168,
+            "width": 122,
+            "height": 44
+          },
+          "build": {
+            "x": 142,
+            "y": 168,
+            "width": 120,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 220,
+            "width": 252,
+            "height": 56
+          },
+          "noticeY": 280
+        },
+        "offers": 3,
+        "toolbar": [
+          {
+            "x": 696,
+            "y": 24,
+            "width": 64,
+            "height": 44
+          },
+          {
+            "x": 768,
+            "y": 24,
+            "width": 64,
+            "height": 44
+          }
+        ],
+        "tabs": [
+          {
+            "x": 280,
+            "y": 72,
+            "width": 180,
+            "height": 44
+          },
+          {
+            "x": 466,
+            "y": 72,
+            "width": 180,
+            "height": 44
+          },
+          {
+            "x": 652,
+            "y": 72,
+            "width": 180,
+            "height": 44
+          }
+        ],
+        "copy": [
+          {
+            "text": "空位有价",
+            "font": "14px",
+            "bounds": {
+              "x": 374.00001017252606,
+              "y": 122.00000610351563,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "text": "每个空大丑\n牌槽加12…",
+            "font": "14px",
+            "bounds": {
+              "x": 374.00001017252606,
+              "y": 141.00000610351563,
+              "width": 72,
+              "height": 32
+            }
+          },
+          {
+            "text": "4 金 · 查看",
+            "font": "16px",
+            "bounds": {
+              "x": 374.00001017252606,
+              "y": 176.00000610351563,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "text": "安全网",
+            "font": "14px",
+            "bounds": {
+              "x": 561,
+              "y": 122.00000610351563,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "text": "判失败前，\n仅因出牌…",
+            "font": "14px",
+            "bounds": {
+              "x": 561,
+              "y": 141.00000610351563,
+              "width": 70,
+              "height": 32
+            }
+          },
+          {
+            "text": "6 金 · 查看",
+            "font": "16px",
+            "bounds": {
+              "x": 561,
+              "y": 176.00000610351563,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "text": "镜头不空",
+            "font": "14px",
+            "bounds": {
+              "x": 747.0000203450521,
+              "y": 122.00000610351563,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "text": "实际打出牌\n全部是有…",
+            "font": "14px",
+            "bounds": {
+              "x": 747.0000203450521,
+              "y": 141.00000610351563,
+              "width": 70,
+              "height": 32
+            }
+          },
+          {
+            "text": "4 金 · 查看",
+            "font": "16px",
+            "bounds": {
+              "x": 747.0000203450521,
+              "y": 176.00000610351563,
+              "width": 76,
+              "height": 19
+            }
+          }
+        ],
+        "renderer": "Canvas"
+      }
+    },
+    {
+      "kind": "short-shop",
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "safeInset": {
+        "top": 12,
+        "bottom": 12
+      },
+      "checks": [
+        "actual DOM toolbar + all three shelf tabs separated by >=4px",
+        "three goods/copy/main action safe at bottom12",
+        "native tab switching opens correct shelf, no menu interception",
+        "card/cancel unchanged save; explicit affordable purchase once"
+      ],
+      "measured": {
+        "layout": {
+          "x": 12,
+          "w": 820,
+          "top": 24,
+          "short": true,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": false,
+          "copyBeside": true,
+          "inventoryCollapsed": false,
+          "slots": [
+            {
+              "x": 12,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 64,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 116,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 168,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 220,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 280,
+              "y": 118,
+              "width": 88,
+              "height": 123.2
+            },
+            {
+              "x": 466.66666666666663,
+              "y": 118,
+              "width": 88,
+              "height": 123.2
+            },
+            {
+              "x": 653.3333333333333,
+              "y": 118,
+              "width": 88,
+              "height": 123.2
+            }
+          ],
+          "tabs": {
+            "x": 280,
+            "y": 72,
+            "width": 552,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 156,
+            "width": 252,
+            "height": 44
+          },
+          "items": {
+            "x": 12,
+            "y": 156,
+            "width": 252,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 156,
+            "width": 122,
+            "height": 44
+          },
+          "build": {
+            "x": 142,
+            "y": 156,
+            "width": 120,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 208,
+            "width": 252,
+            "height": 56
+          },
+          "noticeY": 268
+        },
+        "offers": 3,
+        "toolbar": [
+          {
+            "x": 696,
+            "y": 24,
+            "width": 64,
+            "height": 44
+          },
+          {
+            "x": 768,
+            "y": 24,
+            "width": 64,
+            "height": 44
+          }
+        ],
+        "tabs": [
+          {
+            "x": 280,
+            "y": 72,
+            "width": 180,
+            "height": 44
+          },
+          {
+            "x": 466,
+            "y": 72,
+            "width": 180,
+            "height": 44
+          },
+          {
+            "x": 652,
+            "y": 72,
+            "width": 180,
+            "height": 44
+          }
+        ],
+        "copy": [
+          {
+            "text": "空位有价",
+            "font": "14px",
+            "bounds": {
+              "x": 374.00001017252606,
+              "y": 122.00000610351563,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "text": "每个空大丑\n牌槽加12…",
+            "font": "14px",
+            "bounds": {
+              "x": 374.00001017252606,
+              "y": 141.00000610351563,
+              "width": 72,
+              "height": 32
+            }
+          },
+          {
+            "text": "4 金 · 查看",
+            "font": "16px",
+            "bounds": {
+              "x": 374.00001017252606,
+              "y": 176.00000610351563,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "text": "安全网",
+            "font": "14px",
+            "bounds": {
+              "x": 561,
+              "y": 122.00000610351563,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "text": "判失败前，\n仅因出牌…",
+            "font": "14px",
+            "bounds": {
+              "x": 561,
+              "y": 141.00000610351563,
+              "width": 70,
+              "height": 32
+            }
+          },
+          {
+            "text": "6 金 · 查看",
+            "font": "16px",
+            "bounds": {
+              "x": 561,
+              "y": 176.00000610351563,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "text": "镜头不空",
+            "font": "14px",
+            "bounds": {
+              "x": 747.0000203450521,
+              "y": 122.00000610351563,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "text": "实际打出牌\n全部是有…",
+            "font": "14px",
+            "bounds": {
+              "x": 747.0000203450521,
+              "y": 141.00000610351563,
+              "width": 70,
+              "height": 32
+            }
+          },
+          {
+            "text": "4 金 · 查看",
+            "font": "16px",
+            "bounds": {
+              "x": 747.0000203450521,
+              "y": 176.00000610351563,
+              "width": 76,
+              "height": 19
+            }
+          }
+        ],
+        "renderer": "Canvas"
+      }
+    },
+    {
+      "kind": "short-shop",
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "safeInset": {
+        "top": 12,
+        "bottom": 34
+      },
+      "checks": [
+        "actual DOM toolbar + all three shelf tabs separated by >=4px",
+        "three goods/copy/main action safe at bottom34",
+        "native tab switching opens correct shelf, no menu interception",
+        "card/cancel unchanged save; explicit affordable purchase once"
+      ],
+      "measured": {
+        "layout": {
+          "x": 12,
+          "w": 820,
+          "top": 24,
+          "short": true,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": false,
+          "copyBeside": true,
+          "inventoryCollapsed": false,
+          "slots": [
+            {
+              "x": 12,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 64,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 116,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 168,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 220,
+              "y": 76,
+              "width": 44,
+              "height": 61.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 280,
+              "y": 118,
+              "width": 88,
+              "height": 123.2
+            },
+            {
+              "x": 466.66666666666663,
+              "y": 118,
+              "width": 88,
+              "height": 123.2
+            },
+            {
+              "x": 653.3333333333333,
+              "y": 118,
+              "width": 88,
+              "height": 123.2
+            }
+          ],
+          "tabs": {
+            "x": 280,
+            "y": 72,
+            "width": 552,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 134,
+            "width": 252,
+            "height": 44
+          },
+          "items": {
+            "x": 12,
+            "y": 134,
+            "width": 252,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 134,
+            "width": 122,
+            "height": 44
+          },
+          "build": {
+            "x": 142,
+            "y": 134,
+            "width": 120,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 186,
+            "width": 252,
+            "height": 56
+          },
+          "noticeY": 246
+        },
+        "offers": 3,
+        "toolbar": [
+          {
+            "x": 696,
+            "y": 24,
+            "width": 64,
+            "height": 44
+          },
+          {
+            "x": 768,
+            "y": 24,
+            "width": 64,
+            "height": 44
+          }
+        ],
+        "tabs": [
+          {
+            "x": 280,
+            "y": 72,
+            "width": 180,
+            "height": 44
+          },
+          {
+            "x": 466,
+            "y": 72,
+            "width": 180,
+            "height": 44
+          },
+          {
+            "x": 652,
+            "y": 72,
+            "width": 180,
+            "height": 44
+          }
+        ],
+        "copy": [
+          {
+            "text": "空位有价",
+            "font": "14px",
+            "bounds": {
+              "x": 374.00001017252606,
+              "y": 122.00000610351563,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "text": "每个空大丑\n牌槽加12…",
+            "font": "14px",
+            "bounds": {
+              "x": 374.00001017252606,
+              "y": 141.00000610351563,
+              "width": 72,
+              "height": 32
+            }
+          },
+          {
+            "text": "4 金 · 查看",
+            "font": "16px",
+            "bounds": {
+              "x": 374.00001017252606,
+              "y": 176.00000610351563,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "text": "安全网",
+            "font": "14px",
+            "bounds": {
+              "x": 561,
+              "y": 122.00000610351563,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "text": "判失败前，\n仅因出牌…",
+            "font": "14px",
+            "bounds": {
+              "x": 561,
+              "y": 141.00000610351563,
+              "width": 70,
+              "height": 32
+            }
+          },
+          {
+            "text": "6 金 · 查看",
+            "font": "16px",
+            "bounds": {
+              "x": 561,
+              "y": 176.00000610351563,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "text": "镜头不空",
+            "font": "14px",
+            "bounds": {
+              "x": 747.0000203450521,
+              "y": 122.00000610351563,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "text": "实际打出牌\n全部是有…",
+            "font": "14px",
+            "bounds": {
+              "x": 747.0000203450521,
+              "y": 141.00000610351563,
+              "width": 70,
+              "height": 32
+            }
+          },
+          {
+            "text": "4 金 · 查看",
+            "font": "16px",
+            "bounds": {
+              "x": 747.0000203450521,
+              "y": 176.00000610351563,
+              "width": 76,
+              "height": 19
+            }
+          }
+        ],
+        "renderer": "Canvas"
+      }
+    },
+    {
+      "kind": "audio-range",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "input": "native CDP touch",
+      "checks": [
+        "actual input >=44px; native point/drag outside visible center track",
+        "step1/min0/max100/aria keyboard Home/ArrowRight",
+        "fresh30/80; saved37/62 reload intact; temporary settings restored",
+        "audio inputs do not alter run"
+      ],
+      "ranges": [
+        {
+          "label": "背景音量",
+          "bounds": {
+            "x": 139,
+            "y": 455,
+            "width": 152,
+            "height": 44
+          },
+          "offTrackY": [
+            459,
+            495
+          ],
+          "values": {
+            "low": 16,
+            "high": 84,
+            "drag": 28
+          },
+          "restored": 30
+        },
+        {
+          "label": "音效音量",
+          "bounds": {
+            "x": 139,
+            "y": 507,
+            "width": 152,
+            "height": 44
+          },
+          "offTrackY": [
+            511,
+            547
+          ],
+          "values": {
+            "low": 16,
+            "high": 84,
+            "drag": 28
+          },
+          "restored": 80
+        }
+      ]
+    },
+    {
+      "kind": "audio-range",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "input": "native mouse/keyboard",
+      "checks": [
+        "actual input >=44px; native point/drag outside visible center track",
+        "step1/min0/max100/aria keyboard Home/ArrowRight",
+        "fresh30/80; saved37/62 reload intact; temporary settings restored",
+        "audio inputs do not alter run"
+      ],
+      "ranges": [
+        {
+          "label": "背景音量",
+          "bounds": {
+            "x": 1029,
+            "y": 455,
+            "width": 152,
+            "height": 44
+          },
+          "offTrackY": [
+            459,
+            495
+          ],
+          "values": {
+            "low": 16,
+            "high": 84,
+            "drag": 28
+          },
+          "restored": 30
+        },
+        {
+          "label": "音效音量",
+          "bounds": {
+            "x": 1029,
+            "y": 507,
+            "width": 152,
+            "height": 44
+          },
+          "offTrackY": [
+            511,
+            547
+          ],
+          "values": {
+            "low": 16,
+            "high": 84,
+            "drag": 28
+          },
+          "restored": 80
+        }
+      ]
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "listening": "NOT_RUN",
+  "status": "PASS",
+  "baseline": "d24ff178eac1a861ec463adf3a7392d602d79044",
+  "screenshots": [
+    {
+      "file": "844-shop-safe34.png",
+      "sha256": "528e1a7e10bf77270f3cac00660cb548967c9995698a7d0b35785df853d6b75c",
+      "bytes": 70470
+    },
+    {
+      "file": "390-audio-range.png",
+      "sha256": "b38017ebf3894ca16d591fcaf3fc2a0b3f4774eec4c5c3057fd0551b9718e686",
+      "bytes": 35430
+    }
+  ],
+  "frozenGate": "PENDING",
+  "independentAesthetic": "NOT_CLAIMED",
+  "scope": "Two public touch contracts; no new art or gameplay",
+  "taskId": "P08",
+  "testedCommit": "d24ff178eac1a861ec463adf3a7392d602d79044",
+  "modifiedCandidate": true
+}
