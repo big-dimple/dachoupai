@@ -1,0 +1,637 @@
+{
+  "taskId": "P08",
+  "task": "D44 follow-up: compact two-row10–14 portrait hand",
+  "date": "2026-10-03",
+  "status": "LOCAL_GATES_PASS_REMOTE_EXACT_CI_REPORTED_SEPARATELY",
+  "baseCommit": "e402ade5b8b444fedc93cef0ab1bace58c06cd7b",
+  "runtimeCommit": "d3e84b83cf09de8c5c6f76608742cf1e03886027",
+  "frozenCommit": "77b7e7234b8d13006f2a28c869d409314fac862b",
+  "scope": "Portrait hand geometry, bounded native input ownership, vertical-first cross-row gesture, tests and mainline records. No domain/RNG/save/score/balance/assets/dependencies/deployment changes. Existing nine-card row retained.",
+  "geometry": {
+    "CSSViewports": [
+      [
+        360,
+        740
+      ],
+      [
+        390,
+        740
+      ]
+    ],
+    "counts": [
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "rows": 2,
+    "card": [
+      64,
+      89.6
+    ],
+    "rowLiftReserve": 22,
+    "totalHandHeight": 223.2,
+    "pitchAt14": [
+      46.6666666667,
+      50.3333333333
+    ],
+    "selectionLift": 16,
+    "selectionScale": 1,
+    "maxSelected": 5,
+    "shortHeightFallback": "Readable reachable window when two complete >=52px faces plus independent22px reserve do not fit; 9-card portrait never regresses to paging."
+  },
+  "gesture": "Two-row hand surface alone uses touch-action:none and permits vertical starts; one-row keeps pan-y. Stable original row seats and ordering; select/deselect traversal deduplicates, maximum5. Escape rolls back, interruption preserves applied selection, fresh contact works.",
+  "fixtures": "Controlled 9–14 stage-entry snapshots inside existing hand-maximum and card-conservation contract; unchanged makeCheckpoint/readCheckpoint and actual import UI. Natural acquisition not claimed. Initial duplicate-joker fixture was rejected by unchanged invariants and replaced, not weakened.",
+  "focusedChecks": {
+    "command": "npm test -- tests/layout.test.ts tests/hand-selection-gesture.test.ts tests/hand-selection-input.test.ts tests/hand-sweep-hint.test.ts tests/r2-command.test.ts tests/r2-run.test.ts tests/recovery-save.test.ts",
+    "tests": 115,
+    "status": "PASS",
+    "typecheck": "PASS",
+    "harnessSyntax": "PASS"
+  },
+  "frozenAggregate": {
+    "command": "VITEST_MAX_WORKERS=1 NODE_OPTIONS=<external Canvas launch adapter> SMOKE_BROWSERS=chromium npm run verify:ci",
+    "tests": 1796,
+    "files": 96,
+    "before": {
+      "source": "a70d59794b0ccb0fc3a96fe5386b85648cbb9b67d54db4ed6344ad80ea503030",
+      "index": "8cf4b90794fdda5793e266bd3749362d2690ae7f02e45bd01d6d7b96406082b6",
+      "head": "77b7e7234b8d13006f2a28c869d409314fac862b",
+      "branch": "refs/heads/dot/d44-layout"
+    },
+    "after": {
+      "source": "a70d59794b0ccb0fc3a96fe5386b85648cbb9b67d54db4ed6344ad80ea503030",
+      "index": "8cf4b90794fdda5793e266bd3749362d2690ae7f02e45bd01d6d7b96406082b6",
+      "head": "77b7e7234b8d13006f2a28c869d409314fac862b",
+      "branch": "refs/heads/dot/d44-layout"
+    },
+    "steps": [
+      {
+        "name": "test",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 76383
+      },
+      {
+        "name": "verify:content",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 6537
+      },
+      {
+        "name": "build",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 18872
+      },
+      {
+        "name": "verify:smoke",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 46357
+      },
+      {
+        "name": "production-plan",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 279
+      }
+    ],
+    "status": "PASS",
+    "renderer": "Canvas functional adapter, not WebGL or hardware acceptance"
+  },
+  "browserRuns": [
+    {
+      "engine": "chromium",
+      "version": "151.0.7922.173",
+      "viewport": [
+        360,
+        740
+      ],
+      "DPR": 3,
+      "input": "native CDP touch + DOM tap",
+      "renderer": "Canvas",
+      "sampleEndFps": 60,
+      "checks": [
+        {
+          "count": 9,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 1
+        },
+        {
+          "count": 9,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 10,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 10,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 11,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 11,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 12,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 12,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 13,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 13,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 14,
+          "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        }
+      ],
+      "resizeObservations": []
+    },
+    {
+      "engine": "chromium",
+      "version": "151.0.7922.173",
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "input": "native CDP touch + DOM tap",
+      "renderer": "Canvas",
+      "sampleEndFps": 60,
+      "checks": [
+        {
+          "count": 9,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 1
+        },
+        {
+          "count": 9,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 10,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 10,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 11,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 11,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 12,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 12,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 13,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 13,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 14,
+          "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        }
+      ],
+      "resizeObservations": []
+    },
+    {
+      "engine": "webkit",
+      "version": "26.6",
+      "viewport": [
+        360,
+        740
+      ],
+      "DPR": 3,
+      "input": "native mouse cross-row + touchscreen tap",
+      "renderer": "WebGL",
+      "sampleEndFps": 35.3125,
+      "checks": [
+        {
+          "count": 9,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 1
+        },
+        {
+          "count": 9,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 10,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 10,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 11,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 11,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 12,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 12,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 13,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 13,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 14,
+          "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        }
+      ],
+      "resizeObservations": [
+        {
+          "requested": {
+            "width": 390,
+            "height": 740
+          },
+          "beforeObserver": {
+            "width": 390,
+            "height": 740,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 360,
+            "height": 640
+          },
+          "beforeObserver": {
+            "width": 390,
+            "height": 740,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 844,
+            "height": 300
+          },
+          "beforeObserver": {
+            "width": 844,
+            "height": 300,
+            "rows": 1
+          }
+        },
+        {
+          "requested": {
+            "width": 360,
+            "height": 740
+          },
+          "beforeObserver": {
+            "width": 844,
+            "height": 300,
+            "rows": 1
+          }
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "version": "26.6",
+      "viewport": [
+        390,
+        740
+      ],
+      "DPR": 3,
+      "input": "native mouse cross-row + touchscreen tap",
+      "renderer": "WebGL",
+      "sampleEndFps": 35.3125,
+      "checks": [
+        {
+          "count": 9,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 1
+        },
+        {
+          "count": 9,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 10,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 10,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 11,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 11,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 12,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 12,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 13,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 13,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "all rank/suit/mark/hit/score geometry",
+          "status": "PASS",
+          "rows": 2
+        },
+        {
+          "count": 14,
+          "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+          "status": "PASS"
+        },
+        {
+          "count": 14,
+          "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+          "status": "PASS"
+        }
+      ],
+      "resizeObservations": [
+        {
+          "requested": {
+            "width": 360,
+            "height": 740
+          },
+          "beforeObserver": {
+            "width": 390,
+            "height": 740,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 390,
+            "height": 640
+          },
+          "beforeObserver": {
+            "width": 360,
+            "height": 740,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 844,
+            "height": 300
+          },
+          "beforeObserver": {
+            "width": 390,
+            "height": 640,
+            "rows": 2
+          }
+        },
+        {
+          "requested": {
+            "width": 390,
+            "height": 740
+          },
+          "beforeObserver": {
+            "width": 390,
+            "height": 740,
+            "rows": 2
+          }
+        }
+      ]
+    }
+  ],
+  "extraReducedMotionAndResize": {
+    "status": "PASS",
+    "runs": [
+      {
+        "width": 360,
+        "checks": [
+          {
+            "count": 14,
+            "name": "all rank/suit/mark/hit/score geometry",
+            "status": "PASS",
+            "rows": 2
+          },
+          {
+            "count": 14,
+            "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+            "status": "PASS"
+          },
+          {
+            "count": 14,
+            "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "checks": [
+          {
+            "count": 14,
+            "name": "all rank/suit/mark/hit/score geometry",
+            "status": "PASS",
+            "rows": 2
+          },
+          {
+            "count": 14,
+            "name": "Escape/native-cancel/resize/fresh-contact/sort/rotate/discard/refill/reload",
+            "status": "PASS"
+          },
+          {
+            "count": 14,
+            "name": "bidirectional cross-row select/cancel/repeat/five-limit/full-save invariants",
+            "status": "PASS"
+          }
+        ]
+      }
+    ]
+  },
+  "browserCoverage": "All9–14 visible rank/suit/selection-mark/hit/score geometry; original strict pip/index overlap assertion; vertical-first cross-row selection and reverse cancellation twice; full sweep5 cap; actual single taps; Escape/native Chrome touchCancel, interrupted resize/fresh contact, both sorts,740→640→844x300→740, preference/save isolation, discard/refill, reload/continue. Native WebKit touch swipes are not available through this adapter; its cross-row path is actual mouse input plus touchscreen taps.",
+  "screenshotPixelsInspected": [
+    "shots/two-row/chromium-360-9-five.png",
+    "shots/two-row/chromium-360-14-five.png",
+    "shots/two-row/chromium-390-14-five.png",
+    "shots/two-row-webkit/webkit-360-10-five.png",
+    "shots/two-row-webkit/webkit-390-14-five.png"
+  ],
+  "testCorrections": [
+    {
+      "failure": "WebKit rotation assertion read rows1 before ResizeObserver delivered requested portrait size",
+      "evidence": "Requested360x740 observed old844x300/rows1; final run records beforeObserver dimensions",
+      "correction": "Wait for actual Phaser CSS viewport dimensions and completed card rendering; original dimensions/geometry/assertions/timeouts unchanged",
+      "log": "shots/two-row-webkit/before-resize-observer-wait.json"
+    },
+    {
+      "failure": "Default parallel aggregate:3 existing generated tests timed out,1793 passed",
+      "correction": "Supported VITEST_MAX_WORKERS=1 scheduling, no timeout/test/assertion changes; all1796 passed with frozen source/index/HEAD",
+      "log": "shots/two-row/frozen-ci-default-worker-failure.json"
+    },
+    {
+      "failure": "CDP TouchEnd after TouchCancel rejected by transport",
+      "correction": "TouchCancel already ends native contact; test starts a fresh contact, stale releases still covered by unit assertions",
+      "log": "shots/two-row/first-cdp-invalid-end.json"
+    }
+  ],
+  "art": "No new runtime art downloaded or integrated. Transfer checker is separate; next round only.",
+  "limits": {
+    "physicalOnePlus": "NOT_RUN",
+    "userPCGPU": "NOT_RUN",
+    "FirefoxTwoRowTargeted": "NOT_RUN locally; ordinary existing matrix is remote CI",
+    "publicDomain": "NOT_OPENED",
+    "recording": "NOT_RUN",
+    "hardwarePerformance": "NOT_RUN; reported renderer/FPS are observations only"
+  },
+  "publication": "User authorizes normal fast-forward main push after unchanged remote check; never force. Exact final SHA/UTC/CI terminal reported after push. Existing baseline CI not queried. Parent handles >=120s deployment interval and version check; no site or userPC operation.",
+  "testedCommit": "77b7e7234b8d13006f2a28c869d409314fac862b",
+  "browserBuildInfo": {
+    "version": "C03",
+    "revision": "e402ade5b8b444fedc93cef0ab1bace58c06cd7b",
+    "modified": true,
+    "builtAt": "2026-10-03T08:01:04.125Z"
+  },
+  "browserBuildScope": "Targeted build was made from the actual modified working source before local code commits. Runtime src and tests bytes are identical at runtimeCommit and frozenCommit; later changes only improve harness waits. Frozen aggregate builds/tests exact frozenCommit. No claim that the early artifact build revision is the frozen revision.",
+  "runtimeSourceHashes": {
+    "src/game/layout.ts": "78dabae5d01045444f69183e1ca4a9c85e79866a2971b5145865bd3a270df7ea",
+    "src/game/GameScene.ts": "fc2979e53509e93566cb4944d7dd4feebf9aec5c0dda4fc1907f63718ccc81eb",
+    "src/game/HandSelectionGesture.ts": "f4038c855c9ad269c1d71bcf88bcd442fbf47d66011e5e3b46f475544d6441ef",
+    "src/game/HandSelectionInput.ts": "e9f1bf16df7ca0b8743a124dc7cc050d97ed89f95d4d6ccd94e5a44c00245644"
+  }
+}
