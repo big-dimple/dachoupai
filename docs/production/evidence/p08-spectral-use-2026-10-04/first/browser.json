@@ -1,0 +1,1113 @@
+{
+  "taskId": "P08",
+  "testedCommit": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+  "build": {
+    "version": "C03",
+    "revision": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+    "modified": false,
+    "builtAt": "2026-10-04T20:37:52.304Z"
+  },
+  "browser": "151.0.7922.173",
+  "renderer": "Chromium software Canvas",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "motion": "reduce",
+  "fixture": "Eight unique validator-approved synthetic checkpoints. Five shop-only tools are also entered into the table via real LeaveShop/EnterStage UI, rejected there, then the same original checkpoint is reimported. No natural acquisition/full run.",
+  "fixtureCount": 8,
+  "sourceFreeze": {
+    "before": {
+      "source": "0985dec8307679c2939941ade999cd73d6503b92398c0026ff38ef35180faca8",
+      "index": "405150b8585fc8c2eb290cd504d2855b37074a9ad38fb1c63b532e2836a544d4",
+      "head": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+      "branch": "refs/heads/feat/p08-spectral-use-20261004"
+    },
+    "after": {
+      "source": "0985dec8307679c2939941ade999cd73d6503b92398c0026ff38ef35180faca8",
+      "index": "405150b8585fc8c2eb290cd504d2855b37074a9ad38fb1c63b532e2836a544d4",
+      "head": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+      "branch": "refs/heads/feat/p08-spectral-use-20261004"
+    },
+    "status": "PASS"
+  },
+  "device": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "cases": [
+    {
+      "id": "S01",
+      "definition": {
+        "id": "S01",
+        "name": "献纸",
+        "family": "spectral",
+        "price": 8,
+        "shopWeight": 3,
+        "phases": [
+          "shop",
+          "await-input"
+        ],
+        "target": {
+          "kind": "card-sacrifice",
+          "donors": 1,
+          "minimum": 1,
+          "maximum": 2,
+          "recipients": "unenhanced",
+          "distinct": true
+        },
+        "operation": {
+          "kind": "random-enhancement",
+          "rng": "rule",
+          "independentPerTarget": true,
+          "choices": [
+            {
+              "id": "heat-paper",
+              "weight": 1
+            },
+            {
+              "id": "multiplier-paper",
+              "weight": 1
+            },
+            {
+              "id": "glass-paper",
+              "weight": 1
+            },
+            {
+              "id": "voice-paper",
+              "weight": 1
+            },
+            {
+              "id": "gold-paper",
+              "weight": 1
+            },
+            {
+              "id": "encore-paper",
+              "weight": 1
+            },
+            {
+              "id": "lucky-paper",
+              "weight": 1
+            }
+          ]
+        },
+        "costs": [
+          {
+            "kind": "sacrifice-card",
+            "count": 1
+          }
+        ],
+        "caps": [
+          "singleUse",
+          "deckDeletionFloor",
+          "legalActionAfter"
+        ],
+        "reject": [
+          "wrong-phase",
+          "unknown-target",
+          "duplicate-target",
+          "no-effect",
+          "stale-command",
+          "save-failed",
+          "deck-floor",
+          "donor-is-recipient"
+        ],
+        "requiredFeatures": [
+          "spectral",
+          "card-targets",
+          "card-delete",
+          "enhancements",
+          "lucky"
+        ],
+        "lifetime": "consumed-on-success",
+        "assetId": "tool-s01",
+        "rewardSources": []
+      },
+      "fixture": {
+        "runId": "fixture/p08-spectral-use/S01",
+        "phase": "await-input",
+        "checkpointSHA256": "a14f3fd0108af25eb46090df8d303d421f92d6cf461b0201b1db484f0a17f189",
+        "validator": "PASS"
+      },
+      "invalid": [
+        {
+          "hint": "请选择 1～2 张受益牌。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_COST_NO_RNG",
+          "beforeRunSHA256": "1314808e1a5be94b0b13650b0f9bea8ba622b72bc85a7a5ae554bd5df2862d88",
+          "afterRunSHA256": "1314808e1a5be94b0b13650b0f9bea8ba622b72bc85a7a5ae554bd5df2862d88"
+        },
+        {
+          "hint": "请选择 1～2 张受益牌。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_COST_NO_RNG",
+          "beforeRunSHA256": "1314808e1a5be94b0b13650b0f9bea8ba622b72bc85a7a5ae554bd5df2862d88",
+          "afterRunSHA256": "1314808e1a5be94b0b13650b0f9bea8ba622b72bc85a7a5ae554bd5df2862d88"
+        }
+      ],
+      "disabledTargets": [
+        {
+          "id": "hearts-13",
+          "role": "target",
+          "nativeTap": "NO_SELECTION_NO_COMMAND_NO_COST_NO_RNG",
+          "status": "PASS"
+        },
+        {
+          "id": "spades-14",
+          "role": "target",
+          "nativeTap": "NO_SELECTION_NO_COMMAND_NO_COST_NO_RNG",
+          "status": "PASS"
+        }
+      ],
+      "cancellation": [
+        {
+          "kind": "legal selected targets/cost disclosure then native Cancel",
+          "beforeRunSHA256": "1314808e1a5be94b0b13650b0f9bea8ba622b72bc85a7a5ae554bd5df2862d88",
+          "afterRunSHA256": "1314808e1a5be94b0b13650b0f9bea8ba622b72bc85a7a5ae554bd5df2862d88",
+          "beforeSelection": [
+            "hearts-13"
+          ],
+          "afterSelection": [
+            "hearts-13"
+          ],
+          "status": "PASS"
+        }
+      ],
+      "screenshots": [],
+      "beforeConfirm": {
+        "body": "商店 / 待出牌可用。牺牲1张扑克，再选1–2张未增强扑克，牺牲者与受赠者必须不同。每张受赠扑克独立随机获得一种增强，保留原版次。按商店可见有效牌组顺序，或待出牌时当前手牌顺序分配，不按目标点击顺序分配。\n\n商店基准售价：8金\n额外使用代价：永久牺牲1张扑克。成功后消耗1件工具。",
+        "preview": "永久牺牲：K♥ · 玻璃纸 · 闪箔 · 第 1 张。不作为出售，不退款。\n\n公开受益顺序：1. 3♣ · 无增强 · 全息 · 第 3 张 → 2. 2♦ · 无增强 · 普通 · 第 4 张\n\n3♣ · 增强：无；版次：全息（倍率+2）\n\n2♦ · 增强：无；版次：普通",
+        "hint": "目标有效。确认后使用物品并支付上述代价。",
+        "probability": "公开概率：热度纸 1/7、倍率纸 1/7、玻璃纸 1/7、留声纸 1/7、金纸 1/7、返场纸 1/7、幸运纸 1/7。使用后揭晓结果。",
+        "horizontalOverflow": {
+          "clientWidth": 318,
+          "scrollWidth": 318
+        }
+      },
+      "effect": {
+        "sacrifice": "hearts-13",
+        "independentRuleDraws": 2,
+        "publicOrderNotClickOrder": true,
+        "assignments": [
+          {
+            "id": "clubs-3",
+            "expectedEnhancement": "multiplier-paper"
+          },
+          {
+            "id": "diamonds-2",
+            "expectedEnhancement": "gold-paper"
+          }
+        ],
+        "unrelatedFields": "PASS"
+      },
+      "RNG": {
+        "changedStream": "rule",
+        "before": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2565903832
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2585628532
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3283378357
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 491081952
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 4013398610
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3962848387
+          }
+        },
+        "after": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2565903832
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1953792862
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3283378357
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 491081952
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 4013398610
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3962848387
+          }
+        },
+        "otherStreams": "UNCHANGED"
+      },
+      "confirmation": {
+        "nativeAttempts": 2,
+        "committedUseEvents": 1,
+        "commandSeq": [
+          3,
+          4
+        ],
+        "consumables": [
+          2,
+          1
+        ],
+        "sentinelRetained": true,
+        "completeSavedStateVsAuthoritativeCommand": "PASS",
+        "sameCommandReplay": "PASS_IDENTICAL_STATE_NO_EVENTS",
+        "checkpointRead": "PASS",
+        "beforeRunSHA256": "1314808e1a5be94b0b13650b0f9bea8ba622b72bc85a7a5ae554bd5df2862d88",
+        "afterRunSHA256": "1aea6fdbc9717e3ddb274b9a4039af3e0b41bd57614a8e0f9d773a19f8b7d451",
+        "events": [
+          {
+            "type": "consumable-used",
+            "definitionId": "S01",
+            "instanceId": "fixture/use/S01",
+            "targetIds": [
+              "clubs-3",
+              "diamonds-2"
+            ],
+            "createdCardIds": [],
+            "destroyedCardIds": [
+              "hearts-13"
+            ]
+          }
+        ]
+      },
+      "returned": {
+        "scene": "game",
+        "renderer": 1,
+        "width": 390,
+        "height": 740,
+        "inventoryLabel": "工具包 1/2",
+        "goldText": "金币 20",
+        "jokerHitNames": [
+          "joker/fixture/donor",
+          "joker/fixture/recipient",
+          "joker/fixture/watcher"
+        ],
+        "hand": [
+          {
+            "card": {
+              "id": "spades-14",
+              "suit": "spades",
+              "rank": 14,
+              "enhancement": "heat-paper"
+            },
+            "index": "A\n♠"
+          },
+          {
+            "card": {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 3,
+              "edition": "holographic",
+              "enhancement": "multiplier-paper"
+            },
+            "index": "3\n♣"
+          },
+          {
+            "card": {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2,
+              "enhancement": "gold-paper"
+            },
+            "index": "2\n♦"
+          },
+          {
+            "card": {
+              "id": "clubs-9",
+              "suit": "clubs",
+              "rank": 9
+            },
+            "index": "9\n♣"
+          },
+          {
+            "card": {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            "index": "10\n♥"
+          },
+          {
+            "card": {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11
+            },
+            "index": "J\n♦"
+          },
+          {
+            "card": {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12
+            },
+            "index": "Q\n♠"
+          }
+        ],
+        "handsLeft": 4,
+        "handCount": "手牌 7 / 8"
+      },
+      "deckViewText": "剩余牌堆\n全部牌组\n所有增强\n无增强\n有增强\n\n按花色与点数统计，不展示抽牌顺序。\n♠ 13 · ♥ 12 · ♣ 13 · ♦ 13\n2♠、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠ 手牌、K♠、A♠ 手牌 热度纸、2♥、3♥、4♥、5♥、6♥、7♥、8♥、9♥、10♥ 手牌、J♥、Q♥、A♥、2♣、3♣ 手牌 倍率纸 全息、4♣、5♣、6♣、7♣、8♣、9♣ 手牌、10♣、J♣、Q♣、K♣、A♣、2♦ 手牌 金纸、3♦、4♦、5♦、6♦、7♦、8♦、9♦、10♦、J♦ 手牌、Q♦、K♦、A♦",
+      "reload": {
+        "status": "PASS",
+        "beforeRunSHA256": "1aea6fdbc9717e3ddb274b9a4039af3e0b41bd57614a8e0f9d773a19f8b7d451",
+        "afterRunSHA256": "1aea6fdbc9717e3ddb274b9a4039af3e0b41bd57614a8e0f9d773a19f8b7d451",
+        "ui": {
+          "scene": "game",
+          "renderer": 1,
+          "width": 390,
+          "height": 740,
+          "inventoryLabel": "工具包 1/2",
+          "goldText": "金币 20",
+          "jokerHitNames": [
+            "joker/fixture/donor",
+            "joker/fixture/recipient",
+            "joker/fixture/watcher"
+          ],
+          "hand": [
+            {
+              "card": {
+                "id": "spades-14",
+                "suit": "spades",
+                "rank": 14,
+                "enhancement": "heat-paper"
+              },
+              "index": "A\n♠"
+            },
+            {
+              "card": {
+                "id": "clubs-3",
+                "suit": "clubs",
+                "rank": 3,
+                "edition": "holographic",
+                "enhancement": "multiplier-paper"
+              },
+              "index": "3\n♣"
+            },
+            {
+              "card": {
+                "id": "diamonds-2",
+                "suit": "diamonds",
+                "rank": 2,
+                "enhancement": "gold-paper"
+              },
+              "index": "2\n♦"
+            },
+            {
+              "card": {
+                "id": "clubs-9",
+                "suit": "clubs",
+                "rank": 9
+              },
+              "index": "9\n♣"
+            },
+            {
+              "card": {
+                "id": "hearts-10",
+                "suit": "hearts",
+                "rank": 10
+              },
+              "index": "10\n♥"
+            },
+            {
+              "card": {
+                "id": "diamonds-11",
+                "suit": "diamonds",
+                "rank": 11
+              },
+              "index": "J\n♦"
+            },
+            {
+              "card": {
+                "id": "spades-12",
+                "suit": "spades",
+                "rank": 12
+              },
+              "index": "Q\n♠"
+            }
+          ],
+          "handsLeft": 4,
+          "handCount": "手牌 7 / 8"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "S02",
+      "definition": {
+        "id": "S02",
+        "name": "镀影",
+        "family": "spectral",
+        "price": 8,
+        "shopWeight": 3,
+        "phases": [
+          "shop",
+          "await-input"
+        ],
+        "target": {
+          "kind": "card-or-joker",
+          "edition": "none"
+        },
+        "operation": {
+          "kind": "random-edition",
+          "rng": "rule",
+          "choices": [
+            {
+              "id": "foil",
+              "weight": 5
+            },
+            {
+              "id": "holographic",
+              "weight": 3
+            },
+            {
+              "id": "polychrome",
+              "weight": 2
+            }
+          ]
+        },
+        "costs": [
+          {
+            "kind": "gold",
+            "amount": 5
+          }
+        ],
+        "caps": [
+          "singleUse"
+        ],
+        "reject": [
+          "wrong-phase",
+          "unknown-target",
+          "duplicate-target",
+          "no-effect",
+          "stale-command",
+          "save-failed",
+          "not-enough-gold",
+          "nonordinary-target"
+        ],
+        "requiredFeatures": [
+          "spectral",
+          "card-targets",
+          "editions"
+        ],
+        "lifetime": "consumed-on-success",
+        "assetId": "tool-s02",
+        "rewardSources": []
+      },
+      "fixture": {
+        "runId": "fixture/p08-spectral-use/S02",
+        "phase": "await-input",
+        "checkpointSHA256": "5cabc34f78ea847683def2c83683db465c1fb47fd8f13004619404acde97607a",
+        "validator": "PASS"
+      },
+      "invalid": [
+        {
+          "hint": "请选择一个普通版次的目标。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_COST_NO_RNG",
+          "beforeRunSHA256": "3be1af1a1f4092f683354ae863ae1e626f42853b4faf8874566ac4a16a6ccbed",
+          "afterRunSHA256": "3be1af1a1f4092f683354ae863ae1e626f42853b4faf8874566ac4a16a6ccbed"
+        },
+        {
+          "hint": "请选择一个普通版次的目标。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_COST_NO_RNG",
+          "beforeRunSHA256": "3be1af1a1f4092f683354ae863ae1e626f42853b4faf8874566ac4a16a6ccbed",
+          "afterRunSHA256": "3be1af1a1f4092f683354ae863ae1e626f42853b4faf8874566ac4a16a6ccbed"
+        }
+      ],
+      "disabledTargets": [
+        {
+          "id": "hearts-13",
+          "role": "target",
+          "nativeTap": "NO_SELECTION_NO_COMMAND_NO_COST_NO_RNG",
+          "status": "PASS"
+        },
+        {
+          "id": "fixture/donor",
+          "role": "target",
+          "nativeTap": "NO_SELECTION_NO_COMMAND_NO_COST_NO_RNG",
+          "status": "PASS"
+        },
+        {
+          "id": "fixture/watcher",
+          "role": "target",
+          "nativeTap": "NO_SELECTION_NO_COMMAND_NO_COST_NO_RNG",
+          "status": "PASS"
+        }
+      ],
+      "cancellation": [
+        {
+          "kind": "legal selected targets/cost disclosure then native Cancel",
+          "beforeRunSHA256": "3be1af1a1f4092f683354ae863ae1e626f42853b4faf8874566ac4a16a6ccbed",
+          "afterRunSHA256": "3be1af1a1f4092f683354ae863ae1e626f42853b4faf8874566ac4a16a6ccbed",
+          "beforeSelection": [
+            "hearts-13"
+          ],
+          "afterSelection": [
+            "hearts-13"
+          ],
+          "status": "PASS"
+        }
+      ],
+      "screenshots": [],
+      "cardTargetPreview": "目标顺序：1. 3♣ · 金纸 · 普通 · 第 3 张\n\n3♣ · 增强：金纸（成功过关时每张有效持牌金币+1，每场最多5金）；版次：普通\n\n额外使用代价：5 金；金币 5 → 0。",
+      "beforeConfirm": {
+        "body": "商店 / 待出牌可用。选择一张普通版次的扑克或大丑牌。随机获得闪箔、全息或多彩版次，增强与版次各占一层。扑克保留点数、花色和增强；大丑牌保留稀有度、购入价、成长与计数。\n\n商店基准售价：8金\n额外使用代价：5金。成功后消耗1件工具。",
+        "preview": "目标顺序：1. 老搭档 · 普通 · 原支付 11 金\n\n老搭档 · 普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。\n本体、原支付金额与已有成长保留。\n\n额外使用代价：5 金；金币 5 → 0。",
+        "hint": "目标有效。确认后使用物品并支付上述代价。",
+        "probability": "公开概率：闪箔 5/10、全息 3/10、多彩 2/10。使用后揭晓结果。",
+        "horizontalOverflow": {
+          "clientWidth": 318,
+          "scrollWidth": 318
+        }
+      },
+      "effect": {
+        "additionalGold": [
+          5,
+          0
+        ],
+        "ruleDraws": 1,
+        "edition": "foil",
+        "paidPriceGrowthCounters": "EXACTLY_PRESERVED"
+      },
+      "RNG": {
+        "changedStream": "rule",
+        "before": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1507956367
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3407813932
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2718580570
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1924526843
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3774734257
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 631283760
+          }
+        },
+        "after": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1507956367
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 944412449
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2718580570
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1924526843
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3774734257
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 631283760
+          }
+        },
+        "otherStreams": "UNCHANGED"
+      },
+      "confirmation": {
+        "nativeAttempts": 2,
+        "committedUseEvents": 1,
+        "commandSeq": [
+          3,
+          4
+        ],
+        "consumables": [
+          2,
+          1
+        ],
+        "sentinelRetained": true,
+        "completeSavedStateVsAuthoritativeCommand": "PASS",
+        "sameCommandReplay": "PASS_IDENTICAL_STATE_NO_EVENTS",
+        "checkpointRead": "PASS",
+        "beforeRunSHA256": "3be1af1a1f4092f683354ae863ae1e626f42853b4faf8874566ac4a16a6ccbed",
+        "afterRunSHA256": "d8694c9c83f7360cf746fd199d112835e71d700330d71b6a9291904fa7b29da8",
+        "events": [
+          {
+            "type": "consumable-used",
+            "definitionId": "S02",
+            "instanceId": "fixture/use/S02",
+            "targetIds": [
+              "fixture/recipient"
+            ],
+            "createdCardIds": [],
+            "destroyedCardIds": []
+          }
+        ]
+      },
+      "returned": {
+        "scene": "game",
+        "renderer": 1,
+        "width": 390,
+        "height": 740,
+        "inventoryLabel": "工具包 1/2",
+        "goldText": "金币 0",
+        "jokerHitNames": [
+          "joker/fixture/donor",
+          "joker/fixture/recipient",
+          "joker/fixture/watcher"
+        ],
+        "hand": [
+          {
+            "card": {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13,
+              "enhancement": "glass-paper",
+              "edition": "foil"
+            },
+            "index": "K\n♥"
+          },
+          {
+            "card": {
+              "id": "spades-14",
+              "suit": "spades",
+              "rank": 14
+            },
+            "index": "A\n♠"
+          },
+          {
+            "card": {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 3,
+              "enhancement": "gold-paper"
+            },
+            "index": "3\n♣"
+          },
+          {
+            "card": {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2
+            },
+            "index": "2\n♦"
+          },
+          {
+            "card": {
+              "id": "clubs-9",
+              "suit": "clubs",
+              "rank": 9
+            },
+            "index": "9\n♣"
+          },
+          {
+            "card": {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            "index": "10\n♥"
+          },
+          {
+            "card": {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11
+            },
+            "index": "J\n♦"
+          },
+          {
+            "card": {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12
+            },
+            "index": "Q\n♠"
+          }
+        ],
+        "handsLeft": 4,
+        "handCount": "手牌 8 / 8"
+      },
+      "deckViewText": "剩余牌堆\n全部牌组\n所有增强\n无增强\n有增强\n\n按花色与点数统计，不展示抽牌顺序。\n♠ 13 · ♥ 13 · ♣ 13 · ♦ 13\n2♠、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠ 手牌、K♠、A♠ 手牌、2♥、3♥、4♥、5♥、6♥、7♥、8♥、9♥、10♥ 手牌、J♥、Q♥、K♥ 手牌 玻璃纸 闪箔、A♥、2♣、3♣ 手牌 金纸、4♣、5♣、6♣、7♣、8♣、9♣ 手牌、10♣、J♣、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、9♦、10♦、J♦ 手牌、Q♦、K♦、A♦",
+      "returnedJokerDetail": "老搭档\n◆ 特别\n每手加上已攒的倍率；打出对子、两对、三条后，再攒 0.25，最多攒 3。\n新增从下一手生效；葫芦、四条、五条及其他牌型不增加成长。\n当前加成按保存值结算；出牌结算后才更新\n每手倍率加成：+1.5\n\n版次：闪箔（热度+25）\n\n老搭档\n高清细节加载中…\n规则与操作\n左移\n右移\n关闭",
+      "reload": {
+        "status": "PASS",
+        "beforeRunSHA256": "d8694c9c83f7360cf746fd199d112835e71d700330d71b6a9291904fa7b29da8",
+        "afterRunSHA256": "d8694c9c83f7360cf746fd199d112835e71d700330d71b6a9291904fa7b29da8",
+        "ui": {
+          "scene": "game",
+          "renderer": 1,
+          "width": 390,
+          "height": 740,
+          "inventoryLabel": "工具包 1/2",
+          "goldText": "金币 0",
+          "jokerHitNames": [
+            "joker/fixture/donor",
+            "joker/fixture/recipient",
+            "joker/fixture/watcher"
+          ],
+          "hand": [
+            {
+              "card": {
+                "id": "hearts-13",
+                "suit": "hearts",
+                "rank": 13,
+                "enhancement": "glass-paper",
+                "edition": "foil"
+              },
+              "index": "K\n♥"
+            },
+            {
+              "card": {
+                "id": "spades-14",
+                "suit": "spades",
+                "rank": 14
+              },
+              "index": "A\n♠"
+            },
+            {
+              "card": {
+                "id": "clubs-3",
+                "suit": "clubs",
+                "rank": 3,
+                "enhancement": "gold-paper"
+              },
+              "index": "3\n♣"
+            },
+            {
+              "card": {
+                "id": "diamonds-2",
+                "suit": "diamonds",
+                "rank": 2
+              },
+              "index": "2\n♦"
+            },
+            {
+              "card": {
+                "id": "clubs-9",
+                "suit": "clubs",
+                "rank": 9
+              },
+              "index": "9\n♣"
+            },
+            {
+              "card": {
+                "id": "hearts-10",
+                "suit": "hearts",
+                "rank": 10
+              },
+              "index": "10\n♥"
+            },
+            {
+              "card": {
+                "id": "diamonds-11",
+                "suit": "diamonds",
+                "rank": 11
+              },
+              "index": "J\n♦"
+            },
+            {
+              "card": {
+                "id": "spades-12",
+                "suit": "spades",
+                "rank": 12
+              },
+              "index": "Q\n♠"
+            }
+          ],
+          "handsLeft": 4,
+          "handCount": "手牌 8 / 8"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "S03",
+      "definition": {
+        "id": "S03",
+        "name": "复演",
+        "family": "spectral",
+        "price": 6,
+        "shopWeight": 2,
+        "phases": [
+          "shop"
+        ],
+        "target": {
+          "kind": "cards",
+          "minimum": 1,
+          "maximum": 1,
+          "scope": "phase-known"
+        },
+        "operation": {
+          "kind": "copy-card",
+          "copies": 2,
+          "fields": [
+            "rank",
+            "suit",
+            "enhancement",
+            "edition"
+          ],
+          "retainOriginal": true
+        },
+        "costs": [
+          {
+            "kind": "permanent-hands-penalty",
+            "amount": 1,
+            "effective": "next-stage",
+            "requireExactChange": true
+          }
+        ],
+        "caps": [
+          "singleUse",
+          "deckMaximum",
+          "spectralHandsPenaltyMaximum",
+          "handsMinimum",
+          "actualResourceChange"
+        ],
+        "reject": [
+          "wrong-phase",
+          "unknown-target",
+          "duplicate-target",
+          "no-effect",
+          "stale-command",
+          "save-failed",
+          "deck-maximum",
+          "resource-floor",
+          "no-next-stage"
+        ],
+        "requiredFeatures": [
+          "spectral",
+          "card-targets",
+          "card-copy",
+          "permanent-resources"
+        ],
+        "lifetime": "consumed-on-success",
+        "assetId": "tool-s03",
+        "rewardSources": []
+      },
+      "fixture": {
+        "runId": "fixture/p08-spectral-use/S03",
+        "phase": "shop",
+        "checkpointSHA256": "4d846fe69c8f9d8b8d65d7dec85019a017e45bd4c0c382cd7e90e0869f392994",
+        "validator": "PASS"
+      },
+      "invalid": [
+        {
+          "hint": "请在商店使用。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_COST_NO_RNG",
+          "beforeRunSHA256": "92f68c4257a529830f5691b12a96dcd06f21df5bd7ef1fab37a7709d8a62f510",
+          "afterRunSHA256": "92f68c4257a529830f5691b12a96dcd06f21df5bd7ef1fab37a7709d8a62f510"
+        },
+        {
+          "hint": "请选择 1 张受益牌。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_COST_NO_RNG",
+          "beforeRunSHA256": "94c887ee7989316d314b3ea0a4ddbc33e26638e83a3790244a9339fe70b91a3d",
+          "afterRunSHA256": "94c887ee7989316d314b3ea0a4ddbc33e26638e83a3790244a9339fe70b91a3d"
+        }
+      ],
+      "disabledTargets": [],
+      "cancellation": [
+        {
+          "kind": "legal selected targets/cost disclosure then native Cancel",
+          "beforeRunSHA256": "94c887ee7989316d314b3ea0a4ddbc33e26638e83a3790244a9339fe70b91a3d",
+          "afterRunSHA256": "94c887ee7989316d314b3ea0a4ddbc33e26638e83a3790244a9339fe70b91a3d",
+          "beforeSelection": [],
+          "afterSelection": [],
+          "status": "PASS"
+        }
+      ],
+      "screenshots": [
+        "390-s03-cost-preview.png"
+      ],
+      "phaseRejection": {
+        "nativeEnterStage": true,
+        "inventoryRetained": true,
+        "allCostAndRNGUnchanged": true,
+        "status": "PASS"
+      },
+      "beforeConfirm": {
+        "body": "商店可用。选择1张可见扑克。保留原牌，新建2张完整复制，复制点数、花色、增强和版次，不复制本场临时失效。新牌置于真实抽牌堆底部，不洗牌、不立即补抽，牌组最多80张。\n\n商店基准售价：6金\n额外使用代价：下一场起永久出牌次数−1，累计最多2次，下一场须确实少1次且至少2次。成功后消耗1件工具。",
+        "preview": "目标顺序：1. K♥ · 玻璃纸 · 闪箔 · 第 25 张\n\nK♥ · 增强：玻璃纸（每次普通或额外计分倍率×1.5，结算后每张原实例只判一次，1/4概率永久破碎，失败手也判定且可低于主动删牌下限）；版次：闪箔（热度+25）\n\n下一场起出牌预算：4 → 3；原牌保留，复制 2 张。",
+        "hint": "目标有效。确认后使用物品并支付上述代价。",
+        "probability": null,
+        "horizontalOverflow": {
+          "clientWidth": 318,
+          "scrollWidth": 318
+        }
+      },
+      "effect": {
+        "copies": [
+          {
+            "id": "fixture/p08-spectral-use/S03/card/fixture/p08-spectral-use/S03/command/2/0",
+            "rank": 13,
+            "suit": "hearts",
+            "enhancement": "glass-paper",
+            "edition": "foil"
+          },
+          {
+            "id": "fixture/p08-spectral-use/S03/card/fixture/p08-spectral-use/S03/command/2/1",
+            "rank": 13,
+            "suit": "hearts",
+            "enhancement": "glass-paper",
+            "edition": "foil"
+          }
+        ],
+        "originalRetained": true,
+        "drawPile": "two new IDs at bottom; no shuffle",
+        "nextHands": [
+          4,
+          3
+        ],
+        "effective": "next-stage permanent, not current-stage deduction"
+      },
+      "RNG": {
+        "changedStream": "NONE",
+        "before": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 707698071
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2069293705
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2297009339
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 218841274
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2839346812
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1288930545
+          }
+        },
+        "after": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 707698071
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2069293705
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2297009339
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 218841274
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2839346812
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1288930545
+          }
+        },
+        "otherStreams": "UNCHANGED"
+      },
+      "confirmation": {
+        "nativeAttempts": 2,
+        "committedUseEvents": 1,
+        "commandSeq": [
+          1,
+          2
+        ],
+        "consumables": [
+          2,
+          1
+        ],
+        "sentinelRetained": true,
+        "completeSavedStateVsAuthoritativeCommand": "PASS",
+        "sameCommandReplay": "PASS_IDENTICAL_STATE_NO_EVENTS",
+        "checkpointRead": "PASS",
+        "beforeRunSHA256": "94c887ee7989316d314b3ea0a4ddbc33e26638e83a3790244a9339fe70b91a3d",
+        "afterRunSHA256": "0b42282f19e8a15ac32a35e4253de46ea3ffb3df02567780d420225a953538dc",
+        "events": [
+          {
+            "type": "consumable-used",
+            "definitionId": "S03",
+            "instanceId": "fixture/use/S03",
+            "targetIds": [
+              "hearts-13"
+            ],
+            "createdCardIds": [
+              "fixture/p08-spectral-use/S03/card/fixture/p08-spectral-use/S03/command/2/0",
+              "fixture/p08-spectral-use/S03/card/fixture/p08-spectral-use/S03/command/2/1"
+            ],
+            "destroyedCardIds": []
+          }
+        ]
+      },
+      "returned": {
+        "scene": "shop",
+        "renderer": 1,
+        "width": 390,
+        "height": 740,
+        "inventoryLabel": "工具包 1/2",
+        "goldText": "金币 20",
+        "jokerHitNames": [
+          "joker/fixture/donor",
+          "joker/fixture/recipient",
+          "joker/fixture/watcher"
+        ],
+        "hand": null,
+        "handsLeft": null,
+        "handCount": null
+      },
+      "status": "FAIL",
+      "error": "TimeoutError: locator.tap: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '查看牌组', exact: true })\u001b[22m\n"
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "390-s03-cost-preview.png",
+    "390-s03-failure.png"
+  ],
+  "status": "FAIL",
+  "error": "TimeoutError: locator.tap: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '查看牌组', exact: true })\u001b[22m\n"
+}

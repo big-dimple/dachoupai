@@ -1,0 +1,642 @@
+{
+  "taskId": "P08",
+  "testedCommit": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+  "status": "PASS_EIGHT_FIXTURE_EVIDENCE_ONLY_NO_RUNTIME_CHANGE",
+  "source": "Exact fetched1c, clean isolated checkout; one e2e build modified=false, reused byte-identical for bounded continuations. Later main/art generations are outside this tested source.",
+  "build": {
+    "version": "C03",
+    "revision": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+    "modified": false,
+    "builtAt": "2026-10-04T20:37:52.304Z"
+  },
+  "bundle": [
+    {
+      "path": "./assets/index-Dg1ve7s1.js",
+      "bytes": 1976706,
+      "sha256": "54c67be846f4ba9d63feb17da7485a18ee44d308b09fc414afb058881be1427d"
+    }
+  ],
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "renderer": "Chromium software Canvas",
+  "motion": "reduce",
+  "fixtures": {
+    "uniqueCount": 8,
+    "scope": "Synthetic validator-approved inventory/deck/gold/hand-level/Joker-growth states, not natural acquisition or D7b full run. Five shop-only cases enter the game through real UI for phase rejection, then reuse the same original checkpoint. No extra fixture variants.",
+    "entries": [
+      {
+        "id": "S01",
+        "runId": "fixture/p08-spectral-use/S01",
+        "phase": "await-input",
+        "checkpointSHA256": "a14f3fd0108af25eb46090df8d303d421f92d6cf461b0201b1db484f0a17f189",
+        "validator": "PASS",
+        "liveDeck": 52,
+        "gold": 20,
+        "handLevels": {
+          "high-card": 3
+        }
+      },
+      {
+        "id": "S02",
+        "runId": "fixture/p08-spectral-use/S02",
+        "phase": "await-input",
+        "checkpointSHA256": "5cabc34f78ea847683def2c83683db465c1fb47fd8f13004619404acde97607a",
+        "validator": "PASS",
+        "liveDeck": 52,
+        "gold": 5,
+        "handLevels": {
+          "high-card": 3
+        }
+      },
+      {
+        "id": "S03",
+        "runId": "fixture/p08-spectral-use/S03",
+        "phase": "shop",
+        "checkpointSHA256": "4d846fe69c8f9d8b8d65d7dec85019a017e45bd4c0c382cd7e90e0869f392994",
+        "validator": "PASS",
+        "liveDeck": 78,
+        "gold": 20,
+        "handLevels": {
+          "high-card": 3
+        }
+      },
+      {
+        "id": "S04",
+        "runId": "fixture/p08-spectral-use/S04",
+        "phase": "shop",
+        "checkpointSHA256": "64079dd9467b907b16045ab9e609ae9797031464a8a43c441d1b3aef23929f28",
+        "validator": "PASS",
+        "liveDeck": 51,
+        "gold": 20,
+        "handLevels": {
+          "high-card": 3
+        }
+      },
+      {
+        "id": "S05",
+        "runId": "fixture/p08-spectral-use/S05",
+        "phase": "await-input",
+        "checkpointSHA256": "2e13703f716a1a9b07cc5b49eafdbeb098cdbe345ccd3c410e8ac14eadeb0735",
+        "validator": "PASS",
+        "liveDeck": 52,
+        "gold": 3,
+        "handLevels": {
+          "high-card": 3,
+          "straight": 27,
+          "pair": 2
+        }
+      },
+      {
+        "id": "S06",
+        "runId": "fixture/p08-spectral-use/S06",
+        "phase": "shop",
+        "checkpointSHA256": "69c2f5e6a2c162908ca3c0baaadc016680066717515cb341b34dbd0812e1a226",
+        "validator": "PASS",
+        "liveDeck": 52,
+        "gold": 20,
+        "handLevels": {
+          "high-card": 3
+        }
+      },
+      {
+        "id": "S07",
+        "runId": "fixture/p08-spectral-use/S07",
+        "phase": "shop",
+        "checkpointSHA256": "ccb2c788c243e507fc7bab433bfcd139ad6721a553207526ad25245a45c707b7",
+        "validator": "PASS",
+        "liveDeck": 52,
+        "gold": 20,
+        "handLevels": {
+          "high-card": 3
+        }
+      },
+      {
+        "id": "S08",
+        "runId": "fixture/p08-spectral-use/S08",
+        "phase": "shop",
+        "checkpointSHA256": "9f4826c4625df0ef3050cf6489f8c2a571689091fa6f47ba61c5e9f55a0bd513",
+        "validator": "PASS",
+        "liveDeck": 51,
+        "gold": 20,
+        "handLevels": {
+          "high-card": 3
+        }
+      }
+    ]
+  },
+  "counts": {
+    "passedTools": 8,
+    "disabledNativeConfirmAttempts": 16,
+    "disabledNativeTargetAttempts": 7,
+    "legalSelectedCancelCases": 8,
+    "confirmationAttemptsPerCase": 2,
+    "committedUsesPerCase": 1,
+    "nativeReloadContinueChecks": 11,
+    "shopOnlyPhaseRejections": 5
+  },
+  "results": [
+    {
+      "id": "S01",
+      "report": "first/browser.json",
+      "status": "PASS",
+      "beforeConfirm": {
+        "body": "商店 / 待出牌可用。牺牲1张扑克，再选1–2张未增强扑克，牺牲者与受赠者必须不同。每张受赠扑克独立随机获得一种增强，保留原版次。按商店可见有效牌组顺序，或待出牌时当前手牌顺序分配，不按目标点击顺序分配。\n\n商店基准售价：8金\n额外使用代价：永久牺牲1张扑克。成功后消耗1件工具。",
+        "preview": "永久牺牲：K♥ · 玻璃纸 · 闪箔 · 第 1 张。不作为出售，不退款。\n\n公开受益顺序：1. 3♣ · 无增强 · 全息 · 第 3 张 → 2. 2♦ · 无增强 · 普通 · 第 4 张\n\n3♣ · 增强：无；版次：全息（倍率+2）\n\n2♦ · 增强：无；版次：普通",
+        "hint": "目标有效。确认后使用物品并支付上述代价。",
+        "probability": "公开概率：热度纸 1/7、倍率纸 1/7、玻璃纸 1/7、留声纸 1/7、金纸 1/7、返场纸 1/7、幸运纸 1/7。使用后揭晓结果。",
+        "horizontalOverflow": {
+          "clientWidth": 318,
+          "scrollWidth": 318
+        }
+      },
+      "effect": {
+        "sacrifice": "hearts-13",
+        "independentRuleDraws": 2,
+        "publicOrderNotClickOrder": true,
+        "assignments": [
+          {
+            "id": "clubs-3",
+            "expectedEnhancement": "multiplier-paper"
+          },
+          {
+            "id": "diamonds-2",
+            "expectedEnhancement": "gold-paper"
+          }
+        ],
+        "unrelatedFields": "PASS"
+      },
+      "invalidConfirmAttempts": 2,
+      "disabledTargetAttempts": 2,
+      "legalCancel": "PASS_COMPLETE_RUN_RNG_SELECTION_UNCHANGED",
+      "singleCommittedUse": [
+        3,
+        4
+      ],
+      "wholeStateVsAuthoritativeCommand": "PASS",
+      "sameCommandReplay": "PASS_IDENTICAL_STATE_NO_EVENTS",
+      "nativeReload": "PASS",
+      "nextStage": null,
+      "RNGStream": "rule"
+    },
+    {
+      "id": "S02",
+      "report": "first/browser.json",
+      "status": "PASS",
+      "beforeConfirm": {
+        "body": "商店 / 待出牌可用。选择一张普通版次的扑克或大丑牌。随机获得闪箔、全息或多彩版次，增强与版次各占一层。扑克保留点数、花色和增强；大丑牌保留稀有度、购入价、成长与计数。\n\n商店基准售价：8金\n额外使用代价：5金。成功后消耗1件工具。",
+        "preview": "目标顺序：1. 老搭档 · 普通 · 原支付 11 金\n\n老搭档 · 普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。\n本体、原支付金额与已有成长保留。\n\n额外使用代价：5 金；金币 5 → 0。",
+        "hint": "目标有效。确认后使用物品并支付上述代价。",
+        "probability": "公开概率：闪箔 5/10、全息 3/10、多彩 2/10。使用后揭晓结果。",
+        "horizontalOverflow": {
+          "clientWidth": 318,
+          "scrollWidth": 318
+        }
+      },
+      "effect": {
+        "additionalGold": [
+          5,
+          0
+        ],
+        "ruleDraws": 1,
+        "edition": "foil",
+        "paidPriceGrowthCounters": "EXACTLY_PRESERVED"
+      },
+      "invalidConfirmAttempts": 2,
+      "disabledTargetAttempts": 3,
+      "legalCancel": "PASS_COMPLETE_RUN_RNG_SELECTION_UNCHANGED",
+      "singleCommittedUse": [
+        3,
+        4
+      ],
+      "wholeStateVsAuthoritativeCommand": "PASS",
+      "sameCommandReplay": "PASS_IDENTICAL_STATE_NO_EVENTS",
+      "nativeReload": "PASS",
+      "nextStage": null,
+      "RNGStream": "rule"
+    },
+    {
+      "id": "S03",
+      "report": "second/browser.json",
+      "status": "PASS",
+      "beforeConfirm": {
+        "body": "商店可用。选择1张可见扑克。保留原牌，新建2张完整复制，复制点数、花色、增强和版次，不复制本场临时失效。新牌置于真实抽牌堆底部，不洗牌、不立即补抽，牌组最多80张。\n\n商店基准售价：6金\n额外使用代价：下一场起永久出牌次数−1，累计最多2次，下一场须确实少1次且至少2次。成功后消耗1件工具。",
+        "preview": "目标顺序：1. K♥ · 玻璃纸 · 闪箔 · 第 25 张\n\nK♥ · 增强：玻璃纸（每次普通或额外计分倍率×1.5，结算后每张原实例只判一次，1/4概率永久破碎，失败手也判定且可低于主动删牌下限）；版次：闪箔（热度+25）\n\n下一场起出牌预算：4 → 3；原牌保留，复制 2 张。",
+        "hint": "目标有效。确认后使用物品并支付上述代价。",
+        "probability": null,
+        "horizontalOverflow": {
+          "clientWidth": 318,
+          "scrollWidth": 318
+        }
+      },
+      "effect": {
+        "copies": [
+          {
+            "id": "fixture/p08-spectral-use/S03/card/fixture/p08-spectral-use/S03/command/2/0",
+            "rank": 13,
+            "suit": "hearts",
+            "enhancement": "glass-paper",
+            "edition": "foil"
+          },
+          {
+            "id": "fixture/p08-spectral-use/S03/card/fixture/p08-spectral-use/S03/command/2/1",
+            "rank": 13,
+            "suit": "hearts",
+            "enhancement": "glass-paper",
+            "edition": "foil"
+          }
+        ],
+        "originalRetained": true,
+        "drawPile": "two new IDs at bottom; no shuffle",
+        "nextHands": [
+          4,
+          3
+        ],
+        "effective": "next-stage permanent, not current-stage deduction"
+      },
+      "invalidConfirmAttempts": 2,
+      "disabledTargetAttempts": 0,
+      "legalCancel": "PASS_COMPLETE_RUN_RNG_SELECTION_UNCHANGED",
+      "singleCommittedUse": [
+        1,
+        2
+      ],
+      "wholeStateVsAuthoritativeCommand": "PASS",
+      "sameCommandReplay": "PASS_IDENTICAL_STATE_NO_EVENTS",
+      "nativeReload": "PASS",
+      "nextStage": {
+        "initialHands": 3,
+        "handsLeft": 3,
+        "handLimit": 8,
+        "handCount": 8,
+        "status": "PASS"
+      },
+      "RNGStream": "NONE"
+    },
+    {
+      "id": "S04",
+      "report": "second/browser.json",
+      "status": "PASS",
+      "beforeConfirm": {
+        "body": "商店可用。选择一种花色，作用于整个有效牌组。整个有效牌组永久改为所选花色，保留点数、增强、版次以及各牌堆顺序；须至少一张确实改变花色。\n\n商店基准售价：6金\n额外使用代价：下一场起永久手牌上限−1，累计最多2张，下一场须确实少1张且至少5张。成功后消耗1件工具。",
+        "preview": "下一场起手牌容量：8 → 7；整副 51 张改为梅花。",
+        "hint": "目标有效。确认后使用物品并支付上述代价。",
+        "probability": null,
+        "horizontalOverflow": {
+          "clientWidth": 318,
+          "scrollWidth": 318
+        }
+      },
+      "effect": {
+        "livingCardsChanged": 51,
+        "deadCardPreserved": "spades-2",
+        "nextHandLimit": [
+          8,
+          7
+        ],
+        "rankEnhancementEditionAndOrder": "EXACTLY_PRESERVED",
+        "effective": "next-stage permanent"
+      },
+      "invalidConfirmAttempts": 3,
+      "disabledTargetAttempts": 0,
+      "legalCancel": "PASS_COMPLETE_RUN_RNG_SELECTION_UNCHANGED",
+      "singleCommittedUse": [
+        1,
+        2
+      ],
+      "wholeStateVsAuthoritativeCommand": "PASS",
+      "sameCommandReplay": "PASS_IDENTICAL_STATE_NO_EVENTS",
+      "nativeReload": "PASS",
+      "nextStage": {
+        "initialHands": 4,
+        "handsLeft": 4,
+        "handLimit": 7,
+        "handCount": 7,
+        "status": "PASS"
+      },
+      "RNGStream": "NONE"
+    },
+    {
+      "id": "S05",
+      "report": "browser.json",
+      "status": "PASS",
+      "beforeConfirm": {
+        "body": "商店 / 待出牌可用。选择两种不同、已发现的牌型，分别作为受益方和牺牲方。受益牌型+3级、牺牲牌型−1级，均保留发现状态。受益方原等级最多27，牺牲方至少2级。已确定的计分与回看保持原结果。\n\n商店基准售价：6金\n额外使用代价：3金，牺牲方等级−1。成功后消耗1件工具。",
+        "preview": "顺子 · Lv.27 → 30\n基础热度 1035 → 1140；基础倍率 17 → 18.5\n\n遗忘：对子 · Lv.2 → 1\n基础热度 50 → 35；基础倍率 2.5 → 2\n\n额外使用代价：3 金；金币 3 → 0。",
+        "hint": "目标有效。确认后使用物品并支付上述代价。",
+        "probability": null,
+        "horizontalOverflow": {
+          "clientWidth": 318,
+          "scrollWidth": 318
+        }
+      },
+      "effect": {
+        "levels": {
+          "straight": [
+            27,
+            30
+          ],
+          "pair": [
+            2,
+            1
+          ]
+        },
+        "additionalGold": [
+          3,
+          0
+        ],
+        "discoveryAndCurrentStage": "PRESERVED"
+      },
+      "invalidConfirmAttempts": 2,
+      "disabledTargetAttempts": 0,
+      "legalCancel": "PASS_COMPLETE_RUN_RNG_SELECTION_UNCHANGED",
+      "singleCommittedUse": [
+        3,
+        4
+      ],
+      "wholeStateVsAuthoritativeCommand": "PASS",
+      "sameCommandReplay": "PASS_IDENTICAL_STATE_NO_EVENTS",
+      "nativeReload": "PASS",
+      "nextStage": null,
+      "RNGStream": "NONE"
+    },
+    {
+      "id": "S06",
+      "report": "browser.json",
+      "status": "PASS",
+      "beforeConfirm": {
+        "body": "商店可用。无需选择对象。从当前可用且未持有的稀有大丑牌中等概率获得一张：普通版次、初始成长与计数、购入价0。属于奖励，不触发购买成长或首购优惠。\n\n商店基准售价：6金\n额外使用代价：全部金币（至少5金）。成功后消耗1件工具。",
+        "preview": "清空全部金币：20 → 0。\n\n当前公开稀有池：回马枪、包场、独家戏、再说一遍、拖个尾音、递个眼色、返个场、四座皆惊、救个场、少一块布、留声机、三拍子、长期捧场、冷场救火、真正的压轴。每张概率 1/15。",
+        "hint": "目标有效。确认后使用物品并支付上述代价。",
+        "probability": null,
+        "horizontalOverflow": {
+          "clientWidth": 318,
+          "scrollWidth": 318
+        }
+      },
+      "effect": {
+        "allGold": [
+          20,
+          0
+        ],
+        "poolSize": 15,
+        "uniformRewardDraws": 1,
+        "reward": {
+          "instanceId": "fixture/p08-spectral-use/S06/joker/fixture/p08-spectral-use/S06/command/2",
+          "definitionId": "e11",
+          "paidPrice": 0,
+          "growth": {
+            "coefficient": {
+              "n": "1",
+              "d": "1"
+            }
+          },
+          "edition": "none"
+        },
+        "unownedRare": true,
+        "purchaseOrSaleGrowth": "NOT_TRIGGERED",
+        "observedResult": "one seeded observation, no guarantee of this Joker"
+      },
+      "invalidConfirmAttempts": 1,
+      "disabledTargetAttempts": 0,
+      "legalCancel": "PASS_COMPLETE_RUN_RNG_SELECTION_UNCHANGED",
+      "singleCommittedUse": [
+        1,
+        2
+      ],
+      "wholeStateVsAuthoritativeCommand": "PASS",
+      "sameCommandReplay": "PASS_IDENTICAL_STATE_NO_EVENTS",
+      "nativeReload": "PASS",
+      "nextStage": null,
+      "RNGStream": "reward"
+    },
+    {
+      "id": "S07",
+      "report": "browser.json",
+      "status": "PASS",
+      "beforeConfirm": {
+        "body": "商店可用。牺牲1张大丑牌，选另一张非多彩大丑牌受赠。受赠大丑牌变为多彩（倍率×1.5），保留稀有度、购入价、成长与计数。牺牲不算出售，无返金或出售成长。\n\n商店基准售价：8金\n额外使用代价：永久牺牲1张大丑牌。成功后消耗1件工具。",
+        "preview": "永久牺牲：置办行头 · 普通 · 原支付 17 金。不作为出售，不退款。\n\n目标顺序：1. 老搭档 · 普通 · 原支付 11 金\n\n老搭档 · 普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。\n版次 → 多彩（倍率×1.5）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。；原支付 11 金与已有成长保留。",
+        "hint": "目标有效。确认后使用物品并支付上述代价。",
+        "probability": null,
+        "horizontalOverflow": {
+          "clientWidth": 318,
+          "scrollWidth": 318
+        }
+      },
+      "effect": {
+        "donor": "fixture/donor",
+        "recipient": "fixture/recipient",
+        "distinctInstances": true,
+        "recipientEdition": "polychrome",
+        "refund": 0,
+        "paidPriceGrowthAndWatcher": "EXACTLY_PRESERVED"
+      },
+      "invalidConfirmAttempts": 3,
+      "disabledTargetAttempts": 2,
+      "legalCancel": "PASS_COMPLETE_RUN_RNG_SELECTION_UNCHANGED",
+      "singleCommittedUse": [
+        1,
+        2
+      ],
+      "wholeStateVsAuthoritativeCommand": "PASS",
+      "sameCommandReplay": "PASS_IDENTICAL_STATE_NO_EVENTS",
+      "nativeReload": "PASS",
+      "nextStage": null,
+      "RNGStream": "NONE"
+    },
+    {
+      "id": "S08",
+      "report": "browser.json",
+      "status": "PASS",
+      "beforeConfirm": {
+        "body": "商店可用。作用于整个有效牌组，无需逐张选择。有效牌组须至少4张带增强或特殊版次，双层均有的牌每张只计一次。清除全部扑克的增强与特殊版次，下一场起永久手牌上限+1，最多14，本局一次。\n\n商店基准售价：6金\n额外使用代价：清除全牌组全部增强与特殊版次。成功后消耗1件工具。",
+        "preview": "所有增强与特殊版次都将清除。下一场起手牌容量：8 → 9。",
+        "hint": "目标有效。确认后使用物品并支付上述代价。",
+        "probability": null,
+        "horizontalOverflow": {
+          "clientWidth": 318,
+          "scrollWidth": 318
+        }
+      },
+      "effect": {
+        "distinctModifiedCards": 4,
+        "livingDeckCardsCleared": 51,
+        "deadCardUnchanged": "spades-2",
+        "nextHandLimit": [
+          8,
+          9
+        ],
+        "oncePerRunModifier": 1,
+        "rankSuitIdentityOrder": "EXACTLY_PRESERVED"
+      },
+      "invalidConfirmAttempts": 1,
+      "disabledTargetAttempts": 0,
+      "legalCancel": "PASS_COMPLETE_RUN_RNG_SELECTION_UNCHANGED",
+      "singleCommittedUse": [
+        1,
+        2
+      ],
+      "wholeStateVsAuthoritativeCommand": "PASS",
+      "sameCommandReplay": "PASS_IDENTICAL_STATE_NO_EVENTS",
+      "nativeReload": "PASS",
+      "nextStage": {
+        "initialHands": 4,
+        "handsLeft": 4,
+        "handLimit": 9,
+        "handCount": 9,
+        "status": "PASS"
+      },
+      "RNGStream": "NONE"
+    }
+  ],
+  "attempts": [
+    {
+      "report": "first/browser.json",
+      "aggregateStatus": "FAIL",
+      "passedTools": [
+        "S01",
+        "S02"
+      ],
+      "failedCase": "S03",
+      "cause": "Checker tried game-only RunMenu 查看牌组 after a successful S03 use in Shop. Shop has build-summary counts, not that card-list command. Product UseConsumable already matched the authoritative state; no runtime failure inferred.",
+      "retainedChecker": "first/checker.mjs",
+      "retainedImage": "first/390-s03-failure.png",
+      "rawIgnoredLogSHA256": "be31cb31318984e352ec931f337e7ec83823a4958b4439519d2e1260f7f55966"
+    },
+    {
+      "report": "second/browser.json",
+      "aggregateStatus": "FAIL",
+      "passedTools": [
+        "S03",
+        "S04"
+      ],
+      "failedCase": "S05",
+      "cause": "Checker wrongly assumed 高牌 below donor minimum. Actual validator fixture has high-cardLv3, so its donor option is correct. Final check compares the full option set against real discovered levels (donor>=2,gain<=27). No fixture/content/runtime change.",
+      "retainedChecker": "second/checker.mjs",
+      "retainedImage": "second/390-s05-failure.png",
+      "rawIgnoredLogSHA256": "ec0255a0f322f884e7bc47d3eb335061fb3ad634c93b0b58bf0751589a9b1e8b"
+    },
+    {
+      "report": "browser.json",
+      "aggregateStatus": "PASS",
+      "passedTools": [
+        "S05",
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "checker": "checker.mjs",
+      "buildReused": true
+    }
+  ],
+  "sourceIndexHeadFreeze": {
+    "before": {
+      "source": "0985dec8307679c2939941ade999cd73d6503b92398c0026ff38ef35180faca8",
+      "index": "405150b8585fc8c2eb290cd504d2855b37074a9ad38fb1c63b532e2836a544d4",
+      "head": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+      "branch": "refs/heads/feat/p08-spectral-use-20261004"
+    },
+    "after": {
+      "source": "0985dec8307679c2939941ade999cd73d6503b92398c0026ff38ef35180faca8",
+      "index": "405150b8585fc8c2eb290cd504d2855b37074a9ad38fb1c63b532e2836a544d4",
+      "head": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+      "branch": "refs/heads/feat/p08-spectral-use-20261004"
+    },
+    "status": "PASS"
+  },
+  "currentTestedSourceCoverage": {
+    "Jokers": "72/72",
+    "tools": "21/39",
+    "items": "12/12",
+    "manifestCounts": {
+      "goods": {
+        "records": 33,
+        "runtimeFileCount": 66,
+        "runtimeBytes": 1085058
+      },
+      "p08": {
+        "records": 81,
+        "runtimeFileCount": 165,
+        "runtimeBytes": 4454670
+      }
+    },
+    "note": "Counts belong to clean1c, not later review or main assets."
+  },
+  "imagesActuallyViewed": [
+    "first/390-s03-cost-preview.png",
+    "390-s05-cost-preview.png",
+    "390-s07-cost-preview.png",
+    "first/390-s03-failure.png",
+    "second/390-s05-failure.png"
+  ],
+  "limits": [
+    "Fixture evidence only: no natural acquisition/full run or D7b acceptance.",
+    "One390 CSS viewport, DPR1, software Canvas; no physical device, GPU/FPS/video/audio or other viewport matrix.",
+    "This eight-fixture pass covers recorded target/phase/noop refusals and costs, not every numeric resource cap/shortage/no-next-stage/challenge restriction.",
+    "Random S01/S02/S06 results are seed observations. Independent draws, public weights/pool and exact stream cursor verified; no particular enhancement/edition/Joker is promised.",
+    "Existing reports keep original source and FAIL/NOT_RUN; no source CI is labelled as this new review CI."
+  ],
+  "runtimeDefectsFound": 0,
+  "changedProductFiles": [],
+  "unchangedTrees": [
+    "src",
+    "tests",
+    "harness",
+    "public/assets",
+    "art/sources",
+    "package.json",
+    "package-lock.json",
+    ".github"
+  ],
+  "publication": "Evidence-only review; no main push/deployment and no material changes. Current-entry calibration stays in its separate073561b review for parent integration.",
+  "images": [
+    {
+      "path": "390-s05-cost-preview.png",
+      "bytes": 64639,
+      "sha256": "6369684fa234eb9ab589e96a228fd1b18d47768ab9177ceca0b1c3733a54c73f",
+      "width": 390,
+      "height": 740
+    },
+    {
+      "path": "390-s07-cost-preview.png",
+      "bytes": 84929,
+      "sha256": "5ec51b34be6042998e98a45926fb809dff9590465c965f053c8e404aa076189d",
+      "width": 390,
+      "height": 740
+    },
+    {
+      "path": "first/390-s03-cost-preview.png",
+      "bytes": 73609,
+      "sha256": "7e9826620a132533462180148274b18d8d9fcfa767112ae9fec619e4b6340405",
+      "width": 390,
+      "height": 740
+    },
+    {
+      "path": "first/390-s03-failure.png",
+      "bytes": 42259,
+      "sha256": "b95eb1a83b20788fac29ea15ed7aa248e8efc49882d4b144ff420ca9d1767a0e",
+      "width": 390,
+      "height": 740
+    },
+    {
+      "path": "second/390-s05-failure.png",
+      "bytes": 76218,
+      "sha256": "17682134866215609dec4d97b0ca3b4a32213fc49c70837a362aa410aa7ea1ad",
+      "width": 390,
+      "height": 740
+    }
+  ],
+  "documentationValidation": {
+    "productionPlan": "PASS_32_PACKAGES_P08",
+    "planValidatorSelfTest": "PASS_1_VALID_13_INVALID",
+    "checkerSyntax": "PASS",
+    "diffCheck": "PASS",
+    "publicTextPrivacy": {
+      "status": "PASS",
+      "filesScanned": 8
+    }
+  }
+}
