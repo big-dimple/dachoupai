@@ -1,5 +1,13 @@
 # P08 工具包入口 review
 
+最新main对齐源码 db00121942e191112d6b8e0268ca0e5503e9df9f，正常合入 2d999cd938e5c19253daa8ddbd1cf25facf2d9e4。保持已发布朱砂火、头像锚点和跨档消费，仅把工具包按钮加入保护mask。46专项/type及一次320原生计分、工具包命中/关闭、命名通过；未重跑设备矩阵或14牌。
+
+[当前整合证明](ink-main-alignment.json) · [当前原生记录](aligned320-browser.json)
+
+[计分与入口完整页](aligned320-ink.png) · [商店](aligned320-shop.png) · [牌桌](aligned320-game.png) · [空态](aligned320-empty.png)
+
+以下保留前轮字面与原始入口证据：
+
 最新字面修正源码 9c8e22d8d364b6c4de3a3137996aa7e1a8ef8ddc。两场景库存入口、弹窗标题与空态统一叫“工具包”；商店商品分类仍“工具”。不改布局或颜色。
 
 16 项相关单测、typecheck 与单次320px原生流程通过。文字实测71×17px，完整落在商店88×44及牌桌112×44入口内；按钮/字体/商品/预览/整页逻辑几何同旧版1354。新图均actual view：

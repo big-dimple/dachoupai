@@ -111,5 +111,15 @@
     "tests": "16/typecheck PASS",
     "native": "320px PASS, same geometry",
     "newCI": "Parent tracks"
+  },
+  "latestSourceCommit": "db00121942e191112d6b8e0268ca0e5503e9df9f",
+  "publishedMainAlignment": {
+    "status": "PASS",
+    "testedCommit": "db00121942e191112d6b8e0268ca0e5503e9df9f",
+    "alignedMainCommit": "2d999cd938e5c19253daa8ddbd1cf25facf2d9e4",
+    "evidence": "ink-main-alignment.json",
+    "tests": "46/type PASS",
+    "native": "single320 name/hit/ink layers and mask PASS",
+    "newCI": "PENDING_EXACT_PUSH"
   }
 }
