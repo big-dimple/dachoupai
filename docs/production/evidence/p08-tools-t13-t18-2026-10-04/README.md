@@ -1,5 +1,7 @@
 # P08 T13–T18 消耗工具手绘图 — review
 
+已按父指令正常合入已发布 main `7b78777347dd854f5759870c7934b8c28279889e`，无冲突，合并源码 `22e135f228ae652fa046a4df20af63a08e83627a`。全部 `src`、工具包入口、严格五动作 smoke、CI 配置及主线 AGENTS/handoff/UX/plan 逐对象同该 main；图源、54 张 Goods 图及原浏览器证据逐对象同原 review `f6a1f312054734f581ba119f45f382fbb94e03bd`。仅 typecheck、GoodsArt 4 项 hash/注册/权威文案检查及 docs 门禁复验；不重拍 T13 图、不重跑本地构建或全矩阵。原 PNG/browser/summary 的 `af6ac843… modified=false` 身份保持，不能当作合并后的浏览器证据；最终新 head 由精确 review CI 检查，仍先不 main。详见 [b-tools-main-alignment.json](b-tools-main-alignment.json)。下文保留原 T13 图源和浏览器审查记录。
+
 基线已发布 main `5d54421cac90e3d516770bba63f5f94904175219`；实现及唯一实际浏览器构建 `af6ac843f01ec137d8500d1c73b9c67800bae03c`，`modified=false`。只从批准 source `a8cab71d56d24aeaef919e6c04c5c22bf0106da3` 提取 `art/sources/handdrawn-runtime-tools-20261004-t13-t18/` 新目录，没有合并其父分支。source [CI37221884857](https://github.com/big-dimple/dachoupai/actions/runs/37221884857) success，2026-10-04 17:52:17 UTC；成品交付SHA不冒充原始生图来源。原图和74px灰度由父侧逐六图批准，原PNG另存、未进仓库，消费侧不声称读过原PNG。
 
 15个source文件257685 B逐byte同固定SHA；source基线7d44的1740旧blob逐对象相同。12WebP227088 B（thumbnail13980/detail213108）已经审后的Node内建verifier、SHA/尺寸、Pillow完整解码及无EXIF/XMP/ICC检查，完整contain/无裁切/无语义改图由source几何合同保持。source manifest SHA256 `6c93741739a10ef676f2ba989988b70e580eecb16b51f6bfa45f867ad5bb7866`。

@@ -1,0 +1,77 @@
+{
+  "taskId": "P08",
+  "testedCommit": "22e135f228ae652fa046a4df20af63a08e83627a",
+  "baseMain": "7b78777347dd854f5759870c7934b8c28279889e",
+  "artReview": "f6a1f312054734f581ba119f45f382fbb94e03bd",
+  "merge": {
+    "method": "Normal merge of published main; no conflict",
+    "parents": [
+      "f6a1f312054734f581ba119f45f382fbb94e03bd",
+      "7b78777347dd854f5759870c7934b8c28279889e"
+    ],
+    "mainPush": "NOT_RUN; parent coordinates serial publication"
+  },
+  "preserved": {
+    "srcTreeSHA": "a415fc41174d2ff65a422d55c1e52bfb50af6244",
+    "allSrcByteEqualToMain": true,
+    "approvedToolBagCode": "UNCHANGED; GameScene, ShopScene, ConsumableDialog, ToolInventoryEntry",
+    "strictFiveActionSmoke": {
+      "path": "harness/screenshot.mjs",
+      "sha256": "a965beeb4672fb351e8a71f5a5e6351e9c50f77a695ef2c059e0b7c0d8f30a37",
+      "byteEqualToMain": true,
+      "actions": [
+        "action/discard",
+        "action/play",
+        "action/sort-rank",
+        "action/sort-suit",
+        "action/tool-inventory"
+      ],
+      "resourceRngAndSelectionAssertionsRetained": true
+    },
+    "mainHarnessV00CIAndDependencies": "Byte equal to main",
+    "mainAGENTSHandoffUXWorkPackagesPlan": "Byte equal to main",
+    "artSourcesPublicAssetsAndLicenses": "Byte equal to artReview",
+    "goodsArtTestsAndRepresentativeHarness": "Byte equal to artReview",
+    "originalBrowserSummaryAndPng": "Byte equal to artReview; README adds this alignment only",
+    "runtimeManifestSHA256": "a5e7c5a801a5fc0537c621447daea70c5e33b43db7726fd09bb4dff434ecb31d",
+    "runtime": {
+      "rows": 27,
+      "files": 54,
+      "bytes": 870142,
+      "oldFiles": 42,
+      "oldBytes": 643054,
+      "newT13T18Files": 12,
+      "newT13T18Bytes": 227088,
+      "itemsPainted": 12,
+      "consumablesPainted": 15,
+      "consumablesTotal": 39,
+      "Jokers": "UNCHANGED 72/72, including a11"
+    }
+  },
+  "checks": {
+    "typecheck": "PASS",
+    "goodsArt": {
+      "command": "npm exec -- vitest run tests/goods-art.test.ts",
+      "status": "PASS",
+      "files": 1,
+      "tests": 4
+    },
+    "docsGate": "PASS; npm run verify:ci -- --scope=docs; production-plan 32 work packages, current=P08",
+    "byteComparison": "PASS"
+  },
+  "originalScreenshot": {
+    "path": "390-t13-owned.png",
+    "buildCommit": "af6ac843f01ec137d8500d1c73b9c67800bae03c",
+    "modified": false,
+    "sha256": "a664ef92faddb6a88163d2d81de8a5860e884148359cb554f00511532dba52ce",
+    "reshoot": false,
+    "scope": "Original representative T13 review; not a browser proof for the merge"
+  },
+  "limits": {
+    "localProductionBuild": "NOT_REPEATED",
+    "localBrowserOrFullMatrix": "NOT_REPEATED; mandatory remote CI tests final review head",
+    "deployment": "NOT_RUN",
+    "320ShopBuildClipping": "OPEN, unchanged",
+    "overallArtPhysicalGPUAudioAcceptance": "NOT_CLAIMED"
+  }
+}
