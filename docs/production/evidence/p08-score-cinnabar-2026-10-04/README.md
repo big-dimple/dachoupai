@@ -1,4 +1,27 @@
-# P08 计分朱砂勾框：首个可审检查点
+# P08 计分朱砂勾框：首版候选完整可审证据
+
+父续令要求的有限矩阵现已补齐，仍为独立 `feat/p08-score-cinnabar-review-20261004`，不合 main。运行实现自 **fac1709fa999f2f07470dea1299aa7377711c6c9** 起未再修改；**零轮线宽／opacity／timing修正**。以下完整矩阵替代首检查点的未跑项记录，首图和失败历史保留在下文。
+
+优先审 [390×740 四档联系图](complete/390x740-contact.png) 与 [844×300 四档联系图](complete/844x300-contact.png)。两图仅按实际原生采帧拼接，并标实际 frame／phase age；完整单帧与 bounds／guards／source／文件 SHA256 见 [matrix.json](complete/matrix.json)。
+
+| 视口，safe top12／bottom34 | 未达标局部，实际自然202 | target 四角，自然600 | 2× 半框，自然1200 | 5× 双框，自然5589 |
+| --- | --- | --- | --- | --- |
+| 390×740 | [frame195，unfold116.6ms，显示65](complete/390x740-tier0.png) | [frame178，fade183.4ms，显示500](complete/390x740-tier1.png) | [frame406，fade250ms，显示1200](complete/390x740-tier2.png) | [frame187，fade283.3ms，显示4050](complete/390x740-tier3.png) |
+| 844×300 | [frame191，unfold116.7ms，显示65](complete/844x300-tier0.png) | [frame177，fade183.3ms，显示500](complete/844x300-tier1.png) | [frame404，fade250ms，显示1200](complete/844x300-tier2.png) | [frame182，fade283.3ms，显示4050](complete/844x300-tier3.png) |
+
+8张 Canvas 帧实际 e2e build source **29eb4c3a0595f365bcf6b8095e4daeda20188f0f**、`modified=false`；生命周期补测 build **9635354e62cdaa782629877ad94a739a4bbf72c4**、`modified=false`；最终执行 harness **52ac65294ed59b7e5d2e7191a54bb1615c0c657a**。三个源码的 `src` 和 `tests` Git树均与 fac1709 完全相同，后续仅修正观测假设、原生回看接线与归档。不可把不同实测 build SHA 统一改标为最终证据提交。
+
+保留 DOM 菜单／全屏的真实页面图：[390×740](complete/390x740-tier3-page.png)、[844×300](complete/844x300-tier3-page.png)。两图各在对应5× Canvas同一 postrender 峰值睡眠 Phaser loop 后截图，保全部页面控件再 wake；frame、product、phase完全一致，截图前后整个保存状态不变。实测菜单／全屏44×44或64×44，其 bounds距8px外带最少4px，没有相交，因此不需要改 DOM 布局或增新 guard。
+
+两尺寸自然202／600／1200／5589共8路径，另390低档 reduced、844中档 reduced、390低档原生skip与真实回看／reload继续、844中途原生切减少动态共4路径，**12用例 PASS、3042实际计分帧＋193真实回看帧**。低档用 `p04-golden-02` 阿默原始手牌单张 clubs-5；真实保存 trace H45×M9/2向下取整202，低于400，返回 await-input，不把600起始500伪标未达标。每个来源顺序 impact、同帧准确 target／2×／5×档、实际 guards与共享mask、飞线落点、长数字实宽不交、选牌不建装饰、全保存/RNG稳定、一次入账与离场3 Graphics／短鼓尾归零通过。降档／重入只首次演出、同eventId在reduced早退前去重、无逐帧RNG和幂等destroy由首版对应单测验证。
+
+首版52项受影响单测、typecheck和e2e build结果持续有效。持续燃烧床为0；只读观察原 AudioNode start/stop 排程证明 reduced 开场尚存的循环是≤350ms且有有限stop的原出牌滑声，未删它洗绿。真实回看193帧新短鼓voice始终0。四个采帧/观测假设失败及纠正摘要保留于matrix，原诊断留忽略的shots，不加入提交。当前归档 plan检查另跑；**最终分支精确 CI结果以交接消息的实际SHA与run URL为准**，首检查点9fb旧CI不代替最终CI。
+
+已 actual view 两联系图、低档单帧及两DOM页面图。**视觉待审限制：低档左短笔划可见，右短笔划部分被既有不透明得分底板遮挡；未据机器通过宣称两道均完整可见或整体美术通过。**按父“先完整一套再审、暂不调参”停在本候选；之后如获继续，仅剩一次有依据的参数修正额度。听感、OnePlus、真GPU／GPU FPS、录屏、整体审美 **NOT_RUN**，P08整体仍 **IN_PROGRESS**。`domain/application/public/assets/art/sources` Git树同88b17e2；未接其他worker的底部布局、Joker调序、工具或a11素材。
+
+---
+
+首个检查点历史：
 
 本轮按父最新收尾指示停在首版。独立 `feat/p08-score-cinnabar-review-20261004`，基于已发布 `88b17e23c9aa778c8ac93c9998cd090ba48ab82d`，不合 main、不接后续资源／底部控件／Joker 调序。
 
@@ -14,4 +37,4 @@
 
 首次采帧 FAIL 已保留：脚本曾错误要求600 wheel也存在未达标帧，实际 base为125×4=500，已高于目标400。只修采帧假设，未改规则或数值。完整原报告留工作树 `shots/cinnabar/first-capture-failure.json`，公开摘要写入 checkpoint。
 
-仍待补：844×300 safe12／34；从其他合法自然路径取未达标／2x／5x实际关键帧；两张四阶段联系图及其单帧；减少动态从开始／中途切换、skip／重复／回看／恢复浏览器检查；精确 review CI。相关单测已跑，浏览器未跑的项目不包装为 PASS。总状态 **IN_PROGRESS**，父继续此任务时优先补上述证据，候选后仅允许一次有依据的线宽／opacity／timing修正。听感、真机、真GPU、GPU FPS、录屏和整体审美 **NOT_RUN**；main串行整合由父负责。
+首检查点当时未跑：844×300 safe12／34；未达标／2x／5x实际帧；两联系图；reduced／skip／回看／恢复浏览器；精确review CI。上述浏览器和证据项现由顶部完整矩阵补齐。首检查点精确9fb0c95 CI37216277663、docs37216277579均success，但不代替最终分支CI。main串行整合仍由父负责，整体审美与设备仍未验收。
