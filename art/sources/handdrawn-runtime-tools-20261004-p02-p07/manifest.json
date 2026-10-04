@@ -1,0 +1,698 @@
+{
+  "schemaVersion": 1,
+  "batch": "handdrawn-runtime-tools-20261004-p02-p07",
+  "baseCommit": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+  "sourceContentReference": {
+    "repository": "big-dimple/dachoupai",
+    "ref": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+    "path": "src/content/r2-tools.json"
+  },
+  "runtime_selection": [
+    "tool-p02",
+    "tool-p03",
+    "tool-p04",
+    "tool-p05",
+    "tool-p06",
+    "tool-p07"
+  ],
+  "encoder": {
+    "format": "WEBP",
+    "quality": 82,
+    "method": 6,
+    "lossless": false,
+    "resize": "Pillow LANCZOS",
+    "Pillow": "12.3.0",
+    "libwebp": "1.6.0"
+  },
+  "containPolicy": {
+    "fit": "contain",
+    "sourceCrop": "entire original",
+    "backgroundHex": "#F3EADB",
+    "noStretch": true,
+    "noReconstruction": true,
+    "rounding": "Nearest integer-pixel fit inside the inset bounding box; no crop or intentional aspect-ratio change."
+  },
+  "assets": [
+    {
+      "id": "tool-p02",
+      "domainId": "P02",
+      "category": "tool-card",
+      "domain": "tool",
+      "sourceCategory": "consumable-tool",
+      "family": "planet",
+      "sourceAspectExceptionApproved": false,
+      "name": "对子星",
+      "sourceFilename": "tool-p02-v1-original.png",
+      "sourceSHA256": "07bffe61def5d8fc216582a2d891babf2f7b88535aae05473b3579e81d72f6d1",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2311881,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-p02.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2230,
+          "sha256": "2d10221abbd8aae4b5ddede6e636d5ec79841d16e0e895cb4005a741b9f48d47",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-p02.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 27710,
+          "sha256": "9128ecaecc7ac0e721b266439f0f2ba507a0105d7b4a1551aec24f5d7e191900",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-p03",
+      "domainId": "P03",
+      "category": "tool-card",
+      "domain": "tool",
+      "sourceCategory": "consumable-tool",
+      "family": "planet",
+      "sourceAspectExceptionApproved": false,
+      "name": "两对星",
+      "sourceFilename": "tool-p03-v1-original.png",
+      "sourceSHA256": "235036b07fbf8f2ee01b48a0606960521bd2d7ddbff16fb33e7e7a8ab57c8b74",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 1979889,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-p03.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2214,
+          "sha256": "816f20a9bf6c97c55fdf556fce430b1320d7c9da982cda7c4b0a68c014c4be15",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-p03.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 22178,
+          "sha256": "d45ac27206de29525a338f1f9599f48138d31e2e1eaf8d1a3035e9049c8a742e",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-p04",
+      "domainId": "P04",
+      "category": "tool-card",
+      "domain": "tool",
+      "sourceCategory": "consumable-tool",
+      "family": "planet",
+      "sourceAspectExceptionApproved": true,
+      "name": "三条星",
+      "sourceFilename": "tool-p04-v1-original.png",
+      "sourceSHA256": "ca180c9728a837a6996045327b7738735954b5fafa3b10b21a7d99408c83f92e",
+      "sourceWidth": 1060,
+      "sourceHeight": 1484,
+      "sourceBytes": 2220340,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-p04.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2172,
+          "sha256": "806bab6fcf4f57e2431c73020614182b16416513efc157f551d8c51801c2cc98",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 10,
+              "top": 5,
+              "width": 107,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 10,
+              "top": 5,
+              "right": 11,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1060,
+              "height": 1484
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-p04.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 26232,
+          "sha256": "15cab9ca7bec4ec5d8dafdf02278e84d862bcb4d4f3084adf04619d1065e8c8f",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 50,
+              "top": 24,
+              "width": 514,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 50,
+              "top": 24,
+              "right": 51,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1060,
+              "height": 1484
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-p05",
+      "domainId": "P05",
+      "category": "tool-card",
+      "domain": "tool",
+      "sourceCategory": "consumable-tool",
+      "family": "planet",
+      "sourceAspectExceptionApproved": false,
+      "name": "顺子星",
+      "sourceFilename": "tool-p05-v1-original.png",
+      "sourceSHA256": "9ae37c55e52051dae3ee959ff8b22922b1175fba295a84ebbba47f5981287977",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2023360,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-p05.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2126,
+          "sha256": "eb7dea2d9a41c47e9621d035e504668dd1be228507799f013275653ef8f06712",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-p05.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 23938,
+          "sha256": "7c199a39136e4ddbf529b19744059dce782dc64940330f61f6b9654b26e875ee",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-p06",
+      "domainId": "P06",
+      "category": "tool-card",
+      "domain": "tool",
+      "sourceCategory": "consumable-tool",
+      "family": "planet",
+      "sourceAspectExceptionApproved": false,
+      "name": "同花星",
+      "sourceFilename": "tool-p06-v1-original.png",
+      "sourceSHA256": "ebf33e6fe164e2037140d732842588bef04f3acfe88b180fa88ddfdc17bc2c57",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2319757,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-p06.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2464,
+          "sha256": "63b741678773849505a1a010c18f9151ecee284b374f0c81bd24a2cbdb7169b2",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-p06.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 28856,
+          "sha256": "5b43e307c6b41a32795c90191e6bd2fdeb798c795cc84bf6803bd910f0b3487e",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-p07",
+      "domainId": "P07",
+      "category": "tool-card",
+      "domain": "tool",
+      "sourceCategory": "consumable-tool",
+      "family": "planet",
+      "sourceAspectExceptionApproved": false,
+      "name": "葫芦星",
+      "sourceFilename": "tool-p07-v1-original.png",
+      "sourceSHA256": "785e0146757bff05c91f77c459d2f6bc53220e938535b70aae867fa7992a51b3",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2230212,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-p07.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2192,
+          "sha256": "571f662684fea05962a1ab7f4c880ac9ae21e96ece8142111b23053d11d0d019",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-p07.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 39124,
+          "sha256": "01d04b2ab81d4442021798948d8c25a897b0f6e797202b5667d5b6371ebce2c4",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "runtimeFiles": 12,
+    "runtimeBytes": 181436,
+    "thumbnailBytes": 13398,
+    "detailBytes": 168038,
+    "sourcePngBytes": 13085439
+  }
+}
