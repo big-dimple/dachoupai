@@ -1,0 +1,616 @@
+{
+  "status": "PASS",
+  "baseline": false,
+  "build": {
+    "version": "C03",
+    "revision": "9b14df1d18b292e94d7236544e2c2ab4dfe9dabd",
+    "modified": true,
+    "builtAt": "2026-10-04T07:17:06.874Z"
+  },
+  "renderer": "Canvas software",
+  "DPR": 1,
+  "fixture": "Native checkpoint import, legal four Joker slots/one T03/gold50 fixture; real paid reroll, two-source sell and real one-card dye use through DOM confirmation. No fabricated pending events or natural/deployed claim.",
+  "profiles": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "safeInset": {
+        "top": 0,
+        "left": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      "checks": [
+        "saved reroll current page/clock preserved before rapid next commits",
+        "native rapid reroll/sell/reroll: unread FIFO3, original clock unchanged, all four source pages/numbers shown in saved order",
+        "native tool cancel: no command/resource/result enqueue",
+        "real T03 dye source/readable result, rerender does not consume again; RNG unchanged",
+        "reload saved shop: exact state restored, no result replay",
+        "normal committed reroll opaque900ms then wall-clock expiry; held action survives cue expiry, pointer cancellation does not command"
+      ],
+      "reroll": {
+        "notes": [
+          {
+            "name": "transaction/owned/e12",
+            "text": "淘旧摊 · 成长 +3 · 后续出牌生效",
+            "color": "#26313a",
+            "font": "14px",
+            "resolution": 1.5,
+            "alpha": 1,
+            "resultKey": "2/transaction/owned/e12/0",
+            "bounds": {
+              "x": 18,
+              "y": 713,
+              "width": 199,
+              "height": 16
+            }
+          }
+        ],
+        "geometry": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": 23,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 712
+        },
+        "plate": {
+          "x": 12,
+          "y": 711,
+          "width": 366,
+          "height": 20
+        },
+        "clock": {
+          "name": "transaction/owned/e12",
+          "text": "淘旧摊 · 成长 +3 · 后续出牌生效",
+          "key": "2/transaction/owned/e12/0",
+          "startedAt": 2887.5,
+          "holdUntil": 5287.5,
+          "endsAt": 5487.5,
+          "pending": 0,
+          "alpha": 1
+        }
+      },
+      "sale": {
+        "notes": [
+          {
+            "name": "transaction/owned/e12",
+            "text": "淘旧摊 · 成长 +3 · 后续出牌生效",
+            "color": "#26313a",
+            "font": "14px",
+            "resolution": 1.5,
+            "alpha": 1,
+            "resultKey": "2/transaction/owned/e12/0",
+            "bounds": {
+              "x": 18,
+              "y": 713,
+              "width": 199,
+              "height": 16
+            }
+          }
+        ],
+        "geometry": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": 23,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 712
+        },
+        "plate": {
+          "x": 12,
+          "y": 711,
+          "width": 366,
+          "height": 20
+        },
+        "clock": {
+          "name": "transaction/owned/e12",
+          "text": "淘旧摊 · 成长 +3 · 后续出牌生效",
+          "key": "2/transaction/owned/e12/0",
+          "startedAt": 2887.5,
+          "holdUntil": 5287.5,
+          "endsAt": 5487.5,
+          "pending": 2,
+          "alpha": 1
+        }
+      },
+      "interleaved": {
+        "afterSale": {
+          "name": "transaction/owned/e12",
+          "text": "淘旧摊 · 成长 +3 · 后续出牌生效",
+          "key": "2/transaction/owned/e12/0",
+          "startedAt": 2887.5,
+          "holdUntil": 5287.5,
+          "endsAt": 5487.5,
+          "pending": 2,
+          "alpha": 1
+        },
+        "afterRapidReroll": {
+          "name": "transaction/owned/e12",
+          "text": "淘旧摊 · 成长 +3 · 后续出牌生效",
+          "key": "2/transaction/owned/e12/0",
+          "startedAt": 2887.5,
+          "holdUntil": 5287.5,
+          "endsAt": 5487.5,
+          "pending": 3,
+          "alpha": 1
+        },
+        "visibleFIFO": [
+          {
+            "key": "2/transaction/owned/e12/0",
+            "text": "淘旧摊 · 成长 +3 · 后续出牌生效"
+          },
+          {
+            "key": "3/transaction/owned/e06/0",
+            "text": "旧物新用 · 成长 +0.5 · 后续出牌生效"
+          },
+          {
+            "key": "3/transaction/owned/e11/1",
+            "text": "长期捧场 · 系数重置 ×1.4 → ×1 · 后续出牌生效"
+          },
+          {
+            "key": "4/transaction/owned/e12/0",
+            "text": "淘旧摊 · 成长 +3 · 后续出牌生效"
+          }
+        ]
+      },
+      "tool": {
+        "notes": [
+          {
+            "name": "tool-use/tool/dye",
+            "text": "已用 塔罗 · 红桃染",
+            "color": "#26313a",
+            "font": "14px",
+            "resolution": 1.5,
+            "alpha": 1,
+            "resultKey": "5/tool-use/tool/dye/0",
+            "bounds": {
+              "x": 18,
+              "y": 713,
+              "width": 115,
+              "height": 16
+            }
+          }
+        ],
+        "geometry": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": 23,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 712
+        },
+        "plate": {
+          "x": 12,
+          "y": 711,
+          "width": 366,
+          "height": 20
+        },
+        "clock": {
+          "name": "tool-use/tool/dye",
+          "text": "已用 塔罗 · 红桃染",
+          "key": "5/tool-use/tool/dye/0",
+          "startedAt": 13472.700000017881,
+          "holdUntil": 15872.700000017881,
+          "endsAt": 16072.700000017881,
+          "pending": 0,
+          "alpha": 1
+        }
+      },
+      "normal": {
+        "notes": [
+          {
+            "name": "transaction/owned/e12",
+            "text": "淘旧摊 · 成长 +3 · 后续出牌生效",
+            "color": "#26313a",
+            "font": "14px",
+            "resolution": 1.5,
+            "alpha": 1,
+            "resultKey": "6/transaction/owned/e12/0",
+            "bounds": {
+              "x": 18,
+              "y": 713,
+              "width": 199,
+              "height": 16
+            }
+          }
+        ],
+        "geometry": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": 23,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 712
+        },
+        "plate": {
+          "x": 12,
+          "y": 711,
+          "width": 366,
+          "height": 20
+        },
+        "clock": {
+          "name": "transaction/owned/e12",
+          "text": "淘旧摊 · 成长 +3 · 后续出牌生效",
+          "key": "6/transaction/owned/e12/0",
+          "startedAt": 1221.6000000238419,
+          "holdUntil": 3621.600000023842,
+          "endsAt": 3821.600000023842,
+          "pending": 0,
+          "alpha": 1
+        }
+      }
+    }
+  ],
+  "targetDevice": "OnePlus/realGPU/audio NOT_RUN"
+}

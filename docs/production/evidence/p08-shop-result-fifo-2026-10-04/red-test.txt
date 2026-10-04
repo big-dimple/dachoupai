@@ -1,0 +1,48 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-result-feedback.test.ts (6 tests | 2 failed) 25ms
+   × rapid saved reroll/sale/reroll preserves unread FIFO results and the current deadline 9ms
+   × duplicate committed pages never replay across interleaved batches or after reading 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-result-feedback.test.ts > rapid saved reroll/sale/reroll preserves unread FIFO results and the current deadline
+AssertionError: expected 1 to be 3 // Object.is equality
+
+- Expected
++ Received
+
+- 3
++ 1
+
+ ❯ tests/shop-result-feedback.test.ts:9:177
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/shop-result-feedback.test.ts > duplicate committed pages never replay across interleaved batches or after reading
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/shop-result-feedback.test.ts:15:125
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  07:14:51
+   Duration  528ms (transform 175ms, setup 0ms, import 215ms, tests 25ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
