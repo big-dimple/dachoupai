@@ -379,6 +379,8 @@ D25追加有限3D复用小候选：先用实际GLB源的铜钱/骰子或牌片�
 
 ## P08
 
+P08两图小增量（UTC 2026-10-04）：四牌短修main89339f0精确CI37173247948/docs37173247924均success，旧CI不再检查。合法素材3284505仅取授权目录，manifest逐hash/portable异cwd verify/四个实际像素PASS；铁算盘旧本ID替换、f10机制本ID替换，现新13/72、旧22、机制37，合计47WebP/1363886B，原43输出不变。46受影响tests/type及390×740 Canvas BASE_URL/实际两纹理/HD按需/缓存/404保缩略固定框重试/完整run不变PASS，一张现成牌桌图已actual view并review e1da046仅PNG+README正常push；候选非main部署/整体/真机PASS。新冻结/正常FF/精确CI另报，火审批pending不绕路。A03/P08只读精确72覆盖与c08/c09机制条件建议归evidence/p08-handdrawn-b2-2026-10-04，未生成或接未approved图。OnePlus/真GPU/听感NOT_RUN。
+
 P08四牌短语短轮（UTC 2026-10-04）：基线main fb709fe已发布/clean，旧CI不重查。空选实际截掉同花顺5张例外；两态共享“顺子/同花4张；同花顺5张”，完整普通型说明保详情。19受影响tests/type及844×300/top12/bottom0、12、34空选/已选六态实际文字bounds/native输入PASS：160×16/可用194、14px/resolution1.5、两快捷真44×44，零相交，直选/撤销/规则不出弃或改run/RNG/save。候选指纹与fixture/build在docs/production/evidence/p08-four-rule-copy-2026-10-04/summary.json；新源码b46a62c冻结1864 tests/104files、content、type/build、Canvas双端smoke、plan全PASS，源码/index/HEAD不变；正常FF/新精确CI另报。无新图/录屏；火输入待审批不重试，OnePlus/真GPU/听感NOT_RUN。发布后只读A03/P08覆盖盘点，不新增生成或接未批准图。
 
 P08本轮发布前技术收尾：运行源码0ce7881ca7523a2a233988eccaccaa7caedbba21已冻结1863 tests/104files、content、type/build、Canvas桌面+手机smoke PASS，源码/index/HEAD一致。初次最后plan失败因README误放JSON evidence，原报告保留；仅文档引用修正，1015153的docs-only verify:ci PASS且前后不变，运行源码不重跑/不改。43新图消费与实际场景、直选/权威规则/清晰度、五项memory修复已完成，a22a613图局部早评通过，main正常FF及精确新CI另报。火参考403 BLOCKED，OnePlus/真GPU/听感NOT_RUN；不是72全换或整体审美PASS。

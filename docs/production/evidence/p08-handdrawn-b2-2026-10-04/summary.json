@@ -1,0 +1,47 @@
+{
+  "taskId": "P08",
+  "testedCommit": "89339f08847ea5b9a0d93444f5d05decad0054e4",
+  "baseline": "89339f08847ea5b9a0d93444f5d05decad0054e4",
+  "assetCommit": "3284505ad86e4e216343aa873719d20524f9a4ce",
+  "sourceManifestSHA256": "c00c8942d75e023da38930d95be9492ce63b55342f2633031662d9217403deeb",
+  "srcFingerprint": "bc74f100461bdfa480fa8af6d854ddc78a2fa6233e9370a7af6ff81f29b96166",
+  "runtimeManifestSHA256": "9140b9eaea1dd62d432fd35cc36ea845578b37edc5da92cdda9497d87eab0f32",
+  "newBatch": {
+    "files": 4,
+    "bytes": 101218,
+    "ids": [
+      "tiesuanpan",
+      "f10"
+    ],
+    "consumerVerify": "PASS inside and outside repo cwd",
+    "consumerPixelView": "both128x160 thumbnails and615x768 details actually viewed"
+  },
+  "totalRuntime": {
+    "files": 47,
+    "bytes": 1363886,
+    "originalArtworks": 22,
+    "functionalNew": 13,
+    "functionalLegacy": 22,
+    "functionalMechanism": 37
+  },
+  "checks": {
+    "affectedTests": "46 passed/4files",
+    "type": "PASS",
+    "browser": "PASS Chromium151 Canvas390x740/DPR1/safe0/BASE_URL subdir; exact HD/thumbnail hash, absent HD pre-open, cache,404 fixed geometry retry, run/RNG/save invariant",
+    "freeze": "PENDING on committed final candidate"
+  },
+  "states": {
+    "implementation": "COMPLETE approved two-image registration only",
+    "technical": "targeted PASS; final freeze/CI pending",
+    "independentAesthetic": "producer/root partial pixels accepted; consumer scene self-view; final scene independent acceptance NOT_RUN",
+    "targetDevice": "OnePlus/hardwareGPU/audio NOT_RUN"
+  },
+  "reports": {
+    "browser": "browser.json",
+    "coverage": "coverage-audit.json",
+    "earlyReview": "e1da046468a4b1b7bc7d4c807fe926e2f708365a",
+    "diagnostic": "diagnostic-blob-probe.json"
+  },
+  "diagnostic": "Initial inspection probe fetched Phaser-revoked internal loader blob URI and failed; measurement corrected to decoded texture dimensions plus exact observed HTTP path SHA. No loader/game or timeout changes. Original failure retained.",
+  "fire": "approval pending; no retry or consumption"
+}

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "originalArtworkCount": 20,
-  "runtimeFileCount": 43,
-  "runtimeBytes": 1262668,
+  "originalArtworkCount": 22,
+  "runtimeFileCount": 47,
+  "runtimeBytes": 1363886,
   "sourceCommit": "c618cee93089bb2e556f16567709b0ea23abbcb9",
   "assets": [
     {
@@ -468,6 +468,58 @@
           "sha256": "3409afc030dd4d33c3d7602a2ed9c4207c88d66848ce925b0e129c9f0d83f7c9"
         }
       ]
+    },
+    {
+      "id": "tiesuanpan",
+      "category": "functional-card",
+      "sourceCommit": "3284505ad86e4e216343aa873719d20524f9a4ce",
+      "sourceManifestSHA256": "c00c8942d75e023da38930d95be9492ce63b55342f2633031662d9217403deeb",
+      "outputs": [
+        {
+          "purpose": "thumbnail",
+          "path": "cards/tiesuanpan.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "bytes": 4060,
+          "sha256": "0d590df077d767b04713761bf0650c78d10c0c1b90acb094676409e0ed11ca0a"
+        },
+        {
+          "purpose": "detail",
+          "path": "cards/tiesuanpan.detail.webp",
+          "width": 615,
+          "height": 768,
+          "bytes": 51292,
+          "sha256": "8bd45fbf0add88941cebdc9d5e4753de408795ba6c268f96eb040a1a048f72fe"
+        }
+      ]
+    },
+    {
+      "id": "f10",
+      "category": "functional-card",
+      "sourceCommit": "3284505ad86e4e216343aa873719d20524f9a4ce",
+      "sourceManifestSHA256": "c00c8942d75e023da38930d95be9492ce63b55342f2633031662d9217403deeb",
+      "outputs": [
+        {
+          "purpose": "thumbnail",
+          "path": "cards/f10.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "bytes": 3790,
+          "sha256": "4af5c26189e6c6a9e16a890dab5f3a31bd65fd66f74d15be7f2216e315fa7dad"
+        },
+        {
+          "purpose": "detail",
+          "path": "cards/f10.detail.webp",
+          "width": 615,
+          "height": 768,
+          "bytes": 42076,
+          "sha256": "ad27d85553c6eeed3dd845eee20b42736939916c152b041cd5d70b281c7f8674"
+        }
+      ]
     }
+  ],
+  "sourceCommits": [
+    "c618cee93089bb2e556f16567709b0ea23abbcb9",
+    "3284505ad86e4e216343aa873719d20524f9a4ce"
   ]
 }

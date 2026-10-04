@@ -1,0 +1,48 @@
+{
+  "assetCommit": "3284505ad86e4e216343aa873719d20524f9a4ce",
+  "sourceManifestSHA256": "c00c8942d75e023da38930d95be9492ce63b55342f2633031662d9217403deeb",
+  "build": {
+    "version": "C03",
+    "revision": "89339f08847ea5b9a0d93444f5d05decad0054e4",
+    "modified": true,
+    "builtAt": "2026-10-04T03:21:18.423Z"
+  },
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "safeInset": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+  },
+  "renderer": "Canvas",
+  "base": "/p08-b2/",
+  "fixture": "Validator-approved nine-card entry with only owned tiesuanpan/f10; native import. Not natural purchase.",
+  "requests": [
+    "/p08-b2/assets/handdrawn-p08/characters/amo.avatar.webp",
+    "/p08-b2/assets/handdrawn-p08/characters/amo.selection.webp",
+    "/p08-b2/assets/handdrawn-p08/characters/touye.avatar.webp",
+    "/p08-b2/assets/handdrawn-p08/characters/touye.selection.webp",
+    "/p08-b2/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+    "/p08-b2/assets/handdrawn-p08/characters/laohuan.selection.webp",
+    "/p08-b2/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+    "/p08-b2/assets/handdrawn-p08/characters/erxiang.selection.webp",
+    "/p08-b2/assets/handdrawn-p08/characters/azao.avatar.webp",
+    "/p08-b2/assets/handdrawn-p08/characters/azao.selection.webp",
+    "/p08-b2/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+    "/p08-b2/assets/handdrawn-p08/characters/xiemu.selection.webp",
+    "/p08-b2/assets/handdrawn-p08/court/j.court.webp",
+    "/p08-b2/assets/handdrawn-p08/court/q.court.webp",
+    "/p08-b2/assets/handdrawn-p08/court/k.court.webp",
+    "/p08-b2/assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+    "/p08-b2/assets/handdrawn-p08/cards/f10.thumbnail.webp"
+  ],
+  "errors": [],
+  "checks": [],
+  "targetDevice": "OnePlus/hardwareGPU/audio NOT_RUN",
+  "status": "FAIL",
+  "error": "Error: page.evaluate: TypeError: Failed to fetch\n    at eval (eval at evaluate (:311:30), <anonymous>:1:172)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+}
