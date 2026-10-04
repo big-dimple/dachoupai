@@ -1,3 +1,4 @@
+import{layout,intersects}from'../src/game/layout';
 import {expect,it} from 'vitest';
 import type {PlayingCard,Rank,Suit} from '../src/cards/types';
 import {R2_JOKERS} from '../src/content/r2Schema';
@@ -5,7 +6,7 @@ import {r2CreateJoker} from '../src/domain/r2Run';
 import {r2SelectionFacts,type R2SelectionInput} from '../src/domain/r2SelectionFacts';
 import {scoreR2Hand,r2ScoringDisabledJokerIds} from '../src/domain/scoreR2';
 import {R2_OFFER_USE} from '../src/game/r2Help';
-import {selectionCopy,fitConditionEntry} from '../src/game/SelectionCopy';
+import {selectionCopy,fitConditionEntry,selectionCandidateEntryBox} from '../src/game/SelectionCopy';
 const card=(id:string,rank:Rank,suit:Suit='spades'):PlayingCard=>({id,rank,suit});
 const input=(hand:PlayingCard[],extra:Partial<R2SelectionInput>={}):R2SelectionInput=>({hand,selectedIds:hand.map(c=>c.id),disabledIds:[],jokers:[],definitions:R2_JOKERS,...extra});
 it('three-kind with 3/4/5 cards excludes accompanying cards; full selection can become house or four-kind',()=>{
@@ -53,3 +54,10 @@ it('selection validation rejects empty, duplicate and foreign instances without 
  for(const ids of [[],['a','a'],['foreign']])expect(()=>r2SelectionFacts(input(hand,{selectedIds:ids}))).toThrow('invalid-selection');
  expect(()=>r2SelectionFacts(input([hand[0],hand[0]]))).toThrow();expect(hand).toEqual(before);
 });
+
+it('disabled safe accompanying cards remain played/triple while their scoring effects are identified separately',()=>{
+ const hand=[card('a',7,'spades'),card('b',7,'clubs'),card('c',7,'diamonds'),card('d',2,'hearts'),card('e',4,'spades')];
+ for(const size of[4,5]){const f=r2SelectionFacts(input(hand,{selectedIds:hand.slice(0,size).map(c=>c.id),disabledIds:['d']})),copy=selectionCopy(f);expect(f.type).toBe('three-kind');expect(f.activeScoringIds).toEqual(['a','b','c']);expect(f.playedIds).toContain('d');expect(copy.disabledAccompanyingIds).toEqual(['d']);expect(copy.accompanyingNote).toContain('本场计分效果停用');expect(copy.accompanyingNote).toContain('重复条件');expect(copy.restrictions.join('')).not.toContain('计分停用');}
+});
+
+it('short panels provide a visible-entry seat at least44px without entering hands/actions',()=>{for(const bottom of[0,12,34]){const l=layout({width:844,height:300},{top:12,bottom,left:0,right:0},undefined,{count:9}),b=selectionCandidateEntryBox(l.scoreBoard)!;expect(b.height).toBeGreaterThanOrEqual(44);expect(b.width).toBeGreaterThanOrEqual(44);expect(b.y+b.height).toBeLessThanOrEqual(l.scoreBoard.y+l.scoreBoard.height);for(const area of[l.hand,...Object.values(l.tableActions)])expect(intersects(b,area)).toBe(false);}});

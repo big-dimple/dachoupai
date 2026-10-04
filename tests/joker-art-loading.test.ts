@@ -176,6 +176,15 @@ describe('registered Joker thumbnail recovery',()=>{
     requestJokerArt(scene.phaser,ids,vi.fn());expect(prefetchDetailArt).toHaveBeenCalledTimes(2);
   });
 
+  it('does not prefetch reviewed handdrawn HD before opening detail, including cached thumbnails',()=>{
+    const scene=new FakeScene();requestJokerArt(scene.phaser,['f09','f04'],vi.fn());
+    expect(scene.load.requests).toHaveLength(2);
+    scene.load.succeed(scene.load.requests[0]);scene.load.succeed(scene.load.requests[1]);
+    expect(prefetchDetailArt).not.toHaveBeenCalled();
+    requestJokerArt(scene.phaser,['f09','f04'],vi.fn());
+    expect(scene.load.requests).toHaveLength(2);expect(prefetchDetailArt).not.toHaveBeenCalled();
+  });
+
   it('retries one failed image while the same loader still has unrelated work',()=>{
     const scene=new FakeScene();scene.load.image('unrelated','/unrelated.webp',{responseType:'blob',timeout:5000});scene.load.start();
     requestJokerArt(scene.phaser,[ids[0]],vi.fn());

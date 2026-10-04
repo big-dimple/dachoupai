@@ -1,0 +1,656 @@
+{
+  "build": {
+    "version": "C03",
+    "revision": "5bb749fe3220adaf3055412e483ef42515b89726",
+    "modified": true,
+    "builtAt": "2026-10-04T02:31:38.183Z"
+  },
+  "renderer": "recorded per actual run; Chromium Canvas / WebKit WebGL",
+  "DPR": 1,
+  "runs": [
+    {
+      "engine": "chromium",
+      "browser": "151.0.7922.173",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "checks": [
+        "empty selection exposes all12 rule reference without state/save mutation",
+        "natural3-offer shop: all72 condition details/cancel no state change/legal once-only purchase then entry",
+        "triple3/4/5: ghost/Escape keep selectedIDs and full state; explicit apply atomic/no command/save; undo restores; sort preserves IDs/undo; manual change ends undo",
+        "stale detached apply after order revision cannot alter new hand; resize and item/menu return preserve selection; no forecast numbers/fullText/fire",
+        "B02 actual selection/public memory preserves core vs active/ordinary0/static rules",
+        "B03 actual selection/public memory preserves core vs active/ordinary0/static rules",
+        "B16 actual selection/public memory preserves core vs active/ordinary0/static rules",
+        "actual B03 triple disabled-core and disabled-accompanying card detail distinguish roles without events",
+        "actual save gate then scorer/presentation and complete committed recap; next-hand guidance/refresh preserve whole run/RNG/resources"
+      ],
+      "errors": [],
+      "renderer": "Canvas"
+    },
+    {
+      "engine": "webkit",
+      "browser": "26.6",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "checks": [
+        "empty selection exposes all12 rule reference without state/save mutation",
+        "natural3-offer shop: all72 condition details/cancel no state change/legal once-only purchase then entry",
+        "triple3/4/5: ghost/Escape keep selectedIDs and full state; explicit apply atomic/no command/save; undo restores; sort preserves IDs/undo; manual change ends undo",
+        "stale detached apply after order revision cannot alter new hand; resize and item/menu return preserve selection; no forecast numbers/fullText/fire",
+        "B02 actual selection/public memory preserves core vs active/ordinary0/static rules",
+        "B03 actual selection/public memory preserves core vs active/ordinary0/static rules",
+        "B16 actual selection/public memory preserves core vs active/ordinary0/static rules",
+        "actual B03 triple disabled-core and disabled-accompanying card detail distinguish roles without events",
+        "actual save gate then scorer/presentation and complete committed recap; next-hand guidance/refresh preserve whole run/RNG/resources"
+      ],
+      "errors": [],
+      "renderer": "WebGL"
+    },
+    {
+      "engine": "chromium",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "count": 14,
+      "scoreBoard": {
+        "x": 8,
+        "y": 153.6,
+        "width": 344,
+        "height": 120
+      },
+      "texts": [
+        {
+          "text": "三条 · 已选5张",
+          "font": "24px",
+          "bounds": {
+            "x": 50.5,
+            "y": 160.6,
+            "width": 155,
+            "height": 26
+          }
+        },
+        {
+          "text": "计分牌3张 · 附带2张",
+          "font": "14px",
+          "bounds": {
+            "x": 64.5,
+            "y": 187.6,
+            "width": 127,
+            "height": 16
+          }
+        },
+        {
+          "text": "4张普通顺子／同花；同花顺仍5张",
+          "font": "14px",
+          "bounds": {
+            "x": 22,
+            "y": 207.6,
+            "width": 212,
+            "height": 16
+          }
+        },
+        {
+          "text": "本轮可成8种 · 查看",
+          "font": "14px",
+          "bounds": {
+            "x": 18,
+            "y": 253.60000000000002,
+            "width": 119,
+            "height": 16
+          }
+        }
+      ],
+      "handRows": 2,
+      "visible": 14,
+      "played": {
+        "x": 8,
+        "y": 293.6,
+        "width": 344,
+        "height": 127.19999999999999
+      },
+      "checks": [
+        "actual text bounds/min14/no prediction/caption+actions+hand nonintersection"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "count": 14,
+      "scoreBoard": {
+        "x": 12,
+        "y": 153.6,
+        "width": 366,
+        "height": 120
+      },
+      "texts": [
+        {
+          "text": "三条 · 已选5张",
+          "font": "24px",
+          "bounds": {
+            "x": 65.5,
+            "y": 160.6,
+            "width": 155,
+            "height": 26
+          }
+        },
+        {
+          "text": "计分牌3张 · 附带2张",
+          "font": "14px",
+          "bounds": {
+            "x": 79.5,
+            "y": 187.6,
+            "width": 127,
+            "height": 16
+          }
+        },
+        {
+          "text": "4张普通顺子／同花；同花顺仍5张",
+          "font": "14px",
+          "bounds": {
+            "x": 37,
+            "y": 207.6,
+            "width": 212,
+            "height": 16
+          }
+        },
+        {
+          "text": "本轮可成8种 · 查看",
+          "font": "14px",
+          "bounds": {
+            "x": 22,
+            "y": 253.60000000000002,
+            "width": 119,
+            "height": 16
+          }
+        }
+      ],
+      "handRows": 2,
+      "visible": 14,
+      "played": {
+        "x": 12,
+        "y": 293.6,
+        "width": 366,
+        "height": 127.19999999999999
+      },
+      "checks": [
+        "actual text bounds/min14/no prediction/caption+actions+hand nonintersection"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "viewport": {
+        "width": 430,
+        "height": 740
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "count": 9,
+      "scoreBoard": {
+        "x": 12,
+        "y": 153.6,
+        "width": 406,
+        "height": 132
+      },
+      "texts": [
+        {
+          "text": "三条 · 已选5张",
+          "font": "24px",
+          "bounds": {
+            "x": 85.5,
+            "y": 160.6,
+            "width": 155,
+            "height": 26
+          }
+        },
+        {
+          "text": "3张相同点数",
+          "font": "14px",
+          "bounds": {
+            "x": 124,
+            "y": 191.6,
+            "width": 78,
+            "height": 16
+          }
+        },
+        {
+          "text": "计分牌3张 · 附带2张",
+          "font": "14px",
+          "bounds": {
+            "x": 99.5,
+            "y": 211.6,
+            "width": 127,
+            "height": 16
+          }
+        },
+        {
+          "text": "4张普通顺子／同花；同花顺仍5张",
+          "font": "14px",
+          "bounds": {
+            "x": 57,
+            "y": 231.6,
+            "width": 212,
+            "height": 16
+          }
+        },
+        {
+          "text": "本轮可成8种 · 查看",
+          "font": "14px",
+          "bounds": {
+            "x": 22,
+            "y": 265.6,
+            "width": 119,
+            "height": 16
+          }
+        }
+      ],
+      "handRows": 1,
+      "visible": 9,
+      "played": {
+        "x": 12,
+        "y": 305.6,
+        "width": 406,
+        "height": 226.79999999999995
+      },
+      "checks": [
+        "actual text bounds/min14/no prediction/caption+actions+hand nonintersection"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "count": 9,
+      "scoreBoard": {
+        "x": 8,
+        "y": 153.6,
+        "width": 344,
+        "height": 132
+      },
+      "texts": [
+        {
+          "text": "三条 · 已选5张",
+          "font": "24px",
+          "bounds": {
+            "x": 50.5,
+            "y": 160.6,
+            "width": 155,
+            "height": 26
+          }
+        },
+        {
+          "text": "3张相同点数",
+          "font": "14px",
+          "bounds": {
+            "x": 89,
+            "y": 191.6,
+            "width": 78,
+            "height": 16
+          }
+        },
+        {
+          "text": "计分牌3张 · 附带2张",
+          "font": "14px",
+          "bounds": {
+            "x": 64.5,
+            "y": 211.6,
+            "width": 127,
+            "height": 16
+          }
+        },
+        {
+          "text": "4张普通顺子／同花；同花顺仍5张",
+          "font": "14px",
+          "bounds": {
+            "x": 22,
+            "y": 231.6,
+            "width": 212,
+            "height": 16
+          }
+        },
+        {
+          "text": "本轮可成8种 · 查看",
+          "font": "14px",
+          "bounds": {
+            "x": 18,
+            "y": 265.6,
+            "width": 119,
+            "height": 16
+          }
+        }
+      ],
+      "handRows": 1,
+      "visible": 9,
+      "played": {
+        "x": 8,
+        "y": 305.6,
+        "width": 344,
+        "height": 143.59999999999997
+      },
+      "checks": [
+        "actual text bounds/min14/no prediction/caption+actions+hand nonintersection"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "safeInset": {
+        "top": 12,
+        "bottom": 0
+      },
+      "count": 9,
+      "scoreBoard": {
+        "x": 188,
+        "y": 72,
+        "width": 318,
+        "height": 80
+      },
+      "texts": [
+        {
+          "text": "三条 · 已选5张",
+          "font": "17px",
+          "bounds": {
+            "x": 240,
+            "y": 76,
+            "width": 110,
+            "height": 18
+          }
+        },
+        {
+          "text": "计分牌3张 · 附带2张",
+          "font": "14px",
+          "bounds": {
+            "x": 231.5,
+            "y": 96,
+            "width": 127,
+            "height": 16
+          }
+        },
+        {
+          "text": "4张顺子／同花；同花顺仍5张",
+          "font": "14px",
+          "bounds": {
+            "x": 203,
+            "y": 114,
+            "width": 184,
+            "height": 16
+          }
+        },
+        {
+          "text": "本轮可成8种 · 查看",
+          "font": "14px",
+          "bounds": {
+            "x": 198,
+            "y": 132,
+            "width": 119,
+            "height": 16
+          }
+        }
+      ],
+      "handRows": 1,
+      "visible": 9,
+      "played": {
+        "x": 514,
+        "y": 72,
+        "width": 318,
+        "height": 80
+      },
+      "checks": [
+        "actual text bounds/min14/no prediction/caption+actions+hand nonintersection"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "safeInset": {
+        "top": 12,
+        "bottom": 12
+      },
+      "count": 9,
+      "scoreBoard": {
+        "x": 188,
+        "y": 72,
+        "width": 318,
+        "height": 80
+      },
+      "texts": [
+        {
+          "text": "三条 · 已选5张",
+          "font": "17px",
+          "bounds": {
+            "x": 240,
+            "y": 76,
+            "width": 110,
+            "height": 18
+          }
+        },
+        {
+          "text": "计分牌3张 · 附带2张",
+          "font": "14px",
+          "bounds": {
+            "x": 231.5,
+            "y": 96,
+            "width": 127,
+            "height": 16
+          }
+        },
+        {
+          "text": "4张顺子／同花；同花顺仍5张",
+          "font": "14px",
+          "bounds": {
+            "x": 203,
+            "y": 114,
+            "width": 184,
+            "height": 16
+          }
+        },
+        {
+          "text": "本轮可成8种 · 查看",
+          "font": "14px",
+          "bounds": {
+            "x": 198,
+            "y": 132,
+            "width": 119,
+            "height": 16
+          }
+        }
+      ],
+      "handRows": 1,
+      "visible": 9,
+      "played": {
+        "x": 514,
+        "y": 72,
+        "width": 318,
+        "height": 80
+      },
+      "checks": [
+        "actual text bounds/min14/no prediction/caption+actions+hand nonintersection"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "safeInset": {
+        "top": 12,
+        "bottom": 34
+      },
+      "count": 9,
+      "scoreBoard": {
+        "x": 188,
+        "y": 72,
+        "width": 318,
+        "height": 58
+      },
+      "texts": [
+        {
+          "text": "三条 · 已选5张",
+          "font": "17px",
+          "bounds": {
+            "x": 240,
+            "y": 76,
+            "width": 110,
+            "height": 18
+          }
+        },
+        {
+          "text": "计分牌3张 · 附带2张",
+          "font": "14px",
+          "bounds": {
+            "x": 231.5,
+            "y": 96,
+            "width": 127,
+            "height": 16
+          }
+        },
+        {
+          "text": "4张顺子／同花；同花顺仍5张",
+          "font": "14px",
+          "bounds": {
+            "x": 203,
+            "y": 114,
+            "width": 184,
+            "height": 16
+          }
+        }
+      ],
+      "handRows": 1,
+      "visible": 9,
+      "played": {
+        "x": 514,
+        "y": 72,
+        "width": 318,
+        "height": 58
+      },
+      "checks": [
+        "actual text bounds/min14/no prediction/caption+actions+hand nonintersection"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "count": 14,
+      "scoreBoard": {
+        "x": 12,
+        "y": 210,
+        "width": 224,
+        "height": 164
+      },
+      "texts": [
+        {
+          "text": "三条 · 已选5张",
+          "font": "24px",
+          "bounds": {
+            "x": 46.5,
+            "y": 217,
+            "width": 155,
+            "height": 26
+          }
+        },
+        {
+          "text": "3张相同点数",
+          "font": "14px",
+          "bounds": {
+            "x": 85,
+            "y": 248,
+            "width": 78,
+            "height": 16
+          }
+        },
+        {
+          "text": "计分牌3张 · 附带2张",
+          "font": "14px",
+          "bounds": {
+            "x": 60.5,
+            "y": 268,
+            "width": 127,
+            "height": 16
+          }
+        },
+        {
+          "text": "4张顺子／同花；同花顺仍5张",
+          "font": "14px",
+          "bounds": {
+            "x": 32,
+            "y": 288,
+            "width": 184,
+            "height": 16
+          }
+        },
+        {
+          "text": "本轮可成8种 · 查看",
+          "font": "14px",
+          "bounds": {
+            "x": 22,
+            "y": 354,
+            "width": 119,
+            "height": 16
+          }
+        }
+      ],
+      "handRows": 1,
+      "visible": 14,
+      "played": {
+        "x": 252,
+        "y": 124,
+        "width": 1016,
+        "height": 366
+      },
+      "checks": [
+        "actual text bounds/min14/no prediction/caption+actions+hand nonintersection"
+      ]
+    }
+  ],
+  "device": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "screenshots": 0,
+  "geometry": "PASS",
+  "status": "PASS"
+}

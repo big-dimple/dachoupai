@@ -10,7 +10,7 @@ export function modalBlocksCanvas(x:number,y:number):boolean {
 }
 interface DialogAction {label:string;run:()=>void|Promise<void>;disabled?:boolean;primary?:boolean}
 type ArtLoadStatus='unregistered'|'idle'|'loading'|'loaded'|'failed';
-interface DialogOptions {onClose?:()=>void;summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;alt:string;layout?:'card';caption?:string}}
+interface DialogOptions {onClose?:()=>void;summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;alignedLayers?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;alt:string;layout?:'card';caption?:string}}
 export class DetailDialog {
   private dialog?:HTMLDialogElement;
   private lastPointer?:{x:number;y:number};
@@ -115,7 +115,7 @@ export class DetailDialog {
         image.src=thumbnailUrl;
         if(options.f09){
           const layer=document.createElement('div');layer.className='dialog-art-layer';image.replaceWith(layer);layer.append(image);
-          mountF09Detail(layer,image,options.f09.inactive,options.f09.reduced,options.f09.bodyInactive);dialog.classList.add('f09-detail');
+          mountF09Detail(layer,image,options.f09.inactive,options.f09.reduced,options.f09.bodyInactive,options.f09.alignedLayers);dialog.classList.add('f09-detail');
         }
         if(portrait.caption){const caption=document.createElement('figcaption');caption.textContent=portrait.caption;frame.append(caption);}
         frame.append(loadStatus,retry);updateStatus();

@@ -6,7 +6,7 @@ describe('character portrait config', () => {
   it('六位角色的立绘路径均指向自己的资源文件', () => {
     expect(new Set(CHARACTERS.map(character=>character.portrait)).size).toBe(6);
     for (const character of CHARACTERS) {
-      expect(character.portrait).toContain(`assets/characters-p07/${character.id}.portrait.webp`);
+      expect(character.portrait).toContain(`assets/handdrawn-p08/characters/${character.id}.portrait.webp`);
       const relative=character.portrait.slice(character.portrait.indexOf('assets/'));
       const bytes=readFileSync(new URL('../public/'+relative,import.meta.url));
       expect(bytes.subarray(8,12).toString()).toBe('WEBP');

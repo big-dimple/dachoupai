@@ -18,7 +18,7 @@ export interface CharacterDefinition {
 }
 
 // 统一走 vite base 拼资源地址，部署到子目录（如 /dachoupai/）时不会 404
-const characterAsset = (file: string): string => `${import.meta.env.BASE_URL}assets/characters-p07/${file}`;
+const characterAsset = (file: string): string => `${import.meta.env.BASE_URL}assets/handdrawn-p08/characters/${file}`;
 
 export const CHARACTERS: CharacterDefinition[] = [
   { id: 'amo', name: '阿默', title: '默剧王', quote: '一个人，也能把台子撑爆。', passiveName: '独角戏', passiveDescription: '高牌 Lv3 开局；只打出 1 张牌时，倍率 ×3。',

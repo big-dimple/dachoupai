@@ -2,9 +2,9 @@ import Phaser from 'phaser';
 import {getCharacter,type CharacterDefinition,type CharacterId} from './characters';
 import {portraitSquareCrop} from './portraitCrop';
 export const avatarKey=(id:CharacterId):string=>`avatar-${id}`;
-export const avatarURL=(id:CharacterId):string=>`${import.meta.env.BASE_URL}assets/characters-p07/${id}.avatar.webp`;
+export const avatarURL=(id:CharacterId):string=>`${import.meta.env.BASE_URL}assets/handdrawn-p08/characters/${id}.avatar.webp`;
 export const selectionPortraitKey=(id:CharacterId):string=>`selection-portrait-${id}`;
-export const selectionPortraitURL=(id:CharacterId):string=>`${import.meta.env.BASE_URL}assets/characters-p07/${id}.selection.webp`;
+export const selectionPortraitURL=(id:CharacterId):string=>`${import.meta.env.BASE_URL}assets/handdrawn-p08/characters/${id}.selection.webp`;
 /** Full portraits are loaded only when the player opens character details. */
 export const portraitURL=(id:CharacterId):string=>getCharacter(id).portrait;
 export function queueCharacterPreviewLoads(scene:Phaser.Scene,characters:CharacterDefinition[],xhrSettings?:Phaser.Types.Loader.XHRSettingsObject):void {

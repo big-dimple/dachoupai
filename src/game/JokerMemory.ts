@@ -9,7 +9,7 @@ const phaseLabels:Record<HookPhase,string>={onCardScore:'计分牌逐张时',onH
 export type MemoryStatus='待选牌'|'条件满足'|'当前未满足'|'事件时检查'|'计分受限';
 export interface JokerMemoryContext {
  inStage:boolean;hand:readonly PlayingCard[];facts?:R2SelectionFacts;disabledIds:readonly string[];
- scoringLimited:boolean;gold:number;handsLeft:number;playIndex:number;discardsUsed:number;
+ scoringLimited:boolean;gold:number;handsLeft:number;playIndex:number;discardsUsed:number;quadRefundUsed:boolean;
  previousHandType:R2ScoreConditionContext['previousHandType'];stageHeat:string;target:string;
  transaction:R2TransactionConditionContext;deckSize:number;entryHandLimit?:number;jokerSlots:number;jokerCount:number;
 }
@@ -85,9 +85,10 @@ function modifierDescription(m:R2JokerModifier,ctx:JokerMemoryContext):string {
  }
 }
 const resultOnly=new Set<Condition['kind']>(['extra-retrigger','hand-score-below-target','hand-type-unfinished','exhausted-hands']);
-function hookStatus(phase:HookPhase,c:Condition,ctx:JokerMemoryContext):MemoryStatus {
+function hookStatus(phase:HookPhase,c:Condition,operations:readonly Operation[],ctx:JokerMemoryContext):MemoryStatus {
  if(!['onCardScore','onHeldCard','jokerScore'].includes(phase)||resultOnly.has(c.kind))return'事件时检查';
  if(ctx.scoringLimited)return'计分受限';
+ if(operations.some(op=>op.kind==='chance-add-heat'))return'事件时检查';
  const facts=ctx.facts;if(!ctx.inStage)return'待选牌';
  if(!facts){
   if(['resource','resource-minimum','resource-maximum','play-modulo','stage-score-below-target'].includes(c.kind)){const publicOnly:R2ScoreConditionContext={played:[],held:ctx.hand,validHeld:[],active:[],scoringIds:[],handType:'high-card',previousHandType:ctx.previousHandType,gold:ctx.gold,handsAfter:ctx.handsLeft-1,playIndex:ctx.playIndex+1,discardsUsed:ctx.discardsUsed,extraExecutions:0,resolvedFinal:null,stageHeatBefore:ctx.stageHeat,stageTargetHeat:ctx.target};if(!r2ScoreConditionMatches(c,publicOnly))return'当前未满足';}
@@ -99,24 +100,29 @@ function hookStatus(phase:HookPhase,c:Condition,ctx:JokerMemoryContext):MemorySt
  return(phase==='onCardScore'?active.some(matches):phase==='onHeldCard'?validHeld.some(matches):matches())?'条件满足':'当前未满足';
 }
 export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext){
- const hooks=definition.hooks.map(h=>({phase:h.phase,timing:phaseLabels[h.phase],condition:r2ConditionDescription(h.condition),mechanism:h.operations.map(op=>operationDescription(op,ctx)).join('；'),status:hookStatus(h.phase,h.condition,ctx),history:ctx.inStage&&['stage-played-maximum','stage-hand-types-all','no-joker-sale-this-stage'].includes(h.condition.kind)?r2TransactionConditionMatches(h.condition,ctx.transaction)?'已提交资格保持；未宣称奖励触发':'已提交资格尚未满足或已破坏':''}));
+ const hooks=definition.hooks.map(h=>({phase:h.phase,timing:phaseLabels[h.phase],condition:r2ConditionDescription(h.condition),mechanism:h.operations.map(op=>operationDescription(op,ctx)).join('；'),status:hookStatus(h.phase,h.condition,h.operations,ctx),history:ctx.inStage&&['stage-played-maximum','stage-hand-types-all','no-joker-sale-this-stage'].includes(h.condition.kind)?r2TransactionConditionMatches(h.condition,ctx.transaction)?'已提交资格保持；未宣称奖励触发':'已提交资格尚未满足或已破坏':''}));
  const staticRules=(definition.modifiers??[]).map(m=>modifierDescription(m,ctx)),life=definition.hooks.flatMap(h=>h.operations.filter(op=>op.kind==='expire-after-hands'))[0];
  const saved=instance?r2JokerStateText(instance):'尚未购入；不代表已触发';
  const remaining=instance&&life?.kind==='expire-after-hands'?Math.max(0,life.limit-(instance.counters?.handsScored??0)):undefined;
- const status:MemoryStatus|'静态仍有效'|'入场已锁定'=ctx.scoringLimited?'计分受限':definition.modifiers?.some(m=>m.kind==='hand-limit')?ctx.inStage?'入场已锁定':'事件时检查':staticRules.length?'静态仍有效':hooks[0]?.status??'事件时检查';
- const limited=definition.hooks.flatMap(h=>h.operations).find(op=>op.kind==='add-gold-limited'),remainingUses=instance&&limited?.kind==='add-gold-limited'?Math.max(0,limited.limit-(instance.counters?.singleDiscards??0)):undefined;
+ const scoreHooks=hooks.filter(h=>['onCardScore','onHeldCard','jokerScore'].includes(h.phase)),satisfied=scoreHooks.filter(h=>h.status==='条件满足');
+ const currentStatus:MemoryStatus|'部分条件满足'=satisfied.length?satisfied.length===scoreHooks.length?'条件满足':'部分条件满足':scoreHooks.some(h=>h.status==='待选牌')?'待选牌':scoreHooks.some(h=>h.status==='当前未满足')?'当前未满足':'事件时检查';
+ const status:MemoryStatus|'部分条件满足'|'静态仍有效'|'入场已锁定'=ctx.scoringLimited?'计分受限':definition.modifiers?.some(m=>m.kind==='hand-limit')?ctx.inStage?'入场已锁定':'事件时检查':staticRules.length?'静态仍有效':currentStatus;
+ const statusDetail=satisfied.length?'当前满足'+satisfied.length+'条：'+satisfied.map(h=>h.timing+' · '+h.condition).join('；'):'';
+ const limited=definition.hooks.flatMap(h=>h.operations).find(op=>op.kind==='add-gold-limited'||op.kind==='refund-hand-limited');
+ const firstDiscard=definition.hooks.some(h=>h.phase==='onDiscard'&&h.condition.kind==='resource'&&h.condition.resource==='discards-used'&&h.condition.equals===1&&h.operations.some(op=>op.kind==='refund-discard'));
+ const remainingUses=!instance?undefined:limited?.kind==='add-gold-limited'?Math.max(0,limited.limit-(instance.counters?.singleDiscards??0)):limited?.kind==='refund-hand-limited'?ctx.inStage&&ctx.quadRefundUsed?0:limited.limit:firstDiscard?ctx.inStage&&ctx.discardsUsed>0?0:1:undefined;
  const savedShort=remaining!==undefined?'余'+remaining+'手':remainingUses!==undefined?'余'+remainingUses+'次':instance&&definition.hooks.some(h=>h.operations.some(op=>op.kind==='reward-consumable-every-clears'))?(instance.counters?.stageClears===1?'下关赠票':'再2关赠票'):instance?Object.entries(instance.growth).map(([key,value])=>(key==='coefficient'?'系数×':key==='pendingHeat'?'蓄热':key==='multiplier'?'成长倍率':'成长热度')+fractionText(value)).join('／'):'';
  const short=definition.id==='c08'?'4张顺子':definition.id==='c09'?'4张同花':remaining!==undefined?'余'+remaining+'手':remainingUses!==undefined?'余'+remainingUses+'次':R2_OFFER_USE[definition.id]??'条件 ›';
- return{instanceId:instance?.instanceId,definitionId:definition.id,name:definition.name,short,status,saved,savedShort,remaining,remainingUses,staticRules,hooks,scoreLimited:ctx.scoringLimited};
+ return{instanceId:instance?.instanceId,definitionId:definition.id,name:definition.name,short,status,statusDetail,saved,savedShort,remaining,remainingUses,staticRules,hooks,scoreLimited:ctx.scoringLimited};
 }
 export function jokerMemoryAbility(definition:R2JokerDefinition,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext):CardAbilityCopy {
  const memory=jokerMemory(definition,instance,ctx),condition=[...memory.staticRules,...memory.hooks.map(h=>h.timing+'：'+h.condition)].join('\n')||definition.description;
- return{condition,value:memory.hooks.map(h=>h.mechanism).join('\n')||'持有静态规则；不计算整手收益',state:memory.status+'；'+memory.saved+(memory.remaining!==undefined?'；余'+memory.remaining+'手':'')+(memory.scoreLimited?'；仅计分与版次停用，静态／资源／经济与结算后效果按条件保留':''),flavor:'',rules:definition.description+'\n'+memory.hooks.map(h=>h.timing+' · '+h.status+(h.history?' · '+h.history:'')).join('\n'),summary:condition,compact:memory.short,narrow:memory.short,benefit:'条件与单项机制',bodyActive:undefined,editionActive:undefined};
+ return{condition,value:memory.hooks.map(h=>h.mechanism).join('\n')||'持有静态规则；不计算整手收益',state:memory.status+(memory.statusDetail?'；'+memory.statusDetail:'')+'；'+memory.saved+(memory.remaining!==undefined?'；余'+memory.remaining+'手':'')+(memory.remainingUses!==undefined?'；'+(ctx.inStage?'本场':'下场')+'余'+memory.remainingUses+'次'+(ctx.inStage&&memory.remainingUses===0?'，本场已用':''):'')+(memory.scoreLimited?'；仅计分与版次停用，静态／资源／经济与结算后效果按条件保留':''),flavor:'',rules:definition.description+'\n'+memory.hooks.map(h=>h.timing+' · '+h.status+(h.history?' · '+h.history:'')).join('\n'),summary:condition,compact:memory.short,narrow:memory.short,benefit:'条件与单项机制',bodyActive:undefined,editionActive:undefined};
 }
 
 /** Public snapshot adapter. Never reads future drawPile, RNG, journal or score preview. */
 export function publicJokerMemoryContext(state:Pick<R2RunState,'phase'|'gold'|'stage'|'lastTrace'|'shop'>,extras:{hand:readonly PlayingCard[];facts?:R2SelectionFacts;scoringLimited:boolean;deckSize:number;jokerSlots:number;jokerCount:number}):JokerMemoryContext {
  const stage=state.stage,inStage=state.phase==='await-input';
- return{...extras,inStage,gold:state.gold,handsLeft:stage?.handsLeft??0,playIndex:stage?.playIndex??0,discardsUsed:stage?.discardsUsed??0,previousHandType:stage?.previousHandType??null,stageHeat:stage?.heat??'0',target:stage?.targetHeat??'1',disabledIds:stage?.disabledIds??[],entryHandLimit:inStage?stage?.initialHandLimit:undefined,
+ return{...extras,inStage,gold:state.gold,handsLeft:stage?.handsLeft??0,playIndex:stage?.playIndex??0,discardsUsed:stage?.discardsUsed??0,quadRefundUsed:stage?.quadRefundUsed??false,previousHandType:stage?.previousHandType??null,stageHeat:stage?.heat??'0',target:stage?.targetHeat??'1',disabledIds:stage?.disabledIds??[],entryHandLimit:inStage?stage?.initialHandLimit:undefined,
  transaction:{gold:state.gold,handsAfter:stage?.handsLeft,playIndex:stage?.playIndex,discardsUsed:stage?.discardsUsed,handType:stage?.previousHandType??null,heldCount:state.lastTrace?.sets.heldIds.length,discarded:[],hasStage:inStage,maxPlayedCount:stage?.maxPlayedCount??0,ordinaryStraightSeen:stage?.ordinaryStraightSeen??false,ordinaryFlushSeen:stage?.ordinaryFlushSeen??false,jokerSold:inStage?stage?.jokerSold??false:state.shop?.soldJoker??false,traceType:state.lastTrace?.handType??null,heat:stage?.heat??'0',target:stage?.targetHeat??'1'}};
 }

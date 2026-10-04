@@ -122,10 +122,10 @@ class ThumbnailLoads {
     this.refreshTimer=setTimeout(()=>{this.refreshTimer=undefined;if(!this.disposed&&this.scene.scene.isActive())this.refresh();},0);
   }
   private prefetch():void {
-    const needed=this.wanted.map(id=>registered(id)!),desired=needed.slice(0,2).flatMap(art=>jokerArtUrl(art.id)??[]);
+    const needed=this.wanted.map(id=>registered(id)!),eligible=needed.filter(art=>!art.detailOnDemand),desired=eligible.slice(0,2).flatMap(art=>jokerArtUrl(art.id)??[]);
     for(const [url,controller] of this.prefetched)if(!desired.includes(url)){controller.abort();this.prefetched.delete(url);}
     if(!needed.length||needed.some(art=>!this.scene.textures.exists(art.key)))return;
-    const urls=needed.slice(0,2).flatMap(art=>{const url=jokerArtUrl(art.id);return url&&!this.prefetched.has(url)?[url]:[];});
+    const urls=eligible.slice(0,2).flatMap(art=>{const url=jokerArtUrl(art.id);return url&&!this.prefetched.has(url)?[url]:[];});
     for(const url of urls){const controller=new AbortController();this.prefetched.set(url,controller);prefetchDetailArt([url],controller.signal);}
   }
   private readonly shutdown=()=>{

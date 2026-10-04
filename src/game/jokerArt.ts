@@ -1,7 +1,8 @@
 import {assetUrl} from './theme';
+import {HANDDRAWN_ART,handdrawnPath} from './HanddrawnArt';
 
-/** All 24 current Joker candidates have illustrations; human visual approval is separate. */
-export const JOKER_ART = [
+/** Keep legacy IDs without reviewed replacements; never borrow a different card's picture. */
+const LEGACY_JOKER_ART = [
   { id: 'pengci', key: 'p07-joker-pengci', path: 'assets/jokers-p07/pengci.webp', detailPath: 'assets/jokers-p07/pengci-detail.webp' },
   { id: 'e05', key: 'p07-joker-e05', path: 'assets/jokers-p07/e05.webp', detailPath: 'assets/jokers-p07/e05-detail.webp' },
   { id: 'huimaqiang', key: 'p07-joker-huimaqiang', path: 'assets/jokers-p07/huimaqiang.webp', detailPath: 'assets/jokers-p07/huimaqiang-detail.webp' },
@@ -27,6 +28,11 @@ export const JOKER_ART = [
   { id: 'f03', key: 'p07-joker-f03', path: 'assets/jokers-p07/f03.webp', detailPath: 'assets/jokers-p07/f03-detail.webp' },
   { id: 'f09', key: 'p07-joker-f09', path: 'assets/jokers-p07/f09.webp', detailPath: 'assets/jokers-p07/f09-detail.webp' },
 ] as const;
+
+interface JokerArt {id:string;key:string;path:string;detailPath:string;detailOnDemand?:boolean;alignedLayers?:boolean}
+const reviewed=HANDDRAWN_ART.filter(a=>a.category==='functional-card').map(a=>({id:a.id,key:'p08-joker-'+a.id,path:handdrawnPath(a.id,'thumbnail')!,detailPath:handdrawnPath(a.id,'detail')!,detailOnDemand:true,alignedLayers:false}));
+export const JOKER_ART:readonly JokerArt[]=[...LEGACY_JOKER_ART.filter(a=>!reviewed.some(r=>r.id===a.id)),...reviewed];
+export const jokerArtAlignedLayers=(id:string):boolean=>JOKER_ART.find(a=>a.id===id)?.alignedLayers!==false;
 
 export const jokerArtKey = (definitionId: string): string | undefined =>
   JOKER_ART.find(art => art.id === definitionId)?.key;

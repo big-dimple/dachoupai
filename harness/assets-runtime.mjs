@@ -110,7 +110,7 @@ async function normal(prefix,touch){
     const characterImage=probe.page.locator('dialog[open] .dialog-portrait');
     await characterImage.evaluate(image=>image.decode());
     const character=await characterImage.evaluate(image=>({path:new URL(image.src).pathname,width:image.naturalWidth,height:image.naturalHeight,fit:getComputedStyle(image).objectFit}));
-    assert.equal(character.path,prefix+'assets/characters-p07/amo.portrait.webp');assert.equal(character.fit,'contain');
+    assert.equal(character.path,prefix+'assets/handdrawn-p08/characters/amo.portrait.webp');assert.equal(character.fit,'contain');
     await clickDom(probe.page,'关闭');await tapUI(probe.page,'character-select','action/confirm-character',touch);await waitScene(probe.page,'shop');
     const before=await probe.page.evaluate(()=>window.__harness.game.registry.get('runController').state),offer=before.shop.offers.find(o=>!o.consumed),art=jokers.find(j=>j.id===offer.definitionId);assert.ok(art);
     await tapUI(probe.page,'shop','offer/'+offer.offerId,touch);
@@ -135,7 +135,7 @@ async function normal(prefix,touch){
 async function missingPreviews(){
   const probe=await observedPage();
   try{
-    await probe.page.route('**/assets/characters-p07/amo.*.webp',route=>route.fulfill({status:404,body:'missing character'}));
+    await probe.page.route('**/assets/handdrawn-p08/characters/amo.*.webp',route=>route.fulfill({status:404,body:'missing character'}));
     await probe.page.route('**/assets/jokers-p07/*.webp',route=>route.fulfill({status:404,body:'missing illustration'}));
     await probe.page.goto(base+'/dachoupai/?harness=1&seed=p00-core-ui',{waitUntil:'domcontentloaded'});await startupSnapshot(probe);
     const missing=await probe.page.evaluate(()=>{const t=window.__harness.game.textures;return {avatar:t.exists('avatar-amo'),selection:t.exists('selection-portrait-amo'),jokers:Object.keys(t.list).filter(k=>k.startsWith('p07-joker-'))};});
@@ -152,7 +152,7 @@ async function missingPreviews(){
   }finally{await probe.context.close();}
 }
 async function stalledPreview(){
-  const probe=await observedPage(),record={name:'server-never-responds',status:'IN_PROGRESS',path:'/dachoupai/assets/characters-p07/amo.avatar.webp'};report.checks.push(record);fault={kind:'stall',path:record.path};
+  const probe=await observedPage(),record={name:'server-never-responds',status:'IN_PROGRESS',path:'/dachoupai/assets/handdrawn-p08/characters/amo.avatar.webp'};report.checks.push(record);fault={kind:'stall',path:record.path};
   try{
     await probe.page.goto(base+'/dachoupai/?harness=1&seed=p00-core-ui',{waitUntil:'domcontentloaded'});
     await probe.page.waitForFunction(()=>window.__harness.game.scene.getScene('boot').load.inflight.entries.some(f=>f.src.includes('amo.avatar.webp')&&f.xhrLoader));
