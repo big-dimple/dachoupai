@@ -1,0 +1,81 @@
+{
+  "taskId": "P08",
+  "testedCommit": "9e1a176ddb5cc7ec948b698adc85da568c3dd62c",
+  "baseMain": "7d44b8bcada32942acded87d70abe78dea12f275",
+  "sourceFingerprint": "5a7148962066235eb140d470dd970ceaa1355454ff8d86e0090dbd7795470f8e",
+  "scope": "Explain saved failure reason, verified last hand and remaining actions in existing result area. No change to score, reward, retry, layout, fire, tools or artwork.",
+  "implementation": "COMPLETE_REVIEW",
+  "technical": "PASS",
+  "independentAesthetic": "PENDING",
+  "targetDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audioListening": "NOT_RUN",
+  "priorCopyDelivery": {
+    "main": "7d44b8bcada32942acded87d70abe78dea12f275",
+    "mainCI": 37221283754,
+    "mainCIStatus": "success",
+    "productionDocs": 37221283740,
+    "status": "PUBLISHED; candidate direction accepted, not whole aesthetics/target-device acceptance"
+  },
+  "checks": {
+    "affectedTests": {
+      "tests": 35,
+      "files": 4,
+      "status": "PASS"
+    },
+    "typecheck": "PASS",
+    "productionBuild": {
+      "version": "C03",
+      "revision": "7d44b8bcada32942acded87d70abe78dea12f275",
+      "modified": true,
+      "builtAt": "2026-10-04T17:51:47.586Z"
+    },
+    "browser": "PASS; natural win and failure, native touch, desktop resize, short summary/detail, reload/continue exact state, same-seed retry",
+    "renderedText": "16px reason / 14px last hand and resources, resolution1.5; actual Text bounds nonintersecting at390x740; short844x300 retains reason and full existing detail",
+    "immutablePaths": [
+      "src/domain",
+      "src/application",
+      "src/content",
+      "src/game/ScoreFlame.ts",
+      "src/game/GameScene.ts",
+      "src/game/ShopScene.ts",
+      "public/assets",
+      "art/sources",
+      "src/vendor"
+    ]
+  },
+  "corrections": [
+    {
+      "initialHypothesis": "Pale historic scene color literals cause low contrast",
+      "actualFinding": "NOT A DEFECT: SceneView.text already normalizes pale text to paper ink. Actual contrast11.12. No palette fix made."
+    },
+    {
+      "initialUnitFixture": "5 failures: missing accumulator.M in new minimal trace fixture",
+      "correction": "Added valid trace accumulator fields, retained test assertions; final35 tests PASS."
+    }
+  ],
+  "images": [
+    {
+      "path": "390-failure-before.png",
+      "sha256": "6056d7ccddf5ae64289c1bf1a4723b861b54775dd7c0fde8e53bd86317bcfe08",
+      "build": {
+        "version": "C03",
+        "revision": "7d44b8bcada32942acded87d70abe78dea12f275",
+        "modified": false,
+        "builtAt": "2026-10-04T17:46:34.112Z"
+      },
+      "route": "Natural seed p08-low-singles, laohuan, lowest-rank single hands; reduced-motion at4x, native input; not fixture/import or deployment screenshot"
+    },
+    {
+      "path": "390-failure-after.png",
+      "sha256": "5307e2d872528399199c8ade94a4a372e7c32ab04a539048120b253487543af7",
+      "build": {
+        "version": "C03",
+        "revision": "7d44b8bcada32942acded87d70abe78dea12f275",
+        "modified": true,
+        "builtAt": "2026-10-04T17:51:47.586Z"
+      },
+      "route": "Natural seed p08-low-singles, laohuan, lowest-rank single hands; reduced-motion at4x, native input; not fixture/import or deployment screenshot"
+    }
+  ]
+}
