@@ -118,7 +118,7 @@ describe('flames follow the displayed exact total, never the final future result
 
 describe('score landing envelope',()=>{
   it('holds a short compression, rebounds once, and lands exactly at scale one',()=>{
-    for(const peak of [1.18,1.24,1.3]){
+    for(const peak of [1.18,1.24,1.3,1.4]){
       expect(scoreImpactScale(0,peak)).toBeLessThan(.83);
       expect(scoreImpactScale(.1,peak)).toBe(scoreImpactScale(0,peak));
       expect(scoreImpactScale(.42,peak)).toBeCloseTo(peak);

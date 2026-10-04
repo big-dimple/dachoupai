@@ -1,6 +1,6 @@
 import {describe,it,expect} from 'vitest';
 import type Phaser from 'phaser';
-import {compactScoreText,fitScoreLine,scoreFlightLanding} from '../src/game/ScoreTextLayout';
+import {compactScoreText,fitScoreLine,scoreFlightLanding,scoreImpactCell} from '../src/game/ScoreTextLayout';
 
 function fakeText(value:string){
   let font=26,wrap=0;const data=new Map<string,unknown>();
@@ -42,5 +42,17 @@ describe('score display space and exact value preservation',()=>{
     const text=fakeText(value);fitScoreLine(text,{x:0,y:0,width:180,height:24},17);
     expect(text.width).toBeLessThanOrEqual(180);expect(text.text.endsWith('…')).toBe(true);expect(text.getData('fullText')).toBe(value);
     fitScoreLine(text,{x:0,y:0,width:480,height:24},17);expect(text.text).toBe(value);
+  });
+});
+
+describe('primary numeric impact room',()=>{
+  it('reserves a centred larger primary area inside the original score board',()=>{
+    for(const board of [{x:12,y:165,width:366,height:132},{x:188,y:72,width:318,height:58}]){
+      const area=scoreImpactCell(board);
+      expect(area.x).toBeGreaterThanOrEqual(board.x);expect(area.y).toBeGreaterThanOrEqual(board.y);
+      expect(area.x+area.width).toBeLessThanOrEqual(board.x+board.width);
+      expect(area.y+area.height).toBeLessThanOrEqual(board.y+board.height);
+      expect(area.height).toBeGreaterThanOrEqual(board.height>=108?41*1.4:26*1.4);
+    }
   });
 });

@@ -49,7 +49,7 @@ import type {RunMenuActions} from './RunMenu';
 import {R2_BOSSES,r2BossText,r2DisabledCards} from '../domain/r2Chapter';
 import {showConsumables} from './ConsumableDialog';
 import {gameToolInventoryBox,toolInventoryLabel,toolInventoryPlayedArea,toolInventoryProgressY} from './ToolInventoryEntry';
-import {fitScoreLine,scoreFlightLanding} from './ScoreTextLayout';
+import {fitScoreLine,scoreImpactCell,scoreFlightLanding} from './ScoreTextLayout';
 import {PAPER_THEME as T,PAPER_CSS as C,UI_FONT,P00_ASSETS,assetUrl} from './theme';
 import {cardPipRowOffset} from './CardPipLayout';
 import {scoreCells,scorePedestal,playedFootprint} from './layout';
@@ -1062,12 +1062,15 @@ export class GameScene extends Phaser.Scene {
     const l=this.view.layout,s=l.scoreBoard;
     const caption={x:s.x+8,y:s.y+(s.height>=108?4:1),width:s.height>=108?s.width-16:s.width*.52-16,height:s.height>=108?20:17};
     fitScoreLine(this.resultText,caption,14);
-    const cells=scoreCells(s),texts=[this.scoreHeat,this.scoreMult,this.scoreTotal];
-    this.scoreLabels.forEach((text,i)=>{text.setVisible(i!==2||s.height>=108);fitScoreLine(text,{x:cells[i].x,y:cells[i].y-18,width:cells[i].width,height:18},14);});
+    const cells=scoreCells(s),impactCell=scoreImpactCell(s),texts=[this.scoreHeat,this.scoreMult,this.scoreTotal];
+    this.scoreLabels.forEach((text,i)=>{text.setVisible(i!==2||s.height>=108);fitScoreLine(text,{x:cells[i].x,y:i===2?impactCell.y-34:cells[i].y-18,width:cells[i].width,height:18},14);});
     texts.forEach((text,i)=>{
-      fitScoreLine(text,cells[i],i===2?(s.height>=108?36:24):18,true);
+      const cell=i===2?impactCell:cells[i];
+      if(i===2)text.setFontStyle('bold');
+      fitScoreLine(text,cell,i===2?(s.height>=108?36:24):18,true);
       const pulse=Number(text.getData('scorePulseScale')??1);
-      text.setScale(Math.min(pulse,cells[i].width/Math.max(1,text.width),cells[i].height/Math.max(1,text.height)));
+      if(i===2)text.setOrigin(.5).setPosition(cell.x+cell.width/2,cell.y+cell.height/2);
+      text.setScale(Math.min(pulse,cell.width/Math.max(1,text.width),cell.height/Math.max(1,text.height)));
     });
     const guarded=[this.resultText,...this.scoreLabels,...texts,this.breakdownText,this.previousHandText].filter(t=>t?.active&&t.visible);
     const bodies=[...this.cardViews.map(v=>v.container),...[...this.settledCards.values()].map(v=>v.container),
@@ -1158,7 +1161,7 @@ export class GameScene extends Phaser.Scene {
     const presentation=this.presentation;if(!presentation)return;
     const level=scoreFireLevel(presentation.originHeat,product,this.stage.targetHeat);
     if(level)this.ensureScoreFlame();
-    this.scoreFlame?.set(level,this.reducedMotion);
+    this.scoreFlame?.set(level,this.reducedMotion||presentation.replay);
     this.scoreTotal.setColor(level?C.red:C.ink);this.keepScoreReadable();
   }
   private stopScoreFire():void {this.scoreFlame?.destroy();this.scoreFlame=undefined;this.audio.stopScoreFire();}
@@ -1196,11 +1199,11 @@ export class GameScene extends Phaser.Scene {
     if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)targets.push(this.scoreHeat);
     if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)targets.push(this.scoreMult);
     if(targets.length)targets.push(this.scoreTotal);
-    const strength=scoreBeat(event).strength,scale=strength==='multiply'?1.3:strength==='role'?1.24:1.18;
+    const strength=scoreBeat(event).strength,level=this.presentation?scoreFireLevel(this.presentation.originHeat,this.displayedScoreProduct,this.stage.targetHeat):0,scale=Math.min(1.4,(strength==='multiply'?1.34:strength==='role'?1.3:1.28)+level*.02);
     return Promise.all(targets.map(target=>this.pulseScoreNumber(target,scale,duration,context))).then(()=>undefined);
   }
   private async pulseScoreNumber(text:Phaser.GameObjects.Text,requested:number,duration:number,context:EffectContext):Promise<void> {
-    if(this.reducedMotion||context.signal.aborted)return;
+    if(this.reducedMotion||context.signal.aborted||this.presentation?.replay)return;
     const pulse={t:0};
     text.setData('scorePulseScale',scoreImpactScale(0,requested));this.fitScoreReadouts();
     try {
@@ -1449,7 +1452,7 @@ export class GameScene extends Phaser.Scene {
       }},context).then(()=>{this.rollingHeat=false;presentation.displayHeat=presentation.state.stage!.heat;if(!context.signal.aborted)this.updateHud();}));
     }else {presentation.displayHeat=presentation.state.stage!.heat;this.updateHud();}
     if(!this.reducedMotion){
-      effects.push(this.pulseScoreNumber(this.scoreTotal,1.18+scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat)*.04,260,context));
+      effects.push(this.pulseScoreNumber(this.scoreTotal,1.28+scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat)*.04,260,context));
       effects.push(this.animate({targets:this.heatText,scale:{from:celebration.cleared?1.1:1.04,to:1},duration:celebration.cleared?620:310,ease:'Back.easeOut'},context));
     }
     effects.push(this.wait(celebration.cleared&&!this.reducedMotion?1400:tier>=2?600:360,context));await Promise.all(effects);
@@ -1483,6 +1486,8 @@ export class GameScene extends Phaser.Scene {
       const view=views.find(view=>view.card.id===id)??this.cardViews.find(view=>view.card.id===id)??this.cardPiece(score.cards.find(card=>card.id===id)!,boxes[i]);
       this.settledCards.set(id,view);view.container.setVisible(true);view.selectionMark?.setVisible(false);view.hit?.disableInteractive();return {view,box:boxes[i]};
     });
+    const base=score.events[0],baseProduct=Rational.fromJSON(base.after.H).multiply(Rational.fromJSON(base.after.M)).floor().toString();
+    const baseCue=!replay&&BigInt(baseProduct)>0n&&scoreFireLevel(originHeat,baseProduct,this.stage.targetHeat)>0;
     this.effects.enqueue(async context=>{
       this.audio.playHand();
       await Promise.all([...(beforeHands!==undefined&&!replay?[this.pulseResource('play',beforeHands,context,beforeHands-1)]:[]),...landing.map(async({view,box},i)=>{
@@ -1501,7 +1506,11 @@ export class GameScene extends Phaser.Scene {
         view.container.setScale(sx*1.07,sy*.9).setAngle(0);
         await this.animate({targets:view.container,scaleX:sx,scaleY:sy,duration:110,ease:'Back.easeOut'},context);
       })]);
-      if(context.signal.aborted)return;this.setAccumulator(score.events[0].after);this.breakdownText.setText('牌型 '+HAND_LABELS[score.handType]+' · ★ '+score.sets.activeScoringIds.length+' 张计分');
+      if(context.signal.aborted)return;this.setAccumulator(base.after);this.breakdownText.setText('牌型 '+HAND_LABELS[score.handType]+' · ★ '+score.sets.activeScoringIds.length+' 张计分');
+      // A strong saved base is the first arrival too. Reuse 260ms of the existing
+      // 460ms landing rest, so the new accent never adds a second waiting slot.
+      const baseEffects:Promise<void>[]=[];
+      if(baseCue){this.scoreTotal.setData('eventId',base.eventId).setData('eventPhase','base-impact');baseEffects.push(this.pulseAccumulator(base,260,context),this.impactAccumulator(base,260,context));}
       const formation=fourCardFormation(score);
       if(formation){
         const view=this.jokerViews.get(formation.instanceId),frame=view?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;
@@ -1509,8 +1518,9 @@ export class GameScene extends Phaser.Scene {
         this.resultText.setText(name+' · 四张普通'+type);this.breakdownText.setText(name+'允许4张普通'+type+'；同花顺仍须5张。');
         if(view&&frame){this.audio.sourceCue('joker');await Promise.all([this.focusSource(view,frame,T.brass,false,380,context),this.floatNote('四张'+type,view.x,view.y-frame.height/2-8,'#ffe3ae',380,context)]);}
       }
+      await Promise.all(baseEffects);
     });
-    this.effects.enqueue(context=>this.wait(this.reducedMotion?120:460,context));
+    this.effects.enqueue(context=>this.wait(this.reducedMotion?120:baseCue&&!fourCardFormation(score)?200:460,context));
     let jokerIndex=0,scoreOrdinal=0;
     for(const event of score.events){
       if(event.phase==='base')continue;

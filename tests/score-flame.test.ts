@@ -31,7 +31,7 @@ describe('bounded cinnabar score strokes',()=>{
   });
   it('gives a positive below-target hit two visible strokes through gather / unfold / fade',()=>{
     const f=fixture();f.flame.impact('actual-1');expect(f.state()).toMatchObject({level:0,localPhase:'gather',localAlpha:1});
-    expect(f.flame.graphic.visible).toBe(true);expect(f.objects.find(o=>o.name==='score/fire').commands.filter((c:any)=>c[0]==='strokePath')).toHaveLength(2);
+    expect(f.flame.graphic.visible).toBe(true);expect(f.objects.find(o=>o.name==='score/fire').commands.filter((c:any)=>c[0]==='strokePath')).toHaveLength(6);
     f.events.emit('update',70);expect(f.state().localPhase).toBe('unfold');f.events.emit('update',110);expect(f.state().localPhase).toBe('fade');
     f.events.emit('update',140);expect(f.state().localPhase).toBe('idle');expect(f.flame.graphic.visible).toBe(false);expect(f.updates()).toBe(0);f.flame.destroy();
   });

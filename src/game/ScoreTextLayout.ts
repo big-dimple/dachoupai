@@ -1,5 +1,5 @@
 import type Phaser from 'phaser';
-import type {Box} from './layout';
+import {scoreCells,type Box} from './layout';
 
 /** A source lands outside the numeric cell; its centre never aims through the digits. */
 export function scoreFlightLanding(source:{x:number;y:number},cell:Box,outset=14):{x:number;y:number} {
@@ -35,4 +35,10 @@ export function fitScoreLine(text:Phaser.GameObjects.Text,area:Box,baseSize:numb
   if(numeric&&text.width>area.width)text.setWordWrapWidth(area.width,true);
   text.setPosition(area.x+area.width/2,area.y).setOrigin(.5,0)
     .setData('fullText',value).setData('fittedText',text.text);
+}
+
+/** Primary score gets the existing pedestal's vertical room; cards/actions never move. */
+export function scoreImpactCell(board:Box):Box {
+  const cell=scoreCells(board)[2],height=board.height>=108?65:Math.min(38,board.height-8);
+  return {x:cell.x,y:board.y+board.height-height-3,width:cell.width,height};
 }

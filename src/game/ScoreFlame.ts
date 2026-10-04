@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import type {Box} from './layout';
 import {subtractBoxes} from './ScoreGeometry';
+import {scoreImpactCell} from './ScoreTextLayout';
 
 const RED=0xb8473a,INK=0x26313a;
 const clamp=(v:number,lo=0,hi=1)=>Math.max(lo,Math.min(hi,v));
@@ -40,6 +41,7 @@ export class ScoreFlame {
   private readonly safetyMask:Phaser.Display.Masks.GeometryMask;
   private readonly frameBands?:ReturnType<typeof scoreFlameFrameBands>;
   private readonly localBands:Box[];
+  private readonly readoutBox:Box;
   private readonly paths:Stroke[][]=[[],[],[],[]];
   private readonly inner:Stroke[]=[];
   private readonly hitIds=new Set<string>();
@@ -54,9 +56,9 @@ export class ScoreFlame {
   private lastWall?:number;
 
   constructor(private readonly scene:Phaser.Scene,root:Phaser.GameObjects.Container,private readonly box:Box,frameBox?:Box){
-    const d=Math.min(10,box.width/2,box.height/2);
+    const d=Math.min(10,box.width/2,box.height/2);this.readoutBox=scoreImpactCell(box);
     this.localBands=[{x:box.x,y:box.y,width:box.width,height:d},{x:box.x,y:box.y+box.height-d,width:box.width,height:d},
-      {x:box.x,y:box.y,width:d,height:box.height},{x:box.x+box.width-d,y:box.y,width:d,height:box.height}];
+      {x:box.x,y:box.y,width:d,height:box.height},{x:box.x+box.width-d,y:box.y,width:d,height:box.height},this.readoutBox];
     this.frameBands=frameBox?scoreFlameFrameBands(frameBox):undefined;
     const outer=this.frameBands?.outer;
     if(outer){
@@ -109,7 +111,7 @@ export class ScoreFlame {
     this.syncUpdate();this.draw();
   }
 
-  /** Only perimeter bands may paint, minus actual text, card and control guards. */
+  /** Only score-paper lanes / exterior gutter may paint, minus actual foreground guards. */
   setGuards(guards:readonly Box[]):void {
     if(this.destroyed)return;
     const valid=guards.filter(b=>[b.x,b.y,b.width,b.height].every(Number.isFinite)&&b.width>0&&b.height>0);
@@ -168,6 +170,18 @@ export class ScoreFlame {
         const path=stroke([{x,y:y-vertical},{x:x+.25*side,y:y-.5},{x:x+horizontal*side,y}]);
         localStrokes.push(path.points);this.paint(this.graphic,path,1,staticHit?4.5:6.5,RED,alpha);
       }
+      const impactRays:readonly Point[][]=[];
+      if(!staticHit){
+        const b=this.readoutBox,cx=b.x+b.width/2,cy=b.y+b.height/2,burst=this.hitAge<36?.28:this.hitAge<90?.28+.72*(1-(1-(this.hitAge-36)/54)**3):1;
+        const rays:Point[][]=[];
+        for(const [sx,sy] of [[-1,-1],[1,-1],[-1,1],[1,1]]){
+          const points=[{x:cx+sx*b.width*.23*burst,y:cy+sy*b.height*.14*burst},
+            {x:cx+sx*b.width*.38*burst,y:cy+sy*b.height*.30*burst},
+            {x:cx+sx*b.width*.49*burst,y:cy+sy*b.height*.46*burst}];
+          rays.push(points);this.paint(this.graphic,stroke(points),1,4.5+this.level*.8,RED,alpha);
+        }
+        this.graphic.setData('impactRays',rays).setData('readoutImpactBox',b);
+      }else this.graphic.setData('impactRays',impactRays);
       this.graphic.setData('localStrokes',localStrokes);
     }
     this.graphic.setData('strokeState',{level:this.level,reduced:this.reduced,localPhase:phase,localAge:this.hitAge,localAlpha:hitVisible?alpha:0,
