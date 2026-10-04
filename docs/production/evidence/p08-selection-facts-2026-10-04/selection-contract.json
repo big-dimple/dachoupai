@@ -1,0 +1,110 @@
+{
+  "browser": "151.0.7922.173",
+  "renderer": "Canvas",
+  "build": {
+    "version": "C03",
+    "revision": "5fa9704395c4a1481069daec48b5919349731b77",
+    "modified": true,
+    "builtAt": "2026-10-04T00:08:29.737Z"
+  },
+  "runs": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "checks": [
+        "0/1 selection/tap/hover/long-press/keyboard/menu/deck/rules/items return: no forecasts or hidden fullText",
+        "sort/resize preserve IDs; guidance typography and bounds safe",
+        "commit pause: playing without save never reveals actual numbers",
+        "committed trace/presentation visible only after save; next-hand guidance; full actual recap",
+        "duplicate reload/continue preserve whole save/RNG/journal/resources",
+        "validated triple fixture: correct facts, static rules, explanation/cancel, no forecast",
+        "validated triple14 fixture: correct facts, static rules, explanation/cancel, no forecast",
+        "validated B02 fixture: correct facts, static rules, explanation/cancel, no forecast",
+        "validated B03 fixture: correct facts, static rules, explanation/cancel, no forecast",
+        "validated B16 fixture: correct facts, static rules, explanation/cancel, no forecast"
+      ],
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "checks": [
+        "0/1 selection/tap/hover/long-press/keyboard/menu/deck/rules/items return: no forecasts or hidden fullText",
+        "sort/resize preserve IDs; guidance typography and bounds safe",
+        "commit pause: playing without save never reveals actual numbers",
+        "committed trace/presentation visible only after save; next-hand guidance; full actual recap",
+        "duplicate reload/continue preserve whole save/RNG/journal/resources"
+      ],
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 12,
+        "bottom": 0
+      },
+      "checks": [
+        "short safe-bottom 0: no prediction across inspection, stable selection/sort/resize, actual text bounds"
+      ],
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 12,
+        "bottom": 12
+      },
+      "checks": [
+        "short safe-bottom 12: no prediction across inspection, stable selection/sort/resize, actual text bounds"
+      ],
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 12,
+        "bottom": 34
+      },
+      "checks": [
+        "0/1 selection/tap/hover/long-press/keyboard/menu/deck/rules/items return: no forecasts or hidden fullText",
+        "sort/resize preserve IDs; guidance typography and bounds safe",
+        "commit pause: playing without save never reveals actual numbers",
+        "committed trace/presentation visible only after save; next-hand guidance; full actual recap",
+        "duplicate reload/continue preserve whole save/RNG/journal/resources"
+      ],
+      "errors": []
+    }
+  ],
+  "fixtures": "Controlled validated snapshots; only the initial/no-Joker single-hand route is natural",
+  "GPU": "NOT_RUN",
+  "physical": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "status": "PASS",
+  "candidateSourceSHA256": "331df4a8e77697a27e558d63aa5aa8ab51d19702e29d528a721dd1b8e52e1bd2"
+}

@@ -40,7 +40,7 @@ describe('five Joker shared condition and benefit copy',()=>{
       expect(cardAbilityCopy(id,{gold:3,inStage:true})).toMatchObject({state:'选牌后判断',compact:'待选牌',narrow:'待选'});
       expect(cardAbilityCopy(id,{gold:3,inStage:true})?.bodyActive).toBeUndefined();
       const noLedger=cardAbilityCopy(id,{gold:3,inStage:true,selectedCount:1,instanceId:'owned/'+id});
-      expect(noLedger?.bodyActive).toBeUndefined();expect(noLedger?.state).toContain('等待本手预览');
+      expect(noLedger?.bodyActive).toBeUndefined();expect(noLedger?.state).toContain('条件见选择说明');
       expect(cardAbilityCopy(id,{gold:3,inStage:true,preview:previewR2Hand(base)})?.bodyActive).toBeUndefined();
     }
   });

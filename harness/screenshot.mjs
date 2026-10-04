@@ -94,7 +94,7 @@ try {
       assert.deepEqual(await state(page),initial,'selection order cannot spend resources or advance RNG');
       await tapUI(page,'game','card/'+chosen,true);
     }
-    assert.ok(await page.evaluate(id=>{const s=window.__harness.game.scene.getScene('game'),c=s.cardViews.find(c=>c.card.id===id);return s.selectedIds.has(id)&&c.container.getData('selected')&&s.resultText.text.includes('当前选择');},chosen),'selection immediately changes both card and preview');
+    assert.ok(await page.evaluate(id=>{const s=window.__harness.game.scene.getScene('game'),c=s.cardViews.find(c=>c.card.id===id);const f=s.selectionPreview();return s.selectedIds.has(id)&&c.container.getData('selected')&&s.resultText.visible&&!!f&&s.resultText.text.endsWith(' · 已选'+f.playedIds.length+'张')&&!s.scoreTotal.visible&&!s.scoreTotal.text&&!s.scoreTotal.getData('fullText');},chosen),'selection immediately changes both card and preview');
     await dom(page,'菜单',touch);
     if(saveScreens&&touch&&engine===selected[0])await page.screenshot({path:`shots/${name}-menu.png`});
     await dom(page,'继续本局',touch);

@@ -1,9 +1,10 @@
+import {r2SelectionFacts} from './r2SelectionFacts';
 import { EDITIONS, type Edition, type PlayingCard } from '../cards/types';
 import { SeededRng, type RngSnapshot } from '../core/SeededRng';
-import { readR2Modifiers, r2GrowthCaps, r2GrowthInitials, r2GrowthMinimums, validR2JokerCounters, validateR2Content, type Condition, type ScoreHookPhase, type R2JokerDefinition, type R2JokerInstance, type ScorePhase } from '../content/r2Schema';
+import { r2GrowthCaps, r2GrowthInitials, r2GrowthMinimums, validR2JokerCounters, validateR2Content, type Condition, type ScoreHookPhase, type R2JokerDefinition, type R2JokerInstance, type ScorePhase } from '../content/r2Schema';
 import { R2_EDITIONS, R2_ENHANCEMENTS, R2_TOOL_CATALOG } from '../content/r2Tools';
 import { CHARACTER_IDS, type CharacterId } from './characters';
-import { evaluateR2Hand, R2_HAND_TYPES, validateCardInstances, type HandRules, type R2HandType } from './evaluateR2';
+import { R2_HAND_TYPES, validateCardInstances, type HandRules, type R2HandType } from './evaluateR2';
 import { MAX_INTEGER_DIGITS, Rational, type Fraction } from './rational';
 import {r2BossPlanValid,type R2BossPlan} from './r2Chapter';
 
@@ -146,10 +147,9 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   const played = cards.filter(c => input.selectedIds.includes(c.id));
   const held = cards.filter(c => !input.selectedIds.includes(c.id));
   const validHeld = held.filter(c => !input.disabledIds.includes(c.id));
-  const modifiers=readR2Modifiers(jokers,input.definitions);
-  const evaluated = evaluateR2Hand(played, {...input.handRules,fourStraight:!!input.handRules?.fourStraight||modifiers.fourStraight,
-    fourFlush:!!input.handRules?.fourFlush||modifiers.fourFlush});
-  const active = played.filter(c => evaluated.scoringIds.includes(c.id) && !input.disabledIds.includes(c.id));
+  const facts=r2SelectionFacts({hand:cards,selectedIds:input.selectedIds,jokers,definitions:input.definitions,handRules:input.handRules,disabledIds:input.disabledIds,ordinaryPointsSuppressedIds:input.ordinaryPointsSuppressedIds});
+  const evaluated={type:facts.type,scoringIds:facts.scoringIds};
+  const active=played.filter(c=>facts.activeScoringIds.includes(c.id));
   const level = input.handLevels[evaluated.type] ?? 1;
   let H = new Rational(0n), M = new Rational(0n);
   const events: ScoreEvent[] = [];

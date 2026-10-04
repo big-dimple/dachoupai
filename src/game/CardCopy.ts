@@ -78,6 +78,6 @@ export function cardAbilityCopy(id:string,context:CardAbilityContext):CardAbilit
         }
       }
     }
-  }else if((id==='a03'||id==='pengci')&&(context.selectedCount??0)>0){result.state=`已选 ${context.selectedCount} 张 · 等待本手预览`;}
+  }else if((id==='a03'||id==='pengci')&&(context.selectedCount??0)>0){result.state=`已选 ${context.selectedCount} 张 · 条件见选择说明`;}
   return result;
 }

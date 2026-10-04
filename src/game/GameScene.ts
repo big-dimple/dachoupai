@@ -1,3 +1,5 @@
+import {r2SelectionFacts,type R2SelectionFacts} from '../domain/r2SelectionFacts';
+import {selectionCopy,fitConditionEntry} from './SelectionCopy';
 import {subtractBoxes} from './ScoreGeometry';
 import {jokerArtLoadState,requestJokerArt,retryJokerArt} from './JokerArtLoading';
 import {JOKER_RARITY,createJokerRarityBadge} from './JokerRarity';
@@ -20,7 +22,7 @@ import {ScoreFlame} from './ScoreFlame';
 import {stageNotice} from './stageNotice';
 import type {R2RunState as RunState,DomainEvent} from '../domain/run';
 import {R2_LIMITS,getR2Stage as getStage,r2ScoreContext,r2DiscardCost} from '../domain/r2Run';
-import {previewR2Hand,r2ScoringDisabledJokerIds,type Accumulator,type ScoreTrace,type ScoreEvent} from '../domain/scoreR2';
+import {r2ScoringDisabledJokerIds,type Accumulator,type ScoreTrace,type ScoreEvent} from '../domain/scoreR2';
 import {Rational} from '../domain/rational';
 
 import { getCharacter, type CharacterId } from './characters';
@@ -44,7 +46,7 @@ import {scoreCells,scorePedestal,playedFootprint} from './layout';
 import type {Box} from './layout';
 import {jokerArtKey,jokerArtUrl,jokerArtPreviewUrl} from './jokerArt';
 import {drawJokerMotif} from './JokerMotif';
-import {r2JokerValue,r2JokerStateText,r2JokerExtraHelp,r2ScoreOperationText,r2TransactionText} from './r2Help';
+import {R2_OFFER_USE,r2JokerValue,r2JokerStateText,r2JokerExtraHelp,r2ScoreOperationText,r2TransactionText} from './r2Help';
 import {R2_TOOLS,R2_LONG_TERM_ITEMS} from '../content/r2Tools';
 import {cardSpecialText,editionLabel,editionEffectText,toolInfo} from './r2ToolInfo';
 
@@ -94,7 +96,7 @@ interface CardView {
   dealing?:boolean;
   sheenTween?:Phaser.Tweens.Tween;
 }
-type HandPreview=ReturnType<typeof previewR2Hand>;
+type HandPreview=R2SelectionFacts;
 
 export class GameScene extends Phaser.Scene {
   private get deck(): string[] { return this.run.drawPile; }
@@ -304,7 +306,7 @@ export class GameScene extends Phaser.Scene {
       base.fillStyle(0xfff9ee,1).fillRoundedRect(pedestal.x,pedestal.y,pedestal.width,pedestal.height,5);
       base.lineStyle(1,0xb8473a,.55).strokeRoundedRect(pedestal.x,pedestal.y,pedestal.width,pedestal.height,5);v.add(base);
     }
-    this.scoreLabels=['热度','倍率','预计本手'].map(label=>v.text(0,0,label,14,C.mutedInk).setOrigin(.5,0));
+    this.scoreLabels=['热度','倍率','本手得分'].map(label=>v.text(0,0,label,14,C.mutedInk).setOrigin(.5,0));
     this.scoreHeat=v.text(0,0,'—',26,C.jade).setOrigin(.5,0).setName('score/heat');
     this.scoreMult=v.text(0,0,'—',26,C.red).setOrigin(.5,0).setName('score/multiplier');
     this.scoreTotal=v.text(0,0,'—',36,C.ink).setOrigin(.5,0).setName('score/total');
@@ -393,21 +395,21 @@ export class GameScene extends Phaser.Scene {
   }
   private jokerRestriction(j:R2JokerInstance):string|undefined {
     const score=this.presentation?.score,context=score?.bossContext;
-    if(score&&context)return r2ScoringDisabledJokerIds(context.boss,score.sourceJokers,R2_JOKERS,context.sealedJokerIds,context.challengeDisabledJokerId).includes(j.instanceId)?'本手计分封禁：本体与版次均暂停':undefined;
-    const notice=stageNotice(this.run);return notice?.disabledJokerIds.includes(j.instanceId)?'本场计分封禁：'+notice.title+'；本体与版次均暂停':undefined;
+    if(score&&context)return r2ScoringDisabledJokerIds(context.boss,score.sourceJokers,R2_JOKERS,context.sealedJokerIds,context.challengeDisabledJokerId).includes(j.instanceId)?'本手计分与版次停用；静态规则与其他阶段效果另按条件执行':undefined;
+    const notice=stageNotice(this.run);return notice?.disabledJokerIds.includes(j.instanceId)?'本场计分与版次停用：'+notice.title+'；静态规则与其他阶段效果另按条件执行':undefined;
   }
   private jokerAbility(j:R2JokerInstance,preview?:HandPreview) {
     return cardAbilityCopy(j.definitionId,{gold:this.run.gold,inStage:true,discardsUsed:this.run.stage?.discardsUsed,playIndex:this.run.stage?.playIndex,
-      selectedCount:preview?.sets.playedIds.length,instanceId:j.instanceId,preview,events:this.presentation?.score.events,disabledReason:this.jokerRestriction(j)});
+      selectedCount:preview?.playedIds.length,instanceId:j.instanceId,events:this.presentation?.score.events,disabledReason:this.jokerRestriction(j)});
   }
   private jokerValue(j:R2JokerInstance,preview?:HandPreview):string {
-    if(!this.presentation){const copy=this.jokerAbility(j,preview);if(copy)return this.view.layout.mode==='landscape'&&this.view.layout.jokerLabels[0]?.width<60?copy.narrow:copy.compact;}
+    if(!this.presentation)return j.definitionId==='c08'?'4张顺子':j.definitionId==='c09'?'4张同花':R2_OFFER_USE[j.definitionId]??getJoker(j.definitionId).description;
     return r2JokerValue(j,{gold:this.run.gold,jokerCount:this.run.jokers.length,jokerSlots:r2JokerCapacity(this.run),deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,discardsUsed:this.run.stage?.discardsUsed,quadRefundUsed:this.run.stage?.quadRefundUsed});
   }
   private refreshJokerLabels(preview?:HandPreview):void {
     for(const joker of this.run.jokers){const view=this.jokerViews.get(joker.instanceId),label=view?.getData('valueLabel') as Phaser.GameObjects.Text|undefined;
       label?.setText(view?.getData('bossDisabled')?(this.view.layout.mode==='landscape'?'计分封禁':'封禁'):this.jokerValue(joker,preview));
-      if(label){label.setData('fullText',label.text);let copy=label.text;const room=this.view.layout.slots[Number(view?.getData('slotIndex'))]?.width-6;while(label.width>room&&copy.length){copy=copy.slice(0,-1);label.setText(copy+'…');}}
+      if(label){const full=label.text;label.setData('fullText',full);const room=this.view.layout.slots[Number(view?.getData('slotIndex'))]?.width-6;label.setText(fitConditionEntry(full,text=>{label.setText(text);return label.width<=room;},!!this.presentation));}
       const art=view?.getData('f09-art') as Phaser.GameObjects.Container|undefined;art?.setData('f09-active',!view?.getData('bossDisabled')&&(this.run.stage?.discardsUsed??0)===0);
     }
   }
@@ -642,7 +644,7 @@ export class GameScene extends Phaser.Scene {
   }
   private refreshSelection(animateId?:string):void {
     const preview=this.selectionPreview();
-    const active=this.presentation?.score.sets.activeScoringIds??preview?.sets.activeScoringIds??[];
+    const active=this.presentation?.score.sets.activeScoringIds??preview?.activeScoringIds??[];
     const disabledIds=r2DisabledCards(this.run.boss,this.stage.index,this.hand),suppressed=this.presentation?.score.events.filter(e=>e.operation==='ordinary-points-suppressed').map(e=>e.targetCardId)??r2ScoreContext(this.run,this.hand,[...this.selectedIds]).ordinaryPointsSuppressedIds;
     this.cardViews.forEach((v,i)=>{
       const selected=this.selectedIds.has(v.card.id),scoring=active.includes(v.card.id);
@@ -667,23 +669,28 @@ export class GameScene extends Phaser.Scene {
     if(!preview){
       const notice=stageNotice(this.run),hint=notice?.warning?notice.title+(p.height>=90?'\n'+notice.description:''):this.run.stage!.playIndex===0?'选 1–5 张，凑牌型出牌\n不合适？弃牌换新牌':'选牌，准备下一手';
       const text=this.add.text(p.x+p.width/2,p.y+p.height/2,hint,{fontFamily:UI_FONT,fontSize:p.height<90||notice?.warning?'14px':'18px',color:notice?.warning?C.red:C.mutedInk,align:'center',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5);
-      this.previewCards.add(text);return;
+      this.previewCards.add(text);
+      const score=this.view.layout.scoreBoard,heldRules=this.run.jokers.flatMap(j=>getJoker(j.definitionId).modifiers?.flatMap(m=>m.kind==='four-straight'?['4张普通顺子；同花顺仍5张']:m.kind==='four-flush'?['4张普通同花；同花顺仍5张']:[])??[]);
+      const rule=heldRules.length>1?'4张普通顺子／同花；同花顺仍5张':heldRules[0];
+      const idleRows=score.height>=90?['按全部所选牌判型，最多5张',...(rule?[rule]:[])]:rule?[rule]:[];
+      idleRows.forEach((line,i)=>this.previewCards!.add(this.add.text(score.x+10,score.y+(score.height>=128?38:score.height>=90?34:24)+i*18,line,{fontFamily:UI_FONT,fontSize:'14px',color:C.jade})));
+      if(score.height>=108){const footer=this.add.text(score.x+10,score.y+score.height-23,'持有大丑牌 · 长按查看完整条件',{fontFamily:UI_FONT,fontSize:'14px',color:C.jade});this.previewCards.add(footer);}
+      return;
     }
-    const entries=preview.breakdown.events.filter(e=>e.phase!=='base'&&e.phase!=='finalScore'&&e.phase!=='afterHand');
-    const source=(e:ScoreEvent)=>e.sourceType==='joker'?getJoker(e.sourceDefinitionId).name:e.sourceType==='character'?getCharacter(this.characterId).name:this.hand.some(c=>c.id===e.targetCardId)?(()=>{const c=this.hand.find(c=>c.id===e.targetCardId)!;return rankLabel(c.rank)+SUIT_SYMBOL[c.suit];})():HAND_LABELS[e.sourceDefinitionId as keyof typeof HAND_LABELS]??'牌型';
-    const summary='牌型 '+fractionText(preview.base.H)+' × '+fractionText(preview.base.M)+'  →  '+entries.map(e=>source(e)+' '+this.operationText(e)).join('  →  ');
-    const samples=this.run.jokers.flatMap(joker=>{const copy=this.jokerAbility(joker,preview);return copy?[{joker,copy,name:getJoker(joker.definitionId).name}]:[];});
-    const benefits=[...samples].sort((a,b)=>Number(!!b.copy.bodyActive)-Number(!!a.copy.bodyActive)).map(({name,copy})=>name+' '+(copy.bodyActive?copy.benefit:copy.editionActive?'仅版次加成':'未触发'));
-    const score=this.view.layout.scoreBoard;
-    const ledger=this.add.text(score.x+8,score.y+4,benefits.length?'本手：'+benefits.join(' · ')+' ›':'计分来源 ›',{fontFamily:UI_FONT,fontSize:'14px',color:C.ink,resolution:Math.max(1.5,1/this.scale.zoom)}).setName('selection-joker-benefits');
-    ledger.setData('fullText',ledger.text);let copy=ledger.text;
-    while(ledger.width>score.width-16&&copy.length){copy=copy.slice(0,-1);ledger.setText(copy+'… ›');}
-    this.resultText.setVisible(false);this.previewCards.add(ledger);
-    const hit=this.view.rect({x:score.x,y:score.y,width:score.width,height:44},T.ink).setFillStyle(T.ink,.001).setStrokeStyle();this.previewCards.add(hit);
-    const sampleDetails=samples.map(({joker,name,copy})=>name+' · '+(copy.bodyActive?copy.benefit:'本体未触发')+'\n'+(copy.state??copy.summary)+(joker.edition!=='none'?'\n版次：'+editionEffectText(joker.edition).split('。')[0]+(copy.editionActive?' · 本手生效':' · 本手未生效'):'')).join('\n\n');
-    this.view.target(hit,'score/sources',{tap:()=>this.dialog.open('本手计分来源',summary.replaceAll('  →  ','\n→ ')+(preview.scoreRange.minimum!==preview.scoreRange.maximum?'\n概率分支显示上下界，不预知随机结果。':'\n最终向下取整 = '+heatText(preview.scoreRange.minimum)),[],samples.length?{effectBody:sampleDetails,collapseRules:true,rulesLabel:'完整计分明细'}:{})});
+    const facts=selectionCopy(preview),score=this.view.layout.scoreBoard,compact=score.height<90;
+    let rows:string[],start:number,step:number;
+    if(compact){
+      rows=[facts.membership+(preview.scoringIds.length!==preview.activeScoringIds.length?' · '+(preview.scoringIds.length-preview.activeScoringIds.length)+'张停用':preview.ordinaryPointsSuppressedIds.length?' · '+preview.ordinaryPointsSuppressedIds.length+'张点数0':''),facts.rules?'规则：'+facts.rules:facts.restrictions.join('；')].filter(Boolean);start=24;step=18;
+    }else{
+      rows=[...(score.height>=128?[facts.pattern]:[]),facts.membership,...facts.restrictions,...(facts.rules?['规则：'+facts.rules]:[])];
+      step=rows.length>3||score.height<120?18:20;start=score.height>=128?38:34;
+    }
+    rows.forEach((copy,i)=>{const text=this.add.text(score.x+10,score.y+start+i*step,copy,{fontFamily:UI_FONT,fontSize:'14px',color:copy.includes('停用')||copy.includes('点数0')?C.red:C.jade,resolution:Math.max(1.5,1/this.scale.zoom)}).setName('selection/fact-line').setData('fullText',copy);this.previewCards!.add(text);fitScoreLine(text,{x:score.x+10,y:score.y+start+i*step,width:score.width-20,height:step},14);});
+    const footer=this.add.text(score.x+10,score.y+score.height-23,'选择说明 · 构筑条件 ›',{fontFamily:UI_FONT,fontSize:'14px',color:C.jade,resolution:Math.max(1.5,1/this.scale.zoom)}).setName('selection/rules-entry');footer.setVisible(score.height>=108);this.previewCards.add(footer);
+    const hit=this.view.rect(score).setFillStyle(0,0).setStrokeStyle();this.previewCards.add(hit);
+    this.view.target(hit,'selection/facts',{tap:()=>this.inspectSelection(preview),detail:()=>this.inspectSelection(preview)});
     const cards=this.hand.filter(card=>this.selectedIds.has(card.id)),boxes=this.landingBoxes(cards.length);
-    cards.forEach((card,i)=>{const cv=this.cardPiece(card,boxes[i]);this.previewCards!.add(cv.container);cv.container.setAlpha(.86);paintCardFeedback(cv,{scoring:preview.sets.activeScoringIds.includes(card.id)});cv.scoringMark.setVisible(preview.sets.activeScoringIds.includes(card.id));});
+    cards.forEach((card,i)=>{const cv=this.cardPiece(card,boxes[i]);this.previewCards!.add(cv.container);cv.container.setAlpha(1);paintCardFeedback(cv,{scoring:preview.activeScoringIds.includes(card.id)});cv.scoringMark.setVisible(false);});
   }
   private updateControls():void {
     if(!this.controlsLive)return;
@@ -705,21 +712,27 @@ export class GameScene extends Phaser.Scene {
       if(!auraOn&&this.playAuraPulse){this.playAuraPulse.remove();this.playAuraPulse=undefined;this.playAura.setAlpha(0);}
     }
   }
-  private preview(){
-    const stage=this.run.stage!;
-    return previewR2Hand({rulesVersion:'r2',runId:this.run.runId,rootId:'preview',hand:this.hand,selectedIds:[...this.selectedIds],disabledIds:stage.disabledIds,jokers:this.run.jokers,definitions:R2_JOKERS,handLevels:this.run.handLevels,playIndex:stage.playIndex+1,handsBeforePlay:stage.handsLeft,previousHandType:stage.previousHandType,wager:stage.wagerSelected,...r2ScoreContext(this.run,this.hand,[...this.selectedIds])});
-  }
-  /** A committed play/discard can replace the hand before its visible selection is cleared. */
+  /** This public selection boundary cannot carry a score trace or RNG. */
   private selectionPreview():HandPreview|undefined {
     if(this.playing||this.presentation||this.run.phase!=='await-input'||this.handsLeft<=0||!this.selectedIds.size||[...this.selectedIds].some(id=>!this.hand.some(card=>card.id===id)))return undefined;
-    return this.preview();
+    const context=r2ScoreContext(this.run,this.hand,[...this.selectedIds]);
+    return r2SelectionFacts({hand:this.hand,selectedIds:[...this.selectedIds],disabledIds:this.run.stage!.disabledIds,jokers:this.run.jokers,definitions:R2_JOKERS,handRules:context.handRules,ordinaryPointsSuppressedIds:context.ordinaryPointsSuppressedIds});
+  }
+  private inspectSelection(facts:HandPreview):void {
+    const copy=selectionCopy(facts),label=(ids:string[])=>this.hand.filter(c=>ids.includes(c.id)).map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join('、')||'无';
+    const conditions=this.run.jokers.map(j=>{
+      const d=getJoker(j.definitionId),ban=this.jokerRestriction(j),rule=facts.ruleSources.some(r=>r.instanceId===j.instanceId);
+      const cold=j.definitionId==='f10'?'\n当前累计 '+this.heat+' / 目标 '+this.stage.targetHeat+'：'+(BigInt(this.heat)*4n<BigInt(this.stage.targetHeat)?'严格低于25%，满足条件':'已达25%或以上，不满足条件'):'';
+      return d.name+' · '+(R2_OFFER_USE[d.id]??d.description)+'\n'+d.description+(ban?'\n计分与版次停用；静态规则／资源／经济与结算后效果依各自规则保留':'')+(rule?'\n持有规则仍生效':'')+cold;
+    }).join('\n\n');
+    this.dialog.open(copy.title,copy.pattern+'\n'+copy.membership+'\n成型：'+label(facts.scoringIds)+'\n附带：'+label(facts.accompanyingIds)+'（随本手打出，仍可参与其他规则）\n'+copy.restrictions.join('\n')+'\n'+copy.fullRules+'\n\n选1–5张；按全部所选牌判型。三条可选3／4／5张，但补成另一对子会转葫芦，第四张同点会转四条。失效牌仍参与判型，其效果停用；点数0只停普通点数。',this.run.lastTrace?[{label:'回看上手',run:()=>this.inspectLastTrace()}]:[],{effectBody:conditions||'尚未持有大丑牌；购买后条件列在这里。',collapseRules:false});
   }
   private inspectCard(id:string):void {
     const c=this.hand.find(c=>c.id===id);if(!c)return;
     const notice=stageNotice(this.run,[...this.selectedIds]);
     const limitation=notice?.disabledCardIds.includes(id)||notice?.ordinarySuppressedIds.includes(id)?'\n本场限制：'+notice.title+'。'+notice.description:'';
     const index=this.run.handOrder.indexOf(id);
-    const dialog=this.dialog.open(rankLabel(c.rank)+SUIT_SYMBOL[c.suit]+' · 手牌详情',(this.selectedIds.has(id)?'已选中':'未选中')+'；'+(this.cardViews.find(v=>v.card.id===id)?.container.getData('activeScoring')?'本手计分牌':'本手不计分或尚未预览')+limitation+'\n'+cardSpecialText(c)+'\n横滑连续选择；从已选牌开始则连续取消。长按只查看，调序使用下方按钮。',[{label:'左移',disabled:!this.ready||index<=0,run:async()=>{await this.moveHandCard(id,-1);if(this.dialog.active(dialog))this.inspectCard(id);}},{label:'右移',disabled:!this.ready||index>=this.hand.length-1,run:async()=>{await this.moveHandCard(id,1);if(this.dialog.active(dialog))this.inspectCard(id);}},{label:this.selectedIds.has(id)?'取消选择':'选择此牌',disabled:!this.ready,run:()=>{this.toggleCard(id);this.dialog.close();}}]);
+    const dialog=this.dialog.open(rankLabel(c.rank)+SUIT_SYMBOL[c.suit]+' · 手牌详情',(this.selectedIds.has(id)?'已选中':'未选中')+'；'+(this.cardViews.find(v=>v.card.id===id)?.container.getData('activeScoring')?'成型且有效计分':'附带、失效或尚未选择')+limitation+'\n'+cardSpecialText(c)+'\n横滑连续选择；从已选牌开始则连续取消。长按只查看，调序使用下方按钮。',[{label:'左移',disabled:!this.ready||index<=0,run:async()=>{await this.moveHandCard(id,-1);if(this.dialog.active(dialog))this.inspectCard(id);}},{label:'右移',disabled:!this.ready||index>=this.hand.length-1,run:async()=>{await this.moveHandCard(id,1);if(this.dialog.active(dialog))this.inspectCard(id);}},{label:this.selectedIds.has(id)?'取消选择':'选择此牌',disabled:!this.ready,run:()=>{this.toggleCard(id);this.dialog.close();}}]);
     const face=this.cardPiece(c,{x:0,y:0,width:240,height:336}),image=this.add.renderTexture(0,0,240,336).setVisible(false);
     image.draw(face.container,120,168);face.container.destroy();
     image.snapshot(snapshot=>{
@@ -940,21 +953,13 @@ export class GameScene extends Phaser.Scene {
   }
 
   private previewSelection(preview?:HandPreview):void {
-    this.scoreLabels.forEach((label,i)=>label.setText(['合计热度','合计倍率','预计本手'][i]));
-    if(!preview){
-      this.resultText.setText('当前选择 · 选 1～5 张牌');this.scoreHeat.setText('—');this.scoreMult.setText('× —');this.scoreTotal.setText('—');
-      this.breakdownText.setText('距目标还需 '+heatText((BigInt(this.stage.targetHeat)>BigInt(this.heat)?BigInt(this.stage.targetHeat)-BigInt(this.heat):0n).toString())+' 热度 · ★ 为计分牌');
-      this.fitScoreReadouts();return;
-    }
-    const fourStraight=preview.handType==='straight'&&preview.sets.scoringIds.length===4;
-    const fourFlush=preview.handType==='flush'&&preview.sets.scoringIds.length===4;
-    this.resultText.setText('当前选择 · '+(fourStraight?'四张普通顺子':fourFlush?'四张普通同花':HAND_LABELS[preview.handType])+' Lv.'+preview.level);
-    const low=preview.breakdown.minimum,high=preview.breakdown.maximum;
-    this.scoreHeat.setText(fractionText(low.H)+(JSON.stringify(low.H)!==JSON.stringify(high.H)?'–'+fractionText(high.H):''));this.scoreMult.setText('× '+fractionText(low.M)+(JSON.stringify(low.M)!==JSON.stringify(high.M)?'–'+fractionText(high.M):''));
-    const lucky=preview.randomEffects.some(effect=>effect.kind==='lucky-paper'),wager=preview.randomEffects.some(effect=>effect.kind==='wager'),glass=preview.randomEffects.some(effect=>effect.kind==='glass-paper'),jokerChance=preview.randomEffects.some(effect=>effect.kind==='joker-heat');
-    this.scoreTotal.setText(preview.scoreRange.minimum===preview.scoreRange.maximum?heatText(preview.scoreRange.minimum):heatText(preview.scoreRange.minimum)+'–'+heatText(preview.scoreRange.maximum));
-    this.breakdownText.setText(jokerChance?'试试手气 · 每手 1/3 +90 热度'+(lucky?' · 含幸运范围':wager?' · 含押注范围':' · 显示可能范围'):lucky?'含幸运概率 · 显示分数范围，长按牌看概率':wager?'押注各50%：'+preview.possibleScores.map(heatText).join(' / '):(fourStraight?'少一级 · ':fourFlush?'少一块布 · ':'')+'★ '+preview.sets.activeScoringIds.length+' 张计分'+(glass?' · 玻璃有碎裂风险':' · 共选 '+this.selectedIds.size+' / 5 张'));
-    this.fitScoreReadouts();
+    this.stopScoreFire();this.breakdownText.setText('').setVisible(false);
+    this.scoreLabels.forEach(label=>label.setVisible(false));
+    [this.scoreHeat,this.scoreMult,this.scoreTotal].forEach(text=>text.setText('').setData('fullText','').setData('eventId',undefined).setData('eventPhase',undefined).setVisible(false));
+    (this.view.root.list.find(o=>o.name==='score/total-pedestal') as Phaser.GameObjects.Graphics|undefined)?.setVisible(false);
+    const score=this.view.layout.scoreBoard;
+    this.resultText.setVisible(true).setText(preview?selectionCopy(preview).title:'当前选择 · 选1–5张');
+    fitScoreLine(this.resultText,{x:score.x+10,y:score.y+(score.height<90?4:7),width:score.width-20,height:score.height<90?18:30},score.height<90?18:24);
   }
   /** Reflow real text bounds inside the reserved score/body/fire lanes. */
   private fitScoreReadouts():void {
@@ -1405,6 +1410,8 @@ export class GameScene extends Phaser.Scene {
       this.jokerViews.forEach(view=>{(view.getData('hit') as Phaser.GameObjects.GameObject|undefined)?.destroy();view.destroy();});this.renderJokerRack(score.sourceJokers);
     }
     this.refreshSelection();this.updateHud();this.previewCards?.destroy();this.previewCards=undefined;(this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('已出牌');
+    [this.scoreHeat,this.scoreMult,this.scoreTotal,...this.scoreLabels].forEach(text=>text.setVisible(true));
+    (this.view.root.list.find(o=>o.name==='score/total-pedestal') as Phaser.GameObjects.Graphics|undefined)?.setVisible(true);
     this.scoreLabels.forEach((label,i)=>label.setText(['累计热度','当前倍率','本手得分'][i]));this.resultText.setText((replay?'回看 · ':'打出 · ')+HAND_LABELS[score.handType]);
     this.settledCards.clear();const boxes=this.landingBoxes(score.sets.playedIds.length);
     const landing=score.sets.playedIds.map((id,i)=>{
