@@ -1,0 +1,18 @@
+{
+  "commit": "ad2eddff2d4e4c1dc8de745c70ace8f984d80911",
+  "srcGitTree": "ac5dbc6c3326f4a77485787e6f195738695fee66",
+  "wholeGitTree": "7075ac25ebd7bab61737d17ff94dd4a80914da01",
+  "observedStatusBefore": "clean",
+  "statusAfter": "clean",
+  "command": "node harness/amo-rule-version.mjs",
+  "exitCode": 0,
+  "fixtureSHA256": "08838a3dc96cb96f128b71ea301a3c9a7172956e85cc1dc6bbab17ae22bf034f",
+  "trackedProductionSourcesMatchCommit": true,
+  "buildArtifacts": [
+    {
+      "file": "index-ZUakyYDq.js",
+      "bytes": 1988333,
+      "sha256": "cbe26b3533d5538fd75390558a785f427b4f4afaf610e1a8ab5af2060ac09e42"
+    }
+  ]
+}

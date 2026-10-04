@@ -1,0 +1,475 @@
+{
+  "baseline": "d1c072dff5055238bd94775a14f2fca44c4d38b8",
+  "comparedFiles": 117,
+  "different": [],
+  "files": [
+    {
+      "path": "src/application/RunController.ts",
+      "sha256": "35377101ad5a77091a7626044507fc2d5cff03cd9ced7ce12fc289d7f07b5745"
+    },
+    {
+      "path": "src/application/SavedRun.ts",
+      "sha256": "985acd863d431bf647c08baf2c2775bbae212abf54cd82b4befb994b24ed24f8"
+    },
+    {
+      "path": "src/application/checkpoint.ts",
+      "sha256": "437c1f1f3a02cd0c365fe4af968c52ca39cee040fe4cc722d99b5b6d2bdddced"
+    },
+    {
+      "path": "src/audio/AudioEngine.ts",
+      "sha256": "f24055936bb7bdfb7096284aa998fd0ec1e67ed403230a2711e3d09eee8f4a22"
+    },
+    {
+      "path": "src/audio/preferences.ts",
+      "sha256": "f5737c43ec14c1f999cbc7971e296466e194635cd89bb9ca480c34d1e19208f1"
+    },
+    {
+      "path": "src/cards/deck.ts",
+      "sha256": "2606e2b40ba6237311168d5952ed4a4395b75482deb31f40873cd8cf97b8aa23"
+    },
+    {
+      "path": "src/cards/handEvaluator.ts",
+      "sha256": "2ef2d1af2df8fe9a1f75dcd3ae079b35ce780caf4fd3f390010de94976cec151"
+    },
+    {
+      "path": "src/cards/types.ts",
+      "sha256": "f410785946fcce22529900967c0c24a97efdd609e7dfb15ce6dc870bc718d8b7"
+    },
+    {
+      "path": "src/content/handLabels.ts",
+      "sha256": "488cd649098a058f0ced6c8b6ff08daa656367e07d99bc9ecc6a9949a0f09d62"
+    },
+    {
+      "path": "src/content/jokers.json",
+      "sha256": "60f6e6462b7835f19b0ef97a6833c4e0061c2ef41427ba6c95c6cc96233c7404"
+    },
+    {
+      "path": "src/content/r2-jokers.json",
+      "sha256": "0b7a806cb196d6d7774d76caa4cb2f70790dd81890c7a47035e315a8e999a947"
+    },
+    {
+      "path": "src/content/r2-tools.json",
+      "sha256": "b5c0970d6e5c4ca6104f81cc33ac57c0b59efedd382a901602a9a5336d8d259e"
+    },
+    {
+      "path": "src/content/r2Modes.ts",
+      "sha256": "d8a319543d4545b5d58a32e2f0fee35123bcc9ead849613a06464b546ac9aa3c"
+    },
+    {
+      "path": "src/content/r2Schema.ts",
+      "sha256": "32f131864c4fa047f60384b749ca230a649820db534ad8890a0e21215e663698"
+    },
+    {
+      "path": "src/content/r2Tools.ts",
+      "sha256": "8cd4af05a7d71067db45ee0dadbdffaae0bc70b2164968fd6199589a65350046"
+    },
+    {
+      "path": "src/content/stages.json",
+      "sha256": "dceccfd797f14a7e670ef16672f969ff432b3e88f3142bc454e8a0fe16821c9a"
+    },
+    {
+      "path": "src/core/EffectQueue.ts",
+      "sha256": "4097a6a0d18b2d2ed96b63f04ee284b7568838ce956361789a774a0740b7ee68"
+    },
+    {
+      "path": "src/core/SeededRng.ts",
+      "sha256": "87dfb8f74c9aa0fb3b5158356c884115fa3c52954183c0724498eb2b35046383"
+    },
+    {
+      "path": "src/domain/characters.ts",
+      "sha256": "f0afe513e58498bb96f59d535de251160d1ff3cec1d5a3d9c8bc26ad4635de70"
+    },
+    {
+      "path": "src/domain/evaluateR2.ts",
+      "sha256": "4b6ee5d5abe9ca87a4e9a4cc76029fc630d3f6d89a572e6ecc16aa96720ff592"
+    },
+    {
+      "path": "src/domain/hash.ts",
+      "sha256": "7018d553e192ca714db675d774fa6f2ebdf71f2479915cfba06ada1ebe59cc32"
+    },
+    {
+      "path": "src/domain/r2Chapter.ts",
+      "sha256": "29fb431849bed29a709785f4647fedd757d91ad39540f4fb2d7aaa58afbf2258"
+    },
+    {
+      "path": "src/domain/r2Conditions.ts",
+      "sha256": "1c090530974ed06f870fa8d86889105de2f1fa5a92d331a4fd219cb1279c878d"
+    },
+    {
+      "path": "src/domain/r2HandCandidates.ts",
+      "sha256": "8aa19ed912e6f4ff14c09b8ef5c355a0206efb1d3fefb03ac03f33e5999b5522"
+    },
+    {
+      "path": "src/domain/r2Programs.ts",
+      "sha256": "686306b19d649d73b3f636623b63a8542dbf2aa7ab9df63d8208290066db0a20"
+    },
+    {
+      "path": "src/domain/r2Progress.ts",
+      "sha256": "515363ca5e1680779115885e1df5a6473ade8cab01194d9119be7a4209bfca19"
+    },
+    {
+      "path": "src/domain/r2Resources.ts",
+      "sha256": "dbceab37b31d555c480761b85ebb2b906511485e606696b1a6d09f48be7ff7ef"
+    },
+    {
+      "path": "src/domain/r2Run.ts",
+      "sha256": "87593d0f55100956e0896c4d59ea25a184bc308b8e660c3e9a587bcea64c955b"
+    },
+    {
+      "path": "src/domain/r2SelectionFacts.ts",
+      "sha256": "19918fb3166cdbbb9e3c940d1c137a03b22a21fbfa3fec5b86f0447f9dd1157f"
+    },
+    {
+      "path": "src/domain/r2Shop.ts",
+      "sha256": "0410a23d8765a2e9641d85d63f868bde61f8beaa214c59c24f78a68a8483877c"
+    },
+    {
+      "path": "src/domain/r2SpectralTools.ts",
+      "sha256": "46349fd3d16b4d5638db6a70d585f92079eddc0ca25f01d80a7b82140d90a576"
+    },
+    {
+      "path": "src/domain/r2ToolCommands.ts",
+      "sha256": "9bc8ab7c82caa46244a4e63a95a9b8ed6df650878ef3c632fdcff943399f4f27"
+    },
+    {
+      "path": "src/domain/r2ToolRuntime.ts",
+      "sha256": "e0682c9ea5bf7720056c7e021f5f162976440c63bb676526228b2a5e37b00b1d"
+    },
+    {
+      "path": "src/domain/rational.ts",
+      "sha256": "77d248ef137a42d6964768a086b5c97396812f2916bf907a00dea354890be27d"
+    },
+    {
+      "path": "src/domain/run.ts",
+      "sha256": "d465753a53f86808c08cf32bfc966b0472f5a2c357bb3df6a944f7ee0a9193a1"
+    },
+    {
+      "path": "src/domain/scoreR2.ts",
+      "sha256": "1f8b4723d2e0474df089bd66c399866adf218139b4309996ace69376a64fb9cf"
+    },
+    {
+      "path": "src/game/BootScene.ts",
+      "sha256": "6e230b8255ae5b7d7b1263ee0251145c8cd95692fcdf1bf2ffd6d2d0f63a60fe"
+    },
+    {
+      "path": "src/game/CardCopy.ts",
+      "sha256": "f107455794ac81283f5abb7791c7d2ca901878f5c40610563d4f27af62bb9618"
+    },
+    {
+      "path": "src/game/CardFeedback.ts",
+      "sha256": "dfa2ed750fca9a27c3c54bd34a46ce01a1972850d18b4b33474a1fe28eaedb21"
+    },
+    {
+      "path": "src/game/CardPipLayout.ts",
+      "sha256": "b317b107747fa4beaca2d33acd29544ea19772a07d3cd86f33385efb1679eba4"
+    },
+    {
+      "path": "src/game/CharacterSelectScene.ts",
+      "sha256": "575baec77fe4c64e6c72455bd2ac4d0058224d911f4261890c04760026d0c11f"
+    },
+    {
+      "path": "src/game/ConsumableDialog.ts",
+      "sha256": "29cb014a7594658ea4297360ad44820c8e8cc2df095a4010e140e049cd875b87"
+    },
+    {
+      "path": "src/game/DetailArt.ts",
+      "sha256": "2caf667e4172f4af34b03c61d50d8de7aacbb8af1e1af1b963232a489d2c1bd0"
+    },
+    {
+      "path": "src/game/DetailDialog.ts",
+      "sha256": "eaf7013009ba8690014020728c91b89002dd2ae6c45ee4c47e218816e4d2405a"
+    },
+    {
+      "path": "src/game/F09Art.ts",
+      "sha256": "d60e39b3fed5a7a8cf945289024cf21b85499072b190d0dc69c70650265cbd98"
+    },
+    {
+      "path": "src/game/FailureSummary.ts",
+      "sha256": "a792e0271fbc186df8db2cf0706cc68ed1790270a22f5b4275a4adfeeed49ecf"
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "sha256": "17c905157ff2649fe9d144e34392f301857e14bb9c064eb2fbfcd22dc692fb59"
+    },
+    {
+      "path": "src/game/GoodsArt.ts",
+      "sha256": "b79ffe6709fe7b5a5fe8e92e169ecc0e3b2b5c2064863bc4c07e3b6b24d887be"
+    },
+    {
+      "path": "src/game/GoodsArtLoading.ts",
+      "sha256": "0920170d9b4707b51c3720c3142aa2c7285c8132eee1977e03853a67980b2d7b"
+    },
+    {
+      "path": "src/game/HandActionArt.ts",
+      "sha256": "d4ece5cff891b0acd57b35747f25ee21a65372149552c635047e8e7723bfcad9"
+    },
+    {
+      "path": "src/game/HandRuleReference.ts",
+      "sha256": "c30781eefe93a3e204bd01f6a9099363a4183d5c85fb236209d1f8a9ec5f5229"
+    },
+    {
+      "path": "src/game/HandSelectionGesture.ts",
+      "sha256": "f4038c855c9ad269c1d71bcf88bcd442fbf47d66011e5e3b46f475544d6441ef"
+    },
+    {
+      "path": "src/game/HandSelectionInput.ts",
+      "sha256": "e9f1bf16df7ca0b8743a124dc7cc050d97ed89f95d4d6ccd94e5a44c00245644"
+    },
+    {
+      "path": "src/game/HandSweepHint.ts",
+      "sha256": "d79b6f4811c65dc4c182b8b89816dbc8017f04db27bc7d1f0e25611975f6d5a3"
+    },
+    {
+      "path": "src/game/HanddrawnArt.ts",
+      "sha256": "129f872aff8c28e9835e0361a5dd1672f837ada685e83b332427004235ac7639"
+    },
+    {
+      "path": "src/game/IntermissionScene.ts",
+      "sha256": "aaf726b7c18d6e0f054603dee9c541d3dab8c85c199d63a2a0d95548b9ca1791"
+    },
+    {
+      "path": "src/game/JokerArtLoading.ts",
+      "sha256": "e71425dc23177f761f6c577a778fcb47bb7310fd0bff0d5b48c2b360f01b7046"
+    },
+    {
+      "path": "src/game/JokerCompact.ts",
+      "sha256": "12266c0ce2441e06e90dfa68f2329dd9f19e4562176a0eb16151871a6c162e34"
+    },
+    {
+      "path": "src/game/JokerLabel.ts",
+      "sha256": "30e0a653b90f36d9941701202094d3876e291928224578166b04c00ed36bd751"
+    },
+    {
+      "path": "src/game/JokerMemory.ts",
+      "sha256": "e31672bc2dbb09c7754ed28c92ee2c11eee0ea92dba66c1d5177d2ea20a2b201"
+    },
+    {
+      "path": "src/game/JokerMotif.ts",
+      "sha256": "2846d8806eff0c26120691a132d092bf208e76d3f6283a0c7bba3ea96d030b3a"
+    },
+    {
+      "path": "src/game/JokerPlayerCopy.ts",
+      "sha256": "6f209a7cd2f9a9e6b26b158a584149dc9ad28d2a45e6570387605914cd27a982"
+    },
+    {
+      "path": "src/game/JokerPlayerTemplates.json",
+      "sha256": "0206b114f43ad72db694a2768f47ce002314b46658362cdbc3bab9df4cfe24c2"
+    },
+    {
+      "path": "src/game/JokerRarity.ts",
+      "sha256": "99193f706cfe12cfb51e0dc4433b4cbdb38c22f5a2a776ab972074e912f74b7c"
+    },
+    {
+      "path": "src/game/JokerReorder.ts",
+      "sha256": "faa8fd055990784e644e43282df341bf79a7bafad50e9fea18f17cc50c9eeba3"
+    },
+    {
+      "path": "src/game/ModeSelectDialog.ts",
+      "sha256": "b8fe0e9cb49e01b95c74328d51e0f0324dc4faa8502cbd8009ee6136812eed71"
+    },
+    {
+      "path": "src/game/PointerIntent.ts",
+      "sha256": "4df121537ccfdba6e21bbecbeaaa6ea1f43583557dc57b97d848b3be9dda7b3b"
+    },
+    {
+      "path": "src/game/PointerReleaseTime.ts",
+      "sha256": "ea88bd0786de55fbd8ce6e3c5bf41a1e9c7ab21e597e62957f674790de1695ba"
+    },
+    {
+      "path": "src/game/ProgramDialog.ts",
+      "sha256": "1ece82d7686411682bdc4b054112a08ac406a882f46b39477c9246866b76d8f2"
+    },
+    {
+      "path": "src/game/RewardCoin.ts",
+      "sha256": "15f0c4b434059534e6cd7eec9ad5756a4da9f4101514787cf218c18784665c6f"
+    },
+    {
+      "path": "src/game/RunMenu.ts",
+      "sha256": "031118ee85ccd6b499f9fb8ec9ddebaf87908067ab91ff8891965b3d30b6554c"
+    },
+    {
+      "path": "src/game/SceneView.ts",
+      "sha256": "09806ccb1ecb583abd9a88164e3f6b3f1fcfa6c5e6341cd562dd25d278cc7ad7"
+    },
+    {
+      "path": "src/game/ScoreFlame.ts",
+      "sha256": "965c250a2d74c0330c8ba9b887739d5e5e9524d934438f855e702a8c6ab57d14"
+    },
+    {
+      "path": "src/game/ScoreGeometry.ts",
+      "sha256": "fe46568f7a202d9d5fdd2791eb6b5bb13c86110f7e3734f124d710adfaf60769"
+    },
+    {
+      "path": "src/game/ScoreTextLayout.ts",
+      "sha256": "d2ff4beb79ee3887f1e9d2679cf3a99f2f1232bf3a14eba2ca6054ab86260201"
+    },
+    {
+      "path": "src/game/SelectionCopy.ts",
+      "sha256": "5e870737e6c72dcfb5b1bf7508ebc8a78fa7a566c3b62f97de1a430f5b004680"
+    },
+    {
+      "path": "src/game/SelectionLayout.ts",
+      "sha256": "a57653b7a493b1c2fec521fecb3d669958f2175a56d51d8c09a961b64b512b28"
+    },
+    {
+      "path": "src/game/ShopLayout.ts",
+      "sha256": "c061a80f589cd7ecf1eb5af0a51f4d7f1549f6e8490d458f58eabd4ab5e44693"
+    },
+    {
+      "path": "src/game/ShopResultFeedback.ts",
+      "sha256": "cba269553033f1f20ba3dbd020ba784a80d652b160e38c935fda304916d44a1b"
+    },
+    {
+      "path": "src/game/ShopScene.ts",
+      "sha256": "115749dca7f9ab3db48c5619217de52f9e9f4d965c7451253c171231cfa714ab"
+    },
+    {
+      "path": "src/game/TitleScene.ts",
+      "sha256": "eb0eb64cfdc79192a94f2903239955d3552a2f3c7234c34d600a96523743d735"
+    },
+    {
+      "path": "src/game/ToolInventoryEntry.ts",
+      "sha256": "c6ddb138d5f9b0568e450a40939f21459a9124e3ac51dc108e47a65bd8f7ae0c"
+    },
+    {
+      "path": "src/game/characters.ts",
+      "sha256": "9c6ef60f544357e7a8be7daa2dafdc897de899ca596e086808e73ce5c628655c"
+    },
+    {
+      "path": "src/game/jokerArt.ts",
+      "sha256": "dc7ddadffebc4c73f9e45849eb5bf2edfa678300608eac0df451d9ded6d4dbb4"
+    },
+    {
+      "path": "src/game/layout.ts",
+      "sha256": "af1d1c6fc7f9fc952f5e98b6d22219592e9a60ab7b5130fcd0b1726c26a55cd6"
+    },
+    {
+      "path": "src/game/portraitCrop.ts",
+      "sha256": "5929168f2edeb3b012de12416f88a2041d2a21286f7ac94c216c7c021a047072"
+    },
+    {
+      "path": "src/game/portraits.ts",
+      "sha256": "ef4886bc5bfeff68440fb86394d58696c818f23ccc75c9373df51c7de654c8bc"
+    },
+    {
+      "path": "src/game/r2Help.ts",
+      "sha256": "7d3cb1cf3e010b01e00837e1837994daae8e319677226bbf7832967d669fcd36"
+    },
+    {
+      "path": "src/game/r2ToolInfo.ts",
+      "sha256": "3f73b7e8024aa914ebd8e0580ee24cb3f295e105c32cb80f8cae648b422d58b0"
+    },
+    {
+      "path": "src/game/runAdapter.ts",
+      "sha256": "9c6921d29c96ca7e30d407880bd893c04a4f5dc97312797a7db241239d8d511d"
+    },
+    {
+      "path": "src/game/scoreCelebration.ts",
+      "sha256": "506affaa65363cb12331cb1f20cc014a0f36b11ee1f972854881aeb8098bfdd8"
+    },
+    {
+      "path": "src/game/scorePresentation.ts",
+      "sha256": "2af31db66127a954a68c13fed6eeb2e8754efd39da88fbfa6bbd0315462aa432"
+    },
+    {
+      "path": "src/game/scoreText.ts",
+      "sha256": "79c87bbdcbb58e857c3c0aebca3f185a6aed5482566553bf84bdfec25bd2bae0"
+    },
+    {
+      "path": "src/game/session.ts",
+      "sha256": "467db0a0701b2a6b5c1065f74c6afcad1092082e3322ed823d1228663e2726f0"
+    },
+    {
+      "path": "src/game/stageNotice.ts",
+      "sha256": "ea0381310a9dff366bf3f71cef13acd6ea004186324a9b5b4f8e65657bcbb802"
+    },
+    {
+      "path": "src/game/stageOutcome.ts",
+      "sha256": "0952f1c13c967b9a77d54c62da7807dec5881de5ca546532881ee386da331996"
+    },
+    {
+      "path": "src/game/theme.ts",
+      "sha256": "9acf00e0f1537bf4e52f884bfc7631f1b8ab07659820caea63aa3620ddccce2c"
+    },
+    {
+      "path": "src/jokers/JokerEngine.ts",
+      "sha256": "ff207d72868af59a1825c657304a59183d94cddaf6fa1507db5e8452a01d969f"
+    },
+    {
+      "path": "src/jokers/types.ts",
+      "sha256": "cfd233d1beb8aa9d52b9b17db6ca723ac909750d333dd7d36aebe6ccc2e71299"
+    },
+    {
+      "path": "src/main.ts",
+      "sha256": "765ac985a01c5acdaeedcfb485810244f14a7b323d3d9cc9a85ee2ad8ff618a5"
+    },
+    {
+      "path": "src/platform/Fullscreen.ts",
+      "sha256": "43d2bf1bb1f0ee461fe9b615be09ffaeb6de4c5a7435f12303cf5553403c64a4"
+    },
+    {
+      "path": "src/platform/IndexedDbSave.ts",
+      "sha256": "be930b075aef42dece05d2c810ffb193b6932e78e7c37248b4a5107a8405d611"
+    },
+    {
+      "path": "src/platform/RunProgress.ts",
+      "sha256": "1b1a87c88cbb275da0f823464f0394ef583aa94c564d75aafbf76bb7aba2c091"
+    },
+    {
+      "path": "src/platform/Viewport.ts",
+      "sha256": "46dfd5cedc5d8f7337814424d1e4297b7da729227cf9b7e4c1bfa1168c2b1736"
+    },
+    {
+      "path": "src/platform/WriteLease.ts",
+      "sha256": "e4fd41decacad04d195b8f4f129f8f4fcfc9d4d50d911502ad8292d8aa42bd82"
+    },
+    {
+      "path": "src/platform/buildInfo.ts",
+      "sha256": "a3e0ecc26b75993d616d53e601b113fe0f5f57309a3a9fa06f3f030d2130353f"
+    },
+    {
+      "path": "src/platform/buildMetadata.ts",
+      "sha256": "bf917129e96f16be7f9e0470dd6df74adc665f394b957281db9779877df853fa"
+    },
+    {
+      "path": "src/run/runState.ts",
+      "sha256": "b0c169f3a34f1218d7bfd53d5473633ad3d9a5358aaf0d80ce5664ba1f9c1e7b"
+    },
+    {
+      "path": "src/run/shop.ts",
+      "sha256": "fff0f0b403a57f479d7400ac2fad2db1c593202aa1a29c04eae10ead32ed42d1"
+    },
+    {
+      "path": "src/run/stages.ts",
+      "sha256": "8fd101bf43e8e41db50d8291ccfc4066732a9bf56a9401fcdd904194de42c349"
+    },
+    {
+      "path": "src/scoring/scoreHand.ts",
+      "sha256": "761c9d9136c8d03d0ec0188e55cca48efa4266312623c705cbd957d2ac8c076e"
+    },
+    {
+      "path": "src/style.css",
+      "sha256": "f6a1de36741b5d9f7930ac9e26fb1bfe1b200ab2fc13f41a144abaf6e79533c3"
+    },
+    {
+      "path": "src/testing/bot.ts",
+      "sha256": "2d516c9107b726bb8de26cc0da3496e7f4a756feb4ab2ae449b71d2027d012d9"
+    },
+    {
+      "path": "src/testing/r2Bot.ts",
+      "sha256": "38fd863f33e0f31c956e503c6150284000d4725b27756d95b17cb7f435b9a4c2"
+    },
+    {
+      "path": "src/testing/v00Bot.ts",
+      "sha256": "bacf79f8de197b52c00c273d7c760271132c828923ff4dcde0d2c890d9a029d1"
+    },
+    {
+      "path": "src/vendor/browslatro/reordering.ts",
+      "sha256": "27b1fe9bf11abc7015b988a4e9122bb6ef626aa41136f68211c287a669925ec7"
+    },
+    {
+      "path": "src/vite-env.d.ts",
+      "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+    }
+  ]
+}
