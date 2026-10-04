@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "kind": "single-generated-flame-contour-reference",
+  "publicSource": "The delivery commit containing this directory in big-dimple/dachoupai.",
+  "original": {
+    "basename": "dachoupai-owned-flame-reference-v1.png",
+    "width": 1774,
+    "height": 887,
+    "mode": "RGBA",
+    "bytes": 854911,
+    "sha256": "1cfd8c3c5c09b7cac2b99140c9fa044d15e82cad071b5c6797867961d653d78e"
+  },
+  "asset": {
+    "path": "reference.webp",
+    "width": 768,
+    "height": 384,
+    "mode": "RGBA",
+    "bytes": 45846,
+    "sha256": "7fd4742a2e91eeb8f07014a80de69c2a24491a4ad8ed9ded3f99094c84c5ea2c",
+    "alphaSha256": "1a45cbcf91b811ad7f5b75d2141611f2834dff2b555f988d835bf02f9b867536"
+  },
+  "conversion": {
+    "format": "WebP",
+    "quality": 82,
+    "method": 6,
+    "resize": "proportional Lanczos",
+    "crop": false,
+    "repaint": false,
+    "alphaPreservedAfterResize": true,
+    "metadataChunks": []
+  },
+  "review": {
+    "status": "approved-for-outer-contour-reference-only",
+    "approvedFeatures": [
+      "continuous broad root",
+      "staggered broad and narrow flame tongues"
+    ],
+    "limitations": [
+      "Interior texture and large yellow areas are too heavy and must not be copied as the final treatment.",
+      "No final color, texture, runtime, animation, device, or whole-game visual acceptance is implied."
+    ]
+  },
+  "runtimeUse": false,
+  "runtimeBytesAdded": 0
+}
