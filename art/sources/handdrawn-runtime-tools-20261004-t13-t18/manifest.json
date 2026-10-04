@@ -1,0 +1,674 @@
+{
+  "schemaVersion": 1,
+  "batch": "handdrawn-runtime-tools-20261004-t13-t18",
+  "baseCommit": "7d44b8bcada32942acded87d70abe78dea12f275",
+  "sourceContentReference": {
+    "repository": "big-dimple/dachoupai",
+    "ref": "7d44b8bcada32942acded87d70abe78dea12f275",
+    "path": "src/content/r2-tools.json"
+  },
+  "runtime_selection": [
+    "tool-t13",
+    "tool-t14",
+    "tool-t15",
+    "tool-t16",
+    "tool-t17",
+    "tool-t18"
+  ],
+  "encoder": {
+    "format": "WEBP",
+    "quality": 82,
+    "method": 6,
+    "lossless": false,
+    "resize": "Pillow LANCZOS",
+    "Pillow": "12.3.0",
+    "libwebp": "1.6.0"
+  },
+  "containPolicy": {
+    "fit": "contain",
+    "sourceCrop": "entire original",
+    "backgroundHex": "#F3EADB",
+    "noStretch": true,
+    "noReconstruction": true,
+    "rounding": "Nearest integer-pixel fit inside the inset bounding box; no crop or intentional aspect-ratio change."
+  },
+  "assets": [
+    {
+      "id": "tool-t13",
+      "domainId": "T13",
+      "category": "tool-card",
+      "name": "留个声",
+      "sourceFilename": "tool-t13-v1-original.png",
+      "sourceSHA256": "cd9b9e632212aa083acfc20c5694a922ac4e5f77aaf5a660a5643e0b8c94b0f9",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2478989,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-t13.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2628,
+          "sha256": "3622cbe7e2dd38621442b9563b5d710ae3c7784cd11fd3d897a47b985fb22356",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-t13.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 38682,
+          "sha256": "2f27d0a32473c9c81f7b481b7772318a83bb237a0c57a83a18eddcc08ae01c33",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-t14",
+      "domainId": "T14",
+      "category": "tool-card",
+      "name": "金边纸",
+      "sourceFilename": "tool-t14-v1-original.png",
+      "sourceSHA256": "31c6217bf6fe5dd7f20204795a573913680a9b4753f88dfa44ecd2a31e8bfcf7",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2497390,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-t14.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2060,
+          "sha256": "3b9d1606782a6f225b5b2ea08031b45c8828cdad7305efe2d8f548af45e5b503",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-t14.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 33238,
+          "sha256": "5c607cd551e779fa464c629aab484c4aacf19efb78771af97f4ee72ec245a76a",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-t15",
+      "domainId": "T15",
+      "category": "tool-card",
+      "name": "返场票",
+      "sourceFilename": "tool-t15-v1-original.png",
+      "sourceSHA256": "4ab808c2b33a2fc54721a0a0d54c463e063ef9d236f3db73143fb3c12e76c624",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2264772,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-t15.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 1854,
+          "sha256": "3cabd9ed0d0df9c2eff19c09f7770c675d7f20ff626be7c8e8a3d2f74aed9574",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-t15.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 25884,
+          "sha256": "81139a118d2aca283cfa92cb8cd5fa8992b98bb7d8a069532c4ac4051566ae4b",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-t16",
+      "domainId": "T16",
+      "category": "tool-card",
+      "name": "小红包",
+      "sourceFilename": "tool-t16-v1-original.png",
+      "sourceSHA256": "2ed92af360621411edaf66c9d0d547b4a81609bcba66ecf4bf867745fe67dd6e",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2487191,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-t16.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2436,
+          "sha256": "e988a0d42c78bdfaeb44bf6062f2260479e1344046015a3df36b9815e7b257a1",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-t16.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 37258,
+          "sha256": "532c950e70b540b6d55adbf8cb1e93dbdb616af7fffeb49d368307f5ab3c23a4",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-t17",
+      "domainId": "T17",
+      "category": "tool-card",
+      "name": "再想想",
+      "sourceFilename": "tool-t17-v1-original.png",
+      "sourceSHA256": "55c18dca944f11ff6627522d14fc4a9d0c7920607e2061c7511196b42fae8864",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2603633,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-t17.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2348,
+          "sha256": "77e611ee0a5c790ad34356229040afe2dceba11a85f446732220b29053dfde37",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-t17.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 41936,
+          "sha256": "52f37bdfa7a6cbe406c78c5e73694879881961b24375c437e3dfba887df177dc",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-t18",
+      "domainId": "T18",
+      "category": "tool-card",
+      "name": "免费逛摊",
+      "sourceFilename": "tool-t18-v1-original.png",
+      "sourceSHA256": "d1eacf201b02ebaf37f0ac88546ebd6e10be10c5b7ba2d55b849cca96fd86d5b",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2459038,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-t18.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2654,
+          "sha256": "032c533a824e79f6bc3b2f0d45684302aa28b1fb99400089783dabb70d8c5ad1",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-t18.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 36110,
+          "sha256": "ac82406650149e4dac33eb028cc5cf238423c62fb2e889e481e0ac67b128457d",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "runtimeFiles": 12,
+    "runtimeBytes": 227088,
+    "thumbnailBytes": 13980,
+    "detailBytes": 213108,
+    "sourcePngBytes": 14791013
+  }
+}
