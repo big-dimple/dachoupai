@@ -1,5 +1,9 @@
 # P08 14牌竖屏验收与计数修复
 
+当前合并源码 `a2a21079b0308e1423babe022383f9142be54558` 已正常无冲突合入 main `f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca`。父已实际看以下两图并读最小diff，修正局部通过；320十四仍分页可逐张操作，390两行全14，普通九牌一页合同保持。59相关/type与有界几何检查通过；素材等于新main（工具15/39），两图保持原字节和源码身份，未重拍。
+
+[本次正常合入证明](main-alignment.json)；新review精确CI待报，main不推。以下为原生图及检查的原始记录：
+
 基线 `7b78777347dd854f5759870c7934b8c28279889e`，实际检查/构建源码 `fccddf7f9ecff3f61f9bc696ac93b92a6a68e554`（modified=false）。使用 validator-approved 原生存档导入的14张手牌、2/3工具容量 fixture，非自然获取。仅320×568与390×740，DPR1软件Canvas。
 
 320原生选择J后，其点数与窗口计数重叠8px：[原FAIL](first-failure.json)保留。仅GameScene.updateHandCount把原计数/页码分为两行，移到已有工具包左侧空白；14px字体、卡位、命中、工具包、出弃和待出区几何不改。320初始layout逐值等于基线实际layout；未改ShopLayout。

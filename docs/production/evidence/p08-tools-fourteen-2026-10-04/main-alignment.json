@@ -1,0 +1,178 @@
+{
+  "taskId": "P08",
+  "testedCommit": "a2a21079b0308e1423babe022383f9142be54558",
+  "alignedMainCommit": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+  "parentReviewedCommit": "e96e971cbbcf0ea0df48017b0f34fda4461f7d99",
+  "status": "AFFECTED_PASS_REVIEW_READY_NEWCI_PENDING",
+  "merge": {
+    "kind": "normal",
+    "parents": [
+      "e96e971cbbcf0ea0df48017b0f34fda4461f7d99",
+      "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca"
+    ],
+    "conflicts": 0
+  },
+  "humanReview": {
+    "status": "PASS",
+    "reviewer": "parent",
+    "evidence": "Parent actually viewed320/390 complete images and read only updateHandCount diff; accepted fix that keeps counter clear of J.",
+    "scope": "320x568 fourteen remains a paged five-card window;390x740 shows all fourteen in two rows. Ordinary nine-card one-page requirement retained; not overall P08 acceptance."
+  },
+  "preserved": {
+    "approvedGameScene": "BYTE_IDENTICAL_TO_E96E971",
+    "incomingMainPaths": [
+      "public/assets",
+      "art/sources",
+      "src/style.css",
+      "src/game/ShopLayout.ts",
+      "src/game/layout.ts",
+      "src/game/ScoreFlame.ts",
+      "src/audio/AudioEngine.ts",
+      "src/domain",
+      "src/application",
+      "src/content",
+      "tests/goods-art.test.ts",
+      "harness/p08-items-u01-u06.mjs"
+    ],
+    "status": "BYTE_IDENTICAL_TO_F10D2D0",
+    "objects": {
+      "public/assets": "2b3677b8db8bc7cd70e3a8feb5b7e0a8708ce336",
+      "art/sources": "808fa5ef63f514d34f55eedb0ddfe61314309b54",
+      "src/style.css": "3bb1fcb6e1f714d456d519b19a4dc38279f02a90",
+      "src/game/ShopLayout.ts": "1a9bd450753bf8122202e45844e9cb59df1bc206",
+      "src/game/layout.ts": "30393b696ccd170bbb648c53615a436e1b18a3e5",
+      "src/game/ScoreFlame.ts": "925208142110f17e08e1df264913d21e5c9afdd0",
+      "src/audio/AudioEngine.ts": "a59571134ba2e3a1f7c913b44434b425df24a80c",
+      "src/domain": "8e3423193ecb4920e79b87f2314da97a04438c99",
+      "src/application": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+      "src/content": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+      "tests/goods-art.test.ts": "ed1905589c69dc0f187442158842ac0340067e84",
+      "harness/p08-items-u01-u06.mjs": "0c3afa26e78bc105613fb6f8aca80e36b6f54e88"
+    }
+  },
+  "validation": {
+    "relatedTests": 59,
+    "files": 4,
+    "paths": [
+      "tests/tool-inventory-entry.test.ts",
+      "tests/layout.test.ts",
+      "tests/hand-action-controls.test.ts",
+      "tests/goods-art.test.ts"
+    ],
+    "typecheck": "PASS",
+    "checks": {
+      "status": "PASS",
+      "exitCode": 0,
+      "before": {
+        "source": "45f9ca1bf8f7fd5f25bdd15e3611e3fb804b9dcd6438071026ef1cbb89bdafb7",
+        "index": "e156357f13082520c19016bc05ebeca099a9b8ebabc0c4734fd74399800b5835",
+        "head": "a2a21079b0308e1423babe022383f9142be54558",
+        "branch": "refs/heads/feat/p08-tools-fourteen-20261004"
+      },
+      "after": {
+        "source": "45f9ca1bf8f7fd5f25bdd15e3611e3fb804b9dcd6438071026ef1cbb89bdafb7",
+        "index": "e156357f13082520c19016bc05ebeca099a9b8ebabc0c4734fd74399800b5835",
+        "head": "a2a21079b0308e1423babe022383f9142be54558",
+        "branch": "refs/heads/feat/p08-tools-fourteen-20261004"
+      },
+      "steps": [
+        {
+          "name": "fourteen-main-related",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 1522
+        },
+        {
+          "name": "typecheck",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 7779
+        }
+      ]
+    },
+    "ordinaryNineAndFourteenGeometry": {
+      "status": "PASS",
+      "sourceCommit": "a2a21079b0308e1423babe022383f9142be54558",
+      "kind": "unit geometry only, no new native or screenshot claim",
+      "profiles": [
+        {
+          "width": 320,
+          "height": 568,
+          "count": 9,
+          "handRows": 1,
+          "visible": 9,
+          "paged": false
+        },
+        {
+          "width": 320,
+          "height": 568,
+          "count": 14,
+          "handRows": 1,
+          "visible": 5,
+          "paged": true
+        },
+        {
+          "width": 390,
+          "height": 740,
+          "count": 9,
+          "handRows": 1,
+          "visible": 9,
+          "paged": false
+        },
+        {
+          "width": 390,
+          "height": 740,
+          "count": 14,
+          "handRows": 2,
+          "visible": 14,
+          "paged": false
+        }
+      ]
+    },
+    "runtimeManifestHashMismatches": 0,
+    "newNativeRun": "NOT_RERUN",
+    "screenshots": "NOT_RERUN",
+    "fullLocalMatrix": "NOT_RERUN"
+  },
+  "currentCoverage": {
+    "Jokers": {
+      "new": 72,
+      "total": 72
+    },
+    "tools": {
+      "new": 15,
+      "total": 39
+    },
+    "items": {
+      "new": 12,
+      "total": 12
+    },
+    "P08Runtime": {
+      "files": 165,
+      "bytes": 4454670
+    },
+    "goodsRuntime": {
+      "files": 54,
+      "bytes": 870142
+    }
+  },
+  "images": [
+    {
+      "path": "320-fourteen.png",
+      "SHA256": "74dec4983f60531bea50d2192097685dd04f8af2f2f82b22bfef4ecc1d45a9f0",
+      "originalNativeSourceCommit": "fccddf7f9ecff3f61f9bc696ac93b92a6a68e554",
+      "unchanged": "BYTE_IDENTICAL",
+      "rerun": false
+    },
+    {
+      "path": "390-fourteen.png",
+      "SHA256": "b45d642a0f99793648eba0f59c85c35bb2a94086e629946742b2812d46bbf928",
+      "originalNativeSourceCommit": "fccddf7f9ecff3f61f9bc696ac93b92a6a68e554",
+      "unchanged": "BYTE_IDENTICAL",
+      "rerun": false
+    }
+  ],
+  "newExactReviewCI": "PENDING_PUSH",
+  "mainPush": "NOT_RUN_WAIT_PARENT_SERIAL_AUTHORIZATION",
+  "nextTask": "Six-tool actual target/confirmation/consumption/cancel/reload acceptance remains separate, not started in this round."
+}

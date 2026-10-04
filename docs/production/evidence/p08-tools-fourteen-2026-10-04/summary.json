@@ -115,5 +115,43 @@
     "Synthetic native fixture; no natural acquisition claim",
     "No video/FPS/GPU/physical-device/audio acceptance",
     "Six-tool target/use acceptance queued as separate next task"
-  ]
+  ],
+  "latestSourceCommit": "a2a21079b0308e1423babe022383f9142be54558",
+  "publishedMainAlignment": {
+    "status": "AFFECTED_PASS_REVIEW_READY_NEWCI_PENDING",
+    "testedCommit": "a2a21079b0308e1423babe022383f9142be54558",
+    "alignedMainCommit": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+    "evidence": "main-alignment.json",
+    "tests": "59 / 4 files and type PASS",
+    "images": "Byte-identical original sourcefccddf7; no recapture",
+    "currentCoverage": {
+      "Jokers": {
+        "new": 72,
+        "total": 72
+      },
+      "tools": {
+        "new": 15,
+        "total": 39
+      },
+      "items": {
+        "new": 12,
+        "total": 12
+      },
+      "P08Runtime": {
+        "files": 165,
+        "bytes": 4454670
+      },
+      "goodsRuntime": {
+        "files": 54,
+        "bytes": 870142
+      }
+    },
+    "newCI": "PENDING_EXACT_REVIEW_PUSH",
+    "mainPush": "NOT_RUN"
+  },
+  "parentReview": {
+    "status": "PASS",
+    "reviewer": "parent",
+    "scope": "Actual320/390 images and updateHandCount fix accepted.320 fourteen paged,390 two rows. Ordinary9 one-page retained."
+  }
 }
