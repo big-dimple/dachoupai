@@ -1,0 +1,632 @@
+{
+  "status": "PASS",
+  "build": {
+    "version": "C03",
+    "revision": "569e55389e4ccd1a41693fca708b271c663b2414",
+    "modified": false,
+    "builtAt": "2026-10-04T06:13:04.344Z"
+  },
+  "renderer": "Canvas software",
+  "DPR": 1,
+  "safeInset": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+  },
+  "route": "Validator-approved fixture checkpoints from two actual successful single discards -> explicitly arranged legal winning flush -> OpenShop -> EnterStage. Native import, selection toggle, owned-detail cancel. Not natural purchase/deployment.",
+  "profiles": [
+    {
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "states": [
+        {
+          "name": "used",
+          "phase": "await-input",
+          "savedCounter": 2,
+          "initial": [
+            {
+              "id": "a07",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 48.4,
+              "width": 36,
+              "bounds": {
+                "x": 11.000000762939454,
+                "y": 144,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "加倍率",
+              "fullText": "全计+倍",
+              "room": 48.4,
+              "width": 42,
+              "bounds": {
+                "x": 73.39999847412109,
+                "y": 144,
+                "width": 42,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "a07",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 48.4,
+              "width": 36,
+              "bounds": {
+                "x": 11.000000762939454,
+                "y": 144,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "加倍率",
+              "fullText": "全计+倍",
+              "room": 48.4,
+              "width": 42,
+              "bounds": {
+                "x": 73.39999847412109,
+                "y": 144,
+                "width": 42,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "detail": "偷闲\n● 普通\n成功弃牌后：一次成功弃1张；出牌选择不判断此条件\n每次事件金币 +1，最多2次\n事件时检查；本场收益 2 / 2 次；本场余0次，本场已用\n\n版次：普通（无额外计分）\n\n偷闲\n高清细节加载中…\n规则与操作\n左移\n右移\n关闭",
+          "nativeInputAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        },
+        {
+          "name": "next",
+          "phase": "await-input",
+          "savedCounter": 0,
+          "initial": [
+            {
+              "id": "a07",
+              "text": "余2次",
+              "fullText": "余2次",
+              "room": 48.4,
+              "width": 36,
+              "bounds": {
+                "x": 11.000000762939454,
+                "y": 144,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "加倍率",
+              "fullText": "全计+倍",
+              "room": 48.4,
+              "width": 42,
+              "bounds": {
+                "x": 73.39999847412109,
+                "y": 144,
+                "width": 42,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "a07",
+              "text": "余2次",
+              "fullText": "余2次",
+              "room": 48.4,
+              "width": 36,
+              "bounds": {
+                "x": 11.000000762939454,
+                "y": 144,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "加倍率",
+              "fullText": "全计+倍",
+              "room": 48.4,
+              "width": 42,
+              "bounds": {
+                "x": 73.39999847412109,
+                "y": 144,
+                "width": 42,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "detail": "偷闲\n● 普通\n成功弃牌后：一次成功弃1张；出牌选择不判断此条件\n每次事件金币 +1，最多2次\n事件时检查；本场收益 0 / 2 次；本场余2次\n\n版次：普通（无额外计分）\n\n偷闲\n规则与操作\n左移\n右移\n关闭",
+          "nativeInputAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "states": [
+        {
+          "name": "used",
+          "phase": "await-input",
+          "savedCounter": 2,
+          "initial": [
+            {
+              "id": "a07",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 11,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "全计+倍",
+              "fullText": "全计+倍",
+              "room": 58,
+              "width": 51,
+              "bounds": {
+                "x": 81,
+                "y": 135.60000305175782,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "a07",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 11,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "全计+倍",
+              "fullText": "全计+倍",
+              "room": 58,
+              "width": 51,
+              "bounds": {
+                "x": 81,
+                "y": 135.60000305175782,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "detail": "偷闲\n● 普通\n成功弃牌后：一次成功弃1张；出牌选择不判断此条件\n每次事件金币 +1，最多2次\n事件时检查；本场收益 2 / 2 次；本场余0次，本场已用\n\n版次：普通（无额外计分）\n\n偷闲\n高清细节加载中…\n规则与操作\n左移\n右移\n关闭",
+          "nativeInputAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        },
+        {
+          "name": "next",
+          "phase": "await-input",
+          "savedCounter": 0,
+          "initial": [
+            {
+              "id": "a07",
+              "text": "余2次",
+              "fullText": "余2次",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 11,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "全计+倍",
+              "fullText": "全计+倍",
+              "room": 58,
+              "width": 51,
+              "bounds": {
+                "x": 81,
+                "y": 135.60000305175782,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "a07",
+              "text": "余2次",
+              "fullText": "余2次",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 11,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "全计+倍",
+              "fullText": "全计+倍",
+              "room": 58,
+              "width": 51,
+              "bounds": {
+                "x": 81,
+                "y": 135.60000305175782,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "detail": "偷闲\n● 普通\n成功弃牌后：一次成功弃1张；出牌选择不判断此条件\n每次事件金币 +1，最多2次\n事件时检查；本场收益 0 / 2 次；本场余2次\n\n版次：普通（无额外计分）\n\n偷闲\n规则与操作\n左移\n右移\n关闭",
+          "nativeInputAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "states": [
+        {
+          "name": "used",
+          "phase": "await-input",
+          "savedCounter": 2,
+          "initial": [
+            {
+              "id": "a07",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 26,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "全计+倍",
+              "fullText": "全计+倍",
+              "room": 58,
+              "width": 51,
+              "bounds": {
+                "x": 96,
+                "y": 135.60000305175782,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "a07",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 26,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "全计+倍",
+              "fullText": "全计+倍",
+              "room": 58,
+              "width": 51,
+              "bounds": {
+                "x": 96,
+                "y": 135.60000305175782,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "detail": "偷闲\n● 普通\n成功弃牌后：一次成功弃1张；出牌选择不判断此条件\n每次事件金币 +1，最多2次\n事件时检查；本场收益 2 / 2 次；本场余0次，本场已用\n\n版次：普通（无额外计分）\n\n偷闲\n高清细节加载中…\n规则与操作\n左移\n右移\n关闭",
+          "nativeInputAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        },
+        {
+          "name": "shop",
+          "phase": "shop",
+          "savedCounter": 2,
+          "detail": "偷闲 · 第 1 槽\n● 普通\n成功弃牌后：一次成功弃1张；出牌选择不判断此条件\n每次事件金币 +1，最多2次\n事件时检查；已保存使用记录 2 / 2 次；下场余2次；入场重置使用计数\n\n版次：普通（无额外计分）\n\n规则与操作\n左移\n右移\n出售\n关闭",
+          "nativeInputAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        },
+        {
+          "name": "next",
+          "phase": "await-input",
+          "savedCounter": 0,
+          "initial": [
+            {
+              "id": "a07",
+              "text": "余2次",
+              "fullText": "余2次",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 26,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "全计+倍",
+              "fullText": "全计+倍",
+              "room": 58,
+              "width": 51,
+              "bounds": {
+                "x": 96,
+                "y": 135.60000305175782,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "a07",
+              "text": "余2次",
+              "fullText": "余2次",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 26,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "全计+倍",
+              "fullText": "全计+倍",
+              "room": 58,
+              "width": 51,
+              "bounds": {
+                "x": 96,
+                "y": 135.60000305175782,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "detail": "偷闲\n● 普通\n成功弃牌后：一次成功弃1张；出牌选择不判断此条件\n每次事件金币 +1，最多2次\n事件时检查；本场收益 0 / 2 次；本场余2次\n\n版次：普通（无额外计分）\n\n偷闲\n规则与操作\n左移\n右移\n关闭",
+          "nativeInputAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "states": [
+        {
+          "name": "used",
+          "phase": "await-input",
+          "savedCounter": 2,
+          "initial": [
+            {
+              "id": "a07",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 54,
+              "width": 36,
+              "bounds": {
+                "x": 230,
+                "y": 40,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "全计+倍",
+              "fullText": "全计+倍",
+              "room": 54,
+              "width": 51,
+              "bounds": {
+                "x": 330,
+                "y": 40,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "a07",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 54,
+              "width": 36,
+              "bounds": {
+                "x": 230,
+                "y": 40,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "全计+倍",
+              "fullText": "全计+倍",
+              "room": 54,
+              "width": 51,
+              "bounds": {
+                "x": 330,
+                "y": 40,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "detail": "偷闲\n● 普通\n成功弃牌后：一次成功弃1张；出牌选择不判断此条件\n每次事件金币 +1，最多2次\n事件时检查；本场收益 2 / 2 次；本场余0次，本场已用\n\n版次：普通（无额外计分）\n\n偷闲\n高清细节加载中…\n规则与操作\n左移\n右移\n关闭",
+          "nativeInputAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        },
+        {
+          "name": "next",
+          "phase": "await-input",
+          "savedCounter": 0,
+          "initial": [
+            {
+              "id": "a07",
+              "text": "余2次",
+              "fullText": "余2次",
+              "room": 54,
+              "width": 36,
+              "bounds": {
+                "x": 230,
+                "y": 40,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "全计+倍",
+              "fullText": "全计+倍",
+              "room": 54,
+              "width": 51,
+              "bounds": {
+                "x": 330,
+                "y": 40,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "a07",
+              "text": "余2次",
+              "fullText": "余2次",
+              "room": 54,
+              "width": 36,
+              "bounds": {
+                "x": 230,
+                "y": 40,
+                "width": 36,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d07",
+              "text": "全计+倍",
+              "fullText": "全计+倍",
+              "room": 54,
+              "width": 51,
+              "bounds": {
+                "x": 330,
+                "y": 40,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "detail": "偷闲\n● 普通\n成功弃牌后：一次成功弃1张；出牌选择不判断此条件\n每次事件金币 +1，最多2次\n事件时检查；本场收益 0 / 2 次；本场余2次\n\n版次：普通（无额外计分）\n\n偷闲\n规则与操作\n左移\n右移\n关闭",
+          "nativeInputAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        }
+      ]
+    }
+  ],
+  "targetDevice": "OnePlus/realGPU/audio NOT_RUN",
+  "taskId": "P08",
+  "testedCommit": "569e55389e4ccd1a41693fca708b271c663b2414",
+  "srcFingerprint": "ed49a12645b1f7d6760639d200f3f3e3c3062b5a3c9848b986b26b40a97b6461",
+  "runtimeManifestSHA256": "fdad2cee2e7d5f4addaba1986e54d59d1f5370daf6d76c3109ecb5146d21abdb"
+}

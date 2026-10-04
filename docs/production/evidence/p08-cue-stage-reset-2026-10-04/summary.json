@@ -1,0 +1,27 @@
+{
+  "taskId": "P08",
+  "testedCommit": "569e55389e4ccd1a41693fca708b271c663b2414",
+  "baseline": "14eac52f3e3d052d4b559d79f98391d119677b76",
+  "srcFingerprint": "ed49a12645b1f7d6760639d200f3f3e3c3062b5a3c9848b986b26b40a97b6461",
+  "runtimeManifestSHA256": "fdad2cee2e7d5f4addaba1986e54d59d1f5370daf6d76c3109ecb5146d21abdb",
+  "changes": [
+    "a07 owned saved usage remains2 in shop; next-stage budget2 read from public limit, explicit EnterStage reset; in-stage used budget0 unchanged",
+    "unbought offer keeps 尚未购入、不代表已触发; no invented previous use when owned counter is absent",
+    "d07 全计+倍/加倍率 preserves multiplier effect; full all-played-active condition unchanged"
+  ],
+  "checks": {
+    "redBeforeFix": "PASS detection: real two successful single discards -> winning flush/OpenShop expected next budget2 got0; separate offer negative found loss of unpurchased label; ignored logs retained",
+    "affected": "28 tests/3 files and type PASS",
+    "browser": "final exact source569e553, modified=false: 320/360/390x740 and844x300 safe0/DPR1 Canvas; d07 full51/room58 or54, narrow42/room48.4; mount=refresh; native owned detail/cancel,390 used/shop/next phases; complete run/resources/RNG unchanged",
+    "freeze": "1908 tests/106 files, content/type/build/Canvas desktop+mobile smoke/plan PASS; source/index/HEAD identical"
+  },
+  "scope": "Two runtime UI files only; no counter mutation/save/resources/domain/RNG/score/actual trace/registration/images/geometry/font changes",
+  "states": {
+    "implemented": "PASS bounded two fixes",
+    "technical": "PASS final frozen source and exact-source targeted browser",
+    "newPictures": "NOT_CAPTURED; no redundant image set or recording",
+    "overallIndependentAesthetic": "NOT_RUN this followup",
+    "targetDevice": "OnePlus/realGPU/audio NOT_RUN"
+  },
+  "unrelatedInputs": "b6 cancelled/no upload; private fire reference still no readable pixels, unchanged"
+}
