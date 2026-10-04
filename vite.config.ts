@@ -1,18 +1,9 @@
 import { defineConfig } from 'vite';
-import { execFileSync } from 'node:child_process';
 import { existsSync, readdirSync, unlinkSync } from 'node:fs';
 import { resolve, relative, isAbsolute, sep } from 'node:path';
+import { collectBuildInfo } from './scripts/build-info';
 
-const git = (...args: string[]) => {
-  try { return execFileSync('git', args, { encoding: 'utf8', windowsHide: true }).trim(); }
-  catch { return 'unknown'; }
-};
-const buildInfo = {
-  version: 'C03',
-  revision: git('rev-parse', 'HEAD'),
-  modified: git('status', '--porcelain', '--untracked-files=no') !== '',
-  builtAt: new Date().toISOString(),
-};
+const buildInfo = collectBuildInfo(process.cwd(),new Date().toISOString());
 let offlineOutputDir = '';
 let offlineModels: string[] = [];
 
