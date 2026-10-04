@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "batch": "handdrawn-runtime-a11-fix-20261004",
+  "baseCommit": "3938cee365994910d7d79f62fc91701273f2efe0",
+  "sourceContentReference": {
+    "repository": "big-dimple/dachoupai",
+    "ref": "3938cee365994910d7d79f62fc91701273f2efe0",
+    "path": "src/content/r2-jokers.json"
+  },
+  "runtime_selection": [
+    "a11"
+  ],
+  "encoder": {
+    "format": "WEBP",
+    "quality": 82,
+    "method": 6,
+    "lossless": false,
+    "resize": "Pillow LANCZOS",
+    "Pillow": "12.3.0",
+    "libwebp": "1.6.0"
+  },
+  "containPolicy": {
+    "fit": "contain",
+    "sourceCrop": "entire original",
+    "backgroundHex": "#F3EADB",
+    "noStretch": true,
+    "noReconstruction": true,
+    "rounding": "Nearest integer-pixel fit inside the inset bounding box; no crop or intentional aspect-ratio change."
+  },
+  "assets": [
+    {
+      "id": "a11",
+      "domainId": "a11",
+      "category": "functional-card",
+      "name": "返个场",
+      "sourceFilename": "a11-v2-original.png",
+      "sourceSHA256": "0f3f19b503f5c3ead4d9a69672102c9284f34f8eb262a7db256bffa67c93d5fd",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2391340,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/a11.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 3756,
+          "sha256": "ea9e76e4a31fe5c4acd83e0324641c203c76281deaeec9684e06785492c87113",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/a11.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 45940,
+          "sha256": "aa4e6a9988abf2998009a004aadba32b93f4d0bb394aa203b77bbb1e7cc8074d",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "runtimeFiles": 2,
+    "runtimeBytes": 49696,
+    "thumbnailBytes": 3756,
+    "detailBytes": 45940,
+    "sourcePngBytes": 2391340
+  }
+}

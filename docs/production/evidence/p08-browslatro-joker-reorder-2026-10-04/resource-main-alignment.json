@@ -1,0 +1,156 @@
+{
+  "taskId": "P08",
+  "testedCommit": "8d0efea7b132c310847d0238b531005b616c28ed",
+  "alignedMain": "ce299b8a8ddf5cf399fecb889aa02882d315988c",
+  "previousReview": "9f3db15db46cbd48b9feb0a5cd20470c0adea1c2",
+  "previousReviewCI": {
+    "status": "PASS",
+    "runId": 37214577033,
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37214577033"
+  },
+  "alignment": "PASS; normal merge of already published/approved six-item + a11 main; no main push by this task",
+  "conflicts": {
+    "paths": [
+      "docs/development-handoff.md",
+      "docs/production/plan.json"
+    ],
+    "resolution": "Latest cleaned resource-main handoff and plan retained, with own MIT review history and both own evidence entries preserved; no runtime/assets conflicts."
+  },
+  "runtimeSource": {
+    "status": "UNCHANGED_FROM_PREVIOUS_GREEN_REVIEW",
+    "treeSHA": "1fe09441331f2729cffdebd6c40f2198a51f078b",
+    "sortHand": "All selectedIds/ghost/undo clear before sort, unchanged from approved main",
+    "jokerReorder": "Entire runtime tree identical to previous green9f3db15; module/three entrances/gestures/expectedSeq/save behavior unchanged"
+  },
+  "assets": {
+    "status": "BYTE_IDENTICAL_TO_APPROVED_RESOURCE_MAIN",
+    "publicAssetsTreeSHA": "7f8880a7d2792acfd5ec0500384e7a0462192f90",
+    "sourceAssetsTreeSHA": "8ae7ef09c2dc3d3db05998d049e5e5dbfaf971c9",
+    "handdrawnManifestSHA256": "74701e283c39be4e7522795c9dedbd77e5f82c36627aa8ab6d8d21bbc3371f9c",
+    "goodsManifestSHA256": "12fc5fe28a312c8215c164112be9ba1ef59a6b31d06f7b10fa3dd12ae469d933",
+    "a11": {
+      "id": "a11",
+      "sourceCommit": "cd11009db796c815c21de6ba165e3697632e7334",
+      "outputs": [
+        {
+          "path": "cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+          "purpose": "thumbnail",
+          "bytes": 3756,
+          "sha256": "ea9e76e4a31fe5c4acd83e0324641c203c76281deaeec9684e06785492c87113"
+        },
+        {
+          "path": "cards/a11-v2-aa4e6a9988ab.detail.webp",
+          "purpose": "detail",
+          "bytes": 45940,
+          "sha256": "aa4e6a9988abf2998009a004aadba32b93f4d0bb394aa203b77bbb1e7cc8074d"
+        }
+      ],
+      "versionedPathsRetained": true,
+      "obsoleteCanonicalDistPathsAbsent": true
+    },
+    "sixItems": [
+      {
+        "id": "item-u01",
+        "domainId": "U01",
+        "category": "item-card",
+        "paths": [
+          "item-u01.thumbnail.webp",
+          "item-u01.detail.webp"
+        ]
+      },
+      {
+        "id": "item-u02",
+        "domainId": "U02",
+        "category": "item-card",
+        "paths": [
+          "item-u02.thumbnail.webp",
+          "item-u02.detail.webp"
+        ]
+      },
+      {
+        "id": "item-u03",
+        "domainId": "U03",
+        "category": "item-card",
+        "paths": [
+          "item-u03.thumbnail.webp",
+          "item-u03.detail.webp"
+        ]
+      },
+      {
+        "id": "item-u04",
+        "domainId": "U04",
+        "category": "item-card",
+        "paths": [
+          "item-u04.thumbnail.webp",
+          "item-u04.detail.webp"
+        ]
+      },
+      {
+        "id": "item-u05",
+        "domainId": "U05",
+        "category": "item-card",
+        "paths": [
+          "item-u05.thumbnail.webp",
+          "item-u05.detail.webp"
+        ]
+      },
+      {
+        "id": "item-u06",
+        "domainId": "U06",
+        "category": "item-card",
+        "paths": [
+          "item-u06.thumbnail.webp",
+          "item-u06.detail.webp"
+        ]
+      }
+    ],
+    "registeredItems": 7,
+    "registeredTools": 3
+  },
+  "affectedTests": {
+    "status": "PASS",
+    "count": 205,
+    "files": [
+      "browslatro-reordering",
+      "joker-reorder",
+      "hand-sort-selection",
+      "goods-art",
+      "handdrawn-art",
+      "joker-art",
+      "goods-art-loading",
+      "joker-art-loading"
+    ]
+  },
+  "content": {
+    "status": "PASS",
+    "publicPrivacyTexts": 43,
+    "contentVersion": "quality-r2-content-v10",
+    "contentHash": "json-fnv-v1:24efe7a905216d85"
+  },
+  "build": {
+    "status": "PASS",
+    "info": {
+      "version": "C03",
+      "revision": "8d0efea7b132c310847d0238b531005b616c28ed",
+      "modified": false,
+      "builtAt": "2026-10-04T16:07:57.341Z"
+    },
+    "typecheck": "PASS; included tsc --noEmit in npm run build",
+    "count": 1,
+    "bundles": [
+      "index-BYa2SgpB.js"
+    ],
+    "compiledRegisteredPaths": "PASS; all14 newly approved image paths retained in the bundle",
+    "newRuntimeDistBytes": "PASS; all14 outputs match approved source SHA/size/bytes"
+  },
+  "license": {
+    "status": "PASS",
+    "noticePath": "dist/licenses/browslatro.MIT.txt",
+    "byteEqual": true,
+    "noticeSHA256": "22b840bb0d85359cfb13e92b30d2be1b745798b599c9362cb2585e6148fcea38"
+  },
+  "manualBrowser": "NOT_RUN on this alignment; runtime and unrelated UI unchanged, prior accepted evidence preserved with original build identities. Exact new remote CI covers its mandatory browser gate.",
+  "manualFullFreeze": "NOT_RUN; one affected batch/content/build, final plan check only",
+  "mainAdvance": "HELD_FOR_PARENT_ORDER; report final exact review CI/FF qualification live after evidence archive",
+  "physicalDevice": "OnePlus/hardware GPU/audio/deployment NOT_RUN"
+}
