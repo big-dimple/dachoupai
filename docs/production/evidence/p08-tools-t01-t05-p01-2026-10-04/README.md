@@ -8,7 +8,7 @@ T02只使用批准的`tool-t02-v2-original.png`。T04真实原图1073×1466，T0
 
 只追加tool-t01…t05、tool-p01六个Goods ID和第5条additionalSources。旧27条/四源/54图870142 B保持；review共66图1085058 B，长期道具12/12、消耗工具21/39（余18保机制图）、72 Joker/a11保持，不称全部美术完成或已上线。全部src、工具包、两处CSS contain修复、只读失败摘要、朱砂、手牌/调序、严格五动作smoke、CI配置、依赖、license及既有AGENTS/handoff/UX/plan逐对象同f10。没有机制或loader改动。
 
-42项受影响单测/4files、typecheck、content52公开文本检查PASS。六个ID的源bytes/hash、类别、按需高清descriptor和权威文字通过；T01须选择已发现牌型、T02主动删牌须满足原下限/当前合法行动、T03/04/05保点数/增强/版次、P01固定已发现高牌，这些定义与文案没有改动。harness仅增加本批合法商店/扑克目标代表ID T02–T05，实际只跑T04，不套用T01/P01的牌型目标。
+42项受影响单测/4files、typecheck、content55公开文本检查PASS，内容hash仍为`json-fnv-v1:24efe7a905216d85`。六个ID的源bytes/hash、类别、按需高清descriptor和权威文字通过；T01须选择已发现牌型、T02主动删牌须满足原下限/当前合法行动、T03/04/05保点数/增强/版次、P01固定已发现高牌，这些定义与文案没有改动。harness仅增加本批合法商店/扑克目标代表ID T02–T05，实际只跑T04，不套用T01/P01的牌型目标。
 
 一次390×740 DPR1软件Canvas/reduced-motion/safeInset0原生路线：validator批准checkpoint导入100金、单T04货位、无持有工具，不是自然获取。真实触摸/DOM验证实际缩略图及BASE_URL、无HD预取、28316 B精确HD hash、contain/center；取消完整run不变，一次4金购买seq+1、RNG/Joker实例不变；持有同instanceId/同ID高清与缓存、未选目标确认使用禁用、关闭完整run不变。真实404保机制图，显式卡面/高清重试恢复同ID、frame和完整run；未执行使用或销毁。
 
