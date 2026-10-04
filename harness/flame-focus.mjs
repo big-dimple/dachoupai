@@ -7,6 +7,7 @@ import {preview} from 'vite';
 import sharp from 'sharp';
 import {chooseCharacter,tapUI,tapMenuAction,openMenuSection,waitScene} from './ui.mjs';
 const dir=process.env.PAPER_FIRE_DIR||'shots/cinnabar',port=5260;
+const localCornersOnly=process.env.FLAME_FOCUS_SCOPE==='local-corners';
 await mkdir(dir,{recursive:true});
 const report={harnessCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),build:JSON.parse(await readFile(dir+'/build/build-info.json','utf8')),runs:[],keyframes:[],limits:[
   'Natural single5 high-card202 plus600 /1200 /5589 paths; no injected score, target, RNG, rule or save state. Long-digit probe changes/restores UI Text only.',
@@ -39,6 +40,7 @@ function validate(f){
   assert.equal(f.masked.length,2);assert.ok(f.masked.every(o=>o.mask&&o.same&&!o.input));
   for(const loop of f.unclassifiedLoops)assert.ok(Number.isFinite(loop.start)&&Number.isFinite(loop.stop)&&loop.stop-loop.start<=.35,'non-roll looping sources have a scheduled short end');
   assert.equal(f.textures.length,0);assert.equal(f.burning,0);assert.equal(f.shake,false);assert.equal(f.stamp,false);
+  if(f.layers){assert.ok(f.layers.local>f.layers.pedestal,'local ink stays above the opaque score pedestal');assert.ok(f.layers.text.every(index=>index>f.layers.local),'measured score text stays above local ink');assert.ok(f.layers.frame<f.layers.pedestal,'exterior frame layering remains unchanged');}
   for(const p of f.pieces)for(const g of f.guards)assert.equal(overlaps(p,g),false,'every paintable piece excludes actual guards');
   for(const p of f.bands)for(const body of [...f.cards,...f.controls,...f.domControls.map(o=>o.bounds)])assert.equal(overlaps(p,body),false,'outer band excludes card/action body');
   for(const flight of f.flights){assert.ok(flight.mask);const p=flight.landing,b=flight.cell;assert.ok(p.x<b.x||p.x>b.x+b.width||p.y<b.y||p.y>b.y+b.height);}
@@ -72,7 +74,7 @@ async function run(viewport,spec,mode='natural'){
     });
     for(let i=0;i<r.longDigits.length;i++)for(let j=i+1;j<r.longDigits.length;j++)assert.equal(overlaps(r.longDigits[i].bounds,r.longDigits[j].bounds),false);
     assert.deepEqual(await state(p),before,'long-digit UI probe preserves whole run');
-    await p.evaluate(({tier,captureBelow,captureFrames})=>{
+    await p.evaluate(({tier,captureBelow,captureFrames,localPeak})=>{
       const g=window.__harness.game,s=g.scene.getScene('game'),frames=[],rasters=[],seen=new Set();let committed;
       const domControls=()=>[...document.querySelectorAll('.run-menu-toggle,.run-fullscreen-toggle,.fullscreen-dock')].filter(e=>!e.hidden&&e.getBoundingClientRect().width>0).map(e=>{const b=e.getBoundingClientRect(),c=g.canvas.getBoundingClientRect(),l=s.view.layout;return {name:e.className,text:e.textContent,bounds:{x:(b.x-c.x)*l.width/c.width,y:(b.y-c.y)*l.height/c.height,width:b.width*l.width/c.width,height:b.height*l.height/c.height},cssBounds:{x:b.x,y:b.y,width:b.width,height:b.height}};});
       const bounds=o=>{const b=o.getBounds();return{x:b.x,y:b.y,width:b.width,height:b.height};};
@@ -84,6 +86,7 @@ async function run(viewport,spec,mode='natural'){
           level:flame?.graphic.getData('intensity')??0,brush,eventId:s.scoreTotal.getData('eventId')??s.presentation.score.events[0].eventId,eventPhase:s.scoreTotal.getData('eventPhase')??'base',shown:s.scoreTotal.text,
           texts:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal].filter(o=>o.visible&&o.active).map(o=>({text:o.text,full:o.getData('fullText'),bounds:bounds(o),font:o.style.fontSize})),
           pieces:flame?.graphic.getData('safePieces')??[],guards:flame?.graphic.getData('textGuards')??[],bands:flame?.graphic.getData('frameBands')??[],
+          localStrokes:flame?.graphic.getData('localStrokes')??[],layers:flame?{local:s.view.root.list.indexOf(flame.graphic),frame:s.view.root.list.findIndex(o=>o.name==='score/fire-frame'),pedestal:s.view.root.list.findIndex(o=>o.name==='score/total-pedestal'),text:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal].map(o=>s.view.root.list.indexOf(o))}:undefined,
           cards:s.cardViews.filter(v=>v.container.visible).map(v=>bounds(v.container)),domControls:domControls(),controls:[...Object.values(l.buttons),...Object.values(l.tableActions)],
           masked:s.view.root.list.filter(o=>['score/fire','score/fire-frame'].includes(o.name)).map(o=>({name:o.name,mask:!!o.mask,same:o.mask===flame?.graphic.mask,input:!!o.input})),
           flights:s.view.root.list.filter(o=>o.name==='score/source-flight-line'||o.name==='score/source-flight-packet').map(o=>({landing:o.getData('landing'),cell:o.getData('cell'),mask:!!o.mask})),
@@ -91,7 +94,7 @@ async function run(viewport,spec,mode='natural'){
           burning:[...s.audio.voices].filter(v=>v.fire||v.source.loop&&!v.roll&&(!window.__audioSchedules.get(v.source)?.stop||window.__audioSchedules.get(v.source).stop-window.__audioSchedules.get(v.source).start>.35)).length,accents:[...s.audio.voices].filter(v=>v.scoreAccent).length,
           textures:g.textures.getTextureKeys().filter(k=>k.startsWith('score-flame-heat-')),stamp:s.view.root.list.some(o=>o.name==='score/celebration'),shake:s.cameras.main.shakeEffect.isRunning,savedStable:saved===committed};
         frames.push(f);
-        const below=captureBelow&&f.level===0&&brush?.localPhase==='unfold'&&brush.localAge>=110;
+        const below=captureBelow&&f.level===0&&(localPeak?brush?.localPhase==='fade'&&brush.localAge>=180:brush?.localPhase==='unfold'&&brush.localAge>=110);
         const peak=f.level===tier&&brush?.framePhase==='fade'&&brush.frameProgress===1;
         const key=below?0:peak?tier:undefined;
         if(captureFrames&&key!==undefined&&key===tier&&!seen.has(key)){
@@ -101,7 +104,7 @@ async function run(viewport,spec,mode='natural'){
         }
       };
       window.__cinnabar={frames,rasters,observe};g.events.on('postrender',observe);
-    },{tier:spec.tier,captureBelow:true,captureFrames:mode==='natural'});
+    },{tier:spec.tier,captureBelow:true,captureFrames:mode==='natural',localPeak:localCornersOnly});
     await tapUI(p,'game','action/play',true);
     if(mode==='natural'&&spec.tier===3){
       await p.waitForFunction(()=>!!window.__cinnabar.pagePause);
@@ -131,7 +134,22 @@ async function run(viewport,spec,mode='natural'){
       // The600 wheel starts at500 in its saved base event; below-target frames come from another natural path.
       const expected=r.result.lastTrace.events.filter(e=>e.phase!=='base'&&e.phase!=='finalScore').map(e=>e.eventId);
       assert.deepEqual([...new Set(r.frames.filter(f=>f.eventPhase==='impact').map(f=>f.eventId))],expected,'every source retains its ordered impact');
-      for(const image of captured.rasters){const file=`${viewport.width}x${viewport.height}-tier${image.tier}.png`;await writeFile(`${dir}/${file}`,Buffer.from(image.png.split(',')[1],'base64'));report.keyframes.push({file,source:report.build.revision,...image.metadata});}
+      for(const image of captured.rasters){
+        const file=`${viewport.width}x${viewport.height}-tier${image.tier}.png`,png=Buffer.from(image.png.split(',')[1],'base64');await writeFile(`${dir}/${file}`,png);
+        const metadata={file,source:report.build.revision,...image.metadata};
+        if(localCornersOnly){
+          metadata.localPixelProof=[];assert.equal(metadata.localStrokes.length,2);
+          for(const points of metadata.localStrokes){
+            const left=Math.max(0,Math.floor(Math.min(...points.map(p=>p.x))-4)),top=Math.max(0,Math.floor(Math.min(...points.map(p=>p.y))-4));
+            const right=Math.min(viewport.width,Math.ceil(Math.max(...points.map(p=>p.x))+4)),bottom=Math.min(viewport.height,Math.ceil(Math.max(...points.map(p=>p.y))+4));
+            const {data,info}=await sharp(png).extract({left,top,width:right-left,height:bottom-top}).removeAlpha().raw().toBuffer({resolveWithObject:true});let pixels=0,minX=info.width,minY=info.height,maxX=-1,maxY=-1;
+            for(let y=0;y<info.height;y++)for(let x=0;x<info.width;x++){const i=(y*info.width+x)*info.channels,[red,green,blue]=data.subarray(i,i+3);if(red>125&&red<215&&green<135&&blue<125&&red>green+60){pixels++;minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);}}
+            const proof={region:{x:left,y:top,width:info.width,height:info.height},cinnabarPixels:pixels,inkWidth:maxX-minX+1,inkHeight:maxY-minY+1};metadata.localPixelProof.push(proof);
+            assert.ok(pixels>=50&&proof.inkWidth>=8&&proof.inkHeight>=12,'both actual corner strokes have horizontal and vertical visible cinnabar ink');
+          }
+        }
+        report.keyframes.push(metadata);
+      }
     }
     r.cleanup=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return {brush:!!s.scoreFlame,nodes:s.view.root.list.filter(o=>o.name.startsWith('score/fire')).length,accents:[...s.audio.voices].filter(v=>v.scoreAccent).length};});
     assert.deepEqual(r.cleanup,{brush:false,nodes:0,accents:0});
@@ -162,7 +180,10 @@ async function contacts(viewport){
   await sharp({create:{width:w*2+gap,height:(h+label)*2+gap,channels:4,background:'#f3eadb'}}).composite(composite).png().toFile(`${dir}/${w}x${h}-contact.png`);
 }
 try{
-  if(process.env.FLAME_FOCUS_SCOPE==='checkpoint'){
+  if(localCornersOnly){
+    report.scope='Two natural202 low-tier peak frames only; previous approved exterior frames retained at their original source.';
+    for(const viewport of [{width:390,height:740},{width:844,height:300}])await run(viewport,specs[0]);report.status='PASS';
+  }else if(process.env.FLAME_FOCUS_SCOPE==='checkpoint'){
     await run({width:390,height:740},specs[1]);report.status='IN_PROGRESS';report.remaining=['844x300 and remaining natural tiers/below-target frame','reduced / skip / mid-presentation switch browser routes','two four-phase contact sheets','exact review CI'];
   }else if(process.env.FLAME_FOCUS_SCOPE==='interrupt'){
     const previous=JSON.parse(await readFile(dir+'/report.json','utf8'));report.runs=previous.runs.filter(r=>r.status==='PASS');report.keyframes=previous.keyframes;report.keyframeBuild=previous.keyframeBuild;
