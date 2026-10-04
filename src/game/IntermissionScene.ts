@@ -15,6 +15,7 @@ import {runController,dispatchRun,startRun} from './runAdapter';
 import {gameSession} from './session';
 import {getCharacter} from './characters';
 import {stageOutcome} from './stageOutcome';
+import {failureSummary} from './FailureSummary';
 import {ScoreFlame} from './ScoreFlame';
 import {EffectQueue} from '../core/EffectQueue';
 import {REWARD_COIN,RewardCoinCue,loadRewardCoin,addRewardCoin,animateRewardCoin} from './RewardCoin';
@@ -22,6 +23,7 @@ import {SceneView} from './SceneView';
 import {DetailDialog} from './DetailDialog';
 import {SKIP_ITEM_LABELS} from './ConsumableDialog';
 import type {Box} from './layout';
+import {PAPER_CSS} from './theme';
 
 export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue;rewardClearId?:string}
 function resultLayout(width:number,height:number,top:number,bottom:number){
@@ -134,6 +136,12 @@ export class IntermissionScene extends Phaser.Scene {
   private drawResultHero(b:Box,outcome:ReturnType<typeof stageOutcome>,skipped:boolean,lost:boolean,animate:boolean):void {
     const v=this.view,run=runController(this)!.state,compact=b.height<220,cx=b.x+b.width/2,cy=b.y+b.height/2;
     if(lost){
+      const summary=failureSummary(run);
+      v.text(cx,b.y+8,summary.reason,16,PAPER_CSS.ink,b.width-24).setOrigin(.5,0).setName('result/failure-reason');
+      if(b.height>=132){
+        v.text(cx,b.y+40,summary.lastHand,14,PAPER_CSS.jade,b.width-24).setOrigin(.5,0).setName('result/last-hand');
+        v.text(cx,b.y+66,summary.resources,14,PAPER_CSS.jade,b.width-24).setOrigin(.5,0).setName('result/resources');
+      }
       const gap=(BigInt(run.stage!.targetHeat)-BigInt(this.result.stageHeat)).toString();
       v.text(cx,b.y+b.height*.68,`${heatText(this.result.stageHeat)} / ${heatText(run.stage!.targetHeat)} · 差 ${heatText(gap)}`,b.width<420?16:22,'#eadbbd',b.width-24).setOrigin(.5,0).setName('result/gap');
       if(animate){const curtain=v.add(this.add.rectangle(cx,b.y+b.height*.3,b.width,b.height*.6,0xe2e8e5,.45));this.tweens.add({targets:curtain,alpha:0,duration:280,ease:'Cubic.easeOut',onComplete:()=>curtain.destroy()});}
