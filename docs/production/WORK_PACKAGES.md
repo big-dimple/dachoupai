@@ -379,6 +379,23 @@ D25追加有限3D复用小候选：先用实际GLB源的铜钱/骰子或牌片�
 
 ## P08
 
+### 当前主线验收清单（2026-10-04 UTC）
+
+已发布基线 `1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9`：精确 CI37229537268／production-docs37229537265 success。按此 SHA 读取 manifest 和消费代码；下一批 review 不计入发布覆盖。
+
+- [x] 工具包入口已发布（7b787773 为当前 main 祖先）；749a85ee 的 320 商店卡条与十四牌计数两修复已发布。320 十四牌保持分页、390 十四牌两行、普通九牌一页。
+- [x] 当前可消费覆盖 Joker72/72、原6角色/JQK、工具21/39、物品12/12；P08 165 WebP／4,454,670B，goods 66 WebP／1,085,058B。包含 T01–T05/P01；后续 review 资源不计入 main。
+- [x] 铜钱候选已接入结算运行：RewardCoin.ts → IntermissionScene 实际已提交过关奖励消费 16帧／800ms atlas；A03 整包 planned 和人工门禁保持。
+- [x] 六工具 T06–T11 原生使用 fixture 已验收（原 source f10d2d0、review98b66db4、精确 CI37228691506 success）。合法／非法目标、取消、一次保存、牌面与 reload 证据见 [原报告](evidence/p08-tools-use-2026-10-04/README.md)，不转作自然流程证据。
+- [ ] D7b 自然流程：仍 in_progress，本次无自然获取／完整流程新结论。
+- [ ] 整体审美、OnePlus 真机、GPU、听感：仍未通过，P08 不关闭。C04 维持 D32 暂停；resumeContract 和 V01/L01 人工、多人门禁不变。
+
+本次只是 [当前态审计](evidence/p08-delivery-state-2026-10-04/summary.json) 与六工具原证据的纯文档 review，随下一批整合，不单独发布。
+
+### 历史检查点（按各自 SHA 保留，不作为当前调度指令）
+
+以下“待 CI／待发布／下一任务”仅适用于原记录时间；旧 FAIL、NOT_RUN 和旧覆盖数字保持原证据，不反推为当前验收。
+
 P08 14牌修正父图审后正常main对齐（UTC 2026-10-04）：父实际看320/390两图并读仅updateHandCount diff，局部修正通过；边界为320十四仍5牌分页可逐张操作，390两排全14，普通九牌一页保持。正常无冲突merge sourcea2a2107合已发布mainf10d2d0纯T13–T18资源；GameScene逐字节同已审e96e971，所有public/art与布局/ShopLayout/火/audio/domain/content/规则逐树同f10。59相关tests/4files/type PASS，检查前后source/index/HEAD一致；两目标九牌单页与十四分页/两排几何专项PASS（非新原生），工具15/39、道具12/12、Joker72/72，goods54files870142B/P08 165files4454670B。旧两实图字节/sourcefccddf7身份保持，不重截图/原生/全矩阵。仅新review精确CI待报，main不推进；六工具真实使用仍下一独立任务。证据docs/production/evidence/p08-tools-fourteen-2026-10-04/main-alignment.json。
 
 P08 14牌竖屏缺口有界闭环（UTC 2026-10-04）：基线已发布main7b787773；合法原生14牌/工具2/3 fixture，非自然获取。320真实选J复现计数盖点数8px，原FAIL与局部实际像素检查保留；仅GameScene.updateHandCount将计数/页码分两行移至既有工具包左侧，卡位/命中/底栏/字体/待出区及ShopLayout不改。sourcefccddf7 exact modified=false，55相关tests/3files/type、一次软件Canvas320×568与390×740 PASS，source/index/HEAD一致。320十窗口逐张点全14，390两行全14；全牌点数花色>=14且无遮挡，原生选/取消全28个逐一通过，选5后预览/工具包/出弃bounds互不挡，出弃实际触点命中后取消，工具包开/关选牌与完整run-RNG不变；仅两张完整页已actual view，父独立图审与新精确reviewCI待接。全部资源/规则/save/火/audio保持，main未推；六工具实际目标/使用验收下一任务。证据docs/production/evidence/p08-tools-fourteen-2026-10-04/summary.json。

@@ -1,5 +1,25 @@
 # 当前交接：P08全游戏手绘墨线／纸色主线
 
+## 当前发布与验收状态
+
+2026-10-04 19:54 UTC 独立读取的 remote main 为 `1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9`；精确 [CI37229537268](https://github.com/big-dimple/dachoupai/actions/runs/37229537268) 与 [production-docs37229537265](https://github.com/big-dimple/dachoupai/actions/runs/37229537265) 均 success。以下是该已发布 source 的当前状态，后续 review 增量不预记为 main。
+
+| 项目 | 当前状态与验收边界 |
+| --- | --- |
+| 工具包入口 | 已发布：main7b787773 是当前 main 的祖先；GameScene/ShopScene 常驻工具包入口已经消费现有库存与原生操作通路。 |
+| 两处窄屏修复 | 已发布：749a85ee 是当前 main 的祖先，包含 320 商店卡条和十四牌计数修复。320 十四牌仍以五牌窗口分页，390 十四牌两行；普通九牌一页。OnePlus 真机验收仍未通过。 |
+| 可消费手绘素材 | 按当前 manifest：Joker72/72，原6角色/JQK；P08 165 WebP／4,454,670B。工具21/39、物品12/12，goods 66 WebP／1,085,058B，已含 T01–T05/P01。GoodsArt → toolInfo/itemInfo → 既有缩略图与按需详情消费。下一批 review 资源不计入。 |
+| 铜钱候选 | 已接运行：RewardCoin.ts 的 16帧／800ms atlas 由 IntermissionScene 在实际已提交的过关奖励上加载、显示和播放。历史源 D41 为 e655a612；当前代码仍保该消费通路。A03 整包仍 planned、humanGate 保持，人工审美和真机未通过。 |
+| 六工具实际使用 | T06–T11 合法／非法目标、取消、连点仅一次保存、返回实际牌面、六次 reload 的原生 fixture 已获验收。原 source f10d2d0、review98b66db4、精确 [CI37228691506](https://github.com/big-dimple/dachoupai/actions/runs/37228691506) success；原报告与三张实图保持原 SHA 身份。fixture 不证明自然获取或自然完整流程。 |
+| D7b 自然流程 | 按当前协调任务仍 in_progress；本校准没有新增自然流程结论，不用六工具 fixture 关闭 D7b。 |
+| 剩余门禁 | P08 in_progress；整体审美、OnePlus 真机、GPU、听感未通过。C04 维持 D32 暂停，resumeContract 与 V01/L01 人工及多人门禁保持；不自动推进后续 gameplay。 |
+
+本次 review 仅合并 [六工具原证据](production/evidence/p08-tools-use-2026-10-04/README.md) 和 [当前态审计](production/evidence/p08-delivery-state-2026-10-04/summary.json)，交下一批整合；无运行代码、资产、部署变更，不单独推进 main。证据原 source 的覆盖15/39 保留，不能改写成当前21/39。主线验收清单见 [P08](production/WORK_PACKAGES.md#p08)。
+
+## 历史检查点（按各自 SHA 保留，不作为当前调度指令）
+
+以下旧“待 CI／待发布／下一任务”仅属于记录当时；历史 FAIL、NOT_RUN 与数字不改，当前调度由上表覆盖。
+
 P08两处手持设备修复combined review：正常合已审/精确CI通过B2bca8c8（十四牌计数）与本5ca6a8c（320商店卡条），保mainf10工具15/39及全部资源。合并仅三docs冲突且双记录保留；运行只GameScene.updateHandCount+ShopLayout/ShopScene，逐字节同双方已审代码。147相关tests/8files/type/plan PASS，不重拍双方原图；320十四仍分页、390十四两行，不改手牌位置命中/规则/RNG/save。新combined精确CI另报，main待父放行，整体/OnePlus/GPU/听感未验。 证据docs/production/evidence/p08-shop-rack-320-2026-10-04/combined-fourteen-review.json。
 
 P08 320卡条review正常合入已发布mainf10d2d0（T13–T18六图）：src同已绿c7cd7c5，92相关tests/type及12新增WebP portable/全54runtime hash PASS；工具15/39、道具12/12和朱砂/工具包/失败摘要逐树保main。旧两图不重拍/不改身份，父侧方向通过，独立hit/短横审查另行；未混B14计数候选，不推main，新精确reviewCI另报。 证据docs/production/evidence/p08-shop-rack-320-2026-10-04/f10-main-alignment.json。

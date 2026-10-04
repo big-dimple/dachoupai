@@ -1,0 +1,261 @@
+{
+  "taskId": "P08",
+  "testedCommit": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+  "status": "READ_ONLY_CURRENT_STATE_CALIBRATION_NO_RUNTIME_CHANGE",
+  "observedAt": "2026-10-04T19:54:23Z",
+  "scope": "Current scheduling entries and P08 mainline checklist only, plus exact original six-tool evidence folder. No runtime/assets/deployment change, no local browser rerun, no standalone main publication. Historical evidence remains identified by its original source SHA.",
+  "remoteMain": {
+    "sha": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+    "ref": "refs/heads/main",
+    "exactCI": {
+      "id": 37229537268,
+      "name": "CI",
+      "headSHA": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+      "branch": "main",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/big-dimple/dachoupai/actions/runs/37229537268"
+    },
+    "exactProductionDocs": {
+      "id": 37229537265,
+      "name": "production-docs",
+      "headSHA": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+      "branch": "main",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/big-dimple/dachoupai/actions/runs/37229537265"
+    }
+  },
+  "publishedAncestors": {
+    "toolBag": "7b78777347dd854f5759870c7934b8c28279889e",
+    "twoNarrowScreenFixes": "749a85ee7d38f9edeac6f46ed67f092b6f7fdfe8",
+    "ancestryCheck": "PASS",
+    "narrowScreenScope": "320 shop rack + fourteen-card hand-count fix;320 fourteen paged,390 fourteen two rows,ordinary9 one page. Published local/Canvas evidence does not close physical-device acceptance."
+  },
+  "currentCoverage": {
+    "jokers": {
+      "registered": 72,
+      "total": 72
+    },
+    "tools": {
+      "registered": 21,
+      "total": 39
+    },
+    "items": {
+      "registered": 12,
+      "total": 12
+    },
+    "basis": "Current audited main manifests and GoodsArt/r2ToolInfo consumption path. T01-T05/P01 are already in this main; later review-only batches are excluded. Prior sourcef10 reports keep their original15/39 count.",
+    "registries": {
+      "goods": {
+        "manifest": "public/assets/handdrawn-tools/manifest.json",
+        "manifestSHA256": "2c74584baee538712816fba93461146a59112fcaef861cc89d9605c63b99d4c5",
+        "categories": {
+          "tool-card": 21,
+          "item-card": 12
+        },
+        "records": 33,
+        "runtimeFileCount": 66,
+        "runtimeBytes": 1085058,
+        "allOutputBytesAndSHA256": "PASS",
+        "registeredDomainIds": [
+          "T12",
+          "U07",
+          "P11",
+          "S02",
+          "U01",
+          "U02",
+          "U03",
+          "U04",
+          "U05",
+          "U06",
+          "U08",
+          "U09",
+          "U10",
+          "U11",
+          "U12",
+          "T06",
+          "T07",
+          "T08",
+          "T09",
+          "T10",
+          "T11",
+          "T13",
+          "T14",
+          "T15",
+          "T16",
+          "T17",
+          "T18",
+          "T01",
+          "T02",
+          "T03",
+          "T04",
+          "T05",
+          "P01"
+        ]
+      },
+      "p08": {
+        "manifest": "public/assets/handdrawn-p08/manifest.json",
+        "manifestSHA256": "74701e283c39be4e7522795c9dedbd77e5f82c36627aa8ab6d8d21bbc3371f9c",
+        "categories": {
+          "character": 6,
+          "court": 3,
+          "functional-card": 72
+        },
+        "records": 81,
+        "runtimeFileCount": 165,
+        "runtimeBytes": 4454670,
+        "allOutputBytesAndSHA256": "PASS"
+      }
+    },
+    "consumers": [
+      "src/game/GoodsArt.ts",
+      "src/game/r2ToolInfo.ts",
+      "src/game/ShopScene.ts",
+      "src/game/ConsumableDialog.ts"
+    ]
+  },
+  "coinCandidate": {
+    "candidateId": "coin-reward",
+    "runtimeStatus": "WIRED",
+    "packageStatus": "A03 planned/humanGate unchanged",
+    "historicalRuntimeEvidence": "docs/production/evidence/D41-2026-10-02.json",
+    "historicalRuntimeSource": "e655a612f20ccd44863bb34e80a0a1faa42a5af5",
+    "currentConsumers": [
+      "src/game/RewardCoin.ts",
+      "src/game/IntermissionScene.ts"
+    ],
+    "trigger": "Committed cleared reward with matching clearId and positive actual goldEarned; first-render claim gates load/add/animate; no runtime changes in this review.",
+    "frames": 16,
+    "durationMs": 800,
+    "publishedFiles": {
+      "coin-reward.webp": {
+        "bytes": 137780,
+        "sha256": "77ae15ae77371af135dc2239def5c485ae6d8a256bdf6a968965d3481fca7bd6"
+      },
+      "atlas.json": {
+        "bytes": 5738,
+        "sha256": "56ee45c730dab22048e7f97e005e480419be7ca9c4f91995a4da8d98aec23fd3"
+      }
+    },
+    "humanVisualAcceptance": "UNPASSED",
+    "physicalDeviceAcceptance": "UNPASSED",
+    "oldSourceOnlyReport": "docs/assets/coin-reward-integration-2026-10-02.json remains unchanged; its not-wired limitation was source-specific."
+  },
+  "sixToolFixture": {
+    "reviewSHA": "98b66db4c900feebbbbcdcdc37f373d7e06f16a3",
+    "testedSourceSHA": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+    "exactCI": {
+      "id": 37228691506,
+      "headSHA": "98b66db4c900feebbbbcdcdc37f373d7e06f16a3",
+      "branch": "feat/p08-tools-use-20261004",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/big-dimple/dachoupai/actions/runs/37228691506"
+    },
+    "acceptance": "Parent accepted fixture evidence; independently fetched exact source and CI metadata; all original evidence bytes are retained.",
+    "tools": [
+      "T06",
+      "T07",
+      "T08",
+      "T09",
+      "T10",
+      "T11"
+    ],
+    "scope": "Seven validator-approved native checkpoint imports; one390x740 reduced-motion software Canvas context. Legal/illegal targets, cancel fullrun/RNG, double confirm single saved consumption, authoritative actual hand/deck return and six native reloads.",
+    "naturalAcquisitionOrFullRun": "NOT_PROVEN_BY_FIXTURE",
+    "files": [
+      {
+        "path": "docs/production/evidence/p08-tools-use-2026-10-04/390-t07-valid-preview.png",
+        "bytes": 80629,
+        "sha256": "1ce55ea8df1b1a394f2c5e44ea543a1dd99c8b8fec8d8aff8aa8f570dbb7ac51"
+      },
+      {
+        "path": "docs/production/evidence/p08-tools-use-2026-10-04/390-t08-after-reload.png",
+        "bytes": 87268,
+        "sha256": "1780c62397e2ebd65ab2ac68138f68b8968664b9519e487399c41d2c76d8f154"
+      },
+      {
+        "path": "docs/production/evidence/p08-tools-use-2026-10-04/390-t10-after-reload.png",
+        "bytes": 87958,
+        "sha256": "014f634f73ebc4817ff24f4c507d0e863780938165cb82c36d723906656aa9b5"
+      },
+      {
+        "path": "docs/production/evidence/p08-tools-use-2026-10-04/README.md",
+        "bytes": 3008,
+        "sha256": "ce12182a621bf7aeaeb838b9b48c3e9d38d72d62bd9c29eadc2a878a10406f34"
+      },
+      {
+        "path": "docs/production/evidence/p08-tools-use-2026-10-04/browser.json",
+        "bytes": 97657,
+        "sha256": "87b4c2bb628aa255a6eef754a8bd9e82e548e13352a4bafd31bf1f8369bc9551"
+      },
+      {
+        "path": "docs/production/evidence/p08-tools-use-2026-10-04/checker.mjs",
+        "bytes": 16297,
+        "sha256": "5430bfc017ce2e06815e4a1f0a7e618f69a197402ed93a6f13d8ea45dc4ac811"
+      },
+      {
+        "path": "docs/production/evidence/p08-tools-use-2026-10-04/summary.json",
+        "bytes": 9883,
+        "sha256": "92a9519c32f6b81087803733417a241f2a663ac5a4712e8051dbc46f40069b36"
+      }
+    ]
+  },
+  "remainingAcceptance": {
+    "P08": "in_progress",
+    "D7bNaturalRun": {
+      "status": "in_progress",
+      "basis": "Current coordinating task instruction; this audit adds no natural-run result."
+    },
+    "overallVisual": "UNPASSED",
+    "OnePlusPhysicalDevice": "UNPASSED",
+    "GPU": "UNPASSED",
+    "listening": "UNPASSED",
+    "C04": "D32 pause preserved",
+    "resumeContract": "unchanged",
+    "V01": "blocked/humanGate unchanged",
+    "L01": "planned/humanGate unchanged"
+  },
+  "obsoleteCurrentInstructionsCorrected": [
+    {
+      "entry": "plan.selectionPolicy + current entry headers",
+      "before": "main7d44 latest; tool bag/749 reviews pendingCI and not main;9/39 or15/39 current tools",
+      "after": "Published audited main1c103de with exact green CI; tool bag7b and749 published;21/39 tools at this SHA; later review batches excluded"
+    },
+    {
+      "entry": "plan.tasks[A03].candidate",
+      "before": "source_assets_integrated_runtime_not_wired",
+      "after": "runtime_wired_human_acceptance_pending; actual RewardCoin/IntermissionScene consumption; A03 formal status/gates unchanged"
+    },
+    {
+      "entry": "current handoff / P08 checklist / P08 notes and completionScope",
+      "before": "Six-tool use still next; combined749 main pending",
+      "after": "Six-tool fixture accepted at sourcef10/review98;749 published; D7b natural remains in_progress and physical-device unpassed"
+    },
+    {
+      "entry": "AGENTS / handoff / WORK_PACKAGES#P08 history",
+      "before": "Old SHA-specific wait/publish/next-task statements appear as current instructions",
+      "after": "Explicit historical boundary; current block supersedes scheduling only; original reports/FAIL/NOT_RUN/coverage/source identity remain unchanged"
+    }
+  ],
+  "preservationChecks": {
+    "runtimeTreesVsAuditedMain": "PASS_UNCHANGED",
+    "allExistingProductionAndAssetEvidenceVsAuditedMain": "PASS_BYTE_IDENTICAL",
+    "sevenSixToolFilesVsExactReview98": "PASS_BYTE_IDENTICAL",
+    "C04V01L01ResumeContract": "PASS_UNCHANGED",
+    "A03WholePackageAndSteps": "PASS_UNCHANGED"
+  },
+  "publication": "One docs-only review for next batch integration; main/deployment not advanced.",
+  "boundedDocumentationValidation": {
+    "planValidator": "PASS_32_PACKAGES_CURRENT_P08",
+    "planValidatorSelfTest": "PASS_1_VALID_13_INVALID_FIXTURES",
+    "diffCheck": "PASS",
+    "changedPublicTextPrivacy": {
+      "status": "PASS",
+      "filesScanned": 9
+    },
+    "historicalEntryBodies": "PASS_BYTE_IDENTICAL",
+    "runtimeOrLocalBrowserExecution": "NOT_RUN_IN_THIS_DOCS_REVIEW"
+  }
+}
