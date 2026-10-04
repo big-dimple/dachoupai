@@ -47,6 +47,7 @@ import {gameSession} from './session';
 import type {RunMenuActions} from './RunMenu';
 import {R2_BOSSES,r2BossText,r2DisabledCards} from '../domain/r2Chapter';
 import {showConsumables} from './ConsumableDialog';
+import {gameToolInventoryBox,toolInventoryLabel,toolInventoryPlayedArea,toolInventoryProgressY} from './ToolInventoryEntry';
 import {fitScoreLine,scoreFlightLanding} from './ScoreTextLayout';
 import {PAPER_THEME as T,PAPER_CSS as C,UI_FONT,P00_ASSETS,assetUrl} from './theme';
 import {cardPipRowOffset} from './CardPipLayout';
@@ -146,6 +147,7 @@ export class GameScene extends Phaser.Scene {
   private discardButton!: Phaser.GameObjects.Rectangle;
   private rankButton!: Phaser.GameObjects.Rectangle;
   private suitButton!: Phaser.GameObjects.Rectangle;
+  private inventoryButton?:Phaser.GameObjects.Rectangle;
   private menuActions?:RunMenuActions;
   private statusText!: Phaser.GameObjects.Text;
   private scoreHeat!:Phaser.GameObjects.Text;
@@ -297,7 +299,7 @@ export class GameScene extends Phaser.Scene {
     if(!portrait){
 
       v.text(h.x+12,h.y+(l.shortLandscape?130:short?146:156),'目标 '+heatText(this.stage.targetHeat),14,C.jade,h.width-24).setName('hud/target');
-      const progressY=h.y+(l.shortLandscape?152:short?168:196);v.rect({x:h.x+12,y:progressY,width:h.width-24,height:5},0x45595b).setStrokeStyle();
+      const progressY=toolInventoryProgressY(l,h.y+(l.shortLandscape?152:short?168:196));v.rect({x:h.x+12,y:progressY,width:h.width-24,height:5},0x45595b).setStrokeStyle();
       this.progressBar=v.rect({x:h.x+12,y:progressY,width:1,height:5},T.jade).setOrigin(0,.5).setPosition(h.x+12,progressY+2.5).setStrokeStyle();
     }
     if(portrait){this.roleText.setVisible(false);this.goldText.setFontSize(14).setOrigin(0,0).setPosition(h.x+144,h.y+6);this.heatText.setPosition(h.x+64,h.y+28).setFontSize(16).setWordWrapWidth(h.width-168);}
@@ -319,7 +321,7 @@ export class GameScene extends Phaser.Scene {
     this.scoreTotal=v.text(0,0,'—',36,C.ink).setOrigin(.5,0).setName('score/total');
     this.breakdownText=v.text(0,0,'',14,C.mutedInk).setVisible(false);
     this.fitScoreReadouts();
-    const p=playedFootprint(l.playedArea,portrait);
+    const p=playedFootprint(toolInventoryPlayedArea(l),portrait);
     v.material(p,T.jadeSoft,T.jadeSoft,6);
     v.rect(p,T.jadeSoft).setFillStyle(0,0).setStrokeStyle(1,T.jade,.22).setName('table/played-workplane');
     if(l.mode!=='landscape')v.text(p.x,p.y-18,'待出牌',14,C.jade).setName('table/played-label');
@@ -344,6 +346,7 @@ export class GameScene extends Phaser.Scene {
     const play=l.tableActions.play;
     this.playAura=v.add(this.add.graphics().lineStyle(2,T.red,.7).strokeRoundedRect(play.x-3,play.y-3,play.width+6,play.height+6,9).setAlpha(0));
     this.statusText=v.text(l.status.x,l.status.y,'',14,'#f3d5ab',l.status.width);
+    this.inventoryButton=v.button(gameToolInventoryBox(l),toolInventoryLabel(this.run),'action/tool-inventory',()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq)));
     this.controlsLive=true;
     this.updateHud();this.renderHand();
   }
@@ -673,12 +676,12 @@ export class GameScene extends Phaser.Scene {
     this.updateControls();
   }
   private landingBoxes(count:number,reserved=0):Box[] {
-    const area=this.view.layout.playedArea,p={...area,y:area.y+reserved,height:area.height-reserved},bottomNote=0,h=Math.max(24,p.height-bottomNote-14),gap=8;
+    const area=toolInventoryPlayedArea(this.view.layout),p={...area,y:area.y+reserved,height:area.height-reserved},bottomNote=0,h=Math.max(24,p.height-bottomNote-14),gap=8;
     const width=Math.min(this.view.layout.mode==='portrait'?52:80,h/1.4,(p.width-24-gap*(count-1))/Math.max(count,1)),height=width*1.4,total=count*width+(count-1)*gap;
     return Array.from({length:count},(_,i)=>({x:p.x+(p.width-total)/2+i*(width+gap),y:p.y+(p.height-bottomNote-height)/2,width,height}));
   }
   private renderSelectedCards(preview?:HandPreview):void {
-    this.previewCards?.destroy();this.previewCards=this.view.add(this.add.container(0,0));this.resultText.setVisible(true);(this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('待出牌');const p=this.view.layout.playedArea;
+    this.previewCards?.destroy();this.previewCards=this.view.add(this.add.container(0,0));this.resultText.setVisible(true);(this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('待出牌');const p=toolInventoryPlayedArea(this.view.layout);
     if(!preview){
       const notice=stageNotice(this.run),hint=notice?.warning?notice.title+(p.height>=90?'\n'+notice.description:''):this.run.stage!.playIndex===0?'选 1–5 张，凑牌型出牌\n不合适？弃牌换新牌':'选牌，准备下一手';
       const text=this.add.text(p.x+p.width/2,p.y+p.height/2,hint,{fontFamily:UI_FONT,fontSize:p.height<90||notice?.warning?'14px':'18px',color:notice?.warning?C.red:C.mutedInk,align:'center',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5);
@@ -879,7 +882,7 @@ export class GameScene extends Phaser.Scene {
     try {
       const result=await dispatchRun(this,action,expectedSeq);if(!this.alive(lifecycle,intent))return false;
       if(!result.ok){this.statusMessage=result.code==='stale-sequence'?'预览已过期，请重新打开；本次没有消耗物品或资源。':'操作未提交：'+result.code;return false;}
-      this.run=result.state;this.statusMessage='';
+      this.run=result.state;this.refreshToolInventory();this.statusMessage='';
       if(action.type==='ReorderHand'){if(focusedId)this.focusIndex=Math.max(0,this.run.handOrder.indexOf(focusedId));this.showFocusedCard();this.renderHand();}
       else if(action.type==='ReorderJokers'||action.type==='DestroyConsumable')this.render();
       if(used){
@@ -1068,7 +1071,7 @@ export class GameScene extends Phaser.Scene {
     texts.forEach((text,i)=>fitScoreLine(text,cells[i],i===2?(s.height>=108?36:24):18,true));
     const guarded=[this.resultText,...this.scoreLabels,...texts,this.breakdownText,this.previousHandText].filter(t=>t?.active&&t.visible);
     const bodies=[...this.cardViews.map(v=>v.container),...[...this.settledCards.values()].map(v=>v.container),
-      ...this.jokerViews.values(),this.roleFrame,this.playButton,this.discardButton,this.rankButton,this.suitButton];
+      ...this.jokerViews.values(),this.roleFrame,this.playButton,this.discardButton,this.rankButton,this.suitButton,...(this.inventoryButton?[this.inventoryButton]:[])];
     const guards=[caption,...guarded.map(t=>{const b=t.getBounds();return {x:b.x-5-b.width*.04,y:b.y-3,width:b.width*1.08+10,height:b.height*1.08+6};}),
       ...bodies.filter(o=>o?.active&&o.visible).map(o=>{const b=o.getBounds();return {x:b.x-3,y:b.y-3,width:b.width+6,height:b.height+6};}),
       ...Object.values(l.buttons),...Object.values(l.tableActions)];
@@ -1567,7 +1570,11 @@ export class GameScene extends Phaser.Scene {
     }});
   }
 
+  private refreshToolInventory():void {
+    if(this.inventoryButton?.active)(this.inventoryButton.getData('label') as Phaser.GameObjects.Text).setText(toolInventoryLabel(this.run));
+  }
   private updateHud(): void {
+    this.refreshToolInventory();
     this.stage={...this.stage,targetHeat:this.run.stage!.targetHeat};
     (this.view.root.getByName('hud/target') as Phaser.GameObjects.Text|undefined)?.setText('目标 '+heatText(this.stage.targetHeat));
     const l=this.view.layout,displayHeat=this.presentation?.displayHeat??this.heat,remaining=(BigInt(this.stage.targetHeat)>BigInt(displayHeat)?BigInt(this.stage.targetHeat)-BigInt(displayHeat):0n).toString();

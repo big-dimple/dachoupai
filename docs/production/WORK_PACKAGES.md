@@ -379,6 +379,16 @@ D25追加有限3D复用小候选：先用实际GLB源的铜钱/骰子或牌片�
 
 ## P08
 
+P08工具包正常对齐C已发布main（UTC 2026-10-04）：父已完整批准review0452e418并独立确认精确CI37224263669 success；正常merge源码ab4d626合入main5d54421，仅AGENTS/handoff/plan三处文档冲突，双方历史/evidence与C completionScope保持。C六张T06–T11资源、两处CSS删除、只读失败摘要及其测试逐树同main；已批准工具包产品/样板逐字节同0452。26相关tests/3files及type PASS，当前runtime逐SHA零不符：72/72 Joker、6角色/JQK，工具9/39、道具12/12；P08 165files4454670B，工具42files643054B。未重截图/原生矩阵/全冻结，旧证据保原源码身份；本新review精确CI另报，main待父串行授权。证据docs/production/evidence/p08-tools-entry-2026-10-04/c-main-alignment.json。
+
+P08工具包CI真实失败与合同修正（UTC 2026-10-04）：父图审/独立合并审查已通过bd3840d，但精确CI37223525814 browser job111498414350 FAIL；真实日志为screenshot.mjs112旧常驻四动作列表，仅多已批准action/tool-inventory。build/domain/docs通过，失败前后source/index/HEAD一致；不是观察竞态或安装故障。保原FAIL/redacted摘录及私有完整log哈希，不重试旧job。仅sourcebb62c1f同步严格五动作列表，并加原生工具包开/关全run-RNG及选牌保持断言；其他断言/timeout不改。系统Chromium151原smoke桌面1280×720/DPR1和手机390×740/DPR3 PASS，校验前后source/index/HEAD同。src/tests/assets/art逐树同bd3840d；不改产品/火/CSS/规则。正常新review+一次精确新CI待报，main禁推待父串行。证据evidence/p08-tools-entry-2026-10-04/ci-failure-resolution.json。
+
+P08工具包正常对齐朱砂main（UTC 2026-10-04）：正常merge0080fb9合main2d999，两处GameScene冲突按main删除旧burst/shockwave/庆祝章，不复活旧效果。sourcedb00121 exact modified=false；仅工具包实际button加入外扩3px保护guard，原action前景收集自动保按钮/纸底/字在墨线上。头像块、refreshScoreFire/ensureScoreFlame/impactAccumulator/keepScoreReadable方法原文同main；ScoreFlame/AudioEngine及跨档/层级测试、CSS/DetailDialog、文案/assets/domain/application等字节同main。46相关/3files、type及320软件Canvas合法原生流程PASS：实际计分ink索引6，avatar7/entry50/art48/label49，29 guards含新按钮，所有maskpieces不相交；计分时原生点工具包/关闭全run-RNG不变，真正Play结果同applyCommand。四张新完整页actual view，字仍71×17完整在88×44/112×44。仅新review精确CI待报，main待父串行；不扩矩阵、14仍单测、不碰C图片CSS修复。证据evidence/p08-tools-entry-2026-10-04/ink-main-alignment.json。
+
+P08工具包字面消歧（UTC 2026-10-04）：父已实际看game320/shop390/game844 bottom34，入口位置与手牌空间通过；仅按反馈把两场景库存、标题和空态统一叫工具包x/y，商品分类仍工具。source9c8e22d exact modified=false，16专项/type及320软件Canvas原生购买/取消/两场景各一次保存使用/reload PASS；文字71×17px完整落在Shop88×44/Game112×44内，三新完整页actual view。与1354的布局/货品/所有按钮frame-font/待出牌工作面逐值相同；GameScene/ShopScene/CSS/DetailDialog和素材本轮字节不变。不重做布局颜色、不扩设备或14矩阵，14避让仍仅单测；CI交父跟进，main仍等待串行放行。证据evidence/p08-tools-entry-2026-10-04/copy-clarification.json。
+
+P08工具入口review检查点（UTC 2026-10-04）：实现0d21cd4；正常合入main7d44保留72 Joker文案、12道具及既有三组底栏。source1354a808 exact modified=false，93相关单测/7files和type PASS；320/390竖屏、844×300 top12/b12及b34的原生零库存、购买计数/扩容、取消/关闭全run-RNG不变、Shop/Game各一次有效使用（连点确认仅一次保存）、商店专用场内禁用、reload全run通过。8场景完整页＋390空态图已actual view，fixture为合法原生导入、非自然连续获取。Game/Shop常驻工具x/y，消耗工具与本局道具分组，复用原目标/确认/保存。手牌和底栏逻辑坐标不改；14牌竖屏仅必要待出牌视觉避让（单测覆盖，未冒称native14），短横safe34进度线上移4px。首轮U04容量误样板、a01不支持及3offer超合同失败留证后修正，未削guard。仅review待新精确CI/根独立图审及串行main放行；P08仍in_progress，不扩矩阵，不全冻结。证据evidence/p08-tools-entry-2026-10-04。
+
 P08底栏三组第一版检查点（UTC 2026-10-04）：实现e2df9f8，对齐maince299（src仍同88b17）后tested1ee6e7b；88px青蓝纸色整理组内两44px触点，弃牌390由70→106／320由106→114，朱红出牌保主动作；墨线纸牌下落到平放牌堆／牌扇向前送出，文字与真实余次保持。原底栏及全部非control坐标指纹cff0c393…同88b17，主56px、容量回退54/52px不变。89原受影响＋9新增几何/符号/type PASS；320/390软件Canvas DPR1原生合法导入及选牌、实际文字框/可见线图/全run不变PASS，两小图已actual view。根要求先看第一版，停止自行美化和大收尾；844短横实际操作及本皮肤按住/取消/禁用/真实出弃仍NOT_RUN，整体IN_PROGRESS。一次文档锚点补丁未应用，无测试/浏览器失败。public/assets、art/sources完全保maince299六道具/a11追加；不改火/音频/计分/RNG/save/手牌/调序入口。独立review，不自动main，证据evidence/p08-action-groups-2026-10-04。
 
 

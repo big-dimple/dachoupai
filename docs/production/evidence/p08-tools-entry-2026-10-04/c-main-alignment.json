@@ -1,0 +1,127 @@
+{
+  "taskId": "P08",
+  "testedCommit": "ab4d626b4cae61aab3fe71ce1e19d1934a6a6b8c",
+  "alignedMainCommit": "5d54421cac90e3d516770bba63f5f94904175219",
+  "status": "AFFECTED_PASS_REVIEW_READY_NEWCI_PENDING",
+  "merge": {
+    "kind": "normal merge",
+    "parents": [
+      "0452e418b137c61755897bc922c14289974ac254",
+      "5d54421cac90e3d516770bba63f5f94904175219"
+    ],
+    "runtimeConflicts": 0,
+    "documentConflicts": [
+      "AGENTS.md",
+      "docs/development-handoff.md",
+      "docs/production/plan.json"
+    ],
+    "resolution": "Preserved both histories and unioned evidence; incoming C completionScope retained."
+  },
+  "parentApprovedEntryReview": {
+    "commit": "0452e418b137c61755897bc922c14289974ac254",
+    "exactCI": 37224263669,
+    "conclusion": "success",
+    "confirmation": "Parent independently confirmed exact CI and approved complete tool bag."
+  },
+  "preservedCMain": {
+    "status": "BYTE_IDENTICAL",
+    "paths": [
+      "public/assets",
+      "art/sources",
+      "src/style.css",
+      "src/game/FailureSummary.ts",
+      "src/game/IntermissionScene.ts",
+      "tests/failure-summary.test.ts",
+      "tests/goods-art.test.ts",
+      "src/game/ScoreFlame.ts",
+      "src/audio/AudioEngine.ts",
+      "src/domain",
+      "src/application",
+      "src/content"
+    ],
+    "objects": {
+      "public/assets": "5f5b8f921affc69d73b06934295c098386d59a40",
+      "art/sources": "090f066093cffa3d210593f0a6e1e195fbe6c239",
+      "src/style.css": "3bb1fcb6e1f714d456d519b19a4dc38279f02a90",
+      "src/game/FailureSummary.ts": "17f142c584f41a5bf296c9a594dfc4656703facc",
+      "src/game/IntermissionScene.ts": "ca84a25e48efe584a73c24822d750c0696466620",
+      "tests/failure-summary.test.ts": "80c1fcb79d4451d8d51f84e58172580196af59c1",
+      "tests/goods-art.test.ts": "ab8921df59fa4814d27e3ee323dd6b5feb7074e5",
+      "src/game/ScoreFlame.ts": "925208142110f17e08e1df264913d21e5c9afdd0",
+      "src/audio/AudioEngine.ts": "a59571134ba2e3a1f7c913b44434b425df24a80c",
+      "src/domain": "8e3423193ecb4920e79b87f2314da97a04438c99",
+      "src/application": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+      "src/content": "cec787d144468e0a3e39bda0593ca0433e9f1853"
+    },
+    "contents": "Six T06-T11 tool paintings, the two published CSS deletions, read-only failure summary and its tests; all other main resources/content preserved."
+  },
+  "preservedApprovedEntry": {
+    "status": "BYTE_IDENTICAL",
+    "paths": [
+      "src/game/ConsumableDialog.ts",
+      "src/game/GameScene.ts",
+      "src/game/ShopScene.ts",
+      "src/game/ToolInventoryEntry.ts",
+      "tests/tool-inventory-entry.test.ts",
+      "harness/p08-tools-entry.mjs",
+      "harness/screenshot.mjs",
+      "harness/v00.mjs"
+    ]
+  },
+  "validation": {
+    "sourceCommit": "ab4d626b4cae61aab3fe71ce1e19d1934a6a6b8c",
+    "worktreeAfterTests": "CLEAN",
+    "relatedTests": {
+      "status": "PASS",
+      "tests": 26,
+      "files": 3,
+      "paths": [
+        "tests/goods-art.test.ts",
+        "tests/tool-inventory-entry.test.ts",
+        "tests/failure-summary.test.ts"
+      ]
+    },
+    "typecheck": "PASS",
+    "screenshots": "NOT_RERUN",
+    "nativeBrowser": "NOT_RERUN",
+    "wholeLocalMatrix": "NOT_RERUN",
+    "priorEvidence": "Earlier actual native/Canvas evidence retains its own original source identity; no relabeling as this merge."
+  },
+  "coverage": {
+    "Jokers": {
+      "new": 72,
+      "total": 72
+    },
+    "characters": 6,
+    "courts": 3,
+    "tools": {
+      "new": 9,
+      "total": 39
+    },
+    "items": {
+      "new": 12,
+      "total": 12
+    },
+    "handdrawnP08Runtime": {
+      "files": 165,
+      "bytes": 4454670,
+      "hashMismatches": 0,
+      "manifestSHA256": "74701e283c39be4e7522795c9dedbd77e5f82c36627aa8ab6d8d21bbc3371f9c"
+    },
+    "handdrawnToolsRuntime": {
+      "files": 42,
+      "bytes": 643054,
+      "hashMismatches": 0,
+      "manifestSHA256": "dabfac2bf30ac87e19a43dcd10e4afe1787207ec9c804cccc436391816d06e5c"
+    }
+  },
+  "newExactReviewCI": "PENDING_PUSH",
+  "mainPush": "NOT_RUN_WAIT_PARENT_SERIAL_AUTHORIZATION",
+  "remaining": [
+    "New precise review CI result",
+    "Parent main authorization"
+  ],
+  "device": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN"
+}

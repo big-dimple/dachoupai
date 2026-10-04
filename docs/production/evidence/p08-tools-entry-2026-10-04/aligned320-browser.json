@@ -1,0 +1,1831 @@
+{
+  "taskId": "P08",
+  "testedCommit": "db00121942e191112d6b8e0268ca0e5503e9df9f",
+  "baseCommit": "6c5fb2a030ef1acc15f9e1b7d592784f511976b0",
+  "alignedMain": "2d999cd938e5c19253daa8ddbd1cf25facf2d9e4",
+  "build": {
+    "version": "C03",
+    "revision": "db00121942e191112d6b8e0268ca0e5503e9df9f",
+    "modified": false,
+    "builtAt": "2026-10-04T18:08:14.942Z"
+  },
+  "renderer": "Chromium software Canvas",
+  "browser": "151.0.7922.173",
+  "DPR": 1,
+  "motion": "reduce",
+  "input": "Native touchscreen and DOM taps/checks; read-only Phaser observations and authoritative domain comparison",
+  "fixture": "Three validator-approved native imports: empty shop with one T07 offer and U07; stocked game with T07/T18/U07; empty game. All purchases/use/entry/reload through native production controls; controlled acquisition, not a natural continuous run.",
+  "device": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "runs": [
+    {
+      "profile": {
+        "width": 320,
+        "height": 568,
+        "top": 0,
+        "bottom": 0
+      },
+      "checks": [
+        "shop:zero inventory opens explanatory empty state; close preserves complete run/RNG",
+        "native purchase entry/U07 immediately refreshes owned count/capacity",
+        "native purchase entry/T07 immediately refreshes owned count/capacity",
+        "game:shop-only tool labelled; native inspect cannot enable use; cancel preserves full run/RNG",
+        "native reload restores tool count/capacity and permanent item separately",
+        "native real scoring: explicit avatar/entry/art/label above ink, entry in shared safety mask; inventory touch/close preserves whole saved run/RNG",
+        "game:zero inventory opens explanatory empty state; close preserves complete run/RNG"
+      ],
+      "commands": [
+        {
+          "key": "shop",
+          "instanceId": "fixture/p08-tools-entry/shop/tool/fixture/p08-tools-entry/shop/command/3",
+          "target": "spades-2",
+          "beforeSeq": 3,
+          "afterSeq": 4,
+          "inventory": [
+            1,
+            0
+          ],
+          "doubleNativeConfirm": "exactly one saved command",
+          "authoritativeWholeState": "PASS"
+        },
+        {
+          "key": "game",
+          "instanceId": "owned/T07",
+          "target": "spades-12",
+          "beforeSeq": 3,
+          "afterSeq": 4,
+          "inventory": [
+            2,
+            1
+          ],
+          "doubleNativeConfirm": "exactly one saved command",
+          "authoritativeWholeState": "PASS"
+        }
+      ],
+      "screenshots": [
+        "aligned320-empty.png",
+        "aligned320-shop.png",
+        "aligned320-game.png",
+        "aligned320-ink.png"
+      ],
+      "errors": [],
+      "shopGeometry": {
+        "renderer": 1,
+        "entry": {
+          "enabled": true,
+          "frame": {
+            "x": 220,
+            "y": 64,
+            "width": 88,
+            "height": 44
+          },
+          "label": {
+            "text": "工具包 1/3",
+            "font": 15,
+            "bounds": {
+              "x": 228.5,
+              "y": 76.5,
+              "width": 71,
+              "height": 17
+            }
+          }
+        },
+        "buttons": [
+          {
+            "name": "action/shelf-jokers",
+            "frame": {
+              "x": 12,
+              "y": 64,
+              "width": 63.333333333333336,
+              "height": 44
+            },
+            "label": {
+              "text": "大丑牌",
+              "font": 14,
+              "bounds": {
+                "x": 23,
+                "y": 76.5,
+                "width": 42,
+                "height": 17
+              }
+            }
+          },
+          {
+            "name": "action/shelf-tools",
+            "frame": {
+              "x": 81.33333333333334,
+              "y": 64,
+              "width": 63.333333333333336,
+              "height": 44
+            },
+            "label": {
+              "text": "工具",
+              "font": 14,
+              "bounds": {
+                "x": 99,
+                "y": 76.5,
+                "width": 28,
+                "height": 17
+              }
+            }
+          },
+          {
+            "name": "action/shelf-items",
+            "frame": {
+              "x": 150.66666666666669,
+              "y": 64,
+              "width": 63.333333333333336,
+              "height": 44
+            },
+            "label": {
+              "text": "道具",
+              "font": 14,
+              "bounds": {
+                "x": 168,
+                "y": 76.5,
+                "width": 28,
+                "height": 17
+              }
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "frame": {
+              "x": 220,
+              "y": 64,
+              "width": 88,
+              "height": 44
+            },
+            "label": {
+              "text": "工具包 1/3",
+              "font": 15,
+              "bounds": {
+                "x": 228.5,
+                "y": 76.5,
+                "width": 71,
+                "height": 17
+              }
+            }
+          },
+          {
+            "name": "action/reroll",
+            "frame": {
+              "x": 12,
+              "y": 424,
+              "width": 144,
+              "height": 44
+            },
+            "label": {
+              "text": "换牌 2 金",
+              "font": 15,
+              "bounds": {
+                "x": 53,
+                "y": 436.5,
+                "width": 62,
+                "height": 17
+              }
+            }
+          },
+          {
+            "name": "action/start-stage",
+            "frame": {
+              "x": 12,
+              "y": 476,
+              "width": 296,
+              "height": 56
+            },
+            "label": {
+              "text": "进入牌桌",
+              "font": 22,
+              "bounds": {
+                "x": 115.5,
+                "y": 490.5,
+                "width": 89,
+                "height": 25
+              }
+            }
+          },
+          {
+            "name": "action/build",
+            "frame": {
+              "x": 164,
+              "y": 424,
+              "width": 144,
+              "height": 44
+            },
+            "label": {
+              "text": "构筑详情",
+              "font": 15,
+              "bounds": {
+                "x": 205.5,
+                "y": 436.5,
+                "width": 61,
+                "height": 17
+              }
+            }
+          }
+        ],
+        "layout": {
+          "mode": "portrait",
+          "compact": true,
+          "shortLandscape": false,
+          "width": 320,
+          "height": 568,
+          "hud": {
+            "x": 8,
+            "y": 12,
+            "width": 304,
+            "height": 60
+          },
+          "jokers": {
+            "x": 8,
+            "y": 76,
+            "width": 304,
+            "height": 80
+          },
+          "preview": {
+            "x": 8,
+            "y": 160,
+            "width": 304,
+            "height": 152.39999999999998
+          },
+          "scoreBoard": {
+            "x": 8,
+            "y": 160,
+            "width": 304,
+            "height": 76
+          },
+          "playedArea": {
+            "x": 8,
+            "y": 240,
+            "width": 304,
+            "height": 72.39999999999998
+          },
+          "handLabel": {
+            "x": 8,
+            "y": 364.4,
+            "width": 91.2,
+            "height": 18
+          },
+          "piles": {
+            "x": 99.2,
+            "y": 364.4,
+            "width": 212.8,
+            "height": 18
+          },
+          "tools": {
+            "x": 8,
+            "y": 480,
+            "width": 88,
+            "height": 54
+          },
+          "hand": {
+            "x": 8,
+            "y": 364.4,
+            "width": 304,
+            "height": 111.6
+          },
+          "actions": {
+            "x": 8,
+            "y": 480,
+            "width": 304,
+            "height": 54
+          },
+          "status": {
+            "x": 8,
+            "y": 536,
+            "width": 304,
+            "height": 20
+          },
+          "scoreFire": {
+            "x": 168.08,
+            "y": 162,
+            "width": 141.92,
+            "height": 37
+          },
+          "toolsInHud": false,
+          "labelHeight": 0,
+          "buttons": {
+            "rank": {
+              "x": 8,
+              "y": 480,
+              "width": 44,
+              "height": 54
+            },
+            "suit": {
+              "x": 52,
+              "y": 480,
+              "width": 44,
+              "height": 54
+            }
+          },
+          "tableActions": {
+            "discard": {
+              "x": 102,
+              "y": 480,
+              "width": 114,
+              "height": 54
+            },
+            "play": {
+              "x": 222,
+              "y": 480,
+              "width": 90,
+              "height": 54
+            }
+          },
+          "cards": [
+            {
+              "visible": true,
+              "visual": {
+                "x": 8,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 8,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 44,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 44,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 80,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 80,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 116,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 116,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 152,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 152,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 188,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 188,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 224,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 224,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 260,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 260,
+                "y": 364.4,
+                "width": 52,
+                "height": 111.6
+              }
+            }
+          ],
+          "handRows": 1,
+          "handOverflow": false,
+          "handStart": 0,
+          "visibleCardCount": 8,
+          "handNavigation": {
+            "previous": {
+              "x": 8,
+              "y": 398.2,
+              "width": 44,
+              "height": 44
+            },
+            "next": {
+              "x": 268,
+              "y": 398.2,
+              "width": 44,
+              "height": 44
+            }
+          },
+          "slots": [
+            {
+              "x": 8,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 70.4,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 132.8,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 195.2,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 257.6,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            }
+          ],
+          "jokerLabels": [
+            {
+              "x": 8,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 70.4,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 132.8,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 195.2,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 257.6,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            }
+          ]
+        },
+        "geometry": {
+          "x": 12,
+          "w": 296,
+          "top": 12,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": -12,
+              "y": 339.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 58,
+              "y": 339.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 128,
+              "y": 339.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 198,
+              "y": 339.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 268,
+              "y": 339.2,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 14.666666666666664,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 116,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 217.33333333333331,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 64,
+            "width": 296,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 436.79999999999995,
+            "width": 144,
+            "height": 44
+          },
+          "items": {
+            "x": 164,
+            "y": 436.79999999999995,
+            "width": 144,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 424,
+            "width": 144,
+            "height": 44
+          },
+          "build": {
+            "x": 164,
+            "y": 424,
+            "width": 144,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 476,
+            "width": 296,
+            "height": 56
+          },
+          "noticeY": 540
+        },
+        "plane": null,
+        "previewCards": [],
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "dpr": 1
+      },
+      "gameGeometry": {
+        "renderer": 1,
+        "entry": {
+          "enabled": true,
+          "frame": {
+            "x": 104,
+            "y": 316.4,
+            "width": 112,
+            "height": 44
+          },
+          "label": {
+            "text": "工具包 2/3",
+            "font": 15,
+            "bounds": {
+              "x": 124.5,
+              "y": 328.5,
+              "width": 71,
+              "height": 17
+            }
+          }
+        },
+        "buttons": [
+          {
+            "name": "action/sort-rank",
+            "frame": {
+              "x": 8,
+              "y": 480,
+              "width": 44,
+              "height": 54
+            },
+            "label": {
+              "text": "点数",
+              "font": 15,
+              "bounds": {
+                "x": 14.5,
+                "y": 497.5,
+                "width": 31,
+                "height": 17
+              }
+            }
+          },
+          {
+            "name": "action/sort-suit",
+            "frame": {
+              "x": 52,
+              "y": 480,
+              "width": 44,
+              "height": 54
+            },
+            "label": {
+              "text": "花色",
+              "font": 15,
+              "bounds": {
+                "x": 58.5,
+                "y": 497.5,
+                "width": 31,
+                "height": 17
+              }
+            }
+          },
+          {
+            "name": "action/discard",
+            "frame": {
+              "x": 102,
+              "y": 480,
+              "width": 114,
+              "height": 54
+            },
+            "label": {
+              "text": "弃牌",
+              "font": 14,
+              "bounds": {
+                "x": 160,
+                "y": 486.5,
+                "width": 28,
+                "height": 17
+              }
+            }
+          },
+          {
+            "name": "action/play",
+            "frame": {
+              "x": 222,
+              "y": 480,
+              "width": 90,
+              "height": 54
+            },
+            "label": {
+              "text": "出牌",
+              "font": 16,
+              "bounds": {
+                "x": 265.5,
+                "y": 485.5,
+                "width": 33,
+                "height": 19
+              }
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "frame": {
+              "x": 104,
+              "y": 316.4,
+              "width": 112,
+              "height": 44
+            },
+            "label": {
+              "text": "工具包 2/3",
+              "font": 15,
+              "bounds": {
+                "x": 124.5,
+                "y": 328.5,
+                "width": 71,
+                "height": 17
+              }
+            }
+          },
+          {
+            "name": "selection/switch-type",
+            "frame": {
+              "x": 212,
+              "y": 162,
+              "width": 44,
+              "height": 44
+            },
+            "label": {
+              "text": "切换\n牌型",
+              "font": 14,
+              "bounds": {
+                "x": 220,
+                "y": 166,
+                "width": 28,
+                "height": 34
+              }
+            }
+          },
+          {
+            "name": "selection/hand-rules",
+            "frame": {
+              "x": 260,
+              "y": 162,
+              "width": 44,
+              "height": 44
+            },
+            "label": {
+              "text": "牌型\n规则",
+              "font": 14,
+              "bounds": {
+                "x": 268,
+                "y": 166,
+                "width": 28,
+                "height": 34
+              }
+            }
+          }
+        ],
+        "layout": {
+          "mode": "portrait",
+          "compact": true,
+          "shortLandscape": false,
+          "width": 320,
+          "height": 568,
+          "hud": {
+            "x": 8,
+            "y": 12,
+            "width": 304,
+            "height": 60
+          },
+          "jokers": {
+            "x": 8,
+            "y": 76,
+            "width": 304,
+            "height": 80
+          },
+          "preview": {
+            "x": 8,
+            "y": 160,
+            "width": 304,
+            "height": 152.39999999999998
+          },
+          "scoreBoard": {
+            "x": 8,
+            "y": 160,
+            "width": 304,
+            "height": 76
+          },
+          "playedArea": {
+            "x": 8,
+            "y": 240,
+            "width": 304,
+            "height": 72.39999999999998
+          },
+          "handLabel": {
+            "x": 8,
+            "y": 364.4,
+            "width": 91.2,
+            "height": 18
+          },
+          "piles": {
+            "x": 99.2,
+            "y": 364.4,
+            "width": 212.8,
+            "height": 18
+          },
+          "tools": {
+            "x": 8,
+            "y": 480,
+            "width": 88,
+            "height": 54
+          },
+          "hand": {
+            "x": 8,
+            "y": 364.4,
+            "width": 304,
+            "height": 111.6
+          },
+          "actions": {
+            "x": 8,
+            "y": 480,
+            "width": 304,
+            "height": 54
+          },
+          "status": {
+            "x": 8,
+            "y": 536,
+            "width": 304,
+            "height": 20
+          },
+          "scoreFire": {
+            "x": 168.08,
+            "y": 162,
+            "width": 141.92,
+            "height": 37
+          },
+          "toolsInHud": false,
+          "labelHeight": 0,
+          "buttons": {
+            "rank": {
+              "x": 8,
+              "y": 480,
+              "width": 44,
+              "height": 54
+            },
+            "suit": {
+              "x": 52,
+              "y": 480,
+              "width": 44,
+              "height": 54
+            }
+          },
+          "tableActions": {
+            "discard": {
+              "x": 102,
+              "y": 480,
+              "width": 114,
+              "height": 54
+            },
+            "play": {
+              "x": 222,
+              "y": 480,
+              "width": 90,
+              "height": 54
+            }
+          },
+          "cards": [
+            {
+              "visible": true,
+              "visual": {
+                "x": 8,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 8,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 44,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 44,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 80,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 80,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 116,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 116,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 152,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 152,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 188,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 188,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 224,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 224,
+                "y": 364.4,
+                "width": 36,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 260,
+                "y": 386.4,
+                "width": 52,
+                "height": 72.8
+              },
+              "hit": {
+                "x": 260,
+                "y": 364.4,
+                "width": 52,
+                "height": 111.6
+              }
+            }
+          ],
+          "handRows": 1,
+          "handOverflow": false,
+          "handStart": 0,
+          "visibleCardCount": 8,
+          "handNavigation": {
+            "previous": {
+              "x": 8,
+              "y": 398.2,
+              "width": 44,
+              "height": 44
+            },
+            "next": {
+              "x": 268,
+              "y": 398.2,
+              "width": 44,
+              "height": 44
+            }
+          },
+          "slots": [
+            {
+              "x": 8,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 70.4,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 132.8,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 195.2,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 257.6,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            }
+          ],
+          "jokerLabels": [
+            {
+              "x": 8,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 70.4,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 132.8,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 195.2,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            },
+            {
+              "x": 257.6,
+              "y": 76,
+              "width": 54.4,
+              "height": 80
+            }
+          ]
+        },
+        "geometry": null,
+        "plane": {
+          "x": 8,
+          "y": 240,
+          "width": 304,
+          "height": 72.39999999999998
+        },
+        "previewCards": [],
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "dpr": 1
+      },
+      "inkEntry": {
+        "entry": {
+          "frame": {
+            "x": 104,
+            "y": 316.4,
+            "width": 112,
+            "height": 44
+          },
+          "enabled": true,
+          "label": "工具包 1/3"
+        },
+        "layers": {
+          "ink": 6,
+          "avatar": 7,
+          "entry": 50,
+          "art": 48,
+          "label": 49
+        },
+        "guards": [
+          {
+            "x": 16,
+            "y": 161,
+            "width": 142.08,
+            "height": 17
+          },
+          {
+            "x": 35.06,
+            "y": 158,
+            "width": 103.96000000000002,
+            "height": 23.28
+          },
+          {
+            "x": 13.280000000000003,
+            "y": 175,
+            "width": 70.48000000000002,
+            "height": 23.28
+          },
+          {
+            "x": 89.32000000000001,
+            "y": 175,
+            "width": 70.48,
+            "height": 23.28
+          },
+          {
+            "x": 32.18,
+            "y": 193,
+            "width": 32.68,
+            "height": 28.68
+          },
+          {
+            "x": 97.42,
+            "y": 193,
+            "width": 54.28,
+            "height": 28.68
+          },
+          {
+            "x": 219.46,
+            "y": 198,
+            "width": 39.160000000000004,
+            "height": 34.08
+          },
+          {
+            "x": 136.14285683631897,
+            "y": 244.0000117778778,
+            "width": 47.71428632736206,
+            "height": 64.40000085830687
+          },
+          {
+            "x": 41,
+            "y": 383.3999877929688,
+            "width": 58,
+            "height": 78.79999999999995
+          },
+          {
+            "x": 77,
+            "y": 383.3999877929688,
+            "width": 58,
+            "height": 78.79999999999995
+          },
+          {
+            "x": 113,
+            "y": 383.3999877929688,
+            "width": 58,
+            "height": 78.79999999999995
+          },
+          {
+            "x": 149,
+            "y": 383.3999877929688,
+            "width": 58,
+            "height": 78.79999999999995
+          },
+          {
+            "x": 185,
+            "y": 383.3999877929688,
+            "width": 58,
+            "height": 78.79999999999995
+          },
+          {
+            "x": 221,
+            "y": 383.3999877929688,
+            "width": 58,
+            "height": 78.79999999999995
+          },
+          {
+            "x": 257,
+            "y": 383.3999877929688,
+            "width": 58,
+            "height": 78.79999999999995
+          },
+          {
+            "x": 136.14285683631897,
+            "y": 244.0000117778778,
+            "width": 47.71428632736206,
+            "height": 64.40000085830687
+          },
+          {
+            "x": 5.000000762939454,
+            "y": 73,
+            "width": 60.400000000000006,
+            "height": 86
+          },
+          {
+            "x": 67.39999847412109,
+            "y": 73,
+            "width": 60.400000000000006,
+            "height": 86
+          },
+          {
+            "x": 129.8,
+            "y": 73,
+            "width": 60.39999999999998,
+            "height": 86
+          },
+          {
+            "x": 15,
+            "y": 13,
+            "width": 40,
+            "height": 40
+          },
+          {
+            "x": 219,
+            "y": 477,
+            "width": 96,
+            "height": 60
+          },
+          {
+            "x": 99,
+            "y": 477,
+            "width": 120,
+            "height": 60
+          },
+          {
+            "x": 5,
+            "y": 477,
+            "width": 50,
+            "height": 60
+          },
+          {
+            "x": 49,
+            "y": 477,
+            "width": 50,
+            "height": 60
+          },
+          {
+            "x": 101,
+            "y": 313.4,
+            "width": 118,
+            "height": 50
+          },
+          {
+            "x": 8,
+            "y": 480,
+            "width": 44,
+            "height": 54
+          },
+          {
+            "x": 52,
+            "y": 480,
+            "width": 44,
+            "height": 54
+          },
+          {
+            "x": 102,
+            "y": 480,
+            "width": 114,
+            "height": 54
+          },
+          {
+            "x": 222,
+            "y": 480,
+            "width": 90,
+            "height": 54
+          }
+        ],
+        "pieces": [
+          {
+            "x": 8,
+            "y": 160,
+            "width": 27.060000000000002,
+            "height": 1
+          },
+          {
+            "x": 139.02000000000004,
+            "y": 160,
+            "width": 172.97999999999996,
+            "height": 1
+          },
+          {
+            "x": 8,
+            "y": 161,
+            "width": 8,
+            "height": 5
+          },
+          {
+            "x": 158.08,
+            "y": 161,
+            "width": 153.92,
+            "height": 5
+          },
+          {
+            "x": 8,
+            "y": 230,
+            "width": 211.46,
+            "height": 2.079999999999984
+          },
+          {
+            "x": 258.62,
+            "y": 230,
+            "width": 53.379999999999995,
+            "height": 2.079999999999984
+          },
+          {
+            "x": 8,
+            "y": 232.07999999999998,
+            "width": 304,
+            "height": 3.920000000000016
+          },
+          {
+            "x": 8,
+            "y": 160,
+            "width": 6,
+            "height": 1
+          },
+          {
+            "x": 8,
+            "y": 161,
+            "width": 6,
+            "height": 14
+          },
+          {
+            "x": 8,
+            "y": 175,
+            "width": 5.280000000000003,
+            "height": 3
+          },
+          {
+            "x": 8,
+            "y": 178,
+            "width": 5.280000000000003,
+            "height": 3.280000000000001
+          },
+          {
+            "x": 8,
+            "y": 181.28,
+            "width": 5.280000000000003,
+            "height": 11.719999999999999
+          },
+          {
+            "x": 8,
+            "y": 193,
+            "width": 5.280000000000003,
+            "height": 5
+          },
+          {
+            "x": 8,
+            "y": 198,
+            "width": 5.280000000000003,
+            "height": 0.28000000000000114
+          },
+          {
+            "x": 8,
+            "y": 198.28,
+            "width": 6,
+            "height": 23.400000000000006
+          },
+          {
+            "x": 8,
+            "y": 221.68,
+            "width": 6,
+            "height": 10.399999999999977
+          },
+          {
+            "x": 8,
+            "y": 232.07999999999998,
+            "width": 6,
+            "height": 3.920000000000016
+          },
+          {
+            "x": 306,
+            "y": 160,
+            "width": 6,
+            "height": 1
+          },
+          {
+            "x": 306,
+            "y": 161,
+            "width": 6,
+            "height": 14
+          },
+          {
+            "x": 306,
+            "y": 175,
+            "width": 6,
+            "height": 3
+          },
+          {
+            "x": 306,
+            "y": 178,
+            "width": 6,
+            "height": 3.280000000000001
+          },
+          {
+            "x": 306,
+            "y": 181.28,
+            "width": 6,
+            "height": 11.719999999999999
+          },
+          {
+            "x": 306,
+            "y": 193,
+            "width": 6,
+            "height": 5
+          },
+          {
+            "x": 306,
+            "y": 198,
+            "width": 6,
+            "height": 0.28000000000000114
+          },
+          {
+            "x": 306,
+            "y": 198.28,
+            "width": 6,
+            "height": 23.400000000000006
+          },
+          {
+            "x": 306,
+            "y": 221.68,
+            "width": 6,
+            "height": 10.399999999999977
+          },
+          {
+            "x": 306,
+            "y": 232.07999999999998,
+            "width": 6,
+            "height": 3.920000000000016
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 320,
+            "height": 8
+          },
+          {
+            "x": 312,
+            "y": 0,
+            "width": 8,
+            "height": 13
+          },
+          {
+            "x": 312,
+            "y": 13,
+            "width": 8,
+            "height": 40
+          },
+          {
+            "x": 312,
+            "y": 53,
+            "width": 8,
+            "height": 20
+          },
+          {
+            "x": 312,
+            "y": 73,
+            "width": 8,
+            "height": 85
+          },
+          {
+            "x": 312,
+            "y": 158,
+            "width": 8,
+            "height": 1
+          },
+          {
+            "x": 312,
+            "y": 159,
+            "width": 8,
+            "height": 2
+          },
+          {
+            "x": 312,
+            "y": 161,
+            "width": 8,
+            "height": 14
+          },
+          {
+            "x": 312,
+            "y": 175,
+            "width": 8,
+            "height": 3
+          },
+          {
+            "x": 312,
+            "y": 178,
+            "width": 8,
+            "height": 3.280000000000001
+          },
+          {
+            "x": 312,
+            "y": 181.28,
+            "width": 8,
+            "height": 11.719999999999999
+          },
+          {
+            "x": 312,
+            "y": 193,
+            "width": 8,
+            "height": 5
+          },
+          {
+            "x": 312,
+            "y": 198,
+            "width": 8,
+            "height": 0.28000000000000114
+          },
+          {
+            "x": 312,
+            "y": 198.28,
+            "width": 8,
+            "height": 23.400000000000006
+          },
+          {
+            "x": 312,
+            "y": 221.68,
+            "width": 8,
+            "height": 10.399999999999977
+          },
+          {
+            "x": 312,
+            "y": 232.07999999999998,
+            "width": 8,
+            "height": 11.920011777877818
+          },
+          {
+            "x": 312,
+            "y": 244.0000117778778,
+            "width": 8,
+            "height": 64.40000085830687
+          },
+          {
+            "x": 312,
+            "y": 308.40001263618467,
+            "width": 8,
+            "height": 4.999987363815308
+          },
+          {
+            "x": 312,
+            "y": 313.4,
+            "width": 8,
+            "height": 50
+          },
+          {
+            "x": 312,
+            "y": 363.4,
+            "width": 8,
+            "height": 19.999987792968795
+          },
+          {
+            "x": 315,
+            "y": 383.3999877929688,
+            "width": 5,
+            "height": 78.79999999999995
+          },
+          {
+            "x": 312,
+            "y": 462.1999877929687,
+            "width": 8,
+            "height": 14.800012207031273
+          },
+          {
+            "x": 315,
+            "y": 477,
+            "width": 5,
+            "height": 3
+          },
+          {
+            "x": 315,
+            "y": 480,
+            "width": 5,
+            "height": 54
+          },
+          {
+            "x": 315,
+            "y": 534,
+            "width": 5,
+            "height": 3
+          },
+          {
+            "x": 312,
+            "y": 537,
+            "width": 8,
+            "height": 31
+          },
+          {
+            "x": 0,
+            "y": 560,
+            "width": 320,
+            "height": 8
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 8,
+            "height": 13
+          },
+          {
+            "x": 0,
+            "y": 13,
+            "width": 8,
+            "height": 40
+          },
+          {
+            "x": 0,
+            "y": 53,
+            "width": 8,
+            "height": 20
+          },
+          {
+            "x": 0,
+            "y": 73,
+            "width": 5.000000762939454,
+            "height": 85
+          },
+          {
+            "x": 0,
+            "y": 158,
+            "width": 5.000000762939454,
+            "height": 1
+          },
+          {
+            "x": 0,
+            "y": 159,
+            "width": 8,
+            "height": 2
+          },
+          {
+            "x": 0,
+            "y": 161,
+            "width": 8,
+            "height": 14
+          },
+          {
+            "x": 0,
+            "y": 175,
+            "width": 8,
+            "height": 3
+          },
+          {
+            "x": 0,
+            "y": 178,
+            "width": 8,
+            "height": 3.280000000000001
+          },
+          {
+            "x": 0,
+            "y": 181.28,
+            "width": 8,
+            "height": 11.719999999999999
+          },
+          {
+            "x": 0,
+            "y": 193,
+            "width": 8,
+            "height": 5
+          },
+          {
+            "x": 0,
+            "y": 198,
+            "width": 8,
+            "height": 0.28000000000000114
+          },
+          {
+            "x": 0,
+            "y": 198.28,
+            "width": 8,
+            "height": 23.400000000000006
+          },
+          {
+            "x": 0,
+            "y": 221.68,
+            "width": 8,
+            "height": 10.399999999999977
+          },
+          {
+            "x": 0,
+            "y": 232.07999999999998,
+            "width": 8,
+            "height": 11.920011777877818
+          },
+          {
+            "x": 0,
+            "y": 244.0000117778778,
+            "width": 8,
+            "height": 64.40000085830687
+          },
+          {
+            "x": 0,
+            "y": 308.40001263618467,
+            "width": 8,
+            "height": 4.999987363815308
+          },
+          {
+            "x": 0,
+            "y": 313.4,
+            "width": 8,
+            "height": 50
+          },
+          {
+            "x": 0,
+            "y": 363.4,
+            "width": 8,
+            "height": 19.999987792968795
+          },
+          {
+            "x": 0,
+            "y": 383.3999877929688,
+            "width": 8,
+            "height": 78.79999999999995
+          },
+          {
+            "x": 0,
+            "y": 462.1999877929687,
+            "width": 8,
+            "height": 14.800012207031273
+          },
+          {
+            "x": 0,
+            "y": 477,
+            "width": 5,
+            "height": 3
+          },
+          {
+            "x": 0,
+            "y": 480,
+            "width": 5,
+            "height": 54
+          },
+          {
+            "x": 0,
+            "y": 534,
+            "width": 5,
+            "height": 3
+          },
+          {
+            "x": 0,
+            "y": 537,
+            "width": 8,
+            "height": 31
+          }
+        ],
+        "sharedMask": true,
+        "inkInput": false,
+        "stroke": {
+          "level": 0,
+          "reduced": true,
+          "localPhase": "static",
+          "localAge": 320,
+          "localAlpha": 0.78,
+          "localLineWidth": 4.5,
+          "framePhase": "idle",
+          "frameAge": 900,
+          "frameProgress": 1,
+          "frameAlpha": 0,
+          "lineWidth": 3.5,
+          "entered": [],
+          "updating": false
+        }
+      },
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "localScreenshotNames": [
+    "320-empty-inventory.png",
+    "shop-320x568-safe0-0.png",
+    "game-320x568-safe0-0.png",
+    "320-ink-entry.png"
+  ]
+}
