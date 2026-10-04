@@ -1071,7 +1071,7 @@ export class GameScene extends Phaser.Scene {
     texts.forEach((text,i)=>fitScoreLine(text,cells[i],i===2?(s.height>=108?36:24):18,true));
     const guarded=[this.resultText,...this.scoreLabels,...texts,this.breakdownText,this.previousHandText].filter(t=>t?.active&&t.visible);
     const bodies=[...this.cardViews.map(v=>v.container),...[...this.settledCards.values()].map(v=>v.container),
-      ...this.jokerViews.values(),this.roleFrame,this.playButton,this.discardButton,this.rankButton,this.suitButton];
+      ...this.jokerViews.values(),this.roleFrame,this.playButton,this.discardButton,this.rankButton,this.suitButton,...(this.inventoryButton?[this.inventoryButton]:[])];
     const guards=[caption,...guarded.map(t=>{const b=t.getBounds();return {x:b.x-5-b.width*.04,y:b.y-3,width:b.width*1.08+10,height:b.height*1.08+6};}),
       ...bodies.filter(o=>o?.active&&o.visible).map(o=>{const b=o.getBounds();return {x:b.x-3,y:b.y-3,width:b.width+6,height:b.height+6};}),
       ...Object.values(l.buttons),...Object.values(l.tableActions)];
