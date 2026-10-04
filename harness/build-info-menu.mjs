@@ -18,13 +18,15 @@ const html=await readFile(buildDir+'/index.html','utf8'),asset=html.match(/src="
 const original=await readFile(buildDir+'/'+asset,'utf8');
 const literal=/\{version:"C03",builtAt:"[^"\n]+",revision:"[a-f0-9]{40}",sourceStatus:"clean",modified:!1\}/g;
 assert.equal([...original.matchAll(literal)].length,1,'exactly one embedded metadata object');
+const embedded=JSON.parse([...original.matchAll(literal)][0][0].replace(/\b(version|builtAt|revision|sourceStatus|modified):/g,'"$1":').replace('!1','false'));
+assert.deepEqual(embedded,metadata,'emitted identity equals the original executable bundle identity');
 const {version,revision,builtAt}=metadata;
 const cases=[
   {name:'clean',fixture:false,metadata,expected:'构建时：已核对，没有未提交修改。'},
   {name:'dirty',fixture:true,metadata:{version,revision,builtAt,sourceStatus:'dirty',modified:true,modifiedFileCount:3,modifiedFiles:['src/game/RunMenu.ts','src/platform/buildInfo.ts','src/diagnostics/'+('long folder/').repeat(9)+'with space/version-status.ts']},expected:'构建时：有尚未提交的文件修改（3 个文件）。'},
   {name:'unknown',fixture:true,metadata:{version,revision,builtAt,sourceStatus:'unknown',modified:null},expected:'构建时：无法核对文件是否有修改。'},
 ];
-const report={status:'IN_PROGRESS',testedCommit:source,build:metadata,bundle:{file:asset,sha256:hash(Buffer.from(original))},viewport:{width:390,height:740},DPR:1,cases:[],images:[],uncaughtPageErrors:[],forbiddenMetadataRequests:0,limits:['Headless software Canvas/touch at one viewport; real phone/GPU/listening NOT_RUN.','Clean uses the actual unmodified bundle. Dirty/unknown replace only its embedded metadata object before execution; they do not diagnose an actual dirty/failed deployed build.','One ordinary new run to await-input, no scoring/discard/tool/score/RNG injection. Subsequent cases continue the same saved run in the same browser context.','No HTTP request to /build-info.json or external deployed endpoint. No game/domain/save code is replaced.']};
+const report={status:'IN_PROGRESS',testedCommit:source,build:metadata,emittedEqualsEmbeddedIdentity:true,bundle:{file:asset,sha256:hash(Buffer.from(original))},viewport:{width:390,height:740},DPR:1,cases:[],images:[],uncaughtPageErrors:[],forbiddenMetadataRequests:0,limits:['Headless software Canvas/touch at one viewport; real phone/GPU/listening NOT_RUN.','Clean uses the actual unmodified bundle. Dirty/unknown replace only its embedded metadata object before execution; they do not diagnose an actual dirty/failed deployed build.','One ordinary new run to await-input, no scoring/discard/tool/score/RNG injection. Subsequent cases continue the same saved run in the same browser context.','No HTTP request to /build-info.json or external deployed endpoint. No game/domain/save code is replaced.']};
 const server=await preview({build:{outDir:buildDir},preview:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});
 const context=await browser.newContext({viewport:report.viewport,deviceScaleFactor:1,hasTouch:true,reducedMotion:'no-preference',acceptDownloads:true});
