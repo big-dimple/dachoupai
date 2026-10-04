@@ -24,7 +24,7 @@ import {HAND_LABELS} from '../content/handLabels';
 import {heatText,fractionText} from './scoreText';
 import {scoreCelebration} from './scoreCelebration';
 import {scoreBeat,scoreFireLevel,fourCardFormation,scorePacketSymbol,type ScoreBeat} from './scorePresentation';
-import {ScoreFlame} from './ScoreFlame';
+import {ScoreFlame,orderScoreBrushLayers} from './ScoreFlame';
 import {stageNotice} from './stageNotice';
 import type {R2RunState as RunState,DomainEvent} from '../domain/run';
 import {R2_LIMITS,getR2Stage as getStage,r2ScoreContext,r2DiscardCost} from '../domain/r2Run';
@@ -302,8 +302,8 @@ export class GameScene extends Phaser.Scene {
     if(portrait){this.roleText.setVisible(false);this.goldText.setFontSize(14).setOrigin(0,0).setPosition(h.x+144,h.y+6);this.heatText.setPosition(h.x+64,h.y+28).setFontSize(16).setWordWrapWidth(h.width-168);}
     this.renderJokerRack();
     const s=l.scoreBoard;
-    v.material(s,T.paperLight,T.paperLight,4);
-    v.add(this.add.graphics().lineStyle(1,T.ink,.26).strokeRoundedRect(s.x,s.y,s.width,s.height,4));
+    v.material(s,T.paperLight,T.paperLight,4).setName('score/board-paper');
+    v.add(this.add.graphics().lineStyle(1,T.ink,.26).strokeRoundedRect(s.x,s.y,s.width,s.height,4)).setName('score/board-border');
     this.resultText=v.text(s.x+8,s.y+6,'选牌，准备开演',17,C.ink).setName('score/source');
     const pedestal=scorePedestal(s);
     if(pedestal){
@@ -1214,9 +1214,10 @@ export class GameScene extends Phaser.Scene {
   }
   private keepScoreReadable():void {
     this.fitScoreReadouts();
-    const base=this.view.root.list.find(o=>o.name==='score/total-pedestal');
-    if(base){this.view.root.bringToTop(base);if(this.scoreFlame?.graphic.active)this.view.root.moveAbove(this.scoreFlame.graphic,base);}
-    for(const text of [this.resultText,...this.scoreLabels,this.scoreHeat,this.scoreMult,this.scoreTotal,this.breakdownText,this.previousHandText])if(text.active)this.view.root.bringToTop(text);
+    const controls=this.view.root.list.filter(o=>o.name.startsWith('action/'));
+    const foreground=[this.roleFrame,...this.cardViews.map(v=>v.container),...[...this.settledCards.values()].map(v=>v.container),...this.jokerViews.values(),
+      ...controls.flatMap(o=>[o,o.getData('buttonArt'),o.getData('label')])].filter(o=>o?.active);
+    orderScoreBrushLayers(this.view.root,foreground,[this.resultText,...this.scoreLabels,this.scoreHeat,this.scoreMult,this.scoreTotal,this.breakdownText,this.previousHandText]);
   }
   private transferToAccumulator(event:ScoreEvent,card:CardView|undefined,duration:number,context:EffectContext):Promise<void> {
     if(this.reducedMotion||context.signal.aborted)return Promise.resolve();

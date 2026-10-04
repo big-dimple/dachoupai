@@ -2,7 +2,7 @@ import {describe,it,expect,vi} from 'vitest';
 import type Phaser from 'phaser';
 import {layout,intersects,type Box} from '../src/game/layout';
 vi.mock('phaser',()=>({default:{Scenes:{Events:{UPDATE:'update',SHUTDOWN:'shutdown',DESTROY:'destroy'}}}}));
-import {ScoreFlame,scoreFlameFrameBands} from '../src/game/ScoreFlame';
+import {ScoreFlame,scoreFlameFrameBands,orderScoreBrushLayers} from '../src/game/ScoreFlame';
 
 function fixture(box={x:12,y:174,width:366,height:132},frame={x:4,y:4,width:382,height:732}){
   const callbacks=new Map<string,{fn:Function;context:unknown}[]>();
@@ -57,6 +57,22 @@ describe('bounded cinnabar score strokes',()=>{
     expect(f.state()).toMatchObject({level:1,frameAge:900,framePhase:'static'});expect(f.updates()).toBe(0);
     f.flame.set(3);expect(f.state()).toMatchObject({level:3,frameAge:900,framePhase:'static'});
     f.flame.set(0);expect(f.objects.find(o=>o.name==='score/fire-frame').visible).toBe(false);f.flame.destroy();
+  });
+  it('consumes crossed tiers so 0 → 3 → 1 → 2 never rewrites a lower frame',()=>{
+    const f=fixture();f.flame.set(3);expect(f.state().entered).toEqual([1,2,3]);f.events.emit('update',40);
+    for(const tier of [1,2,3] as const){f.flame.set(tier);expect(f.state()).toMatchObject({frameAge:900,framePhase:'static'});expect(f.updates()).toBe(0);}f.flame.destroy();
+  });
+  it('orders a nonempty paper/ink/foreground stack independently of a previously lifted caption',()=>{
+    const nodes=['background','card/one','button/art','action/play','score/board-paper','score/board-border','score/total-pedestal','score/fire-frame','score/fire','score/total','score/source'].map(name=>({name,active:true}));
+    const root={list:[...nodes],moveBelow(object:typeof nodes[number],anchor:typeof nodes[number]){this.list.splice(this.list.indexOf(object),1);this.list.splice(this.list.indexOf(anchor),0,object);},bringToTop(object:typeof nodes[number]){this.list.splice(this.list.indexOf(object),1);this.list.push(object);}};
+    const byName=(name:string)=>nodes.find(n=>n.name===name)!,index=(name:string)=>root.list.indexOf(byName(name));
+    const foreground=['card/one','button/art','action/play'].map(byName),texts=['score/total','score/source'].map(byName);
+    for(let repetition=0;repetition<2;repetition++){
+      root.bringToTop(byName('score/total-pedestal'));root.bringToTop(byName('score/source'));
+      orderScoreBrushLayers(root as unknown as Phaser.GameObjects.Container,foreground as unknown as Phaser.GameObjects.GameObject[],texts as unknown as Phaser.GameObjects.GameObject[]);
+      expect(index('background')).toBe(0);expect(index('score/fire-frame')).toBeLessThan(index('score/board-paper'));expect(index('score/board-paper')).toBeLessThan(index('score/total-pedestal'));
+      expect(index('score/total-pedestal')).toBeLessThan(index('score/fire'));for(const node of [...foreground,...texts])expect(root.list.indexOf(node)).toBeGreaterThan(index('score/fire'));
+    }
   });
   it('deduplicates reduced hits before early exit, and consumes each tier without update listeners',()=>{
     const f=fixture();f.flame.set(0,true);f.flame.impact('quiet');expect(f.state().localPhase).toBe('static');expect(f.updates()).toBe(0);

@@ -9,6 +9,15 @@ type Point={x:number;y:number};
 type Stroke={points:readonly Point[];length:number};
 const stroke=(points:readonly Point[]):Stroke=>({points,length:points.slice(1).reduce((sum,p,i)=>sum+Math.hypot(p.x-points[i].x,p.y-points[i].y),0)});
 
+/** Keep the paper/ink stack below actual foreground objects, even after text was lifted. */
+export function orderScoreBrushLayers(root:Phaser.GameObjects.Container,foreground:readonly Phaser.GameObjects.GameObject[],readouts:readonly Phaser.GameObjects.GameObject[]):void {
+  const anchor=root.list.find(object=>foreground.includes(object));
+  if(anchor)for(const name of ['score/fire-frame','score/board-paper','score/board-border','score/total-pedestal','score/fire']){
+    const object=root.list.find(o=>o.name===name);if(object)root.moveBelow(object,anchor);
+  }
+  for(const text of readouts)if(text?.active)root.bringToTop(text);
+}
+
 /** The existing eight-pixel exterior gutter, in CSS world coordinates. */
 export function scoreFlameFrameBands(frame:Box):{outer:Box;depth:number;bands:Box[]}|undefined {
   if(![frame.x,frame.y,frame.width,frame.height].every(Number.isFinite)||frame.width<=0||frame.height<=0)return;
@@ -69,8 +78,9 @@ export class ScoreFlame {
     root.add([this.frameGraphic,this.graphic]);
     // Exterior strokes stay behind the score/card planes. GameScene places only
     // the local hit above the opaque score pedestal and below measured text.
-    const caption=root.list?.find(object=>object.name==='score/source');
-    if(caption){root.moveBelow(this.frameGraphic,caption);root.moveBelow(this.graphic,caption);}
+    const paper=root.list?.find(object=>object.name==='score/board-paper'),base=root.list?.find(object=>object.name==='score/total-pedestal');
+    if(paper)root.moveBelow(this.frameGraphic,paper);
+    if(base)root.moveAbove(this.graphic,base);
     this.safetyGraphic=scene.add.graphics().setName('score/fire-safe-area').setVisible(false);
     this.safetyMask=this.safetyGraphic.createGeometryMask();
     this.graphic.setMask(this.safetyMask);this.frameGraphic.setMask(this.safetyMask);
@@ -82,7 +92,7 @@ export class ScoreFlame {
   set(level:Level,reduced=false):void {
     if(this.destroyed||level===this.level&&reduced===this.reduced)return;
     const previous=this.level,first=level>previous&&!this.entered.has(level);
-    if(level>0)this.entered.add(level);
+    for(let tier=1;tier<=level;tier++)this.entered.add(tier as Level);
     this.level=level;this.reduced=reduced;
     this.frameAge=first&&!reduced?0:900;
     if(level<previous||reduced)this.hitAge=320;
