@@ -1,0 +1,63 @@
+{
+  "scope": "Minimal build source verification module; RunMenu integration belongs to parallel phone-UI task.",
+  "baseCommit": "58e9d223ee5f29b965532551e71afc6fc6785d51",
+  "testedSource": "525b604600eac06cc7d917803e9a05623d7c5a4d",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-04T21:09:02.323Z",
+    "revision": "525b604600eac06cc7d917803e9a05623d7c5a4d",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "bundle": {
+    "file": "assets/index-1yDA5ksB.js",
+    "bytes": 1979074,
+    "sha256": "066deb5d0bf0c3e1c2fa27bffa67160c568ffe932d8789e6c8c565ed3a70dd40"
+  },
+  "checks": {
+    "targetedTests": {
+      "command": "npx vitest run tests/build-info.test.ts",
+      "files": 1,
+      "tests": 11,
+      "status": "PASS"
+    },
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "emittedIdentityEqualsEmbeddedBundleIdentity": true,
+    "productionPlan": "PASS",
+    "gameDomainSaveContentAudioAssetsAndScenesUnchanged": true
+  },
+  "buildLog": {
+    "retainedLocator": "shots/build-info-tristate/build.log",
+    "bytes": 1165,
+    "sha256": "69aa18bcb2eab0595ed355a6c57ee628c514b64c485abdb20d4628d033dfef94"
+  },
+  "triState": {
+    "clean": {
+      "modified": false,
+      "filesAndCount": "omitted"
+    },
+    "dirty": {
+      "modified": true,
+      "filesAndCount": "only safe tracked repository-relative paths; count includes withheld unsafe names"
+    },
+    "unknown": {
+      "modified": null,
+      "filesAndCount": "omitted"
+    }
+  },
+  "interface": {
+    "collector": "scripts/build-info.ts#collectBuildInfo",
+    "pureLogicAndFormatting": "src/platform/buildMetadata.ts",
+    "runtimeFacade": "src/platform/buildInfo.ts",
+    "formatFunction": "formatBuildInfo(buildInfo)",
+    "menuIntegration": "PENDING parallel task 01a108b2-fd7a-71eb-becd-6f424ee0f0f1; RunMenu.ts deliberately untouched"
+  },
+  "limits": [
+    "The actual reason for the old deployed local-changes label remains unknown. This code does not retroactively diagnose it.",
+    "No HTTP request to /build-info.json, changed headers, route fallback or network bypass. Only local emitted files were read.",
+    "No gameplay, scoring, RNG, save, resource, update prompt or deployment system changes.",
+    "Current RunMenu still uses its old boolean text until the parallel owner connects formatBuildInfo.",
+    "Real phone/GPU/listening and deployed-state verification NOT_RUN."
+  ]
+}
