@@ -180,7 +180,7 @@ describe('registered Joker thumbnail recovery',()=>{
     requestJokerArt(scene.phaser,ids,vi.fn());expect(prefetchDetailArt).toHaveBeenCalledTimes(2);
   });
 
-  it.each([{reviewed:['f09','f04']},...['pengci','mantangcai','huimaqiang','jiedongfeng'].map(id=>({reviewed:[id]})),...['b07','a09','d06','a04','e04','c05','c02','f03','a03','b02','b04','c04','d01','f02','d10','e01'].map(id=>({reviewed:[id]}))])('does not prefetch reviewed handdrawn HD before opening detail, including cached thumbnails: $reviewed',({reviewed})=>{
+  it.each([{reviewed:['f09','f04']},...['pengci','mantangcai','huimaqiang','jiedongfeng'].map(id=>({reviewed:[id]})),...['b07','a09','d06','a04','e04','c05','c02','f03','a03','b02','b04','c04','d01','f02','d10','e01','b05','b10','b08','d05','e03','e06','f05','f11'].map(id=>({reviewed:[id]}))])('does not prefetch reviewed handdrawn HD before opening detail, including cached thumbnails: $reviewed',({reviewed})=>{
     for(const id of reviewed)expect(JOKER_ART.find(art=>art.id===id)?.detailOnDemand).toBe(true);
     const scene=new FakeScene();requestJokerArt(scene.phaser,reviewed,vi.fn());
     expect(scene.load.requests).toHaveLength(reviewed.length);

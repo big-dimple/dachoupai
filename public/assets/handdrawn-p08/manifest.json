@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "originalArtworkCount": 44,
-  "runtimeFileCount": 91,
-  "runtimeBytes": 2598778,
+  "originalArtworkCount": 52,
+  "runtimeFileCount": 107,
+  "runtimeBytes": 3090260,
   "sourceCommit": "c618cee93089bb2e556f16567709b0ea23abbcb9",
   "assets": [
     {
@@ -1044,6 +1044,198 @@
           "path": "cards/e01.detail.webp"
         }
       ]
+    },
+    {
+      "id": "b05",
+      "category": "functional-card",
+      "sourceCommit": "b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb",
+      "sourceManifestSHA256": "f5e99f342787eb159fd538a07e71eb9bd3613a462f23cebe6ec24b88435d5053",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 3964,
+          "sha256": "b82c77bb3a112c6f6fab449f29276b60317389b5a7ce1c45c3b1b33e642d14be",
+          "purpose": "thumbnail",
+          "path": "cards/b05.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 58710,
+          "sha256": "b9f9d074cd674ee87613e9710ea5bad993c666ffd66a46b0a7045e2ca12467df",
+          "purpose": "detail",
+          "path": "cards/b05.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "b10",
+      "category": "functional-card",
+      "sourceCommit": "b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb",
+      "sourceManifestSHA256": "f5e99f342787eb159fd538a07e71eb9bd3613a462f23cebe6ec24b88435d5053",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 4410,
+          "sha256": "ea36c7963037921a9b2ea7a9564bbb92edec1bd8f81835086e376715e7775097",
+          "purpose": "thumbnail",
+          "path": "cards/b10.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 68022,
+          "sha256": "e4ebe4c9f8e35b55ade5e06d65ec5d8af36e6d35d5db664a6588bf0efce58d21",
+          "purpose": "detail",
+          "path": "cards/b10.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "b08",
+      "category": "functional-card",
+      "sourceCommit": "b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb",
+      "sourceManifestSHA256": "f5e99f342787eb159fd538a07e71eb9bd3613a462f23cebe6ec24b88435d5053",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 4012,
+          "sha256": "67eab06f994061d93c6ef08c8f9bd9d564e264ca7e004066dd2af533d4fbd71d",
+          "purpose": "thumbnail",
+          "path": "cards/b08.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 51484,
+          "sha256": "663cf3f4e63ac0bdc884ecc18e6506b82db407871db5edb35b2a5892f19e660b",
+          "purpose": "detail",
+          "path": "cards/b08.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "d05",
+      "category": "functional-card",
+      "sourceCommit": "b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb",
+      "sourceManifestSHA256": "f5e99f342787eb159fd538a07e71eb9bd3613a462f23cebe6ec24b88435d5053",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 3964,
+          "sha256": "fa36a9a673ff76887cb929ee0883e925cb555bcf0131c701c84cbcc25bd202e4",
+          "purpose": "thumbnail",
+          "path": "cards/d05.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 49674,
+          "sha256": "f3bef5c31fb2347d4b897fd36e6f16779764f7dee3d6c8ce95d3d54f5a72edb7",
+          "purpose": "detail",
+          "path": "cards/d05.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "e03",
+      "category": "functional-card",
+      "sourceCommit": "b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb",
+      "sourceManifestSHA256": "f5e99f342787eb159fd538a07e71eb9bd3613a462f23cebe6ec24b88435d5053",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 3976,
+          "sha256": "7c9c56f004836ca1829905c2b3f4a10de69e051f2f8e93edcc22ce454224e0da",
+          "purpose": "thumbnail",
+          "path": "cards/e03.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 56200,
+          "sha256": "70899d1a50a8ee9919a2c961a4a0f7af9b1844f563824c51854d28c5333e9585",
+          "purpose": "detail",
+          "path": "cards/e03.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "e06",
+      "category": "functional-card",
+      "sourceCommit": "b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb",
+      "sourceManifestSHA256": "f5e99f342787eb159fd538a07e71eb9bd3613a462f23cebe6ec24b88435d5053",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 4054,
+          "sha256": "48061b00c7a37564a75b872b83777e3d32457224849e5c07ae000ca6e0a8ccdb",
+          "purpose": "thumbnail",
+          "path": "cards/e06.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 66912,
+          "sha256": "8404790a164ecc21aba0c50d3d81ba7fdf40878bece4b3a16af7a68758e68bc6",
+          "purpose": "detail",
+          "path": "cards/e06.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "f05",
+      "category": "functional-card",
+      "sourceCommit": "b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb",
+      "sourceManifestSHA256": "f5e99f342787eb159fd538a07e71eb9bd3613a462f23cebe6ec24b88435d5053",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 4440,
+          "sha256": "72c0f406854fe1549ccc4fba2db0bd185097e656a72baf939d29f10ad4622858",
+          "purpose": "thumbnail",
+          "path": "cards/f05.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 54602,
+          "sha256": "0e651b2efd4bfdc583401b9bf0d2b1294b7bde763abe74cfa6ff89ac82ef3fde",
+          "purpose": "detail",
+          "path": "cards/f05.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "f11",
+      "category": "functional-card",
+      "sourceCommit": "b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb",
+      "sourceManifestSHA256": "f5e99f342787eb159fd538a07e71eb9bd3613a462f23cebe6ec24b88435d5053",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 4074,
+          "sha256": "35370ccfa0bb71f3bd909fa24103f066dab108f3188a880942b7e9860c2588bc",
+          "purpose": "thumbnail",
+          "path": "cards/f11.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 52984,
+          "sha256": "fb6db7af2b25ec2a8f329b2496cb224c86772608a632cc2193f006389d118320",
+          "purpose": "detail",
+          "path": "cards/f11.detail.webp"
+        }
+      ]
     }
   ],
   "sourceCommits": [
@@ -1052,6 +1244,7 @@
     "b0394efd921fc05d936ea3519d2b401a1cba9abd",
     "41e78e1eac85920cede9ed867e4dabb8bba4f5c4",
     "1671376cde093f1450e07564815468dafbfe070a",
-    "421dbf9f7a1a09ca81f275ad8c32eafac4b14db5"
+    "421dbf9f7a1a09ca81f275ad8c32eafac4b14db5",
+    "b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb"
   ]
 }
