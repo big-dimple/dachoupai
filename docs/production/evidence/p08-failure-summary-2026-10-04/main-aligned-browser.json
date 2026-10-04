@@ -1,0 +1,969 @@
+{
+  "phase": "after",
+  "renderer": "Canvas",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "safeInset": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+  },
+  "build": {
+    "version": "C03",
+    "revision": "0aa73999854044771955c60dea8ef3ada22c7b33",
+    "modified": true,
+    "builtAt": "2026-10-04T18:08:40.514Z"
+  },
+  "routes": [
+    {
+      "route": "win",
+      "natural": true,
+      "phase": "stage-cleared",
+      "lastHandScore": "1200",
+      "stageHeat": "1200",
+      "target": "400",
+      "goldEarned": 8,
+      "key": [
+        {
+          "name": "result/title",
+          "text": "一场好戏，满堂喝彩！",
+          "color": "#26313A",
+          "font": "26px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 12,
+            "y": 42,
+            "width": 261,
+            "height": 27
+          },
+          "contrastOnPaper": 11.121147708446662
+        },
+        {
+          "name": "result/formula",
+          "text": "300 热度 × 4",
+          "color": "#26313a",
+          "font": "22px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 132.5,
+            "y": 168,
+            "width": 125,
+            "height": 25
+          },
+          "contrastOnPaper": 11.121147708446662
+        },
+        {
+          "name": "result/score",
+          "text": "+1,200",
+          "color": "#26313a",
+          "font": "66.12px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 92.5,
+            "y": 202,
+            "width": 205,
+            "height": 76
+          },
+          "contrastOnPaper": 11.121147708446662
+        },
+        {
+          "name": "result/gap",
+          "text": "全场 1,200 / 400",
+          "color": "#26313a",
+          "font": "20px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 122,
+            "y": 344,
+            "width": 146,
+            "height": 23
+          },
+          "contrastOnPaper": 11.121147708446662
+        },
+        {
+          "name": "result/reward",
+          "text": "过关奖励  +8 金",
+          "color": "#26313a",
+          "font": "22px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 118,
+            "y": 412,
+            "width": 154,
+            "height": 25
+          },
+          "contrastOnPaper": 11.121147708446662
+        }
+      ],
+      "mobile": {
+        "renderer": 1,
+        "texts": [
+          {
+            "name": "",
+            "text": "第 1 章 · 暖场 · 老幻",
+            "color": "#3F606B",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 12,
+              "y": 8,
+              "width": 125,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/title",
+            "text": "一场好戏，满堂喝彩！",
+            "color": "#26313A",
+            "font": "26px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 12,
+              "y": 42,
+              "width": 261,
+              "height": 27
+            },
+            "contrastOnPaper": 11.121147708446662
+          },
+          {
+            "name": "",
+            "text": "同花",
+            "color": "#26313a",
+            "font": "24px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 171,
+              "y": 134,
+              "width": 48,
+              "height": 27
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "300 热度 × 4",
+            "color": "#26313a",
+            "font": "22px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 132.5,
+              "y": 168,
+              "width": 125,
+              "height": 25
+            },
+            "contrastOnPaper": 11.121147708446662
+          },
+          {
+            "name": "result/score",
+            "text": "+1,200",
+            "color": "#26313a",
+            "font": "66.12px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 92.5,
+              "y": 202,
+              "width": 205,
+              "height": 76
+            },
+            "contrastOnPaper": 11.121147708446662
+          },
+          {
+            "name": "",
+            "text": "老幻",
+            "color": "#3F606B",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 181,
+              "y": 294,
+              "width": 28,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "全场 1,200 / 400",
+            "color": "#26313a",
+            "font": "20px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 122,
+              "y": 344,
+              "width": 146,
+              "height": 23
+            },
+            "contrastOnPaper": 11.121147708446662
+          },
+          {
+            "name": "result/reward",
+            "text": "过关奖励  +8 金",
+            "color": "#26313a",
+            "font": "22px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 118,
+              "y": 412,
+              "width": 154,
+              "height": 25
+            },
+            "contrastOnPaper": 11.121147708446662
+          },
+          {
+            "name": "",
+            "text": "准备下一场",
+            "color": "#26313A",
+            "font": "18px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 26,
+              "y": 486,
+              "width": 90,
+              "height": 21
+            }
+          },
+          {
+            "name": "",
+            "text": "第 1 章 · 正场 · 目标 600\n后台补牌后，出牌与弃牌次数补满。",
+            "color": "#26313A",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 26,
+              "y": 515,
+              "width": 224,
+              "height": 34
+            }
+          },
+          {
+            "name": "",
+            "text": "本场详情",
+            "color": "#3f606b",
+            "font": "15px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 71.5,
+              "y": 604.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "name": "",
+            "text": "前往商店",
+            "color": "#fff9ee",
+            "font": "22px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 150.5,
+              "y": 658.5,
+              "width": 89,
+              "height": 25
+            }
+          },
+          {
+            "name": "",
+            "text": "回看上手",
+            "color": "#3f606b",
+            "font": "15px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 258.5,
+              "y": 604.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "name": "",
+            "text": "",
+            "color": "#3F606B",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 12,
+              "y": 708,
+              "width": 0,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "desktop": {
+        "renderer": 1,
+        "texts": [
+          {
+            "name": "",
+            "text": "第 1 章 · 暖场 · 老幻",
+            "color": "#3F606B",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 150,
+              "y": 8,
+              "width": 125,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/title",
+            "text": "一场好戏，满堂喝彩！",
+            "color": "#26313A",
+            "font": "34px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 150,
+              "y": 42,
+              "width": 340,
+              "height": 36
+            }
+          },
+          {
+            "name": "",
+            "text": "同花",
+            "color": "#26313a",
+            "font": "24px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 616,
+              "y": 120,
+              "width": 48,
+              "height": 27
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "300 热度 × 4",
+            "color": "#26313a",
+            "font": "22px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 577.5,
+              "y": 154,
+              "width": 125,
+              "height": 25
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+1,200",
+            "color": "#26313a",
+            "font": "68px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 535,
+              "y": 188,
+              "width": 210,
+              "height": 77
+            }
+          },
+          {
+            "name": "",
+            "text": "老幻",
+            "color": "#3F606B",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 626,
+              "y": 281,
+              "width": 28,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "全场 1,200 / 400",
+            "color": "#26313a",
+            "font": "20px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 567,
+              "y": 356,
+              "width": 146,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "过关奖励  +8 金",
+            "color": "#26313a",
+            "font": "22px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 600.6,
+              "y": 424,
+              "width": 154,
+              "height": 25
+            }
+          },
+          {
+            "name": "",
+            "text": "准备下一场",
+            "color": "#26313A",
+            "font": "18px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 164,
+              "y": 498,
+              "width": 90,
+              "height": 21
+            }
+          },
+          {
+            "name": "",
+            "text": "第 1 章 · 正场 · 目标 600\n后台补牌后，出牌与弃牌次数补满。",
+            "color": "#26313A",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 164,
+              "y": 527,
+              "width": 224,
+              "height": 34
+            }
+          },
+          {
+            "name": "",
+            "text": "本场详情",
+            "color": "#3f606b",
+            "font": "15px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 256.5,
+              "y": 628.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "name": "",
+            "text": "前往商店",
+            "color": "#fff9ee",
+            "font": "22px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 598.5,
+              "y": 630.5,
+              "width": 89,
+              "height": 25
+            }
+          },
+          {
+            "name": "",
+            "text": "回看上手",
+            "color": "#3f606b",
+            "font": "15px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 965.5,
+              "y": 628.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "name": "",
+            "text": "",
+            "color": "#3F606B",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 150,
+              "y": 680,
+              "width": 0,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "checks": [
+        "native selected/play inputs",
+        "saved exact result",
+        "resize full run unchanged",
+        "reload/continue no second reward",
+        "native continue to shop"
+      ]
+    },
+    {
+      "route": "loss",
+      "natural": true,
+      "phase": "run-lost",
+      "lastHandScore": "25",
+      "stageHeat": "95",
+      "target": "400",
+      "goldEarned": 0,
+      "key": [
+        {
+          "name": "result/title",
+          "text": "演出失败",
+          "color": "#26313A",
+          "font": "26px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 142.5,
+            "y": 133,
+            "width": 105,
+            "height": 27
+          },
+          "contrastOnPaper": 11.121147708446662
+        },
+        {
+          "name": "result/failure-reason",
+          "text": "出牌次数已用完",
+          "color": "#26313a",
+          "font": "16px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 138.5,
+            "y": 187,
+            "width": 113,
+            "height": 19
+          },
+          "contrastOnPaper": 11.121147708446662
+        },
+        {
+          "name": "result/last-hand",
+          "text": "最后一手：高牌 · 25 热度",
+          "color": "#3f606b",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 116,
+            "y": 219,
+            "width": 158,
+            "height": 16
+          },
+          "contrastOnPaper": 5.684226677407315
+        },
+        {
+          "name": "result/resources",
+          "text": "剩余出牌 0 次 · 弃牌 3 次",
+          "color": "#3f606b",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 117,
+            "y": 245,
+            "width": 156,
+            "height": 16
+          },
+          "contrastOnPaper": 5.684226677407315
+        },
+        {
+          "name": "result/gap",
+          "text": "95 / 400 · 差 305",
+          "color": "#26313a",
+          "font": "16px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 135,
+            "y": 305,
+            "width": 120,
+            "height": 19
+          },
+          "contrastOnPaper": 11.121147708446662
+        }
+      ],
+      "mobile": {
+        "renderer": 1,
+        "texts": [
+          {
+            "name": "",
+            "text": "第 1 章 · 暖场 · 老幻",
+            "color": "#3F606B",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 12,
+              "y": 8,
+              "width": 125,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/title",
+            "text": "演出失败",
+            "color": "#26313A",
+            "font": "26px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 142.5,
+              "y": 133,
+              "width": 105,
+              "height": 27
+            },
+            "contrastOnPaper": 11.121147708446662
+          },
+          {
+            "name": "result/failure-reason",
+            "text": "出牌次数已用完",
+            "color": "#26313a",
+            "font": "16px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 138.5,
+              "y": 187,
+              "width": 113,
+              "height": 19
+            },
+            "contrastOnPaper": 11.121147708446662
+          },
+          {
+            "name": "result/last-hand",
+            "text": "最后一手：高牌 · 25 热度",
+            "color": "#3f606b",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 116,
+              "y": 219,
+              "width": 158,
+              "height": 16
+            },
+            "contrastOnPaper": 5.684226677407315
+          },
+          {
+            "name": "result/resources",
+            "text": "剩余出牌 0 次 · 弃牌 3 次",
+            "color": "#3f606b",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 117,
+              "y": 245,
+              "width": 156,
+              "height": 16
+            },
+            "contrastOnPaper": 5.684226677407315
+          },
+          {
+            "name": "result/gap",
+            "text": "95 / 400 · 差 305",
+            "color": "#26313a",
+            "font": "16px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 135,
+              "y": 305,
+              "width": 120,
+              "height": 19
+            },
+            "contrastOnPaper": 11.121147708446662
+          },
+          {
+            "name": "",
+            "text": "返回选角",
+            "color": "#3f606b",
+            "font": "15px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 71.5,
+              "y": 452.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "name": "",
+            "text": "同局重试",
+            "color": "#fff9ee",
+            "font": "22px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 150.5,
+              "y": 390.5,
+              "width": 89,
+              "height": 25
+            }
+          },
+          {
+            "name": "",
+            "text": "本场详情",
+            "color": "#3f606b",
+            "font": "15px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 258.5,
+              "y": 452.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "name": "",
+            "text": "同局重试沿用角色与开局种子。",
+            "color": "#3F606B",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 12,
+              "y": 494,
+              "width": 196,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "desktop": {
+        "renderer": 1,
+        "texts": [
+          {
+            "name": "",
+            "text": "第 1 章 · 暖场 · 老幻",
+            "color": "#3F606B",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 150,
+              "y": 8,
+              "width": 125,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/title",
+            "text": "演出失败",
+            "color": "#26313A",
+            "font": "34px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 572,
+              "y": 130,
+              "width": 136,
+              "height": 36
+            }
+          },
+          {
+            "name": "result/failure-reason",
+            "text": "出牌次数已用完",
+            "color": "#26313a",
+            "font": "16px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 583.5,
+              "y": 184,
+              "width": 113,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/last-hand",
+            "text": "最后一手：高牌 · 25 热度",
+            "color": "#3f606b",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 561,
+              "y": 216,
+              "width": 158,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/resources",
+            "text": "剩余出牌 0 次 · 弃牌 3 次",
+            "color": "#3f606b",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 562,
+              "y": 242,
+              "width": 156,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "95 / 400 · 差 305",
+            "color": "#26313a",
+            "font": "22px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 558,
+              "y": 298,
+              "width": 164,
+              "height": 25
+            }
+          },
+          {
+            "name": "",
+            "text": "返回选角",
+            "color": "#3f606b",
+            "font": "15px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 502.5,
+              "y": 444.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "name": "",
+            "text": "同局重试",
+            "color": "#fff9ee",
+            "font": "22px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 595.5,
+              "y": 382.5,
+              "width": 89,
+              "height": 25
+            }
+          },
+          {
+            "name": "",
+            "text": "本场详情",
+            "color": "#3f606b",
+            "font": "15px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 716.5,
+              "y": 444.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "name": "",
+            "text": "同局重试沿用角色与开局种子。",
+            "color": "#3F606B",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 150,
+              "y": 486,
+              "width": 196,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "short": {
+        "renderer": 1,
+        "texts": [
+          {
+            "name": "",
+            "text": "第 1 章 · 暖场 · 老幻",
+            "color": "#3F606B",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 12,
+              "y": 12,
+              "width": 125,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/title",
+            "text": "演出失败",
+            "color": "#26313A",
+            "font": "22px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 377.5,
+              "y": 54,
+              "width": 89,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/failure-reason",
+            "text": "出牌次数已用完",
+            "color": "#26313a",
+            "font": "16px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 365.5,
+              "y": 108,
+              "width": 113,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "95 / 400 · 差 305",
+            "color": "#26313a",
+            "font": "22px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 340,
+              "y": 151,
+              "width": 164,
+              "height": 25
+            }
+          },
+          {
+            "name": "",
+            "text": "返回选角",
+            "color": "#3f606b",
+            "font": "15px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 284.5,
+              "y": 263.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "name": "",
+            "text": "同局重试",
+            "color": "#fff9ee",
+            "font": "22px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 377.5,
+              "y": 201.5,
+              "width": 89,
+              "height": 25
+            }
+          },
+          {
+            "name": "",
+            "text": "本场详情",
+            "color": "#3f606b",
+            "font": "15px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 498.5,
+              "y": 263.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "name": "",
+            "text": "同局重试沿用角色与开局种子。",
+            "color": "#3F606B",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 12,
+              "y": 305,
+              "width": 196,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "checks": [
+        "native selected/play inputs",
+        "saved exact result",
+        "resize full run unchanged",
+        "reload/continue no second reward",
+        "native same-seed retry to shop",
+        "short result reason/gap nonoverlap; existing details retains full resources; no new screenshot"
+      ]
+    }
+  ],
+  "errors": [],
+  "physicalDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audioListening": "NOT_RUN",
+  "aesthetics": "PENDING",
+  "status": "PASS"
+}

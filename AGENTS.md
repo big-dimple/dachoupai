@@ -1,5 +1,9 @@
 # 开发入口
 
+P08失败摘要review已由父侧读完整源码并实际view390 after，局部方向通过；已正常对齐main2d999cd（含朱砂/72人话/12道具），仅UX冲突且双合同保留。合并源码0aa7399，65相关tests/type/build及自然胜败/刷新继续/同种子重试/短摘要详情PASS，GameScene/ScoreFlame/audio/public/art逐对象同main。既有图身份不变，无新截图；320构筑裁切明确OPEN，未修。本review精确CI另报，main不推进；整体/OnePlus/GPU/听感仍待验。 证据docs/production/evidence/p08-failure-summary-2026-10-04/main-alignment.json。
+
+P08 72张人话文案main7d44已正常FF发布，精确main CI37221283754与production-docs37221283740 success；局部方向接受，整体/OnePlus/GPU/听感仍未通过。本次有界失败摘要review源码9e1a176：实际颜色已被共享纸墨映射纠正，无颜色缺陷；真实失败只露差额，补已保存原因/最后一手/剩余资源。35受影响单测/type/build及自然胜败/恢复/重试、390/1280/844有限文字bounds PASS；review新CI另报，main不推进。 证据docs/production/evidence/p08-failure-summary-2026-10-04。
+
 P08底栏三组复核收尾（UTC 2026-10-04）：原三组方向已获根实际看5f4da3两小图通过，未再美化。正常对齐main8888e82保ce299六道具/a11及MIT调序；只有handoff/plan冲突且双方记录保持。禁用余次复用disabledInk至4.51对比度；原生1180排序确认5张手牌盖住手内深青提示，另独立afbb6bf把首用提示移到既有status、14px、普通1860/reduced3000有限寿命，原cancel/离场/偏好保持，其他未知色块同因未证明。source2db4216 exact modified=false：390普通＋844×300 top12/b12、b34三完整页actual view，12长按取消、7排序和7真实出弃、原生DOM菜单/全屏、回载不重播全PASS；实际文字/余次在按钮内、全部非control坐标同88b、全保存结果逐字段同领域applyCommand。191相关tests/type PASS，src/tests同；首轮reload脚本错点新局造成timeout，原FAIL留证后改继续入口，没有放宽保护。public/assets、art/sources、domain/application/content/audio/vendor/license逐树同main。仅新review CI一次push，未全冻结/未推进main，由根看三完整页及提示修复后协调放行；P08仍in_progress。证据evidence/p08-action-groups-2026-10-04。
 
 P08底栏三组第一版检查点（UTC 2026-10-04）：实现e2df9f8，对齐maince299（src仍同88b17）后tested1ee6e7b；88px青蓝纸色整理组内两44px触点，弃牌390由70→106／320由106→114，朱红出牌保主动作；墨线纸牌下落到平放牌堆／牌扇向前送出，文字与真实余次保持。原底栏及全部非control坐标指纹cff0c393…同88b17，主56px、容量回退54/52px不变。89原受影响＋9新增几何/符号/type PASS；320/390软件Canvas DPR1原生合法导入及选牌、实际文字框/可见线图/全run不变PASS，两小图已actual view。根要求先看第一版，停止自行美化和大收尾；844短横实际操作及本皮肤按住/取消/禁用/真实出弃仍NOT_RUN，整体IN_PROGRESS。一次文档锚点补丁未应用，无测试/浏览器失败。public/assets、art/sources完全保maince299六道具/a11追加；不改火/音频/计分/RNG/save/手牌/调序入口。独立review，不自动main，证据evidence/p08-action-groups-2026-10-04。
