@@ -12,6 +12,7 @@ import {JOKER_RARITY,createJokerRarityBadge} from './JokerRarity';
 import {cardAbilityCopy} from './CardCopy';
 import {mountF09Art} from './F09Art';
 import Phaser from 'phaser';
+import {handActionContent} from './HandActionArt';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {r2RunModeConfig,R2_MODE_CATALOG} from '../content/r2Modes';
 import {showPrograms} from './ProgramDialog';
@@ -324,16 +325,19 @@ export class GameScene extends Phaser.Scene {
     this.handCountText=v.text(l.handLabel.x,l.handLabel.y,'',14,'#f0e6cb').setVisible(!portrait&&l.labelHeight>0);
     this.pileText=v.text(l.piles.x+l.piles.width,l.piles.y,'',14,'#c8d4c7').setOrigin(1,0).setVisible(!portrait&&l.labelHeight>0);
     const brief=portrait||l.shortLandscape||l.buttons.rank.width<80;
-    this.rankButton=v.button(l.buttons.rank,brief?'点数':'点数排序','action/sort-rank',()=>void this.sortHand('rank'),this.ready);
-    this.suitButton=v.button(l.buttons.suit,brief?'花色':'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready);
-    this.discardButton=v.button(l.tableActions.discard,'弃牌','action/discard',()=>void this.discardSelected(),this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run));
-    this.playButton=v.button(l.tableActions.play,'出牌','action/play',()=>void this.playSelected(),this.ready&&this.selectedIds.size>0&&this.handsLeft>0,true);
+    const sort=l.tools;
+    v.add(this.add.graphics().fillStyle(T.jadeSoft).fillRoundedRect(sort.x,sort.y,sort.width,sort.height,6).lineStyle(1,T.jade,.9).strokeRoundedRect(sort.x+.5,sort.y+.5,sort.width-1,sort.height-1,6).lineStyle(1,T.jade,.35).beginPath().moveTo(sort.x+44,sort.y+10).lineTo(sort.x+44,sort.y+sort.height-10).strokePath().setName('action/sort-group').setData('bounds',sort));
+    this.rankButton=v.button(l.buttons.rank,brief?'点数':'点数排序','action/sort-rank',()=>void this.sortHand('rank'),this.ready,false,'sort');
+    this.suitButton=v.button(l.buttons.suit,brief?'花色':'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready,false,'sort');
+    this.discardButton=v.button(l.tableActions.discard,'弃牌','action/discard',()=>void this.discardSelected(),this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run),false,'discard');
+    this.playButton=v.button(l.tableActions.play,'出牌','action/play',()=>void this.playSelected(),this.ready&&this.selectedIds.size>0&&this.handsLeft>0,true,'play');
     this.resourceCounts={} as Record<'play'|'discard',Phaser.GameObjects.Text>;
     for(const kind of ['play','discard'] as const){
       const b=l.tableActions[kind],button=kind==='play'?this.playButton:this.discardButton;
+      const content=handActionContent(b);
       const label=button.getData('label') as Phaser.GameObjects.Text;
-      label.setFontSize(kind==='play'?16:14).setPosition(b.x+b.width/2,b.y+14).setData('restY',b.y+14);
-      this.resourceCounts[kind]=v.text(b.x+b.width/2,b.y+37,'',14,kind==='play'?C.paperLight:C.jade).setOrigin(.5).setName('button/'+kind+'-left');
+      label.setFontSize(kind==='play'?16:14).setPosition(content.centerX,content.labelY).setData('restY',content.labelY);
+      this.resourceCounts[kind]=v.text(content.centerX,content.countY,'',14,kind==='play'?C.paperLight:C.jade).setOrigin(.5).setName('button/'+kind+'-left');
     }
     const play=l.tableActions.play;
     this.playAura=v.add(this.add.graphics().lineStyle(2,T.red,.7).strokeRoundedRect(play.x-3,play.y-3,play.width+6,play.height+6,9).setAlpha(0));

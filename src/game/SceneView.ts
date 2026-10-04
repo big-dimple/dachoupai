@@ -5,6 +5,7 @@ import {pointerReleaseTime,releasePointerIntent} from './PointerReleaseTime';
 import {modalBlocksCanvas} from './DetailDialog';
 import {PAPER_THEME,PAPER_CSS,UI_FONT} from './theme';
 import {alignViewportCamera,cssViewport} from '../platform/Viewport';
+import {drawHandActionGlyph,type HandButtonSkin} from './HandActionArt';
 
 type TouchActions={tap:()=>void;detail?:()=>void;drag?:(x:number,y:number)=>void;dragMove?:(x:number,y:number)=>void;swipe?:(dx:number,dy:number)=>void;cancel?:()=>void;press?:()=>void;release?:()=>void;enter?:()=>void;leave?:()=>void;holdToDrag?:boolean};
 export class SceneView {
@@ -91,16 +92,18 @@ export class SceneView {
     }
     object.once('destroy',()=>{this.gestures.delete(object);if(this.pressed?.object===object)this.cancel();});
   }
-  button(b:Box,label:string,name:string,action:()=>void,enabled=true,primary=false):Phaser.GameObjects.Rectangle {
+  button(b:Box,label:string,name:string,action:()=>void,enabled=true,primary=false,skin?:HandButtonSkin):Phaser.GameObjects.Rectangle {
     const art=this.add(this.scene.add.container(b.x,b.y)),g=this.scene.add.graphics(),radius=6;
     g.fillStyle(PAPER_THEME.ink,.08).fillRoundedRect(0,2,b.width,b.height,radius);
     g.fillStyle(primary?PAPER_THEME.red:PAPER_THEME.paperLight).fillRoundedRect(0,0,b.width,b.height,radius);
-    const edge=this.scene.add.graphics().lineStyle(1,primary?PAPER_THEME.red:PAPER_THEME.jade,.9).strokeRoundedRect(.5,.5,b.width-1,b.height-1,radius);
+    const edge=this.scene.add.graphics();if(skin!=='sort')edge.lineStyle(skin?1.5:1,primary?PAPER_THEME.red:PAPER_THEME.jade,.9).strokeRoundedRect(.5,.5,b.width-1,b.height-1,radius);
     const glow=this.scene.add.graphics().lineStyle(2,PAPER_THEME.jade,.75).strokeRoundedRect(1,1,b.width-2,b.height-2,radius).setAlpha(0);
     art.add([g,edge,glow]);
+    const glyph=skin&&skin!=='sort'?this.scene.add.graphics().setPosition(6,(b.height-36)/2).setName('button/'+skin+'-glyph'):undefined;
+    if(glyph)art.add(glyph);
     const t=this.text(b.x+b.width/2,b.y+b.height/2-1,label,primary?22:15).setOrigin(.5).setFontStyle('bold').setColor(primary?PAPER_CSS.paperLight:PAPER_CSS.jade);
     const r=this.rect(b).setFillStyle(0,0).setStrokeStyle();
-    r.setData('label',t).setData('buttonArt',art).setData('buttonFace',g).setData('buttonBounds',b).setData('buttonPrimary',primary);
+    r.setData('label',t).setData('buttonArt',art).setData('buttonFace',g).setData('buttonBounds',b).setData('buttonPrimary',primary).setData('buttonSkin',skin).setData('buttonGlyph',glyph);
     const rest=()=>{art.y=b.y;t.y=Number(t.getData('restY')??b.y+b.height/2-1);glow.setAlpha(0);};
     this.target(r,name,{tap:action,press:()=>{art.y=b.y+2;t.y=Number(t.getData('restY')??b.y+b.height/2-1)+2;glow.setAlpha(.6);},release:rest,cancel:rest});
     r.on('pointerover',()=>{if(r.input?.enabled)glow.setAlpha(.8);});r.on('pointerout',rest);
@@ -112,6 +115,8 @@ export class SceneView {
     label?.setAlpha(1).setColor(enabled?(primary?PAPER_CSS.paperLight:PAPER_CSS.jade):PAPER_CSS.disabledInk);
     const art=object.getData('buttonArt') as Phaser.GameObjects.Container|undefined;art?.setAlpha(1);
     const face=object.getData('buttonFace') as Phaser.GameObjects.Graphics|undefined,b=object.getData('buttonBounds') as Box|undefined;
-    if(face&&b){face.clear().fillStyle(PAPER_THEME.ink,.08).fillRoundedRect(0,2,b.width,b.height,6);face.fillStyle(enabled?(primary?PAPER_THEME.red:PAPER_THEME.paperLight):PAPER_THEME.disabled).fillRoundedRect(0,0,b.width,b.height,6);}
+    const skin=object.getData('buttonSkin') as HandButtonSkin|undefined,glyph=object.getData('buttonGlyph') as Phaser.GameObjects.Graphics|undefined;
+    if(face&&b){face.clear();if(skin!=='sort'){face.fillStyle(PAPER_THEME.ink,.08).fillRoundedRect(0,2,b.width,b.height,6);face.fillStyle(enabled?(primary?PAPER_THEME.red:PAPER_THEME.paperLight):PAPER_THEME.disabled).fillRoundedRect(0,0,b.width,b.height,6);}}
+    if(glyph&&skin&&skin!=='sort')drawHandActionGlyph(glyph,skin,enabled?(primary?PAPER_THEME.paperLight:PAPER_THEME.jade):PAPER_THEME.disabledInk);
   }
 }

@@ -136,6 +136,13 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const pedestal=scorePedestal(s);
   const fireTop=s.y+(s.height>=108?26:2);
   l.scoreFire=pedestal?box(pedestal.x,fireTop,pedestal.width,pedestal.y+1-fireTop):box(primary.x-3,s.y+28,primary.width+6,s.height-32);
+  // Reuse the existing action row. Capacity/hand/score budgets above stay exact.
+  const sortWidth=88,gap=6,remaining=l.actions.width-sortWidth-2*gap;
+  const discardWidth=Math.min(remaining-44,Math.max(l.tableActions.discard.width+8,Math.min(112,Math.floor(remaining*.4))));
+  const {x,y,height:actionHeight}=l.actions;
+  l.buttons={rank:box(x,y,44,actionHeight),suit:box(x+44,y,44,actionHeight)};
+  l.tools=box(x,y,sortWidth,actionHeight);l.toolsInHud=false;
+  l.tableActions={discard:box(x+sortWidth+gap,y,discardWidth,actionHeight),play:box(x+sortWidth+2*gap+discardWidth,y,remaining-discardWidth,actionHeight)};
   return l;
 }
 export type TableLayout=ReturnType<typeof layout>;
