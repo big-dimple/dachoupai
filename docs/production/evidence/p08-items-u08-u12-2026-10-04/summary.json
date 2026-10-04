@@ -1,0 +1,191 @@
+{
+  "taskId": "P08",
+  "testedCommit": "625e77a0aaec7b33af93f95cc169f24bdb927bdc",
+  "baseMain": "8888e82ede1776e259096bbdfe4eef63fc6f2415",
+  "source": {
+    "taskId": "P08",
+    "sourceCommit": "e11f7f8efaf2114b1ef0b928855230cfdb5c4863",
+    "baseCommit": "8888e82ede1776e259096bbdfe4eef63fc6f2415",
+    "sourceOldBlobsUnchanged": 1677,
+    "sourceFiles": 13,
+    "sourceBytes": 189000,
+    "runtimeFiles": [
+      {
+        "path": "art/sources/handdrawn-runtime-items-20261004-u08-u12/runtime/item-u08.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2006,
+        "sha256": "3f37fd432243c34903a2601e8dbc3d01b593ad10f1d72dcc9970740491cec844",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-items-20261004-u08-u12/runtime/item-u08.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 39058,
+        "sha256": "b0f955f477d6832fb9da5cbb073288e56c400e49a59346bad3f602bd18dd29e4",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-items-20261004-u08-u12/runtime/item-u09.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 1834,
+        "sha256": "e75c423081391027103114bf96ba347840c0fd506323c47a7083496e544ab606",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-items-20261004-u08-u12/runtime/item-u09.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 22784,
+        "sha256": "da65a4d4802146d16b96801f5b634854c0f11b5bba929237c59492f8ad6ba6f7",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-items-20261004-u08-u12/runtime/item-u10.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2342,
+        "sha256": "7f565416440913dd7fffceb3642c20785dc9b3e0a4c063abd213937e2891b7e9",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-items-20261004-u08-u12/runtime/item-u10.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 33236,
+        "sha256": "7a229fbbf012b70342b0ee94e133d53936865f41889c053384bcae63d0bd5a54",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-items-20261004-u08-u12/runtime/item-u11.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2510,
+        "sha256": "dab1a5b479f969729af4bc341b501afafdf75788ce5532d43be2d1eccc3a6ca2",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-items-20261004-u08-u12/runtime/item-u11.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 29968,
+        "sha256": "64d10f39451279887764f773278ff6c1eb069c90cee7545b8cc5b6bcf93254f5",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-items-20261004-u08-u12/runtime/item-u12.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2278,
+        "sha256": "b1c30c1bc70ec42c5979e3b798e1cf678d0e80b1fc869533402e1f5cabee138c",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-items-20261004-u08-u12/runtime/item-u12.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 26562,
+        "sha256": "2db055fe706a50638482bcba2fd26bd2add0783aaf8149cb91ac8c54685bccce",
+        "decoded": "PASS"
+      }
+    ],
+    "runtimeBytes": 162578,
+    "sourceManifestSHA256": "4ae735d35fada6777b3b4471ae730837780b1d7c53d763ca0ced37bd05a6d474",
+    "status": "PASS",
+    "originalPngs": "Not in repository; parent approved originals, consumer decoded/viewed runtime derivatives"
+  },
+  "sourceCI": {
+    "id": 37217979845,
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37217979845",
+    "status": "PASS",
+    "sha": "e11f7f8efaf2114b1ef0b928855230cfdb5c4863"
+  },
+  "runtimeManifestSHA256": "a15ddfc1af2242035e7edd4ce1ae480958cfb59d3e214bd19978e5cd8308dc30",
+  "coverage": {
+    "permanentItems": {
+      "painted": 12,
+      "total": 12
+    },
+    "consumableTools": {
+      "painted": 3,
+      "total": 39
+    },
+    "jokerArt": "UNCHANGED72/72"
+  },
+  "preserved": {
+    "oldGoodsFiles": 20,
+    "oldGoodsBytes": 301526,
+    "oldGoodsBytesEqual": true,
+    "srcTreeSHA": "1fe09441331f2729cffdebd6c40f2198a51f078b",
+    "handdrawnP08TreeSHA": "522c5cd5b17336e40557687489fdb7d1d18330a7",
+    "incomingSourceTreeSHA": "3239d9432fa44e5dcd3a6a70fbb247bebe85266c",
+    "existingSrcAndArtPathsByteEqual": 567,
+    "a11VersionedPathsRetained": true,
+    "existingHandoffAndPlan": "UNCHANGED",
+    "domainLoaderRulesRngSaveLayoutFire": "UNCHANGED"
+  },
+  "affectedTests": {
+    "status": "PASS",
+    "files": [
+      "goods-art",
+      "goods-art-loading",
+      "detail-art",
+      "detail-dialog"
+    ],
+    "count": 42
+  },
+  "typecheck": "PASS",
+  "content": {
+    "status": "PASS",
+    "publicPrivacyTexts": 46,
+    "version": "quality-r2-content-v10",
+    "hash": "json-fnv-v1:24efe7a905216d85"
+  },
+  "build": {
+    "status": "PASS",
+    "buildInfo": {
+      "version": "C03",
+      "revision": "625e77a0aaec7b33af93f95cc169f24bdb927bdc",
+      "modified": false,
+      "builtAt": "2026-10-04T17:01:55.296Z"
+    },
+    "registeredDistFiles": 30,
+    "registeredDistBytes": 464104,
+    "newPathsInBundle": [
+      "item-u08.thumbnail.webp",
+      "item-u08.detail.webp",
+      "item-u09.thumbnail.webp",
+      "item-u09.detail.webp",
+      "item-u10.thumbnail.webp",
+      "item-u10.detail.webp",
+      "item-u11.thumbnail.webp",
+      "item-u11.detail.webp",
+      "item-u12.thumbnail.webp",
+      "item-u12.detail.webp"
+    ],
+    "mitNoticeByteEqual": true,
+    "localBuilds": 1,
+    "mode": "e2e",
+    "base": "/items-review/",
+    "productionBuild": "Existing mandatory remote CI gate will run it; no repeated local production build"
+  },
+  "representativeBrowser": {
+    "status": "PASS",
+    "report": "browser.json",
+    "id": "U08",
+    "route": "Validator-approved imported shop fixtures;one approved U08 item offer,100gold,no owned items. Native shelf/detail/cancel/explicit purchase/owned inventory. Not natural acquisition/deployment.",
+    "screenshotsSaved": 1,
+    "screenshot": "390-u08-owned.png",
+    "actuallyViewed": true
+  },
+  "limits": {
+    "manualFullFreeze": "NOT_RUN",
+    "physicalDeviceGPUAudio": "NOT_RUN",
+    "deployment": "NOT_RUN; review only",
+    "overallArtAcceptance": "NOT_CLAIMED",
+    "mainAdvance": "HELD_FOR_PARENT_ORDER",
+    "otherItemUIScenarios": "NOT_RUN; full ID/bytes/descriptor/authority checks in affected tests"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "sourceFingerprint": "94567e8a19dda5cdce801e873fe67715b1caee8e65089b190d95be359191b8c3",
+  "build": {
+    "version": "C03",
+    "revision": "625e77a0aaec7b33af93f95cc169f24bdb927bdc",
+    "modified": false,
+    "builtAt": "2026-10-04T17:01:55.296Z"
+  },
+  "assetCommit": "e11f7f8efaf2114b1ef0b928855230cfdb5c4863",
+  "runtimeManifestSHA256": "a15ddfc1af2242035e7edd4ce1ae480958cfb59d3e214bd19978e5cd8308dc30",
+  "renderer": "Canvas (GPU and software rasterizer disabled)",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "safeInset": {
+    "top": 0,
+    "right": 0,
+    "bottom": 0,
+    "left": 0
+  },
+  "base": "/items-review/",
+  "route": "Validator-approved imported shop fixtures;one approved U08 item offer,100gold,no owned items. Native shelf/detail/cancel/explicit purchase/owned inventory. Not natural acquisition/deployment.",
+  "checks": [
+    "U08:actual shop thumbnail/BASE_URL/no HD preload/exact HD hash+contain/cancel immutable/one purchase/owned same-ID/cache/run-RNG immutable",
+    "U08 real404 retains actual mechanism face;thumb/HD explicit retry restores same ID/fixed frame/full run immutable"
+  ],
+  "details": [
+    {
+      "id": "U08",
+      "location": "shop",
+      "width": 615,
+      "height": 768,
+      "bytes": 39058,
+      "sha256": "b0f955f477d6832fb9da5cbb073288e56c400e49a59346bad3f602bd18dd29e4",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U08",
+      "location": "shop-reopen",
+      "width": 615,
+      "height": 768,
+      "bytes": 39058,
+      "sha256": "b0f955f477d6832fb9da5cbb073288e56c400e49a59346bad3f602bd18dd29e4",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U08",
+      "location": "owned-item",
+      "width": 615,
+      "height": 768,
+      "bytes": 39058,
+      "sha256": "b0f955f477d6832fb9da5cbb073288e56c400e49a59346bad3f602bd18dd29e4",
+      "fit": "contain",
+      "frame": {
+        "width": 170.734375,
+        "height": 235.828125
+      }
+    },
+    {
+      "id": "U08",
+      "location": "404-explicit-retry",
+      "width": 615,
+      "height": 768,
+      "bytes": 39058,
+      "sha256": "b0f955f477d6832fb9da5cbb073288e56c400e49a59346bad3f602bd18dd29e4",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    }
+  ],
+  "errors": []
+}
