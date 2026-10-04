@@ -109,7 +109,11 @@ try {
     const tableNames=await page.evaluate(()=>{
       const scene=window.__harness.game.scene.getScene('game'),names=[],walk=list=>{for(const object of list){if(object.input?.enabled&&object.name.startsWith('action/'))names.push(object.name);if(object.list)walk(object.list);}};walk(scene.children.list);return names;
     });
-    assert.deepEqual(tableNames.filter(name=>!name.startsWith('action/hand-')).sort(),['action/discard','action/play','action/sort-rank','action/sort-suit'],'only common actions occupy the table');
+    assert.deepEqual(tableNames.filter(name=>!name.startsWith('action/hand-')).sort(),['action/discard','action/play','action/sort-rank','action/sort-suit','action/tool-inventory'],'only approved common actions and the direct tool bag occupy the table');
+    await tapUI(page,'game','action/tool-inventory',touch);
+    await page.getByRole('dialog',{name:'工具包',exact:true}).waitFor();await dom(page,'关闭',touch);
+    assert.deepEqual(await state(page),beforeInspect,'opening / closing the direct tool bag cannot spend resources or RNG');
+    assert.ok(await page.evaluate(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),chosen),'opening / closing the direct tool bag preserves selected cards');
     for(const name of ['action/sort-rank','action/sort-suit']){
       const before=await state(page);await tapUI(page,'game',name,touch);await next(page,before.commandSeq);const after=await state(page);
       assert.deepEqual(after.rng,before.rng);assert.deepEqual(after.stage,before.stage);
