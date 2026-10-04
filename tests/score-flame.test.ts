@@ -35,6 +35,16 @@ describe('bounded cinnabar score strokes',()=>{
     f.events.emit('update',70);expect(f.state().localPhase).toBe('unfold');f.events.emit('update',110);expect(f.state().localPhase).toBe('fade');
     f.events.emit('update',140);expect(f.state().localPhase).toBe('idle');expect(f.flame.graphic.visible).toBe(false);expect(f.updates()).toBe(0);f.flame.destroy();
   });
+  it('keeps each local hit a readable corner on both score-board sides, including short landscape',()=>{
+    for(const [width,height] of [[390,740],[844,300]]){
+      const l=layout({width,height},{top:12,right:0,bottom:34,left:0}),f=fixture(l.scoreBoard,{x:4,y:4,width:width-8,height:height-8});
+      f.flame.impact('below-target');f.events.emit('update',110);
+      const paths=f.flame.graphic.getData('localStrokes') as {x:number;y:number}[][];
+      expect(paths).toHaveLength(2);expect(f.state().localLineWidth).toBeGreaterThanOrEqual(4);
+      for(const path of paths){expect(Math.max(...path.map(p=>p.y))-Math.min(...path.map(p=>p.y))).toBeGreaterThan(12);expect(Math.max(...path.map(p=>p.x))-Math.min(...path.map(p=>p.x))).toBeGreaterThan(8);}
+      expect(paths[0][0].x-l.scoreBoard.x).toBeLessThan(6);expect(l.scoreBoard.x+l.scoreBoard.width-paths[1][0].x).toBeLessThan(6);f.flame.destroy();
+    }
+  });
   it.each([[1,180,3.5],[2,240,4.5],[3,280,5.5]] as const)('writes tier %i once with its width and wall-clock peak',(tier,peak,width)=>{
     const f=fixture();f.flame.set(tier);expect(f.state()).toMatchObject({framePhase:'write',frameAge:0,lineWidth:width});
     f.events.emit('update',peak);expect(f.state()).toMatchObject({framePhase:'fade',frameProgress:1});

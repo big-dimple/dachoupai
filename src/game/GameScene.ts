@@ -1213,7 +1213,8 @@ export class GameScene extends Phaser.Scene {
   }
   private keepScoreReadable():void {
     this.fitScoreReadouts();
-    const base=this.view.root.list.find(o=>o.name==='score/total-pedestal');if(base)this.view.root.bringToTop(base);
+    const base=this.view.root.list.find(o=>o.name==='score/total-pedestal');
+    if(base){this.view.root.bringToTop(base);if(this.scoreFlame?.graphic.active)this.view.root.moveAbove(this.scoreFlame.graphic,base);}
     for(const text of [this.resultText,...this.scoreLabels,this.scoreHeat,this.scoreMult,this.scoreTotal,this.breakdownText,this.previousHandText])if(text.active)this.view.root.bringToTop(text);
   }
   private transferToAccumulator(event:ScoreEvent,card:CardView|undefined,duration:number,context:EffectContext):Promise<void> {

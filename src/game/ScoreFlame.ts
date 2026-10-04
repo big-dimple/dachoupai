@@ -67,7 +67,8 @@ export class ScoreFlame {
     this.frameGraphic=scene.add.graphics().setName('score/fire-frame').setVisible(false);
     this.graphic=scene.add.graphics().setName('score/fire').setVisible(false).setData('intensity',0);
     root.add([this.frameGraphic,this.graphic]);
-    // Below the score text and every later card/control; actual bounds are also masked.
+    // Exterior strokes stay behind the score/card planes. GameScene places only
+    // the local hit above the opaque score pedestal and below measured text.
     const caption=root.list?.find(object=>object.name==='score/source');
     if(caption){root.moveBelow(this.frameGraphic,caption);root.moveBelow(this.graphic,caption);}
     this.safetyGraphic=scene.add.graphics().setName('score/fire-safe-area').setVisible(false);
@@ -148,12 +149,17 @@ export class ScoreFlame {
     const alpha=staticHit?.78:this.hitAge<=180?.9:.9*(1-(this.hitAge-180)/140);
     this.graphic.clear().setVisible(hitVisible);
     if(hitVisible){
-      const length=Math.min(40,this.box.width*.2)*(.8+this.hitStrength*.2)*spread,y=this.box.y+this.box.height-3.2;
-      for(const center of [this.box.x+this.box.width*.18,this.box.x+this.box.width*.82])
-        this.paint(this.graphic,stroke([{x:center-length/2,y:y+.2},{x:center-length*.18,y:y-.35},{x:center+length*.22,y:y+.3},{x:center+length/2,y:y-.15}]),1,width,RED,alpha);
+      const reach=(.8+this.hitStrength*.2)*spread,horizontal=(this.box.height<90?12:24)*reach,vertical=Math.min(20,this.box.height*.3)*reach;
+      const y=this.box.y+this.box.height-3.2,localStrokes=[];
+      for(const side of [1,-1]){
+        const x=side===1?this.box.x+3.2:this.box.x+this.box.width-3.2;
+        const path=stroke([{x,y:y-vertical},{x:x+.25*side,y:y-.5},{x:x+horizontal*side,y}]);
+        localStrokes.push(path.points);this.paint(this.graphic,path,1,4.5,RED,alpha);
+      }
+      this.graphic.setData('localStrokes',localStrokes);
     }
     this.graphic.setData('strokeState',{level:this.level,reduced:this.reduced,localPhase:phase,localAge:this.hitAge,localAlpha:hitVisible?alpha:0,
-      framePhase:this.level===0?'idle':this.frameAge>=900?'static':writing?'write':'fade',frameAge:this.frameAge,frameProgress:progress,frameAlpha,lineWidth:width,entered:[...this.entered],updating:this.updating});
+      localLineWidth:4.5,framePhase:this.level===0?'idle':this.frameAge>=900?'static':writing?'write':'fade',frameAge:this.frameAge,frameProgress:progress,frameAlpha,lineWidth:width,entered:[...this.entered],updating:this.updating});
   }
 
   destroy():void {
