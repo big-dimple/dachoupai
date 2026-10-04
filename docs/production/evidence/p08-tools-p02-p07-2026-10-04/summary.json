@@ -1,0 +1,437 @@
+{
+  "taskId": "P08",
+  "testedCommit": "926d2cee57e2f6d838e25363b693f28ed9461535",
+  "baseMain": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+  "source": {
+    "taskId": "P08",
+    "sourceCommit": "c139d70f5411c4991a73ac9ed50fc8fc13f478a7",
+    "sourceBase": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+    "oldSourceBlobsModeTypeUnchanged": 1927,
+    "sourceFiles": 15,
+    "sourceBytes": 213292,
+    "sourceManifestSHA256": "6690aff014c9298c1f558b6b8669341ecbf2e7e356858bc186dde800af38fc5e",
+    "runtimeFiles": [
+      {
+        "id": "P02",
+        "path": "art/sources/handdrawn-runtime-tools-20261004-p02-p07/runtime/tool-p02.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2230,
+        "sha256": "2d10221abbd8aae4b5ddede6e636d5ec79841d16e0e895cb4005a741b9f48d47",
+        "decoded": "PASS"
+      },
+      {
+        "id": "P02",
+        "path": "art/sources/handdrawn-runtime-tools-20261004-p02-p07/runtime/tool-p02.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 27710,
+        "sha256": "9128ecaecc7ac0e721b266439f0f2ba507a0105d7b4a1551aec24f5d7e191900",
+        "decoded": "PASS"
+      },
+      {
+        "id": "P03",
+        "path": "art/sources/handdrawn-runtime-tools-20261004-p02-p07/runtime/tool-p03.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2214,
+        "sha256": "816f20a9bf6c97c55fdf556fce430b1320d7c9da982cda7c4b0a68c014c4be15",
+        "decoded": "PASS"
+      },
+      {
+        "id": "P03",
+        "path": "art/sources/handdrawn-runtime-tools-20261004-p02-p07/runtime/tool-p03.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 22178,
+        "sha256": "d45ac27206de29525a338f1f9599f48138d31e2e1eaf8d1a3035e9049c8a742e",
+        "decoded": "PASS"
+      },
+      {
+        "id": "P04",
+        "path": "art/sources/handdrawn-runtime-tools-20261004-p02-p07/runtime/tool-p04.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2172,
+        "sha256": "806bab6fcf4f57e2431c73020614182b16416513efc157f551d8c51801c2cc98",
+        "decoded": "PASS"
+      },
+      {
+        "id": "P04",
+        "path": "art/sources/handdrawn-runtime-tools-20261004-p02-p07/runtime/tool-p04.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 26232,
+        "sha256": "15cab9ca7bec4ec5d8dafdf02278e84d862bcb4d4f3084adf04619d1065e8c8f",
+        "decoded": "PASS"
+      },
+      {
+        "id": "P05",
+        "path": "art/sources/handdrawn-runtime-tools-20261004-p02-p07/runtime/tool-p05.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2126,
+        "sha256": "eb7dea2d9a41c47e9621d035e504668dd1be228507799f013275653ef8f06712",
+        "decoded": "PASS"
+      },
+      {
+        "id": "P05",
+        "path": "art/sources/handdrawn-runtime-tools-20261004-p02-p07/runtime/tool-p05.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 23938,
+        "sha256": "7c199a39136e4ddbf529b19744059dce782dc64940330f61f6b9654b26e875ee",
+        "decoded": "PASS"
+      },
+      {
+        "id": "P06",
+        "path": "art/sources/handdrawn-runtime-tools-20261004-p02-p07/runtime/tool-p06.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2464,
+        "sha256": "63b741678773849505a1a010c18f9151ecee284b374f0c81bd24a2cbdb7169b2",
+        "decoded": "PASS"
+      },
+      {
+        "id": "P06",
+        "path": "art/sources/handdrawn-runtime-tools-20261004-p02-p07/runtime/tool-p06.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 28856,
+        "sha256": "5b43e307c6b41a32795c90191e6bd2fdeb798c795cc84bf6803bd910f0b3487e",
+        "decoded": "PASS"
+      },
+      {
+        "id": "P07",
+        "path": "art/sources/handdrawn-runtime-tools-20261004-p02-p07/runtime/tool-p07.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2192,
+        "sha256": "571f662684fea05962a1ab7f4c880ac9ae21e96ece8142111b23053d11d0d019",
+        "decoded": "PASS"
+      },
+      {
+        "id": "P07",
+        "path": "art/sources/handdrawn-runtime-tools-20261004-p02-p07/runtime/tool-p07.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 39124,
+        "sha256": "01d04b2ab81d4442021798948d8c25a897b0f6e797202b5667d5b6371ebce2c4",
+        "decoded": "PASS"
+      }
+    ],
+    "runtimeBytes": 181436,
+    "status": "PASS",
+    "fullRGBDecode": true,
+    "noExifXmpIcc": true,
+    "geometry": "Full-source centered contain;no crop/stretch;P04 approved1060x1484;other originals1122x1402",
+    "originalPNGReview": "Parent approved six originals andP01/P11 grayscale comparison;consumer originalPNG not supplied",
+    "sourceCI": {
+      "id": 37229985877,
+      "sha": "c139d70f5411c4991a73ac9ed50fc8fc13f478a7",
+      "conclusion": "success",
+      "attempt": 1,
+      "updatedAt": "2026-10-04T20:00:25Z"
+    },
+    "sourceAndPublicByteEqual": true
+  },
+  "approvedSourceGeometry": [
+    {
+      "id": "P02",
+      "sourceFilename": "tool-p02-v1-original.png",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "aspectExceptionApproved": false,
+      "containRects": {
+        "thumbnail": {
+          "left": 4,
+          "top": 5,
+          "width": 120,
+          "height": 150
+        },
+        "detail": {
+          "left": 19,
+          "top": 24,
+          "width": 576,
+          "height": 720
+        }
+      }
+    },
+    {
+      "id": "P03",
+      "sourceFilename": "tool-p03-v1-original.png",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "aspectExceptionApproved": false,
+      "containRects": {
+        "thumbnail": {
+          "left": 4,
+          "top": 5,
+          "width": 120,
+          "height": 150
+        },
+        "detail": {
+          "left": 19,
+          "top": 24,
+          "width": 576,
+          "height": 720
+        }
+      }
+    },
+    {
+      "id": "P04",
+      "sourceFilename": "tool-p04-v1-original.png",
+      "sourceWidth": 1060,
+      "sourceHeight": 1484,
+      "aspectExceptionApproved": true,
+      "containRects": {
+        "thumbnail": {
+          "left": 10,
+          "top": 5,
+          "width": 107,
+          "height": 150
+        },
+        "detail": {
+          "left": 50,
+          "top": 24,
+          "width": 514,
+          "height": 720
+        }
+      }
+    },
+    {
+      "id": "P05",
+      "sourceFilename": "tool-p05-v1-original.png",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "aspectExceptionApproved": false,
+      "containRects": {
+        "thumbnail": {
+          "left": 4,
+          "top": 5,
+          "width": 120,
+          "height": 150
+        },
+        "detail": {
+          "left": 19,
+          "top": 24,
+          "width": 576,
+          "height": 720
+        }
+      }
+    },
+    {
+      "id": "P06",
+      "sourceFilename": "tool-p06-v1-original.png",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "aspectExceptionApproved": false,
+      "containRects": {
+        "thumbnail": {
+          "left": 4,
+          "top": 5,
+          "width": 120,
+          "height": 150
+        },
+        "detail": {
+          "left": 19,
+          "top": 24,
+          "width": 576,
+          "height": 720
+        }
+      }
+    },
+    {
+      "id": "P07",
+      "sourceFilename": "tool-p07-v1-original.png",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "aspectExceptionApproved": false,
+      "containRects": {
+        "thumbnail": {
+          "left": 4,
+          "top": 5,
+          "width": 120,
+          "height": 150
+        },
+        "detail": {
+          "left": 19,
+          "top": 24,
+          "width": 576,
+          "height": 720
+        }
+      }
+    }
+  ],
+  "preserved": {
+    "taskId": "P08",
+    "baseMain": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+    "status": "PASS",
+    "allSrc320FourteenToolBagContainFailureSummaryAndStrict5ActionSmoke": "Byte equal to main",
+    "srcTreeSHA": "4a812ee1d9bca5ff14b9cc8b0d20eca0043f70dc",
+    "oldGoodsFiles": 66,
+    "oldGoodsBytes": 1085058,
+    "oldGoodsBytesEqual": true,
+    "oldManifestRows": 33,
+    "oldAdditionalSources": 5,
+    "oldArtSourcesAndNotices": "UNCHANGED; added directory only",
+    "handdrawnP08TreeSHA": "522c5cd5b17336e40557687489fdb7d1d18330a7",
+    "existingDocs": "Approved073561b calibration imported;all calibrated files and7 tool-use evidence files byte equal to073",
+    "runtimeManifestSHA256": "fa050fe5d5900a3eb43c159dd0943b21e14c5355d37963c1d4aab3ab6be4d6ce",
+    "newRuntimeFiles": 12,
+    "newRuntimeBytes": 181436,
+    "runtimeFiles": 78,
+    "runtimeBytes": 1266494,
+    "documentSource": "073561b3c6530fc442c873d73581d4c3949f7a8b",
+    "verifiedRuntimeCommit": "926d2cee57e2f6d838e25363b693f28ed9461535"
+  },
+  "coverage": {
+    "currentPublishedMainConsumables": "21/39 at1c103de",
+    "reviewConsumables": {
+      "painted": 27,
+      "total": 39,
+      "remaining": 12
+    },
+    "items": "UNCHANGED12/12",
+    "Jokers": "UNCHANGED72/72 including a11",
+    "status": "REVIEW_ONLY;candidate27 not live"
+  },
+  "documentCalibration": {
+    "sourceCommit": "073561b3c6530fc442c873d73581d4c3949f7a8b",
+    "mergeCommit": "4270cb1831d468e87a64cec8587ade6ec9d9ae5b",
+    "docsCI": {
+      "id": 37230464126,
+      "sha": "073561b3c6530fc442c873d73581d4c3949f7a8b",
+      "conclusion": "success"
+    },
+    "calibratedDocumentsAnd7ToolUseFilesByteEqual": true,
+    "scope": "Published tool bag/749 fix/A03 coin wiring/main21 vsreview27;6-tool fixture complete,D natural flow still ongoing;historicalFAIL/NOT_RUN,C04 andmultiplayer gates retained",
+    "sixToolUseEvidenceTreeSHA": "af4ec116d449933ace0abf090d718160b327da9e"
+  },
+  "relatedTests": {
+    "status": "PASS",
+    "count": 42,
+    "files": 4
+  },
+  "typecheck": "PASS",
+  "content": {
+    "status": "PASS",
+    "publicPrivacyTexts": 58,
+    "hash": "json-fnv-v1:24efe7a905216d85",
+    "version": "quality-r2-content-v10"
+  },
+  "build": {
+    "taskId": "P08",
+    "testedCommit": "926d2cee57e2f6d838e25363b693f28ed9461535",
+    "status": "PASS",
+    "buildInfo": {
+      "version": "C03",
+      "revision": "926d2cee57e2f6d838e25363b693f28ed9461535",
+      "modified": false,
+      "builtAt": "2026-10-04T20:08:22.593Z"
+    },
+    "registeredDistFiles": 78,
+    "registeredDistBytes": 1266494,
+    "newPathsInBundle": [
+      "tool-p02.thumbnail.webp",
+      "tool-p02.detail.webp",
+      "tool-p03.thumbnail.webp",
+      "tool-p03.detail.webp",
+      "tool-p04.thumbnail.webp",
+      "tool-p04.detail.webp",
+      "tool-p05.thumbnail.webp",
+      "tool-p05.detail.webp",
+      "tool-p06.thumbnail.webp",
+      "tool-p06.detail.webp",
+      "tool-p07.thumbnail.webp",
+      "tool-p07.detail.webp"
+    ],
+    "MITNoticeByteEqual": true,
+    "localBuilds": 2,
+    "firstBuild": "Retained fixture failure4270cb1;no saved screenshot",
+    "successfulBuild": "One corrected P04 representative;one screenshot",
+    "mode": "e2e",
+    "base": "/items-review/",
+    "productionBuild": "Mandatory exact review CI;no repeated local production build",
+    "documentSource": "073561b3c6530fc442c873d73581d4c3949f7a8b",
+    "documentSourceAnd7ToolUseFilesByteEqual": true
+  },
+  "representativeBrowser": {
+    "status": "PASS",
+    "id": "P04",
+    "route": "Validator-approved imported shop fixtures;one approved P04 tool offer,100gold,no owned goods. Native shelf/detail/cancel/explicit purchase/owned inventory. Not natural acquisition/deployment. Imported fixed three-kind hand level1; eligibility checked with real r2ToolAcquisitionPool before offer creation.",
+    "screenshot": "390-p04-owned.png",
+    "screenshotsSaved": 1,
+    "actuallyViewed": true,
+    "pngSHA256": "83687fab9b2114cb168c76cb468fdb63cc361dff1270f91e5dc0e041c400f56e",
+    "ownedBounds": {
+      "id": "P04",
+      "location": "owned-tool",
+      "width": 615,
+      "height": 768,
+      "bytes": 26232,
+      "sha256": "15cab9ca7bec4ec5d8dafdf02278e84d862bcb4d4f3084adf04619d1065e8c8f",
+      "fit": "contain",
+      "objectPosition": "50% 50%",
+      "frame": {
+        "x": 111.4375,
+        "y": 84.5,
+        "width": 167.125,
+        "height": 230.78125,
+        "right": 278.5625,
+        "bottom": 315.28125
+      },
+      "visual": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      },
+      "image": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      }
+    },
+    "purchaseGoldDelta": -4,
+    "purchaseCommandSeqDelta": 1,
+    "rngAndJokersEqual": true,
+    "cancelAndOwnedCloseFullRunEqual": true,
+    "fixedHandPreview": "Lv.1→2;confirmUse enabled per original rule;not clicked",
+    "noUseOrDestroy": "NOT_RUN",
+    "checks": [
+      "P04:actual shop thumbnail/BASE_URL/no HD preload/exact HD hash+contain/cancel immutable/one purchase/owned same-ID/cache/run-RNG immutable",
+      "P04 real404 retains actual mechanism face;thumb/HD explicit retry restores same ID/fixed frame/full run immutable"
+    ]
+  },
+  "fixtureFailure": {
+    "file": "first-failure.json",
+    "status": "RETAINED_FAIL",
+    "build": {
+      "version": "C03",
+      "revision": "4270cb1831d468e87a64cec8587ade6ec9d9ae5b",
+      "modified": false,
+      "builtAt": "2026-10-04T20:05:10.546Z"
+    },
+    "reason": "Undiscovered fixed hand madeP04 ineligible forpurchase;original purchase guard correctlydisabled confirm",
+    "correction": "Onlyharnessimports discovered fixed handLv1 andchecks acquisition pool;existing card-target disabled guards retained;planet preview enabled butnot used",
+    "codeAssetsAndRules": "UNCHANGED;same src fingerprint on failed andsuccessful builds",
+    "retryScope": "Onlyone correctedP04 route;no full matrix orother fiveUI"
+  },
+  "limits": {
+    "mainPush": "NOT_RUN;parent coordinates",
+    "deployment": "NOT_RUN",
+    "overallArtAcceptance": "NOT_CLAIMED",
+    "physicalGPUAudio": "NOT_RUN",
+    "naturalOrSixToolUse": "NOT_REPEATED",
+    "otherFivePlanetUI": "NOT_RUN;all six IDs/bytes/descriptors/authority text checked",
+    "docCurrentMainCoverage": "21/39;candidate27 isnot counted aslive",
+    "sourceOriginalPNGReview": "Parent approved six originals andP01/P11 grayscale;consumer validates runtime andoneactualP04 only"
+  },
+  "docsGate": "PASS;production-plan32 work packages,current=P08"
+}

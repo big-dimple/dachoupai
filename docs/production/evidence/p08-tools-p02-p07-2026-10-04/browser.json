@@ -1,0 +1,169 @@
+{
+  "status": "PASS",
+  "sourceFingerprint": "4fb66aaa59c86741e4a7e7a71ef7c22da9d7736960b101ee799ec349866dcd91",
+  "build": {
+    "version": "C03",
+    "revision": "926d2cee57e2f6d838e25363b693f28ed9461535",
+    "modified": false,
+    "builtAt": "2026-10-04T20:08:22.593Z"
+  },
+  "assetCommit": "c139d70f5411c4991a73ac9ed50fc8fc13f478a7",
+  "runtimeManifestSHA256": "fa050fe5d5900a3eb43c159dd0943b21e14c5355d37963c1d4aab3ab6be4d6ce",
+  "renderer": "Canvas (GPU and software rasterizer disabled)",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "safeInset": {
+    "top": 0,
+    "right": 0,
+    "bottom": 0,
+    "left": 0
+  },
+  "base": "/items-review/",
+  "route": "Validator-approved imported shop fixtures;one approved P04 tool offer,100gold,no owned goods. Native shelf/detail/cancel/explicit purchase/owned inventory. Not natural acquisition/deployment.",
+  "checks": [
+    "P04:actual shop thumbnail/BASE_URL/no HD preload/exact HD hash+contain/cancel immutable/one purchase/owned same-ID/cache/run-RNG immutable",
+    "P04 real404 retains actual mechanism face;thumb/HD explicit retry restores same ID/fixed frame/full run immutable"
+  ],
+  "details": [
+    {
+      "id": "P04",
+      "location": "shop",
+      "width": 615,
+      "height": 768,
+      "bytes": 26232,
+      "sha256": "15cab9ca7bec4ec5d8dafdf02278e84d862bcb4d4f3084adf04619d1065e8c8f",
+      "fit": "contain",
+      "objectPosition": "50% 50%",
+      "frame": {
+        "x": 111.4375,
+        "y": 84.5,
+        "width": 167.125,
+        "height": 230.78125,
+        "right": 278.5625,
+        "bottom": 315.28125
+      },
+      "visual": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      },
+      "image": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      }
+    },
+    {
+      "id": "P04",
+      "location": "shop-reopen",
+      "width": 615,
+      "height": 768,
+      "bytes": 26232,
+      "sha256": "15cab9ca7bec4ec5d8dafdf02278e84d862bcb4d4f3084adf04619d1065e8c8f",
+      "fit": "contain",
+      "objectPosition": "50% 50%",
+      "frame": {
+        "x": 111.4375,
+        "y": 84.5,
+        "width": 167.125,
+        "height": 230.78125,
+        "right": 278.5625,
+        "bottom": 315.28125
+      },
+      "visual": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      },
+      "image": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      }
+    },
+    {
+      "id": "P04",
+      "location": "owned-tool",
+      "width": 615,
+      "height": 768,
+      "bytes": 26232,
+      "sha256": "15cab9ca7bec4ec5d8dafdf02278e84d862bcb4d4f3084adf04619d1065e8c8f",
+      "fit": "contain",
+      "objectPosition": "50% 50%",
+      "frame": {
+        "x": 111.4375,
+        "y": 84.5,
+        "width": 167.125,
+        "height": 230.78125,
+        "right": 278.5625,
+        "bottom": 315.28125
+      },
+      "visual": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      },
+      "image": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      }
+    },
+    {
+      "id": "P04",
+      "location": "404-explicit-retry",
+      "width": 615,
+      "height": 768,
+      "bytes": 26232,
+      "sha256": "15cab9ca7bec4ec5d8dafdf02278e84d862bcb4d4f3084adf04619d1065e8c8f",
+      "fit": "contain",
+      "objectPosition": "50% 50%",
+      "frame": {
+        "x": 111.4375,
+        "y": 84.5,
+        "width": 167.125,
+        "height": 230.78125,
+        "right": 278.5625,
+        "bottom": 315.28125
+      },
+      "visual": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      },
+      "image": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      }
+    }
+  ],
+  "errors": []
+}
