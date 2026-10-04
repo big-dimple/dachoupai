@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "be40d5364cc1f47aebf54a634d060d86075b397725d05cd3fd0a49714677e501",
+    "index": "55ac3a2fc132e2d0057f7025807c95d5c10280037ed0600560c9d23327c3f286",
+    "head": "66c1e92a605debee4a9c9cf3c4242eacd9fb8b65",
+    "branch": "refs/heads/feat/p08-joker-plain-copy-20261004"
+  },
+  "after": {
+    "source": "be40d5364cc1f47aebf54a634d060d86075b397725d05cd3fd0a49714677e501",
+    "index": "55ac3a2fc132e2d0057f7025807c95d5c10280037ed0600560c9d23327c3f286",
+    "head": "66c1e92a605debee4a9c9cf3c4242eacd9fb8b65",
+    "branch": "refs/heads/feat/p08-joker-plain-copy-20261004"
+  },
+  "steps": [
+    {
+      "name": "build/type",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 15359
+    },
+    {
+      "name": "content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 2254
+    },
+    {
+      "name": "plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 340
+    }
+  ]
+}
