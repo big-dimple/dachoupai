@@ -198,5 +198,162 @@
     "builtAt": "2026-10-04T15:45:40.295Z"
   },
   "remoteMainObservedAfterFreeze": "88b17e23c9aa778c8ac93c9998cd090ba48ab82d",
-  "integration": "No main push. Requested3938 alignment retained; parent coordinates later published sort-return88b main before final integration."
+  "integration": "Normal alignment to parent-approved main88b completed. No main push; parent still coordinates release.",
+  "preAlignmentBrowser": {
+    "sourceFingerprint": "b9b06e3f7da3dfa856b33d33b795f3567766117a4f437c78c90264697faa5628",
+    "build": {
+      "version": "C03",
+      "revision": "7d37d23347ddbfee344a00355de9741b34c67e76",
+      "modified": true,
+      "builtAt": "2026-10-04T15:42:17.072Z"
+    },
+    "checks": [
+      "both old v1 canonical URLs genuinely warmed and reused from HTTP cache; hashes remain v1",
+      "actual v2 installed texture pixels/new thumb+HD HTTP SHA/BASE_URL/on-demand/contain/native reopen cache/full run-RNG immutable despite warm v1",
+      "reload with persisted run and browser caches still displays exact v2 thumb/detail; no run mutation"
+    ],
+    "thumbnail": {
+      "width": 128,
+      "height": 160,
+      "bytes": 3756,
+      "sha256": "ea9e76e4a31fe5c4acd83e0324641c203c76281deaeec9684e06785492c87113",
+      "actualTexturePixels": "b2dff2785bcb278f30a357d9199194a7970e0ef4912b4c55e1c02906a92a679e",
+      "expectedDecodedPixels": "b2dff2785bcb278f30a357d9199194a7970e0ef4912b4c55e1c02906a92a679e"
+    },
+    "detail": {
+      "width": 615,
+      "height": 768,
+      "bytes": 45940,
+      "sha256": "aa4e6a9988abf2998009a004aadba32b93f4d0bb394aa203b77bbb1e7cc8074d",
+      "fit": "contain",
+      "rect": {
+        "width": 162.734375,
+        "height": 227.828125
+      }
+    }
+  },
+  "finalAlignedBrowser": {
+    "taskId": "P08",
+    "status": "PASS",
+    "sourceFingerprint": "74e1f33cf9248322262055fedada0c13f51c19a13e53a24af0f3bd460e1d0b56",
+    "assetCommit": "cd11009db796c815c21de6ba165e3697632e7334",
+    "runtimeManifestSHA256": "74701e283c39be4e7522795c9dedbd77e5f82c36627aa8ab6d8d21bbc3371f9c",
+    "build": {
+      "version": "C03",
+      "revision": "6fb23ae4c5768eb41269a5cd361191e9eb10fe22",
+      "modified": true,
+      "builtAt": "2026-10-04T15:50:09.763Z"
+    },
+    "viewport": {
+      "width": 390,
+      "height": 740
+    },
+    "DPR": 1,
+    "safeInset": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0
+    },
+    "renderer": "Chromium software Canvas;GPU/software rasterizer disabled",
+    "base": "/a11-review/",
+    "fixture": "Validator-approved imported owned a11 entry; no natural purchase. Native tap/detail/close/reopen/reload. Old canonical a11 browser URLs deliberately warmed with immutable cached v1 bytes; new content paths must render v2.",
+    "requests": [
+      "/a11-review/assets/handdrawn-p08/characters/amo.avatar.webp",
+      "/a11-review/assets/handdrawn-p08/characters/amo.selection.webp",
+      "/a11-review/assets/handdrawn-p08/characters/touye.avatar.webp",
+      "/a11-review/assets/handdrawn-p08/characters/touye.selection.webp",
+      "/a11-review/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+      "/a11-review/assets/handdrawn-p08/characters/laohuan.selection.webp",
+      "/a11-review/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+      "/a11-review/assets/handdrawn-p08/characters/erxiang.selection.webp",
+      "/a11-review/assets/handdrawn-p08/characters/azao.avatar.webp",
+      "/a11-review/assets/handdrawn-p08/characters/azao.selection.webp",
+      "/a11-review/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+      "/a11-review/assets/handdrawn-p08/characters/xiemu.selection.webp",
+      "/a11-review/assets/handdrawn-p08/cards/a11.thumbnail.webp",
+      "/a11-review/assets/handdrawn-p08/cards/a11.detail.webp",
+      "/a11-review/assets/handdrawn-p08/cards/a11.thumbnail.webp",
+      "/a11-review/assets/handdrawn-p08/cards/a11.detail.webp",
+      "/a11-review/assets/handdrawn-p08/court/j.court.webp",
+      "/a11-review/assets/handdrawn-p08/court/q.court.webp",
+      "/a11-review/assets/handdrawn-p08/court/k.court.webp",
+      "/a11-review/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+      "/a11-review/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+      "/a11-review/assets/handdrawn-p08/cards/a11-v2-aa4e6a9988ab.detail.webp",
+      "/a11-review/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+      "/a11-review/assets/handdrawn-p08/characters/amo.avatar.webp",
+      "/a11-review/assets/handdrawn-p08/characters/amo.selection.webp",
+      "/a11-review/assets/handdrawn-p08/characters/touye.avatar.webp",
+      "/a11-review/assets/handdrawn-p08/characters/touye.selection.webp",
+      "/a11-review/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+      "/a11-review/assets/handdrawn-p08/characters/laohuan.selection.webp",
+      "/a11-review/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+      "/a11-review/assets/handdrawn-p08/characters/erxiang.selection.webp",
+      "/a11-review/assets/handdrawn-p08/characters/azao.avatar.webp",
+      "/a11-review/assets/handdrawn-p08/characters/azao.selection.webp",
+      "/a11-review/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+      "/a11-review/assets/handdrawn-p08/characters/xiemu.selection.webp",
+      "/a11-review/assets/handdrawn-p08/court/j.court.webp",
+      "/a11-review/assets/handdrawn-p08/court/q.court.webp",
+      "/a11-review/assets/handdrawn-p08/court/k.court.webp",
+      "/a11-review/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+      "/a11-review/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+      "/a11-review/assets/handdrawn-p08/cards/a11-v2-aa4e6a9988ab.detail.webp",
+      "/a11-review/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp"
+    ],
+    "errors": [],
+    "checks": [
+      "both old v1 canonical URLs genuinely warmed and reused from HTTP cache; hashes remain v1",
+      "actual v2 installed texture pixels/new thumb+HD HTTP SHA/BASE_URL/on-demand/contain/native reopen cache/full run-RNG immutable despite warm v1",
+      "reload with persisted run and browser caches still displays exact v2 thumb/detail; no run mutation"
+    ],
+    "oldCache": [
+      {
+        "path": "/a11-review/assets/handdrawn-p08/cards/a11.thumbnail.webp",
+        "bytes": 3226,
+        "sha256": "4d59c6e7587e882826a36a3de83880917c6a6ee78abb30993b5727700ba4af92"
+      },
+      {
+        "path": "/a11-review/assets/handdrawn-p08/cards/a11.detail.webp",
+        "bytes": 36274,
+        "sha256": "bfe702f1a44e14a817e4447aa0797d7619defc7ac04ae1d9bccf5c8c9d1b6aca"
+      }
+    ],
+    "thumbnail": {
+      "width": 128,
+      "height": 160,
+      "bytes": 3756,
+      "sha256": "ea9e76e4a31fe5c4acd83e0324641c203c76281deaeec9684e06785492c87113",
+      "actualTexturePixels": "b2dff2785bcb278f30a357d9199194a7970e0ef4912b4c55e1c02906a92a679e",
+      "expectedDecodedPixels": "b2dff2785bcb278f30a357d9199194a7970e0ef4912b4c55e1c02906a92a679e"
+    },
+    "detail": {
+      "width": 615,
+      "height": 768,
+      "bytes": 45940,
+      "sha256": "aa4e6a9988abf2998009a004aadba32b93f4d0bb394aa203b77bbb1e7cc8074d",
+      "fit": "contain",
+      "rect": {
+        "width": 162.734375,
+        "height": 227.828125
+      }
+    },
+    "imageSourceFingerprint": "b9b06e3f7da3dfa856b33d33b795f3567766117a4f437c78c90264697faa5628",
+    "imageBuild": {
+      "version": "C03",
+      "revision": "7d37d23347ddbfee344a00355de9741b34c67e76",
+      "modified": true,
+      "builtAt": "2026-10-04T15:40:36.710Z"
+    },
+    "imageSHA256": "f7723c1fa4a143ab41e6a44c607f9582b3adc12fc56a545fe98e8f48cbf7fed7"
+  },
+  "imageSourceFingerprint": "b9b06e3f7da3dfa856b33d33b795f3567766117a4f437c78c90264697faa5628",
+  "alignment": {
+    "main": "88b17e23c9aa778c8ac93c9998cd090ba48ab82d",
+    "mergeCommit": "6fb23ae4c5768eb41269a5cd361191e9eb10fe22",
+    "srcIdenticalToMain": true,
+    "sortHandSelectedGhostUndoClearingPreserved": true,
+    "itemAndA11CommitsPreserved": true
+  }
 }
