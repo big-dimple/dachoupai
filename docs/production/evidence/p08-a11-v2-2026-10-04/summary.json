@@ -112,8 +112,8 @@
     "builtAt": "2026-10-04T15:40:36.710Z"
   },
   "imageSHA256": "f7723c1fa4a143ab41e6a44c607f9582b3adc12fc56a545fe98e8f48cbf7fed7",
-  "testedCommit": "7d37d23347ddbfee344a00355de9741b34c67e76",
-  "testedCommitMeaning": "Base HEAD with approved a11-v2 local material changes; exact runtime manifest hash and unchanged src fingerprint identify fixture image/validation. Final committed check SHA recorded separately.",
+  "testedCommit": "79021e8fb3a26181ef2e44e3bb01600e82b9e589",
+  "testedCommitMeaning": "Exact committed combined material candidate used by bounded immutable178/type/build/content/plan freeze. Browser and original PNG used the identical registered runtime inputs and src fingerprint on7d37 with material changes; imageBuild/browserTestedBaseCommit retain that identity.",
   "protected": {
     "base": "7d37d23347ddbfee344a00355de9741b34c67e76",
     "runtimeFiles": 183,
@@ -141,5 +141,62 @@
     "boundedTechnical": "PASS",
     "independentWholeAesthetics": "PENDING",
     "OnePlusHardwareGPUAudio": "NOT_RUN"
-  }
+  },
+  "browserTestedBaseCommit": "7d37d23347ddbfee344a00355de9741b34c67e76",
+  "boundedFreeze": {
+    "status": "PASS",
+    "exitCode": 0,
+    "before": {
+      "source": "2f039c77f5cab3556115a387b452043ca95381b0d9705c62e25e30147d349fec",
+      "index": "4c28289c232fea1e8dc83f9757ce358aa028c6e89004c57e6c730bee20683e9d",
+      "head": "79021e8fb3a26181ef2e44e3bb01600e82b9e589",
+      "branch": "refs/heads/feat/p08-items-u01-u06-20261004"
+    },
+    "after": {
+      "source": "2f039c77f5cab3556115a387b452043ca95381b0d9705c62e25e30147d349fec",
+      "index": "4c28289c232fea1e8dc83f9757ce358aa028c6e89004c57e6c730bee20683e9d",
+      "head": "79021e8fb3a26181ef2e44e3bb01600e82b9e589",
+      "branch": "refs/heads/feat/p08-items-u01-u06-20261004"
+    },
+    "steps": [
+      {
+        "name": "affected-art-loading",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 3930
+      },
+      {
+        "name": "typecheck",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 6777
+      },
+      {
+        "name": "build",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 14664
+      },
+      {
+        "name": "verify:content",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 2215
+      },
+      {
+        "name": "plan",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 322
+      }
+    ]
+  },
+  "finalValidationBuild": {
+    "version": "C03",
+    "revision": "79021e8fb3a26181ef2e44e3bb01600e82b9e589",
+    "modified": false,
+    "builtAt": "2026-10-04T15:45:40.295Z"
+  },
+  "remoteMainObservedAfterFreeze": "88b17e23c9aa778c8ac93c9998cd090ba48ab82d",
+  "integration": "No main push. Requested3938 alignment retained; parent coordinates later published sort-return88b main before final integration."
 }
