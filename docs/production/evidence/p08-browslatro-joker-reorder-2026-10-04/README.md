@@ -1,5 +1,7 @@
 # P08 持有 Joker 调序的 MIT 代码复用
 
+资源发布顺序对齐：按父协调要求，先等已审六道具＋a11 main 精确发布到 `ce299b8a8ddf5cf399fecb889aa02882d315988c`，再正常合入本 review。合并源码 `8d0efea7b132c310847d0238b531005b616c28ed` 的整个 `src` 树逐树同上一绿 review `9f3db15`，public/assets 与 art/sources 两树逐树同 ce299；仅 handoff/plan 文档冲突，采用主线最新清理后的文字/状态并保留本包 evidence。205 项相关单测、content43公开文本及一次生产构建 PASS；a11-v2 两个内容哈希路径和 U01–U06 的12个路径在编译 bundle 中均保留，dist14个输出逐字节/SHA/尺寸同批准素材，旧 a11 canonical dist 路径不存在，MIT notice 仍逐字节相同。详见 [resource-main-alignment.json](resource-main-alignment.json)。此轮本地未重演未受影响 UI，旧截图/浏览器记录保留原构建身份；只等新 review HEAD 必需精确 CI，主线写入继续由父单独放行。
+
 2026-10-04 主线对齐：原 review `663ace1d9ab87dba2cb4f270146024f91e6541a8` 的精确 CI37213762076 已成功。正常合入已发布排序 main `88b17e23c9aa778c8ac93c9998cd090ba48ab82d`，合并源码 `254863e44e086e170f6a40ec9d33df8d841fa467`；仅 handoff/plan 冲突，双方交接和 evidence 都保留。`sortHand` 与排序 main 逐字一致，Joker 入口与原审 review 一致。305 项受影响测试/type/plan、一次 exact modified=false 构建共享给现有排序与 Joker 两条浏览器路线均 PASS，MIT notice 再核相同；详见 [main-alignment.json](main-alignment.json)。本包仍不写 main，不拉入 Goods 候选，不重复完整本地冻结；新精确 review HEAD CI 在父交付报告给出。下文为原实现检查点历史，保持当时基线与检查范围。
 
 基线 main `3938cee365994910d7d79f62fc91701273f2efe0`；实现与自然浏览器构建 `8b05042b11ee0e69a4675af3b502cea2189c9d69`，构建 `modified=false`。本小包只统一调序结果，没有视觉升级。普通 `feat/p08-browslatro-joker-reorder-20261004` 分支供父协调评审；这里不推进 main。
