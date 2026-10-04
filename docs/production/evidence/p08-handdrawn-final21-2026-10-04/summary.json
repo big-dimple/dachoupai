@@ -32,7 +32,13 @@
       "DPR": 1
     },
     "freeze": {
-      "status": "NOT_RUN"
+      "status": "PASS",
+      "testedCommit": "f315af14ea276817fdfd240e2958bb1d9c9a9cdb",
+      "tests": 1981,
+      "files": 107,
+      "sourceIndexHeadInvariant": true,
+      "scope": "tests/content/type/build/Chromium software Canvas desktop+mobile smoke/plan",
+      "evidence": "docs/production/evidence/p08-handdrawn-final21-2026-10-04/freeze.json"
     }
   },
   "functionalCoverage": {

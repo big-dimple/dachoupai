@@ -1,0 +1,77 @@
+{
+  "scope": "all",
+  "testedCommit": "f315af14ea276817fdfd240e2958bb1d9c9a9cdb",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "440dec0fb00ae2132cc3d1c0d53c8d88d4d6a3bf0a932c1e24fa023c0f925fb6",
+    "index": "71a110ae953737c0bd79e4c7309a132fea9f495e39f08b8d79253ee0d339bc12",
+    "head": "f315af14ea276817fdfd240e2958bb1d9c9a9cdb",
+    "branch": "refs/heads/feat/p08-handdrawn-final21-20261004"
+  },
+  "after": {
+    "source": "440dec0fb00ae2132cc3d1c0d53c8d88d4d6a3bf0a932c1e24fa023c0f925fb6",
+    "index": "71a110ae953737c0bd79e4c7309a132fea9f495e39f08b8d79253ee0d339bc12",
+    "head": "f315af14ea276817fdfd240e2958bb1d9c9a9cdb",
+    "branch": "refs/heads/feat/p08-handdrawn-final21-20261004"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 64008
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 2331
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 14452
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 30956
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 319
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ],
+  "environment": {
+    "node": "v24.19.0",
+    "chromium": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+    "renderer": "software Canvas; workspace-local system Chromium launcher disables GPU and software rasterizer",
+    "workers": 1,
+    "smokeProfiles": [
+      "desktop1280x720DPR1",
+      "mobile390x740DPR3"
+    ],
+    "physicalGPU": "NOT_RUN"
+  }
+}
