@@ -315,3 +315,6 @@ button[aria-busy=true] { border-style:dashed; }
 .card-ability.is-player-copy .ability-main{font-size:21px;line-height:1.4;color:#26313A;white-space:pre-wrap}
 .card-ability.is-player-copy .ability-limits{font-size:15px;line-height:1.5;color:#3F606B;white-space:pre-wrap}
 .card-ability.is-player-copy small{font-size:15px;line-height:1.5;white-space:pre-wrap}
+.deck-inspection-controls { display:flex;flex-wrap:wrap;gap:8px 12px;margin-bottom:12px; }
+.deck-inspection-controls label { display:flex;flex-direction:column;align-items:stretch;gap:4px;flex:1 1 140px;min-width:0;margin:0; }
+.deck-inspection-controls select { width:100%;min-width:0; }
