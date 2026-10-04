@@ -1,5 +1,6 @@
 /** P08 cinnabar candidate: actual phase-selected frames; native natural scoring, no recordings. */
 import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
 import {mkdir,readFile,writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 import {preview} from 'vite';
@@ -7,7 +8,7 @@ import sharp from 'sharp';
 import {chooseCharacter,tapUI,tapMenuAction,openMenuSection,waitScene} from './ui.mjs';
 const dir=process.env.PAPER_FIRE_DIR||'shots/cinnabar',port=5260;
 await mkdir(dir,{recursive:true});
-const report={build:JSON.parse(await readFile(dir+'/build/build-info.json','utf8')),runs:[],keyframes:[],limits:[
+const report={harnessCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),build:JSON.parse(await readFile(dir+'/build/build-info.json','utf8')),runs:[],keyframes:[],limits:[
   'Natural single5 high-card202 plus600 /1200 /5589 paths; no injected score, target, RNG, rule or save state. Long-digit probe changes/restores UI Text only.',
   'Linux Chromium software Canvas, native emulated touch, CSS390x740 and844x300, DPR1, safe top12/bottom34.',
   'Keyframes copy the actually rendered canvas at postrender using local/frame phase, age and frame number; no guessed phase sleeps.',
@@ -136,14 +137,13 @@ async function run(viewport,spec,mode='natural'){
     assert.deepEqual(r.cleanup,{brush:false,nodes:0,accents:0});
     if(mode==='skip'){
       await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');s.fastForward();s.fastForward();});assert.deepEqual(await state(p),r.result);
-      await tapMenuAction(p,'回看上一手',true);assert.deepEqual(await state(p),r.result);
       if(spec.tier===0){
         await p.evaluate(()=>{const g=window.__harness.game,s=g.scene.getScene('game'),frames=[];const observe=()=>{if(s.presentation)frames.push({replay:s.presentation.replay,accents:[...s.audio.voices].filter(v=>v.scoreAccent).length,saved:JSON.stringify(g.registry.get('runController').state)});};window.__cinnabarReplay={frames,observe};g.events.on('postrender',observe);});
-        await p.getByRole('button',{name:'回看演出',exact:true}).tap();await p.waitForFunction(()=>window.__cinnabarReplay.frames.length>0);
+        await tapMenuAction(p,'回看上一手',true);assert.deepEqual(await state(p),r.result);await p.waitForFunction(()=>window.__cinnabarReplay.frames.length>0);
         await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return !s.playing&&!s.presentation;});
         r.replay=await p.evaluate(()=>{const o=window.__cinnabarReplay;window.__harness.game.events.off('postrender',o.observe);return o.frames;});
         assert.ok(r.replay.every(f=>f.replay&&f.accents===0&&f.saved===JSON.stringify(r.result)),'actual replay does not replay brush drum or mutate saved run');
-      }else await p.locator('.run-menu-toggle').tap();
+      }else {await tapMenuAction(p,'回看上一手',true);assert.deepEqual(await state(p),r.result);await p.locator('.run-menu-toggle').tap();}
       await p.reload();await waitScene(p,'title');await tapUI(p,'title','action/title-continue',true);await waitScene(p,spec.tier===0?'game':'intermission');assert.deepEqual(await state(p),r.result);
       r.checks.push('Skip/duplicate completion/recap/reload preserves whole saved run, including RNG');
     }
@@ -164,6 +164,11 @@ async function contacts(viewport){
 try{
   if(process.env.FLAME_FOCUS_SCOPE==='checkpoint'){
     await run({width:390,height:740},specs[1]);report.status='IN_PROGRESS';report.remaining=['844x300 and remaining natural tiers/below-target frame','reduced / skip / mid-presentation switch browser routes','two four-phase contact sheets','exact review CI'];
+  }else if(process.env.FLAME_FOCUS_SCOPE==='interrupt'){
+    const previous=JSON.parse(await readFile(dir+'/report.json','utf8'));report.runs=previous.runs.filter(r=>r.status==='PASS');report.keyframes=previous.keyframes;report.keyframeBuild=previous.keyframeBuild;
+    for(const r of report.runs)r.source??=previous.build.revision;
+    await run({width:390,height:740},specs[0],'skip');await run({width:844,height:300},specs[2],'switch');
+    for(const v of [{width:390,height:740},{width:844,height:300}])await contacts(v);report.status='PASS';
   }else if(process.env.FLAME_FOCUS_SCOPE==='lifecycle'){
     const previous=JSON.parse(await readFile(dir+'/report.json','utf8'));report.runs=previous.runs.filter(r=>r.mode==='natural');report.keyframes=previous.keyframes;report.keyframeBuild=previous.build;
     for(const r of report.runs)r.source=previous.build.revision;
