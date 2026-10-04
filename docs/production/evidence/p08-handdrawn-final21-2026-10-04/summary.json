@@ -1,0 +1,56 @@
+{
+  "taskId": "P08",
+  "testedCommit": "473c4b609d5378c4773b158764a6e7590c2059de",
+  "baseCommit": "6f470b63032537b63898a4a974d91872439bbf3f",
+  "assetCommits": [
+    "1da558691621e8c3972b3d5bbdeaf16a9eba47fa",
+    "b7feb390c55ed8f930d22d4897641ba0c405128d",
+    "a6dbecb0b0612777d7c960dd8de65c9a1c897acc"
+  ],
+  "sourceTreeSHA": "6b7c3ca1d48b4c4de51b32b984babc8b0b7fa14e",
+  "runtimeManifestSHA256": "733fc7760c66b1117adacd3abf76a9635cd9b801124432466f257190bc9f2aeb",
+  "implementation": "PASS",
+  "technical": {
+    "hashDecodePortable": "PASS",
+    "actualPixelView": "all42 native thumbnail/detail outputs",
+    "targetedTests": 149,
+    "type": "PASS",
+    "publicArtPrivacy": {
+      "filesScanned": 34,
+      "issues": 0,
+      "status": "PASS"
+    },
+    "browser": {
+      "status": "PASS",
+      "representativeIds": 9,
+      "fixtures": 2,
+      "renderer": "Chromium software Canvas",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "DPR": 1
+    },
+    "freeze": {
+      "status": "NOT_RUN"
+    }
+  },
+  "functionalCoverage": {
+    "new": 72,
+    "legacy": 0,
+    "mechanism": 0
+  },
+  "runtime": {
+    "files": 165,
+    "bytes": 4444474,
+    "newFiles": 42,
+    "newBytes": 983068,
+    "prior123Unchanged": true,
+    "priorRuntimeBytes": 3461406,
+    "prior60MetadataSHA256": "6ea3ed5a2054145ab25a812232cd8e391d4cfac67c64e6bff0ccf64ba1ddcad7"
+  },
+  "sourceParentMerged": false,
+  "mainAdvance": "HELD_FOR_ROOT_COORDINATION",
+  "independentAesthetic": "approved source input; scene review pending root",
+  "targetDevice": "OnePlus/realGPU/audio NOT_RUN"
+}
