@@ -42,6 +42,8 @@ export class ScoreFlame {
   private readonly frameBands?:ReturnType<typeof scoreFlameFrameBands>;
   private readonly localBands:Box[];
   private readonly readoutBox:Box;
+  private clipPieces:Box[]=[];
+  private clippedGuards:Box[]=[];
   private readonly paths:Stroke[][]=[[],[],[],[]];
   private readonly inner:Stroke[]=[];
   private readonly hitIds=new Set<string>();
@@ -115,10 +117,12 @@ export class ScoreFlame {
   setGuards(guards:readonly Box[]):void {
     if(this.destroyed)return;
     const valid=guards.filter(b=>[b.x,b.y,b.width,b.height].every(Number.isFinite)&&b.width>0&&b.height>0);
+    if(this.clipPieces.length&&valid.length===this.clippedGuards.length&&valid.every((b,i)=>{const p=this.clippedGuards[i];return b.x===p.x&&b.y===p.y&&b.width===p.width&&b.height===p.height;}))return;
     const pieces=[...this.localBands,...(this.frameBands?.bands??[])].flatMap(b=>subtractBoxes(b,valid));
+    this.clipPieces=pieces;this.clippedGuards=valid;
     this.safetyGraphic.clear().fillStyle(0xffffff);
     for(const b of pieces)this.safetyGraphic.fillRect(b.x,b.y,b.width,b.height);
-    this.graphic.setData('safePieces',pieces).setData('textGuards',valid).setData('frameBands',this.frameBands?.bands??[]).setData('localBands',this.localBands);
+    this.graphic.setData('safePieces',pieces).setData('textGuards',valid).setData('frameBands',this.frameBands?.bands??[]).setData('localBands',this.localBands);this.draw();
   }
 
   private syncUpdate():void {
@@ -144,6 +148,23 @@ export class ScoreFlame {
       g.lineTo(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t);remaining-=length;
     }
     g.strokePath();
+  }
+  /** Clip the physical ink as well as its mask, including Canvas container paths. */
+  private paintInside(g:Phaser.GameObjects.Graphics,points:readonly Point[],width:number,alpha:number):Point[][] {
+    const inset=width/2+1,segments:Point[][]=[];
+    g.lineStyle(width,RED,alpha).beginPath();
+    for(let i=1;i<points.length;i++)for(const box of this.clipPieces){
+      if(box.width<=inset*2||box.height<=inset*2)continue;
+      const a=points[i-1],b=points[i],dx=b.x-a.x,dy=b.y-a.y;let from=0,to=1;
+      for(const [origin,delta,lo,hi] of [[a.x,dx,box.x+inset,box.x+box.width-inset],[a.y,dy,box.y+inset,box.y+box.height-inset]]){
+        if(!delta){if(origin<lo||origin>hi){to=-1;break;}continue;}
+        const t0=(lo-origin)/delta,t1=(hi-origin)/delta;from=Math.max(from,Math.min(t0,t1));to=Math.min(to,Math.max(t0,t1));
+      }
+      if(to<=from)continue;
+      const start={x:a.x+dx*from,y:a.y+dy*from},end={x:a.x+dx*to,y:a.y+dy*to};
+      segments.push([start,end]);g.moveTo(start.x,start.y).lineTo(end.x,end.y);
+    }
+    g.strokePath();return segments;
   }
   private draw():void {
     const peak=[0,64,80,96][this.level],settleWidth=[3.5,3.5,4.5,5.5][this.level];
@@ -173,15 +194,15 @@ export class ScoreFlame {
       const impactRays:readonly Point[][]=[];
       if(!staticHit){
         const b=this.readoutBox,cx=b.x+b.width/2,cy=b.y+b.height/2,burst=this.hitAge<36?.28:this.hitAge<90?.28+.72*(1-(1-(this.hitAge-36)/54)**3):1;
-        const rays:Point[][]=[];
+        const rays:Point[][]=[],visibleSegments:Point[][]=[];
         for(const [sx,sy] of [[-1,-1],[1,-1],[-1,1],[1,1]]){
           const points=[{x:cx+sx*b.width*.23*burst,y:cy+sy*b.height*.14*burst},
             {x:cx+sx*b.width*.38*burst,y:cy+sy*b.height*.30*burst},
             {x:cx+sx*b.width*.49*burst,y:cy+sy*b.height*.46*burst}];
-          rays.push(points);this.paint(this.graphic,stroke(points),1,4.5+this.level*.8,RED,alpha);
+          rays.push(points);visibleSegments.push(...this.paintInside(this.graphic,points,4.5+this.level*.8,alpha));
         }
-        this.graphic.setData('impactRays',rays).setData('readoutImpactBox',b);
-      }else this.graphic.setData('impactRays',impactRays);
+        this.graphic.setData('impactRays',rays).setData('visibleImpactSegments',visibleSegments).setData('readoutImpactBox',b);
+      }else this.graphic.setData('impactRays',impactRays).setData('visibleImpactSegments',[]);
       this.graphic.setData('localStrokes',localStrokes);
     }
     this.graphic.setData('strokeState',{level:this.level,reduced:this.reduced,localPhase:phase,localAge:this.hitAge,localAlpha:hitVisible?alpha:0,

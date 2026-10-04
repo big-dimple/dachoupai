@@ -109,3 +109,17 @@ describe('bounded cinnabar score strokes',()=>{
     }finally{random.mockRestore();}
   });
 });
+
+it('physically clips impact lines outside numeric guards even when the renderer ignores a child mask',()=>{
+  const f=fixture(),guard={x:196,y:246,width:134,height:54};f.flame.setGuards([guard]);f.flame.set(3);f.flame.impact('base');
+  for(const delta of [16,20,30,34,50]){
+    f.events.emit('update',delta);
+    const width=4.5+3*.8;
+    for(const segment of f.flame.graphic.getData('visibleImpactSegments') as {x:number;y:number}[][]){
+      const left=Math.min(...segment.map(p=>p.x))-width/2,top=Math.min(...segment.map(p=>p.y))-width/2;
+      const box={x:left,y:top,width:Math.max(...segment.map(p=>p.x))+width/2-left,height:Math.max(...segment.map(p=>p.y))+width/2-top};
+      expect(intersects(box,guard)).toBe(false);
+    }
+  }
+  f.flame.destroy();
+});
