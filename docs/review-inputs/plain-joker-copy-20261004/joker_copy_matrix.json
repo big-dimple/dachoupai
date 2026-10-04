@@ -1,0 +1,5987 @@
+{
+  "schema_version": 1,
+  "repository": "big-dimple/dachoupai",
+  "baseline_commit": "88b17e23c9aa778c8ac93c9998cd090ba48ab82d",
+  "purpose": "玩家文案改造草稿；只读源码审查，未改仓库、未运行游戏。",
+  "render_contract": {
+    "main": "主句直说何时→得到什么。",
+    "required_visible_limits": "主句下方始终可见，不能仅藏在折叠细则中；可能影响买牌、出牌或收益判断。",
+    "dynamic": "已有实例才显示保存值，数字与判定复用权威来源，不能镜像机制。",
+    "details": "沿用现有折叠 rules，容纳执行顺序、边界、保护性上限。",
+    "baseline_rendered": "仅供文案审核，不得拿它代替数值绑定模板。"
+  },
+  "entries": [
+    {
+      "id": "pengci",
+      "name": "碰瓷",
+      "mechanism_summary": "按最终牌型给整手加倍率",
+      "main_template": "打出高牌时，整手倍率 +{h0o0_value}。",
+      "required_visible_limits": [
+        "高牌是牌型，不是指点数大的牌。"
+      ],
+      "detail_rules": [
+        "打出多张但没有组成更高牌型，也可以是高牌。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "2",
+            "d": "1"
+          },
+          "baseline_display": "2"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打出高牌时，整手倍率 +2。",
+        "visible_limits": [
+          "高牌是牌型，不是指点数大的牌。"
+        ],
+        "details": [
+          "打出多张但没有组成更高牌型，也可以是高牌。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:2",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "high-card"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "高牌时，整手倍率 +2。"
+    },
+    {
+      "id": "mantangcai",
+      "name": "满堂彩",
+      "mechanism_summary": "仅列出的五种牌型给整手加热度",
+      "main_template": "打出{h0c_values}时，整手热度 +{h0o0_value}。",
+      "required_visible_limits": [
+        "五条、同花葫芦、同花五条不算。"
+      ],
+      "detail_rules": [
+        "按最终牌型判断；不是只要里面含一对就生效。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_values": {
+          "source": "definition.hooks[0].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "对子、两对、三条、葫芦、四条",
+          "baseline_display": "对子、两对、三条、葫芦、四条"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "90",
+            "d": "1"
+          },
+          "baseline_display": "90"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打出对子、两对、三条、葫芦、四条时，整手热度 +90。",
+        "visible_limits": [
+          "五条、同花葫芦、同花五条不算。"
+        ],
+        "details": [
+          "按最终牌型判断；不是只要里面含一对就生效。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:3",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair",
+                "two-pair",
+                "three-kind",
+                "full-house",
+                "four-kind"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "90",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。"
+    },
+    {
+      "id": "tiesuanpan",
+      "name": "铁算盘",
+      "mechanism_summary": "JQKA有效计分时逐张加热度",
+      "main_template": "每张能计分的 {h0c_values}，计分时多加 {h0o0_value} 热度。",
+      "required_visible_limits": [
+        "只算计分牌；附带打出的牌、停用牌和留在手里的牌不算。"
+      ],
+      "detail_rules": [
+        "这张扑克牌再次计分时，也会再获得这项加成。A包括在内。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_values": {
+          "source": "definition.hooks[0].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "J、Q、K、A",
+          "baseline_display": "J、Q、K、A"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "25",
+            "d": "1"
+          },
+          "baseline_display": "25"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每张能计分的 J、Q、K、A，计分时多加 25 热度。",
+        "visible_limits": [
+          "只算计分牌；附带打出的牌、停用牌和留在手里的牌不算。"
+        ],
+        "details": [
+          "这张扑克牌再次计分时，也会再获得这项加成。A包括在内。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:4",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "rank-in",
+              "values": [
+                11,
+                12,
+                13,
+                14
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "25",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。"
+    },
+    {
+      "id": "huimaqiang",
+      "name": "回马枪",
+      "mechanism_summary": "本场成功出牌序号取整周期乘倍率",
+      "main_template": "本场每第 {h0c_divisor} 手，整手倍率 ×{h0o0_value}。",
+      "required_visible_limits": [
+        "弃牌不算一手；返还出牌机会不会倒退出牌序号。"
+      ],
+      "detail_rules": [
+        "下一手序号为本场已成功出牌次数加一；进入新场重新计数。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_divisor": {
+          "source": "definition.hooks[0].condition.divisor",
+          "format": "plain",
+          "baseline_value": 3,
+          "baseline_display": "3"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "2",
+            "d": "1"
+          },
+          "baseline_display": "2"
+        }
+      },
+      "baseline_rendered": {
+        "main": "本场每第 3 手，整手倍率 ×2。",
+        "visible_limits": [
+          "弃牌不算一手；返还出牌机会不会倒退出牌序号。"
+        ],
+        "details": [
+          "下一手序号为本场已成功出牌次数加一；进入新场重新计数。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:5",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "play-modulo",
+              "divisor": 3,
+              "remainder": 0
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "本场每第 3 次出牌，整手倍率 ×2。"
+    },
+    {
+      "id": "jiedongfeng",
+      "name": "借东风",
+      "mechanism_summary": "三种指定顺花牌型加倍率",
+      "main_template": "打出{h0c_values}时，整手倍率 +{h0o0_value}。",
+      "required_visible_limits": [
+        "同花葫芦、同花五条不算。"
+      ],
+      "detail_rules": [
+        "看最终牌型，不是看打出的牌中能否拆出顺子或同花。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_values": {
+          "source": "definition.hooks[0].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "顺子、同花、同花顺",
+          "baseline_display": "顺子、同花、同花顺"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "3",
+            "d": "2"
+          },
+          "baseline_display": "1.5"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打出顺子、同花、同花顺时，整手倍率 +1.5。",
+        "visible_limits": [
+          "同花葫芦、同花五条不算。"
+        ],
+        "details": [
+          "看最终牌型，不是看打出的牌中能否拆出顺子或同花。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:6",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "straight",
+                "flush",
+                "straight-flush"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "顺子、同花或同花顺，整手倍率 +1.5。"
+    },
+    {
+      "id": "a03",
+      "name": "一束光",
+      "mechanism_summary": "实际出牌张数等于一时加热度",
+      "main_template": "只打出 {h0c_equals} 张牌时，整手热度 +{h0o0_value}。",
+      "required_visible_limits": [
+        "数所有打出的牌，包括附带牌和停用牌。"
+      ],
+      "detail_rules": [
+        "打出多张而只有一张计分，不满足条件。扑克牌再次计分不会重复这项整手加成。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_equals": {
+          "source": "definition.hooks[0].condition.equals",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "35",
+            "d": "1"
+          },
+          "baseline_display": "35"
+        }
+      },
+      "baseline_rendered": {
+        "main": "只打出 1 张牌时，整手热度 +35。",
+        "visible_limits": [
+          "数所有打出的牌，包括附带牌和停用牌。"
+        ],
+        "details": [
+          "打出多张而只有一张计分，不满足条件。扑克牌再次计分不会重复这项整手加成。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:7",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "played-count",
+              "equals": 1
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "35",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "实际打出恰好1张牌时，整手热度 +35。"
+    },
+    {
+      "id": "a05",
+      "name": "熟面孔",
+      "mechanism_summary": "单张出牌后增加可跨手保存的热度成长",
+      "main_template": "每手加上已攒的热度；只出 {h1c_equals} 张后，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+      "required_visible_limits": [
+        "新攒的热度从下一手生效；以后每手都加，不会用掉。"
+      ],
+      "detail_rules": [
+        "数所有打出的牌，包括附带牌和停用牌。成长跟随这张大丑牌，换场保留，卖掉后重新买不继承。"
+      ],
+      "dynamic_state_templates": [
+        "每手热度加成：+{saved_heat}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_heat",
+          "source": "instance.growth[\"heat\"] with r2GrowthMinimums/default additive zero",
+          "format": "fractionText",
+          "missing_instance": "尚未购买；不显示已有成长或触发状态",
+          "derive_rule": "只读现有保存值，不复算成长过程"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1c_equals": {
+          "source": "definition.hooks[1].condition.equals",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        },
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "90",
+            "d": "1"
+          },
+          "baseline_display": "90"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "6",
+            "d": "1"
+          },
+          "baseline_display": "6"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每手加上已攒的热度；只出 1 张后，再攒 6，最多攒 90。",
+        "visible_limits": [
+          "新攒的热度从下一手生效；以后每手都加，不会用掉。"
+        ],
+        "details": [
+          "数所有打出的牌，包括附带牌和停用牌。成长跟随这张大丑牌，换场保留，卖掉后重新买不继承。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:8",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:343-356"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "heat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "played-count",
+              "equals": 1
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "heat",
+                "value": {
+                  "n": "6",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "90",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "打出1张后热度成长 +6，上限90，从下一手生效；每手加入已有成长。"
+    },
+    {
+      "id": "b02",
+      "name": "对上眼",
+      "mechanism_summary": "同点数至少二张的有效计分牌逐张加倍率",
+      "main_template": "打出的牌里，同一点数至少有 {h0c_minimum} 张时，其中每张能计分的牌都让倍率 +{h0o0_value}。",
+      "required_visible_limits": [
+        "附带牌和停用牌可凑够张数，但自身不能获得这项计分加成。"
+      ],
+      "detail_rules": [
+        "不要求最终牌型恰为对子。再次计分的符合牌也再次加倍率。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_minimum": {
+          "source": "definition.hooks[0].condition.minimum",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "4"
+          },
+          "baseline_display": "0.25"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打出的牌里，同一点数至少有 2 张时，其中每张能计分的牌都让倍率 +0.25。",
+        "visible_limits": [
+          "附带牌和停用牌可凑够张数，但自身不能获得这项计分加成。"
+        ],
+        "details": [
+          "不要求最终牌型恰为对子。再次计分的符合牌也再次加倍率。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:9",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "paired-rank",
+              "minimum": 2
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "4"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "计分牌的点数在实际打出牌中至少出现2次时，该牌倍率 +0.25。"
+    },
+    {
+      "id": "b03",
+      "name": "老搭档",
+      "mechanism_summary": "指定对子类牌型结算后积累倍率",
+      "main_template": "每手加上已攒的倍率；打出{h1c_values}后，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+      "required_visible_limits": [
+        "新增从下一手生效；葫芦、四条、五条及其他牌型不增加成长。"
+      ],
+      "detail_rules": [
+        "已有成长用于任意牌型，换场保留，跟随这张大丑牌。"
+      ],
+      "dynamic_state_templates": [
+        "每手倍率加成：+{saved_multiplier}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_multiplier",
+          "source": "instance.growth[\"multiplier\"] with r2GrowthMinimums/default additive zero",
+          "format": "fractionText",
+          "missing_instance": "尚未购买；不显示已有成长或触发状态",
+          "derive_rule": "只读现有保存值，不复算成长过程"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1c_values": {
+          "source": "definition.hooks[1].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "对子、两对、三条",
+          "baseline_display": "对子、两对、三条"
+        },
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "3",
+            "d": "1"
+          },
+          "baseline_display": "3"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "4"
+          },
+          "baseline_display": "0.25"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每手加上已攒的倍率；打出对子、两对、三条后，再攒 0.25，最多攒 3。",
+        "visible_limits": [
+          "新增从下一手生效；葫芦、四条、五条及其他牌型不增加成长。"
+        ],
+        "details": [
+          "已有成长用于任意牌型，换场保留，跟随这张大丑牌。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:10",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:343-356"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "multiplier",
+                "target": "multiplier"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair",
+                "two-pair",
+                "three-kind"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "4"
+                },
+                "cap": {
+                  "n": "3",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "对子、两对、三条后倍率成长 +0.25，上限3，从下一手生效；每手加入已有成长。"
+    },
+    {
+      "id": "b04",
+      "name": "一唱一和",
+      "mechanism_summary": "打出至少两组每组两张同点数时加倍率",
+      "main_template": "打出的牌里有至少 {h0c_minimum} 组不同点数、每组至少 {h0c_groupSize} 张时，整手倍率 +{h0o0_value}。",
+      "required_visible_limits": [
+        "两对、葫芦可以满足；只有一组同点数的三条或四条不满足。"
+      ],
+      "detail_rules": [
+        "按全部打出牌计数，附带牌和停用牌也参与凑组。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_groupSize": {
+          "source": "definition.hooks[0].condition.groupSize",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "h0c_minimum": {
+          "source": "definition.hooks[0].condition.minimum",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "2",
+            "d": "1"
+          },
+          "baseline_display": "2"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打出的牌里有至少 2 组不同点数、每组至少 2 张时，整手倍率 +2。",
+        "visible_limits": [
+          "两对、葫芦可以满足；只有一组同点数的三条或四条不满足。"
+        ],
+        "details": [
+          "按全部打出牌计数，附带牌和停用牌也参与凑组。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:11",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "rank-groups",
+              "minimum": 2,
+              "groupSize": 2
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "实际打出牌含至少两组不同点数、每组至少2张时，整手倍率 +2。"
+    },
+    {
+      "id": "c02",
+      "name": "红线",
+      "mechanism_summary": "红桃方片有效计分牌逐张加热度",
+      "main_template": "每张能计分的{h0c_values}，计分时多加 {h0o0_value} 热度。",
+      "required_visible_limits": [
+        "附带牌、停用牌和留在手里的牌不算。"
+      ],
+      "detail_rules": [
+        "符合的扑克牌再次计分时，也会再次获得这项加成。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_values": {
+          "source": "definition.hooks[0].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "红桃、方片",
+          "baseline_display": "红桃、方片"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "8",
+            "d": "1"
+          },
+          "baseline_display": "8"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每张能计分的红桃、方片，计分时多加 8 热度。",
+        "visible_limits": [
+          "附带牌、停用牌和留在手里的牌不算。"
+        ],
+        "details": [
+          "符合的扑克牌再次计分时，也会再次获得这项加成。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:12",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "suit-in",
+              "values": [
+                "hearts",
+                "diamonds"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "8",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "每张有效计分的红桃或方片，加8热度；杂牌和持牌不触发。"
+    },
+    {
+      "id": "c04",
+      "name": "搭台阶",
+      "mechanism_summary": "顺子与同花顺加热度",
+      "main_template": "打出{h0c_values}时，整手热度 +{h0o0_value}。",
+      "required_visible_limits": [],
+      "detail_rules": [
+        "只看最终判定的牌型。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_values": {
+          "source": "definition.hooks[0].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "顺子、同花顺",
+          "baseline_display": "顺子、同花顺"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "50",
+            "d": "1"
+          },
+          "baseline_display": "50"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打出顺子、同花顺时，整手热度 +50。",
+        "visible_limits": [],
+        "details": [
+          "只看最终判定的牌型。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:13",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "straight",
+                "straight-flush"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "50",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "顺子或同花顺，整手热度 +50。"
+    },
+    {
+      "id": "c06",
+      "name": "越染越深",
+      "mechanism_summary": "普通同花与同花顺结算后积累倍率",
+      "main_template": "每手加上已攒的倍率；打出{h1c_values}后，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+      "required_visible_limits": [
+        "新增从下一手生效；同花葫芦、同花五条不增加成长。"
+      ],
+      "detail_rules": [
+        "已有成长用于任意牌型，换场保留，跟随这张大丑牌。"
+      ],
+      "dynamic_state_templates": [
+        "每手倍率加成：+{saved_multiplier}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_multiplier",
+          "source": "instance.growth[\"multiplier\"] with r2GrowthMinimums/default additive zero",
+          "format": "fractionText",
+          "missing_instance": "尚未购买；不显示已有成长或触发状态",
+          "derive_rule": "只读现有保存值，不复算成长过程"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1c_values": {
+          "source": "definition.hooks[1].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "同花、同花顺",
+          "baseline_display": "同花、同花顺"
+        },
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "4",
+            "d": "1"
+          },
+          "baseline_display": "4"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "4"
+          },
+          "baseline_display": "0.25"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每手加上已攒的倍率；打出同花、同花顺后，再攒 0.25，最多攒 4。",
+        "visible_limits": [
+          "新增从下一手生效；同花葫芦、同花五条不增加成长。"
+        ],
+        "details": [
+          "已有成长用于任意牌型，换场保留，跟随这张大丑牌。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:14",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:343-356"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "multiplier",
+                "target": "multiplier"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "flush",
+                "straight-flush"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "4"
+                },
+                "cap": {
+                  "n": "4",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "同花或同花顺后倍率成长 +0.25，上限4，从下一手生效；每手加入已有成长。"
+    },
+    {
+      "id": "d01",
+      "name": "候场席",
+      "mechanism_summary": "手牌前四张有效JQK逐张加倍率",
+      "main_template": "留在手里的 {h0c_values}，按手牌顺序取前 {h0c_limit} 张，每张让倍率 +{h0o0_value}。",
+      "required_visible_limits": [
+        "A不算；停用牌不算，跳过后再取够数量。"
+      ],
+      "detail_rules": [
+        "只留牌也不会获得它们的普通点数；持牌的版次不计分。按手牌顺序逐张处理，同一张牌上的大丑牌效果按槽位顺序处理。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_limit": {
+          "source": "definition.hooks[0].condition.limit",
+          "format": "plain",
+          "baseline_value": 4,
+          "baseline_display": "4"
+        },
+        "h0c_values": {
+          "source": "definition.hooks[0].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "J、Q、K",
+          "baseline_display": "J、Q、K"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "2"
+          },
+          "baseline_display": "0.5"
+        }
+      },
+      "baseline_rendered": {
+        "main": "留在手里的 J、Q、K，按手牌顺序取前 4 张，每张让倍率 +0.5。",
+        "visible_limits": [
+          "A不算；停用牌不算，跳过后再取够数量。"
+        ],
+        "details": [
+          "只留牌也不会获得它们的普通点数；持牌的版次不计分。按手牌顺序逐张处理，同一张牌上的大丑牌效果按槽位顺序处理。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:15",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onHeldCard",
+            "condition": {
+              "kind": "held-rank-first",
+              "values": [
+                11,
+                12,
+                13
+              ],
+              "limit": 4
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "手牌顺序前4张持有的J/Q/K各加0.5倍率；A不算人头。"
+    },
+    {
+      "id": "d03",
+      "name": "等得住",
+      "mechanism_summary": "留至少三张牌后积累热度",
+      "main_template": "每手加上已攒的热度；出牌后留在手里至少 {h1c_minimum} 张，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+      "required_visible_limits": [
+        "新增从下一手生效；数本手没打出的牌，不数之后补抽的牌。"
+      ],
+      "detail_rules": [
+        "留在手里的停用牌也算张数；打出的附带牌不算留牌。成长换场保留，跟随这张大丑牌。"
+      ],
+      "dynamic_state_templates": [
+        "每手热度加成：+{saved_heat}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_heat",
+          "source": "instance.growth[\"heat\"] with r2GrowthMinimums/default additive zero",
+          "format": "fractionText",
+          "missing_instance": "尚未购买；不显示已有成长或触发状态",
+          "derive_rule": "只读现有保存值，不复算成长过程"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1c_minimum": {
+          "source": "definition.hooks[1].condition.minimum",
+          "format": "plain",
+          "baseline_value": 3,
+          "baseline_display": "3"
+        },
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "60",
+            "d": "1"
+          },
+          "baseline_display": "60"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "4",
+            "d": "1"
+          },
+          "baseline_display": "4"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每手加上已攒的热度；出牌后留在手里至少 3 张，再攒 4，最多攒 60。",
+        "visible_limits": [
+          "新增从下一手生效；数本手没打出的牌，不数之后补抽的牌。"
+        ],
+        "details": [
+          "留在手里的停用牌也算张数；打出的附带牌不算留牌。成长换场保留，跟随这张大丑牌。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:16",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:343-356"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "heat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "held-count",
+              "minimum": 3
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "heat",
+                "value": {
+                  "n": "4",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "60",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "一手后留下至少3张牌，热度成长 +4，上限60，从下一手生效；每手加入已有成长。"
+    },
+    {
+      "id": "d05",
+      "name": "彩排",
+      "mechanism_summary": "每场第一次成功弃牌返还一个弃牌额度",
+      "main_template": "本场第一次成功弃牌后，返还 {h0o0_amount} 次弃牌机会。",
+      "required_visible_limits": [
+        "每场只有第一次；仍算弃过牌，不能恢复“不换词”的效果。"
+      ],
+      "detail_rules": [
+        "返还后的次数不超过入场时的弃牌次数；若本次弃牌花了两次机会，也只按本卡规定返还。进入新场重新计算。"
+      ],
+      "dynamic_state_templates": [
+        "{usage_scope}还可用 {remainingUses} 次"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "remainingUses",
+          "source": "jokerMemory(...).remainingUses",
+          "format": "integer"
+        },
+        {
+          "placeholder": "usage_scope",
+          "source": "ctx.inStage ? 本场 : 下场; usageResetsOnEntry decides reset note",
+          "format": "state label"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_amount": {
+          "source": "definition.hooks[0].operations[0].amount",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        }
+      },
+      "baseline_rendered": {
+        "main": "本场第一次成功弃牌后，返还 1 次弃牌机会。",
+        "visible_limits": [
+          "每场只有第一次；仍算弃过牌，不能恢复“不换词”的效果。"
+        ],
+        "details": [
+          "返还后的次数不超过入场时的弃牌次数；若本次弃牌花了两次机会，也只按本卡规定返还。进入新场重新计算。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:17",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onDiscard",
+            "condition": {
+              "kind": "resource",
+              "resource": "discards-used",
+              "equals": 1
+            },
+            "operations": [
+              {
+                "kind": "refund-discard",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "本场首次成功弃牌返还1次弃牌；仅一次，返还仍算使用过弃牌。"
+    },
+    {
+      "id": "d10",
+      "name": "空位有价",
+      "mechanism_summary": "按空大丑牌槽数量加热度并封顶",
+      "main_template": "每次出牌，每个空的大丑牌槽加 {h0o0_value} 热度，总共最多加 {h0o0_cap}。",
+      "required_visible_limits": [],
+      "detail_rules": [
+        "按本手开始时的实际空槽数计算；这张大丑牌自身占一槽。当前加成用已有数值展示函数读取，不能另写一套计算。"
+      ],
+      "dynamic_state_templates": [
+        "当前每手热度加成：{current_context_value}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "current_context_value",
+          "source": "r2JokerValue(instance, existing context)",
+          "format": "existing formatted value",
+          "derive_rule": "复用已有数值函数；未购买不显示已拥有的当前加成"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_cap": {
+          "source": "definition.hooks[0].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "48",
+            "d": "1"
+          },
+          "baseline_display": "48"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "12",
+            "d": "1"
+          },
+          "baseline_display": "12"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每次出牌，每个空的大丑牌槽加 12 热度，总共最多加 48。",
+        "visible_limits": [],
+        "details": [
+          "按本手开始时的实际空槽数计算；这张大丑牌自身占一槽。当前加成用已有数值展示函数读取，不能另写一套计算。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:18",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "add-heat-per-empty-slot",
+                "value": {
+                  "n": "12",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "48",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "每个空大丑牌槽加12热度，最多4个空槽。"
+    },
+    {
+      "id": "e01",
+      "name": "小费盒",
+      "mechanism_summary": "成功过关时给金币",
+      "main_template": "成功过关时，额外获得 {h0o0_amount} 金币。",
+      "required_visible_limits": [
+        "失败和跳过这一场都不给。"
+      ],
+      "detail_rules": [
+        "在实际过关后发放，每次过关只发一次。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_amount": {
+          "source": "definition.hooks[0].operations[0].amount",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        }
+      },
+      "baseline_rendered": {
+        "main": "成功过关时，额外获得 2 金币。",
+        "visible_limits": [
+          "失败和跳过这一场都不给。"
+        ],
+        "details": [
+          "在实际过关后发放，每次过关只发一次。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:19",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255",
+        "src/domain/r2Run.ts:576-608"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "add-gold",
+                "amount": 2
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "成功过场额外 +2金币；失败和跳场不触发。"
+    },
+    {
+      "id": "e03",
+      "name": "家底",
+      "mechanism_summary": "按本手开始金币加热度并封顶",
+      "main_template": "每次出牌，每持有 1 金币就加 {h0o0_value} 热度，最多加 {h0o0_cap}。",
+      "required_visible_limits": [
+        "按出牌开始时的金币算；本手新赚的金币留到之后的出牌再算。"
+      ],
+      "detail_rules": [
+        "不花费金币。当前加成用已有数值展示函数读取，不能另写一套计算。"
+      ],
+      "dynamic_state_templates": [
+        "当前每手热度加成：{current_context_value}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "current_context_value",
+          "source": "r2JokerValue(instance, existing context)",
+          "format": "existing formatted value",
+          "derive_rule": "复用已有数值函数；未购买不显示已拥有的当前加成"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_cap": {
+          "source": "definition.hooks[0].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "60",
+            "d": "1"
+          },
+          "baseline_display": "60"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "2",
+            "d": "1"
+          },
+          "baseline_display": "2"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每次出牌，每持有 1 金币就加 2 热度，最多加 60。",
+        "visible_limits": [
+          "按出牌开始时的金币算；本手新赚的金币留到之后的出牌再算。"
+        ],
+        "details": [
+          "不花费金币。当前加成用已有数值展示函数读取，不能另写一套计算。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:20",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "add-heat-per-gold",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "60",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "每持有1金币加2热度，最多60热度。"
+    },
+    {
+      "id": "e05",
+      "name": "置办行头",
+      "mechanism_summary": "持有期间买别的大丑牌增加热度成长",
+      "main_template": "每手加上已攒的热度；每买一张其他大丑牌，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+      "required_visible_limits": [
+        "买入本牌的这一笔不成长；买消耗品或长期道具也不成长。"
+      ],
+      "detail_rules": [
+        "必须在购买之前就持有本牌；购买失败不成长。成长用于以后的出牌，换场保留，卖掉后重新买不继承。"
+      ],
+      "dynamic_state_templates": [
+        "每手热度加成：+{saved_heat}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_heat",
+          "source": "instance.growth[\"heat\"] with r2GrowthMinimums/default additive zero",
+          "format": "fractionText",
+          "missing_instance": "尚未购买；不显示已有成长或触发状态",
+          "derive_rule": "只读现有保存值，不复算成长过程"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "80",
+            "d": "1"
+          },
+          "baseline_display": "80"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "8",
+            "d": "1"
+          },
+          "baseline_display": "8"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每手加上已攒的热度；每买一张其他大丑牌，再攒 8，最多攒 80。",
+        "visible_limits": [
+          "买入本牌的这一笔不成长；买消耗品或长期道具也不成长。"
+        ],
+        "details": [
+          "必须在购买之前就持有本牌；购买失败不成长。成长用于以后的出牌，换场保留，卖掉后重新买不继承。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:21",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255",
+        "src/domain/r2Run.ts:443-469"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "heat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "onBuyOffer",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "heat",
+                "value": {
+                  "n": "8",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "80",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "持有期间购买其他大丑牌后，热度成长 +8，上限80；每手加入已有成长。"
+    },
+    {
+      "id": "e08",
+      "name": "包场",
+      "mechanism_summary": "本手开始金币达门槛乘倍率",
+      "main_template": "出牌时至少有 {h0c_minimum} 金币，整手倍率 ×{h0o0_value}。",
+      "required_visible_limits": [
+        "按出牌开始时的金币判断，不花费金币。"
+      ],
+      "detail_rules": [
+        "本手计分中赚到的金币不会改变本手资格。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_minimum": {
+          "source": "definition.hooks[0].condition.minimum",
+          "format": "plain",
+          "baseline_value": 20,
+          "baseline_display": "20"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "9",
+            "d": "5"
+          },
+          "baseline_display": "1.8"
+        }
+      },
+      "baseline_rendered": {
+        "main": "出牌时至少有 20 金币，整手倍率 ×1.8。",
+        "visible_limits": [
+          "按出牌开始时的金币判断，不花费金币。"
+        ],
+        "details": [
+          "本手计分中赚到的金币不会改变本手资格。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:22",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "resource-minimum",
+              "resource": "gold",
+              "minimum": 20
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "9",
+                  "d": "5"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "当前金币至少20时，整手倍率 ×1.8。"
+    },
+    {
+      "id": "f02",
+      "name": "最后一句",
+      "mechanism_summary": "出牌次数扣除到零时加热度",
+      "main_template": "用掉当前最后一次出牌机会时，整手热度 +{h0o0_value}。",
+      "required_visible_limits": [
+        "按出牌开始时剩余的机会判断；不要求这一手过关。"
+      ],
+      "detail_rules": [
+        "这手结束后若返还机会，仍不改变这次加成。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "70",
+            "d": "1"
+          },
+          "baseline_display": "70"
+        }
+      },
+      "baseline_rendered": {
+        "main": "用掉当前最后一次出牌机会时，整手热度 +70。",
+        "visible_limits": [
+          "按出牌开始时剩余的机会判断；不要求这一手过关。"
+        ],
+        "details": [
+          "这手结束后若返还机会，仍不改变这次加成。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:23",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "resource",
+              "resource": "hands-after",
+              "equals": 0
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "70",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "扣除本手后出牌余量为0时，整手热度 +70。"
+    },
+    {
+      "id": "f03",
+      "name": "开门见喜",
+      "mechanism_summary": "本场首手加倍率",
+      "main_template": "本场第一手，整手倍率 +{h0o0_value}。",
+      "required_visible_limits": [],
+      "detail_rules": [
+        "弃牌不占出牌序号；返还机会不把后面的出牌变回第一手。新场重新计算。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "2",
+            "d": "1"
+          },
+          "baseline_display": "2"
+        }
+      },
+      "baseline_rendered": {
+        "main": "本场第一手，整手倍率 +2。",
+        "visible_limits": [],
+        "details": [
+          "弃牌不占出牌序号；返还机会不把后面的出牌变回第一手。新场重新计算。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:24",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "resource",
+              "resource": "play-index",
+              "equals": 1
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "本场第一手，整手倍率 +2。"
+    },
+    {
+      "id": "f09",
+      "name": "不换词",
+      "mechanism_summary": "本场没有成功弃牌则乘倍率",
+      "main_template": "这场还没弃过牌时，整手倍率 ×{h0o0_value}。",
+      "required_visible_limits": [
+        "一旦成功弃牌，本场不再享受这项加成；返还弃牌次数也不能恢复。"
+      ],
+      "detail_rules": [
+        "下一场恢复资格。这里只说本牌主要效果，特殊版次的效果仍单独处理；整张牌被计分封禁时，两者均停用。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "3",
+            "d": "2"
+          },
+          "baseline_display": "1.5"
+        }
+      },
+      "baseline_rendered": {
+        "main": "这场还没弃过牌时，整手倍率 ×1.5。",
+        "visible_limits": [
+          "一旦成功弃牌，本场不再享受这项加成；返还弃牌次数也不能恢复。"
+        ],
+        "details": [
+          "下一场恢复资格。这里只说本牌主要效果，特殊版次的效果仍单独处理；整张牌被计分封禁时，两者均停用。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:25",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "resource",
+              "resource": "discards-used",
+              "equals": 0
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "本场尚未成功使用弃牌时，整手倍率 ×1.5；返还弃牌不恢复资格。"
+    },
+    {
+      "id": "a04",
+      "name": "小口袋",
+      "mechanism_summary": "入场牌组不超过门槛时锁定额外手牌容量",
+      "main_template": "进场时牌组不超过 {m0_deckMaximum} 张，手牌上限 +{m0_amount}。",
+      "required_visible_limits": [
+        "下次进场才生效；所有加成合计后的手牌上限最多为 {limit_hand}。"
+      ],
+      "detail_rules": [
+        "只数牌组里尚未销毁的牌；不是看当时手里有几张。进场后牌组大小变动不重新调整本场上限，也不返还已经用掉的牌。"
+      ],
+      "dynamic_state_templates": [
+        "{entry_hand_limit_state}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "entry_hand_limit_state",
+          "source": "ctx.inStage ? 本场已锁定手牌上限 + ctx.entryHandLimit : 下次进场时判断",
+          "format": "existing entry snapshot"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "limit_hand": {
+          "source": "R2_RESOURCE_CONTRACT.handMaximum",
+          "format": "plain",
+          "baseline_value": 14,
+          "baseline_display": "14",
+          "evidence": "src/domain/r2Resources.ts:7,13"
+        },
+        "m0_amount": {
+          "source": "definition.modifiers[0].amount",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "m0_deckMaximum": {
+          "source": "definition.modifiers[0].deckMaximum",
+          "format": "plain",
+          "baseline_value": 40,
+          "baseline_display": "40"
+        }
+      },
+      "baseline_rendered": {
+        "main": "进场时牌组不超过 40 张，手牌上限 +2。",
+        "visible_limits": [
+          "下次进场才生效；所有加成合计后的手牌上限最多为 14。"
+        ],
+        "details": [
+          "只数牌组里尚未销毁的牌；不是看当时手里有几张。进场后牌组大小变动不重新调整本场上限，也不返还已经用掉的牌。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:26",
+        "src/domain/r2Resources.ts:7-13",
+        "src/content/r2Schema.ts:163-177",
+        "src/domain/r2Run.ts:182-188"
+      ],
+      "definition_snapshot": {
+        "hooks": [],
+        "modifiers": [
+          {
+            "kind": "hand-limit",
+            "amount": 2,
+            "deckMaximum": 40
+          }
+        ]
+      },
+      "old_authoritative_description": "进场时持久有效牌组不超过40张，手牌上限 +2；只在下次进场生效，总上限14。"
+    },
+    {
+      "id": "a06",
+      "name": "独家戏",
+      "mechanism_summary": "高牌乘整手倍率",
+      "main_template": "打出高牌时，整手倍率 ×{h0o0_value}。",
+      "required_visible_limits": [
+        "高牌是牌型，不是指点数大的牌。"
+      ],
+      "detail_rules": [
+        "打出多张但未组成更高牌型也可能是高牌。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "3",
+            "d": "2"
+          },
+          "baseline_display": "1.5"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打出高牌时，整手倍率 ×1.5。",
+        "visible_limits": [
+          "高牌是牌型，不是指点数大的牌。"
+        ],
+        "details": [
+          "打出多张但未组成更高牌型也可能是高牌。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:27",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "high-card"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "高牌时，整手倍率 ×1.5。"
+    },
+    {
+      "id": "a07",
+      "name": "偷闲",
+      "mechanism_summary": "单张成功弃牌给金币且每场限次",
+      "main_template": "每次只弃 {h0c_equals} 张牌，获得 {h0o0_amount} 金币，每场最多 {h0o0_limit} 次。",
+      "required_visible_limits": [
+        "必须成功弃牌；返还弃牌次数不会恢复已经用掉的赚钱次数。"
+      ],
+      "detail_rules": [
+        "进入新场重置；商店显示上场记录时，不能误写为下场已用。"
+      ],
+      "dynamic_state_templates": [
+        "{usage_scope}还可用 {remainingUses} 次"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "remainingUses",
+          "source": "jokerMemory(...).remainingUses",
+          "format": "integer"
+        },
+        {
+          "placeholder": "usage_scope",
+          "source": "ctx.inStage ? 本场 : 下场; usageResetsOnEntry decides reset note",
+          "format": "state label"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_equals": {
+          "source": "definition.hooks[0].condition.equals",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        },
+        "h0o0_amount": {
+          "source": "definition.hooks[0].operations[0].amount",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        },
+        "h0o0_limit": {
+          "source": "definition.hooks[0].operations[0].limit",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每次只弃 1 张牌，获得 1 金币，每场最多 2 次。",
+        "visible_limits": [
+          "必须成功弃牌；返还弃牌次数不会恢复已经用掉的赚钱次数。"
+        ],
+        "details": [
+          "进入新场重置；商店显示上场记录时，不能误写为下场已用。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:28",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onDiscard",
+            "condition": {
+              "kind": "discard-count",
+              "equals": 1
+            },
+            "operations": [
+              {
+                "kind": "add-gold-limited",
+                "amount": 1,
+                "limit": 2
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "成功恰好弃1张时 +1金币，每场最多2次；计数进场重置，返还弃牌不回退计数。"
+    },
+    {
+      "id": "a08",
+      "name": "小人物",
+      "mechanism_summary": "有效计分小点数逐张加热度",
+      "main_template": "每张能计分的 {h0c_values}，计分时多加 {h0o0_value} 热度。",
+      "required_visible_limits": [
+        "附带牌、停用牌和留在手里的牌不算。"
+      ],
+      "detail_rules": [
+        "符合的扑克牌再次计分时，也会再次获得这项加成。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_values": {
+          "source": "definition.hooks[0].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "2、3、4、5",
+          "baseline_display": "2、3、4、5"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "20",
+            "d": "1"
+          },
+          "baseline_display": "20"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每张能计分的 2、3、4、5，计分时多加 20 热度。",
+        "visible_limits": [
+          "附带牌、停用牌和留在手里的牌不算。"
+        ],
+        "details": [
+          "符合的扑克牌再次计分时，也会再次获得这项加成。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:29",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "rank-in",
+              "values": [
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "每张有效计分的2–5各加20热度；杂牌、失效牌和持牌不触发。"
+    },
+    {
+      "id": "b05",
+      "name": "合唱班",
+      "mechanism_summary": "至少三张同点数的有效计分牌逐张加热度",
+      "main_template": "打出的牌里，同一点数至少有 {h0c_minimum} 张时，其中每张能计分的牌都多加 {h0o0_value} 热度。",
+      "required_visible_limits": [
+        "附带牌和停用牌可凑够张数，但自身不能获得这项计分加成。"
+      ],
+      "detail_rules": [
+        "不要求最终牌型恰为三条；葫芦里的三张同点牌等也可以满足。再次计分的符合牌也再次加热度。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_minimum": {
+          "source": "definition.hooks[0].condition.minimum",
+          "format": "plain",
+          "baseline_value": 3,
+          "baseline_display": "3"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "15",
+            "d": "1"
+          },
+          "baseline_display": "15"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打出的牌里，同一点数至少有 3 张时，其中每张能计分的牌都多加 15 热度。",
+        "visible_limits": [
+          "附带牌和停用牌可凑够张数，但自身不能获得这项计分加成。"
+        ],
+        "details": [
+          "不要求最终牌型恰为三条；葫芦里的三张同点牌等也可以满足。再次计分的符合牌也再次加热度。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:30",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "paired-rank",
+              "minimum": 3
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "15",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "有效计分牌的点数在实际打出牌中至少出现3次时，该牌加15热度。"
+    },
+    {
+      "id": "b06",
+      "name": "再说一遍",
+      "mechanism_summary": "仅普通对子各有效对子牌额外计分",
+      "main_template": "打出对子时，让其中每张能计分的对子牌再计分 {h0o0_count} 次。",
+      "required_visible_limits": [
+        "两对、三条、葫芦等其他牌型不算；停用的对子牌不能再次计分。",
+        "同一张牌的额外计分次数有总上限，见细则。"
+      ],
+      "detail_rules": [
+        "再计分会重复该扑克牌的点数、增强、版次和逐张计分加成，不会重复角色或整手加成。",
+        "所有额外计分效果合计，每张扑克牌每手最多再计分 {limit_extra} 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_count": {
+          "source": "definition.hooks[0].operations[0].count",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        },
+        "limit_extra": {
+          "source": "SCORE_LIMITS.extraRetriggers",
+          "format": "plain",
+          "baseline_value": 4,
+          "baseline_display": "4",
+          "evidence": "src/domain/scoreR2.ts:12"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打出对子时，让其中每张能计分的对子牌再计分 1 次。",
+        "visible_limits": [
+          "两对、三条、葫芦等其他牌型不算；停用的对子牌不能再次计分。",
+          "同一张牌的额外计分次数有总上限，见细则。"
+        ],
+        "details": [
+          "再计分会重复该扑克牌的点数、增强、版次和逐张计分加成，不会重复角色或整手加成。",
+          "所有额外计分效果合计，每张扑克牌每手最多再计分 4 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:31",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327",
+        "src/domain/scoreR2.ts:12,252,286-289,307-322"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "retrigger-card",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "恰为对子时，两张有效对子计分牌各额外重触发1次；每卡额外重触发总上限4，最深1层。"
+    },
+    {
+      "id": "b07",
+      "name": "人人有份",
+      "mechanism_summary": "至少两张且实际打出均有效计分则加热度",
+      "main_template": "至少打出 {h0c_minimum} 张，并且张张都能计分时，整手热度 +{h0o0_value}。",
+      "required_visible_limits": [
+        "有附带牌或停用牌就不满足。"
+      ],
+      "detail_rules": [
+        "以最终计分牌名单为准，普通点数被压到0但效果仍可生效的牌仍算。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_minimum": {
+          "source": "definition.hooks[0].condition.minimum",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "30",
+            "d": "1"
+          },
+          "baseline_display": "30"
+        }
+      },
+      "baseline_rendered": {
+        "main": "至少打出 2 张，并且张张都能计分时，整手热度 +30。",
+        "visible_limits": [
+          "有附带牌或停用牌就不满足。"
+        ],
+        "details": [
+          "以最终计分牌名单为准，普通点数被压到0但效果仍可生效的牌仍算。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:32",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "all-played-active",
+              "minimum": 2
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "30",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "实际打出至少2张且全部都是有效计分牌时，整手热度 +30。"
+    },
+    {
+      "id": "b08",
+      "name": "对半分",
+      "mechanism_summary": "致胜手仅普通对子或两对给金币",
+      "main_template": "用{h0c_values}打赢这一场，额外获得 {h0o0_amount} 金币。",
+      "required_visible_limits": [
+        "看过关的那一手；三条、葫芦等其他牌型不算。"
+      ],
+      "detail_rules": [
+        "失败和跳场不发；实际过关后只发一次。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_values": {
+          "source": "definition.hooks[0].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "对子、两对",
+          "baseline_display": "对子、两对"
+        },
+        "h0o0_amount": {
+          "source": "definition.hooks[0].operations[0].amount",
+          "format": "plain",
+          "baseline_value": 3,
+          "baseline_display": "3"
+        }
+      },
+      "baseline_rendered": {
+        "main": "用对子、两对打赢这一场，额外获得 3 金币。",
+        "visible_limits": [
+          "看过关的那一手；三条、葫芦等其他牌型不算。"
+        ],
+        "details": [
+          "失败和跳场不发；实际过关后只发一次。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:33",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255",
+        "src/domain/r2Run.ts:576-608"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair",
+                "two-pair"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-gold",
+                "amount": 3
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "致胜手恰为对子或两对时，成功过场额外 +3金币；失败和跳场不触发。"
+    },
+    {
+      "id": "c03",
+      "name": "蓝墨",
+      "mechanism_summary": "黑桃梅花有效计分牌逐张加热度",
+      "main_template": "每张能计分的{h0c_values}，计分时多加 {h0o0_value} 热度。",
+      "required_visible_limits": [
+        "附带牌、停用牌和留在手里的牌不算。"
+      ],
+      "detail_rules": [
+        "符合的扑克牌再次计分时，也会再次获得这项加成。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_values": {
+          "source": "definition.hooks[0].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "黑桃、梅花",
+          "baseline_display": "黑桃、梅花"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "8",
+            "d": "1"
+          },
+          "baseline_display": "8"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每张能计分的黑桃、梅花，计分时多加 8 热度。",
+        "visible_limits": [
+          "附带牌、停用牌和留在手里的牌不算。"
+        ],
+        "details": [
+          "符合的扑克牌再次计分时，也会再次获得这项加成。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:34",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "suit-in",
+              "values": [
+                "spades",
+                "clubs"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "8",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "每张有效计分的黑桃或梅花加8热度；杂牌、失效牌和持牌不触发。"
+    },
+    {
+      "id": "c05",
+      "name": "换布景",
+      "mechanism_summary": "同花色成功弃牌蓄一次性热度",
+      "main_template": "一次弃掉至少 {h1c_minimum} 张、且全是同一花色，就攒 {h1o0_value} 热度，最多攒 {h1o0_cap}，留给之后一次出牌。",
+      "required_visible_limits": [
+        "攒下的热度用一次就清空；没用完也会在本场结束时清空。"
+      ],
+      "detail_rules": [
+        "弃牌必须成功，而且本次弃掉的所有牌都要同花色，不能只挑其中两张看。正常在下一手加入热度；若这张大丑牌被计分封禁，则本手不加入也不消耗，之后能生效时才使用。"
+      ],
+      "dynamic_state_templates": [
+        "待用热度：+{saved_pendingHeat}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_pendingHeat",
+          "source": "instance.growth[\"pendingHeat\"] with r2GrowthMinimums/default additive zero",
+          "format": "fractionText",
+          "missing_instance": "尚未购买；不显示已有成长或触发状态",
+          "derive_rule": "只读现有保存值，不复算成长过程"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1c_minimum": {
+          "source": "definition.hooks[1].condition.minimum",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "80",
+            "d": "1"
+          },
+          "baseline_display": "80"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "40",
+            "d": "1"
+          },
+          "baseline_display": "40"
+        }
+      },
+      "baseline_rendered": {
+        "main": "一次弃掉至少 2 张、且全是同一花色，就攒 40 热度，最多攒 80，留给之后一次出牌。",
+        "visible_limits": [
+          "攒下的热度用一次就清空；没用完也会在本场结束时清空。"
+        ],
+        "details": [
+          "弃牌必须成功，而且本次弃掉的所有牌都要同花色，不能只挑其中两张看。正常在下一手加入热度；若这张大丑牌被计分封禁，则本手不加入也不消耗，之后能生效时才使用。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:35",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255",
+        "src/domain/r2Run.ts:257-259",
+        "src/domain/scoreR2.ts:248,260-265"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "consume-growth",
+                "key": "pendingHeat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "onDiscard",
+            "condition": {
+              "kind": "discard-same-suit",
+              "minimum": 2
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "pendingHeat",
+                "value": {
+                  "n": "40",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "80",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "成功弃至少2张同花色牌，积累下手 +40热度，上限80；下一次整手计分消费一次，场末清零。"
+    },
+    {
+      "id": "c07",
+      "name": "拖个尾音",
+      "mechanism_summary": "普通同花和同花顺的末张有效计分牌额外计分",
+      "main_template": "打出{h0c_handTypes}时，让最后一张能计分的牌再计分 {h0o0_count} 次。",
+      "required_visible_limits": [
+        "按本手牌的顺序找最后一张能计分的牌；同花葫芦、同花五条不算。",
+        "同一张牌的额外计分次数有总上限，见细则。"
+      ],
+      "detail_rules": [
+        "停用牌不参与末张选择；附带牌不参与。",
+        "所有额外计分效果合计，每张扑克牌每手最多再计分 {limit_extra} 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_handTypes": {
+          "source": "definition.hooks[0].condition.handTypes",
+          "format": "authoritative label list",
+          "baseline_value": "同花、同花顺",
+          "baseline_display": "同花、同花顺"
+        },
+        "h0o0_count": {
+          "source": "definition.hooks[0].operations[0].count",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        },
+        "limit_extra": {
+          "source": "SCORE_LIMITS.extraRetriggers",
+          "format": "plain",
+          "baseline_value": 4,
+          "baseline_display": "4",
+          "evidence": "src/domain/scoreR2.ts:12"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打出同花、同花顺时，让最后一张能计分的牌再计分 1 次。",
+        "visible_limits": [
+          "按本手牌的顺序找最后一张能计分的牌；同花葫芦、同花五条不算。",
+          "同一张牌的额外计分次数有总上限，见细则。"
+        ],
+        "details": [
+          "停用牌不参与末张选择；附带牌不参与。",
+          "所有额外计分效果合计，每张扑克牌每手最多再计分 4 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:36",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327",
+        "src/domain/scoreR2.ts:12,252,286-289,307-322"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "scoring-position",
+              "position": "last",
+              "handTypes": [
+                "flush",
+                "straight-flush"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "retrigger-card",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "同花或同花顺的最后一张原始有效计分牌额外重触发1次；每卡额外重触发总上限4，最深1层。"
+    },
+    {
+      "id": "c08",
+      "name": "少一级",
+      "mechanism_summary": "放宽普通顺子到四张而同花顺不放宽",
+      "main_template": "普通顺子可用 {rule_four} 张连续、点数不同的牌；同花顺仍要 {rule_five} 张。",
+      "required_visible_limits": [
+        "A234能成顺子，QKA2不能。",
+        "同时有“少一块布”时，四张同花连续牌只算普通同花。"
+      ],
+      "detail_rules": [
+        "五张顺子仍然可用。必须整组恰好四张或五张连续不同点数；选五张但只有四张连号不会套用四张规则。若同时有四张同花规则，四张同花连续牌判为普通同花。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "rule_five": {
+          "source": "five-card rule cardinality (existing evaluator literal)",
+          "format": "plain",
+          "baseline_value": 5,
+          "baseline_display": "5",
+          "evidence": "src/domain/evaluateR2.ts:21-32"
+        },
+        "rule_four": {
+          "source": "four-card rule cardinality (existing evaluator literal)",
+          "format": "plain",
+          "baseline_value": 4,
+          "baseline_display": "4",
+          "evidence": "src/domain/evaluateR2.ts:31-32"
+        }
+      },
+      "baseline_rendered": {
+        "main": "普通顺子可用 4 张连续、点数不同的牌；同花顺仍要 5 张。",
+        "visible_limits": [
+          "A234能成顺子，QKA2不能。",
+          "同时有“少一块布”时，四张同花连续牌只算普通同花。"
+        ],
+        "details": [
+          "五张顺子仍然可用。必须整组恰好四张或五张连续不同点数；选五张但只有四张连号不会套用四张规则。若同时有四张同花规则，四张同花连续牌判为普通同花。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:37",
+        "src/domain/evaluateR2.ts:12-38",
+        "src/content/r2Schema.ts:163-177"
+      ],
+      "definition_snapshot": {
+        "hooks": [],
+        "modifiers": [
+          {
+            "kind": "four-straight"
+          }
+        ]
+      },
+      "old_authoritative_description": "普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；同花顺仍需5张，不允许QKA2。"
+    },
+    {
+      "id": "d02",
+      "name": "小凳子",
+      "mechanism_summary": "手牌前四张有效小点数逐张加热度",
+      "main_template": "留在手里的 {h0c_values}，按手牌顺序取前 {h0c_limit} 张，每张加 {h0o0_value} 热度。",
+      "required_visible_limits": [
+        "停用牌不算，跳过后再取够数量；只加这里写的热度，不加这些牌的普通点数。"
+      ],
+      "detail_rules": [
+        "持牌版次不计分。留在手里的牌按手牌顺序逐张处理。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_limit": {
+          "source": "definition.hooks[0].condition.limit",
+          "format": "plain",
+          "baseline_value": 4,
+          "baseline_display": "4"
+        },
+        "h0c_values": {
+          "source": "definition.hooks[0].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "2、3、4、5",
+          "baseline_display": "2、3、4、5"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "6",
+            "d": "1"
+          },
+          "baseline_display": "6"
+        }
+      },
+      "baseline_rendered": {
+        "main": "留在手里的 2、3、4、5，按手牌顺序取前 4 张，每张加 6 热度。",
+        "visible_limits": [
+          "停用牌不算，跳过后再取够数量；只加这里写的热度，不加这些牌的普通点数。"
+        ],
+        "details": [
+          "持牌版次不计分。留在手里的牌按手牌顺序逐张处理。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:38",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onHeldCard",
+            "condition": {
+              "kind": "held-rank-first",
+              "values": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "limit": 4
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "6",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "手牌顺序前4张持有的2–5各加6热度；不加入普通点数。"
+    },
+    {
+      "id": "d04",
+      "name": "递个眼色",
+      "mechanism_summary": "偶数出牌首张有效计分牌额外计分",
+      "main_template": "本场每第 {h0c_playModulo_divisor} 手，让第一张能计分的牌再计分 {h0o0_count} 次。",
+      "required_visible_limits": [
+        "按本手牌的顺序找第一张能计分的牌；返还机会不会倒退出牌序号。",
+        "同一张牌的额外计分次数有总上限，见细则。"
+      ],
+      "detail_rules": [
+        "停用牌不参与首张选择；弃牌不增加出牌序号，新场重算。",
+        "所有额外计分效果合计，每张扑克牌每手最多再计分 {limit_extra} 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_playModulo_divisor": {
+          "source": "definition.hooks[0].condition.playModulo.divisor",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "h0o0_count": {
+          "source": "definition.hooks[0].operations[0].count",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        },
+        "limit_extra": {
+          "source": "SCORE_LIMITS.extraRetriggers",
+          "format": "plain",
+          "baseline_value": 4,
+          "baseline_display": "4",
+          "evidence": "src/domain/scoreR2.ts:12"
+        }
+      },
+      "baseline_rendered": {
+        "main": "本场每第 2 手，让第一张能计分的牌再计分 1 次。",
+        "visible_limits": [
+          "按本手牌的顺序找第一张能计分的牌；返还机会不会倒退出牌序号。",
+          "同一张牌的额外计分次数有总上限，见细则。"
+        ],
+        "details": [
+          "停用牌不参与首张选择；弃牌不增加出牌序号，新场重算。",
+          "所有额外计分效果合计，每张扑克牌每手最多再计分 4 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:39",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327",
+        "src/domain/scoreR2.ts:12,252,286-289,307-322"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "scoring-position",
+              "position": "first",
+              "playModulo": {
+                "divisor": 2,
+                "remainder": 0
+              }
+            },
+            "operations": [
+              {
+                "kind": "retrigger-card",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "本场第偶数次合法出牌的首张原始有效计分牌额外重触发1次；返还次数不回退序号，每卡额外重触发总上限4，最深1层。"
+    },
+    {
+      "id": "d06",
+      "name": "搬张椅子",
+      "mechanism_summary": "下次入场时增加锁定手牌容量",
+      "main_template": "下次进场时，手牌上限 +{m0_amount}。",
+      "required_visible_limits": [
+        "所有加成合计后的手牌上限最多为 {limit_hand}；本场不会立即补牌。"
+      ],
+      "detail_rules": [
+        "上限在进场时锁定；不会返还已经消耗的牌或机会。"
+      ],
+      "dynamic_state_templates": [
+        "{entry_hand_limit_state}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "entry_hand_limit_state",
+          "source": "ctx.inStage ? 本场已锁定手牌上限 + ctx.entryHandLimit : 下次进场时判断",
+          "format": "existing entry snapshot"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "limit_hand": {
+          "source": "R2_RESOURCE_CONTRACT.handMaximum",
+          "format": "plain",
+          "baseline_value": 14,
+          "baseline_display": "14",
+          "evidence": "src/domain/r2Resources.ts:7,13"
+        },
+        "m0_amount": {
+          "source": "definition.modifiers[0].amount",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        }
+      },
+      "baseline_rendered": {
+        "main": "下次进场时，手牌上限 +1。",
+        "visible_limits": [
+          "所有加成合计后的手牌上限最多为 14；本场不会立即补牌。"
+        ],
+        "details": [
+          "上限在进场时锁定；不会返还已经消耗的牌或机会。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:40",
+        "src/domain/r2Resources.ts:7-13",
+        "src/content/r2Schema.ts:163-177",
+        "src/domain/r2Run.ts:182-188"
+      ],
+      "definition_snapshot": {
+        "hooks": [],
+        "modifiers": [
+          {
+            "kind": "hand-limit",
+            "amount": 1
+          }
+        ]
+      },
+      "old_authoritative_description": "下次进场手牌上限 +1，所有修正后的硬上限14；场中不返还牌。"
+    },
+    {
+      "id": "d07",
+      "name": "镜头不空",
+      "mechanism_summary": "实际打出全部有效计分则加倍率",
+      "main_template": "打出的牌张张都能计分时，整手倍率 +{h0o0_value}。",
+      "required_visible_limits": [
+        "只出一张也可以；有附带牌或停用牌就不满足。"
+      ],
+      "detail_rules": [
+        "普通点数被压到0但效果仍可生效的牌仍算。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "2"
+          },
+          "baseline_display": "0.5"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打出的牌张张都能计分时，整手倍率 +0.5。",
+        "visible_limits": [
+          "只出一张也可以；有附带牌或停用牌就不满足。"
+        ],
+        "details": [
+          "普通点数被压到0但效果仍可生效的牌仍算。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:41",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "all-played-active",
+              "minimum": 1
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "实际打出牌全部是有效计分牌时，整手倍率 +0.5；单张也可触发。"
+    },
+    {
+      "id": "e02",
+      "name": "熟客券",
+      "mechanism_summary": "提前持有才能抵扣每店第一次购买价格",
+      "main_template": "提前持有时，每家商店的第一笔购买便宜 {m0_amount} 金币，最低付 {m0_minimum} 金币。",
+      "required_visible_limits": [
+        "买这张牌的这一笔，不享受它自己的优惠。"
+      ],
+      "detail_rules": [
+        "大丑牌、消耗品、长期道具都算购买；只有购买成功才占用首购名额。可以与其他首购或跳场优惠叠加；每次换牌不会重置这一家店的首购次数。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "m0_amount": {
+          "source": "definition.modifiers[0].amount",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        },
+        "m0_minimum": {
+          "source": "definition.modifiers[0].minimum",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        }
+      },
+      "baseline_rendered": {
+        "main": "提前持有时，每家商店的第一笔购买便宜 1 金币，最低付 1 金币。",
+        "visible_limits": [
+          "买这张牌的这一笔，不享受它自己的优惠。"
+        ],
+        "details": [
+          "大丑牌、消耗品、长期道具都算购买；只有购买成功才占用首购名额。可以与其他首购或跳场优惠叠加；每次换牌不会重置这一家店的首购次数。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:42",
+        "src/domain/r2Shop.ts:19-20",
+        "src/domain/r2Run.ts:464-469"
+      ],
+      "definition_snapshot": {
+        "hooks": [],
+        "modifiers": [
+          {
+            "kind": "first-purchase-discount",
+            "amount": 1,
+            "minimum": 1
+          }
+        ]
+      },
+      "old_authoritative_description": "持有时每店第一次成功购买减1金币，与跳场券叠加，最终最低支付1；购买前未持有则不优惠。"
+    },
+    {
+      "id": "e04",
+      "name": "滚个零头",
+      "mechanism_summary": "提高利息封顶而不是保证额外金币",
+      "main_template": "成功过关时，利息最多能多拿 {m0_amount} 金币。",
+      "required_visible_limits": [
+        "仍然每攒 {interest_unit} 金币才有 1 金币利息；只是提高上限，不保证多拿满额。"
+      ],
+      "detail_rules": [
+        "按发放过关奖励之前的金币计算；当手扑克牌赚的金币已计入，过关奖励及过关时的额外金币不倒过来增加这次利息。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "interest_unit": {
+          "source": "interest divisor (existing run literal)",
+          "format": "plain",
+          "baseline_value": 5,
+          "baseline_display": "5",
+          "evidence": "src/domain/r2Run.ts:594"
+        },
+        "m0_amount": {
+          "source": "definition.modifiers[0].amount",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        }
+      },
+      "baseline_rendered": {
+        "main": "成功过关时，利息最多能多拿 2 金币。",
+        "visible_limits": [
+          "仍然每攒 5 金币才有 1 金币利息；只是提高上限，不保证多拿满额。"
+        ],
+        "details": [
+          "按发放过关奖励之前的金币计算；当手扑克牌赚的金币已计入，过关奖励及过关时的额外金币不倒过来增加这次利息。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:43",
+        "src/domain/r2Resources.ts:17",
+        "src/domain/r2Run.ts:588-603"
+      ],
+      "definition_snapshot": {
+        "hooks": [],
+        "modifiers": [
+          {
+            "kind": "interest-cap",
+            "amount": 2
+          }
+        ]
+      },
+      "old_authoritative_description": "成功奖励前读取，利息上限 +2金币；仍按奖励前金币每5金产生1利息。"
+    },
+    {
+      "id": "e06",
+      "name": "旧物新用",
+      "mechanism_summary": "卖其他大丑牌时积累倍率",
+      "main_template": "每手加上已攒的倍率；每卖一张其他大丑牌，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+      "required_visible_limits": [
+        "卖掉本牌不成长；卖掉后再买回来，旧成长不会恢复。"
+      ],
+      "detail_rules": [
+        "必须成功出售；成长供以后的出牌使用，换场保留。"
+      ],
+      "dynamic_state_templates": [
+        "每手倍率加成：+{saved_multiplier}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_multiplier",
+          "source": "instance.growth[\"multiplier\"] with r2GrowthMinimums/default additive zero",
+          "format": "fractionText",
+          "missing_instance": "尚未购买；不显示已有成长或触发状态",
+          "derive_rule": "只读现有保存值，不复算成长过程"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "3",
+            "d": "1"
+          },
+          "baseline_display": "3"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "2"
+          },
+          "baseline_display": "0.5"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每手加上已攒的倍率；每卖一张其他大丑牌，再攒 0.5，最多攒 3。",
+        "visible_limits": [
+          "卖掉本牌不成长；卖掉后再买回来，旧成长不会恢复。"
+        ],
+        "details": [
+          "必须成功出售；成长供以后的出牌使用，换场保留。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:44",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255",
+        "src/domain/r2Run.ts:473-478"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "multiplier",
+                "target": "multiplier"
+              }
+            ]
+          },
+          {
+            "phase": "onSellJoker",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "2"
+                },
+                "cap": {
+                  "n": "3",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "持有期间成功出售其他大丑牌后，倍率成长 +0.5，上限3；出售自己不成长，成长属于原实例。"
+    },
+    {
+      "id": "e07",
+      "name": "加班费",
+      "mechanism_summary": "最后一次出牌机会成功致胜给金币",
+      "main_template": "用最后一次出牌机会打赢这一场，额外获得 {h0o0_amount} 金币。",
+      "required_visible_limits": [
+        "必须过关；只是用完机会但没赢，不给金币。"
+      ],
+      "detail_rules": [
+        "按致胜手扣除机会后是否为0判断，每次过关只发一次；跳场不发。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_amount": {
+          "source": "definition.hooks[0].operations[0].amount",
+          "format": "plain",
+          "baseline_value": 4,
+          "baseline_display": "4"
+        }
+      },
+      "baseline_rendered": {
+        "main": "用最后一次出牌机会打赢这一场，额外获得 4 金币。",
+        "visible_limits": [
+          "必须过关；只是用完机会但没赢，不给金币。"
+        ],
+        "details": [
+          "按致胜手扣除机会后是否为0判断，每次过关只发一次；跳场不发。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:45",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255",
+        "src/domain/r2Run.ts:576-608"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "resource",
+              "resource": "hands-after",
+              "equals": 0
+            },
+            "operations": [
+              {
+                "kind": "add-gold",
+                "amount": 4
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "致胜手后剩余出牌为0，成功过场额外 +4金币，只发一次；失败和跳场不触发。"
+    },
+    {
+      "id": "f04",
+      "name": "兜比脸净",
+      "mechanism_summary": "金币低于等于门槛加倍率",
+      "main_template": "出牌时有 {h0c_maximum} 金币或更少，整手倍率 +{h0o0_value}。",
+      "required_visible_limits": [
+        "按出牌开始时的金币判断；是加倍率，不是把倍率乘这个数。"
+      ],
+      "detail_rules": [
+        "本手计分中赚的钱不改变本手资格；之后出牌重新判断。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_maximum": {
+          "source": "definition.hooks[0].condition.maximum",
+          "format": "plain",
+          "baseline_value": 3,
+          "baseline_display": "3"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "3",
+            "d": "1"
+          },
+          "baseline_display": "3"
+        }
+      },
+      "baseline_rendered": {
+        "main": "出牌时有 3 金币或更少，整手倍率 +3。",
+        "visible_limits": [
+          "按出牌开始时的金币判断；是加倍率，不是把倍率乘这个数。"
+        ],
+        "details": [
+          "本手计分中赚的钱不改变本手资格；之后出牌重新判断。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:46",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "resource-maximum",
+              "resource": "gold",
+              "maximum": 3
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "当前金币不超过3时，整手倍率 +3。"
+    },
+    {
+      "id": "f05",
+      "name": "越说越顺",
+      "mechanism_summary": "逐手超过上一手才加倍率成长，否则清零",
+      "main_template": "每手加上已攒的倍率；得分高过本场上一手，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+      "required_visible_limits": [
+        "没高过就把成长清零；新增或清零都从下一手生效。",
+        "每场第一手只记下分数，已有成长照常保留。"
+      ],
+      "detail_rules": [
+        "比较本手最终得分与本场上一手最终得分，不比较累计总分；同分也清零。成长换场保留，只重置比较基准。"
+      ],
+      "dynamic_state_templates": [
+        "每手倍率加成：+{saved_multiplier}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_multiplier",
+          "source": "instance.growth[\"multiplier\"] with r2GrowthMinimums/default additive zero",
+          "format": "fractionText",
+          "missing_instance": "尚未购买；不显示已有成长或触发状态",
+          "derive_rule": "只读现有保存值，不复算成长过程"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "4",
+            "d": "1"
+          },
+          "baseline_display": "4"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "4"
+          },
+          "baseline_display": "0.25"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每手加上已攒的倍率；得分高过本场上一手，再攒 0.25，最多攒 4。",
+        "visible_limits": [
+          "没高过就把成长清零；新增或清零都从下一手生效。",
+          "每场第一手只记下分数，已有成长照常保留。"
+        ],
+        "details": [
+          "比较本手最终得分与本场上一手最终得分，不比较累计总分；同分也清零。成长换场保留，只重置比较基准。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:47",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:343-356",
+        "src/domain/scoreR2.ts:271-280"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "multiplier",
+                "target": "multiplier"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "update-score-growth",
+                "key": "multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "4"
+                },
+                "cap": {
+                  "n": "4",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "整手加入已有倍率成长；本手最终分数严格高于本场上一手时，结算后成长 +0.25，上限4，否则归零；本场首手只记录，成长跨场保留。"
+    },
+    {
+      "id": "f06",
+      "name": "一次性招牌",
+      "mechanism_summary": "有限四手整手乘倍然后销毁",
+      "main_template": "接下来的 {h1o0_limit} 次出牌，整手倍率 ×{h0o0_value}，用完这张牌就消失。",
+      "required_visible_limits": [
+        "最后一次仍有加成；换场不会重置剩余次数。"
+      ],
+      "detail_rules": [
+        "从买入之后的成功出牌累计；弃牌不扣次数。即使本牌这手被计分封禁，成功出牌仍会扣寿命。"
+      ],
+      "dynamic_state_templates": [
+        "还可用 {remaining} 手"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "remaining",
+          "source": "jokerMemory(...).remaining",
+          "format": "integer"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "2",
+            "d": "1"
+          },
+          "baseline_display": "2"
+        },
+        "h1o0_limit": {
+          "source": "definition.hooks[1].operations[0].limit",
+          "format": "plain",
+          "baseline_value": 4,
+          "baseline_display": "4"
+        }
+      },
+      "baseline_rendered": {
+        "main": "接下来的 4 次出牌，整手倍率 ×2，用完这张牌就消失。",
+        "visible_limits": [
+          "最后一次仍有加成；换场不会重置剩余次数。"
+        ],
+        "details": [
+          "从买入之后的成功出牌累计；弃牌不扣次数。即使本牌这手被计分封禁，成功出牌仍会扣寿命。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:48",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:343-356"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "expire-after-hands",
+                "limit": 4
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "整手倍率 ×2；买入后第4次合法出牌本手仍有效，结算后销毁自身，次数跨场保留。"
+    },
+    {
+      "id": "f07",
+      "name": "安全网",
+      "mechanism_summary": "耗尽出牌且有牌时销毁自身换一次机会",
+      "main_template": "出牌机会用完却还没过关时，消耗这张牌，补 {h0o0_amount} 次出牌机会。",
+      "required_visible_limits": [
+        "必须还有牌可打；整局最多救一次，过关时不会消耗。"
+      ],
+      "detail_rules": [
+        "先尝试补手牌，有手牌才救场；牌的计分效果停用不妨碍它仍可合法打出。救场后本牌消失，商店不再出售它。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_amount": {
+          "source": "definition.hooks[0].operations[0].amount",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        }
+      },
+      "baseline_rendered": {
+        "main": "出牌机会用完却还没过关时，消耗这张牌，补 1 次出牌机会。",
+        "visible_limits": [
+          "必须还有牌可打；整局最多救一次，过关时不会消耗。"
+        ],
+        "details": [
+          "先尝试补手牌，有手牌才救场；牌的计分效果停用不妨碍它仍可合法打出。救场后本牌消失，商店不再出售它。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:49",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Run.ts:281-295,614-619"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "beforeFailure",
+            "condition": {
+              "kind": "exhausted-hands"
+            },
+            "operations": [
+              {
+                "kind": "rescue-hand",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "判失败前，仅因出牌耗尽且仍能获得可用手牌时，销毁自身并返还1次出牌；全局每局最多1次，触发后禁止再售，成功不触发。"
+    },
+    {
+      "id": "a09",
+      "name": "短节目",
+      "mechanism_summary": "实际打出不超过两张加倍率",
+      "main_template": "这手只打出 {h0c_maximum} 张或更少，整手倍率 +{h0o0_value}。",
+      "required_visible_limits": [
+        "数所有打出的牌，包括附带牌和停用牌。"
+      ],
+      "detail_rules": [
+        "必须正常打出至少一张牌；不是按能计分的牌数判断。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_maximum": {
+          "source": "definition.hooks[0].condition.maximum",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "1"
+          },
+          "baseline_display": "1"
+        }
+      },
+      "baseline_rendered": {
+        "main": "这手只打出 2 张或更少，整手倍率 +1。",
+        "visible_limits": [
+          "数所有打出的牌，包括附带牌和停用牌。"
+        ],
+        "details": [
+          "必须正常打出至少一张牌；不是按能计分的牌数判断。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:50",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "played-count-maximum",
+              "maximum": 2
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "实际打出不超过2张牌时，整手倍率 +1。"
+    },
+    {
+      "id": "a10",
+      "name": "后台眼神",
+      "mechanism_summary": "单张出牌且保留前三张有效JQK逐张加倍率",
+      "main_template": "只打出 {h0c_playedEquals} 张时，留在手里的 {h0c_values} 按顺序取前 {h0c_limit} 张，每张让倍率 +{h0o0_value}。",
+      "required_visible_limits": [
+        "A不算；停用的留牌不算，跳过后再取够数量。"
+      ],
+      "detail_rules": [
+        "只出一张的条件按所有打出牌计数。持牌不加普通点数，持牌版次不计分。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_limit": {
+          "source": "definition.hooks[0].condition.limit",
+          "format": "plain",
+          "baseline_value": 3,
+          "baseline_display": "3"
+        },
+        "h0c_playedEquals": {
+          "source": "definition.hooks[0].condition.playedEquals",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        },
+        "h0c_values": {
+          "source": "definition.hooks[0].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "J、Q、K",
+          "baseline_display": "J、Q、K"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "1"
+          },
+          "baseline_display": "1"
+        }
+      },
+      "baseline_rendered": {
+        "main": "只打出 1 张时，留在手里的 J、Q、K 按顺序取前 3 张，每张让倍率 +1。",
+        "visible_limits": [
+          "A不算；停用的留牌不算，跳过后再取够数量。"
+        ],
+        "details": [
+          "只出一张的条件按所有打出牌计数。持牌不加普通点数，持牌版次不计分。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:51",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onHeldCard",
+            "condition": {
+              "kind": "held-rank-first",
+              "values": [
+                11,
+                12,
+                13
+              ],
+              "limit": 3,
+              "playedEquals": 1
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "本手实际打出1张牌时，按手牌顺序，前3张有效持有的 J/Q/K 各 +1倍率；A不是人头牌。"
+    },
+    {
+      "id": "a11",
+      "name": "返个场",
+      "mechanism_summary": "单张出牌的唯一有效计分牌额外计分",
+      "main_template": "只出 {h0c_equals} 张且这张牌能计分时，让它再计分 {h0o0_count} 次。",
+      "required_visible_limits": [
+        "同一张牌的额外计分次数有总上限，见细则。"
+      ],
+      "detail_rules": [
+        "这张扑克牌的点数、增强、版次及逐张计分加成会再算一次；角色和整手加成不会因此重复。牌被停用时不能再次计分。",
+        "所有额外计分效果合计，每张扑克牌每手最多再计分 {limit_extra} 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_equals": {
+          "source": "definition.hooks[0].condition.equals",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        },
+        "h0o0_count": {
+          "source": "definition.hooks[0].operations[0].count",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        },
+        "limit_extra": {
+          "source": "SCORE_LIMITS.extraRetriggers",
+          "format": "plain",
+          "baseline_value": 4,
+          "baseline_display": "4",
+          "evidence": "src/domain/scoreR2.ts:12"
+        }
+      },
+      "baseline_rendered": {
+        "main": "只出 1 张且这张牌能计分时，让它再计分 1 次。",
+        "visible_limits": [
+          "同一张牌的额外计分次数有总上限，见细则。"
+        ],
+        "details": [
+          "这张扑克牌的点数、增强、版次及逐张计分加成会再算一次；角色和整手加成不会因此重复。牌被停用时不能再次计分。",
+          "所有额外计分效果合计，每张扑克牌每手最多再计分 4 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:52",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327",
+        "src/domain/scoreR2.ts:12,252,286-289,307-322"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "played-count",
+              "equals": 1
+            },
+            "operations": [
+              {
+                "kind": "retrigger-card",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "实际打出1张牌时，唯一有效计分牌额外重触发一次；重触发不再请求新的重触发，仍受每牌额外4次上限约束。"
+    },
+    {
+      "id": "a12",
+      "name": "不铺张",
+      "mechanism_summary": "整场所有成功出牌不超过两张过关奖励",
+      "main_template": "这场每手都只出 {h0c_maximum} 张或更少，过关时额外获得 {h0o0_amount} 金币。",
+      "required_visible_limits": [
+        "本场必须实际打过牌并成功过关；有一手出多了就失去这场奖励。"
+      ],
+      "detail_rules": [
+        "数全部打出的牌，包括附带牌和停用牌；失败和跳场不发。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_maximum": {
+          "source": "definition.hooks[0].condition.maximum",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "h0o0_amount": {
+          "source": "definition.hooks[0].operations[0].amount",
+          "format": "plain",
+          "baseline_value": 3,
+          "baseline_display": "3"
+        }
+      },
+      "baseline_rendered": {
+        "main": "这场每手都只出 2 张或更少，过关时额外获得 3 金币。",
+        "visible_limits": [
+          "本场必须实际打过牌并成功过关；有一手出多了就失去这场奖励。"
+        ],
+        "details": [
+          "数全部打出的牌，包括附带牌和停用牌；失败和跳场不发。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:53",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255",
+        "src/domain/r2Run.ts:576-608"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "stage-played-maximum",
+              "maximum": 2
+            },
+            "operations": [
+              {
+                "kind": "add-gold",
+                "amount": 3
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "本场至少成功出过一手，且每手实际打出均不超过2张，成功过关额外 +3金币；失败与跳场不触发。"
+    },
+    {
+      "id": "b09",
+      "name": "四座皆惊",
+      "mechanism_summary": "只精确四条五条同花五条乘倍率",
+      "main_template": "打出{h0c_values}时，整手倍率 ×{h0o0_value}。",
+      "required_visible_limits": [
+        "三条、葫芦和同花葫芦等其他牌型不算。"
+      ],
+      "detail_rules": [
+        "按最终牌型判断，不能把其他牌型拆开套用。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_values": {
+          "source": "definition.hooks[0].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "四条、五条、同花五条",
+          "baseline_display": "四条、五条、同花五条"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "2",
+            "d": "1"
+          },
+          "baseline_display": "2"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打出四条、五条、同花五条时，整手倍率 ×2。",
+        "visible_limits": [
+          "三条、葫芦和同花葫芦等其他牌型不算。"
+        ],
+        "details": [
+          "按最终牌型判断，不能把其他牌型拆开套用。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:54",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "four-kind",
+                "five-kind",
+                "flush-five"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "四条、五条或同花五条时，整手倍率 ×2；其他成组牌型不触发。"
+    },
+    {
+      "id": "b10",
+      "name": "练对子",
+      "mechanism_summary": "仅普通对子结算后攒热度",
+      "main_template": "每手加上已攒的热度；打出普通对子后，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+      "required_visible_limits": [
+        "新增从下一手生效；两对、三条、葫芦等其他牌型不增加成长。"
+      ],
+      "detail_rules": [
+        "已有成长用于任何牌型，换场保留，跟随这张大丑牌。"
+      ],
+      "dynamic_state_templates": [
+        "每手热度加成：+{saved_heat}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_heat",
+          "source": "instance.growth[\"heat\"] with r2GrowthMinimums/default additive zero",
+          "format": "fractionText",
+          "missing_instance": "尚未购买；不显示已有成长或触发状态",
+          "derive_rule": "只读现有保存值，不复算成长过程"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "50",
+            "d": "1"
+          },
+          "baseline_display": "50"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "5",
+            "d": "1"
+          },
+          "baseline_display": "5"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每手加上已攒的热度；打出普通对子后，再攒 5，最多攒 50。",
+        "visible_limits": [
+          "新增从下一手生效；两对、三条、葫芦等其他牌型不增加成长。"
+        ],
+        "details": [
+          "已有成长用于任何牌型，换场保留，跟随这张大丑牌。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:55",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:343-356"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "heat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "heat",
+                "value": {
+                  "n": "5",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "50",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "恰为对子时，结算后热度成长 +5，上限50，从下一手生效；每手任意牌型加入已有成长。"
+    },
+    {
+      "id": "b11",
+      "name": "候场同伴",
+      "mechanism_summary": "前三张有效留牌与有效计分牌同点则加倍率",
+      "main_template": "留牌与本手能计分的牌同点数时，按手牌顺序取前 {h0c_limit} 张，每张让倍率 +{h0o0_value}。",
+      "required_visible_limits": [
+        "停用的留牌不算；附带牌和停用计分牌不能用来配对。"
+      ],
+      "detail_rules": [
+        "同点只需匹配任意一张有效计分牌；每张符合的留牌只算一次。先筛出符合的留牌，再取前几张。持牌不加普通点数，版次不计分。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_limit": {
+          "source": "definition.hooks[0].condition.limit",
+          "format": "plain",
+          "baseline_value": 3,
+          "baseline_display": "3"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "2"
+          },
+          "baseline_display": "0.5"
+        }
+      },
+      "baseline_rendered": {
+        "main": "留牌与本手能计分的牌同点数时，按手牌顺序取前 3 张，每张让倍率 +0.5。",
+        "visible_limits": [
+          "停用的留牌不算；附带牌和停用计分牌不能用来配对。"
+        ],
+        "details": [
+          "同点只需匹配任意一张有效计分牌；每张符合的留牌只算一次。先筛出符合的留牌，再取前几张。持牌不加普通点数，版次不计分。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:56",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onHeldCard",
+            "condition": {
+              "kind": "held-scoring-rank-first",
+              "limit": 3
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "持牌点数与本手任意有效计分牌相同时，按手牌顺序前3张有效匹配持牌各 +0.5倍率；失效计分牌和杂牌不提供匹配。"
+    },
+    {
+      "id": "b12",
+      "name": "救个场",
+      "mechanism_summary": "未致胜的普通四条每场限一次返机会",
+      "main_template": "打出普通四条后还没过关，返还 {h0o0_amount} 次出牌机会，每场最多 {h0o0_limit} 次。",
+      "required_visible_limits": [
+        "致胜四条、五条和同花五条都不返还。"
+      ],
+      "detail_rules": [
+        "先返还，再判断是否出牌机会耗尽；返还不倒退实际出牌序号。整场共用次数，不是每张大丑牌各一份。"
+      ],
+      "dynamic_state_templates": [
+        "{usage_scope}还可用 {remainingUses} 次"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "remainingUses",
+          "source": "jokerMemory(...).remainingUses",
+          "format": "integer"
+        },
+        {
+          "placeholder": "usage_scope",
+          "source": "ctx.inStage ? 本场 : 下场; usageResetsOnEntry decides reset note",
+          "format": "state label"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_amount": {
+          "source": "definition.hooks[0].operations[0].amount",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        },
+        "h0o0_limit": {
+          "source": "definition.hooks[0].operations[0].limit",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打出普通四条后还没过关，返还 1 次出牌机会，每场最多 1 次。",
+        "visible_limits": [
+          "致胜四条、五条和同花五条都不返还。"
+        ],
+        "details": [
+          "先返还，再判断是否出牌机会耗尽；返还不倒退实际出牌序号。整场共用次数，不是每张大丑牌各一份。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:57",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:343-356",
+        "src/domain/r2Run.ts:299-308,614-619"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "hand-type-unfinished",
+              "values": [
+                "four-kind"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "refund-hand-limited",
+                "amount": 1,
+                "limit": 1
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "本手恰为四条且结算后仍未达目标时，返还1次出牌，每场最多一次；先于耗尽失败判断，实际出牌序号不回退。"
+    },
+    {
+      "id": "c09",
+      "name": "少一块布",
+      "mechanism_summary": "放宽普通同花到四张而同花顺扩展花型不放宽",
+      "main_template": "普通同花可用 {rule_four} 张同花色的牌；同花顺仍要 {rule_five} 张。",
+      "required_visible_limits": [
+        "同花葫芦、同花五条仍要五张；同时有“少一级”时，四张同花连续牌也只算普通同花。"
+      ],
+      "detail_rules": [
+        "五张同花仍然可用。必须整组恰好四张或五张同花色；选五张但只有四张同花不会套用四张规则。最终仍按牌型优先级判断，例如四条优先于普通同花。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "rule_five": {
+          "source": "five-card rule cardinality (existing evaluator literal)",
+          "format": "plain",
+          "baseline_value": 5,
+          "baseline_display": "5",
+          "evidence": "src/domain/evaluateR2.ts:21-32"
+        },
+        "rule_four": {
+          "source": "four-card rule cardinality (existing evaluator literal)",
+          "format": "plain",
+          "baseline_value": 4,
+          "baseline_display": "4",
+          "evidence": "src/domain/evaluateR2.ts:31-32"
+        }
+      },
+      "baseline_rendered": {
+        "main": "普通同花可用 4 张同花色的牌；同花顺仍要 5 张。",
+        "visible_limits": [
+          "同花葫芦、同花五条仍要五张；同时有“少一级”时，四张同花连续牌也只算普通同花。"
+        ],
+        "details": [
+          "五张同花仍然可用。必须整组恰好四张或五张同花色；选五张但只有四张同花不会套用四张规则。最终仍按牌型优先级判断，例如四条优先于普通同花。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:58",
+        "src/domain/evaluateR2.ts:12-38",
+        "src/content/r2Schema.ts:163-177"
+      ],
+      "definition_snapshot": {
+        "hooks": [],
+        "modifiers": [
+          {
+            "kind": "four-flush"
+          }
+        ]
+      },
+      "old_authoritative_description": "普通同花允许4张同花色，也保留5张；同花顺与扩展同花牌型仍需5张。与少一级同时持有时，4张同花连续牌按普通同花结算。"
+    },
+    {
+      "id": "c10",
+      "name": "压住书页",
+      "mechanism_summary": "前两张有效持有A逐张加倍率",
+      "main_template": "留在手里的 {h0c_values}，按手牌顺序取前 {h0c_limit} 张，每张让倍率 +{h0o0_value}。",
+      "required_visible_limits": [
+        "停用的A不算，跳过后再取够数量。"
+      ],
+      "detail_rules": [
+        "持牌不加普通点数，持牌版次不计分。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_limit": {
+          "source": "definition.hooks[0].condition.limit",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "h0c_values": {
+          "source": "definition.hooks[0].condition.values",
+          "format": "authoritative label list",
+          "baseline_value": "A",
+          "baseline_display": "A"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "3",
+            "d": "4"
+          },
+          "baseline_display": "0.75"
+        }
+      },
+      "baseline_rendered": {
+        "main": "留在手里的 A，按手牌顺序取前 2 张，每张让倍率 +0.75。",
+        "visible_limits": [
+          "停用的A不算，跳过后再取够数量。"
+        ],
+        "details": [
+          "持牌不加普通点数，持牌版次不计分。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:59",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onHeldCard",
+            "condition": {
+              "kind": "held-rank-first",
+              "values": [
+                14
+              ],
+              "limit": 2
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "4"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "按手牌顺序，前2张有效持有的 A 各 +0.75倍率；持牌的版次不触发。"
+    },
+    {
+      "id": "c11",
+      "name": "换轨",
+      "mechanism_summary": "相邻两手普通顺子与普通同花互换时乘倍率",
+      "main_template": "上一手是普通顺子、这手是普通同花，或反过来，整手倍率 ×{h0o0_value}。",
+      "required_visible_limits": [
+        "必须是紧挨着的两手；本场第一手和同花顺都不算。"
+      ],
+      "detail_rules": [
+        "按实际成功打出的牌型保存上一手；弃牌不会改写上一手牌型。进入新场重新开始。"
+      ],
+      "dynamic_state_templates": [
+        "上一手牌型：{previous_hand_type}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "previous_hand_type",
+          "source": "ctx.previousHandType rendered with HAND_LABELS, null means 本场还没出牌",
+          "format": "hand label"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "7",
+            "d": "4"
+          },
+          "baseline_display": "1.75"
+        }
+      },
+      "baseline_rendered": {
+        "main": "上一手是普通顺子、这手是普通同花，或反过来，整手倍率 ×1.75。",
+        "visible_limits": [
+          "必须是紧挨着的两手；本场第一手和同花顺都不算。"
+        ],
+        "details": [
+          "按实际成功打出的牌型保存上一手；弃牌不会改写上一手牌型。进入新场重新开始。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:60",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-transition",
+              "current": "straight",
+              "previous": "flush"
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "7",
+                  "d": "4"
+                }
+              }
+            ]
+          },
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-transition",
+              "current": "flush",
+              "previous": "straight"
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "7",
+                  "d": "4"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "本手恰为普通顺子、上手恰为普通同花，或反之，整手倍率 ×1.75；首手与同花顺均不触发。"
+    },
+    {
+      "id": "c12",
+      "name": "换一身",
+      "mechanism_summary": "整场各打过一次普通顺子同花后过关随机赠染",
+      "main_template": "这场打过普通顺子，也打过普通同花，过关时随机送一件花色染。",
+      "required_visible_limits": [
+        "两种都得实际打出；同花顺不能代替。",
+        "{reward_pool_size} 种花色染机会相同；消耗品放满时改给 {h0o0_fallbackGold} 金币。"
+      ],
+      "detail_rules": [
+        "赠品为{reward_pool_names}，各 {reward_pool_probability}。失败和跳场不送。已放满仍先随机决定赠品再换成金币，不重复抽取。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_fallbackGold": {
+          "source": "definition.hooks[0].operations[0].fallbackGold",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "reward_pool_names": {
+          "source": "getR2Tool(operation.definitionIds[*]).name",
+          "format": "tool names",
+          "baseline_value": "红桃染、方片染、梅花染、黑桃染",
+          "baseline_display": "红桃染、方片染、梅花染、黑桃染"
+        },
+        "reward_pool_probability": {
+          "source": "1 / operation.definitionIds.length",
+          "format": "uniform probability",
+          "baseline_value": "1/4",
+          "baseline_display": "1/4"
+        },
+        "reward_pool_size": {
+          "source": "operation.definitionIds.length",
+          "format": "integer",
+          "baseline_value": 4,
+          "baseline_display": "4"
+        }
+      },
+      "baseline_rendered": {
+        "main": "这场打过普通顺子，也打过普通同花，过关时随机送一件花色染。",
+        "visible_limits": [
+          "两种都得实际打出；同花顺不能代替。",
+          "4 种花色染机会相同；消耗品放满时改给 2 金币。"
+        ],
+        "details": [
+          "赠品为红桃染、方片染、梅花染、黑桃染，各 1/4。失败和跳场不送。已放满仍先随机决定赠品再换成金币，不重复抽取。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:61",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255",
+        "src/domain/r2Run.ts:576-608"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "stage-hand-types-all",
+              "values": [
+                "straight",
+                "flush"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "reward-consumable-pool",
+                "definitionIds": [
+                  "T03",
+                  "T04",
+                  "T05",
+                  "T06"
+                ],
+                "fallbackGold": 2
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "本场同时打过普通顺子和普通同花，成功过关从 T03–T06 均匀随机获得一件；满消耗品槽转2金币，仍消费一次奖励随机。"
+    },
+    {
+      "id": "d08",
+      "name": "留声机",
+      "mechanism_summary": "前两张有效留声纸依顺序额外乘倍率",
+      "main_template": "留在手里的留声纸，按顺序取前 {h0c_limit} 张，每张先加自身倍率，再让倍率 ×{h0o0_value}。",
+      "required_visible_limits": [
+        "停用的留声纸不算；每张分开乘，手牌顺序会影响结果。"
+      ],
+      "detail_rules": [
+        "留声纸自身先 +{voice_paper_value} 倍率，然后轮到这张留牌对应的大丑牌效果；其他持牌加成按大丑牌槽位顺序穿插处理，不应把所有加法和乘法各合成一批。持牌版次不计分。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_limit": {
+          "source": "definition.hooks[0].condition.limit",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "6",
+            "d": "5"
+          },
+          "baseline_display": "1.2"
+        },
+        "voice_paper_value": {
+          "source": "R2_ENHANCEMENTS voice-paper onHeldCard add-multiplier value",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1",
+          "evidence": "src/content/r2-tools.json;src/domain/scoreR2.ts:324-327"
+        }
+      },
+      "baseline_rendered": {
+        "main": "留在手里的留声纸，按顺序取前 2 张，每张先加自身倍率，再让倍率 ×1.2。",
+        "visible_limits": [
+          "停用的留声纸不算；每张分开乘，手牌顺序会影响结果。"
+        ],
+        "details": [
+          "留声纸自身先 +1 倍率，然后轮到这张留牌对应的大丑牌效果；其他持牌加成按大丑牌槽位顺序穿插处理，不应把所有加法和乘法各合成一批。持牌版次不计分。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:62",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onHeldCard",
+            "condition": {
+              "kind": "held-enhancement-first",
+              "enhancement": "voice-paper",
+              "limit": 2
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "6",
+                  "d": "5"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "按手牌顺序，前2张有效持有的留声纸，在各自增强 +1倍率后再 ×1.2倍率；其他持牌Joker仍按槽位顺序执行。"
+    },
+    {
+      "id": "d09",
+      "name": "回声越来越近",
+      "mechanism_summary": "实际额外计分执行过的手结算后积累倍率",
+      "main_template": "每手加上已攒的倍率；这手有牌确实再次计分，就再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+      "required_visible_limits": [
+        "每手最多成长一次，新增从下一手生效。"
+      ],
+      "detail_rules": [
+        "只有实际发生额外计分才成长，额外计分已达上限而未发生的不算。已有成长供以后任意牌型使用，换场保留。"
+      ],
+      "dynamic_state_templates": [
+        "每手倍率加成：+{saved_multiplier}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_multiplier",
+          "source": "instance.growth[\"multiplier\"] with r2GrowthMinimums/default additive zero",
+          "format": "fractionText",
+          "missing_instance": "尚未购买；不显示已有成长或触发状态",
+          "derive_rule": "只读现有保存值，不复算成长过程"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "3",
+            "d": "1"
+          },
+          "baseline_display": "3"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "5"
+          },
+          "baseline_display": "0.2"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每手加上已攒的倍率；这手有牌确实再次计分，就再攒 0.2，最多攒 3。",
+        "visible_limits": [
+          "每手最多成长一次，新增从下一手生效。"
+        ],
+        "details": [
+          "只有实际发生额外计分才成长，额外计分已达上限而未发生的不算。已有成长供以后任意牌型使用，换场保留。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:63",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:343-356"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "multiplier",
+                "target": "multiplier"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "extra-retrigger"
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "5"
+                },
+                "cap": {
+                  "n": "3",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "本手实际执行过至少一次额外重触发，结算后倍率成长 +0.2，上限3，从下一手生效；每手加入已有成长。"
+    },
+    {
+      "id": "d11",
+      "name": "三拍子",
+      "mechanism_summary": "第三张原始成型计分牌有效则额外计分且不补位",
+      "main_template": "组成牌型的计分牌中，第 {position_third} 张没有被停用时，让它再计分 {h0o0_count} 次。",
+      "required_visible_limits": [
+        "不足三张，或原本第三张被停用，都不生效；第四张不会补上。",
+        "同一张牌的额外计分次数有总上限，见细则。"
+      ],
+      "detail_rules": [
+        "按手牌顺序排列本手原有计分牌后取第三张，不先删除停用牌；附带牌不占这个顺序。",
+        "所有额外计分效果合计，每张扑克牌每手最多再计分 {limit_extra} 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_count": {
+          "source": "definition.hooks[0].operations[0].count",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        },
+        "limit_extra": {
+          "source": "SCORE_LIMITS.extraRetriggers",
+          "format": "plain",
+          "baseline_value": 4,
+          "baseline_display": "4",
+          "evidence": "src/domain/scoreR2.ts:12"
+        },
+        "position_third": {
+          "source": "scoring-position third-original (existing authoritative condition)",
+          "format": "plain",
+          "baseline_value": 3,
+          "baseline_display": "3",
+          "evidence": "src/domain/r2Conditions.ts:37"
+        }
+      },
+      "baseline_rendered": {
+        "main": "组成牌型的计分牌中，第 3 张没有被停用时，让它再计分 1 次。",
+        "visible_limits": [
+          "不足三张，或原本第三张被停用，都不生效；第四张不会补上。",
+          "同一张牌的额外计分次数有总上限，见细则。"
+        ],
+        "details": [
+          "按手牌顺序排列本手原有计分牌后取第三张，不先删除停用牌；附带牌不占这个顺序。",
+          "所有额外计分效果合计，每张扑克牌每手最多再计分 4 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:64",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:307-327",
+        "src/domain/scoreR2.ts:12,252,286-289,307-322"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "scoring-position",
+              "position": "third-original"
+            },
+            "operations": [
+              {
+                "kind": "retrigger-card",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "第三张原始计分牌有效时，额外重触发一次；少于3张或第三张失效则不触发，第四张不补位。"
+    },
+    {
+      "id": "d12",
+      "name": "留点悬念",
+      "mechanism_summary": "致胜手原有留牌至少四张过关给金币",
+      "main_template": "打赢这一场时，手里还留着至少 {h0c_minimum} 张牌，额外获得 {h0o0_amount} 金币。",
+      "required_visible_limits": [
+        "数致胜手没打出的牌；附带打出的牌不算。"
+      ],
+      "detail_rules": [
+        "停用的留牌也算张数。不把之后补抽的牌算进去；失败和跳场不发。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_minimum": {
+          "source": "definition.hooks[0].condition.minimum",
+          "format": "plain",
+          "baseline_value": 4,
+          "baseline_display": "4"
+        },
+        "h0o0_amount": {
+          "source": "definition.hooks[0].operations[0].amount",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        }
+      },
+      "baseline_rendered": {
+        "main": "打赢这一场时，手里还留着至少 4 张牌，额外获得 2 金币。",
+        "visible_limits": [
+          "数致胜手没打出的牌；附带打出的牌不算。"
+        ],
+        "details": [
+          "停用的留牌也算张数。不把之后补抽的牌算进去；失败和跳场不发。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:65",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255",
+        "src/domain/r2Run.ts:576-608"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "held-count",
+              "minimum": 4
+            },
+            "operations": [
+              {
+                "kind": "add-gold",
+                "amount": 2
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "致胜手后留在手中至少4张牌时，成功过关额外 +2金币；打出的杂牌不计作持牌。"
+    },
+    {
+      "id": "e09",
+      "name": "储物箱",
+      "mechanism_summary": "持有增加消耗品容量且出售不能溢出",
+      "main_template": "持有这张牌时，多 {m0_amount} 个消耗品槽。",
+      "required_visible_limits": [
+        "连同其他扩容，最多 {limit_consumable} 槽。",
+        "卖掉或牺牲它后若东西放不下，就不能操作，须先腾出空间。"
+      ],
+      "detail_rules": [
+        "容量实时生效，和长期道具的容量加成合算；不增加大丑牌槽。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "limit_consumable": {
+          "source": "R2_TOOL_CATALOG.limits.consumableSlotsMaximum",
+          "format": "plain",
+          "baseline_value": 4,
+          "baseline_display": "4",
+          "evidence": "src/domain/r2Resources.ts:16"
+        },
+        "m0_amount": {
+          "source": "definition.modifiers[0].amount",
+          "format": "plain",
+          "baseline_value": 1,
+          "baseline_display": "1"
+        }
+      },
+      "baseline_rendered": {
+        "main": "持有这张牌时，多 1 个消耗品槽。",
+        "visible_limits": [
+          "连同其他扩容，最多 4 槽。",
+          "卖掉或牺牲它后若东西放不下，就不能操作，须先腾出空间。"
+        ],
+        "details": [
+          "容量实时生效，和长期道具的容量加成合算；不增加大丑牌槽。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:66",
+        "src/domain/r2Resources.ts:16",
+        "src/domain/r2Run.ts:473-478"
+      ],
+      "definition_snapshot": {
+        "hooks": [],
+        "modifiers": [
+          {
+            "kind": "consumable-capacity",
+            "amount": 1
+          }
+        ]
+      },
+      "old_authoritative_description": "持有时消耗品槽 +1，与道具合计最多4槽；出售或牺牲后容量不足则拒绝，须先主动处理超额物品。"
+    },
+    {
+      "id": "e10",
+      "name": "赠票",
+      "mechanism_summary": "持有期间每两次成功过关固定赠票",
+      "main_template": "持有期间每过关 {h0o0_every} 次，送一张{reward_tool_name}。",
+      "required_visible_limits": [
+        "消耗品放满时改给 {h0o0_fallbackGold} 金币；失败和跳场不算次数。"
+      ],
+      "detail_rules": [
+        "过关计数跨场保留，领取后重新累计；赠品固定，不随机。卖掉后重新买不会继承旧次数。"
+      ],
+      "dynamic_state_templates": [
+        "{reward_progress}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "reward_progress",
+          "source": "jokerMemory(...).savedShort / existing r2JokerStateText progress, sourced from saved instance.counters.stageClears",
+          "format": "existing 0/1 saved progress, not a new counter"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_every": {
+          "source": "definition.hooks[0].operations[0].every",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "h0o0_fallbackGold": {
+          "source": "definition.hooks[0].operations[0].fallbackGold",
+          "format": "plain",
+          "baseline_value": 2,
+          "baseline_display": "2"
+        },
+        "reward_tool_name": {
+          "source": "getR2Tool(operation.definitionId).name",
+          "format": "tool name",
+          "baseline_value": "练一招",
+          "baseline_display": "练一招"
+        }
+      },
+      "baseline_rendered": {
+        "main": "持有期间每过关 2 次，送一张练一招。",
+        "visible_limits": [
+          "消耗品放满时改给 2 金币；失败和跳场不算次数。"
+        ],
+        "details": [
+          "过关计数跨场保留，领取后重新累计；赠品固定，不随机。卖掉后重新买不会继承旧次数。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:67",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255",
+        "src/domain/r2Run.ts:576-608"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "reward-consumable-every-clears",
+                "definitionId": "T01",
+                "every": 2,
+                "fallbackGold": 2
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "持有期间每第二次成功过关获得固定 T01，满槽转2金币；成功次数按0/1轮转并跨场保留，不消费奖励随机。"
+    },
+    {
+      "id": "e11",
+      "name": "长期捧场",
+      "mechanism_summary": "无出售过关使倍率系数成长但出售其他牌重置",
+      "main_template": "每手按本牌攒下的倍数加成；这场没卖过大丑牌又过关，倍数加 {h1o0_value}，最高 ×{h1o0_cap}。",
+      "required_visible_limits": [
+        "初始 ×{h1o0_initial}；新增从下一手生效。",
+        "进场前的准备商店也算；卖出其他大丑牌，倍数立即回到 ×{h2o0_initial}，买回也不恢复。"
+      ],
+      "detail_rules": [
+        "这里只增加倍率乘数本身，例如原来×1.2，成长0.1后变成×1.3，不是再乘1.1。倍数跟随这张牌、跨场保留。成功过关前必须本场无出售记录；不是买入本牌以后不卖就够。"
+      ],
+      "dynamic_state_templates": [
+        "当前倍率：×{saved_coefficient}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_coefficient",
+          "source": "instance.growth.coefficient; initialization from r2GrowthInitials(definition)",
+          "format": "fractionText",
+          "missing_instance": "未购买时可说初始倍率，不说当前倍率",
+          "derive_rule": "不把增长次数乘步长来重算，不把系数当加法倍率"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "2",
+            "d": "1"
+          },
+          "baseline_display": "2"
+        },
+        "h1o0_initial": {
+          "source": "definition.hooks[1].operations[0].initial",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "1"
+          },
+          "baseline_display": "1"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "10"
+          },
+          "baseline_display": "0.1"
+        },
+        "h2o0_initial": {
+          "source": "definition.hooks[2].operations[0].initial",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "1"
+          },
+          "baseline_display": "1"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每手按本牌攒下的倍数加成；这场没卖过大丑牌又过关，倍数加 0.1，最高 ×2。",
+        "visible_limits": [
+          "初始 ×1；新增从下一手生效。",
+          "进场前的准备商店也算；卖出其他大丑牌，倍数立即回到 ×1，买回也不恢复。"
+        ],
+        "details": [
+          "这里只增加倍率乘数本身，例如原来×1.2，成长0.1后变成×1.3，不是再乘1.1。倍数跟随这张牌、跨场保留。成功过关前必须本场无出售记录；不是买入本牌以后不卖就够。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:68",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255",
+        "src/domain/r2Run.ts:576-608",
+        "src/domain/r2Run.ts:473-478"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-coefficient",
+                "key": "coefficient"
+              }
+            ]
+          },
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "no-joker-sale-this-stage"
+            },
+            "operations": [
+              {
+                "kind": "add-coefficient",
+                "key": "coefficient",
+                "initial": {
+                  "n": "1",
+                  "d": "1"
+                },
+                "value": {
+                  "n": "1",
+                  "d": "10"
+                },
+                "cap": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          },
+          {
+            "phase": "onSellJoker",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "reset-coefficient",
+                "key": "coefficient",
+                "initial": {
+                  "n": "1",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "整手倍率乘自身系数，创建时 ×1；本场含准备商店未出售Joker而成功过关，系数 +0.1，上限2，从下一手生效；出售其他Joker重置1。"
+    },
+    {
+      "id": "e12",
+      "name": "淘旧摊",
+      "mechanism_summary": "成功付费刷新商店积累热度",
+      "main_template": "每手加上已攒的热度；每付费换一次商店商品，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+      "required_visible_limits": [
+        "免费换牌不成长；必须实际付过金币。"
+      ],
+      "detail_rules": [
+        "刷新失败不成长。成长供以后的出牌使用，换场保留，跟随这张大丑牌。"
+      ],
+      "dynamic_state_templates": [
+        "每手热度加成：+{saved_heat}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_heat",
+          "source": "instance.growth[\"heat\"] with r2GrowthMinimums/default additive zero",
+          "format": "fractionText",
+          "missing_instance": "尚未购买；不显示已有成长或触发状态",
+          "derive_rule": "只读现有保存值，不复算成长过程"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "60",
+            "d": "1"
+          },
+          "baseline_display": "60"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "3",
+            "d": "1"
+          },
+          "baseline_display": "3"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每手加上已攒的热度；每付费换一次商店商品，再攒 3，最多攒 60。",
+        "visible_limits": [
+          "免费换牌不成长；必须实际付过金币。"
+        ],
+        "details": [
+          "刷新失败不成长。成长供以后的出牌使用，换场保留，跟随这张大丑牌。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:69",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255",
+        "src/domain/r2Run.ts:480-486"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "heat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "onReroll",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "heat",
+                "value": {
+                  "n": "3",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "60",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "每次实际付费刷新后，热度成长 +3，上限60；免费刷新不成长。每手加入已有成长。"
+    },
+    {
+      "id": "f08",
+      "name": "试试手气",
+      "mechanism_summary": "每有效实例每手一次随机加热度",
+      "main_template": "每次出牌有 {h0o0_probability} 的机会加 {h0o0_value} 热度，没中就不加。",
+      "required_visible_limits": [
+        "每手只抽一次；扑克牌再次计分不会多抽。"
+      ],
+      "detail_rules": [
+        "在本牌的整手加成顺序轮到它时抽取；计分封禁则不抽、不加。预览、演出和回看不能改变已抽出的结果。"
+      ],
+      "dynamic_state_templates": [
+        "出牌时揭晓；尚未抽取结果"
+      ],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": true,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0o0_probability": {
+          "source": "definition.hooks[0].operations[0].probability",
+          "format": "probability n/d",
+          "baseline_value": {
+            "n": 1,
+            "d": 3
+          },
+          "baseline_display": "1/3"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "90",
+            "d": "1"
+          },
+          "baseline_display": "90"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每次出牌有 1/3 的机会加 90 热度，没中就不加。",
+        "visible_limits": [
+          "每手只抽一次；扑克牌再次计分不会多抽。"
+        ],
+        "details": [
+          "在本牌的整手加成顺序轮到它时抽取；计分封禁则不抽、不加。预览、演出和回看不能改变已抽出的结果。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:70",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "chance-add-heat",
+                "probability": {
+                  "n": 1,
+                  "d": 3
+                },
+                "value": {
+                  "n": "90",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "每手在本槽结算时独立1/3概率 +90热度，否则0；每有效实例每手只判一次，扑克重触发不增加判定。"
+    },
+    {
+      "id": "f10",
+      "name": "冷场救火",
+      "mechanism_summary": "出牌前累计本场分数严格低于目标四分之一乘倍率",
+      "main_template": "出牌前，这场累计热度还不到目标的 {h0c_ratio_pct}% 时，整手倍率 ×{h0o0_value}。",
+      "required_visible_limits": [
+        "刚好达到 {h0c_ratio_pct}% 就不生效。"
+      ],
+      "detail_rules": [
+        "看出牌前已经累计的热度，不把正在计算的这一手提前算进去。"
+      ],
+      "dynamic_state_templates": [],
+      "dynamic_placeholders": [],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h0c_ratio_pct": {
+          "source": "definition.hooks[0].condition.ratio × 100",
+          "format": "Rational percent",
+          "baseline_value": "25",
+          "baseline_display": "25"
+        },
+        "h0o0_value": {
+          "source": "definition.hooks[0].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "3",
+            "d": "2"
+          },
+          "baseline_display": "1.5"
+        }
+      },
+      "baseline_rendered": {
+        "main": "出牌前，这场累计热度还不到目标的 25% 时，整手倍率 ×1.5。",
+        "visible_limits": [
+          "刚好达到 25% 就不生效。"
+        ],
+        "details": [
+          "看出牌前已经累计的热度，不把正在计算的这一手提前算进去。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:71",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "stage-score-below-target",
+              "ratio": {
+                "n": "1",
+                "d": "4"
+              }
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "出牌前本场累计热度严格低于目标的25%时，整手倍率 ×1.5；恰好25%不触发。"
+    },
+    {
+      "id": "f11",
+      "name": "越挫越会",
+      "mechanism_summary": "本手最终分数低于目标十分之一且未过关积累热度",
+      "main_template": "每手加上已攒的热度；这手没过关、且得分不到目标的 {h1c_ratio_pct}%，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+      "required_visible_limits": [
+        "新增从下一手生效；刚好达到 {h1c_ratio_pct}% 不成长。"
+      ],
+      "detail_rules": [
+        "分数条件看这一手最终得分，是否过关看本场累计热度；不能混为同一个比较。已有成长任何牌型都可用，换场保留。"
+      ],
+      "dynamic_state_templates": [
+        "每手热度加成：+{saved_heat}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_heat",
+          "source": "instance.growth[\"heat\"] with r2GrowthMinimums/default additive zero",
+          "format": "fractionText",
+          "missing_instance": "尚未购买；不显示已有成长或触发状态",
+          "derive_rule": "只读现有保存值，不复算成长过程"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1c_ratio_pct": {
+          "source": "definition.hooks[1].condition.ratio × 100",
+          "format": "Rational percent",
+          "baseline_value": "10",
+          "baseline_display": "10"
+        },
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "100",
+            "d": "1"
+          },
+          "baseline_display": "100"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "10",
+            "d": "1"
+          },
+          "baseline_display": "10"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每手加上已攒的热度；这手没过关、且得分不到目标的 10%，再攒 10，最多攒 100。",
+        "visible_limits": [
+          "新增从下一手生效；刚好达到 10% 不成长。"
+        ],
+        "details": [
+          "分数条件看这一手最终得分，是否过关看本场累计热度；不能混为同一个比较。已有成长任何牌型都可用，换场保留。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:72",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/scoreR2.ts:343-356"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "heat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "hand-score-below-target",
+              "ratio": {
+                "n": "1",
+                "d": "10"
+              }
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "heat",
+                "value": {
+                  "n": "10",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "100",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "本手未过关且最终得分严格低于目标的10%时，结算后热度成长 +10，上限100，从下一手生效；每手加入已有成长。"
+    },
+    {
+      "id": "f12",
+      "name": "真正的压轴",
+      "mechanism_summary": "最后一次机会致胜使跨场倍率系数成长",
+      "main_template": "每手按本牌攒下的倍数加成；用最后一次机会过关，倍数加 {h1o0_value}，最高 ×{h1o0_cap}。",
+      "required_visible_limits": [
+        "初始 ×{h1o0_initial}；新倍数从下一手生效，换场保留。"
+      ],
+      "detail_rules": [
+        "必须用最后一次出牌机会成功过关，失败不增加。增加的是倍率乘数本身，不是本手最终得分再乘一次成长值。"
+      ],
+      "dynamic_state_templates": [
+        "当前倍率：×{saved_coefficient}"
+      ],
+      "dynamic_placeholders": [
+        {
+          "placeholder": "saved_coefficient",
+          "source": "instance.growth.coefficient; initialization from r2GrowthInitials(definition)",
+          "format": "fractionText",
+          "missing_instance": "未购买时可说初始倍率，不说当前倍率",
+          "derive_rule": "不把增长次数乘步长来重算，不把系数当加法倍率"
+        }
+      ],
+      "dynamic_state_policy": {
+        "requires_owned_instance": true,
+        "selection_status": "复用 jokerMemory 的权威判定；条件符合不等于已经触发。",
+        "pre_hand_only": false,
+        "actual_outcome": "只从本手实际记录得出，不能从计划、选牌或历史保存值推断已触发。"
+      },
+      "numeric_bindings": {
+        "h1o0_cap": {
+          "source": "definition.hooks[1].operations[0].cap",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "5",
+            "d": "2"
+          },
+          "baseline_display": "2.5"
+        },
+        "h1o0_initial": {
+          "source": "definition.hooks[1].operations[0].initial",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "1"
+          },
+          "baseline_display": "1"
+        },
+        "h1o0_value": {
+          "source": "definition.hooks[1].operations[0].value",
+          "format": "fractionText",
+          "baseline_value": {
+            "n": "1",
+            "d": "10"
+          },
+          "baseline_display": "0.1"
+        }
+      },
+      "baseline_rendered": {
+        "main": "每手按本牌攒下的倍数加成；用最后一次机会过关，倍数加 0.1，最高 ×2.5。",
+        "visible_limits": [
+          "初始 ×1；新倍数从下一手生效，换场保留。"
+        ],
+        "details": [
+          "必须用最后一次出牌机会成功过关，失败不增加。增加的是倍率乘数本身，不是本手最终得分再乘一次成长值。"
+        ]
+      },
+      "evidence_paths": [
+        "src/content/r2-jokers.json:73",
+        "src/domain/r2Conditions.ts:14-46",
+        "src/domain/scoreR2.ts:144-153,242-305",
+        "src/domain/r2Conditions.ts:48-69",
+        "src/domain/r2Run.ts:204-255",
+        "src/domain/r2Run.ts:576-608"
+      ],
+      "definition_snapshot": {
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-coefficient",
+                "key": "coefficient"
+              }
+            ]
+          },
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "resource",
+              "resource": "hands-after",
+              "equals": 0
+            },
+            "operations": [
+              {
+                "kind": "add-coefficient",
+                "key": "coefficient",
+                "initial": {
+                  "n": "1",
+                  "d": "1"
+                },
+                "value": {
+                  "n": "1",
+                  "d": "10"
+                },
+                "cap": {
+                  "n": "5",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ],
+        "modifiers": []
+      },
+      "old_authoritative_description": "整手倍率乘自身系数，创建时 ×1；每次最后一手成功过关后系数 +0.1，上限2.5，从下一手生效，跨场保留。"
+    }
+  ],
+  "review_status": "draft-not-accepted",
+  "outstanding_review": [
+    "独立语义复核未完成；当前为基于源码的文案草稿。",
+    "再计分、成长倍数与有效计分牌等玩家用语须在真实详情中审读，避免理解为最终得分直接翻倍。",
+    "商店两行摘要尚未逐张做窄屏截图；不得截掉关键条件。",
+    "未运行游戏、测试或CI；不作为机制或视觉验收证据。"
+  ]
+}
