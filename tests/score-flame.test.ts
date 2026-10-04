@@ -80,17 +80,40 @@ describe('bounded foreground score fire',()=>{
       return {area,alpha,height:texture.height-firstRow};
     };
     f.flame.set(1);const small=measure(local);
-    f.flame.set(3);const large=measure(local),border=measure(frame);
+    f.flame.set(3);
+    expect(f.objects.filter(object=>object.name.startsWith('score/fire-frame-')).every(image=>image.visible)).toBe(true);
+    // Live tier transitions preserve the field; evaluate the same steady-volume
+    // contract after bounded propagation, not after an artificial warm-start jump.
+    for(let i=0;i<96;i++)f.events.emit('update',40);
+    const large=measure(local),border=measure(frame);
     expect(large.area).toBeGreaterThan(small.area*3);expect(large.alpha).toBeGreaterThan(small.alpha*3);
     expect(small.height).toBeGreaterThanOrEqual(18);
     expect(large.height).toBeGreaterThan(small.height+8);expect(large.height).toBeGreaterThanOrEqual(local.height*.7);
     expect(border.area).toBeGreaterThan(frame.width*frame.height*.5);
-    expect(f.objects.filter(object=>object.name.startsWith('score/fire-frame-')).every(image=>image.visible)).toBe(true);
+    expect(f.objects.filter(object=>object.name.startsWith('score/fire-frame-')).every(image=>!image.visible)).toBe(true);
     f.flame.destroy();
   });
   it('distinguishes large from extreme volume without changing target /2x /5x semantics',()=>{
     const f=fixture();const local=[...f.textures.values()][0],measure=()=>{const p=local.pixels!,a=[];let top=p.height;for(let i=3;i<p.data.length;i+=4)if(p.data[i]>=12){a.push(p.data[i]);top=Math.min(top,Math.floor(i/4/p.width));}return {area:a.length,alpha:a.reduce((s,a)=>s+a,0),height:p.height-top};};
     f.flame.set(2,true);const large=measure();f.flame.set(3,true);const extreme=measure();expect(extreme.area).toBeGreaterThan(large.area*1.2);expect(extreme.alpha).toBeGreaterThan(large.alpha*1.2);expect(extreme.height).toBeGreaterThan(large.height);f.flame.destroy();
+  });
+  it('warms initial/static/resumed fields but advances live tier changes by exactly one step',()=>{
+    for(const height of [28,40,52]){
+      const f=fixture({x:15,y:125,width:220,height});
+      const core=f.flame as unknown as {advanceHeat:()=>void;step:number};
+      const advance=vi.spyOn(core,'advanceHeat'),warm=Math.min(96,height*2);
+      f.flame.set(2);expect(advance).toHaveBeenCalledTimes(warm);
+      const uploads=f.uploads(),step=core.step;advance.mockClear();
+      f.flame.set(2);expect(advance).not.toHaveBeenCalled();expect(core.step).toBe(step);expect(f.uploads()).toBe(uploads);
+      f.flame.set(3);expect(advance).toHaveBeenCalledTimes(1);expect(core.step).toBe(step+1);
+      advance.mockClear();f.flame.set(2);expect(advance).toHaveBeenCalledTimes(1);
+      advance.mockClear();f.flame.set(2,true);expect(advance).toHaveBeenCalledTimes(warm);expect(core.step).toBe(warm);
+      advance.mockClear();f.events.emit('update',1000);expect(advance).not.toHaveBeenCalled();
+      f.flame.set(2);expect(advance).toHaveBeenCalledTimes(warm);expect(core.step).toBe(warm);
+      advance.mockClear();f.flame.set(0);expect(advance).not.toHaveBeenCalled();
+      f.flame.set(1);expect(advance).toHaveBeenCalledTimes(warm);
+      f.flame.destroy();
+    }
   });
   it('paints a connected warm base across the score board with uneven rising lobes',()=>{
     const f=fixture(),local=[...f.textures.values()][0];f.flame.set(2);

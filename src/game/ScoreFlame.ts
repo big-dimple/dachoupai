@@ -124,7 +124,7 @@ export class ScoreFlame {
   set(level:0|1|2|3,reduced=false):void {
     const next=level;
     if(this.destroyed||(next===this.level&&reduced===this.reduced))return;
-    const previous=this.level;
+    const previous=this.level,wasReduced=this.reduced;
     this.surge=!reduced&&next>previous ? (next>=2 ? .42 : .10) : 0;
     this.frameFlash=!reduced&&next>previous&&next>=2?1:0;
     this.level=next;this.reduced=reduced;this.redrawAfter=0;this.lastWall=this.scene.sys?.game?.loop.now;
@@ -133,9 +133,12 @@ export class ScoreFlame {
     if(next<2||next!==previous){this.frameHeat.fill(0);this.nextFrameHeat.fill(0);}
     if(!next){this.elapsed=0;this.step=0;this.heat.fill(0);this.nextHeat.fill(0);this.fuel.fill(0);}
     else{
-      // A bounded deterministic warm start avoids waiting for fuel to climb.
-      if(reduced||!previous){this.heat.fill(0);this.nextHeat.fill(0);this.step=0;}
-      for(let i=0;i<Math.min(96,this.height*2);i++)this.advanceHeat();
+      // Static/initial fields need a bounded warm start. A live tier change
+      // preserves its heat history and advances only one normal simulation step.
+      if(reduced||!previous||wasReduced){
+        this.heat.fill(0);this.nextHeat.fill(0);this.step=0;
+        for(let i=0;i<Math.min(96,this.height*2);i++)this.advanceHeat();
+      }else this.advanceHeat();
       if(this.frameFlash)for(let i=0;i<24;i++)this.advanceFrameHeat();
     }
     this.draw();
@@ -207,7 +210,7 @@ export class ScoreFlame {
       const u=x/(w-1),wave=(1+Math.sin(u*21+Math.sin(u*13)*1.7+t*.9))/2;
       // Low fire stays a visible connected root with sparse hotter fuel patches.
       // Large/extreme broaden and strengthen real heat, never a fixed silhouette.
-      this.fuel[x]=clamp((small?.09+.61*Math.pow(wave,8):this.level===2?.48+.51*wave:.58+.42*wave)+this.surge*.14);
+      this.fuel[x]=clamp((small?.09+.61*Math.pow(wave,8):this.level===2?.12+.87*Math.pow(wave,3):.58+.42*wave)+this.surge*.14);
     }
     propagateDoomFire(this.heat,this.nextHeat,w,h,this.noise,this.step,small?.10:this.level===2?.30:.20,this.fuel,small?1.3:this.level===2?1.10:.92,.65);
     const previous=this.heat;this.heat=this.nextHeat;this.nextHeat=previous;this.step++;

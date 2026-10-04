@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import { execFileSync } from 'node:child_process';
-import { existsSync, readdirSync, unlinkSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, unlinkSync } from 'node:fs';
 import { resolve, relative, isAbsolute, sep } from 'node:path';
 
 const git = (...args: string[]) => {
@@ -50,6 +50,7 @@ export default defineConfig({
     name: 'playable-build-info',
     generateBundle() {
       this.emitFile({ type: 'asset', fileName: 'build-info.json', source: JSON.stringify(buildInfo, null, 2) });
+      this.emitFile({ type: 'asset', fileName: 'THIRD_PARTY_NOTICES.txt', source: readFileSync(resolve('THIRD_PARTY_NOTICES.md'), 'utf8') });
     },
   }],
 });
