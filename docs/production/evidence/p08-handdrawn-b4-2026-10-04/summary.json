@@ -1,6 +1,6 @@
 {
   "taskId": "P08",
-  "testedCommit": "7e1e9aa21b833a8c91f030167e0ff4895ef23322",
+  "testedCommit": "825c8fb14d91a238c29d5bdc5de67afd574517ea",
   "baseline": "7e1e9aa21b833a8c91f030167e0ff4895ef23322",
   "assetCommit": "41e78e1eac85920cede9ed867e4dabb8bba4f5c4",
   "sourceManifestSHA256": "2ff47d41953064d053b78659d222dcf27dfa61ac73e077253df2c66b645c8758",
@@ -37,21 +37,24 @@
     "functionalMechanism": 35
   },
   "checks": {
-    "affectedTests": "38 passed/4files; updated metadata test final freeze pending",
+    "affectedTests": "64 passed/5files, including four b4 HD no-prefetch and retained legacy recovery/cancel contracts",
     "type": "PASS",
     "browser": "PASS Chromium151 Canvas390x740/DPR1/safe0/subdir BASE_URL; four textures/HD exact hashes/on-demand/cache/404 fixed frame retry/whole run unchanged; both four-card subordinate phrases real full Text bounds14px/res1.5",
-    "freeze": "PENDING",
+    "freeze": "PASS:1871 tests/104files,content,type/build,Chromium Canvas desktop+mobile smoke,plan; source/index/HEAD unchanged",
     "initialFreeze": "FAIL5: legacy-prefetch fixtures used pengci/huimaqiang which are now on-demand. No runtime defect; all other1864 tests passed, source/index/HEAD identical. Legacy fixtures changed to still-legacy a03/e05/a05; reviewed b4 no-prefetch coverage added. Final refreeze pending."
   },
   "states": {
     "implementation": "COMPLETE bounded four-ID integration and current metadata cleanup",
-    "technical": "PASS targeted/native; final freeze PENDING",
+    "technical": "PASS targeted, native, final freeze; exact new remoteCI pending",
     "independentAesthetic": "Approved source/derivatives by root; consumer scene self-view only, independent scene NOT_RUN",
     "targetDevice": "OnePlus/hardwareGPU/audio NOT_RUN"
   },
   "reports": {
     "browser": "browser.json",
-    "scene": "390-four-new-faces.png"
+    "scene": "390-four-new-faces.png",
+    "freeze": "freeze.json",
+    "initialFailedFreeze": "freeze-initial-failed.json",
+    "sourceFiles": "source-files.txt"
   },
-  "fire": "No fire code/reference committed. Private consumption handled separately; no bypass of cancelled public request."
+  "fire": "Private resolved-reference preparation returned signed transfer; official helper failed with download failed. One-line error/no HTTP status/no local file; cause cannot be classified. No retries, no pixels viewed, no fire code or reference committed."
 }

@@ -11,3 +11,5 @@ consumer实际view8源派生与此PNG。有限原生检查四个缩略/HD hash�
 四状态：实现完成；相关技术通过/最终冻结另归档；根已批准来源候选、整屏独立视觉NOT_RUN；OnePlus/真实GPU/听感NOT_RUN。未覆盖53个功能ID保旧或机制，不称72全换。没有火代码/私有参考图进入本轮。
 
 首次最终冻结928e116：1864通过/5失败，均是旧图预取fixture使用了已迁按需的新图ID。旧fixture换仍保旧的a03/e05/a05，全部预取/重试/取消断言保留；新4ID另参数化断言打开前不请求HD，未修改runtime加载策略。初次失败报告保留，最终新源码重新冻结。
+
+最终源码 `825c8fb14d91a238c29d5bdc5de67afd574517ea` 冻结：1871tests/104files、content、type/build、Chromium Canvas桌面/手机smoke、plan全PASS，source/index/HEAD前后相同，见[freeze](freeze.json)。公开远端main/精确新CI另报。火私有消费本次官方helper仅报下载失败，无HTTP状态/本机文件，因此未看像素且不分类猜测；无重试/转公开。
