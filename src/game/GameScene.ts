@@ -25,7 +25,7 @@ import {HAND_LABELS} from '../content/handLabels';
 import {heatText,fractionText} from './scoreText';
 import {scoreCelebration} from './scoreCelebration';
 import {scoreBeat,scoreFireLevel,fourCardFormation,scorePacketSymbol,type ScoreBeat} from './scorePresentation';
-import {ScoreFlame} from './ScoreFlame';
+import {ScoreFlame,orderScoreBrushLayers} from './ScoreFlame';
 import {stageNotice} from './stageNotice';
 import type {R2RunState as RunState,DomainEvent} from '../domain/run';
 import {R2_LIMITS,getR2Stage as getStage,r2ScoreContext,r2DiscardCost} from '../domain/r2Run';
@@ -166,6 +166,7 @@ export class GameScene extends Phaser.Scene {
   private playAuraPulse?:Phaser.Tweens.Tween;
   private jokerIdle=new Map<Phaser.GameObjects.Container,Phaser.Tweens.Tween>();
   private scoreFlame?:ScoreFlame;
+  private displayedScoreProduct='0';
   private controlsLive=false;
 
   constructor() {
@@ -302,8 +303,8 @@ export class GameScene extends Phaser.Scene {
     if(portrait){this.roleText.setVisible(false);this.goldText.setFontSize(14).setOrigin(0,0).setPosition(h.x+144,h.y+6);this.heatText.setPosition(h.x+64,h.y+28).setFontSize(16).setWordWrapWidth(h.width-168);}
     this.renderJokerRack();
     const s=l.scoreBoard;
-    v.material(s,T.paperLight,T.paperLight,4);
-    v.add(this.add.graphics().lineStyle(1,T.ink,.26).strokeRoundedRect(s.x,s.y,s.width,s.height,4));
+    v.material(s,T.paperLight,T.paperLight,4).setName('score/board-paper');
+    v.add(this.add.graphics().lineStyle(1,T.ink,.26).strokeRoundedRect(s.x,s.y,s.width,s.height,4)).setName('score/board-border');
     this.resultText=v.text(s.x+8,s.y+6,'选牌，准备开演',17,C.ink).setName('score/source');
     const pedestal=scorePedestal(s);
     if(pedestal){
@@ -1065,10 +1066,13 @@ export class GameScene extends Phaser.Scene {
     const cells=scoreCells(s),texts=[this.scoreHeat,this.scoreMult,this.scoreTotal];
     this.scoreLabels.forEach((text,i)=>{text.setVisible(i!==2||s.height>=108);fitScoreLine(text,{x:cells[i].x,y:cells[i].y-18,width:cells[i].width,height:18},14);});
     texts.forEach((text,i)=>fitScoreLine(text,cells[i],i===2?(s.height>=108?36:24):18,true));
-    const pedestal=scorePedestal(s);
-    // Total digits/label have an opaque foreground, not a hole in the fire field.
-    const guarded=pedestal?[this.scoreHeat,this.scoreMult,this.scoreLabels[0],this.scoreLabels[1]]:[...this.scoreLabels,...texts];
-    this.scoreFlame?.setGuards([{getBounds:()=>caption,visible:true},this.resultText,...guarded].filter(t=>t.visible).map(t=>{const b=t.getBounds();return {x:b.x-5-b.width*.04,y:b.y-3,width:b.width*1.08+10,height:b.height*1.08+6};}).concat([...Object.values(l.buttons),...Object.values(l.tableActions)].map(b=>({x:b.x-3,y:b.y-3,width:b.width+6,height:b.height+6}))));
+    const guarded=[this.resultText,...this.scoreLabels,...texts,this.breakdownText,this.previousHandText].filter(t=>t?.active&&t.visible);
+    const bodies=[...this.cardViews.map(v=>v.container),...[...this.settledCards.values()].map(v=>v.container),
+      ...this.jokerViews.values(),this.roleFrame,this.playButton,this.discardButton,this.rankButton,this.suitButton];
+    const guards=[caption,...guarded.map(t=>{const b=t.getBounds();return {x:b.x-5-b.width*.04,y:b.y-3,width:b.width*1.08+10,height:b.height*1.08+6};}),
+      ...bodies.filter(o=>o?.active&&o.visible).map(o=>{const b=o.getBounds();return {x:b.x-3,y:b.y-3,width:b.width+6,height:b.height+6};}),
+      ...Object.values(l.buttons),...Object.values(l.tableActions)];
+    this.scoreFlame?.setGuards(guards);
   }
 
   private async showJokerTransaction(event:Extract<DomainEvent,{type:'joker-transaction'}>,context:EffectContext):Promise<void> {
@@ -1141,16 +1145,17 @@ export class GameScene extends Phaser.Scene {
     this.setDisplayedProduct(Rational.fromJSON(value.H).multiply(Rational.fromJSON(value.M)).floor().toString());
   }
   private setDisplayedProduct(product:string):void {
-    this.scoreTotal.setText(heatText(product));this.fitScoreReadouts();this.refreshScoreFire(product);
+    this.displayedScoreProduct=product;this.scoreTotal.setText(heatText(product));this.fitScoreReadouts();this.refreshScoreFire(product);
+  }
+  private ensureScoreFlame():ScoreFlame {
+    if(!this.scoreFlame){const l=this.view.layout;this.scoreFlame=new ScoreFlame(this,this.view.root,l.scoreBoard,{x:4,y:4,width:l.width-8,height:l.height-8});}
+    return this.scoreFlame;
   }
   private refreshScoreFire(product:string):void {
     const presentation=this.presentation;if(!presentation)return;
-    const level=scoreFireLevel(presentation.originHeat,product,this.stage.targetHeat),b=this.view.layout.scoreBoard;
-    if(level&&!this.scoreFlame){const l=this.view.layout;this.scoreFlame=new ScoreFlame(this,this.view.root,l.scoreFire,{x:4,y:4,width:l.width-8,height:l.height-8});}
+    const level=scoreFireLevel(presentation.originHeat,product,this.stage.targetHeat);
+    if(level)this.ensureScoreFlame();
     this.scoreFlame?.set(level,this.reducedMotion);
-    // Same ephemeral presentation identity: no ignition on redraw, repeated final
-    // accumulator updates, or replay. Restored results never create a presentation.
-    this.audio.setScoreFire(presentation.replay?0:level,presentation);
     this.scoreTotal.setColor(level?C.red:C.ink);this.keepScoreReadable();
   }
   private stopScoreFire():void {this.scoreFlame?.destroy();this.scoreFlame=undefined;this.audio.stopScoreFire();}
@@ -1195,23 +1200,23 @@ export class GameScene extends Phaser.Scene {
     const l=this.view.layout,index=text===this.scoreHeat?0:text===this.scoreMult?1:2,cell=scoreCells(l.scoreBoard)[index],scale=Math.max(1,Math.min(requested,1.08,cell.width/text.width,cell.height/text.height));
     return this.animate({targets:text,scale:{from:scale,to:1},duration,ease:'Sine.easeOut'},context);
   }
-  private impactAccumulator(event:ScoreEvent,duration:number,context:EffectContext):Promise<void> {
-    if(this.reducedMotion||context.signal.aborted)return Promise.resolve();
-    const multChanged=event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d,heatChanged=event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d;
-    if(!multChanged&&!heatChanged)return Promise.resolve();
+  private impactAccumulator(event:ScoreEvent,_duration:number,context:EffectContext):Promise<void> {
+    if(context.signal.aborted||!this.presentation)return Promise.resolve();
     const positive=Rational.fromJSON(event.after.H).compare(Rational.fromJSON(event.before.H))>0||Rational.fromJSON(event.after.M).compare(Rational.fromJSON(event.before.M))>0;
-    if(positive&&!this.presentation?.replay)this.scoreFlame?.impact(event.eventId,scoreBeat(event).strength==='multiply'?1:event.sourceType==='character'?.75:.5);
-    const target=multChanged?this.scoreMult:this.scoreHeat,b=target.getBounds(),strong=event.operation==='multiply-multiplier'||event.operation==='read-coefficient',width=Math.min(this.view.layout.scoreBoard.width/3-18,Math.max(42,b.width+16)),height=b.height+8;
-    const impact=this.view.add(this.add.graphics().setPosition(b.centerX,b.centerY));
-    impact.fillStyle(strong?T.red:multChanged?T.jade:T.brass,.18).fillRoundedRect(-width/2,-height/2,width,height,5);
-    impact.lineStyle(strong?4:event.sourceType==='card'?1:2,strong?0xffd3a6:0xc7f1d8,.95).strokeRoundedRect(-width/2,-height/2,width,height,5);
-    if(strong)for(const [x,y] of [[-1,-1],[1,-1],[-1,1],[1,1]])impact.lineStyle(2,T.brass,.9).beginPath().moveTo(x*width*.54,y*height*.54).lineTo(x*width*.65,y*height*.72).strokePath();
-    this.keepScoreReadable();return this.animate({targets:impact,scale:{from:.75,to:strong?1.18:1.06},alpha:{from:1,to:0},duration,ease:'Cubic.easeOut'},context).then(()=>impact.destroy());
+    if(positive&&!this.presentation.replay){
+      const flame=this.ensureScoreFlame();
+      flame.set(scoreFireLevel(this.presentation.originHeat,this.displayedScoreProduct,this.stage.targetHeat),this.reducedMotion);
+      flame.impact(event.eventId,scoreBeat(event).strength==='multiply'?1:event.sourceType==='character'?.75:.5);
+      this.keepScoreReadable();
+    }
+    return Promise.resolve();
   }
   private keepScoreReadable():void {
     this.fitScoreReadouts();
-    const base=this.view.root.list.find(o=>o.name==='score/total-pedestal');if(base)this.view.root.bringToTop(base);
-    for(const text of [this.resultText,...this.scoreLabels,this.scoreHeat,this.scoreMult,this.scoreTotal,this.breakdownText,this.previousHandText])if(text.active)this.view.root.bringToTop(text);
+    const controls=this.view.root.list.filter(o=>o.name.startsWith('action/'));
+    const foreground=[this.roleAvatar,...this.cardViews.map(v=>v.container),...[...this.settledCards.values()].map(v=>v.container),...this.jokerViews.values(),
+      ...controls.flatMap(o=>[o,o.getData('buttonArt'),o.getData('label')])].filter(o=>o?.active);
+    orderScoreBrushLayers(this.view.root,foreground,[this.resultText,...this.scoreLabels,this.scoreHeat,this.scoreMult,this.scoreTotal,this.breakdownText,this.previousHandText]);
   }
   private transferToAccumulator(event:ScoreEvent,card:CardView|undefined,duration:number,context:EffectContext):Promise<void> {
     if(this.reducedMotion||context.signal.aborted)return Promise.resolve();
@@ -1305,7 +1310,7 @@ export class GameScene extends Phaser.Scene {
     else if(event.sourceType==='joker')this.audio.sourceCue(event.phase==='onHeldCard'?'held':'joker',index);
     else if(event.sourceType==='card'&&event.value.n!=='0')this.audio.sourceCue('card',index);
     else if(event.sourceType==='rule')this.audio.sourceCue(event.phase==='onStageClear'?'held':'boss');
-    if(event.operation==='multiply-multiplier'||event.operation==='read-coefficient'){this.audio.multiplier('multiply',index);if(!this.reducedMotion)this.cameras.main.shake(70,.0008);}
+    if(event.operation==='multiply-multiplier'||event.operation==='read-coefficient'){if(this.presentation&&!this.presentation.replay)this.audio.scoreBrush(this.presentation,event.eventId,2);}
     else if(event.operation==='add-multiplier'||event.operation==='read-growth'&&(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d))this.audio.multiplier('add',index);
     else if(event.operation==='retrigger-card')this.audio.retrigger(index);
     if(['lucky-multiplier-check','lucky-gold-check','glass-check'].includes(event.operation))this.audio.chanceRoll(event.operation==='glass-check'?'glass':'lucky',event.value.n==='1');
@@ -1406,32 +1411,6 @@ export class GameScene extends Phaser.Scene {
       ]);
     } finally {if(count.active){count.setScale(1);if(this.statusMessage===note){this.statusMessage='';this.updateControls();}}halo.destroy();}
   }
-  private burst(tier:number,context:EffectContext):Promise<void> {
-    if(this.reducedMotion||tier===0)return Promise.resolve();
-    const p=this.view.layout.playedArea,count=tier===3?32:tier===2?20:10;
-    const particles=Array.from({length:count},(_,i)=>{
-      const angle=i*2.39996,radius=Math.min(p.width*.44,170)*(0.55+(i%4)*.15);
-      const part=this.view.add(this.add.rectangle(p.x+p.width/2,p.y+p.height/2,3+(i%3),7+(i%2)*4,i%3===0?T.red:i%3===1?T.brass:T.jade)).setAngle(i*47);
-      const x=Phaser.Math.Clamp(part.x+Math.cos(angle)*radius,p.x+8,p.x+p.width-8),y=Phaser.Math.Clamp(part.y+Math.sin(angle)*radius*.6,p.y+8,p.y+p.height-8);
-      return this.animate({targets:part,x,y,angle:part.angle+120,alpha:0,duration:360,ease:'Cubic.easeOut'},context).then(()=>part.destroy());
-    });return Promise.all(particles).then(()=>undefined);
-  }
-  private shockwave(tier:number,context:EffectContext):Promise<void> {
-    if(this.reducedMotion||tier<2||context.signal.aborted)return Promise.resolve();
-    const p=this.view.layout.playedArea,cx=p.x+p.width/2,cy=p.y+p.height/2,width=Math.min(p.width-24,tier===3?540:420),height=Math.min(p.height-24,tier===3?230:180);
-    if(width<40||height<30)return Promise.resolve();
-    const anchor=this.settledCards.values().next().value?.container;
-    const rings=[this.view.add(this.add.ellipse(cx,cy,width,height).setFillStyle(T.brass,0).setStrokeStyle(3,0xf7d49b,.9)),this.view.add(this.add.ellipse(cx,cy,width*.82,height*.76).setFillStyle(T.jade,0).setStrokeStyle(2,0x92c4ae,.75))];
-    const rays=this.view.add(this.add.graphics().setPosition(cx,cy));
-    for(let i=0;i<6;i++){const a=i*Math.PI/3,r0=.35,r1=.48;rays.lineStyle(tier===3?3:2,T.red,.8).beginPath().moveTo(Math.cos(a)*width*r0,Math.sin(a)*height*r0).lineTo(Math.cos(a)*width*r1,Math.sin(a)*height*r1).strokePath();}
-    if(anchor)for(const effect of [...rings,rays])this.view.root.moveBelow<Phaser.GameObjects.GameObject>(effect,anchor);
-    this.keepScoreReadable();
-    return Promise.all([
-      this.animate({targets:rings[0],scale:{from:.25,to:1},alpha:{from:1,to:0},duration:430,ease:'Cubic.easeOut'},context),
-      this.animate({targets:rings[1],scale:{from:.18,to:1},alpha:{from:.8,to:0},delay:40,duration:360,ease:'Cubic.easeOut'},context),
-      this.animate({targets:rays,scale:{from:.5,to:1},alpha:{from:1,to:0},duration:280,ease:'Cubic.easeOut'},context),
-    ]).then(()=>{rings.forEach(ring=>ring.destroy());rays.destroy();});
-  }
   private async award(score:ScoreTrace,presentation:NonNullable<GameScene['presentation']>,context:EffectContext):Promise<void> {
     if(context.signal.aborted)return;
     const target=BigInt(this.stage.targetHeat),points=BigInt(score.finalScore);
@@ -1443,9 +1422,9 @@ export class GameScene extends Phaser.Scene {
     this.resultText.setText((presentation.replay?'回看 · ':celebration.cleared?celebration.label+' · ':HAND_LABELS[score.handType]+' · ')+'+'+heatText(score.finalScore));
     this.breakdownText.setText(fractionText(score.accumulator.H)+' 热度 × '+fractionText(score.accumulator.M)+' 倍率 = '+heatText(score.finalScore));
     presentation.credited=true;this.updateHud();
-    if(!presentation.replay){if(celebration.cleared&&celebration.tier!==0)this.audio.overkill(celebration.tier);else this.audio.score(celebration.cleared?1:0);}
-    if(!this.reducedMotion&&celebration.tier>0){this.cameras.main.shake(150+celebration.tier*35,.0015+celebration.tier*.0006);try{navigator.vibrate?.(celebration.tier>=2?[20,25,20]:20);}catch{/* Optional haptics never block presentation. */}}
-    const effects:Promise<void>[]=[this.burst(tier,context),this.shockwave(tier,context)];
+    this.scoreTotal.setData('eventId',score.events.find(event=>event.phase==='finalScore')?.eventId).setData('eventPhase','award');
+    if(!presentation.replay)this.audio.scoreBrush(presentation,'award',scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat));
+    const effects:Promise<void>[]=[];
     // The credited heat rolls up in the HUD; the exact saved value always lands last.
     const heatFrom=BigInt(presentation.displayHeat),heatTo=BigInt(presentation.state.stage!.heat);
     if(!this.reducedMotion&&heatTo>heatFrom&&heatTo-heatFrom<10000000000n){
@@ -1458,29 +1437,6 @@ export class GameScene extends Phaser.Scene {
     if(!this.reducedMotion){
       effects.push(this.pulseScoreNumber(this.scoreTotal,1.08,celebration.cleared?620:310,context));
       effects.push(this.animate({targets:this.heatText,scale:{from:celebration.cleared?1.1:1.04,to:1},duration:celebration.cleared?620:310,ease:'Back.easeOut'},context));
-    }
-    const p=this.view.layout.playedArea;
-    if(celebration.cleared){
-      const width=Math.min(340,p.width-16),height=p.height>=104?90:p.height>=64?50:38,rich=height===90;
-      const stamp=this.view.add(this.add.container(p.x+p.width/2,p.y+p.height/2)).setName('score/celebration');
-      const face=this.view.material({x:-width/2,y:-height/2,width,height},celebration.tier>0?0x744c36:0x344e53,0x172c34,7),edge=this.add.graphics();
-      edge.lineStyle(2,0xffd79c,.95).strokeRoundedRect(-width/2,-height/2,width,height,7);
-      edge.lineStyle(1,0xb69866,.75).strokeRoundedRect(-width/2+4,-height/2+4,width-8,height-8,4);
-      const ratio=celebration.ratio.length<10?celebration.ratio:heatText(celebration.ratio.split('.')[0]);
-      const caption=this.add.text(0,rich?-height/2+7:0,celebration.label+' · '+ratio+'×目标',{fontFamily:UI_FONT,fontSize:rich?'16px':'14px',fontStyle:'bold',color:C.ink,resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5,rich?0:.5);
-      stamp.add([face,edge,caption]);
-      if(rich){
-        const number=this.add.text(0,-17,'+'+heatText(score.finalScore),{fontFamily:UI_FONT,fontSize:'34px',fontStyle:'bold',color:C.ink,resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5,0);
-        if(number.width>width-20)number.setScale((width-20)/number.width);
-        const excess=this.add.text(0,25,'本场超额 +'+heatText(celebration.excess),{fontFamily:UI_FONT,fontSize:'14px',color:C.mutedInk,resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5,0);
-        stamp.add([number,excess]);
-      }
-      this.keepScoreReadable();
-      effects.push((async()=>{try{
-        if(!this.reducedMotion)await this.animate({targets:stamp,scale:{from:.65,to:1},duration:180,ease:'Back.easeOut'},context);
-        await this.wait(420+celebration.tier*100,context);
-        if(!this.reducedMotion)await this.animate({targets:stamp,alpha:0,y:stamp.y-8,duration:200},context);
-      }finally{stamp.destroy();}})());
     }
     effects.push(this.wait(celebration.cleared&&!this.reducedMotion?1400:tier>=2?600:360,context));await Promise.all(effects);
   }
