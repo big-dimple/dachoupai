@@ -1,0 +1,117 @@
+{
+  "taskId": "P08",
+  "testedCommit": "c5ede00b097a93fd370290039dd3cdd99d9c3a7d",
+  "baseMain": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+  "parentsApproved": {
+    "rackReview": "5ca6a8cd292bb0e0223addeb1b6caf17c5be1ab1",
+    "fourteenReview": "2bca8c8e4a1b48034ffee3d4e04cea5a2dba2395"
+  },
+  "merge": "normal; only AGENTS/handoff/plan conflicts, both records retained",
+  "runtimeDiff": [
+    "src/game/GameScene.ts",
+    "src/game/ShopLayout.ts",
+    "src/game/ShopScene.ts"
+  ],
+  "checks": {
+    "affectedTests": "147 PASS /8 files (135+12, no duplicate file run)",
+    "type": "PASS",
+    "plan": "PASS",
+    "browser": "No new matrix/screenshot; both parent-reviewed native evidence retained. New exactcombined CI separately reported."
+  },
+  "preservation": {
+    "src/game/GameScene.ts": {
+      "object": "445b8f58135c5999632b88a0b29a1e05f7ae103a",
+      "sameAs": "2bca8c8e4a1b48034ffee3d4e04cea5a2dba2395"
+    },
+    "src/game/ShopLayout.ts": {
+      "object": "62b5d01d9e602fd499ec9fa99e472216ff8874da",
+      "sameAs": "5ca6a8cd292bb0e0223addeb1b6caf17c5be1ab1"
+    },
+    "src/game/ShopScene.ts": {
+      "object": "310eab57474135a3bd55356c779f20dc4dc2ba2e",
+      "sameAs": "5ca6a8cd292bb0e0223addeb1b6caf17c5be1ab1"
+    },
+    "src/game/layout.ts": {
+      "object": "30393b696ccd170bbb648c53615a436e1b18a3e5",
+      "sameAs": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca"
+    },
+    "src/game/ToolInventoryEntry.ts": {
+      "object": "ad683177be1cb9924f61207934eb695e8f5e4d99",
+      "sameAs": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca"
+    },
+    "src/game/IntermissionScene.ts": {
+      "object": "ca84a25e48efe584a73c24822d750c0696466620",
+      "sameAs": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca"
+    },
+    "src/game/ScoreFlame.ts": {
+      "object": "925208142110f17e08e1df264913d21e5c9afdd0",
+      "sameAs": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca"
+    },
+    "src/game/GoodsArt.ts": {
+      "object": "09b7283c1030be808374dc924c19a433b563a4bb",
+      "sameAs": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca"
+    },
+    "src/audio/AudioEngine.ts": {
+      "object": "a59571134ba2e3a1f7c913b44434b425df24a80c",
+      "sameAs": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca"
+    },
+    "src/style.css": {
+      "object": "3bb1fcb6e1f714d456d519b19a4dc38279f02a90",
+      "sameAs": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca"
+    },
+    "src/domain": {
+      "object": "8e3423193ecb4920e79b87f2314da97a04438c99",
+      "sameAs": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca"
+    },
+    "src/application": {
+      "object": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+      "sameAs": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca"
+    },
+    "src/content": {
+      "object": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+      "sameAs": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca"
+    },
+    "public": {
+      "object": "9a3f6af0fe16a793b6ca13195ac80fc0faeff688",
+      "sameAs": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca"
+    },
+    "art": {
+      "object": "0cc88620870dcdcbc04329e626a14f88234ded7c",
+      "sameAs": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca"
+    }
+  },
+  "images": [
+    {
+      "path": "docs/production/evidence/p08-shop-rack-320-2026-10-04/320-before.png",
+      "sameAsApprovedRef": "5ca6a8cd292bb0e0223addeb1b6caf17c5be1ab1",
+      "sha256": "29f6f9dd464b2a854a30f4fdc0e72d9d742b101ff79d28d1076ea35f08eb6b8b",
+      "identity": "Original fixture/source/build retained; not current-main deployment; no reshoot."
+    },
+    {
+      "path": "docs/production/evidence/p08-shop-rack-320-2026-10-04/320-after.png",
+      "sameAsApprovedRef": "5ca6a8cd292bb0e0223addeb1b6caf17c5be1ab1",
+      "sha256": "b8976ed3f863eae6af8bd1009f427de0cb6d47d108ae6bb56555ddd1281f5f62",
+      "identity": "Original fixture/source/build retained; not current-main deployment; no reshoot."
+    },
+    {
+      "path": "docs/production/evidence/p08-tools-fourteen-2026-10-04/320-fourteen.png",
+      "sameAsApprovedRef": "2bca8c8e4a1b48034ffee3d4e04cea5a2dba2395",
+      "sha256": "74dec4983f60531bea50d2192097685dd04f8af2f2f82b22bfef4ecc1d45a9f0",
+      "identity": "Original fixture/source/build retained; not current-main deployment; no reshoot."
+    },
+    {
+      "path": "docs/production/evidence/p08-tools-fourteen-2026-10-04/390-fourteen.png",
+      "sameAsApprovedRef": "2bca8c8e4a1b48034ffee3d4e04cea5a2dba2395",
+      "sha256": "b45d642a0f99793648eba0f59c85c35bb2a94086e629946742b2812d46bbf928",
+      "identity": "Original fixture/source/build retained; not current-main deployment; no reshoot."
+    }
+  ],
+  "implementation": "COMPLETE_REVIEW",
+  "technical": "LOCAL_PASS; exactcombinedCI pending",
+  "independentReview": "Parent approved shop source/hit-short boundaries and320 image; parent approved B counter source and320/390 images. Two bounded fixes only, not overall P08.",
+  "targetDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "scope": "320 shop clipping plus existing fourteen-card window count placement; no rule/RNG/save/score/art/hand-seat/hit changes. 320 fourteen remains paged;390 fourteen two rows.",
+  "mainPush": "NOT_AUTHORIZED; combined review only"
+}

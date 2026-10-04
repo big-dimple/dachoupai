@@ -13,3 +13,5 @@
 正常merge已发布main `7b78777347dd854f5759870c7934b8c28279889e`（merge16537dd），保工具包入口和C资源/失败摘要；只有三处文档冲突，双合同均保留。合并后88相关tests/type/build及原三组原生输入PASS，无overlay、不重拍图。`RACK_KEEP_IMAGES=1 node harness/p08-shop-rack.mjs`可重验而保图；最终对齐source/build/全树保护见main-alignment.json与main-aligned-browser.json。当前两张图始终保原身份，不改标main现场。
 
 父侧实际view320 after并读源码，局部方向通过；按调度正常merge已发布main `f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca`，merge源码 `05d66547e92c2d08ac0c7480c4dc8e47d6881f60`，六图T13–T18全部保留。src逐文件同此前已绿reviewc7cd7c5，无运行TS改动；92tests/5files与type、12新增WebP portable及全54工具/道具runtime size/SHA通过。15/39工具图、12/12道具图；朱砂、工具包、失败摘要及所有main公共资源逐树相同。未重拍原图/重跑原生矩阵，旧图身份不变；未合未绿B14计数候选。见f10-main-alignment.json。新精确reviewCI另报，不引用旧CI替代；不推main。
+
+父已独立批准本商店边界及320图，另批准B十四计数review `2bca8c8e4a1b48034ffee3d4e04cea5a2dba2395`（其精确CI37227670353 success）。正常merge合并源码 `c5ede00b097a93fd370290039dd3cdd99d9c3a7d`：仅三份docs冲突且双方记录保留；GameScene逐字节同已批准B、ShopLayout/ShopScene逐字节同已批准本review，其余所有runtime/public/art同mainf10。147相关tests/8files与type/plan PASS，双方4张图原字节与身份保持，无重拍/新矩阵；320十四仍分页、390十四两行，座位与hit不改。见combined-fourteen-review.json；新combined精确CI另报，暂不main。
