@@ -41,7 +41,7 @@ async function chapterSkip(page,touch,url){
   const normal=await read(page);await tapUI(page,'shop','action/chapter',touch);await dom(page,'跳过本场',touch);await dom(page,'确认跳场',touch);await advance(page,normal.state.commandSeq);await waitScene(page,'intermission');
   const item=await read(page);assert.equal(item.state.gold,normal.state.gold);assert.equal(item.state.consumables.length,1);assert.equal(item.state.consumables[0].definitionId,before.state.chapterSkipConsumable);assert.equal(item.state.stage.goldEarned,0);assert.equal(item.state.stage.clearId,null);
   await tapUI(page,'intermission','action/continue-stage',touch);await waitScene(page,'shop');await tapUI(page,'shop','action/chapter',touch);assert.equal(await page.getByRole('button',{name:'跳过本场',exact:true}).isDisabled(),true,'Boss cannot skip');await dom(page,'关闭',touch);
-  await tapUI(page,'shop','action/items',touch);await page.getByRole('dialog',{name:'局内物品',exact:true}).waitFor();await dom(page,'关闭',touch);await restore(page,touch,'shop');
+  await tapUI(page,'shop','action/items',touch);await page.getByRole('dialog',{name:'工具包',exact:true}).waitFor();await dom(page,'关闭',touch);await restore(page,touch,'shop');
   return {status:'PASS',name:'chapter-skip-public-ui',input:touch?'touchscreen.tap + native DOM tap':'mouse.click + native DOM click',journal:(await read(page)).journal};
 }
 const itemNames={T01:'练一招',T03:'红桃染',T04:'方片染',T05:'梅花染',T06:'黑桃染',T17:'再想想'};

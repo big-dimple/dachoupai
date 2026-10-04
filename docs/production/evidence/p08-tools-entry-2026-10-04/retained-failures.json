@@ -1,0 +1,33 @@
+{
+  "taskId": "P08",
+  "testedCommit": "1354a808ae98e04ec21482f96c8587c4d9ee394c",
+  "status": "RETAINED_AND_CORRECTED",
+  "attempts": [
+    {
+      "check": "unit capacity sample before implementation commit",
+      "status": "FAIL",
+      "counts": {
+        "passed": 80,
+        "failed": 1
+      },
+      "reason": "Fixture incorrectly used U04 interest item; capacity expansion belongs to U07.",
+      "resolution": "Correct fixture to U07;81 passed initially;93 passed after main alignment."
+    },
+    {
+      "check": "native harness fixture construction",
+      "attemptedCommit": "42cf9ab1a6f42645368d9029c0138000632a517b",
+      "status": "FAIL_BEFORE_BROWSER",
+      "reason": "a01 is unavailable in r2CreateJoker.",
+      "resolution": "Use the existing supported c08/c09/f09 fixture."
+    },
+    {
+      "check": "native harness save-array construction",
+      "attemptedCommit": "def50dae87ed17be87eec5cdd8cd95fb6434f287",
+      "status": "FAIL_BEFORE_BROWSER",
+      "reason": "Three tool offers violate the native checkpoint contract of one tool offer.",
+      "resolution": "One official-price T07 offer; separate validator-approved stocked game fixture. Original guard preserved."
+    }
+  ],
+  "localLogsRetained": true,
+  "rawPrivateLocalPathsPublished": false
+}

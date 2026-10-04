@@ -1,0 +1,86 @@
+{
+  "taskId": "P08",
+  "testedCommit": "9c8e22d8d364b6c4de3a3137996aa7e1a8ef8ddc",
+  "status": "PASS",
+  "scope": "Literal clarification only: both scenes call the inventory 工具包 x/y; inventory title/intro/empty state also say 工具包. Shop product shelf remains 工具. No layout/color changes.",
+  "tests": {
+    "status": "PASS",
+    "total": 16,
+    "files": 1,
+    "typecheck": "PASS"
+  },
+  "native": {
+    "profile": {
+      "width": 320,
+      "height": 568,
+      "top": 0,
+      "bottom": 0
+    },
+    "status": "PASS",
+    "modified": false,
+    "renderer": "Chromium software Canvas",
+    "DPR": 1,
+    "shop": {
+      "enabled": true,
+      "frame": {
+        "x": 220,
+        "y": 64,
+        "width": 88,
+        "height": 44
+      },
+      "label": {
+        "text": "工具包 1/3",
+        "font": 15,
+        "bounds": {
+          "x": 228.5,
+          "y": 76.5,
+          "width": 71,
+          "height": 17
+        }
+      }
+    },
+    "game": {
+      "enabled": true,
+      "frame": {
+        "x": 104,
+        "y": 316.4,
+        "width": 112,
+        "height": 44
+      },
+      "label": {
+        "text": "工具包 2/3",
+        "font": 15,
+        "bounds": {
+          "x": 124.5,
+          "y": 328.5,
+          "width": 71,
+          "height": 17
+        }
+      }
+    },
+    "geometryComparedTo1354": "PASS: layout, goods/control geometry, workplane, every button frame and font unchanged",
+    "nativeUseCommands": 2,
+    "wholeRunAndRNGCancelAndReload": "PASS",
+    "screenshots": [
+      "copy320-shop.png",
+      "copy320-game.png",
+      "copy320-empty.png"
+    ],
+    "actualView": "PASS by integrating agent"
+  },
+  "previousDirectionReview": {
+    "status": "PASS",
+    "reviewer": "root",
+    "testedCommit": "1354a808ae98e04ec21482f96c8587c4d9ee394c",
+    "scope": "Entry position and hand space",
+    "evidence": [
+      "game-320x568-safe0-0.png",
+      "shop-390x740-safe0-0.png",
+      "game-844x300-safe12-34.png"
+    ]
+  },
+  "newReviewCI": "Parent tracks exact new branch CI",
+  "mainPush": "NOT_RUN",
+  "extended14": "Existing unit-only coverage retained; no new matrix or native14 claim",
+  "newFailures": []
+}

@@ -1,0 +1,144 @@
+{
+  "taskId": "P08",
+  "testedCommit": "1354a808ae98e04ec21482f96c8587c4d9ee394c",
+  "implementationCommit": "0d21cd4d541183c6a91304709184132ade34297e",
+  "alignedMainCommit": "7d44b8bcada32942acded87d70abe78dea12f275",
+  "status": "IN_PROGRESS_REVIEW_READY",
+  "scope": "Game and Shop expose 工具包 x/y; existing inventory/target/confirmation/save flow. Empty explanations, consumable/permanent grouping, shop-only badge, current count/capacity. No new resources or domain rules.",
+  "runtimeChanges": [
+    "src/game/ConsumableDialog.ts",
+    "src/game/GameScene.ts",
+    "src/game/ShopScene.ts",
+    "src/game/ToolInventoryEntry.ts"
+  ],
+  "tests": {
+    "status": "PASS",
+    "total": 93,
+    "files": 7,
+    "typecheck": "PASS",
+    "sourceCommit": "1354a808ae98e04ec21482f96c8587c4d9ee394c",
+    "checks": [
+      "tool-inventory-entry",
+      "layout",
+      "shop-layout",
+      "c01-tools",
+      "c01-preview-resource",
+      "c01-tool-info",
+      "hand-action-controls"
+    ]
+  },
+  "browser": {
+    "status": "PASS",
+    "testedCommit": "1354a808ae98e04ec21482f96c8587c4d9ee394c",
+    "modified": false,
+    "renderer": "Chromium software Canvas",
+    "DPR": 1,
+    "profiles": [
+      {
+        "width": 320,
+        "height": 568,
+        "top": 0,
+        "bottom": 0
+      },
+      {
+        "width": 390,
+        "height": 740,
+        "top": 0,
+        "bottom": 0
+      },
+      {
+        "width": 844,
+        "height": 300,
+        "top": 12,
+        "bottom": 12
+      },
+      {
+        "width": 844,
+        "height": 300,
+        "top": 12,
+        "bottom": 34
+      }
+    ],
+    "savedUseCommands": 8,
+    "wholeSavedStateComparedToApplyCommand": true,
+    "cancelAndClosePreserveWholeRunAndRNG": true,
+    "reloadPreservesState": true,
+    "shopOnlyBlocked": true,
+    "screenshots": [
+      "shop-320x568-safe0-0.png",
+      "game-320x568-safe0-0.png",
+      "390-empty-inventory.png",
+      "shop-390x740-safe0-0.png",
+      "game-390x740-safe0-0.png",
+      "shop-844x300-safe12-12.png",
+      "game-844x300-safe12-12.png",
+      "shop-844x300-safe12-34.png",
+      "game-844x300-safe12-34.png"
+    ],
+    "actualView": "PASS by integrating agent; root independent review pending",
+    "fixture": "Three validator-approved native imports: empty shop with one T07 offer and U07; stocked game with T07/T18/U07; empty game. All purchases/use/entry/reload through native production controls; controlled acquisition, not a natural continuous run."
+  },
+  "layoutLimits": [
+    "Hand seats and bottom action-row logical coordinates untouched. Ordinary nine-card played-area unchanged in all four target profiles.",
+    "Expanded14 portrait may reserve the inventory button by reducing only played-preview visual area; covered by unit geometry, no expanded14 native screenshot claimed.",
+    "844x300 safe-bottom34 HUD progress line moves up4px; all other tested target geometry retains current main."
+  ],
+  "preserved": "Exact current main assets/art/domain/application/content/audio/vendor and published Joker copy preserved; details in main-alignment.json.",
+  "gates": {
+    "affectedTests": "PASS",
+    "typecheck": "PASS",
+    "contentAndPrivacy": "PASS",
+    "productionPlan": "PASS",
+    "newReviewCI": "PENDING"
+  },
+  "humanReview": {
+    "status": "PASS_WITH_COPY_FOLLOWUP",
+    "reviewer": "root",
+    "evidence": "Root viewed game320/shop390/game844 bottom34 and accepted placement/hand space. Requested literal clarification completed; new320 images supplied. Not overall P08 acceptance."
+  },
+  "mainPush": "NOT_RUN",
+  "remaining": [
+    "Exact new review CI",
+    "Root independent review and serial main authorization"
+  ],
+  "device": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "copyClarification": {
+    "status": "PASS",
+    "testedCommit": "9c8e22d8d364b6c4de3a3137996aa7e1a8ef8ddc",
+    "evidence": "copy-clarification.json",
+    "tests": "16/typecheck PASS",
+    "native": "320px PASS, same geometry",
+    "newCI": "Parent tracks"
+  },
+  "latestSourceCommit": "ab4d626b4cae61aab3fe71ce1e19d1934a6a6b8c",
+  "publishedMainAlignment": {
+    "status": "PASS",
+    "testedCommit": "db00121942e191112d6b8e0268ca0e5503e9df9f",
+    "alignedMainCommit": "2d999cd938e5c19253daa8ddbd1cf25facf2d9e4",
+    "evidence": "ink-main-alignment.json",
+    "tests": "46/type PASS",
+    "native": "single320 name/hit/ink layers and mask PASS",
+    "newCI": "PENDING_EXACT_PUSH"
+  },
+  "ciFailureResolution": {
+    "testedCommit": "bb62c1f6e28cd8315493f0161eaed032e2e9e369",
+    "status": "LOCAL_AFFECTED_PASS_NEWCI_PENDING",
+    "evidence": "ci-failure-resolution.json",
+    "originalRun": 37223525814,
+    "classification": "stale strict smoke contract",
+    "runtimeBytes": "UNCHANGED_FROM_PARENT_APPROVED_BD3840D"
+  },
+  "cMainAlignment": {
+    "status": "AFFECTED_PASS_REVIEW_READY_NEWCI_PENDING",
+    "testedCommit": "ab4d626b4cae61aab3fe71ce1e19d1934a6a6b8c",
+    "alignedMainCommit": "5d54421cac90e3d516770bba63f5f94904175219",
+    "evidence": "c-main-alignment.json",
+    "relatedTests": "26 / 3 files PASS",
+    "typecheck": "PASS",
+    "screenshots": "NOT_RERUN",
+    "newCI": "PENDING_EXACT_REVIEW_PUSH",
+    "mainPush": "NOT_RUN_WAIT_PARENT_SERIAL_AUTHORIZATION"
+  }
+}

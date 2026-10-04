@@ -251,14 +251,14 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
     }
     refresh();
   };
-  const inventory=dialog.open('局内物品',`工具库存 ${state.consumables.length} / ${r2ConsumableCapacity(state)}；长期道具 ${state.longTermItems.length} / ${R2_TOOL_CATALOG.limits.longTermSlots}。查看详情后选择目标并确认使用。`);inventory.classList.add('tool-inventory');
+  const inventory=dialog.open('工具包',`工具包 ${state.consumables.length} / ${r2ConsumableCapacity(state)}：塔罗、星球、幻灵和补给，使用后会消耗。\n本局道具 ${state.longTermItems.length} / ${R2_TOOL_CATALOG.limits.longTermSlots}：持有即持续生效，不会用掉。\n点工具查看详情，选择目标后确认使用。`);inventory.classList.add('tool-inventory');
   const content=inventory.querySelector('.dialog-copy')!;
   function inventoryGroup(title:string,entries:readonly {id:string;name:string;label:string;artUrl:string;run:()=>void}[]):void {
     const section=document.createElement('section'),heading=document.createElement('h3'),grid=document.createElement('div');section.className='tool-inventory-group';heading.textContent=title;grid.className='tool-inventory-grid';section.append(heading,grid);
-    if(!entries.length){const empty=document.createElement('p');empty.className='tool-empty';empty.textContent=title==='持有工具'?'当前没有工具。':'当前没有长期道具。';grid.append(empty);}
+    if(!entries.length){const empty=document.createElement('p');empty.className='tool-empty';empty.textContent=title==='消耗工具'?'工具包里还没有工具。到商店购买后，在这里选择目标并确认使用。':'还没有本局道具；在商店购买后会自动生效。';grid.append(empty);}
     for(const entry of entries){const button=document.createElement('button'),image=document.createElement('img'),name=document.createElement('strong'),label=document.createElement('span');button.className='tool-inventory-card';button.setAttribute('aria-label',entry.name+' · 查看');button.dataset.itemId=entry.id;image.src=entry.artUrl;image.alt='';image.loading='lazy';name.textContent=entry.name;label.textContent=entry.label;button.append(image,name,label);button.onclick=entry.run;grid.append(button);}
     content.append(section);
   }
-  inventoryGroup('持有工具',state.consumables.map(item=>{const info=toolInfo(item.definitionId);return {id:item.instanceId,name:info.name,label:info.label,artUrl:info.artUrl,run:()=>openTool(item.instanceId)};}));
-  inventoryGroup('长期道具',state.longTermItems.map(id=>{const info=itemInfo(id);return {id,name:info.name,label:'本局持续生效',artUrl:info.artUrl,run:()=>showItem(id)};}));
+  inventoryGroup('消耗工具',state.consumables.map(item=>{const info=toolInfo(item.definitionId),shopOnly=R2_TOOLS.find(tool=>tool.id===item.definitionId)!.phases.every(phase=>phase==='shop');return {id:item.instanceId,name:info.name,label:info.label+(shopOnly?' · 商店使用':''),artUrl:info.artUrl,run:()=>openTool(item.instanceId)};}));
+  inventoryGroup('本局道具',state.longTermItems.map(id=>{const info=itemInfo(id);return {id,name:info.name,label:'本局持续生效 · 不消耗',artUrl:info.artUrl,run:()=>showItem(id)};}));
 }
