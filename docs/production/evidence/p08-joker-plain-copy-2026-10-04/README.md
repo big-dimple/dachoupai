@@ -26,3 +26,7 @@
 ## 对齐底栏/status新main（6c5fb2a）
 
 合并代码367ca068d6b351f0051ab6aa1ed4904402af21df；唯一WORK_PACKAGES冲突同时保留两条记录。action row、showHandHint/status源码逐字相同；SceneView/layout/HandActionArt、MIT/vendor、资源/domain/application/content逐对象同新main。182受影响测试/type PASS。原生首次排序确认44px触点/整理组、14px status有限提示、无手内遮罩，保存资源/RNG/f06余手不变；copy详情/暂停恢复/hover/购买取消同样通过。不改主线实现、不重拍图片。初次辅助脚本未隔离首次提示或等待实际提交，hint断言红；在真实首次排序及提交完成后核原断言通过，未修改游戏或阈值。详见action-main-alignment.json及action-main-browser.json。新review精确CI待核，不引用旧2c358的CI替代；暂不main。
+
+## 合入五items公开main（a6e482b）
+
+42f54dfad71c4f0c1858c674750ffeeb8b07c428无冲突合入a6e482be77d82d9702e02f12f89679fff2045740。src树与9627c43b4ef77a13dfbb7ceb4e1e3c020b2dcb4e相同；该精确CI37219865655于17:23:23Z success。public/art及各受保护实现逐对象同新main；新增goods-art4项与plan PASS，不重跑已有源码路径或重拍图片。记录final-items-main-alignment.json；下一merged review的CI仍单独核，不将9627旧绿标签套到新SHA。仍review-only，由父侧串行安排main。
