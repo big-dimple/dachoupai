@@ -9,3 +9,5 @@
 [基线实际矩形与文案](baseline-browser.json)、[修后六态与原生输入](final-browser.json)、[验证摘要](summary.json)。build-info 明确 fb709fe modified/C03，candidate源码指纹在摘要，不冒充main已部署。未新增截图或录屏。新冻结结果与精确CI另补；独立审美与真机不由技术替代。
 
 复跑入口：`node harness/p08-four-rule-copy.mjs`（本云使用 Chromium Canvas）；红用例保留在两份报告，安全断言未放宽。
+
+新源码冻结 `b46a62c3afac119d1dbc9d0888f612cef20b56cd`：[freeze.json](freeze.json)全项PASS，1864 tests/104files、content、type/build、Canvas双端smoke、plan；前后源码/index/HEAD一致。此后仅归档报告和更新文档，无运行源码变化。
