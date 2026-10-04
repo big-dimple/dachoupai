@@ -24,6 +24,7 @@ import {DetailDialog} from './DetailDialog';
 import {gameSession} from './session';
 import {r2BossText} from '../domain/r2Chapter';
 import {SKIP_ITEM_LABELS,showConsumables} from './ConsumableDialog';
+import {shopToolInventoryRow,toolInventoryLabel} from './ToolInventoryEntry';
 import type {IntermissionResult} from './IntermissionScene';
 import type {Box} from './layout';
 import {jokerArtKey,jokerArtUrl,jokerArtPreviewUrl} from './jokerArt';
@@ -117,7 +118,9 @@ export class ShopScene extends Phaser.Scene {
     }
     if(!p.portrait&&!p.short)v.button(p.chapter,p.portrait?(this.run.program&&!this.run.program.choiceMade?'接节目单':'本章'):'本章节目','action/chapter',()=>this.inspectChapter());
     if(!p.portrait&&!p.short)v.button(p.items,`物品 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)} · 道具${this.run.longTermItems.length}`,'action/items',()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq)));
-    this.drawShelfTabs(p.tabs);
+    const inventoryRow=shopToolInventoryRow(p.tabs);
+    this.drawShelfTabs(inventoryRow.shelves);
+    v.button(inventoryRow.inventory,toolInventoryLabel(this.run),'action/tool-inventory',()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq)));
     const offers=this.visibleOffers();
     offers.forEach((o,i)=>{
       if(this.shelfKind!=='jokers'){this.drawGoodsOffer(o,p.shelf[i],p.short,p.portrait);return;}
@@ -165,7 +168,7 @@ export class ShopScene extends Phaser.Scene {
     const v=this.view,pages=Math.ceil(this.shelfOffers().length/this.pageSize),pagerWidth=pages>1?44:0,gap=6,width=(b.width-pagerWidth-gap*(pagerWidth?3:2))/3;
     const labels:Record<ShelfKind,string>={jokers:'大丑牌',tools:'工具',items:'道具'};
     (['jokers','tools','items'] as const).forEach((kind,i)=>{
-      const button=v.button({x:b.x+i*(width+gap),y:b.y,width,height:b.height},labels[kind]+' '+this.shelfOffers(kind).length,'action/shelf-'+kind,()=>{
+      const button=v.button({x:b.x+i*(width+gap),y:b.y,width,height:b.height},width<72?labels[kind]:labels[kind]+' '+this.shelfOffers(kind).length,'action/shelf-'+kind,()=>{
         if(this.busy)return;this.shelfKind=kind;this.shelfPage=0;this.selectedOfferId=undefined;this.audio.select();this.render();
       },!this.busy,false);
       if(this.shelfKind===kind)(button.getData('buttonArt') as Phaser.GameObjects.Container).add(this.add.graphics().lineStyle(2,0x3f606b).strokeRoundedRect(1,1,width-2,b.height-2,6));
