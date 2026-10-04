@@ -40,23 +40,32 @@ const snapshot=page=>page.evaluate(async()=>{
   return{checkpoint:JSON.parse(controller.exportJSON()),records,selected:[...scene.selectedIds],status:controller.status,renderer:game.renderer.gl?'WebGL':'Canvas'};
 });
 const ready=page=>page.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.scene.isActive()&&s.ready&&!s.playing&&!s.presentation&&s.cardViews.length&&s.cardViews.every(c=>!c.dealing&&!c.back?.visible&&!s.tweens.isTweening(c.container));},null,{timeout:30000});
-let golden;
+let golden,lastStep='boot',currentCase='clean';
+const page=await context.newPage();
+page.on('pageerror',error=>report.uncaughtPageErrors.push(String(error)));
+page.on('request',request=>{if(new URL(request.url()).pathname.endsWith('/build-info.json'))report.forbiddenMetadataRequests++;});
 try {
   for(const sample of cases){
-    const page=await context.newPage();let servedMetadataFixtures=0;
-    page.on('pageerror',error=>report.uncaughtPageErrors.push(String(error)));
-    page.on('request',request=>{if(new URL(request.url()).pathname.endsWith('/build-info.json'))report.forbiddenMetadataRequests++;});
+    currentCase=sample.name;lastStep='load-title';let servedMetadataFixtures=0;
+    await page.unrouteAll();
     if(sample.fixture)await page.route('**/'+asset,route=>{servedMetadataFixtures++;return route.fulfill({contentType:'application/javascript',body:original.replace(literal,JSON.stringify(sample.metadata))});});
-    await page.goto(`http://127.0.0.1:${port}/?harness=1&seed=build-menu-tristate`);await waitScene(page,'title');
+    if(sample.name==='clean')await page.goto(`http://127.0.0.1:${port}/?harness=1&seed=build-menu-tristate`);else await page.reload();
+    await waitScene(page,'title');
     if(sample.name==='clean'){
+      lastStep='native-new-run';
       await chooseCharacter(page,'amo',true);await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);
       await tapUI(page,'shop','action/start-stage',true);
-    }else await tapUI(page,'title','action/title-continue',true);
+    }else{
+      lastStep='wait-native-continue-enabled';
+      await page.waitForFunction(()=>{const g=window.__harness.game,s=g.scene.getScene('title'),walk=list=>list.some(o=>o.name==='action/title-continue'&&o.input?.enabled||o.list&&walk(o.list));return g.registry.get('runController')?.status==='idle'&&s.scene.isActive()&&walk(s.children.list);},null,{timeout:30000});
+      await tapUI(page,'title','action/title-continue',true);
+    }
+    lastStep='wait-game-ready';
     await waitScene(page,'game');await ready(page);
     const held=await page.evaluate(()=>window.__harness.game.scene.getScene('game').hand[0].id);await tapUI(page,'game','card/'+held,true);
     const before=await snapshot(page);assert.equal(before.status,'idle');assert.equal(before.renderer,'Canvas');
     if(golden){assert.deepEqual(before.checkpoint,golden.checkpoint);assert.deepEqual(before.records,golden.records);}else golden=before;
-    const toggle=page.locator('.run-menu-toggle'),anchor=await toggle.boundingBox();await page.getByRole('button',{name:'菜单',exact:true}).tap();
+    lastStep='open-version';const toggle=page.locator('.run-menu-toggle'),anchor=await toggle.boundingBox();await page.getByRole('button',{name:'菜单',exact:true}).tap();
     const tools=page.locator('.run-menu-panel > details').filter({has:page.locator('summary',{hasText:'本局与版本'})});
     await tools.locator('summary').tap();await page.getByRole('button',{name:'版本信息',exact:true}).tap();
     const info=tools.locator('p');
@@ -79,12 +88,11 @@ try {
     await page.getByRole('button',{name:'继续本局',exact:true}).tap();assert.deepEqual(await snapshot(page),before,'ordinary resume preserves complete checkpoint/storage/selection');
     assert.equal(servedMetadataFixtures,sample.fixture?1:0);
     report.cases.push({name:sample.name,fixture:sample.fixture,metadata:sample.metadata,displayed,checkpointAndAllStorageEqual:true,selectionPreserved:true,nativeExportMatchesCheckpoint:exported,sourceBundleMetadataReplacements:servedMetadataFixtures,visibleBounds:box,closeControlUnmoved:true,closeBounds:closeBox});
-    await page.close();
   }
   assert.equal(report.forbiddenMetadataRequests,0);assert.deepEqual(report.uncaughtPageErrors,[]);
   assert.equal(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),source);
   assert.equal(execFileSync('git',['status','--porcelain','--untracked-files=no'],{encoding:'utf8'}).trim(),'');
   report.status='PASS';
-}catch(error){report.status='FAIL';report.error=String(error);process.exitCode=1;}
+}catch(error){report.status='FAIL';report.error=String(error);report.lastStep={case:currentCase,step:lastStep};report.diagnostic=await page.evaluate(()=>{const g=window.__harness?.game,s=g?.scene.getScene('game');return{active:g?.scene.getScenes(true).map(x=>x.scene.key),controllerStatus:g?.registry.get('runController')?.status,gameReady:s?.ready,playing:s?.playing,presentation:!!s?.presentation,openDialogs:[...document.querySelectorAll('dialog[open]')].map(d=>d.innerText)};}).catch(()=>null);process.exitCode=1;}
 finally{await context.close();await browser.close();await new Promise(resolve=>server.httpServer.close(resolve));await writeFile(dir+'/menu-report.json',JSON.stringify(report,null,2)+'\n');}
 console.log(JSON.stringify({status:report.status,error:report.error,testedCommit:source,cases:report.cases.map(x=>({name:x.name,fixture:x.fixture,checkpointAndAllStorageEqual:x.checkpointAndAllStorageEqual})),images:report.images,forbiddenMetadataRequests:report.forbiddenMetadataRequests}));
