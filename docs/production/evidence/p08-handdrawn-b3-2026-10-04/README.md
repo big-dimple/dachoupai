@@ -10,4 +10,4 @@ c08只消费 `c08-four-rung-candidate.png` 派生，源SHA `b8812aa031a8079bea91
 - src fingerprint `bc74f100461bdfa480fa8af6d854ddc78a2fa6233e9370a7af6ff81f29b96166`（sorted src path+NUL+content+NUL；本增量只注册JSON/图文件，运行TS不变）。
 - merged runtime manifest SHA `70b14dbb065a36ea06c227edaf1c45bac5b3436a9d80b1a3ce3cf53e3cd40409`；PNG SHA `252cd85032eb57bbed1c92a4a46d33f8f527d8008fa9db104acc493c64e2e963`。
 
-两新纹理128×160实际解码/观察请求路径hash、HD615×768前景blob hash匹配；详情前无HD请求，c08重开缓存正确；c09高清404保正确缩略与固定图框，显式重试恢复；完整run/RNG/save不变。59受影响tests/type/有限浏览器PASS，新freeze/main/CI待收尾。[实际浏览器记录](browser.json)。生产端root只批准素材像素；本场景仍工程自查，不称独立整体审美/设备通过。OnePlus/真GPU/听感NOT_RUN；fire审批pending不另路重试。
+两新纹理128×160实际解码/观察请求路径hash、HD615×768前景blob hash匹配；详情前无HD请求，c08重开缓存正确；c09高清404保正确缩略与固定图框，显式重试恢复；完整run/RNG/save不变。59受影响tests/type/有限浏览器PASS，新freeze/main/CI待收尾。实际浏览器记录随最终源码交付；本review分支仅PNG+README。生产端root只批准素材像素；本场景仍工程自查，不称独立整体审美/设备通过。OnePlus/真GPU/听感NOT_RUN；fire审批pending不另路重试。
