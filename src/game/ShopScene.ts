@@ -129,7 +129,7 @@ export class ShopScene extends Phaser.Scene {
       this.drawJokerPicture(o.definitionId,{x:b.x+4,y:b.y+4,width:b.width-8,height:b.height-8},o.consumed?.35:1);
       const copyX=p.copyBeside?b.x+b.width+6:b.x,copyY=p.copyBeside?b.y:b.y+b.height,copyWidth=p.copyBeside?(p.tabs.width-8*(p.shelf.length-1))/p.shelf.length-b.width-8:b.width+6;
       const name=v.text(copyX,copyY+4,d.name,14,'#26313A').setName('shop/offer-name');this.ellipsis(name,copyWidth);
-      const purpose=v.text(copyX,copyY+23,ability?.summary??getR2Joker(o.definitionId).description,14,'#3F606B',b.width+8).setStyle({maxLines:2}).setName('shop/offer-purpose');this.twoLines(purpose,copyWidth);
+      const purpose=v.text(copyX,copyY+23,ability?.summary??getR2Joker(o.definitionId).description,14,'#3F606B',b.width+8).setStyle({maxLines:2}).setName('shop/offer-purpose');if(ability?.playerCopy){const full=purpose.text;purpose.setWordWrapWidth(copyWidth,true).setStyle({maxLines:0});if(purpose.height>40||purpose.width>copyWidth)purpose.setText('条件与效果\n点击查看');purpose.setData('fullText',full);}else this.twoLines(purpose,copyWidth);
       const price=r2PurchasePrice(this.run,o);v.text(copyX,copyY+58,o.consumed?'已收入':price+' 金 · 查看',16,'#26313A').setName('shop/offer-price');
       v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21,compact:true}).setData('definitionId',o.definitionId).setData('surface','offer'));
       const tile={...b,width:p.copyBeside?b.width+6+copyWidth:b.width,height:p.copyBeside?b.height:b.height+76},hover=this.hoverCard(first,tile,o.definitionId),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);

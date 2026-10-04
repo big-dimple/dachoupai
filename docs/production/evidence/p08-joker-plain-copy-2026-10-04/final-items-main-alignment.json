@@ -1,0 +1,36 @@
+{
+  "baseMain": "a6e482be77d82d9702e02f12f89679fff2045740",
+  "mergedCodeCommit": "42f54dfad71c4f0c1858c674750ffeeb8b07c428",
+  "acceptedCopyCI": {
+    "sha": "9627c43b4ef77a13dfbb7ceb4e1e3c020b2dcb4e",
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37219865655",
+    "status": "completed/success",
+    "updatedUTC": "2026-10-04T17:23:23Z"
+  },
+  "srcTree": "6654c9962408b404028e19ae15c99320fb6aec8f",
+  "srcIdenticalToAcceptedCI": true,
+  "protectedObjectsIdenticalToNewMain": {
+    "public": "9d8b4d9f9ac0006ab39b3e2820e71fca9af94b0d",
+    "art": "363746bb1534f8124cf23c4e6f6bb4744cc386a0",
+    "src/vendor": "96374120045a5dca22a25d2726d09fb41ebd0ef7",
+    "src/domain": "8e3423193ecb4920e79b87f2314da97a04438c99",
+    "src/application": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+    "src/content": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+    "src/game/JokerReorder.ts": "23e90a7419b490b12f7a74e7f6587fb61f8f34f6",
+    "src/game/HandActionArt.ts": "af3ec12b7670de1be194b3ee297112147c8adf0f",
+    "src/game/SceneView.ts": "ca6c4cb83ca48c1f722eddb9d07bf7441c65cf9e",
+    "src/game/layout.ts": "30393b696ccd170bbb648c53615a436e1b18a3e5"
+  },
+  "sourceReview": "No source conflict or change from accepted9627; action row/status hint/MIT preserved",
+  "changedGoodsArtTests": {
+    "status": "PASS",
+    "tests": 4,
+    "files": 1
+  },
+  "plan": "PASS",
+  "artDisposition": "Merge already published approved item assets; no new generation, registration rewrite, reshoot or separate art approval claim",
+  "nextExactReviewCI": "New merged review CI still needs its own result; old9627 success is not relabeled as new SHA acceptance",
+  "mainPush": "NOT_DONE",
+  "environment": "Original workspace actual read/write/fetch/merge/push functioning; no authorization denial",
+  "deviceGPUAudio": "NOT_RUN"
+}

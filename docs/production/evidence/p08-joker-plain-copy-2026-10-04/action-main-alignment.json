@@ -1,0 +1,89 @@
+{
+  "task": "Align accepted Joker copy to newly published action-row main",
+  "baseMain": "6c5fb2a030ef1acc15f9e1b7d592784f511976b0",
+  "mergedCodeCommit": "367ca068d6b351f0051ab6aa1ed4904402af21df",
+  "conflicts": "Only WORK_PACKAGES; both records retained. No source conflict.",
+  "protectedSections": {
+    "actionRow": {
+      "identical": true,
+      "SHA256": "e8ddb8fdae4907ceb48e17adacce4ec9baa54b331824100f46fca11fb2212c46"
+    },
+    "showHandHintStatus": {
+      "identical": true,
+      "SHA256": "45e9647e657f8735daa71fa6353cdca9c4fe40f1b91f3ff53f8bd2cb42b82d5b"
+    }
+  },
+  "protectedGitObjects": {
+    "src/game/HandActionArt.ts": "af3ec12b7670de1be194b3ee297112147c8adf0f",
+    "src/game/SceneView.ts": "ca6c4cb83ca48c1f722eddb9d07bf7441c65cf9e",
+    "src/game/layout.ts": "30393b696ccd170bbb648c53615a436e1b18a3e5",
+    "src/game/JokerReorder.ts": "23e90a7419b490b12f7a74e7f6587fb61f8f34f6",
+    "src/vendor": "96374120045a5dca22a25d2726d09fb41ebd0ef7",
+    "src/domain": "8e3423193ecb4920e79b87f2314da97a04438c99",
+    "src/application": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+    "src/content": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+    "src/audio": "2762eea10608b718b4c9cb2c6bc88a742d4c8f3a",
+    "public": "676f6b10bd71ef432b2e651b21d42a0044edd473",
+    "art": "a846962f7eb1ba903484c5389a039689d42d9a74"
+  },
+  "affectedTests": {
+    "status": "PASS",
+    "files": 10,
+    "tests": 182,
+    "scope": "seven accepted copy/condition/detail/MIT paths plus hand-action-controls, hand-hint-status and layout"
+  },
+  "type": "PASS",
+  "nativeBrowser": "action-main-browser.json",
+  "nativeFirstSort": {
+    "selected": [],
+    "hint": true,
+    "status": {
+      "text": "横滑选牌 · 从已选牌开始可取消",
+      "font": "14px",
+      "bounds": {
+        "x": 12,
+        "y": 712,
+        "width": 195,
+        "height": 16
+      }
+    },
+    "overlay": false,
+    "sortGroup": true,
+    "boxes": {
+      "rank": {
+        "x": 12,
+        "y": 652,
+        "width": 44,
+        "height": 56
+      },
+      "suit": {
+        "x": 56,
+        "y": 652,
+        "width": 44,
+        "height": 56
+      },
+      "discard": {
+        "x": 106,
+        "y": 652,
+        "width": 106,
+        "height": 56
+      },
+      "play": {
+        "x": 218,
+        "y": 652,
+        "width": 160,
+        "height": 56
+      }
+    }
+  },
+  "images": "Existing two PNG byte-for-byte unchanged; original candidate build/fingerprint retained, no reshoot",
+  "firstAlignmentCheck": {
+    "status": "FAIL",
+    "observedHint": false,
+    "observedStatusText": "一次性招牌 · 余1手 · 长按条件",
+    "limitations": "Checked after native tap without waiting for committed sort; session already had prior card interactions. Command completion and preference freshness were not recorded. Not evidence of a runtime regression.",
+    "correction": "Check fresh-session first sort and await real commandSeq/status completion. Original hint=true/overlay=false/44px/resource assertions retained; runtime unchanged."
+  },
+  "physicalDeviceGPUAudio": "NOT_RUN",
+  "mainPush": "NOT_DONE"
+}
