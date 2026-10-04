@@ -1,0 +1,72 @@
+{
+  "taskId": "P08",
+  "testedCommit": "62fbc9a452e766e24a593b4f7258edb84bffc6da",
+  "baseline": "62fbc9a452e766e24a593b4f7258edb84bffc6da",
+  "assetDeliveryCommit": "1671376cde093f1450e07564815468dafbfe070a",
+  "sourceManifestSHA256": "aa4564e46334788796a1357ad1221f5a83b10fe7cb3acb9910bb0b92dca0fc06",
+  "srcFingerprint": "1866e23e3e6c362ec3f86f7162cc1c7c9aabf2d88aeaad36c9f536a323f2bd47",
+  "runtimeManifestSHA256": "fdad2cee2e7d5f4addaba1986e54d59d1f5370daf6d76c3109ecb5146d21abdb",
+  "newBatch": {
+    "files": 16,
+    "bytes": 483450,
+    "ids": [
+      "b07",
+      "a09",
+      "d06",
+      "a04",
+      "e04",
+      "c05",
+      "c02",
+      "f03"
+    ],
+    "consumerVerify": "PASS exact approved SHA/every16hash/size/portable outside cwd",
+    "consumerPixelView": "all eight128x160 thumbnails and eight615x768 details actually viewed; e04 object/c05 approved original contain intact",
+    "priorRuntimeUnchanged": 59
+  },
+  "totalRuntime": {
+    "files": 75,
+    "bytes": 2200664,
+    "originalArtworks": 36,
+    "functionalNew": 27,
+    "functionalLegacy": 16,
+    "functionalMechanism": 29
+  },
+  "privacy": {
+    "boundedCurrentTextFiles": 16,
+    "hits": {
+      "privateID": 0,
+      "conversationURL": 0,
+      "privateVersion": 0,
+      "privatePath": 0,
+      "signedURL": 0
+    },
+    "priorCurrentCleanupRetained": true,
+    "history": "Original public history still remains; no rewrite"
+  },
+  "checks": {
+    "affectedTests": "63 passed/4files; legacy samples from actual current old registry; unregistered sample from current fallback; each b4/b5 ID independently no HD prefetch",
+    "type": "PASS",
+    "browser": "PASS Chromium151 Canvas390x740/DPR1/safe0/BASE_URL subdir; two legal fixtures/eight actual textures/all HD hash/on demand/immediate cache/native cancel/404 fixed frame retry/full run invariant",
+    "freeze": "PENDING"
+  },
+  "states": {
+    "implementation": "COMPLETE approved eight-ID art increment only; no runtime TS change",
+    "technical": "PASS targeted/native; final new freeze PENDING",
+    "independentAesthetic": "root source/thumbnail approvals; engineering scene self-view, independent final scene NOT_RUN",
+    "targetDevice": "OnePlus/hardwareGPU/audio NOT_RUN"
+  },
+  "reports": {
+    "browser": "browser.json",
+    "scene": "390-b5-representative.png"
+  },
+  "priorB4": {
+    "main": "62fbc9a452e766e24a593b4f7258edb84bffc6da",
+    "remoteConfirmedUTC": "2026-10-04T04:16:37Z",
+    "CI": 37176537119,
+    "status": "completed/success",
+    "CIUpdatedUTC": "2026-10-04T04:21:46Z",
+    "productionDocs": 37176537024,
+    "docsStatus": "completed/success"
+  },
+  "fire": "Private reference helper download failed/no local pixels; separate blocked input, no retry or fire code in this increment"
+}

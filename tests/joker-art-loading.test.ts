@@ -1,12 +1,14 @@
 import type Phaser from 'phaser';
 import {afterEach,beforeEach,describe,expect,it,vi} from 'vitest';
 import {jokerArtLoadState,requestJokerArt,retryJokerArt} from '../src/game/JokerArtLoading';
-import {jokerArtKey,jokerArtUrl} from '../src/game/jokerArt';
+import {JOKER_ART,jokerArtKey,jokerArtUrl} from '../src/game/jokerArt';
+import {R2_JOKERS} from '../src/content/r2Schema';
 import {prefetchDetailArt} from '../src/game/DetailArt';
 
 vi.mock('../src/game/DetailArt',()=>({prefetchDetailArt:vi.fn()}));
-// Legacy fixtures keep the legacy prefetch contract; reviewed replacements are tested separately.
-const ids=['a03','e05','a05'];
+// Choose actual legacy registrations; reviewed replacements must never stand in for legacy prefetch.
+const ids=JOKER_ART.filter(art=>!art.detailOnDemand&&art.path.startsWith('assets/jokers-p07/')).slice(0,3).map(art=>art.id);
+const unregistered=R2_JOKERS.find(definition=>!JOKER_ART.some(art=>art.id===definition.id))?.id??'fixture/never-registered';
 const key=(id:string)=>jokerArtKey(id)!;
 type Listener=(...args:any[])=>void;
 class FakeEvents {
@@ -95,6 +97,7 @@ beforeEach(()=>{vi.useFakeTimers();vi.mocked(prefetchDetailArt).mockClear();});
 afterEach(()=>{for(const scene of scenes.splice(0))scene.shutdown();vi.clearAllTimers();vi.useRealTimers();});
 
 describe('registered Joker thumbnail recovery',()=>{
+  it('legacy prefetch fixtures are three distinct still-legacy registrations',()=>{expect(jokerArtKey(unregistered)).toBeUndefined();expect(ids).toHaveLength(3);expect(new Set(ids).size).toBe(3);for(const id of ids)expect(JOKER_ART.find(a=>a.id===id)).toMatchObject({path:expect.stringMatching(/^assets\/jokers-p07\//)});});
   it('starts exactly once during Scene.create before Phaser reports RUNNING',()=>{
     const scene=new FakeScene(),refresh=vi.fn();scene.active=false;
     expect(scene.sys.settings.active).toBe(true);expect(scene.scene.isActive()).toBe(false);
@@ -113,9 +116,9 @@ describe('registered Joker thumbnail recovery',()=>{
 
   it('distinguishes intentionally unregistered cards without loading or subscribing',()=>{
     const scene=new FakeScene(),refresh=vi.fn();
-    expect(jokerArtLoadState(scene.phaser,'a04')).toEqual({status:'unregistered',attempts:0});
+    expect(jokerArtLoadState(scene.phaser,unregistered)).toEqual({status:'unregistered',attempts:0});
     expect(jokerArtLoadState(scene.phaser,ids[0])).toEqual({status:'idle',attempts:0});
-    requestJokerArt(scene.phaser,['a04'],refresh);retryJokerArt(scene.phaser,['a04'],refresh);
+    requestJokerArt(scene.phaser,[unregistered],refresh);retryJokerArt(scene.phaser,[unregistered],refresh);
     expect(scene.load.requests).toEqual([]);expect(scene.load.eventNames()).toEqual([]);expect(prefetchDetailArt).not.toHaveBeenCalled();
   });
 
@@ -177,13 +180,14 @@ describe('registered Joker thumbnail recovery',()=>{
     requestJokerArt(scene.phaser,ids,vi.fn());expect(prefetchDetailArt).toHaveBeenCalledTimes(2);
   });
 
-  it.each([{reviewed:['f09','f04']},{reviewed:['pengci','mantangcai']},{reviewed:['huimaqiang','jiedongfeng']}])('does not prefetch reviewed handdrawn HD before opening detail, including cached thumbnails: $reviewed',({reviewed})=>{
+  it.each([{reviewed:['f09','f04']},...['pengci','mantangcai','huimaqiang','jiedongfeng'].map(id=>({reviewed:[id]})),...['b07','a09','d06','a04','e04','c05','c02','f03'].map(id=>({reviewed:[id]}))])('does not prefetch reviewed handdrawn HD before opening detail, including cached thumbnails: $reviewed',({reviewed})=>{
+    for(const id of reviewed)expect(JOKER_ART.find(art=>art.id===id)?.detailOnDemand).toBe(true);
     const scene=new FakeScene();requestJokerArt(scene.phaser,reviewed,vi.fn());
-    expect(scene.load.requests).toHaveLength(2);
-    scene.load.succeed(scene.load.requests[0]);scene.load.succeed(scene.load.requests[1]);
+    expect(scene.load.requests).toHaveLength(reviewed.length);
+    for(const file of scene.load.requests)scene.load.succeed(file);
     expect(prefetchDetailArt).not.toHaveBeenCalled();
     requestJokerArt(scene.phaser,reviewed,vi.fn());
-    expect(scene.load.requests).toHaveLength(2);expect(prefetchDetailArt).not.toHaveBeenCalled();
+    expect(scene.load.requests).toHaveLength(reviewed.length);expect(prefetchDetailArt).not.toHaveBeenCalled();
   });
 
   it('retries one failed image while the same loader still has unrelated work',()=>{
@@ -261,7 +265,7 @@ describe('registered Joker thumbnail recovery',()=>{
   it('settles cached, unregistered, and inactive explicit retries without starting work',async()=>{
     const scene=new FakeScene();scene.cached.add(key(ids[0]));
     await expect(retryJokerArt(scene.phaser,[ids[0]],vi.fn())).resolves.toBe(true);
-    await expect(retryJokerArt(scene.phaser,['a04'],vi.fn())).resolves.toBe(false);
+    await expect(retryJokerArt(scene.phaser,[unregistered],vi.fn())).resolves.toBe(false);
     scene.shutdown();await expect(retryJokerArt(scene.phaser,[ids[0]],vi.fn())).resolves.toBe(false);
     expect(scene.load.requests).toHaveLength(0);
   });
