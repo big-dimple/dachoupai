@@ -70,3 +70,11 @@ it('disabled safe accompanying cards remain played/triple while their scoring ef
 });
 
 it('short panels provide a visible-entry seat at least44px without entering hands/actions',()=>{for(const bottom of[0,12,34]){const l=layout({width:844,height:300},{top:12,bottom,left:0,right:0},undefined,{count:9}),b=selectionCandidateEntryBox(l.scoreBoard)!;expect(b.height).toBeGreaterThanOrEqual(44);expect(b.width).toBeGreaterThanOrEqual(44);expect(b.y+b.height).toBeLessThanOrEqual(l.scoreBoard.y+l.scoreBoard.height);for(const area of[l.hand,...Object.values(l.tableActions)])expect(intersects(b,area)).toBe(false);}});
+
+it('four-card subordinate copy reads naturally and keeps the five-card straight-flush exception separate',()=>{
+ const hand=[card('a',8),card('b',9),card('c',10),card('d',11)];
+ for(const [id,phrase] of [['c08','4张点数连续，花色不限'],['c09','4张同花色，点数不限']]){
+  const f=r2SelectionFacts(input(hand,{jokers:[r2CreateJoker(id,id,0)]})),copy=selectionCopy(f);
+  expect(copy.pattern).toBe(phrase);expect(copy.rules).toContain('同花顺5张');expect(f.type).not.toBe('straight-flush');
+ }
+});

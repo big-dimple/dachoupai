@@ -1,0 +1,197 @@
+{
+  "assetCommit": "41e78e1eac85920cede9ed867e4dabb8bba4f5c4",
+  "sourceManifestSHA256": "2ff47d41953064d053b78659d222dcf27dfa61ac73e077253df2c66b645c8758",
+  "build": {
+    "version": "C03",
+    "revision": "7e1e9aa21b833a8c91f030167e0ff4895ef23322",
+    "modified": true,
+    "builtAt": "2026-10-04T04:05:21.877Z"
+  },
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "safeInset": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+  },
+  "renderer": "Canvas",
+  "base": "/p08-b4/",
+  "fixture": "Validator-approved nine-card entry with owned four b4 IDs and c08; native import. Four selected consecutive hearts evaluate ordinary straight, not straight-flush. Not natural purchase.",
+  "requests": [
+    "/p08-b4/assets/handdrawn-p08/characters/amo.avatar.webp",
+    "/p08-b4/assets/handdrawn-p08/characters/amo.selection.webp",
+    "/p08-b4/assets/handdrawn-p08/characters/touye.avatar.webp",
+    "/p08-b4/assets/handdrawn-p08/characters/touye.selection.webp",
+    "/p08-b4/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+    "/p08-b4/assets/handdrawn-p08/characters/laohuan.selection.webp",
+    "/p08-b4/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+    "/p08-b4/assets/handdrawn-p08/characters/erxiang.selection.webp",
+    "/p08-b4/assets/handdrawn-p08/characters/azao.avatar.webp",
+    "/p08-b4/assets/handdrawn-p08/characters/azao.selection.webp",
+    "/p08-b4/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+    "/p08-b4/assets/handdrawn-p08/characters/xiemu.selection.webp",
+    "/p08-b4/assets/handdrawn-p08/court/j.court.webp",
+    "/p08-b4/assets/handdrawn-p08/court/q.court.webp",
+    "/p08-b4/assets/handdrawn-p08/court/k.court.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/c08.thumbnail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/pengci.detail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/huimaqiang.detail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/jiedongfeng.detail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/jiedongfeng.detail.webp",
+    "/p08-b4/assets/handdrawn-p08/cards/c09.thumbnail.webp"
+  ],
+  "errors": [],
+  "checks": [
+    "four new128x160 textures visible in actual table under BASE_URL; hash/size matched; no HD requested before opening",
+    "three615x768 foreground details exact byte hashes; immediate reopening uses correct cached image without another transfer",
+    "jiedongfeng missing-HD404 retains correct thumbnail and fixed art geometry; explicit retry upgrades to exact615x768 hash",
+    "both natural four-card subordinate phrases have real full Text bounds14px/res1.5; no additional screenshot",
+    "detail/cancel/retry/cache preserve complete run/resources/RNG/save; no page errors or old aligned overlays"
+  ],
+  "targetDevice": "OnePlus/hardwareGPU/audio NOT_RUN",
+  "thumbnails": [
+    {
+      "id": "pengci",
+      "key": "p08-joker-pengci",
+      "width": 128,
+      "height": 160,
+      "hashMethod": "decoded texture geometry and bytes from the exact observed HTTP thumbnail path; Phaser revokes its loader blob URL",
+      "bytes": 4340,
+      "sha256": "a15a089a1b570d3d1d01f5056f1165b414da2b770e50c740db9a63773b518d38"
+    },
+    {
+      "id": "mantangcai",
+      "key": "p08-joker-mantangcai",
+      "width": 128,
+      "height": 160,
+      "hashMethod": "decoded texture geometry and bytes from the exact observed HTTP thumbnail path; Phaser revokes its loader blob URL",
+      "bytes": 4278,
+      "sha256": "527fcd231970dfb7ff2eb9ee8e9d3f31f219a8c8249b69316698f86014faa15a"
+    },
+    {
+      "id": "huimaqiang",
+      "key": "p08-joker-huimaqiang",
+      "width": 128,
+      "height": 160,
+      "hashMethod": "decoded texture geometry and bytes from the exact observed HTTP thumbnail path; Phaser revokes its loader blob URL",
+      "bytes": 4390,
+      "sha256": "b1dbcd066afc2d3cd95ca351119fd67c83d7cb7a34cca242804afd0c561f64fd"
+    },
+    {
+      "id": "jiedongfeng",
+      "key": "p08-joker-jiedongfeng",
+      "width": 128,
+      "height": 160,
+      "hashMethod": "decoded texture geometry and bytes from the exact observed HTTP thumbnail path; Phaser revokes its loader blob URL",
+      "bytes": 4594,
+      "sha256": "4e7b339a55cd4696e7f9b3f9915608d1fd93f2f52965b0000725501fc0336a6b"
+    }
+  ],
+  "guidance": {
+    "title": "顺子 · 已选4张",
+    "type": "straight",
+    "selected": [
+      "hearts-8",
+      "hearts-9",
+      "hearts-10",
+      "hearts-11"
+    ],
+    "rules": {
+      "text": "顺子4张；同花顺5张",
+      "fullText": "顺子4张；同花顺5张",
+      "font": "14px",
+      "resolution": 1.5,
+      "bounds": {
+        "x": 79,
+        "y": 231.6,
+        "width": 128,
+        "height": 16
+      }
+    }
+  },
+  "subordinate": {
+    "text": "4张点数连续，花色不限",
+    "fullText": "4张点数连续，花色不限",
+    "font": "14px",
+    "resolution": 1.5,
+    "bounds": {
+      "x": 69,
+      "y": 191.6,
+      "width": 148,
+      "height": 16
+    }
+  },
+  "details": [
+    {
+      "id": "pengci",
+      "width": 615,
+      "height": 768,
+      "hashMethod": "visible foreground detail blob SHA256",
+      "bytes": 60818,
+      "sha256": "f19636c428b751f1d25f2afb9048f878eaf542eae8761b314b9c941fc58b14b9"
+    },
+    {
+      "id": "mantangcai",
+      "width": 615,
+      "height": 768,
+      "hashMethod": "visible foreground detail blob SHA256",
+      "bytes": 57250,
+      "sha256": "85eca912881fb4b2f52c96eea821fb8dbb0090343fb0275330e019a4083f3ff1"
+    },
+    {
+      "id": "huimaqiang",
+      "width": 615,
+      "height": 768,
+      "hashMethod": "visible foreground detail blob SHA256",
+      "bytes": 63438,
+      "sha256": "2b3367de118a4c28441feca4a408bd6dfe0707246a65c75977a89d0c444d278c"
+    }
+  ],
+  "missingDetail": {
+    "width": 128,
+    "height": 160,
+    "rect": {
+      "width": 162.734375,
+      "height": 227.828125
+    },
+    "src": "http://127.0.0.1:5277/p08-b4/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp"
+  },
+  "jiedongfengDetail": {
+    "width": 615,
+    "height": 768,
+    "hashMethod": "visible foreground detail blob SHA256",
+    "bytes": 62314,
+    "sha256": "c9fa1ebde3309a8b5e97c12c9b7fc2ea22c0b96d126bf99b9481dae4c98cbe29"
+  },
+  "flushSubordinate": {
+    "type": "flush",
+    "text": "4张同花色，点数不限",
+    "fullText": "4张同花色，点数不限",
+    "font": "14px",
+    "resolution": 1.5,
+    "bounds": {
+      "x": 76,
+      "y": 191.6,
+      "width": 134,
+      "height": 16
+    }
+  },
+  "status": "PASS"
+}

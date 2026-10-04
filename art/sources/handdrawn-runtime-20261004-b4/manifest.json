@@ -1,0 +1,468 @@
+{
+  "schemaVersion": 1,
+  "batch": "handdrawn-runtime-20261004-b4",
+  "scope": "Approved pengci, mantangcai, huimaqiang and jiedongfeng hand-drawn source conversion only; no game mechanics changes.",
+  "baseCommit": "7e1e9aa21b833a8c91f030167e0ff4895ef23322",
+  "runtime_selection": [
+    "pengci",
+    "mantangcai",
+    "huimaqiang",
+    "jiedongfeng"
+  ],
+  "encoder": {
+    "format": "WEBP",
+    "quality": 82,
+    "method": 6,
+    "lossless": false,
+    "resize": "Pillow LANCZOS",
+    "Pillow": "12.3.0",
+    "libwebp": "1.6.0"
+  },
+  "containPolicy": {
+    "fit": "contain",
+    "sourceCrop": "entire original",
+    "paddingFractionEachAxis": 0.03125,
+    "backgroundHex": "#F3EADB",
+    "noStretch": true,
+    "noReconstruction": true,
+    "rounding": "Nearest integer-pixel fit inside the inset bounding box; no crop or intentional aspect-ratio change.",
+    "sourceAspectNote": "No source is exactly 4:5. Pengci is 1073x1466; the other three are approximately 4:5 at 1122x1402. Full source is preserved inside the same runtime canvas contract."
+  },
+  "sourcePreservation": "Source SHA256 verified before and after conversion; originals never modified or re-encoded. Originals are retained separately and omitted from this runtime bundle.",
+  "loadingStrategy": "Visible thumbnail use only; details on demand. Do not preload original PNGs.",
+  "visualQa": {
+    "sourcePixelReview": "PASS: exact approved sources reviewed before conversion",
+    "runtimePixelReview": "PASS: viewed all four native 128x160 thumbnails and all four 615x768 details. Faces, complete hands and the single cracked bowl, clapping palms, intact blunt stage spear and complete blank fan remain distinct. Pengci retains the approved extra side padding; full source contained with no extra crop.",
+    "limits": "Derivative-pixel review only, not live integration or physical-device acceptance."
+  },
+  "assets": [
+    {
+      "id": "pengci",
+      "name": "碰瓷",
+      "artVersion": "v1",
+      "sourceFilename": "pengci-v1-original.png",
+      "sourceSHA256": "592d2aa91ba2759823f1e6ad2dabb856af36eb6b8a4736d5f9a7e21e58e63c8a",
+      "sourceWidth": 1073,
+      "sourceHeight": 1466,
+      "sourceBytes": 2817820,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/pengci.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 4340,
+          "sha256": "a15a089a1b570d3d1d01f5056f1165b414da2b770e50c740db9a63773b518d38",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 9,
+              "top": 5,
+              "width": 110,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 9,
+              "top": 5,
+              "right": 9,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1073,
+              "height": 1466
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/pengci.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 60818,
+          "sha256": "f19636c428b751f1d25f2afb9048f878eaf542eae8761b314b9c941fc58b14b9",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 44,
+              "top": 24,
+              "width": 527,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 44,
+              "top": 24,
+              "right": 44,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1073,
+              "height": 1466
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "mantangcai",
+      "name": "满堂彩",
+      "artVersion": "v1",
+      "sourceFilename": "mantangcai-v1-original.png",
+      "sourceSHA256": "d6266b74f4a375a99a49e6e64cfb490fc01589954d58bfb64d01d9f4bcf9748c",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2691891,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/mantangcai.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 4278,
+          "sha256": "527fcd231970dfb7ff2eb9ee8e9d3f31f219a8c8249b69316698f86014faa15a",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/mantangcai.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 57250,
+          "sha256": "85eca912881fb4b2f52c96eea821fb8dbb0090343fb0275330e019a4083f3ff1",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "huimaqiang",
+      "name": "回马枪",
+      "artVersion": "v1",
+      "sourceFilename": "huimaqiang-v1-original.png",
+      "sourceSHA256": "787f98d8cf331ac9b2cc80c3b69191b2b384d62beebf79670d50484d8ee8cbc0",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2814357,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/huimaqiang.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 4390,
+          "sha256": "b1dbcd066afc2d3cd95ca351119fd67c83d7cb7a34cca242804afd0c561f64fd",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/huimaqiang.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 63438,
+          "sha256": "2b3367de118a4c28441feca4a408bd6dfe0707246a65c75977a89d0c444d278c",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "jiedongfeng",
+      "name": "借东风",
+      "artVersion": "v1",
+      "sourceFilename": "jiedongfeng-v1-original.png",
+      "sourceSHA256": "a7c06f20673dc75549ca8d77a51186269ba6191633b26120893adb247d468e71",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2739438,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/jiedongfeng.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 4594,
+          "sha256": "4e7b339a55cd4696e7f9b3f9915608d1fd93f2f52965b0000725501fc0336a6b",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/jiedongfeng.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 62314,
+          "sha256": "c9fa1ebde3309a8b5e97c12c9b7fc2ea22c0b96d126bf99b9481dae4c98cbe29",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "runtimeFiles": 8,
+    "runtimeBytes": 261422,
+    "thumbnailBytes": 17602,
+    "detailBytes": 243820,
+    "sourcePngBytes": 11063506
+  },
+  "sourceContentReference": {
+    "repository": "big-dimple/dachoupai",
+    "ref": "89339f08847ea5b9a0d93444f5d05decad0054e4",
+    "path": "src/content/r2-jokers.json"
+  }
+}

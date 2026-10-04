@@ -379,6 +379,8 @@ D25追加有限3D复用小候选：先用实际GLB源的铜钱/骰子或牌片�
 
 ## P08
 
+P08 b4合并有界轮（UTC 2026-10-04）：合法41e78e1八WebP261422B，消费方逐hash/portable异cwd/8实际像素通过；仅替碰瓷/满堂彩/回马枪/借东风，原51runtime逐SHA未变，现新19/72、旧18、机制35，共59文件1717214B。首包20私有Library字段和20私有会话链接最小化为公开素材交付commit字段（非生成来源），当前移除、旧公开历史仍在；13份相关当前文本有限私有标识/版本/路径/签名URL扫描为零。38受影响tests/type及390×740 Canvas四纹理/HD按需hash/缓存/404固定框重试/完整run不变通过；两four副句自然化，实际14px/res1.5全文bounds通过。唯一现成牌桌PNG实际view，fixture非自然购买/部署/整体/设备PASS；证据evidence/p08-handdrawn-b4-2026-10-04。最终新冻结/正常FF/精确CI另报，不混火代码/私有火参考，不改玩法/RNG/save/PC/部署。
+
 P08 c08/c09独立小增量（UTC 2026-10-04）：b2 main76557f24精确CI37174251434/docs37174251527均success，停止旧CI检查。仅消费合法b0394ef四档缺档c08及缺角布c09，4WebP91906B，原云逐hash/portable异cwd/四图actual view通过；注册本2ID，原47映射不变，现新15/72、旧22、机制35，51runtime1455792B。59受影响tests/type及390×740实际两图/HD按需hash/缓存/404保缩略固定框重试/完整run不变PASS；双four四红桃仍普通同花，完整常驻例外14px/res1.5。仅一新场景PNGactual view，fixture非自然购买/部署/整体/设备PASS；evidence/p08-handdrawn-b3-2026-10-04。新消费源码7b0992d冻结1866 tests/104files、content、type/build、Canvas双端smoke、plan全PASS，source/index/HEAD不变；正常FF/精确新CI另报，review0767d50仅一现成PNG/README；fire审批pending不绕路；不生图、不改玩法/RNG/save/PC/部署。
 
 P08两图小增量（UTC 2026-10-04）：四牌短修main89339f0精确CI37173247948/docs37173247924均success，旧CI不再检查。合法素材3284505仅取授权目录，manifest逐hash/portable异cwd verify/四个实际像素PASS；铁算盘旧本ID替换、f10机制本ID替换，现新13/72、旧22、机制37，合计47WebP/1363886B，原43输出不变。46受影响tests/type及390×740 Canvas BASE_URL/实际两纹理/HD按需/缓存/404保缩略固定框重试/完整run不变PASS，一张现成牌桌图已actual view并review e1da046仅PNG+README正常push；候选非main部署/整体/真机PASS。root已actual GitHub view e1da046局部候选方向通过；新源码82fc462冻结1865 tests/104files、content、type/build、Canvas双端smoke、plan全PASS，source/index/HEAD不变，正常FF/精确CI另报；火审批pending不绕路，c08/c09合法输入后下一独立增量，不混本冻结。A03/P08只读精确72覆盖与c08/c09机制条件建议归evidence/p08-handdrawn-b2-2026-10-04，未生成或接未approved图。OnePlus/真GPU/听感NOT_RUN。

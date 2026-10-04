@@ -26,7 +26,7 @@ export function selectionCopy(f:R2SelectionFacts){
   const four=f.playedIds.length===4&&(f.type==='straight'||f.type==='flush');
   const disabledAccompanyingIds=f.accompanyingIds.filter(id=>f.disabledIds.includes(id));
   return {disabledAccompanyingIds,accompanyingNote:disabledAccompanyingIds.length?'附带牌本场计分效果停用；普通点数本来不计，仍参与判型、打出张数和重复条件':'',title:HAND_LABELS[f.type]+' · 已选'+f.playedIds.length+'张',
-    pattern:(four?'4张普通':'')+pattern[f.type],
+    pattern:four?(f.type==='flush'?'4张同花色，点数不限':'4张点数连续，花色不限'):pattern[f.type],
     membership:'计分牌'+f.scoringIds.length+'张 · 附带'+f.accompanyingIds.length+'张',
     restrictions:[f.scoringIds.length!==f.activeScoringIds.length?'其中'+(f.scoringIds.length-f.activeScoringIds.length)+'张计分停用（仍参与判型）':'',f.ordinaryPointsSuppressedIds.length?'普通点数0：'+f.ordinaryPointsSuppressedIds.length+'张，其他效果保留':''].filter(Boolean),
     rules:fourCardRuleCopy(f.rules),

@@ -19,7 +19,7 @@
 - c03与e02均为确证准用修正版。本包不包含旧被拒版本、原PNG、QA、ZIP或生成脚本。
 - 头像可作小型首屏资源；缩略只按可见内容加载；portrait/detail按需，不把全部高清资源放进首屏。
 
-manifest.json保留确定ID、用途、相对路径、像素、bytes、SHA256和确证sourceLibraryId/来源URL。sourceURL确无证据时保持null，不猜出处。文件路径全部相对于本目录；包含原画全幅的输出保持contain而不拉伸，头像使用已记录的独立裁切。WebP内容保持导出后冻结字节，本提交未重编码。
+manifest.json保留确定ID、用途、相对路径、像素、bytes、SHA256和公开素材交付提交（deliveryCommitURL）；该commit是公开交付来源，不是图片生成来源。不发布私有Library标识或私有会话链接。当前版本移除，旧Git历史仍保留原记录；不改写历史。
 
 ## 检查及边界
 
