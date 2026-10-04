@@ -1,5 +1,9 @@
 # P08 T06–T11 消耗工具手绘图 — review
 
+视觉复核修正：父侧拒绝前次持有PNG的右侧越框，之前资源/contain检查PASS并不代表视觉验收。复用89acce2原构建测到figure `(125,84.5,140,230.78125)`，visual/image `(129,88.5,159.125,222.78125)`，右边超过23.125px。旧工具140px宽度/尺寸上限与统一portrait高度和5:7 visual规则冲突，`object-fit:contain`只约束图片内部，不能修正外框。实现 `6df40d505d2a3d65ee23c7478be464196c159571` 仅删除两条旧工具图框尺寸规则，复用统一尺寸/居中；没有改原图、裁切或用overflow掩盖。
+
+一次390×740原生T06复验后：figure `(111.4375,84.5,167.125,230.78125)`，visual/image `(115.4375,88.5,159.125,222.78125)`，两边均内缩4px、中心同195、顶部内缩4px；object-fit contain、position50%50%、同34762 B/SHA原图。四处真实详情均新增边界/居中断言通过，原取消/一次4金购买seq+1/持有关闭/缓存/404/RNG/Joker守卫保持通过；42相关tests/type PASS。新构建6df40d5 `modified=false`，仅一张[修正后的390工具详情PNG](390-t06-owned-contained.png)实际view；详见[根因与实际bounds](layout-fix.json)及[新浏览器报告](layout-fix-browser.json)。全部art/public/license及domain/application/content/game逐树同原63250c7；MIT notice和42构建WebP逐byte保持。未重复其他工具、U08、全冻结或本地production构建。旧PNG及报告保留原身份供比较，下文的前次“完整显示”判断已由本次视觉拒绝与修正记录更正；最新视觉接受仍由父审图决定，main保持7d44b8b。
+
 正常合入已发布 Joker 文案 main `7d44b8bcada32942acded87d70abe78dea12f275`，无冲突；合并源码 `657e10ca35ef6abd1bb680f1498d61b5a533d51e`。src逐树同该main，全部art/public逐树同原a212ec4 review，AGENTS/work package/plan保主线。新增DetailDialog分支与CSS只作用于Joker playerCopy，工具没有ability，GoodsArt/ConsumableDialog/HD依赖保持；合并后四个相关suite复验，精确最终head另走必需CI。原T06 PNG/浏览器仍保89acce2原构建身份，未换标，未重跑未受影响工具浏览器或本地构建；详见[main-alignment.json](main-alignment.json)。
 
 基线 main `a6e482be77d82d9702e02f12f89679fff2045740`；实现与实际浏览器构建 `89acce2a9447403f10065eb2715bb6f68d63faa5`，`modified=false`。仅从批准 source `b25f00aaafbd79a475fa045eceea18a5d4df6b29` 提取 `art/sources/handdrawn-runtime-tools-20261004-t06-t11/`，未合并其父分支。source [CI37219676771](https://github.com/big-dimple/dachoupai/actions/runs/37219676771) 成功，2026-10-04 17:20:01 UTC。source SHA 是成品交付身份；原画由父侧逐六图及灰度批准，未进仓库，消费侧不冒充原画审查。

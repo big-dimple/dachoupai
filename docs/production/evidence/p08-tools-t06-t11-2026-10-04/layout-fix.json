@@ -1,0 +1,251 @@
+{
+  "taskId": "P08",
+  "testedCommit": "6df40d505d2a3d65ee23c7478be464196c159571",
+  "previousReview": "63250c7c190e9606c1da2406df39cba5c15050d7",
+  "heldMain": "7d44b8bcada32942acded87d70abe78dea12f275",
+  "status": "PASS_AUTOMATED_AND_CONSUMER_VIEW; PARENT_VISUAL_REVIEW_PENDING",
+  "parentPreviousVisualReview": {
+    "status": "FAIL",
+    "evidence": "390-t06-owned.png",
+    "reason": "Owned tool paper/image extends beyond right side of 140px figure; previous contain/hash tests did not assert DOM containment."
+  },
+  "rootCause": {
+    "oldRules": [
+      ".tool-detail .dialog-card-art max-width:200px",
+      "@media(max-width:560px) .tool-detail .dialog-card-art width:140px;max-width:45vw"
+    ],
+    "sharedRules": {
+      "portraitFigure": "height:100%;width:auto",
+      "visual": "height:100%;width:auto;aspect-ratio:5/7",
+      "image": "width:100%;height:100%;object-fit:contain"
+    },
+    "conflict": "Higher specificity old tool width fixes the figure to140 while shared visual derives159.125 from available222.78125 height. object-fit contains pixels within the image element but cannot size the figure.",
+    "fix": "Delete both legacy tool figure size rules, reuse existing shared detail figure/contain/centering. No crop/overflow-hidden mask/image edit/new asset."
+  },
+  "before": {
+    "build": {
+      "version": "C03",
+      "revision": "89acce2a9447403f10065eb2715bb6f68d63faa5",
+      "modified": false,
+      "builtAt": "2026-10-04T17:39:38.245Z"
+    },
+    "actual": {
+      ".dialog-content": {
+        "rect": {
+          "x": 20,
+          "y": 68.5,
+          "width": 350,
+          "height": 581.5,
+          "right": 370,
+          "bottom": 650
+        },
+        "computed": {
+          "width": "318px",
+          "height": "549.5px",
+          "minWidth": "auto",
+          "maxWidth": "none",
+          "maxHeight": "none",
+          "aspectRatio": "auto",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "justifySelf": "auto",
+          "alignSelf": "auto",
+          "boxSizing": "content-box",
+          "padding": "16px",
+          "borderWidth": "0px",
+          "overflow": "hidden"
+        }
+      },
+      ".dialog-card-art": {
+        "rect": {
+          "x": 125,
+          "y": 84.5,
+          "width": 140,
+          "height": 230.78125,
+          "right": 265,
+          "bottom": 315.28125
+        },
+        "computed": {
+          "width": "140px",
+          "height": "230.781px",
+          "minWidth": "auto",
+          "maxWidth": "175.5px",
+          "maxHeight": "100%",
+          "aspectRatio": "auto",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "justifySelf": "center",
+          "alignSelf": "start",
+          "boxSizing": "border-box",
+          "padding": "3px",
+          "borderWidth": "1px",
+          "overflow": "visible"
+        }
+      },
+      ".dialog-art-visual": {
+        "rect": {
+          "x": 129,
+          "y": 88.5,
+          "width": 159.125,
+          "height": 222.78125,
+          "right": 288.125,
+          "bottom": 311.28125
+        },
+        "computed": {
+          "width": "159.125px",
+          "height": "222.781px",
+          "minWidth": "0px",
+          "maxWidth": "none",
+          "maxHeight": "100%",
+          "aspectRatio": "5 / 7",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "justifySelf": "auto",
+          "alignSelf": "auto",
+          "boxSizing": "content-box",
+          "padding": "0px",
+          "borderWidth": "0px",
+          "overflow": "visible"
+        }
+      },
+      ".dialog-card-image": {
+        "rect": {
+          "x": 129,
+          "y": 88.5,
+          "width": 159.125,
+          "height": 222.78125,
+          "right": 288.125,
+          "bottom": 311.28125
+        },
+        "computed": {
+          "width": "159.125px",
+          "height": "222.781px",
+          "minWidth": "0px",
+          "maxWidth": "100%",
+          "maxHeight": "100%",
+          "aspectRatio": "615 / 768",
+          "objectFit": "contain",
+          "objectPosition": "50% 50%",
+          "justifySelf": "auto",
+          "alignSelf": "auto",
+          "boxSizing": "border-box",
+          "padding": "0px",
+          "borderWidth": "0px",
+          "overflow": "clip"
+        },
+        "naturalWidth": 615,
+        "naturalHeight": 768
+      },
+      ".dialog-scroll": {
+        "rect": {
+          "x": 36,
+          "y": 327.28125,
+          "width": 318,
+          "height": 306.71875,
+          "right": 354,
+          "bottom": 634
+        },
+        "computed": {
+          "width": "318px",
+          "height": "306.719px",
+          "minWidth": "0px",
+          "maxWidth": "none",
+          "maxHeight": "none",
+          "aspectRatio": "auto",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "justifySelf": "auto",
+          "alignSelf": "auto",
+          "boxSizing": "content-box",
+          "padding": "0px",
+          "borderWidth": "0px",
+          "overflow": "auto"
+        }
+      }
+    },
+    "rightOverflowPx": 23.125
+  },
+  "after": {
+    "id": "T06",
+    "location": "owned-tool",
+    "width": 615,
+    "height": 768,
+    "bytes": 34762,
+    "sha256": "6b2b44c2ad1cb6440cf86bd245a39c424acb85249dca9e99173a1f9b446a7eff",
+    "fit": "contain",
+    "objectPosition": "50% 50%",
+    "frame": {
+      "x": 111.4375,
+      "y": 84.5,
+      "width": 167.125,
+      "height": 230.78125,
+      "right": 278.5625,
+      "bottom": 315.28125
+    },
+    "visual": {
+      "x": 115.4375,
+      "y": 88.5,
+      "width": 159.125,
+      "height": 222.78125,
+      "right": 274.5625,
+      "bottom": 311.28125
+    },
+    "image": {
+      "x": 115.4375,
+      "y": 88.5,
+      "width": 159.125,
+      "height": 222.78125,
+      "right": 274.5625,
+      "bottom": 311.28125
+    }
+  },
+  "regression": {
+    "imageAndVisualInFigure": "PASS in shop,shop reopen,owned tool,404 retry",
+    "horizontalCenterDeltaPx": 0,
+    "objectFit": "contain",
+    "objectPosition": "50% 50%",
+    "sourceBytesAndHashUnchanged": true,
+    "screenshot": "390-t06-owned-contained.png",
+    "actuallyViewed": true
+  },
+  "affectedTests": {
+    "status": "PASS",
+    "count": 42,
+    "suites": 4
+  },
+  "typecheck": "PASS",
+  "browser": "layout-fix-browser.json",
+  "gameState": "Original cancel/purchase once/owned close/cache/404/RNG/Joker equality guards retained and PASS; no tool use or destroy",
+  "preservedTreesByteEqual": [
+    "art/sources",
+    "public/assets",
+    "public/licenses",
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/game"
+  ],
+  "productionDiff": "src/style.css only two removed rules; harness adds real bounds/centering checks",
+  "build": {
+    "status": "PASS",
+    "buildInfo": {
+      "version": "C03",
+      "revision": "6df40d505d2a3d65ee23c7478be464196c159571",
+      "modified": false,
+      "builtAt": "2026-10-04T17:55:40.793Z"
+    },
+    "registeredDistFiles": 42,
+    "registeredDistBytes": 643054,
+    "MITNoticeByteEqual": true,
+    "localBuildsThisFix": 1,
+    "beforeProbe": "Reused existing89acce2 build; no before rebuild",
+    "remoteProductionBuild": "Mandatory final-head CI"
+  },
+  "originalEvidenceRetained": "Prior PNG/browser.json keep original build identity; old automation PASS was not visual acceptance",
+  "coverage": {
+    "items": "12/12",
+    "consumables": "9/39",
+    "Jokers": "72/72"
+  },
+  "mainPush": "NOT_RUN; held for parent visual review"
+}
