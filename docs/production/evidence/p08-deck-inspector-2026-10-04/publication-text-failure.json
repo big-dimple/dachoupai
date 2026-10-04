@@ -1,0 +1,13 @@
+{
+  "taskId": "P08",
+  "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+  "status": "FAIL",
+  "stage": "before review commit/push",
+  "issue": {
+    "file": "focused-tests.txt",
+    "type": "private-workspace-path",
+    "count": 1
+  },
+  "reason": "Initial log redaction matched a root followed by slash; Vitest header ends at the root. Corrected before publication and repeated only affected text/delivery checks.",
+  "privateFullLogSHA256": "4001b6fd4ba68be615540c9e4922488e25b53fd7c6f3d1d33d69ac0e8f2b9008"
+}

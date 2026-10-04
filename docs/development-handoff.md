@@ -1,5 +1,27 @@
 # 当前交接：P08全游戏手绘墨线／纸色主线
 
+## 当前发布与验收状态
+
+已核 remote main `d1c072dff5055238bd94775a14f2fca44c4d38b8`，精确 [CI37238909688](https://github.com/big-dimple/dachoupai/actions/runs/37238909688) 与 [production-docs37238909684](https://github.com/big-dimple/dachoupai/actions/runs/37238909684) success。
+
+| 项目 | 当前状态与边界 |
+| --- | --- |
+| 已发布手绘覆盖 | Joker72/72、原6角色/JQK；P08 165 WebP／4,454,670B。工具39/39、物品12/12，goods102 WebP／1,742,780B；最后十二图已发布。 |
+| 铜钱消费 | 批准单图256²／15,958B；旧atlas归档，保原800ms显示和已保存奖励去重。A03整包planned／humanGate保持。 |
+| 当前点数文案补正 | source 60641fb2ef131f7d9dd984de79b6f5df3753ee08；A：4张／10：4张独立单元，15px、只读与固定关闭保持。三视口实图及21筛选通过，[新证据](production/evidence/p08-deck-stat-copy-2026-10-04/summary.json)，旧报告不改，新CI另报。 |
+| 原版牌组查看review | [共享查看器证据](production/evidence/p08-deck-inspector-2026-10-04/summary.json)：source 624bc28cae3b3f94e19468e91957446ee5d0c577。13点数与花色、Game全部／剩余及增强筛选；Shop原菜单默认全部持久有效牌，不显示下一场剩余。 |
+| 本次实际检查 | 36相关tests、type、clean构建和320／390／844×300 top12/bottom34原生输入通过；全run／seq／RNG／选牌保持、滚动／关闭／回调释放、真实复制／改点数／改花色／增强与reload计数通过。三图actual view，五次检查器FAIL原身份保留；只有review，新CI另报。 |
+| 原流程证据 | D7b自然流程仍固定runtime7b787773，只到首Boss；T06–T11及S01–S08为原生fixture，不证明自然获取／当前main全流程。既有证据与历史FAIL／NOT_RUN不改。 |
+| 剩余门禁 | P08 in_progress；整体审美、OnePlus、GPU、听感未通过。C04 D32暂停，resumeContract与V01/L01保持。父协调串行main，不自动推gameplay／部署。 |
+
+只读产品改动已完成后才校准上述当前数字；领域、save、RNG、所有素材、手牌布局、火和音频树保持main。主线验收清单见 [P08](production/WORK_PACKAGES.md#p08)。
+
+## 历史检查点（按各自 SHA 保留，不作为当前调度指令）
+
+以下记录逐SHA保留，不作为当前调度。
+
+### 本次校准前的当前记录（原文保留）
+
 P08手绘铜钱有界review：交付f44320be经sourceCI/portable/hash/实际view；单图256²15958B，活跃旧atlas不再消费，旧文件保留。source2ebb590仅RewardCoin.ts，800ms墙钟单次/56-72-96原display scale、5秒截止/取消/迟到不缓存/reduced静态与原clearId奖励去重保持，e07实际9金只展示。49相关tests/type/content及5条Canvas原生路线通过、两张fixture实图actual view；正常合已发布main719保C最后12、工具39/39物品12/12，图片保原build身份不重拍。暂不main、新reviewCI另报；整体/OnePlus/GPU/听感未验。 证据docs/production/evidence/p08-handdrawn-reward-coin-2026-10-04/summary.json。
 
 ## 当前发布与验收状态
@@ -18,7 +40,7 @@ P08手绘铜钱有界review：交付f44320be经sourceCI/portable/hash/实际view
 
 本批 [最后十二图与证据审计](production/evidence/p08-tools-final12-2026-10-04/summary.json) 和D原证据仅交 review，父串行协调main；运行源码、旧资源、严格五动作smoke、六工具原证据保持。历史 [状态校准](production/evidence/p08-delivery-state-2026-10-04/summary.json) 的21/39及各旧报告覆盖数字保留原身份。主线验收清单见 [P08](production/WORK_PACKAGES.md#p08)。
 
-## 历史检查点（按各自 SHA 保留，不作为当前调度指令）
+
 
 以下旧“待 CI／待发布／下一任务”仅属于记录当时；历史 FAIL、NOT_RUN 与数字不改，当前调度由上表覆盖。
 

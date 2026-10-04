@@ -1,0 +1,427 @@
+{
+  "taskId": "P08",
+  "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+  "baseCommit": "d1c072dff5055238bd94775a14f2fca44c4d38b8",
+  "scope": "Shared read-only deck inspection: thirteen descending rank counts, existing suit/remaining/all/enhancement/used markers; native Shop RunMenu callback, all persistent live instances, prior-stage zones disambiguated. No domain or asset changes.",
+  "environment": {
+    "os": "Linux",
+    "node": "v24.19.0",
+    "browser": "151.0.7922.173",
+    "renderer": "Chromium software Canvas",
+    "DPR": 1,
+    "motion": "reduce",
+    "profiles": [
+      {
+        "viewport": {
+          "width": 390,
+          "height": 740
+        },
+        "safeTop": 0,
+        "safeBottom": 0
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "safeTop": 0,
+        "safeBottom": 0
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 300
+        },
+        "safeTop": 12,
+        "safeBottom": 34
+      }
+    ],
+    "device": "NOT_RUN"
+  },
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-04T22:49:16.709Z",
+    "revision": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "checks": [
+    {
+      "name": "36 affected tests in3 files",
+      "command": "npx vitest run tests/deck-inspector.test.ts tests/detail-dialog.test.ts tests/c01-tool-info.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/p08-deck-inspector-2026-10-04/focused-tests.txt"
+    },
+    {
+      "name": "typecheck",
+      "command": "npm run typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/p08-deck-inspector-2026-10-04/typecheck.txt"
+    },
+    {
+      "name": "clean e2e build and bounded native UI/state",
+      "command": "node shots/p08-deck-inspector/verify.mjs; same-build checker continuations recorded",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/p08-deck-inspector-2026-10-04/browser.json"
+    },
+    {
+      "name": "protected paths exactly unchanged from base",
+      "command": "git diff --quiet BASE TESTED -- each protected path",
+      "status": "PASS",
+      "exitCode": 0,
+      "paths": [
+        "src/domain",
+        "src/application",
+        "src/content",
+        "src/audio",
+        "public/assets",
+        "art/sources",
+        "src/game/layout.ts",
+        "src/game/ShopLayout.ts",
+        "src/game/ScoreFlame.ts",
+        "src/game/RewardCoin.ts",
+        "src/game/RunMenu.ts",
+        "src/game/DetailDialog.ts"
+      ]
+    },
+    {
+      "name": "plan self-test/plan/whitespace/history gates/public privacy and final delivery source/index/HEAD freeze",
+      "command": "node shots/p08-deck-inspector/verify-delivery.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/p08-deck-inspector-2026-10-04/delivery-checks.json"
+    }
+  ],
+  "nativeResults": {
+    "readonly": "Full state, commandSeq, RNG and hand selection identical across all open/filter/close checks",
+    "rankOrder": "A K Q J 10 9 8 7 6 5 4 3 2 including zero",
+    "instances": "T02-destroyed instance excluded; real T07 copy counted separately; actual T08 rank/T06 suit/T10 enhancement changes reflected",
+    "modifications": [
+      {
+        "id": "T07",
+        "targets": [
+          "hearts-13"
+        ],
+        "commandSeq": [
+          6,
+          7
+        ],
+        "before": {
+          "total": 51,
+          "suits": [
+            12,
+            13,
+            13,
+            13
+          ],
+          "ranks": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            3
+          ]
+        },
+        "after": {
+          "total": 52,
+          "suits": [
+            12,
+            14,
+            13,
+            13
+          ],
+          "ranks": [
+            4,
+            5,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            3
+          ]
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "T08",
+        "targets": [
+          "hearts-13"
+        ],
+        "commandSeq": [
+          7,
+          8
+        ],
+        "before": {
+          "total": 52,
+          "suits": [
+            12,
+            14,
+            13,
+            13
+          ],
+          "ranks": [
+            4,
+            5,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            3
+          ]
+        },
+        "after": {
+          "total": 52,
+          "suits": [
+            12,
+            14,
+            13,
+            13
+          ],
+          "ranks": [
+            5,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            3
+          ]
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "T06",
+        "targets": [
+          "clubs-3",
+          "diamonds-2"
+        ],
+        "commandSeq": [
+          8,
+          9
+        ],
+        "before": {
+          "total": 52,
+          "suits": [
+            12,
+            14,
+            13,
+            13
+          ],
+          "ranks": [
+            5,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            3
+          ]
+        },
+        "after": {
+          "total": 52,
+          "suits": [
+            14,
+            14,
+            12,
+            12
+          ],
+          "ranks": [
+            5,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            3
+          ]
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "T10",
+        "targets": [
+          "clubs-3",
+          "clubs-4"
+        ],
+        "commandSeq": [
+          9,
+          10
+        ],
+        "before": {
+          "total": 52,
+          "suits": [
+            14,
+            14,
+            12,
+            12
+          ],
+          "ranks": [
+            5,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            3
+          ]
+        },
+        "after": {
+          "total": 52,
+          "suits": [
+            14,
+            14,
+            12,
+            12
+          ],
+          "ranks": [
+            5,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            3
+          ]
+        },
+        "status": "PASS"
+      }
+    ],
+    "shop": "Defaults all51 live persistent cards, disabled next-stage remainder, prior used/hand labels; real entry produces43 current-stage remainder and clears prior stage zones",
+    "lifecycle": "Shop owner released on entry; current callback belongs to Game; exit clears both scene owners and registry and hides view-deck action",
+    "scroll": "Native wheel on overflow320/Shop390/short, no horizontal overflow, close fixed and at least44px, safeTop12/safeBottom34 short simulation"
+  },
+  "sourceFreeze": {
+    "before": {
+      "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+      "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+      "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "branch": "refs/heads/feat/p08-deck-view-20261004"
+    },
+    "after": {
+      "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+      "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+      "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "branch": "refs/heads/feat/p08-deck-view-20261004"
+    },
+    "status": "PASS"
+  },
+  "publishedCoverage": {
+    "main": "d1c072dff5055238bd94775a14f2fca44c4d38b8",
+    "Jokers": "72/72",
+    "characters": 6,
+    "court": 3,
+    "p08Files": 165,
+    "p08Bytes": 4454670,
+    "tools": "39/39",
+    "items": "12/12",
+    "goodsFiles": 102,
+    "goodsBytes": 1742780,
+    "rewardCoin": "single256x256 WebP15958B; original atlas archived"
+  },
+  "screenshots": [
+    {
+      "file": "390-shop-all-ranks.png",
+      "bytes": 65906,
+      "sha256": "f1ed90f631febc845eb4059a5b5fceb06753b36e748e563b35294dc3484f7071",
+      "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "actualView": "PASS"
+    },
+    {
+      "file": "320-game-modified-ranks.png",
+      "bytes": 34377,
+      "sha256": "403668f672322e3da82b66c0614d2412cfccb86abca72561fcf53e8ff3908198",
+      "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "actualView": "PASS"
+    },
+    {
+      "file": "844-short-game-modified-ranks.png",
+      "bytes": 16214,
+      "sha256": "f780b452b47b3f4fbcbf7c65427b13bc05c1ef095e093fd2aab877405407f38a",
+      "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "actualView": "PASS"
+    }
+  ],
+  "checkerFailures": {
+    "evidence": "docs/production/evidence/p08-deck-inspector-2026-10-04/checker-failures.json",
+    "count": 5,
+    "status": "FAIL records retained; checker-only corrections; same product source/build"
+  },
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": "",
+    "evidence": ""
+  },
+  "visualInspection": {
+    "status": "PASS",
+    "kind": "Agent actual view of all three screenshots; not overall art or human approval"
+  },
+  "reviewCI": {
+    "status": "NOT_RUN",
+    "reason": "New final review exact head runs will be reported after branch push; base CI is not evidence for new code."
+  },
+  "limitations": [
+    "Synthetic validator fixtures; no natural acquisition/full run claim",
+    "Only bounded software Canvas Chromium DPR1 and requested three viewports; Firefox/WebKit handled by exact review CI, not claimed here",
+    "Physical devices, GPU/FPS/audio listening, overall art acceptance remain NOT_RUN",
+    "C04.3/C04.4 D32 pause, resumeContract and V01/L01 gates unchanged",
+    "Review only; no main push or deployment"
+  ],
+  "nextTask": "Parent reviews screenshots/code and exact review CI, coordinates serial main release.",
+  "publicationTextFailure": {
+    "status": "FAIL retained before publish; corrected and affected gate PASS",
+    "evidence": "docs/production/evidence/p08-deck-inspector-2026-10-04/publication-text-failure.json"
+  }
+}

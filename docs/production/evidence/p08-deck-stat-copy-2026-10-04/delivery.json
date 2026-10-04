@@ -1,0 +1,62 @@
+{
+  "taskId": "P08",
+  "testedCommit": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+  "status": "PASS",
+  "gates": {
+    "status": "PASS",
+    "exitCode": 0,
+    "before": {
+      "source": "57022d8a8ab4fcadc4704dfbab45f334157c10e62271f448fa02bb598839b262",
+      "index": "822f2bbc1c2695bd8305887c502f633f521253a4f496926e3a05b6155483e3c2",
+      "head": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+      "branch": "refs/heads/feat/p08-deck-view-20261004"
+    },
+    "after": {
+      "source": "57022d8a8ab4fcadc4704dfbab45f334157c10e62271f448fa02bb598839b262",
+      "index": "822f2bbc1c2695bd8305887c502f633f521253a4f496926e3a05b6155483e3c2",
+      "head": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+      "branch": "refs/heads/feat/p08-deck-view-20261004"
+    },
+    "steps": [
+      {
+        "name": "plan-self-test",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 367
+      },
+      {
+        "name": "plan",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 384
+      },
+      {
+        "name": "whitespace",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 299
+      }
+    ]
+  },
+  "publicText": {
+    "status": "PASS",
+    "files": 13
+  },
+  "originalEvidence": "UNCHANGED",
+  "otherTasksAndResumeContract": "UNCHANGED",
+  "sourceFreeze": {
+    "before": {
+      "source": "57022d8a8ab4fcadc4704dfbab45f334157c10e62271f448fa02bb598839b262",
+      "index": "822f2bbc1c2695bd8305887c502f633f521253a4f496926e3a05b6155483e3c2",
+      "head": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+      "branch": "refs/heads/feat/p08-deck-view-20261004"
+    },
+    "after": {
+      "source": "57022d8a8ab4fcadc4704dfbab45f334157c10e62271f448fa02bb598839b262",
+      "index": "822f2bbc1c2695bd8305887c502f633f521253a4f496926e3a05b6155483e3c2",
+      "head": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+      "branch": "refs/heads/feat/p08-deck-view-20261004"
+    },
+    "status": "PASS"
+  }
+}

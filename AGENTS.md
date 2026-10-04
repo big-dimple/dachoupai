@@ -1,5 +1,22 @@
 # 开发入口
 
+## 当前调度状态（2026-10-04 UTC）
+
+已独立核 remote main `d1c072dff5055238bd94775a14f2fca44c4d38b8`；精确 CI37238909688 与 production-docs37238909684 均 success。当前交接见 [发布与验收状态](docs/development-handoff.md#当前发布与验收状态)。
+
+- 已发布可消费：Joker72/72、原6角色/JQK；P08 165 WebP／4,454,670B。工具39/39、物品12/12，goods102 WebP／1,742,780B，最后十二图已在main，旧覆盖数字仅属于各自历史SHA。
+- 铜钱已消费批准单图256²／15,958B；旧atlas保留归档，800ms显示和实际已保存奖励去重保持。A03整包仍planned／humanGate。
+- 当前查看器补正：P08点数文案有界补正：source 60641fb2ef131f7d9dd984de79b6f5df3753ee08，把相邻数字改成“A：4张 · 10：4张”，13项完整单元跨项换行，15px不缩小。5既有统计tests/type/clean构建及320／390／短横与Shop390的21原生筛选通过，开筛关全run／seq／RNG／选牌保持、滚动与固定44px关闭通过；三新图actual view。仅文案／DOM单元和CSS，统计逻辑／场景／领域／素材／布局／火保持；原8f606ec与source624bc28证据／FAIL不改。本新review精确CI另报，main不推。证据 docs/production/evidence/p08-deck-stat-copy-2026-10-04/summary.json。
+- 原版只读牌组查看有界review：source 624bc28cae3b3f94e19468e91957446ee5d0c577；共享A到2的13点数／花色统计、全部／剩余与增强筛选。商店复用原RunMenu，默认全部有效持久牌组，不把上场drawPile当下一场剩余；旧区标识消歧。36相关tests/type/一次clean构建与320／390／844×300 top12/bottom34原生UI通过，开筛关全run／seq／RNG／选牌不变，复制／升点／染色／增强及保存reload计数已验；三图actual view。五次检查器FAIL按原build保留，源码全程未改。领域／素材／手牌布局／火／音频保持；仅review，新精确CI另报，main未推。证据 docs/production/evidence/p08-deck-inspector-2026-10-04/summary.json。
+- [D原自然证据](docs/production/evidence/p08-natural-run-2026-10-04/README.md)、六工具及八灵异fixture证据保持各自source、build、FAIL／NOT_RUN身份；不外推当前main完整八章或自然获取。
+- P08仍in_progress，整体审美、OnePlus、GPU、听感未通过；C04保持D32暂停，resumeContract和V01/L01门禁保持。父协调串行main，不自动推进gameplay或部署。
+
+## 历史检查点（按各自 SHA 保留，不作为当前调度指令）
+
+以下历史待CI／待发布／旧数字仅适用于各自SHA；当前以本页上方为准。
+
+### 本次校准前的当前记录（原文保留）
+
 P08手绘铜钱有界review：交付f44320be经sourceCI/portable/hash/实际view；单图256²15958B，活跃旧atlas不再消费，旧文件保留。source2ebb590仅RewardCoin.ts，800ms墙钟单次/56-72-96原display scale、5秒截止/取消/迟到不缓存/reduced静态与原clearId奖励去重保持，e07实际9金只展示。49相关tests/type/content及5条Canvas原生路线通过、两张fixture实图actual view；正常合已发布main719保C最后12、工具39/39物品12/12，图片保原build身份不重拍。暂不main、新reviewCI另报；整体/OnePlus/GPU/听感未验。 证据docs/production/evidence/p08-handdrawn-reward-coin-2026-10-04/summary.json。
 
 ## 当前调度状态（2026-10-04 UTC）
@@ -12,7 +29,7 @@ P08手绘铜钱有界review：交付f44320be经sourceCI/portable/hash/实际view
 - 六工具 fixture 原证据和身份保持；铜钱已被结算场景消费，A03整包仍 planned／humanGate。P08仍 in_progress，整体审美、OnePlus、GPU、听感未通过；C04保持D32暂停，resumeContract和V01/L01门禁保持。
 - 本批只交 review；父协调串行 main，既有历史 FAIL／NOT_RUN 与原报告身份保持。
 
-## 历史检查点（按各自 SHA 保留，不作为当前调度指令）
+
 
 以下“待 CI／待发布／下一任务”描述仅适用于各自记录时的 source；历史 FAIL、NOT_RUN 和旧覆盖数字保留原值，当前决策以本页上方及当前验收清单为准。
 

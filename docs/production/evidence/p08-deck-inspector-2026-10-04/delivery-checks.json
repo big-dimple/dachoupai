@@ -1,0 +1,81 @@
+{
+  "taskId": "P08",
+  "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+  "checks": {
+    "status": "PASS",
+    "exitCode": 0,
+    "before": {
+      "source": "c2b251e51dc3a4725a29b4076b9069bb51eaae01da82eff61d0c8c6944ff7486",
+      "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+      "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "branch": "refs/heads/feat/p08-deck-view-20261004"
+    },
+    "after": {
+      "source": "c2b251e51dc3a4725a29b4076b9069bb51eaae01da82eff61d0c8c6944ff7486",
+      "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+      "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "branch": "refs/heads/feat/p08-deck-view-20261004"
+    },
+    "steps": [
+      {
+        "name": "production-plan-self-test",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 407
+      },
+      {
+        "name": "production-plan",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 465
+      },
+      {
+        "name": "diff-whitespace",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 416
+      }
+    ]
+  },
+  "historyAndUnrelatedPlan": "PASS",
+  "privacy": {
+    "scope": "New/changed public text and standard current-art audit; counts only",
+    "files": [
+      "docs/production/evidence/p08-deck-inspector-2026-10-04/README.md",
+      "docs/production/evidence/p08-deck-inspector-2026-10-04/browser.json",
+      "docs/production/evidence/p08-deck-inspector-2026-10-04/checker-failures.json",
+      "docs/production/evidence/p08-deck-inspector-2026-10-04/checker.mjs",
+      "docs/production/evidence/p08-deck-inspector-2026-10-04/fixtures.json",
+      "docs/production/evidence/p08-deck-inspector-2026-10-04/focused-tests.txt",
+      "docs/production/evidence/p08-deck-inspector-2026-10-04/modified-checkpoint.json",
+      "docs/production/evidence/p08-deck-inspector-2026-10-04/publication-text-failure.json",
+      "docs/production/evidence/p08-deck-inspector-2026-10-04/summary.json",
+      "docs/production/evidence/p08-deck-inspector-2026-10-04/typecheck.txt",
+      "src/game/DeckInspector.ts",
+      "tests/deck-inspector.test.ts",
+      "AGENTS.md",
+      "docs/development-handoff.md",
+      "docs/production/plan.json"
+    ],
+    "issues": [],
+    "currentArt": {
+      "filesScanned": 66,
+      "issues": []
+    }
+  },
+  "sourceFreeze": {
+    "before": {
+      "source": "c2b251e51dc3a4725a29b4076b9069bb51eaae01da82eff61d0c8c6944ff7486",
+      "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+      "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "branch": "refs/heads/feat/p08-deck-view-20261004"
+    },
+    "after": {
+      "source": "c2b251e51dc3a4725a29b4076b9069bb51eaae01da82eff61d0c8c6944ff7486",
+      "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+      "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "branch": "refs/heads/feat/p08-deck-view-20261004"
+    },
+    "status": "PASS"
+  }
+}

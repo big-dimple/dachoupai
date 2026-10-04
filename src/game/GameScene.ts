@@ -41,6 +41,7 @@ import {paintCardFeedback} from './CardFeedback';
 import {HandSweepHint} from './HandSweepHint';
 import type {HandSelectionUpdate} from './HandSelectionGesture';
 import {DetailDialog} from './DetailDialog';
+import {showDeckInspection} from './DeckInspector';
 import {dispatchRun,runController} from './runAdapter';
 import {reorderJokerIds} from './JokerReorder';
 import {gameSession} from './session';
@@ -868,15 +869,7 @@ export class GameScene extends Phaser.Scene {
     image.snapshot(snapshot=>{if(snapshot instanceof HTMLImageElement)this.dialog.attachCardArt(dialog,snapshot.src,getJoker(definitionId).name+'机制示意卡面','mechanism');image.destroy();});
   }
   private inspectDeck():void {
-    const state=this.run,dialog=this.dialog.open('牌组查看',''),content=dialog.querySelector('p')!,controls=document.createElement('div');
-    const scope=document.createElement('select'),enhancement=document.createElement('select');
-    for(const [value,label] of [['remaining','剩余牌堆'],['all','全部牌组']]){const o=document.createElement('option');o.value=value;o.textContent=label;scope.append(o);}
-    for(const [value,label] of [['all','所有增强'],['none','无增强'],['enhanced','有增强']]){const o=document.createElement('option');o.value=value;o.textContent=label;enhancement.append(o);}
-    scope.setAttribute('aria-label','牌组范围');enhancement.setAttribute('aria-label','增强筛选');controls.append(scope,enhancement);content.before(controls);
-    const render=()=>{
-      const cards=state.deckInstances.filter(c=>!state.destroyedIds.includes(c.id)&&(scope.value==='all'||state.drawPile.includes(c.id))&&(enhancement.value==='all'||(enhancement.value==='none'?!c.enhancement:!!c.enhancement))).sort((a,b)=>SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit)||a.rank-b.rank);
-      content.textContent='按花色与点数统计，不展示抽牌顺序。\n'+SUITS.map(s=>SUIT_SYMBOL[s]+' '+cards.filter(c=>c.suit===s).length).join(' · ')+'\n'+cards.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]+(state.playedPile.includes(c.id)?' 已打出':state.discardPile.includes(c.id)?' 已弃':state.handOrder.includes(c.id)?' 手牌':'' )+(c.enhancement?' '+ENHANCEMENT_UI[c.enhancement].name:'')+((c.edition??'none')!=='none'?' '+editionLabel(c.edition):'')).join('、');
-    };scope.onchange=render;enhancement.onchange=render;render();
+    if(this.scene.isActive())showDeckInspection(this.dialog,this.run);
   }
   private async command(action:import('../domain/run').Action,expectedSeq?:number):Promise<boolean> {
     if(!this.ready)return false;this.clearHover();this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();

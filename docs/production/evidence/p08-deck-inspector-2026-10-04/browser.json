@@ -1,0 +1,2958 @@
+{
+  "taskId": "P08",
+  "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+  "baseCommit": "d1c072dff5055238bd94775a14f2fca44c4d38b8",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-04T22:49:16.709Z",
+    "revision": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "151.0.7922.173",
+  "renderer": "Chromium software Canvas",
+  "DPR": 1,
+  "motion": "reduce",
+  "fixture": "Two validator-approved checkpoints; controlled capacity and visible hand, T02 deletion plus real domain play/discard/clear ledgers. Four modification tools are used through native UI once at390; resulting saved state is imported at320/short. Synthetic setup, not natural acquisition or a full run.",
+  "sourceFreeze": {
+    "before": {
+      "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+      "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+      "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "branch": "refs/heads/feat/p08-deck-view-20261004"
+    },
+    "after": {
+      "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+      "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+      "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "branch": "refs/heads/feat/p08-deck-view-20261004"
+    },
+    "status": "PASS"
+  },
+  "device": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "profiles": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "safeTop": 0,
+      "safeBottom": 0,
+      "inspections": [
+        {
+          "phase": "await-input",
+          "beforeRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+          "afterRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+          "commandSeq": 10,
+          "RNG": "UNCHANGED",
+          "selectedBefore": [
+            "hearts-13",
+            "clubs-3"
+          ],
+          "selectedAfter": [
+            "hearts-13",
+            "clubs-3"
+          ],
+          "results": [
+            {
+              "scope": "remaining",
+              "filter": "all",
+              "counts": {
+                "total": 42,
+                "suits": [
+                  11,
+                  10,
+                  10,
+                  11
+                ],
+                "ranks": [
+                  3,
+                  4,
+                  3,
+                  3,
+                  3,
+                  3,
+                  4,
+                  4,
+                  3,
+                  4,
+                  3,
+                  3,
+                  2
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 所有增强 · 42 张\n\n花色：♠ 11 · ♥ 10 · ♣ 10 · ♦ 11\n\n点数：A 3 · K 4 · Q 3 · J 3 · 10 3 · 9 3 · 8 4 · 7 4 · 6 3 · 5 4 · 4 3 · 3 3 · 2 2\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、2♥、3♥、4♥、5♥、7♥、8♥、9♥、Q♥、K♥ 玻璃纸 闪箔、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、K♦、A♦"
+            },
+            {
+              "scope": "remaining",
+              "filter": "none",
+              "counts": {
+                "total": 40,
+                "suits": [
+                  11,
+                  9,
+                  10,
+                  10
+                ],
+                "ranks": [
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  2,
+                  4,
+                  4,
+                  3,
+                  4,
+                  3,
+                  3,
+                  2
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 无增强 · 40 张\n\n花色：♠ 11 · ♥ 9 · ♣ 10 · ♦ 10\n\n点数：A 3 · K 3 · Q 3 · J 3 · 10 3 · 9 2 · 8 4 · 7 4 · 6 3 · 5 4 · 4 3 · 3 3 · 2 2\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、2♥、3♥、4♥、5♥、7♥、8♥、9♥、Q♥、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、K♦、A♦"
+            },
+            {
+              "scope": "remaining",
+              "filter": "enhanced",
+              "counts": {
+                "total": 2,
+                "suits": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "ranks": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 有增强 · 2 张\n\n花色：♠ 0 · ♥ 1 · ♣ 0 · ♦ 1\n\n点数：A 0 · K 1 · Q 0 · J 0 · 10 0 · 9 1 · 8 0 · 7 0 · 6 0 · 5 0 · 4 0 · 3 0 · 2 0\n\nK♥ 玻璃纸 闪箔、9♦ 金纸"
+            },
+            {
+              "scope": "all",
+              "filter": "all",
+              "counts": {
+                "total": 52,
+                "suits": [
+                  14,
+                  14,
+                  12,
+                  12
+                ],
+                "ranks": [
+                  5,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  3
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 14 · ♥ 14 · ♣ 12 · ♦ 12\n\n点数：A 5 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n2♠ 手牌、3♠、3♠ 手牌 热度纸、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、A♥、2♣、4♣ 手牌 热度纸、5♣、6♣、7♣、8♣、9♣ 手牌 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、Q♦ 手牌、K♦、A♦"
+            },
+            {
+              "scope": "all",
+              "filter": "none",
+              "counts": {
+                "total": 46,
+                "suits": [
+                  13,
+                  12,
+                  10,
+                  11
+                ],
+                "ranks": [
+                  4,
+                  3,
+                  4,
+                  4,
+                  4,
+                  2,
+                  4,
+                  4,
+                  4,
+                  4,
+                  3,
+                  3,
+                  3
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 无增强 · 46 张\n\n花色：♠ 13 · ♥ 12 · ♣ 10 · ♦ 11\n\n点数：A 4 · K 3 · Q 4 · J 4 · 10 4 · 9 2 · 8 4 · 7 4 · 6 4 · 5 4 · 4 3 · 3 3 · 2 3\n\n2♠ 手牌、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、Q♦ 手牌、K♦、A♦"
+            },
+            {
+              "scope": "all",
+              "filter": "enhanced",
+              "counts": {
+                "total": 6,
+                "suits": [
+                  1,
+                  2,
+                  2,
+                  1
+                ],
+                "ranks": [
+                  1,
+                  1,
+                  0,
+                  0,
+                  0,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  1,
+                  0
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 有增强 · 6 张\n\n花色：♠ 1 · ♥ 2 · ♣ 2 · ♦ 1\n\n点数：A 1 · K 1 · Q 0 · J 0 · 10 0 · 9 2 · 8 0 · 7 0 · 6 0 · 5 0 · 4 1 · 3 1 · 2 0\n\n3♠ 手牌 热度纸、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、4♣ 手牌 热度纸、9♣ 手牌 热度纸、9♦ 金纸"
+            }
+          ],
+          "layout": {
+            "before": {
+              "dialog": {
+                "x": 19,
+                "y": 12,
+                "width": 352,
+                "height": 716
+              },
+              "scroll": {
+                "x": 36,
+                "y": 84.5,
+                "width": 318,
+                "height": 561.5,
+                "top": 0,
+                "client": 562,
+                "contentHeight": 562,
+                "contentWidth": 318,
+                "clientWidth": 318
+              },
+              "close": {
+                "x": 36,
+                "y": 673,
+                "width": 318,
+                "height": 44
+              },
+              "selects": [
+                {
+                  "x": 36,
+                  "y": 111,
+                  "width": 153,
+                  "height": 44
+                },
+                {
+                  "x": 201,
+                  "y": 111,
+                  "width": 153,
+                  "height": 44
+                }
+              ]
+            },
+            "scroll": "N/A: complete body fits the viewport; overflow:auto retained",
+            "status": "PASS"
+          },
+          "status": "PASS"
+        }
+      ],
+      "lifecycle": [
+        {
+          "scene": "character-select",
+          "registryPresent": false,
+          "gameOwnerPresent": false,
+          "shopOwnerPresent": false,
+          "modalCount": 0,
+          "status": "PASS"
+        }
+      ],
+      "lastGeometry": {
+        "dialog": {
+          "x": 19,
+          "y": 12,
+          "width": 352,
+          "height": 716
+        },
+        "scroll": {
+          "x": 36,
+          "y": 84.5,
+          "width": 318,
+          "height": 561.5,
+          "top": 0,
+          "client": 562,
+          "contentHeight": 562,
+          "contentWidth": 318,
+          "clientWidth": 318
+        },
+        "close": {
+          "x": 36,
+          "y": 673,
+          "width": 318,
+          "height": 44
+        },
+        "selects": [
+          {
+            "x": 36,
+            "y": 111,
+            "width": 153,
+            "height": 44
+          },
+          {
+            "x": 201,
+            "y": 111,
+            "width": 153,
+            "height": 44
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "safeTop": 0,
+      "safeBottom": 0,
+      "inspections": [
+        {
+          "phase": "shop",
+          "beforeRunSHA256": "d62af63d5b4aac432d611451a2ceb10a996bf4c135d4b070b7c480e9189dff9f",
+          "afterRunSHA256": "d62af63d5b4aac432d611451a2ceb10a996bf4c135d4b070b7c480e9189dff9f",
+          "commandSeq": 8,
+          "RNG": "UNCHANGED",
+          "selectedBefore": [],
+          "selectedAfter": [],
+          "results": [
+            {
+              "scope": "all",
+              "filter": "all",
+              "counts": {
+                "total": 51,
+                "suits": [
+                  12,
+                  13,
+                  13,
+                  13
+                ],
+                "ranks": [
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  3
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n商店不显示下一场剩余牌堆；入场后可查。上一场牌区不代表下一场发牌。\n\n全部有效持久牌组 · 所有增强 · 51 张\n\n花色：♠ 12 · ♥ 13 · ♣ 13 · ♦ 13\n\n点数：A 4 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 上场已打出、2♥、3♥、4♥、5♥、6♥ 上场手牌、7♥、8♥、9♥、10♥ 上场已弃、J♥、Q♥、K♥ 上场手牌 玻璃纸 闪箔、A♥、2♣、3♣、4♣ 上场手牌、5♣、6♣、7♣、8♣、9♣ 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、2♦、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦ 上场已打出、J♦ 上场已打出、Q♦ 上场已打出、K♦ 上场已打出、A♦ 上场已打出"
+            },
+            {
+              "scope": "all",
+              "filter": "none",
+              "counts": {
+                "total": 48,
+                "suits": [
+                  12,
+                  12,
+                  12,
+                  12
+                ],
+                "ranks": [
+                  4,
+                  3,
+                  4,
+                  4,
+                  4,
+                  2,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  3
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n商店不显示下一场剩余牌堆；入场后可查。上一场牌区不代表下一场发牌。\n\n全部有效持久牌组 · 无增强 · 48 张\n\n花色：♠ 12 · ♥ 12 · ♣ 12 · ♦ 12\n\n点数：A 4 · K 3 · Q 4 · J 4 · 10 4 · 9 2 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 上场已打出、2♥、3♥、4♥、5♥、6♥ 上场手牌、7♥、8♥、9♥、10♥ 上场已弃、J♥、Q♥、A♥、2♣、3♣、4♣ 上场手牌、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、2♦、3♦、4♦、5♦、6♦、7♦、8♦、10♦ 上场已打出、J♦ 上场已打出、Q♦ 上场已打出、K♦ 上场已打出、A♦ 上场已打出"
+            },
+            {
+              "scope": "all",
+              "filter": "enhanced",
+              "counts": {
+                "total": 3,
+                "suits": [
+                  0,
+                  1,
+                  1,
+                  1
+                ],
+                "ranks": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n商店不显示下一场剩余牌堆；入场后可查。上一场牌区不代表下一场发牌。\n\n全部有效持久牌组 · 有增强 · 3 张\n\n花色：♠ 0 · ♥ 1 · ♣ 1 · ♦ 1\n\n点数：A 0 · K 1 · Q 0 · J 0 · 10 0 · 9 2 · 8 0 · 7 0 · 6 0 · 5 0 · 4 0 · 3 0 · 2 0\n\nK♥ 上场手牌 玻璃纸 闪箔、9♣ 热度纸、9♦ 金纸"
+            }
+          ],
+          "layout": {
+            "before": {
+              "dialog": {
+                "x": 19,
+                "y": 12,
+                "width": 282,
+                "height": 544
+              },
+              "scroll": {
+                "x": 36,
+                "y": 84.5,
+                "width": 248,
+                "height": 389.5,
+                "top": 0,
+                "client": 390,
+                "contentHeight": 824,
+                "contentWidth": 248,
+                "clientWidth": 248
+              },
+              "close": {
+                "x": 36,
+                "y": 501,
+                "width": 248,
+                "height": 44
+              },
+              "selects": [
+                {
+                  "x": 36,
+                  "y": 111,
+                  "width": 248,
+                  "height": 44
+                },
+                {
+                  "x": 36,
+                  "y": 189.5,
+                  "width": 248,
+                  "height": 44
+                }
+              ]
+            },
+            "scrolled": {
+              "dialog": {
+                "x": 19,
+                "y": 12,
+                "width": 282,
+                "height": 544
+              },
+              "scroll": {
+                "x": 36,
+                "y": 84.5,
+                "width": 248,
+                "height": 389.5,
+                "top": 434,
+                "client": 390,
+                "contentHeight": 824,
+                "contentWidth": 248,
+                "clientWidth": 248
+              },
+              "close": {
+                "x": 36,
+                "y": 501,
+                "width": 248,
+                "height": 44
+              },
+              "selects": [
+                {
+                  "x": 36,
+                  "y": -323,
+                  "width": 248,
+                  "height": 44
+                },
+                {
+                  "x": 36,
+                  "y": -244.5,
+                  "width": 248,
+                  "height": 44
+                }
+              ]
+            },
+            "status": "PASS"
+          },
+          "status": "PASS"
+        },
+        {
+          "phase": "await-input",
+          "beforeRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+          "afterRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+          "commandSeq": 10,
+          "RNG": "UNCHANGED",
+          "selectedBefore": [
+            "hearts-13",
+            "clubs-3"
+          ],
+          "selectedAfter": [
+            "hearts-13",
+            "clubs-3"
+          ],
+          "results": [
+            {
+              "scope": "remaining",
+              "filter": "all",
+              "counts": {
+                "total": 42,
+                "suits": [
+                  11,
+                  10,
+                  10,
+                  11
+                ],
+                "ranks": [
+                  3,
+                  4,
+                  3,
+                  3,
+                  3,
+                  3,
+                  4,
+                  4,
+                  3,
+                  4,
+                  3,
+                  3,
+                  2
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 所有增强 · 42 张\n\n花色：♠ 11 · ♥ 10 · ♣ 10 · ♦ 11\n\n点数：A 3 · K 4 · Q 3 · J 3 · 10 3 · 9 3 · 8 4 · 7 4 · 6 3 · 5 4 · 4 3 · 3 3 · 2 2\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、2♥、3♥、4♥、5♥、7♥、8♥、9♥、Q♥、K♥ 玻璃纸 闪箔、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、K♦、A♦"
+            },
+            {
+              "scope": "remaining",
+              "filter": "none",
+              "counts": {
+                "total": 40,
+                "suits": [
+                  11,
+                  9,
+                  10,
+                  10
+                ],
+                "ranks": [
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  2,
+                  4,
+                  4,
+                  3,
+                  4,
+                  3,
+                  3,
+                  2
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 无增强 · 40 张\n\n花色：♠ 11 · ♥ 9 · ♣ 10 · ♦ 10\n\n点数：A 3 · K 3 · Q 3 · J 3 · 10 3 · 9 2 · 8 4 · 7 4 · 6 3 · 5 4 · 4 3 · 3 3 · 2 2\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、2♥、3♥、4♥、5♥、7♥、8♥、9♥、Q♥、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、K♦、A♦"
+            },
+            {
+              "scope": "remaining",
+              "filter": "enhanced",
+              "counts": {
+                "total": 2,
+                "suits": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "ranks": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 有增强 · 2 张\n\n花色：♠ 0 · ♥ 1 · ♣ 0 · ♦ 1\n\n点数：A 0 · K 1 · Q 0 · J 0 · 10 0 · 9 1 · 8 0 · 7 0 · 6 0 · 5 0 · 4 0 · 3 0 · 2 0\n\nK♥ 玻璃纸 闪箔、9♦ 金纸"
+            },
+            {
+              "scope": "all",
+              "filter": "all",
+              "counts": {
+                "total": 52,
+                "suits": [
+                  14,
+                  14,
+                  12,
+                  12
+                ],
+                "ranks": [
+                  5,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  3
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 14 · ♥ 14 · ♣ 12 · ♦ 12\n\n点数：A 5 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n2♠ 手牌、3♠、3♠ 手牌 热度纸、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、A♥、2♣、4♣ 手牌 热度纸、5♣、6♣、7♣、8♣、9♣ 手牌 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、Q♦ 手牌、K♦、A♦"
+            },
+            {
+              "scope": "all",
+              "filter": "none",
+              "counts": {
+                "total": 46,
+                "suits": [
+                  13,
+                  12,
+                  10,
+                  11
+                ],
+                "ranks": [
+                  4,
+                  3,
+                  4,
+                  4,
+                  4,
+                  2,
+                  4,
+                  4,
+                  4,
+                  4,
+                  3,
+                  3,
+                  3
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 无增强 · 46 张\n\n花色：♠ 13 · ♥ 12 · ♣ 10 · ♦ 11\n\n点数：A 4 · K 3 · Q 4 · J 4 · 10 4 · 9 2 · 8 4 · 7 4 · 6 4 · 5 4 · 4 3 · 3 3 · 2 3\n\n2♠ 手牌、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、Q♦ 手牌、K♦、A♦"
+            },
+            {
+              "scope": "all",
+              "filter": "enhanced",
+              "counts": {
+                "total": 6,
+                "suits": [
+                  1,
+                  2,
+                  2,
+                  1
+                ],
+                "ranks": [
+                  1,
+                  1,
+                  0,
+                  0,
+                  0,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  1,
+                  0
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 有增强 · 6 张\n\n花色：♠ 1 · ♥ 2 · ♣ 2 · ♦ 1\n\n点数：A 1 · K 1 · Q 0 · J 0 · 10 0 · 9 2 · 8 0 · 7 0 · 6 0 · 5 0 · 4 1 · 3 1 · 2 0\n\n3♠ 手牌 热度纸、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、4♣ 手牌 热度纸、9♣ 手牌 热度纸、9♦ 金纸"
+            }
+          ],
+          "layout": {
+            "before": {
+              "dialog": {
+                "x": 19,
+                "y": 12,
+                "width": 282,
+                "height": 544
+              },
+              "scroll": {
+                "x": 36,
+                "y": 84.5,
+                "width": 248,
+                "height": 389.5,
+                "top": 0,
+                "client": 390,
+                "contentHeight": 722,
+                "contentWidth": 248,
+                "clientWidth": 248
+              },
+              "close": {
+                "x": 36,
+                "y": 501,
+                "width": 248,
+                "height": 44
+              },
+              "selects": [
+                {
+                  "x": 36,
+                  "y": 111,
+                  "width": 248,
+                  "height": 44
+                },
+                {
+                  "x": 36,
+                  "y": 189.5,
+                  "width": 248,
+                  "height": 44
+                }
+              ]
+            },
+            "scrolled": {
+              "dialog": {
+                "x": 19,
+                "y": 12,
+                "width": 282,
+                "height": 544
+              },
+              "scroll": {
+                "x": 36,
+                "y": 84.5,
+                "width": 248,
+                "height": 389.5,
+                "top": 332,
+                "client": 390,
+                "contentHeight": 722,
+                "contentWidth": 248,
+                "clientWidth": 248
+              },
+              "close": {
+                "x": 36,
+                "y": 501,
+                "width": 248,
+                "height": 44
+              },
+              "selects": [
+                {
+                  "x": 36,
+                  "y": -221,
+                  "width": 248,
+                  "height": 44
+                },
+                {
+                  "x": 36,
+                  "y": -142.5,
+                  "width": 248,
+                  "height": 44
+                }
+              ]
+            },
+            "status": "PASS"
+          },
+          "status": "PASS"
+        }
+      ],
+      "lifecycle": [
+        {
+          "scene": "game",
+          "newStage": 1,
+          "remaining": 43,
+          "previousRemaining": 41,
+          "currentOwner": true,
+          "shopOwnerReleased": true,
+          "status": "PASS"
+        },
+        {
+          "scene": "character-select",
+          "registryPresent": false,
+          "gameOwnerPresent": false,
+          "shopOwnerPresent": false,
+          "modalCount": 0,
+          "status": "PASS"
+        },
+        {
+          "scene": "character-select",
+          "registryPresent": false,
+          "gameOwnerPresent": false,
+          "shopOwnerPresent": false,
+          "modalCount": 0,
+          "status": "PASS"
+        }
+      ],
+      "lastGeometry": {
+        "dialog": {
+          "x": 19,
+          "y": 12,
+          "width": 282,
+          "height": 544
+        },
+        "scroll": {
+          "x": 36,
+          "y": 84.5,
+          "width": 248,
+          "height": 389.5,
+          "top": 0,
+          "client": 390,
+          "contentHeight": 722,
+          "contentWidth": 248,
+          "clientWidth": 248
+        },
+        "close": {
+          "x": 36,
+          "y": 501,
+          "width": 248,
+          "height": 44
+        },
+        "selects": [
+          {
+            "x": 36,
+            "y": 111,
+            "width": 248,
+            "height": 44
+          },
+          {
+            "x": 36,
+            "y": 189.5,
+            "width": 248,
+            "height": 44
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "safeTop": 12,
+      "safeBottom": 34,
+      "inspections": [
+        {
+          "phase": "shop",
+          "beforeRunSHA256": "d62af63d5b4aac432d611451a2ceb10a996bf4c135d4b070b7c480e9189dff9f",
+          "afterRunSHA256": "d62af63d5b4aac432d611451a2ceb10a996bf4c135d4b070b7c480e9189dff9f",
+          "commandSeq": 8,
+          "RNG": "UNCHANGED",
+          "selectedBefore": [],
+          "selectedAfter": [],
+          "results": [
+            {
+              "scope": "all",
+              "filter": "all",
+              "counts": {
+                "total": 51,
+                "suits": [
+                  12,
+                  13,
+                  13,
+                  13
+                ],
+                "ranks": [
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  3
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n商店不显示下一场剩余牌堆；入场后可查。上一场牌区不代表下一场发牌。\n\n全部有效持久牌组 · 所有增强 · 51 张\n\n花色：♠ 12 · ♥ 13 · ♣ 13 · ♦ 13\n\n点数：A 4 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 上场已打出、2♥、3♥、4♥、5♥、6♥ 上场手牌、7♥、8♥、9♥、10♥ 上场已弃、J♥、Q♥、K♥ 上场手牌 玻璃纸 闪箔、A♥、2♣、3♣、4♣ 上场手牌、5♣、6♣、7♣、8♣、9♣ 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、2♦、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦ 上场已打出、J♦ 上场已打出、Q♦ 上场已打出、K♦ 上场已打出、A♦ 上场已打出"
+            },
+            {
+              "scope": "all",
+              "filter": "none",
+              "counts": {
+                "total": 48,
+                "suits": [
+                  12,
+                  12,
+                  12,
+                  12
+                ],
+                "ranks": [
+                  4,
+                  3,
+                  4,
+                  4,
+                  4,
+                  2,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  3
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n商店不显示下一场剩余牌堆；入场后可查。上一场牌区不代表下一场发牌。\n\n全部有效持久牌组 · 无增强 · 48 张\n\n花色：♠ 12 · ♥ 12 · ♣ 12 · ♦ 12\n\n点数：A 4 · K 3 · Q 4 · J 4 · 10 4 · 9 2 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 上场已打出、2♥、3♥、4♥、5♥、6♥ 上场手牌、7♥、8♥、9♥、10♥ 上场已弃、J♥、Q♥、A♥、2♣、3♣、4♣ 上场手牌、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、2♦、3♦、4♦、5♦、6♦、7♦、8♦、10♦ 上场已打出、J♦ 上场已打出、Q♦ 上场已打出、K♦ 上场已打出、A♦ 上场已打出"
+            },
+            {
+              "scope": "all",
+              "filter": "enhanced",
+              "counts": {
+                "total": 3,
+                "suits": [
+                  0,
+                  1,
+                  1,
+                  1
+                ],
+                "ranks": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n商店不显示下一场剩余牌堆；入场后可查。上一场牌区不代表下一场发牌。\n\n全部有效持久牌组 · 有增强 · 3 张\n\n花色：♠ 0 · ♥ 1 · ♣ 1 · ♦ 1\n\n点数：A 0 · K 1 · Q 0 · J 0 · 10 0 · 9 2 · 8 0 · 7 0 · 6 0 · 5 0 · 4 0 · 3 0 · 2 0\n\nK♥ 上场手牌 玻璃纸 闪箔、9♣ 热度纸、9♦ 金纸"
+            }
+          ],
+          "layout": {
+            "before": {
+              "dialog": {
+                "x": 19,
+                "y": 35,
+                "width": 806,
+                "height": 230
+              },
+              "scroll": {
+                "x": 36,
+                "y": 94.5,
+                "width": 772,
+                "height": 96.5,
+                "top": 0,
+                "client": 97,
+                "contentHeight": 434,
+                "contentWidth": 772,
+                "clientWidth": 772
+              },
+              "close": {
+                "x": 36,
+                "y": 214,
+                "width": 772,
+                "height": 44
+              },
+              "selects": [
+                {
+                  "x": 36,
+                  "y": 121,
+                  "width": 380,
+                  "height": 44
+                },
+                {
+                  "x": 428,
+                  "y": 121,
+                  "width": 380,
+                  "height": 44
+                }
+              ]
+            },
+            "scrolled": {
+              "dialog": {
+                "x": 19,
+                "y": 35,
+                "width": 806,
+                "height": 230
+              },
+              "scroll": {
+                "x": 36,
+                "y": 94.5,
+                "width": 772,
+                "height": 96.5,
+                "top": 337,
+                "client": 97,
+                "contentHeight": 434,
+                "contentWidth": 772,
+                "clientWidth": 772
+              },
+              "close": {
+                "x": 36,
+                "y": 214,
+                "width": 772,
+                "height": 44
+              },
+              "selects": [
+                {
+                  "x": 36,
+                  "y": -216,
+                  "width": 380,
+                  "height": 44
+                },
+                {
+                  "x": 428,
+                  "y": -216,
+                  "width": 380,
+                  "height": 44
+                }
+              ]
+            },
+            "status": "PASS"
+          },
+          "status": "PASS"
+        },
+        {
+          "phase": "await-input",
+          "beforeRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+          "afterRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+          "commandSeq": 10,
+          "RNG": "UNCHANGED",
+          "selectedBefore": [
+            "hearts-13",
+            "clubs-3"
+          ],
+          "selectedAfter": [
+            "hearts-13",
+            "clubs-3"
+          ],
+          "results": [
+            {
+              "scope": "remaining",
+              "filter": "all",
+              "counts": {
+                "total": 42,
+                "suits": [
+                  11,
+                  10,
+                  10,
+                  11
+                ],
+                "ranks": [
+                  3,
+                  4,
+                  3,
+                  3,
+                  3,
+                  3,
+                  4,
+                  4,
+                  3,
+                  4,
+                  3,
+                  3,
+                  2
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 所有增强 · 42 张\n\n花色：♠ 11 · ♥ 10 · ♣ 10 · ♦ 11\n\n点数：A 3 · K 4 · Q 3 · J 3 · 10 3 · 9 3 · 8 4 · 7 4 · 6 3 · 5 4 · 4 3 · 3 3 · 2 2\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、2♥、3♥、4♥、5♥、7♥、8♥、9♥、Q♥、K♥ 玻璃纸 闪箔、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、K♦、A♦"
+            },
+            {
+              "scope": "remaining",
+              "filter": "none",
+              "counts": {
+                "total": 40,
+                "suits": [
+                  11,
+                  9,
+                  10,
+                  10
+                ],
+                "ranks": [
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  2,
+                  4,
+                  4,
+                  3,
+                  4,
+                  3,
+                  3,
+                  2
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 无增强 · 40 张\n\n花色：♠ 11 · ♥ 9 · ♣ 10 · ♦ 10\n\n点数：A 3 · K 3 · Q 3 · J 3 · 10 3 · 9 2 · 8 4 · 7 4 · 6 3 · 5 4 · 4 3 · 3 3 · 2 2\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、2♥、3♥、4♥、5♥、7♥、8♥、9♥、Q♥、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、K♦、A♦"
+            },
+            {
+              "scope": "remaining",
+              "filter": "enhanced",
+              "counts": {
+                "total": 2,
+                "suits": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "ranks": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 有增强 · 2 张\n\n花色：♠ 0 · ♥ 1 · ♣ 0 · ♦ 1\n\n点数：A 0 · K 1 · Q 0 · J 0 · 10 0 · 9 1 · 8 0 · 7 0 · 6 0 · 5 0 · 4 0 · 3 0 · 2 0\n\nK♥ 玻璃纸 闪箔、9♦ 金纸"
+            },
+            {
+              "scope": "all",
+              "filter": "all",
+              "counts": {
+                "total": 52,
+                "suits": [
+                  14,
+                  14,
+                  12,
+                  12
+                ],
+                "ranks": [
+                  5,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  3
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 14 · ♥ 14 · ♣ 12 · ♦ 12\n\n点数：A 5 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n2♠ 手牌、3♠、3♠ 手牌 热度纸、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、A♥、2♣、4♣ 手牌 热度纸、5♣、6♣、7♣、8♣、9♣ 手牌 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、Q♦ 手牌、K♦、A♦"
+            },
+            {
+              "scope": "all",
+              "filter": "none",
+              "counts": {
+                "total": 46,
+                "suits": [
+                  13,
+                  12,
+                  10,
+                  11
+                ],
+                "ranks": [
+                  4,
+                  3,
+                  4,
+                  4,
+                  4,
+                  2,
+                  4,
+                  4,
+                  4,
+                  4,
+                  3,
+                  3,
+                  3
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 无增强 · 46 张\n\n花色：♠ 13 · ♥ 12 · ♣ 10 · ♦ 11\n\n点数：A 4 · K 3 · Q 4 · J 4 · 10 4 · 9 2 · 8 4 · 7 4 · 6 4 · 5 4 · 4 3 · 3 3 · 2 3\n\n2♠ 手牌、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、Q♦ 手牌、K♦、A♦"
+            },
+            {
+              "scope": "all",
+              "filter": "enhanced",
+              "counts": {
+                "total": 6,
+                "suits": [
+                  1,
+                  2,
+                  2,
+                  1
+                ],
+                "ranks": [
+                  1,
+                  1,
+                  0,
+                  0,
+                  0,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  1,
+                  0
+                ]
+              },
+              "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 有增强 · 6 张\n\n花色：♠ 1 · ♥ 2 · ♣ 2 · ♦ 1\n\n点数：A 1 · K 1 · Q 0 · J 0 · 10 0 · 9 2 · 8 0 · 7 0 · 6 0 · 5 0 · 4 1 · 3 1 · 2 0\n\n3♠ 手牌 热度纸、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、4♣ 手牌 热度纸、9♣ 手牌 热度纸、9♦ 金纸"
+            }
+          ],
+          "layout": {
+            "before": {
+              "dialog": {
+                "x": 19,
+                "y": 35,
+                "width": 806,
+                "height": 230
+              },
+              "scroll": {
+                "x": 36,
+                "y": 94.5,
+                "width": 772,
+                "height": 96.5,
+                "top": 0,
+                "client": 97,
+                "contentHeight": 407,
+                "contentWidth": 772,
+                "clientWidth": 772
+              },
+              "close": {
+                "x": 36,
+                "y": 214,
+                "width": 772,
+                "height": 44
+              },
+              "selects": [
+                {
+                  "x": 36,
+                  "y": 121,
+                  "width": 380,
+                  "height": 44
+                },
+                {
+                  "x": 428,
+                  "y": 121,
+                  "width": 380,
+                  "height": 44
+                }
+              ]
+            },
+            "scrolled": {
+              "dialog": {
+                "x": 19,
+                "y": 35,
+                "width": 806,
+                "height": 230
+              },
+              "scroll": {
+                "x": 36,
+                "y": 94.5,
+                "width": 772,
+                "height": 96.5,
+                "top": 310,
+                "client": 97,
+                "contentHeight": 407,
+                "contentWidth": 772,
+                "clientWidth": 772
+              },
+              "close": {
+                "x": 36,
+                "y": 214,
+                "width": 772,
+                "height": 44
+              },
+              "selects": [
+                {
+                  "x": 36,
+                  "y": -189,
+                  "width": 380,
+                  "height": 44
+                },
+                {
+                  "x": 428,
+                  "y": -189,
+                  "width": 380,
+                  "height": 44
+                }
+              ]
+            },
+            "status": "PASS"
+          },
+          "status": "PASS"
+        }
+      ],
+      "lifecycle": [
+        {
+          "scene": "game",
+          "newStage": 1,
+          "remaining": 43,
+          "previousRemaining": 41,
+          "currentOwner": true,
+          "shopOwnerReleased": true,
+          "status": "PASS"
+        },
+        {
+          "scene": "character-select",
+          "registryPresent": false,
+          "gameOwnerPresent": false,
+          "shopOwnerPresent": false,
+          "modalCount": 0,
+          "status": "PASS"
+        },
+        {
+          "scene": "character-select",
+          "registryPresent": false,
+          "gameOwnerPresent": false,
+          "shopOwnerPresent": false,
+          "modalCount": 0,
+          "status": "PASS"
+        }
+      ],
+      "lastGeometry": {
+        "dialog": {
+          "x": 19,
+          "y": 35,
+          "width": 806,
+          "height": 230
+        },
+        "scroll": {
+          "x": 36,
+          "y": 94.5,
+          "width": 772,
+          "height": 96.5,
+          "top": 0,
+          "client": 97,
+          "contentHeight": 407,
+          "contentWidth": 772,
+          "clientWidth": 772
+        },
+        "close": {
+          "x": 36,
+          "y": 214,
+          "width": 772,
+          "height": 44
+        },
+        "selects": [
+          {
+            "x": 36,
+            "y": 121,
+            "width": 380,
+            "height": 44
+          },
+          {
+            "x": 428,
+            "y": 121,
+            "width": 380,
+            "height": 44
+          }
+        ]
+      },
+      "status": "PASS"
+    }
+  ],
+  "modifications": [
+    {
+      "id": "T07",
+      "targets": [
+        "hearts-13"
+      ],
+      "commandSeq": [
+        6,
+        7
+      ],
+      "before": {
+        "total": 51,
+        "suits": [
+          12,
+          13,
+          13,
+          13
+        ],
+        "ranks": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          3
+        ]
+      },
+      "after": {
+        "total": 52,
+        "suits": [
+          12,
+          14,
+          13,
+          13
+        ],
+        "ranks": [
+          4,
+          5,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          3
+        ]
+      },
+      "completeStateVsAuthoritativeCommand": "PASS",
+      "freshReader": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 12 · ♥ 14 · ♣ 13 · ♦ 13\n\n点数：A 4 · K 5 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、K♥ 手牌 玻璃纸 闪箔、K♥ 玻璃纸 闪箔、A♥、2♣、3♣ 手牌、4♣ 手牌、5♣、6♣、7♣、8♣、9♣ 手牌 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、Q♦ 手牌、K♦、A♦",
+      "status": "PASS"
+    },
+    {
+      "id": "T08",
+      "targets": [
+        "hearts-13"
+      ],
+      "commandSeq": [
+        7,
+        8
+      ],
+      "before": {
+        "total": 52,
+        "suits": [
+          12,
+          14,
+          13,
+          13
+        ],
+        "ranks": [
+          4,
+          5,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          3
+        ]
+      },
+      "after": {
+        "total": 52,
+        "suits": [
+          12,
+          14,
+          13,
+          13
+        ],
+        "ranks": [
+          5,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          3
+        ]
+      },
+      "completeStateVsAuthoritativeCommand": "PASS",
+      "freshReader": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 12 · ♥ 14 · ♣ 13 · ♦ 13\n\n点数：A 5 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、A♥、2♣、3♣ 手牌、4♣ 手牌、5♣、6♣、7♣、8♣、9♣ 手牌 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、Q♦ 手牌、K♦、A♦",
+      "status": "PASS"
+    },
+    {
+      "id": "T06",
+      "targets": [
+        "clubs-3",
+        "diamonds-2"
+      ],
+      "commandSeq": [
+        8,
+        9
+      ],
+      "before": {
+        "total": 52,
+        "suits": [
+          12,
+          14,
+          13,
+          13
+        ],
+        "ranks": [
+          5,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          3
+        ]
+      },
+      "after": {
+        "total": 52,
+        "suits": [
+          14,
+          14,
+          12,
+          12
+        ],
+        "ranks": [
+          5,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          3
+        ]
+      },
+      "completeStateVsAuthoritativeCommand": "PASS",
+      "freshReader": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 14 · ♥ 14 · ♣ 12 · ♦ 12\n\n点数：A 5 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n2♠ 手牌、3♠、3♠ 手牌、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、A♥、2♣、4♣ 手牌、5♣、6♣、7♣、8♣、9♣ 手牌 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、Q♦ 手牌、K♦、A♦",
+      "status": "PASS"
+    },
+    {
+      "id": "T10",
+      "targets": [
+        "clubs-3",
+        "clubs-4"
+      ],
+      "commandSeq": [
+        9,
+        10
+      ],
+      "before": {
+        "total": 52,
+        "suits": [
+          14,
+          14,
+          12,
+          12
+        ],
+        "ranks": [
+          5,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          3
+        ]
+      },
+      "after": {
+        "total": 52,
+        "suits": [
+          14,
+          14,
+          12,
+          12
+        ],
+        "ranks": [
+          5,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          3
+        ]
+      },
+      "completeStateVsAuthoritativeCommand": "PASS",
+      "freshReader": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 14 · ♥ 14 · ♣ 12 · ♦ 12\n\n点数：A 5 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n2♠ 手牌、3♠、3♠ 手牌 热度纸、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、A♥、2♣、4♣ 手牌 热度纸、5♣、6♣、7♣、8♣、9♣ 手牌 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、Q♦ 手牌、K♦、A♦",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "320-game-modified-ranks.png",
+    "844-short-game-modified-ranks.png"
+  ],
+  "prior390": {
+    "viewport": {
+      "width": 390,
+      "height": 740
+    },
+    "safeTop": 0,
+    "safeBottom": 0,
+    "inspections": [
+      {
+        "phase": "shop",
+        "beforeRunSHA256": "d62af63d5b4aac432d611451a2ceb10a996bf4c135d4b070b7c480e9189dff9f",
+        "afterRunSHA256": "d62af63d5b4aac432d611451a2ceb10a996bf4c135d4b070b7c480e9189dff9f",
+        "commandSeq": 8,
+        "RNG": "UNCHANGED",
+        "selectedBefore": [],
+        "selectedAfter": [],
+        "results": [
+          {
+            "scope": "all",
+            "filter": "all",
+            "counts": {
+              "total": 51,
+              "suits": [
+                12,
+                13,
+                13,
+                13
+              ],
+              "ranks": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n商店不显示下一场剩余牌堆；入场后可查。上一场牌区不代表下一场发牌。\n\n全部有效持久牌组 · 所有增强 · 51 张\n\n花色：♠ 12 · ♥ 13 · ♣ 13 · ♦ 13\n\n点数：A 4 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 上场已打出、2♥、3♥、4♥、5♥、6♥ 上场手牌、7♥、8♥、9♥、10♥ 上场已弃、J♥、Q♥、K♥ 上场手牌 玻璃纸 闪箔、A♥、2♣、3♣、4♣ 上场手牌、5♣、6♣、7♣、8♣、9♣ 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、2♦、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦ 上场已打出、J♦ 上场已打出、Q♦ 上场已打出、K♦ 上场已打出、A♦ 上场已打出"
+          },
+          {
+            "scope": "all",
+            "filter": "none",
+            "counts": {
+              "total": 48,
+              "suits": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "ranks": [
+                4,
+                3,
+                4,
+                4,
+                4,
+                2,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n商店不显示下一场剩余牌堆；入场后可查。上一场牌区不代表下一场发牌。\n\n全部有效持久牌组 · 无增强 · 48 张\n\n花色：♠ 12 · ♥ 12 · ♣ 12 · ♦ 12\n\n点数：A 4 · K 3 · Q 4 · J 4 · 10 4 · 9 2 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 上场已打出、2♥、3♥、4♥、5♥、6♥ 上场手牌、7♥、8♥、9♥、10♥ 上场已弃、J♥、Q♥、A♥、2♣、3♣、4♣ 上场手牌、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、2♦、3♦、4♦、5♦、6♦、7♦、8♦、10♦ 上场已打出、J♦ 上场已打出、Q♦ 上场已打出、K♦ 上场已打出、A♦ 上场已打出"
+          },
+          {
+            "scope": "all",
+            "filter": "enhanced",
+            "counts": {
+              "total": 3,
+              "suits": [
+                0,
+                1,
+                1,
+                1
+              ],
+              "ranks": [
+                0,
+                1,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n商店不显示下一场剩余牌堆；入场后可查。上一场牌区不代表下一场发牌。\n\n全部有效持久牌组 · 有增强 · 3 张\n\n花色：♠ 0 · ♥ 1 · ♣ 1 · ♦ 1\n\n点数：A 0 · K 1 · Q 0 · J 0 · 10 0 · 9 2 · 8 0 · 7 0 · 6 0 · 5 0 · 4 0 · 3 0 · 2 0\n\nK♥ 上场手牌 玻璃纸 闪箔、9♣ 热度纸、9♦ 金纸"
+          }
+        ],
+        "layout": {
+          "before": {
+            "dialog": {
+              "x": 19,
+              "y": 12,
+              "width": 352,
+              "height": 716
+            },
+            "scroll": {
+              "x": 36,
+              "y": 84.5,
+              "width": 318,
+              "height": 561.5,
+              "top": 0,
+              "client": 562,
+              "contentHeight": 618,
+              "contentWidth": 318,
+              "clientWidth": 318
+            },
+            "close": {
+              "x": 36,
+              "y": 673,
+              "width": 318,
+              "height": 44
+            },
+            "selects": [
+              {
+                "x": 36,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              },
+              {
+                "x": 201,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              }
+            ]
+          },
+          "scrolled": {
+            "dialog": {
+              "x": 19,
+              "y": 12,
+              "width": 352,
+              "height": 716
+            },
+            "scroll": {
+              "x": 36,
+              "y": 84.5,
+              "width": 318,
+              "height": 561.5,
+              "top": 56,
+              "client": 562,
+              "contentHeight": 618,
+              "contentWidth": 318,
+              "clientWidth": 318
+            },
+            "close": {
+              "x": 36,
+              "y": 673,
+              "width": 318,
+              "height": 44
+            },
+            "selects": [
+              {
+                "x": 36,
+                "y": 55,
+                "width": 153,
+                "height": 44
+              },
+              {
+                "x": 201,
+                "y": 55,
+                "width": 153,
+                "height": 44
+              }
+            ]
+          },
+          "status": "PASS"
+        },
+        "status": "PASS"
+      },
+      {
+        "phase": "await-input",
+        "beforeRunSHA256": "80c49c73c431790920a301338e1daac0052d0cb35f3dcd877db11e8789fe66d7",
+        "afterRunSHA256": "80c49c73c431790920a301338e1daac0052d0cb35f3dcd877db11e8789fe66d7",
+        "commandSeq": 6,
+        "RNG": "UNCHANGED",
+        "selectedBefore": [
+          "hearts-13",
+          "clubs-3"
+        ],
+        "selectedAfter": [
+          "hearts-13",
+          "clubs-3"
+        ],
+        "results": [
+          {
+            "scope": "remaining",
+            "filter": "all",
+            "counts": {
+              "total": 41,
+              "suits": [
+                11,
+                9,
+                10,
+                11
+              ],
+              "ranks": [
+                3,
+                3,
+                3,
+                3,
+                3,
+                3,
+                4,
+                4,
+                3,
+                4,
+                3,
+                3,
+                2
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 所有增强 · 41 张\n\n花色：♠ 11 · ♥ 9 · ♣ 10 · ♦ 11\n\n点数：A 3 · K 3 · Q 3 · J 3 · 10 3 · 9 3 · 8 4 · 7 4 · 6 3 · 5 4 · 4 3 · 3 3 · 2 2\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、2♥、3♥、4♥、5♥、7♥、8♥、9♥、Q♥、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、K♦、A♦"
+          },
+          {
+            "scope": "remaining",
+            "filter": "none",
+            "counts": {
+              "total": 40,
+              "suits": [
+                11,
+                9,
+                10,
+                10
+              ],
+              "ranks": [
+                3,
+                3,
+                3,
+                3,
+                3,
+                2,
+                4,
+                4,
+                3,
+                4,
+                3,
+                3,
+                2
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 无增强 · 40 张\n\n花色：♠ 11 · ♥ 9 · ♣ 10 · ♦ 10\n\n点数：A 3 · K 3 · Q 3 · J 3 · 10 3 · 9 2 · 8 4 · 7 4 · 6 3 · 5 4 · 4 3 · 3 3 · 2 2\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、2♥、3♥、4♥、5♥、7♥、8♥、9♥、Q♥、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、K♦、A♦"
+          },
+          {
+            "scope": "remaining",
+            "filter": "enhanced",
+            "counts": {
+              "total": 1,
+              "suits": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "ranks": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 有增强 · 1 张\n\n花色：♠ 0 · ♥ 0 · ♣ 0 · ♦ 1\n\n点数：A 0 · K 0 · Q 0 · J 0 · 10 0 · 9 1 · 8 0 · 7 0 · 6 0 · 5 0 · 4 0 · 3 0 · 2 0\n\n9♦ 金纸"
+          },
+          {
+            "scope": "all",
+            "filter": "all",
+            "counts": {
+              "total": 51,
+              "suits": [
+                12,
+                13,
+                13,
+                13
+              ],
+              "ranks": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 51 张\n\n花色：♠ 12 · ♥ 13 · ♣ 13 · ♦ 13\n\n点数：A 4 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、K♥ 手牌 玻璃纸 闪箔、A♥、2♣、3♣ 手牌、4♣ 手牌、5♣、6♣、7♣、8♣、9♣ 手牌 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、Q♦ 手牌、K♦、A♦"
+          },
+          {
+            "scope": "all",
+            "filter": "none",
+            "counts": {
+              "total": 48,
+              "suits": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "ranks": [
+                4,
+                3,
+                4,
+                4,
+                4,
+                2,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 无增强 · 48 张\n\n花色：♠ 12 · ♥ 12 · ♣ 12 · ♦ 12\n\n点数：A 4 · K 3 · Q 4 · J 4 · 10 4 · 9 2 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、A♥、2♣、3♣ 手牌、4♣ 手牌、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、Q♦ 手牌、K♦、A♦"
+          },
+          {
+            "scope": "all",
+            "filter": "enhanced",
+            "counts": {
+              "total": 3,
+              "suits": [
+                0,
+                1,
+                1,
+                1
+              ],
+              "ranks": [
+                0,
+                1,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 有增强 · 3 张\n\n花色：♠ 0 · ♥ 1 · ♣ 1 · ♦ 1\n\n点数：A 0 · K 1 · Q 0 · J 0 · 10 0 · 9 2 · 8 0 · 7 0 · 6 0 · 5 0 · 4 0 · 3 0 · 2 0\n\nK♥ 手牌 玻璃纸 闪箔、9♣ 手牌 热度纸、9♦ 金纸"
+          }
+        ],
+        "layout": {
+          "before": {
+            "dialog": {
+              "x": 19,
+              "y": 12,
+              "width": 352,
+              "height": 716
+            },
+            "scroll": {
+              "x": 36,
+              "y": 84.5,
+              "width": 318,
+              "height": 561.5,
+              "top": 0,
+              "client": 562,
+              "contentHeight": 562,
+              "contentWidth": 318,
+              "clientWidth": 318
+            },
+            "close": {
+              "x": 36,
+              "y": 673,
+              "width": 318,
+              "height": 44
+            },
+            "selects": [
+              {
+                "x": 36,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              },
+              {
+                "x": 201,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              }
+            ]
+          },
+          "scroll": "N/A: complete body fits the viewport; overflow:auto retained",
+          "status": "PASS"
+        },
+        "status": "PASS"
+      },
+      {
+        "phase": "await-input",
+        "beforeRunSHA256": "0e7f3f98cc033dbd2952d0be0a2d63fcee29b9b1f1dbaf5b15ff21b2477f4bc6",
+        "afterRunSHA256": "0e7f3f98cc033dbd2952d0be0a2d63fcee29b9b1f1dbaf5b15ff21b2477f4bc6",
+        "commandSeq": 7,
+        "RNG": "UNCHANGED",
+        "selectedBefore": [
+          "hearts-13",
+          "clubs-3"
+        ],
+        "selectedAfter": [
+          "hearts-13",
+          "clubs-3"
+        ],
+        "results": [
+          {
+            "scope": "all",
+            "filter": "all",
+            "counts": {
+              "total": 52,
+              "suits": [
+                12,
+                14,
+                13,
+                13
+              ],
+              "ranks": [
+                4,
+                5,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 12 · ♥ 14 · ♣ 13 · ♦ 13\n\n点数：A 4 · K 5 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、K♥ 手牌 玻璃纸 闪箔、K♥ 玻璃纸 闪箔、A♥、2♣、3♣ 手牌、4♣ 手牌、5♣、6♣、7♣、8♣、9♣ 手牌 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、Q♦ 手牌、K♦、A♦"
+          },
+          {
+            "scope": "all",
+            "filter": "none",
+            "counts": {
+              "total": 48,
+              "suits": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "ranks": [
+                4,
+                3,
+                4,
+                4,
+                4,
+                2,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 无增强 · 48 张\n\n花色：♠ 12 · ♥ 12 · ♣ 12 · ♦ 12\n\n点数：A 4 · K 3 · Q 4 · J 4 · 10 4 · 9 2 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、A♥、2♣、3♣ 手牌、4♣ 手牌、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、Q♦ 手牌、K♦、A♦"
+          },
+          {
+            "scope": "all",
+            "filter": "enhanced",
+            "counts": {
+              "total": 4,
+              "suits": [
+                0,
+                2,
+                1,
+                1
+              ],
+              "ranks": [
+                0,
+                2,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 有增强 · 4 张\n\n花色：♠ 0 · ♥ 2 · ♣ 1 · ♦ 1\n\n点数：A 0 · K 2 · Q 0 · J 0 · 10 0 · 9 2 · 8 0 · 7 0 · 6 0 · 5 0 · 4 0 · 3 0 · 2 0\n\nK♥ 手牌 玻璃纸 闪箔、K♥ 玻璃纸 闪箔、9♣ 手牌 热度纸、9♦ 金纸"
+          }
+        ],
+        "layout": {
+          "before": {
+            "dialog": {
+              "x": 19,
+              "y": 12,
+              "width": 352,
+              "height": 716
+            },
+            "scroll": {
+              "x": 36,
+              "y": 84.5,
+              "width": 318,
+              "height": 561.5,
+              "top": 0,
+              "client": 562,
+              "contentHeight": 562,
+              "contentWidth": 318,
+              "clientWidth": 318
+            },
+            "close": {
+              "x": 36,
+              "y": 673,
+              "width": 318,
+              "height": 44
+            },
+            "selects": [
+              {
+                "x": 36,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              },
+              {
+                "x": 201,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              }
+            ]
+          },
+          "scroll": "N/A: complete body fits the viewport; overflow:auto retained",
+          "status": "PASS"
+        },
+        "status": "PASS"
+      },
+      {
+        "phase": "await-input",
+        "beforeRunSHA256": "e9825df59c383df2c88188935afe3182dac0cfdc34236662ebfbb69944b18a9d",
+        "afterRunSHA256": "e9825df59c383df2c88188935afe3182dac0cfdc34236662ebfbb69944b18a9d",
+        "commandSeq": 8,
+        "RNG": "UNCHANGED",
+        "selectedBefore": [
+          "hearts-13",
+          "clubs-3"
+        ],
+        "selectedAfter": [
+          "hearts-13",
+          "clubs-3"
+        ],
+        "results": [
+          {
+            "scope": "all",
+            "filter": "all",
+            "counts": {
+              "total": 52,
+              "suits": [
+                12,
+                14,
+                13,
+                13
+              ],
+              "ranks": [
+                5,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 12 · ♥ 14 · ♣ 13 · ♦ 13\n\n点数：A 5 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、A♥、2♣、3♣ 手牌、4♣ 手牌、5♣、6♣、7♣、8♣、9♣ 手牌 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、Q♦ 手牌、K♦、A♦"
+          },
+          {
+            "scope": "all",
+            "filter": "none",
+            "counts": {
+              "total": 48,
+              "suits": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "ranks": [
+                4,
+                3,
+                4,
+                4,
+                4,
+                2,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 无增强 · 48 张\n\n花色：♠ 12 · ♥ 12 · ♣ 12 · ♦ 12\n\n点数：A 4 · K 3 · Q 4 · J 4 · 10 4 · 9 2 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、A♥、2♣、3♣ 手牌、4♣ 手牌、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、Q♦ 手牌、K♦、A♦"
+          },
+          {
+            "scope": "all",
+            "filter": "enhanced",
+            "counts": {
+              "total": 4,
+              "suits": [
+                0,
+                2,
+                1,
+                1
+              ],
+              "ranks": [
+                1,
+                1,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 有增强 · 4 张\n\n花色：♠ 0 · ♥ 2 · ♣ 1 · ♦ 1\n\n点数：A 1 · K 1 · Q 0 · J 0 · 10 0 · 9 2 · 8 0 · 7 0 · 6 0 · 5 0 · 4 0 · 3 0 · 2 0\n\nK♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、9♣ 手牌 热度纸、9♦ 金纸"
+          }
+        ],
+        "layout": {
+          "before": {
+            "dialog": {
+              "x": 19,
+              "y": 12,
+              "width": 352,
+              "height": 716
+            },
+            "scroll": {
+              "x": 36,
+              "y": 84.5,
+              "width": 318,
+              "height": 561.5,
+              "top": 0,
+              "client": 562,
+              "contentHeight": 562,
+              "contentWidth": 318,
+              "clientWidth": 318
+            },
+            "close": {
+              "x": 36,
+              "y": 673,
+              "width": 318,
+              "height": 44
+            },
+            "selects": [
+              {
+                "x": 36,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              },
+              {
+                "x": 201,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              }
+            ]
+          },
+          "scroll": "N/A: complete body fits the viewport; overflow:auto retained",
+          "status": "PASS"
+        },
+        "status": "PASS"
+      },
+      {
+        "phase": "await-input",
+        "beforeRunSHA256": "c59862a7f0048cf1706621499f57ed88e01d4dcbb7ea15a88063232498ccf4ff",
+        "afterRunSHA256": "c59862a7f0048cf1706621499f57ed88e01d4dcbb7ea15a88063232498ccf4ff",
+        "commandSeq": 9,
+        "RNG": "UNCHANGED",
+        "selectedBefore": [
+          "hearts-13",
+          "clubs-3"
+        ],
+        "selectedAfter": [
+          "hearts-13",
+          "clubs-3"
+        ],
+        "results": [
+          {
+            "scope": "all",
+            "filter": "all",
+            "counts": {
+              "total": 52,
+              "suits": [
+                14,
+                14,
+                12,
+                12
+              ],
+              "ranks": [
+                5,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 14 · ♥ 14 · ♣ 12 · ♦ 12\n\n点数：A 5 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n2♠ 手牌、3♠、3♠ 手牌、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、A♥、2♣、4♣ 手牌、5♣、6♣、7♣、8♣、9♣ 手牌 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、Q♦ 手牌、K♦、A♦"
+          },
+          {
+            "scope": "all",
+            "filter": "none",
+            "counts": {
+              "total": 48,
+              "suits": [
+                14,
+                12,
+                11,
+                11
+              ],
+              "ranks": [
+                4,
+                3,
+                4,
+                4,
+                4,
+                2,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 无增强 · 48 张\n\n花色：♠ 14 · ♥ 12 · ♣ 11 · ♦ 11\n\n点数：A 4 · K 3 · Q 4 · J 4 · 10 4 · 9 2 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n2♠ 手牌、3♠、3♠ 手牌、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、A♥、2♣、4♣ 手牌、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、Q♦ 手牌、K♦、A♦"
+          },
+          {
+            "scope": "all",
+            "filter": "enhanced",
+            "counts": {
+              "total": 4,
+              "suits": [
+                0,
+                2,
+                1,
+                1
+              ],
+              "ranks": [
+                1,
+                1,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 有增强 · 4 张\n\n花色：♠ 0 · ♥ 2 · ♣ 1 · ♦ 1\n\n点数：A 1 · K 1 · Q 0 · J 0 · 10 0 · 9 2 · 8 0 · 7 0 · 6 0 · 5 0 · 4 0 · 3 0 · 2 0\n\nK♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、9♣ 手牌 热度纸、9♦ 金纸"
+          }
+        ],
+        "layout": {
+          "before": {
+            "dialog": {
+              "x": 19,
+              "y": 12,
+              "width": 352,
+              "height": 716
+            },
+            "scroll": {
+              "x": 36,
+              "y": 84.5,
+              "width": 318,
+              "height": 561.5,
+              "top": 0,
+              "client": 562,
+              "contentHeight": 562,
+              "contentWidth": 318,
+              "clientWidth": 318
+            },
+            "close": {
+              "x": 36,
+              "y": 673,
+              "width": 318,
+              "height": 44
+            },
+            "selects": [
+              {
+                "x": 36,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              },
+              {
+                "x": 201,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              }
+            ]
+          },
+          "scroll": "N/A: complete body fits the viewport; overflow:auto retained",
+          "status": "PASS"
+        },
+        "status": "PASS"
+      },
+      {
+        "phase": "await-input",
+        "beforeRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+        "afterRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+        "commandSeq": 10,
+        "RNG": "UNCHANGED",
+        "selectedBefore": [
+          "hearts-13",
+          "clubs-3"
+        ],
+        "selectedAfter": [
+          "hearts-13",
+          "clubs-3"
+        ],
+        "results": [
+          {
+            "scope": "all",
+            "filter": "all",
+            "counts": {
+              "total": 52,
+              "suits": [
+                14,
+                14,
+                12,
+                12
+              ],
+              "ranks": [
+                5,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 14 · ♥ 14 · ♣ 12 · ♦ 12\n\n点数：A 5 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n2♠ 手牌、3♠、3♠ 手牌 热度纸、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、A♥、2♣、4♣ 手牌 热度纸、5♣、6♣、7♣、8♣、9♣ 手牌 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、Q♦ 手牌、K♦、A♦"
+          },
+          {
+            "scope": "all",
+            "filter": "none",
+            "counts": {
+              "total": 46,
+              "suits": [
+                13,
+                12,
+                10,
+                11
+              ],
+              "ranks": [
+                4,
+                3,
+                4,
+                4,
+                4,
+                2,
+                4,
+                4,
+                4,
+                4,
+                3,
+                3,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 无增强 · 46 张\n\n花色：♠ 13 · ♥ 12 · ♣ 10 · ♦ 11\n\n点数：A 4 · K 3 · Q 4 · J 4 · 10 4 · 9 2 · 8 4 · 7 4 · 6 4 · 5 4 · 4 3 · 3 3 · 2 3\n\n2♠ 手牌、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、Q♦ 手牌、K♦、A♦"
+          },
+          {
+            "scope": "all",
+            "filter": "enhanced",
+            "counts": {
+              "total": 6,
+              "suits": [
+                1,
+                2,
+                2,
+                1
+              ],
+              "ranks": [
+                1,
+                1,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 有增强 · 6 张\n\n花色：♠ 1 · ♥ 2 · ♣ 2 · ♦ 1\n\n点数：A 1 · K 1 · Q 0 · J 0 · 10 0 · 9 2 · 8 0 · 7 0 · 6 0 · 5 0 · 4 1 · 3 1 · 2 0\n\n3♠ 手牌 热度纸、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、4♣ 手牌 热度纸、9♣ 手牌 热度纸、9♦ 金纸"
+          }
+        ],
+        "layout": {
+          "before": {
+            "dialog": {
+              "x": 19,
+              "y": 12,
+              "width": 352,
+              "height": 716
+            },
+            "scroll": {
+              "x": 36,
+              "y": 84.5,
+              "width": 318,
+              "height": 561.5,
+              "top": 0,
+              "client": 562,
+              "contentHeight": 562,
+              "contentWidth": 318,
+              "clientWidth": 318
+            },
+            "close": {
+              "x": 36,
+              "y": 673,
+              "width": 318,
+              "height": 44
+            },
+            "selects": [
+              {
+                "x": 36,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              },
+              {
+                "x": 201,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              }
+            ]
+          },
+          "scroll": "N/A: complete body fits the viewport; overflow:auto retained",
+          "status": "PASS"
+        },
+        "status": "PASS"
+      },
+      {
+        "phase": "await-input",
+        "beforeRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+        "afterRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+        "commandSeq": 10,
+        "RNG": "UNCHANGED",
+        "selectedBefore": [],
+        "selectedAfter": [],
+        "results": [
+          {
+            "scope": "remaining",
+            "filter": "all",
+            "counts": {
+              "total": 42,
+              "suits": [
+                11,
+                10,
+                10,
+                11
+              ],
+              "ranks": [
+                3,
+                4,
+                3,
+                3,
+                3,
+                3,
+                4,
+                4,
+                3,
+                4,
+                3,
+                3,
+                2
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 所有增强 · 42 张\n\n花色：♠ 11 · ♥ 10 · ♣ 10 · ♦ 11\n\n点数：A 3 · K 4 · Q 3 · J 3 · 10 3 · 9 3 · 8 4 · 7 4 · 6 3 · 5 4 · 4 3 · 3 3 · 2 2\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、2♥、3♥、4♥、5♥、7♥、8♥、9♥、Q♥、K♥ 玻璃纸 闪箔、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、K♦、A♦"
+          },
+          {
+            "scope": "remaining",
+            "filter": "none",
+            "counts": {
+              "total": 40,
+              "suits": [
+                11,
+                9,
+                10,
+                10
+              ],
+              "ranks": [
+                3,
+                3,
+                3,
+                3,
+                3,
+                2,
+                4,
+                4,
+                3,
+                4,
+                3,
+                3,
+                2
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 无增强 · 40 张\n\n花色：♠ 11 · ♥ 9 · ♣ 10 · ♦ 10\n\n点数：A 3 · K 3 · Q 3 · J 3 · 10 3 · 9 2 · 8 4 · 7 4 · 6 3 · 5 4 · 4 3 · 3 3 · 2 2\n\n3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、2♥、3♥、4♥、5♥、7♥、8♥、9♥、Q♥、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、K♦、A♦"
+          },
+          {
+            "scope": "remaining",
+            "filter": "enhanced",
+            "counts": {
+              "total": 2,
+              "suits": [
+                0,
+                1,
+                0,
+                1
+              ],
+              "ranks": [
+                0,
+                1,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n本场剩余牌堆 · 有增强 · 2 张\n\n花色：♠ 0 · ♥ 1 · ♣ 0 · ♦ 1\n\n点数：A 0 · K 1 · Q 0 · J 0 · 10 0 · 9 1 · 8 0 · 7 0 · 6 0 · 5 0 · 4 0 · 3 0 · 2 0\n\nK♥ 玻璃纸 闪箔、9♦ 金纸"
+          },
+          {
+            "scope": "all",
+            "filter": "all",
+            "counts": {
+              "total": 52,
+              "suits": [
+                14,
+                14,
+                12,
+                12
+              ],
+              "ranks": [
+                5,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 14 · ♥ 14 · ♣ 12 · ♦ 12\n\n点数：A 5 · K 4 · Q 4 · J 4 · 10 4 · 9 4 · 8 4 · 7 4 · 6 4 · 5 4 · 4 4 · 3 4 · 2 3\n\n2♠ 手牌、3♠、3♠ 手牌 热度纸、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、A♥、2♣、4♣ 手牌 热度纸、5♣、6♣、7♣、8♣、9♣ 手牌 热度纸、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、9♦ 金纸、10♦、J♦、Q♦ 手牌、K♦、A♦"
+          },
+          {
+            "scope": "all",
+            "filter": "none",
+            "counts": {
+              "total": 46,
+              "suits": [
+                13,
+                12,
+                10,
+                11
+              ],
+              "ranks": [
+                4,
+                3,
+                4,
+                4,
+                4,
+                2,
+                4,
+                4,
+                4,
+                4,
+                3,
+                3,
+                3
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 无增强 · 46 张\n\n花色：♠ 13 · ♥ 12 · ♣ 10 · ♦ 11\n\n点数：A 4 · K 3 · Q 4 · J 4 · 10 4 · 9 2 · 8 4 · 7 4 · 6 4 · 5 4 · 4 3 · 3 3 · 2 3\n\n2♠ 手牌、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠ 已打出、2♥、3♥、4♥、5♥、6♥ 手牌、7♥、8♥、9♥、10♥ 已弃、J♥ 手牌、Q♥、A♥、2♣、5♣、6♣、7♣、8♣、10♣、J♣ 全息、Q♣、K♣、A♣、3♦、4♦、5♦、6♦、7♦、8♦、10♦、J♦、Q♦ 手牌、K♦、A♦"
+          },
+          {
+            "scope": "all",
+            "filter": "enhanced",
+            "counts": {
+              "total": 6,
+              "suits": [
+                1,
+                2,
+                2,
+                1
+              ],
+              "ranks": [
+                1,
+                1,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0
+              ]
+            },
+            "text": "按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 有增强 · 6 张\n\n花色：♠ 1 · ♥ 2 · ♣ 2 · ♦ 1\n\n点数：A 1 · K 1 · Q 0 · J 0 · 10 0 · 9 2 · 8 0 · 7 0 · 6 0 · 5 0 · 4 1 · 3 1 · 2 0\n\n3♠ 手牌 热度纸、K♥ 玻璃纸 闪箔、A♥ 手牌 玻璃纸 闪箔、4♣ 手牌 热度纸、9♣ 手牌 热度纸、9♦ 金纸"
+          }
+        ],
+        "layout": {
+          "before": {
+            "dialog": {
+              "x": 19,
+              "y": 12,
+              "width": 352,
+              "height": 716
+            },
+            "scroll": {
+              "x": 36,
+              "y": 84.5,
+              "width": 318,
+              "height": 561.5,
+              "top": 0,
+              "client": 562,
+              "contentHeight": 562,
+              "contentWidth": 318,
+              "clientWidth": 318
+            },
+            "close": {
+              "x": 36,
+              "y": 673,
+              "width": 318,
+              "height": 44
+            },
+            "selects": [
+              {
+                "x": 36,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              },
+              {
+                "x": 201,
+                "y": 111,
+                "width": 153,
+                "height": 44
+              }
+            ]
+          },
+          "scroll": "N/A: complete body fits the viewport; overflow:auto retained",
+          "status": "PASS"
+        },
+        "status": "PASS"
+      }
+    ],
+    "lifecycle": [
+      {
+        "scene": "game",
+        "newStage": 1,
+        "remaining": 43,
+        "previousRemaining": 41,
+        "currentOwner": true,
+        "shopOwnerReleased": true,
+        "status": "PASS"
+      },
+      {
+        "scene": "character-select",
+        "registryPresent": false,
+        "gameOwnerPresent": false,
+        "shopOwnerPresent": false,
+        "modalCount": 0,
+        "status": "PASS"
+      }
+    ],
+    "lastGeometry": {
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 352,
+        "height": 716
+      },
+      "scroll": {
+        "x": 36,
+        "y": 84.5,
+        "width": 318,
+        "height": 561.5,
+        "top": 0,
+        "client": 562,
+        "contentHeight": 562,
+        "contentWidth": 318,
+        "clientWidth": 318
+      },
+      "close": {
+        "x": 36,
+        "y": 673,
+        "width": 318,
+        "height": 44
+      },
+      "selects": [
+        {
+          "x": 36,
+          "y": 111,
+          "width": 153,
+          "height": 44
+        },
+        {
+          "x": 201,
+          "y": 111,
+          "width": 153,
+          "height": 44
+        }
+      ]
+    },
+    "reload": {
+      "beforeRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+      "afterRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+      "status": "PASS"
+    },
+    "status": "FAIL",
+    "error": "TimeoutError: locator.tap: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '保存并退出', exact: true })\u001b[22m\n"
+  },
+  "resume": "Same build; prior four commands and reload retained, only exit follow-up plus320/short.",
+  "status": "PASS"
+}
