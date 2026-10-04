@@ -2,19 +2,19 @@
 
 ## 当前发布与验收状态
 
-2026-10-04 19:54 UTC 独立读取的 remote main 为 `1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9`；精确 [CI37229537268](https://github.com/big-dimple/dachoupai/actions/runs/37229537268) 与 [production-docs37229537265](https://github.com/big-dimple/dachoupai/actions/runs/37229537265) 均 success。以下是该已发布 source 的当前状态，后续 review 增量不预记为 main。
+当前 remote main 基线为 `58e9d223ee5f29b965532551e71afc6fc6785d51`；精确 [CI37231962418](https://github.com/big-dimple/dachoupai/actions/runs/37231962418) 与 [production-docs37231962445](https://github.com/big-dimple/dachoupai/actions/runs/37231962445) 均 success。最后十二图目前仅 review，发布覆盖按此 main 读取。
 
 | 项目 | 当前状态与验收边界 |
 | --- | --- |
-| 工具包入口 | 已发布：main7b787773 是当前 main 的祖先；GameScene/ShopScene 常驻工具包入口已经消费现有库存与原生操作通路。 |
-| 两处窄屏修复 | 已发布：749a85ee 是当前 main 的祖先，包含 320 商店卡条和十四牌计数修复。320 十四牌仍以五牌窗口分页，390 十四牌两行；普通九牌一页。OnePlus 真机验收仍未通过。 |
-| 可消费手绘素材 | 按当前 manifest：Joker72/72，原6角色/JQK；P08 165 WebP／4,454,670B。工具21/39、物品12/12，goods 66 WebP／1,085,058B，已含 T01–T05/P01。GoodsArt → toolInfo/itemInfo → 既有缩略图与按需详情消费。下一批 review 资源不计入。 |
-| 铜钱候选 | 已接运行：RewardCoin.ts 的 16帧／800ms atlas 由 IntermissionScene 在实际已提交的过关奖励上加载、显示和播放。历史源 D41 为 e655a612；当前代码仍保该消费通路。A03 整包仍 planned、humanGate 保持，人工审美和真机未通过。 |
-| 六工具实际使用 | T06–T11 合法／非法目标、取消、连点仅一次保存、返回实际牌面、六次 reload 的原生 fixture 已获验收。原 source f10d2d0、review98b66db4、精确 [CI37228691506](https://github.com/big-dimple/dachoupai/actions/runs/37228691506) success；原报告与三张实图保持原 SHA 身份。fixture 不证明自然获取或自然完整流程。 |
-| D7b 自然流程 | 按当前协调任务仍 in_progress；本校准没有新增自然流程结论，不用六工具 fixture 关闭 D7b。 |
-| 剩余门禁 | P08 in_progress；整体审美、OnePlus 真机、GPU、听感未通过。C04 维持 D32 暂停，resumeContract 与 V01/L01 人工及多人门禁保持；不自动推进后续 gameplay。 |
+| 工具包与窄屏修复 | 工具包7b787773及749a85ee两修复已发布。320十四牌仍五牌分页、390十四牌两行、普通九牌一页；OnePlus真机未通过。 |
+| main 可消费手绘 | Joker72/72、原6角色/JQK；P08 165 WebP／4,454,670B。工具27/39、物品12/12，goods78 WebP／1,266,494B，已含P02–P07。 |
+| 最后十二图候选 | source1cbc3e7的P08/P09/P10/P12/S01/T19及source6d3596b的S03–S08，S04为v2。仅两个指定目录和24图、12个真实ID；候选39/39、102 WebP／1,742,780B，尚未发布。GoodsArt与原缩略图／按需详情消费通路保持，P12/S04各一张实际详情通过。 |
+| 铜钱候选 | RewardCoin.ts的16帧／800ms atlas仍由IntermissionScene消费实际已提交过关奖励；A03整包仍planned／humanGate，人工审美和真机未通过。 |
+| 六工具实际使用 | T06–T11原生fixture已验收；原source f10d2d0、review98b66db4、精确CI37228691506 success，原报告与三图身份保持。fixture不证明自然获取或完整自然流程。 |
+| D7b 有界自然流程 | [e899194原证据](production/evidence/p08-natural-run-2026-10-04/README.md)及CI37231091422 success，11文件按原blob/mode纳入。实际runtime固定7b787773，首Boss1018/800、seq26/journal25、奖励2→10金与唯一T16补给、三次恢复通过；T10自然购入和使用。停止首Boss结果，未进入第二章、T16未使用；不扩写为当前main完整八章或设备结论。 |
+| 剩余门禁 | P08仍in_progress，整体审美、OnePlus、GPU、听感未通过。C04 D32暂停、resumeContract和V01/L01人工／多人门禁保持；不自动推进后续gameplay。 |
 
-本次 review 仅合并 [六工具原证据](production/evidence/p08-tools-use-2026-10-04/README.md) 和 [当前态审计](production/evidence/p08-delivery-state-2026-10-04/summary.json)，交下一批整合；无运行代码、资产、部署变更，不单独推进 main。证据原 source 的覆盖15/39 保留，不能改写成当前21/39。主线验收清单见 [P08](production/WORK_PACKAGES.md#p08)。
+本批 [最后十二图与证据审计](production/evidence/p08-tools-final12-2026-10-04/summary.json) 和D原证据仅交 review，父串行协调main；运行源码、旧资源、严格五动作smoke、六工具原证据保持。历史 [状态校准](production/evidence/p08-delivery-state-2026-10-04/summary.json) 的21/39及各旧报告覆盖数字保留原身份。主线验收清单见 [P08](production/WORK_PACKAGES.md#p08)。
 
 ## 历史检查点（按各自 SHA 保留，不作为当前调度指令）
 
