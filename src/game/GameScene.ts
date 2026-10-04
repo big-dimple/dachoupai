@@ -41,6 +41,7 @@ import {HandSweepHint} from './HandSweepHint';
 import type {HandSelectionUpdate} from './HandSelectionGesture';
 import {DetailDialog} from './DetailDialog';
 import {dispatchRun,runController} from './runAdapter';
+import {reorderJokerIds} from './JokerReorder';
 import {gameSession} from './session';
 import type {RunMenuActions} from './RunMenu';
 import {R2_BOSSES,r2BossText,r2DisabledCards} from '../domain/r2Chapter';
@@ -838,7 +839,7 @@ export class GameScene extends Phaser.Scene {
   }
   private inspectJoker(id:string):void {
     const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=getJoker(j.definitionId),index=this.run.jokers.indexOf(j),art=jokerArtUrl(d.id),artKey=jokerArtKey(d.id),rarity=JOKER_RARITY[d.rarity];
-    const move=async(delta:number)=>{const ids=this.run.jokers.map(j=>j.instanceId);ids.splice(index,1);ids.splice(index+delta,0,id);await this.command({type:'ReorderJokers',ids});if(this.dialog.active(dialog))this.inspectJoker(id);};
+    const move=async(delta:number)=>{const current=this.run.jokers.map(j=>j.instanceId),ids=reorderJokerIds(current,id,current.indexOf(id)+delta);if(ids===current)return;await this.command({type:'ReorderJokers',ids});if(this.dialog.active(dialog))this.inspectJoker(id);};
     const notice=stageNotice(this.run),reason=this.jokerRestriction(j),restriction=reason?'\n'+reason:'';
     const ability=this.jokerAbility(j,this.selectionPreview());
     const body=ability?rarity.label+restriction+'\n版次：'+editionEffectText(j.edition)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 从右向左结算':' · 从左向右结算')+'。\n用下方按钮调序；出售须在商店确认。':rarity.symbol+' '+rarity.label+' · 当前 '+this.jokerValue(j)+restriction+'\n'+editionEffectText(j.edition)+'\n'+d.description+r2JokerExtraHelp(d)+'\n当前实例：'+r2JokerStateText(j)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 整手计分从右向左':' · 整手计分从左向右')+'；长按后拖动可调序，出售只在商店确认。';
@@ -937,7 +938,7 @@ export class GameScene extends Phaser.Scene {
     this.tweens.add({targets:cursor,x:to,duration:650,delay:280,hold:100,yoyo:true,ease:'Sine.easeInOut',onComplete:()=>{if(root.active)this.tweens.add({targets:root,alpha:0,duration:180,onComplete:this.stopHandHint}).setTimeScale(1/gameSession().speed);}}).setTimeScale(1/gameSession().speed);
   }
   private async moveHandCard(id:string,delta:-1|1):Promise<void> {const ids=[...this.run.handOrder],from=ids.indexOf(id),to=from+delta;if(from<0||to<0||to>=ids.length)return;const before=this.handPositions();ids.splice(from,1);ids.splice(to,0,id);if(await this.command({type:'ReorderHand',ids}))this.slideHandFrom(before);}
-  private async reorderJoker(id:string,x:number):Promise<void> {const ids=this.run.jokers.map(j=>j.instanceId),from=ids.indexOf(id),l=this.view.layout,to=l.slots.findIndex((b,i)=>x>=b.x&&x<=b.x+b.width+(l.mode==='landscape'?l.jokerLabels[i].width+6:0));if(to<0||to>=ids.length||from===to)return;ids.splice(from,1);ids.splice(to,0,id);await this.command({type:'ReorderJokers',ids});}
+  private async reorderJoker(id:string,x:number):Promise<void> {const current=this.run.jokers.map(j=>j.instanceId),l=this.view.layout,to=l.slots.findIndex((b,i)=>x>=b.x&&x<=b.x+b.width+(l.mode==='landscape'?l.jokerLabels[i].width+6:0)),ids=reorderJokerIds(current,id,to);if(ids===current)return;await this.command({type:'ReorderJokers',ids});}
 
   /** Denied actions shake the offending card instead of only showing text. */
   private wiggleCard(view:CardView,index:number):void {
