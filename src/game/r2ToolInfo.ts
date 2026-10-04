@@ -7,11 +7,14 @@ import type {R2HandType} from '../domain/evaluateR2';
 import {SCORE_LIMITS} from '../domain/scoreR2';
 import {fractionText} from './scoreText';
 import {PAPER_CSS} from './theme';
+import {goodsArtUrl} from './GoodsArt';
 
 export interface ToolInfo {
-  name:string;family:R2ToolFamily;label:string;description:string;cost:string;risk:string;artUrl:string;
+  name:string;family:R2ToolFamily;label:string;description:string;cost:string;risk:string;artUrl:string;detailArtUrl?:string;fallbackArtUrl:string;
 }
-export interface ItemInfo {name:string;description:string;artUrl:string}
+export interface ItemInfo {name:string;description:string;artUrl:string;detailArtUrl?:string;fallbackArtUrl:string}
+
+export function goodsArtPortrait(info:ToolInfo|ItemInfo){return {url:info.detailArtUrl??info.artUrl,thumbnailUrl:info.detailArtUrl?info.artUrl:undefined,fallbackUrl:info.fallbackArtUrl,alt:info.name,layout:'card' as const,caption:info.detailArtUrl?'手绘卡面':'机制示意'};}
 
 const limits=R2_TOOL_CATALOG.limits;
 const familyNames:Record<R2ToolFamily,string>={tarot:'塔罗',planet:'星球',spectral:'幻灵',utility:'补给'};
@@ -156,7 +159,7 @@ export function toolInfo(id:string):ToolInfo {
   const tool=getR2Tool(id),family=toolFamilyLabel(tool.family);
   const info=Object.freeze({name:tool.name,family:tool.family,label:`${family} · ${tool.name}`,
     description:`${tool.phases.map(phase=>phase==='shop'?'商店':'待出牌').join(' / ')}可用。${targetText(tool)}${operationText(tool)}`,
-    cost:toolCost(tool),risk:toolRisk(tool),artUrl:toolArt(tool)});
+    cost:toolCost(tool),risk:toolRisk(tool),artUrl:goodsArtUrl(id,'tool-card','thumbnail')??toolArt(tool),detailArtUrl:goodsArtUrl(id,'tool-card','detail'),fallbackArtUrl:toolArt(tool)});
   toolCache.set(id,info);return info;
 }
 function itemDescription(item:R2LongTermDefinition):string {
@@ -182,7 +185,7 @@ const itemCache=new Map<string,ItemInfo>();
 export function itemInfo(id:string):ItemInfo {
   const cached=itemCache.get(id);if(cached)return cached;
   const item=R2_LONG_TERM_ITEMS.find(row=>row.id===id);if(!item)throw Error(`unknown-r2-item: ${id}`);
-  const info=Object.freeze({name:item.name,description:itemDescription(item),artUrl:itemArt(item)});
+  const info=Object.freeze({name:item.name,description:itemDescription(item),artUrl:goodsArtUrl(id,'item-card','thumbnail')??itemArt(item),detailArtUrl:goodsArtUrl(id,'item-card','detail'),fallbackArtUrl:itemArt(item)});
   itemCache.set(id,info);return info;
 }
 

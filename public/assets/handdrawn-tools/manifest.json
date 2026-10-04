@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "11ae7a464fdcf54c4e338da9171d827265742e3c",
+  "sourceManifestSHA256": "45e9b14f1366a8c165c25deec3f2eb04e252144cb0a2974d9d9f73c53517eed2",
+  "runtimeFileCount": 8,
+  "runtimeBytes": 123306,
+  "assets": [
+    {
+      "id": "tool-t12",
+      "domainId": "T12",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 1616,
+          "sha256": "0904886b79f6a47fb531f733ee5e93a2a2256397cdc8b36346bbd12685653653",
+          "purpose": "thumbnail",
+          "path": "tool-t12.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 16664,
+          "sha256": "7b1615ba1807fd07bfcc4e352c095f04124993c64b8dfeda89a66664fdf43ecc",
+          "purpose": "detail",
+          "path": "tool-t12.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "item-u07",
+      "domainId": "U07",
+      "category": "item-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 3076,
+          "sha256": "fba672ab02b9dab3383a1857bd46906e2579aca272721dfe993088d33fb2c9c1",
+          "purpose": "thumbnail",
+          "path": "item-u07.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 39284,
+          "sha256": "2b5aa1d47a9967330a1b657e884362bfc961cfc8f3c8491bf87d38686224240a",
+          "purpose": "detail",
+          "path": "item-u07.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-p11",
+      "domainId": "P11",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2564,
+          "sha256": "4c608c9ea9fb0499365c1998a0d63471c00e5594bf12944665c08d03e6509400",
+          "purpose": "thumbnail",
+          "path": "tool-p11.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 24058,
+          "sha256": "53ac76b745d60d27bf50abda8f45f5d08f4b544824e161e94264ce95f9216fa5",
+          "purpose": "detail",
+          "path": "tool-p11.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-s02",
+      "domainId": "S02",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 3010,
+          "sha256": "078326a38ac09c81214b63bf55f9ee6f898e146d71ba098490532b7bebf60e03",
+          "purpose": "thumbnail",
+          "path": "tool-s02.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 33034,
+          "sha256": "1d23d81c13d886f481f3e801542ef9b67a28c00703baa124ec967f5dc5ce9c41",
+          "purpose": "detail",
+          "path": "tool-s02.detail.webp"
+        }
+      ]
+    }
+  ]
+}

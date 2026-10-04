@@ -10,7 +10,7 @@ export function modalBlocksCanvas(x:number,y:number):boolean {
 }
 interface DialogAction {label:string;run:()=>void|Promise<void>;disabled?:boolean;primary?:boolean}
 type ArtLoadStatus='unregistered'|'idle'|'loading'|'loaded'|'failed';
-interface DialogOptions {onClose?:()=>void;summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;alignedLayers?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;alt:string;layout?:'card';caption?:string}}
+interface DialogOptions {onClose?:()=>void;summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;alignedLayers?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;fallbackUrl?:string;alt:string;layout?:'card';caption?:string}}
 export class DetailDialog {
   private dialog?:HTMLDialogElement;
   private lastPointer?:{x:number;y:number};
@@ -69,7 +69,7 @@ export class DetailDialog {
         image.width=615;image.height=768;
         const thumbnailUrl=portrait.thumbnailUrl??portrait.url;
         let closed=false,thumbnailFailed=false,detailReady=false,showingFallback=false,registeredFailed=options.artLoad?.status==='failed',registeredLoading=options.artLoad?.status==='loading';
-        let fallback:{url:string;alt:string}|undefined,retryDecode:AbortController|undefined;
+        let fallback:{url:string;alt:string}|undefined=portrait.fallbackUrl?{url:portrait.fallbackUrl,alt:portrait.alt+'机制示意'}:undefined,retryDecode:AbortController|undefined;
         const loadStatus=document.createElement('div'),retry=document.createElement('button');
         loadStatus.className='detail-art-status dialog-art-load-status';loadStatus.setAttribute('role','status');loadStatus.hidden=true;
         retry.className='detail-art-retry dialog-art-load-retry';retry.type='button';retry.textContent='重试卡面';retry.hidden=true;

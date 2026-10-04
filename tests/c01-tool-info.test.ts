@@ -29,7 +29,7 @@ describe('C01 public tool and item details',()=>{
     for(const row of R2_LONG_TERM_ITEMS){
       const info=itemInfo(row.id);expect(info.name).toBe(row.name);
       expect(info.description).toContain('本局');expect(info.description).toContain('不可出售');
-      expect(info.description).toContain('4');expect(info.artUrl).toMatch(/^data:image\/svg\+xml,/);
+      expect(info.description).toContain('4');expect(info.fallbackArtUrl).toMatch(/^data:image\/svg\+xml,/);
     }
     expect(()=>toolInfo('T00')).toThrow();expect(()=>itemInfo('U00')).toThrow();
     expect(['tarot','planet','spectral','utility'].map(family=>toolFamilyLabel(family as 'tarot')))
@@ -109,7 +109,7 @@ describe('C01 public tool and item details',()=>{
     expect(itemInfo('U12').description).toContain('未持有');
   });
   it('returns small deterministic standalone vector emblems and 12 distinct hand constellations',()=>{
-    const urls=[...R2_TOOLS.map(tool=>toolInfo(tool.id).artUrl),...R2_LONG_TERM_ITEMS.map(item=>itemInfo(item.id).artUrl)];
+    const urls=[...R2_TOOLS.map(tool=>toolInfo(tool.id).fallbackArtUrl),...R2_LONG_TERM_ITEMS.map(item=>itemInfo(item.id).fallbackArtUrl)];
     for(const url of urls){
       expect(url.length).toBeLessThan(80000);
       const svg=decodeURIComponent(url.slice('data:image/svg+xml,'.length));
@@ -118,7 +118,7 @@ describe('C01 public tool and item details',()=>{
       expect(svg).not.toMatch(/<script|<foreignObject|<image|href=|https?:\/\/(?!www\.w3\.org\/2000\/svg)/);
     }
     const planets=R2_TOOLS.filter(tool=>tool.family==='planet').map(tool=>{
-      const svg=decodeURIComponent(toolInfo(tool.id).artUrl.split(',')[1]);
+      const svg=decodeURIComponent(toolInfo(tool.id).fallbackArtUrl.split(',')[1]);
       return svg.match(/<g id="constellation">([\s\S]*?)<\/g>/)?.[1];
     });
     expect(planets.every(Boolean)).toBe(true);expect(new Set(planets).size).toBe(12);

@@ -47,13 +47,13 @@ function pump():void {
   }
 }
 /** Decode offscreen so failed/retried upgrades never replace an available card face. */
-export function decodeArtImage(src:string,signal?:AbortSignal):Promise<void> {
-  return new Promise<void>((resolve,reject)=>{
+export function decodeArtImage(src:string,signal?:AbortSignal):Promise<HTMLImageElement> {
+  return new Promise<HTMLImageElement>((resolve,reject)=>{
     if(signal?.aborted){reject(new Error('detail-image-aborted'));return;}
     const decoded=new Image();let settled=false;
     const finish=(error?:Error)=>{
       if(settled)return;settled=true;clearTimeout(timer);signal?.removeEventListener('abort',abort);decoded.onerror=null;
-      if(error){decoded.removeAttribute('src');reject(error);}else resolve();
+      if(error){decoded.removeAttribute('src');reject(error);}else resolve(decoded);
     };
     const abort=()=>finish(new Error('detail-image-aborted'));
     const timer=setTimeout(()=>finish(new Error('detail-image-timeout')),DEADLINE_MS);
@@ -72,6 +72,10 @@ export function detailArt(url:string,foreground=true,signal?:AbortSignal):Promis
   const work:Work={url,promise,resolve,reject,controller:new AbortController(),consumers:0,retained:false};
   pending.set(url,work);if(foreground)queue.unshift(work);else queue.push(work);
   const subscribed=subscribe(work,signal);pump();return subscribed;
+}
+/** A consumer-side decode failure must not poison a later explicit retry. */
+export function invalidateArt(url:string,src:string):void {
+  if(cache.get(url)===src){cache.delete(url);URL.revokeObjectURL(src);}
 }
 export function prefetchDetailArt(urls:readonly string[],signal?:AbortSignal):void {
   const connection=(navigator as Navigator&{connection?:{saveData?:boolean;effectiveType?:string}}).connection;

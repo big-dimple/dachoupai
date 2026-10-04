@@ -11,7 +11,7 @@ import {r2PaidRerollPrice,r2Pool,r2ToolAcquisitionPool} from '../domain/r2Shop';
 import {r2ToolAllowed,r2ToolSupported} from '../domain/r2ToolRuntime';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {DetailDialog} from './DetailDialog';
-import {cardSpecialText,editionEffectText,editionLabel,itemInfo,toolInfo} from './r2ToolInfo';
+import {cardSpecialText,editionEffectText,editionLabel,itemInfo,toolInfo,goodsArtPortrait} from './r2ToolInfo';
 
 export const SKIP_ITEM_LABELS:Record<string,string>=Object.fromEntries(R2_TOOLS.map(tool=>[tool.id,tool.name]));
 const SUIT_NAMES:Record<Suit,string>={spades:'黑桃',hearts:'红桃',clubs:'梅花',diamonds:'方片'};
@@ -125,7 +125,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
   const known=(state.phase==='shop'?state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)):state.phase==='await-input'?state.handOrder.map(id=>state.deckInstances.find(card=>card.id===id)!):[]);
   const cardChoices:Choice[]=known.map((card,index)=>({id:card.id,name:cardName(card),detail:`${enhancementName(card)} · ${editionLabel(card.edition)}\n第 ${index+1} 张`,card}));
   const jokerChoices:Choice[]=state.jokers.map(joker=>({id:joker.instanceId,name:R2_JOKERS.find(definition=>definition.id===joker.definitionId)!.name,detail:`${editionLabel(joker.edition)} · 原支付 ${joker.paidPrice} 金`,joker}));
-  const showItem=(id:string)=>{const info=itemInfo(id),d=dialog.open(info.name+' · 长期道具',info.description+'\n\n已持有；本局持续生效，不能出售。',[],{portrait:{url:info.artUrl,alt:info.name,layout:'card',caption:info.name}});d.classList.add('tool-item-detail');};
+  const showItem=(id:string)=>{const info=itemInfo(id),d=dialog.open(info.name+' · 长期道具',info.description+'\n\n已持有；本局持续生效，不能出售。',[],{portrait:goodsArtPortrait(info)});d.classList.add('tool-item-detail');};
   const openTool=(instanceId:string)=>{
     const item=state.consumables.find(consumable=>consumable.instanceId===instanceId),definition=item&&R2_TOOLS.find(candidate=>candidate.id===item.definitionId);if(!item||!definition)return;
     const tool=definition;
@@ -153,7 +153,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         catch{const status=confirmation.querySelector<HTMLParagraphElement>('.dialog-status')!;status.textContent='销毁未完成，请重试。';status.hidden=false;}
       }}],{closeLabel:'取消'});
     }};
-    const d=dialog.open(info.label+' · 使用详情',[info.description,info.cost].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消',portrait:{url:info.artUrl,alt:info.label,layout:'card',caption:info.label}});d.classList.add('tool-detail');
+    const d=dialog.open(info.label+' · 使用详情',[info.description,info.cost].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消',portrait:goodsArtPortrait(info)});d.classList.add('tool-detail');
     const panel=document.createElement('section'),preview=document.createElement('p'),hint=document.createElement('p');panel.className='tool-target-panel';preview.className='tool-preview';preview.setAttribute('aria-live','polite');hint.className='tool-validation';hint.setAttribute('role','status');
     const controls:{input:HTMLInputElement;label:HTMLLabelElement;choice:Choice;role:'target'|'donor';maximum:number}[]=[],selects:HTMLSelectElement[]=[];
     const buttons=d.querySelectorAll<HTMLButtonElement>('.dialog-actions button'),confirm=buttons[0],destroy=buttons[1];
