@@ -3,6 +3,7 @@ import {R2_JOKERS} from '../content/r2Schema';
 import {jokerMemoryAbility,publicJokerMemoryContext} from './JokerMemory';
 import type {R2JokerInstance} from '../content/r2Schema';
 import {shopLayout} from './ShopLayout';
+import {ShopResultFeedback,shopResultBox,shopResultPages,type ShopResultLine} from './ShopResultFeedback';
 import {requestJokerArt,jokerArtLoadState,retryJokerArt} from './JokerArtLoading';
 import {JOKER_RARITY,createJokerRarityBadge,type JokerRarity} from './JokerRarity';
 import Phaser from 'phaser';
@@ -24,7 +25,7 @@ import {SKIP_ITEM_LABELS,showConsumables} from './ConsumableDialog';
 import type {IntermissionResult} from './IntermissionScene';
 import type {Box} from './layout';
 import {jokerArtKey,jokerArtUrl,jokerArtPreviewUrl} from './jokerArt';
-import {UI_FONT} from './theme';
+import {UI_FONT,PAPER_THEME,PAPER_CSS} from './theme';
 import {drawJokerMotif} from './JokerMotif';
 import {r2MechanismBadge as mechanismBadge,r2JokerStateText,r2JokerExtraHelp,r2TransactionText} from './r2Help';
 
@@ -52,6 +53,12 @@ export class ShopScene extends Phaser.Scene {
   private pendingRerollFlip=false;
   private pendingPurchaseFlight?:{from:Box;to:Box;name:string};
   private pendingToolCue?:{instanceId:string;label:string};
+  private resultFeedback=new ShopResultFeedback();
+  private resultNote?:Phaser.GameObjects.Text;
+  private resultPlate?:Phaser.GameObjects.Graphics;
+  private resultLayer?:Phaser.GameObjects.Container;
+  private noticeLabel?:Phaser.GameObjects.Text;
+  private resultKey?:string;
   private readonly dialog=new DetailDialog();
   private readonly audio=AudioEngine.shared;
   constructor(){super('shop');}
@@ -63,6 +70,8 @@ export class ShopScene extends Phaser.Scene {
   create():void {
     this.busy=false;this.selectedOfferId=undefined;this.shelfKind='jokers';this.shelfPage=0;this.notice='';this.lifecycle++;
     this.pendingGoldRoll=undefined;this.pendingRerollFlip=false;this.pendingPurchaseFlight=undefined;this.pendingToolCue=undefined;this.pendingTransactions=[];this.lastTransactionNotes=[];
+    this.resultFeedback=new ShopResultFeedback();this.resultKey=undefined;this.resultNote=undefined;this.resultPlate=undefined;
+    this.events.once('shutdown',()=>{this.resultFeedback.dispose();this.resultLayer?.destroy(true);this.resultLayer=undefined;this.resultNote=undefined;this.resultPlate=undefined;this.resultKey=undefined;});
     this.events.once('shutdown',()=>{this.lifecycle++;this.hideHoverPicture();this.dialog.close();for(const [key,listener] of this.artRefreshListeners)this.textures.off('addtexture-'+key,listener);this.artRefreshListeners.clear();this.artTargets.clear();});
     const run=runController(this)?.state;if(!run||run.phase!=='shop'){this.scene.start('character-select');return;}this.run=run;
     this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene('shop');this.view=new SceneView(this,()=>this.render());this.render();
@@ -127,7 +136,27 @@ export class ShopScene extends Phaser.Scene {
     v.button(p.play,'进入牌桌','action/start-stage',()=>void this.send({type:'LeaveShop'}),this.ready,true);
     v.button(p.build,p.inventoryCollapsed?`构筑 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:'构筑详情','action/build',()=>this.inspectBuild());
     const reason=!this.ready?'当前进度未保存或只读，请查看菜单。':allowed&&this.run.gold<cost?`换牌还差 ${cost-this.run.gold} 金。可直接入场。`:this.shelfKind==='jokers'&&this.run.jokers.length===r2JokerCapacity(this.run)?`${r2JokerCapacity(this.run)}槽已满，点随身牌出售后再买。`:this.shelfKind==='tools'?'购买后收入库存；查看详情，再确认使用。':this.shelfKind==='items'?'道具本局生效；换牌不重抽道具货架。':p.portrait?'点卡牌看详情，确认后扣款。':'点卡牌不会扣钱；点随身牌可出售或左移、右移。';
-    v.text(p.short?p.x:p.tabs.x,p.noticeY,this.busy?'正在保存…':this.notice||reason,14,this.notice?'#B8473A':'#3F606B',p.short?p.w:p.tabs.width).setStyle({maxLines:p.short?1:2});
+    this.noticeLabel=v.text(p.short?p.x:p.tabs.x,p.noticeY,this.busy?'正在保存…':this.notice||reason,14,this.notice?'#B8473A':'#3F606B',p.short?p.w:p.tabs.width).setStyle({maxLines:p.short?1:2});
+    this.drawResultCue();
+  }
+  private get resultReduced():boolean{return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
+  private drawResultCue():void {
+    const result=this.resultFeedback.snapshot(performance.now(),this.resultReduced);this.resultKey=result?.key;
+    this.resultLayer?.destroy(true);this.resultLayer=undefined;this.resultNote=undefined;this.resultPlate=undefined;
+    this.noticeLabel?.setVisible(!result);if(!result)return;
+    const p=this.geometry(),bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0,b=shopResultBox(p,this.view.layout.height,bottom);
+    const layer=this.add.container(0,0).setName('shop/result-layer');this.resultLayer=layer;
+    this.resultPlate=this.add.graphics().fillStyle(PAPER_THEME.paperLight,1).fillRoundedRect(b.x,b.y,b.width,b.height,4).lineStyle(1,PAPER_THEME.divider,.7).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,4).setAlpha(result.alpha).setName('shop/result-plate').setData('bounds',b);
+    // Use the shared text constructor; detach only the feedback from full-table
+    // redraw so expiry cannot cancel an in-progress press on a shop action.
+    this.resultNote=this.view.text(b.x+6,b.y+2,result.text,14,PAPER_CSS.ink).setName(result.name).setAlpha(result.alpha).setData('resultKey',result.key);
+    if(this.resultNote.width>b.width-12)this.resultNote.setText(result.text.split(' · ')[0]+' · 完整结果见构筑详情');
+    layer.add([this.resultPlate,this.resultNote]);
+  }
+  update():void {
+    if(!this.scene.isActive()||!this.view)return;const result=this.resultFeedback.snapshot(performance.now(),this.resultReduced);
+    if(result?.key!==this.resultKey){this.drawResultCue();return;}
+    if(result){this.resultNote?.setAlpha(result.alpha);this.resultPlate?.setAlpha(result.alpha);}
   }
   private drawShelfTabs(b:Box):void {
     const v=this.view,pages=Math.ceil(this.shelfOffers().length/this.pageSize),pagerWidth=pages>1?44:0,gap=6,width=(b.width-pagerWidth-gap*(pagerWidth?3:2))/3;
@@ -382,17 +411,21 @@ export class ShopScene extends Phaser.Scene {
     if(this.pendingGoldRoll!==undefined){const from=this.pendingGoldRoll;this.pendingGoldRoll=undefined;this.rollGold(from);}
     if(this.pendingRerollFlip){this.pendingRerollFlip=false;if(!reduced)this.offerArts.forEach((art,i)=>{if(!art.active)return;art.setScale(0,1);this.tweens.add({targets:art,scaleX:1,duration:160,delay:i*70,ease:'Sine.easeOut'});});}
     if(this.pendingPurchaseFlight){const flight=this.pendingPurchaseFlight;this.pendingPurchaseFlight=undefined;if(!reduced)this.flyPurchase(flight.from,flight.to,flight.name);}
+    const lines:ShopResultLine[]=[];
     if(this.pendingToolCue){
       const cue=this.pendingToolCue,box=this.geometry().items;this.pendingToolCue=undefined;if(!reduced)this.slotPop(box);
-      const note=this.add.text(box.x+box.width/2,box.y-4,cue.label,{fontFamily:UI_FONT,fontSize:'14px',color:'#ffe3ae',resolution:Math.min(window.devicePixelRatio||1,3)}).setOrigin(.5,1).setDepth(60).setName('tool-use/'+cue.instanceId);
-      this.tweens.add({targets:note,y:reduced?note.y:note.y-14,alpha:0,duration:reduced?500:1000,onComplete:()=>note.destroy()});
+      lines.push({name:'tool-use/'+cue.instanceId,text:'已用 '+cue.label});
     }
     for(const event of this.pendingTransactions){
-      const index=this.run.jokers.findIndex(joker=>joker.instanceId===event.instanceId),slot=this.geometry().slots[index];if(!slot)continue;
-      if(!reduced)this.slotPop(slot);
-      const note=this.add.text(slot.x+slot.width/2,slot.y+slot.height+24,r2TransactionText(event),{fontFamily:UI_FONT,fontSize:'14px',color:'#ffe3ae',resolution:Math.min(window.devicePixelRatio||1,3)}).setOrigin(.5).setName('transaction/'+event.instanceId);
-      this.tweens.add({targets:note,y:reduced?note.y:note.y-14,alpha:0,duration:reduced?500:1000,onComplete:()=>note.destroy()});
+      const index=this.run.jokers.findIndex(joker=>joker.instanceId===event.instanceId),slot=this.geometry().slots[index];
+      if(!reduced&&slot)this.slotPop(slot);
+      lines.push({name:'transaction/'+event.instanceId,text:r2TransactionText(event)});
     }this.pendingTransactions=[];
+    if(lines.length){
+      const p=this.geometry(),bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0,box=shopResultBox(p,this.view.layout.height,bottom),probe=this.view.text(0,0,'',14,PAPER_CSS.ink).setVisible(false);
+      const pages=lines.flatMap(line=>shopResultPages(line.text,text=>{probe.setText(text);return probe.width<=box.width-12;}).map(text=>({...line,text})));probe.destroy();
+      if(this.resultFeedback.enqueue(this.run.commandSeq,pages,performance.now()))this.drawResultCue();
+    }
   }
   private async send(action:Action,expectedSeq?:number):Promise<boolean> {
     if(!this.ready)return false;
