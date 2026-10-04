@@ -131,7 +131,7 @@ export class GameScene extends Phaser.Scene {
   private focusIndex=0;
   private keyboardFocus=false;
   private readonly sweepHint=new HandSweepHint();
-  private handHint?:Phaser.GameObjects.Container;
+  private handHint=false;
   private handHintTimer?:Phaser.Time.TimerEvent;
   private handStart=0;
   private handNavigationButtons:Phaser.GameObjects.Rectangle[]=[];
@@ -749,8 +749,9 @@ export class GameScene extends Phaser.Scene {
     const savedReminder=!this.presentation?this.run.jokers.map(j=>jokerMemory(getJoker(j.definitionId),j,this.memoryContext(j,this.selectionPreview()))).find(m=>m.saved!=='无成长或使用计数'):undefined;
     const entryReminder=!this.selectedIds.size&&this.run.stage?.playIndex===0?this.run.jokers.slice(0,1).map(j=>getJoker(j.definitionId).name+' · '+this.jokerValue(j)+' · 长按条件').join(''):'';
     const memoryReminder=savedReminder?(savedReminder.name+' · '+savedReminder.savedShort)+' · 条件见详情':'';
-    this.statusText.setText(this.statusMessage||reminders||entryReminder||memoryReminder||reason);
-    if(this.statusText.width>this.view.layout.status.width&&memoryReminder&&!this.statusMessage&&!reminders&&!entryReminder)this.statusText.setText(savedReminder!.name+' · 保存状态见详情');
+    const sweepReminder=this.handHint?(handWindow.status.width<250?'横滑选牌 · 已选可取消':'横滑选牌 · 从已选牌开始可取消'):'';
+    this.statusText.setText(sweepReminder||this.statusMessage||reminders||entryReminder||memoryReminder||reason);
+    if(this.statusText.width>this.view.layout.status.width&&memoryReminder&&!sweepReminder&&!this.statusMessage&&!reminders&&!entryReminder)this.statusText.setText(savedReminder!.name+' · 保存状态见详情');
     // Balatro-style call-to-action: the playable state breathes a warm aura.
     const auraOn=!!this.playButton.input?.enabled&&this.selectedIds.size>0&&!this.presentation&&!this.playing;
     if(this.playAura){
@@ -930,21 +931,15 @@ export class GameScene extends Phaser.Scene {
   }
   private readonly stopHandHint=():void=>{
     this.handHintTimer?.remove();this.handHintTimer=undefined;
-    if(this.handHint){const cursor=this.handHint.getData('cursor');if(cursor)this.tweens.killTweensOf(cursor);this.tweens.killTweensOf(this.handHint);this.handHint.destroy();this.handHint=undefined;}
+    if(!this.handHint)return;this.handHint=false;
+    if(this.controlsLive&&this.statusText?.active&&this.scene.isActive())this.updateControls();
   };
   private readonly hintVisibility=()=>{if(document.hidden){this.stopHandHint();this.handInput?.cancel('blur');this.candidateGhost=undefined;this.candidates.dispose();}else if(this.run?.phase==='await-input'&&!this.playing&&!this.presentation&&this.scene.isActive())this.refreshSelection();};
   private showHandHint(claim=true):void {
     if(!this.view||!this.ready||this.handHint)return;
-    const l=this.view.layout,cards=l.cards.filter(card=>card.visible);if(cards.length<2||claim&&!this.sweepHint.claim())return;
-    const root=this.view.add(this.add.container(0,0)).setName('hand/sweep-hint');this.handHint=root;
-    const cx=l.hand.x+l.hand.width/2,y=l.hand.y+l.hand.height-19,w=Math.min(l.hand.width-8,360);
-    root.add(this.add.graphics().fillStyle(0x102f35,.86).fillRoundedRect(cx-w/2,y-23,w,20,6));
-    root.add(this.add.text(cx,y-13,'按住横滑选牌 ↔ 从已选牌开始可取消',{fontFamily:UI_FONT,fontSize:'12px',color:'#fff1cc',resolution:1.5}).setOrigin(.5));
-    if(this.reducedMotion){this.handHintTimer=this.time.delayedCall(3000*gameSession().speed,this.stopHandHint);return;}
-    const from=cards[0].hit.x+cards[0].hit.width/2,last=cards[Math.min(4,cards.length-1)],to=last.hit.x+last.hit.width/2;
-    root.add(this.add.graphics().lineStyle(1,0xe9d59a,.4).beginPath().moveTo(from,y).lineTo(to,y).strokePath());
-    const cursor=this.add.graphics().fillStyle(0xffe9b4,.8).fillCircle(0,0,4).lineStyle(2,0xffe9b4,.9).strokeCircle(0,0,7).setPosition(from,y);root.add(cursor);root.setData('cursor',cursor);
-    this.tweens.add({targets:cursor,x:to,duration:650,delay:280,hold:100,yoyo:true,ease:'Sine.easeInOut',onComplete:()=>{if(root.active)this.tweens.add({targets:root,alpha:0,duration:180,onComplete:this.stopHandHint}).setTimeScale(1/gameSession().speed);}}).setTimeScale(1/gameSession().speed);
+    const cards=this.view.layout.cards.filter(card=>card.visible);if(cards.length<2||claim&&!this.sweepHint.claim())return;
+    this.handHint=true;this.updateControls();
+    this.handHintTimer=this.time.delayedCall((this.reducedMotion?3000:1860)*gameSession().speed,this.stopHandHint);
   }
   private async moveHandCard(id:string,delta:-1|1):Promise<void> {const ids=[...this.run.handOrder],from=ids.indexOf(id),to=from+delta;if(from<0||to<0||to>=ids.length)return;const before=this.handPositions();ids.splice(from,1);ids.splice(to,0,id);if(await this.command({type:'ReorderHand',ids}))this.slideHandFrom(before);}
   private async reorderJoker(id:string,x:number):Promise<void> {const current=this.run.jokers.map(j=>j.instanceId),l=this.view.layout,to=l.slots.findIndex((b,i)=>x>=b.x&&x<=b.x+b.width+(l.mode==='landscape'?l.jokerLabels[i].width+6:0)),ids=reorderJokerIds(current,id,to);if(ids===current)return;await this.command({type:'ReorderJokers',ids});}
