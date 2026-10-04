@@ -15,15 +15,15 @@ it('a07 used stage -> actual shop -> next EnterStage distinguishes old usage fro
  const memory=()=>{const context=publicJokerMemoryContext(state,{hand:[],scoringLimited:false,deckSize:state.deckInstances.length,jokerSlots:5,jokerCount:1});return{m:jokerMemory(def('a07'),state.jokers[0],context),copy:jokerMemoryAbility(def('a07'),state.jokers[0],context)};};
  command({type:'LeaveShop'});command({type:'EnterStage'});
  command({type:'DiscardHand',selectedIds:[state.handOrder[0]]});command({type:'DiscardHand',selectedIds:[state.handOrder[0]]});
- expect(state.jokers[0].counters?.singleDiscards).toBe(2);expect(memory().m.remainingUses).toBe(0);expect(memory().copy.state).toContain('本场余0次');
+ expect(state.jokers[0].counters?.singleDiscards).toBe(2);expect(memory().m.remainingUses).toBe(0);expect(memory().copy.state).toContain('本场还可用 0 次');
  // Explicit legal fixture reorders only live zones to make a same-suit winning hand.
  const available=state.deckInstances.filter(c=>!state.discardPile.includes(c.id)&&!state.playedPile.includes(c.id)),chosen=available.filter(c=>c.suit==='hearts').slice(0,5).map(c=>c.id),rest=available.filter(c=>!chosen.includes(c.id)).map(c=>c.id);
  state.handOrder=[...chosen,...rest.splice(0,state.stage!.handLimit-5)];state.drawPile=rest;
  command({type:'PlayHand',selectedIds:chosen});expect(state.phase).toBe('stage-cleared');command({type:'OpenShop'});expect(state.phase).toBe('shop');
- const before=structuredClone(state),shop=memory();expect(shop.m.remainingUses).toBe(2);expect(shop.copy.state).toContain('下场余2次');expect(shop.copy.state).not.toContain('下场余0次');expect(shop.copy.state).toContain('入场重置');expect(shop.copy.state).toContain('已保存使用记录 2 / 2');expect(state).toEqual(before);expect(state.jokers[0].counters?.singleDiscards).toBe(2);
- command({type:'LeaveShop'});command({type:'EnterStage'});expect(state.jokers[0].counters?.singleDiscards).toBe(0);expect(memory().m.remainingUses).toBe(2);expect(memory().copy.state).toContain('本场余2次');
- const fresh=jokerMemoryAbility(def('a07'),r2CreateJoker('a07','fresh',0),{...ctx,inStage:false});expect(fresh.state).toContain('尚无保存的使用计数');expect(fresh.state).toContain('下场余2次');expect(fresh.state).not.toContain('上场已用');
- const offer=jokerMemoryAbility(def('a07'),undefined,{...ctx,inStage:false});expect(offer.state).toContain('尚未购入；不代表已触发');expect(offer.state).not.toContain('已保存使用记录');
+ const before=structuredClone(state),shop=memory();expect(shop.m.remainingUses).toBe(2);expect(shop.copy.state).toContain('下场还可用 2 次');expect(shop.copy.state).not.toContain('下场还可用 0 次');expect(shop.copy.state).toContain('进场重置');expect(shop.copy.state).toContain('已保存使用记录 2 / 2');expect(state).toEqual(before);expect(state.jokers[0].counters?.singleDiscards).toBe(2);
+ command({type:'LeaveShop'});command({type:'EnterStage'});expect(state.jokers[0].counters?.singleDiscards).toBe(0);expect(memory().m.remainingUses).toBe(2);expect(memory().copy.state).toContain('本场还可用 2 次');
+ const fresh=jokerMemoryAbility(def('a07'),r2CreateJoker('a07','fresh',0),{...ctx,inStage:false});expect(fresh.state).toContain('尚无保存的使用计数');expect(fresh.state).toContain('下场还可用 2 次');expect(fresh.state).not.toContain('上场已用');
+ const offer=jokerMemoryAbility(def('a07'),undefined,{...ctx,inStage:false});expect(offer.state).toContain('尚未购买，买入后才会生效');expect(offer.state).not.toContain('已保存使用记录');
 });
 it('all72 have independent complete mechanism alternatives, not sliced shop conditions',()=>{
  expect(Object.keys(JOKER_COMPACT).sort()).toEqual(R2_JOKERS.map(d=>d.id).sort());
@@ -48,10 +48,10 @@ it('saved coefficient1 is visible; large exact numbers fall back to state, not t
 });
 it('actual lifetime/used counts and discarded history outrank mechanism and remain public facts after refunds',()=>{
  for(const id of ['f06','d05','b12','f09']){const j=r2CreateJoker(id,id,0);j.counters={...(j.counters??{}),handsScored:4};const used={...ctx,quadRefundUsed:true,discardsUsed:1};const m=jokerMemory(def(id),j,used);expect(m.short).toBe(id==='f06'?'余0手':id==='f09'?'已弃牌':'余0次');expect(m.stateLabel).toBe(true);}
- expect(jokerMemoryAbility(def('f09'),r2CreateJoker('f09','x',0),{...ctx,discardsUsed:1}).state).toContain('返次不清除历史');
+ expect(jokerMemoryAbility(def('f09'),r2CreateJoker('f09','x',0),{...ctx,discardsUsed:1}).state).toContain('返还次数也不能恢复加成');
  expect(jokerMemory(def('f08'),r2CreateJoker('f08','random',0),ctx).status).toBe('事件时检查');
  const cycle=r2CreateJoker('e10','cycle',0);expect(jokerMemory(def('e10'),cycle,ctx).savedShort).toBe('再2关赠票');cycle.counters!.stageClears=1;expect(jokerMemory(def('e10'),cycle,ctx).savedShort).toBe('下关赠票');
- for(const d of R2_JOKERS){const j=r2CreateJoker(d.id,d.id,0),restricted=jokerMemory(d,j,{...ctx,scoringLimited:true});expect(restricted.status).toBe('计分受限');expect(jokerMemoryAbility(d,j,{...ctx,scoringLimited:true}).state).toContain('仅计分与版次停用');expect(restricted.labelCandidates).toEqual(jokerMemory(d,j,ctx).labelCandidates);}
+ for(const d of R2_JOKERS){const j=r2CreateJoker(d.id,d.id,0),restricted=jokerMemory(d,j,{...ctx,scoringLimited:true});expect(restricted.status).toBe('计分受限');expect(jokerMemoryAbility(d,j,{...ctx,scoringLimited:true}).value).toContain('只暂停计分与版次效果');expect(restricted.labelCandidates).toEqual(jokerMemory(d,j,ctx).labelCandidates);}
 });
 it('ordered real width fitting never truncates; short landscape uses the same side-label room on mount/refresh',()=>{
  for(const viewport of [{width:320,height:740},{width:360,height:740},{width:390,height:740},{width:844,height:300}]){

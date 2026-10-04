@@ -3,6 +3,8 @@ import {HAND_LABELS} from '../content/handLabels';
 
 export interface CardAbilityCopy {
   condition:string;value:string;state?:string;flavor:string;rules:string;
+  /** Central player copy: main sentence first, decision limits always visible. */
+  playerCopy?:boolean;
   summary:string;compact:string;narrow:string;benefit:string;
   /** Actual ledger activity; absent without a ledger, except a known scoring ban. */
   bodyActive?:boolean;editionActive?:boolean;
