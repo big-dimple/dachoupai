@@ -1059,7 +1059,11 @@ export class GameScene extends Phaser.Scene {
     const caption={x:s.x+8,y:s.y+(s.height>=108?4:1),width:s.height>=108?s.width-16:s.width*.52-16,height:s.height>=108?20:17};
     fitScoreLine(this.resultText,caption,14);
     const cells=scoreCells(s),texts=[this.scoreHeat,this.scoreMult,this.scoreTotal];
-    this.scoreLabels.forEach((text,i)=>{text.setVisible(i!==2||s.height>=108);fitScoreLine(text,{x:cells[i].x,y:cells[i].y-18,width:cells[i].width,height:18},14);});
+    this.scoreLabels.forEach((text,i)=>{
+      text.setVisible(i!==2||s.height>=108);
+      const base=i===2&&s.height>=108&&s.width>=260?scorePedestal(s):undefined;
+      fitScoreLine(text,base?{x:base.x+6,y:base.y+18,width:60,height:18}:{x:cells[i].x,y:cells[i].y-18,width:cells[i].width,height:18},14);
+    });
     texts.forEach((text,i)=>fitScoreLine(text,cells[i],i===2?(s.height>=108?36:24):18,true));
     const pedestal=scorePedestal(s);
     // Total digits/label have an opaque foreground, not a hole in the fire field.

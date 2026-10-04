@@ -89,14 +89,21 @@ function capacityLayout(viewport:{width:number;height:number},safe:Insets,reques
   return {mode,compact,shortLandscape,width,height,hud,jokers,preview,scoreBoard,playedArea,handLabel,piles,tools,hand,actions,status,scoreFire,toolsInHud,labelHeight,buttons,tableActions,cards,handRows,handOverflow,handStart,visibleCardCount,handNavigation,slots,jokerLabels};
 }
 /** Numeric cells share the total's fire base, rather than an equal-width table. */
+function primaryScoreCell(s:Box):Box {
+  const secondary=s.width*(s.height<108?.52:s.width<260?.43:.38);
+  return s.height<108?box(s.x+secondary+6,s.y+s.height-27,s.width-secondary-12,26.5):box(s.x+secondary+4,s.y+s.height-49,s.width-secondary-12,43);
+}
+/** Wide portrait totals put the label beside the digits, freeing a real fire body above. */
 export function scoreCells(s:Box){
-  if(s.height<108){const secondary=s.width*.52;return [box(s.x+6,s.y+36,secondary/2-10,24),box(s.x+secondary/2+2,s.y+36,secondary/2-8,24),box(s.x+secondary+6,s.y+s.height-35,s.width-secondary-12,32)];}
-  const narrow=s.width<260,split=narrow?.43:.38,secondary=s.width*split;
-  return [box(s.x+8,s.y+43,secondary-12,24),box(s.x+8,s.y+Math.min(88,s.height-25),secondary-12,24),box(s.x+secondary+4,s.y+s.height-49,s.width-secondary-12,43)];
+  const total=primaryScoreCell(s);
+  if(s.height<108){const secondary=s.width*.52;return [box(s.x+6,s.y+36,secondary/2-10,24),box(s.x+secondary/2+2,s.y+36,secondary/2-8,24),total];}
+  const secondary=s.width*(s.width<260?.43:.38);
+  return [box(s.x+8,s.y+43,secondary-12,24),box(s.x+8,s.y+Math.min(88,s.height-25),secondary-12,24),s.width>=260?box(total.x+64,total.y,total.width-64,total.height):total];
 }
 /** Opaque foreground protects the total; the fire is a continuous background. */
 export function scorePedestal(s:Box):Box|undefined {
-  const total=scoreCells(s)[2];return s.height<108?box(total.x-4,total.y-3,total.width+8,36):box(total.x-4,total.y-22,total.width+8,69);
+  const total=primaryScoreCell(s);
+  return s.height<108?box(total.x-4,total.y-2,total.width+8,29):s.width>=260?box(total.x-4,total.y-6,total.width+8,55):box(total.x-4,total.y-22,total.width+8,69);
 }
 export function layout(viewport:{width:number;height:number},safe:Insets,requested?:LayoutMode,handWindow:HandWindow={count:8}){
   const l=capacityLayout(viewport,safe,requested,handWindow),{width,height}=viewport,count=l.cards.length;

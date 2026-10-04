@@ -1,18 +1,15 @@
 import Phaser from 'phaser';
 import type {Box} from './layout';
 import {subtractBoxes} from './ScoreGeometry';
+import {propagateDoomFire} from './DoomFireHeat';
 
 const NOISE_SIZE=64,NOISE_MASK=NOISE_SIZE-1,FRAME_MS=1000/30;
 const FRAME_WIDTH=256,FRAME_HEIGHT=64;
-// Slender, curved polygon tongues. Shape coordinates are cosmetic and never use rule RNG.
-const SMALL_TONGUES=[ [.20,.040,.80,-.030,0], [.55,.060,1,.045,1.7], [.83,.025,.56,-.018,3.2] ] as const;
-const LARGE_TONGUES=[ [.11,.036,.62,-.018,0], [.37,.093,1,.075,1.7], [.70,.051,.78,-.042,3.2], [.56,.023,.48,.053,.8], [.89,.035,.53,-.050,2.5] ] as const;
-const EXTREME_TONGUES=[...LARGE_TONGUES,[.23,.042,.73,.041,2.1],[.80,.048,.85,.042,4.3]] as const;
-const LARGE_ANCHORS=[.14,.43,.77] as const;
+const LARGE_ANCHORS=[.18,.39,.79] as const;
 const SMALL_ANCHORS=LARGE_ANCHORS;
 const COLORS=[
-  [0,184,71,58,0],[.25,184,71,58,150],[.45,237,116,44,210],
-  [.65,255,142,32,235],[.83,255,194,50,244],[1,255,231,80,250],
+  [0,184,71,58,0],[.28,184,71,58,244],[.46,217,119,66,247],
+  [.68,232,142,72,249],[.86,255,234,192,250],[1,255,249,238,250],
 ] as const;
 const clamp=(value:number,minimum=0,maximum=1)=>Math.max(minimum,Math.min(maximum,value));
 let flameId=0;
@@ -48,7 +45,7 @@ export class ScoreFlame {
   private nextHeat=new Float32Array(0);
   private smallMask=new Float32Array(0);
   private largeMask=new Float32Array(0);
-  private coverage=new Float32Array(0);
+  private fuel=new Float32Array(0);
   private pixels?:ImageData;
   private frameHeat=new Float32Array(0);
   private nextFrameHeat=new Float32Array(0);
@@ -80,7 +77,7 @@ export class ScoreFlame {
       this.material=texture;this.width=w;this.height=h;
       this.heat=new Float32Array(w*h);this.nextHeat=new Float32Array(w*h);
       this.smallMask=new Float32Array(w*h);this.largeMask=new Float32Array(w*h);
-      this.coverage=new Float32Array(w*h);
+      this.fuel=new Float32Array(w);
       this.pixels=texture.context.createImageData(w,h);
       this.cacheMasks();
       texture.setFilter(Phaser.Textures.FilterMode.LINEAR);
@@ -134,9 +131,11 @@ export class ScoreFlame {
     this.graphic.setData('intensity',next).setVisible(next>0);
     this.flame?.setVisible(next>0);
     if(next<2||next!==previous){this.frameHeat.fill(0);this.nextFrameHeat.fill(0);}
-    if(!next){this.elapsed=0;this.step=0;this.heat.fill(0);this.nextHeat.fill(0);}
+    if(!next){this.elapsed=0;this.step=0;this.heat.fill(0);this.nextHeat.fill(0);this.fuel.fill(0);}
     else{
-      this.advanceHeat();
+      // A bounded deterministic warm start avoids waiting for fuel to climb.
+      if(reduced||!previous){this.heat.fill(0);this.nextHeat.fill(0);this.step=0;}
+      for(let i=0;i<Math.min(96,this.height*2);i++)this.advanceHeat();
       if(this.frameFlash)for(let i=0;i<24;i++)this.advanceFrameHeat();
     }
     this.draw();
@@ -203,36 +202,15 @@ export class ScoreFlame {
 
   private advanceHeat():void {
     if(!this.width||!this.level)return;
-    const w=this.width,h=this.height,t=this.reduced?0:this.elapsed,small=this.level===1;
-    const polygons:{x:number;y:number}[][]=[];
-    const cubic=(a:number,b:number,c:number,d:number,u:number)=>{const v=1-u;return v*v*v*a+3*v*v*u*b+3*v*u*u*c+u*u*u*d;};
-    const tierHeight=small?.60:this.level===2?.84:.98;
-    const tongues=small?SMALL_TONGUES:this.level===2?LARGE_TONGUES:EXTREME_TONGUES;
-    for(const [i,[anchor,radius,tall,lean,phase]] of tongues.entries()){
-      const root=anchor+Math.sin(t*(1.6+i*.31)+phase)*.012,wide=radius*(small?.42:this.level===2?.80:1.18),peak=Math.min(.98,tierHeight*tall*(.94+.06*Math.sin(t*2.2+phase))+this.surge*.12);
-      const tip=root+lean*(small?.7:1)+Math.sin(t*2.7+phase)*.01,points:{x:number;y:number}[]=[];
-      for(let j=0;j<=12;j++){const u=j/12;points.push({x:cubic(root-wide,root-wide*.75,tip-.052,tip,u),y:cubic(0,peak*.32,peak*.76,peak,u)});}
-      for(let j=1;j<=12;j++){const u=j/12;points.push({x:cubic(tip,tip+.013,root+wide*.75,root+wide,u),y:cubic(peak,peak*.64,peak*.13,0,u)});}
-      polygons.push(points);
-    }
-    const field=this.heat,next=this.nextHeat;
-    const rootHeight=small?.08:this.level===2?.24:.32;
+    const w=this.width,h=this.height,small=this.level===1,t=this.reduced?0:this.elapsed;
     for(let x=0;x<w;x++){
-      const u=x/(w-1),intervals:{lo:number;hi:number}[]=[];
-      for(const points of polygons){const crossings:number[]=[];for(let i=0;i<points.length;i++){const a=points[i],b=points[(i+1)%points.length];if((a.x<=u&&b.x>u)||(b.x<=u&&a.x>u))crossings.push(a.y+(u-a.x)/(b.x-a.x)*(b.y-a.y));}crossings.sort((a,b)=>a-b);for(let i=0;i+1<crossings.length;i+=2)intervals.push({lo:crossings[i],hi:crossings[i+1]});}
-      for(let y=0;y<h;y++){
-        const rise=(h-1-y)/(h-1),base=rootHeight*(1+.12*Math.sin(u*19+t)+.08*Math.sin(u*37-t));
-        let coverage=clamp((base-rise)*h+.5);
-        for(const span of intervals)coverage=Math.max(coverage,clamp((Math.min(rise+.5/h,span.hi)-Math.max(rise-.5/h,span.lo))*h));
-        this.coverage[y*w+x]=coverage;next[y*w+x]=coverage>0?1000:0;
-      }
+      const u=x/(w-1),wave=(1+Math.sin(u*21+Math.sin(u*13)*1.7+t*.9))/2;
+      // Low fire stays a visible connected root with sparse hotter fuel patches.
+      // Large/extreme broaden and strengthen real heat, never a fixed silhouette.
+      this.fuel[x]=clamp((small?.09+.61*Math.pow(wave,8):this.level===2?.48+.51*wave:.58+.42*wave)+this.surge*.14);
     }
-    // Two cheap distance passes: red-orange silhouette, yellow inner core.
-    // No number-shaped cutouts, blurred hills, or separate footer line.
-    for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=y*w+x;if(next[i])next[i]=Math.min(x?next[i-1]+1:1,y?next[i-w]+1:1);}
-    for(let y=h-1;y>=0;y--)for(let x=w-1;x>=0;x--){const i=y*w+x;if(next[i])next[i]=Math.min(next[i],x<w-1?next[i+1]+1:1,y<h-1?next[i+w]+1:1);}
-    for(let i=0;i<next.length;i++)if(next[i])next[i]=.30+.68*clamp((next[i]-1)/4);
-    this.step++;this.heat=next;this.nextHeat=field;
+    propagateDoomFire(this.heat,this.nextHeat,w,h,this.noise,this.step,small?.10:this.level===2?.30:.20,this.fuel,small?1.3:this.level===2?1.10:.92,.65);
+    const previous=this.heat;this.heat=this.nextHeat;this.nextHeat=previous;this.step++;
   }
 
   private cacheFrameFuelAndMask():void {
@@ -287,9 +265,14 @@ export class ScoreFlame {
   private uploadHeat(texture:Phaser.Textures.CanvasTexture,pixels:ImageData,heat:Float32Array,mask:Float32Array):void {
     const data=pixels.data;
     for(let i=0;i<heat.length;i++){
-      const color=Math.round(clamp(heat[i])*255)*4,pixel=i*4;
+      const temperature=clamp(heat[i]),alphaColor=Math.round(temperature*255)*4,pixel=i*4,local=texture===this.material;
+      const rise=local?(this.height-1-Math.floor(i/this.width))/(this.height-1):1;
+      // P08 has a red root, not Doom's opaque white fuel floor. Thermal alpha
+      // remains unchanged, so cold regions cannot become a painted rectangle.
+      const color=Math.round((local&&rise<.18?.28:temperature)*255)*4;
       data[pixel]=this.palette[color];data[pixel+1]=this.palette[color+1];data[pixel+2]=this.palette[color+2];
-      data[pixel+3]=this.palette[color+3]*mask[i]*(texture===this.material?this.coverage[i]:1);
+      // Heat itself controls transparency; no polygon/tongue coverage can crop it.
+      data[pixel+3]=this.palette[alphaColor+3]*mask[i]*(local?clamp(temperature*10):1);
     }
     texture.context.putImageData(pixels,0,0);texture.refresh();
   }
@@ -346,7 +329,7 @@ export class ScoreFlame {
     if(this.scene.textures.exists(this.textureKey))this.scene.textures.remove(this.textureKey);
     if(this.scene.textures.exists(this.frameTextureKey))this.scene.textures.remove(this.frameTextureKey);
     this.heat=new Float32Array(0);this.nextHeat=new Float32Array(0);
-    this.smallMask=new Float32Array(0);this.largeMask=new Float32Array(0);this.pixels=undefined;
+    this.smallMask=new Float32Array(0);this.largeMask=new Float32Array(0);this.fuel=new Float32Array(0);this.pixels=undefined;
     this.hitIds.clear();
     this.frameHeat=new Float32Array(0);this.nextFrameHeat=new Float32Array(0);
     this.frameFuel=new Float32Array(0);this.frameMask=new Float32Array(0);this.framePixels=undefined;

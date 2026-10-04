@@ -1,25 +1,32 @@
-# P08 fire contour revision2: actual-score static review
+# P08 Doom thermal-kernel candidate review
 
-Evidence only: two PNGs + this README, based on main `6f470b63032537b63898a4a974d91872439bbf3f`. Previous rejected candidate remains in commit ac06348. No candidate source or runtime asset is included here or pushed to main. Original worktree retains GameScene/layout/ScoreFlame changes; b9 is verified input, not registered.
+**Review candidate only. main is unchanged; not a deployed build or final art/device acceptance.**
 
-Candidate src fingerprint (sorted tracked src path/NUL/bytes/NUL): `b4ec1951b06bcabd8d9c56c446d4c25a225db9fc897b33d576ee3c457dbf6df6`. Embedded C03 revision `6f470b63032537b63898a4a974d91872439bbf3f`, modified=true, built `2026-10-04T13:00:23.517Z`. Runtime manifest unchanged:a052cc972a19c4fa6ec9afe980b556c9ea4b2e426ea9ac918b9036679036000d.
+Published base: `6f470b63032537b63898a4a974d91872439bbf3f`.
+Candidate src fingerprint: `1cf05d316a49ea8ac20e57b9601fdd60c2506fa7cc005b0cde0083921aa0c1fd` (sorted src path + NUL + bytes + NUL, including the new module).
+Embedded build: `C03`, revision `6f470b63032537b63898a4a974d91872439bbf3f`, modified=true, builtAt `2026-10-04T13:33:58.719Z`.
+Runtime manifest SHA256: `a052cc972a19c4fa6ec9afe980b556c9ea4b2e426ea9ac918b9036679036000d`. No art registration/manifest change in this candidate.
 
-Both routes use Chromium software Canvas, CSS viewport as below, DPR1, ordinary motion sampled as static. Natural seed d43-fire-1/老幻, no purchases, EnterStage, select diamonds7/9/4/Q/10, native Play. Resolver already saved hand1200, target400, prior stage heat0, successful playIndex1. Both frames are **1200/400=3× target, actual tier2**, with displayed300 heat×4; filenames are not the intensity proof. Render loop paused on an actual postrender after frameFlash0, screenshot, resumed/native fast-forward; full saved state unchanged and fire released. Not checkpoint fixture, main/deployed frame, animation or device acceptance.
+## Bounded change
 
-| CSS viewport / safe inset | Score board (x,y,w,h) | Fire window (x,y,w,h) | Opaque base (x,y,w,h) | Actual visible fire max/root minimum |
+The heat propagation/source core is adapted from the MIT Doom fire algorithm, fixed commit `854c39ff00f6f4688a674a4086d3c9f7c02497e1`, `playground/render-with-canvas/fire.js`. See [THIRD_PARTY_NOTICES.md](../../../../THIRD_PARTY_NOTICES.md) for the complete notice, attribution and adaptations. No upstream assets, DOM, timers or dependencies.
+Polygon coverage/tongue generation is removed. Independent deterministic visual noise feeds normalized typed-array double buffers; propagation is row-clamped, each destination is written, and the bottom source uses x < width. Ambient cooling/wind scale adapt the coarse upstream grid. Cold heat is transparent; the P08 palette supplies the red root.
+The prior foreground paper score base, label/digit fonts and CSS-space fire safety are retained. Only cosmetic heat/layout changes; actual score thresholds, rules, RNG, storage and published material mappings are unchanged. No prospective-score fire.
+
+## Actual route and finite evidence
+
+Chromium software Canvas, CSS viewport as below, DPR1, touch input, normal motion. Natural seed `d43-fire-1`; choose 老幻, buy nothing, enter the first stage; native-select ♦7/9/4/Q/10 and Play. Actual saved score1200 / target400 = 3×, **tier2 large fire**, not extreme. Pause after an actual rendered frame with total1200 and the transient frame flash ended; resume and native fast-forward. Both complete saved run snapshots matched after fast-forward and the fire instance was destroyed. No fixture score injection, recording, deployed-site or hardware-GPU claim.
+
+| PNG | CSS viewport / safe inset(top,right,bottom,left) | local fire box(x,y,w,h) | foreground base(x,y,w,h) | SHA256 |
 |---|---|---|---|---|
-|390×740 / all0|12,153.6,366,132|151.08,179.6,222.92,52|151.08,230.6,222.92,55|44px /11px|
-|844×300 /top12,bottom34,left/right0|188,72,318,58|355.36,74,148.64,28|355.36,101,148.64,29|24px /6px|
+| [390x740-actual-large.png](390x740-actual-large.png) | 390×740 / 0,0,0,0 | 151.08, 179.60, 222.92, 52.00 | 151.08, 230.60, 222.92, 55.00 | `466cebf16a96c8c41bd59266b9e98f16571d167ecf323cb5709ed3037229caba` |
+| [844x300-actual-large.png](844x300-actual-large.png) | 844×300 / 12,0,34,0 | 355.36, 74.00, 148.64, 28.00 | 355.36, 101.00, 148.64, 29.00 | `1b778ca3322af67062e27ae28918a9aa53a49b98490229a65a249997c634c87f` |
 
-Visible heights come from warm-color detection of actual PNG pixels (R>170,65<G<210,B<180,R−B>40), not theoretical silhouette extents, motion or FPS. Engineering viewed both full PNGs: stronger red root/orange body and curled shoulders; candidate overall appearance remains for independent root review.
+## Actual checks and limits
 
-Portrait: total digits bounds249.04,236.6,91,41 at36px/res1.5; 本手得分 bounds159.08,248.6,56,16 at14px/res1.5, beside digits in55px base. Source bounds143,157.6,104,16,14px/res1.5, clean independent row. Original132px information frame unchanged. Played area305.6…532.4 and hand536.4…648, fixed56px actions652…708 unchanged; nine/14-row geometry not altered, existing223.2px/22px lift tests retained.
-
-Short: total bounds399.18,103,61,26 at24px/res1.5, inside29px base101…130. Source218.68,73,104,16 at14px/res1.5. No down-extension: score frame ends130, stable hand hit area starts134 (4px gap), actions start202. Played area x514,y72,w318,h58 unchanged. No reduced font, hidden extra state, card/hand/action budget borrowing or overlay used to create fire space.
-
-Actual visible Text bounds mutually disjoint, disjoint from paintable safety pieces/buttons; base disjoint from hand and played area.38 affected original fire/layout tests and typecheck PASS without assertion weakening; natural two-route saved-state/cleanup PASS. No final freeze, all-tier browser, overall aesthetics or OnePlus/realGPU/audio acceptance claimed.
-
-Approved project-generated outer-contour reference delivery db7912a02eb3e7e07d985e6d27621ad41511f3b7 was hash/alpha/portable verified and actually viewed. Only outer contour informs procedural drawing; not used as sprite/internal paint. Continuous root, two broad asymmetric curls and unequal narrow secondary peaks; thick朱红 rim/root, saturated orange body, sparse warm core. Existing score target/2×/5×, caption/text/button protection, eventId, wall-clock flash, reduced, cancellation/fast-forward lifecycle unchanged. No old blocked Steam/Library retry or private input published.
-
-- [390x740-actual-large.png](390x740-actual-large.png), PNG SHA256 `b0550fce81c168693791ebd9ec4c4eecc3709187291091b8910095138c0c64ff`.
-- [844x300-actual-large.png](844x300-actual-large.png), PNG SHA256 `ff1bc92cdf9b60ebd712bdbcc8096a428338e23778922429bb06d7df5e636a1b`.
+- 43 targeted tests PASS: unchanged fire/layout safety and strength contracts plus five thermal-core tests (source row/sentinels, lower-row clamp/full write, deterministic no Math.random, finite normalized heat, invalid/aliased input rejection). Includes three-tier area/brightness/height, connected root/unequal peak-valley contracts, reduced static no subsequent uploads, same-tier impact dedup, wall-clock flash expiry and destruction.
+- Typecheck PASS. e2e Vite build and the two natural-score Canvas routes PASS. Actual Text bounds do not intersect fire-safe pieces or one another; total digits fit their opaque base; the base does not intersect hand, played area or action bodies.
+- Actual primary fonts:390×740 total36px/label14px;844×300 total24px/caption14px; resolution1.5. Text remains legible without reducing prior font sizes. Warm-color static detection gives exposed height16–34 CSSpx portrait and8–18 CSSpx short landscape; these are color-threshold observations, not flame-area or animation acceptance.
+- Engineer actually viewed both PNGs. Heat now has a continuous root and heat-driven irregular outline; residual pixel grain remains for independent review. No claim that root has viewed/accepted this new candidate.
+- Implementation candidate: ready for review. Bounded technical checks: PASS. Final freeze/full CI: NOT_RUN for this review stage. Independent overall aesthetics: PENDING. OnePlus/real GPU/audio/motion experience: NOT_RUN.
+- Resource batches are outside this candidate; their pending work is preserved. No private Library identities/links, private input screenshot, original art, runtime asset or full saved-run checkpoint is published here.
