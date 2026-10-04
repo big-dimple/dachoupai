@@ -1,0 +1,1190 @@
+{
+  "baseline": "88b17e23c9aa778c8ac93c9998cd090ba48ab82d",
+  "runtimeSource": "fac1709fa999f2f07470dea1299aa7377711c6c9",
+  "harnessSource": "fdcf1092b97f92910c323161be7bdf0009fa9613",
+  "build": {
+    "version": "C03",
+    "revision": "fac1709fa999f2f07470dea1299aa7377711c6c9",
+    "modified": false,
+    "builtAt": "2026-10-04T16:10:00.818Z"
+  },
+  "status": "IN_PROGRESS",
+  "implementation": {
+    "status": "IMPLEMENTED",
+    "files": [
+      "src/game/ScoreFlame.ts",
+      "src/game/GameScene.ts",
+      "src/audio/AudioEngine.ts"
+    ],
+    "graphics": 3,
+    "textures": 0,
+    "thresholds": [
+      "target",
+      "2x",
+      "5x"
+    ],
+    "sourceFlight": true,
+    "traceExplanation": true,
+    "safeNumberPulse": true,
+    "visualCorrectionRounds": 0
+  },
+  "focusedChecks": {
+    "status": "PASS",
+    "tests": 52,
+    "files": 6,
+    "typecheck": "PASS",
+    "e2eBuild": "PASS",
+    "planCheck": "PASS",
+    "coverage": [
+      "geometry/mask/long text",
+      "below-target positive hit unit test",
+      "tier-once/downgrade/re-entry",
+      "reduced before duplicate handling",
+      "wall-clock end/skip/shutdown/destroy unit ownership",
+      "no Math.random",
+      "100-160ms note +30-50ms paper scheduling",
+      "silent/hidden/background/cancel/scene dedup and immediate cleanup"
+    ]
+  },
+  "browser": {
+    "status": "PASS",
+    "browser": "151.0.7922.173",
+    "renderer": "software Canvas",
+    "input": "native touchscreen.tap",
+    "viewport": {
+      "width": 390,
+      "height": 740
+    },
+    "safe": {
+      "top": 12,
+      "bottom": 34
+    },
+    "dpr": 1,
+    "frames": 332,
+    "seed": "p04-golden-02",
+    "character": "amo",
+    "ids": [
+      "clubs-5",
+      "diamonds-14",
+      "clubs-4",
+      "diamonds-3",
+      "clubs-2"
+    ],
+    "base": {
+      "H": {
+        "n": "125",
+        "d": "1"
+      },
+      "M": {
+        "n": "4",
+        "d": "1"
+      }
+    },
+    "finalScore": "600",
+    "heat": "600",
+    "playIndex": 1,
+    "checks": [
+      "Natural saved trace and exact displayed tiers; actual phase/mask/geometry; all owned brush/audio cleanup"
+    ],
+    "allFrameSavedStable": true,
+    "observedLevels": [
+      0,
+      1
+    ],
+    "sourceImpacts": [
+      "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+      "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+      "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/3",
+      "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/4",
+      "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/5"
+    ],
+    "actualShortStrokeFrames": 95,
+    "cleanup": {
+      "brush": false,
+      "nodes": 0,
+      "accents": 0
+    },
+    "longDigits": [
+      {
+        "text": "1.23e14",
+        "full": "123,456,789,012,345",
+        "bounds": {
+          "x": 58.040000000000006,
+          "y": 208.6,
+          "width": 51,
+          "height": 16
+        },
+        "font": "14px"
+      },
+      {
+        "text": "× 1.00e8–9.99e8",
+        "full": "× 100,000,000–999,999,999",
+        "bounds": {
+          "x": 30.540000000000006,
+          "y": 253.6,
+          "width": 106.00000000000001,
+          "height": 16.00000000000003
+        },
+        "font": "14px"
+      },
+      {
+        "text": "999,999,999,999,999",
+        "full": "999,999,999,999,999",
+        "bounds": {
+          "x": 158.54000000000002,
+          "y": 248.60000000000002,
+          "width": 208,
+          "height": 25
+        },
+        "font": "22px"
+      }
+    ]
+  },
+  "keyframe": {
+    "file": "390x740-target-first-candidate.png",
+    "actualView": true,
+    "source": "fac1709fa999f2f07470dea1299aa7377711c6c9",
+    "frame": 176,
+    "at": 3520.5999999998603,
+    "renderer": "Canvas",
+    "origin": "0",
+    "product": "500",
+    "level": 1,
+    "brush": {
+      "level": 1,
+      "reduced": false,
+      "localPhase": "idle",
+      "localAge": 320,
+      "localAlpha": 0,
+      "framePhase": "fade",
+      "frameAge": 183.30000000000018,
+      "frameProgress": 1,
+      "frameAlpha": 0.9979833333333332,
+      "lineWidth": 3.5,
+      "entered": [
+        1
+      ],
+      "updating": true
+    },
+    "shown": "500",
+    "texts": [
+      {
+        "text": "打出 · 顺子",
+        "full": "打出 · 顺子",
+        "bounds": {
+          "x": 160.5,
+          "y": 169.6,
+          "width": 69,
+          "height": 16
+        },
+        "font": "14px"
+      },
+      {
+        "text": "累计热度",
+        "full": "累计热度",
+        "bounds": {
+          "x": 55.540000000000006,
+          "y": 190.6,
+          "width": 56,
+          "height": 16
+        },
+        "font": "14px"
+      },
+      {
+        "text": "当前倍率",
+        "full": "当前倍率",
+        "bounds": {
+          "x": 55.540000000000006,
+          "y": 235.6,
+          "width": 56,
+          "height": 16
+        },
+        "font": "14px"
+      },
+      {
+        "text": "本手得分",
+        "full": "本手得分",
+        "bounds": {
+          "x": 234.54000000000002,
+          "y": 230.60000000000002,
+          "width": 56,
+          "height": 16
+        },
+        "font": "14px"
+      },
+      {
+        "text": "125",
+        "full": "125",
+        "bounds": {
+          "x": 68.04,
+          "y": 208.6,
+          "width": 31,
+          "height": 21
+        },
+        "font": "18px"
+      },
+      {
+        "text": "× 4",
+        "full": "× 4",
+        "bounds": {
+          "x": 70.54,
+          "y": 253.6,
+          "width": 26,
+          "height": 21.00000000000003
+        },
+        "font": "18px"
+      },
+      {
+        "text": "500",
+        "full": "500",
+        "bounds": {
+          "x": 232.04000000000002,
+          "y": 248.60000000000002,
+          "width": 61,
+          "height": 41
+        },
+        "font": "36px"
+      }
+    ],
+    "pieces": [
+      {
+        "x": 12,
+        "y": 165.6,
+        "width": 366,
+        "height": 1
+      },
+      {
+        "x": 12,
+        "y": 166.6,
+        "width": 140.74,
+        "height": 3
+      },
+      {
+        "x": 237.26000000000002,
+        "y": 166.6,
+        "width": 140.73999999999998,
+        "height": 3
+      },
+      {
+        "x": 12,
+        "y": 169.6,
+        "width": 8,
+        "height": 2
+      },
+      {
+        "x": 370,
+        "y": 169.6,
+        "width": 8,
+        "height": 2
+      },
+      {
+        "x": 12,
+        "y": 291.6,
+        "width": 212.60000000000002,
+        "height": 4.279999999999973
+      },
+      {
+        "x": 300.48,
+        "y": 291.6,
+        "width": 77.51999999999998,
+        "height": 4.279999999999973
+      },
+      {
+        "x": 12,
+        "y": 295.88,
+        "width": 366,
+        "height": 1.7200000000000273
+      },
+      {
+        "x": 12,
+        "y": 165.6,
+        "width": 6,
+        "height": 1
+      },
+      {
+        "x": 12,
+        "y": 166.6,
+        "width": 6,
+        "height": 3
+      },
+      {
+        "x": 12,
+        "y": 169.6,
+        "width": 6,
+        "height": 18
+      },
+      {
+        "x": 12,
+        "y": 187.6,
+        "width": 6,
+        "height": 2
+      },
+      {
+        "x": 12,
+        "y": 189.6,
+        "width": 6,
+        "height": 0.28000000000000114
+      },
+      {
+        "x": 12,
+        "y": 189.88,
+        "width": 6,
+        "height": 15.719999999999999
+      },
+      {
+        "x": 12,
+        "y": 205.6,
+        "width": 6,
+        "height": 5.280000000000001
+      },
+      {
+        "x": 12,
+        "y": 210.88,
+        "width": 6,
+        "height": 16.720000000000027
+      },
+      {
+        "x": 12,
+        "y": 227.60000000000002,
+        "width": 6,
+        "height": 4.999999999999972
+      },
+      {
+        "x": 12,
+        "y": 232.6,
+        "width": 6,
+        "height": 1.6800000000000068
+      },
+      {
+        "x": 12,
+        "y": 234.28,
+        "width": 6,
+        "height": 11.320000000000022
+      },
+      {
+        "x": 12,
+        "y": 245.60000000000002,
+        "width": 6,
+        "height": 4.999999999999972
+      },
+      {
+        "x": 12,
+        "y": 250.6,
+        "width": 6,
+        "height": 0.28000000000002956
+      },
+      {
+        "x": 12,
+        "y": 250.88000000000002,
+        "width": 6,
+        "height": 4.999999999999972
+      },
+      {
+        "x": 12,
+        "y": 255.88,
+        "width": 6,
+        "height": 23.400000000000034
+      },
+      {
+        "x": 12,
+        "y": 279.28000000000003,
+        "width": 6,
+        "height": 16.599999999999966
+      },
+      {
+        "x": 12,
+        "y": 295.88,
+        "width": 6,
+        "height": 1.7200000000000273
+      },
+      {
+        "x": 372,
+        "y": 165.6,
+        "width": 6,
+        "height": 1
+      },
+      {
+        "x": 372,
+        "y": 166.6,
+        "width": 6,
+        "height": 3
+      },
+      {
+        "x": 372,
+        "y": 169.6,
+        "width": 6,
+        "height": 18
+      },
+      {
+        "x": 372,
+        "y": 187.6,
+        "width": 6,
+        "height": 2
+      },
+      {
+        "x": 372,
+        "y": 189.6,
+        "width": 6,
+        "height": 0.28000000000000114
+      },
+      {
+        "x": 372,
+        "y": 189.88,
+        "width": 6,
+        "height": 15.719999999999999
+      },
+      {
+        "x": 372,
+        "y": 205.6,
+        "width": 6,
+        "height": 5.280000000000001
+      },
+      {
+        "x": 372,
+        "y": 210.88,
+        "width": 6,
+        "height": 16.720000000000027
+      },
+      {
+        "x": 372,
+        "y": 227.60000000000002,
+        "width": 6,
+        "height": 4.999999999999972
+      },
+      {
+        "x": 372,
+        "y": 232.6,
+        "width": 6,
+        "height": 1.6800000000000068
+      },
+      {
+        "x": 372,
+        "y": 234.28,
+        "width": 6,
+        "height": 11.320000000000022
+      },
+      {
+        "x": 372,
+        "y": 245.60000000000002,
+        "width": 6,
+        "height": 4.999999999999972
+      },
+      {
+        "x": 372,
+        "y": 250.6,
+        "width": 6,
+        "height": 0.28000000000002956
+      },
+      {
+        "x": 372,
+        "y": 250.88000000000002,
+        "width": 6,
+        "height": 4.999999999999972
+      },
+      {
+        "x": 372,
+        "y": 255.88,
+        "width": 6,
+        "height": 23.400000000000034
+      },
+      {
+        "x": 372,
+        "y": 279.28000000000003,
+        "width": 6,
+        "height": 16.599999999999966
+      },
+      {
+        "x": 372,
+        "y": 295.88,
+        "width": 6,
+        "height": 1.7200000000000273
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 8
+      },
+      {
+        "x": 382,
+        "y": 0,
+        "width": 8,
+        "height": 21
+      },
+      {
+        "x": 382,
+        "y": 21,
+        "width": 8,
+        "height": 40
+      },
+      {
+        "x": 382,
+        "y": 61,
+        "width": 8,
+        "height": 105.6
+      },
+      {
+        "x": 382,
+        "y": 166.6,
+        "width": 8,
+        "height": 3
+      },
+      {
+        "x": 382,
+        "y": 169.6,
+        "width": 8,
+        "height": 18
+      },
+      {
+        "x": 382,
+        "y": 187.6,
+        "width": 8,
+        "height": 2
+      },
+      {
+        "x": 382,
+        "y": 189.6,
+        "width": 8,
+        "height": 0.28000000000000114
+      },
+      {
+        "x": 382,
+        "y": 189.88,
+        "width": 8,
+        "height": 15.719999999999999
+      },
+      {
+        "x": 382,
+        "y": 205.6,
+        "width": 8,
+        "height": 5.280000000000001
+      },
+      {
+        "x": 382,
+        "y": 210.88,
+        "width": 8,
+        "height": 16.720000000000027
+      },
+      {
+        "x": 382,
+        "y": 227.60000000000002,
+        "width": 8,
+        "height": 4.999999999999972
+      },
+      {
+        "x": 382,
+        "y": 232.6,
+        "width": 8,
+        "height": 1.6800000000000068
+      },
+      {
+        "x": 382,
+        "y": 234.28,
+        "width": 8,
+        "height": 11.320000000000022
+      },
+      {
+        "x": 382,
+        "y": 245.60000000000002,
+        "width": 8,
+        "height": 4.999999999999972
+      },
+      {
+        "x": 382,
+        "y": 250.6,
+        "width": 8,
+        "height": 0.28000000000002956
+      },
+      {
+        "x": 382,
+        "y": 250.88000000000002,
+        "width": 8,
+        "height": 4.999999999999972
+      },
+      {
+        "x": 382,
+        "y": 255.88,
+        "width": 8,
+        "height": 23.400000000000034
+      },
+      {
+        "x": 382,
+        "y": 279.28000000000003,
+        "width": 8,
+        "height": 16.599999999999966
+      },
+      {
+        "x": 382,
+        "y": 295.88,
+        "width": 8,
+        "height": 72.72000000000003
+      },
+      {
+        "x": 382,
+        "y": 368.6,
+        "width": 8,
+        "height": 78.79999999999995
+      },
+      {
+        "x": 382,
+        "y": 447.4,
+        "width": 8,
+        "height": 74.00001220703132
+      },
+      {
+        "x": 382,
+        "y": 521.4000122070313,
+        "width": 8,
+        "height": 93.5999877929687
+      },
+      {
+        "x": 382,
+        "y": 615,
+        "width": 8,
+        "height": 2.0000122070312045
+      },
+      {
+        "x": 382,
+        "y": 617.0000122070312,
+        "width": 8,
+        "height": 0.9999877929687955
+      },
+      {
+        "x": 382,
+        "y": 618,
+        "width": 8,
+        "height": 56
+      },
+      {
+        "x": 382,
+        "y": 674,
+        "width": 8,
+        "height": 3
+      },
+      {
+        "x": 382,
+        "y": 677,
+        "width": 8,
+        "height": 63
+      },
+      {
+        "x": 0,
+        "y": 732,
+        "width": 390,
+        "height": 8
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "width": 8,
+        "height": 21
+      },
+      {
+        "x": 0,
+        "y": 21,
+        "width": 8,
+        "height": 40
+      },
+      {
+        "x": 0,
+        "y": 61,
+        "width": 8,
+        "height": 105.6
+      },
+      {
+        "x": 0,
+        "y": 166.6,
+        "width": 8,
+        "height": 3
+      },
+      {
+        "x": 0,
+        "y": 169.6,
+        "width": 8,
+        "height": 18
+      },
+      {
+        "x": 0,
+        "y": 187.6,
+        "width": 8,
+        "height": 2
+      },
+      {
+        "x": 0,
+        "y": 189.6,
+        "width": 8,
+        "height": 0.28000000000000114
+      },
+      {
+        "x": 0,
+        "y": 189.88,
+        "width": 8,
+        "height": 15.719999999999999
+      },
+      {
+        "x": 0,
+        "y": 205.6,
+        "width": 8,
+        "height": 5.280000000000001
+      },
+      {
+        "x": 0,
+        "y": 210.88,
+        "width": 8,
+        "height": 16.720000000000027
+      },
+      {
+        "x": 0,
+        "y": 227.60000000000002,
+        "width": 8,
+        "height": 4.999999999999972
+      },
+      {
+        "x": 0,
+        "y": 232.6,
+        "width": 8,
+        "height": 1.6800000000000068
+      },
+      {
+        "x": 0,
+        "y": 234.28,
+        "width": 8,
+        "height": 11.320000000000022
+      },
+      {
+        "x": 0,
+        "y": 245.60000000000002,
+        "width": 8,
+        "height": 4.999999999999972
+      },
+      {
+        "x": 0,
+        "y": 250.6,
+        "width": 8,
+        "height": 0.28000000000002956
+      },
+      {
+        "x": 0,
+        "y": 250.88000000000002,
+        "width": 8,
+        "height": 4.999999999999972
+      },
+      {
+        "x": 0,
+        "y": 255.88,
+        "width": 8,
+        "height": 23.400000000000034
+      },
+      {
+        "x": 0,
+        "y": 279.28000000000003,
+        "width": 8,
+        "height": 16.599999999999966
+      },
+      {
+        "x": 0,
+        "y": 295.88,
+        "width": 8,
+        "height": 72.72000000000003
+      },
+      {
+        "x": 0,
+        "y": 368.6,
+        "width": 8,
+        "height": 78.79999999999995
+      },
+      {
+        "x": 0,
+        "y": 447.4,
+        "width": 8,
+        "height": 74.00001220703132
+      },
+      {
+        "x": 0,
+        "y": 521.4000122070313,
+        "width": 8,
+        "height": 93.5999877929687
+      },
+      {
+        "x": 0,
+        "y": 615,
+        "width": 8,
+        "height": 2.0000122070312045
+      },
+      {
+        "x": 0,
+        "y": 617.0000122070312,
+        "width": 8,
+        "height": 0.9999877929687955
+      },
+      {
+        "x": 0,
+        "y": 618,
+        "width": 8,
+        "height": 56
+      },
+      {
+        "x": 0,
+        "y": 674,
+        "width": 8,
+        "height": 3
+      },
+      {
+        "x": 0,
+        "y": 677,
+        "width": 8,
+        "height": 63
+      }
+    ],
+    "guards": [
+      {
+        "x": 20,
+        "y": 169.6,
+        "width": 350,
+        "height": 20
+      },
+      {
+        "x": 152.74,
+        "y": 166.6,
+        "width": 84.52000000000001,
+        "height": 23.28
+      },
+      {
+        "x": 48.300000000000004,
+        "y": 187.6,
+        "width": 70.48,
+        "height": 23.28
+      },
+      {
+        "x": 48.300000000000004,
+        "y": 232.6,
+        "width": 70.48,
+        "height": 23.28
+      },
+      {
+        "x": 227.3,
+        "y": 227.60000000000002,
+        "width": 70.48,
+        "height": 23.28
+      },
+      {
+        "x": 61.800000000000004,
+        "y": 205.6,
+        "width": 43.480000000000004,
+        "height": 28.68
+      },
+      {
+        "x": 64.5,
+        "y": 250.6,
+        "width": 38.08,
+        "height": 28.68000000000003
+      },
+      {
+        "x": 224.60000000000002,
+        "y": 245.60000000000002,
+        "width": 75.88000000000001,
+        "height": 50.28
+      },
+      {
+        "x": 46,
+        "y": 368.6,
+        "width": 58,
+        "height": 78.79999999999995
+      },
+      {
+        "x": 106,
+        "y": 368.6,
+        "width": 58,
+        "height": 78.79999999999995
+      },
+      {
+        "x": 166,
+        "y": 368.6,
+        "width": 58,
+        "height": 78.79999999999995
+      },
+      {
+        "x": 226,
+        "y": 368.6,
+        "width": 58,
+        "height": 78.79999999999995
+      },
+      {
+        "x": 181.57142639160156,
+        "y": 521.4000122070313,
+        "width": 70,
+        "height": 95.59999999999991
+      },
+      {
+        "x": 224.71429443359375,
+        "y": 521.4000122070313,
+        "width": 70,
+        "height": 95.59999999999991
+      },
+      {
+        "x": 286,
+        "y": 368.6,
+        "width": 58,
+        "height": 78.79999999999995
+      },
+      {
+        "x": 311,
+        "y": 521.4000122070313,
+        "width": 70,
+        "height": 95.59999999999991
+      },
+      {
+        "x": 46,
+        "y": 368.6,
+        "width": 58,
+        "height": 78.79999999999995
+      },
+      {
+        "x": 106,
+        "y": 368.6,
+        "width": 58,
+        "height": 78.79999999999995
+      },
+      {
+        "x": 166,
+        "y": 368.6,
+        "width": 58,
+        "height": 78.79999999999995
+      },
+      {
+        "x": 226,
+        "y": 368.6,
+        "width": 58,
+        "height": 78.79999999999995
+      },
+      {
+        "x": 286,
+        "y": 368.6,
+        "width": 58,
+        "height": 78.79999999999995
+      },
+      {
+        "x": 19,
+        "y": 21,
+        "width": 40,
+        "height": 40
+      },
+      {
+        "x": 185,
+        "y": 615,
+        "width": 196,
+        "height": 62
+      },
+      {
+        "x": 9,
+        "y": 615,
+        "width": 76,
+        "height": 62
+      },
+      {
+        "x": 85,
+        "y": 615,
+        "width": 50,
+        "height": 62
+      },
+      {
+        "x": 135,
+        "y": 615,
+        "width": 50,
+        "height": 62
+      },
+      {
+        "x": 88,
+        "y": 618,
+        "width": 44,
+        "height": 56
+      },
+      {
+        "x": 138,
+        "y": 618,
+        "width": 44,
+        "height": 56
+      },
+      {
+        "x": 12,
+        "y": 618,
+        "width": 70,
+        "height": 56
+      },
+      {
+        "x": 188,
+        "y": 618,
+        "width": 190,
+        "height": 56
+      }
+    ],
+    "bands": [
+      {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 8
+      },
+      {
+        "x": 382,
+        "y": 0,
+        "width": 8,
+        "height": 740
+      },
+      {
+        "x": 0,
+        "y": 732,
+        "width": 390,
+        "height": 8
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "width": 8,
+        "height": 740
+      }
+    ],
+    "cards": [
+      {
+        "x": 49,
+        "y": 371.6,
+        "width": 52,
+        "height": 72.79999999999995
+      },
+      {
+        "x": 109,
+        "y": 371.6,
+        "width": 52,
+        "height": 72.79999999999995
+      },
+      {
+        "x": 169,
+        "y": 371.6,
+        "width": 52,
+        "height": 72.79999999999995
+      },
+      {
+        "x": 229,
+        "y": 371.6,
+        "width": 52,
+        "height": 72.79999999999995
+      },
+      {
+        "x": 184.57142639160156,
+        "y": 524.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      },
+      {
+        "x": 227.71429443359375,
+        "y": 524.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      },
+      {
+        "x": 289,
+        "y": 371.6,
+        "width": 52,
+        "height": 72.79999999999995
+      },
+      {
+        "x": 314,
+        "y": 524.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      }
+    ],
+    "controls": [
+      {
+        "x": 88,
+        "y": 618,
+        "width": 44,
+        "height": 56
+      },
+      {
+        "x": 138,
+        "y": 618,
+        "width": 44,
+        "height": 56
+      },
+      {
+        "x": 12,
+        "y": 618,
+        "width": 70,
+        "height": 56
+      },
+      {
+        "x": 188,
+        "y": 618,
+        "width": 190,
+        "height": 56
+      }
+    ],
+    "masked": [
+      {
+        "name": "score/fire-frame",
+        "mask": true,
+        "same": true,
+        "input": false
+      },
+      {
+        "name": "score/fire",
+        "mask": true,
+        "same": true,
+        "input": false
+      }
+    ],
+    "flights": [],
+    "burning": 0,
+    "accents": 0,
+    "textures": [],
+    "stamp": false,
+    "shake": false,
+    "savedStable": true,
+    "presentationPhase": "saved base revealed; eventId/phase metadata not yet assigned",
+    "metadataDerivation": "No eventId at this captured render; saved base125x4 and displayedProduct500 match. Brush phase/frame/age are direct runtime values.",
+    "captureFile": "shots/cinnabar/390x740-tier1.png"
+  },
+  "firstCaptureFailure": {
+    "status": "FAIL",
+    "source": "fac1709fa999f2f07470dea1299aa7377711c6c9",
+    "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(captured.rasters.some(f=>f.tier===0))\n",
+    "reason": "600 wheel base is125x4=500, above target400. Requiring a below-target raster on this specific natural path was an invalid capture assumption. Rules/score unchanged; failure retained.",
+    "fullLocalReport": "shots/cinnabar/first-capture-failure.json"
+  },
+  "unchangedTrees": {
+    "src/domain": {
+      "baseline": "8e3423193ecb4920e79b87f2314da97a04438c99",
+      "candidate": "8e3423193ecb4920e79b87f2314da97a04438c99"
+    },
+    "src/application": {
+      "baseline": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+      "candidate": "4abd0e9c2df6b8e3652a618896c77e6993681f47"
+    },
+    "public/assets": {
+      "baseline": "c77b16c711c1e6e38030274cb1bc97f0896bc984",
+      "candidate": "c77b16c711c1e6e38030274cb1bc97f0896bc984"
+    },
+    "art/sources": {
+      "baseline": "b3c5fd1ea17afd0a6a774decae466a03fdfe5f3c",
+      "candidate": "b3c5fd1ea17afd0a6a774decae466a03fdfe5f3c"
+    }
+  },
+  "remaining": [
+    "844x300 and remaining natural tiers/below-target frame",
+    "reduced / skip / mid-presentation switch browser routes",
+    "two four-phase contact sheets",
+    "exact review CI"
+  ],
+  "notRun": [
+    "overall aesthetics approval",
+    "physical OnePlus",
+    "true GPU",
+    "GPU/FPS benchmark",
+    "audio listening",
+    "recording",
+    "full local aggregate",
+    "exact review CI",
+    "main merge/deploy"
+  ]
+}
