@@ -1,11 +1,12 @@
 import Phaser from 'phaser';
 import {getR2Joker} from '../domain/r2Shop';
+import {PAPER_THEME} from './theme';
 
 /** Shared mechanism woodcuts for cards without a dedicated illustration. */
 export function drawJokerMotif(scene:Phaser.Scene,container:Phaser.GameObjects.Container,definitionId:string,x:number,y:number,size:number):void {
   const definition=getR2Joker(definitionId),operations=definition.hooks.flatMap(hook=>hook.operations);
   const art=scene.add.container(x,y).setScale(Math.max(1,size)/100),g=scene.add.graphics();container.add(art);art.add(g);
-  const ink=0x294852,brass=0xb68b4c,paper=0xeed5a2,jade=0x448773,rose=0xb15b55;
+  const ink=PAPER_THEME.ink,brass=PAPER_THEME.brass,paper=PAPER_THEME.paper,jade=PAPER_THEME.jade,rose=PAPER_THEME.red;
   // A quiet etched ground, shared by all mechanisms; the object carries the identity.
   g.lineStyle(1,ink,.1);
   for(let line=-38;line<=38;line+=8)g.lineBetween(-39,line,39,line-10);
@@ -67,20 +68,20 @@ export function drawJokerMotif(scene:Phaser.Scene,container:Phaser.GameObjects.C
     g.lineStyle(3,jade).beginPath().arc(0,3,34,Math.PI*.12,Math.PI*.94).strokePath();
     g.fillStyle(jade).fillTriangle(-33,9,-23,14,-29,22);
   }else if(hourglass){
-    g.fillStyle(0x688a88,.18).beginPath().moveTo(-23,-32).lineTo(23,-32).lineTo(5,0).lineTo(23,31).lineTo(-23,31).lineTo(-5,0).closePath().fillPath();
+    g.fillStyle(jade,.18).beginPath().moveTo(-23,-32).lineTo(23,-32).lineTo(5,0).lineTo(23,31).lineTo(-23,31).lineTo(-5,0).closePath().fillPath();
     g.lineStyle(3,ink).beginPath().moveTo(-23,-32).lineTo(-20,-20).lineTo(-4,0).lineTo(-20,21).lineTo(-23,31).moveTo(23,-32).lineTo(20,-20).lineTo(4,0).lineTo(20,21).lineTo(23,31).strokePath();
     g.fillStyle(brass).fillRoundedRect(-31,-39,62,8,2).fillRoundedRect(-31,31,62,8,2);
     g.lineStyle(2,ink).lineBetween(-27,-30,-27,31).lineBetween(27,-30,27,31);
     g.fillStyle(paper).fillTriangle(-15,-24,15,-24,0,-4).fillTriangle(-17,27,17,27,0,12);
     g.fillStyle(brass).fillCircle(0,4,2).fillCircle(0,10,1.5);
-    g.lineStyle(1,0xfff5d7,.85).lineBetween(-16,-25,-7,-14).lineBetween(-27,-36,25,-36);
+    g.lineStyle(1,PAPER_THEME.paperLight,.85).lineBetween(-16,-25,-7,-14).lineBetween(-27,-36,25,-36);
   }else if(operations.some(operation=>operation.kind==='add-growth')){
     g.fillStyle(brass).beginPath().moveTo(-23,13).lineTo(23,13).lineTo(17,37).lineTo(-17,37).closePath().fillPath();
     g.lineStyle(2,ink).strokeRect(-23,12,46,5).lineBetween(-23,17,-17,37).lineBetween(23,17,17,37).lineBetween(-17,37,17,37);
     g.lineStyle(4,ink).beginPath().moveTo(0,13).lineTo(0,-11).lineTo(7,-34).strokePath();
     g.fillStyle(jade).fillEllipse(-16,-10,29,17).fillEllipse(17,-24,30,18);
     g.lineStyle(2,ink).lineBetween(-28,-14,0,-3).lineBetween(5,-13,28,-30);
-    g.lineStyle(1,0xdde9bb).lineBetween(-26,-11,-8,-7).lineBetween(15,-23,25,-27);
+    g.lineStyle(1,PAPER_THEME.paperLight).lineBetween(-26,-11,-8,-7).lineBetween(15,-23,25,-27);
     g.lineStyle(1,ink,.35).lineBetween(-12,21,-9,32).lineBetween(-3,21,-2,32).lineBetween(7,21,6,32).lineBetween(16,21,12,32);
   }else if(operations.some(operation=>operation.kind==='refund-discard')){
     g.fillStyle(paper).fillRoundedRect(-26,-30,37,55,4).fillRoundedRect(-9,-19,37,55,4);
@@ -94,9 +95,9 @@ export function drawJokerMotif(scene:Phaser.Scene,container:Phaser.GameObjects.C
     g.fillStyle(jade,.45).fillTriangle(4,0,43,-27,43,-12);
     g.fillStyle(rose,.4).fillTriangle(4,1,43,14,43,30);
     g.fillStyle(paper).fillTriangle(-22,28,2,-34,27,28);
-    g.fillStyle(0x78a5a4).fillTriangle(2,-34,27,28,4,12);
+    g.fillStyle(jade).fillTriangle(2,-34,27,28,4,12);
     g.lineStyle(2,ink).strokeTriangle(-22,28,2,-34,27,28).lineBetween(2,-34,4,12).lineBetween(-22,28,4,12).lineBetween(4,12,27,28);
-    g.lineStyle(1,0xfff6d6).lineBetween(-15,19,0,-18);
+    g.lineStyle(1,PAPER_THEME.paperLight).lineBetween(-15,19,0,-18);
     g.lineStyle(2,brass,.9).lineBetween(-40,-8,-10,0).lineBetween(13,-1,40,-20).lineBetween(15,11,41,22);
   }else if(operations.some(operation=>operation.kind==='add-multiplier')){
     g.fillStyle(brass).fillEllipse(1,2,65,78);
@@ -105,14 +106,14 @@ export function drawJokerMotif(scene:Phaser.Scene,container:Phaser.GameObjects.C
     g.fillStyle(ink).fillEllipse(-15,-12,15,9).fillEllipse(14,-12,15,9);
     g.lineStyle(2,ink).beginPath().moveTo(-24,-23).lineTo(-15,-25).lineTo(-6,-22).moveTo(6,-22).lineTo(15,-25).lineTo(24,-23).moveTo(1,-12).lineTo(-4,6).lineTo(4,7).strokePath();
     g.lineStyle(3,rose).beginPath().arc(0,7,16,0,Math.PI).strokePath();
-    g.lineStyle(1,0xfff4d6).lineBetween(-24,1,-20,12).lineBetween(-20,12,-13,23);
+    g.lineStyle(1,PAPER_THEME.paperLight).lineBetween(-24,1,-20,12).lineBetween(-20,12,-13,23);
     g.lineStyle(2,ink).lineBetween(-33,-9,-43,-14).lineBetween(33,-9,43,-14);
   }else if(operations.some(operation=>operation.kind==='add-gold'||operation.kind==='add-heat-per-gold')){
     g.fillStyle(jade).beginPath().moveTo(-12,-19).lineTo(12,-19).lineTo(26,19).lineTo(19,35).lineTo(-19,35).lineTo(-26,19).closePath().fillPath();
     g.lineStyle(2,ink).beginPath().moveTo(-12,-19).lineTo(-26,19).lineTo(-19,35).lineTo(19,35).lineTo(26,19).lineTo(12,-19).strokePath();
     g.fillStyle(brass).fillEllipse(0,-20,31,8).fillCircle(-19,-28,11).fillCircle(2,-34,12).fillCircle(22,-25,10).fillCircle(1,10,14);
     for(const [cx,cy,r] of [[-19,-28,11],[2,-34,12],[22,-25,10],[1,10,14]]){
-      g.lineStyle(1.5,ink).strokeCircle(cx,cy,r);g.lineStyle(1,0xffe7ab).strokeCircle(cx-1,cy-1,r-4);
+      g.lineStyle(1.5,ink).strokeCircle(cx,cy,r);g.lineStyle(1,PAPER_THEME.paperLight).strokeCircle(cx-1,cy-1,r-4);
     }
     g.lineStyle(2,ink).lineBetween(-12,-18,12,-18).lineBetween(0,-17,8,-9);
   }else if(operations.some(operation=>operation.kind==='add-heat-per-empty-slot')){
