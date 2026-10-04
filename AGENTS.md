@@ -1,5 +1,7 @@
 # 开发入口
 
+P08手绘铜钱有界review：交付f44320be经sourceCI/portable/hash/实际view；单图256²15958B，活跃旧atlas不再消费，旧文件保留。source2ebb590仅RewardCoin.ts，800ms墙钟单次/56-72-96原display scale、5秒截止/取消/迟到不缓存/reduced静态与原clearId奖励去重保持，e07实际9金只展示。49相关tests/type/content及5条Canvas原生路线通过、两张fixture实图actual view；正常合已发布main719保C最后12、工具39/39物品12/12，图片保原build身份不重拍。暂不main、新reviewCI另报；整体/OnePlus/GPU/听感未验。 证据docs/production/evidence/p08-handdrawn-reward-coin-2026-10-04/summary.json。
+
 ## 当前调度状态（2026-10-04 UTC）
 
 当前发布基线是 `58e9d223ee5f29b965532551e71afc6fc6785d51`；精确 CI37231962418、production-docs37231962445 均 success。当前交接见 [发布与验收状态](docs/development-handoff.md#当前发布与验收状态)，审计见 [最后十二图 review](docs/production/evidence/p08-tools-final12-2026-10-04/summary.json)。
