@@ -1,5 +1,7 @@
 # 当前交接：P08全游戏手绘墨线／纸色主线
 
+P08 T06–T11实际使用缺口有界验证（UTC 2026-10-04）：固定已发布f10d2d0干净隔离构建modified=false，七个validator fixture（六9牌/工具＋T12，复制79合法及80拒绝），明确非自然获得/非D完整局；仅390×740软件Canvas。六工具真实目标选择、空选/明显无效边界禁用触点、合法目标取消全run-RNG不变、两次原生确认仅一次保存/消耗、回手牌/牌组查看及六次刷新继续全PASS；每项seq3→4/库存2→1，实际结果逐字段等于原applyCommand，T12及RNG保持。T06三牌改黑桃留点数增强版次；T07原牌保留新ID复制79→80且不补抽不洗牌；T08 K→A/A边界不变，T09 3→2/2边界不变；T10玻璃→热/T11金币→倍，替换警告及原版次/无关字段保持。三代表完整页actual view，source/index/HEAD前后一致。未发现执行缺陷，纯证据review，不造src/tests/harness/public/art改动，不推main，不追随后续资源变化；无录屏/FPS/多视口/设备/听感/自然完整局结论。证据docs/production/evidence/p08-tools-use-2026-10-04/summary.json。
+
 P08工具包正常对齐C已发布main（UTC 2026-10-04）：父已完整批准review0452e418并独立确认精确CI37224263669 success；正常merge源码ab4d626合入main5d54421，仅AGENTS/handoff/plan三处文档冲突，双方历史/evidence与C completionScope保持。C六张T06–T11资源、两处CSS删除、只读失败摘要及其测试逐树同main；已批准工具包产品/样板逐字节同0452。26相关tests/3files及type PASS，当前runtime逐SHA零不符：72/72 Joker、6角色/JQK，工具9/39、道具12/12；P08 165files4454670B，工具42files643054B。未重截图/原生矩阵/全冻结，旧证据保原源码身份；本新review精确CI另报，main待父串行授权。证据docs/production/evidence/p08-tools-entry-2026-10-04/c-main-alignment.json。
 
 P08失败摘要review已由父侧读完整源码并实际view390 after，局部方向通过；已正常对齐main2d999cd（含朱砂/72人话/12道具），仅UX冲突且双合同保留。合并源码0aa7399，65相关tests/type/build及自然胜败/刷新继续/同种子重试/短摘要详情PASS，GameScene/ScoreFlame/audio/public/art逐对象同main。既有图身份不变，无新截图；320构筑裁切明确OPEN，未修。本review精确CI另报，main不推进；整体/OnePlus/GPU/听感仍待验。 证据docs/production/evidence/p08-failure-summary-2026-10-04/main-alignment.json。
