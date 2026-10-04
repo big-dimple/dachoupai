@@ -1,0 +1,318 @@
+{
+  "status": "PASS",
+  "sourceFingerprint": "a56a38d037b52ea046bb034a3bcbf656ec8b157a522679d89c9c3c7ae2bf61a6",
+  "build": {
+    "version": "C03",
+    "revision": "67141b5d380ce90e6bbc1e1526900e8af967c9ca",
+    "modified": true,
+    "builtAt": "2026-10-04T15:10:49.804Z"
+  },
+  "assetCommit": "34dab048aea452e6e9175afa80878193be3bf1bc",
+  "runtimeManifestSHA256": "12fc5fe28a312c8215c164112be9ba1ef59a6b31d06f7b10fa3dd12ae469d933",
+  "renderer": "Canvas (GPU and software rasterizer disabled)",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "safeInset": {
+    "top": 0,
+    "right": 0,
+    "bottom": 0,
+    "left": 0
+  },
+  "base": "/items-review/",
+  "route": "Validator-approved imported shop fixtures;one approved U01-U06 item offer,100gold,no owned items. Native shelf/detail/cancel/explicit purchase/owned inventory. U08 uncovered fixture. Not natural acquisition/deployment.",
+  "checks": [
+    "U01:actual shop thumbnail/BASE_URL/no HD preload/exact HD hash+contain/cancel immutable/one purchase/owned same-ID/cache/run-RNG immutable",
+    "U02:actual shop thumbnail/BASE_URL/no HD preload/exact HD hash+contain/cancel immutable/one purchase/owned same-ID/cache/run-RNG immutable",
+    "U03:actual shop thumbnail/BASE_URL/no HD preload/exact HD hash+contain/cancel immutable/one purchase/owned same-ID/cache/run-RNG immutable",
+    "U04:actual shop thumbnail/BASE_URL/no HD preload/exact HD hash+contain/cancel immutable/one purchase/owned same-ID/cache/run-RNG immutable",
+    "U05:actual shop thumbnail/BASE_URL/no HD preload/exact HD hash+contain/cancel immutable/one purchase/owned same-ID/cache/run-RNG immutable",
+    "U06:actual shop thumbnail/BASE_URL/no HD preload/exact HD hash+contain/cancel immutable/one purchase/owned same-ID/cache/run-RNG immutable",
+    "U08 stays procedural/no borrowed ID/no external fetch",
+    "U01 real404 retains actual mechanism face;thumb/HD explicit retry restores same ID/fixed frame/full run immutable"
+  ],
+  "details": [
+    {
+      "id": "U01",
+      "location": "shop",
+      "width": 615,
+      "height": 768,
+      "bytes": 16820,
+      "sha256": "6a89a6afedee3119fabb66c8144e6dca0dbacaf57ca70e62640df4c966ce84da",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U01",
+      "location": "shop-reopen",
+      "width": 615,
+      "height": 768,
+      "bytes": 16820,
+      "sha256": "6a89a6afedee3119fabb66c8144e6dca0dbacaf57ca70e62640df4c966ce84da",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U01",
+      "location": "owned-item",
+      "width": 615,
+      "height": 768,
+      "bytes": 16820,
+      "sha256": "6a89a6afedee3119fabb66c8144e6dca0dbacaf57ca70e62640df4c966ce84da",
+      "fit": "contain",
+      "frame": {
+        "width": 170.734375,
+        "height": 235.828125
+      }
+    },
+    {
+      "id": "U02",
+      "location": "shop",
+      "width": 615,
+      "height": 768,
+      "bytes": 17732,
+      "sha256": "ddf574a50501cc1305cbce3b33213d3d9442680e06bbc0a50d04d9a51d5c91bc",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U02",
+      "location": "shop-reopen",
+      "width": 615,
+      "height": 768,
+      "bytes": 17732,
+      "sha256": "ddf574a50501cc1305cbce3b33213d3d9442680e06bbc0a50d04d9a51d5c91bc",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U02",
+      "location": "owned-item",
+      "width": 615,
+      "height": 768,
+      "bytes": 17732,
+      "sha256": "ddf574a50501cc1305cbce3b33213d3d9442680e06bbc0a50d04d9a51d5c91bc",
+      "fit": "contain",
+      "frame": {
+        "width": 170.734375,
+        "height": 235.828125
+      }
+    },
+    {
+      "id": "U03",
+      "location": "shop",
+      "width": 615,
+      "height": 768,
+      "bytes": 32484,
+      "sha256": "3ded584067dd4c3592ca0179e965e475e959b55c58eac6fb97c6902dce9a891d",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U03",
+      "location": "shop-reopen",
+      "width": 615,
+      "height": 768,
+      "bytes": 32484,
+      "sha256": "3ded584067dd4c3592ca0179e965e475e959b55c58eac6fb97c6902dce9a891d",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U03",
+      "location": "owned-item",
+      "width": 615,
+      "height": 768,
+      "bytes": 32484,
+      "sha256": "3ded584067dd4c3592ca0179e965e475e959b55c58eac6fb97c6902dce9a891d",
+      "fit": "contain",
+      "frame": {
+        "width": 170.734375,
+        "height": 235.828125
+      }
+    },
+    {
+      "id": "U04",
+      "location": "shop",
+      "width": 615,
+      "height": 768,
+      "bytes": 30076,
+      "sha256": "7dd96b27f15cd2c1c5d19c09229d90e9dd849d1e44f1734e047f631d0233f412",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U04",
+      "location": "shop-reopen",
+      "width": 615,
+      "height": 768,
+      "bytes": 30076,
+      "sha256": "7dd96b27f15cd2c1c5d19c09229d90e9dd849d1e44f1734e047f631d0233f412",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U04",
+      "location": "owned-item",
+      "width": 615,
+      "height": 768,
+      "bytes": 30076,
+      "sha256": "7dd96b27f15cd2c1c5d19c09229d90e9dd849d1e44f1734e047f631d0233f412",
+      "fit": "contain",
+      "frame": {
+        "width": 170.734375,
+        "height": 235.828125
+      }
+    },
+    {
+      "id": "U05",
+      "location": "shop",
+      "width": 615,
+      "height": 768,
+      "bytes": 36334,
+      "sha256": "8d104b341c5416918ca341fba0d50189bc6c6acbadbcd75b09292fdc77ed72b7",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U05",
+      "location": "shop-reopen",
+      "width": 615,
+      "height": 768,
+      "bytes": 36334,
+      "sha256": "8d104b341c5416918ca341fba0d50189bc6c6acbadbcd75b09292fdc77ed72b7",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U05",
+      "location": "owned-item",
+      "width": 615,
+      "height": 768,
+      "bytes": 36334,
+      "sha256": "8d104b341c5416918ca341fba0d50189bc6c6acbadbcd75b09292fdc77ed72b7",
+      "fit": "contain",
+      "frame": {
+        "width": 170.734375,
+        "height": 235.828125
+      }
+    },
+    {
+      "id": "U06",
+      "location": "shop",
+      "width": 615,
+      "height": 768,
+      "bytes": 30086,
+      "sha256": "0f2b78603d3aff54d9c373b39e3f1ee754bedecce9460156aa8cb6b64541d479",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U06",
+      "location": "shop-reopen",
+      "width": 615,
+      "height": 768,
+      "bytes": 30086,
+      "sha256": "0f2b78603d3aff54d9c373b39e3f1ee754bedecce9460156aa8cb6b64541d479",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    },
+    {
+      "id": "U06",
+      "location": "owned-item",
+      "width": 615,
+      "height": 768,
+      "bytes": 30086,
+      "sha256": "0f2b78603d3aff54d9c373b39e3f1ee754bedecce9460156aa8cb6b64541d479",
+      "fit": "contain",
+      "frame": {
+        "width": 170.734375,
+        "height": 235.828125
+      }
+    },
+    {
+      "id": "U01",
+      "location": "404-explicit-retry",
+      "width": 615,
+      "height": 768,
+      "bytes": 16820,
+      "sha256": "6a89a6afedee3119fabb66c8144e6dca0dbacaf57ca70e62640df4c966ce84da",
+      "fit": "contain",
+      "frame": {
+        "width": 167.125,
+        "height": 230.78125
+      }
+    }
+  ],
+  "errors": [],
+  "coverage": {
+    "tools": {
+      "illustrated": 3,
+      "total": 39
+    },
+    "items": {
+      "illustrated": 7,
+      "total": 12
+    },
+    "remainingProcedural": 41
+  },
+  "protectedRuntime": {
+    "files": 173,
+    "bytes": 4567780,
+    "baseline": "67141b5d380ce90e6bbc1e1526900e8af967c9ca",
+    "unchanged": true
+  },
+  "sourceApprovalCI": {
+    "run": 37211620964,
+    "status": "completed/success",
+    "publisherConfirmed": true
+  },
+  "acceptance": {
+    "implementation": "REVIEW_READY",
+    "boundedTechnical": "PASS",
+    "independentWholeAesthetics": "PENDING",
+    "OnePlusHardwareGPUAudio": "NOT_RUN"
+  },
+  "initialHarnessFailure": {
+    "cause": "Owned-item detail has Close, not shop Cancel. Initial harness incorrectly waited for Cancel; fixture corrected to actual Close. Runtime unchanged.",
+    "status": "REPLACED_BY_PASS"
+  }
+}
