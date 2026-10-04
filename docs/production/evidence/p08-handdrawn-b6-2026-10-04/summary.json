@@ -10,7 +10,14 @@
     "targetedTests": 72,
     "type": "PASS",
     "browser": "PASS",
-    "freeze": "NOT_RUN"
+    "freeze": {
+      "status": "PASS",
+      "testedCommit": "a506a9b3325de4c6b9c43ffcafd75b16f5f7d417",
+      "tests": 1923,
+      "files": 107,
+      "sourceIndexHeadInvariant": true,
+      "scope": "tests/content/type/build/Chromium Canvas desktop+mobile smoke/plan"
+    }
   },
   "functionalCoverage": {
     "new": 35,
