@@ -9,7 +9,7 @@ import {chooseCharacter,tapUI,tapMenuAction,openMenuSection,waitScene} from './u
 const dir=process.env.PAPER_FIRE_DIR||'shots/cinnabar',port=5260;
 const localCornersOnly=process.env.FLAME_FOCUS_SCOPE==='local-corners';
 const integrationOnly=process.env.FLAME_FOCUS_SCOPE==='integration';
-const impactScope=['impact-before','impact-first'].includes(process.env.FLAME_FOCUS_SCOPE);
+const impactScope=['impact-before','impact-first','impact-complete'].includes(process.env.FLAME_FOCUS_SCOPE);
 await mkdir(dir,{recursive:true});
 const report={harnessCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),build:JSON.parse(await readFile(dir+'/build/build-info.json','utf8')),runs:[],keyframes:[],limits:[
   'Natural single5 high-card202 plus600 /1200 /5589 paths; no injected score, target, RNG, rule or save state. Long-digit probe changes/restores UI Text only.',
@@ -76,8 +76,8 @@ async function run(viewport,spec,mode='natural'){
     });
     for(let i=0;i<r.longDigits.length;i++)for(let j=i+1;j<r.longDigits.length;j++)assert.equal(overlaps(r.longDigits[i].bounds,r.longDigits[j].bounds),false);
     assert.deepEqual(await state(p),before,'long-digit UI probe preserves whole run');
-    await p.evaluate(({tier,captureBelow,captureFrames,localPeak,pagePeak,impactScope})=>{
-      const g=window.__harness.game,s=g.scene.getScene('game'),frames=[],rasters=[],seen=new Set();let committed;
+    await p.evaluate(({tier,captureBelow,captureFrames,localPeak,pagePeak,impactScope,numeric})=>{
+      const g=window.__harness.game,s=g.scene.getScene('game'),frames=[],rasters=[],seen=new Set();let committed,numericEvent;
       const domControls=()=>[...document.querySelectorAll('.run-menu-toggle,.run-fullscreen-toggle,.fullscreen-dock')].filter(e=>!e.hidden&&e.getBoundingClientRect().width>0).map(e=>{const b=e.getBoundingClientRect(),c=g.canvas.getBoundingClientRect(),l=s.view.layout;return {name:e.className,text:e.textContent,bounds:{x:(b.x-c.x)*l.width/c.width,y:(b.y-c.y)*l.height/c.height,width:b.width*l.width/c.width,height:b.height*l.height/c.height},cssBounds:{x:b.x,y:b.y,width:b.width,height:b.height}};});
       const bounds=o=>{const b=o.getBounds();return{x:b.x,y:b.y,width:b.width,height:b.height};};
       const observe=()=>{
@@ -87,6 +87,7 @@ async function run(viewport,spec,mode='natural'){
         const controls=s.view.root.list.filter(o=>o.name.startsWith('action/')),foreground=[s.roleAvatar,...s.cardViews.map(v=>v.container),...[...s.settledCards.values()].map(v=>v.container),...s.jokerViews.values(),...controls.flatMap(o=>[o,o.getData('buttonArt'),o.getData('label')])].filter(o=>o?.active&&s.view.root.list.includes(o));
         const f={frame:g.loop.frame,at:performance.now(),renderer:g.renderer.gl?'WebGL':'Canvas',origin:s.presentation.originHeat,product:s.displayedScoreProduct,
           pulses:[s.scoreHeat,s.scoreMult,s.scoreTotal].map(o=>({text:o.text,full:o.getData('fullText'),requested:o.getData('scorePulseScale')??1,scale:o.scaleX,bounds:bounds(o)})),
+          impactId:flame?.graphic.getData('lastImpact'),impactCount:flame?.graphic.getData('impactCount')??0,
           level:flame?.graphic.getData('intensity')??0,brush,eventId:s.scoreTotal.getData('eventId')??s.presentation.score.events[0].eventId,eventPhase:s.scoreTotal.getData('eventPhase')??'base',shown:s.scoreTotal.text,
           texts:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal].filter(o=>o.visible&&o.active).map(o=>({text:o.text,full:o.getData('fullText'),bounds:bounds(o),font:o.style.fontSize})),
           pieces:flame?.graphic.getData('safePieces')??[],guards:flame?.graphic.getData('textGuards')??[],bands:flame?.graphic.getData('frameBands')??[],
@@ -98,6 +99,11 @@ async function run(viewport,spec,mode='natural'){
           burning:[...s.audio.voices].filter(v=>v.fire||v.source.loop&&!v.roll&&(!window.__audioSchedules.get(v.source)?.stop||window.__audioSchedules.get(v.source).stop-window.__audioSchedules.get(v.source).start>.35)).length,accents:[...s.audio.voices].filter(v=>v.scoreAccent).length,
           textures:g.textures.getTextureKeys().filter(k=>k.startsWith('score-flame-heat-')),stamp:s.view.root.list.some(o=>o.name==='score/celebration'),shake:s.cameras.main.shakeEffect.isRunning,savedStable:saved===committed};
         frames.push(f);
+        if(numeric&&f.eventPhase==='impact'){
+          const scale=f.pulses[2].scale,requested=f.pulses[2].requested;
+          const tag=!seen.has('compressed')&&scale<.84?'compressed':numericEvent===f.eventId&&!seen.has('rebound')&&requested>=1.17?'rebound':undefined;
+          if(tag){numericEvent??=f.eventId;seen.add(tag);const c=document.createElement('canvas');c.width=g.canvas.width;c.height=g.canvas.height;c.getContext('2d').drawImage(g.canvas,0,0);rasters.push({tier,tag,metadata:f,png:c.toDataURL('image/png')});}
+        }
         const below=captureBelow&&f.level===0&&(impactScope?brush?.localAge>=90&&brush.localAge<150:localPeak?brush?.localPhase==='fade'&&brush.localAge>=180:brush?.localPhase==='unfold'&&brush.localAge>=110);
         const peak=f.level===tier&&brush?.framePhase==='fade'&&brush.frameProgress===1;
         const key=below?0:peak?tier:undefined;
@@ -108,7 +114,7 @@ async function run(viewport,spec,mode='natural'){
         }
       };
       window.__cinnabar={frames,rasters,observe};g.events.on('postrender',observe);
-    },{tier:spec.tier,captureBelow:true,captureFrames:mode==='natural'&&!integrationOnly,localPeak:localCornersOnly,pagePeak:!impactScope,impactScope});
+    },{tier:spec.tier,captureBelow:true,captureFrames:mode==='natural'&&!integrationOnly,localPeak:localCornersOnly,pagePeak:!impactScope,impactScope,numeric:mode==='numeric'});
     await tapUI(p,'game','action/play',true);
     if(mode==='natural'&&spec.tier===3&&!integrationOnly&&!impactScope){
       await p.waitForFunction(()=>!!window.__cinnabar.pagePause);
@@ -126,20 +132,32 @@ async function run(viewport,spec,mode='natural'){
       if(mode==='skip')await tapMenuAction(p,'快进当前手',true);
       else {await openMenuSection(p,'settings',true);await p.getByRole('checkbox',{name:'减少动态'}).check();}
     }
+    if(mode==='speed'){
+      await p.waitForFunction(()=>window.__cinnabar.frames.some(f=>f.eventPhase==='impact'&&f.impactCount>0));
+      r.savedBeforeInterrupt=await state(p);r.speedSwitches=[];
+      await openMenuSection(p,'settings',true);
+      for(const speed of [2,4,1]){
+        await p.getByLabel('演出速度').selectOption(String(speed));
+        const observed=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return {frame:s.game.loop.frame,at:performance.now(),active:!!s.presentation,tweenSpeed:s.tweens.timeScale,clockSpeed:s.time.timeScale,impactCount:s.scoreFlame?.graphic.getData('impactCount')??0};});
+        assert.equal(observed.active,true,'speed changed during this actual presentation');assert.equal(observed.tweenSpeed,speed);assert.equal(observed.clockSpeed,speed);assert.deepEqual(await state(p),r.savedBeforeInterrupt);r.speedSwitches.push({speed,...observed});
+      }
+      await p.locator('.run-menu-toggle').tap();
+    }
     if(spec.tier===0)await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game'),r=window.__harness.game.registry.get('runController').state;return s.scene.isActive()&&!s.playing&&!s.presentation&&r.stage.playIndex===1;});else await waitScene(p,'intermission');
     r.result=await state(p);assert.equal(r.result.lastTrace.finalScore,spec.score);assert.equal(r.result.stage.heat,spec.score);assert.equal(r.result.stage.playIndex,1);
     if(r.savedBeforeInterrupt)assert.deepEqual(r.result,r.savedBeforeInterrupt);
     const captured=await p.evaluate(()=>{const o=window.__cinnabar;window.__harness.game.events.off('postrender',o.observe);return{frames:o.frames,rasters:o.rasters};});r.frames=captured.frames;
     for(const f of r.frames)validate(f);
     assert.ok(r.frames.some(f=>f.brush&&f.brush.localAlpha>0),'actual positive hit exists');
-    if(mode==='natural'){
-      if(!integrationOnly)assert.ok(captured.rasters.some(f=>f.tier===spec.tier),'actual below-target hit or threshold peak captured');
+    if(['natural','numeric','speed'].includes(mode)){
+      if(mode==='numeric')assert.deepEqual(captured.rasters.map(f=>f.tag),['compressed','rebound'],'same actual event has controlled compression and rebound rasters');
+      if(mode==='natural'&&!integrationOnly)assert.ok(captured.rasters.some(f=>f.tier===spec.tier),'actual below-target hit or threshold peak captured');
       if(spec.tier===0)assert.ok(BigInt(r.result.stage.heat)<BigInt(r.result.stage.targetHeat));
       // The600 wheel starts at500 in its saved base event; below-target frames come from another natural path.
       const expected=r.result.lastTrace.events.filter(e=>e.phase!=='base'&&e.phase!=='finalScore').map(e=>e.eventId);
       assert.deepEqual([...new Set(r.frames.filter(f=>f.eventPhase==='impact').map(f=>f.eventId))],expected,'every source retains its ordered impact');
       for(const image of captured.rasters){
-        const file=`${viewport.width}x${viewport.height}-tier${image.tier}.png`,png=Buffer.from(image.png.split(',')[1],'base64');await writeFile(`${dir}/${file}`,png);
+        const file=`${viewport.width}x${viewport.height}-${image.tag?'digits-'+image.tag:'tier'+image.tier}.png`,png=Buffer.from(image.png.split(',')[1],'base64');await writeFile(`${dir}/${file}`,png);
         const metadata={file,source:report.build.revision,...image.metadata};
         if(localCornersOnly){
           metadata.localPixelProof=[];assert.equal(metadata.localStrokes.length,2);
@@ -157,6 +175,10 @@ async function run(viewport,spec,mode='natural'){
     }
     r.cleanup=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return {brush:!!s.scoreFlame,nodes:s.view.root.list.filter(o=>o.name.startsWith('score/fire')).length,accents:[...s.audio.voices].filter(v=>v.scoreAccent).length};});
     assert.deepEqual(r.cleanup,{brush:false,nodes:0,accents:0});
+    r.extraCleanup=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return {safeMaskNodes:s.children.list.filter(o=>o.name==='score/fire-safe-area').length,pulseScales:[s.scoreHeat,s.scoreMult,s.scoreTotal].filter(o=>o?.active).map(o=>o.getData('scorePulseScale')??1)};});
+    assert.equal(r.extraCleanup.safeMaskNodes,0);assert.ok(r.extraCleanup.pulseScales.every(v=>v===1));
+    for(const f of r.frames){if(f.impactCount&&f.impactId){const prior=r.frames.filter(g=>g.frame<=f.frame&&g.impactCount===f.impactCount&&g.impactId);assert.ok(prior.every(g=>g.impactId===f.impactId),'same brush count never changes event identity');}}
+
     if(mode==='skip'){
       await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');s.fastForward();s.fastForward();});assert.deepEqual(await state(p),r.result);
       if(spec.tier===0){
@@ -184,7 +206,12 @@ async function contacts(viewport){
   await sharp({create:{width:w*2+gap,height:(h+label)*2+gap,channels:4,background:'#f3eadb'}}).composite(composite).png().toFile(`${dir}/${w}x${h}-contact.png`);
 }
 try{
-  if(impactScope){
+  if(process.env.FLAME_FOCUS_SCOPE==='impact-complete'){
+    report.scope='Bounded target/2x, actual speed1→2→4→1 and middle reduced switch, plus same-event numeric compression/rebound.';
+    await run({width:390,height:740},specs[1]);await run({width:390,height:740},specs[2]);
+    await run({width:390,height:740},specs[3],'speed');await run({width:844,height:300},specs[2],'switch');
+    await run({width:844,height:300},specs[0],'numeric');report.status='PASS';
+  }else if(impactScope){
     report.scope='First score-impact checkpoint; actual natural202/5589 phase frames, no full matrix.';
     await run({width:390,height:740},specs[0]);await run({width:390,height:740},specs[3]);
     if(process.env.FLAME_FOCUS_SCOPE==='impact-first'){
