@@ -1,0 +1,87 @@
+{
+  "taskId": "P08",
+  "testedCommit": "1ee6e7b8ff36df5e755d6191e53a995c5cdcfcc2",
+  "implementationCommit": "e2df9f836a74e20aef8fce5b9d29dcbf9f61f029",
+  "alignedMainCommit": "ce299b8a8ddf5cf399fecb889aa02882d315988c",
+  "sourceTreeSHA": "378925de24316552eb1fdcc1e2ac9f0d9133d8c2",
+  "status": "IN_PROGRESS_CHECKPOINT",
+  "scope": "Existing action row only: two44px sorting targets in one88px jade-paper block, a wider discard with card/downward-arrow/flat-pile ink diagram, and red submit with forward card-fan diagram; existing words/counts. Same row/hand/table budgets, original sorting/press/release/cancel/disabled/domain callbacks.",
+  "runtimeChanges": [
+    "src/game/layout.ts",
+    "src/game/SceneView.ts",
+    "src/game/GameScene.ts",
+    "src/game/HandActionArt.ts"
+  ],
+  "tests": {
+    "status": "PASS",
+    "affectedExisting": 89,
+    "newGeometryAndSymbols": 9,
+    "total": 98,
+    "typecheck": "PASS",
+    "nonControlLayoutSHA256": "cff0c393264eb2e2508c92a6f155ca5de319e6b1868fe42430d6adfa331dcb8c",
+    "profiles": [
+      "390x740",
+      "320x568",
+      "844x300/top12/bottom12",
+      "844x300/top12/bottom34"
+    ],
+    "mainSourceBeforeChange": "88b17e23c9aa778c8ac93c9998cd090ba48ab82d"
+  },
+  "browser": {
+    "status": "CHECKPOINT_PASS",
+    "testedCommit": "1ee6e7b8ff36df5e755d6191e53a995c5cdcfcc2",
+    "modified": false,
+    "renderer": "Chromium software Canvas",
+    "DPR": 1,
+    "input": "native checkpoint import + native touchscreen card selection; read-only observations",
+    "motion": "reduce",
+    "actualView": "PASS",
+    "evidence": "checkpoint-browser.json",
+    "screenshots": [
+      "320-actions-current.png",
+      "390-actions-current.png"
+    ],
+    "verified": [
+      "native valid checkpoint import and native spades-2 selection",
+      "actual14+ text/count bounds contained, four targets44+, glyphs visible",
+      "entire non-control layout matches88b17 baseline; touch selection preserves whole run/RNG"
+    ],
+    "remaining": [
+      "844x300 safe12/34 actual browser input",
+      "native button hold/cancel/disabled/settlement and real discard/play counts on this UI skin"
+    ]
+  },
+  "widths": {
+    "320": {
+      "sort": 88,
+      "discardBefore": 106,
+      "discardAfter": 114,
+      "play": 90,
+      "height": 54
+    },
+    "390": {
+      "sort": 88,
+      "discardBefore": 70,
+      "discardAfter": 106,
+      "play": 160,
+      "height": 56
+    }
+  },
+  "assets": {
+    "publicAssetsTreeSHA": "7f8880a7d2792acfd5ec0500384e7a0462192f90",
+    "sourceAssetsTreeSHA": "8ae7ef09c2dc3d3db05998d049e5e5dbfaf971c9",
+    "status": "EXACTLY_PRESERVES_MAINce299_RESOURCE_ADDITIONS"
+  },
+  "failures": {
+    "tests": 0,
+    "browser": 0,
+    "documentationPatch": "One attempted combined documentation patch was rejected before applying because the UX anchor did not match. No runtime/test change was applied by that attempt."
+  },
+  "manualFullFreeze": "NOT_RUN; parent requested early checkpoint without further visual rounds or broad freeze",
+  "mainAdvance": "NOT_AUTHORIZED_FOR_THIS_CANDIDATE",
+  "overallAesthetic": "PENDING_ROOT_REVIEW",
+  "device": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "deployment": "NOT_RUN"
+}
