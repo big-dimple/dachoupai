@@ -1,0 +1,1916 @@
+{
+  "scope": "P08 first score-impact checkpoint, visual direction awaiting parent/phone review; not overall acceptance",
+  "baseSource": "d1c072dff5055238bd94775a14f2fca44c4d38b8",
+  "runtimeSource": "ce73172f663ee981c853a2c9892969f0ada7ffee",
+  "checks": {
+    "relatedTests": {
+      "files": 5,
+      "tests": 53,
+      "status": "PASS"
+    },
+    "typecheck": "PASS",
+    "viteBuildModeE2E": "PASS",
+    "allSourceEventsPresented": "PASS",
+    "allPresentationFramesKeepFullSavedRun": "PASS",
+    "skipReducedReplayReload": "PASS",
+    "mathRandomAndDowngradeDupCleanup": "unit PASS",
+    "listening": "NOT_RUN",
+    "390x740-202-naturalFullBeforeAfterResultEqual": true,
+    "390x740-5589-naturalFullBeforeAfterResultEqual": true
+  },
+  "builds": {
+    "before": {
+      "version": "C03",
+      "builtAt": "2026-10-04T23:12:22.796Z",
+      "revision": "d1c072dff5055238bd94775a14f2fca44c4d38b8",
+      "sourceStatus": "clean",
+      "modified": false
+    },
+    "after": {
+      "version": "C03",
+      "builtAt": "2026-10-04T23:12:07.846Z",
+      "revision": "ce73172f663ee981c853a2c9892969f0ada7ffee",
+      "sourceStatus": "clean",
+      "modified": false
+    }
+  },
+  "runs": [
+    {
+      "variant": "before",
+      "name": "390x740-202-natural",
+      "status": "PASS",
+      "source": "d1c072dff5055238bd94775a14f2fca44c4d38b8",
+      "finalScore": "202",
+      "wholeSavedStateSHA256": "b084bb4fce6c4e684fdfc20fd77f1824b8fae910c0e70b3a8898745a60035915",
+      "savedStableEveryFrame": true,
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "replayAccentAndSavedState": "NOT_RUN",
+      "timeline": [
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/0",
+          "phase": "base",
+          "firstFrame": 118,
+          "lastFrame": 173,
+          "firstAt": 2521.60000000149,
+          "lastAt": 3437.5,
+          "shown": [
+            "",
+            "60"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+          "phase": "windup",
+          "firstFrame": 174,
+          "lastFrame": 189,
+          "firstAt": 3454.5,
+          "lastAt": 3704.300000000745,
+          "shown": [
+            "60"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+          "phase": "impact",
+          "firstFrame": 190,
+          "lastFrame": 203,
+          "firstAt": 3721.300000000745,
+          "lastAt": 3937.400000002235,
+          "shown": [
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1.04,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+          "phase": "rest",
+          "firstFrame": 204,
+          "lastFrame": 210,
+          "firstAt": 3954.60000000149,
+          "lastAt": 4054.300000000745,
+          "shown": [
+            "67"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+          "phase": "windup",
+          "firstFrame": 211,
+          "lastFrame": 245,
+          "firstAt": 4070.800000000745,
+          "lastAt": 4637.5,
+          "shown": [
+            "67"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+          "phase": "impact",
+          "firstFrame": 246,
+          "lastFrame": 267,
+          "firstAt": 4655.5,
+          "lastAt": 5004.10000000149,
+          "shown": [
+            "67",
+            "77",
+            "87",
+            "98",
+            "109",
+            "118",
+            "128",
+            "138",
+            "146",
+            "155",
+            "163",
+            "170",
+            "176",
+            "182",
+            "187",
+            "192",
+            "196",
+            "198",
+            "200",
+            "202"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+          "phase": "rest",
+          "firstFrame": 268,
+          "lastFrame": 291,
+          "firstAt": 5020.5,
+          "lastAt": 5404.10000000149,
+          "shown": [
+            "202"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/3",
+          "phase": "award",
+          "firstFrame": 292,
+          "lastFrame": 317,
+          "firstAt": 5420.699999999255,
+          "lastAt": 5837.699999999255,
+          "shown": [
+            "202"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        }
+      ]
+    },
+    {
+      "variant": "before",
+      "name": "390x740-5589-natural",
+      "status": "PASS",
+      "source": "d1c072dff5055238bd94775a14f2fca44c4d38b8",
+      "finalScore": "5589",
+      "wholeSavedStateSHA256": "bccd38b59ef684ad496a2345b0a62aba96432204ec14588568a2ce4133e8bdca",
+      "savedStableEveryFrame": true,
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "replayAccentAndSavedState": "NOT_RUN",
+      "timeline": [
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+          "phase": "base",
+          "firstFrame": 132,
+          "lastFrame": 197,
+          "firstAt": 2674.800000000745,
+          "lastAt": 3757.699999999255,
+          "shown": [
+            "",
+            "4,050"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+          "phase": "windup",
+          "firstFrame": 198,
+          "lastFrame": 213,
+          "firstAt": 3774.199999999255,
+          "lastAt": 4024.39999999851,
+          "shown": [
+            "4,050"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+          "phase": "impact",
+          "firstFrame": 214,
+          "lastFrame": 227,
+          "firstAt": 4042.60000000149,
+          "lastAt": 4257.5,
+          "shown": [
+            "4,050",
+            "4,062",
+            "4,074",
+            "4,087",
+            "4,099",
+            "4,109",
+            "4,118",
+            "4,126",
+            "4,132",
+            "4,136",
+            "4,139",
+            "4,140"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1.04,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+          "phase": "rest",
+          "firstFrame": 228,
+          "lastFrame": 234,
+          "firstAt": 4274.300000000745,
+          "lastAt": 4374.39999999851,
+          "shown": [
+            "4,140"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2",
+          "phase": "windup",
+          "firstFrame": 235,
+          "lastFrame": 250,
+          "firstAt": 4391.10000000149,
+          "lastAt": 4640.89999999851,
+          "shown": [
+            "4,140"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2",
+          "phase": "impact",
+          "firstFrame": 251,
+          "lastFrame": 264,
+          "firstAt": 4657.699999999255,
+          "lastAt": 4874.199999999255,
+          "shown": [
+            "4,140",
+            "4,153",
+            "4,166",
+            "4,179",
+            "4,191",
+            "4,202",
+            "4,211",
+            "4,218",
+            "4,224",
+            "4,228",
+            "4,229",
+            "4,230"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1.04,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2",
+          "phase": "rest",
+          "firstFrame": 265,
+          "lastFrame": 271,
+          "firstAt": 4890.89999999851,
+          "lastAt": 4990.89999999851,
+          "shown": [
+            "4,230"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3",
+          "phase": "windup",
+          "firstFrame": 272,
+          "lastFrame": 285,
+          "firstAt": 5007.60000000149,
+          "lastAt": 5224.800000000745,
+          "shown": [
+            "4,230"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3",
+          "phase": "impact",
+          "firstFrame": 286,
+          "lastFrame": 297,
+          "firstAt": 5241,
+          "lastAt": 5424.199999999255,
+          "shown": [
+            "4,230",
+            "4,244",
+            "4,258",
+            "4,271",
+            "4,284",
+            "4,294",
+            "4,304",
+            "4,311",
+            "4,316",
+            "4,319",
+            "4,320"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1.04,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3",
+          "phase": "rest",
+          "firstFrame": 298,
+          "lastFrame": 304,
+          "firstAt": 5440.800000000745,
+          "lastAt": 5541,
+          "shown": [
+            "4,320"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4",
+          "phase": "windup",
+          "firstFrame": 305,
+          "lastFrame": 318,
+          "firstAt": 5557.60000000149,
+          "lastAt": 5774.39999999851,
+          "shown": [
+            "4,320"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4",
+          "phase": "impact",
+          "firstFrame": 319,
+          "lastFrame": 330,
+          "firstAt": 5791.300000000745,
+          "lastAt": 5974.10000000149,
+          "shown": [
+            "4,320",
+            "4,335",
+            "4,349",
+            "4,363",
+            "4,376",
+            "4,387",
+            "4,397",
+            "4,403",
+            "4,407",
+            "4,409",
+            "4,410"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1.04,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4",
+          "phase": "rest",
+          "firstFrame": 331,
+          "lastFrame": 337,
+          "firstAt": 5990.800000000745,
+          "lastAt": 6090.800000000745,
+          "shown": [
+            "4,410"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5",
+          "phase": "windup",
+          "firstFrame": 338,
+          "lastFrame": 351,
+          "firstAt": 6107.5,
+          "lastAt": 6324.5,
+          "shown": [
+            "4,410"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5",
+          "phase": "impact",
+          "firstFrame": 352,
+          "lastFrame": 362,
+          "firstAt": 6341,
+          "lastAt": 6507.5,
+          "shown": [
+            "4,410",
+            "4,428",
+            "4,444",
+            "4,461",
+            "4,475",
+            "4,487",
+            "4,497",
+            "4,504",
+            "4,508",
+            "4,509"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1.04,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5",
+          "phase": "rest",
+          "firstFrame": 363,
+          "lastFrame": 368,
+          "firstAt": 6524.10000000149,
+          "lastAt": 6607.39999999851,
+          "shown": [
+            "4,509"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6",
+          "phase": "windup",
+          "firstFrame": 369,
+          "lastFrame": 390,
+          "firstAt": 6624.10000000149,
+          "lastAt": 6974.199999999255,
+          "shown": [
+            "4,509"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6",
+          "phase": "impact",
+          "firstFrame": 391,
+          "lastFrame": 406,
+          "firstAt": 6991.10000000149,
+          "lastAt": 7241,
+          "shown": [
+            "4,509",
+            "4,638",
+            "4,758",
+            "4,883",
+            "5,002",
+            "5,107",
+            "5,210",
+            "5,304",
+            "5,381",
+            "5,451",
+            "5,508",
+            "5,548",
+            "5,575",
+            "5,588",
+            "5,589"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6",
+          "phase": "rest",
+          "firstFrame": 407,
+          "lastFrame": 426,
+          "firstAt": 7257.39999999851,
+          "lastAt": 7574.10000000149,
+          "shown": [
+            "5,589"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/7",
+          "phase": "award",
+          "firstFrame": 427,
+          "lastFrame": 511,
+          "firstAt": 7591,
+          "lastAt": 8990.699999999255,
+          "shown": [
+            "5,589"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        }
+      ]
+    },
+    {
+      "variant": "after",
+      "name": "390x740-202-natural",
+      "status": "PASS",
+      "source": "ce73172f663ee981c853a2c9892969f0ada7ffee",
+      "finalScore": "202",
+      "wholeSavedStateSHA256": "b084bb4fce6c4e684fdfc20fd77f1824b8fae910c0e70b3a8898745a60035915",
+      "savedStableEveryFrame": true,
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "replayAccentAndSavedState": "NOT_RUN",
+      "timeline": [
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/0",
+          "phase": "base",
+          "firstFrame": 119,
+          "lastFrame": 174,
+          "firstAt": 2633.300000000745,
+          "lastAt": 3549.5,
+          "shown": [
+            "",
+            "60"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+          "phase": "windup",
+          "firstFrame": 175,
+          "lastFrame": 190,
+          "firstAt": 3565.89999999851,
+          "lastAt": 3816.099999997765,
+          "shown": [
+            "60"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+          "phase": "impact",
+          "firstFrame": 191,
+          "lastFrame": 204,
+          "firstAt": 3834.699999999255,
+          "lastAt": 4049.699999999255,
+          "shown": [
+            "67"
+          ],
+          "totalScaleMin": 0.82,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+          "phase": "rest",
+          "firstFrame": 205,
+          "lastFrame": 211,
+          "firstAt": 4066.099999997765,
+          "lastAt": 4166.300000000745,
+          "shown": [
+            "67"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+          "phase": "windup",
+          "firstFrame": 212,
+          "lastFrame": 246,
+          "firstAt": 4183.199999999255,
+          "lastAt": 4749.199999999255,
+          "shown": [
+            "67"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+          "phase": "impact",
+          "firstFrame": 247,
+          "lastFrame": 268,
+          "firstAt": 4766.300000000745,
+          "lastAt": 5115.89999999851,
+          "shown": [
+            "202"
+          ],
+          "totalScaleMin": 0.7599999999999999,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+          "phase": "rest",
+          "firstFrame": 269,
+          "lastFrame": 292,
+          "firstAt": 5132.699999999255,
+          "lastAt": 5515.89999999851,
+          "shown": [
+            "202"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/3",
+          "phase": "award",
+          "firstFrame": 293,
+          "lastFrame": 317,
+          "firstAt": 5532.599999997765,
+          "lastAt": 5932.89999999851,
+          "shown": [
+            "202"
+          ],
+          "totalScaleMin": 0.82,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        }
+      ]
+    },
+    {
+      "variant": "after",
+      "name": "390x740-5589-natural",
+      "status": "PASS",
+      "source": "ce73172f663ee981c853a2c9892969f0ada7ffee",
+      "finalScore": "5589",
+      "wholeSavedStateSHA256": "bccd38b59ef684ad496a2345b0a62aba96432204ec14588568a2ce4133e8bdca",
+      "savedStableEveryFrame": true,
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "replayAccentAndSavedState": "NOT_RUN",
+      "timeline": [
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+          "phase": "base",
+          "firstFrame": 132,
+          "lastFrame": 197,
+          "firstAt": 2727.10000000149,
+          "lastAt": 3809.89999999851,
+          "shown": [
+            "",
+            "4,050"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+          "phase": "windup",
+          "firstFrame": 198,
+          "lastFrame": 213,
+          "firstAt": 3826.60000000149,
+          "lastAt": 4077.300000000745,
+          "shown": [
+            "4,050"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+          "phase": "impact",
+          "firstFrame": 214,
+          "lastFrame": 227,
+          "firstAt": 4097.800000000745,
+          "lastAt": 4309.89999999851,
+          "shown": [
+            "4,140"
+          ],
+          "totalScaleMin": 0.82,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+          "phase": "rest",
+          "firstFrame": 228,
+          "lastFrame": 234,
+          "firstAt": 4329.5,
+          "lastAt": 4426.699999999255,
+          "shown": [
+            "4,140"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2",
+          "phase": "windup",
+          "firstFrame": 235,
+          "lastFrame": 250,
+          "firstAt": 4445.5,
+          "lastAt": 4693.5,
+          "shown": [
+            "4,140"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2",
+          "phase": "impact",
+          "firstFrame": 251,
+          "lastFrame": 264,
+          "firstAt": 4710.10000000149,
+          "lastAt": 4927,
+          "shown": [
+            "4,230"
+          ],
+          "totalScaleMin": 0.82,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2",
+          "phase": "rest",
+          "firstFrame": 265,
+          "lastFrame": 271,
+          "firstAt": 4943.199999999255,
+          "lastAt": 5043.199999999255,
+          "shown": [
+            "4,230"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3",
+          "phase": "windup",
+          "firstFrame": 272,
+          "lastFrame": 285,
+          "firstAt": 5060.5,
+          "lastAt": 5277,
+          "shown": [
+            "4,230"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3",
+          "phase": "impact",
+          "firstFrame": 286,
+          "lastFrame": 297,
+          "firstAt": 5293.300000000745,
+          "lastAt": 5476.60000000149,
+          "shown": [
+            "4,320"
+          ],
+          "totalScaleMin": 0.82,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3",
+          "phase": "rest",
+          "firstFrame": 298,
+          "lastFrame": 304,
+          "firstAt": 5493.199999999255,
+          "lastAt": 5593.300000000745,
+          "shown": [
+            "4,320"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4",
+          "phase": "windup",
+          "firstFrame": 305,
+          "lastFrame": 318,
+          "firstAt": 5610,
+          "lastAt": 5826.5,
+          "shown": [
+            "4,320"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4",
+          "phase": "impact",
+          "firstFrame": 319,
+          "lastFrame": 330,
+          "firstAt": 5843.39999999851,
+          "lastAt": 6026.60000000149,
+          "shown": [
+            "4,410"
+          ],
+          "totalScaleMin": 0.82,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4",
+          "phase": "rest",
+          "firstFrame": 331,
+          "lastFrame": 337,
+          "firstAt": 6043.10000000149,
+          "lastAt": 6143.199999999255,
+          "shown": [
+            "4,410"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5",
+          "phase": "windup",
+          "firstFrame": 338,
+          "lastFrame": 351,
+          "firstAt": 6159.89999999851,
+          "lastAt": 6376.699999999255,
+          "shown": [
+            "4,410"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5",
+          "phase": "impact",
+          "firstFrame": 352,
+          "lastFrame": 362,
+          "firstAt": 6393.300000000745,
+          "lastAt": 6559.800000000745,
+          "shown": [
+            "4,509"
+          ],
+          "totalScaleMin": 0.82,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5",
+          "phase": "rest",
+          "firstFrame": 363,
+          "lastFrame": 368,
+          "firstAt": 6576.699999999255,
+          "lastAt": 6659.800000000745,
+          "shown": [
+            "4,509"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6",
+          "phase": "windup",
+          "firstFrame": 369,
+          "lastFrame": 390,
+          "firstAt": 6676.699999999255,
+          "lastAt": 7026.5,
+          "shown": [
+            "4,509"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6",
+          "phase": "impact",
+          "firstFrame": 391,
+          "lastFrame": 406,
+          "firstAt": 7043.199999999255,
+          "lastAt": 7293.199999999255,
+          "shown": [
+            "5,589"
+          ],
+          "totalScaleMin": 0.7899999999999999,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6",
+          "phase": "rest",
+          "firstFrame": 407,
+          "lastFrame": 426,
+          "firstAt": 7312.300000000745,
+          "lastAt": 7626.60000000149,
+          "shown": [
+            "5,589"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/7",
+          "phase": "award",
+          "firstFrame": 427,
+          "lastFrame": 511,
+          "firstAt": 7643.199999999255,
+          "lastAt": 9043.199999999255,
+          "shown": [
+            "5,589"
+          ],
+          "totalScaleMin": 0.76,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        }
+      ]
+    },
+    {
+      "variant": "after",
+      "name": "844x300-5589-natural",
+      "status": "PASS",
+      "source": "ce73172f663ee981c853a2c9892969f0ada7ffee",
+      "finalScore": "5589",
+      "wholeSavedStateSHA256": "bccd38b59ef684ad496a2345b0a62aba96432204ec14588568a2ce4133e8bdca",
+      "savedStableEveryFrame": true,
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "replayAccentAndSavedState": "NOT_RUN",
+      "timeline": [
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+          "phase": "base",
+          "firstFrame": 133,
+          "lastFrame": 198,
+          "firstAt": 2677.89999999851,
+          "lastAt": 3760.699999999255,
+          "shown": [
+            "",
+            "4,050"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+          "phase": "windup",
+          "firstFrame": 199,
+          "lastFrame": 214,
+          "firstAt": 3777.5,
+          "lastAt": 4027.60000000149,
+          "shown": [
+            "4,050"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+          "phase": "impact",
+          "firstFrame": 215,
+          "lastFrame": 228,
+          "firstAt": 4044.10000000149,
+          "lastAt": 4260.89999999851,
+          "shown": [
+            "4,140"
+          ],
+          "totalScaleMin": 0.82,
+          "totalScaleMax": 1.1771598151005944,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+          "phase": "rest",
+          "firstFrame": 229,
+          "lastFrame": 236,
+          "firstAt": 4277.39999999851,
+          "lastAt": 4394,
+          "shown": [
+            "4,140"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2",
+          "phase": "windup",
+          "firstFrame": 237,
+          "lastFrame": 252,
+          "firstAt": 4410.699999999255,
+          "lastAt": 4661,
+          "shown": [
+            "4,140"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2",
+          "phase": "impact",
+          "firstFrame": 253,
+          "lastFrame": 266,
+          "firstAt": 4677.800000000745,
+          "lastAt": 4894.199999999255,
+          "shown": [
+            "4,230"
+          ],
+          "totalScaleMin": 0.82,
+          "totalScaleMax": 1.1789732862023223,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2",
+          "phase": "rest",
+          "firstFrame": 267,
+          "lastFrame": 273,
+          "firstAt": 4911.10000000149,
+          "lastAt": 5010.800000000745,
+          "shown": [
+            "4,230"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3",
+          "phase": "windup",
+          "firstFrame": 274,
+          "lastFrame": 287,
+          "firstAt": 5027.5,
+          "lastAt": 5244.10000000149,
+          "shown": [
+            "4,230"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3",
+          "phase": "impact",
+          "firstFrame": 288,
+          "lastFrame": 299,
+          "firstAt": 5260.60000000149,
+          "lastAt": 5444.10000000149,
+          "shown": [
+            "4,320"
+          ],
+          "totalScaleMin": 0.82,
+          "totalScaleMax": 1.1799479986959982,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3",
+          "phase": "rest",
+          "firstFrame": 300,
+          "lastFrame": 306,
+          "firstAt": 5460.699999999255,
+          "lastAt": 5560.60000000149,
+          "shown": [
+            "4,320"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4",
+          "phase": "windup",
+          "firstFrame": 307,
+          "lastFrame": 320,
+          "firstAt": 5577.300000000745,
+          "lastAt": 5793.89999999851,
+          "shown": [
+            "4,320"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4",
+          "phase": "impact",
+          "firstFrame": 321,
+          "lastFrame": 332,
+          "firstAt": 5811,
+          "lastAt": 5994,
+          "shown": [
+            "4,410"
+          ],
+          "totalScaleMin": 0.82,
+          "totalScaleMax": 1.1747191147564853,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4",
+          "phase": "rest",
+          "firstFrame": 333,
+          "lastFrame": 339,
+          "firstAt": 6010.699999999255,
+          "lastAt": 6110.60000000149,
+          "shown": [
+            "4,410"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5",
+          "phase": "windup",
+          "firstFrame": 340,
+          "lastFrame": 353,
+          "firstAt": 6127.39999999851,
+          "lastAt": 6344,
+          "shown": [
+            "4,410"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5",
+          "phase": "impact",
+          "firstFrame": 354,
+          "lastFrame": 365,
+          "firstAt": 6363.89999999851,
+          "lastAt": 6543.800000000745,
+          "shown": [
+            "4,509"
+          ],
+          "totalScaleMin": 0.82,
+          "totalScaleMax": 1.1711229341661942,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5",
+          "phase": "rest",
+          "firstFrame": 366,
+          "lastFrame": 371,
+          "firstAt": 6560.60000000149,
+          "lastAt": 6643.800000000745,
+          "shown": [
+            "4,509"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6",
+          "phase": "windup",
+          "firstFrame": 372,
+          "lastFrame": 393,
+          "firstAt": 6660.60000000149,
+          "lastAt": 7010.60000000149,
+          "shown": [
+            "4,509"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6",
+          "phase": "impact",
+          "firstFrame": 394,
+          "lastFrame": 409,
+          "firstAt": 7027.199999999255,
+          "lastAt": 7277.10000000149,
+          "shown": [
+            "5,589"
+          ],
+          "totalScaleMin": 0.7899999999999999,
+          "totalScaleMax": 1.2307692307692308,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6",
+          "phase": "rest",
+          "firstFrame": 410,
+          "lastFrame": 429,
+          "firstAt": 7293.89999999851,
+          "lastAt": 7610.699999999255,
+          "shown": [
+            "5,589"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/7",
+          "phase": "award",
+          "firstFrame": 430,
+          "lastFrame": 514,
+          "firstAt": 7627.300000000745,
+          "lastAt": 9027.5,
+          "shown": [
+            "5,589"
+          ],
+          "totalScaleMin": 0.76,
+          "totalScaleMax": 1.2307692307692308,
+          "accentVoiceMax": 2
+        }
+      ]
+    },
+    {
+      "variant": "after",
+      "name": "390x740-202-reduced",
+      "status": "PASS",
+      "source": "ce73172f663ee981c853a2c9892969f0ada7ffee",
+      "finalScore": "202",
+      "wholeSavedStateSHA256": "b084bb4fce6c4e684fdfc20fd77f1824b8fae910c0e70b3a8898745a60035915",
+      "savedStableEveryFrame": true,
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "replayAccentAndSavedState": "NOT_RUN",
+      "timeline": [
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/0",
+          "phase": "base",
+          "firstFrame": 65,
+          "lastFrame": 85,
+          "firstAt": 1557.5,
+          "lastAt": 1889.8999999985099,
+          "shown": [
+            "",
+            "60"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+          "phase": "impact",
+          "firstFrame": 86,
+          "lastFrame": 97,
+          "firstAt": 1907.0999999977648,
+          "lastAt": 2090.2999999970198,
+          "shown": [
+            "67"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+          "phase": "rest",
+          "firstFrame": 98,
+          "lastFrame": 106,
+          "firstAt": 2107.099999997765,
+          "lastAt": 2240.199999999255,
+          "shown": [
+            "67"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+          "phase": "impact",
+          "firstFrame": 107,
+          "lastFrame": 118,
+          "firstAt": 2256.699999999255,
+          "lastAt": 2439.7999999970198,
+          "shown": [
+            "202"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+          "phase": "rest",
+          "firstFrame": 119,
+          "lastFrame": 127,
+          "firstAt": 2456.699999999255,
+          "lastAt": 2589.699999999255,
+          "shown": [
+            "202"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/3",
+          "phase": "award",
+          "firstFrame": 128,
+          "lastFrame": 150,
+          "firstAt": 2606.5,
+          "lastAt": 2973.699999999255,
+          "shown": [
+            "202"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 2
+        }
+      ]
+    },
+    {
+      "variant": "after",
+      "name": "390x740-202-skip",
+      "status": "PASS",
+      "source": "ce73172f663ee981c853a2c9892969f0ada7ffee",
+      "finalScore": "202",
+      "wholeSavedStateSHA256": "b084bb4fce6c4e684fdfc20fd77f1824b8fae910c0e70b3a8898745a60035915",
+      "savedStableEveryFrame": true,
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "replayAccentAndSavedState": true,
+      "timeline": [
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/0",
+          "phase": "base",
+          "firstFrame": 118,
+          "lastFrame": 173,
+          "firstAt": 2471,
+          "lastAt": 3387.400000002235,
+          "shown": [
+            "",
+            "60"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+          "phase": "windup",
+          "firstFrame": 174,
+          "lastFrame": 189,
+          "firstAt": 3404.10000000149,
+          "lastAt": 3654,
+          "shown": [
+            "60"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+          "phase": "impact",
+          "firstFrame": 190,
+          "lastFrame": 203,
+          "firstAt": 3671,
+          "lastAt": 3887.300000000745,
+          "shown": [
+            "67"
+          ],
+          "totalScaleMin": 0.82,
+          "totalScaleMax": 1.048780487804878,
+          "accentVoiceMax": 2
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+          "phase": "rest",
+          "firstFrame": 204,
+          "lastFrame": 210,
+          "firstAt": 3904.300000000745,
+          "lastAt": 4004.2000000029802,
+          "shown": [
+            "67"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        },
+        {
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+          "phase": "windup",
+          "firstFrame": 211,
+          "lastFrame": 211,
+          "firstAt": 4020.900000002235,
+          "lastAt": 4020.900000002235,
+          "shown": [
+            "67"
+          ],
+          "totalScaleMin": 1,
+          "totalScaleMax": 1,
+          "accentVoiceMax": 0
+        }
+      ]
+    }
+  ],
+  "keyframes": [
+    {
+      "variant": "before",
+      "file": "before-390x740-tier0.png",
+      "sha256": "3fe2a41eff52ff68731a777bb4212841e2b2be47745b678847bd520f2ab03c4e",
+      "source": "d1c072dff5055238bd94775a14f2fca44c4d38b8",
+      "frame": 195,
+      "at": 3805.800000000745,
+      "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+      "phase": "impact",
+      "shown": "64",
+      "brush": {
+        "level": 0,
+        "reduced": false,
+        "localPhase": "unfold",
+        "localAge": 100,
+        "localAlpha": 0.9,
+        "localLineWidth": 4.5,
+        "framePhase": "idle",
+        "frameAge": 900,
+        "frameProgress": 1,
+        "frameAlpha": 0,
+        "lineWidth": 3.5,
+        "entered": [],
+        "updating": true
+      },
+      "pulses": [
+        {
+          "text": "43.31",
+          "full": "43.31",
+          "requested": 1,
+          "scale": 1.0134951980713705,
+          "bounds": {
+            "x": 60.229610444358485,
+            "y": 208.6,
+            "width": 46.62077911128304,
+            "height": 21.28339915949877
+          }
+        },
+        {
+          "text": "× 1.5",
+          "full": "× 1.5",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 63.040000000000006,
+            "y": 253.6,
+            "width": 41,
+            "height": 21.00000000000003
+          }
+        },
+        {
+          "text": "64",
+          "full": "64",
+          "requested": 1,
+          "scale": 1.0134951980713705,
+          "bounds": {
+            "x": 241.7633484395369,
+            "y": 248.60000000000002,
+            "width": 41.553303120926216,
+            "height": 41.553303120926216
+          }
+        }
+      ],
+      "localStrokes": [
+        [
+          {
+            "x": 15.2,
+            "y": 278.2654545454546
+          },
+          {
+            "x": 15.45,
+            "y": 293.90000000000003
+          },
+          {
+            "x": 34.561454545454545,
+            "y": 294.40000000000003
+          }
+        ],
+        [
+          {
+            "x": 374.8,
+            "y": 278.2654545454546
+          },
+          {
+            "x": 374.55,
+            "y": 293.90000000000003
+          },
+          {
+            "x": 355.4385454545455,
+            "y": 294.40000000000003
+          }
+        ]
+      ],
+      "guardCount": 27,
+      "safePieceCount": 102
+    },
+    {
+      "variant": "before",
+      "file": "before-390x740-tier3.png",
+      "sha256": "22f4c12cdf701a32fa0d00b0422f37bd27d9daec812e2686665cc2feaa9ec2ff",
+      "source": "d1c072dff5055238bd94775a14f2fca44c4d38b8",
+      "frame": 185,
+      "at": 3557.60000000149,
+      "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+      "phase": "base",
+      "shown": "4,050",
+      "brush": {
+        "level": 3,
+        "reduced": false,
+        "localPhase": "idle",
+        "localAge": 320,
+        "localAlpha": 0,
+        "localLineWidth": 4.5,
+        "framePhase": "fade",
+        "frameAge": 283.3000000000002,
+        "frameProgress": 1,
+        "frameAlpha": 0.9987225806451612,
+        "lineWidth": 5.5,
+        "entered": [
+          1,
+          2,
+          3
+        ],
+        "updating": true
+      },
+      "pulses": [
+        {
+          "text": "450",
+          "full": "450",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 68.04,
+            "y": 208.6,
+            "width": 31,
+            "height": 21
+          }
+        },
+        {
+          "text": "× 9",
+          "full": "× 9",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 70.54,
+            "y": 253.6,
+            "width": 26,
+            "height": 21.00000000000003
+          }
+        },
+        {
+          "text": "4,050",
+          "full": "4,050",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 217.04000000000002,
+            "y": 248.60000000000002,
+            "width": 91,
+            "height": 41
+          }
+        }
+      ],
+      "localStrokes": [],
+      "guardCount": 31,
+      "safePieceCount": 102
+    },
+    {
+      "variant": "after",
+      "file": "after-390x740-tier0.png",
+      "sha256": "65f1531eca00db5dc5d35cce26dff2791835f9b9d01ef728104553e00a4ac80b",
+      "source": "ce73172f663ee981c853a2c9892969f0ada7ffee",
+      "frame": 196,
+      "at": 3916.89999999851,
+      "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+      "phase": "impact",
+      "shown": "67",
+      "brush": {
+        "level": 0,
+        "reduced": false,
+        "localPhase": "fade",
+        "localAge": 100,
+        "localAlpha": 0.9565217391304348,
+        "localLineWidth": 6.5,
+        "framePhase": "idle",
+        "frameAge": 900,
+        "frameProgress": 1,
+        "frameAlpha": 0,
+        "lineWidth": 3.5,
+        "entered": [],
+        "updating": true
+      },
+      "pulses": [
+        {
+          "text": "45",
+          "full": "45",
+          "requested": 1.1553871052979257,
+          "scale": 1.1428571428571428,
+          "bounds": {
+            "x": 71.54,
+            "y": 208.6,
+            "width": 24,
+            "height": 24
+          }
+        },
+        {
+          "text": "× 1.5",
+          "full": "× 1.5",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 63.040000000000006,
+            "y": 253.6,
+            "width": 41,
+            "height": 21.00000000000003
+          }
+        },
+        {
+          "text": "67",
+          "full": "67",
+          "requested": 1.1553871052979257,
+          "scale": 1.048780487804878,
+          "bounds": {
+            "x": 241.04000000000002,
+            "y": 248.60000000000002,
+            "width": 43,
+            "height": 43
+          }
+        }
+      ],
+      "localStrokes": [
+        [
+          {
+            "x": 15.2,
+            "y": 258.112
+          },
+          {
+            "x": 15.45,
+            "y": 293.90000000000003
+          },
+          {
+            "x": 133.136,
+            "y": 294.40000000000003
+          }
+        ],
+        [
+          {
+            "x": 374.8,
+            "y": 258.112
+          },
+          {
+            "x": 374.55,
+            "y": 293.90000000000003
+          },
+          {
+            "x": 256.86400000000003,
+            "y": 294.40000000000003
+          }
+        ]
+      ],
+      "guardCount": 27,
+      "safePieceCount": 99
+    },
+    {
+      "variant": "after",
+      "file": "after-390x740-tier3.png",
+      "sha256": "fc6383578d07813340368ee48d91a5ba25b0e3932ad952585f1978961309fe79",
+      "source": "ce73172f663ee981c853a2c9892969f0ada7ffee",
+      "frame": 174,
+      "at": 3426.699999999255,
+      "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+      "phase": "base",
+      "shown": "4,050",
+      "brush": {
+        "level": 3,
+        "reduced": false,
+        "localPhase": "idle",
+        "localAge": 320,
+        "localAlpha": 0,
+        "localLineWidth": 6.5,
+        "framePhase": "fade",
+        "frameAge": 100.09999999999991,
+        "frameProgress": 1,
+        "frameAlpha": 0.9987761194029852,
+        "lineWidth": 7.454444444444445,
+        "entered": [
+          1,
+          2,
+          3
+        ],
+        "updating": true
+      },
+      "pulses": [
+        {
+          "text": "450",
+          "full": "450",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 68.04,
+            "y": 208.6,
+            "width": 31,
+            "height": 21
+          }
+        },
+        {
+          "text": "× 9",
+          "full": "× 9",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 70.54,
+            "y": 253.6,
+            "width": 26,
+            "height": 21.00000000000003
+          }
+        },
+        {
+          "text": "4,050",
+          "full": "4,050",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 217.04000000000002,
+            "y": 248.60000000000002,
+            "width": 91,
+            "height": 41
+          }
+        }
+      ],
+      "localStrokes": [],
+      "guardCount": 31,
+      "safePieceCount": 102
+    },
+    {
+      "variant": "after",
+      "file": "after-844x300-tier3.png",
+      "sha256": "0ae6edabffde08aa9a4826a56994e6b721ab3bcc50dd6120f141ea92c37995a3",
+      "source": "ce73172f663ee981c853a2c9892969f0ada7ffee",
+      "frame": 175,
+      "at": 3377.5,
+      "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+      "phase": "base",
+      "shown": "4,050",
+      "brush": {
+        "level": 3,
+        "reduced": false,
+        "localPhase": "idle",
+        "localAge": 320,
+        "localAlpha": 0,
+        "localLineWidth": 6.5,
+        "framePhase": "fade",
+        "frameAge": 100,
+        "frameProgress": 1,
+        "frameAlpha": 0.9988059701492538,
+        "lineWidth": 7.455555555555556,
+        "entered": [
+          1,
+          2,
+          3
+        ],
+        "updating": true
+      },
+      "pulses": [
+        {
+          "text": "450",
+          "full": "450",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 214.84,
+            "y": 108,
+            "width": 31,
+            "height": 21
+          }
+        },
+        {
+          "text": "× 9",
+          "full": "× 9",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 297.02,
+            "y": 108,
+            "width": 26,
+            "height": 21
+          }
+        },
+        {
+          "text": "4,050",
+          "full": "4,050",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 399.18,
+            "y": 95,
+            "width": 61,
+            "height": 26
+          }
+        }
+      ],
+      "localStrokes": [],
+      "guardCount": 30,
+      "safePieceCount": 83
+    }
+  ],
+  "rawEvidence": [
+    {
+      "retainedLocator": "shots/score-impact-before/report.json",
+      "sha256": "6d6f9e34af7caad9e49db83e9f3a69c0384b28e70a2deced8435f99ba52124bb",
+      "bytes": 14372249
+    },
+    {
+      "retainedLocator": "shots/score-impact-before/native.log",
+      "sha256": "30015bb2e1a1fe58ddc9c813aa8352ca944562381ebb1583575dc1ae03474b08",
+      "bytes": 171
+    },
+    {
+      "retainedLocator": "shots/score-impact/report.json",
+      "sha256": "6c279788d8d40f6fab7fa47de4675f059d18f761e2fe4338daed6dd6b181faa3",
+      "bytes": 28745740
+    },
+    {
+      "retainedLocator": "shots/score-impact/native.log",
+      "sha256": "efcf7d4da7e14929ecc040aad1c97fc0d8441bc5b42135be17d1c68707a0a925",
+      "bytes": 393
+    }
+  ],
+  "limits": [
+    "Headless software Canvas, emulated touch, DPR1; actual phone/GPU/FPS/listening NOT_RUN. No videos.",
+    "Natural202 and5589 only; target600/2x1200, mid-motion preference switch and speed-switch browser cases not rerun at this first checkpoint.",
+    "5x screenshots capture saved base4050 as it first enters tier3;5589 is the actual final score of that natural hand.",
+    "No new waiting time, RNG/domain/save/state injection. Tiny visual compression holds inside existing impact slot.",
+    "No main push or deployment. Existing natural-run evidence/resources and the parallel deck-view code unchanged."
+  ],
+  "historicalUnitMismatch": {
+    "status": "FAIL 1 / PASS51",
+    "reason": "Old test expected alpha0.9; candidate uses1.0. Updated explicit alpha/tier timing contract; mask, RNG, cleanup and dedup checks retained.",
+    "retainedLocator": "/tmp/score-impact-tests.log",
+    "sha256": "7c0a8d25ebff9799b6516d63bc554703a87df9f153cabf3d7ff7383131545abb"
+  }
+}
