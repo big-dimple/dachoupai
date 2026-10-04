@@ -4,7 +4,7 @@ import {heatText} from './scoreText';
 import {HAND_LABELS} from '../content/handLabels';
 import {MAX_IMPORT_BYTES} from '../application/checkpoint';
 import type {GameScene} from './GameScene';
-import {buildInfo} from '../platform/buildInfo';
+import {buildInfo,formatBuildInfo} from '../platform/buildInfo';
 import {AudioEngine} from '../audio/AudioEngine';
 import {readAudioPreferences} from '../audio/preferences';
 import {installFullscreen} from '../platform/Fullscreen';
@@ -160,7 +160,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   panel.append(saveTools);
   const infoTools=document.createElement('details'),infoSummary=document.createElement('summary'),info=document.createElement('p');infoSummary.textContent='本局与版本';infoTools.append(infoSummary);panel.append(infoTools);
   button('局详情',()=>{const state=session.state();info.textContent=state?'角色 '+state.characterId+'\nSEED '+state.seed+'\n规则 '+state.rulesVersion+' · 内容 '+state.contentVersion:'当前没有进行中的局。';},infoTools);
-  button('版本信息',()=>{info.textContent=`版本 ${buildInfo.version} · ${buildInfo.revision.slice(0,12)}${buildInfo.modified?'（含本地修改）':''}\n构建 ${buildInfo.builtAt}\n当前可玩内容：${R2_JOKERS.length}张大丑牌、${R2_AVAILABLE_CHAPTERS}章。`;},infoTools);infoTools.append(info);
+  button('版本信息',()=>{info.textContent=`${formatBuildInfo(buildInfo)}\n当前可玩内容：${R2_JOKERS.length}张大丑牌、${R2_AVAILABLE_CHAPTERS}章。`;},infoTools);infoTools.append(info);
   function refreshState():void {
     const run=session.run,pending=session.pendingRun,saving=pending??run;
     if(run){game.registry.set('runController',run);game.registry.set('runState',run.state);}else{game.registry.remove('runController');game.registry.remove('runState');}

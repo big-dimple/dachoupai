@@ -4,7 +4,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {collectBuildInfo} from '../scripts/build-info';
-import {makeBuildInfo,formatBuildInfo,trackedChanges,type BuildInfo} from '../src/platform/buildMetadata';
+import {makeBuildInfo,formatBuildInfo,safeRepositoryPath,trackedChanges,type BuildInfo} from '../src/platform/buildMetadata';
 
 const revision='1'.repeat(40),builtAt='2026-10-04T00:00:00.000Z',identity={version:'C03',builtAt};
 const ok=(output:string)=>({ok:true as const,output});
@@ -55,6 +55,14 @@ describe('build identity with explicit source verification',()=>{
   it('does not retroactively infer a legacy local-changes label from its boolean',()=>{
     for(const modified of [true,false]){
       const text=formatBuildInfo({...identity,revision,modified});expect(text).toContain('无法核对');expect(text).not.toContain('尚未提交');
+    }
+  });
+  it('withholds C1, Arabic direction and Unicode line separator characters',()=>{
+    for(const character of ['\u0085','\u009b','\u061c','\u2028','\u2029']){
+      const path=`src/part${character}name.ts`;expect(safeRepositoryPath(path)).toBe(false);
+      const info=makeBuildInfo(identity,ok(revision),ok(` M ${path}\0`));
+      expect(info).toMatchObject({sourceStatus:'dirty',modifiedFileCount:1,modifiedFiles:[]});
+      expect(formatBuildInfo(info)).not.toContain(path);
     }
   });
   it('reads a real temporary clean Git repo and ignores untracked files',()=>{

@@ -9,7 +9,7 @@ export type GitOutput={ok:true;output:string}|{ok:false};
 /** Only repository-relative names suitable for plain-text diagnostics are public. */
 export function safeRepositoryPath(path:string):boolean {
   return !!path&&path.length<=2048&&!/^[A-Za-z]:|^\//.test(path)&&
-    !/[\\\u0000-\u001f\u007f\u200e\u200f\u202a-\u202e\u2066-\u2069]/.test(path)&&
+    !/[\\\u0000-\u001f\u007f-\u009f\u061c\u200e\u200f\u2028-\u202e\u2066-\u2069]/.test(path)&&
     path.split('/').every(part=>!!part&&part!=='.'&&part!=='..'&&part!=='.git');
 }
 
