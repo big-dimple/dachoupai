@@ -1,0 +1,91 @@
+{
+  "taskId": "P08",
+  "testedCommit": "7b78777347dd854f5759870c7934b8c28279889e",
+  "status": "FAIL_RETAINED_FIXED_IN_REVIEW",
+  "fixture": {
+    "kind": "validator-approved native checkpoint import, synthetic controlled 14-card capacity state; not natural acquisition",
+    "handCount": 14,
+    "stageHandLimit": 14,
+    "consumables": 2,
+    "capacity": 3,
+    "longTermItems": [
+      "U07"
+    ],
+    "ids": [
+      "clubs-11",
+      "hearts-12",
+      "spades-13",
+      "diamonds-14",
+      "spades-10",
+      "hearts-7",
+      "clubs-4",
+      "diamonds-2",
+      "clubs-14",
+      "hearts-10",
+      "diamonds-11",
+      "spades-12",
+      "clubs-13",
+      "spades-8"
+    ],
+    "checkpointSHA256": "fee7cad7da3b08c343599d8d10fdb5ab3132e0131976f3fee5b12ff89959f362"
+  },
+  "viewport": {
+    "width": 320,
+    "height": 568
+  },
+  "assertion": "AssertionError [ERR_ASSERTION]: clubs-11 index/hand-count",
+  "actualNativeTouch": {
+    "x": 75.5,
+    "y": 420.20001220703125,
+    "enabled": true
+  },
+  "selectedIds": [
+    "clubs-11"
+  ],
+  "counter": {
+    "text": "手牌 14 / 14 · 1–5",
+    "font": 14,
+    "bounds": {
+      "x": 56,
+      "y": 366.4,
+      "width": 111,
+      "height": 16
+    }
+  },
+  "selectedCard": {
+    "id": "clubs-11",
+    "rank": 11,
+    "suit": "clubs",
+    "selected": true,
+    "face": {
+      "x": 56,
+      "y": 370.3999877929688,
+      "width": 52,
+      "height": 72.79999999999995
+    },
+    "hit": {
+      "x": 56,
+      "y": 364.4,
+      "width": 39,
+      "height": 111.60000000000002
+    },
+    "enabled": true,
+    "index": {
+      "text": "J\n♣",
+      "font": 14,
+      "bounds": {
+        "x": 60,
+        "y": 374.3999877929688,
+        "width": 10,
+        "height": 30
+      }
+    },
+    "layer": 79
+  },
+  "overlapHeightCSSPixels": 8.000012207031205,
+  "actualDiagnosticView": "A local 184x64 crop was actually viewed; hand-count text covers the lifted J index. Two final full-page artifacts only.",
+  "originalLogSHA256": "d0332fbc4d0ceab6689cdb96a79b3941755967521ed61ed5515962af52ac6cf2",
+  "originalReportSHA256": "99bca0ba68b999eb145d0327a84e47f40f29665c6ce0a803e40f87628d7d4bb5",
+  "localDiagnosticCropSHA256": "92e81404a900323434cc30aac0454812d14a15de70af50b7c69ae51538655c43",
+  "resolution": "Only portrait overflow hand-count text gains a newline and moves to the existing free left gutter of the tool row. All card seats/hits/buttons/fonts unchanged."
+}

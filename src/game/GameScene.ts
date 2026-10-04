@@ -584,8 +584,11 @@ export class GameScene extends Phaser.Scene {
   private showFocusedCard():void {const l=this.view.layout;if(this.focusIndex>=l.handStart&&this.focusIndex<l.handStart+l.visibleCardCount)return;this.handStart=this.focusIndex<l.handStart?this.focusIndex:this.focusIndex-l.visibleCardCount+1;if(!this.playing)this.renderHand();}
   private updateHandCount():void {
     const l=this.view.layout,limit=this.run.stage!.handLimit;
-    this.handCountText.setText('手牌 '+this.run.handOrder.length+' / '+limit+(l.handOverflow?' · '+(l.handStart+1)+'–'+(l.handStart+l.visibleCardCount):'')).setVisible((l.mode!=='portrait'&&l.labelHeight>0)||l.handOverflow);
-    this.handCountText.setPosition(l.mode==='portrait'?l.hand.x+48:l.handLabel.x,l.mode==='portrait'?l.hand.y+2:l.handLabel.y);
+    const portraitWindow=l.mode==='portrait'&&l.handOverflow;
+    this.handCountText.setText('手牌 '+this.run.handOrder.length+' / '+limit+(l.handOverflow?(portraitWindow?'\n':' · ')+(l.handStart+1)+'–'+(l.handStart+l.visibleCardCount):'')).setVisible((l.mode!=='portrait'&&l.labelHeight>0)||l.handOverflow);
+    // Lifted cards still own the top of their row. The tool row has a free left gutter.
+    const entry=gameToolInventoryBox(l);
+    this.handCountText.setPosition(portraitWindow?l.hand.x+8:l.mode==='portrait'?l.hand.x+48:l.handLabel.x,portraitWindow?entry.y+(entry.height-this.handCountText.height)/2:l.mode==='portrait'?l.hand.y+2:l.handLabel.y);
   }
   private sweepSheen(view:CardView):void {
     const sheen=view.sheen;if(!sheen||this.reducedMotion||this.presentation||this.playing)return;

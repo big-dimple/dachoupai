@@ -1,0 +1,430 @@
+{
+  "taskId": "P08",
+  "testedCommit": "2d999cd938e5c19253daa8ddbd1cf25facf2d9e4",
+  "sourceFingerprint": "cc804992ebe6b53e322d31a6cab7e999ed7f212882af42c48fd1ba5bd65214d0",
+  "phase": "before",
+  "build": {
+    "version": "C03",
+    "revision": "2d999cd938e5c19253daa8ddbd1cf25facf2d9e4",
+    "modified": false,
+    "builtAt": "2026-10-04T18:41:57.840Z"
+  },
+  "renderer": "Chromium software Canvas",
+  "DPR": 1,
+  "motion": "reduce",
+  "overlay": {
+    "ref": "bd3840d0a8f532825fc078e2233ab740815cd026",
+    "modules": [
+      "ShopScene.ts",
+      "ToolInventoryEntry.ts"
+    ],
+    "combinedShopSHA256": "f7f95fc37f17411829fa739e1e63e22fe91999f7c5bc88d0668699a8e503b092",
+    "gameScene": "Unchanged main; no B GameScene loaded or copied"
+  },
+  "fixture": "Validated 5-owned-Joker shop +1 owned T07. Native file import and controls; not natural acquisition or main deployment.",
+  "runs": [
+    {
+      "profile": {
+        "width": 320,
+        "height": 568,
+        "top": 0,
+        "bottom": 0
+      },
+      "geometry": {
+        "renderer": 1,
+        "layout": {
+          "x": 12,
+          "w": 296,
+          "top": 12,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": -12,
+              "y": 339.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 58,
+              "y": 339.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 128,
+              "y": 339.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 198,
+              "y": 339.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 268,
+              "y": 339.2,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 14.666666666666664,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 116,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 217.33333333333331,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 64,
+            "width": 296,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 436.79999999999995,
+            "width": 144,
+            "height": 44
+          },
+          "items": {
+            "x": 164,
+            "y": 436.79999999999995,
+            "width": 144,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 424,
+            "width": 144,
+            "height": 44
+          },
+          "build": {
+            "x": 164,
+            "y": 424,
+            "width": 144,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 476,
+            "width": 296,
+            "height": 56
+          },
+          "noticeY": 540
+        },
+        "hits": [
+          {
+            "id": "rack/c08",
+            "bounds": {
+              "x": -12,
+              "y": 339.2,
+              "width": 64,
+              "height": 111.59999999999997
+            }
+          },
+          {
+            "id": "rack/c09",
+            "bounds": {
+              "x": 58,
+              "y": 339.2,
+              "width": 64,
+              "height": 111.59999999999997
+            }
+          },
+          {
+            "id": "rack/f09",
+            "bounds": {
+              "x": 128,
+              "y": 339.2,
+              "width": 64,
+              "height": 111.59999999999997
+            }
+          },
+          {
+            "id": "rack/f10",
+            "bounds": {
+              "x": 198,
+              "y": 339.2,
+              "width": 64,
+              "height": 111.59999999999997
+            }
+          },
+          {
+            "id": "rack/a11",
+            "bounds": {
+              "x": 268,
+              "y": 339.2,
+              "width": 64,
+              "height": 111.59999999999997
+            }
+          }
+        ],
+        "names": [
+          {
+            "text": "少一级",
+            "fullText": "少一级",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": -9,
+              "y": 342,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "text": "少一块布",
+            "fullText": "少一块布",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 61,
+              "y": 342,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "text": "不换词",
+            "fullText": "不换词",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 131,
+              "y": 342,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "text": "冷场救火",
+            "fullText": "冷场救火",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 201,
+              "y": 342,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "text": "返个场",
+            "fullText": "返个场",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 271,
+              "y": 342,
+              "width": 42,
+              "height": 16
+            }
+          }
+        ],
+        "entry": {
+          "x": 220,
+          "y": 64,
+          "width": 88,
+          "height": 44
+        },
+        "offers": [
+          {
+            "id": "fixture/p08-rack320/shop/0/0/joker/0",
+            "bounds": {
+              "x": 14.666666666666664,
+              "y": 116,
+              "width": 88,
+              "height": 199.2
+            }
+          },
+          {
+            "id": "fixture/p08-rack320/shop/0/0/joker/1",
+            "bounds": {
+              "x": 116,
+              "y": 116,
+              "width": 88,
+              "height": 199.2
+            }
+          },
+          {
+            "id": "fixture/p08-rack320/shop/0/0/joker/2",
+            "bounds": {
+              "x": 217.33333333333331,
+              "y": 116,
+              "width": 88,
+              "height": 199.2
+            }
+          }
+        ]
+      },
+      "violations": [
+        {
+          "kind": "outside-viewport",
+          "b": {
+            "x": -12,
+            "y": 339.2,
+            "width": 64,
+            "height": 89.6
+          }
+        },
+        {
+          "kind": "under-action",
+          "b": {
+            "x": -12,
+            "y": 339.2,
+            "width": 64,
+            "height": 89.6
+          }
+        },
+        {
+          "kind": "under-action",
+          "b": {
+            "x": 58,
+            "y": 339.2,
+            "width": 64,
+            "height": 89.6
+          }
+        },
+        {
+          "kind": "under-action",
+          "b": {
+            "x": 128,
+            "y": 339.2,
+            "width": 64,
+            "height": 89.6
+          }
+        },
+        {
+          "kind": "under-action",
+          "b": {
+            "x": 198,
+            "y": 339.2,
+            "width": 64,
+            "height": 89.6
+          }
+        },
+        {
+          "kind": "outside-viewport",
+          "b": {
+            "x": 268,
+            "y": 339.2,
+            "width": 64,
+            "height": 89.6
+          }
+        },
+        {
+          "kind": "under-action",
+          "b": {
+            "x": 268,
+            "y": 339.2,
+            "width": 64,
+            "height": 89.6
+          }
+        },
+        {
+          "kind": "outside-viewport",
+          "b": {
+            "x": -9,
+            "y": 342,
+            "width": 42,
+            "height": 16
+          }
+        },
+        {
+          "kind": "outside-viewport",
+          "b": {
+            "x": -12,
+            "y": 339.2,
+            "width": 64,
+            "height": 111.59999999999997
+          }
+        },
+        {
+          "kind": "under-action",
+          "b": {
+            "x": -12,
+            "y": 339.2,
+            "width": 64,
+            "height": 111.59999999999997
+          }
+        },
+        {
+          "kind": "under-action",
+          "b": {
+            "x": 58,
+            "y": 339.2,
+            "width": 64,
+            "height": 111.59999999999997
+          }
+        },
+        {
+          "kind": "under-action",
+          "b": {
+            "x": 128,
+            "y": 339.2,
+            "width": 64,
+            "height": 111.59999999999997
+          }
+        },
+        {
+          "kind": "under-action",
+          "b": {
+            "x": 198,
+            "y": 339.2,
+            "width": 64,
+            "height": 111.59999999999997
+          }
+        },
+        {
+          "kind": "outside-viewport",
+          "b": {
+            "x": 268,
+            "y": 339.2,
+            "width": 64,
+            "height": 111.59999999999997
+          }
+        },
+        {
+          "kind": "under-action",
+          "b": {
+            "x": 268,
+            "y": 339.2,
+            "width": 64,
+            "height": 111.59999999999997
+          }
+        }
+      ],
+      "checks": [
+        "five owned cards and14px names",
+        "three offers remain visible",
+        "native every-card detail/cancel, every-offer cancel and tool inventory preserve full run"
+      ]
+    }
+  ],
+  "errors": [],
+  "physicalDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "aesthetics": "PENDING",
+  "status": "BASELINE_REPRODUCED"
+}

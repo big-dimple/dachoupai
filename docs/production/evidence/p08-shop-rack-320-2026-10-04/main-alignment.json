@@ -1,0 +1,73 @@
+{
+  "taskId": "P08",
+  "baseMain": "7b78777347dd854f5759870c7934b8c28279889e",
+  "mergeCommit": "16537dd5c5cecf9ddfb810c5ae64c0d5086c8f7e",
+  "runtimeDiff": [
+    "src/game/ShopLayout.ts",
+    "src/game/ShopScene.ts"
+  ],
+  "sourceFingerprint": "4a52db3a3f635c7010b4d3a71bb50905d155bd7ae83c541103e3bcfb54043244",
+  "checks": {
+    "affectedTests": "88 PASS /4 files",
+    "type": "PASS",
+    "build": {
+      "version": "C03",
+      "revision": "16537dd5c5cecf9ddfb810c5ae64c0d5086c8f7e",
+      "modified": true,
+      "builtAt": "2026-10-04T19:04:29.909Z"
+    },
+    "nativeBrowser": "PASS; same320/390/844 three profiles; no overlay; no new image"
+  },
+  "preservation": {
+    "src/game/GameScene.ts": {
+      "object": "311bed2463b7af4e282ae3bbbb719e6e7d64f81f",
+      "sameAsPublishedMain": true
+    },
+    "src/game/IntermissionScene.ts": {
+      "object": "ca84a25e48efe584a73c24822d750c0696466620",
+      "sameAsPublishedMain": true
+    },
+    "src/game/ScoreFlame.ts": {
+      "object": "925208142110f17e08e1df264913d21e5c9afdd0",
+      "sameAsPublishedMain": true
+    },
+    "src/audio/AudioEngine.ts": {
+      "object": "a59571134ba2e3a1f7c913b44434b425df24a80c",
+      "sameAsPublishedMain": true
+    },
+    "src/game/ToolInventoryEntry.ts": {
+      "object": "ad683177be1cb9924f61207934eb695e8f5e4d99",
+      "sameAsPublishedMain": true
+    },
+    "src/domain": {
+      "object": "8e3423193ecb4920e79b87f2314da97a04438c99",
+      "sameAsPublishedMain": true
+    },
+    "src/application": {
+      "object": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+      "sameAsPublishedMain": true
+    },
+    "src/content": {
+      "object": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+      "sameAsPublishedMain": true
+    },
+    "public": {
+      "object": "1aac774b0ec62cc91ae6a874496078f527e65863",
+      "sameAsPublishedMain": true
+    },
+    "art": {
+      "object": "3a660b3ec10cc2d6fd6c809ef32f8e3784cc30d4",
+      "sameAsPublishedMain": true
+    }
+  },
+  "images": "Original before/after bytes and build identities retained; images are historical5d candidate with shop-only frozenB test overlay, not current-main snapshots. B shop modules had identical blobs to now-published7b.",
+  "implementation": "COMPLETE_REVIEW",
+  "technical": "PASS",
+  "independentAesthetic": "PENDING",
+  "targetDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "mainPush": "NOT_AUTHORIZED; review branch only",
+  "testedCommit": "16537dd5c5cecf9ddfb810c5ae64c0d5086c8f7e",
+  "harnessOnlyFollowupCommit": "07ea58b6be2af1ae9c14068b3741dac5b80a13f8"
+}

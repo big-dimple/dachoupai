@@ -1,5 +1,15 @@
 # 开发入口
 
+P08两处手持设备修复combined review：正常合已审/精确CI通过B2bca8c8（十四牌计数）与本5ca6a8c（320商店卡条），保mainf10工具15/39及全部资源。合并仅三docs冲突且双记录保留；运行只GameScene.updateHandCount+ShopLayout/ShopScene，逐字节同双方已审代码。147相关tests/8files/type/plan PASS，不重拍双方原图；320十四仍分页、390十四两行，不改手牌位置命中/规则/RNG/save。新combined精确CI另报，main待父放行，整体/OnePlus/GPU/听感未验。 证据docs/production/evidence/p08-shop-rack-320-2026-10-04/combined-fourteen-review.json。
+
+P08 320卡条review正常合入已发布mainf10d2d0（T13–T18六图）：src同已绿c7cd7c5，92相关tests/type及12新增WebP portable/全54runtime hash PASS；工具15/39、道具12/12和朱砂/工具包/失败摘要逐树保main。旧两图不重拍/不改身份，父侧方向通过，独立hit/短横审查另行；未混B14计数候选，不推main，新精确reviewCI另报。 证据docs/production/evidence/p08-shop-rack-320-2026-10-04/f10-main-alignment.json。
+
+P08 320商店卡条独立修复review：main5d54421基线、源码1557d41。实际复现原344宽/首x=-12末332、卡体428.8和命中450.8碰按钮424；54.4×76.16紧凑5:7、14px四字名利用座位间隙、命中止于按钮前4px，三货/工具入口/行动锚点保持。实际短横safeTop造成shop.top24的3.6px旧交叠同预算修；88受影响tests/type/build及320/390/844原生详情取消/工具包/调序状态比对PASS，两图actual view。原图B商店功能仅测试叠加且bd/7b两模块等同；后正常merge已发布main7b78777，88tests/type/build及同三组无overlay原生回归PASS，保持新main GameScene/工具/资源逐树相同；当前只是review，整体/OnePlus/GPU/听感未验。 证据docs/production/evidence/p08-shop-rack-320-2026-10-04/summary.json。
+
+P08 14牌修正父图审后正常main对齐（UTC 2026-10-04）：父实际看320/390两图并读仅updateHandCount diff，局部修正通过；边界为320十四仍5牌分页可逐张操作，390两排全14，普通九牌一页保持。正常无冲突merge sourcea2a2107合已发布mainf10d2d0纯T13–T18资源；GameScene逐字节同已审e96e971，所有public/art与布局/ShopLayout/火/audio/domain/content/规则逐树同f10。59相关tests/4files/type PASS，检查前后source/index/HEAD一致；两目标九牌单页与十四分页/两排几何专项PASS（非新原生），工具15/39、道具12/12、Joker72/72，goods54files870142B/P08 165files4454670B。旧两实图字节/sourcefccddf7身份保持，不重截图/原生/全矩阵。仅新review精确CI待报，main不推进；六工具真实使用仍下一独立任务。证据docs/production/evidence/p08-tools-fourteen-2026-10-04/main-alignment.json。
+
+P08 14牌竖屏缺口有界闭环（UTC 2026-10-04）：基线已发布main7b787773；合法原生14牌/工具2/3 fixture，非自然获取。320真实选J复现计数盖点数8px，原FAIL与局部实际像素检查保留；仅GameScene.updateHandCount将计数/页码分两行移至既有工具包左侧，卡位/命中/底栏/字体/待出区及ShopLayout不改。sourcefccddf7 exact modified=false，55相关tests/3files/type、一次软件Canvas320×568与390×740 PASS，source/index/HEAD一致。320十窗口逐张点全14，390两行全14；全牌点数花色>=14且无遮挡，原生选/取消全28个逐一通过，选5后预览/工具包/出弃bounds互不挡，出弃实际触点命中后取消，工具包开/关选牌与完整run-RNG不变；仅两张完整页已actual view，父独立图审与新精确reviewCI待接。全部资源/规则/save/火/audio保持，main未推；六工具实际目标/使用验收下一任务。证据docs/production/evidence/p08-tools-fourteen-2026-10-04/summary.json。
+
 P08工具包正常对齐C已发布main（UTC 2026-10-04）：父已完整批准review0452e418并独立确认精确CI37224263669 success；正常merge源码ab4d626合入main5d54421，仅AGENTS/handoff/plan三处文档冲突，双方历史/evidence与C completionScope保持。C六张T06–T11资源、两处CSS删除、只读失败摘要及其测试逐树同main；已批准工具包产品/样板逐字节同0452。26相关tests/3files及type PASS，当前runtime逐SHA零不符：72/72 Joker、6角色/JQK，工具9/39、道具12/12；P08 165files4454670B，工具42files643054B。未重截图/原生矩阵/全冻结，旧证据保原源码身份；本新review精确CI另报，main待父串行授权。证据docs/production/evidence/p08-tools-entry-2026-10-04/c-main-alignment.json。
 
 P08失败摘要review已由父侧读完整源码并实际view390 after，局部方向通过；已正常对齐main2d999cd（含朱砂/72人话/12道具），仅UX冲突且双合同保留。合并源码0aa7399，65相关tests/type/build及自然胜败/刷新继续/同种子重试/短摘要详情PASS，GameScene/ScoreFlame/audio/public/art逐对象同main。既有图身份不变，无新截图；320构筑裁切明确OPEN，未修。本review精确CI另报，main不推进；整体/OnePlus/GPU/听感仍待验。 证据docs/production/evidence/p08-failure-summary-2026-10-04/main-alignment.json。
