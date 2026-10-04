@@ -1,0 +1,27 @@
+{
+  "taskId": "P08",
+  "testedCommit": "764d06209022492160bbd0dd6a4572a1fe528ded",
+  "assetCommit": "b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb",
+  "sourceFingerprint": "18809ba3760504b1e9f0de91cc26ee8057c7bf8f8da395abfb2a7947a41d2e3a",
+  "runtimeManifestSHA256": "61d6a6b51abb5b13f6558f48a04ee6701a5aa5d99d6e97ba20ba6195f515f214",
+  "implementation": "PASS",
+  "technical": {
+    "hashDecodePortable": "PASS",
+    "targetedTests": 81,
+    "type": "PASS",
+    "browser": "PASS",
+    "freeze": "PENDING"
+  },
+  "functionalCoverage": {
+    "new": 43,
+    "legacy": 6,
+    "mechanism": 23
+  },
+  "runtime": {
+    "files": 107,
+    "bytes": 3090260,
+    "old91Unchanged": true
+  },
+  "independentAesthetic": "Root approved input originals/runtime contact; actual scene pending independent review",
+  "targetDevice": "OnePlus/realGPU/audio NOT_RUN"
+}
