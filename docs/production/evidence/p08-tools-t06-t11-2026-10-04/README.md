@@ -1,5 +1,7 @@
 # P08 T06–T11 消耗工具手绘图 — review
 
+正常合入已发布 Joker 文案 main `7d44b8bcada32942acded87d70abe78dea12f275`，无冲突；合并源码 `657e10ca35ef6abd1bb680f1498d61b5a533d51e`。src逐树同该main，全部art/public逐树同原a212ec4 review，AGENTS/work package/plan保主线。新增DetailDialog分支与CSS只作用于Joker playerCopy，工具没有ability，GoodsArt/ConsumableDialog/HD依赖保持；合并后四个相关suite复验，精确最终head另走必需CI。原T06 PNG/浏览器仍保89acce2原构建身份，未换标，未重跑未受影响工具浏览器或本地构建；详见[main-alignment.json](main-alignment.json)。
+
 基线 main `a6e482be77d82d9702e02f12f89679fff2045740`；实现与实际浏览器构建 `89acce2a9447403f10065eb2715bb6f68d63faa5`，`modified=false`。仅从批准 source `b25f00aaafbd79a475fa045eceea18a5d4df6b29` 提取 `art/sources/handdrawn-runtime-tools-20261004-t06-t11/`，未合并其父分支。source [CI37219676771](https://github.com/big-dimple/dachoupai/actions/runs/37219676771) 成功，2026-10-04 17:20:01 UTC。source SHA 是成品交付身份；原画由父侧逐六图及灰度批准，未进仓库，消费侧不冒充原画审查。
 
 15 个 source 文件 209547 B 逐 byte 同固定 SHA，原 1677 source blob 保持；12 张 WebP 共 178950 B（thumbnail12814/detail166136）。已审的内建 Node verifier、SHA/尺寸、Pillow完整解码及无EXIF/XMP/ICC均PASS，T06成品详情已实际view。既有 GoodsArt manifest 追加六个真实 domain T06…T11/category tool-card，原15条注册和两条 additionalSources 保持。runtime 共42图643054 B，长期道具覆盖 **12/12**，消耗工具 **9/39**，其余30工具仍走现有机制图；72Joker/a11单独保持，不称全美术完成。
