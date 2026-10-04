@@ -22,3 +22,7 @@
 ## 当前状态
 
 实现完成；受影响技术检查通过，代码66c1e92a605debee4a9c9cf3c4242eacd9fb8b65的源码冻结build/type/content/plan PASS且before=after（见frozen-build.json/validation.json）；修正SHA的精确CI仍须核终态；仅review不main。首版4aadecb精确CI37217186943/docs37217186971 success不充当新修正验证。目标设备/OnePlus/真实GPU/听感：NOT_RUN。无需重拍已有效图片；新图片/规则/RNG/save/domain/application/assets未改。
+
+## 对齐底栏/status新main（6c5fb2a）
+
+合并代码367ca068d6b351f0051ab6aa1ed4904402af21df；唯一WORK_PACKAGES冲突同时保留两条记录。action row、showHandHint/status源码逐字相同；SceneView/layout/HandActionArt、MIT/vendor、资源/domain/application/content逐对象同新main。182受影响测试/type PASS。原生首次排序确认44px触点/整理组、14px status有限提示、无手内遮罩，保存资源/RNG/f06余手不变；copy详情/暂停恢复/hover/购买取消同样通过。不改主线实现、不重拍图片。初次辅助脚本未隔离首次提示或等待实际提交，hint断言红；在真实首次排序及提交完成后核原断言通过，未修改游戏或阈值。详见action-main-alignment.json及action-main-browser.json。新review精确CI待核，不引用旧2c358的CI替代；暂不main。
