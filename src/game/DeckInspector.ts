@@ -19,7 +19,7 @@ export function deckInspectionText(state:DeckInspectionState,scope:Scope,enhance
   const filterName={all:'所有增强',none:'无增强',enhanced:'有增强'}[enhancement];
   const note='按花色与点数统计，不展示抽牌顺序。'+(shop?'\n商店不显示下一场剩余牌堆；入场后可查。上一场牌区不代表下一场发牌。':'');
   const suits='花色：'+SUITS.map(suit=>SUIT_SYMBOL[suit]+' '+cards.filter(card=>card.suit===suit).length).join(' · ');
-  const ranks='点数：'+[...RANKS].reverse().map(rank=>rankLabel(rank)+' '+cards.filter(card=>card.rank===rank).length).join(' · ');
+  const ranks='点数：'+[...RANKS].reverse().map(rank=>rankLabel(rank)+'：'+cards.filter(card=>card.rank===rank).length+'张').join(' · ');
   const list=cards.map(card=>rankLabel(card.rank)+SUIT_SYMBOL[card.suit]+
     (state.playedPile.includes(card.id)?shop?' 上场已打出':' 已打出':state.discardPile.includes(card.id)?shop?' 上场已弃':' 已弃':state.handOrder.includes(card.id)?shop?' 上场手牌':' 手牌':'')+
     (card.enhancement?' '+enhancementNames[card.enhancement]:'')+((card.edition??'none')!=='none'?' '+editionLabel(card.edition):'')).join('、');
@@ -40,6 +40,14 @@ export function showDeckInspection(owner:DetailDialog,state:DeckInspectionState)
     const label=document.createElement('label'),title=document.createElement('span');title.textContent=name;select.setAttribute('aria-label',name);label.append(title,select);controls.append(label);
   }
   content.before(controls);
-  const render=()=>{content.textContent=deckInspectionText(state,scope.value as Scope,enhancement.value as EnhancementFilter);};
+  const render=()=>{
+    content.replaceChildren();
+    deckInspectionText(state,scope.value as Scope,enhancement.value as EnhancementFilter).split('\n\n').forEach((block,index)=>{
+      if(index)content.append('\n\n');
+      if(!block.startsWith('点数：')){content.append(block);return;}
+      content.append('点数：');const items=block.slice('点数：'.length).split(' · ');
+      items.forEach((item,i)=>{const unit=document.createElement('span');unit.className='deck-inspection-rank';unit.textContent=item+(i<items.length-1?' · ':'');content.append(unit);});
+    });
+  };
   scope.onchange=render;enhancement.onchange=render;render();
 }

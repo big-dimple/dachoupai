@@ -318,3 +318,4 @@ button[aria-busy=true] { border-style:dashed; }
 .deck-inspection-controls { display:flex;flex-wrap:wrap;gap:8px 12px;margin-bottom:12px; }
 .deck-inspection-controls label { display:flex;flex-direction:column;align-items:stretch;gap:4px;flex:1 1 140px;min-width:0;margin:0; }
 .deck-inspection-controls select { width:100%;min-width:0; }
+.deck-inspection-rank { display:inline-block;white-space:nowrap; }
