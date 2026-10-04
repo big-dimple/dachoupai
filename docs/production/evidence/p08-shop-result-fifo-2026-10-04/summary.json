@@ -8,7 +8,14 @@
     "targetedTests": 20,
     "type": "PASS",
     "browser": "PASS",
-    "freeze": "NOT_RUN"
+    "freeze": {
+      "status": "PASS",
+      "testedCommit": "a5c1ba52302e06c846fda4307789a5a3394f5134",
+      "tests": 1914,
+      "files": 107,
+      "sourceIndexHeadInvariant": true,
+      "scope": "tests/content/type/build/Chromium Canvas desktop+mobile smoke/plan"
+    }
   },
   "aesthetic": "Previous9b14df1 shop feedback local direction independently accepted; unchanged style, no new overall claim",
   "targetDevice": "OnePlus/realGPU/audio NOT_RUN",
