@@ -1,3 +1,5 @@
+import {jokerPlayerCopy}from'./JokerPlayerCopy';
+import type {ScoreEvent}from'../domain/scoreR2';
 import {Rational}from'../domain/rational';
 import type {R2RunState}from'../domain/r2Run';
 import type {PlayingCard} from '../cards/types';import{rankLabel,SUIT_SYMBOL}from'../cards/types';
@@ -130,9 +132,8 @@ export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstanc
  const short=labelCandidates[0],savedShort=stateCandidates[0]??'';
  return{instanceId:instance?.instanceId,definitionId:definition.id,name:definition.name,short,labelCandidates,stateLabel:stateCandidates.length>0,status,statusDetail,saved,savedShort,remaining,remainingUses,usageResetsOnEntry,staticRules,hooks,scoreLimited:ctx.scoringLimited};
 }
-export function jokerMemoryAbility(definition:R2JokerDefinition,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext):CardAbilityCopy {
- const memory=jokerMemory(definition,instance,ctx),condition=[...memory.staticRules,...memory.hooks.map(h=>h.timing+'：'+h.condition)].join('\n')||definition.description;
- return{condition,value:memory.hooks.map(h=>h.mechanism).join('\n')||'持有静态规则；不计算整手收益',state:memory.status+(memory.statusDetail?'；'+memory.statusDetail:'')+'；'+memory.saved+(memory.remaining!==undefined?'；余'+memory.remaining+'手':'')+(memory.remainingUses!==undefined?'；'+(ctx.inStage?'本场':'下场')+'余'+memory.remainingUses+'次'+(ctx.inStage&&memory.remainingUses===0?'，本场已用':''):'')+(memory.usageResetsOnEntry?'；入场重置使用计数':'')+(definition.id==='f09'&&ctx.inStage&&ctx.discardsUsed>0?'；本场已成功弃牌，返次不清除历史':'')+(memory.scoreLimited?'；仅计分与版次停用，静态／资源／经济与结算后效果按条件保留':''),flavor:'',rules:definition.description+'\n'+memory.hooks.map(h=>h.timing+' · '+h.status+(h.history?' · '+h.history:'')).join('\n'),summary:condition,compact:memory.short,narrow:memory.short,benefit:'条件与单项机制',bodyActive:undefined,editionActive:undefined};
+export function jokerMemoryAbility(definition:R2JokerDefinition,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext,events?:readonly ScoreEvent[]):CardAbilityCopy {
+ return jokerPlayerCopy(definition,instance,ctx,jokerMemory(definition,instance,ctx),events);
 }
 
 /** Public snapshot adapter. Never reads future drawPile, RNG, journal or score preview. */

@@ -1,0 +1,1560 @@
+{
+  "pengci": {
+    "main": "打出高牌时，整手倍率 +{h0o0_value}。",
+    "limits": [
+      "高牌是牌型，不是指点数大的牌。"
+    ],
+    "rules": [
+      "打出多张但没有组成更高牌型，也可以是高牌。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "mantangcai": {
+    "main": "打出{h0c_values}时，整手热度 +{h0o0_value}。",
+    "limits": [
+      "五条、同花葫芦、同花五条不算。"
+    ],
+    "rules": [
+      "按最终牌型判断；不是只要里面含一对就生效。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_values": {
+        "source": "definition.hooks[0].condition.values",
+        "format": "authoritative label list"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "tiesuanpan": {
+    "main": "每张能计分的 {h0c_values}，计分时多加 {h0o0_value} 热度。",
+    "limits": [
+      "只算计分牌；附带打出的牌、停用牌和留在手里的牌不算。"
+    ],
+    "rules": [
+      "这张扑克牌再次计分时，也会再获得这项加成。A包括在内。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_values": {
+        "source": "definition.hooks[0].condition.values",
+        "format": "authoritative label list"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "huimaqiang": {
+    "main": "本场每第 {h0c_divisor} 手，整手倍率 ×{h0o0_value}。",
+    "limits": [
+      "弃牌不算一手；返还出牌机会不会倒退出牌序号。"
+    ],
+    "rules": [
+      "下一手序号为本场已成功出牌次数加一；进入新场重新计数。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_divisor": {
+        "source": "definition.hooks[0].condition.divisor",
+        "format": "plain"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "jiedongfeng": {
+    "main": "打出{h0c_values}时，整手倍率 +{h0o0_value}。",
+    "limits": [
+      "同花葫芦、同花五条不算。"
+    ],
+    "rules": [
+      "看最终牌型，不是看打出的牌中能否拆出顺子或同花。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_values": {
+        "source": "definition.hooks[0].condition.values",
+        "format": "authoritative label list"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "a03": {
+    "main": "只打出 {h0c_equals} 张牌时，整手热度 +{h0o0_value}。",
+    "limits": [
+      "数所有打出的牌，包括附带牌和停用牌。"
+    ],
+    "rules": [
+      "打出多张而只有一张计分，不满足条件。扑克牌再次计分不会重复这项整手加成。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_equals": {
+        "source": "definition.hooks[0].condition.equals",
+        "format": "plain"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "a05": {
+    "main": "每手加上已攒的热度；只出 {h1c_equals} 张后，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+    "limits": [
+      "新攒的热度从下一手生效；以后每手都加，不会用掉。"
+    ],
+    "rules": [
+      "数所有打出的牌，包括附带牌和停用牌。成长跟随这张大丑牌，换场保留，卖掉后重新买不继承。"
+    ],
+    "state": [
+      "每手热度加成：+{saved_heat}"
+    ],
+    "bindings": {
+      "h1c_equals": {
+        "source": "definition.hooks[1].condition.equals",
+        "format": "plain"
+      },
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "b02": {
+    "main": "打出的牌里，同一点数至少有 {h0c_minimum} 张时，其中每张能计分的牌都让倍率 +{h0o0_value}。",
+    "limits": [
+      "附带牌和停用牌可凑够张数，但自身不能获得这项计分加成。"
+    ],
+    "rules": [
+      "不要求最终牌型恰为对子。再次计分的符合牌也再次加倍率。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_minimum": {
+        "source": "definition.hooks[0].condition.minimum",
+        "format": "plain"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "b03": {
+    "main": "每手加上已攒的倍率；打出{h1c_values}后，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+    "limits": [
+      "新增从下一手生效；葫芦、四条、五条及其他牌型不增加成长。"
+    ],
+    "rules": [
+      "已有成长用于任意牌型，换场保留，跟随这张大丑牌。"
+    ],
+    "state": [
+      "每手倍率加成：+{saved_multiplier}"
+    ],
+    "bindings": {
+      "h1c_values": {
+        "source": "definition.hooks[1].condition.values",
+        "format": "authoritative label list"
+      },
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "b04": {
+    "main": "打出的牌里有至少 {h0c_minimum} 组不同点数、每组至少 {h0c_groupSize} 张时，整手倍率 +{h0o0_value}。",
+    "limits": [
+      "两对、葫芦可以满足；只有一组同点数的三条或四条不满足。"
+    ],
+    "rules": [
+      "按全部打出牌计数，附带牌和停用牌也参与凑组。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_groupSize": {
+        "source": "definition.hooks[0].condition.groupSize",
+        "format": "plain"
+      },
+      "h0c_minimum": {
+        "source": "definition.hooks[0].condition.minimum",
+        "format": "plain"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "c02": {
+    "main": "每张能计分的{h0c_values}，计分时多加 {h0o0_value} 热度。",
+    "limits": [
+      "附带牌、停用牌和留在手里的牌不算。"
+    ],
+    "rules": [
+      "符合的扑克牌再次计分时，也会再次获得这项加成。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_values": {
+        "source": "definition.hooks[0].condition.values",
+        "format": "authoritative label list"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "c04": {
+    "main": "打出{h0c_values}时，整手热度 +{h0o0_value}。",
+    "limits": [],
+    "rules": [
+      "只看最终判定的牌型。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_values": {
+        "source": "definition.hooks[0].condition.values",
+        "format": "authoritative label list"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "c06": {
+    "main": "每手加上已攒的倍率；打出{h1c_values}后，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+    "limits": [
+      "新增从下一手生效；同花葫芦、同花五条不增加成长。"
+    ],
+    "rules": [
+      "已有成长用于任意牌型，换场保留，跟随这张大丑牌。"
+    ],
+    "state": [
+      "每手倍率加成：+{saved_multiplier}"
+    ],
+    "bindings": {
+      "h1c_values": {
+        "source": "definition.hooks[1].condition.values",
+        "format": "authoritative label list"
+      },
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "d01": {
+    "main": "留在手里的 {h0c_values}，按手牌顺序取前 {h0c_limit} 张，每张让倍率 +{h0o0_value}。",
+    "limits": [
+      "A不算；停用牌不算，跳过后再取够数量。"
+    ],
+    "rules": [
+      "只留牌也不会获得它们的普通点数；持牌的版次不计分。按手牌顺序逐张处理，同一张牌上的大丑牌效果按槽位顺序处理。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_limit": {
+        "source": "definition.hooks[0].condition.limit",
+        "format": "plain"
+      },
+      "h0c_values": {
+        "source": "definition.hooks[0].condition.values",
+        "format": "authoritative label list"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "d03": {
+    "main": "每手加上已攒的热度；出牌后留在手里至少 {h1c_minimum} 张，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+    "limits": [
+      "新增从下一手生效；数本手没打出的牌，不数之后补抽的牌。"
+    ],
+    "rules": [
+      "留在手里的停用牌也算张数；打出的附带牌不算留牌。成长换场保留，跟随这张大丑牌。"
+    ],
+    "state": [
+      "每手热度加成：+{saved_heat}"
+    ],
+    "bindings": {
+      "h1c_minimum": {
+        "source": "definition.hooks[1].condition.minimum",
+        "format": "plain"
+      },
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "d05": {
+    "main": "本场第一次成功弃牌后，返还 {h0o0_amount} 次弃牌机会。",
+    "limits": [
+      "每场只有第一次；仍算弃过牌，不能恢复“不换词”的效果。"
+    ],
+    "rules": [
+      "返还后的次数不超过入场时的弃牌次数；若本次弃牌花了两次机会，也只按本卡规定返还。进入新场重新计算。"
+    ],
+    "state": [
+      "{usage_scope}还可用 {remainingUses} 次"
+    ],
+    "bindings": {
+      "h0o0_amount": {
+        "source": "definition.hooks[0].operations[0].amount",
+        "format": "plain"
+      }
+    }
+  },
+  "d10": {
+    "main": "每次出牌，每个空的大丑牌槽加 {h0o0_value} 热度，总共最多加 {h0o0_cap}。",
+    "limits": [],
+    "rules": [
+      "按本手开始时的实际空槽数计算；这张大丑牌自身占一槽。当前加成用已有数值展示函数读取，不能另写一套计算。"
+    ],
+    "state": [
+      "当前每手热度加成：{current_context_value}"
+    ],
+    "bindings": {
+      "h0o0_cap": {
+        "source": "definition.hooks[0].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "e01": {
+    "main": "成功过关时，额外获得 {h0o0_amount} 金币。",
+    "limits": [
+      "失败和跳过这一场都不给。"
+    ],
+    "rules": [
+      "在实际过关后发放，每次过关只发一次。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0o0_amount": {
+        "source": "definition.hooks[0].operations[0].amount",
+        "format": "plain"
+      }
+    }
+  },
+  "e03": {
+    "main": "每次出牌，每持有 1 金币就加 {h0o0_value} 热度，最多加 {h0o0_cap}。",
+    "limits": [
+      "按出牌开始时的金币算；本手新赚的金币留到之后的出牌再算。"
+    ],
+    "rules": [
+      "不花费金币。当前加成用已有数值展示函数读取，不能另写一套计算。"
+    ],
+    "state": [
+      "当前每手热度加成：{current_context_value}"
+    ],
+    "bindings": {
+      "h0o0_cap": {
+        "source": "definition.hooks[0].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "e05": {
+    "main": "每手加上已攒的热度；每买一张其他大丑牌，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+    "limits": [
+      "买入本牌的这一笔不成长；买消耗品或长期道具也不成长。"
+    ],
+    "rules": [
+      "必须在购买之前就持有本牌；购买失败不成长。成长用于以后的出牌，换场保留，卖掉后重新买不继承。"
+    ],
+    "state": [
+      "每手热度加成：+{saved_heat}"
+    ],
+    "bindings": {
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "e08": {
+    "main": "出牌时至少有 {h0c_minimum} 金币，整手倍率 ×{h0o0_value}。",
+    "limits": [
+      "按出牌开始时的金币判断，不花费金币。"
+    ],
+    "rules": [
+      "本手计分中赚到的金币不会改变本手资格。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_minimum": {
+        "source": "definition.hooks[0].condition.minimum",
+        "format": "plain"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "f02": {
+    "main": "用掉当前最后一次出牌机会时，整手热度 +{h0o0_value}。",
+    "limits": [
+      "按出牌开始时剩余的机会判断；不要求这一手过关。"
+    ],
+    "rules": [
+      "这手结束后若返还机会，仍不改变这次加成。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "f03": {
+    "main": "本场第一手，整手倍率 +{h0o0_value}。",
+    "limits": [],
+    "rules": [
+      "弃牌不占出牌序号；返还机会不把后面的出牌变回第一手。新场重新计算。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "f09": {
+    "main": "这场还没弃过牌时，整手倍率 ×{h0o0_value}。",
+    "limits": [
+      "一旦成功弃牌，本场不再享受这项加成；返还弃牌次数也不能恢复。"
+    ],
+    "rules": [
+      "下一场恢复资格。这里只说本牌主要效果，特殊版次的效果仍单独处理；整张牌被计分封禁时，两者均停用。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "a04": {
+    "main": "进场时牌组不超过 {m0_deckMaximum} 张，手牌上限 +{m0_amount}。",
+    "limits": [
+      "下次进场才生效；所有加成合计后的手牌上限最多为 {limit_hand}。"
+    ],
+    "rules": [
+      "只数牌组里尚未销毁的牌；不是看当时手里有几张。进场后牌组大小变动不重新调整本场上限，也不返还已经用掉的牌。"
+    ],
+    "state": [
+      "{entry_hand_limit_state}"
+    ],
+    "bindings": {
+      "limit_hand": {
+        "source": "R2_RESOURCE_CONTRACT.handMaximum",
+        "format": "plain"
+      },
+      "m0_amount": {
+        "source": "definition.modifiers[0].amount",
+        "format": "plain"
+      },
+      "m0_deckMaximum": {
+        "source": "definition.modifiers[0].deckMaximum",
+        "format": "plain"
+      }
+    }
+  },
+  "a06": {
+    "main": "打出高牌时，整手倍率 ×{h0o0_value}。",
+    "limits": [
+      "高牌是牌型，不是指点数大的牌。"
+    ],
+    "rules": [
+      "打出多张但未组成更高牌型也可能是高牌。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "a07": {
+    "main": "每次只弃 {h0c_equals} 张牌，获得 {h0o0_amount} 金币，每场最多 {h0o0_limit} 次。",
+    "limits": [
+      "必须成功弃牌；返还弃牌次数不会恢复已经用掉的赚钱次数。"
+    ],
+    "rules": [
+      "进入新场重置；商店显示上场记录时，不能误写为下场已用。"
+    ],
+    "state": [
+      "{usage_scope}还可用 {remainingUses} 次"
+    ],
+    "bindings": {
+      "h0c_equals": {
+        "source": "definition.hooks[0].condition.equals",
+        "format": "plain"
+      },
+      "h0o0_amount": {
+        "source": "definition.hooks[0].operations[0].amount",
+        "format": "plain"
+      },
+      "h0o0_limit": {
+        "source": "definition.hooks[0].operations[0].limit",
+        "format": "plain"
+      }
+    }
+  },
+  "a08": {
+    "main": "每张能计分的 {h0c_values}，计分时多加 {h0o0_value} 热度。",
+    "limits": [
+      "附带牌、停用牌和留在手里的牌不算。"
+    ],
+    "rules": [
+      "符合的扑克牌再次计分时，也会再次获得这项加成。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_values": {
+        "source": "definition.hooks[0].condition.values",
+        "format": "authoritative label list"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "b05": {
+    "main": "打出的牌里，同一点数至少有 {h0c_minimum} 张时，其中每张能计分的牌都多加 {h0o0_value} 热度。",
+    "limits": [
+      "附带牌和停用牌可凑够张数，但自身不能获得这项计分加成。"
+    ],
+    "rules": [
+      "不要求最终牌型恰为三条；葫芦里的三张同点牌等也可以满足。再次计分的符合牌也再次加热度。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_minimum": {
+        "source": "definition.hooks[0].condition.minimum",
+        "format": "plain"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "b06": {
+    "main": "打出对子时，让其中每张能计分的对子牌再计分 {h0o0_count} 次。",
+    "limits": [
+      "两对、三条、葫芦等其他牌型不算；停用的对子牌不能再次计分。",
+      "同一张牌的额外计分次数有总上限，见细则。"
+    ],
+    "rules": [
+      "再计分会重复该扑克牌的点数、增强、版次和逐张计分加成，不会重复角色或整手加成。",
+      "所有额外计分效果合计，每张扑克牌每手最多再计分 {limit_extra} 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0o0_count": {
+        "source": "definition.hooks[0].operations[0].count",
+        "format": "plain"
+      },
+      "limit_extra": {
+        "source": "SCORE_LIMITS.extraRetriggers",
+        "format": "plain"
+      }
+    }
+  },
+  "b07": {
+    "main": "至少打出 {h0c_minimum} 张，并且张张都能计分时，整手热度 +{h0o0_value}。",
+    "limits": [
+      "有附带牌或停用牌就不满足。"
+    ],
+    "rules": [
+      "以最终计分牌名单为准，普通点数被压到0但效果仍可生效的牌仍算。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_minimum": {
+        "source": "definition.hooks[0].condition.minimum",
+        "format": "plain"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "b08": {
+    "main": "用{h0c_values}打赢这一场，额外获得 {h0o0_amount} 金币。",
+    "limits": [
+      "看过关的那一手；三条、葫芦等其他牌型不算。"
+    ],
+    "rules": [
+      "失败和跳场不发；实际过关后只发一次。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_values": {
+        "source": "definition.hooks[0].condition.values",
+        "format": "authoritative label list"
+      },
+      "h0o0_amount": {
+        "source": "definition.hooks[0].operations[0].amount",
+        "format": "plain"
+      }
+    }
+  },
+  "c03": {
+    "main": "每张能计分的{h0c_values}，计分时多加 {h0o0_value} 热度。",
+    "limits": [
+      "附带牌、停用牌和留在手里的牌不算。"
+    ],
+    "rules": [
+      "符合的扑克牌再次计分时，也会再次获得这项加成。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_values": {
+        "source": "definition.hooks[0].condition.values",
+        "format": "authoritative label list"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "c05": {
+    "main": "一次弃掉至少 {h1c_minimum} 张、且全是同一花色，就攒 {h1o0_value} 热度，最多攒 {h1o0_cap}，留给之后一次出牌。",
+    "limits": [
+      "攒下的热度用一次就清空；没用完也会在本场结束时清空。"
+    ],
+    "rules": [
+      "弃牌必须成功，而且本次弃掉的所有牌都要同花色，不能只挑其中两张看。正常在下一手加入热度；若这张大丑牌被计分封禁，则本手不加入也不消耗，之后能生效时才使用。"
+    ],
+    "state": [
+      "待用热度：+{saved_pendingHeat}"
+    ],
+    "bindings": {
+      "h1c_minimum": {
+        "source": "definition.hooks[1].condition.minimum",
+        "format": "plain"
+      },
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "c07": {
+    "main": "打出{h0c_handTypes}时，让最后一张能计分的牌再计分 {h0o0_count} 次。",
+    "limits": [
+      "按本手牌的顺序找最后一张能计分的牌；同花葫芦、同花五条不算。",
+      "同一张牌的额外计分次数有总上限，见细则。"
+    ],
+    "rules": [
+      "停用牌不参与末张选择；附带牌不参与。",
+      "所有额外计分效果合计，每张扑克牌每手最多再计分 {limit_extra} 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_handTypes": {
+        "source": "definition.hooks[0].condition.handTypes",
+        "format": "authoritative label list"
+      },
+      "h0o0_count": {
+        "source": "definition.hooks[0].operations[0].count",
+        "format": "plain"
+      },
+      "limit_extra": {
+        "source": "SCORE_LIMITS.extraRetriggers",
+        "format": "plain"
+      }
+    }
+  },
+  "c08": {
+    "main": "普通顺子可用 {rule_four} 张连续、点数不同的牌；同花顺仍要 {rule_five} 张。",
+    "limits": [
+      "用 {rule_four} 张规则时，不能多带第 {rule_five} 张牌。",
+      "A234能成顺子，QKA2不能。",
+      "同时有“少一块布”时，四张同花连续牌只算普通同花。"
+    ],
+    "rules": [
+      "五张顺子仍然可用。必须整组恰好四张或五张连续不同点数；选五张但只有四张连号不会套用四张规则。若同时有四张同花规则，四张同花连续牌判为普通同花。"
+    ],
+    "state": [],
+    "bindings": {
+      "rule_five": {
+        "source": "five-card rule cardinality (existing evaluator literal)",
+        "format": "plain"
+      },
+      "rule_four": {
+        "source": "four-card rule cardinality (existing evaluator literal)",
+        "format": "plain"
+      }
+    }
+  },
+  "d02": {
+    "main": "留在手里的 {h0c_values}，按手牌顺序取前 {h0c_limit} 张，每张加 {h0o0_value} 热度。",
+    "limits": [
+      "停用牌不算，跳过后再取够数量；只加这里写的热度，不加这些牌的普通点数。"
+    ],
+    "rules": [
+      "持牌版次不计分。留在手里的牌按手牌顺序逐张处理。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_limit": {
+        "source": "definition.hooks[0].condition.limit",
+        "format": "plain"
+      },
+      "h0c_values": {
+        "source": "definition.hooks[0].condition.values",
+        "format": "authoritative label list"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "d04": {
+    "main": "本场每第 {h0c_playModulo_divisor} 手，让第一张能计分的牌再计分 {h0o0_count} 次。",
+    "limits": [
+      "按本手牌的顺序找第一张能计分的牌；返还机会不会倒退出牌序号。",
+      "同一张牌的额外计分次数有总上限，见细则。"
+    ],
+    "rules": [
+      "停用牌不参与首张选择；弃牌不增加出牌序号，新场重算。",
+      "所有额外计分效果合计，每张扑克牌每手最多再计分 {limit_extra} 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_playModulo_divisor": {
+        "source": "definition.hooks[0].condition.playModulo.divisor",
+        "format": "plain"
+      },
+      "h0o0_count": {
+        "source": "definition.hooks[0].operations[0].count",
+        "format": "plain"
+      },
+      "limit_extra": {
+        "source": "SCORE_LIMITS.extraRetriggers",
+        "format": "plain"
+      }
+    }
+  },
+  "d06": {
+    "main": "下次进场时，手牌上限 +{m0_amount}。",
+    "limits": [
+      "所有加成合计后的手牌上限最多为 {limit_hand}；本场不会立即补牌。"
+    ],
+    "rules": [
+      "上限在进场时锁定；不会返还已经消耗的牌或机会。",
+      "这张牌的扩容在进场时计算；不会返还已经消耗的牌或机会。"
+    ],
+    "state": [
+      "{entry_hand_limit_state}"
+    ],
+    "bindings": {
+      "limit_hand": {
+        "source": "R2_RESOURCE_CONTRACT.handMaximum",
+        "format": "plain"
+      },
+      "m0_amount": {
+        "source": "definition.modifiers[0].amount",
+        "format": "plain"
+      }
+    }
+  },
+  "d07": {
+    "main": "打出的牌张张都能计分时，整手倍率 +{h0o0_value}。",
+    "limits": [
+      "只出一张也可以；有附带牌或停用牌就不满足。"
+    ],
+    "rules": [
+      "普通点数被压到0但效果仍可生效的牌仍算。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "e02": {
+    "main": "提前持有时，每家商店的第一笔购买便宜 {m0_amount} 金币，最低付 {m0_minimum} 金币。",
+    "limits": [
+      "买这张牌的这一笔，不享受它自己的优惠。"
+    ],
+    "rules": [
+      "大丑牌、消耗品、长期道具都算购买；只有购买成功才占用首购名额。可以与其他首购或跳场优惠叠加；每次换牌不会重置这一家店的首购次数。"
+    ],
+    "state": [],
+    "bindings": {
+      "m0_amount": {
+        "source": "definition.modifiers[0].amount",
+        "format": "plain"
+      },
+      "m0_minimum": {
+        "source": "definition.modifiers[0].minimum",
+        "format": "plain"
+      }
+    }
+  },
+  "e04": {
+    "main": "成功过关时，利息最多能多拿 {m0_amount} 金币。",
+    "limits": [
+      "仍然每攒 {interest_unit} 金币才有 1 金币利息；只是提高上限，不保证多拿满额。"
+    ],
+    "rules": [
+      "按发放过关奖励之前的金币计算；当手扑克牌赚的金币已计入，过关奖励及过关时的额外金币不倒过来增加这次利息。"
+    ],
+    "state": [],
+    "bindings": {
+      "interest_unit": {
+        "source": "interest divisor (existing run literal)",
+        "format": "plain"
+      },
+      "m0_amount": {
+        "source": "definition.modifiers[0].amount",
+        "format": "plain"
+      }
+    }
+  },
+  "e06": {
+    "main": "每手加上已攒的倍率；每卖一张其他大丑牌，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+    "limits": [
+      "卖掉本牌不成长；卖掉后再买回来，旧成长不会恢复。"
+    ],
+    "rules": [
+      "必须成功出售；成长供以后的出牌使用，换场保留。"
+    ],
+    "state": [
+      "每手倍率加成：+{saved_multiplier}"
+    ],
+    "bindings": {
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "e07": {
+    "main": "用最后一次出牌机会打赢这一场，额外获得 {h0o0_amount} 金币。",
+    "limits": [
+      "必须过关；只是用完机会但没赢，不给金币。"
+    ],
+    "rules": [
+      "按致胜手扣除机会后是否为0判断，每次过关只发一次；跳场不发。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0o0_amount": {
+        "source": "definition.hooks[0].operations[0].amount",
+        "format": "plain"
+      }
+    }
+  },
+  "f04": {
+    "main": "出牌时有 {h0c_maximum} 金币或更少，整手倍率 +{h0o0_value}。",
+    "limits": [
+      "按出牌开始时的金币判断；是加倍率，不是把倍率乘这个数。"
+    ],
+    "rules": [
+      "本手计分中赚的钱不改变本手资格；之后出牌重新判断。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_maximum": {
+        "source": "definition.hooks[0].condition.maximum",
+        "format": "plain"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "f05": {
+    "main": "每手加上已攒的倍率；得分高过本场上一手，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+    "limits": [
+      "没高过就把成长清零；新增或清零都从下一手生效。",
+      "每场第一手只记下分数，已有成长照常保留。"
+    ],
+    "rules": [
+      "比较本手最终得分与本场上一手最终得分，不比较累计总分；同分也清零。成长换场保留，只重置比较基准。"
+    ],
+    "state": [
+      "每手倍率加成：+{saved_multiplier}"
+    ],
+    "bindings": {
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "f06": {
+    "main": "本牌共可用 {h1o0_limit} 手，整手倍率 ×{h0o0_value}；最后一手结算后消失。",
+    "limits": [
+      "最后一手仍有加成。",
+      "计分加成暂停时仍扣剩余手数；换场不重置。"
+    ],
+    "rules": [
+      "从买入之后的成功出牌累计；弃牌不扣次数。即使本牌这手被计分封禁，成功出牌仍会扣寿命。"
+    ],
+    "state": [
+      "还可用 {remaining} 手"
+    ],
+    "bindings": {
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      },
+      "h1o0_limit": {
+        "source": "definition.hooks[1].operations[0].limit",
+        "format": "plain"
+      }
+    }
+  },
+  "f07": {
+    "main": "出牌机会用完却还没过关时，消耗这张牌，补 {h0o0_amount} 次出牌机会。",
+    "limits": [
+      "必须还有牌可打；整局最多救一次，过关时不会消耗。"
+    ],
+    "rules": [
+      "先尝试补手牌，有手牌才救场；牌的计分效果停用不妨碍它仍可合法打出。救场后本牌消失，商店不再出售它。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0o0_amount": {
+        "source": "definition.hooks[0].operations[0].amount",
+        "format": "plain"
+      }
+    }
+  },
+  "a09": {
+    "main": "这手只打出 {h0c_maximum} 张或更少，整手倍率 +{h0o0_value}。",
+    "limits": [
+      "数所有打出的牌，包括附带牌和停用牌。"
+    ],
+    "rules": [
+      "必须正常打出至少一张牌；不是按能计分的牌数判断。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_maximum": {
+        "source": "definition.hooks[0].condition.maximum",
+        "format": "plain"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "a10": {
+    "main": "只打出 {h0c_playedEquals} 张时，留在手里的 {h0c_values} 按顺序取前 {h0c_limit} 张，每张让倍率 +{h0o0_value}。",
+    "limits": [
+      "A不算；停用的留牌不算，跳过后再取够数量。"
+    ],
+    "rules": [
+      "只出一张的条件按所有打出牌计数。持牌不加普通点数，持牌版次不计分。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_limit": {
+        "source": "definition.hooks[0].condition.limit",
+        "format": "plain"
+      },
+      "h0c_playedEquals": {
+        "source": "definition.hooks[0].condition.playedEquals",
+        "format": "plain"
+      },
+      "h0c_values": {
+        "source": "definition.hooks[0].condition.values",
+        "format": "authoritative label list"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "a11": {
+    "main": "只出 {h0c_equals} 张且这张牌能计分时，让它再计分 {h0o0_count} 次。",
+    "limits": [
+      "同一张牌的额外计分次数有总上限，见细则。"
+    ],
+    "rules": [
+      "这张扑克牌的点数、增强、版次及逐张计分加成会再算一次；角色和整手加成不会因此重复。牌被停用时不能再次计分。",
+      "所有额外计分效果合计，每张扑克牌每手最多再计分 {limit_extra} 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_equals": {
+        "source": "definition.hooks[0].condition.equals",
+        "format": "plain"
+      },
+      "h0o0_count": {
+        "source": "definition.hooks[0].operations[0].count",
+        "format": "plain"
+      },
+      "limit_extra": {
+        "source": "SCORE_LIMITS.extraRetriggers",
+        "format": "plain"
+      }
+    }
+  },
+  "a12": {
+    "main": "这场每手都只出 {h0c_maximum} 张或更少，过关时额外获得 {h0o0_amount} 金币。",
+    "limits": [
+      "本场必须实际打过牌并成功过关；有一手出多了就失去这场奖励。"
+    ],
+    "rules": [
+      "数全部打出的牌，包括附带牌和停用牌；失败和跳场不发。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_maximum": {
+        "source": "definition.hooks[0].condition.maximum",
+        "format": "plain"
+      },
+      "h0o0_amount": {
+        "source": "definition.hooks[0].operations[0].amount",
+        "format": "plain"
+      }
+    }
+  },
+  "b09": {
+    "main": "打出{h0c_values}时，整手倍率 ×{h0o0_value}。",
+    "limits": [
+      "三条、葫芦和同花葫芦等其他牌型不算。"
+    ],
+    "rules": [
+      "按最终牌型判断，不能把其他牌型拆开套用。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_values": {
+        "source": "definition.hooks[0].condition.values",
+        "format": "authoritative label list"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "b10": {
+    "main": "每手加上已攒的热度；打出普通对子后，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+    "limits": [
+      "新增从下一手生效；两对、三条、葫芦等其他牌型不增加成长。"
+    ],
+    "rules": [
+      "已有成长用于任何牌型，换场保留，跟随这张大丑牌。"
+    ],
+    "state": [
+      "每手热度加成：+{saved_heat}"
+    ],
+    "bindings": {
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "b11": {
+    "main": "留牌与本手能计分的牌同点数时，按手牌顺序取前 {h0c_limit} 张，每张让倍率 +{h0o0_value}。",
+    "limits": [
+      "停用的留牌不算；附带牌和停用计分牌不能用来配对。"
+    ],
+    "rules": [
+      "同点只需匹配任意一张有效计分牌；每张符合的留牌只算一次。先筛出符合的留牌，再取前几张。持牌不加普通点数，版次不计分。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_limit": {
+        "source": "definition.hooks[0].condition.limit",
+        "format": "plain"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "b12": {
+    "main": "打出普通四条后还没过关，返还 {h0o0_amount} 次出牌机会，每场最多 {h0o0_limit} 次。",
+    "limits": [
+      "致胜四条、五条和同花五条都不返还。"
+    ],
+    "rules": [
+      "先返还，再判断是否出牌机会耗尽；返还不倒退实际出牌序号。整场共用次数，不是每张大丑牌各一份。"
+    ],
+    "state": [
+      "{usage_scope}还可用 {remainingUses} 次"
+    ],
+    "bindings": {
+      "h0o0_amount": {
+        "source": "definition.hooks[0].operations[0].amount",
+        "format": "plain"
+      },
+      "h0o0_limit": {
+        "source": "definition.hooks[0].operations[0].limit",
+        "format": "plain"
+      }
+    }
+  },
+  "c09": {
+    "main": "普通同花可用 {rule_four} 张同花色的牌；同花顺仍要 {rule_five} 张。",
+    "limits": [
+      "用 {rule_four} 张规则时，不能多带第 {rule_five} 张牌。",
+      "同花葫芦、同花五条仍要五张；同时有“少一级”时，四张同花连续牌也只算普通同花。"
+    ],
+    "rules": [
+      "五张同花仍然可用。必须整组恰好四张或五张同花色；选五张但只有四张同花不会套用四张规则。最终仍按牌型优先级判断，例如四条优先于普通同花。"
+    ],
+    "state": [],
+    "bindings": {
+      "rule_five": {
+        "source": "five-card rule cardinality (existing evaluator literal)",
+        "format": "plain"
+      },
+      "rule_four": {
+        "source": "four-card rule cardinality (existing evaluator literal)",
+        "format": "plain"
+      }
+    }
+  },
+  "c10": {
+    "main": "留在手里的 {h0c_values}，按手牌顺序取前 {h0c_limit} 张，每张让倍率 +{h0o0_value}。",
+    "limits": [
+      "停用的A不算，跳过后再取够数量。"
+    ],
+    "rules": [
+      "持牌不加普通点数，持牌版次不计分。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_limit": {
+        "source": "definition.hooks[0].condition.limit",
+        "format": "plain"
+      },
+      "h0c_values": {
+        "source": "definition.hooks[0].condition.values",
+        "format": "authoritative label list"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "c11": {
+    "main": "上一手是普通顺子、这手是普通同花，或反过来，整手倍率 ×{h0o0_value}。",
+    "limits": [
+      "必须是紧挨着的两手；本场第一手和同花顺都不算。"
+    ],
+    "rules": [
+      "按实际成功打出的牌型保存上一手；弃牌不会改写上一手牌型。进入新场重新开始。"
+    ],
+    "state": [
+      "上一手牌型：{previous_hand_type}"
+    ],
+    "bindings": {
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "c12": {
+    "main": "这场打过普通顺子，也打过普通同花，过关时随机送一件花色染。",
+    "limits": [
+      "两种都得实际打出；同花顺不能代替。",
+      "{reward_pool_size} 种花色染机会相同；消耗品放满时改给 {h0o0_fallbackGold} 金币。"
+    ],
+    "rules": [
+      "赠品为{reward_pool_names}，各 {reward_pool_probability}。失败和跳场不送。已放满仍先随机决定赠品再换成金币，不重复抽取。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0o0_fallbackGold": {
+        "source": "definition.hooks[0].operations[0].fallbackGold",
+        "format": "plain"
+      },
+      "reward_pool_names": {
+        "source": "getR2Tool(operation.definitionIds[*]).name",
+        "format": "tool names"
+      },
+      "reward_pool_probability": {
+        "source": "1 / operation.definitionIds.length",
+        "format": "uniform probability"
+      },
+      "reward_pool_size": {
+        "source": "operation.definitionIds.length",
+        "format": "integer"
+      }
+    }
+  },
+  "d08": {
+    "main": "留在手里的留声纸，按顺序取前 {h0c_limit} 张，每张先加自身倍率，再让倍率 ×{h0o0_value}。",
+    "limits": [
+      "停用的留声纸不算；每张分开乘，手牌顺序会影响结果。"
+    ],
+    "rules": [
+      "留声纸自身先 +{voice_paper_value} 倍率，然后轮到这张留牌对应的大丑牌效果；其他持牌加成按大丑牌槽位顺序穿插处理，不应把所有加法和乘法各合成一批。持牌版次不计分。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_limit": {
+        "source": "definition.hooks[0].condition.limit",
+        "format": "plain"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      },
+      "voice_paper_value": {
+        "source": "R2_ENHANCEMENTS voice-paper onHeldCard add-multiplier value",
+        "format": "plain"
+      }
+    }
+  },
+  "d09": {
+    "main": "每手加上已攒的倍率；这手有牌确实再次计分，就再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+    "limits": [
+      "每手最多成长一次，新增从下一手生效。"
+    ],
+    "rules": [
+      "只有实际发生额外计分才成长，额外计分已达上限而未发生的不算。已有成长供以后任意牌型使用，换场保留。"
+    ],
+    "state": [
+      "每手倍率加成：+{saved_multiplier}"
+    ],
+    "bindings": {
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "d11": {
+    "main": "组成牌型的计分牌中，第 {position_third} 张没有被停用时，让它再计分 {h0o0_count} 次。",
+    "limits": [
+      "不足三张，或原本第三张被停用，都不生效；第四张不会补上。",
+      "同一张牌的额外计分次数有总上限，见细则。"
+    ],
+    "rules": [
+      "按手牌顺序排列本手原有计分牌后取第三张，不先删除停用牌；附带牌不占这个顺序。",
+      "所有额外计分效果合计，每张扑克牌每手最多再计分 {limit_extra} 次；先占满次数的效果优先。再次计分不会继续增加再次计分的次数。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0o0_count": {
+        "source": "definition.hooks[0].operations[0].count",
+        "format": "plain"
+      },
+      "limit_extra": {
+        "source": "SCORE_LIMITS.extraRetriggers",
+        "format": "plain"
+      },
+      "position_third": {
+        "source": "scoring-position third-original (existing authoritative condition)",
+        "format": "plain"
+      }
+    }
+  },
+  "d12": {
+    "main": "打赢这一场时，手里还留着至少 {h0c_minimum} 张牌，额外获得 {h0o0_amount} 金币。",
+    "limits": [
+      "数致胜手没打出的牌；附带打出的牌不算。"
+    ],
+    "rules": [
+      "停用的留牌也算张数。不把之后补抽的牌算进去；失败和跳场不发。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_minimum": {
+        "source": "definition.hooks[0].condition.minimum",
+        "format": "plain"
+      },
+      "h0o0_amount": {
+        "source": "definition.hooks[0].operations[0].amount",
+        "format": "plain"
+      }
+    }
+  },
+  "e09": {
+    "main": "持有这张牌时，多 {m0_amount} 个消耗品槽。",
+    "limits": [
+      "连同其他扩容，最多 {limit_consumable} 槽。",
+      "卖掉或牺牲它后若东西放不下，就不能操作，须先腾出空间。"
+    ],
+    "rules": [
+      "容量实时生效，和长期道具的容量加成合算；不增加大丑牌槽。"
+    ],
+    "state": [],
+    "bindings": {
+      "limit_consumable": {
+        "source": "R2_TOOL_CATALOG.limits.consumableSlotsMaximum",
+        "format": "plain"
+      },
+      "m0_amount": {
+        "source": "definition.modifiers[0].amount",
+        "format": "plain"
+      }
+    }
+  },
+  "e10": {
+    "main": "持有期间每过关 {h0o0_every} 次，送一张{reward_tool_name}。",
+    "limits": [
+      "消耗品放满时改给 {h0o0_fallbackGold} 金币；失败和跳场不算次数。"
+    ],
+    "rules": [
+      "过关计数跨场保留，领取后重新累计；赠品固定，不随机。卖掉后重新买不会继承旧次数。"
+    ],
+    "state": [
+      "{reward_progress}"
+    ],
+    "bindings": {
+      "h0o0_every": {
+        "source": "definition.hooks[0].operations[0].every",
+        "format": "plain"
+      },
+      "h0o0_fallbackGold": {
+        "source": "definition.hooks[0].operations[0].fallbackGold",
+        "format": "plain"
+      },
+      "reward_tool_name": {
+        "source": "getR2Tool(operation.definitionId).name",
+        "format": "tool name"
+      }
+    }
+  },
+  "e11": {
+    "main": "每手按本牌攒下的倍数加成；这场没卖过大丑牌又过关，倍数加 {h1o0_value}，最高 ×{h1o0_cap}。",
+    "limits": [
+      "初始 ×{h1o0_initial}；新增从下一手生效。",
+      "进场前的准备商店也算；卖出其他大丑牌，倍数立即回到 ×{h2o0_initial}，买回也不恢复。"
+    ],
+    "rules": [
+      "这里只增加倍率乘数本身，例如原来×1.2，成长0.1后变成×1.3，不是再乘1.1。倍数跟随这张牌、跨场保留。成功过关前必须本场无出售记录；不是买入本牌以后不卖就够。"
+    ],
+    "state": [
+      "当前倍率：×{saved_coefficient}"
+    ],
+    "bindings": {
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_initial": {
+        "source": "definition.hooks[1].operations[0].initial",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      },
+      "h2o0_initial": {
+        "source": "definition.hooks[2].operations[0].initial",
+        "format": "fractionText"
+      }
+    }
+  },
+  "e12": {
+    "main": "每手加上已攒的热度；每付费换一次商店商品，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+    "limits": [
+      "免费换牌不成长；必须实际付过金币。"
+    ],
+    "rules": [
+      "刷新失败不成长。成长供以后的出牌使用，换场保留，跟随这张大丑牌。"
+    ],
+    "state": [
+      "每手热度加成：+{saved_heat}"
+    ],
+    "bindings": {
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "f08": {
+    "main": "每次出牌有 {h0o0_probability} 的机会加 {h0o0_value} 热度，没中就不加。",
+    "limits": [
+      "每手只抽一次；扑克牌再次计分不会多抽。"
+    ],
+    "rules": [
+      "在本牌的整手加成顺序轮到它时抽取；计分封禁则不抽、不加。预览、演出和回看不能改变已抽出的结果。"
+    ],
+    "state": [
+      "出牌时揭晓；尚未抽取结果"
+    ],
+    "bindings": {
+      "h0o0_probability": {
+        "source": "definition.hooks[0].operations[0].probability",
+        "format": "probability n/d"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "f10": {
+    "main": "出牌前，这场累计热度还不到目标的 {h0c_ratio_pct}% 时，整手倍率 ×{h0o0_value}。",
+    "limits": [
+      "刚好达到 {h0c_ratio_pct}% 就不生效。"
+    ],
+    "rules": [
+      "看出牌前已经累计的热度，不把正在计算的这一手提前算进去。"
+    ],
+    "state": [],
+    "bindings": {
+      "h0c_ratio_pct": {
+        "source": "definition.hooks[0].condition.ratio × 100",
+        "format": "Rational percent"
+      },
+      "h0o0_value": {
+        "source": "definition.hooks[0].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "f11": {
+    "main": "每手加上已攒的热度；这手没过关、且得分不到目标的 {h1c_ratio_pct}%，再攒 {h1o0_value}，最多攒 {h1o0_cap}。",
+    "limits": [
+      "新增从下一手生效；刚好达到 {h1c_ratio_pct}% 不成长。"
+    ],
+    "rules": [
+      "分数条件看这一手最终得分，是否过关看本场累计热度；不能混为同一个比较。已有成长任何牌型都可用，换场保留。"
+    ],
+    "state": [
+      "每手热度加成：+{saved_heat}"
+    ],
+    "bindings": {
+      "h1c_ratio_pct": {
+        "source": "definition.hooks[1].condition.ratio × 100",
+        "format": "Rational percent"
+      },
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  },
+  "f12": {
+    "main": "每手按本牌攒下的倍数加成；用最后一次机会过关，倍数加 {h1o0_value}，最高 ×{h1o0_cap}。",
+    "limits": [
+      "初始 ×{h1o0_initial}；新倍数从下一手生效，换场保留。"
+    ],
+    "rules": [
+      "必须用最后一次出牌机会成功过关，失败不增加。增加的是倍率乘数本身，不是本手最终得分再乘一次成长值。"
+    ],
+    "state": [
+      "当前倍率：×{saved_coefficient}"
+    ],
+    "bindings": {
+      "h1o0_cap": {
+        "source": "definition.hooks[1].operations[0].cap",
+        "format": "fractionText"
+      },
+      "h1o0_initial": {
+        "source": "definition.hooks[1].operations[0].initial",
+        "format": "fractionText"
+      },
+      "h1o0_value": {
+        "source": "definition.hooks[1].operations[0].value",
+        "format": "fractionText"
+      }
+    }
+  }
+}

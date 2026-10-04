@@ -312,3 +312,8 @@ button[aria-busy=true] { border-style:dashed; }
 .candidate-variants{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
 .candidate-variants button{min-height:44px;flex:1 1 64px;font-size:14px;padding:6px;background:#FFF9EE;color:#26313A;border:1px solid #3F606B;border-radius:6px}
 .candidate-variants button[aria-pressed="true"]{border-color:#B8473A;background:#F3EADB}
+
+/* Joker guidance: when/effect is the headline; decision limits stay in the open. */
+.card-ability.is-player-copy .ability-main{font-size:21px;line-height:1.4;color:#26313A;white-space:pre-wrap}
+.card-ability.is-player-copy .ability-limits{font-size:15px;line-height:1.5;color:#3F606B;white-space:pre-wrap}
+.card-ability.is-player-copy small{font-size:15px;line-height:1.5;white-space:pre-wrap}

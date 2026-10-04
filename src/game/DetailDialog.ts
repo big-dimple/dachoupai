@@ -133,7 +133,7 @@ export class DetailDialog {
     }
     if(options.ability){
       const ability=document.createElement('section'),condition=document.createElement('span'),value=document.createElement('strong'),state=document.createElement('small');
-      ability.className='card-ability f09-ability';ability.dataset.inactive=String(!!options.f09?.inactive);condition.textContent=options.ability.condition;value.textContent=options.ability.value;ability.append(condition,value);
+      ability.className='card-ability f09-ability';ability.dataset.inactive=String(!!options.f09?.inactive);condition.textContent=options.ability.condition;value.textContent=options.ability.value;if(options.ability.playerCopy){ability.classList.add('is-player-copy');value.textContent=options.ability.condition;condition.textContent=options.ability.value;value.className='ability-main';condition.className='ability-limits';ability.append(value);if(condition.textContent)ability.append(condition);}else ability.append(condition,value);
       if(options.ability.state){state.textContent=options.ability.state;ability.append(state);}intro.append(ability);
       if(options.ability.flavor.trim()){const flavor=document.createElement('p');flavor.className='card-flavor';flavor.textContent=options.ability.flavor;copy.append(flavor);}
     }

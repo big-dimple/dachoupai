@@ -405,9 +405,7 @@ export class GameScene extends Phaser.Scene {
   }
   private memoryContext(j:R2JokerInstance,facts?:HandPreview){return publicJokerMemoryContext(this.run,{hand:this.hand,facts,scoringLimited:!!this.jokerRestriction(j),deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,jokerSlots:r2JokerCapacity(this.run),jokerCount:this.run.jokers.length});}
   private jokerAbility(j:R2JokerInstance,preview?:HandPreview) {
-    if(!this.presentation)return jokerMemoryAbility(getJoker(j.definitionId),j,this.memoryContext(j,preview));
-    return cardAbilityCopy(j.definitionId,{gold:this.run.gold,inStage:true,discardsUsed:this.run.stage?.discardsUsed,playIndex:this.run.stage?.playIndex,
-      selectedCount:preview?.playedIds.length,instanceId:j.instanceId,events:this.presentation?.score.events,disabledReason:this.jokerRestriction(j)});
+    return jokerMemoryAbility(getJoker(j.definitionId),j,this.memoryContext(j,preview),this.presentation?.score.events);
   }
   private jokerValue(j:R2JokerInstance,preview?:HandPreview):string {
     if(!this.presentation)return jokerMemory(getJoker(j.definitionId),j,this.memoryContext(j,preview)).short;
