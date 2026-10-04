@@ -10,7 +10,7 @@
   "runtimeManifestSHA256": "429aa1791919a4f38c3577d03cb2b278e476ccaed5362474debe07bf65a8b05a",
   "states": {
     "implementation": "COMPLETE for approved43/memory/directswitch/rulereference scope",
-    "technical": "1863 tests/content/type/build/Canvas desktop+mobile PASS on unchanged frozen runtime0ce; initial overall aggregate FAIL only plan README-as-JSON pointer; docs-only repair checked separately",
+    "technical": "PASS by scope: unchanged frozen runtime0ce1863/content/type/build/Canvas desktop+mobile; corrected JSON evidence docs-only verify:ci PASS1015153. Initial overall plan failure retained; exact new remote CI reported separately.",
     "independentAesthetic": "new43 partial integration early review PASS a22a613; overall still pending",
     "targetDevice": "OnePlus/hardwareGPU/audio NOT_RUN"
   },
@@ -23,5 +23,10 @@
   },
   "referenceFire": "BLOCKED: exact given image URL CONNECT403; no image consumed/no retry/no new fire implementation",
   "sourceFiles": "source-file-list.json",
-  "reviewCommit": "a22a613ec970e0c51a5adc6a5a8eb0534c2bd6a4"
+  "reviewCommit": "a22a613ec970e0c51a5adc6a5a8eb0534c2bd6a4",
+  "docsRecovery": {
+    "status": "PASS",
+    "testedCommit": "1015153c5cdd337899f1d7eb5c47592ab8adca06",
+    "sourceIndexHeadUnchanged": true
+  }
 }

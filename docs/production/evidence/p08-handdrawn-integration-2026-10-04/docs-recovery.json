@@ -1,0 +1,42 @@
+{
+  "scope": "docs",
+  "testedCommit": "1015153c5cdd337899f1d7eb5c47592ab8adca06",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "4c552d86de68565da33101ec545d653946a108b2bb966c136ace0c19fae31ccb",
+    "index": "0f8c181488671d01c20a7578fd21bb5e8a8d2308c55fff0645159a9ab0715ecc",
+    "head": "1015153c5cdd337899f1d7eb5c47592ab8adca06",
+    "branch": "refs/heads/dot/d44-layout"
+  },
+  "after": {
+    "source": "4c552d86de68565da33101ec545d653946a108b2bb966c136ace0c19fae31ccb",
+    "index": "0f8c181488671d01c20a7578fd21bb5e8a8d2308c55fff0645159a9ab0715ecc",
+    "head": "1015153c5cdd337899f1d7eb5c47592ab8adca06",
+    "branch": "refs/heads/dot/d44-layout"
+  },
+  "steps": [
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 301
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

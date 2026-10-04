@@ -21,3 +21,5 @@
 四状态：实现完成；受影响技术通过，最终聚合待收尾；新图局部方向早评通过而整体审美仍待验；OnePlus/真实GPU/听感NOT_RUN。火参考原URL CONNECT代理403未取得像素，BLOCKED并停止下载；未换路线/未假称看图，既有火源码及真实提交/去重/墙钟/回看/reduced安全合同不改，下一小批由root协调。没有规则／RNG／存档／奖励／部署／PC改动。
 
 冻结结果：源码0ce7881的1863 tests/104files、content、type/build和Canvas桌面/手机smoke通过，source/index/HEAD不变。初次聚合最后plan阶段因误把README加入JSON evidence而FAIL，原报告保留freeze-before-plan-fix.json。只修JSON证据引用；运行源码不改，docs-only恢复记录单列，不重跑未变的1863/runtime浏览器。精确新远端CI将验证最终提交。
+
+文档恢复：1015153c5cdd337899f1d7eb5c47592ab8adca06的verify:ci --scope=docs PASS，source/index/HEAD不变；只修改证据引用与归档文档，运行源码相对0ce7881不变。最终新远端CI状态另报。
