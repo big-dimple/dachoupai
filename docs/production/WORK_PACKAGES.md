@@ -379,6 +379,8 @@ D25追加有限3D复用小候选：先用实际GLB源的铜钱/骰子或牌片�
 
 ## P08
 
+P08手绘铜钱有界review：交付f44320be经sourceCI/portable/hash/实际view；单图256²15958B，活跃旧atlas不再消费，旧文件保留。source2ebb590仅RewardCoin.ts，800ms墙钟单次/56-72-96原display scale、5秒截止/取消/迟到不缓存/reduced静态与原clearId奖励去重保持，e07实际9金只展示。49相关tests/type/content及5条Canvas原生路线通过、两张fixture实图actual view；正常合已发布main719保C最后12、工具39/39物品12/12，图片保原build身份不重拍。暂不main、新reviewCI另报；整体/OnePlus/GPU/听感未验。
+
 ### 当前主线验收清单（2026-10-04 UTC）
 
 已发布基线 `58e9d223ee5f29b965532551e71afc6fc6785d51`：精确 CI37231962418／production-docs37231962445 success。本批十二图候选不计入main覆盖。

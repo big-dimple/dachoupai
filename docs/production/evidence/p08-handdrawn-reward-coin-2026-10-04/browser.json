@@ -1,0 +1,890 @@
+{
+  "taskId": "P08",
+  "testedCommit": "2ebb590d637c2e09aa4e7acc67c2c33cab778980",
+  "sourceFingerprint": "523e34214872e0c042768d1344e0524b4662a714be9c6deea4e6983ae1282b92",
+  "build": {
+    "version": "C03",
+    "revision": "2ebb590d637c2e09aa4e7acc67c2c33cab778980",
+    "modified": true,
+    "builtAt": "2026-10-04T20:56:57.770Z"
+  },
+  "renderer": "Chromium software Canvas",
+  "DPR": 1,
+  "safeInset": {
+    "top": 0,
+    "bottom": 0
+  },
+  "sourceDeliveryCommit": "f44320be03cf650bbf122d2764d669d00eeae1ff",
+  "fixture": "Validator-approved explicit pre-clear e07 fixture imported through public menu; actual native PlayHand commits reward. Not natural acquisition, main deployment or hardware acceptance.",
+  "checkpointSHA256": "44043b5d97297a869bf615cee5d3212a4280d69ef4ed0ae3055310e3f25b195a",
+  "runs": [
+    {
+      "variant": "normal",
+      "checks": [
+        "single image; no atlas; one800ms wall-clock settle/static reduced; same receipt and full saved state",
+        "refresh of committed result does not request, replay or reaward"
+      ],
+      "errors": [],
+      "reward": {
+        "clearId": "fixture/handdrawn-coin/clear/0",
+        "total": 9,
+        "goldBefore": 6,
+        "goldAfter": 15
+      },
+      "initial": {
+        "renderer": 1,
+        "coin": {
+          "key": "reward-coin-handdrawn-v1",
+          "frame": "__BASE",
+          "state": "playing",
+          "started": 3590.4000000059605,
+          "ended": null,
+          "clearId": "fixture/handdrawn-coin/clear/0",
+          "x": 114,
+          "y": 416.8220853106817,
+          "scaleX": 0.35251719657246194,
+          "scaleY": 0.337511766075895,
+          "rotation": -0.11992276627104737,
+          "bounds": {
+            "x": 64.03343694585789,
+            "y": 368.5326393208808,
+            "width": 99.93312610828426,
+            "height": 96.57889197960185
+          },
+          "visible": {
+            "x": 78.51727621257305,
+            "y": 382.82639230787754,
+            "width": 70.9654475748539,
+            "height": 67.99138042330742
+          },
+          "interactive": false
+        },
+        "reward": {
+          "text": "过关奖励  +9 金",
+          "bounds": {
+            "x": 155.6,
+            "y": 412,
+            "width": 154.00000000000003,
+            "height": 25
+          }
+        },
+        "total": {
+          "x": 130.5,
+          "y": 344,
+          "width": 129,
+          "height": 23
+        },
+        "button": {
+          "enabled": true,
+          "bounds": {
+            "x": 12,
+            "y": 644,
+            "width": 366,
+            "height": 56
+          }
+        },
+        "requests": [
+          {
+            "path": "/coin-review/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+            "aborted": false
+          }
+        ]
+      },
+      "settled": {
+        "renderer": 1,
+        "coin": {
+          "key": "reward-coin-handdrawn-v1",
+          "frame": "__BASE",
+          "state": "settled",
+          "started": 3590.4000000059605,
+          "ended": 4390.799999982119,
+          "clearId": "fixture/handdrawn-coin/clear/0",
+          "x": 114,
+          "y": 420.66,
+          "scaleX": 0.375,
+          "scaleY": 0.375,
+          "rotation": 0,
+          "bounds": {
+            "x": 66,
+            "y": 372.66,
+            "width": 96,
+            "height": 96
+          },
+          "visible": {
+            "x": 79.875,
+            "y": 386.9100036621094,
+            "width": 68.25,
+            "height": 67.5
+          },
+          "interactive": false
+        },
+        "reward": {
+          "text": "过关奖励  +9 金",
+          "bounds": {
+            "x": 155.6,
+            "y": 412,
+            "width": 154.00000000000003,
+            "height": 25
+          }
+        },
+        "total": {
+          "x": 130.5,
+          "y": 344,
+          "width": 129,
+          "height": 23
+        },
+        "button": {
+          "enabled": true,
+          "bounds": {
+            "x": 12,
+            "y": 644,
+            "width": 366,
+            "height": 56
+          }
+        },
+        "requests": [
+          {
+            "path": "/coin-review/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+            "aborted": false
+          }
+        ]
+      },
+      "sizes": [
+        {
+          "viewport": {
+            "width": 390,
+            "height": 580
+          },
+          "observation": {
+            "renderer": 1,
+            "coin": {
+              "key": "reward-coin-handdrawn-v1",
+              "frame": "__BASE",
+              "state": "settled",
+              "started": null,
+              "ended": null,
+              "clearId": "fixture/handdrawn-coin/clear/0",
+              "x": 135,
+              "y": 292.62,
+              "scaleX": 0.28125,
+              "scaleY": 0.28125,
+              "rotation": 0,
+              "bounds": {
+                "x": 99,
+                "y": 256.62,
+                "width": 72,
+                "height": 72
+              },
+              "visible": {
+                "x": 109.40625,
+                "y": 267.3074951171875,
+                "width": 51.1875,
+                "height": 50.625
+              },
+              "interactive": false
+            },
+            "reward": {
+              "text": "过关奖励  +9 金",
+              "bounds": {
+                "x": 168.2,
+                "y": 286,
+                "width": 112,
+                "height": 19
+              }
+            },
+            "total": {
+              "x": 149.5,
+              "y": 238,
+              "width": 91,
+              "height": 16
+            },
+            "button": {
+              "enabled": true,
+              "bounds": {
+                "x": 12,
+                "y": 484,
+                "width": 366,
+                "height": 56
+              }
+            },
+            "requests": [
+              {
+                "path": "/coin-review/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+                "aborted": false
+              }
+            ]
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 540
+          },
+          "observation": {
+            "renderer": 1,
+            "coin": {
+              "key": "reward-coin-handdrawn-v1",
+              "frame": "__BASE",
+              "state": "settled",
+              "started": null,
+              "ended": null,
+              "clearId": "fixture/handdrawn-coin/clear/0",
+              "x": 135,
+              "y": 272.26,
+              "scaleX": 0.21875,
+              "scaleY": 0.21875,
+              "rotation": 0,
+              "bounds": {
+                "x": 107,
+                "y": 244.26,
+                "width": 56,
+                "height": 56
+              },
+              "visible": {
+                "x": 115.09375,
+                "y": 252.572509765625,
+                "width": 39.8125,
+                "height": 39.375
+              },
+              "interactive": false
+            },
+            "reward": {
+              "text": "过关奖励  +9 金",
+              "bounds": {
+                "x": 162.6,
+                "y": 265,
+                "width": 112.00000000000003,
+                "height": 19
+              }
+            },
+            "total": {
+              "x": 149.5,
+              "y": 227,
+              "width": 91,
+              "height": 16
+            },
+            "button": {
+              "enabled": true,
+              "bounds": {
+                "x": 12,
+                "y": 444,
+                "width": 366,
+                "height": 56
+              }
+            },
+            "requests": [
+              {
+                "path": "/coin-review/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+                "aborted": false
+              }
+            ]
+          }
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "observation": {
+            "renderer": 1,
+            "coin": {
+              "key": "reward-coin-handdrawn-v1",
+              "frame": "__BASE",
+              "state": "settled",
+              "started": null,
+              "ended": null,
+              "clearId": "fixture/handdrawn-coin/clear/0",
+              "x": 559,
+              "y": 432.66,
+              "scaleX": 0.375,
+              "scaleY": 0.375,
+              "rotation": 0,
+              "bounds": {
+                "x": 511,
+                "y": 384.66,
+                "width": 96,
+                "height": 96
+              },
+              "visible": {
+                "x": 524.875,
+                "y": 398.9100036621094,
+                "width": 68.25,
+                "height": 67.5
+              },
+              "interactive": false
+            },
+            "reward": {
+              "text": "过关奖励  +9 金",
+              "bounds": {
+                "x": 600.6,
+                "y": 424,
+                "width": 154,
+                "height": 25
+              }
+            },
+            "total": {
+              "x": 575.5,
+              "y": 356,
+              "width": 129,
+              "height": 23
+            },
+            "button": {
+              "enabled": true,
+              "bounds": {
+                "x": 432,
+                "y": 616,
+                "width": 421,
+                "height": 56
+              }
+            },
+            "requests": [
+              {
+                "path": "/coin-review/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+                "aborted": false
+              }
+            ]
+          }
+        }
+      ],
+      "restored": {
+        "renderer": 1,
+        "coin": null,
+        "reward": {
+          "text": "过关奖励  +9 金",
+          "bounds": {
+            "x": 563,
+            "y": 424,
+            "width": 154,
+            "height": 25
+          }
+        },
+        "total": {
+          "x": 575.5,
+          "y": 356,
+          "width": 129,
+          "height": 23
+        },
+        "button": {
+          "enabled": true,
+          "bounds": {
+            "x": 432,
+            "y": 616,
+            "width": 421,
+            "height": 56
+          }
+        },
+        "requests": []
+      },
+      "status": "PASS"
+    },
+    {
+      "variant": "reduced",
+      "checks": [
+        "single image; no atlas; one800ms wall-clock settle/static reduced; same receipt and full saved state"
+      ],
+      "errors": [],
+      "reward": {
+        "clearId": "fixture/handdrawn-coin/clear/0",
+        "total": 9,
+        "goldBefore": 6,
+        "goldAfter": 15
+      },
+      "initial": {
+        "renderer": 1,
+        "coin": {
+          "key": "reward-coin-handdrawn-v1",
+          "frame": "__BASE",
+          "state": "settled",
+          "started": null,
+          "ended": null,
+          "clearId": "fixture/handdrawn-coin/clear/0",
+          "x": 114,
+          "y": 420.66,
+          "scaleX": 0.375,
+          "scaleY": 0.375,
+          "rotation": 0,
+          "bounds": {
+            "x": 66,
+            "y": 372.66,
+            "width": 96,
+            "height": 96
+          },
+          "visible": {
+            "x": 79.875,
+            "y": 386.9100036621094,
+            "width": 68.25,
+            "height": 67.5
+          },
+          "interactive": false
+        },
+        "reward": {
+          "text": "过关奖励  +9 金",
+          "bounds": {
+            "x": 155.6,
+            "y": 412,
+            "width": 154.00000000000003,
+            "height": 25
+          }
+        },
+        "total": {
+          "x": 130.5,
+          "y": 344,
+          "width": 129,
+          "height": 23
+        },
+        "button": {
+          "enabled": true,
+          "bounds": {
+            "x": 12,
+            "y": 644,
+            "width": 366,
+            "height": 56
+          }
+        },
+        "requests": [
+          {
+            "path": "/coin-review/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+            "aborted": false
+          }
+        ]
+      },
+      "settled": {
+        "renderer": 1,
+        "coin": {
+          "key": "reward-coin-handdrawn-v1",
+          "frame": "__BASE",
+          "state": "settled",
+          "started": null,
+          "ended": null,
+          "clearId": "fixture/handdrawn-coin/clear/0",
+          "x": 114,
+          "y": 420.66,
+          "scaleX": 0.375,
+          "scaleY": 0.375,
+          "rotation": 0,
+          "bounds": {
+            "x": 66,
+            "y": 372.66,
+            "width": 96,
+            "height": 96
+          },
+          "visible": {
+            "x": 79.875,
+            "y": 386.9100036621094,
+            "width": 68.25,
+            "height": 67.5
+          },
+          "interactive": false
+        },
+        "reward": {
+          "text": "过关奖励  +9 金",
+          "bounds": {
+            "x": 155.6,
+            "y": 412,
+            "width": 154.00000000000003,
+            "height": 25
+          }
+        },
+        "total": {
+          "x": 130.5,
+          "y": 344,
+          "width": 129,
+          "height": 23
+        },
+        "button": {
+          "enabled": true,
+          "bounds": {
+            "x": 12,
+            "y": 644,
+            "width": 366,
+            "height": 56
+          }
+        },
+        "requests": [
+          {
+            "path": "/coin-review/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+            "aborted": false
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "variant": "failure",
+      "checks": [
+        "404 keeps only real reward text and Continue; save/RNG/journal unchanged"
+      ],
+      "errors": [],
+      "reward": {
+        "clearId": "fixture/handdrawn-coin/clear/0",
+        "total": 9,
+        "goldBefore": 6,
+        "goldAfter": 15
+      },
+      "failed": {
+        "renderer": 1,
+        "coin": null,
+        "reward": {
+          "text": "过关奖励  +9 金",
+          "bounds": {
+            "x": 118,
+            "y": 412,
+            "width": 154,
+            "height": 25
+          }
+        },
+        "total": {
+          "x": 130.5,
+          "y": 344,
+          "width": 129,
+          "height": 23
+        },
+        "button": {
+          "enabled": true,
+          "bounds": {
+            "x": 12,
+            "y": 644,
+            "width": 366,
+            "height": 56
+          }
+        },
+        "requests": [
+          {
+            "path": "/coin-review/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+            "aborted": true
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "variant": "loading-exit",
+      "checks": [
+        "one held fetch aborted on native Continue; late response cannot cache"
+      ],
+      "errors": [],
+      "reward": {
+        "clearId": "fixture/handdrawn-coin/clear/0",
+        "total": 9,
+        "goldBefore": 6,
+        "goldAfter": 15
+      },
+      "loading": {
+        "renderer": 1,
+        "coin": null,
+        "reward": {
+          "text": "过关奖励  +9 金",
+          "bounds": {
+            "x": 118,
+            "y": 412,
+            "width": 154,
+            "height": 25
+          }
+        },
+        "total": {
+          "x": 130.5,
+          "y": 344,
+          "width": 129,
+          "height": 23
+        },
+        "button": {
+          "enabled": true,
+          "bounds": {
+            "x": 12,
+            "y": 644,
+            "width": 366,
+            "height": 56
+          }
+        },
+        "requests": [
+          {
+            "path": "/coin-review/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+            "aborted": false
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "variant": "skip",
+      "checks": [
+        "single image; no atlas; one800ms wall-clock settle/static reduced; same receipt and full saved state"
+      ],
+      "errors": [],
+      "reward": {
+        "clearId": "fixture/handdrawn-coin/clear/0",
+        "total": 9,
+        "goldBefore": 6,
+        "goldAfter": 15
+      },
+      "initial": {
+        "renderer": 1,
+        "coin": {
+          "key": "reward-coin-handdrawn-v1",
+          "frame": "__BASE",
+          "state": "playing",
+          "started": 3303.300000011921,
+          "ended": null,
+          "clearId": "fixture/handdrawn-coin/clear/0",
+          "x": 114,
+          "y": 416.82306684521654,
+          "scaleX": 0.35252529082426826,
+          "scaleY": 0.3375173042481836,
+          "rotation": -0.11988641314012938,
+          "bounds": {
+            "x": 64.03368655717665,
+            "y": 368.5342338402144,
+            "width": 99.9326268856467,
+            "height": 96.57766601000424
+          },
+          "visible": {
+            "x": 78.5174396187067,
+            "y": 382.8278107829392,
+            "width": 70.9651207625866,
+            "height": 67.99049659818411
+          },
+          "interactive": false
+        },
+        "reward": {
+          "text": "过关奖励  +9 金",
+          "bounds": {
+            "x": 155.6,
+            "y": 412,
+            "width": 154.00000000000003,
+            "height": 25
+          }
+        },
+        "total": {
+          "x": 130.5,
+          "y": 344,
+          "width": 129,
+          "height": 23
+        },
+        "button": {
+          "enabled": true,
+          "bounds": {
+            "x": 12,
+            "y": 644,
+            "width": 366,
+            "height": 56
+          }
+        },
+        "requests": [
+          {
+            "path": "/coin-review/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+            "aborted": false
+          }
+        ]
+      },
+      "settled": {
+        "renderer": 1,
+        "coin": {
+          "key": "reward-coin-handdrawn-v1",
+          "frame": "__BASE",
+          "state": "settled",
+          "started": null,
+          "ended": null,
+          "clearId": "fixture/handdrawn-coin/clear/0",
+          "x": 114,
+          "y": 420.66,
+          "scaleX": 0.375,
+          "scaleY": 0.375,
+          "rotation": 0,
+          "bounds": {
+            "x": 66,
+            "y": 372.66,
+            "width": 96,
+            "height": 96
+          },
+          "visible": {
+            "x": 79.875,
+            "y": 386.9100036621094,
+            "width": 68.25,
+            "height": 67.5
+          },
+          "interactive": false
+        },
+        "reward": {
+          "text": "过关奖励  +9 金",
+          "bounds": {
+            "x": 155.6,
+            "y": 412,
+            "width": 154.00000000000003,
+            "height": 25
+          }
+        },
+        "total": {
+          "x": 130.5,
+          "y": 344,
+          "width": 129,
+          "height": 23
+        },
+        "button": {
+          "enabled": true,
+          "bounds": {
+            "x": 12,
+            "y": 644,
+            "width": 366,
+            "height": 56
+          }
+        },
+        "requests": [
+          {
+            "path": "/coin-review/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+            "aborted": false
+          }
+        ]
+      },
+      "status": "PASS"
+    }
+  ],
+  "images": [
+    {
+      "path": "390-settled.png",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "observation": {
+        "renderer": 1,
+        "coin": {
+          "key": "reward-coin-handdrawn-v1",
+          "frame": "__BASE",
+          "state": "settled",
+          "started": 3590.4000000059605,
+          "ended": 4390.799999982119,
+          "clearId": "fixture/handdrawn-coin/clear/0",
+          "x": 114,
+          "y": 420.66,
+          "scaleX": 0.375,
+          "scaleY": 0.375,
+          "rotation": 0,
+          "bounds": {
+            "x": 66,
+            "y": 372.66,
+            "width": 96,
+            "height": 96
+          },
+          "visible": {
+            "x": 79.875,
+            "y": 386.9100036621094,
+            "width": 68.25,
+            "height": 67.5
+          },
+          "interactive": false
+        },
+        "reward": {
+          "text": "过关奖励  +9 金",
+          "bounds": {
+            "x": 155.6,
+            "y": 412,
+            "width": 154.00000000000003,
+            "height": 25
+          }
+        },
+        "total": {
+          "x": 130.5,
+          "y": 344,
+          "width": 129,
+          "height": 23
+        },
+        "button": {
+          "enabled": true,
+          "bounds": {
+            "x": 12,
+            "y": 644,
+            "width": 366,
+            "height": 56
+          }
+        },
+        "requests": [
+          {
+            "path": "/coin-review/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+            "aborted": false
+          }
+        ]
+      }
+    },
+    {
+      "path": "1280-settled.png",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "observation": {
+        "renderer": 1,
+        "coin": {
+          "key": "reward-coin-handdrawn-v1",
+          "frame": "__BASE",
+          "state": "settled",
+          "started": null,
+          "ended": null,
+          "clearId": "fixture/handdrawn-coin/clear/0",
+          "x": 559,
+          "y": 432.66,
+          "scaleX": 0.375,
+          "scaleY": 0.375,
+          "rotation": 0,
+          "bounds": {
+            "x": 511,
+            "y": 384.66,
+            "width": 96,
+            "height": 96
+          },
+          "visible": {
+            "x": 524.875,
+            "y": 398.9100036621094,
+            "width": 68.25,
+            "height": 67.5
+          },
+          "interactive": false
+        },
+        "reward": {
+          "text": "过关奖励  +9 金",
+          "bounds": {
+            "x": 600.6,
+            "y": 424,
+            "width": 154,
+            "height": 25
+          }
+        },
+        "total": {
+          "x": 575.5,
+          "y": 356,
+          "width": 129,
+          "height": 23
+        },
+        "button": {
+          "enabled": true,
+          "bounds": {
+            "x": 432,
+            "y": 616,
+            "width": 421,
+            "height": 56
+          }
+        },
+        "requests": [
+          {
+            "path": "/coin-review/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+            "aborted": false
+          }
+        ]
+      }
+    }
+  ],
+  "targetDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "independentAesthetic": "PENDING",
+  "status": "PASS"
+}

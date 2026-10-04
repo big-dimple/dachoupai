@@ -1,0 +1,162 @@
+{
+  "taskId": "P08",
+  "testedCommit": "ab177d1c92fc867616ff3435a1d748942109d71f",
+  "baseMain": "71976f6907dc46be402242457580de2babc26019",
+  "runtimeCodeCommit": "2ebb590d637c2e09aa4e7acc67c2c33cab778980",
+  "sourceDeliveryCommit": "f44320be03cf650bbf122d2764d669d00eeae1ff",
+  "sourceDeliveryCI": {
+    "id": 37232692215,
+    "status": "success",
+    "completedUTC": "2026-10-04T20:39:44Z"
+  },
+  "sourceFingerprint": "523e34214872e0c042768d1344e0524b4662a714be9c6deea4e6983ae1282b92",
+  "runtimeImage": {
+    "path": "public/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+    "width": 256,
+    "height": 256,
+    "bytes": 15958,
+    "sha256": "45b2a3bf35c769d4527ac0ca63118ab6136c45a8e327734bcfd410ccd7644741",
+    "sourceAndRuntimeActuallyViewed": true
+  },
+  "implementation": "COMPLETE_REVIEW",
+  "technical": "AFFECTED_PASS;new reviewCI pending",
+  "sourceArtReview": "PARENT_APPROVED",
+  "independentInGameAesthetic": "PENDING",
+  "overallP08Aesthetic": "NOT_ACCEPTED",
+  "targetDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "checks": {
+    "coinTests": 28,
+    "outcomeAndFailureTests": 12,
+    "goodsArtTests": 4,
+    "queueTests": 5,
+    "totalRelatedTests": 49,
+    "type": "PASS",
+    "content": "PASS; public-art privacy66files0issues",
+    "plan": "PASS",
+    "build": {
+      "version": "C03",
+      "revision": "2ebb590d637c2e09aa4e7acc67c2c33cab778980",
+      "modified": true,
+      "builtAt": "2026-10-04T20:56:57.770Z"
+    },
+    "browser": "PASS;normal/reduced/404/loading-exit/skip;96/72/56 display,cached resize and refreshed restore;no video/FPS",
+    "portable": "PASS;alpha padding/hole/hash/256RGBA"
+  },
+  "preservation": {
+    "src/game/IntermissionScene.ts": {
+      "object": "ca84a25e48efe584a73c24822d750c0696466620",
+      "sameAsMain": true
+    },
+    "src/game/GameScene.ts": {
+      "object": "445b8f58135c5999632b88a0b29a1e05f7ae103a",
+      "sameAsMain": true
+    },
+    "src/game/ShopScene.ts": {
+      "object": "310eab57474135a3bd55356c779f20dc4dc2ba2e",
+      "sameAsMain": true
+    },
+    "src/game/layout.ts": {
+      "object": "30393b696ccd170bbb648c53615a436e1b18a3e5",
+      "sameAsMain": true
+    },
+    "src/game/ScoreFlame.ts": {
+      "object": "925208142110f17e08e1df264913d21e5c9afdd0",
+      "sameAsMain": true
+    },
+    "src/audio": {
+      "object": "26838cd2cde9c6b668c5a54b03f272d575926c0a",
+      "sameAsMain": true
+    },
+    "src/domain": {
+      "object": "8e3423193ecb4920e79b87f2314da97a04438c99",
+      "sameAsMain": true
+    },
+    "src/application": {
+      "object": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+      "sameAsMain": true
+    },
+    "src/content": {
+      "object": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+      "sameAsMain": true
+    },
+    "src/style.css": {
+      "object": "3bb1fcb6e1f714d456d519b19a4dc38279f02a90",
+      "sameAsMain": true
+    },
+    "public/assets/handdrawn-tools": {
+      "object": "eabde3871a9b3ab71298cf1833d579ef18e63256",
+      "sameAsMain": true
+    },
+    "public/assets/effects/coin-reward/coin-reward.webp": {
+      "object": "00c0b6caa6a61b78b6710f51089e663491aa5114",
+      "sameAsMain": true
+    },
+    "public/assets/effects/coin-reward/atlas.json": {
+      "object": "a7b5d39dc4ac805feb2210df16c9c4c17c878274",
+      "sameAsMain": true
+    },
+    "sourceBundle": "4files byte-identical to sourceDeliveryCommit",
+    "currentToolCoverage": 39,
+    "currentItemCoverage": 12
+  },
+  "images": [
+    {
+      "path": "390-settled.png",
+      "sha256": "4e933db53b5605018bff8b0a5dec79d5cf800633e95e915ad2cbb2fa76b6886d",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "renderer": "Chromium software Canvas",
+      "build": {
+        "version": "C03",
+        "revision": "2ebb590d637c2e09aa4e7acc67c2c33cab778980",
+        "modified": true,
+        "builtAt": "2026-10-04T20:56:57.770Z"
+      },
+      "sourceFingerprint": "523e34214872e0c042768d1344e0524b4662a714be9c6deea4e6983ae1282b92",
+      "route": "Validator-approved explicit pre-clear e07 fixture imported through public menu; actual native PlayHand commits reward. Not natural acquisition, main deployment or hardware acceptance."
+    },
+    {
+      "path": "1280-settled.png",
+      "sha256": "1f94b9548d7523892a788568130f22c7beed85f5ed2423e6882b94aca3a307b7",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "renderer": "Chromium software Canvas",
+      "build": {
+        "version": "C03",
+        "revision": "2ebb590d637c2e09aa4e7acc67c2c33cab778980",
+        "modified": true,
+        "builtAt": "2026-10-04T20:56:57.770Z"
+      },
+      "sourceFingerprint": "523e34214872e0c042768d1344e0524b4662a714be9c6deea4e6983ae1282b92",
+      "route": "Validator-approved explicit pre-clear e07 fixture imported through public menu; actual native PlayHand commits reward. Not natural acquisition, main deployment or hardware acceptance."
+    }
+  ],
+  "limits": [
+    "Explicit validator-approved pre-clear e07 fixture; actual native PlayHand commits9gold, not natural acquisition or main deployment.",
+    "Images are build2ebb590 modified=true; later normalmerge of publishedmain719 added the last12tools/docs only; src and depicted assets unchanged. No reshoot.",
+    "Old D41 nine-route harness updated for one-file/base-frame/actual alpha geometry and no recording; not executed in this bounded round.",
+    "49 affected tests and bounded Chromium Canvas inputs are not full GPU/OnePlus/audio or whole-game aesthetic acceptance."
+  ],
+  "mainPush": "NOT_AUTHORIZED; review only",
+  "retainedFailures": [
+    "Initial fixture omitted maxPlayedCount at playIndex3; checkpoint validator rejected invalid-save-stage-history. Fixed fixture field, validator unchanged.",
+    "Initial390x740 test assumed72px; real existingresult layout gives96. Added existing390x58072px branch, kept56/96; no layout/font/tolerance change.",
+    "First bundle command used old mjs verifier name; actual delivered portable verifier is verify-runtime.py, which passed."
+  ]
+}
