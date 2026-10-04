@@ -3,12 +3,19 @@
   "testedCommit": "7df8c4cfa8e19b8297c0b2a908c50adfba16e123",
   "sourceFingerprint": "98b25d8b5b0dc8bdf09554927e6b7fac799589579760551cc8108683e4443930",
   "runtimeManifestSHA256": "fdad2cee2e7d5f4addaba1986e54d59d1f5370daf6d76c3109ecb5146d21abdb",
-  "implementation": "CANDIDATE",
+  "implementation": "PASS",
   "technical": {
     "targetedTests": 19,
     "type": "PASS",
     "browser": "PASS",
-    "freeze": "NOT_RUN"
+    "freeze": {
+      "status": "PASS",
+      "testedCommit": "a784ea8e43f91967e73ad42b5d9faec1bdc549fe",
+      "tests": 1913,
+      "files": 107,
+      "scope": "tests/content/type/build/Chromium Canvas dual-profile smoke/plan",
+      "sourceIndexHeadInvariant": true
+    }
   },
   "independentAesthetic": "PENDING",
   "targetDevice": "OnePlus/realGPU/audio NOT_RUN",
