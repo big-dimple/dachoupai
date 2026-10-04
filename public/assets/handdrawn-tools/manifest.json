@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "sourceCommit": "11ae7a464fdcf54c4e338da9171d827265742e3c",
   "sourceManifestSHA256": "45e9b14f1366a8c165c25deec3f2eb04e252144cb0a2974d9d9f73c53517eed2",
-  "runtimeFileCount": 8,
-  "runtimeBytes": 123306,
+  "runtimeFileCount": 20,
+  "runtimeBytes": 301526,
   "assets": [
     {
       "id": "tool-t12",
@@ -96,6 +96,151 @@
           "path": "tool-s02.detail.webp"
         }
       ]
+    },
+    {
+      "id": "item-u01",
+      "domainId": "U01",
+      "category": "item-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 1578,
+          "sha256": "057ba6b5f7bff038dc51b78bdc10d5c7043380df9a81f2b858081429156b05a3",
+          "purpose": "thumbnail",
+          "path": "item-u01.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 16820,
+          "sha256": "6a89a6afedee3119fabb66c8144e6dca0dbacaf57ca70e62640df4c966ce84da",
+          "purpose": "detail",
+          "path": "item-u01.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "item-u02",
+      "domainId": "U02",
+      "category": "item-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 1728,
+          "sha256": "8dccdede5da4656f210f132d3fccfd2f9e6166f76be1e2df2df3fdc82dcedf5d",
+          "purpose": "thumbnail",
+          "path": "item-u02.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 17732,
+          "sha256": "ddf574a50501cc1305cbce3b33213d3d9442680e06bbc0a50d04d9a51d5c91bc",
+          "purpose": "detail",
+          "path": "item-u02.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "item-u03",
+      "domainId": "U03",
+      "category": "item-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 3426,
+          "sha256": "05c6ee0499b8ea3a7d7d7942df3cb938019036276c52a22191512c80941075de",
+          "purpose": "thumbnail",
+          "path": "item-u03.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 32484,
+          "sha256": "3ded584067dd4c3592ca0179e965e475e959b55c58eac6fb97c6902dce9a891d",
+          "purpose": "detail",
+          "path": "item-u03.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "item-u04",
+      "domainId": "U04",
+      "category": "item-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2436,
+          "sha256": "518484d48fd779f80648977c92e41dcbc1de3da841f5df717c7284f08b4277a9",
+          "purpose": "thumbnail",
+          "path": "item-u04.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 30076,
+          "sha256": "7dd96b27f15cd2c1c5d19c09229d90e9dd849d1e44f1734e047f631d0233f412",
+          "purpose": "detail",
+          "path": "item-u04.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "item-u05",
+      "domainId": "U05",
+      "category": "item-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 3046,
+          "sha256": "c117da8f841097e5536440aea808760b6d9a8f93a9bf2112314bf151753e421f",
+          "purpose": "thumbnail",
+          "path": "item-u05.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 36334,
+          "sha256": "8d104b341c5416918ca341fba0d50189bc6c6acbadbcd75b09292fdc77ed72b7",
+          "purpose": "detail",
+          "path": "item-u05.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "item-u06",
+      "domainId": "U06",
+      "category": "item-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2474,
+          "sha256": "97f4b66edee762fab45b840d3de2900c311f8f31dce19e315585278a429de8bb",
+          "purpose": "thumbnail",
+          "path": "item-u06.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 30086,
+          "sha256": "0f2b78603d3aff54d9c373b39e3f1ee754bedecce9460156aa8cb6b64541d479",
+          "purpose": "detail",
+          "path": "item-u06.detail.webp"
+        }
+      ]
+    }
+  ],
+  "additionalSources": [
+    {
+      "sourceCommit": "34dab048aea452e6e9175afa80878193be3bf1bc",
+      "sourceManifestPath": "art/sources/handdrawn-runtime-items-20261004-u01-u06/manifest.json",
+      "sourceManifestSHA256": "c8cb24b8e1d50b173219cbf83cb118ca9da204347a6e64ecdcf5da2d9d3a26ed"
     }
   ]
 }
