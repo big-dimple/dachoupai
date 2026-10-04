@@ -1,5 +1,7 @@
 # P08 持有 Joker 调序的 MIT 代码复用
 
+2026-10-04 主线对齐：原 review `663ace1d9ab87dba2cb4f270146024f91e6541a8` 的精确 CI37213762076 已成功。正常合入已发布排序 main `88b17e23c9aa778c8ac93c9998cd090ba48ab82d`，合并源码 `254863e44e086e170f6a40ec9d33df8d841fa467`；仅 handoff/plan 冲突，双方交接和 evidence 都保留。`sortHand` 与排序 main 逐字一致，Joker 入口与原审 review 一致。305 项受影响测试/type/plan、一次 exact modified=false 构建共享给现有排序与 Joker 两条浏览器路线均 PASS，MIT notice 再核相同；详见 [main-alignment.json](main-alignment.json)。本包仍不写 main，不拉入 Goods 候选，不重复完整本地冻结；新精确 review HEAD CI 在父交付报告给出。下文为原实现检查点历史，保持当时基线与检查范围。
+
 基线 main `3938cee365994910d7d79f62fc91701273f2efe0`；实现与自然浏览器构建 `8b05042b11ee0e69a4675af3b502cea2189c9d69`，构建 `modified=false`。本小包只统一调序结果，没有视觉升级。普通 `feat/p08-browslatro-joker-reorder-20261004` 分支供父协调评审；这里不推进 main。
 
 复用 [oreoshake-s-team/browslatro 的 insertIdAtIndex](https://github.com/oreoshake-s-team/browslatro/blob/eb3d51f1537e527b3a3b7a06976dc971b0a20979/src/scoring/reordering.ts)，固定 SHA `eb3d51f1537e527b3a3b7a06976dc971b0a20979`，仅原文件第 1–14 行。原算法逐字保留；前 8 个原测试只调整 Vitest/import。只读获取源码、测试与许可，没有克隆、安装或执行上游仓库的脚本/框架。
