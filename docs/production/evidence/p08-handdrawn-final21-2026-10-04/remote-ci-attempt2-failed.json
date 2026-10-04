@@ -1,0 +1,36 @@
+{
+  "taskId": "P08",
+  "testedCommit": "8f677df03be3d642f205b07a1ff6504ae41415a7",
+  "runId": 37206337412,
+  "attempt": 2,
+  "jobId": 111449554783,
+  "status": "FAIL",
+  "command": "npm run verify:ci -- --scope=browser",
+  "passed": [
+    "build",
+    "chromium/desktop"
+  ],
+  "failure": {
+    "command": "node harness/screenshot.mjs --verify-smoke",
+    "file": "harness/screenshot.mjs",
+    "line": 63,
+    "operation": "Chromium mobile native offer tap followed by Cancel",
+    "reason": "Cancel button absent; locator.tap timed out at unchanged 30000ms",
+    "observed": {
+      "phase": "shop",
+      "commandSeq": 1,
+      "controller": "idle",
+      "playing": false,
+      "presenting": false,
+      "renderFps": 5.000134762111423,
+      "selectedIds": []
+    }
+  },
+  "sourceIndexHeadInvariant": true,
+  "cause": "Unconfirmed: remote logs/artifact lack native event and scene-repaint traces. The controlled local race is proven separately and is not substituted for remote same-cause confirmation.",
+  "localCanvas": "1981 frozen tests and desktop/mobile Canvas PASS; nine representative art checks PASS",
+  "artifactId": 11304957273,
+  "artifactContents": [
+    "ci/browser.json"
+  ]
+}

@@ -42,6 +42,7 @@ export class ShopScene extends Phaser.Scene {
   private shelfPage=0;
   private artRefreshListeners=new Map<string,()=>void>();
   private artTargets=new Map<string,{holder:Phaser.GameObjects.Container;box:Box;alpha:number}>();
+  private jokerArtTargets=new Map<Phaser.GameObjects.Container,{definitionId:string;box:Box;alpha:number}>();
   private notice='';
   private view!:SceneView;
   private offerArts:Phaser.GameObjects.Container[]=[];
@@ -73,7 +74,7 @@ export class ShopScene extends Phaser.Scene {
     this.pendingGoldRoll=undefined;this.pendingRerollFlip=false;this.pendingPurchaseFlight=undefined;this.pendingToolCue=undefined;this.pendingTransactions=[];this.lastTransactionNotes=[];
     this.resultFeedback=new ShopResultFeedback();this.resultKey=undefined;this.resultNote=undefined;this.resultPlate=undefined;
     this.events.once('shutdown',()=>{this.resultFeedback.dispose();this.resultLayer?.destroy(true);this.resultLayer=undefined;this.resultNote=undefined;this.resultPlate=undefined;this.resultKey=undefined;});
-    this.events.once('shutdown',()=>{this.lifecycle++;this.hideHoverPicture();this.dialog.close();for(const [key,listener] of this.artRefreshListeners)this.textures.off('addtexture-'+key,listener);this.artRefreshListeners.clear();this.artTargets.clear();});
+    this.events.once('shutdown',()=>{this.lifecycle++;this.hideHoverPicture();this.dialog.close();for(const [key,listener] of this.artRefreshListeners)this.textures.off('addtexture-'+key,listener);this.artRefreshListeners.clear();this.artTargets.clear();this.jokerArtTargets.clear();});
     const run=runController(this)?.state;if(!run||run.phase!=='shop'){this.scene.start('character-select');return;}this.run=run;
     this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene('shop');this.view=new SceneView(this,()=>this.render());this.render();
     if(!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
@@ -83,10 +84,10 @@ export class ShopScene extends Phaser.Scene {
   }
   private render():void {
     this.dialog.refreshArtLoad();
-    requestJokerArt(this,[...this.run.jokers.map(j=>j.definitionId),...this.visibleOffers().map(o=>o.definitionId)],()=>this.render());
+    requestJokerArt(this,[...this.run.jokers.map(j=>j.definitionId),...this.visibleOffers().map(o=>o.definitionId)],()=>this.refreshJokerPictures());
     const selectedIndex=this.shelfOffers().findIndex(offer=>offer.offerId===this.selectedOfferId);if(selectedIndex>=0)this.shelfPage=Math.floor(selectedIndex/this.pageSize);
     this.shelfPage=Math.min(this.shelfPage,Math.max(0,Math.ceil(this.shelfOffers().length/this.pageSize)-1));
-    const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty)!;this.hideHoverPicture();v.clear();v.paperBackground();this.offerArts=[];this.artTargets.clear();
+    const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty)!;this.hideHoverPicture();v.clear();v.paperBackground();this.offerArts=[];this.artTargets.clear();this.jokerArtTargets.clear();
     v.text(p.x,p.top,this.run.tourMode==='endless'?'无尽后台':'后台',20,'#26313A').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     const purse={x:p.x+p.w-(this.view.layout.width<=700?96:136)-124,y:p.top-1,width:116,height:34},purseArt=this.add.graphics();
     v.add(this.add.graphics().fillStyle(0x213d45,.2).fillRoundedRect(purse.x+1,purse.y+3,purse.width,purse.height,7));
@@ -267,7 +268,7 @@ export class ShopScene extends Phaser.Scene {
     const source=this.textures.get(key).getSourceImage();return source.width/source.height;
   }
   private jokerArtStatus(definitionId:string) {
-    return {status:jokerArtLoadState(this,definitionId).status,readStatus:()=>jokerArtLoadState(this,definitionId).status,retry:()=>retryJokerArt(this,[definitionId],()=>this.render())};
+    return {status:jokerArtLoadState(this,definitionId).status,readStatus:()=>jokerArtLoadState(this,definitionId).status,retry:()=>retryJokerArt(this,[definitionId],()=>this.refreshJokerPictures())};
   }
   private jokerCopy(definitionId:string,instance?:R2JokerInstance) {
     const subject=instance??r2CreateJoker(definitionId,'offer-condition/'+definitionId,0),inventory=instance?this.run.jokers:[...this.run.jokers,subject];
@@ -302,6 +303,21 @@ export class ShopScene extends Phaser.Scene {
   }
 
   private drawJokerPicture(definitionId:string,b:Box,alpha=1):void {
+    const holder=this.view.add(this.add.container());
+    this.jokerArtTargets.set(holder,{definitionId,box:b,alpha});
+    this.paintJokerPicture(holder,definitionId,b,alpha);
+  }
+  /** Loading changes the face only: rebuilding hit targets would cancel a native press. */
+  private refreshJokerPictures():void {
+    this.dialog.refreshArtLoad();
+    for(const [holder,target] of this.jokerArtTargets){
+      if(holder.active)this.paintJokerPicture(holder,target.definitionId,target.box,target.alpha);
+      else this.jokerArtTargets.delete(holder);
+    }
+  }
+  private paintJokerPicture(holder:Phaser.GameObjects.Container,definitionId:string,b:Box,alpha:number):void {
+    holder.removeAll(true);
+    const first=this.view.root.length;
     const v=this.view,d=getR2Joker(definitionId),badge=mechanismBadge(d),key=jokerArtKey(definitionId),g=this.add.graphics();
     v.material(b,badge.paper,0xcbb591,3).setAlpha(alpha);
     if(key&&this.textures.exists(key)){
@@ -317,6 +333,7 @@ export class ShopScene extends Phaser.Scene {
       }
     }
     g.lineStyle(1,0xa69778,.45).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,3);v.add(g.setAlpha(alpha));
+    holder.add(v.root.list.slice(first));
   }
   private drawOfferCard(b:Box,rarity:JokerRarity,selected:boolean,consumed:boolean,short:boolean,headerHeight=64,footerHeight=short?44:64):void {
     const shadow=this.add.graphics().fillStyle(0x26313a,.08).fillRoundedRect(b.x+1,b.y+3,b.width,b.height,5);

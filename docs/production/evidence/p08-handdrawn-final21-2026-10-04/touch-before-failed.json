@@ -1,0 +1,21 @@
+{
+  "taskId": "P08",
+  "testedCommit": "8f677df03be3d642f205b07a1ff6504ae41415a7",
+  "build": {
+    "version": "C03",
+    "revision": "f315af14ea276817fdfd240e2958bb1d9c9a9cdb",
+    "modified": false,
+    "builtAt": "2026-10-04T13:34:46.347Z"
+  },
+  "renderer": "Canvas",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 3,
+  "physicalDevice": "NOT_RUN",
+  "checks": [],
+  "errors": [],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: thumbnail notification preserves the owning hit target and native press"
+}

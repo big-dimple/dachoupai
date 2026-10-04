@@ -1,16 +1,16 @@
 import{it,expect}from'vitest';import{readFileSync}from'node:fs';import{createHash}from'node:crypto';import manifest from'../public/assets/handdrawn-p08/manifest.json';import{HANDDRAWN_ART,HANDDRAWN_SOURCE,handdrawnPath,COURT_ART,courtArtKey}from'../src/game/HanddrawnArt';import{JOKER_ART,jokerArtAlignedLayers,jokerArtKey}from'../src/game/jokerArt';import{CHARACTERS}from'../src/game/characters';
-it('pins exact authorized60 artwork123 runtime hashes/sizes and purpose mapping',()=>{expect(HANDDRAWN_SOURCE).toBe('c618cee93089bb2e556f16567709b0ea23abbcb9');expect(HANDDRAWN_ART).toHaveLength(60);let n=0,total=0;for(const a of manifest.assets)for(const o of a.outputs){const b=readFileSync(new URL('../public/assets/handdrawn-p08/'+o.path,import.meta.url));expect(b.length).toBe(o.bytes);expect(createHash('sha256').update(b).digest('hex')).toBe(o.sha256);expect(handdrawnPath(a.id,o.purpose)).toBe('assets/handdrawn-p08/'+o.path);n++;total+=b.length;}expect(n).toBe(123);expect(total).toBe(3461406);});
+it('pins exact authorized81 artwork165 runtime hashes/sizes and purpose mapping',()=>{expect(HANDDRAWN_SOURCE).toBe('c618cee93089bb2e556f16567709b0ea23abbcb9');expect(HANDDRAWN_ART).toHaveLength(81);let n=0,total=0;for(const a of manifest.assets)for(const o of a.outputs){const b=readFileSync(new URL('../public/assets/handdrawn-p08/'+o.path,import.meta.url));expect(b.length).toBe(o.bytes);expect(createHash('sha256').update(b).digest('hex')).toBe(o.sha256);expect(handdrawnPath(a.id,o.purpose)).toBe('assets/handdrawn-p08/'+o.path);n++;total+=b.length;}expect(n).toBe(165);expect(total).toBe(4444474);});
 it('six role IDs own their portrait/avatar/selection; JQK are rank-specific independent faces',()=>{for(const c of CHARACTERS){expect(c.portrait).toContain(handdrawnPath(c.id,'portrait'));for(const purpose of['avatar','selection','portrait'])expect(handdrawnPath(c.id,purpose)).toBeTruthy();}expect(COURT_ART.map(a=>a.rank)).toEqual([11,12,13]);for(const rank of[11,12,13])expect(courtArtKey(rank)).toBe('p08-court-'+(['j','q','k'][rank-11]));expect(courtArtKey(10)).toBeUndefined();});
-it('exact51 functional replacements retain all other old IDs; new flat f09 never claims aligned layers',()=>{const changed=HANDDRAWN_ART.filter(a=>a.category==='functional-card');expect(changed).toHaveLength(51);for(const a of changed){const r=JOKER_ART.find(r=>r.id===a.id)!;expect(r.path).toBe(handdrawnPath(a.id,'thumbnail'));expect(r.detailPath).toBe(handdrawnPath(a.id,'detail'));expect(r.detailOnDemand).toBe(true);}expect(JOKER_ART).toHaveLength(57);expect(jokerArtKey('f09')).toBe('p08-joker-f09');expect(jokerArtAlignedLayers('f09')).toBe(false);expect(JOKER_ART.find(a=>a.id==='e05')?.path).toBe('assets/jokers-p07/e05.webp');expect(jokerArtKey('c11')).toBeUndefined();});
+it('exact72 functional replacements cover the full production pool; new flat f09 never claims aligned layers',()=>{const changed=HANDDRAWN_ART.filter(a=>a.category==='functional-card');expect(changed).toHaveLength(72);for(const a of changed){const r=JOKER_ART.find(r=>r.id===a.id)!;expect(r.path).toBe(handdrawnPath(a.id,'thumbnail'));expect(r.detailPath).toBe(handdrawnPath(a.id,'detail'));expect(r.detailOnDemand).toBe(true);}expect(JOKER_ART).toHaveLength(72);expect(jokerArtKey('f09')).toBe('p08-joker-f09');expect(jokerArtAlignedLayers('f09')).toBe(false);expect(JOKER_ART.find(a=>a.id==='e05')?.path).toBe(handdrawnPath('e05','thumbnail'));expect(jokerArtKey('c11')).toBe('p08-joker-c11');});
 
 it('batch2 binds only approved tiesuanpan/f10 to exact source receipt and on-demand complete faces',()=>{
- expect(manifest.sourceCommits).toEqual(['c618cee93089bb2e556f16567709b0ea23abbcb9','3284505ad86e4e216343aa873719d20524f9a4ce','b0394efd921fc05d936ea3519d2b401a1cba9abd','41e78e1eac85920cede9ed867e4dabb8bba4f5c4','1671376cde093f1450e07564815468dafbfe070a','421dbf9f7a1a09ca81f275ad8c32eafac4b14db5','b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb','030508fb4dca8af276094dd5bc3eb6a9774d8375']);
+ expect(manifest.sourceCommits).toEqual(['c618cee93089bb2e556f16567709b0ea23abbcb9','3284505ad86e4e216343aa873719d20524f9a4ce','b0394efd921fc05d936ea3519d2b401a1cba9abd','41e78e1eac85920cede9ed867e4dabb8bba4f5c4','1671376cde093f1450e07564815468dafbfe070a','421dbf9f7a1a09ca81f275ad8c32eafac4b14db5','b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb','030508fb4dca8af276094dd5bc3eb6a9774d8375','1da558691621e8c3972b3d5bbdeaf16a9eba47fa','b7feb390c55ed8f930d22d4897641ba0c405128d','a6dbecb0b0612777d7c960dd8de65c9a1c897acc']);
  for(const id of ['tiesuanpan','f10']){const asset=HANDDRAWN_ART.find(a=>a.id===id)!;
   expect(asset).toMatchObject({sourceCommit:'3284505ad86e4e216343aa873719d20524f9a4ce',sourceManifestSHA256:'c00c8942d75e023da38930d95be9492ce63b55342f2633031662d9217403deeb'});
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);
   expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
  }
- expect(jokerArtKey('c11')).toBeUndefined();expect(jokerArtKey('d12')).toBeUndefined();
+ expect(jokerArtKey('c11')).toBe('p08-joker-c11');expect(jokerArtKey('d12')).toBe('p08-joker-d12');
 });
 
 it('batch3 consumes only the approved four-rung c08 receipt and c09, with complete on-demand faces',()=>{
@@ -61,7 +61,7 @@ it('batch6 binds only eight approved same-ID replacements and full-source narrow
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);expect(JOKER_ART.find(a=>a.id===id)?.detailOnDemand).toBe(true);
   for(const o of source.outputs){expect(o.geometry.entireSourceSampled).toBe(true);expect(o.geometry.noStretch).toBe(true);expect(o.geometry.sourceCropPixels).toEqual({left:0,top:0,width:source.sourceWidth,height:source.sourceHeight});}
  }
- expect(HANDDRAWN_ART.filter(a=>a.category==='functional-card')).toHaveLength(51);expect(JOKER_ART.filter(a=>a.path.startsWith('assets/jokers-p07/'))).toHaveLength(6);
+ expect(HANDDRAWN_ART.filter(a=>a.category==='functional-card')).toHaveLength(72);expect(JOKER_ART.filter(a=>a.path.startsWith('assets/jokers-p07/'))).toHaveLength(0);
  for(const id of ['d01','e01'])expect(receipt.assets.find((a:{id:string})=>a.id===id).outputs[0].geometry.contentRectPixels.width).toBe(107);
 });
 
@@ -74,7 +74,7 @@ it('batch7 binds only eight approved same-ID complete contain faces',()=>{
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);expect(JOKER_ART.find(a=>a.id===id)?.detailOnDemand).toBe(true);
   for(const o of source.outputs){expect(o.geometry.entireSourceSampled).toBe(true);expect(o.geometry.noStretch).toBe(true);expect(o.geometry.sourceCropPixels).toEqual({left:0,top:0,width:source.sourceWidth,height:source.sourceHeight});}
  }
- expect(HANDDRAWN_ART.filter(a=>a.category==='functional-card')).toHaveLength(51);expect(JOKER_ART.filter(a=>a.path.startsWith('assets/jokers-p07/'))).toHaveLength(6);
+ expect(HANDDRAWN_ART.filter(a=>a.category==='functional-card')).toHaveLength(72);expect(JOKER_ART.filter(a=>a.path.startsWith('assets/jokers-p07/'))).toHaveLength(0);
 });
 
 it('batch8 binds only eight approved same-ID complete contain faces',()=>{
@@ -86,5 +86,30 @@ it('batch8 binds only eight approved same-ID complete contain faces',()=>{
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);expect(JOKER_ART.find(a=>a.id===id)?.detailOnDemand).toBe(true);
   for(const o of source.outputs){expect(o.geometry.entireSourceSampled).toBe(true);expect(o.geometry.noStretch).toBe(true);expect(o.geometry.sourceCropPixels).toEqual({left:0,top:0,width:source.sourceWidth,height:source.sourceHeight});}
  }
- expect(HANDDRAWN_ART.filter(a=>a.category==='functional-card')).toHaveLength(51);expect(JOKER_ART.filter(a=>a.path.startsWith('assets/jokers-p07/'))).toHaveLength(6);
+ expect(HANDDRAWN_ART.filter(a=>a.category==='functional-card')).toHaveLength(72);expect(JOKER_ART.filter(a=>a.path.startsWith('assets/jokers-p07/'))).toHaveLength(0);
+});
+
+const finalReceipts=[
+ {batch:'b9',commit:'1da558691621e8c3972b3d5bbdeaf16a9eba47fa',receiptSHA:'b6247533107f4c7107bea892bf27d72ad09db9355c1c03600c8882c9396f1695',ids:['a05','b03','c06','d03','a10','b11','c10','d12']},
+ {batch:'b10',commit:'b7feb390c55ed8f930d22d4897641ba0c405128d',receiptSHA:'13b737b88b6ce4130f0a10052b52bd3ed2feab21c83528831ef924152a78d5ed',ids:['a06','a12','b09','c11','c12','e10','e12','e05']},
+ {batch:'b11',commit:'a6dbecb0b0612777d7c960dd8de65c9a1c897acc',receiptSHA:'06ed702bdf40ee7e0814f6fc38e61262dda0f0c94b12103f6b59bc06c85a3a4f',ids:['e08','e11','f06','f08','f12']},
+];
+it.each(finalReceipts)('$batch consumes the exact approved receipt and same-ID on-demand derivatives',({batch,commit,receiptSHA,ids})=>{
+ const root=new URL('../art/sources/handdrawn-runtime-20261004-'+batch+'/',import.meta.url),bytes=readFileSync(new URL('manifest.json',root)),receipt=JSON.parse(bytes.toString('utf8'));
+ expect(createHash('sha256').update(bytes).digest('hex')).toBe(receiptSHA);expect(receipt.runtime_selection).toEqual(ids);
+ for(const id of ids){const asset=HANDDRAWN_ART.find(a=>a.id===id)!,source=receipt.assets.find((a:{id:string})=>a.id===id);
+  expect(asset).toMatchObject({category:'functional-card',sourceCommit:commit,sourceManifestSHA256:receiptSHA});
+  expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
+  expect(asset.outputs.map(o=>o.sha256)).toEqual(source.outputs.map((o:{sha256:string})=>o.sha256));
+  expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);expect(JOKER_ART.find(a=>a.id===id)?.detailOnDemand).toBe(true);
+  for(const o of source.outputs){expect(o.geometry.fit).toBe('contain');expect(o.geometry.entireSourceSampled).toBe(true);expect(o.geometry.noStretch).toBe(true);expect(o.geometry.sourceCropPixels).toEqual({left:0,top:0,width:source.sourceWidth,height:source.sourceHeight});
+   expect(readFileSync(new URL(o.path,root))).toEqual(readFileSync(new URL('../public/assets/handdrawn-p08/'+asset.outputs.find(p=>p.purpose===o.kind)!.path,import.meta.url)));
+  }
+ }
+ if(batch==='b10')for(const id of ['e10','e12']){const source=receipt.assets.find((a:{id:string})=>a.id===id);expect([source.sourceWidth,source.sourceHeight]).toEqual([1073,1466]);expect(source.outputs.map((o:{geometry:{contentRectPixels:{width:number;height:number}}})=>[o.geometry.contentRectPixels.width,o.geometry.contentRectPixels.height])).toEqual([[110,150],[527,720]]);}
+});
+it('preserves the original60 asset records and123 runtime bytes, including all six roles and JQK',()=>{
+ const prior=HANDDRAWN_ART.filter(a=>!finalReceipts.some(r=>r.ids.includes(a.id)));
+ expect(prior).toHaveLength(60);expect(createHash('sha256').update(JSON.stringify(prior)).digest('hex')).toBe('6ea3ed5a2054145ab25a812232cd8e391d4cfac67c64e6bff0ccf64ba1ddcad7');
+ expect(prior.reduce((n,a)=>n+a.outputs.length,0)).toBe(123);expect(prior.reduce((n,a)=>n+a.outputs.reduce((s,o)=>s+o.bytes,0),0)).toBe(3461406);
 });

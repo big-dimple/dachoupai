@@ -1,0 +1,32 @@
+{
+  "taskId": "P08",
+  "testedCommit": "8f677df03be3d642f205b07a1ff6504ae41415a7",
+  "runId": 37206337412,
+  "attempt": 1,
+  "jobId": 111448239702,
+  "status": "FAIL",
+  "command": "npm run verify:ci -- --scope=browser",
+  "passed": [
+    "build",
+    "chromium/desktop"
+  ],
+  "failure": {
+    "command": "node harness/screenshot.mjs --verify-smoke",
+    "file": "harness/screenshot.mjs",
+    "line": 63,
+    "operation": "Chromium mobile native offer tap followed by Cancel",
+    "reason": "Cancel button absent; locator.tap timed out at unchanged 30000ms",
+    "observed": {
+      "phase": "shop",
+      "commandSeq": 1,
+      "controller": "idle",
+      "playing": false,
+      "presenting": false,
+      "renderFps": 5.000134762111423,
+      "selectedIds": []
+    }
+  },
+  "sourceIndexHeadInvariant": true,
+  "cause": "Unconfirmed; source/UI/scoring/hand layout unchanged, no source-bundle CI substituted",
+  "localCanvas": "1981 frozen tests and desktop/mobile Canvas PASS; nine representative art checks PASS"
+}

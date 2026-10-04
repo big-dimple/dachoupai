@@ -1,0 +1,80 @@
+{
+  "taskId": "P08",
+  "testedCommit": "d8c7062b49fc4a3b7d0ca9face4392edbeb87bff",
+  "sourceFixCommit": "702bf1dfb48d8e5caaca1646323ca1acea13a37c",
+  "sourceTreeSHA": "43d89d64b2c25128a901228e316e338d93e68ebb",
+  "implementation": "PASS",
+  "scope": "ShopScene thumbnail completion/failure and manual retry update only the drawn face; native hit objects, active press, fixed geometry and domain state survive. No SceneView/input-clock/scoring/layout/fire changes.",
+  "targetedTests": {
+    "status": "PASS",
+    "count": 139,
+    "files": [
+      "joker-art-loading",
+      "detail-art",
+      "pointer-release-time",
+      "shop-layout",
+      "shop-result-feedback"
+    ],
+    "typecheck": "PASS",
+    "evidencePreservedFrom": "working tree identical to final ShopScene runtime implementation; only the standalone harness delivery was subsequently completed"
+  },
+  "controlledBrowser": {
+    "status": "PASS",
+    "buildCommit": "d8c7062b49fc4a3b7d0ca9face4392edbeb87bff",
+    "modified": false,
+    "evidence": "touch-browser.json",
+    "checks": [
+      "native touch survives loaded thumbnail",
+      "drag never becomes a tap",
+      "404 remains usable and explicit thumbnail retry succeeds",
+      "same hit identity and unchanged hit/frame bounds",
+      "no unopened HD",
+      "full run/RNG/save/resources unchanged"
+    ],
+    "image": "390-natural-shop.png",
+    "actualView": "PASS"
+  },
+  "browserGate": {
+    "status": "PASS",
+    "scope": "browser",
+    "testedCommit": "d8c7062b49fc4a3b7d0ca9face4392edbeb87bff",
+    "sourceIndexHeadInvariant": true,
+    "evidence": "touch-browser-gate.json",
+    "renderer": "Chromium software Canvas desktop/mobile; packaged launcher delegates to system Chromium with GPU paths disabled"
+  },
+  "priorInvalidGate": {
+    "status": "FAIL",
+    "evidence": "touch-browser-gate-initial-failed.json",
+    "reason": "Operator edited the standalone harness during the checker; both smoke profiles passed but source invariant failed. This report is retained and is not counted as PASS."
+  },
+  "remoteBeforeFix": {
+    "status": "FAIL",
+    "testedCommit": "8f677df03be3d642f205b07a1ff6504ae41415a7",
+    "runId": 37206337412,
+    "attempts": 2,
+    "failureLine": "harness/screenshot.mjs:63 Cancel locator after mobile offer tap",
+    "sameCause": "UNCONFIRMED; remote trace absent",
+    "evidence": [
+      "remote-ci-attempt1-failed.json",
+      "remote-ci-attempt2-failed.json"
+    ]
+  },
+  "localProvenRace": {
+    "status": "PROVEN",
+    "evidence": [
+      "touch-before-failed.json",
+      "touch-before-trace.json"
+    ],
+    "mechanism": "Thumbnail notification invokes full ShopScene.render → SceneView.clear → cancels the owning short native press; release no longer opens purchase details."
+  },
+  "remoteAfterFix": "PENDING_EXACT_REVIEW_HEAD_CI; final result reported separately",
+  "runtime": {
+    "files": 165,
+    "bytes": 4444474,
+    "prior123Unchanged": true,
+    "changedSinceResourceReview": false
+  },
+  "mainAdvance": "HELD_FOR_ROOT_COORDINATION",
+  "overallAesthetic": "IN_PROGRESS",
+  "physicalDevice": "OnePlus/realGPU/audio NOT_RUN"
+}

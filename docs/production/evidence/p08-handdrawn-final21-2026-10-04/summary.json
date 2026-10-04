@@ -1,0 +1,75 @@
+{
+  "taskId": "P08",
+  "testedCommit": "473c4b609d5378c4773b158764a6e7590c2059de",
+  "baseCommit": "6f470b63032537b63898a4a974d91872439bbf3f",
+  "assetCommits": [
+    "1da558691621e8c3972b3d5bbdeaf16a9eba47fa",
+    "b7feb390c55ed8f930d22d4897641ba0c405128d",
+    "a6dbecb0b0612777d7c960dd8de65c9a1c897acc"
+  ],
+  "sourceTreeSHA": "6b7c3ca1d48b4c4de51b32b984babc8b0b7fa14e",
+  "runtimeManifestSHA256": "733fc7760c66b1117adacd3abf76a9635cd9b801124432466f257190bc9f2aeb",
+  "implementation": "PASS",
+  "technical": {
+    "hashDecodePortable": "PASS",
+    "actualPixelView": "all42 native thumbnail/detail outputs",
+    "targetedTests": 149,
+    "type": "PASS",
+    "publicArtPrivacy": {
+      "filesScanned": 34,
+      "issues": 0,
+      "status": "PASS"
+    },
+    "browser": {
+      "status": "PASS",
+      "representativeIds": 9,
+      "fixtures": 2,
+      "renderer": "Chromium software Canvas",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "DPR": 1
+    },
+    "freeze": {
+      "status": "PASS",
+      "testedCommit": "f315af14ea276817fdfd240e2958bb1d9c9a9cdb",
+      "tests": 1981,
+      "files": 107,
+      "sourceIndexHeadInvariant": true,
+      "scope": "tests/content/type/build/Chromium software Canvas desktop+mobile smoke/plan",
+      "evidence": "docs/production/evidence/p08-handdrawn-final21-2026-10-04/freeze.json"
+    },
+    "docsArchiveInitial": {
+      "status": "FAIL",
+      "testedCommit": "d27d6468e337850ee884224763c48e13bc3af9a6",
+      "reason": "Raw freeze record lacks taskId required by the plan evidence schema; plan now points to the valid summary/coverage records, which retain the freeze link.",
+      "failedEvidence": "docs/production/evidence/p08-handdrawn-final21-2026-10-04/docs-archive-initial-failed.json"
+    },
+    "touchFollowup": {
+      "status": "PASS",
+      "testedCommit": "d8c7062b49fc4a3b7d0ca9face4392edbeb87bff",
+      "evidence": "docs/production/evidence/p08-handdrawn-final21-2026-10-04/touch-followup.json",
+      "remoteSameCause": "UNCONFIRMED",
+      "reviewCI": "PENDING_EXACT_NEW_HEAD"
+    }
+  },
+  "functionalCoverage": {
+    "new": 72,
+    "legacy": 0,
+    "mechanism": 0
+  },
+  "runtime": {
+    "files": 165,
+    "bytes": 4444474,
+    "newFiles": 42,
+    "newBytes": 983068,
+    "prior123Unchanged": true,
+    "priorRuntimeBytes": 3461406,
+    "prior60MetadataSHA256": "6ea3ed5a2054145ab25a812232cd8e391d4cfac67c64e6bff0ccf64ba1ddcad7"
+  },
+  "sourceParentMerged": false,
+  "mainAdvance": "HELD_FOR_ROOT_COORDINATION",
+  "independentAesthetic": "root independently viewed the original390 representative and reviewed72 same-ID/on-demand/isolated-fixture direction; accepted this bounded direction, not whole-game/device acceptance",
+  "targetDevice": "OnePlus/realGPU/audio NOT_RUN"
+}

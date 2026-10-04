@@ -1,0 +1,558 @@
+{
+  "schemaVersion": 1,
+  "batch": "handdrawn-runtime-20261004-b11",
+  "baseCommit": "6f470b63032537b63898a4a974d91872439bbf3f",
+  "sourceContentReference": {
+    "repository": "big-dimple/dachoupai",
+    "ref": "6f470b63032537b63898a4a974d91872439bbf3f",
+    "path": "src/content/r2-jokers.json"
+  },
+  "runtime_selection": [
+    "e08",
+    "e11",
+    "f06",
+    "f08",
+    "f12"
+  ],
+  "encoder": {
+    "format": "WEBP",
+    "quality": 82,
+    "method": 6,
+    "lossless": false,
+    "resize": "Pillow LANCZOS",
+    "Pillow": "12.3.0",
+    "libwebp": "1.6.0"
+  },
+  "containPolicy": {
+    "fit": "contain",
+    "sourceCrop": "entire original",
+    "backgroundHex": "#F3EADB",
+    "noStretch": true,
+    "noReconstruction": true,
+    "rounding": "Nearest integer-pixel fit inside the inset bounding box; no crop or intentional aspect-ratio change."
+  },
+  "assets": [
+    {
+      "id": "e08",
+      "name": "包场",
+      "sourceFilename": "e08-v1-original.png",
+      "sourceSHA256": "8a138dfc4628b07e6141eba8c8838fef7532ae5a8a9c1a0b4a2c163427ab00ef",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2471581,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/e08.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 3698,
+          "sha256": "baa4bd501fc860e2187ae3598b6b3392269430372a584d1ae118d56718667874",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/e08.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 47148,
+          "sha256": "c1a36271b2a95d47e2787657b57c2e898f8aaf3872977de1d1c9808e94119cbf",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "e11",
+      "name": "长期捧场",
+      "sourceFilename": "e11-v1-original.png",
+      "sourceSHA256": "93ad1bae4863f402d0410cfe44e1a8e04c9e425de950358f21978fe0ab45bae2",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2484175,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/e11.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 3390,
+          "sha256": "391168f70f179ef3b0e22d755f34797ef15384a8aaac12f00b27396606cce0bc",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/e11.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 39940,
+          "sha256": "8a1c098697de2169846760d7bf52e4f118cbda76e9b10ffaf4a074431158fa8f",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "f06",
+      "name": "一次性招牌",
+      "sourceFilename": "f06-v1-original.png",
+      "sourceSHA256": "b5179d21dc20f85875cf8d2c4d180c4fd0aca312a08224e6e7c117737bced5c7",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2278081,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/f06.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 1874,
+          "sha256": "85312c78e6a69257136b42241b9073092478ca14b67ac637a77dfe5759f461db",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/f06.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 23594,
+          "sha256": "e41624e4ab2b9026d8ee0d2051a38e87aa7d704fd265798dbd7406de33b99143",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "f08",
+      "name": "试试手气",
+      "sourceFilename": "f08-v1-original.png",
+      "sourceSHA256": "615bef9ce76883f4cb879bc6e144a046f667d8ec3f3a7f974b1250973cd94497",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2493899,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/f08.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 3816,
+          "sha256": "fc57ab7bc2b394f05da6c9296e6f3034b4807b4b8b8f72b51cb08e4eddf5fff6",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/f08.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 46506,
+          "sha256": "3342bfc6f02531b8d65195351d9762c1a8c55c0c23f32757439db371b5a6e5db",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "f12",
+      "name": "真正的压轴",
+      "sourceFilename": "f12-v1-original.png",
+      "sourceSHA256": "94b5e10f78b3b619eeaeef4de8cb898a41ad1300845022dd835158ed558aab2d",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2430508,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/f12.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 3960,
+          "sha256": "6527251cbe7b2434658f3a7c3482088d2cbc562e84107d8c7e3046a7943d9f41",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/f12.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 50050,
+          "sha256": "cbeb981eb1b72670b21ff97b0aa3b55e7ec04362b1b2587480f0a3900c6dd994",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "runtimeFiles": 10,
+    "runtimeBytes": 223976,
+    "thumbnailBytes": 16738,
+    "detailBytes": 207238,
+    "sourcePngBytes": 12158244
+  }
+}

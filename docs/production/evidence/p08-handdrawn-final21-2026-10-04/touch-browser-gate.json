@@ -1,0 +1,48 @@
+{
+  "scope": "browser",
+  "testedCommit": "d8c7062b49fc4a3b7d0ca9face4392edbeb87bff",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "d927d93c0fd43539000712b5ab70e723cca232b8c8343176d8455e699e62b23a",
+    "index": "06ffe2440a587fb0afb98e7732bd74796fdfe8a06300e4f90cb4c1251b356344",
+    "head": "d8c7062b49fc4a3b7d0ca9face4392edbeb87bff",
+    "branch": "refs/heads/feat/p08-handdrawn-final21-20261004"
+  },
+  "after": {
+    "source": "d927d93c0fd43539000712b5ab70e723cca232b8c8343176d8455e699e62b23a",
+    "index": "06ffe2440a587fb0afb98e7732bd74796fdfe8a06300e4f90cb4c1251b356344",
+    "head": "d8c7062b49fc4a3b7d0ca9face4392edbeb87bff",
+    "branch": "refs/heads/feat/p08-handdrawn-final21-20261004"
+  },
+  "steps": [
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 14784
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 24649
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
