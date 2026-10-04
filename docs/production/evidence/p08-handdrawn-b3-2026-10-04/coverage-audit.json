@@ -1,0 +1,648 @@
+{
+  "taskId": "A03/P08",
+  "auditCommit": "76557f24ed646f7cd8012c407d55e4e3ef347811",
+  "mode": "READ_ONLY source/registry/path audit; no new image generation or gameplay changes",
+  "baselineCounts": {
+    "new": 11,
+    "legacy": 23,
+    "mechanism": 38
+  },
+  "candidateAfterApprovedBatch2": {
+    "new": 13,
+    "legacy": 22,
+    "mechanism": 37
+  },
+  "rows": [
+    {
+      "id": "pengci",
+      "name": "碰瓷",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-pengci",
+      "paths": [
+        "assets/jokers-p07/pengci.webp",
+        "assets/jokers-p07/pengci-detail.webp"
+      ]
+    },
+    {
+      "id": "mantangcai",
+      "name": "满堂彩",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-mantangcai",
+      "paths": [
+        "assets/jokers-p07/mantangcai.webp",
+        "assets/jokers-p07/mantangcai-detail.webp"
+      ]
+    },
+    {
+      "id": "tiesuanpan",
+      "name": "铁算盘",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-tiesuanpan",
+      "paths": [
+        "assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+        "assets/handdrawn-p08/cards/tiesuanpan.detail.webp"
+      ]
+    },
+    {
+      "id": "huimaqiang",
+      "name": "回马枪",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-huimaqiang",
+      "paths": [
+        "assets/jokers-p07/huimaqiang.webp",
+        "assets/jokers-p07/huimaqiang-detail.webp"
+      ]
+    },
+    {
+      "id": "jiedongfeng",
+      "name": "借东风",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-jiedongfeng",
+      "paths": [
+        "assets/jokers-p07/jiedongfeng.webp",
+        "assets/jokers-p07/jiedongfeng-detail.webp"
+      ]
+    },
+    {
+      "id": "a03",
+      "name": "一束光",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-a03",
+      "paths": [
+        "assets/jokers-p07/a03.webp",
+        "assets/jokers-p07/a03-detail.webp"
+      ]
+    },
+    {
+      "id": "a05",
+      "name": "熟面孔",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-a05",
+      "paths": [
+        "assets/jokers-p07/a05.webp",
+        "assets/jokers-p07/a05-detail.webp"
+      ]
+    },
+    {
+      "id": "b02",
+      "name": "对上眼",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-b02",
+      "paths": [
+        "assets/jokers-p07/b02.webp",
+        "assets/jokers-p07/b02-detail.webp"
+      ]
+    },
+    {
+      "id": "b03",
+      "name": "老搭档",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-b03",
+      "paths": [
+        "assets/jokers-p07/b03.webp",
+        "assets/jokers-p07/b03-detail.webp"
+      ]
+    },
+    {
+      "id": "b04",
+      "name": "一唱一和",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-b04",
+      "paths": [
+        "assets/jokers-p07/b04.webp",
+        "assets/jokers-p07/b04-detail.webp"
+      ]
+    },
+    {
+      "id": "c02",
+      "name": "红线",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-c02",
+      "paths": [
+        "assets/jokers-p07/c02.webp",
+        "assets/jokers-p07/c02-detail.webp"
+      ]
+    },
+    {
+      "id": "c04",
+      "name": "搭台阶",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-c04",
+      "paths": [
+        "assets/jokers-p07/c04.webp",
+        "assets/jokers-p07/c04-detail.webp"
+      ]
+    },
+    {
+      "id": "c06",
+      "name": "越染越深",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-c06",
+      "paths": [
+        "assets/jokers-p07/c06.webp",
+        "assets/jokers-p07/c06-detail.webp"
+      ]
+    },
+    {
+      "id": "d01",
+      "name": "候场席",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-d01",
+      "paths": [
+        "assets/jokers-p07/d01.webp",
+        "assets/jokers-p07/d01-detail.webp"
+      ]
+    },
+    {
+      "id": "d03",
+      "name": "等得住",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-d03",
+      "paths": [
+        "assets/jokers-p07/d03.webp",
+        "assets/jokers-p07/d03-detail.webp"
+      ]
+    },
+    {
+      "id": "d05",
+      "name": "彩排",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-d05",
+      "paths": [
+        "assets/jokers-p07/d05.webp",
+        "assets/jokers-p07/d05-detail.webp"
+      ]
+    },
+    {
+      "id": "d10",
+      "name": "空位有价",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-d10",
+      "paths": [
+        "assets/jokers-p07/d10.webp",
+        "assets/jokers-p07/d10-detail.webp"
+      ]
+    },
+    {
+      "id": "e01",
+      "name": "小费盒",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-e01",
+      "paths": [
+        "assets/jokers-p07/e01.webp",
+        "assets/jokers-p07/e01-detail.webp"
+      ]
+    },
+    {
+      "id": "e03",
+      "name": "家底",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-e03",
+      "paths": [
+        "assets/jokers-p07/e03.webp",
+        "assets/jokers-p07/e03-detail.webp"
+      ]
+    },
+    {
+      "id": "e05",
+      "name": "置办行头",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-e05",
+      "paths": [
+        "assets/jokers-p07/e05.webp",
+        "assets/jokers-p07/e05-detail.webp"
+      ]
+    },
+    {
+      "id": "e08",
+      "name": "包场",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-e08",
+      "paths": [
+        "assets/jokers-p07/e08.webp",
+        "assets/jokers-p07/e08-detail.webp"
+      ]
+    },
+    {
+      "id": "f02",
+      "name": "最后一句",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-f02",
+      "paths": [
+        "assets/jokers-p07/f02.webp",
+        "assets/jokers-p07/f02-detail.webp"
+      ]
+    },
+    {
+      "id": "f03",
+      "name": "开门见喜",
+      "coverage": "legacy-illustration",
+      "key": "p07-joker-f03",
+      "paths": [
+        "assets/jokers-p07/f03.webp",
+        "assets/jokers-p07/f03-detail.webp"
+      ]
+    },
+    {
+      "id": "f09",
+      "name": "不换词",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-f09",
+      "paths": [
+        "assets/handdrawn-p08/cards/f09.thumbnail.webp",
+        "assets/handdrawn-p08/cards/f09.detail.webp"
+      ]
+    },
+    {
+      "id": "a04",
+      "name": "小口袋",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "a06",
+      "name": "独家戏",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "a07",
+      "name": "偷闲",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-a07",
+      "paths": [
+        "assets/handdrawn-p08/cards/a07.thumbnail.webp",
+        "assets/handdrawn-p08/cards/a07.detail.webp"
+      ]
+    },
+    {
+      "id": "a08",
+      "name": "小人物",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-a08",
+      "paths": [
+        "assets/handdrawn-p08/cards/a08.thumbnail.webp",
+        "assets/handdrawn-p08/cards/a08.detail.webp"
+      ]
+    },
+    {
+      "id": "b05",
+      "name": "合唱班",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "b06",
+      "name": "再说一遍",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "b07",
+      "name": "人人有份",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "b08",
+      "name": "对半分",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "c03",
+      "name": "蓝墨",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-c03",
+      "paths": [
+        "assets/handdrawn-p08/cards/c03.thumbnail.webp",
+        "assets/handdrawn-p08/cards/c03.detail.webp"
+      ]
+    },
+    {
+      "id": "c05",
+      "name": "换布景",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "c07",
+      "name": "拖个尾音",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "c08",
+      "name": "少一级",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-c08",
+      "paths": [
+        "assets/handdrawn-p08/cards/c08.thumbnail.webp",
+        "assets/handdrawn-p08/cards/c08.detail.webp"
+      ]
+    },
+    {
+      "id": "d02",
+      "name": "小凳子",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-d02",
+      "paths": [
+        "assets/handdrawn-p08/cards/d02.thumbnail.webp",
+        "assets/handdrawn-p08/cards/d02.detail.webp"
+      ]
+    },
+    {
+      "id": "d04",
+      "name": "递个眼色",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "d06",
+      "name": "搬张椅子",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "d07",
+      "name": "镜头不空",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-d07",
+      "paths": [
+        "assets/handdrawn-p08/cards/d07.thumbnail.webp",
+        "assets/handdrawn-p08/cards/d07.detail.webp"
+      ]
+    },
+    {
+      "id": "e02",
+      "name": "熟客券",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-e02",
+      "paths": [
+        "assets/handdrawn-p08/cards/e02.thumbnail.webp",
+        "assets/handdrawn-p08/cards/e02.detail.webp"
+      ]
+    },
+    {
+      "id": "e04",
+      "name": "滚个零头",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "e06",
+      "name": "旧物新用",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "e07",
+      "name": "加班费",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-e07",
+      "paths": [
+        "assets/handdrawn-p08/cards/e07.thumbnail.webp",
+        "assets/handdrawn-p08/cards/e07.detail.webp"
+      ]
+    },
+    {
+      "id": "f04",
+      "name": "兜比脸净",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-f04",
+      "paths": [
+        "assets/handdrawn-p08/cards/f04.thumbnail.webp",
+        "assets/handdrawn-p08/cards/f04.detail.webp"
+      ]
+    },
+    {
+      "id": "f05",
+      "name": "越说越顺",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "f06",
+      "name": "一次性招牌",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "f07",
+      "name": "安全网",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-f07",
+      "paths": [
+        "assets/handdrawn-p08/cards/f07.thumbnail.webp",
+        "assets/handdrawn-p08/cards/f07.detail.webp"
+      ]
+    },
+    {
+      "id": "a09",
+      "name": "短节目",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "a10",
+      "name": "后台眼神",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "a11",
+      "name": "返个场",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "a12",
+      "name": "不铺张",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "b09",
+      "name": "四座皆惊",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "b10",
+      "name": "练对子",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "b11",
+      "name": "候场同伴",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "b12",
+      "name": "救个场",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "c09",
+      "name": "少一块布",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-c09",
+      "paths": [
+        "assets/handdrawn-p08/cards/c09.thumbnail.webp",
+        "assets/handdrawn-p08/cards/c09.detail.webp"
+      ]
+    },
+    {
+      "id": "c10",
+      "name": "压住书页",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "c11",
+      "name": "换轨",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "c12",
+      "name": "换一身",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "d08",
+      "name": "留声机",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "d09",
+      "name": "回声越来越近",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "d11",
+      "name": "三拍子",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "d12",
+      "name": "留点悬念",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "e09",
+      "name": "储物箱",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-e09",
+      "paths": [
+        "assets/handdrawn-p08/cards/e09.thumbnail.webp",
+        "assets/handdrawn-p08/cards/e09.detail.webp"
+      ]
+    },
+    {
+      "id": "e10",
+      "name": "赠票",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "e11",
+      "name": "长期捧场",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "e12",
+      "name": "淘旧摊",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "f08",
+      "name": "试试手气",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "f10",
+      "name": "冷场救火",
+      "coverage": "reviewed-handdrawn",
+      "key": "p08-joker-f10",
+      "paths": [
+        "assets/handdrawn-p08/cards/f10.thumbnail.webp",
+        "assets/handdrawn-p08/cards/f10.detail.webp"
+      ]
+    },
+    {
+      "id": "f11",
+      "name": "越挫越会",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    },
+    {
+      "id": "f12",
+      "name": "真正的压轴",
+      "coverage": "program-mechanism-fallback",
+      "key": null,
+      "paths": []
+    }
+  ],
+  "entryPoints": {
+    "registry": "src/game/jokerArt.ts",
+    "receiptManifest": "public/assets/handdrawn-p08/manifest.json",
+    "table": "src/game/GameScene.ts renderJokers / jokerMechanism / inspectJoker / attachJokerFallback",
+    "shop": "src/game/ShopScene.ts drawJokerPicture / jokerPortrait / attachJokerFallback",
+    "sharedFallback": "src/game/JokerMotif.ts drawJokerMotif",
+    "loading": "src/game/JokerArtLoading.ts registered / on-demand / failed retry",
+    "conditionEntry": "src/game/JokerMemory.ts short / selectionCopy fullRules / HandRuleReference"
+  },
+  "nextIds": [],
+  "candidateAfterApprovedBatch3": {
+    "new": 15,
+    "legacy": 22,
+    "mechanism": 35
+  },
+  "completion": "Approved exact c08/c09 consumed as this batch; audit itself remains read-only, no new generation."
+}

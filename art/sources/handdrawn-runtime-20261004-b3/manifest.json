@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "batch": "handdrawn-runtime-20261004-b3",
+  "scope": "Approved c08 four-rung and c09 hand-drawn source conversion only; no game mechanics changes.",
+  "baseCommit": "89339f08847ea5b9a0d93444f5d05decad0054e4",
+  "runtime_selection": [
+    "c08",
+    "c09"
+  ],
+  "encoder": {
+    "format": "WEBP",
+    "quality": 82,
+    "method": 6,
+    "lossless": false,
+    "resize": "Pillow LANCZOS",
+    "Pillow": "12.3.0",
+    "libwebp": "1.6.0"
+  },
+  "containPolicy": {
+    "fit": "contain",
+    "sourceCrop": "entire original",
+    "paddingFractionEachAxis": 0.03125,
+    "backgroundHex": "#F3EADB",
+    "noStretch": true,
+    "noReconstruction": true
+  },
+  "sourcePreservation": "Source SHA256 verified before and after conversion; originals never modified or re-encoded. Originals are retained separately and omitted from this runtime bundle.",
+  "loadingStrategy": "Visible thumbnail use only; details on demand. Do not preload original PNGs.",
+  "visualQa": {
+    "sourcePixelReview": "PASS: exact approved sources reviewed before conversion",
+    "runtimePixelReview": "PASS: viewed both native 128x160 thumbnails and both 615x768 detail derivatives. Distinct faces, complete hands, c08 four ladder rungs with middle gap, and c09 cut-away cloth corner remain readable; full source contained, no extra crop.",
+    "limits": "Derivative-pixel review only, not live integration or physical-device acceptance."
+  },
+  "assets": [
+    {
+      "id": "c08",
+      "sourceFilename": "c08-four-rung-candidate.png",
+      "sourceSHA256": "b8812aa031a8079bea91d3c0a86bd725594eec1d24480de7bfbe79bf446bace4",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2180691,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/c08.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 3998,
+          "sha256": "8a97877074dae41df8f2c14ab14f1ea9f639141446d780fd8329c2dde8d7c5bd",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/c08.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 41068,
+          "sha256": "05271974a6fcdc2d12cde60d1d99567c98c818f9823ec55317fdd4c5239594d6",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "c09",
+      "sourceFilename": "c09-candidate-original.png",
+      "sourceSHA256": "a52593646c08c2c93370165865c3f855f20c5c9b4ec4b54bc0f1648c0392109f",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2484964,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/c09.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 3382,
+          "sha256": "c4fb818329b70941da50a3e822958a6be7b048ae666b9d41f674d30a10a06292",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/c09.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 43458,
+          "sha256": "3d5716b1d7d9f9a6f5206cee38be98ba810201590acbdeb0f9729da984e23a38",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "runtimeFiles": 4,
+    "runtimeBytes": 91906,
+    "thumbnailBytes": 7380,
+    "detailBytes": 84526,
+    "sourcePngBytes": 4665655
+  }
+}

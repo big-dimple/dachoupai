@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "originalArtworkCount": 22,
-  "runtimeFileCount": 47,
-  "runtimeBytes": 1363886,
+  "originalArtworkCount": 24,
+  "runtimeFileCount": 51,
+  "runtimeBytes": 1455792,
   "sourceCommit": "c618cee93089bb2e556f16567709b0ea23abbcb9",
   "assets": [
     {
@@ -516,10 +516,59 @@
           "sha256": "ad27d85553c6eeed3dd845eee20b42736939916c152b041cd5d70b281c7f8674"
         }
       ]
+    },
+    {
+      "id": "c08",
+      "category": "functional-card",
+      "sourceCommit": "b0394efd921fc05d936ea3519d2b401a1cba9abd",
+      "sourceManifestSHA256": "b39553ee11e7f774952d79f8fd10f149e429fb0fd0636a1f61cd7155ebf96bd8",
+      "outputs": [
+        {
+          "purpose": "thumbnail",
+          "path": "cards/c08.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "bytes": 3998,
+          "sha256": "8a97877074dae41df8f2c14ab14f1ea9f639141446d780fd8329c2dde8d7c5bd"
+        },
+        {
+          "purpose": "detail",
+          "path": "cards/c08.detail.webp",
+          "width": 615,
+          "height": 768,
+          "bytes": 41068,
+          "sha256": "05271974a6fcdc2d12cde60d1d99567c98c818f9823ec55317fdd4c5239594d6"
+        }
+      ]
+    },
+    {
+      "id": "c09",
+      "category": "functional-card",
+      "sourceCommit": "b0394efd921fc05d936ea3519d2b401a1cba9abd",
+      "sourceManifestSHA256": "b39553ee11e7f774952d79f8fd10f149e429fb0fd0636a1f61cd7155ebf96bd8",
+      "outputs": [
+        {
+          "purpose": "thumbnail",
+          "path": "cards/c09.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "bytes": 3382,
+          "sha256": "c4fb818329b70941da50a3e822958a6be7b048ae666b9d41f674d30a10a06292"
+        },
+        {
+          "purpose": "detail",
+          "path": "cards/c09.detail.webp",
+          "width": 615,
+          "height": 768,
+          "bytes": 43458,
+          "sha256": "3d5716b1d7d9f9a6f5206cee38be98ba810201590acbdeb0f9729da984e23a38"
+        }
+      ]
     }
   ],
   "sourceCommits": [
     "c618cee93089bb2e556f16567709b0ea23abbcb9",
-    "3284505ad86e4e216343aa873719d20524f9a4ce"
+    "3284505ad86e4e216343aa873719d20524f9a4ce",
+    "b0394efd921fc05d936ea3519d2b401a1cba9abd"
   ]
 }

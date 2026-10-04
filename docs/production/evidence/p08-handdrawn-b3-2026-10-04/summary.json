@@ -1,0 +1,54 @@
+{
+  "taskId": "P08",
+  "testedCommit": "76557f24ed646f7cd8012c407d55e4e3ef347811",
+  "baseline": "76557f24ed646f7cd8012c407d55e4e3ef347811",
+  "assetCommit": "b0394efd921fc05d936ea3519d2b401a1cba9abd",
+  "sourceManifestSHA256": "b39553ee11e7f774952d79f8fd10f149e429fb0fd0636a1f61cd7155ebf96bd8",
+  "srcFingerprint": "bc74f100461bdfa480fa8af6d854ddc78a2fa6233e9370a7af6ff81f29b96166",
+  "runtimeManifestSHA256": "70b14dbb065a36ea06c227edaf1c45bac5b3436a9d80b1a3ce3cf53e3cd40409",
+  "newBatch": {
+    "files": 4,
+    "bytes": 91906,
+    "ids": [
+      "c08",
+      "c09"
+    ],
+    "sourceC08Filename": "c08-four-rung-candidate.png",
+    "sourceC08SHA256": "b8812aa031a8079bea91d3c0a86bd725594eec1d24480de7bfbe79bf446bace4",
+    "consumerVerify": "PASS repo and outside cwd; manifest/each4hash/size",
+    "consumerPixelView": "both thumbnails128x160 and details615x768 actually viewed"
+  },
+  "totalRuntime": {
+    "files": 51,
+    "bytes": 1455792,
+    "originalArtworks": 24,
+    "functionalNew": 15,
+    "functionalLegacy": 22,
+    "functionalMechanism": 35
+  },
+  "checks": {
+    "affectedTests": "59 passed/5files",
+    "type": "PASS",
+    "browser": "PASS Chromium151 Canvas390x740/DPR1/safe0/base subdir; native two textures, HD on demand exact hash/cache/404 fixed geometry retry, whole run/RNG/save invariant, ordinary four-card flush and intact rule exception",
+    "freeze": "PENDING on committed candidate"
+  },
+  "states": {
+    "implementation": "COMPLETE approved c08/c09 registration only",
+    "technical": "targeted PASS; final freeze/main/exactCI pending",
+    "independentAesthetic": "root source/runtime pixel approval; consumer scene engineering view; scene independent review NOT_RUN",
+    "targetDevice": "OnePlus/hardwareGPU/audio NOT_RUN"
+  },
+  "reports": {
+    "browser": "browser.json",
+    "coverage": "coverage-audit.json"
+  },
+  "priorRelease": {
+    "main": "76557f24ed646f7cd8012c407d55e4e3ef347811",
+    "CI": 37174251434,
+    "CIStatus": "completed/success",
+    "CIUpdatedUTC": "2026-10-04T03:36:05Z",
+    "productionDocs": 37174251527,
+    "docsStatus": "completed/success"
+  },
+  "fire": "approval pending; no consumption or alternative retry"
+}
