@@ -3,14 +3,14 @@
   "boundedTechnical": "PASS",
   "independentWholeAesthetics": "PENDING",
   "targetDevice": "NOT_RUN",
-  "publishedBase": "6f470b63032537b63898a4a974d91872439bbf3f",
+  "publishedBase": "7b8959d910cd97e46defbaca8ee5adeadf057e86",
   "assetDeliveryCommit": "11ae7a464fdcf54c4e338da9171d827265742e3c",
-  "sourceFingerprint": "6c7be55b42f46c6e30873ca65018c92901fbfe94a3b1995249508c390e90f2d0",
+  "sourceFingerprint": "a56a38d037b52ea046bb034a3bcbf656ec8b157a522679d89c9c3c7ae2bf61a6",
   "build": {
     "version": "C03",
-    "revision": "4266914f1793ed76ec42aac11b80f79cd4685407",
+    "revision": "9a25de17254387d11477165b4c959097e328a2a4",
     "modified": true,
-    "builtAt": "2026-10-04T14:27:51.845Z"
+    "builtAt": "2026-10-04T14:35:14.362Z"
   },
   "runtimeManifestSHA256": "d37e1c85cab533bf4c9b30f01a5022ca2a4ba9c856188b11a9c0474ac3b8c820",
   "viewport": {
@@ -201,13 +201,13 @@
     }
   ],
   "unitTests": {
-    "files": 5,
-    "tests": 45,
+    "files": 7,
+    "tests": 148,
     "status": "PASS"
   },
   "typeBuild": "PASS",
   "contentPrivacy": {
-    "filesScanned": 28,
+    "filesScanned": 37,
     "status": "PASS"
   },
   "sourceArtConsumer": {
@@ -240,7 +240,7 @@
             "goods-motif/T12"
           ],
           "active": true,
-          "renders": 2
+          "renders": 1
         },
         "retry": {
           "shown": [
@@ -260,7 +260,7 @@
             "goods-motif/T12"
           ],
           "active": true,
-          "renders": 2
+          "renders": 1
         },
         "retry": {
           "shown": [
@@ -276,10 +276,12 @@
     ],
     "observation": "Real 404/bad-WebP fetch+decode callbacks; no redraw before first holder observation, manual failed retry preserves actual image and hit identities with unchanged render count.",
     "nativeInputFinalSource": [
-      "native down → thumbnail arrival → up opens the correct detail; exact hit identity retained during arrival",
-      "native movement cancellation survives thumbnail arrival; release opens nothing",
-      "closed dialog stays closed; late thumb paints only the current picture holder; canceled HD cannot mutate removed image"
+      "cross old-Joker + tool callbacks: native down → thumbnail arrival → up opens the correct detail; exact hit identity retained during arrival",
+      "cross old-Joker + tool callbacks: native movement cancellation survives thumbnail arrival; release opens nothing",
+      "cross old-Joker + tool callbacks: closed dialog stays closed; late thumb paints only the current picture holder; canceled HD cannot mutate removed image"
     ]
   },
-  "crossBranchJokerCallbackIntersection": "NOT_RUN until parent merges the independent Joker-only picture refresh"
+  "crossBranchJokerCallbackIntersection": "PASS: delayed original Joker thumbnails and tool thumbnail released together after shelf switch during native down/up, movement cancellation or after dialog close",
+  "originalReviewBase": "6f470b63032537b63898a4a974d91872439bbf3f",
+  "protectedMainInvariant": "72 functional registry and165 runtime4444474B from published main unchanged; tool/item sample registry separate"
 }
