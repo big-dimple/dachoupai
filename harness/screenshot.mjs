@@ -113,8 +113,11 @@ try {
     for(const name of ['action/sort-rank','action/sort-suit']){
       const before=await state(page);await tapUI(page,'game',name,touch);await next(page,before.commandSeq);const after=await state(page);
       assert.deepEqual(after.rng,before.rng);assert.deepEqual(after.stage,before.stage);
-      assert.ok(await page.evaluate(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),chosen),'sorting keeps selection');
+      assert.ok(await page.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return s.selectedIds.size===0&&!s.candidateGhost&&!s.candidateUndo;}),'sorting returns all selected cards and ends old candidate state');
     }
+    await ready(page);
+    await tapUI(page,'game','card/'+chosen,touch);
+    await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),chosen);
     await ready(page);const beforeDiscard=await state(page);assert.equal((await point(page,'game','action/discard')).enabled,true,'selected cards permit discard');
     if(process.env.SMOKE_FEEDBACK==='1'&&engine==='chromium'&&name==='mobile'){
       const p=await point(page,'game','action/discard'),cdp=await context.newCDPSession(page);

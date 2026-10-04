@@ -1,0 +1,142 @@
+{
+  "taskId": "P08",
+  "testedCommit": "bf01aa5738368843f4a79657cbcbfe3f319f2215",
+  "baseCommit": "3938cee365994910d7d79f62fc91701273f2efe0",
+  "sourceTreeSHA": "76bc04b1b7756691feeac69c53f09576dc720633",
+  "implementation": "PASS",
+  "runtimeChanges": [
+    "src/game/GameScene.ts"
+  ],
+  "scope": "During await-input, explicit rank/suit sort ends hand gestures, clears manual/type-switch/adviser selections and candidate ghost/undo, returns every card to its ordinary seat, then submits the existing single ReorderHand. Same comparator, ID focus and geometry. No automatic play/discard, rule/RNG/save-format/art/ShopScene/flame/goods-loader change.",
+  "tests": {
+    "status": "PASS",
+    "count": 101,
+    "files": [
+      "tests/hand-sort-selection.test.ts",
+      "tests/hand-selection-input.test.ts",
+      "tests/hand-selection-gesture.test.ts",
+      "tests/r2-hand-candidates.test.ts",
+      "tests/r2-selection-facts.test.ts"
+    ],
+    "typecheck": "PASS",
+    "newTests": 9,
+    "matchedSourceAndTestBlobs": true,
+    "oldBehavior": {
+      "status": "FAIL",
+      "passed": 1,
+      "failed": 7,
+      "tests": 8,
+      "baseCommit": "3938cee365994910d7d79f62fc91701273f2efe0",
+      "reason": "Old sort retains manual/adviser selection and obsolete candidate state, and still invokes reorder for busy/presentation/other-phase calls. The later declined-command test is additional final coverage."
+    },
+    "checks": [
+      "return occurs before one existing reorder command",
+      "cancelled gesture snapshot cannot restore an old selection",
+      "candidate ghost/undo end for either sort mode",
+      "empty/repeated sort stays empty",
+      "declined reorder cannot claim sort success",
+      "busy/presentation/other-phase guard preserves input and candidate state"
+    ]
+  },
+  "browser": {
+    "status": "PASS",
+    "testedCommit": "bf01aa5738368843f4a79657cbcbfe3f319f2215",
+    "modified": false,
+    "evidence": "browser.json",
+    "screenshot": "390-returned-hand.png",
+    "actualView": "PASS",
+    "renderer": "Chromium software Canvas",
+    "viewport": {
+      "width": 390,
+      "height": 740
+    },
+    "DPR": 1,
+    "input": "native touchscreen.tap / DOM tap; read-only Phaser observers",
+    "fixture": "Validator-approved native checkpoint import: amo, c08/c09/f09 and known nine-card hand. Controlled input coverage, not natural acquisition.",
+    "sorts": [
+      {
+        "mode": "rank",
+        "label": "manual two-card selection",
+        "beforeSeq": 3,
+        "afterSeq": 4,
+        "selectedBefore": [
+          "spades-7",
+          "hearts-7"
+        ],
+        "selectedAfter": [],
+        "raisedCards": 0
+      },
+      {
+        "mode": "rank",
+        "label": "repeated rank with empty selection",
+        "beforeSeq": 4,
+        "afterSeq": 5,
+        "selectedBefore": [],
+        "selectedAfter": [],
+        "raisedCards": 0
+      },
+      {
+        "mode": "suit",
+        "label": "empty selection, suit order",
+        "beforeSeq": 5,
+        "afterSeq": 6,
+        "selectedBefore": [],
+        "selectedAfter": [],
+        "raisedCards": 0
+      },
+      {
+        "mode": "suit",
+        "label": "explicit adviser-applied three-kind",
+        "beforeSeq": 6,
+        "afterSeq": 7,
+        "selectedBefore": [
+          "spades-7",
+          "hearts-7",
+          "clubs-7"
+        ],
+        "selectedAfter": [],
+        "raisedCards": 0
+      }
+    ],
+    "sourceIndexHeadUnchanged": true,
+    "settlement": {
+      "observedFrames": 271,
+      "presentationFrames": 270,
+      "anySortEnabled": false,
+      "nativeDisabledTaps": "no new command / no selection or full-state change"
+    }
+  },
+  "assets": {
+    "status": "UNCHANGED_FROM_MAIN3938cee",
+    "publicAssetsTreeSHA": "c77b16c711c1e6e38030274cb1bc97f0896bc984",
+    "sourceAssetsTreeSHA": "b3c5fd1ea17afd0a6a774decae466a03fdfe5f3c",
+    "reviewedJokers": 72,
+    "approvedToolSamples": 4,
+    "replacementImages": 0
+  },
+  "invariants": {
+    "domainTreeSHA": "8e3423193ecb4920e79b87f2314da97a04438c99",
+    "applicationTreeSHA": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+    "status": "UNCHANGED_FROM_MAIN3938cee"
+  },
+  "previousThemeRelease": {
+    "mainCommit": "3938cee365994910d7d79f62fc91701273f2efe0",
+    "pushCompletedUTC": "2026-10-04T15:16:39Z",
+    "CI": {
+      "id": 37212391288,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "productionDocs": {
+      "id": 37212391290,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "note": "These checks cover the prior theme release, not this new sort code."
+  },
+  "manualFullFreeze": "NOT_RUN; affected unit/type + one bounded native Canvas fixture as requested",
+  "mainAtReview": "3938cee365994910d7d79f62fc91701273f2efe0",
+  "mainAdvance": "HELD_FOR_ROOT_COORDINATION",
+  "physicalDevice": "OnePlus/realGPU/audio/deployment NOT_RUN",
+  "overallAesthetic": "NOT_ACCEPTED"
+}
