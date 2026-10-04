@@ -1,0 +1,188 @@
+{
+  "scope": "Mechanical archival copies of retained actual files, with only listed privacy placeholders. No script was rerun to create new gameplay or replay evidence. Hashes are computed at archival time, not immutable execution-time signatures.",
+  "testedSource": "7b78777347dd854f5759870c7934b8c28279889e",
+  "priorEvidenceCommit": "e8991940ad69b36cbbbdc325352226cecbb096b8",
+  "files": [
+    {
+      "role": "observer",
+      "retainedLocator": "shots/p08-natural-run/observe.mjs",
+      "publishedFile": "scripts/observe.mjs.txt",
+      "originalBytes": 20608,
+      "originalSHA256": "1ea7c2bdc9a45727baa2be9624b9441e6f84298c567107fa883633ef05f34aa3",
+      "publishedBytes": 20620,
+      "publishedSHA256": "a7ed556c97b72b042e4eab204d7205697c00046f50a9331f92313af785440d5c",
+      "currentFileMtimeUTC": "2026-10-04T19:24:02.617248+00:00",
+      "redactions": [
+        {
+          "description": "Local preview port literal",
+          "placeholder": "port=\"<PREVIEW_PORT>\"",
+          "occurrences": 1
+        }
+      ],
+      "scope": "Retained disk file after in-run observer corrections; startup immutable bytes were not retained. The action function was subsequently read by the retained binding script."
+    },
+    {
+      "role": "native-extension",
+      "retainedLocator": "shots/p08-natural-run/native-extension.mjs",
+      "publishedFile": "scripts/native-extension.mjs.txt",
+      "originalBytes": 7699,
+      "originalSHA256": "938bd5cec9bfa74b72b78c1b10f44fb8a2dcc20df5550393a289aedd25e7efee",
+      "publishedBytes": 7707,
+      "publishedSHA256": "a4ea8e56e7347c89041d0141b11150b86a64dd04df0f3bdfabadffd223ddcf39",
+      "currentFileMtimeUTC": "2026-10-04T20:00:32.143286+00:00",
+      "redactions": [
+        {
+          "description": "Private absolute worktree prefix",
+          "placeholder": "<WORKTREE>",
+          "occurrences": 1
+        },
+        {
+          "description": "Absolute temporary-directory prefix",
+          "placeholder": "<TEMP_DIR>/",
+          "occurrences": 1
+        },
+        {
+          "description": "Local resume metadata PTYsession",
+          "placeholder": "PTYsession:\"<REDACTED>\"",
+          "occurrences": 1
+        },
+        {
+          "description": "Local resume metadata nodePID",
+          "placeholder": "nodePID:\"<REDACTED>\"",
+          "occurrences": 1
+        },
+        {
+          "description": "Local resume metadata previewPort",
+          "placeholder": "previewPort:\"<REDACTED>\"",
+          "occurrences": 1
+        },
+        {
+          "description": "Local resume metadata inspectorPort",
+          "placeholder": "inspectorPort:\"<REDACTED>\"",
+          "occurrences": 1
+        }
+      ],
+      "scope": "Retained final extension file. Earlier adaptive versions were not separately versioned."
+    },
+    {
+      "role": "node-binding",
+      "retainedLocator": "<TEMP_DIR>/p08-natural-bind.mjs",
+      "publishedFile": "scripts/p08-natural-bind.mjs.txt",
+      "originalBytes": 2354,
+      "originalSHA256": "a307637d6b80b403bc3afeca510063643a11b066d5de5b8fe6a879fa9494f16c",
+      "publishedBytes": 2308,
+      "publishedSHA256": "8a47b4250b4e8221ac44cd2857b55aa8cd19319eeda406336c2c397d09426208",
+      "currentFileMtimeUTC": "2026-10-04T19:26:37.514385+00:00",
+      "redactions": [
+        {
+          "description": "Private absolute worktree prefix",
+          "placeholder": "<WORKTREE>",
+          "occurrences": 2
+        },
+        {
+          "description": "Local Node inspector port literal",
+          "placeholder": "127.0.0.1:<INSPECTOR_PORT>",
+          "occurrences": 1
+        }
+      ],
+      "scope": "Retained same-process Node debugger binding script; changes Node observer functions/report metadata, not browser game state."
+    },
+    {
+      "role": "node-caller",
+      "retainedLocator": "<TEMP_DIR>/p08-native-call.mjs",
+      "publishedFile": "scripts/p08-native-call.mjs.txt",
+      "originalBytes": 1876,
+      "originalSHA256": "a7cfa735db0f37d6d636103640e4bb507658f4f813414015be2c60d9ba2bfc83",
+      "publishedBytes": 1830,
+      "publishedSHA256": "395bea2f34c7682dc935cc14a7d34d187bbc1d3ffc43ebd063ed7fb7a88165b0",
+      "currentFileMtimeUTC": "2026-10-04T19:30:13.489353+00:00",
+      "redactions": [
+        {
+          "description": "Private absolute worktree prefix",
+          "placeholder": "<WORKTREE>",
+          "occurrences": 2
+        },
+        {
+          "description": "Local Node inspector port literal",
+          "placeholder": "127.0.0.1:<INSPECTOR_PORT>",
+          "occurrences": 1
+        }
+      ],
+      "scope": "Retained Node inspector caller for native extension; it loads the current request file and extension, not a full historical request transcript."
+    },
+    {
+      "role": "post-run-verification",
+      "retainedLocator": "shots/p08-natural-run/curate-evidence.mjs",
+      "publishedFile": "scripts/curate-evidence.mjs.txt",
+      "originalBytes": 13977,
+      "originalSHA256": "4b47c6c145b7b9bd86331cfb449499815775d907ae6d9723bbfa1906d8d55159",
+      "publishedBytes": 13983,
+      "publishedSHA256": "2a588bde2a036a00bf43fad9fa02caad092ad9113d2a054a4962e930979f88fe",
+      "currentFileMtimeUTC": "2026-10-04T20:08:02.148005+00:00",
+      "redactions": [
+        {
+          "description": "Absolute temporary-directory prefix",
+          "placeholder": "<TEMP_DIR>/",
+          "occurrences": 1
+        }
+      ],
+      "scope": "Actual retained post-run curation and pure-domain replay script. It ran after the browser endpoint; it was not a gameplay driver."
+    },
+    {
+      "role": "native-ui-helper",
+      "retainedLocator": "harness/ui.mjs",
+      "publishedFile": "scripts/ui.mjs.txt",
+      "originalBytes": 4435,
+      "originalSHA256": "d5b151549b4231341f572d54785b18a1ad7a061c480f5ead60ca123c234f3058",
+      "publishedBytes": 4435,
+      "publishedSHA256": "d5b151549b4231341f572d54785b18a1ad7a061c480f5ead60ca123c234f3058",
+      "currentFileMtimeUTC": "2026-10-04T19:06:48.089675+00:00",
+      "redactions": [],
+      "scope": "Existing repository helper at the frozen source, imported by observer; touch/DOM input and read-only hit geometry."
+    },
+    {
+      "role": "recorded-report",
+      "retainedLocator": "shots/p08-natural-run/report.json",
+      "publishedFile": "logs/report.json",
+      "originalBytes": 416525,
+      "originalSHA256": "96b8922fa0b6529b0c7b7f38831cddec8d0e8432758bd1b063739286d768936a",
+      "publishedBytes": 416525,
+      "publishedSHA256": "96b8922fa0b6529b0c7b7f38831cddec8d0e8432758bd1b063739286d768936a",
+      "currentFileMtimeUTC": "2026-10-04T20:00:32.467272+00:00",
+      "redactions": [],
+      "scope": "Retained final report with actual 87 observation records, metadata, traces and diagnostic; not PTY or CDP command transcript."
+    },
+    {
+      "role": "last-request",
+      "retainedLocator": "shots/p08-natural-run/native-request.json",
+      "publishedFile": "logs/last-native-request.json",
+      "originalBytes": 19,
+      "originalSHA256": "268b017bbc9890062600f7a469804bdebdce7fc16e58b4bafc6a8e98ce24bf00",
+      "publishedBytes": 19,
+      "publishedSHA256": "268b017bbc9890062600f7a469804bdebdce7fc16e58b4bafc6a8e98ce24bf00",
+      "currentFileMtimeUTC": "2026-10-04T20:00:32.270973+00:00",
+      "redactions": [],
+      "scope": "Only the final request survives: finalize. Earlier request file values were overwritten; no reconstruction."
+    },
+    {
+      "role": "observer-diagnostic-state",
+      "retainedLocator": "shots/p08-natural-run/blocked-state.json",
+      "publishedFile": "logs/blocked-state.json",
+      "originalBytes": 51288,
+      "originalSHA256": "1c8b6c94c867f60fd8e0f78c1b17cd4bab98a0fb22eababe2ca446dafb4adfb4",
+      "publishedBytes": 51288,
+      "publishedSHA256": "1c8b6c94c867f60fd8e0f78c1b17cd4bab98a0fb22eababe2ca446dafb4adfb4",
+      "currentFileMtimeUTC": "2026-10-04T19:16:58.087546+00:00",
+      "redactions": [],
+      "scope": "Actual saved snapshot at the first discard observer assertion failure, after the valid DiscardHand command was committed."
+    }
+  ],
+  "missingRecords": [
+    "Full PTY stdin/stdout transcript",
+    "Full CDP/Node inspector request transcript",
+    "Immutable startup observer script bytes before the in-run corrections",
+    "Earlier native-extension revisions and overwritten request-file values",
+    "Independent audit of seed selection before browser boot",
+    "Standalone original replay stdout log; results exist in prior journal-verification.json"
+  ]
+}
