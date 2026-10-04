@@ -1,0 +1,78 @@
+{
+  "sourceCommit": "3507b6623e90aea0b6d8d54235e9a126c93eb220",
+  "publishedMain": "3b7242831f96f432abc0e2fe5692ab4fc2e1bedf",
+  "build": {
+    "version": "C03",
+    "revision": "3507b6623e90aea0b6d8d54235e9a126c93eb220",
+    "modified": false,
+    "builtAt": "2026-10-04T01:31:26.401Z"
+  },
+  "route": "Natural seed p08-batch3-natural: choose/cancel purchase/buy/enter/visible-hand candidates/apply undo/discard/play/actual recap/exit continue; no imported fixture",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "safeInset": {
+    "top": 0,
+    "right": 0,
+    "bottom": 0,
+    "left": 0
+  },
+  "runs": [
+    {
+      "engine": "chromium",
+      "browser": "151.0.7922.173",
+      "checks": [
+        "natural three-offer purchase details/cancel unchanged/one purchase only",
+        "natural 0/1/5 selection: full current-hand categories; ghost/Escape/cancel no save/RNG/resource change; explicit apply/undo only UI",
+        "keyboard card details/menu rules/item return and emulated background resume retain choice, no prediction/fullText/fire",
+        "successful discard refreshes candidates without advancing play-index; independent play persists actual complete trace; next-hand guidance and actual recap do not re-award",
+        "save exit/continue and reload continue preserve whole run/RNG/journal/resources; no repeated purchase/score/reward"
+      ],
+      "errors": [],
+      "offer": {
+        "offerId": "run/p08-batch3-natural/amo/shop/0/0/joker/0",
+        "definitionId": "b05",
+        "price": 6,
+        "edition": "none",
+        "consumed": false
+      },
+      "offerDetail": "合唱班 · 购买详情\n◆ 特别\n机制示意\n计分牌逐张时：同打的同点数牌至少3张，附带和停用也参与计数\n单项热度 +15\n待选牌；尚未购入；不代表已触发\n\n版次：普通（无额外计分）\n\n实付 6 金 · 余额 6 → 0 金\n\n规则与操作\n确认购买\n取消",
+      "renderer": "Canvas"
+    },
+    {
+      "engine": "webkit",
+      "browser": "26.6",
+      "checks": [
+        "natural three-offer purchase details/cancel unchanged/one purchase only",
+        "natural 0/1/5 selection: full current-hand categories; ghost/Escape/cancel no save/RNG/resource change; explicit apply/undo only UI",
+        "keyboard card details/menu rules/item return and emulated background resume retain choice, no prediction/fullText/fire",
+        "successful discard refreshes candidates without advancing play-index; independent play persists actual complete trace; next-hand guidance and actual recap do not re-award",
+        "save exit/continue and reload continue preserve whole run/RNG/journal/resources; no repeated purchase/score/reward"
+      ],
+      "errors": [],
+      "offer": {
+        "offerId": "run/p08-batch3-natural/amo/shop/0/0/joker/0",
+        "definitionId": "b05",
+        "price": 6,
+        "edition": "none",
+        "consumed": false
+      },
+      "offerDetail": "合唱班 · 购买详情\n◆ 特别\n机制示意\n计分牌逐张时：同打的同点数牌至少3张，附带和停用也参与计数\n单项热度 +15\n待选牌；尚未购入；不代表已触发\n\n版次：普通（无额外计分）\n\n实付 6 金 · 余额 6 → 0 金\n\n规则与操作\n确认购买\n取消",
+      "renderer": "WebGL"
+    }
+  ],
+  "screenshots": 0,
+  "recording": false,
+  "OnePlus": "NOT_RUN",
+  "hardwareGPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "status": "PASS",
+  "support": "Reused exact frozen E2E build. Chromium completed first; only WebKit resumed with pre-existing supported executable-path adapter. No further source changes or browser installation.",
+  "harnessCorrections": [
+    "Initial literal condition-word assertion was inaccurate: actual b05 detail places its full condition before single-effect value. Corrected to assert exact readable condition/order/unpurchased state.",
+    "Exit is under actual expanded progress menu and routes to character selection; resume uses existing return-to-run control.",
+    "WebKit requires existing cloud executable-path adapter, as in earlier successful input contracts; default cache-path launch failed before running WebKit checks."
+  ]
+}

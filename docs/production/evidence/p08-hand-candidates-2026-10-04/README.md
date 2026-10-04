@@ -27,6 +27,14 @@
 
 ## 四状态与边界
 
-实现完成；本地技术冻结PASS，新精确远端CI另报告。局部候选信息早评通过；整体审美待独立验收。OnePlus／硬件GPU／听感NOT_RUN。27新WebP未接入，素材支线仍独立阻塞。原规则/RNG/存档/计分/奖励与P08几何合同不变。
+实现完成；本地技术冻结PASS，批2 main3b724283精确CI37168582912与production-docs37168582887均completed/success；见batch2-publication.json。局部候选信息早评通过；整体审美待独立验收。OnePlus／硬件GPU／听感NOT_RUN。27新WebP未接入，素材支线仍独立阻塞。原规则/RNG/存档/计分/奖励与P08几何合同不变。
 
 已批准批3有限全流程几何/手势/保存与恢复检查如上，不重复图集、旧CI或无GPU性能测。非阻塞文案“只列当前手牌能组成的牌型”留后续适当批次，当前冻结不改。
+
+## 批3自然串联收尾（不重复有限矩阵或图集）
+
+`natural-flow.json`复用冻结源码3507的C03/e2e构建（2026-10-04T01:31:26.401Z，modified=false），CSS390×740/DPR1/safe四边0/reduced：Chromium Canvas、WebKit实际WebGL各一条完整自然种子路线PASS，没有导入fixture。自然合唱班商品完整条件先于单项数值，取消全state不变、明确一次购买后入场；0/1/5张选择，当前可见手牌候选ghost/明确换组/撤销不改领域state、RNG、资源。原生键盘详情/菜单规则/物品返回和模拟visibilitychange后台恢复保选择，不露预测/fullText/火。成功弃牌刷新候选且不推进playIndex，正式出牌保存真实完整trace，下一手转guidance；上手回看、保存退出→选角返回本局、reload继续均保持完整run/RNG/journal/资源，不重复购买/计分/奖励。实际Android后台行为仍未验。
+
+首轮辅助脚本的字面“条件”关键词、未展开存档菜单和默认WebKit缓存路径错误分别已定位；记录在报告harnessCorrections。修的是支持测试入口/精确文案判断，没有修改游戏实现、删除安全合同或增超时。Chromium成功后只补WebKit，不反复跑两引擎全套。
+
+批2实现与本地/远端技术门禁完成；批3有限自然全流程、已归档尺寸/手势/恢复验证完成。候选局部信息可读性独立早评通过；整体审美、OnePlus、硬件GPU、听感NOT_RUN。冻结源码保持，非阻塞文案清理留后续适当点，不为收尾重做图。
