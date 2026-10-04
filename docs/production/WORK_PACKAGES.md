@@ -381,16 +381,18 @@ D25追加有限3D复用小候选：先用实际GLB源的铜钱/骰子或牌片�
 
 ### 当前主线验收清单（2026-10-04 UTC）
 
-已发布基线 `1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9`：精确 CI37229537268／production-docs37229537265 success。按此 SHA 读取 manifest 和消费代码；下一批 review 不计入发布覆盖。
+已发布基线 `58e9d223ee5f29b965532551e71afc6fc6785d51`：精确 CI37231962418／production-docs37231962445 success。本批十二图候选不计入main覆盖。
 
-- [x] 工具包入口已发布（7b787773 为当前 main 祖先）；749a85ee 的 320 商店卡条与十四牌计数两修复已发布。320 十四牌保持分页、390 十四牌两行、普通九牌一页。
-- [x] 当前可消费覆盖 Joker72/72、原6角色/JQK、工具21/39、物品12/12；P08 165 WebP／4,454,670B，goods 66 WebP／1,085,058B。包含 T01–T05/P01；后续 review 资源不计入 main。
-- [x] 铜钱候选已接入结算运行：RewardCoin.ts → IntermissionScene 实际已提交过关奖励消费 16帧／800ms atlas；A03 整包 planned 和人工门禁保持。
-- [x] 六工具 T06–T11 原生使用 fixture 已验收（原 source f10d2d0、review98b66db4、精确 CI37228691506 success）。合法／非法目标、取消、一次保存、牌面与 reload 证据见 [原报告](evidence/p08-tools-use-2026-10-04/README.md)，不转作自然流程证据。
-- [ ] D7b 自然流程：仍 in_progress，本次无自然获取／完整流程新结论。
-- [ ] 整体审美、OnePlus 真机、GPU、听感：仍未通过，P08 不关闭。C04 维持 D32 暂停；resumeContract 和 V01/L01 人工、多人门禁不变。
+- [x] 工具包7b787773及749a85ee两窄屏修复已发布；320十四牌分页、390十四牌两行、普通九牌一页。
+- [x] main覆盖Joker72/72、原6角色/JQK、工具27/39、物品12/12；P08 165 WebP／4,454,670B，goods78 WebP／1,266,494B，已含P02–P07。
+- [ ] 最后十二图发布：本review候选39/39、goods102 WebP／1,742,780B；来源1cbc3e7/6d3596b指定目录、24原图和12真实ID，P12/S04实际详情通过，待父串行main放行，未宣称已发布。
+- [x] 铜钱atlas由结算场景消费实际已提交奖励；A03整包planned／humanGate保持。
+- [x] T06–T11原生fixture原报告及source f10d2d0／review98b66db4／CI37228691506身份保持，不扩为自然获取证明。
+- [x] D7b有界自然首Boss及三次恢复：e899194原证据11文件逐blob/mode纳入，CI37231091422 success；实际runtime固定7b787773，首Boss1018/800、seq26/journal25、奖励2→10金、唯一T16补给，T10自然购入/使用。见 [原报告](evidence/p08-natural-run-2026-10-04/README.md)。
+- [ ] 第二章与当前main完整流程：D停止首Boss结果、T16未使用，未进入第二章；没有完整八章或最新main全流程新结论。
+- [ ] 整体审美、OnePlus、GPU、听感仍未通过，P08不关闭。C04保持D32暂停，resumeContract和V01/L01门禁保持。
 
-本次只是 [当前态审计](evidence/p08-delivery-state-2026-10-04/summary.json) 与六工具原证据的纯文档 review，随下一批整合，不单独发布。
+本批 [十二图及证据审计](evidence/p08-tools-final12-2026-10-04/summary.json) 只交 review，不推main；保历史FAIL／NOT_RUN、旧覆盖数字和原证据身份。
 
 ### 历史检查点（按各自 SHA 保留，不作为当前调度指令）
 

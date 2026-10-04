@@ -2,13 +2,13 @@
 
 ## 当前调度状态（2026-10-04 UTC）
 
-以独立核过的 remote main `1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9` 为当前发布基线；精确 CI37229537268、production-docs37229537265 均 success。完整当前态与验收边界见 [当前交接](docs/development-handoff.md#当前发布与验收状态) 和 [P08 验收清单](docs/production/WORK_PACKAGES.md#p08)，审计见 [状态校准](docs/production/evidence/p08-delivery-state-2026-10-04/summary.json)。
+当前发布基线是 `58e9d223ee5f29b965532551e71afc6fc6785d51`；精确 CI37231962418、production-docs37231962445 均 success。当前交接见 [发布与验收状态](docs/development-handoff.md#当前发布与验收状态)，审计见 [最后十二图 review](docs/production/evidence/p08-tools-final12-2026-10-04/summary.json)。
 
-- 工具包已随 main7b787773 发布；749a85ee 两处窄屏修复已在当前 main。320 十四牌仍分页、390 十四牌两行，真机未通过。
-- 当前 main manifest 覆盖 Joker72/72、工具21/39、物品12/12；后续 review 批次不计入 main。铜钱已由结算场景消费，A03 整包仍 planned／humanGate。
-- 六工具 T06–T11 的原生操作 fixture 已验收，原证据 review98b66db4 精确 CI37228691506 success；自然获取和 D7b 自然流程不由此证明，D7b 仍在进行。
-- P08 仍 in_progress。C04 保持 D32 暂停；V01/L01 人工与多人门禁保持。整体审美、OnePlus 真机、GPU、听感未通过。
-- 本次只交付当前态校准与六工具原证据的纯文档 review，随下一批整合；不单独推进 main 或部署。
+- 当前 main：Joker72/72、工具27/39、物品12/12，goods78 WebP／1,266,494B，已含P02–P07；工具包和749a85ee两处窄屏修复已发布，真机仍未通过。
+- 最后十二图候选：只取批准 source1cbc3e7/6d3596b 的两个目录、24张图和12个真实ID；39/39、102 WebP／1,742,780B，目前仅 review，未推进 main。P12/S04各一张实际 contained 详情已查；全部运行源码、旧资源与严格五动作 smoke 保基线。
+- [D 原自然证据](docs/production/evidence/p08-natural-run-2026-10-04/README.md) 已按 e899194 原样纳入。实际 runtime 固定7b787773，首Boss1018/800与三次恢复通过，T10自然购入/使用；未进入第二章，T16未使用，不作为当前main完整流程或设备结论。
+- 六工具 fixture 原证据和身份保持；铜钱已被结算场景消费，A03整包仍 planned／humanGate。P08仍 in_progress，整体审美、OnePlus、GPU、听感未通过；C04保持D32暂停，resumeContract和V01/L01门禁保持。
+- 本批只交 review；父协调串行 main，既有历史 FAIL／NOT_RUN 与原报告身份保持。
 
 ## 历史检查点（按各自 SHA 保留，不作为当前调度指令）
 

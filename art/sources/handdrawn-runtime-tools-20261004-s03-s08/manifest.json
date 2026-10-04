@@ -1,0 +1,698 @@
+{
+  "schemaVersion": 1,
+  "batch": "handdrawn-runtime-tools-20261004-s03-s08",
+  "baseCommit": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+  "sourceContentReference": {
+    "repository": "big-dimple/dachoupai",
+    "ref": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+    "path": "src/content/r2-tools.json"
+  },
+  "runtime_selection": [
+    "tool-s03",
+    "tool-s04",
+    "tool-s05",
+    "tool-s06",
+    "tool-s07",
+    "tool-s08"
+  ],
+  "encoder": {
+    "format": "WEBP",
+    "quality": 82,
+    "method": 6,
+    "lossless": false,
+    "resize": "Pillow LANCZOS",
+    "Pillow": "12.3.0",
+    "libwebp": "1.6.0"
+  },
+  "containPolicy": {
+    "fit": "contain",
+    "sourceCrop": "entire original",
+    "backgroundHex": "#F3EADB",
+    "noStretch": true,
+    "noReconstruction": true,
+    "rounding": "Nearest integer-pixel fit inside the inset bounding box; no crop or intentional aspect-ratio change."
+  },
+  "assets": [
+    {
+      "id": "tool-s03",
+      "domainId": "S03",
+      "category": "tool-card",
+      "domain": "tool",
+      "sourceCategory": "consumable-tool",
+      "family": "spectral",
+      "sourceAspectExceptionApproved": false,
+      "name": "复演",
+      "sourceFilename": "tool-s03-v1-original.png",
+      "sourceSHA256": "ba55d90762ae5181800bb16ed7aee132532a05a141b578a6a48f9a93e7cfe8f7",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 1935651,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-s03.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2532,
+          "sha256": "f183ae45f183d1d026838df5cc74492d8637a3de020e9c7768866d77a97c12d1",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-s03.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 34062,
+          "sha256": "85adf9ad47c0c657c42038eb357a5806c46e877df92f7fc1fa26e409deeabad5",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-s04",
+      "domainId": "S04",
+      "category": "tool-card",
+      "domain": "tool",
+      "sourceCategory": "consumable-tool",
+      "family": "spectral",
+      "sourceAspectExceptionApproved": false,
+      "name": "独幕",
+      "sourceFilename": "tool-s04-v2-original.png",
+      "sourceSHA256": "07a29c1ba41170147cb82966927e42b6e0dc6175e3d1f26d8b90060868c3af39",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2599917,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-s04.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 4414,
+          "sha256": "c982c50a4ffa9e1663ec7833540d8c0034b37f56e253058937e7b987baef379a",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-s04.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 64916,
+          "sha256": "e16b50ffe8bbd2738688096982e6702396913cfc55e12059e8fd819c1ce79e50",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-s05",
+      "domainId": "S05",
+      "category": "tool-card",
+      "domain": "tool",
+      "sourceCategory": "consumable-tool",
+      "family": "spectral",
+      "sourceAspectExceptionApproved": false,
+      "name": "忘招",
+      "sourceFilename": "tool-s05-v1-original.png",
+      "sourceSHA256": "c918a6f0512bd35514fe15a98aa9c5667e02c4fcdb9c97d7ed9afacb2105a0f2",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2369242,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-s05.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2682,
+          "sha256": "0d9dec1656c531b6b21c6815a78c55c0a64afc7b6dbc580867902bc22149d6ac",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-s05.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 41140,
+          "sha256": "3ee63fd3f0093a03f84260e51cd0378032f2872fb8b62da9ae93703661c1474e",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-s06",
+      "domainId": "S06",
+      "category": "tool-card",
+      "domain": "tool",
+      "sourceCategory": "consumable-tool",
+      "family": "spectral",
+      "sourceAspectExceptionApproved": false,
+      "name": "孤注",
+      "sourceFilename": "tool-s06-v1-original.png",
+      "sourceSHA256": "a8986c3101a4136f6c040f188ffa54ceaac45687faa659f5d9ca62907f0010e0",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2262678,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-s06.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 3158,
+          "sha256": "e65e251e07a11e3b90f36888bb0e5c8d8e23c9f1fa4f003124464a8cd495cb37",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-s06.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 40836,
+          "sha256": "6b218520f19a42fdaa25175edfce8a96854a0107859b4f05334374c32cfcb3b9",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-s07",
+      "domainId": "S07",
+      "category": "tool-card",
+      "domain": "tool",
+      "sourceCategory": "consumable-tool",
+      "family": "spectral",
+      "sourceAspectExceptionApproved": false,
+      "name": "谢幕镀彩",
+      "sourceFilename": "tool-s07-v1-original.png",
+      "sourceSHA256": "b524de8956af81e644e7c8e9d06c83a403bb8915551ea4b8e021ad443350fb32",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2395571,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-s07.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 2774,
+          "sha256": "de0b46df98f6b0c600004f508715290ea5191b68828b79c7836b17c96acd8e4c",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-s07.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 40762,
+          "sha256": "012243c90c112334918ae1dedb85f26aef48634f2cf3a497cc71c1194027bf06",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    },
+    {
+      "id": "tool-s08",
+      "domainId": "S08",
+      "category": "tool-card",
+      "domain": "tool",
+      "sourceCategory": "consumable-tool",
+      "family": "spectral",
+      "sourceAspectExceptionApproved": false,
+      "name": "净台",
+      "sourceFilename": "tool-s08-v1-original.png",
+      "sourceSHA256": "ebf39b8516e03604dcd693ea1f98458a908d929d0293c47e678a7996a0e2d996",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceBytes": 2581287,
+      "sourceExactFourFive": false,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "path": "runtime/tool-s08.thumbnail.webp",
+          "width": 128,
+          "height": 160,
+          "mode": "RGB",
+          "bytes": 3422,
+          "sha256": "04c3bdb18573e24113f8909de549326337ba714a1bc45039a1c9c4ed6d92a79f",
+          "kind": "thumbnail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 128,
+            "canvasHeight": 160,
+            "insetBoundingBoxPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "contentRectPixels": {
+              "left": 4,
+              "top": 5,
+              "width": 120,
+              "height": 150
+            },
+            "paddingPixels": {
+              "left": 4,
+              "top": 5,
+              "right": 4,
+              "bottom": 5
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 10000,
+          "withinBudget": true
+        },
+        {
+          "path": "runtime/tool-s08.detail.webp",
+          "width": 615,
+          "height": 768,
+          "mode": "RGB",
+          "bytes": 58940,
+          "sha256": "99f2ca912370dd5b01a0638210016d1fc181bb3b6575166b7cae458c88c20c37",
+          "kind": "detail",
+          "quality": 82,
+          "geometry": {
+            "canvasWidth": 615,
+            "canvasHeight": 768,
+            "insetBoundingBoxPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "contentRectPixels": {
+              "left": 19,
+              "top": 24,
+              "width": 576,
+              "height": 720
+            },
+            "paddingPixels": {
+              "left": 19,
+              "top": 24,
+              "right": 20,
+              "bottom": 24
+            },
+            "fit": "contain",
+            "entireSourceSampled": true,
+            "sourceCropPixels": {
+              "left": 0,
+              "top": 0,
+              "width": 1122,
+              "height": 1402
+            },
+            "backgroundHex": "#F3EADB",
+            "rounding": "nearest integer pixel",
+            "noStretch": true
+          },
+          "budgetBytes": 100000,
+          "withinBudget": true
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "runtimeFiles": 12,
+    "runtimeBytes": 299638,
+    "thumbnailBytes": 18982,
+    "detailBytes": 280656,
+    "sourcePngBytes": 14144346
+  }
+}
