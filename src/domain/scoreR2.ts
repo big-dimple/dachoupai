@@ -1,3 +1,4 @@
+import {r2ScoreConditionMatches} from './r2Conditions';
 import {r2SelectionFacts} from './r2SelectionFacts';
 import { EDITIONS, type Edition, type PlayingCard } from '../cards/types';
 import { SeededRng, type RngSnapshot } from '../core/SeededRng';
@@ -238,35 +239,8 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     const half=new Rational(1n,2n);
     emit('base',{sourceType:'rule',sourceDefinitionId:boss.definitionId,sourceInstanceId:input.runId},'halve-base-heat',half,()=>{H=H.multiply(half);});
   }
-  const matches = (c: Condition, card?: PlayingCard): boolean => {
-    switch (c.kind) {
-      case 'always': return true;
-      case 'hand-type-in': return c.values.includes(evaluated.type);
-      case 'rank-in': return !!card && c.values.includes(card.rank);
-      case 'played-count': return played.length === c.equals;
-      case 'played-count-maximum': return played.length <= c.maximum;
-      case 'held-count': return held.length >= c.minimum;
-      case 'play-modulo': return input.playIndex % c.divisor === c.remainder;
-      case 'suit-in': return !!card&&c.values.includes(card.suit);
-      case 'paired-rank': return !!card&&played.filter(p=>p.rank===card.rank).length>=c.minimum;
-      case 'rank-groups': return [...new Set(played.map(p=>p.rank))].filter(rank=>played.filter(p=>p.rank===rank).length>=c.groupSize).length>=c.minimum;
-      case 'held-rank-first': return (c.playedEquals===undefined||played.length===c.playedEquals)&&!!card&&validHeld.filter(p=>c.values.includes(p.rank)).slice(0,c.limit).some(p=>p.id===card.id);
-      case 'held-scoring-rank-first': return !!card&&validHeld.filter(p=>active.some(scored=>scored.rank===p.rank)).slice(0,c.limit).some(p=>p.id===card.id);
-      case 'held-enhancement-first': return !!card&&validHeld.filter(p=>p.enhancement===c.enhancement).slice(0,c.limit).some(p=>p.id===card.id);
-      case 'hand-type-transition': return evaluated.type===c.current&&input.previousHandType===c.previous;
-      case 'extra-retrigger': return extraExecutions>0;
-      case 'stage-score-below-target': return new Rational(BigInt(input.stageHeatBefore!)).compare(new Rational(BigInt(input.stageTargetHeat!)).multiply(Rational.fromJSON(c.ratio)))<0;
-      case 'hand-score-below-target': return resolvedFinal!==null&&BigInt(input.stageHeatBefore!)+resolvedFinal<BigInt(input.stageTargetHeat!)
-        &&new Rational(resolvedFinal).compare(new Rational(BigInt(input.stageTargetHeat!)).multiply(Rational.fromJSON(c.ratio)))<0;
-      case 'resource': return ({gold:input.gold??0,'hands-after':input.handsBeforePlay-1,'play-index':input.playIndex,'discards-used':input.discardsUsed??0})[c.resource]===c.equals;
-      case 'resource-minimum': return (input.gold??0)>=c.minimum;
-      case 'resource-maximum': return (input.gold??0)<=c.maximum;
-      case 'all-played-active':return played.length>=c.minimum&&played.length===active.length;
-      case 'scoring-position':return !!card&&card.id===(c.position==='third-original'?evaluated.scoringIds[2]:(c.position==='first'?active[0]:active.at(-1))?.id)&&(!c.handTypes||c.handTypes.includes(evaluated.type))&&(!c.playModulo||input.playIndex%c.playModulo.divisor===c.playModulo.remainder);
-      case 'discard-count':case 'discard-same-suit':case 'exhausted-hands':return false;
-      case 'stage-played-maximum':case 'stage-hand-types-all':case 'no-joker-sale-this-stage':case 'hand-type-unfinished':return false;
-    }
-  };
+  const matches = (c:Condition,card?:PlayingCard):boolean=>r2ScoreConditionMatches(c,{played,held,validHeld,active,scoringIds:evaluated.scoringIds,handType:evaluated.type,previousHandType:input.previousHandType,playIndex:input.playIndex,handsAfter:input.handsBeforePlay-1,gold:input.gold??0,discardsUsed:input.discardsUsed??0,extraExecutions,resolvedFinal,stageHeatBefore:input.stageHeatBefore,stageTargetHeat:input.stageTargetHeat},card);
+
   const hook = (phase: ScoreHookPhase, card?: PlayingCard, depth = 0, rootEventId?: string, initialRetriggers = 0): number => {
     let retriggers = initialRetriggers;
     const ordered=phase==='jokerScore'&&boss?.definitionId==='B13'?[...jokers].reverse():jokers;

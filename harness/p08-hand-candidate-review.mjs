@@ -1,0 +1,42 @@
+/** One early-review frame; labeled validator-approved fixture, native selection inputs. */
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {createServer,build,preview} from 'vite';
+import {chromium} from 'playwright';
+import {chooseCharacter,tapUI,waitScene} from './ui.mjs';
+const dir='shots/p08-hand-candidate-review';await mkdir(dir,{recursive:true});
+const ssr=await createServer({server:{middlewareMode:true},optimizeDeps:{noDiscovery:true,include:[]},logLevel:'error'});let fixture,ids;
+try{
+ const {createRun,applyCommand}=await ssr.ssrLoadModule('/src/domain/run.ts'),{r2CreateJoker}=await ssr.ssrLoadModule('/src/domain/r2Run.ts'),{makeCheckpoint,readCheckpoint}=await ssr.ssrLoadModule('/src/application/checkpoint.ts');
+ let state=createRun({seed:'p08-hand-candidate',characterId:'amo',runId:'fixture/p08-hand-candidate',rulesVersion:'r2'});
+ state.jokers=['c08','c09','f09'].map(id=>r2CreateJoker(id,'fixture/'+id,0));
+ for(const type of ['LeaveShop','EnterStage']){const r=applyCommand(state,{runId:state.runId,commandId:type,expectedSeq:state.commandSeq,action:{type}});assert.ok(r.ok);state=r.state;}
+ ids=[[7,'spades'],[7,'hearts'],[7,'clubs'],[2,'spades'],[4,'hearts']].map(([rank,suit])=>state.deckInstances.find(c=>c.rank===rank&&c.suit===suit).id);
+ const others=state.deckInstances.filter(c=>!ids.includes(c.id)).map(c=>c.id);state.handOrder=[...ids,...others.splice(0,state.handOrder.length-ids.length)];state.drawPile=others;
+ const checkpoint=makeCheckpoint(state,[]),parsed=readCheckpoint(checkpoint);assert.ok(parsed.ok,JSON.stringify(parsed));fixture=JSON.stringify(checkpoint);
+}finally{await ssr.close();}
+const source=createHash('sha256');for(const p of execFileSync('rg',['--files','src'],{encoding:'utf8'}).trim().split('\n').sort())source.update(p+'\0').update(await readFile(p)).update('\0');
+if(!process.env.P08_REUSE_BUILD)await build({mode:'e2e',build:{outDir:dir+'/build'},logLevel:'warn'});else assert.equal(JSON.parse(await readFile(dir+'/report.json','utf8')).source,source.copy().digest('hex'),'reuse only the identical source build');
+const server=await preview({build:{outDir:dir+'/build'},preview:{host:'127.0.0.1',port:5267,strictPort:true},logLevel:'warn'}),browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});
+const report={source:source.digest('hex'),build:JSON.parse(await readFile(dir+'/build/build-info.json','utf8')),browser:browser.version(),viewport:{width:390,height:740},DPR:1,safeInset:{top:0,right:0,bottom:0,left:0},renderer:'Canvas',route:'FIXTURE: existing checkpoint validation + native import UI; 7♠ 7♥ 7♣ 2♠ 4♥; held c08/c09/f09; not natural acquisition',checks:[],device:'NOT_RUN',independentReview:'PENDING'};
+try{
+ const context=await browser.newContext({viewport:report.viewport,hasTouch:true,deviceScaleFactor:1,reducedMotion:'reduce'}),p=await context.newPage(),errors=[];p.on('pageerror',e=>errors.push(String(e)));p.on('dialog',d=>d.accept());
+ await p.goto('http://127.0.0.1:5267/?harness=1&seed=p08-review');await chooseCharacter(p,'amo',true);await p.locator('.run-menu-toggle').tap();const section=p.getByText('进度与存档',{exact:true}).locator('..');await section.locator('summary').tap();const chooser=p.waitForEvent('filechooser');await p.getByRole('button',{name:'导入本局',exact:true}).tap();await(await chooser).setFiles({name:'visible-triple-fixture.json',mimeType:'application/json',buffer:Buffer.from(fixture)});await waitScene(p,'game');await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.ready&&s.cardViews.every(v=>!v.dealing&&!s.tweens.isTweening(v.container));});
+ const before=await p.evaluate(()=>window.__harness.game.registry.get('runController').state);
+ for(const id of ids)await tapUI(p,'game','card/'+id,true);
+ await p.waitForFunction(()=>window.__harness.game.scene.getScene('game').candidates.result?.status==='ready');
+ const o=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game'),walk=l=>l.flatMap(o=>[o,...(o.list?walk(o.list):[])]),b=o=>{const r=o.getBounds();return{x:r.x,y:r.y,width:r.width,height:r.height};};return{facts:s.selectionPreview(),title:s.resultText.text,candidates:s.candidates.result.groups.map(g=>({type:g.type,counts:g.playedCounts})),renderer:s.game.renderer.gl?'WebGL':'Canvas',texts:walk(s.children.list).filter(o=>o.type==='Text'&&o.visible).map(o=>({text:o.text,bounds:b(o)})),layout:s.view.layout};});
+ assert.equal(o.facts.type,'three-kind');assert.equal(o.title,'三条 · 已选5张');assert.equal(o.facts.scoringIds.length,3);assert.equal(o.facts.accompanyingIds.length,2);assert.deepEqual(o.candidates.find(g=>g.type==='three-kind').counts,[3,4,5]);assert.equal(o.renderer,'Canvas');
+ if(process.env.P08_SCREENSHOTS!=='0'&&process.env.P08_SCREENSHOTS!=='detail')await p.screenshot({path:dir+'/390-selected-hand.png'});
+ await tapUI(p,'game','selection/facts',true);await p.getByRole('dialog').waitFor();const example=p.locator('.candidate-group[open] .candidate-choice').first();await example.tap();await p.locator('.candidate-group[open]').getByRole('button',{name:'5张示例',exact:true}).tap();
+ assert.ok((await p.getByRole('dialog').innerText()).includes('三条 · 可选3／4／5张'));assert.deepEqual(await p.evaluate(()=>[...window.__harness.game.scene.getScene('game').selectedIds]),ids);assert.deepEqual(await p.evaluate(()=>window.__harness.game.registry.get('runController').state),before);
+ // Native scroll brings actual triple examples and selected ghost description together, fixed actions remain visible.
+ await p.locator('.dialog-scroll').evaluate(e=>e.scrollTo(0,32));
+ report.modal=await p.getByRole('dialog').evaluate(d=>({text:d.innerText,scrolls:[...d.querySelectorAll('.dialog-scroll')].length,buttons:[...d.querySelectorAll('.dialog-actions button')].map(b=>({label:b.textContent,bounds:{x:b.getBoundingClientRect().x,y:b.getBoundingClientRect().y,width:b.getBoundingClientRect().width,height:b.getBoundingClientRect().height}}))}));
+ for(const b of report.modal.buttons){assert.ok(b.bounds.height>=44);assert.ok(b.bounds.y+b.bounds.height<=740);}
+ if(process.env.P08_SCREENSHOTS!=='0')await p.screenshot({path:dir+'/390-candidate-detail.png'});await p.evaluate(()=>window.__reviewOldApply=[...document.querySelector('.detail-dialog[open]').querySelectorAll('.dialog-actions button')].find(b=>b.textContent==='换为这组').onclick);await p.getByRole('button',{name:'关闭',exact:true}).tap();assert.deepEqual(await p.evaluate(()=>[...window.__harness.game.scene.getScene('game').selectedIds]),ids);
+ await tapUI(p,'game','selection/facts',true);await p.locator('.candidate-group[open]').getByRole('button',{name:'3张示例',exact:true}).click();await p.evaluate(()=>window.__reviewOldApply());assert.deepEqual(await p.evaluate(()=>[...window.__harness.game.scene.getScene('game').selectedIds]),ids);assert.deepEqual(await p.evaluate(()=>window.__harness.game.registry.get('runController').state),before);await p.getByRole('button',{name:'换为这组',exact:true}).click();assert.equal(await p.evaluate(()=>window.__harness.game.scene.getScene('game').selectedIds.size),3);assert.deepEqual(await p.evaluate(()=>window.__harness.game.registry.get('runController').state),before);await tapUI(p,'game','selection/facts',true);await p.getByRole('button',{name:'撤销换组',exact:true}).click();assert.deepEqual(await p.evaluate(()=>[...window.__harness.game.scene.getScene('game').selectedIds]),ids);report.checks.push('closed old modal callback rejected against new ghost on identical hand key; current apply3 then undo5 are atomic UI-only');assert.deepEqual(errors,[]);
+ report.measured=o;report.checks.push('authoritative triple3 core2 accompanying/current type and actual candidate entry','actual enumeration offers triple3/4/5; ghost native tap does not change selectedIDs/save/RNG/journal/resources','single modal scroll with explicit replace/undo/close44px targets');report.status='PASS';
+}catch(e){report.status='FAIL';report.error=String(e);console.error(e);process.exitCode=1;}finally{await browser.close();await server.httpServer.close();await writeFile(dir+'/report.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:report.status,error:report.error,source:report.source,checks:report.checks}));}

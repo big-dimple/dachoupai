@@ -1,3 +1,4 @@
+import {r2TransactionConditionMatches} from './r2Conditions';
 import { createDeck } from '../cards/deck';
 import { R2_JOKERS,R2_IMPLEMENTED_FEATURES,readR2Modifiers,r2GrowthCaps,r2GrowthInitials,r2GrowthMinimums,validR2JokerCounters,supportsR2Joker,type Condition,type R2JokerInstance,type TransactionHookPhase } from '../content/r2Schema';
 import { SeededRng } from '../core/SeededRng';
@@ -201,20 +202,10 @@ function sealBossJoker(state:R2RunState):void {
 }
 export const r2DiscardCost=(state:Pick<R2RunState,'stage'|'boss'>):number=>state.stage?.doubleDiscardBeforeFirstPlay&&state.stage.playIndex===0?2:1;
 function transactionMatches(state:R2RunState,condition:Condition,discarded:readonly PlayingCard[]):boolean {
-  switch(condition.kind){
-    case 'always':return true;
-    case 'resource':return ({gold:state.gold,'hands-after':state.stage?.handsLeft,'play-index':state.stage?.playIndex,'discards-used':state.stage?.discardsUsed})[condition.resource]===condition.equals;
-    case 'hand-type-in':return !!state.stage?.previousHandType&&condition.values.includes(state.stage.previousHandType);
-    case 'discard-count':return discarded.length===condition.equals;
-    case 'discard-same-suit':return discarded.length>=condition.minimum&&discarded.every(c=>c.suit===discarded[0].suit);
-    case 'stage-played-maximum':return !!state.stage&&state.stage.playIndex>0&&state.stage.maxPlayedCount<=condition.maximum;
-    case 'stage-hand-types-all':return !!state.stage&&condition.values.every(type=>type==='straight'?state.stage!.ordinaryStraightSeen:type==='flush'&&state.stage!.ordinaryFlushSeen);
-    case 'no-joker-sale-this-stage':return !!state.stage&&!state.stage.jokerSold;
-    case 'held-count':return !!state.lastTrace&&state.lastTrace.sets.heldIds.length>=condition.minimum;
-    case 'hand-type-unfinished':return !!state.stage&&!!state.lastTrace&&condition.values.includes(state.lastTrace.handType)&&BigInt(state.stage.heat)<BigInt(state.stage.targetHeat);
-    default:throw Error('invalid-economic-condition');
-  }
+ const stage=state.stage;
+ return r2TransactionConditionMatches(condition,{gold:state.gold,handsAfter:stage?.handsLeft,playIndex:stage?.playIndex,discardsUsed:stage?.discardsUsed,handType:stage?.previousHandType??null,heldCount:state.lastTrace?.sets.heldIds.length,discarded,hasStage:!!stage,maxPlayedCount:stage?.maxPlayedCount??0,ordinaryStraightSeen:stage?.ordinaryStraightSeen??false,ordinaryFlushSeen:stage?.ordinaryFlushSeen??false,jokerSold:stage?.jokerSold??false,traceType:state.lastTrace?.handType??null,heat:stage?.heat??'0',target:stage?.targetHeat??'0'});
 }
+
 function economicHooks(state:R2RunState,phase:TransactionHookPhase,events:DomainEvent[],sources=state.jokers,discarded:readonly PlayingCard[]=[]):void {
   for(const j of sources)for(const hook of R2_JOKERS.find(d=>d.id===j.definitionId)!.hooks){
     if(hook.phase!==phase||!transactionMatches(state,hook.condition,discarded))continue;

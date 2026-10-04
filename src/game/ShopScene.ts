@@ -1,7 +1,10 @@
+import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
+import {R2_JOKERS} from '../content/r2Schema';
+import {jokerMemoryAbility,publicJokerMemoryContext} from './JokerMemory';
+import type {R2JokerInstance} from '../content/r2Schema';
 import {shopLayout} from './ShopLayout';
 import {requestJokerArt,jokerArtLoadState,retryJokerArt} from './JokerArtLoading';
 import {JOKER_RARITY,createJokerRarityBadge,type JokerRarity} from './JokerRarity';
-import {cardAbilityCopy} from './CardCopy';
 import Phaser from 'phaser';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {r2RunModeConfig,R2_MODE_CATALOG} from '../content/r2Modes';
@@ -88,7 +91,7 @@ export class ShopScene extends Phaser.Scene {
       v.text(p.slots[0].x,p.slots[0].y-22,ownedLabel,14,'#3F606B',p.slots[4].x+p.slots[4].width-p.slots[0].x);
     }
     if(!p.inventoryCollapsed)this.run.jokers.forEach((j,i)=>{
-      const b=p.slots[i],d=getR2Joker(j.definitionId),ability=this.jokerCopy(j.definitionId),first=v.root.length;
+      const b=p.slots[i],d=getR2Joker(j.definitionId),ability=this.jokerCopy(j.definitionId,j),first=v.root.length;
       this.drawSlot(b,true,d.rarity);
       this.drawJokerPicture(j.definitionId,{x:b.x+3,y:b.y+22,width:b.width-6,height:b.height-25});
       const ownedName=v.text(b.x+3,b.y+3,d.name,14,'#26313A');this.ellipsis(ownedName,b.width-6);
@@ -227,7 +230,11 @@ export class ShopScene extends Phaser.Scene {
   private jokerArtStatus(definitionId:string) {
     return {status:jokerArtLoadState(this,definitionId).status,readStatus:()=>jokerArtLoadState(this,definitionId).status,retry:()=>retryJokerArt(this,[definitionId],()=>this.render())};
   }
-  private jokerCopy(definitionId:string) {return cardAbilityCopy(definitionId,{gold:this.run.gold,inStage:false,disabledReason:this.run.chapterDisabledJokerId===definitionId?'本章封角：本体与版次均暂停':undefined});}
+  private jokerCopy(definitionId:string,instance?:R2JokerInstance) {
+    const subject=instance??r2CreateJoker(definitionId,'offer-condition/'+definitionId,0),inventory=instance?this.run.jokers:[...this.run.jokers,subject];
+    const knownBoss=this.run.stageIndex%3===2?this.run.boss:null,limited=r2ScoringDisabledJokerIds(knownBoss,inventory,R2_JOKERS,[],this.run.chapterDisabledJokerId).includes(subject.instanceId);
+    return jokerMemoryAbility(getR2Joker(definitionId),instance,publicJokerMemoryContext(this.run,{hand:[],scoringLimited:limited,deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,jokerSlots:r2JokerCapacity(this.run),jokerCount:this.run.jokers.length}));
+  }
   private jokerAbilityLine(definitionId:string,surface:'offer'|'owned',x:number,y:number,width:number,copy:string,compact:string):Phaser.GameObjects.Text {
     const label=this.view.text(x,y,copy,14,'#f4e5bc').setName('joker-ability').setData('definitionId',definitionId).setData('surface',surface);
     for(let font=14;label.width>width&&font>12;)label.setFontSize(--font);
@@ -325,7 +332,7 @@ export class ShopScene extends Phaser.Scene {
   }
   private inspectJoker(id:string):void {
     const j=this.run.jokers.find(j=>j.instanceId===id);if(!j||this.busy)return;this.hideHoverPicture();const d=getR2Joker(j.definitionId),index=this.run.jokers.indexOf(j),seq=this.run.commandSeq;
-    const growth=r2JokerStateText(j),ability=this.jokerCopy(d.id);
+    const growth=r2JokerStateText(j),ability=this.jokerCopy(d.id,j);
     const dialog=this.dialog.open(d.name+' · 第 '+(index+1)+' 槽',(ability?'':d.description+r2JokerExtraHelp(d)+'\n')+'版次：'+editionEffectText(j.edition)+'\n\n当前实例：'+growth+`\n实际买价 ${j.paidPrice} 金；出售可得 ${salePrice(j.paidPrice)} 金。\n出售后余额 ${this.run.gold} → ${this.run.gold+salePrice(j.paidPrice)} 金。\n\n大丑牌按从左至右的顺序触发。`,[
       {label:'左移',disabled:!this.ready||index===0,run:async()=>{if(await this.reorder(index,index-1,seq)&&this.dialog.active(dialog))this.inspectJoker(id);}},
       {label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:async()=>{if(await this.reorder(index,index+1,seq)&&this.dialog.active(dialog))this.inspectJoker(id);}},

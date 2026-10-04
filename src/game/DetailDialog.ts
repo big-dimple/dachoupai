@@ -10,12 +10,13 @@ export function modalBlocksCanvas(x:number,y:number):boolean {
 }
 interface DialogAction {label:string;run:()=>void|Promise<void>;disabled?:boolean;primary?:boolean}
 type ArtLoadStatus='unregistered'|'idle'|'loading'|'loaded'|'failed';
-interface DialogOptions {summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;alt:string;layout?:'card';caption?:string}}
+interface DialogOptions {onClose?:()=>void;summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;alt:string;layout?:'card';caption?:string}}
 export class DetailDialog {
   private dialog?:HTMLDialogElement;
   private lastPointer?:{x:number;y:number};
   private returnFocus?:HTMLElement;
   private stopArt?:()=>void;
+  private afterClose?:()=>void;
   private rarity?:JokerRarity;
   private attachFallback?:(url:string,alt:string)=>void;
   private refreshArt?:()=>void;
@@ -43,10 +44,11 @@ export class DetailDialog {
     this.stopArt?.();this.stopArt=undefined;
     this.attachFallback=undefined;this.refreshArt=undefined;this.rarity=undefined;
     this.dialog?.close();this.dialog?.remove();this.dialog=undefined;this.lastPointer=undefined;
+    const afterClose=this.afterClose;this.afterClose=undefined;afterClose?.();
     if(this.returnFocus?.isConnected)this.returnFocus.focus({preventScroll:true});this.returnFocus=undefined;
   }
   open(title:string,body:string,actions:DialogAction[]=[],options:DialogOptions={}):HTMLDialogElement {
-    this.close();this.returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:undefined;
+    this.close();this.afterClose=options.onClose;this.returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:undefined;
     this.rarity=options.rarity;const cleanups:(()=>void)[]=[];this.stopArt=()=>{for(const cleanup of cleanups)cleanup();};
     const dialog=document.createElement('dialog'),header=document.createElement('header'),heading=document.createElement('h2'),content=document.createElement('p'),layout=document.createElement('div'),copy=document.createElement('div'),row=document.createElement('div'),status=document.createElement('p');
     dialog.className='detail-dialog';dialog.setAttribute('aria-label',title);heading.textContent=title;content.textContent=body;content.className='dialog-body';row.className='dialog-actions';

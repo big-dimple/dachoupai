@@ -24,3 +24,11 @@ export function selectionCopy(f:R2SelectionFacts){
     rules:(f.rules.fourStraight&&f.rules.fourFlush?'4张普通顺子／同花':f.rules.fourStraight?'4张普通顺子':f.rules.fourFlush?'4张普通同花':'')+(f.rules.fourStraight||f.rules.fourFlush?'；同花顺仍5张':''),
     fullRules:[f.rules.fourStraight?'4张普通顺子；同花顺仍5张':undefined,f.rules.fourFlush?'4张普通同花；同花顺仍5张':undefined].filter(Boolean).join('\n')};
 }
+/** Card role is membership, not a score event or a promise of an effect. */
+export function selectionCardCopy(f:R2SelectionFacts|undefined,id:string):string {
+  if(!f?.playedIds.includes(id))return '未选择';
+  const core=f.scoringIds.includes(id),disabled=f.disabledIds.includes(id);
+  const role=core?f.activeScoringIds.includes(id)?'计分牌':'成型核心但计分停用':'附带牌';
+  return role+(disabled&&!core?'；本场效果停用，仍随本手打出并参与判型':'')
+    +(f.ordinaryPointsSuppressedIds.includes(id)?'\n普通点数0，其他效果保留':'');
+}

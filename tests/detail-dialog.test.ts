@@ -112,6 +112,8 @@ describe('detail art recovery and stable rarity',()=>{
     const current=owner.open('新详情','完整规则');finish();await flush();expect(owner.active(current)).toBe(true);expect(image.src).toBe('/role-small.webp');expect(image.onerror).toBeNull();
   });
 
+  it('cleans ghost ownership once on close/reopen and an old close cannot clean a new dialog',()=>{const owner=new DetailDialog(),oldCleanup=vi.fn(),currentCleanup=vi.fn(),old=owner.open('旧候选','仅示例',[],{onClose:oldCleanup}),current=owner.open('新候选','当前',[],{onClose:currentCleanup});expect(oldCleanup).toHaveBeenCalledTimes(1);owner.close(old);expect(currentCleanup).not.toHaveBeenCalled();owner.close(current);owner.close();expect(currentCleanup).toHaveBeenCalledTimes(1);});
+
   it('tracks automatic Phaser retry and recovery without reopening the modal or marking recovered art failed',()=>{
     let currentStatus:'failed'|'loading'|'loaded'='failed';const readStatus=vi.fn(()=>currentStatus),owner=new DetailDialog();
     const dialog=owner.open('不换词','规则',[],{portrait,artLoad:{status:currentStatus,readStatus}}),frame=find(dialog,'.dialog-card-art'),image=find(frame,'.dialog-card-image');
