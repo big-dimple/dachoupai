@@ -1,0 +1,292 @@
+{
+  "taskId": "P08",
+  "scope": "One bounded natural run through first Boss on the frozen source; evidence-only review.",
+  "status": "PASS",
+  "testedCommit": "7b78777347dd854f5759870c7934b8c28279889e",
+  "build": {
+    "version": "C03",
+    "revision": "7b78777347dd854f5759870c7934b8c28279889e",
+    "modified": false,
+    "builtAt": "2026-10-04T19:07:17.555Z"
+  },
+  "bundle": {
+    "file": "assets/index-CN6hrgew.js",
+    "bytes": 1970712,
+    "sha256": "b4bfd9a297cbfd06daefcef8ef91188085e9fa4cacfa9c2d83b8c25155c95d7f"
+  },
+  "profile": {
+    "seed": "p08-batch3-natural",
+    "runId": "run/p08-batch3-natural/amo",
+    "character": "amo",
+    "mode": "standard",
+    "difficulty": 0,
+    "viewport": {
+      "width": 390,
+      "height": 740
+    },
+    "DPR": 1,
+    "renderer": "software Canvas",
+    "input": "native touchscreen/DOM taps; readonly Phaser and readonly IndexedDB observation",
+    "browser": "151.0.7922.173",
+    "motion": "ordinary",
+    "speedChanges": [
+      {
+        "from": 1,
+        "to": 2,
+        "atUTC": "2026-10-04T19:31:52.738Z"
+      }
+    ],
+    "buildMode": "e2e",
+    "harnessUse": "Existing game reference for read-only observations; all game entry, purchases, selection, sorting, discards, plays, tools, and Continue actions used native UI."
+  },
+  "beganAtUTC": "2026-10-04T19:15:04.027Z",
+  "stoppedAtUTC": "2026-10-04T20:00:32.456Z",
+  "initialShelf": {
+    "shelfKind": "jokers",
+    "offers": [
+      {
+        "offerId": "run/p08-batch3-natural/amo/shop/0/0/joker/0",
+        "definitionId": "b05",
+        "price": 6,
+        "edition": "none",
+        "consumed": false,
+        "reason": ""
+      },
+      {
+        "offerId": "run/p08-batch3-natural/amo/shop/0/0/joker/1",
+        "definitionId": "a12",
+        "price": 6,
+        "edition": "none",
+        "consumed": false,
+        "reason": ""
+      },
+      {
+        "offerId": "run/p08-batch3-natural/amo/shop/0/0/joker/2",
+        "definitionId": "d06",
+        "price": 6,
+        "edition": "none",
+        "consumed": false,
+        "reason": ""
+      }
+    ]
+  },
+  "initialPurchase": {
+    "offerId": "run/p08-batch3-natural/amo/shop/0/0/joker/0",
+    "definitionId": "b05",
+    "price": 6,
+    "edition": "none",
+    "consumed": false,
+    "reason": ""
+  },
+  "stages": [
+    {
+      "index": 0,
+      "target": "400",
+      "plays": [
+        "692"
+      ],
+      "finalHeat": "692",
+      "goldAfter": 7
+    },
+    {
+      "index": 1,
+      "target": "600",
+      "plays": [
+        "278",
+        "1505"
+      ],
+      "finalHeat": "1783",
+      "goldAfter": 10
+    },
+    {
+      "index": 2,
+      "boss": "B01",
+      "target": "800",
+      "plays": [
+        "344",
+        "337",
+        "337"
+      ],
+      "finalHeat": "1018",
+      "goldAfter": 10
+    }
+  ],
+  "tools": {
+    "encounters": [
+      {
+        "shelfKind": "tools",
+        "offers": [
+          {
+            "offerId": "run/p08-batch3-natural/amo/shop/0/0/tool/0",
+            "definitionId": "P01",
+            "price": 4,
+            "consumed": false,
+            "reason": "金币不足，还差 4 金币。"
+          }
+        ]
+      },
+      {
+        "shelfKind": "tools",
+        "offers": [
+          {
+            "offerId": "run/p08-batch3-natural/amo/shop/1/0/tool/0",
+            "definitionId": "T10",
+            "price": 4,
+            "consumed": false,
+            "reason": ""
+          }
+        ]
+      }
+    ],
+    "bought": [
+      {
+        "offer": {
+          "offerId": "run/p08-batch3-natural/amo/shop/1/0/tool/0",
+          "definitionId": "T10",
+          "price": 4,
+          "consumed": false,
+          "reason": ""
+        },
+        "description": "塔罗 · 加厚纸 · 购买详情\n\n商店 / 待出牌可用。选择1–2张可见扑克。赋予热度纸：每次普通或额外计分热度+20。替换原增强，保留版次。\n\n商店基准售价：4金\n额外使用代价：无额外金币或牺牲代价。成功后消耗1件工具。\n\n商店只选有效牌组，待出牌时只选当前可见手牌。每张只有一个增强层，替换会永久失去原增强；确认页须核对被替换的效果。失效牌不触发增强。取消、过期、非法目标、没有变化或代价不足均不消费工具与资源。\n\n购买后收入消耗品库存，使用时另选目标并确认额外代价。\n\n实付 4 金 · 余额 7 → 3 金\n\n手绘卡面\n高清细节加载中…\n规则与操作\n确认购买\n取消",
+        "seq": 11
+      }
+    ],
+    "used": [
+      {
+        "seq": 14,
+        "action": {
+          "type": "UseConsumable",
+          "instanceId": "run/p08-batch3-natural/amo/tool/run/p08-batch3-natural/amo/command/11",
+          "targetIds": [
+            "diamonds-6",
+            "clubs-6"
+          ]
+        },
+        "before": [
+          {
+            "instanceId": "run/p08-batch3-natural/amo/tool/run/p08-batch3-natural/amo/command/11",
+            "definitionId": "T10"
+          }
+        ],
+        "after": []
+      }
+    ],
+    "coverage": "COVERED"
+  },
+  "stop": {
+    "phase": "stage-cleared",
+    "stageIndex": 2,
+    "Boss": {
+      "definitionId": "B01",
+      "disabledSuit": null
+    },
+    "heat": "1018",
+    "target": "800",
+    "gold": 10,
+    "seq": 26,
+    "journal": 25,
+    "clearId": "run/p08-batch3-natural/amo/clear/2",
+    "awardedGold": 8,
+    "firstBossSupply": [
+      {
+        "instanceId": "run/p08-batch3-natural/amo/first-boss/supply",
+        "definitionId": "T16"
+      }
+    ]
+  },
+  "remaining": {
+    "hands": 1,
+    "discards": 1
+  },
+  "recoveries": {
+    "count": 3,
+    "completeCheckpointAndAllSlotsEqual": true,
+    "labels": [
+      {
+        "label": "purchase",
+        "seq": 2,
+        "gold": 0
+      },
+      {
+        "label": "play-during-presentation",
+        "seq": 9,
+        "gold": 7
+      },
+      {
+        "label": "settled-reward-or-failure",
+        "seq": 9,
+        "gold": 7
+      }
+    ]
+  },
+  "reward": {
+    "finalPlaySeq": 26,
+    "finalJournalCount": 25,
+    "goldBefore": 2,
+    "goldAfter": 10,
+    "delta": 8,
+    "clearId": "run/p08-batch3-natural/amo/clear/2",
+    "firstBossSupply": [
+      {
+        "instanceId": "run/p08-batch3-natural/amo/first-boss/supply",
+        "definitionId": "T16"
+      }
+    ],
+    "supplyRewardClaimed": true,
+    "uniqueJournalCommandIds": 25,
+    "uniqueReceipts": 26
+  },
+  "checks": {
+    "sourceBuildWithTypecheck": "PASS",
+    "threeRecoveryComparisons": "PASS",
+    "readOnlyAndSelectionChecks": "PASS",
+    "sorting": "PASS",
+    "sixCommittedToSettledPlayComparisons": "PASS",
+    "savedJournalDomainReplay": "PASS",
+    "terminalImageStateAndSlotsUnchanged": "PASS",
+    "fourImagesViewed": true,
+    "localFullTestRerun": "NOT_RUN"
+  },
+  "images": [
+    {
+      "file": "01-shop-after-purchase-recovery.png",
+      "bytes": 39535,
+      "sha256": "7edb0c1e18d511e878313c594eec1f34421d86504786eb0d2f6e541e33f9e35d",
+      "width": 390,
+      "height": 740
+    },
+    {
+      "file": "02-first-play-actual-source.png",
+      "bytes": 64214,
+      "sha256": "a05f4cbb1c7e400e4fea962df8f9cca6bba146b05b6f46ab421cb9ffd9cfaaa7",
+      "width": 390,
+      "height": 740
+    },
+    {
+      "file": "03-Boss-paused-checkpoint.png",
+      "bytes": 77905,
+      "sha256": "aa76b4ed9535a6f48c14591bebdd921448679878d92ecc67cbbdc9d5ba7fff27",
+      "width": 390,
+      "height": 740
+    },
+    {
+      "file": "04-first-Boss-result.png",
+      "bytes": 61098,
+      "sha256": "b4e01be30835f9e9ab153a15a36cebb4c2097a44127c8796ec50d3df1284b225",
+      "width": 390,
+      "height": 740
+    }
+  ],
+  "productChanges": false,
+  "mainAdvanced": false,
+  "limits": [
+    "Only this seed, character, standard D0 run, viewport, DPR and software Canvas profile were covered.",
+    "No new run, seed reroll, state/card/score/money/RNG injection, skip or forced win.",
+    "The run stopped at the first Boss result; chapter 2 was not entered and T16 was not used.",
+    "The first play was intentionally interrupted during actual impact by recovery. Its complete remaining presentation was not observed.",
+    "Screenshots are original frames, not video or GPU/FPS evidence. Image 01 is an early shop entrance frame; image 02 shows transient animated numbers rather than the final 692.",
+    "Hardware GPU, real PC, OnePlus, audio listening, video/FPS and reduced-motion behavior: NOT_RUN.",
+    "No claim of overall P08 completion or broad visual/device acceptance.",
+    "Existing source CI was not rerun locally as a full freeze; evidence-review CI is reported separately."
+  ]
+}
