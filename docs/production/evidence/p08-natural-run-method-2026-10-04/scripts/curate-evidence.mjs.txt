@@ -1,0 +1,162 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile,mkdir,copyFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {createServer} from 'vite';
+
+const raw='shots/p08-natural-run';
+const dest='docs/production/evidence/p08-natural-run-2026-10-04';
+const source='7b78777347dd854f5759870c7934b8c28279889e';
+const read=async path=>JSON.parse(await readFile(path,'utf8'));
+const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
+const objectSHA=value=>sha(Buffer.from(JSON.stringify(value)));
+const emit=async(name,value)=>writeFile(`${dest}/${name}`,JSON.stringify(value,null,2)+'\n');
+const report=await read(`${raw}/report.json`);
+assert.equal(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),source);
+assert.equal(report.source,source);
+assert.equal(report.status,'PASS');
+assert.equal(report.build.modified,false);
+assert.equal(report.recoveries.length,3);
+assert.equal(report.images.length,4);
+assert.deepEqual(report.speedChanges.map(({from,to})=>({from,to})),[{from:1,to:2}]);
+assert.deepEqual(report.errors,[]);
+const observations=await Promise.all(report.steps.map(async step=>({step,data:await read(`${raw}/${step.file}`)})));
+const byLabel=label=>{
+  const item=observations.find(x=>x.step.label===label);
+  assert.ok(item,`missing ${label}`);
+  return item;
+};
+const byFile=file=>observations.find(x=>x.step.file===file);
+const initial=byLabel('new-run-shop');
+const paused=byLabel('paused-parent-checkpoint');
+const final=byLabel('first-Boss-final-after-image');
+const last=final.data.checkpoint;
+assert.equal(last.state.phase,'stage-cleared');
+assert.equal(last.state.stage.index,2);
+assert.equal(last.state.stage.boss.definitionId,'B01');
+assert.equal(last.state.stage.heat,'1018');
+assert.equal(last.state.stage.targetHeat,'800');
+assert.equal(last.state.commandSeq,26);
+assert.equal(last.journal.length,25);
+assert.equal(last.state.gold,10);
+assert.equal(last.state.stage.goldEarned,8);
+assert.equal(last.state.consumables.length,1);
+assert.equal(last.state.consumables[0].definitionId,'T16');
+assert.equal(new Set(last.journal.map(x=>x.commandId)).size,25);
+assert.equal(new Set(last.state.receipts.map(x=>x.commandId)).size,26);
+
+// After-the-run verification only. These pure domain calls do not touch the browser.
+const vite=await createServer({configFile:false,root:process.cwd(),cacheDir:'<TEMP_DIR>/p08-natural-evidence-vite-cache',server:{middlewareMode:true,watch:null},appType:'custom',logLevel:'error'});
+let replayVerification;
+try {
+  const {applyCommand}=await vite.ssrLoadModule('/src/domain/run.ts');
+  const {readCheckpoint}=await vite.ssrLoadModule('/src/application/checkpoint.ts');
+  let checked=0;
+  for(const {data} of observations){
+    for(const cp of [data.checkpoint,data.slots.slots?.current,data.slots.slots?.previous]){
+      if(!cp)continue;
+      const value=readCheckpoint(cp);assert.equal(value.ok,true,value.code);checked++;
+    }
+  }
+  let state=structuredClone(initial.data.checkpoint.state);
+  const rows=[];
+  for(const command of last.journal){
+    const before=state;
+    const result=applyCommand(state,command);
+    assert.equal(result.ok,true,result.code);
+    assert.equal(result.duplicate,false);
+    state=result.state;
+    const saved=observations.filter(({data})=>data.checkpoint?.state.commandSeq===state.commandSeq);
+    for(const {data} of saved)assert.deepEqual(state,data.checkpoint.state);
+    rows.push({seq:state.commandSeq,action:command.action.type,goldBefore:before.gold,goldAfter:state.gold,phase:state.phase,stageIndex:state.stage?.index??null,heat:state.stage?.heat??null,handsLeft:state.stage?.handsLeft??null,discardsLeft:state.stage?.discardsLeft??null,comparedObservedSnapshots:saved.length,stateSHA256:objectSHA(state),rngSHA256:objectSHA(state.rng)});
+  }
+  assert.deepEqual(state,last.state);
+  const duplicate=applyCommand(structuredClone(state),last.journal.at(-1));
+  assert.equal(duplicate.ok,true);assert.equal(duplicate.duplicate,true);
+  assert.deepEqual(duplicate.events,[]);assert.deepEqual(duplicate.state,state);
+  replayVerification={scope:'Post-run pure-domain verification of the recorded journal; no browser actions or state writes.',validatedCheckpointObjects:checked,commands:rows,finalStateAndRNGExact:true,finalCommandDuplicateInDomain:{duplicate:true,noEvents:true,completeStateAndRNGUnchanged:true},browserDuplicateClick:'NOT_RUN'};
+}finally{await vite.close();}
+
+await mkdir(dest,{recursive:true});
+const compactSnapshot=item=>({atUTC:item.step.atUTC,checkpoint:item.data.checkpoint,slots:item.data.slots,status:item.data.status,active:item.data.active,public:{selected:item.data.public.selected,ready:item.data.public.ready,playing:item.data.public.playing,presentation:item.data.public.presentation,score:item.data.public.score,visibleText:item.data.public.visibleText}});
+await emit('initial-checkpoint.json',initial.data.checkpoint);
+await emit('final-checkpoint.json',last);
+const recoveries=[];
+for(const entry of report.recoveries){
+  const before=byFile(entry.before),title=byFile(entry.title),after=byFile(entry.after);
+  assert.deepEqual(before.data.checkpoint,title.data.checkpoint);
+  assert.deepEqual(before.data.checkpoint,after.data.checkpoint);
+  assert.deepEqual(before.data.slots,title.data.slots);
+  assert.deepEqual(before.data.slots,after.data.slots);
+  recoveries.push({label:entry.label,seq:entry.seq,gold:entry.gold,comparison:{method:'deepStrictEqual on complete checkpoint and complete IndexedDB meta/current/previous values; no fields omitted',checkpointEqualAtAllThreePoints:true,slotsEqualAtAllThreePoints:true,checkpointSHA256:objectSHA(before.data.checkpoint),slotsSHA256:objectSHA(before.data.slots)},before:compactSnapshot(before),reloadTitle:compactSnapshot(title),nativeContinue:compactSnapshot(after)});
+}
+await emit('recoveries.json',{count:3,recoveries});
+
+const readonlyLabels=['detail-before-b05','detail-cancel-b05','detail-before-a12','detail-cancel-a12','detail-before-d06','detail-cancel-d06','selection-zero','selection-one','selection-five','candidate-original-five','candidate-ghost','candidate-replaced','candidate-undone','selection-checks-complete'];
+const readOnlyGroups=[['detail-before-b05','detail-cancel-b05'],['detail-before-a12','detail-cancel-a12'],['detail-before-d06','detail-cancel-d06'],['entered-stage','selection-zero','selection-one','selection-five'],['candidate-original-five','candidate-ghost','candidate-replaced','candidate-undone','selection-checks-complete']];
+for(const group of readOnlyGroups){
+  const first=byLabel(group[0]);
+  for(const label of group.slice(1)){
+    assert.deepEqual(first.data.checkpoint,byLabel(label).data.checkpoint);
+    assert.deepEqual(first.data.slots,byLabel(label).data.slots);
+  }
+}
+const sortChecks=[];
+for(const [previousLabel,label] of [['selection-five','sort-rank-returns-selection'],['sort-rank-returns-selection','sort-suit-returns-selection']]){
+  const before=byLabel(previousLabel),after=byLabel(label);
+  assert.deepEqual(after.data.public.selected,[]);
+  const strip=s=>{const c=structuredClone(s);delete c.handOrder;delete c.commandSeq;delete c.receipts;return c;};
+  assert.deepEqual(strip(before.data.checkpoint.state),strip(after.data.checkpoint.state));
+  assert.equal(after.data.checkpoint.state.commandSeq,before.data.checkpoint.state.commandSeq+1);
+  sortChecks.push({label,selected:[],oneReorderCommand:true,otherCompleteStateIncludingRNGEqual:true});
+}
+const settledPairs=[['play-committed','play-settled'],['native-play-committed','native-play-settled']];
+const committedEquality=[];
+for(let i=0;i<observations.length;i++){
+  const item=observations[i];
+  const pair=settledPairs.find(([commit])=>commit===item.step.label);if(!pair)continue;
+  const settle=observations.slice(i+1).find(x=>x.step.label===pair[1]&&x.data.checkpoint.state.commandSeq===item.data.checkpoint.state.commandSeq);
+  assert.ok(settle);assert.deepEqual(item.data.checkpoint,settle.data.checkpoint);assert.deepEqual(item.data.slots,settle.data.slots);
+  committedEquality.push({seq:item.data.checkpoint.state.commandSeq,checkpointEqual:true,slotsEqual:true,interruptedByRecovery:item.data.checkpoint.state.commandSeq===9});
+}
+const finalBefore=byLabel('first-Boss-final-before-image');
+assert.deepEqual(finalBefore.data.checkpoint,final.data.checkpoint);
+assert.deepEqual(finalBefore.data.slots,final.data.slots);
+assert.equal(paused.data.checkpoint.state.gold,2);
+const sourceObservations=report.sources.map(s=>({seq:s.seq,savedTrace:s.trace,observedFrames:s.actualPhaseFrames.filter(f=>s.trace.events.some(e=>e.eventId===f.eventId)),observationInterruptedByReload:s.seq===9}));
+sourceObservations[0].actualImpactSnapshot=compactSnapshot(byLabel('first-play-actual-impact'));
+await emit('observations.json',{
+  steps:observations.map(({step})=>({label:step.label,atUTC:step.atUTC,checkpointSHA256:step.checkpointSHA256,slotsSHA256:step.slotsSHA256,summary:step.summary})),
+  readonlyChecks:{completeCheckpointAndSlotsEqual:true,rows:readonlyLabels.map(label=>{const item=byLabel(label);return{label,checkpointSHA256:objectSHA(item.data.checkpoint),slotsSHA256:objectSHA(item.data.slots),selected:item.data.public.selected,candidateGhost:item.data.public.candidateGhost,dialogText:item.data.public.dialog.map(x=>x.text)}})},
+  sortChecks,committedAndSettledComparisons:committedEquality,
+  sourceObservations,
+  pausedCheckpoint:compactSnapshot(paused),
+  terminalSnapshot:compactSnapshot(final),
+  terminalImageBeforeAfter:{completeCheckpointEqual:true,completeSlotsEqual:true},
+  console:{uncaughtPageErrors:[],resourceErrors:[{path:'/favicon.ico',status:404,initiator:'other'}]},
+  diagnostics:{observerCommandNameCorrection:'The first native discard was saved correctly as DiscardHand. The Node observer originally expected Discard, stopped at the committed checkpoint, and was corrected to PlayHand/DiscardHand in the same browser and run. No runtime source or saved state changed.',phaseObserver:'Read-only postrender observer reinstalled after reload. Frames are event/phase transitions, not continuous recording or FPS measurements.',fingerprints:'The first image/build-JS metadata initially hashed a serialized Buffer. Published fingerprints below are recomputed from original raw bytes. Game state was unaffected.'}
+});
+await emit('journal-verification.json',replayVerification);
+const images=[];
+for(const item of report.images){
+  const bytes=await readFile(`${raw}/${item.file}`);
+  await copyFile(`${raw}/${item.file}`,`${dest}/${item.file}`);
+  images.push({file:item.file,bytes:bytes.length,sha256:sha(bytes),width:390,height:740});
+}
+const js=await readFile(`${raw}/build/assets/${report.JS[0].file}`);
+assert.equal(sha(js),report.JS[0].sha256);
+const summary={
+  taskId:'P08',scope:'One bounded natural run through first Boss on the frozen source; evidence-only review.',status:'PASS',testedCommit:source,build:report.build,bundle:{file:`assets/${report.JS[0].file}`,bytes:js.length,sha256:sha(js)},
+  profile:{seed:report.seed,runId:last.state.runId,character:report.character,mode:report.mode,difficulty:report.difficulty,viewport:report.viewport,DPR:report.DPR,renderer:report.renderer,input:report.input,browser:report.browser,motion:'ordinary',speedChanges:report.speedChanges,buildMode:'e2e',harnessUse:'Existing game reference for read-only observations; all game entry, purchases, selection, sorting, discards, plays, tools, and Continue actions used native UI.'},
+  beganAtUTC:initial.step.atUTC,stoppedAtUTC:final.step.atUTC,
+  initialShelf:report.initialShelf,initialPurchase:report.initialBought,
+  stages:[{index:0,target:'400',plays:['692'],finalHeat:'692',goldAfter:7},{index:1,target:'600',plays:['278','1505'],finalHeat:'1783',goldAfter:10},{index:2,boss:'B01',target:'800',plays:['344','337','337'],finalHeat:'1018',goldAfter:10}],
+  tools:report.tools,stop:report.stop,remaining:{hands:1,discards:1},
+  recoveries:{count:3,completeCheckpointAndAllSlotsEqual:true,labels:report.recoveries.map(x=>({label:x.label,seq:x.seq,gold:x.gold}))},
+  reward:{finalPlaySeq:26,finalJournalCount:25,goldBefore:2,goldAfter:10,delta:8,clearId:last.state.stage.clearId,firstBossSupply:last.state.consumables,supplyRewardClaimed:last.state.supplyRewardClaimed,uniqueJournalCommandIds:25,uniqueReceipts:26},
+  checks:{sourceBuildWithTypecheck:'PASS',threeRecoveryComparisons:'PASS',readOnlyAndSelectionChecks:'PASS',sorting:'PASS',sixCommittedToSettledPlayComparisons:'PASS',savedJournalDomainReplay:'PASS',terminalImageStateAndSlotsUnchanged:'PASS',fourImagesViewed:true,localFullTestRerun:'NOT_RUN'},
+  images,productChanges:false,mainAdvanced:false,
+  limits:['Only this seed, character, standard D0 run, viewport, DPR and software Canvas profile were covered.','No new run, seed reroll, state/card/score/money/RNG injection, skip or forced win.','The run stopped at the first Boss result; chapter 2 was not entered and T16 was not used.','The first play was intentionally interrupted during actual impact by recovery. Its complete remaining presentation was not observed.','Screenshots are original frames, not video or GPU/FPS evidence. Image 01 is an early shop entrance frame; image 02 shows transient animated numbers rather than the final 692.','Hardware GPU, real PC, OnePlus, audio listening, video/FPS and reduced-motion behavior: NOT_RUN.','No claim of overall P08 completion or broad visual/device acceptance.','Existing source CI was not rerun locally as a full freeze; evidence-review CI is reported separately.']
+};
+await emit('summary.json',summary);
+console.log(JSON.stringify({status:'PASS',directory:dest,source,seq:last.state.commandSeq,journal:last.journal.length,recoveries:3,images:images.length,validatedCheckpointObjects:replayVerification.validatedCheckpointObjects,replayedCommands:replayVerification.commands.length,observedSeqMatches:replayVerification.commands.reduce((n,x)=>n+x.comparedObservedSnapshots,0)}));

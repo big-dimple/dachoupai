@@ -1,0 +1,10 @@
+const list=await(await fetch('http://127.0.0.1:<INSPECTOR_PORT>/json/list')).json(),ws=new WebSocket(list[0].webSocketDebuggerUrl);await new Promise(r=>ws.onopen=r);let n=0;const pending=new Map();ws.onmessage=e=>{const d=JSON.parse(e.data);if(!d.id)return;const p=pending.get(d.id);pending.delete(d.id);d.error?p.reject(d.error):p.resolve(d.result);};const call=(method,params={})=>new Promise((resolve,reject)=>{const id=++n;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}));});
+const expression=`(async()=>{
+ const h=globalThis.__nativeRunDriver;if(!h)throw Error('missing same-run native driver');
+ const fs=process.getBuiltinModule('fs');let src=fs.readFileSync('<WORKTREE>/shots/p08-natural-run/native-extension.mjs','utf8');
+ src=src.replace(/^import .*;$/gm,'').replace('export async function run(h){','return async function run(h){').replace('import.meta.url',JSON.stringify('file://<WORKTREE>/shots/p08-natural-run/native-extension.mjs'));
+ const run=new Function('assert','readFile',src)(process.getBuiltinModule('assert/strict'),process.getBuiltinModule('fs/promises').readFile);
+ const o=await run(h),s=o?.checkpoint?.state;
+ return s?{phase:s.phase,seq:s.commandSeq,gold:s.gold,stage:s.stage?{index:s.stage.index,target:s.stage.targetHeat,heat:s.stage.heat,hands:s.stage.handsLeft,discards:s.stage.discardsLeft,boss:s.stage.boss}:null,jokers:s.jokers.map(j=>j.definitionId),tools:s.consumables,hand:o.public.hand,dialog:o.public.dialog,lastTrace:s.lastTrace?{score:s.lastTrace.finalScore,type:s.lastTrace.handType}:null}:o;
+})()`;
+const r=await call('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(r.exceptionDetails){console.log(JSON.stringify({ERROR:r.exceptionDetails}));process.exitCode=1;}else console.log(JSON.stringify({NATIVE:r.result.value}));ws.close();
