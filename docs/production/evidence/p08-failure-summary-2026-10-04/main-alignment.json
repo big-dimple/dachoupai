@@ -1,0 +1,115 @@
+{
+  "taskId": "P08",
+  "testedCommit": "0aa73999854044771955c60dea8ef3ada22c7b33",
+  "baseMain": "2d999cd938e5c19253daa8ddbd1cf25facf2d9e4",
+  "sourceFingerprint": "64f091fcbf49b7bee2a7a814347f2b13f18ac191ba21a571f5bb239341cdab48",
+  "merge": "Normal merge; UX text conflict only, both current cinnabar contract and320 OPEN list retained. Runtime had no conflict.",
+  "affectedTests": {
+    "tests": 65,
+    "files": 6,
+    "status": "PASS",
+    "paths": [
+      "tests/failure-summary.test.ts",
+      "tests/stage-outcome.test.ts",
+      "tests/c03-result-transition.test.ts",
+      "tests/reward-coin.test.ts",
+      "tests/score-flame.test.ts",
+      "tests/fire-audio.test.ts"
+    ]
+  },
+  "type": "PASS",
+  "productionBuild": {
+    "version": "C03",
+    "revision": "0aa73999854044771955c60dea8ef3ada22c7b33",
+    "modified": true,
+    "builtAt": "2026-10-04T18:08:40.514Z"
+  },
+  "browser": {
+    "status": "PASS",
+    "routes": [
+      {
+        "route": "win",
+        "score": "1200",
+        "checks": [
+          "native selected/play inputs",
+          "saved exact result",
+          "resize full run unchanged",
+          "reload/continue no second reward",
+          "native continue to shop"
+        ]
+      },
+      {
+        "route": "loss",
+        "score": "25",
+        "checks": [
+          "native selected/play inputs",
+          "saved exact result",
+          "resize full run unchanged",
+          "reload/continue no second reward",
+          "native same-seed retry to shop",
+          "short result reason/gap nonoverlap; existing details retains full resources; no new screenshot"
+        ]
+      }
+    ]
+  },
+  "preservation": {
+    "src/game/GameScene.ts": {
+      "mainObject": "d981fbfcacd1c7f3f795d77b082a33b494bf9c34",
+      "reviewObject": "d981fbfcacd1c7f3f795d77b082a33b494bf9c34",
+      "equal": true
+    },
+    "src/game/ScoreFlame.ts": {
+      "mainObject": "925208142110f17e08e1df264913d21e5c9afdd0",
+      "reviewObject": "925208142110f17e08e1df264913d21e5c9afdd0",
+      "equal": true
+    },
+    "src/audio/AudioEngine.ts": {
+      "mainObject": "a59571134ba2e3a1f7c913b44434b425df24a80c",
+      "reviewObject": "a59571134ba2e3a1f7c913b44434b425df24a80c",
+      "equal": true
+    },
+    "src/game/JokerPlayerCopy.ts": {
+      "mainObject": "26506df17dd711810c581e004d5cba4f9d3f53b9",
+      "reviewObject": "26506df17dd711810c581e004d5cba4f9d3f53b9",
+      "equal": true
+    },
+    "src/game/JokerPlayerTemplates.json": {
+      "mainObject": "971b07c9cc9a7d5c13977263fe0232ff92650b0a",
+      "reviewObject": "971b07c9cc9a7d5c13977263fe0232ff92650b0a",
+      "equal": true
+    },
+    "src/domain": {
+      "mainObject": "8e3423193ecb4920e79b87f2314da97a04438c99",
+      "reviewObject": "8e3423193ecb4920e79b87f2314da97a04438c99",
+      "equal": true
+    },
+    "src/application": {
+      "mainObject": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+      "reviewObject": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+      "equal": true
+    },
+    "src/content": {
+      "mainObject": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+      "reviewObject": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+      "equal": true
+    },
+    "public": {
+      "mainObject": "9d8b4d9f9ac0006ab39b3e2820e71fca9af94b0d",
+      "reviewObject": "9d8b4d9f9ac0006ab39b3e2820e71fca9af94b0d",
+      "equal": true
+    },
+    "art": {
+      "mainObject": "363746bb1534f8124cf23c4e6f6bb4744cc386a0",
+      "reviewObject": "363746bb1534f8124cf23c4e6f6bb4744cc386a0",
+      "equal": true
+    }
+  },
+  "images": "Original two accepted images byte-for-byte retained, original build/source metadata unchanged. No new screenshots or relabeling as latest main.",
+  "scope": "Failure summary + pending320 clipping record only. No320 implementation, tool/art/reward/domain changes.",
+  "localDirection": "PASS: parent independently read complete source diff and viewed390 after; only bounded direction acceptance",
+  "overallAesthetic": "PENDING",
+  "targetDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audioListening": "NOT_RUN",
+  "newExactCI": "PENDING_REVIEW_PUSH"
+}

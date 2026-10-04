@@ -391,3 +391,6 @@ P08 72张中央人话文案review（2026-10-04）：基线对齐main8888e82并�
 
 
 P08 72张人话文案main7d44已正常FF发布，精确main CI37221283754与production-docs37221283740 success；局部方向接受，整体/OnePlus/GPU/听感仍未通过。本次有界失败摘要review源码9e1a176：实际颜色已被共享纸墨映射纠正，无颜色缺陷；真实失败只露差额，补已保存原因/最后一手/剩余资源。35受影响单测/type/build及自然胜败/恢复/重试、390/1280/844有限文字bounds PASS；review新CI另报，main不推进。 证据evidence/p08-failure-summary-2026-10-04。
+
+
+P08失败摘要review已由父侧读完整源码并实际view390 after，局部方向通过；已正常对齐main2d999cd（含朱砂/72人话/12道具），仅UX冲突且双合同保留。合并源码0aa7399，65相关tests/type/build及自然胜败/刷新继续/同种子重试/短摘要详情PASS，GameScene/ScoreFlame/audio/public/art逐对象同main。既有图身份不变，无新截图；320构筑裁切明确OPEN，未修。本review精确CI另报，main不推进；整体/OnePlus/GPU/听感仍待验。

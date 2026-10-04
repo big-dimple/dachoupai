@@ -30,7 +30,7 @@ try{
     assert.equal(key.find(o=>o.name==='result/resources')?.text,'剩余出牌 '+state.stage.handsLeft+' 次 · 弃牌 '+state.stage.discardsLeft+' 次');
     for(let i=0;i<key.length;i++)for(let j=i+1;j<key.length;j++){const a=key[i].bounds,b=key[j].bounds;assert.ok(!(a.x<b.x+b.width&&b.x<a.x+a.width&&a.y<b.y+b.height&&b.y<a.y+a.height),JSON.stringify([key[i],key[j]]));}
   }
-  if(phase==='after'||route==='loss')await p.screenshot({path:dir+'/390-'+route+'.png'});
+  if(!process.env.KEEP_IMAGES&&(phase==='after'||route==='loss'))await p.screenshot({path:dir+'/390-'+route+'.png'});
   await p.setViewportSize({width:1280,height:720});await p.waitForFunction(()=>window.__harness.game.scene.getScene('intermission').view.layout.width===1280);const desktop=await read(p);assert.deepEqual(await save(p),state);for(const o of desktop.texts.filter(o=>o.name.startsWith('result/'))){if(phase==='after')assert.ok(contrast(o.color,'#F3EADB')>=4.5,JSON.stringify(o));}
   let short;
   if(phase==='after'&&route==='loss'){

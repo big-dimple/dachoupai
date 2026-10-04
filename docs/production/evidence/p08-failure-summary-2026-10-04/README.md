@@ -9,3 +9,7 @@
 35受影响单测/4文件、type及生产构建PASS；自然胜敗→resize→刷新继续完整run不变、实际继续商店/同种子重试PASS。首次颜色疑点被实际11.12对比度否定，没有修改正常配色；新unit夹具遗漏倍率字段的5个FAIL修正合法夹具后通过，没有改评分/断言。旧7d44已正常main并精确CI通过；不以旧CI证明本候选。
 
 四状态：实现COMPLETE_REVIEW；技术PASS；独立整体审美PENDING；OnePlus/真实GPU/听感NOT_RUN。候选仅review，由父协调发布；不操作域名/PC/部署。工具快捷入口、T06–11与朱砂演出/原画生产属于其他任务，本轮未接。
+
+## 对齐当前 main
+
+正常合入`2d999cd938e5c19253daa8ddbd1cf25facf2d9e4`，合并源码`0aa73999854044771955c60dea8ef3ada22c7b33`。只有UX文档冲突，两条合同都保留。65项/6文件受影响测试、type与生产构建、自然胜败/resize/刷新继续/短摘要详情/同种子重试PASS；未补拍，原图身份和像素保持。GameScene/ScoreFlame/audio、72中央文案、domain/application/content、public/art对象逐项同main；失败摘要两文件同已接受3f7950f。详见main-alignment.json及main-aligned-browser.json。320构筑裁切仅记OPEN，待另任务修；精确新review CI随最终SHA单独报告，main不推进。
