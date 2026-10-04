@@ -1,0 +1,27 @@
+{
+  "taskId": "P08",
+  "testedCommit": "0ce7881ca7523a2a233988eccaccaa7caedbba21",
+  "baseline": "5bb749fe3220adaf3055412e483ef42515b89726",
+  "sourceFingerprint": "d22ebf5a16c909d3bfee0526c412c04ff48f277672a069aa30b3517a59a716c5",
+  "sourceMethod": "sorted src relative path + NUL + content + NUL",
+  "assetCommit": "c618cee93089bb2e556f16567709b0ea23abbcb9",
+  "runtimeCount": 43,
+  "runtimeBytes": 1262668,
+  "runtimeManifestSHA256": "429aa1791919a4f38c3577d03cb2b278e476ccaed5362474debe07bf65a8b05a",
+  "states": {
+    "implementation": "COMPLETE for approved43/memory/directswitch/rulereference scope",
+    "technical": "1863 tests/content/type/build/Canvas desktop+mobile PASS on unchanged frozen runtime0ce; initial overall aggregate FAIL only plan README-as-JSON pointer; docs-only repair checked separately",
+    "independentAesthetic": "new43 partial integration early review PASS a22a613; overall still pending",
+    "targetDevice": "OnePlus/hardwareGPU/audio NOT_RUN"
+  },
+  "reports": {
+    "art": "art-entry.json",
+    "browser": "final-browser-contract.json",
+    "short": "short-native-input.json",
+    "initialFreeze": "freeze-before-plan-fix.json",
+    "docsRecovery": "docs-recovery.json"
+  },
+  "referenceFire": "BLOCKED: exact given image URL CONNECT403; no image consumed/no retry/no new fire implementation",
+  "sourceFiles": "source-file-list.json",
+  "reviewCommit": "a22a613ec970e0c51a5adc6a5a8eb0534c2bd6a4"
+}

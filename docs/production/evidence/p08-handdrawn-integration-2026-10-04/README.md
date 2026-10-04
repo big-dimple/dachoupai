@@ -19,3 +19,5 @@
 验证：93受影响单测／type／plan通过。final-browser-contract.json为最终源码的Chromium Canvas＋WebKit WebGL原生购买取消/购买一次/入场、直选撤销、空选规则、候选3/4/5 ghost/apply/undo、失效/B02/static、顺序/resize/菜单返回、先保存再实际数值/完整trace/reload，以及既定8组文字布局。short-native-input.json为本次3组实际短横快捷bounds；art-entry.json记录先前单张候选构建新图请求/哈希/真实解码与路线，不能当最终源码冻结。聚合冻结/精确代码SHA及新远端CI记录freeze/publication，未出现前不视为已通过。没有新增图集或录屏。
 
 四状态：实现完成；受影响技术通过，最终聚合待收尾；新图局部方向早评通过而整体审美仍待验；OnePlus/真实GPU/听感NOT_RUN。火参考原URL CONNECT代理403未取得像素，BLOCKED并停止下载；未换路线/未假称看图，既有火源码及真实提交/去重/墙钟/回看/reduced安全合同不改，下一小批由root协调。没有规则／RNG／存档／奖励／部署／PC改动。
+
+冻结结果：源码0ce7881的1863 tests/104files、content、type/build和Canvas桌面/手机smoke通过，source/index/HEAD不变。初次聚合最后plan阶段因误把README加入JSON evidence而FAIL，原报告保留freeze-before-plan-fix.json。只修JSON证据引用；运行源码不改，docs-only恢复记录单列，不重跑未变的1863/runtime浏览器。精确新远端CI将验证最终提交。
