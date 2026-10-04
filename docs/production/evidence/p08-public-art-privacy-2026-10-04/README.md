@@ -7,3 +7,5 @@
 未改75图片、注册、玩法、renderer、RNG/save、共享权限或旧Git历史。按本轮最小范围冻结受影响脚本测试/content/plan（既有read-only runner），本地不重跑艺术/渲染/录屏或无关游戏全套；正常FF后精确新CI仍跟终态。见[summary](summary.json)，冻结另归档。
 
 无新画面；b5代表局部图评已由root实际看过并通过，整体/OnePlus/真GPU/听感未验。私有火参考仍未取得像素，不重试被拒路线、不改火。
+
+最终源码 `dda0cf5d2c28b775608380ac2521ff154c493ded` 的最小冻结全部PASS：26受影响tests＋实际content（16文件零泄露）＋plan，source/index/HEAD相同；见[freeze](freeze.json)。嵌套.git合成负例先测出4-vs3，补明确排除后通过，不扫描实际历史。无本地renderer/type/build/艺术复验。

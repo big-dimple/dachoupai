@@ -1,6 +1,6 @@
 {
   "taskId": "P08",
-  "testedCommit": "a05592252a88382a8b04c4c38e65500e7951b4fc",
+  "testedCommit": "dda0cf5d2c28b775608380ac2521ff154c493ded",
   "baseline": "a05592252a88382a8b04c4c38e65500e7951b4fc",
   "scope": "Current README/manifest/verifier text only inside art/sources/handdrawn-runtime-*; public/assets/handdrawn-p08/manifest.json. No home/history/binary/image traversal; symlinks rejected without following.",
   "filesScanned": 16,
@@ -8,7 +8,7 @@
   "checks": {
     "affected": "26 PASS new privacy and existing CI-gates tests",
     "contentEntry": "PASS current16 positive receipts; synthetic actual-entry negative exits1 before domain validation/SSR setup; diagnostic file/type/count only, no value/parser excerpts",
-    "freeze": "PENDING affected scripts/content/plan via existing read-only runner; no local renderer/type/build/art rerun required"
+    "freeze": "PASS existing read-only runner:26 affected privacy/CI-gates tests, actual verify:content including16-file privacy scan and domain content, production-plan; source/index/HEAD identical. No local renderer/type/build/art rerun."
   },
   "detection": [
     "actual Library/backing file ID payloads",
@@ -27,10 +27,15 @@
   "unchanged": "All75 runtime outputs/registry/gameplay/RNG/save/renderer/permissions/history unchanged",
   "states": {
     "implementation": "COMPLETE current-tree quality gate, real content entry",
-    "technical": "PASS affected/current positive/synthetic negative; frozen affected validation pending",
+    "technical": "PASS affected positive/synthetic negative/log-redaction and frozen script/content/plan; exact new remoteCI pending",
     "aesthetic": "No new visuals; prior b5 representative local direction accepted by root, not overall acceptance",
     "targetDevice": "OnePlus/hardwareGPU/audio NOT_RUN"
   },
   "fire": "Private reference still not readable; no retry/no pixels/no fire change",
-  "next": "Approved N2 package or actually readable private reference handled after this bounded closure, without speculative inputs"
+  "next": "Approved N2 package or actually readable private reference handled after this bounded closure, without speculative inputs",
+  "reports": {
+    "freeze": "freeze.json",
+    "sourceFiles": "source-files.txt"
+  },
+  "nestedGitRegression": "Synthetic nested .git/manifest made initial scope test fail4-vs3; explicit .git exclusion restored3 allowed files without following/history reads. No real git history scanned."
 }

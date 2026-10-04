@@ -1,0 +1,38 @@
+{
+  "scope": "affected privacy scripts/content/plan only; no local render/build/art rerun",
+  "testedCommit": "dda0cf5d2c28b775608380ac2521ff154c493ded",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "a9ab4fcc5f3db83179f24325e764ae30533cc55424383679602ae9cb5f12da63",
+    "index": "009314f5fa05b8e1dbc96e9e2a44f56653622e623db81118b484081c134e2a65",
+    "head": "dda0cf5d2c28b775608380ac2521ff154c493ded",
+    "branch": "refs/heads/dot/d44-layout"
+  },
+  "after": {
+    "source": "a9ab4fcc5f3db83179f24325e764ae30533cc55424383679602ae9cb5f12da63",
+    "index": "009314f5fa05b8e1dbc96e9e2a44f56653622e623db81118b484081c134e2a65",
+    "head": "dda0cf5d2c28b775608380ac2521ff154c493ded",
+    "branch": "refs/heads/dot/d44-layout"
+  },
+  "steps": [
+    {
+      "name": "affected-privacy-and-ci-gates",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 1487
+    },
+    {
+      "name": "verify-content-with-privacy-gate",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 9654
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 380
+    }
+  ]
+}
