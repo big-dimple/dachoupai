@@ -1,0 +1,5019 @@
+{
+  "status": "PASS",
+  "build": {
+    "version": "C03",
+    "revision": "83630381cea9c6e5099fc1fc12580889b59b0445",
+    "modified": true,
+    "builtAt": "2026-10-04T05:33:53.579Z"
+  },
+  "renderer": "Canvas software",
+  "DPR": 1,
+  "fixture": "Two native-imported validator-approved five-slot checkpoints. First has actual successful same-suit discard for pendingHeat40/d05 used/f09 discarded. Measurement probes reuse mounted Text without changing run. Not natural purchase/deployment.",
+  "targetDevice": "OnePlus/realGPU/audio NOT_RUN",
+  "profiles": [
+    {
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "groups": [
+        {
+          "initial": [
+            {
+              "id": "e04",
+              "text": "息上限",
+              "fullText": "利息上限",
+              "room": 48.4,
+              "width": 42,
+              "bounds": {
+                "x": 11.000000762939454,
+                "y": 144,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c05",
+              "text": "蓄热40",
+              "fullText": "蓄热40",
+              "room": 48.4,
+              "width": 44,
+              "bounds": {
+                "x": 73.39999847412109,
+                "y": 144,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "e11",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 48.4,
+              "width": 44,
+              "bounds": {
+                "x": 135.8,
+                "y": 144,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f09",
+              "text": "已弃牌",
+              "fullText": "已弃牌",
+              "room": 48.4,
+              "width": 42,
+              "bounds": {
+                "x": 198.1999938964844,
+                "y": 144,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d05",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 48.4,
+              "width": 36,
+              "bounds": {
+                "x": 260.59998779296876,
+                "y": 144,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "e04",
+              "text": "息上限",
+              "fullText": "利息上限",
+              "room": 48.4,
+              "width": 42,
+              "bounds": {
+                "x": 11.000000762939454,
+                "y": 144,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c05",
+              "text": "蓄热40",
+              "fullText": "蓄热40",
+              "room": 48.4,
+              "width": 44,
+              "bounds": {
+                "x": 73.39999847412109,
+                "y": 144,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "e11",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 48.4,
+              "width": 44,
+              "bounds": {
+                "x": 135.8,
+                "y": 144,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f09",
+              "text": "已弃牌",
+              "fullText": "已弃牌",
+              "room": 48.4,
+              "width": 42,
+              "bounds": {
+                "x": 198.1999938964844,
+                "y": 144,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d05",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 48.4,
+              "width": 36,
+              "bounds": {
+                "x": 260.59998779296876,
+                "y": 144,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "nativeSelectionAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        },
+        {
+          "initial": [
+            {
+              "id": "c08",
+              "text": "4张顺",
+              "fullText": "4张顺子",
+              "room": 48.4,
+              "width": 36,
+              "bounds": {
+                "x": 11.000000762939454,
+                "y": 144,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c09",
+              "text": "4同花",
+              "fullText": "4张同花",
+              "room": 48.4,
+              "width": 36,
+              "bounds": {
+                "x": 73.39999847412109,
+                "y": 144,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f08",
+              "text": "概率热",
+              "fullText": "概率加热",
+              "room": 48.4,
+              "width": 42,
+              "bounds": {
+                "x": 135.8,
+                "y": 144,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f06",
+              "text": "余4手",
+              "fullText": "余4手",
+              "room": 48.4,
+              "width": 36,
+              "bounds": {
+                "x": 198.1999938964844,
+                "y": 144,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f12",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 48.4,
+              "width": 44,
+              "bounds": {
+                "x": 260.59998779296876,
+                "y": 144,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "c08",
+              "text": "4张顺",
+              "fullText": "4张顺子",
+              "room": 48.4,
+              "width": 36,
+              "bounds": {
+                "x": 11.000000762939454,
+                "y": 144,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c09",
+              "text": "4同花",
+              "fullText": "4张同花",
+              "room": 48.4,
+              "width": 36,
+              "bounds": {
+                "x": 73.39999847412109,
+                "y": 144,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f08",
+              "text": "概率热",
+              "fullText": "概率加热",
+              "room": 48.4,
+              "width": 42,
+              "bounds": {
+                "x": 135.8,
+                "y": 144,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f06",
+              "text": "余4手",
+              "fullText": "余4手",
+              "room": 48.4,
+              "width": 36,
+              "bounds": {
+                "x": 198.1999938964844,
+                "y": 144,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f12",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 48.4,
+              "width": 44,
+              "bounds": {
+                "x": 260.59998779296876,
+                "y": 144,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "nativeSelectionAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        }
+      ],
+      "measurements": [
+        {
+          "id": "pengci",
+          "kind": "initial",
+          "text": "高牌+",
+          "fullText": "高牌+倍",
+          "room": 48.4,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "mantangcai",
+          "kind": "initial",
+          "text": "成组热",
+          "fullText": "成组加热",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "tiesuanpan",
+          "kind": "initial",
+          "text": "JQKA",
+          "fullText": "JQKA热",
+          "room": 48.4,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "huimaqiang",
+          "kind": "initial",
+          "text": "3手×2",
+          "fullText": "3手×2",
+          "room": 48.4,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "jiedongfeng",
+          "kind": "initial",
+          "text": "顺花+",
+          "fullText": "顺/花+倍",
+          "room": 48.4,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "a03",
+          "kind": "initial",
+          "text": "单张热",
+          "fullText": "单张加热",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "a05",
+          "kind": "initial",
+          "text": "单张长",
+          "fullText": "单张成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "a05",
+          "kind": "saved",
+          "text": "热+90",
+          "fullText": "热+90",
+          "room": 48.4,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "a05",
+          "kind": "zero",
+          "text": "单张长",
+          "fullText": "单张成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b02",
+          "kind": "initial",
+          "text": "同点+",
+          "fullText": "同点+倍",
+          "room": 48.4,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "b03",
+          "kind": "initial",
+          "text": "成组长",
+          "fullText": "成组成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b03",
+          "kind": "saved",
+          "text": "倍+3",
+          "fullText": "倍+3",
+          "room": 48.4,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "b03",
+          "kind": "zero",
+          "text": "成组长",
+          "fullText": "成组成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b04",
+          "kind": "initial",
+          "text": "两组+",
+          "fullText": "两组+倍",
+          "room": 48.4,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "c02",
+          "kind": "initial",
+          "text": "红牌热",
+          "fullText": "红牌加热",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c04",
+          "kind": "initial",
+          "text": "顺子热",
+          "fullText": "顺子加热",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c06",
+          "kind": "initial",
+          "text": "同花长",
+          "fullText": "同花成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c06",
+          "kind": "saved",
+          "text": "倍+4",
+          "fullText": "倍+4",
+          "room": 48.4,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "c06",
+          "kind": "zero",
+          "text": "同花长",
+          "fullText": "同花成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d01",
+          "kind": "initial",
+          "text": "留JQK",
+          "fullText": "留JQK+",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d03",
+          "kind": "initial",
+          "text": "留牌长",
+          "fullText": "留3张长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d03",
+          "kind": "saved",
+          "text": "热+60",
+          "fullText": "热+60",
+          "room": 48.4,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "d03",
+          "kind": "zero",
+          "text": "留牌长",
+          "fullText": "留3张长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d05",
+          "kind": "initial",
+          "text": "余0次",
+          "fullText": "余0次",
+          "room": 48.4,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "d10",
+          "kind": "initial",
+          "text": "空槽热",
+          "fullText": "空槽加热",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e01",
+          "kind": "initial",
+          "text": "过关金",
+          "fullText": "过关加金",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e03",
+          "kind": "initial",
+          "text": "金币热",
+          "fullText": "金币加热",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e05",
+          "kind": "initial",
+          "text": "买牌长",
+          "fullText": "买牌成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e05",
+          "kind": "saved",
+          "text": "热+80",
+          "fullText": "热+80",
+          "room": 48.4,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "e05",
+          "kind": "zero",
+          "text": "买牌长",
+          "fullText": "买牌成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e08",
+          "kind": "initial",
+          "text": "≥20金×",
+          "fullText": "≥20金×",
+          "room": 48.4,
+          "width": 46,
+          "resolution": 1.5
+        },
+        {
+          "id": "f02",
+          "kind": "initial",
+          "text": "末手热",
+          "fullText": "末手加热",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f03",
+          "kind": "initial",
+          "text": "首手+",
+          "fullText": "首手+倍",
+          "room": 48.4,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "f09",
+          "kind": "initial",
+          "text": "已弃牌",
+          "fullText": "已弃牌",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "a04",
+          "kind": "initial",
+          "text": "扩手牌",
+          "fullText": "≤40扩手",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "a06",
+          "kind": "initial",
+          "text": "高牌×",
+          "fullText": "高牌×倍",
+          "room": 48.4,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "a07",
+          "kind": "initial",
+          "text": "余2次",
+          "fullText": "余2次",
+          "room": 48.4,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "a07",
+          "kind": "uses0",
+          "text": "余0次",
+          "fullText": "余0次",
+          "room": 48.4,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "a08",
+          "kind": "initial",
+          "text": "2–5热",
+          "fullText": "2–5加热",
+          "room": 48.4,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "b05",
+          "kind": "initial",
+          "text": "三同热",
+          "fullText": "三同加热",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b06",
+          "kind": "initial",
+          "text": "对再触",
+          "fullText": "对子再触",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b07",
+          "kind": "initial",
+          "text": "全计热",
+          "fullText": "全计分热",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b08",
+          "kind": "initial",
+          "text": "对子金",
+          "fullText": "对子赢金",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c03",
+          "kind": "initial",
+          "text": "黑牌热",
+          "fullText": "黑牌加热",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c05",
+          "kind": "initial",
+          "text": "同花弃",
+          "fullText": "同花弃2+",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c05",
+          "kind": "saved",
+          "text": "蓄热80",
+          "fullText": "蓄热80",
+          "room": 48.4,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "c05",
+          "kind": "zero",
+          "text": "同花弃",
+          "fullText": "同花弃2+",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c07",
+          "kind": "initial",
+          "text": "末张触",
+          "fullText": "末张再触",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c08",
+          "kind": "initial",
+          "text": "4张顺",
+          "fullText": "4张顺子",
+          "room": 48.4,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "d02",
+          "kind": "initial",
+          "text": "留2–5",
+          "fullText": "留2–5热",
+          "room": 48.4,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "d04",
+          "kind": "initial",
+          "text": "偶手触",
+          "fullText": "偶手再触",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d06",
+          "kind": "initial",
+          "text": "下场扩",
+          "fullText": "下场扩手",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d07",
+          "kind": "initial",
+          "text": "全计+",
+          "fullText": "全计分+",
+          "room": 48.4,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "e02",
+          "kind": "initial",
+          "text": "首购省",
+          "fullText": "首购优惠",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e04",
+          "kind": "initial",
+          "text": "息上限",
+          "fullText": "利息上限",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e06",
+          "kind": "initial",
+          "text": "卖牌长",
+          "fullText": "卖牌成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e06",
+          "kind": "saved",
+          "text": "倍+3",
+          "fullText": "倍+3",
+          "room": 48.4,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "e06",
+          "kind": "zero",
+          "text": "卖牌长",
+          "fullText": "卖牌成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e07",
+          "kind": "initial",
+          "text": "末手金",
+          "fullText": "末手赢金",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f04",
+          "kind": "initial",
+          "text": "≤3金+",
+          "fullText": "≤3金+倍",
+          "room": 48.4,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "f05",
+          "kind": "initial",
+          "text": "分升长",
+          "fullText": "分升才长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f05",
+          "kind": "saved",
+          "text": "倍+4",
+          "fullText": "倍+4",
+          "room": 48.4,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "f05",
+          "kind": "zero",
+          "text": "分升长",
+          "fullText": "分升才长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f06",
+          "kind": "initial",
+          "text": "余4手",
+          "fullText": "余4手",
+          "room": 48.4,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "f06",
+          "kind": "lifetime0",
+          "text": "余0手",
+          "fullText": "余0手",
+          "room": 48.4,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "f07",
+          "kind": "initial",
+          "text": "耗尽救",
+          "fullText": "耗尽救场",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "a09",
+          "kind": "initial",
+          "text": "≤2张+",
+          "fullText": "≤2张+倍",
+          "room": 48.4,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "a10",
+          "kind": "initial",
+          "text": "留头+",
+          "fullText": "单出留头",
+          "room": 48.4,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "a11",
+          "kind": "initial",
+          "text": "单张触",
+          "fullText": "单张再触",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "a12",
+          "kind": "initial",
+          "text": "小手金",
+          "fullText": "小手赢金",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b09",
+          "kind": "initial",
+          "text": "四五×",
+          "fullText": "四五条×",
+          "room": 48.4,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "b10",
+          "kind": "initial",
+          "text": "对子长",
+          "fullText": "对子成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b10",
+          "kind": "saved",
+          "text": "热+50",
+          "fullText": "热+50",
+          "room": 48.4,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "b10",
+          "kind": "zero",
+          "text": "对子长",
+          "fullText": "对子成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b11",
+          "kind": "initial",
+          "text": "同点留",
+          "fullText": "留同点+",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b12",
+          "kind": "initial",
+          "text": "余1次",
+          "fullText": "余1次",
+          "room": 48.4,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "c09",
+          "kind": "initial",
+          "text": "4同花",
+          "fullText": "4张同花",
+          "room": 48.4,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "c10",
+          "kind": "initial",
+          "text": "留A+倍",
+          "fullText": "留A+倍",
+          "room": 48.4,
+          "width": 46,
+          "resolution": 1.5
+        },
+        {
+          "id": "c11",
+          "kind": "initial",
+          "text": "顺花换",
+          "fullText": "顺花交替",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c12",
+          "kind": "initial",
+          "text": "顺花染",
+          "fullText": "顺花赠染",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d08",
+          "kind": "initial",
+          "text": "留声×",
+          "fullText": "留声纸×",
+          "room": 48.4,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "d09",
+          "kind": "initial",
+          "text": "回声长",
+          "fullText": "回声成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d09",
+          "kind": "saved",
+          "text": "倍+3",
+          "fullText": "倍+3",
+          "room": 48.4,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "d09",
+          "kind": "zero",
+          "text": "回声长",
+          "fullText": "回声成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d11",
+          "kind": "initial",
+          "text": "原3触",
+          "fullText": "原3再触",
+          "room": 48.4,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "d12",
+          "kind": "initial",
+          "text": "留4金",
+          "fullText": "留4赢金",
+          "room": 48.4,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "e09",
+          "kind": "initial",
+          "text": "物品槽",
+          "fullText": "物品扩容",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e10",
+          "kind": "initial",
+          "text": "状态 ›",
+          "fullText": "再2关赠票",
+          "room": 48.4,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "e11",
+          "kind": "initial",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 48.4,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "e11",
+          "kind": "saved",
+          "text": "系数×2",
+          "fullText": "系数×2",
+          "room": 48.4,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "e11",
+          "kind": "zero",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 48.4,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "e12",
+          "kind": "initial",
+          "text": "付刷长",
+          "fullText": "付刷成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e12",
+          "kind": "saved",
+          "text": "热+60",
+          "fullText": "热+60",
+          "room": 48.4,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "e12",
+          "kind": "zero",
+          "text": "付刷长",
+          "fullText": "付刷成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f08",
+          "kind": "initial",
+          "text": "概率热",
+          "fullText": "概率加热",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f10",
+          "kind": "initial",
+          "text": "冷场×",
+          "fullText": "冷场×倍",
+          "room": 48.4,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "f11",
+          "kind": "initial",
+          "text": "低分长",
+          "fullText": "低分成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f11",
+          "kind": "saved",
+          "text": "热+100",
+          "fullText": "热+100",
+          "room": 48.4,
+          "width": 46,
+          "resolution": 1.5
+        },
+        {
+          "id": "f11",
+          "kind": "zero",
+          "text": "低分长",
+          "fullText": "低分成长",
+          "room": 48.4,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f12",
+          "kind": "initial",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 48.4,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "f12",
+          "kind": "saved",
+          "text": "×5/2",
+          "fullText": "系数×5/2",
+          "room": 48.4,
+          "width": 28,
+          "resolution": 1.5
+        },
+        {
+          "id": "f12",
+          "kind": "zero",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 48.4,
+          "width": 44,
+          "resolution": 1.5
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "groups": [
+        {
+          "initial": [
+            {
+              "id": "e04",
+              "text": "利息上限",
+              "fullText": "利息上限",
+              "room": 58,
+              "width": 56,
+              "bounds": {
+                "x": 11,
+                "y": 135.60000305175782,
+                "width": 56,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c05",
+              "text": "蓄热40",
+              "fullText": "蓄热40",
+              "room": 58,
+              "width": 44,
+              "bounds": {
+                "x": 81,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "e11",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 58,
+              "width": 44,
+              "bounds": {
+                "x": 151,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f09",
+              "text": "已弃牌",
+              "fullText": "已弃牌",
+              "room": 58,
+              "width": 42,
+              "bounds": {
+                "x": 221,
+                "y": 135.60000305175782,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d05",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 291,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "e04",
+              "text": "利息上限",
+              "fullText": "利息上限",
+              "room": 58,
+              "width": 56,
+              "bounds": {
+                "x": 11,
+                "y": 135.60000305175782,
+                "width": 56,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c05",
+              "text": "蓄热40",
+              "fullText": "蓄热40",
+              "room": 58,
+              "width": 44,
+              "bounds": {
+                "x": 81,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "e11",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 58,
+              "width": 44,
+              "bounds": {
+                "x": 151,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f09",
+              "text": "已弃牌",
+              "fullText": "已弃牌",
+              "room": 58,
+              "width": 42,
+              "bounds": {
+                "x": 221,
+                "y": 135.60000305175782,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d05",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 291,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "nativeSelectionAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        },
+        {
+          "initial": [
+            {
+              "id": "c08",
+              "text": "4张顺子",
+              "fullText": "4张顺子",
+              "room": 58,
+              "width": 50,
+              "bounds": {
+                "x": 11,
+                "y": 135.60000305175782,
+                "width": 50,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c09",
+              "text": "4张同花",
+              "fullText": "4张同花",
+              "room": 58,
+              "width": 50,
+              "bounds": {
+                "x": 81,
+                "y": 135.60000305175782,
+                "width": 50,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f08",
+              "text": "概率加热",
+              "fullText": "概率加热",
+              "room": 58,
+              "width": 56,
+              "bounds": {
+                "x": 151,
+                "y": 135.60000305175782,
+                "width": 56,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f06",
+              "text": "余4手",
+              "fullText": "余4手",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 221,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f12",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 58,
+              "width": 44,
+              "bounds": {
+                "x": 291,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "c08",
+              "text": "4张顺子",
+              "fullText": "4张顺子",
+              "room": 58,
+              "width": 50,
+              "bounds": {
+                "x": 11,
+                "y": 135.60000305175782,
+                "width": 50,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c09",
+              "text": "4张同花",
+              "fullText": "4张同花",
+              "room": 58,
+              "width": 50,
+              "bounds": {
+                "x": 81,
+                "y": 135.60000305175782,
+                "width": 50,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f08",
+              "text": "概率加热",
+              "fullText": "概率加热",
+              "room": 58,
+              "width": 56,
+              "bounds": {
+                "x": 151,
+                "y": 135.60000305175782,
+                "width": 56,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f06",
+              "text": "余4手",
+              "fullText": "余4手",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 221,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f12",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 58,
+              "width": 44,
+              "bounds": {
+                "x": 291,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "nativeSelectionAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        }
+      ],
+      "measurements": [
+        {
+          "id": "pengci",
+          "kind": "initial",
+          "text": "高牌+倍",
+          "fullText": "高牌+倍",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "mantangcai",
+          "kind": "initial",
+          "text": "成组加热",
+          "fullText": "成组加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "tiesuanpan",
+          "kind": "initial",
+          "text": "JQKA热",
+          "fullText": "JQKA热",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "huimaqiang",
+          "kind": "initial",
+          "text": "3手×2",
+          "fullText": "3手×2",
+          "room": 58,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "jiedongfeng",
+          "kind": "initial",
+          "text": "顺/花+倍",
+          "fullText": "顺/花+倍",
+          "room": 58,
+          "width": 55,
+          "resolution": 1.5
+        },
+        {
+          "id": "a03",
+          "kind": "initial",
+          "text": "单张加热",
+          "fullText": "单张加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "a05",
+          "kind": "initial",
+          "text": "单张成长",
+          "fullText": "单张成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "a05",
+          "kind": "saved",
+          "text": "热+90",
+          "fullText": "热+90",
+          "room": 58,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "a05",
+          "kind": "zero",
+          "text": "单张成长",
+          "fullText": "单张成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b02",
+          "kind": "initial",
+          "text": "同点+倍",
+          "fullText": "同点+倍",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "b03",
+          "kind": "initial",
+          "text": "成组成长",
+          "fullText": "成组成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b03",
+          "kind": "saved",
+          "text": "倍+3",
+          "fullText": "倍+3",
+          "room": 58,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "b03",
+          "kind": "zero",
+          "text": "成组成长",
+          "fullText": "成组成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b04",
+          "kind": "initial",
+          "text": "两组+倍",
+          "fullText": "两组+倍",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "c02",
+          "kind": "initial",
+          "text": "红牌加热",
+          "fullText": "红牌加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c04",
+          "kind": "initial",
+          "text": "顺子加热",
+          "fullText": "顺子加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c06",
+          "kind": "initial",
+          "text": "同花成长",
+          "fullText": "同花成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c06",
+          "kind": "saved",
+          "text": "倍+4",
+          "fullText": "倍+4",
+          "room": 58,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "c06",
+          "kind": "zero",
+          "text": "同花成长",
+          "fullText": "同花成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "d01",
+          "kind": "initial",
+          "text": "留JQK+",
+          "fullText": "留JQK+",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d03",
+          "kind": "initial",
+          "text": "留3张长",
+          "fullText": "留3张长",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d03",
+          "kind": "saved",
+          "text": "热+60",
+          "fullText": "热+60",
+          "room": 58,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "d03",
+          "kind": "zero",
+          "text": "留3张长",
+          "fullText": "留3张长",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d05",
+          "kind": "initial",
+          "text": "余0次",
+          "fullText": "余0次",
+          "room": 58,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "d10",
+          "kind": "initial",
+          "text": "空槽加热",
+          "fullText": "空槽加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e01",
+          "kind": "initial",
+          "text": "过关加金",
+          "fullText": "过关加金",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e03",
+          "kind": "initial",
+          "text": "金币加热",
+          "fullText": "金币加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e05",
+          "kind": "initial",
+          "text": "买牌成长",
+          "fullText": "买牌成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e05",
+          "kind": "saved",
+          "text": "热+80",
+          "fullText": "热+80",
+          "room": 58,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "e05",
+          "kind": "zero",
+          "text": "买牌成长",
+          "fullText": "买牌成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e08",
+          "kind": "initial",
+          "text": "≥20金×",
+          "fullText": "≥20金×",
+          "room": 58,
+          "width": 46,
+          "resolution": 1.5
+        },
+        {
+          "id": "f02",
+          "kind": "initial",
+          "text": "末手加热",
+          "fullText": "末手加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f03",
+          "kind": "initial",
+          "text": "首手+倍",
+          "fullText": "首手+倍",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "f09",
+          "kind": "initial",
+          "text": "已弃牌",
+          "fullText": "已弃牌",
+          "room": 58,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "a04",
+          "kind": "initial",
+          "text": "≤40扩手",
+          "fullText": "≤40扩手",
+          "room": 58,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "a06",
+          "kind": "initial",
+          "text": "高牌×倍",
+          "fullText": "高牌×倍",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "a07",
+          "kind": "initial",
+          "text": "余2次",
+          "fullText": "余2次",
+          "room": 58,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "a07",
+          "kind": "uses0",
+          "text": "余0次",
+          "fullText": "余0次",
+          "room": 58,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "a08",
+          "kind": "initial",
+          "text": "2–5加热",
+          "fullText": "2–5加热",
+          "room": 58,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "b05",
+          "kind": "initial",
+          "text": "三同加热",
+          "fullText": "三同加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b06",
+          "kind": "initial",
+          "text": "对子再触",
+          "fullText": "对子再触",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b07",
+          "kind": "initial",
+          "text": "全计分热",
+          "fullText": "全计分热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b08",
+          "kind": "initial",
+          "text": "对子赢金",
+          "fullText": "对子赢金",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c03",
+          "kind": "initial",
+          "text": "黑牌加热",
+          "fullText": "黑牌加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c05",
+          "kind": "initial",
+          "text": "同花弃2+",
+          "fullText": "同花弃2+",
+          "room": 58,
+          "width": 58,
+          "resolution": 1.5
+        },
+        {
+          "id": "c05",
+          "kind": "saved",
+          "text": "蓄热80",
+          "fullText": "蓄热80",
+          "room": 58,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "c05",
+          "kind": "zero",
+          "text": "同花弃2+",
+          "fullText": "同花弃2+",
+          "room": 58,
+          "width": 58,
+          "resolution": 1.5
+        },
+        {
+          "id": "c07",
+          "kind": "initial",
+          "text": "末张再触",
+          "fullText": "末张再触",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c08",
+          "kind": "initial",
+          "text": "4张顺子",
+          "fullText": "4张顺子",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d02",
+          "kind": "initial",
+          "text": "留2–5热",
+          "fullText": "留2–5热",
+          "room": 58,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "d04",
+          "kind": "initial",
+          "text": "偶手再触",
+          "fullText": "偶手再触",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "d06",
+          "kind": "initial",
+          "text": "下场扩手",
+          "fullText": "下场扩手",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "d07",
+          "kind": "initial",
+          "text": "全计分+",
+          "fullText": "全计分+",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "e02",
+          "kind": "initial",
+          "text": "首购优惠",
+          "fullText": "首购优惠",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e04",
+          "kind": "initial",
+          "text": "利息上限",
+          "fullText": "利息上限",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e06",
+          "kind": "initial",
+          "text": "卖牌成长",
+          "fullText": "卖牌成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e06",
+          "kind": "saved",
+          "text": "倍+3",
+          "fullText": "倍+3",
+          "room": 58,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "e06",
+          "kind": "zero",
+          "text": "卖牌成长",
+          "fullText": "卖牌成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e07",
+          "kind": "initial",
+          "text": "末手赢金",
+          "fullText": "末手赢金",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f04",
+          "kind": "initial",
+          "text": "≤3金+倍",
+          "fullText": "≤3金+倍",
+          "room": 58,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "f05",
+          "kind": "initial",
+          "text": "分升才长",
+          "fullText": "分升才长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f05",
+          "kind": "saved",
+          "text": "倍+4",
+          "fullText": "倍+4",
+          "room": 58,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "f05",
+          "kind": "zero",
+          "text": "分升才长",
+          "fullText": "分升才长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f06",
+          "kind": "initial",
+          "text": "余4手",
+          "fullText": "余4手",
+          "room": 58,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "f06",
+          "kind": "lifetime0",
+          "text": "余0手",
+          "fullText": "余0手",
+          "room": 58,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "f07",
+          "kind": "initial",
+          "text": "耗尽救场",
+          "fullText": "耗尽救场",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "a09",
+          "kind": "initial",
+          "text": "≤2张+倍",
+          "fullText": "≤2张+倍",
+          "room": 58,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "a10",
+          "kind": "initial",
+          "text": "单出留头",
+          "fullText": "单出留头",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "a11",
+          "kind": "initial",
+          "text": "单张再触",
+          "fullText": "单张再触",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "a12",
+          "kind": "initial",
+          "text": "小手赢金",
+          "fullText": "小手赢金",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b09",
+          "kind": "initial",
+          "text": "四五条×",
+          "fullText": "四五条×",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "b10",
+          "kind": "initial",
+          "text": "对子成长",
+          "fullText": "对子成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b10",
+          "kind": "saved",
+          "text": "热+50",
+          "fullText": "热+50",
+          "room": 58,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "b10",
+          "kind": "zero",
+          "text": "对子成长",
+          "fullText": "对子成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b11",
+          "kind": "initial",
+          "text": "留同点+",
+          "fullText": "留同点+",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "b12",
+          "kind": "initial",
+          "text": "余1次",
+          "fullText": "余1次",
+          "room": 58,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "c09",
+          "kind": "initial",
+          "text": "4张同花",
+          "fullText": "4张同花",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "c10",
+          "kind": "initial",
+          "text": "留A+倍",
+          "fullText": "留A+倍",
+          "room": 58,
+          "width": 46,
+          "resolution": 1.5
+        },
+        {
+          "id": "c11",
+          "kind": "initial",
+          "text": "顺花交替",
+          "fullText": "顺花交替",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c12",
+          "kind": "initial",
+          "text": "顺花赠染",
+          "fullText": "顺花赠染",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "d08",
+          "kind": "initial",
+          "text": "留声纸×",
+          "fullText": "留声纸×",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "d09",
+          "kind": "initial",
+          "text": "回声成长",
+          "fullText": "回声成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "d09",
+          "kind": "saved",
+          "text": "倍+3",
+          "fullText": "倍+3",
+          "room": 58,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "d09",
+          "kind": "zero",
+          "text": "回声成长",
+          "fullText": "回声成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "d11",
+          "kind": "initial",
+          "text": "原3再触",
+          "fullText": "原3再触",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d12",
+          "kind": "initial",
+          "text": "留4赢金",
+          "fullText": "留4赢金",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "e09",
+          "kind": "initial",
+          "text": "物品扩容",
+          "fullText": "物品扩容",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e10",
+          "kind": "initial",
+          "text": "状态 ›",
+          "fullText": "再2关赠票",
+          "room": 58,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "e11",
+          "kind": "initial",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 58,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "e11",
+          "kind": "saved",
+          "text": "系数×2",
+          "fullText": "系数×2",
+          "room": 58,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "e11",
+          "kind": "zero",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 58,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "e12",
+          "kind": "initial",
+          "text": "付刷成长",
+          "fullText": "付刷成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e12",
+          "kind": "saved",
+          "text": "热+60",
+          "fullText": "热+60",
+          "room": 58,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "e12",
+          "kind": "zero",
+          "text": "付刷成长",
+          "fullText": "付刷成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f08",
+          "kind": "initial",
+          "text": "概率加热",
+          "fullText": "概率加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f10",
+          "kind": "initial",
+          "text": "冷场×倍",
+          "fullText": "冷场×倍",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "f11",
+          "kind": "initial",
+          "text": "低分成长",
+          "fullText": "低分成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f11",
+          "kind": "saved",
+          "text": "热+100",
+          "fullText": "热+100",
+          "room": 58,
+          "width": 46,
+          "resolution": 1.5
+        },
+        {
+          "id": "f11",
+          "kind": "zero",
+          "text": "低分成长",
+          "fullText": "低分成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f12",
+          "kind": "initial",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 58,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "f12",
+          "kind": "saved",
+          "text": "系数×5/2",
+          "fullText": "系数×5/2",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f12",
+          "kind": "zero",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 58,
+          "width": 44,
+          "resolution": 1.5
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "groups": [
+        {
+          "initial": [
+            {
+              "id": "e04",
+              "text": "利息上限",
+              "fullText": "利息上限",
+              "room": 58,
+              "width": 56,
+              "bounds": {
+                "x": 26,
+                "y": 135.60000305175782,
+                "width": 56,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c05",
+              "text": "蓄热40",
+              "fullText": "蓄热40",
+              "room": 58,
+              "width": 44,
+              "bounds": {
+                "x": 96,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "e11",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 58,
+              "width": 44,
+              "bounds": {
+                "x": 166,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f09",
+              "text": "已弃牌",
+              "fullText": "已弃牌",
+              "room": 58,
+              "width": 42,
+              "bounds": {
+                "x": 236,
+                "y": 135.60000305175782,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d05",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 306,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "e04",
+              "text": "利息上限",
+              "fullText": "利息上限",
+              "room": 58,
+              "width": 56,
+              "bounds": {
+                "x": 26,
+                "y": 135.60000305175782,
+                "width": 56,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c05",
+              "text": "蓄热40",
+              "fullText": "蓄热40",
+              "room": 58,
+              "width": 44,
+              "bounds": {
+                "x": 96,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "e11",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 58,
+              "width": 44,
+              "bounds": {
+                "x": 166,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f09",
+              "text": "已弃牌",
+              "fullText": "已弃牌",
+              "room": 58,
+              "width": 42,
+              "bounds": {
+                "x": 236,
+                "y": 135.60000305175782,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d05",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 306,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "nativeSelectionAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        },
+        {
+          "initial": [
+            {
+              "id": "c08",
+              "text": "4张顺子",
+              "fullText": "4张顺子",
+              "room": 58,
+              "width": 50,
+              "bounds": {
+                "x": 26,
+                "y": 135.60000305175782,
+                "width": 50,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c09",
+              "text": "4张同花",
+              "fullText": "4张同花",
+              "room": 58,
+              "width": 50,
+              "bounds": {
+                "x": 96,
+                "y": 135.60000305175782,
+                "width": 50,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f08",
+              "text": "概率加热",
+              "fullText": "概率加热",
+              "room": 58,
+              "width": 56,
+              "bounds": {
+                "x": 166,
+                "y": 135.60000305175782,
+                "width": 56,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f06",
+              "text": "余4手",
+              "fullText": "余4手",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 236,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f12",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 58,
+              "width": 44,
+              "bounds": {
+                "x": 306,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "c08",
+              "text": "4张顺子",
+              "fullText": "4张顺子",
+              "room": 58,
+              "width": 50,
+              "bounds": {
+                "x": 26,
+                "y": 135.60000305175782,
+                "width": 50,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c09",
+              "text": "4张同花",
+              "fullText": "4张同花",
+              "room": 58,
+              "width": 50,
+              "bounds": {
+                "x": 96,
+                "y": 135.60000305175782,
+                "width": 50,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f08",
+              "text": "概率加热",
+              "fullText": "概率加热",
+              "room": 58,
+              "width": 56,
+              "bounds": {
+                "x": 166,
+                "y": 135.60000305175782,
+                "width": 56,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f06",
+              "text": "余4手",
+              "fullText": "余4手",
+              "room": 58,
+              "width": 36,
+              "bounds": {
+                "x": 236,
+                "y": 135.60000305175782,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f12",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 58,
+              "width": 44,
+              "bounds": {
+                "x": 306,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "nativeSelectionAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        }
+      ],
+      "measurements": [
+        {
+          "id": "pengci",
+          "kind": "initial",
+          "text": "高牌+倍",
+          "fullText": "高牌+倍",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "mantangcai",
+          "kind": "initial",
+          "text": "成组加热",
+          "fullText": "成组加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "tiesuanpan",
+          "kind": "initial",
+          "text": "JQKA热",
+          "fullText": "JQKA热",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "huimaqiang",
+          "kind": "initial",
+          "text": "3手×2",
+          "fullText": "3手×2",
+          "room": 58,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "jiedongfeng",
+          "kind": "initial",
+          "text": "顺/花+倍",
+          "fullText": "顺/花+倍",
+          "room": 58,
+          "width": 55,
+          "resolution": 1.5
+        },
+        {
+          "id": "a03",
+          "kind": "initial",
+          "text": "单张加热",
+          "fullText": "单张加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "a05",
+          "kind": "initial",
+          "text": "单张成长",
+          "fullText": "单张成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "a05",
+          "kind": "saved",
+          "text": "热+90",
+          "fullText": "热+90",
+          "room": 58,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "a05",
+          "kind": "zero",
+          "text": "单张成长",
+          "fullText": "单张成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b02",
+          "kind": "initial",
+          "text": "同点+倍",
+          "fullText": "同点+倍",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "b03",
+          "kind": "initial",
+          "text": "成组成长",
+          "fullText": "成组成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b03",
+          "kind": "saved",
+          "text": "倍+3",
+          "fullText": "倍+3",
+          "room": 58,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "b03",
+          "kind": "zero",
+          "text": "成组成长",
+          "fullText": "成组成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b04",
+          "kind": "initial",
+          "text": "两组+倍",
+          "fullText": "两组+倍",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "c02",
+          "kind": "initial",
+          "text": "红牌加热",
+          "fullText": "红牌加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c04",
+          "kind": "initial",
+          "text": "顺子加热",
+          "fullText": "顺子加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c06",
+          "kind": "initial",
+          "text": "同花成长",
+          "fullText": "同花成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c06",
+          "kind": "saved",
+          "text": "倍+4",
+          "fullText": "倍+4",
+          "room": 58,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "c06",
+          "kind": "zero",
+          "text": "同花成长",
+          "fullText": "同花成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "d01",
+          "kind": "initial",
+          "text": "留JQK+",
+          "fullText": "留JQK+",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d03",
+          "kind": "initial",
+          "text": "留3张长",
+          "fullText": "留3张长",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d03",
+          "kind": "saved",
+          "text": "热+60",
+          "fullText": "热+60",
+          "room": 58,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "d03",
+          "kind": "zero",
+          "text": "留3张长",
+          "fullText": "留3张长",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d05",
+          "kind": "initial",
+          "text": "余0次",
+          "fullText": "余0次",
+          "room": 58,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "d10",
+          "kind": "initial",
+          "text": "空槽加热",
+          "fullText": "空槽加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e01",
+          "kind": "initial",
+          "text": "过关加金",
+          "fullText": "过关加金",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e03",
+          "kind": "initial",
+          "text": "金币加热",
+          "fullText": "金币加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e05",
+          "kind": "initial",
+          "text": "买牌成长",
+          "fullText": "买牌成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e05",
+          "kind": "saved",
+          "text": "热+80",
+          "fullText": "热+80",
+          "room": 58,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "e05",
+          "kind": "zero",
+          "text": "买牌成长",
+          "fullText": "买牌成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e08",
+          "kind": "initial",
+          "text": "≥20金×",
+          "fullText": "≥20金×",
+          "room": 58,
+          "width": 46,
+          "resolution": 1.5
+        },
+        {
+          "id": "f02",
+          "kind": "initial",
+          "text": "末手加热",
+          "fullText": "末手加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f03",
+          "kind": "initial",
+          "text": "首手+倍",
+          "fullText": "首手+倍",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "f09",
+          "kind": "initial",
+          "text": "已弃牌",
+          "fullText": "已弃牌",
+          "room": 58,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "a04",
+          "kind": "initial",
+          "text": "≤40扩手",
+          "fullText": "≤40扩手",
+          "room": 58,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "a06",
+          "kind": "initial",
+          "text": "高牌×倍",
+          "fullText": "高牌×倍",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "a07",
+          "kind": "initial",
+          "text": "余2次",
+          "fullText": "余2次",
+          "room": 58,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "a07",
+          "kind": "uses0",
+          "text": "余0次",
+          "fullText": "余0次",
+          "room": 58,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "a08",
+          "kind": "initial",
+          "text": "2–5加热",
+          "fullText": "2–5加热",
+          "room": 58,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "b05",
+          "kind": "initial",
+          "text": "三同加热",
+          "fullText": "三同加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b06",
+          "kind": "initial",
+          "text": "对子再触",
+          "fullText": "对子再触",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b07",
+          "kind": "initial",
+          "text": "全计分热",
+          "fullText": "全计分热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b08",
+          "kind": "initial",
+          "text": "对子赢金",
+          "fullText": "对子赢金",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c03",
+          "kind": "initial",
+          "text": "黑牌加热",
+          "fullText": "黑牌加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c05",
+          "kind": "initial",
+          "text": "同花弃2+",
+          "fullText": "同花弃2+",
+          "room": 58,
+          "width": 58,
+          "resolution": 1.5
+        },
+        {
+          "id": "c05",
+          "kind": "saved",
+          "text": "蓄热80",
+          "fullText": "蓄热80",
+          "room": 58,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "c05",
+          "kind": "zero",
+          "text": "同花弃2+",
+          "fullText": "同花弃2+",
+          "room": 58,
+          "width": 58,
+          "resolution": 1.5
+        },
+        {
+          "id": "c07",
+          "kind": "initial",
+          "text": "末张再触",
+          "fullText": "末张再触",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c08",
+          "kind": "initial",
+          "text": "4张顺子",
+          "fullText": "4张顺子",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d02",
+          "kind": "initial",
+          "text": "留2–5热",
+          "fullText": "留2–5热",
+          "room": 58,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "d04",
+          "kind": "initial",
+          "text": "偶手再触",
+          "fullText": "偶手再触",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "d06",
+          "kind": "initial",
+          "text": "下场扩手",
+          "fullText": "下场扩手",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "d07",
+          "kind": "initial",
+          "text": "全计分+",
+          "fullText": "全计分+",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "e02",
+          "kind": "initial",
+          "text": "首购优惠",
+          "fullText": "首购优惠",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e04",
+          "kind": "initial",
+          "text": "利息上限",
+          "fullText": "利息上限",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e06",
+          "kind": "initial",
+          "text": "卖牌成长",
+          "fullText": "卖牌成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e06",
+          "kind": "saved",
+          "text": "倍+3",
+          "fullText": "倍+3",
+          "room": 58,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "e06",
+          "kind": "zero",
+          "text": "卖牌成长",
+          "fullText": "卖牌成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e07",
+          "kind": "initial",
+          "text": "末手赢金",
+          "fullText": "末手赢金",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f04",
+          "kind": "initial",
+          "text": "≤3金+倍",
+          "fullText": "≤3金+倍",
+          "room": 58,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "f05",
+          "kind": "initial",
+          "text": "分升才长",
+          "fullText": "分升才长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f05",
+          "kind": "saved",
+          "text": "倍+4",
+          "fullText": "倍+4",
+          "room": 58,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "f05",
+          "kind": "zero",
+          "text": "分升才长",
+          "fullText": "分升才长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f06",
+          "kind": "initial",
+          "text": "余4手",
+          "fullText": "余4手",
+          "room": 58,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "f06",
+          "kind": "lifetime0",
+          "text": "余0手",
+          "fullText": "余0手",
+          "room": 58,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "f07",
+          "kind": "initial",
+          "text": "耗尽救场",
+          "fullText": "耗尽救场",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "a09",
+          "kind": "initial",
+          "text": "≤2张+倍",
+          "fullText": "≤2张+倍",
+          "room": 58,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "a10",
+          "kind": "initial",
+          "text": "单出留头",
+          "fullText": "单出留头",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "a11",
+          "kind": "initial",
+          "text": "单张再触",
+          "fullText": "单张再触",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "a12",
+          "kind": "initial",
+          "text": "小手赢金",
+          "fullText": "小手赢金",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b09",
+          "kind": "initial",
+          "text": "四五条×",
+          "fullText": "四五条×",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "b10",
+          "kind": "initial",
+          "text": "对子成长",
+          "fullText": "对子成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b10",
+          "kind": "saved",
+          "text": "热+50",
+          "fullText": "热+50",
+          "room": 58,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "b10",
+          "kind": "zero",
+          "text": "对子成长",
+          "fullText": "对子成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "b11",
+          "kind": "initial",
+          "text": "留同点+",
+          "fullText": "留同点+",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "b12",
+          "kind": "initial",
+          "text": "余1次",
+          "fullText": "余1次",
+          "room": 58,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "c09",
+          "kind": "initial",
+          "text": "4张同花",
+          "fullText": "4张同花",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "c10",
+          "kind": "initial",
+          "text": "留A+倍",
+          "fullText": "留A+倍",
+          "room": 58,
+          "width": 46,
+          "resolution": 1.5
+        },
+        {
+          "id": "c11",
+          "kind": "initial",
+          "text": "顺花交替",
+          "fullText": "顺花交替",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "c12",
+          "kind": "initial",
+          "text": "顺花赠染",
+          "fullText": "顺花赠染",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "d08",
+          "kind": "initial",
+          "text": "留声纸×",
+          "fullText": "留声纸×",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "d09",
+          "kind": "initial",
+          "text": "回声成长",
+          "fullText": "回声成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "d09",
+          "kind": "saved",
+          "text": "倍+3",
+          "fullText": "倍+3",
+          "room": 58,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "d09",
+          "kind": "zero",
+          "text": "回声成长",
+          "fullText": "回声成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "d11",
+          "kind": "initial",
+          "text": "原3再触",
+          "fullText": "原3再触",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d12",
+          "kind": "initial",
+          "text": "留4赢金",
+          "fullText": "留4赢金",
+          "room": 58,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "e09",
+          "kind": "initial",
+          "text": "物品扩容",
+          "fullText": "物品扩容",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e10",
+          "kind": "initial",
+          "text": "状态 ›",
+          "fullText": "再2关赠票",
+          "room": 58,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "e11",
+          "kind": "initial",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 58,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "e11",
+          "kind": "saved",
+          "text": "系数×2",
+          "fullText": "系数×2",
+          "room": 58,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "e11",
+          "kind": "zero",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 58,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "e12",
+          "kind": "initial",
+          "text": "付刷成长",
+          "fullText": "付刷成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "e12",
+          "kind": "saved",
+          "text": "热+60",
+          "fullText": "热+60",
+          "room": 58,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "e12",
+          "kind": "zero",
+          "text": "付刷成长",
+          "fullText": "付刷成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f08",
+          "kind": "initial",
+          "text": "概率加热",
+          "fullText": "概率加热",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f10",
+          "kind": "initial",
+          "text": "冷场×倍",
+          "fullText": "冷场×倍",
+          "room": 58,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "f11",
+          "kind": "initial",
+          "text": "低分成长",
+          "fullText": "低分成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f11",
+          "kind": "saved",
+          "text": "热+100",
+          "fullText": "热+100",
+          "room": 58,
+          "width": 46,
+          "resolution": 1.5
+        },
+        {
+          "id": "f11",
+          "kind": "zero",
+          "text": "低分成长",
+          "fullText": "低分成长",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f12",
+          "kind": "initial",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 58,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "f12",
+          "kind": "saved",
+          "text": "系数×5/2",
+          "fullText": "系数×5/2",
+          "room": 58,
+          "width": 56,
+          "resolution": 1.5
+        },
+        {
+          "id": "f12",
+          "kind": "zero",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 58,
+          "width": 44,
+          "resolution": 1.5
+        }
+      ],
+      "screenshot": "390-owned-compact.png"
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "groups": [
+        {
+          "initial": [
+            {
+              "id": "e04",
+              "text": "息上限",
+              "fullText": "利息上限",
+              "room": 54,
+              "width": 42,
+              "bounds": {
+                "x": 230,
+                "y": 40,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c05",
+              "text": "蓄热40",
+              "fullText": "蓄热40",
+              "room": 54,
+              "width": 44,
+              "bounds": {
+                "x": 330,
+                "y": 40,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "e11",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 54,
+              "width": 44,
+              "bounds": {
+                "x": 430,
+                "y": 40,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f09",
+              "text": "已弃牌",
+              "fullText": "已弃牌",
+              "room": 54,
+              "width": 42,
+              "bounds": {
+                "x": 530,
+                "y": 40,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d05",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 54,
+              "width": 36,
+              "bounds": {
+                "x": 630,
+                "y": 40,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "e04",
+              "text": "息上限",
+              "fullText": "利息上限",
+              "room": 54,
+              "width": 42,
+              "bounds": {
+                "x": 230,
+                "y": 40,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c05",
+              "text": "蓄热40",
+              "fullText": "蓄热40",
+              "room": 54,
+              "width": 44,
+              "bounds": {
+                "x": 330,
+                "y": 40,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "e11",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 54,
+              "width": 44,
+              "bounds": {
+                "x": 430,
+                "y": 40,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f09",
+              "text": "已弃牌",
+              "fullText": "已弃牌",
+              "room": 54,
+              "width": 42,
+              "bounds": {
+                "x": 530,
+                "y": 40,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "d05",
+              "text": "余0次",
+              "fullText": "余0次",
+              "room": 54,
+              "width": 36,
+              "bounds": {
+                "x": 630,
+                "y": 40,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "nativeSelectionAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        },
+        {
+          "initial": [
+            {
+              "id": "c08",
+              "text": "4张顺子",
+              "fullText": "4张顺子",
+              "room": 54,
+              "width": 50,
+              "bounds": {
+                "x": 230,
+                "y": 40,
+                "width": 50,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c09",
+              "text": "4张同花",
+              "fullText": "4张同花",
+              "room": 54,
+              "width": 50,
+              "bounds": {
+                "x": 330,
+                "y": 40,
+                "width": 50,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f08",
+              "text": "概率热",
+              "fullText": "概率加热",
+              "room": 54,
+              "width": 42,
+              "bounds": {
+                "x": 430,
+                "y": 40,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f06",
+              "text": "余4手",
+              "fullText": "余4手",
+              "room": 54,
+              "width": 36,
+              "bounds": {
+                "x": 530,
+                "y": 40,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f12",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 54,
+              "width": 44,
+              "bounds": {
+                "x": 630,
+                "y": 40,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "refreshed": [
+            {
+              "id": "c08",
+              "text": "4张顺子",
+              "fullText": "4张顺子",
+              "room": 54,
+              "width": 50,
+              "bounds": {
+                "x": 230,
+                "y": 40,
+                "width": 50,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "c09",
+              "text": "4张同花",
+              "fullText": "4张同花",
+              "room": 54,
+              "width": 50,
+              "bounds": {
+                "x": 330,
+                "y": 40,
+                "width": 50,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f08",
+              "text": "概率热",
+              "fullText": "概率加热",
+              "room": 54,
+              "width": 42,
+              "bounds": {
+                "x": 430,
+                "y": 40,
+                "width": 42,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f06",
+              "text": "余4手",
+              "fullText": "余4手",
+              "room": 54,
+              "width": 36,
+              "bounds": {
+                "x": 530,
+                "y": 40,
+                "width": 36,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            },
+            {
+              "id": "f12",
+              "text": "系数×1",
+              "fullText": "系数×1",
+              "room": 54,
+              "width": 44,
+              "bounds": {
+                "x": 630,
+                "y": 40,
+                "width": 44,
+                "height": 16
+              },
+              "fontSize": "14px",
+              "resolution": 1.5
+            }
+          ],
+          "nativeSelectionAndDetailCancel": "PASS; complete run/resources/RNG unchanged"
+        }
+      ],
+      "measurements": [
+        {
+          "id": "pengci",
+          "kind": "initial",
+          "text": "高牌+倍",
+          "fullText": "高牌+倍",
+          "room": 54,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "mantangcai",
+          "kind": "initial",
+          "text": "成组热",
+          "fullText": "成组加热",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "tiesuanpan",
+          "kind": "initial",
+          "text": "JQKA热",
+          "fullText": "JQKA热",
+          "room": 54,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "huimaqiang",
+          "kind": "initial",
+          "text": "3手×2",
+          "fullText": "3手×2",
+          "room": 54,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "jiedongfeng",
+          "kind": "initial",
+          "text": "顺花+",
+          "fullText": "顺/花+倍",
+          "room": 54,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "a03",
+          "kind": "initial",
+          "text": "单张热",
+          "fullText": "单张加热",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "a05",
+          "kind": "initial",
+          "text": "单张长",
+          "fullText": "单张成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "a05",
+          "kind": "saved",
+          "text": "热+90",
+          "fullText": "热+90",
+          "room": 54,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "a05",
+          "kind": "zero",
+          "text": "单张长",
+          "fullText": "单张成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b02",
+          "kind": "initial",
+          "text": "同点+倍",
+          "fullText": "同点+倍",
+          "room": 54,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "b03",
+          "kind": "initial",
+          "text": "成组长",
+          "fullText": "成组成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b03",
+          "kind": "saved",
+          "text": "倍+3",
+          "fullText": "倍+3",
+          "room": 54,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "b03",
+          "kind": "zero",
+          "text": "成组长",
+          "fullText": "成组成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b04",
+          "kind": "initial",
+          "text": "两组+倍",
+          "fullText": "两组+倍",
+          "room": 54,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "c02",
+          "kind": "initial",
+          "text": "红牌热",
+          "fullText": "红牌加热",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c04",
+          "kind": "initial",
+          "text": "顺子热",
+          "fullText": "顺子加热",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c06",
+          "kind": "initial",
+          "text": "同花长",
+          "fullText": "同花成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c06",
+          "kind": "saved",
+          "text": "倍+4",
+          "fullText": "倍+4",
+          "room": 54,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "c06",
+          "kind": "zero",
+          "text": "同花长",
+          "fullText": "同花成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d01",
+          "kind": "initial",
+          "text": "留JQK+",
+          "fullText": "留JQK+",
+          "room": 54,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d03",
+          "kind": "initial",
+          "text": "留3张长",
+          "fullText": "留3张长",
+          "room": 54,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d03",
+          "kind": "saved",
+          "text": "热+60",
+          "fullText": "热+60",
+          "room": 54,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "d03",
+          "kind": "zero",
+          "text": "留3张长",
+          "fullText": "留3张长",
+          "room": 54,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d05",
+          "kind": "initial",
+          "text": "余0次",
+          "fullText": "余0次",
+          "room": 54,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "d10",
+          "kind": "initial",
+          "text": "空槽热",
+          "fullText": "空槽加热",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e01",
+          "kind": "initial",
+          "text": "过关金",
+          "fullText": "过关加金",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e03",
+          "kind": "initial",
+          "text": "金币热",
+          "fullText": "金币加热",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e05",
+          "kind": "initial",
+          "text": "买牌长",
+          "fullText": "买牌成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e05",
+          "kind": "saved",
+          "text": "热+80",
+          "fullText": "热+80",
+          "room": 54,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "e05",
+          "kind": "zero",
+          "text": "买牌长",
+          "fullText": "买牌成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e08",
+          "kind": "initial",
+          "text": "≥20金×",
+          "fullText": "≥20金×",
+          "room": 54,
+          "width": 46,
+          "resolution": 1.5
+        },
+        {
+          "id": "f02",
+          "kind": "initial",
+          "text": "末手热",
+          "fullText": "末手加热",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f03",
+          "kind": "initial",
+          "text": "首手+倍",
+          "fullText": "首手+倍",
+          "room": 54,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "f09",
+          "kind": "initial",
+          "text": "已弃牌",
+          "fullText": "已弃牌",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "a04",
+          "kind": "initial",
+          "text": "≤40扩手",
+          "fullText": "≤40扩手",
+          "room": 54,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "a06",
+          "kind": "initial",
+          "text": "高牌×倍",
+          "fullText": "高牌×倍",
+          "room": 54,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "a07",
+          "kind": "initial",
+          "text": "余2次",
+          "fullText": "余2次",
+          "room": 54,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "a07",
+          "kind": "uses0",
+          "text": "余0次",
+          "fullText": "余0次",
+          "room": 54,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "a08",
+          "kind": "initial",
+          "text": "2–5加热",
+          "fullText": "2–5加热",
+          "room": 54,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "b05",
+          "kind": "initial",
+          "text": "三同热",
+          "fullText": "三同加热",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b06",
+          "kind": "initial",
+          "text": "对再触",
+          "fullText": "对子再触",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b07",
+          "kind": "initial",
+          "text": "全计热",
+          "fullText": "全计分热",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b08",
+          "kind": "initial",
+          "text": "对子金",
+          "fullText": "对子赢金",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c03",
+          "kind": "initial",
+          "text": "黑牌热",
+          "fullText": "黑牌加热",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c05",
+          "kind": "initial",
+          "text": "同花弃",
+          "fullText": "同花弃2+",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c05",
+          "kind": "saved",
+          "text": "蓄热80",
+          "fullText": "蓄热80",
+          "room": 54,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "c05",
+          "kind": "zero",
+          "text": "同花弃",
+          "fullText": "同花弃2+",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c07",
+          "kind": "initial",
+          "text": "末张触",
+          "fullText": "末张再触",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c08",
+          "kind": "initial",
+          "text": "4张顺子",
+          "fullText": "4张顺子",
+          "room": 54,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d02",
+          "kind": "initial",
+          "text": "留2–5热",
+          "fullText": "留2–5热",
+          "room": 54,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "d04",
+          "kind": "initial",
+          "text": "偶手触",
+          "fullText": "偶手再触",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d06",
+          "kind": "initial",
+          "text": "下场扩",
+          "fullText": "下场扩手",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d07",
+          "kind": "initial",
+          "text": "全计分+",
+          "fullText": "全计分+",
+          "room": 54,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "e02",
+          "kind": "initial",
+          "text": "首购省",
+          "fullText": "首购优惠",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e04",
+          "kind": "initial",
+          "text": "息上限",
+          "fullText": "利息上限",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e06",
+          "kind": "initial",
+          "text": "卖牌长",
+          "fullText": "卖牌成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e06",
+          "kind": "saved",
+          "text": "倍+3",
+          "fullText": "倍+3",
+          "room": 54,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "e06",
+          "kind": "zero",
+          "text": "卖牌长",
+          "fullText": "卖牌成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e07",
+          "kind": "initial",
+          "text": "末手金",
+          "fullText": "末手赢金",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f04",
+          "kind": "initial",
+          "text": "≤3金+倍",
+          "fullText": "≤3金+倍",
+          "room": 54,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "f05",
+          "kind": "initial",
+          "text": "分升长",
+          "fullText": "分升才长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f05",
+          "kind": "saved",
+          "text": "倍+4",
+          "fullText": "倍+4",
+          "room": 54,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "f05",
+          "kind": "zero",
+          "text": "分升长",
+          "fullText": "分升才长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f06",
+          "kind": "initial",
+          "text": "余4手",
+          "fullText": "余4手",
+          "room": 54,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "f06",
+          "kind": "lifetime0",
+          "text": "余0手",
+          "fullText": "余0手",
+          "room": 54,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "f07",
+          "kind": "initial",
+          "text": "耗尽救",
+          "fullText": "耗尽救场",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "a09",
+          "kind": "initial",
+          "text": "≤2张+倍",
+          "fullText": "≤2张+倍",
+          "room": 54,
+          "width": 52,
+          "resolution": 1.5
+        },
+        {
+          "id": "a10",
+          "kind": "initial",
+          "text": "留头+",
+          "fullText": "单出留头",
+          "room": 54,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "a11",
+          "kind": "initial",
+          "text": "单张触",
+          "fullText": "单张再触",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "a12",
+          "kind": "initial",
+          "text": "小手金",
+          "fullText": "小手赢金",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b09",
+          "kind": "initial",
+          "text": "四五条×",
+          "fullText": "四五条×",
+          "room": 54,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "b10",
+          "kind": "initial",
+          "text": "对子长",
+          "fullText": "对子成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b10",
+          "kind": "saved",
+          "text": "热+50",
+          "fullText": "热+50",
+          "room": 54,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "b10",
+          "kind": "zero",
+          "text": "对子长",
+          "fullText": "对子成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "b11",
+          "kind": "initial",
+          "text": "留同点+",
+          "fullText": "留同点+",
+          "room": 54,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "b12",
+          "kind": "initial",
+          "text": "余1次",
+          "fullText": "余1次",
+          "room": 54,
+          "width": 36,
+          "resolution": 1.5
+        },
+        {
+          "id": "c09",
+          "kind": "initial",
+          "text": "4张同花",
+          "fullText": "4张同花",
+          "room": 54,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "c10",
+          "kind": "initial",
+          "text": "留A+倍",
+          "fullText": "留A+倍",
+          "room": 54,
+          "width": 46,
+          "resolution": 1.5
+        },
+        {
+          "id": "c11",
+          "kind": "initial",
+          "text": "顺花换",
+          "fullText": "顺花交替",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "c12",
+          "kind": "initial",
+          "text": "顺花染",
+          "fullText": "顺花赠染",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d08",
+          "kind": "initial",
+          "text": "留声纸×",
+          "fullText": "留声纸×",
+          "room": 54,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "d09",
+          "kind": "initial",
+          "text": "回声长",
+          "fullText": "回声成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d09",
+          "kind": "saved",
+          "text": "倍+3",
+          "fullText": "倍+3",
+          "room": 54,
+          "width": 30,
+          "resolution": 1.5
+        },
+        {
+          "id": "d09",
+          "kind": "zero",
+          "text": "回声长",
+          "fullText": "回声成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "d11",
+          "kind": "initial",
+          "text": "原3再触",
+          "fullText": "原3再触",
+          "room": 54,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "d12",
+          "kind": "initial",
+          "text": "留4赢金",
+          "fullText": "留4赢金",
+          "room": 54,
+          "width": 50,
+          "resolution": 1.5
+        },
+        {
+          "id": "e09",
+          "kind": "initial",
+          "text": "物品槽",
+          "fullText": "物品扩容",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e10",
+          "kind": "initial",
+          "text": "状态 ›",
+          "fullText": "再2关赠票",
+          "room": 54,
+          "width": 37,
+          "resolution": 1.5
+        },
+        {
+          "id": "e11",
+          "kind": "initial",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 54,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "e11",
+          "kind": "saved",
+          "text": "系数×2",
+          "fullText": "系数×2",
+          "room": 54,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "e11",
+          "kind": "zero",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 54,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "e12",
+          "kind": "initial",
+          "text": "付刷长",
+          "fullText": "付刷成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "e12",
+          "kind": "saved",
+          "text": "热+60",
+          "fullText": "热+60",
+          "room": 54,
+          "width": 38,
+          "resolution": 1.5
+        },
+        {
+          "id": "e12",
+          "kind": "zero",
+          "text": "付刷长",
+          "fullText": "付刷成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f08",
+          "kind": "initial",
+          "text": "概率热",
+          "fullText": "概率加热",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f10",
+          "kind": "initial",
+          "text": "冷场×倍",
+          "fullText": "冷场×倍",
+          "room": 54,
+          "width": 51,
+          "resolution": 1.5
+        },
+        {
+          "id": "f11",
+          "kind": "initial",
+          "text": "低分长",
+          "fullText": "低分成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f11",
+          "kind": "saved",
+          "text": "热+100",
+          "fullText": "热+100",
+          "room": 54,
+          "width": 46,
+          "resolution": 1.5
+        },
+        {
+          "id": "f11",
+          "kind": "zero",
+          "text": "低分长",
+          "fullText": "低分成长",
+          "room": 54,
+          "width": 42,
+          "resolution": 1.5
+        },
+        {
+          "id": "f12",
+          "kind": "initial",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 54,
+          "width": 44,
+          "resolution": 1.5
+        },
+        {
+          "id": "f12",
+          "kind": "saved",
+          "text": "×5/2",
+          "fullText": "系数×5/2",
+          "room": 54,
+          "width": 28,
+          "resolution": 1.5
+        },
+        {
+          "id": "f12",
+          "kind": "zero",
+          "text": "系数×1",
+          "fullText": "系数×1",
+          "room": 54,
+          "width": 44,
+          "resolution": 1.5
+        }
+      ],
+      "screenshot": "844-owned-compact.png"
+    }
+  ],
+  "checks": [
+    "all72 initial mechanism alternatives and saved/zero/lifetime/uses probes fit actual Phaser14px font/resolution in four viewports",
+    "native selection refresh matches mount geometry and state labels; details cancel changes no run/resources/RNG",
+    "e04 mechanism, c05 pending40, e11 saved coefficient1, f09 discarded and d05 used discoverable; 9-card input remains active"
+  ],
+  "taskId": "P08",
+  "testedCommit": "ff069d50aa71b00bfee17b580b3ddf2bb5734fea",
+  "srcFingerprint": "d470697f196c5957718967de27ea44f94353b3cb86cc3b015fdef21258f95fac",
+  "runtimeManifestSHA256": "fdad2cee2e7d5f4addaba1986e54d59d1f5370daf6d76c3109ecb5146d21abdb",
+  "srcFingerprintMethod": "SHA256 over sorted git-tracked src pathname + NUL + exact bytes + NUL"
+}
