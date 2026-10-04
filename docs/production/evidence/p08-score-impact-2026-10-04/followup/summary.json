@@ -1,0 +1,1632 @@
+{
+  "status": "COMPLETE_REVIEW; actual phone experience pending",
+  "initialReviewNotAccepted": "51d0abc8436d21a76e669fd96254d7750c3b93ed",
+  "alignedMain": "1eb6689000142781daa96d9033319b333bd4a362",
+  "runtimeSource": "aab096e3bf95c851eae22408269aa595009a7394",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-04T23:41:08.832Z",
+    "revision": "aab096e3bf95c851eae22408269aa595009a7394",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "checks": {
+    "relatedTests": {
+      "files": 6,
+      "tests": 60,
+      "status": "PASS"
+    },
+    "typecheck": "PASS",
+    "viteBuildModeE2E": "PASS",
+    "deckCombination": {
+      "status": "PASS",
+      "build": {
+        "version": "C03",
+        "builtAt": "2026-10-04T23:41:08.832Z",
+        "revision": "aab096e3bf95c851eae22408269aa595009a7394",
+        "sourceStatus": "clean",
+        "modified": false
+      },
+      "mainAligned": "1eb6689000142781daa96d9033319b333bd4a362",
+      "actualNativeGameDeckOpenFilterClose": true,
+      "rankUnits": 13,
+      "selectedPreserved": [
+        "clubs-5"
+      ],
+      "wholeSavedRunUnchanged": true,
+      "savedSHA256": "4d14cb58299e3fea25e04a2c0b22e9810f08f7a0f4b1f89938b695f292744be1",
+      "errors": []
+    },
+    "exactNewHeadCI": "PENDING; no wait for parent checkpoint"
+  },
+  "runs": [
+    {
+      "name": "390x740-202-natural",
+      "status": "PASS",
+      "finalScore": "202",
+      "savedStableEveryFrame": true,
+      "impactOwnership": [
+        {
+          "count": 1,
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1"
+        },
+        {
+          "count": 2,
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2"
+        },
+        {
+          "count": 3,
+          "eventId": "award"
+        }
+      ],
+      "baseFirstArrival": null,
+      "firstOrdinaryArrival": {
+        "min": 0.7699999999999999,
+        "max": 1.272540773036215,
+        "firstFrame": 193,
+        "lastFrame": 206,
+        "firstAt": 4131.199999999255,
+        "lastAt": 4339.300000000745,
+        "shown": [
+          "67"
+        ],
+        "accentVoiceMax": 2
+      },
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "extraCleanup": {
+        "safeMaskNodes": 0,
+        "pulseScales": [
+          1,
+          1,
+          1
+        ]
+      },
+      "speedSwitches": null,
+      "completeSavedResultEqualsOriginalCandidate": true
+    },
+    {
+      "name": "390x740-600-natural",
+      "status": "PASS",
+      "finalScore": "600",
+      "savedStableEveryFrame": true,
+      "impactOwnership": [
+        {
+          "count": 1,
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/0"
+        },
+        {
+          "count": 2,
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1"
+        },
+        {
+          "count": 3,
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2"
+        },
+        {
+          "count": 4,
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/3"
+        },
+        {
+          "count": 5,
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/4"
+        },
+        {
+          "count": 6,
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/5"
+        },
+        {
+          "count": 7,
+          "eventId": "award"
+        }
+      ],
+      "baseFirstArrival": {
+        "min": 0.7599999999999999,
+        "max": 1.297641474880519,
+        "firstFrame": 170,
+        "lastFrame": 200,
+        "firstAt": 3376.900000002235,
+        "lastAt": 3875.300000000745,
+        "shown": [
+          "500"
+        ],
+        "accentVoiceMax": 2
+      },
+      "firstOrdinaryArrival": {
+        "min": 0.7599999999999999,
+        "max": 1.2940740740740742,
+        "firstFrame": 217,
+        "lastFrame": 230,
+        "firstAt": 4158.60000000149,
+        "lastAt": 4375.60000000149,
+        "shown": [
+          "520"
+        ],
+        "accentVoiceMax": 2
+      },
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "extraCleanup": {
+        "safeMaskNodes": 0,
+        "pulseScales": []
+      },
+      "speedSwitches": null,
+      "completeSavedResultEqualsOriginalCandidate": true
+    },
+    {
+      "name": "390x740-1200-natural",
+      "status": "PASS",
+      "finalScore": "1200",
+      "savedStableEveryFrame": true,
+      "impactOwnership": [
+        {
+          "count": 1,
+          "eventId": "run/d43-fire-1/laohuan/hand/run/d43-fire-1/laohuan/command/4/event/0"
+        },
+        {
+          "count": 2,
+          "eventId": "run/d43-fire-1/laohuan/hand/run/d43-fire-1/laohuan/command/4/event/1"
+        },
+        {
+          "count": 3,
+          "eventId": "run/d43-fire-1/laohuan/hand/run/d43-fire-1/laohuan/command/4/event/2"
+        },
+        {
+          "count": 4,
+          "eventId": "run/d43-fire-1/laohuan/hand/run/d43-fire-1/laohuan/command/4/event/3"
+        },
+        {
+          "count": 5,
+          "eventId": "run/d43-fire-1/laohuan/hand/run/d43-fire-1/laohuan/command/4/event/4"
+        },
+        {
+          "count": 6,
+          "eventId": "run/d43-fire-1/laohuan/hand/run/d43-fire-1/laohuan/command/4/event/5"
+        },
+        {
+          "count": 7,
+          "eventId": "run/d43-fire-1/laohuan/hand/run/d43-fire-1/laohuan/command/4/event/6"
+        },
+        {
+          "count": 8,
+          "eventId": "award"
+        }
+      ],
+      "baseFirstArrival": {
+        "min": 0.7599999999999999,
+        "max": 1.2982693730086483,
+        "firstFrame": 169,
+        "lastFrame": 198,
+        "firstAt": 3278.099999997765,
+        "lastAt": 3760.199999999255,
+        "shown": [
+          "560"
+        ],
+        "accentVoiceMax": 2
+      },
+      "firstOrdinaryArrival": {
+        "min": 0.7599999999999999,
+        "max": 1.2957397226508918,
+        "firstFrame": 215,
+        "lastFrame": 228,
+        "firstAt": 4043.5,
+        "lastAt": 4260.29999999702,
+        "shown": [
+          "588"
+        ],
+        "accentVoiceMax": 2
+      },
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "extraCleanup": {
+        "safeMaskNodes": 0,
+        "pulseScales": []
+      },
+      "speedSwitches": null,
+      "completeSavedResultEqualsOriginalCandidate": true
+    },
+    {
+      "name": "390x740-5589-natural",
+      "status": "PASS",
+      "finalScore": "5589",
+      "savedStableEveryFrame": true,
+      "impactOwnership": [
+        {
+          "count": 1,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0"
+        },
+        {
+          "count": 2,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1"
+        },
+        {
+          "count": 3,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2"
+        },
+        {
+          "count": 4,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3"
+        },
+        {
+          "count": 5,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4"
+        },
+        {
+          "count": 6,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5"
+        },
+        {
+          "count": 7,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6"
+        },
+        {
+          "count": 8,
+          "eventId": "award"
+        }
+      ],
+      "baseFirstArrival": {
+        "min": 0.7399999999999999,
+        "max": 1.3380770811207203,
+        "firstFrame": 170,
+        "lastFrame": 199,
+        "firstAt": 3315,
+        "lastAt": 3795.699999999255,
+        "shown": [
+          "4,050"
+        ],
+        "accentVoiceMax": 2
+      },
+      "firstOrdinaryArrival": {
+        "min": 0.7399999999999999,
+        "max": 1.3334156378600825,
+        "firstFrame": 216,
+        "lastFrame": 229,
+        "firstAt": 4079.099999997765,
+        "lastAt": 4295.699999999255,
+        "shown": [
+          "4,140"
+        ],
+        "accentVoiceMax": 2
+      },
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "extraCleanup": {
+        "safeMaskNodes": 0,
+        "pulseScales": []
+      },
+      "speedSwitches": null,
+      "completeSavedResultEqualsOriginalCandidate": true
+    },
+    {
+      "name": "390x740-5589-speed",
+      "status": "PASS",
+      "finalScore": "5589",
+      "savedStableEveryFrame": true,
+      "impactOwnership": [
+        {
+          "count": 1,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0"
+        },
+        {
+          "count": 2,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1"
+        },
+        {
+          "count": 3,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2"
+        },
+        {
+          "count": 4,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3"
+        },
+        {
+          "count": 5,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4"
+        },
+        {
+          "count": 6,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5"
+        },
+        {
+          "count": 7,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6"
+        },
+        {
+          "count": 8,
+          "eventId": "award"
+        }
+      ],
+      "baseFirstArrival": {
+        "min": 0.7399999999999999,
+        "max": 1.336530622566126,
+        "firstFrame": 168,
+        "lastFrame": 197,
+        "firstAt": 3305,
+        "lastAt": 3782.5,
+        "shown": [
+          "4,050"
+        ],
+        "accentVoiceMax": 2
+      },
+      "firstOrdinaryArrival": {
+        "min": 0.7399999999999999,
+        "max": 1.335266358500991,
+        "firstFrame": 214,
+        "lastFrame": 226,
+        "firstAt": 4066.10000000149,
+        "lastAt": 4266.5,
+        "shown": [
+          "4,140"
+        ],
+        "accentVoiceMax": 2
+      },
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "extraCleanup": {
+        "safeMaskNodes": 0,
+        "pulseScales": []
+      },
+      "speedSwitches": [
+        {
+          "speed": 2,
+          "frame": 230,
+          "at": 4320.39999999851,
+          "active": true,
+          "tweenSpeed": 2,
+          "clockSpeed": 2,
+          "impactCount": 2
+        },
+        {
+          "speed": 4,
+          "frame": 231,
+          "at": 4338.10000000149,
+          "active": true,
+          "tweenSpeed": 4,
+          "clockSpeed": 4,
+          "impactCount": 2
+        },
+        {
+          "speed": 1,
+          "frame": 232,
+          "at": 4356,
+          "active": true,
+          "tweenSpeed": 1,
+          "clockSpeed": 1,
+          "impactCount": 2
+        }
+      ],
+      "completeSavedResultEqualsOriginalCandidate": true
+    },
+    {
+      "name": "844x300-1200-switch",
+      "status": "PASS",
+      "finalScore": "1200",
+      "savedStableEveryFrame": true,
+      "impactOwnership": [
+        {
+          "count": 1,
+          "eventId": "run/d43-fire-1/laohuan/hand/run/d43-fire-1/laohuan/command/4/event/0"
+        }
+      ],
+      "baseFirstArrival": {
+        "min": 0.7599999999999999,
+        "max": 1.2999271734182978,
+        "firstFrame": 168,
+        "lastFrame": 185,
+        "firstAt": 3258.699999999255,
+        "lastAt": 3541.199999999255,
+        "shown": [
+          "560"
+        ],
+        "accentVoiceMax": 2
+      },
+      "firstOrdinaryArrival": null,
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "extraCleanup": {
+        "safeMaskNodes": 0,
+        "pulseScales": []
+      },
+      "speedSwitches": null,
+      "completeSavedResultEqualsOriginalCandidate": true
+    },
+    {
+      "name": "844x300-202-numeric",
+      "status": "PASS",
+      "finalScore": "202",
+      "savedStableEveryFrame": true,
+      "impactOwnership": [
+        {
+          "count": 1,
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1"
+        },
+        {
+          "count": 2,
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2"
+        },
+        {
+          "count": 3,
+          "eventId": "award"
+        }
+      ],
+      "baseFirstArrival": null,
+      "firstOrdinaryArrival": {
+        "min": 0.7699999999999999,
+        "max": 1.27440329218107,
+        "firstFrame": 190,
+        "lastFrame": 203,
+        "firstAt": 3591.599999997765,
+        "lastAt": 3806.7999999970198,
+        "shown": [
+          "67"
+        ],
+        "accentVoiceMax": 2
+      },
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "extraCleanup": {
+        "safeMaskNodes": 0,
+        "pulseScales": [
+          1,
+          1,
+          1
+        ]
+      },
+      "speedSwitches": null,
+      "completeSavedResultEqualsOriginalCandidate": true
+    },
+    {
+      "name": "390x740-202-skip",
+      "status": "PASS",
+      "finalScore": "202",
+      "savedStableEveryFrame": true,
+      "impactOwnership": [
+        {
+          "count": 1,
+          "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1"
+        }
+      ],
+      "baseFirstArrival": null,
+      "firstOrdinaryArrival": {
+        "min": 0.7699999999999999,
+        "max": 1.2759764047258422,
+        "firstFrame": 187,
+        "lastFrame": 200,
+        "firstAt": 3562.5,
+        "lastAt": 3778.39999999851,
+        "shown": [
+          "67"
+        ],
+        "accentVoiceMax": 2
+      },
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "extraCleanup": {
+        "safeMaskNodes": 0,
+        "pulseScales": [
+          1,
+          1,
+          1
+        ]
+      },
+      "speedSwitches": null,
+      "completeSavedResultEqualsOriginalCandidate": true
+    }
+  ],
+  "keyframes": [
+    {
+      "file": "390x740-tier0.png",
+      "source": "aab096e3bf95c851eae22408269aa595009a7394",
+      "frame": 198,
+      "at": 4208.10000000149,
+      "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+      "eventPhase": "impact",
+      "shown": "67",
+      "pulses": [
+        {
+          "text": "45",
+          "full": "45",
+          "requested": 1.272540773036215,
+          "scale": 1.1428571428571428,
+          "bounds": {
+            "x": 71.54,
+            "y": 208.6,
+            "width": 24,
+            "height": 24
+          }
+        },
+        {
+          "text": "× 1.5",
+          "full": "× 1.5",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 63.040000000000006,
+            "y": 253.6,
+            "width": 41,
+            "height": 21.00000000000003
+          }
+        },
+        {
+          "text": "67",
+          "full": "67",
+          "requested": 1.272540773036215,
+          "scale": 1.272540773036215,
+          "bounds": {
+            "x": 236.45291415275761,
+            "y": 234.7403733797214,
+            "width": 52.17417169448481,
+            "height": 54.71925324055724
+          }
+        }
+      ],
+      "brush": {
+        "level": 0,
+        "reduced": false,
+        "localPhase": "fade",
+        "localAge": 100,
+        "localAlpha": 0.9565217391304348,
+        "localLineWidth": 6.5,
+        "framePhase": "idle",
+        "frameAge": 900,
+        "frameProgress": 1,
+        "frameAlpha": 0,
+        "lineWidth": 3.5,
+        "entered": [],
+        "updating": true
+      },
+      "impactId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+      "impactCount": 1,
+      "impactRays": [
+        [
+          {
+            "x": 213.10840000000002,
+            "y": 253.00000000000003
+          },
+          {
+            "x": 180.87040000000002,
+            "y": 242.60000000000002
+          },
+          {
+            "x": 157.22920000000005,
+            "y": 232.20000000000002
+          }
+        ],
+        [
+          {
+            "x": 311.9716,
+            "y": 253.00000000000003
+          },
+          {
+            "x": 344.2096,
+            "y": 242.60000000000002
+          },
+          {
+            "x": 367.8508,
+            "y": 232.20000000000002
+          }
+        ],
+        [
+          {
+            "x": 213.10840000000002,
+            "y": 271.20000000000005
+          },
+          {
+            "x": 180.87040000000002,
+            "y": 281.6
+          },
+          {
+            "x": 157.22920000000005,
+            "y": 292
+          }
+        ],
+        [
+          {
+            "x": 311.9716,
+            "y": 271.20000000000005
+          },
+          {
+            "x": 344.2096,
+            "y": 281.6
+          },
+          {
+            "x": 367.8508,
+            "y": 292
+          }
+        ]
+      ],
+      "sha256": "284f01df9d9007e505e0c01a75f5ac16ac34fa6a839df2350fa76c89cc4864df"
+    },
+    {
+      "file": "390x740-tier1.png",
+      "source": "aab096e3bf95c851eae22408269aa595009a7394",
+      "frame": 173,
+      "at": 3428.800000000745,
+      "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/0",
+      "eventPhase": "base-impact",
+      "shown": "500",
+      "pulses": [
+        {
+          "text": "125",
+          "full": "125",
+          "requested": 0.8151253662664997,
+          "scale": 0.8151253662664997,
+          "bounds": {
+            "x": 70.90555682286926,
+            "y": 208.6,
+            "width": 25.268886354261483,
+            "height": 17.117632691596498
+          }
+        },
+        {
+          "text": "× 4",
+          "full": "× 4",
+          "requested": 0.8151253662664997,
+          "scale": 0.8151253662664997,
+          "bounds": {
+            "x": 72.94337023853551,
+            "y": 253.6,
+            "width": 21.193259522928983,
+            "height": 17.11763269159647
+          }
+        },
+        {
+          "text": "500",
+          "full": "500",
+          "requested": 0.8151253662664997,
+          "scale": 0.8151253662664997,
+          "bounds": {
+            "x": 237.67867632887177,
+            "y": 244.57480462527027,
+            "width": 49.722647342256465,
+            "height": 35.05039074945947
+          }
+        }
+      ],
+      "brush": {
+        "level": 1,
+        "reduced": false,
+        "localPhase": "unfold",
+        "localAge": 66.59999999999991,
+        "localAlpha": 1,
+        "localLineWidth": 6.5,
+        "framePhase": "fade",
+        "frameAge": 66.59999999999991,
+        "frameProgress": 1,
+        "frameAlpha": 0.9986315789473685,
+        "lineWidth": 7.442222222222224,
+        "entered": [
+          1
+        ],
+        "updating": true
+      },
+      "impactId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/0",
+      "impactCount": 1,
+      "impactRays": [
+        [
+          {
+            "x": 216.00443267200006,
+            "y": 253.5331386666667
+          },
+          {
+            "x": 185.65514963200008,
+            "y": 243.74244000000004
+          },
+          {
+            "x": 163.3990087360001,
+            "y": 233.95174133333336
+          }
+        ],
+        [
+          {
+            "x": 309.075567328,
+            "y": 253.5331386666667
+          },
+          {
+            "x": 339.42485036799997,
+            "y": 243.74244000000004
+          },
+          {
+            "x": 361.68099126399994,
+            "y": 233.95174133333336
+          }
+        ],
+        [
+          {
+            "x": 216.00443267200006,
+            "y": 270.6668613333334
+          },
+          {
+            "x": 185.65514963200008,
+            "y": 280.45756
+          },
+          {
+            "x": 163.3990087360001,
+            "y": 290.2482586666667
+          }
+        ],
+        [
+          {
+            "x": 309.075567328,
+            "y": 270.6668613333334
+          },
+          {
+            "x": 339.42485036799997,
+            "y": 280.45756
+          },
+          {
+            "x": 361.68099126399994,
+            "y": 290.2482586666667
+          }
+        ]
+      ],
+      "sha256": "330fef80f338740df79008fe1adb6824033d5a815774df97d6f96e91512a9f59"
+    },
+    {
+      "file": "390x740-tier2.png",
+      "source": "aab096e3bf95c851eae22408269aa595009a7394",
+      "frame": 396,
+      "at": 7061.599999997765,
+      "eventId": "run/d43-fire-1/laohuan/hand/run/d43-fire-1/laohuan/command/4/event/6",
+      "eventPhase": "impact",
+      "shown": "1,200",
+      "pulses": [
+        {
+          "text": "300",
+          "full": "300",
+          "requested": 1.268327905862197,
+          "scale": 1.1428571428571428,
+          "bounds": {
+            "x": 65.8257142857143,
+            "y": 208.6,
+            "width": 35.428571428571416,
+            "height": 24
+          }
+        },
+        {
+          "text": "× 4",
+          "full": "× 4",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 70.54,
+            "y": 253.6,
+            "width": 26,
+            "height": 21.00000000000003
+          }
+        },
+        {
+          "text": "1,200",
+          "full": "1,200",
+          "requested": 1.268327905862197,
+          "scale": 1.268327905862197,
+          "bounds": {
+            "x": 204.83108028327007,
+            "y": 234.83095002396277,
+            "width": 115.41783943345996,
+            "height": 54.53809995207445
+          }
+        }
+      ],
+      "brush": {
+        "level": 2,
+        "reduced": false,
+        "localPhase": "unfold",
+        "localAge": 83.30000000000018,
+        "localAlpha": 1,
+        "localLineWidth": 6.5,
+        "framePhase": "fade",
+        "frameAge": 83.30000000000018,
+        "frameProgress": 1,
+        "frameAlpha": 0.9986317073170731,
+        "lineWidth": 7.444999999999997,
+        "entered": [
+          1,
+          2
+        ],
+        "updating": true
+      },
+      "impactId": "run/d43-fire-1/laohuan/hand/run/d43-fire-1/laohuan/command/4/event/6",
+      "impactCount": 7,
+      "impactRays": [
+        [
+          {
+            "x": 213.17637986424694,
+            "y": 253.01251460128032
+          },
+          {
+            "x": 180.982714558321,
+            "y": 242.6268170027435
+          },
+          {
+            "x": 157.37402666730867,
+            "y": 232.2411194042067
+          }
+        ],
+        [
+          {
+            "x": 311.9036201357531,
+            "y": 253.01251460128032
+          },
+          {
+            "x": 344.09728544167905,
+            "y": 242.6268170027435
+          },
+          {
+            "x": 367.70597333269137,
+            "y": 232.2411194042067
+          }
+        ],
+        [
+          {
+            "x": 213.17637986424694,
+            "y": 271.18748539871973
+          },
+          {
+            "x": 180.982714558321,
+            "y": 281.57318299725654
+          },
+          {
+            "x": 157.37402666730867,
+            "y": 291.95888059579335
+          }
+        ],
+        [
+          {
+            "x": 311.9036201357531,
+            "y": 271.18748539871973
+          },
+          {
+            "x": 344.09728544167905,
+            "y": 281.57318299725654
+          },
+          {
+            "x": 367.70597333269137,
+            "y": 291.95888059579335
+          }
+        ]
+      ],
+      "sha256": "465456bb89f794ccb439cbf0e3a9859fa6f2e2f0a550ca0f1e22213f61575f13"
+    },
+    {
+      "file": "390x740-digits-compressed.png",
+      "source": "aab096e3bf95c851eae22408269aa595009a7394",
+      "frame": 170,
+      "at": 3315,
+      "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+      "eventPhase": "base-impact",
+      "shown": "4,050",
+      "pulses": [
+        {
+          "text": "450",
+          "full": "450",
+          "requested": 0.7399999999999999,
+          "scale": 0.7399999999999999,
+          "bounds": {
+            "x": 72.07000000000001,
+            "y": 208.6,
+            "width": 22.939999999999998,
+            "height": 15.539999999999992
+          }
+        },
+        {
+          "text": "× 9",
+          "full": "× 9",
+          "requested": 0.7399999999999999,
+          "scale": 0.7399999999999999,
+          "bounds": {
+            "x": 73.92,
+            "y": 253.6,
+            "width": 19.239999999999995,
+            "height": 15.539999999999992
+          }
+        },
+        {
+          "text": "4,050",
+          "full": "4,050",
+          "requested": 0.7399999999999999,
+          "scale": 0.7399999999999999,
+          "bounds": {
+            "x": 228.87000000000003,
+            "y": 246.19000000000003,
+            "width": 67.34,
+            "height": 31.819999999999965
+          }
+        }
+      ],
+      "brush": {
+        "level": 3,
+        "reduced": false,
+        "localPhase": "gather",
+        "localAge": 16.699999999999818,
+        "localAlpha": 1,
+        "localLineWidth": 6.5,
+        "framePhase": "write",
+        "frameAge": 16.699999999999818,
+        "frameProgress": 0.17395833333333144,
+        "frameAlpha": 0.8017499999999995,
+        "lineWidth": 5.847916666666663,
+        "entered": [
+          1,
+          2,
+          3
+        ],
+        "updating": true
+      },
+      "impactId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+      "impactCount": 1,
+      "impactRays": [
+        [
+          {
+            "x": 248.69915200000003,
+            "y": 259.552
+          },
+          {
+            "x": 239.672512,
+            "y": 256.64000000000004
+          },
+          {
+            "x": 233.05297600000003,
+            "y": 253.728
+          }
+        ],
+        [
+          {
+            "x": 276.380848,
+            "y": 259.552
+          },
+          {
+            "x": 285.407488,
+            "y": 256.64000000000004
+          },
+          {
+            "x": 292.02702400000004,
+            "y": 253.728
+          }
+        ],
+        [
+          {
+            "x": 248.69915200000003,
+            "y": 264.648
+          },
+          {
+            "x": 239.672512,
+            "y": 267.56
+          },
+          {
+            "x": 233.05297600000003,
+            "y": 270.47200000000004
+          }
+        ],
+        [
+          {
+            "x": 276.380848,
+            "y": 264.648
+          },
+          {
+            "x": 285.407488,
+            "y": 267.56
+          },
+          {
+            "x": 292.02702400000004,
+            "y": 270.47200000000004
+          }
+        ]
+      ],
+      "sha256": "9544f2a9c12ab0fc2c9d22c363eafd00a79d55b0b69245fc92f7872ed5bc731e"
+    },
+    {
+      "file": "390x740-digits-rebound.png",
+      "source": "aab096e3bf95c851eae22408269aa595009a7394",
+      "frame": 176,
+      "at": 3413.599999997765,
+      "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+      "eventPhase": "base-impact",
+      "shown": "4,050",
+      "pulses": [
+        {
+          "text": "450",
+          "full": "450",
+          "requested": 1.3380770811207203,
+          "scale": 1.1428571428571428,
+          "bounds": {
+            "x": 65.8257142857143,
+            "y": 208.6,
+            "width": 35.428571428571416,
+            "height": 24
+          }
+        },
+        {
+          "text": "× 9",
+          "full": "× 9",
+          "requested": 1.3380770811207203,
+          "scale": 1.1428571428571428,
+          "bounds": {
+            "x": 68.68285714285715,
+            "y": 253.6,
+            "width": 29.714285714285708,
+            "height": 24.00000000000003
+          }
+        },
+        {
+          "text": "4,050",
+          "full": "4,050",
+          "requested": 1.3380770811207203,
+          "scale": 1.3380770811207203,
+          "bounds": {
+            "x": 201.65749280900724,
+            "y": 233.33134275590453,
+            "width": 121.76501438198557,
+            "height": 57.53731448819099
+          }
+        }
+      ],
+      "brush": {
+        "level": 3,
+        "reduced": false,
+        "localPhase": "fade",
+        "localAge": 116.69999999999982,
+        "localAlpha": 0.8839130434782616,
+        "localLineWidth": 6.5,
+        "framePhase": "fade",
+        "frameAge": 116.69999999999982,
+        "frameProgress": 1,
+        "frameAlpha": 0.9938208955223882,
+        "lineWidth": 7.270000000000002,
+        "entered": [
+          1,
+          2,
+          3
+        ],
+        "updating": true
+      },
+      "impactId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+      "impactCount": 1,
+      "impactRays": [
+        [
+          {
+            "x": 213.10840000000002,
+            "y": 253.00000000000003
+          },
+          {
+            "x": 180.87040000000002,
+            "y": 242.60000000000002
+          },
+          {
+            "x": 157.22920000000005,
+            "y": 232.20000000000002
+          }
+        ],
+        [
+          {
+            "x": 311.9716,
+            "y": 253.00000000000003
+          },
+          {
+            "x": 344.2096,
+            "y": 242.60000000000002
+          },
+          {
+            "x": 367.8508,
+            "y": 232.20000000000002
+          }
+        ],
+        [
+          {
+            "x": 213.10840000000002,
+            "y": 271.20000000000005
+          },
+          {
+            "x": 180.87040000000002,
+            "y": 281.6
+          },
+          {
+            "x": 157.22920000000005,
+            "y": 292
+          }
+        ],
+        [
+          {
+            "x": 311.9716,
+            "y": 271.20000000000005
+          },
+          {
+            "x": 344.2096,
+            "y": 281.6
+          },
+          {
+            "x": 367.8508,
+            "y": 292
+          }
+        ]
+      ],
+      "sha256": "18fba3a94dd745786b0c809102826eea35c49ed226b8355ee582cacdc1abd3e4"
+    },
+    {
+      "file": "390x740-tier3.png",
+      "source": "aab096e3bf95c851eae22408269aa595009a7394",
+      "frame": 175,
+      "at": 3397.199999999255,
+      "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+      "eventPhase": "base-impact",
+      "shown": "4,050",
+      "pulses": [
+        {
+          "text": "450",
+          "full": "450",
+          "requested": 1.2955878952675366,
+          "scale": 1.1428571428571428,
+          "bounds": {
+            "x": 65.8257142857143,
+            "y": 208.6,
+            "width": 35.428571428571416,
+            "height": 24
+          }
+        },
+        {
+          "text": "× 9",
+          "full": "× 9",
+          "requested": 1.2955878952675366,
+          "scale": 1.1428571428571428,
+          "bounds": {
+            "x": 68.68285714285715,
+            "y": 253.6,
+            "width": 29.714285714285708,
+            "height": 24.00000000000003
+          }
+        },
+        {
+          "text": "4,050",
+          "full": "4,050",
+          "requested": 1.2955878952675366,
+          "scale": 1.2955878952675366,
+          "bounds": {
+            "x": 203.5907507653271,
+            "y": 234.24486025174798,
+            "width": 117.89849846934581,
+            "height": 55.710279496504086
+          }
+        }
+      ],
+      "brush": {
+        "level": 3,
+        "reduced": false,
+        "localPhase": "fade",
+        "localAge": 100,
+        "localAlpha": 0.9565217391304348,
+        "localLineWidth": 6.5,
+        "framePhase": "fade",
+        "frameAge": 100,
+        "frameProgress": 1,
+        "frameAlpha": 0.9988059701492538,
+        "lineWidth": 7.455555555555556,
+        "entered": [
+          1,
+          2,
+          3
+        ],
+        "updating": true
+      },
+      "impactId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+      "impactCount": 1,
+      "impactRays": [
+        [
+          {
+            "x": 213.10840000000002,
+            "y": 253.00000000000003
+          },
+          {
+            "x": 180.87040000000002,
+            "y": 242.60000000000002
+          },
+          {
+            "x": 157.22920000000005,
+            "y": 232.20000000000002
+          }
+        ],
+        [
+          {
+            "x": 311.9716,
+            "y": 253.00000000000003
+          },
+          {
+            "x": 344.2096,
+            "y": 242.60000000000002
+          },
+          {
+            "x": 367.8508,
+            "y": 232.20000000000002
+          }
+        ],
+        [
+          {
+            "x": 213.10840000000002,
+            "y": 271.20000000000005
+          },
+          {
+            "x": 180.87040000000002,
+            "y": 281.6
+          },
+          {
+            "x": 157.22920000000005,
+            "y": 292
+          }
+        ],
+        [
+          {
+            "x": 311.9716,
+            "y": 271.20000000000005
+          },
+          {
+            "x": 344.2096,
+            "y": 281.6
+          },
+          {
+            "x": 367.8508,
+            "y": 292
+          }
+        ]
+      ],
+      "sha256": "3fb514f0b3def9b59c53fde34123a3688baa5320640b45b1e04b547f3b30234b"
+    },
+    {
+      "file": "844x300-digits-compressed.png",
+      "source": "aab096e3bf95c851eae22408269aa595009a7394",
+      "frame": 190,
+      "at": 3591.599999997765,
+      "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+      "eventPhase": "impact",
+      "shown": "67",
+      "pulses": [
+        {
+          "text": "45",
+          "full": "45",
+          "requested": 0.7699999999999999,
+          "scale": 0.7699999999999999,
+          "bounds": {
+            "x": 222.255,
+            "y": 108,
+            "width": 16.169999999999987,
+            "height": 16.17
+          }
+        },
+        {
+          "text": "× 1.5",
+          "full": "× 1.5",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 289.52,
+            "y": 108,
+            "width": 41,
+            "height": 21
+          }
+        },
+        {
+          "text": "67",
+          "full": "67",
+          "requested": 0.7699999999999999,
+          "scale": 0.7699999999999999,
+          "bounds": {
+            "x": 419.285,
+            "y": 97.605,
+            "width": 20.79000000000002,
+            "height": 20.790000000000006
+          }
+        }
+      ],
+      "brush": {
+        "level": 0,
+        "reduced": false,
+        "localPhase": "gather",
+        "localAge": 16.59999999999991,
+        "localAlpha": 1,
+        "localLineWidth": 6.5,
+        "framePhase": "idle",
+        "frameAge": 900,
+        "frameProgress": 1,
+        "frameAlpha": 0,
+        "lineWidth": 3.5,
+        "entered": [],
+        "updating": true
+      },
+      "impactId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+      "impactCount": 1,
+      "impactRays": [
+        [
+          {
+            "x": 420.622784,
+            "y": 106.5104
+          },
+          {
+            "x": 414.715904,
+            "y": 104.80799999999999
+          },
+          {
+            "x": 410.384192,
+            "y": 103.1056
+          }
+        ],
+        [
+          {
+            "x": 438.737216,
+            "y": 106.5104
+          },
+          {
+            "x": 444.644096,
+            "y": 104.80799999999999
+          },
+          {
+            "x": 448.97580800000003,
+            "y": 103.1056
+          }
+        ],
+        [
+          {
+            "x": 420.622784,
+            "y": 109.4896
+          },
+          {
+            "x": 414.715904,
+            "y": 111.19200000000001
+          },
+          {
+            "x": 410.384192,
+            "y": 112.8944
+          }
+        ],
+        [
+          {
+            "x": 438.737216,
+            "y": 109.4896
+          },
+          {
+            "x": 444.644096,
+            "y": 111.19200000000001
+          },
+          {
+            "x": 448.97580800000003,
+            "y": 112.8944
+          }
+        ]
+      ],
+      "sha256": "b68f8c5f85b3b73daf3d1e9b6e6b3a5c5140c333357d387988017106293b304d"
+    },
+    {
+      "file": "844x300-digits-rebound.png",
+      "source": "aab096e3bf95c851eae22408269aa595009a7394",
+      "frame": 194,
+      "at": 3658,
+      "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+      "eventPhase": "impact",
+      "shown": "67",
+      "pulses": [
+        {
+          "text": "45",
+          "full": "45",
+          "requested": 1.27440329218107,
+          "scale": 1.1428571428571428,
+          "bounds": {
+            "x": 218.34,
+            "y": 108,
+            "width": 24,
+            "height": 24
+          }
+        },
+        {
+          "text": "× 1.5",
+          "full": "× 1.5",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 289.52,
+            "y": 108,
+            "width": 41,
+            "height": 21
+          }
+        },
+        {
+          "text": "67",
+          "full": "67",
+          "requested": 1.27440329218107,
+          "scale": 1.27440329218107,
+          "bounds": {
+            "x": 412.47555555555556,
+            "y": 90.79555555555555,
+            "width": 34.408888888888896,
+            "height": 34.408888888888896
+          }
+        }
+      ],
+      "brush": {
+        "level": 0,
+        "reduced": false,
+        "localPhase": "unfold",
+        "localAge": 83.19999999999982,
+        "localAlpha": 1,
+        "localLineWidth": 6.5,
+        "framePhase": "idle",
+        "frameAge": 900,
+        "frameProgress": 1,
+        "frameAlpha": 0,
+        "lineWidth": 3.5,
+        "entered": [],
+        "updating": true
+      },
+      "impactId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+      "impactCount": 1,
+      "impactRays": [
+        [
+          {
+            "x": 397.37930660626614,
+            "y": 102.68764873452217
+          },
+          {
+            "x": 376.31363700165707,
+            "y": 96.61639014540467
+          },
+          {
+            "x": 360.8654792916104,
+            "y": 90.54513155628715
+          }
+        ],
+        [
+          {
+            "x": 461.9806933937339,
+            "y": 102.68764873452217
+          },
+          {
+            "x": 483.04636299834294,
+            "y": 96.61639014540467
+          },
+          {
+            "x": 498.4945207083896,
+            "y": 90.54513155628715
+          }
+        ],
+        [
+          {
+            "x": 397.37930660626614,
+            "y": 113.31235126547783
+          },
+          {
+            "x": 376.31363700165707,
+            "y": 119.38360985459533
+          },
+          {
+            "x": 360.8654792916104,
+            "y": 125.45486844371285
+          }
+        ],
+        [
+          {
+            "x": 461.9806933937339,
+            "y": 113.31235126547783
+          },
+          {
+            "x": 483.04636299834294,
+            "y": 119.38360985459533
+          },
+          {
+            "x": 498.4945207083896,
+            "y": 125.45486844371285
+          }
+        ]
+      ],
+      "sha256": "2fd9bca93638be3d030974c990f77d081d8387bae8e112c2c6e52f391b75da86"
+    }
+  ],
+  "history": [
+    {
+      "variant": "roomRejected",
+      "source": "9b5434dce5ca0457efb31f4b741aa33c3829285e",
+      "file": "roomRejected/390x740-digits-compressed.png",
+      "sha256": "99f466aa5f8a50641627cea99f62140556cb8267e64e36aecdb859d4737a0874",
+      "scale": 0.7399999999999999,
+      "visualStatus": "FAIL rays touch digits"
+    },
+    {
+      "variant": "roomRejected",
+      "source": "9b5434dce5ca0457efb31f4b741aa33c3829285e",
+      "file": "roomRejected/390x740-digits-rebound.png",
+      "sha256": "88288389ffc70bc784a9693fcaf936feaf628c96c46d94622abbe70784d21e80",
+      "scale": 1.3380770811207203,
+      "visualStatus": "FAIL rays touch digits"
+    },
+    {
+      "variant": "originalCompletion",
+      "source": "ce73172f663ee981c853a2c9892969f0ada7ffee",
+      "file": "originalCompletion/844x300-digits-compressed.png",
+      "sha256": "762825558139330af6823d8ed18389bbfbf24829721c3d64a398d6caee29825b",
+      "scale": 0.82,
+      "visualStatus": "Actual limited old primary emphasis"
+    },
+    {
+      "variant": "originalCompletion",
+      "source": "ce73172f663ee981c853a2c9892969f0ada7ffee",
+      "file": "originalCompletion/844x300-digits-rebound.png",
+      "sha256": "fdf4c4f2f4f484be267ef02c3ac0ff06d2bbf32f550ebe8ee77559c4daf352f4",
+      "scale": 1.1771598151005944,
+      "visualStatus": "Actual limited old primary emphasis"
+    }
+  ],
+  "rawEvidence": [
+    {
+      "variant": "originalCompletion",
+      "retainedLocator": "shots/score-impact-completion/report.json",
+      "bytes": 34921939,
+      "sha256": "e00dc02093273b87ae9e077e7f002849859282377375f168d3eb7b7486df6786"
+    },
+    {
+      "variant": "originalCompletion",
+      "retainedLocator": "shots/score-impact-completion/native.log",
+      "bytes": 398,
+      "sha256": "29de01f059bb5865ec20bcb80f0816b07030f3ab8e35526416f2772c6a55cca3"
+    },
+    {
+      "variant": "roomRejected",
+      "retainedLocator": "shots/score-impact-room/report.json",
+      "bytes": 57353269,
+      "sha256": "80d8ad1bc971403b5e30d01118e7e19802c7b4facce43fd60f81479c4bc44c01"
+    },
+    {
+      "variant": "roomRejected",
+      "retainedLocator": "shots/score-impact-room/native.log",
+      "bytes": 625,
+      "sha256": "46ba7128f6f2dadb3708ad2aeec7e4c72c80fc6a295ed51a6e17dab7a0b7db3f"
+    },
+    {
+      "variant": "revised",
+      "retainedLocator": "shots/score-impact-clipped/report.json",
+      "bytes": 57264715,
+      "sha256": "2baf2dd8bfa55cf6c7fe3efe6c34baa6283cf1b63e169e3e553c81c942dba7c9"
+    },
+    {
+      "variant": "revised",
+      "retainedLocator": "shots/score-impact-clipped/native.log",
+      "bytes": 625,
+      "sha256": "3f4e196deb515c0bbd124c9b57deeaf252156202dca384c62f622a29f8c9fb23"
+    }
+  ],
+  "limits": [
+    "Physical phone explosion feeling, audio listening and GPU/FPS NOT_RUN. Software Canvas/touch/DPR1 only; no recordings.",
+    "Safe clipping reduces5x ink to short outer endpoints; not proof of subjective explosion acceptance.",
+    "Original checkpoint files remain unchanged;9b visual stroke clearance FAIL retained.",
+    "No main push or deployment."
+  ],
+  "setupFailures": [
+    {
+      "result": "FAIL before UI; resolved",
+      "error": "Local5260 preview closed before separate deck probe: ERR_CONNECTION_REFUSED. Original tool output retained; no original raw file.",
+      "resolution": "Dedicated5271 local preview, actual deck probe PASS."
+    },
+    {
+      "result": "FAIL during evidence curation; resolved without rerunning product",
+      "error": "StopIteration: mid-reduced correctly fast-forwarded before any ordinary impact; curator now records null for unrevealed ordinary phase."
+    }
+  ]
+}

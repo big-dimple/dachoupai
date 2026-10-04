@@ -1,0 +1,16 @@
+{
+  "source": "9b5434dce5ca0457efb31f4b741aa33c3829285e",
+  "geometryAndNativeChecks": "PASS",
+  "visualStrokeClearance": "FAIL",
+  "reason": "Controlled compressed/base peak rasters show impact rays touching or painting into digits despite modeled guards. Direct safe-piece stroke clipping required.",
+  "retainedImages": [
+    {
+      "file": "390x740-digits-compressed.png",
+      "sha256": "99f466aa5f8a50641627cea99f62140556cb8267e64e36aecdb859d4737a0874"
+    },
+    {
+      "file": "390x740-digits-rebound.png",
+      "sha256": "88288389ffc70bc784a9693fcaf936feaf628c96c46d94622abbe70784d21e80"
+    }
+  ]
+}
