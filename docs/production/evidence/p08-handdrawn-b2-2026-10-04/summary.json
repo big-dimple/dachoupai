@@ -1,6 +1,6 @@
 {
   "taskId": "P08",
-  "testedCommit": "89339f08847ea5b9a0d93444f5d05decad0054e4",
+  "testedCommit": "82fc462a7dbc8158851e0ba1a71fc02a4cb892d7",
   "baseline": "89339f08847ea5b9a0d93444f5d05decad0054e4",
   "assetCommit": "3284505ad86e4e216343aa873719d20524f9a4ce",
   "sourceManifestSHA256": "c00c8942d75e023da38930d95be9492ce63b55342f2633031662d9217403deeb",
@@ -28,20 +28,29 @@
     "affectedTests": "46 passed/4files",
     "type": "PASS",
     "browser": "PASS Chromium151 Canvas390x740/DPR1/safe0/BASE_URL subdir; exact HD/thumbnail hash, absent HD pre-open, cache,404 fixed geometry retry, run/RNG/save invariant",
-    "freeze": "PENDING on committed final candidate"
+    "freeze": "PASS:1865 tests/104 files,content,type/build,Chromium Canvas desktop+mobile smoke,plan; source/index/HEAD unchanged"
   },
   "states": {
     "implementation": "COMPLETE approved two-image registration only",
-    "technical": "targeted PASS; final freeze/CI pending",
-    "independentAesthetic": "producer/root partial pixels accepted; consumer scene self-view; final scene independent acceptance NOT_RUN",
+    "technical": "PASS targeted and final freeze; exact new remoteCI pending",
+    "independentAesthetic": "root/coordinator actual GitHub fetch/view e1da046 candidate PNG: local direction PASS; not overall/device acceptance",
     "targetDevice": "OnePlus/hardwareGPU/audio NOT_RUN"
   },
   "reports": {
     "browser": "browser.json",
     "coverage": "coverage-audit.json",
     "earlyReview": "e1da046468a4b1b7bc7d4c807fe926e2f708365a",
-    "diagnostic": "diagnostic-blob-probe.json"
+    "diagnostic": "diagnostic-blob-probe.json",
+    "freeze": "freeze.json"
   },
   "diagnostic": "Initial inspection probe fetched Phaser-revoked internal loader blob URI and failed; measurement corrected to decoded texture dimensions plus exact observed HTTP path SHA. No loader/game or timeout changes. Original failure retained.",
-  "fire": "approval pending; no retry or consumption"
+  "fire": "approval pending; no retry or consumption",
+  "priorCopyRelease": {
+    "main": "89339f08847ea5b9a0d93444f5d05decad0054e4",
+    "CI": 37173247948,
+    "CIStatus": "completed/success",
+    "CIUpdatedUTC": "2026-10-04T03:16:11Z",
+    "productionDocs": 37173247924,
+    "docsStatus": "completed/success"
+  }
 }
