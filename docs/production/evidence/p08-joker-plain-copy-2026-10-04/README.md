@@ -21,4 +21,4 @@
 
 ## 当前状态
 
-实现完成；受影响技术检查通过，修正SHA的精确CI仍须核终态；仅review不main。首版4aadecb精确CI37217186943/docs37217186971 success不充当新修正验证。目标设备/OnePlus/真实GPU/听感：NOT_RUN。无需重拍已有效图片；新图片/规则/RNG/save/domain/application/assets未改。
+实现完成；受影响技术检查通过，代码66c1e92a605debee4a9c9cf3c4242eacd9fb8b65的源码冻结build/type/content/plan PASS且before=after（见frozen-build.json/validation.json）；修正SHA的精确CI仍须核终态；仅review不main。首版4aadecb精确CI37217186943/docs37217186971 success不充当新修正验证。目标设备/OnePlus/真实GPU/听感：NOT_RUN。无需重拍已有效图片；新图片/规则/RNG/save/domain/application/assets未改。
