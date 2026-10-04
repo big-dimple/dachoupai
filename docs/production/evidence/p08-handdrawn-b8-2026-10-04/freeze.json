@@ -1,0 +1,66 @@
+{
+  "scope": "all",
+  "testedCommit": "4f6a0f57098777785ea100427457f69b6636943f",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "bd80d6b147c3499340e314225bf570f5bad60b775eb784aa6980d5f2333e5351",
+    "index": "d5cff708acfc8e81b81271ef8fd2ce4f38cd6882c6f95633b871d0739411956a",
+    "head": "4f6a0f57098777785ea100427457f69b6636943f",
+    "branch": "refs/heads/dot/d44-layout"
+  },
+  "after": {
+    "source": "bd80d6b147c3499340e314225bf570f5bad60b775eb784aa6980d5f2333e5351",
+    "index": "d5cff708acfc8e81b81271ef8fd2ce4f38cd6882c6f95633b871d0739411956a",
+    "head": "4f6a0f57098777785ea100427457f69b6636943f",
+    "branch": "refs/heads/dot/d44-layout"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 72306
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8863
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 16531
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 29208
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 290
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
