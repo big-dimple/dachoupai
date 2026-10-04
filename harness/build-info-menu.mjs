@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {preview} from 'vite';
+import {build,loadConfigFromFile,preview} from 'vite';
+import ts from 'typescript';
 import {chromium} from 'playwright';
 import {chooseCharacter,tapUI,waitScene} from './ui.mjs';
 
@@ -12,21 +13,38 @@ const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const source=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
 assert.equal(execFileSync('git',['status','--porcelain','--untracked-files=no'],{encoding:'utf8'}).trim(),'','freeze tracked source before validation');
 await mkdir(dir,{recursive:true});
-const metadata=JSON.parse(await readFile(buildDir+'/build-info.json','utf8'));
+const metadata=JSON.parse(await readFile(buildDir+'/clean/build-info.json','utf8'));
 assert.equal(metadata.revision,source);assert.equal(metadata.sourceStatus,'clean');assert.equal(metadata.modified,false);
-const html=await readFile(buildDir+'/index.html','utf8'),asset=html.match(/src="([^"]+\.js)"/)[1].replace(/^\.\//,'').replace(/^\//,'');
-const original=await readFile(buildDir+'/'+asset,'utf8');
-const literal=/\{version:"C03",builtAt:"[^"\n]+",revision:"[a-f0-9]{40}",sourceStatus:"clean",modified:!1\}/g;
-assert.equal([...original.matchAll(literal)].length,1,'exactly one embedded metadata object');
-const embedded=JSON.parse([...original.matchAll(literal)][0][0].replace(/\b(version|builtAt|revision|sourceStatus|modified):/g,'"$1":').replace('!1','false'));
-assert.deepEqual(embedded,metadata,'emitted identity equals the original executable bundle identity');
 const {version,revision,builtAt}=metadata;
 const cases=[
   {name:'clean',fixture:false,metadata,expected:'构建时：已核对，没有未提交修改。'},
   {name:'dirty',fixture:true,metadata:{version,revision,builtAt,sourceStatus:'dirty',modified:true,modifiedFileCount:3,modifiedFiles:['src/game/RunMenu.ts','src/platform/buildInfo.ts','src/diagnostics/'+('long folder/').repeat(9)+'with space/version-status.ts']},expected:'构建时：有尚未提交的文件修改（3 个文件）。'},
   {name:'unknown',fixture:true,metadata:{version,revision,builtAt,sourceStatus:'unknown',modified:null},expected:'构建时：无法核对文件是否有修改。'},
 ];
-const report={status:'IN_PROGRESS',testedCommit:source,build:metadata,emittedEqualsEmbeddedIdentity:true,bundle:{file:asset,sha256:hash(Buffer.from(original))},viewport:{width:390,height:740},DPR:1,cases:[],images:[],uncaughtPageErrors:[],forbiddenMetadataRequests:0,limits:['Headless software Canvas/touch at one viewport; real phone/GPU/listening NOT_RUN.','Clean uses the actual unmodified bundle. Dirty/unknown replace only its embedded metadata object before execution; they do not diagnose an actual dirty/failed deployed build.','One ordinary new run to await-input, no scoring/discard/tool/score/RNG injection. Subsequent cases continue the same saved run in the same browser context.','No HTTP request to /build-info.json or external deployed endpoint. No game/domain/save code is replaced.']};
+const config=(await loadConfigFromFile({command:'build',mode:'e2e'},undefined,process.cwd())).config;
+for(const sample of cases.filter(x=>x.fixture)){
+  const plugins=config.plugins.map(plugin=>plugin?.name==='playable-build-info'?{...plugin,generateBundle(){this.emitFile({type:'asset',fileName:'build-info.json',source:JSON.stringify(sample.metadata,null,2)});}}:plugin);
+  await build({...config,configFile:false,mode:'e2e',define:{...config.define,__BUILD_INFO__:JSON.stringify(sample.metadata)},plugins,build:{...config.build,outDir:buildDir+'/'+sample.name,emptyOutDir:true},logLevel:'error'});
+}
+function literalValue(node){
+  if(ts.isStringLiteral(node)||ts.isNumericLiteral(node))return ts.isNumericLiteral(node)?Number(node.text):node.text;
+  if(node.kind===ts.SyntaxKind.TrueKeyword)return true;if(node.kind===ts.SyntaxKind.FalseKeyword)return false;if(node.kind===ts.SyntaxKind.NullKeyword)return null;
+  if(ts.isPrefixUnaryExpression(node)&&node.operator===ts.SyntaxKind.ExclamationToken)return!literalValue(node.operand);
+  if(ts.isArrayLiteralExpression(node))return node.elements.map(literalValue);
+  throw Error('Non-literal build identity in executable bundle');
+}
+const bundles=[];
+for(const sample of cases){
+  const root=buildDir+'/'+sample.name,emitted=JSON.parse(await readFile(root+'/build-info.json','utf8')),html=await readFile(root+'/index.html','utf8'),asset=html.match(/src="([^"]+\.js)"/)[1].replace(/^\.\//,'').replace(/^\//,''),bytes=await readFile(root+'/'+asset);
+  assert.deepEqual(emitted,sample.metadata);
+  const syntax=ts.createSourceFile(asset,bytes.toString('utf8'),ts.ScriptTarget.ESNext,false,ts.ScriptKind.JS),embedded=[];
+  const visit=node=>{if(ts.isObjectLiteralExpression(node)){
+    const properties=node.properties.filter(ts.isPropertyAssignment),names=properties.map(x=>x.name.getText(syntax).replace(/^"|"$/g,''));
+    if(['version','revision','builtAt','sourceStatus','modified'].every(key=>names.includes(key)))embedded.push(Object.fromEntries(properties.map((x,index)=>[names[index],literalValue(x.initializer)])));
+  }ts.forEachChild(node,visit);};visit(syntax);assert.equal(embedded.length,1);assert.deepEqual(embedded[0],emitted,'emitted identity equals the actual executable bundle identity');
+  bundles.push({name:sample.name,file:asset,sha256:hash(bytes),emittedEqualsEmbeddedIdentity:true,metadata:emitted});
+}
+const report={status:'IN_PROGRESS',testedCommit:source,build:metadata,bundles,viewport:{width:390,height:740},DPR:1,cases:[],images:[],uncaughtPageErrors:[],forbiddenMetadataRequests:0,limits:['Headless software Canvas/touch at one viewport; real phone/GPU/listening NOT_RUN.','Clean uses the actual normal build. Dirty/unknown are separately compiled metadata fixtures; define and emitted identity use the same fixture, without replacing game/domain/save code.','One ordinary new run to await-input, no scoring/discard/tool/score/RNG injection. Subsequent cases continue the same saved run in the same browser context.','No HTTP request to /build-info.json or external deployed endpoint. No request interception or header changes.']};
 const server=await preview({build:{outDir:buildDir},preview:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});
 const context=await browser.newContext({viewport:report.viewport,deviceScaleFactor:1,hasTouch:true,reducedMotion:'no-preference',acceptDownloads:true});
@@ -46,10 +64,8 @@ page.on('pageerror',error=>report.uncaughtPageErrors.push(String(error)));
 page.on('request',request=>{if(new URL(request.url()).pathname.endsWith('/build-info.json'))report.forbiddenMetadataRequests++;});
 try {
   for(const sample of cases){
-    currentCase=sample.name;lastStep='load-title';let servedMetadataFixtures=0;
-    await page.unrouteAll();
-    if(sample.fixture)await page.route('**/'+asset,route=>{servedMetadataFixtures++;return route.fulfill({contentType:'application/javascript',body:original.replace(literal,JSON.stringify(sample.metadata))});});
-    if(sample.name==='clean')await page.goto(`http://127.0.0.1:${port}/?harness=1&seed=build-menu-tristate`);else await page.reload();
+    currentCase=sample.name;lastStep='load-title';
+    await page.goto(`http://127.0.0.1:${port}/${sample.name}/?harness=1&seed=build-menu-tristate`);
     await waitScene(page,'title');
     if(sample.name==='clean'){
       lastStep='native-new-run';
@@ -86,8 +102,7 @@ try {
       const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'导出本局',exact:true}).tap()]);await download.saveAs(dir+'/exported-checkpoint.json');assert.deepEqual(JSON.parse(await readFile(dir+'/exported-checkpoint.json','utf8')),before.checkpoint);exported=true;
     }
     await page.getByRole('button',{name:'继续本局',exact:true}).tap();assert.deepEqual(await snapshot(page),before,'ordinary resume preserves complete checkpoint/storage/selection');
-    assert.equal(servedMetadataFixtures,sample.fixture?1:0);
-    report.cases.push({name:sample.name,fixture:sample.fixture,metadata:sample.metadata,displayed,checkpointAndAllStorageEqual:true,selectionPreserved:true,nativeExportMatchesCheckpoint:exported,sourceBundleMetadataReplacements:servedMetadataFixtures,visibleBounds:box,closeControlUnmoved:true,closeBounds:closeBox});
+    report.cases.push({name:sample.name,fixture:sample.fixture,metadata:sample.metadata,displayed,checkpointAndAllStorageEqual:true,selectionPreserved:true,nativeExportMatchesCheckpoint:exported,visibleBounds:box,closeControlUnmoved:true,closeBounds:closeBox});
   }
   assert.equal(report.forbiddenMetadataRequests,0);assert.deepEqual(report.uncaughtPageErrors,[]);
   assert.equal(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),source);
