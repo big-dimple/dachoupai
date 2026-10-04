@@ -112,7 +112,7 @@
     "native": "320px PASS, same geometry",
     "newCI": "Parent tracks"
   },
-  "latestSourceCommit": "bb62c1f6e28cd8315493f0161eaed032e2e9e369",
+  "latestSourceCommit": "ab4d626b4cae61aab3fe71ce1e19d1934a6a6b8c",
   "publishedMainAlignment": {
     "status": "PASS",
     "testedCommit": "db00121942e191112d6b8e0268ca0e5503e9df9f",
@@ -129,5 +129,16 @@
     "originalRun": 37223525814,
     "classification": "stale strict smoke contract",
     "runtimeBytes": "UNCHANGED_FROM_PARENT_APPROVED_BD3840D"
+  },
+  "cMainAlignment": {
+    "status": "AFFECTED_PASS_REVIEW_READY_NEWCI_PENDING",
+    "testedCommit": "ab4d626b4cae61aab3fe71ce1e19d1934a6a6b8c",
+    "alignedMainCommit": "5d54421cac90e3d516770bba63f5f94904175219",
+    "evidence": "c-main-alignment.json",
+    "relatedTests": "26 / 3 files PASS",
+    "typecheck": "PASS",
+    "screenshots": "NOT_RERUN",
+    "newCI": "PENDING_EXACT_REVIEW_PUSH",
+    "mainPush": "NOT_RUN_WAIT_PARENT_SERIAL_AUTHORIZATION"
   }
 }

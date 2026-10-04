@@ -1,10 +1,16 @@
 # P08 工具包入口 review
 
-最新仅smoke合同修正 bb62c1f6e28cd8315493f0161eaed032e2e9e369。原精确CI37223525814的失败是真实的旧四动作列表断言，实际新增已授权工具包；原FAIL与[日志摘录](ci37223525814-failure-excerpt.txt)保留。严格列表改为五动作，增加库存开/关全存档及选牌保持，未改其他断言或timeout；src/tests/assets/art全部同父已批准bd3840d。本地原smoke Chromium桌面/手机通过且source/index/HEAD未变，三引擎新精确CI仍需单独报告。
+当前正常合并源码 ab4d626b4cae61aab3fe71ce1e19d1934a6a6b8c，基线为 C 已发布 main 5d54421cac90e3d516770bba63f5f94904175219。父已批准上一 review 0452e418b137c61755897bc922c14289974ac254，并确认其精确 CI37224263669 success；本合并的26相关测试/type通过，资源、CSS和失败摘要逐树同main。未重跑截图或本地矩阵，新review精确CI另报，main仍待父串行授权。
+
+[本次合入证明](c-main-alignment.json)
+
+以下均为前轮证据，保留各自源码和状态：
+
+前轮smoke合同修正 bb62c1f6e28cd8315493f0161eaed032e2e9e369。原精确CI37223525814的失败是真实的旧四动作列表断言，实际新增已授权工具包；原FAIL与[日志摘录](ci37223525814-failure-excerpt.txt)保留。严格列表改为五动作，增加库存开/关全存档及选牌保持，未改其他断言或timeout；src/tests/assets/art全部同父已批准bd3840d。本地原smoke Chromium桌面/手机通过且source/index/HEAD未变，三引擎新精确CI仍需单独报告。
 
 [失败定位与处置](ci-failure-resolution.json)
 
-最新main对齐源码 db00121942e191112d6b8e0268ca0e5503e9df9f，正常合入 2d999cd938e5c19253daa8ddbd1cf25facf2d9e4。保持已发布朱砂火、头像锚点和跨档消费，仅把工具包按钮加入保护mask。46专项/type及一次320原生计分、工具包命中/关闭、命名通过；未重跑设备矩阵或14牌。
+前轮main对齐源码 db00121942e191112d6b8e0268ca0e5503e9df9f，正常合入 2d999cd938e5c19253daa8ddbd1cf25facf2d9e4。保持已发布朱砂火、头像锚点和跨档消费，仅把工具包按钮加入保护mask。46专项/type及一次320原生计分、工具包命中/关闭、命名通过；未重跑设备矩阵或14牌。
 
 [当前整合证明](ink-main-alignment.json) · [当前原生记录](aligned320-browser.json)
 
@@ -12,7 +18,7 @@
 
 以下保留前轮字面与原始入口证据：
 
-最新字面修正源码 9c8e22d8d364b6c4de3a3137996aa7e1a8ef8ddc。两场景库存入口、弹窗标题与空态统一叫“工具包”；商店商品分类仍“工具”。不改布局或颜色。
+前轮字面修正源码 9c8e22d8d364b6c4de3a3137996aa7e1a8ef8ddc。两场景库存入口、弹窗标题与空态统一叫“工具包”；商店商品分类仍“工具”。不改布局或颜色。
 
 16 项相关单测、typecheck 与单次320px原生流程通过。文字实测71×17px，完整落在商店88×44及牌桌112×44入口内；按钮/字体/商品/预览/整页逻辑几何同旧版1354。新图均actual view：
 

@@ -379,6 +379,8 @@ D25追加有限3D复用小候选：先用实际GLB源的铜钱/骰子或牌片�
 
 ## P08
 
+P08工具包正常对齐C已发布main（UTC 2026-10-04）：父已完整批准review0452e418并独立确认精确CI37224263669 success；正常merge源码ab4d626合入main5d54421，仅AGENTS/handoff/plan三处文档冲突，双方历史/evidence与C completionScope保持。C六张T06–T11资源、两处CSS删除、只读失败摘要及其测试逐树同main；已批准工具包产品/样板逐字节同0452。26相关tests/3files及type PASS，当前runtime逐SHA零不符：72/72 Joker、6角色/JQK，工具9/39、道具12/12；P08 165files4454670B，工具42files643054B。未重截图/原生矩阵/全冻结，旧证据保原源码身份；本新review精确CI另报，main待父串行授权。证据docs/production/evidence/p08-tools-entry-2026-10-04/c-main-alignment.json。
+
 P08工具包CI真实失败与合同修正（UTC 2026-10-04）：父图审/独立合并审查已通过bd3840d，但精确CI37223525814 browser job111498414350 FAIL；真实日志为screenshot.mjs112旧常驻四动作列表，仅多已批准action/tool-inventory。build/domain/docs通过，失败前后source/index/HEAD一致；不是观察竞态或安装故障。保原FAIL/redacted摘录及私有完整log哈希，不重试旧job。仅sourcebb62c1f同步严格五动作列表，并加原生工具包开/关全run-RNG及选牌保持断言；其他断言/timeout不改。系统Chromium151原smoke桌面1280×720/DPR1和手机390×740/DPR3 PASS，校验前后source/index/HEAD同。src/tests/assets/art逐树同bd3840d；不改产品/火/CSS/规则。正常新review+一次精确新CI待报，main禁推待父串行。证据evidence/p08-tools-entry-2026-10-04/ci-failure-resolution.json。
 
 P08工具包正常对齐朱砂main（UTC 2026-10-04）：正常merge0080fb9合main2d999，两处GameScene冲突按main删除旧burst/shockwave/庆祝章，不复活旧效果。sourcedb00121 exact modified=false；仅工具包实际button加入外扩3px保护guard，原action前景收集自动保按钮/纸底/字在墨线上。头像块、refreshScoreFire/ensureScoreFlame/impactAccumulator/keepScoreReadable方法原文同main；ScoreFlame/AudioEngine及跨档/层级测试、CSS/DetailDialog、文案/assets/domain/application等字节同main。46相关/3files、type及320软件Canvas合法原生流程PASS：实际计分ink索引6，avatar7/entry50/art48/label49，29 guards含新按钮，所有maskpieces不相交；计分时原生点工具包/关闭全run-RNG不变，真正Play结果同applyCommand。四张新完整页actual view，字仍71×17完整在88×44/112×44。仅新review精确CI待报，main待父串行；不扩矩阵、14仍单测、不碰C图片CSS修复。证据evidence/p08-tools-entry-2026-10-04/ink-main-alignment.json。

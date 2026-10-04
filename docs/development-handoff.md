@@ -1,5 +1,7 @@
 # 当前交接：P08全游戏手绘墨线／纸色主线
 
+P08工具包正常对齐C已发布main（UTC 2026-10-04）：父已完整批准review0452e418并独立确认精确CI37224263669 success；正常merge源码ab4d626合入main5d54421，仅AGENTS/handoff/plan三处文档冲突，双方历史/evidence与C completionScope保持。C六张T06–T11资源、两处CSS删除、只读失败摘要及其测试逐树同main；已批准工具包产品/样板逐字节同0452。26相关tests/3files及type PASS，当前runtime逐SHA零不符：72/72 Joker、6角色/JQK，工具9/39、道具12/12；P08 165files4454670B，工具42files643054B。未重截图/原生矩阵/全冻结，旧证据保原源码身份；本新review精确CI另报，main待父串行授权。证据docs/production/evidence/p08-tools-entry-2026-10-04/c-main-alignment.json。
+
 P08失败摘要review已由父侧读完整源码并实际view390 after，局部方向通过；已正常对齐main2d999cd（含朱砂/72人话/12道具），仅UX冲突且双合同保留。合并源码0aa7399，65相关tests/type/build及自然胜败/刷新继续/同种子重试/短摘要详情PASS，GameScene/ScoreFlame/audio/public/art逐对象同main。既有图身份不变，无新截图；320构筑裁切明确OPEN，未修。本review精确CI另报，main不推进；整体/OnePlus/GPU/听感仍待验。 证据docs/production/evidence/p08-failure-summary-2026-10-04/main-alignment.json。
 
 P08 72张人话文案main7d44已正常FF发布，精确main CI37221283754与production-docs37221283740 success；局部方向接受，整体/OnePlus/GPU/听感仍未通过。本次有界失败摘要review源码9e1a176：实际颜色已被共享纸墨映射纠正，无颜色缺陷；真实失败只露差额，补已保存原因/最后一手/剩余资源。35受影响单测/type/build及自然胜败/恢复/重试、390/1280/844有限文字bounds PASS；review新CI另报，main不推进。 证据docs/production/evidence/p08-failure-summary-2026-10-04。
