@@ -1,0 +1,269 @@
+{
+  "taskId": "P08",
+  "testedCommit": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+  "status": "PASS_EVIDENCE_ONLY_NO_RUNTIME_CHANGE",
+  "source": "Published f10d2d0, clean isolated worktree; later resource/main changes not followed.",
+  "build": {
+    "version": "C03",
+    "revision": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+    "modified": false,
+    "builtAt": "2026-10-04T19:25:27.800Z"
+  },
+  "sourceIndexHeadFreeze": {
+    "before": {
+      "source": "84a52a3c350380221ed16f090c4ddf6d02501e6489c2dfe05b7d7ef2f9319f60",
+      "index": "ca41f7a1ab1d9d50ecc45c4a6e1ec034eeadd2b242def29a4ed7aa6eac8a8189",
+      "head": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+      "branch": "refs/heads/feat/p08-tools-use-20261004"
+    },
+    "after": {
+      "source": "84a52a3c350380221ed16f090c4ddf6d02501e6489c2dfe05b7d7ef2f9319f60",
+      "index": "ca41f7a1ab1d9d50ecc45c4a6e1ec034eeadd2b242def29a4ed7aa6eac8a8189",
+      "head": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+      "branch": "refs/heads/feat/p08-tools-use-20261004"
+    },
+    "status": "PASS"
+  },
+  "fixture": "Seven validator-approved native checkpoint imports: six9-card hands, owned tested tool+T12 sentinel; T07 legal live79 and illegal live80. Synthetic capacity/card-specials setup, not natural acquisition or D full run.",
+  "fixtureMetadata": [
+    {
+      "runId": "fixture/p08-tools-use/T06/legal",
+      "liveDeck": 52,
+      "checkpointSHA256": "64499d37417e2faec6b87b67ca69046fecd762e3b8605ff5af020478c574ba92"
+    },
+    {
+      "runId": "fixture/p08-tools-use/T07/legal",
+      "liveDeck": 79,
+      "checkpointSHA256": "e338d403a66bb5193aac2f1a82cd3b4def7eac6462efa263a15de5dd1eea1f86"
+    },
+    {
+      "runId": "fixture/p08-tools-use/T08/legal",
+      "liveDeck": 52,
+      "checkpointSHA256": "72be5afae0482003224ffd8bb9f6f76aae934aba1f607ebcba59219a690712da"
+    },
+    {
+      "runId": "fixture/p08-tools-use/T09/legal",
+      "liveDeck": 52,
+      "checkpointSHA256": "ddff530202c894fb9ccd3db9d44ea6241d01ad06116aad565f143a5354019edb"
+    },
+    {
+      "runId": "fixture/p08-tools-use/T10/legal",
+      "liveDeck": 52,
+      "checkpointSHA256": "d9664029db9af58a400041c7cb98725005edeaca5c8b24c02b7ee283b41ac568"
+    },
+    {
+      "runId": "fixture/p08-tools-use/T11/legal",
+      "liveDeck": 52,
+      "checkpointSHA256": "e7a98eab698f89fed56ceea64b73f2bed880155539aa46b66aefcb058db164bc"
+    }
+  ],
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "renderer": "Chromium software Canvas",
+  "DPR": 1,
+  "motion": "reduce",
+  "results": [
+    {
+      "id": "T06",
+      "legal": "三张红桃/梅花改黑桃；原点数、增强、版次保持",
+      "illegal": "空选；单选已黑桃无效；选满3张后其他目标禁用",
+      "cancel": "complete run/RNG unchanged",
+      "confirmation": "2 native attempts / 1 saved use / 1 consumed tool",
+      "return": "native hand/deck viewer reflects authoritative saved result",
+      "reload": "whole run restored",
+      "status": "PASS"
+    },
+    {
+      "id": "T07",
+      "legal": "有效79→80，保留原K♥玻璃纸/箔并生成不同新ID，副本在抽牌堆底，当前手牌不补抽",
+      "illegal": "空选；80张上限禁用确认；单选radio",
+      "cancel": "complete run/RNG unchanged",
+      "confirmation": "2 native attempts / 1 saved use / 1 consumed tool",
+      "return": "native hand/deck viewer reflects authoritative saved result",
+      "reload": "whole run restored",
+      "status": "PASS"
+    },
+    {
+      "id": "T08",
+      "legal": "K♥→A♥，混选的A♠保持A；增强/版次保持",
+      "illegal": "空选；只选A禁用确认；最多2张",
+      "cancel": "complete run/RNG unchanged",
+      "confirmation": "2 native attempts / 1 saved use / 1 consumed tool",
+      "return": "native hand/deck viewer reflects authoritative saved result",
+      "reload": "whole run restored",
+      "status": "PASS"
+    },
+    {
+      "id": "T09",
+      "legal": "3♣→2♣，混选的2♦保持2；其他属性保持",
+      "illegal": "空选；只选2禁用确认；最多2张",
+      "cancel": "complete run/RNG unchanged",
+      "confirmation": "2 native attempts / 1 saved use / 1 consumed tool",
+      "return": "native hand/deck viewer reflects authoritative saved result",
+      "reload": "whole run restored",
+      "status": "PASS"
+    },
+    {
+      "id": "T10",
+      "legal": "玻璃纸→热度纸，普通4♣→热度纸；替换警告可见，箔/点数/花色保持",
+      "illegal": "空选；已热度纸目标无效；最多2张",
+      "cancel": "complete run/RNG unchanged",
+      "confirmation": "2 native attempts / 1 saved use / 1 consumed tool",
+      "return": "native hand/deck viewer reflects authoritative saved result",
+      "reload": "whole run restored",
+      "status": "PASS"
+    },
+    {
+      "id": "T11",
+      "legal": "金币纸→倍率纸，普通4♣→倍率纸；替换警告可见，多彩/点数/花色保持",
+      "illegal": "空选；已倍率纸目标无效；最多2张",
+      "cancel": "complete run/RNG unchanged",
+      "confirmation": "2 native attempts / 1 saved use / 1 consumed tool",
+      "return": "native hand/deck viewer reflects authoritative saved result",
+      "reload": "whole run restored",
+      "status": "PASS"
+    }
+  ],
+  "observedDataAudit": [
+    {
+      "id": "T06",
+      "nativeInvalidAndCancelRunHashes": "EQUAL",
+      "nativeConfirmationAttempts": 2,
+      "savedUseCommands": 1,
+      "consumption": 1,
+      "sentinelRetained": true,
+      "RNG": "UNCHANGED",
+      "wholeStateVsAuthoritativeApplyCommand": "PASS",
+      "actualHandIndices": "PASS",
+      "actualEnhancementMarks": "NOT_APPLICABLE",
+      "reloadWholeRun": "PASS"
+    },
+    {
+      "id": "T07",
+      "nativeInvalidAndCancelRunHashes": "EQUAL",
+      "nativeConfirmationAttempts": 2,
+      "savedUseCommands": 1,
+      "consumption": 1,
+      "sentinelRetained": true,
+      "RNG": "UNCHANGED",
+      "wholeStateVsAuthoritativeApplyCommand": "PASS",
+      "actualHandIndices": "PASS",
+      "actualEnhancementMarks": "NOT_APPLICABLE",
+      "reloadWholeRun": "PASS"
+    },
+    {
+      "id": "T08",
+      "nativeInvalidAndCancelRunHashes": "EQUAL",
+      "nativeConfirmationAttempts": 2,
+      "savedUseCommands": 1,
+      "consumption": 1,
+      "sentinelRetained": true,
+      "RNG": "UNCHANGED",
+      "wholeStateVsAuthoritativeApplyCommand": "PASS",
+      "actualHandIndices": "PASS",
+      "actualEnhancementMarks": "NOT_APPLICABLE",
+      "reloadWholeRun": "PASS"
+    },
+    {
+      "id": "T09",
+      "nativeInvalidAndCancelRunHashes": "EQUAL",
+      "nativeConfirmationAttempts": 2,
+      "savedUseCommands": 1,
+      "consumption": 1,
+      "sentinelRetained": true,
+      "RNG": "UNCHANGED",
+      "wholeStateVsAuthoritativeApplyCommand": "PASS",
+      "actualHandIndices": "PASS",
+      "actualEnhancementMarks": "NOT_APPLICABLE",
+      "reloadWholeRun": "PASS"
+    },
+    {
+      "id": "T10",
+      "nativeInvalidAndCancelRunHashes": "EQUAL",
+      "nativeConfirmationAttempts": 2,
+      "savedUseCommands": 1,
+      "consumption": 1,
+      "sentinelRetained": true,
+      "RNG": "UNCHANGED",
+      "wholeStateVsAuthoritativeApplyCommand": "PASS",
+      "actualHandIndices": "PASS",
+      "actualEnhancementMarks": "PASS",
+      "reloadWholeRun": "PASS"
+    },
+    {
+      "id": "T11",
+      "nativeInvalidAndCancelRunHashes": "EQUAL",
+      "nativeConfirmationAttempts": 2,
+      "savedUseCommands": 1,
+      "consumption": 1,
+      "sentinelRetained": true,
+      "RNG": "UNCHANGED",
+      "wholeStateVsAuthoritativeApplyCommand": "PASS",
+      "actualHandIndices": "PASS",
+      "actualEnhancementMarks": "PASS",
+      "reloadWholeRun": "PASS"
+    }
+  ],
+  "checks": {
+    "nativeSuccessfulUses": 6,
+    "nativeConfirmationAttempts": 12,
+    "nativeDisabledConfirmationAttempts": 12,
+    "legalTargetCancelChecks": 6,
+    "reloadWholeStateChecks": 6,
+    "singleViewportCount": 1,
+    "pageErrors": 0,
+    "wholeStateOracle": "Every native save equals existing applyCommand with actual receipt commandId and actual selected targetIds. No app send/command methods invoked by checker."
+  },
+  "images": [
+    {
+      "path": "390-t07-valid-preview.png",
+      "bytes": 80629,
+      "sha256": "1ce55ea8df1b1a394f2c5e44ea543a1dd99c8b8fec8d8aff8aa8f570dbb7ac51"
+    },
+    {
+      "path": "390-t08-after-reload.png",
+      "bytes": 87268,
+      "sha256": "1780c62397e2ebd65ab2ac68138f68b8968664b9519e487399c41d2c76d8f154"
+    },
+    {
+      "path": "390-t10-after-reload.png",
+      "bytes": 87958,
+      "sha256": "014f634f73ebc4817ff24f4c507d0e863780938165cb82c36d723906656aa9b5"
+    }
+  ],
+  "actualView": {
+    "status": "PASS",
+    "reviewer": "implementing agent",
+    "images": [
+      "390-t07-valid-preview.png",
+      "390-t08-after-reload.png",
+      "390-t10-after-reload.png"
+    ],
+    "scope": "Three representative390 full pages actually viewed; engineering operation/result visibility, independent parent review not asserted."
+  },
+  "currentCoverageAtTestedSource": {
+    "Jokers": "72/72",
+    "tools": "15/39",
+    "items": "12/12",
+    "P08RuntimeFiles": 165,
+    "P08RuntimeBytes": 4454670,
+    "goodsRuntimeFiles": 54,
+    "goodsRuntimeBytes": 870142
+  },
+  "runtimeChanges": [],
+  "testsChanges": [],
+  "assetsChanges": [],
+  "productBugFound": false,
+  "publicNativeReport": "browser.json",
+  "reproducer": "checker.mjs (copy to shots/p08-tools-use/verify.mjs in clean f10d2d0 tree, then node from repo root)",
+  "mainPush": "NOT_RUN_EVIDENCE_ONLY_REVIEW",
+  "scopeLimits": [
+    "Validator fixture, not natural acquisition or D natural full run",
+    "Single390 portrait only; no device matrix",
+    "No video/FPS/GPU/physical device/audio claims",
+    "No scoring/rules/RNG/save/assets/layout/ShopLayout changes",
+    "No repeated tracking/rebasing for later main resource updates"
+  ]
+}

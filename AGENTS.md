@@ -1,5 +1,19 @@
 # 开发入口
 
+## 当前调度状态（2026-10-04 UTC）
+
+以独立核过的 remote main `1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9` 为当前发布基线；精确 CI37229537268、production-docs37229537265 均 success。完整当前态与验收边界见 [当前交接](docs/development-handoff.md#当前发布与验收状态) 和 [P08 验收清单](docs/production/WORK_PACKAGES.md#p08)，审计见 [状态校准](docs/production/evidence/p08-delivery-state-2026-10-04/summary.json)。
+
+- 工具包已随 main7b787773 发布；749a85ee 两处窄屏修复已在当前 main。320 十四牌仍分页、390 十四牌两行，真机未通过。
+- 当前 main manifest 覆盖 Joker72/72、工具21/39、物品12/12；后续 review 批次不计入 main。铜钱已由结算场景消费，A03 整包仍 planned／humanGate。
+- 六工具 T06–T11 的原生操作 fixture 已验收，原证据 review98b66db4 精确 CI37228691506 success；自然获取和 D7b 自然流程不由此证明，D7b 仍在进行。
+- P08 仍 in_progress。C04 保持 D32 暂停；V01/L01 人工与多人门禁保持。整体审美、OnePlus 真机、GPU、听感未通过。
+- 本次只交付当前态校准与六工具原证据的纯文档 review，随下一批整合；不单独推进 main 或部署。
+
+## 历史检查点（按各自 SHA 保留，不作为当前调度指令）
+
+以下“待 CI／待发布／下一任务”描述仅适用于各自记录时的 source；历史 FAIL、NOT_RUN 和旧覆盖数字保留原值，当前决策以本页上方及当前验收清单为准。
+
 P08两处手持设备修复combined review：正常合已审/精确CI通过B2bca8c8（十四牌计数）与本5ca6a8c（320商店卡条），保mainf10工具15/39及全部资源。合并仅三docs冲突且双记录保留；运行只GameScene.updateHandCount+ShopLayout/ShopScene，逐字节同双方已审代码。147相关tests/8files/type/plan PASS，不重拍双方原图；320十四仍分页、390十四两行，不改手牌位置命中/规则/RNG/save。新combined精确CI另报，main待父放行，整体/OnePlus/GPU/听感未验。 证据docs/production/evidence/p08-shop-rack-320-2026-10-04/combined-fourteen-review.json。
 
 P08 320卡条review正常合入已发布mainf10d2d0（T13–T18六图）：src同已绿c7cd7c5，92相关tests/type及12新增WebP portable/全54runtime hash PASS；工具15/39、道具12/12和朱砂/工具包/失败摘要逐树保main。旧两图不重拍/不改身份，父侧方向通过，独立hit/短横审查另行；未混B14计数候选，不推main，新精确reviewCI另报。 证据docs/production/evidence/p08-shop-rack-320-2026-10-04/f10-main-alignment.json。

@@ -1,0 +1,3500 @@
+{
+  "taskId": "P08",
+  "testedCommit": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+  "baseCommit": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+  "build": {
+    "version": "C03",
+    "revision": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+    "modified": false,
+    "builtAt": "2026-10-04T19:25:27.800Z"
+  },
+  "renderer": "Chromium software Canvas",
+  "browser": "151.0.7922.173",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "motion": "reduce",
+  "fixture": "Seven validator-approved native checkpoint imports: six9-card hands, owned tested tool+T12 sentinel; T07 legal live79 and illegal live80. Synthetic capacity/card-specials setup, not natural acquisition or D full run.",
+  "sourceFreeze": {
+    "before": {
+      "source": "84a52a3c350380221ed16f090c4ddf6d02501e6489c2dfe05b7d7ef2f9319f60",
+      "index": "ca41f7a1ab1d9d50ecc45c4a6e1ec034eeadd2b242def29a4ed7aa6eac8a8189",
+      "head": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+      "branch": "refs/heads/feat/p08-tools-use-20261004"
+    },
+    "after": {
+      "source": "84a52a3c350380221ed16f090c4ddf6d02501e6489c2dfe05b7d7ef2f9319f60",
+      "index": "ca41f7a1ab1d9d50ecc45c4a6e1ec034eeadd2b242def29a4ed7aa6eac8a8189",
+      "head": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+      "branch": "refs/heads/feat/p08-tools-use-20261004"
+    },
+    "status": "PASS"
+  },
+  "device": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "cases": [
+    {
+      "id": "T06",
+      "fixture": {
+        "runId": "fixture/p08-tools-use/T06/legal",
+        "liveDeck": 52,
+        "checkpointSHA256": "64499d37417e2faec6b87b67ca69046fecd762e3b8605ff5af020478c574ba92"
+      },
+      "invalid": [
+        {
+          "hint": "请选择 1～3 张受益牌。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_CONSUMPTION",
+          "beforeRunSHA256": "f2bc3ca3aaa3898af4ff5655044081ec471951c5410a4c9f5c29401c71c64f1d",
+          "afterRunSHA256": "f2bc3ca3aaa3898af4ff5655044081ec471951c5410a4c9f5c29401c71c64f1d",
+          "checked": []
+        },
+        {
+          "hint": "所选牌已经全部是该花色，没有变化。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_CONSUMPTION",
+          "beforeRunSHA256": "f2bc3ca3aaa3898af4ff5655044081ec471951c5410a4c9f5c29401c71c64f1d",
+          "afterRunSHA256": "f2bc3ca3aaa3898af4ff5655044081ec471951c5410a4c9f5c29401c71c64f1d",
+          "checked": [
+            "spades-14"
+          ]
+        }
+      ],
+      "cancel": [
+        {
+          "kind": "legal selected targets then native Cancel",
+          "beforeRunSHA256": "f2bc3ca3aaa3898af4ff5655044081ec471951c5410a4c9f5c29401c71c64f1d",
+          "afterRunSHA256": "f2bc3ca3aaa3898af4ff5655044081ec471951c5410a4c9f5c29401c71c64f1d",
+          "selectedBefore": [
+            "hearts-13"
+          ],
+          "selectedAfter": [
+            "hearts-13"
+          ],
+          "status": "PASS"
+        }
+      ],
+      "screenshots": [],
+      "maxTargets": {
+        "maximum": 3,
+        "disabledExtra": "spades-14",
+        "status": "PASS"
+      },
+      "preview": "目标顺序：1. K♥ · 玻璃纸 · 闪箔 · 第 1 张 → 2. 9♣ · 无增强 · 全息 · 第 5 张 → 3. 10♥ · 无增强 · 普通 · 第 6 张\n\nK♥ → K♠；增强：玻璃纸（每次普通或额外计分倍率×1.5，结算后每张原实例只判一次，1/4概率永久破碎，失败手也判定且可低于主动删牌下限）；版次：闪箔（热度+25）\n\n9♣ → 9♠；增强：无；版次：全息（倍率+2）\n\n10♥ → 10♠；增强：无；版次：普通",
+      "confirm": {
+        "nativeAttempts": 2,
+        "commandSeq": [
+          3,
+          4
+        ],
+        "ownedCount": [
+          2,
+          1
+        ],
+        "consumedInstance": "fixture/use/T06",
+        "sentinelRetained": true,
+        "completeStateVsAuthoritativeCommand": "PASS",
+        "RNG": "UNCHANGED",
+        "beforeRunSHA256": "f2bc3ca3aaa3898af4ff5655044081ec471951c5410a4c9f5c29401c71c64f1d",
+        "afterRunSHA256": "f44697dbe9e80020e99112e7b20aa4712a0b96675ae697930bb80ff6acd9e526",
+        "targets": [
+          "hearts-13",
+          "clubs-9",
+          "hearts-10"
+        ],
+        "changes": [
+          {
+            "before": {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            "after": {
+              "id": "hearts-10",
+              "suit": "spades",
+              "rank": 10
+            }
+          },
+          {
+            "before": {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13,
+              "enhancement": "glass-paper",
+              "edition": "foil"
+            },
+            "after": {
+              "id": "hearts-13",
+              "suit": "spades",
+              "rank": 13,
+              "enhancement": "glass-paper",
+              "edition": "foil"
+            }
+          },
+          {
+            "before": {
+              "id": "clubs-9",
+              "suit": "clubs",
+              "rank": 9,
+              "edition": "holographic"
+            },
+            "after": {
+              "id": "clubs-9",
+              "suit": "spades",
+              "rank": 9,
+              "edition": "holographic"
+            }
+          }
+        ],
+        "events": [
+          {
+            "type": "consumable-used",
+            "definitionId": "T06",
+            "instanceId": "fixture/use/T06",
+            "targetIds": [
+              "hearts-13",
+              "clubs-9",
+              "hearts-10"
+            ],
+            "createdCardIds": [],
+            "destroyedCardIds": []
+          }
+        ]
+      },
+      "returnedHand": {
+        "renderer": 1,
+        "handRows": 1,
+        "visible": 9,
+        "cards": [
+          {
+            "card": {
+              "id": "hearts-13",
+              "suit": "spades",
+              "rank": 13,
+              "enhancement": "glass-paper",
+              "edition": "foil"
+            },
+            "index": "K\n♠",
+            "texts": [
+              "K\n♠",
+              "K",
+              "★",
+              "✓",
+              "玻",
+              "箔"
+            ],
+            "face": {
+              "x": 12,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "spades-14",
+              "suit": "spades",
+              "rank": 14
+            },
+            "index": "A\n♠",
+            "texts": [
+              "♠",
+              "A\n♠",
+              "A",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 49.75,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 3
+            },
+            "index": "3\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "3\n♣",
+              "3",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 87.5,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2
+            },
+            "index": "2\n♦",
+            "texts": [
+              "♦",
+              "♦",
+              "2\n♦",
+              "2",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 125.25,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-9",
+              "suit": "spades",
+              "rank": 9,
+              "edition": "holographic"
+            },
+            "index": "9\n♠",
+            "texts": [
+              "♠",
+              "♠",
+              "♠",
+              "♠",
+              "♠",
+              "♠",
+              "♠",
+              "♠",
+              "♠",
+              "9\n♠",
+              "9",
+              "★",
+              "✓",
+              "虹"
+            ],
+            "face": {
+              "x": 163,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "hearts-10",
+              "suit": "spades",
+              "rank": 10
+            },
+            "index": "10\n♠",
+            "texts": [
+              "♠",
+              "♠",
+              "♠",
+              "♠",
+              "♠",
+              "♠",
+              "♠",
+              "♠",
+              "♠",
+              "♠",
+              "10\n♠",
+              "10",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 200.75,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11,
+              "enhancement": "heat-paper"
+            },
+            "index": "J\n♦",
+            "texts": [
+              "J\n♦",
+              "J",
+              "★",
+              "✓",
+              "热"
+            ],
+            "face": {
+              "x": 238.5,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12,
+              "enhancement": "multiplier-paper"
+            },
+            "index": "Q\n♠",
+            "texts": [
+              "Q\n♠",
+              "Q",
+              "★",
+              "✓",
+              "倍"
+            ],
+            "face": {
+              "x": 276.25,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            "index": "4\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "4\n♣",
+              "4",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 314,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          }
+        ],
+        "inventoryLabel": "工具包 1/2"
+      },
+      "deckViewText": "剩余牌堆\n全部牌组\n所有增强\n无增强\n有增强\n\n按花色与点数统计，不展示抽牌顺序。\n♠ 16 · ♥ 11 · ♣ 12 · ♦ 13\n2♠、3♠、4♠、5♠、6♠、7♠、8♠、9♠、9♠ 手牌 全息、10♠、10♠ 手牌、J♠、Q♠ 手牌 倍率纸、K♠、K♠ 手牌 玻璃纸 闪箔、A♠ 手牌、2♥、3♥、4♥、5♥、6♥、7♥、8♥、9♥、J♥、Q♥、A♥、2♣、3♣ 手牌、4♣ 手牌、5♣、6♣、7♣、8♣、10♣、J♣、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、9♦、10♦、J♦ 手牌 热度纸、Q♦、K♦、A♦",
+      "reload": {
+        "status": "PASS",
+        "beforeRunSHA256": "f44697dbe9e80020e99112e7b20aa4712a0b96675ae697930bb80ff6acd9e526",
+        "afterRunSHA256": "f44697dbe9e80020e99112e7b20aa4712a0b96675ae697930bb80ff6acd9e526",
+        "hand": {
+          "renderer": 1,
+          "handRows": 1,
+          "visible": 9,
+          "cards": [
+            {
+              "card": {
+                "id": "hearts-13",
+                "suit": "spades",
+                "rank": 13,
+                "enhancement": "glass-paper",
+                "edition": "foil"
+              },
+              "index": "K\n♠",
+              "texts": [
+                "K\n♠",
+                "K",
+                "★",
+                "✓",
+                "玻",
+                "箔"
+              ],
+              "face": {
+                "x": 12,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "spades-14",
+                "suit": "spades",
+                "rank": 14
+              },
+              "index": "A\n♠",
+              "texts": [
+                "♠",
+                "A\n♠",
+                "A",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 49.75,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-3",
+                "suit": "clubs",
+                "rank": 3
+              },
+              "index": "3\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "3\n♣",
+                "3",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 87.5,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "diamonds-2",
+                "suit": "diamonds",
+                "rank": 2
+              },
+              "index": "2\n♦",
+              "texts": [
+                "♦",
+                "♦",
+                "2\n♦",
+                "2",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 125.25,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-9",
+                "suit": "spades",
+                "rank": 9,
+                "edition": "holographic"
+              },
+              "index": "9\n♠",
+              "texts": [
+                "♠",
+                "♠",
+                "♠",
+                "♠",
+                "♠",
+                "♠",
+                "♠",
+                "♠",
+                "♠",
+                "9\n♠",
+                "9",
+                "★",
+                "✓",
+                "虹"
+              ],
+              "face": {
+                "x": 163,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "hearts-10",
+                "suit": "spades",
+                "rank": 10
+              },
+              "index": "10\n♠",
+              "texts": [
+                "♠",
+                "♠",
+                "♠",
+                "♠",
+                "♠",
+                "♠",
+                "♠",
+                "♠",
+                "♠",
+                "♠",
+                "10\n♠",
+                "10",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 200.75,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "diamonds-11",
+                "suit": "diamonds",
+                "rank": 11,
+                "enhancement": "heat-paper"
+              },
+              "index": "J\n♦",
+              "texts": [
+                "J\n♦",
+                "J",
+                "★",
+                "✓",
+                "热"
+              ],
+              "face": {
+                "x": 238.5,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "spades-12",
+                "suit": "spades",
+                "rank": 12,
+                "enhancement": "multiplier-paper"
+              },
+              "index": "Q\n♠",
+              "texts": [
+                "Q\n♠",
+                "Q",
+                "★",
+                "✓",
+                "倍"
+              ],
+              "face": {
+                "x": 276.25,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-4",
+                "suit": "clubs",
+                "rank": 4
+              },
+              "index": "4\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "4\n♣",
+                "4",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 314,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            }
+          ],
+          "inventoryLabel": "工具包 1/2"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "T07",
+      "fixture": {
+        "runId": "fixture/p08-tools-use/T07/legal",
+        "liveDeck": 79,
+        "checkpointSHA256": "e338d403a66bb5193aac2f1a82cd3b4def7eac6462efa263a15de5dd1eea1f86"
+      },
+      "invalid": [
+        {
+          "hint": "复制后有效牌组不能超过 80 张。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_CONSUMPTION",
+          "beforeRunSHA256": "17756353eba605a7c4072fb4a0a1238f044348612318cd528f19c4521382ac1f",
+          "afterRunSHA256": "17756353eba605a7c4072fb4a0a1238f044348612318cd528f19c4521382ac1f",
+          "checked": [
+            "hearts-13"
+          ]
+        },
+        {
+          "hint": "请选择 1 张受益牌。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_CONSUMPTION",
+          "beforeRunSHA256": "560ba4e564f5a18ee6780a281656e1cd41ebdf5ed4fad0f20110896582c14d73",
+          "afterRunSHA256": "560ba4e564f5a18ee6780a281656e1cd41ebdf5ed4fad0f20110896582c14d73",
+          "checked": []
+        }
+      ],
+      "cancel": [
+        {
+          "kind": "legal selected targets then native Cancel",
+          "beforeRunSHA256": "560ba4e564f5a18ee6780a281656e1cd41ebdf5ed4fad0f20110896582c14d73",
+          "afterRunSHA256": "560ba4e564f5a18ee6780a281656e1cd41ebdf5ed4fad0f20110896582c14d73",
+          "selectedBefore": [
+            "hearts-13"
+          ],
+          "selectedAfter": [
+            "hearts-13"
+          ],
+          "status": "PASS"
+        }
+      ],
+      "screenshots": [
+        "390-t07-valid-preview.png"
+      ],
+      "maxTargets": {
+        "maximum": 1,
+        "control": "radio single choice",
+        "status": "PASS"
+      },
+      "preview": "目标顺序：1. K♥ · 玻璃纸 · 闪箔 · 第 1 张\n\nK♥ · 增强：玻璃纸（每次普通或额外计分倍率×1.5，结算后每张原实例只判一次，1/4概率永久破碎，失败手也判定且可低于主动删牌下限）；版次：闪箔（热度+25）",
+      "copy": {
+        "originalRetained": true,
+        "newId": "fixture/p08-tools-use/T07/legal/card/fixture/p08-tools-use/T07/legal/command/4/0",
+        "sourceId": "hearts-13",
+        "specialFields": "rank/suit/enhancement/edition exactly retained",
+        "liveDeck": [
+          79,
+          80
+        ],
+        "insertedAt": "drawPile index0 (bottom, no immediate draw/no shuffle)",
+        "newIdAbsentFromHand": true,
+        "deckViewerMatchingPrintedCards": 2
+      },
+      "confirm": {
+        "nativeAttempts": 2,
+        "commandSeq": [
+          3,
+          4
+        ],
+        "ownedCount": [
+          2,
+          1
+        ],
+        "consumedInstance": "fixture/use/T07",
+        "sentinelRetained": true,
+        "completeStateVsAuthoritativeCommand": "PASS",
+        "RNG": "UNCHANGED",
+        "beforeRunSHA256": "560ba4e564f5a18ee6780a281656e1cd41ebdf5ed4fad0f20110896582c14d73",
+        "afterRunSHA256": "5d89edf2520c766197e394b8125da3e3003db99ca662fa381a922d76c8abab73",
+        "targets": [
+          "hearts-13"
+        ],
+        "changes": [
+          {
+            "before": null,
+            "after": {
+              "id": "fixture/p08-tools-use/T07/legal/card/fixture/p08-tools-use/T07/legal/command/4/0",
+              "rank": 13,
+              "suit": "hearts",
+              "enhancement": "glass-paper",
+              "edition": "foil"
+            }
+          }
+        ],
+        "events": [
+          {
+            "type": "consumable-used",
+            "definitionId": "T07",
+            "instanceId": "fixture/use/T07",
+            "targetIds": [
+              "hearts-13"
+            ],
+            "createdCardIds": [
+              "fixture/p08-tools-use/T07/legal/card/fixture/p08-tools-use/T07/legal/command/4/0"
+            ],
+            "destroyedCardIds": []
+          }
+        ]
+      },
+      "returnedHand": {
+        "renderer": 1,
+        "handRows": 1,
+        "visible": 9,
+        "cards": [
+          {
+            "card": {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13,
+              "enhancement": "glass-paper",
+              "edition": "foil"
+            },
+            "index": "K\n♥",
+            "texts": [
+              "K\n♥",
+              "K",
+              "★",
+              "✓",
+              "玻",
+              "箔"
+            ],
+            "face": {
+              "x": 12,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "spades-14",
+              "suit": "spades",
+              "rank": 14
+            },
+            "index": "A\n♠",
+            "texts": [
+              "♠",
+              "A\n♠",
+              "A",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 49.75,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 3
+            },
+            "index": "3\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "3\n♣",
+              "3",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 87.5,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2
+            },
+            "index": "2\n♦",
+            "texts": [
+              "♦",
+              "♦",
+              "2\n♦",
+              "2",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 125.25,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-9",
+              "suit": "clubs",
+              "rank": 9,
+              "edition": "holographic"
+            },
+            "index": "9\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "9\n♣",
+              "9",
+              "★",
+              "✓",
+              "虹"
+            ],
+            "face": {
+              "x": 163,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            "index": "10\n♥",
+            "texts": [
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "10\n♥",
+              "10",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 200.75,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11,
+              "enhancement": "heat-paper"
+            },
+            "index": "J\n♦",
+            "texts": [
+              "J\n♦",
+              "J",
+              "★",
+              "✓",
+              "热"
+            ],
+            "face": {
+              "x": 238.5,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12,
+              "enhancement": "multiplier-paper"
+            },
+            "index": "Q\n♠",
+            "texts": [
+              "Q\n♠",
+              "Q",
+              "★",
+              "✓",
+              "倍"
+            ],
+            "face": {
+              "x": 276.25,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            "index": "4\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "4\n♣",
+              "4",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 314,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          }
+        ],
+        "inventoryLabel": "工具包 1/2"
+      },
+      "deckViewText": "剩余牌堆\n全部牌组\n所有增强\n无增强\n有增强\n\n按花色与点数统计，不展示抽牌顺序。\n♠ 13 · ♥ 14 · ♣ 40 · ♦ 13\n2♠、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠ 手牌 倍率纸、K♠、A♠ 手牌、2♥、3♥、4♥、5♥、6♥、7♥、8♥、9♥、10♥ 手牌、J♥、Q♥、K♥ 手牌 玻璃纸 闪箔、K♥ 玻璃纸 闪箔、A♥、2♣、3♣ 手牌、4♣ 手牌、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、4♣、5♣、6♣、7♣、8♣、9♣ 手牌 全息、10♣、J♣、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、9♦、10♦、J♦ 手牌 热度纸、Q♦、K♦、A♦",
+      "reload": {
+        "status": "PASS",
+        "beforeRunSHA256": "5d89edf2520c766197e394b8125da3e3003db99ca662fa381a922d76c8abab73",
+        "afterRunSHA256": "5d89edf2520c766197e394b8125da3e3003db99ca662fa381a922d76c8abab73",
+        "hand": {
+          "renderer": 1,
+          "handRows": 1,
+          "visible": 9,
+          "cards": [
+            {
+              "card": {
+                "id": "hearts-13",
+                "suit": "hearts",
+                "rank": 13,
+                "enhancement": "glass-paper",
+                "edition": "foil"
+              },
+              "index": "K\n♥",
+              "texts": [
+                "K\n♥",
+                "K",
+                "★",
+                "✓",
+                "玻",
+                "箔"
+              ],
+              "face": {
+                "x": 12,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "spades-14",
+                "suit": "spades",
+                "rank": 14
+              },
+              "index": "A\n♠",
+              "texts": [
+                "♠",
+                "A\n♠",
+                "A",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 49.75,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-3",
+                "suit": "clubs",
+                "rank": 3
+              },
+              "index": "3\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "3\n♣",
+                "3",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 87.5,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "diamonds-2",
+                "suit": "diamonds",
+                "rank": 2
+              },
+              "index": "2\n♦",
+              "texts": [
+                "♦",
+                "♦",
+                "2\n♦",
+                "2",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 125.25,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-9",
+                "suit": "clubs",
+                "rank": 9,
+                "edition": "holographic"
+              },
+              "index": "9\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "9\n♣",
+                "9",
+                "★",
+                "✓",
+                "虹"
+              ],
+              "face": {
+                "x": 163,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "hearts-10",
+                "suit": "hearts",
+                "rank": 10
+              },
+              "index": "10\n♥",
+              "texts": [
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "10\n♥",
+                "10",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 200.75,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "diamonds-11",
+                "suit": "diamonds",
+                "rank": 11,
+                "enhancement": "heat-paper"
+              },
+              "index": "J\n♦",
+              "texts": [
+                "J\n♦",
+                "J",
+                "★",
+                "✓",
+                "热"
+              ],
+              "face": {
+                "x": 238.5,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "spades-12",
+                "suit": "spades",
+                "rank": 12,
+                "enhancement": "multiplier-paper"
+              },
+              "index": "Q\n♠",
+              "texts": [
+                "Q\n♠",
+                "Q",
+                "★",
+                "✓",
+                "倍"
+              ],
+              "face": {
+                "x": 276.25,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-4",
+                "suit": "clubs",
+                "rank": 4
+              },
+              "index": "4\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "4\n♣",
+                "4",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 314,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            }
+          ],
+          "inventoryLabel": "工具包 1/2"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "T08",
+      "fixture": {
+        "runId": "fixture/p08-tools-use/T08/legal",
+        "liveDeck": 52,
+        "checkpointSHA256": "72be5afae0482003224ffd8bb9f6f76aae934aba1f607ebcba59219a690712da"
+      },
+      "invalid": [
+        {
+          "hint": "请选择 1～2 张受益牌。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_CONSUMPTION",
+          "beforeRunSHA256": "9304d1f1cdcdeccf4e31e0563cae77b1f4b9831790a019792c4707bd5af364a2",
+          "afterRunSHA256": "9304d1f1cdcdeccf4e31e0563cae77b1f4b9831790a019792c4707bd5af364a2",
+          "checked": []
+        },
+        {
+          "hint": "所选点数全部已达边界，没有变化。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_CONSUMPTION",
+          "beforeRunSHA256": "9304d1f1cdcdeccf4e31e0563cae77b1f4b9831790a019792c4707bd5af364a2",
+          "afterRunSHA256": "9304d1f1cdcdeccf4e31e0563cae77b1f4b9831790a019792c4707bd5af364a2",
+          "checked": [
+            "spades-14"
+          ]
+        }
+      ],
+      "cancel": [
+        {
+          "kind": "legal selected targets then native Cancel",
+          "beforeRunSHA256": "9304d1f1cdcdeccf4e31e0563cae77b1f4b9831790a019792c4707bd5af364a2",
+          "afterRunSHA256": "9304d1f1cdcdeccf4e31e0563cae77b1f4b9831790a019792c4707bd5af364a2",
+          "selectedBefore": [
+            "hearts-13"
+          ],
+          "selectedAfter": [
+            "hearts-13"
+          ],
+          "status": "PASS"
+        }
+      ],
+      "screenshots": [
+        "390-t08-after-reload.png"
+      ],
+      "maxTargets": {
+        "maximum": 2,
+        "disabledExtra": "clubs-3",
+        "status": "PASS"
+      },
+      "preview": "目标顺序：1. K♥ · 玻璃纸 · 闪箔 · 第 1 张 → 2. A♠ · 无增强 · 普通 · 第 2 张\n\nK♥ → A♥；增强：玻璃纸（每次普通或额外计分倍率×1.5，结算后每张原实例只判一次，1/4概率永久破碎，失败手也判定且可低于主动删牌下限）；版次：闪箔（热度+25）\n\nA♠ → A♠；增强：无；版次：普通",
+      "confirm": {
+        "nativeAttempts": 2,
+        "commandSeq": [
+          3,
+          4
+        ],
+        "ownedCount": [
+          2,
+          1
+        ],
+        "consumedInstance": "fixture/use/T08",
+        "sentinelRetained": true,
+        "completeStateVsAuthoritativeCommand": "PASS",
+        "RNG": "UNCHANGED",
+        "beforeRunSHA256": "9304d1f1cdcdeccf4e31e0563cae77b1f4b9831790a019792c4707bd5af364a2",
+        "afterRunSHA256": "56a8ee201c3736dd4e5eecbedf78ca8ee9bae7788ebc896a85e6653a1dcff24e",
+        "targets": [
+          "hearts-13",
+          "spades-14"
+        ],
+        "changes": [
+          {
+            "before": {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13,
+              "enhancement": "glass-paper",
+              "edition": "foil"
+            },
+            "after": {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 14,
+              "enhancement": "glass-paper",
+              "edition": "foil"
+            }
+          }
+        ],
+        "events": [
+          {
+            "type": "consumable-used",
+            "definitionId": "T08",
+            "instanceId": "fixture/use/T08",
+            "targetIds": [
+              "hearts-13",
+              "spades-14"
+            ],
+            "createdCardIds": [],
+            "destroyedCardIds": []
+          }
+        ]
+      },
+      "returnedHand": {
+        "renderer": 1,
+        "handRows": 1,
+        "visible": 9,
+        "cards": [
+          {
+            "card": {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 14,
+              "enhancement": "glass-paper",
+              "edition": "foil"
+            },
+            "index": "A\n♥",
+            "texts": [
+              "♥",
+              "A\n♥",
+              "A",
+              "★",
+              "✓",
+              "玻",
+              "箔"
+            ],
+            "face": {
+              "x": 12,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "spades-14",
+              "suit": "spades",
+              "rank": 14
+            },
+            "index": "A\n♠",
+            "texts": [
+              "♠",
+              "A\n♠",
+              "A",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 49.75,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 3
+            },
+            "index": "3\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "3\n♣",
+              "3",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 87.5,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2
+            },
+            "index": "2\n♦",
+            "texts": [
+              "♦",
+              "♦",
+              "2\n♦",
+              "2",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 125.25,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-9",
+              "suit": "clubs",
+              "rank": 9,
+              "edition": "holographic"
+            },
+            "index": "9\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "9\n♣",
+              "9",
+              "★",
+              "✓",
+              "虹"
+            ],
+            "face": {
+              "x": 163,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            "index": "10\n♥",
+            "texts": [
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "10\n♥",
+              "10",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 200.75,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11,
+              "enhancement": "heat-paper"
+            },
+            "index": "J\n♦",
+            "texts": [
+              "J\n♦",
+              "J",
+              "★",
+              "✓",
+              "热"
+            ],
+            "face": {
+              "x": 238.5,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12,
+              "enhancement": "multiplier-paper"
+            },
+            "index": "Q\n♠",
+            "texts": [
+              "Q\n♠",
+              "Q",
+              "★",
+              "✓",
+              "倍"
+            ],
+            "face": {
+              "x": 276.25,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            "index": "4\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "4\n♣",
+              "4",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 314,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          }
+        ],
+        "inventoryLabel": "工具包 1/2"
+      },
+      "deckViewText": "剩余牌堆\n全部牌组\n所有增强\n无增强\n有增强\n\n按花色与点数统计，不展示抽牌顺序。\n♠ 13 · ♥ 13 · ♣ 13 · ♦ 13\n2♠、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠ 手牌 倍率纸、K♠、A♠ 手牌、2♥、3♥、4♥、5♥、6♥、7♥、8♥、9♥、10♥ 手牌、J♥、Q♥、A♥ 手牌 玻璃纸 闪箔、A♥、2♣、3♣ 手牌、4♣ 手牌、5♣、6♣、7♣、8♣、9♣ 手牌 全息、10♣、J♣、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、9♦、10♦、J♦ 手牌 热度纸、Q♦、K♦、A♦",
+      "reload": {
+        "status": "PASS",
+        "beforeRunSHA256": "56a8ee201c3736dd4e5eecbedf78ca8ee9bae7788ebc896a85e6653a1dcff24e",
+        "afterRunSHA256": "56a8ee201c3736dd4e5eecbedf78ca8ee9bae7788ebc896a85e6653a1dcff24e",
+        "hand": {
+          "renderer": 1,
+          "handRows": 1,
+          "visible": 9,
+          "cards": [
+            {
+              "card": {
+                "id": "hearts-13",
+                "suit": "hearts",
+                "rank": 14,
+                "enhancement": "glass-paper",
+                "edition": "foil"
+              },
+              "index": "A\n♥",
+              "texts": [
+                "♥",
+                "A\n♥",
+                "A",
+                "★",
+                "✓",
+                "玻",
+                "箔"
+              ],
+              "face": {
+                "x": 12,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "spades-14",
+                "suit": "spades",
+                "rank": 14
+              },
+              "index": "A\n♠",
+              "texts": [
+                "♠",
+                "A\n♠",
+                "A",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 49.75,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-3",
+                "suit": "clubs",
+                "rank": 3
+              },
+              "index": "3\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "3\n♣",
+                "3",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 87.5,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "diamonds-2",
+                "suit": "diamonds",
+                "rank": 2
+              },
+              "index": "2\n♦",
+              "texts": [
+                "♦",
+                "♦",
+                "2\n♦",
+                "2",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 125.25,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-9",
+                "suit": "clubs",
+                "rank": 9,
+                "edition": "holographic"
+              },
+              "index": "9\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "9\n♣",
+                "9",
+                "★",
+                "✓",
+                "虹"
+              ],
+              "face": {
+                "x": 163,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "hearts-10",
+                "suit": "hearts",
+                "rank": 10
+              },
+              "index": "10\n♥",
+              "texts": [
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "10\n♥",
+                "10",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 200.75,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "diamonds-11",
+                "suit": "diamonds",
+                "rank": 11,
+                "enhancement": "heat-paper"
+              },
+              "index": "J\n♦",
+              "texts": [
+                "J\n♦",
+                "J",
+                "★",
+                "✓",
+                "热"
+              ],
+              "face": {
+                "x": 238.5,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "spades-12",
+                "suit": "spades",
+                "rank": 12,
+                "enhancement": "multiplier-paper"
+              },
+              "index": "Q\n♠",
+              "texts": [
+                "Q\n♠",
+                "Q",
+                "★",
+                "✓",
+                "倍"
+              ],
+              "face": {
+                "x": 276.25,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-4",
+                "suit": "clubs",
+                "rank": 4
+              },
+              "index": "4\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "4\n♣",
+                "4",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 314,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            }
+          ],
+          "inventoryLabel": "工具包 1/2"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "T09",
+      "fixture": {
+        "runId": "fixture/p08-tools-use/T09/legal",
+        "liveDeck": 52,
+        "checkpointSHA256": "ddff530202c894fb9ccd3db9d44ea6241d01ad06116aad565f143a5354019edb"
+      },
+      "invalid": [
+        {
+          "hint": "请选择 1～2 张受益牌。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_CONSUMPTION",
+          "beforeRunSHA256": "3b84577215b27f13d69868e80f0cb2e93a941ca5a41dae2cba741b9d2e6ef4df",
+          "afterRunSHA256": "3b84577215b27f13d69868e80f0cb2e93a941ca5a41dae2cba741b9d2e6ef4df",
+          "checked": []
+        },
+        {
+          "hint": "所选点数全部已达边界，没有变化。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_CONSUMPTION",
+          "beforeRunSHA256": "3b84577215b27f13d69868e80f0cb2e93a941ca5a41dae2cba741b9d2e6ef4df",
+          "afterRunSHA256": "3b84577215b27f13d69868e80f0cb2e93a941ca5a41dae2cba741b9d2e6ef4df",
+          "checked": [
+            "diamonds-2"
+          ]
+        }
+      ],
+      "cancel": [
+        {
+          "kind": "legal selected targets then native Cancel",
+          "beforeRunSHA256": "3b84577215b27f13d69868e80f0cb2e93a941ca5a41dae2cba741b9d2e6ef4df",
+          "afterRunSHA256": "3b84577215b27f13d69868e80f0cb2e93a941ca5a41dae2cba741b9d2e6ef4df",
+          "selectedBefore": [
+            "hearts-13"
+          ],
+          "selectedAfter": [
+            "hearts-13"
+          ],
+          "status": "PASS"
+        }
+      ],
+      "screenshots": [],
+      "maxTargets": {
+        "maximum": 2,
+        "disabledExtra": "hearts-13",
+        "status": "PASS"
+      },
+      "preview": "目标顺序：1. 3♣ · 无增强 · 普通 · 第 3 张 → 2. 2♦ · 无增强 · 普通 · 第 4 张\n\n3♣ → 2♣；增强：无；版次：普通\n\n2♦ → 2♦；增强：无；版次：普通",
+      "confirm": {
+        "nativeAttempts": 2,
+        "commandSeq": [
+          3,
+          4
+        ],
+        "ownedCount": [
+          2,
+          1
+        ],
+        "consumedInstance": "fixture/use/T09",
+        "sentinelRetained": true,
+        "completeStateVsAuthoritativeCommand": "PASS",
+        "RNG": "UNCHANGED",
+        "beforeRunSHA256": "3b84577215b27f13d69868e80f0cb2e93a941ca5a41dae2cba741b9d2e6ef4df",
+        "afterRunSHA256": "35a91c5c43172a430af57a3b7aef6548bfd2fad50cfb75bae33ebebda601878d",
+        "targets": [
+          "clubs-3",
+          "diamonds-2"
+        ],
+        "changes": [
+          {
+            "before": {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 3
+            },
+            "after": {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 2
+            }
+          }
+        ],
+        "events": [
+          {
+            "type": "consumable-used",
+            "definitionId": "T09",
+            "instanceId": "fixture/use/T09",
+            "targetIds": [
+              "clubs-3",
+              "diamonds-2"
+            ],
+            "createdCardIds": [],
+            "destroyedCardIds": []
+          }
+        ]
+      },
+      "returnedHand": {
+        "renderer": 1,
+        "handRows": 1,
+        "visible": 9,
+        "cards": [
+          {
+            "card": {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13,
+              "enhancement": "glass-paper",
+              "edition": "foil"
+            },
+            "index": "K\n♥",
+            "texts": [
+              "K\n♥",
+              "K",
+              "★",
+              "✓",
+              "玻",
+              "箔"
+            ],
+            "face": {
+              "x": 12,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "spades-14",
+              "suit": "spades",
+              "rank": 14
+            },
+            "index": "A\n♠",
+            "texts": [
+              "♠",
+              "A\n♠",
+              "A",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 49.75,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 2
+            },
+            "index": "2\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "2\n♣",
+              "2",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 87.5,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2
+            },
+            "index": "2\n♦",
+            "texts": [
+              "♦",
+              "♦",
+              "2\n♦",
+              "2",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 125.25,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-9",
+              "suit": "clubs",
+              "rank": 9,
+              "edition": "holographic"
+            },
+            "index": "9\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "9\n♣",
+              "9",
+              "★",
+              "✓",
+              "虹"
+            ],
+            "face": {
+              "x": 163,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            "index": "10\n♥",
+            "texts": [
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "10\n♥",
+              "10",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 200.75,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11,
+              "enhancement": "heat-paper"
+            },
+            "index": "J\n♦",
+            "texts": [
+              "J\n♦",
+              "J",
+              "★",
+              "✓",
+              "热"
+            ],
+            "face": {
+              "x": 238.5,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12,
+              "enhancement": "multiplier-paper"
+            },
+            "index": "Q\n♠",
+            "texts": [
+              "Q\n♠",
+              "Q",
+              "★",
+              "✓",
+              "倍"
+            ],
+            "face": {
+              "x": 276.25,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            "index": "4\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "4\n♣",
+              "4",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 314,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          }
+        ],
+        "inventoryLabel": "工具包 1/2"
+      },
+      "deckViewText": "剩余牌堆\n全部牌组\n所有增强\n无增强\n有增强\n\n按花色与点数统计，不展示抽牌顺序。\n♠ 13 · ♥ 13 · ♣ 13 · ♦ 13\n2♠、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠ 手牌 倍率纸、K♠、A♠ 手牌、2♥、3♥、4♥、5♥、6♥、7♥、8♥、9♥、10♥ 手牌、J♥、Q♥、K♥ 手牌 玻璃纸 闪箔、A♥、2♣、2♣ 手牌、4♣ 手牌、5♣、6♣、7♣、8♣、9♣ 手牌 全息、10♣、J♣、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、9♦、10♦、J♦ 手牌 热度纸、Q♦、K♦、A♦",
+      "reload": {
+        "status": "PASS",
+        "beforeRunSHA256": "35a91c5c43172a430af57a3b7aef6548bfd2fad50cfb75bae33ebebda601878d",
+        "afterRunSHA256": "35a91c5c43172a430af57a3b7aef6548bfd2fad50cfb75bae33ebebda601878d",
+        "hand": {
+          "renderer": 1,
+          "handRows": 1,
+          "visible": 9,
+          "cards": [
+            {
+              "card": {
+                "id": "hearts-13",
+                "suit": "hearts",
+                "rank": 13,
+                "enhancement": "glass-paper",
+                "edition": "foil"
+              },
+              "index": "K\n♥",
+              "texts": [
+                "K\n♥",
+                "K",
+                "★",
+                "✓",
+                "玻",
+                "箔"
+              ],
+              "face": {
+                "x": 12,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "spades-14",
+                "suit": "spades",
+                "rank": 14
+              },
+              "index": "A\n♠",
+              "texts": [
+                "♠",
+                "A\n♠",
+                "A",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 49.75,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-3",
+                "suit": "clubs",
+                "rank": 2
+              },
+              "index": "2\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "2\n♣",
+                "2",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 87.5,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "diamonds-2",
+                "suit": "diamonds",
+                "rank": 2
+              },
+              "index": "2\n♦",
+              "texts": [
+                "♦",
+                "♦",
+                "2\n♦",
+                "2",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 125.25,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-9",
+                "suit": "clubs",
+                "rank": 9,
+                "edition": "holographic"
+              },
+              "index": "9\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "9\n♣",
+                "9",
+                "★",
+                "✓",
+                "虹"
+              ],
+              "face": {
+                "x": 163,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "hearts-10",
+                "suit": "hearts",
+                "rank": 10
+              },
+              "index": "10\n♥",
+              "texts": [
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "10\n♥",
+                "10",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 200.75,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "diamonds-11",
+                "suit": "diamonds",
+                "rank": 11,
+                "enhancement": "heat-paper"
+              },
+              "index": "J\n♦",
+              "texts": [
+                "J\n♦",
+                "J",
+                "★",
+                "✓",
+                "热"
+              ],
+              "face": {
+                "x": 238.5,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "spades-12",
+                "suit": "spades",
+                "rank": 12,
+                "enhancement": "multiplier-paper"
+              },
+              "index": "Q\n♠",
+              "texts": [
+                "Q\n♠",
+                "Q",
+                "★",
+                "✓",
+                "倍"
+              ],
+              "face": {
+                "x": 276.25,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-4",
+                "suit": "clubs",
+                "rank": 4
+              },
+              "index": "4\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "4\n♣",
+                "4",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 314,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            }
+          ],
+          "inventoryLabel": "工具包 1/2"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "T10",
+      "fixture": {
+        "runId": "fixture/p08-tools-use/T10/legal",
+        "liveDeck": 52,
+        "checkpointSHA256": "d9664029db9af58a400041c7cb98725005edeaca5c8b24c02b7ee283b41ac568"
+      },
+      "invalid": [
+        {
+          "hint": "请选择 1～2 张受益牌。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_CONSUMPTION",
+          "beforeRunSHA256": "fd60550caced3bc64ce2903f848561eb4918143bce4640876eb5ac78da5807ec",
+          "afterRunSHA256": "fd60550caced3bc64ce2903f848561eb4918143bce4640876eb5ac78da5807ec",
+          "checked": []
+        },
+        {
+          "hint": "所选牌已经全部具有相同增强，没有变化。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_CONSUMPTION",
+          "beforeRunSHA256": "fd60550caced3bc64ce2903f848561eb4918143bce4640876eb5ac78da5807ec",
+          "afterRunSHA256": "fd60550caced3bc64ce2903f848561eb4918143bce4640876eb5ac78da5807ec",
+          "checked": [
+            "diamonds-11"
+          ]
+        }
+      ],
+      "cancel": [
+        {
+          "kind": "legal selected targets then native Cancel",
+          "beforeRunSHA256": "fd60550caced3bc64ce2903f848561eb4918143bce4640876eb5ac78da5807ec",
+          "afterRunSHA256": "fd60550caced3bc64ce2903f848561eb4918143bce4640876eb5ac78da5807ec",
+          "selectedBefore": [
+            "hearts-13"
+          ],
+          "selectedAfter": [
+            "hearts-13"
+          ],
+          "status": "PASS"
+        }
+      ],
+      "screenshots": [
+        "390-t10-after-reload.png"
+      ],
+      "maxTargets": {
+        "maximum": 2,
+        "disabledExtra": "spades-14",
+        "status": "PASS"
+      },
+      "preview": "目标顺序：1. K♥ · 玻璃纸 · 闪箔 · 第 1 张 → 2. 4♣ · 无增强 · 普通 · 第 9 张\n\nK♥：玻璃纸 → 热度纸；原增强将被替换，其效果不再保留。\n当前 增强：玻璃纸（每次普通或额外计分倍率×1.5，结算后每张原实例只判一次，1/4概率永久破碎，失败手也判定且可低于主动删牌下限）；版次：闪箔（热度+25）。\n\n4♣：无增强 → 热度纸；保留其他属性。\n当前 增强：无；版次：普通。",
+      "confirm": {
+        "nativeAttempts": 2,
+        "commandSeq": [
+          3,
+          4
+        ],
+        "ownedCount": [
+          2,
+          1
+        ],
+        "consumedInstance": "fixture/use/T10",
+        "sentinelRetained": true,
+        "completeStateVsAuthoritativeCommand": "PASS",
+        "RNG": "UNCHANGED",
+        "beforeRunSHA256": "fd60550caced3bc64ce2903f848561eb4918143bce4640876eb5ac78da5807ec",
+        "afterRunSHA256": "22879018df233d921c8de7106bbf9123c03c0de12dc2c51b7c9b08eda7bb1754",
+        "targets": [
+          "hearts-13",
+          "clubs-4"
+        ],
+        "changes": [
+          {
+            "before": {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13,
+              "enhancement": "glass-paper",
+              "edition": "foil"
+            },
+            "after": {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13,
+              "enhancement": "heat-paper",
+              "edition": "foil"
+            }
+          },
+          {
+            "before": {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            "after": {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4,
+              "enhancement": "heat-paper"
+            }
+          }
+        ],
+        "events": [
+          {
+            "type": "consumable-used",
+            "definitionId": "T10",
+            "instanceId": "fixture/use/T10",
+            "targetIds": [
+              "hearts-13",
+              "clubs-4"
+            ],
+            "createdCardIds": [],
+            "destroyedCardIds": []
+          }
+        ]
+      },
+      "returnedHand": {
+        "renderer": 1,
+        "handRows": 1,
+        "visible": 9,
+        "cards": [
+          {
+            "card": {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13,
+              "enhancement": "heat-paper",
+              "edition": "foil"
+            },
+            "index": "K\n♥",
+            "texts": [
+              "K\n♥",
+              "K",
+              "★",
+              "✓",
+              "热",
+              "箔"
+            ],
+            "face": {
+              "x": 12,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "spades-14",
+              "suit": "spades",
+              "rank": 14
+            },
+            "index": "A\n♠",
+            "texts": [
+              "♠",
+              "A\n♠",
+              "A",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 49.75,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 3
+            },
+            "index": "3\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "3\n♣",
+              "3",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 87.5,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2
+            },
+            "index": "2\n♦",
+            "texts": [
+              "♦",
+              "♦",
+              "2\n♦",
+              "2",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 125.25,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-9",
+              "suit": "clubs",
+              "rank": 9,
+              "edition": "holographic"
+            },
+            "index": "9\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "9\n♣",
+              "9",
+              "★",
+              "✓",
+              "虹"
+            ],
+            "face": {
+              "x": 163,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            "index": "10\n♥",
+            "texts": [
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "10\n♥",
+              "10",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 200.75,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11,
+              "enhancement": "heat-paper"
+            },
+            "index": "J\n♦",
+            "texts": [
+              "J\n♦",
+              "J",
+              "★",
+              "✓",
+              "热"
+            ],
+            "face": {
+              "x": 238.5,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12,
+              "enhancement": "multiplier-paper"
+            },
+            "index": "Q\n♠",
+            "texts": [
+              "Q\n♠",
+              "Q",
+              "★",
+              "✓",
+              "倍"
+            ],
+            "face": {
+              "x": 276.25,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4,
+              "enhancement": "heat-paper"
+            },
+            "index": "4\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "4\n♣",
+              "4",
+              "★",
+              "✓",
+              "热"
+            ],
+            "face": {
+              "x": 314,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          }
+        ],
+        "inventoryLabel": "工具包 1/2"
+      },
+      "deckViewText": "剩余牌堆\n全部牌组\n所有增强\n无增强\n有增强\n\n按花色与点数统计，不展示抽牌顺序。\n♠ 13 · ♥ 13 · ♣ 13 · ♦ 13\n2♠、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠ 手牌 倍率纸、K♠、A♠ 手牌、2♥、3♥、4♥、5♥、6♥、7♥、8♥、9♥、10♥ 手牌、J♥、Q♥、K♥ 手牌 热度纸 闪箔、A♥、2♣、3♣ 手牌、4♣ 手牌 热度纸、5♣、6♣、7♣、8♣、9♣ 手牌 全息、10♣、J♣、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、9♦、10♦、J♦ 手牌 热度纸、Q♦、K♦、A♦",
+      "reload": {
+        "status": "PASS",
+        "beforeRunSHA256": "22879018df233d921c8de7106bbf9123c03c0de12dc2c51b7c9b08eda7bb1754",
+        "afterRunSHA256": "22879018df233d921c8de7106bbf9123c03c0de12dc2c51b7c9b08eda7bb1754",
+        "hand": {
+          "renderer": 1,
+          "handRows": 1,
+          "visible": 9,
+          "cards": [
+            {
+              "card": {
+                "id": "hearts-13",
+                "suit": "hearts",
+                "rank": 13,
+                "enhancement": "heat-paper",
+                "edition": "foil"
+              },
+              "index": "K\n♥",
+              "texts": [
+                "K\n♥",
+                "K",
+                "★",
+                "✓",
+                "热",
+                "箔"
+              ],
+              "face": {
+                "x": 12,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "spades-14",
+                "suit": "spades",
+                "rank": 14
+              },
+              "index": "A\n♠",
+              "texts": [
+                "♠",
+                "A\n♠",
+                "A",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 49.75,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-3",
+                "suit": "clubs",
+                "rank": 3
+              },
+              "index": "3\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "3\n♣",
+                "3",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 87.5,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "diamonds-2",
+                "suit": "diamonds",
+                "rank": 2
+              },
+              "index": "2\n♦",
+              "texts": [
+                "♦",
+                "♦",
+                "2\n♦",
+                "2",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 125.25,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-9",
+                "suit": "clubs",
+                "rank": 9,
+                "edition": "holographic"
+              },
+              "index": "9\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "9\n♣",
+                "9",
+                "★",
+                "✓",
+                "虹"
+              ],
+              "face": {
+                "x": 163,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "hearts-10",
+                "suit": "hearts",
+                "rank": 10
+              },
+              "index": "10\n♥",
+              "texts": [
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "10\n♥",
+                "10",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 200.75,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "diamonds-11",
+                "suit": "diamonds",
+                "rank": 11,
+                "enhancement": "heat-paper"
+              },
+              "index": "J\n♦",
+              "texts": [
+                "J\n♦",
+                "J",
+                "★",
+                "✓",
+                "热"
+              ],
+              "face": {
+                "x": 238.5,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "spades-12",
+                "suit": "spades",
+                "rank": 12,
+                "enhancement": "multiplier-paper"
+              },
+              "index": "Q\n♠",
+              "texts": [
+                "Q\n♠",
+                "Q",
+                "★",
+                "✓",
+                "倍"
+              ],
+              "face": {
+                "x": 276.25,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-4",
+                "suit": "clubs",
+                "rank": 4,
+                "enhancement": "heat-paper"
+              },
+              "index": "4\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "4\n♣",
+                "4",
+                "★",
+                "✓",
+                "热"
+              ],
+              "face": {
+                "x": 314,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            }
+          ],
+          "inventoryLabel": "工具包 1/2"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "T11",
+      "fixture": {
+        "runId": "fixture/p08-tools-use/T11/legal",
+        "liveDeck": 52,
+        "checkpointSHA256": "e7a98eab698f89fed56ceea64b73f2bed880155539aa46b66aefcb058db164bc"
+      },
+      "invalid": [
+        {
+          "hint": "请选择 1～2 张受益牌。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_CONSUMPTION",
+          "beforeRunSHA256": "b4a8eb068291d2b83e025224a049f6ffa3fb7c7438a1645b02e9853d58eeba8a",
+          "afterRunSHA256": "b4a8eb068291d2b83e025224a049f6ffa3fb7c7438a1645b02e9853d58eeba8a",
+          "checked": []
+        },
+        {
+          "hint": "所选牌已经全部具有相同增强，没有变化。",
+          "confirmDisabled": true,
+          "nativeDisabledTap": "NO_COMMAND_NO_CONSUMPTION",
+          "beforeRunSHA256": "b4a8eb068291d2b83e025224a049f6ffa3fb7c7438a1645b02e9853d58eeba8a",
+          "afterRunSHA256": "b4a8eb068291d2b83e025224a049f6ffa3fb7c7438a1645b02e9853d58eeba8a",
+          "checked": [
+            "spades-12"
+          ]
+        }
+      ],
+      "cancel": [
+        {
+          "kind": "legal selected targets then native Cancel",
+          "beforeRunSHA256": "b4a8eb068291d2b83e025224a049f6ffa3fb7c7438a1645b02e9853d58eeba8a",
+          "afterRunSHA256": "b4a8eb068291d2b83e025224a049f6ffa3fb7c7438a1645b02e9853d58eeba8a",
+          "selectedBefore": [
+            "hearts-13"
+          ],
+          "selectedAfter": [
+            "hearts-13"
+          ],
+          "status": "PASS"
+        }
+      ],
+      "screenshots": [],
+      "maxTargets": {
+        "maximum": 2,
+        "disabledExtra": "spades-14",
+        "status": "PASS"
+      },
+      "preview": "目标顺序：1. K♥ · 金纸 · 多彩 · 第 1 张 → 2. 4♣ · 无增强 · 普通 · 第 9 张\n\nK♥：金纸 → 倍率纸；原增强将被替换，其效果不再保留。\n当前 增强：金纸（成功过关时每张有效持牌金币+1，每场最多5金）；版次：多彩（倍率×1.5）。\n\n4♣：无增强 → 倍率纸；保留其他属性。\n当前 增强：无；版次：普通。",
+      "confirm": {
+        "nativeAttempts": 2,
+        "commandSeq": [
+          3,
+          4
+        ],
+        "ownedCount": [
+          2,
+          1
+        ],
+        "consumedInstance": "fixture/use/T11",
+        "sentinelRetained": true,
+        "completeStateVsAuthoritativeCommand": "PASS",
+        "RNG": "UNCHANGED",
+        "beforeRunSHA256": "b4a8eb068291d2b83e025224a049f6ffa3fb7c7438a1645b02e9853d58eeba8a",
+        "afterRunSHA256": "1d6de74735f79e5ddafca642225a2a29f81bae8a81abcef7b05323558f97422a",
+        "targets": [
+          "hearts-13",
+          "clubs-4"
+        ],
+        "changes": [
+          {
+            "before": {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13,
+              "enhancement": "gold-paper",
+              "edition": "polychrome"
+            },
+            "after": {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13,
+              "enhancement": "multiplier-paper",
+              "edition": "polychrome"
+            }
+          },
+          {
+            "before": {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            "after": {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4,
+              "enhancement": "multiplier-paper"
+            }
+          }
+        ],
+        "events": [
+          {
+            "type": "consumable-used",
+            "definitionId": "T11",
+            "instanceId": "fixture/use/T11",
+            "targetIds": [
+              "hearts-13",
+              "clubs-4"
+            ],
+            "createdCardIds": [],
+            "destroyedCardIds": []
+          }
+        ]
+      },
+      "returnedHand": {
+        "renderer": 1,
+        "handRows": 1,
+        "visible": 9,
+        "cards": [
+          {
+            "card": {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13,
+              "enhancement": "multiplier-paper",
+              "edition": "polychrome"
+            },
+            "index": "K\n♥",
+            "texts": [
+              "K\n♥",
+              "K",
+              "★",
+              "✓",
+              "倍",
+              "彩"
+            ],
+            "face": {
+              "x": 12,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "spades-14",
+              "suit": "spades",
+              "rank": 14
+            },
+            "index": "A\n♠",
+            "texts": [
+              "♠",
+              "A\n♠",
+              "A",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 49.75,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 3
+            },
+            "index": "3\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "3\n♣",
+              "3",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 87.5,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2
+            },
+            "index": "2\n♦",
+            "texts": [
+              "♦",
+              "♦",
+              "2\n♦",
+              "2",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 125.25,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-9",
+              "suit": "clubs",
+              "rank": 9,
+              "edition": "holographic"
+            },
+            "index": "9\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "9\n♣",
+              "9",
+              "★",
+              "✓",
+              "虹"
+            ],
+            "face": {
+              "x": 163,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            "index": "10\n♥",
+            "texts": [
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "♥",
+              "10\n♥",
+              "10",
+              "★",
+              "✓"
+            ],
+            "face": {
+              "x": 200.75,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11,
+              "enhancement": "heat-paper"
+            },
+            "index": "J\n♦",
+            "texts": [
+              "J\n♦",
+              "J",
+              "★",
+              "✓",
+              "热"
+            ],
+            "face": {
+              "x": 238.5,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12,
+              "enhancement": "multiplier-paper"
+            },
+            "index": "Q\n♠",
+            "texts": [
+              "Q\n♠",
+              "Q",
+              "★",
+              "✓",
+              "倍"
+            ],
+            "face": {
+              "x": 276.25,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          },
+          {
+            "card": {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4,
+              "enhancement": "multiplier-paper"
+            },
+            "index": "4\n♣",
+            "texts": [
+              "♣",
+              "♣",
+              "♣",
+              "♣",
+              "4\n♣",
+              "4",
+              "★",
+              "✓",
+              "倍"
+            ],
+            "face": {
+              "x": 314,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            }
+          }
+        ],
+        "inventoryLabel": "工具包 1/2"
+      },
+      "deckViewText": "剩余牌堆\n全部牌组\n所有增强\n无增强\n有增强\n\n按花色与点数统计，不展示抽牌顺序。\n♠ 13 · ♥ 13 · ♣ 13 · ♦ 13\n2♠、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠ 手牌 倍率纸、K♠、A♠ 手牌、2♥、3♥、4♥、5♥、6♥、7♥、8♥、9♥、10♥ 手牌、J♥、Q♥、K♥ 手牌 倍率纸 多彩、A♥、2♣、3♣ 手牌、4♣ 手牌 倍率纸、5♣、6♣、7♣、8♣、9♣ 手牌 全息、10♣、J♣、Q♣、K♣、A♣、2♦ 手牌、3♦、4♦、5♦、6♦、7♦、8♦、9♦、10♦、J♦ 手牌 热度纸、Q♦、K♦、A♦",
+      "reload": {
+        "status": "PASS",
+        "beforeRunSHA256": "1d6de74735f79e5ddafca642225a2a29f81bae8a81abcef7b05323558f97422a",
+        "afterRunSHA256": "1d6de74735f79e5ddafca642225a2a29f81bae8a81abcef7b05323558f97422a",
+        "hand": {
+          "renderer": 1,
+          "handRows": 1,
+          "visible": 9,
+          "cards": [
+            {
+              "card": {
+                "id": "hearts-13",
+                "suit": "hearts",
+                "rank": 13,
+                "enhancement": "multiplier-paper",
+                "edition": "polychrome"
+              },
+              "index": "K\n♥",
+              "texts": [
+                "K\n♥",
+                "K",
+                "★",
+                "✓",
+                "倍",
+                "彩"
+              ],
+              "face": {
+                "x": 12,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "spades-14",
+                "suit": "spades",
+                "rank": 14
+              },
+              "index": "A\n♠",
+              "texts": [
+                "♠",
+                "A\n♠",
+                "A",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 49.75,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-3",
+                "suit": "clubs",
+                "rank": 3
+              },
+              "index": "3\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "3\n♣",
+                "3",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 87.5,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "diamonds-2",
+                "suit": "diamonds",
+                "rank": 2
+              },
+              "index": "2\n♦",
+              "texts": [
+                "♦",
+                "♦",
+                "2\n♦",
+                "2",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 125.25,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-9",
+                "suit": "clubs",
+                "rank": 9,
+                "edition": "holographic"
+              },
+              "index": "9\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "9\n♣",
+                "9",
+                "★",
+                "✓",
+                "虹"
+              ],
+              "face": {
+                "x": 163,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "hearts-10",
+                "suit": "hearts",
+                "rank": 10
+              },
+              "index": "10\n♥",
+              "texts": [
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "♥",
+                "10\n♥",
+                "10",
+                "★",
+                "✓"
+              ],
+              "face": {
+                "x": 200.75,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "diamonds-11",
+                "suit": "diamonds",
+                "rank": 11,
+                "enhancement": "heat-paper"
+              },
+              "index": "J\n♦",
+              "texts": [
+                "J\n♦",
+                "J",
+                "★",
+                "✓",
+                "热"
+              ],
+              "face": {
+                "x": 238.5,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "spades-12",
+                "suit": "spades",
+                "rank": 12,
+                "enhancement": "multiplier-paper"
+              },
+              "index": "Q\n♠",
+              "texts": [
+                "Q\n♠",
+                "Q",
+                "★",
+                "✓",
+                "倍"
+              ],
+              "face": {
+                "x": 276.25,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            },
+            {
+              "card": {
+                "id": "clubs-4",
+                "suit": "clubs",
+                "rank": 4,
+                "enhancement": "multiplier-paper"
+              },
+              "index": "4\n♣",
+              "texts": [
+                "♣",
+                "♣",
+                "♣",
+                "♣",
+                "4\n♣",
+                "4",
+                "★",
+                "✓",
+                "倍"
+              ],
+              "face": {
+                "x": 314,
+                "y": 558.4000122070313,
+                "width": 64,
+                "height": 89.59999999999991
+              }
+            }
+          ],
+          "inventoryLabel": "工具包 1/2"
+        }
+      },
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "390-t07-valid-preview.png",
+    "390-t08-after-reload.png",
+    "390-t10-after-reload.png"
+  ],
+  "status": "PASS",
+  "actualView": {
+    "status": "PASS",
+    "reviewer": "implementing agent",
+    "images": [
+      "390-t07-valid-preview.png",
+      "390-t08-after-reload.png",
+      "390-t10-after-reload.png"
+    ],
+    "scope": "Three representative390 full pages actually viewed; engineering operation/result visibility, independent parent review not asserted."
+  }
+}
