@@ -6,9 +6,16 @@ import {R2_JOKERS} from '../src/content/r2Schema';
 import {prefetchDetailArt} from '../src/game/DetailArt';
 
 vi.mock('../src/game/DetailArt',()=>({prefetchDetailArt:vi.fn()}));
-// Choose actual legacy registrations; reviewed replacements must never stand in for legacy prefetch.
-const ids=JOKER_ART.filter(art=>!art.detailOnDemand&&art.path.startsWith('assets/jokers-p07/')).slice(0,3).map(art=>art.id);
-const unregistered=R2_JOKERS.find(definition=>!JOKER_ART.some(art=>art.id===definition.id))?.id??'fixture/never-registered';
+// All production cards are reviewed now. Exercise legacy compatibility only in this mocked registry.
+const legacyFixtures=vi.hoisted(()=>['a','b','c'].map(suffix=>({id:'fixture/legacy-'+suffix,key:'fixture-legacy-'+suffix,path:'test-fixtures/legacy-'+suffix+'.webp',detailPath:'test-fixtures/legacy-'+suffix+'.detail.webp',detailOnDemand:false})));
+vi.mock('../src/game/jokerArt',async importOriginal=>{
+  const actual=await importOriginal<typeof import('../src/game/jokerArt')>();
+  return {...actual,JOKER_ART:[...actual.JOKER_ART,...legacyFixtures],
+    jokerArtKey:(id:string)=>legacyFixtures.find(art=>art.id===id)?.key??actual.jokerArtKey(id),
+    jokerArtUrl:(id:string)=>legacyFixtures.find(art=>art.id===id)?.detailPath??actual.jokerArtUrl(id)};
+});
+const ids=legacyFixtures.map(art=>art.id);
+const unregistered='fixture/never-registered';
 const key=(id:string)=>jokerArtKey(id)!;
 type Listener=(...args:any[])=>void;
 class FakeEvents {
@@ -97,7 +104,7 @@ beforeEach(()=>{vi.useFakeTimers();vi.mocked(prefetchDetailArt).mockClear();});
 afterEach(()=>{for(const scene of scenes.splice(0))scene.shutdown();vi.clearAllTimers();vi.useRealTimers();});
 
 describe('registered Joker thumbnail recovery',()=>{
-  it('legacy prefetch fixtures are three distinct still-legacy registrations',()=>{expect(jokerArtKey(unregistered)).toBeUndefined();expect(ids).toHaveLength(3);expect(new Set(ids).size).toBe(3);for(const id of ids)expect(JOKER_ART.find(a=>a.id===id)).toMatchObject({path:expect.stringMatching(/^assets\/jokers-p07\//)});});
+  it('legacy prefetch fixtures are three distinct test-only registrations, separate from all72 production IDs',()=>{expect(jokerArtKey(unregistered)).toBeUndefined();expect(ids).toHaveLength(3);expect(new Set(ids).size).toBe(3);for(const id of ids){expect(R2_JOKERS.some(a=>a.id===id)).toBe(false);expect(JOKER_ART.find(a=>a.id===id)).toMatchObject({path:expect.stringMatching(/^test-fixtures\//),detailOnDemand:false});}expect(JOKER_ART.filter(a=>!ids.includes(a.id)).map(a=>a.id).sort()).toEqual(R2_JOKERS.map(a=>a.id).sort());});
   it('starts exactly once during Scene.create before Phaser reports RUNNING',()=>{
     const scene=new FakeScene(),refresh=vi.fn();scene.active=false;
     expect(scene.sys.settings.active).toBe(true);expect(scene.scene.isActive()).toBe(false);
@@ -180,7 +187,7 @@ describe('registered Joker thumbnail recovery',()=>{
     requestJokerArt(scene.phaser,ids,vi.fn());expect(prefetchDetailArt).toHaveBeenCalledTimes(2);
   });
 
-  it.each([{reviewed:['f09','f04']},...['pengci','mantangcai','huimaqiang','jiedongfeng'].map(id=>({reviewed:[id]})),...['b07','a09','d06','a04','e04','c05','c02','f03','a03','b02','b04','c04','d01','f02','d10','e01','b05','b10','b08','d05','e03','e06','f05','f11','b06','a11','d04','c07','d11','d08','d09','b12'].map(id=>({reviewed:[id]}))])('does not prefetch reviewed handdrawn HD before opening detail, including cached thumbnails: $reviewed',({reviewed})=>{
+  it.each([{reviewed:['f09','f04']},...R2_JOKERS.map(art=>({reviewed:[art.id]}))])('does not prefetch reviewed handdrawn HD before opening detail, including cached thumbnails: $reviewed',({reviewed})=>{
     for(const id of reviewed)expect(JOKER_ART.find(art=>art.id===id)?.detailOnDemand).toBe(true);
     const scene=new FakeScene();requestJokerArt(scene.phaser,reviewed,vi.fn());
     expect(scene.load.requests).toHaveLength(reviewed.length);
