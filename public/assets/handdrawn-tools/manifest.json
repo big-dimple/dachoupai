@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "sourceCommit": "11ae7a464fdcf54c4e338da9171d827265742e3c",
   "sourceManifestSHA256": "45e9b14f1366a8c165c25deec3f2eb04e252144cb0a2974d9d9f73c53517eed2",
-  "runtimeFileCount": 54,
-  "runtimeBytes": 870142,
+  "runtimeFileCount": 66,
+  "runtimeBytes": 1085058,
   "assets": [
     {
       "id": "tool-t12",
@@ -625,6 +625,144 @@
           "path": "tool-t18.detail.webp"
         }
       ]
+    },
+    {
+      "id": "tool-t01",
+      "domainId": "T01",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 3412,
+          "sha256": "bdd06ac040d820772754c4558a7b02c36d757fb961b50e7a298de30dd6827f6e",
+          "purpose": "thumbnail",
+          "path": "tool-t01.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 42038,
+          "sha256": "278be6cb1cfe76ce61f4299b005eefe4d0d9d299967f78282275eb31f4a1d255",
+          "purpose": "detail",
+          "path": "tool-t01.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-t02",
+      "domainId": "T02",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2704,
+          "sha256": "920f4e96c2caab05cf8d5f6619dfb923112eeee4b6b5b8c46d39c0c59753c562",
+          "purpose": "thumbnail",
+          "path": "tool-t02.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 33192,
+          "sha256": "6be966aa5f56c1ab9b0dffa8fc85fca188fe26c7bcdaed6cd071192561ec2969",
+          "purpose": "detail",
+          "path": "tool-t02.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-t03",
+      "domainId": "T03",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2776,
+          "sha256": "a3f356a35fd2065b66022c463119c416429a01b6eccc31791d40ff79ac9a28ed",
+          "purpose": "thumbnail",
+          "path": "tool-t03.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 40246,
+          "sha256": "8c2a87a0053bc5d92b306093208f2b9bd1bf9ecfce38c223549ac1a81b1a1fc7",
+          "purpose": "detail",
+          "path": "tool-t03.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-t04",
+      "domainId": "T04",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2276,
+          "sha256": "8bb4c9dd17c42af42b07434e6ed98e5a5e4cc374f1c604442ee8d98eba794b39",
+          "purpose": "thumbnail",
+          "path": "tool-t04.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 28316,
+          "sha256": "e52f02e6e9d07dc5240ab7b114d9d719839e28533af707300ab2162304fda0ec",
+          "purpose": "detail",
+          "path": "tool-t04.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-t05",
+      "domainId": "T05",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2420,
+          "sha256": "2391c6a48de7591276b524b6c939d888b8f02f54d9990052987e4d3fbec19092",
+          "purpose": "thumbnail",
+          "path": "tool-t05.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 30376,
+          "sha256": "187f0440b0d419f7389b34c3f765dc136437c3e3a91c70b260aa8a3f6a983be1",
+          "purpose": "detail",
+          "path": "tool-t05.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-p01",
+      "domainId": "P01",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2096,
+          "sha256": "d69add4c66c9b41640461e86cdf387de43fd838c7c842502a37e83b23b4c2c11",
+          "purpose": "thumbnail",
+          "path": "tool-p01.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 25064,
+          "sha256": "162ffb887a51d09a55f60f6106061deabfc5ca887c64f4b763e091f5a4e43a7b",
+          "purpose": "detail",
+          "path": "tool-p01.detail.webp"
+        }
+      ]
     }
   ],
   "additionalSources": [
@@ -647,6 +785,11 @@
       "sourceCommit": "a8cab71d56d24aeaef919e6c04c5c22bf0106da3",
       "sourceManifestPath": "art/sources/handdrawn-runtime-tools-20261004-t13-t18/manifest.json",
       "sourceManifestSHA256": "6c93741739a10ef676f2ba989988b70e580eecb16b51f6bfa45f867ad5bb7866"
+    },
+    {
+      "sourceCommit": "0df5c1afac5e07e439c0cb164a06896bba9608ab",
+      "sourceManifestPath": "art/sources/handdrawn-runtime-tools-20261004-t01-t05-p01/manifest.json",
+      "sourceManifestSHA256": "092ec0b2bf83d2c566609598195e2abcfb09a1318966ac316d37f0afcae84207"
     }
   ]
 }
