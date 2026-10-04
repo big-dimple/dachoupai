@@ -1,0 +1,54 @@
+{
+  "build": {
+    "version": "C03",
+    "revision": "9610ab4e8ce35d9d98a679fa60258f1d5742c5bb",
+    "modified": true,
+    "builtAt": "2026-10-04T01:04:29.360Z"
+  },
+  "renderer": "Canvas",
+  "DPR": 1,
+  "runs": [
+    {
+      "engine": "chromium",
+      "browser": "151.0.7922.173",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "checks": [
+        "natural3-offer shop: all72 condition details/cancel no state change/legal once-only purchase then entry",
+        "triple3/4/5: ghost/Escape keep selectedIDs and full state; explicit apply atomic/no command/save; undo restores; sort preserves IDs/undo; manual change ends undo",
+        "stale detached apply after order revision cannot alter new hand; resize and item/menu return preserve selection; no forecast numbers/fullText/fire",
+        "B02 actual selection/public memory preserves core vs active/ordinary0/static rules",
+        "B03 actual selection/public memory preserves core vs active/ordinary0/static rules",
+        "B16 actual selection/public memory preserves core vs active/ordinary0/static rules",
+        "actual save gate then scorer/presentation and complete committed recap; next-hand guidance/refresh preserve whole run/RNG/resources"
+      ],
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "browser": "26.6",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "checks": [],
+      "errors": []
+    }
+  ],
+  "device": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "screenshots": 0,
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'WebGL' !== 'Canvas'\n"
+}

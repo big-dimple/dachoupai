@@ -1,0 +1,393 @@
+{
+  "browser": "151.0.7922.173",
+  "renderer": "Canvas",
+  "build": {
+    "version": "C03",
+    "revision": "9610ab4e8ce35d9d98a679fa60258f1d5742c5bb",
+    "modified": true,
+    "builtAt": "2026-10-04T00:30:26.008Z"
+  },
+  "fixture": "Validated B03/c09 entry snapshot; 4 selected hearts form flush with all core scoring disabled. Not natural acquisition.",
+  "runs": [
+    {
+      "viewport": {
+        "width": 360,
+        "height": 678
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "score": {
+        "x": 8,
+        "y": 153.6,
+        "width": 344,
+        "height": 132
+      },
+      "facts": {
+        "type": "flush",
+        "playedIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "scoringIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "activeScoringIds": [],
+        "heldIds": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5"
+        ],
+        "accompanyingIds": [],
+        "disabledIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "ordinaryPointsSuppressedIds": [],
+        "rules": {
+          "fourStraight": false,
+          "fourFlush": true
+        },
+        "ruleSources": [
+          {
+            "instanceId": "four-flush",
+            "definitionId": "c09",
+            "kind": "four-flush",
+            "used": true
+          }
+        ]
+      },
+      "texts": [
+        {
+          "text": "同花 · 已选4张",
+          "font": "24px",
+          "bounds": {
+            "x": 102.5,
+            "y": 160.6,
+            "width": 155,
+            "height": 26
+          }
+        },
+        {
+          "text": "4张普通同一花色，点数不限",
+          "font": "14px",
+          "bounds": {
+            "x": 92,
+            "y": 191.6,
+            "width": 176,
+            "height": 16
+          }
+        },
+        {
+          "text": "计分牌4张 · 附带0张",
+          "font": "14px",
+          "bounds": {
+            "x": 116.5,
+            "y": 209.6,
+            "width": 127,
+            "height": 16
+          }
+        },
+        {
+          "text": "其中4张计分停用（仍参与判型）",
+          "font": "14px",
+          "bounds": {
+            "x": 78,
+            "y": 227.6,
+            "width": 204,
+            "height": 16
+          }
+        },
+        {
+          "text": "规则：4张普通同花；同花顺仍5张",
+          "font": "14px",
+          "bounds": {
+            "x": 74,
+            "y": 245.6,
+            "width": 212,
+            "height": 16.00000000000003
+          }
+        },
+        {
+          "text": "选择说明 · 构筑条件 ›",
+          "font": "14px",
+          "bounds": {
+            "x": 18,
+            "y": 262.6,
+            "width": 133,
+            "height": 16
+          }
+        }
+      ],
+      "collisions": []
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 690
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 12,
+        "bottom": 0
+      },
+      "score": {
+        "x": 8,
+        "y": 165.6,
+        "width": 344,
+        "height": 132
+      },
+      "facts": {
+        "type": "flush",
+        "playedIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "scoringIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "activeScoringIds": [],
+        "heldIds": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5"
+        ],
+        "accompanyingIds": [],
+        "disabledIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "ordinaryPointsSuppressedIds": [],
+        "rules": {
+          "fourStraight": false,
+          "fourFlush": true
+        },
+        "ruleSources": [
+          {
+            "instanceId": "four-flush",
+            "definitionId": "c09",
+            "kind": "four-flush",
+            "used": true
+          }
+        ]
+      },
+      "texts": [
+        {
+          "text": "同花 · 已选4张",
+          "font": "24px",
+          "bounds": {
+            "x": 102.5,
+            "y": 172.6,
+            "width": 155,
+            "height": 26
+          }
+        },
+        {
+          "text": "4张普通同一花色，点数不限",
+          "font": "14px",
+          "bounds": {
+            "x": 92,
+            "y": 203.6,
+            "width": 176,
+            "height": 16
+          }
+        },
+        {
+          "text": "计分牌4张 · 附带0张",
+          "font": "14px",
+          "bounds": {
+            "x": 116.5,
+            "y": 221.6,
+            "width": 127,
+            "height": 16
+          }
+        },
+        {
+          "text": "其中4张计分停用（仍参与判型）",
+          "font": "14px",
+          "bounds": {
+            "x": 78,
+            "y": 239.6,
+            "width": 204,
+            "height": 16
+          }
+        },
+        {
+          "text": "规则：4张普通同花；同花顺仍5张",
+          "font": "14px",
+          "bounds": {
+            "x": 74,
+            "y": 257.6,
+            "width": 212,
+            "height": 16
+          }
+        },
+        {
+          "text": "选择说明 · 构筑条件 ›",
+          "font": "14px",
+          "bounds": {
+            "x": 18,
+            "y": 274.6,
+            "width": 133,
+            "height": 16
+          }
+        }
+      ],
+      "collisions": []
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 656
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 0,
+        "bottom": 0
+      },
+      "score": {
+        "x": 8,
+        "y": 168,
+        "width": 304,
+        "height": 108.39999999999998
+      },
+      "facts": {
+        "type": "flush",
+        "playedIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "scoringIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "activeScoringIds": [],
+        "heldIds": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5"
+        ],
+        "accompanyingIds": [],
+        "disabledIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "ordinaryPointsSuppressedIds": [],
+        "rules": {
+          "fourStraight": false,
+          "fourFlush": true
+        },
+        "ruleSources": [
+          {
+            "instanceId": "four-flush",
+            "definitionId": "c09",
+            "kind": "four-flush",
+            "used": true
+          }
+        ]
+      },
+      "texts": [
+        {
+          "text": "同花 · 已选4张",
+          "font": "24px",
+          "bounds": {
+            "x": 82.5,
+            "y": 175,
+            "width": 155,
+            "height": 26
+          }
+        },
+        {
+          "text": "计分牌4张 · 附带0张",
+          "font": "14px",
+          "bounds": {
+            "x": 96.5,
+            "y": 202,
+            "width": 127,
+            "height": 16
+          }
+        },
+        {
+          "text": "其中4张计分停用（仍参与判型）",
+          "font": "14px",
+          "bounds": {
+            "x": 58,
+            "y": 220,
+            "width": 204,
+            "height": 16
+          }
+        },
+        {
+          "text": "规则：4张普通同花；同花顺仍5张",
+          "font": "14px",
+          "bounds": {
+            "x": 54,
+            "y": 238,
+            "width": 212,
+            "height": 16
+          }
+        },
+        {
+          "text": "选择说明 · 构筑条件 ›",
+          "font": "14px",
+          "bounds": {
+            "x": 18,
+            "y": 253.39999999999998,
+            "width": 133,
+            "height": 16
+          }
+        }
+      ],
+      "collisions": [
+        [
+          {
+            "text": "规则：4张普通同花；同花顺仍5张",
+            "font": "14px",
+            "bounds": {
+              "x": 54,
+              "y": 238,
+              "width": 212,
+              "height": 16
+            }
+          },
+          {
+            "text": "选择说明 · 构筑条件 ›",
+            "font": "14px",
+            "bounds": {
+              "x": 18,
+              "y": 253.39999999999998,
+              "width": 133,
+              "height": 16
+            }
+          }
+        ]
+      ]
+    }
+  ],
+  "status": "FAIL"
+}

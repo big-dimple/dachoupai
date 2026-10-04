@@ -1,0 +1,1424 @@
+{
+  "source": "cdd3adddc69630337f657d71ac4a1edf6abf7c2eeb8cff3716e5d74d8f35b2e6",
+  "build": {
+    "version": "C03",
+    "revision": "9610ab4e8ce35d9d98a679fa60258f1d5742c5bb",
+    "modified": true,
+    "builtAt": "2026-10-04T01:21:40.381Z"
+  },
+  "browser": "151.0.7922.173",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "safeInset": {
+    "top": 0,
+    "right": 0,
+    "bottom": 0,
+    "left": 0
+  },
+  "renderer": "Canvas",
+  "route": "FIXTURE: existing checkpoint validation + native import UI; 7♠ 7♥ 7♣ 2♠ 4♥; held c08/c09/f09; not natural acquisition",
+  "checks": [
+    "closed old modal callback rejected against new ghost on identical hand key; current apply3 then undo5 are atomic UI-only",
+    "authoritative triple3 core2 accompanying/current type and actual candidate entry",
+    "actual enumeration offers triple3/4/5; ghost native tap does not change selectedIDs/save/RNG/journal/resources",
+    "single modal scroll with explicit replace/undo/close44px targets"
+  ],
+  "device": "NOT_RUN",
+  "independentReview": "PENDING",
+  "modal": {
+    "text": "本轮可成牌型\n\n三条 · 已选5张\n计分牌3张 · 附带2张\n共7种：高牌 · 对子 · 两对 · 三条 · 顺子 · 同花 · 葫芦\n★代表计分牌。只看当前手牌，不评优、不算收益。\n点示例不改选择；换组后仍需自己出牌。\n\n高牌 · 可选1／2／3／4／5张\n对子 · 可选2／3／4／5张\n两对 · 可选4／5张\n三条 · 可选3／4／5张\n3张示例\n4张示例\n5张示例\n7♠ 7♥ 7♣ 2♠ 4♥\n计分牌3张 · 附带2张\n顺子 · 可选4张\n同花 · 可选4／5张\n葫芦 · 可选5张\n\n仅示例：三条 · 已选5张\n3张相同点数\n计分牌：7♠ 7♥ 7♣\n附带牌：2♠ 4♥\n\n当前手牌选择未改变。\n\n换为这组\n撤销换组\n构筑条件\n关闭",
+    "scrolls": 1,
+    "buttons": [
+      {
+        "label": "换为这组",
+        "bounds": {
+          "x": 36,
+          "y": 609,
+          "width": 100.65625,
+          "height": 56
+        }
+      },
+      {
+        "label": "撤销换组",
+        "bounds": {
+          "x": 144.65625,
+          "y": 609,
+          "width": 100.671875,
+          "height": 56
+        }
+      },
+      {
+        "label": "构筑条件",
+        "bounds": {
+          "x": 253.328125,
+          "y": 609,
+          "width": 100.671875,
+          "height": 56
+        }
+      },
+      {
+        "label": "关闭",
+        "bounds": {
+          "x": 36,
+          "y": 673,
+          "width": 318,
+          "height": 44
+        }
+      }
+    ]
+  },
+  "measured": {
+    "facts": {
+      "type": "three-kind",
+      "playedIds": [
+        "spades-7",
+        "hearts-7",
+        "clubs-7",
+        "spades-2",
+        "hearts-4"
+      ],
+      "scoringIds": [
+        "spades-7",
+        "hearts-7",
+        "clubs-7"
+      ],
+      "activeScoringIds": [
+        "spades-7",
+        "hearts-7",
+        "clubs-7"
+      ],
+      "heldIds": [
+        "spades-3",
+        "spades-4",
+        "spades-5"
+      ],
+      "accompanyingIds": [
+        "spades-2",
+        "hearts-4"
+      ],
+      "disabledIds": [],
+      "ordinaryPointsSuppressedIds": [],
+      "rules": {
+        "fourStraight": true,
+        "fourFlush": true
+      },
+      "ruleSources": [
+        {
+          "instanceId": "fixture/c08",
+          "definitionId": "c08",
+          "kind": "four-straight",
+          "used": false
+        },
+        {
+          "instanceId": "fixture/c09",
+          "definitionId": "c09",
+          "kind": "four-flush",
+          "used": false
+        }
+      ]
+    },
+    "title": "三条 · 已选5张",
+    "candidates": [
+      {
+        "type": "high-card",
+        "counts": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "type": "pair",
+        "counts": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "type": "two-pair",
+        "counts": [
+          4,
+          5
+        ]
+      },
+      {
+        "type": "three-kind",
+        "counts": [
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "type": "straight",
+        "counts": [
+          4
+        ]
+      },
+      {
+        "type": "flush",
+        "counts": [
+          4,
+          5
+        ]
+      },
+      {
+        "type": "full-house",
+        "counts": [
+          5
+        ]
+      }
+    ],
+    "renderer": "Canvas",
+    "texts": [
+      {
+        "text": "阿默",
+        "bounds": {
+          "x": 76,
+          "y": 14,
+          "width": 36,
+          "height": 21
+        }
+      },
+      {
+        "text": "目标 0 / 400",
+        "bounds": {
+          "x": 76,
+          "y": 36,
+          "width": 86,
+          "height": 19
+        }
+      },
+      {
+        "text": "金币 6",
+        "bounds": {
+          "x": 156,
+          "y": 14,
+          "width": 40,
+          "height": 16
+        }
+      },
+      {
+        "text": "特",
+        "bounds": {
+          "x": 68,
+          "y": 118.10000610351562,
+          "width": 13,
+          "height": 15
+        }
+      },
+      {
+        "text": "少一级",
+        "bounds": {
+          "x": 26,
+          "y": 63.000003051757815,
+          "width": 42,
+          "height": 16
+        }
+      },
+      {
+        "text": "4张顺子",
+        "bounds": {
+          "x": 26,
+          "y": 135.60000305175782,
+          "width": 50,
+          "height": 16
+        }
+      },
+      {
+        "text": "稀",
+        "bounds": {
+          "x": 138,
+          "y": 118.10000610351562,
+          "width": 13,
+          "height": 15
+        }
+      },
+      {
+        "text": "少一块布",
+        "bounds": {
+          "x": 96,
+          "y": 63.000003051757815,
+          "width": 56,
+          "height": 16
+        }
+      },
+      {
+        "text": "4张同花",
+        "bounds": {
+          "x": 96,
+          "y": 135.60000305175782,
+          "width": 50,
+          "height": 16
+        }
+      },
+      {
+        "text": "特",
+        "bounds": {
+          "x": 208,
+          "y": 118.10000610351562,
+          "width": 13,
+          "height": 15
+        }
+      },
+      {
+        "text": "不换词",
+        "bounds": {
+          "x": 166,
+          "y": 63.000003051757815,
+          "width": 42,
+          "height": 16
+        }
+      },
+      {
+        "text": "不弃增倍",
+        "bounds": {
+          "x": 166,
+          "y": 135.60000305175782,
+          "width": 56,
+          "height": 16
+        }
+      },
+      {
+        "text": "三条 · 已选5张",
+        "bounds": {
+          "x": 117.5,
+          "y": 160.6,
+          "width": 155,
+          "height": 26
+        }
+      },
+      {
+        "text": "待出牌",
+        "bounds": {
+          "x": 37,
+          "y": 351,
+          "width": 42,
+          "height": 16
+        }
+      },
+      {
+        "text": "点数",
+        "bounds": {
+          "x": 94.5,
+          "y": 670.5,
+          "width": 31,
+          "height": 17
+        }
+      },
+      {
+        "text": "花色",
+        "bounds": {
+          "x": 144.5,
+          "y": 670.5,
+          "width": 31,
+          "height": 17
+        }
+      },
+      {
+        "text": "弃牌",
+        "bounds": {
+          "x": 33,
+          "y": 657.5,
+          "width": 28,
+          "height": 17
+        }
+      },
+      {
+        "text": "出牌",
+        "bounds": {
+          "x": 266.5,
+          "y": 656.5,
+          "width": 33,
+          "height": 19
+        }
+      },
+      {
+        "text": "4 次",
+        "bounds": {
+          "x": 270,
+          "y": 681,
+          "width": 26,
+          "height": 16
+        }
+      },
+      {
+        "text": "3 次",
+        "bounds": {
+          "x": 34,
+          "y": 681,
+          "width": 26,
+          "height": 16
+        }
+      },
+      {
+        "text": "已选 5 / 5",
+        "bounds": {
+          "x": 12,
+          "y": 712,
+          "width": 60,
+          "height": 16
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 30.979999999999997,
+          "y": 550.5244922070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 50.02,
+          "y": 550.5244922070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 40.5,
+          "y": 565.3622522070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 30.979999999999997,
+          "y": 580.2000122070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 50.02,
+          "y": 580.2000122070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 30.979999999999997,
+          "y": 609.8755322070313,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 50.02,
+          "y": 609.8755322070313,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "7\n♠",
+        "bounds": {
+          "x": 16,
+          "y": 546.4000122070313,
+          "width": 8,
+          "height": 30
+        }
+      },
+      {
+        "text": "7",
+        "bounds": {
+          "x": 65,
+          "y": 614.0000122070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "★",
+        "bounds": {
+          "x": 16,
+          "y": 611.0000122070312,
+          "width": 13,
+          "height": 17
+        }
+      },
+      {
+        "text": "✓",
+        "bounds": {
+          "x": 15,
+          "y": 577.9000122070313,
+          "width": 20,
+          "height": 19
+        }
+      },
+      {
+        "text": "♥",
+        "bounds": {
+          "x": 74.80286041259765,
+          "y": 552.0244922070312,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♥",
+        "bounds": {
+          "x": 92.48286041259766,
+          "y": 552.0244922070312,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♥",
+        "bounds": {
+          "x": 83.64286041259766,
+          "y": 566.8622522070312,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♥",
+        "bounds": {
+          "x": 74.80286041259765,
+          "y": 581.7000122070312,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♥",
+        "bounds": {
+          "x": 92.48286041259766,
+          "y": 581.7000122070312,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♥",
+        "bounds": {
+          "x": 74.80286041259765,
+          "y": 611.3755322070313,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♥",
+        "bounds": {
+          "x": 92.48286041259766,
+          "y": 611.3755322070313,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "7\n♥",
+        "bounds": {
+          "x": 59.142860412597656,
+          "y": 546.4000122070313,
+          "width": 9,
+          "height": 30
+        }
+      },
+      {
+        "text": "7",
+        "bounds": {
+          "x": 108.14286041259766,
+          "y": 614.0000122070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "★",
+        "bounds": {
+          "x": 59.142860412597656,
+          "y": 611.0000122070312,
+          "width": 13,
+          "height": 17
+        }
+      },
+      {
+        "text": "✓",
+        "bounds": {
+          "x": 58.142860412597656,
+          "y": 577.9000122070313,
+          "width": 20,
+          "height": 19
+        }
+      },
+      {
+        "text": "♣",
+        "bounds": {
+          "x": 118.62572082519532,
+          "y": 552.0244922070312,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♣",
+        "bounds": {
+          "x": 134.9457208251953,
+          "y": 552.0244922070312,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♣",
+        "bounds": {
+          "x": 126.78572082519531,
+          "y": 566.8622522070312,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♣",
+        "bounds": {
+          "x": 118.62572082519532,
+          "y": 581.7000122070312,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♣",
+        "bounds": {
+          "x": 134.9457208251953,
+          "y": 581.7000122070312,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♣",
+        "bounds": {
+          "x": 118.62572082519532,
+          "y": 611.3755322070313,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♣",
+        "bounds": {
+          "x": 134.9457208251953,
+          "y": 611.3755322070313,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "7\n♣",
+        "bounds": {
+          "x": 102.28572082519531,
+          "y": 546.4000122070313,
+          "width": 10,
+          "height": 30
+        }
+      },
+      {
+        "text": "7",
+        "bounds": {
+          "x": 151.2857208251953,
+          "y": 614.0000122070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "★",
+        "bounds": {
+          "x": 102.28572082519531,
+          "y": 611.0000122070312,
+          "width": 13,
+          "height": 17
+        }
+      },
+      {
+        "text": "✓",
+        "bounds": {
+          "x": 101.28572082519531,
+          "y": 577.9000122070313,
+          "width": 20,
+          "height": 19
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 169.92857360839844,
+          "y": 550.5244922070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 169.92857360839844,
+          "y": 609.8755322070313,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "2\n♠",
+        "bounds": {
+          "x": 145.42857360839844,
+          "y": 546.4000122070313,
+          "width": 8,
+          "height": 30
+        }
+      },
+      {
+        "text": "2",
+        "bounds": {
+          "x": 194.42857360839844,
+          "y": 614.0000122070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "✓",
+        "bounds": {
+          "x": 144.42857360839844,
+          "y": 577.9000122070313,
+          "width": 20,
+          "height": 19
+        }
+      },
+      {
+        "text": "♥",
+        "bounds": {
+          "x": 204.23142639160156,
+          "y": 552.0244922070312,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♥",
+        "bounds": {
+          "x": 221.91142639160157,
+          "y": 552.0244922070312,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♥",
+        "bounds": {
+          "x": 204.23142639160156,
+          "y": 611.3755322070313,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "♥",
+        "bounds": {
+          "x": 221.91142639160157,
+          "y": 611.3755322070313,
+          "width": 7,
+          "height": 11
+        }
+      },
+      {
+        "text": "4\n♥",
+        "bounds": {
+          "x": 188.57142639160156,
+          "y": 546.4000122070313,
+          "width": 9,
+          "height": 30
+        }
+      },
+      {
+        "text": "4",
+        "bounds": {
+          "x": 237.57142639160156,
+          "y": 614.0000122070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "✓",
+        "bounds": {
+          "x": 187.57142639160156,
+          "y": 577.9000122070313,
+          "width": 20,
+          "height": 19
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 256.21429443359375,
+          "y": 566.5244922070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 256.21429443359375,
+          "y": 596.2000122070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 256.21429443359375,
+          "y": 625.8755322070313,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "3\n♠",
+        "bounds": {
+          "x": 231.71429443359375,
+          "y": 562.4000122070313,
+          "width": 8,
+          "height": 30
+        }
+      },
+      {
+        "text": "3",
+        "bounds": {
+          "x": 280.71429443359375,
+          "y": 630.0000122070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 289.8371472167969,
+          "y": 566.5244922070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 308.87714721679686,
+          "y": 566.5244922070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 289.8371472167969,
+          "y": 625.8755322070313,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 308.87714721679686,
+          "y": 625.8755322070313,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "4\n♠",
+        "bounds": {
+          "x": 274.8571472167969,
+          "y": 562.4000122070313,
+          "width": 8,
+          "height": 30
+        }
+      },
+      {
+        "text": "4",
+        "bounds": {
+          "x": 323.8571472167969,
+          "y": 630.0000122070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 332.98,
+          "y": 566.5244922070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 352.02,
+          "y": 566.5244922070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 342.5,
+          "y": 596.2000122070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 332.98,
+          "y": 625.8755322070313,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 352.02,
+          "y": 625.8755322070313,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "5\n♠",
+        "bounds": {
+          "x": 318,
+          "y": 562.4000122070313,
+          "width": 8,
+          "height": 30
+        }
+      },
+      {
+        "text": "5",
+        "bounds": {
+          "x": 367,
+          "y": 630.0000122070312,
+          "width": 7,
+          "height": 14
+        }
+      },
+      {
+        "text": "3张相同点数",
+        "bounds": {
+          "x": 156,
+          "y": 191.6,
+          "width": 78,
+          "height": 16
+        }
+      },
+      {
+        "text": "计分牌3张 · 附带2张",
+        "bounds": {
+          "x": 131.5,
+          "y": 211.6,
+          "width": 127,
+          "height": 16
+        }
+      },
+      {
+        "text": "规则：4张普通顺子／同花；同花顺仍5张",
+        "bounds": {
+          "x": 68,
+          "y": 231.6,
+          "width": 254,
+          "height": 16
+        }
+      },
+      {
+        "text": "本轮可成7种 · 查看",
+        "bounds": {
+          "x": 22,
+          "y": 265.6,
+          "width": 119,
+          "height": 16
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 69,
+          "y": 409.912,
+          "width": 12,
+          "height": 24
+        }
+      },
+      {
+        "text": "7\n♠",
+        "bounds": {
+          "x": 53,
+          "y": 386.6,
+          "width": 8,
+          "height": 30
+        }
+      },
+      {
+        "text": "7",
+        "bounds": {
+          "x": 91,
+          "y": 440.4,
+          "width": 6,
+          "height": 11
+        }
+      },
+      {
+        "text": "♥",
+        "bounds": {
+          "x": 128.5,
+          "y": 409.912,
+          "width": 13,
+          "height": 24
+        }
+      },
+      {
+        "text": "7\n♥",
+        "bounds": {
+          "x": 113,
+          "y": 386.6,
+          "width": 9,
+          "height": 30
+        }
+      },
+      {
+        "text": "7",
+        "bounds": {
+          "x": 151,
+          "y": 440.4,
+          "width": 6,
+          "height": 11
+        }
+      },
+      {
+        "text": "♣",
+        "bounds": {
+          "x": 187.5,
+          "y": 409.912,
+          "width": 15,
+          "height": 24
+        }
+      },
+      {
+        "text": "7\n♣",
+        "bounds": {
+          "x": 173,
+          "y": 386.6,
+          "width": 10,
+          "height": 30
+        }
+      },
+      {
+        "text": "7",
+        "bounds": {
+          "x": 211,
+          "y": 440.4,
+          "width": 6,
+          "height": 11
+        }
+      },
+      {
+        "text": "♠",
+        "bounds": {
+          "x": 249,
+          "y": 409.912,
+          "width": 12,
+          "height": 24
+        }
+      },
+      {
+        "text": "2\n♠",
+        "bounds": {
+          "x": 233,
+          "y": 386.6,
+          "width": 8,
+          "height": 30
+        }
+      },
+      {
+        "text": "2",
+        "bounds": {
+          "x": 271,
+          "y": 440.4,
+          "width": 6,
+          "height": 11
+        }
+      },
+      {
+        "text": "♥",
+        "bounds": {
+          "x": 308.5,
+          "y": 409.912,
+          "width": 13,
+          "height": 24
+        }
+      },
+      {
+        "text": "4\n♥",
+        "bounds": {
+          "x": 293,
+          "y": 386.6,
+          "width": 9,
+          "height": 30
+        }
+      },
+      {
+        "text": "4",
+        "bounds": {
+          "x": 331,
+          "y": 440.4,
+          "width": 6,
+          "height": 11
+        }
+      }
+    ],
+    "layout": {
+      "mode": "portrait",
+      "compact": true,
+      "shortLandscape": false,
+      "width": 390,
+      "height": 740,
+      "hud": {
+        "x": 12,
+        "y": 8,
+        "width": 366,
+        "height": 52
+      },
+      "jokers": {
+        "x": 12,
+        "y": 62,
+        "width": 366,
+        "height": 89.6
+      },
+      "preview": {
+        "x": 12,
+        "y": 153.6,
+        "width": 366,
+        "height": 378.79999999999995
+      },
+      "scoreBoard": {
+        "x": 12,
+        "y": 153.6,
+        "width": 366,
+        "height": 132
+      },
+      "playedArea": {
+        "x": 12,
+        "y": 305.6,
+        "width": 366,
+        "height": 226.79999999999995
+      },
+      "handLabel": {
+        "x": 12,
+        "y": 518.4,
+        "width": 116,
+        "height": 18
+      },
+      "piles": {
+        "x": 128,
+        "y": 518.4,
+        "width": 250,
+        "height": 18
+      },
+      "tools": {
+        "x": 88,
+        "y": 652,
+        "width": 94,
+        "height": 56
+      },
+      "hand": {
+        "x": 12,
+        "y": 536.4,
+        "width": 366,
+        "height": 111.6
+      },
+      "actions": {
+        "x": 12,
+        "y": 652,
+        "width": 366,
+        "height": 56
+      },
+      "status": {
+        "x": 12,
+        "y": 712,
+        "width": 366,
+        "height": 20
+      },
+      "scoreFire": {
+        "x": 151.08,
+        "y": 179.6,
+        "width": 222.92,
+        "height": 36.00000000000003
+      },
+      "toolsInHud": false,
+      "labelHeight": 0,
+      "buttons": {
+        "rank": {
+          "x": 88,
+          "y": 652,
+          "width": 44,
+          "height": 56
+        },
+        "suit": {
+          "x": 138,
+          "y": 652,
+          "width": 44,
+          "height": 56
+        }
+      },
+      "tableActions": {
+        "discard": {
+          "x": 12,
+          "y": 652,
+          "width": 70,
+          "height": 56
+        },
+        "play": {
+          "x": 188,
+          "y": 652,
+          "width": 190,
+          "height": 56
+        }
+      },
+      "cards": [
+        {
+          "visible": true,
+          "visual": {
+            "x": 12,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 12,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 55.142857142857146,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 55.142857142857146,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 98.28571428571429,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 98.28571428571429,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 141.42857142857144,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 141.42857142857144,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 184.57142857142858,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 184.57142857142858,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 227.71428571428572,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 227.71428571428572,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 270.8571428571429,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 270.8571428571429,
+            "y": 536.4,
+            "width": 43.142857142857146,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 314,
+            "y": 558.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 314,
+            "y": 536.4,
+            "width": 64,
+            "height": 111.6
+          }
+        }
+      ],
+      "handRows": 1,
+      "handOverflow": false,
+      "handStart": 0,
+      "visibleCardCount": 8,
+      "handNavigation": {
+        "previous": {
+          "x": 12,
+          "y": 560.6,
+          "width": 44,
+          "height": 44
+        },
+        "next": {
+          "x": 334,
+          "y": 560.6,
+          "width": 44,
+          "height": 44
+        }
+      },
+      "slots": [
+        {
+          "x": 23,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 93,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 163,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 233,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 303,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        }
+      ],
+      "jokerLabels": [
+        {
+          "x": 23,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 93,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 163,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 233,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 303,
+          "y": 62,
+          "width": 64,
+          "height": 89.6
+        }
+      ]
+    }
+  },
+  "status": "PASS"
+}
