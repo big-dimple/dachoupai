@@ -1,16 +1,16 @@
 import{it,expect}from'vitest';import{readFileSync}from'node:fs';import{createHash}from'node:crypto';import manifest from'../public/assets/handdrawn-p08/manifest.json';import{HANDDRAWN_ART,HANDDRAWN_SOURCE,handdrawnPath,COURT_ART,courtArtKey}from'../src/game/HanddrawnArt';import{JOKER_ART,jokerArtAlignedLayers,jokerArtKey}from'../src/game/jokerArt';import{CHARACTERS}from'../src/game/characters';
-it('pins exact authorized52 artwork107 runtime hashes/sizes and purpose mapping',()=>{expect(HANDDRAWN_SOURCE).toBe('c618cee93089bb2e556f16567709b0ea23abbcb9');expect(HANDDRAWN_ART).toHaveLength(52);let n=0,total=0;for(const a of manifest.assets)for(const o of a.outputs){const b=readFileSync(new URL('../public/assets/handdrawn-p08/'+o.path,import.meta.url));expect(b.length).toBe(o.bytes);expect(createHash('sha256').update(b).digest('hex')).toBe(o.sha256);expect(handdrawnPath(a.id,o.purpose)).toBe('assets/handdrawn-p08/'+o.path);n++;total+=b.length;}expect(n).toBe(107);expect(total).toBe(3090260);});
+it('pins exact authorized60 artwork123 runtime hashes/sizes and purpose mapping',()=>{expect(HANDDRAWN_SOURCE).toBe('c618cee93089bb2e556f16567709b0ea23abbcb9');expect(HANDDRAWN_ART).toHaveLength(60);let n=0,total=0;for(const a of manifest.assets)for(const o of a.outputs){const b=readFileSync(new URL('../public/assets/handdrawn-p08/'+o.path,import.meta.url));expect(b.length).toBe(o.bytes);expect(createHash('sha256').update(b).digest('hex')).toBe(o.sha256);expect(handdrawnPath(a.id,o.purpose)).toBe('assets/handdrawn-p08/'+o.path);n++;total+=b.length;}expect(n).toBe(123);expect(total).toBe(3461406);});
 it('six role IDs own their portrait/avatar/selection; JQK are rank-specific independent faces',()=>{for(const c of CHARACTERS){expect(c.portrait).toContain(handdrawnPath(c.id,'portrait'));for(const purpose of['avatar','selection','portrait'])expect(handdrawnPath(c.id,purpose)).toBeTruthy();}expect(COURT_ART.map(a=>a.rank)).toEqual([11,12,13]);for(const rank of[11,12,13])expect(courtArtKey(rank)).toBe('p08-court-'+(['j','q','k'][rank-11]));expect(courtArtKey(10)).toBeUndefined();});
-it('exact43 functional replacements retain all other old IDs; new flat f09 never claims aligned layers',()=>{const changed=HANDDRAWN_ART.filter(a=>a.category==='functional-card');expect(changed).toHaveLength(43);for(const a of changed){const r=JOKER_ART.find(r=>r.id===a.id)!;expect(r.path).toBe(handdrawnPath(a.id,'thumbnail'));expect(r.detailPath).toBe(handdrawnPath(a.id,'detail'));expect(r.detailOnDemand).toBe(true);}expect(JOKER_ART).toHaveLength(49);expect(jokerArtKey('f09')).toBe('p08-joker-f09');expect(jokerArtAlignedLayers('f09')).toBe(false);expect(JOKER_ART.find(a=>a.id==='e05')?.path).toBe('assets/jokers-p07/e05.webp');expect(jokerArtKey('c11')).toBeUndefined();});
+it('exact51 functional replacements retain all other old IDs; new flat f09 never claims aligned layers',()=>{const changed=HANDDRAWN_ART.filter(a=>a.category==='functional-card');expect(changed).toHaveLength(51);for(const a of changed){const r=JOKER_ART.find(r=>r.id===a.id)!;expect(r.path).toBe(handdrawnPath(a.id,'thumbnail'));expect(r.detailPath).toBe(handdrawnPath(a.id,'detail'));expect(r.detailOnDemand).toBe(true);}expect(JOKER_ART).toHaveLength(57);expect(jokerArtKey('f09')).toBe('p08-joker-f09');expect(jokerArtAlignedLayers('f09')).toBe(false);expect(JOKER_ART.find(a=>a.id==='e05')?.path).toBe('assets/jokers-p07/e05.webp');expect(jokerArtKey('c11')).toBeUndefined();});
 
 it('batch2 binds only approved tiesuanpan/f10 to exact source receipt and on-demand complete faces',()=>{
- expect(manifest.sourceCommits).toEqual(['c618cee93089bb2e556f16567709b0ea23abbcb9','3284505ad86e4e216343aa873719d20524f9a4ce','b0394efd921fc05d936ea3519d2b401a1cba9abd','41e78e1eac85920cede9ed867e4dabb8bba4f5c4','1671376cde093f1450e07564815468dafbfe070a','421dbf9f7a1a09ca81f275ad8c32eafac4b14db5','b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb']);
+ expect(manifest.sourceCommits).toEqual(['c618cee93089bb2e556f16567709b0ea23abbcb9','3284505ad86e4e216343aa873719d20524f9a4ce','b0394efd921fc05d936ea3519d2b401a1cba9abd','41e78e1eac85920cede9ed867e4dabb8bba4f5c4','1671376cde093f1450e07564815468dafbfe070a','421dbf9f7a1a09ca81f275ad8c32eafac4b14db5','b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb','030508fb4dca8af276094dd5bc3eb6a9774d8375']);
  for(const id of ['tiesuanpan','f10']){const asset=HANDDRAWN_ART.find(a=>a.id===id)!;
   expect(asset).toMatchObject({sourceCommit:'3284505ad86e4e216343aa873719d20524f9a4ce',sourceManifestSHA256:'c00c8942d75e023da38930d95be9492ce63b55342f2633031662d9217403deeb'});
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);
   expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
  }
- expect(jokerArtKey('c11')).toBeUndefined();expect(jokerArtKey('d08')).toBeUndefined();
+ expect(jokerArtKey('c11')).toBeUndefined();expect(jokerArtKey('d12')).toBeUndefined();
 });
 
 it('batch3 consumes only the approved four-rung c08 receipt and c09, with complete on-demand faces',()=>{
@@ -61,7 +61,7 @@ it('batch6 binds only eight approved same-ID replacements and full-source narrow
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);expect(JOKER_ART.find(a=>a.id===id)?.detailOnDemand).toBe(true);
   for(const o of source.outputs){expect(o.geometry.entireSourceSampled).toBe(true);expect(o.geometry.noStretch).toBe(true);expect(o.geometry.sourceCropPixels).toEqual({left:0,top:0,width:source.sourceWidth,height:source.sourceHeight});}
  }
- expect(HANDDRAWN_ART.filter(a=>a.category==='functional-card')).toHaveLength(43);expect(JOKER_ART.filter(a=>a.path.startsWith('assets/jokers-p07/'))).toHaveLength(6);
+ expect(HANDDRAWN_ART.filter(a=>a.category==='functional-card')).toHaveLength(51);expect(JOKER_ART.filter(a=>a.path.startsWith('assets/jokers-p07/'))).toHaveLength(6);
  for(const id of ['d01','e01'])expect(receipt.assets.find((a:{id:string})=>a.id===id).outputs[0].geometry.contentRectPixels.width).toBe(107);
 });
 
@@ -74,5 +74,17 @@ it('batch7 binds only eight approved same-ID complete contain faces',()=>{
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);expect(JOKER_ART.find(a=>a.id===id)?.detailOnDemand).toBe(true);
   for(const o of source.outputs){expect(o.geometry.entireSourceSampled).toBe(true);expect(o.geometry.noStretch).toBe(true);expect(o.geometry.sourceCropPixels).toEqual({left:0,top:0,width:source.sourceWidth,height:source.sourceHeight});}
  }
- expect(HANDDRAWN_ART.filter(a=>a.category==='functional-card')).toHaveLength(43);expect(JOKER_ART.filter(a=>a.path.startsWith('assets/jokers-p07/'))).toHaveLength(6);
+ expect(HANDDRAWN_ART.filter(a=>a.category==='functional-card')).toHaveLength(51);expect(JOKER_ART.filter(a=>a.path.startsWith('assets/jokers-p07/'))).toHaveLength(6);
+});
+
+it('batch8 binds only eight approved same-ID complete contain faces',()=>{
+ const receipt=JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-20261004-b8/manifest.json',import.meta.url),'utf8'));
+ const ids=['b06','a11','d04','c07','d11','d08','d09','b12'];expect(receipt.runtime_selection).toEqual(ids);
+ for(const id of ids){const asset=HANDDRAWN_ART.find(a=>a.id===id)!,source=receipt.assets.find((a:{id:string})=>a.id===id);
+  expect(asset).toMatchObject({sourceCommit:'030508fb4dca8af276094dd5bc3eb6a9774d8375',sourceManifestSHA256:'3c8a1e74038f5d934f6a8025c1cc541c8d9af3bc1240d3c9707bb97ebbc48003'});
+  expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);expect(asset.outputs.map(o=>o.sha256)).toEqual(source.outputs.map((o:{sha256:string})=>o.sha256));
+  expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);expect(JOKER_ART.find(a=>a.id===id)?.detailOnDemand).toBe(true);
+  for(const o of source.outputs){expect(o.geometry.entireSourceSampled).toBe(true);expect(o.geometry.noStretch).toBe(true);expect(o.geometry.sourceCropPixels).toEqual({left:0,top:0,width:source.sourceWidth,height:source.sourceHeight});}
+ }
+ expect(HANDDRAWN_ART.filter(a=>a.category==='functional-card')).toHaveLength(51);expect(JOKER_ART.filter(a=>a.path.startsWith('assets/jokers-p07/'))).toHaveLength(6);
 });
