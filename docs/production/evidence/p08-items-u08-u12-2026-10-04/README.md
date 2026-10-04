@@ -1,5 +1,7 @@
 # P08 最后五张长期道具手绘图 — review
 
+串行主线对齐：正常合入已发布按钮分组 main `6c5fb2a030ef1acc15f9e1b7d592784f511976b0`，合并源码 `cf36dae59500778676191c92cf10005c09178b15`，无冲突。全部src逐树同该main，全部资源/素材逐树同原60b126e review；主线AGENTS/handoff/plan与按钮分组完整保留。ShopScene、GoodsArt、按需HD、详情及harness输入依赖未变，共享SceneView新增的hand skin保原默认绘制分支。旧U08报告和唯一PNG保625e77a原构建身份，不换标成新构建；此次不重跑未受影响商品UI或本地构建，新的精确review CI验证其必需production/type/browser门禁。详见[main-alignment.json](main-alignment.json)。下文为原接入检查点，所有SHA/构建事实保持原身份。
+
 基线 main `8888e82ede1776e259096bbdfe4eef63fc6f2415`；实现与实际浏览器构建 `625e77a0aaec7b33af93f95cc169f24bdb927bdc`，`modified=false`。只取 source `e11f7f8efaf2114b1ef0b928855230cfdb5c4863` 的 `art/sources/handdrawn-runtime-items-20261004-u08-u12/` 新目录，没有合并其父分支。source 精确 [CI37217979845](https://github.com/big-dimple/dachoupai/actions/runs/37217979845) 已成功；该 SHA 是公共成品交付，不冒充原始生图来源。
 
 消费侧核对全部13文件189000B、10WebP162578B（thumbnail10970/detail151608）；原source1677个旧blob相同。Node内建 verifier、SHA/字节、Pillow全解码、无EXIF/XMP/ICC均PASS，五张615×768实际成品详情图已view。原PNG由父侧查看批准、另存且未进仓库，消费侧不声称读过原PNG。U09靠左的书签保留批准原图，完整contain，没有再裁切或重绘。
