@@ -1,0 +1,38 @@
+{
+  "taskId": "P08",
+  "testedCommit": "1354a808ae98e04ec21482f96c8587c4d9ee394c",
+  "baseCommit": "6c5fb2a030ef1acc15f9e1b7d592784f511976b0",
+  "alignedMainCommit": "7d44b8bcada32942acded87d70abe78dea12f275",
+  "mainIsAncestor": true,
+  "protectedPaths": [
+    "public/assets",
+    "art/sources",
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/audio",
+    "src/vendor",
+    "src/game/layout.ts",
+    "src/game/ShopLayout.ts",
+    "src/game/SceneView.ts",
+    "src/game/ScoreFlame.ts",
+    "src/game/HandActionArt.ts",
+    "src/game/JokerPlayerCopy.ts",
+    "src/game/JokerPlayerTemplates.json",
+    "src/game/JokerMemory.ts",
+    "src/game/DetailDialog.ts",
+    "src/style.css",
+    "package.json",
+    "package-lock.json"
+  ],
+  "changedProtectedPaths": [],
+  "changedRuntimePaths": [
+    "src/game/ConsumableDialog.ts",
+    "src/game/GameScene.ts",
+    "src/game/ShopScene.ts",
+    "src/game/ToolInventoryEntry.ts"
+  ],
+  "mainPush": "NOT_RUN",
+  "sourceTestsAndBrowserFrozen": "PASS",
+  "newMainAssetsAndPlayerCopy": "PRESERVED"
+}
