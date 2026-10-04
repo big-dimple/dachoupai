@@ -1,16 +1,34 @@
 import {expect,it} from 'vitest';
 import {R2_JOKERS,r2GrowthCaps,r2GrowthMinimums} from '../src/content/r2Schema';
 import {r2CreateJoker} from '../src/domain/r2Run';
-import {jokerMemory,jokerMemoryAbility,type JokerMemoryContext} from '../src/game/JokerMemory';
+import {createRun,applyCommand,type Action as RunAction} from '../src/domain/run';
+import {jokerMemory,jokerMemoryAbility,publicJokerMemoryContext,type JokerMemoryContext} from '../src/game/JokerMemory';
 import {JOKER_COMPACT} from '../src/game/JokerCompact';
 import {fitJokerLabel,jokerLabelRoom} from '../src/game/JokerLabel';
 import {layout} from '../src/game/layout';
 const ctx:JokerMemoryContext={inStage:true,hand:[],disabledIds:[],scoringLimited:false,gold:3,handsLeft:4,playIndex:0,discardsUsed:0,quadRefundUsed:false,previousHandType:null,stageHeat:'0',target:'1000',transaction:{gold:3,discarded:[],hasStage:true,handType:null,maxPlayedCount:0,ordinaryStraightSeen:false,ordinaryFlushSeen:false,jokerSold:false,traceType:null,heat:'0',target:'1000'},deckSize:40,jokerSlots:5,jokerCount:5};
 const def=(id:string)=>R2_JOKERS.find(d=>d.id===id)!;
+it('a07 used stage -> actual shop -> next EnterStage distinguishes old usage from next-stage budget',()=>{
+ let state=createRun({seed:'a07-stage-reminder',runId:'fixture/a07-stage-reminder',characterId:'amo',rulesVersion:'r2',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
+ state.jokers=[r2CreateJoker('a07','owned/a07',0)];
+ const command=(action:RunAction)=>{const r=applyCommand(state,{runId:state.runId,commandId:'test/'+state.commandSeq,expectedSeq:state.commandSeq,action});expect(r.ok).toBe(true);if(r.ok)state=r.state;};
+ const memory=()=>{const context=publicJokerMemoryContext(state,{hand:[],scoringLimited:false,deckSize:state.deckInstances.length,jokerSlots:5,jokerCount:1});return{m:jokerMemory(def('a07'),state.jokers[0],context),copy:jokerMemoryAbility(def('a07'),state.jokers[0],context)};};
+ command({type:'LeaveShop'});command({type:'EnterStage'});
+ command({type:'DiscardHand',selectedIds:[state.handOrder[0]]});command({type:'DiscardHand',selectedIds:[state.handOrder[0]]});
+ expect(state.jokers[0].counters?.singleDiscards).toBe(2);expect(memory().m.remainingUses).toBe(0);expect(memory().copy.state).toContain('本场余0次');
+ // Explicit legal fixture reorders only live zones to make a same-suit winning hand.
+ const available=state.deckInstances.filter(c=>!state.discardPile.includes(c.id)&&!state.playedPile.includes(c.id)),chosen=available.filter(c=>c.suit==='hearts').slice(0,5).map(c=>c.id),rest=available.filter(c=>!chosen.includes(c.id)).map(c=>c.id);
+ state.handOrder=[...chosen,...rest.splice(0,state.stage!.handLimit-5)];state.drawPile=rest;
+ command({type:'PlayHand',selectedIds:chosen});expect(state.phase).toBe('stage-cleared');command({type:'OpenShop'});expect(state.phase).toBe('shop');
+ const before=structuredClone(state),shop=memory();expect(shop.m.remainingUses).toBe(2);expect(shop.copy.state).toContain('下场余2次');expect(shop.copy.state).not.toContain('下场余0次');expect(shop.copy.state).toContain('入场重置');expect(shop.copy.state).toContain('已保存使用记录 2 / 2');expect(state).toEqual(before);expect(state.jokers[0].counters?.singleDiscards).toBe(2);
+ command({type:'LeaveShop'});command({type:'EnterStage'});expect(state.jokers[0].counters?.singleDiscards).toBe(0);expect(memory().m.remainingUses).toBe(2);expect(memory().copy.state).toContain('本场余2次');
+ const fresh=jokerMemoryAbility(def('a07'),r2CreateJoker('a07','fresh',0),{...ctx,inStage:false});expect(fresh.state).toContain('尚无保存的使用计数');expect(fresh.state).toContain('下场余2次');expect(fresh.state).not.toContain('上场已用');
+});
 it('all72 have independent complete mechanism alternatives, not sliced shop conditions',()=>{
  expect(Object.keys(JOKER_COMPACT).sort()).toEqual(R2_JOKERS.map(d=>d.id).sort());
  for(const d of R2_JOKERS){const j=r2CreateJoker(d.id,'test/'+d.id,0),before=structuredClone(j),m=jokerMemory(d,j,ctx);expect(m.labelCandidates.length).toBeGreaterThan(0);expect(m.short).toBe(m.labelCandidates[0]);expect(m.labelCandidates.every(t=>t.length>0&&!t.includes('…'))).toBe(true);expect(j).toEqual(before);expect(jokerMemoryAbility(d,j,ctx).condition).toBeTruthy();}
  expect(JOKER_COMPACT.e04).toEqual(['利息上限','息上限']);expect(JOKER_COMPACT.c05).toEqual(['同花弃2+','同花弃']);
+ expect(JOKER_COMPACT.d07).toEqual(['全计+倍','加倍率']);
 });
 it('additive zero shows mechanism only; every real saved growth value takes priority and full details retain zero',()=>{
  const growthIds=[];

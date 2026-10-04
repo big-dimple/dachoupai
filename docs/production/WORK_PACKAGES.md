@@ -379,6 +379,8 @@ D25追加有限3D复用小候选：先用实际GLB源的铜钱/骰子或牌片�
 
 ## P08
 
+P08 cue阶段边界有界小修（UTC 2026-10-04）：基线main14eac52及精确CI37180594507/docs37180594473已success，不重查。a07场内仍按真实保存次数显示余0，商店保留已保存使用记录2且显示权威下场预算2/入场重置，只有正式EnterStage才清零；无保存计数不冒称上场使用。d07完整作用短语全计+倍/加倍率，实际14px宽51/42；320 room48.4、360/390 room58、844短横room54，初绘刷新同。28受影响tests/type及四视口实际字体/原生选取消、390用完→商店→正式下场的合法fixture详情、全run/resources/RNG不变PASS；定向红用例证明旧场外remaining0误报，已保留。仅两运行UI文件/定向测试harness，未改计数/save/资源/RNG/实际trace/图片/注册/牌面/判型，待本轮最终冻结/正常FF/精确CI。b6取消不上传，火无可读像素不改；整体/OnePlus/真GPU/听感仍NOT_RUN。
+
 P08持有牌compact／真实保存状态有界轮（UTC 2026-10-04）：公开文本门禁main83630381精确CI已success且停止旧监控。全72独立完整机制候选与真实余次/寿命/已用/非零保存值优先；系数1、f09弃牌历史可见，零值仅机制且详情保真0，超宽数字完整状态入口。初绘/刷新共享实测room，14px/res1.5，320 room48.4、360/390 room58、844短横room54。27专项/type、四视口两组合法native输入取消/run-RNG不变与408字体状态探针PASS；修测试第二组覆盖确认并加确切ID守卫，未削安全断言。14成长值牌＋e10轮转共15类。两现成PNG工程actual view，fixture非自然购买/部署/整体/设备PASS，证据evidence/p08-joker-compact-2026-10-04。源码ff069d50aa71b00bfee17b580b3ddf2bb5734fea单次冻结1907tests/106files、content/type/build/Canvas双端smoke/plan全PASS，source/index/HEAD同；正常FF/精确新CI另报。图片/75runtime字节/27新16旧29机制映射及实际trace/规则/RNG/save不变，b6取消无commit不上传/不等，火无像素不插代码；OnePlus/真GPU/听感NOT_RUN。
 
 P08公开素材文本质量门（UTC 2026-10-04）：基线maina055922与b5精确CI37177421563/docs37177421565已success且停止旧监控，root实际看b5代表PNG局部通过。新自动脱敏检查接真实verify:content入口，仅当前handdrawn-runtime-* README/manifest/verifier与public runtime manifest，不扫home/.git历史/二进制；拒绝符号链接外逃。实际ID/Library身份字段/私有ChatGPT链接/私有路径/签名URL检测，合法schema/公开交付commit/源basename/hash和字段名说明允许；错误仅文件/类别/计数，不回显值。当前16文本零问题、26受影响与合成负例/真实content拒绝日志检查PASS。未改图片/注册/src/renderer/玩法/RNG/save/权限/历史；最终源码dda0cf5按既有read-only runner最小冻结26tests/实际content16文件零问题/plan全PASS，source/index/HEAD同；嵌套.git合成红用例已保护，未扫真实历史，不重渲染/艺术验收；正常FF/新精确CI另报。证据evidence/p08-public-art-privacy-2026-10-04；火仍无像素不改/不重试，N2合法包另批。
