@@ -1,4 +1,4 @@
-/** Narrow shop regression; B's frozen shop-only entry is overlaid for compatibility, never committed to runtime. */
+/** Narrow shop regression. Optional legacy overlay reproduces retained pre-release images only. */
 import assert from 'node:assert/strict';
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -18,9 +18,9 @@ const overlay={name:'frozen-shop-entry-compatibility',enforce:'pre',resolveId(so
 const ssr=await createServer({server:{middlewareMode:true},optimizeDeps:{noDiscovery:true,include:[]},logLevel:'error'});let bytes,state,apply;
 try{const run=await ssr.ssrLoadModule('/src/domain/run.ts'),resource=await ssr.ssrLoadModule('/src/domain/r2Run.ts'),cp=await ssr.ssrLoadModule('/src/application/checkpoint.ts');apply=run.applyCommand;state=run.createRun({seed:'p08-rack320',runId:'fixture/p08-rack320',characterId:'amo',rulesVersion:'r2',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});state.gold=84;state.jokers=['c08','c09','f09','f10','a11'].map(id=>resource.r2CreateJoker(id,'rack/'+id,0));state.consumables=[{instanceId:'rack/T07',definitionId:'T07'}];const c=cp.makeCheckpoint(state,[]);assert.ok(cp.readCheckpoint(c).ok);bytes=JSON.stringify(c);}finally{await ssr.close();}
 const fp=createHash('sha256');for(const path of execFileSync('git',['ls-files','--cached','--others','--exclude-standard','src'],{encoding:'utf8'}).trim().split('\n').sort()){fp.update(path+'\0');fp.update(await readFile(path));fp.update('\0');}
-await build({mode:'e2e',base,plugins:[overlay],build:{outDir:dir+'/build'},logLevel:'error'});
+await build({mode:'e2e',base,plugins:process.env.RACK_LEGACY_OVERLAY==='1'?[overlay]:[],build:{outDir:dir+'/build'},logLevel:'error'});
 const server=await preview({base,build:{outDir:dir+'/build'},preview:{host:'127.0.0.1',port:5307,strictPort:true},logLevel:'error'}),browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});
-const report={taskId:'P08',testedCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceFingerprint:fp.digest('hex'),phase,build:JSON.parse(await readFile(dir+'/build/build-info.json','utf8')),renderer:'Chromium software Canvas',DPR:1,motion:'reduce',overlay:{ref:toolRef,modules:['ShopScene.ts','ToolInventoryEntry.ts'],combinedShopSHA256:createHash('sha256').update(combinedShop).digest('hex'),gameScene:'Unchanged main; no B GameScene loaded or copied'},fixture:'Validated 5-owned-Joker shop +1 owned T07. Native file import and controls; not natural acquisition or main deployment.',runs:[],errors:[],physicalDevice:'NOT_RUN',GPU:'NOT_RUN',audio:'NOT_RUN',aesthetics:'PENDING'};
+const report={taskId:'P08',testedCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceFingerprint:fp.digest('hex'),phase,build:JSON.parse(await readFile(dir+'/build/build-info.json','utf8')),renderer:'Chromium software Canvas',DPR:1,motion:'reduce',overlay:process.env.RACK_LEGACY_OVERLAY==='1'?{ref:toolRef,modules:['ShopScene.ts','ToolInventoryEntry.ts'],combinedShopSHA256:createHash('sha256').update(combinedShop).digest('hex'),gameScene:'Unchanged main; no B GameScene loaded or copied'}:null,fixture:'Validated 5-owned-Joker shop +1 owned T07. Native file import and controls; not natural acquisition or main deployment.',runs:[],errors:[],physicalDevice:'NOT_RUN',GPU:'NOT_RUN',audio:'NOT_RUN',aesthetics:'PENDING'};
 const save=p=>p.evaluate(()=>window.__harness.game.registry.get('runController').state);
 const overlap=(a,b)=>a.x<b.x+b.width&&b.x<a.x+a.width&&a.y<b.y+b.height&&b.y<a.y+a.height;
 try{
@@ -33,7 +33,7 @@ try{
   for(const n of g.names)assert.ok(parseFloat(n.font)>=14);for(const b of g.layout.slots){assert.equal(Math.round(b.height/b.width*1000),1400);assert.ok(b.width>=44&&b.height>=44);}
   if(phase==='after'){assert.deepEqual(violations,[]);assert.equal(g.names.find(n=>n.fullText==='少一级').text,'少一级');assert.equal(g.names.find(n=>n.fullText==='少一块布').text,profile.width===844?'少一…':'少一块布');}
   else assert.ok(violations.some(v=>v.kind==='outside-viewport')&&violations.some(v=>v.kind==='under-action'));
-  if(profile.width===320)await p.screenshot({path:dir+'/320-shop.png'});
+  if(profile.width===320&&process.env.RACK_KEEP_IMAGES!=='1')await p.screenshot({path:dir+'/320-shop.png'});
   for(const j of start.jokers){await tapUI(p,'shop','joker/'+j.instanceId,true);await p.locator('.detail-dialog[open]').waitFor();await p.getByRole('button',{name:'关闭',exact:true}).tap();assert.deepEqual(await save(p),start);}
   for(const o of g.offers){await tapUI(p,'shop','offer/'+o.id,true);await p.locator('.detail-dialog[open]').waitFor();await p.getByRole('button',{name:'取消',exact:true}).tap();assert.deepEqual(await save(p),start);}
   await tapUI(p,'shop','action/tool-inventory',true);await p.locator('.detail-dialog[open]').waitFor();await p.getByRole('button',{name:'关闭',exact:true}).tap();assert.deepEqual(await save(p),start);
