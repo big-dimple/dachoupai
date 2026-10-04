@@ -54,7 +54,7 @@ describe('CSS layout contract',()=>{
         expect(intersects(l.scoreBoard,control)).toBe(false);
         expect(intersects(l.scoreFire,control)).toBe(false);
       }
-      expect(l.toolsInHud).toBe(true);
+      expect(l.toolsInHud).toBe(false);expect(l.tools.y).toBe(l.actions.y);
     }
   });
   it('D44 keeps nine cards in one row at 320–430px without changing seats on selection',()=>{
@@ -98,7 +98,7 @@ describe('CSS layout contract',()=>{
         expect(intersects(b,l.hand)).toBe(false);
       }
       for(let i=0;i<controls.length;i++)for(let j=i+1;j<controls.length;j++)expect(intersects(controls[i],controls[j])).toBe(false);
-      expect(l.tableActions.discard.x).toBe(l.actions.x);
+      expect(l.buttons.rank.x).toBe(l.actions.x);expect(l.tableActions.discard.x).toBeGreaterThan(l.tools.x+l.tools.width);
       expect(l.tableActions.play.x+l.tableActions.play.width).toBeCloseTo(l.actions.x+l.actions.width);
     }
   });

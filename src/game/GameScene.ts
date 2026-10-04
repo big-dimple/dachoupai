@@ -12,6 +12,7 @@ import {JOKER_RARITY,createJokerRarityBadge} from './JokerRarity';
 import {cardAbilityCopy} from './CardCopy';
 import {mountF09Art} from './F09Art';
 import Phaser from 'phaser';
+import {handActionContent,handActionCountColor} from './HandActionArt';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {r2RunModeConfig,R2_MODE_CATALOG} from '../content/r2Modes';
 import {showPrograms} from './ProgramDialog';
@@ -130,7 +131,7 @@ export class GameScene extends Phaser.Scene {
   private focusIndex=0;
   private keyboardFocus=false;
   private readonly sweepHint=new HandSweepHint();
-  private handHint?:Phaser.GameObjects.Container;
+  private handHint=false;
   private handHintTimer?:Phaser.Time.TimerEvent;
   private handStart=0;
   private handNavigationButtons:Phaser.GameObjects.Rectangle[]=[];
@@ -325,16 +326,19 @@ export class GameScene extends Phaser.Scene {
     this.handCountText=v.text(l.handLabel.x,l.handLabel.y,'',14,'#f0e6cb').setVisible(!portrait&&l.labelHeight>0);
     this.pileText=v.text(l.piles.x+l.piles.width,l.piles.y,'',14,'#c8d4c7').setOrigin(1,0).setVisible(!portrait&&l.labelHeight>0);
     const brief=portrait||l.shortLandscape||l.buttons.rank.width<80;
-    this.rankButton=v.button(l.buttons.rank,brief?'点数':'点数排序','action/sort-rank',()=>void this.sortHand('rank'),this.ready);
-    this.suitButton=v.button(l.buttons.suit,brief?'花色':'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready);
-    this.discardButton=v.button(l.tableActions.discard,'弃牌','action/discard',()=>void this.discardSelected(),this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run));
-    this.playButton=v.button(l.tableActions.play,'出牌','action/play',()=>void this.playSelected(),this.ready&&this.selectedIds.size>0&&this.handsLeft>0,true);
+    const sort=l.tools;
+    v.add(this.add.graphics().fillStyle(T.jadeSoft).fillRoundedRect(sort.x,sort.y,sort.width,sort.height,6).lineStyle(1,T.jade,.9).strokeRoundedRect(sort.x+.5,sort.y+.5,sort.width-1,sort.height-1,6).lineStyle(1,T.jade,.35).beginPath().moveTo(sort.x+44,sort.y+10).lineTo(sort.x+44,sort.y+sort.height-10).strokePath().setName('action/sort-group').setData('bounds',sort));
+    this.rankButton=v.button(l.buttons.rank,brief?'点数':'点数排序','action/sort-rank',()=>void this.sortHand('rank'),this.ready,false,'sort');
+    this.suitButton=v.button(l.buttons.suit,brief?'花色':'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready,false,'sort');
+    this.discardButton=v.button(l.tableActions.discard,'弃牌','action/discard',()=>void this.discardSelected(),this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run),false,'discard');
+    this.playButton=v.button(l.tableActions.play,'出牌','action/play',()=>void this.playSelected(),this.ready&&this.selectedIds.size>0&&this.handsLeft>0,true,'play');
     this.resourceCounts={} as Record<'play'|'discard',Phaser.GameObjects.Text>;
     for(const kind of ['play','discard'] as const){
       const b=l.tableActions[kind],button=kind==='play'?this.playButton:this.discardButton;
+      const content=handActionContent(b);
       const label=button.getData('label') as Phaser.GameObjects.Text;
-      label.setFontSize(kind==='play'?16:14).setPosition(b.x+b.width/2,b.y+14).setData('restY',b.y+14);
-      this.resourceCounts[kind]=v.text(b.x+b.width/2,b.y+37,'',14,kind==='play'?C.paperLight:C.jade).setOrigin(.5).setName('button/'+kind+'-left');
+      label.setFontSize(kind==='play'?16:14).setPosition(content.centerX,content.labelY).setData('restY',content.labelY);
+      this.resourceCounts[kind]=v.text(content.centerX,content.countY,'',14,kind==='play'?C.paperLight:C.jade).setOrigin(.5).setName('button/'+kind+'-left');
     }
     const play=l.tableActions.play;
     this.playAura=v.add(this.add.graphics().lineStyle(2,T.red,.7).strokeRoundedRect(play.x-3,play.y-3,play.width+6,play.height+6,9).setAlpha(0));
@@ -737,15 +741,17 @@ export class GameScene extends Phaser.Scene {
     (this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(discardGoldCost?'弃 -1金':r2DiscardCost(this.run)===2?'弃 ×2':'弃牌');
     this.view.setEnabled(this.discardButton,this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run)&&this.run.gold>=discardGoldCost);
     this.view.setEnabled(this.playButton,this.ready&&this.selectedIds.size>0&&this.handsLeft>0);
-    this.resourceCounts.play.setColor(this.playButton.input?.enabled?C.paperLight:C.mutedInk);
+    this.resourceCounts.play.setColor(handActionCountColor('play',!!this.playButton.input?.enabled));
+    this.resourceCounts.discard.setColor(handActionCountColor('discard',!!this.discardButton.input?.enabled,this.run.stage!.discardsLeft<2*r2DiscardCost(this.run)));
     const portrait=this.view.layout.mode==='portrait';
     const reason=this.playing?this.presentation?'正在结算 · 可快进':'正在换牌':this.handsLeft===1?'最后 1 次出牌 · 达到目标才能过关':!this.selectedIds.size?(handWindow.handOverflow?'‹ › 翻页 · 按住横滑选牌':portrait?'按住横滑选牌 · 长按看详情':'按住横滑选牌 · 最多 5 张'):this.run.gold<discardGoldCost?'弃牌需1金币 · 仍可出牌':this.run.stage!.discardsLeft<r2DiscardCost(this.run)?'弃牌次数已用完':this.handsLeft<=0?'出牌次数已用完':'已选 '+this.selectedIds.size+' / 5';
     const reminders=!this.presentation&&this.ready?this.run.jokers.map(j=>jokerMemory(getJoker(j.definitionId),j,this.memoryContext(j,this.selectionPreview()))).filter(m=>m.scoreLimited||m.status==='当前未满足'||m.status==='部分条件满足').slice(0,1).map(m=>m.name+' · '+m.status).join('；'):'';
     const savedReminder=!this.presentation?this.run.jokers.map(j=>jokerMemory(getJoker(j.definitionId),j,this.memoryContext(j,this.selectionPreview()))).find(m=>m.saved!=='无成长或使用计数'):undefined;
     const entryReminder=!this.selectedIds.size&&this.run.stage?.playIndex===0?this.run.jokers.slice(0,1).map(j=>getJoker(j.definitionId).name+' · '+this.jokerValue(j)+' · 长按条件').join(''):'';
     const memoryReminder=savedReminder?(savedReminder.name+' · '+savedReminder.savedShort)+' · 条件见详情':'';
-    this.statusText.setText(this.statusMessage||reminders||entryReminder||memoryReminder||reason);
-    if(this.statusText.width>this.view.layout.status.width&&memoryReminder&&!this.statusMessage&&!reminders&&!entryReminder)this.statusText.setText(savedReminder!.name+' · 保存状态见详情');
+    const sweepReminder=this.handHint?(handWindow.status.width<250?'横滑选牌 · 已选可取消':'横滑选牌 · 从已选牌开始可取消'):'';
+    this.statusText.setText(sweepReminder||this.statusMessage||reminders||entryReminder||memoryReminder||reason);
+    if(this.statusText.width>this.view.layout.status.width&&memoryReminder&&!sweepReminder&&!this.statusMessage&&!reminders&&!entryReminder)this.statusText.setText(savedReminder!.name+' · 保存状态见详情');
     // Balatro-style call-to-action: the playable state breathes a warm aura.
     const auraOn=!!this.playButton.input?.enabled&&this.selectedIds.size>0&&!this.presentation&&!this.playing;
     if(this.playAura){
@@ -925,21 +931,15 @@ export class GameScene extends Phaser.Scene {
   }
   private readonly stopHandHint=():void=>{
     this.handHintTimer?.remove();this.handHintTimer=undefined;
-    if(this.handHint){const cursor=this.handHint.getData('cursor');if(cursor)this.tweens.killTweensOf(cursor);this.tweens.killTweensOf(this.handHint);this.handHint.destroy();this.handHint=undefined;}
+    if(!this.handHint)return;this.handHint=false;
+    if(this.controlsLive&&this.statusText?.active&&this.scene.isActive())this.updateControls();
   };
   private readonly hintVisibility=()=>{if(document.hidden){this.stopHandHint();this.handInput?.cancel('blur');this.candidateGhost=undefined;this.candidates.dispose();}else if(this.run?.phase==='await-input'&&!this.playing&&!this.presentation&&this.scene.isActive())this.refreshSelection();};
   private showHandHint(claim=true):void {
     if(!this.view||!this.ready||this.handHint)return;
-    const l=this.view.layout,cards=l.cards.filter(card=>card.visible);if(cards.length<2||claim&&!this.sweepHint.claim())return;
-    const root=this.view.add(this.add.container(0,0)).setName('hand/sweep-hint');this.handHint=root;
-    const cx=l.hand.x+l.hand.width/2,y=l.hand.y+l.hand.height-19,w=Math.min(l.hand.width-8,360);
-    root.add(this.add.graphics().fillStyle(0x102f35,.86).fillRoundedRect(cx-w/2,y-23,w,20,6));
-    root.add(this.add.text(cx,y-13,'按住横滑选牌 ↔ 从已选牌开始可取消',{fontFamily:UI_FONT,fontSize:'12px',color:'#fff1cc',resolution:1.5}).setOrigin(.5));
-    if(this.reducedMotion){this.handHintTimer=this.time.delayedCall(3000*gameSession().speed,this.stopHandHint);return;}
-    const from=cards[0].hit.x+cards[0].hit.width/2,last=cards[Math.min(4,cards.length-1)],to=last.hit.x+last.hit.width/2;
-    root.add(this.add.graphics().lineStyle(1,0xe9d59a,.4).beginPath().moveTo(from,y).lineTo(to,y).strokePath());
-    const cursor=this.add.graphics().fillStyle(0xffe9b4,.8).fillCircle(0,0,4).lineStyle(2,0xffe9b4,.9).strokeCircle(0,0,7).setPosition(from,y);root.add(cursor);root.setData('cursor',cursor);
-    this.tweens.add({targets:cursor,x:to,duration:650,delay:280,hold:100,yoyo:true,ease:'Sine.easeInOut',onComplete:()=>{if(root.active)this.tweens.add({targets:root,alpha:0,duration:180,onComplete:this.stopHandHint}).setTimeScale(1/gameSession().speed);}}).setTimeScale(1/gameSession().speed);
+    const cards=this.view.layout.cards.filter(card=>card.visible);if(cards.length<2||claim&&!this.sweepHint.claim())return;
+    this.handHint=true;this.updateControls();
+    this.handHintTimer=this.time.delayedCall((this.reducedMotion?3000:1860)*gameSession().speed,this.stopHandHint);
   }
   private async moveHandCard(id:string,delta:-1|1):Promise<void> {const ids=[...this.run.handOrder],from=ids.indexOf(id),to=from+delta;if(from<0||to<0||to>=ids.length)return;const before=this.handPositions();ids.splice(from,1);ids.splice(to,0,id);if(await this.command({type:'ReorderHand',ids}))this.slideHandFrom(before);}
   private async reorderJoker(id:string,x:number):Promise<void> {const current=this.run.jokers.map(j=>j.instanceId),l=this.view.layout,to=l.slots.findIndex((b,i)=>x>=b.x&&x<=b.x+b.width+(l.mode==='landscape'?l.jokerLabels[i].width+6:0)),ids=reorderJokerIds(current,id,to);if(ids===current)return;await this.command({type:'ReorderJokers',ids});}
@@ -1620,7 +1620,7 @@ export class GameScene extends Phaser.Scene {
     const discardCost=r2DiscardCost(this.run),discards=this.run.stage!.discardsLeft,plays=this.presentation?.resourcePlayLeft??this.handsLeft;
     this.resourceCounts.play.setText(plays+' 次');this.resourceCounts.discard.setText(discards+' 次');
     if(this.menuActions)this.menuActions.viewLastHand=!this.presentation&&this.run.lastTrace?()=>this.inspectLastTrace():undefined;
-    const playColor=this.playButton.input?.enabled?C.paperLight:C.mutedInk,discardColor=discards<2*discardCost?C.red:C.jade;
+    const playColor=handActionCountColor('play',!!this.playButton.input?.enabled),discardColor=handActionCountColor('discard',!!this.discardButton.input?.enabled,discards<2*discardCost);
     if(this.resourceCounts.play.style.color!==playColor)this.resourceCounts.play.setColor(playColor);
     if(this.resourceCounts.discard.style.color!==discardColor)this.resourceCounts.discard.setColor(discardColor);
     const gold=this.presentation?.resourceGold??this.run.gold;
