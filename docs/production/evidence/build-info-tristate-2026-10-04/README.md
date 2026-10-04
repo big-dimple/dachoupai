@@ -1,29 +1,21 @@
-# 构建文件状态：最小三态诊断模块
+# 构建状态与版本菜单三态
 
-旧 `vite.config.ts` 将 Git 命令失败变成字符串 `unknown`，再用 `!== ''` 判定修改，因而**查询失败也可能显示「含本地修改」**。本 review 修正这个已确认的代码分支；已经部署的旧构建究竟为何出现该提示仍未知，不从新代码倒推旧原因。
+实际 RunMenu 版本按钮已接到 `formatBuildInfo(buildInfo)`，旧 `modified` truthy 文案已移除。菜单只改 import 和版本正文两行，保留版本号、revision、builtAt、72 张大丑牌/8 章尾注及原存档操作。unknown 明确显示「无法核对文件是否有修改」；dirty 仅显示安全项目相对文件名及真实文件数，不输出 diff、绝对路径或原始命令错误。
 
-基线为 `58e9d223ee5f29b965532551e71afc6fc6785d51`，实现及实际构建源码为 `525b604600eac06cc7d917803e9a05623d7c5a4d`。只改构建 collector、纯状态/格式化模块和原 facade。游戏、评分、RNG、存档、资源、场景、菜单结构与更新提示不改，旧自然局证据不覆盖，不推进 main 或部署。
+运行验证源码为 `5862e59581e0fa8e42de61d6012bb676e8970e6c`，已正常合入 main 基线 `ff768c132a2f1c683f164bd308b11482e7d781e8`，保留 RewardCoin/资源更新。本分支仅供独立 review，不推进 main 或部署；原自然局证据保持不变。
 
-| 核对状态 | `modified` | 新人话格式化文本 | 文件信息 |
-| --- | --- | --- | --- |
-| clean：HEAD 与 tracked status 两条查询均成功、无已跟踪修改 | `false` | 构建时：已核对，没有未提交修改。 | 不输出路径/计数 |
-| dirty：两条查询成功，确有已跟踪修改 | `true` | 构建时：有尚未提交的文件修改（N 个文件）。 | 仅安全项目相对路径及真实文件数 |
-| unknown：任何查询失败、无有效 HEAD 或状态输出不可解析 | `null` | 构建时：无法核对文件是否有修改。 | 不输出路径/计数 |
+390×740、DPR 1、headless 软件 Canvas 的实际版本菜单三态均 PASS。clean 使用正常构建；dirty/unknown 在构建优化前注入元数据 fixture，再分别编译。每份本地生成身份与对应 JS 可执行对象通过 AST 逐字段核对。浏览器直接加载普通本地页面/资源，没有请求 HTTP `/build-info.json`，没有请求拦截、改头或备用路线。
 
-保留 `version`、`revision`、`builtAt` 的意义和格式；无法取得有效 HEAD 时 `revision` 仍为 `unknown`，不会造假版本号。新增 `sourceStatus` 作为三态依据，`modified` 在 unknown 时为 `null`，既不是已核对 clean，也不是假 dirty。dirty 才带 `modifiedFileCount` / `modifiedFiles`。原 metadata emitter 与 `__BUILD_INFO__` 使用同一个 collector 结果。
+| 实际菜单截图 | 显示 | 来源 |
+| --- | --- | --- |
+| [clean](01-version-clean.png) | 已核对，没有未提交修改 | 实际 clean 构建 |
+| [dirty](02-version-dirty-fixture.png) | 3 个文件及带空格长相对路径 | 单独编译 fixture |
+| [unknown](03-version-unknown-fixture.png) | 无法核对文件是否有修改 | 单独编译 fixture |
 
-collector 使用 `git status --porcelain=v1 -z --untracked-files=no`，保留空格并按 NUL 处理重命名；staged 与 unstaged 同一文件只计一次，重命名以新名字计一个文件。延续原已跟踪文件范围，不把未跟踪文件计入。只发布安全仓库相对文件名；绝对路径、父目录跳转、控制/方向字符等不发布，只保留真实计数。不会读取或发布 diff 内容、Git stderr、凭据、命令参数或环境信息。Git 查询失败只有明确 unknown，不带原始错误细节。
+三張截图已经人工查看：长路径自动换行，正文位于视口内，关闭按钮位置保持不变。使用同一浏览器上下文和同一普通新局，仅到 await-input、选一张牌；各次打开/关闭和继续本局前后完整 checkpoint、全部 IndexedDB 存档及选牌状态均相同。clean 中实际「导出本局」下载与 checkpoint 相同；dirty/unknown 未重复导出，原始报告中的 `nativeExportMatchesCheckpoint: false` 表示未运行该操作，非导出失败。没有评分/RNG/存档注入或修改。
 
-`formatBuildInfo` 对只含旧 boolean 的身份也显示无法核对，不能据旧提示推断修改文件或失败原因。
+12 个专项测试、typecheck 和 Vite e2e build 通过，实际菜单 PASS，未捕获页面错误。原始菜单报告和截图哈希见 [native-menu-report.json](native-menu-report.json)，当前/历史构建身份及日志哈希见 [summary.json](summary.json)。精确新 review head CI 留待父线程检查，不为等 CI 延迟检查点。
 
-并行所有权：手机旧 UI 排查任务 `01a108b2-fd7a-71eb-becd-6f424ee0f0f1` 仍负责 `RunMenu.ts` / 更新提示。本环境没有跨 Cloud 线程消息工具，已向父报告需转达的模块契约。本 review **未改 RunMenu**，菜单接入状态为 PENDING。该任务可以保留自己的菜单结构，仅将版本信息正文接到现成的人话函数：
+先前两次测试 timeout 保留在本地原始 FAIL 目录。原因是测试在 clean bundle 编译完成后替换元数据，而优化已经删除 dirty 分支；第二次诊断实际显示 unknown。最终改为分别编译 fixture，未修改生产逻辑迁就测试。第一份失败没有捕获失败状态截图。
 
-```ts
-import {buildInfo,formatBuildInfo} from '../platform/buildInfo';
-// 既有版本按钮中，后接原「当前可玩内容」文字即可。
-info.textContent = `${formatBuildInfo(buildInfo)}\n当前可玩内容：${R2_JOKERS.length}张大丑牌、${R2_AVAILABLE_CHAPTERS}章。`;
-```
-
-11 个专项测试通过：纯函数 clean/dirty/unknown、两类命令失败、坏输出、旧 boolean 不倒推、无私人路径/错误内容；真实临时 Git 仓库覆盖干净、未跟踪文件忽略、同文件 staged+unstaged、带空格路径与重命名、非仓库失败，并核对序列化身份与格式化文本。`npm run typecheck` 和 `npm run build -- --outDir shots/build-info-tristate/build` 通过。本地实际构建的文件身份与 JS bundle 内嵌身份逐字段相同：C03、源码 `525b604600eac06cc7d917803e9a05623d7c5a4d`、`sourceStatus=clean`、`modified=false`、`builtAt=2026-10-04T21:09:02.323Z`。bundle 原始字节及本地构建日志哈希见 [summary.json](summary.json)。没有以 helper 的单测冒称当前菜单已接入或真机展示已验。
-
-没有请求 HTTP `/build-info.json`，没有改请求头、备用路线或网络绕过；只读取本地刚生成的构建产物。旧已部署原因、手机实际展示与加载问题未由此核实；真机/GPU/听感 NOT_RUN。精确 review CI 另报，暂不 main。
+此前模块检查点 `525b604600eac06cc7d917803e9a05623d7c5a4d` 的构建身份仍保留在 summary 的 `priorModuleCheckpoint`，其中旧 PENDING 描述仅属历史记录；当前菜单接入已完成。旧已部署构建为何显示本地修改仍未知。真机/GPU/听感及部署状态验证 NOT_RUN。

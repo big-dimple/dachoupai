@@ -1,0 +1,181 @@
+{
+  "status": "PASS",
+  "testedCommit": "5862e59581e0fa8e42de61d6012bb676e8970e6c",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-04T21:54:14.358Z",
+    "revision": "5862e59581e0fa8e42de61d6012bb676e8970e6c",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "bundles": [
+    {
+      "name": "clean",
+      "file": "assets/index-DEtd_OTq.js",
+      "sha256": "a04fad0b8fbc1166e7de09a42b438d93c84a50e468b8447405a1429ff0582b31",
+      "emittedEqualsEmbeddedIdentity": true,
+      "metadata": {
+        "version": "C03",
+        "builtAt": "2026-10-04T21:54:14.358Z",
+        "revision": "5862e59581e0fa8e42de61d6012bb676e8970e6c",
+        "sourceStatus": "clean",
+        "modified": false
+      }
+    },
+    {
+      "name": "dirty",
+      "file": "assets/index-G0DLwMfU.js",
+      "sha256": "0fe85d4385d0d1c97dba47ec9781bdb13e1162cb9a9cb260d354b62f5331eea0",
+      "emittedEqualsEmbeddedIdentity": true,
+      "metadata": {
+        "version": "C03",
+        "revision": "5862e59581e0fa8e42de61d6012bb676e8970e6c",
+        "builtAt": "2026-10-04T21:54:14.358Z",
+        "sourceStatus": "dirty",
+        "modified": true,
+        "modifiedFileCount": 3,
+        "modifiedFiles": [
+          "src/game/RunMenu.ts",
+          "src/platform/buildInfo.ts",
+          "src/diagnostics/long folder/long folder/long folder/long folder/long folder/long folder/long folder/long folder/long folder/with space/version-status.ts"
+        ]
+      }
+    },
+    {
+      "name": "unknown",
+      "file": "assets/index-C8_1u2WG.js",
+      "sha256": "347903a759213140b761b3cf276ee77a57c52de77496f368cd638e7ada387308",
+      "emittedEqualsEmbeddedIdentity": true,
+      "metadata": {
+        "version": "C03",
+        "revision": "5862e59581e0fa8e42de61d6012bb676e8970e6c",
+        "builtAt": "2026-10-04T21:54:14.358Z",
+        "sourceStatus": "unknown",
+        "modified": null
+      }
+    }
+  ],
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "cases": [
+    {
+      "name": "clean",
+      "fixture": false,
+      "metadata": {
+        "version": "C03",
+        "builtAt": "2026-10-04T21:54:14.358Z",
+        "revision": "5862e59581e0fa8e42de61d6012bb676e8970e6c",
+        "sourceStatus": "clean",
+        "modified": false
+      },
+      "displayed": "版本 C03 · 5862e59581e0\n构建时间 2026-10-04T21:54:14.358Z\n构建时：已核对，没有未提交修改。\n当前可玩内容：72张大丑牌、8章。",
+      "checkpointAndAllStorageEqual": true,
+      "selectionPreserved": true,
+      "nativeExportMatchesCheckpoint": true,
+      "visibleBounds": {
+        "x": 35,
+        "y": 568,
+        "width": 326,
+        "height": 104
+      },
+      "closeControlUnmoved": true,
+      "closeBounds": {
+        "x": 334,
+        "y": 12,
+        "width": 44,
+        "height": 44
+      }
+    },
+    {
+      "name": "dirty",
+      "fixture": true,
+      "metadata": {
+        "version": "C03",
+        "revision": "5862e59581e0fa8e42de61d6012bb676e8970e6c",
+        "builtAt": "2026-10-04T21:54:14.358Z",
+        "sourceStatus": "dirty",
+        "modified": true,
+        "modifiedFileCount": 3,
+        "modifiedFiles": [
+          "src/game/RunMenu.ts",
+          "src/platform/buildInfo.ts",
+          "src/diagnostics/long folder/long folder/long folder/long folder/long folder/long folder/long folder/long folder/long folder/with space/version-status.ts"
+        ]
+      },
+      "displayed": "版本 C03 · 5862e59581e0\n构建时间 2026-10-04T21:54:14.358Z\n构建时：有尚未提交的文件修改（3 个文件）。\n修改文件（项目内路径）：\n• src/game/RunMenu.ts\n• src/platform/buildInfo.ts\n• src/diagnostics/long folder/long folder/long folder/long folder/long folder/long folder/long folder/long folder/long folder/with space/version-status.ts\n当前可玩内容：72张大丑牌、8章。",
+      "checkpointAndAllStorageEqual": true,
+      "selectionPreserved": true,
+      "nativeExportMatchesCheckpoint": false,
+      "visibleBounds": {
+        "x": 35,
+        "y": 476,
+        "width": 326,
+        "height": 251
+      },
+      "closeControlUnmoved": true,
+      "closeBounds": {
+        "x": 334,
+        "y": 12,
+        "width": 44,
+        "height": 44
+      }
+    },
+    {
+      "name": "unknown",
+      "fixture": true,
+      "metadata": {
+        "version": "C03",
+        "revision": "5862e59581e0fa8e42de61d6012bb676e8970e6c",
+        "builtAt": "2026-10-04T21:54:14.358Z",
+        "sourceStatus": "unknown",
+        "modified": null
+      },
+      "displayed": "版本 C03 · 5862e59581e0\n构建时间 2026-10-04T21:54:14.358Z\n构建时：无法核对文件是否有修改。\n当前可玩内容：72张大丑牌、8章。",
+      "checkpointAndAllStorageEqual": true,
+      "selectionPreserved": true,
+      "nativeExportMatchesCheckpoint": false,
+      "visibleBounds": {
+        "x": 35,
+        "y": 568,
+        "width": 326,
+        "height": 104
+      },
+      "closeControlUnmoved": true,
+      "closeBounds": {
+        "x": 334,
+        "y": 12,
+        "width": 44,
+        "height": 44
+      }
+    }
+  ],
+  "images": [
+    {
+      "file": "01-version-clean.png",
+      "sha256": "b5d6c8ef70a4283abf46343472c951f21b3adefc51ba22d6507c26e6d032ee77",
+      "fixture": false
+    },
+    {
+      "file": "02-version-dirty-fixture.png",
+      "sha256": "668c9653aa1eb27b3709830a6826583134a4ee59f8de477dcc9fe55963f6816a",
+      "fixture": true
+    },
+    {
+      "file": "03-version-unknown-fixture.png",
+      "sha256": "d0c6c4c02e48095d2d0f7905000ba6893fb1df9fdccf56d582f26d452b0ee33b",
+      "fixture": true
+    }
+  ],
+  "uncaughtPageErrors": [],
+  "forbiddenMetadataRequests": 0,
+  "limits": [
+    "Headless software Canvas/touch at one viewport; real phone/GPU/listening NOT_RUN.",
+    "Clean uses the actual normal build. Dirty/unknown are separately compiled metadata fixtures; define and emitted identity use the same fixture, without replacing game/domain/save code.",
+    "One ordinary new run to await-input, no scoring/discard/tool/score/RNG injection. Subsequent cases continue the same saved run in the same browser context.",
+    "No HTTP request to /build-info.json or external deployed endpoint. No request interception or header changes."
+  ],
+  "browser": "151.0.7922.173"
+}
