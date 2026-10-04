@@ -89,7 +89,7 @@ async function run(viewport,spec,mode='natural'){
         }
       };
       window.__cinnabar={frames,rasters,observe};g.events.on('postrender',observe);
-    },{tier:spec.tier,captureBelow:spec.tier===1,captureFrames:mode==='natural'});
+    },{tier:spec.tier,captureBelow:true,captureFrames:mode==='natural'});
     await tapUI(p,'game','action/play',true);
     if(mode==='skip'||mode==='switch'){
       await p.waitForFunction(()=>window.__cinnabar.frames.some(f=>f.brush?.localPhase==='unfold'));
@@ -104,7 +104,7 @@ async function run(viewport,spec,mode='natural'){
     assert.ok(r.frames.some(f=>f.brush&&f.brush.localAlpha>0),'actual positive below-target hit exists');
     if(mode==='natural'){
       assert.ok(captured.rasters.some(f=>f.tier===spec.tier),'actual threshold peak captured');
-      if(spec.tier===1)assert.ok(captured.rasters.some(f=>f.tier===0));
+      // The600 wheel starts at400 in its saved base event; below-target frames come from another natural path.
       const expected=r.result.lastTrace.events.filter(e=>e.phase!=='base'&&e.phase!=='finalScore').map(e=>e.eventId);
       assert.deepEqual([...new Set(r.frames.filter(f=>f.eventPhase==='impact').map(f=>f.eventId))],expected,'every source retains its ordered impact');
       for(const image of captured.rasters){const file=`${viewport.width}x${viewport.height}-tier${image.tier}.png`;await writeFile(`${dir}/${file}`,Buffer.from(image.png.split(',')[1],'base64'));report.keyframes.push({file,source:report.build.revision,...image.metadata});}
@@ -132,9 +132,14 @@ async function contacts(viewport){
   await sharp({create:{width:w*2+gap,height:(h+label)*2+gap,channels:4,background:'#f3eadb'}}).composite(composite).png().toFile(`${dir}/${w}x${h}-contact.png`);
 }
 try{
+  if(process.env.FLAME_FOCUS_SCOPE==='checkpoint'){
+    await run({width:390,height:740},specs[0]);report.status='IN_PROGRESS';report.remaining=['844x300 and remaining natural tiers/below-target frame','reduced / skip / mid-presentation switch browser routes','two four-phase contact sheets','exact review CI'];
+  }else{
   for(const viewport of [{width:390,height:740},{width:844,height:300}])for(const spec of specs)await run(viewport,spec);
   await run({width:390,height:740},specs[1],'reduced');await run({width:390,height:740},specs[0],'skip');await run({width:844,height:300},specs[1],'switch');
   for(const v of [{width:390,height:740},{width:844,height:300}])await contacts(v);
+  for(const w of [390,844])assert.ok(report.keyframes.some(f=>f.file===`${w}x${w===390?740:300}-tier0.png`),'actual below-target frame from natural path');
   report.status='PASS';
+  }
 }catch(e){report.status='FAIL';report.error=String(e);process.exitCode=1;}
 finally{await browser.close();await server.httpServer.close();await writeFile(dir+'/report.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:report.status,error:report.error}));}
