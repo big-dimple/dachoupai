@@ -1,0 +1,101 @@
+{
+  "taskId": "P08",
+  "testedCommit": "d8c7062b49fc4a3b7d0ca9face4392edbeb87bff",
+  "build": {
+    "version": "C03",
+    "revision": "d8c7062b49fc4a3b7d0ca9face4392edbeb87bff",
+    "modified": false,
+    "builtAt": "2026-10-04T14:10:41.378Z"
+  },
+  "renderer": "Canvas",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 3,
+  "physicalDevice": "NOT_RUN",
+  "checks": [
+    {
+      "kind": "tap",
+      "status": "PASS",
+      "definitionId": "b11",
+      "originalBounds": {
+        "x": 16.333333333333343,
+        "y": 112,
+        "width": 108,
+        "height": 227.2
+      },
+      "duringBounds": {
+        "x": 16.333333333333343,
+        "y": 112,
+        "width": 108,
+        "height": 227.2
+      },
+      "heldBeforeRelease": false,
+      "covered": [
+        "same owning hit target during thumbnail notification",
+        "fixed geometry",
+        "unopened HD not requested",
+        "full run/RNG unchanged",
+        "native detail cancel"
+      ]
+    },
+    {
+      "kind": "drag",
+      "status": "PASS",
+      "definitionId": "b11",
+      "originalBounds": {
+        "x": 16.333333333333343,
+        "y": 112,
+        "width": 108,
+        "height": 227.2
+      },
+      "duringBounds": {
+        "x": 16.333333333333343,
+        "y": 112,
+        "width": 108,
+        "height": 227.2
+      },
+      "heldBeforeRelease": false,
+      "covered": [
+        "same owning hit target during thumbnail notification",
+        "fixed geometry",
+        "unopened HD not requested",
+        "full run/RNG unchanged",
+        "native detail cancel",
+        "movement preserved",
+        "fresh cached tap works"
+      ]
+    },
+    {
+      "kind": "failure",
+      "status": "PASS",
+      "definitionId": "b11",
+      "originalBounds": {
+        "x": 16.333333333333343,
+        "y": 112,
+        "width": 108,
+        "height": 227.2
+      },
+      "duringBounds": {
+        "x": 16.333333333333343,
+        "y": 112,
+        "width": 108,
+        "height": 227.2
+      },
+      "heldBeforeRelease": false,
+      "covered": [
+        "same owning hit target during thumbnail notification",
+        "fixed geometry",
+        "unopened HD not requested",
+        "full run/RNG unchanged",
+        "native detail cancel",
+        "thumbnail404 usable",
+        "manual retry works",
+        "fixed detail frame"
+      ]
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

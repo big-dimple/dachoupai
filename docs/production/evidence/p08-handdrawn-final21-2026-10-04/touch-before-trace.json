@@ -1,0 +1,350 @@
+{
+  "taskId": "P08",
+  "testedCommit": "8f677df03be3d642f205b07a1ff6504ae41415a7",
+  "buildCommit": "f315af14ea276817fdfd240e2958bb1d9c9a9cdb",
+  "scope": "controlled native short touch in natural p00-core-ui/amo shop; thumbnails released while press is active",
+  "status": "REPRODUCED_MISSING_DIALOG",
+  "renderer": "Chromium software Canvas",
+  "remoteSameCause": "UNCONFIRMED",
+  "trace": [
+    {
+      "at": 1422.5,
+      "kind": "native-pointerdown",
+      "timestamp": 1390.7000000001863,
+      "pressed": null,
+      "textures": []
+    },
+    {
+      "at": 1422.6000000000931,
+      "kind": "native-touchstart",
+      "timestamp": 1390.7000000001863,
+      "pressed": null,
+      "textures": []
+    },
+    {
+      "at": 1422.7000000001863,
+      "kind": "phaser-pointerdown",
+      "down": 1390.7000000001863,
+      "up": 1307.5,
+      "over": [],
+      "pressed": null,
+      "textures": []
+    },
+    {
+      "at": 1423.2000000001863,
+      "kind": "native-pointerup",
+      "timestamp": 1390.7000000001863,
+      "pressed": null,
+      "textures": []
+    },
+    {
+      "at": 1423.2000000001863,
+      "kind": "native-touchend",
+      "timestamp": 1390.7000000001863,
+      "pressed": null,
+      "textures": []
+    },
+    {
+      "at": 1423.3000000002794,
+      "kind": "phaser-pointerup",
+      "down": 1390.7000000001863,
+      "up": 1390.7000000001863,
+      "over": [],
+      "pressed": null,
+      "textures": []
+    },
+    {
+      "at": 1500,
+      "kind": "render",
+      "pressed": null,
+      "textures": [
+        {
+          "id": "b11",
+          "loaded": false
+        },
+        {
+          "id": "pengci",
+          "loaded": false
+        },
+        {
+          "id": "e02",
+          "loaded": false
+        }
+      ]
+    },
+    {
+      "at": 1503.5,
+      "kind": "reset",
+      "canceled": true,
+      "pressed": null,
+      "textures": [
+        {
+          "id": "b11",
+          "loaded": false
+        },
+        {
+          "id": "pengci",
+          "loaded": false
+        },
+        {
+          "id": "e02",
+          "loaded": false
+        }
+      ],
+      "up": 1390.7000000001863,
+      "down": 1390.7000000001863
+    },
+    {
+      "at": 1635.3999999999069,
+      "kind": "native-pointerdown",
+      "timestamp": 1613.3000000002794,
+      "pressed": null,
+      "textures": [
+        {
+          "id": "b11",
+          "loaded": false
+        },
+        {
+          "id": "pengci",
+          "loaded": false
+        },
+        {
+          "id": "e02",
+          "loaded": false
+        }
+      ]
+    },
+    {
+      "at": 1635.3999999999069,
+      "kind": "native-touchstart",
+      "timestamp": 1613.3000000002794,
+      "pressed": null,
+      "textures": [
+        {
+          "id": "b11",
+          "loaded": false
+        },
+        {
+          "id": "pengci",
+          "loaded": false
+        },
+        {
+          "id": "e02",
+          "loaded": false
+        }
+      ]
+    },
+    {
+      "at": 1635.7000000001863,
+      "kind": "phaser-pointerdown",
+      "down": 1613.3000000002794,
+      "up": 1390.7000000001863,
+      "over": [
+        "offer/run/p00-core-ui/amo/shop/0/0/joker/0"
+      ],
+      "pressed": null,
+      "textures": [
+        {
+          "id": "b11",
+          "loaded": false
+        },
+        {
+          "id": "pengci",
+          "loaded": false
+        },
+        {
+          "id": "e02",
+          "loaded": false
+        }
+      ]
+    },
+    {
+      "at": 1635.7000000001863,
+      "kind": "reset",
+      "canceled": true,
+      "pressed": null,
+      "textures": [
+        {
+          "id": "b11",
+          "loaded": false
+        },
+        {
+          "id": "pengci",
+          "loaded": false
+        },
+        {
+          "id": "e02",
+          "loaded": false
+        }
+      ],
+      "up": 1390.7000000001863,
+      "down": 1613.3000000002794
+    },
+    {
+      "at": 1660.2000000001863,
+      "kind": "render",
+      "pressed": {
+        "name": "offer/run/p00-core-ui/amo/shop/0/0/joker/0",
+        "active": true,
+        "id": 1,
+        "held": false,
+        "touch": true,
+        "x": 70.33333587646484,
+        "y": 225.60000610351562,
+        "at": 1635.7000000001863,
+        "downTime": 1613.3000000002794
+      },
+      "textures": [
+        {
+          "id": "b11",
+          "loaded": true
+        },
+        {
+          "id": "pengci",
+          "loaded": false
+        },
+        {
+          "id": "e02",
+          "loaded": false
+        }
+      ]
+    },
+    {
+      "at": 1660.5,
+      "kind": "reset",
+      "canceled": true,
+      "pressed": {
+        "name": "offer/run/p00-core-ui/amo/shop/0/0/joker/0",
+        "active": true,
+        "id": 1,
+        "held": false,
+        "touch": true,
+        "x": 70.33333587646484,
+        "y": 225.60000610351562,
+        "at": 1635.7000000001863,
+        "downTime": 1613.3000000002794
+      },
+      "textures": [
+        {
+          "id": "b11",
+          "loaded": true
+        },
+        {
+          "id": "pengci",
+          "loaded": false
+        },
+        {
+          "id": "e02",
+          "loaded": false
+        }
+      ],
+      "up": 1390.7000000001863,
+      "down": 1613.3000000002794
+    },
+    {
+      "at": 1707.3000000002794,
+      "kind": "native-pointerup",
+      "timestamp": 1685,
+      "pressed": null,
+      "textures": [
+        {
+          "id": "b11",
+          "loaded": true
+        },
+        {
+          "id": "pengci",
+          "loaded": false
+        },
+        {
+          "id": "e02",
+          "loaded": false
+        }
+      ]
+    },
+    {
+      "at": 1707.3999999999069,
+      "kind": "native-touchend",
+      "timestamp": 1685,
+      "pressed": null,
+      "textures": [
+        {
+          "id": "b11",
+          "loaded": true
+        },
+        {
+          "id": "pengci",
+          "loaded": false
+        },
+        {
+          "id": "e02",
+          "loaded": false
+        }
+      ]
+    },
+    {
+      "at": 1707.5,
+      "kind": "phaser-pointerup",
+      "down": 1613.3000000002794,
+      "up": 1685,
+      "over": [
+        "offer/run/p00-core-ui/amo/shop/0/0/joker/0"
+      ],
+      "pressed": null,
+      "textures": [
+        {
+          "id": "b11",
+          "loaded": true
+        },
+        {
+          "id": "pengci",
+          "loaded": false
+        },
+        {
+          "id": "e02",
+          "loaded": false
+        }
+      ]
+    },
+    {
+      "at": 1724.7000000001863,
+      "kind": "render",
+      "pressed": null,
+      "textures": [
+        {
+          "id": "b11",
+          "loaded": true
+        },
+        {
+          "id": "pengci",
+          "loaded": true
+        },
+        {
+          "id": "e02",
+          "loaded": false
+        }
+      ]
+    },
+    {
+      "at": 1725,
+      "kind": "reset",
+      "canceled": true,
+      "pressed": null,
+      "textures": [
+        {
+          "id": "b11",
+          "loaded": true
+        },
+        {
+          "id": "pengci",
+          "loaded": true
+        },
+        {
+          "id": "e02",
+          "loaded": false
+        }
+      ],
+      "up": 1685,
+      "down": 1613.3000000002794
+    }
+  ]
+}
