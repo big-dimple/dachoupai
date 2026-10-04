@@ -1,5 +1,12 @@
 import { readFile } from 'node:fs/promises';
 import { createServer } from 'vite';
+import {fileURLToPath} from 'node:url';
+import {auditPublicArtPrivacy,formatPublicArtPrivacy} from './public-art-privacy.mjs';
+
+const publicArtPrivacy=await auditPublicArtPrivacy(fileURLToPath(new URL('../',import.meta.url)));
+const privacyReport=formatPublicArtPrivacy(publicArtPrivacy);
+if(publicArtPrivacy.issues.length){console.error(privacyReport);process.exit(1);}
+console.log(privacyReport);
 
 // A finite C03 envelope, separate from the arbitrary-content conservative guard below.
 // It overcounts conditions, but keeps one set of five slots across every phase.
