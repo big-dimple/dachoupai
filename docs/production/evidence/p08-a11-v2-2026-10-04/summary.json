@@ -112,8 +112,8 @@
     "builtAt": "2026-10-04T15:40:36.710Z"
   },
   "imageSHA256": "f7723c1fa4a143ab41e6a44c607f9582b3adc12fc56a545fe98e8f48cbf7fed7",
-  "testedCommit": "79021e8fb3a26181ef2e44e3bb01600e82b9e589",
-  "testedCommitMeaning": "Exact committed combined material candidate used by bounded immutable178/type/build/content/plan freeze. Browser and original PNG used the identical registered runtime inputs and src fingerprint on7d37 with material changes; imageBuild/browserTestedBaseCommit retain that identity.",
+  "testedCommit": "6d554758eb05bf2dcca803fd93180d5b31f2dc07",
+  "testedCommitMeaning": "Final aligned187/type/build/content43/plan immutable check SHA. Original image remains separately identified by imageBuild/imageSourceFingerprint/browserTestedBaseCommit; final aligned browser has its own source fingerprint/build.",
   "protected": {
     "base": "7d37d23347ddbfee344a00355de9741b34c67e76",
     "runtimeFiles": 183,
@@ -355,5 +355,59 @@
     "srcIdenticalToMain": true,
     "sortHandSelectedGhostUndoClearingPreserved": true,
     "itemAndA11CommitsPreserved": true
+  },
+  "alignedFreeze": {
+    "status": "PASS",
+    "exitCode": 0,
+    "before": {
+      "source": "bab6b09799cefb8beb463cc35c4a86f3b0db987bfc343fec36a1b950f2d96a7a",
+      "index": "3ea2ca29a3b79cd60f9ecc7a2b799da626bad9a7b4c9450b657cade2d3d1d622",
+      "head": "6d554758eb05bf2dcca803fd93180d5b31f2dc07",
+      "branch": "refs/heads/feat/p08-items-u01-u06-20261004"
+    },
+    "after": {
+      "source": "bab6b09799cefb8beb463cc35c4a86f3b0db987bfc343fec36a1b950f2d96a7a",
+      "index": "3ea2ca29a3b79cd60f9ecc7a2b799da626bad9a7b4c9450b657cade2d3d1d622",
+      "head": "6d554758eb05bf2dcca803fd93180d5b31f2dc07",
+      "branch": "refs/heads/feat/p08-items-u01-u06-20261004"
+    },
+    "steps": [
+      {
+        "name": "affected-art-loading-and-inherited-sort",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 4328
+      },
+      {
+        "name": "typecheck",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 7989
+      },
+      {
+        "name": "build",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 13725
+      },
+      {
+        "name": "verify:content",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 2049
+      },
+      {
+        "name": "plan",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 324
+      }
+    ]
+  },
+  "alignedValidationBuild": {
+    "version": "C03",
+    "revision": "6d554758eb05bf2dcca803fd93180d5b31f2dc07",
+    "modified": false,
+    "builtAt": "2026-10-04T15:52:09.489Z"
   }
 }
