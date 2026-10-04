@@ -39,6 +39,12 @@
       "sourceIndexHeadInvariant": true,
       "scope": "tests/content/type/build/Chromium software Canvas desktop+mobile smoke/plan",
       "evidence": "docs/production/evidence/p08-handdrawn-final21-2026-10-04/freeze.json"
+    },
+    "docsArchiveInitial": {
+      "status": "FAIL",
+      "testedCommit": "d27d6468e337850ee884224763c48e13bc3af9a6",
+      "reason": "Raw freeze record lacks taskId required by the plan evidence schema; plan now points to the valid summary/coverage records, which retain the freeze link.",
+      "failedEvidence": "docs/production/evidence/p08-handdrawn-final21-2026-10-04/docs-archive-initial-failed.json"
     }
   },
   "functionalCoverage": {

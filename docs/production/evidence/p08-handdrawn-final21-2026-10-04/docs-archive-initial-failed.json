@@ -1,0 +1,43 @@
+{
+  "scope": "docs",
+  "testedCommit": "d27d6468e337850ee884224763c48e13bc3af9a6",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "4b1c3f7704cac2d13732ae0e7aa93b0f3b84c76ec82c3efd094300ace7d253e7",
+    "index": "ca57dab959fdea598763d9ddff9ec83325514aca0ffb99b45c7086038602e5a3",
+    "head": "d27d6468e337850ee884224763c48e13bc3af9a6",
+    "branch": "refs/heads/feat/p08-handdrawn-final21-20261004"
+  },
+  "after": {
+    "source": "4b1c3f7704cac2d13732ae0e7aa93b0f3b84c76ec82c3efd094300ace7d253e7",
+    "index": "ca57dab959fdea598763d9ddff9ec83325514aca0ffb99b45c7086038602e5a3",
+    "head": "d27d6468e337850ee884224763c48e13bc3af9a6",
+    "branch": "refs/heads/feat/p08-handdrawn-final21-20261004"
+  },
+  "steps": [
+    {
+      "name": "production-plan",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 395,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
