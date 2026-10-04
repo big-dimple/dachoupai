@@ -5,7 +5,7 @@ export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
 export type AudioScene = 'menu' | 'shop' | 'table' | 'boss' | 'success' | 'failure';
 export type FailureCue = { runId: string; commandSeq: number };
 type VoiceBus = Exclude<AudioBus, 'master'>;
-type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; fire?: boolean; fireLayer?: 'bed'|'rumble'; roll?: ScoreRollKind };
+type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; scoreAccent?: boolean; roll?: ScoreRollKind };
 export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 'retrigger';
 export type ScoreRollKind = 'heat' | 'mult' | 'total';
 
@@ -24,13 +24,8 @@ export class AudioEngine {
   private pluckedWave?: PeriodicWave;
   private leadWave?: PeriodicWave;
   private pianoWave?: PeriodicWave;
-  private fireBed?: AudioBuffer;
-  private fireRumble?: AudioBuffer;
   private rollBuffer?: AudioBuffer;
-  private fireVoices = new Set<Voice>();
-  private fireIntensity: 0 | 1 | 2 | 3 = 0;
-  private fireIgnition?:Voice;
-  private readonly fireCues=new WeakSet<object>();
+  private readonly scoreCues=new WeakMap<object,Set<string>>();
   private voices = new Set<Voice>();
   private volumes: Record<AudioBus, number> = { master: 1, music: DEFAULT_AUDIO.music, sfx: DEFAULT_AUDIO.sfx, ui: DEFAULT_AUDIO.sfx };
   private masterMuted = false;
@@ -177,7 +172,6 @@ export class AudioEngine {
           seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
           samples[i] = seed / 0xffffffff * 2 - 1;
         }
-        this.createFireBuffers(context);
         this.createRollBuffer(context);
       }
       const context = this.context;
@@ -218,7 +212,7 @@ export class AudioEngine {
   private retain(voice: Voice): void {
     // Fast-forwarded/long traces cannot create an unbounded wall of simultaneous sound.
     if (this.voices.size >= 32) {
-      const oldest = [...this.voices].find(voice => !voice.fire) ?? this.voices.values().next().value;
+      const oldest = this.voices.values().next().value;
       if (oldest) this.release(oldest);
     }
     this.voices.add(voice);
@@ -226,8 +220,6 @@ export class AudioEngine {
   }
   private release(voice: Voice): void {
     this.voices.delete(voice);
-    this.fireVoices.delete(voice);
-    if(this.fireIgnition===voice)this.fireIgnition=undefined;
     voice.source.onended = null;
     try { voice.source.stop(); } catch { /* The source may already have ended. */ }
     try { voice.source.disconnect(); voice.gain.disconnect(); voice.filter?.disconnect(); } catch { /* Device teardown. */ }
@@ -238,7 +230,7 @@ export class AudioEngine {
   /** Cancel a skipped scene's score tails while its table music keeps playing. */
   cancelPresentation(): void { this.stopScoreFire(); this.stopVoices('sfx'); this.duckUntil = 0; this.applyVolume('music'); }
 
-  private note(note: number, duration: number, volume: number, bus: VoiceBus = 'sfx', offset = 0, wave: OscillatorType = 'triangle', absoluteTime?: number, endNote?: number, color: 'clean' | 'pluck' | 'warm' | 'lead' | 'piano' | 'string' = 'clean'): void {
+  private note(note: number, duration: number, volume: number, bus: VoiceBus = 'sfx', offset = 0, wave: OscillatorType = 'triangle', absoluteTime?: number, endNote?: number, color: 'clean' | 'pluck' | 'warm' | 'lead' | 'piano' | 'string' = 'clean'): Voice | undefined {
     if (!this.canPlay(bus)) return;
     try {
       const context = this.context!, oscillator = context.createOscillator(), gain = context.createGain();
@@ -268,12 +260,12 @@ export class AudioEngine {
         oscillator.connect(filter); filter.connect(gain);
       } else oscillator.connect(gain);
       gain.connect(this.gains![bus]);
-      this.retain({ source: oscillator, gain, filter, bus });
+      const voice={source:oscillator,gain,filter,bus};this.retain(voice);
       oscillator.start(time);
-      oscillator.stop(time + duration + .015);
+      oscillator.stop(time + duration + .015);return voice;
     } catch { /* Every individual sound is optional; no command awaits audio. */ }
   }
-  private paper(duration = .09, volume = .025, offset = 0, bus: VoiceBus = 'sfx', absoluteTime?: number, frequency = 1400): void {
+  private paper(duration = .09, volume = .025, offset = 0, bus: VoiceBus = 'sfx', absoluteTime?: number, frequency = 1400): Voice | undefined {
     if (!this.canPlay(bus) || !this.noise) return;
     try {
       const context = this.context!, source = context.createBufferSource(), gain = context.createGain(), filter = context.createBiquadFilter();
@@ -286,9 +278,9 @@ export class AudioEngine {
       gain.gain.linearRampToValueAtTime(bounded(volume * 2, .12), time + .006);
       gain.gain.exponentialRampToValueAtTime(.0001, time + duration);
       source.connect(filter); filter.connect(gain); gain.connect(this.gains![bus]);
-      this.retain({ source, gain, filter, bus });
+      const voice={source,gain,filter,bus};this.retain(voice);
       source.start(time);
-      source.stop(time + duration);
+      source.stop(time + duration);return voice;
     } catch { /* Missing synthesis support only removes the paper layer. */ }
   }
   private duckMusic(duration = .3): void {
@@ -300,81 +292,22 @@ export class AudioEngine {
     } catch { /* Ducking failure is inaudible to rule state. */ }
   }
 
-  private createFireBuffers(context: AudioContext): void {
-    const bed = context.createBuffer(1, Math.ceil(context.sampleRate * 2.4), context.sampleRate);
-    const rumble = context.createBuffer(1, Math.ceil(context.sampleRate * 3.17), context.sampleRate);
-    let seed = 0x46495245, brown = 0, turbulence = 0;
-    const sample = (): number => {
-      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
-      return seed / 0xffffffff * 2 - 1;
-    };
-    const bedData = bed.getChannelData(0), rumbleData = rumble.getChannelData(0);
-    for (let i = 0; i < bedData.length; i++) {
-      const white=sample();brown = brown * .992 + white * .072;
-      const edge = Math.min(1, i / (context.sampleRate * .08), (bedData.length - i) / (context.sampleRate * .08));
-      // Warm wind retains an audible middle band for small speakers; no sharp crackle transients.
-      bedData[i] = (Math.tanh(brown)*.78+white*.12) * edge;
-    }
-    for (let i = 0; i < rumbleData.length; i++) {
-      turbulence = turbulence * .975 + sample() * .095;
-      const time = i / context.sampleRate;
-      const swell = .64 + .22 * Math.sin(time * 5.1) + .12 * Math.sin(time * 12.7);
-      const edge = Math.min(1, time / .08, (rumbleData.length - i) / (context.sampleRate * .08));
-      rumbleData[i] = Math.tanh(turbulence) * swell * edge;
-    }
-    this.fireBed = bed;
-    this.fireRumble = rumble;
+  /** Replace multiplier/award chords with one falling low drum and one paper attack. */
+  scoreBrush(presentation:object,eventId:string,intensity:0|1|2|3=1):void {
+    let seen=this.scoreCues.get(presentation);
+    if(!seen){seen=new Set();this.scoreCues.set(presentation,seen);}
+    if(seen.has(eventId)||seen.size>=512)return;
+    // Silent/background events are consumed too, and never queued for a later foreground.
+    seen.add(eventId);if(!this.canPlay('sfx'))return;
+    const level=bounded(intensity,3),duration=.10+level*.02;
+    for(const voice of [this.note(45,duration,.055+level*.009,'sfx',0,'sine',undefined,33,'warm'),
+      this.paper(.03+level/150,.020+level*.003,0,'sfx',undefined,900)])if(voice)voice.scoreAccent=true;
+    this.duckMusic(.18);
   }
 
-  /** Two bounded SFX sources for the actual score-fire state, never a second context. */
-  setScoreFire(intensity: 0 | 1 | 2 | 3,cue?:object): void {
-    const ignite=!!cue&&intensity>0&&!this.fireCues.has(cue);
-    // Consume a silent cue too: changing volume or foregrounding must not queue an old ignition.
-    if(ignite)this.fireCues.add(cue!);
-    if (intensity === 0 || ![1, 2, 3].includes(intensity) || !this.canPlay('sfx')) { this.stopScoreFire(); return; }
-    if (this.fireIntensity === intensity && this.fireVoices.size === 2) return;
-    try {
-      const context = this.context!;
-      if (this.fireVoices.size !== 2) {
-        this.stopScoreFire();
-        for (const [buffer, layer] of [[this.fireBed, 'bed'], [this.fireRumble, 'rumble']] as const) {
-          if (!buffer) { this.stopScoreFire(); return; }
-          const source = context.createBufferSource(), gain = context.createGain(), filter = context.createBiquadFilter();
-          source.buffer = buffer; source.loop = true;
-          filter.type = 'lowpass'; filter.Q.value = .35;
-          gain.gain.setValueAtTime(0, context.currentTime);
-          source.connect(filter); filter.connect(gain); gain.connect(this.gains!.sfx);
-          const voice: Voice = {source, gain, filter, bus: 'sfx', fire: true, fireLayer: layer};
-          this.fireVoices.add(voice); this.retain(voice); source.start();
-        }
-      }
-      this.fireIntensity = intensity;
-      for (const voice of this.fireVoices) {
-        const bed = voice.fireLayer === 'bed';
-        voice.gain.gain.setTargetAtTime((bed ? [.18, .25, .32] : [.06, .085, .11])[intensity - 1], context.currentTime, .05);
-        voice.filter!.frequency.setTargetAtTime((bed ? [1000, 1250, 1500] : [340, 430, 520])[intensity - 1], context.currentTime, .06);
-        (voice.source as AudioBufferSourceNode).playbackRate.setTargetAtTime([.92, 1, 1.07][intensity-1], context.currentTime, .1);
-      }
-      if(ignite)this.igniteScoreFire(intensity);
-    } catch { this.stopScoreFire(); }
-  }
-
-  private igniteScoreFire(intensity:1|2|3):void {
-    if(this.fireIgnition)this.release(this.fireIgnition);
-    const context=this.context!,source=context.createBufferSource(),gain=context.createGain(),filter=context.createBiquadFilter(),at=context.currentTime;
-    source.buffer=this.fireBed!;filter.type='bandpass';filter.Q.value=.5;
-    filter.frequency.setValueAtTime(360,at);filter.frequency.exponentialRampToValueAtTime(1100,at+.09);filter.frequency.exponentialRampToValueAtTime(480,at+.34);
-    gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime([.32,.38,.44][intensity-1],at+.045);gain.gain.exponentialRampToValueAtTime(.001,at+.38);
-    source.connect(filter);filter.connect(gain);gain.connect(this.gains!.sfx);
-    const voice:Voice={source,gain,filter,bus:'sfx',fire:true};this.fireIgnition=voice;this.retain(voice);
-    source.start(at,.24,.4);source.stop(at+.4);this.duckMusic(.48);
-  }
-
-  /** Stop now on fast-forward, shutdown, new stage or background; no stale auto-resume. */
+  /** Compatibility cleanup name; no continuous burning sources remain. */
   stopScoreFire(): void {
-    this.fireIntensity = 0;
-    if(this.fireIgnition)this.release(this.fireIgnition);
-    for (const voice of this.fireVoices) this.release(voice);
+    for(const voice of this.voices)if(voice.scoreAccent)this.release(voice);
   }
 
   private startMusic(): void {

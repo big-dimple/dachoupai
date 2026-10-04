@@ -1,0 +1,3064 @@
+{
+  "status": "PASS",
+  "mainAligned": "7d44b8bcada32942acded87d70abe78dea12f275",
+  "firstPublishedAlignment": "a6e482be77d82d9702e02f12f89679fff2045740",
+  "a6Merge": "adad700f44789bdb6f8a0af619963859bdb27f43",
+  "publishedCopyMerge": "085ad38e04fdd285d83842e23adcfd2cd690d8be",
+  "avatarFix": "3a5620f63361e84297a2b245829b3002bc5dbd2f",
+  "latestSource": "085ad38e04fdd285d83842e23adcfd2cd690d8be",
+  "sourceTree": "36736157bb608d001900a074d3399d80ae0a6901",
+  "testsTree": "1bd95e3193ff604eb4e6cde4f247c5d30b216f8c",
+  "mergeConflict": "DECISIONS only on a6 merge; cinnabar and action-row/hint decisions both preserved. Published7d merge had no conflict.",
+  "avatarCorrection": "roleAvatar is a direct root child; roleFrame remains the geometric mask guard. Observer reports the required avatar index separately and asserts >=0 and above ink before any foreground filtering.",
+  "immutableFromMain7d": {
+    "src/domain": {
+      "main": "8e3423193ecb4920e79b87f2314da97a04438c99",
+      "candidate": "8e3423193ecb4920e79b87f2314da97a04438c99"
+    },
+    "src/application": {
+      "main": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+      "candidate": "4abd0e9c2df6b8e3652a618896c77e6993681f47"
+    },
+    "src/content": {
+      "main": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+      "candidate": "cec787d144468e0a3e39bda0593ca0433e9f1853"
+    },
+    "public/assets": {
+      "main": "7b5ddd9c14f014680ef8dab52bfd9d792feaeedd",
+      "candidate": "7b5ddd9c14f014680ef8dab52bfd9d792feaeedd"
+    },
+    "art/sources": {
+      "main": "928a82062d663c94c7122586a2470403f0d06979",
+      "candidate": "928a82062d663c94c7122586a2470403f0d06979"
+    },
+    "public/licenses": {
+      "main": "2bd617f0b8afc5fcf7af3ec7d7935fb413ce7f4f",
+      "candidate": "2bd617f0b8afc5fcf7af3ec7d7935fb413ce7f4f"
+    },
+    "src/game/JokerReorder.ts": {
+      "main": "23e90a7419b490b12f7a74e7f6587fb61f8f34f6",
+      "candidate": "23e90a7419b490b12f7a74e7f6587fb61f8f34f6"
+    },
+    "src/vendor/browslatro": {
+      "main": "e3613b61be791af2079b166f86b97f3e6b8f0ad0",
+      "candidate": "e3613b61be791af2079b166f86b97f3e6b8f0ad0"
+    },
+    "src/game/layout.ts": {
+      "main": "30393b696ccd170bbb648c53615a436e1b18a3e5",
+      "candidate": "30393b696ccd170bbb648c53615a436e1b18a3e5"
+    },
+    "src/game/SceneView.ts": {
+      "main": "ca6c4cb83ca48c1f722eddb9d07bf7441c65cf9e",
+      "candidate": "ca6c4cb83ca48c1f722eddb9d07bf7441c65cf9e"
+    },
+    "src/game/HandActionArt.ts": {
+      "main": "af3ec12b7670de1be194b3ee297112147c8adf0f",
+      "candidate": "af3ec12b7670de1be194b3ee297112147c8adf0f"
+    },
+    "src/game/JokerMemory.ts": {
+      "main": "f3a3813e122744c1f11b9c60416e1ca7ae29055c",
+      "candidate": "f3a3813e122744c1f11b9c60416e1ca7ae29055c"
+    },
+    "src/game/JokerPlayerCopy.ts": {
+      "main": "26506df17dd711810c581e004d5cba4f9d3f53b9",
+      "candidate": "26506df17dd711810c581e004d5cba4f9d3f53b9"
+    },
+    "src/game/JokerPlayerTemplates.json": {
+      "main": "971b07c9cc9a7d5c13977263fe0232ff92650b0a",
+      "candidate": "971b07c9cc9a7d5c13977263fe0232ff92650b0a"
+    },
+    "src/game/CardCopy.ts": {
+      "main": "8f2799e7e04c9b1bcb18d5f29618728680258f6e",
+      "candidate": "8f2799e7e04c9b1bcb18d5f29618728680258f6e"
+    },
+    "src/game/DetailDialog.ts": {
+      "main": "3bfcc4242909ca757d7535cc03379c6a11e2e280",
+      "candidate": "3bfcc4242909ca757d7535cc03379c6a11e2e280"
+    },
+    "src/game/ShopScene.ts": {
+      "main": "a4837a0c34dfc5c8880a530b7c8baf85f7b88c03",
+      "candidate": "a4837a0c34dfc5c8880a530b7c8baf85f7b88c03"
+    },
+    "src/style.css": {
+      "main": "2a4d9730e29ef96490f9a5ef6396210a71ea2c25",
+      "candidate": "2a4d9730e29ef96490f9a5ef6396210a71ea2c25"
+    }
+  },
+  "preservedGameSceneMethodHashes": {
+    "sortHand": "f721f2c9f22074bb312d8a9b82cecf87fc425660b77e45bf14c3404a22761149",
+    "reorderJoker": "dd05d3412173d096343c70de75b2145870aefc4a8190d97429d2079337dfcafa",
+    "inspectJoker": "05e133fc13740c7c7315ec91e174fab4e3c69b0142e8e31212be10db84cf910f",
+    "showHandHint": "ade293a0f45da92e3ab306d205dc4cf50f8f185370de91a60b7aac1449e778cc",
+    "updateControls": "c6d4052f92f811b1f23c582e60cb4b7d86662dfb683e6fd9d1613ee059a3bd6a",
+    "memoryContext": "52746978a34edf7b6cdb64971d615dadb6c23e3b878971b6845fae512e62dac7",
+    "jokerAbility": "46b2200329b75d865ecf0bb70e9310712212987b60136e2b810833549aee3194",
+    "jokerRestriction": "a7e4c734445bff92f048ef65557bf7b794eb07bed55c8590bfbef7f8e8d8fcf5",
+    "showJokerHover": "8709888bcba78779701899f3b054b1d84bf4160a120c8479f2f3ddf092aae180"
+  },
+  "preservedActionRenderSha256": "704ab8c49d19bdf598f0dd652accefe770fe2869f7228ad3f4eb5bac261d3e32",
+  "unchangedApprovedBrushAndAudio": {
+    "src/game/ScoreFlame.ts": {
+      "approvedE902": "925208142110f17e08e1df264913d21e5c9afdd0",
+      "candidate": "925208142110f17e08e1df264913d21e5c9afdd0"
+    },
+    "src/audio/AudioEngine.ts": {
+      "approvedE902": "a59571134ba2e3a1f7c913b44434b425df24a80c",
+      "candidate": "a59571134ba2e3a1f7c913b44434b425df24a80c"
+    }
+  },
+  "parameterAdjustmentRounds": 1,
+  "visualReview": "Parent actually viewed both local-corners PNGs at buildbc504ef and approved paired strokes/no text coverage; no further parameter changes or image retakes. Older images retain original sources.",
+  "unitChecks": [
+    {
+      "source": "a13de85ff839e2fcdf573b0bfaa8b1b8e8c5cd43",
+      "files": 8,
+      "tests": 76,
+      "status": "PASS",
+      "scope": "score plus main action-controls/hint status; unchanged tested bodies retained through published7d merge"
+    },
+    {
+      "source": "085ad38e04fdd285d83842e23adcfd2cd690d8be",
+      "files": 3,
+      "tests": 23,
+      "status": "PASS",
+      "scope": "published Joker player-copy/memory/compact"
+    }
+  ],
+  "typeAndBuild": "Both source builds used npm run build -- --mode e2e; tsc and Vite PASS, modified=false. Latest build085ad38 reused for all four final routes.",
+  "browserChecks": [
+    {
+      "status": "PASS",
+      "actualBuild": {
+        "version": "C03",
+        "revision": "a13de85ff839e2fcdf573b0bfaa8b1b8e8c5cd43",
+        "modified": false,
+        "builtAt": "2026-10-04T17:36:49.630Z"
+      },
+      "harnessCommit": "a13de85ff839e2fcdf573b0bfaa8b1b8e8c5cd43",
+      "scope": "Finite main integration regression: natural202 and5589 in both viewports, explicit root-avatar/paper/card/button/text layers; no image retakes.",
+      "renderer": "Linux Chromium software Canvas",
+      "browser": "151.0.7922.173",
+      "dpr": 1,
+      "input": "native emulated touch",
+      "scoringFrames": 1161,
+      "screenshots": 0,
+      "runs": [
+        {
+          "name": "390x740-202-natural",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "safe": {
+            "top": 12,
+            "bottom": 34
+          },
+          "seed": "p04-golden-02",
+          "character": "amo",
+          "playedIds": [
+            "clubs-5"
+          ],
+          "scoringFrames": 200,
+          "brushFrames": 128,
+          "allSavedStable": true,
+          "explicitAvatarVerifiedFrames": 128,
+          "minimumAvatarLayerGap": 1,
+          "minimumCardButtonLayerGap": 1,
+          "minimumTextLayerGap": 64,
+          "final": {
+            "phase": "await-input",
+            "heat": "202",
+            "target": "400",
+            "playIndex": 1,
+            "traceFinalScore": "202",
+            "accumulator": {
+              "H": {
+                "n": "45",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "rng": {
+              "deck": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 1598791259
+              },
+              "rule": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 334553024
+              },
+              "shop": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 930417582
+              },
+              "reward": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 4096215039
+              },
+              "program": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 4208601031
+              },
+              "challenge": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 972082436
+              }
+            }
+          },
+          "wholeSavedStateSha256": "9a5322db20ac521dcc9e2faf7f1e8202dfb8907e0d51e6763c7a8246b2471480",
+          "maxSustainedBurningVoices": 0,
+          "noShakeOrCentralStamp": true,
+          "orderedSourceImpactIds": [
+            "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+            "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2"
+          ],
+          "checks": [
+            "Natural saved trace and exact displayed tiers; actual phase/mask/geometry; all owned brush/audio cleanup"
+          ],
+          "cleanup": {
+            "brush": false,
+            "nodes": 0,
+            "accents": 0
+          },
+          "longDigits": [
+            {
+              "text": "1.23e14",
+              "full": "123,456,789,012,345",
+              "bounds": {
+                "x": 58.040000000000006,
+                "y": 208.6,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "text": "× 1.00e8–9.99e8",
+              "full": "× 100,000,000–999,999,999",
+              "bounds": {
+                "x": 30.540000000000006,
+                "y": 253.6,
+                "width": 106.00000000000001,
+                "height": 16.00000000000003
+              },
+              "font": "14px"
+            },
+            {
+              "text": "999,999,999,999,999",
+              "full": "999,999,999,999,999",
+              "bounds": {
+                "x": 158.54000000000002,
+                "y": 248.60000000000002,
+                "width": 208,
+                "height": 25
+              },
+              "font": "22px"
+            }
+          ],
+          "pageErrors": [],
+          "phaseLayerSamples": [
+            {
+              "frame": 191,
+              "product": "60",
+              "level": 0,
+              "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 0,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.699999999999818,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "idle",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0,
+                "lineWidth": 3.5,
+                "entered": [],
+                "updating": true
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76,
+                  77
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 248,
+              "product": "67",
+              "level": 0,
+              "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 0,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.600000000000364,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "idle",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0,
+                "lineWidth": 3.5,
+                "entered": [],
+                "updating": true
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76,
+                  77
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 294,
+              "product": "202",
+              "level": 0,
+              "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/3",
+              "eventPhase": "award",
+              "brush": {
+                "level": 0,
+                "reduced": false,
+                "localPhase": "idle",
+                "localAge": 320,
+                "localAlpha": 0,
+                "localLineWidth": 4.5,
+                "framePhase": "idle",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0,
+                "lineWidth": 3.5,
+                "entered": [],
+                "updating": false
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  70,
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76
+                ]
+              },
+              "savedStable": true
+            }
+          ]
+        },
+        {
+          "name": "390x740-5589-natural",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "safe": {
+            "top": 12,
+            "bottom": 34
+          },
+          "seed": "d43-fire-267",
+          "character": "laohuan",
+          "playedIds": [
+            "diamonds-11",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-10",
+            "diamonds-14"
+          ],
+          "scoringFrames": 381,
+          "brushFrames": 344,
+          "allSavedStable": true,
+          "explicitAvatarVerifiedFrames": 344,
+          "minimumAvatarLayerGap": 1,
+          "minimumCardButtonLayerGap": 1,
+          "minimumTextLayerGap": 64,
+          "final": {
+            "phase": "stage-cleared",
+            "heat": "5589",
+            "target": "400",
+            "playIndex": 1,
+            "traceFinalScore": "5589",
+            "accumulator": {
+              "H": {
+                "n": "621",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "1"
+              }
+            },
+            "rng": {
+              "deck": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 1909548448
+              },
+              "rule": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 2736743772
+              },
+              "shop": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3321144461
+              },
+              "reward": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3896392792
+              },
+              "program": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 500999940
+              },
+              "challenge": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3904192939
+              }
+            }
+          },
+          "wholeSavedStateSha256": "8e1c331f23ece37ec8168b6fea223f8696a7c95e63aeed8dc1385bca685c13e6",
+          "maxSustainedBurningVoices": 0,
+          "noShakeOrCentralStamp": true,
+          "orderedSourceImpactIds": [
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6"
+          ],
+          "checks": [
+            "Natural saved trace and exact displayed tiers; actual phase/mask/geometry; all owned brush/audio cleanup"
+          ],
+          "cleanup": {
+            "brush": false,
+            "nodes": 0,
+            "accents": 0
+          },
+          "longDigits": [
+            {
+              "text": "1.23e14",
+              "full": "123,456,789,012,345",
+              "bounds": {
+                "x": 58.040000000000006,
+                "y": 208.6,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "text": "× 1.00e8–9.99e8",
+              "full": "× 100,000,000–999,999,999",
+              "bounds": {
+                "x": 30.540000000000006,
+                "y": 253.6,
+                "width": 106.00000000000001,
+                "height": 16.00000000000003
+              },
+              "font": "14px"
+            },
+            {
+              "text": "999,999,999,999,999",
+              "full": "999,999,999,999,999",
+              "bounds": {
+                "x": 158.54000000000002,
+                "y": 248.60000000000002,
+                "width": 208,
+                "height": 25
+              },
+              "font": "22px"
+            }
+          ],
+          "pageErrors": [],
+          "phaseLayerSamples": [
+            {
+              "frame": 170,
+              "product": "4050",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+              "eventPhase": "base",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "idle",
+                "localAge": 320,
+                "localAlpha": 0,
+                "localLineWidth": 4.5,
+                "framePhase": "write",
+                "frameAge": 16.699999999999818,
+                "frameProgress": 0.05964285714285649,
+                "frameAlpha": 0.7743142857142855,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": true
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  61,
+                  63,
+                  64,
+                  66,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  70,
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 215,
+              "product": "4050",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.699999999999818,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "fade",
+                "frameAge": 766.6999999999998,
+                "frameProgress": 1,
+                "frameAlpha": 0.8116000000000001,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": true
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  61,
+                  63,
+                  64,
+                  66,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76,
+                  77
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 393,
+              "product": "4509",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.700000000000728,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "static",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0.76,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": true
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  61,
+                  63,
+                  64,
+                  66,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76,
+                  77
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 429,
+              "product": "5589",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/7",
+              "eventPhase": "award",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "idle",
+                "localAge": 320,
+                "localAlpha": 0,
+                "localLineWidth": 4.5,
+                "framePhase": "static",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0.76,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": false
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  61,
+                  63,
+                  64,
+                  66,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  70,
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76
+                ]
+              },
+              "savedStable": true
+            }
+          ]
+        },
+        {
+          "name": "844x300-202-natural",
+          "status": "PASS",
+          "viewport": {
+            "width": 844,
+            "height": 300
+          },
+          "safe": {
+            "top": 12,
+            "bottom": 34
+          },
+          "seed": "p04-golden-02",
+          "character": "amo",
+          "playedIds": [
+            "clubs-5"
+          ],
+          "scoringFrames": 201,
+          "brushFrames": 129,
+          "allSavedStable": true,
+          "explicitAvatarVerifiedFrames": 129,
+          "minimumAvatarLayerGap": 1,
+          "minimumCardButtonLayerGap": 1,
+          "minimumTextLayerGap": 67,
+          "final": {
+            "phase": "await-input",
+            "heat": "202",
+            "target": "400",
+            "playIndex": 1,
+            "traceFinalScore": "202",
+            "accumulator": {
+              "H": {
+                "n": "45",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "rng": {
+              "deck": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 1598791259
+              },
+              "rule": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 334553024
+              },
+              "shop": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 930417582
+              },
+              "reward": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 4096215039
+              },
+              "program": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 4208601031
+              },
+              "challenge": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 972082436
+              }
+            }
+          },
+          "wholeSavedStateSha256": "9a5322db20ac521dcc9e2faf7f1e8202dfb8907e0d51e6763c7a8246b2471480",
+          "maxSustainedBurningVoices": 0,
+          "noShakeOrCentralStamp": true,
+          "orderedSourceImpactIds": [
+            "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+            "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2"
+          ],
+          "checks": [
+            "Natural saved trace and exact displayed tiers; actual phase/mask/geometry; all owned brush/audio cleanup"
+          ],
+          "cleanup": {
+            "brush": false,
+            "nodes": 0,
+            "accents": 0
+          },
+          "longDigits": [
+            {
+              "text": "1.23e14",
+              "full": "123,456,789,012,345",
+              "bounds": {
+                "x": 204.84,
+                "y": 108,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "text": "× 1e8–9e8",
+              "full": "× 100,000,000–999,999,999",
+              "bounds": {
+                "x": 276.52,
+                "y": 108,
+                "width": 67,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "text": "999,999,999,999,999",
+              "full": "999,999,999,999,999",
+              "bounds": {
+                "x": 363.18,
+                "y": 95,
+                "width": 133,
+                "height": 16
+              },
+              "font": "14px"
+            }
+          ],
+          "pageErrors": [],
+          "phaseLayerSamples": [
+            {
+              "frame": 189,
+              "product": "60",
+              "level": 0,
+              "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 0,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.59999999999991,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "idle",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0,
+                "lineWidth": 3.5,
+                "entered": [],
+                "updating": true
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80,
+                  81
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 246,
+              "product": "67",
+              "level": 0,
+              "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 0,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.699999999999818,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "idle",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0,
+                "lineWidth": 3.5,
+                "entered": [],
+                "updating": true
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80,
+                  81
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 292,
+              "product": "202",
+              "level": 0,
+              "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/3",
+              "eventPhase": "award",
+              "brush": {
+                "level": 0,
+                "reduced": false,
+                "localPhase": "idle",
+                "localAge": 320,
+                "localAlpha": 0,
+                "localLineWidth": 4.5,
+                "framePhase": "idle",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0,
+                "lineWidth": 3.5,
+                "entered": [],
+                "updating": false
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  74,
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80
+                ]
+              },
+              "savedStable": true
+            }
+          ]
+        },
+        {
+          "name": "844x300-5589-natural",
+          "status": "PASS",
+          "viewport": {
+            "width": 844,
+            "height": 300
+          },
+          "safe": {
+            "top": 12,
+            "bottom": 34
+          },
+          "seed": "d43-fire-267",
+          "character": "laohuan",
+          "playedIds": [
+            "diamonds-11",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-10",
+            "diamonds-14"
+          ],
+          "scoringFrames": 379,
+          "brushFrames": 342,
+          "allSavedStable": true,
+          "explicitAvatarVerifiedFrames": 342,
+          "minimumAvatarLayerGap": 1,
+          "minimumCardButtonLayerGap": 1,
+          "minimumTextLayerGap": 67,
+          "final": {
+            "phase": "stage-cleared",
+            "heat": "5589",
+            "target": "400",
+            "playIndex": 1,
+            "traceFinalScore": "5589",
+            "accumulator": {
+              "H": {
+                "n": "621",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "1"
+              }
+            },
+            "rng": {
+              "deck": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 1909548448
+              },
+              "rule": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 2736743772
+              },
+              "shop": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3321144461
+              },
+              "reward": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3896392792
+              },
+              "program": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 500999940
+              },
+              "challenge": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3904192939
+              }
+            }
+          },
+          "wholeSavedStateSha256": "8e1c331f23ece37ec8168b6fea223f8696a7c95e63aeed8dc1385bca685c13e6",
+          "maxSustainedBurningVoices": 0,
+          "noShakeOrCentralStamp": true,
+          "orderedSourceImpactIds": [
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6"
+          ],
+          "checks": [
+            "Natural saved trace and exact displayed tiers; actual phase/mask/geometry; all owned brush/audio cleanup"
+          ],
+          "cleanup": {
+            "brush": false,
+            "nodes": 0,
+            "accents": 0
+          },
+          "longDigits": [
+            {
+              "text": "1.23e14",
+              "full": "123,456,789,012,345",
+              "bounds": {
+                "x": 204.84,
+                "y": 108,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "text": "× 1e8–9e8",
+              "full": "× 100,000,000–999,999,999",
+              "bounds": {
+                "x": 276.52,
+                "y": 108,
+                "width": 67,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "text": "999,999,999,999,999",
+              "full": "999,999,999,999,999",
+              "bounds": {
+                "x": 363.18,
+                "y": 95,
+                "width": 133,
+                "height": 16
+              },
+              "font": "14px"
+            }
+          ],
+          "pageErrors": [],
+          "phaseLayerSamples": [
+            {
+              "frame": 166,
+              "product": "4050",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+              "eventPhase": "base",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "idle",
+                "localAge": 320,
+                "localAlpha": 0,
+                "localLineWidth": 4.5,
+                "framePhase": "write",
+                "frameAge": 16.700000000000273,
+                "frameProgress": 0.059642857142858115,
+                "frameAlpha": 0.774314285714286,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": true
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  65,
+                  67,
+                  68,
+                  70,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  74,
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 211,
+              "product": "4050",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.700000000000273,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "fade",
+                "frameAge": 766.7000000000003,
+                "frameProgress": 1,
+                "frameAlpha": 0.8115999999999999,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": true
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  65,
+                  67,
+                  68,
+                  70,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80,
+                  81
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 388,
+              "product": "4509",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.599999999999454,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "static",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0.76,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": true
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  65,
+                  67,
+                  68,
+                  70,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80,
+                  81
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 423,
+              "product": "5589",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/7",
+              "eventPhase": "award",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "idle",
+                "localAge": 320,
+                "localAlpha": 0,
+                "localLineWidth": 4.5,
+                "framePhase": "static",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0.76,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": false
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  65,
+                  67,
+                  68,
+                  70,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  74,
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80
+                ]
+              },
+              "savedStable": true
+            }
+          ]
+        }
+      ],
+      "localRawReport": "shots/cinnabar-integration/report.json",
+      "rawReportSha256": "f3e71000bc718d033e5d0fa93edd9c8fd4baf411b898091292bb6a39fd17fd18"
+    },
+    {
+      "status": "PASS",
+      "actualBuild": {
+        "version": "C03",
+        "revision": "085ad38e04fdd285d83842e23adcfd2cd690d8be",
+        "modified": false,
+        "builtAt": "2026-10-04T17:41:53.122Z"
+      },
+      "harnessCommit": "085ad38e04fdd285d83842e23adcfd2cd690d8be",
+      "scope": "Finite main integration regression: natural202 and5589 in both viewports, explicit root-avatar/paper/card/button/text layers; no image retakes.",
+      "renderer": "Linux Chromium software Canvas",
+      "browser": "151.0.7922.173",
+      "dpr": 1,
+      "input": "native emulated touch",
+      "scoringFrames": 1158,
+      "screenshots": 0,
+      "runs": [
+        {
+          "name": "390x740-202-natural",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "safe": {
+            "top": 12,
+            "bottom": 34
+          },
+          "seed": "p04-golden-02",
+          "character": "amo",
+          "playedIds": [
+            "clubs-5"
+          ],
+          "scoringFrames": 199,
+          "brushFrames": 127,
+          "allSavedStable": true,
+          "explicitAvatarVerifiedFrames": 127,
+          "minimumAvatarLayerGap": 1,
+          "minimumCardButtonLayerGap": 1,
+          "minimumTextLayerGap": 64,
+          "final": {
+            "phase": "await-input",
+            "heat": "202",
+            "target": "400",
+            "playIndex": 1,
+            "traceFinalScore": "202",
+            "accumulator": {
+              "H": {
+                "n": "45",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "rng": {
+              "deck": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 1598791259
+              },
+              "rule": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 334553024
+              },
+              "shop": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 930417582
+              },
+              "reward": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 4096215039
+              },
+              "program": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 4208601031
+              },
+              "challenge": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 972082436
+              }
+            }
+          },
+          "wholeSavedStateSha256": "9a5322db20ac521dcc9e2faf7f1e8202dfb8907e0d51e6763c7a8246b2471480",
+          "maxSustainedBurningVoices": 0,
+          "noShakeOrCentralStamp": true,
+          "orderedSourceImpactIds": [
+            "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+            "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2"
+          ],
+          "checks": [
+            "Natural saved trace and exact displayed tiers; actual phase/mask/geometry; all owned brush/audio cleanup"
+          ],
+          "cleanup": {
+            "brush": false,
+            "nodes": 0,
+            "accents": 0
+          },
+          "longDigits": [
+            {
+              "text": "1.23e14",
+              "full": "123,456,789,012,345",
+              "bounds": {
+                "x": 58.040000000000006,
+                "y": 208.6,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "text": "× 1.00e8–9.99e8",
+              "full": "× 100,000,000–999,999,999",
+              "bounds": {
+                "x": 30.540000000000006,
+                "y": 253.6,
+                "width": 106.00000000000001,
+                "height": 16.00000000000003
+              },
+              "font": "14px"
+            },
+            {
+              "text": "999,999,999,999,999",
+              "full": "999,999,999,999,999",
+              "bounds": {
+                "x": 158.54000000000002,
+                "y": 248.60000000000002,
+                "width": 208,
+                "height": 25
+              },
+              "font": "22px"
+            }
+          ],
+          "pageErrors": [],
+          "phaseLayerSamples": [
+            {
+              "frame": 187,
+              "product": "60",
+              "level": 0,
+              "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 0,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.699999999999818,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "idle",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0,
+                "lineWidth": 3.5,
+                "entered": [],
+                "updating": true
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76,
+                  77
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 243,
+              "product": "67",
+              "level": 0,
+              "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 0,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.699999999999818,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "idle",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0,
+                "lineWidth": 3.5,
+                "entered": [],
+                "updating": true
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76,
+                  77
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 289,
+              "product": "202",
+              "level": 0,
+              "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/3",
+              "eventPhase": "award",
+              "brush": {
+                "level": 0,
+                "reduced": false,
+                "localPhase": "idle",
+                "localAge": 320,
+                "localAlpha": 0,
+                "localLineWidth": 4.5,
+                "framePhase": "idle",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0,
+                "lineWidth": 3.5,
+                "entered": [],
+                "updating": false
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  70,
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76
+                ]
+              },
+              "savedStable": true
+            }
+          ]
+        },
+        {
+          "name": "390x740-5589-natural",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "safe": {
+            "top": 12,
+            "bottom": 34
+          },
+          "seed": "d43-fire-267",
+          "character": "laohuan",
+          "playedIds": [
+            "diamonds-11",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-10",
+            "diamonds-14"
+          ],
+          "scoringFrames": 380,
+          "brushFrames": 343,
+          "allSavedStable": true,
+          "explicitAvatarVerifiedFrames": 343,
+          "minimumAvatarLayerGap": 1,
+          "minimumCardButtonLayerGap": 1,
+          "minimumTextLayerGap": 64,
+          "final": {
+            "phase": "stage-cleared",
+            "heat": "5589",
+            "target": "400",
+            "playIndex": 1,
+            "traceFinalScore": "5589",
+            "accumulator": {
+              "H": {
+                "n": "621",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "1"
+              }
+            },
+            "rng": {
+              "deck": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 1909548448
+              },
+              "rule": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 2736743772
+              },
+              "shop": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3321144461
+              },
+              "reward": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3896392792
+              },
+              "program": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 500999940
+              },
+              "challenge": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3904192939
+              }
+            }
+          },
+          "wholeSavedStateSha256": "8e1c331f23ece37ec8168b6fea223f8696a7c95e63aeed8dc1385bca685c13e6",
+          "maxSustainedBurningVoices": 0,
+          "noShakeOrCentralStamp": true,
+          "orderedSourceImpactIds": [
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6"
+          ],
+          "checks": [
+            "Natural saved trace and exact displayed tiers; actual phase/mask/geometry; all owned brush/audio cleanup"
+          ],
+          "cleanup": {
+            "brush": false,
+            "nodes": 0,
+            "accents": 0
+          },
+          "longDigits": [
+            {
+              "text": "1.23e14",
+              "full": "123,456,789,012,345",
+              "bounds": {
+                "x": 58.040000000000006,
+                "y": 208.6,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "text": "× 1.00e8–9.99e8",
+              "full": "× 100,000,000–999,999,999",
+              "bounds": {
+                "x": 30.540000000000006,
+                "y": 253.6,
+                "width": 106.00000000000001,
+                "height": 16.00000000000003
+              },
+              "font": "14px"
+            },
+            {
+              "text": "999,999,999,999,999",
+              "full": "999,999,999,999,999",
+              "bounds": {
+                "x": 158.54000000000002,
+                "y": 248.60000000000002,
+                "width": 208,
+                "height": 25
+              },
+              "font": "22px"
+            }
+          ],
+          "pageErrors": [],
+          "phaseLayerSamples": [
+            {
+              "frame": 170,
+              "product": "4050",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+              "eventPhase": "base",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "idle",
+                "localAge": 320,
+                "localAlpha": 0,
+                "localLineWidth": 4.5,
+                "framePhase": "write",
+                "frameAge": 16.700000000000273,
+                "frameProgress": 0.059642857142858115,
+                "frameAlpha": 0.774314285714286,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": true
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  61,
+                  63,
+                  64,
+                  66,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  70,
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 215,
+              "product": "4050",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.700000000000273,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "fade",
+                "frameAge": 766.6000000000004,
+                "frameProgress": 1,
+                "frameAlpha": 0.8116387096774192,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": true
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  61,
+                  63,
+                  64,
+                  66,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76,
+                  77
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 392,
+              "product": "4509",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.800000000000182,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "static",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0.76,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": true
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  61,
+                  63,
+                  64,
+                  66,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76,
+                  77
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 428,
+              "product": "5589",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/7",
+              "eventPhase": "award",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "idle",
+                "localAge": 320,
+                "localAlpha": 0,
+                "localLineWidth": 4.5,
+                "framePhase": "static",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0.76,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": false
+              },
+              "layers": {
+                "local": 6,
+                "avatar": 7,
+                "frame": 2,
+                "pedestal": 5,
+                "foreground": [
+                  7,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  59,
+                  61,
+                  63,
+                  64,
+                  66,
+                  35,
+                  38,
+                  36,
+                  37,
+                  41,
+                  39,
+                  40,
+                  44,
+                  42,
+                  43,
+                  47,
+                  45,
+                  46
+                ],
+                "text": [
+                  70,
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76
+                ]
+              },
+              "savedStable": true
+            }
+          ]
+        },
+        {
+          "name": "844x300-202-natural",
+          "status": "PASS",
+          "viewport": {
+            "width": 844,
+            "height": 300
+          },
+          "safe": {
+            "top": 12,
+            "bottom": 34
+          },
+          "seed": "p04-golden-02",
+          "character": "amo",
+          "playedIds": [
+            "clubs-5"
+          ],
+          "scoringFrames": 199,
+          "brushFrames": 127,
+          "allSavedStable": true,
+          "explicitAvatarVerifiedFrames": 127,
+          "minimumAvatarLayerGap": 1,
+          "minimumCardButtonLayerGap": 1,
+          "minimumTextLayerGap": 67,
+          "final": {
+            "phase": "await-input",
+            "heat": "202",
+            "target": "400",
+            "playIndex": 1,
+            "traceFinalScore": "202",
+            "accumulator": {
+              "H": {
+                "n": "45",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "rng": {
+              "deck": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 1598791259
+              },
+              "rule": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 334553024
+              },
+              "shop": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 930417582
+              },
+              "reward": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 4096215039
+              },
+              "program": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 4208601031
+              },
+              "challenge": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 972082436
+              }
+            }
+          },
+          "wholeSavedStateSha256": "9a5322db20ac521dcc9e2faf7f1e8202dfb8907e0d51e6763c7a8246b2471480",
+          "maxSustainedBurningVoices": 0,
+          "noShakeOrCentralStamp": true,
+          "orderedSourceImpactIds": [
+            "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+            "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2"
+          ],
+          "checks": [
+            "Natural saved trace and exact displayed tiers; actual phase/mask/geometry; all owned brush/audio cleanup"
+          ],
+          "cleanup": {
+            "brush": false,
+            "nodes": 0,
+            "accents": 0
+          },
+          "longDigits": [
+            {
+              "text": "1.23e14",
+              "full": "123,456,789,012,345",
+              "bounds": {
+                "x": 204.84,
+                "y": 108,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "text": "× 1e8–9e8",
+              "full": "× 100,000,000–999,999,999",
+              "bounds": {
+                "x": 276.52,
+                "y": 108,
+                "width": 67,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "text": "999,999,999,999,999",
+              "full": "999,999,999,999,999",
+              "bounds": {
+                "x": 363.18,
+                "y": 95,
+                "width": 133,
+                "height": 16
+              },
+              "font": "14px"
+            }
+          ],
+          "pageErrors": [],
+          "phaseLayerSamples": [
+            {
+              "frame": 192,
+              "product": "60",
+              "level": 0,
+              "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 0,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.799999999999727,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "idle",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0,
+                "lineWidth": 3.5,
+                "entered": [],
+                "updating": true
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80,
+                  81
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 248,
+              "product": "67",
+              "level": 0,
+              "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/2",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 0,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.699999999999818,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "idle",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0,
+                "lineWidth": 3.5,
+                "entered": [],
+                "updating": true
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80,
+                  81
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 294,
+              "product": "202",
+              "level": 0,
+              "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/3",
+              "eventPhase": "award",
+              "brush": {
+                "level": 0,
+                "reduced": false,
+                "localPhase": "idle",
+                "localAge": 320,
+                "localAlpha": 0,
+                "localLineWidth": 4.5,
+                "framePhase": "idle",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0,
+                "lineWidth": 3.5,
+                "entered": [],
+                "updating": false
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  74,
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80
+                ]
+              },
+              "savedStable": true
+            }
+          ]
+        },
+        {
+          "name": "844x300-5589-natural",
+          "status": "PASS",
+          "viewport": {
+            "width": 844,
+            "height": 300
+          },
+          "safe": {
+            "top": 12,
+            "bottom": 34
+          },
+          "seed": "d43-fire-267",
+          "character": "laohuan",
+          "playedIds": [
+            "diamonds-11",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-10",
+            "diamonds-14"
+          ],
+          "scoringFrames": 380,
+          "brushFrames": 343,
+          "allSavedStable": true,
+          "explicitAvatarVerifiedFrames": 343,
+          "minimumAvatarLayerGap": 1,
+          "minimumCardButtonLayerGap": 1,
+          "minimumTextLayerGap": 67,
+          "final": {
+            "phase": "stage-cleared",
+            "heat": "5589",
+            "target": "400",
+            "playIndex": 1,
+            "traceFinalScore": "5589",
+            "accumulator": {
+              "H": {
+                "n": "621",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "1"
+              }
+            },
+            "rng": {
+              "deck": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 1909548448
+              },
+              "rule": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 2736743772
+              },
+              "shop": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3321144461
+              },
+              "reward": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3896392792
+              },
+              "program": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 500999940
+              },
+              "challenge": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3904192939
+              }
+            }
+          },
+          "wholeSavedStateSha256": "8e1c331f23ece37ec8168b6fea223f8696a7c95e63aeed8dc1385bca685c13e6",
+          "maxSustainedBurningVoices": 0,
+          "noShakeOrCentralStamp": true,
+          "orderedSourceImpactIds": [
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/2",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/3",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/4",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/5",
+            "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6"
+          ],
+          "checks": [
+            "Natural saved trace and exact displayed tiers; actual phase/mask/geometry; all owned brush/audio cleanup"
+          ],
+          "cleanup": {
+            "brush": false,
+            "nodes": 0,
+            "accents": 0
+          },
+          "longDigits": [
+            {
+              "text": "1.23e14",
+              "full": "123,456,789,012,345",
+              "bounds": {
+                "x": 204.84,
+                "y": 108,
+                "width": 51,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "text": "× 1e8–9e8",
+              "full": "× 100,000,000–999,999,999",
+              "bounds": {
+                "x": 276.52,
+                "y": 108,
+                "width": 67,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "text": "999,999,999,999,999",
+              "full": "999,999,999,999,999",
+              "bounds": {
+                "x": 363.18,
+                "y": 95,
+                "width": 133,
+                "height": 16
+              },
+              "font": "14px"
+            }
+          ],
+          "pageErrors": [],
+          "phaseLayerSamples": [
+            {
+              "frame": 167,
+              "product": "4050",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+              "eventPhase": "base",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "idle",
+                "localAge": 320,
+                "localAlpha": 0,
+                "localLineWidth": 4.5,
+                "framePhase": "write",
+                "frameAge": 16.699999999999818,
+                "frameProgress": 0.05964285714285649,
+                "frameAlpha": 0.7743142857142855,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": true
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  65,
+                  67,
+                  68,
+                  70,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  74,
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 212,
+              "product": "4050",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.699999999999818,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "fade",
+                "frameAge": 766.6999999999998,
+                "frameProgress": 1,
+                "frameAlpha": 0.8116000000000001,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": true
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  65,
+                  67,
+                  68,
+                  70,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80,
+                  81
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 389,
+              "product": "4509",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/6",
+              "eventPhase": "impact",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "gather",
+                "localAge": 16.700000000000728,
+                "localAlpha": 0.9,
+                "localLineWidth": 4.5,
+                "framePhase": "static",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0.76,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": true
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  65,
+                  67,
+                  68,
+                  70,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80,
+                  81
+                ]
+              },
+              "savedStable": true
+            },
+            {
+              "frame": 425,
+              "product": "5589",
+              "level": 3,
+              "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/7",
+              "eventPhase": "award",
+              "brush": {
+                "level": 3,
+                "reduced": false,
+                "localPhase": "idle",
+                "localAge": 320,
+                "localAlpha": 0,
+                "localLineWidth": 4.5,
+                "framePhase": "static",
+                "frameAge": 900,
+                "frameProgress": 1,
+                "frameAlpha": 0.76,
+                "lineWidth": 5.5,
+                "entered": [
+                  1,
+                  2,
+                  3
+                ],
+                "updating": false
+              },
+              "layers": {
+                "local": 7,
+                "avatar": 8,
+                "frame": 3,
+                "pedestal": 6,
+                "foreground": [
+                  8,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  63,
+                  65,
+                  67,
+                  68,
+                  70,
+                  39,
+                  42,
+                  40,
+                  41,
+                  45,
+                  43,
+                  44,
+                  48,
+                  46,
+                  47,
+                  51,
+                  49,
+                  50
+                ],
+                "text": [
+                  74,
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80
+                ]
+              },
+              "savedStable": true
+            }
+          ]
+        }
+      ],
+      "localRawReport": "shots/cinnabar-integration-final/report.json",
+      "rawReportSha256": "8ba7132ee792f2c0161b0a0dccb50db8aa57f8faac08b8c675c4faaf5b785556"
+    }
+  ],
+  "plan": "Checked with final archive commit",
+  "exactReviewCI": "Final pushed review SHA/run URLs reported separately in handoff; older review green does not substitute.",
+  "limits": [
+    "No whole matrix retakes, no unrelated local verify:ci aggregate.",
+    "Physical device, true GPU/FPS, audio listening, recordings and overall aesthetic acceptance NOT_RUN.",
+    "Independent lifecycle/audio review coordinated by parent; existing checks retained at their real source.",
+    "P08 overall remains in_progress; feature review only, no main push or deployment."
+  ]
+}
