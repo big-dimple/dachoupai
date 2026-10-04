@@ -2,7 +2,7 @@ import {courtArtKey,queueCourtArtLoads} from './HanddrawnArt';
 import {R2HandCandidateCache,r2CandidateKey,r2HandRevision,type R2CandidateInput,type R2CandidateResult} from '../domain/r2HandCandidates';
 import {jokerMemory,jokerMemoryAbility,publicJokerMemoryContext} from './JokerMemory';
 import {r2SelectionFacts,type R2SelectionFacts} from '../domain/r2SelectionFacts';
-import {selectionCopy,selectionCardCopy,fitConditionEntry,selectionCandidateEntryBox,nextCandidate} from './SelectionCopy';
+import {selectionCopy,selectionCardCopy,fitConditionEntry,fourCardRuleCopy,selectionCandidateEntryBox,nextCandidate} from './SelectionCopy';
 import {handRuleReference} from './HandRuleReference';
 import {subtractBoxes} from './ScoreGeometry';
 import {jokerArtAlignedLayers} from './jokerArt';
@@ -669,8 +669,8 @@ export class GameScene extends Phaser.Scene {
       const notice=stageNotice(this.run),hint=notice?.warning?notice.title+(p.height>=90?'\n'+notice.description:''):this.run.stage!.playIndex===0?'选 1–5 张，凑牌型出牌\n不合适？弃牌换新牌':'选牌，准备下一手';
       const text=this.add.text(p.x+p.width/2,p.y+p.height/2,hint,{fontFamily:UI_FONT,fontSize:p.height<90||notice?.warning?'14px':'18px',color:notice?.warning?C.red:C.mutedInk,align:'center',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5);
       this.previewCards.add(text);
-      const score=this.view.layout.scoreBoard,heldRules=this.run.jokers.flatMap(j=>getJoker(j.definitionId).modifiers?.flatMap(m=>m.kind==='four-straight'?['4张普通顺子；同花顺仍5张']:m.kind==='four-flush'?['4张普通同花；同花顺仍5张']:[])??[]);
-      const rule=heldRules.length>1?'4张普通顺子／同花；同花顺仍5张':heldRules[0];
+      const score=this.view.layout.scoreBoard,mods=readR2Modifiers(this.run.jokers,R2_JOKERS),handRules=r2ScoreContext(this.run,this.hand,[]).handRules;
+      const rule=fourCardRuleCopy({fourStraight:mods.fourStraight||handRules?.fourStraight,fourFlush:mods.fourFlush||handRules?.fourFlush});
       const idleRows=score.height>=90?['按全部所选牌判型，最多5张',...(rule?[rule]:[])]:rule?[rule]:[];
       idleRows.forEach((line,i)=>{const area={x:score.x+10,y:score.y+(score.height>=130?38:score.height>=90?34:24)+i*18,width:score.width-20-(this.selectionQuickInScore(score)?104:0),height:18};const lineText=this.add.text(area.x,area.y,line,{fontFamily:UI_FONT,fontSize:'14px',color:C.jade,resolution:Math.max(1.5,1/this.scale.zoom)}).setName('selection/fact-line');fitScoreLine(lineText,area,14);this.previewCards!.add(lineText);});
       this.renderCandidateEntry(score);
@@ -680,9 +680,9 @@ export class GameScene extends Phaser.Scene {
     const facts=selectionCopy(preview),score=this.view.layout.scoreBoard,compact=score.height<90;
     let rows:string[],start:number,step:number;
     if(compact){
-      rows=[facts.membership+(preview.scoringIds.length!==preview.activeScoringIds.length?' · '+(preview.scoringIds.length-preview.activeScoringIds.length)+'张停用':preview.ordinaryPointsSuppressedIds.length?' · '+preview.ordinaryPointsSuppressedIds.length+'张点数0':''),facts.rules?facts.rules.replaceAll('普通',''):facts.restrictions.join('；')].filter(Boolean);start=24;step=18;
+      rows=[facts.membership+(preview.scoringIds.length!==preview.activeScoringIds.length?' · '+(preview.scoringIds.length-preview.activeScoringIds.length)+'张停用':preview.ordinaryPointsSuppressedIds.length?' · '+preview.ordinaryPointsSuppressedIds.length+'张点数0':''),facts.rules||facts.restrictions.join('；')].filter(Boolean);start=24;step=18;
     }else{
-      rows=[...(score.height>=130?[facts.pattern]:[]),facts.membership,...facts.restrictions,...(facts.rules?[score.width<300?facts.rules.replaceAll('普通',''):facts.rules]:[])];
+      rows=[...(score.height>=130?[facts.pattern]:[]),facts.membership,...facts.restrictions,...(facts.rules?[facts.rules]:[])];
       step=rows.length>3||score.height<120?18:20;start=score.height>=130?38:34;
     }
     rows.forEach((copy,i)=>{const text=this.add.text(score.x+10,score.y+start+i*step,copy,{fontFamily:UI_FONT,fontSize:'14px',color:copy.includes('停用')||copy.includes('点数0')?C.red:C.jade,resolution:Math.max(1.5,1/this.scale.zoom)}).setName('selection/fact-line').setData('fullText',copy);this.previewCards!.add(text);fitScoreLine(text,{x:score.x+10,y:score.y+start+i*step,width:score.width-20-(this.selectionQuickInScore(score)?104:0),height:step},14);});

@@ -379,6 +379,8 @@ D25追加有限3D复用小候选：先用实际GLB源的铜钱/骰子或牌片�
 
 ## P08
 
+P08四牌短语短轮（UTC 2026-10-04）：基线main fb709fe已发布/clean，旧CI不重查。空选实际截掉同花顺5张例外；两态共享“顺子/同花4张；同花顺5张”，完整普通型说明保详情。19受影响tests/type及844×300/top12/bottom0、12、34空选/已选六态实际文字bounds/native输入PASS：160×16/可用194、14px/resolution1.5、两快捷真44×44，零相交，直选/撤销/规则不出弃或改run/RNG/save。候选指纹与fixture/build在docs/production/evidence/p08-four-rule-copy-2026-10-04/summary.json；新源码冻结/正常FF/新CI待本轮收尾。无新图/录屏；火输入待审批不重试，OnePlus/真GPU/听感NOT_RUN。发布后只读A03/P08覆盖盘点，不新增生成或接未批准图。
+
 P08本轮发布前技术收尾：运行源码0ce7881ca7523a2a233988eccaccaa7caedbba21已冻结1863 tests/104files、content、type/build、Canvas桌面+手机smoke PASS，源码/index/HEAD一致。初次最后plan失败因README误放JSON evidence，原报告保留；仅文档引用修正，1015153的docs-only verify:ci PASS且前后不变，运行源码不重跑/不改。43新图消费与实际场景、直选/权威规则/清晰度、五项memory修复已完成，a22a613图局部早评通过，main正常FF及精确新CI另报。火参考403 BLOCKED，OnePlus/真GPU/听感NOT_RUN；不是72全换或整体审美PASS。
 
 P08 2026-10-04收敛：43新WebP/6角色/JQK/11功能牌已消费逐hash/portable verify/实际view与场景通过；review a22a613两图root独立实际view，局部接入视觉早评通过，非72全换/整体/设备PASS。93受影响tests/type/plan、Chromium Canvas＋WebKit原生候选/直选/空选规则/保存后实际计分/恢复及既定8组布局、短横3安全区44×44零文字碰撞已通过。五项memory审查小修、直选/撤销、权威12型规则、局部Text resolution完成；当前源码待本次冻结verify:ci/正常main FF/新精确CI，不借旧3507冻结。火参考CONNECT403未取得像素，停止下载，下一小批另协调；新图发布不等待它。证据 docs/production/evidence/p08-handdrawn-integration-2026-10-04/README.md。OnePlus/真GPU/听感NOT_RUN，规则/RNG/save/部署/PC不变。

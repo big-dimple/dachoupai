@@ -17,6 +17,11 @@ export function fitConditionEntry(text:string,fits:(text:string)=>boolean,actual
   const entry=actual?'状态 ›':'条件 ›';
   return fits(entry)?entry:actual?'状态':'条件';
 }
+/** The same complete exception must fit empty and selected compact guidance. */
+export function fourCardRuleCopy(rules:Partial<R2SelectionFacts['rules']>):string {
+  const ordinary=rules.fourStraight&&rules.fourFlush?'顺子/同花':rules.fourStraight?'顺子':rules.fourFlush?'同花':'';
+  return ordinary?ordinary+'4张；同花顺5张':'';
+}
 export function selectionCopy(f:R2SelectionFacts){
   const four=f.playedIds.length===4&&(f.type==='straight'||f.type==='flush');
   const disabledAccompanyingIds=f.accompanyingIds.filter(id=>f.disabledIds.includes(id));
@@ -24,7 +29,7 @@ export function selectionCopy(f:R2SelectionFacts){
     pattern:(four?'4张普通':'')+pattern[f.type],
     membership:'计分牌'+f.scoringIds.length+'张 · 附带'+f.accompanyingIds.length+'张',
     restrictions:[f.scoringIds.length!==f.activeScoringIds.length?'其中'+(f.scoringIds.length-f.activeScoringIds.length)+'张计分停用（仍参与判型）':'',f.ordinaryPointsSuppressedIds.length?'普通点数0：'+f.ordinaryPointsSuppressedIds.length+'张，其他效果保留':''].filter(Boolean),
-    rules:(f.rules.fourStraight&&f.rules.fourFlush?'4张普通顺子／同花':f.rules.fourStraight?'4张普通顺子':f.rules.fourFlush?'4张普通同花':'')+(f.rules.fourStraight||f.rules.fourFlush?'；同花顺仍5张':''),
+    rules:fourCardRuleCopy(f.rules),
     fullRules:[f.rules.fourStraight?'4张普通顺子；同花顺仍5张':undefined,f.rules.fourFlush?'4张普通同花；同花顺仍5张':undefined].filter(Boolean).join('\n')};
 }
 /** Card role is membership, not a score event or a promise of an effect. */

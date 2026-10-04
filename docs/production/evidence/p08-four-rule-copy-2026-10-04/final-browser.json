@@ -1,0 +1,1144 @@
+{
+  "browser": "151.0.7922.173",
+  "renderer": "Canvas",
+  "build": {
+    "version": "C03",
+    "revision": "fb709fe54181c47406e8281b1d80edb5b5f3880c",
+    "modified": true,
+    "builtAt": "2026-10-04T03:04:01.465Z"
+  },
+  "fixture": "Checkpoint validated by readCheckpoint: owned c08+c09; nine cards, four selected hearts form ordinary flush with B03-disabled core. Not natural acquisition.",
+  "runs": [
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 12,
+        "bottom": 0
+      },
+      "state": "empty",
+      "score": {
+        "x": 188,
+        "y": 72,
+        "width": 318,
+        "height": 80
+      },
+      "selected": [],
+      "availableWidth": 194,
+      "texts": [
+        {
+          "name": "score/source",
+          "text": "当前选择 · 选1–5张",
+          "fullText": "当前选择 · 选1–5张",
+          "font": "17px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 222,
+            "y": 76,
+            "width": 146,
+            "height": 18
+          }
+        },
+        {
+          "name": "selection/fact-line",
+          "text": "顺子/同花4张；同花顺5张",
+          "fullText": "顺子/同花4张；同花顺5张",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 215,
+            "y": 96,
+            "width": 160,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/rules-entry",
+          "text": "本轮可成6种 · 查看",
+          "fullText": "本轮可成6种 · 查看",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 198,
+            "y": 132,
+            "width": 119,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "切换\n牌型",
+          "fullText": "切换\n牌型",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 414,
+            "y": 78,
+            "width": 28,
+            "height": 34
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "牌型\n规则",
+          "fullText": "牌型\n规则",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 462,
+            "y": 78,
+            "width": 28,
+            "height": 34
+          }
+        }
+      ],
+      "entries": [
+        {
+          "name": "selection/switch-type",
+          "bounds": {
+            "x": 406,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "CSSBounds": {
+            "x": 406,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "label": "切换\n牌型",
+          "enabled": true
+        },
+        {
+          "name": "selection/hand-rules",
+          "bounds": {
+            "x": 454,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "CSSBounds": {
+            "x": 454,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "label": "牌型\n规则",
+          "enabled": true
+        }
+      ],
+      "actions": [
+        {
+          "name": "action/play",
+          "bounds": {
+            "x": 424,
+            "y": 236,
+            "width": 408,
+            "height": 52
+          }
+        },
+        {
+          "name": "action/discard",
+          "bounds": {
+            "x": 188,
+            "y": 236,
+            "width": 228,
+            "height": 52
+          }
+        }
+      ],
+      "toolbar": [
+        {
+          "x": 696,
+          "y": 24,
+          "width": 64,
+          "height": 44
+        },
+        {
+          "x": 768,
+          "y": 24,
+          "width": 64,
+          "height": 44
+        }
+      ],
+      "failures": [],
+      "nativeInput": "PASS: immediate selection only; undo; rules open/close; full run/selection invariants"
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 12,
+        "bottom": 0
+      },
+      "state": "selected",
+      "score": {
+        "x": 188,
+        "y": 72,
+        "width": 318,
+        "height": 80
+      },
+      "selected": [
+        "hearts-2",
+        "hearts-5",
+        "hearts-8",
+        "hearts-11"
+      ],
+      "facts": {
+        "type": "flush",
+        "playedIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "scoringIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "activeScoringIds": [],
+        "heldIds": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6"
+        ],
+        "accompanyingIds": [],
+        "disabledIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "ordinaryPointsSuppressedIds": [],
+        "rules": {
+          "fourStraight": true,
+          "fourFlush": true
+        },
+        "ruleSources": [
+          {
+            "instanceId": "four-straight",
+            "definitionId": "c08",
+            "kind": "four-straight",
+            "used": false
+          },
+          {
+            "instanceId": "four-flush",
+            "definitionId": "c09",
+            "kind": "four-flush",
+            "used": true
+          }
+        ]
+      },
+      "availableWidth": 194,
+      "texts": [
+        {
+          "name": "score/source",
+          "text": "同花 · 已选4张",
+          "fullText": "同花 · 已选4张",
+          "font": "17px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 240,
+            "y": 76,
+            "width": 110,
+            "height": 18
+          }
+        },
+        {
+          "name": "selection/fact-line",
+          "text": "计分牌4张 · 附带0张 · 4张停用",
+          "fullText": "计分牌4张 · 附带0张 · 4张停用",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 200.5,
+            "y": 96,
+            "width": 189,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/fact-line",
+          "text": "顺子/同花4张；同花顺5张",
+          "fullText": "顺子/同花4张；同花顺5张",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 215,
+            "y": 114,
+            "width": 160,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/rules-entry",
+          "text": "本轮可成6种 · 查看",
+          "fullText": "本轮可成6种 · 查看",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 198,
+            "y": 132,
+            "width": 119,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "切换\n牌型",
+          "fullText": "切换\n牌型",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 414,
+            "y": 78,
+            "width": 28,
+            "height": 34
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "牌型\n规则",
+          "fullText": "牌型\n规则",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 462,
+            "y": 78,
+            "width": 28,
+            "height": 34
+          }
+        }
+      ],
+      "entries": [
+        {
+          "name": "selection/switch-type",
+          "bounds": {
+            "x": 406,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "CSSBounds": {
+            "x": 406,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "label": "切换\n牌型",
+          "enabled": true
+        },
+        {
+          "name": "selection/hand-rules",
+          "bounds": {
+            "x": 454,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "CSSBounds": {
+            "x": 454,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "label": "牌型\n规则",
+          "enabled": true
+        }
+      ],
+      "actions": [
+        {
+          "name": "action/play",
+          "bounds": {
+            "x": 424,
+            "y": 236,
+            "width": 408,
+            "height": 52
+          }
+        },
+        {
+          "name": "action/discard",
+          "bounds": {
+            "x": 188,
+            "y": 236,
+            "width": 228,
+            "height": 52
+          }
+        }
+      ],
+      "toolbar": [
+        {
+          "x": 696,
+          "y": 24,
+          "width": 64,
+          "height": 44
+        },
+        {
+          "x": 768,
+          "y": 24,
+          "width": 64,
+          "height": 44
+        }
+      ],
+      "failures": [],
+      "nativeInput": "PASS: immediate selection only; undo; rules open/close; full run/selection invariants"
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 12,
+        "bottom": 12
+      },
+      "state": "empty",
+      "score": {
+        "x": 188,
+        "y": 72,
+        "width": 318,
+        "height": 80
+      },
+      "selected": [],
+      "availableWidth": 194,
+      "texts": [
+        {
+          "name": "score/source",
+          "text": "当前选择 · 选1–5张",
+          "fullText": "当前选择 · 选1–5张",
+          "font": "17px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 222,
+            "y": 76,
+            "width": 146,
+            "height": 18
+          }
+        },
+        {
+          "name": "selection/fact-line",
+          "text": "顺子/同花4张；同花顺5张",
+          "fullText": "顺子/同花4张；同花顺5张",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 215,
+            "y": 96,
+            "width": 160,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/rules-entry",
+          "text": "本轮可成6种 · 查看",
+          "fullText": "本轮可成6种 · 查看",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 198,
+            "y": 132,
+            "width": 119,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "切换\n牌型",
+          "fullText": "切换\n牌型",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 414,
+            "y": 78,
+            "width": 28,
+            "height": 34
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "牌型\n规则",
+          "fullText": "牌型\n规则",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 462,
+            "y": 78,
+            "width": 28,
+            "height": 34
+          }
+        }
+      ],
+      "entries": [
+        {
+          "name": "selection/switch-type",
+          "bounds": {
+            "x": 406,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "CSSBounds": {
+            "x": 406,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "label": "切换\n牌型",
+          "enabled": true
+        },
+        {
+          "name": "selection/hand-rules",
+          "bounds": {
+            "x": 454,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "CSSBounds": {
+            "x": 454,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "label": "牌型\n规则",
+          "enabled": true
+        }
+      ],
+      "actions": [
+        {
+          "name": "action/play",
+          "bounds": {
+            "x": 424,
+            "y": 224,
+            "width": 408,
+            "height": 52
+          }
+        },
+        {
+          "name": "action/discard",
+          "bounds": {
+            "x": 188,
+            "y": 224,
+            "width": 228,
+            "height": 52
+          }
+        }
+      ],
+      "toolbar": [
+        {
+          "x": 696,
+          "y": 24,
+          "width": 64,
+          "height": 44
+        },
+        {
+          "x": 768,
+          "y": 24,
+          "width": 64,
+          "height": 44
+        }
+      ],
+      "failures": [],
+      "nativeInput": "PASS: immediate selection only; undo; rules open/close; full run/selection invariants"
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 12,
+        "bottom": 12
+      },
+      "state": "selected",
+      "score": {
+        "x": 188,
+        "y": 72,
+        "width": 318,
+        "height": 80
+      },
+      "selected": [
+        "hearts-2",
+        "hearts-5",
+        "hearts-8",
+        "hearts-11"
+      ],
+      "facts": {
+        "type": "flush",
+        "playedIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "scoringIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "activeScoringIds": [],
+        "heldIds": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6"
+        ],
+        "accompanyingIds": [],
+        "disabledIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "ordinaryPointsSuppressedIds": [],
+        "rules": {
+          "fourStraight": true,
+          "fourFlush": true
+        },
+        "ruleSources": [
+          {
+            "instanceId": "four-straight",
+            "definitionId": "c08",
+            "kind": "four-straight",
+            "used": false
+          },
+          {
+            "instanceId": "four-flush",
+            "definitionId": "c09",
+            "kind": "four-flush",
+            "used": true
+          }
+        ]
+      },
+      "availableWidth": 194,
+      "texts": [
+        {
+          "name": "score/source",
+          "text": "同花 · 已选4张",
+          "fullText": "同花 · 已选4张",
+          "font": "17px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 240,
+            "y": 76,
+            "width": 110,
+            "height": 18
+          }
+        },
+        {
+          "name": "selection/fact-line",
+          "text": "计分牌4张 · 附带0张 · 4张停用",
+          "fullText": "计分牌4张 · 附带0张 · 4张停用",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 200.5,
+            "y": 96,
+            "width": 189,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/fact-line",
+          "text": "顺子/同花4张；同花顺5张",
+          "fullText": "顺子/同花4张；同花顺5张",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 215,
+            "y": 114,
+            "width": 160,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/rules-entry",
+          "text": "本轮可成6种 · 查看",
+          "fullText": "本轮可成6种 · 查看",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 198,
+            "y": 132,
+            "width": 119,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "切换\n牌型",
+          "fullText": "切换\n牌型",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 414,
+            "y": 78,
+            "width": 28,
+            "height": 34
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "牌型\n规则",
+          "fullText": "牌型\n规则",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 462,
+            "y": 78,
+            "width": 28,
+            "height": 34
+          }
+        }
+      ],
+      "entries": [
+        {
+          "name": "selection/switch-type",
+          "bounds": {
+            "x": 406,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "CSSBounds": {
+            "x": 406,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "label": "切换\n牌型",
+          "enabled": true
+        },
+        {
+          "name": "selection/hand-rules",
+          "bounds": {
+            "x": 454,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "CSSBounds": {
+            "x": 454,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "label": "牌型\n规则",
+          "enabled": true
+        }
+      ],
+      "actions": [
+        {
+          "name": "action/play",
+          "bounds": {
+            "x": 424,
+            "y": 224,
+            "width": 408,
+            "height": 52
+          }
+        },
+        {
+          "name": "action/discard",
+          "bounds": {
+            "x": 188,
+            "y": 224,
+            "width": 228,
+            "height": 52
+          }
+        }
+      ],
+      "toolbar": [
+        {
+          "x": 696,
+          "y": 24,
+          "width": 64,
+          "height": 44
+        },
+        {
+          "x": 768,
+          "y": 24,
+          "width": 64,
+          "height": 44
+        }
+      ],
+      "failures": [],
+      "nativeInput": "PASS: immediate selection only; undo; rules open/close; full run/selection invariants"
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 12,
+        "bottom": 34
+      },
+      "state": "empty",
+      "score": {
+        "x": 188,
+        "y": 72,
+        "width": 318,
+        "height": 58
+      },
+      "selected": [],
+      "availableWidth": 194,
+      "texts": [
+        {
+          "name": "score/source",
+          "text": "当前选择 · 选1–5张",
+          "fullText": "当前选择 · 选1–5张",
+          "font": "17px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 222,
+            "y": 76,
+            "width": 146,
+            "height": 18
+          }
+        },
+        {
+          "name": "selection/fact-line",
+          "text": "顺子/同花4张；同花顺5张",
+          "fullText": "顺子/同花4张；同花顺5张",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 215,
+            "y": 96,
+            "width": 160,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "切换\n牌型",
+          "fullText": "切换\n牌型",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 414,
+            "y": 78,
+            "width": 28,
+            "height": 34
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "牌型\n规则",
+          "fullText": "牌型\n规则",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 462,
+            "y": 78,
+            "width": 28,
+            "height": 34
+          }
+        }
+      ],
+      "entries": [
+        {
+          "name": "selection/switch-type",
+          "bounds": {
+            "x": 406,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "CSSBounds": {
+            "x": 406,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "label": "切换\n牌型",
+          "enabled": true
+        },
+        {
+          "name": "selection/hand-rules",
+          "bounds": {
+            "x": 454,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "CSSBounds": {
+            "x": 454,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "label": "牌型\n规则",
+          "enabled": true
+        }
+      ],
+      "actions": [
+        {
+          "name": "action/play",
+          "bounds": {
+            "x": 424,
+            "y": 202,
+            "width": 408,
+            "height": 52
+          }
+        },
+        {
+          "name": "action/discard",
+          "bounds": {
+            "x": 188,
+            "y": 202,
+            "width": 228,
+            "height": 52
+          }
+        }
+      ],
+      "toolbar": [
+        {
+          "x": 696,
+          "y": 24,
+          "width": 64,
+          "height": 44
+        },
+        {
+          "x": 768,
+          "y": 24,
+          "width": 64,
+          "height": 44
+        }
+      ],
+      "failures": [],
+      "nativeInput": "PASS: immediate selection only; undo; rules open/close; full run/selection invariants"
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 300
+      },
+      "DPR": 1,
+      "safeInset": {
+        "top": 12,
+        "bottom": 34
+      },
+      "state": "selected",
+      "score": {
+        "x": 188,
+        "y": 72,
+        "width": 318,
+        "height": 58
+      },
+      "selected": [
+        "hearts-2",
+        "hearts-5",
+        "hearts-8",
+        "hearts-11"
+      ],
+      "facts": {
+        "type": "flush",
+        "playedIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "scoringIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "activeScoringIds": [],
+        "heldIds": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6"
+        ],
+        "accompanyingIds": [],
+        "disabledIds": [
+          "hearts-2",
+          "hearts-5",
+          "hearts-8",
+          "hearts-11"
+        ],
+        "ordinaryPointsSuppressedIds": [],
+        "rules": {
+          "fourStraight": true,
+          "fourFlush": true
+        },
+        "ruleSources": [
+          {
+            "instanceId": "four-straight",
+            "definitionId": "c08",
+            "kind": "four-straight",
+            "used": false
+          },
+          {
+            "instanceId": "four-flush",
+            "definitionId": "c09",
+            "kind": "four-flush",
+            "used": true
+          }
+        ]
+      },
+      "availableWidth": 194,
+      "texts": [
+        {
+          "name": "score/source",
+          "text": "同花 · 已选4张",
+          "fullText": "同花 · 已选4张",
+          "font": "17px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 240,
+            "y": 76,
+            "width": 110,
+            "height": 18
+          }
+        },
+        {
+          "name": "selection/fact-line",
+          "text": "计分牌4张 · 附带0张 · 4张停用",
+          "fullText": "计分牌4张 · 附带0张 · 4张停用",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 200.5,
+            "y": 96,
+            "width": 189,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/fact-line",
+          "text": "顺子/同花4张；同花顺5张",
+          "fullText": "顺子/同花4张；同花顺5张",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 215,
+            "y": 114,
+            "width": 160,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "切换\n牌型",
+          "fullText": "切换\n牌型",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 414,
+            "y": 78,
+            "width": 28,
+            "height": 34
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "牌型\n规则",
+          "fullText": "牌型\n规则",
+          "font": "14px",
+          "resolution": 1.5,
+          "bounds": {
+            "x": 462,
+            "y": 78,
+            "width": 28,
+            "height": 34
+          }
+        }
+      ],
+      "entries": [
+        {
+          "name": "selection/switch-type",
+          "bounds": {
+            "x": 406,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "CSSBounds": {
+            "x": 406,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "label": "切换\n牌型",
+          "enabled": true
+        },
+        {
+          "name": "selection/hand-rules",
+          "bounds": {
+            "x": 454,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "CSSBounds": {
+            "x": 454,
+            "y": 74,
+            "width": 44,
+            "height": 44
+          },
+          "label": "牌型\n规则",
+          "enabled": true
+        }
+      ],
+      "actions": [
+        {
+          "name": "action/play",
+          "bounds": {
+            "x": 424,
+            "y": 202,
+            "width": 408,
+            "height": 52
+          }
+        },
+        {
+          "name": "action/discard",
+          "bounds": {
+            "x": 188,
+            "y": 202,
+            "width": 228,
+            "height": 52
+          }
+        }
+      ],
+      "toolbar": [
+        {
+          "x": 696,
+          "y": 24,
+          "width": 64,
+          "height": 44
+        },
+        {
+          "x": 768,
+          "y": 24,
+          "width": 64,
+          "height": 44
+        }
+      ],
+      "failures": [],
+      "nativeInput": "PASS: immediate selection only; undo; rules open/close; full run/selection invariants"
+    }
+  ],
+  "failures": [],
+  "status": "PASS"
+}

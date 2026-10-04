@@ -49,6 +49,15 @@ it('four-card rules merge with public rules and disappear with the held source; 
  expect(r2SelectionFacts(input(hand,{handRules:{fourStraight:true},jokers:[r2CreateJoker('c09','flush-source',0)]})).rules).toEqual({fourStraight:true,fourFlush:true});
  expect(r2SelectionFacts(input([card('q',12),card('k',13),card('a',14),card('2',2)],{jokers:[joker]})).type).toBe('high-card');
 });
+it('compact four-card guidance preserves the straight-flush exception for every held rule combination',()=>{
+ const hand=[card('a',8),card('b',9),card('c',10),card('d',11)];
+ for(const [ids,phrase] of [[[], ''],[['c08'],'顺子4张；同花顺5张'],[['c09'],'同花4张；同花顺5张'],[['c08','c09'],'顺子/同花4张；同花顺5张']] as const){
+  const f=r2SelectionFacts(input(hand,{jokers:ids.map(id=>r2CreateJoker(id,id,0))})),copy=selectionCopy(f);
+  expect(copy.rules).toBe(phrase);
+  if(ids.length){expect(copy.fullRules).toContain('同花顺仍5张');expect(copy.fullRules).toContain('普通');}
+  expect(f.type).not.toBe('straight-flush');
+ }
+});
 it('selection validation rejects empty, duplicate and foreign instances without mutation',()=>{
  const hand=[card('a',8),card('b',9)],before=structuredClone(hand);
  for(const ids of [[],['a','a'],['foreign']])expect(()=>r2SelectionFacts(input(hand,{selectedIds:ids}))).toThrow('invalid-selection');

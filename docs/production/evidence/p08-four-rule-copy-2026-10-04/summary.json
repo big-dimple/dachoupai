@@ -1,0 +1,40 @@
+{
+  "taskId": "P08",
+  "testedCommit": "fb709fe54181c47406e8281b1d80edb5b5f3880c",
+  "baseline": "fb709fe54181c47406e8281b1d80edb5b5f3880c",
+  "candidateSourceFingerprint": "bc74f100461bdfa480fa8af6d854ddc78a2fa6233e9370a7af6ff81f29b96166",
+  "sourceMethod": "sorted src relative path + NUL + content + NUL",
+  "build": "C03 / fb709fe modified true: uncommitted candidate, not deployed main",
+  "scope": "Shared complete four-card guidance only; no geometry/font/rules/RNG/save/assets changes.",
+  "checks": {
+    "redUnit": "1 failed / 11 passed: old compact phrase",
+    "affectedUnit": "19 passed in 3 files",
+    "browser": "PASS: Chromium151 Canvas / DPR1 / 844x300 top12 bottom0,12,34; empty and selected six states; native immediate switch/undo/rules open-close, complete run invariant",
+    "type": "PASS",
+    "freeze": "PENDING on committed source"
+  },
+  "measured": {
+    "availableWidth": 194,
+    "ruleText": "顺子/同花4张；同花顺5张",
+    "ruleBounds": {
+      "width": 160,
+      "height": 16
+    },
+    "font": "14px",
+    "resolution": 1.5,
+    "quickHits": "44x44 CSS px each",
+    "textAndButtonCollisions": 0
+  },
+  "reports": {
+    "baseline": "baseline-browser.json",
+    "final": "final-browser.json"
+  },
+  "states": {
+    "implementation": "COMPLETE",
+    "technical": "targeted checks PASS; new freeze/remoteCI pending",
+    "independentAesthetic": "NOT_RUN this copy-only round",
+    "targetDevice": "OnePlus/hardwareGPU/audio NOT_RUN"
+  },
+  "fireReference": "Pending external approval; no retry or new consumption this round",
+  "screenshots": "NONE; bounded real native input/Text bounds only"
+}
