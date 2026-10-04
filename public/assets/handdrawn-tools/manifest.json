@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "sourceCommit": "11ae7a464fdcf54c4e338da9171d827265742e3c",
   "sourceManifestSHA256": "45e9b14f1366a8c165c25deec3f2eb04e252144cb0a2974d9d9f73c53517eed2",
-  "runtimeFileCount": 78,
-  "runtimeBytes": 1266494,
+  "runtimeFileCount": 102,
+  "runtimeBytes": 1742780,
   "assets": [
     {
       "id": "tool-t12",
@@ -901,6 +901,282 @@
           "path": "tool-p07.detail.webp"
         }
       ]
+    },
+    {
+      "id": "tool-p08",
+      "domainId": "P08",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2192,
+          "sha256": "10041c5d51c917b152ee204f9b881c39a475495a3a3d29788d8ffcd24b6329ef",
+          "purpose": "thumbnail",
+          "path": "tool-p08.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 26704,
+          "sha256": "ade054a3412636206d4694defee6d3818921bab24b9b6fc73c6379a3bdd69680",
+          "purpose": "detail",
+          "path": "tool-p08.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-p09",
+      "domainId": "P09",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2136,
+          "sha256": "cae285ff177f7f62992cf26b2f5723b1a1b3d0e6d68c2ed51c1ced8c2cc8bc59",
+          "purpose": "thumbnail",
+          "path": "tool-p09.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 25704,
+          "sha256": "c29d10b4d9bb2a5f61d80710886b4409b712c86652fb2bb694fd5b26408094cc",
+          "purpose": "detail",
+          "path": "tool-p09.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-p10",
+      "domainId": "P10",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 1604,
+          "sha256": "27cc6e7b8495d2511c06314ea139aae32f9ca451957b1c43b8f50c05f5b16213",
+          "purpose": "thumbnail",
+          "path": "tool-p10.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 20368,
+          "sha256": "42a6cfdb1bf2989a0de3d8fa328038d75b64c44616b25be44984a6d29882bbd9",
+          "purpose": "detail",
+          "path": "tool-p10.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-p12",
+      "domainId": "P12",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2748,
+          "sha256": "d394a97e02eba8b980195103a4c0667c96a7ab808050cf449ec0b69075d32fd9",
+          "purpose": "thumbnail",
+          "path": "tool-p12.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 38676,
+          "sha256": "0d9b32d8a38e79ff569a9b28f7d080bc90c9b3e65de62aa87cd8c217d96f8864",
+          "purpose": "detail",
+          "path": "tool-p12.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-s01",
+      "domainId": "S01",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2110,
+          "sha256": "d175155708c7ec655991eb31bb4aabe81acc5075ce1e47d2fb3181777bb90b94",
+          "purpose": "thumbnail",
+          "path": "tool-s01.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 30402,
+          "sha256": "2822716a2d226288c786b800161dacf0025c9046ccbf33fa8a6fd2286c37c23e",
+          "purpose": "detail",
+          "path": "tool-s01.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-t19",
+      "domainId": "T19",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 1852,
+          "sha256": "71da6403b2771d743c34a4a842c088c73ebf3f06ce85ddca1612f1a2ce7844ae",
+          "purpose": "thumbnail",
+          "path": "tool-t19.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 22152,
+          "sha256": "cbc199b2a59404553b5900d741f400b9db8d1b0a811dfe1c5408b08543dc1fc8",
+          "purpose": "detail",
+          "path": "tool-t19.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-s03",
+      "domainId": "S03",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2532,
+          "sha256": "f183ae45f183d1d026838df5cc74492d8637a3de020e9c7768866d77a97c12d1",
+          "purpose": "thumbnail",
+          "path": "tool-s03.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 34062,
+          "sha256": "85adf9ad47c0c657c42038eb357a5806c46e877df92f7fc1fa26e409deeabad5",
+          "purpose": "detail",
+          "path": "tool-s03.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-s04",
+      "domainId": "S04",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 4414,
+          "sha256": "c982c50a4ffa9e1663ec7833540d8c0034b37f56e253058937e7b987baef379a",
+          "purpose": "thumbnail",
+          "path": "tool-s04.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 64916,
+          "sha256": "e16b50ffe8bbd2738688096982e6702396913cfc55e12059e8fd819c1ce79e50",
+          "purpose": "detail",
+          "path": "tool-s04.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-s05",
+      "domainId": "S05",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2682,
+          "sha256": "0d9dec1656c531b6b21c6815a78c55c0a64afc7b6dbc580867902bc22149d6ac",
+          "purpose": "thumbnail",
+          "path": "tool-s05.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 41140,
+          "sha256": "3ee63fd3f0093a03f84260e51cd0378032f2872fb8b62da9ae93703661c1474e",
+          "purpose": "detail",
+          "path": "tool-s05.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-s06",
+      "domainId": "S06",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 3158,
+          "sha256": "e65e251e07a11e3b90f36888bb0e5c8d8e23c9f1fa4f003124464a8cd495cb37",
+          "purpose": "thumbnail",
+          "path": "tool-s06.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 40836,
+          "sha256": "6b218520f19a42fdaa25175edfce8a96854a0107859b4f05334374c32cfcb3b9",
+          "purpose": "detail",
+          "path": "tool-s06.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-s07",
+      "domainId": "S07",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 2774,
+          "sha256": "de0b46df98f6b0c600004f508715290ea5191b68828b79c7836b17c96acd8e4c",
+          "purpose": "thumbnail",
+          "path": "tool-s07.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 40762,
+          "sha256": "012243c90c112334918ae1dedb85f26aef48634f2cf3a497cc71c1194027bf06",
+          "purpose": "detail",
+          "path": "tool-s07.detail.webp"
+        }
+      ]
+    },
+    {
+      "id": "tool-s08",
+      "domainId": "S08",
+      "category": "tool-card",
+      "outputs": [
+        {
+          "width": 128,
+          "height": 160,
+          "bytes": 3422,
+          "sha256": "04c3bdb18573e24113f8909de549326337ba714a1bc45039a1c9c4ed6d92a79f",
+          "purpose": "thumbnail",
+          "path": "tool-s08.thumbnail.webp"
+        },
+        {
+          "width": 615,
+          "height": 768,
+          "bytes": 58940,
+          "sha256": "99f2ca912370dd5b01a0638210016d1fc181bb3b6575166b7cae458c88c20c37",
+          "purpose": "detail",
+          "path": "tool-s08.detail.webp"
+        }
+      ]
     }
   ],
   "additionalSources": [
@@ -933,6 +1209,16 @@
       "sourceCommit": "c139d70f5411c4991a73ac9ed50fc8fc13f478a7",
       "sourceManifestPath": "art/sources/handdrawn-runtime-tools-20261004-p02-p07/manifest.json",
       "sourceManifestSHA256": "6690aff014c9298c1f558b6b8669341ecbf2e7e356858bc186dde800af38fc5e"
+    },
+    {
+      "sourceCommit": "1cbc3e7cbfe31ba522514c79b866787f2866cbe8",
+      "sourceManifestPath": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/manifest.json",
+      "sourceManifestSHA256": "e7a076ef322f97c0d838a57e03018ca46143d3088bdceadad0f63ce4da82d688"
+    },
+    {
+      "sourceCommit": "6d3596b728008aa35caed454ab46038fdb7ac975",
+      "sourceManifestPath": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/manifest.json",
+      "sourceManifestSHA256": "8df6bbdd64a2e6d6fddd91150c03c36a133441e174f91629777d98b1bd0b8344"
     }
   ]
 }

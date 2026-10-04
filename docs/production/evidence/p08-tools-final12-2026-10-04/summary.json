@@ -1,0 +1,1006 @@
+{
+  "taskId": "P08",
+  "status": "PASS",
+  "scope": "Review candidate only: add 12 approved real tool IDs / 24 pinned derivatives; integrate exact D evidence and calibrate current-state documentation. No main push.",
+  "publishedBaseline": {
+    "commit": "58e9d223ee5f29b965532551e71afc6fc6785d51",
+    "tools": 27,
+    "items": 12,
+    "jokers": 72,
+    "goodsWebPFiles": 78,
+    "goodsBytes": 1266494,
+    "CI": [
+      {
+        "id": 37231962418,
+        "headSHA": "58e9d223ee5f29b965532551e71afc6fc6785d51",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/big-dimple/dachoupai/actions/runs/37231962418",
+        "updatedAt": "2026-10-04T20:31:14Z"
+      },
+      {
+        "id": 37231962445,
+        "headSHA": "58e9d223ee5f29b965532551e71afc6fc6785d51",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/big-dimple/dachoupai/actions/runs/37231962445",
+        "updatedAt": "2026-10-04T20:24:30Z"
+      }
+    ]
+  },
+  "implementationCommit": "e161c1c509fd105661ee3ce52d491013523d1047",
+  "candidate": {
+    "tools": 39,
+    "toolTotal": 39,
+    "items": 12,
+    "jokers": 72,
+    "goodsWebPFiles": 102,
+    "goodsBytes": 1742780,
+    "newWebPFiles": 24,
+    "newWebPBytes": 476286
+  },
+  "sourceCI": [
+    {
+      "id": 37231115389,
+      "headSHA": "1cbc3e7cbfe31ba522514c79b866787f2866cbe8",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/big-dimple/dachoupai/actions/runs/37231115389",
+      "updatedAt": "2026-10-04T20:16:23Z"
+    },
+    {
+      "id": 37231767753,
+      "headSHA": "6d3596b728008aa35caed454ab46038fdb7ac975",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/big-dimple/dachoupai/actions/runs/37231767753",
+      "updatedAt": "2026-10-04T20:28:44Z"
+    },
+    {
+      "id": 37231091422,
+      "headSHA": "e8991940ad69b36cbbbdc325352226cecbb096b8",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/big-dimple/dachoupai/actions/runs/37231091422",
+      "updatedAt": "2026-10-04T20:16:06Z"
+    }
+  ],
+  "readOnlySourceAudit": [
+    {
+      "taskId": "P08",
+      "name": "advanced",
+      "sourceCommit": "1cbc3e7cbfe31ba522514c79b866787f2866cbe8",
+      "sourceBase": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+      "oldSourceBlobsModeTypeUnchanged": 1927,
+      "sourceFiles": 15,
+      "sourceBytes": 208519,
+      "sourceManifestSHA256": "e7a076ef322f97c0d838a57e03018ca46143d3088bdceadad0f63ce4da82d688",
+      "runtimeFiles": [
+        {
+          "id": "P08",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p08.thumbnail.webp",
+          "bytes": 2192,
+          "sha256": "10041c5d51c917b152ee204f9b881c39a475495a3a3d29788d8ffcd24b6329ef",
+          "width": 128,
+          "height": 160,
+          "decoded": "PASS"
+        },
+        {
+          "id": "P08",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p08.detail.webp",
+          "bytes": 26704,
+          "sha256": "ade054a3412636206d4694defee6d3818921bab24b9b6fc73c6379a3bdd69680",
+          "width": 615,
+          "height": 768,
+          "decoded": "PASS"
+        },
+        {
+          "id": "P09",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p09.thumbnail.webp",
+          "bytes": 2136,
+          "sha256": "cae285ff177f7f62992cf26b2f5723b1a1b3d0e6d68c2ed51c1ced8c2cc8bc59",
+          "width": 128,
+          "height": 160,
+          "decoded": "PASS"
+        },
+        {
+          "id": "P09",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p09.detail.webp",
+          "bytes": 25704,
+          "sha256": "c29d10b4d9bb2a5f61d80710886b4409b712c86652fb2bb694fd5b26408094cc",
+          "width": 615,
+          "height": 768,
+          "decoded": "PASS"
+        },
+        {
+          "id": "P10",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p10.thumbnail.webp",
+          "bytes": 1604,
+          "sha256": "27cc6e7b8495d2511c06314ea139aae32f9ca451957b1c43b8f50c05f5b16213",
+          "width": 128,
+          "height": 160,
+          "decoded": "PASS"
+        },
+        {
+          "id": "P10",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p10.detail.webp",
+          "bytes": 20368,
+          "sha256": "42a6cfdb1bf2989a0de3d8fa328038d75b64c44616b25be44984a6d29882bbd9",
+          "width": 615,
+          "height": 768,
+          "decoded": "PASS"
+        },
+        {
+          "id": "P12",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p12.thumbnail.webp",
+          "bytes": 2748,
+          "sha256": "d394a97e02eba8b980195103a4c0667c96a7ab808050cf449ec0b69075d32fd9",
+          "width": 128,
+          "height": 160,
+          "decoded": "PASS"
+        },
+        {
+          "id": "P12",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p12.detail.webp",
+          "bytes": 38676,
+          "sha256": "0d9b32d8a38e79ff569a9b28f7d080bc90c9b3e65de62aa87cd8c217d96f8864",
+          "width": 615,
+          "height": 768,
+          "decoded": "PASS"
+        },
+        {
+          "id": "S01",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-s01.thumbnail.webp",
+          "bytes": 2110,
+          "sha256": "d175155708c7ec655991eb31bb4aabe81acc5075ce1e47d2fb3181777bb90b94",
+          "width": 128,
+          "height": 160,
+          "decoded": "PASS"
+        },
+        {
+          "id": "S01",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-s01.detail.webp",
+          "bytes": 30402,
+          "sha256": "2822716a2d226288c786b800161dacf0025c9046ccbf33fa8a6fd2286c37c23e",
+          "width": 615,
+          "height": 768,
+          "decoded": "PASS"
+        },
+        {
+          "id": "T19",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-t19.thumbnail.webp",
+          "bytes": 1852,
+          "sha256": "71da6403b2771d743c34a4a842c088c73ebf3f06ce85ddca1612f1a2ce7844ae",
+          "width": 128,
+          "height": 160,
+          "decoded": "PASS"
+        },
+        {
+          "id": "T19",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-t19.detail.webp",
+          "bytes": 22152,
+          "sha256": "cbc199b2a59404553b5900d741f400b9db8d1b0a811dfe1c5408b08543dc1fc8",
+          "width": 615,
+          "height": 768,
+          "decoded": "PASS"
+        }
+      ],
+      "runtimeBytes": 176648,
+      "geometry": [
+        {
+          "domainId": "P08",
+          "sourceFilename": "tool-p08-v1-original.png",
+          "sourceWidth": 1122,
+          "sourceHeight": 1402,
+          "sourceAspectExceptionApproved": false
+        },
+        {
+          "domainId": "P09",
+          "sourceFilename": "tool-p09-v1-original.png",
+          "sourceWidth": 1122,
+          "sourceHeight": 1402,
+          "sourceAspectExceptionApproved": false
+        },
+        {
+          "domainId": "P10",
+          "sourceFilename": "tool-p10-v1-original.png",
+          "sourceWidth": 1122,
+          "sourceHeight": 1402,
+          "sourceAspectExceptionApproved": false
+        },
+        {
+          "domainId": "P12",
+          "sourceFilename": "tool-p12-v1-original.png",
+          "sourceWidth": 1122,
+          "sourceHeight": 1402,
+          "sourceAspectExceptionApproved": false
+        },
+        {
+          "domainId": "S01",
+          "sourceFilename": "tool-s01-v1-original.png",
+          "sourceWidth": 1122,
+          "sourceHeight": 1402,
+          "sourceAspectExceptionApproved": false
+        },
+        {
+          "domainId": "T19",
+          "sourceFilename": "tool-t19-v1-original.png",
+          "sourceWidth": 1122,
+          "sourceHeight": 1402,
+          "sourceAspectExceptionApproved": false
+        }
+      ],
+      "status": "PASS",
+      "fullRGBDecode": true,
+      "noExifXmpIcc": true
+    },
+    {
+      "taskId": "P08",
+      "name": "spectral",
+      "sourceCommit": "6d3596b728008aa35caed454ab46038fdb7ac975",
+      "sourceBase": "1c103de6957eb3fd4c17d94d8f68c5a4d5466ca9",
+      "oldSourceBlobsModeTypeUnchanged": 1927,
+      "sourceFiles": 15,
+      "sourceBytes": 331346,
+      "sourceManifestSHA256": "8df6bbdd64a2e6d6fddd91150c03c36a133441e174f91629777d98b1bd0b8344",
+      "runtimeFiles": [
+        {
+          "id": "S03",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s03.thumbnail.webp",
+          "bytes": 2532,
+          "sha256": "f183ae45f183d1d026838df5cc74492d8637a3de020e9c7768866d77a97c12d1",
+          "width": 128,
+          "height": 160,
+          "decoded": "PASS"
+        },
+        {
+          "id": "S03",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s03.detail.webp",
+          "bytes": 34062,
+          "sha256": "85adf9ad47c0c657c42038eb357a5806c46e877df92f7fc1fa26e409deeabad5",
+          "width": 615,
+          "height": 768,
+          "decoded": "PASS"
+        },
+        {
+          "id": "S04",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s04.thumbnail.webp",
+          "bytes": 4414,
+          "sha256": "c982c50a4ffa9e1663ec7833540d8c0034b37f56e253058937e7b987baef379a",
+          "width": 128,
+          "height": 160,
+          "decoded": "PASS"
+        },
+        {
+          "id": "S04",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s04.detail.webp",
+          "bytes": 64916,
+          "sha256": "e16b50ffe8bbd2738688096982e6702396913cfc55e12059e8fd819c1ce79e50",
+          "width": 615,
+          "height": 768,
+          "decoded": "PASS"
+        },
+        {
+          "id": "S05",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s05.thumbnail.webp",
+          "bytes": 2682,
+          "sha256": "0d9dec1656c531b6b21c6815a78c55c0a64afc7b6dbc580867902bc22149d6ac",
+          "width": 128,
+          "height": 160,
+          "decoded": "PASS"
+        },
+        {
+          "id": "S05",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s05.detail.webp",
+          "bytes": 41140,
+          "sha256": "3ee63fd3f0093a03f84260e51cd0378032f2872fb8b62da9ae93703661c1474e",
+          "width": 615,
+          "height": 768,
+          "decoded": "PASS"
+        },
+        {
+          "id": "S06",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s06.thumbnail.webp",
+          "bytes": 3158,
+          "sha256": "e65e251e07a11e3b90f36888bb0e5c8d8e23c9f1fa4f003124464a8cd495cb37",
+          "width": 128,
+          "height": 160,
+          "decoded": "PASS"
+        },
+        {
+          "id": "S06",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s06.detail.webp",
+          "bytes": 40836,
+          "sha256": "6b218520f19a42fdaa25175edfce8a96854a0107859b4f05334374c32cfcb3b9",
+          "width": 615,
+          "height": 768,
+          "decoded": "PASS"
+        },
+        {
+          "id": "S07",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s07.thumbnail.webp",
+          "bytes": 2774,
+          "sha256": "de0b46df98f6b0c600004f508715290ea5191b68828b79c7836b17c96acd8e4c",
+          "width": 128,
+          "height": 160,
+          "decoded": "PASS"
+        },
+        {
+          "id": "S07",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s07.detail.webp",
+          "bytes": 40762,
+          "sha256": "012243c90c112334918ae1dedb85f26aef48634f2cf3a497cc71c1194027bf06",
+          "width": 615,
+          "height": 768,
+          "decoded": "PASS"
+        },
+        {
+          "id": "S08",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s08.thumbnail.webp",
+          "bytes": 3422,
+          "sha256": "04c3bdb18573e24113f8909de549326337ba714a1bc45039a1c9c4ed6d92a79f",
+          "width": 128,
+          "height": 160,
+          "decoded": "PASS"
+        },
+        {
+          "id": "S08",
+          "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s08.detail.webp",
+          "bytes": 58940,
+          "sha256": "99f2ca912370dd5b01a0638210016d1fc181bb3b6575166b7cae458c88c20c37",
+          "width": 615,
+          "height": 768,
+          "decoded": "PASS"
+        }
+      ],
+      "runtimeBytes": 299638,
+      "geometry": [
+        {
+          "domainId": "S03",
+          "sourceFilename": "tool-s03-v1-original.png",
+          "sourceWidth": 1122,
+          "sourceHeight": 1402,
+          "sourceAspectExceptionApproved": false
+        },
+        {
+          "domainId": "S04",
+          "sourceFilename": "tool-s04-v2-original.png",
+          "sourceWidth": 1122,
+          "sourceHeight": 1402,
+          "sourceAspectExceptionApproved": false
+        },
+        {
+          "domainId": "S05",
+          "sourceFilename": "tool-s05-v1-original.png",
+          "sourceWidth": 1122,
+          "sourceHeight": 1402,
+          "sourceAspectExceptionApproved": false
+        },
+        {
+          "domainId": "S06",
+          "sourceFilename": "tool-s06-v1-original.png",
+          "sourceWidth": 1122,
+          "sourceHeight": 1402,
+          "sourceAspectExceptionApproved": false
+        },
+        {
+          "domainId": "S07",
+          "sourceFilename": "tool-s07-v1-original.png",
+          "sourceWidth": 1122,
+          "sourceHeight": 1402,
+          "sourceAspectExceptionApproved": false
+        },
+        {
+          "domainId": "S08",
+          "sourceFilename": "tool-s08-v1-original.png",
+          "sourceWidth": 1122,
+          "sourceHeight": 1402,
+          "sourceAspectExceptionApproved": false
+        }
+      ],
+      "status": "PASS",
+      "fullRGBDecode": true,
+      "noExifXmpIcc": true
+    }
+  ],
+  "intake": {
+    "baseCommit": "58e9d223ee5f29b965532551e71afc6fc6785d51",
+    "sources": [
+      {
+        "sourceCommit": "1cbc3e7cbfe31ba522514c79b866787f2866cbe8",
+        "sourceDirectory": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19",
+        "sourceCI": {
+          "id": 37231115389,
+          "conclusion": "success"
+        },
+        "sourceFiles": [
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/README.md",
+            "gitBlob": "a474a7bc07290340c311e486d4984ea65546131b",
+            "bytes": 3025,
+            "sha256": "c13945c093bc9ff3d63ba459618e2f47898eb5160c1da7afbde34f809f4463e3"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/manifest.json",
+            "gitBlob": "25ba83e364da52cc4fda2da55b98aa1696e5ab03",
+            "bytes": 20075,
+            "sha256": "e7a076ef322f97c0d838a57e03018ca46143d3088bdceadad0f63ce4da82d688"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p08.detail.webp",
+            "gitBlob": "1db37da4a7a1ff649c0df83174702fd68cb5d701",
+            "bytes": 26704,
+            "sha256": "ade054a3412636206d4694defee6d3818921bab24b9b6fc73c6379a3bdd69680"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p08.thumbnail.webp",
+            "gitBlob": "70ee0beaca132716d2cf878bf0fd1fa2223d4dc0",
+            "bytes": 2192,
+            "sha256": "10041c5d51c917b152ee204f9b881c39a475495a3a3d29788d8ffcd24b6329ef"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p09.detail.webp",
+            "gitBlob": "5de044dce7d4b91503ab6848ff9c32ea3f8302e4",
+            "bytes": 25704,
+            "sha256": "c29d10b4d9bb2a5f61d80710886b4409b712c86652fb2bb694fd5b26408094cc"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p09.thumbnail.webp",
+            "gitBlob": "4fd86e05b9a99247bc2590f541ab5197f0b2236d",
+            "bytes": 2136,
+            "sha256": "cae285ff177f7f62992cf26b2f5723b1a1b3d0e6d68c2ed51c1ced8c2cc8bc59"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p10.detail.webp",
+            "gitBlob": "098a05b2f0dd32d8484b7a2e82deed214d6a5d85",
+            "bytes": 20368,
+            "sha256": "42a6cfdb1bf2989a0de3d8fa328038d75b64c44616b25be44984a6d29882bbd9"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p10.thumbnail.webp",
+            "gitBlob": "ef38445c64755ec10d4e4b3b88d5cdb9f21f75d5",
+            "bytes": 1604,
+            "sha256": "27cc6e7b8495d2511c06314ea139aae32f9ca451957b1c43b8f50c05f5b16213"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p12.detail.webp",
+            "gitBlob": "8f3a66e1dba5ab65e9bc28ed12402f62487f89bb",
+            "bytes": 38676,
+            "sha256": "0d9b32d8a38e79ff569a9b28f7d080bc90c9b3e65de62aa87cd8c217d96f8864"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-p12.thumbnail.webp",
+            "gitBlob": "6fde154f73d2df170e21bde9741d596bf30e1486",
+            "bytes": 2748,
+            "sha256": "d394a97e02eba8b980195103a4c0667c96a7ab808050cf449ec0b69075d32fd9"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-s01.detail.webp",
+            "gitBlob": "4ce9443f3ba43fd69d27d316b272c33dc20c4da5",
+            "bytes": 30402,
+            "sha256": "2822716a2d226288c786b800161dacf0025c9046ccbf33fa8a6fd2286c37c23e"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-s01.thumbnail.webp",
+            "gitBlob": "2bc021a97a2636834e85f1debb6e8a2240ca9d32",
+            "bytes": 2110,
+            "sha256": "d175155708c7ec655991eb31bb4aabe81acc5075ce1e47d2fb3181777bb90b94"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-t19.detail.webp",
+            "gitBlob": "724af8de14a4a164f1fd0569fcb26ffc20836811",
+            "bytes": 22152,
+            "sha256": "cbc199b2a59404553b5900d741f400b9db8d1b0a811dfe1c5408b08543dc1fc8"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/runtime/tool-t19.thumbnail.webp",
+            "gitBlob": "b61777d71abe9fbe8cf124e274a70ff8468f36ba",
+            "bytes": 1852,
+            "sha256": "71da6403b2771d743c34a4a842c088c73ebf3f06ce85ddca1612f1a2ce7844ae"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19/verify-runtime.mjs",
+            "gitBlob": "c3ce78d28eba8b87d5c0ec53e5bc712a1c0288f6",
+            "bytes": 8771,
+            "sha256": "a492d2afca08c65c8ad95c7195e98174fbf41083c4699bf51894c829572c6a49"
+          }
+        ],
+        "publicCopies": [
+          {
+            "path": "public/assets/handdrawn-tools/tool-p08.thumbnail.webp",
+            "bytes": 2192,
+            "sha256": "10041c5d51c917b152ee204f9b881c39a475495a3a3d29788d8ffcd24b6329ef"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-p08.detail.webp",
+            "bytes": 26704,
+            "sha256": "ade054a3412636206d4694defee6d3818921bab24b9b6fc73c6379a3bdd69680"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-p09.thumbnail.webp",
+            "bytes": 2136,
+            "sha256": "cae285ff177f7f62992cf26b2f5723b1a1b3d0e6d68c2ed51c1ced8c2cc8bc59"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-p09.detail.webp",
+            "bytes": 25704,
+            "sha256": "c29d10b4d9bb2a5f61d80710886b4409b712c86652fb2bb694fd5b26408094cc"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-p10.thumbnail.webp",
+            "bytes": 1604,
+            "sha256": "27cc6e7b8495d2511c06314ea139aae32f9ca451957b1c43b8f50c05f5b16213"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-p10.detail.webp",
+            "bytes": 20368,
+            "sha256": "42a6cfdb1bf2989a0de3d8fa328038d75b64c44616b25be44984a6d29882bbd9"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-p12.thumbnail.webp",
+            "bytes": 2748,
+            "sha256": "d394a97e02eba8b980195103a4c0667c96a7ab808050cf449ec0b69075d32fd9"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-p12.detail.webp",
+            "bytes": 38676,
+            "sha256": "0d9b32d8a38e79ff569a9b28f7d080bc90c9b3e65de62aa87cd8c217d96f8864"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-s01.thumbnail.webp",
+            "bytes": 2110,
+            "sha256": "d175155708c7ec655991eb31bb4aabe81acc5075ce1e47d2fb3181777bb90b94"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-s01.detail.webp",
+            "bytes": 30402,
+            "sha256": "2822716a2d226288c786b800161dacf0025c9046ccbf33fa8a6fd2286c37c23e"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-t19.thumbnail.webp",
+            "bytes": 1852,
+            "sha256": "71da6403b2771d743c34a4a842c088c73ebf3f06ce85ddca1612f1a2ce7844ae"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-t19.detail.webp",
+            "bytes": 22152,
+            "sha256": "cbc199b2a59404553b5900d741f400b9db8d1b0a811dfe1c5408b08543dc1fc8"
+          }
+        ]
+      },
+      {
+        "sourceCommit": "6d3596b728008aa35caed454ab46038fdb7ac975",
+        "sourceDirectory": "art/sources/handdrawn-runtime-tools-20261004-s03-s08",
+        "sourceCI": {
+          "id": 37231767753,
+          "conclusion": "success"
+        },
+        "sourceFiles": [
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/README.md",
+            "gitBlob": "7e1f3f931d4ba77c7ac575cd66a99e7d78548efb",
+            "bytes": 2961,
+            "sha256": "52cb6a0ed5b8a72cc062dbde1eb9dab3016e44aa85a675e8693da586af37c0a6"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/manifest.json",
+            "gitBlob": "dcfeb80746a842b3644b9df5c6819c18d05c5af2",
+            "bytes": 20060,
+            "sha256": "8df6bbdd64a2e6d6fddd91150c03c36a133441e174f91629777d98b1bd0b8344"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s03.detail.webp",
+            "gitBlob": "3baf73162a1818a3a6b4ea9a077ccf8fecd73eed",
+            "bytes": 34062,
+            "sha256": "85adf9ad47c0c657c42038eb357a5806c46e877df92f7fc1fa26e409deeabad5"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s03.thumbnail.webp",
+            "gitBlob": "4c3f28d13b3fda8cc44e165cb0d1fe242fb7971b",
+            "bytes": 2532,
+            "sha256": "f183ae45f183d1d026838df5cc74492d8637a3de020e9c7768866d77a97c12d1"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s04.detail.webp",
+            "gitBlob": "e4bce672bf9cda4e4ba1530dffb863659f6af8ec",
+            "bytes": 64916,
+            "sha256": "e16b50ffe8bbd2738688096982e6702396913cfc55e12059e8fd819c1ce79e50"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s04.thumbnail.webp",
+            "gitBlob": "f9316da9a48fafaeecb02c8642d9dd03e381a16d",
+            "bytes": 4414,
+            "sha256": "c982c50a4ffa9e1663ec7833540d8c0034b37f56e253058937e7b987baef379a"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s05.detail.webp",
+            "gitBlob": "64d0d7b991d12e8322bbb8181c44bbd054b22ca2",
+            "bytes": 41140,
+            "sha256": "3ee63fd3f0093a03f84260e51cd0378032f2872fb8b62da9ae93703661c1474e"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s05.thumbnail.webp",
+            "gitBlob": "a9e3c5cad6f9c3369195e1d7153ca58e46f4ac39",
+            "bytes": 2682,
+            "sha256": "0d9dec1656c531b6b21c6815a78c55c0a64afc7b6dbc580867902bc22149d6ac"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s06.detail.webp",
+            "gitBlob": "8d009e8df7e65d67ad1c4d728aecea8757de774e",
+            "bytes": 40836,
+            "sha256": "6b218520f19a42fdaa25175edfce8a96854a0107859b4f05334374c32cfcb3b9"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s06.thumbnail.webp",
+            "gitBlob": "22728e0d5d937a2eb098bbd41175f580f83cb7ba",
+            "bytes": 3158,
+            "sha256": "e65e251e07a11e3b90f36888bb0e5c8d8e23c9f1fa4f003124464a8cd495cb37"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s07.detail.webp",
+            "gitBlob": "5e07163d196ad615feab543ef6c7606a12fbb282",
+            "bytes": 40762,
+            "sha256": "012243c90c112334918ae1dedb85f26aef48634f2cf3a497cc71c1194027bf06"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s07.thumbnail.webp",
+            "gitBlob": "c5ce769979513edb538370b194b0d4decbbb8075",
+            "bytes": 2774,
+            "sha256": "de0b46df98f6b0c600004f508715290ea5191b68828b79c7836b17c96acd8e4c"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s08.detail.webp",
+            "gitBlob": "cee555ff15344a3d88bc44bfc6f5404f1933e1ee",
+            "bytes": 58940,
+            "sha256": "99f2ca912370dd5b01a0638210016d1fc181bb3b6575166b7cae458c88c20c37"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/runtime/tool-s08.thumbnail.webp",
+            "gitBlob": "c2c26264ff6e06d0cb26fc83697727d0530fdd5d",
+            "bytes": 3422,
+            "sha256": "04c3bdb18573e24113f8909de549326337ba714a1bc45039a1c9c4ed6d92a79f"
+          },
+          {
+            "path": "art/sources/handdrawn-runtime-tools-20261004-s03-s08/verify-runtime.mjs",
+            "gitBlob": "90d269dbcc3faba0e677fc9a554dee5013a7b3d9",
+            "bytes": 8687,
+            "sha256": "ee51720c99cd112a20fdbffb3126d3c65eca0aaeccdc45e33fa55edde0f83b64"
+          }
+        ],
+        "publicCopies": [
+          {
+            "path": "public/assets/handdrawn-tools/tool-s03.thumbnail.webp",
+            "bytes": 2532,
+            "sha256": "f183ae45f183d1d026838df5cc74492d8637a3de020e9c7768866d77a97c12d1"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-s03.detail.webp",
+            "bytes": 34062,
+            "sha256": "85adf9ad47c0c657c42038eb357a5806c46e877df92f7fc1fa26e409deeabad5"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+            "bytes": 4414,
+            "sha256": "c982c50a4ffa9e1663ec7833540d8c0034b37f56e253058937e7b987baef379a"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-s04.detail.webp",
+            "bytes": 64916,
+            "sha256": "e16b50ffe8bbd2738688096982e6702396913cfc55e12059e8fd819c1ce79e50"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-s05.thumbnail.webp",
+            "bytes": 2682,
+            "sha256": "0d9dec1656c531b6b21c6815a78c55c0a64afc7b6dbc580867902bc22149d6ac"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-s05.detail.webp",
+            "bytes": 41140,
+            "sha256": "3ee63fd3f0093a03f84260e51cd0378032f2872fb8b62da9ae93703661c1474e"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-s06.thumbnail.webp",
+            "bytes": 3158,
+            "sha256": "e65e251e07a11e3b90f36888bb0e5c8d8e23c9f1fa4f003124464a8cd495cb37"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-s06.detail.webp",
+            "bytes": 40836,
+            "sha256": "6b218520f19a42fdaa25175edfce8a96854a0107859b4f05334374c32cfcb3b9"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-s07.thumbnail.webp",
+            "bytes": 2774,
+            "sha256": "de0b46df98f6b0c600004f508715290ea5191b68828b79c7836b17c96acd8e4c"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-s07.detail.webp",
+            "bytes": 40762,
+            "sha256": "012243c90c112334918ae1dedb85f26aef48634f2cf3a497cc71c1194027bf06"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-s08.thumbnail.webp",
+            "bytes": 3422,
+            "sha256": "04c3bdb18573e24113f8909de549326337ba714a1bc45039a1c9c4ed6d92a79f"
+          },
+          {
+            "path": "public/assets/handdrawn-tools/tool-s08.detail.webp",
+            "bytes": 58940,
+            "sha256": "99f2ca912370dd5b01a0638210016d1fc181bb3b6575166b7cae458c88c20c37"
+          }
+        ]
+      }
+    ],
+    "runtimeManifestSHA256": "67a5325342315877b6ea09108e34087f836beccf89ddcd1ba23e54ebea2adb00",
+    "runtimeFiles": 102,
+    "runtimeBytes": 1742780,
+    "toolCount": 39,
+    "itemCount": 12,
+    "oldRowsUnchanged": true,
+    "oldAdditionalSourcesUnchanged": true,
+    "naturalEvidence": {
+      "sourceCommit": "e8991940ad69b36cbbbdc325352226cecbb096b8",
+      "sourceCI": {
+        "id": 37231091422,
+        "conclusion": "success"
+      },
+      "directory": "docs/production/evidence/p08-natural-run-2026-10-04",
+      "tree": "0c1eb0ade8f5abfd15a839d19b0c88b500cca01d",
+      "files": [
+        {
+          "path": "docs/production/evidence/p08-natural-run-2026-10-04/01-shop-after-purchase-recovery.png",
+          "gitBlob": "688d4fbac4f2951036b64a43c0fd0d0eb75294ab",
+          "bytes": 39535,
+          "sha256": "7edb0c1e18d511e878313c594eec1f34421d86504786eb0d2f6e541e33f9e35d"
+        },
+        {
+          "path": "docs/production/evidence/p08-natural-run-2026-10-04/02-first-play-actual-source.png",
+          "gitBlob": "02cbdcdaef6f2420d80797b8d85c7b417aeb7347",
+          "bytes": 64214,
+          "sha256": "a05f4cbb1c7e400e4fea962df8f9cca6bba146b05b6f46ab421cb9ffd9cfaaa7"
+        },
+        {
+          "path": "docs/production/evidence/p08-natural-run-2026-10-04/03-Boss-paused-checkpoint.png",
+          "gitBlob": "d5b856734f09fea4a57501f601ff032f86bb1937",
+          "bytes": 77905,
+          "sha256": "aa76b4ed9535a6f48c14591bebdd921448679878d92ecc67cbbdc9d5ba7fff27"
+        },
+        {
+          "path": "docs/production/evidence/p08-natural-run-2026-10-04/04-first-Boss-result.png",
+          "gitBlob": "5b327096f054e2f6a29b5c040092d1f9d86913b7",
+          "bytes": 61098,
+          "sha256": "b4e01be30835f9e9ab153a15a36cebb4c2097a44127c8796ec50d3df1284b225"
+        },
+        {
+          "path": "docs/production/evidence/p08-natural-run-2026-10-04/README.md",
+          "gitBlob": "c6cd23d60780aad88758572d8a073a63210d3cca",
+          "bytes": 7087,
+          "sha256": "741bea9ae10d74150f119f9d5b42cf3e3a51728b3cefee77b6e9736f6660cdf5"
+        },
+        {
+          "path": "docs/production/evidence/p08-natural-run-2026-10-04/final-checkpoint.json",
+          "gitBlob": "5bdc6f8c77bc4317c748c0a971b14db7bca31007",
+          "bytes": 30889,
+          "sha256": "8767b797054c3b385a1ce7a32fc098ecc341a65586c70da399bfb5f094884e43"
+        },
+        {
+          "path": "docs/production/evidence/p08-natural-run-2026-10-04/initial-checkpoint.json",
+          "gitBlob": "8d14930a38be127d2691adfec0d631e31413278d",
+          "bytes": 9244,
+          "sha256": "6e0edb246ed64b97d3d1cd07bbf7f976b222ccf3612ccc93e8fea2108a9c257d"
+        },
+        {
+          "path": "docs/production/evidence/p08-natural-run-2026-10-04/journal-verification.json",
+          "gitBlob": "74528f49eab014e5240522296b65175b3582389e",
+          "bytes": 11298,
+          "sha256": "a1b48ef127ec496122aef05bc1118140bdaa960105f1f86dbc34c7008c5f7206"
+        },
+        {
+          "path": "docs/production/evidence/p08-natural-run-2026-10-04/observations.json",
+          "gitBlob": "4345722a80c47fc9a7b7af93f886a4ea99bb016b",
+          "bytes": 669318,
+          "sha256": "77403b131c10bf3a0cb0eba46f9bd2c4f35fdec4ae7b28ecfde74475a2150002"
+        },
+        {
+          "path": "docs/production/evidence/p08-natural-run-2026-10-04/recoveries.json",
+          "gitBlob": "e9471ebba5eb8e99b6d0830947f88d768167d459",
+          "bytes": 684280,
+          "sha256": "7fcf1a3cefd6f980e7992da4dff2954c7bd2395d7e5e8b396643ca3a7e94c9d9"
+        },
+        {
+          "path": "docs/production/evidence/p08-natural-run-2026-10-04/summary.json",
+          "gitBlob": "480685a300591524650367d4e141ffd6bfe6d00f",
+          "bytes": 8574,
+          "sha256": "da20f9c2cbcdf3e33b736c3dc299be2feec47787361c3db3488a823f6d845548"
+        }
+      ]
+    }
+  },
+  "preservation": {
+    "baseCommit": "58e9d223ee5f29b965532551e71afc6fc6785d51",
+    "implementationCommit": "e161c1c509fd105661ee3ce52d491013523d1047",
+    "srcTree": "4a812ee1d9bca5ff14b9cc8b0d20eca0043f70dc",
+    "jokerTree": "522c5cd5b17336e40557687489fdb7d1d18330a7",
+    "oldRuntimeFilesPreserved": 78,
+    "allProductSourceUnchanged": true,
+    "strictFiveActionSmokeUnchanged": true,
+    "licensesUnchanged": true,
+    "sixToolEvidenceUnchanged": true,
+    "sourceCopies": {
+      "art/sources/handdrawn-runtime-tools-20261004-p08-p12-s01-t19": {
+        "sourceCommit": "1cbc3e7cbfe31ba522514c79b866787f2866cbe8",
+        "tree": "9e0963462dff088adab423638ece4a154b89a9ce",
+        "byteModeExact": true
+      },
+      "art/sources/handdrawn-runtime-tools-20261004-s03-s08": {
+        "sourceCommit": "6d3596b728008aa35caed454ab46038fdb7ac975",
+        "tree": "1c135dfbae9fc8b9e968ef7f5acc902629eb3a96",
+        "byteModeExact": true
+      },
+      "docs/production/evidence/p08-natural-run-2026-10-04": {
+        "sourceCommit": "e8991940ad69b36cbbbdc325352226cecbb096b8",
+        "tree": "0c1eb0ade8f5abfd15a839d19b0c88b500cca01d",
+        "byteModeExact": true
+      }
+    },
+    "status": "PASS"
+  },
+  "localChecks": {
+    "relatedTests": {
+      "files": 4,
+      "tests": 42,
+      "status": "PASS",
+      "command": "npx vitest run tests/goods-art.test.ts tests/goods-art-loading.test.ts tests/detail-art.test.ts tests/detail-dialog.test.ts"
+    },
+    "typecheck": {
+      "status": "PASS"
+    },
+    "content": {
+      "status": "PASS",
+      "version": "quality-r2-content-v10",
+      "hash": "json-fnv-v1:24efe7a905216d85"
+    },
+    "publicArtPrivacy": {
+      "status": "PASS",
+      "filesScanned": 64,
+      "issues": []
+    },
+    "observations": [
+      "verify:content exited 0 after PASS; Vite emitted a dependency scanner closed-server warning during shutdown. No product patch or rerun.",
+      "Source verify-runtime.mjs has an inherited extra EOF blank line. Preserve pinned source verbatim; no external verifier executed.",
+      "Initial preservation audit used a nonexistent handdrawn-jokers path; corrected to the actual handdrawn-p08 tree. No resource mutation.",
+      "Initial plan check rejected the new summary taskId/testedCommit metadata; corrected to repository evidence contract, then rerun. No historical evidence changed."
+    ]
+  },
+  "browserReports": [
+    "browser-p12.json",
+    "browser-s04.json"
+  ],
+  "distAudits": [
+    {
+      "representative": "P12",
+      "build": {
+        "version": "C03",
+        "revision": "e161c1c509fd105661ee3ce52d491013523d1047",
+        "modified": false,
+        "builtAt": "2026-10-04T20:38:34.967Z"
+      },
+      "runtimeFiles": 102,
+      "runtimeBytes": 1742780,
+      "allPublicWebPByteExact": true,
+      "new24WebPIncluded": true,
+      "browslatroNotice": {
+        "path": "licenses/browslatro.MIT.txt",
+        "bytes": 1467,
+        "sha256": "22b840bb0d85359cfb13e92b30d2be1b745798b599c9362cb2585e6148fcea38",
+        "byteExact": true
+      },
+      "status": "PASS"
+    },
+    {
+      "representative": "S04",
+      "build": {
+        "version": "C03",
+        "revision": "e161c1c509fd105661ee3ce52d491013523d1047",
+        "modified": false,
+        "builtAt": "2026-10-04T20:39:25.398Z"
+      },
+      "runtimeFiles": 102,
+      "runtimeBytes": 1742780,
+      "allPublicWebPByteExact": true,
+      "new24WebPIncluded": true,
+      "browslatroNotice": {
+        "path": "licenses/browslatro.MIT.txt",
+        "bytes": 1467,
+        "sha256": "22b840bb0d85359cfb13e92b30d2be1b745798b599c9362cb2585e6148fcea38",
+        "byteExact": true
+      },
+      "status": "PASS"
+    }
+  ],
+  "images": [
+    {
+      "path": "390-p12-owned.png",
+      "bytes": 89688,
+      "sha256": "821711f1c1962996f370da3553ff4be65e41e2042a91524d1a3abd9c613c31fe",
+      "actualView": true,
+      "sourceCommit": "e161c1c509fd105661ee3ce52d491013523d1047",
+      "review": "Full approved face visible, centered inside the existing figure; no crop or stretch. Local representative only."
+    },
+    {
+      "path": "390-s04-owned.png",
+      "bytes": 102422,
+      "sha256": "13f5724e4c312ddf46ba2c898d25361241b7aef7a51c233e11301981ffca90cd",
+      "actualView": true,
+      "sourceCommit": "e161c1c509fd105661ee3ce52d491013523d1047",
+      "review": "Full approved face visible, centered inside the existing figure; no crop or stretch. Local representative only."
+    }
+  ],
+  "naturalEvidenceIntegration": {
+    "sourceCommit": "e8991940ad69b36cbbbdc325352226cecbb096b8",
+    "originalDirectory": "../p08-natural-run-2026-10-04",
+    "filesByteModeExact": 11,
+    "runtimeTestedCommit": "7b78777347dd854f5759870c7934b8c28279889e",
+    "status": "PASS",
+    "scope": "One bounded natural run through first Boss on the frozen source; evidence-only review.",
+    "stop": {
+      "phase": "stage-cleared",
+      "stageIndex": 2,
+      "Boss": {
+        "definitionId": "B01",
+        "disabledSuit": null
+      },
+      "heat": "1018",
+      "target": "800",
+      "gold": 10,
+      "seq": 26,
+      "journal": 25,
+      "clearId": "run/p08-batch3-natural/amo/clear/2",
+      "awardedGold": 8,
+      "firstBossSupply": [
+        {
+          "instanceId": "run/p08-batch3-natural/amo/first-boss/supply",
+          "definitionId": "T16"
+        }
+      ]
+    },
+    "reward": {
+      "finalPlaySeq": 26,
+      "finalJournalCount": 25,
+      "goldBefore": 2,
+      "goldAfter": 10,
+      "delta": 8,
+      "clearId": "run/p08-batch3-natural/amo/clear/2",
+      "firstBossSupply": [
+        {
+          "instanceId": "run/p08-batch3-natural/amo/first-boss/supply",
+          "definitionId": "T16"
+        }
+      ],
+      "supplyRewardClaimed": true,
+      "uniqueJournalCommandIds": 25,
+      "uniqueReceipts": 26
+    },
+    "limits": [
+      "Only this seed, character, standard D0 run, viewport, DPR and software Canvas profile were covered.",
+      "No new run, seed reroll, state/card/score/money/RNG injection, skip or forced win.",
+      "The run stopped at the first Boss result; chapter 2 was not entered and T16 was not used.",
+      "The first play was intentionally interrupted during actual impact by recovery. Its complete remaining presentation was not observed.",
+      "Screenshots are original frames, not video or GPU/FPS evidence. Image 01 is an early shop entrance frame; image 02 shows transient animated numbers rather than the final 692.",
+      "Hardware GPU, real PC, OnePlus, audio listening, video/FPS and reduced-motion behavior: NOT_RUN.",
+      "No claim of overall P08 completion or broad visual/device acceptance.",
+      "Existing source CI was not rerun locally as a full freeze; evidence-review CI is reported separately."
+    ],
+    "nativeRecoveries": 3,
+    "localRerun": false
+  },
+  "limits": [
+    "Only P12 and S04 native legal imported fixtures at 390×740/DPR1/software Canvas/reduced motion; no natural acquisition claim from these fixtures.",
+    "P12 has a validator-approved discovered flush-five Lv.1; preview enabled, use not clicked. S04 offer passes the unchanged acquisition resource gate; no suit selected, use remains disabled.",
+    "No score/evaluator/RNG/save/layout/art generation/product source change. All src, old 78 goods, Joker72/a11, strict five-action smoke and original MIT notice preserved.",
+    "D natural evidence applies solely to frozen 7b787773 first Boss 1018/800 and three recoveries; no chapter 2, latest-main full campaign, hardware GPU/PC/OnePlus/audio/video/FPS acceptance.",
+    "P08 remains in_progress. C04 D32 pause, resumeContract, V01/L01 gates and A03 planned/humanGate remain unchanged.",
+    "Final exact review CI and production-docs are reported after the review push. Main remains 58e9d223 until parent authorization."
+  ],
+  "testedCommit": "e161c1c509fd105661ee3ce52d491013523d1047"
+}
