@@ -1,6 +1,6 @@
 {
   "taskId": "P08",
-  "testedCommit": "76557f24ed646f7cd8012c407d55e4e3ef347811",
+  "testedCommit": "7b0992dadaa95d3f7c8b99b7e23fcd6ca62509fe",
   "baseline": "76557f24ed646f7cd8012c407d55e4e3ef347811",
   "assetCommit": "b0394efd921fc05d936ea3519d2b401a1cba9abd",
   "sourceManifestSHA256": "b39553ee11e7f774952d79f8fd10f149e429fb0fd0636a1f61cd7155ebf96bd8",
@@ -30,17 +30,19 @@
     "affectedTests": "59 passed/5files",
     "type": "PASS",
     "browser": "PASS Chromium151 Canvas390x740/DPR1/safe0/base subdir; native two textures, HD on demand exact hash/cache/404 fixed geometry retry, whole run/RNG/save invariant, ordinary four-card flush and intact rule exception",
-    "freeze": "PENDING on committed candidate"
+    "freeze": "PASS:1866 tests/104 files,content,type/build,Chromium Canvas desktop+mobile smoke,plan; source/index/HEAD unchanged"
   },
   "states": {
     "implementation": "COMPLETE approved c08/c09 registration only",
-    "technical": "targeted PASS; final freeze/main/exactCI pending",
+    "technical": "PASS targeted and final freeze; exact new remoteCI pending",
     "independentAesthetic": "root source/runtime pixel approval; consumer scene engineering view; scene independent review NOT_RUN",
     "targetDevice": "OnePlus/hardwareGPU/audio NOT_RUN"
   },
   "reports": {
     "browser": "browser.json",
-    "coverage": "coverage-audit.json"
+    "coverage": "coverage-audit.json",
+    "freeze": "freeze.json",
+    "reviewCommit": "0767d50eeda7ec6ad65e4793f50adbfbc6add381"
   },
   "priorRelease": {
     "main": "76557f24ed646f7cd8012c407d55e4e3ef347811",
