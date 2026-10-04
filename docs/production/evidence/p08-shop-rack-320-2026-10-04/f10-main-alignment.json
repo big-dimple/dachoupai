@@ -1,0 +1,81 @@
+{
+  "taskId": "P08",
+  "baseMain": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+  "mergeSourceCommit": "05d66547e92c2d08ac0c7480c4dc8e47d6881f60",
+  "previousReviewCommit": "c7cd7c531b49fd221a2fa3ddc2588019c2b766c3",
+  "sourceUnchangedFromPassedReview": true,
+  "retainedNativeEvidence": "Same source as prior92-source/88-tests review; three actual Canvas profile/input records retained in main-aligned-browser.json; no new screenshots or native matrix. Previous exactCI37226995144 success19:13:38UTC belongs to previous SHA; updated reviewCI separately reported.",
+  "checks": {
+    "affectedTests": "92 PASS /5 files (88 rack/copy/reorder +4 goods-art)",
+    "type": "PASS",
+    "portableNewTools": "PASS;12 files227088 bytes",
+    "manifestRuntime": "all54 outputs870142B exact size/SHA;15 tool IDs and12 item IDs",
+    "plan": "PASS"
+  },
+  "preservation": {
+    "src/game/GameScene.ts": {
+      "object": "311bed2463b7af4e282ae3bbbb719e6e7d64f81f",
+      "sameAsPublishedMain": true
+    },
+    "src/game/ToolInventoryEntry.ts": {
+      "object": "ad683177be1cb9924f61207934eb695e8f5e4d99",
+      "sameAsPublishedMain": true
+    },
+    "src/game/IntermissionScene.ts": {
+      "object": "ca84a25e48efe584a73c24822d750c0696466620",
+      "sameAsPublishedMain": true
+    },
+    "src/game/ScoreFlame.ts": {
+      "object": "925208142110f17e08e1df264913d21e5c9afdd0",
+      "sameAsPublishedMain": true
+    },
+    "src/game/GoodsArt.ts": {
+      "object": "09b7283c1030be808374dc924c19a433b563a4bb",
+      "sameAsPublishedMain": true
+    },
+    "src/game/r2ToolInfo.ts": {
+      "object": "54eb3b87bfdcfb15b5f20f3a24d59009d281779c",
+      "sameAsPublishedMain": true
+    },
+    "src/audio/AudioEngine.ts": {
+      "object": "a59571134ba2e3a1f7c913b44434b425df24a80c",
+      "sameAsPublishedMain": true
+    },
+    "src/style.css": {
+      "object": "3bb1fcb6e1f714d456d519b19a4dc38279f02a90",
+      "sameAsPublishedMain": true
+    },
+    "src/domain": {
+      "object": "8e3423193ecb4920e79b87f2314da97a04438c99",
+      "sameAsPublishedMain": true
+    },
+    "src/application": {
+      "object": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+      "sameAsPublishedMain": true
+    },
+    "src/content": {
+      "object": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+      "sameAsPublishedMain": true
+    },
+    "public": {
+      "object": "9a3f6af0fe16a793b6ca13195ac80fc0faeff688",
+      "sameAsPublishedMain": true
+    },
+    "art": {
+      "object": "0cc88620870dcdcbc04329e626a14f88234ded7c",
+      "sameAsPublishedMain": true
+    }
+  },
+  "runtimeDiff": [
+    "src/game/ShopLayout.ts",
+    "src/game/ShopScene.ts"
+  ],
+  "implementation": "COMPLETE_REVIEW",
+  "technical": "LOCAL_PASS;new exactCI pending",
+  "independentAesthetic": "Parent accepted320 after direction; independenthit/short audit in progress",
+  "targetDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "unmergedCandidate": "B14 hand-counter e96e971 not integrated",
+  "mainPush": "NOT_AUTHORIZED; review only"
+}

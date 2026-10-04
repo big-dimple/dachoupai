@@ -1,5 +1,7 @@
 # 开发入口
 
+P08 320卡条review正常合入已发布mainf10d2d0（T13–T18六图）：src同已绿c7cd7c5，92相关tests/type及12新增WebP portable/全54runtime hash PASS；工具15/39、道具12/12和朱砂/工具包/失败摘要逐树保main。旧两图不重拍/不改身份，父侧方向通过，独立hit/短横审查另行；未混B14计数候选，不推main，新精确reviewCI另报。 证据docs/production/evidence/p08-shop-rack-320-2026-10-04/f10-main-alignment.json。
+
 P08 320商店卡条独立修复review：main5d54421基线、源码1557d41。实际复现原344宽/首x=-12末332、卡体428.8和命中450.8碰按钮424；54.4×76.16紧凑5:7、14px四字名利用座位间隙、命中止于按钮前4px，三货/工具入口/行动锚点保持。实际短横safeTop造成shop.top24的3.6px旧交叠同预算修；88受影响tests/type/build及320/390/844原生详情取消/工具包/调序状态比对PASS，两图actual view。原图B商店功能仅测试叠加且bd/7b两模块等同；后正常merge已发布main7b78777，88tests/type/build及同三组无overlay原生回归PASS，保持新main GameScene/工具/资源逐树相同；当前只是review，整体/OnePlus/GPU/听感未验。 证据docs/production/evidence/p08-shop-rack-320-2026-10-04/summary.json。
 
 P08工具包正常对齐C已发布main（UTC 2026-10-04）：父已完整批准review0452e418并独立确认精确CI37224263669 success；正常merge源码ab4d626合入main5d54421，仅AGENTS/handoff/plan三处文档冲突，双方历史/evidence与C completionScope保持。C六张T06–T11资源、两处CSS删除、只读失败摘要及其测试逐树同main；已批准工具包产品/样板逐字节同0452。26相关tests/3files及type PASS，当前runtime逐SHA零不符：72/72 Joker、6角色/JQK，工具9/39、道具12/12；P08 165files4454670B，工具42files643054B。未重截图/原生矩阵/全冻结，旧证据保原源码身份；本新review精确CI另报，main待父串行授权。证据docs/production/evidence/p08-tools-entry-2026-10-04/c-main-alignment.json。
