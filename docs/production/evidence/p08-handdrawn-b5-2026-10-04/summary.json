@@ -1,6 +1,6 @@
 {
   "taskId": "P08",
-  "testedCommit": "62fbc9a452e766e24a593b4f7258edb84bffc6da",
+  "testedCommit": "ad1f8d27482a25a0800f333f0f6a70b2e077f2be",
   "baseline": "62fbc9a452e766e24a593b4f7258edb84bffc6da",
   "assetDeliveryCommit": "1671376cde093f1450e07564815468dafbfe070a",
   "sourceManifestSHA256": "aa4564e46334788796a1357ad1221f5a83b10fe7cb3acb9910bb0b92dca0fc06",
@@ -47,17 +47,19 @@
     "affectedTests": "63 passed/4files; legacy samples from actual current old registry; unregistered sample from current fallback; each b4/b5 ID independently no HD prefetch",
     "type": "PASS",
     "browser": "PASS Chromium151 Canvas390x740/DPR1/safe0/BASE_URL subdir; two legal fixtures/eight actual textures/all HD hash/on demand/immediate cache/native cancel/404 fixed frame retry/full run invariant",
-    "freeze": "PENDING"
+    "freeze": "PASS:1883 tests/104files,content,type/build,Chromium Canvas desktop/mobile smoke,plan; source/index/HEAD identical"
   },
   "states": {
     "implementation": "COMPLETE approved eight-ID art increment only; no runtime TS change",
-    "technical": "PASS targeted/native; final new freeze PENDING",
+    "technical": "PASS targeted/native/final freeze; exact new remoteCI pending",
     "independentAesthetic": "root source/thumbnail approvals; engineering scene self-view, independent final scene NOT_RUN",
     "targetDevice": "OnePlus/hardwareGPU/audio NOT_RUN"
   },
   "reports": {
     "browser": "browser.json",
-    "scene": "390-b5-representative.png"
+    "scene": "390-b5-representative.png",
+    "freeze": "freeze.json",
+    "sourceFiles": "source-files.txt"
   },
   "priorB4": {
     "main": "62fbc9a452e766e24a593b4f7258edb84bffc6da",

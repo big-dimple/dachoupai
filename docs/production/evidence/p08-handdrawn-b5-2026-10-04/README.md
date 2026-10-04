@@ -7,3 +7,5 @@
 实际八缩略与八615×768可见HD逐hash；打开前无HD请求、即时重开缓存同图、原生关闭、f03模拟404保正确缩略与固定框后重试，全run/resources/RNG/save不变，无page error。63受影响tests/type通过；legacy合同从实际保旧图注册动态取3样本，未注册guard从当前fallback取样，本轮每个b4/b5按需ID独立断言不能预取。初次targeted暴露a04已注册而旧未注册样本仍硬编码a04，后续替换脚本误命中新a04参数一例，均已修fixture且没有改任何runtime加载行为/断言/超时。最终freeze另归档。
 
 16份相关当前公开文本有限扫描无私有ID/版本/会话链接/私有路径/签名URL；首包清理保持，旧历史仍在。状态分开：实现完成，技术专项通过/最终待冻，源/缩略root候选通过而整屏独立审美NOT_RUN；OnePlus/真实GPU/听感NOT_RUN。私有火参考标准消费失败/未看像素，不重试或入git，不挡本批。
+
+最终源码 `ad1f8d27482a25a0800f333f0f6a70b2e077f2be` 单次冻结1883 tests/104files、content、type/build、Canvas桌面/手机smoke、plan全PASS且source/index/HEAD前后相同，见[freeze](freeze.json)。正常FF/精确新CI另报；没有因素材迭代去跳过、放宽断言或延长超时。
