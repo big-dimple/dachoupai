@@ -1,0 +1,43 @@
+{
+  "scope": "all",
+  "testedCommit": "928e1161e6fd1976057df927e24b172058575021",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "17a522910f26bc4e3bad3db0c2c673368cdec5d44db72a22c93023a63a060e1a",
+    "index": "af7eda53c30e0ecff0a30789363afa21f2062ab1d487bcf29063b599c5e843a5",
+    "head": "928e1161e6fd1976057df927e24b172058575021",
+    "branch": "refs/heads/dot/d44-layout"
+  },
+  "after": {
+    "source": "17a522910f26bc4e3bad3db0c2c673368cdec5d44db72a22c93023a63a060e1a",
+    "index": "af7eda53c30e0ecff0a30789363afa21f2062ab1d487bcf29063b599c5e843a5",
+    "head": "928e1161e6fd1976057df927e24b172058575021",
+    "branch": "refs/heads/dot/d44-layout"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 86965,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

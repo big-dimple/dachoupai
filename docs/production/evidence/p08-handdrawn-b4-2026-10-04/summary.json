@@ -40,7 +40,8 @@
     "affectedTests": "38 passed/4files; updated metadata test final freeze pending",
     "type": "PASS",
     "browser": "PASS Chromium151 Canvas390x740/DPR1/safe0/subdir BASE_URL; four textures/HD exact hashes/on-demand/cache/404 fixed frame retry/whole run unchanged; both four-card subordinate phrases real full Text bounds14px/res1.5",
-    "freeze": "PENDING"
+    "freeze": "PENDING",
+    "initialFreeze": "FAIL5: legacy-prefetch fixtures used pengci/huimaqiang which are now on-demand. No runtime defect; all other1864 tests passed, source/index/HEAD identical. Legacy fixtures changed to still-legacy a03/e05/a05; reviewed b4 no-prefetch coverage added. Final refreeze pending."
   },
   "states": {
     "implementation": "COMPLETE bounded four-ID integration and current metadata cleanup",

@@ -5,7 +5,8 @@ import {jokerArtKey,jokerArtUrl} from '../src/game/jokerArt';
 import {prefetchDetailArt} from '../src/game/DetailArt';
 
 vi.mock('../src/game/DetailArt',()=>({prefetchDetailArt:vi.fn()}));
-const ids=['pengci','e05','huimaqiang'];
+// Legacy fixtures keep the legacy prefetch contract; reviewed replacements are tested separately.
+const ids=['a03','e05','a05'];
 const key=(id:string)=>jokerArtKey(id)!;
 type Listener=(...args:any[])=>void;
 class FakeEvents {
@@ -176,12 +177,12 @@ describe('registered Joker thumbnail recovery',()=>{
     requestJokerArt(scene.phaser,ids,vi.fn());expect(prefetchDetailArt).toHaveBeenCalledTimes(2);
   });
 
-  it('does not prefetch reviewed handdrawn HD before opening detail, including cached thumbnails',()=>{
-    const scene=new FakeScene();requestJokerArt(scene.phaser,['f09','f04'],vi.fn());
+  it.each([{reviewed:['f09','f04']},{reviewed:['pengci','mantangcai']},{reviewed:['huimaqiang','jiedongfeng']}])('does not prefetch reviewed handdrawn HD before opening detail, including cached thumbnails: $reviewed',({reviewed})=>{
+    const scene=new FakeScene();requestJokerArt(scene.phaser,reviewed,vi.fn());
     expect(scene.load.requests).toHaveLength(2);
     scene.load.succeed(scene.load.requests[0]);scene.load.succeed(scene.load.requests[1]);
     expect(prefetchDetailArt).not.toHaveBeenCalled();
-    requestJokerArt(scene.phaser,['f09','f04'],vi.fn());
+    requestJokerArt(scene.phaser,reviewed,vi.fn());
     expect(scene.load.requests).toHaveLength(2);expect(prefetchDetailArt).not.toHaveBeenCalled();
   });
 

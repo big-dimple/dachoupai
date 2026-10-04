@@ -9,3 +9,5 @@
 consumer实际view8源派生与此PNG。有限原生检查四个缩略/HD hash、HD仅打开请求、缓存、404保缩略固定框重试、完整run/resources/RNG/save不变；四牌两自然副句实际14px/res1.5文字bounds清楚。具体见[browser](browser.json)、[summary](summary.json)。首次补flush fixture因替换实例未同步入场身份被合法validator拒绝，仅修fixture保实例id后通过；无游戏实现/门禁/容差修改。
 
 四状态：实现完成；相关技术通过/最终冻结另归档；根已批准来源候选、整屏独立视觉NOT_RUN；OnePlus/真实GPU/听感NOT_RUN。未覆盖53个功能ID保旧或机制，不称72全换。没有火代码/私有参考图进入本轮。
+
+首次最终冻结928e116：1864通过/5失败，均是旧图预取fixture使用了已迁按需的新图ID。旧fixture换仍保旧的a03/e05/a05，全部预取/重试/取消断言保留；新4ID另参数化断言打开前不请求HD，未修改runtime加载策略。初次失败报告保留，最终新源码重新冻结。
