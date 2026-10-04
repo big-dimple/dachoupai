@@ -1,5 +1,9 @@
 # P08 工具包入口 review
 
+最新仅smoke合同修正 bb62c1f6e28cd8315493f0161eaed032e2e9e369。原精确CI37223525814的失败是真实的旧四动作列表断言，实际新增已授权工具包；原FAIL与[日志摘录](ci37223525814-failure-excerpt.txt)保留。严格列表改为五动作，增加库存开/关全存档及选牌保持，未改其他断言或timeout；src/tests/assets/art全部同父已批准bd3840d。本地原smoke Chromium桌面/手机通过且source/index/HEAD未变，三引擎新精确CI仍需单独报告。
+
+[失败定位与处置](ci-failure-resolution.json)
+
 最新main对齐源码 db00121942e191112d6b8e0268ca0e5503e9df9f，正常合入 2d999cd938e5c19253daa8ddbd1cf25facf2d9e4。保持已发布朱砂火、头像锚点和跨档消费，仅把工具包按钮加入保护mask。46专项/type及一次320原生计分、工具包命中/关闭、命名通过；未重跑设备矩阵或14牌。
 
 [当前整合证明](ink-main-alignment.json) · [当前原生记录](aligned320-browser.json)

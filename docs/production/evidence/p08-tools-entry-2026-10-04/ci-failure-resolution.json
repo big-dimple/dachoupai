@@ -1,0 +1,95 @@
+{
+  "taskId": "P08",
+  "testedCommit": "bb62c1f6e28cd8315493f0161eaed032e2e9e369",
+  "status": "LOCAL_AFFECTED_PASS_NEW_CI_PENDING",
+  "failure": {
+    "runId": 37223525814,
+    "runAttempt": 1,
+    "headSHA": "bd3840d0a8f532825fc078e2233ab740815cd026",
+    "branch": "feat/p08-tools-entry-20261004",
+    "jobId": 111498414350,
+    "job": "browser",
+    "status": "FAIL",
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37223525814/job/111498414350",
+    "failedStep": "npm run verify:ci -- --scope=browser",
+    "build": "PASS",
+    "domain": "PASS",
+    "docs": "PASS",
+    "timestamp": "2026-10-04T18:14:43Z",
+    "file": "harness/screenshot.mjs",
+    "line": 112,
+    "error": "AssertionError [ERR_ASSERTION]: only common actions occupy the table",
+    "expected": [
+      "action/discard",
+      "action/play",
+      "action/sort-rank",
+      "action/sort-suit"
+    ],
+    "actual": [
+      "action/discard",
+      "action/play",
+      "action/sort-rank",
+      "action/sort-suit",
+      "action/tool-inventory"
+    ],
+    "classification": "DETERMINISTIC_STALE_SMOKE_CONTRACT",
+    "diagnosis": "The approved direct inventory intentionally adds one enabled action; old D27 four-action expectation had not been synchronized. No timeout, runner installation or observed product defect caused this failure.",
+    "sourceIndexHeadUnchangedInFailedRun": true,
+    "redactedExcerpt": "ci37223525814-failure-excerpt.txt",
+    "retainedFullLogSHA256": "9f10588983174adfdf1a0f183162727179de81a48430403471b5c1defab47232",
+    "rawLocalLogPublished": false
+  },
+  "resolution": {
+    "sourceCommit": "bb62c1f6e28cd8315493f0161eaed032e2e9e369",
+    "changedFile": "harness/screenshot.mjs",
+    "strictEquality": "RETAINED: exact five approved actions, no unknown extras",
+    "newAssertions": [
+      "Native direct 工具包 opens through production input and closes",
+      "Whole run/RNG identical after inventory open/close",
+      "Existing selected card remains selected"
+    ],
+    "otherAssertionsAndTimeouts": "UNCHANGED",
+    "runtimeTestsAndAssetChangedPaths": [],
+    "oldJobReruns": 0,
+    "newReviewCI": "PENDING_EXACT_PUSH",
+    "productReview": "Parent approved bd3840d runtime; runtime bytes unchanged."
+  },
+  "local": {
+    "status": "PASS",
+    "testedCommit": "bb62c1f6e28cd8315493f0161eaed032e2e9e369",
+    "engines": [
+      "Chromium151 system executable via ignored launcher wrapper"
+    ],
+    "profiles": [
+      "desktop1280x720/DPR1",
+      "mobile390x740/DPR3"
+    ],
+    "command": "Existing harness/screenshot.mjs --verify-smoke; Chromium desktop/mobile only",
+    "before": {
+      "source": "2d8463f4ffef031069847b48a6eb59911a71d5a78e32f551b3e3d07d1541f7b2",
+      "index": "7a996a8511044033796c9a17fde2522ab5e80ebbebe3aaed89c86b4bf23bf392",
+      "head": "bb62c1f6e28cd8315493f0161eaed032e2e9e369",
+      "branch": "refs/heads/feat/p08-tools-entry-20261004"
+    },
+    "after": {
+      "source": "2d8463f4ffef031069847b48a6eb59911a71d5a78e32f551b3e3d07d1541f7b2",
+      "index": "7a996a8511044033796c9a17fde2522ab5e80ebbebe3aaed89c86b4bf23bf392",
+      "head": "bb62c1f6e28cd8315493f0161eaed032e2e9e369",
+      "branch": "refs/heads/feat/p08-tools-entry-20261004"
+    },
+    "steps": [
+      {
+        "name": "affected smoke Chromium desktop/mobile",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 33148
+      }
+    ],
+    "sourceIndexHeadFrozen": "PASS",
+    "GPU": "NOT_RUN",
+    "device": "NOT_RUN",
+    "audioListening": "NOT_RUN",
+    "remoteBundledThreeEngineCI": "PENDING"
+  },
+  "mainPush": "NOT_RUN"
+}

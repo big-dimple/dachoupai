@@ -112,7 +112,7 @@
     "native": "320px PASS, same geometry",
     "newCI": "Parent tracks"
   },
-  "latestSourceCommit": "db00121942e191112d6b8e0268ca0e5503e9df9f",
+  "latestSourceCommit": "bb62c1f6e28cd8315493f0161eaed032e2e9e369",
   "publishedMainAlignment": {
     "status": "PASS",
     "testedCommit": "db00121942e191112d6b8e0268ca0e5503e9df9f",
@@ -121,5 +121,13 @@
     "tests": "46/type PASS",
     "native": "single320 name/hit/ink layers and mask PASS",
     "newCI": "PENDING_EXACT_PUSH"
+  },
+  "ciFailureResolution": {
+    "testedCommit": "bb62c1f6e28cd8315493f0161eaed032e2e9e369",
+    "status": "LOCAL_AFFECTED_PASS_NEWCI_PENDING",
+    "evidence": "ci-failure-resolution.json",
+    "originalRun": 37223525814,
+    "classification": "stale strict smoke contract",
+    "runtimeBytes": "UNCHANGED_FROM_PARENT_APPROVED_BD3840D"
   }
 }
