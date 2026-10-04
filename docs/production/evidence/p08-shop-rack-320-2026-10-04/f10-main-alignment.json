@@ -77,5 +77,7 @@
   "GPU": "NOT_RUN",
   "audio": "NOT_RUN",
   "unmergedCandidate": "B14 hand-counter e96e971 not integrated",
-  "mainPush": "NOT_AUTHORIZED; review only"
+  "mainPush": "NOT_AUTHORIZED; review only",
+  "testedCommit": "05d66547e92c2d08ac0c7480c4dc8e47d6881f60",
+  "retainedFailure": "Initial new alignment record omitted required testedCommit; plan correctly failed. Added exact locally tested merge SHA; no source/gate/assertion change."
 }
