@@ -20,6 +20,16 @@ The existing DetailArt queue/cache and DetailDialog fixed illustrated frame hand
 - 404 thumbnail+HD: mechanism fallback remains, explicit retries restore thumb/HD and fixed frame; canceled dialog does not mutate run: PASS.
 - Native CDP touch down→thumbnail arrival→up opens correct detail with exact live interactive identity retained. Movement cancels without selection/dialog. Closing before late thumbnail/HD completion leaves dialog closed, removed image unchanged, only current shop picture updated: PASS. No extra screenshot or recording for these probes.
 
-Detailed source fingerprint, embedded C03 version/build timestamp, renderer, viewport/DPR/safe inset and finite results are in [summary.json](summary.json). The PNG is candidate/fixture evidence, not a main deployment or natural acquisition screenshot.
+Detailed current validation source fingerprint, embedded C03 version/build timestamp, renderer, viewport/DPR/safe inset and finite results are in [summary.json](summary.json). The PNG is candidate/fixture evidence, not a main deployment or natural acquisition screenshot.
 
 Implementation REVIEW_READY; bounded technical PASS; independent overall aesthetics PENDING; OnePlus/hardwareGPU/audio NOT_RUN. Final publication freeze/CI/main push NOT_RUN at this review stage. Parent coordinates integration with last21 resource branch and its independent Joker callback fix.
+
+## Must-fix failure-path review correction
+
+The original404 check proved cache/DOM fallback but missed the shelf image. A real callback observation before opening any detail reproduced `__MISSING`: failed status refresh called paintGoodsArt without an existing primary texture, destroying its valid procedural picture. The shared paint entrance now checks both active holder and texture existence before creating/removing children. Failed status notifications still reach details; neither initial failure nor repeated failed retry replaces the current valid image.
+
+`harness/p08-tools-failure.mjs` observes actual Phaser children after the completed callback, with real HTTP404 and200 invalid-WebP responses. Each case proves the visible `goods-motif/T12`, retained image/hit identity and selected offer through failed native retry, unchanged render count, no run/RNG change, and successful later replacement only after texture installation. Both PASS. Existing45 affected unit tests and production type/build PASS on the corrected source. Native down→arrival→up, movement cancellation and close/late callbacks also PASS using the same final Canvas build. No tolerance/timeout weakening, new picture or full freeze.
+
+The existing PNG remains the original4266914 successful-path candidate, src fingerprint1804f73021a061e983a29202bf2bdc7f56e5eab6ded83971c356fe473b082bc0, C03 build14:06:05.335Z. It is not relabeled as a corrected-source screenshot. Its metadata is kept separately in summary.image. Current validation src fingerprint6c7be55b42f46c6e30873ca65018c92901fbfe94a3b1995249508c390e90f2d0, embedded4266914 modified=true, build2026-10-04T14:27:51.845Z.
+
+Independent last21 Joker callback repair is not copied here. The cross-branch late-Joker/late-tool arrival intersection remains a required parent-coordinated regression after merge; this review only fixes/tests its own tool path. Main remains untouched.

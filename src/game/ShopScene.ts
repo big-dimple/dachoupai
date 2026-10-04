@@ -193,7 +193,10 @@ export class ShopScene extends Phaser.Scene {
     if(external)requestGoodsArt(this,id,url,()=>{this.paintGoodsArt(key);this.dialog.refreshArtLoad();});
   }
   private paintGoodsArt(key:string):void {
-    const target=this.artTargets.get(key);if(!target?.holder.active)return;
+    const target=this.artTargets.get(key);
+    // Failed fetch/decode still notifies detail status. It must never replace
+    // an already valid fallback with Phaser's missing-texture placeholder.
+    if(!target?.holder.active||!this.textures.exists(key))return;
     const image=this.add.image(0,0,key),scale=Math.min(target.box.width/image.width,target.box.height/image.height);
     target.holder.removeAll(true);target.holder.add(image.setScale(scale).setAlpha(target.alpha));
   }

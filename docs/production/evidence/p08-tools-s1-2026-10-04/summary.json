@@ -5,12 +5,12 @@
   "targetDevice": "NOT_RUN",
   "publishedBase": "6f470b63032537b63898a4a974d91872439bbf3f",
   "assetDeliveryCommit": "11ae7a464fdcf54c4e338da9171d827265742e3c",
-  "sourceFingerprint": "1804f73021a061e983a29202bf2bdc7f56e5eab6ded83971c356fe473b082bc0",
+  "sourceFingerprint": "6c7be55b42f46c6e30873ca65018c92901fbfe94a3b1995249508c390e90f2d0",
   "build": {
     "version": "C03",
-    "revision": "6f470b63032537b63898a4a974d91872439bbf3f",
+    "revision": "4266914f1793ed76ec42aac11b80f79cd4685407",
     "modified": true,
-    "builtAt": "2026-10-04T14:06:05.335Z"
+    "builtAt": "2026-10-04T14:27:51.845Z"
   },
   "runtimeManifestSHA256": "d37e1c85cab533bf4c9b30f01a5022ca2a4ba9c856188b11a9c0474ac3b8c820",
   "viewport": {
@@ -218,8 +218,68 @@
   "image": {
     "file": "390-tools-s1-shop.png",
     "bytes": 50605,
-    "sha256": "0145714e5168ad12d3d53328aad8106a19b984902d55c5734a3442ef2569ef58"
+    "sha256": "0145714e5168ad12d3d53328aad8106a19b984902d55c5734a3442ef2569ef58",
+    "sourceFingerprint": "1804f73021a061e983a29202bf2bdc7f56e5eab6ded83971c356fe473b082bc0",
+    "build": {
+      "version": "C03",
+      "revision": "6f470b63032537b63898a4a974d91872439bbf3f",
+      "modified": true,
+      "builtAt": "2026-10-04T14:06:05.335Z"
+    }
   },
   "finalPublishFreeze": "NOT_RUN",
-  "mainPush": "NOT_RUN"
+  "mainPush": "NOT_RUN",
+  "mustFixFailureRegression": {
+    "status": "PASS",
+    "beforeFixActualShown": "__MISSING",
+    "afterFix": [
+      {
+        "kind": "404",
+        "first": {
+          "shown": [
+            "goods-motif/T12"
+          ],
+          "active": true,
+          "renders": 2
+        },
+        "retry": {
+          "shown": [
+            "goods-motif/T12"
+          ],
+          "sameFallback": true,
+          "sameHit": true,
+          "renderCountUnchanged": true,
+          "selected": "review/T12"
+        },
+        "restored": "PASS"
+      },
+      {
+        "kind": "decode",
+        "first": {
+          "shown": [
+            "goods-motif/T12"
+          ],
+          "active": true,
+          "renders": 2
+        },
+        "retry": {
+          "shown": [
+            "goods-motif/T12"
+          ],
+          "sameFallback": true,
+          "sameHit": true,
+          "renderCountUnchanged": true,
+          "selected": "review/T12"
+        },
+        "restored": "PASS"
+      }
+    ],
+    "observation": "Real 404/bad-WebP fetch+decode callbacks; no redraw before first holder observation, manual failed retry preserves actual image and hit identities with unchanged render count.",
+    "nativeInputFinalSource": [
+      "native down → thumbnail arrival → up opens the correct detail; exact hit identity retained during arrival",
+      "native movement cancellation survives thumbnail arrival; release opens nothing",
+      "closed dialog stays closed; late thumb paints only the current picture holder; canceled HD cannot mutate removed image"
+    ]
+  },
+  "crossBranchJokerCallbackIntersection": "NOT_RUN until parent merges the independent Joker-only picture refresh"
 }
