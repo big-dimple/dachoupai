@@ -4,7 +4,7 @@
   "implementationCommit": "0d21cd4d541183c6a91304709184132ade34297e",
   "alignedMainCommit": "7d44b8bcada32942acded87d70abe78dea12f275",
   "status": "IN_PROGRESS_REVIEW_READY",
-  "scope": "Game and Shop expose 工具 x/y; existing inventory/target/confirmation/save flow. Empty explanations, consumable/permanent grouping, shop-only badge, current count/capacity. No new resources or domain rules.",
+  "scope": "Game and Shop expose 工具包 x/y; existing inventory/target/confirmation/save flow. Empty explanations, consumable/permanent grouping, shop-only badge, current count/capacity. No new resources or domain rules.",
   "runtimeChanges": [
     "src/game/ConsumableDialog.ts",
     "src/game/GameScene.ts",
@@ -92,9 +92,9 @@
     "newReviewCI": "PENDING"
   },
   "humanReview": {
-    "status": "PENDING",
+    "status": "PASS_WITH_COPY_FOLLOWUP",
     "reviewer": "root",
-    "evidence": "Full scenes supplied; main remains held."
+    "evidence": "Root viewed game320/shop390/game844 bottom34 and accepted placement/hand space. Requested literal clarification completed; new320 images supplied. Not overall P08 acceptance."
   },
   "mainPush": "NOT_RUN",
   "remaining": [
@@ -103,5 +103,13 @@
   ],
   "device": "NOT_RUN",
   "GPU": "NOT_RUN",
-  "audio": "NOT_RUN"
+  "audio": "NOT_RUN",
+  "copyClarification": {
+    "status": "PASS",
+    "testedCommit": "9c8e22d8d364b6c4de3a3137996aa7e1a8ef8ddc",
+    "evidence": "copy-clarification.json",
+    "tests": "16/typecheck PASS",
+    "native": "320px PASS, same geometry",
+    "newCI": "Parent tracks"
+  }
 }

@@ -1,21 +1,19 @@
-# P08 工具入口 review 检查点
+# P08 工具包入口 review
 
-实现 0d21cd4d541183c6a91304709184132ade34297e；实测源码 1354a808ae98e04ec21482f96c8587c4d9ee394c；已正常合入 main 7d44b8bcada32942acded87d70abe78dea12f275。
+最新字面修正源码 9c8e22d8d364b6c4de3a3137996aa7e1a8ef8ddc。两场景库存入口、弹窗标题与空态统一叫“工具包”；商店商品分类仍“工具”。不改布局或颜色。
 
-Game 与 Shop 常驻“工具 x/y”。空库存能看购买后使用说明，消耗工具和本局道具分组；继续使用现有选目标、确认及保存命令，商店专用工具在牌桌只能查看。
+16 项相关单测、typecheck 与单次320px原生流程通过。文字实测71×17px，完整落在商店88×44及牌桌112×44入口内；按钮/字体/商品/预览/整页逻辑几何同旧版1354。新图均actual view：
 
-93 项相关单测、typecheck 和四种尺寸原生流程通过。每种尺寸 Shop/Game 各有效使用一次，全状态同 applyCommand；关闭、取消、商店专用检查不消耗，原生 reload 恢复库存。8 个保存命令、8 张场景完整页及1张空库存图。软件 Canvas/DPR1、减少动态、合法导入样板；非自然连续获取、真机/GPU/听感验收。
+[copy320-shop.png](copy320-shop.png)
+[copy320-game.png](copy320-game.png)
+[copy320-empty.png](copy320-empty.png)
 
-普通9牌工作区和原手牌/底栏逻辑坐标保持；expanded14竖屏仅收紧与入口相交的待出牌视觉区（本轮只有单测覆盖）；safe34短横进度线上移4px。当前main资源与Joker新文案逐路径保持。
+[修正记录](copy-clarification.json) · [原生记录](copy320-browser.json)
 
-失败记录见 [retained-failures.json](retained-failures.json)，完整验证见 [browser.json](browser.json)，边界/检查点见 [summary.json](summary.json)。根独立图审、新reviewCI与main串行放行仍待完成。
+父已实际看旧版 game320/shop390/game844 bottom34，入口位置和手牌空间通过；因商店分类与库存同名，提出本次字面修正。新320图供父检查；CI由父跟进，main未推。
 
-[shop-320x568-safe0-0.png](shop-320x568-safe0-0.png)
-[game-320x568-safe0-0.png](game-320x568-safe0-0.png)
-[390-empty-inventory.png](390-empty-inventory.png)
-[shop-390x740-safe0-0.png](shop-390x740-safe0-0.png)
-[game-390x740-safe0-0.png](game-390x740-safe0-0.png)
-[shop-844x300-safe12-12.png](shop-844x300-safe12-12.png)
-[game-844x300-safe12-12.png](game-844x300-safe12-12.png)
-[shop-844x300-safe12-34.png](shop-844x300-safe12-34.png)
-[game-844x300-safe12-34.png](game-844x300-safe12-34.png)
+首次入口实现0d21cd4，正常合入main7d44后的实测源码1354a808ae98e04ec21482f96c8587c4d9ee394c。其93单测/type、四视口原生流程和8场景完整页＋1空态图继续留作原始证据，不称本次四视口重测。
+
+14牌竖屏必要待出牌视觉避让仍只有单测；safe34短横进度线上移4px的旧限界保留。合法导入样板；非自然连续获取、真机/GPU/听感验收。
+
+[原始验证](browser.json) · [摘要](summary.json) · [保留失败](retained-failures.json)

@@ -379,6 +379,8 @@ D25追加有限3D复用小候选：先用实际GLB源的铜钱/骰子或牌片�
 
 ## P08
 
+P08工具包字面消歧（UTC 2026-10-04）：父已实际看game320/shop390/game844 bottom34，入口位置与手牌空间通过；仅按反馈把两场景库存、标题和空态统一叫工具包x/y，商品分类仍工具。source9c8e22d exact modified=false，16专项/type及320软件Canvas原生购买/取消/两场景各一次保存使用/reload PASS；文字71×17px完整落在Shop88×44/Game112×44内，三新完整页actual view。与1354的布局/货品/所有按钮frame-font/待出牌工作面逐值相同；GameScene/ShopScene/CSS/DetailDialog和素材本轮字节不变。不重做布局颜色、不扩设备或14矩阵，14避让仍仅单测；CI交父跟进，main仍等待串行放行。证据evidence/p08-tools-entry-2026-10-04/copy-clarification.json。
+
 P08工具入口review检查点（UTC 2026-10-04）：实现0d21cd4；正常合入main7d44保留72 Joker文案、12道具及既有三组底栏。source1354a808 exact modified=false，93相关单测/7files和type PASS；320/390竖屏、844×300 top12/b12及b34的原生零库存、购买计数/扩容、取消/关闭全run-RNG不变、Shop/Game各一次有效使用（连点确认仅一次保存）、商店专用场内禁用、reload全run通过。8场景完整页＋390空态图已actual view，fixture为合法原生导入、非自然连续获取。Game/Shop常驻工具x/y，消耗工具与本局道具分组，复用原目标/确认/保存。手牌和底栏逻辑坐标不改；14牌竖屏仅必要待出牌视觉避让（单测覆盖，未冒称native14），短横safe34进度线上移4px。首轮U04容量误样板、a01不支持及3offer超合同失败留证后修正，未削guard。仅review待新精确CI/根独立图审及串行main放行；P08仍in_progress，不扩矩阵，不全冻结。证据evidence/p08-tools-entry-2026-10-04。
 
 P08底栏三组第一版检查点（UTC 2026-10-04）：实现e2df9f8，对齐maince299（src仍同88b17）后tested1ee6e7b；88px青蓝纸色整理组内两44px触点，弃牌390由70→106／320由106→114，朱红出牌保主动作；墨线纸牌下落到平放牌堆／牌扇向前送出，文字与真实余次保持。原底栏及全部非control坐标指纹cff0c393…同88b17，主56px、容量回退54/52px不变。89原受影响＋9新增几何/符号/type PASS；320/390软件Canvas DPR1原生合法导入及选牌、实际文字框/可见线图/全run不变PASS，两小图已actual view。根要求先看第一版，停止自行美化和大收尾；844短横实际操作及本皮肤按住/取消/禁用/真实出弃仍NOT_RUN，整体IN_PROGRESS。一次文档锚点补丁未应用，无测试/浏览器失败。public/assets、art/sources完全保maince299六道具/a11追加；不改火/音频/计分/RNG/save/手牌/调序入口。独立review，不自动main，证据evidence/p08-action-groups-2026-10-04。
