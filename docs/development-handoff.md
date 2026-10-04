@@ -8,7 +8,8 @@
 | --- | --- |
 | 已发布手绘覆盖 | Joker72/72、原6角色/JQK；P08 165 WebP／4,454,670B。工具39/39、物品12/12，goods102 WebP／1,742,780B；最后十二图已发布。 |
 | 铜钱消费 | 批准单图256²／15,958B；旧atlas归档，保原800ms显示和已保存奖励去重。A03整包planned／humanGate保持。 |
-| 牌组查看本次review | [共享查看器证据](production/evidence/p08-deck-inspector-2026-10-04/summary.json)：source 624bc28cae3b3f94e19468e91957446ee5d0c577。13点数与花色、Game全部／剩余及增强筛选；Shop原菜单默认全部持久有效牌，不显示下一场剩余。 |
+| 当前点数文案补正 | source 60641fb2ef131f7d9dd984de79b6f5df3753ee08；A：4张／10：4张独立单元，15px、只读与固定关闭保持。三视口实图及21筛选通过，[新证据](production/evidence/p08-deck-stat-copy-2026-10-04/summary.json)，旧报告不改，新CI另报。 |
+| 原版牌组查看review | [共享查看器证据](production/evidence/p08-deck-inspector-2026-10-04/summary.json)：source 624bc28cae3b3f94e19468e91957446ee5d0c577。13点数与花色、Game全部／剩余及增强筛选；Shop原菜单默认全部持久有效牌，不显示下一场剩余。 |
 | 本次实际检查 | 36相关tests、type、clean构建和320／390／844×300 top12/bottom34原生输入通过；全run／seq／RNG／选牌保持、滚动／关闭／回调释放、真实复制／改点数／改花色／增强与reload计数通过。三图actual view，五次检查器FAIL原身份保留；只有review，新CI另报。 |
 | 原流程证据 | D7b自然流程仍固定runtime7b787773，只到首Boss；T06–T11及S01–S08为原生fixture，不证明自然获取／当前main全流程。既有证据与历史FAIL／NOT_RUN不改。 |
 | 剩余门禁 | P08 in_progress；整体审美、OnePlus、GPU、听感未通过。C04 D32暂停，resumeContract与V01/L01保持。父协调串行main，不自动推gameplay／部署。 |

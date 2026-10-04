@@ -6,7 +6,8 @@
 
 - 已发布可消费：Joker72/72、原6角色/JQK；P08 165 WebP／4,454,670B。工具39/39、物品12/12，goods102 WebP／1,742,780B，最后十二图已在main，旧覆盖数字仅属于各自历史SHA。
 - 铜钱已消费批准单图256²／15,958B；旧atlas保留归档，800ms显示和实际已保存奖励去重保持。A03整包仍planned／humanGate。
-- P08只读牌组查看有界review：source 624bc28cae3b3f94e19468e91957446ee5d0c577；共享A到2的13点数／花色统计、全部／剩余与增强筛选。商店复用原RunMenu，默认全部有效持久牌组，不把上场drawPile当下一场剩余；旧区标识消歧。36相关tests/type/一次clean构建与320／390／844×300 top12/bottom34原生UI通过，开筛关全run／seq／RNG／选牌不变，复制／升点／染色／增强及保存reload计数已验；三图actual view。五次检查器FAIL按原build保留，源码全程未改。领域／素材／手牌布局／火／音频保持；仅review，新精确CI另报，main未推。证据 docs/production/evidence/p08-deck-inspector-2026-10-04/summary.json。
+- 当前查看器补正：P08点数文案有界补正：source 60641fb2ef131f7d9dd984de79b6f5df3753ee08，把相邻数字改成“A：4张 · 10：4张”，13项完整单元跨项换行，15px不缩小。5既有统计tests/type/clean构建及320／390／短横与Shop390的21原生筛选通过，开筛关全run／seq／RNG／选牌保持、滚动与固定44px关闭通过；三新图actual view。仅文案／DOM单元和CSS，统计逻辑／场景／领域／素材／布局／火保持；原8f606ec与source624bc28证据／FAIL不改。本新review精确CI另报，main不推。证据 docs/production/evidence/p08-deck-stat-copy-2026-10-04/summary.json。
+- 原版只读牌组查看有界review：source 624bc28cae3b3f94e19468e91957446ee5d0c577；共享A到2的13点数／花色统计、全部／剩余与增强筛选。商店复用原RunMenu，默认全部有效持久牌组，不把上场drawPile当下一场剩余；旧区标识消歧。36相关tests/type/一次clean构建与320／390／844×300 top12/bottom34原生UI通过，开筛关全run／seq／RNG／选牌不变，复制／升点／染色／增强及保存reload计数已验；三图actual view。五次检查器FAIL按原build保留，源码全程未改。领域／素材／手牌布局／火／音频保持；仅review，新精确CI另报，main未推。证据 docs/production/evidence/p08-deck-inspector-2026-10-04/summary.json。
 - [D原自然证据](docs/production/evidence/p08-natural-run-2026-10-04/README.md)、六工具及八灵异fixture证据保持各自source、build、FAIL／NOT_RUN身份；不外推当前main完整八章或自然获取。
 - P08仍in_progress，整体审美、OnePlus、GPU、听感未通过；C04保持D32暂停，resumeContract和V01/L01门禁保持。父协调串行main，不自动推进gameplay或部署。
 

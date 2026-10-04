@@ -1,0 +1,176 @@
+{
+  "taskId": "P08",
+  "testedCommit": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+  "baseReview": "8f606ec217620d9ec661ac9ac44b9220c747f884",
+  "scope": "Rank copy only: A：4张 · 10：4张; each item is an intact inline block including its separator, wraps between items. Count/filter logic,15px font, fixed close and scene wiring remain.",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-04T23:09:04.111Z",
+    "revision": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "environment": {
+    "node": "v24.19.0",
+    "browser": "151.0.7922.173",
+    "renderer": "Chromium software Canvas",
+    "DPR": 1,
+    "motion": "reduce",
+    "profiles": [
+      {
+        "width": 320,
+        "height": 568
+      },
+      {
+        "width": 390,
+        "height": 740
+      },
+      {
+        "width": 844,
+        "height": 300,
+        "safeTop": 12,
+        "safeBottom": 34
+      }
+    ],
+    "device": "NOT_RUN"
+  },
+  "checks": [
+    {
+      "name": "five existing statistics tests with updated copy goldens",
+      "command": "npx vitest run tests/deck-inspector.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/p08-deck-stat-copy-2026-10-04/focused-tests.txt"
+    },
+    {
+      "name": "typecheck",
+      "command": "npm run typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/p08-deck-stat-copy-2026-10-04/typecheck.txt"
+    },
+    {
+      "name": "clean build and21 native filter combinations in four cases",
+      "command": "node shots/p08-deck-stat-copy/verify.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/p08-deck-stat-copy-2026-10-04/initial-bounded-checks.json"
+    },
+    {
+      "name": "320 frame follow-up from same build,6 filters and full13-unit view",
+      "command": "STAT_SKIP_BUILD=1 STAT_WIDTHS=320 node shots/p08-deck-stat-copy/verify.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/p08-deck-stat-copy-2026-10-04/320-frame-followup.json"
+    },
+    {
+      "name": "plan/self-test/whitespace/privacy/history gates and source/index/HEAD freeze",
+      "command": "node shots/p08-deck-stat-copy/delivery.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/p08-deck-stat-copy-2026-10-04/delivery.json"
+    }
+  ],
+  "actualResults": {
+    "units": "All13 text units occupy one actual text rect, 15px font unchanged;320 four rows,390 three rows,short one row",
+    "readonly": "Full run, seq, RNG and two-card selection identical for native opening, every scope/enhancement filter, native Close",
+    "scroll": "All four cases overflow, native wheel reaches bottom and returns to top, no horizontal overflow; Close geometry unchanged and >=44px, within simulated safe area",
+    "fixtures": "Original validated Shop51 and post-modification Game52 checkpoints from prior review imported through file chooser. No replay of four tool-use commands."
+  },
+  "sourceFreeze": {
+    "initial": {
+      "before": {
+        "source": "8f9b3a8be994a1679247128c0cf2c2b0a42f1f2d1c5192d5f892fa6267619875",
+        "index": "822f2bbc1c2695bd8305887c502f633f521253a4f496926e3a05b6155483e3c2",
+        "head": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+        "branch": "refs/heads/feat/p08-deck-view-20261004"
+      },
+      "after": {
+        "source": "8f9b3a8be994a1679247128c0cf2c2b0a42f1f2d1c5192d5f892fa6267619875",
+        "index": "822f2bbc1c2695bd8305887c502f633f521253a4f496926e3a05b6155483e3c2",
+        "head": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+        "branch": "refs/heads/feat/p08-deck-view-20261004"
+      },
+      "status": "PASS"
+    },
+    "frameFollowup": {
+      "before": {
+        "source": "8f9b3a8be994a1679247128c0cf2c2b0a42f1f2d1c5192d5f892fa6267619875",
+        "index": "822f2bbc1c2695bd8305887c502f633f521253a4f496926e3a05b6155483e3c2",
+        "head": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+        "branch": "refs/heads/feat/p08-deck-view-20261004"
+      },
+      "after": {
+        "source": "8f9b3a8be994a1679247128c0cf2c2b0a42f1f2d1c5192d5f892fa6267619875",
+        "index": "822f2bbc1c2695bd8305887c502f633f521253a4f496926e3a05b6155483e3c2",
+        "head": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+        "branch": "refs/heads/feat/p08-deck-view-20261004"
+      },
+      "status": "PASS"
+    }
+  },
+  "protectedPaths": [
+    "src/game/GameScene.ts",
+    "src/game/ShopScene.ts",
+    "src/game/RunMenu.ts",
+    "src/game/DetailDialog.ts",
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/audio",
+    "src/game/layout.ts",
+    "src/game/ShopLayout.ts",
+    "src/game/ScoreFlame.ts",
+    "src/game/RewardCoin.ts",
+    "public/assets",
+    "art/sources",
+    "docs/production/evidence/p08-deck-inspector-2026-10-04"
+  ],
+  "originalEvidence": {
+    "path": "docs/production/evidence/p08-deck-inspector-2026-10-04",
+    "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+    "status": "UNCHANGED byte/tree, including all old FAIL/NOT_RUN/build identities"
+  },
+  "screenshots": [
+    {
+      "file": "320-rank-count-units.png",
+      "bytes": 34111,
+      "sha256": "86c9af99ea1f2a376e6fa45d87ef813b294f93b8a12e87a7769342d110f66eb1",
+      "testedCommit": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+      "actualView": "PASS"
+    },
+    {
+      "file": "390-shop-rank-count-units.png",
+      "bytes": 64408,
+      "sha256": "d00c05f0420a1ed863de794fbea10790052d7f52978c149d93e1cea1606e1eaf",
+      "testedCommit": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+      "actualView": "PASS"
+    },
+    {
+      "file": "844-short-rank-count-units.png",
+      "bytes": 23743,
+      "sha256": "51191b042cc65f5b152a2b5de8473fae7164b7332b4ebeb576d8a1b775d61fbf",
+      "testedCommit": "60641fb2ef131f7d9dd984de79b6f5df3753ee08",
+      "actualView": "PASS"
+    }
+  ],
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": "",
+    "evidence": ""
+  },
+  "visualInspection": {
+    "status": "PASS",
+    "kind": "Actual agent view of all three final frames; no overall art/physical acceptance"
+  },
+  "reviewCI": {
+    "status": "NOT_RUN",
+    "reason": "Exact new review head CI reported after push; prior review CI is not evidence for this copy fix."
+  },
+  "limitations": [
+    "Bounded software Canvas/Chromium and existing synthetic saves",
+    "No natural run/tool-use repeat, physical/GPU/FPS/audio/overall acceptance claims",
+    "Main not pushed; C04 D32/resumeContract/V01/L01 unchanged"
+  ],
+  "nextTask": "Parent checks new exact review CI and approves serial main release."
+}
