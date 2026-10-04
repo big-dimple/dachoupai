@@ -30,7 +30,7 @@ describe('bounded cinnabar score strokes',()=>{
     expect(f.updates()).toBe(0);f.flame.destroy();expect(f.mask.destroy).toHaveBeenCalledOnce();
   });
   it('gives a positive below-target hit two visible strokes through gather / unfold / fade',()=>{
-    const f=fixture();f.flame.impact('actual-1');expect(f.state()).toMatchObject({level:0,localPhase:'gather',localAlpha:.9});
+    const f=fixture();f.flame.impact('actual-1');expect(f.state()).toMatchObject({level:0,localPhase:'gather',localAlpha:1});
     expect(f.flame.graphic.visible).toBe(true);expect(f.objects.find(o=>o.name==='score/fire').commands.filter((c:any)=>c[0]==='strokePath')).toHaveLength(2);
     f.events.emit('update',70);expect(f.state().localPhase).toBe('unfold');f.events.emit('update',110);expect(f.state().localPhase).toBe('fade');
     f.events.emit('update',140);expect(f.state().localPhase).toBe('idle');expect(f.flame.graphic.visible).toBe(false);expect(f.updates()).toBe(0);f.flame.destroy();
@@ -45,9 +45,9 @@ describe('bounded cinnabar score strokes',()=>{
       expect(paths[0][0].x-l.scoreBoard.x).toBeLessThan(6);expect(l.scoreBoard.x+l.scoreBoard.width-paths[1][0].x).toBeLessThan(6);f.flame.destroy();
     }
   });
-  it.each([[1,180,3.5],[2,240,4.5],[3,280,5.5]] as const)('writes tier %i once with its width and wall-clock peak',(tier,peak,width)=>{
+  it.each([[1,64,3.5],[2,80,4.5],[3,96,5.5]] as const)('writes tier %i once with its width and wall-clock peak',(tier,peak,width)=>{
     const f=fixture();f.flame.set(tier);expect(f.state()).toMatchObject({framePhase:'write',frameAge:0,lineWidth:width});
-    f.events.emit('update',peak);expect(f.state()).toMatchObject({framePhase:'fade',frameProgress:1});
+    f.events.emit('update',peak);expect(f.state()).toMatchObject({framePhase:'fade',frameProgress:1,lineWidth:7.5});
     f.events.emit('update',900-peak);expect(f.state()).toMatchObject({framePhase:'static',frameAge:900});expect(f.updates()).toBe(0);
     const commands=f.objects.find(o=>o.name==='score/fire-frame').commands;expect(commands.filter((c:any)=>c[0]==='strokePath')).toHaveLength(tier===3?9:8);
     f.flame.set(tier);expect(f.state().frameAge).toBe(900);f.flame.destroy();
@@ -55,7 +55,7 @@ describe('bounded cinnabar score strokes',()=>{
   it('immediately retreats on downgrade, and a re-entered tier stays static',()=>{
     const f=fixture();f.flame.set(3);f.events.emit('update',40);f.flame.set(1);
     expect(f.state()).toMatchObject({level:1,frameAge:900,framePhase:'static'});expect(f.updates()).toBe(0);
-    f.flame.set(3);expect(f.state()).toMatchObject({level:3,frameAge:900,framePhase:'static'});
+    f.flame.set(2);expect(f.state()).toMatchObject({level:2,frameAge:900,framePhase:'static'});f.flame.set(3);expect(f.state()).toMatchObject({level:3,frameAge:900,framePhase:'static'});
     f.flame.set(0);expect(f.objects.find(o=>o.name==='score/fire-frame').visible).toBe(false);f.flame.destroy();
   });
   it('consumes crossed tiers so 0 → 3 → 1 → 2 never rewrites a lower frame',()=>{

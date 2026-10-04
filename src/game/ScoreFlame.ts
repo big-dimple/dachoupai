@@ -54,7 +54,7 @@ export class ScoreFlame {
   private lastWall?:number;
 
   constructor(private readonly scene:Phaser.Scene,root:Phaser.GameObjects.Container,private readonly box:Box,frameBox?:Box){
-    const d=Math.min(6,box.width/2,box.height/2);
+    const d=Math.min(10,box.width/2,box.height/2);
     this.localBands=[{x:box.x,y:box.y,width:box.width,height:d},{x:box.x,y:box.y+box.height-d,width:box.width,height:d},
       {x:box.x,y:box.y,width:d,height:box.height},{x:box.x+box.width-d,y:box.y,width:d,height:box.height}];
     this.frameBands=frameBox?scoreFlameFrameBands(frameBox):undefined;
@@ -62,7 +62,7 @@ export class ScoreFlame {
     if(outer){
       for(const tier of [1,2,3] as const){
         const inset=3.5,x=outer.x+inset,y=outer.y+inset,w=outer.width-2*inset,h=outer.height-2*inset;
-        const horizontal=tier===1?Math.min(32,w/4):w*(tier===2?.25:.5),vertical=tier===1?Math.min(28,h/4):h*(tier===2?.25:.5);
+        const horizontal=tier===1?Math.min(56,w/4):w*(tier===2?.25:.5),vertical=tier===1?Math.min(48,h/4):h*(tier===2?.25:.5);
         for(const [sx,sy] of [[1,1],[-1,1],[-1,-1],[1,-1]]){
           const cx=sx===1?x:x+w,cy=sy===1?y:y+h;
           // Fixed offsets give the brush a human edge, without random geometry.
@@ -144,7 +144,9 @@ export class ScoreFlame {
     g.strokePath();
   }
   private draw():void {
-    const peak=[0,180,240,280][this.level],width=[3.5,3.5,4.5,5.5][this.level];
+    const peak=[0,64,80,96][this.level],settleWidth=[3.5,3.5,4.5,5.5][this.level];
+    const shock=this.frameAge<peak?this.frameAge/Math.max(1,peak):Math.max(0,1-(this.frameAge-peak)/180);
+    const width=settleWidth+(7.5-settleWidth)*shock;
     const writing=this.frameAge<peak,progress=writing?clamp(this.frameAge/peak):1;
     const base=[0,.56,.66,.76][this.level],frameAlpha=this.frameAge<900?base+(1-base)*(writing?progress:1-clamp((this.frameAge-peak)/(900-peak))):base;
     this.frameGraphic.clear().setVisible(this.level>0);
@@ -154,22 +156,22 @@ export class ScoreFlame {
     }
     if(this.level===3)for(const path of this.inner)this.paint(this.frameGraphic,path,progress,1,RED,frameAlpha*.82);
     const staticHit=this.reduced&&this.hitIds.size>0||!this.frameBands&&this.level>0,hitVisible=staticHit||this.hitAge<320;
-    const phase=staticHit?'static':this.hitAge<70?'gather':this.hitAge<180?'unfold':this.hitAge<320?'fade':'idle';
-    const spread=staticHit?1:this.hitAge<70?1-.24*this.hitAge/70:this.hitAge<180?.76+.5*(this.hitAge-70)/110:1.26;
-    const alpha=staticHit?.78:this.hitAge<=180?.9:.9*(1-(this.hitAge-180)/140);
+    const phase=staticHit?'static':this.hitAge<36?'gather':this.hitAge<90?'unfold':this.hitAge<320?'fade':'idle';
+    const spread=staticHit?1:this.hitAge<36?.66:this.hitAge<90?.66+.6*(1-(1-(this.hitAge-36)/54)**3):1.26;
+    const alpha=staticHit?.78:this.hitAge<=90?1:1-(this.hitAge-90)/230;
     this.graphic.clear().setVisible(hitVisible);
     if(hitVisible){
-      const reach=(.8+this.hitStrength*.2)*spread,horizontal=(this.box.height<90?12:24)*reach,vertical=Math.min(20,this.box.height*.3)*reach;
+      const reach=(.8+this.hitStrength*.2)*spread,horizontal=Math.min(this.box.width*.42,this.box.height<90?68:104)*reach,vertical=Math.min(32,this.box.height*.38)*reach;
       const y=this.box.y+this.box.height-3.2,localStrokes=[];
       for(const side of [1,-1]){
         const x=side===1?this.box.x+3.2:this.box.x+this.box.width-3.2;
         const path=stroke([{x,y:y-vertical},{x:x+.25*side,y:y-.5},{x:x+horizontal*side,y}]);
-        localStrokes.push(path.points);this.paint(this.graphic,path,1,4.5,RED,alpha);
+        localStrokes.push(path.points);this.paint(this.graphic,path,1,staticHit?4.5:6.5,RED,alpha);
       }
       this.graphic.setData('localStrokes',localStrokes);
     }
     this.graphic.setData('strokeState',{level:this.level,reduced:this.reduced,localPhase:phase,localAge:this.hitAge,localAlpha:hitVisible?alpha:0,
-      localLineWidth:4.5,framePhase:this.level===0?'idle':this.frameAge>=900?'static':writing?'write':'fade',frameAge:this.frameAge,frameProgress:progress,frameAlpha,lineWidth:width,entered:[...this.entered],updating:this.updating});
+      localLineWidth:staticHit?4.5:6.5,framePhase:this.level===0?'idle':this.frameAge>=900?'static':writing?'write':'fade',frameAge:this.frameAge,frameProgress:progress,frameAlpha,lineWidth:width,entered:[...this.entered],updating:this.updating});
   }
 
   destroy():void {

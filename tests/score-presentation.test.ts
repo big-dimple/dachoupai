@@ -1,5 +1,5 @@
 import {describe,it,expect} from 'vitest';
-import {scoreBeat,scoreFireLevel,scorePacketSymbol} from '../src/game/scorePresentation';
+import {scoreBeat,scoreFireLevel,scorePacketSymbol,scoreImpactScale} from '../src/game/scorePresentation';
 import type {ScoreEvent} from '../src/domain/scoreR2';
 
 const event=(sourceType:ScoreEvent['sourceType'],operation:string,phase:ScoreEvent['phase']='onCardScore'):ScoreEvent=>({
@@ -113,5 +113,18 @@ describe('flames follow the displayed exact total, never the final future result
     expect(scoreFireLevel('0',(t*2n).toString(),t.toString())).toBe(2);
     expect(scoreFireLevel('0',(t*3n).toString(),t.toString())).toBe(2);
     expect(scoreFireLevel('0',(t*5n).toString(),t.toString())).toBe(3);
+  });
+});
+
+describe('score landing envelope',()=>{
+  it('holds a short compression, rebounds once, and lands exactly at scale one',()=>{
+    for(const peak of [1.18,1.24,1.3]){
+      expect(scoreImpactScale(0,peak)).toBeLessThan(.83);
+      expect(scoreImpactScale(.1,peak)).toBe(scoreImpactScale(0,peak));
+      expect(scoreImpactScale(.42,peak)).toBeCloseTo(peak);
+      expect(scoreImpactScale(.7,peak)).toBeLessThan(peak);
+      expect(scoreImpactScale(1,peak)).toBe(1);
+      expect(scoreImpactScale(2,peak)).toBe(1);
+    }
   });
 });

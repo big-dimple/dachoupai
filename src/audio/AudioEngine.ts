@@ -292,7 +292,7 @@ export class AudioEngine {
     } catch { /* Ducking failure is inaudible to rule state. */ }
   }
 
-  /** Replace multiplier/award chords with one falling low drum and one paper attack. */
+  /** Owned landing accent for positive score items and the final award; never replayed. */
   scoreBrush(presentation:object,eventId:string,intensity:0|1|2|3=1):void {
     let seen=this.scoreCues.get(presentation);
     if(!seen){seen=new Set();this.scoreCues.set(presentation,seen);}

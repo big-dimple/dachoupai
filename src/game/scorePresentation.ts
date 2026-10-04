@@ -62,3 +62,12 @@ export function scoreFireLevel(beforeHeat:string,displayedHandScore:string,targe
   if(target<=0n||total<target)return 0;
   return total>=target*5n?3:total>=target*2n?2:1;
 }
+
+/** Compressed landing, quick rebound, then settle within the existing impact slot. */
+export function scoreImpactScale(progress:number,peak=1.18):number {
+  const t=Math.max(0,Math.min(1,Number.isFinite(progress)?progress:1)),top=Math.max(1,Math.min(1.3,peak));
+  const compressed=.82-(top-1.18)*.5;
+  if(t<.18)return compressed;
+  if(t<.42){const p=(t-.18)/.24;return compressed+(top-compressed)*(1-(1-p)**3);}
+  return 1+(top-1)*(1-(t-.42)/.58)**2;
+}

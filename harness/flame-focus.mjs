@@ -9,6 +9,7 @@ import {chooseCharacter,tapUI,tapMenuAction,openMenuSection,waitScene} from './u
 const dir=process.env.PAPER_FIRE_DIR||'shots/cinnabar',port=5260;
 const localCornersOnly=process.env.FLAME_FOCUS_SCOPE==='local-corners';
 const integrationOnly=process.env.FLAME_FOCUS_SCOPE==='integration';
+const impactScope=['impact-before','impact-first'].includes(process.env.FLAME_FOCUS_SCOPE);
 await mkdir(dir,{recursive:true});
 const report={harnessCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),build:JSON.parse(await readFile(dir+'/build/build-info.json','utf8')),runs:[],keyframes:[],limits:[
   'Natural single5 high-card202 plus600 /1200 /5589 paths; no injected score, target, RNG, rule or save state. Long-digit probe changes/restores UI Text only.',
@@ -75,7 +76,7 @@ async function run(viewport,spec,mode='natural'){
     });
     for(let i=0;i<r.longDigits.length;i++)for(let j=i+1;j<r.longDigits.length;j++)assert.equal(overlaps(r.longDigits[i].bounds,r.longDigits[j].bounds),false);
     assert.deepEqual(await state(p),before,'long-digit UI probe preserves whole run');
-    await p.evaluate(({tier,captureBelow,captureFrames,localPeak})=>{
+    await p.evaluate(({tier,captureBelow,captureFrames,localPeak,pagePeak,impactScope})=>{
       const g=window.__harness.game,s=g.scene.getScene('game'),frames=[],rasters=[],seen=new Set();let committed;
       const domControls=()=>[...document.querySelectorAll('.run-menu-toggle,.run-fullscreen-toggle,.fullscreen-dock')].filter(e=>!e.hidden&&e.getBoundingClientRect().width>0).map(e=>{const b=e.getBoundingClientRect(),c=g.canvas.getBoundingClientRect(),l=s.view.layout;return {name:e.className,text:e.textContent,bounds:{x:(b.x-c.x)*l.width/c.width,y:(b.y-c.y)*l.height/c.height,width:b.width*l.width/c.width,height:b.height*l.height/c.height},cssBounds:{x:b.x,y:b.y,width:b.width,height:b.height}};});
       const bounds=o=>{const b=o.getBounds();return{x:b.x,y:b.y,width:b.width,height:b.height};};
@@ -85,6 +86,7 @@ async function run(viewport,spec,mode='natural'){
         const flame=s.scoreFlame,brush=flame?.graphic.getData('strokeState'),l=s.view.layout;
         const controls=s.view.root.list.filter(o=>o.name.startsWith('action/')),foreground=[s.roleAvatar,...s.cardViews.map(v=>v.container),...[...s.settledCards.values()].map(v=>v.container),...s.jokerViews.values(),...controls.flatMap(o=>[o,o.getData('buttonArt'),o.getData('label')])].filter(o=>o?.active&&s.view.root.list.includes(o));
         const f={frame:g.loop.frame,at:performance.now(),renderer:g.renderer.gl?'WebGL':'Canvas',origin:s.presentation.originHeat,product:s.displayedScoreProduct,
+          pulses:[s.scoreHeat,s.scoreMult,s.scoreTotal].map(o=>({text:o.text,full:o.getData('fullText'),requested:o.getData('scorePulseScale')??1,scale:o.scaleX,bounds:bounds(o)})),
           level:flame?.graphic.getData('intensity')??0,brush,eventId:s.scoreTotal.getData('eventId')??s.presentation.score.events[0].eventId,eventPhase:s.scoreTotal.getData('eventPhase')??'base',shown:s.scoreTotal.text,
           texts:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal].filter(o=>o.visible&&o.active).map(o=>({text:o.text,full:o.getData('fullText'),bounds:bounds(o),font:o.style.fontSize})),
           pieces:flame?.graphic.getData('safePieces')??[],guards:flame?.graphic.getData('textGuards')??[],bands:flame?.graphic.getData('frameBands')??[],
@@ -96,19 +98,19 @@ async function run(viewport,spec,mode='natural'){
           burning:[...s.audio.voices].filter(v=>v.fire||v.source.loop&&!v.roll&&(!window.__audioSchedules.get(v.source)?.stop||window.__audioSchedules.get(v.source).stop-window.__audioSchedules.get(v.source).start>.35)).length,accents:[...s.audio.voices].filter(v=>v.scoreAccent).length,
           textures:g.textures.getTextureKeys().filter(k=>k.startsWith('score-flame-heat-')),stamp:s.view.root.list.some(o=>o.name==='score/celebration'),shake:s.cameras.main.shakeEffect.isRunning,savedStable:saved===committed};
         frames.push(f);
-        const below=captureBelow&&f.level===0&&(localPeak?brush?.localPhase==='fade'&&brush.localAge>=180:brush?.localPhase==='unfold'&&brush.localAge>=110);
+        const below=captureBelow&&f.level===0&&(impactScope?brush?.localAge>=90&&brush.localAge<150:localPeak?brush?.localPhase==='fade'&&brush.localAge>=180:brush?.localPhase==='unfold'&&brush.localAge>=110);
         const peak=f.level===tier&&brush?.framePhase==='fade'&&brush.frameProgress===1;
         const key=below?0:peak?tier:undefined;
         if(captureFrames&&key!==undefined&&key===tier&&!seen.has(key)){
           seen.add(key);const c=document.createElement('canvas');c.width=g.canvas.width;c.height=g.canvas.height;c.getContext('2d').drawImage(g.canvas,0,0);
           rasters.push({tier:key,metadata:f,png:c.toDataURL('image/png')});
-          if(tier===3){window.__cinnabar.pagePause={metadata:f,committed:saved};g.loop.sleep();}
+          if(tier===3&&pagePeak){window.__cinnabar.pagePause={metadata:f,committed:saved};g.loop.sleep();}
         }
       };
       window.__cinnabar={frames,rasters,observe};g.events.on('postrender',observe);
-    },{tier:spec.tier,captureBelow:true,captureFrames:mode==='natural'&&!integrationOnly,localPeak:localCornersOnly});
+    },{tier:spec.tier,captureBelow:true,captureFrames:mode==='natural'&&!integrationOnly,localPeak:localCornersOnly,pagePeak:!impactScope,impactScope});
     await tapUI(p,'game','action/play',true);
-    if(mode==='natural'&&spec.tier===3&&!integrationOnly){
+    if(mode==='natural'&&spec.tier===3&&!integrationOnly&&!impactScope){
       await p.waitForFunction(()=>!!window.__cinnabar.pagePause);
       const frozen=await p.evaluate(()=>window.__cinnabar.pagePause);
       assert.equal(frozen.metadata.domControls.length,2,'menu and fullscreen DOM remain visible');
@@ -182,7 +184,16 @@ async function contacts(viewport){
   await sharp({create:{width:w*2+gap,height:(h+label)*2+gap,channels:4,background:'#f3eadb'}}).composite(composite).png().toFile(`${dir}/${w}x${h}-contact.png`);
 }
 try{
-  if(integrationOnly){
+  if(impactScope){
+    report.scope='First score-impact checkpoint; actual natural202/5589 phase frames, no full matrix.';
+    await run({width:390,height:740},specs[0]);await run({width:390,height:740},specs[3]);
+    if(process.env.FLAME_FOCUS_SCOPE==='impact-first'){
+      await run({width:844,height:300},specs[3]);
+      await run({width:390,height:740},specs[0],'reduced');
+      await run({width:390,height:740},specs[0],'skip');
+    }
+    report.status='PASS';
+  }else if(integrationOnly){
     report.scope='Finite main integration regression: natural202 and5589 in both viewports, explicit root-avatar/paper/card/button/text layers; no image retakes.';
     for(const viewport of [{width:390,height:740},{width:844,height:300}])for(const spec of [specs[0],specs[3]])await run(viewport,spec);report.status='PASS';
   }else if(localCornersOnly){

@@ -24,7 +24,7 @@ import {R2_JOKERS,readR2Modifiers,type R2JokerInstance} from '../content/r2Schem
 import {HAND_LABELS} from '../content/handLabels';
 import {heatText,fractionText} from './scoreText';
 import {scoreCelebration} from './scoreCelebration';
-import {scoreBeat,scoreFireLevel,fourCardFormation,scorePacketSymbol,type ScoreBeat} from './scorePresentation';
+import {scoreBeat,scoreFireLevel,fourCardFormation,scorePacketSymbol,scoreImpactScale,type ScoreBeat} from './scorePresentation';
 import {ScoreFlame,orderScoreBrushLayers} from './ScoreFlame';
 import {stageNotice} from './stageNotice';
 import type {R2RunState as RunState,DomainEvent} from '../domain/run';
@@ -1071,7 +1071,11 @@ export class GameScene extends Phaser.Scene {
     fitScoreLine(this.resultText,caption,14);
     const cells=scoreCells(s),texts=[this.scoreHeat,this.scoreMult,this.scoreTotal];
     this.scoreLabels.forEach((text,i)=>{text.setVisible(i!==2||s.height>=108);fitScoreLine(text,{x:cells[i].x,y:cells[i].y-18,width:cells[i].width,height:18},14);});
-    texts.forEach((text,i)=>fitScoreLine(text,cells[i],i===2?(s.height>=108?36:24):18,true));
+    texts.forEach((text,i)=>{
+      fitScoreLine(text,cells[i],i===2?(s.height>=108?36:24):18,true);
+      const pulse=Number(text.getData('scorePulseScale')??1);
+      text.setScale(Math.min(pulse,cells[i].width/Math.max(1,text.width),cells[i].height/Math.max(1,text.height)));
+    });
     const guarded=[this.resultText,...this.scoreLabels,...texts,this.breakdownText,this.previousHandText].filter(t=>t?.active&&t.visible);
     const bodies=[...this.cardViews.map(v=>v.container),...[...this.settledCards.values()].map(v=>v.container),
       ...this.jokerViews.values(),this.roleFrame,this.playButton,this.discardButton,this.rankButton,this.suitButton,...(this.inventoryButton?[this.inventoryButton]:[])];
@@ -1199,12 +1203,19 @@ export class GameScene extends Phaser.Scene {
     if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)targets.push(this.scoreHeat);
     if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)targets.push(this.scoreMult);
     if(targets.length)targets.push(this.scoreTotal);
-    const strength=scoreBeat(event).strength,scale=strength==='multiply'?1.08:strength==='role'?1.06:1.04;
+    const strength=scoreBeat(event).strength,scale=strength==='multiply'?1.3:strength==='role'?1.24:1.18;
     return Promise.all(targets.map(target=>this.pulseScoreNumber(target,scale,duration,context))).then(()=>undefined);
   }
-  private pulseScoreNumber(text:Phaser.GameObjects.Text,requested:number,duration:number,context:EffectContext):Promise<void> {
-    const l=this.view.layout,index=text===this.scoreHeat?0:text===this.scoreMult?1:2,cell=scoreCells(l.scoreBoard)[index],scale=Math.max(1,Math.min(requested,1.08,cell.width/text.width,cell.height/text.height));
-    return this.animate({targets:text,scale:{from:scale,to:1},duration,ease:'Sine.easeOut'},context);
+  private async pulseScoreNumber(text:Phaser.GameObjects.Text,requested:number,duration:number,context:EffectContext):Promise<void> {
+    if(this.reducedMotion||context.signal.aborted)return;
+    const pulse={t:0};
+    text.setData('scorePulseScale',scoreImpactScale(0,requested));this.fitScoreReadouts();
+    try {
+      await this.animate({targets:pulse,t:1,duration:Math.min(260,duration),ease:'Linear',onUpdate:()=>{
+        if(!text.active||context.signal.aborted)return;
+        text.setData('scorePulseScale',scoreImpactScale(pulse.t,requested));this.fitScoreReadouts();
+      }},context);
+    } finally {if(text.active){text.setData('scorePulseScale',1).setScale(1);}}
   }
   private impactAccumulator(event:ScoreEvent,_duration:number,context:EffectContext):Promise<void> {
     if(context.signal.aborted||!this.presentation)return Promise.resolve();
@@ -1213,6 +1224,7 @@ export class GameScene extends Phaser.Scene {
       const flame=this.ensureScoreFlame();
       flame.set(scoreFireLevel(this.presentation.originHeat,this.displayedScoreProduct,this.stage.targetHeat),this.reducedMotion);
       flame.impact(event.eventId,scoreBeat(event).strength==='multiply'?1:event.sourceType==='character'?.75:.5);
+      this.audio.scoreBrush(this.presentation,event.eventId,scoreFireLevel(this.presentation.originHeat,this.displayedScoreProduct,this.stage.targetHeat));
       this.keepScoreReadable();
     }
     return Promise.resolve();
@@ -1316,8 +1328,7 @@ export class GameScene extends Phaser.Scene {
     else if(event.sourceType==='joker')this.audio.sourceCue(event.phase==='onHeldCard'?'held':'joker',index);
     else if(event.sourceType==='card'&&event.value.n!=='0')this.audio.sourceCue('card',index);
     else if(event.sourceType==='rule')this.audio.sourceCue(event.phase==='onStageClear'?'held':'boss');
-    if(event.operation==='multiply-multiplier'||event.operation==='read-coefficient'){if(this.presentation&&!this.presentation.replay)this.audio.scoreBrush(this.presentation,event.eventId,2);}
-    else if(event.operation==='add-multiplier'||event.operation==='read-growth'&&(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d))this.audio.multiplier('add',index);
+    if(event.operation==='add-multiplier'||event.operation==='read-growth'&&(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d))this.audio.multiplier('add',index);
     else if(event.operation==='retrigger-card')this.audio.retrigger(index);
     if(['lucky-multiplier-check','lucky-gold-check','glass-check'].includes(event.operation))this.audio.chanceRoll(event.operation==='glass-check'?'glass':'lucky',event.value.n==='1');
     if(event.operation==='chance-heat-check')this.audio.chanceRoll('joker',event.value.n==='1');
@@ -1326,7 +1337,11 @@ export class GameScene extends Phaser.Scene {
     if(event.operation==='reward-consumable')this.audio.rareReveal();
     if(event.operation==='reward-free-reroll')this.audio.rareReveal();
     const impactDuration=timing.impact;
-    const effects=[...sourceEffects,this.rollAccumulator(event,impactDuration,context),this.pulseAccumulator(event,impactDuration,context),this.impactAccumulator(event,impactDuration,context),this.wait(impactDuration,context)],notes:Promise<void>[]=[];
+    // Positive committed values land on arrival; the existing impact slot supplies
+    // the brief compressed hold and rebound, without extending the trace timeline.
+    const positive=Rational.fromJSON(event.after.H).compare(Rational.fromJSON(event.before.H))>0||Rational.fromJSON(event.after.M).compare(Rational.fromJSON(event.before.M))>0;
+    const accumulator=positive?(this.setAccumulator(event.after),Promise.resolve()):this.rollAccumulator(event,impactDuration,context);
+    const effects=[...sourceEffects,accumulator,this.pulseAccumulator(event,impactDuration,context),this.impactAccumulator(event,impactDuration,context),this.wait(impactDuration,context)],notes:Promise<void>[]=[];
     if((event.operation==='rescue-hand'||event.operation==='refund-hand')&&this.presentation&&!this.presentation.replay&&event.resourceBefore!==undefined&&event.resourceAfter!==undefined){
       this.presentation.resourcePlayLeft=event.resourceAfter;
       effects.push(this.pulseResource('play',event.resourceBefore,context,event.resourceAfter));this.audio.select();
@@ -1429,7 +1444,7 @@ export class GameScene extends Phaser.Scene {
     this.breakdownText.setText(fractionText(score.accumulator.H)+' 热度 × '+fractionText(score.accumulator.M)+' 倍率 = '+heatText(score.finalScore));
     presentation.credited=true;this.updateHud();
     this.scoreTotal.setData('eventId',score.events.find(event=>event.phase==='finalScore')?.eventId).setData('eventPhase','award');
-    if(!presentation.replay)this.audio.scoreBrush(presentation,'award',scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat));
+    if(!presentation.replay){const level=scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat);this.ensureScoreFlame().impact('award',level===3?1:level===2?.85:.65);this.audio.scoreBrush(presentation,'award',level);this.keepScoreReadable();}
     const effects:Promise<void>[]=[];
     // The credited heat rolls up in the HUD; the exact saved value always lands last.
     const heatFrom=BigInt(presentation.displayHeat),heatTo=BigInt(presentation.state.stage!.heat);
@@ -1441,7 +1456,7 @@ export class GameScene extends Phaser.Scene {
       }},context).then(()=>{this.rollingHeat=false;presentation.displayHeat=presentation.state.stage!.heat;if(!context.signal.aborted)this.updateHud();}));
     }else {presentation.displayHeat=presentation.state.stage!.heat;this.updateHud();}
     if(!this.reducedMotion){
-      effects.push(this.pulseScoreNumber(this.scoreTotal,1.08,celebration.cleared?620:310,context));
+      effects.push(this.pulseScoreNumber(this.scoreTotal,1.18+scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat)*.04,260,context));
       effects.push(this.animate({targets:this.heatText,scale:{from:celebration.cleared?1.1:1.04,to:1},duration:celebration.cleared?620:310,ease:'Back.easeOut'},context));
     }
     effects.push(this.wait(celebration.cleared&&!this.reducedMotion?1400:tier>=2?600:360,context));await Promise.all(effects);
