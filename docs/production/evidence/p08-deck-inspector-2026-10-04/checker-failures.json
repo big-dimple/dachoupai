@@ -1,0 +1,182 @@
+{
+  "taskId": "P08",
+  "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+  "attempts": [
+    {
+      "attempt": "first",
+      "status": "FAIL",
+      "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "build": {
+        "version": "C03",
+        "builtAt": "2026-10-04T22:49:16.709Z",
+        "revision": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+        "sourceStatus": "clean",
+        "modified": false
+      },
+      "reason": "Playwright isDisabled(option) did not report the native disabled property; corrected to read actual property plus native Home/ArrowUp rejection.",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n",
+      "passedInspectionCount": 0,
+      "passedModifications": [],
+      "reload": null,
+      "sourceFreeze": {
+        "before": {
+          "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+          "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+          "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+          "branch": "refs/heads/feat/p08-deck-view-20261004"
+        },
+        "after": {
+          "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+          "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+          "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+          "branch": "refs/heads/feat/p08-deck-view-20261004"
+        },
+        "status": "PASS"
+      },
+      "privateFullLogSHA256": "fba7a7b6f64de9275d94da38030c16529e03c0f407b64cc990107660436170fd"
+    },
+    {
+      "attempt": "second",
+      "status": "FAIL",
+      "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "build": {
+        "version": "C03",
+        "builtAt": "2026-10-04T22:49:16.709Z",
+        "revision": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+        "sourceStatus": "clean",
+        "modified": false
+      },
+      "reason": "Checker used content scrollHeight as the pointer viewport height, so wheel was sent outside the scroll body.",
+      "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded.",
+      "passedInspectionCount": 0,
+      "passedModifications": [],
+      "reload": null,
+      "sourceFreeze": {
+        "before": {
+          "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+          "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+          "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+          "branch": "refs/heads/feat/p08-deck-view-20261004"
+        },
+        "after": {
+          "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+          "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+          "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+          "branch": "refs/heads/feat/p08-deck-view-20261004"
+        },
+        "status": "PASS"
+      },
+      "privateFullLogSHA256": "745cbcb92c08184cf5da1667eda896fce7f49d591c896b886e1bf57b1f56ee20"
+    },
+    {
+      "attempt": "third",
+      "status": "FAIL",
+      "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "build": {
+        "version": "C03",
+        "builtAt": "2026-10-04T22:49:16.709Z",
+        "revision": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+        "sourceStatus": "clean",
+        "modified": false
+      },
+      "reason": "Immediate canvas start tap hit the existing350ms modal-dismiss double-tap guard; checker now waits360ms after native Close.",
+      "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded.",
+      "passedInspectionCount": 1,
+      "passedModifications": [],
+      "reload": null,
+      "sourceFreeze": {
+        "before": {
+          "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+          "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+          "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+          "branch": "refs/heads/feat/p08-deck-view-20261004"
+        },
+        "after": {
+          "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+          "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+          "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+          "branch": "refs/heads/feat/p08-deck-view-20261004"
+        },
+        "status": "PASS"
+      },
+      "privateFullLogSHA256": "a1ece491670c88d08a4dc16745e729648630ebc863470a73b881a37b3fb864ad"
+    },
+    {
+      "attempt": "fourth",
+      "status": "FAIL",
+      "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "build": {
+        "version": "C03",
+        "builtAt": "2026-10-04T22:49:16.709Z",
+        "revision": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+        "sourceStatus": "clean",
+        "modified": false
+      },
+      "reason": "Checker wrongly required overflow in a390 game view whose full body fits; overflow views retain native scroll assertions and fitting views record N/A.",
+      "error": "AssertionError [ERR_ASSERTION]: all-instance body scrolls",
+      "passedInspectionCount": 1,
+      "passedModifications": [],
+      "reload": null,
+      "sourceFreeze": {
+        "before": {
+          "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+          "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+          "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+          "branch": "refs/heads/feat/p08-deck-view-20261004"
+        },
+        "after": {
+          "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+          "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+          "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+          "branch": "refs/heads/feat/p08-deck-view-20261004"
+        },
+        "status": "PASS"
+      },
+      "privateFullLogSHA256": "0579d51f9fdc62014b4eb4c7f3d00e06c1da23986e9636fafa46c941d95187fe"
+    },
+    {
+      "attempt": "fifth",
+      "status": "FAIL",
+      "testedCommit": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+      "build": {
+        "version": "C03",
+        "builtAt": "2026-10-04T22:49:16.709Z",
+        "revision": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+        "sourceStatus": "clean",
+        "modified": false
+      },
+      "reason": "Reload collapses progress/save details. Final exit checker did not expand it; corrected with native summary tap, reused saved modified state instead of repeating four accepted tool commands.",
+      "error": "TimeoutError: locator.tap: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: '保存并退出', exact: true })\n",
+      "passedInspectionCount": 7,
+      "passedModifications": [
+        "T07",
+        "T08",
+        "T06",
+        "T10"
+      ],
+      "reload": {
+        "beforeRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+        "afterRunSHA256": "e6137074a5ccef99537412fcbbe450a338d39e3df8bfce3f907ab3f0bb338850",
+        "status": "PASS"
+      },
+      "sourceFreeze": {
+        "before": {
+          "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+          "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+          "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+          "branch": "refs/heads/feat/p08-deck-view-20261004"
+        },
+        "after": {
+          "source": "e54fcd6dd0c082a7496bba6aa6ca447a899e4816562e0656ff5ae13a2b97b444",
+          "index": "89f3187f086aef55a6772874520ef46970264a3dcd2435b6990f49b56621593f",
+          "head": "624bc28cae3b3f94e19468e91957446ee5d0c577",
+          "branch": "refs/heads/feat/p08-deck-view-20261004"
+        },
+        "status": "PASS"
+      },
+      "privateFullLogSHA256": "af3bb264f1d6e896f237059b71eea4a512d6f1f4db127dcbd0dcb0ab673387ff"
+    }
+  ],
+  "productCodeChangeBetweenAttempts": false,
+  "continuation": "Final same-build report retains prior390 PASS checks and explicitly keeps the prior FAIL status.390 exit is supplemented after native import;320/short are newly checked."
+}
