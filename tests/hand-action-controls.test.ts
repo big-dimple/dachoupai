@@ -2,7 +2,8 @@ import {createHash} from 'node:crypto';
 import type Phaser from 'phaser';
 import {describe,expect,it} from 'vitest';
 import {layout,intersects} from '../src/game/layout';
-import {HAND_ACTION_LINES,drawHandActionGlyph,handActionContent} from '../src/game/HandActionArt';
+import {HAND_ACTION_LINES,drawHandActionGlyph,handActionContent,handActionCountColor} from '../src/game/HandActionArt';
+import {PAPER_THEME,PAPER_CSS} from '../src/game/theme';
 const profiles=[[390,740,0,0,70],[320,568,0,0,106],[844,300,12,12,228],[844,300,12,34,228]];
 const layouts=()=>profiles.map(([width,height,top,bottom])=>layout({width,height},{top,bottom,left:0,right:0},undefined,{count:9}));
 describe('three groups share the existing bottom action row',()=>{
@@ -29,5 +30,14 @@ describe('card actions remain readable as different ink shapes',()=>{
  it.each(['discard','play'] as const)('%s stays within28×36 and retains its whole geometry through enabled/disabled recoloring',kind=>{
   const draw=(color:number)=>{const log:unknown[][]=[];let g:object;g=new Proxy({}, {get:(_,name)=>(...args:unknown[])=>{log.push([name,...(name==='lineStyle'?[args[0],'COLOR',args[2]]:args)]);return g;}});drawHandActionGlyph(g as Phaser.GameObjects.Graphics,kind,color);return log;};
   expect(draw(0x3f606b)).toEqual(draw(0x595b59));for(const line of HAND_ACTION_LINES[kind])for(const [x,y] of line){expect(x).toBeGreaterThanOrEqual(0);expect(x).toBeLessThanOrEqual(28);expect(y).toBeGreaterThanOrEqual(0);expect(y).toBeLessThanOrEqual(36);}expect(draw(0x3f606b)).toContainEqual(['lineStyle',1.5,'COLOR',1]);
+ });
+});
+describe('remaining counts preserve readable disabled ink',()=>{
+ it.each(['discard','play'] as const)('%s disabled normal and critical counts reach4.5 contrast against the actual disabled face',kind=>{
+  const luminance=(rgb:number)=>{const channel=(shift:number)=>{const s=(rgb>>shift&255)/255;return s<=.04045?s/12.92:((s+.055)/1.055)**2.4;};return .2126*channel(16)+.7152*channel(8)+.0722*channel(0);};
+  for(const critical of [false,true]){const color=handActionCountColor(kind,false,critical);expect(color).toBe(PAPER_CSS.disabledInk);const fg=luminance(parseInt(color.slice(1),16)),bg=luminance(PAPER_THEME.disabled);expect((Math.max(fg,bg)+.05)/(Math.min(fg,bg)+.05)).toBeGreaterThanOrEqual(4.5);}
+ });
+ it('preserves the active white submit count and normal jade / critical red discard count',()=>{
+  expect(handActionCountColor('play',true)).toBe(PAPER_CSS.paperLight);expect(handActionCountColor('discard',true)).toBe(PAPER_CSS.jade);expect(handActionCountColor('discard',true,true)).toBe(PAPER_CSS.red);
  });
 });

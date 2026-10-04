@@ -1,7 +1,12 @@
 import type Phaser from 'phaser';
 import type {Box} from './layout';
+import {PAPER_CSS} from './theme';
 export type HandButtonSkin='sort'|'discard'|'play';
 export type HandActionKind='discard'|'play';
+/** Counts keep their active resource cue and use the existing disabled ink on disabled paper. */
+export function handActionCountColor(kind:HandActionKind,enabled:boolean,critical=false):string {
+  return enabled?(kind==='play'?PAPER_CSS.paperLight:critical?PAPER_CSS.red:PAPER_CSS.jade):PAPER_CSS.disabledInk;
+}
 /** Small ink diagrams: a card falls onto a flat pile, or a fan is sent forward. */
 export const HAND_ACTION_LINES={
   discard:[[[3,1],[14,0],[16,18],[5,19],[3,1]],[[8,7],[10,5],[12,7],[10,9],[8,7]],[[20,15],[20,27],[17,23],[20,27],[23,23]],[[1,29],[23,28],[27,33],[5,34],[1,29]],[[4,35],[25,35]]],

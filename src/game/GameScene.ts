@@ -12,7 +12,7 @@ import {JOKER_RARITY,createJokerRarityBadge} from './JokerRarity';
 import {cardAbilityCopy} from './CardCopy';
 import {mountF09Art} from './F09Art';
 import Phaser from 'phaser';
-import {handActionContent} from './HandActionArt';
+import {handActionContent,handActionCountColor} from './HandActionArt';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {r2RunModeConfig,R2_MODE_CATALOG} from '../content/r2Modes';
 import {showPrograms} from './ProgramDialog';
@@ -741,7 +741,8 @@ export class GameScene extends Phaser.Scene {
     (this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(discardGoldCost?'弃 -1金':r2DiscardCost(this.run)===2?'弃 ×2':'弃牌');
     this.view.setEnabled(this.discardButton,this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run)&&this.run.gold>=discardGoldCost);
     this.view.setEnabled(this.playButton,this.ready&&this.selectedIds.size>0&&this.handsLeft>0);
-    this.resourceCounts.play.setColor(this.playButton.input?.enabled?C.paperLight:C.mutedInk);
+    this.resourceCounts.play.setColor(handActionCountColor('play',!!this.playButton.input?.enabled));
+    this.resourceCounts.discard.setColor(handActionCountColor('discard',!!this.discardButton.input?.enabled,this.run.stage!.discardsLeft<2*r2DiscardCost(this.run)));
     const portrait=this.view.layout.mode==='portrait';
     const reason=this.playing?this.presentation?'正在结算 · 可快进':'正在换牌':this.handsLeft===1?'最后 1 次出牌 · 达到目标才能过关':!this.selectedIds.size?(handWindow.handOverflow?'‹ › 翻页 · 按住横滑选牌':portrait?'按住横滑选牌 · 长按看详情':'按住横滑选牌 · 最多 5 张'):this.run.gold<discardGoldCost?'弃牌需1金币 · 仍可出牌':this.run.stage!.discardsLeft<r2DiscardCost(this.run)?'弃牌次数已用完':this.handsLeft<=0?'出牌次数已用完':'已选 '+this.selectedIds.size+' / 5';
     const reminders=!this.presentation&&this.ready?this.run.jokers.map(j=>jokerMemory(getJoker(j.definitionId),j,this.memoryContext(j,this.selectionPreview()))).filter(m=>m.scoreLimited||m.status==='当前未满足'||m.status==='部分条件满足').slice(0,1).map(m=>m.name+' · '+m.status).join('；'):'';
@@ -1624,7 +1625,7 @@ export class GameScene extends Phaser.Scene {
     const discardCost=r2DiscardCost(this.run),discards=this.run.stage!.discardsLeft,plays=this.presentation?.resourcePlayLeft??this.handsLeft;
     this.resourceCounts.play.setText(plays+' 次');this.resourceCounts.discard.setText(discards+' 次');
     if(this.menuActions)this.menuActions.viewLastHand=!this.presentation&&this.run.lastTrace?()=>this.inspectLastTrace():undefined;
-    const playColor=this.playButton.input?.enabled?C.paperLight:C.mutedInk,discardColor=discards<2*discardCost?C.red:C.jade;
+    const playColor=handActionCountColor('play',!!this.playButton.input?.enabled),discardColor=handActionCountColor('discard',!!this.discardButton.input?.enabled,discards<2*discardCost);
     if(this.resourceCounts.play.style.color!==playColor)this.resourceCounts.play.setColor(playColor);
     if(this.resourceCounts.discard.style.color!==discardColor)this.resourceCounts.discard.setColor(discardColor);
     const gold=this.presentation?.resourceGold??this.run.gold;
