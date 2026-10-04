@@ -1,0 +1,140 @@
+{
+  "taskId": "P08",
+  "testedCommit": "8b05042b11ee0e69a4675af3b502cea2189c9d69",
+  "sourceCommit": "8b05042b11ee0e69a4675af3b502cea2189c9d69",
+  "baseCommit": "3938cee365994910d7d79f62fc91701273f2efe0",
+  "sourceTreeSHA": "679f705dc7ef039c1ae748ff4e655db724c0e8bf",
+  "implementation": "PASS",
+  "upstream": {
+    "repository": "https://github.com/oreoshake-s-team/browslatro",
+    "commit": "eb3d51f1537e527b3a3b7a06976dc971b0a20979",
+    "sourcePath": "src/scoring/reordering.ts",
+    "sourceLines": "1-14",
+    "sourceBlobSHA": "c86df0a4bcafcc41dac5fb08492a36e3c7178f10",
+    "algorithmSHA256": "f9df55e43d74b3f38a8b28b088a5933af3eef213f39393b77dbe745ff2fa5969",
+    "testsPath": "src/scoring/reordering.test.ts",
+    "testsScope": "first eight insertIdAtIndex tests; Vitest imports adapted",
+    "testsBlobSHA": "56992685a4d7d058db70ed3709d8eec5630bfcf6",
+    "licensePath": "LICENSE",
+    "licenseBlobSHA": "b7d28a62d45338a3efc5fdcdac0acb57e8b3db92",
+    "originalLicenseSHA256": "905aac7ba202dfdfd5ed67ba891baeec081fc12d9ad0177ef4a99b049d4eb4b4",
+    "license": "MIT",
+    "copyright": "Copyright (c) 2026 Neil Matatall",
+    "licenseNotice": "public/licenses/browslatro.MIT.txt",
+    "distNotice": "dist/licenses/browslatro.MIT.txt",
+    "noticeSHA256": "22b840bb0d85359cfb13e92b30d2be1b745798b599c9362cb2585e6148fcea38",
+    "algorithmVerbatim": true,
+    "testsVerbatimExceptImports": true,
+    "completeOriginalNotice": true,
+    "distNoticeByteEqual": true,
+    "projectLicenseUnchanged": true,
+    "externalAccess": "Read-only pinned source/test/license via GitHub; no upstream clone, dependencies, installers, framework or scripts run"
+  },
+  "scope": "Reuse zero-dependency insertIdAtIndex across GameScene owned-Joker detail arrows and drag, plus ShopScene reorder. Convert final slot to deletion-before gap (to > from ? to + 1 : to). Validate source and integer slots; keep same-reference invalid/no-op moves from dispatching. Existing instance IDs, command, expectedSeq, save-before-publish and permutation checks retained. Existing slot hit tests and gestures unchanged.",
+  "runtimeChanges": [
+    "src/game/GameScene.ts",
+    "src/game/ShopScene.ts",
+    "src/game/JokerReorder.ts",
+    "src/vendor/browslatro/reordering.ts"
+  ],
+  "tests": {
+    "status": "PASS",
+    "count": 236,
+    "newTests": 74,
+    "upstreamTests": 8,
+    "slotPairs": 55,
+    "files": [
+      "tests/browslatro-reordering.test.ts",
+      "tests/joker-reorder.test.ts",
+      "tests/r2-run.test.ts",
+      "tests/r2-shop.test.ts",
+      "tests/recovery-save.test.ts",
+      "tests/pointer-release-time.test.ts",
+      "tests/joker-art-loading.test.ts",
+      "tests/detail-dialog.test.ts"
+    ],
+    "typecheck": "PASS",
+    "firstScopedCheck": {
+      "status": "FAIL",
+      "passed": 117,
+      "failed": 3,
+      "reason": "New saved-row fixture used visual alias a01 rather than a real catalog definition. Corrected only test inputs; final legal e11/pengci/f12 fixture also contains saved non-default 7/5 and 3/2 coefficients. No runtime, assertion or timeout change to address the failure."
+    },
+    "saveContracts": [
+      "saved candidate invisible before write completes",
+      "exactly one sequence increment and write",
+      "expired expectedSeq rejected",
+      "duplicate/missing/short permutations rejected without writes",
+      "RNG/gold/whole instance and grown coefficient unchanged",
+      "failed save retains published order; retry persists exact candidate once",
+      "duplicate receipt changes nothing"
+    ]
+  },
+  "build": {
+    "status": "PASS",
+    "info": {
+      "version": "C03",
+      "revision": "8b05042b11ee0e69a4675af3b502cea2189c9d69",
+      "modified": false,
+      "builtAt": "2026-10-04T15:32:36.738Z"
+    },
+    "distNotice": "PASS; exists and byte-equal to the full attributed source notice"
+  },
+  "browser": {
+    "status": "PASS",
+    "testedCommit": "8b05042b11ee0e69a4675af3b502cea2189c9d69",
+    "modified": false,
+    "evidence": "browser.json",
+    "runs": 2,
+    "checks": 33,
+    "renderer": "Chromium software Canvas",
+    "browser": "151.0.7922.173",
+    "viewport": {
+      "width": 390,
+      "height": 740
+    },
+    "DPR": 1,
+    "acquisition": "erxiang → buy mantangcai → natural first-stage four-card play → next shop → buy jiedongfeng; no card/resource/checkpoint injection",
+    "screenshot": "shots/p08-joker-reorder/390-natural-owned-jokers.png (local ignored engineering evidence)",
+    "actualView": "PASS; inspected the one natural 390px scene, no visual change claimed",
+    "covered": [
+      "short click/touch detail without dispatch",
+      "shop and game left/right arrows",
+      "mouse drag and native long-press drag",
+      "same-slot/empty-slot/outside-slot no-ops",
+      "movement before hold and native touch cancellation",
+      "thumbnail completion during held natural owned-Joker touch preserves exact hit identity and geometry",
+      "all successful reorders increment seq exactly once, keep complete non-reorder fields/RNG/gold/growth, and persist exact instance permutation",
+      "reload restores full saved state and journal"
+    ]
+  },
+  "unchanged": {
+    "status": "PASS; git diff --exit-code from base",
+    "paths": [
+      "src/domain",
+      "src/application",
+      "src/cards",
+      "src/content",
+      "src/testing",
+      "src/game/SceneView.ts",
+      "src/game/HandSelectionInput.ts",
+      "src/game/HandSelectionGesture.ts",
+      "src/game/PointerIntent.ts",
+      "src/game/PointerReleaseTime.ts",
+      "src/game/layout.ts",
+      "src/game/GoodsArt.ts",
+      "src/game/ScoreFlame.ts",
+      "public/assets",
+      "art/sources",
+      "package.json",
+      "package-lock.json"
+    ],
+    "handSorting": "Existing GameScene hand sorting/moveHandCard and selection/candidate implementation unchanged"
+  },
+  "manualFullFreeze": "NOT_RUN; only affected development checks, type/build and finite natural input checks. Mandatory existing CI will run on the final feat review HEAD.",
+  "mainAdvance": "HELD_FOR_PARENT_SERIAL_MERGE; origin/main still 3938cee365994910d7d79f62fc91701273f2efe0 at evidence write",
+  "mergeNotes": "Carry only owned-Joker reorder hunks/import in GameScene; preserve the parallel point/suit sorting selection reset work. GoodsArt U01–U06 manifest additions are disjoint and must stay intact. If resolving docs, append this evidence and keep P08 in_progress. Do not force-push or advance main here.",
+  "physicalDevice": "OnePlus/hardware GPU/audio NOT_RUN",
+  "visualUpgrade": "NOT_CLAIMED; behavior consistency and code reuse only",
+  "overallP08": "in_progress; not whole-art/device acceptance"
+}

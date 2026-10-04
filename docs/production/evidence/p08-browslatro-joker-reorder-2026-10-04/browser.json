@@ -1,0 +1,271 @@
+{
+  "taskId": "P08",
+  "baseCommit": "3938cee365994910d7d79f62fc91701273f2efe0",
+  "testedCommit": "8b05042b11ee0e69a4675af3b502cea2189c9d69",
+  "build": {
+    "version": "C03",
+    "revision": "8b05042b11ee0e69a4675af3b502cea2189c9d69",
+    "modified": false,
+    "builtAt": "2026-10-04T15:32:42.103Z"
+  },
+  "browser": "151.0.7922.173",
+  "renderer": "Chromium software Canvas",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "seed": "r03-1",
+  "acquisition": "erxiang → buy mantangcai → natural first-stage four-card play → next shop → buy jiedongfeng; no card/resource/checkpoint injection",
+  "physicalDevice": "OnePlus/hardware GPU/audio NOT_RUN",
+  "runs": [
+    {
+      "input": "mouse drag/click + DOM click",
+      "checks": [
+        {
+          "label": "shop mouse drag",
+          "status": "PASS",
+          "beforeSeq": 7,
+          "afterSeq": 8,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2"
+          ]
+        },
+        {
+          "label": "shop detail 右移",
+          "status": "PASS",
+          "beforeSeq": 8,
+          "afterSeq": 9,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7"
+          ]
+        },
+        {
+          "label": "shop detail 左移",
+          "status": "PASS",
+          "beforeSeq": 9,
+          "afterSeq": 10,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2"
+          ]
+        },
+        {
+          "label": "shop mouse drag",
+          "status": "PASS",
+          "beforeSeq": 10,
+          "afterSeq": 11,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7"
+          ]
+        },
+        {
+          "label": "shop same-slot",
+          "status": "PASS",
+          "seq": 11
+        },
+        {
+          "label": "shop empty-slot",
+          "status": "PASS",
+          "seq": 11
+        },
+        {
+          "label": "shop outside-slot",
+          "status": "PASS",
+          "seq": 11
+        },
+        {
+          "label": "game detail 右移",
+          "status": "PASS",
+          "beforeSeq": 13,
+          "afterSeq": 14,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2"
+          ]
+        },
+        {
+          "label": "game detail 左移",
+          "status": "PASS",
+          "beforeSeq": 14,
+          "afterSeq": 15,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7"
+          ]
+        },
+        {
+          "label": "game mouse drag",
+          "status": "PASS",
+          "beforeSeq": 15,
+          "afterSeq": 16,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2"
+          ]
+        },
+        {
+          "label": "game same-slot",
+          "status": "PASS",
+          "seq": 16
+        },
+        {
+          "label": "game empty-slot",
+          "status": "PASS",
+          "seq": 16
+        },
+        {
+          "label": "game outside-slot",
+          "status": "PASS",
+          "seq": 16
+        },
+        {
+          "label": "reload restores full order, RNG, gold, instance growth and journal",
+          "status": "PASS",
+          "seq": 16
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "input": "native CDP touch + touchscreen.tap + DOM tap",
+      "checks": [
+        {
+          "label": "thumbnail update during natural long press retains hit object, gesture, geometry and full saved run",
+          "status": "PASS"
+        },
+        {
+          "label": "shop long-press drag after thumbnail update",
+          "status": "PASS",
+          "beforeSeq": 7,
+          "afterSeq": 8,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2"
+          ]
+        },
+        {
+          "label": "shop detail 右移",
+          "status": "PASS",
+          "beforeSeq": 8,
+          "afterSeq": 9,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7"
+          ]
+        },
+        {
+          "label": "shop detail 左移",
+          "status": "PASS",
+          "beforeSeq": 9,
+          "afterSeq": 10,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2"
+          ]
+        },
+        {
+          "label": "shop long-press drag",
+          "status": "PASS",
+          "beforeSeq": 10,
+          "afterSeq": 11,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7"
+          ]
+        },
+        {
+          "label": "shop same-slot",
+          "status": "PASS",
+          "seq": 11
+        },
+        {
+          "label": "shop empty-slot",
+          "status": "PASS",
+          "seq": 11
+        },
+        {
+          "label": "shop outside-slot",
+          "status": "PASS",
+          "seq": 11
+        },
+        {
+          "label": "shop pre-hold-move",
+          "status": "PASS",
+          "seq": 11
+        },
+        {
+          "label": "shop native-cancel",
+          "status": "PASS",
+          "seq": 11
+        },
+        {
+          "label": "game detail 右移",
+          "status": "PASS",
+          "beforeSeq": 13,
+          "afterSeq": 14,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2"
+          ]
+        },
+        {
+          "label": "game detail 左移",
+          "status": "PASS",
+          "beforeSeq": 14,
+          "afterSeq": 15,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7"
+          ]
+        },
+        {
+          "label": "game long-press drag",
+          "status": "PASS",
+          "beforeSeq": 15,
+          "afterSeq": 16,
+          "ids": [
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/7",
+            "run/r03-1/erxiang/joker/run/r03-1/erxiang/command/2"
+          ]
+        },
+        {
+          "label": "game same-slot",
+          "status": "PASS",
+          "seq": 16
+        },
+        {
+          "label": "game empty-slot",
+          "status": "PASS",
+          "seq": 16
+        },
+        {
+          "label": "game outside-slot",
+          "status": "PASS",
+          "seq": 16
+        },
+        {
+          "label": "game pre-hold-move",
+          "status": "PASS",
+          "seq": 16
+        },
+        {
+          "label": "game native-cancel",
+          "status": "PASS",
+          "seq": 16
+        },
+        {
+          "label": "reload restores full order, RNG, gold, instance growth and journal",
+          "status": "PASS",
+          "seq": 16
+        }
+      ],
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

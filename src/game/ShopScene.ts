@@ -16,6 +16,7 @@ import {getR2Joker,r2PaidRerollPrice,salePrice,r2Pool,r2PurchasePrice,r2Purchase
 import type {R2RunState,Action,DomainEvent} from '../domain/run';
 import {getR2Stage,R2_LIMITS,r2InterestCap,r2ConsumableCapacity,r2CreateJoker} from '../domain/r2Run';
 import {dispatchRun,runController} from './runAdapter';
+import {reorderJokerIds} from './JokerReorder';
 import {heatText} from './scoreText';
 import {toolInfo,itemInfo,goodsArtPortrait,editionLabel,editionEffectText,toolFamilyLabel} from './r2ToolInfo';
 import {SceneView} from './SceneView';
@@ -397,8 +398,10 @@ export class ShopScene extends Phaser.Scene {
     this.attachJokerFallback(dialog,d.id);
   }
   private async reorder(from:number,to:number,expectedSeq?:number):Promise<boolean> {
-    if(from<0||to<0||from>=this.run.jokers.length||to>=this.run.jokers.length)return false;
-    const ids=this.run.jokers.map(j=>j.instanceId),[id]=ids.splice(from,1);ids.splice(to,0,id);return this.send({type:'ReorderJokers',ids},expectedSeq);
+    const current=this.run.jokers.map(j=>j.instanceId);
+    if(!Number.isInteger(from)||from<0||from>=current.length)return false;
+    const ids=reorderJokerIds(current,current[from],to);if(ids===current)return false;
+    return this.send({type:'ReorderJokers',ids},expectedSeq);
   }
   private moveJoker(id:string,x:number):void {
     const from=this.run.jokers.findIndex(j=>j.instanceId===id),to=this.geometry().slots.findIndex(b=>x>=b.x&&x<=b.x+b.width);
