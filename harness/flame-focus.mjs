@@ -36,6 +36,7 @@ function validate(f){
   if(!f.brush)return;
   assert.equal(f.level,BigInt(f.origin)+BigInt(f.product)<400n?0:BigInt(f.origin)+BigInt(f.product)>=2000n?3:BigInt(f.origin)+BigInt(f.product)>=800n?2:1,'same-frame exact displayed threshold');
   assert.equal(f.masked.length,2);assert.ok(f.masked.every(o=>o.mask&&o.same&&!o.input));
+  for(const loop of f.unclassifiedLoops)assert.ok(Number.isFinite(loop.start)&&Number.isFinite(loop.stop)&&loop.stop-loop.start<=.35,'non-roll looping sources have a scheduled short end');
   assert.equal(f.textures.length,0);assert.equal(f.burning,0);assert.equal(f.shake,false);assert.equal(f.stamp,false);
   for(const p of f.pieces)for(const g of f.guards)assert.equal(overlaps(p,g),false,'every paintable piece excludes actual guards');
   for(const p of f.bands)for(const body of [...f.cards,...f.controls,...f.domControls.map(o=>o.bounds)])assert.equal(overlaps(p,body),false,'outer band excludes card/action body');
@@ -46,6 +47,12 @@ function validate(f){
 async function run(viewport,spec,mode='natural'){
   const name=`${viewport.width}x${viewport.height}-${spec.score}-${mode}`,context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:1,reducedMotion:mode==='reduced'?'reduce':'no-preference'}),p=await context.newPage(),r={name,viewport,safe:{top:12,bottom:34},mode,...spec,checks:[],errors:[]};report.runs.push(r);
   p.on('pageerror',e=>r.errors.push(String(e)));
+  await p.addInitScript(()=>{
+    window.__audioSchedules=new WeakMap();
+    for(const Type of [AudioBufferSourceNode,OscillatorNode])for(const method of ['start','stop']){
+      const original=Type.prototype[method];Type.prototype[method]=function(...args){const record=window.__audioSchedules.get(this)??{};record[method]=args[0]??this.context.currentTime;window.__audioSchedules.set(this,record);return original.apply(this,args);};
+    }
+  });
   await p.addInitScript(()=>document.addEventListener('DOMContentLoaded',()=>{document.documentElement.style.setProperty('--safe-top','12px');document.documentElement.style.setProperty('--safe-bottom','34px');}));
   try{
     await p.goto(`http://127.0.0.1:${port}/?harness=1&seed=${spec.seed}`);await chooseCharacter(p,spec.character,true);
@@ -79,7 +86,8 @@ async function run(viewport,spec,mode='natural'){
           cards:s.cardViews.filter(v=>v.container.visible).map(v=>bounds(v.container)),domControls:domControls(),controls:[...Object.values(l.buttons),...Object.values(l.tableActions)],
           masked:s.view.root.list.filter(o=>['score/fire','score/fire-frame'].includes(o.name)).map(o=>({name:o.name,mask:!!o.mask,same:o.mask===flame?.graphic.mask,input:!!o.input})),
           flights:s.view.root.list.filter(o=>o.name==='score/source-flight-line'||o.name==='score/source-flight-packet').map(o=>({landing:o.getData('landing'),cell:o.getData('cell'),mask:!!o.mask})),
-          burning:[...s.audio.voices].filter(v=>v.fire||v.source.loop&&v.roll===undefined).length,accents:[...s.audio.voices].filter(v=>v.scoreAccent).length,
+          unclassifiedLoops:[...s.audio.voices].filter(v=>v.source.loop&&!v.roll).map(v=>window.__audioSchedules.get(v.source)??{}),
+          burning:[...s.audio.voices].filter(v=>v.fire||v.source.loop&&!v.roll&&(!window.__audioSchedules.get(v.source)?.stop||window.__audioSchedules.get(v.source).stop-window.__audioSchedules.get(v.source).start>.35)).length,accents:[...s.audio.voices].filter(v=>v.scoreAccent).length,
           textures:g.textures.getTextureKeys().filter(k=>k.startsWith('score-flame-heat-')),stamp:s.view.root.list.some(o=>o.name==='score/celebration'),shake:s.cameras.main.shakeEffect.isRunning,savedStable:saved===committed};
         frames.push(f);
         const below=captureBelow&&f.level===0&&brush?.localPhase==='unfold'&&brush.localAge>=110;
@@ -156,6 +164,12 @@ async function contacts(viewport){
 try{
   if(process.env.FLAME_FOCUS_SCOPE==='checkpoint'){
     await run({width:390,height:740},specs[1]);report.status='IN_PROGRESS';report.remaining=['844x300 and remaining natural tiers/below-target frame','reduced / skip / mid-presentation switch browser routes','two four-phase contact sheets','exact review CI'];
+  }else if(process.env.FLAME_FOCUS_SCOPE==='lifecycle'){
+    const previous=JSON.parse(await readFile(dir+'/report.json','utf8'));report.runs=previous.runs.filter(r=>r.mode==='natural');report.keyframes=previous.keyframes;report.keyframeBuild=previous.build;
+    for(const r of report.runs)r.source=previous.build.revision;
+    await run({width:390,height:740},specs[0],'reduced');await run({width:844,height:300},specs[2],'reduced');
+    await run({width:390,height:740},specs[0],'skip');await run({width:844,height:300},specs[2],'switch');
+    for(const v of [{width:390,height:740},{width:844,height:300}])await contacts(v);report.status='PASS';
   }else{
   for(const viewport of [{width:390,height:740},{width:844,height:300}])for(const spec of specs)await run(viewport,spec);
   await run({width:390,height:740},specs[0],'reduced');await run({width:844,height:300},specs[2],'reduced');
