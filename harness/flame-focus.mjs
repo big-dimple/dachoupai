@@ -104,7 +104,7 @@ async function run(viewport,spec,mode='natural'){
     assert.ok(r.frames.some(f=>f.brush&&f.brush.localAlpha>0),'actual positive below-target hit exists');
     if(mode==='natural'){
       assert.ok(captured.rasters.some(f=>f.tier===spec.tier),'actual threshold peak captured');
-      // The600 wheel starts at400 in its saved base event; below-target frames come from another natural path.
+      // The600 wheel starts at500 in its saved base event; below-target frames come from another natural path.
       const expected=r.result.lastTrace.events.filter(e=>e.phase!=='base'&&e.phase!=='finalScore').map(e=>e.eventId);
       assert.deepEqual([...new Set(r.frames.filter(f=>f.eventPhase==='impact').map(f=>f.eventId))],expected,'every source retains its ordered impact');
       for(const image of captured.rasters){const file=`${viewport.width}x${viewport.height}-tier${image.tier}.png`;await writeFile(`${dir}/${file}`,Buffer.from(image.png.split(',')[1],'base64'));report.keyframes.push({file,source:report.build.revision,...image.metadata});}
