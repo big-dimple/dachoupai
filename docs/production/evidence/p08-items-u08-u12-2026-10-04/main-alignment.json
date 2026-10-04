@@ -1,0 +1,28 @@
+{
+  "taskId": "P08",
+  "testedCommit": "cf36dae59500778676191c92cf10005c09178b15",
+  "alignedMain": "6c5fb2a030ef1acc15f9e1b7d592784f511976b0",
+  "previousReview": "60b126e92263832d6fb1ab6ba87dc2de04682cfa",
+  "normalMerge": "PASS; no conflicts; only published/approved main taken",
+  "runtimeSrcTree": "3b7463eb6d9c1a4a5fa6579a559a4dcca9e896b0",
+  "runtimeSrcEqualsMain": true,
+  "assetsAndSourcesEqualPreviousReview": true,
+  "preservedMain": [
+    "AGENTS/handoff/plan",
+    "grouped hand action controls",
+    "domain/application/content/audio/vendor/license"
+  ],
+  "unchangedGoodsAndDetailDependencies": {
+    "src/game/ShopScene.ts": "dc9fec99019ffd1104b0a74d19a6ea943409d4ef",
+    "src/game/DetailDialog.ts": "118f7f2e449454d8d9b8008c7168c11873bf6211",
+    "src/game/GoodsArt.ts": "09b7283c1030be808374dc924c19a433b563a4bb",
+    "src/game/GoodsArtLoading.ts": "266a3117fa4226d7fbc7e4145e890f10705bc265",
+    "src/game/DetailArt.ts": "d4ac91ba3e714dba1c7d07837c2dfdd725f2eb88",
+    "src/game/r2ToolInfo.ts": "54eb3b87bfdcfb15b5f20f3a24d59009d281779c",
+    "harness/ui.mjs": "7489ffa1bffffc89fc5b2f124cf41fbd05283507"
+  },
+  "sharedViewDelta": "Published optional hand-button skin and table action grouping; ShopScene and detail call sites unchanged. Default button paint branch remains the prior path.",
+  "manualBrowser": "NOT_RERUN on this alignment; sole U08 evidence/PNG retains625e77a build identity, unchanged goods/detail dependencies and bytes; no claim that old screenshot is a new build.",
+  "localBuild": "NOT_RERUN; original single e2e build625e77a remains archived. New exact review CI performs its mandatory type/production/browser checks.",
+  "mainAdvance": "HELD_FOR_PARENT; new exact review CI/FF qualification reported live"
+}
