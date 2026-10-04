@@ -115,7 +115,7 @@ export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstanc
  const firstDiscard=definition.hooks.some(h=>h.phase==='onDiscard'&&h.condition.kind==='resource'&&h.condition.resource==='discards-used'&&h.condition.equals===1&&h.operations.some(op=>op.kind==='refund-discard'));
  // EnterStage resets the supported per-stage discard-income counter; the shop
  // still holds last stage's saved value and must not call it next stage's budget.
- const usageResetsOnEntry=!ctx.inStage&&limited?.kind==='add-gold-limited';
+ const usageResetsOnEntry=!!instance&&!ctx.inStage&&limited?.kind==='add-gold-limited';
  if(usageResetsOnEntry)saved=instance?.counters?.singleDiscards===undefined?'尚无保存的使用计数':'已保存使用记录 '+instance.counters.singleDiscards+' / '+limited.limit+' 次';
  const remainingUses=!instance?undefined:limited?.kind==='add-gold-limited'?ctx.inStage?Math.max(0,limited.limit-(instance.counters?.singleDiscards??0)):limited.limit:limited?.kind==='refund-hand-limited'?ctx.inStage&&ctx.quadRefundUsed?0:limited.limit:firstDiscard?ctx.inStage&&ctx.discardsUsed>0?0:1:undefined;
  const stored=Object.entries(savedGrowth).filter(([key,value])=>key==='coefficient'||BigInt(value.n)!==0n);

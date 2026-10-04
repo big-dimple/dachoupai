@@ -23,6 +23,7 @@ it('a07 used stage -> actual shop -> next EnterStage distinguishes old usage fro
  const before=structuredClone(state),shop=memory();expect(shop.m.remainingUses).toBe(2);expect(shop.copy.state).toContain('下场余2次');expect(shop.copy.state).not.toContain('下场余0次');expect(shop.copy.state).toContain('入场重置');expect(shop.copy.state).toContain('已保存使用记录 2 / 2');expect(state).toEqual(before);expect(state.jokers[0].counters?.singleDiscards).toBe(2);
  command({type:'LeaveShop'});command({type:'EnterStage'});expect(state.jokers[0].counters?.singleDiscards).toBe(0);expect(memory().m.remainingUses).toBe(2);expect(memory().copy.state).toContain('本场余2次');
  const fresh=jokerMemoryAbility(def('a07'),r2CreateJoker('a07','fresh',0),{...ctx,inStage:false});expect(fresh.state).toContain('尚无保存的使用计数');expect(fresh.state).toContain('下场余2次');expect(fresh.state).not.toContain('上场已用');
+ const offer=jokerMemoryAbility(def('a07'),undefined,{...ctx,inStage:false});expect(offer.state).toContain('尚未购入；不代表已触发');expect(offer.state).not.toContain('已保存使用记录');
 });
 it('all72 have independent complete mechanism alternatives, not sliced shop conditions',()=>{
  expect(Object.keys(JOKER_COMPACT).sort()).toEqual(R2_JOKERS.map(d=>d.id).sort());
