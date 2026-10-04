@@ -1,0 +1,36 @@
+{
+  "taskId": "P08",
+  "testedCommit": "afde5974f5a0105a5377e910aa102657ae39052f",
+  "baseMain": "749a85ee7d38f9edeac6f46ed67f092b6f7fdfe8",
+  "artReview": "9cae12ba6198965b333c9f8c4935c190f5d388ee",
+  "merge": "Normal published-main merge, no conflict",
+  "status": "PASS",
+  "srcTreeSHA": "4a812ee1d9bca5ff14b9cc8b0d20eca0043f70dc",
+  "allSrcStrict5SmokeMainDocsByteEqual": true,
+  "allArtGoodsTestsAndOriginalEvidenceByteEqual": true,
+  "runtimeFiles": 66,
+  "runtimeBytes": 1085058,
+  "runtimeManifestSHA256": "2c74584baee538712816fba93461146a59112fcaef861cc89d9605c63b99d4c5",
+  "originalBrowserBuild": "4589a888d0801c3d9dfe875a92fbad834891d262",
+  "originalModified": false,
+  "newLocalBrowserBuilds": 0,
+  "newScreenshots": 0,
+  "mainPush": "NOT_RUN",
+  "checks": {
+    "typecheck": "PASS",
+    "goodsArt": {
+      "status": "PASS",
+      "files": 1,
+      "tests": 4
+    },
+    "docsGate": "PASS;production-plan32 work packages,current=P08"
+  },
+  "sourceScope": "All src exactly equals approved published main749a85e, including320 shop strip andfourteen-card count fixes",
+  "originalEvidenceScope": "T04 screenshot/browser/summary retain4589a888 modified=false identity; README adds alignment only",
+  "limits": {
+    "mainPush": "NOT_RUN;parent serial publication",
+    "localBrowserBuildOrFullMatrix": "NOT_REPEATED",
+    "320ShopBuildClipping": "Approved749a85e fix imported; original art record OPEN is historical",
+    "physicalDevicesGPUAudio": "OPEN;not retested"
+  }
+}
