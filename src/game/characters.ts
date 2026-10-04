@@ -21,8 +21,8 @@ export interface CharacterDefinition {
 const characterAsset = (file: string): string => `${import.meta.env.BASE_URL}assets/handdrawn-p08/characters/${file}`;
 
 export const CHARACTERS: CharacterDefinition[] = [
-  { id: 'amo', name: '阿默', title: '默剧王', quote: '一个人，也能把台子撑爆。', passiveName: '独角戏', passiveDescription: '高牌 Lv3 开局；只打出 1 张牌时，倍率 ×3。',
-    buildTip: '保留手中的 J/Q/K 配「候场席」，持牌先加倍率，再乘角色 ×3；「一束光」补热度，「熟面孔」靠单张出牌成长。',
+  { id: 'amo', name: '阿默', title: '默剧王', quote: '一个人，也能把台子撑爆。', passiveName: '独角戏', passiveDescription: '高牌 Lv3 开局；只打出1张时，最终倍率 ×3。旧局沿用原计分顺序。',
+    buildTip: '新局单张出牌先结算大丑牌，再乘角色 ×3；「碰瓷」「短节目」更好起势，持有 J/Q/K 配「候场席」，「熟面孔」与高牌升级持续成长。',
     accent: 0xd8d0ff, portrait: characterAsset('amo.portrait.webp'), portraitFocusX: 0.47, portraitFocusY: 0.22 },
   { id: 'touye', name: '骰爷', title: '赌命客', quote: '别算了，下一把就翻。', passiveName: '再来一把', passiveDescription: '通常 ×1.15；每场可押一手，50% ×2 / 50% ×0.75。',
     buildTip: '先用稳定牌型和大丑牌打牢基础，再比较押注 ×2 的收益与 ×0.75 的风险；别把过关全押在一次翻倍上。',

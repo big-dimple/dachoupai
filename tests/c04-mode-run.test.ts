@@ -27,7 +27,7 @@ const challenges=[
 describe('C04.2 real shared mode start and atomic commands',()=>{
   it('creates explicit v10 standard D0 selection even when the caller omits options',()=>{
     const state=start();
-    expect(state.contentVersion).toBe('quality-r2-content-v10');
+    expect(state.contentVersion).toBe('quality-r2-content-v11');
     expect(state).toMatchObject({mode:'standard',difficulty:0,challengeId:null,programsEnabled:true,
       chapterDisabledJokerId:null,programRerollCoupon:false,tourMode:'normal',normalCompletion:null});
     expect(state.program).toMatchObject({chapter:1,selectedId:null,choiceMade:false,abandoned:false,lastOpportunityClear:false,claimed:false});

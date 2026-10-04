@@ -11,7 +11,7 @@ import { getStage, STAGES } from '../run/stages';
 import { scoreHand, type ScoreResult } from '../scoring/scoreHand';
 import { CHARACTER_IDS, type CharacterId } from './characters';
 import { stableHash } from './hash';
-import { assertR2Invariants, R2_CONTENT_HASH, R2_CONTENT_VERSION, transactR2, type R2RunState, type R2StageState } from './r2Run';
+import { assertR2Invariants, r2RulesetFor, transactR2, type R2RunState, type R2StageState } from './r2Run';
 import type { ScoreTrace } from './scoreR2';
 import type { Condition } from '../content/r2Schema';
 import type {R2ModeSelection,R2ProgramId} from '../content/r2Modes';
@@ -180,7 +180,7 @@ export function applyCommand(input: AnyRunState | null, command: Command): Comma
   const fail = (code: string): CommandResult<AnyRunState|null> => ({ ok: false, code, state: input });
   if (!command || !command.action || typeof command.runId !== 'string' || !command.runId.trim() || typeof command.commandId !== 'string' || !command.commandId.trim() || !Number.isSafeInteger(command.expectedSeq) || command.expectedSeq < 0) return fail('invalid-command');
   if (input && command.runId !== input.runId) return fail('wrong-run');
-  if(input && !((input.rulesVersion==='r1'&&input.schemaVersion===1&&input.contentHash===CONTENT_HASH&&input.contentVersion===CONTENT_VERSION)||(input.rulesVersion==='r2'&&input.schemaVersion===2&&input.contentHash===R2_CONTENT_HASH&&input.contentVersion===R2_CONTENT_VERSION)))return fail('incompatible-version');
+  if(input && !((input.rulesVersion==='r1'&&input.schemaVersion===1&&input.contentHash===CONTENT_HASH&&input.contentVersion===CONTENT_VERSION)||(input.rulesVersion==='r2'&&input.schemaVersion===2&&!!r2RulesetFor(input))))return fail('incompatible-version');
   const fingerprint = stableHash(command);
   const previous = input?.receipts.find(receipt => receipt.commandId === command.commandId);
   if (previous) {

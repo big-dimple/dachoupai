@@ -36,6 +36,8 @@ export interface ScoreInput {
   jokers: readonly R2JokerInstance[]; definitions: readonly R2JokerDefinition[];
   handLevels: Partial<Record<R2HandType, number>>; handRules?: HandRules;
   playIndex: number; handsBeforePlay: number; previousHandType: R2HandType | null; wager: boolean; rng: RngSnapshot;
+  /** Omitted direct-score inputs retain the historical contract; saved runs pass their profile. */
+  amoScoreTiming?:'before-joker'|'after-joker';
   gold?:number; discardsUsed?:number; ordinaryPointsSuppressedIds?:readonly string[];
   jokerSlots?:number;
   previousHandScore?:string|null;
@@ -97,6 +99,7 @@ function resolveScore(input: PublicScoreInput, policy: Extract<ResolvePolicy, {k
 function resolveScore(input: PublicScoreInput, policy: Extract<ResolvePolicy, {kind:'preview'}>): PreviewTrace;
 function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrace | PreviewTrace {
   if (input.rulesVersion !== 'r2' || !input.runId || !input.rootId || ![...CHARACTER_IDS, 'neutral'].includes(input.characterId)) throw new Error('invalid-score-version-or-character');
+  if(input.amoScoreTiming!==undefined&&!['before-joker','after-joker'].includes(input.amoScoreTiming))throw new Error('invalid-character-score-timing');
   if (!Array.isArray(input.hand)) throw new Error('invalid-hand');
   if (input.hand.length > SCORE_LIMITS.handCount) throw new ScoreFault('hand-limit', Object.freeze([]));
   validateCardInstances(input.hand);
@@ -332,7 +335,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     else M = M.multiply(value);
   }, condition);
   if(boss?.definitionId!=='B08')switch (input.characterId) {
-    case 'amo': if (played.length === 1) char('multiply-multiplier', new Rational(3n), {kind:'played-count',equals:1}); break;
+    case 'amo': if (input.amoScoreTiming !== 'after-joker' && played.length === 1) char('multiply-multiplier', new Rational(3n), {kind:'played-count',equals:1}); break;
     case 'erxiang': if (['pair','two-pair','three-kind'].includes(evaluated.type)) char('add-multiplier', new Rational(3n,2n), {kind:'hand-type-in',values:['pair','two-pair','three-kind']}); break;
     case 'laohuan': if (['straight','flush','straight-flush'].includes(evaluated.type)) char('add-heat', new Rational(120n), {kind:'hand-type-in',values:['straight','flush','straight-flush']}); break;
     case 'azao': if (input.previousHandType !== null && input.previousHandType !== evaluated.type) char('add-multiplier', new Rational(1n)); break;
@@ -340,6 +343,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     case 'xiemu': if (input.handsBeforePlay === 1) char('multiply-multiplier', new Rational(2n)); break;
   }
   hook('jokerScore');
+  if(boss?.definitionId!=='B08'&&input.characterId==='amo'&&input.amoScoreTiming==='after-joker'&&played.length===1)char('multiply-multiplier',new Rational(3n),{kind:'played-count',equals:1});
   const final = H.multiply(M).floor();
   if (final < 0n) throw new ScoreFault('negative-score', events);
   emit('finalScore', rule, 'final-score', new Rational(final), () => {});

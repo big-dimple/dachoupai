@@ -7,7 +7,7 @@ import {r2JokerCapacity} from '../domain/r2Resources';
 import {r2RunModeConfig} from '../content/r2Modes';
 
 export function publicR2View(state:R2RunState){
-  return {phase:state.phase,characterId:state.characterId,mode:state.mode,difficulty:state.difficulty,challengeId:state.challengeId,programsEnabled:state.programsEnabled,gold:state.gold,stageIndex:state.stageIndex,boss:{...state.boss},chapter:state.chapter,purchaseCoupons:state.purchaseCoupons,chapterSkipConsumable:state.chapterSkipConsumable,
+  return {contentVersion:state.contentVersion,contentHash:state.contentHash,phase:state.phase,characterId:state.characterId,mode:state.mode,difficulty:state.difficulty,challengeId:state.challengeId,programsEnabled:state.programsEnabled,gold:state.gold,stageIndex:state.stageIndex,boss:{...state.boss},chapter:state.chapter,purchaseCoupons:state.purchaseCoupons,chapterSkipConsumable:state.chapterSkipConsumable,
     hand:state.handOrder.map(id=>({...state.deckInstances.find(c=>c.id===id)!})),
     stage:state.stage?structuredClone(state.stage):null,jokers:structuredClone(state.jokers),handLevels:{...state.handLevels},
     consumables:state.consumables.map(c=>({...c})),longTermItems:[...state.longTermItems],rerollCost:state.shop&&r2RunModeConfig(state).reroll.allowed?(state.shop.freeRerolls?0:r2PaidRerollPrice(state)):null,rerollCount:state.shop?.rerollCount??0,offers:state.shop?.offers.filter(o=>!o.consumed).map(o=>({...o,price:r2PurchasePrice(state,o)}))??[],toolOffers:state.shop?.toolOffers.filter(o=>!o.consumed).map(o=>({...o,price:r2PurchasePrice(state,o)}))??[],itemOffers:state.shop?.itemOffers.filter(o=>!o.consumed).map(o=>({...o,price:r2PurchasePrice(state,o)}))??[]};

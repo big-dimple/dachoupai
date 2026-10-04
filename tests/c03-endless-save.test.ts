@@ -58,7 +58,7 @@ describe('C03 D30 explicit v9 endless qualification and checkpoint boundary',()=
     const slots=restoreSlots({revision:4,current:rawV8,previous:null});expect(slots.status).toBe('invalid');expect(slots.raw).toBe(rawV8);expect(JSON.stringify(rawV8)).toBe(before);
   });
   it('starts explicitly normal with no completion and requires both persisted fields',()=>{
-    const fixture=start();expect(fixture.state.contentVersion).toBe('quality-r2-content-v10');expect(fixture.state).toMatchObject({tourMode:'normal',normalCompletion:null});roundTrip(fixture);
+    const fixture=start();expect(fixture.state.contentVersion).toBe('quality-r2-content-v11');expect(fixture.state).toMatchObject({tourMode:'normal',normalCompletion:null});roundTrip(fixture);
     for(const field of ['tourMode','normalCompletion'])expect(readCheckpoint(damaged(fixture,state=>{delete object(state)[field];})).ok).toBe(false);
   });
   it('captures qualification from a real final normal Play and preserves the independent literal score',()=>{

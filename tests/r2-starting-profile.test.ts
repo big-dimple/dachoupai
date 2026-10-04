@@ -3,7 +3,7 @@ import {applyCommand,assertRunInvariants,createRun,stateHash,type Action,type R2
 import {CHARACTER_IDS,type CharacterId} from '../src/domain/characters';
 import {R2_HAND_TYPES} from '../src/domain/evaluateR2';
 import {previewR2Hand} from '../src/domain/scoreR2';
-import {r2ScoreContext} from '../src/domain/r2Run';
+import {r2ScoreContext,R2_LEGACY_CONTENT_VERSION,R2_LEGACY_CONTENT_HASH} from '../src/domain/r2Run';
 import {r2Price} from '../src/domain/r2Shop';
 import {R2_JOKERS} from '../src/content/r2Schema';
 import {makeCheckpoint,readCheckpoint,restoreSlots} from '../src/application/checkpoint';
@@ -48,7 +48,7 @@ describe('P02 starting profile: independent D14 goldens through public commands'
     expect(run.handLevels['high-card']).toBe(3);
     for(const type of R2_HAND_TYPES.filter(type=>type!=='high-card'))expect(run.handLevels[type]??1).toBe(1);
     expect(Object.hasOwn(run.handLevels,'high-card')).toBe(true);
-    expect(run.contentVersion).toBe('quality-r2-content-v10');
+    expect(run.contentVersion).toBe('quality-r2-content-v11');
     expect(run.contentHash).not.toBe('json-fnv-v1:a1f6f62ddd627819');
   });
 
@@ -61,11 +61,11 @@ describe('P02 starting profile: independent D14 goldens through public commands'
 
   it.each([
     {name:'single K',ids:K_HAND,joker:undefined,score:'225',multiplier:{n:'9',d:'2'}},
-    {name:'single K with Pengci',ids:K_HAND,joker:'pengci' as const,score:'325',multiplier:{n:'13',d:'2'}},
+    {name:'single K with Pengci',ids:K_HAND,joker:'pengci' as const,score:'525',multiplier:{n:'21',d:'2'}},
     {name:'single K with four held faces and D01',ids:HELD_FACES,joker:'d01' as const,score:'525',multiplier:{n:'21',d:'2'}},
   ])('$name: preview equals submitted $score, with held effects before the character',({ids,joker,score,multiplier})=>{
     const result=previewAndSubmit(enter(start(),ids,joker),['spades-13']),trace=result.lastTrace!;
-    // Lv3: base 40H / 3/2M; K adds 10H. D01 adds four 1/2M before Amo multiplies by 3; Pengci adds 2M after Amo.
+    // Lv3: base 40H / 3/2M; K adds 10H. D01 adds four 1/2M before Amo multiplies by 3; New-rule Pengci adds 2M before Amo; legacy behavior is frozen separately.
     expect(trace.finalScore).toBe(score);expect(trace.level).toBe(3);
     expect(trace.events[0].after).toEqual({H:{n:'40',d:'1'},M:{n:'3',d:'2'}});
     expect(trace.accumulator).toEqual({H:{n:'50',d:'1'},M:multiplier});
@@ -76,12 +76,12 @@ describe('P02 starting profile: independent D14 goldens through public commands'
       expect(held.map(event=>event.targetCardId)).toEqual(HELD_FACES.slice(1,5));
       expect(held.every(event=>event.phase==='onHeldCard'&&trace.events.indexOf(event)<roleIndex)).toBe(true);
       expect(trace.events[roleIndex].before.M).toEqual({n:'7',d:'2'});
-    }else if(joker==='pengci')expect(trace.events.findIndex(event=>event.sourceDefinitionId==='pengci')).toBeGreaterThan(roleIndex);
+    }else if(joker==='pengci')expect(trace.events.findIndex(event=>event.sourceDefinitionId==='pengci')).toBeLessThan(roleIndex);
   });
 
   it('preserves explicit Lv1 G07/G08 at 90 and 150, with the global level curve unchanged',()=>{
     for(const [joker,score,multiplier] of [[undefined,'90','3'],['pengci','150','5']] as const){
-      const state=enter(start(),K_HAND,joker);state.handLevels['high-card']=1;
+      const state=enter(start(),K_HAND,joker);state.contentVersion=R2_LEGACY_CONTENT_VERSION;state.contentHash=R2_LEGACY_CONTENT_HASH;state.handLevels['high-card']=1;
       const trace=previewAndSubmit(state,['spades-13']).lastTrace!;
       expect(trace.finalScore).toBe(score);expect(trace.level).toBe(1);
       expect(trace.events[0].after).toEqual({H:{n:'20',d:'1'},M:{n:'1',d:'1'}});

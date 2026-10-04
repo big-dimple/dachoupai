@@ -1,4 +1,4 @@
-import {assertR2Invariants,R2_CONTENT_HASH,R2_CONTENT_VERSION,R2_LIMITS,R2_RESOURCE_CONTRACT} from '../domain/r2Run';
+import {assertR2Invariants,r2RulesetFor,R2_LIMITS,R2_RESOURCE_CONTRACT} from '../domain/r2Run';
 import type {R2RunState,Command,Action} from '../domain/run';
 import {CHARACTER_IDS} from '../domain/characters';
 import {R2_HAND_TYPES,type R2HandType} from '../domain/evaluateR2';
@@ -109,7 +109,7 @@ function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeC
     }
   }
 }
-function trace(value:unknown,context:{runId:string;characterId:string;discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[]}):void {
+function trace(value:unknown,context:{runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[]}):void {
   if(value===null)return;
   const stage=context.stage;if(!stage)return fail('invalid-save-trace-stage');
   const successfulStage=stage.skipResult===null&&stage.clearId!==null&&stage.index+1===context.stageIndex&&BigInt(stage.heat)>=BigInt(stage.targetHeat);
@@ -346,6 +346,17 @@ function trace(value:unknown,context:{runId:string;characterId:string;discovered
     }
     previousEvent=e;
   }
+  if(context.characterId==='amo'){
+    const ordered=events as Record<string,unknown>[],roles=ordered.map((e,i)=>e.sourceType==='character'?i:-1).filter(i=>i>=0);
+    const eligible=context.config.characterAbilityEnabled&&boss?.definitionId!=='B08'&&played.length===1;
+    if(roles.length!==(eligible?1:0))fail('invalid-save-amo-source');
+    if(eligible){
+      const role=roles[0],event=ordered[role],whole=ordered.map((e,i)=>e.phase==='jokerScore'?i:-1).filter(i=>i>=0);
+      const final=ordered.findIndex(e=>e.phase==='finalScore');
+      if(event.phase!=='characterScore'||event.operation!=='multiply-multiplier'||Rational.fromJSON(event.value).compare(new Rational(3n))!==0||role>=final||
+        (context.amoScoreTiming==='after-joker'?whole.some(i=>i>=role):whole.some(i=>i<=role)))fail('invalid-save-amo-order');
+    }
+  }
   for(const source of jokerSources.values())if(source.definitionId==='f06'){
     const count=(source.counters?.handsScored??0)+1;
     if(lifetimeCounts.get(source.instanceId)!==count||destroyedJokers.includes(source.instanceId)!==(count===handLifetimeEffect.limit))fail('invalid-save-lifetime-result');
@@ -412,9 +423,9 @@ function safeTree(value:unknown):void {
 }
 function validateState(value:unknown):asserts value is R2RunState {
   // Diagnose old versions before changed fields; retaining/exporting raw saves remains explicit.
-  if(value&&typeof value==='object'&&!Array.isArray(value)){const tags=value as Record<string,unknown>;if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||tags.contentVersion!==R2_CONTENT_VERSION||tags.contentHash!==R2_CONTENT_HASH)fail('incompatible-version');}
+  if(value&&typeof value==='object'&&!Array.isArray(value)){const tags=value as Record<string,unknown>;if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||!r2RulesetFor(tags))fail('incompatible-version');}
   const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','mode','difficulty','challengeId','programsEnabled','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons','safetyNetUsed','spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed','tourMode','normalCompletion','chapterDisabledJokerId','programRerollCoupon']);
-  if(s.schemaVersion!==2||s.rulesVersion!=='r2'||s.contentVersion!==R2_CONTENT_VERSION||s.contentHash!==R2_CONTENT_HASH)fail('incompatible-version');
+  if(s.schemaVersion!==2||s.rulesVersion!=='r2'||!r2RulesetFor(s))fail('incompatible-version');
   const selected=resolveR2ModeConfig({mode:s.mode,difficulty:s.difficulty,challengeId:s.challengeId,programsEnabled:s.programsEnabled});
   const config=selected.ok?selected.config:fail('invalid-save-mode');
   if(!r2ModeSeedAllowed(config,s.seed)||config.mode==='tutorial'&&s.characterId!=='erxiang')fail('invalid-save-mode-seed-character');
@@ -497,7 +508,7 @@ function validateState(value:unknown):asserts value is R2RunState {
   for(const r of receipts){const v=record(r,['commandId','fingerprint','seq']);text(v.commandId);text(v.fingerprint);integer(v.seq,1);if(v.seq!==++seq||ids.has(v.commandId))fail('invalid-save-receipts');ids.add(v.commandId);}
   if(seq!==s.commandSeq)fail('invalid-save-sequence');
   const stage=s.stage as R2RunState['stage'],sameStage=stage?.index===s.stageIndex&&['await-input','run-lost'].includes(s.phase as string);
-  trace(s.lastTrace,{runId:s.runId as string,characterId:s.characterId as string,discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
+  trace(s.lastTrace,{runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2RulesetFor(s)!.amoScoreTiming,discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
     config,program:s.program as R2ProgramState|null,usage:usage as R2RunState['chapterHandUsage'],
     liveJokerIds:sameStage?(s.jokers as R2JokerInstance[]).map(joker=>joker.instanceId):undefined});
   const program=s.program as R2ProgramState|null;
@@ -536,10 +547,10 @@ function rawPartition(value:unknown):string|undefined {
   const state=(value as Record<string,unknown>).state;
   if(!state||typeof state!=='object'||Array.isArray(state))return;
   const tags=state as Record<string,unknown>;
-  if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||tags.contentVersion!==R2_CONTENT_VERSION||tags.contentHash!==R2_CONTENT_HASH||
+  if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||!r2RulesetFor(tags)||
     ['mode','difficulty','challengeId','programsEnabled'].some(field=>!Object.hasOwn(tags,field)))return;
   const selected=resolveR2ModeConfig({mode:tags.mode,difficulty:tags.difficulty,challengeId:tags.challengeId,programsEnabled:tags.programsEnabled});
-  return selected.ok?r2ModeStorageKey(selected.config,R2_CONTENT_HASH):undefined;
+  return selected.ok?r2ModeStorageKey(selected.config,tags.contentHash as string):undefined;
 }
 export function restoreSlots(slots:{revision:number;current:unknown|null;previous:unknown|null}):{status:'empty'|'current'|'backup'|'invalid';checkpoint?:Checkpoint;code?:string;raw:unknown|null} {
   if(slots.current===null&&slots.previous===null)return {status:'empty',raw:null};
