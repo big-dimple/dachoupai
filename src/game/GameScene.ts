@@ -1,6 +1,7 @@
 import {courtArtKey,queueCourtArtLoads} from './HanddrawnArt';
 import {R2HandCandidateCache,r2CandidateKey,r2HandRevision,type R2CandidateInput,type R2CandidateResult} from '../domain/r2HandCandidates';
 import {jokerMemory,jokerMemoryAbility,publicJokerMemoryContext} from './JokerMemory';
+import {fitJokerLabel,jokerLabelRoom} from './JokerLabel';
 import {r2SelectionFacts,type R2SelectionFacts} from '../domain/r2SelectionFacts';
 import {selectionCopy,selectionCardCopy,fitConditionEntry,fourCardRuleCopy,selectionCandidateEntryBox,nextCandidate} from './SelectionCopy';
 import {handRuleReference} from './HandRuleReference';
@@ -374,9 +375,9 @@ export class GameScene extends Phaser.Scene {
       const resolution=Math.max(1.5,1/this.scale.zoom),labelX=sideLabels?labelBox.x-b.x-b.width/2:-b.width/2+3;
       const name=this.add.text(labelX,-b.height/2+1,d.name,{fontFamily:UI_FONT,fontSize:'14px',color:C.ink,resolution});
       const current=this.add.text(labelX,b.height/2-16,disabled.has(j.instanceId)?'封禁':this.jokerValue(j),{fontFamily:UI_FONT,fontSize:'14px',color:C.red,resolution});
-      const room=sideLabels?labelBox.width:b.width-6;
+      const room=jokerLabelRoom(l,i);
       name.setData('fullText',name.text);let nameCopy=name.text;while(name.width>room&&nameCopy.length){nameCopy=nameCopy.slice(0,-1);name.setText(nameCopy+'…');}
-      const condition=current.text;current.setData('fullText',condition).setText(fitConditionEntry(condition,text=>{current.setText(text);return current.width<=room;},!!this.presentation));
+      this.fitOwnedJokerLabel(current,j,i);
       const artTop=-b.height/2+18,artHeight=Math.max(8,b.height-35),key=jokerArtKey(j.definitionId);
       if(key&&this.textures.exists(key)){
         const art=this.add.container(0,artTop+artHeight/2),artWidth=Math.min(b.width-6,artHeight*.8);
@@ -412,10 +413,18 @@ export class GameScene extends Phaser.Scene {
     if(!this.presentation)return jokerMemory(getJoker(j.definitionId),j,this.memoryContext(j,preview)).short;
     return r2JokerValue(j,{gold:this.run.gold,jokerCount:this.run.jokers.length,jokerSlots:r2JokerCapacity(this.run),deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,discardsUsed:this.run.stage?.discardsUsed,quadRefundUsed:this.run.stage?.quadRefundUsed});
   }
+  private fitOwnedJokerLabel(label:Phaser.GameObjects.Text,j:R2JokerInstance,index:number,preview?:HandPreview):void {
+    const room=jokerLabelRoom(this.view.layout,index),fits=(text:string)=>{label.setText(text);return label.width<=room;};
+    if(this.presentation){const full=label.text;label.setData('fullText',full).setData('labelRoom',room).setText(fitConditionEntry(full,fits,true));return;}
+    const memory=jokerMemory(getJoker(j.definitionId),j,this.memoryContext(j,preview));
+    const limited=!!this.jokerRestriction(j),candidates=limited?['计分停用','停用 ›']:memory.labelCandidates;
+    label.setData('fullText',candidates[0]).setData('mechanismCandidates',memory.labelCandidates).setData('labelRoom',room)
+      .setText(fitJokerLabel(candidates,fits,limited||memory.stateLabel));
+  }
   private refreshJokerLabels(preview?:HandPreview):void {
     for(const joker of this.run.jokers){const view=this.jokerViews.get(joker.instanceId),label=view?.getData('valueLabel') as Phaser.GameObjects.Text|undefined;
       label?.setText(view?.getData('bossDisabled')?(this.view.layout.mode==='landscape'?'计分封禁':'封禁'):this.jokerValue(joker,preview));
-      if(label){const full=label.text;label.setData('fullText',full);const room=this.view.layout.slots[Number(view?.getData('slotIndex'))]?.width-6;label.setText(fitConditionEntry(full,text=>{label.setText(text);return label.width<=room;},!!this.presentation));}
+      if(label)this.fitOwnedJokerLabel(label,joker,Number(view?.getData('slotIndex')),preview);
       const art=view?.getData('f09-art') as Phaser.GameObjects.Container|undefined;art?.setData('f09-active',!view?.getData('bossDisabled')&&(this.run.stage?.discardsUsed??0)===0);
     }
   }
