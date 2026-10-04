@@ -384,3 +384,6 @@ P08底栏三组第一版检查点（UTC 2026-10-04）：实现e2df9f8，对齐ma
 
 
 P08点数／花色放回选牌review（UTC 2026-10-04）：基线已授权发布main3938cee（缺图主题FF15:16:39Z，精确main CI37212391288与docs37212391290 success），本排序独立source bf01aa5暂不推进main。仅GameScene.sortHand：await-input且ready/无presentation时，先cancel手势，再清全部手选／直选／顾问选牌和旧ghost/undo，刷新普通座位后走原单次ReorderHand；原比较器、ID焦点、九牌几何与规则参考保持。历史排序保选合同按最新用户要求覆盖；三旧浏览器样板正确更新，并重新原生选牌保弃／出检查。101受影响单测/type PASS，旧8测试7红1绿保留；390×740 DPR1软件Canvas一个合法九牌native import，手选／顾问3张／空选／重复四排序全归空、原框和全run除order/seq/receipt外不变，271忙帧含270presentation均禁排序且真实点击无新命令PASS；唯一现成PNG actual view。public/assets、art/sources（72原画＋四工具样图）、domain/application树同3938；无美术/火/工具loader/计分/RNG/save-format变化，不重跑无关全冻结/设备/录屏/PC/部署。证据evidence/p08-sort-return-2026-10-04；整体仍IN_PROGRESS，review待根协调放行。
+
+
+2026-10-04 P08底栏复核：沿用已获根实际看图通过的三组，不增加区域或改手牌/待出牌预算。首排序教学改用既有status：14px、普通1860ms/reduced3000ms，经原输入/blur/visibility/render/shutdown取消且不覆盖普通statusMessage；短侧栏139/160px、竖屏195/366px实核完整，禁用余次与字/符号复用disabledInk（4.51对比度），启用主次/紧急配色保持。source2db4216的三完整页与原生排序/420ms取消/禁用/真实出弃/DOM菜单全屏/回载通过；191相关单测/type通过，保8888 MIT和所有素材。未知其它色块同因未证明；最终三图仍待根独立review，整体/设备/GPU/听感/部署非本轮验收。

@@ -1,10 +1,10 @@
 {
   "taskId": "P08",
-  "testedCommit": "1ee6e7b8ff36df5e755d6191e53a995c5cdcfcc2",
+  "testedCommit": "2db4216c35c78c1a76e38e79616c4f7ebe352708",
   "implementationCommit": "e2df9f836a74e20aef8fce5b9d29dcbf9f61f029",
-  "alignedMainCommit": "ce299b8a8ddf5cf399fecb889aa02882d315988c",
-  "sourceTreeSHA": "378925de24316552eb1fdcc1e2ac9f0d9133d8c2",
-  "status": "IN_PROGRESS_CHECKPOINT",
+  "alignedMainCommit": "8888e82ede1776e259096bbdfe4eef63fc6f2415",
+  "sourceTreeSHA": "3b7463eb6d9c1a4a5fa6579a559a4dcca9e896b0",
+  "status": "IN_PROGRESS_REVIEW_READY",
   "scope": "Existing action row only: two44px sorting targets in one88px jade-paper block, a wider discard with card/downward-arrow/flat-pile ink diagram, and red submit with forward card-fan diagram; existing words/counts. Same row/hand/table budgets, original sorting/press/release/cancel/disabled/domain callbacks.",
   "runtimeChanges": [
     "src/game/layout.ts",
@@ -14,41 +14,46 @@
   ],
   "tests": {
     "status": "PASS",
-    "affectedExisting": 89,
-    "newGeometryAndSymbols": 9,
-    "total": 98,
+    "total": 191,
+    "files": 9,
     "typecheck": "PASS",
+    "testedCommit": "93d41eee4e273a5f8668e4e68d2f097add155dc1",
+    "sourceAndTestsIdenticalToBrowserCommit": true,
     "nonControlLayoutSHA256": "cff0c393264eb2e2508c92a6f155ca5de319e6b1868fe42430d6adfa331dcb8c",
     "profiles": [
       "390x740",
       "320x568",
       "844x300/top12/bottom12",
       "844x300/top12/bottom34"
-    ],
-    "mainSourceBeforeChange": "88b17e23c9aa778c8ac93c9998cd090ba48ab82d"
+    ]
   },
   "browser": {
-    "status": "CHECKPOINT_PASS",
-    "testedCommit": "1ee6e7b8ff36df5e755d6191e53a995c5cdcfcc2",
+    "status": "PASS",
+    "testedCommit": "2db4216c35c78c1a76e38e79616c4f7ebe352708",
     "modified": false,
     "renderer": "Chromium software Canvas",
+    "browser": "151.0.7922.173",
     "DPR": 1,
-    "input": "native checkpoint import + native touchscreen card selection; read-only observations",
-    "motion": "reduce",
-    "actualView": "PASS",
-    "evidence": "checkpoint-browser.json",
+    "input": "native touchscreen/DOM taps and CDP browser touch sequences; read-only Phaser observations",
+    "fixture": "Validator-approved native nine-card checkpoint import, amo with c08/c09/f09; controlled coverage, not natural acquisition",
+    "actualView": "PASS; integrator viewed all three final full-page PNGs",
+    "evidence": "final-browser.json",
     "screenshots": [
-      "320-actions-current.png",
-      "390-actions-current.png"
+      "390-full-safe0-0.png",
+      "844-full-safe12-12.png",
+      "844-full-safe12-34.png"
     ],
+    "sortCommands": 7,
+    "savedPlayDiscardCommands": 7,
+    "holdCancelChecks": 12,
     "verified": [
-      "native valid checkpoint import and native spades-2 selection",
-      "actual14+ text/count bounds contained, four targets44+, glyphs visible",
-      "entire non-control layout matches88b17 baseline; touch selection preserves whole run/RNG"
-    ],
-    "remaining": [
-      "844x300 safe12/34 actual browser input",
-      "native button hold/cancel/disabled/settlement and real discard/play counts on this UI skin"
+      "390 ordinary motion and844x300 safe top12/bottom12 or34; complete non-control layout identical to published88b17",
+      "All four targets44+, actual14+ labels/counts inside own buttons; original DOM menu and native fullscreen entry/exit preserved",
+      "Empty/busy native disabled taps consume no commands/resources/RNG;420ms holds cancelled by move-release or native touchCancel",
+      "Rank/suit return manual selection/ghost/undo before exactly one original ReorderHand; full run otherwise unchanged",
+      "Every successful discard/play whole saved state including resources/RNG/trace equals the existing authoritative applyCommand result",
+      "Disabled normal and critical counts use original disabledInk: contrast4.5109 against disabled paper, alpha1",
+      "First-sort hint uses existing status frame, fits139px on160px short sidebar and195px on366px portrait; finite expiry and reload claim preserved"
     ]
   },
   "widths": {
@@ -72,16 +77,108 @@
     "sourceAssetsTreeSHA": "8ae7ef09c2dc3d3db05998d049e5e5dbfaf971c9",
     "status": "EXACTLY_PRESERVES_MAINce299_RESOURCE_ADDITIONS"
   },
-  "failures": {
-    "tests": 0,
-    "browser": 0,
-    "documentationPatch": "One attempted combined documentation patch was rejected before applying because the UX anchor did not match. No runtime/test change was applied by that attempt."
-  },
+  "failures": [
+    {
+      "record": "browser-failure-93d41ee.json",
+      "testedCommit": "93d41eee4e273a5f8668e4e68d2f097add155dc1",
+      "status": "FAIL_RETAINED",
+      "cause": "Harness reload chose action/title-start (new game) instead of the existing action/title-continue (saved run), causing waitScene(game) timeout. Source actions had already passed.",
+      "fixCommit": "2db4216c35c78c1a76e38e79616c4f7ebe352708",
+      "finalStatus": "PASS; correct native continuation path, no timeout/guard reduction."
+    }
+  ],
   "manualFullFreeze": "NOT_RUN; parent requested early checkpoint without further visual rounds or broad freeze",
   "mainAdvance": "NOT_AUTHORIZED_FOR_THIS_CANDIDATE",
   "overallAesthetic": "PENDING_ROOT_REVIEW",
   "device": "NOT_RUN",
   "GPU": "NOT_RUN",
   "audio": "NOT_RUN",
-  "deployment": "NOT_RUN"
+  "deployment": "NOT_RUN",
+  "followupCommits": {
+    "countContrast": "d03fc2dbd9b9d8f717feb6d6c1425e6bef773ac0",
+    "hintStatusSeparateFix": "afbb6bf37df7bb13cf993cedd2d802bb841a717b",
+    "nativeHarness": "2db4216c35c78c1a76e38e79616c4f7ebe352708"
+  },
+  "hintReproduction": {
+    "status": "CONFIRMED_AND_FIXED",
+    "beforeCommit": "27ea5f5df70ecfb5a676268e43c46df0364570d5",
+    "record": "hint-before.json",
+    "screenshot": "hint-before-1180.png",
+    "nativeRoute": "Validated native import, first rank tap at1180x757 ordinary motion",
+    "observedHint": {
+      "x": 530,
+      "y": 623,
+      "width": 360,
+      "height": 20
+    },
+    "coveringCards": 5,
+    "after": "No hand/sweep-hint container; same first-use preference,14px existing status and1860/3000 presentation timer; native input/blur/visibility/render/shutdown cleanup retained.",
+    "otherReportedColorBlocks": "Same-cause claim UNPROVEN; no general attribution."
+  },
+  "mainAlignment": "main-alignment.json",
+  "humanReview": {
+    "status": "PENDING",
+    "reviewer": "root",
+    "scope": "Final three full pages and separate first-sort status fix. Root already actually viewed5f4da3 bottom crops and approved the three-group direction."
+  },
+  "CI": {
+    "status": "PENDING_NEW_EXACT_REVIEW_RUN",
+    "note": "One final review push will trigger the exact final candidate CI; source CI/old5f4da3 CI are not substitutes."
+  },
+  "fullFreeze": "NOT_RUN; root requested affected checks and one new CI only",
+  "mainPush": "NOT_RUN; preserve root coordinated publication",
+  "firstCheckpoint": {
+    "testedCommit": "1ee6e7b8ff36df5e755d6191e53a995c5cdcfcc2",
+    "status": "IN_PROGRESS_CHECKPOINT",
+    "tests": {
+      "status": "PASS",
+      "affectedExisting": 89,
+      "newGeometryAndSymbols": 9,
+      "total": 98,
+      "typecheck": "PASS",
+      "nonControlLayoutSHA256": "cff0c393264eb2e2508c92a6f155ca5de319e6b1868fe42430d6adfa331dcb8c",
+      "profiles": [
+        "390x740",
+        "320x568",
+        "844x300/top12/bottom12",
+        "844x300/top12/bottom34"
+      ],
+      "mainSourceBeforeChange": "88b17e23c9aa778c8ac93c9998cd090ba48ab82d"
+    },
+    "browser": {
+      "status": "CHECKPOINT_PASS",
+      "testedCommit": "1ee6e7b8ff36df5e755d6191e53a995c5cdcfcc2",
+      "modified": false,
+      "renderer": "Chromium software Canvas",
+      "DPR": 1,
+      "input": "native checkpoint import + native touchscreen card selection; read-only observations",
+      "motion": "reduce",
+      "actualView": "PASS",
+      "evidence": "checkpoint-browser.json",
+      "screenshots": [
+        "320-actions-current.png",
+        "390-actions-current.png"
+      ],
+      "verified": [
+        "native valid checkpoint import and native spades-2 selection",
+        "actual14+ text/count bounds contained, four targets44+, glyphs visible",
+        "entire non-control layout matches88b17 baseline; touch selection preserves whole run/RNG"
+      ],
+      "remaining": [
+        "844x300 safe12/34 actual browser input",
+        "native button hold/cancel/disabled/settlement and real discard/play counts on this UI skin"
+      ]
+    }
+  },
+  "gates": {
+    "relatedTests": "191/9 PASS",
+    "typecheck": "PASS",
+    "contentAndPublicArtPrivacy": "PASS",
+    "productionPlan": "PASS",
+    "changedPublicText": {
+      "status": "PASS",
+      "filesScanned": 23,
+      "issues": []
+    }
+  }
 }

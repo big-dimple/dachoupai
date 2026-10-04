@@ -1,0 +1,50 @@
+{
+  "taskId": "P08",
+  "testedCommit": "2db4216c35c78c1a76e38e79616c4f7ebe352708",
+  "alignedMainCommit": "8888e82ede1776e259096bbdfe4eef63fc6f2415",
+  "status": "PASS",
+  "mergeCommit": "27ea5f5df70ecfb5a676268e43c46df0364570d5",
+  "mergeConflicts": [
+    "docs/development-handoff.md",
+    "docs/production/plan.json"
+  ],
+  "resolution": "Preserved both progress histories and evidence; source auto-merged normally.",
+  "preservedTrees": {
+    "public/assets": {
+      "candidateTree": "7f8880a7d2792acfd5ec0500384e7a0462192f90",
+      "mainTree": "7f8880a7d2792acfd5ec0500384e7a0462192f90"
+    },
+    "art/sources": {
+      "candidateTree": "8ae7ef09c2dc3d3db05998d049e5e5dbfaf971c9",
+      "mainTree": "8ae7ef09c2dc3d3db05998d049e5e5dbfaf971c9"
+    },
+    "src/domain": {
+      "candidateTree": "8e3423193ecb4920e79b87f2314da97a04438c99",
+      "mainTree": "8e3423193ecb4920e79b87f2314da97a04438c99"
+    },
+    "src/application": {
+      "candidateTree": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+      "mainTree": "4abd0e9c2df6b8e3652a618896c77e6993681f47"
+    },
+    "src/content": {
+      "candidateTree": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+      "mainTree": "cec787d144468e0a3e39bda0593ca0433e9f1853"
+    },
+    "src/audio": {
+      "candidateTree": "2762eea10608b718b4c9cb2c6bc88a742d4c8f3a",
+      "mainTree": "2762eea10608b718b4c9cb2c6bc88a742d4c8f3a"
+    },
+    "src/vendor": {
+      "candidateTree": "96374120045a5dca22a25d2726d09fb41ebd0ef7",
+      "mainTree": "96374120045a5dca22a25d2726d09fb41ebd0ef7"
+    },
+    "public/licenses": {
+      "candidateTree": "2bd617f0b8afc5fcf7af3ec7d7935fb413ce7f4f",
+      "mainTree": "2bd617f0b8afc5fcf7af3ec7d7935fb413ce7f4f"
+    }
+  },
+  "sortHand": "Selection-clearing comparator/one ReorderHand body remains byte-for-byte the published main method.",
+  "JokerReorder": "Both GameScene routes retain the published MIT helper import/calls; ShopScene and all vendor/license files exactly match main.",
+  "fastForwardEligibleAtObservation": true,
+  "mainPush": "NOT_RUN; root coordinates publication."
+}
