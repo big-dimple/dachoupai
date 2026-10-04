@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "batch": "handdrawn-runtime-coin-20261004",
+  "id": "coin-reward-handdrawn",
+  "baseCommit": "58e9d223ee5f29b965532551e71afc6fc6785d51",
+  "source": {
+    "filename": "coin-reward-handdrawn-v1-original.png",
+    "format": "PNG",
+    "mode": "RGBA",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 2541237,
+    "sha256": "e2212ea923b13ef3e89cc5a47baadff649ed308469f0a61c845b7b44607b7652",
+    "unchanged": true,
+    "includedInBundle": false
+  },
+  "export": {
+    "operation": "full-source uniform resize, centered transparent padding",
+    "resampling": "LANCZOS",
+    "format": "WEBP",
+    "quality": 90,
+    "method": 6,
+    "lossless": false,
+    "alphaPreservedFromResample": true,
+    "sourceCropPixels": {
+      "left": 0,
+      "top": 0,
+      "width": 1254,
+      "height": 1254
+    },
+    "contentRectPixels": {
+      "left": 32,
+      "top": 32,
+      "width": 192,
+      "height": 192
+    },
+    "paddingPixels": {
+      "left": 32,
+      "top": 32,
+      "right": 32,
+      "bottom": 32
+    },
+    "canvasWidth": 256,
+    "canvasHeight": 256,
+    "backgroundRGBA": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "noCrop": true,
+    "noStretch": true,
+    "noRetouching": true,
+    "noAlphaCleanup": true
+  },
+  "runtime": {
+    "path": "runtime/coin-reward-handdrawn.webp",
+    "format": "WEBP",
+    "mode": "RGBA",
+    "width": 256,
+    "height": 256,
+    "bytes": 15958,
+    "sha256": "45b2a3bf35c769d4527ac0ca63118ab6136c45a8e327734bcfd410ccd7644741",
+    "budgetBytes": 100000,
+    "withinBudget": true,
+    "decodedBytesRGBA": 262144,
+    "metadataFields": []
+  },
+  "alphaVerification": {
+    "decoded": true,
+    "extrema": [
+      0,
+      255
+    ],
+    "resampledAlphaExactMatch": true,
+    "centerPixel": [
+      128,
+      128
+    ],
+    "centerAlpha": 0,
+    "cornerAlphas": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "transparentHoleBoxPixels": [
+      112,
+      112,
+      143,
+      143
+    ],
+    "holeBoxFullyTransparent": true,
+    "canvasEdgesFullyTransparent": true,
+    "nonzeroBBoxPixels": [
+      37,
+      38,
+      219,
+      218
+    ],
+    "effectiveThreshold": 8,
+    "effectiveBBoxPixels": [
+      40,
+      40,
+      217,
+      216
+    ],
+    "effectiveCanvasFraction": [
+      0.69140625,
+      0.6875
+    ],
+    "paddingFullyTransparent": true,
+    "smallSizeChecks": {
+      "56": {
+        "centerAlpha": 0,
+        "transparentHoleWidthAtCenterPixels": 4
+      },
+      "72": {
+        "centerAlpha": 0,
+        "transparentHoleWidthAtCenterPixels": 6
+      },
+      "96": {
+        "centerAlpha": 0,
+        "transparentHoleWidthAtCenterPixels": 10
+      }
+    },
+    "alphaPlaneSHA256": "9759f1f35fc3313294b2cdbe985eeb6df06fb75dff0172b87bf11ebedea714a1"
+  },
+  "integration": {
+    "included": false,
+    "loadPolicy": "on demand",
+    "rendererModified": false,
+    "loaderModified": false
+  }
+}
