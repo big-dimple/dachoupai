@@ -8,7 +8,7 @@ import {chooseCharacter,tapUI,tapMenuAction,openMenuSection,waitScene} from './u
 const dir=process.env.PAPER_FIRE_DIR||'shots/cinnabar',port=5260;
 await mkdir(dir,{recursive:true});
 const report={build:JSON.parse(await readFile(dir+'/build/build-info.json','utf8')),runs:[],keyframes:[],limits:[
-  'Natural single5 high-card25 plus600 /1200 /5589 paths; no injected score, target, RNG, rule or save state. Long-digit probe changes/restores UI Text only.',
+  'Natural single5 high-card202 plus600 /1200 /5589 paths; no injected score, target, RNG, rule or save state. Long-digit probe changes/restores UI Text only.',
   'Linux Chromium software Canvas, native emulated touch, CSS390x740 and844x300, DPR1, safe top12/bottom34.',
   'Keyframes copy the actually rendered canvas at postrender using local/frame phase, age and frame number; no guessed phase sleeps.',
   'Physical OnePlus, true GPU, FPS/performance, audio listening, recordings, overall aesthetic acceptance NOT_RUN.',
@@ -17,7 +17,7 @@ const server=await preview({build:{outDir:dir+'/build'},preview:{host:'127.0.0.1
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});
 report.browser=browser.version();
 const specs=[
-  {seed:'p04-golden-02',character:'amo',ids:['clubs-5'],score:'25',tier:0},
+  {seed:'p04-golden-02',character:'amo',ids:['clubs-5'],score:'202',tier:0},
   {seed:'p04-golden-02',character:'amo',ids:['clubs-5','diamonds-14','clubs-4','diamonds-3','clubs-2'],score:'600',tier:1},
   {seed:'d43-fire-1',character:'laohuan',ids:['diamonds-7','diamonds-9','diamonds-4','diamonds-12','diamonds-10'],score:'1200',tier:2},
   {seed:'d43-fire-267',character:'laohuan',ids:['diamonds-11','diamonds-13','diamonds-12','diamonds-10','diamonds-14'],score:'5589',tier:3},
