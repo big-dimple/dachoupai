@@ -1,5 +1,15 @@
 # P08 计分朱砂勾框：首版候选完整可审证据
 
+最新主线整合：正常合入已发布a6e482b（action row／status hint／12items），仅DECISIONS冲突且双方决定完整保留；随后确认文案 **7d44b8bcada32942acded87d70abe78dea12f275** 已main，正常合入，无冲突，实际最终源码／干净e2e build **085ad38e04fdd285d83842e23adcfd2cd690d8be**。最新文案接线、status/hint、排序/Joker方法、layout/SceneView/HandActionArt、全部12items及MIT逐项保主线。未取任何未发布文案分支。
+
+独立复核指出旧层级漏了头像：roleFrame是roleAvatar子对象。修复3a5620f以root直属roleAvatar作前景锚点，mask继续用roleFrame真实bounds；观测器单列avatar索引、显式断言存在且高于局部笔划，不能通过过滤漏验。a6源a13de85与最终085ad38各四条有限自然202／5589两尺寸回归PASS；最终**1158实际计分帧**、保存/RNG全程不变、一次入账、mask／真头像／牌／按钮／文字层级、长数字、来源顺序、零持续燃烧／震屏／中央章、离场Graphics与短鼓尾归零PASS。**零张新截图**，未重演已过全矩阵。76计分/底栏/hint单测与随后23文案单测、type/e2e build、plan通过；源码、具体frame层级与主线保留hash见 [main-alignment.json](main-alignment.json)。新精确review CI随交接报告，不以旧CI代替。
+
+父已实际看下面两低档新图并批准成对折笔可见、不盖文字，**视觉方向通过，不再调参**。ScoreFlame及AudioEngine代码同该批准候选e902ebf；只补头像层级锚点与已发布主线整合。唯一局部参数修正已用，总体P08仍IN_PROGRESS；设备／听感／真GPU／GPU FPS／录屏／整体审美仍NOT_RUN。
+
+---
+
+唯一一轮局部修正与首版历史：
+
 父实际审过2b2ec4两联系图和844全页DOM图，认可target四角／2×半框／5×双框方向，低档遮挡未通过。本次按授权用**唯一一轮局部调整**，只改成左右下角短折笔、局部4.5px，并修稳定层级与跨档消费；三档外框的路径、宽度、alpha与时钟绘制代码逐段完全相同。旧8帧不重拍、不改标源码。
 
 新的自然202分低档峰值：[390×740](local-corners/390x740-tier0.png)、[844×300](local-corners/844x300-tier0.png)，safe12／34。实际干净e2e build **bc504efb51db6717916b60dd64741c711c090e68**；frame200／201，local fade age183.3／183.4ms，显示67，最终保存202，仍低于目标400。每笔真实朱砂像素竖屏197／200、横屏134／138，均有横竖两段；两图已actual view。phase／实际层级／guards／像素区域／文件hash见 [adjustment.json](local-corners/adjustment.json)。本图仍待父独立审，工程通过不代替整体审美。
