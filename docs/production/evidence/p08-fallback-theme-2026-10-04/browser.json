@@ -1,0 +1,104 @@
+{
+  "taskId": "P08",
+  "testedCommit": "a19fafea29b52645d31832c24b1a6da8793f5e11",
+  "baseCommit": "67141b5d380ce90e6bbc1e1526900e8af967c9ca",
+  "build": {
+    "version": "C03",
+    "revision": "a19fafea29b52645d31832c24b1a6da8793f5e11",
+    "modified": false,
+    "builtAt": "2026-10-04T15:00:41.753Z"
+  },
+  "fixture": "Validator-approved native checkpoint import: amo, three legal owned slots, ordinary eight-card entry. Forced avatar-amo and c09/d03 thumbnail+HD404. Fault fallback inspection; not natural acquisition or whole-art acceptance.",
+  "renderer": "Chromium software Canvas",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "physicalDevice": "OnePlus/GPU/audio NOT_RUN",
+  "checks": [
+    "actual30px missing avatar: opaque approved paper + readable ink initial + jade border, real text bounds fit",
+    "c09 four-flush and d03 hourglass mechanisms remain drawn in existing small owned slots with names/state",
+    "missing card has visible failure status and usable native retry; correct own thumbnail recovered; fixed frame unchanged",
+    "native close preserves full run/resources/RNG/save; zero page errors"
+  ],
+  "errors": [],
+  "observed": {
+    "avatarCached": false,
+    "avatar": {
+      "text": "阿",
+      "color": "#26313a",
+      "fontSize": "22px",
+      "fontFamily": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+      "letter": {
+        "x": 27.5,
+        "y": 16.5,
+        "width": 23,
+        "height": 25
+      },
+      "tile": {
+        "x": 24,
+        "y": 14,
+        "width": 30,
+        "height": 30
+      },
+      "fill": 15985371,
+      "stroke": 4153451
+    },
+    "cards": [
+      {
+        "id": "c09",
+        "cached": false,
+        "graphics": [
+          {
+            "commands": 745,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 87,
+              "height": 151.60000305175782
+            }
+          },
+          {
+            "commands": 154,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 87,
+              "height": 151.60000305175782
+            }
+          }
+        ],
+        "name": "少一块布",
+        "value": "4张同花"
+      },
+      {
+        "id": "d03",
+        "cached": false,
+        "graphics": [
+          {
+            "commands": 436,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 157,
+              "height": 151.60000305175782
+            }
+          },
+          {
+            "commands": 142,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 157,
+              "height": 151.60000305175782
+            }
+          }
+        ],
+        "name": "等得住",
+        "value": "留3张长"
+      }
+    ]
+  },
+  "status": "PASS"
+}

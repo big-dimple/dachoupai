@@ -1,0 +1,86 @@
+{
+  "taskId": "P08",
+  "testedCommit": "a19fafea29b52645d31832c24b1a6da8793f5e11",
+  "sourceCommit": "03e8fd9502febea4379309fa556d3bcb1308dd03",
+  "baseCommit": "67141b5d380ce90e6bbc1e1526900e8af967c9ca",
+  "sourceTreeSHA": "6fea752111afefe580950e5f797257ee9779f6b7",
+  "implementation": "PASS",
+  "runtimeChanges": [
+    "src/game/JokerMotif.ts",
+    "src/game/portraits.ts"
+  ],
+  "scope": "Existing missing-image colors only: shared PAPER_THEME palette (including its established brass/paperLight material accents); opaque paper/ink own-initial avatar with jade border/UI_FONT. No new palette, mechanism choice, shapes, strokes, geometry, probabilities, scoring, RNG, save, hand layout, ShopScene or goods loader changes.",
+  "tests": {
+    "status": "PASS",
+    "count": 127,
+    "files": [
+      "fallback-theme",
+      "portraitCrop",
+      "joker-art-loading",
+      "detail-dialog"
+    ],
+    "typecheck": "PASS",
+    "newTests": 9,
+    "beforeOldFallback": {
+      "status": "FAIL",
+      "passed": 2,
+      "failed": 7,
+      "testedBase": "7b8959d910cd97e46defbaca8ee5adeadf057e86",
+      "reason": "Old motif palette and all six translucent/white-avatar fallbacks fail the new readable-paper contract; original geometry and loaded-avatar path already pass."
+    },
+    "firstScopedCheck": {
+      "status": "FAIL",
+      "passed": 126,
+      "failed": 1,
+      "reason": "New visibility assertion incorrectly required2px exactly for b12; original stroke uses1.5px. Corrected the assertion to cover1.5px-or-larger; full unchanged geometry fingerprint remains mandatory."
+    },
+    "geometry": {
+      "ids": 72,
+      "colorNeutralSHA256": "b10ac22a0b18274573182e6d38bf9e2c79e19248de36a3e24e261c74d046d4eb",
+      "originalGeometryBase": "7b8959d910cd97e46defbaca8ee5adeadf057e86",
+      "status": "UNCHANGED"
+    }
+  },
+  "browser": {
+    "status": "PASS",
+    "testedCommit": "a19fafea29b52645d31832c24b1a6da8793f5e11",
+    "modified": false,
+    "evidence": "browser.json",
+    "screenshot": "390-fallback-fixture.png",
+    "actualView": "PASS",
+    "fixture": "Controlled avatar-amo404 and c09/d03 thumbnail+HD404; three legal owned slots, ordinary eight-card native checkpoint import, b11 remains its own reviewed portrait; not natural acquisition.",
+    "renderer": "Chromium software Canvas",
+    "viewport": {
+      "width": 390,
+      "height": 740
+    },
+    "DPR": 1,
+    "avatarLetterBounds": {
+      "x": 27.5,
+      "y": 16.5,
+      "width": 23,
+      "height": 25
+    },
+    "avatarTile": {
+      "x": 24,
+      "y": 14,
+      "width": 30,
+      "height": 30
+    },
+    "graphicsDiagnosticNote": "Graphics getBounds values in the raw observation are not vector stroke extents and are not used for layout/visibility assertions. Mechanism presence uses actual command-buffer activity plus the actual-view screenshot; avatar uses real Text/Rectangle bounds.",
+    "originalFailureEvidence": "browser-initial-failed.json",
+    "originalFailureReason": "Harness assumed9 held cards for an ordinary8-card entry; now waits for actual run.handOrder length without changing state or gameplay."
+  },
+  "assets": {
+    "publicAssetsTreeSHA": "c77b16c711c1e6e38030274cb1bc97f0896bc984",
+    "sourceAssetsTreeSHA": "b3c5fd1ea17afd0a6a774decae466a03fdfe5f3c",
+    "status": "UNCHANGED_FROM_MAIN67141b5",
+    "reviewedJokers": 72,
+    "approvedToolSamples": 4,
+    "replacementImages": 0
+  },
+  "manualFullFreeze": "NOT_RUN; narrow affected checks only as requested",
+  "mainAdvance": "HELD_FOR_ROOT_COORDINATION",
+  "physicalDevice": "OnePlus/realGPU/audio/deployment NOT_RUN",
+  "overallAesthetic": "NOT_ACCEPTED"
+}

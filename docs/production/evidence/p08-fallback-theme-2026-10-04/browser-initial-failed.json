@@ -1,0 +1,23 @@
+{
+  "taskId": "P08",
+  "testedCommit": "03e8fd9502febea4379309fa556d3bcb1308dd03",
+  "baseCommit": "67141b5d380ce90e6bbc1e1526900e8af967c9ca",
+  "build": {
+    "version": "C03",
+    "revision": "03e8fd9502febea4379309fa556d3bcb1308dd03",
+    "modified": false,
+    "builtAt": "2026-10-04T14:58:11.793Z"
+  },
+  "fixture": "Validator-approved native checkpoint import: amo, three legal owned slots, ordinary nine-card entry. Forced avatar-amo and c09/d03 thumbnail+HD404. Fault fallback inspection; not natural acquisition or whole-art acceptance.",
+  "renderer": "Chromium software Canvas",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "physicalDevice": "OnePlus/GPU/audio NOT_RUN",
+  "checks": [],
+  "errors": [],
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}
