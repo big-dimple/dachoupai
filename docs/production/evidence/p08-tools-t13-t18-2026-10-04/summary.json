@@ -1,0 +1,249 @@
+{
+  "taskId": "P08",
+  "testedCommit": "af6ac843f01ec137d8500d1c73b9c67800bae03c",
+  "baseMain": "5d54421cac90e3d516770bba63f5f94904175219",
+  "source": {
+    "taskId": "P08",
+    "status": "PASS",
+    "sourceCommit": "a8cab71d56d24aeaef919e6c04c5c22bf0106da3",
+    "sourceBase": "7d44b8bcada32942acded87d70abe78dea12f275",
+    "sourceFiles": 15,
+    "sourceBytes": 257685,
+    "oldSourceBlobsUnchanged": 1740,
+    "sourceManifestSHA256": "6c93741739a10ef676f2ba989988b70e580eecb16b51f6bfa45f867ad5bb7866",
+    "runtimeFiles": [
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t13-t18/runtime/tool-t13.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2628,
+        "sha256": "3622cbe7e2dd38621442b9563b5d710ae3c7784cd11fd3d897a47b985fb22356",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t13-t18/runtime/tool-t13.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 38682,
+        "sha256": "2f27d0a32473c9c81f7b481b7772318a83bb237a0c57a83a18eddcc08ae01c33",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t13-t18/runtime/tool-t14.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2060,
+        "sha256": "3b9d1606782a6f225b5b2ea08031b45c8828cdad7305efe2d8f548af45e5b503",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t13-t18/runtime/tool-t14.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 33238,
+        "sha256": "5c607cd551e779fa464c629aab484c4aacf19efb78771af97f4ee72ec245a76a",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t13-t18/runtime/tool-t15.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 1854,
+        "sha256": "3cabd9ed0d0df9c2eff19c09f7770c675d7f20ff626be7c8e8a3d2f74aed9574",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t13-t18/runtime/tool-t15.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 25884,
+        "sha256": "81139a118d2aca283cfa92cb8cd5fa8992b98bb7d8a069532c4ac4051566ae4b",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t13-t18/runtime/tool-t16.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2436,
+        "sha256": "e988a0d42c78bdfaeb44bf6062f2260479e1344046015a3df36b9815e7b257a1",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t13-t18/runtime/tool-t16.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 37258,
+        "sha256": "532c950e70b540b6d55adbf8cb1e93dbdb616af7fffeb49d368307f5ab3c23a4",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t13-t18/runtime/tool-t17.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2348,
+        "sha256": "77e611ee0a5c790ad34356229040afe2dceba11a85f446732220b29053dfde37",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t13-t18/runtime/tool-t17.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 41936,
+        "sha256": "52f37bdfa7a6cbe406c78c5e73694879881961b24375c437e3dfba887df177dc",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t13-t18/runtime/tool-t18.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2654,
+        "sha256": "032c533a824e79f6bc3b2f0d45684302aa28b1fb99400089783dabb70d8c5ad1",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t13-t18/runtime/tool-t18.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 36110,
+        "sha256": "ac82406650149e4dac33eb028cc5cf238423c62fb2e889e481e0ac67b128457d",
+        "decoded": "PASS"
+      }
+    ],
+    "runtimeBytes": 227088,
+    "originalPngs": "Parent approved originals and74px grayscale; originals excluded from repo; consumer decodes runtime only"
+  },
+  "sourceCI": {
+    "id": 37221884857,
+    "sha": "a8cab71d56d24aeaef919e6c04c5c22bf0106da3",
+    "conclusion": "success",
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37221884857",
+    "updatedAt": "2026-10-04T17:52:17Z"
+  },
+  "runtimeManifestSHA256": "a5e7c5a801a5fc0537c621447daea70c5e33b43db7726fd09bb4dff434ecb31d",
+  "coverage": {
+    "items": {
+      "painted": 12,
+      "total": 12
+    },
+    "consumables": {
+      "painted": 15,
+      "total": 39
+    },
+    "Jokers": "UNCHANGED72/72"
+  },
+  "preserved": {
+    "baseMain": "5d54421cac90e3d516770bba63f5f94904175219",
+    "status": "PASS",
+    "oldGoodsFiles": 42,
+    "oldGoodsBytes": 643054,
+    "oldGoodsBytesEqual": true,
+    "oldProtectedPathsByteEqual": 600,
+    "srcTreeSHA": "d0c5bcea69f02ac6573e34ca63dbbe3259d2e004",
+    "handdrawnP08TreeSHA": "522c5cd5b17336e40557687489fdb7d1d18330a7",
+    "CSSContainFixFailureSummaryCinnabarJokerCopy": "UNCHANGED",
+    "existingDocs": "UNCHANGED",
+    "coverageOldRetained": "9consumables/12items/72Jokers"
+  },
+  "affectedTests": {
+    "status": "PASS",
+    "count": 42,
+    "files": 4
+  },
+  "typecheck": "PASS",
+  "content": {
+    "status": "PASS",
+    "publicPrivacyTexts": 52,
+    "version": "quality-r2-content-v10",
+    "hash": "json-fnv-v1:24efe7a905216d85"
+  },
+  "build": {
+    "status": "PASS",
+    "buildInfo": {
+      "version": "C03",
+      "revision": "af6ac843f01ec137d8500d1c73b9c67800bae03c",
+      "modified": false,
+      "builtAt": "2026-10-04T18:42:16.363Z"
+    },
+    "registeredDistFiles": 54,
+    "registeredDistBytes": 870142,
+    "newPathsInBundle": [
+      "tool-t13.thumbnail.webp",
+      "tool-t13.detail.webp",
+      "tool-t14.thumbnail.webp",
+      "tool-t14.detail.webp",
+      "tool-t15.thumbnail.webp",
+      "tool-t15.detail.webp",
+      "tool-t16.thumbnail.webp",
+      "tool-t16.detail.webp",
+      "tool-t17.thumbnail.webp",
+      "tool-t17.detail.webp",
+      "tool-t18.thumbnail.webp",
+      "tool-t18.detail.webp"
+    ],
+    "MITNoticeByteEqual": true,
+    "localBuilds": 1,
+    "mode": "e2e",
+    "base": "/items-review/",
+    "productionBuild": "Mandatory final review CI; no repeated local production build"
+  },
+  "representativeBrowser": {
+    "status": "PASS",
+    "id": "T13",
+    "route": "Validator-approved imported shop fixtures;one approved T13 tool offer,100gold,no owned goods. Native shelf/detail/cancel/explicit purchase/owned inventory. Not natural acquisition/deployment.",
+    "screenshot": "390-t13-owned.png",
+    "screenshotsSaved": 1,
+    "actuallyViewed": true,
+    "ownedBounds": {
+      "id": "T13",
+      "location": "owned-tool",
+      "width": 615,
+      "height": 768,
+      "bytes": 38682,
+      "sha256": "2f27d0a32473c9c81f7b481b7772318a83bb237a0c57a83a18eddcc08ae01c33",
+      "fit": "contain",
+      "objectPosition": "50% 50%",
+      "frame": {
+        "x": 111.4375,
+        "y": 84.5,
+        "width": 167.125,
+        "height": 230.78125,
+        "right": 278.5625,
+        "bottom": 315.28125
+      },
+      "visual": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      },
+      "image": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      }
+    },
+    "purchaseGoldDelta": -4,
+    "purchaseCommandSeqDelta": 1,
+    "rngJokersEqual": true,
+    "cancelAndOwnedCloseFullRunEqual": true,
+    "noTargetConfirmUseDisabled": true,
+    "noUseOrDestroy": "NOT_RUN"
+  },
+  "authoritativeRules": "Existing definitions/text retained: T13held multiplier enhancement;T14clear gold enhancement;T15nonrecursive retrigger enhancement;T16first boss supply with shopWeight0;T17actual used discard restoration within entry budget;T18free reroll without paid growth or item redraw. Art does not change these rules.",
+  "limits": {
+    "deployment": "NOT_RUN;review only",
+    "mainPush": "NOT_RUN;parent coordinates",
+    "overallArtAcceptance": "NOT_CLAIMED",
+    "physicalGPUAudio": "NOT_RUN",
+    "manualFullFreeze": "NOT_RUN",
+    "otherFiveToolUI": "NOT_RUN; all six IDs/bytes/descriptors/text checked in affected tests",
+    "320ShopBuildClipping": "OPEN, unchanged",
+    "BToolsEntry": "NOT_MODIFIED; belongs to other engineer",
+    "originalPNGReview": "Parent approved originals and74px grayscale; consumer validates runtime and actual T13 only"
+  }
+}
