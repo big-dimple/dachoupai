@@ -1,0 +1,819 @@
+{
+  "taskId": "P08",
+  "testedCommit": "5d54421cac90e3d516770bba63f5f94904175219",
+  "sourceFingerprint": "b9206549605e90b2c54f4dda1911c59cc5f7160a0cc8e39d52cb4effcafd0926",
+  "phase": "after",
+  "build": {
+    "version": "C03",
+    "revision": "5d54421cac90e3d516770bba63f5f94904175219",
+    "modified": true,
+    "builtAt": "2026-10-04T18:52:18.944Z"
+  },
+  "renderer": "Chromium software Canvas",
+  "DPR": 1,
+  "motion": "reduce",
+  "overlay": {
+    "ref": "bd3840d0a8f532825fc078e2233ab740815cd026",
+    "modules": [
+      "ShopScene.ts",
+      "ToolInventoryEntry.ts"
+    ],
+    "combinedShopSHA256": "115749dca7f9ab3db48c5619217de52f9e9f4d965c7451253c171231cfa714ab",
+    "gameScene": "Unchanged main; no B GameScene loaded or copied"
+  },
+  "fixture": "Validated 5-owned-Joker shop +1 owned T07. Native file import and controls; not natural acquisition or main deployment.",
+  "runs": [
+    {
+      "profile": {
+        "width": 320,
+        "height": 568,
+        "top": 0,
+        "bottom": 0
+      },
+      "geometry": {
+        "renderer": 1,
+        "layout": {
+          "x": 12,
+          "w": 296,
+          "top": 12,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": 12,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 72.4,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 132.8,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 193.2,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 253.6,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            }
+          ],
+          "shelf": [
+            {
+              "x": 14.666666666666664,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 116,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 217.33333333333331,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 64,
+            "width": 296,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 423.36,
+            "width": 144,
+            "height": 44
+          },
+          "items": {
+            "x": 164,
+            "y": 423.36,
+            "width": 144,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 424,
+            "width": 144,
+            "height": 44
+          },
+          "build": {
+            "x": 164,
+            "y": 424,
+            "width": 144,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 476,
+            "width": 296,
+            "height": 56
+          },
+          "noticeY": 540
+        },
+        "hits": [
+          {
+            "id": "rack/c08",
+            "bounds": {
+              "x": 12.000000000000004,
+              "y": 339.20000000000005,
+              "width": 54.400000000000006,
+              "height": 80.80000000000001
+            }
+          },
+          {
+            "id": "rack/c09",
+            "bounds": {
+              "x": 72.4,
+              "y": 339.20000000000005,
+              "width": 54.400000000000006,
+              "height": 80.80000000000001
+            }
+          },
+          {
+            "id": "rack/f09",
+            "bounds": {
+              "x": 132.8,
+              "y": 339.20000000000005,
+              "width": 54.400000000000006,
+              "height": 80.80000000000001
+            }
+          },
+          {
+            "id": "rack/f10",
+            "bounds": {
+              "x": 193.2,
+              "y": 339.20000000000005,
+              "width": 54.400000000000006,
+              "height": 80.80000000000001
+            }
+          },
+          {
+            "id": "rack/a11",
+            "bounds": {
+              "x": 253.60000000000002,
+              "y": 339.20000000000005,
+              "width": 54.39999999999998,
+              "height": 80.80000000000001
+            }
+          }
+        ],
+        "names": [
+          {
+            "text": "少一级",
+            "fullText": "少一级",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 13.00000076293945,
+              "y": 341.9999987792969,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "text": "少一块布",
+            "fullText": "少一块布",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 72.99999847412109,
+              "y": 341.9999987792969,
+              "width": 55.999999999999986,
+              "height": 16
+            }
+          },
+          {
+            "text": "不换词",
+            "fullText": "不换词",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 134,
+              "y": 341.9999987792969,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "text": "冷场救火",
+            "fullText": "冷场救火",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 193.9999938964844,
+              "y": 341.9999987792969,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "text": "返个场",
+            "fullText": "返个场",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 254.99998779296874,
+              "y": 341.9999987792969,
+              "width": 42,
+              "height": 16
+            }
+          }
+        ],
+        "entry": {
+          "x": 220,
+          "y": 64,
+          "width": 88,
+          "height": 44
+        },
+        "offers": [
+          {
+            "id": "fixture/p08-rack320/shop/0/0/joker/0",
+            "bounds": {
+              "x": 14.666666666666664,
+              "y": 116,
+              "width": 88,
+              "height": 199.2
+            }
+          },
+          {
+            "id": "fixture/p08-rack320/shop/0/0/joker/1",
+            "bounds": {
+              "x": 116,
+              "y": 116,
+              "width": 88,
+              "height": 199.2
+            }
+          },
+          {
+            "id": "fixture/p08-rack320/shop/0/0/joker/2",
+            "bounds": {
+              "x": 217.33333333333331,
+              "y": 116,
+              "width": 88,
+              "height": 199.2
+            }
+          }
+        ]
+      },
+      "violations": [],
+      "checks": [
+        "five owned cards and14px names",
+        "three offers remain visible",
+        "native every-card detail/cancel, every-offer cancel and tool inventory preserve full run",
+        "native left/right reorder matches domain and restores instance state/resources/RNG"
+      ]
+    },
+    {
+      "profile": {
+        "width": 390,
+        "height": 740,
+        "top": 0,
+        "bottom": 0
+      },
+      "geometry": {
+        "renderer": 1,
+        "layout": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": 23,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 712
+        },
+        "hits": [
+          {
+            "id": "rack/c08",
+            "bounds": {
+              "x": 23,
+              "y": 363.2,
+              "width": 64,
+              "height": 111.59999999999997
+            }
+          },
+          {
+            "id": "rack/c09",
+            "bounds": {
+              "x": 93,
+              "y": 363.2,
+              "width": 64,
+              "height": 111.59999999999997
+            }
+          },
+          {
+            "id": "rack/f09",
+            "bounds": {
+              "x": 163,
+              "y": 363.2,
+              "width": 64,
+              "height": 111.59999999999997
+            }
+          },
+          {
+            "id": "rack/f10",
+            "bounds": {
+              "x": 233,
+              "y": 363.2,
+              "width": 64,
+              "height": 111.59999999999997
+            }
+          },
+          {
+            "id": "rack/a11",
+            "bounds": {
+              "x": 303,
+              "y": 363.2,
+              "width": 64,
+              "height": 111.59999999999997
+            }
+          }
+        ],
+        "names": [
+          {
+            "text": "少一级",
+            "fullText": "少一级",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 26,
+              "y": 366,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "text": "少一块布",
+            "fullText": "少一块布",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 96,
+              "y": 366,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "text": "不换词",
+            "fullText": "不换词",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 166,
+              "y": 366,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "text": "冷场救火",
+            "fullText": "冷场救火",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 236,
+              "y": 366,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "text": "返个场",
+            "fullText": "返个场",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 306,
+              "y": 366,
+              "width": 42,
+              "height": 16
+            }
+          }
+        ],
+        "entry": {
+          "x": 290,
+          "y": 60,
+          "width": 88,
+          "height": 44
+        },
+        "offers": [
+          {
+            "id": "fixture/p08-rack320/shop/0/0/joker/0",
+            "bounds": {
+              "x": 16.333333333333343,
+              "y": 112,
+              "width": 108,
+              "height": 227.2
+            }
+          },
+          {
+            "id": "fixture/p08-rack320/shop/0/0/joker/1",
+            "bounds": {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 227.2
+            }
+          },
+          {
+            "id": "fixture/p08-rack320/shop/0/0/joker/2",
+            "bounds": {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 227.2
+            }
+          }
+        ]
+      },
+      "violations": [],
+      "checks": [
+        "five owned cards and14px names",
+        "three offers remain visible",
+        "native every-card detail/cancel, every-offer cancel and tool inventory preserve full run",
+        "native left/right reorder matches domain and restores instance state/resources/RNG"
+      ]
+    },
+    {
+      "profile": {
+        "width": 844,
+        "height": 300,
+        "top": 12,
+        "bottom": 34
+      },
+      "geometry": {
+        "renderer": 1,
+        "layout": {
+          "x": 12,
+          "w": 820,
+          "top": 24,
+          "short": true,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": false,
+          "copyBeside": true,
+          "inventoryCollapsed": false,
+          "slots": [
+            {
+              "x": 12,
+              "y": 68.4,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 64,
+              "y": 68.4,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 116,
+              "y": 68.4,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 168,
+              "y": 68.4,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 220,
+              "y": 68.4,
+              "width": 44,
+              "height": 61.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 280,
+              "y": 118,
+              "width": 88,
+              "height": 123.2
+            },
+            {
+              "x": 466.66666666666663,
+              "y": 118,
+              "width": 88,
+              "height": 123.2
+            },
+            {
+              "x": 653.3333333333333,
+              "y": 118,
+              "width": 88,
+              "height": 123.2
+            }
+          ],
+          "tabs": {
+            "x": 280,
+            "y": 72,
+            "width": 552,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 134,
+            "width": 252,
+            "height": 44
+          },
+          "items": {
+            "x": 12,
+            "y": 134,
+            "width": 252,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 134,
+            "width": 122,
+            "height": 44
+          },
+          "build": {
+            "x": 142,
+            "y": 134,
+            "width": 120,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 186,
+            "width": 252,
+            "height": 56
+          },
+          "noticeY": 246
+        },
+        "hits": [
+          {
+            "id": "rack/c08",
+            "bounds": {
+              "x": 12,
+              "y": 68.4,
+              "width": 44,
+              "height": 61.599999999999994
+            }
+          },
+          {
+            "id": "rack/c09",
+            "bounds": {
+              "x": 64,
+              "y": 68.4,
+              "width": 44,
+              "height": 61.599999999999994
+            }
+          },
+          {
+            "id": "rack/f09",
+            "bounds": {
+              "x": 116,
+              "y": 68.4,
+              "width": 44,
+              "height": 61.599999999999994
+            }
+          },
+          {
+            "id": "rack/f10",
+            "bounds": {
+              "x": 168,
+              "y": 68.4,
+              "width": 44,
+              "height": 61.599999999999994
+            }
+          },
+          {
+            "id": "rack/a11",
+            "bounds": {
+              "x": 220,
+              "y": 68.4,
+              "width": 44,
+              "height": 61.599999999999994
+            }
+          }
+        ],
+        "names": [
+          {
+            "text": "少一级",
+            "fullText": "少一级",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 13,
+              "y": 70.99999694824218,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "text": "少一…",
+            "fullText": "少一块布",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 65,
+              "y": 70.99999694824218,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "text": "不换词",
+            "fullText": "不换词",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 117,
+              "y": 70.99999694824218,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "text": "冷场…",
+            "fullText": "冷场救火",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 169,
+              "y": 70.99999694824218,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "text": "返个场",
+            "fullText": "返个场",
+            "font": "14px",
+            "resolution": 1.5,
+            "bounds": {
+              "x": 221,
+              "y": 70.99999694824218,
+              "width": 42,
+              "height": 16
+            }
+          }
+        ],
+        "entry": {
+          "x": 744,
+          "y": 72,
+          "width": 88,
+          "height": 44
+        },
+        "offers": [
+          {
+            "id": "fixture/p08-rack320/shop/0/0/joker/0",
+            "bounds": {
+              "x": 280,
+              "y": 118,
+              "width": 176.66666666666663,
+              "height": 123.19999999999999
+            }
+          },
+          {
+            "id": "fixture/p08-rack320/shop/0/0/joker/1",
+            "bounds": {
+              "x": 466.6666666666667,
+              "y": 118,
+              "width": 176.66666666666669,
+              "height": 123.19999999999999
+            }
+          },
+          {
+            "id": "fixture/p08-rack320/shop/0/0/joker/2",
+            "bounds": {
+              "x": 653.3333333333333,
+              "y": 118,
+              "width": 176.66666666666663,
+              "height": 123.19999999999999
+            }
+          }
+        ]
+      },
+      "violations": [],
+      "checks": [
+        "five owned cards and14px names",
+        "three offers remain visible",
+        "native every-card detail/cancel, every-offer cancel and tool inventory preserve full run",
+        "native left/right reorder matches domain and restores instance state/resources/RNG"
+      ]
+    }
+  ],
+  "errors": [],
+  "physicalDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "aesthetics": "PENDING",
+  "status": "PASS"
+}

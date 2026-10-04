@@ -1,0 +1,148 @@
+{
+  "taskId": "P08",
+  "testedCommit": "1557d411d53a88e29dc63d14ca70d998468a580c",
+  "baseMain": "5d54421cac90e3d516770bba63f5f94904175219",
+  "sourceFingerprint": "b9206549605e90b2c54f4dda1911c59cc5f7160a0cc8e39d52cb4effcafd0926",
+  "implementation": "COMPLETE_REVIEW",
+  "technical": "PASS",
+  "independentAesthetic": "PENDING",
+  "targetDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "scope": "Owned shop rack geometry/name room/hit boundary only. No offer, tool entry, action anchor, price, buy/sell/reorder handler, score, RNG, save or artwork change.",
+  "rootCause": {
+    "rack": "Old fixed344px rack against296px inner width gives x=-12/right332.",
+    "vertical": "Card body bottom428.8 and extended target450.8 overlap actions beginning424.",
+    "short": "Real844x300 safe-top12 maps to shop.top24: old frame ends137.6 against action134; same rack budget now clamps it to130."
+  },
+  "fix": {
+    "320card": "54.4x76.16,6px gap,5:7; frames x12..308; names14px use empty seat gap, c09 four-character name remains full.",
+    "hit": "Expanded invisible tail stops4px above action row without truncating card body.",
+    "preservedToolEntry": {
+      "x": 220,
+      "y": 64,
+      "width": 88,
+      "height": 44
+    }
+  },
+  "checks": {
+    "affectedTests": {
+      "status": "PASS",
+      "tests": 88,
+      "files": 4
+    },
+    "type": "PASS",
+    "build": {
+      "version": "C03",
+      "revision": "5d54421cac90e3d516770bba63f5f94904175219",
+      "modified": true,
+      "builtAt": "2026-10-04T18:52:18.944Z"
+    },
+    "contentAndPlan": "PASS",
+    "browser": "PASS",
+    "profiles": [
+      {
+        "width": 320,
+        "height": 568,
+        "top": 0,
+        "bottom": 0
+      },
+      {
+        "width": 390,
+        "height": 740,
+        "top": 0,
+        "bottom": 0
+      },
+      {
+        "width": 844,
+        "height": 300,
+        "top": 12,
+        "bottom": 34
+      }
+    ],
+    "input": "Native every-owned-card and all3 offers detail/cancel +inventory open/close preserve whole run; actual two reorder commands match domain/restored resources,RNG,instance counters."
+  },
+  "compatibilityOverlay": {
+    "ref": "bd3840d0a8f532825fc078e2233ab740815cd026",
+    "modules": [
+      "ShopScene.ts",
+      "ToolInventoryEntry.ts"
+    ],
+    "combinedShopSHA256": "115749dca7f9ab3db48c5619217de52f9e9f4d965c7451253c171231cfa714ab",
+    "gameScene": "Unchanged main; no B GameScene loaded or copied"
+  },
+  "overlay7bEquivalence": {
+    "ref": "7b78777347dd854f5759870c7934b8c28279889e",
+    "shopScene": "1dfe5d68992914969397b94e2360aee412dac102",
+    "toolModule": "ad683177be1cb9924f61207934eb695e8f5e4d99",
+    "sameAsTestedFrozenBD": true
+  },
+  "preservation": {
+    "src/game/GameScene.ts": {
+      "object": "d981fbfcacd1c7f3f795d77b082a33b494bf9c34",
+      "sameAsMain": true
+    },
+    "src/game/IntermissionScene.ts": {
+      "object": "ca84a25e48efe584a73c24822d750c0696466620",
+      "sameAsMain": true
+    },
+    "src/game/ScoreFlame.ts": {
+      "object": "925208142110f17e08e1df264913d21e5c9afdd0",
+      "sameAsMain": true
+    },
+    "src/audio/AudioEngine.ts": {
+      "object": "a59571134ba2e3a1f7c913b44434b425df24a80c",
+      "sameAsMain": true
+    },
+    "src/domain": {
+      "object": "8e3423193ecb4920e79b87f2314da97a04438c99",
+      "sameAsMain": true
+    },
+    "src/application": {
+      "object": "4abd0e9c2df6b8e3652a618896c77e6993681f47",
+      "sameAsMain": true
+    },
+    "src/content": {
+      "object": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+      "sameAsMain": true
+    },
+    "public": {
+      "object": "1aac774b0ec62cc91ae6a874496078f527e65863",
+      "sameAsMain": true
+    },
+    "art": {
+      "object": "3a660b3ec10cc2d6fd6c809ef32f8e3784cc30d4",
+      "sameAsMain": true
+    }
+  },
+  "images": [
+    {
+      "path": "320-before.png",
+      "sha256": "29f6f9dd464b2a854a30f4fdc0e72d9d742b101ff79d28d1076ea35f08eb6b8b",
+      "build": {
+        "version": "C03",
+        "revision": "2d999cd938e5c19253daa8ddbd1cf25facf2d9e4",
+        "modified": false,
+        "builtAt": "2026-10-04T18:41:57.840Z"
+      },
+      "fixture": "Validated5-owned shop,84gold,T07; frozenB shop-only entry overlay, not main deployment; CSS320x568,safe0,DPR1,Canvas/reduced."
+    },
+    {
+      "path": "320-after.png",
+      "sha256": "b8976ed3f863eae6af8bd1009f427de0cb6d47d108ae6bb56555ddd1281f5f62",
+      "build": {
+        "version": "C03",
+        "revision": "5d54421cac90e3d516770bba63f5f94904175219",
+        "modified": true,
+        "builtAt": "2026-10-04T18:52:18.944Z"
+      },
+      "fixture": "Validated5-owned shop,84gold,T07; frozenB shop-only entry overlay, not main deployment; CSS320x568,safe0,DPR1,Canvas/reduced."
+    }
+  ],
+  "retainedFailures": [
+    "Initial observer used container-local Text.y and found0 names. Corrected to actual world getBounds without reducing count assertion.",
+    "New stock height literal123.2 differed from unchanged88*1.4 floating representation; expected value corrected to original formula, no geometry tolerance changed.",
+    "Actual short-safe-top24 exposed3.6px body collision; implementation fixed same rack budget, strict assertion retained.",
+    "Original new320 geometry test was red against published baseline; final passes."
+  ]
+}

@@ -394,3 +394,6 @@ P08 72张人话文案main7d44已正常FF发布，精确main CI37221283754与prod
 
 
 P08失败摘要review已由父侧读完整源码并实际view390 after，局部方向通过；已正常对齐main2d999cd（含朱砂/72人话/12道具），仅UX冲突且双合同保留。合并源码0aa7399，65相关tests/type/build及自然胜败/刷新继续/同种子重试/短摘要详情PASS，GameScene/ScoreFlame/audio/public/art逐对象同main。既有图身份不变，无新截图；320构筑裁切明确OPEN，未修。本review精确CI另报，main不推进；整体/OnePlus/GPU/听感仍待验。
+
+
+P08 320商店卡条独立修复review：main5d54421基线、源码1557d41。实际复现原344宽/首x=-12末332、卡体428.8和命中450.8碰按钮424；54.4×76.16紧凑5:7、14px四字名利用座位间隙、命中止于按钮前4px，三货/工具入口/行动锚点保持。实际短横safeTop造成shop.top24的3.6px旧交叠同预算修；88受影响tests/type/build及320/390/844原生详情取消/工具包/调序状态比对PASS，两图actual view。B商店功能仅测试叠加且bd/7b两模块等同，无GameScene拷贝；当前只是review，整体/OnePlus/GPU/听感未验。
