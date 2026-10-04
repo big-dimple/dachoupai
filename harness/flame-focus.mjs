@@ -8,7 +8,7 @@ import {chooseCharacter,tapUI,tapMenuAction,openMenuSection,waitScene} from './u
 const dir=process.env.PAPER_FIRE_DIR||'shots/cinnabar',port=5260;
 await mkdir(dir,{recursive:true});
 const report={build:JSON.parse(await readFile(dir+'/build/build-info.json','utf8')),runs:[],keyframes:[],limits:[
-  'Natural 600 / 1200 / 5589 paths; no injected score, target, RNG, rule or save state. Long-digit probe changes/restores UI Text only.',
+  'Natural single5 high-card25 plus600 /1200 /5589 paths; no injected score, target, RNG, rule or save state. Long-digit probe changes/restores UI Text only.',
   'Linux Chromium software Canvas, native emulated touch, CSS390x740 and844x300, DPR1, safe top12/bottom34.',
   'Keyframes copy the actually rendered canvas at postrender using local/frame phase, age and frame number; no guessed phase sleeps.',
   'Physical OnePlus, true GPU, FPS/performance, audio listening, recordings, overall aesthetic acceptance NOT_RUN.',
@@ -17,6 +17,7 @@ const server=await preview({build:{outDir:dir+'/build'},preview:{host:'127.0.0.1
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});
 report.browser=browser.version();
 const specs=[
+  {seed:'p04-golden-02',character:'amo',ids:['clubs-5'],score:'25',tier:0},
   {seed:'p04-golden-02',character:'amo',ids:['clubs-5','diamonds-14','clubs-4','diamonds-3','clubs-2'],score:'600',tier:1},
   {seed:'d43-fire-1',character:'laohuan',ids:['diamonds-7','diamonds-9','diamonds-4','diamonds-12','diamonds-10'],score:'1200',tier:2},
   {seed:'d43-fire-267',character:'laohuan',ids:['diamonds-11','diamonds-13','diamonds-12','diamonds-10','diamonds-14'],score:'5589',tier:3},
@@ -37,7 +38,7 @@ function validate(f){
   assert.equal(f.masked.length,2);assert.ok(f.masked.every(o=>o.mask&&o.same&&!o.input));
   assert.equal(f.textures.length,0);assert.equal(f.burning,0);assert.equal(f.shake,false);assert.equal(f.stamp,false);
   for(const p of f.pieces)for(const g of f.guards)assert.equal(overlaps(p,g),false,'every paintable piece excludes actual guards');
-  for(const p of f.bands)for(const body of [...f.cards,...f.controls])assert.equal(overlaps(p,body),false,'outer band excludes card/action body');
+  for(const p of f.bands)for(const body of [...f.cards,...f.controls,...f.domControls.map(o=>o.bounds)])assert.equal(overlaps(p,body),false,'outer band excludes card/action body');
   for(const flight of f.flights){assert.ok(flight.mask);const p=flight.landing,b=flight.cell;assert.ok(p.x<b.x||p.x>b.x+b.width||p.y<b.y||p.y>b.y+b.height);}
   if(f.brush.reduced)assert.equal(f.brush.updating,false);
   assert.equal(f.savedStable,true,'presentation has no command/save/RNG mutation');
@@ -65,16 +66,17 @@ async function run(viewport,spec,mode='natural'){
     assert.deepEqual(await state(p),before,'long-digit UI probe preserves whole run');
     await p.evaluate(({tier,captureBelow,captureFrames})=>{
       const g=window.__harness.game,s=g.scene.getScene('game'),frames=[],rasters=[],seen=new Set();let committed;
+      const domControls=()=>[...document.querySelectorAll('.run-menu-toggle,.run-fullscreen-toggle,.fullscreen-dock')].filter(e=>!e.hidden&&e.getBoundingClientRect().width>0).map(e=>{const b=e.getBoundingClientRect(),c=g.canvas.getBoundingClientRect(),l=s.view.layout;return {name:e.className,text:e.textContent,bounds:{x:(b.x-c.x)*l.width/c.width,y:(b.y-c.y)*l.height/c.height,width:b.width*l.width/c.width,height:b.height*l.height/c.height},cssBounds:{x:b.x,y:b.y,width:b.width,height:b.height}};});
       const bounds=o=>{const b=o.getBounds();return{x:b.x,y:b.y,width:b.width,height:b.height};};
       const observe=()=>{
         if(!s.presentation||!s.scoreTotal?.active)return;
         const saved=JSON.stringify(g.registry.get('runController').state);committed??=saved;
         const flame=s.scoreFlame,brush=flame?.graphic.getData('strokeState'),l=s.view.layout;
         const f={frame:g.loop.frame,at:performance.now(),renderer:g.renderer.gl?'WebGL':'Canvas',origin:s.presentation.originHeat,product:s.displayedScoreProduct,
-          level:flame?.graphic.getData('intensity')??0,brush,eventId:s.scoreTotal.getData('eventId'),eventPhase:s.scoreTotal.getData('eventPhase'),shown:s.scoreTotal.text,
+          level:flame?.graphic.getData('intensity')??0,brush,eventId:s.scoreTotal.getData('eventId')??s.presentation.score.events[0].eventId,eventPhase:s.scoreTotal.getData('eventPhase')??'base',shown:s.scoreTotal.text,
           texts:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal].filter(o=>o.visible&&o.active).map(o=>({text:o.text,full:o.getData('fullText'),bounds:bounds(o),font:o.style.fontSize})),
           pieces:flame?.graphic.getData('safePieces')??[],guards:flame?.graphic.getData('textGuards')??[],bands:flame?.graphic.getData('frameBands')??[],
-          cards:s.cardViews.filter(v=>v.container.visible).map(v=>bounds(v.container)),controls:[...Object.values(l.buttons),...Object.values(l.tableActions)],
+          cards:s.cardViews.filter(v=>v.container.visible).map(v=>bounds(v.container)),domControls:domControls(),controls:[...Object.values(l.buttons),...Object.values(l.tableActions)],
           masked:s.view.root.list.filter(o=>['score/fire','score/fire-frame'].includes(o.name)).map(o=>({name:o.name,mask:!!o.mask,same:o.mask===flame?.graphic.mask,input:!!o.input})),
           flights:s.view.root.list.filter(o=>o.name==='score/source-flight-line'||o.name==='score/source-flight-packet').map(o=>({landing:o.getData('landing'),cell:o.getData('cell'),mask:!!o.mask})),
           burning:[...s.audio.voices].filter(v=>v.fire||v.source.loop&&v.roll===undefined).length,accents:[...s.audio.voices].filter(v=>v.scoreAccent).length,
@@ -83,27 +85,40 @@ async function run(viewport,spec,mode='natural'){
         const below=captureBelow&&f.level===0&&brush?.localPhase==='unfold'&&brush.localAge>=110;
         const peak=f.level===tier&&brush?.framePhase==='fade'&&brush.frameProgress===1;
         const key=below?0:peak?tier:undefined;
-        if(captureFrames&&key!==undefined&&!seen.has(key)){
+        if(captureFrames&&key!==undefined&&key===tier&&!seen.has(key)){
           seen.add(key);const c=document.createElement('canvas');c.width=g.canvas.width;c.height=g.canvas.height;c.getContext('2d').drawImage(g.canvas,0,0);
           rasters.push({tier:key,metadata:f,png:c.toDataURL('image/png')});
+          if(tier===3){window.__cinnabar.pagePause={metadata:f,committed:saved};g.loop.sleep();}
         }
       };
       window.__cinnabar={frames,rasters,observe};g.events.on('postrender',observe);
     },{tier:spec.tier,captureBelow:true,captureFrames:mode==='natural'});
     await tapUI(p,'game','action/play',true);
+    if(mode==='natural'&&spec.tier===3){
+      await p.waitForFunction(()=>!!window.__cinnabar.pagePause);
+      const frozen=await p.evaluate(()=>window.__cinnabar.pagePause);
+      assert.equal(frozen.metadata.domControls.length,2,'menu and fullscreen DOM remain visible');
+      for(const control of frozen.metadata.domControls){assert.ok(control.cssBounds.width>=44&&control.cssBounds.height>=44);for(const band of frozen.metadata.bands)assert.equal(overlaps(control.bounds,band),false);}
+      const pageFile=`${viewport.width}x${viewport.height}-tier3-page.png`;await p.screenshot({path:`${dir}/${pageFile}`,fullPage:false});
+      r.pageCapture={file:pageFile,...frozen.metadata,pausedAt:'postrender peak',restored:true};
+      assert.equal(JSON.stringify(await state(p)),frozen.committed,'native page screenshot keeps whole saved run');
+      await p.evaluate(()=>window.__harness.game.loop.wake());
+    }
     if(mode==='skip'||mode==='switch'){
       await p.waitForFunction(()=>window.__cinnabar.frames.some(f=>f.brush?.localPhase==='unfold'));
       r.savedBeforeInterrupt=await state(p);
       if(mode==='skip')await tapMenuAction(p,'快进当前手',true);
       else {await openMenuSection(p,'settings',true);await p.getByRole('checkbox',{name:'减少动态'}).check();}
     }
-    await waitScene(p,'intermission');r.result=await state(p);assert.equal(r.result.lastTrace.finalScore,spec.score);assert.equal(r.result.stage.heat,spec.score);assert.equal(r.result.stage.playIndex,1);
+    if(spec.tier===0)await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game'),r=window.__harness.game.registry.get('runController').state;return s.scene.isActive()&&!s.playing&&!s.presentation&&r.stage.playIndex===1;});else await waitScene(p,'intermission');
+    r.result=await state(p);assert.equal(r.result.lastTrace.finalScore,spec.score);assert.equal(r.result.stage.heat,spec.score);assert.equal(r.result.stage.playIndex,1);
     if(r.savedBeforeInterrupt)assert.deepEqual(r.result,r.savedBeforeInterrupt);
     const captured=await p.evaluate(()=>{const o=window.__cinnabar;window.__harness.game.events.off('postrender',o.observe);return{frames:o.frames,rasters:o.rasters};});r.frames=captured.frames;
     for(const f of r.frames)validate(f);
-    assert.ok(r.frames.some(f=>f.brush&&f.brush.localAlpha>0),'actual positive below-target hit exists');
+    assert.ok(r.frames.some(f=>f.brush&&f.brush.localAlpha>0),'actual positive hit exists');
     if(mode==='natural'){
-      assert.ok(captured.rasters.some(f=>f.tier===spec.tier),'actual threshold peak captured');
+      assert.ok(captured.rasters.some(f=>f.tier===spec.tier),'actual below-target hit or threshold peak captured');
+      if(spec.tier===0)assert.ok(BigInt(r.result.stage.heat)<BigInt(r.result.stage.targetHeat));
       // The600 wheel starts at500 in its saved base event; below-target frames come from another natural path.
       const expected=r.result.lastTrace.events.filter(e=>e.phase!=='base'&&e.phase!=='finalScore').map(e=>e.eventId);
       assert.deepEqual([...new Set(r.frames.filter(f=>f.eventPhase==='impact').map(f=>f.eventId))],expected,'every source retains its ordered impact');
@@ -113,8 +128,15 @@ async function run(viewport,spec,mode='natural'){
     assert.deepEqual(r.cleanup,{brush:false,nodes:0,accents:0});
     if(mode==='skip'){
       await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');s.fastForward();s.fastForward();});assert.deepEqual(await state(p),r.result);
-      await tapMenuAction(p,'回看上一手',true);assert.deepEqual(await state(p),r.result);await p.locator('.run-menu-toggle').tap();
-      await p.reload();await waitScene(p,'title');await tapUI(p,'title','action/title-continue',true);await waitScene(p,'intermission');assert.deepEqual(await state(p),r.result);
+      await tapMenuAction(p,'回看上一手',true);assert.deepEqual(await state(p),r.result);
+      if(spec.tier===0){
+        await p.evaluate(()=>{const g=window.__harness.game,s=g.scene.getScene('game'),frames=[];const observe=()=>{if(s.presentation)frames.push({replay:s.presentation.replay,accents:[...s.audio.voices].filter(v=>v.scoreAccent).length,saved:JSON.stringify(g.registry.get('runController').state)});};window.__cinnabarReplay={frames,observe};g.events.on('postrender',observe);});
+        await p.getByRole('button',{name:'回看演出',exact:true}).tap();await p.waitForFunction(()=>window.__cinnabarReplay.frames.length>0);
+        await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return !s.playing&&!s.presentation;});
+        r.replay=await p.evaluate(()=>{const o=window.__cinnabarReplay;window.__harness.game.events.off('postrender',o.observe);return o.frames;});
+        assert.ok(r.replay.every(f=>f.replay&&f.accents===0&&f.saved===JSON.stringify(r.result)),'actual replay does not replay brush drum or mutate saved run');
+      }else await p.locator('.run-menu-toggle').tap();
+      await p.reload();await waitScene(p,'title');await tapUI(p,'title','action/title-continue',true);await waitScene(p,spec.tier===0?'game':'intermission');assert.deepEqual(await state(p),r.result);
       r.checks.push('Skip/duplicate completion/recap/reload preserves whole saved run, including RNG');
     }
     assert.deepEqual(r.errors,[]);r.status='PASS';r.checks.push('Natural saved trace and exact displayed tiers; actual phase/mask/geometry; all owned brush/audio cleanup');
@@ -133,10 +155,11 @@ async function contacts(viewport){
 }
 try{
   if(process.env.FLAME_FOCUS_SCOPE==='checkpoint'){
-    await run({width:390,height:740},specs[0]);report.status='IN_PROGRESS';report.remaining=['844x300 and remaining natural tiers/below-target frame','reduced / skip / mid-presentation switch browser routes','two four-phase contact sheets','exact review CI'];
+    await run({width:390,height:740},specs[1]);report.status='IN_PROGRESS';report.remaining=['844x300 and remaining natural tiers/below-target frame','reduced / skip / mid-presentation switch browser routes','two four-phase contact sheets','exact review CI'];
   }else{
   for(const viewport of [{width:390,height:740},{width:844,height:300}])for(const spec of specs)await run(viewport,spec);
-  await run({width:390,height:740},specs[1],'reduced');await run({width:390,height:740},specs[0],'skip');await run({width:844,height:300},specs[1],'switch');
+  await run({width:390,height:740},specs[0],'reduced');await run({width:844,height:300},specs[2],'reduced');
+  await run({width:390,height:740},specs[0],'skip');await run({width:844,height:300},specs[2],'switch');
   for(const v of [{width:390,height:740},{width:844,height:300}])await contacts(v);
   for(const w of [390,844])assert.ok(report.keyframes.some(f=>f.file===`${w}x${w===390?740:300}-tier0.png`),'actual below-target frame from natural path');
   report.status='PASS';
