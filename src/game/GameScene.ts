@@ -1215,7 +1215,7 @@ export class GameScene extends Phaser.Scene {
   private keepScoreReadable():void {
     this.fitScoreReadouts();
     const controls=this.view.root.list.filter(o=>o.name.startsWith('action/'));
-    const foreground=[this.roleFrame,...this.cardViews.map(v=>v.container),...[...this.settledCards.values()].map(v=>v.container),...this.jokerViews.values(),
+    const foreground=[this.roleAvatar,...this.cardViews.map(v=>v.container),...[...this.settledCards.values()].map(v=>v.container),...this.jokerViews.values(),
       ...controls.flatMap(o=>[o,o.getData('buttonArt'),o.getData('label')])].filter(o=>o?.active);
     orderScoreBrushLayers(this.view.root,foreground,[this.resultText,...this.scoreLabels,this.scoreHeat,this.scoreMult,this.scoreTotal,this.breakdownText,this.previousHandText]);
   }

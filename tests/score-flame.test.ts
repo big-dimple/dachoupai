@@ -63,10 +63,10 @@ describe('bounded cinnabar score strokes',()=>{
     for(const tier of [1,2,3] as const){f.flame.set(tier);expect(f.state()).toMatchObject({frameAge:900,framePhase:'static'});expect(f.updates()).toBe(0);}f.flame.destroy();
   });
   it('orders a nonempty paper/ink/foreground stack independently of a previously lifted caption',()=>{
-    const nodes=['background','card/one','button/art','action/play','score/board-paper','score/board-border','score/total-pedestal','score/fire-frame','score/fire','score/total','score/source'].map(name=>({name,active:true}));
+    const nodes=['background','avatar','card/one','button/art','action/play','score/board-paper','score/board-border','score/total-pedestal','score/fire-frame','score/fire','score/total','score/source'].map(name=>({name,active:true}));
     const root={list:[...nodes],moveBelow(object:typeof nodes[number],anchor:typeof nodes[number]){this.list.splice(this.list.indexOf(object),1);this.list.splice(this.list.indexOf(anchor),0,object);},bringToTop(object:typeof nodes[number]){this.list.splice(this.list.indexOf(object),1);this.list.push(object);}};
     const byName=(name:string)=>nodes.find(n=>n.name===name)!,index=(name:string)=>root.list.indexOf(byName(name));
-    const foreground=['card/one','button/art','action/play'].map(byName),texts=['score/total','score/source'].map(byName);
+    const foreground=['avatar','card/one','button/art','action/play'].map(byName),texts=['score/total','score/source'].map(byName);
     for(let repetition=0;repetition<2;repetition++){
       root.bringToTop(byName('score/total-pedestal'));root.bringToTop(byName('score/source'));
       orderScoreBrushLayers(root as unknown as Phaser.GameObjects.Container,foreground as unknown as Phaser.GameObjects.GameObject[],texts as unknown as Phaser.GameObjects.GameObject[]);
