@@ -1,0 +1,2865 @@
+{
+  "taskId": "P08",
+  "testedCommit": "bf01aa5738368843f4a79657cbcbfe3f319f2215",
+  "baseCommit": "3938cee365994910d7d79f62fc91701273f2efe0",
+  "build": {
+    "version": "C03",
+    "revision": "bf01aa5738368843f4a79657cbcbfe3f319f2215",
+    "modified": false,
+    "builtAt": "2026-10-04T15:29:26.134Z"
+  },
+  "browser": "151.0.7922.173",
+  "renderer": "Chromium software Canvas",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "input": "native touchscreen.tap / DOM tap; read-only Phaser observers",
+  "fixture": "Validator-approved native checkpoint import: amo, c08/c09/f09 and known nine-card hand. Controlled input coverage, not natural acquisition.",
+  "physicalDevice": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "checks": [
+    "manual/adviser selections return before rank/suit sort; repeated and empty sort stay empty; every card lowered, same9-card geometry and ID focus",
+    "one existing ReorderHand per tap: complete state unchanged apart from order/seq/receipt; no hands/discards/gold/RNG/trace/deck changes",
+    "fresh adviser catalog cannot undo the old extracted hand; all12 rule reference remains available",
+    "real once-only saved play: rank/suit disabled through busy/presentation; native taps add no command or state change; next-hand click maps to the correct ID"
+  ],
+  "sorts": [
+    {
+      "mode": "rank",
+      "label": "manual two-card selection",
+      "beforeSeq": 3,
+      "afterSeq": 4,
+      "selectedBefore": [
+        "spades-7",
+        "hearts-7"
+      ],
+      "returned": {
+        "selected": [],
+        "ghost": false,
+        "undo": false,
+        "status": "点数已排序",
+        "cards": [
+          {
+            "id": "spades-7",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "hearts-7",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "clubs-7",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-6",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-5",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-4",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "hearts-4",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-3",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-2",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        ]
+      }
+    },
+    {
+      "mode": "rank",
+      "label": "repeated rank with empty selection",
+      "beforeSeq": 4,
+      "afterSeq": 5,
+      "selectedBefore": [],
+      "returned": {
+        "selected": [],
+        "ghost": false,
+        "undo": false,
+        "status": "点数已排序",
+        "cards": [
+          {
+            "id": "spades-7",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "hearts-7",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "clubs-7",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-6",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-5",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-4",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "hearts-4",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-3",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-2",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        ]
+      }
+    },
+    {
+      "mode": "suit",
+      "label": "empty selection, suit order",
+      "beforeSeq": 5,
+      "afterSeq": 6,
+      "selectedBefore": [],
+      "returned": {
+        "selected": [],
+        "ghost": false,
+        "undo": false,
+        "status": "花色已排序",
+        "cards": [
+          {
+            "id": "spades-7",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-6",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-5",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-4",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-3",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-2",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "hearts-7",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "hearts-4",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "clubs-7",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        ]
+      }
+    },
+    {
+      "mode": "suit",
+      "label": "explicit adviser-applied three-kind",
+      "beforeSeq": 6,
+      "afterSeq": 7,
+      "selectedBefore": [
+        "spades-7",
+        "hearts-7",
+        "clubs-7"
+      ],
+      "returned": {
+        "selected": [],
+        "ghost": false,
+        "undo": false,
+        "status": "花色已排序",
+        "cards": [
+          {
+            "id": "spades-7",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-6",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-5",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-4",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-3",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "spades-2",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "hearts-7",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "hearts-4",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          {
+            "id": "clubs-7",
+            "selected": false,
+            "mark": false,
+            "y": 603.1999999999999,
+            "restY": 603.1999999999999,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "busyFrames": [
+    {
+      "playing": true,
+      "presentation": false,
+      "seq": 7,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "playing": true,
+      "presentation": true,
+      "seq": 8,
+      "enabled": [
+        false,
+        false
+      ]
+    }
+  ],
+  "status": "PASS"
+}

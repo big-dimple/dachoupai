@@ -915,9 +915,13 @@ export class GameScene extends Phaser.Scene {
     return new Map(this.cardViews.map(view=>[view.card.id,{x:view.container.x,y:view.container.y}]));
   }
   private async sortHand(mode:'rank'|'suit'):Promise<void> {
+    if(!this.ready||this.presentation||this.run.phase!=='await-input')return;
+    this.handInput?.cancel();this.view.cancelInteraction();
+    this.selectedIds.clear();this.candidateGhost=undefined;this.candidateUndo=undefined;this.statusMessage='';
+    this.refreshSelection();
     const cards=[...this.hand].sort((a,b)=>mode==='rank'?b.rank-a.rank||SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit):SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit)||b.rank-a.rank);
     const before=this.handPositions();
-    if(await this.command({type:'ReorderHand',ids:cards.map(c=>c.id)})){this.statusMessage=(mode==='rank'?'点数':'花色')+'已排序 · 选择已保留';this.slideHandFrom(before);this.updateControls();this.showHandHint();}
+    if(await this.command({type:'ReorderHand',ids:cards.map(c=>c.id)})){this.statusMessage=(mode==='rank'?'点数':'花色')+'已排序';this.slideHandFrom(before);this.updateControls();this.showHandHint();}
   }
   private readonly stopHandHint=():void=>{
     this.handHintTimer?.remove();this.handHintTimer=undefined;
