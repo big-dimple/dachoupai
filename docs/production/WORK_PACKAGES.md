@@ -379,6 +379,8 @@ D25追加有限3D复用小候选：先用实际GLB源的铜钱/骰子或牌片�
 
 ## P08
 
+P08 14牌竖屏缺口有界闭环（UTC 2026-10-04）：基线已发布main7b787773；合法原生14牌/工具2/3 fixture，非自然获取。320真实选J复现计数盖点数8px，原FAIL与局部实际像素检查保留；仅GameScene.updateHandCount将计数/页码分两行移至既有工具包左侧，卡位/命中/底栏/字体/待出区及ShopLayout不改。sourcefccddf7 exact modified=false，55相关tests/3files/type、一次软件Canvas320×568与390×740 PASS，source/index/HEAD一致。320十窗口逐张点全14，390两行全14；全牌点数花色>=14且无遮挡，原生选/取消全28个逐一通过，选5后预览/工具包/出弃bounds互不挡，出弃实际触点命中后取消，工具包开/关选牌与完整run-RNG不变；仅两张完整页已actual view，父独立图审与新精确reviewCI待接。全部资源/规则/save/火/audio保持，main未推；六工具实际目标/使用验收下一任务。证据docs/production/evidence/p08-tools-fourteen-2026-10-04/summary.json。
+
 P08工具包正常对齐C已发布main（UTC 2026-10-04）：父已完整批准review0452e418并独立确认精确CI37224263669 success；正常merge源码ab4d626合入main5d54421，仅AGENTS/handoff/plan三处文档冲突，双方历史/evidence与C completionScope保持。C六张T06–T11资源、两处CSS删除、只读失败摘要及其测试逐树同main；已批准工具包产品/样板逐字节同0452。26相关tests/3files及type PASS，当前runtime逐SHA零不符：72/72 Joker、6角色/JQK，工具9/39、道具12/12；P08 165files4454670B，工具42files643054B。未重截图/原生矩阵/全冻结，旧证据保原源码身份；本新review精确CI另报，main待父串行授权。证据docs/production/evidence/p08-tools-entry-2026-10-04/c-main-alignment.json。
 
 P08工具包CI真实失败与合同修正（UTC 2026-10-04）：父图审/独立合并审查已通过bd3840d，但精确CI37223525814 browser job111498414350 FAIL；真实日志为screenshot.mjs112旧常驻四动作列表，仅多已批准action/tool-inventory。build/domain/docs通过，失败前后source/index/HEAD一致；不是观察竞态或安装故障。保原FAIL/redacted摘录及私有完整log哈希，不重试旧job。仅sourcebb62c1f同步严格五动作列表，并加原生工具包开/关全run-RNG及选牌保持断言；其他断言/timeout不改。系统Chromium151原smoke桌面1280×720/DPR1和手机390×740/DPR3 PASS，校验前后source/index/HEAD同。src/tests/assets/art逐树同bd3840d；不改产品/火/CSS/规则。正常新review+一次精确新CI待报，main禁推待父串行。证据evidence/p08-tools-entry-2026-10-04/ci-failure-resolution.json。

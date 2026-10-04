@@ -1,0 +1,119 @@
+{
+  "taskId": "P08",
+  "testedCommit": "fccddf7f9ecff3f61f9bc696ac93b92a6a68e554",
+  "baseCommit": "7b78777347dd854f5759870c7934b8c28279889e",
+  "status": "AFFECTED_PASS_REVIEW_READY_NEWCI_PENDING",
+  "problem": "320x568 portrait window counter overlaps the lifted first card index by 8 CSS pixels after native selection. Original FAIL and actual diagnostic inspection retained.",
+  "fix": "GameScene.updateHandCount only: preserve count/range and 14px font, use two lines in existing tool-row left gutter for portrait overflow. Ordinary/two-row/nonportrait logic unchanged.",
+  "runtimeChangedFiles": [
+    "src/game/GameScene.ts"
+  ],
+  "geometry": "320 fourteen initial layout object exactly equals published7b787 initial actual layout, including every card seat/hit/action and played area. No layout file changed.",
+  "fixture": {
+    "kind": "validator-approved native checkpoint import, synthetic controlled 14-card capacity state; not natural acquisition",
+    "handCount": 14,
+    "stageHandLimit": 14,
+    "consumables": 2,
+    "capacity": 3,
+    "longTermItems": [
+      "U07"
+    ],
+    "ids": [
+      "clubs-11",
+      "hearts-12",
+      "spades-13",
+      "diamonds-14",
+      "spades-10",
+      "hearts-7",
+      "clubs-4",
+      "diamonds-2",
+      "clubs-14",
+      "hearts-10",
+      "diamonds-11",
+      "spades-12",
+      "clubs-13",
+      "spades-8"
+    ],
+    "checkpointSHA256": "fee7cad7da3b08c343599d8d10fdb5ab3132e0131976f3fee5b12ff89959f362"
+  },
+  "validation": {
+    "tests": 55,
+    "files": 3,
+    "paths": [
+      "tests/tool-inventory-entry.test.ts",
+      "tests/layout.test.ts",
+      "tests/hand-action-controls.test.ts"
+    ],
+    "typecheck": "PASS",
+    "build": {
+      "version": "C03",
+      "revision": "fccddf7f9ecff3f61f9bc696ac93b92a6a68e554",
+      "modified": false,
+      "builtAt": "2026-10-04T19:04:59.522Z"
+    },
+    "sourceIndexHeadFreeze": {
+      "before": {
+        "source": "c7ae7c9414ae4ba9f69a289033bddd60a54fc03e3ab2d722878162312a2121ef",
+        "index": "c3ebc64298720d668f10297b4dbfeb36b56cbb589fcf6b6f9731a8a92d4cd297",
+        "head": "fccddf7f9ecff3f61f9bc696ac93b92a6a68e554",
+        "branch": "refs/heads/feat/p08-tools-fourteen-20261004"
+      },
+      "after": {
+        "source": "c7ae7c9414ae4ba9f69a289033bddd60a54fc03e3ab2d722878162312a2121ef",
+        "index": "c3ebc64298720d668f10297b4dbfeb36b56cbb589fcf6b6f9731a8a92d4cd297",
+        "head": "fccddf7f9ecff3f61f9bc696ac93b92a6a68e554",
+        "branch": "refs/heads/feat/p08-tools-fourteen-20261004"
+      },
+      "status": "PASS"
+    },
+    "native": {
+      "320x568": "10 native windows; all14 individually selected/deselected; 5 selected preview and tool open/close preserved",
+      "390x740": "14 visible in2 rows; all14 individually selected/deselected; 5 selected preview and tool open/close preserved",
+      "buttons": "Actual native touchStart hit exact play/discard targets; touchCancel preserved complete run/RNG and selected5",
+      "indices": "Actual rank/suit text exact, >=14px, inside face/page, clear of other faces/controls/counter; every card reachable and native selectable",
+      "inventory": "Opened real tool bag 2/3 and closed; complete run/RNG JSON hashes equal before/after in both profiles"
+    }
+  },
+  "images": [
+    {
+      "path": "320-fourteen.png",
+      "bytes": 71239,
+      "sha256": "74dec4983f60531bea50d2192097685dd04f8af2f2f82b22bfef4ecc1d45a9f0"
+    },
+    {
+      "path": "390-fourteen.png",
+      "bytes": 107433,
+      "sha256": "b45d642a0f99793648eba0f59c85c35bb2a94086e629946742b2812d46bbf928"
+    }
+  ],
+  "actualView": {
+    "status": "PASS",
+    "reviewer": "implementing agent",
+    "images": [
+      "320-fourteen.png",
+      "390-fourteen.png"
+    ],
+    "scope": "Two complete pages actually viewed; engineering visibility only, independent parent review pending."
+  },
+  "coverage": {
+    "Jokers": "72/72",
+    "tools": "9/39",
+    "items": "12/12"
+  },
+  "preserved": "ShopLayout, all public/art resources, rules/RNG/save, ScoreFlame/audio and hand/action geometry untouched.",
+  "firstFailure": "first-failure.json",
+  "checks": "browser.json",
+  "reproduce": "node docs/production/evidence/p08-tools-fourteen-2026-10-04/reproduce.mjs",
+  "newExactReviewCI": "PENDING_REVIEW_PUSH",
+  "mainPush": "NOT_RUN_WAIT_PARENT_SERIAL_AUTHORIZATION",
+  "remaining": [
+    "Exact new review CI",
+    "Parent independent image/code review and serial main authorization"
+  ],
+  "scopeLimits": [
+    "Two requested portrait profiles only",
+    "Synthetic native fixture; no natural acquisition claim",
+    "No video/FPS/GPU/physical-device/audio acceptance",
+    "Six-tool target/use acceptance queued as separate next task"
+  ]
+}

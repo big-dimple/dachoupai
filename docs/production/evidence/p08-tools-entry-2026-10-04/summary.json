@@ -80,7 +80,7 @@
   },
   "layoutLimits": [
     "Hand seats and bottom action-row logical coordinates untouched. Ordinary nine-card played-area unchanged in all four target profiles.",
-    "Expanded14 portrait may reserve the inventory button by reducing only played-preview visual area; covered by unit geometry, no expanded14 native screenshot claimed.",
+    "Expanded14 portrait native gap closed in separate sourcefccddf7:320x568 reachable5-card window and390x740 all14 two-row fixtures, every card actually selected/deselected; two full-page images, bounds/tool-bag preservation at evidence/p08-tools-fourteen-2026-10-04. Synthetic fixtures, independent parent review pending.",
     "844x300 safe-bottom34 HUD progress line moves up4px; all other tested target geometry retains current main."
   ],
   "preserved": "Exact current main assets/art/domain/application/content/audio/vendor and published Joker copy preserved; details in main-alignment.json.",
@@ -140,5 +140,15 @@
     "screenshots": "NOT_RERUN",
     "newCI": "PENDING_EXACT_REVIEW_PUSH",
     "mainPush": "NOT_RUN_WAIT_PARENT_SERIAL_AUTHORIZATION"
+  },
+  "fourteenPortraitAcceptance": {
+    "status": "AFFECTED_PASS_PARENT_REVIEW_PENDING",
+    "testedCommit": "fccddf7f9ecff3f61f9bc696ac93b92a6a68e554",
+    "evidence": "../p08-tools-fourteen-2026-10-04/summary.json",
+    "originalFailure": "320 lifted J/counter overlap8px retained",
+    "runtimeFix": "Only portrait overflow count text newline/position",
+    "tests": "55/type PASS",
+    "native": "Two profiles/all14 selectable/bounds/inventory-state preservation PASS",
+    "newCI": "PENDING_REVIEW_PUSH"
   }
 }
