@@ -1,0 +1,296 @@
+{
+  "taskId": "P08",
+  "testedCommit": "4589a888d0801c3d9dfe875a92fbad834891d262",
+  "baseMain": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+  "source": {
+    "sourceCommit": "0df5c1afac5e07e439c0cb164a06896bba9608ab",
+    "sourceBase": "7b78777347dd854f5759870c7934b8c28279889e",
+    "sourceCI": {
+      "id": 37227424742,
+      "sha": "0df5c1afac5e07e439c0cb164a06896bba9608ab",
+      "conclusion": "success",
+      "attempt": 1,
+      "updatedAt": "2026-10-04T19:18:37Z"
+    },
+    "status": "PASS",
+    "oldSourceBlobsUnchanged": 1844,
+    "sourceBytes": 247024,
+    "sourceManifestSHA256": "092ec0b2bf83d2c566609598195e2abcfb09a1318966ac316d37f0afcae84207",
+    "runtimeBytes": 214916,
+    "fullRGBDecode": "PASS on all 12 fixed-SHA git blobs before extraction; source/public are byte equal",
+    "metadata": "No EXIF/XMP/ICC",
+    "geometry": "Entire original, no stretch, centered full contain; approved true T04/T05 dimensions",
+    "originalPNGs": "Parent approved six originals and74px grayscale; consumer did not receive original PNGs"
+  },
+  "sourceFiles": 15,
+  "approvedSourceGeometry": [
+    {
+      "id": "T01",
+      "sourceFilename": "tool-t01-v1-original.png",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "aspectExceptionApproved": false,
+      "containRects": {
+        "thumbnail": {
+          "left": 4,
+          "top": 5,
+          "width": 120,
+          "height": 150
+        },
+        "detail": {
+          "left": 19,
+          "top": 24,
+          "width": 576,
+          "height": 720
+        }
+      }
+    },
+    {
+      "id": "T02",
+      "sourceFilename": "tool-t02-v2-original.png",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "aspectExceptionApproved": false,
+      "containRects": {
+        "thumbnail": {
+          "left": 4,
+          "top": 5,
+          "width": 120,
+          "height": 150
+        },
+        "detail": {
+          "left": 19,
+          "top": 24,
+          "width": 576,
+          "height": 720
+        }
+      }
+    },
+    {
+      "id": "T03",
+      "sourceFilename": "tool-t03-v1-original.png",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "aspectExceptionApproved": false,
+      "containRects": {
+        "thumbnail": {
+          "left": 4,
+          "top": 5,
+          "width": 120,
+          "height": 150
+        },
+        "detail": {
+          "left": 19,
+          "top": 24,
+          "width": 576,
+          "height": 720
+        }
+      }
+    },
+    {
+      "id": "T04",
+      "sourceFilename": "tool-t04-v1-original.png",
+      "sourceWidth": 1073,
+      "sourceHeight": 1466,
+      "aspectExceptionApproved": true,
+      "containRects": {
+        "thumbnail": {
+          "left": 9,
+          "top": 5,
+          "width": 110,
+          "height": 150
+        },
+        "detail": {
+          "left": 44,
+          "top": 24,
+          "width": 527,
+          "height": 720
+        }
+      }
+    },
+    {
+      "id": "T05",
+      "sourceFilename": "tool-t05-v1-original.png",
+      "sourceWidth": 1060,
+      "sourceHeight": 1484,
+      "aspectExceptionApproved": true,
+      "containRects": {
+        "thumbnail": {
+          "left": 10,
+          "top": 5,
+          "width": 107,
+          "height": 150
+        },
+        "detail": {
+          "left": 50,
+          "top": 24,
+          "width": 514,
+          "height": 720
+        }
+      }
+    },
+    {
+      "id": "P01",
+      "sourceFilename": "tool-p01-v1-original.png",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "aspectExceptionApproved": false,
+      "containRects": {
+        "thumbnail": {
+          "left": 4,
+          "top": 5,
+          "width": 120,
+          "height": 150
+        },
+        "detail": {
+          "left": 19,
+          "top": 24,
+          "width": 576,
+          "height": 720
+        }
+      }
+    }
+  ],
+  "preserved": {
+    "taskId": "P08",
+    "baseMain": "f10d2d0a6c1f80b199bfeef7272f60b5c962a7ca",
+    "status": "PASS",
+    "allSrcToolBagCSSFailureSummaryAndStrict5ActionSmoke": "Byte equal to base main",
+    "srcTreeSHA": "a415fc41174d2ff65a422d55c1e52bfb50af6244",
+    "oldGoodsFiles": 54,
+    "oldGoodsBytes": 870142,
+    "oldGoodsBytesEqual": true,
+    "oldManifestRows": 27,
+    "oldSources": 4,
+    "oldArtSourcesAndNotices": "UNCHANGED; added directory only",
+    "handdrawnP08TreeSHA": "522c5cd5b17336e40557687489fdb7d1d18330a7",
+    "existingDocs": "UNCHANGED",
+    "runtimeManifestSHA256": "2c74584baee538712816fba93461146a59112fcaef861cc89d9605c63b99d4c5",
+    "newRuntimeFiles": 12,
+    "newRuntimeBytes": 214916,
+    "runtimeFiles": 66,
+    "runtimeBytes": 1085058
+  },
+  "coverage": {
+    "consumables": {
+      "painted": 21,
+      "total": 39,
+      "remaining": 18
+    },
+    "items": {
+      "painted": 12,
+      "total": 12
+    },
+    "Jokers": "UNCHANGED 72/72 including a11",
+    "status": "REVIEW_ONLY;not published to main"
+  },
+  "affectedTests": {
+    "status": "PASS",
+    "count": 42,
+    "files": 4
+  },
+  "typecheck": "PASS",
+  "content": {
+    "status": "PASS",
+    "version": "quality-r2-content-v10",
+    "publicPrivacyTexts": 52,
+    "sourceContentAndCopy": "UNCHANGED"
+  },
+  "build": {
+    "taskId": "P08",
+    "testedCommit": "4589a888d0801c3d9dfe875a92fbad834891d262",
+    "status": "PASS",
+    "buildInfo": {
+      "version": "C03",
+      "revision": "4589a888d0801c3d9dfe875a92fbad834891d262",
+      "modified": false,
+      "builtAt": "2026-10-04T19:23:50.644Z"
+    },
+    "registeredDistFiles": 66,
+    "registeredDistBytes": 1085058,
+    "newPathsInBundle": [
+      "tool-t01.thumbnail.webp",
+      "tool-t01.detail.webp",
+      "tool-t02.thumbnail.webp",
+      "tool-t02.detail.webp",
+      "tool-t03.thumbnail.webp",
+      "tool-t03.detail.webp",
+      "tool-t04.thumbnail.webp",
+      "tool-t04.detail.webp",
+      "tool-t05.thumbnail.webp",
+      "tool-t05.detail.webp",
+      "tool-p01.thumbnail.webp",
+      "tool-p01.detail.webp"
+    ],
+    "MITNoticeByteEqual": true,
+    "localBuilds": 1,
+    "mode": "e2e",
+    "base": "/items-review/",
+    "productionBuild": "Mandatory exact review CI; no repeated local production build"
+  },
+  "representativeBrowser": {
+    "status": "PASS",
+    "id": "T04",
+    "route": "Validator-approved imported shop fixtures;one approved T04 tool offer,100gold,no owned goods. Native shelf/detail/cancel/explicit purchase/owned inventory. Not natural acquisition/deployment.",
+    "screenshot": "390-t04-owned.png",
+    "screenshotsSaved": 1,
+    "actuallyViewed": true,
+    "pngSHA256": "8c56a2ff5c8bf5634639bd1eb37e31a41b51b38bf26ae6c5a91b8bbc0bdfabe8",
+    "ownedBounds": {
+      "id": "T04",
+      "location": "owned-tool",
+      "width": 615,
+      "height": 768,
+      "bytes": 28316,
+      "sha256": "e52f02e6e9d07dc5240ab7b114d9d719839e28533af707300ab2162304fda0ec",
+      "fit": "contain",
+      "objectPosition": "50% 50%",
+      "frame": {
+        "x": 111.4375,
+        "y": 84.5,
+        "width": 167.125,
+        "height": 230.78125,
+        "right": 278.5625,
+        "bottom": 315.28125
+      },
+      "visual": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      },
+      "image": {
+        "x": 115.4375,
+        "y": 88.5,
+        "width": 159.125,
+        "height": 222.78125,
+        "right": 274.5625,
+        "bottom": 311.28125
+      }
+    },
+    "purchaseGoldDelta": -4,
+    "purchaseCommandSeqDelta": 1,
+    "rngAndJokersEqual": true,
+    "cancelAndOwnedCloseFullRunEqual": true,
+    "noTargetConfirmUseDisabled": true,
+    "checks": [
+      "T04:actual shop thumbnail/BASE_URL/no HD preload/exact HD hash+contain/cancel immutable/one purchase/owned same-ID/cache/run-RNG immutable",
+      "T04 real404 retains actual mechanism face;thumb/HD explicit retry restores same ID/fixed frame/full run immutable"
+    ],
+    "noUseOrDestroy": "NOT_RUN"
+  },
+  "authoritativeRules": "T01 chooses an already discovered hand;T02 deletes1–2 cards under existing floor and legality limits;T03/T04/T05 permanently change suit while retaining rank/enhancement/edition;P01 upgrades the fixed discovered high-card hand. Existing definitions and authority copy are byte unchanged.",
+  "limits": {
+    "mainPush": "NOT_RUN;parent coordinates",
+    "deployment": "NOT_RUN",
+    "overallArtAcceptance": "NOT_CLAIMED",
+    "physicalGPUAudio": "NOT_RUN",
+    "localFullMatrix": "NOT_RUN",
+    "otherFiveToolUI": "NOT_RUN;all six IDs/bytes/descriptors/authority text covered by related tests",
+    "320ShopBuildClipping": "OPEN, unchanged",
+    "originalPNGReview": "Parent approved six originals and74px grayscale; consumer validates runtime and representative T04 only"
+  },
+  "docsGate": "PASS;production-plan32 work packages,current=P08;not gameplay acceptance"
+}
