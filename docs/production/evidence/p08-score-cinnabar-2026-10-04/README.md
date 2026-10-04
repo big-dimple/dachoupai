@@ -1,5 +1,17 @@
 # P08 计分朱砂勾框：首版候选完整可审证据
 
+父实际审过2b2ec4两联系图和844全页DOM图，认可target四角／2×半框／5×双框方向，低档遮挡未通过。本次按授权用**唯一一轮局部调整**，只改成左右下角短折笔、局部4.5px，并修稳定层级与跨档消费；三档外框的路径、宽度、alpha与时钟绘制代码逐段完全相同。旧8帧不重拍、不改标源码。
+
+新的自然202分低档峰值：[390×740](local-corners/390x740-tier0.png)、[844×300](local-corners/844x300-tier0.png)，safe12／34。实际干净e2e build **bc504efb51db6717916b60dd64741c711c090e68**；frame200／201，local fade age183.3／183.4ms，显示67，最终保存202，仍低于目标400。每笔真实朱砂像素竖屏197／200、横屏134／138，均有横竖两段；两图已actual view。phase／实际层级／guards／像素区域／文件hash见 [adjustment.json](local-corners/adjustment.json)。本图仍待父独立审，工程通过不代替整体审美。
+
+局部几何单独源码140d2ff；正常合入main **8888e82ede1776e259096bbdfe4eef63fc6f2415**的合并0f7c7ca，无冲突。独立审查补修源码44ad1c5：计分纸面／外框／底板／局部装饰稳定放到真实前景之前，局部高于底板、低于所有计分文字与实际牌／按钮，未改布局或删mask；非空root.list单测及两路线398计分帧验证，每帧前景非空。跨到3档消费1／2／3，`0→3→1→2→3`退档与重升均静态。55受影响单测、production build含typecheck、exact e2e build PASS。错误普通build未暴露harness，选角前30s超时保留；只纠正到 `--mode e2e`，未加超时、改数值或再调笔划参数。
+
+排序／inspectJoker／reorderJoker方法、JokerReorder／vendor MIT与许可、domain/application、public/assets/art/sources、layout/SceneView逐项同main8888。独立生命周期／音频审查由父协调，本轮未重复全冻结或四档矩阵；最终新review CI随本轮交接提供。旧低档不再代表当前候选，以下完整首版矩阵为历史原始来源；听感／OnePlus／真GPU／GPU FPS／录屏／整体审美仍NOT_RUN，P08仍IN_PROGRESS。
+
+---
+
+2b2ec4首版完整矩阵历史：
+
 父续令要求的有限矩阵现已补齐，仍为独立 `feat/p08-score-cinnabar-review-20261004`，不合 main。运行实现自 **fac1709fa999f2f07470dea1299aa7377711c6c9** 起未再修改；**零轮线宽／opacity／timing修正**。以下完整矩阵替代首检查点的未跑项记录，首图和失败历史保留在下文。
 
 优先审 [390×740 四档联系图](complete/390x740-contact.png) 与 [844×300 四档联系图](complete/844x300-contact.png)。两图仅按实际原生采帧拼接，并标实际 frame／phase age；完整单帧与 bounds／guards／source／文件 SHA256 见 [matrix.json](complete/matrix.json)。
