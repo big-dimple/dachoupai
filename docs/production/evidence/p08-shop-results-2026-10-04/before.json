@@ -1,0 +1,384 @@
+{
+  "status": "DIAGNOSED",
+  "baseline": true,
+  "build": {
+    "version": "C03",
+    "revision": "842fb676b5ebcb1471b8d60743c918ec6d9a7fa3",
+    "modified": false,
+    "builtAt": "2026-10-04T06:38:37.499Z"
+  },
+  "renderer": "Canvas software",
+  "DPR": 1,
+  "fixture": "Native checkpoint import, legal four Joker slots/one T03/gold50 fixture; real paid reroll, two-source sell and real one-card dye use through DOM confirmation. No fabricated pending events or natural/deployed claim.",
+  "profiles": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "safeInset": {
+        "top": 0,
+        "left": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      "checks": [],
+      "reroll": {
+        "notes": [
+          {
+            "name": "transaction/owned/e12",
+            "text": "淘旧摊 · 成长 +3 · 后续出牌生效",
+            "color": "#ffe3ae",
+            "font": "14px",
+            "resolution": 1,
+            "alpha": 0.968,
+            "bounds": {
+              "x": 165.5,
+              "y": 468.79999999999995,
+              "width": 199,
+              "height": 16
+            }
+          }
+        ],
+        "geometry": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": 23,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 712
+        }
+      },
+      "screenshot": "shots/p08-shop-results-before/390-actual-reroll.png",
+      "sale": {
+        "notes": [
+          {
+            "name": "transaction/owned/e06",
+            "text": "旧物新用 · 成长 +0.5 · 后续出牌生效",
+            "color": "#ffe3ae",
+            "font": "14px",
+            "resolution": 1,
+            "alpha": 0.98,
+            "bounds": {
+              "x": -57.5,
+              "y": 468.79999999999995,
+              "width": 225,
+              "height": 16
+            }
+          }
+        ],
+        "geometry": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": 23,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 712
+        }
+      },
+      "tool": {
+        "notes": [
+          {
+            "name": "tool-use/tool/dye",
+            "text": "塔罗 · 红桃染",
+            "color": "#ffe3ae",
+            "font": "14px",
+            "resolution": 1,
+            "alpha": 0.954,
+            "bounds": {
+              "x": 247,
+              "y": 440.79999999999995,
+              "width": 83,
+              "height": 16
+            }
+          }
+        ],
+        "geometry": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": 23,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 712
+        }
+      }
+    }
+  ],
+  "targetDevice": "OnePlus/realGPU/audio NOT_RUN"
+}
