@@ -1,5 +1,9 @@
 # 开发入口
 
+P08失败摘要review已由父侧读完整源码并实际view390 after，局部方向通过；已正常对齐main2d999cd（含朱砂/72人话/12道具），仅UX冲突且双合同保留。合并源码0aa7399，65相关tests/type/build及自然胜败/刷新继续/同种子重试/短摘要详情PASS，GameScene/ScoreFlame/audio/public/art逐对象同main。既有图身份不变，无新截图；320构筑裁切明确OPEN，未修。本review精确CI另报，main不推进；整体/OnePlus/GPU/听感仍待验。 证据docs/production/evidence/p08-failure-summary-2026-10-04/main-alignment.json。
+
+P08 72张人话文案main7d44已正常FF发布，精确main CI37221283754与production-docs37221283740 success；局部方向接受，整体/OnePlus/GPU/听感仍未通过。本次有界失败摘要review源码9e1a176：实际颜色已被共享纸墨映射纠正，无颜色缺陷；真实失败只露差额，补已保存原因/最后一手/剩余资源。35受影响单测/type/build及自然胜败/恢复/重试、390/1280/844有限文字bounds PASS；review新CI另报，main不推进。 证据docs/production/evidence/p08-failure-summary-2026-10-04。
+
 P08工具包CI真实失败与合同修正（UTC 2026-10-04）：父图审/独立合并审查已通过bd3840d，但精确CI37223525814 browser job111498414350 FAIL；真实日志为screenshot.mjs112旧常驻四动作列表，仅多已批准action/tool-inventory。build/domain/docs通过，失败前后source/index/HEAD一致；不是观察竞态或安装故障。保原FAIL/redacted摘录及私有完整log哈希，不重试旧job。仅sourcebb62c1f同步严格五动作列表，并加原生工具包开/关全run-RNG及选牌保持断言；其他断言/timeout不改。系统Chromium151原smoke桌面1280×720/DPR1和手机390×740/DPR3 PASS，校验前后source/index/HEAD同。src/tests/assets/art逐树同bd3840d；不改产品/火/CSS/规则。正常新review+一次精确新CI待报，main禁推待父串行。证据evidence/p08-tools-entry-2026-10-04/ci-failure-resolution.json。
 
 P08工具包正常对齐朱砂main（UTC 2026-10-04）：正常merge0080fb9合main2d999，两处GameScene冲突按main删除旧burst/shockwave/庆祝章，不复活旧效果。sourcedb00121 exact modified=false；仅工具包实际button加入外扩3px保护guard，原action前景收集自动保按钮/纸底/字在墨线上。头像块、refreshScoreFire/ensureScoreFlame/impactAccumulator/keepScoreReadable方法原文同main；ScoreFlame/AudioEngine及跨档/层级测试、CSS/DetailDialog、文案/assets/domain/application等字节同main。46相关/3files、type及320软件Canvas合法原生流程PASS：实际计分ink索引6，avatar7/entry50/art48/label49，29 guards含新按钮，所有maskpieces不相交；计分时原生点工具包/关闭全run-RNG不变，真正Play结果同applyCommand。四张新完整页actual view，字仍71×17完整在88×44/112×44。仅新review精确CI待报，main待父串行；不扩矩阵、14仍单测、不碰C图片CSS修复。证据evidence/p08-tools-entry-2026-10-04/ink-main-alignment.json。

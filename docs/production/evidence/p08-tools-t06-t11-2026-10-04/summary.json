@@ -1,0 +1,225 @@
+{
+  "taskId": "P08",
+  "testedCommit": "89acce2a9447403f10065eb2715bb6f68d63faa5",
+  "baseMain": "a6e482be77d82d9702e02f12f89679fff2045740",
+  "source": {
+    "status": "PASS",
+    "taskId": "P08",
+    "sourceCommit": "b25f00aaafbd79a475fa045eceea18a5d4df6b29",
+    "sourceBase": "8888e82ede1776e259096bbdfe4eef63fc6f2415",
+    "sourceFiles": 15,
+    "sourceBytes": 209547,
+    "oldSourceBlobsUnchanged": 1677,
+    "runtimeBytes": 178950,
+    "runtimeFiles": [
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t06-t11/runtime/tool-t06.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2562,
+        "sha256": "f430a731f8559493479fcbe6107762ef51d3b76172f952773c726375ef88afe4",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t06-t11/runtime/tool-t06.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 34762,
+        "sha256": "6b2b44c2ad1cb6440cf86bd245a39c424acb85249dca9e99173a1f9b446a7eff",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t06-t11/runtime/tool-t07.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2068,
+        "sha256": "321cb9ea3d67c1b19c020a4985db17da54ab933fcd313e2530e3c316de64ed0f",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t06-t11/runtime/tool-t07.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 26572,
+        "sha256": "dcabef8de036c6acff675fc4483c26e32e5495b1050427f8081769b96433074c",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t06-t11/runtime/tool-t08.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2480,
+        "sha256": "0705728853b9a4b7426b67a80d6eaa722631d8c152e1cc17b4376609a88be712",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t06-t11/runtime/tool-t08.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 27368,
+        "sha256": "5e9d0ab2c5dee8e4c12757841a4c7cb79876f44e6f326376c6a2ee42e1c0203f",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t06-t11/runtime/tool-t09.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 1972,
+        "sha256": "5e6d6890ea91c6a958d35780145dda0132714d8beaee5ab0a0a39b53f1792abd",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t06-t11/runtime/tool-t09.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 24588,
+        "sha256": "368b3abadb3921776af3144861577aee671117987e1249bf73601baabdceeb2a",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t06-t11/runtime/tool-t10.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 1648,
+        "sha256": "b5fe197ff10b19a7a41f028d3b364ddacac5cbd80ab581de071e0ea385a60dd3",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t06-t11/runtime/tool-t10.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 22658,
+        "sha256": "b254a87d0830419c1ab4629090bc1a799cdcc34f242ee527535e18ad5a5e7442",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t06-t11/runtime/tool-t11.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 2084,
+        "sha256": "4d2a2c253a496c9a71ceecd81b1e0a543a1720102a25e52b9c70d120e7b58806",
+        "decoded": "PASS"
+      },
+      {
+        "path": "art/sources/handdrawn-runtime-tools-20261004-t06-t11/runtime/tool-t11.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 30188,
+        "sha256": "15d3239e3b7b993e4f244ffc36cbcd5275ac0c98785838c3e311b46330ff7ef3",
+        "decoded": "PASS"
+      }
+    ],
+    "sourceManifestSHA256": "3bc142e8e050e220a29e1f98e90cb5d8fbeb6fcebbd77fd5d40c8b3983d7c215",
+    "originalPngs": "Parent approved; originals excluded from repository. Consumer validates runtime derivatives."
+  },
+  "sourceCI": {
+    "id": 37219676771,
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37219676771",
+    "status": "PASS",
+    "sha": "b25f00aaafbd79a475fa045eceea18a5d4df6b29",
+    "completedAt": "2026-10-04T17:20:01Z"
+  },
+  "runtimeManifestSHA256": "dabfac2bf30ac87e19a43dcd10e4afe1787207ec9c804cccc436391816d06e5c",
+  "coverage": {
+    "permanentItems": {
+      "painted": 12,
+      "total": 12
+    },
+    "consumableTools": {
+      "painted": 9,
+      "total": 39
+    },
+    "jokerArt": "UNCHANGED72/72"
+  },
+  "preserved": {
+    "status": "PASS",
+    "baseMain": "a6e482be77d82d9702e02f12f89679fff2045740",
+    "oldGoodsFiles": 30,
+    "oldGoodsBytes": 464104,
+    "oldGoodsBytesEqual": true,
+    "existingProtectedPathsByteEqual": 582,
+    "srcTreeSHA": "3b7463eb6d9c1a4a5fa6579a559a4dcca9e896b0",
+    "handdrawnP08TreeSHA": "522c5cd5b17336e40557687489fdb7d1d18330a7",
+    "incomingSourceTreeSHA": "045bf4ef4a569ba4b04980808b254fd2e84cf7aa",
+    "incomingSourceFilesExact": 15,
+    "a11VersionedPathsRetained": true,
+    "existingHandoffAndPlan": "UNCHANGED",
+    "domainLoaderRulesRngSaveLayoutFire": "UNCHANGED"
+  },
+  "affectedTests": {
+    "status": "PASS",
+    "files": [
+      "goods-art",
+      "goods-art-loading",
+      "detail-art",
+      "detail-dialog"
+    ],
+    "count": 42,
+    "initialFailure": {
+      "test": "uses authoritative text rather than inference from artwork",
+      "expected": "赋予加厚纸",
+      "actual": "赋予热度纸",
+      "resolution": "Corrected T10 and T11 assertions to existing enhancement names 热度纸/倍率纸; four goods-art tests passed; original three unaffected suites already passed. Runtime copy unchanged."
+    }
+  },
+  "typecheck": "PASS",
+  "content": {
+    "status": "PASS",
+    "publicPrivacyTexts": 49,
+    "version": "quality-r2-content-v10",
+    "hash": "json-fnv-v1:24efe7a905216d85"
+  },
+  "build": {
+    "status": "PASS",
+    "buildInfo": {
+      "version": "C03",
+      "revision": "89acce2a9447403f10065eb2715bb6f68d63faa5",
+      "modified": false,
+      "builtAt": "2026-10-04T17:39:38.245Z"
+    },
+    "registeredDistFiles": 42,
+    "registeredDistBytes": 643054,
+    "newPathsInBundle": [
+      "tool-t06.thumbnail.webp",
+      "tool-t06.detail.webp",
+      "tool-t07.thumbnail.webp",
+      "tool-t07.detail.webp",
+      "tool-t08.thumbnail.webp",
+      "tool-t08.detail.webp",
+      "tool-t09.thumbnail.webp",
+      "tool-t09.detail.webp",
+      "tool-t10.thumbnail.webp",
+      "tool-t10.detail.webp",
+      "tool-t11.thumbnail.webp",
+      "tool-t11.detail.webp"
+    ],
+    "mitNoticeByteEqual": true,
+    "localBuilds": 1,
+    "mode": "e2e",
+    "base": "/items-review/",
+    "productionBuild": "Existing mandatory remote CI gate; no extra local production build"
+  },
+  "representativeBrowser": {
+    "status": "PASS",
+    "report": "browser.json",
+    "id": "T06",
+    "route": "Validator-approved imported shop fixtures;one approved T06 tool offer,100gold,no owned goods. Native shelf/detail/cancel/explicit purchase/owned inventory. Not natural acquisition/deployment.",
+    "screenshotsSaved": 1,
+    "screenshot": "390-t06-owned.png",
+    "actuallyViewed": true,
+    "purchasePrice": 4,
+    "purchaseCommandSeqDelta": 1,
+    "cancelAndCloseFullRunEqual": true,
+    "rngAndJokersEqual": true,
+    "noTargetNoUse": true
+  },
+  "limits": {
+    "manualFullFreeze": "NOT_RUN",
+    "physicalDeviceGPUAudio": "NOT_RUN",
+    "deployment": "NOT_RUN; review only",
+    "overallArtAcceptance": "NOT_CLAIMED",
+    "mainAdvance": "HELD_FOR_PARENT_ORDER",
+    "otherToolUIScenarios": "NOT_RUN; all six ID/bytes/descriptor/authority checks in affected tests",
+    "sourceOriginals": "Parent approved; consumer decoded all runtime derivatives and viewed representative T06 derivative and actual owned PNG"
+  }
+}

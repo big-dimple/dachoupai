@@ -396,3 +396,9 @@ P08点数／花色放回选牌review（UTC 2026-10-04）：基线已授权发布
 P08 72张中央人话文案review（2026-10-04）：基线对齐main8888e82并保MIT调序；权威定义绑定＋既有jokerMemory，主句21/默认限制15/保存资格15/折叠细则，shop/held/detail共享。根独立查看六复杂与844×300首版方向通过；实现独审5项已收敛，含c11实际记录上一手/null/旧记录未知与hover无裁字。134受影响单测/type及有限原生hover、B06调序恢复、f06余1、合法买/取消PASS；仍只review，修正精确CI待终态。证据evidence/p08-joker-plain-copy-2026-10-04，原图不重拍；目标设备/GPU/听感NOT_RUN。
 
 2026-10-04 P08底栏复核：沿用已获根实际看图通过的三组，不增加区域或改手牌/待出牌预算。首排序教学改用既有status：14px、普通1860ms/reduced3000ms，经原输入/blur/visibility/render/shutdown取消且不覆盖普通statusMessage；短侧栏139/160px、竖屏195/366px实核完整，禁用余次与字/符号复用disabledInk（4.51对比度），启用主次/紧急配色保持。source2db4216的三完整页与原生排序/420ms取消/禁用/真实出弃/DOM菜单全屏/回载通过；191相关单测/type通过，保8888 MIT和所有素材。未知其它色块同因未证明；最终三图仍待根独立review，整体/设备/GPU/听感/部署非本轮验收。
+
+
+P08 72张人话文案main7d44已正常FF发布，精确main CI37221283754与production-docs37221283740 success；局部方向接受，整体/OnePlus/GPU/听感仍未通过。本次有界失败摘要review源码9e1a176：实际颜色已被共享纸墨映射纠正，无颜色缺陷；真实失败只露差额，补已保存原因/最后一手/剩余资源。35受影响单测/type/build及自然胜败/恢复/重试、390/1280/844有限文字bounds PASS；review新CI另报，main不推进。 证据evidence/p08-failure-summary-2026-10-04。
+
+
+P08失败摘要review已由父侧读完整源码并实际view390 after，局部方向通过；已正常对齐main2d999cd（含朱砂/72人话/12道具），仅UX冲突且双合同保留。合并源码0aa7399，65相关tests/type/build及自然胜败/刷新继续/同种子重试/短摘要详情PASS，GameScene/ScoreFlame/audio/public/art逐对象同main。既有图身份不变，无新截图；320构筑裁切明确OPEN，未修。本review精确CI另报，main不推进；整体/OnePlus/GPU/听感仍待验。

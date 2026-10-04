@@ -1,0 +1,25 @@
+{
+  "taskId": "P08",
+  "testedCommit": "657e10ca35ef6abd1bb680f1498d61b5a533d51e",
+  "alignedMain": "7d44b8bcada32942acded87d70abe78dea12f275",
+  "mergeKind": "normal merge, no conflicts",
+  "originalImplementation": "89acce2a9447403f10065eb2715bb6f68d63faa5",
+  "originalEvidence": "a212ec4",
+  "status": "PASS",
+  "srcTreeSameAsPublishedMain": "6654c9962408b404028e19ae15c99320fb6aec8f",
+  "artAndPublicTreesSameAsOriginalReview": true,
+  "toolDependenciesSameAsOriginalBuild": [
+    "src/game/GoodsArt.ts",
+    "src/game/ConsumableDialog.ts",
+    "src/game/DetailArt.ts",
+    "src/game/r2ToolInfo.ts",
+    "src/domain",
+    "src/application",
+    "src/content"
+  ],
+  "inheritedChanges": "Published Joker copy only; ShopScene changed Joker offer text branch, DetailDialog changed options.ability.playerCopy branch, CSS restricted to .card-ability.is-player-copy. Tools have no options.ability; tools/detail/HD branch unchanged.",
+  "checks": "Goods/detail four affected suites rerun after main merge; exact final-head CI required. No unrelated full freeze or repeated tool browser/build.",
+  "browserIdentityRetained": "Original PNG and browser.json still 89acce2a modified=false; not relabeled as new build",
+  "parentParallelWork": "Published Joker copy, action rows and items retained; AGENTS/work package/plan exactly published main",
+  "mainPush": "NOT_RUN; parent approval pending"
+}

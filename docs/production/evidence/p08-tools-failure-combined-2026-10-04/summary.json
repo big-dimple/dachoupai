@@ -1,0 +1,55 @@
+{
+  "taskId": "P08",
+  "testedCommit": "702b32bceff503d0a3a9bd160c2e0271382ef538",
+  "baseMain": "2d999cd938e5c19253daa8ddbd1cf25facf2d9e4",
+  "mergedToolsReview": "e4fbf6ad750e49e5cd1d76e76406c40d4159de38",
+  "mergedFailureReview": "28f5c9daee404148563045c1481dafc8b479da07",
+  "mergeKind": "normal merge, no conflicts, no force",
+  "runtimeDeltaFromMain": [
+    "src/game/FailureSummary.ts",
+    "src/game/IntermissionScene.ts",
+    "src/style.css"
+  ],
+  "toolAssetsStylesAndEvidenceExact": true,
+  "failureSourceAndEvidenceExact": true,
+  "mainCinnabarJokerCopyMechanicsAndAudioExact": true,
+  "320ShopBuildClipping": "OPEN; unchanged, not independently pixel reviewed by this integrator",
+  "failureSourceCI": {
+    "id": 37223472710,
+    "sha": "28f5c9daee404148563045c1481dafc8b479da07",
+    "conclusion": "success",
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37223472710"
+  },
+  "toolsSourceCI": {
+    "id": 37223260059,
+    "sha": "e4fbf6ad750e49e5cd1d76e76406c40d4159de38",
+    "conclusion": "success",
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37223260059"
+  },
+  "boundary": "Parent approved both source/image directions; original screenshots/build identities retained; no reshoot or local build. Combined exact head needs fresh mandatory CI.",
+  "excluded": "No B tools package candidate or T13–T18 sources fetched/merged/registered",
+  "coverage": {
+    "items": "12/12",
+    "consumables": "9/39",
+    "Jokers": "72/72"
+  },
+  "mainPush": "NOT_RUN; parent coordinates unified release",
+  "status": "PASS_LOCAL; exact final-head CI pending",
+  "affectedTests": {
+    "status": "PASS",
+    "files": 8,
+    "count": 62,
+    "suites": [
+      "goods-art",
+      "goods-art-loading",
+      "detail-art",
+      "detail-dialog",
+      "failure-summary",
+      "stage-outcome",
+      "failure-audio",
+      "c03-result-transition"
+    ]
+  },
+  "typecheck": "PASS",
+  "newLocalBrowserBuildOrScreenshot": "NOT_RUN; both directions source/UI approved by parent; disjoint integration and dependency trees checked"
+}

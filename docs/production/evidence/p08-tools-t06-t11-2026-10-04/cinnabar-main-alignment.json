@@ -1,0 +1,60 @@
+{
+  "taskId": "P08",
+  "testedCommit": "929b76fdcbf0d992e0a2839fbe8ccc0af5fb1695",
+  "alignedMain": "2d999cd938e5c19253daa8ddbd1cf25facf2d9e4",
+  "priorReview": "809f2c7e853772df08d1bb536482921b8eab58a5",
+  "mergeKind": "Normal merge; no conflicts, no force, no main write",
+  "preservedMainPathsExact": [
+    "src/game",
+    "src/audio",
+    "src/domain",
+    "src/application",
+    "src/content",
+    "docs/production/DECISIONS.md",
+    "docs/production/UX.md",
+    "docs/production/WORK_PACKAGES.md",
+    "docs/production/plan.json",
+    "AGENTS.md",
+    "docs/production/evidence/p08-score-cinnabar-2026-10-04",
+    "docs/production/evidence/p08-joker-plain-copy-2026-10-04"
+  ],
+  "preservedPublicSourceLicenseTreesExact": [
+    "art/sources",
+    "public/assets",
+    "public/licenses"
+  ],
+  "unchangedToolUIAndHarness": [
+    "src/style.css",
+    "src/game/ConsumableDialog.ts",
+    "src/game/DetailDialog.ts",
+    "src/game/GoodsArt.ts",
+    "src/game/r2ToolInfo.ts",
+    "src/game/ShopScene.ts",
+    "src/content/r2Tools.ts",
+    "harness/p08-items-u01-u06.mjs"
+  ],
+  "srcDiffFromPublishedMain": "style.css only: two obsolete tool-figure size rules deleted; all src/game/audio/domain/application/content exactly published main",
+  "approvedToolArtBuild": "6df40d505d2a3d65ee23c7478be464196c159571",
+  "parentVisualReview": {
+    "status": "PASS",
+    "reviewer": "parent",
+    "evidence": "Parent delegation confirms actual view of390-t06-owned-contained.png and exact two-rule CSS deletion; image/contain bounds fix approved."
+  },
+  "originalBrowserIdentityPreserved": "Original corrected PNG/report still6df40d5 modified=false; no relabel, rebuild or screenshot repetition",
+  "source": "b25f00aaafbd79a475fa045eceea18a5d4df6b29",
+  "coverage": {
+    "items": "12/12",
+    "consumables": "9/39",
+    "Jokers": "72/72"
+  },
+  "nextBatch": "T13–T18 NOT_STARTED; not fetched or registered",
+  "affectedTests": {
+    "status": "PASS",
+    "count": 42,
+    "suites": 4
+  },
+  "CI": "Exact final review-head mandatory CI will run; no unrelated manual freeze",
+  "mainPush": "NOT_RUN; parent coordinates after final CI",
+  "status": "PASS",
+  "typecheck": "PASS"
+}

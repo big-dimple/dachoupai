@@ -93,7 +93,6 @@ button:disabled { opacity:.5;cursor:default;box-shadow:none; }
 .tool-inventory .tool-inventory-card span { font-size:12px;color:#665739; }
 .tool-inventory .tool-empty { grid-column:1/-1;margin:0;padding:12px;border:1px dashed #b7a57a;border-radius:7px;color:#655b49; }
 .tool-detail .dialog-content { grid-template-columns:minmax(140px,.7fr) minmax(0,1.3fr);align-items:start; }
-.tool-detail .dialog-card-art { max-width:200px;justify-self:center; }
 .tool-detail .dialog-card-art figcaption { font-size:15px; }
 .tool-detail .dialog-body,.tool-item-detail .dialog-body { font-size:15px;line-height:1.75; }
 .tool-detail .tool-target-panel { grid-column:1/-1;min-width:0; }
@@ -123,7 +122,6 @@ button:disabled { opacity:.5;cursor:default;box-shadow:none; }
 .tool-detail .tool-full-risk p { margin:0;padding:0 0 10px; }
 @media (max-width:560px) {
   .tool-detail .dialog-content { grid-template-columns:1fr;gap:16px; }
-  .tool-detail .dialog-card-art { width:140px;max-width:45vw; }
   .tool-detail .dialog-card-image { max-height:180px; }
   .tool-detail .tool-choice-grid { grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;max-height:280px; }
   .tool-detail .tool-target-group { padding:7px; }
