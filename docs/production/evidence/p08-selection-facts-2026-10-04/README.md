@@ -8,4 +8,4 @@
 
 [九牌／14两行输入](hand-input.json)：Chromium151.0.7922.173 Canvas 与WebKit26.0，CSS360／390×740、DPR3，真实renderer见各记录；双向滑选／取消／重复释放／最多5／排序／resize／中断／卡角标不遮挡、完整save不变。此运行在最终文字行距修正前，手牌／命中／手势源码未改；最终说明几何由selection-contract中的14fixture另验。未录屏或性能长测。
 
-实现：完成批1；技术：受影响检查PASS，冻结聚合待记录；独立视觉：单图信息方向＋三项可读性早评通过，整体审美未由此接受；目标设备OnePlus／真实GPU／听感NOT_RUN。新27WebP未接入。批2可见手牌实际候选与72/29共享条件记忆、批3有限全流程验收已获授权，须批1精确CI闭环后实施；不窥未来drawPile/RNG、不按收益排序、不自动出牌、不改存档schema，不处理素材审批／PC／域名／部署。
+实现：完成批1；技术：受影响检查PASS，冻结聚合PASS：源码b9b179f7037c5688dc3e9a25aeb1a906eea7d1c3，100文件／1818 tests/content/type/build/Chromium Canvas双端smoke/plan，前后源码／索引／HEAD一致（见[frozen-ci](frozen-ci.json)）；独立视觉：单图信息方向＋三项可读性早评通过，整体审美未由此接受；目标设备OnePlus／真实GPU／听感NOT_RUN。新27WebP未接入。批2可见手牌实际候选与72/29共享条件记忆、批3有限全流程验收已获授权，须批1精确CI闭环后实施；不窥未来drawPile/RNG、不按收益排序、不自动出牌、不改存档schema，不处理素材审批／PC／域名／部署。
