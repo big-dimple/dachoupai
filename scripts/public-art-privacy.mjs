@@ -59,7 +59,7 @@ export async function auditPublicArtPrivacy(root){
   }
   async function walk(relative){
     let entries;try{entries=await readdir(path.join(root,relative),{withFileTypes:true});}catch{issue(relative,'unreadable-path');return;}
-    for(const entry of entries.sort((a,b)=>a.name.localeCompare(b.name))){const child=relative+'/'+entry.name;
+    for(const entry of entries.sort((a,b)=>a.name.localeCompare(b.name))){if(entry.name.toLowerCase()==='.git')continue;const child=relative+'/'+entry.name;
       if(entry.isSymbolicLink()){issue(child,'unsafe-symlink');continue;}
       if(entry.isDirectory())await walk(child);
       else if(entry.isFile()&&metadataName(entry.name))files.push(child);

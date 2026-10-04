@@ -55,7 +55,7 @@ it('only reads allowed current metadata, including nested metadata, and leaves b
   await fixture(async(dir,put)=>{
     await put('art/sources/handdrawn-runtime-fixture/README.md','safe description');
     await put('art/sources/handdrawn-runtime-fixture/nested/manifest.json',JSON.stringify({source:libraryId}));
-    for(const file of ['art/sources/handdrawn-runtime-fixture/runtime/image.webp','art/sources/other/manifest.json','.git/old-manifest.json','docs/private-note.md'])await put(file,backingId);
+    for(const file of ['art/sources/handdrawn-runtime-fixture/runtime/image.webp','art/sources/handdrawn-runtime-fixture/.git/manifest.json','art/sources/other/manifest.json','.git/old-manifest.json','docs/private-note.md'])await put(file,backingId);
     const report=await auditPublicArtPrivacy(dir);expect(report.filesScanned).toBe(3);expect(report.issues).toEqual([{file:'art/sources/handdrawn-runtime-fixture/nested/manifest.json',type:'private-file-identity',count:1}]);
   });
 });
