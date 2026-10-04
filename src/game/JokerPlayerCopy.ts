@@ -55,7 +55,7 @@ export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerIns
  const values:Record<string,string>={};for(const[key,binding]of Object.entries(template.bindings))values[key]=formatted(bindingValue(binding.source,definition),binding.format);
  const growth=instance?{...r2GrowthMinimums(definition),...instance.growth}:{};
  for(const key of ['heat','multiplier','pendingHeat','coefficient'])values['saved_'+key]=fractionText(growth[key]??zero);
- Object.assign(values,{remaining:String(memory.remaining??''),remainingUses:String(memory.remainingUses??''),usage_scope:ctx.inStage?'本场':'下场',entry_hand_limit_state:ctx.inStage&&ctx.entryHandLimit!==undefined?'本场入场时手牌上限：'+ctx.entryHandLimit:'下次进场时判断',previous_hand_type:ctx.previousHandType?HAND_LABELS[ctx.previousHandType]:'本场还没出牌',reward_progress:memory.savedShort,current_context_value:instance?r2JokerValue(instance,ctx):''});
+ Object.assign(values,{remaining:String(memory.remaining??''),remainingUses:String(memory.remainingUses??''),usage_scope:ctx.inStage?'本场':'下场',entry_hand_limit_state:ctx.inStage&&ctx.entryHandLimit!==undefined?'本场入场时手牌上限：'+ctx.entryHandLimit:'下次进场时判断',previous_hand_type:ctx.previousHandTypeKnown===false?'未知（旧记录未保存）':ctx.previousHandType?HAND_LABELS[ctx.previousHandType]:'没有上一手',reward_progress:memory.savedShort,current_context_value:instance?r2JokerValue(instance,ctx):''});
  const render=(text:string)=>text.replace(/\{([\w]+)\}/g,(_,key)=>values[key]??'见完整规则');
  const main=render(template.main),limits=template.limits.map(render),rules=template.rules.map(render),state:string[]=[];
  const random=definition.hooks.some(h=>h.operations.some(o=>o.kind==='chance-add-heat'));

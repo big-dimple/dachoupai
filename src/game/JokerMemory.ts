@@ -13,7 +13,7 @@ export type MemoryStatus='待选牌'|'条件满足'|'当前未满足'|'事件时
 export interface JokerMemoryContext {
  inStage:boolean;hand:readonly PlayingCard[];facts?:R2SelectionFacts;disabledIds:readonly string[];
  scoringLimited:boolean;gold:number;handsLeft:number;playIndex:number;discardsUsed:number;quadRefundUsed:boolean;
- previousHandType:R2ScoreConditionContext['previousHandType'];stageHeat:string;target:string;
+ previousHandType:R2ScoreConditionContext['previousHandType'];previousHandTypeKnown?:boolean;stageHeat:string;target:string;
  transaction:R2TransactionConditionContext;deckSize:number;entryHandLimit?:number;jokerSlots:number;jokerCount:number;
 }
 const typeNames=(values:readonly (keyof typeof HAND_LABELS)[])=>values.map(t=>HAND_LABELS[t]).join('／');
@@ -134,6 +134,12 @@ export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstanc
 }
 export function jokerMemoryAbility(definition:R2JokerDefinition,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext,events?:readonly ScoreEvent[]):CardAbilityCopy {
  return jokerPlayerCopy(definition,instance,ctx,jokerMemory(definition,instance,ctx),events);
+}
+
+/** Actual presentation reads the recorded prior hand, including null; old records stay unknown. */
+export function recordedJokerMemoryContext(ctx:JokerMemoryContext,record:{previousHandType?:JokerMemoryContext['previousHandType']}|undefined):JokerMemoryContext {
+ const known=!!record&&Object.hasOwn(record,'previousHandType')&&record.previousHandType!==undefined;
+ return{...ctx,previousHandType:known?record!.previousHandType!:null,previousHandTypeKnown:known};
 }
 
 /** Public snapshot adapter. Never reads future drawPile, RNG, journal or score preview. */

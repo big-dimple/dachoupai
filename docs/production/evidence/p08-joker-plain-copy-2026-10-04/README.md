@@ -11,8 +11,14 @@
 
 图像被测src SHA256指纹 `20c483d5166122b1dbe54e55f1725c056f89bd6480b2fdfd9fa8dbb566958f0e`；embedded C03/ce299b8a8ddf5cf399fecb889aa02882d315988c，modified=true，built 2026-10-04T16:30:22.554Z。DPR1、safeInset四边0、Chromium软件Canvas（GPU/software rasterizer禁用）；工程实际view。完整Text/DOM bounds见candidate-render.json。图只代表候选，不是main现场。
 
-## 阶段状态
+## 独审修正与实际验证
 
-实现：中央层与72字段绑定完成。技术：56受影响单测和六代表/商店/短横原生详情PASS；全套首次2011中2009PASS，2个旧技术文案断言已按公开余次/历史语义更新，待最终重跑。最终源码freeze/精确review CI尚待运行。安全商店入口随后从单行改为两行，避免列宽溢出，该无图区域修正待新几何检查。
+已对齐main8888e82ede1776e259096bbdfe4eef63fc6f2415，保留MIT持有调序。五项修正：d06删旧锁定句；暂停旁路区分当前/本手；c11演出读取记录中的previousHandType，null与旧记录未知分开；c08/c09 hover完整显示或中性详情入口；e03/d10删工程备注。
 
-整体审美：待root独立查看。目标设备/OnePlus/真实GPU/听感：NOT_RUN。main保持，MIT持有调序8888e82由协调整合，未在此候选回退或改动。
+134受影响文案/条件/详情/原MIT调序测试与type PASS。新增原生检查：1280×720 c08/c09 hover14px实际bounds；B06第三章第2槽c09当前暂停，详情左移后恢复且静态fourFlush保留；f06跨场保存3/4，余1手；e02未买取消保持完整run，合法购买按原价一次扣金，已购详情再取消无变化。购买fixture12金币用于覆盖带版次商品；旧e02图片仍是首次6金币/多彩9金币不足的候选，未重拍或冒充自然购买。`post-audit-browser.json`记录当前软件Canvas验证；图的旧imageBuild/指纹独立保留。代码实际trace测试核两个换轨方向、第一手null、老trace未知。
+
+商店放不下完整句时显示两行“条件与效果/点击查看”，实测70×32px，完整句保留于fullText与详情。默认限制没有隐藏或缩字。d06/B06/f06独审是静态语义结论；原生详情/hover/取消/购买是实际UI验证。首版图像方向已由root独立查看通过，不等于全局最终美术验收。
+
+## 当前状态
+
+实现完成；受影响技术检查通过，修正SHA的精确CI仍须核终态；仅review不main。首版4aadecb精确CI37217186943/docs37217186971 success不充当新修正验证。目标设备/OnePlus/真实GPU/听感：NOT_RUN。无需重拍已有效图片；新图片/规则/RNG/save/domain/application/assets未改。

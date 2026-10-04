@@ -1,6 +1,6 @@
 import {courtArtKey,queueCourtArtLoads} from './HanddrawnArt';
 import {R2HandCandidateCache,r2CandidateKey,r2HandRevision,type R2CandidateInput,type R2CandidateResult} from '../domain/r2HandCandidates';
-import {jokerMemory,jokerMemoryAbility,publicJokerMemoryContext} from './JokerMemory';
+import {jokerMemory,jokerMemoryAbility,publicJokerMemoryContext,recordedJokerMemoryContext} from './JokerMemory';
 import {fitJokerLabel,jokerLabelRoom} from './JokerLabel';
 import {r2SelectionFacts,type R2SelectionFacts} from '../domain/r2SelectionFacts';
 import {selectionCopy,selectionCardCopy,fitConditionEntry,fourCardRuleCopy,selectionCandidateEntryBox,nextCandidate} from './SelectionCopy';
@@ -9,8 +9,8 @@ import {subtractBoxes} from './ScoreGeometry';
 import {jokerArtAlignedLayers} from './jokerArt';
 import {jokerArtLoadState,requestJokerArt,retryJokerArt} from './JokerArtLoading';
 import {JOKER_RARITY,createJokerRarityBadge} from './JokerRarity';
-import {cardAbilityCopy} from './CardCopy';
 import {mountF09Art} from './F09Art';
+import {cardAbilityCopy} from './CardCopy';
 import Phaser from 'phaser';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {r2RunModeConfig,R2_MODE_CATALOG} from '../content/r2Modes';
@@ -402,9 +402,9 @@ export class GameScene extends Phaser.Scene {
   private jokerRestriction(j:R2JokerInstance):string|undefined {
     const score=this.presentation?.score,context=score?.bossContext;
     if(score&&context)return r2ScoringDisabledJokerIds(context.boss,score.sourceJokers,R2_JOKERS,context.sealedJokerIds,context.challengeDisabledJokerId).includes(j.instanceId)?'本手计分与版次停用；静态规则与其他阶段效果另按条件执行':undefined;
-    const notice=stageNotice(this.run);return notice?.disabledJokerIds.includes(j.instanceId)?'本场计分与版次停用：'+notice.title+'；静态规则与其他阶段效果另按条件执行':undefined;
+    const notice=stageNotice(this.run);return notice?.disabledJokerIds.includes(j.instanceId)?'当前计分与版次停用：'+notice.title+'；静态规则与其他阶段效果另按条件执行':undefined;
   }
-  private memoryContext(j:R2JokerInstance,facts?:HandPreview){return publicJokerMemoryContext(this.run,{hand:this.hand,facts,scoringLimited:!!this.jokerRestriction(j),deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,jokerSlots:r2JokerCapacity(this.run),jokerCount:this.run.jokers.length});}
+  private memoryContext(j:R2JokerInstance,facts?:HandPreview){const ctx=publicJokerMemoryContext(this.run,{hand:this.hand,facts,scoringLimited:!!this.jokerRestriction(j),deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,jokerSlots:r2JokerCapacity(this.run),jokerCount:this.run.jokers.length});return this.presentation?recordedJokerMemoryContext(ctx,this.presentation.score.bossContext):ctx;}
   private jokerAbility(j:R2JokerInstance,preview?:HandPreview) {
     return jokerMemoryAbility(getJoker(j.definitionId),j,this.memoryContext(j,preview),this.presentation?.score.events);
   }
@@ -628,7 +628,8 @@ export class GameScene extends Phaser.Scene {
     panel.add(this.add.text(tx,14,d.name,{...style,fontSize:'20px',fontStyle:'bold',color:'#203744'}));
     const copy=this.jokerAbility(j,this.selectionPreview());
     panel.add(this.add.text(tx,46,copy?.compact??this.jokerValue(j),{...style,fontSize:'20px',fontStyle:'bold',color:'#a14b38'}));
-    panel.add(this.add.text(tx,80,copy?.summary??d.description,{...style,fontSize:'14px',color:'#314a50',maxLines:Math.max(1,Math.floor((height-118)/19))}).setLineSpacing(3));
+    const summary=this.add.text(tx,80,copy?.summary??d.description,{...style,fontSize:'14px',color:'#314a50'}).setLineSpacing(3).setName('joker/hover-purpose'),full=summary.text;
+    if(summary.height>height-118||summary.width>tw)summary.setText('条件与效果\n点击查看');summary.setData('fullText',full).setData('availableWidth',tw).setData('availableHeight',height-118);panel.add(summary);
     panel.add(this.add.text(tx,height-30,'点击看完整卡面',{...style,fontSize:'14px',color:'#486a63'}));
     this.view.root.bringToTop(panel);panel.once('destroy',()=>this.tweens.killTweensOf(panel));
     if(!this.reducedMotion){panel.setAlpha(0).setY(top+5);this.tweens.add({targets:panel,alpha:1,y:top,duration:130,ease:'Sine.easeOut'});}
@@ -843,7 +844,7 @@ export class GameScene extends Phaser.Scene {
     const body=ability?rarity.label+restriction+'\n版次：'+editionEffectText(j.edition)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 从右向左结算':' · 从左向右结算')+'。\n用下方按钮调序；出售须在商店确认。':rarity.symbol+' '+rarity.label+' · 当前 '+this.jokerValue(j)+restriction+'\n'+editionEffectText(j.edition)+'\n'+d.description+r2JokerExtraHelp(d)+'\n当前实例：'+r2JokerStateText(j)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 整手计分从右向左':' · 整手计分从左向右')+'；长按后拖动可调序，出售只在商店确认。';
     const dialog=this.dialog.open(d.name,body,[
       {label:'左移',disabled:!this.ready||index===0,run:()=>move(-1)},{label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:()=>move(1)},
-    ],{rarity:d.rarity,artLoad:{status:jokerArtLoadState(this,d.id).status,readStatus:()=>jokerArtLoadState(this,d.id).status,retry:()=>retryJokerArt(this,[d.id],()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();})},ability,collapseRules:!!ability,...(ability?{editionBody:'版次：'+editionEffectText(j.edition).split('。')[0]+(restriction?' · 本场暂停':'')} :{}),...(j.definitionId==='f09'?{f09:{inactive:!!restriction,bodyInactive:this.presentation?ability?.bodyActive===false:(this.run.stage?.discardsUsed??0)>0,reduced:this.reducedMotion,alignedLayers:jokerArtAlignedLayers(j.definitionId),reason:restriction||undefined}}:{}),...(art?{portrait:{url:art,thumbnailUrl:jokerArtPreviewUrl(d.id),alt:d.name+'完整卡面',layout:'card' as const,caption:d.name}}:{})});
+    ],{rarity:d.rarity,artLoad:{status:jokerArtLoadState(this,d.id).status,readStatus:()=>jokerArtLoadState(this,d.id).status,retry:()=>retryJokerArt(this,[d.id],()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();})},ability,collapseRules:!!ability,...(ability?{editionBody:'版次：'+editionEffectText(j.edition).split('。')[0]+(restriction?' · '+(this.presentation?'本手暂停':'当前暂停'):'')} :{}),...(j.definitionId==='f09'?{f09:{inactive:!!restriction,bodyInactive:this.presentation?ability?.bodyActive===false:(this.run.stage?.discardsUsed??0)>0,reduced:this.reducedMotion,alignedLayers:jokerArtAlignedLayers(j.definitionId),reason:restriction||undefined}}:{}),...(art?{portrait:{url:art,thumbnailUrl:jokerArtPreviewUrl(d.id),alt:d.name+'完整卡面',layout:'card' as const,caption:d.name}}:{})});
     if(!artKey||!this.textures.exists(artKey))this.attachJokerFallback(dialog,d.id);
   }
   private attachJokerFallback(dialog:HTMLDialogElement,definitionId:string):void {
