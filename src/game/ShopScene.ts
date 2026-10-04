@@ -2,7 +2,7 @@ import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {R2_JOKERS} from '../content/r2Schema';
 import {jokerMemoryAbility,publicJokerMemoryContext} from './JokerMemory';
 import type {R2JokerInstance} from '../content/r2Schema';
-import {shopLayout} from './ShopLayout';
+import {shopLayout,shopOwnedHitBox,shopOwnedNameArea} from './ShopLayout';
 import {goodsArtKey,goodsArtLoadState,requestGoodsArt,retryGoodsArt} from './GoodsArtLoading';
 import {ShopResultFeedback,shopResultBox,shopResultPages,type ShopResultLine} from './ShopResultFeedback';
 import {requestJokerArt,jokerArtLoadState,retryJokerArt} from './JokerArtLoading';
@@ -106,10 +106,11 @@ export class ShopScene extends Phaser.Scene {
       const b=p.slots[i],d=getR2Joker(j.definitionId),ability=this.jokerCopy(j.definitionId,j),first=v.root.length;
       this.drawSlot(b,true,d.rarity);
       this.drawJokerPicture(j.definitionId,{x:b.x+3,y:b.y+22,width:b.width-6,height:b.height-25});
-      const ownedName=v.text(b.x+3,b.y+3,d.name,14,'#26313A');this.ellipsis(ownedName,b.width-6);
+      const nameArea=shopOwnedNameArea(b,p.slots[i+1]?.x,v.layout.width);
+      const ownedName=v.text(nameArea.x,b.y+3,d.name,14,'#26313A');this.ellipsis(ownedName,nameArea.width);
       v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21,compact:true}).setData('definitionId',j.definitionId).setData('surface','owned'));
 
-      const hover=this.hoverCard(first,b,j.definitionId),r=v.rect({...b,height:b.height+(ability||!p.portrait?22:0)}).setFillStyle(0,0).setStrokeStyle();
+      const hover=this.hoverCard(first,b,j.definitionId),r=v.rect(shopOwnedHitBox(b,p.reroll.y,!!ability||!p.portrait)).setFillStyle(0,0).setStrokeStyle();
       v.target(r,`joker/${j.instanceId}`,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:(x)=>this.moveJoker(j.instanceId,x),holdToDrag:true,...hover});
     });
     for(let i=this.run.jokers.length;!p.inventoryCollapsed&&i<r2JokerCapacity(this.run);i++){
