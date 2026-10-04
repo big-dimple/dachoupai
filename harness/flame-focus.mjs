@@ -8,6 +8,7 @@ import sharp from 'sharp';
 import {chooseCharacter,tapUI,tapMenuAction,openMenuSection,waitScene} from './ui.mjs';
 const dir=process.env.PAPER_FIRE_DIR||'shots/cinnabar',port=5260;
 const localCornersOnly=process.env.FLAME_FOCUS_SCOPE==='local-corners';
+const integrationOnly=process.env.FLAME_FOCUS_SCOPE==='integration';
 await mkdir(dir,{recursive:true});
 const report={harnessCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),build:JSON.parse(await readFile(dir+'/build/build-info.json','utf8')),runs:[],keyframes:[],limits:[
   'Natural single5 high-card202 plus600 /1200 /5589 paths; no injected score, target, RNG, rule or save state. Long-digit probe changes/restores UI Text only.',
@@ -40,7 +41,7 @@ function validate(f){
   assert.equal(f.masked.length,2);assert.ok(f.masked.every(o=>o.mask&&o.same&&!o.input));
   for(const loop of f.unclassifiedLoops)assert.ok(Number.isFinite(loop.start)&&Number.isFinite(loop.stop)&&loop.stop-loop.start<=.35,'non-roll looping sources have a scheduled short end');
   assert.equal(f.textures.length,0);assert.equal(f.burning,0);assert.equal(f.shake,false);assert.equal(f.stamp,false);
-  if(f.layers){assert.ok(f.layers.local>f.layers.pedestal,'local ink stays above the opaque score pedestal');assert.ok(f.layers.text.every(index=>index>f.layers.local),'measured score text stays above local ink');assert.ok(f.layers.foreground.length>0&&f.layers.foreground.every(index=>index>f.layers.local),'actual nonempty card/button foreground stays above ink');assert.ok(f.layers.frame<f.layers.pedestal,'exterior frame stays behind paper and foreground');}
+  if(f.layers){assert.ok(f.layers.local>f.layers.pedestal,'local ink stays above the opaque score pedestal');assert.ok(f.layers.avatar>=0&&f.layers.avatar>f.layers.local,'actual root avatar exists and stays above ink; a missing child cannot be filtered away');assert.ok(f.layers.text.every(index=>index>f.layers.local),'measured score text stays above local ink');assert.ok(f.layers.foreground.length>0&&f.layers.foreground.every(index=>index>f.layers.local),'actual nonempty card/button foreground stays above ink');assert.ok(f.layers.frame<f.layers.pedestal,'exterior frame stays behind paper and foreground');}
   for(const p of f.pieces)for(const g of f.guards)assert.equal(overlaps(p,g),false,'every paintable piece excludes actual guards');
   for(const p of f.bands)for(const body of [...f.cards,...f.controls,...f.domControls.map(o=>o.bounds)])assert.equal(overlaps(p,body),false,'outer band excludes card/action body');
   for(const flight of f.flights){assert.ok(flight.mask);const p=flight.landing,b=flight.cell;assert.ok(p.x<b.x||p.x>b.x+b.width||p.y<b.y||p.y>b.y+b.height);}
@@ -82,12 +83,12 @@ async function run(viewport,spec,mode='natural'){
         if(!s.presentation||!s.scoreTotal?.active)return;
         const saved=JSON.stringify(g.registry.get('runController').state);committed??=saved;
         const flame=s.scoreFlame,brush=flame?.graphic.getData('strokeState'),l=s.view.layout;
-        const controls=s.view.root.list.filter(o=>o.name.startsWith('action/')),foreground=[s.roleFrame,...s.cardViews.map(v=>v.container),...[...s.settledCards.values()].map(v=>v.container),...s.jokerViews.values(),...controls.flatMap(o=>[o,o.getData('buttonArt'),o.getData('label')])].filter(o=>o?.active&&s.view.root.list.includes(o));
+        const controls=s.view.root.list.filter(o=>o.name.startsWith('action/')),foreground=[s.roleAvatar,...s.cardViews.map(v=>v.container),...[...s.settledCards.values()].map(v=>v.container),...s.jokerViews.values(),...controls.flatMap(o=>[o,o.getData('buttonArt'),o.getData('label')])].filter(o=>o?.active&&s.view.root.list.includes(o));
         const f={frame:g.loop.frame,at:performance.now(),renderer:g.renderer.gl?'WebGL':'Canvas',origin:s.presentation.originHeat,product:s.displayedScoreProduct,
           level:flame?.graphic.getData('intensity')??0,brush,eventId:s.scoreTotal.getData('eventId')??s.presentation.score.events[0].eventId,eventPhase:s.scoreTotal.getData('eventPhase')??'base',shown:s.scoreTotal.text,
           texts:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal].filter(o=>o.visible&&o.active).map(o=>({text:o.text,full:o.getData('fullText'),bounds:bounds(o),font:o.style.fontSize})),
           pieces:flame?.graphic.getData('safePieces')??[],guards:flame?.graphic.getData('textGuards')??[],bands:flame?.graphic.getData('frameBands')??[],
-          localStrokes:flame?.graphic.getData('localStrokes')??[],layers:flame?{local:s.view.root.list.indexOf(flame.graphic),frame:s.view.root.list.findIndex(o=>o.name==='score/fire-frame'),pedestal:s.view.root.list.findIndex(o=>o.name==='score/total-pedestal'),foreground:foreground.map(o=>s.view.root.list.indexOf(o)),text:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal].map(o=>s.view.root.list.indexOf(o))}:undefined,
+          localStrokes:flame?.graphic.getData('localStrokes')??[],layers:flame?{local:s.view.root.list.indexOf(flame.graphic),avatar:s.view.root.list.indexOf(s.roleAvatar),frame:s.view.root.list.findIndex(o=>o.name==='score/fire-frame'),pedestal:s.view.root.list.findIndex(o=>o.name==='score/total-pedestal'),foreground:foreground.map(o=>s.view.root.list.indexOf(o)),text:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal].map(o=>s.view.root.list.indexOf(o))}:undefined,
           cards:s.cardViews.filter(v=>v.container.visible).map(v=>bounds(v.container)),domControls:domControls(),controls:[...Object.values(l.buttons),...Object.values(l.tableActions)],
           masked:s.view.root.list.filter(o=>['score/fire','score/fire-frame'].includes(o.name)).map(o=>({name:o.name,mask:!!o.mask,same:o.mask===flame?.graphic.mask,input:!!o.input})),
           flights:s.view.root.list.filter(o=>o.name==='score/source-flight-line'||o.name==='score/source-flight-packet').map(o=>({landing:o.getData('landing'),cell:o.getData('cell'),mask:!!o.mask})),
@@ -105,9 +106,9 @@ async function run(viewport,spec,mode='natural'){
         }
       };
       window.__cinnabar={frames,rasters,observe};g.events.on('postrender',observe);
-    },{tier:spec.tier,captureBelow:true,captureFrames:mode==='natural',localPeak:localCornersOnly});
+    },{tier:spec.tier,captureBelow:true,captureFrames:mode==='natural'&&!integrationOnly,localPeak:localCornersOnly});
     await tapUI(p,'game','action/play',true);
-    if(mode==='natural'&&spec.tier===3){
+    if(mode==='natural'&&spec.tier===3&&!integrationOnly){
       await p.waitForFunction(()=>!!window.__cinnabar.pagePause);
       const frozen=await p.evaluate(()=>window.__cinnabar.pagePause);
       assert.equal(frozen.metadata.domControls.length,2,'menu and fullscreen DOM remain visible');
@@ -130,7 +131,7 @@ async function run(viewport,spec,mode='natural'){
     for(const f of r.frames)validate(f);
     assert.ok(r.frames.some(f=>f.brush&&f.brush.localAlpha>0),'actual positive hit exists');
     if(mode==='natural'){
-      assert.ok(captured.rasters.some(f=>f.tier===spec.tier),'actual below-target hit or threshold peak captured');
+      if(!integrationOnly)assert.ok(captured.rasters.some(f=>f.tier===spec.tier),'actual below-target hit or threshold peak captured');
       if(spec.tier===0)assert.ok(BigInt(r.result.stage.heat)<BigInt(r.result.stage.targetHeat));
       // The600 wheel starts at500 in its saved base event; below-target frames come from another natural path.
       const expected=r.result.lastTrace.events.filter(e=>e.phase!=='base'&&e.phase!=='finalScore').map(e=>e.eventId);
@@ -181,7 +182,10 @@ async function contacts(viewport){
   await sharp({create:{width:w*2+gap,height:(h+label)*2+gap,channels:4,background:'#f3eadb'}}).composite(composite).png().toFile(`${dir}/${w}x${h}-contact.png`);
 }
 try{
-  if(localCornersOnly){
+  if(integrationOnly){
+    report.scope='Finite main integration regression: natural202 and5589 in both viewports, explicit root-avatar/paper/card/button/text layers; no image retakes.';
+    for(const viewport of [{width:390,height:740},{width:844,height:300}])for(const spec of [specs[0],specs[3]])await run(viewport,spec);report.status='PASS';
+  }else if(localCornersOnly){
     report.scope='Two natural202 low-tier peak frames only; previous approved exterior frames retained at their original source.';
     report.limits[0]='Natural Amo single5 high-card202 only; no injected score, target, RNG, rule or save state. Long-digit probe changes/restores UI Text only.';
     for(const viewport of [{width:390,height:740},{width:844,height:300}])await run(viewport,specs[0]);report.status='PASS';
