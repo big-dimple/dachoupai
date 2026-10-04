@@ -1,0 +1,815 @@
+{
+  "taskId": "P08",
+  "testedCommit": "93d41eee4e273a5f8668e4e68d2f097add155dc1",
+  "alignedMain": "8888e82ede1776e259096bbdfe4eef63fc6f2415",
+  "build": {
+    "version": "C03",
+    "revision": "93d41eee4e273a5f8668e4e68d2f097add155dc1",
+    "modified": false,
+    "builtAt": "2026-10-04T16:45:47.687Z"
+  },
+  "browser": "151.0.7922.173",
+  "renderer": "Chromium software Canvas",
+  "DPR": 1,
+  "input": "native touchscreen/DOM taps and CDP browser touch sequences; read-only Phaser observations",
+  "fixture": "Validator-approved native nine-card checkpoint import, amo with c08/c09/f09; controlled coverage, not natural acquisition",
+  "device": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "runs": [
+    {
+      "profile": {
+        "width": 390,
+        "height": 740,
+        "top": 0,
+        "bottom": 0,
+        "motion": "no-preference"
+      },
+      "checks": [
+        {
+          "name": "empty-selection disabled taps preserve complete run/RNG",
+          "status": "PASS"
+        },
+        {
+          "name": "hold420ms/action/sort-rank/move-release",
+          "status": "PASS"
+        },
+        {
+          "name": "hold420ms/action/sort-suit/touchCancel",
+          "status": "PASS"
+        },
+        {
+          "name": "hold420ms/action/discard/move-release",
+          "status": "PASS"
+        },
+        {
+          "name": "hold420ms/action/play/touchCancel",
+          "status": "PASS"
+        }
+      ],
+      "sorts": [
+        {
+          "mode": "rank",
+          "selectedBefore": [
+            "spades-2"
+          ],
+          "beforeSeq": 3,
+          "afterSeq": 4,
+          "status": "PASS"
+        },
+        {
+          "mode": "suit",
+          "selectedBefore": [
+            "spades-2"
+          ],
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "status": "PASS"
+        }
+      ],
+      "commands": [
+        {
+          "kind": "DiscardHand",
+          "ids": [
+            "spades-2"
+          ],
+          "beforeSeq": 5,
+          "afterSeq": 6,
+          "discards": [
+            3,
+            2
+          ],
+          "hands": [
+            4,
+            4
+          ],
+          "authoritativeWholeState": "PASS",
+          "busyDisabled": "PASS"
+        },
+        {
+          "kind": "DiscardHand",
+          "ids": [
+            "spades-3"
+          ],
+          "beforeSeq": 6,
+          "afterSeq": 7,
+          "discards": [
+            2,
+            1
+          ],
+          "hands": [
+            4,
+            4
+          ],
+          "authoritativeWholeState": "PASS",
+          "busyDisabled": "PASS"
+        },
+        {
+          "kind": "PlayHand",
+          "ids": [
+            "spades-4"
+          ],
+          "beforeSeq": 7,
+          "afterSeq": 8,
+          "discards": [
+            1,
+            1
+          ],
+          "hands": [
+            4,
+            3
+          ],
+          "authoritativeWholeState": "PASS",
+          "busyDisabled": "PASS"
+        }
+      ],
+      "errors": [],
+      "initialDisabled": [
+        {
+          "name": "action/discard",
+          "frame": {
+            "x": 106,
+            "y": 652,
+            "width": 106,
+            "height": 56
+          },
+          "enabled": false,
+          "label": {
+            "text": "弃牌",
+            "font": 14,
+            "color": "#595b59",
+            "alpha": 1,
+            "bounds": {
+              "x": 160,
+              "y": 658.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          "count": {
+            "text": "3 次",
+            "font": 14,
+            "color": "#595b59",
+            "alpha": 1,
+            "bounds": {
+              "x": 161,
+              "y": 681,
+              "width": 26,
+              "height": 16
+            }
+          },
+          "glyph": {
+            "visible": true,
+            "commands": 80
+          }
+        },
+        {
+          "name": "action/play",
+          "frame": {
+            "x": 218,
+            "y": 652,
+            "width": 160,
+            "height": 56
+          },
+          "enabled": false,
+          "label": {
+            "text": "出牌",
+            "font": 16,
+            "color": "#595b59",
+            "alpha": 1,
+            "bounds": {
+              "x": 296.5,
+              "y": 657.5,
+              "width": 33,
+              "height": 19
+            }
+          },
+          "count": {
+            "text": "4 次",
+            "font": 14,
+            "color": "#595b59",
+            "alpha": 1,
+            "bounds": {
+              "x": 300,
+              "y": 681,
+              "width": 26,
+              "height": 16
+            }
+          },
+          "glyph": {
+            "visible": true,
+            "commands": 72
+          }
+        }
+      ],
+      "selected": {
+        "layout": {
+          "mode": "portrait",
+          "compact": true,
+          "shortLandscape": false,
+          "width": 390,
+          "height": 740,
+          "hud": {
+            "x": 12,
+            "y": 8,
+            "width": 366,
+            "height": 52
+          },
+          "jokers": {
+            "x": 12,
+            "y": 62,
+            "width": 366,
+            "height": 89.6
+          },
+          "preview": {
+            "x": 12,
+            "y": 153.6,
+            "width": 366,
+            "height": 378.79999999999995
+          },
+          "scoreBoard": {
+            "x": 12,
+            "y": 153.6,
+            "width": 366,
+            "height": 132
+          },
+          "playedArea": {
+            "x": 12,
+            "y": 305.6,
+            "width": 366,
+            "height": 226.79999999999995
+          },
+          "handLabel": {
+            "x": 12,
+            "y": 518.4,
+            "width": 116,
+            "height": 18
+          },
+          "piles": {
+            "x": 128,
+            "y": 518.4,
+            "width": 250,
+            "height": 18
+          },
+          "tools": {
+            "x": 12,
+            "y": 652,
+            "width": 88,
+            "height": 56
+          },
+          "hand": {
+            "x": 12,
+            "y": 536.4,
+            "width": 366,
+            "height": 111.6
+          },
+          "actions": {
+            "x": 12,
+            "y": 652,
+            "width": 366,
+            "height": 56
+          },
+          "status": {
+            "x": 12,
+            "y": 712,
+            "width": 366,
+            "height": 20
+          },
+          "scoreFire": {
+            "x": 151.08,
+            "y": 179.6,
+            "width": 222.92,
+            "height": 36.00000000000003
+          },
+          "toolsInHud": false,
+          "labelHeight": 0,
+          "buttons": {
+            "rank": {
+              "x": 12,
+              "y": 652,
+              "width": 44,
+              "height": 56
+            },
+            "suit": {
+              "x": 56,
+              "y": 652,
+              "width": 44,
+              "height": 56
+            }
+          },
+          "tableActions": {
+            "discard": {
+              "x": 106,
+              "y": 652,
+              "width": 106,
+              "height": 56
+            },
+            "play": {
+              "x": 218,
+              "y": 652,
+              "width": 160,
+              "height": 56
+            }
+          },
+          "cards": [
+            {
+              "visible": true,
+              "visual": {
+                "x": 12,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 12,
+                "y": 536.4,
+                "width": 37.75,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 49.75,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 49.75,
+                "y": 536.4,
+                "width": 37.75,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 87.5,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 87.5,
+                "y": 536.4,
+                "width": 37.75,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 125.25,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 125.25,
+                "y": 536.4,
+                "width": 37.75,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 163,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 163,
+                "y": 536.4,
+                "width": 37.75,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 200.75,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 200.75,
+                "y": 536.4,
+                "width": 37.75,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 238.5,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 238.5,
+                "y": 536.4,
+                "width": 37.75,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 276.25,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 276.25,
+                "y": 536.4,
+                "width": 37.75,
+                "height": 111.6
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 314,
+                "y": 558.4,
+                "width": 64,
+                "height": 89.6
+              },
+              "hit": {
+                "x": 314,
+                "y": 536.4,
+                "width": 64,
+                "height": 111.6
+              }
+            }
+          ],
+          "handRows": 1,
+          "handOverflow": false,
+          "handStart": 0,
+          "visibleCardCount": 9,
+          "handNavigation": {
+            "previous": {
+              "x": 12,
+              "y": 560.6,
+              "width": 44,
+              "height": 44
+            },
+            "next": {
+              "x": 334,
+              "y": 560.6,
+              "width": 44,
+              "height": 44
+            }
+          },
+          "slots": [
+            {
+              "x": 23,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "jokerLabels": [
+            {
+              "x": 23,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            }
+          ]
+        },
+        "selected": [
+          "spades-2"
+        ],
+        "hint": false,
+        "overlay": false,
+        "status": {
+          "text": "已选 1 / 5",
+          "font": 14,
+          "color": "#26313a",
+          "alpha": 1,
+          "bounds": {
+            "x": 12,
+            "y": 712,
+            "width": 60,
+            "height": 16
+          }
+        },
+        "controls": [
+          {
+            "name": "action/sort-rank",
+            "frame": {
+              "x": 12,
+              "y": 652,
+              "width": 44,
+              "height": 56
+            },
+            "enabled": true,
+            "label": {
+              "text": "点数",
+              "font": 15,
+              "color": "#3f606b",
+              "alpha": 1,
+              "bounds": {
+                "x": 18.5,
+                "y": 670.5,
+                "width": 31,
+                "height": 17
+              }
+            },
+            "count": null,
+            "glyph": null
+          },
+          {
+            "name": "action/sort-suit",
+            "frame": {
+              "x": 56,
+              "y": 652,
+              "width": 44,
+              "height": 56
+            },
+            "enabled": true,
+            "label": {
+              "text": "花色",
+              "font": 15,
+              "color": "#3f606b",
+              "alpha": 1,
+              "bounds": {
+                "x": 62.5,
+                "y": 670.5,
+                "width": 31,
+                "height": 17
+              }
+            },
+            "count": null,
+            "glyph": null
+          },
+          {
+            "name": "action/discard",
+            "frame": {
+              "x": 106,
+              "y": 652,
+              "width": 106,
+              "height": 56
+            },
+            "enabled": true,
+            "label": {
+              "text": "弃牌",
+              "font": 14,
+              "color": "#3f606b",
+              "alpha": 1,
+              "bounds": {
+                "x": 160,
+                "y": 658.5,
+                "width": 28,
+                "height": 17
+              }
+            },
+            "count": {
+              "text": "3 次",
+              "font": 14,
+              "color": "#3f606b",
+              "alpha": 1,
+              "bounds": {
+                "x": 161,
+                "y": 681,
+                "width": 26,
+                "height": 16
+              }
+            },
+            "glyph": {
+              "visible": true,
+              "commands": 80
+            }
+          },
+          {
+            "name": "action/play",
+            "frame": {
+              "x": 218,
+              "y": 652,
+              "width": 160,
+              "height": 56
+            },
+            "enabled": true,
+            "label": {
+              "text": "出牌",
+              "font": 16,
+              "color": "#fff9ee",
+              "alpha": 1,
+              "bounds": {
+                "x": 296.5,
+                "y": 657.5,
+                "width": 33,
+                "height": 19
+              }
+            },
+            "count": {
+              "text": "4 次",
+              "font": 14,
+              "color": "#fff9ee",
+              "alpha": 1,
+              "bounds": {
+                "x": 300,
+                "y": 681,
+                "width": 26,
+                "height": 16
+              }
+            },
+            "glyph": {
+              "visible": true,
+              "commands": 72
+            }
+          }
+        ],
+        "DOM": [
+          {
+            "selector": ".run-fullscreen-toggle",
+            "visible": true,
+            "x": 282,
+            "y": 12,
+            "width": 44,
+            "height": 44
+          },
+          {
+            "selector": ".run-menu-toggle",
+            "visible": true,
+            "x": 334,
+            "y": 12,
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 740,
+          "top": 0,
+          "right": 390,
+          "bottom": 740,
+          "left": 0
+        },
+        "renderer": 1
+      },
+      "screenshot": "390-full-safe0-0.png",
+      "hint": {
+        "visible": {
+          "text": "横滑选牌 · 从已选牌开始可取消",
+          "font": 14,
+          "color": "#26313a",
+          "alpha": 1,
+          "bounds": {
+            "x": 12,
+            "y": 712,
+            "width": 195,
+            "height": 16
+          }
+        },
+        "frame": {
+          "x": 12,
+          "y": 712,
+          "width": 366,
+          "height": 20
+        },
+        "overlay": false,
+        "expired": true,
+        "restoredStatus": "点数已排序"
+      },
+      "criticalDisabled": [
+        {
+          "name": "action/discard",
+          "frame": {
+            "x": 106,
+            "y": 652,
+            "width": 106,
+            "height": 56
+          },
+          "enabled": false,
+          "label": {
+            "text": "弃牌",
+            "font": 14,
+            "color": "#595b59",
+            "alpha": 1,
+            "bounds": {
+              "x": 160,
+              "y": 658.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          "count": {
+            "text": "1 次",
+            "font": 14,
+            "color": "#595b59",
+            "alpha": 1,
+            "bounds": {
+              "x": 161,
+              "y": 681,
+              "width": 26,
+              "height": 16
+            }
+          },
+          "glyph": {
+            "visible": true,
+            "commands": 80
+          }
+        },
+        {
+          "name": "action/play",
+          "frame": {
+            "x": 218,
+            "y": 652,
+            "width": 160,
+            "height": 56
+          },
+          "enabled": false,
+          "label": {
+            "text": "出牌",
+            "font": 16,
+            "color": "#595b59",
+            "alpha": 1,
+            "bounds": {
+              "x": 296.5,
+              "y": 657.5,
+              "width": 33,
+              "height": 19
+            }
+          },
+          "count": {
+            "text": "4 次",
+            "font": 14,
+            "color": "#595b59",
+            "alpha": 1,
+            "bounds": {
+              "x": 300,
+              "y": 681,
+              "width": 26,
+              "height": 16
+            }
+          },
+          "glyph": {
+            "visible": true,
+            "commands": 72
+          }
+        }
+      ],
+      "status": "FAIL",
+      "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+    }
+  ],
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}
