@@ -1,5 +1,13 @@
 # 开发入口
 
+## P1-J 成组领域最终本地门禁（2026-10-05 UTC，仅review PR26）
+
+冻结源码9392adb；产品src与已推67c93ae一致。父审三类保存漏洞及实际助攻漏接已修，旧28ebb真实12 FAIL保留。2420tests/134files、content/type/build、系统Chromium标准双端smoke、plan全PASS，原生四候选失败/重试及五身份恢复全PASS，源码/index/HEAD保持。24种子×两身份的有界自然候选形成四条一场真实命令回放：无b06的b10两对成长与e7d差异已观察，b03/b06自然可负担获取及完整转顺同花路线未观察，详见final/NATURAL_UI_PLAN.md。普通入口仍e7d，UI/素材保持；本次仅draft，精确最终head CI和父独审另报，main父串行。P08 in_progress、C04 D32及原真机/听感/平衡门槛保持。证据docs/production/evidence/p1-j-group-upgrade-2026-10-05/final/summary.json。以下记录按各自SHA保留。
+
+## P1-J 成组升级首领域检查点（2026-10-05 UTC，仅新review）
+
+从已发布ac025ee独立，显式group-upgrade-v1/5025cc23c013987f，冻结v10/v11/843f/e7d；仅b03/b06/b08/b10改为精确成组合同。typed原始计分组目标/严格保存/纯copy已落地，type与84相关检查及五个裸Lv1金样通过，首FAIL保留；完整保存故障/自然候选与最终门禁待继续。普通入口仍e7d，GameScene/选择布局/其余角色/满堂彩/素材不改。只draft，main父串行；P08 in_progress、C04 D32及真机/听感/平衡门槛保持。见 [成组原型合同](docs/production/GROUP_UPGRADE_PROTOTYPE.md)。
+
 ## 六角色共同Joker正常入口/UI（2026-10-05 UTC，仅 draft PR25）
 
 基线main193c93b，正常合入已审PR22 e2fc57c、PR24 36eff49；首源码bf8b5ba已推送。仅普通新局六角色采用combo-growth-v1/e7d21fce68b80072，能力白名单仅阿默助攻；四完整身份retry原规则创建，默认createRun仍v11。当前局resolver贯穿商店预览、牌桌/紧凑条件、AI与保存回看，复用领域和已审纯文案；domain/content/application/platform本批未改。最终源码92ade25，UI自然证据a8fcd2e与其src/harness完整tree相同。2377tests/132files、content/type/build/标准双端smoke/plan全PASS，source/index/HEAD保持；六角正常新hash、仅阿默助攻，自然d12六金购买→三A553/实际留5收5金→保存刷新账本、自然阿默316→389失败→原身份重试与容量失败保原局/唯一候选、四小屏与7受控正反例全PASS；15张通过PNG及2张原FAIL图actual view。最终精确CI见PR25与本批summary，不预记上线。首测试和原生样板FAIL保留，main仍只由父串行决定。P08 in_progress、C04 D32及既有真机/听感/平衡门槛保持。

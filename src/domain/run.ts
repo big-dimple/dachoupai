@@ -95,7 +95,7 @@ export interface RunState {
 }
 
 export type Action =
-  | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2';modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1'|'combo-growth-v1';r2Identity?:{contentVersion:string;contentHash:string} }
+  | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2';modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1'|'combo-growth-v1'|'group-upgrade-v1';r2Identity?:{contentVersion:string;contentHash:string} }
   | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' | 'SkipStage' | 'ContinueEndless' }
   | { type: 'PlayHand'; selectedIds: readonly string[] }
   | { type: 'PlayAssistedHand'; selectedIds: readonly string[]; assistIds:readonly string[] }
@@ -324,7 +324,7 @@ export function applyCommand(input: AnyRunState | null, command: Command): Comma
   return { ok: true, state, events, receipt, duplicate: false };
 }
 
-type StartOptions = { seed: string; characterId: CharacterId; runId: string;modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1'|'combo-growth-v1';r2Identity?:{contentVersion:string;contentHash:string} };
+type StartOptions = { seed: string; characterId: CharacterId; runId: string;modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1'|'combo-growth-v1'|'group-upgrade-v1';r2Identity?:{contentVersion:string;contentHash:string} };
 export function createRun(options: StartOptions & {rulesVersion:'r2'}): R2RunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'}): RunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState;

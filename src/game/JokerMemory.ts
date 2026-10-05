@@ -1,3 +1,4 @@
+import {R2_GROUP_UPGRADE_IDS,R2_GROUP_UPGRADE_JOKERS} from '../content/r2GroupUpgradeJokers';
 import {R2_COMBO_GROWTH_JOKERS,R2_COMBO_GROWTH_IDS} from '../content/r2ComboGrowthJokers';
 import {R2_ASSIST_JOKERS} from '../content/r2AssistJokers';
 import {JOKER_ASSIST_COMPACT} from './JokerAssistTemplates';
@@ -34,6 +35,7 @@ export function r2ConditionDescription(c:Condition):string {
   case'held-count':return'打出前保留至少'+c.minimum+'张，包括停用牌；过关时按上手实际记录';
   case'play-modulo':return modulo(c.divisor,c.remainder)+'；弃牌不推进，返次不回退';
   case'suit-in':return'对象花色为'+c.values.map(s=>SUIT_SYMBOL[s]).join('／');
+  case'largest-scoring-rank-group':return'成组牌型：按主手原始计分牌选最多同点组，平手取左边先出现组；失效参与选组，仅有效牌再计';
   case'paired-rank':return'同打的同点数牌至少'+c.minimum+'张，附带和停用也参与计数';
   case'rank-groups':return'打出至少'+c.minimum+'组不同点数、各至少'+c.groupSize+'张同点的牌';
   case'held-rank-first':return(c.playedEquals===undefined?'':'打出恰好'+c.playedEquals+'张；')+'保留且可生效的'+c.values.map(r=>r>=2&&r<=14?rankLabel(r as PlayingCard['rank']):String(r)).join('／')+'，过滤后按手牌顺序前'+c.limit+'张';
@@ -144,7 +146,9 @@ export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstanc
   valueLabel?[valueLabel,...(stored.length===1&&stored[0][0]==='coefficient'?['×'+exact(stored[0][1])]:[])]:[];
  const incomeOp=definition.hooks.flatMap(h=>h.operations).find(o=>o.kind==='add-gold-per-held'||o.kind==='add-gold-per-capital');
  const comboLabels:Record<string,string[]>={a06:['两对以上×系数'],f10:['冷开局救火'],d12:[incomeOp?.kind==='add-gold-per-held'?'成型留≥'+incomeOp.minimum+'给金':'条件 ›'],e04:[incomeOp?.kind==='add-gold-per-capital'?'奖励前每'+incomeOp.divisor+'金+1':'条件 ›']};
- const labelCandidates=stateCandidates.length?stateCandidates:combo?comboLabels[definition.id]:(R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_COMPACT[definition.id]:undefined)??JOKER_COMPACT[definition.id]??[R2_OFFER_USE[definition.id]??'条件 ›'];
+ const groupLabels:Record<string,string[]>={b03:['成组长倍率'],b06:['最大同点组再计'],b08:['成组过关+3金'],b10:['成组长热度']};
+ const grouped=R2_GROUP_UPGRADE_IDS.includes(definition.id)&&R2_GROUP_UPGRADE_JOKERS.includes(definition);
+ const labelCandidates=stateCandidates.length?stateCandidates:grouped?groupLabels[definition.id]:combo?comboLabels[definition.id]:(R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_COMPACT[definition.id]:undefined)??JOKER_COMPACT[definition.id]??[R2_OFFER_USE[definition.id]??'条件 ›'];
  const short=labelCandidates[0],savedShort=stateCandidates[0]??'';
  return{instanceId:instance?.instanceId,definitionId:definition.id,name:definition.name,short,labelCandidates,stateLabel:stateCandidates.length>0,status,statusDetail,saved,savedShort,remaining,remainingUses,usageResetsOnEntry,staticRules,hooks,scoreLimited:ctx.scoringLimited};
 }

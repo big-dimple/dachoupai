@@ -1,3 +1,4 @@
+import {R2_GROUP_HAND_TYPES,r2LargestScoringRankGroup} from './r2GroupHands';
 import type {PlayingCard} from '../cards/types';
 import type {Condition} from '../content/r2Schema';
 import type {R2HandType} from './evaluateR2';
@@ -14,6 +15,7 @@ export interface R2ScoreConditionContext {
 export function r2ScoreConditionMatches(c:Condition,ctx:R2ScoreConditionContext,card?:PlayingCard):boolean {
 switch (c.kind) {
       case 'always': return true;
+      case 'largest-scoring-rank-group':return !!card&&R2_GROUP_HAND_TYPES.includes(ctx.handType)&&r2LargestScoringRankGroup(ctx.played,ctx.scoringIds).includes(card.id);
       case 'hand-type-in': return c.values.includes(ctx.handType);
       case 'rank-in': return !!card && c.values.includes(card.rank);
       case 'played-count': return ctx.played.length === c.equals;

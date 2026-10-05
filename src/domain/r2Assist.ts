@@ -4,7 +4,7 @@ import {AMO_ASSIST_TYPES} from './r2QualifiedHands';
 export {AMO_ASSIST_TYPES} from './r2QualifiedHands';
 import {r2SelectionFacts,type R2SelectionInput,type R2SelectionFacts} from './r2SelectionFacts';
 import {R2_ASSIST_VERSION,R2_ASSIST_HASH} from './r2AssistIdentity';
-import {isR2ComboGrowth} from './r2ComboGrowth';
+import {hasR2ComboGrowthContract} from './r2GroupUpgrade';
 
 export {R2_ASSIST_VERSION,R2_ASSIST_HASH,R2_ASSIST_CONTRACT} from './r2AssistIdentity';
 export interface R2AssistFacts extends R2SelectionFacts {
@@ -29,7 +29,7 @@ export function r2AssistFacts(input:R2SelectionInput&{assistIds:readonly string[
 /** Only public current-run facts; UI may use this before drafting a group. No score or future cards. */
 export function r2AssistAvailability(state:Pick<R2RunState,'contentVersion'|'contentHash'|'characterId'|'phase'|'stage'|'mode'|'difficulty'|'challengeId'|'programsEnabled'>):
   {available:true;remaining:1}|{available:false;remaining:0;reason:'profile'|'character'|'phase'|'disabled'|'used'} {
-  if(!isR2ComboGrowth(state)&&(state.contentVersion!==R2_ASSIST_VERSION||state.contentHash!==R2_ASSIST_HASH))return {available:false,remaining:0,reason:'profile'};
+  if(!hasR2ComboGrowthContract(state)&&(state.contentVersion!==R2_ASSIST_VERSION||state.contentHash!==R2_ASSIST_HASH))return {available:false,remaining:0,reason:'profile'};
   if(state.characterId!=='amo')return {available:false,remaining:0,reason:'character'};
   if(state.phase!=='await-input'||!state.stage)return {available:false,remaining:0,reason:'phase'};
   if(!r2RunModeConfig(state).characterAbilityEnabled||state.stage.boss?.definitionId==='B08')return {available:false,remaining:0,reason:'disabled'};

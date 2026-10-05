@@ -1,0 +1,22 @@
+{
+  "status": "WIP first code checkpoint",
+  "baseline": "ac025ee9132dcd5e2ce97767ff7adb780873ab95",
+  "baselineTree": "a3ea7905530fb3d3e0b817f3987cf026c0d859b0",
+  "firstRedSource": "993c312301a9b0afa9297acba84a7e477b269a9d",
+  "failures": [
+    "test mutated frozen score result",
+    "B16 fixture wrongly assumed all Joker scoring disabled",
+    "missing ScoreEvent type import",
+    "subsequent Boss fixture used non-existent entryJokerIds property; tests not run until fixed"
+  ],
+  "firstPass": {
+    "tests": 84,
+    "typecheck": "PASS",
+    "source": "following checkpoint includes only docs evidence in addition to tested working source"
+  },
+  "profile": {
+    "version": "quality-r2-group-upgrade-prototype-v1",
+    "hash": "json-fnv-v1:5025cc23c013987f"
+  },
+  "remaining": "See GROUP_UPGRADE_PROTOTYPE.md; no full acceptance claimed"
+}

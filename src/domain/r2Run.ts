@@ -1,4 +1,5 @@
-import {isR2ComboGrowth,r2ColdOpening,type R2OpeningDiscard,R2_COMBO_GROWTH_VERSION,R2_COMBO_GROWTH_HASH} from './r2ComboGrowth';
+import {hasR2ComboGrowthContract,R2_GROUP_UPGRADE_VERSION,R2_GROUP_UPGRADE_HASH} from './r2GroupUpgrade';
+import {r2ColdOpening,type R2OpeningDiscard,R2_COMBO_GROWTH_VERSION,R2_COMBO_GROWTH_HASH} from './r2ComboGrowth';
 import {r2JokerDefinitionsFor} from './r2ContentProfiles';
 import {r2AssistAvailability,r2AssistFacts,R2_ASSIST_VERSION,R2_ASSIST_HASH} from './r2Assist';
 import {R2_PUBLISHED_CONTENT,R2_PUBLISHED_JOKERS} from './r2PublishedContent';
@@ -40,6 +41,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_GROUP_UPGRADE_VERSION,contentHash:R2_GROUP_UPGRADE_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_COMBO_GROWTH_VERSION,contentHash:R2_COMBO_GROWTH_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH,amoScoreTiming:'after-joker' as const}),
@@ -115,7 +117,7 @@ export function assertR2Invariants(state:R2RunState):void {
       if(Object.hasOwn(j.growth,key))check(Rational.fromJSON(j.growth[key]).compare(Rational.fromJSON(minimum))>=0,'joker growth/minimum');
     }
   }
-  if(isR2ComboGrowth(state))for(const joker of state.jokers){
+  if(hasR2ComboGrowthContract(state))for(const joker of state.jokers){
     if(joker.definitionId==='f10')check(joker.counters?.rescueArmed===(state.phase==='await-input'&&!!state.stage&&state.stage.playIndex===0&&state.stage.discardsUsed>0&&r2ColdOpening(state.stage.openingDiscard)),'armed rescue stage');
     if(joker.definitionId==='a06'&&joker.counters?.alternationUsed&&state.phase==='await-input')check(!!state.stage&&state.stage.playIndex>=2,'alternation stage');
   }
@@ -144,7 +146,7 @@ export function assertR2Invariants(state:R2RunState):void {
   if(['stage-cleared','run-won'].includes(state.phase))check(state.stage!==null&&state.stage.index+1===state.stageIndex,'completed stage pointer');
   if(state.phase==='run-won')check(state.tourMode==='normal'&&state.stageIndex===R2_AVAILABLE_CHAPTERS*3&&state.outcome?.reason==='all-stages-cleared'&&!!state.stage?.clearId&&(state.mode!=='standard'||state.stage.clearId===completion?.clearId),'normal completion');
   if(state.stage) {
-    check(isR2ComboGrowth(state)?Object.hasOwn(state.stage,'openingDiscard'):!Object.hasOwn(state.stage,'openingDiscard'),'opening discard profile');
+    check(hasR2ComboGrowthContract(state)?Object.hasOwn(state.stage,'openingDiscard'):!Object.hasOwn(state.stage,'openingDiscard'),'opening discard profile');
     check(scoreString(state.stage.heat)&&scoreString(state.stage.targetHeat)&&[state.stage.handsLeft,state.stage.discardsLeft,state.stage.playIndex,state.stage.goldEarned,state.stage.discardsUsed].every(integer),'stage resources');
     check(integer(state.stage.initialHandLimit)&&state.stage.initialHandLimit>=R2_RESOURCE_CONTRACT.handMinimum&&state.stage.initialHandLimit<=R2_RESOURCE_CONTRACT.handMaximum,'initial hand limit');
     check(state.stage.handLimit===(state.stage.boss?.definitionId==='B11'?Math.max(R2_RESOURCE_CONTRACT.handMinimum,state.stage.initialHandLimit-state.stage.playIndex):state.stage.initialHandLimit),'stage hand limit');
@@ -218,7 +220,7 @@ export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stag
 function entryStage(state:R2RunState,targetHeat:string,skipResult:R2SkipResult|null=null):R2StageState {
   const handLimit=r2HandLimit(state),hands=r2HandsBudget(state),discards=r2DiscardBudget(state),initialJokerIds=state.jokers.map(joker=>joker.instanceId);
   const boss=state.stageIndex%3===2?structuredClone(state.boss):null;
-  return {...(isR2ComboGrowth(state)?{openingDiscard:null}:{}),...(r2UsesAssist(state)?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
+  return {...(hasR2ComboGrowthContract(state)?{openingDiscard:null}:{}),...(r2UsesAssist(state)?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
     discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:boss?.definitionId==='B01',discardsUsed:0,skipResult,playIndex:0,previousHandType:null,previousHandScore:null,
     handLimit,initialHandLimit:handLimit,boss,initialJokerIds,sealedJokerIds:[],challengeDisabledJokerId:state.chapterDisabledJokerId,rescueUsed:false,clearId:null,goldEarned:0,disabledIds:[],wagerSelected:false,wagerUsed:false,
     maxPlayedCount:0,ordinaryStraightSeen:false,ordinaryFlushSeen:false,quadRefundUsed:false,jokerSold:state.shop?.soldJoker??false};
@@ -301,7 +303,7 @@ function economicHooks(state:R2RunState,phase:TransactionHookPhase,events:Domain
   }
 }
 function clearStageEffects(state:R2RunState):void {
-  if(isR2ComboGrowth(state))for(const joker of state.jokers)if(joker.definitionId==='f10')joker.counters={rescueArmed:false};
+  if(hasR2ComboGrowthContract(state))for(const joker of state.jokers)if(joker.definitionId==='f10')joker.counters={rescueArmed:false};
   for(const joker of state.jokers)if(joker.definitionId==='c05')joker.growth.pendingHeat={n:'0',d:'1'};
 }
 export function makeR2Shop(state:R2RunState,reset:boolean):void {
@@ -461,10 +463,10 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
     const selection=resolveR2ModeConfig(action.modeConfig===undefined?{mode:'standard'}:action.modeConfig);
     if(!selection.ok)return fail(selection.code);
     const config=selection.config;
-    if(action.r2Profile!==undefined&&(action.r2Profile!=='combo-growth-v1'&&(action.r2Profile!=='amo-assist-v1'||action.characterId!=='amo')))return fail('invalid-r2-profile');
+    if(action.r2Profile!==undefined&&(action.r2Profile!=='group-upgrade-v1'&&action.r2Profile!=='combo-growth-v1'&&(action.r2Profile!=='amo-assist-v1'||action.characterId!=='amo')))return fail('invalid-r2-profile');
     const identity=action.r2Identity;
     if(identity!==undefined&&(!identity||typeof identity!=='object'||Object.getPrototypeOf(identity)!==Object.prototype||Object.keys(identity).sort().join(',')!=='contentHash,contentVersion'||action.r2Profile!==undefined||!r2RulesetFor(identity)))return fail('invalid-r2-identity');
-    const profile=r2RulesetFor(identity??(action.r2Profile==='combo-growth-v1'?{contentVersion:R2_COMBO_GROWTH_VERSION,contentHash:R2_COMBO_GROWTH_HASH}:action.r2Profile==='amo-assist-v1'?{contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH}:{contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH}))!;
+    const profile=r2RulesetFor(identity??(action.r2Profile==='group-upgrade-v1'?{contentVersion:R2_GROUP_UPGRADE_VERSION,contentHash:R2_GROUP_UPGRADE_HASH}:action.r2Profile==='combo-growth-v1'?{contentVersion:R2_COMBO_GROWTH_VERSION,contentHash:R2_COMBO_GROWTH_HASH}:action.r2Profile==='amo-assist-v1'?{contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH}:{contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH}))!;
     const assisted=profile.amoScoreTiming==='assist-v1'&&action.characterId==='amo';
     if(profile.contentVersion===R2_ASSIST_VERSION&&action.characterId!=='amo')return fail('invalid-r2-profile');
     if(!r2ModeSeedAllowed(config,action.seed)||config.mode==='tutorial'&&action.characterId!=='erxiang')return fail('invalid-mode-seed-or-character');
@@ -559,7 +561,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         state.handOrder=[];state.playedPile=[];state.discardPile=[];
         state.rng.deck=rng.snapshot();
         state.stage=entryStage(state,definition.targetHeat);
-        clearStageEffects(state);for(const joker of state.jokers){if(joker.definitionId==='a07')joker.counters={singleDiscards:0};if(isR2ComboGrowth(state)&&joker.definitionId==='a06')joker.counters={alternationUsed:false};}refill(state);
+        clearStageEffects(state);for(const joker of state.jokers){if(joker.definitionId==='a07')joker.counters={singleDiscards:0};if(hasR2ComboGrowthContract(state)&&joker.definitionId==='a06')joker.counters={alternationUsed:false};}refill(state);
         refreshDisabled(state);
         state.chapter=chapter+1;state.phase='await-input';state.shop=null;state.lastTrace=null;break;
       }
@@ -593,7 +595,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
           const before=state.gold;state.gold--;
           events.push({type:'boss-transaction',definitionId:'B07',operation:'charge-discard',amount:'1',resourceBefore:String(before),resourceAfter:String(state.gold)});
         }
-        const firstOpening=isR2ComboGrowth(state)&&state.stage.playIndex===0&&state.stage.discardsUsed===0&&state.jokers.some(j=>j.definitionId==='f10');
+        const firstOpening=hasR2ComboGrowthContract(state)&&state.stage.playIndex===0&&state.stage.discardsUsed===0&&state.jokers.some(j=>j.definitionId==='f10');
         if(firstOpening)state.stage.openingDiscard=structuredClone({hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),discardedIds:state.handOrder.filter(id=>ids.includes(id)),jokers:state.jokers});
         const coldOpeningDiscard=firstOpening&&r2ColdOpening(state.stage.openingDiscard);
         const ordered=state.handOrder.filter(id=>ids.includes(id));state.handOrder=state.handOrder.filter(id=>!ids.includes(id));
@@ -632,7 +634,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
           hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),selectedIds:ids,disabledIds:state.stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS,
           ...(assisted?{assistIds}:{}),handLevels:state.handLevels,playIndex:state.stage.playIndex+1,handsBeforePlay:state.stage.handsLeft,previousHandType:state.stage.previousHandType,wager:state.stage.wagerSelected,rng:state.rng.rule,...r2ScoreContext(state,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),ids)});}
         catch(error) {return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
-        if(isR2ComboGrowth(state))trace=Object.freeze({...trace,combo:Object.freeze({goldBeforeRewards:null})});
+        if(hasR2ComboGrowthContract(state))trace=Object.freeze({...trace,combo:Object.freeze({goldBeforeRewards:null})});
         if(assisted)state.stage.assistUsed=true;
         state.rng.rule={...trace.rng};state.lastTrace=trace;state.jokers=structuredClone(trace.jokers);state.gold+=trace.goldDelta;
         state.destroyedIds.push(...trace.destroyedCardIds);state.handLevels[trace.handType]??=1;
@@ -650,7 +652,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         const scoredEvent:Extract<DomainEvent,{type:'hand-scored-r2'}>={type:'hand-scored-r2',score:trace,playedIds:trace.sets.playedIds,playIndex:state.stage.playIndex};events.push(scoredEvent);
         if(BigInt(state.stage.heat)>=BigInt(state.stage.targetHeat)) {
           const goldBeforeRewards=state.gold;
-          if(isR2ComboGrowth(state))state.lastTrace=Object.freeze({...state.lastTrace!,combo:Object.freeze({goldBeforeRewards})});
+          if(hasR2ComboGrowthContract(state))state.lastTrace=Object.freeze({...state.lastTrace!,combo:Object.freeze({goldBeforeRewards})});
           if(state.program)state.program.lastOpportunityClear ||= state.stage.handsLeft===0;
           const total=(BigInt(state.totalHeat)+BigInt(state.stage.heat)).toString();
           if(!scoreString(total))return {ok:false,code:'score-diagnostic',diagnostic:{code:'numeric-length-limit',events:trace.events}};
@@ -663,7 +665,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
           state.gold+=reward;
           try{
             const interestJoker=state.jokers.find(j=>j.definitionId==='e04');
-            if(interestJoker&&!isR2ComboGrowth(state))clearGoldSource(state,'e04',jokerInterest,interestJoker.instanceId);
+            if(interestJoker&&!hasR2ComboGrowthContract(state))clearGoldSource(state,'e04',jokerInterest,interestJoker.instanceId);
             clearGoldSource(state,'U04',itemInterest);grantHeldGoldPaper(state);grantClearItems(state);
             economicHooks(state,'onStageClear',events,state.jokers,[],{goldBeforeRewards});persistJokerSources(state,events,'onStageClear');scoredEvent.score=state.lastTrace!;
             grantProgramReward(state,goldBeforeRewards);scoredEvent.score=state.lastTrace!;
