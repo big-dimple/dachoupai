@@ -1,5 +1,9 @@
 # 当前交接：P08全游戏手绘墨线／纸色主线
 
+## 版次导入例外修复（2026-10-05 UTC）
+
+父核七卡73e发现reasonKey的edition前缀可绕过七卡trace校验。已复现15失败/4合法对照；源码 `4ad2005e84017020d41b80243e0cca16f3d79169` 仅checkpoint产品窄修，实际source版次/时点/目标/值/种类/增量与唯一顺序全部匹配才例外。19专项、312相关tests/8files、type/plan通过，冻结源码/index/HEAD保持；证据p08-amo-assist-domain-2026-10-05/edition-exception-fix。七卡原型hash843f、数值、resolver/copy接口、domain/content/game/platform与旧fixtures保持73e；B继续单一UI窗口，main不推。此前73e的CI37257550543/docs37257550532均success，本修复新精确CI另报；旧报告/FAIL按原身份保留。P08 in_progress、C04 D32暂停及原真机/审美/听感门槛保持。
+
 ## 七卡适配检查点（2026-10-05 UTC）
 
 正常对齐 AI切 main 的 review `1d8400db2f1667992a13024bf7530ed7615e1a71` 已交B。阿默新原型七卡领域／纯文案首代码 `3acc73906c12730b67b721cc93e57d619317a4f3`，第一相关92tests/type通过；最终GitHub源码 `bf38333afa36bb730e3cc3f622f5f9e73343c742`（与冻结本地5256394全tree同）24专项、2291tests/126files、content/type/build/plan及新hash原生IndexedDB通过；source/index/HEAD保持。原标准local smoke因Playwright可执行文件缺失FAIL，新review精确CI另报；证据p08-amo-assist-domain-2026-10-05/seven-card-profile，旧FAIL与旧报告不改。profile `amo-assist-v1` 新hash `json-fnv-v1:843f02356211cb91` 纳入七卡定义，旧未发布原型79ddb…明确拒绝；v10/v11与默认v11不变。[接口合同](production/AMO_ASSIST_PROTOTYPE.md)。B是唯一GameScene／selection／role UI owner，本批只domain/content/application及纯文案、必要测试；未main，不把原型通过称为平衡或真机通过。P08仍in_progress，C04 D32暂停、resumeContract及B00/V01/L01、OnePlus/GPU/听感门槛保持。以下对齐／旧交付按各自来源保留。
