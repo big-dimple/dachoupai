@@ -11,7 +11,7 @@ function setup(ready=true){
  const cache=new AiHandCandidateCache(),oldReady=vi.fn(),newReady=vi.fn();cache.update(input,oldReady);
  const scene=Object.create(GameScene.prototype) as Record<string,any>;
  Object.defineProperties(scene,{ready:{value:ready},hand:{value:input.hand},handsLeft:{value:4},heat:{value:'0'}});
- Object.assign(scene,{aiCandidates:cache,aiCursor:{key:'old',index:0,selection:'a'},run:{phase:'await-input',gold:3,consumables:[],lastTrace:null,handOrder:['a'],stage:{discardsLeft:3}},selectedIds:new Set(['a']),lifecycle:1,intent:0,playing:false,presentation:undefined,cardViews:[],clearHover:vi.fn(),updateControls:vi.fn(),alive:()=>true,statusMessage:'',refreshSelection:vi.fn(()=>{expect(scene.playing).toBe(false);cache.update(input,newReady);})});
+ Object.assign(scene,{aiCandidates:cache,aiCursor:{key:'old',index:0,selection:'a'},run:{phase:'await-input',gold:3,consumables:[],lastTrace:null,handOrder:['a'],stage:{discardsLeft:3}},selectedIds:new Set(['a']),assistIds:[],lifecycle:1,intent:0,playing:false,presentation:undefined,cardViews:[],clearHover:vi.fn(),updateControls:vi.fn(),alive:()=>true,statusMessage:'',refreshSelection:vi.fn(()=>{expect(scene.playing).toBe(false);cache.update(input,newReady);})});
  return{scene,cache,oldReady,newReady};
 }
 const invoke=(scene:Record<string,any>,operation:Operation)=>operation==='command'?scene.command({type:'ReorderHand',ids:['a']}):scene[operation]();
