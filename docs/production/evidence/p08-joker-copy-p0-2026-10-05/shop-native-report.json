@@ -1,0 +1,226 @@
+{
+  "status": "PASS",
+  "before": {
+    "source": "8653e63c134836c5327e06f778acec59c9dcaf8414cf16bfd472119313fafd09",
+    "index": "39ceac66f9b80b3d054070b984b23888ed2fd191ba1c3ede6853d113d0e7c96b",
+    "head": "b51cfac52af61847499b69d6b4707558285336a6",
+    "branch": "refs/heads/fix/p0-joker-copy-ambiguity"
+  },
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-05T06:47:02.801Z",
+    "revision": "b51cfac52af61847499b69d6b4707558285336a6",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "fixture": "Validator-approved native imports; real PlayHand saved trace. Software Canvas, not natural acquisition or device/GPU approval.",
+  "screens": [
+    "shots/p0-copy/320-shop.png",
+    "shots/p0-copy/320-shop-a06.png",
+    "shots/p0-copy/390-shop.png",
+    "shots/p0-copy/390-shop-a06.png"
+  ],
+  "details": [
+    {
+      "width": 320,
+      "id": "a06",
+      "key": "shop",
+      "main": {
+        "text": "相邻两次主手都为两对及以上牌型且牌型不同，本次出牌的倍率 ×1.5。",
+        "x": 36,
+        "y": 330.28125,
+        "width": 248,
+        "height": 88.171875,
+        "font": "21px",
+        "scrollWidth": 248,
+        "clientWidth": 248
+      },
+      "limits": {
+        "text": "首手、上一手为对子或高牌时不生效；助攻牌型不参与比较。",
+        "x": 36,
+        "y": 421.453125,
+        "width": 248,
+        "height": 45,
+        "font": "15px",
+        "scrollWidth": 248,
+        "clientWidth": 248
+      },
+      "state": {
+        "text": "尚未购买，买入后才会生效",
+        "x": 36,
+        "y": 466.453125,
+        "width": 248,
+        "height": 22.5,
+        "font": "15px",
+        "scrollWidth": 248,
+        "clientWidth": 248
+      },
+      "scroll": {
+        "text": "相邻两次主手都为两对及以上牌型且牌型不同，本次出牌的倍率 ×1.5。首手、上一手为对子或高牌时不生效；助攻牌型不参与比较。尚未购买，买入后才会生效版次：普通（无额外计分）实付 8 金 · 现有 4 金，差 4 金\n金币不足，还差 4 金币。重试卡面重试高清规则与操作两对及以上牌型包括两对、三条、顺子、同花、葫芦、四条、同花顺、五条、同花葫芦、同花五条；对子和高牌不算。\n只比较相邻两次成功出牌的主手；弃牌不推进上一手记录。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。\n\n版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。\n\n实际购买支付 8 金\n现有 4 金，尚差 4 金。\n\n当前构筑：空\n\n无法购买：金币不足，还差 4 金币。",
+        "x": 36,
+        "y": 327.28125,
+        "width": 248,
+        "height": 306.71875,
+        "font": "15px",
+        "scrollWidth": 248,
+        "clientWidth": 248
+      },
+      "actions": [
+        {
+          "text": "确认购买",
+          "x": 36,
+          "y": 661,
+          "width": 134,
+          "height": 56,
+          "font": "14px",
+          "scrollWidth": 132,
+          "clientWidth": 132
+        },
+        {
+          "text": "取消",
+          "x": 178,
+          "y": 661,
+          "width": 106,
+          "height": 56,
+          "font": "14px",
+          "scrollWidth": 104,
+          "clientWidth": 104
+        }
+      ],
+      "rulesOpen": false,
+      "art": "blob:http://127.0.0.1:5312/4f595939-96e6-4a95-a92c-aa14eaec6642"
+    },
+    {
+      "width": 390,
+      "id": "a06",
+      "key": "shop",
+      "main": {
+        "text": "相邻两次主手都为两对及以上牌型且牌型不同，本次出牌的倍率 ×1.5。",
+        "x": 36,
+        "y": 330.28125,
+        "width": 318,
+        "height": 88.171875,
+        "font": "21px",
+        "scrollWidth": 318,
+        "clientWidth": 318
+      },
+      "limits": {
+        "text": "首手、上一手为对子或高牌时不生效；助攻牌型不参与比较。",
+        "x": 36,
+        "y": 421.453125,
+        "width": 318,
+        "height": 45,
+        "font": "15px",
+        "scrollWidth": 318,
+        "clientWidth": 318
+      },
+      "state": {
+        "text": "尚未购买，买入后才会生效",
+        "x": 36,
+        "y": 466.453125,
+        "width": 318,
+        "height": 22.5,
+        "font": "15px",
+        "scrollWidth": 318,
+        "clientWidth": 318
+      },
+      "scroll": {
+        "text": "相邻两次主手都为两对及以上牌型且牌型不同，本次出牌的倍率 ×1.5。首手、上一手为对子或高牌时不生效；助攻牌型不参与比较。尚未购买，买入后才会生效版次：普通（无额外计分）实付 8 金 · 现有 4 金，差 4 金\n金币不足，还差 4 金币。高清细节加载中…重试卡面重试高清规则与操作两对及以上牌型包括两对、三条、顺子、同花、葫芦、四条、同花顺、五条、同花葫芦、同花五条；对子和高牌不算。\n只比较相邻两次成功出牌的主手；弃牌不推进上一手记录。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。\n\n版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。\n\n实际购买支付 8 金\n现有 4 金，尚差 4 金。\n\n当前构筑：空\n\n无法购买：金币不足，还差 4 金币。",
+        "x": 36,
+        "y": 327.28125,
+        "width": 318,
+        "height": 306.71875,
+        "font": "15px",
+        "scrollWidth": 318,
+        "clientWidth": 318
+      },
+      "actions": [
+        {
+          "text": "确认购买",
+          "x": 36,
+          "y": 661,
+          "width": 169,
+          "height": 56,
+          "font": "14px",
+          "scrollWidth": 167,
+          "clientWidth": 167
+        },
+        {
+          "text": "取消",
+          "x": 213,
+          "y": 661,
+          "width": 141,
+          "height": 56,
+          "font": "14px",
+          "scrollWidth": 139,
+          "clientWidth": 139
+        }
+      ],
+      "rulesOpen": false,
+      "art": "/p0-copy/assets/handdrawn-p08/cards/a06.thumbnail.webp"
+    }
+  ],
+  "tables": [
+    {
+      "width": 320,
+      "key": "shop",
+      "summaries": [
+        {
+          "text": "条件与效果\n点击查看",
+          "full": "主手为两对及以上牌型时，首张有效计分牌的热度 +15。",
+          "font": "14px",
+          "width": 70,
+          "height": 32
+        },
+        {
+          "text": "条件与效果\n点击查看",
+          "full": "每次出牌加上已攒的热度；相邻两次主手为同一种两对及以上牌型，结算后再攒 6，最多攒 90。",
+          "font": "14px",
+          "width": 70,
+          "height": 32
+        },
+        {
+          "text": "条件与效果\n点击查看",
+          "full": "相邻两次主手都为两对及以上牌型且牌型不同，本次出牌的倍率 ×1.5。",
+          "font": "14px",
+          "width": 70,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "key": "shop",
+      "summaries": [
+        {
+          "text": "条件与效果\n点击查看",
+          "full": "主手为两对及以上牌型时，首张有效计分牌的热度 +15。",
+          "font": "14px",
+          "width": 70,
+          "height": 32
+        },
+        {
+          "text": "条件与效果\n点击查看",
+          "full": "每次出牌加上已攒的热度；相邻两次主手为同一种两对及以上牌型，结算后再攒 6，最多攒 90。",
+          "font": "14px",
+          "width": 70,
+          "height": 32
+        },
+        {
+          "text": "条件与效果\n点击查看",
+          "full": "相邻两次主手都为两对及以上牌型且牌型不同，本次出牌的倍率 ×1.5。",
+          "font": "14px",
+          "width": 70,
+          "height": 32
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "after": {
+    "source": "8653e63c134836c5327e06f778acec59c9dcaf8414cf16bfd472119313fafd09",
+    "index": "39ceac66f9b80b3d054070b984b23888ed2fd191ba1c3ede6853d113d0e7c96b",
+    "head": "b51cfac52af61847499b69d6b4707558285336a6",
+    "branch": "refs/heads/fix/p0-joker-copy-ambiguity"
+  }
+}

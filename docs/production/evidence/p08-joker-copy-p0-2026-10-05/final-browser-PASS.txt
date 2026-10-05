@@ -1,0 +1,102 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs --scope=browser
+
+CHECK build: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run build
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 133 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.17 kB │ gzip:   0.15 kB
+dist/index.html                     0.55 kB │ gzip:   0.36 kB
+dist/assets/index-Dk5_Lgk8.css     30.81 kB │ gzip:   7.07 kB
+dist/assets/index-BD5xiWaF.js   2,109.81 kB │ gzip: 594.96 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 12.61s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+build: PASS
+CHECK verify:smoke: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run verify:smoke
+
+> dachoupai@0.1.0 verify:smoke
+> node harness/screenshot.mjs --verify-smoke
+
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+chromium/desktop: ok
+chromium/mobile: ok
+smoke: ok
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+verify:smoke: PASS
+{
+  "scope": "browser",
+  "testedCommit": "b51cfac52af61847499b69d6b4707558285336a6",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "8653e63c134836c5327e06f778acec59c9dcaf8414cf16bfd472119313fafd09",
+    "index": "39ceac66f9b80b3d054070b984b23888ed2fd191ba1c3ede6853d113d0e7c96b",
+    "head": "b51cfac52af61847499b69d6b4707558285336a6",
+    "branch": "refs/heads/fix/p0-joker-copy-ambiguity"
+  },
+  "after": {
+    "source": "8653e63c134836c5327e06f778acec59c9dcaf8414cf16bfd472119313fafd09",
+    "index": "39ceac66f9b80b3d054070b984b23888ed2fd191ba1c3ede6853d113d0e7c96b",
+    "head": "b51cfac52af61847499b69d6b4707558285336a6",
+    "branch": "refs/heads/fix/p0-joker-copy-ambiguity"
+  },
+  "steps": [
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 26570
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 160414
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
