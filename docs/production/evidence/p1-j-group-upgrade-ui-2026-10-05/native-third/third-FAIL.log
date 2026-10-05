@@ -1,0 +1,198 @@
+normal-erxiang TimeoutError: page.waitForFunction: Timeout 30000ms exceeded.
+b06-left-tie-disabled-assist AssertionError [ERR_ASSERTION]: UI score equals authoritative legal fixture trace
++ actual - expected
+... Skipped lines
+
+  {
+    accumulator: {
+      H: {
+        d: '1',
+        n: '103'
+...
+        d: '1',
++       n: '2'
+-       n: '4'
+      }
+    },
++   assist: null,
+-   assist: {
+-     ids: [
+-       'clubs-12',
+-       'hearts-12'
+-     ],
+-     kind: 'pair',
+-     multiplier: 2
+-   },
+    bossContext: {
+      boss: {
+        definitionId: 'B03',
+        disabledSuit: 'spades'
+      },
+...
+            d: '1',
++           n: '2'
+-           n: '4'
+          }
+        },
+        before: {
+          H: {
+            d: '1',
+...
+        eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/6',
+-       operation: 'multiply-multiplier',
+-       phase: 'characterScore',
+-       reasonKey: 'amo.assist.pair',
+-       retriggerDepth: 0,
+-       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/6',
+-       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',
+-       sourceDefinitionId: 'amo',
+-       sourceInstanceId: 'b06-left-tie-disabled-assist/character',
+-       sourceType: 'character',
+-       value: {
+-         d: '1',
+-         n: '2'
+-       },
+-       visibleCondition: {
+-         kind: 'hand-type-in',
+-         values: [
+-           'two-pair',
+-           'three-kind',
+-           'straight',
+-           'flush',
+-           'full-house',
+-           'four-kind',
+-           'straight-flush',
+-           'five-kind',
+-           'flush-house',
+-           'flush-five'
+-         ]
+-       }
+-     },
+-     {
+-       after: {
+-         H: {
+-           d: '1',
+-           n: '103'
+-         },
+-         M: {
+-           d: '1',
+-           n: '4'
+-         }
+-       },
+-       before: {
+-         H: {
+-           d: '1',
+-           n: '103'
+-         },
+-         M: {
+-           d: '1',
+-           n: '4'
+-         }
+-       },
+-       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/7',
+        operation: 'final-score',
+        phase: 'finalScore',
+        reasonKey: 'two-pair.final-score',
+        retriggerDepth: 0,
++       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/6',
+-       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/7',
+        rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',
+        sourceDefinitionId: 'two-pair',
+        sourceInstanceId: 'b06-left-tie-disabled-assist',
+        sourceType: 'rule',
+        value: {
+          d: '1',
++         n: '206'
+-         n: '412'
+        },
+        visibleCondition: {
+          kind: 'always'
+        }
+      }
+    ],
++   finalScore: '206',
+-   finalScore: '412',
+    goldDelta: 0,
+    handType: 'two-pair',
+    jokers: [
+      {
+        definitionId: 'b06',
+...
+      ],
++     assistConsumedIds: [],
++     heldIds: [
+-     assistConsumedIds: [
+        'clubs-12',
+        'hearts-12',
+-     ],
+-     heldIds: [
+        'clubs-6',
+        'diamonds-7'
+      ],
+      playedIds: [
+        'spades-9',
+
+{
+  "source": "018a7db7de8fae7f787d9092824cb7b933606f14",
+  "cases": [
+    {
+      "name": "selector-320",
+      "status": "PASS"
+    },
+    {
+      "name": "selector-390",
+      "status": "PASS"
+    },
+    {
+      "name": "selector-844",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-amo",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-touye",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-laohuan",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-erxiang",
+      "status": "FAIL",
+      "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+    },
+    {
+      "name": "normal-azao",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-xiemu",
+      "status": "PASS"
+    },
+    {
+      "name": "natural-b08",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy-e7-b10",
+      "status": "PASS"
+    },
+    {
+      "name": "b06-left-tie-disabled-assist",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: UI score equals authoritative legal fixture trace\n+ actual - expected\n... Skipped lines\n\n  {\n    accumulator: {\n      H: {\n        d: '1',\n        n: '103'\n...\n        d: '1',\n+       n: '2'\n-       n: '4'\n      }\n    },\n+   assist: null,\n-   assist: {\n-     ids: [\n-       'clubs-12',\n-       'hearts-12'\n-     ],\n-     kind: 'pair',\n-     multiplier: 2\n-   },\n    bossContext: {\n      boss: {\n        definitionId: 'B03',\n        disabledSuit: 'spades'\n      },\n...\n            d: '1',\n+           n: '2'\n-           n: '4'\n          }\n        },\n        before: {\n          H: {\n            d: '1',\n...\n        eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/6',\n-       operation: 'multiply-multiplier',\n-       phase: 'characterScore',\n-       reasonKey: 'amo.assist.pair',\n-       retriggerDepth: 0,\n-       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/6',\n-       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',\n-       sourceDefinitionId: 'amo',\n-       sourceInstanceId: 'b06-left-tie-disabled-assist/character',\n-       sourceType: 'character',\n-       value: {\n-         d: '1',\n-         n: '2'\n-       },\n-       visibleCondition: {\n-         kind: 'hand-type-in',\n-         values: [\n-           'two-pair',\n-           'three-kind',\n-           'straight',\n-           'flush',\n-           'full-house',\n-           'four-kind',\n-           'straight-flush',\n-           'five-kind',\n-           'flush-house',\n-           'flush-five'\n-         ]\n-       }\n-     },\n-     {\n-       after: {\n-         H: {\n-           d: '1',\n-           n: '103'\n-         },\n-         M: {\n-           d: '1',\n-           n: '4'\n-         }\n-       },\n-       before: {\n-         H: {\n-           d: '1',\n-           n: '103'\n-         },\n-         M: {\n-           d: '1',\n-           n: '4'\n-         }\n-       },\n-       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/7',\n        operation: 'final-score',\n        phase: 'finalScore',\n        reasonKey: 'two-pair.final-score',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/6',\n-       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/7',\n        rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',\n        sourceDefinitionId: 'two-pair',\n        sourceInstanceId: 'b06-left-tie-disabled-assist',\n        sourceType: 'rule',\n        value: {\n          d: '1',\n+         n: '206'\n-         n: '412'\n        },\n        visibleCondition: {\n          kind: 'always'\n        }\n      }\n    ],\n+   finalScore: '206',\n-   finalScore: '412',\n    goldDelta: 0,\n    handType: 'two-pair',\n    jokers: [\n      {\n        definitionId: 'b06',\n...\n      ],\n+     assistConsumedIds: [],\n+     heldIds: [\n-     assistConsumedIds: [\n        'clubs-12',\n        'hearts-12',\n-     ],\n-     heldIds: [\n        'clubs-6',\n        'diamonds-7'\n      ],\n      playedIds: [\n        'spades-9',\n"
+    },
+    {
+      "name": "b06-plain-flush",
+      "status": "PASS"
+    },
+    {
+      "name": "B13-full-house",
+      "status": "PASS"
+    }
+  ],
+  "unchanged": true
+}
