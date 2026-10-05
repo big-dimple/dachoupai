@@ -1,0 +1,35 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/amo-assist-jokers.test.ts (22 tests | 2 failed) 187ms
+     × a11 full house flush=false retriggers all active main once, never support 9ms
+     × a11 full house flush=true retriggers all active main once, never support 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/amo-assist-jokers.test.ts > Amo prototype seven-card profile > a11 full house flush=false retriggers all active main once, never support
+ FAIL  tests/amo-assist-jokers.test.ts > Amo prototype seven-card profile > a11 full house flush=true retriggers all active main once, never support
+AssertionError: expected [] to have a length of 4 but got +0
+
+- Expected
++ Received
+
+- 4
++ 0
+
+ ❯ tests/amo-assist-jokers.test.ts:75:268
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  2 failed | 90 passed (92)
+   Start at  02:43:50
+   Duration  1.24s (transform 1.26s, setup 0ms, import 1.73s, tests 819ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

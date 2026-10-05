@@ -1,0 +1,87 @@
+{
+  "baseReview": "1d8400db2f1667992a13024bf7530ed7615e1a71",
+  "alignedMain": "a5cdc5fcb6394b229ad609104d970de3fa460bb7",
+  "alignedCI": {
+    "CI": 37255686803,
+    "production-docs": 37255686730,
+    "conclusion": "success"
+  },
+  "testedLocalCommit": "5256394e8debfcadc5d17ed7d4952236fcf8b4a0",
+  "githubSourceCommit": "bf38333afa36bb730e3cc3f622f5f9e73343c742",
+  "sourceTree": "8f17207e8c14bfb7ef4a7dc4370b3e2aafd7498c",
+  "sourceTransport": "Authorized GitHub connector; source tree exactly equals tested local tree; parent is aligned review; evidence-only child follows. No main mutation.",
+  "profile": {
+    "name": "amo-assist-v1",
+    "version": "quality-r2-amo-assist-prototype-v1",
+    "hash": "json-fnv-v1:843f02356211cb91",
+    "rejectedUnpublishedPreviousHash": "json-fnv-v1:79ddb0bb71434f9f",
+    "v10": "json-fnv-v1:24efe7a905216d85",
+    "v11": "json-fnv-v1:bd4a1230833ab884",
+    "default": "v11"
+  },
+  "adapted": [
+    "pengci",
+    "a03",
+    "a05",
+    "a06",
+    "a10",
+    "a11",
+    "a12"
+  ],
+  "verification": {
+    "specialized": 24,
+    "checkpointRelated": 92,
+    "allTests": 2291,
+    "testFiles": 126,
+    "content": "PASS (default published v11; overlay schema tested separately)",
+    "typecheckBuild": "PASS",
+    "productionPlan": "PASS",
+    "nativeIndexedDb": "PASS",
+    "sourceIndexHeadUnchanged": true,
+    "standardLocalSmoke": "FAIL_ENVIRONMENT: Playwright chromium_headless_shell-1243 executable missing; no harness/product/assertion change or install workaround. Exact remote browser CI required."
+  },
+  "retainedFailure": {
+    "firstRelated": {
+      "status": "FAIL",
+      "failed": 2,
+      "passed": 90,
+      "source": "Uncommitted seven-card work before local first checkpoint3acc739; not a frozen final-source run.",
+      "reason": "Two new A11 tests looked for nonexistent card-rank operation; actual rank source emits add-heat. Corrected test predicate, including positive count assertion, then92 passed."
+    }
+  },
+  "scope": {
+    "ui": "NOT_CHANGED; B sole owner",
+    "art": "NOT_CHANGED",
+    "publishedDefinitionsAndTemplates": "BYTE_IDENTICAL",
+    "other65": "SAME_FROZEN_OBJECTS",
+    "balance": "NOT_ACCEPTED",
+    "physicalDevice": "NOT_RUN",
+    "main": "NOT_PUSHED"
+  },
+  "files": {
+    "final-specialized-pass.txt": {
+      "bytes": 415,
+      "sha256": "3a3ec97f02696f3dd4449613c0541f05276686f07e36120910cb1d05a4fa9447"
+    },
+    "frozen-checks.json": {
+      "bytes": 1133,
+      "sha256": "aac37fb081adb039e2e9c85399827a74baa7d159ddcbb81de7300a7c29a68f53"
+    },
+    "native-save.json": {
+      "bytes": 1313,
+      "sha256": "73e918b85e7f2240a12ed355aac101af14631aea1209c52c8e189ae3c83fb9a3"
+    },
+    "first-related-fail.txt": {
+      "bytes": 1255,
+      "sha256": "d8a7eee1850eaf73dd560c8aa1b3e92e133bc2523940c76e4b16515a3295a6b3"
+    },
+    "local-smoke.json": {
+      "bytes": 823,
+      "sha256": "66e8ee6681f544ce310b47dd6bef916fca767aa565d90f3337a7aa2957aff344"
+    },
+    "checkpoint-related-pass.txt": {
+      "bytes": 415,
+      "sha256": "fbd8aad7546aea5a4b9b8d9e36ba1dd8f48b306075961f6f545fe2dc1ce94ff8"
+    }
+  }
+}
