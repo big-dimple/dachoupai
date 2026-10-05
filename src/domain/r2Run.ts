@@ -1,3 +1,4 @@
+import {r2JokerDefinitionsFor} from './r2ContentProfiles';
 import {r2AssistAvailability,r2AssistFacts,R2_ASSIST_VERSION,R2_ASSIST_HASH} from './r2Assist';
 import {R2_PUBLISHED_CONTENT,R2_PUBLISHED_JOKERS} from './r2PublishedContent';
 import {r2TransactionConditionMatches} from './r2Conditions';
@@ -231,6 +232,7 @@ function transactionMatches(state:R2RunState,condition:Condition,discarded:reado
 }
 
 function economicHooks(state:R2RunState,phase:TransactionHookPhase,events:DomainEvent[],sources=state.jokers,discarded:readonly PlayingCard[]=[]):void {
+  const R2_JOKERS=r2JokerDefinitionsFor(state);
   for(const j of sources)for(const hook of R2_JOKERS.find(d=>d.id===j.definitionId)!.hooks){
     if(hook.phase!==phase||!transactionMatches(state,hook.condition,discarded))continue;
     type Source=Extract<DomainEvent,{type:'joker-transaction'}>;
@@ -592,6 +594,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(new Set(ids).size!==ids.length)return fail('duplicate-card');
         if(ids.some(id=>!state.handOrder.includes(id)))return fail('unknown-card');
         if(state.stage.handsLeft<=0)return fail('no-hands-left');
+        const R2_JOKERS=r2JokerDefinitionsFor(state);
         const assisted=action.type==='PlayAssistedHand';
         if(assisted&&!r2AssistAvailability(state).available)return fail('assist-unavailable');
         let assistIds:string[]=[];

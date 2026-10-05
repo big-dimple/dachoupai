@@ -1,0 +1,25 @@
+{
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "493f8c09434f6fed676d157e29901e56843f08e8428e2c9ec907403e8ccdd983",
+    "index": "6815e279ef9e9c50ed654f2d0d0e3c589932f661079a62ac4ece2d66b035bf52",
+    "head": "5256394e8debfcadc5d17ed7d4952236fcf8b4a0",
+    "branch": "refs/heads/review/p08-amo-assist-domain-20261005"
+  },
+  "after": {
+    "source": "493f8c09434f6fed676d157e29901e56843f08e8428e2c9ec907403e8ccdd983",
+    "index": "6815e279ef9e9c50ed654f2d0d0e3c589932f661079a62ac4ece2d66b035bf52",
+    "head": "5256394e8debfcadc5d17ed7d4952236fcf8b4a0",
+    "branch": "refs/heads/review/p08-amo-assist-domain-20261005"
+  },
+  "steps": [
+    {
+      "name": "standard-browser-smoke",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 6081,
+      "reason": "child exited 1"
+    }
+  ]
+}

@@ -3,7 +3,11 @@ import {R2_MODE_CATALOG} from '../content/r2Modes';
 import {readRunProgress} from '../platform/RunProgress';
 import {AudioEngine,type FailureCue} from '../audio/AudioEngine';
 import {getR2Stage} from '../domain/r2Run';
-import {getR2Joker} from '../domain/r2Shop';
+import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
+import {R2_ASSIST_VERSION} from '../domain/r2Assist';
+import {r2JokerCapacity} from '../domain/r2Resources';
+import {jokerAbilityCopyForRun,publicJokerMemoryContext,recordedJokerMemoryContext} from './JokerMemory';
+import {savedAssistCopy} from './AssistSelection';
 import {r2BossText} from '../domain/r2Chapter';
 import {HAND_LABELS} from '../content/handLabels';
 import {rankLabel,SUIT_SYMBOL} from '../cards/types';
@@ -124,9 +128,10 @@ export class IntermissionScene extends Phaser.Scene {
     v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?'':lost?'同局重试沿用角色与开局种子。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w);
     this.firstRender=false;
   }
+  private jokerDefinition(id:string){return r2JokerDefinitionFor(runController(this)!.state,id);}
   private traceSources(trace:ScoreTrace):string[] {
     const character=getCharacter(runController(this)!.state.characterId);
-    return [...new Set(trace.events.filter(e=>(e.sourceType==='joker'||e.sourceType==='character')&&e.phase!=='afterHand'&&(e.before.H.n!==e.after.H.n||e.before.H.d!==e.after.H.d||e.before.M.n!==e.after.M.n||e.before.M.d!==e.after.M.d||e.operation==='retrigger-card'&&BigInt(e.value.n)>0n)).map(e=>e.sourceType==='character'?character.name:getR2Joker(e.sourceDefinitionId).name))];
+    return [...new Set(trace.events.filter(e=>(e.sourceType==='joker'||e.sourceType==='character')&&e.phase!=='afterHand'&&(e.before.H.n!==e.after.H.n||e.before.H.d!==e.after.H.d||e.before.M.n!==e.after.M.n||e.before.M.d!==e.after.M.d||e.operation==='retrigger-card'&&BigInt(e.value.n)>0n)).map(e=>e.sourceType==='character'?character.name:this.jokerDefinition(e.sourceDefinitionId).name))];
   }
   private stopCelebration():void {
     this.rewardEffects.clear();
@@ -191,24 +196,24 @@ export class IntermissionScene extends Phaser.Scene {
   }
   private inspectResult():void {
     const run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty)!,targetHeat:run.stage!.targetHeat};
-    this.dialog.open('本场详情',`${run.tourMode==='endless'?'无尽 · ':''}${stage.name}\n热度 ${heatText(this.result.stageHeat)} / ${heatText(stage.targetHeat)}\n${this.result.cleared?'过关收益':'本场收益'} ${this.result.goldEarned} 金 · 余额 ${run.gold} 金\n剩余出牌 ${this.result.handsLeft} · 剩余弃牌 ${run.stage?.discardsLeft??0}\n\n当前构筑：`+(run.jokers.map(j=>getR2Joker(j.definitionId).name).join('、')||'空')+'\n\n'+(run.stage?.boss?'本场压轴：'+r2BossText(run.stage.boss):'本场为普通场。'),run.lastTrace?[{label:'回看最后一手',run:()=>this.inspectLastHand()}]:[]);
+    this.dialog.open('本场详情',`${run.tourMode==='endless'?'无尽 · ':''}${stage.name}\n热度 ${heatText(this.result.stageHeat)} / ${heatText(stage.targetHeat)}\n${this.result.cleared?'过关收益':'本场收益'} ${this.result.goldEarned} 金 · 余额 ${run.gold} 金\n剩余出牌 ${this.result.handsLeft} · 剩余弃牌 ${run.stage?.discardsLeft??0}\n\n当前构筑：`+(run.jokers.map(j=>this.jokerDefinition(j.definitionId).name).join('、')||'空')+'\n\n'+(run.stage?.boss?'本场压轴：'+r2BossText(run.stage.boss):'本场为普通场。'),run.lastTrace?[{label:'回看最后一手',run:()=>this.inspectLastHand()}]:[]);
   }
   private inspectLastHand():void {
     const run=runController(this)!.state,trace=run.lastTrace;if(!trace)return;
     const cardName=(id:string)=>{const c=trace.cards.find(c=>c.id===id);return c?rankLabel(c.rank)+SUIT_SYMBOL[c.suit]:'已移除的牌';};
     const lines=trace.events.map(e=>{
-      const source=e.sourceType==='joker'?getR2Joker(e.sourceDefinitionId).name:e.sourceType==='character'?getCharacter(run.characterId).name:e.sourceType==='card'?cardName(e.targetCardId??e.sourceInstanceId):e.sourceDefinitionId===trace.bossContext.boss?.definitionId?r2BossText(trace.bossContext.boss).split('：')[0]:R2_MODE_CATALOG.programs.find(program=>program.id===e.sourceDefinitionId)?.name??'牌型';
+      const source=e.sourceType==='joker'?this.jokerDefinition(e.sourceDefinitionId).name:e.sourceType==='character'?getCharacter(run.characterId).name:e.sourceType==='card'?cardName(e.targetCardId??e.sourceInstanceId):e.sourceDefinitionId===trace.bossContext.boss?.definitionId?r2BossText(trace.bossContext.boss).split('：')[0]:R2_MODE_CATALOG.programs.find(program=>program.id===e.sourceDefinitionId)?.name??'牌型';
       if(e.phase==='base')return `${source} · 基础 ${fractionText(e.after.H)} 热度 × ${fractionText(e.after.M)} 倍率`;
       if(e.phase==='finalScore')return `最终得分 ${heatText(trace.finalScore)} 热度`;
       const operation=r2ScoreOperationText(e),status=['afterHand','beforeFailure','onStageClear'].includes(e.phase);
       return `${source} · ${operation}`+(status?'':` → ${fractionText(e.after.H)} 热度 × ${fractionText(e.after.M)} 倍率`);
     });
-    const summary=`${HAND_LABELS[trace.handType]} Lv.${trace.level} · ${heatText(trace.finalScore)} 热度\n打出：${trace.sets.playedIds.map(cardName).join('、')}\n实际计分：${trace.sets.activeScoringIds.map(cardName).join('、')||'无'}\n\n${fractionText(trace.accumulator.H)} × ${fractionText(trace.accumulator.M)} = ${heatText(trace.finalScore)}`;
+    const summary=`${HAND_LABELS[trace.handType]} Lv.${trace.level} · ${heatText(trace.finalScore)} 热度\n打出：${trace.sets.playedIds.map(cardName).join('、')}\n实际计分：${trace.sets.activeScoringIds.map(cardName).join('、')||'无'}${trace.assist?'\n'+savedAssistCopy(trace):''}\n\n${fractionText(trace.accumulator.H)} × ${fractionText(trace.accumulator.M)} = ${heatText(trace.finalScore)}`;
     // Read saved activity only; current gold and next-hand eligibility cannot explain this hand.
     const benefits=trace.sourceJokers.flatMap(joker=>{
-      const copy=cardAbilityCopy(joker.definitionId,{gold:run.gold,instanceId:joker.instanceId,events:trace.events});if(!copy)return [];
+      const copy=run.contentVersion===R2_ASSIST_VERSION?jokerAbilityCopyForRun(run,joker.definitionId,joker,recordedJokerMemoryContext(publicJokerMemoryContext(run,{hand:trace.cards,scoringLimited:false,deckSize:run.deckInstances.length-run.destroyedIds.length,jokerSlots:r2JokerCapacity(run),jokerCount:trace.sourceJokers.length}),trace.bossContext),trace.events):cardAbilityCopy(joker.definitionId,{gold:run.gold,instanceId:joker.instanceId,events:trace.events});if(!copy)return [];
       const edition=trace.events.filter(event=>event.sourceType==='joker'&&event.sourceInstanceId===joker.instanceId&&event.reasonKey.startsWith('edition.')).map(event=>r2ScoreOperationText(event)).join('、');
-      return [getR2Joker(joker.definitionId).name+'：'+(copy.bodyActive?copy.benefit:'本体未触发')+(edition?'；版次 '+edition:'')];
+      return [this.jokerDefinition(joker.definitionId).name+'：'+(copy.bodyActive?copy.benefit:'本体未触发')+(edition?'；版次 '+edition:'')];
     });
     this.dialog.open('最后一手 · 已保存的结算',summary+'\n\n'+lines.join('\n'),[],benefits.length?{effectBody:summary+'\n\n'+benefits.join('\n'),collapseRules:true,rulesLabel:'完整计分明细'}:{});
   }

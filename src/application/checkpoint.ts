@@ -1,3 +1,6 @@
+import {R2_ASSIST_ADAPTED_IDS} from '../content/r2AssistJokers';
+import {r2ScoreConditionMatches} from '../domain/r2Conditions';
+import {r2JokerDefinitionsFor} from '../domain/r2ContentProfiles';
 import {r2AssistFacts,AMO_ASSIST_TYPES} from '../domain/r2Assist';
 import {r2SelectionFacts} from '../domain/r2SelectionFacts';
 import {R2_PUBLISHED_JOKERS as R2_JOKERS} from '../domain/r2PublishedContent';
@@ -112,8 +115,9 @@ function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeC
     }
   }
 }
-function trace(value:unknown,context:{runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[]}):void {
+function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefinitionsFor>;runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[]}):void {
   if(value===null)return;
+  const R2_JOKERS=context.definitions;
   const stage=context.stage;if(!stage)return fail('invalid-save-trace-stage');
   const successfulStage=stage.skipResult===null&&stage.clearId!==null&&stage.index+1===context.stageIndex&&BigInt(stage.heat)>=BigInt(stage.targetHeat);
   const prototype=context.amoScoreTiming==='assist-v1';
@@ -154,6 +158,7 @@ function trace(value:unknown,context:{runId:string;characterId:string;amoScoreTi
   const eventIds=new Set<unknown>(),rootEventIds:unknown[]=[],destroyedCards:string[]=[],destroyedJokers:string[]=[],glassHits=new Set<string>(),heldGoldSources=new Set<string>();let luckyGold=0n;
   const coefficients=new Map([...jokerSources.values()].filter(joker=>Object.hasOwn(joker.growth,'coefficient')).map(joker=>[joker.instanceId,Rational.fromJSON(joker.growth.coefficient)]));
   const coefficientReads=new Set<string>(),coefficientChanges=new Set<string>(),chanceChecks=new Map<string,boolean>(),chanceHeat=new Set<string>(),clearCycles=new Map<string,number>(),rewardSources=new Set<string>(),handRefunds=new Set<string>();
+  const assistWholeEffects=new Set<string>();
   const emptySlotRewards=new Set<string>();
   const lifetimeCounts=new Map<string,number>(),rescues=new Set<string>();let previousEvent:Record<string,unknown>|undefined;
   const sealTargets:string[]=[];let halves=0,finalSeen=false,clearSeen=false;
@@ -177,7 +182,7 @@ function trace(value:unknown,context:{runId:string;characterId:string;amoScoreTi
     if(e.operation==='upgrade-hand'){oneOf(e.targetHandType,R2_HAND_TYPES);if(!context.discoveredHands.includes(e.targetHandType as string))fail('undiscovered-save-upgrade-target');}
     else if(Object.hasOwn(e,'targetHandType'))fail('invalid-save-target-hand-operation');
     fraction(e.value);accumulator(e.before);accumulator(e.after);integer(e.retriggerDepth,0,1);if(e.targetCardId!==undefined)text(e.targetCardId);
-    if(!validR2Condition(e.visibleCondition))fail('invalid-save-visible-condition');
+    if(!validR2Condition(e.visibleCondition)||!prototype&&e.visibleCondition.kind==='hand-type-relation')fail('invalid-save-visible-condition');
     if(Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter')){integer(e.resourceBefore);integer(e.resourceAfter);}
     const sourceCard=cardSources.get(e.sourceInstanceId as string);
     if(e.targetCardId!==undefined){
@@ -197,6 +202,34 @@ function trace(value:unknown,context:{runId:string;characterId:string;amoScoreTi
     if(e.sourceType==='character'&&(boss?.definitionId==='B08'||!context.config.characterAbilityEnabled)&&e.phase==='characterScore')fail('invalid-save-disabled-character-event');
     if(e.sourceType==='rule'&&(e.sourceInstanceId!==context.runId||![t.handType,'B02','B05','B12','B15',...clearRuleDefinitions,...programRuleDefinitions].includes(e.sourceDefinitionId)))fail('invalid-save-rule-source');
     const amount=Rational.fromJSON(e.value);
+    if(prototype&&e.sourceType==='joker'&&sourceJoker&&R2_ASSIST_ADAPTED_IDS.includes(sourceJoker.definitionId)&&!(e.reasonKey as string).startsWith('edition.')){
+      const definition=R2_JOKERS.find(d=>d.id===sourceJoker.definitionId)!;
+      const hook=definition.hooks.find(h=>h.phase===e.phase&&stableHash(h.condition)===stableHash(e.visibleCondition));
+      const op=hook?.operations.find(o=>o.kind===e.operation||o.kind==='retrigger-card'&&e.operation==='retrigger-cap');
+      if(!hook||!op)fail('invalid-save-assist-joker-definition');
+      const cards=t.cards as PlayingCard[],disabled=boss?r2DisabledCards(boss,stage.index,cards):[];
+      const selected=cards.filter(c=>played.includes(c.id)),retained=cards.filter(c=>held.includes(c.id)),effective=cards.filter(c=>active.includes(c.id));
+      const qualifies=hook!.phase==='onStageClear'?successfulStage&&hook!.condition.kind==='stage-played-maximum'&&stage.maxPlayedCount<=hook!.condition.maximum:
+        r2ScoreConditionMatches(hook!.condition,{played:selected,held:retained,validHeld:retained.filter(c=>!disabled.includes(c.id)),active:effective,scoringIds:scoring,handType:t.handType as R2HandType,previousHandType:bossContext.previousHandType as R2HandType|null,playIndex:stage.playIndex,handsAfter:stage.handsLeft,gold:0,discardsUsed:stage.discardsUsed,extraExecutions:0,resolvedFinal:null},cards.find(c=>c.id===e.targetCardId));
+      if(!qualifies)fail('invalid-save-assist-joker-condition');
+      if(['jokerScore','afterHand','onStageClear'].includes(e.phase as string)){
+        const key=sourceJoker.instanceId+'/'+e.phase+'/'+e.operation;
+        if(e.targetCardId!==undefined||e.retriggerDepth!==0||assistWholeEffects.has(key))fail('invalid-save-assist-joker-count');
+        assistWholeEffects.add(key);
+      }
+      if(op!.kind==='add-heat'||op!.kind==='add-multiplier'||op!.kind==='multiply-multiplier'){
+        if(amount.compare(Rational.fromJSON(op!.value))!==0)fail('invalid-save-assist-joker-value');
+      }else if(op!.kind==='read-growth'){
+        if(amount.compare(Rational.fromJSON(sourceJoker.growth[op!.key]??{n:'0',d:'1'}))!==0)fail('invalid-save-assist-joker-growth');
+      }else if(op!.kind==='add-growth'){
+        const before=Rational.fromJSON(sourceJoker.growth[op!.key]??{n:'0',d:'1'}),raw=before.add(Rational.fromJSON(op!.value)),cap=Rational.fromJSON(op!.cap),next=raw.compare(cap)>0?cap:raw;
+        if(amount.compare(next.add(before.multiply(new Rational(-1n))))!==0||Rational.fromJSON((t.jokers as R2JokerInstance[]).find(j=>j.instanceId===sourceJoker.instanceId)!.growth[op!.key]).compare(next)!==0)fail('invalid-save-assist-joker-growth');
+      }else if(op!.kind==='add-gold'){
+        if(amount.compare(new Rational(BigInt(op!.amount)))!==0)fail('invalid-save-assist-joker-value');
+      }else if(op!.kind==='retrigger-card'){
+        if(e.retriggerDepth!==0||e.targetCardId===undefined||amount.d!==1n||(e.operation==='retrigger-cap'?amount.n!==BigInt(SCORE_LIMITS.extraRetriggers):amount.n<0n||amount.n>BigInt(op!.count)))fail('invalid-save-assist-joker-retrigger');
+      }
+    }
     if(e.operation==='add-heat-per-empty-slot'){
       const operation=R2_JOKERS.find(definition=>definition.id===sourceJoker?.definitionId)?.hooks.flatMap(hook=>hook.operations).find(operation=>operation.kind==='add-heat-per-empty-slot');
       if(e.sourceType!=='joker'||!sourceJoker||operation?.kind!=='add-heat-per-empty-slot'||e.phase!=='jokerScore'||
@@ -539,7 +572,7 @@ function validateState(value:unknown):asserts value is R2RunState {
   for(const r of receipts){const v=record(r,['commandId','fingerprint','seq']);text(v.commandId);text(v.fingerprint);integer(v.seq,1);if(v.seq!==++seq||ids.has(v.commandId))fail('invalid-save-receipts');ids.add(v.commandId);}
   if(seq!==s.commandSeq)fail('invalid-save-sequence');
   const stage=s.stage as R2RunState['stage'],sameStage=stage?.index===s.stageIndex&&['await-input','run-lost'].includes(s.phase as string);
-  trace(s.lastTrace,{runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2RulesetFor(s)!.amoScoreTiming,discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
+  trace(s.lastTrace,{definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2RulesetFor(s)!.amoScoreTiming,discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
     config,program:s.program as R2ProgramState|null,usage:usage as R2RunState['chapterHandUsage'],
     liveJokerIds:sameStage?(s.jokers as R2JokerInstance[]).map(joker=>joker.instanceId):undefined});
   const program=s.program as R2ProgramState|null;

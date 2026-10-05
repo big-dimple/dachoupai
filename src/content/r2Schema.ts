@@ -21,6 +21,7 @@ export type Condition =
   | { kind: 'held-rank-first'; values: readonly number[]; limit: number; playedEquals?:number }
   | { kind: 'held-scoring-rank-first'; limit:number }
   | { kind: 'held-enhancement-first'; enhancement:'voice-paper'; limit:number }
+  | { kind: 'hand-type-relation'; values:readonly R2HandType[]; relation:'same'|'different' }
   | { kind: 'hand-type-transition'; current:R2HandType; previous:R2HandType }
   | { kind: 'extra-retrigger' }
   | { kind: 'stage-score-below-target' | 'hand-score-below-target'; ratio:Fraction }
@@ -209,6 +210,7 @@ export function validR2Condition(c:unknown,phase?:HookPhase):c is Condition {
     case 'held-rank-first':valid=at('onHeldCard')&&exact(c,['kind','values','limit','playedEquals'])&&Array.isArray(c.values)&&c.values.length>0&&c.values.length<=13&&c.values.every(v=>integer(v,2,14))&&integer(c.limit,1,14)&&(c.playedEquals===undefined||integer(c.playedEquals,1,5));break;
     case 'held-scoring-rank-first':valid=at('onHeldCard')&&exact(c,['kind','limit'])&&integer(c.limit,1,14);break;
     case 'held-enhancement-first':valid=at('onHeldCard')&&exact(c,['kind','enhancement','limit'])&&c.enhancement==='voice-paper'&&integer(c.limit,1,14);break;
+    case 'hand-type-relation':valid=at('jokerScore','afterHand')&&exact(c,['kind','values','relation'])&&handTypes(c.values)&&['same','different'].includes(c.relation as string);break;
     case 'hand-type-transition':valid=at('jokerScore')&&exact(c,['kind','current','previous'])&&R2_HAND_TYPES.includes(c.current as R2HandType)&&R2_HAND_TYPES.includes(c.previous as R2HandType)&&c.current!==c.previous;break;
     case 'extra-retrigger':valid=at('afterHand')&&exact(c,['kind']);break;
     case 'stage-score-below-target':valid=at('jokerScore')&&exact(c,['kind','ratio'])&&properFraction(c.ratio);break;

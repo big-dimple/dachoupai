@@ -1,3 +1,5 @@
+import {JOKER_ASSIST_TEMPLATES} from './JokerAssistTemplates';
+import {R2_ASSIST_JOKERS,R2_ASSIST_ADAPTED_IDS} from '../content/r2AssistJokers';
 import templates from './JokerPlayerTemplates.json';
 import type {CardAbilityCopy} from './CardCopy';
 import type {JokerMemoryContext,jokerMemory} from './JokerMemory';
@@ -11,9 +13,9 @@ import {rankLabel,SUIT_SYMBOL,type PlayingCard} from '../cards/types';
 import {fractionText} from './scoreText';
 import {r2JokerValue} from './r2Help';
 
-type Template={main:string;limits:string[];rules:string[];state:string[];bindings:Record<string,{source:string;format:string}>};
+export type JokerPlayerTemplate={main:string;limits:string[];rules:string[];state:string[];bindings:Record<string,{source:string;format:string}>};
 type Memory=ReturnType<typeof jokerMemory>;
-const copyTemplates:Record<string,Template>=templates;
+const copyTemplates:Record<string,JokerPlayerTemplate>=templates;
 const zero={n:'0',d:'1'};
 /** Only reads explicit public definition paths. No conditions, score or random actions execute here. */
 function definitionValue(source:string,definition:R2JokerDefinition):unknown {
@@ -50,7 +52,7 @@ function formatted(value:unknown,format:string):string {
 const eventTiming:Record<string,string>={afterHand:'出牌结算后才更新',onDiscard:'成功弃牌后判断',onStageClear:'过关时判断',onBuyOffer:'购买成功后判断',onSellJoker:'出售成功后判断',onReroll:'付费换牌后判断',beforeFailure:'出牌机会用完时判断'};
 /** Player copy consumes the existing public status, never recomputes eligibility. */
 export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext,memory:Memory,events?:readonly ScoreEvent[]):CardAbilityCopy {
- const template=copyTemplates[definition.id];
+ const template=R2_ASSIST_ADAPTED_IDS.includes(definition.id)&&R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_TEMPLATES[definition.id]:copyTemplates[definition.id];
  if(!template)return{condition:'查看这张牌的条件与效果。',value:'完整规则见下方。',state:instance?'按实际出牌与交易判断':'尚未购买，买入后才会生效',flavor:'',rules:definition.description,summary:'条件与效果 · 查看',compact:memory.short,narrow:memory.short,benefit:'条件与效果',playerCopy:true};
  const values:Record<string,string>={};for(const[key,binding]of Object.entries(template.bindings))values[key]=formatted(bindingValue(binding.source,definition),binding.format);
  const growth=instance?{...r2GrowthMinimums(definition),...instance.growth}:{};

@@ -8,6 +8,8 @@ import {buildInfo,formatBuildInfo} from '../platform/buildInfo';
 import {AudioEngine} from '../audio/AudioEngine';
 import {readAudioPreferences} from '../audio/preferences';
 import {installFullscreen} from '../platform/Fullscreen';
+import {savedAssistCopy} from './AssistSelection';
+import {characterForRun} from './CharacterRunCopy';
 import {R2_JOKERS} from '../content/r2Schema';
 import {R2_AVAILABLE_CHAPTERS} from '../domain/r2Chapter';
 
@@ -149,7 +151,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
     const state=session.state();if(!state?.lastTrace)return;
     const scene=game.scene.getScene('game') as GameScene;
     if(scene.scene.isActive()){scene.replayLastTrace();close();return;}
-    status.textContent=HAND_LABELS[state.lastTrace.handType]+' · '+heatText(state.lastTrace.finalScore)+' 热度\n'+state.lastTrace.events.map(e=>e.reasonKey+'：'+e.operation+' '+e.value.n+'/'+e.value.d).join('\n');
+    status.textContent=HAND_LABELS[state.lastTrace.handType]+' · '+heatText(state.lastTrace.finalScore)+' 热度\n'+(state.lastTrace.assist?savedAssistCopy(state.lastTrace)+'\n':'')+state.lastTrace.events.map(e=>e.reasonKey+'：'+e.operation+' '+e.value.n+'/'+e.value.d).join('\n');
   },playback);
   function refreshPlayback():void {
     const presenting=game.scene.isActive('game')&&(game.scene.getScene('game') as GameScene).isPresenting;
@@ -159,7 +161,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   }
   panel.append(saveTools);
   const infoTools=document.createElement('details'),infoSummary=document.createElement('summary'),info=document.createElement('p');infoSummary.textContent='本局与版本';infoTools.append(infoSummary);panel.append(infoTools);
-  button('局详情',()=>{const state=session.state();info.textContent=state?'角色 '+state.characterId+'\nSEED '+state.seed+'\n规则 '+state.rulesVersion+' · 内容 '+state.contentVersion:'当前没有进行中的局。';},infoTools);
+  button('局详情',()=>{const state=session.state();info.textContent=state?'角色 '+characterForRun(state).name+' · '+characterForRun(state).passiveName+'\n'+characterForRun(state).passiveDescription+'\nSEED '+state.seed+'\n规则 '+state.rulesVersion+' · 内容 '+state.contentVersion:'当前没有进行中的局。';},infoTools);
   button('版本信息',()=>{info.textContent=`${formatBuildInfo(buildInfo)}\n当前可玩内容：${R2_JOKERS.length}张大丑牌、${R2_AVAILABLE_CHAPTERS}章。`;},infoTools);infoTools.append(info);
   function refreshState():void {
     const run=session.run,pending=session.pendingRun,saving=pending??run;

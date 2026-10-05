@@ -14,10 +14,20 @@ export class SceneView {
   private intent=new PointerIntent();
   private pressed?:{object:Phaser.GameObjects.GameObject;actions:TouchActions;id:number;held:boolean;touch:boolean;x:number;y:number;dragging:boolean;at:number;downTime:number};
   private timer?:ReturnType<typeof setTimeout>;
+  private contacts=new Map<number,string>();
+  private multiContact=false;
+  private readonly contactDown=(event:PointerEvent)=>{
+    if(event.isPrimary)for(const [id,type] of this.contacts)if(type===event.pointerType&&id!==event.pointerId)this.contacts.delete(id);
+    this.contacts.set(event.pointerId,event.pointerType);
+    if(this.contacts.size>1){this.multiContact=true;this.cancel();}
+  };
+  private readonly contactEnd=(event:PointerEvent)=>{this.contacts.delete(event.pointerId);if(!this.contacts.size)this.multiContact=false;};
+  private readonly contactBlur=()=>{this.contacts.clear();this.multiContact=false;this.cancel();};
   private reset(canceled:boolean):void {const pressed=this.pressed;this.intent.cancel();this.pressed=undefined;clearTimeout(this.timer);pressed?.actions.release?.();if(canceled)pressed?.actions.cancel?.();}
   private readonly cancel=()=>this.reset(true);
   cancelInteraction():void {this.reset(true);}
   private readonly down=(p:Phaser.Input.Pointer,over:Phaser.GameObjects.GameObject[])=>{
+    if(this.multiContact){this.cancel();return;}
     const canvas=this.scene.game.canvas.getBoundingClientRect();
     if(modalBlocksCanvas(canvas.left+p.x*canvas.width/this.scene.scale.width,canvas.top+p.y*canvas.height/this.scene.scale.height)){this.cancel();return;}
     const object=over.find(o=>this.gestures.has(o));if(!object)return;this.cancel();
@@ -49,7 +59,8 @@ export class SceneView {
     this.root=scene.add.container(0,0).setName('view');
     scene.input.on('pointerdown',this.down);scene.input.on('pointermove',this.move);scene.input.on('pointerup',this.up);scene.input.on('pointerupoutside',this.cancel);
     scene.game.canvas.addEventListener('pointercancel',this.cancel);scene.scale.on('resize',this.resize);
-    scene.events.once('shutdown',()=>{this.cancel();scene.input.off('pointerdown',this.down);scene.input.off('pointermove',this.move);scene.input.off('pointerup',this.up);scene.input.off('pointerupoutside',this.cancel);scene.game.canvas.removeEventListener('pointercancel',this.cancel);scene.scale.off('resize',this.resize);this.gestures.clear();});
+    window.addEventListener('pointerdown',this.contactDown,true);window.addEventListener('pointerup',this.contactEnd,true);window.addEventListener('pointercancel',this.contactEnd,true);window.addEventListener('blur',this.contactBlur);
+    scene.events.once('shutdown',()=>{this.cancel();scene.input.off('pointerdown',this.down);scene.input.off('pointermove',this.move);scene.input.off('pointerup',this.up);scene.input.off('pointerupoutside',this.cancel);scene.game.canvas.removeEventListener('pointercancel',this.cancel);scene.scale.off('resize',this.resize);this.gestures.clear();window.removeEventListener('pointerdown',this.contactDown,true);window.removeEventListener('pointerup',this.contactEnd,true);window.removeEventListener('pointercancel',this.contactEnd,true);window.removeEventListener('blur',this.contactBlur);this.contacts.clear();});
   }
   get layout():TableLayout {
     const style=getComputedStyle(document.documentElement),n=(key:string)=>parseFloat(style.getPropertyValue(key))||0;
