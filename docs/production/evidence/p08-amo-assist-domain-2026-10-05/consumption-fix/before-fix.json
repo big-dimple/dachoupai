@@ -1,0 +1,12 @@
+{
+  "source": "cfc8169a970fcb7213621c936bf6366e8105818d",
+  "case": "legal assisted hand then ordinary hand; move spades-12 from playedPile to drawPile tail; recompute checksum only",
+  "legalCheckpointAccepted": true,
+  "journalUnchanged": true,
+  "receiptsUnchanged": true,
+  "lastTraceAssist": null,
+  "forgedCheckpointAccepted": true,
+  "nextLegalOrdinaryHandRedrawsConsumedCard": true,
+  "expected": "reject forged checkpoint",
+  "status": "FAIL_REPRODUCED"
+}

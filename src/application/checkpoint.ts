@@ -571,9 +571,12 @@ export function readCheckpoint(value:unknown):ReadResult {
     if(seq!==state.commandSeq)fail('invalid-save-journal-sequence');
     if(r2RulesetFor(state)!.amoScoreTiming==='assist-v1'){
       let used:boolean|undefined;
+      const journalConsumed=new Set<string>();
       for(const entry of journal as Command[]){
         if(entry.action.type==='EnterStage'||entry.action.type==='SkipStage')used=false;
-        if(entry.action.type==='PlayAssistedHand'){if(used===true)fail('invalid-save-assist-journal-usage');used=true;}
+        // Only EnterStage rebuilds the physical deck zones; a shop/skip keeps used cards used.
+        if(entry.action.type==='EnterStage')journalConsumed.clear();
+        if(entry.action.type==='PlayAssistedHand'){if(used===true)fail('invalid-save-assist-journal-usage');used=true;for(const id of entry.action.assistIds)journalConsumed.add(id);}
         if(state.lastTrace?.rootId===`${state.runId}/hand/${entry.commandId}`){
           if(entry.action.type!=='PlayHand'&&entry.action.type!=='PlayAssistedHand')fail('invalid-save-assist-journal-trace');
           const play=entry.action as Extract<Action,{type:'PlayHand'|'PlayAssistedHand'}>,ordered=(ids:readonly string[])=>state.lastTrace!.cards.filter(card=>ids.includes(card.id)).map(card=>card.id);
@@ -582,7 +585,8 @@ export function readCheckpoint(value:unknown):ReadResult {
         }
       }
       if(state.stage&&used!==undefined&&state.stage.assistUsed!==used)fail('invalid-save-assist-journal-usage');
-      if(state.lastTrace?.sets.assistConsumedIds?.some(id=>!state.playedPile.includes(id)&&!state.destroyedIds.includes(id)))fail('invalid-save-assist-used-zone');
+      const consumed=[...journalConsumed,...(state.lastTrace?.sets.assistConsumedIds??[])];
+      if(consumed.some(id=>!state.playedPile.includes(id)&&!state.destroyedIds.includes(id)))fail('invalid-save-assist-used-zone');
     }
 
     const {checksum,...payload}=c;if(checksum!==stableHash(payload))fail('corrupt-checksum');

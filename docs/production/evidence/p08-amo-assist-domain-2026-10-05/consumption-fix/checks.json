@@ -1,0 +1,27 @@
+{
+  "base": "cfc8169a970fcb7213621c936bf6366e8105818d",
+  "before": {
+    "status": "FAIL_REPRODUCED",
+    "specializedTests": 11,
+    "failed": 4,
+    "legalControlsPassed": 7
+  },
+  "after": {
+    "specializedTests": 11,
+    "relatedTests": 102,
+    "relatedFiles": 4,
+    "status": "PASS",
+    "typecheck": "PASS"
+  },
+  "logs": {
+    "regression-before-fix.txt": {
+      "sha256": "b226709280877621868f218bb0be7103b9a2323f9d1779a452c7f1b59ba68c38",
+      "bytes": 73401
+    },
+    "related-after-fix.txt": {
+      "sha256": "bc224c2b503962cbdb916f1dc783c15d6e5be6c9c5b6b5e5cf075a4f61eba596",
+      "bytes": 417
+    }
+  },
+  "scope": "only checkpoint parsing; domain scoring/sharedRuntimeHash unchanged; no card adaptation; no additional full local matrix"
+}
