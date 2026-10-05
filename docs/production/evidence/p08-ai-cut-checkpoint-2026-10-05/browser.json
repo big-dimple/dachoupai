@@ -1,0 +1,46 @@
+{
+  "taskId": "P08",
+  "testedCommit": "ad128141531098330f50098b71c86a3c9176db1e",
+  "scope": "Ranking/label checkpoint only; layout relocation BLOCKED by unreadable required Library reference",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-05T00:59:39.322Z",
+    "revision": "ad128141531098330f50098b71c86a3c9176db1e",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "151.0.7922.173",
+  "renderer": "Chromium software Canvas",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "fixture": "Two validator-approved synthetic9-card visible hands under saved v10/v11 identities; three owned modifiers, no natural acquisition claim.",
+  "cases": [
+    {
+      "profile": "v10",
+      "picks": []
+    }
+  ],
+  "errors": [],
+  "screenshots": [],
+  "sourceFreeze": {
+    "before": {
+      "source": "5498e1004cca130c2b784f63f5ae42cf51cc1e6280ce08acc00b3bf8b77fd531",
+      "index": "8f5070c70509477a3bcbb07836c3eefafe8db9a8286a9651d0a17c4bd816178b",
+      "head": "ad128141531098330f50098b71c86a3c9176db1e",
+      "branch": "refs/heads/feat/p08-ai-cut-20261005"
+    },
+    "after": {
+      "source": "5498e1004cca130c2b784f63f5ae42cf51cc1e6280ce08acc00b3bf8b77fd531",
+      "index": "8f5070c70509477a3bcbb07836c3eefafe8db9a8286a9651d0a17c4bd816178b",
+      "head": "ad128141531098330f50098b71c86a3c9176db1e",
+      "branch": "refs/heads/feat/p08-ai-cut-20261005"
+    }
+  },
+  "layout": "NOT_IMPLEMENTED",
+  "referenceImageActualView": "BLOCKED",
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'' !== '—'\n"
+}

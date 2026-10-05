@@ -1,6 +1,7 @@
 import {describe,it,expect} from 'vitest';
 import {layout,intersects,scorePedestal,scoreCells,playedFootprint,type Box} from '../src/game/layout';
 import {PointerIntent} from '../src/game/PointerIntent';
+import {gameToolInventoryBox,toolInventoryPlayedArea} from '../src/game/ToolInventoryEntry';
 
 const sizes=[[320,568],[360,640],[390,740],[390,844],[430,932],[844,300],[844,360],[844,390],[1024,768],[1280,720],[1920,1080],[768,1024]];
 const inside=(b:Box,w:number,h:number)=>b.x>=0&&b.y>=0&&b.x+b.width<=w+.01&&b.y+b.height<=h+.01;
@@ -76,7 +77,8 @@ describe('CSS layout contract',()=>{
     const buttons=[...Object.values(l.buttons),...Object.values(l.tableActions)];
     for(const b of buttons){expect(inside(b,width,height)).toBe(true);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.width).toBeGreaterThanOrEqual(44);}
     expect(l.tableActions.play.height).toBeGreaterThanOrEqual(48);expect(l.tableActions.discard.height).toBeGreaterThanOrEqual(48);
-    expect(intersects(l.hand,l.actions)).toBe(false);expect(intersects(l.tools,l.hand)).toBe(false);expect(intersects(l.preview,l.tools)).toBe(false);
+    expect(intersects(l.hand,l.actions)).toBe(false);expect(intersects(l.tools,l.hand)).toBe(false);
+    for(const visiblePreview of [l.scoreBoard,playedFootprint(toolInventoryPlayedArea(l),l.mode==='portrait')])expect(intersects(visiblePreview,l.tools)).toBe(false);
     for(let i=0;i<buttons.length;i++)for(let j=i+1;j<buttons.length;j++)expect(intersects(buttons[i],buttons[j])).toBe(false);
     expect(l.cards.length).toBe(8);for(const c of l.cards){expect(inside(c.hit,width,height)).toBe(true);expect(c.hit.width).toBeGreaterThanOrEqual(36);expect(c.visual.height/c.visual.width).toBeGreaterThanOrEqual(1.4-1e-6);}
     for(let i=0;i<l.cards.length;i++)for(let j=i+1;j<l.cards.length;j++)expect(intersects(l.cards[i].hit,l.cards[j].hit)).toBe(false);
@@ -86,10 +88,10 @@ describe('CSS layout contract',()=>{
     expect(l.hud.y).toBeGreaterThanOrEqual(24);expect(l.tableActions.play.y+l.tableActions.play.height).toBeLessThanOrEqual(810);
     const narrow=layout({width:320,height:568},{top:0,right:0,bottom:0,left:0});expect(narrow.compact).toBe(true);expect(narrow.height).toBe(568);
   });
-  it('D27 keeps only two sorting targets and two primary targets within the dynamic safe viewport',()=>{
+  it('keeps three sorting targets and two primary targets within the dynamic safe viewport',()=>{
     for(const [width,height] of [[320,568],[390,740],[390,844],[640,320],[844,300],[844,390],[1280,720]]){
       const safe={top:8,right:12,bottom:12,left:8},l=layout({width,height},safe,undefined,{count:14});
-      expect(Object.keys(l.buttons).sort()).toEqual(['rank','suit']);expect(Object.keys(l.tableActions).sort()).toEqual(['discard','play']);
+      expect(Object.keys(l.buttons).sort()).toEqual(['ai','rank','suit']);expect(Object.keys(l.tableActions).sort()).toEqual(['discard','play']);
       const controls=[...Object.values(l.buttons),...Object.values(l.tableActions)];
       for(const b of controls){
         expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);
@@ -98,8 +100,10 @@ describe('CSS layout contract',()=>{
         expect(intersects(b,l.hand)).toBe(false);
       }
       for(let i=0;i<controls.length;i++)for(let j=i+1;j<controls.length;j++)expect(intersects(controls[i],controls[j])).toBe(false);
-      expect(l.buttons.rank.x).toBe(l.actions.x);expect(l.tableActions.discard.x).toBeGreaterThan(l.tools.x+l.tools.width);
-      expect(l.tableActions.play.x+l.tableActions.play.width).toBeCloseTo(l.actions.x+l.actions.width);
+      expect(l.buttons.rank.x).toBe(l.tools.x);expect(l.buttons.ai.x).toBe(l.tools.x+88);
+      if(l.mode!=='portrait')expect(l.tableActions.discard.x).toBeGreaterThan(l.tools.x+l.tools.width);
+      if(l.mode==='portrait'&&!l.handOverflow)expect((l.tableActions.discard.x+l.tableActions.play.x+l.tableActions.play.width)/2).toBeCloseTo(l.actions.x+l.actions.width/2);
+      else expect(l.tableActions.play.x+l.tableActions.play.width).toBeCloseTo(l.actions.x+l.actions.width);
     }
   });
   it('expanded hands keep every seat and use a bounded horizontal window on narrow screens',()=>{
@@ -145,7 +149,8 @@ describe('CSS layout contract',()=>{
       expect(l.playedArea.height).toBeGreaterThanOrEqual(48);
       expect(intersects(l.scoreBoard,l.playedArea)).toBe(false);
       // D16 moves the mobile pile/history row into details; score and landing remain on the table.
-      const visible=l.mode==='portrait'||!l.labelHeight?[l.scoreBoard,l.playedArea]:[l.scoreBoard,l.playedArea,l.handLabel,l.piles];
+      const plane=playedFootprint(toolInventoryPlayedArea(l),l.mode==='portrait');
+      const visible=l.mode==='portrait'||!l.labelHeight?[l.scoreBoard,plane]:[l.scoreBoard,plane,l.handLabel,l.piles];
       for(const b of visible)for(const control of [l.tools,l.hand,l.actions])expect(intersects(b,control)).toBe(false);
       for(const action of Object.values(l.tableActions)){expect(inside(action,width,height)).toBe(true);expect(action.height).toBeGreaterThanOrEqual(48);}
       expect(intersects(l.tableActions.play,l.tableActions.discard)).toBe(false);
@@ -155,6 +160,16 @@ describe('CSS layout contract',()=>{
       }
       expect(l.hand.width).toBeLessThanOrEqual(1100);
     }
+  });
+});
+describe('AI sorting shares one reachable group without shrinking primary actions',()=>{
+  it.each([[320,568,0,0,114,90],[390,740,0,0,106,160],[844,300,12,12,236,308],[844,300,12,34,236,308]])('%s×%s safe%s/%s preserves submit/discard sizes and all nine seats', (width,height,top,bottom,discard,play)=>{
+    const l=layout({width,height},{top,bottom,left:0,right:0},undefined,{count:9}),entry=gameToolInventoryBox(l);
+    expect(l.visibleCardCount).toBe(9);expect(l.handOverflow).toBe(false);
+    expect(l.tableActions.discard.width).toBe(discard);expect(l.tableActions.play.width).toBe(play);
+    const controls=[...Object.values(l.buttons),...Object.values(l.tableActions),entry];
+    for(const b of controls){expect(inside(b,width,height)).toBe(true);expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.y).toBeGreaterThanOrEqual(top);expect(b.y+b.height).toBeLessThanOrEqual(height-bottom);for(const protectedBox of [l.hand,l.scoreBoard,l.status,playedFootprint(toolInventoryPlayedArea(l),l.mode==='portrait')])expect(intersects(b,protectedBox)).toBe(false);}
+    for(let i=0;i<controls.length;i++)for(let j=i+1;j<controls.length;j++)expect(intersects(controls[i],controls[j])).toBe(false);
   });
 });
 describe('pointer intent prevents accidental commands',()=>{

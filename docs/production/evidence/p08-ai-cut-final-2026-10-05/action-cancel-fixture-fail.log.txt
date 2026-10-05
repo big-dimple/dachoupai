@@ -1,0 +1,28 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ tests/ai-hand-action-cancellation.test.ts (6 tests | 1 failed) 68ms
+   × discardSelected cancels pending old work before dispatch and rebuilds it after a failed action 17ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ai-hand-action-cancellation.test.ts > discardSelected cancels pending old work before dispatch and rebuilds it after a failed action
+TypeError: this.run.handOrder is not iterable
+ ❯ GameScene.discardSelected src/game/GameScene.ts:1115:322
+
+ ❯ invoke tests/ai-hand-action-cancellation.test.ts:17:145
+ ❯ tests/ai-hand-action-cancellation.test.ts:22:8
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  01:29:10
+   Duration  1.50s (transform 1.08s, setup 0ms, import 1.27s, tests 68ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

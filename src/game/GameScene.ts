@@ -1,9 +1,10 @@
 import {courtArtKey,queueCourtArtLoads} from './HanddrawnArt';
 import {R2HandCandidateCache,r2CandidateKey,r2HandRevision,type R2CandidateInput,type R2CandidateResult} from '../domain/r2HandCandidates';
+import {AI_HAND_POLICY,AiHandCandidateCache,aiHandKey,nextAiHand,type AiHandInput,type AiHandCursor} from './AiHandCandidates';
 import {jokerMemory,jokerMemoryAbility,publicJokerMemoryContext,recordedJokerMemoryContext} from './JokerMemory';
 import {fitJokerLabel,jokerLabelRoom} from './JokerLabel';
 import {r2SelectionFacts,type R2SelectionFacts} from '../domain/r2SelectionFacts';
-import {selectionCopy,selectionCardCopy,fitConditionEntry,fourCardRuleCopy,selectionCandidateEntryBox,nextCandidate} from './SelectionCopy';
+import {selectionCopy,selectionCardCopy,fitConditionEntry,fourCardRuleCopy,selectionCandidateEntryBox} from './SelectionCopy';
 import {handRuleReference} from './HandRuleReference';
 import {subtractBoxes} from './ScoreGeometry';
 import {jokerArtAlignedLayers} from './jokerArt';
@@ -108,6 +109,8 @@ export class GameScene extends Phaser.Scene {
   private toolHand?:readonly PlayingCard[];
   private selectedIds = new Set<string>();
   private readonly candidates=new R2HandCandidateCache();
+  private readonly aiCandidates=new AiHandCandidateCache();
+  private aiCursor?:AiHandCursor;
   private candidateGhost?:{key:string;facts:HandPreview};
   private candidateUndo?:{revision:string;ids:string[]};
   private hoveredCardId?:string;
@@ -148,6 +151,7 @@ export class GameScene extends Phaser.Scene {
   private discardButton!: Phaser.GameObjects.Rectangle;
   private rankButton!: Phaser.GameObjects.Rectangle;
   private suitButton!: Phaser.GameObjects.Rectangle;
+  private aiButton!: Phaser.GameObjects.Rectangle;
   private inventoryButton?:Phaser.GameObjects.Rectangle;
   private menuActions?:RunMenuActions;
   private statusText!: Phaser.GameObjects.Text;
@@ -184,7 +188,7 @@ export class GameScene extends Phaser.Scene {
 
   async create(): Promise<void> {
     // Phaser reuses this Scene instance. Its former controls were destroyed on shutdown.
-    this.controlsLive=false;this.candidates.dispose();this.candidateGhost=undefined;this.candidateUndo=undefined;
+    this.controlsLive=false;this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;this.candidateGhost=undefined;this.candidateUndo=undefined;
     // Default Phaser lag smoothing turns every >500ms frame into only 33ms.
     // Keep committed score playback moving on slow renderers; bound background gaps to 1s.
     this.tweens.setLagSmooth(1000,1000);
@@ -208,7 +212,7 @@ export class GameScene extends Phaser.Scene {
     window.addEventListener('dachoupai-presentation',settings);
     this.events.once('shutdown',()=>{
       this.game.canvas.removeAttribute('data-hand-input');this.stopHandHint();window.removeEventListener('pointerdown',this.pointerFocus,true);document.removeEventListener('focusin',this.focusFeedback);document.removeEventListener('focusout',this.focusFeedback);window.removeEventListener('blur',this.stopHandHint);document.removeEventListener('visibilitychange',this.hintVisibility);
-      this.candidates.dispose();this.candidateGhost=undefined;this.candidateUndo=undefined;this.handInput?.destroy();this.handInput=undefined;this.controlsLive=false;this.stopScoreFire();
+      this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;this.candidateGhost=undefined;this.candidateUndo=undefined;this.handInput?.destroy();this.handInput=undefined;this.controlsLive=false;this.stopScoreFire();
       if(this.registry.get('runMenuActions')===this.menuActions)this.registry.remove('runMenuActions');
       this.menuActions=undefined;
       this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.stopJokerIdle();this.tweens.killAll();this.time.removeAllEvents();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.previewCards=undefined;this.presentation=undefined;this.playAuraPulse=undefined;this.playing=false;this.rollingHeat=false;this.dialog.close();
@@ -331,9 +335,13 @@ export class GameScene extends Phaser.Scene {
     this.pileText=v.text(l.piles.x+l.piles.width,l.piles.y,'',14,'#c8d4c7').setOrigin(1,0).setVisible(!portrait&&l.labelHeight>0);
     const brief=portrait||l.shortLandscape||l.buttons.rank.width<80;
     const sort=l.tools;
-    v.add(this.add.graphics().fillStyle(T.jadeSoft).fillRoundedRect(sort.x,sort.y,sort.width,sort.height,6).lineStyle(1,T.jade,.9).strokeRoundedRect(sort.x+.5,sort.y+.5,sort.width-1,sort.height-1,6).lineStyle(1,T.jade,.35).beginPath().moveTo(sort.x+44,sort.y+10).lineTo(sort.x+44,sort.y+sort.height-10).strokePath().setName('action/sort-group').setData('bounds',sort));
+    const sortArt=this.add.graphics().fillStyle(T.jadeSoft).fillRoundedRect(sort.x,sort.y,sort.width,sort.height,6).lineStyle(1,T.jade,.9).strokeRoundedRect(sort.x+.5,sort.y+.5,sort.width-1,sort.height-1,6).lineStyle(1,T.jade,.35);
+    for(const offset of [44,88])sortArt.beginPath().moveTo(sort.x+offset,sort.y+10).lineTo(sort.x+offset,sort.y+sort.height-10).strokePath();
+    v.add(sortArt.setName('action/sort-group').setData('bounds',sort));
     this.rankButton=v.button(l.buttons.rank,brief?'点数':'点数排序','action/sort-rank',()=>void this.sortHand('rank'),this.ready,false,'sort');
     this.suitButton=v.button(l.buttons.suit,brief?'花色':'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready,false,'sort');
+    this.aiButton=v.button(l.buttons.ai,'AI 切','selection/switch-type',()=>this.switchHandType(),false,false,'sort');
+    for(const button of [this.rankButton,this.suitButton,this.aiButton])(button.getData('label') as Phaser.GameObjects.Text).setFontSize(14);
     this.discardButton=v.button(l.tableActions.discard,'弃牌','action/discard',()=>void this.discardSelected(),this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run),false,'discard');
     this.playButton=v.button(l.tableActions.play,'出牌','action/play',()=>void this.playSelected(),this.ready&&this.selectedIds.size>0&&this.handsLeft>0,true,'play');
     this.resourceCounts={} as Record<'play'|'discard',Phaser.GameObjects.Text>;
@@ -587,9 +595,8 @@ export class GameScene extends Phaser.Scene {
     const l=this.view.layout,limit=this.run.stage!.handLimit;
     const portraitWindow=l.mode==='portrait'&&l.handOverflow;
     this.handCountText.setText('手牌 '+this.run.handOrder.length+' / '+limit+(l.handOverflow?(portraitWindow?'\n':' · ')+(l.handStart+1)+'–'+(l.handStart+l.visibleCardCount):'')).setVisible((l.mode!=='portrait'&&l.labelHeight>0)||l.handOverflow);
-    // Lifted cards still own the top of their row. The tool row has a free left gutter.
-    const entry=gameToolInventoryBox(l);
-    this.handCountText.setPosition(portraitWindow?l.hand.x+8:l.mode==='portrait'?l.hand.x+48:l.handLabel.x,portraitWindow?entry.y+(entry.height-this.handCountText.height)/2:l.mode==='portrait'?l.hand.y+2:l.handLabel.y);
+    // The vacated bottom sorting seat keeps window counts clear of lifted cards.
+    this.handCountText.setPosition(portraitWindow?l.actions.x+2:l.mode==='portrait'?l.hand.x+48:l.handLabel.x,portraitWindow?l.actions.y+(l.actions.height-this.handCountText.height)/2:l.mode==='portrait'?l.hand.y+2:l.handLabel.y);
   }
   private sweepSheen(view:CardView):void {
     const sheen=view.sheen;if(!sheen||this.reducedMotion||this.presentation||this.playing)return;
@@ -720,29 +727,30 @@ export class GameScene extends Phaser.Scene {
   }
   private selectionQuickInScore(score:Box):boolean {return this.view.layout.mode!=='desktop'||score.width>=300;}
   private renderSelectionQuickButtons(score:Box):void {
-    const area=this.selectionQuickInScore(score)?selectionCandidateEntryBox(score):{x:this.view.layout.playedArea.x+8,y:score.y+2,width:92,height:44},first=this.view.root.length,input=this.candidateInput(),result=this.candidates.result;
-    const buttons=[this.view.button({...area,width:44},'切换\n牌型','selection/switch-type',()=>this.switchHandType(),this.ready&&!!nextCandidate(result,r2CandidateKey(input),this.selectionPreview()?.type)),
-      this.view.button({...area,x:area.x+48,width:44},'牌型\n规则','selection/hand-rules',()=>this.inspectHandRules(),this.ready)];
+    const area=this.selectionQuickInScore(score)?selectionCandidateEntryBox(score):{x:this.view.layout.playedArea.x+8,y:score.y+2,width:92,height:44},first=this.view.root.length;
+    const buttons=[this.view.button({...area,x:area.x+48,width:44},'牌型\n规则','selection/hand-rules',()=>this.inspectHandRules(),this.ready)];
     buttons.forEach(button=>(button.getData('label') as Phaser.GameObjects.Text).setFontSize(14).setName('selection/quick-label'));
     this.previewCards!.add(this.view.root.list.slice(first));
   }
   private switchHandType():void {
     if(!this.ready||this.presentation||this.run.phase!=='await-input'||document.hidden)return;
-    const input=this.candidateInput(),facts=nextCandidate(this.candidates.result,r2CandidateKey(input),this.selectionPreview()?.type);
-    if(!facts)return;
+    const input=this.aiInput(),next=nextAiHand(this.aiCandidates.result,aiHandKey(input),[...this.selectedIds],this.aiCursor);
+    if(!next)return;const facts=next.facts;
     this.handInput?.cancel();this.view.cancelInteraction();this.candidateGhost=undefined;
-    this.candidateUndo={revision:r2HandRevision(input),ids:[...this.selectedIds]};
-    this.selectedIds=new Set(facts.playedIds);this.statusMessage='已切换牌型 · 查看牌型可撤销';this.refreshSelection();
+    this.candidateUndo={revision:r2HandRevision(this.candidateInput()),ids:[...this.selectedIds]};
+    this.aiCursor=next.cursor;this.selectedIds=new Set(facts.playedIds);this.statusMessage='AI已选'+HAND_LABELS[facts.type]+' · 查看牌型可撤销';this.refreshSelection();
   }
   private inspectHandRules():void {
     if(!this.ready||this.presentation||this.run.phase!=='await-input')return;
     this.handInput?.cancel();this.view.cancelInteraction();this.candidateGhost=undefined;
     const context=r2ScoreContext(this.run,this.hand,[]),mods=readR2Modifiers(this.run.jokers,R2_JOKERS);
-    this.dialog.open('牌型规则',handRuleReference(this.run.handLevels,{fourStraight:!!(context.handRules?.fourStraight||mods.fourStraight),fourFlush:!!(context.handRules?.fourFlush||mods.fourFlush)}));
+    this.dialog.open('牌型规则',AI_HAND_POLICY+'\n\n'+handRuleReference(this.run.handLevels,{fourStraight:!!(context.handRules?.fourStraight||mods.fourStraight),fourFlush:!!(context.handRules?.fourFlush||mods.fourFlush)}));
   }
   private updateControls():void {
     if(!this.controlsLive)return;
     this.view.setEnabled(this.rankButton,this.ready);this.view.setEnabled(this.suitButton,this.ready);
+    const aiInput=this.aiInput(),aiResult=this.aiCandidates.result;
+    this.view.setEnabled(this.aiButton,this.ready&&!this.presentation&&aiResult?.status==='ready'&&aiResult.key===aiHandKey(aiInput)&&aiResult.ordered.length>0);
     const handWindow=this.view.layout;this.handNavigationButtons.forEach((button,i)=>this.view.setEnabled(button,this.ready&&(i===0?handWindow.handStart>0:handWindow.handStart+handWindow.visibleCardCount<this.hand.length)));
     const notice=stageNotice(this.run),discardGoldCost=notice?.discardGoldCost??0;
     (this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(discardGoldCost?'弃 -1金':r2DiscardCost(this.run)===2?'弃 ×2':'弃牌');
@@ -778,7 +786,14 @@ export class GameScene extends Phaser.Scene {
     if(this.candidateUndo?.revision!==r2HandRevision(input))this.candidateUndo=undefined;
     const lifecycle=this.lifecycle;
     this.candidates.update(input,result=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing&&r2CandidateKey(this.candidateInput())===result.key)this.refreshSelection();});
+    const ai=this.aiInput(),aiKey=aiHandKey(ai);if(this.aiCursor?.key!==aiKey)this.aiCursor=undefined;
+    this.aiCandidates.update(ai,result=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing&&aiHandKey(this.aiInput())===result.key)this.refreshSelection();});
   }
+  private aiInput():AiHandInput {
+    const stage=this.run.stage!,context=r2ScoreContext(this.run,this.hand,[]);
+    return{...this.candidateInput(),boss:context.boss,sealedJokerIds:context.sealedJokerIds,challengeDisabledJokerId:context.challengeDisabledJokerId,score:{characterId:context.characterId,amoScoreTiming:context.amoScoreTiming,jokerSlots:context.jokerSlots,handLevels:this.run.handLevels,previousHandType:stage.previousHandType,previousHandScore:context.previousHandScore,wager:stage.wagerSelected}};
+  }
+  private cancelAiCandidates():void {this.aiCandidates.dispose();this.aiCursor=undefined;}
   private candidateEntry():string {
     const result=this.candidates.result;
     return result?.status==='ready'?'本轮可成'+result.groups.length+'种 · 查看':result?.status==='working'?'本轮牌型整理中 · 选牌照常':'选择说明 · 完整规则 ›';
@@ -793,11 +808,11 @@ export class GameScene extends Phaser.Scene {
       {label:'换为这组',primary:true,run:()=>{
         const ghost=this.candidateGhost;if(!isCurrent()||!ghost||ghost.key!==key){message.textContent=isCurrent()?'先点一个示例，只查看不会改选择。':'手牌或规则已变化，请关闭后重新查看。';return;}
         this.candidateUndo={revision:r2HandRevision(this.candidateInput()),ids:[...this.selectedIds]};
-        this.selectedIds=new Set(ghost.facts.playedIds);this.candidateGhost=undefined;this.dialog.close(dialog);this.refreshSelection();this.statusMessage='已换组，仍需自己出牌；查看牌型可撤销';this.updateControls();
+        this.aiCursor=undefined;this.selectedIds=new Set(ghost.facts.playedIds);this.candidateGhost=undefined;this.dialog.close(dialog);this.refreshSelection();this.statusMessage='已换组，仍需自己出牌；查看牌型可撤销';this.updateControls();
       }},
       {label:'撤销换组',disabled:!this.candidateUndo,run:()=>{
         const undo=this.candidateUndo;if(!isCurrent()||!undo||undo.revision!==r2HandRevision(this.candidateInput())){message.textContent='手牌或选择已变化，旧换组不能撤销。';return;}
-        this.selectedIds=new Set(undo.ids);this.candidateUndo=undefined;this.candidateGhost=undefined;this.dialog.close(dialog);this.statusMessage='已撤销换组，恢复原选择';this.refreshSelection();
+        this.aiCursor=undefined;this.selectedIds=new Set(undo.ids);this.candidateUndo=undefined;this.candidateGhost=undefined;this.dialog.close(dialog);this.statusMessage='已撤销换组，恢复原选择';this.refreshSelection();
       }},
       {label:'构筑条件',run:()=>{const selected=this.selectionPreview();if(selected)this.inspectSelection(selected);else this.inspectHeldConditions();}},
     ],{onClose:()=>{this.candidateGhost=undefined;}});
@@ -872,7 +887,7 @@ export class GameScene extends Phaser.Scene {
     if(this.scene.isActive())showDeckInspection(this.dialog,this.run);
   }
   private async command(action:import('../domain/run').Action,expectedSeq?:number):Promise<boolean> {
-    if(!this.ready)return false;this.clearHover();this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();
+    if(!this.ready)return false;this.clearHover();this.cancelAiCandidates();this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();
     const focusedId=this.hand[this.focusIndex]?.id;
     const beforeGold=this.run.gold,beforeDiscards=this.run.stage?.discardsLeft,beforeHand=this.hand,used=action.type==='UseConsumable'?this.run.consumables.find(item=>item.instanceId===action.instanceId):undefined;
     try {
@@ -922,7 +937,7 @@ export class GameScene extends Phaser.Scene {
   private async sortHand(mode:'rank'|'suit'):Promise<void> {
     if(!this.ready||this.presentation||this.run.phase!=='await-input')return;
     this.handInput?.cancel();this.view.cancelInteraction();
-    this.selectedIds.clear();this.candidateGhost=undefined;this.candidateUndo=undefined;this.statusMessage='';
+    this.selectedIds.clear();this.candidateGhost=undefined;this.candidateUndo=undefined;this.aiCursor=undefined;this.statusMessage='';
     this.refreshSelection();
     const cards=[...this.hand].sort((a,b)=>mode==='rank'?b.rank-a.rank||SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit):SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit)||b.rank-a.rank);
     const before=this.handPositions();
@@ -933,7 +948,7 @@ export class GameScene extends Phaser.Scene {
     if(!this.handHint)return;this.handHint=false;
     if(this.controlsLive&&this.statusText?.active&&this.scene.isActive())this.updateControls();
   };
-  private readonly hintVisibility=()=>{if(document.hidden){this.stopHandHint();this.handInput?.cancel('blur');this.candidateGhost=undefined;this.candidates.dispose();}else if(this.run?.phase==='await-input'&&!this.playing&&!this.presentation&&this.scene.isActive())this.refreshSelection();};
+  private readonly hintVisibility=()=>{if(document.hidden){this.stopHandHint();this.handInput?.cancel('blur');this.candidateGhost=undefined;this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;}else if(this.run?.phase==='await-input'&&!this.playing&&!this.presentation&&this.scene.isActive())this.refreshSelection();};
   private showHandHint(claim=true):void {
     if(!this.view||!this.ready||this.handHint)return;
     const cards=this.view.layout.cards.filter(card=>card.visible);if(cards.length<2||claim&&!this.sweepHint.claim())return;
@@ -956,7 +971,7 @@ export class GameScene extends Phaser.Scene {
     const previous=this.selectedIds,next=new Set(update.selectedIds),changed=previous.size!==next.size||[...previous].some(id=>!next.has(id));
     this.statusMessage=update.limitReached?'每手最多选择 5 张牌':'';
     if(!changed){if(update.limitReached)this.updateControls();return;}
-    const endedUndo=!!this.candidateUndo;this.candidateUndo=undefined;this.candidateGhost=undefined;this.selectedIds=next;if(endedUndo&&!update.limitReached)this.statusMessage='已手动改选，换组撤销已结束';
+    const endedUndo=!!this.candidateUndo;this.aiCursor=undefined;this.candidateUndo=undefined;this.candidateGhost=undefined;this.selectedIds=next;if(endedUndo&&!update.limitReached)this.statusMessage='已手动改选，换组撤销已结束';
     const changedViews=this.cardViews.filter(view=>previous.has(view.card.id)!==next.has(view.card.id));changedViews.forEach(view=>this.revealCard(view));
     if(update.phase!=='cancelled'){if(update.mode==='select')this.audio.select();else this.audio.deselect();}
     // Batch a fast crossing into one preview; no rules command, RNG or save is touched.
@@ -968,7 +983,7 @@ export class GameScene extends Phaser.Scene {
     const view=this.cardViews.find(view=>view.card.id===id);if(view)this.revealCard(view);
     this.statusMessage='';
     if(!this.selectedIds.has(id)&&this.selectedIds.size>=MAX_SELECTED){this.statusMessage='每手最多选择 5 张牌';this.audio.invalid();if(view)this.wiggleCard(view,this.cardViews.indexOf(view));this.updateControls();return;}
-    if(this.candidateUndo)this.statusMessage='已手动改选，换组撤销已结束';this.candidateUndo=undefined;this.candidateGhost=undefined;
+    if(this.candidateUndo)this.statusMessage='已手动改选，换组撤销已结束';this.aiCursor=undefined;this.candidateUndo=undefined;this.candidateGhost=undefined;
     if (this.selectedIds.has(id)) {
       this.selectedIds.delete(id);this.audio.deselect();
     } else {
@@ -1097,7 +1112,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private async discardSelected():Promise<void> {
-    if(!this.ready||!this.selectedIds.size||this.run.stage!.discardsLeft<r2DiscardCost(this.run))return;this.clearHover();this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,selectedIds=[...this.selectedIds],previousIds=[...this.run.handOrder],beforeDiscards=this.run.stage!.discardsLeft,spentDiscards=beforeDiscards-r2DiscardCost(this.run);
+    if(!this.ready||!this.selectedIds.size||this.run.stage!.discardsLeft<r2DiscardCost(this.run))return;this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,selectedIds=[...this.selectedIds],previousIds=[...this.run.handOrder],beforeDiscards=this.run.stage!.discardsLeft,spentDiscards=beforeDiscards-r2DiscardCost(this.run);
     try {
       const result=await dispatchRun(this,{type:'DiscardHand',selectedIds});
       if(!this.alive(lifecycle,intent))return;
@@ -1120,7 +1135,7 @@ export class GameScene extends Phaser.Scene {
   private async playSelected():Promise<void> {
     if(!this.ready||this.selectedIds.size===0||this.handsLeft<=0)return;
     const selectedIds=[...this.selectedIds],lifecycle=this.lifecycle,intent=++this.intent,beforeHeat=this.heat,previousTrace=this.run.lastTrace,beforeHands=this.handsLeft,beforeGold=this.run.gold;
-    this.clearHover();this.playing=true;this.statusMessage='';this.updateControls();
+    this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();
     const selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id));
     try {
       const result=await dispatchRun(this,{type:'PlayHand',selectedIds});

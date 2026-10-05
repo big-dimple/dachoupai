@@ -5,8 +5,8 @@ import {playedFootprint,type Box,type TableLayout} from './layout';
 export const toolInventoryLabel=(state:Pick<R2RunState,'consumables'|'longTermItems'|'jokers'>):string=>`工具包 ${state.consumables.length}/${r2ConsumableCapacity(state)}`;
 /** Reuse spare table/sidebar space; hand seats and the main action row stay unchanged. */
 export function gameToolInventoryBox(l:TableLayout):Box {
-  if(l.mode==='portrait')return {x:l.hand.x+(l.hand.width-112)/2,y:l.hand.y-48,width:112,height:44};
-  if(l.mode==='landscape')return {x:l.hud.x+12,y:l.status.y-45,width:l.hud.width-24,height:44};
+  if(l.mode==='portrait')return {x:l.hand.x+l.hand.width-112,y:l.hand.y-48,width:112,height:44};
+  if(l.mode==='landscape')return {x:l.hud.x+4,y:l.status.y-45,width:112,height:44};
   return {x:l.hud.x+12,y:l.hud.y+380,width:l.hud.width-24,height:44};
 }
 /** Only expanded portrait hands need to reserve the entry below their preview. */

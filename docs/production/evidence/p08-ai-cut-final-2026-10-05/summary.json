@@ -1,0 +1,159 @@
+{
+  "taskId": "P08",
+  "testedCommit": "c568b6636b55fbf2671717787f1f728092a78c9f",
+  "status": "PASS_WITHIN_SCOPE",
+  "baseMain": "8e0daae74efd56969886d1fdb2c28df404af27e0",
+  "completionScope": [
+    "AI selection ranked by public conservative lower bound with non-high-card precedence",
+    "Shared sorting area with preserved submit/discard dimensions",
+    "Existing undo/rules/tool entry, manual sort selection reset and stable nine-card seats",
+    "Cancel pending AI at accepted command/play/discard and rebuild through existing finally",
+    "Current native v10/v11 and320/390/short checks; bounded9/14 timing observations"
+  ],
+  "policy": {
+    "comparison": "All visible subsets1–5 evaluated; strongest representative per legal pattern. Non-high-card first; high-card final fallback. Descending BigInt public score minimum, then fewer cards, then current seat order.",
+    "random": "Lowest public random branch, not expected winnings or a prediction. Public preview reused; no private RNG/future draw.",
+    "inputs": "Saved v10/v11 policy, visible cards/jokers, current levels/resources and actual stage boss.",
+    "action": "Only selectedIds/cursor/undo/UI change; no auto-play/discard or predicted total."
+  },
+  "implementation": {
+    "sourceTree": "f0a820c4dbe41247891aaa53588c342af622e410",
+    "undo": "Shared existing candidateInput revision fixes immediate undo invalidation",
+    "lifecycle": "Cancel old AI only after existing action gate accepts; declined gate leaves it intact; failed accepted dispatch rebuilds via existing finally",
+    "layout": "Parent approved first390 direction; final source keeps those positions and hand/score/fire geometry"
+  },
+  "checks": [
+    {
+      "name": "Affected8file133tests/type/production-plan",
+      "status": "PASS",
+      "command": "shots/p08-ai-cut/final-freeze.mjs (retained runner in freeze-runner.mjs.txt)",
+      "evidence": "freeze.json",
+      "exitCode": 0
+    },
+    {
+      "name": "One exact clean e2e build; native5cases",
+      "status": "PASS",
+      "command": "node harness/p08-ai-cut.mjs",
+      "evidence": "browser.json",
+      "exitCode": 0
+    },
+    {
+      "name": "Complete state/journal/export/RNG readonly for AI/cycle/undo/rules/tool/card selection",
+      "status": "PASS",
+      "evidence": "browser.json"
+    },
+    {
+      "name": "Manual rank/suit returns cards, authoritative ReorderHand state and unchanged RNG",
+      "status": "PASS",
+      "evidence": "browser.json"
+    },
+    {
+      "name": "Real44px hit boxes, nine visible cards, stable seats, held touchCancel on four controls",
+      "status": "PASS",
+      "evidence": "browser.json"
+    },
+    {
+      "name": "Actual untouched frozen v10 save under current build",
+      "status": "PASS",
+      "evidence": "browser.json"
+    },
+    {
+      "name": "Native pending Play/Discard cancel scheduled work and rebuild; native leave + one forced late timer rejects stale result",
+      "status": "PASS",
+      "evidence": "browser.json",
+      "note": "Timer-delay and late-delivery fault cases are separate from natural timings"
+    },
+    {
+      "name": "Three screenshots actual view",
+      "status": "PASS",
+      "evidence": [
+        "v11-390.png",
+        "v11-320.png",
+        "v11-short-safe34.png"
+      ]
+    },
+    {
+      "name": "Protected domain/application/content/audio/score effect/public/art trees",
+      "status": "PASS",
+      "evidence": "protected-trees.json"
+    }
+  ],
+  "timings": {
+    "environment": "One Chromium151 software Canvas/DPR1 observation per9/14 controlled fixture; pass-through timing instrumentation around real cache update/tick; no video/GPU/FPS/device claim",
+    "nine": {
+      "generation": 2,
+      "handCount": 9,
+      "clockOrigin": "cache.update entry",
+      "slices": 54,
+      "maxSliceMs": 6.899999998509884,
+      "totalSliceMs": 207.8000000193715,
+      "cancelledTimers": 0,
+      "staleCallbacks": 0,
+      "staleApplied": 0,
+      "busyUsefulCallbacks": 0,
+      "readyMs": 655.7999999970198
+    },
+    "fourteen": {
+      "generation": 2,
+      "handCount": 14,
+      "clockOrigin": "cache.update entry",
+      "slices": 447,
+      "maxSliceMs": 11.699999995529652,
+      "totalSliceMs": 1269.7000001221895,
+      "cancelledTimers": 0,
+      "staleCallbacks": 0,
+      "staleApplied": 0,
+      "busyUsefulCallbacks": 0,
+      "readyMs": 3852.7999999970198
+    },
+    "fourteenManualSelection": {
+      "phaseBefore": "working",
+      "phaseAfter": "working",
+      "selected": "clubs-3"
+    },
+    "budget": "8 items/~4ms are soft checks before each full preview; measured maxima exceeded4ms. No hard deadline or blanket no-lag claim.",
+    "reuse": "These fixtures have no random score branches, so public preview already reuses minimum as maximum; no domain refactor."
+  },
+  "failuresRetained": [
+    {
+      "source": "ad128141531098330f50098b71c86a3c9176db1e",
+      "evidence": "../p08-ai-cut-checkpoint-2026-10-05/browser.json",
+      "failure": "Checker tied no forecast to dash; actual hidden empty total. Corrected to verify hidden/no full text and empty/dash."
+    },
+    {
+      "source": "4bdf10c85ace06064f4f531aeba4412927fcbfa2",
+      "evidence": "../p08-ai-cut-layout-2026-10-05/first-browser.json",
+      "failure": "Undo revision mismatch; corrected to shared candidate boundary."
+    },
+    {
+      "sourceIdentity": "Precommit modified layout working tree; not a frozen source",
+      "evidence": "pre-layout-contract-fail.log.txt",
+      "failure": "11 old two-sort/bottom-layout contract assertions failed before correct three-sort/physical-workplane updates."
+    },
+    {
+      "sourceIdentity": "Precommit action-cancel test fixture; not a frozen source",
+      "evidence": "action-cancel-fixture-fail.log.txt",
+      "failure": "Mock fixture lacked handOrder,1fail5pass; corrected fixture, no production assertion removed."
+    }
+  ],
+  "referenceImage": {
+    "actualView": "NOT_READ",
+    "download": "Two specified helper failures retained in first checkpoint; no third retry.",
+    "layoutAuthorization": "Parent actually read original and expressly authorized current-page layout work; parent approved first390 positioning."
+  },
+  "humanReview": {
+    "status": "PASS",
+    "reviewer": "Parent coordinator",
+    "scope": "First390 arrangement direction only; overall P08 art/device gates unchanged",
+    "evidence": "../p08-ai-cut-layout-2026-10-05/390-ai-cut-layout-first.png"
+  },
+  "reviewCI": {
+    "status": "NOT_RUN_AT_PACKAGING",
+    "instruction": "Exact resulting evidence-head CI is separately reported after connector ref update; earlier67a05 CI success does not certify new code."
+  },
+  "remaining": [
+    "Parent independent sorting/cache/readonly review and serialized main coordination",
+    "P08 overall style/OnePlus/GPU/audio gates remain outside this scope"
+  ],
+  "mainAdvanced": false
+}

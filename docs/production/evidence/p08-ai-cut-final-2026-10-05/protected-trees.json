@@ -1,0 +1,40 @@
+{
+  "taskId": "P08",
+  "testedCommit": "c568b6636b55fbf2671717787f1f728092a78c9f",
+  "baseMain": "8e0daae74efd56969886d1fdb2c28df404af27e0",
+  "status": "PASS",
+  "trees": {
+    "src/domain": {
+      "base": "f76258cd6e1e60a7d8cbb4be677d476ad8d85521",
+      "source": "f76258cd6e1e60a7d8cbb4be677d476ad8d85521"
+    },
+    "src/application": {
+      "base": "04cd33832a92ef475dd09ecd791de306e409ff6f",
+      "source": "04cd33832a92ef475dd09ecd791de306e409ff6f"
+    },
+    "src/content": {
+      "base": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+      "source": "cec787d144468e0a3e39bda0593ca0433e9f1853"
+    },
+    "src/audio": {
+      "base": "a4b9f376c79895628c14904be8886da017e73d74",
+      "source": "a4b9f376c79895628c14904be8886da017e73d74"
+    },
+    "src/game/ScoreFlame.ts": {
+      "base": "e5f57d3fe10b82918701cd8be606f5e3e19c3c63",
+      "source": "e5f57d3fe10b82918701cd8be606f5e3e19c3c63"
+    },
+    "src/game/scorePresentation.ts": {
+      "base": "0f8a7877a81cbd2c8a750a9d2159a73e982e797d",
+      "source": "0f8a7877a81cbd2c8a750a9d2159a73e982e797d"
+    },
+    "public": {
+      "base": "df6f037e9b2a18cbcf8f82c045dcc002b8e8b017",
+      "source": "df6f037e9b2a18cbcf8f82c045dcc002b8e8b017"
+    },
+    "art": {
+      "base": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "source": "b0caa33679b84bee932b2854734c04ad39ba0464"
+    }
+  }
+}

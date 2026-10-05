@@ -54,7 +54,7 @@ try{
    check(!!rule,'rule is visible');
    if(rule){check(rule.text==='顺子/同花4张；同花顺5张','complete shared short phrase');check(rule.text===rule.fullText&&!rule.text.includes('…'),'no hidden exception or ellipsis');check(rule.bounds.width<=data.availableWidth,'actual width fits without shrinking');check(parseFloat(rule.font)>=14&&rule.resolution>=1.5,'font/resolution maintained');}
    check(data.entries.length===2,'two visible quick actions');
-   for(const e of data.entries){check(e.CSSBounds.width>=44&&e.CSSBounds.height>=44,'real CSS hit>=44');check(e.label.replaceAll('\n','')===(e.name.endsWith('switch-type')?'切换牌型':'牌型规则'),'explicit visible action label');for(const a of data.actions)check(!overlaps(e.bounds,a.bounds),'quick action avoids play/discard');for(const t of data.toolbar)check(!overlaps(e.CSSBounds,t),'quick action avoids DOM toolbar');if(rule)check(!overlaps(rule.bounds,e.bounds),'rule avoids quick action');}
+   for(const e of data.entries){check(e.CSSBounds.width>=44&&e.CSSBounds.height>=44,'real CSS hit>=44');check(e.label.replaceAll('\n','')===(e.name.endsWith('switch-type')?'AI 切':'牌型规则'),'explicit visible action label');for(const a of data.actions)check(!overlaps(e.bounds,a.bounds),'quick action avoids play/discard');for(const t of data.toolbar)check(!overlaps(e.CSSBounds,t),'quick action avoids DOM toolbar');if(rule)check(!overlaps(rule.bounds,e.bounds),'rule avoids quick action');}
    if(rule)for(const a of data.actions)check(!overlaps(rule.bounds,a.bounds),'rule avoids play/discard');
    for(let i=0;i<data.texts.length;i++)for(let j=i+1;j<data.texts.length;j++)check(!overlaps(data.texts[i].bounds,data.texts[j].bounds),'visible text nonintersection');
    await nativeContract(p);
