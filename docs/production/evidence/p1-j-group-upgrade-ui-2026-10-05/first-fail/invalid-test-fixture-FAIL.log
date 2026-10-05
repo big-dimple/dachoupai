@@ -1,0 +1,34 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/assist-profile-ui-copy.test.ts (4 tests | 1 failed) 202ms
+   × presentation copy binds the recorded starting instance even when the live instance has already grown 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/assist-profile-ui-copy.test.ts > presentation copy binds the recorded starting instance even when the live instance has already grown
+Error: Run invariant: live stage joker identities
+ ❯ check src/domain/r2Run.ts:94:70
+     92| export function assertR2Invariants(state:R2RunState):void {
+     93|   const R2_JOKERS=r2JokerDefinitionsFor(state);
+     94|   const check=(condition:boolean,label:string)=>{if(!condition)throw n…
+       |                                                                      ^
+     95|   check(state.schemaVersion===2 && state.rulesVersion==='r2' && !!r2Ru…
+     96|   check(state.contentVersion!==R2_ASSIST_VERSION||state.characterId===…
+ ❯ assertR2Invariants src/domain/r2Run.ts:163:36
+ ❯ Module.applyCommand src/domain/run.ts:197:5
+ ❯ tests/assist-profile-ui-copy.test.ts:56:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  10:44:55
+   Duration  1.37s (transform 886ms, setup 0ms, import 1.05s, tests 202ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

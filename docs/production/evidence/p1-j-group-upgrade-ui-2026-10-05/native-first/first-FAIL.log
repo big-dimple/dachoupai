@@ -1,0 +1,387 @@
+normal-erxiang AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ {
++   d: '1',
++   n: '10'
++ }
+- 10
+
+legacy-e7-b10 AssertionError [ERR_ASSERTION]: The input did not match the regular expression /少见/. Input:
+
+'练对子 · 购买详情\n' +
+  '◆ 特别\n' +
+  '每手加上已攒的热度；打出普通对子后，再攒 5，最多攒 50。\n' +
+  '新增从下一手生效；两对、三条、葫芦等其他牌型不增加成长。\n' +
+  '尚未购买，买入后才会生效\n' +
+  '\n' +
+  '版次：普通（无额外计分）\n' +
+  '\n' +
+  '实付 6 金 · 余额 6 → 0 金\n' +
+  '\n' +
+  '高清细节加载中…\n' +
+  '规则与操作\n' +
+  '确认购买\n' +
+  '取消'
+
+b06-left-tie-disabled-assist AssertionError [ERR_ASSERTION]: UI score equals authoritative legal fixture trace
++ actual - expected
+... Skipped lines
+
+  {
+    accumulator: {
+      H: {
+        d: '1',
+        n: '103'
+...
+        },
++       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/0',
+-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/0',
+        operation: 'base',
+        phase: 'base',
+        reasonKey: 'two-pair.base',
+        retriggerDepth: 0,
++       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/0',
++       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',
+-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/0',
+-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',
+        sourceDefinitionId: 'two-pair',
+        sourceInstanceId: 'b06-left-tie-disabled-assist',
+        sourceType: 'rule',
+        value: {
+          d: '1',
+...
+        },
++       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/1',
+-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/1',
+        operation: 'add-heat',
+        phase: 'onCardScore',
+        reasonKey: 'rank-9.add-heat',
+        retriggerDepth: 0,
++       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/1',
++       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',
+-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/1',
+-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',
+        sourceDefinitionId: 'rank-9',
+        sourceInstanceId: 'hearts-9',
+        sourceType: 'card',
+        targetCardId: 'hearts-9',
+        value: {
+...
+        },
++       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/2',
+-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/2',
+        operation: 'retrigger-card',
+        phase: 'onCardScore',
+        reasonKey: 'b06.retrigger-card',
+        retriggerDepth: 0,
++       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/1',
++       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',
+-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/1',
+-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',
+        sourceDefinitionId: 'b06',
+        sourceInstanceId: 'b06',
+        sourceType: 'joker',
+        targetCardId: 'hearts-9',
+        value: {
+...
+        },
++       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/3',
+-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/3',
+        operation: 'add-heat',
+        phase: 'onCardScore',
+        reasonKey: 'rank-9.add-heat',
+        retriggerDepth: 1,
++       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/1',
++       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',
+-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/1',
+-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',
+        sourceDefinitionId: 'rank-9',
+        sourceInstanceId: 'hearts-9',
+        sourceType: 'card',
+        targetCardId: 'hearts-9',
+        value: {
+...
+        },
++       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/4',
+-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/4',
+        operation: 'add-heat',
+        phase: 'onCardScore',
+        reasonKey: 'rank-13.add-heat',
+        retriggerDepth: 0,
++       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/4',
++       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',
+-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/4',
+-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',
+        sourceDefinitionId: 'rank-13',
+        sourceInstanceId: 'clubs-13',
+        sourceType: 'card',
+        targetCardId: 'clubs-13',
+        value: {
+...
+        },
++       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/5',
+-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/5',
+        operation: 'add-heat',
+        phase: 'onCardScore',
+        reasonKey: 'rank-13.add-heat',
+        retriggerDepth: 0,
++       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/5',
++       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',
+-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/5',
+-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',
+        sourceDefinitionId: 'rank-13',
+        sourceInstanceId: 'diamonds-13',
+        sourceType: 'card',
+        targetCardId: 'diamonds-13',
+        value: {
+...
+        },
++       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/6',
+-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/6',
+        operation: 'multiply-multiplier',
+        phase: 'characterScore',
+        reasonKey: 'amo.assist.pair',
+        retriggerDepth: 0,
++       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/6',
++       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',
+-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/6',
+-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',
+        sourceDefinitionId: 'amo',
+        sourceInstanceId: 'b06-left-tie-disabled-assist/character',
+        sourceType: 'character',
+        value: {
+          d: '1',
+...
+        },
++       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/7',
+-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/7',
+        operation: 'final-score',
+        phase: 'finalScore',
+        reasonKey: 'two-pair.final-score',
+        retriggerDepth: 0,
++       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/7',
++       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',
+-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/7',
+-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',
+        sourceDefinitionId: 'two-pair',
+        sourceInstanceId: 'b06-left-tie-disabled-assist',
+        sourceType: 'rule',
+        value: {
+          d: '1',
+...
+    },
++   rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',
+-   rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',
+    rulesVersion: 'r2',
+    sets: {
+      activeScoringIds: [
+        'hearts-9',
+        'clubs-13',
+
+b06-plain-flush AssertionError [ERR_ASSERTION]: UI score equals authoritative legal fixture trace
++ actual - expected
+... Skipped lines
+
+  {
+    accumulator: {
+      H: {
+        d: '1',
+        n: '181'
+...
+        },
++       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/0',
+-       eventId: 'b06-plain-flush/hand/fixture/4/event/0',
+        operation: 'base',
+        phase: 'base',
+        reasonKey: 'flush.base',
+        retriggerDepth: 0,
++       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/0',
++       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',
+-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/0',
+-       rootId: 'b06-plain-flush/hand/fixture/4',
+        sourceDefinitionId: 'flush',
+        sourceInstanceId: 'b06-plain-flush',
+        sourceType: 'rule',
+        value: {
+          d: '1',
+...
+        },
++       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/1',
+-       eventId: 'b06-plain-flush/hand/fixture/4/event/1',
+        operation: 'add-heat',
+        phase: 'onCardScore',
+        reasonKey: 'rank-3.add-heat',
+        retriggerDepth: 0,
++       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/1',
++       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',
+-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/1',
+-       rootId: 'b06-plain-flush/hand/fixture/4',
+        sourceDefinitionId: 'rank-3',
+        sourceInstanceId: 'spades-3',
+        sourceType: 'card',
+        targetCardId: 'spades-3',
+        value: {
+...
+        },
++       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/2',
+-       eventId: 'b06-plain-flush/hand/fixture/4/event/2',
+        operation: 'add-heat',
+        phase: 'onCardScore',
+        reasonKey: 'rank-7.add-heat',
+        retriggerDepth: 0,
++       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/2',
++       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',
+-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/2',
+-       rootId: 'b06-plain-flush/hand/fixture/4',
+        sourceDefinitionId: 'rank-7',
+        sourceInstanceId: 'spades-7',
+        sourceType: 'card',
+        targetCardId: 'spades-7',
+        value: {
+...
+        },
++       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/3',
+-       eventId: 'b06-plain-flush/hand/fixture/4/event/3',
+        operation: 'add-heat',
+        phase: 'onCardScore',
+        reasonKey: 'rank-11.add-heat',
+        retriggerDepth: 0,
++       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/3',
++       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',
+-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/3',
+-       rootId: 'b06-plain-flush/hand/fixture/4',
+        sourceDefinitionId: 'rank-11',
+        sourceInstanceId: 'spades-11',
+        sourceType: 'card',
+        targetCardId: 'spades-11',
+        value: {
+...
+        },
++       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/4',
+-       eventId: 'b06-plain-flush/hand/fixture/4/event/4',
+        operation: 'add-heat',
+        phase: 'onCardScore',
+        reasonKey: 'rank-12.add-heat',
+        retriggerDepth: 0,
++       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/4',
++       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',
+-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/4',
+-       rootId: 'b06-plain-flush/hand/fixture/4',
+        sourceDefinitionId: 'rank-12',
+        sourceInstanceId: 'spades-12',
+        sourceType: 'card',
+        targetCardId: 'spades-12',
+        value: {
+...
+        },
++       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/5',
+-       eventId: 'b06-plain-flush/hand/fixture/4/event/5',
+        operation: 'add-heat',
+        phase: 'onCardScore',
+        reasonKey: 'rank-14.add-heat',
+        retriggerDepth: 0,
++       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/5',
++       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',
+-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/5',
+-       rootId: 'b06-plain-flush/hand/fixture/4',
+        sourceDefinitionId: 'rank-14',
+        sourceInstanceId: 'spades-14',
+        sourceType: 'card',
+        targetCardId: 'spades-14',
+        value: {
+...
+        },
++       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/6',
+-       eventId: 'b06-plain-flush/hand/fixture/4/event/6',
+        operation: 'final-score',
+        phase: 'finalScore',
+        reasonKey: 'flush.final-score',
+        retriggerDepth: 0,
++       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/6',
++       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',
+-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/6',
+-       rootId: 'b06-plain-flush/hand/fixture/4',
+        sourceDefinitionId: 'flush',
+        sourceInstanceId: 'b06-plain-flush',
+        sourceType: 'rule',
+        value: {
+          d: '1',
+...
+    },
++   rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',
+-   rootId: 'b06-plain-flush/hand/fixture/4',
+    rulesVersion: 'r2',
+    sets: {
+      activeScoringIds: [
+        'spades-3',
+        'spades-7',
+
+B13-full-house TimeoutError: page.waitForFunction: Timeout 30000ms exceeded.
+{
+  "source": "7e88a5b922499153a1bd4a78be34f91cb1892356",
+  "cases": [
+    {
+      "name": "selector-320",
+      "status": "PASS"
+    },
+    {
+      "name": "selector-390",
+      "status": "PASS"
+    },
+    {
+      "name": "selector-844",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-amo",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-touye",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-laohuan",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-erxiang",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ {\n+   d: '1',\n+   n: '10'\n+ }\n- 10\n"
+    },
+    {
+      "name": "normal-azao",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-xiemu",
+      "status": "PASS"
+    },
+    {
+      "name": "natural-b08",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy-e7-b10",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /少见/. Input:\n\n'练对子 · 购买详情\\n' +\n  '◆ 特别\\n' +\n  '每手加上已攒的热度；打出普通对子后，再攒 5，最多攒 50。\\n' +\n  '新增从下一手生效；两对、三条、葫芦等其他牌型不增加成长。\\n' +\n  '尚未购买，买入后才会生效\\n' +\n  '\\n' +\n  '版次：普通（无额外计分）\\n' +\n  '\\n' +\n  '实付 6 金 · 余额 6 → 0 金\\n' +\n  '\\n' +\n  '高清细节加载中…\\n' +\n  '规则与操作\\n' +\n  '确认购买\\n' +\n  '取消'\n"
+    },
+    {
+      "name": "b06-left-tie-disabled-assist",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: UI score equals authoritative legal fixture trace\n+ actual - expected\n... Skipped lines\n\n  {\n    accumulator: {\n      H: {\n        d: '1',\n        n: '103'\n...\n        },\n+       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/0',\n-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/0',\n        operation: 'base',\n        phase: 'base',\n        reasonKey: 'two-pair.base',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/0',\n+       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',\n-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/0',\n-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',\n        sourceDefinitionId: 'two-pair',\n        sourceInstanceId: 'b06-left-tie-disabled-assist',\n        sourceType: 'rule',\n        value: {\n          d: '1',\n...\n        },\n+       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/1',\n-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/1',\n        operation: 'add-heat',\n        phase: 'onCardScore',\n        reasonKey: 'rank-9.add-heat',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/1',\n+       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',\n-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/1',\n-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',\n        sourceDefinitionId: 'rank-9',\n        sourceInstanceId: 'hearts-9',\n        sourceType: 'card',\n        targetCardId: 'hearts-9',\n        value: {\n...\n        },\n+       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/2',\n-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/2',\n        operation: 'retrigger-card',\n        phase: 'onCardScore',\n        reasonKey: 'b06.retrigger-card',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/1',\n+       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',\n-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/1',\n-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',\n        sourceDefinitionId: 'b06',\n        sourceInstanceId: 'b06',\n        sourceType: 'joker',\n        targetCardId: 'hearts-9',\n        value: {\n...\n        },\n+       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/3',\n-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/3',\n        operation: 'add-heat',\n        phase: 'onCardScore',\n        reasonKey: 'rank-9.add-heat',\n        retriggerDepth: 1,\n+       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/1',\n+       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',\n-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/1',\n-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',\n        sourceDefinitionId: 'rank-9',\n        sourceInstanceId: 'hearts-9',\n        sourceType: 'card',\n        targetCardId: 'hearts-9',\n        value: {\n...\n        },\n+       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/4',\n-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/4',\n        operation: 'add-heat',\n        phase: 'onCardScore',\n        reasonKey: 'rank-13.add-heat',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/4',\n+       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',\n-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/4',\n-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',\n        sourceDefinitionId: 'rank-13',\n        sourceInstanceId: 'clubs-13',\n        sourceType: 'card',\n        targetCardId: 'clubs-13',\n        value: {\n...\n        },\n+       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/5',\n-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/5',\n        operation: 'add-heat',\n        phase: 'onCardScore',\n        reasonKey: 'rank-13.add-heat',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/5',\n+       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',\n-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/5',\n-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',\n        sourceDefinitionId: 'rank-13',\n        sourceInstanceId: 'diamonds-13',\n        sourceType: 'card',\n        targetCardId: 'diamonds-13',\n        value: {\n...\n        },\n+       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/6',\n-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/6',\n        operation: 'multiply-multiplier',\n        phase: 'characterScore',\n        reasonKey: 'amo.assist.pair',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/6',\n+       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',\n-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/6',\n-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',\n        sourceDefinitionId: 'amo',\n        sourceInstanceId: 'b06-left-tie-disabled-assist/character',\n        sourceType: 'character',\n        value: {\n          d: '1',\n...\n        },\n+       eventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/7',\n-       eventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/7',\n        operation: 'final-score',\n        phase: 'finalScore',\n        reasonKey: 'two-pair.final-score',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3/event/7',\n+       rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',\n-       rootEventId: 'b06-left-tie-disabled-assist/hand/fixture/3/event/7',\n-       rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',\n        sourceDefinitionId: 'two-pair',\n        sourceInstanceId: 'b06-left-tie-disabled-assist',\n        sourceType: 'rule',\n        value: {\n          d: '1',\n...\n    },\n+   rootId: 'b06-left-tie-disabled-assist/hand/b06-left-tie-disabled-assist/command/3',\n-   rootId: 'b06-left-tie-disabled-assist/hand/fixture/3',\n    rulesVersion: 'r2',\n    sets: {\n      activeScoringIds: [\n        'hearts-9',\n        'clubs-13',\n"
+    },
+    {
+      "name": "b06-plain-flush",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: UI score equals authoritative legal fixture trace\n+ actual - expected\n... Skipped lines\n\n  {\n    accumulator: {\n      H: {\n        d: '1',\n        n: '181'\n...\n        },\n+       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/0',\n-       eventId: 'b06-plain-flush/hand/fixture/4/event/0',\n        operation: 'base',\n        phase: 'base',\n        reasonKey: 'flush.base',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/0',\n+       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',\n-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/0',\n-       rootId: 'b06-plain-flush/hand/fixture/4',\n        sourceDefinitionId: 'flush',\n        sourceInstanceId: 'b06-plain-flush',\n        sourceType: 'rule',\n        value: {\n          d: '1',\n...\n        },\n+       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/1',\n-       eventId: 'b06-plain-flush/hand/fixture/4/event/1',\n        operation: 'add-heat',\n        phase: 'onCardScore',\n        reasonKey: 'rank-3.add-heat',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/1',\n+       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',\n-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/1',\n-       rootId: 'b06-plain-flush/hand/fixture/4',\n        sourceDefinitionId: 'rank-3',\n        sourceInstanceId: 'spades-3',\n        sourceType: 'card',\n        targetCardId: 'spades-3',\n        value: {\n...\n        },\n+       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/2',\n-       eventId: 'b06-plain-flush/hand/fixture/4/event/2',\n        operation: 'add-heat',\n        phase: 'onCardScore',\n        reasonKey: 'rank-7.add-heat',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/2',\n+       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',\n-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/2',\n-       rootId: 'b06-plain-flush/hand/fixture/4',\n        sourceDefinitionId: 'rank-7',\n        sourceInstanceId: 'spades-7',\n        sourceType: 'card',\n        targetCardId: 'spades-7',\n        value: {\n...\n        },\n+       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/3',\n-       eventId: 'b06-plain-flush/hand/fixture/4/event/3',\n        operation: 'add-heat',\n        phase: 'onCardScore',\n        reasonKey: 'rank-11.add-heat',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/3',\n+       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',\n-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/3',\n-       rootId: 'b06-plain-flush/hand/fixture/4',\n        sourceDefinitionId: 'rank-11',\n        sourceInstanceId: 'spades-11',\n        sourceType: 'card',\n        targetCardId: 'spades-11',\n        value: {\n...\n        },\n+       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/4',\n-       eventId: 'b06-plain-flush/hand/fixture/4/event/4',\n        operation: 'add-heat',\n        phase: 'onCardScore',\n        reasonKey: 'rank-12.add-heat',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/4',\n+       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',\n-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/4',\n-       rootId: 'b06-plain-flush/hand/fixture/4',\n        sourceDefinitionId: 'rank-12',\n        sourceInstanceId: 'spades-12',\n        sourceType: 'card',\n        targetCardId: 'spades-12',\n        value: {\n...\n        },\n+       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/5',\n-       eventId: 'b06-plain-flush/hand/fixture/4/event/5',\n        operation: 'add-heat',\n        phase: 'onCardScore',\n        reasonKey: 'rank-14.add-heat',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/5',\n+       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',\n-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/5',\n-       rootId: 'b06-plain-flush/hand/fixture/4',\n        sourceDefinitionId: 'rank-14',\n        sourceInstanceId: 'spades-14',\n        sourceType: 'card',\n        targetCardId: 'spades-14',\n        value: {\n...\n        },\n+       eventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/6',\n-       eventId: 'b06-plain-flush/hand/fixture/4/event/6',\n        operation: 'final-score',\n        phase: 'finalScore',\n        reasonKey: 'flush.final-score',\n        retriggerDepth: 0,\n+       rootEventId: 'b06-plain-flush/hand/b06-plain-flush/command/4/event/6',\n+       rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',\n-       rootEventId: 'b06-plain-flush/hand/fixture/4/event/6',\n-       rootId: 'b06-plain-flush/hand/fixture/4',\n        sourceDefinitionId: 'flush',\n        sourceInstanceId: 'b06-plain-flush',\n        sourceType: 'rule',\n        value: {\n          d: '1',\n...\n    },\n+   rootId: 'b06-plain-flush/hand/b06-plain-flush/command/4',\n-   rootId: 'b06-plain-flush/hand/fixture/4',\n    rulesVersion: 'r2',\n    sets: {\n      activeScoringIds: [\n        'spades-3',\n        'spades-7',\n"
+    },
+    {
+      "name": "B13-full-house",
+      "status": "FAIL",
+      "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+    }
+  ],
+  "unchanged": true
+}
