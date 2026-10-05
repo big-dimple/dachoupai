@@ -1,5 +1,9 @@
 # 开发入口
 
+## 六角色共同Joker正常入口/UI（2026-10-05 UTC，仅 draft PR25）
+
+基线main193c93b，正常合入已审PR22 e2fc57c、PR24 36eff49；首源码bf8b5ba已推送。仅普通新局六角色采用combo-growth-v1/e7d21fce68b80072，能力白名单仅阿默助攻；四完整身份retry原规则创建，默认createRun仍v11。当前局resolver贯穿商店预览、牌桌/紧凑条件、AI与保存回看，复用领域和已审纯文案；domain/content/application/platform本批未改。重点77tests/type通过；有限自然d12购买/实际留牌收入、阿默自然助攻/失败重试和小屏证据正在冻结，未预记完成。首测试和原生样板FAIL保留，main仍只由父串行决定。P08 in_progress、C04 D32及既有真机/听感/平衡门槛保持。
+
 ## P1-J 四卡共同领域原型（2026-10-05 UTC，仅 draft PR24）
 
 共享新显式 combo-growth-v1 / e7d21fce68b80072，继承843f七卡并替换a06/f10/d12/e04；六角色同Joker内容，阿默助攻与其余五人既有能力保持。新 profile 未接普通入口/UI。已补父审S06身份工厂、旧条件边界、四卡本体/真实版次闭合、弃前公开来源与成长/收入保存约束；保留原 FAIL。I已审纯文案e2fc正常合入此review。旧v10/v11/843f全state回放、66相关检查及原生事务失败/同候选重试/四身份恢复和四受控经营对照通过；冻结本地327e0e2与远端e8a3f7a完整tree46e67ff8相同；2376tests/132files、content/type/build/标准双端smoke/plan及原生保存全PASS，source/index/HEAD保持。精确CI及后续独审以本批evidence与PR24为准。主手/助攻facts不改，场景/选择布局/美术不碰，main只由父串行决定。P08 in_progress、C04 D32及原真机/听感/平衡门槛保持。见 [原型合同](docs/production/COMBO_GROWTH_PROTOTYPE.md)。以下历史记录按各自SHA保留。

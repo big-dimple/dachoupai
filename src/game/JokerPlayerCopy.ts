@@ -93,13 +93,15 @@ export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerIns
   const chance=body.find(e=>e.operation==='chance-heat-check');
   const scoreGain=body.some(e=>Rational.fromJSON(e.after.H).compare(Rational.fromJSON(e.before.H))>0||Rational.fromJSON(e.after.M).compare(Rational.fromJSON(e.before.M))>0);
   state.length=0;
-  state.push(chance?'本手'+(chance.value.n==='1'?'抽中':'没抽中'):scoreGain?'本手本体已有计分增益':bodyActive?'本手有本体结算记录':'本手没有本体计分加成记录');
+  const income=definition.hooks.some(h=>h.operations.some(o=>o.kind==='add-gold-per-held'||o.kind==='add-gold-per-capital'));
+  state.push(chance?'本手'+(chance.value.n==='1'?'抽中':'没抽中'):scoreGain?'本手本体已有计分增益':bodyActive?'本手有本体结算记录':income?'本次没有本体收入记录':'本手没有本体计分加成记录');
   for(const e of body){
    if((e.operation==='read-growth'||e.operation==='consume-growth')&&BigInt(e.value.n)===0n)state.push('本次按+0结算，结算时尚无成长加成');
    if(e.operation==='read-coefficient'&&Rational.fromJSON(e.value).compare(new Rational(1n))===0)state.push('本次按×1结算，结算时尚无成长加成');
    if(e.operation==='multiply-coefficient'&&e.growthBefore&&e.growthAfter){const changed=Rational.fromJSON(e.growthAfter).compare(Rational.fromJSON(e.growthBefore))>0;state.push('出牌结算后系数×'+fractionText(e.value)+'：'+fractionText(e.growthBefore)+' → '+fractionText(e.growthAfter)+(changed?'，下次出牌生效':'，已达上限，本次未增加'));}
    if(e.operation==='consume-rescue')state.push('救火已消耗；不会因返次或重载恢复');
-   if(e.operation==='add-gold-per-held'||e.operation==='add-gold-per-capital')state.push('实际过关收入 +'+fractionText(e.value)+'金');
+   if(e.operation==='add-gold-per-held')state.push('实际留牌过关收入 +'+fractionText(e.value)+'金');
+   if(e.operation==='add-gold-per-capital')state.push('奖励前本金 '+e.goldBeforeRewards+'金；实际额外收入 +'+fractionText(e.value)+'金');
    if(e.operation==='add-growth'||e.operation==='add-coefficient'){
     const amount=fractionText(e.value),timing=e.phase==='afterHand'?'出牌结算后':e.phase==='onStageClear'?'过关后':'本次';
     state.push(timing+'成长 +'+amount+(BigInt(e.value.n)===0n?'，本次未增加':'，新增从下一次出牌生效'));
@@ -107,7 +109,7 @@ export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerIns
    if(e.operation==='retrigger-card'&&BigInt(e.value.n)===0n)state.push('再次计分次数已达上限，本牌本次未增加次数');
   }
   if(editionActive)state.push('本手版次效果单独结算，不计入本体增益');
-  for(const text of template.state){if(!random)state.push(render(text));}
+  for(const text of template.state){if(!random)state.push(render(text).replace('当前系数：','本次读取系数：'));}
   if(memory.scoreLimited)state.push('当前计分加成暂停');
  }
  if(definition.hooks.some(h=>h.operations.some(o=>o.kind==='add-heat'||o.kind==='add-multiplier'||o.kind==='multiply-multiplier'||o.kind==='read-growth'||o.kind==='read-coefficient'))){rules.push('热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。');}

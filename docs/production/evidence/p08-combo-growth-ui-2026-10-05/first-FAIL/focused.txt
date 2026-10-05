@@ -1,0 +1,28 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/assist-profile-ui-copy.test.ts (3 tests | 1 failed) 86ms
+   × all known identities bind game, shop and AI to the exact definition; only Amo shows assist 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/assist-profile-ui-copy.test.ts > all known identities bind game, shop and AI to the exact definition; only Amo shows assist
+Error: invalid-r2-identity
+ ❯ Module.createRun src/domain/run.ts:336:25
+
+ ❯ state tests/assist-profile-ui-copy.test.ts:15:8
+ ❯ tests/assist-profile-ui-copy.test.ts:41:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 76 passed (77)
+   Start at  08:19:04
+   Duration  1.71s (transform 1.68s, setup 0ms, import 2.46s, tests 1.19s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
