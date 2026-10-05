@@ -26,6 +26,7 @@ switch (c.kind) {
       case 'held-rank-first': return (c.playedEquals===undefined||ctx.played.length===c.playedEquals)&&!!card&&ctx.validHeld.filter(p=>c.values.includes(p.rank)).slice(0,c.limit).some(p=>p.id===card.id);
       case 'held-scoring-rank-first': return !!card&&ctx.validHeld.filter(p=>ctx.active.some(scored=>scored.rank===p.rank)).slice(0,c.limit).some(p=>p.id===card.id);
       case 'held-enhancement-first': return !!card&&ctx.validHeld.filter(p=>p.enhancement===c.enhancement).slice(0,c.limit).some(p=>p.id===card.id);
+      case 'hand-type-relation': return ctx.previousHandType!==null&&c.values.includes(ctx.handType)&&c.values.includes(ctx.previousHandType)&&(c.relation==='same'?ctx.handType===ctx.previousHandType:ctx.handType!==ctx.previousHandType);
       case 'hand-type-transition': return ctx.handType===c.current&&ctx.previousHandType===c.previous;
       case 'extra-retrigger': return ctx.extraExecutions>0;
       case 'stage-score-below-target': return new Rational(BigInt(ctx.stageHeatBefore!)).compare(new Rational(BigInt(ctx.stageTargetHeat!)).multiply(Rational.fromJSON(c.ratio)))<0;

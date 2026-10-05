@@ -1,5 +1,9 @@
 # 当前交接：P08全游戏手绘墨线／纸色主线
 
+## 七卡适配检查点（2026-10-05 UTC）
+
+正常对齐 AI切 main 的 review `1d8400db2f1667992a13024bf7530ed7615e1a71` 已交B。阿默新原型七卡领域／纯文案首代码 `3acc73906c12730b67b721cc93e57d619317a4f3`，相关92tests/type通过；后续严格成长保存专项与冻结门禁按新证据报告。profile `amo-assist-v1` 新hash `json-fnv-v1:843f02356211cb91` 纳入七卡定义，旧未发布原型79ddb…明确拒绝；v10/v11与默认v11不变。[接口合同](production/AMO_ASSIST_PROTOTYPE.md)。B是唯一GameScene／selection／role UI owner，本批只domain/content/application及纯文案、必要测试；未main，不把原型通过称为平衡或真机通过。P08仍in_progress，C04 D32暂停、resumeContract及B00/V01/L01、OnePlus/GPU/听感门槛保持。以下对齐／旧交付按各自来源保留。
+
 ## 当前调度摘要（2026-10-05 UTC）
 
 已核 main `a5cdc5fcb6394b229ad609104d970de3fa460bb7`，父确认 AI切已发布。本 review 正常合入该基线，AI切/GameScene/选择布局原样保留；阿默领域/严格保存/纯facts及跨普通手持续消费修复 `693d019` 仍只在 review，未接UI、未上线、未推main。[原型合同](production/AMO_ASSIST_PROTOTYPE.md)。下一有界任务只做新profile七卡定义/文案适配，旧v10/v11与其余65卡保持；B随后单一窗口接UI。双方原证据和FAIL按各自SHA保留，不把源码/CI通过称为平衡或真机通过。P08仍in_progress，C04 D32图鉴教程历史联网暂停，resumeContract及B00/V01/L01、OnePlus/GPU/听感门槛保持。

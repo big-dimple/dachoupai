@@ -56,7 +56,7 @@ describe('explicit Amo assist prototype',()=>{
   const s=fixture(visible,['d01','d03','f06','b04','a03']);
   const ordinary=send(s,{type:'PlayHand',selectedIds:main}),next=send(s,action),t=next.lastTrace!;
   expect(ordinary.lastTrace!.events.filter(e=>e.sourceDefinitionId==='d01')).toHaveLength(2);expect(t.events.filter(e=>e.sourceDefinitionId==='d01')).toHaveLength(0);
-  expect(t.events.some(e=>assist.includes(e.targetCardId??''))).toBe(false);expect(t.events.some(e=>e.sourceDefinitionId==='a03')).toBe(false);
+  expect(t.events.some(e=>assist.includes(e.targetCardId??''))).toBe(false);expect(t.events.filter(e=>e.sourceDefinitionId==='a03')).toHaveLength(1);
   expect(t.jokers.find(j=>j.definitionId==='f06')?.counters?.handsScored).toBe(1);expect(t.jokers.find(j=>j.definitionId==='d03')?.growth.heat).toBeUndefined();
   const role=t.events.findIndex(e=>e.sourceType==='character');expect(role).toBe(t.events.findIndex(e=>e.phase==='finalScore')-1);expect(t.events.filter(e=>e.phase==='jokerScore').every(e=>t.events.indexOf(e)<role)).toBe(true);round(next);
  });
@@ -133,9 +133,9 @@ describe('explicit Amo assist prototype',()=>{
   const selectedIds=hand.map(c=>c.id),support=[{id:'support/0',rank:12 as const,suit:'spades' as const},{id:'support/1',rank:12 as const,suit:'clubs' as const}];
   const facts=r2AssistFacts({hand:[...hand,...support],selectedIds,assistIds:support.map(c=>c.id),disabledIds:selectedIds,jokers:[],definitions:R2_PUBLISHED_JOKERS});expect(facts.type).toBe(type);expect(facts.activeScoringIds).toEqual([]);expect(facts.assistMultiplier).toBe(2);
  });
- it('exposes eligibility without a score side channel, and retains real A-series single-card constraints',()=>{
+ it('exposes eligibility without a score side channel, and adapts A-series only in the prototype',()=>{
   const s=fixture();expect(r2AssistAvailability(s)).toEqual({available:true,remaining:1});expect(r2AssistAvailability(send(s,action))).toMatchObject({available:false,remaining:0,reason:'used'});expect(r2AssistAvailability(fixture(visible,[],false))).toMatchObject({available:false,reason:'profile'});expect(r2AssistAvailability(bossFixture('B08'))).toMatchObject({available:false,reason:'disabled'});
-  const ordinary=send(fixture(visible,['a03','a05','a09','pengci']),{type:'PlayHand',selectedIds:[main[0]]});expect(ordinary.lastTrace!.level).toBe(1);expect(ordinary.lastTrace!.assist).toBeNull();expect(ordinary.lastTrace!.sets.assistConsumedIds).toEqual([]);expect(ordinary.lastTrace!.events.some(e=>e.sourceType==='character')).toBe(false);expect(ordinary.lastTrace!.events.some(e=>e.sourceDefinitionId==='a03')).toBe(true);round(ordinary);
+  const ordinary=send(fixture(visible,['a03','a05','a09','pengci']),{type:'PlayHand',selectedIds:[main[0]]});expect(ordinary.lastTrace!.level).toBe(1);expect(ordinary.lastTrace!.assist).toBeNull();expect(ordinary.lastTrace!.sets.assistConsumedIds).toEqual([]);expect(ordinary.lastTrace!.events.some(e=>e.sourceType==='character')).toBe(false);expect(ordinary.lastTrace!.events.some(e=>e.sourceDefinitionId==='a03')).toBe(false);round(ordinary);
  });
  it('returns only public selection facts, without score/RNG/draw/commands',()=>{
   const s=fixture(),facts=r2AssistFacts({hand:s.handOrder.map(id=>s.deckInstances.find(c=>c.id===id)!),selectedIds:main,assistIds:assist,disabledIds:[],jokers:[],definitions:R2_PUBLISHED_JOKERS});expect(facts.assistConsumedIds).toEqual(assist);expect(facts.consumedIds).toEqual([...main,...assist]);expect(Object.keys(facts).some(k=>/score|rng|draw|command|journal/i.test(k)&&!['scoringIds','activeScoringIds'].includes(k))).toBe(false);

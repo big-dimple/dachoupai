@@ -1,3 +1,6 @@
+import {R2_ASSIST_JOKERS} from '../content/r2AssistJokers';
+import {JOKER_ASSIST_COMPACT} from './JokerAssistTemplates';
+import {r2JokerDefinitionFor,type R2ContentIdentity} from '../domain/r2ContentProfiles';
 import {jokerPlayerCopy}from'./JokerPlayerCopy';
 import type {ScoreEvent}from'../domain/scoreR2';
 import {Rational}from'../domain/rational';
@@ -34,6 +37,7 @@ export function r2ConditionDescription(c:Condition):string {
   case'held-rank-first':return(c.playedEquals===undefined?'':'打出恰好'+c.playedEquals+'张；')+'保留且可生效的'+c.values.map(r=>r>=2&&r<=14?rankLabel(r as PlayingCard['rank']):String(r)).join('／')+'，过滤后按手牌顺序前'+c.limit+'张';
   case'held-scoring-rank-first':return'保留牌与有效计分牌同点，过滤停用后按手牌顺序前'+c.limit+'张';
   case'held-enhancement-first':return'保留的可生效留声纸，过滤后按手牌顺序前'+c.limit+'张';
+  case'hand-type-relation':return'相邻两手主手均为'+typeNames(c.values)+'，且牌型'+(c.relation==='same'?'相同':'不同')+'；首手、对子和高牌不能接续';
   case'hand-type-transition':return'上手普通'+HAND_LABELS[c.previous]+' → 本手普通'+HAND_LABELS[c.current]+'；同花顺不代替';
   case'extra-retrigger':return'实际额外重触发发生后检查；请求不保证执行';
   case'stage-score-below-target':return'已入账累计热度严格低于目标的'+fractionText(Rational.fromJSON(c.ratio).multiply(new Rational(100n)).toJSON())+'%（等于不满足）';
@@ -128,12 +132,18 @@ export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstanc
   definition.id==='f09'&&ctx.inStage&&ctx.discardsUsed>0?['已弃牌']:
   instance&&definition.hooks.some(h=>h.operations.some(op=>op.kind==='reward-consumable-every-clears'))?[instance.counters?.stageClears===1?'下关赠票':'再2关赠票']:
   valueLabel?[valueLabel,...(stored.length===1&&stored[0][0]==='coefficient'?['×'+exact(stored[0][1])]:[])]:[];
- const labelCandidates=stateCandidates.length?stateCandidates:JOKER_COMPACT[definition.id]??[R2_OFFER_USE[definition.id]??'条件 ›'];
+ const labelCandidates=stateCandidates.length?stateCandidates:(R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_COMPACT[definition.id]:undefined)??JOKER_COMPACT[definition.id]??[R2_OFFER_USE[definition.id]??'条件 ›'];
  const short=labelCandidates[0],savedShort=stateCandidates[0]??'';
  return{instanceId:instance?.instanceId,definitionId:definition.id,name:definition.name,short,labelCandidates,stateLabel:stateCandidates.length>0,status,statusDetail,saved,savedShort,remaining,remainingUses,usageResetsOnEntry,staticRules,hooks,scoreLimited:ctx.scoringLimited};
 }
 export function jokerMemoryAbility(definition:R2JokerDefinition,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext,events?:readonly ScoreEvent[]):CardAbilityCopy {
  return jokerPlayerCopy(definition,instance,ctx,jokerMemory(definition,instance,ctx),events);
+}
+
+/** Profile-bound public copy; callers never duplicate the prototype templates. */
+export function jokerAbilityCopyForRun(identity:R2ContentIdentity,id:string,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext,events?:readonly ScoreEvent[]):CardAbilityCopy {
+ if(instance&&instance.definitionId!==id)throw Error('joker-copy-identity-mismatch');
+ return jokerMemoryAbility(r2JokerDefinitionFor(identity,id),instance,ctx,events);
 }
 
 /** Actual presentation reads the recorded prior hand, including null; old records stay unknown. */
