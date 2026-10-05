@@ -1,0 +1,57 @@
+{
+  "base": "73e1de057ca1f9c9a514a7014e5180bc7b6f6f60",
+  "localReproductionCommit": "66d392efbaf5d20869506b4ba2d42e977691c189",
+  "reproductionRuntime": "Product source exactly base73e; only new regression test added before running. Test source is unchanged in final fix.",
+  "regressionTestBlob": "26f9f8a822a3450c47f74f65f8ebd33f12218211",
+  "testedLocalCommit": "3b3f87accac61083ea49035f443ade36c2210e36",
+  "githubSourceCommit": "4ad2005e84017020d41b80243e0cca16f3d79169",
+  "sourceTree": "8bb2192da8c4731ba2c05c19c0c92987dfc42794",
+  "before": {
+    "total": 19,
+    "failed": 15,
+    "legalControlsPassed": 4,
+    "status": "FAIL_REPRODUCED"
+  },
+  "after": {
+    "specialized": 19,
+    "failed": 0,
+    "relatedTests": 312,
+    "relatedFiles": 8,
+    "typecheck": "PASS",
+    "productionPlan": "PASS",
+    "sourceIndexHeadUnchanged": true
+  },
+  "scope": "checkpoint-only product fix; verify real saved source edition, authoritative effect/matrix, phase, condition, target absence, zero depth, root, exact value/delta, uniqueness/completeness and after-own-hook order before exempting body validation; no new score execution or trace architecture",
+  "unchanged": {
+    "prototypeHash": "json-fnv-v1:843f02356211cb91",
+    "subtrees": [
+      "src/domain",
+      "src/content",
+      "src/game",
+      "src/platform",
+      "tests/fixtures"
+    ],
+    "copyAndResolverInterfaces": true,
+    "sevenJokerNumbers": true,
+    "v10v11": true
+  },
+  "notRun": [
+    "no new local full-pool matrix",
+    "no additional native/UI/video/FPS/strategy work"
+  ],
+  "main": "NOT_PUSHED",
+  "files": {
+    "frozen-checks.json": {
+      "bytes": 1025,
+      "sha256": "f051e670c0ec66df0061bd208056c9e27aa7306c5ed7127eeb2167eaff48ccd4"
+    },
+    "before-fix.json": {
+      "bytes": 21333,
+      "sha256": "313a3c4557979e675bde59fb03cfdc3afb83e25af9653f0eb56359dd35f446a3"
+    },
+    "after-fix.json": {
+      "bytes": 7784,
+      "sha256": "7dd4937a2312605e7f08e2b3f1788f1cc4c18f1802ca2ccd6288250f7a59e621"
+    }
+  }
+}

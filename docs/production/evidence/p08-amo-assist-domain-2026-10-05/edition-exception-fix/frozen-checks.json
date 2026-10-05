@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "4a4c1720e1d6ea618796c1ad814e84461e45a8f9d56ca20e32e80c57dd4c0174",
+    "index": "2e0e0e96f295c5788bc0943f3bfcdd0d16a1d6c0b6d9acd00f1092b9fc7fde65",
+    "head": "3b3f87accac61083ea49035f443ade36c2210e36",
+    "branch": "refs/heads/review/p08-amo-assist-domain-20261005"
+  },
+  "after": {
+    "source": "4a4c1720e1d6ea618796c1ad814e84461e45a8f9d56ca20e32e80c57dd4c0174",
+    "index": "2e0e0e96f295c5788bc0943f3bfcdd0d16a1d6c0b6d9acd00f1092b9fc7fde65",
+    "head": "3b3f87accac61083ea49035f443ade36c2210e36",
+    "branch": "refs/heads/review/p08-amo-assist-domain-20261005"
+  },
+  "steps": [
+    {
+      "name": "related-save-profile-copy",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 2308
+    },
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 6004
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 253
+    }
+  ]
+}

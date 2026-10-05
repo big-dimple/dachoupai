@@ -750,13 +750,13 @@ export class GameScene extends Phaser.Scene {
     this.statusMessage=this.assistIds.length?'助攻已选 ×'+facts.assistMultiplier:'助攻已取消，主手保持';this.refreshSelection();
   }
   private renderAssistSelection(preview:HandPreview|undefined,p:Box):void {
-    const score=this.view.layout.scoreBoard,portrait=this.view.layout.mode==='portrait',room=portrait&&score.height>=100;
+    const score=this.view.layout.scoreBoard,portrait=this.view.layout.mode==='portrait',desktop=this.view.layout.mode==='desktop',room=portrait&&score.height>=100;
     const availability=r2AssistAvailability(this.run),candidates=assistCandidates(this.assistInput(),availability.available);
     const current=validAssistDraft(this.assistInput(),availability.available,this.assistIds);
     const status=availability.available?'本场助攻 1/1':availability.reason==='used'?'本场助攻已用':availability.reason==='disabled'?'本场助攻停用':'助攻暂不可用';
     const label=(ids:readonly string[])=>this.hand.filter(c=>ids.includes(c.id)).map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ');
     const text=(x:number,y:number,value:string,width:number)=>{const t=this.add.text(x,y,value,{fontFamily:UI_FONT,fontSize:'14px',color:C.jade,resolution:Math.max(1.5,1/this.scale.zoom)}).setName('selection/assist-copy').setData('fullText',value);this.previewCards!.add(t);fitScoreLine(t,{x,y,width,height:18},14);return t;};
-    text(score.x+10,score.y+(score.height<90?24:34),preview?'主手 '+preview.playedIds.length+' · 计分 '+preview.activeScoringIds.length+' · 留手 '+preview.heldIds.length:'主手：先选1–5张',score.width-20);
+    text(score.x+10,score.y+(desktop?52:score.height<90?24:34),preview?'主手 '+preview.playedIds.length+' · 计分 '+preview.activeScoringIds.length+' · 留手 '+preview.heldIds.length:'主手：先选1–5张',score.width-20);
     const railWidth=Math.min(194,p.width-8),rail:Box=room?{x:score.x+10,y:score.y+Math.min(60,score.height-66),width:score.width-20,height:44}:{x:p.x+p.width-railWidth-4,y:p.y,width:railWidth,height:44};
     const pageSize=Math.min(Math.max(1,candidates.length),Math.max(1,Math.floor((rail.width-88)/94))),pages=Math.max(1,Math.ceil(candidates.length/pageSize));this.assistPage=Math.max(0,Math.min(this.assistPage,pages-1));
     const pageCopy=candidates.length>1?' · '+candidates.length+'组 · 第'+(this.assistPage+1)+'/'+pages+'页':'';
@@ -774,6 +774,10 @@ export class GameScene extends Phaser.Scene {
         text(p.x+8,p.y+20,'助攻：'+(current?label(current.assistIds)+' ×'+current.assistMultiplier:'未选'),p.width-16);
         text(p.x+8,p.y+40,ASSIST_EXPLANATION,p.width-16);
       }else {text(p.x+8,p.y+2,ASSIST_EXPLANATION,p.width-16);text(p.x+8,p.y+22,ASSIST_AI_EXPLANATION,p.width-16);}
+    }else if(desktop){
+      text(score.x+10,score.y+76,'助攻会一同用掉',score.width-20);
+      text(score.x+10,score.y+94,'不算主手或留手牌',score.width-20);
+      text(score.x+10,score.y+118,ASSIST_AI_EXPLANATION,score.width-20);
     }else{
       text(score.x+10,score.y+42,ASSIST_EXPLANATION,score.width-72);
       if(score.height>=76)text(score.x+10,score.y+60,ASSIST_AI_EXPLANATION,score.width-20);

@@ -1,10 +1,17 @@
 # 当前交接：P08全游戏手绘墨线／纸色主线
 
+## 阿默 UI 有限收尾接手（2026-10-05 UTC，仅 PR20）
+
+精确起点 a7870b594244b1a0e0222e5c947c1ebb68b5a52f / tree624ad9b951394ba74587dcb0f4a6ef0b70bf9f82，正常合入已审 PR18 d6da22472d1a1cab0b507803cf7df0e8f52565ed（CI37260193953 success）。七卡 resolver/copy 已接；当前仅修十四牌 harness 回首页逻辑、补有限原生草稿/保存/回看与旧 UI 回归。下方双方检查点及 FAIL 保留原身份，不作为本轮通过。默认v11、旧档、其余五人、领域规则、素材不动；main仅父串行放行。P08 in_progress，C04 D32及既有门槛保持。
+
 ## 首个阿默 UI 检查点（2026-10-05 UTC，仅 review）
 
 基于已部署a5及对齐领域1d8400d；UI source c334f7a。显式新profile内联主手/副组、390与短横软件Canvas触控和真实助攻保存结果已过有界检查，两图actual view。58相关tests/type/plan通过，首轮FAIL按原source保留；未main、未完成最终冻结。F七卡resolver/copy、320/14、全草稿撤销/AI/排序和保存重试回看待继续。P08仍in_progress，C04 D32暂停、resumeContract和V01/L01保持。证据 docs/production/evidence/p08-amo-assist-ui-checkpoint-2026-10-05。
 
 以下两项为原UI／领域检查点（原状态按各自SHA保留）
+## 版次导入例外修复（2026-10-05 UTC）
+
+父核七卡73e发现reasonKey的edition前缀可绕过七卡trace校验。已复现15失败/4合法对照；源码 `4ad2005e84017020d41b80243e0cca16f3d79169` 仅checkpoint产品窄修，实际source版次/时点/目标/值/种类/增量与唯一顺序全部匹配才例外。19专项、312相关tests/8files、type/plan通过，冻结源码/index/HEAD保持；证据p08-amo-assist-domain-2026-10-05/edition-exception-fix。七卡原型hash843f、数值、resolver/copy接口、domain/content/game/platform与旧fixtures保持73e；B继续单一UI窗口，main不推。此前73e的CI37257550543/docs37257550532均success，本修复新精确CI另报；旧报告/FAIL按原身份保留。P08 in_progress、C04 D32暂停及原真机/审美/听感门槛保持。
 
 ## 七卡适配检查点（2026-10-05 UTC）
 

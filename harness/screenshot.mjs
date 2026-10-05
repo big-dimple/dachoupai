@@ -34,7 +34,7 @@ const server=await preview({build:{outDir},preview:{port,strictPort:true,host:'1
 let browser,activePage;
 try {
   for(const engine of selected){
-  browser=await engines[engine].launch(engine==='chromium'&&process.env.SMOKE_CHROMIUM_CHANNEL?{channel:process.env.SMOKE_CHROMIUM_CHANNEL}:{});
+  browser=await engines[engine].launch(engine==='chromium'&&process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH}:engine==='chromium'&&process.env.SMOKE_CHROMIUM_CHANNEL?{channel:process.env.SMOKE_CHROMIUM_CHANNEL}:{});
   for(const name of process.env.SMOKE_FEEDBACK==='only'||['only','rescue'].includes(process.env.SMOKE_C00)?[]:selectedProfiles){
     const viewport=profiles[name],touch=['mobile','shortmobile','landscape'].includes(name),deviceScaleFactor=touch?3:1,recordVideo=process.env.SHOT_VIDEO==='1'&&engine===selected[0]&&name==='desktop';
     const context=await browser.newContext({viewport,hasTouch:touch,deviceScaleFactor,...(recordVideo?{recordVideo:{dir:'shots/p00-video',size:viewport}}:{})}),page=await context.newPage(),errors=[];activePage=page;page.on('pageerror',e=>{errors.push(String(e));console.error(e.stack);});
@@ -237,7 +237,7 @@ try {
     assert.equal((await state(page)).stage.index,1);assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('game').cardViews.length),8);
     assert.deepEqual(errors,[],'second table entry must not touch destroyed controls');
     assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('game').audio.fireVoices.size),0,'finished scoring does not leak fire audio into the next table');
-    report.checks.push({engine,browserVersion:browser.version(),channel:process.env.SMOKE_CHROMIUM_CHANNEL||'default',profile:'natural-three-times-target',status:'PASS',seed:'p04-golden-02',character:'touye',selectedIds:ids,finalScore:'1200',target:'400',burstElapsedMs,renderFps,linkedAudio,observation,ordinaryPacing,covered:['natural-wager-straight','every-source-ordered-impact','progressive-individual-card-pace','displayed-score-fire-thresholds','3x-flame-and-burning-audio','four-visible-noninteractive-frame-flames','real-3x-stamp','score-number-bounce','scheduled-overkill-audio','exact-credit-once','second-table-entry-after-clear','fire-cleanup'],physicalListening:'NOT_RUN',physicalPerformance:'NOT_RUN'});
+    report.checks.push({engine,browserVersion:browser.version(),channel:process.env.SMOKE_CHROMIUM_CHANNEL||'default',executablePath:process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH||null,profile:'natural-three-times-target',status:'PASS',seed:'p04-golden-02',character:'touye',selectedIds:ids,finalScore:'1200',target:'400',burstElapsedMs,renderFps,linkedAudio,observation,ordinaryPacing,covered:['natural-wager-straight','every-source-ordered-impact','progressive-individual-card-pace','displayed-score-fire-thresholds','3x-flame-and-burning-audio','four-visible-noninteractive-frame-flames','real-3x-stamp','score-number-bounce','scheduled-overkill-audio','exact-credit-once','second-table-entry-after-clear','fire-cleanup'],physicalListening:'NOT_RUN',physicalPerformance:'NOT_RUN'});
     await context.close();console.log(`${engine}/natural-3x: ok`);
   }
   if((checkC00||process.env.SMOKE_FEEDBACK==='1')&&engine===selected[0]){
