@@ -1,0 +1,119 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs --scope=browser
+
+CHECK build: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run build
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 125 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.17 kB │ gzip:   0.15 kB
+dist/index.html                     0.55 kB │ gzip:   0.36 kB
+dist/assets/index-Dk5_Lgk8.css     30.81 kB │ gzip:   7.07 kB
+dist/assets/index-BKF9YG3H.js   2,077.11 kB │ gzip: 584.40 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.90s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+build: PASS
+CHECK verify:smoke: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run verify:smoke
+
+> dachoupai@0.1.0 verify:smoke
+> node harness/screenshot.mjs --verify-smoke
+
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+browserType.launch: Executable doesn't exist at /home/agent/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     npx playwright install                                 ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+    at /workspace/dachoupai/harness/screenshot.mjs:37:33 {
+  log: [],
+  name: 'Error'
+}
+
+Node.js v24.19.0
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+verify:smoke: FAIL
+{
+  "scope": "browser",
+  "testedCommit": "0d3b57019f92ecb7d118bb58efde985d2cfd9193",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "9b679a032c5be64d890a0645a2be35c1bc7d26f2244bbf2d70db897ddd07371c",
+    "index": "509fdf7ccbe1eb7f7f342c70ab5d25132b7ba92b199adfe9f16a63106f72af07",
+    "head": "0d3b57019f92ecb7d118bb58efde985d2cfd9193",
+    "branch": "refs/heads/review/p08-amo-assist-domain-20261005"
+  },
+  "after": {
+    "source": "9b679a032c5be64d890a0645a2be35c1bc7d26f2244bbf2d70db897ddd07371c",
+    "index": "509fdf7ccbe1eb7f7f342c70ab5d25132b7ba92b199adfe9f16a63106f72af07",
+    "head": "0d3b57019f92ecb7d118bb58efde985d2cfd9193",
+    "branch": "refs/heads/review/p08-amo-assist-domain-20261005"
+  },
+  "steps": [
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 14552
+    },
+    {
+      "name": "verify:smoke",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 5571,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,49 @@
+{
+  "scope": "browser",
+  "testedCommit": "0d3b57019f92ecb7d118bb58efde985d2cfd9193",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "9b679a032c5be64d890a0645a2be35c1bc7d26f2244bbf2d70db897ddd07371c",
+    "index": "509fdf7ccbe1eb7f7f342c70ab5d25132b7ba92b199adfe9f16a63106f72af07",
+    "head": "0d3b57019f92ecb7d118bb58efde985d2cfd9193",
+    "branch": "refs/heads/review/p08-amo-assist-domain-20261005"
+  },
+  "after": {
+    "source": "9b679a032c5be64d890a0645a2be35c1bc7d26f2244bbf2d70db897ddd07371c",
+    "index": "509fdf7ccbe1eb7f7f342c70ab5d25132b7ba92b199adfe9f16a63106f72af07",
+    "head": "0d3b57019f92ecb7d118bb58efde985d2cfd9193",
+    "branch": "refs/heads/review/p08-amo-assist-domain-20261005"
+  },
+  "steps": [
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 14552
+    },
+    {
+      "name": "verify:smoke",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 5571,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

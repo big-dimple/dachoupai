@@ -1,0 +1,34 @@
+{
+  "testedCommit": "0d3b57019f92ecb7d118bb58efde985d2cfd9193",
+  "before": {
+    "source": "9b679a032c5be64d890a0645a2be35c1bc7d26f2244bbf2d70db897ddd07371c",
+    "index": "509fdf7ccbe1eb7f7f342c70ab5d25132b7ba92b199adfe9f16a63106f72af07",
+    "head": "0d3b57019f92ecb7d118bb58efde985d2cfd9193",
+    "branch": "refs/heads/review/p08-amo-assist-domain-20261005"
+  },
+  "checks": [
+    {
+      "name": "three-profile atomic quota/retry/duplicate/explicit-partition",
+      "status": "PASS",
+      "revision": 4
+    },
+    {
+      "name": "reload/export/import/active-priority/corrupt-current+previous/retained-raw",
+      "status": "PASS",
+      "revision": 8
+    }
+  ],
+  "limitations": [
+    "Controlled legal public-hand fixtures; no natural acquisition, UI, balance or device acceptance.",
+    "Chromium native IndexedDB and production save adapter; injected quota abort is a transaction fault, not actual disk exhaustion."
+  ],
+  "browser": "151.0.7922.173",
+  "status": "PASS",
+  "after": {
+    "source": "9b679a032c5be64d890a0645a2be35c1bc7d26f2244bbf2d70db897ddd07371c",
+    "index": "509fdf7ccbe1eb7f7f342c70ab5d25132b7ba92b199adfe9f16a63106f72af07",
+    "head": "0d3b57019f92ecb7d118bb58efde985d2cfd9193",
+    "branch": "refs/heads/review/p08-amo-assist-domain-20261005"
+  },
+  "sourceUnchanged": true
+}

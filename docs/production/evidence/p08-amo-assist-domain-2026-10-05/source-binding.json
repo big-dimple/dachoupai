@@ -1,0 +1,144 @@
+{
+  "task": "P08 Amo main hand + assist domain prototype",
+  "status": "review-only; PR CI pending; no main authorization",
+  "mainAtHandoff": "8e0daae74efd56969886d1fdb2c28df404af27e0",
+  "planSource": "ec506b4658ae726661b939b8d9385f4f112282ad",
+  "incompleteWip": "2328587e6823450c1da503f70aa30d2464e6fb62",
+  "firstLocalCheckpoint": "b2ce62e84b2f45b66413dfab3d6987552f82223e",
+  "testedLocalSource": "0d3b57019f92ecb7d118bb58efde985d2cfd9193",
+  "connectorSourceCommit": "629ac89b4134a0676c6b72e61d5507497b6bb00b",
+  "remoteParent": "2328587e6823450c1da503f70aa30d2464e6fb62",
+  "remoteBranch": "review/p08-amo-assist-domain-20261005",
+  "remoteVerifiedBeforeUpdate": "2328587e6823450c1da503f70aa30d2464e6fb62",
+  "refUpdate": {
+    "force": false,
+    "confirmedSuccess": true
+  },
+  "treeBinding": {
+    "complete": {
+      "local": "aa5f3dd865ccea33a783db08f25aa549db9b3276",
+      "remote": "aa5f3dd865ccea33a783db08f25aa549db9b3276",
+      "equal": true
+    },
+    "src": {
+      "local": "435985379e300c8fab113f921ac328e732cdc6c4",
+      "remote": "435985379e300c8fab113f921ac328e732cdc6c4",
+      "equal": true
+    },
+    "tests": {
+      "local": "6ffde7ab1389bcf430f5350e13feb03370cc845b",
+      "remote": "6ffde7ab1389bcf430f5350e13feb03370cc845b",
+      "equal": true
+    },
+    "harness": {
+      "local": "b933bdc5fa3965d6b81dbf6e79899af851931f16",
+      "remote": "b933bdc5fa3965d6b81dbf6e79899af851931f16",
+      "equal": true
+    }
+  },
+  "continuationFiles": [
+    "docs/production/AMO_ASSIST_PROTOTYPE.md",
+    "docs/production/CHARACTER_PLAY_PLAN.md",
+    "harness/amo-assist-save.mjs",
+    "src/application/checkpoint.ts",
+    "src/domain/r2Assist.ts",
+    "src/domain/r2Run.ts",
+    "src/domain/run.ts",
+    "src/domain/scoreR2.ts",
+    "tests/amo-assist.test.ts",
+    "tests/c04-mode-save.test.ts",
+    "tests/fixtures/r2-v11-amo-checkpoints.json"
+  ],
+  "fileCount": 11,
+  "checks": {
+    "focusedTests": {
+      "status": "PASS",
+      "tests": 91,
+      "files": 3
+    },
+    "allTests": {
+      "status": "PASS",
+      "tests": 2236,
+      "files": 122
+    },
+    "typecheck": "PASS",
+    "content": "PASS",
+    "build": "PASS",
+    "productionPlan": "PASS",
+    "nativeIndexedDB": "PASS",
+    "standardLocalSmoke": {
+      "status": "FAIL",
+      "productChecks": "NOT_RUN",
+      "reason": "Playwright chromium_headless_shell-1243 executable missing; browser did not launch"
+    },
+    "install": {
+      "status": "BLOCKED",
+      "response": "HTTP 403 Domain forbidden",
+      "routeStopped": true
+    },
+    "smokeExistingOverride": {
+      "interface": "SMOKE_CHROMIUM_CHANNEL (Playwright channel only)",
+      "installedNativeBrowser": "/usr/bin/chromium",
+      "usableInstalledChannel": false,
+      "scriptModified": false
+    },
+    "CI": "PENDING"
+  },
+  "legacy": {
+    "v10Fixture": "tests/fixtures/r2-v10-amo-checkpoints.json (unchanged)",
+    "v11Fixture": "tests/fixtures/r2-v11-amo-checkpoints.json",
+    "v11FixtureGeneratorSource": "04d2f729bbe37d7e34783f4a2a81b9026ff98a64",
+    "v11SourceMethod": "isolated published checkout; same controlled visible-hand fixture, v11 identity selected before applying actual old resolver; full checkpoint exported",
+    "v10v11Replay": "full state, trace, RNG, receipts and checkpoint equality PASS"
+  },
+  "limitations": [
+    "No UI or GameScene/HandActionArea/selection changes",
+    "No A-series adaptation or pool deletion; required before launch",
+    "No other five-character implementation",
+    "No balance, natural full-tour, physical-device, GPU or listening acceptance",
+    "No screenshots/video/FPS or strategy simulation added; original standard smoke stopped before browser launch"
+  ],
+  "artifacts": {
+    "local-domain.json": {
+      "sha256": "06e1468a351da9415442f873d2757af73038c1203433f8d7d6f6a274e35bc812",
+      "bytes": 1509
+    },
+    "local-docs.json": {
+      "sha256": "a66028b4ba42e04955d0ee7c63fd5f8a9741c6ddfd3c283886dabd2ecd14027e",
+      "bytes": 1397
+    },
+    "local-browser-FAIL.json": {
+      "sha256": "a59b7edd1aa584b05fc8599505acaf960dfe221d245da9b3647a39f5113d4471",
+      "bytes": 1543
+    },
+    "native-indexeddb.json": {
+      "sha256": "45209ba2278ca8b847fb0b77b68e2d52dc2e4bc90ad89a2e07b96a30c898f6cd",
+      "bytes": 1313
+    },
+    "browser-FAIL.txt": {
+      "sha256": "217ef604f202a6519078a5b8fb5f908b7db3c469cae3d49f219486487f894ef9",
+      "bytes": 4997
+    },
+    "browser-install-403.txt": {
+      "sha256": "000ebde6acf33442d43ed562e8dd03487c3b9c5b5348a5b6ebe5c11a988d82cb",
+      "bytes": 4012
+    }
+  },
+  "earlyFailures": [
+    {
+      "log": "amo-related.log",
+      "sha256": "cccf56b41a444ede2ebdf3666f4dd3d612f9fe511bb1d833e827df6f3171bbe4",
+      "cause": "fixture exceeded original eight-card hand limit"
+    },
+    {
+      "log": "amo-related-2.log",
+      "sha256": "85449ca71f482c2d5cdd0a62c7b47b434c065f4fc8203e4d56d73040f6065291",
+      "cause": "test expected draw from head; published contract pops tail"
+    },
+    {
+      "log": "amo-related-4.log",
+      "sha256": "4b2b732750c2553bb8460ae59f48fd5117824e5dd1ac2961fbe7604e79a987dd",
+      "cause": "test expected f06 to survive fourth hand; published expiry is fourth hand"
+    }
+  ]
+}
