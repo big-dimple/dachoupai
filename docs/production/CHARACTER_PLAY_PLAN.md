@@ -1,5 +1,11 @@
 # P08：组合追逐与六角色节奏 — 整合计划 / 阿默首原型
 
+## 当前计划入口
+
+当前完整策划、设计决策、依赖和执行合同统一见[DELIVERY_PLAN](DELIVERY_PLAN.md)。本页保留原合同与历史；下方“当前”“仅review”“待发布”“未实现”等只适用于各段原SHA，不能覆盖新的当前合同。状态仍由plan.json记录，原证据和未通过门槛保持。
+
+## 历史合同与批次记录
+
 ## 成组升级正常入口/UI有限交付（PR27，2026-10-05 UTC，仅review）
 
 基线已发布ac025ee；正常合入F最终9da6d2d。冻结源码5905d4c，普通六角色新局采用group-upgrade-v1/5025cc23c013987f，仅阿默助攻；五身份原规则续局/导入/精确retry及裸createRun默认v11保持。商店稀有度/价格与全UI依当前局，成组主文案明确对子、两对、三条、葫芦等；读取和再次计分来源只按实际trace。父审B06成长无读取却写读取的must-fix已复现并修；原FAIL保留。2428tests/135files、content/type/build/系统Chromium标准双端smoke/plan全部PASS，source/index/HEAD保持；18原生案例及31逐张actual view PNG通过。自然b10四金、318/325成长10/20、真实延续402两对→634三条→1470葫芦，保存成长50；b08自然过关+3，旧e7 b10六金/318与290保持。未遇自然b03/b06、未转顺子或同花均NOT_OBSERVED；稀有/B13/封禁对照明确受控。精确最终review CI见PR27，不预记main。P08 in_progress、C04 D32及原真机/听感/平衡门槛保持，main父串行。见[本批证据](evidence/p1-j-group-upgrade-ui-2026-10-05/summary.json)。
