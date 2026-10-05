@@ -11,8 +11,9 @@ import {jokerAbilityCopyForRun,publicJokerMemoryContext} from '../src/game/Joker
 import {characterForRun} from '../src/game/CharacterRunCopy';
 import legacy from './fixtures/r2-v10-amo-checkpoints.json';
 const main=['spades-9','hearts-9','clubs-13','diamonds-13'],side=['spades-12','hearts-12'];
-function state(prototype:boolean,identity?:{contentVersion:string;contentHash:string},characterId:CharacterId='amo'){
+function state(prototype:boolean,identity?:{contentVersion:string;contentHash:string},characterId:CharacterId='amo',jokerIds:string[]=[]){
  let s=createRun({runId:'ui-copy',seed:'ui-copy',characterId,rulesVersion:'r2',...(identity?{r2Identity:identity}:prototype?{r2Profile:'amo-assist-v1' as const}:{})});
+ s.jokers=jokerIds.map(id=>r2CreateJoker(id,'grown',4,undefined,s));
  for(const type of ['LeaveShop','EnterStage'] as const){const r=applyCommand(s,{runId:s.runId,commandId:type,expectedSeq:s.commandSeq,action:{type}});if(!r.ok)throw Error(r.code);s=r.state;}
  s.handOrder=[...main,...side,'clubs-6','diamonds-7'];s.drawPile=s.deckInstances.map(c=>c.id).filter(id=>!s.handOrder.includes(id));return s;
 }
@@ -48,4 +49,12 @@ it('all known identities bind game, shop and AI to the exact definition; only Am
    expect(game.candidateInput().definitions).toBe(defs);expect(game.candidateInput().contentVersion).toContain(s.contentHash);
   }
  }
+});
+
+it('presentation copy binds the recorded starting instance even when the live instance has already grown',()=>{
+ const profile=R2_RULESETS.find(p=>p.contentVersion==='quality-r2-group-upgrade-prototype-v1')!;
+ const before=state(false,{contentVersion:profile.contentVersion,contentHash:profile.contentHash},'amo',['b10']);
+ const r=applyCommand(before,{runId:before.runId,commandId:'growth',expectedSeq:before.commandSeq,action:{type:'PlayHand',selectedIds:main}});if(!r.ok)throw Error(r.code);
+ const after=r.state,game=Object.create(GameScene.prototype) as any;Object.assign(game,{run:after,selectedIds:new Set(),assistIds:[],presentation:{score:after.lastTrace,hand:after.lastTrace!.cards}});
+ const copy=game.jokerAbility(after.jokers[0]);expect(copy.state).toContain('本次读取成长：+0');expect(copy.state).toContain('结算后保存热度成长：+10');expect(copy.state).not.toContain('结算后保存热度成长：+20');
 });

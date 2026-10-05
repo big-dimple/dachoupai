@@ -428,7 +428,8 @@ export class GameScene extends Phaser.Scene {
   }
   private memoryContext(j:R2JokerInstance,facts?:HandPreview){const ctx=publicJokerMemoryContext(this.run,{hand:this.hand,facts,scoringLimited:!!this.jokerRestriction(j),deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,jokerSlots:r2JokerCapacity(this.run),jokerCount:this.run.jokers.length});return this.presentation?recordedJokerMemoryContext(ctx,this.presentation.score.bossContext):ctx;}
   private jokerAbility(j:R2JokerInstance,preview?:HandPreview) {
-    return jokerAbilityCopyForRun(this.run,j.definitionId,j,this.memoryContext(j,preview),this.presentation?.score.events);
+    const source=this.presentation?.score.sourceJokers.find(source=>source.instanceId===j.instanceId)??j;
+    return jokerAbilityCopyForRun(this.run,j.definitionId,source,this.memoryContext(source,preview),this.presentation?.score.events);
   }
   private jokerValue(j:R2JokerInstance,preview?:HandPreview):string {
     if(!this.presentation)return jokerMemory(this.jokerDefinition(j.definitionId),j,this.memoryContext(j,preview)).short;
