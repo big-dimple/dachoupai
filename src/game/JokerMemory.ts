@@ -39,7 +39,7 @@ export function r2ConditionDescription(c:Condition):string {
   case'held-rank-first':return(c.playedEquals===undefined?'':'打出恰好'+c.playedEquals+'张；')+'保留且可生效的'+c.values.map(r=>r>=2&&r<=14?rankLabel(r as PlayingCard['rank']):String(r)).join('／')+'，过滤后按手牌顺序前'+c.limit+'张';
   case'held-scoring-rank-first':return'保留牌与有效计分牌同点，过滤停用后按手牌顺序前'+c.limit+'张';
   case'held-enhancement-first':return'保留的可生效留声纸，过滤后按手牌顺序前'+c.limit+'张';
-  case'hand-type-relation':return'相邻两手主手均为'+typeNames(c.values)+'，且牌型'+(c.relation==='same'?'相同':'不同')+'；首手、对子和高牌不能接续';
+  case'hand-type-relation':return'相邻两次出牌均为'+typeNames(c.values)+'，且牌型'+(c.relation==='same'?'相同':'不同')+'；首手、对子和高牌不能接续';
   case'hand-type-transition':return'上手普通'+HAND_LABELS[c.previous]+' → 本手普通'+HAND_LABELS[c.current]+'；同花顺不代替';
   case'extra-retrigger':return'实际额外重触发发生后检查；请求不保证执行';
   case'stage-score-below-target':return'已入账累计热度严格低于目标的'+fractionText(Rational.fromJSON(c.ratio).multiply(new Rational(100n)).toJSON())+'%（等于不满足）';
@@ -66,7 +66,7 @@ function operationDescription(op:Operation,ctx:JokerMemoryContext):string {
   case'read-growth':case'consume-growth':return(op.kind==='consume-growth'?'读取后消耗':'读取')+'已保存成长，作用于'+(op.target==='heat'?'热度':'倍率');
   case'add-growth':return'单次成长 +'+fractionText(op.value)+'，封顶'+fractionText(op.cap);
   case'read-coefficient':return'读取当前保存的倍率系数';
-  case'multiply-coefficient-once':return'每场首次合格交替后系数 ×'+fractionText(op.value)+'，下一次生效，封顶'+fractionText(op.cap);
+  case'multiply-coefficient-once':return'每场首次不同的两对及以上出牌接续后系数 ×'+fractionText(op.value)+'，下一次生效，封顶'+fractionText(op.cap);
   case'arm-rescue':return'备好一次救火，后续弃牌不叠加';
   case'consume-rescue':return'下一次实际出牌后消耗救火，无论命中或被封禁';
   case'rescue-multiplier':return'已备好救火时倍率 ×'+fractionText(op.value);
@@ -120,8 +120,8 @@ export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstanc
  const staticRules=(definition.modifiers??[]).map(m=>modifierDescription(m,ctx)),life=definition.hooks.flatMap(h=>h.operations.filter(op=>op.kind==='expire-after-hands'))[0];
  // Missing additive storage is a real zero, never a claim about its history.
  const savedGrowth=instance?{...r2GrowthMinimums(definition),...instance.growth}:{};
- let saved=instance?r2JokerStateText({...instance,growth:savedGrowth}):'尚未购入；不代表已触发';
- if(combo&&instance){if(definition.id==='a06')saved+='；'+(ctx.inStage?(instance.counters?.alternationUsed?'本场已成长':'本场成长尚可用'):'下场重置成长次数');if(definition.id==='f10')saved=instance.counters?.rescueArmed?'救火已备好；下一次出牌后消耗':'救火未备好';}
+ let saved=instance?r2JokerStateText({...instance,growth:savedGrowth},definition):'尚未购入；不代表已触发';
+ if(combo&&instance){if(definition.id==='a06')saved+='；'+(ctx.inStage?(instance.counters?.alternationUsed?'本场已成长':'本场成长尚可用'):'下场重置成长次数');if(definition.id==='f10')saved=instance.counters?.rescueArmed?'救火已备好；下一次出牌后消耗':!ctx.inStage?'下场首次弃牌前检查':ctx.playIndex>0||ctx.discardsUsed>0?'本场启动机会已用；救火未备好':'首次弃牌前检查；救火未备好';}
  const remaining=instance&&life?.kind==='expire-after-hands'?Math.max(0,life.limit-(instance.counters?.handsScored??0)):undefined;
  const scoreHooks=hooks.filter(h=>['onCardScore','onHeldCard','jokerScore'].includes(h.phase)),satisfied=scoreHooks.filter(h=>h.status==='条件满足');
  const currentStatus:MemoryStatus|'部分条件满足'=satisfied.length?satisfied.length===scoreHooks.length?'条件满足':'部分条件满足':scoreHooks.some(h=>h.status==='待选牌')?'待选牌':scoreHooks.some(h=>h.status==='当前未满足')?'当前未满足':'事件时检查';
@@ -138,7 +138,7 @@ export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstanc
  // Compact saved numbers remain exact; oversized values lead to the state entry.
  const exact=(value:{n:string;d:string})=>{const r=Rational.fromJSON(value);return r.d===1n?r.n.toString():r.n+'/'+r.d;};
  const valueLabel=stored.map(([key,value])=>(key==='coefficient'?'系数×':key==='pendingHeat'?'蓄热':key==='multiplier'?'倍+':'热+')+exact(value)).join('／');
- const stateCandidates=combo&&definition.id==='f10'&&instance?[instance.counters?.rescueArmed?'救火待出牌':'救火未备好']:remaining!==undefined?['余'+remaining+'手']:remainingUses!==undefined?['余'+remainingUses+'次']:
+ const stateCandidates=combo&&definition.id==='f10'&&instance?[instance.counters?.rescueArmed?'救火待出牌':ctx.inStage&&(ctx.playIndex>0||ctx.discardsUsed>0)?'本场机会已用':'首弃前检查']:remaining!==undefined?['余'+remaining+'手']:remainingUses!==undefined?['余'+remainingUses+'次']:
   definition.id==='f09'&&ctx.inStage&&ctx.discardsUsed>0?['已弃牌']:
   instance&&definition.hooks.some(h=>h.operations.some(op=>op.kind==='reward-consumable-every-clears'))?[instance.counters?.stageClears===1?'下关赠票':'再2关赠票']:
   valueLabel?[valueLabel,...(stored.length===1&&stored[0][0]==='coefficient'?['×'+exact(stored[0][1])]:[])]:[];

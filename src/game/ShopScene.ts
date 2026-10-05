@@ -304,7 +304,7 @@ export class ShopScene extends Phaser.Scene {
     const key=jokerArtKey(definitionId);if(key&&this.textures.exists(key))return;
     const face=this.add.container(),paper=this.add.graphics().fillStyle(0xfff7e5).fillRoundedRect(0,0,240,336,10).lineStyle(3,0xb69866).strokeRoundedRect(2,2,236,332,10);
     face.add([paper,this.add.text(120,14,this.jokerDefinition(definitionId).name,{fontFamily:UI_FONT,fontSize:'20px',color:'#203744'}).setOrigin(.5,0)]);
-    drawJokerMotif(this,face,definitionId,120,166,192);
+    drawJokerMotif(this,face,definitionId,120,166,192,this.jokerDefinition(definitionId));
     const image=this.add.renderTexture(0,0,240,336).setVisible(false);image.draw(face);face.destroy();
     image.snapshot(snapshot=>{if(snapshot instanceof HTMLImageElement)this.dialog.attachCardArt(dialog,snapshot.src,this.jokerDefinition(definitionId).name+'机制示意卡面','mechanism');image.destroy();});
   }
@@ -337,7 +337,7 @@ export class ShopScene extends Phaser.Scene {
       v.add(picture.setScale(scale).setAlpha(alpha));
     }else {
       const motif=this.add.container(b.x+b.width/2,b.y+b.height/2).setAlpha(alpha);v.add(motif);
-      drawJokerMotif(this,motif,definitionId,0,0,Math.min(b.width,b.height)*.88);
+      drawJokerMotif(this,motif,definitionId,0,0,Math.min(b.width,b.height)*.88,this.jokerDefinition(definitionId));
       if(b.width>=88&&b.height>=70){
         const state=jokerArtLoadState(this,definitionId).status,label=state==='unregistered'?'机制示意':state==='failed'?'插画未加载':'插画加载中';
         v.add(this.add.rectangle(b.x+b.width/2,b.y+b.height-10,b.width-4,18,0xf4ead4,.96));
@@ -403,7 +403,7 @@ export class ShopScene extends Phaser.Scene {
   }
   private inspectJoker(id:string):void {
     const j=this.run.jokers.find(j=>j.instanceId===id);if(!j||this.busy)return;this.hideHoverPicture();const d=this.jokerDefinition(j.definitionId),index=this.run.jokers.indexOf(j),seq=this.run.commandSeq;
-    const growth=r2JokerStateText(j),ability=this.jokerCopy(d.id,j);
+    const growth=r2JokerStateText(j,d),ability=this.jokerCopy(d.id,j);
     const dialog=this.dialog.open(d.name+' · 第 '+(index+1)+' 槽',(ability?'':d.description+r2JokerExtraHelp(d)+'\n')+'版次：'+editionEffectText(j.edition)+'\n\n当前实例：'+growth+`\n实际买价 ${j.paidPrice} 金；出售可得 ${salePrice(j.paidPrice)} 金。\n出售后余额 ${this.run.gold} → ${this.run.gold+salePrice(j.paidPrice)} 金。\n\n大丑牌按从左至右的顺序触发。`,[
       {label:'左移',disabled:!this.ready||index===0,run:async()=>{if(await this.reorder(index,index-1,seq)&&this.dialog.active(dialog))this.inspectJoker(id);}},
       {label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:async()=>{if(await this.reorder(index,index+1,seq)&&this.dialog.active(dialog))this.inspectJoker(id);}},
@@ -463,7 +463,7 @@ export class ShopScene extends Phaser.Scene {
     for(const event of this.pendingTransactions){
       const index=this.run.jokers.findIndex(joker=>joker.instanceId===event.instanceId),slot=this.geometry().slots[index];
       if(!reduced&&slot)this.slotPop(slot);
-      lines.push({name:'transaction/'+event.instanceId,text:r2TransactionText(event)});
+      lines.push({name:'transaction/'+event.instanceId,text:r2TransactionText(event,this.jokerDefinition(event.definitionId))});
     }this.pendingTransactions=[];
     if(lines.length){
       const p=this.geometry(),bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0,box=shopResultBox(p,this.view.layout.height,bottom),probe=this.view.text(0,0,'',14,PAPER_CSS.ink).setVisible(false);
@@ -489,7 +489,7 @@ export class ShopScene extends Phaser.Scene {
       }
       this.run=result.state;
       const transactions=result.events.filter((event):event is Extract<DomainEvent,{type:'joker-transaction'}>=>event.type==='joker-transaction');
-      if(!result.duplicate&&transactions.length){this.pendingTransactions=transactions;this.lastTransactionNotes=transactions.map(r2TransactionText);}
+      if(!result.duplicate&&transactions.length){this.pendingTransactions=transactions;this.lastTransactionNotes=transactions.map(event=>r2TransactionText(event,this.jokerDefinition(event.definitionId)));}
       if(action.type==='BuyOffer'&&purchase&&!result.duplicate){
         const {kind,offer}=purchase,name=kind==='jokers'?this.jokerDefinition(offer.definitionId).name:kind==='tools'?toolInfo(offer.definitionId).name:itemInfo(offer.definitionId).name;this.audio.purchase();
         this.notice=`已买 ${name} · 金币 ${oldGold} → ${this.run.gold}`;

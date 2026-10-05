@@ -40,6 +40,13 @@ export function r2MechanismBadge(definition:R2JokerDefinition){
   if(operations.some(operation=>operation.kind==='refund-hand-limited'))return {label:'返还出牌',value:'本场1次',paper:0xe2e3ed};
   const coefficient=operations.find(operation=>operation.kind==='add-coefficient');
   if(coefficient?.kind==='add-coefficient')return {label:'系数成长',value:'+'+fractionText(coefficient.value)+' 系数',paper:0xf0d3c7};
+  const alternation=operations.find(operation=>operation.kind==='multiply-coefficient-once');
+  if(alternation?.kind==='multiply-coefficient-once')return {label:'交替成长',value:'系数 ×'+fractionText(alternation.value),paper:0xf0d3c7};
+  const rescue=operations.find(operation=>operation.kind==='rescue-multiplier');
+  if(rescue?.kind==='rescue-multiplier')return {label:'一次救火',value:'×'+fractionText(rescue.value),paper:0xe2e3ed};
+  const income=operations.find(operation=>operation.kind==='add-gold-per-held'||operation.kind==='add-gold-per-capital');
+  if(income?.kind==='add-gold-per-held')return {label:'实际留牌收入',value:'留≥'+income.minimum+' · 最多'+income.cap+'金',paper:0xf2dfbc};
+  if(income?.kind==='add-gold-per-capital')return {label:'奖励前本金收入',value:'每'+income.divisor+'金+1 · 最多'+income.cap+'金',paper:0xf2dfbc};
   const chance=operations.find(operation=>operation.kind==='chance-add-heat');
   if(chance?.kind==='chance-add-heat')return {label:'每手概率',value:chance.probability.n+'/'+chance.probability.d+' · +'+fractionText(chance.value)+' 热度',paper:0xd8e9e3};
   const reward=operations.find(operation=>operation.kind==='reward-consumable-pool'||operation.kind==='reward-consumable-every-clears');
@@ -63,8 +70,8 @@ export function r2MechanismBadge(definition:R2JokerDefinition){
   return {label:'构筑计分',value:'',paper:0xf2dfbc};
 }
 
-export function r2JokerValue(joker:R2JokerInstance,context:{gold:number;jokerCount:number;jokerSlots:number;deckSize:number;discardsUsed?:number;quadRefundUsed?:boolean}):string {
-  const definition=getR2Joker(joker.definitionId),operations=definition.hooks.flatMap(hook=>hook.operations);
+export function r2JokerValue(joker:R2JokerInstance,context:{gold:number;jokerCount:number;jokerSlots:number;deckSize:number;discardsUsed?:number;quadRefundUsed?:boolean},definition:R2JokerDefinition=getR2Joker(joker.definitionId)):string {
+  const operations=definition.hooks.flatMap(hook=>hook.operations);
   if(joker.definitionId==='f09'&&(context.discardsUsed??0)>0)return '不再×1.5';
   const lifetime=operations.find(operation=>operation.kind==='expire-after-hands');
   if(lifetime?.kind==='expire-after-hands')return '余'+Math.max(0,lifetime.limit-(joker.counters?.handsScored??0))+'手';
@@ -89,8 +96,8 @@ export function r2JokerValue(joker:R2JokerInstance,context:{gold:number;jokerCou
   return r2MechanismBadge(definition).value;
 }
 
-export function r2JokerStateText(joker:R2JokerInstance):string {
-  const definition=getR2Joker(joker.definitionId),operations=definition.hooks.flatMap(hook=>hook.operations);
+export function r2JokerStateText(joker:R2JokerInstance,definition:R2JokerDefinition=getR2Joker(joker.definitionId)):string {
+  const operations=definition.hooks.flatMap(hook=>hook.operations);
   const names:Record<string,string>={heat:'热度成长',multiplier:'倍率成长',pendingHeat:'待用热度'};
   const state=Object.entries(joker.growth).map(([key,value])=>key==='coefficient'?'乘法系数 ×'+fractionText(value):(names[key]??'成长')+' '+fractionText(value));
   const lifetime=operations.find(operation=>operation.kind==='expire-after-hands');
@@ -109,7 +116,7 @@ export function r2JokerExtraHelp(definition:R2JokerDefinition):string {
   if(definition.modifiers?.some(modifier=>modifier.kind==='four-flush'))notes.push('四张只用于普通同花，同花顺与扩展同花牌型仍须五张；同时允许四张顺子时，四张同花连续牌按普通同花结算。');
   if(definition.modifiers?.some(modifier=>modifier.kind==='consumable-capacity'))notes.push('与长期道具合计最多4个消耗品槽；出售或牺牲后超容量会拒绝，须先处理超额库存。');
   const operations=definition.hooks.flatMap(hook=>hook.operations);
-  if(operations.some(operation=>operation.kind==='read-coefficient'))notes.push('本手读取出牌开始时已保存的乘法系数；成功过关的新增系数从后续出牌生效。');
+  if(operations.some(operation=>operation.kind==='read-coefficient'))notes.push(operations.some(operation=>operation.kind==='multiply-coefficient-once')?'本次出牌读取开始时已保存的系数；出牌结算后的成长从下一次出牌生效。':'本手读取出牌开始时已保存的乘法系数；成功过关的新增系数从后续出牌生效。');
   if(operations.some(operation=>operation.kind==='reset-coefficient'))notes.push('本场包含入场前准备商店的销售；出售其他大丑牌立即重置系数，出售后再买回不恢复旧系数。');
   if(operations.some(operation=>operation.kind==='chance-add-heat'))notes.push('每个有效实例每手只判断一次；扑克重触发不增加判断，演出和回看不再抽随机结果。');
   if(operations.some(operation=>operation.kind==='refund-hand-limited'))notes.push('每场最多返还一次，先于耗尽失败判断；致胜四条、五条及扩展牌型不返还，实际出牌序号不回退。');
@@ -119,14 +126,14 @@ export function r2JokerExtraHelp(definition:R2JokerDefinition):string {
   return notes.length?'\n'+notes.join('\n'):'';
 }
 
-export function r2ScoreOperationText(event:ScoreEvent):string {
+export function r2ScoreOperationText(event:ScoreEvent,definition?:R2JokerDefinition):string {
   const value=fractionText(event.value);
   const resource=event.resourceBefore!==undefined&&event.resourceAfter!==undefined?' · '+event.resourceBefore+' → '+event.resourceAfter:'';
   if(event.operation==='lucky-multiplier-check')return '幸运倍率 · '+(event.value.n==='1'?'命中':'未命中')+'（1/5）';
   if(event.operation==='lucky-gold-check')return '幸运金币 · '+(event.value.n==='1'?'命中':'未命中')+'（1/15）';
   if(event.operation==='lucky-gold-cap')return '幸运金币本手已达'+value+'金上限';
   if(event.operation==='chance-heat-check'){
-    const source=getR2Joker(event.sourceDefinitionId),chance=source.hooks.flatMap(hook=>hook.operations).find(operation=>operation.kind==='chance-add-heat');
+    const source=definition??getR2Joker(event.sourceDefinitionId),chance=source.hooks.flatMap(hook=>hook.operations).find(operation=>operation.kind==='chance-add-heat');
     return source.name+' · '+(event.value.n==='1'?'命中':'未命中')+'（每手1次，概率'+(chance?.kind==='chance-add-heat'?chance.probability.n+'/'+chance.probability.d:'未知')+'）';
   }
   if(event.operation==='glass-check')return event.value.n==='1'?'玻璃裂纹（碎裂概率1/4）':'玻璃完好（碎裂概率1/4）';
@@ -151,6 +158,11 @@ export function r2ScoreOperationText(event:ScoreEvent):string {
   if(event.operation==='destroy-joker')return event.sourceDefinitionId==='f07'?'救场完成 · 销毁此实例':'寿命用尽 · 销毁此实例';
   if(event.operation==='rescue-hand')return '返还 '+value+' 次出牌'+resource;
   if(event.operation==='refund-hand')return '返还 '+value+' 次出牌'+resource+'（本场一次）';
+  if(event.operation==='multiply-coefficient')return '出牌结算后系数 ×'+value+(event.growthBefore&&event.growthAfter?'：'+fractionText(event.growthBefore)+' → '+fractionText(event.growthAfter):'')+' · 下一次出牌生效';
+  if(event.operation==='rescue-multiplier')return '救火 ×'+value+' 倍率';
+  if(event.operation==='consume-rescue')return '救火已消耗';
+  if(event.operation==='add-gold-per-held')return '实际留牌收入 +'+value+' 金'+resource;
+  if(event.operation==='add-gold-per-capital')return '奖励前本金 '+event.goldBeforeRewards+' 金 · 实际额外收入 +'+value+' 金'+resource;
   if(event.operation==='read-coefficient')return '×'+value+' 系数 · 本手读取';
   if(event.operation==='add-coefficient'||event.operation==='reset-coefficient')return coefficientChangeText(event.operation,event.growthBefore,event.growthAfter);
   if(event.operation==='increment-clear-cycle')return '过关计数 '+event.resourceBefore+' → '+event.resourceAfter+' · '+(event.resourceAfter===1?'下次成功过关发赠票':'本次赠票已结算');
@@ -164,14 +176,19 @@ function coefficientChangeText(operation:string,before:ScoreEvent['growthBefore'
   const change=before&&after?' ×'+fractionText(before)+' → ×'+fractionText(after):'';
   return (operation==='reset-coefficient'?'系数重置':'系数')+change+' · 后续出牌生效';
 }
-export function r2TransactionText(event:JokerTransaction):string {
-  const source=getR2Joker(event.definitionId),[n,d='1']=event.amount.split('/'),amount=fractionText({n,d});
+export function r2TransactionText(event:JokerTransaction,source:R2JokerDefinition=getR2Joker(event.definitionId)):string {
+  const [n,d='1']=event.amount.split('/'),amount=fractionText({n,d});
   let effect:string;
   if(event.operation==='add-coefficient'||event.operation==='reset-coefficient')effect=coefficientChangeText(event.operation,event.growthBefore,event.growthAfter);
   else if(event.operation==='reward-consumable')effect='获得'+getR2Tool(event.rewardDefinitionId!).name;
   else if(event.operation==='add-gold'&&event.rewardDefinitionId)effect=getR2Tool(event.rewardDefinitionId).name+' · 库存已满转 +'+amount+' 金';
   else if(event.operation==='increment-clear-cycle')effect='过关计数 '+event.resourceBefore+' → '+event.resourceAfter;
   else if(event.operation==='add-gold'||event.operation==='add-gold-limited')effect='+'+amount+' 金';
+  else if(event.operation==='arm-rescue')effect='救火已备好 · 下一次出牌后消耗';
+  else if(event.operation==='consume-rescue')effect='救火已消耗';
+  else if(event.operation==='add-gold-per-held')effect='实际留牌收入 +'+amount+' 金';
+  else if(event.operation==='add-gold-per-capital')effect='奖励前本金 '+event.goldBeforeRewards+' 金 · 实际额外收入 +'+amount+' 金';
+  else if(event.operation==='multiply-coefficient')effect=coefficientChangeText(event.operation,event.growthBefore,event.growthAfter);
   else if(event.operation==='refund-discard')effect='返还 '+amount+' 次弃牌';
   else if(event.operation==='rescue-hand')effect='返还 '+amount+' 次出牌';
   else if(event.operation==='refund-hand')effect='返还 '+amount+' 次出牌（本场一次）';

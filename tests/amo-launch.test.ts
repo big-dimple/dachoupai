@@ -2,6 +2,7 @@ import {describe,expect,it} from 'vitest';
 import {createRun,applyCommand,assertRunInvariants,type R2RunState} from '../src/domain/run';
 import {CHARACTER_IDS} from '../src/domain/characters';
 import {R2_RULESETS} from '../src/domain/r2Run';
+import {R2_COMBO_GROWTH_HASH,R2_COMBO_GROWTH_VERSION} from '../src/domain/r2ComboGrowth';
 import {R2_ASSIST_HASH,R2_ASSIST_VERSION} from '../src/domain/r2Assist';
 import {newRunIdentity,launchIdentity} from '../src/game/RunLaunch';
 import {characterForNewRun} from '../src/game/CharacterRunCopy';
@@ -10,11 +11,11 @@ import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
 const base={seed:'normal-launch',runId:'normal-launch',characterId:'amo' as const,rulesVersion:'r2' as const};
 const step=(s:R2RunState,type:'LeaveShop'|'EnterStage')=>{const r=applyCommand(s,{runId:s.runId,commandId:type,expectedSeq:s.commandSeq,action:{type}});if(!r.ok)throw Error(r.code);return r.state;};
 describe('normal new-game policy and exact retry creation',()=>{
- it('only the normal new Amo uses the frozen assist identity; raw createRun stays v11',()=>{
+ it('all six normal new games use the frozen combo identity; raw createRun stays v11',()=>{
   for(const characterId of CHARACTER_IDS){
    const run=createRun({...base,characterId,r2Identity:newRunIdentity(characterId)});assertRunInvariants(run);
-   expect(run.contentHash).toBe(characterId==='amo'?R2_ASSIST_HASH:'json-fnv-v1:bd4a1230833ab884');
-   expect(run.contentVersion).toBe(characterId==='amo'?R2_ASSIST_VERSION:'quality-r2-content-v11');
+   expect(run.contentHash).toBe(R2_COMBO_GROWTH_HASH);
+   expect(run.contentVersion).toBe(R2_COMBO_GROWTH_VERSION);
    expect(run.handLevels).toEqual({});expect(readCheckpoint(makeCheckpoint(run,[])).ok).toBe(true);
   }
   expect(createRun(base).contentHash).toBe('json-fnv-v1:bd4a1230833ab884');
@@ -36,12 +37,12 @@ describe('normal new-game policy and exact retry creation',()=>{
   const identities=[{contentVersion:R2_ASSIST_VERSION,contentHash:'json-fnv-v1:bd4a1230833ab884'},{contentVersion:'unknown',contentHash:R2_ASSIST_HASH},{...newRunIdentity('amo'),extra:1},Object.assign([] ,newRunIdentity('amo')),null];
   for(const r2Identity of identities)expect(()=>createRun({...base,r2Identity} as any)).toThrow('invalid-r2-identity');
   expect(()=>createRun({...base,r2Profile:'amo-assist-v1',r2Identity:newRunIdentity('amo')})).toThrow('invalid-r2-identity');
-  expect(()=>createRun({...base,characterId:'erxiang',r2Identity:newRunIdentity('amo')})).toThrow('invalid-r2-profile');
+  expect(()=>createRun({...base,characterId:'erxiang',r2Identity:{contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH}})).toThrow('invalid-r2-profile');
   expect(()=>createRun({...base,rulesVersion:'r1',r2Identity:newRunIdentity('amo')})).toThrow('invalid-r2-profile');
  });
- it('Q01 keeps assist identity while disabling its ability; tutorial stays Erxiang v11',()=>{
+ it('Q01 keeps combo identity while disabling its ability; tutorial requires Erxiang',()=>{
   const q=createRun({...base,seed:'challenge/q01/0',r2Identity:newRunIdentity('amo'),modeConfig:{mode:'challenge',difficulty:0,challengeId:'Q01',programsEnabled:false}});
-  expect(q.contentHash).toBe(R2_ASSIST_HASH);expect(q.handLevels).toEqual({});
+  expect(q.contentHash).toBe(R2_COMBO_GROWTH_HASH);expect(q.handLevels).toEqual({});
   expect(()=>createRun({...base,r2Identity:newRunIdentity('amo'),modeConfig:{mode:'tutorial',difficulty:0,challengeId:null,programsEnabled:false}})).toThrow();
  });
  it('selector copy shares new-game policy without changing legacy or other character definitions',()=>{

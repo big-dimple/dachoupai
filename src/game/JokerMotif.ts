@@ -1,10 +1,11 @@
 import Phaser from 'phaser';
+import type {R2JokerDefinition} from '../content/r2Schema';
 import {getR2Joker} from '../domain/r2Shop';
 import {PAPER_THEME} from './theme';
 
 /** Shared mechanism woodcuts for cards without a dedicated illustration. */
-export function drawJokerMotif(scene:Phaser.Scene,container:Phaser.GameObjects.Container,definitionId:string,x:number,y:number,size:number):void {
-  const definition=getR2Joker(definitionId),operations=definition.hooks.flatMap(hook=>hook.operations);
+export function drawJokerMotif(scene:Phaser.Scene,container:Phaser.GameObjects.Container,definitionId:string,x:number,y:number,size:number,definition:R2JokerDefinition=getR2Joker(definitionId)):void {
+  const operations=definition.hooks.flatMap(hook=>hook.operations);
   const art=scene.add.container(x,y).setScale(Math.max(1,size)/100),g=scene.add.graphics();container.add(art);art.add(g);
   const ink=PAPER_THEME.ink,brass=PAPER_THEME.brass,paper=PAPER_THEME.paper,jade=PAPER_THEME.jade,rose=PAPER_THEME.red;
   // A quiet etched ground, shared by all mechanisms; the object carries the identity.

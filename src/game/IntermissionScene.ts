@@ -4,7 +4,6 @@ import {readRunProgress} from '../platform/RunProgress';
 import {AudioEngine,type FailureCue} from '../audio/AudioEngine';
 import {getR2Stage} from '../domain/r2Run';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
-import {R2_ASSIST_VERSION} from '../domain/r2Assist';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {jokerAbilityCopyForRun,publicJokerMemoryContext,recordedJokerMemoryContext} from './JokerMemory';
 import {savedAssistCopy} from './AssistSelection';
@@ -14,7 +13,6 @@ import {rankLabel,SUIT_SYMBOL} from '../cards/types';
 import type {ScoreTrace} from '../domain/scoreR2';
 import {heatText,fractionText} from './scoreText';
 import {r2ScoreOperationText} from './r2Help';
-import {cardAbilityCopy} from './CardCopy';
 import {runController,dispatchRun,startRun} from './runAdapter';
 import {gameSession} from './session';
 import {getCharacter} from './characters';
@@ -205,15 +203,15 @@ export class IntermissionScene extends Phaser.Scene {
       const source=e.sourceType==='joker'?this.jokerDefinition(e.sourceDefinitionId).name:e.sourceType==='character'?getCharacter(run.characterId).name:e.sourceType==='card'?cardName(e.targetCardId??e.sourceInstanceId):e.sourceDefinitionId===trace.bossContext.boss?.definitionId?r2BossText(trace.bossContext.boss).split('：')[0]:R2_MODE_CATALOG.programs.find(program=>program.id===e.sourceDefinitionId)?.name??'牌型';
       if(e.phase==='base')return `${source} · 基础 ${fractionText(e.after.H)} 热度 × ${fractionText(e.after.M)} 倍率`;
       if(e.phase==='finalScore')return `最终得分 ${heatText(trace.finalScore)} 热度`;
-      const operation=r2ScoreOperationText(e),status=['afterHand','beforeFailure','onStageClear'].includes(e.phase);
+      const operation=r2ScoreOperationText(e,e.sourceType==='joker'?this.jokerDefinition(e.sourceDefinitionId):undefined),status=['afterHand','beforeFailure','onStageClear'].includes(e.phase);
       return `${source} · ${operation}`+(status?'':` → ${fractionText(e.after.H)} 热度 × ${fractionText(e.after.M)} 倍率`);
     });
     const summary=`${HAND_LABELS[trace.handType]} Lv.${trace.level} · ${heatText(trace.finalScore)} 热度\n打出：${trace.sets.playedIds.map(cardName).join('、')}\n实际计分：${trace.sets.activeScoringIds.map(cardName).join('、')||'无'}${trace.assist?'\n'+savedAssistCopy(trace):''}\n\n${fractionText(trace.accumulator.H)} × ${fractionText(trace.accumulator.M)} = ${heatText(trace.finalScore)}`;
     // Read saved activity only; current gold and next-hand eligibility cannot explain this hand.
     const benefits=trace.sourceJokers.flatMap(joker=>{
-      const copy=run.contentVersion===R2_ASSIST_VERSION?jokerAbilityCopyForRun(run,joker.definitionId,joker,recordedJokerMemoryContext(publicJokerMemoryContext(run,{hand:trace.cards,scoringLimited:false,deckSize:run.deckInstances.length-run.destroyedIds.length,jokerSlots:r2JokerCapacity(run),jokerCount:trace.sourceJokers.length}),trace.bossContext),trace.events):cardAbilityCopy(joker.definitionId,{gold:run.gold,instanceId:joker.instanceId,events:trace.events});if(!copy)return [];
-      const edition=trace.events.filter(event=>event.sourceType==='joker'&&event.sourceInstanceId===joker.instanceId&&event.reasonKey.startsWith('edition.')).map(event=>r2ScoreOperationText(event)).join('、');
-      return [this.jokerDefinition(joker.definitionId).name+'：'+(copy.bodyActive?copy.benefit:'本体未触发')+(edition?'；版次 '+edition:'')];
+      const copy=jokerAbilityCopyForRun(run,joker.definitionId,joker,recordedJokerMemoryContext(publicJokerMemoryContext(run,{hand:trace.cards,scoringLimited:false,deckSize:run.deckInstances.length-run.destroyedIds.length,jokerSlots:r2JokerCapacity(run),jokerCount:trace.sourceJokers.length}),trace.bossContext),trace.events);
+      const edition=trace.events.filter(event=>event.sourceType==='joker'&&event.sourceInstanceId===joker.instanceId&&event.reasonKey.startsWith('edition.')).map(event=>r2ScoreOperationText(event,this.jokerDefinition(event.sourceDefinitionId))).join('、');
+      return [this.jokerDefinition(joker.definitionId).name+'：'+copy.state+(edition?'；版次 '+edition:'')];
     });
     this.dialog.open('最后一手 · 已保存的结算',summary+'\n\n'+lines.join('\n'),[],benefits.length?{effectBody:summary+'\n\n'+benefits.join('\n'),collapseRules:true,rulesLabel:'完整计分明细'}:{});
   }

@@ -1,13 +1,13 @@
 import {SUIT_SYMBOL} from '../cards/types';
 import {HAND_LABELS} from '../content/handLabels';
-import {R2_JOKERS} from '../content/r2Schema';
+import {r2JokerDefinitionsForContext} from '../domain/r2ContentProfiles';
 import {R2_BOSSES,r2DisabledCards,r2OrdinarySuppression} from '../domain/r2Chapter';
 import {r2DiscardCost} from '../domain/r2Run';
 import type {R2RunState} from '../domain/run';
 import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {heatText} from './scoreText';
 
-export type StageNoticeInput=Pick<R2RunState,'phase'|'stage'|'stageIndex'|'boss'|'handOrder'|'deckInstances'>&Partial<Pick<R2RunState,'jokers'|'challengeId'>>;
+export type StageNoticeInput=Pick<R2RunState,'phase'|'stage'|'stageIndex'|'boss'|'handOrder'|'deckInstances'>&Partial<Pick<R2RunState,'jokers'|'challengeId'|'contentVersion'|'contentHash'>>;
 export interface StageNotice {
   stageIndex:number;
   title:string;
@@ -42,7 +42,7 @@ function enteredNotice(run:StageNoticeInput,selectedIds:readonly string[]=[]):St
   const hand=run.handOrder.map(id=>run.deckInstances.find(card=>card.id===id)!);
   const notice:StageNotice={...normal,warning:true,symbol:'!',details:definition.rule+stoppedScope+'\n\n应对：'+definition.response,
     disabledCardIds:r2DisabledCards(boss,index,hand),ordinarySuppressedIds:r2OrdinarySuppression(boss,index,hand,selectedIds),
-    disabledJokerIds:r2ScoringDisabledJokerIds(boss,run.jokers??[],R2_JOKERS,stage.sealedJokerIds)};
+    disabledJokerIds:r2ScoringDisabledJokerIds(boss,run.jokers??[],r2JokerDefinitionsForContext(run),stage.sealedJokerIds)};
   switch(boss.definitionId){
     case 'B01':
       return {...notice,title:'贵宾场 · 弃牌耗'+discardCost+'次',description:discardCost===2?'第一手前，每次弃牌消耗2次额度。':'第一手已打出，每次弃牌消耗1次额度。',symbol:discardCost===2?'×2':'○',warning:discardCost===2};
@@ -97,11 +97,11 @@ export function stageNotice(run:StageNoticeInput,selectedIds:readonly string[]=[
     details:'本次挑战关闭角色被动、初始牌型等级赠送和押注；角色身份保留。\n\n'+notice.details};
   const ban=run.stage.challengeDisabledJokerId;
   if(ban){
-    const name=R2_JOKERS.find(row=>row.id===ban)!.name;
+    const name=r2JokerDefinitionsForContext(run).find(row=>row.id===ban)!.name;
     notice={...notice,warning:true,symbol:'封',title:notice.warning?notice.title+' · 封角':'封角 · '+name+'计分停用',
       description:notice.description+' 本章'+name+'的计分与版次停用。',
       details:'本章公开封角：'+name+'。仅暂停计分和版次，静态、经济、非数学生命周期仍正常。\n\n'+notice.details,
-      disabledJokerIds:r2ScoringDisabledJokerIds(run.stage.boss,run.jokers??[],R2_JOKERS,run.stage.sealedJokerIds,ban)};
+      disabledJokerIds:r2ScoringDisabledJokerIds(run.stage.boss,run.jokers??[],r2JokerDefinitionsForContext(run),run.stage.sealedJokerIds,ban)};
   }
   return notice;
 }

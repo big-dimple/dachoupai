@@ -3,7 +3,7 @@ import {R2HandCandidateCache,r2CandidateKey,r2HandRevision,type R2CandidateInput
 import {AI_HAND_POLICY,AiHandCandidateCache,aiHandKey,nextAiHand,type AiHandInput,type AiHandCursor} from './AiHandCandidates';
 import {jokerMemory,jokerAbilityCopyForRun,publicJokerMemoryContext,recordedJokerMemoryContext} from './JokerMemory';
 import {fitJokerLabel,jokerLabelRoom} from './JokerLabel';
-import {r2AssistAvailability,R2_ASSIST_VERSION} from '../domain/r2Assist';
+import {r2AssistAvailability} from '../domain/r2Assist';
 import {assistCandidates,validAssistDraft,savedAssistCopy,ASSIST_EXPLANATION,ASSIST_AI_EXPLANATION} from './AssistSelection';
 import {r2SelectionFacts,type R2SelectionFacts} from '../domain/r2SelectionFacts';
 import {selectionCopy,selectionCardCopy,fitConditionEntry,fourCardRuleCopy,selectionCandidateEntryBox} from './SelectionCopy';
@@ -13,7 +13,6 @@ import {jokerArtAlignedLayers} from './jokerArt';
 import {jokerArtLoadState,requestJokerArt,retryJokerArt} from './JokerArtLoading';
 import {JOKER_RARITY,createJokerRarityBadge} from './JokerRarity';
 import {mountF09Art} from './F09Art';
-import {cardAbilityCopy} from './CardCopy';
 import Phaser from 'phaser';
 import {handActionContent,handActionCountColor} from './HandActionArt';
 import {r2JokerCapacity} from '../domain/r2Resources';
@@ -31,7 +30,7 @@ import {scoreBeat,scoreFireLevel,fourCardFormation,scorePacketSymbol,scoreImpact
 import {ScoreFlame,orderScoreBrushLayers} from './ScoreFlame';
 import {stageNotice} from './stageNotice';
 import type {R2RunState as RunState,DomainEvent} from '../domain/run';
-import {R2_LIMITS,getR2Stage as getStage,r2ScoreContext,r2DiscardCost} from '../domain/r2Run';
+import {r2UsesAssist,R2_LIMITS,getR2Stage as getStage,r2ScoreContext,r2DiscardCost} from '../domain/r2Run';
 import {r2ScoringDisabledJokerIds,type Accumulator,type ScoreTrace,type ScoreEvent} from '../domain/scoreR2';
 import {Rational} from '../domain/rational';
 
@@ -60,7 +59,7 @@ import {scoreCells,scorePedestal,playedFootprint} from './layout';
 import type {Box} from './layout';
 import {jokerArtKey,jokerArtUrl,jokerArtPreviewUrl} from './jokerArt';
 import {drawJokerMotif} from './JokerMotif';
-import {R2_OFFER_USE,r2JokerValue,r2JokerStateText,r2JokerExtraHelp,r2ScoreOperationText,r2TransactionText} from './r2Help';
+import {R2_OFFER_USE,r2JokerStateText,r2JokerExtraHelp,r2ScoreOperationText,r2TransactionText} from './r2Help';
 import {R2_TOOLS,R2_LONG_TERM_ITEMS} from '../content/r2Tools';
 import {cardSpecialText,editionLabel,editionEffectText,toolInfo} from './r2ToolInfo';
 
@@ -420,7 +419,7 @@ export class GameScene extends Phaser.Scene {
     });
   }
   private jokerMechanism(marker:Phaser.GameObjects.Container,x:number,y:number,size:number,joker:R2JokerInstance):void {
-    drawJokerMotif(this,marker,joker.definitionId,x,y,size);
+    drawJokerMotif(this,marker,joker.definitionId,x,y,size,this.jokerDefinition(joker.definitionId));
   }
   private jokerRestriction(j:R2JokerInstance):string|undefined {
     const score=this.presentation?.score,context=score?.bossContext;
@@ -433,8 +432,7 @@ export class GameScene extends Phaser.Scene {
   }
   private jokerValue(j:R2JokerInstance,preview?:HandPreview):string {
     if(!this.presentation)return jokerMemory(this.jokerDefinition(j.definitionId),j,this.memoryContext(j,preview)).short;
-    if(this.assistProfile)return this.jokerAbility(j,preview).compact;
-    return r2JokerValue(j,{gold:this.run.gold,jokerCount:this.run.jokers.length,jokerSlots:r2JokerCapacity(this.run),deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,discardsUsed:this.run.stage?.discardsUsed,quadRefundUsed:this.run.stage?.quadRefundUsed});
+    return this.jokerAbility(j,preview).compact;
   }
   private fitOwnedJokerLabel(label:Phaser.GameObjects.Text,j:R2JokerInstance,index:number,preview?:HandPreview):void {
     const room=jokerLabelRoom(this.view.layout,index),fits=(text:string)=>{label.setText(text);return label.width<=room;};
@@ -648,7 +646,7 @@ export class GameScene extends Phaser.Scene {
     if(key&&this.textures.exists(key)){
       const image=this.add.image(12+size/2,12+size/2,key);image.setScale(Math.min(size/image.width,size/image.height));panel.add(image);
     }
-    else drawJokerMotif(this,panel,j.definitionId,12+size/2,12+size/2,size);
+    else drawJokerMotif(this,panel,j.definitionId,12+size/2,12+size/2,size,this.jokerDefinition(j.definitionId));
     panel.add(createJokerRarityBadge(this,d.rarity,{x:12+size-61,y:12+size-25,resolution:1.5}).setData('definitionId',d.id).setData('surface','hover'));
     const tx=24+size,tw=width-tx-12,style={fontFamily:UI_FONT,resolution:1.5,wordWrap:{width:tw,useAdvancedWrap:true}};
     panel.add(this.add.text(tx,14,d.name,{...style,fontSize:'20px',fontStyle:'bold',color:'#203744'}));
@@ -732,7 +730,7 @@ export class GameScene extends Phaser.Scene {
     const cards=this.hand.filter(card=>this.selectedIds.has(card.id)),boxes=this.landingBoxes(cards.length);
     cards.forEach((card,i)=>{const cv=this.cardPiece(card,boxes[i]);this.previewCards!.add(cv.container);cv.container.setAlpha(1);paintCardFeedback(cv,{scoring:preview.activeScoringIds.includes(card.id)});cv.scoringMark.setVisible(false);});
   }
-  private get assistProfile():boolean {return this.run.contentVersion===R2_ASSIST_VERSION;}
+  private get assistProfile():boolean {return r2UsesAssist(this.run);}
   private get jokerDefinitions(){return r2JokerDefinitionsFor(this.run);}
   private jokerDefinition(id:string){return r2JokerDefinitionFor(this.run,id);}
   private draftRevision():string {return JSON.stringify([this.run.contentVersion,this.run.contentHash,r2HandRevision(this.candidateInput())]);}
@@ -944,7 +942,7 @@ export class GameScene extends Phaser.Scene {
     const move=async(delta:number)=>{const current=this.run.jokers.map(j=>j.instanceId),ids=reorderJokerIds(current,id,current.indexOf(id)+delta);if(ids===current)return;await this.command({type:'ReorderJokers',ids});if(this.dialog.active(dialog))this.inspectJoker(id);};
     const notice=stageNotice(this.run),reason=this.jokerRestriction(j),restriction=reason?'\n'+reason:'';
     const ability=this.jokerAbility(j,this.selectionPreview());
-    const body=ability?rarity.label+restriction+'\n版次：'+editionEffectText(j.edition)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 从右向左结算':' · 从左向右结算')+'。\n用下方按钮调序；出售须在商店确认。':rarity.symbol+' '+rarity.label+' · 当前 '+this.jokerValue(j)+restriction+'\n'+editionEffectText(j.edition)+'\n'+d.description+r2JokerExtraHelp(d)+'\n当前实例：'+r2JokerStateText(j)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 整手计分从右向左':' · 整手计分从左向右')+'；长按后拖动可调序，出售只在商店确认。';
+    const body=ability?rarity.label+restriction+'\n版次：'+editionEffectText(j.edition)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 从右向左结算':' · 从左向右结算')+'。\n用下方按钮调序；出售须在商店确认。':rarity.symbol+' '+rarity.label+' · 当前 '+this.jokerValue(j)+restriction+'\n'+editionEffectText(j.edition)+'\n'+d.description+r2JokerExtraHelp(d)+'\n当前实例：'+r2JokerStateText(j,d)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 整手计分从右向左':' · 整手计分从左向右')+'；长按后拖动可调序，出售只在商店确认。';
     const dialog=this.dialog.open(d.name,body,[
       {label:'左移',disabled:!this.ready||index===0,run:()=>move(-1)},{label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:()=>move(1)},
     ],{rarity:d.rarity,artLoad:{status:jokerArtLoadState(this,d.id).status,readStatus:()=>jokerArtLoadState(this,d.id).status,retry:()=>retryJokerArt(this,[d.id],()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();})},ability,collapseRules:!!ability,...(ability?{editionBody:'版次：'+editionEffectText(j.edition).split('。')[0]+(restriction?' · '+(this.presentation?'本手暂停':'当前暂停'):'')} :{}),...(j.definitionId==='f09'?{f09:{inactive:!!restriction,bodyInactive:this.presentation?ability?.bodyActive===false:(this.run.stage?.discardsUsed??0)>0,reduced:this.reducedMotion,alignedLayers:jokerArtAlignedLayers(j.definitionId),reason:restriction||undefined}}:{}),...(art?{portrait:{url:art,thumbnailUrl:jokerArtPreviewUrl(d.id),alt:d.name+'完整卡面',layout:'card' as const,caption:d.name}}:{})});
@@ -953,7 +951,7 @@ export class GameScene extends Phaser.Scene {
   private attachJokerFallback(dialog:HTMLDialogElement,definitionId:string):void {
     const face=this.add.container(),paper=this.add.graphics().fillStyle(0xfff7e5).fillRoundedRect(0,0,240,336,10).lineStyle(3,0xb69866).strokeRoundedRect(2,2,236,332,10);
     face.add([paper,this.add.text(120,14,this.jokerDefinition(definitionId).name,{fontFamily:UI_FONT,fontSize:'20px',color:'#203744'}).setOrigin(.5,0)]);
-    drawJokerMotif(this,face,definitionId,120,166,192);
+    drawJokerMotif(this,face,definitionId,120,166,192,this.jokerDefinition(definitionId));
     const image=this.add.renderTexture(0,0,240,336).setVisible(false);image.draw(face);face.destroy();
     image.snapshot(snapshot=>{if(snapshot instanceof HTMLImageElement)this.dialog.attachCardArt(dialog,snapshot.src,this.jokerDefinition(definitionId).name+'机制示意卡面','mechanism');image.destroy();});
   }
@@ -1176,7 +1174,7 @@ export class GameScene extends Phaser.Scene {
 
   private async showJokerTransaction(event:Extract<DomainEvent,{type:'joker-transaction'}>,context:EffectContext):Promise<void> {
     if(context.signal.aborted)return;
-    const note=r2TransactionText(event),view=this.jokerViews.get(event.instanceId),frame=view?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;
+    const note=r2TransactionText(event,this.jokerDefinition(event.definitionId)),view=this.jokerViews.get(event.instanceId),frame=view?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;
     this.statusMessage=note;this.updateControls();
     if(event.operation==='add-gold'||event.operation==='add-gold-limited'){
       this.audio.coin();
@@ -1228,7 +1226,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private operationText(event:ScoreEvent):string {
-    return r2ScoreOperationText(event);
+    return r2ScoreOperationText(event,event.sourceType==='joker'?this.jokerDefinition(event.sourceDefinitionId):undefined);
   }
   private eventSource(event:ScoreEvent):string {
     const edition=event.reasonKey.startsWith('edition.')?editionLabel(event.reasonKey.split('.')[1] as PlayingCard['edition'])+' · ':'';
@@ -1489,7 +1487,7 @@ export class GameScene extends Phaser.Scene {
     if(event.sourceType!=='joker'||this.jokerViews.has(event.sourceInstanceId))return;
     const definition=this.jokerDefinition(event.sourceDefinitionId),rarityStyle=JOKER_RARITY[definition.rarity],l=this.view.layout,index=Math.min(this.jokerViews.size,R2_LIMITS.jokerSlots-1),b=l.slots[index],sideLabels=l.mode==='landscape',labelBox=l.jokerLabels[index],labelX=sideLabels?labelBox.x-b.x-b.width/2:-b.width/2+5;
     const marker=this.view.add(this.add.container(b.x+b.width/2,b.y+b.height/2)),frame=this.add.rectangle(0,0,b.width,b.height,rarityStyle.paper).setStrokeStyle(2,rarityStyle.edge);
-    marker.add(frame);drawJokerMotif(this,marker,definition.id,0,0,Math.min(b.width,b.height)*.75);
+    marker.add(frame);drawJokerMotif(this,marker,definition.id,0,0,Math.min(b.width,b.height)*.75,definition);
     marker.add(this.add.text(labelX,-b.height/2+5,definition.name,{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:sideLabels?'#fff0cf':rarityStyle.css.ink,wordWrap:{width:sideLabels?labelBox.width:b.width-10,useAdvancedWrap:true},maxLines:l.shortLandscape?1:2}));
     const stackValue=!sideLabels&&b.width<64,label=this.add.text(labelX,sideLabels?-b.height/2+26:b.height/2-(stackValue?24:3),'回看来源',{fontFamily:UI_FONT,fontSize:'12px',color:sideLabels?'#ffd0af':rarityStyle.css.ink,wordWrap:{width:sideLabels?labelBox.width:stackValue?b.width-10:b.width-40,useAdvancedWrap:true},maxLines:l.shortLandscape?1:2}).setOrigin(0,sideLabels?0:1);marker.add(label);
     marker.add(createJokerRarityBadge(this,definition.rarity,{x:b.width/2-31,y:b.height/2-21,compact:true,resolution:Math.max(1.5,1/this.scale.zoom)}).setData('definitionId',definition.id).setData('surface','trace'));
@@ -1646,9 +1644,9 @@ export class GameScene extends Phaser.Scene {
     const score=this.run.lastTrace;if(!score)return;
     // The recap reads the saved ledger, never today's gold or next-hand eligibility.
     const benefits=score.sourceJokers.flatMap(joker=>{
-      const copy=this.assistProfile?jokerAbilityCopyForRun(this.run,joker.definitionId,joker,recordedJokerMemoryContext(publicJokerMemoryContext(this.run,{hand:score.cards,scoringLimited:false,deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,jokerSlots:r2JokerCapacity(this.run),jokerCount:score.sourceJokers.length}),score.bossContext),score.events):cardAbilityCopy(joker.definitionId,{gold:this.run.gold,instanceId:joker.instanceId,events:score.events});if(!copy)return [];
+      const copy=jokerAbilityCopyForRun(this.run,joker.definitionId,joker,recordedJokerMemoryContext(publicJokerMemoryContext(this.run,{hand:score.cards,scoringLimited:false,deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,jokerSlots:r2JokerCapacity(this.run),jokerCount:score.sourceJokers.length}),score.bossContext),score.events);
       const edition=score.events.filter(event=>event.sourceType==='joker'&&event.sourceInstanceId===joker.instanceId&&event.reasonKey.startsWith('edition.')).map(event=>this.operationText(event)).join('、');
-      return [this.jokerDefinition(joker.definitionId).name+'：'+(copy.bodyActive?copy.benefit:'本体未触发')+(edition?'；版次 '+edition:'')];
+      return [this.jokerDefinition(joker.definitionId).name+'：'+copy.state+(edition?'；版次 '+edition:'')];
     });
     this.dialog.open('上手已入账 · '+HAND_LABELS[score.handType]+' +'+heatText(score.finalScore),this.formatBreakdown(score)+'\n\n'+score.events.filter(event=>event.phase!=='base'&&event.phase!=='finalScore').map(event=>this.eventSource(event)+' '+this.operationText(event)+(['afterHand','beforeFailure','onStageClear'].includes(event.phase)?'':' → 热度 '+fractionText(event.after.H)+' / 倍率 '+fractionText(event.after.M))).join('\n'),[{label:'回看演出',disabled:!this.ready,run:()=>{this.dialog.close();this.replayLastTrace();}}],benefits.length?{effectBody:this.formatBreakdown(score)+'\n\n'+benefits.join('\n'),collapseRules:true,rulesLabel:'完整计分明细'}:{});
   }

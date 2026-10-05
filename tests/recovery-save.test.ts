@@ -129,7 +129,7 @@ describe('complete checkpoint validation and save-before-publish',()=>{
     expect(session.run===run).toBe(true);expect(run.state).toBe(before);expect(run.exportJSON()).toBe(oldJSON);
     expect(result).toBe(kind==='start'?undefined:false);expect(await store.read()).toEqual(slots);
     const candidate=session.pendingRun;expect(candidate).toBeDefined();if(!candidate)throw Error('missing retryable candidate');
-    if(kind==='start')expect(candidate.state.contentHash).toBe('json-fnv-v1:843f02356211cb91');
+    if(kind==='start')expect(candidate.state.contentHash).toBe('json-fnv-v1:e7d21fce68b80072');
     const candidateJSON=candidate.exportJSON();expect(readCheckpoint(JSON.parse(candidateJSON)).ok).toBe(true);
     if(kind==='import')expect(candidateJSON).toBe(importedJSON);
     expect(await session.retry()).toBe(false);expect(session.run===run).toBe(true);
@@ -163,7 +163,7 @@ describe('complete checkpoint validation and save-before-publish',()=>{
 describe('normal session launch intent',()=>{
   it('launches all six characters with only Amo on assist',async()=>{
     const {session}=await existingSession();
-    for(const id of CHARACTER_IDS){const run=await session.start('all-six',id);expect(run?.state.contentHash).toBe(id==='amo'?'json-fnv-v1:843f02356211cb91':'json-fnv-v1:bd4a1230833ab884');}
+    for(const id of CHARACTER_IDS){const run=await session.start('all-six',id);expect(run?.state.contentHash).toBe('json-fnv-v1:e7d21fce68b80072');}
   });
   it.each(R2_RULESETS)('retries $contentVersion with exact seed, mode, role and fresh journal',async(profile)=>{
     const {session}=await existingSession();
