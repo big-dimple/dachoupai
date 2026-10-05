@@ -1,5 +1,13 @@
 # 阿默主手＋助攻领域原型
 
+## 2026-10-05 正常新局入口 review（PR21，覆盖下方历史“未接UI”状态）
+
+基线d1dfb90已含完整显式助攻UI，本批仅接正常Title→CharacterSelect→runAdapter.startRun→GameSession.start：阿默新局读取现有amo-assist-v1精确version/hash，其他五人v11；未传profile/identity的底层createRun默认v11不变。RunLaunch明确区分new/retry，重试必须是当前局，校验原seed/角色/mode，StartRun用r2Identity白名单直接创建v10/v11/助攻，不建后篡改。身份/数值/七卡/旧fixtures/全局characters/保存格式保持。继续、导入、接管、无尽不调用新局政策。
+
+选角、详情使用characterForNewRun，与实际启动策略同源；阿默“主手＋助攻（试行）”说明每场一次、副组真消费、合格主手与高牌对子兜底。BuildTip独立覆盖旧单张建议。新建保存失败仍只保一个pending候选，不先换当前指针。原型version quality-r2-amo-assist-prototype-v1 / hash json-fnv-v1:843f02356211cb91不变。
+
+自然路线与原FAIL见[evidence](evidence/p08-amo-launch-recovery-2026-10-05/)。仍为draft review；父独审决定main。下文旧领域/UI边界按各自source保留，不视作本批新结论；不宣称六角色玩法/平衡/真实设备通过。
+
 本批仅领域 / application 保存 / platform 验证及必要测试；不接 UI、不推进 main。来源为已发布 main `8e0daae74efd56969886d1fdb2c28df404af27e0` → 计划 `ec506b4658ae726661b939b8d9385f4f112282ad` → 未完成 WIP `2328587e6823450c1da503f70aa30d2464e6fb62`，不是旧美术或旧单张倍率任务的重复交付。
 
 ## 已决原型合同

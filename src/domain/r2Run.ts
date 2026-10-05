@@ -442,7 +442,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
     const config=selection.config;
     if(action.r2Profile!==undefined&&(action.r2Profile!=='amo-assist-v1'||action.characterId!=='amo'))return fail('invalid-r2-profile');
     const identity=action.r2Identity;
-    if(identity!==undefined&&(!identity||typeof identity!=='object'||Object.keys(identity).sort().join(',')!=='contentHash,contentVersion'||action.r2Profile!==undefined||!r2RulesetFor(identity)))return fail('invalid-r2-identity');
+    if(identity!==undefined&&(!identity||typeof identity!=='object'||Object.getPrototypeOf(identity)!==Object.prototype||Object.keys(identity).sort().join(',')!=='contentHash,contentVersion'||action.r2Profile!==undefined||!r2RulesetFor(identity)))return fail('invalid-r2-identity');
     const profile=r2RulesetFor(identity??(action.r2Profile==='amo-assist-v1'?{contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH}:{contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH}))!;
     const assisted=profile.amoScoreTiming==='assist-v1';
     if(assisted&&action.characterId!=='amo')return fail('invalid-r2-profile');

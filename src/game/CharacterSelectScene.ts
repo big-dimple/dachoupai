@@ -17,7 +17,7 @@ import {selectionLayout} from './SelectionLayout';
 
 interface SelectionOptions {freshSeed?:boolean;seed?:string;characterId?:CharacterId;modeConfig?:R2ModeSelection}
 const ROLE_ENTRY:Record<CharacterId,string>={
-  amo:'主手＋助攻（试行）',touye:'稳分，可押一手',laohuan:'顺子或同花',erxiang:'对子、两对、三条',azao:'轮换两种牌型',xiemu:'末次出牌翻倍',
+  amo:characterForNewRun('amo').passiveName,touye:'稳分，可押一手',laohuan:'顺子或同花',erxiang:'对子、两对、三条',azao:'轮换两种牌型',xiemu:'末次出牌翻倍',
 };
 
 /** The selector reserves its action row before sizing cards; it never borrows table space. */
@@ -54,7 +54,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     const modeWidth=p.portrait?84:132;
     // Keep the mode action clear of the fixed fullscreen/menu controls.
     const controlsRight=Math.max(12,parseFloat(style.getPropertyValue('--safe-right'))||0);
-    v.button({x:p.portrait?p.x+p.w-modeWidth:Math.min(p.x+p.w-modeWidth,l.width-controlsRight-148-modeWidth),y:p.portrait?p.top+30:p.top-3,width:modeWidth,height:44},p.portrait?`模式·${this.modeConfig.mode==='standard'?`D${this.modeConfig.difficulty}`:modeLabel}`:`模式 · ${modeLabel}`,'action/select-mode',()=>this.selectMode(),!this.choosing);
+    v.button({x:p.portrait?p.x+p.w-modeWidth:Math.min(p.x+p.w-modeWidth,l.width-controlsRight-148-modeWidth),y:p.portrait?p.top+48:p.top-3,width:modeWidth,height:44},p.portrait?`模式·${this.modeConfig.mode==='standard'?`D${this.modeConfig.difficulty}`:modeLabel}`:`模式 · ${modeLabel}`,'action/select-mode',()=>this.selectMode(),!this.choosing);
     if(!p.short)this.singleLine(p.x,p.top+(p.portrait?34:42),this.modeConfig.mode==='tutorial'?'固定二响 · 可跳过':'选角后确认登台',14,'#3F606B',p.w-142);
     CHARACTERS.forEach((character,i)=>{
       const base=p.cards[i],selected=character.id===this.selectedId,b={...base,y:base.y-(selected?4:0)},first=v.root.length;
@@ -83,7 +83,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     const c=this.selectedId?characterForNewRun(this.selectedId):undefined,s=p.summary;
     v.material(s,0xe2e8e5,0xe2e8e5,6);
     const passiveDescription=config.characterAbilityEnabled?c?.passiveDescription:'本色演出关闭角色被动与开局赠送，保留角色身份。';
-    if(p.short)v.text(s.x+12,s.y+10,c?`${c.name} · ${passiveDescription}`:'点选一位角色；详情可查看完整能力。',14,'#26313A',s.width-24);
+    if(p.short)v.text(s.x+12,s.y+10,c?`${c.name} · ${c.id==='amo'&&config.characterAbilityEnabled?c.passiveName+' · ':''}${passiveDescription}`:'点选一位角色；详情可查看完整能力。',14,'#26313A',s.width-24);
     else {
       if(c){
         if(!p.portrait)addAvatar(this,v.root,c,s.x+42,s.y+s.height/2,64);

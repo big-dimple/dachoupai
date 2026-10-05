@@ -33,7 +33,7 @@ describe('normal new-game policy and exact retry creation',()=>{
   expect(entered.handLevels).toEqual(profile.amoScoreTiming==='assist-v1'?{}:{'high-card':3});
  });
  it('rejects mixed, unknown, extra, conflicting and wrong-character identity inputs',()=>{
-  const identities=[{contentVersion:R2_ASSIST_VERSION,contentHash:'json-fnv-v1:bd4a1230833ab884'},{contentVersion:'unknown',contentHash:R2_ASSIST_HASH},{...newRunIdentity('amo'),extra:1},null];
+  const identities=[{contentVersion:R2_ASSIST_VERSION,contentHash:'json-fnv-v1:bd4a1230833ab884'},{contentVersion:'unknown',contentHash:R2_ASSIST_HASH},{...newRunIdentity('amo'),extra:1},Object.assign([] ,newRunIdentity('amo')),null];
   for(const r2Identity of identities)expect(()=>createRun({...base,r2Identity} as any)).toThrow('invalid-r2-identity');
   expect(()=>createRun({...base,r2Profile:'amo-assist-v1',r2Identity:newRunIdentity('amo')})).toThrow('invalid-r2-identity');
   expect(()=>createRun({...base,characterId:'erxiang',r2Identity:newRunIdentity('amo')})).toThrow('invalid-r2-profile');
