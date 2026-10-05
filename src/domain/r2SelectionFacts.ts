@@ -1,3 +1,4 @@
+import {AMO_ASSIST_TYPES} from './r2QualifiedHands';
 import type {PlayingCard} from '../cards/types';
 import {readR2Modifiers,type R2JokerDefinition,type R2JokerInstance} from '../content/r2Schema';
 import {evaluateR2Hand,validateCardInstances,type HandRules,type R2HandType} from './evaluateR2';
@@ -27,4 +28,18 @@ export function r2SelectionFacts(input:R2SelectionInput):R2SelectionFacts {
     activeScoringIds:scoringIds.filter(id=>!input.disabledIds.includes(id)),heldIds:input.hand.filter(c=>!input.selectedIds.includes(c.id)).map(c=>c.id),
     accompanyingIds:played.filter(c=>!scoringIds.includes(c.id)).map(c=>c.id),disabledIds:played.filter(c=>input.disabledIds.includes(c.id)).map(c=>c.id),
     ordinaryPointsSuppressedIds:played.filter(c=>input.ordinaryPointsSuppressedIds?.includes(c.id)).map(c=>c.id),rules,ruleSources};
+}
+
+/** Bounded public classification only. Disabled cards still participate in the unique evaluator. */
+export function r2HasQualifiedHand(input:Pick<R2SelectionInput,'hand'|'jokers'|'definitions'>):boolean {
+ validateCardInstances(input.hand);
+ const modifiers=readR2Modifiers(input.jokers,input.definitions),rules={fourStraight:modifiers.fourStraight,fourFlush:modifiers.fourFlush};
+ const chosen:PlayingCard[]=[];
+ const visit=(start:number):boolean=>{
+  if(chosen.length>=3&&AMO_ASSIST_TYPES.includes(evaluateR2Hand(chosen,rules).type))return true;
+  if(chosen.length===5)return false;
+  for(let i=start;i<input.hand.length;i++){chosen.push(input.hand[i]);if(visit(i+1))return true;chosen.pop();}
+  return false;
+ };
+ return visit(0);
 }

@@ -22,6 +22,7 @@ export const SCORE_OPERATIONS = Object.freeze([
   'chance-heat-check', 'read-coefficient', 'add-coefficient', 'reset-coefficient', 'refund-hand', 'increment-clear-cycle',
   'halve-base-heat', 'seal-joker',
   'reward-free-reroll','program-reward-skipped',
+  'multiply-coefficient','rescue-multiplier','consume-rescue','add-gold-per-held','add-gold-per-capital',
 ] as const);
 export type ScoreOperation = typeof SCORE_OPERATIONS[number];
 export const R2_BASE_SCORES = R2_PUBLISHED_CONTENT.snapshot.hands as unknown as Record<R2HandType, readonly [number, Fraction, number, Fraction]>;
@@ -50,7 +51,7 @@ export interface ScoreEvent {
   resourceBefore?:number; resourceAfter?:number;
   targetHandType?:R2HandType;
   growthBefore?:Fraction; growthAfter?:Fraction; rewardDefinitionId?:string;
-  programGoldBeforeReward?:number;
+  programGoldBeforeReward?:number; goldBeforeRewards?:number;
 }
 interface ScoreTraceBase {
   rulesVersion: 'r2'; rootId: string; handType: R2HandType; level: number;
@@ -135,7 +136,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   for (const joker of jokers) {
     if (!joker.instanceId || !Number.isSafeInteger(joker.paidPrice) || joker.paidPrice < 0 || !input.definitions.some(d => d.id === joker.definitionId)) throw new Error('invalid-joker-instance');
     if (joker.edition !== undefined && !EDITIONS.includes(joker.edition)) throw new Error('invalid-joker-edition');
-    if(!validR2JokerCounters(joker.definitionId,joker.counters))throw new Error('invalid-joker-counter-state');
+    if(!validR2JokerCounters(joker.definitionId,joker.counters,input.definitions.find(d=>d.id===joker.definitionId)))throw new Error('invalid-joker-counter-state');
     const caps = r2GrowthCaps(input.definitions.find(d => d.id === joker.definitionId)!);
     const minimums = r2GrowthMinimums(input.definitions.find(d => d.id === joker.definitionId)!);
     const initials = r2GrowthInitials(input.definitions.find(d => d.id === joker.definitionId)!);
@@ -171,13 +172,13 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     : policy.kind === 'preview' && policy.bound === 'maximum';
   const snapshot = (): Accumulator => ({ H: H.toJSON(), M: M.toJSON() });
   type Source = Pick<ScoreEvent, 'sourceType'|'sourceDefinitionId'|'sourceInstanceId'>;
-  type EventDetails = {reasonKey?:string; resourceBefore?:number; resourceAfter?:number};
+  type EventDetails = {reasonKey?:string; resourceBefore?:number; resourceAfter?:number;growthBefore?:Fraction;growthAfter?:Fraction};
   const emit = (phase: ScorePhase, source: Source, operation: ScoreOperation, value: Rational, mutate: () => void, condition: Condition = {kind:'always'}, card?: PlayingCard, depth = 0, rootEventId?: string, details:EventDetails = {}) => {
     if (events.length >= SCORE_LIMITS.eventCount) throw new ScoreFault('event-limit', immutable(structuredClone(events)));
     const before = snapshot(); mutate();
     const eventId = `${input.rootId}/event/${events.length}`;
     events.push({ eventId, rootId: input.rootId, rootEventId: rootEventId ?? eventId, phase, ...source, ...(card ? {targetCardId:card.id} : {}), operation, value: value.toJSON(), before, after: snapshot(), reasonKey: details.reasonKey ?? `${source.sourceDefinitionId}.${operation}`, visibleCondition: structuredClone(condition), retriggerDepth: depth,
-      ...(details.resourceBefore === undefined ? {} : {resourceBefore:details.resourceBefore,resourceAfter:details.resourceAfter}) });
+      ...(details.resourceBefore === undefined ? {} : {resourceBefore:details.resourceBefore,resourceAfter:details.resourceAfter}),...(details.growthBefore===undefined?{}:{growthBefore:details.growthBefore,growthAfter:details.growthAfter}) });
   };
   const cardSource = (card:PlayingCard):Source => ({sourceType:'card',sourceDefinitionId:card.id,sourceInstanceId:card.id});
   type MathOperation = 'add-heat'|'add-multiplier'|'multiply-multiplier';
@@ -260,6 +261,14 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
           const hit=chance(op.probability);
           emit(phase,source,'chance-heat-check',new Rational(hit?1n:0n),()=>{},h.condition);
           if(hit){const value=Rational.fromJSON(op.value);emit(phase,source,'add-heat',value,()=>{H=H.add(value);},h.condition);}
+        }else if(op.kind==='multiply-coefficient-once'){
+          if(joker.counters?.alternationUsed)continue;
+          const before=Rational.fromJSON(joker.growth[op.key]),raw=before.multiply(Rational.fromJSON(op.value)),cap=Rational.fromJSON(op.cap),after=raw.compare(cap)>0?cap:raw;
+          emit(phase,source,'multiply-coefficient',Rational.fromJSON(op.value),()=>{joker.growth[op.key]=after.toJSON();joker.counters={alternationUsed:true};},h.condition,undefined,0,undefined,{growthBefore:before.toJSON(),growthAfter:after.toJSON(),resourceBefore:0,resourceAfter:1});
+        }else if(op.kind==='rescue-multiplier'){
+          if(joker.counters?.rescueArmed){const value=Rational.fromJSON(op.value);emit(phase,source,'rescue-multiplier',value,()=>{M=M.multiply(value);},h.condition);}
+        }else if(op.kind==='consume-rescue'){
+          if(joker.counters?.rescueArmed)emit(phase,source,'consume-rescue',new Rational(1n),()=>{joker.counters={rescueArmed:false};},h.condition,undefined,0,undefined,{resourceBefore:1,resourceAfter:0});
         }else if(op.kind==='read-coefficient'){
           const value=Rational.fromJSON(joker.growth[op.key]);
           emit(phase,source,'read-coefficient',value,()=>{M=M.multiply(value);},h.condition);

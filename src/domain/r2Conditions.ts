@@ -37,13 +37,13 @@ switch (c.kind) {
       case 'resource-maximum': return (ctx.gold??0)<=c.maximum;
       case 'all-played-active':return ctx.played.length>=c.minimum&&ctx.played.length===ctx.active.length;
       case 'scoring-position':return !!card&&card.id===(c.position==='third-original'?ctx.scoringIds[2]:(c.position==='first'?ctx.active[0]:ctx.active.at(-1))?.id)&&(!c.handTypes||c.handTypes.includes(ctx.handType))&&(!c.playModulo||ctx.playIndex%c.playModulo.divisor===c.playModulo.remainder);
-      case 'discard-count':case 'discard-same-suit':case 'exhausted-hands':return false;
+      case 'cold-opening-discard':case 'discard-count':case 'discard-same-suit':case 'exhausted-hands':return false;
       case 'stage-played-maximum':case 'stage-hand-types-all':case 'no-joker-sale-this-stage':case 'hand-type-unfinished':return false;
     }
 }
 
 export interface R2TransactionConditionContext {
- gold:number;handsAfter?:number;playIndex?:number;discardsUsed?:number;
+ coldOpeningDiscard?:boolean;gold:number;handsAfter?:number;playIndex?:number;discardsUsed?:number;
  handType:R2HandType|null;heldCount?:number;discarded:readonly PlayingCard[];
  hasStage:boolean;maxPlayedCount:number;ordinaryStraightSeen:boolean;ordinaryFlushSeen:boolean;
  jokerSold:boolean;traceType:R2HandType|null;heat:string;target:string;
@@ -52,6 +52,7 @@ export interface R2TransactionConditionContext {
 export function r2TransactionConditionMatches(c:Condition,ctx:R2TransactionConditionContext):boolean {
  switch(c.kind){
   case 'always':return true;
+  case 'cold-opening-discard':return ctx.coldOpeningDiscard===true;
   case 'resource':return ({gold:ctx.gold,'hands-after':ctx.handsAfter,'play-index':ctx.playIndex,'discards-used':ctx.discardsUsed})[c.resource]===c.equals;
   case 'hand-type-in':return !!ctx.handType&&c.values.includes(ctx.handType);
   case 'discard-count':return ctx.discarded.length===c.equals;
