@@ -1,0 +1,66 @@
+{
+  "scope": "all",
+  "testedCommit": "30f4657d352410e23975f8dd0e9b563c1ec6fe59",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "77da4f83ef192c8c283e683f28eddcff6de138310eed2a3aa9368690411cc05c",
+    "index": "3bc1f841cef063befcb8a66369537c703b477ef18b36e17c2210ea955b0f26bb",
+    "head": "30f4657d352410e23975f8dd0e9b563c1ec6fe59",
+    "branch": "refs/heads/review/p1-j-group-upgrade-domain-20261005"
+  },
+  "after": {
+    "source": "77da4f83ef192c8c283e683f28eddcff6de138310eed2a3aa9368690411cc05c",
+    "index": "3bc1f841cef063befcb8a66369537c703b477ef18b36e17c2210ea955b0f26bb",
+    "head": "30f4657d352410e23975f8dd0e9b563c1ec6fe59",
+    "branch": "refs/heads/review/p1-j-group-upgrade-domain-20261005"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 25484
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 1409
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 13088
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 122961
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 268
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

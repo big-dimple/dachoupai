@@ -1,0 +1,9 @@
+{
+  "preFixRemote": "59095fe82078a818e88c303dd259ae9bb5497157",
+  "preFixLocal": "2db18e799b6a506f313cbb1f472e3b1a29674dc2",
+  "preFixProduct": "Unchanged product source, only new rephased-extra-rank regression added; recomputed checksum was accepted (0 pass / 1 fail).",
+  "fix": "New group only: reject rank events and depth1 execution outside onCardScore, alongside existing retrigger request/cap phase guard. Other identities and score engine unchanged.",
+  "relatedTests": 42,
+  "typecheck": "PASS",
+  "finalGate": "Pending on new frozen source; earlier 9392adb evidence remains historical, not reused."
+}

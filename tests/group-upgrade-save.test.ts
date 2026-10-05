@@ -30,11 +30,12 @@ describe('new group trace execution closure',()=>{
   expect(readMutation(after,state=>{state.lastTrace.events=state.lastTrace.events.filter((e:any)=>e.reasonKey!=='enhancement.encore-paper.retrigger-card');}).ok).toBe(false);
   expect(readMutation(after,state=>{const es=state.lastTrace.events,execution=es.find((e:any)=>e.retriggerDepth===1&&e.targetCardId==='spades-9');execution.rootEventId=es.find((e:any)=>e.operation==='retrigger-card'&&e.targetCardId==='spades-9').eventId;}).ok).toBe(false);
  });
- it.each(['base-root','after-final','invented-enhancement'] as const)('rejects %s execution forgery after checksum regeneration',kind=>{
+ it.each(['base-root','after-final','rephased-extra-rank','invented-enhancement'] as const)('rejects %s execution forgery after checksum regeneration',kind=>{
   const after=send(fixture(),{type:'PlayHand',selectedIds:main});
   expect(readMutation(after,s=>{const es=s.lastTrace.events,repeat=es.find((e:any)=>e.retriggerDepth===1&&e.sourceDefinitionId==='rank-9');
    if(kind==='base-root')repeat.rootEventId=es[0].eventId;
    else if(kind==='after-final'){es.splice(es.indexOf(repeat),1);es.splice(es.findIndex((e:any)=>e.phase==='finalScore')+1,0,repeat);}
+   else if(kind==='rephased-extra-rank')es.push({...structuredClone(repeat),eventId:'forged-after-hand-rank',phase:'afterHand'});
    else {const request=es.find((e:any)=>e.sourceDefinitionId==='b06'),forged={...structuredClone(request),eventId:'forged-request',sourceType:'card',sourceDefinitionId:main[0],sourceInstanceId:main[0],reasonKey:'enhancement.encore-paper.retrigger-card',visibleCondition:{kind:'always'},value:{n:'3',d:'1'}};es.splice(es.indexOf(request)+1,0,forged);es.splice(es.indexOf(repeat)+1,0,...[0,1,2].map(i=>({...structuredClone(repeat),eventId:'forged-repeat/'+i})));}
   }).ok).toBe(false);
  });

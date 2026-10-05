@@ -1,0 +1,40 @@
+{
+  "before": {
+    "source": "77da4f83ef192c8c283e683f28eddcff6de138310eed2a3aa9368690411cc05c",
+    "index": "3bc1f841cef063befcb8a66369537c703b477ef18b36e17c2210ea955b0f26bb",
+    "head": "30f4657d352410e23975f8dd0e9b563c1ec6fe59",
+    "branch": "refs/heads/review/p1-j-group-upgrade-domain-20261005"
+  },
+  "limits": {
+    "seeds": 24,
+    "profiles": 2,
+    "routeSeedsMaximum": 4,
+    "stageMaximum": 1,
+    "actionsPerRouteMaximum": 9
+  },
+  "limitations": [
+    "Actual generated shops/decks and actual commands; no fixture injection, score prediction, future-deck or RNG inspection.",
+    "A fixed public classification policy is only a reproducible candidate, not optimal play or balance evidence.",
+    "Same seed does not align shop draws after b10 weight changes. Baseline routes classify their own visible hand.",
+    "No UI or physical-device acceptance. Missing acquisition or route transition remains NOT_OBSERVED."
+  ],
+  "status": "PASS",
+  "after": {
+    "source": "77da4f83ef192c8c283e683f28eddcff6de138310eed2a3aa9368690411cc05c",
+    "index": "3bc1f841cef063befcb8a66369537c703b477ef18b36e17c2210ea955b0f26bb",
+    "head": "30f4657d352410e23975f8dd0e9b563c1ec6fe59",
+    "branch": "refs/heads/review/p1-j-group-upgrade-domain-20261005"
+  },
+  "sourceUnchanged": true,
+  "samePayloadAs": "../final/natural-candidates-PASS.json",
+  "comparedKeys": [
+    "scan",
+    "candidates",
+    "routes",
+    "limits",
+    "limitations"
+  ],
+  "payloadEquality": true,
+  "actualRerun": true,
+  "rawRerunReportSha256": "a4c1c676f533fe963b5c85f34f2c245838a7818fc80bb544b470bbeb255bb8e1"
+}

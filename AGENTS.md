@@ -1,5 +1,9 @@
 # 开发入口
 
+## P1-J 当前最终冻结补强（2026-10-05 UTC，仅review PR26）
+
+最新冻结源码30f4657，仅补新group中rank/depth1不能伪装为afterHand的阶段约束，原59095fe可接受伪造的FAIL保留。2421tests/134files、content/type/build、标准系统Chromium双端smoke、plan及原生五身份保存/自然有界回放全PASS，源码/index/HEAD保持。自然完整payload与9392adb样本一致，见phase-final/natural-rerun-PASS.json。59095fe旧CI domain/docs及Chromium/Firefox双端通过，但WebKit桌面screenshot.mjs:145等待出牌次数scaleX>1.05超时5秒；原日志保留，未放宽/修改UI或smoke，下一精确headCI另报。证据docs/production/evidence/p1-j-group-upgrade-2026-10-05/phase-final/summary.json。普通入口e7d、旧四身份、P08 in_progress/C04 D32及真机/听感/平衡边界保持。main只父串行。以下旧检查点按原SHA保留。
+
 ## P1-J 成组领域最终本地门禁（2026-10-05 UTC，仅review PR26）
 
 冻结源码9392adb；产品src与已推67c93ae一致。父审三类保存漏洞及实际助攻漏接已修，旧28ebb真实12 FAIL保留。2420tests/134files、content/type/build、系统Chromium标准双端smoke、plan全PASS，原生四候选失败/重试及五身份恢复全PASS，源码/index/HEAD保持。24种子×两身份的有界自然候选形成四条一场真实命令回放：无b06的b10两对成长与e7d差异已观察，b03/b06自然可负担获取及完整转顺同花路线未观察，详见final/NATURAL_UI_PLAN.md。普通入口仍e7d，UI/素材保持；本次仅draft，精确最终head CI和父独审另报，main父串行。P08 in_progress、C04 D32及原真机/听感/平衡门槛保持。证据docs/production/evidence/p1-j-group-upgrade-2026-10-05/final/summary.json。以下记录按各自SHA保留。
