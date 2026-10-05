@@ -1,0 +1,55 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/joker-copy-ambiguity.test.ts (10 tests | 2 failed) 159ms
+   × a retrigger request capped at zero and a lifetime destruction still retain recorded activity 12ms
+   × real clear transactions distinguish coefficient growth for next play from current x1 and keep economy events 44ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/joker-copy-ambiguity.test.ts > a retrigger request capped at zero and a lifetime destruction still retain recorded activity
+AssertionError: expected undefined to be true // Object.is equality
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ tests/joker-copy-ambiguity.test.ts:56:117
+     54|  const copy=jokerMemoryAbility(def('a11'),jokers[4],ctx,trace.events);…
+     55|  const life=r2CreateJoker('f06','life',0);life.counters={handsScored:3…
+     56|  expect(destroyed.trace.events.some(e=>e.operation==='destroy-joker'))…
+       |                                                                                                                     ^
+     57| });
+     58| it('real clear transactions distinguish coefficient growth for next pl…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/joker-copy-ambiguity.test.ts > real clear transactions distinguish coefficient growth for next play from current x1 and keep economy events
+AssertionError: expected 'stage-cleared' to be 'await-input' // Object.is equality
+
+Expected: "await-input"
+Received: "stage-cleared"
+
+ ❯ tests/joker-copy-ambiguity.test.ts:63:111
+     61|  const send=(action:Action)=>{const r=applyCommand(state,{runId:state.…
+     62|  send({type:'LeaveShop'});send({type:'EnterStage'});
+     63|  while(state.stage!.handsLeft>1){send({type:'PlayHand',selectedIds:[st…
+       |                                                                                                               ^
+     64|  state.handLevels={'high-card':30};send({type:'PlayHand',selectedIds:[…
+     65|  const context=publicJokerMemoryContext(state,{hand:[],scoringLimited:…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  2 failed | 48 passed (50)
+   Start at  06:42:45
+   Duration  2.46s (transform 3.18s, setup 0ms, import 4.60s, tests 892ms, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

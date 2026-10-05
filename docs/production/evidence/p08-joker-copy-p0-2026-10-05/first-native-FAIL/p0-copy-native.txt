@@ -1,0 +1,10 @@
+locator.evaluate: TypeError: Cannot read properties of null (reading 'getBoundingClientRect')
+    at rect (eval at evaluate (:311:30), <anonymous>:1:30)
+    at eval (eval at evaluate (:311:30), <anonymous>:1:372)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at detail (/workspace/dachoupai/shots/p0-copy/native.mjs:44:55)
+    at async file:///workspace/dachoupai/shots/p0-copy/native.mjs:55:117 {
+  log: []
+}
+{"status":"FAIL","error":"Error: locator.evaluate: TypeError: Cannot read properties of null (reading 'getBoundingClientRect')\n    at rect (eval at evaluate (:311:30), <anonymous>:1:30)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:372)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)","details":0,"screens":["shots/p0-copy/320-legacy-table.png"]}

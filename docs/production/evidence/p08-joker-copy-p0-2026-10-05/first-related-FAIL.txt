@@ -1,0 +1,87 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/joker-copy-ambiguity.test.ts (10 tests | 4 failed) 165ms
+   × b03 neutral growth read records no score gain, separately explains new afterHand growth 10ms
+   × positive current score growth and capped zero growth are distinct 19ms
+   × a retrigger request capped at zero and a lifetime destruction still retain recorded activity 3ms
+   × real clear transactions distinguish coefficient growth for next play from current x1 and keep economy events 33ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/joker-copy-ambiguity.test.ts > b03 neutral growth read records no score gain, separately explains new afterHand growth
+AssertionError: expected '本手有本体结算记录\n本次按+0结算，结算时尚无成长加成\n出牌结算后成长…' to contain '出牌结算后成长 +0.5，新增从下一次出牌生效'
+
+- Expected
++ Received
+
+- 出牌结算后成长 +0.5，新增从下一次出牌生效
++ 本手有本体结算记录
++ 本次按+0结算，结算时尚无成长加成
++ 出牌结算后成长 +0.25，新增从下一次出牌生效
++ 每手倍率加成：+0.25
+
+ ❯ tests/joker-copy-ambiguity.test.ts:34:76
+     32|  expect(copy.state).not.toMatch(/已有实际效果|已有计分增益/);
+     33|  const growth=trace.events.find(e=>e.sourceDefinitionId===id&&e.operat…
+     34|  if(id==='b03'){expect(growth?.phase).toBe('afterHand');expect(copy.st…
+       |                                                                            ^
+     35| });
+     36| it('positive current score growth and capped zero growth are distinct'…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/joker-copy-ambiguity.test.ts > positive current score growth and capped zero growth are distinct
+Error: invalid-growth-state
+ ❯ resolveScore src/domain/scoreR2.ts:145:150
+    143|     for (const [key, value] of Object.entries(joker.growth)) {
+    144|       const growth = Rational.fromJSON(value);
+    145|       if (!caps[key] || growth.compare(Rational.fromJSON(minimums[key]…
+       |                                                                                                                                                      ^
+    146|     }
+    147|   }
+ ❯ scoreR2Hand src/domain/scoreR2.ts:96:10
+ ❯ record tests/joker-copy-ambiguity.test.ts:15:9
+ ❯ actual tests/joker-copy-ambiguity.test.ts:18:14
+ ❯ tests/joker-copy-ambiguity.test.ts:39:55
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/joker-copy-ambiguity.test.ts > a retrigger request capped at zero and a lifetime destruction still retain recorded activity
+Error: invalid-score-challenge-ban
+ ❯ resolveScore src/domain/scoreR2.ts:123:169
+
+ ❯ scoreR2Hand src/domain/scoreR2.ts:96:10
+ ❯ record tests/joker-copy-ambiguity.test.ts:15:9
+ ❯ actual tests/joker-copy-ambiguity.test.ts:18:14
+ ❯ tests/joker-copy-ambiguity.test.ts:55:89
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/joker-copy-ambiguity.test.ts > real clear transactions distinguish coefficient growth for next play from current x1 and keep economy events
+Error: Run invariant: stage target/play budget
+ ❯ check src/domain/r2Run.ts:86:70
+     84|
+     85| export function assertR2Invariants(state:R2RunState):void {
+     86|   const check=(condition:boolean,label:string)=>{if(!condition)throw n…
+       |                                                                      ^
+     87|   check(state.schemaVersion===2 && state.rulesVersion==='r2' && !!r2Ru…
+     88|   check(r2RulesetFor(state)?.amoScoreTiming!=='assist-v1'||state.chara…
+ ❯ assertR2Invariants src/domain/r2Run.ts:160:5
+ ❯ applyCommand src/domain/run.ts:197:5
+ ❯ send tests/joker-copy-ambiguity.test.ts:61:39
+ ❯ tests/joker-copy-ambiguity.test.ts:63:61
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  4 failed | 46 passed (50)
+   Start at  06:41:53
+   Duration  2.11s (transform 1.90s, setup 0ms, import 2.81s, tests 793ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

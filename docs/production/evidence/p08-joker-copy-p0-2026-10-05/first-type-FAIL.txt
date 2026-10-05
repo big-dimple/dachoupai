@@ -1,0 +1,11 @@
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+tests/joker-copy-ambiguity.test.ts(11,205): error TS2740: Type '{ gold: number; discarded: never[]; hasStage: true; }' is missing the following properties from type 'R2TransactionConditionContext': handType, maxPlayedCount, ordinaryStraightSeen, ordinaryFlushSeen, and 4 more.
+tests/joker-copy-ambiguity.test.ts(48,132): error TS18048: 'result.copy.state' is possibly 'undefined'.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

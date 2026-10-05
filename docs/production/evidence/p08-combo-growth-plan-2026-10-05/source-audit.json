@@ -1,0 +1,611 @@
+{
+  "source": "d1dfb90d39b23ced76ef41a312269af76fe95260",
+  "content": {
+    "version": "quality-r2-content-v11",
+    "hash": "json-fnv-v1:bd4a1230833ab884"
+  },
+  "scope": "Read-only direct authoritative scoring with legal constructed inputs; not natural acquisition, availability, win rate or delivered gameplay proof.",
+  "limits": {
+    "eventCount": 512,
+    "extraRetriggers": 4,
+    "retriggerDepth": 1,
+    "handLevel": 30,
+    "handCount": 14,
+    "jokerCount": 5
+  },
+  "targets": [
+    {
+      "index": 0,
+      "name": "第 1 章 · 暖场",
+      "intro": "打到目标热度即可过场，出牌和弃牌次数每场补满。",
+      "targetHeat": "400"
+    },
+    {
+      "index": 23,
+      "name": "第 8 章 · 压轴",
+      "intro": "打到目标热度即可过场，出牌和弃牌次数每场补满。",
+      "targetHeat": "320000"
+    },
+    {
+      "index": 24,
+      "name": "第 9 章 · 暖场",
+      "intro": "打到目标热度即可过场，出牌和弃牌次数每场补满。",
+      "targetHeat": "384000"
+    },
+    {
+      "index": 27,
+      "name": "第 10 章 · 暖场",
+      "intro": "打到目标热度即可过场，出牌和弃牌次数每场补满。",
+      "targetHeat": "921600"
+    }
+  ],
+  "endless": {
+    "normalChapters": 8,
+    "firstChapter": 9,
+    "maximumChapter": 10766,
+    "baseHeat": "160000",
+    "multiplier": {
+      "n": "12",
+      "d": "5"
+    },
+    "stageMultipliers": [
+      {
+        "n": "1",
+        "d": "1"
+      },
+      {
+        "n": "3",
+        "d": "2"
+      },
+      {
+        "n": "2",
+        "d": "1"
+      }
+    ],
+    "rounding": "ceil-final-target",
+    "integerDigits": 4096,
+    "bossPool": "B01-B16"
+  },
+  "scientificExamples": [
+    "114,471,962",
+    "1.00e15"
+  ],
+  "cases": [
+    {
+      "name": "two-pair-common",
+      "hand": [
+        {
+          "id": "group/0",
+          "rank": 9,
+          "suit": "spades"
+        },
+        {
+          "id": "group/1",
+          "rank": 9,
+          "suit": "hearts"
+        },
+        {
+          "id": "group/2",
+          "rank": 13,
+          "suit": "spades"
+        },
+        {
+          "id": "group/3",
+          "rank": 13,
+          "suit": "hearts"
+        }
+      ],
+      "jokers": [
+        {
+          "instanceId": "joker/0",
+          "definitionId": "mantangcai",
+          "paidPrice": 4,
+          "growth": {}
+        },
+        {
+          "instanceId": "joker/1",
+          "definitionId": "b04",
+          "paidPrice": 4,
+          "growth": {}
+        }
+      ],
+      "level": 1,
+      "playIndex": 1,
+      "handType": "two-pair",
+      "score": "772",
+      "accumulator": {
+        "H": {
+          "n": "193",
+          "d": "1"
+        },
+        "M": {
+          "n": "4",
+          "d": "1"
+        }
+      },
+      "events": 8,
+      "rankExecutions": 4,
+      "glassChecks": 0,
+      "destroyed": [],
+      "whole": [
+        {
+          "source": "mantangcai",
+          "reason": "mantangcai.add-heat",
+          "op": "add-heat",
+          "value": {
+            "n": "90",
+            "d": "1"
+          }
+        },
+        {
+          "source": "b04",
+          "reason": "b04.add-multiplier",
+          "op": "add-multiplier",
+          "value": {
+            "n": "2",
+            "d": "1"
+          }
+        }
+      ],
+      "inputUnchanged": true
+    },
+    {
+      "name": "add-then-multiply",
+      "hand": [
+        {
+          "id": "heart/0",
+          "rank": 2,
+          "suit": "hearts"
+        },
+        {
+          "id": "heart/1",
+          "rank": 5,
+          "suit": "hearts"
+        },
+        {
+          "id": "heart/2",
+          "rank": 8,
+          "suit": "hearts"
+        },
+        {
+          "id": "heart/3",
+          "rank": 10,
+          "suit": "hearts"
+        },
+        {
+          "id": "heart/4",
+          "rank": 13,
+          "suit": "hearts"
+        }
+      ],
+      "jokers": [
+        {
+          "instanceId": "joker/0",
+          "definitionId": "f03",
+          "paidPrice": 4,
+          "growth": {}
+        },
+        {
+          "instanceId": "joker/1",
+          "definitionId": "e11",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "3",
+              "d": "2"
+            }
+          }
+        }
+      ],
+      "level": 1,
+      "playIndex": 1,
+      "handType": "flush",
+      "score": "1575",
+      "accumulator": {
+        "H": {
+          "n": "175",
+          "d": "1"
+        },
+        "M": {
+          "n": "9",
+          "d": "1"
+        }
+      },
+      "events": 9,
+      "rankExecutions": 5,
+      "glassChecks": 0,
+      "destroyed": [],
+      "whole": [
+        {
+          "source": "f03",
+          "reason": "f03.add-multiplier",
+          "op": "add-multiplier",
+          "value": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        {
+          "source": "e11",
+          "reason": "e11.read-coefficient",
+          "op": "read-coefficient",
+          "value": {
+            "n": "3",
+            "d": "2"
+          }
+        }
+      ],
+      "inputUnchanged": true
+    },
+    {
+      "name": "multiply-then-add",
+      "hand": [
+        {
+          "id": "heart/0",
+          "rank": 2,
+          "suit": "hearts"
+        },
+        {
+          "id": "heart/1",
+          "rank": 5,
+          "suit": "hearts"
+        },
+        {
+          "id": "heart/2",
+          "rank": 8,
+          "suit": "hearts"
+        },
+        {
+          "id": "heart/3",
+          "rank": 10,
+          "suit": "hearts"
+        },
+        {
+          "id": "heart/4",
+          "rank": 13,
+          "suit": "hearts"
+        }
+      ],
+      "jokers": [
+        {
+          "instanceId": "joker/1",
+          "definitionId": "e11",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "3",
+              "d": "2"
+            }
+          }
+        },
+        {
+          "instanceId": "joker/0",
+          "definitionId": "f03",
+          "paidPrice": 4,
+          "growth": {}
+        }
+      ],
+      "level": 1,
+      "playIndex": 1,
+      "handType": "flush",
+      "score": "1400",
+      "accumulator": {
+        "H": {
+          "n": "175",
+          "d": "1"
+        },
+        "M": {
+          "n": "8",
+          "d": "1"
+        }
+      },
+      "events": 9,
+      "rankExecutions": 5,
+      "glassChecks": 0,
+      "destroyed": [],
+      "whole": [
+        {
+          "source": "e11",
+          "reason": "e11.read-coefficient",
+          "op": "read-coefficient",
+          "value": {
+            "n": "3",
+            "d": "2"
+          }
+        },
+        {
+          "source": "f03",
+          "reason": "f03.add-multiplier",
+          "op": "add-multiplier",
+          "value": {
+            "n": "2",
+            "d": "1"
+          }
+        }
+      ],
+      "inputUnchanged": true
+    },
+    {
+      "name": "glass-lv20",
+      "hand": [
+        {
+          "id": "heart/0",
+          "rank": 2,
+          "suit": "hearts",
+          "enhancement": "glass-paper"
+        },
+        {
+          "id": "heart/1",
+          "rank": 5,
+          "suit": "hearts",
+          "enhancement": "glass-paper"
+        },
+        {
+          "id": "heart/2",
+          "rank": 8,
+          "suit": "hearts",
+          "enhancement": "glass-paper"
+        },
+        {
+          "id": "heart/3",
+          "rank": 10,
+          "suit": "hearts",
+          "enhancement": "glass-paper"
+        },
+        {
+          "id": "heart/4",
+          "rank": 13,
+          "suit": "hearts",
+          "enhancement": "glass-paper"
+        }
+      ],
+      "jokers": [
+        {
+          "instanceId": "joker/0",
+          "definitionId": "d04",
+          "paidPrice": 8,
+          "growth": {}
+        },
+        {
+          "instanceId": "joker/1",
+          "definitionId": "d11",
+          "paidPrice": 8,
+          "growth": {}
+        },
+        {
+          "instanceId": "joker/2",
+          "definitionId": "c07",
+          "paidPrice": 8,
+          "growth": {}
+        },
+        {
+          "instanceId": "joker/3",
+          "definitionId": "e11",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "2",
+              "d": "1"
+            }
+          }
+        },
+        {
+          "instanceId": "joker/4",
+          "definitionId": "f12",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        }
+      ],
+      "level": 20,
+      "playIndex": 2,
+      "handType": "flush",
+      "score": "1323412",
+      "accumulator": {
+        "H": {
+          "n": "765",
+          "d": "1"
+        },
+        "M": {
+          "n": "885735",
+          "d": "512"
+        }
+      },
+      "events": 28,
+      "rankExecutions": 8,
+      "glassChecks": 5,
+      "destroyed": [],
+      "whole": [
+        {
+          "source": "e11",
+          "reason": "e11.read-coefficient",
+          "op": "read-coefficient",
+          "value": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        {
+          "source": "f12",
+          "reason": "f12.read-coefficient",
+          "op": "read-coefficient",
+          "value": {
+            "n": "5",
+            "d": "2"
+          }
+        }
+      ],
+      "inputUnchanged": true
+    },
+    {
+      "name": "glass-polychrome-lv20",
+      "hand": [
+        {
+          "id": "heart/0",
+          "rank": 2,
+          "suit": "hearts",
+          "enhancement": "glass-paper",
+          "edition": "polychrome"
+        },
+        {
+          "id": "heart/1",
+          "rank": 5,
+          "suit": "hearts",
+          "enhancement": "glass-paper",
+          "edition": "polychrome"
+        },
+        {
+          "id": "heart/2",
+          "rank": 8,
+          "suit": "hearts",
+          "enhancement": "glass-paper",
+          "edition": "polychrome"
+        },
+        {
+          "id": "heart/3",
+          "rank": 10,
+          "suit": "hearts",
+          "enhancement": "glass-paper",
+          "edition": "polychrome"
+        },
+        {
+          "id": "heart/4",
+          "rank": 13,
+          "suit": "hearts",
+          "enhancement": "glass-paper",
+          "edition": "polychrome"
+        }
+      ],
+      "jokers": [
+        {
+          "instanceId": "joker/0",
+          "definitionId": "d04",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "polychrome"
+        },
+        {
+          "instanceId": "joker/1",
+          "definitionId": "d11",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "polychrome"
+        },
+        {
+          "instanceId": "joker/2",
+          "definitionId": "c07",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "polychrome"
+        },
+        {
+          "instanceId": "joker/3",
+          "definitionId": "e11",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "2",
+              "d": "1"
+            }
+          }
+        },
+        {
+          "instanceId": "joker/4",
+          "definitionId": "f12",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        }
+      ],
+      "level": 20,
+      "playIndex": 2,
+      "handType": "flush",
+      "score": "114471962",
+      "accumulator": {
+        "H": {
+          "n": "765",
+          "d": "1"
+        },
+        "M": {
+          "n": "156905298045",
+          "d": "1048576"
+        }
+      },
+      "events": 39,
+      "rankExecutions": 8,
+      "glassChecks": 5,
+      "destroyed": [],
+      "whole": [
+        {
+          "source": "d04",
+          "reason": "edition.polychrome.multiply-multiplier",
+          "op": "multiply-multiplier",
+          "value": {
+            "n": "3",
+            "d": "2"
+          }
+        },
+        {
+          "source": "d11",
+          "reason": "edition.polychrome.multiply-multiplier",
+          "op": "multiply-multiplier",
+          "value": {
+            "n": "3",
+            "d": "2"
+          }
+        },
+        {
+          "source": "c07",
+          "reason": "edition.polychrome.multiply-multiplier",
+          "op": "multiply-multiplier",
+          "value": {
+            "n": "3",
+            "d": "2"
+          }
+        },
+        {
+          "source": "e11",
+          "reason": "e11.read-coefficient",
+          "op": "read-coefficient",
+          "value": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        {
+          "source": "f12",
+          "reason": "f12.read-coefficient",
+          "op": "read-coefficient",
+          "value": {
+            "n": "5",
+            "d": "2"
+          }
+        }
+      ],
+      "inputUnchanged": true
+    }
+  ],
+  "executionContext": {
+    "rulesVersion": "r2",
+    "characterId": "amo",
+    "amoScoreTiming": "after-joker",
+    "disabledIds": [],
+    "handsBeforePlay": 4,
+    "previousHandType": null,
+    "wager": false,
+    "rng": {
+      "algorithm": "fnv1a-mulberry32-v1",
+      "state": 41
+    }
+  },
+  "paidPriceScope": "Constructed inventory uses current no-edition base purchase prices. Later card/Joker editions and mature growth are supplied state, not acquisition history.",
+  "status": "READ_ONLY_SOURCE_FACTS_VERIFIED; GAMEPLAY_AND_NATURAL_ACQUISITION_NOT_ACCEPTED"
+}
