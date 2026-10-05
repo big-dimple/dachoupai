@@ -1,3 +1,4 @@
+import {characterForNewRun} from './CharacterRunCopy';
 import Phaser from 'phaser';
 import {AudioEngine} from '../audio/AudioEngine';
 import {CHARACTERS,getCharacter,type CharacterId} from './characters';
@@ -16,7 +17,7 @@ import {selectionLayout} from './SelectionLayout';
 
 interface SelectionOptions {freshSeed?:boolean;seed?:string;characterId?:CharacterId;modeConfig?:R2ModeSelection}
 const ROLE_ENTRY:Record<CharacterId,string>={
-  amo:'单张高牌 · Lv3',touye:'稳分，可押一手',laohuan:'顺子或同花',erxiang:'对子、两对、三条',azao:'轮换两种牌型',xiemu:'末次出牌翻倍',
+  amo:'主手＋助攻（试行）',touye:'稳分，可押一手',laohuan:'顺子或同花',erxiang:'对子、两对、三条',azao:'轮换两种牌型',xiemu:'末次出牌翻倍',
 };
 
 /** The selector reserves its action row before sizing cards; it never borrows table space. */
@@ -53,7 +54,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     const modeWidth=p.portrait?84:132;
     // Keep the mode action clear of the fixed fullscreen/menu controls.
     const controlsRight=Math.max(12,parseFloat(style.getPropertyValue('--safe-right'))||0);
-    v.button({x:Math.min(p.x+p.w-modeWidth,l.width-controlsRight-148-modeWidth),y:p.top-3,width:modeWidth,height:44},p.portrait?`模式·${this.modeConfig.mode==='standard'?`D${this.modeConfig.difficulty}`:modeLabel}`:`模式 · ${modeLabel}`,'action/select-mode',()=>this.selectMode(),!this.choosing);
+    v.button({x:p.portrait?p.x+p.w-modeWidth:Math.min(p.x+p.w-modeWidth,l.width-controlsRight-148-modeWidth),y:p.portrait?p.top+30:p.top-3,width:modeWidth,height:44},p.portrait?`模式·${this.modeConfig.mode==='standard'?`D${this.modeConfig.difficulty}`:modeLabel}`:`模式 · ${modeLabel}`,'action/select-mode',()=>this.selectMode(),!this.choosing);
     if(!p.short)this.singleLine(p.x,p.top+(p.portrait?34:42),this.modeConfig.mode==='tutorial'?'固定二响 · 可跳过':'选角后确认登台',14,'#3F606B',p.w-142);
     CHARACTERS.forEach((character,i)=>{
       const base=p.cards[i],selected=character.id===this.selectedId,b={...base,y:base.y-(selected?4:0)},first=v.root.length;
@@ -66,7 +67,7 @@ export class CharacterSelectScene extends Phaser.Scene {
       const textY=b.y+b.height-bodyHeight+(condensed?3:6),name=this.singleLine(b.x+10,textY,character.name,p.portrait?14:18,'#203744',b.width-20,18,true);
       if(!condensed&&!p.portrait){
         const entry=!config.characterAbilityEnabled?'本挑战关闭角色被动':this.modeConfig.mode==='tutorial'&&character.id!=='erxiang'?'跳过教程可自由选角':
-          b.width<155?(character.id==='amo'?'单张Lv3':ROLE_ENTRY[character.id].replace(/、/g,'').replace('，','')):ROLE_ENTRY[character.id];
+          b.width<155?ROLE_ENTRY[character.id].replace(/、/g,'').replace('，',''):ROLE_ENTRY[character.id];
         this.singleLine(b.x+10,name.y+name.height+3,entry,14,'#386d65',b.width-20);
       }
       const edge=v.add(this.add.graphics());
@@ -79,7 +80,7 @@ export class CharacterSelectScene extends Phaser.Scene {
       v.target(bg,`character/${character.id}`,{tap:()=>this.modeConfig.mode==='tutorial'&&character.id!=='erxiang'?this.inspect(character.id):this.select(character.id),detail:()=>this.inspect(character.id),enter:wrap.enter,leave:wrap.leave});
     });
     this.animateChoice=false;
-    const c=this.selectedId?getCharacter(this.selectedId):undefined,s=p.summary;
+    const c=this.selectedId?characterForNewRun(this.selectedId):undefined,s=p.summary;
     v.material(s,0xe2e8e5,0xe2e8e5,6);
     const passiveDescription=config.characterAbilityEnabled?c?.passiveDescription:'本色演出关闭角色被动与开局赠送，保留角色身份。';
     if(p.short)v.text(s.x+12,s.y+10,c?`${c.name} · ${passiveDescription}`:'点选一位角色；详情可查看完整能力。',14,'#26313A',s.width-24);
@@ -132,7 +133,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     this.selectedId=id;this.notice='';this.animateChoice=true;this.audio.select();this.render();
   }
   private inspect(id:CharacterId):void {
-    if(this.choosing)return;const c=getCharacter(id);
+    if(this.choosing)return;const c=characterForNewRun(id);
     const body=[c.passiveName+'\n'+c.passiveDescription,'构筑思路\n'+c.buildTip,'“'+c.quote+'”'];
     if(!r2RunModeConfig(this.modeConfig).characterAbilityEnabled)body.unshift('当前挑战关闭角色被动与初始赠送，以下能力供普通局参考。');
     const tutorialOther=this.modeConfig.mode==='tutorial'&&id!=='erxiang';if(tutorialOther)body.push('教程固定二响；跳过教程后可选用此角色。');
@@ -171,7 +172,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     this.choosing=true;this.notice='';const lifecycle=this.lifecycle,id=this.selectedId;this.render();
     const seed=this.seed??String(Date.now());
     try {
-      const controller=await startRun(this,seed,id,this.modeConfig);
+      const controller=await startRun(this,seed,id,this.modeConfig,{kind:'new'});
       if(lifecycle!==this.lifecycle||!this.scene.isActive())return false;
       if(!controller||controller.status!=='idle'){this.notice=gameSession().notice||'新局尚未保存，请从菜单重试保存。';this.audio.invalid();return false;}
       this.audio.select();this.scene.start('shop');return true;
