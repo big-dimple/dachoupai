@@ -1,3 +1,4 @@
+import {assertGroupTraceExecutions} from './groupTraceExecutions';
 import {hasR2ComboGrowthContract,isR2GroupUpgrade} from '../domain/r2GroupUpgrade';
 import {R2_GROUP_UPGRADE_IDS} from '../content/r2GroupUpgradeJokers';
 import {R2_GROUP_HAND_TYPES,r2LargestScoringRankGroup} from '../domain/r2GroupHands';
@@ -16,7 +17,7 @@ import {CHARACTER_IDS} from '../domain/characters';
 import {R2_HAND_TYPES,type R2HandType} from '../domain/evaluateR2';
 import {r2GrowthCaps,r2GrowthInitials,r2GrowthMinimums,supportsR2Joker,validR2JokerCounters,validR2Condition,type R2JokerInstance} from '../content/r2Schema';
 import {Rational,MAX_INTEGER_DIGITS} from '../domain/rational';
-import {SCORE_LIMITS,SCORE_OPERATIONS,r2ScoringDisabledJokerIds,type ScoreEvent} from '../domain/scoreR2';
+import {SCORE_LIMITS,SCORE_OPERATIONS,r2ScoringDisabledJokerIds,type ScoreEvent,type ScoreTrace} from '../domain/scoreR2';
 import {SeededRng} from '../core/SeededRng';
 import {stableHash} from '../domain/hash';
 import {r2DisabledCards,R2_AVAILABLE_CHAPTERS,R2_ENDLESS_MAX_CHAPTER,R2_SKIP_CONSUMABLES,r2StageSpec,r2BossHistoryValid,r2BossPlanValid,type R2TourMode,type R2BossPlan} from '../domain/r2Chapter';
@@ -151,11 +152,11 @@ function trace(value:unknown,context:{group:boolean;combo:boolean;definitions:Re
   if(all.length!==cardSources.size||all.some(id=>!cardSources.has(id)))fail('invalid-save-trace-cards');
   for(const ids of [played,held,scoring,active,consumed]){const order=(t.cards as PlayingCard[]).filter(card=>ids.includes(card.id)).map(card=>card.id);if(order.some((id,index)=>id!==ids[index]))fail('invalid-save-trace-order');}
   let assistMultiplier:number|null=null;
-  if(prototype){
+  if(prototype||group){
     const selection={hand:t.cards as PlayingCard[],selectedIds:played,disabledIds:boss?r2DisabledCards(boss,stage.index,t.cards as PlayingCard[]):[],jokers:t.sourceJokers as R2JokerInstance[],definitions:R2_JOKERS};
-    const facts=t.assist===null?r2SelectionFacts(selection):r2AssistFacts({...selection,assistIds:consumed});
+    const facts=!prototype||t.assist===null?r2SelectionFacts(selection):r2AssistFacts({...selection,assistIds:consumed});
     if(t.handType!==facts.type||(['playedIds','scoringIds','activeScoringIds','heldIds'] as const).some(key=>stableHash(sets[key])!==stableHash(facts[key])))fail('invalid-save-assist-sets');
-    if(t.assist===null){if(consumed.length)fail('invalid-save-assist-consumption');}
+    if(!prototype||t.assist===null){if(consumed.length)fail('invalid-save-assist-consumption');}
     else {
       const a=record(t.assist,['ids','kind','multiplier']);
       if(!stage.assistUsed||context.characterId!=='amo'||!context.config.characterAbilityEnabled||boss?.definitionId==='B08'||
@@ -167,7 +168,8 @@ function trace(value:unknown,context:{group:boolean;combo:boolean;definitions:Re
   const eventIds=new Set<unknown>(),rootEventIds:unknown[]=[],destroyedCards:string[]=[],destroyedJokers:string[]=[],glassHits=new Set<string>(),heldGoldSources=new Set<string>();let luckyGold=0n;
   const coefficients=new Map([...jokerSources.values()].filter(joker=>Object.hasOwn(joker.growth,'coefficient')).map(joker=>[joker.instanceId,Rational.fromJSON(joker.growth.coefficient)]));
   const coefficientReads=new Set<string>(),coefficientChanges=new Set<string>(),chanceChecks=new Map<string,boolean>(),chanceHeat=new Set<string>(),clearCycles=new Map<string,number>(),rewardSources=new Set<string>(),handRefunds=new Set<string>();
-  const scoreOrder=[...jokerSources.keys()];if(boss?.definitionId==='B13')scoreOrder.reverse();let wholeSlot=-1,cardSlot=-1;
+  const cardScoreOrder=[...jokerSources.keys()],wholeScoreOrder=boss?.definitionId==='B13'?[...cardScoreOrder].reverse():cardScoreOrder;
+  let wholeSlot=-1,cardSlot=-1;
   const comboEvents=new Set<string>();
   const groupRetriggers=new Map<string,number>(),groupCaps=new Set<string>(),cardRetriggers=new Map<string,number>(),cardRoots=new Map<string,string>();
   const assistWholeEffects=new Set<string>(),assistEditionSources=new Set<string>();
@@ -239,7 +241,8 @@ function trace(value:unknown,context:{group:boolean;combo:boolean;definitions:Re
     }
     if(group&&e.phase==='onCardScore'&&e.sourceType==='card'&&sourceCard&&e.sourceDefinitionId===`rank-${sourceCard.rank}`&&e.operation==='add-heat')cardSlot=-1;
     if(group&&e.sourceType==='joker'&&['jokerScore','onCardScore'].includes(e.phase as string)){
-      const index=scoreOrder.indexOf(e.sourceInstanceId as string);if(index<0||e.phase==='jokerScore'&&index<wholeSlot||e.phase==='onCardScore'&&index<cardSlot)fail('invalid-save-group-slot-order');if(e.phase==='jokerScore')wholeSlot=index;else cardSlot=index;
+      const order=e.phase==='jokerScore'?wholeScoreOrder:cardScoreOrder,index=order.indexOf(e.sourceInstanceId as string);
+      if(index<0||e.phase==='jokerScore'&&index<wholeSlot||e.phase==='onCardScore'&&index<cardSlot)fail('invalid-save-group-slot-order');if(e.phase==='jokerScore')wholeSlot=index;else cardSlot=index;
     }
     if(groupFamily&&!validatedEdition){
       if(e.reasonKey!==`${sourceJoker!.definitionId}.${e.operation}`)fail('invalid-save-group-reason');
@@ -507,6 +510,7 @@ function trace(value:unknown,context:{group:boolean;combo:boolean;definitions:Re
     if(assistEditionSources.has(source.instanceId)!==expected)fail('invalid-save-assist-joker-edition-count');
   }
   if(group){
+    assertGroupTraceExecutions(t as unknown as ScoreTrace,R2_JOKERS,stage);
     for(const source of jokerSources.values()){
       const qualified=R2_GROUP_HAND_TYPES.includes(t.handType as R2HandType),definition=R2_JOKERS.find(d=>d.id===source.definitionId)!;
       if(source.definitionId==='b08'&&assistWholeEffects.has(source.instanceId+'/onStageClear/add-gold')!==(successfulStage&&qualified))fail('invalid-save-group-income-count');

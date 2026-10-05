@@ -1,0 +1,24 @@
+{
+  "testedCommit": "891ec3f5c69b4e3af25f35c484ceb2b6e453d300",
+  "before": {
+    "source": "9fbe6ee0e2327e6c5fa6fe23d35f139bef211c8b097630e509a7519afbf54ca3",
+    "index": "6130cd55018ff1efd3ad23e07eb5830d5cd942c100509a7b5c7c81572295c5df",
+    "head": "891ec3f5c69b4e3af25f35c484ceb2b6e453d300",
+    "branch": "refs/heads/review/p1-j-group-upgrade-domain-20261005"
+  },
+  "checks": [],
+  "limitations": [
+    "Controlled legal public-hand, ordered draw and owned-Joker fixtures; not natural acquisition, balance, UI or device acceptance.",
+    "Native Chromium IndexedDB, actual SavedRun commands and production adapter; quota abort is an injected transaction fault, not physical disk exhaustion."
+  ],
+  "browser": "151.0.7922.173",
+  "status": "FAIL",
+  "error": "Error: page.evaluate: Error: command PlayAssistedHand: assist-unavailable\n    at check (eval at evaluate (:311:30), <anonymous>:3:55)\n    at send (eval at evaluate (:311:30), <anonymous>:5:171)\n    at eval (eval at evaluate (:311:30), <anonymous>:22:165)\n    at async <anonymous>:337:30",
+  "after": {
+    "source": "9fbe6ee0e2327e6c5fa6fe23d35f139bef211c8b097630e509a7519afbf54ca3",
+    "index": "6130cd55018ff1efd3ad23e07eb5830d5cd942c100509a7b5c7c81572295c5df",
+    "head": "891ec3f5c69b4e3af25f35c484ceb2b6e453d300",
+    "branch": "refs/heads/review/p1-j-group-upgrade-domain-20261005"
+  },
+  "sourceUnchanged": true
+}

@@ -64,6 +64,12 @@ describe('group upgrade first source checkpoint',()=>{
   expect(mutated(after,s=>{s.jokers.find((j:any)=>j.definitionId==='b03').growth.multiplier={n:'3',d:'1'};}).ok).toBe(false);
   expect(mutated(after,s=>{s.contentVersion=R2_COMBO_GROWTH_VERSION;s.contentHash=R2_COMBO_GROWTH_HASH;}).ok).toBe(false);
  });
+ it('actually dispatches inherited assist once and preserves all group save sources',()=>{
+  const before=fixture(),action:Action={type:'PlayAssistedHand',selectedIds:main,assistIds:['spades-12','hearts-12']},after=send(before,action);
+  expect(after.stage!.assistUsed).toBe(true);expect(after.playedPile).toEqual(expect.arrayContaining(['spades-12','hearts-12']));expect(after.lastTrace!.sets.heldIds).not.toContain('spades-12');
+  expect(after.lastTrace!.events.filter(e=>e.sourceDefinitionId==='b06').map(e=>e.targetCardId)).toEqual(main.slice(0,2));expect(after.lastTrace!.events.filter(e=>e.operation==='add-growth')).toHaveLength(2);
+  const repeated=applyCommand(after,{runId:before.runId,commandId:String(before.commandSeq+1),expectedSeq:before.commandSeq,action});expect(repeated.ok&&repeated.duplicate).toBe(true);expect(repeated.state).toEqual(after);
+ });
  it('five-kind targets all five; full-house sources obey depth1 and the four-extra cap',()=>{
   const five=score([9,9,9,9,9]);expect(five.handType).toBe('five-kind');expect(five.events.filter(e=>e.sourceDefinitionId==='b06')).toHaveLength(5);
   const hand=cards([9,9,9,13,13]);hand[2].enhancement='encore-paper';
@@ -101,5 +107,15 @@ describe('group upgrade first source checkpoint',()=>{
   const s=fixture(),before=JSON.stringify(s),ctx=publicJokerMemoryContext(s,{hand:s.deckInstances.filter(c=>s.handOrder.includes(c.id)),scoringLimited:false,deckSize:52,jokerSlots:5,jokerCount:4});
   for(const j of s.jokers){const copy=jokerAbilityCopyForRun(s,j.definitionId,j,ctx);expect(copy.rules).toContain('同花五条');expect(JSON.stringify(copy)).not.toContain('见完整规则');}
   const old={contentVersion:R2_COMBO_GROWTH_VERSION,contentHash:R2_COMBO_GROWTH_HASH};expect(jokerAbilityCopyForRun(old,'b10',r2CreateJoker('b10','old',6,undefined,old),ctx).condition).toContain('5');expect(JSON.stringify(s)).toBe(before);
+ });
+ it.each(['B13','B12'] as const)('%s keeps card slots forward and applies only actual whole-hand order in saved trace',boss=>{
+  let s=createRun({seed:'group-boss',runId:'group-boss',characterId:'amo',rulesVersion:'r2',r2Profile:'group-upgrade-v1',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});s.jokers=[{...joker('a11'),edition:'foil'},{...joker('b06'),edition:'holographic'}];
+  const chapter=boss==='B13'?7:3;Object.assign(s,{chapter,stageIndex:chapter*3-1,phase:'stage-ready',shop:null,boss:{definitionId:boss,disabledSuit:null},seenBossIds:boss==='B13'?['B01','B02','B03','B04','B05','B06',boss]:['B01','B02',boss]});
+  s=send(s,{type:'EnterStage'});
+  const main=['spades-9','hearts-9','clubs-9','clubs-13','diamonds-13'];s.handOrder=[...main,'spades-12','hearts-12','diamonds-7'];s.drawPile=s.deckInstances.map(c=>c.id).filter(id=>!s.handOrder.includes(id));expect(readCheckpoint(makeCheckpoint(s,[])).ok).toBe(true);
+  const after=send(s,{type:'PlayHand',selectedIds:main}),events=after.lastTrace!.events;
+  expect(events.filter(e=>e.phase==='onCardScore'&&e.targetCardId===main[0]&&e.sourceType==='joker').map(e=>e.sourceDefinitionId)).toEqual(['a11','b06']);
+  expect(events.filter(e=>e.phase==='jokerScore').map(e=>e.sourceDefinitionId)).toEqual(boss==='B13'?['b06','a11']:['a11','b06']);
+  for(const phase of ['onCardScore','jokerScore'])expect(mutated(after,state=>{const es=state.lastTrace.events,indices=es.map((e:any,i:number)=>e.phase===phase&&e.sourceType==='joker'&&(phase==='jokerScore'||e.targetCardId===main[0])?i:-1).filter((i:number)=>i>=0);[es[indices[0]],es[indices[1]]]=[es[indices[1]],es[indices[0]]];})).toEqual({ok:false,code:'invalid-save-group-slot-order'});
  });
 });
