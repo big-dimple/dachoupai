@@ -1,0 +1,42 @@
+{
+  "scope": "docs",
+  "testedCommit": "bb02bf1a9efa5d551e66e4dac4235400bc193ace",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "db6c31e3bfbc5544d60e4c04435b1b2f2269a93b9be6628eb148ba8254f2f2b0",
+    "index": "a7a6f9fe9de574323939df8abf7f1e7143e5fee2297adcf8a80cb5ff71844891",
+    "head": "bb02bf1a9efa5d551e66e4dac4235400bc193ace",
+    "branch": "refs/heads/feat/p08-amo-assist-ui-20261005"
+  },
+  "after": {
+    "source": "db6c31e3bfbc5544d60e4c04435b1b2f2269a93b9be6628eb148ba8254f2f2b0",
+    "index": "a7a6f9fe9de574323939df8abf7f1e7143e5fee2297adcf8a80cb5ff71844891",
+    "head": "bb02bf1a9efa5d551e66e4dac4235400bc193ace",
+    "branch": "refs/heads/feat/p08-amo-assist-ui-20261005"
+  },
+  "steps": [
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 357
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

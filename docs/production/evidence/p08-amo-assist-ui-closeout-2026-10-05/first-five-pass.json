@@ -1,0 +1,2563 @@
+{
+  "source": "093986955aa1544fcf18e8334cd6394026fab71a",
+  "before": {
+    "source": "ae2a564e3627aeb019d09fa9306a4ea6b558ade77600f9dd0ffd7b9a10d19b91",
+    "index": "ed34997db09801c2f016be0797efeccbd6c9d57a9cf89d57dde2a0b23f3133ff",
+    "head": "093986955aa1544fcf18e8334cd6394026fab71a",
+    "branch": "refs/heads/feat/p08-amo-assist-ui-20261005"
+  },
+  "scope": "Final explicit profile validator-approved fixtures, native touch and software Canvas; no natural acquisition/balance/device acceptance.",
+  "cases": [
+    {
+      "spec": {
+        "name": "390-eight",
+        "width": 390,
+        "height": 740,
+        "fixture": "eight",
+        "full": true,
+        "save": true
+      },
+      "status": "PASS",
+      "checks": [
+        "AI clears assist; same-revision undo restores the whole main/assist draft",
+        "valid manual main edits preserve assist; overlap clears it with explanation",
+        "long-press assist detail is explicit/read-only; return preserves, cancel removes the whole side group only",
+        "selection/switch-type pointercancel after420ms preserves full draft/state",
+        "selection/switch-type second-contact owner-first cancellation preserves full draft/state",
+        "action/play pointercancel after420ms preserves full draft/state",
+        "action/play second-contact owner-first cancellation preserves full draft/state",
+        "selection/assist-spades-12+hearts-12 pointercancel after420ms preserves full draft/state",
+        "selection/assist-spades-12+hearts-12 second-contact owner-first cancellation preserves full draft/state",
+        "menu return preserves full draft",
+        "rank authoritative reorder clears both groups and undo with RNG unchanged",
+        "suit authoritative reorder clears both groups and undo with RNG unchanged",
+        "same handRuleReference44px quick entry available",
+        "injected quota pauses unpublished state, native retry saves the same consumed candidate once; reload/recap read saved assist trace",
+        "native saved assist replay uses persisted full trace and both consumed sets; journal/export/RNG remain unchanged"
+      ],
+      "errors": [],
+      "geometry": {
+        "renderer": 1,
+        "cards": [
+          {
+            "id": "spades-12",
+            "visible": true,
+            "bounds": {
+              "x": 12,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": {
+              "x": 13,
+              "y": 632.5000122070312,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 16,
+                "y": 546.4000122070313,
+                "width": 12,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "spades-9",
+            "visible": true,
+            "bounds": {
+              "x": 55.142860412597656,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": {
+              "x": 56.142860412597656,
+              "y": 632.5000122070312,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 59.142860412597656,
+                "y": 546.4000122070313,
+                "width": 8,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-12",
+            "visible": true,
+            "bounds": {
+              "x": 98.28572082519531,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": {
+              "x": 99.28572082519531,
+              "y": 632.5000122070312,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 102.28572082519531,
+                "y": 546.4000122070313,
+                "width": 12,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-9",
+            "visible": true,
+            "bounds": {
+              "x": 141.42857360839844,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": {
+              "x": 142.42857360839844,
+              "y": 632.5000122070312,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 145.42857360839844,
+                "y": 546.4000122070313,
+                "width": 9,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-13",
+            "visible": true,
+            "bounds": {
+              "x": 184.57142639160156,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": {
+              "x": 185.57142639160156,
+              "y": 632.5000122070312,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 188.57142639160156,
+                "y": 546.4000122070313,
+                "width": 12,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-6",
+            "visible": true,
+            "bounds": {
+              "x": 227.71429443359375,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 231.71429443359375,
+                "y": 562.4000122070313,
+                "width": 10,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "diamonds-13",
+            "visible": true,
+            "bounds": {
+              "x": 270.8571472167969,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": {
+              "x": 271.8571472167969,
+              "y": 632.5000122070312,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 274.8571472167969,
+                "y": 546.4000122070313,
+                "width": 12,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "diamonds-7",
+            "visible": true,
+            "bounds": {
+              "x": 314,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 318,
+                "y": 562.4000122070313,
+                "width": 8,
+                "height": 30
+              }
+            ]
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/sort-rank",
+            "bounds": {
+              "x": 12,
+              "y": 488.4,
+              "width": 44,
+              "height": 44
+            },
+            "label": "点数",
+            "labelBounds": {
+              "x": 20,
+              "y": 500.9,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "action/sort-suit",
+            "bounds": {
+              "x": 56,
+              "y": 488.4,
+              "width": 44,
+              "height": 44
+            },
+            "label": "花色",
+            "labelBounds": {
+              "x": 64,
+              "y": 500.9,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/switch-type",
+            "bounds": {
+              "x": 100,
+              "y": 488.4,
+              "width": 44,
+              "height": 44
+            },
+            "label": "AI\n主手",
+            "labelBounds": {
+              "x": 108,
+              "y": 492.4,
+              "width": 28,
+              "height": 34
+            }
+          },
+          {
+            "name": "action/discard",
+            "bounds": {
+              "x": 59,
+              "y": 652,
+              "width": 106,
+              "height": 56
+            },
+            "label": "弃牌",
+            "labelBounds": {
+              "x": 113,
+              "y": 658.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "action/play",
+            "bounds": {
+              "x": 171,
+              "y": 652,
+              "width": 160,
+              "height": 56
+            },
+            "label": "出牌",
+            "labelBounds": {
+              "x": 249.5,
+              "y": 657.5,
+              "width": 33,
+              "height": 19
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "bounds": {
+              "x": 266,
+              "y": 488.4,
+              "width": 112,
+              "height": 44
+            },
+            "label": "工具包 0/2",
+            "labelBounds": {
+              "x": 286.5,
+              "y": 500.5,
+              "width": 71,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/assist-spades-12+hearts-12",
+            "bounds": {
+              "x": 22,
+              "y": 213.6,
+              "width": 346,
+              "height": 44.00000000000003
+            },
+            "label": "Q♠ Q♥\n取消助攻",
+            "labelBounds": {
+              "x": 167,
+              "y": 218,
+              "width": 56,
+              "height": 34
+            }
+          },
+          {
+            "name": "selection/hand-rules",
+            "bounds": {
+              "x": 326,
+              "y": 155.6,
+              "width": 44,
+              "height": 44
+            },
+            "label": "牌型\n规则",
+            "labelBounds": {
+              "x": 334,
+              "y": 159.6,
+              "width": 28,
+              "height": 34
+            }
+          }
+        ],
+        "copies": [
+          {
+            "text": "主手 4 · 计分 4 · 留手 2",
+            "fullText": "主手 4 · 计分 4 · 留手 2",
+            "bounds": {
+              "x": 123,
+              "y": 187.6,
+              "width": 144,
+              "height": 16
+            }
+          },
+          {
+            "text": "本场助攻 1/1 · 已选×2",
+            "fullText": "本场助攻 1/1 · 已选×2",
+            "bounds": {
+              "x": 127,
+              "y": 267.6,
+              "width": 136,
+              "height": 16
+            }
+          },
+          {
+            "text": "助攻会一同用掉，不算主手或留手牌",
+            "fullText": "助攻会一同用掉，不算主手或留手牌",
+            "bounds": {
+              "x": 83,
+              "y": 307.6,
+              "width": 224,
+              "height": 16
+            }
+          },
+          {
+            "text": "AI只整理主手，助攻自己选",
+            "fullText": "AI只整理主手，助攻自己选",
+            "bounds": {
+              "x": 111,
+              "y": 327.6,
+              "width": 168,
+              "height": 16
+            }
+          }
+        ],
+        "forecast": {
+          "visible": false,
+          "text": ""
+        }
+      }
+    },
+    {
+      "spec": {
+        "name": "320-nine",
+        "width": 320,
+        "height": 568,
+        "fixture": "nine",
+        "full": true
+      },
+      "status": "PASS",
+      "checks": [
+        "AI clears assist; same-revision undo restores the whole main/assist draft",
+        "valid manual main edits preserve assist; overlap clears it with explanation",
+        "selection/switch-type pointercancel after420ms preserves full draft/state",
+        "selection/switch-type second-contact owner-first cancellation preserves full draft/state",
+        "action/play pointercancel after420ms preserves full draft/state",
+        "action/play second-contact owner-first cancellation preserves full draft/state",
+        "selection/assist-spades-12+hearts-12 pointercancel after420ms preserves full draft/state",
+        "selection/assist-spades-12+hearts-12 second-contact owner-first cancellation preserves full draft/state",
+        "menu return preserves full draft",
+        "rank authoritative reorder clears both groups and undo with RNG unchanged",
+        "suit authoritative reorder clears both groups and undo with RNG unchanged",
+        "same handRuleReference44px quick entry available"
+      ],
+      "errors": [],
+      "geometry": {
+        "renderer": 1,
+        "cards": [
+          {
+            "id": "spades-12",
+            "visible": true,
+            "bounds": {
+              "x": 8,
+              "y": 370.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": {
+              "x": 9,
+              "y": 443.6999877929687,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 12,
+                "y": 374.3999877929688,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "spades-9",
+            "visible": true,
+            "bounds": {
+              "x": 39.5,
+              "y": 370.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": {
+              "x": 40.5,
+              "y": 443.6999877929687,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 43.5,
+                "y": 374.3999877929688,
+                "width": 8,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-12",
+            "visible": true,
+            "bounds": {
+              "x": 71,
+              "y": 370.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": {
+              "x": 72,
+              "y": 443.6999877929687,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 75,
+                "y": 374.3999877929688,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-9",
+            "visible": true,
+            "bounds": {
+              "x": 102.5,
+              "y": 370.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": {
+              "x": 103.5,
+              "y": 443.6999877929687,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 106.5,
+                "y": 374.3999877929688,
+                "width": 9,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-13",
+            "visible": true,
+            "bounds": {
+              "x": 134,
+              "y": 370.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": {
+              "x": 135,
+              "y": 443.6999877929687,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 138,
+                "y": 374.3999877929688,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-6",
+            "visible": true,
+            "bounds": {
+              "x": 165.5,
+              "y": 386.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 169.5,
+                "y": 390.3999877929688,
+                "width": 10,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-2",
+            "visible": true,
+            "bounds": {
+              "x": 197,
+              "y": 386.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 201,
+                "y": 390.3999877929688,
+                "width": 10,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "diamonds-13",
+            "visible": true,
+            "bounds": {
+              "x": 228.5,
+              "y": 370.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": {
+              "x": 229.5,
+              "y": 443.6999877929687,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 232.5,
+                "y": 374.3999877929688,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "diamonds-7",
+            "visible": true,
+            "bounds": {
+              "x": 260,
+              "y": 386.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 264,
+                "y": 390.3999877929688,
+                "width": 8,
+                "height": 30
+              }
+            ]
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/sort-rank",
+            "bounds": {
+              "x": 8,
+              "y": 316.4,
+              "width": 44,
+              "height": 44
+            },
+            "label": "点数",
+            "labelBounds": {
+              "x": 16,
+              "y": 328.9,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "action/sort-suit",
+            "bounds": {
+              "x": 52,
+              "y": 316.4,
+              "width": 44,
+              "height": 44
+            },
+            "label": "花色",
+            "labelBounds": {
+              "x": 60,
+              "y": 328.9,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/switch-type",
+            "bounds": {
+              "x": 96,
+              "y": 316.4,
+              "width": 44,
+              "height": 44
+            },
+            "label": "AI\n主手",
+            "labelBounds": {
+              "x": 104,
+              "y": 320.4,
+              "width": 28,
+              "height": 34
+            }
+          },
+          {
+            "name": "action/discard",
+            "bounds": {
+              "x": 55,
+              "y": 480,
+              "width": 114,
+              "height": 54
+            },
+            "label": "弃牌",
+            "labelBounds": {
+              "x": 113,
+              "y": 486.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "action/play",
+            "bounds": {
+              "x": 175,
+              "y": 480,
+              "width": 90,
+              "height": 54
+            },
+            "label": "出牌",
+            "labelBounds": {
+              "x": 218.5,
+              "y": 485.5,
+              "width": 33,
+              "height": 19
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "bounds": {
+              "x": 200,
+              "y": 316.4,
+              "width": 112,
+              "height": 44
+            },
+            "label": "工具包 0/2",
+            "labelBounds": {
+              "x": 220.5,
+              "y": 328.5,
+              "width": 71,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/assist-spades-12+hearts-12",
+            "bounds": {
+              "x": 114,
+              "y": 240,
+              "width": 194,
+              "height": 44
+            },
+            "label": "Q♠ Q♥\n取消助攻",
+            "labelBounds": {
+              "x": 183,
+              "y": 244,
+              "width": 56,
+              "height": 34
+            }
+          },
+          {
+            "name": "selection/hand-rules",
+            "bounds": {
+              "x": 260,
+              "y": 162,
+              "width": 44,
+              "height": 44
+            },
+            "label": "牌型\n规则",
+            "labelBounds": {
+              "x": 268,
+              "y": 166,
+              "width": 28,
+              "height": 34
+            }
+          }
+        ],
+        "copies": [
+          {
+            "text": "主手 4 · 计分 4 · 留手 3",
+            "fullText": "主手 4 · 计分 4 · 留手 3",
+            "bounds": {
+              "x": 88,
+              "y": 184,
+              "width": 144,
+              "height": 16
+            }
+          },
+          {
+            "text": "本场助攻 1/1",
+            "fullText": "本场助攻 1/1",
+            "bounds": {
+              "x": 171,
+              "y": 286,
+              "width": 80,
+              "height": 16
+            }
+          },
+          {
+            "text": "助攻会一同用掉，不算主手或留手牌",
+            "fullText": "助攻会一同用掉，不算主手或留手牌",
+            "bounds": {
+              "x": 22,
+              "y": 202,
+              "width": 224,
+              "height": 16
+            }
+          },
+          {
+            "text": "AI只整理主手，助攻自己选",
+            "fullText": "AI只整理主手，助攻自己选",
+            "bounds": {
+              "x": 76,
+              "y": 220,
+              "width": 168,
+              "height": 16
+            }
+          }
+        ],
+        "forecast": {
+          "visible": false,
+          "text": ""
+        }
+      }
+    },
+    {
+      "spec": {
+        "name": "390-fourteen",
+        "width": 390,
+        "height": 740,
+        "fixture": "many",
+        "groups": true
+      },
+      "status": "PASS",
+      "checks": [
+        "every visible remainder pair/three candidate is reachable by named44px page controls; selection/cancel is read-only",
+        "same handRuleReference44px quick entry available"
+      ],
+      "errors": [],
+      "groups": {
+        "expected": [
+          [
+            "spades-12",
+            "hearts-12"
+          ],
+          [
+            "spades-12",
+            "hearts-12",
+            "clubs-12"
+          ],
+          [
+            "spades-12",
+            "clubs-12"
+          ],
+          [
+            "hearts-12",
+            "clubs-12"
+          ],
+          [
+            "spades-11",
+            "hearts-11"
+          ],
+          [
+            "spades-11",
+            "hearts-11",
+            "clubs-11"
+          ],
+          [
+            "spades-11",
+            "clubs-11"
+          ],
+          [
+            "hearts-11",
+            "clubs-11"
+          ],
+          [
+            "spades-8",
+            "hearts-8"
+          ],
+          [
+            "spades-10",
+            "hearts-10"
+          ]
+        ],
+        "seen": [
+          [
+            "spades-12",
+            "hearts-12"
+          ],
+          [
+            "spades-12",
+            "hearts-12",
+            "clubs-12"
+          ],
+          [
+            "spades-12",
+            "clubs-12"
+          ],
+          [
+            "hearts-12",
+            "clubs-12"
+          ],
+          [
+            "spades-11",
+            "hearts-11"
+          ],
+          [
+            "spades-11",
+            "hearts-11",
+            "clubs-11"
+          ],
+          [
+            "spades-11",
+            "clubs-11"
+          ],
+          [
+            "hearts-11",
+            "clubs-11"
+          ],
+          [
+            "spades-8",
+            "hearts-8"
+          ],
+          [
+            "spades-10",
+            "hearts-10"
+          ]
+        ]
+      },
+      "geometry": {
+        "renderer": 1,
+        "cards": [
+          {
+            "id": "spades-9",
+            "visible": true,
+            "bounds": {
+              "x": 12,
+              "y": 430.8000061035156,
+              "width": 64,
+              "height": 109.09999999999997
+            },
+            "tag": {
+              "x": 13,
+              "y": 520.9000061035156,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 16,
+                "y": 434.8000061035156,
+                "width": 8,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-9",
+            "visible": true,
+            "bounds": {
+              "x": 62.333335876464844,
+              "y": 430.8000061035156,
+              "width": 64,
+              "height": 109.09999999999997
+            },
+            "tag": {
+              "x": 63.333335876464844,
+              "y": 520.9000061035156,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 66.33333587646484,
+                "y": 434.8000061035156,
+                "width": 9,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-13",
+            "visible": true,
+            "bounds": {
+              "x": 112.66667175292969,
+              "y": 430.8000061035156,
+              "width": 64,
+              "height": 109.09999999999997
+            },
+            "tag": {
+              "x": 113.66667175292969,
+              "y": 520.9000061035156,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 116.66667175292969,
+                "y": 434.8000061035156,
+                "width": 12,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "diamonds-13",
+            "visible": true,
+            "bounds": {
+              "x": 163,
+              "y": 430.8000061035156,
+              "width": 64,
+              "height": 109.09999999999997
+            },
+            "tag": {
+              "x": 164,
+              "y": 520.9000061035156,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 167,
+                "y": 434.8000061035156,
+                "width": 12,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "spades-12",
+            "visible": true,
+            "bounds": {
+              "x": 213.3333282470703,
+              "y": 430.8000061035156,
+              "width": 64,
+              "height": 109.09999999999997
+            },
+            "tag": {
+              "x": 214.3333282470703,
+              "y": 520.9000061035156,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 217.3333282470703,
+                "y": 434.8000061035156,
+                "width": 12,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-12",
+            "visible": true,
+            "bounds": {
+              "x": 263.6666564941406,
+              "y": 430.8000061035156,
+              "width": 64,
+              "height": 109.09999999999997
+            },
+            "tag": {
+              "x": 264.6666564941406,
+              "y": 520.9000061035156,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 267.6666564941406,
+                "y": 434.8000061035156,
+                "width": 12,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-12",
+            "visible": true,
+            "bounds": {
+              "x": 314,
+              "y": 430.8000061035156,
+              "width": 64,
+              "height": 109.09999999999997
+            },
+            "tag": {
+              "x": 315,
+              "y": 520.9000061035156,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 318,
+                "y": 434.8000061035156,
+                "width": 12,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "spades-11",
+            "visible": true,
+            "bounds": {
+              "x": 12,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 16,
+                "y": 562.4000122070313,
+                "width": 8,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-11",
+            "visible": true,
+            "bounds": {
+              "x": 62.333335876464844,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 66.33333587646484,
+                "y": 562.4000122070313,
+                "width": 9,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-11",
+            "visible": true,
+            "bounds": {
+              "x": 112.66667175292969,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 116.66667175292969,
+                "y": 562.4000122070313,
+                "width": 10,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "spades-8",
+            "visible": true,
+            "bounds": {
+              "x": 163,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 167,
+                "y": 562.4000122070313,
+                "width": 8,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-8",
+            "visible": true,
+            "bounds": {
+              "x": 213.3333282470703,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 217.3333282470703,
+                "y": 562.4000122070313,
+                "width": 9,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "spades-10",
+            "visible": true,
+            "bounds": {
+              "x": 263.6666564941406,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 267.6666564941406,
+                "y": 562.4000122070313,
+                "width": 15,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-10",
+            "visible": true,
+            "bounds": {
+              "x": 314,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 109.09999999999991
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 318,
+                "y": 562.4000122070313,
+                "width": 15,
+                "height": 30
+              }
+            ]
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/sort-rank",
+            "bounds": {
+              "x": 12,
+              "y": 376.8,
+              "width": 44,
+              "height": 44
+            },
+            "label": "点数",
+            "labelBounds": {
+              "x": 20,
+              "y": 389.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "action/sort-suit",
+            "bounds": {
+              "x": 56,
+              "y": 376.8,
+              "width": 44,
+              "height": 44
+            },
+            "label": "花色",
+            "labelBounds": {
+              "x": 64,
+              "y": 389.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/switch-type",
+            "bounds": {
+              "x": 100,
+              "y": 376.8,
+              "width": 44,
+              "height": 44
+            },
+            "label": "AI\n主手",
+            "labelBounds": {
+              "x": 108,
+              "y": 381,
+              "width": 28,
+              "height": 34
+            }
+          },
+          {
+            "name": "action/discard",
+            "bounds": {
+              "x": 59,
+              "y": 652,
+              "width": 106,
+              "height": 56
+            },
+            "label": "弃牌",
+            "labelBounds": {
+              "x": 113,
+              "y": 658.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "action/play",
+            "bounds": {
+              "x": 171,
+              "y": 652,
+              "width": 160,
+              "height": 56
+            },
+            "label": "出牌",
+            "labelBounds": {
+              "x": 249.5,
+              "y": 657.5,
+              "width": 33,
+              "height": 19
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "bounds": {
+              "x": 266,
+              "y": 376.8,
+              "width": 112,
+              "height": 44
+            },
+            "label": "工具包 0/2",
+            "labelBounds": {
+              "x": 286.5,
+              "y": 389.5,
+              "width": 71,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/assist-prev",
+            "bounds": {
+              "x": 22,
+              "y": 207.6,
+              "width": 44,
+              "height": 44
+            },
+            "label": "上页",
+            "labelBounds": {
+              "x": 30,
+              "y": 220.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/assist-next",
+            "bounds": {
+              "x": 324,
+              "y": 207.6,
+              "width": 44,
+              "height": 44
+            },
+            "label": "下页",
+            "labelBounds": {
+              "x": 332,
+              "y": 220.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/assist-spades-12+hearts-12",
+            "bounds": {
+              "x": 66,
+              "y": 207.6,
+              "width": 126,
+              "height": 44
+            },
+            "label": "Q♠ Q♥\n助攻 ×2",
+            "labelBounds": {
+              "x": 105,
+              "y": 212,
+              "width": 48,
+              "height": 34
+            }
+          },
+          {
+            "name": "selection/assist-spades-12+hearts-12+clubs-12",
+            "bounds": {
+              "x": 198,
+              "y": 207.6,
+              "width": 126,
+              "height": 44
+            },
+            "label": "Q♠ Q♥ Q♣\n取消助攻",
+            "labelBounds": {
+              "x": 228,
+              "y": 212,
+              "width": 66,
+              "height": 34
+            }
+          },
+          {
+            "name": "selection/hand-rules",
+            "bounds": {
+              "x": 326,
+              "y": 155.6,
+              "width": 44,
+              "height": 44
+            },
+            "label": "牌型\n规则",
+            "labelBounds": {
+              "x": 334,
+              "y": 159.6,
+              "width": 28,
+              "height": 34
+            }
+          }
+        ],
+        "copies": [
+          {
+            "text": "主手 4 · 计分 4 · 留手 7",
+            "fullText": "主手 4 · 计分 4 · 留手 7",
+            "bounds": {
+              "x": 123,
+              "y": 187.6,
+              "width": 144,
+              "height": 16
+            }
+          },
+          {
+            "text": "本场助攻 1/1 · 10组 · 第1/5页 · 已选×4",
+            "fullText": "本场助攻 1/1 · 10组 · 第1/5页 · 已选×4",
+            "bounds": {
+              "x": 76,
+              "y": 255.60000000000002,
+              "width": 238,
+              "height": 16
+            }
+          },
+          {
+            "text": "主手：9♠ 9♥ K♣ K♦",
+            "fullText": "主手：9♠ 9♥ K♣ K♦",
+            "bounds": {
+              "x": 135,
+              "y": 295.6,
+              "width": 120,
+              "height": 16
+            }
+          },
+          {
+            "text": "助攻：Q♠ Q♥ Q♣ ×4",
+            "fullText": "助攻：Q♠ Q♥ Q♣ ×4",
+            "bounds": {
+              "x": 131,
+              "y": 313.6,
+              "width": 128,
+              "height": 16
+            }
+          },
+          {
+            "text": "助攻会一同用掉，不算主手或留手牌",
+            "fullText": "助攻会一同用掉，不算主手或留手牌",
+            "bounds": {
+              "x": 83,
+              "y": 333.6,
+              "width": 224,
+              "height": 16
+            }
+          }
+        ],
+        "forecast": {
+          "visible": false,
+          "text": ""
+        }
+      }
+    },
+    {
+      "spec": {
+        "name": "320-fourteen",
+        "width": 320,
+        "height": 568,
+        "fixture": "many",
+        "groups": true
+      },
+      "status": "PASS",
+      "checks": [
+        "every visible remainder pair/three candidate is reachable by named44px page controls; selection/cancel is read-only",
+        "same handRuleReference44px quick entry available"
+      ],
+      "errors": [],
+      "groups": {
+        "expected": [
+          [
+            "spades-12",
+            "hearts-12"
+          ],
+          [
+            "spades-12",
+            "hearts-12",
+            "clubs-12"
+          ],
+          [
+            "spades-12",
+            "clubs-12"
+          ],
+          [
+            "hearts-12",
+            "clubs-12"
+          ],
+          [
+            "spades-11",
+            "hearts-11"
+          ],
+          [
+            "spades-11",
+            "hearts-11",
+            "clubs-11"
+          ],
+          [
+            "spades-11",
+            "clubs-11"
+          ],
+          [
+            "hearts-11",
+            "clubs-11"
+          ],
+          [
+            "spades-8",
+            "hearts-8"
+          ],
+          [
+            "spades-10",
+            "hearts-10"
+          ]
+        ],
+        "seen": [
+          [
+            "spades-12",
+            "hearts-12"
+          ],
+          [
+            "spades-12",
+            "hearts-12",
+            "clubs-12"
+          ],
+          [
+            "spades-12",
+            "clubs-12"
+          ],
+          [
+            "hearts-12",
+            "clubs-12"
+          ],
+          [
+            "spades-11",
+            "hearts-11"
+          ],
+          [
+            "spades-11",
+            "hearts-11",
+            "clubs-11"
+          ],
+          [
+            "spades-11",
+            "clubs-11"
+          ],
+          [
+            "hearts-11",
+            "clubs-11"
+          ],
+          [
+            "spades-8",
+            "hearts-8"
+          ],
+          [
+            "spades-10",
+            "hearts-10"
+          ]
+        ]
+      },
+      "geometry": {
+        "renderer": 1,
+        "cards": [
+          {
+            "id": "spades-9",
+            "visible": true,
+            "bounds": {
+              "x": 56,
+              "y": 370.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": {
+              "x": 57,
+              "y": 443.6999877929687,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 60,
+                "y": 374.3999877929688,
+                "width": 8,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-9",
+            "visible": true,
+            "bounds": {
+              "x": 95,
+              "y": 370.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": {
+              "x": 96,
+              "y": 443.6999877929687,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 99,
+                "y": 374.3999877929688,
+                "width": 9,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-13",
+            "visible": true,
+            "bounds": {
+              "x": 134,
+              "y": 370.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": {
+              "x": 135,
+              "y": 443.6999877929687,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 138,
+                "y": 374.3999877929688,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "diamonds-13",
+            "visible": true,
+            "bounds": {
+              "x": 173,
+              "y": 370.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": {
+              "x": 174,
+              "y": 443.6999877929687,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 177,
+                "y": 374.3999877929688,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "spades-12",
+            "visible": true,
+            "bounds": {
+              "x": 212,
+              "y": 370.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": {
+              "x": 213,
+              "y": 443.6999877929687,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 216,
+                "y": 374.3999877929688,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-12",
+            "visible": false,
+            "bounds": {
+              "x": 251,
+              "y": 370.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": {
+              "x": 252,
+              "y": 443.6999877929687,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 255,
+                "y": 374.3999877929688,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-12",
+            "visible": false,
+            "bounds": {
+              "x": 290,
+              "y": 370.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": {
+              "x": 291,
+              "y": 443.6999877929687,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 294,
+                "y": 374.3999877929688,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "spades-11",
+            "visible": false,
+            "bounds": {
+              "x": 329,
+              "y": 386.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 333,
+                "y": 390.3999877929688,
+                "width": 8,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-11",
+            "visible": false,
+            "bounds": {
+              "x": 368,
+              "y": 386.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 372,
+                "y": 390.3999877929688,
+                "width": 9,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-11",
+            "visible": false,
+            "bounds": {
+              "x": 407,
+              "y": 386.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 411,
+                "y": 390.3999877929688,
+                "width": 10,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "spades-8",
+            "visible": false,
+            "bounds": {
+              "x": 446,
+              "y": 386.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 450,
+                "y": 390.3999877929688,
+                "width": 8,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-8",
+            "visible": false,
+            "bounds": {
+              "x": 485,
+              "y": 386.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 489,
+                "y": 390.3999877929688,
+                "width": 9,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "spades-10",
+            "visible": false,
+            "bounds": {
+              "x": 524,
+              "y": 386.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 528,
+                "y": 390.3999877929688,
+                "width": 14,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-10",
+            "visible": false,
+            "bounds": {
+              "x": 563,
+              "y": 386.3999877929688,
+              "width": 52,
+              "height": 92.29999999999995
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 567,
+                "y": 390.3999877929688,
+                "width": 14,
+                "height": 30
+              }
+            ]
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/sort-rank",
+            "bounds": {
+              "x": 8,
+              "y": 316.4,
+              "width": 44,
+              "height": 44
+            },
+            "label": "点数",
+            "labelBounds": {
+              "x": 16,
+              "y": 328.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "action/sort-suit",
+            "bounds": {
+              "x": 52,
+              "y": 316.4,
+              "width": 44,
+              "height": 44
+            },
+            "label": "花色",
+            "labelBounds": {
+              "x": 60,
+              "y": 328.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/switch-type",
+            "bounds": {
+              "x": 96,
+              "y": 316.4,
+              "width": 44,
+              "height": 44
+            },
+            "label": "AI\n主手",
+            "labelBounds": {
+              "x": 104,
+              "y": 320,
+              "width": 28,
+              "height": 34
+            }
+          },
+          {
+            "name": "action/discard",
+            "bounds": {
+              "x": 102,
+              "y": 480,
+              "width": 114,
+              "height": 54
+            },
+            "label": "弃牌",
+            "labelBounds": {
+              "x": 160,
+              "y": 486.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "action/play",
+            "bounds": {
+              "x": 222,
+              "y": 480,
+              "width": 90,
+              "height": 54
+            },
+            "label": "出牌",
+            "labelBounds": {
+              "x": 265.5,
+              "y": 485.5,
+              "width": 33,
+              "height": 19
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "bounds": {
+              "x": 200,
+              "y": 316.4,
+              "width": 112,
+              "height": 44
+            },
+            "label": "工具包 0/2",
+            "labelBounds": {
+              "x": 220.5,
+              "y": 328.5,
+              "width": 71,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/assist-prev",
+            "bounds": {
+              "x": 114,
+              "y": 240,
+              "width": 44,
+              "height": 44
+            },
+            "label": "上页",
+            "labelBounds": {
+              "x": 122,
+              "y": 252.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/assist-next",
+            "bounds": {
+              "x": 264,
+              "y": 240,
+              "width": 44,
+              "height": 44
+            },
+            "label": "下页",
+            "labelBounds": {
+              "x": 272,
+              "y": 252.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/assist-spades-12+hearts-12+clubs-12",
+            "bounds": {
+              "x": 158,
+              "y": 240,
+              "width": 106,
+              "height": 44
+            },
+            "label": "Q♠ Q♥ Q♣\n取消助攻",
+            "labelBounds": {
+              "x": 178,
+              "y": 244,
+              "width": 66,
+              "height": 34
+            }
+          },
+          {
+            "name": "selection/hand-rules",
+            "bounds": {
+              "x": 260,
+              "y": 162,
+              "width": 44,
+              "height": 44
+            },
+            "label": "牌型\n规则",
+            "labelBounds": {
+              "x": 268,
+              "y": 166,
+              "width": 28,
+              "height": 34
+            }
+          }
+        ],
+        "copies": [
+          {
+            "text": "主手 4 · 计分 4 · 留手 7",
+            "fullText": "主手 4 · 计分 4 · 留手 7",
+            "bounds": {
+              "x": 88,
+              "y": 184,
+              "width": 144,
+              "height": 16
+            }
+          },
+          {
+            "text": "本场助攻 1/1 · 10组 · 第2/10页",
+            "fullText": "本场助攻 1/1 · 10组 · 第2/10页",
+            "bounds": {
+              "x": 116,
+              "y": 286,
+              "width": 190,
+              "height": 16
+            }
+          },
+          {
+            "text": "助攻会一同用掉，不算主手或留手牌",
+            "fullText": "助攻会一同用掉，不算主手或留手牌",
+            "bounds": {
+              "x": 22,
+              "y": 202,
+              "width": 224,
+              "height": 16
+            }
+          },
+          {
+            "text": "AI只整理主手，助攻自己选",
+            "fullText": "AI只整理主手，助攻自己选",
+            "bounds": {
+              "x": 76,
+              "y": 220,
+              "width": 168,
+              "height": 16
+            }
+          }
+        ],
+        "forecast": {
+          "visible": false,
+          "text": ""
+        }
+      }
+    },
+    {
+      "spec": {
+        "name": "short-triple",
+        "width": 844,
+        "height": 300,
+        "top": 12,
+        "bottom": 34,
+        "fixture": "triple",
+        "groups": true
+      },
+      "status": "PASS",
+      "checks": [
+        "every visible remainder pair/three candidate is reachable by named44px page controls; selection/cancel is read-only",
+        "same handRuleReference44px quick entry available"
+      ],
+      "errors": [],
+      "groups": {
+        "expected": [
+          [
+            "spades-12",
+            "hearts-12"
+          ],
+          [
+            "spades-12",
+            "hearts-12",
+            "clubs-12"
+          ],
+          [
+            "spades-12",
+            "clubs-12"
+          ],
+          [
+            "hearts-12",
+            "clubs-12"
+          ]
+        ],
+        "seen": [
+          [
+            "spades-12",
+            "hearts-12"
+          ],
+          [
+            "spades-12",
+            "hearts-12",
+            "clubs-12"
+          ],
+          [
+            "spades-12",
+            "clubs-12"
+          ],
+          [
+            "hearts-12",
+            "clubs-12"
+          ]
+        ]
+      },
+      "geometry": {
+        "renderer": 1,
+        "cards": [
+          {
+            "id": "spades-9",
+            "visible": true,
+            "bounds": {
+              "x": 188,
+              "y": 140,
+              "width": 30,
+              "height": 61.5
+            },
+            "tag": {
+              "x": 189,
+              "y": 182.5,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 192,
+                "y": 144,
+                "width": 8,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-9",
+            "visible": true,
+            "bounds": {
+              "x": 264.75,
+              "y": 140,
+              "width": 30,
+              "height": 61.5
+            },
+            "tag": {
+              "x": 265.75,
+              "y": 182.5,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 268.75,
+                "y": 144,
+                "width": 9,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-13",
+            "visible": true,
+            "bounds": {
+              "x": 341.5,
+              "y": 140,
+              "width": 30,
+              "height": 61.5
+            },
+            "tag": {
+              "x": 342.5,
+              "y": 182.5,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 345.5,
+                "y": 144,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "diamonds-13",
+            "visible": true,
+            "bounds": {
+              "x": 418.25,
+              "y": 140,
+              "width": 30,
+              "height": 61.5
+            },
+            "tag": {
+              "x": 419.25,
+              "y": 182.5,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 422.25,
+                "y": 144,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "spades-12",
+            "visible": true,
+            "bounds": {
+              "x": 495,
+              "y": 140,
+              "width": 30,
+              "height": 61.5
+            },
+            "tag": {
+              "x": 496,
+              "y": 182.5,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 499,
+                "y": 144,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "hearts-12",
+            "visible": true,
+            "bounds": {
+              "x": 571.75,
+              "y": 140,
+              "width": 30,
+              "height": 61.5
+            },
+            "tag": {
+              "x": 572.75,
+              "y": 182.5,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 575.75,
+                "y": 144,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-12",
+            "visible": true,
+            "bounds": {
+              "x": 648.5,
+              "y": 140,
+              "width": 30,
+              "height": 61.5
+            },
+            "tag": {
+              "x": 649.5,
+              "y": 182.5,
+              "width": 22,
+              "height": 19
+            },
+            "corners": [
+              {
+                "x": 652.5,
+                "y": 144,
+                "width": 11,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "clubs-6",
+            "visible": true,
+            "bounds": {
+              "x": 725.25,
+              "y": 156,
+              "width": 30,
+              "height": 61.5
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 729.25,
+                "y": 160,
+                "width": 10,
+                "height": 30
+              }
+            ]
+          },
+          {
+            "id": "diamonds-7",
+            "visible": true,
+            "bounds": {
+              "x": 802,
+              "y": 156,
+              "width": 30,
+              "height": 61.5
+            },
+            "tag": null,
+            "corners": [
+              {
+                "x": 806,
+                "y": 160,
+                "width": 8,
+                "height": 30
+              }
+            ]
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/sort-rank",
+            "bounds": {
+              "x": 144,
+              "y": 202,
+              "width": 44,
+              "height": 52
+            },
+            "label": "点数",
+            "labelBounds": {
+              "x": 152,
+              "y": 218.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "action/sort-suit",
+            "bounds": {
+              "x": 188,
+              "y": 202,
+              "width": 44,
+              "height": 52
+            },
+            "label": "花色",
+            "labelBounds": {
+              "x": 196,
+              "y": 218.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/switch-type",
+            "bounds": {
+              "x": 232,
+              "y": 202,
+              "width": 44,
+              "height": 52
+            },
+            "label": "AI\n主手",
+            "labelBounds": {
+              "x": 240,
+              "y": 210,
+              "width": 28,
+              "height": 34
+            }
+          },
+          {
+            "name": "action/discard",
+            "bounds": {
+              "x": 282,
+              "y": 202,
+              "width": 236,
+              "height": 52
+            },
+            "label": "弃牌",
+            "labelBounds": {
+              "x": 401,
+              "y": 208.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "action/play",
+            "bounds": {
+              "x": 524,
+              "y": 202,
+              "width": 308,
+              "height": 52
+            },
+            "label": "出牌",
+            "labelBounds": {
+              "x": 676.5,
+              "y": 207.5,
+              "width": 33,
+              "height": 19
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "bounds": {
+              "x": 16,
+              "y": 181,
+              "width": 112,
+              "height": 44
+            },
+            "label": "工具包 0/2",
+            "labelBounds": {
+              "x": 36.5,
+              "y": 193.5,
+              "width": 71,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/assist-prev",
+            "bounds": {
+              "x": 634,
+              "y": 72,
+              "width": 44,
+              "height": 44
+            },
+            "label": "上页",
+            "labelBounds": {
+              "x": 642,
+              "y": 84.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/assist-next",
+            "bounds": {
+              "x": 784,
+              "y": 72,
+              "width": 44,
+              "height": 44
+            },
+            "label": "下页",
+            "labelBounds": {
+              "x": 792,
+              "y": 84.5,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "name": "selection/assist-spades-12+hearts-12+clubs-12",
+            "bounds": {
+              "x": 678,
+              "y": 72,
+              "width": 106,
+              "height": 44
+            },
+            "label": "Q♠ Q♥ Q♣\n取消助攻",
+            "labelBounds": {
+              "x": 698,
+              "y": 76,
+              "width": 66,
+              "height": 34
+            }
+          },
+          {
+            "name": "selection/hand-rules",
+            "bounds": {
+              "x": 454,
+              "y": 74,
+              "width": 44,
+              "height": 44
+            },
+            "label": "牌型\n规则",
+            "labelBounds": {
+              "x": 462,
+              "y": 78,
+              "width": 28,
+              "height": 34
+            }
+          }
+        ],
+        "copies": [
+          {
+            "text": "主手 4 · 计分 4 · 留手 2",
+            "fullText": "主手 4 · 计分 4 · 留手 2",
+            "bounds": {
+              "x": 275,
+              "y": 96,
+              "width": 144,
+              "height": 16
+            }
+          },
+          {
+            "text": "本场助攻 1/1 · 4组 · 第2/4页",
+            "fullText": "本场助攻 1/1 · 4组 · 第2/4页",
+            "bounds": {
+              "x": 644,
+              "y": 118,
+              "width": 174,
+              "height": 16
+            }
+          },
+          {
+            "text": "助攻会一同用掉，不算主手或留手牌",
+            "fullText": "助攻会一同用掉，不算主手或留手牌",
+            "bounds": {
+              "x": 209,
+              "y": 114,
+              "width": 224,
+              "height": 16
+            }
+          }
+        ],
+        "forecast": {
+          "visible": false,
+          "text": ""
+        }
+      }
+    }
+  ],
+  "screenshots": [
+    "390-eight.png",
+    "320-nine.png",
+    "390-fourteen.png",
+    "320-fourteen.png",
+    "short-triple.png"
+  ],
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-05T04:03:13.863Z",
+    "revision": "093986955aa1544fcf18e8334cd6394026fab71a",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "151.0.7922.173",
+  "after": {
+    "source": "ae2a564e3627aeb019d09fa9306a4ea6b558ade77600f9dd0ffd7b9a10d19b91",
+    "index": "ed34997db09801c2f016be0797efeccbd6c9d57a9cf89d57dde2a0b23f3133ff",
+    "head": "093986955aa1544fcf18e8334cd6394026fab71a",
+    "branch": "refs/heads/feat/p08-amo-assist-ui-20261005"
+  },
+  "unchanged": true
+}

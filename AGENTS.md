@@ -1,5 +1,11 @@
 # 开发入口
 
+## 当前阿默 UI 收尾状态（2026-10-05 UTC，仅 review）
+
+阿默UI有限收尾：正常合入PR18 d6da224；远端source41efea9 / 本地bb02bf1完整tree36e6f777相同。仅修harness真实回首页与desktop文案重叠，14px/44px不减；390/320的8/9/14及短横/桌面六视口、全草稿/双指cancel/保存同候选重试/一次消费/恢复持久trace不重奖及真实v10-v11普通UI通过。最终2315tests/129files、content/type/build/系统Chromium标准双端smoke/plan通过且源码/index/HEAD保持。原FAIL/source及双方历史保留；六通过图和原FAIL图actual view。仅draft PR20；精确reviewCI另报，main父独审串行，默认v11/旧档/其他五人/素材不动。证据docs/production/evidence/p08-amo-assist-ui-closeout-2026-10-05/summary.json。P08 in_progress，C04 D32及原门槛保持。
+
+以下检查点按各自SHA保留。
+
 ## 阿默 UI 有限收尾接手（2026-10-05 UTC，仅 PR20）
 
 精确起点 a7870b594244b1a0e0222e5c947c1ebb68b5a52f / tree624ad9b951394ba74587dcb0f4a6ef0b70bf9f82，正常合入已审 PR18 d6da22472d1a1cab0b507803cf7df0e8f52565ed（CI37260193953 success）。七卡 resolver/copy 已接；当前仅修十四牌 harness 回首页逻辑、补有限原生草稿/保存/回看与旧 UI 回归。下方双方检查点及 FAIL 保留原身份，不作为本轮通过。默认v11、旧档、其余五人、领域规则、素材不动；main仅父串行放行。P08 in_progress，C04 D32及既有门槛保持。

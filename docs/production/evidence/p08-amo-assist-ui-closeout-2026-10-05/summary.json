@@ -1,0 +1,257 @@
+{
+  "status": "LOCAL_BOUNDED_PASS_REMOTE_EXACT_HEAD_CI_REPORTED_IN_PR20",
+  "localSource": "bb02bf1a9efa5d551e66e4dac4235400bc193ace",
+  "remoteSource": "41efea9be856988245f71fb9a29eaff0d83381cb",
+  "fullSourceTree": "36e6f7772b79b87440fee75827ad4f781d617abb",
+  "startingHead": "a7870b594244b1a0e0222e5c947c1ebb68b5a52f",
+  "mergedParent": "d6da22472d1a1cab0b507803cf7df0e8f52565ed",
+  "publishedMain": "a5cdc5fcb6394b229ad609104d970de3fa460bb7",
+  "remoteSourceParents": [
+    "a7870b594244b1a0e0222e5c947c1ebb68b5a52f",
+    "d6da22472d1a1cab0b507803cf7df0e8f52565ed"
+  ],
+  "treeEquality": "Remote source tree equals the entire frozen local source tree; commit metadata and local intermediate history differ.",
+  "profile": {
+    "id": "amo-assist-v1",
+    "version": "quality-r2-amo-assist-prototype-v1",
+    "hash": "json-fnv-v1:843f02356211cb91",
+    "default": "v11 unchanged"
+  },
+  "changes": [
+    "Normal merge of reviewed PR18, only two documentation conflicts; both histories retained.",
+    "Harness returns through native Previous controls to first candidate page, then traverses Next once; product pagination unchanged.",
+    "Desktop-only copy positions avoid 44px rules control; 14px text and complete two-line explanation.",
+    "Standard smoke accepts explicit system Chromium executable path, without weakening assertions."
+  ],
+  "nativeCases": [
+    {
+      "name": "390-eight",
+      "status": "PASS",
+      "checks": [
+        "real resize and other-tab close/return preserve complete draft and full saved state",
+        "save-and-exit clears only draft/undo; native reload continue preserves state/journal/RNG and does not restore transient selection",
+        "AI clears assist; same-revision undo restores the whole main/assist draft",
+        "valid manual main edits preserve assist; overlap clears it with explanation",
+        "long-press assist detail is explicit/read-only; return preserves, cancel removes the whole side group only",
+        "selection/switch-type pointercancel after420ms preserves full draft/state",
+        "selection/switch-type second-contact owner-first cancellation preserves full draft/state",
+        "action/play pointercancel after420ms preserves full draft/state",
+        "action/play second-contact owner-first cancellation preserves full draft/state",
+        "selection/assist-spades-12+hearts-12 pointercancel after420ms preserves full draft/state",
+        "selection/assist-spades-12+hearts-12 second-contact owner-first cancellation preserves full draft/state",
+        "menu return preserves full draft",
+        "rank authoritative reorder clears both groups and undo with RNG unchanged",
+        "suit authoritative reorder clears both groups and undo with RNG unchanged",
+        "same handRuleReference44px quick entry available",
+        "injected quota pauses unpublished state, native retry saves the same consumed candidate once; reload/recap read saved assist trace",
+        "new hand clears both drafts; spent quota offers no enabled assist group",
+        "native saved assist replay uses persisted full trace and both consumed sets; journal/export/RNG remain unchanged"
+      ],
+      "groupsSeen": 0
+    },
+    {
+      "name": "320-nine",
+      "status": "PASS",
+      "checks": [
+        "AI clears assist; same-revision undo restores the whole main/assist draft",
+        "valid manual main edits preserve assist; overlap clears it with explanation",
+        "selection/switch-type pointercancel after420ms preserves full draft/state",
+        "selection/switch-type second-contact owner-first cancellation preserves full draft/state",
+        "action/play pointercancel after420ms preserves full draft/state",
+        "action/play second-contact owner-first cancellation preserves full draft/state",
+        "selection/assist-spades-12+hearts-12 pointercancel after420ms preserves full draft/state",
+        "selection/assist-spades-12+hearts-12 second-contact owner-first cancellation preserves full draft/state",
+        "menu return preserves full draft",
+        "rank authoritative reorder clears both groups and undo with RNG unchanged",
+        "suit authoritative reorder clears both groups and undo with RNG unchanged",
+        "same handRuleReference44px quick entry available"
+      ],
+      "groupsSeen": 0
+    },
+    {
+      "name": "390-fourteen",
+      "status": "PASS",
+      "checks": [
+        "every visible remainder pair/three candidate is reachable by named44px page controls; selection/cancel is read-only",
+        "same handRuleReference44px quick entry available"
+      ],
+      "groupsSeen": 10
+    },
+    {
+      "name": "320-fourteen",
+      "status": "PASS",
+      "checks": [
+        "every visible remainder pair/three candidate is reachable by named44px page controls; selection/cancel is read-only",
+        "same handRuleReference44px quick entry available"
+      ],
+      "groupsSeen": 10
+    },
+    {
+      "name": "short-triple",
+      "status": "PASS",
+      "checks": [
+        "every visible remainder pair/three candidate is reachable by named44px page controls; selection/cancel is read-only",
+        "same handRuleReference44px quick entry available"
+      ],
+      "groupsSeen": 4
+    },
+    {
+      "name": "desktop-nine",
+      "status": "PASS",
+      "checks": [
+        "same handRuleReference44px quick entry available"
+      ],
+      "groupsSeen": 0
+    }
+  ],
+  "verification": {
+    "relatedTests": 200,
+    "frozenTests": 2315,
+    "frozenTestFiles": 129,
+    "typecheck": "PASS",
+    "content": "PASS",
+    "build": "PASS",
+    "productionPlan": "PASS",
+    "standardSmoke": "PASS desktop1280x720 DPR1/mobile390x740 DPR3, explicit /usr/bin/chromium",
+    "sourceIndexHeadInvariant": "PASS for all three final repository gates and final six-view harness",
+    "publishedProfiles": "PASS real independently frozen v10/v11 at source23c13f0; final change is desktop-only and no published rule content changed"
+  },
+  "protectedObjects": [
+    {
+      "path": "src/domain",
+      "object": "49e4a2148413662d493d9ca18a39797e9165b511",
+      "equalTo": "d6da22472d1a1cab0b507803cf7df0e8f52565ed"
+    },
+    {
+      "path": "src/content",
+      "object": "ca17be0c6bf62c48a98d203519498b3ab1d4af27",
+      "equalTo": "d6da22472d1a1cab0b507803cf7df0e8f52565ed"
+    },
+    {
+      "path": "src/application",
+      "object": "a19aef9b2bbd69d2c1dda11cdf98f3221c3a386f",
+      "equalTo": "d6da22472d1a1cab0b507803cf7df0e8f52565ed"
+    },
+    {
+      "path": "src/platform",
+      "object": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "equalTo": "d6da22472d1a1cab0b507803cf7df0e8f52565ed"
+    },
+    {
+      "path": "src/audio",
+      "object": "a4b9f376c79895628c14904be8886da017e73d74",
+      "equalTo": "a7870b594244b1a0e0222e5c947c1ebb68b5a52f"
+    },
+    {
+      "path": "src/game/JokerMemory.ts",
+      "object": "536afb5174b65f59f75661fd27036bd8ef098b42",
+      "equalTo": "a7870b594244b1a0e0222e5c947c1ebb68b5a52f"
+    },
+    {
+      "path": "src/game/AssistSelection.ts",
+      "object": "2f3792b322cb172c1b9f1b52292810a151b6a209",
+      "equalTo": "a7870b594244b1a0e0222e5c947c1ebb68b5a52f"
+    },
+    {
+      "path": "src/game/ShopScene.ts",
+      "object": "5b5648ccd7b325a395bf4f97e785de819dd7473c",
+      "equalTo": "a7870b594244b1a0e0222e5c947c1ebb68b5a52f"
+    },
+    {
+      "path": "src/game/layout.ts",
+      "object": "b19c29c97c58b2c1af0b8437865e34f210cbc0d2",
+      "equalTo": "a7870b594244b1a0e0222e5c947c1ebb68b5a52f"
+    },
+    {
+      "path": "src/game/ScoreFlame.ts",
+      "object": "e5f57d3fe10b82918701cd8be606f5e3e19c3c63",
+      "equalTo": "a7870b594244b1a0e0222e5c947c1ebb68b5a52f"
+    },
+    {
+      "path": "src/game/RunMenu.ts",
+      "object": "255f58dcf5b243f90ca2275eb68f6689195f8bc1",
+      "equalTo": "a7870b594244b1a0e0222e5c947c1ebb68b5a52f"
+    },
+    {
+      "path": "public/assets",
+      "object": "75423e3216749ba749d5f9e8071c7315f6a56d16",
+      "equalTo": "a7870b594244b1a0e0222e5c947c1ebb68b5a52f"
+    },
+    {
+      "path": "art/sources",
+      "object": "47067728e0f15588b56199ff8ecc3b4e40c2dc53",
+      "equalTo": "a7870b594244b1a0e0222e5c947c1ebb68b5a52f"
+    }
+  ],
+  "failureHistory": [
+    {
+      "report": "desktop-before-FAIL.json",
+      "source": "23c13f037b9fe46304f836e92dc28c4fdec5a22e",
+      "reason": "Real1280x720 rules/count and explanation overlap; fixed by desktop-only layout in final source."
+    },
+    {
+      "report": "browser-missing-FAIL.json",
+      "source": "23c13f037b9fe46304f836e92dc28c4fdec5a22e",
+      "reason": "Playwright managed executable absent; final standard smoke used existing system Chromium via explicit option."
+    },
+    {
+      "reason": "Pre-handoff14-page harness FAIL reported by parent; previous raw record not in recovered checkout. Existing original checkpoint FAIL remains untouched. No invented replay of that failed run."
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "320-fourteen.png",
+      "sha256": "de5dcf57c6f73005f51e66c31836bae9e004a7b4e7bfb7fd005c5b7a9cbc2b3c",
+      "bytes": 66330,
+      "actualView": true,
+      "source": "bb02bf1a9efa5d551e66e4dac4235400bc193ace"
+    },
+    {
+      "file": "320-nine.png",
+      "sha256": "1851bb7b8829d39f491615e2b6eeed3c5f630b7dbc53f0f2860555b355b589df",
+      "bytes": 63179,
+      "actualView": true,
+      "source": "bb02bf1a9efa5d551e66e4dac4235400bc193ace"
+    },
+    {
+      "file": "390-eight.png",
+      "sha256": "92cb47e9d6c09c5d575a9663b8e68ab5998bc425fe93ae3c76ac4484c395c93a",
+      "bytes": 74196,
+      "actualView": true,
+      "source": "bb02bf1a9efa5d551e66e4dac4235400bc193ace"
+    },
+    {
+      "file": "390-fourteen.png",
+      "sha256": "f65b86424fa7f953bcf20332ba8edb9998c7f8b0fb01a9fed7831c60e48ba7fd",
+      "bytes": 89827,
+      "actualView": true,
+      "source": "bb02bf1a9efa5d551e66e4dac4235400bc193ace"
+    },
+    {
+      "file": "desktop-nine-FAIL.png",
+      "sha256": "7c6afc2306575213e2253f19819e096669b91c16c1eada9b45e307e2b7624a6d",
+      "bytes": 92918,
+      "actualView": true,
+      "source": "23c13f037b9fe46304f836e92dc28c4fdec5a22e"
+    },
+    {
+      "file": "desktop-nine.png",
+      "sha256": "280b99477a2690eb432fb69ad23469919de176ad097850bbd6218f32e51fde40",
+      "bytes": 96076,
+      "actualView": true,
+      "source": "bb02bf1a9efa5d551e66e4dac4235400bc193ace"
+    },
+    {
+      "file": "short-triple.png",
+      "sha256": "e3adc5a4b311071f22da8c39eb5630175af9c5551b32457a83085a1e623f142d",
+      "bytes": 67410,
+      "actualView": true,
+      "source": "bb02bf1a9efa5d551e66e4dac4235400bc193ace"
+    }
+  ],
+  "limits": [
+    "Review only; main unchanged and awaits parent independent review.",
+    "Controlled validator-approved fixtures/software Canvas; no natural acquisition/balance/physical device/GPU/FPS/audio acceptance.",
+    "No other five-character implementation, asset generation, tutorial/network expansion or old-save migration/deletion."
+  ]
+}
