@@ -1,0 +1,110 @@
+{
+  "status": "BOUNDED_REVIEW_PASS",
+  "base": "d1dfb90d39b23ced76ef41a312269af76fe95260",
+  "source": "1024ad58c3ad90d9f16c9d6144798f8ca49e9cde",
+  "sourceTree": "d99e863dde75c533d2df8fe8d68d22526ae78df1",
+  "branch": "review/p08-amo-launch-recovery-20261005",
+  "draftPR": "https://github.com/big-dimple/dachoupai/pull/21",
+  "firstSource": "51c24dde6c7015033e766e412d37aa26b2b81ee9",
+  "firstSourceCI": {
+    "CI": 37271660696,
+    "production-docs": 37271660810,
+    "conclusion": "success"
+  },
+  "finalHeadCI": "Required and reported in final handoff; not preclaimed here.",
+  "tests": {
+    "files": 130,
+    "tests": 2327,
+    "status": "PASS"
+  },
+  "frozen": {
+    "status": "PASS",
+    "before": {
+      "source": "f9bce71320bca5ffee629e123ed7edbf23b35a899398e4f4e418ef42c777c81d",
+      "index": "8964a152b52d7b6f34ee82ff353cad5f9b71a92f9d839b66d6a12981371b9f3b",
+      "head": "1024ad58c3ad90d9f16c9d6144798f8ca49e9cde",
+      "branch": "refs/heads/review/p08-amo-launch-recovery-20261005"
+    },
+    "after": {
+      "source": "f9bce71320bca5ffee629e123ed7edbf23b35a899398e4f4e418ef42c777c81d",
+      "index": "8964a152b52d7b6f34ee82ff353cad5f9b71a92f9d839b66d6a12981371b9f3b",
+      "head": "1024ad58c3ad90d9f16c9d6144798f8ca49e9cde",
+      "branch": "refs/heads/review/p08-amo-launch-recovery-20261005"
+    }
+  },
+  "native": {
+    "source": "1024ad58c3ad90d9f16c9d6144798f8ca49e9cde",
+    "unchanged": true,
+    "cases": [
+      {
+        "name": "select-320",
+        "status": "PASS",
+        "checks": [
+          "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+          "normal Title → CharacterSelect → Shop creates frozen assist identity after explicit confirmation"
+        ]
+      },
+      {
+        "name": "select-390",
+        "status": "PASS",
+        "checks": [
+          "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+          "normal Title → CharacterSelect → Shop creates frozen assist identity after explicit confirmation",
+          "one natural discard retains two pairs and draws third pair; legal main+assist scores 316; save/reload/replay preserves full state, journal and export",
+          "natural loss → same-seed retry preserves precise profile/mode/role/seed; journal and assist quota reset; same initial deal",
+          "native new-run cancel preserves saved run; quota at atomic meta write retains original DB/pointer and one exact candidate across retry; cancel candidate preserves original"
+        ]
+      },
+      {
+        "name": "select-short",
+        "status": "PASS",
+        "checks": [
+          "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+          "normal Title → CharacterSelect → Shop creates frozen assist identity after explicit confirmation"
+        ]
+      },
+      {
+        "name": "select-desktop",
+        "status": "PASS",
+        "checks": [
+          "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+          "normal Title → CharacterSelect → Shop creates frozen assist identity after explicit confirmation"
+        ]
+      }
+    ]
+  },
+  "actualViewed": [
+    "select-320.png",
+    "select-390.png",
+    "natural-assist-draft.png",
+    "natural-assist-restored.png",
+    "natural-failed.png",
+    "select-short.png",
+    "select-desktop.png"
+  ],
+  "identity": {
+    "assistVersion": "quality-r2-amo-assist-prototype-v1",
+    "assistHash": "json-fnv-v1:843f02356211cb91",
+    "defaultCreateRun": "v11",
+    "normalOtherFive": "v11",
+    "retry": [
+      "exact v10",
+      "exact v11",
+      "exact assist"
+    ]
+  },
+  "retainedFailures": [
+    "first-related-FAIL.txt",
+    "first-native-FAIL/report.json",
+    "first-native-FAIL/console.txt",
+    "first-native-FAIL/visual-review.txt"
+  ],
+  "notRun": [
+    "physical OnePlus",
+    "real GPU/FPS/video",
+    "listening",
+    "whole-game aesthetics",
+    "six-character balance"
+  ],
+  "publication": "Review only; main belongs to parent."
+}
