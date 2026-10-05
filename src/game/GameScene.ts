@@ -793,6 +793,7 @@ export class GameScene extends Phaser.Scene {
     const stage=this.run.stage!,context=r2ScoreContext(this.run,this.hand,[]);
     return{...this.candidateInput(),boss:context.boss,sealedJokerIds:context.sealedJokerIds,challengeDisabledJokerId:context.challengeDisabledJokerId,score:{characterId:context.characterId,amoScoreTiming:context.amoScoreTiming,jokerSlots:context.jokerSlots,handLevels:this.run.handLevels,previousHandType:stage.previousHandType,previousHandScore:context.previousHandScore,wager:stage.wagerSelected}};
   }
+  private cancelAiCandidates():void {this.aiCandidates.dispose();this.aiCursor=undefined;}
   private candidateEntry():string {
     const result=this.candidates.result;
     return result?.status==='ready'?'本轮可成'+result.groups.length+'种 · 查看':result?.status==='working'?'本轮牌型整理中 · 选牌照常':'选择说明 · 完整规则 ›';
@@ -886,7 +887,7 @@ export class GameScene extends Phaser.Scene {
     if(this.scene.isActive())showDeckInspection(this.dialog,this.run);
   }
   private async command(action:import('../domain/run').Action,expectedSeq?:number):Promise<boolean> {
-    if(!this.ready)return false;this.clearHover();this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();
+    if(!this.ready)return false;this.clearHover();this.cancelAiCandidates();this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();
     const focusedId=this.hand[this.focusIndex]?.id;
     const beforeGold=this.run.gold,beforeDiscards=this.run.stage?.discardsLeft,beforeHand=this.hand,used=action.type==='UseConsumable'?this.run.consumables.find(item=>item.instanceId===action.instanceId):undefined;
     try {
@@ -1111,7 +1112,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private async discardSelected():Promise<void> {
-    if(!this.ready||!this.selectedIds.size||this.run.stage!.discardsLeft<r2DiscardCost(this.run))return;this.clearHover();this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,selectedIds=[...this.selectedIds],previousIds=[...this.run.handOrder],beforeDiscards=this.run.stage!.discardsLeft,spentDiscards=beforeDiscards-r2DiscardCost(this.run);
+    if(!this.ready||!this.selectedIds.size||this.run.stage!.discardsLeft<r2DiscardCost(this.run))return;this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,selectedIds=[...this.selectedIds],previousIds=[...this.run.handOrder],beforeDiscards=this.run.stage!.discardsLeft,spentDiscards=beforeDiscards-r2DiscardCost(this.run);
     try {
       const result=await dispatchRun(this,{type:'DiscardHand',selectedIds});
       if(!this.alive(lifecycle,intent))return;
@@ -1134,7 +1135,7 @@ export class GameScene extends Phaser.Scene {
   private async playSelected():Promise<void> {
     if(!this.ready||this.selectedIds.size===0||this.handsLeft<=0)return;
     const selectedIds=[...this.selectedIds],lifecycle=this.lifecycle,intent=++this.intent,beforeHeat=this.heat,previousTrace=this.run.lastTrace,beforeHands=this.handsLeft,beforeGold=this.run.gold;
-    this.clearHover();this.playing=true;this.statusMessage='';this.updateControls();
+    this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();
     const selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id));
     try {
       const result=await dispatchRun(this,{type:'PlayHand',selectedIds});
