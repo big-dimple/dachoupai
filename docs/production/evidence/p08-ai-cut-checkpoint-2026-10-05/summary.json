@@ -1,0 +1,37 @@
+{
+  "taskId": "P08",
+  "status": "IN_PROGRESS",
+  "baseMain": "8e0daae74efd56969886d1fdb2c28df404af27e0",
+  "testedCommit": "ad128141531098330f50098b71c86a3c9176db1e",
+  "ranking": {
+    "status": "IMPLEMENTED",
+    "policy": "Non-high-card patterns first, then descending public score lower bound; high-card last fallback. Ties use fewer cards, then current seat order. First tap resets to strongest; repeated taps cycle. Selection only.",
+    "publicInputs": "Saved v10/v11 character policy, visible modifiers, current levels/resources and stage boss; no private RNG or future cards.",
+    "async": "Keyed idle-slice cache, stale cancellation and disposal."
+  },
+  "checks": {
+    "affectedTests": "PASS:45 tests /3 files",
+    "typecheck": "PASS",
+    "native390": "FAIL: checker expected dash while actual forecast text was empty; first straight selection type matched before assertion. Remaining native checks NOT_RUN; zero screenshots.",
+    "browserBuild": "PASS: exact clean tested revision; software Canvas only",
+    "CI": "NOT_RUN: review push failed; GitHub HTTPS credentials unavailable"
+  },
+  "referenceImage": {
+    "actualView": "BLOCKED",
+    "attempts": 2,
+    "error": "Both mandated helper materializations exited1: library file transfer failed: download failed. No HTTP status exposed. Retry allowance exhausted."
+  },
+  "layout": {
+    "status": "NOT_IMPLEMENTED",
+    "decision": "Requires actual view of the required reference image before relocation. Existing button label/location retained; preview scoring display unchanged."
+  },
+  "remaining": [
+    "Restore readable reference image via authorized Library flow before layout",
+    "Bounded checker correction for current no-forecast display semantics; retain first FAIL",
+    "Implement and verify 320/390/short-layout grouping,9-card page and44px controls",
+    "Representative screenshots and exact review CI",
+    "Final required frozen verification after implementation"
+  ],
+  "mainAdvanced": false,
+  "reviewDelivery": "LOCAL_ONLY: git push failed: could not read Username for https://github.com: No such device or address"
+}

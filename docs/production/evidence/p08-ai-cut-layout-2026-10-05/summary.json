@@ -1,0 +1,30 @@
+{
+  "taskId": "P08",
+  "status": "IN_PROGRESS",
+  "baseMain": "8e0daae74efd56969886d1fdb2c28df404af27e0",
+  "testedCommit": "4bdf10c85ace06064f4f531aeba4412927fcbfa2",
+  "screenshot": "390-ai-cut-layout-first.png",
+  "actualView": "PASS: current runtime baseline320/390/844 and first390 arrangement; required original photo NOT_READ, parent explicitly authorized independent current UI work.",
+  "layout": {
+    "portrait": "Three44px sorting seats in existing utility strip above hand; tool bag right. Existing discard/play widths preserved and centered. Overflow count reuses vacated bottom seat.",
+    "landscape": "Sorting expands44px into spare left gutter; main action dimensions/positions preserved; bag112px and status narrower to avoid group.",
+    "protected": "Nine hand seats, score/fire geometry, domain rules/RNG/save, effects and assets unchanged."
+  },
+  "checks": {
+    "affectedTests": "104/104 PASS across6files",
+    "typecheck": "PASS",
+    "native390Cycle": "v11 straight→flush→pair→high-card→straight; after each exact full saved state unchanged including RNG, no predicted score displayed.",
+    "native390Undo": "FAIL: undo disabled. AI used actual stage-boss revision but shared undo used existing candidate revision. One-line correction made after this report; correction NOT_RUN.",
+    "v10Native": "NOT_RUN after v11 failure; unit old/new profile checks PASS",
+    "320ShortNativeTouch": "NOT_RUN: geometric tests PASS; baseline views only",
+    "sourceFreeze": "before/after4bdf source/index/head identical; browser overall FAIL retained",
+    "CI": "NOT_RUN: new API review creation pending"
+  },
+  "next": [
+    "Parent direction review of first390 screenshot",
+    "Verify one-line undo correction natively under saved v10/v11",
+    "Native320/short safe-inset controls, cancellation, rank/suit clears selection",
+    "Final bounded frozen verification and exact review CI"
+  ],
+  "mainAdvanced": false
+}

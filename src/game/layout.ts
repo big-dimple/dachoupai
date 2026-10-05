@@ -140,10 +140,15 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const sortWidth=88,gap=6,remaining=l.actions.width-sortWidth-2*gap;
   const discardWidth=Math.min(remaining-44,Math.max(l.tableActions.discard.width+8,Math.min(112,Math.floor(remaining*.4))));
   const {x,y,height:actionHeight}=l.actions;
-  l.buttons={rank:box(x,y,44,actionHeight),suit:box(x+44,y,44,actionHeight)};
-  l.tools=box(x,y,sortWidth,actionHeight);l.toolsInHud=false;
-  l.tableActions={discard:box(x+sortWidth+gap,y,discardWidth,actionHeight),play:box(x+sortWidth+2*gap+discardWidth,y,remaining-discardWidth,actionHeight)};
-  return l;
+  const originalActions={discard:box(x+sortWidth+gap,y,discardWidth,actionHeight),play:box(x+sortWidth+2*gap+discardWidth,y,remaining-discardWidth,actionHeight)};
+  // Sorting uses the existing utility row on phones. Wider tables extend its
+  // former bottom group leftward; neither submit nor discard loses any width.
+  const tools=portrait?box(l.hand.x,l.hand.y-48,132,44):box(x-44,y,132,actionHeight);
+  const buttons={rank:box(tools.x,tools.y,44,tools.height),suit:box(tools.x+44,tools.y,44,tools.height),ai:box(tools.x+88,tools.y,44,tools.height)};
+  const actionStart=portrait&&!l.handOverflow?x+(sortWidth+gap)/2:x+sortWidth+gap;
+  const tableActions=portrait&&!l.handOverflow?{discard:box(actionStart,y,discardWidth,actionHeight),play:box(actionStart+discardWidth+gap,y,remaining-discardWidth,actionHeight)}:originalActions;
+  const status=l.mode==='landscape'?{...l.status,width:Math.min(l.status.width,tools.x-l.status.x-6)}:l.status;
+  return {...l,buttons,tools,toolsInHud:false,tableActions,status};
 }
 export type TableLayout=ReturnType<typeof layout>;
 

@@ -6,16 +6,17 @@ import {HAND_ACTION_LINES,drawHandActionGlyph,handActionContent,handActionCountC
 import {PAPER_THEME,PAPER_CSS} from '../src/game/theme';
 const profiles=[[390,740,0,0,70],[320,568,0,0,106],[844,300,12,12,228],[844,300,12,34,228]];
 const layouts=()=>profiles.map(([width,height,top,bottom])=>layout({width,height},{top,bottom,left:0,right:0},undefined,{count:9}));
-describe('three groups share the existing bottom action row',()=>{
+describe('sorting shares one group beside the unchanged primary action sizes',()=>{
  it('preserves the complete non-control layout from main88b17e2, including every hand seat and vertical budget',()=>{
-  const fixed=layouts().map(l=>{const {buttons,tableActions,tools,toolsInHud,...rest}=l;return rest;});
+  // Short-landscape status only gives its former spare right gutter to AI.
+  const fixed=layouts().map(l=>{const {buttons,tableActions,tools,toolsInHud,...rest}=l;return {...rest,status:l.mode==='landscape'?{...rest.status,width:l.hud.width}:rest.status};});
   expect(createHash('sha256').update(JSON.stringify(fixed)).digest('hex')).toBe('cff0c393264eb2e2508c92a6f155ca5de319e6b1868fe42430d6adfa331dcb8c');
  });
- it.each(profiles)('%s×%s safe %s/%s keeps two44px sort targets together, enlarges discard and fits all four targets', (width,height,top,bottom,oldDiscard)=>{
+ it.each(profiles)('%s×%s safe %s/%s keeps three44px sort targets together and preserves primary dimensions', (width,height,top,bottom,oldDiscard)=>{
   const l=layout({width,height},{top,bottom,left:0,right:0},undefined,{count:9});
-  expect(l.tools.width).toBe(88);expect(l.tools.y).toBe(l.actions.y);expect(l.buttons.rank.x).toBe(l.actions.x);expect(l.buttons.suit.x).toBe(l.buttons.rank.x+44);expect(l.tableActions.discard.width).toBeGreaterThan(oldDiscard);
+  expect(l.tools.width).toBe(132);expect(l.tools.y).toBe(l.mode==='portrait'?l.hand.y-48:l.actions.y);expect(l.buttons.rank.x).toBe(l.tools.x);expect(l.buttons.suit.x).toBe(l.buttons.rank.x+44);expect(l.buttons.ai.x).toBe(l.buttons.rank.x+88);expect(l.tableActions.discard.width).toBeGreaterThan(oldDiscard);
   const controls=[...Object.values(l.buttons),...Object.values(l.tableActions)];
-  for(const b of controls){expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.y).toBe(l.actions.y);expect(b.height).toBe(l.actions.height);expect(b.x).toBeGreaterThanOrEqual(l.actions.x);expect(b.x+b.width).toBeLessThanOrEqual(l.actions.x+l.actions.width+.01);expect(b.y+b.height).toBeLessThanOrEqual(height-bottom);expect(intersects(b,l.hand)).toBe(false);}
+  for(const b of controls){expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.x).toBeGreaterThanOrEqual(l.hud.x);expect(b.x+b.width).toBeLessThanOrEqual(width);expect(b.y+b.height).toBeLessThanOrEqual(height-bottom);expect(intersects(b,l.hand)).toBe(false);}
   for(let i=0;i<controls.length;i++)for(let j=i+1;j<controls.length;j++)expect(intersects(controls[i],controls[j])).toBe(false);
   for(const b of Object.values(l.tableActions)){const c=handActionContent(b);expect(c.text.width).toBeGreaterThanOrEqual(32);expect(c.glyph.x+c.glyph.width).toBeLessThan(c.text.x);expect(c.glyph.y).toBeGreaterThan(b.y);expect(c.glyph.y+c.glyph.height).toBeLessThan(b.y+b.height);expect(c.countY+10).toBeLessThan(b.y+b.height);}
  });

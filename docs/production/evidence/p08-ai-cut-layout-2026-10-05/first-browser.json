@@ -1,0 +1,97 @@
+{
+  "taskId": "P08",
+  "testedCommit": "4bdf10c85ace06064f4f531aeba4412927fcbfa2",
+  "scope": "Current UI layout/ranking checkpoint; required source photo was not read, parent owns comparison",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-05T01:14:09.232Z",
+    "revision": "4bdf10c85ace06064f4f531aeba4412927fcbfa2",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "151.0.7922.173",
+  "renderer": "Chromium software Canvas",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "fixture": "Two validator-approved synthetic9-card visible hands under saved v10/v11 identities; three owned modifiers, no natural acquisition claim.",
+  "cases": [
+    {
+      "profile": "v11",
+      "picks": [
+        {
+          "type": "straight",
+          "selected": [
+            "hearts-12",
+            "hearts-11",
+            "hearts-10",
+            "spades-9",
+            "clubs-8"
+          ],
+          "total": ""
+        },
+        {
+          "type": "flush",
+          "selected": [
+            "hearts-14",
+            "hearts-12",
+            "hearts-11",
+            "hearts-10",
+            "hearts-3"
+          ],
+          "total": ""
+        },
+        {
+          "type": "pair",
+          "selected": [
+            "spades-14",
+            "hearts-14"
+          ],
+          "total": ""
+        },
+        {
+          "type": "high-card",
+          "selected": [
+            "spades-14"
+          ],
+          "total": ""
+        },
+        {
+          "type": "straight",
+          "selected": [
+            "hearts-12",
+            "hearts-11",
+            "hearts-10",
+            "spades-9",
+            "clubs-8"
+          ],
+          "total": ""
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "390-ai-cut-layout-first.png"
+  ],
+  "sourceFreeze": {
+    "before": {
+      "source": "2bec1789a0155750e6b72b8f3580ed31e9a7824611b2ae5777effcfe1d854c4e",
+      "index": "cbe41cc587c428eb29466c5b47397b82cf83f25bddacd4bcf65218afbfd418a7",
+      "head": "4bdf10c85ace06064f4f531aeba4412927fcbfa2",
+      "branch": "refs/heads/feat/p08-ai-cut-20261005"
+    },
+    "after": {
+      "source": "2bec1789a0155750e6b72b8f3580ed31e9a7824611b2ae5777effcfe1d854c4e",
+      "index": "cbe41cc587c428eb29466c5b47397b82cf83f25bddacd4bcf65218afbfd418a7",
+      "head": "4bdf10c85ace06064f4f531aeba4412927fcbfa2",
+      "branch": "refs/heads/feat/p08-ai-cut-20261005"
+    }
+  },
+  "layout": "IMPLEMENTED; portrait utility row / wider bottom row",
+  "referenceImageActualView": "NOT_READ; parent explicitly authorized independent current-page layout",
+  "status": "FAIL",
+  "error": "TimeoutError: locator.tap: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '撤销换组', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button disabled>撤销换组</button>\u001b[22m\n\u001b[2m  - attempting tap action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    56 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying tap action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+}
