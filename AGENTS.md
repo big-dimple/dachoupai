@@ -1,5 +1,11 @@
 # 开发入口
 
+## 首个阿默 UI 检查点（2026-10-05 UTC，仅 review）
+
+基于已部署a5及对齐领域1d8400d；UI source c334f7a。显式新profile内联主手/副组、390与短横软件Canvas触控和真实助攻保存结果已过有界检查，两图actual view。58相关tests/type/plan通过，首轮FAIL按原source保留；未main、未完成最终冻结。F七卡resolver/copy、320/14、全草稿撤销/AI/排序和保存重试回看待继续。P08仍in_progress，C04 D32暂停、resumeContract和V01/L01保持。证据 docs/production/evidence/p08-amo-assist-ui-checkpoint-2026-10-05。
+
+以下为原领域对齐检查点（原状态按原SHA保留）
+
 ## 当前调度摘要（2026-10-05 UTC）
 
 已核 main `a5cdc5fcb6394b229ad609104d970de3fa460bb7`，父确认 AI切已发布。本 review 正常合入该基线，AI切/GameScene/选择布局原样保留；阿默领域/严格保存/纯facts及跨普通手持续消费修复 `693d019` 仍只在 review，未接UI、未上线、未推main。[原型合同](docs/production/AMO_ASSIST_PROTOTYPE.md)。下一有界任务只做新profile七卡定义/文案适配，旧v10/v11与其余65卡保持；B随后单一窗口接UI。双方原证据和FAIL按各自SHA保留，不把源码/CI通过称为平衡或真机通过。P08仍in_progress，C04 D32图鉴教程历史联网暂停，resumeContract及B00/V01/L01、OnePlus/GPU/听感门槛保持。

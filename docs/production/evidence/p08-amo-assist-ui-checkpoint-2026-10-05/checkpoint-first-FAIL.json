@@ -1,0 +1,276 @@
+{
+  "testedCommit": "711ae298342f18a08d7ad841b292f19076aa46db",
+  "sourceBefore": {
+    "source": "c8e4f45b6f2ee215e2b65af10b912e4119715c0e86676741d8c778e03dfe04ba",
+    "index": "f973c70a5eb0db1791888a84bdcee34462d12cec728a89591f118632ef7fe89d",
+    "head": "711ae298342f18a08d7ad841b292f19076aa46db",
+    "branch": "refs/heads/feat/p08-amo-assist-ui-20261005"
+  },
+  "scope": "Controlled new-profile visible hand. Software Canvas, native touch, no natural acquisition or device/balance acceptance.",
+  "runs": [
+    {
+      "spec": {
+        "name": "assist-390",
+        "width": 390,
+        "height": 740,
+        "top": 0,
+        "bottom": 0
+      },
+      "status": "FAIL",
+      "checks": [
+        "main plus assist drafting is read-only for full state, journal, export and RNG",
+        "420ms held play followed by pointercancel submits nothing",
+        "menu return preserves complete draft"
+      ],
+      "errors": [],
+      "geometry": {
+        "renderer": 1,
+        "score": {
+          "x": 12,
+          "y": 153.6,
+          "width": 366,
+          "height": 132
+        },
+        "played": {
+          "x": 12,
+          "y": 305.6,
+          "width": 366,
+          "height": 226.79999999999995
+        },
+        "controls": [
+          {
+            "name": "selection/assist-spades-12+hearts-12",
+            "bounds": {
+              "type": 5,
+              "x": 22,
+              "y": 213.6,
+              "width": 170,
+              "height": 44.00000000000003
+            },
+            "label": "Q♠ Q♥\n取消助攻",
+            "labelBounds": {
+              "type": 5,
+              "x": 79,
+              "y": 218,
+              "width": 56,
+              "height": 34
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "spades-9",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "assist": "主",
+            "tagBounds": {
+              "type": 5,
+              "x": 33,
+              "y": 610.5000122070312,
+              "width": 22,
+              "height": 19
+            }
+          },
+          {
+            "id": "hearts-9",
+            "bounds": {
+              "type": 5,
+              "x": 49.75,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "assist": "主",
+            "tagBounds": {
+              "type": 5,
+              "x": 70.75,
+              "y": 610.5000122070312,
+              "width": 22,
+              "height": 19
+            }
+          },
+          {
+            "id": "clubs-13",
+            "bounds": {
+              "type": 5,
+              "x": 87.5,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "assist": "主",
+            "tagBounds": {
+              "type": 5,
+              "x": 108.5,
+              "y": 610.5000122070312,
+              "width": 22,
+              "height": 19
+            }
+          },
+          {
+            "id": "diamonds-13",
+            "bounds": {
+              "type": 5,
+              "x": 125.25,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "assist": "主",
+            "tagBounds": {
+              "type": 5,
+              "x": 146.25,
+              "y": 610.5000122070312,
+              "width": 22,
+              "height": 19
+            }
+          },
+          {
+            "id": "spades-12",
+            "bounds": {
+              "type": 5,
+              "x": 163,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "assist": "助",
+            "tagBounds": {
+              "type": 5,
+              "x": 184,
+              "y": 610.5000122070312,
+              "width": 22,
+              "height": 19
+            }
+          },
+          {
+            "id": "hearts-12",
+            "bounds": {
+              "type": 5,
+              "x": 200.75,
+              "y": 542.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "assist": "助",
+            "tagBounds": {
+              "type": 5,
+              "x": 221.75,
+              "y": 610.5000122070312,
+              "width": 22,
+              "height": 19
+            }
+          },
+          {
+            "id": "clubs-6",
+            "bounds": {
+              "type": 5,
+              "x": 238.5,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "assist": "主",
+            "tagBounds": null
+          },
+          {
+            "id": "diamonds-7",
+            "bounds": {
+              "type": 5,
+              "x": 276.25,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "assist": "主",
+            "tagBounds": null
+          },
+          {
+            "id": "clubs-2",
+            "bounds": {
+              "type": 5,
+              "x": 314,
+              "y": 558.4000122070313,
+              "width": 64,
+              "height": 89.59999999999991
+            },
+            "assist": "主",
+            "tagBounds": null
+          }
+        ],
+        "copies": [
+          {
+            "text": "主手 4 · 计分 4 · 留手 3",
+            "fullText": "主手 4 · 计分 4 · 留手 3",
+            "bounds": {
+              "type": 5,
+              "x": 123,
+              "y": 187.6,
+              "width": 144,
+              "height": 16
+            }
+          },
+          {
+            "text": "本场助攻 1/1 · 已选×2",
+            "fullText": "本场助攻 1/1 · 已选×2",
+            "bounds": {
+              "type": 5,
+              "x": 127,
+              "y": 263.6,
+              "width": 136,
+              "height": 16
+            }
+          },
+          {
+            "text": "助攻会一同用掉，不算主手或留手牌",
+            "fullText": "助攻会一同用掉，不算主手或留手牌",
+            "bounds": {
+              "type": 5,
+              "x": 83,
+              "y": 307.6,
+              "width": 224,
+              "height": 16
+            }
+          },
+          {
+            "text": "AI只整理主手，助攻自己选",
+            "fullText": "AI只整理主手，助攻自己选",
+            "bounds": {
+              "type": 5,
+              "x": 111,
+              "y": 514.4,
+              "width": 168,
+              "height": 16
+            }
+          }
+        ],
+        "forecast": {
+          "visible": false,
+          "text": ""
+        }
+      },
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(c.bounds.x>=0&&c.bounds.y>=spec.top&&c.bounds.right<=spec.width&&c.bounds.bottom<=spec.height-spec.bottom)\n"
+    }
+  ],
+  "screenshots": [],
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-05T02:45:05.244Z",
+    "revision": "711ae298342f18a08d7ad841b292f19076aa46db",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "151.0.7922.173",
+  "sourceAfter": {
+    "source": "c8e4f45b6f2ee215e2b65af10b912e4119715c0e86676741d8c778e03dfe04ba",
+    "index": "f973c70a5eb0db1791888a84bdcee34462d12cec728a89591f118632ef7fe89d",
+    "head": "711ae298342f18a08d7ad841b292f19076aa46db",
+    "branch": "refs/heads/feat/p08-amo-assist-ui-20261005"
+  },
+  "unchanged": true
+}

@@ -1,0 +1,72 @@
+{
+  "remoteUiSource": "c334f7a899a6efdfd1859ae2ff22c58c7dbb19ef",
+  "localTestedSource": "5d3995dc53dcda20ede909dd00930e2a21478af7",
+  "sourceRootTree": "3d52f7355d1c4057f6ac38727c4497200fc684e9",
+  "remoteDomainParent": "1d8400db2f1667992a13024bf7530ed7615e1a71",
+  "deployedMain": "a5cdc5fcb6394b229ad609104d970de3fa460bb7",
+  "localRemoteTreeEquality": "Both source roots equal 3d52f7355d1c4057f6ac38727c4497200fc684e9. Only Git commit metadata differ.",
+  "protectedObjects": [
+    {
+      "path": "src/domain",
+      "object": "9b3154d2fb537c152a3fdf5504e1f07afb9eb3df",
+      "unchangedFromDomainParent": true
+    },
+    {
+      "path": "src/application",
+      "object": "fe850247d858ed76230cae54d8d6d32716d4769e",
+      "unchangedFromDomainParent": true
+    },
+    {
+      "path": "src/platform",
+      "object": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "unchangedFromDomainParent": true
+    },
+    {
+      "path": "src/content",
+      "object": "cec787d144468e0a3e39bda0593ca0433e9f1853",
+      "unchangedFromDomainParent": true
+    },
+    {
+      "path": "src/audio",
+      "object": "a4b9f376c79895628c14904be8886da017e73d74",
+      "unchangedFromDomainParent": true
+    },
+    {
+      "path": "src/game/ScoreFlame.ts",
+      "object": "e5f57d3fe10b82918701cd8be606f5e3e19c3c63",
+      "unchangedFromDomainParent": true
+    },
+    {
+      "path": "public/assets",
+      "object": "75423e3216749ba749d5f9e8071c7315f6a56d16",
+      "unchangedFromDomainParent": true
+    },
+    {
+      "path": "art/sources",
+      "object": "47067728e0f15588b56199ff8ecc3b4e40c2dc53",
+      "unchangedFromDomainParent": true
+    },
+    {
+      "path": "src/game/layout.ts",
+      "object": "b19c29c97c58b2c1af0b8437865e34f210cbc0d2",
+      "unchangedFromDomainParent": true
+    },
+    {
+      "path": "src/game/RunMenu.ts",
+      "object": "191ec125713b568bc5b7d84da5ed73658904dce0",
+      "unchangedFromDomainParent": true
+    }
+  ],
+  "images": {
+    "assist-390.png": "2e5796bff28dd243b2381513239abdd960547e0aa26ea76f0b4e3b485381821f",
+    "assist-short.png": "79ef852a7d20c4fe6be37f73a3036f65e0e473551c4608191a264d6729fd7ae2"
+  },
+  "status": "FIRST_CHECKPOINT_NOT_RELEASE_ACCEPTANCE",
+  "remaining": [
+    "F seven-card profile resolver and pure copy interfaces",
+    "320 and14 card bounded native checks",
+    "AI reset and whole-draft undo/sort interactions",
+    "new-profile save pause/retry, reload and persisted assist recap/replay",
+    "short copy visibility and small card badge refinement"
+  ]
+}
