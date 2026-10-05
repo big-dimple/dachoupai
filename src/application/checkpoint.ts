@@ -158,7 +158,7 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
   const eventIds=new Set<unknown>(),rootEventIds:unknown[]=[],destroyedCards:string[]=[],destroyedJokers:string[]=[],glassHits=new Set<string>(),heldGoldSources=new Set<string>();let luckyGold=0n;
   const coefficients=new Map([...jokerSources.values()].filter(joker=>Object.hasOwn(joker.growth,'coefficient')).map(joker=>[joker.instanceId,Rational.fromJSON(joker.growth.coefficient)]));
   const coefficientReads=new Set<string>(),coefficientChanges=new Set<string>(),chanceChecks=new Map<string,boolean>(),chanceHeat=new Set<string>(),clearCycles=new Map<string,number>(),rewardSources=new Set<string>(),handRefunds=new Set<string>();
-  const assistWholeEffects=new Set<string>();
+  const assistWholeEffects=new Set<string>(),assistEditionSources=new Set<string>();
   const emptySlotRewards=new Set<string>();
   const lifetimeCounts=new Map<string,number>(),rescues=new Set<string>();let previousEvent:Record<string,unknown>|undefined;
   const sealTargets:string[]=[];let halves=0,finalSeen=false,clearSeen=false;
@@ -202,7 +202,26 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
     if(e.sourceType==='character'&&(boss?.definitionId==='B08'||!context.config.characterAbilityEnabled)&&e.phase==='characterScore')fail('invalid-save-disabled-character-event');
     if(e.sourceType==='rule'&&(e.sourceInstanceId!==context.runId||![t.handType,'B02','B05','B12','B15',...clearRuleDefinitions,...programRuleDefinitions].includes(e.sourceDefinitionId)))fail('invalid-save-rule-source');
     const amount=Rational.fromJSON(e.value);
-    if(prototype&&e.sourceType==='joker'&&sourceJoker&&R2_ASSIST_ADAPTED_IDS.includes(sourceJoker.definitionId)&&!(e.reasonKey as string).startsWith('edition.')){
+    const adaptedJoker=prototype&&e.sourceType==='joker'&&sourceJoker&&R2_ASSIST_ADAPTED_IDS.includes(sourceJoker.definitionId);
+    let validatedEdition=false;
+    if(adaptedJoker){
+      if((e.reasonKey as string).startsWith('edition.')){
+        // A display reason is only a claim. Prove the exception against the saved
+        // instance and the existing edition matrix before bypassing its body hook.
+        const edition=R2_TOOL_CATALOG.editions.find(row=>row.id===(sourceJoker!.edition??'none')),effect=edition?.effect;
+        if(!effect||!edition!.appliesTo.includes('joker')||edition!.jokerTiming!=='after-own-jokerScore'||
+          e.reasonKey!==`edition.${edition!.id}.${effect.kind}`||e.operation!==effect.kind||e.phase!=='jokerScore'||finalSeen||
+          e.retriggerDepth!==0||e.rootEventId!==e.eventId||stableHash(e.visibleCondition)!==stableHash({kind:'always'})||
+          ['targetCardId','targetJokerInstanceId','targetHandType','resourceBefore','resourceAfter','growthBefore','growthAfter','rewardDefinitionId','programGoldBeforeReward'].some(key=>Object.hasOwn(e,key))||
+          amount.compare(Rational.fromJSON(effect.value))!==0||assistEditionSources.has(sourceJoker!.instanceId))fail('invalid-save-assist-joker-edition');
+        const before=e.before as {H:unknown;M:unknown},after=e.after as {H:unknown;M:unknown},heat=Rational.fromJSON(before.H),multiplier=Rational.fromJSON(before.M);
+        const expectedHeat=effect!.kind==='add-heat'?heat.add(amount):heat;
+        const expectedMultiplier=effect!.kind==='add-multiplier'?multiplier.add(amount):effect!.kind==='multiply-multiplier'?multiplier.multiply(amount):multiplier;
+        if(expectedHeat.compare(Rational.fromJSON(after.H))!==0||expectedMultiplier.compare(Rational.fromJSON(after.M))!==0)fail('invalid-save-assist-joker-edition-delta');
+        assistEditionSources.add(sourceJoker!.instanceId);validatedEdition=true;
+      }else if(e.phase==='jokerScore'&&assistEditionSources.has(sourceJoker!.instanceId))fail('invalid-save-assist-joker-edition-order');
+    }
+    if(adaptedJoker&&!validatedEdition){
       const definition=R2_JOKERS.find(d=>d.id===sourceJoker.definitionId)!;
       const hook=definition.hooks.find(h=>h.phase===e.phase&&stableHash(h.condition)===stableHash(e.visibleCondition));
       const op=hook?.operations.find(o=>o.kind===e.operation||o.kind==='retrigger-card'&&e.operation==='retrigger-cap');
@@ -396,6 +415,10 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
       unchanged(e.before,e.after);destroyedJokers.push(e.sourceInstanceId as string);
     }
     previousEvent=e;
+  }
+  if(prototype)for(const source of jokerSources.values())if(R2_ASSIST_ADAPTED_IDS.includes(source.definitionId)){
+    const expected=!!R2_TOOL_CATALOG.editions.find(row=>row.id===(source.edition??'none'))?.effect&&!disabledJokers.has(source.instanceId);
+    if(assistEditionSources.has(source.instanceId)!==expected)fail('invalid-save-assist-joker-edition-count');
   }
   if(context.characterId==='amo'){
     const ordered=events as Record<string,unknown>[],roles=ordered.map((e,i)=>e.sourceType==='character'?i:-1).filter(i=>i>=0);
