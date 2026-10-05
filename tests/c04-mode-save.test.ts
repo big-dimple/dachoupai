@@ -1,5 +1,9 @@
 import {afterEach,beforeEach,describe,expect,it,vi} from 'vitest';
 import v9 from './fixtures/c04-v9-checkpoint.json';
+import legacyAmo from './fixtures/r2-v10-amo-checkpoints.json';
+import {R2_LEGACY_CONTENT_HASH} from '../src/domain/r2Run';
+import {SavedRun} from '../src/application/SavedRun';
+import {r2ModeStorageKey} from '../src/content/r2Modes';
 import {createRun,applyCommand,stateHash,type R2RunState,type Action} from '../src/domain/run';
 import {R2_CONTENT_HASH,r2CreateJoker} from '../src/domain/r2Run';
 import {makeCheckpoint,readCheckpoint,restoreSlots,type Checkpoint} from '../src/application/checkpoint';
@@ -153,7 +157,7 @@ describe('C04.2 strict v10 checkpoints and preserved genuine v9',()=>{
   it('round trips all four difficulty and switch partitions with all six RNG streams unchanged',()=>{
     for(const difficulty of [0,1,2,3] as const)for(const programsEnabled of [true,false]){
       const selection={...STANDARD,difficulty,programsEnabled},state=start(selection),before=stateHash(state),checkpoint=roundTrip(state);
-      expect(checkpoint.state.contentVersion).toBe('quality-r2-content-v10');
+      expect(checkpoint.state.contentVersion).toBe('quality-r2-content-v11');
       expect({mode:state.mode,difficulty:state.difficulty,challengeId:state.challengeId,programsEnabled:state.programsEnabled}).toEqual(selection);
       expect(Object.keys(state.rng).sort()).toEqual(['challenge','deck','program','reward','rule','shop']);
       expect(stateHash(state)).toBe(before);
@@ -426,5 +430,57 @@ describe('C04.2 production IndexedDbSave partitioning and GameSession persistenc
     const storage=new IndexedDbSave(),checkpoint=roundTrip(start());await storage.commit(0,checkpoint,null);const before=structuredClone([...database.records]);
     const invalid={...checkpoint,checksum:'corrupt'};
     await expect(storage.commit(1,invalid,null)).rejects.toThrow();expect([...database.records]).toEqual(before);
+  });
+});
+
+
+describe('Amo v10/v11 production storage partition compatibility',()=>{
+  const legacyCheckpoint=()=>{const read=readCheckpoint(legacyAmo.after);if(!read.ok)throw Error(read.code);return read.checkpoint;};
+  it('keeps both same-mode partitions; exact import targets its own identity and mode resume prefers active',async()=>{
+    const old=legacyCheckpoint(),current=makeCheckpoint(start(),[]),storage=new IndexedDbSave();
+    const oldKey=r2ModeStorageKey(old.state,old.state.contentHash),newKey=keyFor(STANDARD);
+    await storage.commit(0,old,null);await storage.commit(1,current,old);
+    expect(database.records.get(oldKey)).toEqual({current:old,previous:null});expect(database.records.get(newKey)).toEqual({current,previous:null});
+    expect((await storage.readPartition(STANDARD)).current).toEqual(current);
+    expect((await storage.readPartition(old.state)).current).toEqual(old);
+    await storage.commit(2,old,null);expect((await storage.read()).current).toEqual(old);
+    expect((await storage.readPartition(STANDARD)).current).toEqual(old);
+    expect((await storage.readPartition(current.state)).current).toEqual(current);
+    // Another mode becomes active: missing new standard partition still discovers the legacy standard one.
+    database.records.delete(newKey);const hard=makeCheckpoint(start(HARD),[]);await storage.commit(3,hard,null);
+    expect((await storage.readPartition(STANDARD)).current).toEqual(old);
+    expect(JSON.parse(await storage.exportRetained()).records.some((r:{key:string})=>r.key===oldKey)).toBe(true);
+  });
+  it('reads a corrupt active legacy pair and recovers its legacy previous without using a new-profile backup',async()=>{
+    const read=readCheckpoint(legacyAmo.before);if(!read.ok)throw Error(read.code);
+    const old=legacyCheckpoint(),storage=new IndexedDbSave(),key=r2ModeStorageKey(old.state,old.state.contentHash);
+    const corrupt=structuredClone(old);corrupt.checksum='damaged';
+    database.records.set(key,{current:corrupt,previous:read.checkpoint});database.records.set('meta',{revision:7,slotKey:key});
+    const slots=await storage.readPartition(STANDARD);expect(slots.revision).toBe(7);expect(slots.current).toEqual(corrupt);
+    expect(restoreSlots(slots)).toMatchObject({status:'backup',checkpoint:read.checkpoint});
+    await expect(storage.readPartition({...old.state,contentHash:R2_CONTENT_HASH})).rejects.toThrow('incompatible-version');
+  });
+  it('session load, takeover, import and mode resume retain old identity without replaying a reward',async()=>{
+    const old=legacyCheckpoint(),storage=new IndexedDbSave();await storage.commit(0,old,null);
+    const session=new GameSession();await session.initialize();expect(session.state()).toEqual(old.state);
+    expect(await session.takeOver()).toBe(true);expect(session.state()).toEqual(old.state);
+    expect(await session.importJSON(JSON.stringify(old))).toBe(true);expect(session.state()).toEqual(old.state);
+    expect(await session.resumeMode(STANDARD)).toBe(true);expect(session.state()).toEqual(old.state);
+    expect(session.state()?.contentHash).toBe(R2_LEGACY_CONTENT_HASH);
+    // Starting creates the new profile while retaining the original old partition.
+    await session.start('new-after-old','amo',STANDARD);expect(session.state()?.contentHash).toBe(R2_CONTENT_HASH);
+    expect((await storage.readPartition(old.state)).current).toEqual(old);
+  });
+  it('legacy failed persistence retries the exact pending candidate once, duplicate command has no events',async()=>{
+    const read=readCheckpoint(legacyAmo.before);if(!read.ok)throw Error(read.code);
+    const storage=new IndexedDbSave();await storage.commit(0,read.checkpoint,null);
+    const run=SavedRun.restore(storage,await storage.read()),before=run.exportJSON();database.failWrites=true;
+    const failed=await run.submit(legacyAmo.command as Parameters<SavedRun['submit']>[0]);expect(failed.ok).toBe(false);
+    expect(run.state).toEqual(read.checkpoint.state);expect(run.status).toBe('paused');
+    expect(JSON.parse(run.exportJSON())).toEqual(legacyAmo.after);database.failWrites=false;
+    const saved=await run.retry();expect(saved.ok).toBe(true);expect(run.state).toEqual(legacyAmo.after.state);
+    expect(before).not.toBe(run.exportJSON());const after=run.exportJSON();
+    const duplicate=await run.submit(legacyAmo.command as Parameters<SavedRun['submit']>[0]);expect(duplicate.ok&&duplicate.duplicate).toBe(true);
+    if(duplicate.ok)expect(duplicate.events).toEqual([]);expect(run.exportJSON()).toBe(after);
   });
 });

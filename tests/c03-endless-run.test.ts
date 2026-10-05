@@ -1,6 +1,6 @@
 import {describe,expect,it} from 'vitest';
 import {applyCommand,assertRunInvariants,createRun,stateHash,type Action,type Command,type R2RunState} from '../src/domain/run';
-import {getR2Stage,r2CreateJoker} from '../src/domain/r2Run';
+import {getR2Stage,r2CreateJoker,R2_LEGACY_CONTENT_VERSION,R2_LEGACY_CONTENT_HASH} from '../src/domain/r2Run';
 import {r2ToolAcquisitionPool} from '../src/domain/r2Shop';
 
 const command=(state:R2RunState,action:Action):Command=>({runId:state.runId,commandId:`endless/${state.commandSeq+1}`,expectedSeq:state.commandSeq,action});
@@ -16,7 +16,7 @@ const reject=(state:R2RunState,action:Action,code:string)=>{
   expect(result.code).toBe(code);expect(result.state).toBe(state);expect(stateHash(state)).toBe(before);expect(state.rng).toEqual(rng);
 };
 
-function finalBoss():R2RunState {
+function finalBoss(legacy=false):R2RunState {
   const state=createRun({seed:'c03-endless-final',runId:'c03-endless',characterId:'erxiang',rulesVersion:'r2',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
   // Explicit valid late checkpoint. It tests commands, not natural acquisition or balance.
   state.chapter=8;state.stageIndex=23;state.phase='stage-ready';state.shop!.visitIndex=23;
@@ -28,10 +28,11 @@ function finalBoss():R2RunState {
   state.jokers.find(joker=>joker.definitionId==='e10')!.counters={stageClears:1};
   state.consumables=[{instanceId:'held/1',definitionId:'T01'},{instanceId:'held/2',definitionId:'P01'}];
   state.longTermItems=['U01'];state.purchaseCoupons=2;state.supplyRewardClaimed=true;state.safetyNetUsed=true;
+  if(legacy){state.contentVersion=R2_LEGACY_CONTENT_VERSION;state.contentHash=R2_LEGACY_CONTENT_HASH;}
   return send(state,{type:'EnterStage'});
 }
-function normalWin():R2RunState {
-  const state=finalBoss(),won=send(state,{type:'PlayHand',selectedIds:state.handOrder.slice(0,5)});
+function normalWin(legacy=false):R2RunState {
+  const state=finalBoss(legacy),won=send(state,{type:'PlayHand',selectedIds:state.handOrder.slice(0,5)});
   expect(won.phase).toBe('run-won');expect(won.stage!.clearId).toBe('c03-endless/clear/23');return won;
 }
 const build=(state:R2RunState)=>({gold:state.gold,deck:state.deckInstances,draw:state.drawPile,hand:state.handOrder,played:state.playedPile,discard:state.discardPile,
@@ -120,5 +121,15 @@ describe('C03.4 voluntary endless uses atomic shared commands',()=>{
     reject(state,{type:'OpenShop'},'numeric-length-limit');
     expect(state.normalCompletion).toEqual(completion);expect(state.lastTrace).toEqual(trace);
     expect(state.phase).toBe('stage-cleared');expect(state.outcome).toBeNull();expect(getR2Stage(state.stageIndex,state.tourMode)).toBeUndefined();
+  });
+});
+
+
+describe('explicit old/new identities survive chapter-nine entry',()=>{
+  it.each([false,true])('legacy=%s keeps saved identity, trace and reward receipts through ContinueEndless',legacy=>{
+    const won=normalWin(legacy),trace=structuredClone(won.lastTrace),identity=[won.contentVersion,won.contentHash],receipts=structuredClone(won.receipts);
+    const next=send(won,continueAction);expect([next.contentVersion,next.contentHash]).toEqual(identity);
+    expect(next.lastTrace).toEqual(trace);expect(next.receipts.slice(0,-1)).toEqual(receipts);expect(next.gold).toBe(won.gold);
+    const entered=send(send(next,{type:'LeaveShop'}),{type:'EnterStage'});expect([entered.contentVersion,entered.contentHash]).toEqual(identity);
   });
 });

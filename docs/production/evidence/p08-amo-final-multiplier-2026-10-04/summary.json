@@ -1,0 +1,106 @@
+{
+  "taskId": "P08",
+  "testedCommit": "ad2eddff2d4e4c1dc8de745c70ace8f984d80911",
+  "baseline": "1eb6689000142781daa96d9033319b333bd4a362",
+  "implementation": "COMPLETE_REVIEW_ONLY",
+  "technical": "PASS",
+  "overallBalance": "NOT_ACCEPTED",
+  "wholeAesthetic": "NOT_ACCEPTED",
+  "OnePlus": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "mainPublication": "NOT_AUTHORIZED",
+  "scope": "Only new-profile Amo single-card x3 after whole-hand Jokers; legacy run retained. No other role/value/Lv3/Joker slot changes.",
+  "freeze": {
+    "status": "PASS",
+    "tests": 2203,
+    "files": 121,
+    "sourceBefore": "71592a93d9f63411af30b3bd81276d6f2c8a3ec1b28525613bccd3ecb4e54770",
+    "sourceAfter": "71592a93d9f63411af30b3bd81276d6f2c8a3ec1b28525613bccd3ecb4e54770",
+    "sourceIndexHeadInvariant": true,
+    "steps": [
+      {
+        "name": "test",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 101129
+      },
+      {
+        "name": "verify:content",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 3145
+      },
+      {
+        "name": "build",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 16127
+      },
+      {
+        "name": "verify:smoke",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 33023
+      },
+      {
+        "name": "production-plan",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 667
+      }
+    ],
+    "renderer": "Chromium software Canvas",
+    "externalAdapter": "Only launch executable/system Chromium plus disable-gpu/disable-software-rasterizer; no assertion/timeout changes",
+    "workers": 1
+  },
+  "native": {
+    "report": "browser.json",
+    "profiles": [
+      {
+        "profile": "legacy",
+        "status": "PASS",
+        "score": "325",
+        "contentVersion": "quality-r2-content-v10",
+        "contentHash": "json-fnv-v1:24efe7a905216d85"
+      },
+      {
+        "profile": "new",
+        "status": "PASS",
+        "score": "525",
+        "contentVersion": "quality-r2-content-v11",
+        "contentHash": "json-fnv-v1:bd4a1230833ab884"
+      }
+    ],
+    "viewport": {
+      "width": 390,
+      "height": 740
+    },
+    "DPR": 1,
+    "safeInset": {
+      "top": 0,
+      "bottom": 0
+    },
+    "fixtureSource": "d1c072dff5055238bd94775a14f2fca44c4d38b8",
+    "fixtureSHA256": "08838a3dc96cb96f128b71ea301a3c9a7172956e85cc1dc6bbab17ae22bf034f"
+  },
+  "compatibility": [
+    "only exact v10/v11 identity pairs",
+    "v10 325 remains 325; v11 525",
+    "new runs new partition; imports own partition",
+    "mode resume prefers active same-mode saved profile",
+    "corrupt old current falls back only to old backup",
+    "old export/import/receipt replay unchanged",
+    "failed save retries pending result without re-applying command",
+    "continued shop/stage/endless identities unchanged",
+    "bot score context carries public content identity without RNG/future deck",
+    "saved trace order validated for its profile"
+  ],
+  "protected": "GameScene/ScoreFlame/layout/EffectQueue/audio/content/art/public unchanged from baseline",
+  "limitations": [
+    "Controlled inventory/hand fixture, not natural buying or win-rate research",
+    "No new screenshots/video/performance matrix",
+    "Six-role remaining growth/opportunity deficiencies stay in P08",
+    "Old schemas and older content identities remain incompatible/exportable, not silently migrated"
+  ]
+}

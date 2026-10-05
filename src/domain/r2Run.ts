@@ -25,8 +25,19 @@ export const R2_STARTING_HAND_LEVELS:Partial<Record<CharacterId,Partial<Record<R
 export const R2_MODE_RUNTIME_CONTRACT=Object.freeze({version:'explicit-v10',programStream:'seed/r2/program/0',challengeStream:'seed/r2/challenge/0',
   programChoice:'once-before-first-stage',programPayout:'once-on-chapter-boss-success',programCoupon:'next-shop-only',challengeBan:'published72-definition-scoring-and-edition',
   legacy:'preserve-original-no-migration',partition:'mode-challenge-difficulty-program-flag'});
-export const R2_CONTENT_VERSION = 'quality-r2-content-v10';
-export const R2_CONTENT_HASH = stableHash({jokers:R2_JOKERS,features:R2_IMPLEMENTED_FEATURES,tools:R2_TOOL_CATALOG,toolFeatures:R2_IMPLEMENTED_TOOL_FEATURES,itemIds:R2_IMPLEMENTED_ITEM_IDS,resources:R2_RESOURCE_CONTRACT,limits:R2_LIMITS,economy:R2_ECONOMY,targets:R2_TARGETS,hands:R2_BASE_SCORES,startingHandLevels:R2_STARTING_HAND_LEVELS,score:SCORE_LIMITS,bosses:R2_BOSSES,chapters:R2_AVAILABLE_CHAPTERS,endless:R2_ENDLESS_CONTRACT,skip:R2_SKIP_CONSUMABLES,modes:R2_MODE_CATALOG,modeRuntime:R2_MODE_RUNTIME_CONTRACT});
+export const R2_LEGACY_CONTENT_VERSION = 'quality-r2-content-v10';
+export const R2_CONTENT_VERSION = 'quality-r2-content-v11';
+export const R2_LEGACY_CONTENT_HASH = stableHash({jokers:R2_JOKERS,features:R2_IMPLEMENTED_FEATURES,tools:R2_TOOL_CATALOG,toolFeatures:R2_IMPLEMENTED_TOOL_FEATURES,itemIds:R2_IMPLEMENTED_ITEM_IDS,resources:R2_RESOURCE_CONTRACT,limits:R2_LIMITS,economy:R2_ECONOMY,targets:R2_TARGETS,hands:R2_BASE_SCORES,startingHandLevels:R2_STARTING_HAND_LEVELS,score:SCORE_LIMITS,bosses:R2_BOSSES,chapters:R2_AVAILABLE_CHAPTERS,endless:R2_ENDLESS_CONTRACT,skip:R2_SKIP_CONSUMABLES,modes:R2_MODE_CATALOG,modeRuntime:R2_MODE_RUNTIME_CONTRACT});
+/** Saved identity selects scoring; never reinterpret a v10 run as the new balance. */
+export const R2_CONTENT_HASH=stableHash({legacyContentHash:R2_LEGACY_CONTENT_HASH,characterScoring:{amoSingleMultiplier:'after-joker'}});
+export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH,amoScoreTiming:'after-joker' as const}),
+  Object.freeze({contentVersion:R2_LEGACY_CONTENT_VERSION,contentHash:R2_LEGACY_CONTENT_HASH,amoScoreTiming:'before-joker' as const}),
+]);
+export function r2RulesetFor(identity:{contentVersion?:unknown;contentHash?:unknown}) {
+  return R2_RULESETS.find(profile=>identity.contentVersion===profile.contentVersion&&identity.contentHash===profile.contentHash);
+}
+
 export interface R2StageState extends Omit<StageState,'targetHeat'|'heat'|'previousHandType'> {
   targetHeat:string; heat:string; previousHandType:R2HandType|null; disabledIds:string[]; wagerSelected:boolean; wagerUsed:boolean;
   discardsUsed:number;skipResult:R2SkipResult|null;handLimit:number;previousHandScore:string|null;rescueUsed:boolean;
@@ -62,7 +73,7 @@ export function r2CreateJoker(definitionId:string,instanceId:string,paidPrice:nu
 
 export function assertR2Invariants(state:R2RunState):void {
   const check=(condition:boolean,label:string)=>{if(!condition)throw new Error(`Run invariant: ${label}`);};
-  check(state.schemaVersion===2 && state.rulesVersion==='r2' && state.contentVersion===R2_CONTENT_VERSION && state.contentHash===R2_CONTENT_HASH,'r2 versions');
+  check(state.schemaVersion===2 && state.rulesVersion==='r2' && !!r2RulesetFor(state),'r2 versions');
   const config=r2RunModeConfig(state);
   check(r2ModeSeedAllowed(config,state.seed)&&(config.mode!=='tutorial'||state.characterId==='erxiang'),'mode seed/identity');
   check(state.mode==='standard'||state.tourMode==='normal','mode tour');
@@ -172,10 +183,11 @@ function makeChapter(state:R2RunState):void {
   else state.chapterDisabledJokerId=null;
 }
 function refreshDisabled(state:R2RunState):void {if(state.stage)state.stage.disabledIds=state.stage.boss?r2DisabledCards(state.stage.boss,state.stage.index,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!)):[];}
-export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stageIndex'|'jokers'|'characterId'|'mode'|'difficulty'|'challengeId'|'programsEnabled'>,hand:readonly PlayingCard[],ids:readonly string[]) {
+export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stageIndex'|'jokers'|'characterId'|'mode'|'difficulty'|'challengeId'|'programsEnabled'|'contentVersion'|'contentHash'>,hand:readonly PlayingCard[],ids:readonly string[]) {
   const modifiers=readR2Modifiers(state.jokers,R2_JOKERS);
-  const config=r2RunModeConfig(state);
-  return {characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
+  const config=r2RunModeConfig(state),profile=r2RulesetFor(state);
+  if(!profile)throw Error('incompatible-version');
+  return {amoScoreTiming:profile.amoScoreTiming,characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
     ...(state.stage?{stageHeatBefore:state.stage.heat,stageTargetHeat:state.stage.targetHeat}:{}),
     handRules:{fourStraight:modifiers.fourStraight,fourFlush:modifiers.fourFlush},ordinaryPointsSuppressedIds:r2OrdinarySuppression(state.boss,state.stage?.index??state.stageIndex,hand,ids)};
 }

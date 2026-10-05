@@ -1,5 +1,7 @@
 # 当前交接：P08全游戏手绘墨线／纸色主线
 
+阿默单张终乘首批review（2026-10-04）：基线main1eb6689，仅新v11局单张×3后置整手Joker，旧v10局按原保存身份续完；其他五人/Lv3/数值/槽序/美术不动。角色政策入新hash，两个完整身份统一验证，旧checkpoint/receipt/分区/导出保留；新建读新、导入读自身、模式继续优先活跃同模式。真实v10冻结fixture与原生新旧来源次序、保存/恢复/重试有界核验；源码ad2eddff冻结2203tests/121files、content/type/build/Canvas双端smoke/plan全PASS且源码/index/HEAD不变，review CI另报，不推main、不称六人平衡完成。D演出源码保持。证据docs/production/evidence/p08-amo-final-multiplier-2026-10-04。
+
 ## 当前发布与验收状态
 
 已核 remote main `d1c072dff5055238bd94775a14f2fca44c4d38b8`，精确 [CI37238909688](https://github.com/big-dimple/dachoupai/actions/runs/37238909688) 与 [production-docs37238909684](https://github.com/big-dimple/dachoupai/actions/runs/37238909684) success。

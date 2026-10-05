@@ -111,7 +111,7 @@ describe('C02 checkpoint boundary in the current explicit version without rewrit
     const restored=restoreSlots({revision:9,current:rawV6,previous:null});expect(restored.status).toBe('invalid');expect(restored.raw).toBe(rawV6);expect(JSON.stringify(rawV6)).toBe(before);
   });
   it.each(['shop','stage'] as const)('round trips required %s fields in an explicit new run',phase=>{
-    const fixture=phase==='shop'?start():enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v10');
+    const fixture=phase==='shop'?start():enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v11');
     const parsed=readCheckpoint(makeCheckpoint(fixture.state,fixture.journal));expect(parsed.ok&&parsed.checkpoint.state).toEqual(fixture.state);
   });
   it('requires shop.soldJoker and refuses a nonboolean sale snapshot',()=>{

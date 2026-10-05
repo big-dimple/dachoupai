@@ -1,7 +1,7 @@
 import type {SaveSlots,SaveStore} from '../application/SavedRun';
 import {readCheckpoint,type Checkpoint} from '../application/checkpoint';
 import {r2ModeStorageKey,type R2ModeSelection} from '../content/r2Modes';
-import {R2_CONTENT_HASH} from '../domain/r2Run';
+import {R2_RULESETS,r2RulesetFor} from '../domain/r2Run';
 
 const DB_NAME='dachoupai-checkpoints';
 const STORE='saves';
@@ -26,20 +26,31 @@ export class IndexedDbSave implements SaveStore {
     return this.readSlots();
   }
   /** Reading a selection does not change the globally published mode or its compare-and-swap revision. */
-  async readPartition(selection:R2ModeSelection):Promise<SaveSlots> {
-    return this.readSlots(r2ModeStorageKey(selection,R2_CONTENT_HASH));
+  async readPartition(selection:R2ModeSelection&{contentVersion?:unknown;contentHash?:unknown}):Promise<SaveSlots> {
+    if(selection.contentHash!==undefined||selection.contentVersion!==undefined){
+      const profile=r2RulesetFor(selection);if(!profile)throw Error('incompatible-version');
+      return this.readSlots([r2ModeStorageKey(selection,profile.contentHash)],false);
+    }
+    // Resume the active same-mode run first, including its damaged-current/valid-backup pair.
+    return this.readSlots(R2_RULESETS.map(profile=>r2ModeStorageKey(selection,profile.contentHash)),true);
   }
-  private async readSlots(partitionKey?:string):Promise<SaveSlots> {
+  private async readSlots(partitionKeys?:readonly string[],preferActive=false):Promise<SaveSlots> {
     const db=await this.database;
     return new Promise((resolve,reject)=>{
       const tx=db.transaction(STORE,'readonly'),store=tx.objectStore(STORE);
       let slots:SaveSlots={revision:0,current:null,previous:null};
       const meta=store.get('meta');meta.onsuccess=()=>{
-        const value=meta.result as Meta|undefined;
-        if(value)slots.revision=value.revision;
-        const slotKey=partitionKey??value?.slotKey;if(!slotKey)return;
-        const saved=store.get(slotKey);
-        saved.onsuccess=()=>{const found=saved.result as Slots|undefined;slots.current=found?.current??null;slots.previous=found?.previous??null;};
+        const value=meta.result as Meta|undefined;if(value)slots.revision=value.revision;
+        const keys=partitionKeys?[...partitionKeys]:value?.slotKey?[value.slotKey]:[];
+        if(preferActive&&value?.slotKey&&keys.includes(value.slotKey))keys.splice(0,keys.length,value.slotKey,...keys.filter(key=>key!==value.slotKey));
+        const next=()=>{
+          const key=keys.shift();if(!key)return;
+          const saved=store.get(key);saved.onsuccess=()=>{
+            const found=saved.result as Slots|undefined;
+            if(found&&(found.current!==null||found.previous!==null)){slots.current=found.current??null;slots.previous=found.previous??null;}
+            else next();
+          };
+        };next();
       };
       tx.oncomplete=()=>resolve(slots);tx.onabort=tx.onerror=()=>reject(tx.error??Error('storage-read-failed'));
     });

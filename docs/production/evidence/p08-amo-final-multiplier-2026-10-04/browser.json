@@ -1,0 +1,117 @@
+{
+  "taskId": "P08",
+  "testedCommit": "1eb6689000142781daa96d9033319b333bd4a362",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-04T23:43:22.807Z",
+    "revision": "1eb6689000142781daa96d9033319b333bd4a362",
+    "sourceStatus": "dirty",
+    "modified": true,
+    "modifiedFileCount": 17,
+    "modifiedFiles": [
+      "src/application/checkpoint.ts",
+      "src/domain/r2Run.ts",
+      "src/domain/run.ts",
+      "src/domain/scoreR2.ts",
+      "src/game/HandRuleReference.ts",
+      "src/game/characters.ts",
+      "src/platform/IndexedDbSave.ts",
+      "src/testing/r2Bot.ts",
+      "tests/c01-boundary.test.ts",
+      "tests/c02-checkpoint.test.ts",
+      "tests/c03-boss-save.test.ts",
+      "tests/c03-chapter-spec.test.ts",
+      "tests/c03-endless-run.test.ts",
+      "tests/c03-endless-save.test.ts",
+      "tests/c04-mode-run.test.ts",
+      "tests/c04-mode-save.test.ts",
+      "tests/r2-starting-profile.test.ts"
+    ]
+  },
+  "renderer": "Chromium software Canvas",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "DPR": 1,
+  "safeInset": {
+    "top": 0,
+    "bottom": 0
+  },
+  "route": "Actual frozen v10 before/scored fixture and explicitly identified v11 equivalent hand, imported with DOM filechooser; not natural purchasing or device acceptance.",
+  "checks": [
+    {
+      "profile": "legacy",
+      "status": "PASS",
+      "score": "325",
+      "contentVersion": "quality-r2-content-v10",
+      "contentHash": "json-fnv-v1:24efe7a905216d85",
+      "events": [
+        {
+          "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/1",
+          "source": "rank-13",
+          "phase": "onCardScore"
+        },
+        {
+          "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/2",
+          "source": "amo",
+          "phase": "characterScore"
+        },
+        {
+          "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/3",
+          "source": "pengci",
+          "phase": "jokerScore"
+        }
+      ],
+      "exportSHA256": "cbd24fec481317a1c7f0f4421fba0b1f976004dc1fac0c3a90a525ca89b85fd3",
+      "covered": [
+        "DOM import",
+        "selection no domain mutation",
+        "native PlayHand",
+        "actual source order",
+        "saved identity",
+        "reload continue",
+        "import committed checkpoint",
+        "recap replay credited",
+        "fast-forward no recredit"
+      ]
+    },
+    {
+      "profile": "new",
+      "status": "PASS",
+      "score": "525",
+      "contentVersion": "quality-r2-content-v11",
+      "contentHash": "json-fnv-v1:bd4a1230833ab884",
+      "events": [
+        {
+          "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/1",
+          "source": "rank-13",
+          "phase": "onCardScore"
+        },
+        {
+          "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/2",
+          "source": "pengci",
+          "phase": "jokerScore"
+        },
+        {
+          "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/3",
+          "source": "amo",
+          "phase": "characterScore"
+        }
+      ],
+      "exportSHA256": "bfd53fb902aad888506ff3f1e2fd0976aa715f81fc04f1906bfe16ac1ba15ee0",
+      "covered": [
+        "DOM import",
+        "selection no domain mutation",
+        "native PlayHand",
+        "actual source order",
+        "saved identity",
+        "reload continue",
+        "import committed checkpoint"
+      ]
+    }
+  ],
+  "GPU": "NOT_RUN",
+  "OnePlus": "NOT_RUN",
+  "audio": "NOT_RUN"
+}

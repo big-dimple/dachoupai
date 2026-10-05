@@ -59,7 +59,7 @@ describe('C03 Boss snapshots and finite saved sources in the current explicit ve
     const slots=restoreSlots({revision:2,current:rawV7,previous:null});expect(slots.status).toBe('invalid');expect(slots.raw).toBe(rawV7);expect(JSON.stringify(rawV7)).toBe(before);
   });
   it('round trips a real ordinary entry with empty Boss and seal snapshots',()=>{
-    const fixture=enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v10');
+    const fixture=enter();expect(fixture.state.contentVersion).toBe('quality-r2-content-v11');
     expect(fixture.state.stage).toMatchObject({boss:null,initialTargetHeat:'400',initialHandLimit:8,initialJokerIds:[],sealedJokerIds:[]});roundTrip(fixture);
   });
   it.each(['boss','initialTargetHeat','initialHandLimit','initialJokerIds','sealedJokerIds'])('requires the persisted stage.%s field',field=>{
