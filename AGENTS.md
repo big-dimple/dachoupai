@@ -1,5 +1,11 @@
 # 开发入口
 
+## 当前调度摘要（2026-10-05 UTC，替代下方历史调度）
+
+已核main `8e0daae74efd56969886d1fdb2c28df404af27e0`；父核CI37247972270 success，D表现/统计1eb/阿默04d已发布。04d仅阶段性数值补丁，用户已否定继续高牌数值与采购方向，不称六角色玩法完成、不回滚旧局。当前按[P08角色玩法依赖与阿默原型](docs/production/CHARACTER_PLAY_PLAN.md)推进策划review：P0上线质量与B独立AI切，P1共同成牌/成长和阿默独立副组，P2其他五人按依赖分批；本轮不写领域、不侵入GameScene/底部UI、未main。B新排序/发布状态由其窗口及父核，不能预记通过。旧v10/v11、安全保存、真实设备、人物解剖/工具发现性/开源实际采用范围为硬边界；C04图鉴教程历史联网及B00/V01/L01保持。每小时由父协调实际进度，重大阻塞即报。
+
+## 以下为历史记录（原来源/状态保留，不作为当前调度）
+
 阿默单张终乘首批review（2026-10-04）：基线main1eb6689，仅新v11局单张×3后置整手Joker，旧v10局按原保存身份续完；其他五人/Lv3/数值/槽序/美术不动。角色政策入新hash，两个完整身份统一验证，旧checkpoint/receipt/分区/导出保留；新建读新、导入读自身、模式继续优先活跃同模式。真实v10冻结fixture与原生新旧来源次序、保存/恢复/重试有界核验；源码ad2eddff冻结2203tests/121files、content/type/build/Canvas双端smoke/plan全PASS且源码/index/HEAD不变，review CI另报，不推main、不称六人平衡完成。D演出源码保持。证据docs/production/evidence/p08-amo-final-multiplier-2026-10-04。
 
 ## 当前调度状态（2026-10-04 UTC）
