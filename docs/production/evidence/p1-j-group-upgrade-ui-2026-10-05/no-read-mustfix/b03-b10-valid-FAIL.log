@@ -1,0 +1,64 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/group-upgrade-ui-copy.test.ts (6 tests | 2 failed) 101ms
+   × b03 recorded growth distinguishes actual reads from sealed score slots, including restored copy 35ms
+   × b10 recorded growth distinguishes actual reads from sealed score slots, including restored copy 24ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/group-upgrade-ui-copy.test.ts > b03 recorded growth distinguishes actual reads from sealed score slots, including restored copy
+AssertionError: expected '本手有本体结算记录\n出牌结算后成长 +0.25，新增从下一次出牌生效\n…' not to contain '本次读取成长'
+
+- Expected
++ Received
+
+- 本次读取成长
++ 本手有本体结算记录
++ 出牌结算后成长 +0.25，新增从下一次出牌生效
++ 结算后保存倍率成长：+1.25
++ 本次读取成长：+1
+
+ ❯ tests/group-upgrade-ui-copy.test.ts:49:39
+     47|    const copy=jokerAbilityCopyForRun(run,id,source,ctx,trace.events),b…
+     48|    expect(copy.state).toContain('结算后保存'+(id==='b10'?'热度':'倍率')+'成长：+'+…
+     49|    if(limited){expect(copy.state).not.toContain('本次读取成长');expect(copy.…
+       |                                       ^
+     50|    else{expect(copy.state).toContain('本次读取成长：+'+before);expect(copy.st…
+     51|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/group-upgrade-ui-copy.test.ts > b10 recorded growth distinguishes actual reads from sealed score slots, including restored copy
+AssertionError: expected '本手有本体结算记录\n出牌结算后成长 +10，新增从下一次出牌生效\n结算…' not to contain '本次读取成长'
+
+- Expected
++ Received
+
+- 本次读取成长
++ 本手有本体结算记录
++ 出牌结算后成长 +10，新增从下一次出牌生效
++ 结算后保存热度成长：+30
++ 本次读取成长：+20
+
+ ❯ tests/group-upgrade-ui-copy.test.ts:49:39
+     47|    const copy=jokerAbilityCopyForRun(run,id,source,ctx,trace.events),b…
+     48|    expect(copy.state).toContain('结算后保存'+(id==='b10'?'热度':'倍率')+'成长：+'+…
+     49|    if(limited){expect(copy.state).not.toContain('本次读取成长');expect(copy.…
+       |                                       ^
+     50|    else{expect(copy.state).toContain('本次读取成长：+'+before);expect(copy.st…
+     51|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  11:10:08
+   Duration  698ms (transform 389ms, setup 0ms, import 484ms, tests 101ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

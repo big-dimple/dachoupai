@@ -1,0 +1,29 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/group-upgrade-ui-copy.test.ts (6 tests | 2 failed) 53ms
+   × b03 recorded growth distinguishes actual reads from sealed score slots, including restored copy 6ms
+   × b10 recorded growth distinguishes actual reads from sealed score slots, including restored copy 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/group-upgrade-ui-copy.test.ts > b03 recorded growth distinguishes actual reads from sealed score slots, including restored copy
+ FAIL  tests/group-upgrade-ui-copy.test.ts > b10 recorded growth distinguishes actual reads from sealed score slots, including restored copy
+Error: unavailable-joker-definition
+ ❯ r2CreateJoker src/domain/r2Run.ts:87:54
+
+ ❯ tests/group-upgrade-ui-copy.test.ts:40:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  11:09:36
+   Duration  647ms (transform 385ms, setup 0ms, import 484ms, tests 53ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

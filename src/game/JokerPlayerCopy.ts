@@ -125,7 +125,18 @@ export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerIns
    if(requests.length)state.push('本次再次计分来源：'+definition.name+' → '+requests.map(e=>{const c=ctx.hand.find(c=>c.id===e.targetCardId);return(c?rankLabel(c.rank)+SUIT_SYMBOL[c.suit]:'已记录牌')+' ×'+fractionText(e.value);}).join('、'));
   }
   if(editionActive)state.push('本手版次效果单独结算，不计入本体增益');
-  for(const text of template.state){if(!random)state.push(render(text).replace('当前系数：','本次读取系数：').replace('当前保存：','本次读取成长：'));}
+  const growthRead=body.find(e=>e.operation==='read-growth'||e.operation==='consume-growth'),coefficientRead=body.find(e=>e.operation==='read-coefficient');
+  for(const text of template.state){
+   if(random)continue;
+   const sentence=render(text);
+   if(text.startsWith('当前保存：')){
+    state.push(growthRead?'本次读取成长：+'+fractionText(growthRead.value):sentence.replace('当前保存：','结算前保存成长：'));
+    if(!growthRead)state.push('本次未读取成长加成');
+   }else if(text.startsWith('当前系数：')){
+    state.push(coefficientRead?'本次读取系数：×'+fractionText(coefficientRead.value):sentence.replace('当前系数：','结算前保存系数：'));
+    if(!coefficientRead)state.push('本次未读取系数加成');
+   }else state.push(sentence);
+  }
   if(memory.scoreLimited)state.push('当前计分加成暂停');
  }
  if(definition.hooks.some(h=>h.operations.some(o=>o.kind==='add-heat'||o.kind==='add-multiplier'||o.kind==='multiply-multiplier'||o.kind==='read-growth'||o.kind==='read-coefficient'))){rules.push('热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。');}

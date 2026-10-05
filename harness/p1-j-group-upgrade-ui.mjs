@@ -19,10 +19,12 @@ try{
  for(const spec of [
   {name:'b06-left-tie-disabled-assist',ids:['b06'],boss:{definitionId:'B03',disabledSuit:'spades'},chapter:1,index:2,seen:['B03'],hand:[...main,'clubs-12','hearts-12','clubs-6','diamonds-7'],main,assist:['clubs-12','hearts-12']},
   {name:'b06-plain-flush',ids:['b06'],hand:['spades-3','spades-7','spades-11','spades-12','spades-14','hearts-2','clubs-6','diamonds-9'],main:['spades-3','spades-7','spades-11','spades-12','spades-14']},
-  {name:'B13-full-house',ids:['a11','b06'],boss:{definitionId:'B13',disabledSuit:null},chapter:7,index:20,seen:['B01','B02','B03','B04','B05','B06','B13'],hand:[...full,'spades-12','hearts-12','diamonds-7'],main:full}
+  {name:'B13-full-house',ids:['a11','b06'],boss:{definitionId:'B13',disabledSuit:null},chapter:7,index:20,seen:['B01','B02','B03','B04','B05','B06','B13'],hand:[...full,'spades-12','hearts-12','diamonds-7'],main:full},
+  ...['b03','b10'].flatMap(id=>[false,true].map(sealed=>({name:'growth-'+id+'-'+(sealed?'sealed':'normal'),ids:['pengci',id],...(sealed?{boss:{definitionId:'B06',disabledSuit:null},chapter:3,index:8,seen:['B01','B02','B06']}:{}),growth:{key:id==='b10'?'heat':'multiplier',value:{n:id==='b10'?'20':'1',d:'1'}},sealed,hand:[...main,'spades-12','hearts-12','clubs-6','diamonds-7'],main})))
  ]){
   let s=createRun({seed:'group-ui-fixture',runId:spec.name,characterId:'amo',rulesVersion:'r2',r2Profile:'group-upgrade-v1',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
   s.jokers=spec.ids.map(id=>r2CreateJoker(id,id,8,spec.name==='B13-full-house'?'holographic':undefined,s));
+  if(spec.growth)s.jokers.at(-1).growth={[spec.growth.key]:spec.growth.value};
   if(spec.boss)Object.assign(s,{chapter:spec.chapter,stageIndex:spec.index,phase:'stage-ready',shop:null,boss:spec.boss,seenBossIds:spec.seen});else s=send(s,{type:'LeaveShop'});
   s=send(s,{type:'EnterStage'});s.handOrder=spec.hand;s.drawPile=s.deckInstances.map(c=>c.id).filter(id=>!s.handOrder.includes(id));s.stage.disabledIds=r2DisabledCards(s.stage.boss,s.stageIndex,s.handOrder.map(id=>s.deckInstances.find(c=>c.id===id)));
   const cp=makeCheckpoint(s,[]);assert.ok(readCheckpoint(cp).ok,spec.name+' initial');
@@ -99,7 +101,8 @@ try{
   if(fixture.assist)assert.deepEqual(await p.evaluate(()=>window.__harness.game.scene.getScene('game').assistIds),fixture.assist,'inspecting target preserves assist draft');const s=await state(p);await tapUI(p,'game','action/play',true);await changed(p,s.commandSeq);if((await state(p)).phase==='await-input')await settled(p);else await readyIntermission(p);row.after=await saved(p);assert.deepEqual(row.after.state.lastTrace,fixture.expected,'UI score equals authoritative legal fixture trace');
   const es=row.after.state.lastTrace.events;if(fixture.name==='b06-left-tie-disabled-assist')assert.deepEqual(es.filter(e=>e.sourceDefinitionId==='b06'&&e.operation==='retrigger-card').map(e=>e.targetCardId),['hearts-9']);if(fixture.name==='b06-plain-flush')assert.ok(!es.some(e=>e.sourceDefinitionId==='b06'));
   if(fixture.name==='B13-full-house'){assert.deepEqual(es.filter(e=>e.phase==='onCardScore'&&e.targetCardId===fixture.main[0]&&e.sourceType==='joker').map(e=>e.sourceDefinitionId),['a11','b06']);assert.deepEqual(es.filter(e=>e.phase==='jokerScore').map(e=>e.sourceDefinitionId),['b06','a11']);}
-  row.ledger=await reloadAndReplay(p,row.after,fixture.name+'-restored-ledger');if(fixture.name!=='b06-plain-flush')assert.match(row.ledger,/本次再次计分来源：再说一遍/);
+  row.ledger=await reloadAndReplay(p,row.after,fixture.name+'-restored-ledger');if(['b06-left-tie-disabled-assist','B13-full-house'].includes(fixture.name))assert.match(row.ledger,/本次再次计分来源：再说一遍/);
+  if(fixture.growth){const id=fixture.ids.at(-1),own=es.filter(e=>e.sourceInstanceId===id);assert.equal(own.some(e=>e.operation==='read-growth'),!fixture.sealed);assert.ok(own.some(e=>e.operation==='add-growth'));assert.match(row.ledger,id==='b10'?/结算后保存热度成长：\+30/:/结算后保存倍率成长：\+1.25/);if(fixture.sealed){assert.doesNotMatch(row.ledger,/本次读取成长/);assert.match(row.ledger,/本次未读取成长加成/);assert.match(row.ledger,id==='b10'?/结算前保存成长：\+20/:/结算前保存成长：\+1/);}else assert.match(row.ledger,id==='b10'?/本次读取成长：\+20/:/本次读取成长：\+1/);}
  },fixture.name==='b06-left-tie-disabled-assist'?{width:320,height:568}:fixture.name==='B13-full-house'?{width:844,height:300,top:12,bottom:34}:undefined);
 }finally{
  report.after=snapshotSource(process.cwd());report.unchanged=JSON.stringify(before)===JSON.stringify(report.after);await writeFile(dir+'/report.json',JSON.stringify(report,null,2)+'\n');await browser.close();await server.httpServer.close();
