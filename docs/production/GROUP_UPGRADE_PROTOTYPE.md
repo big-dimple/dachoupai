@@ -28,3 +28,7 @@
 ## 父审保存闭合小增量
 
 相对远端28ebb97：修B13仅整手反序、实际助攻身份漏接、新group六角色判型四集合重算，以及重触发真实来源/预算/原始根/执行时序闭合。旧产品相同tree复现12 FAIL，修后153相关检查与type PASS；原FAIL保留在evidence/mustfix。原生保存、自然候选及最终冻结仍待继续，普通入口仍e7d，main父串行。
+
+## 最终本地验证
+
+冻结9392adb的2420tests/134files、content/type/build、标准桌面/手机smoke、plan全PASS；原生保存四类失败候选及五身份分区/恢复闭合PASS，所有检查前后源码/index/HEAD保持。`final/summary.json`记录精确source及范围，`final/NATURAL_UI_PLAN.md`区分自然样本与未观察路线。旧CI37292850901唯一失败是group助攻入口漏接，原日志保留，修后全仓恢复用例通过。只review，无普通入口切换，最终远端精确CI及父串行main决定另报。

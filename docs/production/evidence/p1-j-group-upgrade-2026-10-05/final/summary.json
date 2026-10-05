@@ -1,0 +1,120 @@
+{
+  "status": "LOCAL_REVIEW_GATES_PASS",
+  "frozenSource": "9392adb36beab0597120fba5e0c7c046453f3900",
+  "productRemoteSource": "67c93aec2ac1b23e755f3ccc1819554a080da99f",
+  "srcTree": "92e56c2c59b7f6cb70556e448b811d96e95a9a9b",
+  "harnessTree": "1fbe9c845306aed165a8fdf952fd319d67a8c407",
+  "contentIdentity": [
+    "quality-r2-group-upgrade-prototype-v1",
+    "json-fnv-v1:5025cc23c013987f"
+  ],
+  "fullGate": {
+    "tests": 2420,
+    "testFiles": 134,
+    "steps": [
+      {
+        "name": "test",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 21517
+      },
+      {
+        "name": "verify:content",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 1609
+      },
+      {
+        "name": "build",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 12103
+      },
+      {
+        "name": "verify:smoke",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 119394
+      },
+      {
+        "name": "production-plan",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 275
+      }
+    ],
+    "sourceIndexHeadUnchanged": true
+  },
+  "nativeSave": {
+    "checks": [
+      {
+        "name": "b03+b10-nonwinning-growth",
+        "status": "PASS",
+        "pendingChecksum": "json-fnv-v1:ddbdd82457a285c0",
+        "stateHash": "json-fnv-v1:3612be98aca975a4",
+        "revision": 12
+      },
+      {
+        "name": "b06-three-targets+b03+b10-growth+b08-clear",
+        "status": "PASS",
+        "pendingChecksum": "json-fnv-v1:5d98f1d20d181a7e",
+        "stateHash": "json-fnv-v1:cda3ee63ed834757",
+        "revision": 14
+      },
+      {
+        "name": "cross-stage-straight-carried-growth",
+        "status": "PASS",
+        "pendingChecksum": "json-fnv-v1:42e57a91228f1415",
+        "stateHash": "json-fnv-v1:54aec700157bd4e4",
+        "revision": 16
+      },
+      {
+        "name": "assisted-clear-one-growth+reward+consumption",
+        "status": "PASS",
+        "pendingChecksum": "json-fnv-v1:8c5f6ab03d6a1ae4",
+        "stateHash": "json-fnv-v1:fbe3eeb6eb5e39ca",
+        "revision": 18
+      },
+      {
+        "name": "six-role/five-identity/discovery/reload/export/import/corrupt-current+previous/retained-raw",
+        "status": "PASS",
+        "revision": 24
+      }
+    ],
+    "sourceIndexHeadUnchanged": true
+  },
+  "natural": {
+    "seeds": 24,
+    "profiles": 2,
+    "routes": 4,
+    "stagesPerRoute": 1,
+    "sourceIndexHeadUnchanged": true,
+    "b10": "group-natural-17: actual buy4, two pairs318/325, growth10/20; e7d buy6, 318/290, no growth",
+    "b08": "group-natural-6: actual buy6 and +3 clear, same two-pair payout in old e7d",
+    "notObserved": [
+      "affordable natural b03",
+      "affordable natural b06",
+      "full pair-to-full-house natural route",
+      "natural carried-growth straight/flush transition"
+    ]
+  },
+  "oldCIFailure": {
+    "run": 37292850901,
+    "job": 111707215858,
+    "head": "28ebb9779e96858b247a18241dc914cdad1880c5",
+    "failure": "recovery-save.test.ts:176 assist-unavailable",
+    "resolution": "group identity missing from r2AssistAvailability; hasR2ComboGrowthContract now enables inherited actual assist; full 2420-test gate includes successful recovery-save suite"
+  },
+  "preserved": [
+    "four old full checkpoint replays v10/v11/843f/e7d",
+    "all UI scene, HandActionArea, RunLaunch and public/art bytes versus ac025ee",
+    "old FAIL/NOT_RUN evidence"
+  ],
+  "pending": [
+    "exact final remote-head CI",
+    "parent independent mustfix review / serialized main release",
+    "future single-owner UI switch",
+    "balance/physical-device/audio acceptance"
+  ],
+  "scope": "domain/content/application plus pure copy, necessary tests/harness/docs; ordinary entry remains e7d; no main"
+}
