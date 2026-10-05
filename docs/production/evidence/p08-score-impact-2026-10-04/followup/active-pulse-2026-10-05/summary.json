@@ -1,0 +1,719 @@
+{
+  "status": "PASS_BOUNDED_REVIEW",
+  "runtimeSource": "e8a4086252d7dd4f1291bc85a42bfbeb12ac30a7",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-05T00:01:45.631Z",
+    "revision": "e8a4086252d7dd4f1291bc85a42bfbeb12ac30a7",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "harnessCommit": "e8a4086252d7dd4f1291bc85a42bfbeb12ac30a7",
+  "scope": "Two native natural routes only:390x740 5589 active-pulse interruption and844x300 202 numeric rebound. Existing8-case matrix not rerun.",
+  "fix": {
+    "files": [
+      "src/game/ScoreFlame.ts"
+    ],
+    "behavior": "Local corner strokes use the same physical clipping as impact rays, with line-width clearance and actual live readout guards. Centerlines move1.8px inward within the original10px score-board band so visible safe corner ink remains."
+  },
+  "priorVisualFailure": {
+    "status": "FAIL",
+    "source": "aab096e3bf95c851eae22408269aa595009a7394",
+    "image": "../844x300-digits-rebound.png",
+    "sha256": "2fd9bca93638be3d030974c990f77d081d8387bae8e112c2c6e52f391b75da86",
+    "frame": 194,
+    "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+    "reason": "Parent and worker actual view confirmed left bottom local stroke at~y126 crosses heat45 at y108..132. Old file and report unchanged."
+  },
+  "activePulseInterruptions": {
+    "method": "Real DOM controls dispatched in the actual postrender callback; no loop pause, injected preference or phase sleep.",
+    "speeds": [
+      {
+        "speed": 2,
+        "before": {
+          "frame": 171,
+          "at": 3450.800000000745,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+          "eventPhase": "base-impact",
+          "pulses": [
+            {
+              "active": true,
+              "text": "450",
+              "requested": 0.7399999999999999,
+              "scale": 0.7399999999999999
+            },
+            {
+              "active": true,
+              "text": "× 9",
+              "requested": 0.7399999999999999,
+              "scale": 0.7399999999999999
+            },
+            {
+              "active": true,
+              "text": "4,050",
+              "requested": 0.7399999999999999,
+              "scale": 0.7399999999999999
+            }
+          ],
+          "presenting": true,
+          "tweenSpeed": 1,
+          "clockSpeed": 1,
+          "savedStable": true,
+          "brush": true,
+          "nodes": 2,
+          "masks": 1,
+          "accents": 2,
+          "sfx": 2
+        },
+        "after": {
+          "frame": 171,
+          "at": 3451.400000002235,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+          "eventPhase": "base-impact",
+          "pulses": [
+            {
+              "active": true,
+              "text": "450",
+              "requested": 0.7399999999999999,
+              "scale": 0.7399999999999999
+            },
+            {
+              "active": true,
+              "text": "× 9",
+              "requested": 0.7399999999999999,
+              "scale": 0.7399999999999999
+            },
+            {
+              "active": true,
+              "text": "4,050",
+              "requested": 0.7399999999999999,
+              "scale": 0.7399999999999999
+            }
+          ],
+          "presenting": true,
+          "tweenSpeed": 2,
+          "clockSpeed": 2,
+          "savedStable": true,
+          "brush": true,
+          "nodes": 2,
+          "masks": 1,
+          "accents": 2,
+          "sfx": 2
+        }
+      },
+      {
+        "speed": 4,
+        "before": {
+          "frame": 172,
+          "at": 3467.2000000029802,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+          "eventPhase": "base-impact",
+          "pulses": [
+            {
+              "active": true,
+              "text": "450",
+              "requested": 1.3164709136195825,
+              "scale": 1.1428571428571428
+            },
+            {
+              "active": true,
+              "text": "× 9",
+              "requested": 1.3164709136195825,
+              "scale": 1.1428571428571428
+            },
+            {
+              "active": true,
+              "text": "4,050",
+              "requested": 1.3164709136195825,
+              "scale": 1.3164709136195825
+            }
+          ],
+          "presenting": true,
+          "tweenSpeed": 2,
+          "clockSpeed": 2,
+          "savedStable": true,
+          "brush": true,
+          "nodes": 2,
+          "masks": 1,
+          "accents": 2,
+          "sfx": 2
+        },
+        "after": {
+          "frame": 172,
+          "at": 3467.60000000149,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+          "eventPhase": "base-impact",
+          "pulses": [
+            {
+              "active": true,
+              "text": "450",
+              "requested": 1.3164709136195825,
+              "scale": 1.1428571428571428
+            },
+            {
+              "active": true,
+              "text": "× 9",
+              "requested": 1.3164709136195825,
+              "scale": 1.1428571428571428
+            },
+            {
+              "active": true,
+              "text": "4,050",
+              "requested": 1.3164709136195825,
+              "scale": 1.3164709136195825
+            }
+          ],
+          "presenting": true,
+          "tweenSpeed": 4,
+          "clockSpeed": 4,
+          "savedStable": true,
+          "brush": true,
+          "nodes": 2,
+          "masks": 1,
+          "accents": 2,
+          "sfx": 2
+        }
+      },
+      {
+        "speed": 1,
+        "before": {
+          "frame": 173,
+          "at": 3484.400000002235,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+          "eventPhase": "base-impact",
+          "pulses": [
+            {
+              "active": true,
+              "text": "450",
+              "requested": 1.1054957116422406,
+              "scale": 1.1054957116422406
+            },
+            {
+              "active": true,
+              "text": "× 9",
+              "requested": 1.1054957116422406,
+              "scale": 1.1054957116422406
+            },
+            {
+              "active": true,
+              "text": "4,050",
+              "requested": 1.1054957116422406,
+              "scale": 1.1054957116422406
+            }
+          ],
+          "presenting": true,
+          "tweenSpeed": 4,
+          "clockSpeed": 4,
+          "savedStable": true,
+          "brush": true,
+          "nodes": 2,
+          "masks": 1,
+          "accents": 1,
+          "sfx": 1
+        },
+        "after": {
+          "frame": 173,
+          "at": 3484.800000000745,
+          "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+          "eventPhase": "base-impact",
+          "pulses": [
+            {
+              "active": true,
+              "text": "450",
+              "requested": 1.1054957116422406,
+              "scale": 1.1054957116422406
+            },
+            {
+              "active": true,
+              "text": "× 9",
+              "requested": 1.1054957116422406,
+              "scale": 1.1054957116422406
+            },
+            {
+              "active": true,
+              "text": "4,050",
+              "requested": 1.1054957116422406,
+              "scale": 1.1054957116422406
+            }
+          ],
+          "presenting": true,
+          "tweenSpeed": 1,
+          "clockSpeed": 1,
+          "savedStable": true,
+          "brush": true,
+          "nodes": 2,
+          "masks": 1,
+          "accents": 1,
+          "sfx": 1
+        }
+      }
+    ],
+    "done": true,
+    "speedEvent": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+    "reduced": {
+      "before": {
+        "frame": 209,
+        "at": 4081.60000000149,
+        "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+        "eventPhase": "impact",
+        "pulses": [
+          {
+            "active": true,
+            "text": "460",
+            "requested": 0.7399999999999999,
+            "scale": 0.7399999999999999
+          },
+          {
+            "active": true,
+            "text": "× 9",
+            "requested": 1,
+            "scale": 1
+          },
+          {
+            "active": true,
+            "text": "4,140",
+            "requested": 0.7399999999999999,
+            "scale": 0.7399999999999999
+          }
+        ],
+        "presenting": true,
+        "tweenSpeed": 1,
+        "clockSpeed": 1,
+        "savedStable": true,
+        "brush": true,
+        "nodes": 2,
+        "masks": 1,
+        "accents": 2,
+        "sfx": 4
+      },
+      "immediate": {
+        "frame": 209,
+        "at": 4085.800000000745,
+        "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+        "eventPhase": "impact",
+        "pulses": [
+          {
+            "active": true,
+            "text": "460",
+            "requested": 0.7399999999999999,
+            "scale": 0.7399999999999999
+          },
+          {
+            "active": true,
+            "text": "× 9",
+            "requested": 1,
+            "scale": 1
+          },
+          {
+            "active": true,
+            "text": "4,140",
+            "requested": 0.7399999999999999,
+            "scale": 1
+          }
+        ],
+        "presenting": false,
+        "tweenSpeed": 1,
+        "clockSpeed": 1,
+        "savedStable": true,
+        "brush": false,
+        "nodes": 0,
+        "masks": 0,
+        "accents": 0,
+        "sfx": 0
+      },
+      "afterMicrotasks": {
+        "frame": 210,
+        "at": 4086.2000000029802,
+        "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+        "eventPhase": "impact",
+        "pulses": [
+          {
+            "active": true,
+            "text": "460",
+            "requested": 1,
+            "scale": 1
+          },
+          {
+            "active": true,
+            "text": "× 9",
+            "requested": 1,
+            "scale": 1
+          },
+          {
+            "active": true,
+            "text": "4,140",
+            "requested": 1,
+            "scale": 1
+          }
+        ],
+        "presenting": false,
+        "tweenSpeed": 1,
+        "clockSpeed": 1,
+        "savedStable": true,
+        "brush": false,
+        "nodes": 0,
+        "masks": 0,
+        "accents": 0,
+        "sfx": 0
+      },
+      "nextRendered": {
+        "frame": 210,
+        "at": 4097.60000000149,
+        "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/1",
+        "eventPhase": "impact",
+        "pulses": [
+          {
+            "active": true,
+            "text": "460",
+            "requested": 1,
+            "scale": 1
+          },
+          {
+            "active": true,
+            "text": "× 9",
+            "requested": 1,
+            "scale": 1
+          },
+          {
+            "active": true,
+            "text": "4,140",
+            "requested": 1,
+            "scale": 1
+          }
+        ],
+        "presenting": false,
+        "tweenSpeed": 1,
+        "clockSpeed": 1,
+        "savedStable": true,
+        "brush": false,
+        "nodes": 0,
+        "masks": 0,
+        "accents": 0,
+        "sfx": 0
+      }
+    }
+  },
+  "firstSpeedPulseSettled": {
+    "frame": 179,
+    "at": 3584.60000000149,
+    "eventId": "run/d43-fire-267/laohuan/hand/run/d43-fire-267/laohuan/command/4/event/0",
+    "eventPhase": "base-impact",
+    "pulses": [
+      {
+        "text": "450",
+        "full": "450",
+        "requested": 1,
+        "scale": 1,
+        "bounds": {
+          "x": 68.04,
+          "y": 208.6,
+          "width": 31,
+          "height": 21
+        }
+      },
+      {
+        "text": "× 9",
+        "full": "× 9",
+        "requested": 1,
+        "scale": 1,
+        "bounds": {
+          "x": 70.54,
+          "y": 253.6,
+          "width": 26,
+          "height": 21.00000000000003
+        }
+      },
+      {
+        "text": "4,050",
+        "full": "4,050",
+        "requested": 1,
+        "scale": 1,
+        "bounds": {
+          "x": 217.04000000000002,
+          "y": 240.60000000000002,
+          "width": 91,
+          "height": 43
+        }
+      }
+    ]
+  },
+  "runs": [
+    {
+      "name": "390x740-5589-active-pulse",
+      "status": "PASS",
+      "frames": 76,
+      "savedStableEveryRecordedFrame": true,
+      "completeSavedResultEqualsOriginalCandidate": true,
+      "completeSavedResultSortedJsonSHA256": "8e1c331f23ece37ec8168b6fea223f8696a7c95e63aeed8dc1385bca685c13e6",
+      "finalScore": "5589",
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "extraCleanup": {
+        "safeMaskNodes": 0,
+        "pulseScales": []
+      },
+      "checks": [
+        "Speed inputs observed within one active pulse; reduced enabled during another active pulse; next rendered cleanup and reload preserve whole saved run including RNG",
+        "Natural saved trace and exact displayed tiers; actual phase/mask/geometry; all owned brush/audio cleanup"
+      ],
+      "errors": []
+    },
+    {
+      "name": "844x300-202-numeric",
+      "status": "PASS",
+      "frames": 199,
+      "savedStableEveryRecordedFrame": true,
+      "completeSavedResultEqualsOriginalCandidate": true,
+      "completeSavedResultSortedJsonSHA256": "9a5322db20ac521dcc9e2faf7f1e8202dfb8907e0d51e6763c7a8246b2471480",
+      "finalScore": "202",
+      "cleanup": {
+        "brush": false,
+        "nodes": 0,
+        "accents": 0
+      },
+      "extraCleanup": {
+        "safeMaskNodes": 0,
+        "pulseScales": [
+          1,
+          1,
+          1
+        ]
+      },
+      "checks": [
+        "Natural saved trace and exact displayed tiers; actual phase/mask/geometry; all owned brush/audio cleanup"
+      ],
+      "errors": []
+    }
+  ],
+  "correctedActualRebound": {
+    "status": "PASS_ACTUAL_VIEW",
+    "image": "844x300-digits-rebound.png",
+    "sha256": "1cd6ff809f5b3cd6d79add3f1670c3392448e548cb961dac26080cd5ed9ffe47",
+    "metadata": {
+      "source": "e8a4086252d7dd4f1291bc85a42bfbeb12ac30a7",
+      "frame": 192,
+      "at": 3721.199999999255,
+      "eventId": "run/p04-golden-02/amo/hand/run/p04-golden-02/amo/command/4/event/1",
+      "eventPhase": "impact",
+      "shown": "67",
+      "pulses": [
+        {
+          "text": "45",
+          "full": "45",
+          "requested": 1.2759764047258422,
+          "scale": 1.1428571428571428,
+          "bounds": {
+            "x": 218.34,
+            "y": 108,
+            "width": 24,
+            "height": 24
+          }
+        },
+        {
+          "text": "× 1.5",
+          "full": "× 1.5",
+          "requested": 1,
+          "scale": 1,
+          "bounds": {
+            "x": 289.52,
+            "y": 108,
+            "width": 41,
+            "height": 21
+          }
+        },
+        {
+          "text": "67",
+          "full": "67",
+          "requested": 1.2759764047258422,
+          "scale": 1.2759764047258422,
+          "bounds": {
+            "x": 412.45431853620113,
+            "y": 90.77431853620112,
+            "width": 34.451362927597756,
+            "height": 34.45136292759774
+          }
+        }
+      ],
+      "localStrokes": [
+        [
+          {
+            "x": 193,
+            "y": 100.03040571083676
+          },
+          {
+            "x": 193.25,
+            "y": 124.5
+          },
+          {
+            "x": 270.03867566529493,
+            "y": 125
+          }
+        ],
+        [
+          {
+            "x": 501,
+            "y": 100.03040571083676
+          },
+          {
+            "x": 500.75,
+            "y": 124.5
+          },
+          {
+            "x": 423.96132433470507,
+            "y": 125
+          }
+        ]
+      ],
+      "visibleLocalSegments": [
+        [
+          {
+            "x": 193.24744580971546,
+            "y": 124.25
+          },
+          {
+            "x": 193.25,
+            "y": 124.5
+          }
+        ],
+        [
+          {
+            "x": 193.14813889145256,
+            "y": 114.53
+          },
+          {
+            "x": 193.25,
+            "y": 124.5
+          }
+        ],
+        [
+          {
+            "x": 193.25,
+            "y": 124.5
+          },
+          {
+            "x": 208.13,
+            "y": 124.5968892865457
+          }
+        ],
+        [
+          {
+            "x": 252.55,
+            "y": 124.88612464329034
+          },
+          {
+            "x": 270.03867566529493,
+            "y": 125
+          }
+        ],
+        [
+          {
+            "x": 193.25,
+            "y": 124.5
+          },
+          {
+            "x": 193.75,
+            "y": 124.50325568839199
+          }
+        ],
+        [
+          {
+            "x": 500.7525541902845,
+            "y": 124.25
+          },
+          {
+            "x": 500.75,
+            "y": 124.5
+          }
+        ],
+        [
+          {
+            "x": 501,
+            "y": 100.03040571083676
+          },
+          {
+            "x": 500.9926480770312,
+            "y": 100.75
+          }
+        ],
+        [
+          {
+            "x": 500.85186110854744,
+            "y": 114.53
+          },
+          {
+            "x": 500.75,
+            "y": 124.5
+          }
+        ],
+        [
+          {
+            "x": 500.75,
+            "y": 124.5
+          },
+          {
+            "x": 457.5337359809028,
+            "y": 124.78139737822454
+          }
+        ],
+        [
+          {
+            "x": 500.75,
+            "y": 124.5
+          },
+          {
+            "x": 500.25,
+            "y": 124.50325568839199
+          }
+        ]
+      ],
+      "brush": {
+        "level": 0,
+        "reduced": false,
+        "localPhase": "unfold",
+        "localAge": 83.19999999999982,
+        "localAlpha": 1,
+        "localLineWidth": 6.5,
+        "framePhase": "idle",
+        "frameAge": 900,
+        "frameProgress": 1,
+        "frameAlpha": 0,
+        "lineWidth": 3.5,
+        "entered": [],
+        "updating": true
+      }
+    },
+    "actualHeatGuard": {
+      "x": 212.38,
+      "y": 105,
+      "width": 35.92,
+      "height": 31.92
+    },
+    "physicalLocalSegmentsOutsideAllActualGuardsEveryRecordedFrame": true,
+    "visualFinding": "Heat45 lower half has clear paper gap; no local cinnabar stroke crosses either digit. This exact captured rebound frame was actually viewed."
+  },
+  "validation": {
+    "tests": {
+      "files": 3,
+      "tests": 43,
+      "status": "PASS"
+    },
+    "typecheck": "PASS",
+    "viteBuildModeE2E": "PASS",
+    "harnessSyntax": "PASS",
+    "diffCheck": "PASS",
+    "exactEvidenceHeadCI": "PENDING; lookup after review push"
+  },
+  "rawEvidence": {
+    "path": "shots/score-impact-active/report.json",
+    "sha256": "c3b421a53bda6b80fe1b3f2d5aa6b1547f0aee946273da23da78d7b7862c1537"
+  },
+  "limits": [
+    "Linux Chromium softwareCanvas/DPR1/emulated touch and originalDOM controls; automated postrender DOM change/click gives exact phase timing.",
+    "Source event ordered flight before reduction; reduce fast-forward ends remaining playback under existing policy.",
+    "Original33.8% peak evidence keeps its aab source identity; no new portrait maximum claim.",
+    "True phone feel, audio listening, GPU/FPS and overallP08 acceptance NOT_RUN; main not pushed."
+  ]
+}
