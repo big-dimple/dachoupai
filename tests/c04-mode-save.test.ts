@@ -468,7 +468,7 @@ describe('Amo v10/v11 production storage partition compatibility',()=>{
     expect(await session.resumeMode(STANDARD)).toBe(true);expect(session.state()).toEqual(old.state);
     expect(session.state()?.contentHash).toBe(R2_LEGACY_CONTENT_HASH);
     // Starting creates the new profile while retaining the original old partition.
-    await session.start('new-after-old','amo',STANDARD);expect(session.state()?.contentHash).toBe('json-fnv-v1:e7d21fce68b80072');
+    await session.start('new-after-old','amo',STANDARD);expect(session.state()?.contentHash).toBe('json-fnv-v1:5025cc23c013987f');
     expect((await storage.readPartition(old.state)).current).toEqual(old);
   });
   it('legacy failed persistence retries the exact pending candidate once, duplicate command has no events',async()=>{

@@ -41,7 +41,7 @@ it('all known identities bind game, shop and AI to the exact definition; only Am
   const s=state(false,{contentVersion:profile.contentVersion,contentHash:profile.contentHash},characterId),defs=r2JokerDefinitionsFor(s);
   Object.assign(game,{run:s,selectedIds:new Set(main),assistIds:[],playing:false,presentation:undefined});shop.run=s;
   expect(game.assistProfile).toBe(r2UsesAssist(s));expect(game.assistProfile).toBe(characterId==='amo'&&profile.amoScoreTiming==='assist-v1');
-  for(const id of ['a06','f10','d12','e04']){
+  for(const id of ['a06','f10','d12','e04','b03','b06','b08','b10']){
    const j=r2CreateJoker(id,'same-instance',0,undefined,s);s.jokers=[j];const facts=game.selectionPreview();
    expect(game.jokerAbility(j,facts)).toEqual(jokerAbilityCopyForRun(s,id,j,game.memoryContext(j,facts)));
    expect(shop.jokerCopy(id,j)).toEqual(jokerAbilityCopyForRun(s,id,j,publicJokerMemoryContext(s,{hand:[],scoringLimited:false,deckSize:s.deckInstances.length,jokerSlots:5,jokerCount:1})));
