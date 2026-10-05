@@ -1,0 +1,298 @@
+{
+  "source": "5905d4c4129e42af0d0a2e9f081662097ccd9cdd",
+  "branch": "review/p1-j-group-upgrade-ui-20261005",
+  "review": "https://github.com/big-dimple/dachoupai/pull/27",
+  "base": "ac025ee9132dcd5e2ce97767ff7adb780873ab95",
+  "mergedDomain": "9da6d2d1a6afa3541ddb2c5653b50d00ec696543",
+  "domainApplicationContentArtEqualToMergedDomain": true,
+  "status": "LOCAL_AND_NATIVE_PASS",
+  "normalNewIdentity": {
+    "version": "quality-r2-group-upgrade-prototype-v1",
+    "hash": "json-fnv-v1:5025cc23c013987f",
+    "characters": 6,
+    "assistOnly": "amo"
+  },
+  "compatibility": "Five exact identities preserve retry / continue / import; raw createRun defaults v11. Current focused launch tests and full suite include the frozen fixtures. Native save-fault/five-identity domain proofs are inherited from F, not re-run as a new full matrix.",
+  "gates": {
+    "tests": 2428,
+    "files": 135,
+    "typeBuild": "PASS",
+    "content": "PASS",
+    "standardSmoke": "system Chromium desktop/mobile PASS, normal Amo exact group hash asserted",
+    "productionPlan": "PASS",
+    "sourceIndexHeadUnchanged": true
+  },
+  "native": {
+    "cases": [
+      {
+        "name": "selector-320",
+        "scope": "normal selector geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "selector-390",
+        "scope": "normal selector geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "selector-844",
+        "scope": "normal selector geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "normal-amo",
+        "scope": "ordinary Title → CharacterSelect → new run; natural first deal",
+        "status": "PASS"
+      },
+      {
+        "name": "normal-touye",
+        "scope": "ordinary Title → CharacterSelect → new run; natural first deal",
+        "status": "PASS"
+      },
+      {
+        "name": "normal-laohuan",
+        "scope": "ordinary Title → CharacterSelect → new run; natural first deal",
+        "status": "PASS"
+      },
+      {
+        "name": "normal-erxiang",
+        "scope": "ordinary Title → CharacterSelect → new run; natural first deal",
+        "status": "PASS"
+      },
+      {
+        "name": "normal-azao",
+        "scope": "ordinary Title → CharacterSelect → new run; natural first deal",
+        "status": "PASS"
+      },
+      {
+        "name": "normal-xiemu",
+        "scope": "ordinary Title → CharacterSelect → new run; natural first deal",
+        "status": "PASS"
+      },
+      {
+        "name": "natural-b08",
+        "scope": "normal new run, natural purchase/deal and saved income",
+        "status": "PASS"
+      },
+      {
+        "name": "legacy-e7-b10",
+        "scope": "native import of unchanged empty-inventory natural old save; real purchase/deals",
+        "status": "PASS"
+      },
+      {
+        "name": "b06-left-tie-disabled-assist",
+        "scope": "controlled legal rare-card fixture; no natural acquisition claim",
+        "status": "PASS"
+      },
+      {
+        "name": "b06-plain-flush",
+        "scope": "controlled legal rare-card fixture; no natural acquisition claim",
+        "status": "PASS"
+      },
+      {
+        "name": "B13-full-house",
+        "scope": "controlled legal rare-card fixture; no natural acquisition claim",
+        "status": "PASS"
+      },
+      {
+        "name": "growth-b03-normal",
+        "scope": "controlled legal rare-card fixture; no natural acquisition claim",
+        "status": "PASS"
+      },
+      {
+        "name": "growth-b03-sealed",
+        "scope": "controlled legal rare-card fixture; no natural acquisition claim",
+        "status": "PASS"
+      },
+      {
+        "name": "growth-b10-normal",
+        "scope": "controlled legal rare-card fixture; no natural acquisition claim",
+        "status": "PASS"
+      },
+      {
+        "name": "growth-b10-sealed",
+        "scope": "controlled legal rare-card fixture; no natural acquisition claim",
+        "status": "PASS"
+      }
+    ],
+    "screenshots": 31,
+    "actualViewed": 31,
+    "noExifXmpIptc": true,
+    "sourceIndexHeadUnchanged": true
+  },
+  "natural": {
+    "seed": "group-natural-17",
+    "character": "erxiang",
+    "shop": {
+      "b10": 4,
+      "legacyE7": 6
+    },
+    "initialTwoPairs": {
+      "scores": [
+        "318",
+        "325"
+      ],
+      "savedHeat": [
+        10,
+        20
+      ],
+      "legacyScores": [
+        "318",
+        "290"
+      ],
+      "legacyGrowth": {}
+    },
+    "extension": [
+      {
+        "stage": 1,
+        "steps": [
+          {
+            "type": "two-pair",
+            "score": "402",
+            "growth": {
+              "n": "30",
+              "d": "1"
+            },
+            "visibleHand": [
+              "diamonds-2",
+              "clubs-7",
+              "hearts-5",
+              "clubs-5",
+              "diamonds-8",
+              "spades-10",
+              "diamonds-10",
+              "diamonds-12"
+            ],
+            "chosen": [
+              "diamonds-2",
+              "hearts-5",
+              "clubs-5",
+              "spades-10",
+              "diamonds-10"
+            ]
+          },
+          {
+            "type": "three-kind",
+            "score": "634",
+            "growth": {
+              "n": "40",
+              "d": "1"
+            },
+            "visibleHand": [
+              "clubs-7",
+              "diamonds-8",
+              "diamonds-12",
+              "hearts-7",
+              "diamonds-4",
+              "diamonds-14",
+              "spades-13",
+              "spades-7"
+            ],
+            "chosen": [
+              "clubs-7",
+              "diamonds-8",
+              "diamonds-12",
+              "hearts-7",
+              "spades-7"
+            ]
+          }
+        ]
+      },
+      {
+        "stage": 2,
+        "steps": [
+          {
+            "type": "full-house",
+            "score": "1470",
+            "growth": {
+              "n": "50",
+              "d": "1"
+            },
+            "visibleHand": [
+              "diamonds-8",
+              "diamonds-10",
+              "spades-11",
+              "spades-8",
+              "clubs-2",
+              "diamonds-4",
+              "hearts-11",
+              "clubs-8"
+            ],
+            "chosen": [
+              "diamonds-8",
+              "spades-11",
+              "spades-8",
+              "hearts-11",
+              "clubs-8"
+            ]
+          }
+        ]
+      }
+    ],
+    "finalPhase": "stage-cleared",
+    "finalGold": 29,
+    "observations": {
+      "fullHouse": "OBSERVED",
+      "carriedStraightOrFlush": "NOT_OBSERVED",
+      "naturalAffordableB03orB06": "NOT_OBSERVED"
+    },
+    "b08": {
+      "seed": "group-natural-6",
+      "price": 6,
+      "scores": [
+        "325",
+        "318"
+      ],
+      "income": 3,
+      "finalGold": 9
+    },
+    "scope": "No checkpoint import or state mutation in normal natural routes; only actual visible classification, at most two extra stages, no seed scan. Old e7 baseline uses the unchanged empty-inventory natural initial checkpoint via native import."
+  },
+  "controlled": {
+    "b06": "leftmost tied 9 group includes disabled 9s but actually only 9h re-scores; QQ assist consumed and excluded; plain flush negative",
+    "B13": "real trace onCardScore a11→b06; jokerScore b06→a11; save/reload/replay unchanged",
+    "growthRead": "b03/b10 normal versus B06 slot2 only-growth actual trace; saved copy uses read-growth events, absent reads say pre-settlement saved / did not read. Full legal checkpoints both before and after; four native reload/replay cases passed."
+  },
+  "retainedFailures": [
+    {
+      "path": "first-fail/presentation-valid-FAIL.log",
+      "kind": "product copy: live grown instance falsely displayed +10/+20 for actual +0/+10; recorded starting source fixed"
+    },
+    {
+      "path": "first-fail/invalid-test-fixture-FAIL.log",
+      "kind": "invalid test inventory replaced after entry; corrected fixture before entry, not a domain failure"
+    },
+    {
+      "path": "native-first/report-FAIL.json",
+      "kind": "harness rational shape, rarity translation and commandId expectations; B13 missed click after dialog dismissal; raw images/log retained"
+    },
+    {
+      "path": "native-second/report-FAIL.json",
+      "kind": "harness continuation click inside existing modal-dismiss protection; guard remains 350ms, script waits 370ms"
+    },
+    {
+      "path": "native-third/report-FAIL.json",
+      "kind": "harness omitted real boss-notice confirmation; one b06 run did not commit assist. Final harness verifies exact draft before play and after inspection; old missing-assist outcome is retained, not relabelled as success or a proven root cause."
+    },
+    {
+      "path": "no-read-mustfix/b03-b10-valid-FAIL.log",
+      "kind": "parent product-copy must-fix: unconditional read label with no read-growth event; corrected using actual trace only"
+    },
+    {
+      "path": "no-read-mustfix/invalid-filler-fixture-FAIL.log",
+      "kind": "unpublished filler ID in first regression fixture; corrected to published pengci before entry"
+    },
+    {
+      "path": "../p1-j-group-upgrade-2026-10-05/phase-final/ci-590-browser-FAIL.json",
+      "kind": "inherited F WebKit scaleX sampling 5sec FAIL; no smoke/UI gate changed and no root cause inferred from later green run"
+    }
+  ],
+  "limits": [
+    "b03/b06 natural affordable acquisition NOT_OBSERVED",
+    "carrying grown values into straight/flush natural route NOT_OBSERVED",
+    "rare b06 and B13/growth封禁 are labelled controlled legal saves",
+    "physical devices, GPU/FPS/video, listening, whole-six-role balance NOT_RUN; P08 in_progress / C04 D32 preserved"
+  ],
+  "finalExactCI": "Final review head SHA and run links are recorded in PR27 metadata after the evidence commit; local/native proofs keep their actual source SHA.",
+  "main": "Not written; parent alone decides publication"
+}

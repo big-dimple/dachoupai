@@ -1,5 +1,9 @@
 # 开发入口
 
+## 成组升级正常入口/UI有限交付（PR27，2026-10-05 UTC，仅review）
+
+基线已发布ac025ee；正常合入F最终9da6d2d。冻结源码5905d4c，普通六角色新局采用group-upgrade-v1/5025cc23c013987f，仅阿默助攻；五身份原规则续局/导入/精确retry及裸createRun默认v11保持。商店稀有度/价格与全UI依当前局，成组主文案明确对子、两对、三条、葫芦等；读取和再次计分来源只按实际trace。父审B06成长无读取却写读取的must-fix已复现并修；原FAIL保留。2428tests/135files、content/type/build/系统Chromium标准双端smoke/plan全部PASS，source/index/HEAD保持；18原生案例及31逐张actual view PNG通过。自然b10四金、318/325成长10/20、真实延续402两对→634三条→1470葫芦，保存成长50；b08自然过关+3，旧e7 b10六金/318与290保持。未遇自然b03/b06、未转顺子或同花均NOT_OBSERVED；稀有/B13/封禁对照明确受控。精确最终review CI见PR27，不预记main。P08 in_progress、C04 D32及原真机/听感/平衡门槛保持，main父串行。见[本批证据](docs/production/evidence/p1-j-group-upgrade-ui-2026-10-05/summary.json)。
+
 ## P1-J 当前最终冻结补强（2026-10-05 UTC，仅review PR26）
 
 最新冻结源码30f4657，仅补新group中rank/depth1不能伪装为afterHand的阶段约束，原59095fe可接受伪造的FAIL保留。2421tests/134files、content/type/build、标准系统Chromium双端smoke、plan及原生五身份保存/自然有界回放全PASS，源码/index/HEAD保持。自然完整payload与9392adb样本一致，见phase-final/natural-rerun-PASS.json。59095fe旧CI domain/docs及Chromium/Firefox双端通过，但WebKit桌面screenshot.mjs:145等待出牌次数scaleX>1.05超时5秒；原日志保留，未放宽/修改UI或smoke，下一精确headCI另报。证据docs/production/evidence/p1-j-group-upgrade-2026-10-05/phase-final/summary.json。普通入口e7d、旧四身份、P08 in_progress/C04 D32及真机/听感/平衡边界保持。main只父串行。以下旧检查点按原SHA保留。

@@ -1,0 +1,83 @@
+{
+  "source": "5905d4c4129e42af0d0a2e9f081662097ccd9cdd",
+  "cases": [
+    {
+      "name": "selector-320",
+      "status": "PASS"
+    },
+    {
+      "name": "selector-390",
+      "status": "PASS"
+    },
+    {
+      "name": "selector-844",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-amo",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-touye",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-laohuan",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-erxiang",
+      "status": "PASS",
+      "observations": {
+        "fullHouse": "OBSERVED",
+        "carriedStraightOrFlush": "NOT_OBSERVED",
+        "naturalAffordableB03orB06": "NOT_OBSERVED"
+      }
+    },
+    {
+      "name": "normal-azao",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-xiemu",
+      "status": "PASS"
+    },
+    {
+      "name": "natural-b08",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy-e7-b10",
+      "status": "PASS"
+    },
+    {
+      "name": "b06-left-tie-disabled-assist",
+      "status": "PASS"
+    },
+    {
+      "name": "b06-plain-flush",
+      "status": "PASS"
+    },
+    {
+      "name": "B13-full-house",
+      "status": "PASS"
+    },
+    {
+      "name": "growth-b03-normal",
+      "status": "PASS"
+    },
+    {
+      "name": "growth-b03-sealed",
+      "status": "PASS"
+    },
+    {
+      "name": "growth-b10-normal",
+      "status": "PASS"
+    },
+    {
+      "name": "growth-b10-sealed",
+      "status": "PASS"
+    }
+  ],
+  "unchanged": true
+}

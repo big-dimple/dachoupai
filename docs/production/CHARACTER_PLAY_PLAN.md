@@ -1,5 +1,9 @@
 # P08：组合追逐与六角色节奏 — 整合计划 / 阿默首原型
 
+## 成组升级正常入口/UI有限交付（PR27，2026-10-05 UTC，仅review）
+
+基线已发布ac025ee；正常合入F最终9da6d2d。冻结源码5905d4c，普通六角色新局采用group-upgrade-v1/5025cc23c013987f，仅阿默助攻；五身份原规则续局/导入/精确retry及裸createRun默认v11保持。商店稀有度/价格与全UI依当前局，成组主文案明确对子、两对、三条、葫芦等；读取和再次计分来源只按实际trace。父审B06成长无读取却写读取的must-fix已复现并修；原FAIL保留。2428tests/135files、content/type/build/系统Chromium标准双端smoke/plan全部PASS，source/index/HEAD保持；18原生案例及31逐张actual view PNG通过。自然b10四金、318/325成长10/20、真实延续402两对→634三条→1470葫芦，保存成长50；b08自然过关+3，旧e7 b10六金/318与290保持。未遇自然b03/b06、未转顺子或同花均NOT_OBSERVED；稀有/B13/封禁对照明确受控。精确最终review CI见PR27，不预记main。P08 in_progress、C04 D32及原真机/听感/平衡门槛保持，main父串行。见[本批证据](evidence/p1-j-group-upgrade-ui-2026-10-05/summary.json)。
+
 ## 共同四卡入口/UI有限交付（PR25，2026-10-05 UTC，仅review）
 
 已审PR22 e2fc与PR24 36eff正常合入独立UI分支；source92ade25，正常六角色新局共用combo-growth-v1/e7d21fce68b80072，阿默主手＋助攻，其余五人能力保持。当前局规则和旧identity重试明确保留；普通createRun默认v11。2377tests/132files及既有门禁冻结通过，六角色正常入口、自然d12购买/真实留牌收入/保存账本和阿默自然助攻/失败重试、小屏文案与44px通过，原FAIL与双方历史证据保留。见[本批证据](evidence/p08-combo-growth-ui-2026-10-05/summary.json)。main仍193c93b；以下“未实现/仅文档”描述是原计划阶段，不冒充共同基础或五角色玩法最终验收。P08 in_progress、C04 D32及真机/听感/平衡门槛保持。
