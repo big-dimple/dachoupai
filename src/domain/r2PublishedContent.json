@@ -1,0 +1,6090 @@
+{
+  "source": "04d2f729bbe37d7e34783f4a2a81b9026ff98a64",
+  "v10": {
+    "version": "quality-r2-content-v10",
+    "hash": "json-fnv-v1:24efe7a905216d85"
+  },
+  "v11": {
+    "version": "quality-r2-content-v11",
+    "hash": "json-fnv-v1:bd4a1230833ab884"
+  },
+  "snapshot": {
+    "jokers": [
+      {
+        "id": "pengci",
+        "name": "碰瓷",
+        "rarity": "common",
+        "description": "高牌时，整手倍率 +2。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "high-card"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "mantangcai",
+        "name": "满堂彩",
+        "rarity": "common",
+        "description": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair",
+                "two-pair",
+                "three-kind",
+                "full-house",
+                "four-kind"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "90",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tiesuanpan",
+        "name": "铁算盘",
+        "rarity": "uncommon",
+        "description": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "rank-in",
+              "values": [
+                11,
+                12,
+                13,
+                14
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "25",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "huimaqiang",
+        "name": "回马枪",
+        "rarity": "rare",
+        "description": "本场每第 3 次出牌，整手倍率 ×2。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "play-modulo",
+              "divisor": 3,
+              "remainder": 0
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "jiedongfeng",
+        "name": "借东风",
+        "rarity": "uncommon",
+        "description": "顺子、同花或同花顺，整手倍率 +1.5。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "straight",
+                "flush",
+                "straight-flush"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a03",
+        "name": "一束光",
+        "rarity": "common",
+        "description": "实际打出恰好1张牌时，整手热度 +35。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "played-count",
+              "equals": 1
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "35",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a05",
+        "name": "熟面孔",
+        "rarity": "uncommon",
+        "description": "打出1张后热度成长 +6，上限90，从下一手生效；每手加入已有成长。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "heat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "played-count",
+              "equals": 1
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "heat",
+                "value": {
+                  "n": "6",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "90",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b02",
+        "name": "对上眼",
+        "rarity": "common",
+        "description": "计分牌的点数在实际打出牌中至少出现2次时，该牌倍率 +0.25。",
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "paired-rank",
+              "minimum": 2
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "4"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b03",
+        "name": "老搭档",
+        "rarity": "uncommon",
+        "description": "对子、两对、三条后倍率成长 +0.25，上限3，从下一手生效；每手加入已有成长。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "multiplier",
+                "target": "multiplier"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair",
+                "two-pair",
+                "three-kind"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "4"
+                },
+                "cap": {
+                  "n": "3",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b04",
+        "name": "一唱一和",
+        "rarity": "common",
+        "description": "实际打出牌含至少两组不同点数、每组至少2张时，整手倍率 +2。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "rank-groups",
+              "minimum": 2,
+              "groupSize": 2
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "c02",
+        "name": "红线",
+        "rarity": "common",
+        "description": "每张有效计分的红桃或方片，加8热度；杂牌和持牌不触发。",
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "suit-in",
+              "values": [
+                "hearts",
+                "diamonds"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "8",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "c04",
+        "name": "搭台阶",
+        "rarity": "common",
+        "description": "顺子或同花顺，整手热度 +50。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "straight",
+                "straight-flush"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "50",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "c06",
+        "name": "越染越深",
+        "rarity": "uncommon",
+        "description": "同花或同花顺后倍率成长 +0.25，上限4，从下一手生效；每手加入已有成长。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "multiplier",
+                "target": "multiplier"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "flush",
+                "straight-flush"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "4"
+                },
+                "cap": {
+                  "n": "4",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d01",
+        "name": "候场席",
+        "rarity": "common",
+        "description": "手牌顺序前4张持有的J/Q/K各加0.5倍率；A不算人头。",
+        "hooks": [
+          {
+            "phase": "onHeldCard",
+            "condition": {
+              "kind": "held-rank-first",
+              "values": [
+                11,
+                12,
+                13
+              ],
+              "limit": 4
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d03",
+        "name": "等得住",
+        "rarity": "uncommon",
+        "description": "一手后留下至少3张牌，热度成长 +4，上限60，从下一手生效；每手加入已有成长。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "heat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "held-count",
+              "minimum": 3
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "heat",
+                "value": {
+                  "n": "4",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "60",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d05",
+        "name": "彩排",
+        "rarity": "uncommon",
+        "description": "本场首次成功弃牌返还1次弃牌；仅一次，返还仍算使用过弃牌。",
+        "hooks": [
+          {
+            "phase": "onDiscard",
+            "condition": {
+              "kind": "resource",
+              "resource": "discards-used",
+              "equals": 1
+            },
+            "operations": [
+              {
+                "kind": "refund-discard",
+                "amount": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d10",
+        "name": "空位有价",
+        "rarity": "common",
+        "description": "每个空大丑牌槽加12热度，最多4个空槽。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "add-heat-per-empty-slot",
+                "value": {
+                  "n": "12",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "48",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "e01",
+        "name": "小费盒",
+        "rarity": "common",
+        "description": "成功过场额外 +2金币；失败和跳场不触发。",
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "add-gold",
+                "amount": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "e03",
+        "name": "家底",
+        "rarity": "uncommon",
+        "description": "每持有1金币加2热度，最多60热度。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "add-heat-per-gold",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "60",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "e05",
+        "name": "置办行头",
+        "rarity": "uncommon",
+        "description": "持有期间购买其他大丑牌后，热度成长 +8，上限80；每手加入已有成长。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "heat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "onBuyOffer",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "heat",
+                "value": {
+                  "n": "8",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "80",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "e08",
+        "name": "包场",
+        "rarity": "rare",
+        "description": "当前金币至少20时，整手倍率 ×1.8。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "resource-minimum",
+              "resource": "gold",
+              "minimum": 20
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "9",
+                  "d": "5"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "f02",
+        "name": "最后一句",
+        "rarity": "common",
+        "description": "扣除本手后出牌余量为0时，整手热度 +70。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "resource",
+              "resource": "hands-after",
+              "equals": 0
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "70",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "f03",
+        "name": "开门见喜",
+        "rarity": "common",
+        "description": "本场第一手，整手倍率 +2。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "resource",
+              "resource": "play-index",
+              "equals": 1
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "f09",
+        "name": "不换词",
+        "rarity": "uncommon",
+        "description": "本场尚未成功使用弃牌时，整手倍率 ×1.5；返还弃牌不恢复资格。",
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "resource",
+              "resource": "discards-used",
+              "equals": 0
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a04",
+        "name": "小口袋",
+        "rarity": "uncommon",
+        "description": "进场时持久有效牌组不超过40张，手牌上限 +2；只在下次进场生效，总上限14。",
+        "requiredFeatures": [
+          "static-modifiers"
+        ],
+        "modifiers": [
+          {
+            "kind": "hand-limit",
+            "amount": 2,
+            "deckMaximum": 40
+          }
+        ],
+        "hooks": []
+      },
+      {
+        "id": "a06",
+        "name": "独家戏",
+        "rarity": "rare",
+        "description": "高牌时，整手倍率 ×1.5。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "high-card"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a07",
+        "name": "偷闲",
+        "rarity": "common",
+        "description": "成功恰好弃1张时 +1金币，每场最多2次；计数进场重置，返还弃牌不回退计数。",
+        "requiredFeatures": [
+          "discard-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "onDiscard",
+            "condition": {
+              "kind": "discard-count",
+              "equals": 1
+            },
+            "operations": [
+              {
+                "kind": "add-gold-limited",
+                "amount": 1,
+                "limit": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a08",
+        "name": "小人物",
+        "rarity": "common",
+        "description": "每张有效计分的2–5各加20热度；杂牌、失效牌和持牌不触发。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "rank-in",
+              "values": [
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b05",
+        "name": "合唱班",
+        "rarity": "uncommon",
+        "description": "有效计分牌的点数在实际打出牌中至少出现3次时，该牌加15热度。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "paired-rank",
+              "minimum": 3
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "15",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b06",
+        "name": "再说一遍",
+        "rarity": "rare",
+        "description": "恰为对子时，两张有效对子计分牌各额外重触发1次；每卡额外重触发总上限4，最深1层。",
+        "requiredFeatures": [
+          "score-hooks",
+          "retrigger"
+        ],
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "retrigger-card",
+                "count": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b07",
+        "name": "人人有份",
+        "rarity": "common",
+        "description": "实际打出至少2张且全部都是有效计分牌时，整手热度 +30。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "all-played-active",
+              "minimum": 2
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "30",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b08",
+        "name": "对半分",
+        "rarity": "uncommon",
+        "description": "致胜手恰为对子或两对时，成功过场额外 +3金币；失败和跳场不触发。",
+        "requiredFeatures": [
+          "stage-clear-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair",
+                "two-pair"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-gold",
+                "amount": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "c03",
+        "name": "蓝墨",
+        "rarity": "common",
+        "description": "每张有效计分的黑桃或梅花加8热度；杂牌、失效牌和持牌不触发。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "suit-in",
+              "values": [
+                "spades",
+                "clubs"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "8",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "c05",
+        "name": "换布景",
+        "rarity": "uncommon",
+        "description": "成功弃至少2张同花色牌，积累下手 +40热度，上限80；下一次整手计分消费一次，场末清零。",
+        "requiredFeatures": [
+          "score-hooks",
+          "discard-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "consume-growth",
+                "key": "pendingHeat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "onDiscard",
+            "condition": {
+              "kind": "discard-same-suit",
+              "minimum": 2
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "pendingHeat",
+                "value": {
+                  "n": "40",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "80",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "c07",
+        "name": "拖个尾音",
+        "rarity": "rare",
+        "description": "同花或同花顺的最后一张原始有效计分牌额外重触发1次；每卡额外重触发总上限4，最深1层。",
+        "requiredFeatures": [
+          "score-hooks",
+          "retrigger"
+        ],
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "scoring-position",
+              "position": "last",
+              "handTypes": [
+                "flush",
+                "straight-flush"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "retrigger-card",
+                "count": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "c08",
+        "name": "少一级",
+        "rarity": "uncommon",
+        "description": "普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；同花顺仍需5张，不允许QKA2。",
+        "requiredFeatures": [
+          "static-modifiers"
+        ],
+        "modifiers": [
+          {
+            "kind": "four-straight"
+          }
+        ],
+        "hooks": []
+      },
+      {
+        "id": "d02",
+        "name": "小凳子",
+        "rarity": "common",
+        "description": "手牌顺序前4张持有的2–5各加6热度；不加入普通点数。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "onHeldCard",
+            "condition": {
+              "kind": "held-rank-first",
+              "values": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "limit": 4
+            },
+            "operations": [
+              {
+                "kind": "add-heat",
+                "value": {
+                  "n": "6",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d04",
+        "name": "递个眼色",
+        "rarity": "rare",
+        "description": "本场第偶数次合法出牌的首张原始有效计分牌额外重触发1次；返还次数不回退序号，每卡额外重触发总上限4，最深1层。",
+        "requiredFeatures": [
+          "score-hooks",
+          "retrigger"
+        ],
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "scoring-position",
+              "position": "first",
+              "playModulo": {
+                "divisor": 2,
+                "remainder": 0
+              }
+            },
+            "operations": [
+              {
+                "kind": "retrigger-card",
+                "count": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d06",
+        "name": "搬张椅子",
+        "rarity": "uncommon",
+        "description": "下次进场手牌上限 +1，所有修正后的硬上限14；场中不返还牌。",
+        "requiredFeatures": [
+          "static-modifiers"
+        ],
+        "modifiers": [
+          {
+            "kind": "hand-limit",
+            "amount": 1
+          }
+        ],
+        "hooks": []
+      },
+      {
+        "id": "d07",
+        "name": "镜头不空",
+        "rarity": "common",
+        "description": "实际打出牌全部是有效计分牌时，整手倍率 +0.5；单张也可触发。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "all-played-active",
+              "minimum": 1
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "e02",
+        "name": "熟客券",
+        "rarity": "common",
+        "description": "持有时每店第一次成功购买减1金币，与跳场券叠加，最终最低支付1；购买前未持有则不优惠。",
+        "requiredFeatures": [
+          "static-modifiers"
+        ],
+        "modifiers": [
+          {
+            "kind": "first-purchase-discount",
+            "amount": 1,
+            "minimum": 1
+          }
+        ],
+        "hooks": []
+      },
+      {
+        "id": "e04",
+        "name": "滚个零头",
+        "rarity": "uncommon",
+        "description": "成功奖励前读取，利息上限 +2金币；仍按奖励前金币每5金产生1利息。",
+        "requiredFeatures": [
+          "static-modifiers"
+        ],
+        "modifiers": [
+          {
+            "kind": "interest-cap",
+            "amount": 2
+          }
+        ],
+        "hooks": []
+      },
+      {
+        "id": "e06",
+        "name": "旧物新用",
+        "rarity": "uncommon",
+        "description": "持有期间成功出售其他大丑牌后，倍率成长 +0.5，上限3；出售自己不成长，成长属于原实例。",
+        "requiredFeatures": [
+          "score-hooks",
+          "trade-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "multiplier",
+                "target": "multiplier"
+              }
+            ]
+          },
+          {
+            "phase": "onSellJoker",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "2"
+                },
+                "cap": {
+                  "n": "3",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "e07",
+        "name": "加班费",
+        "rarity": "uncommon",
+        "description": "致胜手后剩余出牌为0，成功过场额外 +4金币，只发一次；失败和跳场不触发。",
+        "requiredFeatures": [
+          "stage-clear-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "resource",
+              "resource": "hands-after",
+              "equals": 0
+            },
+            "operations": [
+              {
+                "kind": "add-gold",
+                "amount": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "f04",
+        "name": "兜比脸净",
+        "rarity": "uncommon",
+        "description": "当前金币不超过3时，整手倍率 +3。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "resource-maximum",
+              "resource": "gold",
+              "maximum": 3
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "f05",
+        "name": "越说越顺",
+        "rarity": "uncommon",
+        "description": "整手加入已有倍率成长；本手最终分数严格高于本场上一手时，结算后成长 +0.25，上限4，否则归零；本场首手只记录，成长跨场保留。",
+        "requiredFeatures": [
+          "score-hooks",
+          "score-growth"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "multiplier",
+                "target": "multiplier"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "update-score-growth",
+                "key": "multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "4"
+                },
+                "cap": {
+                  "n": "4",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "f06",
+        "name": "一次性招牌",
+        "rarity": "rare",
+        "description": "整手倍率 ×2；买入后第4次合法出牌本手仍有效，结算后销毁自身，次数跨场保留。",
+        "requiredFeatures": [
+          "score-hooks",
+          "hand-lifetime"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "expire-after-hands",
+                "limit": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "f07",
+        "name": "安全网",
+        "rarity": "uncommon",
+        "description": "判失败前，仅因出牌耗尽且仍能获得可用手牌时，销毁自身并返还1次出牌；全局每局最多1次，触发后禁止再售，成功不触发。",
+        "requiredFeatures": [
+          "before-failure"
+        ],
+        "hooks": [
+          {
+            "phase": "beforeFailure",
+            "condition": {
+              "kind": "exhausted-hands"
+            },
+            "operations": [
+              {
+                "kind": "rescue-hand",
+                "amount": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a09",
+        "name": "短节目",
+        "rarity": "common",
+        "description": "实际打出不超过2张牌时，整手倍率 +1。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "played-count-maximum",
+              "maximum": 2
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a10",
+        "name": "后台眼神",
+        "rarity": "uncommon",
+        "description": "本手实际打出1张牌时，按手牌顺序，前3张有效持有的 J/Q/K 各 +1倍率；A不是人头牌。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "onHeldCard",
+            "condition": {
+              "kind": "held-rank-first",
+              "values": [
+                11,
+                12,
+                13
+              ],
+              "limit": 3,
+              "playedEquals": 1
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a11",
+        "name": "返个场",
+        "rarity": "rare",
+        "description": "实际打出1张牌时，唯一有效计分牌额外重触发一次；重触发不再请求新的重触发，仍受每牌额外4次上限约束。",
+        "requiredFeatures": [
+          "score-hooks",
+          "retrigger"
+        ],
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "played-count",
+              "equals": 1
+            },
+            "operations": [
+              {
+                "kind": "retrigger-card",
+                "count": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a12",
+        "name": "不铺张",
+        "rarity": "uncommon",
+        "description": "本场至少成功出过一手，且每手实际打出均不超过2张，成功过关额外 +3金币；失败与跳场不触发。",
+        "requiredFeatures": [
+          "stage-clear-hooks",
+          "stage-history"
+        ],
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "stage-played-maximum",
+              "maximum": 2
+            },
+            "operations": [
+              {
+                "kind": "add-gold",
+                "amount": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b09",
+        "name": "四座皆惊",
+        "rarity": "rare",
+        "description": "四条、五条或同花五条时，整手倍率 ×2；其他成组牌型不触发。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "four-kind",
+                "five-kind",
+                "flush-five"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b10",
+        "name": "练对子",
+        "rarity": "uncommon",
+        "description": "恰为对子时，结算后热度成长 +5，上限50，从下一手生效；每手任意牌型加入已有成长。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "heat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "heat",
+                "value": {
+                  "n": "5",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "50",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b11",
+        "name": "候场同伴",
+        "rarity": "uncommon",
+        "description": "持牌点数与本手任意有效计分牌相同时，按手牌顺序前3张有效匹配持牌各 +0.5倍率；失效计分牌和杂牌不提供匹配。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "onHeldCard",
+            "condition": {
+              "kind": "held-scoring-rank-first",
+              "limit": 3
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b12",
+        "name": "救个场",
+        "rarity": "rare",
+        "description": "本手恰为四条且结算后仍未达目标时，返还1次出牌，每场最多一次；先于耗尽失败判断，实际出牌序号不回退。",
+        "requiredFeatures": [
+          "score-hooks",
+          "hand-refund"
+        ],
+        "hooks": [
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "hand-type-unfinished",
+              "values": [
+                "four-kind"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "refund-hand-limited",
+                "amount": 1,
+                "limit": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "c09",
+        "name": "少一块布",
+        "rarity": "rare",
+        "description": "普通同花允许4张同花色，也保留5张；同花顺与扩展同花牌型仍需5张。与少一级同时持有时，4张同花连续牌按普通同花结算。",
+        "requiredFeatures": [
+          "static-modifiers"
+        ],
+        "hooks": [],
+        "modifiers": [
+          {
+            "kind": "four-flush"
+          }
+        ]
+      },
+      {
+        "id": "c10",
+        "name": "压住书页",
+        "rarity": "uncommon",
+        "description": "按手牌顺序，前2张有效持有的 A 各 +0.75倍率；持牌的版次不触发。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "onHeldCard",
+            "condition": {
+              "kind": "held-rank-first",
+              "values": [
+                14
+              ],
+              "limit": 2
+            },
+            "operations": [
+              {
+                "kind": "add-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "4"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "c11",
+        "name": "换轨",
+        "rarity": "uncommon",
+        "description": "本手恰为普通顺子、上手恰为普通同花，或反之，整手倍率 ×1.75；首手与同花顺均不触发。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-transition",
+              "current": "straight",
+              "previous": "flush"
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "7",
+                  "d": "4"
+                }
+              }
+            ]
+          },
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "hand-type-transition",
+              "current": "flush",
+              "previous": "straight"
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "7",
+                  "d": "4"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "c12",
+        "name": "换一身",
+        "rarity": "uncommon",
+        "description": "本场同时打过普通顺子和普通同花，成功过关从 T03–T06 均匀随机获得一件；满消耗品槽转2金币，仍消费一次奖励随机。",
+        "requiredFeatures": [
+          "stage-clear-hooks",
+          "stage-history",
+          "consumable-rewards"
+        ],
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "stage-hand-types-all",
+              "values": [
+                "straight",
+                "flush"
+              ]
+            },
+            "operations": [
+              {
+                "kind": "reward-consumable-pool",
+                "definitionIds": [
+                  "T03",
+                  "T04",
+                  "T05",
+                  "T06"
+                ],
+                "fallbackGold": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d08",
+        "name": "留声机",
+        "rarity": "rare",
+        "description": "按手牌顺序，前2张有效持有的留声纸，在各自增强 +1倍率后再 ×1.2倍率；其他持牌Joker仍按槽位顺序执行。",
+        "requiredFeatures": [
+          "score-hooks",
+          "held-enhancement-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "onHeldCard",
+            "condition": {
+              "kind": "held-enhancement-first",
+              "enhancement": "voice-paper",
+              "limit": 2
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "6",
+                  "d": "5"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d09",
+        "name": "回声越来越近",
+        "rarity": "uncommon",
+        "description": "本手实际执行过至少一次额外重触发，结算后倍率成长 +0.2，上限3，从下一手生效；每手加入已有成长。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "multiplier",
+                "target": "multiplier"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "extra-retrigger"
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "multiplier",
+                "value": {
+                  "n": "1",
+                  "d": "5"
+                },
+                "cap": {
+                  "n": "3",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d11",
+        "name": "三拍子",
+        "rarity": "rare",
+        "description": "第三张原始计分牌有效时，额外重触发一次；少于3张或第三张失效则不触发，第四张不补位。",
+        "requiredFeatures": [
+          "score-hooks",
+          "retrigger"
+        ],
+        "hooks": [
+          {
+            "phase": "onCardScore",
+            "condition": {
+              "kind": "scoring-position",
+              "position": "third-original"
+            },
+            "operations": [
+              {
+                "kind": "retrigger-card",
+                "count": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d12",
+        "name": "留点悬念",
+        "rarity": "uncommon",
+        "description": "致胜手后留在手中至少4张牌时，成功过关额外 +2金币；打出的杂牌不计作持牌。",
+        "requiredFeatures": [
+          "stage-clear-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "held-count",
+              "minimum": 4
+            },
+            "operations": [
+              {
+                "kind": "add-gold",
+                "amount": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "e09",
+        "name": "储物箱",
+        "rarity": "common",
+        "description": "持有时消耗品槽 +1，与道具合计最多4槽；出售或牺牲后容量不足则拒绝，须先主动处理超额物品。",
+        "requiredFeatures": [
+          "static-modifiers",
+          "consumable-capacity"
+        ],
+        "hooks": [],
+        "modifiers": [
+          {
+            "kind": "consumable-capacity",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "id": "e10",
+        "name": "赠票",
+        "rarity": "uncommon",
+        "description": "持有期间每第二次成功过关获得固定 T01，满槽转2金币；成功次数按0/1轮转并跨场保留，不消费奖励随机。",
+        "requiredFeatures": [
+          "stage-clear-hooks",
+          "consumable-rewards"
+        ],
+        "hooks": [
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "reward-consumable-every-clears",
+                "definitionId": "T01",
+                "every": 2,
+                "fallbackGold": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "e11",
+        "name": "长期捧场",
+        "rarity": "rare",
+        "description": "整手倍率乘自身系数，创建时 ×1；本场含准备商店未出售Joker而成功过关，系数 +0.1，上限2，从下一手生效；出售其他Joker重置1。",
+        "requiredFeatures": [
+          "score-hooks",
+          "stage-clear-hooks",
+          "trade-hooks",
+          "coefficient-growth",
+          "stage-history"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-coefficient",
+                "key": "coefficient"
+              }
+            ]
+          },
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "no-joker-sale-this-stage"
+            },
+            "operations": [
+              {
+                "kind": "add-coefficient",
+                "key": "coefficient",
+                "initial": {
+                  "n": "1",
+                  "d": "1"
+                },
+                "value": {
+                  "n": "1",
+                  "d": "10"
+                },
+                "cap": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          },
+          {
+            "phase": "onSellJoker",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "reset-coefficient",
+                "key": "coefficient",
+                "initial": {
+                  "n": "1",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "e12",
+        "name": "淘旧摊",
+        "rarity": "uncommon",
+        "description": "每次实际付费刷新后，热度成长 +3，上限60；免费刷新不成长。每手加入已有成长。",
+        "requiredFeatures": [
+          "score-hooks",
+          "reroll-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "heat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "onReroll",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "heat",
+                "value": {
+                  "n": "3",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "60",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "f08",
+        "name": "试试手气",
+        "rarity": "uncommon",
+        "description": "每手在本槽结算时独立1/3概率 +90热度，否则0；每有效实例每手只判一次，扑克重触发不增加判定。",
+        "requiredFeatures": [
+          "score-hooks",
+          "rule-chance"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "chance-add-heat",
+                "probability": {
+                  "n": 1,
+                  "d": 3
+                },
+                "value": {
+                  "n": "90",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "f10",
+        "name": "冷场救火",
+        "rarity": "rare",
+        "description": "出牌前本场累计热度严格低于目标的25%时，整手倍率 ×1.5；恰好25%不触发。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "stage-score-below-target",
+              "ratio": {
+                "n": "1",
+                "d": "4"
+              }
+            },
+            "operations": [
+              {
+                "kind": "multiply-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "f11",
+        "name": "越挫越会",
+        "rarity": "uncommon",
+        "description": "本手未过关且最终得分严格低于目标的10%时，结算后热度成长 +10，上限100，从下一手生效；每手加入已有成长。",
+        "requiredFeatures": [
+          "score-hooks"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-growth",
+                "key": "heat",
+                "target": "heat"
+              }
+            ]
+          },
+          {
+            "phase": "afterHand",
+            "condition": {
+              "kind": "hand-score-below-target",
+              "ratio": {
+                "n": "1",
+                "d": "10"
+              }
+            },
+            "operations": [
+              {
+                "kind": "add-growth",
+                "key": "heat",
+                "value": {
+                  "n": "10",
+                  "d": "1"
+                },
+                "cap": {
+                  "n": "100",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "f12",
+        "name": "真正的压轴",
+        "rarity": "rare",
+        "description": "整手倍率乘自身系数，创建时 ×1；每次最后一手成功过关后系数 +0.1，上限2.5，从下一手生效，跨场保留。",
+        "requiredFeatures": [
+          "score-hooks",
+          "stage-clear-hooks",
+          "coefficient-growth"
+        ],
+        "hooks": [
+          {
+            "phase": "jokerScore",
+            "condition": {
+              "kind": "always"
+            },
+            "operations": [
+              {
+                "kind": "read-coefficient",
+                "key": "coefficient"
+              }
+            ]
+          },
+          {
+            "phase": "onStageClear",
+            "condition": {
+              "kind": "resource",
+              "resource": "hands-after",
+              "equals": 0
+            },
+            "operations": [
+              {
+                "kind": "add-coefficient",
+                "key": "coefficient",
+                "initial": {
+                  "n": "1",
+                  "d": "1"
+                },
+                "value": {
+                  "n": "1",
+                  "d": "10"
+                },
+                "cap": {
+                  "n": "5",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "features": [
+      "score-hooks",
+      "static-modifiers",
+      "retrigger",
+      "discard-hooks",
+      "trade-hooks",
+      "stage-clear-hooks",
+      "score-growth",
+      "hand-lifetime",
+      "before-failure",
+      "rule-chance",
+      "held-enhancement-hooks",
+      "stage-history",
+      "coefficient-growth",
+      "reroll-hooks",
+      "consumable-rewards",
+      "hand-refund",
+      "consumable-capacity"
+    ],
+    "tools": {
+      "schemaVersion": 1,
+      "decisionId": "D24",
+      "limits": {
+        "singleUse": 1,
+        "oncePerRun": 1,
+        "handLevelMaximum": 30,
+        "deckDeletionFloor": 20,
+        "minimalDeckFloor": 16,
+        "deckMaximum": 80,
+        "handMinimum": 5,
+        "handMaximum": 14,
+        "handsMinimum": 2,
+        "jokerMaximum": 5,
+        "consumableSlots": 2,
+        "consumableSlotsMaximum": 4,
+        "longTermSlots": 4,
+        "spectralHandsPenaltyMaximum": 2,
+        "spectralHandPenaltyMaximum": 2,
+        "luckyGoldPerHand": 20,
+        "deletionFloorPolicy": "voluntary-only"
+      },
+      "acquisition": {
+        "familyWeights": {
+          "tarot": 45,
+          "planet": 30,
+          "spectral": 10,
+          "utility": 15
+        },
+        "emptyFamily": "remove-and-renormalize",
+        "skipRewardIds": [
+          "T01",
+          "T03",
+          "T04",
+          "T05",
+          "T06",
+          "T17"
+        ],
+        "generatedCards": "draw-pile-bottom-without-shuffle",
+        "duplicates": "independent-consumable-instances",
+        "eligibility": "legal-effect-and-discovery-before-weighting"
+      },
+      "initialSupportedToolIds": [
+        "T01",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T17"
+      ],
+      "initialSupportedFeatures": [
+        "hand-upgrade",
+        "card-targets",
+        "suit-change",
+        "discard-restore"
+      ],
+      "tools": [
+        {
+          "id": "T01",
+          "name": "练一招",
+          "family": "utility",
+          "price": 4,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "discovered-hand",
+            "selection": "chosen"
+          },
+          "operation": {
+            "kind": "upgrade-hand",
+            "levels": 1
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "hand-level-cap"
+          ],
+          "requiredFeatures": [
+            "hand-upgrade"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t01",
+          "rewardSources": [
+            {
+              "source": "normal-stage-skip",
+              "overflowGold": 1
+            },
+            {
+              "source": "e10-stage-clear",
+              "overflowGold": 2
+            }
+          ]
+        },
+        {
+          "id": "T02",
+          "name": "精简节目",
+          "family": "tarot",
+          "price": 4,
+          "shopWeight": 2,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 2,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "delete-cards"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "deckDeletionFloor"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "card-delete"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t02",
+          "rewardSources": []
+        },
+        {
+          "id": "T03",
+          "name": "红桃染",
+          "family": "tarot",
+          "price": 4,
+          "shopWeight": 4,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 3,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "set-suit",
+            "suit": "hearts"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "suit-change"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t03",
+          "rewardSources": [
+            {
+              "source": "normal-stage-skip",
+              "overflowGold": 1
+            },
+            {
+              "source": "c12-stage-clear",
+              "overflowGold": 2
+            }
+          ]
+        },
+        {
+          "id": "T04",
+          "name": "方片染",
+          "family": "tarot",
+          "price": 4,
+          "shopWeight": 4,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 3,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "set-suit",
+            "suit": "diamonds"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "suit-change"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t04",
+          "rewardSources": [
+            {
+              "source": "normal-stage-skip",
+              "overflowGold": 1
+            },
+            {
+              "source": "c12-stage-clear",
+              "overflowGold": 2
+            }
+          ]
+        },
+        {
+          "id": "T05",
+          "name": "梅花染",
+          "family": "tarot",
+          "price": 4,
+          "shopWeight": 4,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 3,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "set-suit",
+            "suit": "clubs"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "suit-change"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t05",
+          "rewardSources": [
+            {
+              "source": "normal-stage-skip",
+              "overflowGold": 1
+            },
+            {
+              "source": "c12-stage-clear",
+              "overflowGold": 2
+            }
+          ]
+        },
+        {
+          "id": "T06",
+          "name": "黑桃染",
+          "family": "tarot",
+          "price": 4,
+          "shopWeight": 4,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 3,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "set-suit",
+            "suit": "spades"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "suit-change"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t06",
+          "rewardSources": [
+            {
+              "source": "normal-stage-skip",
+              "overflowGold": 1
+            },
+            {
+              "source": "c12-stage-clear",
+              "overflowGold": 2
+            }
+          ]
+        },
+        {
+          "id": "T07",
+          "name": "复印一张",
+          "family": "tarot",
+          "price": 6,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 1,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "copy-card",
+            "copies": 1,
+            "fields": [
+              "rank",
+              "suit",
+              "enhancement",
+              "edition"
+            ],
+            "retainOriginal": true
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "deckMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "card-copy"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t07",
+          "rewardSources": []
+        },
+        {
+          "id": "T08",
+          "name": "往上挪",
+          "family": "tarot",
+          "price": 4,
+          "shopWeight": 2,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 2,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "shift-rank",
+            "delta": 1,
+            "minimum": 2,
+            "maximum": 14,
+            "wrap": false
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "rank-change"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t08",
+          "rewardSources": []
+        },
+        {
+          "id": "T09",
+          "name": "往下挪",
+          "family": "tarot",
+          "price": 4,
+          "shopWeight": 2,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 2,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "shift-rank",
+            "delta": -1,
+            "minimum": 2,
+            "maximum": 14,
+            "wrap": false
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "rank-change"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t09",
+          "rewardSources": []
+        },
+        {
+          "id": "T10",
+          "name": "加厚纸",
+          "family": "tarot",
+          "price": 4,
+          "shopWeight": 4,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 2,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "set-enhancement",
+            "enhancement": "heat-paper"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "replacement-unconfirmed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "enhancements"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t10",
+          "rewardSources": []
+        },
+        {
+          "id": "T11",
+          "name": "大字号",
+          "family": "tarot",
+          "price": 4,
+          "shopWeight": 4,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 2,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "set-enhancement",
+            "enhancement": "multiplier-paper"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "replacement-unconfirmed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "enhancements"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t11",
+          "rewardSources": []
+        },
+        {
+          "id": "T12",
+          "name": "玻璃面",
+          "family": "tarot",
+          "price": 5,
+          "shopWeight": 2,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 1,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "set-enhancement",
+            "enhancement": "glass-paper"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "replacement-unconfirmed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "enhancements"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t12",
+          "rewardSources": []
+        },
+        {
+          "id": "T13",
+          "name": "留个声",
+          "family": "tarot",
+          "price": 4,
+          "shopWeight": 3,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 2,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "set-enhancement",
+            "enhancement": "voice-paper"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "replacement-unconfirmed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "enhancements"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t13",
+          "rewardSources": []
+        },
+        {
+          "id": "T14",
+          "name": "金边纸",
+          "family": "tarot",
+          "price": 4,
+          "shopWeight": 3,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 2,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "set-enhancement",
+            "enhancement": "gold-paper"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "replacement-unconfirmed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "enhancements"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t14",
+          "rewardSources": []
+        },
+        {
+          "id": "T15",
+          "name": "返场票",
+          "family": "tarot",
+          "price": 6,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 1,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "set-enhancement",
+            "enhancement": "encore-paper"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "replacement-unconfirmed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "enhancements"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t15",
+          "rewardSources": []
+        },
+        {
+          "id": "T16",
+          "name": "小红包",
+          "family": "utility",
+          "price": 4,
+          "shopWeight": 0,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "none"
+          },
+          "operation": {
+            "kind": "add-gold",
+            "amount": 5
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed"
+          ],
+          "requiredFeatures": [
+            "gold-supply",
+            "first-boss-supply"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t16",
+          "rewardSources": [
+            {
+              "source": "first-boss-clear",
+              "overflowGold": 2,
+              "claim": "once-per-run",
+              "rng": "none"
+            }
+          ]
+        },
+        {
+          "id": "T17",
+          "name": "再想想",
+          "family": "utility",
+          "price": 4,
+          "shopWeight": 3,
+          "phases": [
+            "await-input"
+          ],
+          "target": {
+            "kind": "none"
+          },
+          "operation": {
+            "kind": "restore-discard",
+            "amount": 1,
+            "cap": "stage-entry"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "stageDiscardMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed"
+          ],
+          "requiredFeatures": [
+            "discard-restore"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t17",
+          "rewardSources": [
+            {
+              "source": "normal-stage-skip",
+              "overflowGold": 1
+            }
+          ]
+        },
+        {
+          "id": "T18",
+          "name": "免费逛摊",
+          "family": "utility",
+          "price": 4,
+          "shopWeight": 2,
+          "phases": [
+            "shop"
+          ],
+          "target": {
+            "kind": "none"
+          },
+          "operation": {
+            "kind": "free-reroll",
+            "advanceCount": true,
+            "growth": false
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "empty-refresh-pool"
+          ],
+          "requiredFeatures": [
+            "free-reroll"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t18",
+          "rewardSources": []
+        },
+        {
+          "id": "T19",
+          "name": "幸运贴",
+          "family": "tarot",
+          "price": 4,
+          "shopWeight": 2,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 2,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "set-enhancement",
+            "enhancement": "lucky-paper"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "replacement-unconfirmed"
+          ],
+          "requiredFeatures": [
+            "card-targets",
+            "enhancements",
+            "lucky"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-t19",
+          "rewardSources": []
+        },
+        {
+          "id": "P01",
+          "name": "高牌星",
+          "family": "planet",
+          "price": 4,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "discovered-hand",
+            "selection": "fixed"
+          },
+          "operation": {
+            "kind": "upgrade-hand",
+            "levels": 1,
+            "handType": "high-card"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "hand-level-cap",
+            "wrong-hand-type"
+          ],
+          "requiredFeatures": [
+            "hand-upgrade",
+            "planet-upgrade"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-p01",
+          "rewardSources": []
+        },
+        {
+          "id": "P02",
+          "name": "对子星",
+          "family": "planet",
+          "price": 4,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "discovered-hand",
+            "selection": "fixed"
+          },
+          "operation": {
+            "kind": "upgrade-hand",
+            "levels": 1,
+            "handType": "pair"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "hand-level-cap",
+            "wrong-hand-type"
+          ],
+          "requiredFeatures": [
+            "hand-upgrade",
+            "planet-upgrade"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-p02",
+          "rewardSources": []
+        },
+        {
+          "id": "P03",
+          "name": "两对星",
+          "family": "planet",
+          "price": 4,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "discovered-hand",
+            "selection": "fixed"
+          },
+          "operation": {
+            "kind": "upgrade-hand",
+            "levels": 1,
+            "handType": "two-pair"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "hand-level-cap",
+            "wrong-hand-type"
+          ],
+          "requiredFeatures": [
+            "hand-upgrade",
+            "planet-upgrade"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-p03",
+          "rewardSources": []
+        },
+        {
+          "id": "P04",
+          "name": "三条星",
+          "family": "planet",
+          "price": 4,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "discovered-hand",
+            "selection": "fixed"
+          },
+          "operation": {
+            "kind": "upgrade-hand",
+            "levels": 1,
+            "handType": "three-kind"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "hand-level-cap",
+            "wrong-hand-type"
+          ],
+          "requiredFeatures": [
+            "hand-upgrade",
+            "planet-upgrade"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-p04",
+          "rewardSources": []
+        },
+        {
+          "id": "P05",
+          "name": "顺子星",
+          "family": "planet",
+          "price": 4,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "discovered-hand",
+            "selection": "fixed"
+          },
+          "operation": {
+            "kind": "upgrade-hand",
+            "levels": 1,
+            "handType": "straight"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "hand-level-cap",
+            "wrong-hand-type"
+          ],
+          "requiredFeatures": [
+            "hand-upgrade",
+            "planet-upgrade"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-p05",
+          "rewardSources": []
+        },
+        {
+          "id": "P06",
+          "name": "同花星",
+          "family": "planet",
+          "price": 4,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "discovered-hand",
+            "selection": "fixed"
+          },
+          "operation": {
+            "kind": "upgrade-hand",
+            "levels": 1,
+            "handType": "flush"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "hand-level-cap",
+            "wrong-hand-type"
+          ],
+          "requiredFeatures": [
+            "hand-upgrade",
+            "planet-upgrade"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-p06",
+          "rewardSources": []
+        },
+        {
+          "id": "P07",
+          "name": "葫芦星",
+          "family": "planet",
+          "price": 4,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "discovered-hand",
+            "selection": "fixed"
+          },
+          "operation": {
+            "kind": "upgrade-hand",
+            "levels": 1,
+            "handType": "full-house"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "hand-level-cap",
+            "wrong-hand-type"
+          ],
+          "requiredFeatures": [
+            "hand-upgrade",
+            "planet-upgrade"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-p07",
+          "rewardSources": []
+        },
+        {
+          "id": "P08",
+          "name": "四条星",
+          "family": "planet",
+          "price": 4,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "discovered-hand",
+            "selection": "fixed"
+          },
+          "operation": {
+            "kind": "upgrade-hand",
+            "levels": 1,
+            "handType": "four-kind"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "hand-level-cap",
+            "wrong-hand-type"
+          ],
+          "requiredFeatures": [
+            "hand-upgrade",
+            "planet-upgrade"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-p08",
+          "rewardSources": []
+        },
+        {
+          "id": "P09",
+          "name": "同花顺星",
+          "family": "planet",
+          "price": 4,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "discovered-hand",
+            "selection": "fixed"
+          },
+          "operation": {
+            "kind": "upgrade-hand",
+            "levels": 1,
+            "handType": "straight-flush"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "hand-level-cap",
+            "wrong-hand-type"
+          ],
+          "requiredFeatures": [
+            "hand-upgrade",
+            "planet-upgrade"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-p09",
+          "rewardSources": []
+        },
+        {
+          "id": "P10",
+          "name": "五条星",
+          "family": "planet",
+          "price": 4,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "discovered-hand",
+            "selection": "fixed"
+          },
+          "operation": {
+            "kind": "upgrade-hand",
+            "levels": 1,
+            "handType": "five-kind"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "hand-level-cap",
+            "wrong-hand-type"
+          ],
+          "requiredFeatures": [
+            "hand-upgrade",
+            "planet-upgrade"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-p10",
+          "rewardSources": []
+        },
+        {
+          "id": "P11",
+          "name": "同花葫芦星",
+          "family": "planet",
+          "price": 4,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "discovered-hand",
+            "selection": "fixed"
+          },
+          "operation": {
+            "kind": "upgrade-hand",
+            "levels": 1,
+            "handType": "flush-house"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "hand-level-cap",
+            "wrong-hand-type"
+          ],
+          "requiredFeatures": [
+            "hand-upgrade",
+            "planet-upgrade"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-p11",
+          "rewardSources": []
+        },
+        {
+          "id": "P12",
+          "name": "同花五条星",
+          "family": "planet",
+          "price": 4,
+          "shopWeight": 1,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "discovered-hand",
+            "selection": "fixed"
+          },
+          "operation": {
+            "kind": "upgrade-hand",
+            "levels": 1,
+            "handType": "flush-five"
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "hand-level-cap",
+            "wrong-hand-type"
+          ],
+          "requiredFeatures": [
+            "hand-upgrade",
+            "planet-upgrade"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-p12",
+          "rewardSources": []
+        },
+        {
+          "id": "S01",
+          "name": "献纸",
+          "family": "spectral",
+          "price": 8,
+          "shopWeight": 3,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "card-sacrifice",
+            "donors": 1,
+            "minimum": 1,
+            "maximum": 2,
+            "recipients": "unenhanced",
+            "distinct": true
+          },
+          "operation": {
+            "kind": "random-enhancement",
+            "rng": "rule",
+            "independentPerTarget": true,
+            "choices": [
+              {
+                "id": "heat-paper",
+                "weight": 1
+              },
+              {
+                "id": "multiplier-paper",
+                "weight": 1
+              },
+              {
+                "id": "glass-paper",
+                "weight": 1
+              },
+              {
+                "id": "voice-paper",
+                "weight": 1
+              },
+              {
+                "id": "gold-paper",
+                "weight": 1
+              },
+              {
+                "id": "encore-paper",
+                "weight": 1
+              },
+              {
+                "id": "lucky-paper",
+                "weight": 1
+              }
+            ]
+          },
+          "costs": [
+            {
+              "kind": "sacrifice-card",
+              "count": 1
+            }
+          ],
+          "caps": [
+            "singleUse",
+            "deckDeletionFloor",
+            "legalActionAfter"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "deck-floor",
+            "donor-is-recipient"
+          ],
+          "requiredFeatures": [
+            "spectral",
+            "card-targets",
+            "card-delete",
+            "enhancements",
+            "lucky"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-s01",
+          "rewardSources": []
+        },
+        {
+          "id": "S02",
+          "name": "镀影",
+          "family": "spectral",
+          "price": 8,
+          "shopWeight": 3,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "card-or-joker",
+            "edition": "none"
+          },
+          "operation": {
+            "kind": "random-edition",
+            "rng": "rule",
+            "choices": [
+              {
+                "id": "foil",
+                "weight": 5
+              },
+              {
+                "id": "holographic",
+                "weight": 3
+              },
+              {
+                "id": "polychrome",
+                "weight": 2
+              }
+            ]
+          },
+          "costs": [
+            {
+              "kind": "gold",
+              "amount": 5
+            }
+          ],
+          "caps": [
+            "singleUse"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "not-enough-gold",
+            "nonordinary-target"
+          ],
+          "requiredFeatures": [
+            "spectral",
+            "card-targets",
+            "editions"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-s02",
+          "rewardSources": []
+        },
+        {
+          "id": "S03",
+          "name": "复演",
+          "family": "spectral",
+          "price": 6,
+          "shopWeight": 2,
+          "phases": [
+            "shop"
+          ],
+          "target": {
+            "kind": "cards",
+            "minimum": 1,
+            "maximum": 1,
+            "scope": "phase-known"
+          },
+          "operation": {
+            "kind": "copy-card",
+            "copies": 2,
+            "fields": [
+              "rank",
+              "suit",
+              "enhancement",
+              "edition"
+            ],
+            "retainOriginal": true
+          },
+          "costs": [
+            {
+              "kind": "permanent-hands-penalty",
+              "amount": 1,
+              "effective": "next-stage",
+              "requireExactChange": true
+            }
+          ],
+          "caps": [
+            "singleUse",
+            "deckMaximum",
+            "spectralHandsPenaltyMaximum",
+            "handsMinimum",
+            "actualResourceChange"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "deck-maximum",
+            "resource-floor",
+            "no-next-stage"
+          ],
+          "requiredFeatures": [
+            "spectral",
+            "card-targets",
+            "card-copy",
+            "permanent-resources"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-s03",
+          "rewardSources": []
+        },
+        {
+          "id": "S04",
+          "name": "独幕",
+          "family": "spectral",
+          "price": 6,
+          "shopWeight": 2,
+          "phases": [
+            "shop"
+          ],
+          "target": {
+            "kind": "suit",
+            "scope": "whole-deck"
+          },
+          "operation": {
+            "kind": "set-deck-suit",
+            "preserveOrder": true
+          },
+          "costs": [
+            {
+              "kind": "permanent-hand-penalty",
+              "amount": 1,
+              "effective": "next-stage",
+              "requireExactChange": true
+            }
+          ],
+          "caps": [
+            "singleUse",
+            "spectralHandPenaltyMaximum",
+            "handMinimum",
+            "actualResourceChange"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "resource-floor",
+            "no-next-stage"
+          ],
+          "requiredFeatures": [
+            "spectral",
+            "suit-change",
+            "permanent-resources"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-s04",
+          "rewardSources": []
+        },
+        {
+          "id": "S05",
+          "name": "忘招",
+          "family": "spectral",
+          "price": 6,
+          "shopWeight": 2,
+          "phases": [
+            "shop",
+            "await-input"
+          ],
+          "target": {
+            "kind": "hand-exchange",
+            "distinct": true
+          },
+          "operation": {
+            "kind": "exchange-hand-levels",
+            "gain": 3,
+            "loss": 1,
+            "targetMaximumBefore": 27,
+            "donorMinimumBefore": 2,
+            "preserveDiscovery": true
+          },
+          "costs": [
+            {
+              "kind": "gold",
+              "amount": 3
+            }
+          ],
+          "caps": [
+            "singleUse",
+            "handLevelMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "undiscovered-hand",
+            "not-enough-gold",
+            "invalid-hand-exchange"
+          ],
+          "requiredFeatures": [
+            "spectral",
+            "hand-upgrade",
+            "hand-exchange"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-s05",
+          "rewardSources": []
+        },
+        {
+          "id": "S06",
+          "name": "孤注",
+          "family": "spectral",
+          "price": 6,
+          "shopWeight": 1,
+          "phases": [
+            "shop"
+          ],
+          "target": {
+            "kind": "none"
+          },
+          "operation": {
+            "kind": "rare-joker-reward",
+            "rng": "reward",
+            "selection": "uniform-unowned-supported-rare",
+            "paidPrice": 0,
+            "edition": "none",
+            "resetGrowth": true
+          },
+          "costs": [
+            {
+              "kind": "all-gold",
+              "minimum": 5
+            }
+          ],
+          "caps": [
+            "singleUse",
+            "jokerMaximum"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "not-enough-gold",
+            "joker-slots-full",
+            "empty-reward-pool"
+          ],
+          "requiredFeatures": [
+            "spectral",
+            "rare-reward"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-s06",
+          "rewardSources": []
+        },
+        {
+          "id": "S07",
+          "name": "谢幕镀彩",
+          "family": "spectral",
+          "price": 8,
+          "shopWeight": 1,
+          "phases": [
+            "shop"
+          ],
+          "target": {
+            "kind": "joker-sacrifice",
+            "donors": 1,
+            "recipients": 1,
+            "distinct": true,
+            "excludedEdition": "polychrome"
+          },
+          "operation": {
+            "kind": "set-joker-edition",
+            "edition": "polychrome",
+            "saleHooks": false,
+            "keepPaidPrice": true
+          },
+          "costs": [
+            {
+              "kind": "sacrifice-joker",
+              "count": 1
+            }
+          ],
+          "caps": [
+            "singleUse",
+            "postConsumptionCapacity"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "donor-is-recipient",
+            "target-already-polychrome",
+            "over-capacity-after-sacrifice"
+          ],
+          "requiredFeatures": [
+            "spectral",
+            "editions",
+            "joker-sacrifice"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-s07",
+          "rewardSources": []
+        },
+        {
+          "id": "S08",
+          "name": "净台",
+          "family": "spectral",
+          "price": 6,
+          "shopWeight": 1,
+          "phases": [
+            "shop"
+          ],
+          "target": {
+            "kind": "whole-deck",
+            "selection": "all-active"
+          },
+          "operation": {
+            "kind": "clear-deck-specials",
+            "minimumModifiedCards": 4,
+            "countEachCardOnce": true,
+            "handBonus": 1,
+            "effective": "next-stage",
+            "requireExactChange": true
+          },
+          "costs": [],
+          "caps": [
+            "singleUse",
+            "oncePerRun",
+            "handMaximum",
+            "actualResourceChange"
+          ],
+          "reject": [
+            "wrong-phase",
+            "unknown-target",
+            "duplicate-target",
+            "no-effect",
+            "stale-command",
+            "save-failed",
+            "already-claimed",
+            "too-few-special-cards",
+            "resource-cap",
+            "no-next-stage"
+          ],
+          "requiredFeatures": [
+            "spectral",
+            "enhancements",
+            "editions",
+            "specials-reset",
+            "permanent-resources"
+          ],
+          "lifetime": "consumed-on-success",
+          "assetId": "tool-s08",
+          "rewardSources": []
+        }
+      ],
+      "enhancements": [
+        {
+          "id": "heat-paper",
+          "name": "热度纸",
+          "assetId": "enhancement-heat-paper",
+          "replacement": "one-enhancement",
+          "activeOnly": true,
+          "repeat": "each-scoring-pass",
+          "effects": [
+            {
+              "phase": "onCardScore",
+              "kind": "add-heat",
+              "value": {
+                "n": "20",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "multiplier-paper",
+          "name": "倍率纸",
+          "assetId": "enhancement-multiplier-paper",
+          "replacement": "one-enhancement",
+          "activeOnly": true,
+          "repeat": "each-scoring-pass",
+          "effects": [
+            {
+              "phase": "onCardScore",
+              "kind": "add-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "glass-paper",
+          "name": "玻璃纸",
+          "assetId": "enhancement-glass-paper",
+          "replacement": "one-enhancement",
+          "activeOnly": true,
+          "repeat": "each-scoring-pass",
+          "effects": [
+            {
+              "phase": "onCardScore",
+              "kind": "multiply-multiplier",
+              "value": {
+                "n": "3",
+                "d": "2"
+              }
+            },
+            {
+              "phase": "afterHand",
+              "kind": "chance-destroy",
+              "probability": {
+                "n": 1,
+                "d": 4
+              },
+              "rng": "rule",
+              "oncePerOriginalCard": true,
+              "belowDeletionFloorAllowed": true
+            }
+          ]
+        },
+        {
+          "id": "voice-paper",
+          "name": "留声纸",
+          "assetId": "enhancement-voice-paper",
+          "replacement": "one-enhancement",
+          "activeOnly": true,
+          "repeat": "held-once",
+          "effects": [
+            {
+              "phase": "onHeldCard",
+              "kind": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "gold-paper",
+          "name": "金纸",
+          "assetId": "enhancement-gold-paper",
+          "replacement": "one-enhancement",
+          "activeOnly": true,
+          "repeat": "winning-held-once",
+          "effects": [
+            {
+              "phase": "onStageClear",
+              "kind": "add-gold",
+              "amount": 1,
+              "capPerStage": 5
+            }
+          ]
+        },
+        {
+          "id": "encore-paper",
+          "name": "返场纸",
+          "assetId": "enhancement-encore-paper",
+          "replacement": "one-enhancement",
+          "activeOnly": true,
+          "repeat": "each-scoring-pass",
+          "effects": [
+            {
+              "phase": "onCardScore",
+              "kind": "retrigger-card",
+              "count": 1,
+              "maximumDepth": 1
+            }
+          ]
+        },
+        {
+          "id": "lucky-paper",
+          "name": "幸运纸",
+          "assetId": "enhancement-lucky-paper",
+          "replacement": "one-enhancement",
+          "activeOnly": true,
+          "repeat": "each-scoring-pass",
+          "effects": [
+            {
+              "phase": "onCardScore",
+              "kind": "chance-add-multiplier",
+              "probability": {
+                "n": 1,
+                "d": 5
+              },
+              "value": {
+                "n": "4",
+                "d": "1"
+              },
+              "rng": "rule"
+            },
+            {
+              "phase": "onCardScore",
+              "kind": "chance-add-gold",
+              "probability": {
+                "n": 1,
+                "d": 15
+              },
+              "amount": 10,
+              "capPerHand": 20,
+              "rng": "rule",
+              "drawWhenCapped": true
+            }
+          ]
+        }
+      ],
+      "editions": [
+        {
+          "id": "none",
+          "name": "普通",
+          "assetId": "edition-none",
+          "shopWeight": 90,
+          "priceDelta": 0,
+          "appliesTo": [
+            "card",
+            "joker"
+          ],
+          "cardTiming": "after-enhancement-before-joker-hooks",
+          "jokerTiming": "after-own-jokerScore",
+          "jokerRequiresOwnHookHit": false,
+          "disabledStopsScore": true,
+          "rarityIndependent": true,
+          "repeat": "each-scoring-pass",
+          "effect": null
+        },
+        {
+          "id": "foil",
+          "name": "闪箔",
+          "assetId": "edition-foil",
+          "shopWeight": 5,
+          "priceDelta": 2,
+          "appliesTo": [
+            "card",
+            "joker"
+          ],
+          "cardTiming": "after-enhancement-before-joker-hooks",
+          "jokerTiming": "after-own-jokerScore",
+          "jokerRequiresOwnHookHit": false,
+          "disabledStopsScore": true,
+          "rarityIndependent": true,
+          "repeat": "each-scoring-pass",
+          "effect": {
+            "kind": "add-heat",
+            "value": {
+              "n": "25",
+              "d": "1"
+            }
+          }
+        },
+        {
+          "id": "holographic",
+          "name": "全息",
+          "assetId": "edition-holographic",
+          "shopWeight": 3,
+          "priceDelta": 3,
+          "appliesTo": [
+            "card",
+            "joker"
+          ],
+          "cardTiming": "after-enhancement-before-joker-hooks",
+          "jokerTiming": "after-own-jokerScore",
+          "jokerRequiresOwnHookHit": false,
+          "disabledStopsScore": true,
+          "rarityIndependent": true,
+          "repeat": "each-scoring-pass",
+          "effect": {
+            "kind": "add-multiplier",
+            "value": {
+              "n": "2",
+              "d": "1"
+            }
+          }
+        },
+        {
+          "id": "polychrome",
+          "name": "多彩",
+          "assetId": "edition-polychrome",
+          "shopWeight": 2,
+          "priceDelta": 5,
+          "appliesTo": [
+            "card",
+            "joker"
+          ],
+          "cardTiming": "after-enhancement-before-joker-hooks",
+          "jokerTiming": "after-own-jokerScore",
+          "jokerRequiresOwnHookHit": false,
+          "disabledStopsScore": true,
+          "rarityIndependent": true,
+          "repeat": "each-scoring-pass",
+          "effect": {
+            "kind": "multiply-multiplier",
+            "value": {
+              "n": "3",
+              "d": "2"
+            }
+          }
+        }
+      ],
+      "longTermItems": [
+        {
+          "id": "U01",
+          "name": "宽桌面",
+          "price": 10,
+          "shopWeight": 1,
+          "operation": {
+            "kind": "hand-limit",
+            "amount": 1
+          },
+          "readAt": [
+            "stage-entry"
+          ],
+          "caps": [
+            "longTermSlots",
+            "handMaximum"
+          ],
+          "duplicate": false,
+          "sellable": false,
+          "lifetime": "run",
+          "requiredFeatures": [
+            "long-term-items"
+          ],
+          "assetId": "item-u01"
+        },
+        {
+          "id": "U02",
+          "name": "排练券",
+          "price": 12,
+          "shopWeight": 1,
+          "operation": {
+            "kind": "discard-limit",
+            "amount": 1
+          },
+          "readAt": [
+            "stage-entry"
+          ],
+          "caps": [
+            "longTermSlots"
+          ],
+          "duplicate": false,
+          "sellable": false,
+          "lifetime": "run",
+          "requiredFeatures": [
+            "long-term-items"
+          ],
+          "assetId": "item-u02"
+        },
+        {
+          "id": "U03",
+          "name": "加演许可",
+          "price": 16,
+          "shopWeight": 1,
+          "operation": {
+            "kind": "hands-limit",
+            "amount": 1
+          },
+          "readAt": [
+            "stage-entry"
+          ],
+          "caps": [
+            "longTermSlots"
+          ],
+          "duplicate": false,
+          "sellable": false,
+          "lifetime": "run",
+          "requiredFeatures": [
+            "long-term-items"
+          ],
+          "assetId": "item-u03"
+        },
+        {
+          "id": "U04",
+          "name": "利息册",
+          "price": 10,
+          "shopWeight": 1,
+          "operation": {
+            "kind": "interest-cap",
+            "amount": 2
+          },
+          "readAt": [
+            "reward-before"
+          ],
+          "caps": [
+            "longTermSlots"
+          ],
+          "duplicate": false,
+          "sellable": false,
+          "lifetime": "run",
+          "requiredFeatures": [
+            "long-term-items"
+          ],
+          "assetId": "item-u04"
+        },
+        {
+          "id": "U05",
+          "name": "扩个摊",
+          "price": 12,
+          "shopWeight": 1,
+          "operation": {
+            "kind": "joker-offer-count",
+            "base": 3,
+            "amount": 1
+          },
+          "readAt": [
+            "shop-open",
+            "reroll-before"
+          ],
+          "caps": [
+            "longTermSlots"
+          ],
+          "duplicate": false,
+          "sellable": false,
+          "lifetime": "run",
+          "requiredFeatures": [
+            "long-term-items"
+          ],
+          "assetId": "item-u05"
+        },
+        {
+          "id": "U06",
+          "name": "常客章",
+          "price": 12,
+          "shopWeight": 1,
+          "operation": {
+            "kind": "paid-reroll-discount",
+            "amount": 1,
+            "minimum": 1
+          },
+          "readAt": [
+            "reroll-before"
+          ],
+          "caps": [
+            "longTermSlots"
+          ],
+          "duplicate": false,
+          "sellable": false,
+          "lifetime": "run",
+          "requiredFeatures": [
+            "long-term-items"
+          ],
+          "assetId": "item-u06"
+        },
+        {
+          "id": "U07",
+          "name": "双层箱",
+          "price": 10,
+          "shopWeight": 1,
+          "operation": {
+            "kind": "consumable-slots",
+            "amount": 1
+          },
+          "readAt": [
+            "purchase-before",
+            "capacity-change"
+          ],
+          "caps": [
+            "longTermSlots",
+            "consumableSlotsMaximum"
+          ],
+          "duplicate": false,
+          "sellable": false,
+          "lifetime": "run",
+          "requiredFeatures": [
+            "long-term-items"
+          ],
+          "assetId": "item-u07"
+        },
+        {
+          "id": "U08",
+          "name": "极简手册",
+          "price": 12,
+          "shopWeight": 1,
+          "operation": {
+            "kind": "deletion-floor",
+            "floor": 16
+          },
+          "readAt": [
+            "delete-before"
+          ],
+          "caps": [
+            "longTermSlots",
+            "minimalDeckFloor"
+          ],
+          "duplicate": false,
+          "sellable": false,
+          "lifetime": "run",
+          "requiredFeatures": [
+            "long-term-items"
+          ],
+          "assetId": "item-u08"
+        },
+        {
+          "id": "U09",
+          "name": "复盘本",
+          "price": 14,
+          "shopWeight": 1,
+          "operation": {
+            "kind": "boss-most-used-hand-upgrade",
+            "levels": 1,
+            "tieBreak": "hand-table-low-to-high",
+            "atCap": "skip-without-redraw"
+          },
+          "readAt": [
+            "boss-clear"
+          ],
+          "caps": [
+            "longTermSlots",
+            "handLevelMaximum"
+          ],
+          "duplicate": false,
+          "sellable": false,
+          "lifetime": "run",
+          "requiredFeatures": [
+            "long-term-items"
+          ],
+          "assetId": "item-u09"
+        },
+        {
+          "id": "U10",
+          "name": "采购证",
+          "price": 10,
+          "shopWeight": 1,
+          "operation": {
+            "kind": "first-purchase-discount",
+            "amount": 1,
+            "minimum": 1,
+            "excludeSelf": true
+          },
+          "readAt": [
+            "purchase-before"
+          ],
+          "caps": [
+            "longTermSlots"
+          ],
+          "duplicate": false,
+          "sellable": false,
+          "lifetime": "run",
+          "requiredFeatures": [
+            "long-term-items"
+          ],
+          "assetId": "item-u10"
+        },
+        {
+          "id": "U11",
+          "name": "另一间摊",
+          "price": 10,
+          "shopWeight": 1,
+          "operation": {
+            "kind": "item-offer-count",
+            "base": 1,
+            "amount": 1
+          },
+          "readAt": [
+            "shop-open"
+          ],
+          "caps": [
+            "longTermSlots"
+          ],
+          "duplicate": false,
+          "sellable": false,
+          "lifetime": "run",
+          "requiredFeatures": [
+            "long-term-items"
+          ],
+          "assetId": "item-u11"
+        },
+        {
+          "id": "U12",
+          "name": "开场彩头",
+          "price": 10,
+          "shopWeight": 1,
+          "operation": {
+            "kind": "first-normal-clear-per-chapter",
+            "gold": 3,
+            "skipConsumes": false,
+            "retroactive": false
+          },
+          "readAt": [
+            "normal-clear"
+          ],
+          "caps": [
+            "longTermSlots"
+          ],
+          "duplicate": false,
+          "sellable": false,
+          "lifetime": "run",
+          "requiredFeatures": [
+            "long-term-items"
+          ],
+          "assetId": "item-u12"
+        }
+      ]
+    },
+    "toolFeatures": [
+      "hand-upgrade",
+      "card-targets",
+      "suit-change",
+      "discard-restore",
+      "card-delete",
+      "card-copy",
+      "rank-change",
+      "planet-upgrade",
+      "enhancements",
+      "lucky",
+      "editions",
+      "spectral",
+      "permanent-resources",
+      "hand-exchange",
+      "rare-reward",
+      "joker-sacrifice",
+      "specials-reset",
+      "gold-supply",
+      "free-reroll",
+      "long-term-items",
+      "first-boss-supply"
+    ],
+    "itemIds": [
+      "U01",
+      "U02",
+      "U03",
+      "U04",
+      "U05",
+      "U06",
+      "U07",
+      "U08",
+      "U09",
+      "U10",
+      "U11",
+      "U12"
+    ],
+    "resources": {
+      "handMinimum": 5,
+      "handMaximum": 14,
+      "handsMinimum": 2,
+      "handsMaximum": 5,
+      "discardsMaximum": 4,
+      "discardGainMaximum": 5,
+      "deckMaximum": 80,
+      "discardLedger": "spent-plus-left-equals-entry-plus-gained",
+      "handLedger": "plays-plus-left-equals-entry-plus-quad-and-rescue",
+      "scoreSources": "start-of-hand-deep-copies",
+      "newGame": "explicit-v10"
+    },
+    "limits": {
+      "handSize": 8,
+      "maxSelected": 5,
+      "hands": 4,
+      "discards": 3,
+      "jokerSlots": 5,
+      "consumableSlots": 2,
+      "longTermSlots": 4
+    },
+    "economy": {
+      "initialGold": 6,
+      "shelfSlots": 3,
+      "prices": {
+        "common": 4,
+        "uncommon": 6,
+        "rare": 8
+      },
+      "weights": {
+        "common": 5,
+        "uncommon": 3,
+        "rare": 2
+      },
+      "rerollStart": 2,
+      "rerollCap": 10
+    },
+    "targets": [
+      400,
+      1000,
+      2400,
+      5600,
+      13000,
+      30000,
+      70000,
+      160000
+    ],
+    "hands": {
+      "high-card": [
+        20,
+        {
+          "n": "1",
+          "d": "1"
+        },
+        10,
+        {
+          "n": "1",
+          "d": "4"
+        }
+      ],
+      "pair": [
+        35,
+        {
+          "n": "2",
+          "d": "1"
+        },
+        15,
+        {
+          "n": "1",
+          "d": "2"
+        }
+      ],
+      "two-pair": [
+        65,
+        {
+          "n": "2",
+          "d": "1"
+        },
+        20,
+        {
+          "n": "1",
+          "d": "2"
+        }
+      ],
+      "three-kind": [
+        90,
+        {
+          "n": "3",
+          "d": "1"
+        },
+        25,
+        {
+          "n": "1",
+          "d": "2"
+        }
+      ],
+      "straight": [
+        125,
+        {
+          "n": "4",
+          "d": "1"
+        },
+        35,
+        {
+          "n": "1",
+          "d": "2"
+        }
+      ],
+      "flush": [
+        140,
+        {
+          "n": "4",
+          "d": "1"
+        },
+        30,
+        {
+          "n": "1",
+          "d": "2"
+        }
+      ],
+      "full-house": [
+        210,
+        {
+          "n": "5",
+          "d": "1"
+        },
+        40,
+        {
+          "n": "1",
+          "d": "1"
+        }
+      ],
+      "four-kind": [
+        320,
+        {
+          "n": "7",
+          "d": "1"
+        },
+        55,
+        {
+          "n": "1",
+          "d": "1"
+        }
+      ],
+      "straight-flush": [
+        450,
+        {
+          "n": "9",
+          "d": "1"
+        },
+        65,
+        {
+          "n": "1",
+          "d": "1"
+        }
+      ],
+      "five-kind": [
+        700,
+        {
+          "n": "10",
+          "d": "1"
+        },
+        70,
+        {
+          "n": "1",
+          "d": "1"
+        }
+      ],
+      "flush-house": [
+        850,
+        {
+          "n": "12",
+          "d": "1"
+        },
+        80,
+        {
+          "n": "1",
+          "d": "1"
+        }
+      ],
+      "flush-five": [
+        1200,
+        {
+          "n": "15",
+          "d": "1"
+        },
+        100,
+        {
+          "n": "1",
+          "d": "1"
+        }
+      ]
+    },
+    "startingHandLevels": {
+      "amo": {
+        "high-card": 3
+      }
+    },
+    "score": {
+      "eventCount": 512,
+      "extraRetriggers": 4,
+      "retriggerDepth": 1,
+      "handLevel": 30,
+      "handCount": 14,
+      "jokerCount": 5
+    },
+    "bosses": [
+      {
+        "id": "B01",
+        "name": "贵宾场",
+        "rule": "第一手前每次弃牌消耗2次额度；第一手后恢复1次。",
+        "response": "先判断手牌能否开场，保留足够额度再弃牌。"
+      },
+      {
+        "id": "B02",
+        "name": "低调点",
+        "rule": "所出第4/5张不给普通点数；仍成型且明确的大丑牌效果正常。",
+        "response": "可调手牌顺序，让高点数或关键普通点数排前面。"
+      },
+      {
+        "id": "B03",
+        "name": "单色灯",
+        "rule": "公开花色本场失效；仍参与牌型，但不加点数或计分牌效果。",
+        "response": "用其他花色计分，或保留失效牌来凑牌型。"
+      },
+      {
+        "id": "B04",
+        "name": "素颜场",
+        "rule": "J/Q/K本场失效；A不受影响。",
+        "response": "数字牌和A能计分，失效人头仍能组成牌型。"
+      },
+      {
+        "id": "B05",
+        "name": "回音墙",
+        "rule": "连续两手同牌型时，本手等级计算后的牌型基础热度减半；普通点数和大丑牌热度不减，首手不减。",
+        "response": "交替使用两种可成型牌型，或用点数、增强和大丑牌补足热度。"
+      },
+      {
+        "id": "B06",
+        "name": "半边灯",
+        "rule": "当前第2/4槽大丑牌计分和版次停用；静态资源和经济效果保留，出牌前可调序。",
+        "response": "把关键计分牌放在第1/3/5槽，资源或经济牌可放在受限槽。"
+      },
+      {
+        "id": "B07",
+        "name": "验票员",
+        "rule": "每次弃牌先消耗1金；无钱仍可正常出牌，但弃牌拒绝且整笔操作不变。",
+        "response": "留出弃牌费用；弃牌后的返金不能抵本次入场费用。"
+      },
+      {
+        "id": "B08",
+        "name": "静场",
+        "rule": "角色计分能力本场停用；初始等级和非计分过关奖励保留，骰爷不能押注。",
+        "response": "用牌型、增强和大丑牌完成计分，谢幕人的成功额外金币仍保留。"
+      },
+      {
+        "id": "B09",
+        "name": "快板",
+        "rule": "进场出牌次数-1，最低2；与加演许可和永久代价合并后计算。",
+        "response": "进场前安排加演许可；珍惜每次出牌，提高单手完成度。"
+      },
+      {
+        "id": "B10",
+        "name": "小舞台",
+        "rule": "进场手牌上限-2，最低5；入场预算固定，旋转或续局不重抽。",
+        "response": "用宽桌面和增加手牌上限的大丑牌准备本场，减少必须同时攒齐的牌。"
+      },
+      {
+        "id": "B11",
+        "name": "谢客",
+        "rule": "每次合法出牌后手牌上限再-1，最低5；只影响后续补牌，不额外删除持牌。",
+        "response": "越晚补得越少，优先兑现攒好的组合，并保留下一手所需的牌。"
+      },
+      {
+        "id": "B12",
+        "name": "挑剔",
+        "rule": "全场等级计算后的牌型基础热度减半；普通点数、增强和大丑牌热度正常。",
+        "response": "提升牌型仍有收益，也可用高点数、热度纸和大丑牌补足基础热度。"
+      },
+      {
+        "id": "B13",
+        "name": "逆着来",
+        "rule": "整手大丑牌计分按槽位右到左，本体和版次一起反序；其他时点保持原序。",
+        "response": "把加倍率牌放右侧，乘倍率牌放左侧，并核对本槽版次的执行顺序。"
+      },
+      {
+        "id": "B14",
+        "name": "催场",
+        "rule": "每次成功弃牌使目标增加本场初始目标的5%，增量向上取整且不复利；返还弃牌额度仍计一次。",
+        "response": "尽量用排序和现有手牌凑型，每次弃牌前衡量新增目标。"
+      },
+      {
+        "id": "B15",
+        "name": "逐个谢幕",
+        "rule": "每手后封禁当前最左且尚未封禁的大丑牌计分，按实例跟随调序，持续到本场结束。",
+        "response": "出牌前把可暂缓计分的牌放左边；已封禁实例不会因调序恢复。"
+      },
+      {
+        "id": "B16",
+        "name": "不吃名气",
+        "rule": "稀有大丑牌的计分和版次停用；常见、罕见正常，静态资源和经济效果保留。",
+        "response": "用常见和罕见牌构筑，稀有牌的静态或经济能力仍能支持本场。"
+      }
+    ],
+    "chapters": 8,
+    "endless": {
+      "normalChapters": 8,
+      "firstChapter": 9,
+      "maximumChapter": 10766,
+      "baseHeat": "160000",
+      "multiplier": {
+        "n": "12",
+        "d": "5"
+      },
+      "stageMultipliers": [
+        {
+          "n": "1",
+          "d": "1"
+        },
+        {
+          "n": "3",
+          "d": "2"
+        },
+        {
+          "n": "2",
+          "d": "1"
+        }
+      ],
+      "rounding": "ceil-final-target",
+      "integerDigits": 4096,
+      "bossPool": "B01-B16"
+    },
+    "skip": [
+      "T01",
+      "T03",
+      "T04",
+      "T05",
+      "T06",
+      "T17"
+    ],
+    "modes": {
+      "modes": [
+        {
+          "id": "standard",
+          "name": "普通种子局",
+          "difficultyIds": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "challengeRequired": false,
+          "progressionEligible": true
+        },
+        {
+          "id": "challenge",
+          "name": "挑战",
+          "difficultyIds": [
+            0
+          ],
+          "challengeRequired": true,
+          "progressionEligible": false
+        },
+        {
+          "id": "tutorial",
+          "name": "教程",
+          "difficultyIds": [
+            0
+          ],
+          "challengeRequired": false,
+          "progressionEligible": false
+        }
+      ],
+      "difficulties": [
+        {
+          "targetMultiplier": {
+            "n": "1",
+            "d": "1"
+          },
+          "baseHandSize": 8,
+          "baseHands": 4,
+          "baseDiscards": 3,
+          "initialGold": 6,
+          "jokerSlots": 5,
+          "baseInterestCap": 5,
+          "reroll": {
+            "allowed": true,
+            "start": 2,
+            "cap": 10
+          },
+          "id": 0,
+          "label": "D0",
+          "unlockAfterDifficulty": null
+        },
+        {
+          "targetMultiplier": {
+            "n": "6",
+            "d": "5"
+          },
+          "baseHandSize": 8,
+          "baseHands": 4,
+          "baseDiscards": 3,
+          "initialGold": 6,
+          "jokerSlots": 5,
+          "baseInterestCap": 5,
+          "reroll": {
+            "allowed": true,
+            "start": 2,
+            "cap": 10
+          },
+          "id": 1,
+          "label": "D1",
+          "unlockAfterDifficulty": 0
+        },
+        {
+          "targetMultiplier": {
+            "n": "6",
+            "d": "5"
+          },
+          "baseHandSize": 8,
+          "baseHands": 4,
+          "baseDiscards": 2,
+          "initialGold": 6,
+          "jokerSlots": 5,
+          "baseInterestCap": 5,
+          "reroll": {
+            "allowed": true,
+            "start": 2,
+            "cap": 10
+          },
+          "id": 2,
+          "label": "D2",
+          "unlockAfterDifficulty": 1
+        },
+        {
+          "targetMultiplier": {
+            "n": "6",
+            "d": "5"
+          },
+          "baseHandSize": 8,
+          "baseHands": 4,
+          "baseDiscards": 2,
+          "initialGold": 4,
+          "jokerSlots": 5,
+          "baseInterestCap": 5,
+          "reroll": {
+            "allowed": true,
+            "start": 3,
+            "cap": 11
+          },
+          "id": 3,
+          "label": "D3",
+          "unlockAfterDifficulty": 2
+        }
+      ],
+      "challenges": [
+        {
+          "id": "Q01",
+          "name": "本色演出",
+          "description": "关闭角色被动及初始牌型等级赠送；保留所选角色身份。",
+          "config": {
+            "targetMultiplier": {
+              "n": "1",
+              "d": "1"
+            },
+            "baseHandSize": 8,
+            "baseHands": 4,
+            "baseDiscards": 3,
+            "initialGold": 6,
+            "jokerSlots": 5,
+            "baseInterestCap": 5,
+            "reroll": {
+              "allowed": true,
+              "start": 2,
+              "cap": 10
+            },
+            "mode": "challenge",
+            "difficulty": 0,
+            "challengeId": "Q01",
+            "characterAbilityEnabled": false,
+            "startingRanks": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "startingJokers": [],
+            "startingChapter": 1,
+            "startingStageIndex": 0,
+            "programsEnabled": true,
+            "eligibleProgramIds": [
+              "PG01",
+              "PG02",
+              "PG03",
+              "PG04"
+            ],
+            "seedPolicy": {
+              "kind": "fixed-set",
+              "values": [
+                "challenge/q01/0",
+                "challenge/q01/1",
+                "challenge/q01/2"
+              ]
+            },
+            "progressionEligible": false,
+            "enhancementsAllowed": true,
+            "chapterJokerBanCount": 0
+          },
+          "setup": {
+            "initialShopVisits": 1,
+            "priorChapters": "none"
+          }
+        },
+        {
+          "id": "Q02",
+          "name": "三席舞台",
+          "description": "基础大丑牌槽位为3。",
+          "config": {
+            "targetMultiplier": {
+              "n": "1",
+              "d": "1"
+            },
+            "baseHandSize": 8,
+            "baseHands": 4,
+            "baseDiscards": 3,
+            "initialGold": 6,
+            "jokerSlots": 3,
+            "baseInterestCap": 5,
+            "reroll": {
+              "allowed": true,
+              "start": 2,
+              "cap": 10
+            },
+            "mode": "challenge",
+            "difficulty": 0,
+            "challengeId": "Q02",
+            "characterAbilityEnabled": true,
+            "startingRanks": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "startingJokers": [],
+            "startingChapter": 1,
+            "startingStageIndex": 0,
+            "programsEnabled": true,
+            "eligibleProgramIds": [
+              "PG01",
+              "PG02",
+              "PG03",
+              "PG04"
+            ],
+            "seedPolicy": {
+              "kind": "fixed-set",
+              "values": [
+                "challenge/q02/0",
+                "challenge/q02/1",
+                "challenge/q02/2"
+              ]
+            },
+            "progressionEligible": false,
+            "enhancementsAllowed": true,
+            "chapterJokerBanCount": 0
+          },
+          "setup": {
+            "initialShopVisits": 1,
+            "priorChapters": "none"
+          }
+        },
+        {
+          "id": "Q03",
+          "name": "无息开场",
+          "description": "基础利息上限为0，后续利息增益仍可生效。",
+          "config": {
+            "targetMultiplier": {
+              "n": "1",
+              "d": "1"
+            },
+            "baseHandSize": 8,
+            "baseHands": 4,
+            "baseDiscards": 3,
+            "initialGold": 6,
+            "jokerSlots": 5,
+            "baseInterestCap": 0,
+            "reroll": {
+              "allowed": true,
+              "start": 2,
+              "cap": 10
+            },
+            "mode": "challenge",
+            "difficulty": 0,
+            "challengeId": "Q03",
+            "characterAbilityEnabled": true,
+            "startingRanks": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "startingJokers": [],
+            "startingChapter": 1,
+            "startingStageIndex": 0,
+            "programsEnabled": true,
+            "eligibleProgramIds": [
+              "PG01",
+              "PG02",
+              "PG03",
+              "PG04"
+            ],
+            "seedPolicy": {
+              "kind": "fixed-set",
+              "values": [
+                "challenge/q03/0",
+                "challenge/q03/1",
+                "challenge/q03/2"
+              ]
+            },
+            "progressionEligible": false,
+            "enhancementsAllowed": true,
+            "chapterJokerBanCount": 0
+          },
+          "setup": {
+            "initialShopVisits": 1,
+            "priorChapters": "none"
+          }
+        },
+        {
+          "id": "Q04",
+          "name": "数字剧团",
+          "description": "移除J、Q、K，保留2–10与A，共40张。",
+          "config": {
+            "targetMultiplier": {
+              "n": "1",
+              "d": "1"
+            },
+            "baseHandSize": 8,
+            "baseHands": 4,
+            "baseDiscards": 3,
+            "initialGold": 6,
+            "jokerSlots": 5,
+            "baseInterestCap": 5,
+            "reroll": {
+              "allowed": true,
+              "start": 2,
+              "cap": 10
+            },
+            "mode": "challenge",
+            "difficulty": 0,
+            "challengeId": "Q04",
+            "characterAbilityEnabled": true,
+            "startingRanks": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              14
+            ],
+            "startingJokers": [],
+            "startingChapter": 1,
+            "startingStageIndex": 0,
+            "programsEnabled": true,
+            "eligibleProgramIds": [
+              "PG01",
+              "PG02",
+              "PG03",
+              "PG04"
+            ],
+            "seedPolicy": {
+              "kind": "fixed-set",
+              "values": [
+                "challenge/q04/0",
+                "challenge/q04/1",
+                "challenge/q04/2"
+              ]
+            },
+            "progressionEligible": false,
+            "enhancementsAllowed": true,
+            "chapterJokerBanCount": 0
+          },
+          "setup": {
+            "initialShopVisits": 1,
+            "priorChapters": "none"
+          }
+        },
+        {
+          "id": "Q05",
+          "name": "短牌巡演",
+          "description": "每花色只保留7–A，共32张。",
+          "config": {
+            "targetMultiplier": {
+              "n": "1",
+              "d": "1"
+            },
+            "baseHandSize": 8,
+            "baseHands": 4,
+            "baseDiscards": 3,
+            "initialGold": 6,
+            "jokerSlots": 5,
+            "baseInterestCap": 5,
+            "reroll": {
+              "allowed": true,
+              "start": 2,
+              "cap": 10
+            },
+            "mode": "challenge",
+            "difficulty": 0,
+            "challengeId": "Q05",
+            "characterAbilityEnabled": true,
+            "startingRanks": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "startingJokers": [],
+            "startingChapter": 1,
+            "startingStageIndex": 0,
+            "programsEnabled": true,
+            "eligibleProgramIds": [
+              "PG01",
+              "PG02",
+              "PG03",
+              "PG04"
+            ],
+            "seedPolicy": {
+              "kind": "fixed-set",
+              "values": [
+                "challenge/q05/0",
+                "challenge/q05/1",
+                "challenge/q05/2"
+              ]
+            },
+            "progressionEligible": false,
+            "enhancementsAllowed": true,
+            "chapterJokerBanCount": 0
+          },
+          "setup": {
+            "initialShopVisits": 1,
+            "priorChapters": "none"
+          }
+        },
+        {
+          "id": "Q06",
+          "name": "不换节目",
+          "description": "禁止付费和免费刷新；节目单不提供刷新券。",
+          "config": {
+            "targetMultiplier": {
+              "n": "1",
+              "d": "1"
+            },
+            "baseHandSize": 8,
+            "baseHands": 4,
+            "baseDiscards": 3,
+            "initialGold": 6,
+            "jokerSlots": 5,
+            "baseInterestCap": 5,
+            "reroll": {
+              "allowed": false,
+              "start": 2,
+              "cap": 10
+            },
+            "mode": "challenge",
+            "difficulty": 0,
+            "challengeId": "Q06",
+            "characterAbilityEnabled": true,
+            "startingRanks": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "startingJokers": [],
+            "startingChapter": 1,
+            "startingStageIndex": 0,
+            "programsEnabled": true,
+            "eligibleProgramIds": [
+              "PG01",
+              "PG02",
+              "PG03"
+            ],
+            "seedPolicy": {
+              "kind": "fixed-set",
+              "values": [
+                "challenge/q06/0",
+                "challenge/q06/1",
+                "challenge/q06/2"
+              ]
+            },
+            "progressionEligible": false,
+            "enhancementsAllowed": true,
+            "chapterJokerBanCount": 0
+          },
+          "setup": {
+            "initialShopVisits": 1,
+            "priorChapters": "none"
+          }
+        },
+        {
+          "id": "Q07",
+          "name": "袖珍手牌",
+          "description": "基础手牌上限为6。",
+          "config": {
+            "targetMultiplier": {
+              "n": "1",
+              "d": "1"
+            },
+            "baseHandSize": 6,
+            "baseHands": 4,
+            "baseDiscards": 3,
+            "initialGold": 6,
+            "jokerSlots": 5,
+            "baseInterestCap": 5,
+            "reroll": {
+              "allowed": true,
+              "start": 2,
+              "cap": 10
+            },
+            "mode": "challenge",
+            "difficulty": 0,
+            "challengeId": "Q07",
+            "characterAbilityEnabled": true,
+            "startingRanks": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "startingJokers": [],
+            "startingChapter": 1,
+            "startingStageIndex": 0,
+            "programsEnabled": true,
+            "eligibleProgramIds": [
+              "PG01",
+              "PG02",
+              "PG03",
+              "PG04"
+            ],
+            "seedPolicy": {
+              "kind": "fixed-set",
+              "values": [
+                "challenge/q07/0",
+                "challenge/q07/1",
+                "challenge/q07/2"
+              ]
+            },
+            "progressionEligible": false,
+            "enhancementsAllowed": true,
+            "chapterJokerBanCount": 0
+          },
+          "setup": {
+            "initialShopVisits": 1,
+            "priorChapters": "none"
+          }
+        },
+        {
+          "id": "Q08",
+          "name": "一次取舍",
+          "description": "基础弃牌次数为1。",
+          "config": {
+            "targetMultiplier": {
+              "n": "1",
+              "d": "1"
+            },
+            "baseHandSize": 8,
+            "baseHands": 4,
+            "baseDiscards": 1,
+            "initialGold": 6,
+            "jokerSlots": 5,
+            "baseInterestCap": 5,
+            "reroll": {
+              "allowed": true,
+              "start": 2,
+              "cap": 10
+            },
+            "mode": "challenge",
+            "difficulty": 0,
+            "challengeId": "Q08",
+            "characterAbilityEnabled": true,
+            "startingRanks": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "startingJokers": [],
+            "startingChapter": 1,
+            "startingStageIndex": 0,
+            "programsEnabled": true,
+            "eligibleProgramIds": [
+              "PG01",
+              "PG02",
+              "PG03",
+              "PG04"
+            ],
+            "seedPolicy": {
+              "kind": "fixed-set",
+              "values": [
+                "challenge/q08/0",
+                "challenge/q08/1",
+                "challenge/q08/2"
+              ]
+            },
+            "progressionEligible": false,
+            "enhancementsAllowed": true,
+            "chapterJokerBanCount": 0
+          },
+          "setup": {
+            "initialShopVisits": 1,
+            "priorChapters": "none"
+          }
+        },
+        {
+          "id": "Q09",
+          "name": "名角空囊",
+          "description": "0金开局，免费持有普通版次的回马枪与包场；实际支付0，出售各1。",
+          "config": {
+            "targetMultiplier": {
+              "n": "1",
+              "d": "1"
+            },
+            "baseHandSize": 8,
+            "baseHands": 4,
+            "baseDiscards": 3,
+            "initialGold": 0,
+            "jokerSlots": 5,
+            "baseInterestCap": 5,
+            "reroll": {
+              "allowed": true,
+              "start": 2,
+              "cap": 10
+            },
+            "mode": "challenge",
+            "difficulty": 0,
+            "challengeId": "Q09",
+            "characterAbilityEnabled": true,
+            "startingRanks": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "startingJokers": [
+              {
+                "definitionId": "huimaqiang",
+                "paidPrice": 0,
+                "edition": "none"
+              },
+              {
+                "definitionId": "e08",
+                "paidPrice": 0,
+                "edition": "none"
+              }
+            ],
+            "startingChapter": 1,
+            "startingStageIndex": 0,
+            "programsEnabled": true,
+            "eligibleProgramIds": [
+              "PG01",
+              "PG02",
+              "PG03",
+              "PG04"
+            ],
+            "seedPolicy": {
+              "kind": "fixed-set",
+              "values": [
+                "challenge/q09/0",
+                "challenge/q09/1",
+                "challenge/q09/2"
+              ]
+            },
+            "progressionEligible": false,
+            "enhancementsAllowed": true,
+            "chapterJokerBanCount": 0
+          },
+          "setup": {
+            "initialShopVisits": 1,
+            "priorChapters": "none"
+          }
+        },
+        {
+          "id": "Q10",
+          "name": "原纸舞台",
+          "description": "禁止增强牌的获取与赋予，独立版次仍可使用。",
+          "config": {
+            "targetMultiplier": {
+              "n": "1",
+              "d": "1"
+            },
+            "baseHandSize": 8,
+            "baseHands": 4,
+            "baseDiscards": 3,
+            "initialGold": 6,
+            "jokerSlots": 5,
+            "baseInterestCap": 5,
+            "reroll": {
+              "allowed": true,
+              "start": 2,
+              "cap": 10
+            },
+            "mode": "challenge",
+            "difficulty": 0,
+            "challengeId": "Q10",
+            "characterAbilityEnabled": true,
+            "startingRanks": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "startingJokers": [],
+            "startingChapter": 1,
+            "startingStageIndex": 0,
+            "programsEnabled": true,
+            "eligibleProgramIds": [
+              "PG01",
+              "PG02",
+              "PG03",
+              "PG04"
+            ],
+            "seedPolicy": {
+              "kind": "fixed-set",
+              "values": [
+                "challenge/q10/0",
+                "challenge/q10/1",
+                "challenge/q10/2"
+              ]
+            },
+            "progressionEligible": false,
+            "enhancementsAllowed": false,
+            "chapterJokerBanCount": 0
+          },
+          "setup": {
+            "initialShopVisits": 1,
+            "priorChapters": "none"
+          }
+        },
+        {
+          "id": "Q11",
+          "name": "每章封角",
+          "description": "每章公开封禁一个大丑牌定义的计分与版次；静态、经济及非数学生命周期保留。",
+          "config": {
+            "targetMultiplier": {
+              "n": "1",
+              "d": "1"
+            },
+            "baseHandSize": 8,
+            "baseHands": 4,
+            "baseDiscards": 3,
+            "initialGold": 6,
+            "jokerSlots": 5,
+            "baseInterestCap": 5,
+            "reroll": {
+              "allowed": true,
+              "start": 2,
+              "cap": 10
+            },
+            "mode": "challenge",
+            "difficulty": 0,
+            "challengeId": "Q11",
+            "characterAbilityEnabled": true,
+            "startingRanks": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "startingJokers": [],
+            "startingChapter": 1,
+            "startingStageIndex": 0,
+            "programsEnabled": true,
+            "eligibleProgramIds": [
+              "PG01",
+              "PG02",
+              "PG03",
+              "PG04"
+            ],
+            "seedPolicy": {
+              "kind": "fixed-set",
+              "values": [
+                "challenge/q11/0",
+                "challenge/q11/1",
+                "challenge/q11/2"
+              ]
+            },
+            "progressionEligible": false,
+            "enhancementsAllowed": true,
+            "chapterJokerBanCount": 1
+          },
+          "setup": {
+            "initialShopVisits": 1,
+            "priorChapters": "none"
+          }
+        },
+        {
+          "id": "Q12",
+          "name": "中途登场",
+          "description": "从第三章暖场前唯一准备商店开始，20金；前两章只锁合法Boss历史，不赠资源。",
+          "config": {
+            "targetMultiplier": {
+              "n": "1",
+              "d": "1"
+            },
+            "baseHandSize": 8,
+            "baseHands": 4,
+            "baseDiscards": 3,
+            "initialGold": 20,
+            "jokerSlots": 5,
+            "baseInterestCap": 5,
+            "reroll": {
+              "allowed": true,
+              "start": 2,
+              "cap": 10
+            },
+            "mode": "challenge",
+            "difficulty": 0,
+            "challengeId": "Q12",
+            "characterAbilityEnabled": true,
+            "startingRanks": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "startingJokers": [],
+            "startingChapter": 3,
+            "startingStageIndex": 6,
+            "programsEnabled": true,
+            "eligibleProgramIds": [
+              "PG01",
+              "PG02",
+              "PG03",
+              "PG04"
+            ],
+            "seedPolicy": {
+              "kind": "fixed-set",
+              "values": [
+                "challenge/q12/0",
+                "challenge/q12/1",
+                "challenge/q12/2"
+              ]
+            },
+            "progressionEligible": false,
+            "enhancementsAllowed": true,
+            "chapterJokerBanCount": 0
+          },
+          "setup": {
+            "initialShopVisits": 1,
+            "priorChapters": "boss-locks-only"
+          }
+        }
+      ],
+      "programs": [
+        {
+          "offerCount": 2,
+          "distinctOffers": true,
+          "optional": true,
+          "abandonAllowed": true,
+          "abandonPenalty": 0,
+          "scope": "chapter",
+          "countSource": "successful-submitted-plays",
+          "skippedStagesCount": false,
+          "rewardAt": "chapter-boss-clear",
+          "maxClaimsPerChapter": 1,
+          "id": "PG01",
+          "name": "换场大师",
+          "requiresReroll": false,
+          "condition": {
+            "kind": "distinct-hand-types",
+            "minimum": 3
+          },
+          "reward": {
+            "kind": "gold",
+            "amount": 4
+          }
+        },
+        {
+          "offerCount": 2,
+          "distinctOffers": true,
+          "optional": true,
+          "abandonAllowed": true,
+          "abandonPenalty": 0,
+          "scope": "chapter",
+          "countSource": "successful-submitted-plays",
+          "skippedStagesCount": false,
+          "rewardAt": "chapter-boss-clear",
+          "maxClaimsPerChapter": 1,
+          "id": "PG02",
+          "name": "一招鲜",
+          "requiresReroll": false,
+          "condition": {
+            "kind": "same-hand-type-plays",
+            "minimum": 3
+          },
+          "reward": {
+            "kind": "gold",
+            "amount": 4
+          }
+        },
+        {
+          "offerCount": 2,
+          "distinctOffers": true,
+          "optional": true,
+          "abandonAllowed": true,
+          "abandonPenalty": 0,
+          "scope": "chapter",
+          "countSource": "successful-submitted-plays",
+          "skippedStagesCount": false,
+          "rewardAt": "chapter-boss-clear",
+          "maxClaimsPerChapter": 1,
+          "id": "PG03",
+          "name": "不打烊",
+          "requiresReroll": false,
+          "condition": {
+            "kind": "gold-before-reward",
+            "minimum": 15
+          },
+          "reward": {
+            "kind": "used-hand-upgrade",
+            "levels": 1,
+            "maximumLevel": 30,
+            "selection": "uniform",
+            "emptyCandidates": "skip-without-draw"
+          }
+        },
+        {
+          "offerCount": 2,
+          "distinctOffers": true,
+          "optional": true,
+          "abandonAllowed": true,
+          "abandonPenalty": 0,
+          "scope": "chapter",
+          "countSource": "successful-submitted-plays",
+          "skippedStagesCount": false,
+          "rewardAt": "chapter-boss-clear",
+          "maxClaimsPerChapter": 1,
+          "id": "PG04",
+          "name": "谢幕留客",
+          "requiresReroll": true,
+          "condition": {
+            "kind": "last-opportunity-clear"
+          },
+          "reward": {
+            "kind": "next-shop-free-reroll",
+            "count": 1,
+            "advanceRerollCount": true,
+            "expires": "next-shop-exit"
+          }
+        }
+      ],
+      "tutorial": {
+        "characterId": "erxiang",
+        "skippable": true,
+        "advance": "successful-real-command",
+        "steps": [
+          {
+            "id": "select-and-score",
+            "action": "PlayHand"
+          },
+          {
+            "id": "discard-and-keep",
+            "action": "DiscardHand"
+          },
+          {
+            "id": "buy-and-compare",
+            "action": "BuyOffer"
+          }
+        ],
+        "config": {
+          "targetMultiplier": {
+            "n": "1",
+            "d": "1"
+          },
+          "baseHandSize": 8,
+          "baseHands": 4,
+          "baseDiscards": 3,
+          "initialGold": 6,
+          "jokerSlots": 5,
+          "baseInterestCap": 5,
+          "reroll": {
+            "allowed": true,
+            "start": 2,
+            "cap": 10
+          },
+          "mode": "tutorial",
+          "difficulty": 0,
+          "challengeId": null,
+          "characterAbilityEnabled": true,
+          "startingRanks": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "startingJokers": [],
+          "startingChapter": 1,
+          "startingStageIndex": 0,
+          "programsEnabled": false,
+          "eligibleProgramIds": [],
+          "seedPolicy": {
+            "kind": "fixed-set",
+            "values": [
+              "r2/tutorial/core-v1"
+            ]
+          },
+          "progressionEligible": false,
+          "enhancementsAllowed": true,
+          "chapterJokerBanCount": 0
+        }
+      }
+    },
+    "modeRuntime": {
+      "version": "explicit-v10",
+      "programStream": "seed/r2/program/0",
+      "challengeStream": "seed/r2/challenge/0",
+      "programChoice": "once-before-first-stage",
+      "programPayout": "once-on-chapter-boss-success",
+      "programCoupon": "next-shop-only",
+      "challengeBan": "published72-definition-scoring-and-edition",
+      "legacy": "preserve-original-no-migration",
+      "partition": "mode-challenge-difficulty-program-flag"
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import {r2AssistFacts} from './r2Assist';
 import {r2ScoreConditionMatches} from './r2Conditions';
 import {r2SelectionFacts} from './r2SelectionFacts';
 import { EDITIONS, type Edition, type PlayingCard } from '../cards/types';
@@ -37,7 +38,8 @@ export interface ScoreInput {
   handLevels: Partial<Record<R2HandType, number>>; handRules?: HandRules;
   playIndex: number; handsBeforePlay: number; previousHandType: R2HandType | null; wager: boolean; rng: RngSnapshot;
   /** Omitted direct-score inputs retain the historical contract; saved runs pass their profile. */
-  amoScoreTiming?:'before-joker'|'after-joker';
+  amoScoreTiming?:'before-joker'|'after-joker'|'assist-v1';
+  assistIds?:readonly string[];
   gold?:number; discardsUsed?:number; ordinaryPointsSuppressedIds?:readonly string[];
   jokerSlots?:number;
   previousHandScore?:string|null;
@@ -61,6 +63,7 @@ export interface ScoreTrace {
   sets: { playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[] };
   finalScore: string; accumulator: Accumulator; events: ScoreEvent[]; jokers: R2JokerInstance[]; rng: RngSnapshot;
   goldDelta:number; destroyedCardIds:string[]; destroyedJokerIds:string[];
+  assist?:{ids:string[];kind:'pair'|'three-kind';multiplier:2|4};
   cards:PlayingCard[]; sourceJokers:R2JokerInstance[];
   bossContext:{boss:R2BossPlan|null;previousHandType:R2HandType|null;sealedJokerIds:string[];challengeDisabledJokerId:string|null};
 }
@@ -99,7 +102,7 @@ function resolveScore(input: PublicScoreInput, policy: Extract<ResolvePolicy, {k
 function resolveScore(input: PublicScoreInput, policy: Extract<ResolvePolicy, {kind:'preview'}>): PreviewTrace;
 function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrace | PreviewTrace {
   if (input.rulesVersion !== 'r2' || !input.runId || !input.rootId || ![...CHARACTER_IDS, 'neutral'].includes(input.characterId)) throw new Error('invalid-score-version-or-character');
-  if(input.amoScoreTiming!==undefined&&!['before-joker','after-joker'].includes(input.amoScoreTiming))throw new Error('invalid-character-score-timing');
+  if(input.amoScoreTiming!==undefined&&!['before-joker','after-joker','assist-v1'].includes(input.amoScoreTiming))throw new Error('invalid-character-score-timing');
   if (!Array.isArray(input.hand)) throw new Error('invalid-hand');
   if (input.hand.length > SCORE_LIMITS.handCount) throw new ScoreFault('hand-limit', Object.freeze([]));
   validateCardInstances(input.hand);
@@ -149,7 +152,9 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   const bossContext=structuredClone({boss:input.boss??null,previousHandType:input.previousHandType,sealedJokerIds:[...sealedIds],challengeDisabledJokerId});
   const scoringDisabledJokers=new Set(r2ScoringDisabledJokerIds(bossContext.boss,sourceJokers,input.definitions,bossContext.sealedJokerIds,bossContext.challengeDisabledJokerId));
   const played = cards.filter(c => input.selectedIds.includes(c.id));
-  const held = cards.filter(c => !input.selectedIds.includes(c.id));
+  if(input.assistIds!==undefined&&(input.amoScoreTiming!=='assist-v1'||input.characterId!=='amo'||input.boss?.definitionId==='B08'))throw Error('assist-unavailable');
+  const assist=input.assistIds===undefined?null:r2AssistFacts({hand:cards,selectedIds:input.selectedIds,assistIds:input.assistIds,disabledIds:input.disabledIds,jokers,definitions:input.definitions,handRules:input.handRules});
+  const held = cards.filter(c => !input.selectedIds.includes(c.id)&&!assist?.assistIds.includes(c.id));
   const validHeld = held.filter(c => !input.disabledIds.includes(c.id));
   const facts=r2SelectionFacts({hand:cards,selectedIds:input.selectedIds,jokers,definitions:input.definitions,handRules:input.handRules,disabledIds:input.disabledIds,ordinaryPointsSuppressedIds:input.ordinaryPointsSuppressedIds});
   const evaluated={type:facts.type,scoringIds:facts.scoringIds};
@@ -335,7 +340,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     else M = M.multiply(value);
   }, condition);
   if(boss?.definitionId!=='B08')switch (input.characterId) {
-    case 'amo': if (input.amoScoreTiming !== 'after-joker' && played.length === 1) char('multiply-multiplier', new Rational(3n), {kind:'played-count',equals:1}); break;
+    case 'amo': if ((input.amoScoreTiming??'before-joker') === 'before-joker' && played.length === 1) char('multiply-multiplier', new Rational(3n), {kind:'played-count',equals:1}); break;
     case 'erxiang': if (['pair','two-pair','three-kind'].includes(evaluated.type)) char('add-multiplier', new Rational(3n,2n), {kind:'hand-type-in',values:['pair','two-pair','three-kind']}); break;
     case 'laohuan': if (['straight','flush','straight-flush'].includes(evaluated.type)) char('add-heat', new Rational(120n), {kind:'hand-type-in',values:['straight','flush','straight-flush']}); break;
     case 'azao': if (input.previousHandType !== null && input.previousHandType !== evaluated.type) char('add-multiplier', new Rational(1n)); break;
@@ -344,6 +349,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   }
   hook('jokerScore');
   if(boss?.definitionId!=='B08'&&input.characterId==='amo'&&input.amoScoreTiming==='after-joker'&&played.length===1)char('multiply-multiplier',new Rational(3n),{kind:'played-count',equals:1});
+  if(assist)char('multiply-multiplier',new Rational(BigInt(assist.assistMultiplier)),{kind:'hand-type-in',values:[...['two-pair','three-kind','straight','flush','full-house','four-kind','straight-flush','five-kind','flush-house','flush-five']] as import('./evaluateR2').R2HandType[]});
   const final = H.multiply(M).floor();
   if (final < 0n) throw new ScoreFault('negative-score', events);
   emit('finalScore', rule, 'final-score', new Rational(final), () => {});
@@ -360,7 +366,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   hook('afterHand');
   return immutable({ rulesVersion:'r2', rootId:input.rootId, handType:evaluated.type, level,
     sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id)},
-    finalScore:final.toString(),accumulator:snapshot(),events,jokers:jokers.filter(j=>!destroyedJokerIds.includes(j.instanceId)),
+    ...(assist?{assist:{ids:assist.assistIds,kind:assist.assistKind,multiplier:assist.assistMultiplier}}:{}),finalScore:final.toString(),accumulator:snapshot(),events,jokers:jokers.filter(j=>!destroyedJokerIds.includes(j.instanceId)),
     ...(rng ? {rng:rng.snapshot()} : {}),goldDelta,destroyedCardIds,destroyedJokerIds,cards,sourceJokers,bossContext });
 }
 
