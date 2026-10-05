@@ -2,7 +2,7 @@
 
 ## P1-J 四卡共同领域原型（2026-10-05 UTC，仅 draft PR24）
 
-共享新显式 combo-growth-v1 / e7d21fce68b80072，继承843f七卡并替换a06/f10/d12/e04；六角色同Joker内容，阿默助攻与其余五人既有能力保持。新 profile 未接普通入口/UI。已补父审S06身份工厂、旧条件边界、四卡本体/真实版次闭合、弃前公开来源与成长/收入保存约束；保留原 FAIL。I已审纯文案e2fc正常合入此review。旧v10/v11/843f全state回放、66相关检查及原生事务失败/同候选重试/四身份恢复和四受控经营对照通过；最终冻结/门禁/精确CI以本批evidence为准。主手/助攻facts不改，场景/选择布局/美术不碰，main只由父串行决定。P08 in_progress、C04 D32及原真机/听感/平衡门槛保持。见 [原型合同](docs/production/COMBO_GROWTH_PROTOTYPE.md)。以下历史记录按各自SHA保留。
+共享新显式 combo-growth-v1 / e7d21fce68b80072，继承843f七卡并替换a06/f10/d12/e04；六角色同Joker内容，阿默助攻与其余五人既有能力保持。新 profile 未接普通入口/UI。已补父审S06身份工厂、旧条件边界、四卡本体/真实版次闭合、弃前公开来源与成长/收入保存约束；保留原 FAIL。I已审纯文案e2fc正常合入此review。旧v10/v11/843f全state回放、66相关检查及原生事务失败/同候选重试/四身份恢复和四受控经营对照通过；冻结本地327e0e2与远端e8a3f7a完整tree46e67ff8相同；2376tests/132files、content/type/build/标准双端smoke/plan及原生保存全PASS，source/index/HEAD保持。精确CI及后续独审以本批evidence与PR24为准。主手/助攻facts不改，场景/选择布局/美术不碰，main只由父串行决定。P08 in_progress、C04 D32及原真机/听感/平衡门槛保持。见 [原型合同](docs/production/COMBO_GROWTH_PROTOTYPE.md)。以下历史记录按各自SHA保留。
 
 ## 正常阿默新局入口恢复（2026-10-05 UTC，仅 review PR21）
 
