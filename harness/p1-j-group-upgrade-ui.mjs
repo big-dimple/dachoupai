@@ -49,7 +49,7 @@ const reloadAndReplay=async(p,after,name)=>{
  if(after.state.phase==='await-input'){await waitScene(p,'game');await settled(p);await tapMenuAction(p,'回看上一手',true);await settled(p);}else await readyIntermission(p);
  assert.deepEqual(await saved(p),after,'refresh/replay never grows or pays again');
  if(after.state.phase==='await-input')await tapMenuAction(p,'上手详情',true);else await tapUI(p,'intermission','action/last-hand',true);
- const text=await p.getByRole('dialog').innerText();await shot(p,name);await p.getByRole('button',{name:'关闭',exact:true}).tap();assert.deepEqual(await saved(p),after,'ledger is read only');return text;
+ const text=await p.getByRole('dialog').innerText();await shot(p,name);await p.getByRole('button',{name:'关闭',exact:true}).tap();assert.deepEqual(await saved(p),after,'ledger is read only');await p.waitForTimeout(370);return text;
 };
 const runCase=async(name,scope,work,spec={width:390,height:740},seed='group-natural-17')=>{
  if(process.env.GROUP_CASES&&!process.env.GROUP_CASES.split(',').includes(name))return;

@@ -1,0 +1,64 @@
+normal-erxiang TimeoutError: page.waitForFunction: Timeout 30000ms exceeded.
+{
+  "source": "55316ccca3d4f770c07dbc73cc49f26a3a17e254",
+  "cases": [
+    {
+      "name": "selector-320",
+      "status": "PASS"
+    },
+    {
+      "name": "selector-390",
+      "status": "PASS"
+    },
+    {
+      "name": "selector-844",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-amo",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-touye",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-laohuan",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-erxiang",
+      "status": "FAIL",
+      "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+    },
+    {
+      "name": "normal-azao",
+      "status": "PASS"
+    },
+    {
+      "name": "normal-xiemu",
+      "status": "PASS"
+    },
+    {
+      "name": "natural-b08",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy-e7-b10",
+      "status": "PASS"
+    },
+    {
+      "name": "b06-left-tie-disabled-assist",
+      "status": "PASS"
+    },
+    {
+      "name": "b06-plain-flush",
+      "status": "PASS"
+    },
+    {
+      "name": "B13-full-house",
+      "status": "PASS"
+    }
+  ],
+  "unchanged": true
+}
