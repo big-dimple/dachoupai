@@ -1,0 +1,103 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs
+
+CHECK test: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run test
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/v00-bot.test.ts (5 tests | 1 failed) 13243ms
+     × suit emits only valid ordinary commands on a natural run 6454ms
+ ❯ tests/c04-mode-save.test.ts (40 tests | 1 failed) 905ms
+     × session load, takeover, import and mode resume retain old identity without replaying a reward 69ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/c04-mode-save.test.ts > Amo v10/v11 production storage partition compatibility > session load, takeover, import and mode resume retain old identity without replaying a reward
+AssertionError: expected 'json-fnv-v1:e7d21fce68b80072' to be 'json-fnv-v1:843f02356211cb91' // Object.is equality
+
+Expected: "json-fnv-v1:843f02356211cb91"
+Received: "json-fnv-v1:e7d21fce68b80072"
+
+ ❯ tests/c04-mode-save.test.ts:471:94
+    469|     expect(session.state()?.contentHash).toBe(R2_LEGACY_CONTENT_HASH);
+    470|     // Starting creates the new profile while retaining the original o…
+    471|     await session.start('new-after-old','amo',STANDARD);expect(session…
+       |                                                                                              ^
+    472|     expect((await storage.readPartition(old.state)).current).toEqual(o…
+    473|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/v00-bot.test.ts > V00 policies receive only player-visible information > suit emits only valid ordinary commands on a natural run
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/v00-bot.test.ts:19:51
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 130 passed (132)
+      Tests  2 failed | 2375 passed (2377)
+   Start at  08:29:06
+   Duration  37.08s (transform 6.18s, setup 0ms, import 21.20s, tests 63.75s, environment 21ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+test: FAIL
+{
+  "scope": "all",
+  "testedCommit": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "d778e264dd76b9e4e7a5188d11f35e63606a4965a54ee4400263e38763bb0590",
+    "index": "0ced1489f0b3f8e0002dac0b298adcaeec8c5c937a69afdc1948a5dca187cd7a",
+    "head": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+    "branch": "refs/heads/review/p08-combo-growth-ui-20261005"
+  },
+  "after": {
+    "source": "d778e264dd76b9e4e7a5188d11f35e63606a4965a54ee4400263e38763bb0590",
+    "index": "0ced1489f0b3f8e0002dac0b298adcaeec8c5c937a69afdc1948a5dca187cd7a",
+    "head": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+    "branch": "refs/heads/review/p08-combo-growth-ui-20261005"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 38248,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,43 @@
+{
+  "scope": "all",
+  "testedCommit": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "d778e264dd76b9e4e7a5188d11f35e63606a4965a54ee4400263e38763bb0590",
+    "index": "0ced1489f0b3f8e0002dac0b298adcaeec8c5c937a69afdc1948a5dca187cd7a",
+    "head": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+    "branch": "refs/heads/review/p08-combo-growth-ui-20261005"
+  },
+  "after": {
+    "source": "d778e264dd76b9e4e7a5188d11f35e63606a4965a54ee4400263e38763bb0590",
+    "index": "0ced1489f0b3f8e0002dac0b298adcaeec8c5c937a69afdc1948a5dca187cd7a",
+    "head": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+    "branch": "refs/heads/review/p08-combo-growth-ui-20261005"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 38248,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
