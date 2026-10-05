@@ -29,7 +29,7 @@ it('all72 have independent complete mechanism alternatives, not sliced shop cond
  expect(Object.keys(JOKER_COMPACT).sort()).toEqual(R2_JOKERS.map(d=>d.id).sort());
  for(const d of R2_JOKERS){const j=r2CreateJoker(d.id,'test/'+d.id,0),before=structuredClone(j),m=jokerMemory(d,j,ctx);expect(m.labelCandidates.length).toBeGreaterThan(0);expect(m.short).toBe(m.labelCandidates[0]);expect(m.labelCandidates.every(t=>t.length>0&&!t.includes('…'))).toBe(true);expect(j).toEqual(before);expect(jokerMemoryAbility(d,j,ctx).condition).toBeTruthy();}
  expect(JOKER_COMPACT.e04).toEqual(['利息上限','息上限']);expect(JOKER_COMPACT.c05).toEqual(['同花弃2+','同花弃']);
- expect(JOKER_COMPACT.d07).toEqual(['全计+倍','加倍率']);
+ expect(JOKER_COMPACT.d07).toEqual(['全计分+0.5','条件 ›']);
 });
 it('additive zero shows mechanism only; every real saved growth value takes priority and full details retain zero',()=>{
  const growthIds=[];
