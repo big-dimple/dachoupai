@@ -40,6 +40,7 @@ describe('bounded cinnabar score strokes',()=>{
       const l=layout({width,height},{top:12,right:0,bottom:34,left:0}),f=fixture(l.scoreBoard,{x:4,y:4,width:width-8,height:height-8});
       f.flame.impact('below-target');f.events.emit('update',110);
       const paths=f.flame.graphic.getData('localStrokes') as {x:number;y:number}[][];
+      expect(f.flame.graphic.getData('visibleLocalSegments').length).toBeGreaterThan(0);
       expect(paths).toHaveLength(2);expect(f.state().localLineWidth).toBeGreaterThanOrEqual(4);
       for(const path of paths){expect(Math.max(...path.map(p=>p.y))-Math.min(...path.map(p=>p.y))).toBeGreaterThan(12);expect(Math.max(...path.map(p=>p.x))-Math.min(...path.map(p=>p.x))).toBeGreaterThan(8);}
       expect(paths[0][0].x-l.scoreBoard.x).toBeLessThan(6);expect(l.scoreBoard.x+l.scoreBoard.width-paths[1][0].x).toBeLessThan(6);f.flame.destroy();
@@ -119,6 +120,31 @@ it('physically clips impact lines outside numeric guards even when the renderer 
       const left=Math.min(...segment.map(p=>p.x))-width/2,top=Math.min(...segment.map(p=>p.y))-width/2;
       const box={x:left,y:top,width:Math.max(...segment.map(p=>p.x))+width/2-left,height:Math.max(...segment.map(p=>p.y))+width/2-top};
       expect(intersects(box,guard)).toBe(false);
+    }
+  }
+  f.flame.destroy();
+});
+
+it('keeps the actual short-landscape corner ink outside a pulsing heat readout without relying on its child mask',()=>{
+  const l=layout({width:844,height:300},{top:12,right:0,bottom:34,left:0}),f=fixture(l.scoreBoard);
+  // Actual 45 rebound: y108..132, with the old bottom corner crossing y126.
+  const guards=[{x:212.38,y:105,width:35.92,height:31.92},{x:207,y:102,width:49,height:38}];
+  f.flame.impact('heat-45');f.events.emit('update',90);
+  for(const guard of guards){
+    f.flame.setGuards([guard]);
+    for(const reduced of [false,true]){
+      f.flame.set(0,reduced);f.flame.impact(`heat-45/${guard.x}/${reduced}`);if(!reduced)f.events.emit('update',90);
+      let width=0,start:{x:number;y:number}|undefined,lines=0;
+      for(const [command,...args] of f.objects.find(o=>o.name==='score/fire').commands){
+        if(command==='lineStyle')width=args[0];
+        if(command==='moveTo')start={x:args[0],y:args[1]};
+        if(command==='lineTo'){
+          const end={x:args[0],y:args[1]},left=Math.min(start!.x,end.x)-width/2,top=Math.min(start!.y,end.y)-width/2;
+          expect(intersects({x:left,y:top,width:Math.abs(end.x-start!.x)+width,height:Math.abs(end.y-start!.y)+width},guard)).toBe(false);
+          start=end;lines++;
+        }
+      }
+      expect(lines).toBeGreaterThan(0);
     }
   }
   f.flame.destroy();

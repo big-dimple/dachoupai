@@ -185,11 +185,11 @@ export class ScoreFlame {
     this.graphic.clear().setVisible(hitVisible);
     if(hitVisible){
       const reach=(.8+this.hitStrength*.2)*spread,horizontal=Math.min(this.box.width*.42,this.box.height<90?68:104)*reach,vertical=Math.min(32,this.box.height*.38)*reach;
-      const y=this.box.y+this.box.height-3.2,localStrokes=[];
+      const y=this.box.y+this.box.height-5,localStrokes=[],visibleLocalSegments:Point[][]=[];
       for(const side of [1,-1]){
-        const x=side===1?this.box.x+3.2:this.box.x+this.box.width-3.2;
+        const x=side===1?this.box.x+5:this.box.x+this.box.width-5;
         const path=stroke([{x,y:y-vertical},{x:x+.25*side,y:y-.5},{x:x+horizontal*side,y}]);
-        localStrokes.push(path.points);this.paint(this.graphic,path,1,staticHit?4.5:6.5,RED,alpha);
+        localStrokes.push(path.points);visibleLocalSegments.push(...this.paintInside(this.graphic,path.points,staticHit?4.5:6.5,alpha));
       }
       const impactRays:readonly Point[][]=[];
       if(!staticHit){
@@ -203,7 +203,7 @@ export class ScoreFlame {
         }
         this.graphic.setData('impactRays',rays).setData('visibleImpactSegments',visibleSegments).setData('readoutImpactBox',b);
       }else this.graphic.setData('impactRays',impactRays).setData('visibleImpactSegments',[]);
-      this.graphic.setData('localStrokes',localStrokes);
+      this.graphic.setData('localStrokes',localStrokes).setData('visibleLocalSegments',visibleLocalSegments);
     }
     this.graphic.setData('strokeState',{level:this.level,reduced:this.reduced,localPhase:phase,localAge:this.hitAge,localAlpha:hitVisible?alpha:0,
       localLineWidth:staticHit?4.5:6.5,framePhase:this.level===0?'idle':this.frameAge>=900?'static':writing?'write':'fade',frameAge:this.frameAge,frameProgress:progress,frameAlpha,lineWidth:width,entered:[...this.entered],updating:this.updating});

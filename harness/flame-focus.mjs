@@ -9,7 +9,7 @@ import {chooseCharacter,tapUI,tapMenuAction,openMenuSection,waitScene} from './u
 const dir=process.env.PAPER_FIRE_DIR||'shots/cinnabar',port=5260;
 const localCornersOnly=process.env.FLAME_FOCUS_SCOPE==='local-corners';
 const integrationOnly=process.env.FLAME_FOCUS_SCOPE==='integration';
-const impactScope=['impact-before','impact-first','impact-complete','impact-room'].includes(process.env.FLAME_FOCUS_SCOPE);
+const impactScope=['impact-before','impact-first','impact-complete','impact-room','impact-active'].includes(process.env.FLAME_FOCUS_SCOPE);
 await mkdir(dir,{recursive:true});
 const report={harnessCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),build:JSON.parse(await readFile(dir+'/build/build-info.json','utf8')),runs:[],keyframes:[],limits:[
   'Natural single5 high-card202 plus600 /1200 /5589 paths; no injected score, target, RNG, rule or save state. Long-digit probe changes/restores UI Text only.',
@@ -44,6 +44,11 @@ function validate(f){
   assert.equal(f.textures.length,0);assert.equal(f.burning,0);assert.equal(f.shake,false);assert.equal(f.stamp,false);
   if(f.layers){assert.ok(f.layers.local>f.layers.pedestal,'local ink stays above the opaque score pedestal');assert.ok(f.layers.avatar>=0&&f.layers.avatar>f.layers.local,'actual root avatar exists and stays above ink; a missing child cannot be filtered away');assert.ok(f.layers.text.every(index=>index>f.layers.local),'measured score text stays above local ink');assert.ok(f.layers.foreground.length>0&&f.layers.foreground.every(index=>index>f.layers.local),'actual nonempty card/button foreground stays above ink');assert.ok(f.layers.frame<f.layers.pedestal,'exterior frame stays behind paper and foreground');}
   for(const p of f.pieces)for(const g of f.guards)assert.equal(overlaps(p,g),false,'every paintable piece excludes actual guards');
+  if(f.brush.localAlpha>0)for(const segment of f.visibleLocalSegments??[]){
+    const half=f.brush.localLineWidth/2,left=Math.min(...segment.map(p=>p.x))-half,top=Math.min(...segment.map(p=>p.y))-half;
+    const ink={x:left,y:top,width:Math.max(...segment.map(p=>p.x))+half-left,height:Math.max(...segment.map(p=>p.y))+half-top};
+    for(const guard of f.guards)assert.equal(overlaps(ink,guard),false,'physical corner ink excludes actual pulsing readouts without relying on a child mask');
+  }
   for(const p of f.bands)for(const body of [...f.cards,...f.controls,...f.domControls.map(o=>o.bounds)])assert.equal(overlaps(p,body),false,'outer band excludes card/action body');
   for(const flight of f.flights){assert.ok(flight.mask);const p=flight.landing,b=flight.cell;assert.ok(p.x<b.x||p.x>b.x+b.width||p.y<b.y||p.y>b.y+b.height);}
   if(f.brush.reduced)assert.equal(f.brush.updating,false);
@@ -76,8 +81,9 @@ async function run(viewport,spec,mode='natural'){
     });
     for(let i=0;i<r.longDigits.length;i++)for(let j=i+1;j<r.longDigits.length;j++)assert.equal(overlaps(r.longDigits[i].bounds,r.longDigits[j].bounds),false);
     assert.deepEqual(await state(p),before,'long-digit UI probe preserves whole run');
-    await p.evaluate(({tier,captureBelow,captureFrames,localPeak,pagePeak,impactScope,numeric})=>{
+    await p.evaluate(({tier,captureBelow,captureFrames,localPeak,pagePeak,impactScope,numeric,activePulse})=>{
       const g=window.__harness.game,s=g.scene.getScene('game'),frames=[],rasters=[],seen=new Set();let committed,numericEvent,numericPeak=0;
+      const interruptions={method:'Real DOM controls dispatched in the actual postrender callback; no loop pause, injected preference or phase sleep.',speeds:[],done:false};
       const domControls=()=>[...document.querySelectorAll('.run-menu-toggle,.run-fullscreen-toggle,.fullscreen-dock')].filter(e=>!e.hidden&&e.getBoundingClientRect().width>0).map(e=>{const b=e.getBoundingClientRect(),c=g.canvas.getBoundingClientRect(),l=s.view.layout;return {name:e.className,text:e.textContent,bounds:{x:(b.x-c.x)*l.width/c.width,y:(b.y-c.y)*l.height/c.height,width:b.width*l.width/c.width,height:b.height*l.height/c.height},cssBounds:{x:b.x,y:b.y,width:b.width,height:b.height}};});
       const bounds=o=>{const b=o.getBounds();return{x:b.x,y:b.y,width:b.width,height:b.height};};
       const observe=()=>{
@@ -91,7 +97,7 @@ async function run(viewport,spec,mode='natural'){
           level:flame?.graphic.getData('intensity')??0,brush,eventId:s.scoreTotal.getData('eventId')??s.presentation.score.events[0].eventId,eventPhase:s.scoreTotal.getData('eventPhase')??'base',shown:s.scoreTotal.text,
           texts:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal].filter(o=>o.visible&&o.active).map(o=>({text:o.text,full:o.getData('fullText'),bounds:bounds(o),font:o.style.fontSize})),
           pieces:flame?.graphic.getData('safePieces')??[],guards:flame?.graphic.getData('textGuards')??[],bands:flame?.graphic.getData('frameBands')??[],
-          localStrokes:flame?.graphic.getData('localStrokes')??[],layers:flame?{local:s.view.root.list.indexOf(flame.graphic),avatar:s.view.root.list.indexOf(s.roleAvatar),frame:s.view.root.list.findIndex(o=>o.name==='score/fire-frame'),pedestal:s.view.root.list.findIndex(o=>o.name==='score/total-pedestal'),foreground:foreground.map(o=>s.view.root.list.indexOf(o)),text:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal].map(o=>s.view.root.list.indexOf(o))}:undefined,
+          localStrokes:flame?.graphic.getData('localStrokes')??[],visibleLocalSegments:flame?.graphic.getData('visibleLocalSegments')??[],layers:flame?{local:s.view.root.list.indexOf(flame.graphic),avatar:s.view.root.list.indexOf(s.roleAvatar),frame:s.view.root.list.findIndex(o=>o.name==='score/fire-frame'),pedestal:s.view.root.list.findIndex(o=>o.name==='score/total-pedestal'),foreground:foreground.map(o=>s.view.root.list.indexOf(o)),text:[s.resultText,...s.scoreLabels,s.scoreHeat,s.scoreMult,s.scoreTotal].map(o=>s.view.root.list.indexOf(o))}:undefined,
           cards:s.cardViews.filter(v=>v.container.visible).map(v=>bounds(v.container)),domControls:domControls(),controls:[...Object.values(l.buttons),...Object.values(l.tableActions)],
           masked:s.view.root.list.filter(o=>['score/fire','score/fire-frame'].includes(o.name)).map(o=>({name:o.name,mask:!!o.mask,same:o.mask===flame?.graphic.mask,input:!!o.input})),
           flights:s.view.root.list.filter(o=>o.name==='score/source-flight-line'||o.name==='score/source-flight-packet').map(o=>({landing:o.getData('landing'),cell:o.getData('cell'),mask:!!o.mask})),
@@ -99,6 +105,32 @@ async function run(viewport,spec,mode='natural'){
           burning:[...s.audio.voices].filter(v=>v.fire||v.source.loop&&!v.roll&&(!window.__audioSchedules.get(v.source)?.stop||window.__audioSchedules.get(v.source).stop-window.__audioSchedules.get(v.source).start>.35)).length,accents:[...s.audio.voices].filter(v=>v.scoreAccent).length,
           textures:g.textures.getTextureKeys().filter(k=>k.startsWith('score-flame-heat-')),stamp:s.view.root.list.some(o=>o.name==='score/celebration'),shake:s.cameras.main.shakeEffect.isRunning,savedStable:saved===committed};
         frames.push(f);
+        if(activePulse&&!interruptions.done&&!interruptions.error&&Math.abs(f.pulses[2].requested-1)>.01&&['base-impact','impact'].includes(f.eventPhase)){
+          try{
+            const check=(ok,message)=>{if(!ok)throw Error(message);};
+            const snapshot=()=>({frame:g.loop.frame,at:performance.now(),eventId:s.scoreTotal.getData('eventId'),eventPhase:s.scoreTotal.getData('eventPhase'),pulses:[s.scoreHeat,s.scoreMult,s.scoreTotal].map(o=>({active:o.active,text:o.text,requested:o.getData('scorePulseScale')??1,scale:o.scaleX})),presenting:!!s.presentation,tweenSpeed:s.tweens.timeScale,clockSpeed:s.time.timeScale,savedStable:JSON.stringify(g.registry.get('runController').state)===committed,brush:!!s.scoreFlame,nodes:s.view.root.list.filter(o=>o.name.startsWith('score/fire')).length,masks:s.children.list.filter(o=>o.name==='score/fire-safe-area').length,accents:[...s.audio.voices].filter(v=>v.scoreAccent).length,sfx:[...s.audio.voices].filter(v=>v.bus==='sfx').length});
+            if(!document.querySelector('.run-menu-modal').open){document.querySelector('.run-menu-toggle').click();}
+            const tools=document.querySelector('.run-menu-settings-tools');if(!tools.open)tools.querySelector('summary').click();
+            const before=snapshot();check(before.presenting&&Math.abs(before.pulses[2].requested-1)>.01,'operation must begin during this actual active numeric pulse');check(before.savedStable,'saved state must stay unchanged before input');
+            if(interruptions.speeds.length<3){
+              const speed=[2,4,1][interruptions.speeds.length],control=tools.querySelector('select');
+              interruptions.speedEvent??=before.eventId;check(before.eventId===interruptions.speedEvent,'all speed changes must be inside the same active pulse');
+              control.value=String(speed);control.dispatchEvent(new Event('change',{bubbles:true}));
+              const after=snapshot();check(after.presenting&&after.tweenSpeed===speed&&after.clockSpeed===speed&&after.savedStable,'real speed control must update active playback clocks without changing save');check(Math.abs(after.pulses[2].requested-1)>.01,'numeric pulse must remain active immediately after speed input');
+              interruptions.speeds.push({speed,before,after});
+            }else if(before.eventId!==interruptions.speedEvent){
+              interruptions.reduced={before};
+              const control=[...tools.querySelectorAll('label')].find(l=>l.textContent.includes('减少动态')).querySelector('input');check(!control.checked,'reduced starts disabled');control.click();check(control.checked,'actual checkbox enabled reduced');
+              interruptions.reduced.immediate=snapshot();
+              Promise.resolve().then(()=>Promise.resolve()).then(()=>{
+                const after=snapshot();interruptions.reduced.afterMicrotasks=after;
+                check(!after.presenting&&!after.brush&&!after.nodes&&!after.masks&&!after.accents&&!after.sfx&&after.savedStable,'active reduced input must finish and clear owned ink/audio without changing save');
+                check(after.pulses.filter(p=>p.active).every(p=>p.requested===1&&p.scale===1),'all surviving numeric pulses reset to one');
+              }).catch(error=>interruptions.error=String(error));
+              g.events.once('postrender',()=>{interruptions.reduced.nextRendered=snapshot();interruptions.done=true;});
+            }
+          }catch(error){interruptions.error=String(error);}
+        }
         if(numeric&&['impact','base-impact'].includes(f.eventPhase)){
           const scale=f.pulses[2].scale,requested=f.pulses[2].requested;
           const tag=!seen.has('compressed')&&scale<.84?'compressed':numericEvent===f.eventId&&scale>1.10&&scale>numericPeak?'rebound':undefined;
@@ -113,9 +145,20 @@ async function run(viewport,spec,mode='natural'){
           if(tier===3&&pagePeak){window.__cinnabar.pagePause={metadata:f,committed:saved};g.loop.sleep();}
         }
       };
-      window.__cinnabar={frames,rasters,observe};g.events.on('postrender',observe);
-    },{tier:spec.tier,captureBelow:true,captureFrames:mode==='natural'&&!integrationOnly,localPeak:localCornersOnly,pagePeak:!impactScope,impactScope,numeric:mode==='numeric'||process.env.FLAME_FOCUS_SCOPE==='impact-room'&&mode==='natural'&&spec.tier===3});
+      window.__cinnabar={frames,rasters,observe,interruptions};g.events.on('postrender',observe);
+    },{tier:spec.tier,captureBelow:true,captureFrames:mode==='natural'&&!integrationOnly,localPeak:localCornersOnly,pagePeak:!impactScope,impactScope,numeric:mode==='numeric'||process.env.FLAME_FOCUS_SCOPE==='impact-room'&&mode==='natural'&&spec.tier===3,activePulse:mode==='active-pulse'});
     await tapUI(p,'game','action/play',true);
+    if(mode==='active-pulse'){
+      await p.waitForFunction(()=>window.__cinnabar.interruptions.done||window.__cinnabar.interruptions.error);
+      r.activePulseInterruptions=await p.evaluate(()=>window.__cinnabar.interruptions);
+      assert.equal(r.activePulseInterruptions.error,undefined);assert.equal(r.activePulseInterruptions.done,true);
+      assert.deepEqual(r.activePulseInterruptions.speeds.map(s=>s.speed),[2,4,1]);
+      assert.notEqual(r.activePulseInterruptions.reduced.before.eventId,r.activePulseInterruptions.speedEvent);
+      const after=r.activePulseInterruptions.reduced.nextRendered;
+      assert.equal(after.presenting,false);assert.equal(after.brush,false);assert.equal(after.nodes,0);assert.equal(after.masks,0);assert.equal(after.accents,0);assert.equal(after.sfx,0);assert.equal(after.savedStable,true);
+      assert.ok(after.pulses.filter(p=>p.active).every(p=>p.requested===1&&p.scale===1));
+      r.savedBeforeInterrupt=await state(p);
+    }
     if(mode==='natural'&&spec.tier===3&&!integrationOnly&&!impactScope){
       await p.waitForFunction(()=>!!window.__cinnabar.pagePause);
       const frozen=await p.evaluate(()=>window.__cinnabar.pagePause);
@@ -193,6 +236,10 @@ async function run(viewport,spec,mode='natural'){
       await p.reload();await waitScene(p,'title');await tapUI(p,'title','action/title-continue',true);await waitScene(p,spec.tier===0?'game':'intermission');assert.deepEqual(await state(p),r.result);
       r.checks.push('Skip/duplicate completion/recap/reload preserves whole saved run, including RNG');
     }
+    if(mode==='active-pulse'){
+      await p.reload();await waitScene(p,'title');await tapUI(p,'title','action/title-continue',true);await waitScene(p,'intermission');assert.deepEqual(await state(p),r.result);
+      r.checks.push('Speed inputs observed within one active pulse; reduced enabled during another active pulse; next rendered cleanup and reload preserve whole saved run including RNG');
+    }
     assert.deepEqual(r.errors,[]);r.status='PASS';r.checks.push('Natural saved trace and exact displayed tiers; actual phase/mask/geometry; all owned brush/audio cleanup');
     console.log(JSON.stringify({name,status:r.status,frames:r.frames.length,keyframes:captured.rasters.map(f=>f.tier)}));
   }catch(e){r.status='FAIL';r.error=String(e);r.stack=e.stack;throw e;}finally{await context.close();await writeFile(dir+'/report.json',JSON.stringify(report,null,2)+'\n');}
@@ -208,7 +255,14 @@ async function contacts(viewport){
   await sharp({create:{width:w*2+gap,height:(h+label)*2+gap,channels:4,background:'#f3eadb'}}).composite(composite).png().toFile(`${dir}/${w}x${h}-contact.png`);
 }
 try{
-  if(process.env.FLAME_FOCUS_SCOPE==='impact-room'){
+  if(process.env.FLAME_FOCUS_SCOPE==='impact-active'){
+    report.scope='Only active same-pulse speed1→2→4→1 and a different active pulse reduced interruption, plus the corrected844 heat45 rebound frame.';
+    report.limits[0]='Natural5589 and202 paths only; no injected score, target, RNG, rule or save state. Existing unrelated matrix not rerun.';
+    await run({width:390,height:740},specs[3],'active-pulse');await run({width:844,height:300},specs[0],'numeric');
+    const previous=JSON.parse(await readFile('shots/score-impact-clipped/report.json','utf8'));
+    for(const r of report.runs){const before=previous.runs.find(old=>old.viewport.width===r.viewport.width&&old.score===r.score&&old.mode===(r.mode==='active-pulse'?'natural':r.mode));assert.ok(before,'original saved result exists');assert.deepEqual(r.result,before.result);r.completeSavedResultEqualsOriginalCandidate=true;}
+    report.status='PASS';
+  }else if(process.env.FLAME_FOCUS_SCOPE==='impact-room'){
     report.scope='Revised primary numeric room/base first-arrival candidate aligned to1eb6689; bounded actual tiers and interruptions.';
     await run({width:390,height:740},specs[0]);await run({width:390,height:740},specs[1]);await run({width:390,height:740},specs[2]);await run({width:390,height:740},specs[3]);
     await run({width:390,height:740},specs[3],'speed');await run({width:844,height:300},specs[2],'switch');
