@@ -1,8 +1,8 @@
-import {r2AssistFacts,R2_ASSIST_VERSION,R2_ASSIST_HASH} from './r2Assist';
+import {r2AssistAvailability,r2AssistFacts,R2_ASSIST_VERSION,R2_ASSIST_HASH} from './r2Assist';
 import {R2_PUBLISHED_CONTENT,R2_PUBLISHED_JOKERS} from './r2PublishedContent';
 import {r2TransactionConditionMatches} from './r2Conditions';
 import { createDeck } from '../cards/deck';
-import { R2_IMPLEMENTED_FEATURES,readR2Modifiers,r2GrowthCaps,r2GrowthInitials,r2GrowthMinimums,validR2JokerCounters,supportsR2Joker,type Condition,type R2JokerInstance,type TransactionHookPhase } from '../content/r2Schema';
+import { R2_JOKERS as SHARED_R2_JOKERS,R2_IMPLEMENTED_FEATURES,readR2Modifiers,r2GrowthCaps,r2GrowthInitials,r2GrowthMinimums,validR2JokerCounters,supportsR2Joker,type Condition,type R2JokerInstance,type TransactionHookPhase } from '../content/r2Schema';
 import { SeededRng } from '../core/SeededRng';
 import {R2_MODE_CATALOG,resolveR2ModeConfig,r2RunModeConfig,r2ModeSeedAllowed,type R2ModeId,type R2Difficulty,type R2ChallengeId} from '../content/r2Modes';
 import {lockR2ProgramChapter,chooseR2Program,abandonR2Program,sealR2ProgramChoice,r2ProgramQualified,r2ProgramUpgradeCandidates,r2ProgramStateValid,type R2ProgramState} from './r2Programs';
@@ -24,7 +24,7 @@ import type { Command, DomainEvent, RunState, StageState } from './run';
 import {drawR2Shelf,drawR2Edition,drawR2Tool,drawR2Items,R2_ECONOMY,r2Price,r2ToolPrice,r2ItemPrice,r2ToolAcquisitionPool,r2Pool,r2PaidRerollPrice,salePrice,r2PurchasePrice,type R2ShopState} from './r2Shop';
 
 const R2_JOKERS=R2_PUBLISHED_JOKERS;
-export const R2_STARTING_HAND_LEVELS:Partial<Record<CharacterId,Partial<Record<R2HandType,number>>>> = {amo:{'high-card':3}};
+export const R2_STARTING_HAND_LEVELS:Partial<Record<CharacterId,Partial<Record<R2HandType,number>>>> = R2_PUBLISHED_CONTENT.snapshot.startingHandLevels;
 export const R2_MODE_RUNTIME_CONTRACT=Object.freeze({version:'explicit-v10',programStream:'seed/r2/program/0',challengeStream:'seed/r2/challenge/0',
   programChoice:'once-before-first-stage',programPayout:'once-on-chapter-boss-success',programCoupon:'next-shop-only',challengeBan:'published72-definition-scoring-and-edition',
   legacy:'preserve-original-no-migration',partition:'mode-challenge-difficulty-program-flag'});
@@ -32,6 +32,11 @@ export const R2_LEGACY_CONTENT_VERSION = 'quality-r2-content-v10';
 export const R2_CONTENT_VERSION = 'quality-r2-content-v11';
 export const R2_LEGACY_CONTENT_HASH = R2_PUBLISHED_CONTENT.v10.hash;
 export const R2_CONTENT_HASH=R2_PUBLISHED_CONTENT.v11.hash;
+// Resource/shop/tool modules are still shared. Fail closed if a future edit changes those
+// published definitions without first introducing an explicit profile implementation.
+const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMENTED_FEATURES,tools:R2_TOOL_CATALOG,toolFeatures:R2_IMPLEMENTED_TOOL_FEATURES,itemIds:R2_IMPLEMENTED_ITEM_IDS,resources:R2_RESOURCE_CONTRACT,limits:R2_LIMITS,economy:R2_ECONOMY,targets:R2_TARGETS,hands:R2_BASE_SCORES,startingHandLevels:R2_STARTING_HAND_LEVELS,score:SCORE_LIMITS,bosses:R2_BOSSES,chapters:R2_AVAILABLE_CHAPTERS,endless:R2_ENDLESS_CONTRACT,skip:R2_SKIP_CONSUMABLES,modes:R2_MODE_CATALOG,modeRuntime:R2_MODE_RUNTIME_CONTRACT});
+if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
+
 export const R2_RULESETS=Object.freeze([
   Object.freeze({contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH,amoScoreTiming:'after-joker' as const}),
@@ -41,16 +46,16 @@ export function r2RulesetFor(identity:{contentVersion?:unknown;contentHash?:unkn
   return R2_RULESETS.find(profile=>identity.contentVersion===profile.contentVersion&&identity.contentHash===profile.contentHash);
 }
 
-export interface R2StageState extends Omit<StageState,'targetHeat'|'heat'|'previousHandType'> {
+interface R2StageBase extends Omit<StageState,'targetHeat'|'heat'|'previousHandType'> {
   targetHeat:string; heat:string; previousHandType:R2HandType|null; disabledIds:string[]; wagerSelected:boolean; wagerUsed:boolean;
-  /** Required only in the strict new-profile Amo stage shape. */
-  assistUsed?:boolean;
   discardsUsed:number;skipResult:R2SkipResult|null;handLimit:number;previousHandScore:string|null;rescueUsed:boolean;
   initialHands:number;initialDiscards:number;discardSpent:number;discardGained:number;doubleDiscardBeforeFirstPlay:boolean;
   maxPlayedCount:number;ordinaryStraightSeen:boolean;ordinaryFlushSeen:boolean;quadRefundUsed:boolean;jokerSold:boolean;
   boss:R2BossPlan|null;initialTargetHeat:string;initialHandLimit:number;initialJokerIds:string[];sealedJokerIds:string[];
   challengeDisabledJokerId:string|null;
 }
+/** Profile parsing requires assistUsed for the prototype and forbids it for published runs. */
+export type R2StageState = R2StageBase & ({assistUsed:boolean}|{assistUsed?:never});
 export interface R2RunState extends Omit<RunState,'schemaVersion'|'rulesVersion'|'stage'|'totalHeat'|'jokers'|'lastScore'|'shop'|'boss'|'outcome'|'difficulty'|'program'|'rng'> {
   schemaVersion:2; rulesVersion:'r2'; stage:R2StageState|null; totalHeat:string; jokers:R2JokerInstance[];
   lastTrace:ScoreTrace|null; handLevels:Partial<Record<R2HandType,number>>;shop:R2ShopState|null;
@@ -79,6 +84,7 @@ export function r2CreateJoker(definitionId:string,instanceId:string,paidPrice:nu
 export function assertR2Invariants(state:R2RunState):void {
   const check=(condition:boolean,label:string)=>{if(!condition)throw new Error(`Run invariant: ${label}`);};
   check(state.schemaVersion===2 && state.rulesVersion==='r2' && !!r2RulesetFor(state),'r2 versions');
+  check(r2RulesetFor(state)?.amoScoreTiming!=='assist-v1'||state.characterId==='amo','assist character identity');
   const config=r2RunModeConfig(state);
   check(r2ModeSeedAllowed(config,state.seed)&&(config.mode!=='tutorial'||state.characterId==='erxiang'),'mode seed/identity');
   check(state.mode==='standard'||state.tourMode==='normal','mode tour');
@@ -587,7 +593,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(ids.some(id=>!state.handOrder.includes(id)))return fail('unknown-card');
         if(state.stage.handsLeft<=0)return fail('no-hands-left');
         const assisted=action.type==='PlayAssistedHand';
-        if(assisted&&(r2RulesetFor(state)?.amoScoreTiming!=='assist-v1'||state.characterId!=='amo'||!r2RunModeConfig(state).characterAbilityEnabled||state.stage.boss?.definitionId==='B08'||state.stage.assistUsed))return fail('assist-unavailable');
+        if(assisted&&!r2AssistAvailability(state).available)return fail('assist-unavailable');
         let assistIds:string[]=[];
         if(assisted){try{assistIds=r2AssistFacts({hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),selectedIds:ids,assistIds:action.assistIds,disabledIds:state.stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS}).assistIds;}catch(error){return fail(error instanceof Error?error.message:'invalid-assist');}}
         let trace:ScoreTrace;
@@ -607,7 +613,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         state.stage.ordinaryStraightSeen ||= trace.handType==='straight';state.stage.ordinaryFlushSeen ||= trace.handType==='flush';
         if(state.stage.wagerSelected)state.stage.wagerUsed=true;
         state.stage.wagerSelected=false;
-        state.handOrder=[...trace.sets.heldIds];state.playedPile.push(...trace.sets.playedIds.filter(id=>!trace.destroyedCardIds.includes(id)));
+        state.handOrder=[...trace.sets.heldIds];state.playedPile.push(...trace.cards.filter(card=>trace.sets.playedIds.includes(card.id)||assistIds.includes(card.id)).map(card=>card.id).filter(id=>!trace.destroyedCardIds.includes(id)));
         if(state.stage.boss?.definitionId==='B11')state.stage.handLimit=Math.max(R2_RESOURCE_CONTRACT.handMinimum,state.stage.initialHandLimit-state.stage.playIndex);
         const scoredEvent:Extract<DomainEvent,{type:'hand-scored-r2'}>={type:'hand-scored-r2',score:trace,playedIds:trace.sets.playedIds,playIndex:state.stage.playIndex};events.push(scoredEvent);
         if(BigInt(state.stage.heat)>=BigInt(state.stage.targetHeat)) {

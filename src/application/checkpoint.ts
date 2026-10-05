@@ -1,13 +1,16 @@
+import {r2AssistFacts,AMO_ASSIST_TYPES} from '../domain/r2Assist';
+import {r2SelectionFacts} from '../domain/r2SelectionFacts';
+import {R2_PUBLISHED_JOKERS as R2_JOKERS} from '../domain/r2PublishedContent';
 import {assertR2Invariants,r2RulesetFor,R2_LIMITS,R2_RESOURCE_CONTRACT} from '../domain/r2Run';
 import type {R2RunState,Command,Action} from '../domain/run';
 import {CHARACTER_IDS} from '../domain/characters';
 import {R2_HAND_TYPES,type R2HandType} from '../domain/evaluateR2';
-import {R2_JOKERS,r2GrowthCaps,r2GrowthInitials,r2GrowthMinimums,supportsR2Joker,validR2JokerCounters,validR2Condition,type R2JokerInstance} from '../content/r2Schema';
+import {r2GrowthCaps,r2GrowthInitials,r2GrowthMinimums,supportsR2Joker,validR2JokerCounters,validR2Condition,type R2JokerInstance} from '../content/r2Schema';
 import {Rational,MAX_INTEGER_DIGITS} from '../domain/rational';
 import {SCORE_LIMITS,SCORE_OPERATIONS,r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {SeededRng} from '../core/SeededRng';
 import {stableHash} from '../domain/hash';
-import {R2_AVAILABLE_CHAPTERS,R2_ENDLESS_MAX_CHAPTER,R2_SKIP_CONSUMABLES,r2StageSpec,r2BossHistoryValid,r2BossPlanValid,type R2TourMode,type R2BossPlan} from '../domain/r2Chapter';
+import {r2DisabledCards,R2_AVAILABLE_CHAPTERS,R2_ENDLESS_MAX_CHAPTER,R2_SKIP_CONSUMABLES,r2StageSpec,r2BossHistoryValid,r2BossPlanValid,type R2TourMode,type R2BossPlan} from '../domain/r2Chapter';
 import {EDITIONS,ENHANCEMENTS,RANKS,SUITS,type PlayingCard} from '../cards/types';
 import {R2_TOOL_CATALOG,type R2LongTermOperation} from '../content/r2Tools';
 import {R2_IMPLEMENTED_TOOL_FEATURES,r2CardSpecialsSupported,r2EditionSupported,r2ItemSupported,r2ToolSupported} from '../domain/r2ToolRuntime';
@@ -109,11 +112,12 @@ function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeC
     }
   }
 }
-function trace(value:unknown,context:{runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[]}):void {
+function trace(value:unknown,context:{runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[]}):void {
   if(value===null)return;
   const stage=context.stage;if(!stage)return fail('invalid-save-trace-stage');
   const successfulStage=stage.skipResult===null&&stage.clearId!==null&&stage.index+1===context.stageIndex&&BigInt(stage.heat)>=BigInt(stage.targetHeat);
-  const t=record(value,['rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng','destroyedJokerIds','goldDelta','destroyedCardIds','cards','sourceJokers','bossContext']);
+  const prototype=context.amoScoreTiming==='assist-v1';
+  const t=record(value,[...(prototype?['assist']:[]),'rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng','destroyedJokerIds','goldDelta','destroyedCardIds','cards','sourceJokers','bossContext']);
   oneOf(t.rulesVersion,['r2']);text(t.rootId);oneOf(t.handType,R2_HAND_TYPES);integer(t.level,1,30);score(t.finalScore);accumulator(t.accumulator);cursor(t.rng);jokers(t.jokers,context.config.jokerSlots);
   const bossContext=record(t.bossContext,['boss','previousHandType','sealedJokerIds','challengeDisabledJokerId']);
   if(bossContext.challengeDisabledJokerId!==stage.challengeDisabledJokerId)fail('invalid-save-trace-challenge-ban');
@@ -123,16 +127,29 @@ function trace(value:unknown,context:{runId:string;characterId:string;amoScoreTi
   const startingSeals=bossContext.sealedJokerIds as string[],boss=bossContext.boss as R2BossPlan|null;
   if(startingSeals.length>Math.max(0,stage.playIndex-1)||startingSeals.some(id=>!stage.initialJokerIds.includes(id))||boss?.definitionId!=='B15'&&startingSeals.length)fail('invalid-save-trace-seals');
   if(stage.playIndex<1||(stage.playIndex===1)!==(bossContext.previousHandType===null))fail('invalid-save-trace-previous-hand');
-  const sets=record(t.sets,['playedIds','scoringIds','activeScoringIds','heldIds']);
+  const sets=record(t.sets,[...(prototype?['assistConsumedIds']:[]),'playedIds','scoringIds','activeScoringIds','heldIds']);
   for(const [key,ids] of Object.entries(sets))strings(ids,key==='heldIds'?R2_RESOURCE_CONTRACT.handMaximum:R2_LIMITS.maxSelected);
-  const played=sets.playedIds as string[],held=sets.heldIds as string[],scoring=sets.scoringIds as string[],active=sets.activeScoringIds as string[],all=[...played,...held];
+  const played=sets.playedIds as string[],held=sets.heldIds as string[],scoring=sets.scoringIds as string[],active=sets.activeScoringIds as string[],consumed=prototype?sets.assistConsumedIds as string[]:[],all=[...played,...held,...consumed];
   if(!played.length||all.length>R2_RESOURCE_CONTRACT.handMaximum||new Set(all).size!==all.length||new Set(scoring).size!==scoring.length||scoring.some(id=>!played.includes(id))||new Set(active).size!==active.length||active.some(id=>!scoring.includes(id)))fail('invalid-save-trace-cards');
   integer(t.goldDelta,0,R2_TOOL_CATALOG.limits.luckyGoldPerHand);cards(t.cards,R2_RESOURCE_CONTRACT.handMaximum,context.config.enhancementsAllowed);jokers(t.sourceJokers,context.config.jokerSlots);
   const cardSources=new Map((t.cards as PlayingCard[]).map(card=>[card.id,card])),jokerSources=new Map((t.sourceJokers as R2JokerInstance[]).map(joker=>[joker.instanceId,joker]));
   if([...jokerSources.keys()].some(id=>!stage.initialJokerIds.includes(id)))fail('invalid-save-trace-initial-jokers');
   const disabledJokers=new Set(r2ScoringDisabledJokerIds(boss,[...jokerSources.values()],R2_JOKERS,startingSeals,stage.challengeDisabledJokerId));
   if(all.length!==cardSources.size||all.some(id=>!cardSources.has(id)))fail('invalid-save-trace-cards');
-  for(const ids of [played,held,scoring,active]){const order=(t.cards as PlayingCard[]).filter(card=>ids.includes(card.id)).map(card=>card.id);if(order.some((id,index)=>id!==ids[index]))fail('invalid-save-trace-order');}
+  for(const ids of [played,held,scoring,active,consumed]){const order=(t.cards as PlayingCard[]).filter(card=>ids.includes(card.id)).map(card=>card.id);if(order.some((id,index)=>id!==ids[index]))fail('invalid-save-trace-order');}
+  let assistMultiplier:number|null=null;
+  if(prototype){
+    const selection={hand:t.cards as PlayingCard[],selectedIds:played,disabledIds:boss?r2DisabledCards(boss,stage.index,t.cards as PlayingCard[]):[],jokers:t.sourceJokers as R2JokerInstance[],definitions:R2_JOKERS};
+    const facts=t.assist===null?r2SelectionFacts(selection):r2AssistFacts({...selection,assistIds:consumed});
+    if(t.handType!==facts.type||(['playedIds','scoringIds','activeScoringIds','heldIds'] as const).some(key=>stableHash(sets[key])!==stableHash(facts[key])))fail('invalid-save-assist-sets');
+    if(t.assist===null){if(consumed.length)fail('invalid-save-assist-consumption');}
+    else {
+      const a=record(t.assist,['ids','kind','multiplier']);
+      if(!stage.assistUsed||context.characterId!=='amo'||!context.config.characterAbilityEnabled||boss?.definitionId==='B08'||
+        stableHash(a.ids)!==stableHash(consumed)||a.kind!==(consumed.length===2?'pair':'three-kind')||a.multiplier!==(consumed.length===2?2:4))fail('invalid-save-assist-consumption');
+      assistMultiplier=a.multiplier as number;
+    }
+  }
   const events=array(t.events,SCORE_LIMITS.eventCount);if(!events.length)fail('empty-save-trace');
   const eventIds=new Set<unknown>(),rootEventIds:unknown[]=[],destroyedCards:string[]=[],destroyedJokers:string[]=[],glassHits=new Set<string>(),heldGoldSources=new Set<string>();let luckyGold=0n;
   const coefficients=new Map([...jokerSources.values()].filter(joker=>Object.hasOwn(joker.growth,'coefficient')).map(joker=>[joker.instanceId,Rational.fromJSON(joker.growth.coefficient)]));
@@ -164,6 +181,7 @@ function trace(value:unknown,context:{runId:string;characterId:string;amoScoreTi
     if(Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter')){integer(e.resourceBefore);integer(e.resourceAfter);}
     const sourceCard=cardSources.get(e.sourceInstanceId as string);
     if(e.targetCardId!==undefined){
+      if(consumed.includes(e.targetCardId as string))fail('invalid-save-assist-hook');
       if(!cardSources.has(e.targetCardId as string))fail('unknown-save-trace-target');
       if(e.phase==='onCardScore'&&!active.includes(e.targetCardId as string)||e.phase==='onHeldCard'&&!held.includes(e.targetCardId as string))fail('invalid-save-trace-target-set');
     }
@@ -348,13 +366,20 @@ function trace(value:unknown,context:{runId:string;characterId:string;amoScoreTi
   }
   if(context.characterId==='amo'){
     const ordered=events as Record<string,unknown>[],roles=ordered.map((e,i)=>e.sourceType==='character'?i:-1).filter(i=>i>=0);
-    const eligible=context.config.characterAbilityEnabled&&boss?.definitionId!=='B08'&&played.length===1;
+    const eligible=context.config.characterAbilityEnabled&&boss?.definitionId!=='B08'&&(prototype?assistMultiplier!==null:played.length===1);
     if(roles.length!==(eligible?1:0))fail('invalid-save-amo-source');
     if(eligible){
       const role=roles[0],event=ordered[role],whole=ordered.map((e,i)=>e.phase==='jokerScore'?i:-1).filter(i=>i>=0);
       const final=ordered.findIndex(e=>e.phase==='finalScore');
-      if(event.phase!=='characterScore'||event.operation!=='multiply-multiplier'||Rational.fromJSON(event.value).compare(new Rational(3n))!==0||role>=final||
-        (context.amoScoreTiming==='after-joker'?whole.some(i=>i>=role):whole.some(i=>i<=role)))fail('invalid-save-amo-order');
+      if(event.phase!=='characterScore'||event.operation!=='multiply-multiplier'||Rational.fromJSON(event.value).compare(new Rational(BigInt(assistMultiplier??3)))!==0||role>=final||
+        (context.amoScoreTiming!=='before-joker'?whole.some(i=>i>=role):whole.some(i=>i<=role)))fail('invalid-save-amo-order');
+      if(prototype){
+        const before=event.before as {H:unknown;M:unknown},after=event.after as {H:unknown;M:unknown};
+        if(event.reasonKey!==`amo.assist.${assistMultiplier===2?'pair':'three-kind'}`||role!==final-1||event.targetCardId!==undefined||event.retriggerDepth!==0||
+          stableHash(event.visibleCondition)!==stableHash({kind:'hand-type-in',values:[...AMO_ASSIST_TYPES]})||
+          Rational.fromJSON(before.H).compare(Rational.fromJSON(after.H))!==0||
+          Rational.fromJSON(before.M).multiply(new Rational(BigInt(assistMultiplier!))).compare(Rational.fromJSON(after.M))!==0)fail('invalid-save-assist-event');
+      }
     }
   }
   for(const source of jokerSources.values())if(source.definitionId==='f06'){
@@ -388,11 +413,14 @@ function trace(value:unknown,context:{runId:string;characterId:string;amoScoreTi
   }
   for(const [id,cycle] of clearCycles)if((cycle===0)!==rewardSources.has(id))fail('invalid-save-clear-cycle-reward');
 }
-function action(value:unknown):void {
-  const a=record(value,['type'],['seed','characterId','rulesVersion','modeConfig','programId','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind']);
-  const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],ContinueEndless:[],ChooseProgram:['programId'],AbandonProgram:[],PlayHand:['selectedIds'],DiscardHand:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
+function action(value:unknown,prototype:boolean):void {
+  const a=record(value,['type'],['seed','characterId','rulesVersion','modeConfig','r2Profile','assistIds','programId','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind']);
+  const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],ContinueEndless:[],ChooseProgram:['programId'],AbandonProgram:[],PlayHand:['selectedIds'],PlayAssistedHand:['selectedIds','assistIds'],DiscardHand:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
   if(typeof a.type!=='string'||!Object.hasOwn(keys,a.type))fail('unknown-save-command');
-  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='StartRun'?['modeConfig']:[]);
+  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='StartRun'?['modeConfig',...(prototype?['r2Profile']:[])]:[]);
+  if(a.type==='PlayAssistedHand'&&!prototype)fail('invalid-save-assist-profile');
+  if(a.type==='StartRun'&&prototype&&(a.r2Profile!=='amo-assist-v1'||a.characterId!=='amo'))fail('invalid-save-assist-profile');
+  if(a.type==='PlayAssistedHand'){uniqueIds(a.selectedIds,5);uniqueIds(a.assistIds,3);const main=a.selectedIds as string[],assist=a.assistIds as string[];if(!main.length||assist.length<2||assist.some(id=>main.includes(id)))fail('invalid-save-assist-command');}
   if(a.handType!==undefined)oneOf(a.handType,R2_HAND_TYPES);
   if(a.secondaryHandType!==undefined)oneOf(a.secondaryHandType,R2_HAND_TYPES);
   if(a.suit!==undefined)oneOf(a.suit,SUITS);
@@ -426,6 +454,8 @@ function validateState(value:unknown):asserts value is R2RunState {
   if(value&&typeof value==='object'&&!Array.isArray(value)){const tags=value as Record<string,unknown>;if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||!r2RulesetFor(tags))fail('incompatible-version');}
   const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','mode','difficulty','challengeId','programsEnabled','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons','safetyNetUsed','spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed','tourMode','normalCompletion','chapterDisabledJokerId','programRerollCoupon']);
   if(s.schemaVersion!==2||s.rulesVersion!=='r2'||!r2RulesetFor(s))fail('incompatible-version');
+  const prototype=r2RulesetFor(s)!.amoScoreTiming==='assist-v1';
+  if(prototype&&s.characterId!=='amo')fail('invalid-save-assist-profile');
   const selected=resolveR2ModeConfig({mode:s.mode,difficulty:s.difficulty,challengeId:s.challengeId,programsEnabled:s.programsEnabled});
   const config=selected.ok?selected.config:fail('invalid-save-mode');
   if(!r2ModeSeedAllowed(config,s.seed)||config.mode==='tutorial'&&s.characterId!=='erxiang')fail('invalid-save-mode-seed-character');
@@ -469,7 +499,8 @@ function validateState(value:unknown):asserts value is R2RunState {
   bossPlan(s.boss);strings(s.seenBossIds,chapterMaximum);
   if(!r2BossHistoryValid(s.seenBossIds as string[],s.chapter as number,tourMode)||(s.seenBossIds as string[]).at(-1)!==s.boss.definitionId)fail('invalid-save-boss-history');
   oneOf(s.chapterSkipConsumable,R2_SKIP_CONSUMABLES);integer(s.purchaseCoupons,0,chapterMaximum);bool(s.safetyNetUsed);
-  if(s.stage!==null){const t=record(s.stage,['index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult','initialHands','initialDiscards','discardSpent','discardGained','doubleDiscardBeforeFirstPlay','maxPlayedCount','ordinaryStraightSeen','ordinaryFlushSeen','quadRefundUsed','jokerSold','boss','initialTargetHeat','initialHandLimit','initialJokerIds','sealedJokerIds','challengeDisabledJokerId']);
+  if(s.stage!==null){const t=record(s.stage,[...(prototype?['assistUsed']:[]),'index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult','initialHands','initialDiscards','discardSpent','discardGained','doubleDiscardBeforeFirstPlay','maxPlayedCount','ordinaryStraightSeen','ordinaryFlushSeen','quadRefundUsed','jokerSold','boss','initialTargetHeat','initialHandLimit','initialJokerIds','sealedJokerIds','challengeDisabledJokerId']);
+    if(prototype){bool(t.assistUsed);if(t.assistUsed&&(!config.characterAbilityEnabled||t.playIndex===0||(t.boss as R2BossPlan|null)?.definitionId==='B08'))fail('invalid-save-assist-usage');}
     integer(t.index,0,stageMaximum-1);score(t.targetHeat);score(t.heat);integer(t.handLimit,R2_RESOURCE_CONTRACT.handMinimum,R2_RESOURCE_CONTRACT.handMaximum);bool(t.rescueUsed);if(t.previousHandScore!==null)score(t.previousHandScore);
     score(t.initialTargetHeat);integer(t.initialHandLimit,R2_RESOURCE_CONTRACT.handMinimum,R2_RESOURCE_CONTRACT.handMaximum);uniqueIds(t.initialJokerIds,config.jokerSlots);uniqueIds(t.sealedJokerIds,config.jokerSlots);
     if(config.chapterJokerBanCount===0?t.challengeDisabledJokerId!==null:!R2_JOKERS.some(joker=>joker.id===t.challengeDisabledJokerId))fail('invalid-save-stage-challenge-ban');
@@ -534,10 +565,26 @@ export function readCheckpoint(value:unknown):ReadResult {
     if(c.format!=='dachoupai-checkpoint'||c.formatVersion!==1)fail('incompatible-save-format');
     validateState(c.state);integer(c.journalBaseSeq,1);text(c.checksum);
     const state=c.state as R2RunState,journal=array(c.journal,MAX_JOURNAL);let seq=c.journalBaseSeq as number;
-    for(const item of journal){const command=record(item,['runId','commandId','expectedSeq','action']);text(command.commandId);if(command.runId!==state.runId||command.expectedSeq!==seq++)fail('invalid-save-journal');action(command.action);
+    for(const item of journal){const command=record(item,['runId','commandId','expectedSeq','action']);text(command.commandId);if(command.runId!==state.runId||command.expectedSeq!==seq++)fail('invalid-save-journal');action(command.action,r2RulesetFor(state)!.amoScoreTiming==='assist-v1');
       const receipt=state.receipts.find(r=>r.commandId===command.commandId);if(!receipt||receipt.seq!==seq||receipt.fingerprint!==stableHash(command))fail('invalid-save-command-receipt');
     }
     if(seq!==state.commandSeq)fail('invalid-save-journal-sequence');
+    if(r2RulesetFor(state)!.amoScoreTiming==='assist-v1'){
+      let used:boolean|undefined;
+      for(const entry of journal as Command[]){
+        if(entry.action.type==='EnterStage'||entry.action.type==='SkipStage')used=false;
+        if(entry.action.type==='PlayAssistedHand'){if(used===true)fail('invalid-save-assist-journal-usage');used=true;}
+        if(state.lastTrace?.rootId===`${state.runId}/hand/${entry.commandId}`){
+          if(entry.action.type!=='PlayHand'&&entry.action.type!=='PlayAssistedHand')fail('invalid-save-assist-journal-trace');
+          const play=entry.action as Extract<Action,{type:'PlayHand'|'PlayAssistedHand'}>,ordered=(ids:readonly string[])=>state.lastTrace!.cards.filter(card=>ids.includes(card.id)).map(card=>card.id);
+          if(ordered(play.selectedIds).length!==play.selectedIds.length||stableHash(ordered(play.selectedIds))!==stableHash(state.lastTrace.sets.playedIds)||
+            (play.type==='PlayAssistedHand'?ordered(play.assistIds).length!==play.assistIds.length||stableHash(ordered(play.assistIds))!==stableHash(state.lastTrace.sets.assistConsumedIds):state.lastTrace.assist!==null))fail('invalid-save-assist-journal-trace');
+        }
+      }
+      if(state.stage&&used!==undefined&&state.stage.assistUsed!==used)fail('invalid-save-assist-journal-usage');
+      if(state.lastTrace?.sets.assistConsumedIds?.some(id=>!state.playedPile.includes(id)&&!state.destroyedIds.includes(id)))fail('invalid-save-assist-used-zone');
+    }
+
     const {checksum,...payload}=c;if(checksum!==stableHash(payload))fail('corrupt-checksum');
     return {ok:true,checkpoint:structuredClone(value) as Checkpoint};
   } catch(error){return {ok:false,code:error instanceof Error?error.message:'invalid-save'};}

@@ -1,4 +1,5 @@
-import {r2AssistFacts} from './r2Assist';
+import {R2_PUBLISHED_CONTENT} from './r2PublishedContent';
+import {r2AssistFacts,AMO_ASSIST_TYPES} from './r2Assist';
 import {r2ScoreConditionMatches} from './r2Conditions';
 import {r2SelectionFacts} from './r2SelectionFacts';
 import { EDITIONS, type Edition, type PlayingCard } from '../cards/types';
@@ -23,14 +24,7 @@ export const SCORE_OPERATIONS = Object.freeze([
   'reward-free-reroll','program-reward-skipped',
 ] as const);
 export type ScoreOperation = typeof SCORE_OPERATIONS[number];
-export const R2_BASE_SCORES: Record<R2HandType, readonly [number, Fraction, number, Fraction]> = {
-  'high-card': [20, {n:'1',d:'1'}, 10, {n:'1',d:'4'}], pair: [35, {n:'2',d:'1'}, 15, {n:'1',d:'2'}],
-  'two-pair': [65, {n:'2',d:'1'}, 20, {n:'1',d:'2'}], 'three-kind': [90, {n:'3',d:'1'}, 25, {n:'1',d:'2'}],
-  straight: [125, {n:'4',d:'1'}, 35, {n:'1',d:'2'}], flush: [140, {n:'4',d:'1'}, 30, {n:'1',d:'2'}],
-  'full-house': [210, {n:'5',d:'1'}, 40, {n:'1',d:'1'}], 'four-kind': [320, {n:'7',d:'1'}, 55, {n:'1',d:'1'}],
-  'straight-flush': [450, {n:'9',d:'1'}, 65, {n:'1',d:'1'}], 'five-kind': [700, {n:'10',d:'1'}, 70, {n:'1',d:'1'}],
-  'flush-house': [850, {n:'12',d:'1'}, 80, {n:'1',d:'1'}], 'flush-five': [1200, {n:'15',d:'1'}, 100, {n:'1',d:'1'}],
-};
+export const R2_BASE_SCORES = R2_PUBLISHED_CONTENT.snapshot.hands as unknown as Record<R2HandType, readonly [number, Fraction, number, Fraction]>;
 export interface ScoreInput {
   rulesVersion: 'r2'; runId: string; rootId: string; characterId: CharacterId | 'neutral';
   hand: readonly PlayingCard[]; selectedIds: readonly string[]; disabledIds: readonly string[];
@@ -58,15 +52,19 @@ export interface ScoreEvent {
   growthBefore?:Fraction; growthAfter?:Fraction; rewardDefinitionId?:string;
   programGoldBeforeReward?:number;
 }
-export interface ScoreTrace {
+interface ScoreTraceBase {
   rulesVersion: 'r2'; rootId: string; handType: R2HandType; level: number;
   sets: { playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[] };
   finalScore: string; accumulator: Accumulator; events: ScoreEvent[]; jokers: R2JokerInstance[]; rng: RngSnapshot;
   goldDelta:number; destroyedCardIds:string[]; destroyedJokerIds:string[];
-  assist?:{ids:string[];kind:'pair'|'three-kind';multiplier:2|4};
   cards:PlayingCard[]; sourceJokers:R2JokerInstance[];
   bossContext:{boss:R2BossPlan|null;previousHandType:R2HandType|null;sealedJokerIds:string[];challengeDisabledJokerId:string|null};
 }
+/** New-profile traces always carry both fields, including unassisted hands. */
+export type ScoreTrace = ScoreTraceBase & (
+  {assist:{ids:string[];kind:'pair'|'three-kind';multiplier:2|4}|null;sets:ScoreTraceBase['sets']&{assistConsumedIds:string[]}} |
+  {assist?:never;sets:ScoreTraceBase['sets']&{assistConsumedIds?:never}}
+);
 export class ScoreFault extends Error {
   constructor(readonly code: string, readonly events: readonly ScoreEvent[]) { super(code); }
 }
@@ -349,7 +347,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   }
   hook('jokerScore');
   if(boss?.definitionId!=='B08'&&input.characterId==='amo'&&input.amoScoreTiming==='after-joker'&&played.length===1)char('multiply-multiplier',new Rational(3n),{kind:'played-count',equals:1});
-  if(assist)char('multiply-multiplier',new Rational(BigInt(assist.assistMultiplier)),{kind:'hand-type-in',values:[...['two-pair','three-kind','straight','flush','full-house','four-kind','straight-flush','five-kind','flush-house','flush-five']] as import('./evaluateR2').R2HandType[]});
+  if(assist){const value=new Rational(BigInt(assist.assistMultiplier));emit('characterScore',character,'multiply-multiplier',value,()=>{M=M.multiply(value);},{kind:'hand-type-in',values:[...AMO_ASSIST_TYPES]},undefined,0,undefined,{reasonKey:`amo.assist.${assist.assistKind}`});}
   const final = H.multiply(M).floor();
   if (final < 0n) throw new ScoreFault('negative-score', events);
   emit('finalScore', rule, 'final-score', new Rational(final), () => {});
@@ -366,7 +364,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   hook('afterHand');
   return immutable({ rulesVersion:'r2', rootId:input.rootId, handType:evaluated.type, level,
     sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id)},
-    ...(assist?{assist:{ids:assist.assistIds,kind:assist.assistKind,multiplier:assist.assistMultiplier}}:{}),finalScore:final.toString(),accumulator:snapshot(),events,jokers:jokers.filter(j=>!destroyedJokerIds.includes(j.instanceId)),
+    ...(input.amoScoreTiming==='assist-v1'?{sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id),assistConsumedIds:assist?.assistIds??[]},assist:assist?{ids:assist.assistIds,kind:assist.assistKind,multiplier:assist.assistMultiplier}:null}:{}),finalScore:final.toString(),accumulator:snapshot(),events,jokers:jokers.filter(j=>!destroyedJokerIds.includes(j.instanceId)),
     ...(rng ? {rng:rng.snapshot()} : {}),goldDelta,destroyedCardIds,destroyedJokerIds,cards,sourceJokers,bossContext });
 }
 

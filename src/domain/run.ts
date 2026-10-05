@@ -206,6 +206,7 @@ export function applyCommand(input: AnyRunState | null, command: Command): Comma
     if (typeof action.seed !== 'string' || !action.seed.length || !CHARACTER_IDS.includes(action.characterId)) return fail('invalid-start');
     if (action.rulesVersion && action.rulesVersion !== 'r1') return fail('unsupported-rules-version');
     if(action.modeConfig!==undefined)return fail('unsupported-mode-config');
+    if(action.r2Profile!==undefined)return fail('invalid-r2-profile');
     state = initial(command, action);
   } else {
     if (!input) return fail('run-not-started');

@@ -484,3 +484,18 @@ describe('Amo v10/v11 production storage partition compatibility',()=>{
     if(duplicate.ok)expect(duplicate.events).toEqual([]);expect(run.exportJSON()).toBe(after);
   });
 });
+
+describe('explicit Amo prototype shares discovery while preserving published partitions',()=>{
+  it('selects all three complete profile identities, preferring the active same-mode slot even when damaged',async()=>{
+    const storage=new IndexedDbSave(),oldRead=readCheckpoint(legacyAmo.before);if(!oldRead.ok)throw Error(oldRead.code);
+    const current=roundTrip(start()),prototype=roundTrip(createRun({seed:'assist-partition',characterId:'amo',runId:'assist-partition',rulesVersion:'r2',r2Profile:'amo-assist-v1',modeConfig:STANDARD}));
+    for(const cp of [oldRead.checkpoint,current,prototype,oldRead.checkpoint,prototype]){
+      await storage.commit((await storage.read()).revision,cp,null);expect((await storage.readPartition(STANDARD)).current).toEqual(cp);
+    }
+    for(const cp of [oldRead.checkpoint,current,prototype])expect((await storage.readPartition(cp.state)).current).toEqual(cp);
+    const key=r2ModeStorageKey(prototype.state,prototype.state.contentHash),damaged={...prototype,checksum:'broken'};
+    database.records.set(key,{current:damaged,previous:prototype});expect(restoreSlots(await storage.readPartition(STANDARD)).status).toBe('backup');
+    database.records.set(key,{current:damaged,previous:{...prototype,checksum:'also-broken'}});expect(restoreSlots(await storage.readPartition(STANDARD)).status).toBe('invalid');
+    await expect(storage.readPartition({...prototype.state,contentHash:current.state.contentHash})).rejects.toThrow('incompatible-version');
+  });
+});
