@@ -469,13 +469,14 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
   }
   for(const [id,cycle] of clearCycles)if((cycle===0)!==rewardSources.has(id))fail('invalid-save-clear-cycle-reward');
 }
-function action(value:unknown,prototype:boolean):void {
-  const a=record(value,['type'],['seed','characterId','rulesVersion','modeConfig','r2Profile','assistIds','programId','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind']);
+function action(value:unknown,state:R2RunState):void {
+  const prototype=r2RulesetFor(state)!.amoScoreTiming==='assist-v1';
+  const a=record(value,['type'],['seed','characterId','rulesVersion','modeConfig','r2Profile','r2Identity','assistIds','programId','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind']);
   const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],ContinueEndless:[],ChooseProgram:['programId'],AbandonProgram:[],PlayHand:['selectedIds'],PlayAssistedHand:['selectedIds','assistIds'],DiscardHand:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
   if(typeof a.type!=='string'||!Object.hasOwn(keys,a.type))fail('unknown-save-command');
-  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='StartRun'?['modeConfig',...(prototype?['r2Profile']:[])]:[]);
+  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='StartRun'?['modeConfig','r2Identity',...(prototype?['r2Profile']:[])]:[]);
   if(a.type==='PlayAssistedHand'&&!prototype)fail('invalid-save-assist-profile');
-  if(a.type==='StartRun'&&prototype&&(a.r2Profile!=='amo-assist-v1'||a.characterId!=='amo'))fail('invalid-save-assist-profile');
+  if(a.type==='StartRun'&&prototype&&((a.r2Identity===undefined&&a.r2Profile!=='amo-assist-v1')||a.characterId!=='amo'))fail('invalid-save-assist-profile');
   if(a.type==='PlayAssistedHand'){uniqueIds(a.selectedIds,5);uniqueIds(a.assistIds,3);const main=a.selectedIds as string[],assist=a.assistIds as string[];if(!main.length||assist.length<2||assist.some(id=>main.includes(id)))fail('invalid-save-assist-command');}
   if(a.handType!==undefined)oneOf(a.handType,R2_HAND_TYPES);
   if(a.secondaryHandType!==undefined)oneOf(a.secondaryHandType,R2_HAND_TYPES);
@@ -484,6 +485,10 @@ function action(value:unknown,prototype:boolean):void {
   if(a.targetKind!==undefined)oneOf(a.targetKind,['card','joker']);
   if(a.type==='StartRun'){
     text(a.seed,4096);oneOf(a.characterId,CHARACTER_IDS);oneOf(a.rulesVersion,['r2']);
+    if(a.r2Identity!==undefined){
+      const identity=record(a.r2Identity,['contentVersion','contentHash']);
+      if(a.r2Profile!==undefined||!r2RulesetFor(identity)||identity.contentVersion!==state.contentVersion||identity.contentHash!==state.contentHash||a.characterId!==state.characterId||a.seed!==state.seed)fail('invalid-save-start-identity');
+    }
     if(a.modeConfig!==undefined){
       const selection=record(a.modeConfig,['mode','difficulty','challengeId','programsEnabled']),config=resolveR2ModeConfig(selection);
       if(!config.ok||!r2ModeSeedAllowed(config.config,a.seed)||config.config.mode==='tutorial'&&a.characterId!=='erxiang')fail('invalid-save-start-mode');
@@ -621,7 +626,7 @@ export function readCheckpoint(value:unknown):ReadResult {
     if(c.format!=='dachoupai-checkpoint'||c.formatVersion!==1)fail('incompatible-save-format');
     validateState(c.state);integer(c.journalBaseSeq,1);text(c.checksum);
     const state=c.state as R2RunState,journal=array(c.journal,MAX_JOURNAL);let seq=c.journalBaseSeq as number;
-    for(const item of journal){const command=record(item,['runId','commandId','expectedSeq','action']);text(command.commandId);if(command.runId!==state.runId||command.expectedSeq!==seq++)fail('invalid-save-journal');action(command.action,r2RulesetFor(state)!.amoScoreTiming==='assist-v1');
+    for(const item of journal){const command=record(item,['runId','commandId','expectedSeq','action']);text(command.commandId);if(command.runId!==state.runId||command.expectedSeq!==seq++)fail('invalid-save-journal');action(command.action,state);
       const receipt=state.receipts.find(r=>r.commandId===command.commandId);if(!receipt||receipt.seq!==seq||receipt.fingerprint!==stableHash(command))fail('invalid-save-command-receipt');
     }
     if(seq!==state.commandSeq)fail('invalid-save-journal-sequence');

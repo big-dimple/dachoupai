@@ -1,3 +1,5 @@
+import {R2_RULESETS} from '../src/domain/r2Run';
+import {CHARACTER_IDS} from '../src/domain/characters';
 import {afterEach,describe,expect,it,vi} from 'vitest';
 import {createRun,applyCommand,stateHash,type Command} from '../src/domain/run';
 import {makeCheckpoint,readCheckpoint,restoreSlots,MAX_JOURNAL} from '../src/application/checkpoint';
@@ -127,6 +129,7 @@ describe('complete checkpoint validation and save-before-publish',()=>{
     expect(session.run===run).toBe(true);expect(run.state).toBe(before);expect(run.exportJSON()).toBe(oldJSON);
     expect(result).toBe(kind==='start'?undefined:false);expect(await store.read()).toEqual(slots);
     const candidate=session.pendingRun;expect(candidate).toBeDefined();if(!candidate)throw Error('missing retryable candidate');
+    if(kind==='start')expect(candidate.state.contentHash).toBe('json-fnv-v1:843f02356211cb91');
     const candidateJSON=candidate.exportJSON();expect(readCheckpoint(JSON.parse(candidateJSON)).ok).toBe(true);
     if(kind==='import')expect(candidateJSON).toBe(importedJSON);
     expect(await session.retry()).toBe(false);expect(session.run===run).toBe(true);
@@ -153,5 +156,42 @@ describe('complete checkpoint validation and save-before-publish',()=>{
     expect(session.cancelPending()).toBe(true);expect(session.pendingRun).toBeUndefined();expect(session.run===run).toBe(true);
     expect(run.exportJSON()).toBe(oldJSON);expect(await store.read()).toEqual(slots);expect(store.writes).toBe(writes);
     expect(session.cancelPending()).toBe(false);
+  });
+});
+
+
+describe('normal session launch intent',()=>{
+  it('launches all six characters with only Amo on assist',async()=>{
+    const {session}=await existingSession();
+    for(const id of CHARACTER_IDS){const run=await session.start('all-six',id);expect(run?.state.contentHash).toBe(id==='amo'?'json-fnv-v1:843f02356211cb91':'json-fnv-v1:bd4a1230833ab884');}
+  });
+  it.each(R2_RULESETS)('retries $contentVersion with exact seed, mode, role and fresh journal',async(profile)=>{
+    const {session}=await existingSession();
+    const modeConfig={mode:'standard' as const,difficulty:2 as const,challengeId:null,programsEnabled:false};
+    let state=createRun({seed:'retry-original',runId:'old-retry',characterId:'amo',rulesVersion:'r2',modeConfig,r2Identity:{contentVersion:profile.contentVersion,contentHash:profile.contentHash}});
+    for(const type of ['LeaveShop','EnterStage'] as const){const r=applyCommand(state,next(state,{type}));if(!r.ok)throw Error(r.code);state=r.state;}
+    if(profile.amoScoreTiming==='assist-v1'){
+      const main=['spades-9','hearts-9','clubs-13','diamonds-13'],side=['spades-12','hearts-12'];
+      state.handOrder=[...main,...side,'clubs-6','diamonds-7'];state.drawPile=state.deckInstances.map(c=>c.id).filter(id=>!state.handOrder.includes(id));
+      const r=applyCommand(state,next(state,{type:'PlayAssistedHand',selectedIds:main,assistIds:side}));if(!r.ok)throw Error(r.code);state=r.state;expect(state.stage?.assistUsed).toBe(true);
+    }
+    expect(await session.importJSON(JSON.stringify(makeCheckpoint(state,[])))).toBe(true);
+    const source=session.run!.state,old=JSON.stringify(source);
+    const retry=await session.start(source.seed,source.characterId,modeConfig,{kind:'retry',run:source});expect(retry).toBeDefined();
+    expect(retry!.state.contentVersion).toBe(source.contentVersion);expect(retry!.state.contentHash).toBe(source.contentHash);
+    expect(retry!.state.seed).toBe(source.seed);expect(retry!.state.characterId).toBe(source.characterId);
+    for(const key of ['mode','difficulty','challengeId','programsEnabled'] as const)expect(retry!.state[key]).toBe(source[key]);
+    expect(retry!.state.commandSeq).toBe(1);expect(retry!.journal).toEqual([]);expect(retry!.state.lastTrace).toBeNull();expect(retry!.state.receipts).toHaveLength(1);
+    await retry!.dispatch({type:'LeaveShop'});await retry!.dispatch({type:'EnterStage'});
+    expect(retry!.state.stage?.assistUsed).toBe(profile.amoScoreTiming==='assist-v1'?false:undefined);expect(JSON.stringify(source)).toBe(old);
+  });
+  it('rejects stale retry, read-only and double confirmation without replacing the old run',async()=>{
+    const {session,run,store}=await existingSession(),slots=await store.read();
+    expect(await session.start(run.state.seed,run.state.characterId,undefined,{kind:'retry',run:structuredClone(run.state)})).toBeUndefined();expect(await store.read()).toEqual(slots);
+    session.lease.writable=false;expect(await session.start('readonly','amo')).toBeUndefined();expect(await store.read()).toEqual(slots);session.lease.writable=true;
+    let release!:()=>void;const read=store.readPartition.bind(store);store.readPartition=async()=>{await new Promise<void>(r=>release=r);return read();};
+    const first=session.start('double','amo');await Promise.resolve();await Promise.resolve();
+    expect(await session.start('second','erxiang')).toBeUndefined();expect(session.run).toBe(run);release();
+    const result=await first;expect(result?.state.seed).toBe('double');expect(store.writes).toBe(2);
   });
 });

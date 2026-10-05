@@ -1,3 +1,4 @@
+import {launchIdentity,type RunLaunchIntent} from './RunLaunch';
 import {SavedRun} from '../application/SavedRun';
 import {MAX_IMPORT_BYTES,readCheckpoint,restoreSlots} from '../application/checkpoint';
 import {createRun,type R2RunState} from '../domain/run';
@@ -64,13 +65,15 @@ export class GameSession {
     this.replacement=run;run.onChange=()=>this.changed();if(!this.lease.writable)run.setReadOnly();
     this.notice=this.pendingNotice();this.changed();return false;
   }
-  async start(seed:string,characterId:CharacterId,modeConfig?:R2ModeSelection):Promise<SavedRun|undefined> {
+  async start(seed:string,characterId:CharacterId,modeConfig?:R2ModeSelection,intent:RunLaunchIntent={kind:'new'}):Promise<SavedRun|undefined> {
     if(this.working||this.blockPending())return;
     if(!this.loaded||!this.lease.writable){this.notice='当前页面无法写入，请重试存储或接管写入。';this.changed();return;}
     this.working=true;this.notice='';this.changed();
     try {
       if(this.run&&!(await this.run.flush())){this.notice='本局尚未保存，请先重试或导出；未替换已有进度。';return;}
-      const state=createRun({seed,characterId,runId:`run/${seed}/${characterId}`,rulesVersion:'r2',...(modeConfig===undefined?{}:{modeConfig})});
+      if(intent.kind==='retry'&&(intent.run!==this.run?.state||seed!==intent.run.seed||r2ModeStorageKey(r2RunModeConfig(modeConfig??{mode:'standard',difficulty:0,challengeId:null,programsEnabled:true}),intent.run.contentHash)!==r2ModeStorageKey(intent.run,intent.run.contentHash)))throw Error('stale-retry-run');
+      const r2Identity=launchIdentity(characterId,intent);
+      const state=createRun({r2Identity,seed,characterId,runId:`run/${seed}/${characterId}`,rulesVersion:'r2',...(modeConfig===undefined?{}:{modeConfig})});
       const slots=await this.storage.readPartition(state);
       const run=await SavedRun.start(this.storage,state,slots);
       if(!await this.publishReplacement(run))return;

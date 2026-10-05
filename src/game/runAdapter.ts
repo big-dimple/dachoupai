@@ -1,3 +1,4 @@
+import type {RunLaunchIntent} from './RunLaunch';
 import type Phaser from 'phaser';
 import type {SavedRun} from '../application/SavedRun';
 import {type Action,type CommandResult,type R2RunState} from '../domain/run';
@@ -8,11 +9,11 @@ import {readRunProgress} from '../platform/RunProgress';
 import {gameSession} from './session';
 
 export async function startRun(scene: Phaser.Scene, seed: string, characterId: CharacterId,
-  modeConfig:R2ModeSelection={mode:'standard',difficulty:0,challengeId:null,programsEnabled:true}): Promise<SavedRun|undefined> {
+  modeConfig:R2ModeSelection={mode:'standard',difficulty:0,challengeId:null,programsEnabled:true},intent:RunLaunchIntent={kind:'new'}): Promise<SavedRun|undefined> {
   const session=gameSession(),config=r2RunModeConfig(modeConfig);
-  if(!r2ModeUnlocked(readRunProgress().progress,modeConfig)){session.notice='此模式尚未解锁；请完成对应标准八章首通，或继续已有模式存档。';return;}
+  if(intent.kind==='new'&&!r2ModeUnlocked(readRunProgress().progress,modeConfig)){session.notice='此模式尚未解锁；请完成对应标准八章首通，或继续已有模式存档。';return;}
   if(!r2ModeSeedAllowed(config,seed)){session.notice='此模式需要使用规定的固定种子。';return;}
-  const controller=await session.start(seed,characterId,modeConfig);
+  const controller=await session.start(seed,characterId,modeConfig,intent);
   if(!controller)return;
   scene.registry.set('runController', controller);
   scene.registry.set('runState', controller.state);

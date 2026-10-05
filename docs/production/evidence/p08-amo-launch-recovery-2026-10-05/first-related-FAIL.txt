@@ -1,0 +1,35 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/c04-mode-save.test.ts (40 tests | 1 failed) 676ms
+     × session load, takeover, import and mode resume retain old identity without replaying a reward 30ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/c04-mode-save.test.ts > Amo v10/v11 production storage partition compatibility > session load, takeover, import and mode resume retain old identity without replaying a reward
+AssertionError: expected 'json-fnv-v1:843f02356211cb91' to be 'json-fnv-v1:bd4a1230833ab884' // Object.is equality
+
+Expected: "json-fnv-v1:bd4a1230833ab884"
+Received: "json-fnv-v1:843f02356211cb91"
+
+ ❯ tests/c04-mode-save.test.ts:471:94
+    469|     expect(session.state()?.contentHash).toBe(R2_LEGACY_CONTENT_HASH);
+    470|     // Starting creates the new profile while retaining the original o…
+    471|     await session.start('new-after-old','amo',STANDARD);expect(session…
+       |                                                                                              ^
+    472|     expect((await storage.readPartition(old.state)).current).toEqual(o…
+    473|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  1 failed | 103 passed (104)
+   Start at  06:14:35
+   Duration  1.89s (transform 1.69s, setup 0ms, import 2.52s, tests 1.54s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
