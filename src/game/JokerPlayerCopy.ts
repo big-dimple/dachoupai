@@ -1,3 +1,5 @@
+import {R2_COMBO_GROWTH_JOKERS,R2_COMBO_GROWTH_IDS} from '../content/r2ComboGrowthJokers';
+import {JOKER_COMBO_GROWTH_TEMPLATES} from './JokerComboGrowthTemplates';
 import {JOKER_ASSIST_TEMPLATES} from './JokerAssistTemplates';
 import {R2_ASSIST_JOKERS,R2_ASSIST_ADAPTED_IDS} from '../content/r2AssistJokers';
 import templates from './JokerPlayerTemplates.json';
@@ -52,7 +54,8 @@ function formatted(value:unknown,format:string):string {
 const eventTiming:Record<string,string>={afterHand:'出牌结算后才更新',onDiscard:'成功弃牌后判断',onStageClear:'过关时判断',onBuyOffer:'购买成功后判断',onSellJoker:'出售成功后判断',onReroll:'付费换牌后判断',beforeFailure:'出牌机会用完时判断'};
 /** Player copy consumes the existing public status, never recomputes eligibility. */
 export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext,memory:Memory,events?:readonly ScoreEvent[]):CardAbilityCopy {
- const template=R2_ASSIST_ADAPTED_IDS.includes(definition.id)&&R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_TEMPLATES[definition.id]:copyTemplates[definition.id];
+ const combo=R2_COMBO_GROWTH_IDS.includes(definition.id)&&R2_COMBO_GROWTH_JOKERS.includes(definition);
+ const template=combo?JOKER_COMBO_GROWTH_TEMPLATES[definition.id]:R2_ASSIST_ADAPTED_IDS.includes(definition.id)&&R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_TEMPLATES[definition.id]:copyTemplates[definition.id];
  if(!template)return{condition:'查看这张牌的条件与效果。',value:'完整规则见下方。',state:instance?'按实际出牌与交易判断':'尚未购买，买入后才会生效',flavor:'',rules:definition.description,summary:'条件与效果 · 查看',compact:memory.short,narrow:memory.short,benefit:'条件与效果',playerCopy:true};
  const values:Record<string,string>={};for(const[key,binding]of Object.entries(template.bindings))values[key]=formatted(bindingValue(binding.source,definition),binding.format);
  const growth=instance?{...r2GrowthMinimums(definition),...instance.growth}:{};
@@ -77,6 +80,7 @@ export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerIns
   }
   for(const text of template.state){if(random)continue;const sentence=render(text);if(sentence&&!state.includes(sentence))state.push(sentence);}
   if(memory.usageResetsOnEntry)state.push('进场重置使用次数；'+memory.saved);
+  if(combo)state.push(memory.saved);
   if(memory.savedShort==='已弃牌')state.push('本场已成功弃牌，返还次数也不能恢复加成');
  }
  const own=instance&&events?events.filter(e=>e.sourceType==='joker'&&e.sourceInstanceId===instance.instanceId&&e.sourceDefinitionId===definition.id):undefined;
@@ -93,6 +97,9 @@ export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerIns
   for(const e of body){
    if((e.operation==='read-growth'||e.operation==='consume-growth')&&BigInt(e.value.n)===0n)state.push('本次按+0结算，结算时尚无成长加成');
    if(e.operation==='read-coefficient'&&Rational.fromJSON(e.value).compare(new Rational(1n))===0)state.push('本次按×1结算，结算时尚无成长加成');
+   if(e.operation==='multiply-coefficient'&&e.growthBefore&&e.growthAfter){const changed=Rational.fromJSON(e.growthAfter).compare(Rational.fromJSON(e.growthBefore))>0;state.push('出牌结算后系数×'+fractionText(e.value)+'：'+fractionText(e.growthBefore)+' → '+fractionText(e.growthAfter)+(changed?'，下次出牌生效':'，已达上限，本次未增加'));}
+   if(e.operation==='consume-rescue')state.push('救火已消耗；不会因返次或重载恢复');
+   if(e.operation==='add-gold-per-held'||e.operation==='add-gold-per-capital')state.push('实际过关收入 +'+fractionText(e.value)+'金');
    if(e.operation==='add-growth'||e.operation==='add-coefficient'){
     const amount=fractionText(e.value),timing=e.phase==='afterHand'?'出牌结算后':e.phase==='onStageClear'?'过关后':'本次';
     state.push(timing+'成长 +'+amount+(BigInt(e.value.n)===0n?'，本次未增加':'，新增从下一次出牌生效'));

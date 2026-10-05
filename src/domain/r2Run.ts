@@ -1,3 +1,4 @@
+import {isR2ComboGrowth,r2ColdOpening,type R2OpeningDiscard,R2_COMBO_GROWTH_VERSION,R2_COMBO_GROWTH_HASH} from './r2ComboGrowth';
 import {r2JokerDefinitionsFor} from './r2ContentProfiles';
 import {r2AssistAvailability,r2AssistFacts,R2_ASSIST_VERSION,R2_ASSIST_HASH} from './r2Assist';
 import {R2_PUBLISHED_CONTENT,R2_PUBLISHED_JOKERS} from './r2PublishedContent';
@@ -39,6 +40,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_COMBO_GROWTH_VERSION,contentHash:R2_COMBO_GROWTH_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH,amoScoreTiming:'after-joker' as const}),
   Object.freeze({contentVersion:R2_LEGACY_CONTENT_VERSION,contentHash:R2_LEGACY_CONTENT_HASH,amoScoreTiming:'before-joker' as const}),
@@ -46,6 +48,9 @@ export const R2_RULESETS=Object.freeze([
 export function r2RulesetFor(identity:{contentVersion?:unknown;contentHash?:unknown}) {
   return R2_RULESETS.find(profile=>identity.contentVersion===profile.contentVersion&&identity.contentHash===profile.contentHash);
 }
+
+export function r2UsesAssist(state:{contentVersion?:unknown;contentHash?:unknown;characterId?:unknown}):boolean {return state.characterId==='amo'&&r2RulesetFor(state)?.amoScoreTiming==='assist-v1';}
+export function r2ScoreTimingFor(state:{contentVersion?:unknown;contentHash?:unknown;characterId?:unknown}) {const profile=r2RulesetFor(state);if(!profile)throw Error('incompatible-version');return profile.amoScoreTiming==='assist-v1'&&!r2UsesAssist(state)?'after-joker' as const:profile.amoScoreTiming;}
 
 interface R2StageBase extends Omit<StageState,'targetHeat'|'heat'|'previousHandType'> {
   targetHeat:string; heat:string; previousHandType:R2HandType|null; disabledIds:string[]; wagerSelected:boolean; wagerUsed:boolean;
@@ -56,7 +61,7 @@ interface R2StageBase extends Omit<StageState,'targetHeat'|'heat'|'previousHandT
   challengeDisabledJokerId:string|null;
 }
 /** Profile parsing requires assistUsed for the prototype and forbids it for published runs. */
-export type R2StageState = R2StageBase & ({assistUsed:boolean}|{assistUsed?:never});
+export type R2StageState = R2StageBase & ({assistUsed:boolean}|{assistUsed?:never}) & ({openingDiscard:R2OpeningDiscard|null}|{openingDiscard?:never});
 export interface R2RunState extends Omit<RunState,'schemaVersion'|'rulesVersion'|'stage'|'totalHeat'|'jokers'|'lastScore'|'shop'|'boss'|'outcome'|'difficulty'|'program'|'rng'> {
   schemaVersion:2; rulesVersion:'r2'; stage:R2StageState|null; totalHeat:string; jokers:R2JokerInstance[];
   lastTrace:ScoreTrace|null; handLevels:Partial<Record<R2HandType,number>>;shop:R2ShopState|null;
@@ -75,17 +80,18 @@ const scoreString = (n:string) => typeof n==='string' && /^(0|[1-9]\d*)$/.test(n
 const permutation = (a:readonly string[],b:readonly string[]) => a.length===b.length && new Set(a).size===a.length && a.every(id=>b.includes(id));
 
 /** Initial values belong to creation, never restoration of an incomplete instance. */
-export function r2CreateJoker(definitionId:string,instanceId:string,paidPrice:number,edition?:Edition):R2JokerInstance {
-  const definition=R2_JOKERS.find(definition=>definition.id===definitionId);
+export function r2CreateJoker(definitionId:string,instanceId:string,paidPrice:number,edition?:Edition,identity?:{contentVersion?:unknown;contentHash?:unknown}):R2JokerInstance {
+  const definition=(identity?r2JokerDefinitionsFor(identity):R2_JOKERS).find(definition=>definition.id===definitionId);
   if(!definition||!supportsR2Joker(definition))throw Error('unavailable-joker-definition');
   return {instanceId,definitionId,paidPrice,growth:structuredClone(r2GrowthInitials(definition)),
-    ...(definitionId==='e10'?{counters:{stageClears:0 as const}}:{}),...(edition===undefined?{}:{edition})};
+    ...(definitionId==='e10'?{counters:{stageClears:0 as const}}:definition.hooks.some(h=>h.operations.some(o=>o.kind==='multiply-coefficient-once'))?{counters:{alternationUsed:false}}:definition.hooks.some(h=>h.operations.some(o=>o.kind==='arm-rescue'))?{counters:{rescueArmed:false}}:{}),...(edition===undefined?{}:{edition})};
 }
 
 export function assertR2Invariants(state:R2RunState):void {
+  const R2_JOKERS=r2JokerDefinitionsFor(state);
   const check=(condition:boolean,label:string)=>{if(!condition)throw new Error(`Run invariant: ${label}`);};
   check(state.schemaVersion===2 && state.rulesVersion==='r2' && !!r2RulesetFor(state),'r2 versions');
-  check(r2RulesetFor(state)?.amoScoreTiming!=='assist-v1'||state.characterId==='amo','assist character identity');
+  check(state.contentVersion!==R2_ASSIST_VERSION||state.characterId==='amo','assist character identity');
   const config=r2RunModeConfig(state);
   check(r2ModeSeedAllowed(config,state.seed)&&(config.mode!=='tutorial'||state.characterId==='erxiang'),'mode seed/identity');
   check(state.mode==='standard'||state.tourMode==='normal','mode tour');
@@ -102,12 +108,16 @@ export function assertR2Invariants(state:R2RunState):void {
   check(state.jokers.every(j=>R2_JOKERS.some(d=>d.id===j.definitionId)&&integer(j.paidPrice)&&(j.edition===undefined||EDITIONS.includes(j.edition))&&r2EditionSupported(j.edition)),'joker references/edition');
   for(const j of state.jokers){const caps=r2GrowthCaps(R2_JOKERS.find(d=>d.id===j.definitionId)!);
     for(const [key,fraction] of Object.entries(j.growth)){const value=Rational.fromJSON(fraction);check(Object.hasOwn(caps,key)&&value.n>=0n&&value.compare(Rational.fromJSON(caps[key]))<=0,'joker growth/cap');}
-    check(validR2JokerCounters(j.definitionId,j.counters),'joker counters/cap');
+    check(validR2JokerCounters(j.definitionId,j.counters,R2_JOKERS.find(d=>d.id===j.definitionId)),'joker counters/cap');
     const definition=R2_JOKERS.find(d=>d.id===j.definitionId)!,initials=r2GrowthInitials(definition);
     for(const [key,minimum] of Object.entries(r2GrowthMinimums(definition))){
       check(!Object.hasOwn(initials,key)||Object.hasOwn(j.growth,key),'joker required growth');
       if(Object.hasOwn(j.growth,key))check(Rational.fromJSON(j.growth[key]).compare(Rational.fromJSON(minimum))>=0,'joker growth/minimum');
     }
+  }
+  if(isR2ComboGrowth(state))for(const joker of state.jokers){
+    if(joker.definitionId==='f10')check(joker.counters?.rescueArmed===(state.phase==='await-input'&&!!state.stage&&state.stage.playIndex===0&&state.stage.discardsUsed>0&&r2ColdOpening(state.stage.openingDiscard)),'armed rescue stage');
+    if(joker.definitionId==='a06'&&joker.counters?.alternationUsed&&state.phase==='await-input')check(!!state.stage&&state.stage.playIndex>=2,'alternation stage');
   }
   check(typeof state.safetyNetUsed==='boolean'&&(!state.safetyNetUsed||state.jokers.every(j=>j.definitionId!=='f07')),'safety-net lifetime');
   check(state.consumables.length<=r2ConsumableCapacity(state)&&new Set(state.consumables.map(c=>c.instanceId)).size===state.consumables.length&&state.consumables.every(c=>!!c.instanceId&&r2ToolSupported(c.definitionId)&&r2ToolAllowed(state,c.definitionId)),'consumable schema/slots/capability');
@@ -134,6 +144,7 @@ export function assertR2Invariants(state:R2RunState):void {
   if(['stage-cleared','run-won'].includes(state.phase))check(state.stage!==null&&state.stage.index+1===state.stageIndex,'completed stage pointer');
   if(state.phase==='run-won')check(state.tourMode==='normal'&&state.stageIndex===R2_AVAILABLE_CHAPTERS*3&&state.outcome?.reason==='all-stages-cleared'&&!!state.stage?.clearId&&(state.mode!=='standard'||state.stage.clearId===completion?.clearId),'normal completion');
   if(state.stage) {
+    check(isR2ComboGrowth(state)?Object.hasOwn(state.stage,'openingDiscard'):!Object.hasOwn(state.stage,'openingDiscard'),'opening discard profile');
     check(scoreString(state.stage.heat)&&scoreString(state.stage.targetHeat)&&[state.stage.handsLeft,state.stage.discardsLeft,state.stage.playIndex,state.stage.goldEarned,state.stage.discardsUsed].every(integer),'stage resources');
     check(integer(state.stage.initialHandLimit)&&state.stage.initialHandLimit>=R2_RESOURCE_CONTRACT.handMinimum&&state.stage.initialHandLimit<=R2_RESOURCE_CONTRACT.handMaximum,'initial hand limit');
     check(state.stage.handLimit===(state.stage.boss?.definitionId==='B11'?Math.max(R2_RESOURCE_CONTRACT.handMinimum,state.stage.initialHandLimit-state.stage.playIndex):state.stage.initialHandLimit),'stage hand limit');
@@ -149,7 +160,7 @@ export function assertR2Invariants(state:R2RunState):void {
     check(validIds(state.stage.sealedJokerIds,state.stage.playIndex)&&state.stage.sealedJokerIds.every(id=>state.stage!.initialJokerIds.includes(id))&&(state.stage.boss?.definitionId==='B15'||state.stage.sealedJokerIds.length===0),'sealed joker ledger');
     if(state.phase==='await-input')check(state.jokers.every(joker=>state.stage!.initialJokerIds.includes(joker.instanceId)),'live stage joker identities');
     check(state.stage.boss?.definitionId!=='B08'||!state.stage.wagerSelected&&!state.stage.wagerUsed,'disabled character wager');
-    check(r2RulesetFor(state)?.amoScoreTiming==='assist-v1'?typeof state.stage.assistUsed==='boolean'&&(!state.stage.assistUsed||state.stage.playIndex>0):!Object.hasOwn(state.stage,'assistUsed'),'assist stage shape');
+    check(r2UsesAssist(state)?typeof state.stage.assistUsed==='boolean'&&(!state.stage.assistUsed||state.stage.playIndex>0):!Object.hasOwn(state.stage,'assistUsed'),'assist stage shape');
     check(typeof state.stage.rescueUsed==='boolean'&&(!state.stage.rescueUsed||state.safetyNetUsed),'stage rescue');
     check(state.stage.previousHandScore===null||scoreString(state.stage.previousHandScore),'previous hand score');
     check(integer(state.stage.maxPlayedCount)&&state.stage.maxPlayedCount<=R2_LIMITS.maxSelected&&(state.stage.playIndex===0?state.stage.maxPlayedCount===0:state.stage.maxPlayedCount>=1),'stage played qualification');
@@ -174,7 +185,7 @@ export function assertR2Invariants(state:R2RunState):void {
     const s=state.shop,offers=[...s.offers,...s.toolOffers,...s.itemOffers];
     check(typeof s.soldJoker==='boolean','shop sales qualification');
     check(integer(s.rerollCount)&&integer(s.purchases)&&integer(s.visitIndex)&&s.visitIndex===state.stageIndex&&s.offers.length<=4&&s.toolOffers.length<=1&&s.itemOffers.length<=2&&new Set(offers.map(o=>o.offerId)).size===offers.length&&offers.every(o=>!!o.offerId&&typeof o.consumed==='boolean'),'shelf references/capacity');
-    check(s.offers.every(o=>R2_JOKERS.some(d=>d.id===o.definitionId&&supportsR2Joker(d))&&(o.edition===undefined||EDITIONS.includes(o.edition))&&o.price===r2Price(o.definitionId,o.edition)),'joker shelf prices/edition');
+    check(s.offers.every(o=>R2_JOKERS.some(d=>d.id===o.definitionId&&supportsR2Joker(d))&&(o.edition===undefined||EDITIONS.includes(o.edition))&&o.price===r2Price(o.definitionId,o.edition,state)),'joker shelf prices/edition');
     check(s.toolOffers.every(o=>r2ToolSupported(o.definitionId)&&r2ToolAllowed(state,o.definitionId)&&R2_TOOLS.some(t=>t.id===o.definitionId&&t.shopWeight>0)&&o.edition===undefined&&o.price===r2ToolPrice(o.definitionId)),'tool shelf prices');
     check([0,1].includes(s.freeRerolls)&&(!s.freeRerolls||config.reroll.allowed),'shop program coupon');
     check(s.itemOffers.every(o=>r2ItemSupported(o.definitionId)&&o.edition===undefined&&o.price===r2ItemPrice(o.definitionId)),'item shelf prices');
@@ -197,17 +208,17 @@ function makeChapter(state:R2RunState):void {
 }
 function refreshDisabled(state:R2RunState):void {if(state.stage)state.stage.disabledIds=state.stage.boss?r2DisabledCards(state.stage.boss,state.stage.index,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!)):[];}
 export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stageIndex'|'jokers'|'characterId'|'mode'|'difficulty'|'challengeId'|'programsEnabled'|'contentVersion'|'contentHash'>,hand:readonly PlayingCard[],ids:readonly string[]) {
-  const modifiers=readR2Modifiers(state.jokers,R2_JOKERS);
+  const modifiers=readR2Modifiers(state.jokers,r2JokerDefinitionsFor(state));
   const config=r2RunModeConfig(state),profile=r2RulesetFor(state);
   if(!profile)throw Error('incompatible-version');
-  return {amoScoreTiming:profile.amoScoreTiming,characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
+  return {amoScoreTiming:r2ScoreTimingFor(state),characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
     ...(state.stage?{stageHeatBefore:state.stage.heat,stageTargetHeat:state.stage.targetHeat}:{}),
     handRules:{fourStraight:modifiers.fourStraight,fourFlush:modifiers.fourFlush},ordinaryPointsSuppressedIds:r2OrdinarySuppression(state.boss,state.stage?.index??state.stageIndex,hand,ids)};
 }
 function entryStage(state:R2RunState,targetHeat:string,skipResult:R2SkipResult|null=null):R2StageState {
   const handLimit=r2HandLimit(state),hands=r2HandsBudget(state),discards=r2DiscardBudget(state),initialJokerIds=state.jokers.map(joker=>joker.instanceId);
   const boss=state.stageIndex%3===2?structuredClone(state.boss):null;
-  return {...(r2RulesetFor(state)?.amoScoreTiming==='assist-v1'?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
+  return {...(isR2ComboGrowth(state)?{openingDiscard:null}:{}),...(r2UsesAssist(state)?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
     discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:boss?.definitionId==='B01',discardsUsed:0,skipResult,playIndex:0,previousHandType:null,previousHandScore:null,
     handLimit,initialHandLimit:handLimit,boss,initialJokerIds,sealedJokerIds:[],challengeDisabledJokerId:state.chapterDisabledJokerId,rescueUsed:false,clearId:null,goldEarned:0,disabledIds:[],wagerSelected:false,wagerUsed:false,
     maxPlayedCount:0,ordinaryStraightSeen:false,ordinaryFlushSeen:false,quadRefundUsed:false,jokerSold:state.shop?.soldJoker??false};
@@ -226,15 +237,15 @@ function sealBossJoker(state:R2RunState):void {
   state.lastTrace=Object.freeze({...trace,events:scoreEvents});
 }
 export const r2DiscardCost=(state:Pick<R2RunState,'stage'|'boss'>):number=>state.stage?.doubleDiscardBeforeFirstPlay&&state.stage.playIndex===0?2:1;
-function transactionMatches(state:R2RunState,condition:Condition,discarded:readonly PlayingCard[]):boolean {
+function transactionMatches(state:R2RunState,condition:Condition,discarded:readonly PlayingCard[],coldOpeningDiscard=false):boolean {
  const stage=state.stage;
- return r2TransactionConditionMatches(condition,{gold:state.gold,handsAfter:stage?.handsLeft,playIndex:stage?.playIndex,discardsUsed:stage?.discardsUsed,handType:stage?.previousHandType??null,heldCount:state.lastTrace?.sets.heldIds.length,discarded,hasStage:!!stage,maxPlayedCount:stage?.maxPlayedCount??0,ordinaryStraightSeen:stage?.ordinaryStraightSeen??false,ordinaryFlushSeen:stage?.ordinaryFlushSeen??false,jokerSold:stage?.jokerSold??false,traceType:state.lastTrace?.handType??null,heat:stage?.heat??'0',target:stage?.targetHeat??'0'});
+ return r2TransactionConditionMatches(condition,{coldOpeningDiscard,gold:state.gold,handsAfter:stage?.handsLeft,playIndex:stage?.playIndex,discardsUsed:stage?.discardsUsed,handType:stage?.previousHandType??null,heldCount:state.lastTrace?.sets.heldIds.length,discarded,hasStage:!!stage,maxPlayedCount:stage?.maxPlayedCount??0,ordinaryStraightSeen:stage?.ordinaryStraightSeen??false,ordinaryFlushSeen:stage?.ordinaryFlushSeen??false,jokerSold:stage?.jokerSold??false,traceType:state.lastTrace?.handType??null,heat:stage?.heat??'0',target:stage?.targetHeat??'0'});
 }
 
-function economicHooks(state:R2RunState,phase:TransactionHookPhase,events:DomainEvent[],sources=state.jokers,discarded:readonly PlayingCard[]=[]):void {
+function economicHooks(state:R2RunState,phase:TransactionHookPhase,events:DomainEvent[],sources=state.jokers,discarded:readonly PlayingCard[]=[],context:{coldOpeningDiscard?:boolean;goldBeforeRewards?:number}={}):void {
   const R2_JOKERS=r2JokerDefinitionsFor(state);
   for(const j of sources)for(const hook of R2_JOKERS.find(d=>d.id===j.definitionId)!.hooks){
-    if(hook.phase!==phase||!transactionMatches(state,hook.condition,discarded))continue;
+    if(hook.phase!==phase||!transactionMatches(state,hook.condition,discarded,context.coldOpeningDiscard))continue;
     type Source=Extract<DomainEvent,{type:'joker-transaction'}>;
     const emit=(operation:string,amount:string,details:Partial<Pick<Source,'resourceBefore'|'resourceAfter'|'growthBefore'|'growthAfter'|'rewardDefinitionId'>>={})=>events.push({type:'joker-transaction',phase,definitionId:j.definitionId,instanceId:j.instanceId,operation,amount,visibleCondition:structuredClone(hook.condition),...details});
     const grantGold=(amount:number,rewardDefinitionId?:string):void=>{
@@ -249,7 +260,16 @@ function economicHooks(state:R2RunState,phase:TransactionHookPhase,events:Domain
       emit('reward-consumable','1',{resourceBefore,resourceAfter:state.consumables.length,rewardDefinitionId:definitionId});
     };
     for(const op of hook.operations){let amount='0',resourceBefore:number|undefined,resourceAfter:number|undefined;
-      if(op.kind==='add-gold'){grantGold(op.amount);continue;}
+      if(op.kind==='arm-rescue'){
+        if(j.counters?.rescueArmed)continue;j.counters={rescueArmed:true};emit('arm-rescue','1',{resourceBefore:0,resourceAfter:1});continue;
+      }
+      else if(op.kind==='add-gold-per-held'||op.kind==='add-gold-per-capital'){
+        const held=state.lastTrace!.sets.heldIds.length;
+        if(op.kind==='add-gold-per-capital'&&context.goldBeforeRewards===undefined)throw Error('missing-clear-capital');
+        const amount=op.kind==='add-gold-per-held'?(held>=op.minimum?Math.min(held,op.cap):0):Math.min(Math.floor(context.goldBeforeRewards!/op.divisor),op.cap);
+        if(amount){const before=state.gold;state.gold+=amount;state.stage!.goldEarned+=amount;events.push({type:'joker-transaction',phase,definitionId:j.definitionId,instanceId:j.instanceId,operation:op.kind,amount:String(amount),visibleCondition:structuredClone(hook.condition),resourceBefore:before,resourceAfter:state.gold,...(op.kind==='add-gold-per-capital'?{goldBeforeRewards:context.goldBeforeRewards!}:{})});}continue;
+      }
+      else if(op.kind==='add-gold'){grantGold(op.amount);continue;}
       else if(op.kind==='add-gold-limited'){
         const count=j.counters?.singleDiscards??0;if(count>=op.limit)continue;
         j.counters={...j.counters,singleDiscards:count+1};resourceBefore=state.gold;state.gold+=op.amount;resourceAfter=state.gold;amount=String(op.amount);
@@ -281,17 +301,18 @@ function economicHooks(state:R2RunState,phase:TransactionHookPhase,events:Domain
   }
 }
 function clearStageEffects(state:R2RunState):void {
+  if(isR2ComboGrowth(state))for(const joker of state.jokers)if(joker.definitionId==='f10')joker.counters={rescueArmed:false};
   for(const joker of state.jokers)if(joker.definitionId==='c05')joker.growth.pendingHeat={n:'0',d:'1'};
 }
 export function makeR2Shop(state:R2RunState,reset:boolean):void {
   const rng=reset?new SeededRng(`${state.seed}/r2/shop/${state.stageIndex}`):SeededRng.restore(state.rng.shop);
   const count=reset?0:state.shop!.rerollCount+1;
   const initial=reset&&state.stageIndex===0;
-  const ids=drawR2Shelf(rng,r2Pool(state.jokers.map(j=>j.definitionId),state.safetyNetUsed?['f07']:[]),initial?state.gold:undefined,R2_ECONOMY.shelfSlots+itemAmount(state,'joker-offer-count'));
+  const ids=drawR2Shelf(rng,r2Pool(state.jokers.map(j=>j.definitionId),state.safetyNetUsed?['f07']:[],state),initial?state.gold:undefined,R2_ECONOMY.shelfSlots+itemAmount(state,'joker-offer-count'));
   const prefix=`${state.runId}/shop/${state.stageIndex}/${count}`;
-  const offers=ids.map((id,slot)=>{const edition=drawR2Edition(rng);return {offerId:`${prefix}/joker/${slot}`,definitionId:id,price:r2Price(id,edition),edition,consumed:false};});
+  const offers=ids.map((id,slot)=>{const edition=drawR2Edition(rng);return {offerId:`${prefix}/joker/${slot}`,definitionId:id,price:r2Price(id,edition,state),edition,consumed:false};});
   if(initial&&offers.length&&!offers.some(offer=>offer.price<=state.gold&&offer.edition==='none')){
-    const ordinary=offers.find(offer=>r2Price(offer.definitionId)<=state.gold);if(ordinary){ordinary.edition='none';ordinary.price=r2Price(ordinary.definitionId);}
+    const ordinary=offers.find(offer=>r2Price(offer.definitionId,undefined,state)<=state.gold);if(ordinary){ordinary.edition='none';ordinary.price=r2Price(ordinary.definitionId,undefined,state);}
   }
   const toolId=drawR2Tool(rng,r2ToolAcquisitionPool(state));
   const toolOffers=toolId?[{offerId:`${prefix}/tool/0`,definitionId:toolId,price:r2ToolPrice(toolId),consumed:false}]:[];
@@ -349,7 +370,7 @@ function persistJokerSources(state:R2RunState,events:readonly DomainEvent[],phas
     }else {const [n,d='1']=source.amount.split('/');value=Rational.fromJSON({n,d}).toJSON();}
     const growth=source.growthBefore&&source.growthAfter?{growthBefore:Object.freeze({...source.growthBefore}),growthAfter:Object.freeze({...source.growthAfter})}:{};
     return Object.freeze({eventId,rootId:trace.rootId,rootEventId:eventId,phase,sourceType:'joker' as const,sourceDefinitionId:source.definitionId,sourceInstanceId:source.instanceId,operation:source.operation,value:Object.freeze(value),before:trace.accumulator,after:trace.accumulator,reasonKey:`${source.definitionId}.${source.operation}`,visibleCondition,retriggerDepth:0,
-      ...(source.resourceBefore===undefined?{}:{resourceBefore:source.resourceBefore,resourceAfter:source.resourceAfter!}),...growth,...(source.rewardDefinitionId?{rewardDefinitionId:source.rewardDefinitionId}:{})});
+      ...(source.resourceBefore===undefined?{}:{resourceBefore:source.resourceBefore,resourceAfter:source.resourceAfter!}),...(source.goldBeforeRewards===undefined?{}:{goldBeforeRewards:source.goldBeforeRewards}),...growth,...(source.rewardDefinitionId?{rewardDefinitionId:source.rewardDefinitionId}:{})});
   });
   const jokers=structuredClone(state.jokers);
   for(const joker of jokers){for(const value of Object.values(joker.growth))Object.freeze(value);Object.freeze(joker.growth);if(joker.counters)Object.freeze(joker.counters);Object.freeze(joker);}Object.freeze(jokers);
@@ -440,17 +461,17 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
     const selection=resolveR2ModeConfig(action.modeConfig===undefined?{mode:'standard'}:action.modeConfig);
     if(!selection.ok)return fail(selection.code);
     const config=selection.config;
-    if(action.r2Profile!==undefined&&(action.r2Profile!=='amo-assist-v1'||action.characterId!=='amo'))return fail('invalid-r2-profile');
+    if(action.r2Profile!==undefined&&(action.r2Profile!=='combo-growth-v1'&&(action.r2Profile!=='amo-assist-v1'||action.characterId!=='amo')))return fail('invalid-r2-profile');
     const identity=action.r2Identity;
     if(identity!==undefined&&(!identity||typeof identity!=='object'||Object.getPrototypeOf(identity)!==Object.prototype||Object.keys(identity).sort().join(',')!=='contentHash,contentVersion'||action.r2Profile!==undefined||!r2RulesetFor(identity)))return fail('invalid-r2-identity');
-    const profile=r2RulesetFor(identity??(action.r2Profile==='amo-assist-v1'?{contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH}:{contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH}))!;
-    const assisted=profile.amoScoreTiming==='assist-v1';
-    if(assisted&&action.characterId!=='amo')return fail('invalid-r2-profile');
+    const profile=r2RulesetFor(identity??(action.r2Profile==='combo-growth-v1'?{contentVersion:R2_COMBO_GROWTH_VERSION,contentHash:R2_COMBO_GROWTH_HASH}:action.r2Profile==='amo-assist-v1'?{contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH}:{contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH}))!;
+    const assisted=profile.amoScoreTiming==='assist-v1'&&action.characterId==='amo';
+    if(profile.contentVersion===R2_ASSIST_VERSION&&action.characterId!=='amo')return fail('invalid-r2-profile');
     if(!r2ModeSeedAllowed(config,action.seed)||config.mode==='tutorial'&&action.characterId!=='erxiang')return fail('invalid-mode-seed-or-character');
     const cards=createDeck().filter(card=>config.startingRanks.includes(card.rank));
     state={schemaVersion:2,rulesVersion:'r2',contentVersion:profile.contentVersion,contentHash:profile.contentHash,runId:command.runId,seed:action.seed,commandSeq:0,difficulty:config.difficulty,characterId:action.characterId,
       mode:config.mode,challengeId:config.challengeId,programsEnabled:config.programsEnabled,programRerollCoupon:false,chapterDisabledJokerId:null,
-      chapter:config.startingChapter,stageIndex:config.startingStageIndex,phase:'shop',deckInstances:cards,drawPile:cards.map(c=>c.id),handOrder:[],playedPile:[],discardPile:[],destroyedIds:[],stage:null,totalHeat:'0',gold:config.initialGold,jokers:config.startingJokers.map((joker,index)=>r2CreateJoker(joker.definitionId,`${command.runId}/initial/${index}`,joker.paidPrice,joker.edition)),consumables:[],longTermItems:[],program:null,boss:{definitionId:'B01',disabledSuit:null},seenBossIds:[],chapterSkipConsumable:'T01',purchaseCoupons:0,safetyNetUsed:false,shop:null,
+      chapter:config.startingChapter,stageIndex:config.startingStageIndex,phase:'shop',deckInstances:cards,drawPile:cards.map(c=>c.id),handOrder:[],playedPile:[],discardPile:[],destroyedIds:[],stage:null,totalHeat:'0',gold:config.initialGold,jokers:config.startingJokers.map((joker,index)=>r2CreateJoker(joker.definitionId,`${command.runId}/initial/${index}`,joker.paidPrice,joker.edition,profile)),consumables:[],longTermItems:[],program:null,boss:{definitionId:'B01',disabledSuit:null},seenBossIds:[],chapterSkipConsumable:'T01',purchaseCoupons:0,safetyNetUsed:false,shop:null,
       spectralModifiers:{handsPenalty:0,handPenalty:0,cleanSlateBonus:0},supplyRewardClaimed:false,chapterHandUsage:{},normalClearClaimed:false,tourMode:'normal',normalCompletion:null,
       rng:{deck:new SeededRng(`${action.seed}/r2/deck/0`).snapshot(),rule:new SeededRng(`${action.seed}/r2/rule/0`).snapshot(),shop:new SeededRng(`${action.seed}/r2/shop/0`).snapshot(),reward:new SeededRng(`${action.seed}/r2/reward/0`).snapshot(),program:new SeededRng(`${action.seed}/r2/program/0`).snapshot(),challenge:new SeededRng(`${action.seed}/r2/challenge/0`).snapshot()},
       receipts:[],lastTrace:null,handLevels:config.characterAbilityEnabled&&!assisted?structuredClone(R2_STARTING_HAND_LEVELS[action.characterId]??{}):{},outcome:null};
@@ -483,7 +504,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
           if(!R2_JOKERS.some(d=>d.id===offer.definitionId&&supportsR2Joker(d))||state.safetyNetUsed&&offer.definitionId==='f07')return fail('joker-unavailable');
           if(state.jokers.length>=r2JokerCapacity(state))return fail('slots-full');
           if(state.jokers.some(j=>j.definitionId===offer.definitionId))return fail('already-owned');
-          if(offer.edition!==undefined&&!EDITIONS.includes(offer.edition)||offer.price!==r2Price(offer.definitionId,offer.edition))return fail('invalid-offer');
+          if(offer.edition!==undefined&&!EDITIONS.includes(offer.edition)||offer.price!==r2Price(offer.definitionId,offer.edition,state))return fail('invalid-offer');
         }else if(shelf==='toolOffers'){
           if(!r2ToolAllowed(state,offer.definitionId))return fail('tool-disabled-in-mode');
           if(offer.edition!==undefined||!r2ToolAcquisitionPool(state).some(t=>t.id===offer.definitionId)||offer.price!==r2ToolPrice(offer.definitionId))return fail('invalid-offer');
@@ -497,7 +518,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         state.gold-=price;offer.consumed=true;state.shop.purchases++;if(state.purchaseCoupons>0)state.purchaseCoupons--;
         if(shelf==='offers'){
           economicHooks(state,'onBuyOffer',events,[...state.jokers]);
-          state.jokers.push(r2CreateJoker(offer.definitionId,`${state.runId}/joker/${command.commandId}`,price,offer.edition));
+          state.jokers.push(r2CreateJoker(offer.definitionId,`${state.runId}/joker/${command.commandId}`,price,offer.edition,state));
         }else if(shelf==='toolOffers')state.consumables.push({instanceId:`${state.runId}/tool/${command.commandId}`,definitionId:offer.definitionId});
         else state.longTermItems.push(offer.definitionId);
         break;
@@ -512,7 +533,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
       case 'RerollShop': {
         if(state.phase!=='shop'||!state.shop)return fail('wrong-phase');
         if(!r2RunModeConfig(state).reroll.allowed)return fail('reroll-disabled');
-        if(!r2Pool(state.jokers.map(j=>j.definitionId),state.safetyNetUsed?['f07']:[]).length)return fail('no-reroll-candidates');
+        if(!r2Pool(state.jokers.map(j=>j.definitionId),state.safetyNetUsed?['f07']:[],state).length)return fail('no-reroll-candidates');
         const cost=state.shop.freeRerolls?0:r2PaidRerollPrice(state);if(state.gold<cost)return fail('not-enough-gold');
         if(state.shop.freeRerolls)state.shop.freeRerolls--;
         state.gold-=cost;makeR2Shop(state,false);if(cost>0)economicHooks(state,'onReroll',events);break;
@@ -538,7 +559,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         state.handOrder=[];state.playedPile=[];state.discardPile=[];
         state.rng.deck=rng.snapshot();
         state.stage=entryStage(state,definition.targetHeat);
-        clearStageEffects(state);for(const joker of state.jokers)if(joker.definitionId==='a07')joker.counters={singleDiscards:0};refill(state);
+        clearStageEffects(state);for(const joker of state.jokers){if(joker.definitionId==='a07')joker.counters={singleDiscards:0};if(isR2ComboGrowth(state)&&joker.definitionId==='a06')joker.counters={alternationUsed:false};}refill(state);
         refreshDisabled(state);
         state.chapter=chapter+1;state.phase='await-input';state.shop=null;state.lastTrace=null;break;
       }
@@ -572,8 +593,11 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
           const before=state.gold;state.gold--;
           events.push({type:'boss-transaction',definitionId:'B07',operation:'charge-discard',amount:'1',resourceBefore:String(before),resourceAfter:String(state.gold)});
         }
+        const firstOpening=isR2ComboGrowth(state)&&state.stage.playIndex===0&&state.stage.discardsUsed===0&&state.jokers.some(j=>j.definitionId==='f10');
+        if(firstOpening)state.stage.openingDiscard=structuredClone({hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),discardedIds:state.handOrder.filter(id=>ids.includes(id)),jokers:state.jokers});
+        const coldOpeningDiscard=firstOpening&&r2ColdOpening(state.stage.openingDiscard);
         const ordered=state.handOrder.filter(id=>ids.includes(id));state.handOrder=state.handOrder.filter(id=>!ids.includes(id));
-        state.discardPile.push(...ordered);state.stage.discardsLeft-=discardCost;state.stage.discardSpent+=discardCost;state.stage.discardsUsed++;economicHooks(state,'onDiscard',events,state.jokers,ordered.map(id=>state.deckInstances.find(c=>c.id===id)!));refill(state);refreshDisabled(state);
+        state.discardPile.push(...ordered);state.stage.discardsLeft-=discardCost;state.stage.discardSpent+=discardCost;state.stage.discardsUsed++;economicHooks(state,'onDiscard',events,state.jokers,ordered.map(id=>state.deckInstances.find(c=>c.id===id)!),{coldOpeningDiscard});refill(state);refreshDisabled(state);
         if(state.stage.boss?.definitionId==='B14'){
           const before=state.stage.targetHeat,amount=(BigInt(state.stage.initialTargetHeat)+19n)/20n;
           state.stage.targetHeat=(BigInt(before)+amount).toString();
@@ -608,6 +632,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
           hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),selectedIds:ids,disabledIds:state.stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS,
           ...(assisted?{assistIds}:{}),handLevels:state.handLevels,playIndex:state.stage.playIndex+1,handsBeforePlay:state.stage.handsLeft,previousHandType:state.stage.previousHandType,wager:state.stage.wagerSelected,rng:state.rng.rule,...r2ScoreContext(state,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),ids)});}
         catch(error) {return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
+        if(isR2ComboGrowth(state))trace=Object.freeze({...trace,combo:Object.freeze({goldBeforeRewards:null})});
         if(assisted)state.stage.assistUsed=true;
         state.rng.rule={...trace.rng};state.lastTrace=trace;state.jokers=structuredClone(trace.jokers);state.gold+=trace.goldDelta;
         state.destroyedIds.push(...trace.destroyedCardIds);state.handLevels[trace.handType]??=1;
@@ -625,6 +650,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         const scoredEvent:Extract<DomainEvent,{type:'hand-scored-r2'}>={type:'hand-scored-r2',score:trace,playedIds:trace.sets.playedIds,playIndex:state.stage.playIndex};events.push(scoredEvent);
         if(BigInt(state.stage.heat)>=BigInt(state.stage.targetHeat)) {
           const goldBeforeRewards=state.gold;
+          if(isR2ComboGrowth(state))state.lastTrace=Object.freeze({...state.lastTrace!,combo:Object.freeze({goldBeforeRewards})});
           if(state.program)state.program.lastOpportunityClear ||= state.stage.handsLeft===0;
           const total=(BigInt(state.totalHeat)+BigInt(state.stage.heat)).toString();
           if(!scoreString(total))return {ok:false,code:'score-diagnostic',diagnostic:{code:'numeric-length-limit',events:trace.events}};
@@ -637,9 +663,9 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
           state.gold+=reward;
           try{
             const interestJoker=state.jokers.find(j=>j.definitionId==='e04');
-            if(interestJoker)clearGoldSource(state,'e04',jokerInterest,interestJoker.instanceId);
+            if(interestJoker&&!isR2ComboGrowth(state))clearGoldSource(state,'e04',jokerInterest,interestJoker.instanceId);
             clearGoldSource(state,'U04',itemInterest);grantHeldGoldPaper(state);grantClearItems(state);
-            economicHooks(state,'onStageClear',events);persistJokerSources(state,events,'onStageClear');scoredEvent.score=state.lastTrace!;
+            economicHooks(state,'onStageClear',events,state.jokers,[],{goldBeforeRewards});persistJokerSources(state,events,'onStageClear');scoredEvent.score=state.lastTrace!;
             grantProgramReward(state,goldBeforeRewards);scoredEvent.score=state.lastTrace!;
           }
           catch(error){return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}

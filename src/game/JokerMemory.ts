@@ -1,3 +1,4 @@
+import {R2_COMBO_GROWTH_JOKERS,R2_COMBO_GROWTH_IDS} from '../content/r2ComboGrowthJokers';
 import {R2_ASSIST_JOKERS} from '../content/r2AssistJokers';
 import {JOKER_ASSIST_COMPACT} from './JokerAssistTemplates';
 import {r2JokerDefinitionFor,type R2ContentIdentity} from '../domain/r2ContentProfiles';
@@ -24,6 +25,7 @@ const modulo=(divisor:number,remainder:number)=>remainder===0?'本场第'+diviso
 /** Conditions are described by schema kinds, never a five-card ID eligibility table. */
 export function r2ConditionDescription(c:Condition):string {
  switch(c.kind){
+  case'cold-opening-discard':return'本场未出牌，首次成功弃牌前公开手牌无法凑出两对及以上';
   case'always':return'每到这个时点检查；满足条件不等于效果已经发生';
   case'hand-type-in':return'实际牌型是'+typeNames(c.values)+'（精确牌型，不自动包含其他型）';
   case'rank-in':return'对象点数为'+c.values.map(r=>r>=2&&r<=14?rankLabel(r as PlayingCard['rank']):String(r)).join('／');
@@ -64,6 +66,12 @@ function operationDescription(op:Operation,ctx:JokerMemoryContext):string {
   case'read-growth':case'consume-growth':return(op.kind==='consume-growth'?'读取后消耗':'读取')+'已保存成长，作用于'+(op.target==='heat'?'热度':'倍率');
   case'add-growth':return'单次成长 +'+fractionText(op.value)+'，封顶'+fractionText(op.cap);
   case'read-coefficient':return'读取当前保存的倍率系数';
+  case'multiply-coefficient-once':return'每场首次合格交替后系数 ×'+fractionText(op.value)+'，下一次生效，封顶'+fractionText(op.cap);
+  case'arm-rescue':return'备好一次救火，后续弃牌不叠加';
+  case'consume-rescue':return'下一次实际出牌后消耗救火，无论命中或被封禁';
+  case'rescue-multiplier':return'已备好救火时倍率 ×'+fractionText(op.value);
+  case'add-gold-per-held':return'实际留至少'+op.minimum+'张才每张给1金，上限'+op.cap+'金，补牌不算';
+  case'add-gold-per-capital':return'按过关奖励前每'+op.divisor+'金币给1金，上限'+op.cap+'金';
   case'add-coefficient':return'单次系数成长 +'+fractionText(op.value)+'，封顶'+fractionText(op.cap);
   case'reset-coefficient':return'按实际事件重置系数为'+fractionText(op.initial);
   case'update-score-growth':return'按实际本手比分记录成长，封顶'+fractionText(op.cap)+'；选牌时不预测';
@@ -107,11 +115,13 @@ function hookStatus(phase:HookPhase,c:Condition,operations:readonly Operation[],
  return(phase==='onCardScore'?active.some(matches):phase==='onHeldCard'?validHeld.some(matches):matches())?'条件满足':'当前未满足';
 }
 export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext){
- const hooks=definition.hooks.map(h=>({phase:h.phase,timing:phaseLabels[h.phase],condition:r2ConditionDescription(h.condition),mechanism:h.operations.map(op=>operationDescription(op,ctx)).join('；'),status:hookStatus(h.phase,h.condition,h.operations,ctx),history:ctx.inStage&&['stage-played-maximum','stage-hand-types-all','no-joker-sale-this-stage'].includes(h.condition.kind)?r2TransactionConditionMatches(h.condition,ctx.transaction)?'已提交资格保持；未宣称奖励触发':'已提交资格尚未满足或已破坏':''}));
+ const combo=R2_COMBO_GROWTH_IDS.includes(definition.id)&&R2_COMBO_GROWTH_JOKERS.includes(definition);
+ const hooks=definition.hooks.map(h=>({phase:h.phase,timing:phaseLabels[h.phase],condition:r2ConditionDescription(h.condition),mechanism:h.operations.map(op=>operationDescription(op,ctx)).join('；'),status:combo&&h.operations.some(op=>op.kind==='rescue-multiplier')&&!instance?.counters?.rescueArmed?'当前未满足' as const:hookStatus(h.phase,h.condition,h.operations,ctx),history:ctx.inStage&&['stage-played-maximum','stage-hand-types-all','no-joker-sale-this-stage'].includes(h.condition.kind)?r2TransactionConditionMatches(h.condition,ctx.transaction)?'已提交资格保持；未宣称奖励触发':'已提交资格尚未满足或已破坏':''}));
  const staticRules=(definition.modifiers??[]).map(m=>modifierDescription(m,ctx)),life=definition.hooks.flatMap(h=>h.operations.filter(op=>op.kind==='expire-after-hands'))[0];
  // Missing additive storage is a real zero, never a claim about its history.
  const savedGrowth=instance?{...r2GrowthMinimums(definition),...instance.growth}:{};
  let saved=instance?r2JokerStateText({...instance,growth:savedGrowth}):'尚未购入；不代表已触发';
+ if(combo&&instance){if(definition.id==='a06')saved+='；'+(ctx.inStage?(instance.counters?.alternationUsed?'本场已成长':'本场成长尚可用'):'下场重置成长次数');if(definition.id==='f10')saved=instance.counters?.rescueArmed?'救火已备好；下一次出牌后消耗':'救火未备好';}
  const remaining=instance&&life?.kind==='expire-after-hands'?Math.max(0,life.limit-(instance.counters?.handsScored??0)):undefined;
  const scoreHooks=hooks.filter(h=>['onCardScore','onHeldCard','jokerScore'].includes(h.phase)),satisfied=scoreHooks.filter(h=>h.status==='条件满足');
  const currentStatus:MemoryStatus|'部分条件满足'=satisfied.length?satisfied.length===scoreHooks.length?'条件满足':'部分条件满足':scoreHooks.some(h=>h.status==='待选牌')?'待选牌':scoreHooks.some(h=>h.status==='当前未满足')?'当前未满足':'事件时检查';
@@ -128,11 +138,12 @@ export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstanc
  // Compact saved numbers remain exact; oversized values lead to the state entry.
  const exact=(value:{n:string;d:string})=>{const r=Rational.fromJSON(value);return r.d===1n?r.n.toString():r.n+'/'+r.d;};
  const valueLabel=stored.map(([key,value])=>(key==='coefficient'?'系数×':key==='pendingHeat'?'蓄热':key==='multiplier'?'倍+':'热+')+exact(value)).join('／');
- const stateCandidates=remaining!==undefined?['余'+remaining+'手']:remainingUses!==undefined?['余'+remainingUses+'次']:
+ const stateCandidates=combo&&definition.id==='f10'&&instance?[instance.counters?.rescueArmed?'救火待出牌':'救火未备好']:remaining!==undefined?['余'+remaining+'手']:remainingUses!==undefined?['余'+remainingUses+'次']:
   definition.id==='f09'&&ctx.inStage&&ctx.discardsUsed>0?['已弃牌']:
   instance&&definition.hooks.some(h=>h.operations.some(op=>op.kind==='reward-consumable-every-clears'))?[instance.counters?.stageClears===1?'下关赠票':'再2关赠票']:
   valueLabel?[valueLabel,...(stored.length===1&&stored[0][0]==='coefficient'?['×'+exact(stored[0][1])]:[])]:[];
- const labelCandidates=stateCandidates.length?stateCandidates:(R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_COMPACT[definition.id]:undefined)??JOKER_COMPACT[definition.id]??[R2_OFFER_USE[definition.id]??'条件 ›'];
+ const comboLabels:Record<string,string[]>={a06:['两对以上×系数'],f10:['冷开局救火'],d12:['成型留≥4给金'],e04:['奖励前每10金+1']};
+ const labelCandidates=stateCandidates.length?stateCandidates:combo?comboLabels[definition.id]:(R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_COMPACT[definition.id]:undefined)??JOKER_COMPACT[definition.id]??[R2_OFFER_USE[definition.id]??'条件 ›'];
  const short=labelCandidates[0],savedShort=stateCandidates[0]??'';
  return{instanceId:instance?.instanceId,definitionId:definition.id,name:definition.name,short,labelCandidates,stateLabel:stateCandidates.length>0,status,statusDetail,saved,savedShort,remaining,remainingUses,usageResetsOnEntry,staticRules,hooks,scoreLimited:ctx.scoringLimited};
 }

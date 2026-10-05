@@ -67,7 +67,7 @@ export function applyR2Tool(state:R2RunState,command:Command,events:DomainEvent[
       state.gold+=operation.amount;break;
     case 'free-reroll':
       if(state.phase!=='shop'||!state.shop)return 'wrong-consumable-target';
-      if(!r2Pool(state.jokers.map(j=>j.definitionId),state.safetyNetUsed?['f07']:[]).length&&!r2ToolAcquisitionPool(state).length)return 'no-reroll-candidates';
+      if(!r2Pool(state.jokers.map(j=>j.definitionId),state.safetyNetUsed?['f07']:[],state).length&&!r2ToolAcquisitionPool(state).length)return 'no-reroll-candidates';
       makeR2Shop(state,false);break;
     case 'delete-cards': {
       const floor=state.longTermItems.includes('U08')?R2_TOOL_CATALOG.limits.minimalDeckFloor:R2_TOOL_CATALOG.limits.deckDeletionFloor;

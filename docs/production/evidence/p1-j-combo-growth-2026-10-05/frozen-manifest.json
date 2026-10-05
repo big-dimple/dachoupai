@@ -1,0 +1,148 @@
+{
+  "localSource": "327e0e25bfa324108b672927d267c86d82ab4b47",
+  "remoteSource": "e8a3f7acfb064a9cf492ab73e6087c15728fed2f",
+  "fullTree": "46e67ff88bb90de4f4068a38560fc967619341a0",
+  "comparisonBase": "e2fc57c8c845d8d5a874309ab38cd2f85180bd05",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 27492,
+      "sha256": "2a6f72a04d342ddcb81753db833494c90d1ab61682af5b71b4066af2ecaf0efa"
+    },
+    {
+      "path": "docs/production/COMBO_GROWTH_PROTOTYPE.md",
+      "bytes": 6532,
+      "sha256": "e33aa7f7b33bbeb177f253eae3a26fc0b845fe4804692aced515eca2c99990b3"
+    },
+    {
+      "path": "docs/production/evidence/p1-j-combo-growth-2026-10-05/FAIL-provenance.json",
+      "bytes": 1396,
+      "sha256": "19355f1adbe3fb1cbed036bb4de9bc34955641814b9a53083ef0ec28019f0663"
+    },
+    {
+      "path": "docs/production/evidence/p1-j-combo-growth-2026-10-05/combo-income-first-FAIL.json",
+      "bytes": 9184,
+      "sha256": "888ff5732b3681dcb4fe112ac477e6da19fa9c07d15649e0a470bf8fb377a77f"
+    },
+    {
+      "path": "docs/production/evidence/p1-j-combo-growth-2026-10-05/combo-native-first-FAIL.json",
+      "bytes": 1375,
+      "sha256": "9442f84ee369f31466f875b0df387f40868fd2da3b2e0cd374748c061602b04f"
+    },
+    {
+      "path": "docs/production/evidence/p1-j-combo-growth-2026-10-05/combo-s06-first-FAIL.json",
+      "bytes": 8446,
+      "sha256": "cc0030d26cfa4e5bdba34ec7b277d28da1f3419b787a81f3ee4f47b08b7b2dc0"
+    },
+    {
+      "path": "harness/combo-growth-save.mjs",
+      "bytes": 13172,
+      "sha256": "ccf9ffdf862f89e2ad96472883f7d4cedb806a0e3b6f73ddff60cc62653ddbd3"
+    },
+    {
+      "path": "src/application/checkpoint.ts",
+      "bytes": 83241,
+      "sha256": "5a340f9e7e9e65b9606474cddd6ea0d6a493b645e9dd9e6755163f93d63ae766"
+    },
+    {
+      "path": "src/content/r2ComboGrowthJokers.ts",
+      "bytes": 2798,
+      "sha256": "5743a25ea86b9b1711eef5904b3310b485fd3a4f92af11540de70939091812ad"
+    },
+    {
+      "path": "src/content/r2Schema.ts",
+      "bytes": 28915,
+      "sha256": "ab5629e730f655b02f89acc9abb9fc962f8013b81d73349d298f3ada3bea754a"
+    },
+    {
+      "path": "src/domain/r2Assist.ts",
+      "bytes": 2955,
+      "sha256": "650960cbff197fb4570616b8ef428f49730dc32f6f87078b7b6b1727da658123"
+    },
+    {
+      "path": "src/domain/r2AssistIdentity.ts",
+      "bytes": 670,
+      "sha256": "0722cab0146ca14dc4316d6f2182df0939bed03a919d55c75406bf56723a9cf9"
+    },
+    {
+      "path": "src/domain/r2ComboGrowth.ts",
+      "bytes": 1504,
+      "sha256": "7998eecabc19319b636dbfcca6ae04120486221cd6683956af10726f7be01b54"
+    },
+    {
+      "path": "src/domain/r2Conditions.ts",
+      "bytes": 5748,
+      "sha256": "c94b09a30ef1517741bb856b464cb8a0ee31b9dfca3dba348f577ee994f1c874"
+    },
+    {
+      "path": "src/domain/r2ContentProfiles.ts",
+      "bytes": 1374,
+      "sha256": "bfef5ac033da75ee5cad795d5f2646503e5f8f8f3fb195d095bdde9f76041417"
+    },
+    {
+      "path": "src/domain/r2Resources.ts",
+      "bytes": 3366,
+      "sha256": "cba10bff5d560ff8d5d271bf14992fcb7425cdcffc4c2d80e2b4540b6b36a4aa"
+    },
+    {
+      "path": "src/domain/r2Run.ts",
+      "bytes": 73804,
+      "sha256": "a2601550894d61bcc27530e63fca30e29f49cc8acca48b5d87a69c72da65ff67"
+    },
+    {
+      "path": "src/domain/r2SelectionFacts.ts",
+      "bytes": 3401,
+      "sha256": "487f6ab6cadc0a2014813edb77ef09b16d18ec2297241d567efdb2a641fdc9a4"
+    },
+    {
+      "path": "src/domain/r2Shop.ts",
+      "bytes": 8441,
+      "sha256": "764f0f7c7d4fb6c022aed31d5592958369b182706903933498665bf6c91c3b6f"
+    },
+    {
+      "path": "src/domain/r2SpectralTools.ts",
+      "bytes": 11926,
+      "sha256": "83b25353d04ff0b4f43b64fc8339b131b03b636d5a6d5d1c1eb157564fad6adb"
+    },
+    {
+      "path": "src/domain/r2ToolCommands.ts",
+      "bytes": 7086,
+      "sha256": "916bf358c094e68e1b31919869a927b846d49d3f2727343ea02a9e12aab65a9f"
+    },
+    {
+      "path": "src/domain/run.ts",
+      "bytes": 20992,
+      "sha256": "016e1556c7977dc149e38c7556553eabf7b8e32170381e86f1e27ae9eeaf378e"
+    },
+    {
+      "path": "src/domain/scoreR2.ts",
+      "bytes": 36024,
+      "sha256": "090ac5dff03d059380c65738727717369267907f24ebb3150b0e2621b4ab1fe3"
+    },
+    {
+      "path": "src/game/JokerComboGrowthTemplates.ts",
+      "bytes": 2998,
+      "sha256": "2209bd84d64854f06ce3ee54e2786db350be678554241d9d8792c4b7c279e215"
+    },
+    {
+      "path": "src/game/JokerMemory.ts",
+      "bytes": 20437,
+      "sha256": "d2e3a1bad34285939cee2067fcd90b2e05c1e0fd84f0ad05be7e78a1be0f5f5d"
+    },
+    {
+      "path": "src/game/JokerPlayerCopy.ts",
+      "bytes": 12131,
+      "sha256": "45e9bb08e4eef0e28b659b61f58aa1d3531fb3dccc1556c68b40f9b63f65652b"
+    },
+    {
+      "path": "tests/combo-growth.test.ts",
+      "bytes": 16681,
+      "sha256": "a96243a303acc4103e59e6267ff23aff89d6983cd9d56d57fbd3f48812a25843"
+    },
+    {
+      "path": "tests/fixtures/r2-843f-amo-checkpoints.json",
+      "bytes": 36289,
+      "sha256": "4c1b89518cd8d35ffbcf4ba53e358f7a40d599d22ba70053b4f6849c693f1700"
+    }
+  ]
+}

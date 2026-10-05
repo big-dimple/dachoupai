@@ -1,10 +1,13 @@
+import {R2_COMBO_GROWTH_IDS} from '../content/r2ComboGrowthJokers';
+import {isR2ComboGrowth,r2ColdOpening,type R2OpeningDiscard} from '../domain/r2ComboGrowth';
+import {R2_ASSIST_VERSION} from '../domain/r2AssistIdentity';
 import {R2_ASSIST_ADAPTED_IDS} from '../content/r2AssistJokers';
 import {r2ScoreConditionMatches} from '../domain/r2Conditions';
 import {r2JokerDefinitionsFor} from '../domain/r2ContentProfiles';
 import {r2AssistFacts,AMO_ASSIST_TYPES} from '../domain/r2Assist';
 import {r2SelectionFacts} from '../domain/r2SelectionFacts';
 import {R2_PUBLISHED_JOKERS as R2_JOKERS} from '../domain/r2PublishedContent';
-import {assertR2Invariants,r2RulesetFor,R2_LIMITS,R2_RESOURCE_CONTRACT} from '../domain/r2Run';
+import {assertR2Invariants,r2RulesetFor,r2UsesAssist,r2ScoreTimingFor,R2_LIMITS,R2_RESOURCE_CONTRACT} from '../domain/r2Run';
 import type {R2RunState,Command,Action} from '../domain/run';
 import {CHARACTER_IDS} from '../domain/characters';
 import {R2_HAND_TYPES,type R2HandType} from '../domain/evaluateR2';
@@ -72,7 +75,8 @@ function cards(value:unknown,max:number,enhancementsAllowed=true):void {
     if(!r2CardSpecialsSupported(card as unknown as PlayingCard))fail('save-card-special-not-enabled');
   }
 }
-function jokers(value:unknown,maximum:number=R2_LIMITS.jokerSlots):void {
+function jokers(value:unknown,maximum:number=R2_LIMITS.jokerSlots,catalog=R2_JOKERS):void {
+  const R2_JOKERS=catalog;
   const ids=new Set<unknown>(),definitions=new Set<unknown>();
   for(const item of array(value,maximum)){
     const j=record(item,['instanceId','definitionId','paidPrice','growth'],['counters','edition']);text(j.instanceId);integer(j.paidPrice);
@@ -85,10 +89,10 @@ function jokers(value:unknown,maximum:number=R2_LIMITS.jokerSlots):void {
       const number=Rational.fromJSON(value);
       if(number.compare(Rational.fromJSON(minimums[key]))<0||number.compare(Rational.fromJSON(caps[key]))>0)fail('save-joker-growth-cap');
     }
-    if(!validR2JokerCounters(j.definitionId as string,j.counters))fail('invalid-save-joker-counters');
+    if(!validR2JokerCounters(j.definitionId as string,j.counters,definition))fail('invalid-save-joker-counters');
   }
 }
-function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeConfig):void {
+function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeConfig,identity:{contentVersion?:unknown;contentHash?:unknown}):void {
   const s=record(value,['visitIndex','rerollCount','purchases','offers','toolOffers','itemOffers','soldJoker','freeRerolls']);
   integer(s.visitIndex,0,stageMaximum-1);integer(s.rerollCount);integer(s.purchases,0,commandSeq);bool(s.soldJoker);
   oneOf(s.freeRerolls,[0,1]);if((!config.programsEnabled||!config.reroll.allowed)&&s.freeRerolls!==0)fail('invalid-save-free-rerolls');
@@ -102,7 +106,7 @@ function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeC
       const definition=R2_JOKERS.find(joker=>joker.id===definitionId);
       if(!definition||!supportsR2Joker(definition))fail('save-joker-offer-not-enabled');
       if(offer.edition!==undefined){oneOf(offer.edition,EDITIONS);if(!r2EditionSupported(offer.edition as typeof EDITIONS[number]))fail('save-offer-edition-not-enabled');}
-      if(offer.price!==r2Price(definitionId,offer.edition as typeof EDITIONS[number]|undefined))fail('invalid-save-offer-price');
+      if(offer.price!==r2Price(definitionId,offer.edition as typeof EDITIONS[number]|undefined,identity))fail('invalid-save-offer-price');
     }else if(name==='toolOffers'){
       const definition=R2_TOOL_CATALOG.tools.find(tool=>tool.id===definitionId);
       if(!definition||!r2ToolSupported(definitionId)||!definition.shopWeight)fail('save-tool-offer-not-enabled');
@@ -115,14 +119,16 @@ function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeC
     }
   }
 }
-function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefinitionsFor>;runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[]}):void {
+function trace(value:unknown,context:{combo:boolean;definitions:ReturnType<typeof r2JokerDefinitionsFor>;runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[];liveJokers?:readonly R2JokerInstance[];settledGold?:number}):void {
   if(value===null)return;
-  const R2_JOKERS=context.definitions;
+  const R2_JOKERS=context.definitions,combo=context.combo;
   const stage=context.stage;if(!stage)return fail('invalid-save-trace-stage');
   const successfulStage=stage.skipResult===null&&stage.clearId!==null&&stage.index+1===context.stageIndex&&BigInt(stage.heat)>=BigInt(stage.targetHeat);
   const prototype=context.amoScoreTiming==='assist-v1';
-  const t=record(value,[...(prototype?['assist']:[]),'rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng','destroyedJokerIds','goldDelta','destroyedCardIds','cards','sourceJokers','bossContext']);
-  oneOf(t.rulesVersion,['r2']);text(t.rootId);oneOf(t.handType,R2_HAND_TYPES);integer(t.level,1,30);score(t.finalScore);accumulator(t.accumulator);cursor(t.rng);jokers(t.jokers,context.config.jokerSlots);
+  const t=record(value,[...(combo?['combo']:[]),...(prototype?['assist']:[]),'rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng','destroyedJokerIds','goldDelta','destroyedCardIds','cards','sourceJokers','bossContext']);
+  let clearCapital:number|null=null;
+  if(combo){const clock=record(t.combo,['goldBeforeRewards']);if(clock.goldBeforeRewards!==null)integer(clock.goldBeforeRewards);clearCapital=clock.goldBeforeRewards as number|null;if(successfulStage!==(clearCapital!==null))fail('invalid-save-combo-clear-clock');}
+  oneOf(t.rulesVersion,['r2']);text(t.rootId);oneOf(t.handType,R2_HAND_TYPES);integer(t.level,1,30);score(t.finalScore);accumulator(t.accumulator);cursor(t.rng);jokers(t.jokers,context.config.jokerSlots,R2_JOKERS);
   const bossContext=record(t.bossContext,['boss','previousHandType','sealedJokerIds','challengeDisabledJokerId']);
   if(bossContext.challengeDisabledJokerId!==stage.challengeDisabledJokerId)fail('invalid-save-trace-challenge-ban');
   if(bossContext.boss!==null)bossPlan(bossContext.boss);
@@ -135,7 +141,7 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
   for(const [key,ids] of Object.entries(sets))strings(ids,key==='heldIds'?R2_RESOURCE_CONTRACT.handMaximum:R2_LIMITS.maxSelected);
   const played=sets.playedIds as string[],held=sets.heldIds as string[],scoring=sets.scoringIds as string[],active=sets.activeScoringIds as string[],consumed=prototype?sets.assistConsumedIds as string[]:[],all=[...played,...held,...consumed];
   if(!played.length||all.length>R2_RESOURCE_CONTRACT.handMaximum||new Set(all).size!==all.length||new Set(scoring).size!==scoring.length||scoring.some(id=>!played.includes(id))||new Set(active).size!==active.length||active.some(id=>!scoring.includes(id)))fail('invalid-save-trace-cards');
-  integer(t.goldDelta,0,R2_TOOL_CATALOG.limits.luckyGoldPerHand);cards(t.cards,R2_RESOURCE_CONTRACT.handMaximum,context.config.enhancementsAllowed);jokers(t.sourceJokers,context.config.jokerSlots);
+  integer(t.goldDelta,0,R2_TOOL_CATALOG.limits.luckyGoldPerHand);cards(t.cards,R2_RESOURCE_CONTRACT.handMaximum,context.config.enhancementsAllowed);jokers(t.sourceJokers,context.config.jokerSlots,R2_JOKERS);
   const cardSources=new Map((t.cards as PlayingCard[]).map(card=>[card.id,card])),jokerSources=new Map((t.sourceJokers as R2JokerInstance[]).map(joker=>[joker.instanceId,joker]));
   if([...jokerSources.keys()].some(id=>!stage.initialJokerIds.includes(id)))fail('invalid-save-trace-initial-jokers');
   const disabledJokers=new Set(r2ScoringDisabledJokerIds(boss,[...jokerSources.values()],R2_JOKERS,startingSeals,stage.challengeDisabledJokerId));
@@ -158,6 +164,7 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
   const eventIds=new Set<unknown>(),rootEventIds:unknown[]=[],destroyedCards:string[]=[],destroyedJokers:string[]=[],glassHits=new Set<string>(),heldGoldSources=new Set<string>();let luckyGold=0n;
   const coefficients=new Map([...jokerSources.values()].filter(joker=>Object.hasOwn(joker.growth,'coefficient')).map(joker=>[joker.instanceId,Rational.fromJSON(joker.growth.coefficient)]));
   const coefficientReads=new Set<string>(),coefficientChanges=new Set<string>(),chanceChecks=new Map<string,boolean>(),chanceHeat=new Set<string>(),clearCycles=new Map<string,number>(),rewardSources=new Set<string>(),handRefunds=new Set<string>();
+  const comboEvents=new Set<string>();
   const assistWholeEffects=new Set<string>(),assistEditionSources=new Set<string>();
   const emptySlotRewards=new Set<string>();
   const lifetimeCounts=new Map<string,number>(),rescues=new Set<string>();let previousEvent:Record<string,unknown>|undefined;
@@ -169,12 +176,13 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
     if(['H','M'].some(key=>Rational.fromJSON(a[key]).compare(Rational.fromJSON(b[key]))!==0))fail('invalid-save-resource-score');
   };
   for(const item of events){
-    const e=record(item,['eventId','rootId','rootEventId','phase','sourceType','sourceDefinitionId','sourceInstanceId','operation','value','before','after','reasonKey','visibleCondition','retriggerDepth'],['targetCardId','targetJokerInstanceId','resourceBefore','resourceAfter','targetHandType','growthBefore','growthAfter','rewardDefinitionId','programGoldBeforeReward']);
+    const e=record(item,['eventId','rootId','rootEventId','phase','sourceType','sourceDefinitionId','sourceInstanceId','operation','value','before','after','reasonKey','visibleCondition','retriggerDepth'],['targetCardId','targetJokerInstanceId','resourceBefore','resourceAfter','targetHandType','growthBefore','growthAfter','rewardDefinitionId','programGoldBeforeReward',...(combo?['goldBeforeRewards']:[])]);
     for(const k of ['eventId','rootId','rootEventId','sourceDefinitionId','sourceInstanceId','reasonKey'])text(e[k]);
     if(e.rootId!==t.rootId||eventIds.has(e.eventId))fail('invalid-save-trace-root');eventIds.add(e.eventId);rootEventIds.push(e.rootEventId);
     oneOf(e.phase,['base','onCardScore','onHeldCard','characterScore','jokerScore','finalScore','afterHand','beforeFailure','onStageClear']);
     oneOf(e.sourceType,['rule','card','character','joker']);
     oneOf(e.operation,SCORE_OPERATIONS);
+    if(!combo&&['multiply-coefficient','rescue-multiplier','consume-rescue','add-gold-per-held','add-gold-per-capital'].includes(e.operation as string))fail('invalid-save-combo-operation');
     if(sealTargets.length&&['afterHand','beforeFailure'].includes(e.phase as string))fail('invalid-save-boss-seal-order');
     if(e.phase==='onStageClear')clearSeen=true;
     if(e.operation==='seal-joker')text(e.targetJokerInstanceId);
@@ -182,7 +190,7 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
     if(e.operation==='upgrade-hand'){oneOf(e.targetHandType,R2_HAND_TYPES);if(!context.discoveredHands.includes(e.targetHandType as string))fail('undiscovered-save-upgrade-target');}
     else if(Object.hasOwn(e,'targetHandType'))fail('invalid-save-target-hand-operation');
     fraction(e.value);accumulator(e.before);accumulator(e.after);integer(e.retriggerDepth,0,1);if(e.targetCardId!==undefined)text(e.targetCardId);
-    if(!validR2Condition(e.visibleCondition)||!prototype&&e.visibleCondition.kind==='hand-type-relation')fail('invalid-save-visible-condition');
+    if(!validR2Condition(e.visibleCondition)||e.visibleCondition.kind==='cold-opening-discard'||!prototype&&!combo&&e.visibleCondition.kind==='hand-type-relation')fail('invalid-save-visible-condition');
     if(Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter')){integer(e.resourceBefore);integer(e.resourceAfter);}
     const sourceCard=cardSources.get(e.sourceInstanceId as string);
     if(e.targetCardId!==undefined){
@@ -202,7 +210,8 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
     if(e.sourceType==='character'&&(boss?.definitionId==='B08'||!context.config.characterAbilityEnabled)&&e.phase==='characterScore')fail('invalid-save-disabled-character-event');
     if(e.sourceType==='rule'&&(e.sourceInstanceId!==context.runId||![t.handType,'B02','B05','B12','B15',...clearRuleDefinitions,...programRuleDefinitions].includes(e.sourceDefinitionId)))fail('invalid-save-rule-source');
     const amount=Rational.fromJSON(e.value);
-    const adaptedJoker=prototype&&e.sourceType==='joker'&&sourceJoker&&R2_ASSIST_ADAPTED_IDS.includes(sourceJoker.definitionId);
+    const comboSource=combo&&e.sourceType==='joker'&&!!sourceJoker&&R2_COMBO_GROWTH_IDS.includes(sourceJoker.definitionId);
+    const adaptedJoker=(prototype||combo)&&e.sourceType==='joker'&&sourceJoker&&(R2_ASSIST_ADAPTED_IDS.includes(sourceJoker.definitionId)||comboSource);
     let validatedEdition=false;
     if(adaptedJoker){
       if((e.reasonKey as string).startsWith('edition.')){
@@ -221,7 +230,11 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
         assistEditionSources.add(sourceJoker!.instanceId);validatedEdition=true;
       }else if(e.phase==='jokerScore'&&assistEditionSources.has(sourceJoker!.instanceId))fail('invalid-save-assist-joker-edition-order');
     }
-    if(adaptedJoker&&!validatedEdition){
+    if(comboSource&&!validatedEdition){
+      const allowed:Record<string,readonly string[]>={a06:['read-coefficient','multiply-coefficient'],f10:['rescue-multiplier','consume-rescue'],d12:['add-gold-per-held'],e04:['add-gold-per-capital']};
+      if(!allowed[sourceJoker!.definitionId].includes(e.operation as string)||e.rootEventId!==e.eventId||e.phase==='jokerScore'&&finalSeen)fail('invalid-save-combo-body-operation');
+    }
+    if(adaptedJoker&&!validatedEdition&&!comboSource){
       const definition=R2_JOKERS.find(d=>d.id===sourceJoker.definitionId)!;
       const hook=definition.hooks.find(h=>h.phase===e.phase&&stableHash(h.condition)===stableHash(e.visibleCondition));
       const op=hook?.operations.find(o=>o.kind===e.operation||o.kind==='retrigger-card'&&e.operation==='retrigger-cap');
@@ -308,7 +321,7 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
     }else if(Object.hasOwn(e,'programGoldBeforeReward')||['reward-free-reroll','program-reward-skipped'].includes(e.operation as string))fail('invalid-save-program-metadata');
     const coefficientOperation=e.operation==='read-coefficient'||e.operation==='add-coefficient';
     if(e.operation==='reset-coefficient')fail('invalid-save-coefficient-phase'); // Sales have their own committed DomainEvent.
-    if(coefficientOperation){
+    if(coefficientOperation&&!(combo&&sourceJoker?.definitionId==='a06')){
       if(e.sourceType!=='joker'||!sourceJoker||!['e11','f12'].includes(sourceJoker.definitionId)||e.targetCardId!==undefined||e.retriggerDepth!==0||Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter'))fail('invalid-save-coefficient-source');
       const definition=R2_JOKERS.find(definition=>definition.id===sourceJoker!.definitionId)!;
       const current=coefficients.get(sourceJoker!.instanceId)!;
@@ -325,7 +338,46 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
         coefficients.set(sourceJoker!.instanceId,after);coefficientChanges.add(sourceJoker!.instanceId);
       }
     }
-    if((Object.hasOwn(e,'growthBefore')||Object.hasOwn(e,'growthAfter'))&&e.operation!=='add-coefficient')fail('invalid-save-growth-operation');
+    if((Object.hasOwn(e,'growthBefore')||Object.hasOwn(e,'growthAfter'))&&e.operation!=='add-coefficient'&&!(combo&&e.operation==='multiply-coefficient'))fail('invalid-save-growth-operation');
+    if(combo&&sourceJoker?.definitionId==='a06'&&['read-coefficient','multiply-coefficient'].includes(e.operation as string)){
+      const source=sourceJoker,qualified=AMO_ASSIST_TYPES.includes(t.handType as R2HandType),key=source.instanceId+'/'+e.operation;
+      if(e.sourceType!=='joker'||e.targetCardId!==undefined||e.retriggerDepth!==0||comboEvents.has(key))fail('invalid-save-combo-coefficient-source');comboEvents.add(key);
+      const current=coefficients.get(source.instanceId)!;
+      if(e.operation==='read-coefficient'){
+        if(!qualified||e.phase!=='jokerScore'||amount.compare(current)!==0||Object.hasOwn(e,'growthBefore')||Object.hasOwn(e,'resourceBefore'))fail('invalid-save-combo-coefficient-read');
+        const before=e.before as {H:unknown;M:unknown},after=e.after as {H:unknown;M:unknown};
+        if(Rational.fromJSON(before.H).compare(Rational.fromJSON(after.H))||Rational.fromJSON(before.M).multiply(amount).compare(Rational.fromJSON(after.M)))fail('invalid-save-combo-coefficient-read');
+        coefficientReads.add(source.instanceId);
+      }else{
+        const previous=bossContext.previousHandType as R2HandType|null,cap=new Rational(1000000n),raw=current.multiply(new Rational(23n,20n)),expected=raw.compare(cap)>0?cap:raw;
+        if(!qualified||previous===null||!AMO_ASSIST_TYPES.includes(previous)||previous===t.handType||source.counters!.alternationUsed||e.phase!=='afterHand'||!finalSeen||e.resourceBefore!==0||e.resourceAfter!==1||amount.compare(new Rational(23n,20n)))fail('invalid-save-combo-coefficient-growth');
+        fraction(e.growthBefore);fraction(e.growthAfter);unchanged(e.before,e.after);
+        if(Rational.fromJSON(e.growthBefore).compare(current)||Rational.fromJSON(e.growthAfter).compare(expected))fail('invalid-save-combo-coefficient-growth');
+        coefficients.set(source.instanceId,expected);coefficientChanges.add(source.instanceId);
+      }
+      const hook=R2_JOKERS.find(d=>d.id==='a06')!.hooks.find(h=>h.phase===e.phase)!;
+      if(stableHash(e.visibleCondition)!==stableHash(hook.condition)||e.reasonKey!==`a06.${e.operation}`)fail('invalid-save-combo-coefficient-condition');
+    }else if(e.operation==='multiply-coefficient')fail('invalid-save-combo-coefficient-source');
+    if(e.operation==='rescue-multiplier'||e.operation==='consume-rescue'){
+      const key=e.sourceInstanceId+'/'+e.operation;
+      if(!combo||e.sourceType!=='joker'||sourceJoker?.definitionId!=='f10'||!sourceJoker.counters?.rescueArmed||comboEvents.has(key)||e.targetCardId!==undefined||e.retriggerDepth!==0)fail('invalid-save-combo-rescue-source');comboEvents.add(key);
+      if(e.operation==='rescue-multiplier'){
+        if(e.phase!=='jokerScore'||!AMO_ASSIST_TYPES.includes(t.handType as R2HandType)||amount.compare(new Rational(3n))||Object.hasOwn(e,'resourceBefore'))fail('invalid-save-combo-rescue-score');
+        const before=e.before as {H:unknown;M:unknown},after=e.after as {H:unknown;M:unknown};
+        if(Rational.fromJSON(before.H).compare(Rational.fromJSON(after.H))||Rational.fromJSON(before.M).multiply(amount).compare(Rational.fromJSON(after.M)))fail('invalid-save-combo-rescue-score');
+      }else{if(e.phase!=='afterHand'||!finalSeen||amount.compare(new Rational(1n))||e.resourceBefore!==1||e.resourceAfter!==0)fail('invalid-save-combo-rescue-consume');unchanged(e.before,e.after);}
+      const hook=R2_JOKERS.find(d=>d.id==='f10')!.hooks.find(h=>h.phase===e.phase)!;
+      if(stableHash(e.visibleCondition)!==stableHash(hook.condition)||e.reasonKey!==`f10.${e.operation}`)fail('invalid-save-combo-rescue-condition');
+    }
+    if(e.operation==='add-gold-per-held'||e.operation==='add-gold-per-capital'){
+      const id=e.operation==='add-gold-per-held'?'d12':'e04',key=e.sourceInstanceId+'/'+e.operation;
+      if(!combo||e.sourceType!=='joker'||sourceJoker?.definitionId!==id||!successfulStage||e.phase!=='onStageClear'||e.targetCardId!==undefined||e.retriggerDepth!==0||comboEvents.has(key))fail('invalid-save-combo-income-source');comboEvents.add(key);
+      let expected=0;
+      if(id==='d12'){if(Object.hasOwn(e,'goldBeforeRewards'))fail('invalid-save-combo-income-capital');expected=AMO_ASSIST_TYPES.includes(t.handType as R2HandType)&&held.length>=4?Math.min(held.length,6):0;}
+      else{integer(e.goldBeforeRewards);if(e.goldBeforeRewards!==clearCapital)fail('invalid-save-combo-income-capital');expected=Math.min(Math.floor((e.goldBeforeRewards as number)/10),6);}
+      integer(e.resourceBefore);integer(e.resourceAfter);unchanged(e.before,e.after);
+      if(expected===0||amount.compare(new Rational(BigInt(expected)))||e.resourceAfter!==(e.resourceBefore as number)+expected||e.reasonKey!==`${id}.${e.operation}`||stableHash(e.visibleCondition)!==stableHash(R2_JOKERS.find(d=>d.id===id)!.hooks[0].condition))fail('invalid-save-combo-income-value');
+    }else if(Object.hasOwn(e,'goldBeforeRewards'))fail('invalid-save-combo-income-capital');
     if(e.operation==='chance-heat-check'){
       if(e.sourceType!=='joker'||sourceJoker?.definitionId!=='f08'||e.phase!=='jokerScore'||e.targetCardId!==undefined||e.retriggerDepth!==0||chanceChecks.has(sourceJoker.instanceId)||amount.d!==1n||amount.n!==0n&&amount.n!==1n||Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter'))fail('invalid-save-chance-source');
       unchanged(e.before,e.after);chanceChecks.set(sourceJoker!.instanceId,amount.n===1n);
@@ -416,9 +468,26 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
     }
     previousEvent=e;
   }
-  if(prototype)for(const source of jokerSources.values())if(R2_ASSIST_ADAPTED_IDS.includes(source.definitionId)){
+  if(prototype||combo)for(const source of jokerSources.values())if(R2_ASSIST_ADAPTED_IDS.includes(source.definitionId)||combo&&R2_COMBO_GROWTH_IDS.includes(source.definitionId)){
     const expected=!!R2_TOOL_CATALOG.editions.find(row=>row.id===(source.edition??'none'))?.effect&&!disabledJokers.has(source.instanceId);
     if(assistEditionSources.has(source.instanceId)!==expected)fail('invalid-save-assist-joker-edition-count');
+  }
+  if(combo){
+    for(const source of jokerSources.values()){
+      const expected=successfulStage&&(source.definitionId==='d12'?AMO_ASSIST_TYPES.includes(t.handType as R2HandType)&&held.length>=4:source.definitionId==='e04'&&clearCapital!==null&&clearCapital>=10);
+      if(['d12','e04'].includes(source.definitionId)&&comboEvents.has(source.instanceId+'/'+(source.definitionId==='d12'?'add-gold-per-held':'add-gold-per-capital'))!==expected)fail('invalid-save-combo-income-count');
+    }
+    if(successfulStage){
+      const base=[4,5,7][stage.index%3]+stage.handsLeft+Math.min(context.config.baseInterestCap,Math.floor(clearCapital!/5))+(context.config.characterAbilityEnabled&&context.characterId==='xiemu'&&stage.handsLeft===0?2:0);
+      let balance=BigInt(clearCapital!)+BigInt(base),earned=BigInt(base);
+      for(const event of events as Record<string,unknown>[])if(event.phase==='onStageClear'){
+        if(event.programGoldBeforeReward!==undefined&&event.programGoldBeforeReward!==clearCapital)fail('invalid-save-combo-clear-clock');
+        if(!['add-gold','add-gold-per-held','add-gold-per-capital'].includes(event.operation as string))continue;
+        const amount=Rational.fromJSON(event.value);if(amount.d!==1n||BigInt(event.resourceBefore as number)!==balance||BigInt(event.resourceAfter as number)!==balance+amount.n)fail('invalid-save-combo-clear-ledger');
+        balance+=amount.n;earned+=amount.n;
+      }
+      if(earned!==BigInt(stage.goldEarned)||context.settledGold!==undefined&&balance!==BigInt(context.settledGold))fail('invalid-save-combo-clear-ledger');
+    }
   }
   if(context.characterId==='amo'){
     const ordered=events as Record<string,unknown>[],roles=ordered.map((e,i)=>e.sourceType==='character'?i:-1).filter(i=>i>=0);
@@ -462,7 +531,18 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
     const source=jokerSources.get(joker.instanceId)!;
     if(joker.definitionId!==source.definitionId||joker.paidPrice!==source.paidPrice||(joker.edition??'none')!==(source.edition??'none'))fail('invalid-save-joker-result-identity');
     const coefficient=coefficients.get(joker.instanceId);
-    if(coefficient&&(Rational.fromJSON(joker.growth.coefficient).compare(coefficient)!==0||!disabledJokers.has(joker.instanceId)&&!coefficientReads.has(joker.instanceId)))fail('invalid-save-coefficient-result');
+    if(coefficient&&!(combo&&source.definitionId==='a06')&&(Rational.fromJSON(joker.growth.coefficient).compare(coefficient)!==0||!disabledJokers.has(joker.instanceId)&&!coefficientReads.has(joker.instanceId)))fail('invalid-save-coefficient-result');
+    const live=context.liveJokers?.find(j=>j.instanceId===source.instanceId);
+    if(combo&&live&&['a06','f10'].includes(source.definitionId)&&(stableHash(live.growth)!==stableHash(joker.growth)||stableHash(live.counters)!==stableHash(joker.counters)))fail('invalid-save-combo-live-state');
+    if(combo&&source.definitionId==='a06'){
+      const qualified=AMO_ASSIST_TYPES.includes(t.handType as R2HandType),previous=bossContext.previousHandType as R2HandType|null;
+      const grows=!source.counters!.alternationUsed&&qualified&&previous!==null&&AMO_ASSIST_TYPES.includes(previous)&&previous!==t.handType;
+      if(coefficientReads.has(source.instanceId)!==(qualified&&!disabledJokers.has(source.instanceId))||coefficientChanges.has(source.instanceId)!==grows||joker.counters!.alternationUsed!==(source.counters!.alternationUsed||grows)||Rational.fromJSON(joker.growth.coefficient).compare(coefficients.get(source.instanceId)!))fail('invalid-save-combo-coefficient-result');
+    }
+    if(combo&&source.definitionId==='f10'){
+      const armed=source.counters!.rescueArmed,expectedArmed=stage.playIndex===1&&r2ColdOpening(stage.openingDiscard),qualifies=AMO_ASSIST_TYPES.includes(t.handType as R2HandType)&&!disabledJokers.has(source.instanceId);
+      if(armed!==expectedArmed||joker.counters!.rescueArmed!==false||comboEvents.has(source.instanceId+'/consume-rescue')!==armed||comboEvents.has(source.instanceId+'/rescue-multiplier')!==(armed&&qualifies))fail('invalid-save-combo-rescue-result');
+    }
     if(source.definitionId==='e10'&&joker.counters!.stageClears!==(clearCycles.get(joker.instanceId)??source.counters!.stageClears))fail('invalid-save-clear-cycle-result');
     if(source.definitionId==='f06'&&joker.counters?.handsScored!==lifetimeCounts.get(joker.instanceId))fail('invalid-save-lifetime-result');
     if(source.definitionId==='f08'&&!disabledJokers.has(joker.instanceId)&&(!chanceChecks.has(joker.instanceId)||chanceChecks.get(joker.instanceId)!==chanceHeat.has(joker.instanceId)))fail('invalid-save-chance-result');
@@ -470,13 +550,13 @@ function trace(value:unknown,context:{definitions:ReturnType<typeof r2JokerDefin
   for(const [id,cycle] of clearCycles)if((cycle===0)!==rewardSources.has(id))fail('invalid-save-clear-cycle-reward');
 }
 function action(value:unknown,state:R2RunState):void {
-  const prototype=r2RulesetFor(state)!.amoScoreTiming==='assist-v1';
+  const prototype=r2UsesAssist(state),combo=isR2ComboGrowth(state);
   const a=record(value,['type'],['seed','characterId','rulesVersion','modeConfig','r2Profile','r2Identity','assistIds','programId','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind']);
   const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],ContinueEndless:[],ChooseProgram:['programId'],AbandonProgram:[],PlayHand:['selectedIds'],PlayAssistedHand:['selectedIds','assistIds'],DiscardHand:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
   if(typeof a.type!=='string'||!Object.hasOwn(keys,a.type))fail('unknown-save-command');
-  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='StartRun'?['modeConfig','r2Identity',...(prototype?['r2Profile']:[])]:[]);
+  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='StartRun'?['modeConfig','r2Identity',...(prototype||combo?['r2Profile']:[])]:[]);
   if(a.type==='PlayAssistedHand'&&!prototype)fail('invalid-save-assist-profile');
-  if(a.type==='StartRun'&&prototype&&((a.r2Identity===undefined&&a.r2Profile!=='amo-assist-v1')||a.characterId!=='amo'))fail('invalid-save-assist-profile');
+  if(a.type==='StartRun'&&prototype&&((a.r2Identity===undefined&&a.r2Profile!==(combo?'combo-growth-v1':'amo-assist-v1'))||a.characterId!=='amo'))fail('invalid-save-assist-profile');
   if(a.type==='PlayAssistedHand'){uniqueIds(a.selectedIds,5);uniqueIds(a.assistIds,3);const main=a.selectedIds as string[],assist=a.assistIds as string[];if(!main.length||assist.length<2||assist.some(id=>main.includes(id)))fail('invalid-save-assist-command');}
   if(a.handType!==undefined)oneOf(a.handType,R2_HAND_TYPES);
   if(a.secondaryHandType!==undefined)oneOf(a.secondaryHandType,R2_HAND_TYPES);
@@ -484,6 +564,8 @@ function action(value:unknown,state:R2RunState):void {
   if(a.sacrificeId!==undefined)text(a.sacrificeId);
   if(a.targetKind!==undefined)oneOf(a.targetKind,['card','joker']);
   if(a.type==='StartRun'){
+    if(combo&&a.r2Identity===undefined&&a.r2Profile!=='combo-growth-v1')fail('invalid-save-start-profile');
+    if(a.r2Profile!==undefined&&a.r2Profile!==(combo?'combo-growth-v1':'amo-assist-v1'))fail('invalid-save-start-profile');
     text(a.seed,4096);oneOf(a.characterId,CHARACTER_IDS);oneOf(a.rulesVersion,['r2']);
     if(a.r2Identity!==undefined){
       const identity=record(a.r2Identity,['contentVersion','contentHash']);
@@ -515,8 +597,8 @@ function validateState(value:unknown):asserts value is R2RunState {
   if(value&&typeof value==='object'&&!Array.isArray(value)){const tags=value as Record<string,unknown>;if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||!r2RulesetFor(tags))fail('incompatible-version');}
   const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','mode','difficulty','challengeId','programsEnabled','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons','safetyNetUsed','spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed','tourMode','normalCompletion','chapterDisabledJokerId','programRerollCoupon']);
   if(s.schemaVersion!==2||s.rulesVersion!=='r2'||!r2RulesetFor(s))fail('incompatible-version');
-  const prototype=r2RulesetFor(s)!.amoScoreTiming==='assist-v1';
-  if(prototype&&s.characterId!=='amo')fail('invalid-save-assist-profile');
+  const prototype=r2UsesAssist(s),combo=isR2ComboGrowth(s),definitions=r2JokerDefinitionsFor(s);
+  if(s.contentVersion===R2_ASSIST_VERSION&&s.characterId!=='amo')fail('invalid-save-assist-profile');
   const selected=resolveR2ModeConfig({mode:s.mode,difficulty:s.difficulty,challengeId:s.challengeId,programsEnabled:s.programsEnabled});
   const config=selected.ok?selected.config:fail('invalid-save-mode');
   if(!r2ModeSeedAllowed(config,s.seed)||config.mode==='tutorial'&&s.characterId!=='erxiang')fail('invalid-save-mode-seed-character');
@@ -526,7 +608,7 @@ function validateState(value:unknown):asserts value is R2RunState {
   oneOf(s.phase,['shop','stage-ready','await-input','stage-cleared','run-won','run-lost']);
   cards(s.deckInstances,R2_RESOURCE_CONTRACT.deckMaximum,config.enhancementsAllowed);
   for(const k of ['drawPile','handOrder','playedPile','discardPile','destroyedIds','longTermItems'])strings(s[k]);
-  score(s.totalHeat);integer(s.gold);jokers(s.jokers,config.jokerSlots);
+  score(s.totalHeat);integer(s.gold);jokers(s.jokers,config.jokerSlots,definitions);
   bool(s.programRerollCoupon);
   if((!config.programsEnabled||!config.reroll.allowed)&&s.programRerollCoupon)fail('invalid-save-program-coupon');
   if(config.chapterJokerBanCount===0?s.chapterDisabledJokerId!==null:!R2_JOKERS.some(joker=>joker.id===s.chapterDisabledJokerId))fail('invalid-save-chapter-challenge-ban');
@@ -560,7 +642,15 @@ function validateState(value:unknown):asserts value is R2RunState {
   bossPlan(s.boss);strings(s.seenBossIds,chapterMaximum);
   if(!r2BossHistoryValid(s.seenBossIds as string[],s.chapter as number,tourMode)||(s.seenBossIds as string[]).at(-1)!==s.boss.definitionId)fail('invalid-save-boss-history');
   oneOf(s.chapterSkipConsumable,R2_SKIP_CONSUMABLES);integer(s.purchaseCoupons,0,chapterMaximum);bool(s.safetyNetUsed);
-  if(s.stage!==null){const t=record(s.stage,[...(prototype?['assistUsed']:[]),'index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult','initialHands','initialDiscards','discardSpent','discardGained','doubleDiscardBeforeFirstPlay','maxPlayedCount','ordinaryStraightSeen','ordinaryFlushSeen','quadRefundUsed','jokerSold','boss','initialTargetHeat','initialHandLimit','initialJokerIds','sealedJokerIds','challengeDisabledJokerId']);
+  if(s.stage!==null){const t=record(s.stage,[...(combo?['openingDiscard']:[]),...(prototype?['assistUsed']:[]),'index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult','initialHands','initialDiscards','discardSpent','discardGained','doubleDiscardBeforeFirstPlay','maxPlayedCount','ordinaryStraightSeen','ordinaryFlushSeen','quadRefundUsed','jokerSold','boss','initialTargetHeat','initialHandLimit','initialJokerIds','sealedJokerIds','challengeDisabledJokerId']);
+    if(combo&&t.openingDiscard!==null){
+      const opening=record(t.openingDiscard,['hand','discardedIds','jokers']);cards(opening.hand,R2_RESOURCE_CONTRACT.handMaximum,config.enhancementsAllowed);jokers(opening.jokers,config.jokerSlots,definitions);uniqueIds(opening.discardedIds,5);
+      const hand=opening.hand as PlayingCard[],ids=opening.discardedIds as string[],sources=opening.jokers as R2JokerInstance[];
+      if(!hand.length||hand.length>(t.initialHandLimit as number)||!ids.length||ids.some(id=>!hand.some(c=>c.id===id))||sources.some(j=>!(t.initialJokerIds as string[]).includes(j.instanceId))||!sources.some(j=>j.definitionId==='f10'&&j.counters?.rescueArmed===false)||(t.discardsUsed as number)<1)fail('invalid-save-opening-discard');
+      if(hand.some(c=>!(s.deckInstances as PlayingCard[]).some(d=>d.id===c.id))||ids.some(id=>!(s.discardPile as string[]).includes(id)&&!(s.destroyedIds as string[]).includes(id)))fail('invalid-save-opening-discard-zone');
+      if(stableHash(ids)!==stableHash(hand.filter(c=>ids.includes(c.id)).map(c=>c.id)))fail('invalid-save-opening-discard-order');
+    }
+    if(combo&&t.playIndex===0&&(t.discardsUsed as number)>0&&(s.jokers as R2JokerInstance[]).some(j=>j.definitionId==='f10')&&t.openingDiscard===null)fail('invalid-save-opening-discard-missing');
     if(prototype){bool(t.assistUsed);if(t.assistUsed&&(!config.characterAbilityEnabled||t.playIndex===0||(t.boss as R2BossPlan|null)?.definitionId==='B08'))fail('invalid-save-assist-usage');}
     integer(t.index,0,stageMaximum-1);score(t.targetHeat);score(t.heat);integer(t.handLimit,R2_RESOURCE_CONTRACT.handMinimum,R2_RESOURCE_CONTRACT.handMaximum);bool(t.rescueUsed);if(t.previousHandScore!==null)score(t.previousHandScore);
     score(t.initialTargetHeat);integer(t.initialHandLimit,R2_RESOURCE_CONTRACT.handMinimum,R2_RESOURCE_CONTRACT.handMaximum);uniqueIds(t.initialJokerIds,config.jokerSlots);uniqueIds(t.sealedJokerIds,config.jokerSlots);
@@ -592,7 +682,7 @@ function validateState(value:unknown):asserts value is R2RunState {
       config.mode==='standard'&&completed.clearId!==completion!.clearId||completed.skipResult!==null||BigInt(completed.heat)<BigInt(completed.targetHeat))fail('invalid-save-normal-completion');
   }
   if(s.shop!==null){
-    shop(s.shop,s.commandSeq as number,stageMaximum,config);
+    shop(s.shop,s.commandSeq as number,stageMaximum,config,s);
     if(s.phase!=='shop'&&(s.shop as Record<string,unknown>).freeRerolls!==0)fail('invalid-save-expired-free-rerolls');
   }
   const rng=record(s.rng,['deck','shop','rule','reward','program','challenge']);Object.values(rng).forEach(cursor);
@@ -600,9 +690,9 @@ function validateState(value:unknown):asserts value is R2RunState {
   for(const r of receipts){const v=record(r,['commandId','fingerprint','seq']);text(v.commandId);text(v.fingerprint);integer(v.seq,1);if(v.seq!==++seq||ids.has(v.commandId))fail('invalid-save-receipts');ids.add(v.commandId);}
   if(seq!==s.commandSeq)fail('invalid-save-sequence');
   const stage=s.stage as R2RunState['stage'],sameStage=stage?.index===s.stageIndex&&['await-input','run-lost'].includes(s.phase as string);
-  trace(s.lastTrace,{definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2RulesetFor(s)!.amoScoreTiming,discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
+  trace(s.lastTrace,{combo,definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2ScoreTimingFor(s),discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
     config,program:s.program as R2ProgramState|null,usage:usage as R2RunState['chapterHandUsage'],
-    liveJokerIds:sameStage?(s.jokers as R2JokerInstance[]).map(joker=>joker.instanceId):undefined});
+    liveJokerIds:sameStage?(s.jokers as R2JokerInstance[]).map(joker=>joker.instanceId):undefined,liveJokers:combo||sameStage?s.jokers as R2JokerInstance[]:undefined,settledGold:['stage-cleared','run-won'].includes(s.phase as string)?s.gold as number:undefined});
   const program=s.program as R2ProgramState|null;
   if(program?.claimed){
     const last=value as R2RunState;
@@ -630,7 +720,7 @@ export function readCheckpoint(value:unknown):ReadResult {
       const receipt=state.receipts.find(r=>r.commandId===command.commandId);if(!receipt||receipt.seq!==seq||receipt.fingerprint!==stableHash(command))fail('invalid-save-command-receipt');
     }
     if(seq!==state.commandSeq)fail('invalid-save-journal-sequence');
-    if(r2RulesetFor(state)!.amoScoreTiming==='assist-v1'){
+    if(r2UsesAssist(state)){
       let used:boolean|undefined;
       const journalConsumed=new Set<string>();
       for(const entry of journal as Command[]){

@@ -95,7 +95,7 @@ export interface RunState {
 }
 
 export type Action =
-  | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2';modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1';r2Identity?:{contentVersion:string;contentHash:string} }
+  | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2';modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1'|'combo-growth-v1';r2Identity?:{contentVersion:string;contentHash:string} }
   | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' | 'SkipStage' | 'ContinueEndless' }
   | { type: 'PlayHand'; selectedIds: readonly string[] }
   | { type: 'PlayAssistedHand'; selectedIds: readonly string[]; assistIds:readonly string[] }
@@ -125,7 +125,7 @@ export type DomainEvent =
   | { type: 'run-abandoned' }
   | { type: 'stage-skipped';stage: R2StageState }
   | { type: 'consumable-used';definitionId:string;instanceId:string;targetIds:string[];createdCardIds:string[];destroyedCardIds:string[];createdJokerIds?:string[];destroyedJokerIds?:string[] }
-  | { type: 'joker-transaction';phase:'onDiscard'|'onStageClear'|'onBuyOffer'|'onSellJoker'|'onReroll'|'afterHand'|'beforeFailure';definitionId:string;instanceId:string;operation:string;amount:string;resourceBefore?:number;resourceAfter?:number;growthBefore?:Fraction;growthAfter?:Fraction;rewardDefinitionId?:string;visibleCondition?:Condition };
+  | { type: 'joker-transaction';phase:'onDiscard'|'onStageClear'|'onBuyOffer'|'onSellJoker'|'onReroll'|'afterHand'|'beforeFailure';definitionId:string;instanceId:string;operation:string;amount:string;resourceBefore?:number;resourceAfter?:number;growthBefore?:Fraction;growthAfter?:Fraction;rewardDefinitionId?:string;goldBeforeRewards?:number;visibleCondition?:Condition };
 
 export type CommandResult<S = RunState> =
   | { ok: true; state: Exclude<S, null>; events: DomainEvent[]; receipt: Receipt; duplicate: boolean }
@@ -324,7 +324,7 @@ export function applyCommand(input: AnyRunState | null, command: Command): Comma
   return { ok: true, state, events, receipt, duplicate: false };
 }
 
-type StartOptions = { seed: string; characterId: CharacterId; runId: string;modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1';r2Identity?:{contentVersion:string;contentHash:string} };
+type StartOptions = { seed: string; characterId: CharacterId; runId: string;modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1'|'combo-growth-v1';r2Identity?:{contentVersion:string;contentHash:string} };
 export function createRun(options: StartOptions & {rulesVersion:'r2'}): R2RunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'}): RunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState;

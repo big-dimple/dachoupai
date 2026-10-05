@@ -9,6 +9,7 @@ export type TransactionHookPhase = 'onDiscard' | 'onStageClear' | 'onBuyOffer' |
 export type HookPhase = ScoreHookPhase | TransactionHookPhase;
 export type Condition =
   | { kind: 'always' }
+  | { kind: 'cold-opening-discard' }
   | { kind: 'hand-type-in'; values: readonly R2HandType[] }
   | { kind: 'rank-in'; values: readonly number[] }
   | { kind: 'played-count'; equals: number }
@@ -42,6 +43,11 @@ export type Operation =
   | { kind: 'read-growth' | 'consume-growth'; key: string; target: 'heat' | 'multiplier' }
   | { kind: 'add-growth'; key: string; value: Fraction; cap: Fraction }
   | { kind: 'read-coefficient'; key:'coefficient' }
+  | { kind: 'multiply-coefficient-once'; key:'coefficient'; value:Fraction; cap:Fraction; initial:Fraction }
+  | { kind: 'arm-rescue' | 'consume-rescue' }
+  | { kind: 'rescue-multiplier'; value:Fraction }
+  | { kind: 'add-gold-per-held'; minimum:4; cap:6 }
+  | { kind: 'add-gold-per-capital'; divisor:10; cap:6 }
   | { kind: 'add-coefficient'; key:'coefficient'; value:Fraction; cap:Fraction; initial:Fraction }
   | { kind: 'reset-coefficient'; key:'coefficient'; initial:Fraction }
   | { kind: 'chance-add-heat'; probability:{n:number;d:number}; value:Fraction }
@@ -73,7 +79,7 @@ export interface R2JokerDefinition {
   modifiers?:readonly R2JokerModifier[];
   requiredFeatures?:readonly R2Feature[];
 }
-export interface R2JokerCounters { singleDiscards?:number; handsScored?:number; stageClears?:number }
+export interface R2JokerCounters { singleDiscards?:number; handsScored?:number; stageClears?:number; alternationUsed?:boolean; rescueArmed?:boolean }
 export interface R2JokerInstance {
   instanceId: string; definitionId: string; paidPrice: number; growth: Record<string, Fraction>;
   counters?:R2JokerCounters;
@@ -99,7 +105,9 @@ const properFraction = (value:unknown):boolean => fraction(value,true)&&Rational
 const probability = (value:unknown):boolean => object(value)&&exact(value,['n','d'])&&integer(value.d,2,100)&&integer(value.n,1,(value.d as number)-1);
 
 /** Fixed C00 lifecycle fields, shared by resolver, run invariants and persistence. */
-export function validR2JokerCounters(definitionId:string,counters:unknown):counters is R2JokerCounters|undefined {
+export function validR2JokerCounters(definitionId:string,counters:unknown,definition?:R2JokerDefinition):counters is R2JokerCounters|undefined {
+  if(definition?.hooks.some(h=>h.operations.some(o=>o.kind==='multiply-coefficient-once')))return definitionId==='a06'&&object(counters)&&exact(counters,['alternationUsed'])&&typeof counters.alternationUsed==='boolean';
+  if(definition?.hooks.some(h=>h.operations.some(o=>o.kind==='arm-rescue')))return definitionId==='f10'&&object(counters)&&exact(counters,['rescueArmed'])&&typeof counters.rescueArmed==='boolean';
   if(definitionId==='e10')return object(counters)&&exact(counters,['stageClears'])&&integer(counters.stageClears,0,1);
   if(counters===undefined)return true;
   if(!object(counters))return false;
@@ -111,7 +119,7 @@ export function validR2JokerCounters(definitionId:string,counters:unknown):count
 export function r2GrowthCaps(definition:R2JokerDefinition):Record<string,Fraction> {
   const caps:Record<string,Fraction>={};
   for(const hook of definition.hooks)for(const op of hook.operations)
-    if(op.kind==='add-growth'||op.kind==='update-score-growth'||op.kind==='add-coefficient')caps[op.key]=op.cap;
+    if(op.kind==='add-growth'||op.kind==='update-score-growth'||op.kind==='add-coefficient'||op.kind==='multiply-coefficient-once')caps[op.key]=op.cap;
   return caps;
 }
 
@@ -119,7 +127,7 @@ export function r2GrowthCaps(definition:R2JokerDefinition):Record<string,Fractio
 export function r2GrowthInitials(definition:R2JokerDefinition):Record<string,Fraction> {
   const initials:Record<string,Fraction>={};
   for(const hook of definition.hooks)for(const op of hook.operations)
-    if(op.kind==='add-coefficient')initials[op.key]={...op.initial};
+    if(op.kind==='add-coefficient'||op.kind==='multiply-coefficient-once')initials[op.key]={...op.initial};
   return initials;
 }
 
@@ -148,7 +156,7 @@ function actualFeatures(definition:R2JokerDefinition):Set<R2Feature> {
       if(op.kind==='update-score-growth')features.add('score-growth');
       if(op.kind==='expire-after-hands')features.add('hand-lifetime');
       if(op.kind==='chance-add-heat')features.add('rule-chance');
-      if(op.kind==='read-coefficient'||op.kind==='add-coefficient'||op.kind==='reset-coefficient')features.add('coefficient-growth');
+      if(op.kind==='read-coefficient'||op.kind==='add-coefficient'||op.kind==='reset-coefficient'||op.kind==='multiply-coefficient-once')features.add('coefficient-growth');
       if(op.kind==='reward-consumable-pool'||op.kind==='reward-consumable-every-clears')features.add('consumable-rewards');
       if(op.kind==='refund-hand-limited')features.add('hand-refund');
     }
@@ -198,6 +206,7 @@ export function validR2Condition(c:unknown,phase?:HookPhase):c is Condition {
   if(!object(c))return false;let valid=false;const at=(...phases:HookPhase[])=>!phase||phases.includes(phase);
   switch(c.kind){
     case 'always':valid=exact(c,['kind']);break;
+    case 'cold-opening-discard':valid=at('onDiscard')&&exact(c,['kind']);break;
     case 'hand-type-in':valid=exact(c,['kind','values'])&&handTypes(c.values);break;
     case 'rank-in':valid=exact(c,['kind','values'])&&at('onCardScore','onHeldCard')&&Array.isArray(c.values)&&c.values.length>0&&c.values.length<=13&&c.values.every(v=>integer(v,2,14));break;
     case 'played-count':valid=exact(c,['kind','equals'])&&integer(c.equals,1,5);break;
@@ -228,7 +237,7 @@ export function validR2Condition(c:unknown,phase?:HookPhase):c is Condition {
     case 'discard-same-suit':valid=at('onDiscard')&&exact(c,['kind','minimum'])&&integer(c.minimum,2,5);break;
     case 'exhausted-hands':valid=at('beforeFailure')&&exact(c,['kind']);break;
   }
-  if(phase==='onDiscard'&&!(c.kind==='always'||c.kind==='discard-count'||c.kind==='discard-same-suit'||c.kind==='resource'&&c.resource==='discards-used'&&integer(c.equals,1,6)))return false;
+  if(phase==='onDiscard'&&!(c.kind==='always'||c.kind==='cold-opening-discard'||c.kind==='discard-count'||c.kind==='discard-same-suit'||c.kind==='resource'&&c.resource==='discards-used'&&integer(c.equals,1,6)))return false;
   if(phase==='onStageClear'&&!(c.kind==='always'||c.kind==='hand-type-in'||c.kind==='resource'&&c.resource==='hands-after'||c.kind==='held-count'||c.kind==='stage-played-maximum'||c.kind==='stage-hand-types-all'||c.kind==='no-joker-sale-this-stage'))return false;
   if((phase==='onBuyOffer'||phase==='onSellJoker'||phase==='onReroll')&&c.kind!=='always')return false;
   if(phase==='beforeFailure'&&c.kind!=='exhausted-hands')return false;
@@ -258,7 +267,13 @@ export function validateR2Content(input: unknown): string[] {
           case 'add-heat': case 'add-multiplier': case 'multiply-multiplier': accepted = ['onCardScore','onHeldCard','jokerScore'].includes(hook.phase as string) && exact(op, ['kind', 'value']) && fraction(op.value, op.kind === 'multiply-multiplier'); break;
           case 'read-growth': case 'consume-growth': accepted = hook.phase === 'jokerScore' && exact(op, ['kind', 'key', 'target']) && growthKey(op.key) && ['heat', 'multiplier'].includes(op.target as string); break;
           case 'add-growth': accepted = ['afterHand','onBuyOffer','onSellJoker','onDiscard','onReroll'].includes(hook.phase as string) && exact(op, ['kind', 'key', 'value', 'cap']) && growthKey(op.key) && op.key!=='coefficient' && fraction(op.value, true) && fraction(op.cap, true); break;
-          case 'read-coefficient':accepted=['e11','f12'].includes(definition.id as string)&&hook.phase==='jokerScore'&&exact(op,['kind','key'])&&op.key==='coefficient';break;
+          case 'read-coefficient':accepted=['a06','e11','f12'].includes(definition.id as string)&&hook.phase==='jokerScore'&&exact(op,['kind','key'])&&op.key==='coefficient';break;
+          case 'multiply-coefficient-once':accepted=definition.id==='a06'&&hook.phase==='afterHand'&&exact(op,['kind','key','value','cap','initial'])&&op.key==='coefficient'&&JSON.stringify(op.value)===JSON.stringify({n:'23',d:'20'})&&JSON.stringify(op.initial)===JSON.stringify({n:'3',d:'2'})&&JSON.stringify(op.cap)===JSON.stringify({n:'1000000',d:'1'});break;
+          case 'arm-rescue':accepted=definition.id==='f10'&&hook.phase==='onDiscard'&&object(hook.condition)&&hook.condition.kind==='cold-opening-discard'&&exact(op,['kind']);break;
+          case 'consume-rescue':accepted=definition.id==='f10'&&hook.phase==='afterHand'&&exact(op,['kind']);break;
+          case 'rescue-multiplier':accepted=definition.id==='f10'&&hook.phase==='jokerScore'&&exact(op,['kind','value'])&&fraction(op.value,true)&&Rational.fromJSON(op.value as Fraction).compare(new Rational(3n))===0;break;
+          case 'add-gold-per-held':accepted=definition.id==='d12'&&hook.phase==='onStageClear'&&exact(op,['kind','minimum','cap'])&&op.minimum===4&&op.cap===6;break;
+          case 'add-gold-per-capital':accepted=definition.id==='e04'&&hook.phase==='onStageClear'&&exact(op,['kind','divisor','cap'])&&op.divisor===10&&op.cap===6;break;
           case 'add-coefficient':accepted=['e11','f12'].includes(definition.id as string)&&hook.phase==='onStageClear'&&exact(op,['kind','key','value','cap','initial'])&&op.key==='coefficient'&&one(op.initial)&&fraction(op.value,true)&&fraction(op.cap,true)&&Rational.fromJSON(op.cap as Fraction).compare(Rational.fromJSON(op.initial as Fraction))>=0;break;
           case 'reset-coefficient':accepted=definition.id==='e11'&&hook.phase==='onSellJoker'&&exact(op,['kind','key','initial'])&&op.key==='coefficient'&&one(op.initial);break;
           case 'chance-add-heat':accepted=definition.id==='f08'&&hook.phase==='jokerScore'&&exact(op,['kind','probability','value'])&&probability(op.probability)&&fraction(op.value,true);break;
@@ -279,14 +294,14 @@ export function validateR2Content(input: unknown): string[] {
     }
     // A reference to growth must have a finite, declared writer on the same definition.
     const hooks = definition.hooks as R2JokerDefinition['hooks'];
-    const writers = hooks.flatMap(h => Array.isArray(h?.operations) ? h.operations.filter((o):o is Extract<Operation,{kind:'add-growth'|'update-score-growth'|'add-coefficient'}>=>o?.kind==='add-growth'||o?.kind==='update-score-growth'||o?.kind==='add-coefficient') : []);
+    const writers = hooks.flatMap(h => Array.isArray(h?.operations) ? h.operations.filter((o):o is Extract<Operation,{kind:'add-growth'|'update-score-growth'|'add-coefficient'|'multiply-coefficient-once'}>=>o?.kind==='add-growth'||o?.kind==='update-score-growth'||o?.kind==='add-coefficient'||o?.kind==='multiply-coefficient-once') : []);
     if (hooks.some(h => Array.isArray(h?.operations) && h.operations.some(o => (o?.kind === 'read-growth'||o?.kind==='consume-growth'||o?.kind==='read-coefficient'||o?.kind==='reset-coefficient') && !writers.some(w=>w.key===o.key)))) errors.push(`${path}: missing growth writer`);
     for(const writer of writers)if(fraction(writer.cap,true)&&writers.some(other=>other.key===writer.key&&fraction(other.cap,true)&&Rational.fromJSON(other.cap).compare(Rational.fromJSON(writer.cap))!==0))errors.push(`${path}: conflicting growth caps`);
     for(const hook of hooks)for(const op of Array.isArray(hook?.operations)?hook.operations:[]) {
       if(!object(op))continue;
       const matching=writers.filter(writer=>writer.key===('key' in op?op.key:undefined));
-      if((op.kind==='read-coefficient'||op.kind==='reset-coefficient')&&matching.some(writer=>writer.kind!=='add-coefficient'))errors.push(`${path}: coefficient requires coefficient writer`);
-      if((op.kind==='read-growth'||op.kind==='consume-growth')&&matching.some(writer=>writer.kind==='add-coefficient'))errors.push(`${path}: additive reader cannot read coefficient`);
+      if((op.kind==='read-coefficient'||op.kind==='reset-coefficient')&&matching.some(writer=>writer.kind!=='add-coefficient'&&writer.kind!=='multiply-coefficient-once'))errors.push(`${path}: coefficient requires coefficient writer`);
+      if((op.kind==='read-growth'||op.kind==='consume-growth')&&matching.some(writer=>writer.kind==='add-coefficient'||writer.kind==='multiply-coefficient-once'))errors.push(`${path}: additive reader cannot read coefficient`);
       if(op.kind==='reset-coefficient'&&fraction(op.initial,true)&&matching.some(writer=>writer.kind==='add-coefficient'&&fraction(writer.initial,true)&&Rational.fromJSON(op.initial).compare(Rational.fromJSON(writer.initial))!==0))errors.push(`${path}: conflicting coefficient initials`);
     }
     if(Array.isArray(definition.requiredFeatures)&&errors.length===errorsBeforeDefinition) {

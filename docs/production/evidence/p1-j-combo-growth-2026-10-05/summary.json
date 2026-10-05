@@ -1,0 +1,281 @@
+{
+  "status": "PASS bounded explicit-profile engineering; parent independent review pending",
+  "localSource": "327e0e25bfa324108b672927d267c86d82ab4b47",
+  "remoteSource": "e8a3f7acfb064a9cf492ab73e6087c15728fed2f",
+  "fullTree": "46e67ff88bb90de4f4068a38560fc967619341a0",
+  "review": "https://github.com/big-dimple/dachoupai/pull/24",
+  "mainChanged": false,
+  "newProfile": {
+    "version": "quality-r2-combo-growth-prototype-v1",
+    "hash": "json-fnv-v1:e7d21fce68b80072",
+    "entry": "explicit combo-growth-v1 only",
+    "supersededWipHashRejected": "json-fnv-v1:82a7532298315dde"
+  },
+  "normalMerge": {
+    "reviewedCopy": "e2fc57c8c845d8d5a874309ab38cd2f85180bd05",
+    "remoteFirstParent": "f45eb0baaa3f8a09aa5cdb4a52d93825cf581404"
+  },
+  "sourceFrozen": true,
+  "checks": {
+    "fullTests": {
+      "files": 132,
+      "tests": 2376,
+      "status": "PASS"
+    },
+    "contentTypeBuildStandardDesktopMobileSmokePlan": "PASS",
+    "native": [
+      {
+        "name": "a06-winning-growth",
+        "status": "PASS",
+        "pendingChecksum": "json-fnv-v1:2c2401f160af9dc5",
+        "stateHash": "json-fnv-v1:2ebee945d489fee1",
+        "revision": 11
+      },
+      {
+        "name": "f10-arm",
+        "status": "PASS",
+        "pendingChecksum": "json-fnv-v1:80302424e8619cf8",
+        "stateHash": "json-fnv-v1:bae6834aa6649c9e",
+        "revision": 13
+      },
+      {
+        "name": "f10-consume",
+        "status": "PASS",
+        "pendingChecksum": "json-fnv-v1:c0f790a9d2897e2d",
+        "stateHash": "json-fnv-v1:9171267afcec89c6",
+        "revision": 15
+      },
+      {
+        "name": "d12-income",
+        "status": "PASS",
+        "pendingChecksum": "json-fnv-v1:112136511aaa022d",
+        "stateHash": "json-fnv-v1:9a716d252eb63531",
+        "revision": 17
+      },
+      {
+        "name": "e04-income",
+        "status": "PASS",
+        "pendingChecksum": "json-fnv-v1:f867c151361a2965",
+        "stateHash": "json-fnv-v1:ce043f35368d30b1",
+        "revision": 19
+      },
+      {
+        "name": "six-role/four-identity/discovery/reload/export/import/corrupt-current+previous/retained-raw",
+        "status": "PASS",
+        "revision": 24
+      }
+    ],
+    "frozenFixtures": [
+      "v10 original",
+      "v11 original",
+      "843f created from published 193c source before loading combo code; complete state/RNG/receipts/journal/checksum replay"
+    ]
+  },
+  "mustFix": {
+    "S06": "PASS actual a06/f10 rewards create profile-required counters and save/continue",
+    "oldCondition": "PASS old real v10/v11 ScoreEvent cold-opening-discard injection rejected after checksum resealing",
+    "bodyAndEdition": "PASS all four fabricated ×1000 body/unowned-edition, missing/duplicate/wrong edition rejected; all actual foil/holographic/polychrome accepted",
+    "savedProvenance": "PASS warm false→true and cold true→false arm counters rejected, missing d12/e04 income rejected, live a06 mismatch in play/cleared/shop rejected, e04 edited event capital rejected and whole ledger bound"
+  },
+  "comparisons": [
+    {
+      "card": "a06",
+      "sameInitialState": "json-fnv-v1:87e8dfa6858ed9ea",
+      "immediateFullHouse": {
+        "phase": "stage-cleared",
+        "score": "1927",
+        "gold": 14,
+        "handsLeft": 3,
+        "discardsUsed": 0,
+        "handType": "full-house",
+        "held": [
+          "spades-12",
+          "hearts-12",
+          "clubs-6"
+        ],
+        "coefficient": {
+          "n": "3",
+          "d": "2"
+        },
+        "clearCapital": 6,
+        "income": [],
+        "stateHash": "json-fnv-v1:38881c4f7171fa2b"
+      },
+      "twoQualifiedTypes": {
+        "phase": "stage-cleared",
+        "score": "540",
+        "gold": 13,
+        "handsLeft": 2,
+        "discardsUsed": 0,
+        "handType": "three-kind",
+        "held": [
+          "clubs-9",
+          "clubs-6",
+          "spades-2",
+          "hearts-2",
+          "spades-3"
+        ],
+        "coefficient": {
+          "n": "69",
+          "d": "40"
+        },
+        "clearCapital": 6,
+        "income": [],
+        "stateHash": "json-fnv-v1:e848b57fe58773db"
+      }
+    },
+    {
+      "card": "f10",
+      "sameInitialState": "json-fnv-v1:eff2fddab0da381e",
+      "discardFirst": {
+        "phase": "stage-cleared",
+        "score": "642",
+        "gold": 14,
+        "handsLeft": 3,
+        "discardsUsed": 1,
+        "handType": "two-pair",
+        "held": [
+          "diamonds-3",
+          "clubs-9",
+          "diamonds-7",
+          "spades-5"
+        ],
+        "rescueArmed": false,
+        "clearCapital": 6,
+        "income": [],
+        "stateHash": "json-fnv-v1:bf8784e92de7eb5d"
+      },
+      "weakPlayFirst": {
+        "phase": "await-input",
+        "score": "214",
+        "gold": 6,
+        "handsLeft": 2,
+        "discardsUsed": 1,
+        "handType": "two-pair",
+        "held": [
+          "clubs-9",
+          "diamonds-7",
+          "spades-5",
+          "diamonds-14"
+        ],
+        "rescueArmed": false,
+        "clearCapital": null,
+        "income": [],
+        "stateHash": "json-fnv-v1:019cd13afb00d526"
+      }
+    },
+    {
+      "card": "d12",
+      "sameInitialState": "json-fnv-v1:07eef7189a4216dc",
+      "retainFour": {
+        "phase": "stage-cleared",
+        "score": "412",
+        "gold": 18,
+        "handsLeft": 3,
+        "discardsUsed": 0,
+        "handType": "two-pair",
+        "held": [
+          "spades-12",
+          "hearts-12",
+          "clubs-6",
+          "diamonds-7"
+        ],
+        "clearCapital": 6,
+        "income": [
+          {
+            "source": "d12",
+            "amount": "4"
+          }
+        ],
+        "stateHash": "json-fnv-v1:c4a5229140ed2885"
+      },
+      "consumePairForAssist": {
+        "phase": "stage-cleared",
+        "score": "824",
+        "gold": 14,
+        "handsLeft": 3,
+        "discardsUsed": 0,
+        "handType": "two-pair",
+        "held": [
+          "clubs-6",
+          "diamonds-7"
+        ],
+        "clearCapital": 6,
+        "income": [],
+        "stateHash": "json-fnv-v1:a48618c7285efab3"
+      }
+    },
+    {
+      "card": "e04",
+      "sameInitialShop": "json-fnv-v1:bd748642de0e3aee",
+      "keepThirty": {
+        "phase": "stage-cleared",
+        "score": "724",
+        "gold": 45,
+        "handsLeft": 3,
+        "discardsUsed": 0,
+        "handType": "flush",
+        "held": [
+          "hearts-2",
+          "clubs-6",
+          "diamonds-9"
+        ],
+        "clearCapital": 30,
+        "income": [
+          {
+            "source": "e04",
+            "amount": "3"
+          }
+        ],
+        "stateHash": "json-fnv-v1:a45b2bc0f0558284"
+      },
+      "buyTenGoldComponent": {
+        "phase": "stage-cleared",
+        "score": "868",
+        "gold": 33,
+        "handsLeft": 3,
+        "discardsUsed": 0,
+        "handType": "flush",
+        "held": [
+          "hearts-2",
+          "clubs-6",
+          "diamonds-9"
+        ],
+        "clearCapital": 20,
+        "income": [
+          {
+            "source": "e04",
+            "amount": "2"
+          }
+        ],
+        "stateHash": "json-fnv-v1:7b96152248d63356"
+      }
+    }
+  ],
+  "CIAtEvidenceCreation": {
+    "source": "e8a3f7acfb064a9cf492ab73e6087c15728fed2f",
+    "CI": {
+      "run": 37279695881,
+      "status": "in_progress"
+    },
+    "productionDocs": {
+      "run": 37279695934,
+      "status": "success"
+    },
+    "finalExactHead": "Follow PR check status; subsequent commit contains evidence/docs only, never reuse source CI as evidence-head CI."
+  },
+  "retainedFailures": "FAIL-provenance.json and three original FAIL JSONs; original reports unmodified",
+  "notClaimed": [
+    "normal production entry/UI for combo profile",
+    "balance or strategy optimum",
+    "natural acquisition",
+    "other five role redesign",
+    "physical device/GPU/listening/art approval",
+    "main release"
+  ],
+  "notes": [
+    "No GameScene/HandActionArea/selection/layout changes. Reviewed I pure-copy history retained through a normal merge.",
+    "Existing source/index/HEAD verifier stayed identical for every final gate and native check. Dependency node_modules symlink excluded from commits.",
+    "Standard repository smoke only; no extra FPS benchmark, recording or large strategy simulation."
+  ]
+}
