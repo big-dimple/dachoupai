@@ -95,7 +95,7 @@ export interface RunState {
 }
 
 export type Action =
-  | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2';modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1' }
+  | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2';modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1';r2Identity?:{contentVersion:string;contentHash:string} }
   | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' | 'SkipStage' | 'ContinueEndless' }
   | { type: 'PlayHand'; selectedIds: readonly string[] }
   | { type: 'PlayAssistedHand'; selectedIds: readonly string[]; assistIds:readonly string[] }
@@ -206,7 +206,7 @@ export function applyCommand(input: AnyRunState | null, command: Command): Comma
     if (typeof action.seed !== 'string' || !action.seed.length || !CHARACTER_IDS.includes(action.characterId)) return fail('invalid-start');
     if (action.rulesVersion && action.rulesVersion !== 'r1') return fail('unsupported-rules-version');
     if(action.modeConfig!==undefined)return fail('unsupported-mode-config');
-    if(action.r2Profile!==undefined)return fail('invalid-r2-profile');
+    if(action.r2Profile!==undefined||action.r2Identity!==undefined)return fail('invalid-r2-profile');
     state = initial(command, action);
   } else {
     if (!input) return fail('run-not-started');
@@ -324,14 +324,14 @@ export function applyCommand(input: AnyRunState | null, command: Command): Comma
   return { ok: true, state, events, receipt, duplicate: false };
 }
 
-type StartOptions = { seed: string; characterId: CharacterId; runId: string;modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1' };
+type StartOptions = { seed: string; characterId: CharacterId; runId: string;modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1';r2Identity?:{contentVersion:string;contentHash:string} };
 export function createRun(options: StartOptions & {rulesVersion:'r2'}): R2RunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'}): RunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState {
   const result = applyCommand(null, {
     runId: options.runId, commandId: `${options.runId}/start`, expectedSeq: 0,
-    action: { type: 'StartRun', seed: options.seed, characterId: options.characterId, ...(options.rulesVersion ? { rulesVersion: options.rulesVersion } : {}),...(options.modeConfig===undefined?{}:{modeConfig:options.modeConfig}),...(options.r2Profile===undefined?{}:{r2Profile:options.r2Profile}) },
+    action: { type: 'StartRun', seed: options.seed, characterId: options.characterId, ...(options.rulesVersion ? { rulesVersion: options.rulesVersion } : {}),...(options.modeConfig===undefined?{}:{modeConfig:options.modeConfig}),...(options.r2Profile===undefined?{}:{r2Profile:options.r2Profile}),...(options.r2Identity===undefined?{}:{r2Identity:options.r2Identity}) },
   });
   if (!result.ok) throw new Error(result.code);
   return result.state;

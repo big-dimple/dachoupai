@@ -1,0 +1,1709 @@
+{
+  "source": "51c24dde6c7015033e766e412d37aa26b2b81ee9",
+  "before": {
+    "source": "5eac5fe2fed9c11141ddcf76c23fe70e1016b694498a9aaff5dd478e88fd32f3",
+    "index": "872b6e2b919de8e560b40f8e8357f958f9eb3739017a9ed684f054ae257ed494",
+    "head": "51c24dde6c7015033e766e412d37aa26b2b81ee9",
+    "branch": "refs/heads/review/p08-amo-launch-recovery-20261005"
+  },
+  "scope": "Natural fixed seed, real UI inputs, software Canvas; no fixtures or run mutation.",
+  "cases": [
+    {
+      "spec": {
+        "name": "select-320",
+        "width": 320,
+        "height": 568
+      },
+      "status": "PASS",
+      "checks": [
+        "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+        "normal Title → CharacterSelect → Shop creates frozen assist identity after explicit confirmation"
+      ],
+      "errors": [],
+      "geometry": {
+        "texts": [
+          {
+            "text": "巡演选角",
+            "font": "24px",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 12,
+              "width": 96,
+              "height": 25
+            }
+          },
+          {
+            "text": "模式·D0",
+            "font": "15px",
+            "bounds": {
+              "type": 5,
+              "x": 238.5,
+              "y": 54.5,
+              "width": 55,
+              "height": 17
+            }
+          },
+          {
+            "text": "选角后确认登台",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 46,
+              "width": 98,
+              "height": 16
+            }
+          },
+          {
+            "text": "阿默",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 22,
+              "y": 176,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "text": "骰爷",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 124,
+              "y": 180,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "text": "老幻",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 226,
+              "y": 180,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "text": "二响",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 22,
+              "y": 290,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "text": "阿燥",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 124,
+              "y": 290,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "text": "谢幕人",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 226,
+              "y": 290,
+              "width": 42,
+              "height": 17
+            }
+          },
+          {
+            "text": "阿默 · 主手＋助攻（试行）",
+            "font": "16px",
+            "bounds": {
+              "type": 5,
+              "x": 24,
+              "y": 332,
+              "width": 191,
+              "height": 19
+            }
+          },
+          {
+            "text": "每场1次：合格主手＋剩余对子×2／三条×4。副组真消耗，不算主手或留手；高牌、对子不能助攻。",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 24,
+              "y": 358,
+              "width": 271,
+              "height": 52
+            }
+          },
+          {
+            "text": "取消选择",
+            "font": "15px",
+            "bounds": {
+              "type": 5,
+              "x": 14.5,
+              "y": 482.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "text": "角色详情",
+            "font": "15px",
+            "bounds": {
+              "type": 5,
+              "x": 91.5,
+              "y": 482.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "text": "确认角色",
+            "font": "22px",
+            "bounds": {
+              "type": 5,
+              "x": 193.5,
+              "y": 478.5,
+              "width": 89,
+              "height": 25
+            }
+          },
+          {
+            "text": "已选 阿默，确认后进入商店。",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 528,
+              "width": 186,
+              "height": 16
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/select-mode",
+            "bounds": {
+              "type": 5,
+              "x": 224,
+              "y": 42,
+              "width": 84,
+              "height": 44
+            }
+          },
+          {
+            "name": "character/amo",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 100,
+              "width": 92,
+              "height": 100
+            }
+          },
+          {
+            "name": "character/touye",
+            "bounds": {
+              "type": 5,
+              "x": 114,
+              "y": 100,
+              "width": 92,
+              "height": 100
+            }
+          },
+          {
+            "name": "character/laohuan",
+            "bounds": {
+              "type": 5,
+              "x": 216,
+              "y": 100,
+              "width": 92,
+              "height": 100
+            }
+          },
+          {
+            "name": "character/erxiang",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 210,
+              "width": 92,
+              "height": 100
+            }
+          },
+          {
+            "name": "character/azao",
+            "bounds": {
+              "type": 5,
+              "x": 114,
+              "y": 210,
+              "width": 92,
+              "height": 100
+            }
+          },
+          {
+            "name": "character/xiemu",
+            "bounds": {
+              "type": 5,
+              "x": 216,
+              "y": 210,
+              "width": 92,
+              "height": 100
+            }
+          },
+          {
+            "name": "action/cancel-character",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 464,
+              "width": 65,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/character-details",
+            "bounds": {
+              "type": 5,
+              "x": 85,
+              "y": 464,
+              "width": 74,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/confirm-character",
+            "bounds": {
+              "type": 5,
+              "x": 167,
+              "y": 464,
+              "width": 141,
+              "height": 56
+            }
+          }
+        ],
+        "dom": [
+          {
+            "text": "菜单",
+            "bounds": {
+              "x": 264,
+              "y": 12,
+              "width": 44,
+              "height": 44,
+              "top": 12,
+              "right": 308,
+              "bottom": 56,
+              "left": 264
+            }
+          }
+        ]
+      }
+    },
+    {
+      "spec": {
+        "name": "select-390",
+        "width": 390,
+        "height": 740,
+        "natural": true
+      },
+      "status": "FAIL",
+      "checks": [
+        "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+        "normal Title → CharacterSelect → Shop creates frozen assist identity after explicit confirmation"
+      ],
+      "errors": [],
+      "geometry": {
+        "texts": [
+          {
+            "text": "巡演选角",
+            "font": "24px",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 8,
+              "width": 96,
+              "height": 25
+            }
+          },
+          {
+            "text": "模式·D0",
+            "font": "15px",
+            "bounds": {
+              "type": 5,
+              "x": 308.5,
+              "y": 50.5,
+              "width": 55,
+              "height": 17
+            }
+          },
+          {
+            "text": "选角后确认登台",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 42,
+              "width": 98,
+              "height": 16
+            }
+          },
+          {
+            "text": "阿默",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 21.9999974568685,
+              "y": 233.00000406901043,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "text": "骰爷",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 147.00000000000003,
+              "y": 237.00000406901043,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "text": "老幻",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 273.00001017252606,
+              "y": 237.00000406901043,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "text": "二响",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 21.9999974568685,
+              "y": 409.0000122070313,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "text": "阿燥",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 147.00000000000003,
+              "y": 409.0000122070313,
+              "width": 28,
+              "height": 17
+            }
+          },
+          {
+            "text": "谢幕人",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 273.00001017252606,
+              "y": 409.0000122070313,
+              "width": 42,
+              "height": 17
+            }
+          },
+          {
+            "text": "阿默 · 主手＋助攻（试行）",
+            "font": "16px",
+            "bounds": {
+              "type": 5,
+              "x": 24,
+              "y": 504,
+              "width": 191,
+              "height": 19
+            }
+          },
+          {
+            "text": "每场1次：合格主手＋剩余对子×2／三条×4。副组真消耗，不算主手或留手；高牌、对子不能助攻。",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 24,
+              "y": 530,
+              "width": 334,
+              "height": 34
+            }
+          },
+          {
+            "text": "取消选择",
+            "font": "15px",
+            "bounds": {
+              "type": 5,
+              "x": 21.5,
+              "y": 654.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "text": "角色详情",
+            "font": "15px",
+            "bounds": {
+              "type": 5,
+              "x": 115.5,
+              "y": 654.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "text": "确认角色",
+            "font": "22px",
+            "bounds": {
+              "type": 5,
+              "x": 244.5,
+              "y": 650.5,
+              "width": 89,
+              "height": 25
+            }
+          },
+          {
+            "text": "已选 阿默，确认后进入商店。",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 700,
+              "width": 186,
+              "height": 16
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/select-mode",
+            "bounds": {
+              "type": 5,
+              "x": 294,
+              "y": 38,
+              "width": 84,
+              "height": 44
+            }
+          },
+          {
+            "name": "character/amo",
+            "bounds": {
+              "type": 5,
+              "x": 11.999999999999993,
+              "y": 96,
+              "width": 115.33333333333331,
+              "height": 161.46666666666664
+            }
+          },
+          {
+            "name": "character/touye",
+            "bounds": {
+              "type": 5,
+              "x": 137.33333333333331,
+              "y": 96,
+              "width": 115.33333333333331,
+              "height": 161.46666666666664
+            }
+          },
+          {
+            "name": "character/laohuan",
+            "bounds": {
+              "type": 5,
+              "x": 262.66666666666663,
+              "y": 96,
+              "width": 115.33333333333331,
+              "height": 161.46666666666664
+            }
+          },
+          {
+            "name": "character/erxiang",
+            "bounds": {
+              "type": 5,
+              "x": 11.999999999999993,
+              "y": 267.4666666666666,
+              "width": 115.33333333333331,
+              "height": 161.46666666666664
+            }
+          },
+          {
+            "name": "character/azao",
+            "bounds": {
+              "type": 5,
+              "x": 137.33333333333331,
+              "y": 267.4666666666666,
+              "width": 115.33333333333331,
+              "height": 161.46666666666664
+            }
+          },
+          {
+            "name": "character/xiemu",
+            "bounds": {
+              "type": 5,
+              "x": 262.66666666666663,
+              "y": 267.4666666666666,
+              "width": 115.33333333333331,
+              "height": 161.46666666666664
+            }
+          },
+          {
+            "name": "action/cancel-character",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 636,
+              "width": 80,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/character-details",
+            "bounds": {
+              "type": 5,
+              "x": 100,
+              "y": 636,
+              "width": 91,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/confirm-character",
+            "bounds": {
+              "type": 5,
+              "x": 199,
+              "y": 636,
+              "width": 179,
+              "height": 56
+            }
+          }
+        ],
+        "dom": [
+          {
+            "text": "菜单",
+            "bounds": {
+              "x": 334,
+              "y": 12,
+              "width": 44,
+              "height": 44,
+              "top": 12,
+              "right": 378,
+              "bottom": 56,
+              "left": 334
+            }
+          }
+        ]
+      },
+      "initialHand": [
+        "spades-3",
+        "diamonds-8",
+        "spades-2",
+        "hearts-13",
+        "diamonds-3",
+        "clubs-4",
+        "hearts-11",
+        "hearts-4"
+      ],
+      "assisted": {
+        "main": [
+          "spades-3",
+          "diamonds-3",
+          "clubs-4",
+          "hearts-4"
+        ],
+        "side": [
+          "hearts-12",
+          "diamonds-12"
+        ],
+        "score": "316",
+        "trace": {
+          "rulesVersion": "r2",
+          "rootId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5",
+          "handType": "two-pair",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "spades-3",
+              "diamonds-3",
+              "clubs-4",
+              "hearts-4"
+            ],
+            "scoringIds": [
+              "spades-3",
+              "diamonds-3",
+              "clubs-4",
+              "hearts-4"
+            ],
+            "activeScoringIds": [
+              "spades-3",
+              "diamonds-3",
+              "clubs-4",
+              "hearts-4"
+            ],
+            "heldIds": [
+              "hearts-10",
+              "diamonds-14"
+            ],
+            "assistConsumedIds": [
+              "hearts-12",
+              "diamonds-12"
+            ]
+          },
+          "assist": {
+            "ids": [
+              "hearts-12",
+              "diamonds-12"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "finalScore": "316",
+          "accumulator": {
+            "H": {
+              "n": "79",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "events": [
+            {
+              "eventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/0",
+              "rootId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5",
+              "rootEventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "run/amo-launch-recovery/amo",
+              "operation": "base",
+              "value": {
+                "n": "65",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/1",
+              "rootId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5",
+              "rootEventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-3",
+              "sourceInstanceId": "spades-3",
+              "targetCardId": "spades-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "68",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-3.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/2",
+              "rootId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5",
+              "rootEventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/2",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-3",
+              "sourceInstanceId": "diamonds-3",
+              "targetCardId": "diamonds-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "68",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "71",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-3.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/3",
+              "rootId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5",
+              "rootEventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-4",
+              "sourceInstanceId": "clubs-4",
+              "targetCardId": "clubs-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "4",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "71",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "75",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-4.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/4",
+              "rootId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5",
+              "rootEventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/4",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-4",
+              "sourceInstanceId": "hearts-4",
+              "targetCardId": "hearts-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "4",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "75",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-4.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/5",
+              "rootId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5",
+              "rootEventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/5",
+              "phase": "characterScore",
+              "sourceType": "character",
+              "sourceDefinitionId": "amo",
+              "sourceInstanceId": "run/amo-launch-recovery/amo/character",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "amo.assist.pair",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "two-pair",
+                  "three-kind",
+                  "straight",
+                  "flush",
+                  "full-house",
+                  "four-kind",
+                  "straight-flush",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/6",
+              "rootId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5",
+              "rootEventId": "run/amo-launch-recovery/amo/hand/run/amo-launch-recovery/amo/command/5/event/6",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "run/amo-launch-recovery/amo",
+              "operation": "final-score",
+              "value": {
+                "n": "316",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 445061596
+          },
+          "goldDelta": 0,
+          "destroyedCardIds": [],
+          "destroyedJokerIds": [],
+          "cards": [
+            {
+              "id": "spades-3",
+              "suit": "spades",
+              "rank": 3
+            },
+            {
+              "id": "diamonds-3",
+              "suit": "diamonds",
+              "rank": 3
+            },
+            {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            {
+              "id": "hearts-4",
+              "suit": "hearts",
+              "rank": 4
+            },
+            {
+              "id": "hearts-12",
+              "suit": "hearts",
+              "rank": 12
+            },
+            {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            {
+              "id": "diamonds-14",
+              "suit": "diamonds",
+              "rank": 14
+            },
+            {
+              "id": "diamonds-12",
+              "suit": "diamonds",
+              "rank": 12
+            }
+          ],
+          "sourceJokers": [],
+          "bossContext": {
+            "boss": null,
+            "previousHandType": null,
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null
+          }
+        },
+        "commandSeq": 5
+      },
+      "error": "TimeoutError: locator.tap: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '继续本局', exact: true })\u001b[22m\n"
+    },
+    {
+      "spec": {
+        "name": "select-short",
+        "width": 844,
+        "height": 300,
+        "top": 12,
+        "bottom": 34
+      },
+      "status": "PASS",
+      "checks": [
+        "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+        "normal Title → CharacterSelect → Shop creates frozen assist identity after explicit confirmation"
+      ],
+      "errors": [],
+      "geometry": {
+        "texts": [
+          {
+            "text": "巡演选角",
+            "font": "24px",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 24,
+              "width": 96,
+              "height": 25
+            }
+          },
+          {
+            "text": "模式 · 普通 D0",
+            "font": "15px",
+            "bounds": {
+              "type": 5,
+              "x": 569.5,
+              "y": 33.5,
+              "width": 97,
+              "height": 17
+            }
+          },
+          {
+            "text": "阿默",
+            "font": "18px",
+            "bounds": {
+              "type": 5,
+              "x": 22,
+              "y": 89,
+              "width": 36,
+              "height": 21
+            }
+          },
+          {
+            "text": "骰爷",
+            "font": "18px",
+            "bounds": {
+              "type": 5,
+              "x": 161,
+              "y": 93,
+              "width": 36,
+              "height": 21
+            }
+          },
+          {
+            "text": "老幻",
+            "font": "18px",
+            "bounds": {
+              "type": 5,
+              "x": 300,
+              "y": 93,
+              "width": 36,
+              "height": 21
+            }
+          },
+          {
+            "text": "二响",
+            "font": "18px",
+            "bounds": {
+              "type": 5,
+              "x": 439,
+              "y": 93,
+              "width": 36,
+              "height": 21
+            }
+          },
+          {
+            "text": "阿燥",
+            "font": "18px",
+            "bounds": {
+              "type": 5,
+              "x": 578,
+              "y": 93,
+              "width": 36,
+              "height": 21
+            }
+          },
+          {
+            "text": "谢幕人",
+            "font": "18px",
+            "bounds": {
+              "type": 5,
+              "x": 717,
+              "y": 93,
+              "width": 54,
+              "height": 21
+            }
+          },
+          {
+            "text": "阿默 · 主手＋助攻（试行） · 每场1次：合格主手＋剩余对子×2／三条×4。副组真消耗，不算主手或留手；高牌、对子不能助攻。",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 24,
+              "y": 144,
+              "width": 793,
+              "height": 16
+            }
+          },
+          {
+            "text": "取消选择",
+            "font": "15px",
+            "bounds": {
+              "type": 5,
+              "x": 71.5,
+              "y": 212.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "text": "角色详情",
+            "font": "15px",
+            "bounds": {
+              "type": 5,
+              "x": 272.5,
+              "y": 212.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "text": "确认角色",
+            "font": "22px",
+            "bounds": {
+              "type": 5,
+              "x": 578.5,
+              "y": 208.5,
+              "width": 89,
+              "height": 25
+            }
+          },
+          {
+            "text": "已选 阿默，确认后进入商店。",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 248,
+              "width": 186,
+              "height": 16
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/select-mode",
+            "bounds": {
+              "type": 5,
+              "x": 552,
+              "y": 21,
+              "width": 132,
+              "height": 44
+            }
+          },
+          {
+            "name": "character/amo",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 74,
+              "width": 125,
+              "height": 46
+            }
+          },
+          {
+            "name": "character/touye",
+            "bounds": {
+              "type": 5,
+              "x": 151,
+              "y": 74,
+              "width": 125,
+              "height": 46
+            }
+          },
+          {
+            "name": "character/laohuan",
+            "bounds": {
+              "type": 5,
+              "x": 290,
+              "y": 74,
+              "width": 125,
+              "height": 46
+            }
+          },
+          {
+            "name": "character/erxiang",
+            "bounds": {
+              "type": 5,
+              "x": 429,
+              "y": 74,
+              "width": 125,
+              "height": 46
+            }
+          },
+          {
+            "name": "character/azao",
+            "bounds": {
+              "type": 5,
+              "x": 568,
+              "y": 74,
+              "width": 125,
+              "height": 46
+            }
+          },
+          {
+            "name": "character/xiemu",
+            "bounds": {
+              "type": 5,
+              "x": 707,
+              "y": 74,
+              "width": 125,
+              "height": 46
+            }
+          },
+          {
+            "name": "action/cancel-character",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 200,
+              "width": 180,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/character-details",
+            "bounds": {
+              "type": 5,
+              "x": 200,
+              "y": 200,
+              "width": 205,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/confirm-character",
+            "bounds": {
+              "type": 5,
+              "x": 413,
+              "y": 200,
+              "width": 419,
+              "height": 44
+            }
+          }
+        ],
+        "dom": [
+          {
+            "text": "菜单",
+            "bounds": {
+              "x": 768,
+              "y": 24,
+              "width": 64,
+              "height": 44,
+              "top": 24,
+              "right": 832,
+              "bottom": 68,
+              "left": 768
+            }
+          }
+        ]
+      }
+    },
+    {
+      "spec": {
+        "name": "select-desktop",
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "checks": [
+        "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+        "normal Title → CharacterSelect → Shop creates frozen assist identity after explicit confirmation"
+      ],
+      "errors": [],
+      "geometry": {
+        "texts": [
+          {
+            "text": "巡演选角",
+            "font": "30px",
+            "bounds": {
+              "type": 5,
+              "x": 50,
+              "y": 8,
+              "width": 120,
+              "height": 32
+            }
+          },
+          {
+            "text": "模式 · 普通 D0",
+            "font": "15px",
+            "bounds": {
+              "type": 5,
+              "x": 1005.5,
+              "y": 17.5,
+              "width": 97,
+              "height": 17
+            }
+          },
+          {
+            "text": "选角后确认登台",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 50,
+              "y": 50,
+              "width": 98,
+              "height": 16
+            }
+          },
+          {
+            "text": "阿默",
+            "font": "18px",
+            "bounds": {
+              "type": 5,
+              "x": 60,
+              "y": 324,
+              "width": 36,
+              "height": 21
+            }
+          },
+          {
+            "text": "主手＋助攻（试行）",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 60,
+              "y": 348,
+              "width": 126,
+              "height": 16
+            }
+          },
+          {
+            "text": "骰爷",
+            "font": "18px",
+            "bounds": {
+              "type": 5,
+              "x": 259,
+              "y": 328,
+              "width": 36,
+              "height": 21
+            }
+          },
+          {
+            "text": "稳分，可押一手",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 259,
+              "y": 352,
+              "width": 98,
+              "height": 16
+            }
+          },
+          {
+            "text": "老幻",
+            "font": "18px",
+            "bounds": {
+              "type": 5,
+              "x": 458,
+              "y": 328,
+              "width": 36,
+              "height": 21
+            }
+          },
+          {
+            "text": "顺子或同花",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 458,
+              "y": 352,
+              "width": 70,
+              "height": 16
+            }
+          },
+          {
+            "text": "二响",
+            "font": "18px",
+            "bounds": {
+              "type": 5,
+              "x": 657,
+              "y": 328,
+              "width": 36,
+              "height": 21
+            }
+          },
+          {
+            "text": "对子、两对、三条",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 657,
+              "y": 352,
+              "width": 112,
+              "height": 16
+            }
+          },
+          {
+            "text": "阿燥",
+            "font": "18px",
+            "bounds": {
+              "type": 5,
+              "x": 856,
+              "y": 328,
+              "width": 36,
+              "height": 21
+            }
+          },
+          {
+            "text": "轮换两种牌型",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 856,
+              "y": 352,
+              "width": 84,
+              "height": 16
+            }
+          },
+          {
+            "text": "谢幕人",
+            "font": "18px",
+            "bounds": {
+              "type": 5,
+              "x": 1055,
+              "y": 328,
+              "width": 54,
+              "height": 21
+            }
+          },
+          {
+            "text": "末次出牌翻倍",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 1055,
+              "y": 352,
+              "width": 84,
+              "height": 16
+            }
+          },
+          {
+            "text": "阿默 · 主手＋助攻（试行）",
+            "font": "20px",
+            "bounds": {
+              "type": 5,
+              "x": 136,
+              "y": 516,
+              "width": 238,
+              "height": 23
+            }
+          },
+          {
+            "text": "每场1次：合格主手＋剩余对子×2／三条×4。副组真消耗，不算主手或留手；高牌、对子不能助攻。",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 136,
+              "y": 547,
+              "width": 614,
+              "height": 16
+            }
+          },
+          {
+            "text": "取消选择",
+            "font": "15px",
+            "bounds": {
+              "type": 5,
+              "x": 149.5,
+              "y": 634.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "text": "角色详情",
+            "font": "15px",
+            "bounds": {
+              "type": 5,
+              "x": 434.5,
+              "y": 634.5,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "text": "确认角色",
+            "font": "22px",
+            "bounds": {
+              "type": 5,
+              "x": 880.5,
+              "y": 630.5,
+              "width": 89,
+              "height": 25
+            }
+          },
+          {
+            "text": "已选 阿默，确认后进入商店。",
+            "font": "14px",
+            "bounds": {
+              "type": 5,
+              "x": 50,
+              "y": 680,
+              "width": 186,
+              "height": 16
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/select-mode",
+            "bounds": {
+              "type": 5,
+              "x": 988,
+              "y": 5,
+              "width": 132,
+              "height": 44
+            }
+          },
+          {
+            "name": "character/amo",
+            "bounds": {
+              "type": 5,
+              "x": 50,
+              "y": 80,
+              "width": 185,
+              "height": 300
+            }
+          },
+          {
+            "name": "character/touye",
+            "bounds": {
+              "type": 5,
+              "x": 249,
+              "y": 80,
+              "width": 185,
+              "height": 300
+            }
+          },
+          {
+            "name": "character/laohuan",
+            "bounds": {
+              "type": 5,
+              "x": 448,
+              "y": 80,
+              "width": 185,
+              "height": 300
+            }
+          },
+          {
+            "name": "character/erxiang",
+            "bounds": {
+              "type": 5,
+              "x": 647,
+              "y": 80,
+              "width": 185,
+              "height": 300
+            }
+          },
+          {
+            "name": "character/azao",
+            "bounds": {
+              "type": 5,
+              "x": 846,
+              "y": 80,
+              "width": 185,
+              "height": 300
+            }
+          },
+          {
+            "name": "character/xiemu",
+            "bounds": {
+              "type": 5,
+              "x": 1045,
+              "y": 80,
+              "width": 185,
+              "height": 300
+            }
+          },
+          {
+            "name": "action/cancel-character",
+            "bounds": {
+              "type": 5,
+              "x": 50,
+              "y": 616,
+              "width": 259,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/character-details",
+            "bounds": {
+              "type": 5,
+              "x": 317,
+              "y": 616,
+              "width": 295,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/confirm-character",
+            "bounds": {
+              "type": 5,
+              "x": 620,
+              "y": 616,
+              "width": 610,
+              "height": 56
+            }
+          }
+        ],
+        "dom": [
+          {
+            "text": "菜单",
+            "bounds": {
+              "x": 1204,
+              "y": 12,
+              "width": 64,
+              "height": 44,
+              "top": 12,
+              "right": 1268,
+              "bottom": 56,
+              "left": 1204
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "screenshots": [
+    "select-320.png",
+    "select-390.png",
+    "natural-assist-draft.png",
+    "select-390-FAIL.png",
+    "select-short.png",
+    "select-desktop.png"
+  ],
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-05T06:19:30.710Z",
+    "revision": "51c24dde6c7015033e766e412d37aa26b2b81ee9",
+    "sourceStatus": "dirty",
+    "modified": true,
+    "modifiedFileCount": 2,
+    "modifiedFiles": [
+      "src/game/CharacterSelectScene.ts",
+      "src/game/SelectionLayout.ts"
+    ]
+  },
+  "browser": "151.0.7922.173",
+  "after": {
+    "source": "5eac5fe2fed9c11141ddcf76c23fe70e1016b694498a9aaff5dd478e88fd32f3",
+    "index": "872b6e2b919de8e560b40f8e8357f958f9eb3739017a9ed684f054ae257ed494",
+    "head": "51c24dde6c7015033e766e412d37aa26b2b81ee9",
+    "branch": "refs/heads/review/p08-amo-launch-recovery-20261005"
+  },
+  "unchanged": true
+}

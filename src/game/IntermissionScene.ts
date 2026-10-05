@@ -254,7 +254,7 @@ export class IntermissionScene extends Phaser.Scene {
   private async retrySeed():Promise<void> {
     if(!this.ready)return;const run=runController(this)!.state,lifecycle=this.lifecycle;this.busy=true;this.notice='';this.render();
     try {
-      const controller=await startRun(this,run.seed,run.characterId,{mode:run.mode,difficulty:run.difficulty,challengeId:run.challengeId,programsEnabled:run.programsEnabled});if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
+      const controller=await startRun(this,run.seed,run.characterId,{mode:run.mode,difficulty:run.difficulty,challengeId:run.challengeId,programsEnabled:run.programsEnabled},{kind:'retry',run});if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
       if(controller?.status==='idle'){this.exitResult('shop');return;}
       this.notice=gameSession().notice||'新局未保存，请在菜单重试保存。';this.audio.invalid();
     }finally {if(lifecycle===this.lifecycle&&this.scene.isActive()){this.busy=false;this.render();}}

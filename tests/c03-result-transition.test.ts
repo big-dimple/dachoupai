@@ -49,9 +49,10 @@ describe('result page exits while Phaser queues the next scene',()=>{
   afterEach(()=>vi.restoreAllMocks());
 
   it('same-seed retry never repaints the old result against a fresh run without a stage',async()=>{
-    const {actions,rendered}=resultScene('run-lost');
+    const {actions,state,rendered}=resultScene('run-lost');
     fixture.start.mockImplementation(async()=>{fixture.controller={state:createRun({seed:'result-queued-exit',runId:'fresh',characterId:'erxiang',rulesVersion:'r2'}),status:'idle'};return fixture.controller;});
     await expect(actions.retrySeed()).resolves.toBeUndefined();
+    expect(fixture.start).toHaveBeenCalledWith(expect.anything(),state.seed,state.characterId,{mode:state.mode,difficulty:state.difficulty,challengeId:state.challengeId,programsEnabled:state.programsEnabled},{kind:'retry',run:state});
     expect(fixture.controller.state.stage).toBeNull();expect(fixture.sceneStart).toHaveBeenCalledWith('shop');expect(rendered).toEqual(['400']);
   });
 

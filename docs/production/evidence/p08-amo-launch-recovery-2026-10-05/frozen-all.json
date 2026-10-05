@@ -1,0 +1,66 @@
+{
+  "scope": "all",
+  "testedCommit": "1024ad58c3ad90d9f16c9d6144798f8ca49e9cde",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "f9bce71320bca5ffee629e123ed7edbf23b35a899398e4f4e418ef42c777c81d",
+    "index": "8964a152b52d7b6f34ee82ff353cad5f9b71a92f9d839b66d6a12981371b9f3b",
+    "head": "1024ad58c3ad90d9f16c9d6144798f8ca49e9cde",
+    "branch": "refs/heads/review/p08-amo-launch-recovery-20261005"
+  },
+  "after": {
+    "source": "f9bce71320bca5ffee629e123ed7edbf23b35a899398e4f4e418ef42c777c81d",
+    "index": "8964a152b52d7b6f34ee82ff353cad5f9b71a92f9d839b66d6a12981371b9f3b",
+    "head": "1024ad58c3ad90d9f16c9d6144798f8ca49e9cde",
+    "branch": "refs/heads/review/p08-amo-launch-recovery-20261005"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 23756
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 1822
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 12352
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 118618
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 245
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

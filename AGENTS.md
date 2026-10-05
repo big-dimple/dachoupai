@@ -1,5 +1,9 @@
 # 开发入口
 
+## 正常阿默新局入口恢复（2026-10-05 UTC，仅 review PR21）
+
+从已发布 d1dfb90 独立接线，首源码51c24dd已推送供父独审。正常Title→选角→runAdapter.startRun→GameSession.start仅阿默采用现有amo-assist-v1 / 843f02356211cb91，其余五人v11；原createRun不传profile仍v11。失败页用显式retry意图携带当前局，三身份完整version/hash/角色/种子/模式白名单原规则直接创建，禁止建后改身份。继续/导入/接管/无尽和存储格式不改。选角共用新局文案，旧全局characters保留；320/390模式按钮避开标题与DOM控件、短横44px。已完成自然弃四散牌保两对→主33/44+助QQ得316→保存刷新回看→389失败→原身份同种子重试，以及原生新建取消/容量失败保原DB与唯一候选；最终冻结与精确CI以本批evidence为准。原FAIL保留，main只由父独审；P08 in_progress、C04 D32及真机/GPU/听感/整体审美门槛不变。
+
 ## 当前阿默 UI 收尾状态（2026-10-05 UTC，仅 review）
 
 阿默UI有限收尾：正常合入PR18 d6da224；远端source41efea9 / 本地bb02bf1完整tree36e6f777相同。仅修harness真实回首页与desktop文案重叠，14px/44px不减；390/320的8/9/14及短横/桌面六视口、全草稿/双指cancel/保存同候选重试/一次消费/恢复持久trace不重奖及真实v10-v11普通UI通过。最终2315tests/129files、content/type/build/系统Chromium标准双端smoke/plan通过且源码/index/HEAD保持。原FAIL/source及双方历史保留；六通过图和原FAIL图actual view。仅draft PR20；精确reviewCI另报，main父独审串行，默认v11/旧档/其他五人/素材不动。证据docs/production/evidence/p08-amo-assist-ui-closeout-2026-10-05/summary.json。P08 in_progress，C04 D32及原门槛保持。

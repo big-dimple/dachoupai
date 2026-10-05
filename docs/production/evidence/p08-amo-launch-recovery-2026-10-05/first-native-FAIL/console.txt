@@ -1,0 +1,43 @@
+select-390 TimeoutError: locator.tap: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: '继续本局', exact: true })[22m
+
+{
+  "source": "51c24dde6c7015033e766e412d37aa26b2b81ee9",
+  "cases": [
+    {
+      "name": "select-320",
+      "status": "PASS",
+      "checks": [
+        "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+        "normal Title → CharacterSelect → Shop creates frozen assist identity after explicit confirmation"
+      ]
+    },
+    {
+      "name": "select-390",
+      "status": "FAIL",
+      "error": "TimeoutError: locator.tap: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '继续本局', exact: true })\u001b[22m\n",
+      "checks": [
+        "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+        "normal Title → CharacterSelect → Shop creates frozen assist identity after explicit confirmation"
+      ]
+    },
+    {
+      "name": "select-short",
+      "status": "PASS",
+      "checks": [
+        "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+        "normal Title → CharacterSelect → Shop creates frozen assist identity after explicit confirmation"
+      ]
+    },
+    {
+      "name": "select-desktop",
+      "status": "PASS",
+      "checks": [
+        "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+        "normal Title → CharacterSelect → Shop creates frozen assist identity after explicit confirmation"
+      ]
+    }
+  ],
+  "unchanged": true
+}
