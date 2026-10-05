@@ -1,0 +1,359 @@
+{
+  "status": "PASS_BOUNDED_COMBINATION",
+  "runtimeSource": "46135434359f58e8d0a5d538a531f3b26b1b96cb",
+  "mergeCommit": "d31a64e1cd0feaf443d9a7ebc1740f2f8879fac9",
+  "mainConfirmedBeforeMerge": "04d2f729bbe37d7e34783f4a2a81b9026ff98a64",
+  "scoreReview": "76cd618564b2037aee98895e245ee71cfa4f5ddc",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-05T00:18:37.404Z",
+    "revision": "46135434359f58e8d0a5d538a531f3b26b1b96cb",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "scope": "Only two fixture routes,390x740/DPR1/safe12/34/softwareCanvas. Frozen old-v10 before checkpoint and explicitly retagged valid equivalent v11 hand; legal DOM import, not natural purchase. No art retakes,video,FPS or listening.",
+  "codePreservation": {
+    "mainByteIdentical": [
+      "src/domain",
+      "src/application/checkpoint.ts",
+      "src/platform/IndexedDbSave.ts",
+      "src/testing/r2Bot.ts",
+      "src/game/characters.ts",
+      "src/game/HandRuleReference.ts",
+      "harness/amo-rule-version.mjs",
+      "tests/fixtures/r2-v10-amo-checkpoints.json"
+    ],
+    "feedbackByteIdentical": [
+      "src/game/GameScene.ts",
+      "src/game/ScoreFlame.ts",
+      "src/audio/AudioEngine.ts",
+      "src/game/ScoreTextLayout.ts",
+      "src/game/scorePresentation.ts"
+    ],
+    "mergeConflicts": []
+  },
+  "checks": {
+    "relatedTests": {
+      "files": 5,
+      "tests": 71,
+      "status": "PASS"
+    },
+    "typecheck": "PASS",
+    "viteBuildModeE2E": "PASS",
+    "harnessSyntax": "PASS",
+    "diffCheck": "PASS",
+    "exactEvidenceHeadCI": "PENDING; check after review push"
+  },
+  "runs": [
+    {
+      "profile": "legacy-v10",
+      "status": "PASS",
+      "score": "325",
+      "contentVersion": "quality-r2-content-v10",
+      "contentHash": "json-fnv-v1:24efe7a905216d85",
+      "commandSeq": 4,
+      "actualArrivalOrder": [
+        {
+          "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/1",
+          "source": "rank-13",
+          "phase": "onCardScore",
+          "frame": 75,
+          "at": 1809.199999999255,
+          "shown": "75",
+          "product": "75"
+        },
+        {
+          "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/2",
+          "source": "amo",
+          "phase": "characterScore",
+          "frame": 97,
+          "at": 2175.300000000745,
+          "shown": "225",
+          "product": "225"
+        },
+        {
+          "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/3",
+          "source": "pengci",
+          "phase": "jokerScore",
+          "frame": 115,
+          "at": 2475,
+          "shown": "325",
+          "product": "325"
+        }
+      ],
+      "wholeStateJournalExportHash": "49b79bd70e038fb6e0a70b5aa1d437dfe77373dc89de27829b0743d981e7a865",
+      "savedDuringPresentationRecapAndReloadEqual": true,
+      "errors": [],
+      "firstPlayback": {
+        "actualFrameCount": 83,
+        "allFramesSavedStable": true,
+        "orderedEventInvocations": [
+          {
+            "frame": 63,
+            "at": 1592.5999999977648,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/1",
+            "source": "rank-13",
+            "phase": "onCardScore",
+            "replay": false
+          },
+          {
+            "frame": 79,
+            "at": 1858.800000000745,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/2",
+            "source": "amo",
+            "phase": "characterScore",
+            "replay": false
+          },
+          {
+            "frame": 103,
+            "at": 2258.39999999851,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/3",
+            "source": "pengci",
+            "phase": "jokerScore",
+            "replay": false
+          }
+        ],
+        "ownedAccentCalls": [
+          {
+            "frame": 69,
+            "at": 1698.5,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/1",
+            "level": 0,
+            "replay": false
+          },
+          {
+            "frame": 90,
+            "at": 2045.199999999255,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/2",
+            "level": 0,
+            "replay": false
+          },
+          {
+            "frame": 109,
+            "at": 2361,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/3",
+            "level": 0,
+            "replay": false
+          },
+          {
+            "frame": 123,
+            "at": 2594.199999999255,
+            "eventId": "award",
+            "level": 0,
+            "replay": false
+          }
+        ],
+        "ownedAccentVoiceMax": 2,
+        "cleanup": {
+          "brush": false,
+          "nodes": 0,
+          "masks": 0,
+          "accentVoices": 0,
+          "pulses": [
+            {
+              "requested": 1,
+              "scale": 1
+            },
+            {
+              "requested": 1,
+              "scale": 1
+            },
+            {
+              "requested": 1,
+              "scale": 1
+            }
+          ]
+        }
+      },
+      "recap": {
+        "route": "Actual animated GameScene recap",
+        "ownedAccentCalls": [],
+        "cleanup": {
+          "brush": false,
+          "nodes": 0,
+          "masks": 0,
+          "accentVoices": 0,
+          "pulses": [
+            {
+              "requested": 1,
+              "scale": 1
+            },
+            {
+              "requested": 1,
+              "scale": 1
+            },
+            {
+              "requested": 1,
+              "scale": 1
+            }
+          ]
+        },
+        "actualFrameCount": 83,
+        "allFramesSavedStableCredited": true,
+        "ownedAccentVoiceMax": 0,
+        "impactCountMax": 0,
+        "allNumericScalesOne": true,
+        "orderedEventInvocations": [
+          {
+            "frame": 163,
+            "at": 3275,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/1",
+            "source": "rank-13",
+            "phase": "onCardScore",
+            "replay": true
+          },
+          {
+            "frame": 179,
+            "at": 3541.800000000745,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/2",
+            "source": "amo",
+            "phase": "characterScore",
+            "replay": true
+          },
+          {
+            "frame": 203,
+            "at": 3941.800000000745,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/3",
+            "source": "pengci",
+            "phase": "jokerScore",
+            "replay": true
+          }
+        ]
+      }
+    },
+    {
+      "profile": "new-v11",
+      "status": "PASS",
+      "score": "525",
+      "contentVersion": "quality-r2-content-v11",
+      "contentHash": "json-fnv-v1:bd4a1230833ab884",
+      "commandSeq": 4,
+      "actualArrivalOrder": [
+        {
+          "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/1",
+          "source": "rank-13",
+          "phase": "onCardScore",
+          "frame": 69,
+          "at": 2045.6000000014901,
+          "shown": "75",
+          "product": "75"
+        },
+        {
+          "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/2",
+          "source": "pengci",
+          "phase": "jokerScore",
+          "frame": 86,
+          "at": 2329.10000000149,
+          "shown": "175",
+          "product": "175"
+        },
+        {
+          "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/3",
+          "source": "amo",
+          "phase": "characterScore",
+          "frame": 107,
+          "at": 2679,
+          "shown": "525",
+          "product": "525"
+        }
+      ],
+      "wholeStateJournalExportHash": "4f317216eb7ebd976d06dd00a7799574bfa53add86606174cefdc3a2c352d279",
+      "savedDuringPresentationRecapAndReloadEqual": true,
+      "errors": [],
+      "firstPlayback": {
+        "actualFrameCount": 98,
+        "allFramesSavedStable": true,
+        "orderedEventInvocations": [
+          {
+            "frame": 57,
+            "at": 1829.300000000745,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/1",
+            "source": "rank-13",
+            "phase": "onCardScore",
+            "replay": false
+          },
+          {
+            "frame": 73,
+            "at": 2095.800000000745,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/2",
+            "source": "pengci",
+            "phase": "jokerScore",
+            "replay": false
+          },
+          {
+            "frame": 90,
+            "at": 2379.10000000149,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/3",
+            "source": "amo",
+            "phase": "characterScore",
+            "replay": false
+          }
+        ],
+        "ownedAccentCalls": [
+          {
+            "frame": 63,
+            "at": 1938.9000000022352,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/1",
+            "level": 0,
+            "replay": false
+          },
+          {
+            "frame": 80,
+            "at": 2216.300000000745,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/2",
+            "level": 0,
+            "replay": false
+          },
+          {
+            "frame": 101,
+            "at": 2564.900000002235,
+            "eventId": "legacy-v10-amo/hand/legacy-v10-amo/command/4/event/3",
+            "level": 1,
+            "replay": false
+          },
+          {
+            "frame": 117,
+            "at": 2831.7000000029802,
+            "eventId": "award",
+            "level": 1,
+            "replay": false
+          }
+        ],
+        "ownedAccentVoiceMax": 2,
+        "cleanup": {
+          "brush": false,
+          "nodes": 0,
+          "masks": 0,
+          "accentVoices": 0,
+          "pulses": []
+        }
+      },
+      "recap": {
+        "route": "Actual Intermission DOM ledger recap",
+        "ownedAccentCalls": [],
+        "cleanup": {
+          "brush": false,
+          "nodes": 0,
+          "masks": 0,
+          "accentVoices": 0,
+          "pulses": []
+        },
+        "actualDOMText": "高牌 · 525 热度\nhigh-card.base：base 40/1\nrank-13.add-heat：add-heat 10/1\npengci.add-multiplier：add-multiplier 2/1\namo.multiply-multiplier：multiply-multiplier 3/1\nhigh-card.final-score：final-score 525/1",
+        "addedPresentationFrames": 0
+      }
+    }
+  ],
+  "raw": {
+    "report": "shots/score-amo-combination/report.json",
+    "sha256": "043f5f7dec2a0df0de0ba05454927e52b43ec1b26c315785049b140f18c32e84",
+    "log": "shots/score-amo-combination/run.log",
+    "logSHA256": "5288ef9f5c6e68cee0619c2fe3f257b6f5118e8d8d0498b0864c746799c55e6d"
+  },
+  "limits": [
+    "Frozen invariant-valid v10 before fixture and explicitly identified equivalent v11 hand, not a natural acquisition/balance sample.",
+    "New525 clears stage, so the existing production recap is an Intermission DOM ledger; legacy325 has the full animated GameScene recap.",
+    "Recap accent assertions concern the new owned short drum/paper accent; existing source-cue playback stays unchanged.",
+    "No new screenshots/art matrix,video,GPU/FPS,listening,true-device or wholeP08 acceptance.",
+    "Review only; main not pushed."
+  ]
+}
