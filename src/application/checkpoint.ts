@@ -1,5 +1,8 @@
+import {hasR2ComboGrowthContract,isR2GroupUpgrade} from '../domain/r2GroupUpgrade';
+import {R2_GROUP_UPGRADE_IDS} from '../content/r2GroupUpgradeJokers';
+import {R2_GROUP_HAND_TYPES,r2LargestScoringRankGroup} from '../domain/r2GroupHands';
 import {R2_COMBO_GROWTH_IDS} from '../content/r2ComboGrowthJokers';
-import {isR2ComboGrowth,r2ColdOpening,type R2OpeningDiscard} from '../domain/r2ComboGrowth';
+import {r2ColdOpening,type R2OpeningDiscard} from '../domain/r2ComboGrowth';
 import {R2_ASSIST_VERSION} from '../domain/r2AssistIdentity';
 import {R2_ASSIST_ADAPTED_IDS} from '../content/r2AssistJokers';
 import {r2ScoreConditionMatches} from '../domain/r2Conditions';
@@ -13,7 +16,7 @@ import {CHARACTER_IDS} from '../domain/characters';
 import {R2_HAND_TYPES,type R2HandType} from '../domain/evaluateR2';
 import {r2GrowthCaps,r2GrowthInitials,r2GrowthMinimums,supportsR2Joker,validR2JokerCounters,validR2Condition,type R2JokerInstance} from '../content/r2Schema';
 import {Rational,MAX_INTEGER_DIGITS} from '../domain/rational';
-import {SCORE_LIMITS,SCORE_OPERATIONS,r2ScoringDisabledJokerIds} from '../domain/scoreR2';
+import {SCORE_LIMITS,SCORE_OPERATIONS,r2ScoringDisabledJokerIds,type ScoreEvent} from '../domain/scoreR2';
 import {SeededRng} from '../core/SeededRng';
 import {stableHash} from '../domain/hash';
 import {r2DisabledCards,R2_AVAILABLE_CHAPTERS,R2_ENDLESS_MAX_CHAPTER,R2_SKIP_CONSUMABLES,r2StageSpec,r2BossHistoryValid,r2BossPlanValid,type R2TourMode,type R2BossPlan} from '../domain/r2Chapter';
@@ -119,9 +122,9 @@ function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeC
     }
   }
 }
-function trace(value:unknown,context:{combo:boolean;definitions:ReturnType<typeof r2JokerDefinitionsFor>;runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[];liveJokers?:readonly R2JokerInstance[];settledGold?:number}):void {
+function trace(value:unknown,context:{group:boolean;combo:boolean;definitions:ReturnType<typeof r2JokerDefinitionsFor>;runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[];liveJokers?:readonly R2JokerInstance[];settledGold?:number}):void {
   if(value===null)return;
-  const R2_JOKERS=context.definitions,combo=context.combo;
+  const R2_JOKERS=context.definitions,combo=context.combo,group=context.group;
   const stage=context.stage;if(!stage)return fail('invalid-save-trace-stage');
   const successfulStage=stage.skipResult===null&&stage.clearId!==null&&stage.index+1===context.stageIndex&&BigInt(stage.heat)>=BigInt(stage.targetHeat);
   const prototype=context.amoScoreTiming==='assist-v1';
@@ -165,6 +168,7 @@ function trace(value:unknown,context:{combo:boolean;definitions:ReturnType<typeo
   const coefficients=new Map([...jokerSources.values()].filter(joker=>Object.hasOwn(joker.growth,'coefficient')).map(joker=>[joker.instanceId,Rational.fromJSON(joker.growth.coefficient)]));
   const coefficientReads=new Set<string>(),coefficientChanges=new Set<string>(),chanceChecks=new Map<string,boolean>(),chanceHeat=new Set<string>(),clearCycles=new Map<string,number>(),rewardSources=new Set<string>(),handRefunds=new Set<string>();
   const comboEvents=new Set<string>();
+  const groupRetriggers=new Map<string,number>(),groupCaps=new Set<string>(),cardRetriggers=new Map<string,number>(),cardRoots=new Map<string,string>();
   const assistWholeEffects=new Set<string>(),assistEditionSources=new Set<string>();
   const emptySlotRewards=new Set<string>();
   const lifetimeCounts=new Map<string,number>(),rescues=new Set<string>();let previousEvent:Record<string,unknown>|undefined;
@@ -190,6 +194,7 @@ function trace(value:unknown,context:{combo:boolean;definitions:ReturnType<typeo
     if(e.operation==='upgrade-hand'){oneOf(e.targetHandType,R2_HAND_TYPES);if(!context.discoveredHands.includes(e.targetHandType as string))fail('undiscovered-save-upgrade-target');}
     else if(Object.hasOwn(e,'targetHandType'))fail('invalid-save-target-hand-operation');
     fraction(e.value);accumulator(e.before);accumulator(e.after);integer(e.retriggerDepth,0,1);if(e.targetCardId!==undefined)text(e.targetCardId);
+    if(!group&&(e.visibleCondition as Record<string,unknown>)?.kind==='largest-scoring-rank-group')fail('invalid-save-group-condition');
     if(!validR2Condition(e.visibleCondition)||e.visibleCondition.kind==='cold-opening-discard'||!prototype&&!combo&&e.visibleCondition.kind==='hand-type-relation')fail('invalid-save-visible-condition');
     if(Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter')){integer(e.resourceBefore);integer(e.resourceAfter);}
     const sourceCard=cardSources.get(e.sourceInstanceId as string);
@@ -211,7 +216,8 @@ function trace(value:unknown,context:{combo:boolean;definitions:ReturnType<typeo
     if(e.sourceType==='rule'&&(e.sourceInstanceId!==context.runId||![t.handType,'B02','B05','B12','B15',...clearRuleDefinitions,...programRuleDefinitions].includes(e.sourceDefinitionId)))fail('invalid-save-rule-source');
     const amount=Rational.fromJSON(e.value);
     const comboSource=combo&&e.sourceType==='joker'&&!!sourceJoker&&R2_COMBO_GROWTH_IDS.includes(sourceJoker.definitionId);
-    const adaptedJoker=(prototype||combo)&&e.sourceType==='joker'&&sourceJoker&&(R2_ASSIST_ADAPTED_IDS.includes(sourceJoker.definitionId)||comboSource);
+    const groupFamily=e.sourceType==='joker'&&!!sourceJoker&&R2_GROUP_UPGRADE_IDS.includes(sourceJoker.definitionId);
+    const adaptedJoker=e.sourceType==='joker'&&sourceJoker&&(((prototype||combo)&&(R2_ASSIST_ADAPTED_IDS.includes(sourceJoker.definitionId)||comboSource))||groupFamily);
     let validatedEdition=false;
     if(adaptedJoker){
       if((e.reasonKey as string).startsWith('edition.')){
@@ -230,6 +236,26 @@ function trace(value:unknown,context:{combo:boolean;definitions:ReturnType<typeo
         assistEditionSources.add(sourceJoker!.instanceId);validatedEdition=true;
       }else if(e.phase==='jokerScore'&&assistEditionSources.has(sourceJoker!.instanceId))fail('invalid-save-assist-joker-edition-order');
     }
+    if(groupFamily&&!validatedEdition){
+      if(['targetJokerInstanceId','targetHandType','growthBefore','growthAfter','rewardDefinitionId','programGoldBeforeReward','goldBeforeRewards'].some(key=>Object.hasOwn(e,key))||e.operation!=='add-gold'&&(Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter')))fail('invalid-save-group-metadata');
+      if(e.phase!=='onCardScore'&&e.rootEventId!==e.eventId||e.phase==='jokerScore'&&finalSeen||e.phase==='afterHand'&&(!finalSeen||clearSeen))fail('invalid-save-group-phase');
+    }
+    if(group&&e.sourceType==='card'&&sourceCard&&e.sourceDefinitionId===`rank-${sourceCard.rank}`&&e.phase==='onCardScore'&&e.operation==='add-heat'&&e.retriggerDepth===0)cardRoots.set(sourceCard.id,e.eventId as string);
+    if(group&&groupFamily&&sourceJoker!.definitionId==='b06'&&!validatedEdition){
+      const target=e.targetCardId as string,key=sourceJoker!.instanceId+'/'+target;
+      if(e.phase!=='onCardScore'||e.retriggerDepth!==0||finalSeen||!active.includes(target)||e.rootEventId!==cardRoots.get(target))fail('invalid-save-group-retrigger-root');
+      unchanged(e.before,e.after);
+      if(e.operation==='retrigger-card'){
+        const expected=Math.min(1,SCORE_LIMITS.extraRetriggers-(cardRetriggers.get(target)??0));
+        if(groupRetriggers.has(key)||amount.compare(new Rational(BigInt(expected))))fail('invalid-save-group-retrigger-value');groupRetriggers.set(key,expected);
+      }else if(e.operation==='retrigger-cap'){
+        if(groupCaps.has(key)||groupRetriggers.get(key)!==0||previousEvent?.sourceInstanceId!==sourceJoker!.instanceId||previousEvent?.targetCardId!==target||previousEvent?.operation!=='retrigger-card')fail('invalid-save-group-retrigger-cap');groupCaps.add(key);
+      }else fail('invalid-save-group-retrigger-operation');
+    }
+    if(group&&e.operation==='retrigger-card'&&e.phase==='onCardScore'&&e.retriggerDepth===0){
+      const target=e.targetCardId as string,total=(cardRetriggers.get(target)??0)+Number(amount.n/amount.d);
+      if(!active.includes(target)||amount.d!==1n||amount.n<0n||total>SCORE_LIMITS.extraRetriggers)fail('invalid-save-group-retrigger-budget');cardRetriggers.set(target,total);
+    }
     if(comboSource&&!validatedEdition){
       const allowed:Record<string,readonly string[]>={a06:['read-coefficient','multiply-coefficient'],f10:['rescue-multiplier','consume-rescue'],d12:['add-gold-per-held'],e04:['add-gold-per-capital']};
       if(!allowed[sourceJoker!.definitionId].includes(e.operation as string)||e.rootEventId!==e.eventId||e.phase==='jokerScore'&&finalSeen)fail('invalid-save-combo-body-operation');
@@ -241,7 +267,7 @@ function trace(value:unknown,context:{combo:boolean;definitions:ReturnType<typeo
       if(!hook||!op)fail('invalid-save-assist-joker-definition');
       const cards=t.cards as PlayingCard[],disabled=boss?r2DisabledCards(boss,stage.index,cards):[];
       const selected=cards.filter(c=>played.includes(c.id)),retained=cards.filter(c=>held.includes(c.id)),effective=cards.filter(c=>active.includes(c.id));
-      const qualifies=hook!.phase==='onStageClear'?successfulStage&&hook!.condition.kind==='stage-played-maximum'&&stage.maxPlayedCount<=hook!.condition.maximum:
+      const qualifies=hook!.phase==='onStageClear'?successfulStage&&(hook!.condition.kind==='stage-played-maximum'?stage.maxPlayedCount<=hook!.condition.maximum:groupFamily&&hook!.condition.kind==='hand-type-in'&&hook!.condition.values.includes(t.handType as R2HandType)):
         r2ScoreConditionMatches(hook!.condition,{played:selected,held:retained,validHeld:retained.filter(c=>!disabled.includes(c.id)),active:effective,scoringIds:scoring,handType:t.handType as R2HandType,previousHandType:bossContext.previousHandType as R2HandType|null,playIndex:stage.playIndex,handsAfter:stage.handsLeft,gold:0,discardsUsed:stage.discardsUsed,extraExecutions:0,resolvedFinal:null},cards.find(c=>c.id===e.targetCardId));
       if(!qualifies)fail('invalid-save-assist-joker-condition');
       if(['jokerScore','afterHand','onStageClear'].includes(e.phase as string)){
@@ -253,7 +279,9 @@ function trace(value:unknown,context:{combo:boolean;definitions:ReturnType<typeo
         if(amount.compare(Rational.fromJSON(op!.value))!==0)fail('invalid-save-assist-joker-value');
       }else if(op!.kind==='read-growth'){
         if(amount.compare(Rational.fromJSON(sourceJoker.growth[op!.key]??{n:'0',d:'1'}))!==0)fail('invalid-save-assist-joker-growth');
+        if(groupFamily){const before=e.before as {H:unknown;M:unknown},after=e.after as {H:unknown;M:unknown};const heat=Rational.fromJSON(before.H),mult=Rational.fromJSON(before.M);if((op!.target==='heat'?heat.add(amount):heat).compare(Rational.fromJSON(after.H))||(op!.target==='multiplier'?mult.add(amount):mult).compare(Rational.fromJSON(after.M)))fail('invalid-save-group-growth-read');}
       }else if(op!.kind==='add-growth'){
+        if(groupFamily)unchanged(e.before,e.after);
         const before=Rational.fromJSON(sourceJoker.growth[op!.key]??{n:'0',d:'1'}),raw=before.add(Rational.fromJSON(op!.value)),cap=Rational.fromJSON(op!.cap),next=raw.compare(cap)>0?cap:raw;
         if(amount.compare(next.add(before.multiply(new Rational(-1n))))!==0||Rational.fromJSON((t.jokers as R2JokerInstance[]).find(j=>j.instanceId===sourceJoker.instanceId)!.growth[op!.key]).compare(next)!==0)fail('invalid-save-assist-joker-growth');
       }else if(op!.kind==='add-gold'){
@@ -468,9 +496,27 @@ function trace(value:unknown,context:{combo:boolean;definitions:ReturnType<typeo
     }
     previousEvent=e;
   }
-  if(prototype||combo)for(const source of jokerSources.values())if(R2_ASSIST_ADAPTED_IDS.includes(source.definitionId)||combo&&R2_COMBO_GROWTH_IDS.includes(source.definitionId)){
+  for(const source of jokerSources.values())if(((prototype||combo)&&R2_ASSIST_ADAPTED_IDS.includes(source.definitionId))||combo&&R2_COMBO_GROWTH_IDS.includes(source.definitionId)||R2_GROUP_UPGRADE_IDS.includes(source.definitionId)){
     const expected=!!R2_TOOL_CATALOG.editions.find(row=>row.id===(source.edition??'none'))?.effect&&!disabledJokers.has(source.instanceId);
     if(assistEditionSources.has(source.instanceId)!==expected)fail('invalid-save-assist-joker-edition-count');
+  }
+  if(group){
+    for(const source of jokerSources.values()){
+      const qualified=R2_GROUP_HAND_TYPES.includes(t.handType as R2HandType),definition=R2_JOKERS.find(d=>d.id===source.definitionId)!;
+      if(source.definitionId==='b08'&&assistWholeEffects.has(source.instanceId+'/onStageClear/add-gold')!==(successfulStage&&qualified))fail('invalid-save-group-income-count');
+      if(source.definitionId==='b03'||source.definitionId==='b10'){
+        const op=definition.hooks.flatMap(h=>h.operations).find(o=>o.kind==='add-growth')!;if(op.kind!=='add-growth')fail('invalid-save-group-growth-definition');
+        const before=Rational.fromJSON(source.growth[op.key]??{n:'0',d:'1'}),cap=Rational.fromJSON(op.cap),raw=qualified?before.add(Rational.fromJSON(op.value)):before,expected=raw.compare(cap)>0?cap:raw;
+        const actual=(t.jokers as R2JokerInstance[]).find(j=>j.instanceId===source.instanceId)!;
+        if(assistWholeEffects.has(source.instanceId+'/jokerScore/read-growth')!==!disabledJokers.has(source.instanceId)||assistWholeEffects.has(source.instanceId+'/afterHand/add-growth')!==qualified||Rational.fromJSON(actual.growth[op.key]??{n:'0',d:'1'}).compare(expected))fail('invalid-save-group-growth-result');
+        const live=context.liveJokers?.find(j=>j.instanceId===source.instanceId);if(live&&stableHash(live.growth)!==stableHash(actual.growth))fail('invalid-save-group-live-growth');
+      }
+      if(source.definitionId==='b06'){
+        const targets=qualified&&!disabledJokers.has(source.instanceId)?r2LargestScoringRankGroup((t.cards as PlayingCard[]).filter(c=>played.includes(c.id)),scoring).filter(id=>active.includes(id)):[];
+        for(const id of active){const key=source.instanceId+'/'+id;if(groupRetriggers.has(key)!==targets.includes(id)||groupCaps.has(key)!==(groupRetriggers.get(key)===0))fail('invalid-save-group-retrigger-targets');}
+        for(const id of active){const repeats=(events as ScoreEvent[]).filter(e=>e.sourceType==='card'&&e.sourceDefinitionId===`rank-${cardSources.get(id)!.rank}`&&e.targetCardId===id&&e.phase==='onCardScore'&&e.operation==='add-heat'&&e.retriggerDepth===1).length;if(repeats!==(cardRetriggers.get(id)??0))fail('invalid-save-group-retrigger-executions');}
+      }
+    }
   }
   if(combo){
     for(const source of jokerSources.values()){
@@ -550,13 +596,13 @@ function trace(value:unknown,context:{combo:boolean;definitions:ReturnType<typeo
   for(const [id,cycle] of clearCycles)if((cycle===0)!==rewardSources.has(id))fail('invalid-save-clear-cycle-reward');
 }
 function action(value:unknown,state:R2RunState):void {
-  const prototype=r2UsesAssist(state),combo=isR2ComboGrowth(state);
+  const prototype=r2UsesAssist(state),combo=hasR2ComboGrowthContract(state),profile=isR2GroupUpgrade(state)?'group-upgrade-v1':combo?'combo-growth-v1':'amo-assist-v1';
   const a=record(value,['type'],['seed','characterId','rulesVersion','modeConfig','r2Profile','r2Identity','assistIds','programId','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind']);
   const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],ContinueEndless:[],ChooseProgram:['programId'],AbandonProgram:[],PlayHand:['selectedIds'],PlayAssistedHand:['selectedIds','assistIds'],DiscardHand:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
   if(typeof a.type!=='string'||!Object.hasOwn(keys,a.type))fail('unknown-save-command');
   record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='StartRun'?['modeConfig','r2Identity',...(prototype||combo?['r2Profile']:[])]:[]);
   if(a.type==='PlayAssistedHand'&&!prototype)fail('invalid-save-assist-profile');
-  if(a.type==='StartRun'&&prototype&&((a.r2Identity===undefined&&a.r2Profile!==(combo?'combo-growth-v1':'amo-assist-v1'))||a.characterId!=='amo'))fail('invalid-save-assist-profile');
+  if(a.type==='StartRun'&&prototype&&((a.r2Identity===undefined&&a.r2Profile!==profile)||a.characterId!=='amo'))fail('invalid-save-assist-profile');
   if(a.type==='PlayAssistedHand'){uniqueIds(a.selectedIds,5);uniqueIds(a.assistIds,3);const main=a.selectedIds as string[],assist=a.assistIds as string[];if(!main.length||assist.length<2||assist.some(id=>main.includes(id)))fail('invalid-save-assist-command');}
   if(a.handType!==undefined)oneOf(a.handType,R2_HAND_TYPES);
   if(a.secondaryHandType!==undefined)oneOf(a.secondaryHandType,R2_HAND_TYPES);
@@ -564,8 +610,8 @@ function action(value:unknown,state:R2RunState):void {
   if(a.sacrificeId!==undefined)text(a.sacrificeId);
   if(a.targetKind!==undefined)oneOf(a.targetKind,['card','joker']);
   if(a.type==='StartRun'){
-    if(combo&&a.r2Identity===undefined&&a.r2Profile!=='combo-growth-v1')fail('invalid-save-start-profile');
-    if(a.r2Profile!==undefined&&a.r2Profile!==(combo?'combo-growth-v1':'amo-assist-v1'))fail('invalid-save-start-profile');
+    if(combo&&a.r2Identity===undefined&&a.r2Profile!==profile)fail('invalid-save-start-profile');
+    if(a.r2Profile!==undefined&&a.r2Profile!==profile)fail('invalid-save-start-profile');
     text(a.seed,4096);oneOf(a.characterId,CHARACTER_IDS);oneOf(a.rulesVersion,['r2']);
     if(a.r2Identity!==undefined){
       const identity=record(a.r2Identity,['contentVersion','contentHash']);
@@ -597,7 +643,7 @@ function validateState(value:unknown):asserts value is R2RunState {
   if(value&&typeof value==='object'&&!Array.isArray(value)){const tags=value as Record<string,unknown>;if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||!r2RulesetFor(tags))fail('incompatible-version');}
   const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','mode','difficulty','challengeId','programsEnabled','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons','safetyNetUsed','spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed','tourMode','normalCompletion','chapterDisabledJokerId','programRerollCoupon']);
   if(s.schemaVersion!==2||s.rulesVersion!=='r2'||!r2RulesetFor(s))fail('incompatible-version');
-  const prototype=r2UsesAssist(s),combo=isR2ComboGrowth(s),definitions=r2JokerDefinitionsFor(s);
+  const prototype=r2UsesAssist(s),combo=hasR2ComboGrowthContract(s),definitions=r2JokerDefinitionsFor(s);
   if(s.contentVersion===R2_ASSIST_VERSION&&s.characterId!=='amo')fail('invalid-save-assist-profile');
   const selected=resolveR2ModeConfig({mode:s.mode,difficulty:s.difficulty,challengeId:s.challengeId,programsEnabled:s.programsEnabled});
   const config=selected.ok?selected.config:fail('invalid-save-mode');
@@ -690,7 +736,7 @@ function validateState(value:unknown):asserts value is R2RunState {
   for(const r of receipts){const v=record(r,['commandId','fingerprint','seq']);text(v.commandId);text(v.fingerprint);integer(v.seq,1);if(v.seq!==++seq||ids.has(v.commandId))fail('invalid-save-receipts');ids.add(v.commandId);}
   if(seq!==s.commandSeq)fail('invalid-save-sequence');
   const stage=s.stage as R2RunState['stage'],sameStage=stage?.index===s.stageIndex&&['await-input','run-lost'].includes(s.phase as string);
-  trace(s.lastTrace,{combo,definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2ScoreTimingFor(s),discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
+  trace(s.lastTrace,{group:isR2GroupUpgrade(s),combo,definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2ScoreTimingFor(s),discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
     config,program:s.program as R2ProgramState|null,usage:usage as R2RunState['chapterHandUsage'],
     liveJokerIds:sameStage?(s.jokers as R2JokerInstance[]).map(joker=>joker.instanceId):undefined,liveJokers:combo||sameStage?s.jokers as R2JokerInstance[]:undefined,settledGold:['stage-cleared','run-won'].includes(s.phase as string)?s.gold as number:undefined});
   const program=s.program as R2ProgramState|null;

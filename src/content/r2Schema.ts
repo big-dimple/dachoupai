@@ -10,6 +10,7 @@ export type HookPhase = ScoreHookPhase | TransactionHookPhase;
 export type Condition =
   | { kind: 'always' }
   | { kind: 'cold-opening-discard' }
+  | { kind: 'largest-scoring-rank-group' }
   | { kind: 'hand-type-in'; values: readonly R2HandType[] }
   | { kind: 'rank-in'; values: readonly number[] }
   | { kind: 'played-count'; equals: number }
@@ -206,6 +207,7 @@ export function validR2Condition(c:unknown,phase?:HookPhase):c is Condition {
   if(!object(c))return false;let valid=false;const at=(...phases:HookPhase[])=>!phase||phases.includes(phase);
   switch(c.kind){
     case 'always':valid=exact(c,['kind']);break;
+    case 'largest-scoring-rank-group':valid=at('onCardScore')&&exact(c,['kind']);break;
     case 'cold-opening-discard':valid=at('onDiscard')&&exact(c,['kind']);break;
     case 'hand-type-in':valid=exact(c,['kind','values'])&&handTypes(c.values);break;
     case 'rank-in':valid=exact(c,['kind','values'])&&at('onCardScore','onHeldCard')&&Array.isArray(c.values)&&c.values.length>0&&c.values.length<=13&&c.values.every(v=>integer(v,2,14));break;

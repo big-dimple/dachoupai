@@ -1,0 +1,1557 @@
+{
+  "source": "e8a3f7acfb064a9cf492ab73e6087c15728fed2f",
+  "localSource": "4382639456543d424626fc5fdfcd8e82853d0776",
+  "domainEquivalentPublishedBase": "ac025ee9132dcd5e2ce97767ff7adb780873ab95",
+  "provenance": "Created from unchanged e7d domain code in separate prior worktree; controlled public hand and owned Jokers, not natural acquisition. PR25 ac025 changes only UI/copy/tests/docs/harness, verified by connector comparison; no new group source loaded.",
+  "before": {
+    "format": "dachoupai-checkpoint",
+    "formatVersion": 1,
+    "state": {
+      "schemaVersion": 2,
+      "rulesVersion": "r2",
+      "contentVersion": "quality-r2-combo-growth-prototype-v1",
+      "contentHash": "json-fnv-v1:e7d21fce68b80072",
+      "runId": "frozen-e7d",
+      "seed": "frozen-e7d",
+      "commandSeq": 3,
+      "difficulty": 0,
+      "characterId": "amo",
+      "mode": "standard",
+      "challengeId": null,
+      "programsEnabled": true,
+      "programRerollCoupon": false,
+      "chapterDisabledJokerId": null,
+      "chapter": 1,
+      "stageIndex": 0,
+      "phase": "await-input",
+      "deckInstances": [
+        {
+          "id": "spades-2",
+          "suit": "spades",
+          "rank": 2
+        },
+        {
+          "id": "spades-3",
+          "suit": "spades",
+          "rank": 3
+        },
+        {
+          "id": "spades-4",
+          "suit": "spades",
+          "rank": 4
+        },
+        {
+          "id": "spades-5",
+          "suit": "spades",
+          "rank": 5
+        },
+        {
+          "id": "spades-6",
+          "suit": "spades",
+          "rank": 6
+        },
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7
+        },
+        {
+          "id": "spades-8",
+          "suit": "spades",
+          "rank": 8
+        },
+        {
+          "id": "spades-9",
+          "suit": "spades",
+          "rank": 9
+        },
+        {
+          "id": "spades-10",
+          "suit": "spades",
+          "rank": 10
+        },
+        {
+          "id": "spades-11",
+          "suit": "spades",
+          "rank": 11
+        },
+        {
+          "id": "spades-12",
+          "suit": "spades",
+          "rank": 12
+        },
+        {
+          "id": "spades-13",
+          "suit": "spades",
+          "rank": 13
+        },
+        {
+          "id": "spades-14",
+          "suit": "spades",
+          "rank": 14
+        },
+        {
+          "id": "hearts-2",
+          "suit": "hearts",
+          "rank": 2
+        },
+        {
+          "id": "hearts-3",
+          "suit": "hearts",
+          "rank": 3
+        },
+        {
+          "id": "hearts-4",
+          "suit": "hearts",
+          "rank": 4
+        },
+        {
+          "id": "hearts-5",
+          "suit": "hearts",
+          "rank": 5
+        },
+        {
+          "id": "hearts-6",
+          "suit": "hearts",
+          "rank": 6
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        },
+        {
+          "id": "hearts-8",
+          "suit": "hearts",
+          "rank": 8
+        },
+        {
+          "id": "hearts-9",
+          "suit": "hearts",
+          "rank": 9
+        },
+        {
+          "id": "hearts-10",
+          "suit": "hearts",
+          "rank": 10
+        },
+        {
+          "id": "hearts-11",
+          "suit": "hearts",
+          "rank": 11
+        },
+        {
+          "id": "hearts-12",
+          "suit": "hearts",
+          "rank": 12
+        },
+        {
+          "id": "hearts-13",
+          "suit": "hearts",
+          "rank": 13
+        },
+        {
+          "id": "hearts-14",
+          "suit": "hearts",
+          "rank": 14
+        },
+        {
+          "id": "clubs-2",
+          "suit": "clubs",
+          "rank": 2
+        },
+        {
+          "id": "clubs-3",
+          "suit": "clubs",
+          "rank": 3
+        },
+        {
+          "id": "clubs-4",
+          "suit": "clubs",
+          "rank": 4
+        },
+        {
+          "id": "clubs-5",
+          "suit": "clubs",
+          "rank": 5
+        },
+        {
+          "id": "clubs-6",
+          "suit": "clubs",
+          "rank": 6
+        },
+        {
+          "id": "clubs-7",
+          "suit": "clubs",
+          "rank": 7
+        },
+        {
+          "id": "clubs-8",
+          "suit": "clubs",
+          "rank": 8
+        },
+        {
+          "id": "clubs-9",
+          "suit": "clubs",
+          "rank": 9
+        },
+        {
+          "id": "clubs-10",
+          "suit": "clubs",
+          "rank": 10
+        },
+        {
+          "id": "clubs-11",
+          "suit": "clubs",
+          "rank": 11
+        },
+        {
+          "id": "clubs-12",
+          "suit": "clubs",
+          "rank": 12
+        },
+        {
+          "id": "clubs-13",
+          "suit": "clubs",
+          "rank": 13
+        },
+        {
+          "id": "clubs-14",
+          "suit": "clubs",
+          "rank": 14
+        },
+        {
+          "id": "diamonds-2",
+          "suit": "diamonds",
+          "rank": 2
+        },
+        {
+          "id": "diamonds-3",
+          "suit": "diamonds",
+          "rank": 3
+        },
+        {
+          "id": "diamonds-4",
+          "suit": "diamonds",
+          "rank": 4
+        },
+        {
+          "id": "diamonds-5",
+          "suit": "diamonds",
+          "rank": 5
+        },
+        {
+          "id": "diamonds-6",
+          "suit": "diamonds",
+          "rank": 6
+        },
+        {
+          "id": "diamonds-7",
+          "suit": "diamonds",
+          "rank": 7
+        },
+        {
+          "id": "diamonds-8",
+          "suit": "diamonds",
+          "rank": 8
+        },
+        {
+          "id": "diamonds-9",
+          "suit": "diamonds",
+          "rank": 9
+        },
+        {
+          "id": "diamonds-10",
+          "suit": "diamonds",
+          "rank": 10
+        },
+        {
+          "id": "diamonds-11",
+          "suit": "diamonds",
+          "rank": 11
+        },
+        {
+          "id": "diamonds-12",
+          "suit": "diamonds",
+          "rank": 12
+        },
+        {
+          "id": "diamonds-13",
+          "suit": "diamonds",
+          "rank": 13
+        },
+        {
+          "id": "diamonds-14",
+          "suit": "diamonds",
+          "rank": 14
+        }
+      ],
+      "drawPile": [
+        "spades-2",
+        "spades-3",
+        "spades-4",
+        "spades-5",
+        "spades-6",
+        "spades-7",
+        "spades-8",
+        "spades-10",
+        "spades-11",
+        "spades-13",
+        "spades-14",
+        "hearts-2",
+        "hearts-3",
+        "hearts-4",
+        "hearts-5",
+        "hearts-6",
+        "hearts-7",
+        "hearts-8",
+        "hearts-10",
+        "hearts-11",
+        "hearts-13",
+        "hearts-14",
+        "clubs-2",
+        "clubs-3",
+        "clubs-4",
+        "clubs-5",
+        "clubs-6",
+        "clubs-7",
+        "clubs-8",
+        "clubs-10",
+        "clubs-11",
+        "clubs-12",
+        "clubs-14",
+        "diamonds-2",
+        "diamonds-3",
+        "diamonds-4",
+        "diamonds-5",
+        "diamonds-6",
+        "diamonds-8",
+        "diamonds-9",
+        "diamonds-10",
+        "diamonds-11",
+        "diamonds-12",
+        "diamonds-14"
+      ],
+      "handOrder": [
+        "spades-9",
+        "hearts-9",
+        "clubs-9",
+        "clubs-13",
+        "diamonds-13",
+        "spades-12",
+        "hearts-12",
+        "diamonds-7"
+      ],
+      "playedPile": [],
+      "discardPile": [],
+      "destroyedIds": [],
+      "stage": {
+        "openingDiscard": null,
+        "assistUsed": false,
+        "index": 0,
+        "targetHeat": "400",
+        "initialTargetHeat": "400",
+        "heat": "0",
+        "handsLeft": 4,
+        "initialHands": 4,
+        "discardsLeft": 3,
+        "initialDiscards": 3,
+        "discardSpent": 0,
+        "discardGained": 0,
+        "doubleDiscardBeforeFirstPlay": false,
+        "discardsUsed": 0,
+        "skipResult": null,
+        "playIndex": 0,
+        "previousHandType": null,
+        "previousHandScore": null,
+        "handLimit": 8,
+        "initialHandLimit": 8,
+        "boss": null,
+        "initialJokerIds": [
+          "j/0",
+          "j/1",
+          "j/2",
+          "j/3"
+        ],
+        "sealedJokerIds": [],
+        "challengeDisabledJokerId": null,
+        "rescueUsed": false,
+        "clearId": null,
+        "goldEarned": 0,
+        "disabledIds": [],
+        "wagerSelected": false,
+        "wagerUsed": false,
+        "maxPlayedCount": 0,
+        "ordinaryStraightSeen": false,
+        "ordinaryFlushSeen": false,
+        "quadRefundUsed": false,
+        "jokerSold": false
+      },
+      "totalHeat": "0",
+      "gold": 6,
+      "jokers": [
+        {
+          "instanceId": "j/0",
+          "definitionId": "b03",
+          "paidPrice": 6,
+          "growth": {}
+        },
+        {
+          "instanceId": "j/1",
+          "definitionId": "b06",
+          "paidPrice": 8,
+          "growth": {}
+        },
+        {
+          "instanceId": "j/2",
+          "definitionId": "b08",
+          "paidPrice": 6,
+          "growth": {}
+        },
+        {
+          "instanceId": "j/3",
+          "definitionId": "b10",
+          "paidPrice": 6,
+          "growth": {}
+        }
+      ],
+      "consumables": [],
+      "longTermItems": [],
+      "program": {
+        "chapter": 1,
+        "offerIds": [
+          "PG04",
+          "PG02"
+        ],
+        "selectedId": null,
+        "choiceMade": true,
+        "abandoned": false,
+        "lastOpportunityClear": false,
+        "claimed": false
+      },
+      "boss": {
+        "definitionId": "B04",
+        "disabledSuit": null
+      },
+      "seenBossIds": [
+        "B04"
+      ],
+      "chapterSkipConsumable": "T05",
+      "purchaseCoupons": 0,
+      "safetyNetUsed": false,
+      "shop": null,
+      "spectralModifiers": {
+        "handsPenalty": 0,
+        "handPenalty": 0,
+        "cleanSlateBonus": 0
+      },
+      "supplyRewardClaimed": false,
+      "chapterHandUsage": {},
+      "normalClearClaimed": false,
+      "tourMode": "normal",
+      "normalCompletion": null,
+      "rng": {
+        "deck": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 583390721
+        },
+        "rule": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 1052994514
+        },
+        "shop": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 939460492
+        },
+        "reward": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 858670353
+        },
+        "program": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2797455233
+        },
+        "challenge": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 327785738
+        }
+      },
+      "receipts": [
+        {
+          "commandId": "frozen-e7d/start",
+          "fingerprint": "json-fnv-v1:1885381780a8c703",
+          "seq": 1
+        },
+        {
+          "commandId": "old/2",
+          "fingerprint": "json-fnv-v1:fca6e15f2be9b263",
+          "seq": 2
+        },
+        {
+          "commandId": "old/3",
+          "fingerprint": "json-fnv-v1:651f346af321f706",
+          "seq": 3
+        }
+      ],
+      "lastTrace": null,
+      "handLevels": {},
+      "outcome": null
+    },
+    "journalBaseSeq": 3,
+    "journal": [],
+    "checksum": "json-fnv-v1:33890e052a087d19"
+  },
+  "command": {
+    "runId": "frozen-e7d",
+    "commandId": "old/4",
+    "expectedSeq": 3,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "spades-9",
+        "hearts-9",
+        "clubs-9",
+        "clubs-13",
+        "diamonds-13"
+      ]
+    }
+  },
+  "after": {
+    "format": "dachoupai-checkpoint",
+    "formatVersion": 1,
+    "state": {
+      "schemaVersion": 2,
+      "rulesVersion": "r2",
+      "contentVersion": "quality-r2-combo-growth-prototype-v1",
+      "contentHash": "json-fnv-v1:e7d21fce68b80072",
+      "runId": "frozen-e7d",
+      "seed": "frozen-e7d",
+      "commandSeq": 4,
+      "difficulty": 0,
+      "characterId": "amo",
+      "mode": "standard",
+      "challengeId": null,
+      "programsEnabled": true,
+      "programRerollCoupon": false,
+      "chapterDisabledJokerId": null,
+      "chapter": 1,
+      "stageIndex": 1,
+      "phase": "stage-cleared",
+      "deckInstances": [
+        {
+          "id": "spades-2",
+          "suit": "spades",
+          "rank": 2
+        },
+        {
+          "id": "spades-3",
+          "suit": "spades",
+          "rank": 3
+        },
+        {
+          "id": "spades-4",
+          "suit": "spades",
+          "rank": 4
+        },
+        {
+          "id": "spades-5",
+          "suit": "spades",
+          "rank": 5
+        },
+        {
+          "id": "spades-6",
+          "suit": "spades",
+          "rank": 6
+        },
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7
+        },
+        {
+          "id": "spades-8",
+          "suit": "spades",
+          "rank": 8
+        },
+        {
+          "id": "spades-9",
+          "suit": "spades",
+          "rank": 9
+        },
+        {
+          "id": "spades-10",
+          "suit": "spades",
+          "rank": 10
+        },
+        {
+          "id": "spades-11",
+          "suit": "spades",
+          "rank": 11
+        },
+        {
+          "id": "spades-12",
+          "suit": "spades",
+          "rank": 12
+        },
+        {
+          "id": "spades-13",
+          "suit": "spades",
+          "rank": 13
+        },
+        {
+          "id": "spades-14",
+          "suit": "spades",
+          "rank": 14
+        },
+        {
+          "id": "hearts-2",
+          "suit": "hearts",
+          "rank": 2
+        },
+        {
+          "id": "hearts-3",
+          "suit": "hearts",
+          "rank": 3
+        },
+        {
+          "id": "hearts-4",
+          "suit": "hearts",
+          "rank": 4
+        },
+        {
+          "id": "hearts-5",
+          "suit": "hearts",
+          "rank": 5
+        },
+        {
+          "id": "hearts-6",
+          "suit": "hearts",
+          "rank": 6
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        },
+        {
+          "id": "hearts-8",
+          "suit": "hearts",
+          "rank": 8
+        },
+        {
+          "id": "hearts-9",
+          "suit": "hearts",
+          "rank": 9
+        },
+        {
+          "id": "hearts-10",
+          "suit": "hearts",
+          "rank": 10
+        },
+        {
+          "id": "hearts-11",
+          "suit": "hearts",
+          "rank": 11
+        },
+        {
+          "id": "hearts-12",
+          "suit": "hearts",
+          "rank": 12
+        },
+        {
+          "id": "hearts-13",
+          "suit": "hearts",
+          "rank": 13
+        },
+        {
+          "id": "hearts-14",
+          "suit": "hearts",
+          "rank": 14
+        },
+        {
+          "id": "clubs-2",
+          "suit": "clubs",
+          "rank": 2
+        },
+        {
+          "id": "clubs-3",
+          "suit": "clubs",
+          "rank": 3
+        },
+        {
+          "id": "clubs-4",
+          "suit": "clubs",
+          "rank": 4
+        },
+        {
+          "id": "clubs-5",
+          "suit": "clubs",
+          "rank": 5
+        },
+        {
+          "id": "clubs-6",
+          "suit": "clubs",
+          "rank": 6
+        },
+        {
+          "id": "clubs-7",
+          "suit": "clubs",
+          "rank": 7
+        },
+        {
+          "id": "clubs-8",
+          "suit": "clubs",
+          "rank": 8
+        },
+        {
+          "id": "clubs-9",
+          "suit": "clubs",
+          "rank": 9
+        },
+        {
+          "id": "clubs-10",
+          "suit": "clubs",
+          "rank": 10
+        },
+        {
+          "id": "clubs-11",
+          "suit": "clubs",
+          "rank": 11
+        },
+        {
+          "id": "clubs-12",
+          "suit": "clubs",
+          "rank": 12
+        },
+        {
+          "id": "clubs-13",
+          "suit": "clubs",
+          "rank": 13
+        },
+        {
+          "id": "clubs-14",
+          "suit": "clubs",
+          "rank": 14
+        },
+        {
+          "id": "diamonds-2",
+          "suit": "diamonds",
+          "rank": 2
+        },
+        {
+          "id": "diamonds-3",
+          "suit": "diamonds",
+          "rank": 3
+        },
+        {
+          "id": "diamonds-4",
+          "suit": "diamonds",
+          "rank": 4
+        },
+        {
+          "id": "diamonds-5",
+          "suit": "diamonds",
+          "rank": 5
+        },
+        {
+          "id": "diamonds-6",
+          "suit": "diamonds",
+          "rank": 6
+        },
+        {
+          "id": "diamonds-7",
+          "suit": "diamonds",
+          "rank": 7
+        },
+        {
+          "id": "diamonds-8",
+          "suit": "diamonds",
+          "rank": 8
+        },
+        {
+          "id": "diamonds-9",
+          "suit": "diamonds",
+          "rank": 9
+        },
+        {
+          "id": "diamonds-10",
+          "suit": "diamonds",
+          "rank": 10
+        },
+        {
+          "id": "diamonds-11",
+          "suit": "diamonds",
+          "rank": 11
+        },
+        {
+          "id": "diamonds-12",
+          "suit": "diamonds",
+          "rank": 12
+        },
+        {
+          "id": "diamonds-13",
+          "suit": "diamonds",
+          "rank": 13
+        },
+        {
+          "id": "diamonds-14",
+          "suit": "diamonds",
+          "rank": 14
+        }
+      ],
+      "drawPile": [
+        "spades-2",
+        "spades-3",
+        "spades-4",
+        "spades-5",
+        "spades-6",
+        "spades-7",
+        "spades-8",
+        "spades-10",
+        "spades-11",
+        "spades-13",
+        "spades-14",
+        "hearts-2",
+        "hearts-3",
+        "hearts-4",
+        "hearts-5",
+        "hearts-6",
+        "hearts-7",
+        "hearts-8",
+        "hearts-10",
+        "hearts-11",
+        "hearts-13",
+        "hearts-14",
+        "clubs-2",
+        "clubs-3",
+        "clubs-4",
+        "clubs-5",
+        "clubs-6",
+        "clubs-7",
+        "clubs-8",
+        "clubs-10",
+        "clubs-11",
+        "clubs-12",
+        "clubs-14",
+        "diamonds-2",
+        "diamonds-3",
+        "diamonds-4",
+        "diamonds-5",
+        "diamonds-6",
+        "diamonds-8",
+        "diamonds-9",
+        "diamonds-10",
+        "diamonds-11",
+        "diamonds-12",
+        "diamonds-14"
+      ],
+      "handOrder": [
+        "spades-12",
+        "hearts-12",
+        "diamonds-7"
+      ],
+      "playedPile": [
+        "spades-9",
+        "hearts-9",
+        "clubs-9",
+        "clubs-13",
+        "diamonds-13"
+      ],
+      "discardPile": [],
+      "destroyedIds": [],
+      "stage": {
+        "openingDiscard": null,
+        "assistUsed": false,
+        "index": 0,
+        "targetHeat": "400",
+        "initialTargetHeat": "400",
+        "heat": "1285",
+        "handsLeft": 3,
+        "initialHands": 4,
+        "discardsLeft": 3,
+        "initialDiscards": 3,
+        "discardSpent": 0,
+        "discardGained": 0,
+        "doubleDiscardBeforeFirstPlay": false,
+        "discardsUsed": 0,
+        "skipResult": null,
+        "playIndex": 1,
+        "previousHandType": "full-house",
+        "previousHandScore": "1285",
+        "handLimit": 8,
+        "initialHandLimit": 8,
+        "boss": null,
+        "initialJokerIds": [
+          "j/0",
+          "j/1",
+          "j/2",
+          "j/3"
+        ],
+        "sealedJokerIds": [],
+        "challengeDisabledJokerId": null,
+        "rescueUsed": false,
+        "clearId": "frozen-e7d/clear/0",
+        "goldEarned": 8,
+        "disabledIds": [],
+        "wagerSelected": false,
+        "wagerUsed": false,
+        "maxPlayedCount": 5,
+        "ordinaryStraightSeen": false,
+        "ordinaryFlushSeen": false,
+        "quadRefundUsed": false,
+        "jokerSold": false
+      },
+      "totalHeat": "1285",
+      "gold": 14,
+      "jokers": [
+        {
+          "instanceId": "j/0",
+          "definitionId": "b03",
+          "paidPrice": 6,
+          "growth": {}
+        },
+        {
+          "instanceId": "j/1",
+          "definitionId": "b06",
+          "paidPrice": 8,
+          "growth": {}
+        },
+        {
+          "instanceId": "j/2",
+          "definitionId": "b08",
+          "paidPrice": 6,
+          "growth": {}
+        },
+        {
+          "instanceId": "j/3",
+          "definitionId": "b10",
+          "paidPrice": 6,
+          "growth": {}
+        }
+      ],
+      "consumables": [],
+      "longTermItems": [],
+      "program": {
+        "chapter": 1,
+        "offerIds": [
+          "PG04",
+          "PG02"
+        ],
+        "selectedId": null,
+        "choiceMade": true,
+        "abandoned": false,
+        "lastOpportunityClear": false,
+        "claimed": false
+      },
+      "boss": {
+        "definitionId": "B04",
+        "disabledSuit": null
+      },
+      "seenBossIds": [
+        "B04"
+      ],
+      "chapterSkipConsumable": "T05",
+      "purchaseCoupons": 0,
+      "safetyNetUsed": false,
+      "shop": null,
+      "spectralModifiers": {
+        "handsPenalty": 0,
+        "handPenalty": 0,
+        "cleanSlateBonus": 0
+      },
+      "supplyRewardClaimed": false,
+      "chapterHandUsage": {
+        "full-house": 1
+      },
+      "normalClearClaimed": true,
+      "tourMode": "normal",
+      "normalCompletion": null,
+      "rng": {
+        "deck": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 583390721
+        },
+        "rule": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 1052994514
+        },
+        "shop": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 939460492
+        },
+        "reward": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 858670353
+        },
+        "program": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2797455233
+        },
+        "challenge": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 327785738
+        }
+      },
+      "receipts": [
+        {
+          "commandId": "frozen-e7d/start",
+          "fingerprint": "json-fnv-v1:1885381780a8c703",
+          "seq": 1
+        },
+        {
+          "commandId": "old/2",
+          "fingerprint": "json-fnv-v1:fca6e15f2be9b263",
+          "seq": 2
+        },
+        {
+          "commandId": "old/3",
+          "fingerprint": "json-fnv-v1:651f346af321f706",
+          "seq": 3
+        },
+        {
+          "commandId": "old/4",
+          "fingerprint": "json-fnv-v1:55999c9e316b4712",
+          "seq": 4
+        }
+      ],
+      "lastTrace": {
+        "rulesVersion": "r2",
+        "rootId": "frozen-e7d/hand/old/4",
+        "handType": "full-house",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "spades-9",
+            "hearts-9",
+            "clubs-9",
+            "clubs-13",
+            "diamonds-13"
+          ],
+          "scoringIds": [
+            "spades-9",
+            "hearts-9",
+            "clubs-9",
+            "clubs-13",
+            "diamonds-13"
+          ],
+          "activeScoringIds": [
+            "spades-9",
+            "hearts-9",
+            "clubs-9",
+            "clubs-13",
+            "diamonds-13"
+          ],
+          "heldIds": [
+            "spades-12",
+            "hearts-12",
+            "diamonds-7"
+          ],
+          "assistConsumedIds": []
+        },
+        "assist": null,
+        "finalScore": "1285",
+        "accumulator": {
+          "H": {
+            "n": "257",
+            "d": "1"
+          },
+          "M": {
+            "n": "5",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "frozen-e7d/hand/old/4/event/0",
+            "rootId": "frozen-e7d/hand/old/4",
+            "rootEventId": "frozen-e7d/hand/old/4/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "full-house",
+            "sourceInstanceId": "frozen-e7d",
+            "operation": "base",
+            "value": {
+              "n": "210",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "210",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "full-house.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "frozen-e7d/hand/old/4/event/1",
+            "rootId": "frozen-e7d/hand/old/4",
+            "rootEventId": "frozen-e7d/hand/old/4/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-9",
+            "sourceInstanceId": "spades-9",
+            "targetCardId": "spades-9",
+            "operation": "add-heat",
+            "value": {
+              "n": "9",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "210",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "219",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-9.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "frozen-e7d/hand/old/4/event/2",
+            "rootId": "frozen-e7d/hand/old/4",
+            "rootEventId": "frozen-e7d/hand/old/4/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-9",
+            "sourceInstanceId": "hearts-9",
+            "targetCardId": "hearts-9",
+            "operation": "add-heat",
+            "value": {
+              "n": "9",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "219",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "228",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-9.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "frozen-e7d/hand/old/4/event/3",
+            "rootId": "frozen-e7d/hand/old/4",
+            "rootEventId": "frozen-e7d/hand/old/4/event/3",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-9",
+            "sourceInstanceId": "clubs-9",
+            "targetCardId": "clubs-9",
+            "operation": "add-heat",
+            "value": {
+              "n": "9",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "228",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "237",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-9.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "frozen-e7d/hand/old/4/event/4",
+            "rootId": "frozen-e7d/hand/old/4",
+            "rootEventId": "frozen-e7d/hand/old/4/event/4",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-13",
+            "sourceInstanceId": "clubs-13",
+            "targetCardId": "clubs-13",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "237",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "247",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-13.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "frozen-e7d/hand/old/4/event/5",
+            "rootId": "frozen-e7d/hand/old/4",
+            "rootEventId": "frozen-e7d/hand/old/4/event/5",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-13",
+            "sourceInstanceId": "diamonds-13",
+            "targetCardId": "diamonds-13",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "247",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "257",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-13.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "frozen-e7d/hand/old/4/event/6",
+            "rootId": "frozen-e7d/hand/old/4",
+            "rootEventId": "frozen-e7d/hand/old/4/event/6",
+            "phase": "jokerScore",
+            "sourceType": "joker",
+            "sourceDefinitionId": "b03",
+            "sourceInstanceId": "j/0",
+            "operation": "read-growth",
+            "value": {
+              "n": "0",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "257",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "257",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "b03.read-growth",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "frozen-e7d/hand/old/4/event/7",
+            "rootId": "frozen-e7d/hand/old/4",
+            "rootEventId": "frozen-e7d/hand/old/4/event/7",
+            "phase": "jokerScore",
+            "sourceType": "joker",
+            "sourceDefinitionId": "b10",
+            "sourceInstanceId": "j/3",
+            "operation": "read-growth",
+            "value": {
+              "n": "0",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "257",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "257",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "b10.read-growth",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "frozen-e7d/hand/old/4/event/8",
+            "rootId": "frozen-e7d/hand/old/4",
+            "rootEventId": "frozen-e7d/hand/old/4/event/8",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "full-house",
+            "sourceInstanceId": "frozen-e7d",
+            "operation": "final-score",
+            "value": {
+              "n": "1285",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "257",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "257",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "full-house.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [
+          {
+            "instanceId": "j/0",
+            "definitionId": "b03",
+            "paidPrice": 6,
+            "growth": {}
+          },
+          {
+            "instanceId": "j/1",
+            "definitionId": "b06",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "j/2",
+            "definitionId": "b08",
+            "paidPrice": 6,
+            "growth": {}
+          },
+          {
+            "instanceId": "j/3",
+            "definitionId": "b10",
+            "paidPrice": 6,
+            "growth": {}
+          }
+        ],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 1052994514
+        },
+        "goldDelta": 0,
+        "destroyedCardIds": [],
+        "destroyedJokerIds": [],
+        "cards": [
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          }
+        ],
+        "sourceJokers": [
+          {
+            "instanceId": "j/0",
+            "definitionId": "b03",
+            "paidPrice": 6,
+            "growth": {}
+          },
+          {
+            "instanceId": "j/1",
+            "definitionId": "b06",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "j/2",
+            "definitionId": "b08",
+            "paidPrice": 6,
+            "growth": {}
+          },
+          {
+            "instanceId": "j/3",
+            "definitionId": "b10",
+            "paidPrice": 6,
+            "growth": {}
+          }
+        ],
+        "bossContext": {
+          "boss": null,
+          "previousHandType": null,
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null
+        },
+        "combo": {
+          "goldBeforeRewards": 6
+        }
+      },
+      "handLevels": {
+        "full-house": 1
+      },
+      "outcome": null
+    },
+    "journalBaseSeq": 3,
+    "journal": [
+      {
+        "runId": "frozen-e7d",
+        "commandId": "old/4",
+        "expectedSeq": 3,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-9",
+            "hearts-9",
+            "clubs-9",
+            "clubs-13",
+            "diamonds-13"
+          ]
+        }
+      }
+    ],
+    "checksum": "json-fnv-v1:fb7714ef5714521b"
+  }
+}
