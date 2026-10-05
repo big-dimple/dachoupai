@@ -1,0 +1,330 @@
+{
+  "baseline": "04d2f729bbe37d7e34783f4a2a81b9026ff98a64",
+  "sourceTree": "ac5dbc6c3326f4a77485787e6f195738695fee66",
+  "implementation": "NOT_CHANGED",
+  "domainDiagnostic": "PASS",
+  "balanceAcceptance": "NOT_ACCEPTED",
+  "deviceGPUAudio": "NOT_RUN",
+  "seedSelection": "Three declared before execution, no replacements",
+  "correction": {
+    "description": "The unused T01 purchase branch initially named BuyToolOffer; source union requires BuyOffer. Corrected only the diagnostic script, reran the same cohort. No T01 branch executed in either run and all 18 final records are identical. No production change.",
+    "recordsIdentical": true,
+    "initialScriptSHA256": "0ba3450f7c3a6eb2d4188ffc8ed648ce5d6473ccaae3145890717aed02a1914e",
+    "finalScriptSHA256": "bc06dcac04e788e5990d2fbba65509b23c225c1f707fb65e4335fe64bf256d6b"
+  },
+  "uiAudit": {
+    "method": "Read-only exact-source inspection, not rendered device validation",
+    "roleDetail": "GameScene.inspectRole uses passiveDescription; it does not show buildTip. Amo buildTip explicitly says new runs and is only consumed by CharacterSelectScene.",
+    "risk": "Shared passive says final multiplier x3 and old runs retain old order; it does not explicitly state old role-before-Joker timing. Confusing generic phrasing, not a proven false after-Joker statement for old runs.",
+    "ruleReference": "HandRuleReference explicitly states new after-Joker exception and legacy original order.",
+    "minimalProposal": "Profile-aware current-run role text: old before whole-hand Joker, new after whole-hand Joker. Keep selected-new-run tip and actual rules unchanged."
+  },
+  "characters": [
+    {
+      "character": "amo",
+      "firstChapterCompletions": 3,
+      "runs": 3,
+      "plays": 20,
+      "characterEventHands": 10,
+      "endingGold": [
+        12,
+        14,
+        13
+      ],
+      "shopDepartureGold": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          4,
+          5
+        ],
+        [
+          0,
+          3,
+          4
+        ]
+      ],
+      "upgradesExecuted": 0,
+      "wagersExecuted": 0,
+      "savedGrowthBySeed": [
+        [],
+        [],
+        []
+      ],
+      "deaths": [
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "character": "touye",
+      "firstChapterCompletions": 3,
+      "runs": 3,
+      "plays": 22,
+      "characterEventHands": 22,
+      "endingGold": [
+        10,
+        14,
+        13
+      ],
+      "shopDepartureGold": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          2,
+          4,
+          5
+        ],
+        [
+          0,
+          3,
+          4
+        ]
+      ],
+      "upgradesExecuted": 0,
+      "wagersExecuted": 0,
+      "savedGrowthBySeed": [
+        [
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "20",
+                "d": "1"
+              }
+            }
+          }
+        ],
+        [],
+        []
+      ],
+      "deaths": [
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "character": "laohuan",
+      "firstChapterCompletions": 3,
+      "runs": 3,
+      "plays": 21,
+      "characterEventHands": 5,
+      "endingGold": [
+        11,
+        14,
+        13
+      ],
+      "shopDepartureGold": [
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          2,
+          4,
+          5
+        ],
+        [
+          0,
+          3,
+          4
+        ]
+      ],
+      "upgradesExecuted": 0,
+      "wagersExecuted": 0,
+      "savedGrowthBySeed": [
+        [
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "20",
+                "d": "1"
+              }
+            }
+          }
+        ],
+        [],
+        []
+      ],
+      "deaths": [
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "character": "erxiang",
+      "firstChapterCompletions": 3,
+      "runs": 3,
+      "plays": 16,
+      "characterEventHands": 12,
+      "endingGold": [
+        12,
+        9,
+        16
+      ],
+      "shopDepartureGold": [
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          2,
+          4,
+          0
+        ],
+        [
+          0,
+          3,
+          5
+        ]
+      ],
+      "upgradesExecuted": 0,
+      "wagersExecuted": 0,
+      "savedGrowthBySeed": [
+        [
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "25",
+                "d": "1"
+              }
+            }
+          }
+        ],
+        [
+          {
+            "id": "d03",
+            "growth": {
+              "heat": {
+                "n": "8",
+                "d": "1"
+              }
+            }
+          }
+        ],
+        []
+      ],
+      "deaths": [
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "character": "azao",
+      "firstChapterCompletions": 3,
+      "runs": 3,
+      "plays": 21,
+      "characterEventHands": 9,
+      "endingGold": [
+        11,
+        14,
+        13
+      ],
+      "shopDepartureGold": [
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          2,
+          4,
+          5
+        ],
+        [
+          0,
+          3,
+          4
+        ]
+      ],
+      "upgradesExecuted": 0,
+      "wagersExecuted": 0,
+      "savedGrowthBySeed": [
+        [
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "20",
+                "d": "1"
+              }
+            }
+          }
+        ],
+        [],
+        []
+      ],
+      "deaths": [
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "character": "xiemu",
+      "firstChapterCompletions": 3,
+      "runs": 3,
+      "plays": 21,
+      "characterEventHands": 0,
+      "endingGold": [
+        11,
+        14,
+        13
+      ],
+      "shopDepartureGold": [
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          2,
+          4,
+          5
+        ],
+        [
+          0,
+          3,
+          4
+        ]
+      ],
+      "upgradesExecuted": 0,
+      "wagersExecuted": 0,
+      "savedGrowthBySeed": [
+        [
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "20",
+                "d": "1"
+              }
+            }
+          }
+        ],
+        [],
+        []
+      ],
+      "deaths": [
+        null,
+        null,
+        null
+      ]
+    }
+  ]
+}

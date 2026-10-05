@@ -1,0 +1,22 @@
+{
+  "cohort": {
+    "baseline": "04d2f729bbe37d7e34783f4a2a81b9026ff98a64",
+    "seeds": [
+      "p08-opening-fixed-a",
+      "p08-opening-fixed-b",
+      "p08-opening-fixed-c"
+    ],
+    "characters": [
+      "amo",
+      "touye",
+      "laohuan",
+      "erxiang",
+      "azao",
+      "xiemu"
+    ],
+    "scope": "First chapter only, first three shops including initial shop, no seed reselection",
+    "policy": "Same cheapest affordable scoring-hook offer, ties shelf position; at most 2 purchases per shop, no duplicate, capacity bound; once reroll only if no affordable scoring offer and gold >= cost+4; optional T01 after core purchases with 2 gold reserve, upgrade most actually played discovered type (ties R2 directory); hand existing chooseR2Action max conservative visible score; if below remaining/hands and no preferred f09 intact qualification, discard noncore up to5, high-card keeps two highest points; Touye wager only last hand, nonwager cannot clear but public wager maximum can. No predicted future deck/RNG, no injection/sale/ideal-card search; no programme choice, use existing default."
+  },
+  "startedAt": "2026-10-05T00:19:03.647Z",
+  "scriptSHA256": "bc06dcac04e788e5990d2fbba65509b23c225c1f707fb65e4335fe64bf256d6b"
+}
