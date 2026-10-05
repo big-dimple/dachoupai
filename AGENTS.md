@@ -1,5 +1,9 @@
 # 开发入口
 
+## P1-J 四卡共同领域原型（2026-10-05 UTC，仅 draft PR24）
+
+共享新显式 combo-growth-v1 / e7d21fce68b80072，继承843f七卡并替换a06/f10/d12/e04；六角色同Joker内容，阿默助攻与其余五人既有能力保持。新 profile 未接普通入口/UI。已补父审S06身份工厂、旧条件边界、四卡本体/真实版次闭合、弃前公开来源与成长/收入保存约束；保留原 FAIL。I已审纯文案e2fc正常合入此review。旧v10/v11/843f全state回放、66相关检查及原生事务失败/同候选重试/四身份恢复和四受控经营对照通过；最终冻结/门禁/精确CI以本批evidence为准。主手/助攻facts不改，场景/选择布局/美术不碰，main只由父串行决定。P08 in_progress、C04 D32及原真机/听感/平衡门槛保持。见 [原型合同](docs/production/COMBO_GROWTH_PROTOTYPE.md)。以下历史记录按各自SHA保留。
+
 ## 正常阿默新局入口恢复（2026-10-05 UTC，仅 review PR21）
 
 从已发布 d1dfb90 独立接线，首源码51c24dd已推送供父独审。正常Title→选角→runAdapter.startRun→GameSession.start仅阿默采用现有amo-assist-v1 / 843f02356211cb91，其余五人v11；原createRun不传profile仍v11。失败页用显式retry意图携带当前局，三身份完整version/hash/角色/种子/模式白名单原规则直接创建，禁止建后改身份。继续/导入/接管/无尽和存储格式不改。选角共用新局文案，旧全局characters保留；320/390模式按钮避开标题与DOM控件、短横44px。已完成自然弃四散牌保两对→主33/44+助QQ得316→保存刷新回看→389失败→原身份同种子重试，以及原生新建取消/容量失败保原DB与唯一候选；最终冻结与精确CI以本批evidence为准。原FAIL保留，main只由父独审；P08 in_progress、C04 D32及真机/GPU/听感/整体审美门槛不变。

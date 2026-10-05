@@ -1,0 +1,48 @@
+{
+  "scope": "browser",
+  "testedCommit": "b51cfac52af61847499b69d6b4707558285336a6",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "8653e63c134836c5327e06f778acec59c9dcaf8414cf16bfd472119313fafd09",
+    "index": "39ceac66f9b80b3d054070b984b23888ed2fd191ba1c3ede6853d113d0e7c96b",
+    "head": "b51cfac52af61847499b69d6b4707558285336a6",
+    "branch": "refs/heads/fix/p0-joker-copy-ambiguity"
+  },
+  "after": {
+    "source": "8653e63c134836c5327e06f778acec59c9dcaf8414cf16bfd472119313fafd09",
+    "index": "39ceac66f9b80b3d054070b984b23888ed2fd191ba1c3ede6853d113d0e7c96b",
+    "head": "b51cfac52af61847499b69d6b4707558285336a6",
+    "branch": "refs/heads/fix/p0-joker-copy-ambiguity"
+  },
+  "steps": [
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 26570
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 160414
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

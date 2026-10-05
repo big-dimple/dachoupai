@@ -1,5 +1,4 @@
-import {isR2ComboGrowth,R2_COMBO_GROWTH_VERSION,R2_COMBO_GROWTH_HASH} from './r2ComboGrowth';
-import {r2HasQualifiedHand} from './r2SelectionFacts';
+import {isR2ComboGrowth,r2ColdOpening,type R2OpeningDiscard,R2_COMBO_GROWTH_VERSION,R2_COMBO_GROWTH_HASH} from './r2ComboGrowth';
 import {r2JokerDefinitionsFor} from './r2ContentProfiles';
 import {r2AssistAvailability,r2AssistFacts,R2_ASSIST_VERSION,R2_ASSIST_HASH} from './r2Assist';
 import {R2_PUBLISHED_CONTENT,R2_PUBLISHED_JOKERS} from './r2PublishedContent';
@@ -62,7 +61,7 @@ interface R2StageBase extends Omit<StageState,'targetHeat'|'heat'|'previousHandT
   challengeDisabledJokerId:string|null;
 }
 /** Profile parsing requires assistUsed for the prototype and forbids it for published runs. */
-export type R2StageState = R2StageBase & ({assistUsed:boolean}|{assistUsed?:never});
+export type R2StageState = R2StageBase & ({assistUsed:boolean}|{assistUsed?:never}) & ({openingDiscard:R2OpeningDiscard|null}|{openingDiscard?:never});
 export interface R2RunState extends Omit<RunState,'schemaVersion'|'rulesVersion'|'stage'|'totalHeat'|'jokers'|'lastScore'|'shop'|'boss'|'outcome'|'difficulty'|'program'|'rng'> {
   schemaVersion:2; rulesVersion:'r2'; stage:R2StageState|null; totalHeat:string; jokers:R2JokerInstance[];
   lastTrace:ScoreTrace|null; handLevels:Partial<Record<R2HandType,number>>;shop:R2ShopState|null;
@@ -117,7 +116,7 @@ export function assertR2Invariants(state:R2RunState):void {
     }
   }
   if(isR2ComboGrowth(state))for(const joker of state.jokers){
-    if(joker.definitionId==='f10'&&joker.counters?.rescueArmed)check(state.phase==='await-input'&&!!state.stage&&state.stage.playIndex===0&&state.stage.discardsUsed>0,'armed rescue stage');
+    if(joker.definitionId==='f10')check(joker.counters?.rescueArmed===(state.phase==='await-input'&&!!state.stage&&state.stage.playIndex===0&&state.stage.discardsUsed>0&&r2ColdOpening(state.stage.openingDiscard)),'armed rescue stage');
     if(joker.definitionId==='a06'&&joker.counters?.alternationUsed&&state.phase==='await-input')check(!!state.stage&&state.stage.playIndex>=2,'alternation stage');
   }
   check(typeof state.safetyNetUsed==='boolean'&&(!state.safetyNetUsed||state.jokers.every(j=>j.definitionId!=='f07')),'safety-net lifetime');
@@ -145,6 +144,7 @@ export function assertR2Invariants(state:R2RunState):void {
   if(['stage-cleared','run-won'].includes(state.phase))check(state.stage!==null&&state.stage.index+1===state.stageIndex,'completed stage pointer');
   if(state.phase==='run-won')check(state.tourMode==='normal'&&state.stageIndex===R2_AVAILABLE_CHAPTERS*3&&state.outcome?.reason==='all-stages-cleared'&&!!state.stage?.clearId&&(state.mode!=='standard'||state.stage.clearId===completion?.clearId),'normal completion');
   if(state.stage) {
+    check(isR2ComboGrowth(state)?Object.hasOwn(state.stage,'openingDiscard'):!Object.hasOwn(state.stage,'openingDiscard'),'opening discard profile');
     check(scoreString(state.stage.heat)&&scoreString(state.stage.targetHeat)&&[state.stage.handsLeft,state.stage.discardsLeft,state.stage.playIndex,state.stage.goldEarned,state.stage.discardsUsed].every(integer),'stage resources');
     check(integer(state.stage.initialHandLimit)&&state.stage.initialHandLimit>=R2_RESOURCE_CONTRACT.handMinimum&&state.stage.initialHandLimit<=R2_RESOURCE_CONTRACT.handMaximum,'initial hand limit');
     check(state.stage.handLimit===(state.stage.boss?.definitionId==='B11'?Math.max(R2_RESOURCE_CONTRACT.handMinimum,state.stage.initialHandLimit-state.stage.playIndex):state.stage.initialHandLimit),'stage hand limit');
@@ -218,7 +218,7 @@ export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stag
 function entryStage(state:R2RunState,targetHeat:string,skipResult:R2SkipResult|null=null):R2StageState {
   const handLimit=r2HandLimit(state),hands=r2HandsBudget(state),discards=r2DiscardBudget(state),initialJokerIds=state.jokers.map(joker=>joker.instanceId);
   const boss=state.stageIndex%3===2?structuredClone(state.boss):null;
-  return {...(r2UsesAssist(state)?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
+  return {...(isR2ComboGrowth(state)?{openingDiscard:null}:{}),...(r2UsesAssist(state)?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
     discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:boss?.definitionId==='B01',discardsUsed:0,skipResult,playIndex:0,previousHandType:null,previousHandScore:null,
     handLimit,initialHandLimit:handLimit,boss,initialJokerIds,sealedJokerIds:[],challengeDisabledJokerId:state.chapterDisabledJokerId,rescueUsed:false,clearId:null,goldEarned:0,disabledIds:[],wagerSelected:false,wagerUsed:false,
     maxPlayedCount:0,ordinaryStraightSeen:false,ordinaryFlushSeen:false,quadRefundUsed:false,jokerSold:state.shop?.soldJoker??false};
@@ -312,7 +312,7 @@ export function makeR2Shop(state:R2RunState,reset:boolean):void {
   const prefix=`${state.runId}/shop/${state.stageIndex}/${count}`;
   const offers=ids.map((id,slot)=>{const edition=drawR2Edition(rng);return {offerId:`${prefix}/joker/${slot}`,definitionId:id,price:r2Price(id,edition,state),edition,consumed:false};});
   if(initial&&offers.length&&!offers.some(offer=>offer.price<=state.gold&&offer.edition==='none')){
-    const ordinary=offers.find(offer=>r2Price(offer.definitionId,undefined,state)<=state.gold);if(ordinary){ordinary.edition='none';ordinary.price=r2Price(ordinary.definitionId);}
+    const ordinary=offers.find(offer=>r2Price(offer.definitionId,undefined,state)<=state.gold);if(ordinary){ordinary.edition='none';ordinary.price=r2Price(ordinary.definitionId,undefined,state);}
   }
   const toolId=drawR2Tool(rng,r2ToolAcquisitionPool(state));
   const toolOffers=toolId?[{offerId:`${prefix}/tool/0`,definitionId:toolId,price:r2ToolPrice(toolId),consumed:false}]:[];
@@ -504,7 +504,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
           if(!R2_JOKERS.some(d=>d.id===offer.definitionId&&supportsR2Joker(d))||state.safetyNetUsed&&offer.definitionId==='f07')return fail('joker-unavailable');
           if(state.jokers.length>=r2JokerCapacity(state))return fail('slots-full');
           if(state.jokers.some(j=>j.definitionId===offer.definitionId))return fail('already-owned');
-          if(offer.edition!==undefined&&!EDITIONS.includes(offer.edition)||offer.price!==r2Price(offer.definitionId,offer.edition))return fail('invalid-offer');
+          if(offer.edition!==undefined&&!EDITIONS.includes(offer.edition)||offer.price!==r2Price(offer.definitionId,offer.edition,state))return fail('invalid-offer');
         }else if(shelf==='toolOffers'){
           if(!r2ToolAllowed(state,offer.definitionId))return fail('tool-disabled-in-mode');
           if(offer.edition!==undefined||!r2ToolAcquisitionPool(state).some(t=>t.id===offer.definitionId)||offer.price!==r2ToolPrice(offer.definitionId))return fail('invalid-offer');
@@ -593,7 +593,9 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
           const before=state.gold;state.gold--;
           events.push({type:'boss-transaction',definitionId:'B07',operation:'charge-discard',amount:'1',resourceBefore:String(before),resourceAfter:String(state.gold)});
         }
-        const coldOpeningDiscard=isR2ComboGrowth(state)&&state.stage.playIndex===0&&state.stage.discardsUsed===0&&state.jokers.some(j=>j.definitionId==='f10')&&!r2HasQualifiedHand({hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),jokers:state.jokers,definitions:r2JokerDefinitionsFor(state)});
+        const firstOpening=isR2ComboGrowth(state)&&state.stage.playIndex===0&&state.stage.discardsUsed===0&&state.jokers.some(j=>j.definitionId==='f10');
+        if(firstOpening)state.stage.openingDiscard=structuredClone({hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),discardedIds:state.handOrder.filter(id=>ids.includes(id)),jokers:state.jokers});
+        const coldOpeningDiscard=firstOpening&&r2ColdOpening(state.stage.openingDiscard);
         const ordered=state.handOrder.filter(id=>ids.includes(id));state.handOrder=state.handOrder.filter(id=>!ids.includes(id));
         state.discardPile.push(...ordered);state.stage.discardsLeft-=discardCost;state.stage.discardSpent+=discardCost;state.stage.discardsUsed++;economicHooks(state,'onDiscard',events,state.jokers,ordered.map(id=>state.deckInstances.find(c=>c.id===id)!),{coldOpeningDiscard});refill(state);refreshDisabled(state);
         if(state.stage.boss?.definitionId==='B14'){
@@ -630,6 +632,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
           hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),selectedIds:ids,disabledIds:state.stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS,
           ...(assisted?{assistIds}:{}),handLevels:state.handLevels,playIndex:state.stage.playIndex+1,handsBeforePlay:state.stage.handsLeft,previousHandType:state.stage.previousHandType,wager:state.stage.wagerSelected,rng:state.rng.rule,...r2ScoreContext(state,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),ids)});}
         catch(error) {return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
+        if(isR2ComboGrowth(state))trace=Object.freeze({...trace,combo:Object.freeze({goldBeforeRewards:null})});
         if(assisted)state.stage.assistUsed=true;
         state.rng.rule={...trace.rng};state.lastTrace=trace;state.jokers=structuredClone(trace.jokers);state.gold+=trace.goldDelta;
         state.destroyedIds.push(...trace.destroyedCardIds);state.handLevels[trace.handType]??=1;
@@ -647,6 +650,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         const scoredEvent:Extract<DomainEvent,{type:'hand-scored-r2'}>={type:'hand-scored-r2',score:trace,playedIds:trace.sets.playedIds,playIndex:state.stage.playIndex};events.push(scoredEvent);
         if(BigInt(state.stage.heat)>=BigInt(state.stage.targetHeat)) {
           const goldBeforeRewards=state.gold;
+          if(isR2ComboGrowth(state))state.lastTrace=Object.freeze({...state.lastTrace!,combo:Object.freeze({goldBeforeRewards})});
           if(state.program)state.program.lastOpportunityClear ||= state.stage.handsLeft===0;
           const total=(BigInt(state.totalHeat)+BigInt(state.stage.heat)).toString();
           if(!scoreString(total))return {ok:false,code:'score-diagnostic',diagnostic:{code:'numeric-length-limit',events:trace.events}};

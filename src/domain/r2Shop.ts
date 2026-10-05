@@ -58,12 +58,12 @@ export function r2ToolAcquisitionPool(state:R2RunState):R2ToolDefinition[] {
       case 'set-enhancement':return live.some(card=>card.enhancement!==op.enhancement);
       case 'restore-discard':return true;
       case 'add-gold':return true;
-      case 'free-reroll':return r2Pool(state.jokers.map(j=>j.definitionId),state.safetyNetUsed?['f07']:[]).length>0;
+      case 'free-reroll':return r2Pool(state.jokers.map(j=>j.definitionId),state.safetyNetUsed?['f07']:[],state).length>0;
       case 'random-enhancement':return live.length>floor&&live.some(card=>card.enhancement===undefined);
       case 'random-edition':return live.some(card=>(card.edition??'none')==='none')||state.jokers.some(j=>(j.edition??'none')==='none');
       case 'set-deck-suit':return live.length>0&&nextStage&&state.spectralModifiers.handPenalty<limits.spectralHandPenaltyMaximum&&r2HandLimit(state)>limits.handMinimum&&r2HandLimit({...state,spectralModifiers:{...state.spectralModifiers,handPenalty:state.spectralModifiers.handPenalty+1}})===r2HandLimit(state)-1;
       case 'exchange-hand-levels':return Object.entries(state.handLevels).some(([gain,level])=>level!<=op.targetMaximumBefore&&Object.entries(state.handLevels).some(([loss,value])=>loss!==gain&&value!>=op.donorMinimumBefore));
-      case 'rare-joker-reward':return state.jokers.length<r2JokerCapacity(state)&&r2Pool(state.jokers.map(j=>j.definitionId),state.safetyNetUsed?['f07']:[]).some(d=>d.rarity==='rare');
+      case 'rare-joker-reward':return state.jokers.length<r2JokerCapacity(state)&&r2Pool(state.jokers.map(j=>j.definitionId),state.safetyNetUsed?['f07']:[],state).some(d=>d.rarity==='rare');
       case 'set-joker-edition':return state.jokers.length>=2&&state.jokers.some(j=>j.edition!==op.edition&&state.consumables.length<=r2ConsumableCapacity(state));
       case 'clear-deck-specials':return !state.spectralModifiers.cleanSlateBonus&&nextStage&&live.filter(card=>card.enhancement!==undefined||(card.edition??'none')!=='none').length>=op.minimumModifiedCards&&r2HandLimit({...state,spectralModifiers:{...state.spectralModifiers,cleanSlateBonus:1}})===r2HandLimit(state)+1;
     }

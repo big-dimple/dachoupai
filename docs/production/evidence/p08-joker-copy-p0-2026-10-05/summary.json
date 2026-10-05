@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "base": "193c93b8ed35f40054aacb5605313b8f41a45f64",
+  "firstSource": "fc890049562e76ef3316620b18b3a2b2befcf515",
+  "source": "b51cfac52af61847499b69d6b4707558285336a6",
+  "sourceTree": "447212bea2fda6d6a9dbcef01b0460131ec04b56",
+  "pr": "https://github.com/big-dimple/dachoupai/pull/22",
+  "scope": "copy-only; three game copy files and two pure copy test files",
+  "tests": {
+    "files": 131,
+    "tests": 2337,
+    "status": "PASS",
+    "all72Profiles": [
+      "v10",
+      "v11",
+      "amo-assist-v1 / json-fnv-v1:843f02356211cb91"
+    ]
+  },
+  "frozenGates": [
+    "domain",
+    "browser",
+    "docs"
+  ],
+  "native": {
+    "viewports": [
+      "320x740",
+      "390x740"
+    ],
+    "details": 16,
+    "shopOffersPerViewport": 3,
+    "minimumFontPx": 14,
+    "minimumTargetPx": 44,
+    "statePreserved": "complete run, commandSeq, RNG; opening/closing and saved-trace replay do not mutate run",
+    "fixture": "validator-approved imports and real PlayHand trace, not natural acquisition",
+    "sourceIndexHeadUnchanged": true
+  },
+  "protectedPathsUnchanged": [
+    "src/domain",
+    "src/content",
+    "src/application",
+    "src/platform",
+    "public",
+    "art",
+    "src/game/session.ts",
+    "src/game/RunLaunch.ts",
+    "src/game/CharacterSelectScene.ts",
+    "src/game/GameScene.ts",
+    "src/game/JokerMemory.ts",
+    "src/game/JokerPlayerTemplates.json"
+  ],
+  "failuresPreserved": [
+    "first-related-FAIL.txt and first-type-FAIL.txt: new test fixture expectations/type errors; fixed only tests",
+    "second-related-FAIL.txt: destroyed Joker fixture and early clear; fixed only tests",
+    "first-final-domain-FAIL: two existing v00-bot tests timed out at original 5000ms during parallel builds; same source and limits pass on recheck",
+    "first-native-FAIL: harness used detail-scroll/detail-actions instead of dialog-scroll/dialog-actions",
+    "initial-native-incomplete-shop and second-native-incomplete-shop: early native reports did not wait for offer entrance alpha; screenshots not accepted; final shop-native-report waits for all three arts alpha1 and no tween"
+  ],
+  "sourceCI": {
+    "head": "b51cfac52af61847499b69d6b4707558285336a6",
+    "run": 37274152843,
+    "url": "https://github.com/big-dimple/dachoupai/actions/runs/37274152843",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": {
+      "domain": 111647428396,
+      "browser": 111647428588,
+      "docs": 111647428659
+    }
+  },
+  "notRun": [
+    "physical device",
+    "GPU acceptance",
+    "listening",
+    "overall aesthetics",
+    "balance"
+  ],
+  "mainPushed": false,
+  "privateUserScreenshotsAccessed": false
+}

@@ -1,0 +1,91 @@
+{
+  "status": "FAIL",
+  "before": {
+    "source": "8653e63c134836c5327e06f778acec59c9dcaf8414cf16bfd472119313fafd09",
+    "index": "39ceac66f9b80b3d054070b984b23888ed2fd191ba1c3ede6853d113d0e7c96b",
+    "head": "b51cfac52af61847499b69d6b4707558285336a6",
+    "branch": "refs/heads/fix/p0-joker-copy-ambiguity"
+  },
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-05T06:47:02.801Z",
+    "revision": "b51cfac52af61847499b69d6b4707558285336a6",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "fixture": "Validator-approved native imports; real PlayHand saved trace. Software Canvas, not natural acquisition or device/GPU approval.",
+  "screens": [
+    "shots/p0-copy/320-legacy-table.png"
+  ],
+  "details": [],
+  "tables": [
+    {
+      "width": 320,
+      "key": "legacy",
+      "labels": [
+        {
+          "id": "c07",
+          "text": "条件 ›",
+          "full": "同花/同花顺末牌再计",
+          "width": 37,
+          "room": 48.4,
+          "font": "14px",
+          "hit": {
+            "width": 54.400000000000006,
+            "height": 80
+          }
+        },
+        {
+          "id": "d07",
+          "text": "条件 ›",
+          "full": "全计分+0.5",
+          "width": 37,
+          "room": 48.4,
+          "font": "14px",
+          "hit": {
+            "width": 54.400000000000006,
+            "height": 80
+          }
+        },
+        {
+          "id": "huimaqiang",
+          "text": "条件 ›",
+          "full": "每3次×2",
+          "width": 37,
+          "room": 48.4,
+          "font": "14px",
+          "hit": {
+            "width": 54.400000000000006,
+            "height": 80
+          }
+        },
+        {
+          "id": "e11",
+          "text": "系数×1",
+          "full": "系数×1",
+          "width": 44,
+          "room": 48.4,
+          "font": "14px",
+          "hit": {
+            "width": 54.400000000000006,
+            "height": 80
+          }
+        },
+        {
+          "id": "f06",
+          "text": "余4手",
+          "full": "余4手",
+          "width": 36,
+          "room": 48.4,
+          "font": "14px",
+          "hit": {
+            "width": 54.39999999999998,
+            "height": 80
+          }
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "error": "Error: locator.evaluate: TypeError: Cannot read properties of null (reading 'getBoundingClientRect')\n    at rect (eval at evaluate (:311:30), <anonymous>:1:30)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:372)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+}

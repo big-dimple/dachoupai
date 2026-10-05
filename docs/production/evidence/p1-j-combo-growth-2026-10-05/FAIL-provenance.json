@@ -1,0 +1,7 @@
+{
+  "income": {"file":"combo-income-first-FAIL.json","testsSource":"e4ad10506cee6ce28fdf770447855cf63ebd829d","productSource":"f45eb0baaa3f8a09aa5cdb4a52d93825cf581404","failed":3,"scope":"missing d12/e04 income, live a06 coefficient mismatch"},
+  "S06": {"file":"combo-s06-first-FAIL.json","testsSource":"63d0d35b6e0787db319065cf00089b1e584d66ab","productSource":"f45eb0baaa3f8a09aa5cdb4a52d93825cf581404","failed":2,"scope":"a06/f10 actual rare reward rejected by invariant"},
+  "native": {"file":"combo-native-first-FAIL.json","modified":true,"harnessBytesCommit":"c7216c11953643039ceeb3a1f6554f696724d89f","sourceFingerprint":"82c8e8239ea6df7dce17bb172ddb86fe3cb4fe6efa24eed7ac5fb1c9c4969085","reason":"Controlled harness queued cards at wrong end of existing pop() draw pile; unknown-card refusal. Corrected fixture order only, no domain refill change."},
+  "earlierTypecheck": {"status":"FAIL then corrected","scope":"New copy test omitted required JokerMemoryContext fields; use publicJokerMemoryContext. No product change for this test compilation error."},
+  "parentReview": {"source":"f45eb0baaa3f8a09aa5cdb4a52d93825cf581404","externalProbeFiles":"not in this workspace","note":"Parent reported S06, old cold-opening condition, four body/edition forgeries and saved-state provenance gaps. Local regressions independently cover these; do not claim access to parent probe artifacts."}
+}

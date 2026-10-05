@@ -65,7 +65,7 @@ interface ScoreTraceBase {
 export type ScoreTrace = ScoreTraceBase & (
   {assist:{ids:string[];kind:'pair'|'three-kind';multiplier:2|4}|null;sets:ScoreTraceBase['sets']&{assistConsumedIds:string[]}} |
   {assist?:never;sets:ScoreTraceBase['sets']&{assistConsumedIds?:never}}
-);
+) & ({combo:{goldBeforeRewards:number|null}}|{combo?:never});
 export class ScoreFault extends Error {
   constructor(readonly code: string, readonly events: readonly ScoreEvent[]) { super(code); }
 }

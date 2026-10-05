@@ -118,12 +118,12 @@ export function applyR2SpectralTool(state:R2RunState,command:Command,events:Doma
       if(tool.target.kind!=='none'||cost?.kind!=='all-gold')return 'invalid-spectral-contract';
       if(ids.length)return 'invalid-targets';
       if(state.jokers.length>=r2JokerCapacity(state))return 'joker-slots-full';
-      const pool=r2Pool(state.jokers.map(joker=>joker.definitionId),state.safetyNetUsed?['f07']:[]).filter(definition=>definition.rarity==='rare');
+      const pool=r2Pool(state.jokers.map(joker=>joker.definitionId),state.safetyNetUsed?['f07']:[],state).filter(definition=>definition.rarity==='rare');
       if(!pool.length)return 'empty-reward-pool';
       const instanceId=`${state.runId}/joker/${command.commandId}`;
       if(state.jokers.some(joker=>joker.instanceId===instanceId))return 'duplicate-joker-id';
       const rng=SeededRng.restore(state.rng.reward),definition=pool[rng.integer(0,pool.length-1)];
-      state.jokers.push(r2CreateJoker(definition.id,instanceId,operation.paidPrice,operation.edition));
+      state.jokers.push(r2CreateJoker(definition.id,instanceId,operation.paidPrice,operation.edition,state));
       createdJokerIds.push(instanceId);state.rng.reward=rng.snapshot();break;
     }
     case 'set-joker-edition': {

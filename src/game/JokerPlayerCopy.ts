@@ -1,3 +1,5 @@
+import {R2_COMBO_GROWTH_JOKERS,R2_COMBO_GROWTH_IDS} from '../content/r2ComboGrowthJokers';
+import {JOKER_COMBO_GROWTH_TEMPLATES} from './JokerComboGrowthTemplates';
 import {JOKER_ASSIST_TEMPLATES} from './JokerAssistTemplates';
 import {R2_ASSIST_JOKERS,R2_ASSIST_ADAPTED_IDS} from '../content/r2AssistJokers';
 import templates from './JokerPlayerTemplates.json';
@@ -52,14 +54,15 @@ function formatted(value:unknown,format:string):string {
 const eventTiming:Record<string,string>={afterHand:'出牌结算后才更新',onDiscard:'成功弃牌后判断',onStageClear:'过关时判断',onBuyOffer:'购买成功后判断',onSellJoker:'出售成功后判断',onReroll:'付费换牌后判断',beforeFailure:'出牌机会用完时判断'};
 /** Player copy consumes the existing public status, never recomputes eligibility. */
 export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext,memory:Memory,events?:readonly ScoreEvent[]):CardAbilityCopy {
- const template=R2_ASSIST_ADAPTED_IDS.includes(definition.id)&&R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_TEMPLATES[definition.id]:copyTemplates[definition.id];
+ const combo=R2_COMBO_GROWTH_IDS.includes(definition.id)&&R2_COMBO_GROWTH_JOKERS.includes(definition);
+ const template=combo?JOKER_COMBO_GROWTH_TEMPLATES[definition.id]:R2_ASSIST_ADAPTED_IDS.includes(definition.id)&&R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_TEMPLATES[definition.id]:copyTemplates[definition.id];
  if(!template)return{condition:'查看这张牌的条件与效果。',value:'完整规则见下方。',state:instance?'按实际出牌与交易判断':'尚未购买，买入后才会生效',flavor:'',rules:definition.description,summary:'条件与效果 · 查看',compact:memory.short,narrow:memory.short,benefit:'条件与效果',playerCopy:true};
  const values:Record<string,string>={};for(const[key,binding]of Object.entries(template.bindings))values[key]=formatted(bindingValue(binding.source,definition),binding.format);
  const growth=instance?{...r2GrowthMinimums(definition),...instance.growth}:{};
  for(const key of ['heat','multiplier','pendingHeat','coefficient'])values['saved_'+key]=fractionText(growth[key]??zero);
  Object.assign(values,{remaining:String(memory.remaining??''),remainingUses:String(memory.remainingUses??''),usage_scope:ctx.inStage?'本场':'下场',entry_hand_limit_state:ctx.inStage&&ctx.entryHandLimit!==undefined?'本场入场时手牌上限：'+ctx.entryHandLimit:'下次进场时判断',previous_hand_type:ctx.previousHandTypeKnown===false?'未知（旧记录未保存）':ctx.previousHandType?HAND_LABELS[ctx.previousHandType]:'没有上一手',reward_progress:memory.savedShort,current_context_value:instance?r2JokerValue(instance,ctx):''});
  const render=(text:string)=>text.replace(/\{([\w]+)\}/g,(_,key)=>values[key]??'见完整规则');
- const main=render(template.main),limits=template.limits.map(render),rules=template.rules.map(render),state:string[]=[];
+ const main=render(template.main).replaceAll('整手倍率','本次出牌的倍率'),limits=template.limits.map(render),rules=template.rules.map(render),state:string[]=[];
  const random=definition.hooks.some(h=>h.operations.some(o=>o.kind==='chance-add-heat'));
  if(!instance)state.push('尚未购买，买入后才会生效');
  else{
@@ -77,11 +80,36 @@ export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerIns
   }
   for(const text of template.state){if(random)continue;const sentence=render(text);if(sentence&&!state.includes(sentence))state.push(sentence);}
   if(memory.usageResetsOnEntry)state.push('进场重置使用次数；'+memory.saved);
+  if(combo)state.push(memory.saved);
   if(memory.savedShort==='已弃牌')state.push('本场已成功弃牌，返还次数也不能恢复加成');
  }
  const own=instance&&events?events.filter(e=>e.sourceType==='joker'&&e.sourceInstanceId===instance.instanceId&&e.sourceDefinitionId===definition.id):undefined;
  let bodyActive:boolean|undefined,editionActive:boolean|undefined;
- if(own){bodyActive=own.some(e=>!e.reasonKey.startsWith('edition.')&&!['chance-heat-check','seal-joker'].includes(e.operation));editionActive=own.some(e=>e.reasonKey.startsWith('edition.'));const chance=own.find(e=>e.operation==='chance-heat-check');state.length=0;state.push(chance?'本手'+(chance.value.n==='1'?'抽中':'没抽中'):bodyActive?'本手已有实际效果':'本手没有计分加成记录');for(const text of template.state){if(!random)state.push(render(text));}if(memory.scoreLimited)state.push('当前计分加成暂停');}
+ if(own){
+  const body=own.filter(e=>!e.reasonKey.startsWith('edition.'));
+  // Keep animation activity separate from the player-facing account of the recorded result.
+  bodyActive=body.some(e=>!['chance-heat-check','seal-joker'].includes(e.operation));
+  editionActive=own.some(e=>e.reasonKey.startsWith('edition.'));
+  const chance=body.find(e=>e.operation==='chance-heat-check');
+  const scoreGain=body.some(e=>Rational.fromJSON(e.after.H).compare(Rational.fromJSON(e.before.H))>0||Rational.fromJSON(e.after.M).compare(Rational.fromJSON(e.before.M))>0);
+  state.length=0;
+  state.push(chance?'本手'+(chance.value.n==='1'?'抽中':'没抽中'):scoreGain?'本手本体已有计分增益':bodyActive?'本手有本体结算记录':'本手没有本体计分加成记录');
+  for(const e of body){
+   if((e.operation==='read-growth'||e.operation==='consume-growth')&&BigInt(e.value.n)===0n)state.push('本次按+0结算，结算时尚无成长加成');
+   if(e.operation==='read-coefficient'&&Rational.fromJSON(e.value).compare(new Rational(1n))===0)state.push('本次按×1结算，结算时尚无成长加成');
+   if(e.operation==='multiply-coefficient'&&e.growthBefore&&e.growthAfter){const changed=Rational.fromJSON(e.growthAfter).compare(Rational.fromJSON(e.growthBefore))>0;state.push('出牌结算后系数×'+fractionText(e.value)+'：'+fractionText(e.growthBefore)+' → '+fractionText(e.growthAfter)+(changed?'，下次出牌生效':'，已达上限，本次未增加'));}
+   if(e.operation==='consume-rescue')state.push('救火已消耗；不会因返次或重载恢复');
+   if(e.operation==='add-gold-per-held'||e.operation==='add-gold-per-capital')state.push('实际过关收入 +'+fractionText(e.value)+'金');
+   if(e.operation==='add-growth'||e.operation==='add-coefficient'){
+    const amount=fractionText(e.value),timing=e.phase==='afterHand'?'出牌结算后':e.phase==='onStageClear'?'过关后':'本次';
+    state.push(timing+'成长 +'+amount+(BigInt(e.value.n)===0n?'，本次未增加':'，新增从下一次出牌生效'));
+   }
+   if(e.operation==='retrigger-card'&&BigInt(e.value.n)===0n)state.push('再次计分次数已达上限，本牌本次未增加次数');
+  }
+  if(editionActive)state.push('本手版次效果单独结算，不计入本体增益');
+  for(const text of template.state){if(!random)state.push(render(text));}
+  if(memory.scoreLimited)state.push('当前计分加成暂停');
+ }
  if(definition.hooks.some(h=>h.operations.some(o=>o.kind==='add-heat'||o.kind==='add-multiplier'||o.kind==='multiply-multiplier'||o.kind==='read-growth'||o.kind==='read-coefficient'))){rules.push('热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。');}
  return{condition:main,value:limits.join('\n'),state:state.join('\n'),rules:rules.join('\n'),flavor:'',summary:main,compact:memory.short,narrow:memory.short,benefit:'条件与效果',bodyActive,editionActive,playerCopy:true};
 }

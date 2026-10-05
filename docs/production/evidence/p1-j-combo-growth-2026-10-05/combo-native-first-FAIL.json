@@ -1,0 +1,24 @@
+{
+  "testedCommit": "63d0d35b6e0787db319065cf00089b1e584d66ab",
+  "before": {
+    "source": "82c8e8239ea6df7dce17bb172ddb86fe3cb4fe6efa24eed7ac5fb1c9c4969085",
+    "index": "9c92b3452a8bd4466ae42e4a893af093fb431152063ff1262b71c84f8d88ca5a",
+    "head": "63d0d35b6e0787db319065cf00089b1e584d66ab",
+    "branch": "refs/heads/review/p08-combo-growth-domain-20261005"
+  },
+  "checks": [],
+  "limitations": [
+    "Controlled legal public-hand, ordered draw and owned-Joker fixtures; not natural acquisition, balance, UI or device acceptance.",
+    "Native Chromium IndexedDB, actual SavedRun commands and production adapter; quota abort is an injected transaction fault, not physical disk exhaustion."
+  ],
+  "browser": "151.0.7922.173",
+  "status": "FAIL",
+  "error": "Error: page.evaluate: Error: command PlayHand: unknown-card\n    at check (eval at evaluate (:311:30), <anonymous>:3:55)\n    at send (eval at evaluate (:311:30), <anonymous>:5:171)\n    at eval (eval at evaluate (:311:30), <anonymous>:17:98)\n    at async <anonymous>:337:30",
+  "after": {
+    "source": "82c8e8239ea6df7dce17bb172ddb86fe3cb4fe6efa24eed7ac5fb1c9c4969085",
+    "index": "9c92b3452a8bd4466ae42e4a893af093fb431152063ff1262b71c84f8d88ca5a",
+    "head": "63d0d35b6e0787db319065cf00089b1e584d66ab",
+    "branch": "refs/heads/review/p08-combo-growth-domain-20261005"
+  },
+  "sourceUnchanged": true
+}
