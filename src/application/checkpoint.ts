@@ -167,6 +167,7 @@ function trace(value:unknown,context:{group:boolean;combo:boolean;definitions:Re
   const eventIds=new Set<unknown>(),rootEventIds:unknown[]=[],destroyedCards:string[]=[],destroyedJokers:string[]=[],glassHits=new Set<string>(),heldGoldSources=new Set<string>();let luckyGold=0n;
   const coefficients=new Map([...jokerSources.values()].filter(joker=>Object.hasOwn(joker.growth,'coefficient')).map(joker=>[joker.instanceId,Rational.fromJSON(joker.growth.coefficient)]));
   const coefficientReads=new Set<string>(),coefficientChanges=new Set<string>(),chanceChecks=new Map<string,boolean>(),chanceHeat=new Set<string>(),clearCycles=new Map<string,number>(),rewardSources=new Set<string>(),handRefunds=new Set<string>();
+  const scoreOrder=[...jokerSources.keys()];if(boss?.definitionId==='B13')scoreOrder.reverse();let wholeSlot=-1,cardSlot=-1;
   const comboEvents=new Set<string>();
   const groupRetriggers=new Map<string,number>(),groupCaps=new Set<string>(),cardRetriggers=new Map<string,number>(),cardRoots=new Map<string,string>();
   const assistWholeEffects=new Set<string>(),assistEditionSources=new Set<string>();
@@ -236,9 +237,14 @@ function trace(value:unknown,context:{group:boolean;combo:boolean;definitions:Re
         assistEditionSources.add(sourceJoker!.instanceId);validatedEdition=true;
       }else if(e.phase==='jokerScore'&&assistEditionSources.has(sourceJoker!.instanceId))fail('invalid-save-assist-joker-edition-order');
     }
+    if(group&&e.phase==='onCardScore'&&e.sourceType==='card'&&sourceCard&&e.sourceDefinitionId===`rank-${sourceCard.rank}`&&e.operation==='add-heat')cardSlot=-1;
+    if(group&&e.sourceType==='joker'&&['jokerScore','onCardScore'].includes(e.phase as string)){
+      const index=scoreOrder.indexOf(e.sourceInstanceId as string);if(index<0||e.phase==='jokerScore'&&index<wholeSlot||e.phase==='onCardScore'&&index<cardSlot)fail('invalid-save-group-slot-order');if(e.phase==='jokerScore')wholeSlot=index;else cardSlot=index;
+    }
     if(groupFamily&&!validatedEdition){
+      if(e.reasonKey!==`${sourceJoker!.definitionId}.${e.operation}`)fail('invalid-save-group-reason');
       if(['targetJokerInstanceId','targetHandType','growthBefore','growthAfter','rewardDefinitionId','programGoldBeforeReward','goldBeforeRewards'].some(key=>Object.hasOwn(e,key))||e.operation!=='add-gold'&&(Object.hasOwn(e,'resourceBefore')||Object.hasOwn(e,'resourceAfter')))fail('invalid-save-group-metadata');
-      if(e.phase!=='onCardScore'&&e.rootEventId!==e.eventId||e.phase==='jokerScore'&&finalSeen||e.phase==='afterHand'&&(!finalSeen||clearSeen))fail('invalid-save-group-phase');
+      if(e.phase!=='onCardScore'&&e.rootEventId!==e.eventId||['jokerScore','onCardScore'].includes(e.phase as string)&&finalSeen||e.phase==='onStageClear'&&!finalSeen||e.phase==='afterHand'&&(!finalSeen||clearSeen))fail('invalid-save-group-phase');
     }
     if(group&&e.sourceType==='card'&&sourceCard&&e.sourceDefinitionId===`rank-${sourceCard.rank}`&&e.phase==='onCardScore'&&e.operation==='add-heat'&&e.retriggerDepth===0)cardRoots.set(sourceCard.id,e.eventId as string);
     if(group&&groupFamily&&sourceJoker!.definitionId==='b06'&&!validatedEdition){

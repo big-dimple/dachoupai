@@ -13,6 +13,8 @@ import {R2_ECONOMY,r2Price,r2Pool} from '../src/domain/r2Shop';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
 import {stableHash} from '../src/domain/hash';
 import {CHARACTER_IDS} from '../src/domain/characters';
+import {SeededRng} from '../src/core/SeededRng';
+import {jokerAbilityCopyForRun,publicJokerMemoryContext} from '../src/game/JokerMemory';
 import type {PlayingCard} from '../src/cards/types';
 import v10 from './fixtures/r2-v10-amo-checkpoints.json';
 import v11 from './fixtures/r2-v11-amo-checkpoints.json';
@@ -61,5 +63,43 @@ describe('group upgrade first source checkpoint',()=>{
   expect(mutated(after,s=>{s.lastTrace.events.find((e:any)=>e.sourceDefinitionId==='b06').targetCardId=main[2];}).ok).toBe(false);
   expect(mutated(after,s=>{s.jokers.find((j:any)=>j.definitionId==='b03').growth.multiplier={n:'3',d:'1'};}).ok).toBe(false);
   expect(mutated(after,s=>{s.contentVersion=R2_COMBO_GROWTH_VERSION;s.contentHash=R2_COMBO_GROWTH_HASH;}).ok).toBe(false);
+ });
+ it('five-kind targets all five; full-house sources obey depth1 and the four-extra cap',()=>{
+  const five=score([9,9,9,9,9]);expect(five.handType).toBe('five-kind');expect(five.events.filter(e=>e.sourceDefinitionId==='b06')).toHaveLength(5);
+  const hand=cards([9,9,9,13,13]);hand[2].enhancement='encore-paper';
+  const t=score([],['a11','d04','d11','b06','b03'].map(joker),{hand,selectedIds:hand.map(c=>c.id),disabledIds:['p/0','p/1'],playIndex:2,previousHandType:'pair'});
+  expect(t.events.filter(e=>e.sourceDefinitionId==='b06').map(e=>[e.operation,e.value.n,e.targetCardId])).toEqual([['retrigger-card','0','p/2'],['retrigger-cap','4','p/2']]);
+  expect(t.events.filter(e=>e.sourceDefinitionId==='rank-9'&&e.retriggerDepth===1)).toHaveLength(4);expect(t.events.every(e=>e.retriggerDepth<=1)).toBe(true);expect(t.events.filter(e=>e.operation==='add-growth')).toHaveLength(1);
+ });
+ it('real b10 buy/sale uses new common price and paidPrice; rebuy resets both growth types',()=>{
+  let s=createRun({seed:'group-shop',runId:'group-shop',characterId:'amo',rulesVersion:'r2',r2Profile:'group-upgrade-v1'});s.gold=30;
+  s.shop!.offers[0]={...s.shop!.offers[0],definitionId:'b10',edition:'none',price:4,consumed:false};s=send(s,{type:'BuyOffer',offerId:s.shop!.offers[0].offerId});expect(s.gold).toBe(26);expect(s.jokers[0].paidPrice).toBe(4);
+  s.jokers[0].growth.heat={n:'50',d:'1'};s=send(s,{type:'SellJoker',instanceId:s.jokers[0].instanceId});expect(s.gold).toBe(28);
+  s.shop!.offers[0]={...s.shop!.offers[0],consumed:false};s=send(s,{type:'BuyOffer',offerId:s.shop!.offers[0].offerId});expect(s.jokers[0].growth).toEqual({});
+  s=send(s,{type:'SellJoker',instanceId:s.jokers[0].instanceId});s.jokers=[joker('b03')];s.jokers[0].paidPrice=6;s.jokers[0].growth.multiplier={n:'3',d:'1'};s=send(s,{type:'SellJoker',instanceId:'b03'});
+  s.shop!.offers[0]={...s.shop!.offers[0],definitionId:'b03',price:6,consumed:false};s=send(s,{type:'BuyOffer',offerId:s.shop!.offers[0].offerId});expect(s.jokers[0].growth).toEqual({});
+ });
+ it('S06 actual b06 reward uses new target definition and excludes common b10',()=>{
+  let s=createRun({seed:'group-reward',runId:'group-reward',characterId:'amo',rulesVersion:'r2',r2Profile:'group-upgrade-v1'});s.consumables=[{instanceId:'S06',definitionId:'S06'}];
+  const pool=r2Pool([],[],s).filter(d=>d.rarity==='rare');let found=false;for(let cursor=0;cursor<256;cursor++){const snapshot={algorithm:'fnv1a-mulberry32-v1' as const,state:cursor},rng=SeededRng.restore(snapshot);if(pool[rng.integer(0,pool.length-1)].id==='b06'){s.rng.reward=snapshot;found=true;break;}}expect(found).toBe(true);
+  s=send(s,{type:'UseConsumable',instanceId:'S06',targetIds:[]});expect(s.jokers[0]).toMatchObject({definitionId:'b06',paidPrice:0});expect(r2JokerDefinitionsFor(s).find(d=>d.id==='b06')!.hooks[0].condition.kind).toBe('largest-scoring-rank-group');
+ });
+ it('b08 pays once on a grouped clear, never on loss or skip, and cannot raise e04 capital',()=>{
+  const before=fixture(['b08','e04']);before.gold=30;const action:Action={type:'PlayHand',selectedIds:[...main,'clubs-9']},after=send(before,action);
+  expect(after.lastTrace!.events.find(e=>e.sourceDefinitionId==='e04')).toMatchObject({value:{n:'3',d:'1'},goldBeforeRewards:30});expect(applyCommand(after,{runId:before.runId,commandId:String(before.commandSeq+1),expectedSeq:before.commandSeq,action}).state).toEqual(after);
+  let loss=fixture(['b08']);while(loss.phase==='await-input')loss=send(loss,{type:'PlayHand',selectedIds:[loss.handOrder[0]]});expect(loss.phase).toBe('run-lost');expect(loss.lastTrace!.events.some(e=>e.sourceDefinitionId==='b08')).toBe(false);
+  let skip=createRun({seed:'group-skip',runId:'group-skip',characterId:'amo',rulesVersion:'r2',r2Profile:'group-upgrade-v1'});skip.jokers=[joker('b08')];skip=send(skip,{type:'SkipStage'});expect(skip.stage!.goldEarned).toBe(0);expect(skip.lastTrace).toBeNull();
+ });
+ it.each(['b03','b06','b08','b10'])('binds %s actual editions and canonical body reasons',id=>{
+  for(const edition of ['foil','holographic','polychrome'] as const){const before=fixture([id]);before.jokers[0].edition=edition;const after=send(before,{type:'PlayHand',selectedIds:[...main,'clubs-9']});
+   expect(mutated(after,s=>{s.lastTrace.events=s.lastTrace.events.filter((e:any)=>!e.reasonKey.startsWith('edition.'));}).ok).toBe(false);
+   expect(mutated(after,s=>{s.lastTrace.events.find((e:any)=>e.reasonKey.startsWith('edition.')).value={n:'1000',d:'1'};}).ok).toBe(false);
+   expect(mutated(after,s=>{s.lastTrace.events.find((e:any)=>!e.reasonKey.startsWith('edition.')&&e.sourceType==='joker').reasonKey='invented-body-reason';}).ok).toBe(false);
+  }
+ });
+ it('pure profile copy explains all group types and preserves old b10 price-era effect',()=>{
+  const s=fixture(),before=JSON.stringify(s),ctx=publicJokerMemoryContext(s,{hand:s.deckInstances.filter(c=>s.handOrder.includes(c.id)),scoringLimited:false,deckSize:52,jokerSlots:5,jokerCount:4});
+  for(const j of s.jokers){const copy=jokerAbilityCopyForRun(s,j.definitionId,j,ctx);expect(copy.rules).toContain('同花五条');expect(JSON.stringify(copy)).not.toContain('见完整规则');}
+  const old={contentVersion:R2_COMBO_GROWTH_VERSION,contentHash:R2_COMBO_GROWTH_HASH};expect(jokerAbilityCopyForRun(old,'b10',r2CreateJoker('b10','old',6,undefined,old),ctx).condition).toContain('5');expect(JSON.stringify(s)).toBe(before);
  });
 });
