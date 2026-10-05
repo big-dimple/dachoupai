@@ -52,6 +52,6 @@ export function assertGroupTraceExecutions(trace:ScoreTrace,definitions:readonly
    if(event.retriggerDepth!==0||Rational.fromJSON(event.before.H).compare(Rational.fromJSON(event.after.H))||Rational.fromJSON(event.before.M).compare(Rational.fromJSON(event.after.M)))fail();
   }
  }
- // A request cannot hide in another phase to evade the skeleton.
- if(trace.events.some(e=>e.phase!=='onCardScore'&&(e.operation==='retrigger-card'||e.operation==='retrigger-cap')))fail();
+ // Neither requests nor card executions can hide in another phase.
+ if(trace.events.some(e=>e.phase!=='onCardScore'&&(isRank(e)||e.retriggerDepth!==0||e.operation==='retrigger-card'||e.operation==='retrigger-cap')))fail();
 }

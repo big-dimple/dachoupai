@@ -32,3 +32,7 @@
 ## 最终本地验证
 
 冻结9392adb的2420tests/134files、content/type/build、标准桌面/手机smoke、plan全PASS；原生保存四类失败候选及五身份分区/恢复闭合PASS，所有检查前后源码/index/HEAD保持。`final/summary.json`记录精确source及范围，`final/NATURAL_UI_PLAN.md`区分自然样本与未观察路线。旧CI37292850901唯一失败是group助攻入口漏接，原日志保留，修后全仓恢复用例通过。只review，无普通入口切换，最终远端精确CI及父串行main决定另报。
+
+## 当前最终阶段闭合
+
+最新冻结30f4657补一条新group阶段校验：rank和depth1执行只能在onCardScore，拒绝伪装afterHand的额外rank；已保留59095fe源码上真实接受伪造的FAIL。2421tests/134files与完整本地门禁、新原生保存和自然有界回放全部PASS且source/index/HEAD不变，详见phase-final/summary.json。旧59095fe CI的WebKit桌面资源脉冲5秒超时原日志保留，不视为通过，也不改UI或放宽smoke。最终新review头精确CI另报。

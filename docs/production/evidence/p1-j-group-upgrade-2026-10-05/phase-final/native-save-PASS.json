@@ -1,0 +1,230 @@
+{
+  "testedCommit": "30f4657d352410e23975f8dd0e9b563c1ec6fe59",
+  "before": {
+    "source": "77da4f83ef192c8c283e683f28eddcff6de138310eed2a3aa9368690411cc05c",
+    "index": "3bc1f841cef063befcb8a66369537c703b477ef18b36e17c2210ea955b0f26bb",
+    "head": "30f4657d352410e23975f8dd0e9b563c1ec6fe59",
+    "branch": "refs/heads/review/p1-j-group-upgrade-domain-20261005"
+  },
+  "checks": [
+    {
+      "name": "b03+b10-nonwinning-growth",
+      "status": "PASS",
+      "pendingChecksum": "json-fnv-v1:ddbdd82457a285c0",
+      "stateHash": "json-fnv-v1:3612be98aca975a4",
+      "revision": 12
+    },
+    {
+      "name": "b06-three-targets+b03+b10-growth+b08-clear",
+      "status": "PASS",
+      "pendingChecksum": "json-fnv-v1:5d98f1d20d181a7e",
+      "stateHash": "json-fnv-v1:cda3ee63ed834757",
+      "revision": 14
+    },
+    {
+      "name": "cross-stage-straight-carried-growth",
+      "status": "PASS",
+      "pendingChecksum": "json-fnv-v1:42e57a91228f1415",
+      "stateHash": "json-fnv-v1:54aec700157bd4e4",
+      "revision": 16
+    },
+    {
+      "name": "assisted-clear-one-growth+reward+consumption",
+      "status": "PASS",
+      "pendingChecksum": "json-fnv-v1:8c5f6ab03d6a1ae4",
+      "stateHash": "json-fnv-v1:fbe3eeb6eb5e39ca",
+      "revision": 18
+    },
+    {
+      "name": "six-role/five-identity/discovery/reload/export/import/corrupt-current+previous/retained-raw",
+      "status": "PASS",
+      "revision": 24
+    }
+  ],
+  "limitations": [
+    "Controlled legal public-hand, ordered draw and owned-Joker fixtures; not natural acquisition, balance, UI or device acceptance.",
+    "Native Chromium IndexedDB, actual SavedRun commands and production adapter; quota abort is an injected transaction fault, not physical disk exhaustion."
+  ],
+  "browser": "151.0.7922.173",
+  "observations": [
+    {
+      "name": "b03+b10-nonwinning-growth",
+      "result": {
+        "phase": "await-input",
+        "score": "106",
+        "gold": 6,
+        "handsLeft": 3,
+        "handType": "pair",
+        "growth": [
+          {
+            "id": "b03",
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "4"
+              }
+            }
+          },
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "10",
+                "d": "1"
+              }
+            }
+          }
+        ],
+        "clearCapital": null,
+        "assistUsed": false,
+        "income": [],
+        "stateHash": "json-fnv-v1:a7863c960b670372"
+      }
+    },
+    {
+      "name": "b06-three-targets+b03+b10-growth+b08-clear",
+      "result": {
+        "phase": "stage-cleared",
+        "score": "1420",
+        "gold": 17,
+        "handsLeft": 3,
+        "handType": "full-house",
+        "growth": [
+          {
+            "id": "b03",
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "4"
+              }
+            }
+          },
+          {
+            "id": "b06",
+            "growth": {}
+          },
+          {
+            "id": "b08",
+            "growth": {}
+          },
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "10",
+                "d": "1"
+              }
+            }
+          }
+        ],
+        "clearCapital": 6,
+        "assistUsed": false,
+        "income": [
+          {
+            "source": "b08",
+            "amount": "3"
+          }
+        ],
+        "stateHash": "json-fnv-v1:e73da050c24c894c"
+      }
+    },
+    {
+      "name": "cross-stage-straight-carried-growth",
+      "result": {
+        "phase": "stage-cleared",
+        "score": "658",
+        "gold": 28,
+        "handsLeft": 3,
+        "handType": "straight",
+        "growth": [
+          {
+            "id": "b03",
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "4"
+              }
+            }
+          },
+          {
+            "id": "b06",
+            "growth": {}
+          },
+          {
+            "id": "b08",
+            "growth": {}
+          },
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "10",
+                "d": "1"
+              }
+            }
+          }
+        ],
+        "clearCapital": 17,
+        "assistUsed": false,
+        "income": [],
+        "stateHash": "json-fnv-v1:f95e85b3dd2c4b17"
+      }
+    },
+    {
+      "name": "assisted-clear-one-growth+reward+consumption",
+      "result": {
+        "phase": "stage-cleared",
+        "score": "484",
+        "gold": 17,
+        "handsLeft": 3,
+        "handType": "two-pair",
+        "growth": [
+          {
+            "id": "b03",
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "4"
+              }
+            }
+          },
+          {
+            "id": "b06",
+            "growth": {}
+          },
+          {
+            "id": "b08",
+            "growth": {}
+          },
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "10",
+                "d": "1"
+              }
+            }
+          }
+        ],
+        "clearCapital": 6,
+        "assistUsed": true,
+        "income": [
+          {
+            "source": "b08",
+            "amount": "3"
+          }
+        ],
+        "stateHash": "json-fnv-v1:7bfe245a473f4bae"
+      }
+    }
+  ],
+  "contentHash": "json-fnv-v1:5025cc23c013987f",
+  "status": "PASS",
+  "after": {
+    "source": "77da4f83ef192c8c283e683f28eddcff6de138310eed2a3aa9368690411cc05c",
+    "index": "3bc1f841cef063befcb8a66369537c703b477ef18b36e17c2210ea955b0f26bb",
+    "head": "30f4657d352410e23975f8dd0e9b563c1ec6fe59",
+    "branch": "refs/heads/review/p1-j-group-upgrade-domain-20261005"
+  },
+  "sourceUnchanged": true
+}

@@ -1,0 +1,30 @@
+{
+  "frozenSource": "30f4657d352410e23975f8dd0e9b563c1ec6fe59",
+  "srcTree": "3fc4fce3e8c19bfbcf17deafae2a340bd85eda6c",
+  "harnessTree": "1fbe9c845306aed165a8fdf952fd319d67a8c407",
+  "localGate": "PASS",
+  "tests": 2421,
+  "testFiles": 134,
+  "typeBuildContentPlan": "PASS",
+  "standardChromiumDesktopMobile": "PASS",
+  "nativeSaveFiveChecks": "PASS",
+  "natural24SeedsTwoProfilesFourRoutes": "PASS; fresh rerun payload exactly matches prior finite observations",
+  "sourceIndexHeadUnchanged": true,
+  "fixFrom590": "One new-group-only execution phase predicate; rejects copied rank event disguised as afterHand and all depth1 outside onCardScore. No scoring engine/profile/hash/UI/harness changes.",
+  "old590CI": {
+    "run": 37296150600,
+    "job": 111717815902,
+    "status": "FAIL",
+    "detail": "Chromium and Firefox desktop/mobile passed. WebKit desktop timed out at screenshot.mjs:145 while sampling play-count scaleX>1.05, 5000ms. Domain/docs passed. Actual raw log preserved; cause is not claimed proven. Canonical smoke is unchanged; new exact head must still pass."
+  },
+  "oldProof": "Earlier final/9392adb reports preserved as historical; this directory is current local validation.",
+  "pending": [
+    "new exact remote CI",
+    "parent differential review / serialized main decision"
+  ],
+  "limitations": [
+    "No UI entry switch; ordinary runs remain e7d",
+    "No natural affordable b03/b06 or complete upgrade-to-straight/flush route observed",
+    "No balance/physical-device/audio approval"
+  ]
+}
