@@ -1,5 +1,11 @@
 # P1-J：共同Joker四卡原型
 
+## 正常入口/UI review 接线（PR25，2026-10-05 UTC）
+
+在main193c93b独立正常合入PR22 e2fc57c与PR24 36eff49；本UI批六角色正常新局共用上述e7d21身份，仅阿默启用助攻。默认createRun仍v11，旧v10/v11/843f及新combo同种子重试按精确version/hash/角色/种子/模式直接创建，继续/导入/接管/无尽沿原局。商店预览、牌桌/持有/窄条件、AI缓存与已保存回看读当前局resolver，四卡领域规则和hash未改。本批仅review，main尚未发布此共同原型；下方“仅显式领域/未接UI”是PR24当批历史边界。
+
+有限UI与自然经营结果见[evidence](evidence/p08-combo-growth-ui-2026-10-05/summary.json)：自然二响6金买d12、三A553/实际留5收5金并保存刷新；另7个受控正反例明确不作自然取得或平衡证据。132files/2377tests与现有门禁冻结通过，原FAIL保留，最终精确draft CI以PR25交接为准。
+
 状态：**review 候选 / 仅显式领域原型 / 最终门禁与独审以 evidence 为准 / 未main**。产品基线193c93b，正常带入计划PR23的0502ff0。普通生产新局入口保持已发布合同，本批不接UI、不改其他五角色能力、不改美术。
 
 当前源码提供 `r2Profile: 'combo-growth-v1'`，内容版本 `quality-r2-combo-growth-prototype-v1`，hash `json-fnv-v1:e7d21fce68b80072`。六角色共用同一不可变Joker overlay：继承843f改善的七卡，再替换a06/f10/d12/e04；其余定义保留原对象。阿默沿助攻机制，仅阿默保存assistUsed/assist消费集合；其他五人沿v11角色能力。v10/v11/843f完整身份、定义与普通入口保持，未知/混配拒绝。

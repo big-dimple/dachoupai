@@ -1,0 +1,66 @@
+{
+  "scope": "all",
+  "testedCommit": "92ade252fc22b144a41bffcf2e2acb791fad1c0e",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "d948b664abe61aa1224e42492b47dd229b5b4c91a896af52d1f29a25ef3d0fba",
+    "index": "30dc5d7765ef73c49e49b78f248a387864c594eb05850040296c82c227c511f7",
+    "head": "92ade252fc22b144a41bffcf2e2acb791fad1c0e",
+    "branch": "refs/heads/review/p08-combo-growth-ui-20261005"
+  },
+  "after": {
+    "source": "d948b664abe61aa1224e42492b47dd229b5b4c91a896af52d1f29a25ef3d0fba",
+    "index": "30dc5d7765ef73c49e49b78f248a387864c594eb05850040296c82c227c511f7",
+    "head": "92ade252fc22b144a41bffcf2e2acb791fad1c0e",
+    "branch": "refs/heads/review/p08-combo-growth-ui-20261005"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 22848
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 2592
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 12172
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 123059
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 249
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

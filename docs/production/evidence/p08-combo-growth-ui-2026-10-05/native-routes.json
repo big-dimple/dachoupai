@@ -1,0 +1,3718 @@
+{
+  "source": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+  "before": {
+    "source": "d778e264dd76b9e4e7a5188d11f35e63606a4965a54ee4400263e38763bb0590",
+    "index": "0ced1489f0b3f8e0002dac0b298adcaeec8c5c937a69afdc1948a5dca187cd7a",
+    "head": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+    "branch": "refs/heads/review/p08-combo-growth-ui-20261005"
+  },
+  "scope": "Software Canvas UI. Natural route uses ordinary shop RNG and deals; separately labelled legal controlled fixtures are not natural acquisition or balance acceptance.",
+  "cases": [
+    {
+      "name": "normal-amo",
+      "scope": "natural normal UI launch",
+      "status": "PASS",
+      "errors": [],
+      "identity": {
+        "version": "quality-r2-combo-growth-prototype-v1",
+        "hash": "json-fnv-v1:e7d21fce68b80072"
+      },
+      "assistUI": true
+    },
+    {
+      "name": "normal-touye",
+      "scope": "natural normal UI launch",
+      "status": "PASS",
+      "errors": [],
+      "identity": {
+        "version": "quality-r2-combo-growth-prototype-v1",
+        "hash": "json-fnv-v1:e7d21fce68b80072"
+      },
+      "assistUI": false
+    },
+    {
+      "name": "normal-laohuan",
+      "scope": "natural normal UI launch",
+      "status": "PASS",
+      "errors": [],
+      "identity": {
+        "version": "quality-r2-combo-growth-prototype-v1",
+        "hash": "json-fnv-v1:e7d21fce68b80072"
+      },
+      "assistUI": false
+    },
+    {
+      "name": "normal-erxiang",
+      "scope": "natural normal UI launch",
+      "status": "PASS",
+      "errors": [],
+      "identity": {
+        "version": "quality-r2-combo-growth-prototype-v1",
+        "hash": "json-fnv-v1:e7d21fce68b80072"
+      },
+      "offer": {
+        "offerId": "run/combo-ui-natural-573/erxiang/shop/0/0/joker/2",
+        "definitionId": "d12",
+        "price": 6,
+        "edition": "none",
+        "consumed": false
+      },
+      "shopLabels": [],
+      "assistUI": false,
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5",
+        "handType": "three-kind",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "clubs-14",
+            "diamonds-14",
+            "spades-14"
+          ],
+          "scoringIds": [
+            "clubs-14",
+            "diamonds-14",
+            "spades-14"
+          ],
+          "activeScoringIds": [
+            "clubs-14",
+            "diamonds-14",
+            "spades-14"
+          ],
+          "heldIds": [
+            "clubs-5",
+            "spades-13",
+            "clubs-4",
+            "hearts-11",
+            "clubs-12"
+          ]
+        },
+        "finalScore": "553",
+        "accumulator": {
+          "H": {
+            "n": "123",
+            "d": "1"
+          },
+          "M": {
+            "n": "9",
+            "d": "2"
+          }
+        },
+        "events": [
+          {
+            "eventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/0",
+            "rootId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5",
+            "rootEventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "three-kind",
+            "sourceInstanceId": "run/combo-ui-natural-573/erxiang",
+            "operation": "base",
+            "value": {
+              "n": "90",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "90",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "three-kind.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/1",
+            "rootId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5",
+            "rootEventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-14",
+            "sourceInstanceId": "clubs-14",
+            "targetCardId": "clubs-14",
+            "operation": "add-heat",
+            "value": {
+              "n": "11",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "90",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "101",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-14.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/2",
+            "rootId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5",
+            "rootEventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-14",
+            "sourceInstanceId": "diamonds-14",
+            "targetCardId": "diamonds-14",
+            "operation": "add-heat",
+            "value": {
+              "n": "11",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "101",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "112",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-14.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/3",
+            "rootId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5",
+            "rootEventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/3",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-14",
+            "sourceInstanceId": "spades-14",
+            "targetCardId": "spades-14",
+            "operation": "add-heat",
+            "value": {
+              "n": "11",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "112",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "123",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-14.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/4",
+            "rootId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5",
+            "rootEventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/4",
+            "phase": "characterScore",
+            "sourceType": "character",
+            "sourceDefinitionId": "erxiang",
+            "sourceInstanceId": "run/combo-ui-natural-573/erxiang/character",
+            "operation": "add-multiplier",
+            "value": {
+              "n": "3",
+              "d": "2"
+            },
+            "before": {
+              "H": {
+                "n": "123",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "123",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "reasonKey": "erxiang.add-multiplier",
+            "visibleCondition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair",
+                "two-pair",
+                "three-kind"
+              ]
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/5",
+            "rootId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5",
+            "rootEventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/5",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "three-kind",
+            "sourceInstanceId": "run/combo-ui-natural-573/erxiang",
+            "operation": "final-score",
+            "value": {
+              "n": "553",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "123",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "123",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "reasonKey": "three-kind.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/6",
+            "rootId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5",
+            "rootEventId": "run/combo-ui-natural-573/erxiang/hand/run/combo-ui-natural-573/erxiang/command/5/event/6",
+            "phase": "onStageClear",
+            "sourceType": "joker",
+            "sourceDefinitionId": "d12",
+            "sourceInstanceId": "run/combo-ui-natural-573/erxiang/joker/run/combo-ui-natural-573/erxiang/command/2",
+            "operation": "add-gold-per-held",
+            "value": {
+              "n": "5",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "123",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "123",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "reasonKey": "d12.add-gold-per-held",
+            "visibleCondition": {
+              "kind": "hand-type-in",
+              "values": [
+                "two-pair",
+                "three-kind",
+                "straight",
+                "flush",
+                "full-house",
+                "four-kind",
+                "straight-flush",
+                "five-kind",
+                "flush-house",
+                "flush-five"
+              ]
+            },
+            "retriggerDepth": 0,
+            "resourceBefore": 7,
+            "resourceAfter": 12
+          }
+        ],
+        "jokers": [
+          {
+            "instanceId": "run/combo-ui-natural-573/erxiang/joker/run/combo-ui-natural-573/erxiang/command/2",
+            "definitionId": "d12",
+            "paidPrice": 6,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 3077222558
+        },
+        "goldDelta": 0,
+        "destroyedCardIds": [],
+        "destroyedJokerIds": [],
+        "cards": [
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          }
+        ],
+        "sourceJokers": [
+          {
+            "instanceId": "run/combo-ui-natural-573/erxiang/joker/run/combo-ui-natural-573/erxiang/command/2",
+            "definitionId": "d12",
+            "paidPrice": 6,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "bossContext": {
+          "boss": null,
+          "previousHandType": null,
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null
+        },
+        "combo": {
+          "goldBeforeRewards": 0
+        }
+      },
+      "checks": [
+        "natural purchase from 6 gold",
+        "natural AAA 553 / held 5 / income 5",
+        "shop/owned/table copy",
+        "reload full state+journal/export and ledger read-only"
+      ]
+    },
+    {
+      "name": "normal-azao",
+      "scope": "natural normal UI launch",
+      "status": "PASS",
+      "errors": [],
+      "identity": {
+        "version": "quality-r2-combo-growth-prototype-v1",
+        "hash": "json-fnv-v1:e7d21fce68b80072"
+      },
+      "assistUI": false
+    },
+    {
+      "name": "normal-xiemu",
+      "scope": "natural normal UI launch",
+      "status": "PASS",
+      "errors": [],
+      "identity": {
+        "version": "quality-r2-combo-growth-prototype-v1",
+        "hash": "json-fnv-v1:e7d21fce68b80072"
+      },
+      "assistUI": false
+    },
+    {
+      "name": "a06-positive",
+      "scope": "controlled legal fixture; not natural acquisition",
+      "status": "PASS",
+      "errors": [],
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "a06-positive/hand/a06-positive/command/5",
+        "handType": "three-kind",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "spades-12",
+            "hearts-12",
+            "diamonds-12"
+          ],
+          "scoringIds": [
+            "spades-12",
+            "hearts-12",
+            "diamonds-12"
+          ],
+          "activeScoringIds": [
+            "spades-12",
+            "hearts-12",
+            "diamonds-12"
+          ],
+          "heldIds": [
+            "clubs-9",
+            "clubs-6",
+            "spades-2",
+            "hearts-2",
+            "spades-3"
+          ],
+          "assistConsumedIds": []
+        },
+        "assist": null,
+        "finalScore": "540",
+        "accumulator": {
+          "H": {
+            "n": "120",
+            "d": "1"
+          },
+          "M": {
+            "n": "9",
+            "d": "2"
+          }
+        },
+        "events": [
+          {
+            "eventId": "a06-positive/hand/a06-positive/command/5/event/0",
+            "rootId": "a06-positive/hand/a06-positive/command/5",
+            "rootEventId": "a06-positive/hand/a06-positive/command/5/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "three-kind",
+            "sourceInstanceId": "a06-positive",
+            "operation": "base",
+            "value": {
+              "n": "90",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "90",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "three-kind.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "a06-positive/hand/a06-positive/command/5/event/1",
+            "rootId": "a06-positive/hand/a06-positive/command/5",
+            "rootEventId": "a06-positive/hand/a06-positive/command/5/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-12",
+            "sourceInstanceId": "spades-12",
+            "targetCardId": "spades-12",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "90",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "100",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-12.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "a06-positive/hand/a06-positive/command/5/event/2",
+            "rootId": "a06-positive/hand/a06-positive/command/5",
+            "rootEventId": "a06-positive/hand/a06-positive/command/5/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-12",
+            "sourceInstanceId": "hearts-12",
+            "targetCardId": "hearts-12",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "100",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "110",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-12.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "a06-positive/hand/a06-positive/command/5/event/3",
+            "rootId": "a06-positive/hand/a06-positive/command/5",
+            "rootEventId": "a06-positive/hand/a06-positive/command/5/event/3",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-12",
+            "sourceInstanceId": "diamonds-12",
+            "targetCardId": "diamonds-12",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "110",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "120",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-12.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "a06-positive/hand/a06-positive/command/5/event/4",
+            "rootId": "a06-positive/hand/a06-positive/command/5",
+            "rootEventId": "a06-positive/hand/a06-positive/command/5/event/4",
+            "phase": "jokerScore",
+            "sourceType": "joker",
+            "sourceDefinitionId": "a06",
+            "sourceInstanceId": "fixture-j/0",
+            "operation": "read-coefficient",
+            "value": {
+              "n": "3",
+              "d": "2"
+            },
+            "before": {
+              "H": {
+                "n": "120",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "120",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "reasonKey": "a06.read-coefficient",
+            "visibleCondition": {
+              "kind": "hand-type-in",
+              "values": [
+                "two-pair",
+                "three-kind",
+                "straight",
+                "flush",
+                "full-house",
+                "four-kind",
+                "straight-flush",
+                "five-kind",
+                "flush-house",
+                "flush-five"
+              ]
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "a06-positive/hand/a06-positive/command/5/event/5",
+            "rootId": "a06-positive/hand/a06-positive/command/5",
+            "rootEventId": "a06-positive/hand/a06-positive/command/5/event/5",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "three-kind",
+            "sourceInstanceId": "a06-positive",
+            "operation": "final-score",
+            "value": {
+              "n": "540",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "120",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "120",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "reasonKey": "three-kind.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "a06-positive/hand/a06-positive/command/5/event/6",
+            "rootId": "a06-positive/hand/a06-positive/command/5",
+            "rootEventId": "a06-positive/hand/a06-positive/command/5/event/6",
+            "phase": "afterHand",
+            "sourceType": "joker",
+            "sourceDefinitionId": "a06",
+            "sourceInstanceId": "fixture-j/0",
+            "operation": "multiply-coefficient",
+            "value": {
+              "n": "23",
+              "d": "20"
+            },
+            "before": {
+              "H": {
+                "n": "120",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "120",
+                "d": "1"
+              },
+              "M": {
+                "n": "9",
+                "d": "2"
+              }
+            },
+            "reasonKey": "a06.multiply-coefficient",
+            "visibleCondition": {
+              "kind": "hand-type-relation",
+              "values": [
+                "two-pair",
+                "three-kind",
+                "straight",
+                "flush",
+                "full-house",
+                "four-kind",
+                "straight-flush",
+                "five-kind",
+                "flush-house",
+                "flush-five"
+              ],
+              "relation": "different"
+            },
+            "retriggerDepth": 0,
+            "resourceBefore": 0,
+            "resourceAfter": 1,
+            "growthBefore": {
+              "n": "3",
+              "d": "2"
+            },
+            "growthAfter": {
+              "n": "69",
+              "d": "40"
+            }
+          }
+        ],
+        "jokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "a06",
+            "paidPrice": 8,
+            "growth": {
+              "coefficient": {
+                "n": "69",
+                "d": "40"
+              }
+            },
+            "counters": {
+              "alternationUsed": true
+            }
+          }
+        ],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 476448291
+        },
+        "goldDelta": 0,
+        "destroyedCardIds": [],
+        "destroyedJokerIds": [],
+        "cards": [
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          }
+        ],
+        "sourceJokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "a06",
+            "paidPrice": 8,
+            "growth": {
+              "coefficient": {
+                "n": "3",
+                "d": "2"
+              }
+            },
+            "counters": {
+              "alternationUsed": false
+            }
+          }
+        ],
+        "bossContext": {
+          "boss": null,
+          "previousHandType": "two-pair",
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null
+        },
+        "combo": {
+          "goldBeforeRewards": 6
+        }
+      },
+      "jokers": [
+        {
+          "instanceId": "fixture-j/0",
+          "definitionId": "a06",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "69",
+              "d": "40"
+            }
+          },
+          "counters": {
+            "alternationUsed": true
+          }
+        }
+      ],
+      "ledger": "最后一手 · 已保存的结算\n\n三条 Lv.1 · 540 热度\n打出：Q♠、Q♥、Q♦\n实际计分：Q♠、Q♥、Q♦\n\n120 × 4.5 = 540\n\n独家戏：本手本体已有计分增益\n出牌结算后系数×1.15：1.5 → 1.725，下次出牌生效\n本次读取系数：×1.5\n上一手：两对\n\n完整计分明细\n关闭"
+    },
+    {
+      "name": "a06-negative",
+      "scope": "controlled legal fixture; not natural acquisition",
+      "status": "PASS",
+      "errors": [],
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "a06-negative/hand/a06-negative/command/4",
+        "handType": "full-house",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "spades-9",
+            "hearts-9",
+            "clubs-9",
+            "clubs-13",
+            "diamonds-13"
+          ],
+          "scoringIds": [
+            "spades-9",
+            "hearts-9",
+            "clubs-9",
+            "clubs-13",
+            "diamonds-13"
+          ],
+          "activeScoringIds": [
+            "spades-9",
+            "hearts-9",
+            "clubs-9",
+            "clubs-13",
+            "diamonds-13"
+          ],
+          "heldIds": [
+            "spades-12",
+            "hearts-12",
+            "clubs-6"
+          ],
+          "assistConsumedIds": []
+        },
+        "assist": null,
+        "finalScore": "1927",
+        "accumulator": {
+          "H": {
+            "n": "257",
+            "d": "1"
+          },
+          "M": {
+            "n": "15",
+            "d": "2"
+          }
+        },
+        "events": [
+          {
+            "eventId": "a06-negative/hand/a06-negative/command/4/event/0",
+            "rootId": "a06-negative/hand/a06-negative/command/4",
+            "rootEventId": "a06-negative/hand/a06-negative/command/4/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "full-house",
+            "sourceInstanceId": "a06-negative",
+            "operation": "base",
+            "value": {
+              "n": "210",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "210",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "full-house.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "a06-negative/hand/a06-negative/command/4/event/1",
+            "rootId": "a06-negative/hand/a06-negative/command/4",
+            "rootEventId": "a06-negative/hand/a06-negative/command/4/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-9",
+            "sourceInstanceId": "spades-9",
+            "targetCardId": "spades-9",
+            "operation": "add-heat",
+            "value": {
+              "n": "9",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "210",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "219",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-9.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "a06-negative/hand/a06-negative/command/4/event/2",
+            "rootId": "a06-negative/hand/a06-negative/command/4",
+            "rootEventId": "a06-negative/hand/a06-negative/command/4/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-9",
+            "sourceInstanceId": "hearts-9",
+            "targetCardId": "hearts-9",
+            "operation": "add-heat",
+            "value": {
+              "n": "9",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "219",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "228",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-9.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "a06-negative/hand/a06-negative/command/4/event/3",
+            "rootId": "a06-negative/hand/a06-negative/command/4",
+            "rootEventId": "a06-negative/hand/a06-negative/command/4/event/3",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-9",
+            "sourceInstanceId": "clubs-9",
+            "targetCardId": "clubs-9",
+            "operation": "add-heat",
+            "value": {
+              "n": "9",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "228",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "237",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-9.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "a06-negative/hand/a06-negative/command/4/event/4",
+            "rootId": "a06-negative/hand/a06-negative/command/4",
+            "rootEventId": "a06-negative/hand/a06-negative/command/4/event/4",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-13",
+            "sourceInstanceId": "clubs-13",
+            "targetCardId": "clubs-13",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "237",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "247",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-13.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "a06-negative/hand/a06-negative/command/4/event/5",
+            "rootId": "a06-negative/hand/a06-negative/command/4",
+            "rootEventId": "a06-negative/hand/a06-negative/command/4/event/5",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-13",
+            "sourceInstanceId": "diamonds-13",
+            "targetCardId": "diamonds-13",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "247",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "257",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-13.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "a06-negative/hand/a06-negative/command/4/event/6",
+            "rootId": "a06-negative/hand/a06-negative/command/4",
+            "rootEventId": "a06-negative/hand/a06-negative/command/4/event/6",
+            "phase": "jokerScore",
+            "sourceType": "joker",
+            "sourceDefinitionId": "a06",
+            "sourceInstanceId": "fixture-j/0",
+            "operation": "read-coefficient",
+            "value": {
+              "n": "3",
+              "d": "2"
+            },
+            "before": {
+              "H": {
+                "n": "257",
+                "d": "1"
+              },
+              "M": {
+                "n": "5",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "257",
+                "d": "1"
+              },
+              "M": {
+                "n": "15",
+                "d": "2"
+              }
+            },
+            "reasonKey": "a06.read-coefficient",
+            "visibleCondition": {
+              "kind": "hand-type-in",
+              "values": [
+                "two-pair",
+                "three-kind",
+                "straight",
+                "flush",
+                "full-house",
+                "four-kind",
+                "straight-flush",
+                "five-kind",
+                "flush-house",
+                "flush-five"
+              ]
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "a06-negative/hand/a06-negative/command/4/event/7",
+            "rootId": "a06-negative/hand/a06-negative/command/4",
+            "rootEventId": "a06-negative/hand/a06-negative/command/4/event/7",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "full-house",
+            "sourceInstanceId": "a06-negative",
+            "operation": "final-score",
+            "value": {
+              "n": "1927",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "257",
+                "d": "1"
+              },
+              "M": {
+                "n": "15",
+                "d": "2"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "257",
+                "d": "1"
+              },
+              "M": {
+                "n": "15",
+                "d": "2"
+              }
+            },
+            "reasonKey": "full-house.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "a06",
+            "paidPrice": 8,
+            "growth": {
+              "coefficient": {
+                "n": "3",
+                "d": "2"
+              }
+            },
+            "counters": {
+              "alternationUsed": false
+            }
+          }
+        ],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 476448291
+        },
+        "goldDelta": 0,
+        "destroyedCardIds": [],
+        "destroyedJokerIds": [],
+        "cards": [
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          }
+        ],
+        "sourceJokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "a06",
+            "paidPrice": 8,
+            "growth": {
+              "coefficient": {
+                "n": "3",
+                "d": "2"
+              }
+            },
+            "counters": {
+              "alternationUsed": false
+            }
+          }
+        ],
+        "bossContext": {
+          "boss": null,
+          "previousHandType": null,
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null
+        },
+        "combo": {
+          "goldBeforeRewards": 6
+        }
+      },
+      "jokers": [
+        {
+          "instanceId": "fixture-j/0",
+          "definitionId": "a06",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "3",
+              "d": "2"
+            }
+          },
+          "counters": {
+            "alternationUsed": false
+          }
+        }
+      ],
+      "ledger": "最后一手 · 已保存的结算\n\n葫芦 Lv.1 · 1,927 热度\n打出：9♠、9♥、9♣、K♣、K♦\n实际计分：9♠、9♥、9♣、K♣、K♦\n\n257 × 7.5 = 1,927\n\n独家戏：本手本体已有计分增益\n本次读取系数：×1.5\n上一手：没有上一手\n\n完整计分明细\n关闭"
+    },
+    {
+      "name": "f10-positive",
+      "scope": "controlled legal fixture; not natural acquisition",
+      "status": "PASS",
+      "errors": [],
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "f10-positive/hand/f10-positive/command/5",
+        "handType": "two-pair",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "hearts-12",
+            "clubs-14",
+            "spades-12",
+            "hearts-14"
+          ],
+          "scoringIds": [
+            "hearts-12",
+            "clubs-14",
+            "spades-12",
+            "hearts-14"
+          ],
+          "activeScoringIds": [
+            "hearts-12",
+            "clubs-14",
+            "spades-12",
+            "hearts-14"
+          ],
+          "heldIds": [
+            "diamonds-3",
+            "clubs-9",
+            "diamonds-7",
+            "spades-5"
+          ],
+          "assistConsumedIds": []
+        },
+        "assist": null,
+        "finalScore": "642",
+        "accumulator": {
+          "H": {
+            "n": "107",
+            "d": "1"
+          },
+          "M": {
+            "n": "6",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "f10-positive/hand/f10-positive/command/5/event/0",
+            "rootId": "f10-positive/hand/f10-positive/command/5",
+            "rootEventId": "f10-positive/hand/f10-positive/command/5/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "two-pair",
+            "sourceInstanceId": "f10-positive",
+            "operation": "base",
+            "value": {
+              "n": "65",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "65",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "two-pair.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "f10-positive/hand/f10-positive/command/5/event/1",
+            "rootId": "f10-positive/hand/f10-positive/command/5",
+            "rootEventId": "f10-positive/hand/f10-positive/command/5/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-12",
+            "sourceInstanceId": "hearts-12",
+            "targetCardId": "hearts-12",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "65",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "75",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-12.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "f10-positive/hand/f10-positive/command/5/event/2",
+            "rootId": "f10-positive/hand/f10-positive/command/5",
+            "rootEventId": "f10-positive/hand/f10-positive/command/5/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-14",
+            "sourceInstanceId": "clubs-14",
+            "targetCardId": "clubs-14",
+            "operation": "add-heat",
+            "value": {
+              "n": "11",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "75",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "86",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-14.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "f10-positive/hand/f10-positive/command/5/event/3",
+            "rootId": "f10-positive/hand/f10-positive/command/5",
+            "rootEventId": "f10-positive/hand/f10-positive/command/5/event/3",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-12",
+            "sourceInstanceId": "spades-12",
+            "targetCardId": "spades-12",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "86",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "96",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-12.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "f10-positive/hand/f10-positive/command/5/event/4",
+            "rootId": "f10-positive/hand/f10-positive/command/5",
+            "rootEventId": "f10-positive/hand/f10-positive/command/5/event/4",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-14",
+            "sourceInstanceId": "hearts-14",
+            "targetCardId": "hearts-14",
+            "operation": "add-heat",
+            "value": {
+              "n": "11",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "96",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "107",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-14.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "f10-positive/hand/f10-positive/command/5/event/5",
+            "rootId": "f10-positive/hand/f10-positive/command/5",
+            "rootEventId": "f10-positive/hand/f10-positive/command/5/event/5",
+            "phase": "jokerScore",
+            "sourceType": "joker",
+            "sourceDefinitionId": "f10",
+            "sourceInstanceId": "fixture-j/0",
+            "operation": "rescue-multiplier",
+            "value": {
+              "n": "3",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "107",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "107",
+                "d": "1"
+              },
+              "M": {
+                "n": "6",
+                "d": "1"
+              }
+            },
+            "reasonKey": "f10.rescue-multiplier",
+            "visibleCondition": {
+              "kind": "hand-type-in",
+              "values": [
+                "two-pair",
+                "three-kind",
+                "straight",
+                "flush",
+                "full-house",
+                "four-kind",
+                "straight-flush",
+                "five-kind",
+                "flush-house",
+                "flush-five"
+              ]
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "f10-positive/hand/f10-positive/command/5/event/6",
+            "rootId": "f10-positive/hand/f10-positive/command/5",
+            "rootEventId": "f10-positive/hand/f10-positive/command/5/event/6",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "two-pair",
+            "sourceInstanceId": "f10-positive",
+            "operation": "final-score",
+            "value": {
+              "n": "642",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "107",
+                "d": "1"
+              },
+              "M": {
+                "n": "6",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "107",
+                "d": "1"
+              },
+              "M": {
+                "n": "6",
+                "d": "1"
+              }
+            },
+            "reasonKey": "two-pair.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "f10-positive/hand/f10-positive/command/5/event/7",
+            "rootId": "f10-positive/hand/f10-positive/command/5",
+            "rootEventId": "f10-positive/hand/f10-positive/command/5/event/7",
+            "phase": "afterHand",
+            "sourceType": "joker",
+            "sourceDefinitionId": "f10",
+            "sourceInstanceId": "fixture-j/0",
+            "operation": "consume-rescue",
+            "value": {
+              "n": "1",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "107",
+                "d": "1"
+              },
+              "M": {
+                "n": "6",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "107",
+                "d": "1"
+              },
+              "M": {
+                "n": "6",
+                "d": "1"
+              }
+            },
+            "reasonKey": "f10.consume-rescue",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0,
+            "resourceBefore": 1,
+            "resourceAfter": 0
+          }
+        ],
+        "jokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "f10",
+            "paidPrice": 8,
+            "growth": {},
+            "counters": {
+              "rescueArmed": false
+            }
+          }
+        ],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 476448291
+        },
+        "goldDelta": 0,
+        "destroyedCardIds": [],
+        "destroyedJokerIds": [],
+        "cards": [
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          }
+        ],
+        "sourceJokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "f10",
+            "paidPrice": 8,
+            "growth": {},
+            "counters": {
+              "rescueArmed": true
+            }
+          }
+        ],
+        "bossContext": {
+          "boss": null,
+          "previousHandType": null,
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null
+        },
+        "combo": {
+          "goldBeforeRewards": 6
+        }
+      },
+      "jokers": [
+        {
+          "instanceId": "fixture-j/0",
+          "definitionId": "f10",
+          "paidPrice": 8,
+          "growth": {},
+          "counters": {
+            "rescueArmed": false
+          }
+        }
+      ],
+      "ledger": "最后一手 · 已保存的结算\n\n两对 Lv.1 · 642 热度\n打出：Q♥、A♣、Q♠、A♥\n实际计分：Q♥、A♣、Q♠、A♥\n\n107 × 6 = 642\n\n冷场救火：本手本体已有计分增益\n救火已消耗；不会因返次或重载恢复\n\n完整计分明细\n关闭"
+    },
+    {
+      "name": "f10-negative",
+      "scope": "controlled legal fixture; not natural acquisition",
+      "status": "PASS",
+      "errors": [],
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "f10-negative/hand/f10-negative/command/5",
+        "handType": "two-pair",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "spades-9",
+            "hearts-9",
+            "clubs-13",
+            "diamonds-13"
+          ],
+          "scoringIds": [
+            "spades-9",
+            "hearts-9",
+            "clubs-13",
+            "diamonds-13"
+          ],
+          "activeScoringIds": [
+            "spades-9",
+            "hearts-9",
+            "clubs-13",
+            "diamonds-13"
+          ],
+          "heldIds": [
+            "spades-12",
+            "hearts-12",
+            "clubs-6",
+            "diamonds-14"
+          ],
+          "assistConsumedIds": []
+        },
+        "assist": null,
+        "finalScore": "206",
+        "accumulator": {
+          "H": {
+            "n": "103",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "f10-negative/hand/f10-negative/command/5/event/0",
+            "rootId": "f10-negative/hand/f10-negative/command/5",
+            "rootEventId": "f10-negative/hand/f10-negative/command/5/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "two-pair",
+            "sourceInstanceId": "f10-negative",
+            "operation": "base",
+            "value": {
+              "n": "65",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "65",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "two-pair.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "f10-negative/hand/f10-negative/command/5/event/1",
+            "rootId": "f10-negative/hand/f10-negative/command/5",
+            "rootEventId": "f10-negative/hand/f10-negative/command/5/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-9",
+            "sourceInstanceId": "spades-9",
+            "targetCardId": "spades-9",
+            "operation": "add-heat",
+            "value": {
+              "n": "9",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "65",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "74",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-9.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "f10-negative/hand/f10-negative/command/5/event/2",
+            "rootId": "f10-negative/hand/f10-negative/command/5",
+            "rootEventId": "f10-negative/hand/f10-negative/command/5/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-9",
+            "sourceInstanceId": "hearts-9",
+            "targetCardId": "hearts-9",
+            "operation": "add-heat",
+            "value": {
+              "n": "9",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "74",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "83",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-9.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "f10-negative/hand/f10-negative/command/5/event/3",
+            "rootId": "f10-negative/hand/f10-negative/command/5",
+            "rootEventId": "f10-negative/hand/f10-negative/command/5/event/3",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-13",
+            "sourceInstanceId": "clubs-13",
+            "targetCardId": "clubs-13",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "83",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "93",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-13.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "f10-negative/hand/f10-negative/command/5/event/4",
+            "rootId": "f10-negative/hand/f10-negative/command/5",
+            "rootEventId": "f10-negative/hand/f10-negative/command/5/event/4",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-13",
+            "sourceInstanceId": "diamonds-13",
+            "targetCardId": "diamonds-13",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "93",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "103",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-13.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "f10-negative/hand/f10-negative/command/5/event/5",
+            "rootId": "f10-negative/hand/f10-negative/command/5",
+            "rootEventId": "f10-negative/hand/f10-negative/command/5/event/5",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "two-pair",
+            "sourceInstanceId": "f10-negative",
+            "operation": "final-score",
+            "value": {
+              "n": "206",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "103",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "103",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "two-pair.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "f10",
+            "paidPrice": 8,
+            "growth": {},
+            "counters": {
+              "rescueArmed": false
+            }
+          }
+        ],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 476448291
+        },
+        "goldDelta": 0,
+        "destroyedCardIds": [],
+        "destroyedJokerIds": [],
+        "cards": [
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "sourceJokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "f10",
+            "paidPrice": 8,
+            "growth": {},
+            "counters": {
+              "rescueArmed": false
+            }
+          }
+        ],
+        "bossContext": {
+          "boss": null,
+          "previousHandType": null,
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null
+        },
+        "combo": {
+          "goldBeforeRewards": null
+        }
+      },
+      "jokers": [
+        {
+          "instanceId": "fixture-j/0",
+          "definitionId": "f10",
+          "paidPrice": 8,
+          "growth": {},
+          "counters": {
+            "rescueArmed": false
+          }
+        }
+      ],
+      "ledger": "上手已入账 · 两对 +206\n\n牌型 65 热度 × 2 倍率\n计分 4 张 / 主手 4 张\n结算 103 × 2 = 206\n\n冷场救火：本手没有本体计分加成记录\n\n完整计分明细\n回看演出\n关闭"
+    },
+    {
+      "name": "d12-negative",
+      "scope": "controlled legal fixture; not natural acquisition",
+      "status": "PASS",
+      "errors": [],
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "d12-negative/hand/d12-negative/command/4",
+        "handType": "two-pair",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "spades-9",
+            "hearts-9",
+            "clubs-13",
+            "diamonds-13"
+          ],
+          "scoringIds": [
+            "spades-9",
+            "hearts-9",
+            "clubs-13",
+            "diamonds-13"
+          ],
+          "activeScoringIds": [
+            "spades-9",
+            "hearts-9",
+            "clubs-13",
+            "diamonds-13"
+          ],
+          "heldIds": [
+            "clubs-6",
+            "diamonds-7"
+          ],
+          "assistConsumedIds": [
+            "spades-12",
+            "hearts-12"
+          ]
+        },
+        "assist": {
+          "ids": [
+            "spades-12",
+            "hearts-12"
+          ],
+          "kind": "pair",
+          "multiplier": 2
+        },
+        "finalScore": "824",
+        "accumulator": {
+          "H": {
+            "n": "103",
+            "d": "1"
+          },
+          "M": {
+            "n": "8",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "d12-negative/hand/d12-negative/command/4/event/0",
+            "rootId": "d12-negative/hand/d12-negative/command/4",
+            "rootEventId": "d12-negative/hand/d12-negative/command/4/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "two-pair",
+            "sourceInstanceId": "d12-negative",
+            "operation": "base",
+            "value": {
+              "n": "65",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "65",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "two-pair.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "d12-negative/hand/d12-negative/command/4/event/1",
+            "rootId": "d12-negative/hand/d12-negative/command/4",
+            "rootEventId": "d12-negative/hand/d12-negative/command/4/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-9",
+            "sourceInstanceId": "spades-9",
+            "targetCardId": "spades-9",
+            "operation": "add-heat",
+            "value": {
+              "n": "9",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "65",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "74",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-9.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "d12-negative/hand/d12-negative/command/4/event/2",
+            "rootId": "d12-negative/hand/d12-negative/command/4",
+            "rootEventId": "d12-negative/hand/d12-negative/command/4/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-9",
+            "sourceInstanceId": "hearts-9",
+            "targetCardId": "hearts-9",
+            "operation": "add-heat",
+            "value": {
+              "n": "9",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "74",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "83",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-9.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "d12-negative/hand/d12-negative/command/4/event/3",
+            "rootId": "d12-negative/hand/d12-negative/command/4",
+            "rootEventId": "d12-negative/hand/d12-negative/command/4/event/3",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-13",
+            "sourceInstanceId": "clubs-13",
+            "targetCardId": "clubs-13",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "83",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "93",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-13.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "d12-negative/hand/d12-negative/command/4/event/4",
+            "rootId": "d12-negative/hand/d12-negative/command/4",
+            "rootEventId": "d12-negative/hand/d12-negative/command/4/event/4",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-13",
+            "sourceInstanceId": "diamonds-13",
+            "targetCardId": "diamonds-13",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "93",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "103",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-13.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "d12-negative/hand/d12-negative/command/4/event/5",
+            "rootId": "d12-negative/hand/d12-negative/command/4",
+            "rootEventId": "d12-negative/hand/d12-negative/command/4/event/5",
+            "phase": "jokerScore",
+            "sourceType": "joker",
+            "sourceDefinitionId": "b04",
+            "sourceInstanceId": "fixture-j/1",
+            "operation": "add-multiplier",
+            "value": {
+              "n": "2",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "103",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "103",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "b04.add-multiplier",
+            "visibleCondition": {
+              "kind": "rank-groups",
+              "minimum": 2,
+              "groupSize": 2
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "d12-negative/hand/d12-negative/command/4/event/6",
+            "rootId": "d12-negative/hand/d12-negative/command/4",
+            "rootEventId": "d12-negative/hand/d12-negative/command/4/event/6",
+            "phase": "characterScore",
+            "sourceType": "character",
+            "sourceDefinitionId": "amo",
+            "sourceInstanceId": "d12-negative/character",
+            "operation": "multiply-multiplier",
+            "value": {
+              "n": "2",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "103",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "103",
+                "d": "1"
+              },
+              "M": {
+                "n": "8",
+                "d": "1"
+              }
+            },
+            "reasonKey": "amo.assist.pair",
+            "visibleCondition": {
+              "kind": "hand-type-in",
+              "values": [
+                "two-pair",
+                "three-kind",
+                "straight",
+                "flush",
+                "full-house",
+                "four-kind",
+                "straight-flush",
+                "five-kind",
+                "flush-house",
+                "flush-five"
+              ]
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "d12-negative/hand/d12-negative/command/4/event/7",
+            "rootId": "d12-negative/hand/d12-negative/command/4",
+            "rootEventId": "d12-negative/hand/d12-negative/command/4/event/7",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "two-pair",
+            "sourceInstanceId": "d12-negative",
+            "operation": "final-score",
+            "value": {
+              "n": "824",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "103",
+                "d": "1"
+              },
+              "M": {
+                "n": "8",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "103",
+                "d": "1"
+              },
+              "M": {
+                "n": "8",
+                "d": "1"
+              }
+            },
+            "reasonKey": "two-pair.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "d12",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "fixture-j/1",
+            "definitionId": "b04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 476448291
+        },
+        "goldDelta": 0,
+        "destroyedCardIds": [],
+        "destroyedJokerIds": [],
+        "cards": [
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          }
+        ],
+        "sourceJokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "d12",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "fixture-j/1",
+            "definitionId": "b04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "bossContext": {
+          "boss": null,
+          "previousHandType": null,
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null
+        },
+        "combo": {
+          "goldBeforeRewards": 6
+        }
+      },
+      "jokers": [
+        {
+          "instanceId": "fixture-j/0",
+          "definitionId": "d12",
+          "paidPrice": 8,
+          "growth": {}
+        },
+        {
+          "instanceId": "fixture-j/1",
+          "definitionId": "b04",
+          "paidPrice": 8,
+          "growth": {}
+        }
+      ],
+      "ledger": "最后一手 · 已保存的结算\n\n两对 Lv.1 · 824 热度\n打出：9♠、9♥、K♣、K♦\n实际计分：9♠、9♥、K♣、K♦\n助攻 Q♠ Q♥ · ×2（已一同用掉，不计主手或留手）\n\n103 × 8 = 824\n\n留点悬念：本次没有本体收入记录\n一唱一和：本手本体已有计分增益\n\n完整计分明细\n关闭"
+    },
+    {
+      "name": "e04-positive",
+      "scope": "controlled legal fixture; not natural acquisition",
+      "status": "PASS",
+      "errors": [],
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "e04-positive/hand/e04-positive/command/4",
+        "handType": "flush",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "spades-3",
+            "spades-7",
+            "spades-11",
+            "spades-12",
+            "spades-14"
+          ],
+          "scoringIds": [
+            "spades-3",
+            "spades-7",
+            "spades-11",
+            "spades-12",
+            "spades-14"
+          ],
+          "activeScoringIds": [
+            "spades-3",
+            "spades-7",
+            "spades-11",
+            "spades-12",
+            "spades-14"
+          ],
+          "heldIds": [
+            "hearts-2",
+            "clubs-6",
+            "diamonds-9"
+          ],
+          "assistConsumedIds": []
+        },
+        "assist": null,
+        "finalScore": "724",
+        "accumulator": {
+          "H": {
+            "n": "181",
+            "d": "1"
+          },
+          "M": {
+            "n": "4",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "e04-positive/hand/e04-positive/command/4/event/0",
+            "rootId": "e04-positive/hand/e04-positive/command/4",
+            "rootEventId": "e04-positive/hand/e04-positive/command/4/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "flush",
+            "sourceInstanceId": "e04-positive",
+            "operation": "base",
+            "value": {
+              "n": "140",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "140",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "flush.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "e04-positive/hand/e04-positive/command/4/event/1",
+            "rootId": "e04-positive/hand/e04-positive/command/4",
+            "rootEventId": "e04-positive/hand/e04-positive/command/4/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-3",
+            "sourceInstanceId": "spades-3",
+            "targetCardId": "spades-3",
+            "operation": "add-heat",
+            "value": {
+              "n": "3",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "140",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "143",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-3.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "e04-positive/hand/e04-positive/command/4/event/2",
+            "rootId": "e04-positive/hand/e04-positive/command/4",
+            "rootEventId": "e04-positive/hand/e04-positive/command/4/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-7",
+            "sourceInstanceId": "spades-7",
+            "targetCardId": "spades-7",
+            "operation": "add-heat",
+            "value": {
+              "n": "7",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "143",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "150",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-7.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "e04-positive/hand/e04-positive/command/4/event/3",
+            "rootId": "e04-positive/hand/e04-positive/command/4",
+            "rootEventId": "e04-positive/hand/e04-positive/command/4/event/3",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-11",
+            "sourceInstanceId": "spades-11",
+            "targetCardId": "spades-11",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "150",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "160",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-11.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "e04-positive/hand/e04-positive/command/4/event/4",
+            "rootId": "e04-positive/hand/e04-positive/command/4",
+            "rootEventId": "e04-positive/hand/e04-positive/command/4/event/4",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-12",
+            "sourceInstanceId": "spades-12",
+            "targetCardId": "spades-12",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "160",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "170",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-12.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "e04-positive/hand/e04-positive/command/4/event/5",
+            "rootId": "e04-positive/hand/e04-positive/command/4",
+            "rootEventId": "e04-positive/hand/e04-positive/command/4/event/5",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-14",
+            "sourceInstanceId": "spades-14",
+            "targetCardId": "spades-14",
+            "operation": "add-heat",
+            "value": {
+              "n": "11",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "170",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "181",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-14.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "e04-positive/hand/e04-positive/command/4/event/6",
+            "rootId": "e04-positive/hand/e04-positive/command/4",
+            "rootEventId": "e04-positive/hand/e04-positive/command/4/event/6",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "flush",
+            "sourceInstanceId": "e04-positive",
+            "operation": "final-score",
+            "value": {
+              "n": "724",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "181",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "181",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "flush.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "e04-positive/hand/e04-positive/command/4/event/7",
+            "rootId": "e04-positive/hand/e04-positive/command/4",
+            "rootEventId": "e04-positive/hand/e04-positive/command/4/event/7",
+            "phase": "onStageClear",
+            "sourceType": "joker",
+            "sourceDefinitionId": "e04",
+            "sourceInstanceId": "fixture-j/0",
+            "operation": "add-gold-per-capital",
+            "value": {
+              "n": "3",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "181",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "181",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "e04.add-gold-per-capital",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0,
+            "resourceBefore": 42,
+            "resourceAfter": 45,
+            "goldBeforeRewards": 30
+          }
+        ],
+        "jokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 476448291
+        },
+        "goldDelta": 0,
+        "destroyedCardIds": [],
+        "destroyedJokerIds": [],
+        "cards": [
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          }
+        ],
+        "sourceJokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "bossContext": {
+          "boss": null,
+          "previousHandType": null,
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null
+        },
+        "combo": {
+          "goldBeforeRewards": 30
+        }
+      },
+      "jokers": [
+        {
+          "instanceId": "fixture-j/0",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {}
+        }
+      ],
+      "ledger": "最后一手 · 已保存的结算\n\n同花 Lv.1 · 724 热度\n打出：3♠、7♠、J♠、Q♠、A♠\n实际计分：3♠、7♠、J♠、Q♠、A♠\n\n181 × 4 = 724\n\n滚个零头：本手有本体结算记录\n奖励前本金 30金；实际额外收入 +3金\n\n完整计分明细\n关闭"
+    },
+    {
+      "name": "e04-negative",
+      "scope": "controlled legal fixture; not natural acquisition",
+      "status": "PASS",
+      "errors": [],
+      "trace": {
+        "rulesVersion": "r2",
+        "rootId": "e04-negative/hand/e04-negative/command/4",
+        "handType": "flush",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "spades-3",
+            "spades-7",
+            "spades-11",
+            "spades-12",
+            "spades-14"
+          ],
+          "scoringIds": [
+            "spades-3",
+            "spades-7",
+            "spades-11",
+            "spades-12",
+            "spades-14"
+          ],
+          "activeScoringIds": [
+            "spades-3",
+            "spades-7",
+            "spades-11",
+            "spades-12",
+            "spades-14"
+          ],
+          "heldIds": [
+            "hearts-2",
+            "clubs-6",
+            "diamonds-9"
+          ],
+          "assistConsumedIds": []
+        },
+        "assist": null,
+        "finalScore": "724",
+        "accumulator": {
+          "H": {
+            "n": "181",
+            "d": "1"
+          },
+          "M": {
+            "n": "4",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "e04-negative/hand/e04-negative/command/4/event/0",
+            "rootId": "e04-negative/hand/e04-negative/command/4",
+            "rootEventId": "e04-negative/hand/e04-negative/command/4/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "flush",
+            "sourceInstanceId": "e04-negative",
+            "operation": "base",
+            "value": {
+              "n": "140",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "140",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "flush.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "e04-negative/hand/e04-negative/command/4/event/1",
+            "rootId": "e04-negative/hand/e04-negative/command/4",
+            "rootEventId": "e04-negative/hand/e04-negative/command/4/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-3",
+            "sourceInstanceId": "spades-3",
+            "targetCardId": "spades-3",
+            "operation": "add-heat",
+            "value": {
+              "n": "3",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "140",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "143",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-3.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "e04-negative/hand/e04-negative/command/4/event/2",
+            "rootId": "e04-negative/hand/e04-negative/command/4",
+            "rootEventId": "e04-negative/hand/e04-negative/command/4/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-7",
+            "sourceInstanceId": "spades-7",
+            "targetCardId": "spades-7",
+            "operation": "add-heat",
+            "value": {
+              "n": "7",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "143",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "150",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-7.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "e04-negative/hand/e04-negative/command/4/event/3",
+            "rootId": "e04-negative/hand/e04-negative/command/4",
+            "rootEventId": "e04-negative/hand/e04-negative/command/4/event/3",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-11",
+            "sourceInstanceId": "spades-11",
+            "targetCardId": "spades-11",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "150",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "160",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-11.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "e04-negative/hand/e04-negative/command/4/event/4",
+            "rootId": "e04-negative/hand/e04-negative/command/4",
+            "rootEventId": "e04-negative/hand/e04-negative/command/4/event/4",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-12",
+            "sourceInstanceId": "spades-12",
+            "targetCardId": "spades-12",
+            "operation": "add-heat",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "160",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "170",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-12.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "e04-negative/hand/e04-negative/command/4/event/5",
+            "rootId": "e04-negative/hand/e04-negative/command/4",
+            "rootEventId": "e04-negative/hand/e04-negative/command/4/event/5",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-14",
+            "sourceInstanceId": "spades-14",
+            "targetCardId": "spades-14",
+            "operation": "add-heat",
+            "value": {
+              "n": "11",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "170",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "181",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-14.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "e04-negative/hand/e04-negative/command/4/event/6",
+            "rootId": "e04-negative/hand/e04-negative/command/4",
+            "rootEventId": "e04-negative/hand/e04-negative/command/4/event/6",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "flush",
+            "sourceInstanceId": "e04-negative",
+            "operation": "final-score",
+            "value": {
+              "n": "724",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "181",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "181",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "flush.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "jokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 476448291
+        },
+        "goldDelta": 0,
+        "destroyedCardIds": [],
+        "destroyedJokerIds": [],
+        "cards": [
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          }
+        ],
+        "sourceJokers": [
+          {
+            "instanceId": "fixture-j/0",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "bossContext": {
+          "boss": null,
+          "previousHandType": null,
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null
+        },
+        "combo": {
+          "goldBeforeRewards": 9
+        }
+      },
+      "jokers": [
+        {
+          "instanceId": "fixture-j/0",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {}
+        }
+      ],
+      "ledger": "最后一手 · 已保存的结算\n\n同花 Lv.1 · 724 热度\n打出：3♠、7♠、J♠、Q♠、A♠\n实际计分：3♠、7♠、J♠、Q♠、A♠\n\n181 × 4 = 724\n\n滚个零头：本次没有本体收入记录\n\n完整计分明细\n关闭"
+    }
+  ],
+  "screenshots": [
+    "natural-d12-shop.png",
+    "natural-d12-owned.png",
+    "natural-d12-table.png",
+    "natural-d12-restored-ledger.png",
+    "a06-positive-ledger.png",
+    "a06-negative-ledger.png",
+    "f10-positive-ledger.png",
+    "f10-negative-ledger.png",
+    "d12-negative-ledger.png",
+    "e04-positive-ledger.png",
+    "e04-negative-ledger.png"
+  ],
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-05T08:29:04.715Z",
+    "revision": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "151.0.7922.173",
+  "after": {
+    "source": "d778e264dd76b9e4e7a5188d11f35e63606a4965a54ee4400263e38763bb0590",
+    "index": "0ced1489f0b3f8e0002dac0b298adcaeec8c5c937a69afdc1948a5dca187cd7a",
+    "head": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+    "branch": "refs/heads/review/p08-combo-growth-ui-20261005"
+  },
+  "unchanged": true
+}

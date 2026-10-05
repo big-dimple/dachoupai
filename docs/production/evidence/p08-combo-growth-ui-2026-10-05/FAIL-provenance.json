@@ -1,0 +1,28 @@
+{
+  "firstFocused": {
+    "baseHead": "ce6beb4afe835ec1f895e7dc97dd2ddb3f809dc6",
+    "trackedDirtyUI": true,
+    "status": "FAIL",
+    "file": "first-FAIL/focused.txt",
+    "limitation": "Exact dirty fingerprint not recorded for first focused FAIL; raw output preserved and not used as acceptance evidence."
+  },
+  "firstNative": {
+    "head": "bf8b5ba8a0c24559b791ad6c445d838a3eba142e",
+    "dirty": true,
+    "exactFingerprint": "first-FAIL/native-report.json before/after",
+    "status": "FAIL",
+    "cases": [
+      "normal-erxiang",
+      "e04-negative"
+    ]
+  },
+  "firstFullGate": {
+    "source": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+    "sourceUnchanged": true,
+    "status": "FAIL",
+    "cases": [
+      "c04-mode-save stale new launch identity",
+      "v00-bot suit 5000ms timeout under concurrent browser harnesses"
+    ]
+  }
+}

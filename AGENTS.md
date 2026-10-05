@@ -2,7 +2,7 @@
 
 ## 六角色共同Joker正常入口/UI（2026-10-05 UTC，仅 draft PR25）
 
-基线main193c93b，正常合入已审PR22 e2fc57c、PR24 36eff49；首源码bf8b5ba已推送。仅普通新局六角色采用combo-growth-v1/e7d21fce68b80072，能力白名单仅阿默助攻；四完整身份retry原规则创建，默认createRun仍v11。当前局resolver贯穿商店预览、牌桌/紧凑条件、AI与保存回看，复用领域和已审纯文案；domain/content/application/platform本批未改。重点77tests/type通过；有限自然d12购买/实际留牌收入、阿默自然助攻/失败重试和小屏证据正在冻结，未预记完成。首测试和原生样板FAIL保留，main仍只由父串行决定。P08 in_progress、C04 D32及既有真机/听感/平衡门槛保持。
+基线main193c93b，正常合入已审PR22 e2fc57c、PR24 36eff49；首源码bf8b5ba已推送。仅普通新局六角色采用combo-growth-v1/e7d21fce68b80072，能力白名单仅阿默助攻；四完整身份retry原规则创建，默认createRun仍v11。当前局resolver贯穿商店预览、牌桌/紧凑条件、AI与保存回看，复用领域和已审纯文案；domain/content/application/platform本批未改。最终源码92ade25，UI自然证据a8fcd2e与其src/harness完整tree相同。2377tests/132files、content/type/build/标准双端smoke/plan全PASS，source/index/HEAD保持；六角正常新hash、仅阿默助攻，自然d12六金购买→三A553/实际留5收5金→保存刷新账本、自然阿默316→389失败→原身份重试与容量失败保原局/唯一候选、四小屏与7受控正反例全PASS；15张通过PNG及2张原FAIL图actual view。最终精确CI见PR25与本批summary，不预记上线。首测试和原生样板FAIL保留，main仍只由父串行决定。P08 in_progress、C04 D32及既有真机/听感/平衡门槛保持。
 
 ## P1-J 四卡共同领域原型（2026-10-05 UTC，仅 draft PR24）
 

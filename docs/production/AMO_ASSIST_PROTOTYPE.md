@@ -1,5 +1,9 @@
 # 阿默主手＋助攻领域原型
 
+## 共同Joker普通入口review（PR25，2026-10-05 UTC）
+
+此独立UI批六角色正常新局使用combo-growth-v1/e7d21fce68b80072，阿默仍按本助攻机制；完整843f身份的旧局继续、导入及失败重试保留原七卡定义与额度合同。助攻UI通过严格profile能力＋阿默角色判断，同时支持843f与combo，其他五人不显示助攻。843f version/hash及领域机制没有改动；下文各阶段“未接UI/默认新局v11”保留其原来源语境。默认裸createRun仍v11。当前review证据见[summary](evidence/p08-combo-growth-ui-2026-10-05/summary.json)，main尚未发布此共同原型。
+
 ## 2026-10-05 正常新局入口 review（PR21，覆盖下方历史“未接UI”状态）
 
 基线d1dfb90已含完整显式助攻UI，本批仅接正常Title→CharacterSelect→runAdapter.startRun→GameSession.start：阿默新局读取现有amo-assist-v1精确version/hash，其他五人v11；未传profile/identity的底层createRun默认v11不变。RunLaunch明确区分new/retry，重试必须是当前局，校验原seed/角色/mode，StartRun用r2Identity白名单直接创建v10/v11/助攻，不建后篡改。身份/数值/七卡/旧fixtures/全局characters/保存格式保持。继续、导入、接管、无尽不调用新局政策。

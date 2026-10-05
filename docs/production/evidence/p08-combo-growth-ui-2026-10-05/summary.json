@@ -1,0 +1,286 @@
+{
+  "status": "BOUNDED_REVIEW_PASS",
+  "base": "193c93b8ed35f40054aacb5605313b8f41a45f64",
+  "branch": "review/p08-combo-growth-ui-20261005",
+  "draftPR": "https://github.com/big-dimple/dachoupai/pull/25",
+  "firstSource": "bf8b5ba8a0c24559b791ad6c445d838a3eba142e",
+  "source": "92ade252fc22b144a41bffcf2e2acb791fad1c0e",
+  "sourceTree": "9868498b9ced39772ee21bc9ab5b5271b22f6b11",
+  "nativeSource": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+  "identicalRuntimeTrees": {
+    "src": {
+      "nativeSource": "bd0c0f596dee4dc39463fc49f6d7db02a27b93d5",
+      "finalSource": "bd0c0f596dee4dc39463fc49f6d7db02a27b93d5"
+    },
+    "harness": {
+      "nativeSource": "7da94dbc27adb8b6ab4622778db43a31a961c33b",
+      "finalSource": "7da94dbc27adb8b6ab4622778db43a31a961c33b"
+    }
+  },
+  "normalNewIdentity": {
+    "profile": "combo-growth-v1",
+    "version": "quality-r2-combo-growth-prototype-v1",
+    "hash": "json-fnv-v1:e7d21fce68b80072",
+    "characters": [
+      "amo",
+      "touye",
+      "laohuan",
+      "erxiang",
+      "azao",
+      "xiemu"
+    ],
+    "assistCapability": "Known profile capability AND characterId=amo"
+  },
+  "retryIdentities": [
+    "exact v10",
+    "exact v11",
+    "exact 843f assist",
+    "exact e7d21 combo"
+  ],
+  "ordinaryCreateRunDefault": "v11",
+  "unchangedDomainContentApplicationPlatform": true,
+  "mergedReviewedHistory": [
+    "PR22 e2fc57c8c845d8d5a874309ab38cd2f85180bd05",
+    "PR24 36eff4959ac7464f1d5b39ce8177dc26df0fa2ea / runtime e8a3f7acfb064a9cf492ab73e6087c15728fed2f"
+  ],
+  "tests": {
+    "status": "PASS",
+    "files": 132,
+    "tests": 2377
+  },
+  "frozen": {
+    "status": "PASS",
+    "before": {
+      "source": "d948b664abe61aa1224e42492b47dd229b5b4c91a896af52d1f29a25ef3d0fba",
+      "index": "30dc5d7765ef73c49e49b78f248a387864c594eb05850040296c82c227c511f7",
+      "head": "92ade252fc22b144a41bffcf2e2acb791fad1c0e",
+      "branch": "refs/heads/review/p08-combo-growth-ui-20261005"
+    },
+    "after": {
+      "source": "d948b664abe61aa1224e42492b47dd229b5b4c91a896af52d1f29a25ef3d0fba",
+      "index": "30dc5d7765ef73c49e49b78f248a387864c594eb05850040296c82c227c511f7",
+      "head": "92ade252fc22b144a41bffcf2e2acb791fad1c0e",
+      "branch": "refs/heads/review/p08-combo-growth-ui-20261005"
+    },
+    "steps": [
+      {
+        "name": "test",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 22848
+      },
+      {
+        "name": "verify:content",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 2592
+      },
+      {
+        "name": "build",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 12172
+      },
+      {
+        "name": "verify:smoke",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 123059
+      },
+      {
+        "name": "production-plan",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 249
+      }
+    ]
+  },
+  "nativeLaunch": {
+    "source": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+    "unchanged": true,
+    "cases": [
+      {
+        "name": "select-320",
+        "status": "PASS",
+        "checks": [
+          "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+          "normal Title → CharacterSelect → Shop creates frozen shared combo identity after explicit confirmation"
+        ]
+      },
+      {
+        "name": "select-390",
+        "status": "PASS",
+        "checks": [
+          "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+          "normal Title → CharacterSelect → Shop creates frozen shared combo identity after explicit confirmation",
+          "one natural discard retains two pairs and draws third pair; legal main+assist scores 316; save/reload/replay preserves full state, journal and export",
+          "natural loss → same-seed retry preserves precise profile/mode/role/seed; journal and assist quota reset; same initial deal",
+          "native new-run cancel preserves saved run; quota at atomic meta write retains original DB/pointer and one exact candidate across retry; cancel candidate preserves original"
+        ]
+      },
+      {
+        "name": "select-short",
+        "status": "PASS",
+        "checks": [
+          "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+          "normal Title → CharacterSelect → Shop creates frozen shared combo identity after explicit confirmation"
+        ]
+      },
+      {
+        "name": "select-desktop",
+        "status": "PASS",
+        "checks": [
+          "selected assist copy, title clear of mode/menu, 44px controls and description clear of actions",
+          "normal Title → CharacterSelect → Shop creates frozen shared combo identity after explicit confirmation"
+        ]
+      }
+    ]
+  },
+  "nativeRoutes": {
+    "source": "a8fcd2e5a17e163927675823a8e596655ecdc82f",
+    "unchanged": true,
+    "cases": [
+      {
+        "name": "normal-amo",
+        "scope": "natural normal UI launch",
+        "status": "PASS"
+      },
+      {
+        "name": "normal-touye",
+        "scope": "natural normal UI launch",
+        "status": "PASS"
+      },
+      {
+        "name": "normal-laohuan",
+        "scope": "natural normal UI launch",
+        "status": "PASS"
+      },
+      {
+        "name": "normal-erxiang",
+        "scope": "natural normal UI launch",
+        "status": "PASS"
+      },
+      {
+        "name": "normal-azao",
+        "scope": "natural normal UI launch",
+        "status": "PASS"
+      },
+      {
+        "name": "normal-xiemu",
+        "scope": "natural normal UI launch",
+        "status": "PASS"
+      },
+      {
+        "name": "a06-positive",
+        "scope": "controlled legal fixture; not natural acquisition",
+        "status": "PASS"
+      },
+      {
+        "name": "a06-negative",
+        "scope": "controlled legal fixture; not natural acquisition",
+        "status": "PASS"
+      },
+      {
+        "name": "f10-positive",
+        "scope": "controlled legal fixture; not natural acquisition",
+        "status": "PASS"
+      },
+      {
+        "name": "f10-negative",
+        "scope": "controlled legal fixture; not natural acquisition",
+        "status": "PASS"
+      },
+      {
+        "name": "d12-negative",
+        "scope": "controlled legal fixture; not natural acquisition",
+        "status": "PASS"
+      },
+      {
+        "name": "e04-positive",
+        "scope": "controlled legal fixture; not natural acquisition",
+        "status": "PASS"
+      },
+      {
+        "name": "e04-negative",
+        "scope": "controlled legal fixture; not natural acquisition",
+        "status": "PASS"
+      }
+    ]
+  },
+  "naturalD12": {
+    "seed": "combo-ui-natural-573",
+    "character": "erxiang",
+    "initialGold": 6,
+    "purchase": "Naturally offered d12,6 gold,normal UI confirmation",
+    "play": [
+      "clubs-14",
+      "diamonds-14",
+      "spades-14"
+    ],
+    "score": "553",
+    "held": 5,
+    "actualHeldIncome": 5,
+    "saveRestoreLedger": "full state/journal/export preserved, ledger read-only"
+  },
+  "controlledCases": {
+    "a06": [
+      "two-pair→three-kind:1.5→1.725 after score, next play effective",
+      "first full house:no alternation growth"
+    ],
+    "f10": [
+      "cold first discard arms, qualified next play×3 then consumes",
+      "warm first discard cannot arm"
+    ],
+    "d12": [
+      "natural qualified AAA win,held5 pays5",
+      "main+assist consumes side pair,held2 pays0"
+    ],
+    "e04": [
+      "saved reward-before capital30 pays3",
+      "saved reward-before capital9 emits no income event"
+    ]
+  },
+  "actualViewed": [
+    "screenshots/select-320.png",
+    "screenshots/select-390.png",
+    "screenshots/select-short.png",
+    "screenshots/select-desktop.png",
+    "screenshots/natural-assist-draft.png",
+    "screenshots/natural-assist-restored.png",
+    "screenshots/natural-failed.png",
+    "screenshots/natural-d12-shop.png",
+    "screenshots/natural-d12-owned.png",
+    "screenshots/natural-d12-table.png",
+    "screenshots/natural-d12-restored-ledger.png",
+    "screenshots/a06-positive-ledger.png",
+    "screenshots/f10-positive-ledger.png",
+    "screenshots/e04-positive-ledger.png",
+    "screenshots/e04-negative-ledger.png",
+    "first-FAIL/normal-erxiang-FAIL.png",
+    "first-FAIL/e04-negative-FAIL.png"
+  ],
+  "retainedFailures": [
+    "first-FAIL/focused.txt",
+    "first-FAIL/native-report.json",
+    "first-FAIL/frozen-ci.txt",
+    "first-FAIL/frozen-report.json"
+  ],
+  "failureDisposition": [
+    "Test passed a full ruleset with an extra timing field as identity; strict rejection correct; fixed test input to exact version/hash.",
+    "Native harness had block-scoped text outside block; fixed harness.",
+    "e04 negative harness incorrectly required a zero-income event; domain correctly emits none below divisor.",
+    "First full gate had stale normal-new expected843f assertion; fixed only that expectation; old fixture assertions retained.",
+    "V00 suit timed out at5000ms under concurrent native browsers; final existing gate passed unchanged at idle; no timeout/gate weakening."
+  ],
+  "finalHeadCI": "Exact evidence-head CI is reported in PR and final handoff after it completes; not preclaimed.",
+  "notRun": [
+    "physical devices",
+    "GPU/FPS/video expansion",
+    "listening",
+    "six-character balance",
+    "other-five new abilities"
+  ],
+  "publication": "Review only. Main193c93b remains unchanged; parent decides publication.",
+  "firstSourceAvailableAtUTC": "2026-10-05T08:20:44Z",
+  "firstSourceAvailabilityEvidence": "PR25 created at08:20:44 UTC with headbf8b5ba"
+}

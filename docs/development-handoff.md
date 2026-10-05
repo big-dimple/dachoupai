@@ -1,5 +1,9 @@
 # 当前交接：P08全游戏手绘墨线／纸色主线
 
+## 共同Joker正常入口/UI交接（PR25，2026-10-05 UTC，仅review）
+
+source92ade25，正常合入PR22 e2fc与PR24 36eff；UI自然证据a8fcd2e与source的src/harness tree相同。六角色普通新局同combo-growth-v1/e7d21，仅阿默助攻；旧身份继续/导入/精确retry与默认createRun v11保留。2377tests/132files、content/type/build/桌面手机smoke/plan冻结全PASS，有限自然d12与阿默路线、四选角视口和7受控正反例通过；15通过PNG与2FAIL图actual view，原FAIL/双方来源保留。证据[summary](production/evidence/p08-combo-growth-ui-2026-10-05/summary.json)。精确最终draft CI以PR25交接为准；main仍193c93b，父独审决定发布。P08 in_progress、C04 D32及真机/听感/平衡门槛保持。
+
 ## 当前阿默 UI 收尾状态（2026-10-05 UTC，仅 review）
 
 阿默UI有限收尾：正常合入PR18 d6da224；远端source41efea9 / 本地bb02bf1完整tree36e6f777相同。仅修harness真实回首页与desktop文案重叠，14px/44px不减；390/320的8/9/14及短横/桌面六视口、全草稿/双指cancel/保存同候选重试/一次消费/恢复持久trace不重奖及真实v10-v11普通UI通过。最终2315tests/129files、content/type/build/系统Chromium标准双端smoke/plan通过且源码/index/HEAD保持。原FAIL/source及双方历史保留；六通过图和原FAIL图actual view。仅draft PR20；精确reviewCI另报，main父独审串行，默认v11/旧档/其他五人/素材不动。证据docs/production/evidence/p08-amo-assist-ui-closeout-2026-10-05/summary.json。P08 in_progress，C04 D32及原门槛保持。
