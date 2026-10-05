@@ -1,0 +1,16 @@
+CHECK typecheck: <node> node_modules/typescript/bin/tsc --noEmit
+typecheck: PASS
+CHECK affected-unit: <node> node_modules/vitest/vitest.mjs run tests/ai-hand-candidates.test.ts tests/ai-hand-action-cancellation.test.ts tests/r2-hand-candidates.test.ts tests/hand-sort-selection.test.ts tests/layout.test.ts tests/hand-action-controls.test.ts tests/tool-inventory-entry.test.ts tests/amo-rule-version.test.ts
+
+ RUN  v4.1.11 <repo>
+
+
+ Test Files  8 passed (8)
+      Tests  133 passed (133)
+   Start at  01:40:10
+   Duration  2.68s (transform 2.42s, setup 0ms, import 3.76s, tests 1.83s, environment 1ms)
+
+affected-unit: PASS
+CHECK production-plan: <node> scripts/check-production-plan.mjs
+PLAN_VALID: 32 work packages; current=P08; not a gameplay acceptance
+production-plan: PASS

@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "e66deaa94ca585948577214864ee9c92bb73ecd3c841589ec5caf10c127e7b52",
+    "index": "454b3b050d94df29f7d4fed59753ee4390232107402acf3ac41cf624709098f8",
+    "head": "c568b6636b55fbf2671717787f1f728092a78c9f",
+    "branch": null
+  },
+  "after": {
+    "source": "e66deaa94ca585948577214864ee9c92bb73ecd3c841589ec5caf10c127e7b52",
+    "index": "454b3b050d94df29f7d4fed59753ee4390232107402acf3ac41cf624709098f8",
+    "head": "c568b6636b55fbf2671717787f1f728092a78c9f",
+    "branch": null
+  },
+  "steps": [
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8938
+    },
+    {
+      "name": "affected-unit",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3443
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 445
+    }
+  ]
+}

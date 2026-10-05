@@ -1,0 +1,4 @@
+import {runSteps} from '../../scripts/check-runner.mjs';
+import {writeFileSync} from 'node:fs';
+const steps=[{name:'typecheck',command:process.execPath,args:['node_modules/typescript/bin/tsc','--noEmit']},{name:'affected-unit',command:process.execPath,args:['node_modules/vitest/vitest.mjs','run','tests/ai-hand-candidates.test.ts','tests/ai-hand-action-cancellation.test.ts','tests/r2-hand-candidates.test.ts','tests/hand-sort-selection.test.ts','tests/layout.test.ts','tests/hand-action-controls.test.ts','tests/tool-inventory-entry.test.ts','tests/amo-rule-version.test.ts']},{name:'production-plan',command:process.execPath,args:['scripts/check-production-plan.mjs']}];
+const report=runSteps(process.cwd(),steps);writeFileSync('shots/p08-ai-cut/final-freeze.json',JSON.stringify(report,null,2)+'\n');process.exitCode=report.exitCode;

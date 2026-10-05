@@ -1,0 +1,121 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ tests/hand-action-controls.test.ts (12 tests | 5 failed) 39ms
+     × preserves the complete non-control layout from main88b17e2, including every hand seat and vertical budget 21ms
+     × 390×740 safe 0/0 keeps two44px sort targets together, enlarges discard and fits all four targets 4ms
+     × 320×568 safe 0/0 keeps two44px sort targets together, enlarges discard and fits all four targets 1ms
+     × 844×300 safe 12/12 keeps two44px sort targets together, enlarges discard and fits all four targets 1ms
+     × 844×300 safe 12/34 keeps two44px sort targets together, enlarges discard and fits all four targets 1ms
+ ❯ tests/layout.test.ts (27 tests | 6 failed) 165ms
+     × 360×640: readable, visible and distinct hit areas 16ms
+     × 390×740: readable, visible and distinct hit areas 2ms
+     × 390×844: readable, visible and distinct hit areas 1ms
+     × 430×932: readable, visible and distinct hit areas 1ms
+     × D27 keeps only two sorting targets and two primary targets within the dynamic safe viewport 6ms
+     × played cards, current score and pile counts stay visible above the independent hand controls 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/hand-action-controls.test.ts > three groups share the existing bottom action row > preserves the complete non-control layout from main88b17e2, including every hand seat and vertical budget
+AssertionError: expected '1239ec9eca48da3a63ea87f2deacbbe7be0a1…' to be 'cff0c393264eb2e2508c92a6f155ca5de319e…' // Object.is equality
+
+Expected: "cff0c393264eb2e2508c92a6f155ca5de319e6b1868fe42430d6adfa331dcb8c"
+Received: "1239ec9eca48da3a63ea87f2deacbbe7be0a114d4719a2e4454dd4e6e043d034"
+
+ ❯ tests/hand-action-controls.test.ts:12:76
+     10|  it('preserves the complete non-control layout from main88b17e2, inclu…
+     11|   const fixed=layouts().map(l=>{const {buttons,tableActions,tools,tool…
+     12|   expect(createHash('sha256').update(JSON.stringify(fixed)).digest('he…
+       |                                                                            ^
+     13|  });
+     14|  it.each(profiles)('%s×%s safe %s/%s keeps two44px sort targets togeth…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  tests/hand-action-controls.test.ts > three groups share the existing bottom action row > 390×740 safe 0/0 keeps two44px sort targets together, enlarges discard and fits all four targets
+ FAIL  tests/hand-action-controls.test.ts > three groups share the existing bottom action row > 320×568 safe 0/0 keeps two44px sort targets together, enlarges discard and fits all four targets
+ FAIL  tests/hand-action-controls.test.ts > three groups share the existing bottom action row > 844×300 safe 12/12 keeps two44px sort targets together, enlarges discard and fits all four targets
+ FAIL  tests/hand-action-controls.test.ts > three groups share the existing bottom action row > 844×300 safe 12/34 keeps two44px sort targets together, enlarges discard and fits all four targets
+AssertionError: expected 132 to be 88 // Object.is equality
+
+- Expected
++ Received
+
+- 88
++ 132
+
+ ❯ tests/hand-action-controls.test.ts:16:25
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > 360×640: readable, visible and distinct hit areas
+ FAIL  tests/layout.test.ts > CSS layout contract > 390×740: readable, visible and distinct hit areas
+ FAIL  tests/layout.test.ts > CSS layout contract > 390×844: readable, visible and distinct hit areas
+ FAIL  tests/layout.test.ts > CSS layout contract > 430×932: readable, visible and distinct hit areas
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/layout.test.ts:79:139
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > D27 keeps only two sorting targets and two primary targets within the dynamic safe viewport
+AssertionError: expected [ 'ai', 'rank', 'suit' ] to deeply equal [ 'rank', 'suit' ]
+
+- Expected
++ Received
+
+  [
++   "ai",
+    "rank",
+    "suit",
+  ]
+
+ ❯ tests/layout.test.ts:92:45
+     90|     for(const [width,height] of [[320,568],[390,740],[390,844],[640,32…
+     91|       const safe={top:8,right:12,bottom:12,left:8},l=layout({width,hei…
+     92|       expect(Object.keys(l.buttons).sort()).toEqual(['rank','suit']);e…
+       |                                             ^
+     93|       const controls=[...Object.values(l.buttons),...Object.values(l.t…
+     94|       for(const b of controls){
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > played cards, current score and pile counts stay visible above the independent hand controls
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/layout.test.ts:149:108
+    147|       // D16 moves the mobile pile/history row into details; score and…
+    148|       const visible=l.mode==='portrait'||!l.labelHeight?[l.scoreBoard,…
+    149|       for(const b of visible)for(const control of [l.tools,l.hand,l.ac…
+       |                                                                                                            ^
+    150|       for(const action of Object.values(l.tableActions)){expect(inside…
+    151|       expect(intersects(l.tableActions.play,l.tableActions.discard)).t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/11]⎯
+
+
+ Test Files  2 failed | 1 passed (3)
+      Tests  11 failed | 44 passed (55)
+   Start at  01:11:39
+   Duration  785ms (transform 649ms, setup 0ms, import 886ms, tests 228ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

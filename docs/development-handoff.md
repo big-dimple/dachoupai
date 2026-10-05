@@ -1,5 +1,7 @@
 # 当前交接：P08全游戏手绘墨线／纸色主线
 
+P08 AI切最终有界review（2026-10-05）：基线main8e0daae；source c568b6636b55fbf2671717787f1f728092a78c9f。成牌优先／高牌兜底，公开保底排序／只选牌；旧v10原冻结档与新v11、撤销、三视口44px触控／九牌、未ready出弃／离场取消和完整state-RNG通过。133相关tests/type/plan与一次clean原生构建冻结PASS，三图actual view，第一390位置父方向通过；9/14软切片观测6.9/11.7ms、ready约656/3853ms，非真机无卡顿结论。domain/assets/火/音频保持，旧FAIL／旧source不改；仅review，新证据head精确CI另报，main不推。证据docs/production/evidence/p08-ai-cut-final-2026-10-05/summary.json。P08仍in_progress，C04 D32暂停及resumeContract、V01/L01保持。以下旧“当前”记录仅按各自SHA读取。
+
 阿默单张终乘首批review（2026-10-04）：基线main1eb6689，仅新v11局单张×3后置整手Joker，旧v10局按原保存身份续完；其他五人/Lv3/数值/槽序/美术不动。角色政策入新hash，两个完整身份统一验证，旧checkpoint/receipt/分区/导出保留；新建读新、导入读自身、模式继续优先活跃同模式。真实v10冻结fixture与原生新旧来源次序、保存/恢复/重试有界核验；源码ad2eddff冻结2203tests/121files、content/type/build/Canvas双端smoke/plan全PASS且源码/index/HEAD不变，review CI另报，不推main、不称六人平衡完成。D演出源码保持。证据docs/production/evidence/p08-amo-final-multiplier-2026-10-04。
 
 ## 当前发布与验收状态
