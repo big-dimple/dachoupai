@@ -54,3 +54,7 @@ inputSHA：`f6d0f85199416e5b1b290d0d83ee0f21a93febcb`，父确认PR38已独审/�
 allowedFiles补充：`src/game/IntermissionScene.ts`、`harness/w3-growth-discovery.mjs`；现有JokerGrowthCausality.ts、GameScene.ts、ShopScene.ts、tests/joker-growth-causality.test.ts及必要证据。只消费同实例成功保存的正增长事件；跨场缺trace只显示当前已存累计及条件读取，不造历史。选牌/错误/封禁/购买消息优先，窄位用有界短句，不缩字裁条件。验证实际选牌/出牌/过关/商店/继续/取消和重入，PC三档/手机三档。原W3/W5、无总分预测/数值/存档/RNG变更保持；真实新人理解待玩家测。证据`docs/production/evidence/w3-growth-discovery-2026-10-07/`。
 
 本批软件结果：[成长常规路径发现性](evidence/w3-growth-discovery-2026-10-07/README.md)。冻结产品a6bbc66，六尺寸未开成长详情的真实选牌/出牌/过关/商店/继续/取消/重入通过；跨场trace清空使用当前已存成长，不冒称刚新增。玩家理解、真机共同验收及完整W3仍待验。
+
+### PR39父审短横语义必修
+
+旧head50753ba独审发现740×390短句丢累计/条件；旧精确CI全绿不代表该语义通过。本批维持区域坐标/字号/按钮，复用提示位与其既有底部安全留白容纳两行：来源+实际新增→累计／下手按条件读；缺trace为来源已存累计／本手按条件读。移除语义删减fallback，helper及原生断言直接核来源、累计和条件；740及邻近短横、既有PC/竖屏路径保护。只限此前allowedFiles及必要证据，真实新人/实机仍待验，不合main。
