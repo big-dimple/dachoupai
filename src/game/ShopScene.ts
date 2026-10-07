@@ -2,7 +2,7 @@ import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {r2JokerDefinitionsFor,r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {jokerAbilityCopyForRun,publicJokerMemoryContext} from './JokerMemory';
 import type {R2JokerInstance} from '../content/r2Schema';
-import {shopLayout,shopOwnedHitBox,shopOwnedNameArea} from './ShopLayout';
+import {shopLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea} from './ShopLayout';
 import {goodsArtKey,goodsArtLoadState,requestGoodsArt,retryGoodsArt} from './GoodsArtLoading';
 import {ShopResultFeedback,shopResultBox,shopResultPages,type ShopResultLine} from './ShopResultFeedback';
 import {requestJokerArt,jokerArtLoadState,retryJokerArt} from './JokerArtLoading';
@@ -120,7 +120,7 @@ export class ShopScene extends Phaser.Scene {
       v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21,compact:true}).setData('definitionId',j.definitionId).setData('surface','owned'));
 
       const hover=this.hoverCard(first,b,j.definitionId),r=v.rect(shopOwnedHitBox(b,p.reroll.y,!!ability||!p.portrait)).setFillStyle(0,0).setStrokeStyle();
-      v.target(r,`joker/${j.instanceId}`,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:(x)=>this.moveJoker(j.instanceId,x),holdToDrag:true,...hover});
+      v.target(r,`joker/${j.instanceId}`,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:(x,y)=>this.moveJoker(j.instanceId,x,y),holdToDrag:true,...hover});
     });
     for(let i=this.run.jokers.length;!p.inventoryCollapsed&&i<r2JokerCapacity(this.run);i++){
       const b=p.slots[i];this.drawSlot(b,false);v.text(b.x+b.width/2,b.y+b.height-21,p.portrait?String(i+1):`空槽 ${i+1}`,14,'#a6bab0').setOrigin(.5,0);
@@ -136,12 +136,12 @@ export class ShopScene extends Phaser.Scene {
       const selected=this.selectedOfferId===o.offerId,b=p.shelf[i],d=this.jokerDefinition(o.definitionId),ability=this.jokerCopy(o.definitionId),first=v.root.length;
       this.drawOfferCard(b,d.rarity,selected,o.consumed,p.short);
       this.drawJokerPicture(o.definitionId,{x:b.x+4,y:b.y+4,width:b.width-8,height:b.height-8},o.consumed?.35:1);
-      const copyX=p.copyBeside?b.x+b.width+6:b.x,copyY=p.copyBeside?b.y:b.y+b.height,copyWidth=p.copyBeside?(p.tabs.width-8*(p.shelf.length-1))/p.shelf.length-b.width-8:b.width+6;
+      const copy=shopOfferCopy(p,b),copyX=copy.x,copyY=copy.y,copyWidth=copy.width;
       const name=v.text(copyX,copyY+4,d.name,14,'#26313A').setName('shop/offer-name');this.ellipsis(name,copyWidth);
-      const purpose=v.text(copyX,copyY+23,ability?.summary??this.jokerDefinition(o.definitionId).description,14,'#3F606B',b.width+8).setStyle({maxLines:2}).setName('shop/offer-purpose');if(ability?.playerCopy){const full=purpose.text;purpose.setWordWrapWidth(copyWidth,true).setStyle({maxLines:0});if(purpose.height>40||purpose.width>copyWidth)purpose.setText('条件与效果\n点击查看');purpose.setData('fullText',full);}else this.twoLines(purpose,copyWidth);
-      const price=r2PurchasePrice(this.run,o);v.text(copyX,copyY+58,o.consumed?'已收入':price+' 金 · 查看',16,'#26313A').setName('shop/offer-price');
+      const purpose=v.text(copyX,copyY+23,ability?.summary??this.jokerDefinition(o.definitionId).description,14,'#3F606B',p.desktop?copyWidth:b.width+8).setStyle({maxLines:copy.lines}).setName('shop/offer-purpose');if(ability?.playerCopy){const full=purpose.text;if(p.desktop){purpose.setWordWrapWidth(0).setStyle({maxLines:0});purpose.setText(shopSummaryWrap(full,copyWidth,text=>{purpose.setText(text);return purpose.width;}));}else purpose.setWordWrapWidth(copyWidth,true).setStyle({maxLines:0});if(purpose.height>(p.desktop?76:40)||purpose.width>copyWidth){if(p.desktop)this.twoLines(purpose,copyWidth);else purpose.setText('条件与效果\n点击查看');}purpose.setData('fullText',full);}else this.twoLines(purpose,copyWidth);
+      const price=r2PurchasePrice(this.run,o);v.text(copyX,copy.priceY,o.consumed?'已收入':price+' 金 · 查看',16,'#26313A').setName('shop/offer-price');
       v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21,compact:true}).setData('definitionId',o.definitionId).setData('surface','offer'));
-      const tile={...b,width:p.copyBeside?b.width+6+copyWidth:b.width,height:p.copyBeside?b.height:b.height+76},hover=this.hoverCard(first,tile,o.definitionId),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);
+      const tile=copy.tile,hover=this.hoverCard(first,tile,o.definitionId),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);
       this.offerArts.push(hover.art);v.target(r,`offer/${o.offerId}`,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
 
     });
@@ -225,11 +225,11 @@ export class ShopScene extends Phaser.Scene {
     const v=this.view,selected=this.selectedOfferId===o.offerId,b=raw,isTool=this.shelfKind==='tools',info=isTool?toolInfo(o.definitionId):itemInfo(o.definitionId),first=v.root.length;
     this.drawOfferCard(b,isTool?'uncommon':'common',selected,o.consumed,short);
     this.drawGoodsArt(o.definitionId,info.artUrl,{x:b.x+5,y:b.y+5,width:b.width-10,height:b.height-10},o.consumed?.55:1,info.fallbackArtUrl);
-    const p=this.geometry(),copyX=p.copyBeside?b.x+b.width+6:b.x,copyY=p.copyBeside?b.y:b.y+b.height,copyWidth=p.copyBeside?(p.tabs.width-8*(p.shelf.length-1))/p.shelf.length-b.width-8:b.width+6;
+    const p=this.geometry(),copy=shopOfferCopy(p,b),copyX=copy.x,copyY=copy.y,copyWidth=copy.width;
     const name=v.text(copyX,copyY+4,info.name,14,'#26313A');this.ellipsis(name,copyWidth);
-    const purpose=v.text(copyX,copyY+23,info.description.split('\n')[0],14,'#3F606B');this.twoLines(purpose,copyWidth);
-    v.text(copyX,copyY+58,o.consumed?'已收入':r2PurchasePrice(this.run,o)+' 金',16,'#26313A');
-    const tile={...b,width:p.copyBeside?b.width+6+copyWidth:b.width,height:p.copyBeside?b.height:b.height+76},hover=this.hoverCard(first,tile),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);this.offerArts.push(hover.art);
+    const purpose=v.text(copyX,copyY+23,info.description.split('\n')[0],14,'#3F606B');if(p.desktop)purpose.setWordWrapWidth(copyWidth,true).setStyle({maxLines:4});else this.twoLines(purpose,copyWidth);
+    v.text(copyX,copy.priceY,o.consumed?'已收入':r2PurchasePrice(this.run,o)+' 金',16,'#26313A');
+    const tile=copy.tile,hover=this.hoverCard(first,tile),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);this.offerArts.push(hover.art);
     v.target(r,'offer/'+o.offerId,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
   }
 
@@ -418,8 +418,8 @@ export class ShopScene extends Phaser.Scene {
     const ids=reorderJokerIds(current,current[from],to);if(ids===current)return false;
     return this.send({type:'ReorderJokers',ids},expectedSeq);
   }
-  private moveJoker(id:string,x:number):void {
-    const from=this.run.jokers.findIndex(j=>j.instanceId===id),to=this.geometry().slots.findIndex(b=>x>=b.x&&x<=b.x+b.width);
+  private moveJoker(id:string,x:number,y:number):void {
+    const from=this.run.jokers.findIndex(j=>j.instanceId===id),to=shopOwnedDropIndex(this.geometry(),x,y);
     if(from>=0&&to>=0&&to<this.run.jokers.length&&from!==to)void this.reorder(from,to);
   }
   private rollGold(from:number):void {
