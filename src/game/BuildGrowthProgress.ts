@@ -17,12 +17,13 @@ export function buildGrowthProgress(state:R2RunState):BuildGrowthProgress[]{
    const write=d.hooks.find(h=>h.operations.some(o=>['add-growth','add-coefficient','multiply-coefficient-once','update-score-growth'].includes(o.kind)&&'key' in o&&o.key===read.key));if(!write)continue;
    const c=write.condition,next=c.kind==='hand-type-in'?'下手试'+c.values.slice(0,2).map(t=>HAND_LABELS[t]).join('／'):c.kind==='held-count'?'下手留'+c.minimum+'张再试':'下手按来源条件再试';
    const row:BuildGrowthProgress={instanceId:j.instanceId,definitionId:j.definitionId,name:d.name,key:read.key,current:fractionText(value),metric:'已积攒 '+prefix+fractionText(value)+' '+unit,cause:'从当前保存值继续培养',next,url:jokerArtPreviewUrl(j.definitionId)};
-   const t=state.lastTrace,source=t?.sourceJokers.find(x=>x.instanceId===j.instanceId&&x.definitionId===j.definitionId),after=t?.jokers.find(x=>x.instanceId===j.instanceId&&x.definitionId===j.definitionId),events=t?.events.filter(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId&&e.sourceDefinitionId===j.definitionId&&['afterHand','onStageClear'].includes(e.phase)&&['add-growth','add-coefficient','multiply-coefficient'].includes(e.operation));
+   const t=state.lastTrace,source=t?.sourceJokers.find(x=>x.instanceId===j.instanceId&&x.definitionId===j.definitionId),after=t?.jokers.find(x=>x.instanceId===j.instanceId&&x.definitionId===j.definitionId),events=t?.events.filter(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId&&e.sourceDefinitionId===j.definitionId&&['add-growth','add-coefficient','multiply-coefficient','reset-growth'].includes(e.operation));
    if(t&&source&&after&&events?.length){
     const b=source.growth[read.key]??(read.kind==='read-growth'?zero:undefined),a=after.growth[read.key]??(read.kind==='read-growth'?zero:undefined);
     if(b&&a&&Rational.fromJSON(a).compare(Rational.fromJSON(b))>0){row.before=fractionText(b);row.after=fractionText(a);row.cause='上手'+HAND_LABELS[t.handType]+'促成 '+row.before+' → '+row.after;}
-    else row.cause='上手未新增，已存值保留';
-   }else if(t&&source&&after)row.cause='上手未新增，已存值保留';
+    else if(b&&a&&Rational.fromJSON(a).compare(Rational.fromJSON(b))<0&&events.some(e=>e.operation==='reset-growth')){row.before=fractionText(b);row.after=fractionText(a);row.cause='上手归零 '+row.before+' → '+row.after;}
+    else row.cause='上手未新增，现存 '+row.current;
+   }else if(t&&source&&after)row.cause='上手未新增，现存 '+row.current;
    rows.push(row);
   }
  }

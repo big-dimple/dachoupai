@@ -58,7 +58,7 @@ try {
             await tapUI(p, 'shop', 'action/build');
             await p.getByRole('button', { name: '选择同点成组', exact: true }).click();
             report.journeyCopy = await p.locator('dialog[open]').innerText();
-            report.offerFirstScreen=await p.locator('dialog[open] .experience-card').first().evaluate(e=>{const r=e.getBoundingClientRect(),d=e.closest('dialog').getBoundingClientRect();return {top:r.top,bottom:r.bottom,dialog:d.bottom,text:e.innerText};});assert.ok(report.offerFirstScreen.bottom<=report.offerFirstScreen.dialog,'actual component and action must fit first screen');
+            report.offerFirstScreen=await p.locator('dialog[open] .experience-card').first().evaluate(e=>{const r=e.getBoundingClientRect(),d=e.closest('dialog').getBoundingClientRect(),footer=e.closest('dialog').querySelector('.dialog-actions').getBoundingClientRect();return {top:r.top,bottom:r.bottom,dialog:d.bottom,visibleBottom:Math.min(d.bottom,footer.top),text:e.innerText};});assert.ok(report.offerFirstScreen.bottom<=report.offerFirstScreen.visibleBottom,'actual component and action must fit first screen');
             await shot('group-route');
             await close();
             assert.deepEqual(await state(), beforeFocus);
@@ -168,7 +168,7 @@ try {
                         await waitScene(p, 'game');
                         await settle();
                         assert.deepEqual(await state(), committed);
-                        const growthCopy=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return s.children.list.flatMap(o=>o.list??[o]).filter(o=>o.name==='growth/cause'||o.name==='growth/current').map(o=>({name:o.name,text:o.text,bounds:o.getBounds()}));});assert.ok(growthCopy.some(o=>o.name==='growth/cause'&&o.text.includes('0 → 10')),'first saved growth reads domain zero');report.steps.push({note:'Restored first growth measured on actual canvas',growthCopy});
+                        const growthCopy=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');const objects=[],walk=xs=>{for(const o of xs){if(o.name==='growth/cause'||o.name==='growth/current')objects.push(o);if(o.list)walk(o.list);}};walk(s.children.list);return objects.map(o=>({name:o.name,text:o.text,bounds:o.getBounds()}));});assert.ok(growthCopy.some(o=>o.name==='growth/cause'&&o.text.includes('0 → 10')),'first saved growth reads domain zero');report.steps.push({note:'Restored first growth measured on actual canvas',growthCopy});
                         await shot('first-hand-restored');
                         report.steps.push({ note: 'First committed hand reload/continue keeps complete run and RNG', after: committed });
                     }
