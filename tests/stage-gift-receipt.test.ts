@@ -1,0 +1,8 @@
+import {it,expect} from 'vitest';
+import {stageGiftReceipt} from '../src/game/StageGiftReceipt';
+import {stageGiftPlan,giftSend} from '../harness/fixtures/stage-gift';
+const clear=(full=false,special=false)=>{const p=stageGiftPlan(full,special);return giftSend(giftSend(p.state,{type:'PlayHand',selectedIds:p.first}),{type:'PlayHand',selectedIds:p.second});};
+it('names the actual saved tool and destination without mutating the run',()=>{const s=clear(),before=JSON.stringify(s),r=stageGiftReceipt(s)!;expect(r.toolId).toBe('T04');expect(r.banner).toContain('换一身赠方片染×1');expect(r.body).toContain('普通顺子和普通同花');expect(r.body).toContain('选择方片染→目标牌→确认使用');expect(JSON.stringify(s)).toBe(before);});
+it('full bag reports only the actual gold replacement, never an acquired tool',()=>{const s=clear(true),r=stageGiftReceipt(s)!;expect(r.toolId).toBeUndefined();expect(r.banner).toContain('包满改收+2金');expect(r.body).toContain('方片染未入包');expect(r.body).toContain('已计入本场收益');expect(s.consumables).toHaveLength(2);});
+it('a straight flush, ownership alone and missing trace never invent a gift',()=>{expect(stageGiftReceipt(clear(false,true))).toBeUndefined();expect(stageGiftReceipt(stageGiftPlan().state)).toBeUndefined();const s=clear();s.lastTrace=null;expect(stageGiftReceipt(s)).toBeUndefined();});
+it('entering the new stage drops the old gift, without replaying it',()=>{const s=clear(),shop=giftSend(s,{type:'OpenShop'});expect(stageGiftReceipt(shop)!.toolId).toBe('T04');const entered=giftSend(giftSend(shop,{type:'LeaveShop'}),{type:'EnterStage'});expect(stageGiftReceipt(entered)).toBeUndefined();expect(entered.consumables).toEqual(s.consumables);});

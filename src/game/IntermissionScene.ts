@@ -1,3 +1,5 @@
+import {stageGiftReceipt} from './StageGiftReceipt';
+import {toolInfo,goodsArtPortrait} from './r2ToolInfo';
 import {savedGrowthDiscovery} from './JokerGrowthCausality';
 import Phaser from 'phaser';
 import {R2_MODE_CATALOG} from '../content/r2Modes';
@@ -110,7 +112,8 @@ export class IntermissionScene extends Phaser.Scene {
       v.text(n.x+14,bodyY,body,14,'#26313A',n.width-28).setLineSpacing(2).setStyle({maxLines:Math.max(1,Math.floor((n.y+n.height-12-bodyY)/19))});
     }
     if(nextStage){
-      v.button(p.left,'本场详情','action/result-details',()=>this.inspectResult());
+      const gift=this.ready?stageGiftReceipt(run):undefined;
+      v.button(p.left,gift?'赠品去向':'本场详情','action/result-details',()=>gift?this.inspectGift():this.inspectResult());
       v.button(p.primary,'前往商店','action/continue-stage',()=>void this.next(),this.ready,true);
     }else if(won){
       v.button(p.left,'返回选角','action/return-select',()=>this.returnToSelect(),!this.busy);
@@ -124,8 +127,8 @@ export class IntermissionScene extends Phaser.Scene {
       v.button(p.primary,this.busy?'正在开局…':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }
     v.button(p.right,lost?'本场详情':'回看上手','action/last-hand',()=>lost?this.inspectResult():this.inspectLastHand(),!this.busy&&(lost||!!trace));
-    const discovery=this.ready&&!this.notice&&!lost&&!skipped?savedGrowthDiscovery(run):undefined;
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?discovery?.full||'':lost?'同局重试沿用角色与开局种子。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w).setName(discovery&&nextStage?'growth/discovery':'');
+    const discovery=this.ready&&!this.notice&&!lost&&!skipped?savedGrowthDiscovery(run):undefined,gift=this.ready&&!this.notice&&!lost&&!skipped?stageGiftReceipt(run):undefined;
+    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?.banner||discovery?.full||'':lost?'同局重试沿用角色与开局种子。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w).setName(gift&&nextStage?'gift/discovery':discovery&&nextStage?'growth/discovery':'');
     this.firstRender=false;
   }
   private jokerDefinition(id:string){return r2JokerDefinitionFor(runController(this)!.state,id);}
@@ -193,6 +196,10 @@ export class IntermissionScene extends Phaser.Scene {
       const skipLabel=skip.getData('label') as Phaser.GameObjects.Text,skipArt=skip.getData('buttonArt') as Phaser.GameObjects.Container;
       this.celebrationTimer=this.time.delayedCall(1000,()=>{this.celebration?.destroy();this.celebration=undefined;skipLabel.destroy();skipArt.destroy();skip.destroy();});
     }
+  }
+  private inspectGift():void {
+    const gift=stageGiftReceipt(runController(this)!.state);if(!gift)return;
+    this.dialog.open(gift.title,gift.body,[{label:'前往商店',primary:true,disabled:!this.ready,run:()=>this.next()},{label:'本场详情',run:()=>this.inspectResult()}],{...(gift.toolId?{portrait:goodsArtPortrait(toolInfo(gift.toolId))}:{})});
   }
   private inspectResult():void {
     const run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty)!,targetHeat:run.stage!.targetHeat};
