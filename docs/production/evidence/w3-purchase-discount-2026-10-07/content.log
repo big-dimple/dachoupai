@@ -1,0 +1,395 @@
+
+> dachoupai@0.1.0 verify:content
+> node scripts/verify-content.mjs
+
+{"check":"public-art-privacy","status":"PASS","filesScanned":66,"issues":[]}
+{
+  "status": "PASS",
+  "definitions": 72,
+  "contentVersion": "quality-r2-content-v11",
+  "contentHash": "json-fnv-v1:bd4a1230833ab884",
+  "modeConfigurations": {
+    "scope": "C04.2 explicit v10 shared-command profiles and separate save partitions; UI/device acceptance is recorded separately.",
+    "modes": [
+      "standard",
+      "challenge",
+      "tutorial"
+    ],
+    "difficulties": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "challenges": [
+      "Q01",
+      "Q02",
+      "Q03",
+      "Q04",
+      "Q05",
+      "Q06",
+      "Q07",
+      "Q08",
+      "Q09",
+      "Q10",
+      "Q11",
+      "Q12"
+    ],
+    "programs": [
+      "PG01",
+      "PG02",
+      "PG03",
+      "PG04"
+    ]
+  },
+  "conservativeEventBound": 320,
+  "eventBoundBreakdown": {
+    "baseCharacterFinal": 3,
+    "bossTrace": 1,
+    "cardPoints": 25,
+    "scoringEnhancement": 100,
+    "cardEdition": 25,
+    "ordinarySuppression": 5,
+    "postFinalCard": 10,
+    "heldEnhancement": 9,
+    "winningHeldGold": 5,
+    "jokerCardHooks": 125,
+    "jokerHeldHooks": 0,
+    "jokerScoreHooks": 0,
+    "jokerAfterHand": 0,
+    "jokerStageClear": 0,
+    "jokerInterest": 0,
+    "jokerEdition": 5,
+    "clearRules": 5,
+    "rescue": 2
+  },
+  "eventBoundModel": {
+    "handLimit": 14,
+    "selectedLimit": 5,
+    "jokerLimit": 5,
+    "extraRetriggers": 4,
+    "maxScoringPasses": 5,
+    "scoringEnhancementEventsPerPass": 4,
+    "heldEnhancementEventsPerCard": 1,
+    "postFinalCardEventsPerOriginal": 2,
+    "winningHeldGoldEventCap": 5,
+    "editionEventsPerSource": 1,
+    "clearRuleDefinitions": [
+      "U04",
+      "U09",
+      "U12",
+      "T16"
+    ],
+    "programRewardEventMaximum": 1,
+    "jokerMaximumEvents": {
+      "ordinaryCard": 2,
+      "extraCard": 1,
+      "held": 1,
+      "jokerScore": 2,
+      "afterHand": 2,
+      "stageClear": 2,
+      "interest": 1
+    },
+    "maximizingPlayedCount": 5,
+    "worstJokerSources": [
+      {
+        "definitionId": "tiesuanpan",
+        "events": 26
+      },
+      {
+        "definitionId": "b02",
+        "events": 26
+      },
+      {
+        "definitionId": "c02",
+        "events": 26
+      },
+      {
+        "definitionId": "a08",
+        "events": 26
+      },
+      {
+        "definitionId": "b05",
+        "events": 26
+      }
+    ],
+    "assumptions": [
+      "All five equipped sources may hit every eligible hook; mutually exclusive conditions are overcounted.",
+      "Maximum repeated lucky/edition, once-only glass, held voice/gold and success/failure rewards are overcounted together.",
+      "One edition and enhancement per source; held editions do not score; all extras share the fixed per-card cap.",
+      "This is a definition-based conservative trace bound, not an observed maximum or a seed search."
+    ]
+  },
+  "legalEventEnvelope": {
+    "maximumEvents": 92,
+    "definitionCount": 72,
+    "statesChecked": 3280,
+    "maximumEntryHand": 13,
+    "retriggerCapNoticesReachable": false,
+    "abstractWitness": {
+      "boss": "B02",
+      "played": 5,
+      "active": 5,
+      "normalCardGroups": 3,
+      "retriggerSources": [
+        "c07",
+        "d04"
+      ],
+      "handModifierSources": [],
+      "held": 5,
+      "cleared": true,
+      "residualSources": [],
+      "breakdown": {
+        "baseCharacterFinal": 3,
+        "cardEvents": 73,
+        "ordinarySuppression": 2,
+        "bossTrace": 0,
+        "heldEnhancementOrGold": 5,
+        "jokerEdition": 5,
+        "residualSources": 0,
+        "clearRules": 4
+      }
+    },
+    "scope": "Current72 command-reachable configurations, v10 mode resources, B01–B16 and at most one selected program payout; upper event envelope, not attained maximum score or natural acquisition probability.",
+    "bossTraceBudgets": {
+      "B01": 0,
+      "B02": 0,
+      "B03": 0,
+      "B04": 0,
+      "B05": 1,
+      "B06": 0,
+      "B07": 0,
+      "B08": 0,
+      "B09": 0,
+      "B10": 0,
+      "B11": 0,
+      "B12": 1,
+      "B13": 0,
+      "B14": 0,
+      "B15": 1,
+      "B16": 0
+    },
+    "proof": [
+      "Each equipped source spends one of the same five slots across all phases; A04/D06 spend slots to increase held count.",
+      "The six normal card definitions provide at most four simultaneous groups; overlapping groups are overcounted with fewer slots.",
+      "A11 requires played1; B06 requires pair and cannot coexist effectively with C07/D11. Other positions contribute at most three repeats.",
+      "Encore adds at most one intrinsic repeat: at most four extras, so no legal retrigger-cap rejection event is omitted.",
+      "Enhancement is one layer: lucky can emit four per pass including a gold-cap notice; glass destruction is counted once per original.",
+      "Held voice and winning gold share a layer and contribute at most one event per held card; held editions do not score.",
+      "Success and failure tails are alternatives; F06 count/destruction, F08 check/heat, E10 cycle/reward and rescue/destroy count two when applicable.",
+      "U12 cannot coexist with boss-only U09/T16 on one clear; base reward, base interest and last-hand character gold add no separate trace.",
+      "Only one Boss applies: B02 adds at most two ordinary-suppression notices; B05/B12 halve-base or B15 seal adds at most one, never alongside B02.",
+      "Other Bosses add no score-trace entries: suppression and resource reductions cannot increase this overcounted source envelope; B13 reverses order only.",
+      "An upper envelope is not an attained witness. Independent88 pure /91 shared goldens and the exported checkpoint provide attainment."
+    ]
+  },
+  "readOnly": true
+}
+(!) Failed to run dependency scan. Skipping dependency pre-bundling. Error:   Failed to scan for dependencies from entries:
+  /workspace/dachoupai/index.html
+/workspace/dachoupai/shots/smoke-build/index.html
+/workspace/dachoupai/art/sources/coin-reward/demo.html
+/workspace/dachoupai/shots/pc-height-safe/build/index.html
+/workspace/dachoupai/shots/pc-shared-layout/build/index.html
+/workspace/dachoupai/shots/pc-region-first/build/index.html
+/workspace/dachoupai/shots/pc-shop-20261007/build/index.html
+/workspace/dachoupai/shots/pc-shop-audit-final/build/index.html
+/workspace/dachoupai/shots/pc-shop-audit-first/build/index.html
+/workspace/dachoupai/shots/pc-shop-frozen/build/index.html
+/workspace/dachoupai/shots/pc-shop-p2/build/index.html
+/workspace/dachoupai/shots/pc-shop-regions/build/index.html
+/workspace/dachoupai/shots/pc-shop-transactions/build/index.html
+/workspace/dachoupai/shots/pc-shop-transactions-bounds/build/index.html
+/workspace/dachoupai/shots/pc-shop-transactions-bounds-final/build/index.html
+/workspace/dachoupai/shots/pc-shop-transactions-compact/build/index.html
+/workspace/dachoupai/shots/pc-shop-transactions-final/build/index.html
+/workspace/dachoupai/shots/w1-inputs-20261007/build/index.html
+/workspace/dachoupai/shots/w3-growth-discovery/build/index.html
+/workspace/dachoupai/shots/w3-growth-discovery-before/build/index.html
+/workspace/dachoupai/shots/w3-growth-discovery-p2/build/index.html
+/workspace/dachoupai/shots/w3-purchase-destination/build/index.html
+/workspace/dachoupai/shots/w3-purchase-destination-p2/build/index.html
+/workspace/dachoupai/shots/w3-purchase-discount/build/index.html
+/workspace/dachoupai/shots/w3-shop-before/build/index.html
+/workspace/dachoupai/shots/w3-shop-before-hit/build/index.html
+/workspace/dachoupai/shots/w3-shop-expanded/build/index.html
+/workspace/dachoupai/shots/w3-shop-final/build/index.html
+/workspace/dachoupai/shots/w3-tool-targets/build/index.html
+/workspace/dachoupai/shots/w3-stage-gift/build/index.html
+/workspace/dachoupai/shots/w3-growth-causality/build/index.html
+
+  [31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mThe server is being restarted or closed. Request is outdated[0m [1m[35m[plugin vite:dep-scan][0m
+
+    node_modules/esbuild/lib/main.js:1502:27:
+[37m      1502 │         let result = await [32m[37mcallback({
+           ╵                            [32m^[0m
+
+    at throwClosedServerError (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:28639:32)
+    at EnvironmentPluginContainer.resolveId (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:28771:65)
+    at resolveId (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31580:38)
+    at resolve$4 (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31585:22)
+    at file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31738:28
+    at requestCallbacks.on-resolve (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1502:28)
+    at handleRequest (/workspace/dachoupai/node_modules/esbuild/lib/main.js:911:17)
+    at handleIncomingPacket (/workspace/dachoupai/node_modules/esbuild/lib/main.js:936:7)
+    at Socket.readFromStdout (/workspace/dachoupai/node_modules/esbuild/lib/main.js:864:7)
+    at Socket.emit (node:events:509:28)
+
+  This error came from the "onResolve" callback registered here:
+
+    node_modules/esbuild/lib/main.js:1426:20:
+[37m      1426 │       let promise = [32m[37msetup({
+           ╵                     [32m^[0m
+
+    at setup (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31737:12)
+    at handlePlugins (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1426:21)
+    at buildOrContextImpl (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1139:5)
+    at Object.buildOrContext (/workspace/dachoupai/node_modules/esbuild/lib/main.js:963:5)
+    at /workspace/dachoupai/node_modules/esbuild/lib/main.js:2329:68
+    at new Promise (<anonymous>)
+    at Object.context (/workspace/dachoupai/node_modules/esbuild/lib/main.js:2329:27)
+    at Object.context (/workspace/dachoupai/node_modules/esbuild/lib/main.js:2171:58)
+    at prepareEsbuildScanner (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31534:23)
+
+  The plugin "vite:dep-scan" was triggered by this import
+
+    src/domain/r2ToolCommands.ts:8:34:
+[37m      8 │ import {applyR2SpectralTool} from [32m'./r2SpectralTools'[37m;
+        ╵                                   [32m~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mThe server is being restarted or closed. Request is outdated[0m [1m[35m[plugin vite:dep-scan][0m
+
+    node_modules/esbuild/lib/main.js:1502:27:
+[37m      1502 │         let result = await [32m[37mcallback({
+           ╵                            [32m^[0m
+
+    at throwClosedServerError (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:28639:32)
+    at EnvironmentPluginContainer.resolveId (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:28771:65)
+    at resolveId (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31580:38)
+    at resolve$4 (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31585:22)
+    at file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31738:28
+    at requestCallbacks.on-resolve (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1502:28)
+    at handleRequest (/workspace/dachoupai/node_modules/esbuild/lib/main.js:911:17)
+    at handleIncomingPacket (/workspace/dachoupai/node_modules/esbuild/lib/main.js:936:7)
+    at Socket.readFromStdout (/workspace/dachoupai/node_modules/esbuild/lib/main.js:864:7)
+    at Socket.emit (node:events:509:28)
+
+  This error came from the "onResolve" callback registered here:
+
+    node_modules/esbuild/lib/main.js:1426:20:
+[37m      1426 │       let promise = [32m[37msetup({
+           ╵                     [32m^[0m
+
+    at setup (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31737:12)
+    at handlePlugins (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1426:21)
+    at buildOrContextImpl (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1139:5)
+    at Object.buildOrContext (/workspace/dachoupai/node_modules/esbuild/lib/main.js:963:5)
+    at /workspace/dachoupai/node_modules/esbuild/lib/main.js:2329:68
+    at new Promise (<anonymous>)
+    at Object.context (/workspace/dachoupai/node_modules/esbuild/lib/main.js:2329:27)
+    at Object.context (/workspace/dachoupai/node_modules/esbuild/lib/main.js:2171:58)
+    at prepareEsbuildScanner (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31534:23)
+
+  The plugin "vite:dep-scan" was triggered by this import
+
+    src/game/GameScene.ts:58:31:
+[37m      58 │ import {cardPipRowOffset} from [32m'./CardPipLayout'[37m;
+         ╵                                [32m~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mThe server is being restarted or closed. Request is outdated[0m [1m[35m[plugin vite:dep-scan][0m
+
+    node_modules/esbuild/lib/main.js:1502:27:
+[37m      1502 │         let result = await [32m[37mcallback({
+           ╵                            [32m^[0m
+
+    at throwClosedServerError (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:28639:32)
+    at EnvironmentPluginContainer.resolveId (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:28771:65)
+    at resolveId (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31580:38)
+    at resolve$4 (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31585:22)
+    at file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31738:28
+    at requestCallbacks.on-resolve (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1502:28)
+    at handleRequest (/workspace/dachoupai/node_modules/esbuild/lib/main.js:911:17)
+    at handleIncomingPacket (/workspace/dachoupai/node_modules/esbuild/lib/main.js:936:7)
+    at Socket.readFromStdout (/workspace/dachoupai/node_modules/esbuild/lib/main.js:864:7)
+    at Socket.emit (node:events:509:28)
+
+  This error came from the "onResolve" callback registered here:
+
+    node_modules/esbuild/lib/main.js:1426:20:
+[37m      1426 │       let promise = [32m[37msetup({
+           ╵                     [32m^[0m
+
+    at setup (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31737:12)
+    at handlePlugins (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1426:21)
+    at buildOrContextImpl (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1139:5)
+    at Object.buildOrContext (/workspace/dachoupai/node_modules/esbuild/lib/main.js:963:5)
+    at /workspace/dachoupai/node_modules/esbuild/lib/main.js:2329:68
+    at new Promise (<anonymous>)
+    at Object.context (/workspace/dachoupai/node_modules/esbuild/lib/main.js:2329:27)
+    at Object.context (/workspace/dachoupai/node_modules/esbuild/lib/main.js:2171:58)
+    at prepareEsbuildScanner (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31534:23)
+
+  The plugin "vite:dep-scan" was triggered by this import
+
+    src/game/JokerPlayerCopy.ts:3:44:
+[37m      3 │ ...JOKER_GROUP_UPGRADE_TEMPLATES} from [32m'./JokerGroupUpgradeTemplates'[37m;
+        ╵                                        [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mThe server is being restarted or closed. Request is outdated[0m [1m[35m[plugin vite:dep-scan][0m
+
+    node_modules/esbuild/lib/main.js:1502:27:
+[37m      1502 │         let result = await [32m[37mcallback({
+           ╵                            [32m^[0m
+
+    at throwClosedServerError (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:28639:32)
+    at EnvironmentPluginContainer.resolveId (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:28771:65)
+    at resolveId (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31580:38)
+    at resolve$4 (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31585:22)
+    at file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31738:28
+    at requestCallbacks.on-resolve (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1502:28)
+    at handleRequest (/workspace/dachoupai/node_modules/esbuild/lib/main.js:911:17)
+    at handleIncomingPacket (/workspace/dachoupai/node_modules/esbuild/lib/main.js:936:7)
+    at Socket.readFromStdout (/workspace/dachoupai/node_modules/esbuild/lib/main.js:864:7)
+    at Socket.emit (node:events:509:28)
+
+  This error came from the "onResolve" callback registered here:
+
+    node_modules/esbuild/lib/main.js:1426:20:
+[37m      1426 │       let promise = [32m[37msetup({
+           ╵                     [32m^[0m
+
+    at setup (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31737:12)
+    at handlePlugins (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1426:21)
+    at buildOrContextImpl (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1139:5)
+    at Object.buildOrContext (/workspace/dachoupai/node_modules/esbuild/lib/main.js:963:5)
+    at /workspace/dachoupai/node_modules/esbuild/lib/main.js:2329:68
+    at new Promise (<anonymous>)
+    at Object.context (/workspace/dachoupai/node_modules/esbuild/lib/main.js:2329:27)
+    at Object.context (/workspace/dachoupai/node_modules/esbuild/lib/main.js:2171:58)
+    at prepareEsbuildScanner (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:31534:23)
+
+  The plugin "vite:dep-scan" was triggered by this import
+
+    src/game/JokerPlayerCopy.ts:5:43:
+[37m      5 │ ... {JOKER_COMBO_GROWTH_TEMPLATES} from [32m'./JokerComboGrowthTemplates'[37m;
+        ╵                                         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+    at failureErrorWithLog (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1752:15)
+    at /workspace/dachoupai/node_modules/esbuild/lib/main.js:1211:25
+    at runOnEndCallbacks (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1592:45)
+    at buildResponseToResult (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1209:7)
+    at /workspace/dachoupai/node_modules/esbuild/lib/main.js:1221:9
+    at new Promise (<anonymous>)
+    at requestCallbacks.on-end (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1220:54)
+    at handleRequest (/workspace/dachoupai/node_modules/esbuild/lib/main.js:911:17)
+    at handleIncomingPacket (/workspace/dachoupai/node_modules/esbuild/lib/main.js:936:7)
+    at Socket.readFromStdout (/workspace/dachoupai/node_modules/esbuild/lib/main.js:864:7)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

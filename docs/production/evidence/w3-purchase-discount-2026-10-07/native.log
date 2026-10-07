@@ -1,0 +1,16 @@
+PASS [
+  {
+    spec: { width: 1280, height: 720, kind: 'jokers' },
+    status: 'PASS'
+  },
+  { spec: { width: 390, height: 740, kind: 'tools' }, status: 'PASS' },
+  { spec: { width: 740, height: 390, kind: 'items' }, status: 'PASS' },
+  {
+    spec: { width: 320, height: 740, kind: 'jokers', stack: true },
+    status: 'PASS'
+  },
+  {
+    spec: { width: 390, height: 740, kind: 'items', self: true },
+    status: 'PASS'
+  }
+]

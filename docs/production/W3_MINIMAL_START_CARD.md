@@ -82,3 +82,5 @@ allowedFiles：`src/game/IntermissionScene.ts`、新只读`src/game/StageGiftRec
 inputSHA：`29d6c5ee32d2f320f061c83b87f07b4746b3eb6f`，父确认PR41独审/精确CI/FF main，fetch一致。原W3实际支付/经营闭环与W4-P1折扣基础反馈（U06/U10/U11、SG10），按七类合同和采购证已核样板。真实r2PurchasePrice、成功购买前后状态、名义modifier来源、三货购物结果及既有提示队列已存在。现有结果只有金币余额变化，缺原价/实付/实际总省额与首购状态。
 
 只做可复用三货payment facts及当前优惠状态，按当前profile/item modifier抽取所有名义来源，不逐卡加if；实际总省额为原价减领域真实实付，不做逐来源实际贡献分摊。成功保存后才入原反馈队列/购物结果；购买采购证自身无预持有优惠，最低价截断不重复认领，次购/下店/券状态分开。allowedFiles：`src/game/PurchasePaymentFacts.ts`、`src/game/ShopPurchaseReceipt.ts`、`src/game/ShopScene.ts`、`tests/purchase-payment-facts.test.ts`、`harness/w3-purchase-discount.mjs`与必要证据。现有手绘商品/详情继续复用，不改领域/价格/经济/RNG/存档/布局或P2演出。当前会话交易快照不冒称新增永久交易历史；重入仅核当前事实和不重复获益。定向首购/次购/自身/多来源floor/下店/失败反例与有限PC/手机原生支付，最终必要门禁一次，仅draft父审，不合main。
+
+本批软件结果：[共用购物支付与优惠状态](evidence/w3-purchase-discount-2026-10-07/README.md)。最终e222f8f，三货共用来源/支付结构与当前优惠状态；五原生案核首购/次购/自身/多来源floor/失败，不猜逐来源分摊，重入仅当前状态不造历史。40相关检查及一次默认verify2480 tests/139 files、content/plan通过。原七类/W3/W4顺序和真实理解/真机待验保持，新headCI/父独审待接，未合main。

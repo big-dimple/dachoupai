@@ -1,0 +1,299 @@
+{
+  "source": "e222f8f7ab2a1532cc4d3ef0632c0864187e645f",
+  "sourceStatus": "",
+  "scope": "Controlled three-shelf payments, first/second/self purchase, stacked floor, cancel/failure and current status reload. No per-source actual allocation, persisted payment history, natural/newcomer/device/FPS acceptance.",
+  "cases": [
+    {
+      "spec": {
+        "width": 1280,
+        "height": 720,
+        "kind": "jokers"
+      },
+      "payment": {
+        "original": 4,
+        "paid": 3,
+        "saved": 1,
+        "sources": [
+          {
+            "name": "采购证",
+            "nominal": 1,
+            "kind": "item",
+            "definitionId": "U10",
+            "scope": "first-purchase",
+            "available": true
+          }
+        ],
+        "summary": "第1笔支付 · 原4→付3 · 共省1金",
+        "body": "已保存支付：原价4金→实付3金，实际共省1金。\n购前可用名义额度：采购证 1金。\n实际只按上面的总省额计算；最低付1金，未记录逐来源实际分摊。\n采购证：本店首购资格已用；下店恢复。"
+      },
+      "after": {
+        "commandSeq": 2,
+        "gold": 97,
+        "purchases": 1,
+        "coupons": 0
+      },
+      "cue": {
+        "name": "purchase/payment",
+        "text": "第1笔支付 · 原4→付3 · 共省1金",
+        "font": "14px",
+        "bounds": {
+          "type": 5,
+          "x": 18,
+          "y": 667,
+          "width": 197,
+          "height": 16
+        }
+      },
+      "detail": "练对子 · 购物已保存\n\n已购 练对子 · 已保存\n金币 100 → 97\n\n已保存支付：原价4金→实付3金，实际共省1金。\n购前可用名义额度：采购证 1金。\n实际只按上面的总省额计算；最低付1金，未记录逐来源实际分摊。\n采购证：本店首购资格已用；下店恢复。\n\n购入时放入持有牌第 1 槽。\n购入时已存状态：热度成长 0。\n下一步：查看新牌的条件和状态；进入牌桌后按真实条件结算，购入不等于已发动。\n成组成长：本手读取已保存值；成组手结算后新增的成长，从下一手起生效，不补加到本手。\n\n查看新牌\n构筑详情\n关闭",
+      "second": {
+        "kind": "tools",
+        "id": "w1-controlled-20261007/tool/w1-controlled-20261007/command/3",
+        "definitionId": "T06",
+        "name": "黑桃染",
+        "commandSeq": 3,
+        "payment": {
+          "original": 4,
+          "paid": 4,
+          "saved": 0,
+          "sources": [],
+          "summary": "第2笔支付 · 原4→付4 · 共省0金",
+          "body": "已保存支付：原价4金→实付4金，实际共省0金。没有实际折扣收益。\n购前没有可用优惠额度。\n采购证：本店首购资格已用；下店恢复。"
+        },
+        "body": "已购 黑桃染 · 已保存\n金币 97 → 93\n\n已保存支付：原价4金→实付4金，实际共省0金。没有实际折扣收益。\n购前没有可用优惠额度。\n采购证：本店首购资格已用；下店恢复。\n\n购入时收入工具包第 1 件，尚未使用。\n下一步：打开工具包查看可用时点；需要目标时先选择，再确认使用。查看或取消不会消耗。"
+      },
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 740,
+        "kind": "tools"
+      },
+      "payment": {
+        "original": 4,
+        "paid": 3,
+        "saved": 1,
+        "sources": [
+          {
+            "name": "采购证",
+            "nominal": 1,
+            "kind": "item",
+            "definitionId": "U10",
+            "scope": "first-purchase",
+            "available": true
+          }
+        ],
+        "summary": "第1笔支付 · 原4→付3 · 共省1金",
+        "body": "已保存支付：原价4金→实付3金，实际共省1金。\n购前可用名义额度：采购证 1金。\n实际只按上面的总省额计算；最低付1金，未记录逐来源实际分摊。\n采购证：本店首购资格已用；下店恢复。"
+      },
+      "after": {
+        "commandSeq": 2,
+        "gold": 97,
+        "purchases": 1,
+        "coupons": 0
+      },
+      "cue": {
+        "name": "purchase/payment",
+        "text": "第1笔支付 · 原4→付3 · 共省1金",
+        "font": "14px",
+        "bounds": {
+          "type": 5,
+          "x": 18,
+          "y": 679,
+          "width": 197,
+          "height": 16
+        }
+      },
+      "detail": "黑桃染 · 购物已保存\n手绘卡面\n\n已购 黑桃染 · 已保存\n金币 100 → 97\n\n已保存支付：原价4金→实付3金，实际共省1金。\n购前可用名义额度：采购证 1金。\n实际只按上面的总省额计算；最低付1金，未记录逐来源实际分摊。\n采购证：本店首购资格已用；下店恢复。\n\n购入时收入工具包第 1 件，尚未使用。\n下一步：打开工具包查看可用时点；需要目标时先选择，再确认使用。查看或取消不会消耗。\n\n打开工具包\n构筑详情\n关闭",
+      "failedSaveNoPayment": true,
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 740,
+        "height": 390,
+        "kind": "items"
+      },
+      "payment": {
+        "original": 10,
+        "paid": 9,
+        "saved": 1,
+        "sources": [
+          {
+            "name": "采购证",
+            "nominal": 1,
+            "kind": "item",
+            "definitionId": "U10",
+            "scope": "first-purchase",
+            "available": true
+          }
+        ],
+        "summary": "第1笔支付 · 原10→付9 · 共省1金",
+        "body": "已保存支付：原价10金→实付9金，实际共省1金。\n购前可用名义额度：采购证 1金。\n实际只按上面的总省额计算；最低付1金，未记录逐来源实际分摊。\n采购证：本店首购资格已用；下店恢复。"
+      },
+      "after": {
+        "commandSeq": 2,
+        "gold": 91,
+        "purchases": 1,
+        "coupons": 0
+      },
+      "cue": {
+        "name": "purchase/payment",
+        "text": "第1笔支付 · 原10→付9 · 共省1金",
+        "font": "14px",
+        "bounds": {
+          "type": 5,
+          "x": 18,
+          "y": 337,
+          "width": 204,
+          "height": 16
+        }
+      },
+      "detail": "另一间摊 · 购物已保存\n手绘卡面\n\n已购 另一间摊 · 已保存\n金币 100 → 91\n\n已保存支付：原价10金→实付9金，实际共省1金。\n购前可用名义额度：采购证 1金。\n实际只按上面的总省额计算；最低付1金，未记录逐来源实际分摊。\n采购证：本店首购资格已用；下店恢复。\n\n已加入长期道具，本局持续持有，不能出售。\n实际作用与时机：商店基准售价10金。后续开店长期道具货位1→2；当前货架不补货，刷新也不重抽该货架。本局持续生效，每种不可重复持有、不可出售，共最多4件长期道具。\n下一步：在物品与道具中查看，无需手动使用。\n\n物品与道具\n构筑详情\n关闭",
+      "second": {
+        "kind": "tools",
+        "id": "w1-controlled-20261007/tool/w1-controlled-20261007/command/3",
+        "definitionId": "T06",
+        "name": "黑桃染",
+        "commandSeq": 3,
+        "payment": {
+          "original": 4,
+          "paid": 4,
+          "saved": 0,
+          "sources": [],
+          "summary": "第2笔支付 · 原4→付4 · 共省0金",
+          "body": "已保存支付：原价4金→实付4金，实际共省0金。没有实际折扣收益。\n购前没有可用优惠额度。\n采购证：本店首购资格已用；下店恢复。"
+        },
+        "body": "已购 黑桃染 · 已保存\n金币 91 → 87\n\n已保存支付：原价4金→实付4金，实际共省0金。没有实际折扣收益。\n购前没有可用优惠额度。\n采购证：本店首购资格已用；下店恢复。\n\n购入时收入工具包第 1 件，尚未使用。\n下一步：打开工具包查看可用时点；需要目标时先选择，再确认使用。查看或取消不会消耗。"
+      },
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 740,
+        "kind": "jokers",
+        "stack": true
+      },
+      "payment": {
+        "original": 4,
+        "paid": 1,
+        "saved": 3,
+        "sources": [
+          {
+            "name": "熟客券",
+            "nominal": 1,
+            "kind": "joker",
+            "definitionId": "e02",
+            "instanceId": "owned/e02",
+            "scope": "first-purchase",
+            "available": true
+          },
+          {
+            "name": "采购证",
+            "nominal": 1,
+            "kind": "item",
+            "definitionId": "U10",
+            "scope": "first-purchase",
+            "available": true
+          },
+          {
+            "name": "暖场跳场券",
+            "nominal": 2,
+            "kind": "coupon",
+            "scope": "coupon",
+            "available": true
+          }
+        ],
+        "summary": "第1笔支付 · 原4→付1 · 共省3金",
+        "body": "已保存支付：原价4金→实付1金，实际共省3金。\n购前可用名义额度：熟客券 1金、采购证 1金、暖场跳场券 2金。\n实际只按上面的总省额计算；最低付1金，未记录逐来源实际分摊。\n熟客券、采购证：本店首购资格已用；下店恢复。\n暖场跳场券 1 张，每笔最多用1张。\n本次使用暖场券1张，剩余1张。"
+      },
+      "after": {
+        "commandSeq": 2,
+        "gold": 99,
+        "purchases": 1,
+        "coupons": 1
+      },
+      "cue": {
+        "name": "purchase/payment",
+        "text": "第1笔支付 · 原4→付1 · 共省3金",
+        "font": "14px",
+        "bounds": {
+          "type": 5,
+          "x": 18,
+          "y": 679,
+          "width": 197,
+          "height": 16
+        }
+      },
+      "detail": "练对子 · 购物已保存\n\n已购 练对子 · 已保存\n金币 100 → 99\n\n已保存支付：原价4金→实付1金，实际共省3金。\n购前可用名义额度：熟客券 1金、采购证 1金、暖场跳场券 2金。\n实际只按上面的总省额计算；最低付1金，未记录逐来源实际分摊。\n熟客券、采购证：本店首购资格已用；下店恢复。\n暖场跳场券 1 张，每笔最多用1张。\n本次使用暖场券1张，剩余1张。\n\n购入时放入持有牌第 2 槽。\n购入时已存状态：热度成长 0。\n下一步：查看新牌的条件和状态；进入牌桌后按真实条件结算，购入不等于已发动。\n成组成长：本手读取已保存值；成组手结算后新增的成长，从下一手起生效，不补加到本手。\n\n查看新牌\n构筑详情\n关闭",
+      "second": {
+        "kind": "tools",
+        "id": "w1-controlled-20261007/tool/w1-controlled-20261007/command/3",
+        "definitionId": "T06",
+        "name": "黑桃染",
+        "commandSeq": 3,
+        "payment": {
+          "original": 4,
+          "paid": 2,
+          "saved": 2,
+          "sources": [
+            {
+              "name": "暖场跳场券",
+              "nominal": 2,
+              "kind": "coupon",
+              "scope": "coupon",
+              "available": true
+            }
+          ],
+          "summary": "第2笔支付 · 原4→付2 · 共省2金",
+          "body": "已保存支付：原价4金→实付2金，实际共省2金。\n购前可用名义额度：暖场跳场券 2金。\n实际只按上面的总省额计算；最低付1金，未记录逐来源实际分摊。\n熟客券、采购证：本店首购资格已用；下店恢复。\n本次使用暖场券1张，剩余0张。"
+        },
+        "body": "已购 黑桃染 · 已保存\n金币 99 → 97\n\n已保存支付：原价4金→实付2金，实际共省2金。\n购前可用名义额度：暖场跳场券 2金。\n实际只按上面的总省额计算；最低付1金，未记录逐来源实际分摊。\n熟客券、采购证：本店首购资格已用；下店恢复。\n本次使用暖场券1张，剩余0张。\n\n购入时收入工具包第 1 件，尚未使用。\n下一步：打开工具包查看可用时点；需要目标时先选择，再确认使用。查看或取消不会消耗。"
+      },
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 740,
+        "kind": "items",
+        "self": true
+      },
+      "payment": {
+        "original": 10,
+        "paid": 10,
+        "saved": 0,
+        "sources": [],
+        "summary": "第1笔支付 · 原10→付10 · 共省0金",
+        "body": "已保存支付：原价10金→实付10金，实际共省0金。没有实际折扣收益。\n购前没有可用优惠额度。\n采购证：本店首购资格已用；下店恢复。"
+      },
+      "after": {
+        "commandSeq": 2,
+        "gold": 90,
+        "purchases": 1,
+        "coupons": 0
+      },
+      "detail": "采购证 · 购物已保存\n手绘卡面\n\n已购 采购证 · 已保存\n金币 100 → 90\n\n已保存支付：原价10金→实付10金，实际共省0金。没有实际折扣收益。\n购前没有可用优惠额度。\n采购证：本店首购资格已用；下店恢复。\n\n已加入长期道具，本局持续持有，不能出售。\n实际作用与时机：商店基准售价10金。每间商店第一次成功购买价格−1金，至少1金，可与大丑牌优惠叠加。采购证自身这次购买不享受自身优惠；取消与失败不占用首购资格。本局持续生效，每种不可重复持有、不可出售，共最多4件长期道具。\n下一步：在物品与道具中查看，无需手动使用。\n\n物品与道具\n构筑详情\n关闭",
+      "second": {
+        "kind": "tools",
+        "id": "w1-controlled-20261007/tool/w1-controlled-20261007/command/3",
+        "definitionId": "T06",
+        "name": "黑桃染",
+        "commandSeq": 3,
+        "payment": {
+          "original": 4,
+          "paid": 4,
+          "saved": 0,
+          "sources": [],
+          "summary": "第2笔支付 · 原4→付4 · 共省0金",
+          "body": "已保存支付：原价4金→实付4金，实际共省0金。没有实际折扣收益。\n购前没有可用优惠额度。\n采购证：本店首购资格已用；下店恢复。"
+        },
+        "body": "已购 黑桃染 · 已保存\n金币 90 → 86\n\n已保存支付：原价4金→实付4金，实际共省0金。没有实际折扣收益。\n购前没有可用优惠额度。\n采购证：本店首购资格已用；下店恢复。\n\n购入时收入工具包第 1 件，尚未使用。\n下一步：打开工具包查看可用时点；需要目标时先选择，再确认使用。查看或取消不会消耗。"
+      },
+      "status": "PASS"
+    }
+  ],
+  "browser": "151.0.7922.173",
+  "status": "PASS"
+}
