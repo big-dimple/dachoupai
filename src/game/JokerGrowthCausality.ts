@@ -19,3 +19,16 @@ export function groupGrowthCausality(state:R2RunState,joker:R2JokerInstance):{ti
  lines.push('新增成长不补加到刚结算的本手；后续出牌按当时条件读取，计分封禁时不读加成。','成长跨场保留；进入新场或重入不会凭空再次增长。下一次是否实际读入，以成功保存后的事件为准。');
  return {title:d.name+' · 成长因果',body:lines.join('\n\n')};
 }
+
+/** One saved increment or current saved balance, visible without details; never anticipates a trigger. */
+export function savedGrowthDiscovery(state:R2RunState):{full:string;compact:string;fallback:string}|undefined {
+ if(state.contentVersion!=='quality-r2-group-upgrade-prototype-v1')return;
+ for(const j of state.jokers){
+  if(!['b10','b03'].includes(j.definitionId))continue;
+  const trace=state.lastTrace,saved=trace?.jokers.find(s=>s.instanceId===j.instanceId&&s.definitionId===j.definitionId);if(!trace||!saved)continue;
+  const gain=trace.events.filter(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId&&e.sourceDefinitionId===j.definitionId&&e.phase==='afterHand'&&e.operation==='add-growth').reduce((sum,e)=>sum.add(Rational.fromJSON(e.value)),new Rational(0n));if(gain.compare(new Rational(0n))<=0)continue;
+  const name=r2JokerDefinitionFor(state,j.definitionId).name,key=j.definitionId==='b10'?'heat':'multiplier',value=fractionText(gain.toJSON()),total=fractionText(saved.growth[key]??{n:'0',d:'1'});
+  return {full:`${name}成长+${value}→${total} · 下手按条件读`,compact:`${name}+${value} · 下手读`,fallback:`${name}成长 · 下手读`};
+ }
+ for(const j of state.jokers){if(!['b10','b03'].includes(j.definitionId))continue;const key=j.definitionId==='b10'?'heat':'multiplier',stored=j.growth[key];if(!stored||Rational.fromJSON(stored).compare(new Rational(0n))<=0)continue;const name=r2JokerDefinitionFor(state,j.definitionId).name,total=fractionText(stored),timing=state.phase==='await-input'?'本手':'出牌';return {full:`${name}已存成长${total} · ${timing}按条件读`,compact:`${name}已存${total} · ${timing}读`,fallback:`${name}成长 · ${timing}读`};}
+}

@@ -1,6 +1,6 @@
 import {expect,it} from 'vitest';
 import {readFileSync} from 'node:fs';
-import {groupGrowthCausality} from '../src/game/JokerGrowthCausality';
+import {groupGrowthCausality,savedGrowthDiscovery} from '../src/game/JokerGrowthCausality';
 import {applyCommand,type R2RunState} from '../src/domain/run';
 const report=JSON.parse(readFileSync('docs/production/evidence/p1-j-group-upgrade-ui-2026-10-05/final/native-PASS.json','utf8'));
 const natural=report.cases.find((c:{name:string})=>c.name==='normal-erxiang');
@@ -13,3 +13,5 @@ it('cap describes the actual +5 event rather than the rule max increment',()=>{c
 it('missing history and new instance never inherit an old instance trigger',()=>{const s=structuredClone(natural.first.state) as R2RunState;s.jokers[0].instanceId+='-new';s.jokers[0].growth={};expect(copy(s).body).toContain('没有保留该实例');expect(copy(s).body).not.toContain('本次实际读取');s.lastTrace=null;expect(copy(s).body).toContain('当前持有已保存热度成长：+0');});
 it('old profile and unrelated cards have no group-growth entry',()=>{const s=report.cases.find((c:{name:string})=>c.name==='legacy-e7-b10').first.state;expect(groupGrowthCausality(s,s.jokers[0])).toBeUndefined();});
 it('a real non-group hand reads carried growth but does not invent another increment',()=>{const s=structuredClone(natural.first.state) as R2RunState;const out=applyCommand(s,{runId:s.runId,commandId:'growth-high',expectedSeq:s.commandSeq,action:{type:'PlayHand',selectedIds:[s.handOrder[0]]}});if(!out.ok)throw Error(out.code);expect(copy(out.state).body).toContain('实际读取热度成长：+10');expect(copy(out.state).body).toContain('没有新增成长事件');expect(copy(out.state).body).toContain('累计保存：+10');});
+
+it('discovery reads only saved positive growth for the surviving instance',()=>{const s=structuredClone(natural.first.state) as R2RunState;expect(savedGrowthDiscovery(s)!.full).toContain('成长+10→10');expect(savedGrowthDiscovery(s)!.full).toContain('下手按条件读');s.jokers[0].instanceId+='-new';expect(savedGrowthDiscovery(s)!.full).toContain('已存成长10');expect(savedGrowthDiscovery(s)!.full).not.toContain('+10→');s.lastTrace=null;expect(savedGrowthDiscovery(s)!.full).toContain('本手按条件读');s.jokers[0].growth={};expect(savedGrowthDiscovery(s)).toBeUndefined();});

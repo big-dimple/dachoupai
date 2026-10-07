@@ -1,4 +1,4 @@
-import {groupGrowthCausality} from './JokerGrowthCausality';
+import {groupGrowthCausality,savedGrowthDiscovery} from './JokerGrowthCausality';
 import {shopPurchaseReceipt,shopPurchaseReceiptExists,type ShopPurchaseReceipt} from './ShopPurchaseReceipt';
 import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {r2JokerDefinitionsFor,r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
@@ -145,7 +145,8 @@ export class ShopScene extends Phaser.Scene {
     v.button(p.play,'进入牌桌','action/start-stage',()=>void this.send({type:'LeaveShop'}),this.ready,true);
     v.button(p.build,this.lastPurchaseReceipt?'购物结果':p.inventoryCollapsed?`构筑 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:'构筑详情','action/build',()=>this.lastPurchaseReceipt?this.openPurchaseReceipt():this.inspectBuild());
     const reason=!this.ready?'当前进度未保存或只读，请查看菜单。':allowed&&this.run.gold<cost?`换牌还差 ${cost-this.run.gold} 金。可直接入场。`:this.shelfKind==='jokers'&&this.run.jokers.length===r2JokerCapacity(this.run)?`${r2JokerCapacity(this.run)}槽已满，点随身牌出售后再买。`:this.shelfKind==='tools'?'购买后收入库存；查看详情，再确认使用。':this.shelfKind==='items'?'道具本局生效；换牌不重抽道具货架。':p.portrait?'点卡牌看详情，确认后扣款。':'点卡牌不会扣钱；点随身牌可出售或左移、右移。';
-    this.noticeLabel=v.text(p.short?p.x:p.tabs.x,p.noticeY,this.busy?'正在保存…':this.notice||reason,14,this.notice?'#B8473A':'#3F606B',p.short?p.w:p.tabs.width).setStyle({maxLines:p.short?1:2});
+    const discovery=this.ready&&!this.notice?savedGrowthDiscovery(this.run):undefined;
+    this.noticeLabel=v.text(p.short?p.x:p.tabs.x,p.noticeY,this.busy?'正在保存…':this.notice||discovery?.full||reason,14,this.notice?'#B8473A':'#3F606B',p.short?p.w:p.tabs.width).setStyle({maxLines:p.short?1:2}).setName(discovery?'growth/discovery':'');
     this.drawResultCue();
   }
   private drawOwned(p:ReturnType<typeof shopLayout>):void {
@@ -196,7 +197,8 @@ export class ShopScene extends Phaser.Scene {
       if(!visible.length)v.text(group.x+10,group.y+18,'暂无待售'+(kind==='tools'?'工具':'长期物品'),14,'#7B7365',group.width-20);
       visible.forEach((o,i)=>{const b={x:group.x+i*(seat+8),y:group.y,width:seat,height:group.height};this.drawPCOffer(o,kind,b,{x:b.x+8,y:b.y+8,width:52,height:72.8});});
     }
-    this.noticeLabel=v.text(pc.feedback.x+6,pc.feedback.y,this.busy?'正在保存…':this.notice||'点商品只看详情，确认才扣款；购买工具不会自动使用。',14,this.notice?'#B8473A':'#3F606B',pc.feedback.width-12).setStyle({maxLines:1});this.drawResultCue();
+    const discovery=this.ready&&!this.notice?savedGrowthDiscovery(this.run):undefined;
+    this.noticeLabel=v.text(pc.feedback.x+6,pc.feedback.y,this.busy?'正在保存…':this.notice||discovery?.full||'点商品只看详情，确认才扣款；购买工具不会自动使用。',14,this.notice?'#B8473A':'#3F606B',pc.feedback.width-12).setStyle({maxLines:1}).setName(discovery?'growth/discovery':'');this.drawResultCue();
   }
   /** Long real rules may need a whole group; paging must use the same final capacity. */
   private pcGroupCapacity(kind:'tools'|'items',p:ReturnType<typeof shopLayout>):number {

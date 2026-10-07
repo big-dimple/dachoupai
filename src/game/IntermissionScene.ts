@@ -1,3 +1,4 @@
+import {savedGrowthDiscovery} from './JokerGrowthCausality';
 import Phaser from 'phaser';
 import {R2_MODE_CATALOG} from '../content/r2Modes';
 import {readRunProgress} from '../platform/RunProgress';
@@ -123,7 +124,8 @@ export class IntermissionScene extends Phaser.Scene {
       v.button(p.primary,this.busy?'正在开局…':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }
     v.button(p.right,lost?'本场详情':'回看上手','action/last-hand',()=>lost?this.inspectResult():this.inspectLastHand(),!this.busy&&(lost||!!trace));
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?'':lost?'同局重试沿用角色与开局种子。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w);
+    const discovery=this.ready&&!this.notice&&!lost&&!skipped?savedGrowthDiscovery(run):undefined;
+    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?discovery?.full||'':lost?'同局重试沿用角色与开局种子。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w).setName(discovery&&nextStage?'growth/discovery':'');
     this.firstRender=false;
   }
   private jokerDefinition(id:string){return r2JokerDefinitionFor(runController(this)!.state,id);}
