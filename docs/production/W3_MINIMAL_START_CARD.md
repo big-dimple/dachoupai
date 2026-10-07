@@ -60,3 +60,9 @@ allowedFiles补充：`src/game/IntermissionScene.ts`、`harness/w3-growth-discov
 旧head50753ba独审发现740×390短句丢累计/条件；旧精确CI全绿不代表该语义通过。本批维持区域坐标/字号/按钮，复用提示位与其既有底部安全留白容纳两行：来源+实际新增→累计／下手按条件读；缺trace为来源已存累计／本手按条件读。移除语义删减fallback，helper及原生断言直接核来源、累计和条件；740及邻近短横、既有PC/竖屏路径保护。只限此前allowedFiles及必要证据，真实新人/实机仍待验，不合main。
 
 PR39父审必修结果：[短横完整成长语义](evidence/w3-growth-discovery-2026-10-07/p2/README.md)。产品2e6d1e9移除缺累计/条件短句，复用原底部安全留白容纳两行14px；九尺寸真实路径/语义/控件避让通过。测试样本阶段修正adc0848后默认verify2471 tests/137 files及content/plan全过；旧超时不称历史flake，旧短横PASS不再作为完整语义证据。新headCI/父复核及玩家验收另接，未合main。
+
+## 2026-10-07 W3-P1 工具改牌目标选择
+
+inputSHA：`576a7b60a4153d35d1479cfff9abb0d8cb6d61e6`，父确认PR39独审/精确CI通过并FF main，fetch一致。原W3-P1/U04/U06/U11，复用W2已备资产；W1必要布局、现有phase-known目标/确认/保存合同及J/Q/K、72 Joker缩略映射已具备，不等待整批美术或未放行角色数值。
+
+当前商店工具整副牌目标按原序显示，找同点/同花不便；本批在既有工具目标gallery增点数/花色只读整理，选择按实例保持，原提交顺序仍来自原targetChoices，不改手牌/牌组/RNG。复用court和Joker目标缩略，名称/花色/增强/版次/序号保持，加载缺图退回文字，不添加新图。allowedFiles：`src/game/ConsumableDialog.ts`、`src/style.css`、`harness/w3-tool-targets.mjs`与必要文档证据。相关定向工具/详情检查；最终候选一次必要verify/content/plan及PC/窄竖/短横目标选择、取消、真实使用与重入。不大回归每个小动作、不混领域/角色/经济/存档变化，真实玩家与真机未签。证据`docs/production/evidence/w3-tool-targets-2026-10-07/`，仅draft父审，不合main。
