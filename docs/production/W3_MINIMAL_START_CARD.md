@@ -123,3 +123,8 @@ W5/W6本包软件候选：[培养—工具—现金—下一场整包证据](evi
 ## W5/W8 顺子断点的现货投资入口（2026-10-07，在制）
 
 输入 main6d6576cd69007405dde7cffa8ec5cd08ca12caab；父已独审PR46并确认精确CI全绿/FF。只复盘既有 policy-valid-groups 第2章正场1360/1500、留42金断点，不扫seed、不注入钱牌或过关、不加c04规则。单线6.1默认Medium，不创建并发工作者。现货类别、已发现升级前后基础值、条件与余额/利息代价放入既有手绘商品/详情/购物结果及培养入口；购买/使用均保持人类确认与原校验。不预测总分、不窥未来抽牌。允许文件：src/game/ShopInvestment.ts、ShopScene.ts、BuildJourney.ts，相关tests/shop-investment.test.ts与harness/fixtures/straight-investment.ts、harness/w5-investment-{routes,ui}.mjs，以及本开工卡/DELIVERY_PLAN和本批evidence。领域/内容/价格/权重/身份/旧档不改；自然d03、普通顺子a05仍NOT_OBSERVED，P08/W6/W7/W8门槛保持。关键风险定向检查与必要门禁一次，draft交父，不合main。
+
+
+## 首120秒高频界面整包（2026-10-07，在制）
+
+输入main58424bb5e192ea96d9c8c73eeaf8b89ab883197e；父确认PR47独审/精确CI通过并FF/reread。依据DELIVERY_PLAN U01/U03/U06、W1-P1/P3、W2必要素材复用、W3选牌与商店合同，以及ASSET_RECONCILIATION既有映射。只打磨首章高频牌桌/候选/商店：按现有预算增加PC来源、手牌与商品卡图占比；候选改为真实公开牌面预览与状态反馈，说明分层、选择示例后才可换组。原画/风格/存档/规则/角色/计分/演出时长保持，不额外堆文案。不把软件页面当首120秒实机人测；自然d03、普通顺子a05、八章仍未证。单线6.1默认Medium，无并发；范围允许src/game/layout.ts、ShopLayout.ts、ShopScene.ts、GameScene.ts、CandidateCardPreview.ts、src/style.css及相关layout/shop/candidate tests和harness/w1-first-flow.mjs、本批evidence/计划/素材对账追加记录。PC1366与手机390为关键整屏，短横与768/811/812/9/14边界以必要几何/输入补核，不扩大截图矩阵。整包必要门禁一次，draft交父，勿合main；所有旧状态/失败和W6/W7等门槛保持。
