@@ -836,7 +836,8 @@ export class GameScene extends Phaser.Scene {
     const sweepReminder=this.handHint?(handWindow.status.width<250?'横滑选牌 · 已选可取消':'横滑选牌 · 从已选牌开始可取消'):'';
     const discovery=this.ready&&!this.presentation&&!this.selectedIds.size&&!this.statusMessage&&!reminders?savedGrowthDiscovery(this.run):undefined;
     this.statusText.setName(discovery?'growth/discovery':'').setText(discovery?.full||sweepReminder||this.statusMessage||reminders||entryReminder||memoryReminder||reason);
-    if(discovery)for(const text of [discovery.full,discovery.compact,discovery.fallback]){this.statusText.setText(text);if(this.statusText.width<=handWindow.status.width&&this.statusText.height<=handWindow.status.height)break;}
+    // Short landscape has an existing 12px bottom table margin: two normal 16px rows fit without moving controls.
+    if(discovery)for(const text of [discovery.full,discovery.compact]){this.statusText.setText(text);if(this.statusText.width<=handWindow.status.width&&this.statusText.height<=handWindow.status.height+(handWindow.mode==='landscape'?12:0))break;}
     if(!discovery&&this.statusText.width>this.view.layout.status.width&&memoryReminder&&!sweepReminder&&!this.statusMessage&&!reminders&&!entryReminder)this.statusText.setText(savedReminder!.name+' · 保存状态见详情');
     // Balatro-style call-to-action: the playable state breathes a warm aura.
     const auraOn=!!this.playButton.input?.enabled&&this.selectedIds.size>0&&!this.presentation&&!this.playing;
