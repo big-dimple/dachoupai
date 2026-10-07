@@ -145,7 +145,7 @@ export class DetailDialog {
       const gallery=document.createElement('section');gallery.className='experience-cards';gallery.setAttribute('aria-label','来源与下一步');
       for(const card of options.cards){
         const item=document.createElement('article'),title=document.createElement('h3'),text=document.createElement('p'),copy=document.createElement('div');
-        item.className='experience-card';title.textContent=card.title;text.textContent=card.body;copy.append(title,text);
+        item.className='experience-card';title.textContent=card.title;text.textContent=card.body;copy.append(title);if(card.stat){const stat=document.createElement('strong');stat.className='experience-card-stat';stat.textContent=card.stat;copy.append(stat);}copy.append(text);
         if(card.url){const image=document.createElement('img');image.src=card.url;image.alt=card.title+'卡面';image.width=80;image.height=112;image.decoding='async';image.onerror=()=>{image.hidden=true;};item.append(image);cleanups.push(()=>{image.onerror=null;});}
         if(card.action){const b=document.createElement('button');b.type='button';b.textContent=card.action.label;b.onclick=card.action.run;copy.append(b);}
         item.append(copy);gallery.append(item);

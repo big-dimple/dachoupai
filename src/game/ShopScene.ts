@@ -1,3 +1,4 @@
+import {buildGrowthProgress} from './BuildGrowthProgress';
 import {shopInvestment} from './ShopInvestment';
 import {currentBuildFocus,BUILD_LABEL,jokerSupportsFocus,toolSupportsFocus} from './BuildJourney';
 import {showBuildJourney} from './BuildJourneyDialog';
@@ -120,7 +121,8 @@ export class ShopScene extends Phaser.Scene {
     this.goldText=gold;
     if(!p.portrait&&!p.short)v.text(p.x,p.top+37,`${stage.name} · 目标 ${heatText(stage.targetHeat)}`,14,'#3F606B',p.short?p.slots[4].x+p.slots[4].width-p.x:p.w-24);
     if(!p.short){
-      const ownedLabel=p.portrait?`${stage.name} · 随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:`随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)} · 点牌出售／调序`;
+      const savedGrowth=buildGrowthProgress(this.run)[0];
+      const ownedLabel=savedGrowth?savedGrowth.name+' · '+savedGrowth.metric:p.portrait?`${stage.name} · 随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:`随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)} · 点牌出售／调序`;
       v.text(p.slots[0].x,p.slots[0].y-(p.portrait&&p.shelf[0].width<88?18:22),ownedLabel,14,'#3F606B',p.slots[4].x+p.slots[4].width-p.slots[0].x);
     }
     this.drawOwned(p);
@@ -181,7 +183,7 @@ export class ShopScene extends Phaser.Scene {
     v.text(p.x+16,p.top+86,'目标 '+heatText(stage.targetHeat),18,'#26313A',pc.left.width-32);
     this.goldText=v.text(p.x+16,p.top+124,'金币 '+this.run.gold,24,'#26313A',pc.left.width-32).setName('shop/gold').setFontStyle('bold');
     v.button({...p.chapter,x:p.chapter.x+12,width:p.chapter.width-24},this.run.program&&!this.run.program.choiceMade?'本章节目 · 待选':'本章节目','action/chapter',()=>this.inspectChapter());
-    v.text(pc.ownedRail.x,p.top+12,`当前构筑 ${this.run.jokers.length}/${r2JokerCapacity(this.run)} · 从左至右触发`,16,'#26313A').setName('shop/owned-heading');
+    v.text(pc.ownedRail.x,p.top+12,(buildGrowthProgress(this.run)[0]?.metric??`当前构筑 ${this.run.jokers.length}/${r2JokerCapacity(this.run)} · 从左至右触发`),16,'#26313A').setName('shop/owned-heading');
     v.button(p.build,this.lastPurchaseReceipt?'购物结果':this.buildLabel(),'action/build',()=>this.lastPurchaseReceipt?this.openPurchaseReceipt():this.inspectJourney());this.drawOwned(p);
     const entry=shopInventoryEntry(p.tabs,pc.inventoryEntry);
     v.button(entry,toolInventoryLabel(this.run),'action/tool-inventory',()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq)));

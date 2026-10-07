@@ -58,6 +58,7 @@ try {
             await tapUI(p, 'shop', 'action/build');
             await p.getByRole('button', { name: '选择同点成组', exact: true }).click();
             report.journeyCopy = await p.locator('dialog[open]').innerText();
+            report.offerFirstScreen=await p.locator('dialog[open] .experience-card').first().evaluate(e=>{const r=e.getBoundingClientRect(),d=e.closest('dialog').getBoundingClientRect();return {top:r.top,bottom:r.bottom,dialog:d.bottom,text:e.innerText};});assert.ok(report.offerFirstScreen.bottom<=report.offerFirstScreen.dialog,'actual component and action must fit first screen');
             await shot('group-route');
             await close();
             assert.deepEqual(await state(), beforeFocus);
@@ -167,6 +168,7 @@ try {
                         await waitScene(p, 'game');
                         await settle();
                         assert.deepEqual(await state(), committed);
+                        const growthCopy=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return s.children.list.flatMap(o=>o.list??[o]).filter(o=>o.name==='growth/cause'||o.name==='growth/current').map(o=>({name:o.name,text:o.text,bounds:o.getBounds()}));});assert.ok(growthCopy.some(o=>o.name==='growth/cause'&&o.text.includes('0 → 10')),'first saved growth reads domain zero');report.steps.push({note:'Restored first growth measured on actual canvas',growthCopy});
                         await shot('first-hand-restored');
                         report.steps.push({ note: 'First committed hand reload/continue keeps complete run and RNG', after: committed });
                     }
@@ -174,7 +176,8 @@ try {
                 const ended = await state();
                 await shot('stage-' + stage + '-result');
                 report.steps.push({ note: 'Measured actual result text regions', regions: await p.evaluate(() => { const scene = window.__harness.game.scene.getScene('intermission'); if (!scene.scene.isActive())
-                        return []; return scene.children.list.flatMap(o => o.list ?? [o]).filter(o => ['result/assist-source', 'result/source-continuity', 'result/gap', 'result/score'].includes(o.name)).map(o => ({ name: o.name, text: o.text, bounds: o.getBounds() })); }) });
+                        return []; return scene.children.list.flatMap(o => o.list ?? [o]).filter(o => ['result/assist-source', 'result/source-continuity', 'result/gap', 'result/score', 'growth/current', 'growth/cause', 'growth/next'].includes(o.name)).map(o => ({ name: o.name, text: o.text, bounds: o.getBounds() })); }) });
+                if(ended.phase==='stage-cleared'){const regions=report.steps.at(-1).regions,g=regions.find(r=>r.name==='growth/current'),cause=regions.find(r=>r.name==='growth/cause'),total=regions.find(r=>r.name==='result/gap');assert.ok(g,'saved cumulative growth must be visible');assert.ok(g.text.includes(ended.jokers.find(j=>j.definitionId==='b10').growth.heat.n));assert.ok(cause.text.includes('→'),'actual chosen hand must explain growth');assert.ok(regions.filter(r=>r.name.startsWith('growth/')).every(r=>r.bounds.y+r.bounds.height<=total.bounds.y));}
                 if (ended.lastTrace?.assist && ended.phase === 'stage-cleared') {
                     const regions = report.steps.at(-1).regions;
                     assert.ok(regions.some(r => r.name === 'result/assist-source' && r.text.includes('×' + ended.lastTrace.assist.multiplier)));

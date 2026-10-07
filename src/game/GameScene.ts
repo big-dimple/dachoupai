@@ -1,3 +1,5 @@
+import {buildGrowthProgress} from './BuildGrowthProgress';
+import {showBuildGrowth} from './BuildGrowthView';
 import {keyHighlight,keyHighlightBeat,savedGrowthStamp,type JokerKeyHighlight} from './JokerKeyHighlight';
 import {mountKeyHighlight,keyFocusPlacement} from './JokerKeyHighlightView';
 import {renderCandidateCards} from './CandidateCardPreview';
@@ -714,7 +716,7 @@ export class GameScene extends Phaser.Scene {
   }
   private renderSelectedCards(preview?:HandPreview):void {
     this.previewCards?.destroy();this.previewCards=this.view.add(this.add.container(0,0));this.resultText.setVisible(true);(this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('待出牌');const p=toolInventoryPlayedArea(this.view.layout);
-    if(this.assistProfile){this.renderAssistSelection(preview,p);return;}
+    if(this.assistProfile){const growth=!preview&&p.height>=94&&p.width>=250?buildGrowthProgress(this.run)[0]:undefined;const shown=growth&&showBuildGrowth(this.view,this,this.previewCards,p,growth);this.renderAssistSelection(preview,p,!!shown);return;}
     if(!preview){
       const notice=stageNotice(this.run),hint=notice?.warning?notice.title+(p.height>=90?'\n'+notice.description:''):this.run.stage!.playIndex===0?'选 1–5 张，凑牌型出牌\n不合适？弃牌换新牌':'选牌，准备下一手';
       const text=this.add.text(p.x+p.width/2,p.y+p.height/2,hint,{fontFamily:UI_FONT,fontSize:p.height<90||notice?.warning?'14px':'18px',color:notice?.warning?C.red:C.mutedInk,align:'center',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5);
@@ -760,7 +762,7 @@ export class GameScene extends Phaser.Scene {
     this.assistIds=this.assistIds.length===facts.assistIds.length&&facts.assistIds.every(id=>this.assistIds.includes(id))?[]:[...facts.assistIds];
     this.statusMessage=this.assistIds.length?'助攻已选 ×'+facts.assistMultiplier:'助攻已取消，主手保持';this.refreshSelection();
   }
-  private renderAssistSelection(preview:HandPreview|undefined,p:Box):void {
+  private renderAssistSelection(preview:HandPreview|undefined,p:Box,growthIdle=false):void {
     const score=this.view.layout.scoreBoard,portrait=this.view.layout.mode==='portrait',desktop=this.view.layout.mode==='desktop',room=portrait&&score.height>=100;
     const availability=r2AssistAvailability(this.run),candidates=assistCandidates(this.assistInput(),availability.available);
     const current=validAssistDraft(this.assistInput(),availability.available,this.assistIds);
@@ -771,15 +773,15 @@ export class GameScene extends Phaser.Scene {
     const railWidth=Math.min(194,p.width-8),rail:Box=room?{x:score.x+10,y:score.y+Math.min(60,score.height-66),width:score.width-20,height:44}:{x:p.x+p.width-railWidth-4,y:p.y,width:railWidth,height:44};
     const pageSize=Math.min(Math.max(1,candidates.length),Math.max(1,Math.floor((rail.width-88)/94))),pages=Math.max(1,Math.ceil(candidates.length/pageSize));this.assistPage=Math.max(0,Math.min(this.assistPage,pages-1));
     const pageCopy=candidates.length>1?' · '+candidates.length+'组 · 第'+(this.assistPage+1)+'/'+pages+'页':'';
-    text(room?score.x+10:rail.x,room?score.y+score.height-18:rail.y+46,status+pageCopy+(current&&room?' · 已选×'+current.assistMultiplier:''),room?score.width-20:rail.width);
+    if(room||!growthIdle)text(room?score.x+10:rail.x,room?score.y+score.height-18:rail.y+46,status+pageCopy+(current&&room?' · 已选×'+current.assistMultiplier:''),room?score.width-20:rail.width);
     if(candidates.length){
       const paged=pages>1,gap=6,side=paged?44:0,usable=rail.width-side*2,width=(usable-gap*(pageSize-1))/pageSize;
       const button=(b:Box,value:string,name:string,action:()=>void,enabled:boolean,selected=false)=>{const first=this.view.root.length,r=this.view.button(b,value,name,action,enabled);(r.getData('label') as Phaser.GameObjects.Text).setFontSize(14);if(selected)(r.getData('label') as Phaser.GameObjects.Text).setColor(C.red);this.previewCards!.add(this.view.root.list.slice(first));return r;};
       if(paged){button({...rail,width:44},'上页','selection/assist-prev',()=>{this.assistPage--;this.refreshSelection();},this.ready&&this.assistPage>0);button({...rail,x:rail.x+rail.width-44,width:44},'下页','selection/assist-next',()=>{this.assistPage++;this.refreshSelection();},this.ready&&this.assistPage<pages-1);}
       candidates.slice(this.assistPage*pageSize,(this.assistPage+1)*pageSize).forEach((facts,i)=>{const selected=current?.assistIds.join('|')===facts.assistIds.join('|');button({...rail,x:rail.x+side+i*(width+gap),width},label(facts.assistIds)+'\n'+(selected?'取消助攻':'助攻 ×'+facts.assistMultiplier),'selection/assist-'+facts.assistIds.join('+'),()=>this.chooseAssist(facts.assistIds),this.ready,selected);});
-    }else{text(rail.x,rail.y+8,availability.available?(preview?'剩余牌无合法助攻':'先组成两对、三条或更高'):status,rail.width);}
+    }else if(!growthIdle){text(rail.x,rail.y+8,availability.available?(preview?'剩余牌无合法助攻':'先组成两对、三条或更高'):status,rail.width);}
     const compact=room&&p.height<110;
-    if(room){
+    if(room&&!growthIdle){
       if(compact){
         text(p.x+8,p.y+2,'主手：'+label([...this.selectedIds]),p.width-16);
         text(p.x+8,p.y+20,'助攻：'+(current?label(current.assistIds)+' ×'+current.assistMultiplier:'未选'),p.width-16);
@@ -789,7 +791,7 @@ export class GameScene extends Phaser.Scene {
       text(score.x+10,score.y+76,current?'助攻 '+current.assistIds.length+'张 ×'+current.assistMultiplier+' · 一同用掉':'助攻会一同用掉',score.width-20);
       text(score.x+10,score.y+94,'不算主手或留手牌',score.width-20);
       text(score.x+10,score.y+118,ASSIST_AI_EXPLANATION,score.width-20);
-    }else{
+    }else if(!room){
       text(score.x+10,score.y+42,ASSIST_EXPLANATION,score.width-72);
       if(score.height>=76)text(score.x+10,score.y+60,ASSIST_AI_EXPLANATION,score.width-20);
     }
