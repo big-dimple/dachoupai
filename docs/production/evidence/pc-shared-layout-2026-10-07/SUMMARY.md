@@ -19,3 +19,7 @@ Validation:
 W4 highlight design and serial 6.1/default Medium constraint are documented in the independent documentation commit. W2/W3 dependencies and current PC repair priority remain; no effects implemented. No domain, gameplay values, saved identity, assets, audio or separate PC project changes.
 
 User PC acceptance, physical phones, hardware GPU, listening and overall aesthetic acceptance: NOT_RUN. No recordings or FPS acceptance performed. The cloud checks do not close those gates. Main remains parent-coordinated; draft PR only.
+
+## Follow-up landscape scope self-check
+
+On 2026-10-07, 270 read-only SSR comparisons of complete landscape layouts and playedFootprint against baseline 0c35a824 passed (see landscape-self-check.json). Runtime layout callers do not force a tall landscape mode: the auto landscape branch requires height <500px. At reachable landscape heights the new scratch cardWidth expression remains80, and its override never executes; playedArea height <500 keeps footprint scale1. No mobile landscape regression or product edit was found. This is a geometry equality check, not a new native or device acceptance. No unchanged browser matrix was rerun.

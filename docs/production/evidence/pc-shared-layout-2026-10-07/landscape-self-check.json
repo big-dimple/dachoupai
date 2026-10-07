@@ -1,0 +1,8 @@
+{
+  "base": "0c35a824e4ab29b8c9d213722060c714324f853b",
+  "source": "8b55a922f76a38129710021a7adc0c8923b45251",
+  "status": "PASS",
+  "comparisons": 270,
+  "scope": "Read-only SSR equality of complete reachable landscape layout and playedFootprint, 5 widths x 3 heights x 3 counts x 3 starts x 2 safe bottoms. No native browser rerun or device claim.",
+  "reason": "Auto landscape requires height<500. The scratch cardWidth stays 80 at those heights; desktop/portrait override is not entered. Played area height is below500 so footprint scale is exactly1."
+}
