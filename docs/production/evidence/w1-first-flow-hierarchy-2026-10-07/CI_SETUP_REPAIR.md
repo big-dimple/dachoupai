@@ -19,3 +19,8 @@
 替换重复apt/浏览器安装为预装环境版本/三个执行文件可执行性预检；缺失直接失败，没有fallback或continue-on-error。采用官方推荐ipc设置，保留Node22/npm ci、原verify:ci browser、SMOKE_BROWSERS=chromium,firefox,webkit、默认desktop/mobile、制品上传及原10分钟时限。domain/docs、checkout精确head、触发器、并发组和权限完全不变。未来升级Playwright须同步镜像版本/digest，否则预检失败；镜像冷拉取仍有外部网络成本，实际可靠性/耗时由本次远端原门禁测得，不预先宣称通过。
 
 本地只做YAML解析与原结构/产品零diff/registry校验和计划检查，不重复本地全套或追加UI截图。最终精确CI/提交在PR48交接中确认；原两轮取消日志保持，不能将安装失败、旧head结果或本地Chromium通过冒称新head三引擎通过。
+
+
+## 首次容器CI及工作区所有权适配
+
+独立CI候选844c79f7a0ec05761ac5d4e915ec9975dd8d7c9b的[run37674588331/browser112974688322](https://github.com/big-dimple/dachoupai/actions/runs/37674588331/job/112974688322)成功拉取/初始化固定镜像，npm ci约6秒，19:28:15预检确认chromium1243/firefox1543/webkit2359三执行文件；19:28:16 verify-ci首次git ls-files报dubious ownership，未进入build/smoke。原失败保留，不记产品PASS。容器root与宿主挂载工作区所有者不同，checkout action的临时HOME信任配置没有覆盖运行脚本所用配置。补一个仅browser checkout之后的步骤，将当前精确checkout路径GITHUB_WORKSPACE加入该临时job全局safe.directory；不用通配符、不关闭Git/源码变化守卫，不改产品或测试判据。此为同一CI基础修复的必要所有权适配，独立修正提交，最终精确HEAD仍跑原三引擎双端门禁。
