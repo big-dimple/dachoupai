@@ -1,5 +1,7 @@
 # 开发路线与阶段门禁
 
+当前优先按[DELIVERY_PLAN首章门槛](docs/production/DELIVERY_PLAN.md#11-交付目标)落实路线、取舍、可感成长和真实继续意愿；未达不以角色或后期扩展替代。以下阶段与证据按原合同保留，软件PASS不能代签真人门槛。
+
 原型基线：`9fd6e0bdb20c7e6114e045ca336c27afe5d47e9e`。新计划状态在 `docs/production/plan.json`；本文件只说明阶段关系，不维护重复完成勾选。
 
 | 阶段 | 要证明什么 | 出口 |
