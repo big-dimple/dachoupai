@@ -66,3 +66,5 @@ PR39父审必修结果：[短横完整成长语义](evidence/w3-growth-discovery
 inputSHA：`576a7b60a4153d35d1479cfff9abb0d8cb6d61e6`，父确认PR39独审/精确CI通过并FF main，fetch一致。原W3-P1/U04/U06/U11，复用W2已备资产；W1必要布局、现有phase-known目标/确认/保存合同及J/Q/K、72 Joker缩略映射已具备，不等待整批美术或未放行角色数值。
 
 当前商店工具整副牌目标按原序显示，找同点/同花不便；本批在既有工具目标gallery增点数/花色只读整理，选择按实例保持，原提交顺序仍来自原targetChoices，不改手牌/牌组/RNG。复用court和Joker目标缩略，名称/花色/增强/版次/序号保持，加载缺图退回文字，不添加新图。allowedFiles：`src/game/ConsumableDialog.ts`、`src/style.css`、`harness/w3-tool-targets.mjs`与必要文档证据。相关定向工具/详情检查；最终候选一次必要verify/content/plan及PC/窄竖/短横目标选择、取消、真实使用与重入。不大回归每个小动作、不混领域/角色/经济/存档变化，真实玩家与真机未签。证据`docs/production/evidence/w3-tool-targets-2026-10-07/`，仅draft父审，不合main。
+
+本批软件结果：[工具目标整理与现有图像复用](evidence/w3-tool-targets-2026-10-07/README.md)。最终7db8630，四视口真实多目标整理/取消/实际改牌/重入、当前手牌公开目标、缺图与保存失败同候选重试通过；69相关检查与一次默认verify2471 tests/137 files及content/plan通过。没有重跑成长/商店全套；原W3/W2/W6计划和真实玩家/实机边界保持，新headCI与父独审待接。
