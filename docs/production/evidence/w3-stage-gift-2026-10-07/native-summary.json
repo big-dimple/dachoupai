@@ -1,0 +1,493 @@
+{
+  "source": "7e0b21649939db7e37d54bdbdab8fe54014e50ba",
+  "sourceStatus": "",
+  "scope": "Controlled C12 real flush+straight clear, gift/overflow, native use and reload. No natural acquisition/newcomer/physical/audio/FPS acceptance.",
+  "browser": "151.0.7922.173",
+  "status": "PASS",
+  "rawSha256": "1c67616c7626e3a039eeea30774704dde0e4c0a3daf8f23aad678bcb40ee4bfd",
+  "cases": [
+    {
+      "spec": {
+        "width": 1280,
+        "height": 720
+      },
+      "notice": {
+        "text": "换一身赠方片染×1 · 已入工具包",
+        "font": "14px",
+        "bounds": {
+          "type": 5,
+          "x": 150,
+          "y": 646,
+          "width": 197,
+          "height": 16
+        }
+      },
+      "receipt": "换一身 · 过关赠品已保存\n手绘卡面\n高清细节加载中…\n\n换一身：本场打过普通顺子和普通同花，成功过关；该次奖励已保存。\n\n实际赠品：方片染 ×1。结算时已放入工具包。\n当前工具包 1/2。\n\n下一步：前往商店，打开工具包，选择方片染→目标牌→确认使用。查看或取消不消耗工具。\n\n前往商店\n本场详情\n关闭",
+      "use": {
+        "targetId": "spades-2",
+        "definitionId": "T04",
+        "commandSeq": 6
+      },
+      "status": "PASS",
+      "savedFacts": {
+        "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+        "contentHash": "json-fnv-v1:5025cc23c013987f",
+        "commandSeq": 4,
+        "gold": 30,
+        "consumables": [
+          {
+            "instanceId": "fixture/stage-gift/clear/3/joker-reward/owned/c12/T04",
+            "definitionId": "T04"
+          }
+        ],
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2151395247
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2429633615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1461855557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1831565813
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2459264930
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3497781299
+          }
+        },
+        "sourceEvents": [
+          {
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "rootId": "fixture/stage-gift/hand/fixture/stage-gift/command/4",
+            "rootEventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "phase": "onStageClear",
+            "sourceType": "joker",
+            "sourceDefinitionId": "c12",
+            "sourceInstanceId": "owned/c12",
+            "operation": "reward-consumable",
+            "value": {
+              "n": "1",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "145",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "145",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "c12.reward-consumable",
+            "visibleCondition": {
+              "kind": "stage-hand-types-all",
+              "values": [
+                "straight",
+                "flush"
+              ]
+            },
+            "retriggerDepth": 0,
+            "resourceBefore": 0,
+            "resourceAfter": 1,
+            "rewardDefinitionId": "T04"
+          }
+        ]
+      }
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 740
+      },
+      "notice": {
+        "text": "换一身赠方片染×1 · 已入工具包",
+        "font": "14px",
+        "bounds": {
+          "type": 5,
+          "x": 12,
+          "y": 674,
+          "width": 197,
+          "height": 16
+        }
+      },
+      "receipt": "换一身 · 过关赠品已保存\n手绘卡面\n高清细节加载中…\n\n换一身：本场打过普通顺子和普通同花，成功过关；该次奖励已保存。\n\n实际赠品：方片染 ×1。结算时已放入工具包。\n当前工具包 1/2。\n\n下一步：前往商店，打开工具包，选择方片染→目标牌→确认使用。查看或取消不消耗工具。\n\n前往商店\n本场详情\n关闭",
+      "art": "blob:http://127.0.0.1:5398/3d306aa6-5ed2-48f1-97e8-691ae243119b",
+      "use": {
+        "targetId": "spades-2",
+        "definitionId": "T04",
+        "commandSeq": 6
+      },
+      "status": "PASS",
+      "savedFacts": {
+        "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+        "contentHash": "json-fnv-v1:5025cc23c013987f",
+        "commandSeq": 4,
+        "gold": 30,
+        "consumables": [
+          {
+            "instanceId": "fixture/stage-gift/clear/3/joker-reward/owned/c12/T04",
+            "definitionId": "T04"
+          }
+        ],
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2151395247
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2429633615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1461855557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1831565813
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2459264930
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3497781299
+          }
+        },
+        "sourceEvents": [
+          {
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "rootId": "fixture/stage-gift/hand/fixture/stage-gift/command/4",
+            "rootEventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "phase": "onStageClear",
+            "sourceType": "joker",
+            "sourceDefinitionId": "c12",
+            "sourceInstanceId": "owned/c12",
+            "operation": "reward-consumable",
+            "value": {
+              "n": "1",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "145",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "145",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "c12.reward-consumable",
+            "visibleCondition": {
+              "kind": "stage-hand-types-all",
+              "values": [
+                "straight",
+                "flush"
+              ]
+            },
+            "retriggerDepth": 0,
+            "resourceBefore": 0,
+            "resourceAfter": 1,
+            "rewardDefinitionId": "T04"
+          }
+        ]
+      }
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 740
+      },
+      "notice": {
+        "text": "换一身赠方片染×1 · 已入工具包",
+        "font": "14px",
+        "bounds": {
+          "type": 5,
+          "x": 12,
+          "y": 674,
+          "width": 197,
+          "height": 16
+        }
+      },
+      "receipt": "换一身 · 过关赠品已保存\n手绘卡面\n高清细节加载中…\n\n换一身：本场打过普通顺子和普通同花，成功过关；该次奖励已保存。\n\n实际赠品：方片染 ×1。结算时已放入工具包。\n当前工具包 1/2。\n\n下一步：前往商店，打开工具包，选择方片染→目标牌→确认使用。查看或取消不消耗工具。\n\n前往商店\n本场详情\n关闭",
+      "use": {
+        "targetId": "spades-2",
+        "definitionId": "T04",
+        "commandSeq": 6
+      },
+      "status": "PASS",
+      "savedFacts": {
+        "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+        "contentHash": "json-fnv-v1:5025cc23c013987f",
+        "commandSeq": 4,
+        "gold": 30,
+        "consumables": [
+          {
+            "instanceId": "fixture/stage-gift/clear/3/joker-reward/owned/c12/T04",
+            "definitionId": "T04"
+          }
+        ],
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2151395247
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2429633615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1461855557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1831565813
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2459264930
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3497781299
+          }
+        },
+        "sourceEvents": [
+          {
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "rootId": "fixture/stage-gift/hand/fixture/stage-gift/command/4",
+            "rootEventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "phase": "onStageClear",
+            "sourceType": "joker",
+            "sourceDefinitionId": "c12",
+            "sourceInstanceId": "owned/c12",
+            "operation": "reward-consumable",
+            "value": {
+              "n": "1",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "145",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "145",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "c12.reward-consumable",
+            "visibleCondition": {
+              "kind": "stage-hand-types-all",
+              "values": [
+                "straight",
+                "flush"
+              ]
+            },
+            "retriggerDepth": 0,
+            "resourceBefore": 0,
+            "resourceAfter": 1,
+            "rewardDefinitionId": "T04"
+          }
+        ]
+      }
+    },
+    {
+      "spec": {
+        "width": 740,
+        "height": 390,
+        "full": true
+      },
+      "notice": {
+        "text": "换一身 · 包满改收+2金",
+        "font": "14px",
+        "bounds": {
+          "type": 5,
+          "x": 12,
+          "y": 316,
+          "width": 141,
+          "height": 16
+        }
+      },
+      "receipt": "换一身 · 满包替代已保存\n\n换一身：本场打过普通顺子和普通同花，成功过关；该次奖励已保存。\n\n结算时工具包已满，方片染未入包。\n实际替代：+2 金，该笔入账 30→32；当前余额 32 金。已计入本场收益，不会再领取一次。\n\n下一步：前往商店继续构筑，或查看已有工具再决定使用。\n\n前往商店\n本场详情\n关闭",
+      "status": "PASS",
+      "savedFacts": {
+        "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+        "contentHash": "json-fnv-v1:5025cc23c013987f",
+        "commandSeq": 4,
+        "gold": 32,
+        "consumables": [
+          {
+            "instanceId": "full/0",
+            "definitionId": "T01"
+          },
+          {
+            "instanceId": "full/1",
+            "definitionId": "T17"
+          }
+        ],
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2151395247
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2429633615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1461855557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1831565813
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2459264930
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3497781299
+          }
+        },
+        "sourceEvents": [
+          {
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "rootId": "fixture/stage-gift/hand/fixture/stage-gift/command/4",
+            "rootEventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "phase": "onStageClear",
+            "sourceType": "joker",
+            "sourceDefinitionId": "c12",
+            "sourceInstanceId": "owned/c12",
+            "operation": "add-gold",
+            "value": {
+              "n": "2",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "145",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "145",
+                "d": "1"
+              },
+              "M": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            "reasonKey": "c12.add-gold",
+            "visibleCondition": {
+              "kind": "stage-hand-types-all",
+              "values": [
+                "straight",
+                "flush"
+              ]
+            },
+            "retriggerDepth": 0,
+            "resourceBefore": 30,
+            "resourceAfter": 32,
+            "rewardDefinitionId": "T04"
+          }
+        ]
+      }
+    },
+    {
+      "spec": {
+        "width": 1280,
+        "height": 720,
+        "special": true
+      },
+      "status": "PASS",
+      "savedFacts": {
+        "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+        "contentHash": "json-fnv-v1:5025cc23c013987f",
+        "commandSeq": 4,
+        "gold": 30,
+        "consumables": [],
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2151395247
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2429633615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1461855557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 0
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2459264930
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3497781299
+          }
+        },
+        "sourceEvents": []
+      }
+    }
+  ]
+}

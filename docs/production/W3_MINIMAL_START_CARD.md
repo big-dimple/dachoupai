@@ -74,3 +74,5 @@ inputSHA：`576a7b60a4153d35d1479cfff9abb0d8cb6d61e6`，父确认PR39独审/精�
 inputSHA：`3ee210f3b0c5c2d04c00facb09cc1610adae2d0e`，父确认PR40独审/精确CI/FF main，fetch一致。原W3事实/使用闭环与W4-P1资源基础反馈（U06/U10/U11、SG10），对应JOKER_TRIGGER_HIGHLIGHT已核c12样板。依赖现有普通straight+flush同场资格、成功过关保存事件、满包转2金及已备T03–T06图；全部已有规则，不变领域/随机/奖励。现有过关主界面只显示合计金币，赠品来源/名称/入包及满包去向须主动读长trace，先补这条实际经营闭环。
 
 allowedFiles：`src/game/IntermissionScene.ts`、新只读`src/game/StageGiftReceipt.ts`、`tests/stage-gift-receipt.test.ts`、`harness/fixtures/stage-gift.ts`、`harness/w3-stage-gift.mjs`与必要证据。只读成功保存的真实onStageClear c12事件，复用既有footer和详情/工具图；未满足/特殊同花顺/无trace/未保存不假发奖，满包不假入工具。相关单测为主，有限PC/窄竖/短横原生真实两手→赠品/满包→查看/取消/重入→商店使用；最终必要门禁一次。P2特写/音效/角色/数值/存档/RNG/共享布局不改，真实玩家与真机待验；仅draft父审，不合main。
+
+本批软件结果：[换一身已保存过关赠品](evidence/w3-stage-gift-2026-10-07/README.md)。产品7e0b216，三个正常赠品/短横满包/普通同花顺反例共五原生案通过；查看/重入不重奖，赠品接到商店实际改牌并消费一次。68相关检查及一次默认verify2475 tests/138 files、content/plan通过。仅c12普通成功过关样板，其他来源/最终胜利/P2特写及真实理解/真机按原计划；新headCI/父独审待接，未合main。

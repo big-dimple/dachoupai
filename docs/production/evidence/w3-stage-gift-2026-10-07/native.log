@@ -1,0 +1,7 @@
+PASS [
+  { spec: { width: 1280, height: 720 }, status: 'PASS' },
+  { spec: { width: 390, height: 740 }, status: 'PASS' },
+  { spec: { width: 320, height: 740 }, status: 'PASS' },
+  { spec: { width: 740, height: 390, full: true }, status: 'PASS' },
+  { spec: { width: 1280, height: 720, special: true }, status: 'PASS' }
+]
