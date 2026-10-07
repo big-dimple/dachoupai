@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "5cf20ee00c08d64f55c22af8d04ac9ff46b2a4c1a2c0b2acded839b0fd006dd4",
+    "index": "16a1911d0a5fc48a252045ddbe2f4f15974d4c420e4fc16a7d256ee632c147da",
+    "head": "dc4fb0d87e46305012e02637a39686ba4ba1ec86",
+    "branch": "refs/heads/feat/w6-first-chapter-20261007"
+  },
+  "after": {
+    "source": "5cf20ee00c08d64f55c22af8d04ac9ff46b2a4c1a2c0b2acded839b0fd006dd4",
+    "index": "16a1911d0a5fc48a252045ddbe2f4f15974d4c420e4fc16a7d256ee632c147da",
+    "head": "dc4fb0d87e46305012e02637a39686ba4ba1ec86",
+    "branch": "refs/heads/feat/w6-first-chapter-20261007"
+  },
+  "steps": [
+    {
+      "name": "full-tests",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 47622
+    },
+    {
+      "name": "content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 11094
+    },
+    {
+      "name": "build-and-typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 12690
+    },
+    {
+      "name": "fixed-native-first-chapter",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 125612
+    },
+    {
+      "name": "standard-dual-smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 157427
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 325
+    }
+  ]
+}
