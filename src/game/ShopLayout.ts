@@ -33,11 +33,11 @@ function desktopShopLayout(width:number,height:number,top:number,bottom:number,_
   const inventoryEntry={x:rightX+rightWidth-168,y:top+64,width:168,height:44};
   const shopPanel={x:rightX,y:slotY+ownedHeight+24,width:rightWidth,height:height-bottom-8-(slotY+ownedHeight+24)};
   const actionWidth=width>=1600?144:128,goodsX=shopPanel.x+actionWidth+32,goodsWidth=shopPanel.width-actionWidth-48;
-  const seat=(goodsWidth-24)/3,cardWidth=width>=1600?144:128,cardHeight=cardWidth*1.4;
+  const seat=(goodsWidth-24)/3,cardWidth=width>=1600?144:88,cardHeight=cardWidth*1.4;
   const upperY=shopPanel.y+28,upperHeight=cardHeight+136;
   const jokerOffers:Box[]=Array.from({length:3},(_,i)=>({x:goodsX+i*(seat+12),y:upperY,width:seat,height:upperHeight}));
   const shelf=jokerOffers.map(b=>({x:b.x+(b.width-cardWidth)/2,y:b.y+6,width:cardWidth,height:cardHeight}));
-  const groupY=upperY+upperHeight+24,groupWidth=(goodsWidth-16)/2,lowerY=groupY+24,lowerHeight=Math.max(96,Math.min(112,shopPanel.y+shopPanel.height-32-lowerY));
+  const groupY=upperY+upperHeight+24,groupWidth=(goodsWidth-16)/2,lowerY=groupY+24,lowerHeight=Math.max(96,Math.min(200,shopPanel.y+shopPanel.height-32-lowerY));
   const toolOffers={x:goodsX,y:lowerY,width:groupWidth,height:lowerHeight},itemOffers={x:goodsX+groupWidth+16,y:lowerY,width:groupWidth,height:lowerHeight};
   const feedback={x:shopPanel.x+12,y:shopPanel.y+shopPanel.height-24,width:shopPanel.width-24,height:20};
   const play={x:shopPanel.x+12,y:shopPanel.y+28,width:actionWidth,height:56},reroll={x:play.x,y:play.y+68,width:actionWidth,height:44};
