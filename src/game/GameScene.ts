@@ -1,3 +1,4 @@
+import {growthOpportunity} from './GrowthOpportunity';
 import {showBuildJourney} from './BuildJourneyDialog';
 import {selectionExperience,hasActualBenefit,savedBenefit,savedExperienceCards,experienceBeat} from './JokerExperience';
 import {groupGrowthCausality,savedGrowthDiscovery} from './JokerGrowthCausality';
@@ -883,13 +884,15 @@ export class GameScene extends Phaser.Scene {
     const result=this.candidates.result;
     return result?.status==='ready'?'本轮可成'+result.groups.length+'种 · 查看':result?.status==='working'?'本轮牌型整理中 · 选牌照常':'选择说明 · 完整规则 ›';
   }
-  private inspectCandidates():void {
+  private inspectCandidates(growthOnly=false):void {
     if(!this.ready||this.presentation||this.run.phase!=='await-input')return;
     this.handInput?.cancel();this.view.cancelInteraction();this.ensureCandidates();this.candidateGhost=undefined;
-    const result=this.candidates.result!,key=result.key;
-    const isCurrent=()=>this.dialog.active(dialog)&&!document.hidden&&this.ready&&this.run.phase==='await-input'&&!this.presentation&&r2CandidateKey(this.candidateInput())===key;
+    const result=this.candidates.result!,key=result.key,assistKey=this.assistIds.join('|');
+    const isCurrent=()=>this.dialog.active(dialog)&&!document.hidden&&this.ready&&this.run.phase==='await-input'&&!this.presentation&&r2CandidateKey(this.candidateInput())===key&&this.assistIds.join('|')===assistKey;
     const facts=this.selectionPreview(),initial=facts?selectionCopy(facts).title+'\n'+selectionCopy(facts).membership:'尚未选择牌';
-    const dialog=this.dialog.open('本轮可成牌型',initial+'\n'+(result.status==='ready'?'共'+result.groups.length+'种：'+result.groups.map(g=>HAND_LABELS[g.type]).join(' · '):'本轮牌型整理中')+'\n★代表计分牌。只列当前手牌能组成的牌型。\n点示例不改选择；换组后仍需自己出牌。',[
+    const opportunity=(j:R2JokerInstance,example:HandPreview)=>{const context=r2ScoreContext(this.run,this.hand,example.playedIds);const resolved=validAssistDraft({hand:this.hand,selectedIds:example.playedIds,disabledIds:this.run.stage!.disabledIds,jokers:this.run.jokers,definitions:this.jokerDefinitions,handRules:context.handRules,ordinaryPointsSuppressedIds:context.ordinaryPointsSuppressedIds},this.assistProfile&&r2AssistAvailability(this.run).available,this.assistIds)??example;return growthOpportunity(this.run,j,this.memoryContext(j,resolved));};
+    const groups=result.groups.map(g=>({...g,examples:growthOnly?g.examples.filter(example=>this.run.jokers.some(j=>opportunity(j,example)?.status==='ready')):g.examples})).filter(g=>g.examples.length);if(growthOnly)groups.sort((a,b)=>Number(['high-card','pair'].includes(a.type))-Number(['high-card','pair'].includes(b.type)));
+    const dialog=this.dialog.open(growthOnly?'本轮成长机会':'本轮可成牌型',initial+'\n'+(result.status==='ready'?'共'+groups.length+'种：'+groups.map(g=>HAND_LABELS[g.type]).join(' · '):'本轮牌型整理中')+'\n★代表计分牌。只列当前手牌能组成的牌型。\n点示例不改选择；换组后仍需自己出牌。成长不是通关必选，不必为成长强留场。',[
       {label:'换为这组',primary:true,run:()=>{
         const ghost=this.candidateGhost;if(!isCurrent()||!ghost||ghost.key!==key){message.textContent=isCurrent()?'先点一个示例，只查看不会改选择。':'手牌或规则已变化，请关闭后重新查看。';return;}
         this.candidateUndo={revision:this.draftRevision(),ids:[...this.selectedIds],assistIds:[...this.assistIds]};
@@ -899,19 +902,21 @@ export class GameScene extends Phaser.Scene {
         const undo=this.candidateUndo;if(!isCurrent()||!undo||undo.revision!==this.draftRevision()){message.textContent='手牌或选择已变化，旧换组不能撤销。';return;}
         this.aiCursor=undefined;this.selectedIds=new Set(undo.ids);this.assistIds=[...(undo.assistIds??[])];this.candidateUndo=undefined;this.candidateGhost=undefined;this.dialog.close(dialog);this.statusMessage='已撤销换组，恢复原选择';this.refreshSelection();
       }},
+      {label:growthOnly?'全部可成牌型':'查看成长机会',run:()=>this.inspectCandidates(!growthOnly)},
       {label:'构筑条件',run:()=>{const selected=this.selectionPreview();if(selected)this.inspectSelection(selected);else this.inspectHeldConditions();}},
-    ],{onClose:()=>{this.candidateGhost=undefined;}});
+    ],{onClose:()=>{this.candidateGhost=undefined;},cards:growthOnly?this.run.jokers.flatMap(j=>{const g=growthOpportunity(this.run,j,this.memoryContext(j,facts));return g?[{title:g.name,url:selectionExperience(this.run,j,this.memoryContext(j,facts)).url,body:g.body,action:{label:'查看来源与成长',run:()=>this.inspectJoker(j.instanceId)}}]:[]}):undefined});
     const scroll=dialog.querySelector('.dialog-scroll')!,list=document.createElement('section'),message=document.createElement('p');list.className='hand-candidates';message.className='candidate-example';message.setAttribute('role','status');message.textContent='示例尚未选择；手牌选择保持原样。';scroll.append(list,message);
     const label=(ids:readonly string[])=>this.hand.filter(c=>ids.includes(c.id)).map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ');
+    if(growthOnly&&result.status==='ready'&&!groups.length){message.textContent='当前示例没有可新增成长的组合；可以正常出牌或查看全部牌型，成长不是通关必选。';}
     if(result.status!=='ready'){const pending=document.createElement('p');pending.textContent=result.status==='working'?'正在分片整理，可关闭继续选牌；稍后再查看。':'本轮仅显示可核验的当前选择；完整规则在构筑条件。';list.append(pending);return;}
-    for(const group of result.groups){const section=document.createElement('details'),heading=document.createElement('summary');section.className='candidate-group';section.open=group.type===facts?.type;heading.textContent=HAND_LABELS[group.type]+' · 可选'+group.playedCounts.join('／')+'张';section.append(heading);list.append(section);
+    for(const group of groups){const section=document.createElement('details'),heading=document.createElement('summary');section.className='candidate-group';section.open=group.type===facts?.type;heading.textContent=HAND_LABELS[group.type]+' · 可选'+[...new Set(group.examples.map(e=>e.playedIds.length))].join('／')+'张';section.append(heading);list.append(section);
       const variants=document.createElement('div'),button=document.createElement('button');variants.className='candidate-variants';button.type='button';button.className='candidate-choice';button.dataset.type=group.type;button.setAttribute('aria-pressed','false');let shown=group.examples[0];
-      const display=(example:HandPreview)=>{shown=example;const copy=selectionCopy(example);button.textContent=label(example.playedIds)+'\n'+copy.membership+(copy.disabledAccompanyingIds.length?'\n停用附带：'+label(copy.disabledAccompanyingIds)+' · 本场计分效果停用':'');button.dataset.ids=JSON.stringify(example.playedIds);};
+      const display=(example:HandPreview)=>{shown=example;const copy=selectionCopy(example);button.textContent=label(example.playedIds)+'\n'+copy.membership+(copy.disabledAccompanyingIds.length?'\n停用附带：'+label(copy.disabledAccompanyingIds)+' · 本场计分效果停用':'');const growth=this.run.jokers.map(j=>opportunity(j,example)).filter(g=>g?.status==='ready');if(growth.length)button.textContent+='\n'+growth.map(g=>g!.name+' · '+g!.label).join('；');button.dataset.ids=JSON.stringify(example.playedIds);};
       const choose=()=>{if(!isCurrent()||!this.dialog.active(dialog)){message.textContent='手牌或规则已变化，请重新查看。';return;}
         const copy=selectionCopy(shown);this.candidateGhost={key,facts:shown};list.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed','false'));button.setAttribute('aria-pressed','true');
         variants.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.count)===shown.playedIds.length)));
         const sources=shown.ruleSources.filter(source=>source.used).map(source=>this.jokerDefinition(source.definitionId).name).join('、');
-        message.textContent='仅示例：'+copy.title+'\n'+copy.pattern+'\n计分牌：'+label(shown.scoringIds)+'\n附带牌：'+(label(shown.accompanyingIds)||'无')+'\n'+[...copy.restrictions,...(copy.disabledAccompanyingIds.length?['停用附带：'+label(copy.disabledAccompanyingIds)+' · '+copy.accompanyingNote]:[])].join('\n')+(sources?'\n四牌规则来自：'+sources:'')+'\n当前手牌选择未改变。';
+        message.textContent=this.run.jokers.map(j=>opportunity(j,shown)).filter(Boolean).map(g=>g!.name+' · '+g!.body).join('\n\n')+'\n仅示例：'+copy.title+'\n'+copy.pattern+'\n计分牌：'+label(shown.scoringIds)+'\n附带牌：'+(label(shown.accompanyingIds)||'无')+'\n'+[...copy.restrictions,...(copy.disabledAccompanyingIds.length?['停用附带：'+label(copy.disabledAccompanyingIds)+' · '+copy.accompanyingNote]:[])].join('\n')+(sources?'\n四牌规则来自：'+sources:'')+'\n当前手牌选择未改变。';
       };
       for(const example of group.examples){const variant=document.createElement('button');variant.type='button';variant.textContent=example.playedIds.length+'张示例';variant.dataset.count=String(example.playedIds.length);variant.setAttribute('aria-pressed','false');variant.onclick=()=>{display(example);choose();};variants.append(variant);}
       display(shown);button.onclick=choose;section.append(variants,button);
@@ -922,7 +927,7 @@ export class GameScene extends Phaser.Scene {
   }
   private inspectHeldConditions():void {
     const preview=this.selectionPreview();
-    this.dialog.open('持有构筑 · '+(preview?'所选条件':'选牌与培养'),this.run.jokers.length?'先看每张来源的条件，选牌后描边和状态随所选更新；实际收益在保存成功后显示。':'尚未持有大丑牌。先选1–5张成型牌，过关后在商店按牌组购买来源。',[{label:'选择培养方向',primary:true,run:()=>this.inspectJourney()}],{cards:this.run.jokers.map(j=>({...selectionExperience(this.run,j,this.memoryContext(j,preview)),action:{label:'查看来源与成长',run:()=>this.inspectJoker(j.instanceId)}}))});
+    this.dialog.open('持有构筑 · '+(preview?'所选条件':'选牌与培养'),this.run.jokers.length?'先看每张来源的条件，选牌后描边和状态随所选更新；实际收益在保存成功后显示。':'尚未持有大丑牌。先选1–5张成型牌，过关后在商店按牌组购买来源。',[{label:'查看成长机会',primary:true,run:()=>this.inspectCandidates(true)},{label:'选择培养方向',run:()=>this.inspectJourney()}],{cards:this.run.jokers.map(j=>({...selectionExperience(this.run,j,this.memoryContext(j,preview)),action:{label:'查看来源与成长',run:()=>this.inspectJoker(j.instanceId)}}))});
   }
   private selectionPreview():HandPreview|undefined {
     if(this.playing||this.presentation||this.run.phase!=='await-input'||this.handsLeft<=0||!this.selectedIds.size||[...this.selectedIds].some(id=>!this.hand.some(card=>card.id===id)))return undefined;
