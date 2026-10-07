@@ -27,3 +27,9 @@ export function savedAssistCopy(trace:ScoreTrace):string {
  const label=trace.assist.ids.map(id=>{const card=trace.cards.find(card=>card.id===id)!;return rankLabel(card.rank)+SUIT_SYMBOL[card.suit];}).join(' ');
  return '助攻 '+label+' · ×'+trace.assist.multiplier+'（已一同用掉，不计主手或留手）';
 }
+
+/** Compact result identity comes only from a successfully saved assist event. */
+export function savedAssistSummary(trace:ScoreTrace):string|undefined {
+ if(!trace.assist||!trace.events.some(e=>e.sourceType==='character'&&e.sourceDefinitionId==='amo'&&e.reasonKey.startsWith('amo.assist.')&&e.operation==='multiply-multiplier'&&BigInt(e.after.M.n)*BigInt(e.before.M.d)>BigInt(e.before.M.n)*BigInt(e.after.M.d)))return;
+ return '阿默助攻 ×'+trace.assist.multiplier+' · 用掉'+trace.assist.ids.length+'张';
+}

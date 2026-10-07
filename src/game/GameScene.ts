@@ -786,7 +786,7 @@ export class GameScene extends Phaser.Scene {
         text(p.x+8,p.y+40,ASSIST_EXPLANATION,p.width-16);
       }else {text(p.x+8,p.y+2,ASSIST_EXPLANATION,p.width-16);text(p.x+8,p.y+22,ASSIST_AI_EXPLANATION,p.width-16);}
     }else if(desktop){
-      text(score.x+10,score.y+76,'助攻会一同用掉',score.width-20);
+      text(score.x+10,score.y+76,current?'助攻 '+current.assistIds.length+'张 ×'+current.assistMultiplier+' · 一同用掉':'助攻会一同用掉',score.width-20);
       text(score.x+10,score.y+94,'不算主手或留手牌',score.width-20);
       text(score.x+10,score.y+118,ASSIST_AI_EXPLANATION,score.width-20);
     }else{

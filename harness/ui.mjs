@@ -16,13 +16,15 @@ export async function point(page,key,name){
 }
 export async function tapUI(page,key,name,touch=false){
   if(key==='shop'&&['action/chapter','action/items'].includes(name)&&await page.evaluate(()=>window.__harness.game.scene.getScene('shop').view.layout.mode==='portrait')){
-    await tapUI(page,'shop','action/build',touch);const button=page.getByRole('button',{name:name==='action/chapter'?'本章节目':'物品与道具',exact:true});if(touch)await button.tap();else await button.click();return;
+    await tapUI(page,'shop','action/build',touch);if(name==='action/items'){const manage=page.getByRole('button',{name:'持有牌管理',exact:true});if(touch)await manage.tap();else await manage.click();}const button=page.getByRole('button',{name:name==='action/chapter'?'本章节目':'物品与道具',exact:true});if(touch)await button.tap();else await button.click();return;
   }
   if(key==='shop'&&name.startsWith('offer/'))for(let i=0;i<8;i++){
     const visible=await page.evaluate(name=>{const s=window.__harness.game.scene.getScene('shop'),walk=list=>list.some(o=>o.name===name||o.list&&walk(o.list));return walk(s.children.list);},name);if(visible)break;
     await tapUI(page,'shop','action/shelf-page',touch);
   }
   const p=await point(page,key,name);if(touch)await page.touchscreen.tap(p.x,p.y);else await page.mouse.click(p.x,p.y);
+  // Touch returns before Phaser consumes its pointer-up; observe the real next frame before another choice.
+  await page.evaluate(()=>new Promise((resolve,reject)=>{const game=window.__harness.game,timer=setTimeout(()=>{game.events.off('poststep',done);reject(Error('Phaser post-tap timeout'));},5000),done=()=>{clearTimeout(timer);resolve();};game.events.once('poststep',done);}));
 }
 /** Low-frequency table actions follow the actual D27 menu route. */
 export async function openMenuSection(page,section,touch=false){

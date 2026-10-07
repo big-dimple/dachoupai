@@ -2,6 +2,7 @@ import {describe,expect,it} from 'vitest';
 import {createRun,applyCommand,type R2RunState,type Action,type Command} from '../src/domain/run';
 import {makeCheckpoint,readCheckpoint,type Checkpoint} from '../src/application/checkpoint';
 import {r2AssistAvailability} from '../src/domain/r2Assist';
+import {savedAssistSummary} from '../src/game/AssistSelection';
 import {stableHash} from '../src/domain/hash';
 const main=['spades-9','hearts-9','clubs-13','diamonds-13'],assist=['spades-12','hearts-12'];
 function fixture(tool?:string){
@@ -54,4 +55,13 @@ describe('assist consumption remains bound to available same-stage journal evide
    const cp=makeCheckpoint(run.state,journal),read=readCheckpoint(cp);expect(read.ok).toBe(true);if(!read.ok)throw Error(read.code);expect(read.checkpoint.state).toEqual(run.state);expect(read.checkpoint.state.stage!.assistUsed).toBe(true);expect(r2AssistAvailability(read.checkpoint.state)).toEqual({available:false,remaining:0,reason:'used'});
   }
  });
+});
+
+it('result assist identity reads a real committed event, never a draft or an unrelated growth event',()=>{
+ const run=fixture();run.send({type:'PlayAssistedHand',selectedIds:main,assistIds:assist});
+ const trace=run.state.lastTrace!,before=JSON.stringify(run.state);if(!trace.assist)throw Error('fixture must have a committed assist');
+ expect(savedAssistSummary(trace)).toBe('阿默助攻 ×2 · 用掉2张');
+ expect(savedAssistSummary({...trace,events:trace.events.filter(e=>e.sourceType!=='character')})).toBeUndefined();
+ expect(savedAssistSummary({...trace,events:trace.events.map(e=>e.sourceType==='character'?{...e,after:e.before}:e)})).toBeUndefined();
+ expect(savedAssistSummary({...trace,assist:null})).toBeUndefined();expect(JSON.stringify(run.state)).toBe(before);
 });

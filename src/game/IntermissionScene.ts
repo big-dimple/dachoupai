@@ -14,7 +14,7 @@ import {getR2Stage} from '../domain/r2Run';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {jokerAbilityCopyForRun,publicJokerMemoryContext,recordedJokerMemoryContext} from './JokerMemory';
-import {savedAssistCopy} from './AssistSelection';
+import {savedAssistCopy,savedAssistSummary} from './AssistSelection';
 import {r2BossText} from '../domain/r2Chapter';
 import {HAND_LABELS} from '../content/handLabels';
 import {rankLabel,SUIT_SYMBOL} from '../cards/types';
@@ -172,9 +172,17 @@ export class IntermissionScene extends Phaser.Scene {
     const coinRow=this.result.cleared&&!skipped&&this.result.goldEarned>0,coinSize=compact?(b.height<190?56:72):96;
     const totalY=b.y+b.height-(coinRow?(compact?(coinSize===56?70:88):120):(compact?46:85)),target=run.stage!.targetHeat;
     if(trace&&totalY-scoreY-score.height>=25){
-      const fact=victorySourceFact(run,trace),sources=this.traceSources(trace).slice(0,3),y=scoreY+score.height+(compact?4:12),line=v.text(cx+18,y,fact?fact.title+' · '+fact.effect:sources.length?sources.join(' · '):'牌型与计分牌共同结算',14,'#3F606B',b.width-72).setOrigin(.5,0).setName('result/source-continuity');
-      const art=fact&&jokerArtKey(fact.definitionId);if(art&&this.textures.exists(art))v.add(this.add.image(Math.max(b.x+18,line.x-line.width/2-22),y+8,art).setDisplaySize(compact?16:28,compact?20:35).setName('result/source-art'));
-      if(animate){line.setAlpha(0);this.tweens.add({targets:line,alpha:1,y:{from:line.y-12,to:line.y},duration:280,delay:180,ease:'Cubic.easeOut'});}
+      const fact=victorySourceFact(run,trace),sources=this.traceSources(trace).slice(0,3),assist=savedAssistSummary(trace);
+      let y=scoreY+score.height+(compact?4:12);
+      if(assist){const line=v.text(cx,y,assist,14,PAPER_CSS.jade,b.width-24).setOrigin(.5,0).setName('result/assist-source');y+=line.height+4;}
+      const copy=fact?fact.title+' · '+fact.effect:sources.length?sources.join(' · '):'牌型与计分牌共同结算';
+      const line=v.text(cx+18,y,copy,14,PAPER_CSS.jade,b.width-72).setOrigin(.5,0).setName('result/source-continuity');
+      // Measured text must fit above the real total; compact screens keep the assist identity first.
+      if(y+line.height+4>totalY)line.destroy();
+      else {
+        const art=fact&&jokerArtKey(fact.definitionId);if(art&&this.textures.exists(art))v.add(this.add.image(Math.max(b.x+18,line.x-line.width/2-22),y+8,art).setDisplaySize(compact?16:28,compact?20:35).setName('result/source-art'));
+        if(animate){line.setAlpha(0);this.tweens.add({targets:line,alpha:1,y:{from:line.y-12,to:line.y},duration:280,delay:180,ease:'Cubic.easeOut'});}
+      }
     }
     const gap=BigInt(target)>BigInt(this.result.stageHeat)?(BigInt(target)-BigInt(this.result.stageHeat)).toString():'0';
     v.text(cx,totalY,skipped?'本场跳过':lost?`目标 ${heatText(target)} · 差 ${heatText(gap)}`:`全场 ${heatText(this.result.stageHeat)} / ${heatText(target)}`,compact?14:20,'#e3e9d9').setOrigin(.5,0).setName('result/gap');

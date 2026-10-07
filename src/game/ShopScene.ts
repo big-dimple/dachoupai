@@ -472,7 +472,7 @@ export class ShopScene extends Phaser.Scene {
     if(matches)this.view.add(this.add.graphics().lineStyle(3,0x3f606b,.9).strokeRoundedRect(b.x-2,b.y-2,b.width+4,b.height+4,6).setName('shop/build-match').setData('offerId',o.offerId));
   }
   private inspectJourney():void {
-    showBuildJourney(this.dialog,this.run,{ready:this.ready,onFocus:()=>this.render(),manage:()=>this.inspectBuild(),source:id=>this.inspectJoker(id),tools:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq)),tool:id=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq),id),deck:()=>this.inspectDeck(),offers:(id,kind)=>{this.shelfKind=kind;this.inspectOffer(id);},continueLabel:'保留金币进入牌桌',continue:()=>{this.dialog.close();void this.send({type:'LeaveShop'});}});
+    showBuildJourney(this.dialog,this.run,{ready:this.ready,onFocus:()=>this.render(),chapter:()=>this.inspectChapter(),manage:()=>this.inspectBuild(),source:id=>this.inspectJoker(id),tools:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq)),tool:id=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq),id),deck:()=>this.inspectDeck(),offers:(id,kind)=>{this.shelfKind=kind;this.inspectOffer(id);},continueLabel:'保留金币进入牌桌',continue:()=>{this.dialog.close();void this.send({type:'LeaveShop'});}});
   }
   private inspectBuild():void {
     const body=this.run.jokers.map((j,i)=>`${i+1}. ${this.jokerDefinition(j.definitionId).name} · ${editionEffectText(j.edition)} · 售价 ${salePrice(j.paidPrice)} 金\n${this.jokerCopy(j.definitionId)?.summary??this.jokerDefinition(j.definitionId).description}`).join('\n\n')||'尚无大丑牌。先看卡牌效果，也可以保留金币直接入场。';
