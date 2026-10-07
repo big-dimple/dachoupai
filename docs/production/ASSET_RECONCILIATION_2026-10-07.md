@@ -24,3 +24,8 @@
 本次有限[输入记录](evidence/w1-inputs-2026-10-07/INPUTS.md)实际读到并查看10个稳定ID：erxiang、b10、b11、mantangcai、c11、q、T03、T06、U01、U11，共12个输出（角色avatar/selection及b10 thumbnail/detail等）。[字节/尺寸/hash](evidence/w1-inputs-2026-10-07/assets.json)均与manifest一致，原生界面缩略、b10详情和库存图已显示；[既有资源联系板](evidence/w1-inputs-2026-10-07/asset-contact.png)仅便于查看，不是新候选。当前保留这些资源，不新增全库重画任务。
 
 本子集需修项集中于实际UI：PC商店420px区域分配、条件摘要可比性、详情关闭尺寸；这不是判原图不可用。未检查的detail输出、其他资源像素/解剖/统一、聊天母版与用户满意仍未知；原静态全清单对账边界保持。
+
+
+## 高频画面复用补核（源码d11f155，2026-10-07）
+
+[本批证据](evidence/w1-first-flow-hierarchy-2026-10-07/README.md)将既有erxiang、b10/b11/mantangcai、j/q/k、T06/U11用于牌桌/三货/候选，不新增原画或风格。两份manifest与有限avatar/thumbnail/court输出的字节SHA重核一致，见[assets.json](evidence/w1-first-flow-hierarchy-2026-10-07/assets.json)。系统Chromium1366/390/短横实际图已查看，候选K显式decode；PC商品与来源图片按现有高度预算扩大，长说明回退保留价格独立区域，候选复用公开牌面并滚入可视区。只补这些页面的消费/可见性证据，不宣布267个输出全部加载、全美术/设备或真人审美通过；母版未知、原历史状态和W2/W6分项门槛保留。

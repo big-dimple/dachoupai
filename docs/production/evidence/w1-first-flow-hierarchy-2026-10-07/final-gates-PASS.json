@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "9d1ac7312cfd9c8965fa6e5e968c852e2a018aad74f2e6033bb97009c89ef957",
+    "index": "d86fddf47b5002b9f4e3c1035fab6bad83491d20b96f9f9263d3772815f59064",
+    "head": "d11f1555cb67f1affa8b840d99e01ed20c80f6c3",
+    "branch": "refs/heads/feat/w1-first-flow-hierarchy-20261007"
+  },
+  "after": {
+    "source": "9d1ac7312cfd9c8965fa6e5e968c852e2a018aad74f2e6033bb97009c89ef957",
+    "index": "d86fddf47b5002b9f4e3c1035fab6bad83491d20b96f9f9263d3772815f59064",
+    "head": "d11f1555cb67f1affa8b840d99e01ed20c80f6c3",
+    "branch": "refs/heads/feat/w1-first-flow-hierarchy-20261007"
+  },
+  "steps": [
+    {
+      "name": "affected-layout-selection-input",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 1801
+    },
+    {
+      "name": "content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 10081
+    },
+    {
+      "name": "typecheck-build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 14086
+    },
+    {
+      "name": "standard-desktop-mobile-smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 163974
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 328
+    }
+  ]
+}
