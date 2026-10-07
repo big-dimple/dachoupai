@@ -28,3 +28,17 @@ describe('visible tool inventory entry reuses space around existing actions',()=
   const s=createRun({seed:'tool-entry',runId:'fixture/tool-entry',characterId:'amo',rulesVersion:'r2'});expect(toolInventoryLabel(s)).toBe('工具包 0/2');s.consumables=[{instanceId:'owned/a',definitionId:'T07'}];expect(toolInventoryLabel(s)).toBe('工具包 1/2');s.longTermItems=['U07'];expect(toolInventoryLabel(s)).toBe('工具包 1/3');s.consumables=[];expect(toolInventoryLabel(s)).toBe('工具包 0/3');
  });
 });
+
+describe('desktop height boundary respects the usable safe viewport',()=>{
+ it('keeps inventory, history, primary controls and nine seats usable around 500 and the full-sidebar budget',()=>{
+  for(const width of [1024,1280,1920])for(const height of [499,500,501,559,560,561])for(const top of [0,12,24,34])for(const bottom of [0,12,24,34])for(const [left,right] of [[0,0],[12,24],[24,12]])for(const count of [9,14]){
+   const l=layout({width,height},{top,bottom,left,right},undefined,{count,start:14}),entry=gameToolInventoryBox(l);
+   const inside=(b:{x:number;y:number;width:number;height:number})=>{expect(b.x).toBeGreaterThanOrEqual(left);expect(b.y).toBeGreaterThanOrEqual(top);expect(b.x+b.width).toBeLessThanOrEqual(width-right+.01);expect(b.y+b.height).toBeLessThanOrEqual(height-bottom+.01);};
+   inside(entry);expect(entry.height).toBe(44);expect(entry.width).toBeGreaterThanOrEqual(44);
+   for(const b of [l.scoreBoard,l.status,...Object.values(l.buttons),...Object.values(l.tableActions),...l.cards.filter(c=>c.visible).map(c=>c.hit)]){inside(b);expect(intersects(entry,b)).toBe(false);}
+   if(!l.shortLandscape)inside({x:l.hud.x+12,y:l.hud.y+(l.mode==='landscape'?301:510),width:l.hud.width-24,height:34});
+   if(count===9){expect(l.handOverflow).toBe(false);expect(l.visibleCardCount).toBe(9);}
+   for(const b of [...Object.values(l.buttons),...Object.values(l.tableActions)]){expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);}
+  }
+ });
+});

@@ -8,7 +8,10 @@ const box=(x:number,y:number,width:number,height:number):Box=>({x,y,width,height
 
 /** All coordinates and font sizes are CSS pixels, independent of texture DPR. */
 function capacityLayout(viewport:{width:number;height:number},safe:Insets,requested?:LayoutMode,handWindow:HandWindow={count:8}){
-  const mode=requested??(viewport.width<700&&viewport.height>viewport.width?'portrait':viewport.height<500?'landscape':'desktop');
+  // The full sidebar needs room for its history as well as HUD/score/inventory.
+  // Reuse the existing short layout when safe insets leave less than that budget.
+  const usableHeight=viewport.height-safe.top-safe.bottom;
+  const mode=requested??(viewport.width<700&&viewport.height>viewport.width?'portrait':usableHeight<560?'landscape':'desktop');
   const width=viewport.width,height=viewport.height,portrait=mode==='portrait',landscape=mode==='landscape';
   const compact=portrait&&(width<360||height-safe.top-safe.bottom<760);
   // Nine seats take priority over decorative table margins. 320px uses 31px exposed

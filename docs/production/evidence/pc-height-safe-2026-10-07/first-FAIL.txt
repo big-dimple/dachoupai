@@ -1,0 +1,27 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/tool-inventory-entry.test.ts (17 tests | 1 failed) 135ms
+     × keeps inventory, history, primary controls and nine seats usable around 500 and the full-sidebar budget 110ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/tool-inventory-entry.test.ts > desktop height boundary respects the usable safe viewport > keeps inventory, history, primary controls and nine seats usable around 500 and the full-sidebar budget
+AssertionError: expected 552 to be less than or equal to 500.01
+ ❯ inside tests/tool-inventory-entry.test.ts:36:229
+
+ ❯ tests/tool-inventory-entry.test.ts:39:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 passed (17)
+   Start at  07:24:02
+   Duration  956ms (transform 509ms, setup 0ms, import 631ms, tests 135ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
