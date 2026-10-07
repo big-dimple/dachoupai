@@ -18,3 +18,11 @@ c11换轨：紧邻普通顺子→普通同花或反向，整手倍率×1.75；�
 ## 玩家发现路径挂钩
 
 原W1/W3/W5/W4共同验收：发现机会→尝试效果→理解真实收益→主动买牌/改牌加强→缺件时转向。首批只解决上面信息/操作，不冒称五步完成；后续用固定真实trace与新的公开手牌/货架检验玩家能独立选择下一步、解释读取/新增成长、给出有来源且可用的缺件替代。未观察自然组件保留未知，不扫大量种子凑成功。百万/亿分是可选高手层次，不是唯一成功指标；理解、选择与迁移各自留证。有限截图/关键短片，不长录屏或软件GPU帧率签收。
+
+## 2026-10-07 安全管理执行批次
+
+当前 inputSHA：`a6047dedbd89f24a90e9c07de27c82d47d6a9645`（启动已 fetch 并核 main）。旧 inputSHA 与证据保留原身份。本批先复现 320×568 bottom12/34 误触、740×390 折叠管理缺入口、详情关闭44px与底安全区，再修安全操作，最后核 b10/b11/mantangcai 已有正确摘要。
+
+allowedFiles 精确补充：`src/game/ShopLayout.ts`、`harness/w3-shop-management.mjs`；现有 `src/game/ShopScene.ts`、`src/style.css`、`tests/shop-layout.test.ts`、`tests/detail-dialog.test.ts` 仍在范围。只在实际依赖时修改；不动 ToolInventoryEntry、领域/content/application/platform、锁文件、CI。合同记录与源码独立提交，新的有界证据目录为 `docs/production/evidence/w3-shop-management-2026-10-07/`。
+
+保留 PC 新区域、手机九牌及811/812容量临界；管理入口点开/取消不改完整state与RNG，调序边界禁用，出售二次确认。共享详情使用已有正文滚动并把主关闭与整框放在安全区内，不缩字、不用固定高度裁正文。软件与部署证据不代签用户PC/审美。
