@@ -1,3 +1,5 @@
+import {keyHighlight,keyHighlightBeat,savedGrowthStamp,type JokerKeyHighlight} from './JokerKeyHighlight';
+import {mountKeyHighlight} from './JokerKeyHighlightView';
 import {renderCandidateCards} from './CandidateCardPreview';
 import {growthOpportunity} from './GrowthOpportunity';
 import {showBuildJourney} from './BuildJourneyDialog';
@@ -1348,7 +1350,7 @@ export class GameScene extends Phaser.Scene {
     this.fitScoreReadouts();
     const controls=this.view.root.list.filter(o=>o.name.startsWith('action/'));
     const foreground=[this.roleAvatar,...this.cardViews.map(v=>v.container),...[...this.settledCards.values()].map(v=>v.container),...this.jokerViews.values(),
-      ...controls.flatMap(o=>[o,o.getData('buttonArt'),o.getData('label')])].filter(o=>o?.active);
+      ...this.view.root.list.filter(o=>o.name==='joker/key-focus'),...controls.flatMap(o=>[o,o.getData('buttonArt'),o.getData('label')])].filter(o=>o?.active);
     orderScoreBrushLayers(this.view.root,foreground,[this.resultText,...this.scoreLabels,this.scoreHeat,this.scoreMult,this.scoreTotal,this.breakdownText,this.previousHandText]);
   }
   private transferToAccumulator(event:ScoreEvent,card:CardView|undefined,duration:number,context:EffectContext):Promise<void> {
@@ -1399,15 +1401,37 @@ export class GameScene extends Phaser.Scene {
       this.setDisplayedProduct(Math.max(0,Math.floor(hv*mv)).toString());
     }},context).then(()=>{if(!context.signal.aborted)this.setAccumulator(event.after);});
   }
-  private async showScoreEvent(event:ScoreEvent,index:number,beat:ScoreBeat,context:EffectContext):Promise<void> {
+  private showKeyHighlight(key:JokerKeyHighlight,context:EffectContext):()=>void {
+    const l=this.view.layout,area=toolInventoryPlayedArea(l),mat=playedFootprint(area,l.mode==='portrait'),source=this.jokerViews.get(key.fact.sourceInstanceId);
+    const poses=[...this.settledCards.values()].map(v=>({c:v.container,x:v.container.x,y:v.container.y}));
+    let box:Box,compact=false;
+    if(l.mode==='desktop'){
+      const width=Math.min(220,area.x+area.width-mat.x-mat.width-16);
+      box={x:area.x+area.width-width-8,y:area.y+Math.max(8,(area.height-240)/2),width,height:Math.min(240,area.height-16)};
+    }else if(l.shortLandscape){
+      compact=true;box={x:Number(source?.getData('baseX')??area.x)-30,y:12,width:60,height:72};
+    }else{
+      const bottom=Math.min(area.y+area.height,gameToolInventoryBox(l).y-4),cardHeight=Math.max(...poses.map(p=>Number(p.c.getData('height'))*p.c.scaleY),0);
+      box={x:area.x+4,y:area.y+4,width:area.width-8,height:Math.max(72,bottom-area.y-cardHeight-12)};
+      for(const p of poses)p.c.setY(bottom-cardHeight/2-2);
+    }
+    const oldVisible=source?.visible;if(compact)source?.setVisible(false);
+    const group=mountKeyHighlight(this,this.view.root,box,key,compact);
+    this.statusText.setText(key.fact.title+' · '+key.cause).setData('keyCause',key.fact.condition);
+    let cleaned=false;
+    const cleanup=()=>{if(cleaned)return;cleaned=true;context.signal.removeEventListener('abort',cleanup);for(const p of poses)if(p.c.active)p.c.setPosition(p.x,p.y);if(compact&&source?.active)source.setVisible(oldVisible!);group.destroy();};
+    context.signal.addEventListener('abort',cleanup,{once:true});return cleanup;
+  }
+  private async showScoreEvent(event:ScoreEvent,index:number,beat:ScoreBeat,context:EffectContext,key?:JokerKeyHighlight):Promise<void> {
     if(context.signal.aborted)return;
     this.ensureTraceSource(event);
     const benefit=this.presentation?savedBenefit(this.run,this.presentation.score,event):undefined;
     const sourceBenefit=hasActualBenefit(event);
     if(benefit){this.statusText.setName('benefit/live').setText(benefit.effect);this.statusText.setData('benefit',benefit);if(this.statusText.width>this.view.layout.status.width)this.statusText.setText(benefit.title+' · 收益见上手详情');}
 
+    const restoreKey=key?this.showKeyHighlight(key,context):undefined;
     if(event.targetCardId)this.showTraceHeldCard(event.targetCardId);
-    const timing=this.reducedMotion?{...beat,windup:0,flight:0,impact:Math.min(180,beat.impact),rest:120}:beat,duration=timing.windup+timing.flight+timing.impact;
+    const timing=key?keyHighlightBeat(beat,this.reducedMotion):this.reducedMotion?{...beat,windup:0,flight:0,impact:Math.min(180,beat.impact),rest:120}:beat,duration=timing.windup+timing.flight+timing.impact;
     const note=this.operationText(event),source=this.eventSource(event),card=this.settledCards.get(event.targetCardId??'')??this.cardViews.find(view=>view.card.id===event.targetCardId);
     this.resultText.setVisible(true).setText(source+' · '+note);this.breakdownText.setText((event.phase==='onStageClear'?'过关收益':event.phase==='beforeFailure'?'失败前救场':event.phase==='afterHand'?'结算后状态':event.sourceType==='joker'?'大丑牌连锁':'逐项计分')+' · '+source+' '+note);this.setAccumulator(event.before);
     this.scoreTotal.setData('eventId',event.eventId).setData('eventPhase','windup');
@@ -1444,6 +1468,7 @@ export class GameScene extends Phaser.Scene {
     // The domain result is already saved. Only the display and SFX arrive with this hit.
     this.scoreTotal.setData('eventPhase','impact');
     if(event.sourceType==='character')this.audio.sourceCue('character');
+    else if(key?.kind==='multiply')this.audio.multiplier('multiply',index);
     else if(event.sourceType==='joker'&&sourceBenefit)this.audio.sourceCue(event.phase==='onHeldCard'?'held':'joker',index);
     else if(event.sourceType==='card'&&event.value.n!=='0')this.audio.sourceCue('card',index);
     else if(event.sourceType==='rule')this.audio.sourceCue(event.phase==='onStageClear'?'held':'boss');
@@ -1471,7 +1496,7 @@ export class GameScene extends Phaser.Scene {
       }
       this.audio.coin();
     }
-    if(event.sourceType==='joker'&&sourceBenefit){
+    if(event.sourceType==='joker'&&sourceBenefit&&!key){
       const jv=this.jokerViews.get(event.sourceInstanceId);
       if(jv){const frame=jv.getData('frame') as Phaser.GameObjects.Rectangle;notes.push(this.floatNote(note,Number(jv.getData('baseX')),Number(jv.getData('baseY'))-frame.height/2-8,event.operation==='multiply-multiplier'||event.operation==='read-coefficient'?'#f6c0a4':'#ffe3ae',impactDuration+timing.rest,context));}
     }else if(event.sourceType==='character'){
@@ -1485,8 +1510,11 @@ export class GameScene extends Phaser.Scene {
     if(context.signal.aborted)return;
     this.setAccumulator(event.after);
     this.scoreTotal.setData('eventPhase','rest');
+    const growth=this.presentation?savedGrowthStamp(this.run,this.presentation.score,event):undefined;
+    if(growth){this.statusText.setText(benefit!.title+' · 已存成长，下手生效').setData('growthStamp',growth);this.resultText.setText(benefit!.title+' · 成长已保存');}
     await Promise.all([this.wait(timing.rest,context),...notes]);
     if(context.signal.aborted)return;
+    restoreKey?.();
     if(event.operation==='destroy-card'&&card){
       await this.breakGlass(card,context);
     }
@@ -1644,12 +1672,13 @@ export class GameScene extends Phaser.Scene {
       await Promise.all(baseEffects);
     });
     this.effects.enqueue(context=>this.wait(this.reducedMotion?120:baseCue&&!fourCardFormation(score)?200:460,context));
+    const key=keyHighlight(state,score,originHeat,this.stage.targetHeat);
     let jokerIndex=0,scoreOrdinal=0,previousSource:string|undefined;
     for(const event of score.events){
       if(event.phase==='base')continue;
       if(event.phase==='finalScore'){this.effects.enqueue(context=>this.award(score,presentation,context));continue;}
       const index=event.sourceType==='joker'?jokerIndex++:event.sourceType==='character'?0:score.sets.activeScoringIds.indexOf(event.targetCardId??'');
-      const beat=experienceBeat(event,previousSource,scoreBeat(event,scoreOrdinal++));if(event.sourceType==='joker'&&hasActualBenefit(event))previousSource=event.sourceInstanceId;else previousSource=undefined;this.effects.enqueue(context=>this.showScoreEvent(event,Math.max(0,index),beat,context));
+      const beat=experienceBeat(event,previousSource,scoreBeat(event,scoreOrdinal++));if(event.sourceType==='joker'&&hasActualBenefit(event))previousSource=event.sourceInstanceId;else previousSource=undefined;this.effects.enqueue(context=>this.showScoreEvent(event,Math.max(0,index),beat,context,key?.eventId===event.eventId?key:undefined));
     }
     let failed=false;
     try {await this.effects.drain();}

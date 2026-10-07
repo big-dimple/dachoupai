@@ -1,3 +1,5 @@
+import {victorySourceFact} from './JokerKeyHighlight';
+import {jokerArtKey} from './jokerArt';
 import {showBuildJourney} from './BuildJourneyDialog';
 import {showDeckInspection} from './DeckInspector';
 import {savedExperienceCards} from './JokerExperience';
@@ -82,7 +84,7 @@ export class IntermissionScene extends Phaser.Scene {
     this.stopCelebration();v.clear();v.paperBackground();
     v.text(p.x,p.top,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,'#3F606B',p.w-116);
     const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?'八章好戏，满堂喝彩！':this.result.cleared?outcome.title:'演出失败';
-    v.text(lost?l.width/2:p.x,lost?Math.max(p.top+34,l.height*.18):p.top+(p.short?23:34),title,p.short?22:p.portrait?26:34,'#26313A',p.w).setOrigin(lost?.5:0,0).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
+    v.text(lost?l.width/2:p.x,lost?Math.max(p.top+34,l.height*.18):p.top+(p.short?23:p.portrait?52:34),title,p.short?22:p.portrait?26:34,'#26313A',p.w).setOrigin(lost?.5:0,0).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     if(lost){
       const groupWidth=Math.min(p.w,420),groupX=(l.width-groupWidth)/2;
       Object.assign(p.score,{x:(l.width-Math.min(p.w,680))/2,y:Math.max(p.top+34,l.height*.18)+46,width:Math.min(p.w,680),height:Math.min(190,l.height*.25)});
@@ -108,6 +110,7 @@ export class IntermissionScene extends Phaser.Scene {
     }else if(capped){
       heading='已达数值上限';body='进度已保存。可查看本场、在菜单导出，或返回选角。';
     }
+    if(p.short&&trace&&!skipped&&this.result.cleared){const fact=victorySourceFact(run,trace);if(fact)body=fact.title+' · '+fact.effect+'\n'+body;}
     if(!lost){
       v.material(n,0x21474a,0x21474a,4);
       const nextHeading=v.text(n.x+14,n.y+10,heading,18,'#26313A',n.width-28).setFontStyle('bold');
@@ -168,8 +171,9 @@ export class IntermissionScene extends Phaser.Scene {
     // Reserve visible coin height above the reward row; transparent cell padding is not a text gap.
     const coinRow=this.result.cleared&&!skipped&&this.result.goldEarned>0,coinSize=compact?(b.height<190?56:72):96;
     const totalY=b.y+b.height-(coinRow?(compact?(coinSize===56?70:88):120):(compact?46:85)),target=run.stage!.targetHeat;
-    if(!compact&&trace){
-      const sources=this.traceSources(trace).slice(0,3),line=v.text(cx,Math.min(totalY-25,scoreY+score.height+16),sources.length?sources.join(' · '):'牌型与计分牌共同结算',14,'#3F606B',b.width-28).setOrigin(.5,0);
+    if(trace&&totalY-scoreY-score.height>=25){
+      const fact=victorySourceFact(run,trace),sources=this.traceSources(trace).slice(0,3),y=scoreY+score.height+(compact?4:12),line=v.text(cx+18,y,fact?fact.title+' · '+fact.effect:sources.length?sources.join(' · '):'牌型与计分牌共同结算',14,'#3F606B',b.width-72).setOrigin(.5,0).setName('result/source-continuity');
+      const art=fact&&jokerArtKey(fact.definitionId);if(art&&this.textures.exists(art))v.add(this.add.image(Math.max(b.x+18,line.x-line.width/2-22),y+8,art).setDisplaySize(compact?16:28,compact?20:35).setName('result/source-art'));
       if(animate){line.setAlpha(0);this.tweens.add({targets:line,alpha:1,y:{from:line.y-12,to:line.y},duration:280,delay:180,ease:'Cubic.easeOut'});}
     }
     const gap=BigInt(target)>BigInt(this.result.stageHeat)?(BigInt(target)-BigInt(this.result.stageHeat)).toString():'0';
