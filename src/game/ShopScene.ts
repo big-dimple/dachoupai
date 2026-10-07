@@ -1,4 +1,4 @@
-import {shopPurchaseReceipt,type ShopPurchaseReceipt} from './ShopPurchaseReceipt';
+import {shopPurchaseReceipt,shopPurchaseReceiptExists,type ShopPurchaseReceipt} from './ShopPurchaseReceipt';
 import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {r2JokerDefinitionsFor,r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {jokerAbilityCopyForRun,publicJokerMemoryContext} from './JokerMemory';
@@ -586,7 +586,7 @@ export class ShopScene extends Phaser.Scene {
         return false;
       }
       this.run=result.state;
-      if(!result.duplicate&&(action.type==='SellJoker'||action.type==='UseConsumable'||action.type==='DestroyConsumable')&&action.instanceId===this.lastPurchaseReceipt?.id)this.lastPurchaseReceipt=undefined;
+      if(!result.duplicate&&this.lastPurchaseReceipt&&!shopPurchaseReceiptExists(this.lastPurchaseReceipt,this.run))this.lastPurchaseReceipt=undefined;
       const transactions=result.events.filter((event):event is Extract<DomainEvent,{type:'joker-transaction'}>=>event.type==='joker-transaction');
       if(!result.duplicate&&transactions.length){this.pendingTransactions=transactions;this.lastTransactionNotes=transactions.map(event=>r2TransactionText(event,this.jokerDefinition(event.definitionId)));}
       if(action.type==='BuyOffer'&&purchase&&!result.duplicate){

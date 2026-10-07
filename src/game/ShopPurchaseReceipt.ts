@@ -24,3 +24,8 @@ export function shopPurchaseReceipt(before:R2RunState,after:R2RunState,kind:Shop
  }
  return {kind,id,definitionId:offer.definitionId,name,commandSeq:after.commandSeq,body:`已购 ${name} · 已保存\n金币 ${before.gold} → ${after.gold}\n\n${destination}`};
 }
+
+/** Evaluate against the committed state, including indirect removal such as S07 sacrifice. */
+export function shopPurchaseReceiptExists(receipt:ShopPurchaseReceipt,state:R2RunState):boolean {
+ return receipt.kind==='jokers'?state.jokers.some(j=>j.instanceId===receipt.id):receipt.kind==='tools'?state.consumables.some(t=>t.instanceId===receipt.id):state.longTermItems.includes(receipt.id);
+}
