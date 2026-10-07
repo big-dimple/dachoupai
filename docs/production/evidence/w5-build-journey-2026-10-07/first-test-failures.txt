@@ -1,0 +1,31 @@
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/build-journey.test.ts > an unowned zero-growth source is not presented as a ready investment for a transfer lane
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/build-journey.test.ts:14:289
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/v00-bot.test.ts > V00 policies receive only player-visible information > groups emits only valid ordinary commands on a natural run
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/v00-bot.test.ts:19:51
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 139 passed (141)
+      Tests  2 failed | 2492 passed (2494)
+   Start at  15:26:41
+   Duration  42.90s (transform 5.18s, setup 0ms, import 20.83s, tests 83.69s, environment 36ms)
+
+npm notice

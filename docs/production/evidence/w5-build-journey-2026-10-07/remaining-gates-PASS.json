@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "a4cc03239099e8a69dd7b12ca664f99754cd1639a4a54463dc632b5f6a21ddc6",
+    "index": "30fd43cddc0fd3b8e77fbf56bd85d7df92b751023d7d12b3efe0fa0349a7b289",
+    "head": "6758a5168e10ed3948d03e303eca99129f374d89",
+    "branch": "refs/heads/feat/w5-build-journey-20261007"
+  },
+  "after": {
+    "source": "a4cc03239099e8a69dd7b12ca664f99754cd1639a4a54463dc632b5f6a21ddc6",
+    "index": "30fd43cddc0fd3b8e77fbf56bd85d7df92b751023d7d12b3efe0fa0349a7b289",
+    "head": "6758a5168e10ed3948d03e303eca99129f374d89",
+    "branch": "refs/heads/feat/w5-build-journey-20261007"
+  },
+  "steps": [
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 7483
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 14151
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 171750
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 328
+    }
+  ]
+}

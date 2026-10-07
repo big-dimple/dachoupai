@@ -100,3 +100,5 @@ inputSHA：`ca15560c679f60ecbb9c9751b243a61367467c70`，父确认PR43独审/精�
 同一候选串起：玩家选择成组/顺子/同花培养方向→查看已有成长和实际可用工具→自选工具/目标并确认→本店商品投资或保留金币→下一场查看已保存收益。培养选择仅本次页面会话记忆，刷新后明确重新选择；不改run/save/RNG/角色，不模拟未来手牌/总分，不自动买牌、选目标、出牌或发奖。缺工具/来源/现金时展示当前缺口和既有公开牌型、留金/转向入口；不给虚假必胜路线。
 
 allowedFiles：新增src/game/BuildJourney.ts、BuildJourneyDialog.ts及相关tests/build-journey.test.ts、harness/w5-build-journey.mjs、harness/fixtures/build-journey.ts；复用GameScene、ShopScene、IntermissionScene、DetailDialog、ConsumableDialog、现有CSS/手绘来源。消费已有价格/容量/工具校验，领域/content/application/platform/资产/CI/锁文件不改。仅定向风险测试与本包一次必要最终门禁；一条有限正常入口路线与受控工具/缺件/现金对照分别留证，不扫种子、不混称自然获取，不长录屏或软件GPU帧率签收。
+
+W5/W6本包软件候选：[培养—工具—现金—下一场整包证据](evidence/w5-build-journey-2026-10-07/README.md)。最终产品`6758a51`，新方向筛选已收口；六原生案及两受影响窄/短屏补查通过，正常路线与受控库存分开。原全套2492PASS/2FAIL和原因保留，受影响13tests定向复查及content/type/build/标准双端smoke/plan通过，不重复本地全套；精确CI和父审待接，不预记main或整体W5/W6通过。

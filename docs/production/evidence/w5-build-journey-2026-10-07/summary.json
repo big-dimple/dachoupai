@@ -1,0 +1,165 @@
+{
+  "inputMain": "ca15560c679f60ecbb9c9751b243a61367467c70",
+  "codeCommit": "6758a5168e10ed3948d03e303eca99129f374d89",
+  "files": {
+    "src/game/BuildJourney.ts": "7fa9ce1c5241cf1a8f412cbf7c166884e84bf62b466555eaeac4c663d3f59304",
+    "src/game/BuildJourneyDialog.ts": "93f1cd2a5001c602fbbada9278eab27c607194f103ce3b15056c46c3fa7f34e5",
+    "src/game/ConsumableDialog.ts": "2f64b7056e06aa7a8425c3fb5b39b16e9b97b56baaf4743ac899151a6a92f48d",
+    "src/game/GameScene.ts": "bbe1dca0cc7cc981c3cb53aacc7535dcc71fcffad08b09b589966bc45506c43f",
+    "src/game/ShopScene.ts": "b6f6e97878f391190c0fc4c7763a209c8ce0dd509514d6f43b1bc88c18bd4145",
+    "src/game/IntermissionScene.ts": "47f71c6465da8ab3e4b3520f401b6a6be43a4e8798c7e25759b1e983df3371e5",
+    "harness/fixtures/build-journey.ts": "43e6526fbdca30783d3018dbb428469dd490566f3ac314f844e3767dfdb4be46",
+    "harness/w5-build-journey.mjs": "8b24807d882258951fbcbd08cbb1795d86abc2aab877f9fa76e8aca50abaa872",
+    "tests/build-journey.test.ts": "3e12e5e8b0f32d5d69996a0d6fde910044d08fac6758101bda1d52c46385825c"
+  },
+  "reports": {
+    "native-six-PASS": {
+      "source": "f937cd1a2a1609da60a19431ca41822637c45b44",
+      "sourceStatus": "M src/game/ConsumableDialog.ts\n M src/game/GameScene.ts\n M src/game/IntermissionScene.ts\n M src/game/ShopScene.ts\n?? docs/production/evidence/w5-build-journey-2026-10-07/\n?? harness/fixtures/build-journey.ts\n?? harness/w5-build-journey.mjs\n?? src/game/BuildJourney.ts\n?? src/game/BuildJourneyDialog.ts\n?? tests/build-journey.test.ts",
+      "sha256": "bed8c10a1097f1e430114507d3977a34e27ffb06e86ff16f62b617efdcc2edb5",
+      "cases": [
+        {
+          "spec": {
+            "width": 1280,
+            "height": 720,
+            "natural": true
+          },
+          "status": "PASS",
+          "scope": "Normal new entry, natural shelf/deal, bounded known seed"
+        },
+        {
+          "spec": {
+            "width": 1366,
+            "height": 768,
+            "invest": true
+          },
+          "status": "PASS",
+          "scope": "Controlled tools/cash/owned growth or absence"
+        },
+        {
+          "spec": {
+            "width": 1920,
+            "height": 1080
+          },
+          "status": "PASS",
+          "scope": "Controlled tools/cash/owned growth or absence"
+        },
+        {
+          "spec": {
+            "width": 390,
+            "height": 740
+          },
+          "status": "PASS",
+          "scope": "Controlled tools/cash/owned growth or absence"
+        },
+        {
+          "spec": {
+            "width": 320,
+            "height": 740,
+            "missing": true
+          },
+          "status": "PASS",
+          "scope": "Controlled tools/cash/owned growth or absence"
+        },
+        {
+          "spec": {
+            "width": 740,
+            "height": 390,
+            "missing": true
+          },
+          "status": "PASS",
+          "scope": "Controlled tools/cash/owned growth or absence"
+        }
+      ]
+    },
+    "native-final-missing-PASS": {
+      "source": "6758a5168e10ed3948d03e303eca99129f374d89",
+      "sourceStatus": "?? docs/production/evidence/w5-build-journey-2026-10-07/",
+      "sha256": "a17eaf65d96c8e818cbdea62d3f3152d8a0982653272d95de63876301b30a434",
+      "cases": [
+        {
+          "spec": {
+            "width": 320,
+            "height": 740,
+            "missing": true
+          },
+          "status": "PASS",
+          "scope": "Controlled tools/cash/owned growth or absence"
+        },
+        {
+          "spec": {
+            "width": 740,
+            "height": 390,
+            "missing": true
+          },
+          "status": "PASS",
+          "scope": "Controlled tools/cash/owned growth or absence"
+        }
+      ]
+    }
+  },
+  "normalObservation": {
+    "seed": "group-natural-17",
+    "scope": "Normal new entry, natural shelf/deal, bounded known seed",
+    "initialGold": 6,
+    "purchaseGold": 2,
+    "keptCash": 2,
+    "firstScore": "318",
+    "secondScore": "325",
+    "nextShop": {
+      "gold": 8,
+      "jokers": [
+        {
+          "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/2",
+          "definitionId": "b10",
+          "paidPrice": 4,
+          "growth": {
+            "heat": {
+              "n": "20",
+              "d": "1"
+            }
+          },
+          "edition": "none"
+        }
+      ],
+      "stageIndex": 1
+    }
+  },
+  "localTests": {
+    "firstFullGate": {
+      "head": "29f0d33b524cc943fbfe0301ccd7d296e30c3b9c",
+      "passed": 2492,
+      "failed": 2,
+      "filesPassed": 139,
+      "filesFailed": 2,
+      "failureNames": [
+        "new build focus expected ordinary flush exclusion",
+        "V00 groups natural policy timeout at unchanged5000ms"
+      ]
+    },
+    "targetedRecheck": {
+      "files": 2,
+      "tests": 13,
+      "status": "PASS",
+      "testTimeoutUnchanged": true,
+      "logSha256": "9b00fb9924937092c84a6f746756d7249185c379e72c6bb36d92a4d290f9ad33"
+    },
+    "remainingGates": "content/typecheck-build/standard two-profile Chromium smoke/plan PASS with source/index/HEAD unchanged",
+    "fullSuiteOnFinalCode": "NOT_RERUN locally; exact remote CI required"
+  },
+  "limits": {
+    "physicalDevicesAudioArtNewcomerRetention": "NOT_RUN",
+    "naturalStraightFlushTransferToolsAvailabilityRates": "NOT_OBSERVED",
+    "W5OverallW6Overall": "NOT_ACCEPTED"
+  },
+  "originalFailures": [
+    "native-tool-name-FAIL.json",
+    "gate-first-FAIL.json"
+  ],
+  "developmentCorrections": [
+    "MJS non-null TS syntax prevented first native launch; corrected harness only.",
+    "T01 actual name is 练一招; replaced wrong 星球 selector. Original normal-route PASS and tool-name FAIL preserved.",
+    "Ordinary flush excludes mixed group types in the UI lane; zero stored unowned growth source is not a current transfer component. Real group/flush-house rules untouched.",
+    "First full V00 groups case timed out5000ms. Directed unchanged-default check passed; cause not established, final remote CI must run normally."
+  ]
+}
