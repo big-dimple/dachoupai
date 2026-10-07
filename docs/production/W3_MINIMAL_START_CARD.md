@@ -84,3 +84,9 @@ inputSHA：`29d6c5ee32d2f320f061c83b87f07b4746b3eb6f`，父确认PR41独审/精�
 只做可复用三货payment facts及当前优惠状态，按当前profile/item modifier抽取所有名义来源，不逐卡加if；实际总省额为原价减领域真实实付，不做逐来源实际贡献分摊。成功保存后才入原反馈队列/购物结果；购买采购证自身无预持有优惠，最低价截断不重复认领，次购/下店/券状态分开。allowedFiles：`src/game/PurchasePaymentFacts.ts`、`src/game/ShopPurchaseReceipt.ts`、`src/game/ShopScene.ts`、`tests/purchase-payment-facts.test.ts`、`harness/w3-purchase-discount.mjs`与必要证据。现有手绘商品/详情继续复用，不改领域/价格/经济/RNG/存档/布局或P2演出。当前会话交易快照不冒称新增永久交易历史；重入仅核当前事实和不重复获益。定向首购/次购/自身/多来源floor/下店/失败反例与有限PC/手机原生支付，最终必要门禁一次，仅draft父审，不合main。
 
 本批软件结果：[共用购物支付与优惠状态](evidence/w3-purchase-discount-2026-10-07/README.md)。最终e222f8f，三货共用来源/支付结构与当前优惠状态；五原生案核首购/次购/自身/多来源floor/失败，不猜逐来源分摊，重入仅当前状态不造历史。40相关检查及一次默认verify2480 tests/139 files、content/plan通过。原七类/W3/W4顺序和真实理解/真机待验保持，新headCI/父独审待接，未合main。
+
+## 2026-10-07 W3/W4-P1 首120秒完整体验包
+
+inputSHA：`4e0501a5f4b2c8e5268d097a50404c08c145dee7`，父确认PR42独审/CI/FF main，fetch一致。沿原W3/W4-P1（U06/U07/U08/U10/U11、SG10），依赖公开条件facts、成功保存trace、既有手绘卡面与支付/赠品/工具模块。一次候选接通：选择条件与准备状态→真实来源轻高光→收益/去向→当前可用工具或继续构筑入口。共用条件类型和实际operation，不按单张牌拆PR；折扣继续消费已审共用支付模块。首120秒是体验改善目标，未测得真实留存或新人理解。
+
+范围：GameScene、IntermissionScene、JokerMemory相关纯展示facts、DetailDialog共用来源卡片及必要CSS/定向tests/harness。已有卡面复用到条件与收益高频入口；现有default/fast/reduced/skip队列保障只改变展示。领域/数值/RNG/save/reward/角色/新美术/CI配置不改，P2完整特写及W5自然构筑证据不抢跑。工作中只定向验证，整包一次必要最终门禁和父独审，真机/音频/观感与玩家理解待另验。
