@@ -869,14 +869,20 @@ export class GameScene extends Phaser.Scene {
     const stage=this.run.stage!,context=r2ScoreContext(this.run,this.hand,[]);
     return{hand:this.hand,jokers:this.run.jokers,definitions:this.jokerDefinitions,handRules:context.handRules,disabledIds:stage.disabledIds,ordinaryPointsSuppressedIds:[],boss:this.run.boss,stageIndex:stage.index,sealedJokerIds:stage.sealedJokerIds,challengeDisabledJokerId:stage.challengeDisabledJokerId,resources:{gold:this.run.gold,handsLeft:stage.handsLeft,playIndex:stage.playIndex,discardsUsed:stage.discardsUsed,stageHeat:stage.heat,target:stage.targetHeat},contentVersion:this.run.contentVersion+'/'+this.run.contentHash};
   }
+  /** Enumeration changes availability and footer copy, never the active selection hit targets. */
+  private refreshCandidateStatus():void {
+    this.updateControls();
+    const entry=this.previewCards?.getByName('selection/rules-entry') as Phaser.GameObjects.Text|undefined;
+    entry?.setText(this.candidateEntry());
+  }
   private ensureCandidates():void {
     const input=this.candidateInput(),key=r2CandidateKey(input);
     if(this.candidateGhost?.key!==key)this.candidateGhost=undefined;
     if(this.candidateUndo?.revision!==this.draftRevision())this.candidateUndo=undefined;
     const lifecycle=this.lifecycle;
-    this.candidates.update(input,result=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing&&r2CandidateKey(this.candidateInput())===result.key)this.view.afterInteraction(()=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing)this.refreshSelection();});});
+    this.candidates.update(input,result=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing&&r2CandidateKey(this.candidateInput())===result.key)this.view.afterInteraction(()=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing)this.refreshCandidateStatus();});});
     const ai=this.aiInput(),aiKey=aiHandKey(ai);if(this.aiCursor?.key!==aiKey)this.aiCursor=undefined;
-    this.aiCandidates.update(ai,result=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing&&aiHandKey(this.aiInput())===result.key)this.view.afterInteraction(()=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing)this.refreshSelection();});});
+    this.aiCandidates.update(ai,result=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing&&aiHandKey(this.aiInput())===result.key)this.view.afterInteraction(()=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing)this.refreshCandidateStatus();});});
   }
   private aiInput():AiHandInput {
     const stage=this.run.stage!,context=r2ScoreContext(this.run,this.hand,[]);

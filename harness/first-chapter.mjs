@@ -138,7 +138,7 @@ try {
                         if (o.list)
                             walk(o.list);
                     } }; walk(s.children.list); return a; });
-                    if(keys.length){await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');window.__w6Touches??=[];s.input.once('pointerdown',(p,over)=>{for(const o of over.filter(o=>o.name?.startsWith('selection/assist-'))){const at=performance.now();window.__w6Touches.push({type:'down',name:o.name,at});o.once('destroy',()=>window.__w6Touches.push({type:'destroy',name:o.name,at:performance.now(),afterDown:performance.now()-at}));}s.input.once('pointerup',()=>window.__w6Touches.push({type:'up',at:performance.now()}));});});await tapUI(p,'game',keys[0]);await p.waitForFunction(()=>window.__harness.game.scene.getScene('game').assistIds.length>0,{},{timeout:2500});}
+                    if(keys.length){await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');window.__w6Touches??=[];s.input.once('pointerdown',(p,over)=>{window.__w6Touches.push({type:'all-down',at:performance.now(),targets:over.map(o=>o.name)});for(const o of over.filter(o=>o.name?.startsWith('selection/assist-'))){const at=performance.now();window.__w6Touches.push({type:'down',name:o.name,at});o.once('destroy',()=>window.__w6Touches.push({type:'destroy',name:o.name,at:performance.now(),afterDown:performance.now()-at}));}s.input.once('pointerup',()=>window.__w6Touches.push({type:'up',at:performance.now()}));});});await tapUI(p,'game',keys[0]);await p.waitForFunction(()=>window.__harness.game.scene.getScene('game').assistIds.length>0,{},{timeout:2500});}
                     const draft = await p.evaluate(() => { const s = window.__harness.game.scene.getScene('game'); return { selectedIds: [...s.selectedIds], assistIds: [...s.assistIds], copy: s.statusText.text }; });
                     if (stage === 0 && turn === 0) {
                         await p.setViewportSize(device.name === 'pc' ? { width: 1280, height: 720 } : { width: 740, height: 390 });
@@ -157,7 +157,7 @@ try {
                     await waitCommand(s);
                     await settle();
                     await record('Real hand; core and assist consume only chosen public cards', [actual], s);
-                    report.steps.at(-1).draft = draft;
+                    report.steps.at(-1).draft = draft;report.steps.at(-1).touches=await p.evaluate(()=>window.__w6Touches??[]);
                     if (stage === 0 && turn === 0) {
                         const committed = await state();
                         await p.reload();
