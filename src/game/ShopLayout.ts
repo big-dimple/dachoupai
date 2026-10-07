@@ -54,10 +54,14 @@ function desktopShopLayout(width:number,height:number,top:number,bottom:number,_
 export function shopLayout(width:number,height:number,top:number,bottom:number,cols:number,ownedCopy=false){
   if(width>=1000){if(height-top-bottom<712)return shortShopLayout(width,height,top,bottom,cols);return desktopShopLayout(width,height,top,bottom,cols);}
   if(height-top-bottom<500)return shortShopLayout(width,height,top,bottom,cols);
-  const portrait=width<700&&height>width,x=12,w=width-24,seat=(Math.min(w,420)-8*(cols-1))/cols,cardWidth=Math.max(88,Math.min(108,seat-8)),cardHeight=cardWidth*1.4;
+  const portrait=width<700&&height>width,x=12,w=width-24,seat=(Math.min(w,420)-8*(cols-1))/cols;
+  const slotGap=6,slotWidth=Math.min(64,(w-4*slotGap)/5),slotHeight=slotWidth*1.4;
+  // Fit the visible owned rail before the fixed action row; only art shrinks.
+  const portraitFaceBudget=(height-top-bottom-352-slotHeight)/1.4;
+  const cardWidth=Math.min(Math.max(88,Math.min(108,seat-8)),portrait?portraitFaceBudget:Infinity),cardHeight=cardWidth*1.4;
   const shelfWidth=cols*seat+8*(cols-1),shelfX=x+(w-shelfWidth)/2,shelfTop=top+104;
   const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:shelfX+i*(seat+8)+(seat-cardWidth)/2,y:shelfTop,width:cardWidth,height:cardHeight}));
-  const slotGap=6,slotWidth=Math.min(64,(w-4*slotGap)/5),slotHeight=slotWidth*1.4,rackWidth=5*slotWidth+4*slotGap,slotX=x+(w-rackWidth)/2,slotY=shelfTop+cardHeight+100;
+  const rackWidth=5*slotWidth+4*slotGap,slotX=x+(w-rackWidth)/2,slotY=shelfTop+cardHeight+100;
   const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+slotGap),y:slotY,width:slotWidth,height:slotHeight}));
   const secondaryY=portrait?height-bottom-144:Math.min(height-bottom-144,slotY+slotHeight+20),toolWidth=(Math.min(w,420)-8)/2,actionX=x+(w-Math.min(w,420))/2,inventoryY=slotY+slotHeight+8;
   return {x,w,top,pc:null,desktop:false,short:false,copyBeside:false,inventoryCollapsed:false,compact:portrait,wideHeader:false,portrait,slots,shelf,tabs:{x:actionX,y:top+52,width:Math.min(w,420),height:44},

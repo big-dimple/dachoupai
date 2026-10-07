@@ -94,3 +94,7 @@ it('wide PC low heights reserve lower goods and feedback before sizing either ca
   for(const b of [p.play,p.reroll,p.build,p.pc.inventoryEntry])expect(b.height).toBeGreaterThanOrEqual(44);
  }
 });
+
+it('320 short portrait safe12/34 keeps every visible owned hit clear of paid reroll and other actions',()=>{
+ for(const bottom of [0,12,34]){const p=shopLayout(320,568,12,bottom,3,true);expect(p.inventoryCollapsed).toBe(false);for(const b of p.slots){const hit=shopOwnedHitBox(b,p.reroll.y,true);for(const action of [p.reroll,p.build,p.play])expect(intersects(hit,action)).toBe(false);expect(b.y+b.height).toBeLessThanOrEqual(p.reroll.y-4);expect(hit.width).toBeGreaterThanOrEqual(44);expect(hit.height).toBeGreaterThanOrEqual(44);}expect(p.play.height).toBeGreaterThanOrEqual(48);expect(p.reroll.height).toBeGreaterThanOrEqual(44);for(const b of p.shelf)expect(b.height/b.width).toBeCloseTo(1.4);}
+});

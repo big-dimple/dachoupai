@@ -112,7 +112,7 @@ export class ShopScene extends Phaser.Scene {
     if(!p.portrait&&!p.short)v.text(p.x,p.top+37,`${stage.name} · 目标 ${heatText(stage.targetHeat)}`,14,'#3F606B',p.short?p.slots[4].x+p.slots[4].width-p.x:p.w-24);
     if(!p.short){
       const ownedLabel=p.portrait?`${stage.name} · 随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:`随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)} · 点牌出售／调序`;
-      v.text(p.slots[0].x,p.slots[0].y-22,ownedLabel,14,'#3F606B',p.slots[4].x+p.slots[4].width-p.slots[0].x);
+      v.text(p.slots[0].x,p.slots[0].y-(p.portrait&&p.shelf[0].width<88?18:22),ownedLabel,14,'#3F606B',p.slots[4].x+p.slots[4].width-p.slots[0].x);
     }
     this.drawOwned(p);
     if(!p.portrait&&!p.short)v.button(p.chapter,p.portrait?(this.run.program&&!this.run.program.choiceMade?'接节目单':'本章'):'本章节目','action/chapter',()=>this.inspectChapter());
@@ -200,15 +200,18 @@ export class ShopScene extends Phaser.Scene {
     const budget=Math.floor((group.width/2-88)/14)*Math.floor((group.height-64)/16);
     return group.width>=440&&this.shelfOffers(kind).every(o=>(kind==='tools'?toolInfo(o.definitionId):itemInfo(o.definitionId)).description.length<=budget)?2:1;
   }
+  private shopJokerSummary(id:string):string {
+    const d=this.jokerDefinition(id);
+    if(this.run.contentVersion==='quality-r2-group-upgrade-prototype-v1'&&(id==='b10'||id==='b03')){
+      const growth=d.hooks.flatMap(h=>h.operations).find(op=>op.kind==='add-growth');
+      if(growth?.kind==='add-growth')return `本手读已存${id==='b10'?'热度':'倍率'}；成组手后+${fractionText(growth.value)}，上限+${fractionText(growth.cap)}，下手起生效。`;
+    }
+    return this.jokerCopy(id)?.summary??d.description;
+  }
   private drawPCOffer(o:R2Offer,kind:ShelfKind,tile:Box,face:Box):void {
     const v=this.view,first=v.root.length,d=kind==='jokers'?this.jokerDefinition(o.definitionId):undefined,info=kind==='tools'?toolInfo(o.definitionId):kind==='items'?itemInfo(o.definitionId):undefined;
     v.material(tile,0xf3eadb,0xf3eadb,5);v.add(this.add.graphics().lineStyle(1,this.selectedOfferId===o.offerId?0x3f606b:0xa69778,.5).strokeRoundedRect(tile.x,tile.y,tile.width,tile.height,5));
-    const ability=d?this.jokerCopy(d.id):undefined;
-    let summary=ability?.summary??info!.description;
-    if(d&&this.run.contentVersion==='quality-r2-group-upgrade-prototype-v1'&&(d.id==='b10'||d.id==='b03')){
-      const growth=d.hooks.flatMap(h=>h.operations).find(op=>op.kind==='add-growth');
-      if(growth?.kind==='add-growth')summary=`本手读已存${d.id==='b10'?'热度':'倍率'}；成组手后+${fractionText(growth.value)}，上限+${fractionText(growth.cap)}，下手起生效。`;
-    }
+    let summary=d?this.shopJokerSummary(d.id):info!.description;
     if(!d&&/^T0[3-6]$/.test(o.definitionId)){const suit=info!.description.match(/改为(.+?)，/)?.[1];summary=`商店/待出牌：选1–3张永久改${suit}；成功消耗，保留其余属性。`;}
     if(!d&&o.definitionId==='U11')summary='后续开店长期货位1→2；当前不补，刷新不重抽。同种限一件，不可售。';
     if(!d&&o.definitionId==='U01')summary='下场手牌上限+1，最多14；当前不补。同种限一件，不可售。';
@@ -449,7 +452,13 @@ export class ShopScene extends Phaser.Scene {
   private inspectBuild():void {
     const body=this.run.jokers.map((j,i)=>`${i+1}. ${this.jokerDefinition(j.definitionId).name} · ${editionEffectText(j.edition)} · 售价 ${salePrice(j.paidPrice)} 金\n${this.jokerCopy(j.definitionId)?.summary??this.jokerDefinition(j.definitionId).description}`).join('\n\n')||'尚无大丑牌。先看卡牌效果，也可以保留金币直接入场。';
     const items=this.run.longTermItems.map(id=>{const info=itemInfo(id);return info.name+'：'+info.description;}).join('\n')||'尚无长期道具。';
-    this.dialog.open('当前构筑 · 从左至右触发',body+`\n\n有效牌组 ${this.run.deckInstances.length-this.run.destroyedIds.length} 张 · 消耗品 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)}\n长期道具 ${this.run.longTermItems.length}/${R2_LIMITS.longTermSlots}\n`+items+'\n\n点随身牌可移动顺序。出售需要再次确认；调序不花金币。'+(this.lastTransactionNotes.length?'\n\n上次交易的实际来源：\n'+this.lastTransactionNotes.join('\n'):''),[{label:'本章节目',run:()=>this.inspectChapter()},{label:'物品与道具',run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq))}]);
+    const comparison=this.run.shop!.offers.slice(0,3).map(o=>`${this.jokerDefinition(o.definitionId).name} · ${r2PurchasePrice(this.run,o)} 金\n${this.shopJokerSummary(o.definitionId)}`).join('\n\n');
+    const dialog=this.dialog.open('当前构筑 · 从左至右触发',body+`\n\n有效牌组 ${this.run.deckInstances.length-this.run.destroyedIds.length} 张 · 消耗品 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)}\n长期道具 ${this.run.longTermItems.length}/${R2_LIMITS.longTermSlots}\n`+items+'\n\n本店三货对比 · 完整规则点商品\n'+comparison+'\n\n点随身牌可移动顺序。出售需要再次确认；调序不花金币。'+(this.lastTransactionNotes.length?'\n\n上次交易的实际来源：\n'+this.lastTransactionNotes.join('\n'):''),[{label:'本章节目',run:()=>this.inspectChapter()},{label:'物品与道具',run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq))}]);
+    if(this.geometry().inventoryCollapsed){
+      const list=document.createElement('section'),heading=document.createElement('h3');list.className='shop-held-manager';heading.textContent='持有牌管理 · 点开调序或出售';list.append(heading);
+      for(const [i,j] of this.run.jokers.entries()){const button=document.createElement('button');button.textContent=`${i+1}. ${this.jokerDefinition(j.definitionId).name} · 管理`;button.onclick=()=>this.inspectJoker(j.instanceId);list.append(button);}
+      dialog.querySelector('.dialog-copy')!.prepend(list);
+    }
   }
   private inspectDeck():void {
     if(this.scene.isActive())showDeckInspection(this.dialog,this.run);

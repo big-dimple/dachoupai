@@ -319,3 +319,10 @@ button[aria-busy=true] { border-style:dashed; }
 .deck-inspection-controls label { display:flex;flex-direction:column;align-items:stretch;gap:4px;flex:1 1 140px;min-width:0;margin:0; }
 .deck-inspection-controls select { width:100%;min-width:0; }
 .deck-inspection-rank { display:inline-block;white-space:nowrap; }
+
+/* W3: center in the safe rectangle; the existing body scroll owns long rules. */
+.detail-dialog[open] { inset:calc(var(--safe-top) + 12px) calc(var(--safe-right) + 12px) calc(var(--safe-bottom) + 12px) calc(var(--safe-left) + 12px);margin:auto;box-sizing:border-box; }
+.dialog-actions .dialog-close { min-height:48px; }
+.shop-held-manager { display:grid;gap:8px;margin:0 0 16px; }
+.shop-held-manager h3 { margin:0;font-size:15px; }
+.shop-held-manager button { min-height:44px;text-align:left;font-size:15px; }
