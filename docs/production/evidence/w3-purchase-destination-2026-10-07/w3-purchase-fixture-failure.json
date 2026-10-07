@@ -1,0 +1,22 @@
+{
+  "source": "91d8fe6dcd74a05b00054dc0d1cfaef907f19697",
+  "sourceStatus": "M src/game/ShopScene.ts\n?? harness/w3-purchase-destination.mjs\n?? src/game/ShopPurchaseReceipt.ts\n?? tests/shop-purchase-receipt.test.ts",
+  "scope": "Saved three-kind purchase destination and next-action checks using controlled import and native inputs. No natural acquisition, physical device, aesthetic, audio or FPS acceptance.",
+  "cases": [],
+  "pages": [],
+  "screenshots": [],
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-07T10:58:30.248Z",
+    "revision": "91d8fe6dcd74a05b00054dc0d1cfaef907f19697",
+    "sourceStatus": "dirty",
+    "modified": true,
+    "modifiedFileCount": 1,
+    "modifiedFiles": [
+      "src/game/ShopScene.ts"
+    ]
+  },
+  "browser": "151.0.7922.173",
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}

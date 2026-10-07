@@ -1,0 +1,199 @@
+{
+  "source": "6d7d7f99a8bb27fce66c8620fffba0aba80b1cfc",
+  "sourceStatus": "",
+  "scope": "Bounded native-input software checks: safe held-card hit, collapsed management, shared detail, three goods, PC preservation and nine-card selection. Controlled saves; no physical device, aesthetic, FPS or natural-play acceptance.",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-07T11:03:10.661Z",
+    "revision": "6d7d7f99a8bb27fce66c8620fffba0aba80b1cfc",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "151.0.7922.173",
+  "status": "PASS",
+  "rawReportSHA256": "b79e1371ba0f95becdab9a18cb279a694a26ae3db81b6c6fe53ac2fd68d21035",
+  "cases": [
+    {
+      "spec": {
+        "width": 320,
+        "height": 568,
+        "bottom": 12
+      },
+      "status": "PASS",
+      "safeGap": 12,
+      "closeHeight": 56,
+      "buildClose": 48,
+      "heldTapChangesState": false,
+      "managerCount": 0
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 568,
+        "bottom": 34
+      },
+      "status": "PASS",
+      "safeGap": 12,
+      "closeHeight": 56,
+      "buildClose": 48,
+      "heldTapChangesState": false,
+      "managerCount": 0
+    },
+    {
+      "spec": {
+        "width": 740,
+        "height": 390,
+        "bottom": 34
+      },
+      "status": "PASS",
+      "safeGap": 12,
+      "closeHeight": 56,
+      "buildClose": 48,
+      "heldTapChangesState": null,
+      "managerCount": 2
+    },
+    {
+      "spec": {
+        "width": 360,
+        "height": 640,
+        "bottom": 34
+      },
+      "status": "PASS",
+      "safeGap": 12,
+      "closeHeight": 56,
+      "buildClose": 48,
+      "heldTapChangesState": null,
+      "managerCount": 0
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 740,
+        "bottom": 34
+      },
+      "status": "PASS",
+      "safeGap": 12,
+      "closeHeight": 56,
+      "buildClose": 48,
+      "heldTapChangesState": null,
+      "managerCount": 0
+    },
+    {
+      "spec": {
+        "width": 844,
+        "height": 300,
+        "bottom": 34
+      },
+      "status": "PASS",
+      "safeGap": 12,
+      "closeHeight": 56,
+      "buildClose": 48,
+      "heldTapChangesState": null,
+      "managerCount": 0
+    },
+    {
+      "spec": {
+        "width": 1280,
+        "height": 720,
+        "bottom": 0
+      },
+      "status": "PASS",
+      "safeGap": 12,
+      "closeHeight": 56,
+      "buildClose": 48,
+      "heldTapChangesState": null,
+      "managerCount": 0
+    },
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      "status": "PASS",
+      "safeGap": 12,
+      "closeHeight": 56,
+      "buildClose": 48,
+      "heldTapChangesState": null,
+      "managerCount": 0
+    },
+    {
+      "spec": {
+        "width": 1920,
+        "height": 1080,
+        "bottom": 0
+      },
+      "status": "PASS",
+      "safeGap": 150,
+      "closeHeight": 56,
+      "buildClose": 48,
+      "heldTapChangesState": null,
+      "managerCount": 0
+    },
+    {
+      "spec": {
+        "width": 811,
+        "height": 390,
+        "bottom": 34
+      },
+      "status": "PASS",
+      "safeGap": 12,
+      "closeHeight": 56,
+      "buildClose": 48,
+      "heldTapChangesState": null,
+      "managerCount": 0
+    },
+    {
+      "spec": {
+        "width": 812,
+        "height": 390,
+        "bottom": 34
+      },
+      "status": "PASS",
+      "safeGap": 12,
+      "closeHeight": 56,
+      "buildClose": 48,
+      "heldTapChangesState": null,
+      "managerCount": 0
+    }
+  ],
+  "nine": [
+    {
+      "width": 320,
+      "status": "PASS",
+      "visible": 9,
+      "handOverflow": false,
+      "selected": [
+        "diamonds-2"
+      ]
+    },
+    {
+      "width": 390,
+      "status": "PASS",
+      "visible": 9,
+      "handOverflow": false,
+      "selected": [
+        "diamonds-2"
+      ]
+    },
+    {
+      "width": 811,
+      "status": "PASS",
+      "visible": 9,
+      "handOverflow": false,
+      "selected": [
+        "diamonds-2"
+      ]
+    },
+    {
+      "width": 812,
+      "status": "PASS",
+      "visible": 9,
+      "handOverflow": false,
+      "selected": [
+        "diamonds-2"
+      ]
+    }
+  ],
+  "managementStatus": "PASS"
+}

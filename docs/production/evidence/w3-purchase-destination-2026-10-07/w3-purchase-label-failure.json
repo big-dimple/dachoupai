@@ -1,0 +1,746 @@
+{
+  "source": "91d8fe6dcd74a05b00054dc0d1cfaef907f19697",
+  "sourceStatus": "M src/game/ShopScene.ts\n?? harness/w3-purchase-destination.mjs\n?? src/game/ShopPurchaseReceipt.ts\n?? tests/shop-purchase-receipt.test.ts",
+  "scope": "Saved three-kind purchase destination and next-action checks using controlled import and native inputs. No natural acquisition, physical device, aesthetic, audio or FPS acceptance.",
+  "cases": [
+    {
+      "spec": {
+        "width": 1280,
+        "height": 720,
+        "bottom": 0
+      },
+      "kind": "jokers",
+      "beforeGold": 30,
+      "afterGold": 26,
+      "commandSeq": 2,
+      "receipt": {
+        "text": "练对子 · 购物已保存\n\n已购 练对子 · 已保存\n金币 30 → 26\n\n购入时放入持有牌第 3 槽。\n购入时已存状态：热度成长 0。\n下一步：查看新牌的条件和状态；进入牌桌后按真实条件结算，购入不等于已发动。\n成组成长：本手读取已保存值；成组手结算后新增的成长，从下一手起生效，不补加到本手。\n\n查看新牌\n构筑详情\n关闭",
+        "buttons": [
+          {
+            "text": "查看新牌",
+            "disabled": false,
+            "bounds": {
+              "x": 221,
+              "y": 647,
+              "width": 283.328125,
+              "height": 48,
+              "top": 647,
+              "right": 504.328125,
+              "bottom": 695,
+              "left": 221
+            }
+          },
+          {
+            "text": "构筑详情",
+            "disabled": false,
+            "bounds": {
+              "x": 512.328125,
+              "y": 647,
+              "width": 283.34375,
+              "height": 48,
+              "top": 647,
+              "right": 795.671875,
+              "bottom": 695,
+              "left": 512.328125
+            }
+          },
+          {
+            "text": "关闭",
+            "disabled": false,
+            "bounds": {
+              "x": 803.671875,
+              "y": 647,
+              "width": 255.328125,
+              "height": 48,
+              "top": 647,
+              "right": 1059,
+              "bottom": 695,
+              "left": 803.671875
+            }
+          }
+        ],
+        "rect": {
+          "x": 200,
+          "y": 12,
+          "width": 880,
+          "height": 696,
+          "top": 12,
+          "right": 1080,
+          "bottom": 708,
+          "left": 200
+        }
+      },
+      "geometry": {
+        "x": 24,
+        "w": 1232,
+        "top": 8,
+        "pc": {
+          "left": {
+            "x": 24,
+            "y": 8,
+            "width": 224,
+            "height": 704
+          },
+          "ownedRail": {
+            "x": 272,
+            "y": 8,
+            "width": 984,
+            "height": 168
+          },
+          "inventoryEntry": {
+            "x": 1088,
+            "y": 72,
+            "width": 168,
+            "height": 44
+          },
+          "shopPanel": {
+            "x": 272,
+            "y": 200,
+            "width": 984,
+            "height": 512
+          },
+          "actionRail": {
+            "x": 284,
+            "y": 228,
+            "width": 128,
+            "height": 460
+          },
+          "jokerOffers": [
+            {
+              "x": 432,
+              "y": 228,
+              "width": 261.3333333333333,
+              "height": 259.2
+            },
+            {
+              "x": 705.3333333333333,
+              "y": 228,
+              "width": 261.3333333333333,
+              "height": 259.2
+            },
+            {
+              "x": 978.6666666666666,
+              "y": 228,
+              "width": 261.3333333333333,
+              "height": 259.2
+            }
+          ],
+          "toolOffers": {
+            "x": 432,
+            "y": 535.2,
+            "width": 396,
+            "height": 144.79999999999995
+          },
+          "itemOffers": {
+            "x": 844,
+            "y": 535.2,
+            "width": 396,
+            "height": 144.79999999999995
+          },
+          "feedback": {
+            "x": 284,
+            "y": 688,
+            "width": 960,
+            "height": 20
+          },
+          "groupY": 511.2
+        },
+        "desktop": true,
+        "short": false,
+        "copyBeside": false,
+        "inventoryCollapsed": false,
+        "compact": false,
+        "wideHeader": false,
+        "portrait": false,
+        "slots": [
+          {
+            "x": 272,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 364,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 456,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 548,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 640,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          }
+        ],
+        "shelf": [
+          {
+            "x": 518.6666666666666,
+            "y": 234,
+            "width": 88,
+            "height": 123.19999999999999
+          },
+          {
+            "x": 791.9999999999999,
+            "y": 234,
+            "width": 88,
+            "height": 123.19999999999999
+          },
+          {
+            "x": 1065.3333333333333,
+            "y": 234,
+            "width": 88,
+            "height": 123.19999999999999
+          }
+        ],
+        "tabs": {
+          "x": 432,
+          "y": 204,
+          "width": 808,
+          "height": 20
+        },
+        "chapter": {
+          "x": 24,
+          "y": 184,
+          "width": 224,
+          "height": 44
+        },
+        "items": {
+          "x": 1088,
+          "y": 72,
+          "width": 168,
+          "height": 44
+        },
+        "build": {
+          "x": 744,
+          "y": 14,
+          "width": 132,
+          "height": 44
+        },
+        "reroll": {
+          "x": 284,
+          "y": 296,
+          "width": 128,
+          "height": 44
+        },
+        "play": {
+          "x": 284,
+          "y": 228,
+          "width": 128,
+          "height": 56
+        },
+        "noticeY": 688
+      },
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 1280,
+        "height": 720,
+        "bottom": 0
+      },
+      "kind": "tools",
+      "beforeGold": 30,
+      "afterGold": 26,
+      "commandSeq": 2,
+      "receipt": {
+        "text": "黑桃染 · 购物已保存\n手绘卡面\n\n已购 黑桃染 · 已保存\n金币 30 → 26\n\n购入时收入工具包第 2 件，尚未使用。\n下一步：打开工具包查看可用时点与目标，再确认使用；不选目标或取消不会消耗。\n\n打开工具包\n构筑详情\n关闭",
+        "buttons": [
+          {
+            "text": "打开工具包",
+            "disabled": false,
+            "bounds": {
+              "x": 221,
+              "y": 647,
+              "width": 292.65625,
+              "height": 48,
+              "top": 647,
+              "right": 513.65625,
+              "bottom": 695,
+              "left": 221
+            }
+          },
+          {
+            "text": "构筑详情",
+            "disabled": false,
+            "bounds": {
+              "x": 521.65625,
+              "y": 647,
+              "width": 278.671875,
+              "height": 48,
+              "top": 647,
+              "right": 800.328125,
+              "bottom": 695,
+              "left": 521.65625
+            }
+          },
+          {
+            "text": "关闭",
+            "disabled": false,
+            "bounds": {
+              "x": 808.328125,
+              "y": 647,
+              "width": 250.671875,
+              "height": 48,
+              "top": 647,
+              "right": 1059,
+              "bottom": 695,
+              "left": 808.328125
+            }
+          }
+        ],
+        "rect": {
+          "x": 200,
+          "y": 12,
+          "width": 880,
+          "height": 696,
+          "top": 12,
+          "right": 1080,
+          "bottom": 708,
+          "left": 200
+        }
+      },
+      "geometry": {
+        "x": 24,
+        "w": 1232,
+        "top": 8,
+        "pc": {
+          "left": {
+            "x": 24,
+            "y": 8,
+            "width": 224,
+            "height": 704
+          },
+          "ownedRail": {
+            "x": 272,
+            "y": 8,
+            "width": 984,
+            "height": 168
+          },
+          "inventoryEntry": {
+            "x": 1088,
+            "y": 72,
+            "width": 168,
+            "height": 44
+          },
+          "shopPanel": {
+            "x": 272,
+            "y": 200,
+            "width": 984,
+            "height": 512
+          },
+          "actionRail": {
+            "x": 284,
+            "y": 228,
+            "width": 128,
+            "height": 460
+          },
+          "jokerOffers": [
+            {
+              "x": 432,
+              "y": 228,
+              "width": 261.3333333333333,
+              "height": 259.2
+            },
+            {
+              "x": 705.3333333333333,
+              "y": 228,
+              "width": 261.3333333333333,
+              "height": 259.2
+            },
+            {
+              "x": 978.6666666666666,
+              "y": 228,
+              "width": 261.3333333333333,
+              "height": 259.2
+            }
+          ],
+          "toolOffers": {
+            "x": 432,
+            "y": 535.2,
+            "width": 396,
+            "height": 144.79999999999995
+          },
+          "itemOffers": {
+            "x": 844,
+            "y": 535.2,
+            "width": 396,
+            "height": 144.79999999999995
+          },
+          "feedback": {
+            "x": 284,
+            "y": 688,
+            "width": 960,
+            "height": 20
+          },
+          "groupY": 511.2
+        },
+        "desktop": true,
+        "short": false,
+        "copyBeside": false,
+        "inventoryCollapsed": false,
+        "compact": false,
+        "wideHeader": false,
+        "portrait": false,
+        "slots": [
+          {
+            "x": 272,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 364,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 456,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 548,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 640,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          }
+        ],
+        "shelf": [
+          {
+            "x": 518.6666666666666,
+            "y": 234,
+            "width": 88,
+            "height": 123.19999999999999
+          },
+          {
+            "x": 791.9999999999999,
+            "y": 234,
+            "width": 88,
+            "height": 123.19999999999999
+          },
+          {
+            "x": 1065.3333333333333,
+            "y": 234,
+            "width": 88,
+            "height": 123.19999999999999
+          }
+        ],
+        "tabs": {
+          "x": 432,
+          "y": 204,
+          "width": 808,
+          "height": 20
+        },
+        "chapter": {
+          "x": 24,
+          "y": 184,
+          "width": 224,
+          "height": 44
+        },
+        "items": {
+          "x": 1088,
+          "y": 72,
+          "width": 168,
+          "height": 44
+        },
+        "build": {
+          "x": 744,
+          "y": 14,
+          "width": 132,
+          "height": 44
+        },
+        "reroll": {
+          "x": 284,
+          "y": 296,
+          "width": 128,
+          "height": 44
+        },
+        "play": {
+          "x": 284,
+          "y": 228,
+          "width": 128,
+          "height": 56
+        },
+        "noticeY": 688
+      },
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 1280,
+        "height": 720,
+        "bottom": 0
+      },
+      "kind": "items",
+      "beforeGold": 30,
+      "afterGold": 20,
+      "commandSeq": 2,
+      "receipt": {
+        "text": "另一间摊 · 购物已保存\n手绘卡面\n\n已购 另一间摊 · 已保存\n金币 30 → 20\n\n已加入长期道具，本局持续持有，不能出售。\n实际作用与时机：商店基准售价10金。后续开店长期道具货位1→2；当前货架不补货，刷新也不重抽该货架。本局持续生效，每种不可重复持有、不可出售，共最多4件长期道具。\n下一步：在物品与道具中查看，无需手动使用。\n\n物品与道具\n构筑详情\n关闭",
+        "buttons": [
+          {
+            "text": "物品与道具",
+            "disabled": false,
+            "bounds": {
+              "x": 221,
+              "y": 647,
+              "width": 292.65625,
+              "height": 48,
+              "top": 647,
+              "right": 513.65625,
+              "bottom": 695,
+              "left": 221
+            }
+          },
+          {
+            "text": "构筑详情",
+            "disabled": false,
+            "bounds": {
+              "x": 521.65625,
+              "y": 647,
+              "width": 278.671875,
+              "height": 48,
+              "top": 647,
+              "right": 800.328125,
+              "bottom": 695,
+              "left": 521.65625
+            }
+          },
+          {
+            "text": "关闭",
+            "disabled": false,
+            "bounds": {
+              "x": 808.328125,
+              "y": 647,
+              "width": 250.671875,
+              "height": 48,
+              "top": 647,
+              "right": 1059,
+              "bottom": 695,
+              "left": 808.328125
+            }
+          }
+        ],
+        "rect": {
+          "x": 200,
+          "y": 12,
+          "width": 880,
+          "height": 696,
+          "top": 12,
+          "right": 1080,
+          "bottom": 708,
+          "left": 200
+        }
+      },
+      "geometry": {
+        "x": 24,
+        "w": 1232,
+        "top": 8,
+        "pc": {
+          "left": {
+            "x": 24,
+            "y": 8,
+            "width": 224,
+            "height": 704
+          },
+          "ownedRail": {
+            "x": 272,
+            "y": 8,
+            "width": 984,
+            "height": 168
+          },
+          "inventoryEntry": {
+            "x": 1088,
+            "y": 72,
+            "width": 168,
+            "height": 44
+          },
+          "shopPanel": {
+            "x": 272,
+            "y": 200,
+            "width": 984,
+            "height": 512
+          },
+          "actionRail": {
+            "x": 284,
+            "y": 228,
+            "width": 128,
+            "height": 460
+          },
+          "jokerOffers": [
+            {
+              "x": 432,
+              "y": 228,
+              "width": 261.3333333333333,
+              "height": 259.2
+            },
+            {
+              "x": 705.3333333333333,
+              "y": 228,
+              "width": 261.3333333333333,
+              "height": 259.2
+            },
+            {
+              "x": 978.6666666666666,
+              "y": 228,
+              "width": 261.3333333333333,
+              "height": 259.2
+            }
+          ],
+          "toolOffers": {
+            "x": 432,
+            "y": 535.2,
+            "width": 396,
+            "height": 144.79999999999995
+          },
+          "itemOffers": {
+            "x": 844,
+            "y": 535.2,
+            "width": 396,
+            "height": 144.79999999999995
+          },
+          "feedback": {
+            "x": 284,
+            "y": 688,
+            "width": 960,
+            "height": 20
+          },
+          "groupY": 511.2
+        },
+        "desktop": true,
+        "short": false,
+        "copyBeside": false,
+        "inventoryCollapsed": false,
+        "compact": false,
+        "wideHeader": false,
+        "portrait": false,
+        "slots": [
+          {
+            "x": 272,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 364,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 456,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 548,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 640,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          }
+        ],
+        "shelf": [
+          {
+            "x": 518.6666666666666,
+            "y": 234,
+            "width": 88,
+            "height": 123.19999999999999
+          },
+          {
+            "x": 791.9999999999999,
+            "y": 234,
+            "width": 88,
+            "height": 123.19999999999999
+          },
+          {
+            "x": 1065.3333333333333,
+            "y": 234,
+            "width": 88,
+            "height": 123.19999999999999
+          }
+        ],
+        "tabs": {
+          "x": 432,
+          "y": 204,
+          "width": 808,
+          "height": 20
+        },
+        "chapter": {
+          "x": 24,
+          "y": 184,
+          "width": 224,
+          "height": 44
+        },
+        "items": {
+          "x": 1088,
+          "y": 72,
+          "width": 168,
+          "height": 44
+        },
+        "build": {
+          "x": 744,
+          "y": 14,
+          "width": 132,
+          "height": 44
+        },
+        "reroll": {
+          "x": 284,
+          "y": 296,
+          "width": 128,
+          "height": 44
+        },
+        "play": {
+          "x": 284,
+          "y": 228,
+          "width": 128,
+          "height": 56
+        },
+        "noticeY": 688
+      },
+      "status": "PASS"
+    }
+  ],
+  "pages": [],
+  "screenshots": [],
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-07T11:00:00.900Z",
+    "revision": "91d8fe6dcd74a05b00054dc0d1cfaef907f19697",
+    "sourceStatus": "dirty",
+    "modified": true,
+    "modifiedFileCount": 1,
+    "modifiedFiles": [
+      "src/game/ShopScene.ts"
+    ]
+  },
+  "browser": "151.0.7922.173",
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(inv.text.includes(kind==='tools'?'消耗工具':'长期道具'))\n"
+}
