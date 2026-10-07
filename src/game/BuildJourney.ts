@@ -18,7 +18,7 @@ export const BUILD_LABEL:Record<BuildFocus,string>={group:'同点成组',straigh
 let intent:{runId:string;focus:BuildFocus}|undefined;
 export const currentBuildFocus=(runId:string)=>intent?.runId===runId?intent.focus:undefined;
 export function chooseBuildFocus(runId:string,focus:BuildFocus):void {if(BUILD_FOCUS.includes(focus))intent={runId,focus};}
-const types=(focus:BuildFocus)=>focus==='group'?R2_GROUP_HAND_TYPES:focus==='straight'?['straight','straight-flush']:['flush','straight-flush','flush-house','flush-five'];
+const types=(focus:BuildFocus)=>focus==='group'?R2_GROUP_HAND_TYPES:focus==='straight'?['straight','straight-flush']:['flush','straight-flush'];
 export function jokerSupportsFocus(state:R2RunState,id:string,focus:BuildFocus):boolean {
  const d=r2JokerDefinitionFor(state,id),wanted=types(focus);
  return d.hooks.some(h=>h.condition.kind==='hand-type-in'?h.condition.values.some(t=>wanted.includes(t)):h.condition.kind==='hand-type-transition'?wanted.includes(h.condition.current)||wanted.includes(h.condition.previous):h.condition.kind==='hand-type-relation'?h.condition.values.some(t=>wanted.includes(t)):h.condition.kind==='largest-scoring-rank-group'?focus==='group':h.condition.kind==='always'&&h.operations.some(o=>o.kind==='read-growth'||o.kind==='consume-growth'?state.jokers.some(j=>j.definitionId===id&&BigInt(j.growth[o.key]?.n??'0')>0n):['read-coefficient','add-heat','add-multiplier','multiply-multiplier'].includes(o.kind)))||!!d.modifiers?.some(m=>focus==='straight'?m.kind==='four-straight':focus==='flush'?m.kind==='four-flush':false);
