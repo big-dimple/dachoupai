@@ -1,0 +1,419 @@
+[
+  {
+    "name": "copy-price-gap",
+    "source": "fb1926284527cb8cc0181900ae70c98e56eb0873",
+    "sourceStatus": "M src/game/ShopLayout.ts\n M src/game/ShopResultFeedback.ts\n M src/game/ShopScene.ts\n M src/game/ToolInventoryEntry.ts\n M tests/shop-layout.test.ts\n?? harness/pc-shop-regions.mjs",
+    "spec": {
+      "width": 1024,
+      "height": 768
+    },
+    "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(t.bounds.y+t.bounds.height<=price.bounds.y-4)\n",
+    "geometry": {
+      "x": 24,
+      "w": 976,
+      "top": 8,
+      "pc": {
+        "left": {
+          "x": 24,
+          "y": 8,
+          "width": 224,
+          "height": 752
+        },
+        "ownedRail": {
+          "x": 272,
+          "y": 8,
+          "width": 728,
+          "height": 168
+        },
+        "inventoryEntry": {
+          "x": 832,
+          "y": 72,
+          "width": 168,
+          "height": 44
+        },
+        "shopPanel": {
+          "x": 272,
+          "y": 200,
+          "width": 728,
+          "height": 560
+        },
+        "actionRail": {
+          "x": 284,
+          "y": 228,
+          "width": 128,
+          "height": 508
+        },
+        "jokerOffers": [
+          {
+            "x": 432,
+            "y": 228,
+            "width": 176,
+            "height": 315.2
+          },
+          {
+            "x": 620,
+            "y": 228,
+            "width": 176,
+            "height": 315.2
+          },
+          {
+            "x": 808,
+            "y": 228,
+            "width": 176,
+            "height": 315.2
+          }
+        ],
+        "toolOffers": {
+          "x": 432,
+          "y": 591.2,
+          "width": 268,
+          "height": 112
+        },
+        "itemOffers": {
+          "x": 716,
+          "y": 591.2,
+          "width": 268,
+          "height": 112
+        },
+        "feedback": {
+          "x": 284,
+          "y": 736,
+          "width": 704,
+          "height": 20
+        },
+        "groupY": 567.2
+      },
+      "desktop": true,
+      "short": false,
+      "copyBeside": false,
+      "inventoryCollapsed": false,
+      "compact": false,
+      "wideHeader": false,
+      "portrait": false,
+      "slots": [
+        {
+          "x": 272,
+          "y": 64,
+          "width": 80,
+          "height": 112
+        },
+        {
+          "x": 364,
+          "y": 64,
+          "width": 80,
+          "height": 112
+        },
+        {
+          "x": 456,
+          "y": 64,
+          "width": 80,
+          "height": 112
+        },
+        {
+          "x": 548,
+          "y": 64,
+          "width": 80,
+          "height": 112
+        },
+        {
+          "x": 640,
+          "y": 64,
+          "width": 80,
+          "height": 112
+        }
+      ],
+      "shelf": [
+        {
+          "x": 456,
+          "y": 234,
+          "width": 128,
+          "height": 179.2
+        },
+        {
+          "x": 644,
+          "y": 234,
+          "width": 128,
+          "height": 179.2
+        },
+        {
+          "x": 832,
+          "y": 234,
+          "width": 128,
+          "height": 179.2
+        }
+      ],
+      "tabs": {
+        "x": 432,
+        "y": 204,
+        "width": 552,
+        "height": 20
+      },
+      "chapter": {
+        "x": 24,
+        "y": 184,
+        "width": 224,
+        "height": 44
+      },
+      "items": {
+        "x": 832,
+        "y": 72,
+        "width": 168,
+        "height": 44
+      },
+      "build": {
+        "x": 744,
+        "y": 14,
+        "width": 132,
+        "height": 44
+      },
+      "reroll": {
+        "x": 284,
+        "y": 296,
+        "width": 128,
+        "height": 44
+      },
+      "play": {
+        "x": 284,
+        "y": 228,
+        "width": 128,
+        "height": 56
+      },
+      "noticeY": 736
+    },
+    "status": "FAIL"
+  },
+  {
+    "name": "dialog-safe-inset",
+    "source": "fb1926284527cb8cc0181900ae70c98e56eb0873",
+    "sourceStatus": "M src/game/ShopLayout.ts\n M src/game/ShopResultFeedback.ts\n M src/game/ShopScene.ts\n M src/game/ToolInventoryEntry.ts\n M tests/shop-layout.test.ts\n M tests/tool-inventory-entry.test.ts\n?? harness/pc-shop-regions.mjs",
+    "spec": {
+      "width": 320,
+      "height": 568,
+      "safe": {
+        "top": 0,
+        "bottom": 34
+      }
+    },
+    "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(detail.rect.left>=0&&detail.rect.right<=spec.width&&detail.rect.bottom<=spec.height-(spec.safe?.bottom??0))\n",
+    "geometry": {
+      "x": 12,
+      "w": 296,
+      "top": 12,
+      "pc": null,
+      "desktop": false,
+      "short": false,
+      "copyBeside": false,
+      "inventoryCollapsed": false,
+      "compact": true,
+      "wideHeader": false,
+      "portrait": true,
+      "slots": [
+        {
+          "x": 12,
+          "y": 339.2,
+          "width": 54.4,
+          "height": 76.16
+        },
+        {
+          "x": 72.4,
+          "y": 339.2,
+          "width": 54.4,
+          "height": 76.16
+        },
+        {
+          "x": 132.8,
+          "y": 339.2,
+          "width": 54.4,
+          "height": 76.16
+        },
+        {
+          "x": 193.2,
+          "y": 339.2,
+          "width": 54.4,
+          "height": 76.16
+        },
+        {
+          "x": 253.6,
+          "y": 339.2,
+          "width": 54.4,
+          "height": 76.16
+        }
+      ],
+      "shelf": [
+        {
+          "x": 14.666666666666664,
+          "y": 116,
+          "width": 88,
+          "height": 123.19999999999999
+        },
+        {
+          "x": 116,
+          "y": 116,
+          "width": 88,
+          "height": 123.19999999999999
+        },
+        {
+          "x": 217.33333333333331,
+          "y": 116,
+          "width": 88,
+          "height": 123.19999999999999
+        }
+      ],
+      "tabs": {
+        "x": 12,
+        "y": 64,
+        "width": 296,
+        "height": 44
+      },
+      "chapter": {
+        "x": 12,
+        "y": 423.36,
+        "width": 144,
+        "height": 44
+      },
+      "items": {
+        "x": 164,
+        "y": 423.36,
+        "width": 144,
+        "height": 44
+      },
+      "reroll": {
+        "x": 12,
+        "y": 390,
+        "width": 144,
+        "height": 44
+      },
+      "build": {
+        "x": 164,
+        "y": 390,
+        "width": 144,
+        "height": 44
+      },
+      "play": {
+        "x": 12,
+        "y": 442,
+        "width": 296,
+        "height": 56
+      },
+      "noticeY": 506
+    },
+    "status": "FAIL"
+  },
+  {
+    "name": "portrait-owned-action-overlap",
+    "source": "fb1926284527cb8cc0181900ae70c98e56eb0873",
+    "sourceStatus": "M src/game/ShopLayout.ts\n M src/game/ShopResultFeedback.ts\n M src/game/ShopScene.ts\n M src/game/ToolInventoryEntry.ts\n M tests/shop-layout.test.ts\n M tests/tool-inventory-entry.test.ts\n?? harness/pc-shop-regions.mjs",
+    "spec": {
+      "width": 320,
+      "height": 568,
+      "safe": {
+        "top": 0,
+        "bottom": 34
+      }
+    },
+    "error": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.detail-dialog[open]') to be visible\u001b[22m\n",
+    "geometry": {
+      "x": 12,
+      "w": 296,
+      "top": 12,
+      "pc": null,
+      "desktop": false,
+      "short": false,
+      "copyBeside": false,
+      "inventoryCollapsed": false,
+      "compact": true,
+      "wideHeader": false,
+      "portrait": true,
+      "slots": [
+        {
+          "x": 12,
+          "y": 339.2,
+          "width": 54.4,
+          "height": 76.16
+        },
+        {
+          "x": 72.4,
+          "y": 339.2,
+          "width": 54.4,
+          "height": 76.16
+        },
+        {
+          "x": 132.8,
+          "y": 339.2,
+          "width": 54.4,
+          "height": 76.16
+        },
+        {
+          "x": 193.2,
+          "y": 339.2,
+          "width": 54.4,
+          "height": 76.16
+        },
+        {
+          "x": 253.6,
+          "y": 339.2,
+          "width": 54.4,
+          "height": 76.16
+        }
+      ],
+      "shelf": [
+        {
+          "x": 14.666666666666664,
+          "y": 116,
+          "width": 88,
+          "height": 123.19999999999999
+        },
+        {
+          "x": 116,
+          "y": 116,
+          "width": 88,
+          "height": 123.19999999999999
+        },
+        {
+          "x": 217.33333333333331,
+          "y": 116,
+          "width": 88,
+          "height": 123.19999999999999
+        }
+      ],
+      "tabs": {
+        "x": 12,
+        "y": 64,
+        "width": 296,
+        "height": 44
+      },
+      "chapter": {
+        "x": 12,
+        "y": 423.36,
+        "width": 144,
+        "height": 44
+      },
+      "items": {
+        "x": 164,
+        "y": 423.36,
+        "width": 144,
+        "height": 44
+      },
+      "reroll": {
+        "x": 12,
+        "y": 390,
+        "width": 144,
+        "height": 44
+      },
+      "build": {
+        "x": 164,
+        "y": 390,
+        "width": 144,
+        "height": 44
+      },
+      "play": {
+        "x": 12,
+        "y": 442,
+        "width": 296,
+        "height": 56
+      },
+      "noticeY": 506
+    },
+    "status": "FAIL"
+  }
+]
