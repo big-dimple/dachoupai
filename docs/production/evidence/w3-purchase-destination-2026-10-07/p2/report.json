@@ -1,0 +1,146 @@
+{
+  "source": "0d627466a4be93b015adf3f3cd570fa22bcfaa04",
+  "sourceStatus": "",
+  "scope": "Saved three-kind purchase destination and next-action checks using controlled import and native inputs. No natural acquisition, physical device, aesthetic, audio or FPS acceptance.",
+  "cases": [
+    {
+      "kind": "removed",
+      "width": 1366,
+      "height": 768,
+      "status": "PASS",
+      "cancelStateUnchanged": true,
+      "receiptBefore": {
+        "kind": "jokers",
+        "id": "w1-controlled-20261007/joker/w1-controlled-20261007/command/2",
+        "definitionId": "b10",
+        "name": "练对子",
+        "commandSeq": 2,
+        "body": "已购 练对子 · 已保存\n金币 30 → 26\n\n购入时放入持有牌第 3 槽。\n购入时已存状态：热度成长 0。\n下一步：查看新牌的条件和状态；进入牌桌后按真实条件结算，购入不等于已发动。\n成组成长：本手读取已保存值；成组手结算后新增的成长，从下一手起生效，不补加到本手。"
+      },
+      "receiptAfter": null,
+      "seqBefore": 2,
+      "seqAfter": 3,
+      "donor": "w1-controlled-20261007/joker/w1-controlled-20261007/command/2",
+      "target": "w1/b10",
+      "saveFailureRetained": false
+    },
+    {
+      "kind": "retained-joker",
+      "width": 390,
+      "height": 740,
+      "status": "PASS",
+      "cancelStateUnchanged": true,
+      "receiptBefore": {
+        "kind": "jokers",
+        "id": "w1-controlled-20261007/joker/w1-controlled-20261007/command/2",
+        "definitionId": "b10",
+        "name": "练对子",
+        "commandSeq": 2,
+        "body": "已购 练对子 · 已保存\n金币 30 → 26\n\n购入时放入持有牌第 3 槽。\n购入时已存状态：热度成长 0。\n下一步：查看新牌的条件和状态；进入牌桌后按真实条件结算，购入不等于已发动。\n成组成长：本手读取已保存值；成组手结算后新增的成长，从下一手起生效，不补加到本手。"
+      },
+      "receiptAfter": {
+        "kind": "jokers",
+        "id": "w1-controlled-20261007/joker/w1-controlled-20261007/command/2",
+        "definitionId": "b10",
+        "name": "练对子",
+        "commandSeq": 2,
+        "body": "已购 练对子 · 已保存\n金币 30 → 26\n\n购入时放入持有牌第 3 槽。\n购入时已存状态：热度成长 0。\n下一步：查看新牌的条件和状态；进入牌桌后按真实条件结算，购入不等于已发动。\n成组成长：本手读取已保存值；成组手结算后新增的成长，从下一手起生效，不补加到本手。"
+      },
+      "seqBefore": 2,
+      "seqAfter": 3,
+      "donor": "w1/c11",
+      "target": "w1-controlled-20261007/joker/w1-controlled-20261007/command/2",
+      "saveFailureRetained": false
+    },
+    {
+      "kind": "retained-tool",
+      "width": 390,
+      "height": 740,
+      "status": "PASS",
+      "cancelStateUnchanged": true,
+      "receiptBefore": {
+        "kind": "tools",
+        "id": "w1-controlled-20261007/tool/w1-controlled-20261007/command/2",
+        "definitionId": "T06",
+        "name": "黑桃染",
+        "commandSeq": 2,
+        "body": "已购 黑桃染 · 已保存\n金币 30 → 26\n\n购入时收入工具包第 2 件，尚未使用。\n下一步：打开工具包查看可用时点；需要目标时先选择，再确认使用。查看或取消不会消耗。"
+      },
+      "receiptAfter": {
+        "kind": "tools",
+        "id": "w1-controlled-20261007/tool/w1-controlled-20261007/command/2",
+        "definitionId": "T06",
+        "name": "黑桃染",
+        "commandSeq": 2,
+        "body": "已购 黑桃染 · 已保存\n金币 30 → 26\n\n购入时收入工具包第 2 件，尚未使用。\n下一步：打开工具包查看可用时点；需要目标时先选择，再确认使用。查看或取消不会消耗。"
+      },
+      "seqBefore": 2,
+      "seqAfter": 3,
+      "donor": "w1/c11",
+      "target": "w1/b10",
+      "saveFailureRetained": false
+    },
+    {
+      "kind": "retained-item",
+      "width": 390,
+      "height": 740,
+      "status": "PASS",
+      "cancelStateUnchanged": true,
+      "receiptBefore": {
+        "kind": "items",
+        "id": "U11",
+        "definitionId": "U11",
+        "name": "另一间摊",
+        "commandSeq": 2,
+        "body": "已购 另一间摊 · 已保存\n金币 30 → 20\n\n已加入长期道具，本局持续持有，不能出售。\n实际作用与时机：商店基准售价10金。后续开店长期道具货位1→2；当前货架不补货，刷新也不重抽该货架。本局持续生效，每种不可重复持有、不可出售，共最多4件长期道具。\n下一步：在物品与道具中查看，无需手动使用。"
+      },
+      "receiptAfter": {
+        "kind": "items",
+        "id": "U11",
+        "definitionId": "U11",
+        "name": "另一间摊",
+        "commandSeq": 2,
+        "body": "已购 另一间摊 · 已保存\n金币 30 → 20\n\n已加入长期道具，本局持续持有，不能出售。\n实际作用与时机：商店基准售价10金。后续开店长期道具货位1→2；当前货架不补货，刷新也不重抽该货架。本局持续生效，每种不可重复持有、不可出售，共最多4件长期道具。\n下一步：在物品与道具中查看，无需手动使用。"
+      },
+      "seqBefore": 2,
+      "seqAfter": 3,
+      "donor": "w1/c11",
+      "target": "w1/b10",
+      "saveFailureRetained": false
+    },
+    {
+      "kind": "save-failed",
+      "width": 390,
+      "height": 740,
+      "status": "PASS",
+      "cancelStateUnchanged": true,
+      "receiptBefore": {
+        "kind": "jokers",
+        "id": "w1-controlled-20261007/joker/w1-controlled-20261007/command/2",
+        "definitionId": "b10",
+        "name": "练对子",
+        "commandSeq": 2,
+        "body": "已购 练对子 · 已保存\n金币 30 → 26\n\n购入时放入持有牌第 3 槽。\n购入时已存状态：热度成长 0。\n下一步：查看新牌的条件和状态；进入牌桌后按真实条件结算，购入不等于已发动。\n成组成长：本手读取已保存值；成组手结算后新增的成长，从下一手起生效，不补加到本手。"
+      },
+      "receiptAfter": null,
+      "seqBefore": 2,
+      "seqAfter": 3,
+      "donor": "w1-controlled-20261007/joker/w1-controlled-20261007/command/2",
+      "target": "w1/b10",
+      "saveFailureRetained": true
+    }
+  ],
+  "pages": [],
+  "screenshots": [
+    "removed-new-card.png"
+  ],
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-07T11:22:29.886Z",
+    "revision": "0d627466a4be93b015adf3f3cd570fa22bcfaa04",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "151.0.7922.173",
+  "status": "PASS"
+}

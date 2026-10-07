@@ -1,0 +1,29 @@
+{
+  "head": "616b0b4ae05ad7ab6f9c1c17434b950bddae7fa7",
+  "runId": 37612348543,
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 112762380244,
+      "name": "docs",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 112762380495,
+      "name": "browser",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 112762380567,
+      "name": "domain",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "productionDocsRun": 37612348499,
+  "productionDocsConclusion": "success",
+  "source": "Authorized GitHub workflow run/job reads on 2026-10-07; this is the old head, not the new P2 CI."
+}
