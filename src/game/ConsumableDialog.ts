@@ -11,6 +11,9 @@ import {r2PaidRerollPrice,r2Pool,r2ToolAcquisitionPool} from '../domain/r2Shop';
 import {r2ToolAllowed,r2ToolSupported} from '../domain/r2ToolRuntime';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {DetailDialog} from './DetailDialog';
+import {handdrawnPath} from './HanddrawnArt';
+import {jokerArtPreviewUrl} from './jokerArt';
+import {assetUrl} from './theme';
 import {cardSpecialText,editionEffectText,editionLabel,itemInfo,toolInfo,goodsArtPortrait} from './r2ToolInfo';
 
 export const SKIP_ITEM_LABELS:Record<string,string>=Object.fromEntries(R2_TOOLS.map(tool=>[tool.id,tool.name]));
@@ -155,18 +158,27 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
     }};
     const d=dialog.open(info.label+' · 使用详情',[info.description,info.cost].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消',portrait:goodsArtPortrait(info)});d.classList.add('tool-detail');
     const panel=document.createElement('section'),preview=document.createElement('p'),hint=document.createElement('p');panel.className='tool-target-panel';preview.className='tool-preview';preview.setAttribute('aria-live','polite');hint.className='tool-validation';hint.setAttribute('role','status');
-    const controls:{input:HTMLInputElement;label:HTMLLabelElement;choice:Choice;role:'target'|'donor';maximum:number}[]=[],selects:HTMLSelectElement[]=[];
+    const controls:{input:HTMLInputElement;label:HTMLLabelElement;choice:Choice;role:'target'|'donor';maximum:number}[]=[],selects:HTMLSelectElement[]=[],sortButtons:HTMLButtonElement[]=[];
     const buttons=d.querySelectorAll<HTMLButtonElement>('.dialog-actions button'),confirm=buttons[0],destroy=buttons[1];
     const targetChoices=()=>tool.target.kind==='joker-sacrifice'||tool.target.kind==='card-or-joker'&&selection.targetKind==='joker'?jokerChoices:cardChoices;
     function showError(message:string):void {if(!dialog.active(d))return;const status=d.querySelector<HTMLParagraphElement>('.dialog-status')!;status.textContent=message;status.hidden=false;}
     function gallery(title:string,choices:readonly Choice[],role:'target'|'donor',maximum:number,host=panel):void {
       const field=document.createElement('fieldset'),legend=document.createElement('legend'),grid=document.createElement('div');field.className='tool-target-group';field.setAttribute('aria-label',title);legend.textContent=title;grid.className='tool-choice-grid';field.append(legend,grid);
+      const rows:{choice:Choice;label:HTMLLabelElement}[]=[];
+      if(choices.length&&choices.every(choice=>choice.card)){
+        const sorting=document.createElement('div');sorting.className='tool-target-sort';sorting.setAttribute('role','group');sorting.setAttribute('aria-label',title+'整理');
+        for(const [mode,text] of [['rank','点数整理'],['suit','花色整理']] as const){const button=document.createElement('button');button.type='button';button.textContent=text;button.setAttribute('aria-pressed','false');button.onclick=()=>{if(busy)return;const ordered=[...rows].sort((a,b)=>{const x=a.choice.card!,y=b.choice.card!,rank=y.rank-x.rank,suit=SUITS.indexOf(x.suit)-SUITS.indexOf(y.suit);return mode==='rank'?rank||suit:suit||rank;});grid.append(...ordered.map(row=>row.label));for(const b of sorting.querySelectorAll('button'))b.setAttribute('aria-pressed',String(b===button));};sortButtons.push(button);sorting.append(button);}
+        field.insertBefore(sorting,grid);
+      }
       if(!choices.length){const empty=document.createElement('p');empty.textContent='当前没有可选对象。';grid.append(empty);}
       for(const choice of choices){
         const label=document.createElement('label'),input=document.createElement('input'),name=document.createElement('strong'),detail=document.createElement('small');label.className='tool-card-option';label.dataset.sourceId=choice.id;
         input.type=role==='donor'||maximum===1?'radio':'checkbox';input.name=`${instanceId}/${role}`;input.value=choice.id;input.setAttribute('aria-label',choice.card&&role==='target'?choice.id:choice.name+' · '+(role==='donor'?'牺牲':'受益'));
         if(choice.card){label.dataset.suit=choice.card.suit;label.dataset.edition=choice.card.edition??'none';label.title=cardSpecialText(choice.card);}else label.dataset.edition=choice.joker?.edition??'none';
-        name.textContent=choice.name;detail.textContent=choice.detail;label.append(input,name,detail);grid.append(label);controls.push({input,label,choice,role,maximum});
+        const path=choice.card&&handdrawnPath(choice.card.rank===11?'j':choice.card.rank===12?'q':choice.card.rank===13?'k':'','court'),url=choice.joker?jokerArtPreviewUrl(choice.joker.definitionId):path?assetUrl(path):undefined;
+        name.textContent=choice.name;label.append(input,name);
+        if(url){const image=document.createElement('img');image.src=url;image.alt='';image.loading='lazy';image.className='tool-target-art';image.onerror=()=>{image.hidden=true;};label.append(image);}
+        detail.textContent=choice.detail;label.append(detail);grid.append(label);rows.push({choice,label});controls.push({input,label,choice,role,maximum});
         input.onchange=()=>{
           if(role==='donor'){selection.sacrificeId=choice.id;selection.ids.delete(choice.id);}
           else if(input.checked){if(maximum===1)selection.ids.clear();if(selection.ids.size<maximum)selection.ids.add(choice.id);}
@@ -210,6 +222,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
     const risks=document.createElement('details'),riskTitle=document.createElement('summary'),riskText=document.createElement('p');risks.className='tool-full-risk';riskTitle.textContent='风险与完整说明';riskText.textContent=info.risk;risks.append(riskTitle,riskText);
     panel.append(preview,hint,risks);d.querySelector('.dialog-scroll')!.append(panel);
     function refresh():void {
+      for(const button of sortButtons)button.disabled=busy;
       const issue=selectionIssue(tool,state,selection,known,ready),selected=targetChoices().filter(choice=>selection.ids.has(choice.id));
       for(const control of controls){
         const {input,label,choice,role,maximum}=control;let unavailable=false;

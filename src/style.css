@@ -326,3 +326,13 @@ button[aria-busy=true] { border-style:dashed; }
 .shop-held-manager { display:grid;gap:8px;margin:0 0 16px; }
 .shop-held-manager h3 { margin:0;font-size:15px; }
 .shop-held-manager button { min-height:44px;text-align:left;font-size:15px; }
+
+/* Existing target identities remain readable while the prepared thumbnail loads. */
+.tool-detail .tool-target-sort { display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px; }
+.tool-detail .tool-target-sort button { min-height:44px;min-width:88px;margin:0;font-size:14px; }
+.tool-detail .tool-target-sort button[aria-pressed=true] { border-color:#B8473A;box-shadow:inset 0 0 0 1px #B8473A; }
+.tool-detail .tool-target-art { width:48px;height:64px;object-fit:contain;justify-self:center;pointer-events:none; }
+.tool-detail .tool-target-art[hidden] { display:none; }
+
+.tool-detail .tool-card-option { align-content:start; }
+.tool-detail .tool-card-option small { font-size:14px; }
