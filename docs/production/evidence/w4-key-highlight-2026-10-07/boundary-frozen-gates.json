@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "43cd61774c732ac34b750ff9b2a36ff318134fb280a3b01f29e0bb65d6bf34c1",
+    "index": "52e4f0f402ca309e7bd90ea6c6ce92c4e627705bd2bbff6e28a166b74156bbc1",
+    "head": "9f12669c7616d8b20ecd59cd5bb36f47c53e2f2d",
+    "branch": "refs/heads/feat/w4-key-highlight-20261007"
+  },
+  "after": {
+    "source": "43cd61774c732ac34b750ff9b2a36ff318134fb280a3b01f29e0bb65d6bf34c1",
+    "index": "52e4f0f402ca309e7bd90ea6c6ce92c4e627705bd2bbff6e28a166b74156bbc1",
+    "head": "9f12669c7616d8b20ecd59cd5bb36f47c53e2f2d",
+    "branch": "refs/heads/feat/w4-key-highlight-20261007"
+  },
+  "steps": [
+    {
+      "name": "boundary-native",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 32040
+    },
+    {
+      "name": "plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 318
+    }
+  ]
+}
