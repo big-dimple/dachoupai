@@ -26,3 +26,5 @@ c11换轨：紧邻普通顺子→普通同花或反向，整手倍率×1.75；�
 allowedFiles 精确补充：`src/game/ShopLayout.ts`、`harness/w3-shop-management.mjs`；现有 `src/game/ShopScene.ts`、`src/style.css`、`tests/shop-layout.test.ts`、`tests/detail-dialog.test.ts` 仍在范围。只在实际依赖时修改；不动 ToolInventoryEntry、领域/content/application/platform、锁文件、CI。合同记录与源码独立提交，新的有界证据目录为 `docs/production/evidence/w3-shop-management-2026-10-07/`。
 
 保留 PC 新区域、手机九牌及811/812容量临界；管理入口点开/取消不改完整state与RNG，调序边界禁用，出售二次确认。共享详情使用已有正文滚动并把主关闭与整框放在安全区内，不缩字、不用固定高度裁正文。软件与部署证据不代签用户PC/审美。
+
+本批修复分支软件结果：[安全商店管理证据](evidence/w3-shop-management-2026-10-07/README.md)。320误扣款、短横持有管理与安全弹窗已按受控原生输入复查；产品79a4b00、规则展开harness f5ad8b9。仅这批软件验证通过，仍待独立复核、用户PC/手机共同验收与整体信息闭环，不宣布W3全部完成。
