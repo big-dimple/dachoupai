@@ -1,3 +1,4 @@
+import {savedExperienceCards} from './JokerExperience';
 import {stageGiftReceipt} from './StageGiftReceipt';
 import {toolInfo,goodsArtPortrait} from './r2ToolInfo';
 import {savedGrowthDiscovery} from './JokerGrowthCausality';
@@ -222,7 +223,7 @@ export class IntermissionScene extends Phaser.Scene {
       const edition=trace.events.filter(event=>event.sourceType==='joker'&&event.sourceInstanceId===joker.instanceId&&event.reasonKey.startsWith('edition.')).map(event=>r2ScoreOperationText(event,this.jokerDefinition(event.sourceDefinitionId))).join('、');
       return [this.jokerDefinition(joker.definitionId).name+'：'+copy.state+(edition?'；版次 '+edition:'')];
     });
-    this.dialog.open('最后一手 · 已保存的结算',summary+'\n\n'+lines.join('\n'),[],benefits.length?{effectBody:summary+'\n\n'+benefits.join('\n'),collapseRules:true,rulesLabel:'完整计分明细'}:{});
+    this.dialog.open('最后一手 · 已保存的结算',summary+'\n\n'+lines.join('\n'),run.phase==='stage-cleared'?[{label:'前往商店继续培养',primary:true,disabled:!this.ready,run:()=>this.next()}]:[],benefits.length?{cards:savedExperienceCards(run,trace),effectBody:summary,collapseRules:true,rulesLabel:'完整计分明细'}:{cards:savedExperienceCards(run,trace)});
   }
   private returnToSelect():void {
     if(this.busy)return;this.exitResult('character-select',{freshSeed:true});

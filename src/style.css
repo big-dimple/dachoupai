@@ -336,3 +336,13 @@ button[aria-busy=true] { border-style:dashed; }
 
 .tool-detail .tool-card-option { align-content:start; }
 .tool-detail .tool-card-option small { font-size:14px; }
+
+/* Shared acquired-source notebook: existing hand-drawn art stays beside its facts. */
+.experience-cards { display:grid; gap:12px; }
+.experience-card { display:flex; align-items:flex-start; gap:12px; padding:12px; border:1px solid #a38b66; border-radius:8px; background:#fff7e7; }
+.experience-card > img { flex:none; width:64px; height:90px; object-fit:contain; }
+.experience-card > div { min-width:0; flex:1; }
+.experience-card h3 { margin:0 0 6px; font-size:16px; color:#6e352b; }
+.experience-card p { margin:0; font-size:14px; line-height:1.55; white-space:pre-wrap; overflow-wrap:anywhere; }
+.experience-card button { min-height:44px; margin-top:8px; }
+@media (max-width:360px) { .experience-card { gap:8px; padding:8px; } .experience-card > img { width:48px; height:68px; } }

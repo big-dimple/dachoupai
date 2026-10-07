@@ -1,3 +1,4 @@
+import {selectionExperience,hasActualBenefit,savedBenefit,savedExperienceCards,experienceBeat} from './JokerExperience';
 import {groupGrowthCausality,savedGrowthDiscovery} from './JokerGrowthCausality';
 import {courtArtKey,queueCourtArtLoads} from './HanddrawnArt';
 import {R2HandCandidateCache,r2CandidateKey,r2HandRevision,type R2CandidateInput,type R2CandidateResult} from '../domain/r2HandCandidates';
@@ -448,6 +449,11 @@ export class GameScene extends Phaser.Scene {
     for(const joker of this.run.jokers){const view=this.jokerViews.get(joker.instanceId),label=view?.getData('valueLabel') as Phaser.GameObjects.Text|undefined;
       label?.setText(view?.getData('bossDisabled')?(this.view.layout.mode==='landscape'?'计分封禁':'封禁'):this.jokerValue(joker,preview));
       if(label)this.fitOwnedJokerLabel(label,joker,Number(view?.getData('slotIndex')),preview);
+      const readiness=selectionExperience(this.run,joker,this.memoryContext(joker,preview));
+      view?.setData('selectionReadiness',readiness.readiness).setData('selectionLabel',readiness.label);
+      const frame=view?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;
+      frame?.setStrokeStyle(preview?2:1,readiness.readiness==='limited'?T.red:preview&&readiness.readiness==='ready'?T.brass:preview&&readiness.readiness==='pending'?T.jade:Number(view?.getData('frameColor')),.9);
+      if(label&&preview&&!view?.getData('bossDisabled')){label.setData('savedLabel',label.text);const room=jokerLabelRoom(this.view.layout,Number(view?.getData('slotIndex')));label.setText(fitConditionEntry(readiness.label,text=>{label.setText(text);return label.width<=room;},true));}
       const art=view?.getData('f09-art') as Phaser.GameObjects.Container|undefined;art?.setData('f09-active',!view?.getData('bossDisabled')&&(this.run.stage?.discardsUsed??0)===0);
     }
   }
@@ -797,7 +803,7 @@ export class GameScene extends Phaser.Scene {
   private selectionQuickInScore(score:Box):boolean {return this.assistProfile||this.view.layout.mode!=='desktop'||score.width>=300;}
   private renderSelectionQuickButtons(score:Box):void {
     const area=this.selectionQuickInScore(score)?selectionCandidateEntryBox(score):{x:this.view.layout.playedArea.x+8,y:score.y+2,width:92,height:44},first=this.view.root.length;
-    const buttons=[this.view.button({...area,x:area.x+48,width:44},'牌型\n规则','selection/hand-rules',()=>this.inspectHandRules(),this.ready)];
+    const buttons=[this.view.button({...area,width:44},this.selectedIds.size?'所选\n条件':this.run.lastTrace?'上手\n收益':'来源\n条件','selection/source-benefits',()=>{const facts=this.selectionPreview();if(facts)this.inspectSelection(facts);else if(this.run.lastTrace)this.inspectLastTrace();else this.inspectHeldConditions();},this.ready),this.view.button({...area,x:area.x+48,width:44},'牌型\n规则','selection/hand-rules',()=>this.inspectHandRules(),this.ready)];
     buttons.forEach(button=>(button.getData('label') as Phaser.GameObjects.Text).setFontSize(14).setName('selection/quick-label'));
     this.previewCards!.add(this.view.root.list.slice(first));
   }
@@ -830,12 +836,18 @@ export class GameScene extends Phaser.Scene {
     const portrait=this.view.layout.mode==='portrait';
     const reason=this.playing?this.presentation?'正在结算 · 可快进':'正在换牌':this.handsLeft===1?'最后 1 次出牌 · 达到目标才能过关':!this.selectedIds.size?(handWindow.handOverflow?'‹ › 翻页 · 按住横滑选牌':portrait?'按住横滑选牌 · 长按看详情':'按住横滑选牌 · 最多 5 张'):this.run.gold<discardGoldCost?'弃牌需1金币 · 仍可出牌':this.run.stage!.discardsLeft<r2DiscardCost(this.run)?'弃牌次数已用完':this.handsLeft<=0?'出牌次数已用完':'已选 '+this.selectedIds.size+' / 5';
     const reminders=!this.presentation&&this.ready?this.run.jokers.map(j=>jokerMemory(this.jokerDefinition(j.definitionId),j,this.memoryContext(j,this.selectionPreview()))).filter(m=>m.scoreLimited||m.status==='当前未满足'||m.status==='部分条件满足').slice(0,1).map(m=>m.name+' · '+m.status).join('；'):'';
+    const selectionStates=!this.presentation&&this.ready&&this.selectedIds.size?this.run.jokers.map(j=>selectionExperience(this.run,j,this.memoryContext(j,this.selectionPreview()))):[];
+    const selectedReminder=selectionStates.length?'满足'+selectionStates.filter(s=>s.readiness==='ready').length+' · 待检查'+selectionStates.filter(s=>s.readiness==='pending').length+' · 未满足'+selectionStates.filter(s=>s.readiness==='unmet'||s.readiness==='limited').length+' · 点所选条件':'';
     const savedReminder=!this.presentation?this.run.jokers.map(j=>jokerMemory(this.jokerDefinition(j.definitionId),j,this.memoryContext(j,this.selectionPreview()))).find(m=>m.saved!=='无成长或使用计数'):undefined;
     const entryReminder=!this.selectedIds.size&&this.run.stage?.playIndex===0?this.run.jokers.slice(0,1).map(j=>this.jokerDefinition(j.definitionId).name+' · '+this.jokerValue(j)+' · 长按条件').join(''):'';
     const memoryReminder=savedReminder?(savedReminder.name+' · '+savedReminder.savedShort)+' · 条件见详情':'';
     const sweepReminder=this.handHint?(handWindow.status.width<250?'横滑选牌 · 已选可取消':'横滑选牌 · 从已选牌开始可取消'):'';
+    const latestBenefit=!this.presentation&&this.run.lastTrace&&!this.selectedIds.size?[...this.run.lastTrace.events].reverse().map(e=>savedBenefit(this.run,this.run.lastTrace!,e)).find(Boolean):undefined;
+    const benefitReminder=latestBenefit?latestBenefit.title+' · '+latestBenefit.effect+' · 上手详情':'';
     const discovery=this.ready&&!this.presentation&&!this.selectedIds.size&&!this.statusMessage&&!reminders?savedGrowthDiscovery(this.run):undefined;
-    this.statusText.setName(discovery?'growth/discovery':'').setText(discovery?.full||sweepReminder||this.statusMessage||reminders||entryReminder||memoryReminder||reason);
+    this.statusText.setName(discovery?'growth/discovery':'').setText(discovery?.full||sweepReminder||this.statusMessage||selectedReminder||reminders||entryReminder||benefitReminder||memoryReminder||reason);
+    if(!discovery&&benefitReminder&&!sweepReminder&&!this.statusMessage&&!selectedReminder&&!reminders&&!entryReminder&&this.statusText.width>handWindow.status.width)this.statusText.setText('已保存收益 · 菜单查看上手');
+    if(selectedReminder&&this.statusText.width>handWindow.status.width)this.statusText.setText('点所选条件 · 查看来源');
     // Short landscape has an existing 12px bottom table margin: two normal 16px rows fit without moving controls.
     if(discovery)for(const text of [discovery.full,discovery.compact]){this.statusText.setText(text);if(this.statusText.width<=handWindow.status.width&&this.statusText.height<=handWindow.status.height+(handWindow.mode==='landscape'?12:0))break;}
     if(!discovery&&this.statusText.width>this.view.layout.status.width&&memoryReminder&&!sweepReminder&&!this.statusMessage&&!reminders&&!entryReminder)this.statusText.setText(savedReminder!.name+' · 保存状态见详情');
@@ -905,7 +917,8 @@ export class GameScene extends Phaser.Scene {
     }
   }
   private inspectHeldConditions():void {
-    this.dialog.open('持有构筑 · 完整条件',this.run.jokers.map(j=>{const copy=jokerAbilityCopyForRun(this.run,j.definitionId,j,this.memoryContext(j));return this.jokerDefinition(j.definitionId).name+' · '+copy.state+'\n'+copy.condition+'\n'+copy.value;}).join('\n\n')||'尚未持有大丑牌。购买详情先说明条件，再显示单项机制。');
+    const preview=this.selectionPreview();
+    this.dialog.open('持有构筑 · '+(preview?'所选条件':'选牌与培养'),this.run.jokers.length?'先看每张来源的条件，选牌后描边和状态随所选更新；实际收益在保存成功后显示。':'尚未持有大丑牌。先选1–5张成型牌，过关后在商店按牌组购买来源。',[],{cards:this.run.jokers.map(j=>({...selectionExperience(this.run,j,this.memoryContext(j,preview)),action:{label:'查看来源与成长',run:()=>this.inspectJoker(j.instanceId)}}))});
   }
   private selectionPreview():HandPreview|undefined {
     if(this.playing||this.presentation||this.run.phase!=='await-input'||this.handsLeft<=0||!this.selectedIds.size||[...this.selectedIds].some(id=>!this.hand.some(card=>card.id===id)))return undefined;
@@ -915,8 +928,7 @@ export class GameScene extends Phaser.Scene {
   }
   private inspectSelection(facts:HandPreview):void {
     const copy=selectionCopy(facts),label=(ids:string[])=>this.hand.filter(c=>ids.includes(c.id)).map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join('、')||'无';
-    const conditions=this.run.jokers.map(j=>{const d=this.jokerDefinition(j.definitionId),copy=jokerAbilityCopyForRun(this.run,d.id,j,this.memoryContext(j,facts));return d.name+' · '+copy.state+'\n'+copy.condition;}).join('\n\n');
-    this.dialog.open(copy.title,copy.pattern+'\n'+copy.membership+'\n★代表当前计分牌；附带也随本手打出。\n成型：'+label(facts.scoringIds)+'\n附带：'+label(facts.accompanyingIds)+'（随本手打出，仍可参与其他规则）\n'+copy.restrictions.join('\n')+'\n'+copy.fullRules+'\n\n选1–5张；按全部所选牌判型。三条可选3／4／5张，但补成另一对子会转葫芦，第四张同点会转四条。失效牌仍参与判型，其效果停用；点数0只停普通点数。',[{label:'本轮可成牌型',run:()=>this.inspectCandidates()},...(this.run.lastTrace?[{label:'回看上手',run:()=>this.inspectLastTrace()}]:[])],{effectBody:conditions||'尚未持有大丑牌；购买后条件列在这里。',collapseRules:false});
+    this.dialog.open(copy.title,copy.pattern+'\n'+copy.membership+'\n★代表当前计分牌；附带也随本手打出。\n成型：'+label(facts.scoringIds)+'\n附带：'+label(facts.accompanyingIds)+'（随本手打出，仍可参与其他规则）\n'+copy.restrictions.join('\n')+'\n'+copy.fullRules+'\n\n选1–5张；按全部所选牌判型。三条可选3／4／5张，但补成另一对子会转葫芦，第四张同点会转四条。失效牌仍参与判型，其效果停用；点数0只停普通点数。',[{label:'本轮可成牌型',run:()=>this.inspectCandidates()},...(this.run.lastTrace?[{label:'回看上手',run:()=>this.inspectLastTrace()}]:[])],{effectBody:this.run.jokers.length?'所选条件 · 满足不代表已发动':'尚未持有大丑牌；购买后条件列在这里。',cards:this.run.jokers.map(j=>({...selectionExperience(this.run,j,this.memoryContext(j,facts)),action:{label:'查看来源与成长',run:()=>this.inspectJoker(j.instanceId)}})),collapseRules:false});
   }
   private inspectCard(id:string):void {
     const c=this.hand.find(c=>c.id===id);if(!c)return;
@@ -1026,7 +1038,7 @@ export class GameScene extends Phaser.Scene {
     if(!this.handHint)return;this.handHint=false;
     if(this.controlsLive&&this.statusText?.active&&this.scene.isActive())this.updateControls();
   };
-  private readonly hintVisibility=()=>{if(document.hidden){this.stopHandHint();this.handInput?.cancel('blur');this.candidateGhost=undefined;this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;}else if(this.run?.phase==='await-input'&&!this.playing&&!this.presentation&&this.scene.isActive())this.refreshSelection();};
+  private readonly hintVisibility=()=>{if(document.hidden){if(this.presentation)this.fastForward();this.stopHandHint();this.handInput?.cancel('blur');this.candidateGhost=undefined;this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;}else if(this.run?.phase==='await-input'&&!this.playing&&!this.presentation&&this.scene.isActive())this.refreshSelection();};
   private showHandHint(claim=true):void {
     if(!this.view||!this.ready||this.handHint)return;
     const cards=this.view.layout.cards.filter(card=>card.visible);if(cards.length<2||claim&&!this.sweepHint.claim())return;
@@ -1380,6 +1392,10 @@ export class GameScene extends Phaser.Scene {
   private async showScoreEvent(event:ScoreEvent,index:number,beat:ScoreBeat,context:EffectContext):Promise<void> {
     if(context.signal.aborted)return;
     this.ensureTraceSource(event);
+    const benefit=this.presentation?savedBenefit(this.run,this.presentation.score,event):undefined;
+    const sourceBenefit=hasActualBenefit(event);
+    if(benefit){this.statusText.setName('benefit/live').setText(benefit.effect);this.statusText.setData('benefit',benefit);if(this.statusText.width>this.view.layout.status.width)this.statusText.setText(benefit.title+' · 收益见上手详情');}
+
     if(event.targetCardId)this.showTraceHeldCard(event.targetCardId);
     const timing=this.reducedMotion?{...beat,windup:0,flight:0,impact:Math.min(180,beat.impact),rest:120}:beat,duration=timing.windup+timing.flight+timing.impact;
     const note=this.operationText(event),source=this.eventSource(event),card=this.settledCards.get(event.targetCardId??'')??this.cardViews.find(view=>view.card.id===event.targetCardId);
@@ -1393,7 +1409,7 @@ export class GameScene extends Phaser.Scene {
     if(cardResponds&&card)sourceEffects.push(this.illuminateCard(card,event,timing,context,impact));
     if(event.sourceType==='character'){
       sourceEffects.push(this.animateRole(note,duration,context,timing,impact));
-    }else if(event.sourceType==='joker'){
+    }else if(event.sourceType==='joker'&&sourceBenefit){
       sourceEffects.push(this.animateJoker(event,duration,context,timing,impact));
     }else if(event.operation==='seal-joker'&&event.targetJokerInstanceId){
       sourceEffects.push(this.animateJoker({sourceInstanceId:event.targetJokerInstanceId,operation:'seal-joker'},duration,context,timing,impact).then(()=>{
@@ -1418,7 +1434,7 @@ export class GameScene extends Phaser.Scene {
     // The domain result is already saved. Only the display and SFX arrive with this hit.
     this.scoreTotal.setData('eventPhase','impact');
     if(event.sourceType==='character')this.audio.sourceCue('character');
-    else if(event.sourceType==='joker')this.audio.sourceCue(event.phase==='onHeldCard'?'held':'joker',index);
+    else if(event.sourceType==='joker'&&sourceBenefit)this.audio.sourceCue(event.phase==='onHeldCard'?'held':'joker',index);
     else if(event.sourceType==='card'&&event.value.n!=='0')this.audio.sourceCue('card',index);
     else if(event.sourceType==='rule')this.audio.sourceCue(event.phase==='onStageClear'?'held':'boss');
     if(event.operation==='add-multiplier'||event.operation==='read-growth'&&(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d))this.audio.multiplier('add',index);
@@ -1445,7 +1461,7 @@ export class GameScene extends Phaser.Scene {
       }
       this.audio.coin();
     }
-    if(event.sourceType==='joker'){
+    if(event.sourceType==='joker'&&sourceBenefit){
       const jv=this.jokerViews.get(event.sourceInstanceId);
       if(jv){const frame=jv.getData('frame') as Phaser.GameObjects.Rectangle;notes.push(this.floatNote(note,Number(jv.getData('baseX')),Number(jv.getData('baseY'))-frame.height/2-8,event.operation==='multiply-multiplier'||event.operation==='read-coefficient'?'#f6c0a4':'#ffe3ae',impactDuration+timing.rest,context));}
     }else if(event.sourceType==='character'){
@@ -1618,12 +1634,12 @@ export class GameScene extends Phaser.Scene {
       await Promise.all(baseEffects);
     });
     this.effects.enqueue(context=>this.wait(this.reducedMotion?120:baseCue&&!fourCardFormation(score)?200:460,context));
-    let jokerIndex=0,scoreOrdinal=0;
+    let jokerIndex=0,scoreOrdinal=0,previousSource:string|undefined;
     for(const event of score.events){
       if(event.phase==='base')continue;
       if(event.phase==='finalScore'){this.effects.enqueue(context=>this.award(score,presentation,context));continue;}
       const index=event.sourceType==='joker'?jokerIndex++:event.sourceType==='character'?0:score.sets.activeScoringIds.indexOf(event.targetCardId??'');
-      const beat=scoreBeat(event,scoreOrdinal++);this.effects.enqueue(context=>this.showScoreEvent(event,Math.max(0,index),beat,context));
+      const beat=experienceBeat(event,previousSource,scoreBeat(event,scoreOrdinal++));if(event.sourceType==='joker'&&hasActualBenefit(event))previousSource=event.sourceInstanceId;else previousSource=undefined;this.effects.enqueue(context=>this.showScoreEvent(event,Math.max(0,index),beat,context));
     }
     let failed=false;
     try {await this.effects.drain();}
@@ -1654,7 +1670,7 @@ export class GameScene extends Phaser.Scene {
       const edition=score.events.filter(event=>event.sourceType==='joker'&&event.sourceInstanceId===joker.instanceId&&event.reasonKey.startsWith('edition.')).map(event=>this.operationText(event)).join('、');
       return [this.jokerDefinition(joker.definitionId).name+'：'+copy.state+(edition?'；版次 '+edition:'')];
     });
-    this.dialog.open('上手已入账 · '+HAND_LABELS[score.handType]+' +'+heatText(score.finalScore),this.formatBreakdown(score)+'\n\n'+score.events.filter(event=>event.phase!=='base'&&event.phase!=='finalScore').map(event=>this.eventSource(event)+' '+this.operationText(event)+(['afterHand','beforeFailure','onStageClear'].includes(event.phase)?'':' → 热度 '+fractionText(event.after.H)+' / 倍率 '+fractionText(event.after.M))).join('\n'),[{label:'回看演出',disabled:!this.ready,run:()=>{this.dialog.close();this.replayLastTrace();}}],benefits.length?{effectBody:this.formatBreakdown(score)+'\n\n'+benefits.join('\n'),collapseRules:true,rulesLabel:'完整计分明细'}:{});
+    this.dialog.open('上手已入账 · '+HAND_LABELS[score.handType]+' +'+heatText(score.finalScore),this.formatBreakdown(score)+'\n\n'+score.events.filter(event=>event.phase!=='base'&&event.phase!=='finalScore').map(event=>this.eventSource(event)+' '+this.operationText(event)+(['afterHand','beforeFailure','onStageClear'].includes(event.phase)?'':' → 热度 '+fractionText(event.after.H)+' / 倍率 '+fractionText(event.after.M))).join('\n'),[...(this.run.consumables.length?[{label:'打开工具包',disabled:!this.ready,primary:true,run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))}]:[]),{label:'回看演出',disabled:!this.ready,run:()=>{this.dialog.close();this.replayLastTrace();}}],benefits.length?{cards:savedExperienceCards(this.run,score),effectBody:this.formatBreakdown(score),collapseRules:true,rulesLabel:'完整计分明细'}:{cards:savedExperienceCards(this.run,score)});
   }
 
   /** 本关结束：先让玩家看清结果，再进入明确的过场状态 */
