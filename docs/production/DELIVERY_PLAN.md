@@ -1,5 +1,6 @@
 # 大丑牌完整策划与开发交付计划
 
+当前 PC 商店区域改进入口：[单一布局合同与高度例外](PC_SHOP_REGION_CONTRACT.md)，输入 main `51c356a187aff776dfa81eed826df8e032d848d6`；未代签用户观感。
 ## 当前合同
 
 本文件是当前策划、依赖、决策和交付口径的唯一入口。plan.json保留工作包状态与历史证据；CHARACTER_PLAY_PLAN、WORK_PACKAGES和开发交接保留原合同与历史，不再各自维护另一份“当前计划”。
