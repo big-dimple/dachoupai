@@ -98,3 +98,11 @@ it('wide PC low heights reserve lower goods and feedback before sizing either ca
 it('320 short portrait safe12/34 keeps every visible owned hit clear of paid reroll and other actions',()=>{
  for(const bottom of [0,12,34]){const p=shopLayout(320,568,12,bottom,3,true);expect(p.inventoryCollapsed).toBe(false);for(const b of p.slots){const hit=shopOwnedHitBox(b,p.reroll.y,true);for(const action of [p.reroll,p.build,p.play])expect(intersects(hit,action)).toBe(false);expect(b.y+b.height).toBeLessThanOrEqual(p.reroll.y-4);expect(hit.width).toBeGreaterThanOrEqual(44);expect(hit.height).toBeGreaterThanOrEqual(44);}expect(p.play.height).toBeGreaterThanOrEqual(48);expect(p.reroll.height).toBeGreaterThanOrEqual(44);for(const b of p.shelf)expect(b.height/b.width).toBeCloseTo(1.4);}
 });
+
+it('PC portrait art spends actual remaining height without clipping three goods and independent lower groups',()=>{
+ for(const [width,height] of [[1000,768],[1280,720],[1366,768],[1920,1080]]){
+  const p=shopLayout(width,height,8,0,3,true);expect(p.shelf).toHaveLength(3);
+  for(const face of p.shelf){expect(face.width).toBeGreaterThan(88);expect(face.width).toBeLessThanOrEqual(144);expect(face.height/face.width).toBeCloseTo(1.4);expect(face.y+face.height).toBeLessThan(p.pc!.groupY);}
+  for(const g of [p.pc!.toolOffers,p.pc!.itemOffers]){expect(g.height).toBeGreaterThanOrEqual(96);expect(g.y+g.height).toBeLessThanOrEqual(p.pc!.feedback.y);}
+ }
+});

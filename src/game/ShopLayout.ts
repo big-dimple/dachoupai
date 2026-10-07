@@ -36,7 +36,7 @@ function desktopShopLayout(width:number,height:number,top:number,bottom:number,_
   const actionWidth=width>=1600?144:128,goodsX=shopPanel.x+actionWidth+32,goodsWidth=shopPanel.width-actionWidth-48;
   // Reserve the lower 128px goods row, its headings and the feedback gap first.
   const faceHeightBudget=usableHeight-332-ownedHeight-128;
-  const seat=(goodsWidth-24)/3,cardWidth=width>=1600?Math.min(144,faceHeightBudget/1.4):88,cardHeight=cardWidth*1.4;
+  const seat=(goodsWidth-24)/3,cardWidth=width>=1600?Math.min(144,faceHeightBudget/1.4):Math.min(128,faceHeightBudget/1.4),cardHeight=cardWidth*1.4;
   const upperY=shopPanel.y+28,upperHeight=cardHeight+136;
   const jokerOffers:Box[]=Array.from({length:3},(_,i)=>({x:goodsX+i*(seat+12),y:upperY,width:seat,height:upperHeight}));
   const shelf=jokerOffers.map(b=>({x:b.x+(b.width-cardWidth)/2,y:b.y+6,width:cardWidth,height:cardHeight}));

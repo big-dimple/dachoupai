@@ -213,3 +213,14 @@ it('foreground total protects digits without holes in short and safe-inset layou
     if(l.handOverflow){expect(l.handNavigation.previous.x).toBe(l.hand.x);expect(l.handNavigation.next.x+l.handNavigation.next.width).toBe(l.hand.x+l.hand.width);expect(l.handStart+l.visibleCardCount).toBe(count);}
   });
  });
+
+it('desktop card art uses spare height while ordinary nine and fourteen windows keep full hit safety',()=>{
+ for(const [width,height] of [[1280,720],[1366,768],[1920,1080],[768,1024],[811,812],[812,811]])for(const count of [9,14]){
+  const l=layout({width,height},{top:0,right:0,bottom:0,left:0},undefined,{count});
+  expect(l.slots[0].width).toBe(80);expect(l.cards[0].visual.width).toBeGreaterThanOrEqual(88);
+  expect(l.slots[0].y+l.slots[0].height).toBeLessThan(l.playedArea.y);
+  if(count===9)expect(l.visibleCardCount).toBe(9);
+  const mat=playedFootprint(l.playedArea,false);expect(mat.width).toBeGreaterThanOrEqual(Math.min(540,l.playedArea.width));
+  for(const c of l.cards.filter(c=>c.visible))expect(c.hit.width).toBeGreaterThanOrEqual(36);
+ }
+});

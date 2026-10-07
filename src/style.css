@@ -346,3 +346,18 @@ button[aria-busy=true] { border-style:dashed; }
 .experience-card p { margin:0; font-size:14px; line-height:1.55; white-space:pre-wrap; overflow-wrap:anywhere; }
 .experience-card button { min-height:44px; margin-top:8px; }
 @media (max-width:360px) { .experience-card { gap:8px; padding:8px; } .experience-card > img { width:48px; height:68px; } }
+
+/* Public candidate cards share the table's paper and reviewed J/Q/K artwork. */
+.candidate-card-row { display:flex; justify-content:center; gap:6px; margin:4px 0 8px; }
+.candidate-card-face { position:relative; display:flex; flex-direction:column; align-items:center; flex:0 1 52px; min-width:30px; height:76px; border:1px solid #a38b66; border-radius:4px; background:#fff9ee; box-shadow:1px 2px 0 #d7cbb7; color:#3f606b; }
+.candidate-card-face[data-red="true"] { color:#b8473a; }
+.candidate-card-face[data-disabled="true"] { background:#e2e0da; border-style:dashed; }
+.candidate-card-face strong { align-self:flex-start; padding:1px 3px; font-size:14px; line-height:18px; white-space:nowrap; }
+.candidate-card-face img { width:30px; height:42px; object-fit:contain; }
+.candidate-card-pip { font:30px/42px Georgia,serif; }
+.candidate-card-face small { position:absolute; bottom:1px; right:3px; font-size:14px; line-height:16px; }
+.candidate-caption { display:block; font-size:14px; line-height:1.5; }
+.candidate-choice[aria-pressed="true"] .candidate-card-face { transform:translateY(-3px); box-shadow:1px 3px 0 #d6ac8a; }
+@media (prefers-reduced-motion:no-preference) { .candidate-card-face { transition:transform 120ms ease; } }
+.candidate-source-details { margin:12px 0; }
+.candidate-source-details > summary { min-height:44px; display:flex; align-items:center; font-size:14px; color:#3f606b; cursor:pointer; }

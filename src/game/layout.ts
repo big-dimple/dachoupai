@@ -104,7 +104,7 @@ export function scorePedestal(s:Box):Box|undefined {
 export function layout(viewport:{width:number;height:number},safe:Insets,requested?:LayoutMode,handWindow:HandWindow={count:8}){
   const l=capacityLayout(viewport,safe,requested,handWindow),{width,height}=viewport,count=l.cards.length;
   const portrait=l.mode==='portrait',desktop=l.mode==='desktop';
-  const cardWidth=portrait?(count>=10?64:width<380?52:64):Math.min(96,Math.max(80,(height-safe.top-safe.bottom)*.09));
+  const cardWidth=portrait?(count>=10?64:width<380?52:64):Math.min(104,Math.max(88,(height-safe.top-safe.bottom)*.13));
   const rows=portrait&&count>=10&&count<=14?2:1,handHeight=rows*(cardWidth*1.4+22);
   const net=height-safe.top-safe.bottom;
   const scoreBudget=net-(52+89.6+18+88+handHeight+56+20+16+18)-.01;
@@ -116,11 +116,12 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
     const actionW=portrait?mainW:Math.min(480,mainW),actionX=mainX+(mainW-actionW)/2;
     l.actions=box(actionX,l.status.y-60,actionW,56);
     l.hand=box(mainX,l.actions.y-4-handHeight,mainW,handHeight);
-    l.jokers=box(mainX,portrait?l.hud.y+54:safe.top+64,mainW,89.6);
-    const slotGap=6,slotWidth=Math.min(64,(mainW-4*slotGap)/5),rackWidth=5*slotWidth+4*slotGap;
+    const rackWidthLimit=portrait?64:80;
+    l.jokers=box(mainX,portrait?l.hud.y+54:safe.top+64,mainW,rackWidthLimit*1.4);
+    const slotGap=6,slotWidth=Math.min(rackWidthLimit,(mainW-4*slotGap)/5),rackWidth=5*slotWidth+4*slotGap;
     l.slots=Array.from({length:5},(_,i)=>box(mainX+(mainW-rackWidth)/2+i*(slotWidth+slotGap),l.jokers.y,slotWidth,slotWidth*1.4));l.jokerLabels=l.slots;
     l.scoreBoard=portrait?box(mainX,l.jokers.y+91.6,mainW,Math.min(rows===2?120:132,scoreBudget)):box(x,l.hud.y+l.hud.height+12,224,164);
-    const playedTop=portrait?l.scoreBoard.y+l.scoreBoard.height+20:l.jokers.y+112;
+    const playedTop=portrait?l.scoreBoard.y+l.scoreBoard.height+20:l.jokers.y+l.jokers.height+22.4;
     l.playedArea=box(mainX,playedTop,mainW,l.hand.y-4-playedTop);
     l.preview=portrait?box(mainX,l.scoreBoard.y,mainW,l.hand.y-4-l.scoreBoard.y):l.playedArea;
     const sortX=l.actions.x+76;
@@ -165,5 +166,5 @@ export type TableLayout=ReturnType<typeof layout>;
 /** Visual mat follows the five-card footprint; logical played area stays unchanged. */
 export function playedFootprint(area:Box,portrait:boolean):Box {
  const scale=portrait?1:Math.min(1.25,Math.max(1,area.width/900),Math.max(1,area.height/500));
- const width=Math.min(area.width,portrait?316:480*scale),height=Math.min(area.height,portrait?100:136*scale);return box(area.x+(area.width-width)/2,area.y+(area.height-height)/2,width,height);
+ const width=Math.min(area.width,portrait?316:Math.min(600,540*scale)),height=Math.min(area.height,portrait?100:160*scale);return box(area.x+(area.width-width)/2,area.y+(area.height-height)/2,width,height);
 }
