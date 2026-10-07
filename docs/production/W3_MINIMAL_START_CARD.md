@@ -68,3 +68,9 @@ inputSHA：`576a7b60a4153d35d1479cfff9abb0d8cb6d61e6`，父确认PR39独审/精�
 当前商店工具整副牌目标按原序显示，找同点/同花不便；本批在既有工具目标gallery增点数/花色只读整理，选择按实例保持，原提交顺序仍来自原targetChoices，不改手牌/牌组/RNG。复用court和Joker目标缩略，名称/花色/增强/版次/序号保持，加载缺图退回文字，不添加新图。allowedFiles：`src/game/ConsumableDialog.ts`、`src/style.css`、`harness/w3-tool-targets.mjs`与必要文档证据。相关定向工具/详情检查；最终候选一次必要verify/content/plan及PC/窄竖/短横目标选择、取消、真实使用与重入。不大回归每个小动作、不混领域/角色/经济/存档变化，真实玩家与真机未签。证据`docs/production/evidence/w3-tool-targets-2026-10-07/`，仅draft父审，不合main。
 
 本批软件结果：[工具目标整理与现有图像复用](evidence/w3-tool-targets-2026-10-07/README.md)。最终7db8630，四视口真实多目标整理/取消/实际改牌/重入、当前手牌公开目标、缺图与保存失败同候选重试通过；69相关检查与一次默认verify2471 tests/137 files及content/plan通过。没有重跑成长/商店全套；原W3/W2/W6计划和真实玩家/实机边界保持，新headCI与父独审待接。
+
+## 2026-10-07 W3/W4-P1 换一身真实过关赠品
+
+inputSHA：`3ee210f3b0c5c2d04c00facb09cc1610adae2d0e`，父确认PR40独审/精确CI/FF main，fetch一致。原W3事实/使用闭环与W4-P1资源基础反馈（U06/U10/U11、SG10），对应JOKER_TRIGGER_HIGHLIGHT已核c12样板。依赖现有普通straight+flush同场资格、成功过关保存事件、满包转2金及已备T03–T06图；全部已有规则，不变领域/随机/奖励。现有过关主界面只显示合计金币，赠品来源/名称/入包及满包去向须主动读长trace，先补这条实际经营闭环。
+
+allowedFiles：`src/game/IntermissionScene.ts`、新只读`src/game/StageGiftReceipt.ts`、`tests/stage-gift-receipt.test.ts`、`harness/fixtures/stage-gift.ts`、`harness/w3-stage-gift.mjs`与必要证据。只读成功保存的真实onStageClear c12事件，复用既有footer和详情/工具图；未满足/特殊同花顺/无trace/未保存不假发奖，满包不假入工具。相关单测为主，有限PC/窄竖/短横原生真实两手→赠品/满包→查看/取消/重入→商店使用；最终必要门禁一次。P2特写/音效/角色/数值/存档/RNG/共享布局不改，真实玩家与真机待验；仅draft父审，不合main。
