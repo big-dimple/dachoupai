@@ -181,7 +181,7 @@ export class IntermissionScene extends Phaser.Scene {
       if(y+line.height+4>totalY)line.destroy();
       else {
         const art=fact&&jokerArtKey(fact.definitionId);if(art&&this.textures.exists(art))v.add(this.add.image(Math.max(b.x+18,line.x-line.width/2-22),y+8,art).setDisplaySize(compact?16:28,compact?20:35).setName('result/source-art'));
-        if(animate){line.setAlpha(0);this.tweens.add({targets:line,alpha:1,y:{from:line.y-12,to:line.y},duration:280,delay:180,ease:'Cubic.easeOut'});}
+        if(animate){line.setAlpha(0);this.tweens.add({targets:line,alpha:1,duration:280,delay:180,ease:'Cubic.easeOut'});}
       }
     }
     const gap=BigInt(target)>BigInt(this.result.stageHeat)?(BigInt(target)-BigInt(this.result.stageHeat)).toString():'0';

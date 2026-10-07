@@ -14,6 +14,9 @@ export class SceneView {
   private intent=new PointerIntent();
   private pressed?:{object:Phaser.GameObjects.GameObject;actions:TouchActions;id:number;held:boolean;touch:boolean;x:number;y:number;dragging:boolean;at:number;downTime:number};
   private timer?:ReturnType<typeof setTimeout>;
+  private deferredRefresh?:()=>void;
+  /** Derived information may redraw after release, never destroy the pressed action. */
+  afterInteraction(refresh:()=>void):void {if(this.pressed)this.deferredRefresh=refresh;else refresh();}
   private contacts=new Map<number,string>();
   private multiContact=false;
   private readonly contactDown=(event:PointerEvent)=>{
@@ -23,7 +26,7 @@ export class SceneView {
   };
   private readonly contactEnd=(event:PointerEvent)=>{this.contacts.delete(event.pointerId);if(!this.contacts.size)this.multiContact=false;};
   private readonly contactBlur=()=>{this.contacts.clear();this.multiContact=false;this.cancel();};
-  private reset(canceled:boolean):void {const pressed=this.pressed;this.intent.cancel();this.pressed=undefined;clearTimeout(this.timer);pressed?.actions.release?.();if(canceled)pressed?.actions.cancel?.();}
+  private reset(canceled:boolean):void {const pressed=this.pressed;this.intent.cancel();this.pressed=undefined;clearTimeout(this.timer);pressed?.actions.release?.();if(canceled)pressed?.actions.cancel?.();const refresh=this.deferredRefresh;this.deferredRefresh=undefined;if(refresh)queueMicrotask(()=>this.afterInteraction(refresh));}
   private readonly cancel=()=>this.reset(true);
   cancelInteraction():void {this.reset(true);}
   private readonly down=(p:Phaser.Input.Pointer,over:Phaser.GameObjects.GameObject[])=>{

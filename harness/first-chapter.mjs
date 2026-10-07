@@ -24,7 +24,7 @@ try {
         await mkdir(dir, { recursive: true });
         const report = { device, head: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), scope: 'Single fixed existing seed, real Title/character/default D0, chapter program declined via real UI. No imports, fabricated draws, future-deck reads or seed scans. Software probe, not human retention/device acceptance.', steps: [] };
         const tapUI = (page, key, name) => tapNative(page, key, name, device.name !== 'pc');
-        const p = await browser.newPage({ viewport: { width: device.width, height: device.height }, hasTouch: device.name !== 'pc', reducedMotion: 'reduce' });
+        const p = await browser.newPage({ viewport: { width: device.width, height: device.height }, hasTouch: device.name !== 'pc', reducedMotion: device.name==='pc'?'no-preference':'reduce' });
         p.on('dialog', d => d.accept());
         const waitCommand = (before, delta = 1) => p.waitForFunction(({ seq, delta }) => window.__harness.game.registry.get('runController').state.commandSeq === seq + delta, { seq: before.commandSeq, delta });
         const state = () => p.evaluate(() => window.__harness.game.registry.get('runController')?.state), settle = () => p.waitForFunction(() => { const g = window.__harness.game, s = g.registry.get('runController')?.state; if (!s)
@@ -138,8 +138,7 @@ try {
                         if (o.list)
                             walk(o.list);
                     } }; walk(s.children.list); return a; });
-                    if (keys.length)
-                        await tapUI(p, 'game', keys[0]);
+                    if(keys.length){await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');window.__w6Touches??=[];s.input.once('pointerdown',(p,over)=>{for(const o of over.filter(o=>o.name?.startsWith('selection/assist-'))){const at=performance.now();window.__w6Touches.push({type:'down',name:o.name,at});o.once('destroy',()=>window.__w6Touches.push({type:'destroy',name:o.name,at:performance.now(),afterDown:performance.now()-at}));}s.input.once('pointerup',()=>window.__w6Touches.push({type:'up',at:performance.now()}));});});await tapUI(p,'game',keys[0]);await p.waitForFunction(()=>window.__harness.game.scene.getScene('game').assistIds.length>0,{},{timeout:2500});}
                     const draft = await p.evaluate(() => { const s = window.__harness.game.scene.getScene('game'); return { selectedIds: [...s.selectedIds], assistIds: [...s.assistIds], copy: s.statusText.text }; });
                     if (stage === 0 && turn === 0) {
                         await p.setViewportSize(device.name === 'pc' ? { width: 1280, height: 720 } : { width: 740, height: 390 });
@@ -180,7 +179,7 @@ try {
                     const regions = report.steps.at(-1).regions;
                     assert.ok(regions.some(r => r.name === 'result/assist-source' && r.text.includes('×' + ended.lastTrace.assist.multiplier)));
                     const source = regions.filter(r => ['result/assist-source', 'result/source-continuity'].includes(r.name)), total = regions.find(r => r.name === 'result/gap');
-                    assert.ok(source.every(r => r.bounds.y + r.bounds.height <= total.bounds.y));
+                    assert.ok(source.every(r => r.bounds.y + r.bounds.height <= total.bounds.y));if(source.length>1)assert.ok(source[0].bounds.y+source[0].bounds.height<=source[1].bounds.y,'assist contribution and saved growth must have separate rows');
                 }
                 if (ended.phase !== 'stage-cleared') {
                     report.outcome = { phase: ended.phase, stage, reason: ended.outcome };
@@ -209,12 +208,12 @@ try {
                 }
             }
             assert.equal(report.firstChapter?.phase,'stage-cleared','fixed public route must really finish chapter one');report.final = await state();
-            report.status = 'PROBE_COMPLETE';completed.push(report.final);
+            report.touches=await p.evaluate(()=>window.__w6Touches??[]);report.status = 'PROBE_COMPLETE';completed.push(report.final);
         }
         catch (e) {
             report.status = 'FAIL';
             report.error = String(e);
-            report.dialogs = await p.locator('dialog[open]').allTextContents();
+            report.touches=await p.evaluate(()=>window.__w6Touches??[]);report.dialogs = await p.locator('dialog[open]').allTextContents();
             await shot('FAIL');
             process.exitCode = 1;
         }

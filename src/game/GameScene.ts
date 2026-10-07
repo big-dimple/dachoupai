@@ -874,9 +874,9 @@ export class GameScene extends Phaser.Scene {
     if(this.candidateGhost?.key!==key)this.candidateGhost=undefined;
     if(this.candidateUndo?.revision!==this.draftRevision())this.candidateUndo=undefined;
     const lifecycle=this.lifecycle;
-    this.candidates.update(input,result=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing&&r2CandidateKey(this.candidateInput())===result.key)this.refreshSelection();});
+    this.candidates.update(input,result=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing&&r2CandidateKey(this.candidateInput())===result.key)this.view.afterInteraction(()=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing)this.refreshSelection();});});
     const ai=this.aiInput(),aiKey=aiHandKey(ai);if(this.aiCursor?.key!==aiKey)this.aiCursor=undefined;
-    this.aiCandidates.update(ai,result=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing&&aiHandKey(this.aiInput())===result.key)this.refreshSelection();});
+    this.aiCandidates.update(ai,result=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing&&aiHandKey(this.aiInput())===result.key)this.view.afterInteraction(()=>{if(lifecycle===this.lifecycle&&this.scene.isActive()&&!this.presentation&&!this.playing)this.refreshSelection();});});
   }
   private aiInput():AiHandInput {
     const stage=this.run.stage!,context=r2ScoreContext(this.run,this.hand,[]);
