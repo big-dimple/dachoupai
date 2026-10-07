@@ -1,3 +1,4 @@
+import {purchasePaymentFacts} from './PurchasePaymentFacts';
 import type {R2RunState} from '../domain/run';
 import type {R2Offer} from '../domain/r2Shop';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
@@ -5,7 +6,7 @@ import {r2GrowthMinimums} from '../content/r2Schema';
 import {r2JokerStateText} from './r2Help';
 import {itemInfo,toolInfo} from './r2ToolInfo';
 
-export interface ShopPurchaseReceipt {kind:'jokers'|'tools'|'items';id:string;definitionId:string;name:string;body:string;commandSeq:number}
+export interface ShopPurchaseReceipt {kind:'jokers'|'tools'|'items';id:string;definitionId:string;name:string;body:string;commandSeq:number;payment?:ReturnType<typeof purchasePaymentFacts>}
 /** Call only after a successful durable, nonduplicate purchase. Never infer acquisition from an offer alone. */
 export function shopPurchaseReceipt(before:R2RunState,after:R2RunState,kind:ShopPurchaseReceipt['kind'],offer:R2Offer):ShopPurchaseReceipt|undefined {
  if(after.commandSeq!==before.commandSeq+1)return;
@@ -22,7 +23,8 @@ export function shopPurchaseReceipt(before:R2RunState,after:R2RunState,kind:Shop
   if(before.longTermItems.includes(offer.definitionId)||!after.longTermItems.includes(offer.definitionId))return;
   const info=itemInfo(offer.definitionId);id=offer.definitionId;name=info.name;destination=`已加入长期道具，本局持续持有，不能出售。\n实际作用与时机：${info.description}\n下一步：在物品与道具中查看，无需手动使用。`;
  }
- return {kind,id,definitionId:offer.definitionId,name,commandSeq:after.commandSeq,body:`已购 ${name} · 已保存\n金币 ${before.gold} → ${after.gold}\n\n${destination}`};
+ const payment=purchasePaymentFacts(before,after,offer);
+ return {kind,id,definitionId:offer.definitionId,name,commandSeq:after.commandSeq,payment,body:`已购 ${name} · 已保存\n金币 ${before.gold} → ${after.gold}\n\n${payment?payment.body+'\n\n':''}${destination}`};
 }
 
 /** Evaluate against the committed state, including indirect removal such as S07 sacrifice. */
