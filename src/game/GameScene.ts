@@ -1405,13 +1405,13 @@ export class GameScene extends Phaser.Scene {
     const l=this.view.layout,area=toolInventoryPlayedArea(l),mat=playedFootprint(area,l.mode==='portrait'),source=this.jokerViews.get(key.fact.sourceInstanceId);
     const poses=[...this.settledCards.values()].map(v=>({c:v.container,x:v.container.x,y:v.container.y}));
     let box:Box,compact=false;
-    if(l.mode==='desktop'){
+    if(l.mode==='desktop'&&area.x+area.width-mat.x-mat.width-16>=180){
       const width=Math.min(220,area.x+area.width-mat.x-mat.width-16);
       box={x:area.x+area.width-width-8,y:area.y+Math.max(8,(area.height-240)/2),width,height:Math.min(240,area.height-16)};
     }else if(l.shortLandscape){
       compact=true;box={x:Number(source?.getData('baseX')??area.x)-30,y:12,width:60,height:72};
     }else{
-      const bottom=Math.min(area.y+area.height,gameToolInventoryBox(l).y-4),cardHeight=Math.max(...poses.map(p=>Number(p.c.getData('height'))*p.c.scaleY),0);
+      const bottom=l.mode==='portrait'?Math.min(area.y+area.height,gameToolInventoryBox(l).y-4):area.y+area.height,cardHeight=Math.max(...poses.map(p=>Number(p.c.getData('height'))*p.c.scaleY),0);
       box={x:area.x+4,y:area.y+4,width:area.width-8,height:Math.max(72,bottom-area.y-cardHeight-12)};
       for(const p of poses)p.c.setY(bottom-cardHeight/2-2);
     }
