@@ -1,0 +1,18 @@
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+tests/amo-assist-consumption-save.test.ts(66,28): error TS2345: Argument of type '{ assist: null; rulesVersion: "r2"; rootId: string; handType: "high-card" | "pair" | "two-pair" | "three-kind" | "straight" | "flush" | "full-house" | "four-kind" | "straight-flush" | "five-kind" | "flush-house" | "flush-five"; ... 13 more ...; combo: { ...; }; } | { ...; } | { ...; } | { ...; }' is not assignable to parameter of type 'ScoreTrace'.
+  Type '{ assist: null; rulesVersion: "r2"; rootId: string; handType: R2HandType; level: number; sets: { playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[]; } & { ...; }; ... 11 more ...; combo: { goldBeforeRewards: number | null; }; }' is not assignable to type 'ScoreTrace'.
+    Type '{ assist: null; rulesVersion: "r2"; rootId: string; handType: R2HandType; level: number; sets: { playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[]; } & { ...; }; ... 11 more ...; combo: { goldBeforeRewards: number | null; }; }' is not assignable to type 'ScoreTraceBase & { assist: { ids: string[]; kind: "pair" | "three-kind"; multiplier: 4 | 2; } | null; sets: { playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[]; } & { ...; }; } & { ...; }'.
+      Type '{ assist: null; rulesVersion: "r2"; rootId: string; handType: R2HandType; level: number; sets: { playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[]; } & { ...; }; ... 11 more ...; combo: { goldBeforeRewards: number | null; }; }' is not assignable to type '{ assist: { ids: string[]; kind: "pair" | "three-kind"; multiplier: 4 | 2; } | null; sets: { playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[]; } & { assistConsumedIds: string[]; }; }'.
+        Types of property 'sets' are incompatible.
+          Type '{ playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[]; } & { assistConsumedIds?: undefined; }' is not assignable to type '{ playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[]; } & { assistConsumedIds: string[]; }'.
+            Type '{ playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[]; } & { assistConsumedIds?: undefined; }' is not assignable to type '{ assistConsumedIds: string[]; }'.
+              Types of property 'assistConsumedIds' are incompatible.
+                Type 'undefined' is not assignable to type 'string[]'.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

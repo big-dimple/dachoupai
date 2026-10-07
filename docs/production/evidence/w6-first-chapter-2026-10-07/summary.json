@@ -1,0 +1,2238 @@
+{
+  "status": "SOFTWARE_PATH_PASS",
+  "productCommit": "dc4fb0d87e46305012e02637a39686ba4ba1ec86",
+  "gate": {
+    "status": "PASS",
+    "exitCode": 0,
+    "before": {
+      "source": "5cf20ee00c08d64f55c22af8d04ac9ff46b2a4c1a2c0b2acded839b0fd006dd4",
+      "index": "16a1911d0a5fc48a252045ddbe2f4f15974d4c420e4fc16a7d256ee632c147da",
+      "head": "dc4fb0d87e46305012e02637a39686ba4ba1ec86",
+      "branch": "refs/heads/feat/w6-first-chapter-20261007"
+    },
+    "after": {
+      "source": "5cf20ee00c08d64f55c22af8d04ac9ff46b2a4c1a2c0b2acded839b0fd006dd4",
+      "index": "16a1911d0a5fc48a252045ddbe2f4f15974d4c420e4fc16a7d256ee632c147da",
+      "head": "dc4fb0d87e46305012e02637a39686ba4ba1ec86",
+      "branch": "refs/heads/feat/w6-first-chapter-20261007"
+    },
+    "steps": [
+      {
+        "name": "full-tests",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 47622
+      },
+      {
+        "name": "content",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 11094
+      },
+      {
+        "name": "build-and-typecheck",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 12690
+      },
+      {
+        "name": "fixed-native-first-chapter",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 125612
+      },
+      {
+        "name": "standard-dual-smoke",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 157427
+      },
+      {
+        "name": "production-plan",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 325
+      }
+    ]
+  },
+  "cases": {
+    "pc": {
+      "device": {
+        "name": "pc",
+        "width": 1366,
+        "height": 768
+      },
+      "mode": "standard",
+      "difficulty": 0,
+      "character": "amo",
+      "initialGold": 6,
+      "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+      "contentHash": "json-fnv-v1:5025cc23c013987f",
+      "purchases": [
+        {
+          "offerId": "run/group-natural-17/amo/shop/0/0/joker/0",
+          "definitionId": "b10",
+          "price": 4,
+          "edition": "none",
+          "consumed": false
+        },
+        {
+          "offerId": "run/group-natural-17/amo/shop/1/0/joker/0",
+          "definitionId": "b04",
+          "price": 4,
+          "edition": "none",
+          "consumed": false
+        }
+      ],
+      "hands": [
+        {
+          "score": "380",
+          "assist": {
+            "ids": [
+              "hearts-2",
+              "spades-2"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "draft": {
+            "selectedIds": [
+              "clubs-14",
+              "diamonds-14",
+              "diamonds-4",
+              "spades-4"
+            ],
+            "assistIds": [
+              "hearts-2",
+              "spades-2"
+            ],
+            "copy": "助攻已选 ×2"
+          }
+        },
+        {
+          "score": "210",
+          "assist": null,
+          "draft": {
+            "selectedIds": [
+              "clubs-5",
+              "diamonds-10",
+              "hearts-5",
+              "clubs-10"
+            ],
+            "assistIds": [],
+            "copy": "满足1 · 待检查0 · 未满足0 · 点所选条件"
+          }
+        },
+        {
+          "score": "460",
+          "assist": null,
+          "draft": {
+            "selectedIds": [
+              "hearts-5",
+              "clubs-5",
+              "spades-10",
+              "diamonds-10"
+            ],
+            "assistIds": [],
+            "copy": "满足2 · 待检查0 · 未满足0 · 点所选条件"
+          }
+        },
+        {
+          "score": "1096",
+          "assist": {
+            "ids": [
+              "hearts-7",
+              "spades-7"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "draft": {
+            "selectedIds": [
+              "diamonds-14",
+              "spades-13",
+              "hearts-13",
+              "clubs-14"
+            ],
+            "assistIds": [
+              "hearts-7",
+              "spades-7"
+            ],
+            "copy": "助攻已选 ×2"
+          }
+        },
+        {
+          "score": "924",
+          "assist": {
+            "ids": [
+              "spades-11",
+              "hearts-11"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "draft": {
+            "selectedIds": [
+              "diamonds-8",
+              "spades-8",
+              "clubs-8"
+            ],
+            "assistIds": [
+              "spades-11",
+              "hearts-11"
+            ],
+            "copy": "助攻已选 ×2"
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "note": "Optional chapter program declined via public UI",
+          "commands": [
+            {
+              "type": "ChooseProgram",
+              "programId": null
+            }
+          ],
+          "seq": 2,
+          "phase": "shop",
+          "stage": 0,
+          "gold": 6,
+          "lastScore": null,
+          "assist": null,
+          "growth": [],
+          "stateSha256": "69018f02da02b1676cad076dc1e289ed24681a40995767954aca20252c18f2bc"
+        },
+        {
+          "note": "Real purchase",
+          "commands": [
+            {
+              "type": "BuyOffer",
+              "offerId": "run/group-natural-17/amo/shop/0/0/joker/0"
+            }
+          ],
+          "seq": 3,
+          "phase": "shop",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "b0a8bd3d04182c6c277a437e75ee552e3cb4eb2115ccd43d1487e3c92031baf0"
+        },
+        {
+          "note": "Real shop leave and stage entry",
+          "commands": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "seq": 5,
+          "phase": "await-input",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "044262c15478179c0e4604380275bb26f4cda479bb09a0950bd18b4c1eeca534"
+        },
+        {
+          "note": "Keep public groups; discard singles to seek a spare assist group (no future draw read)",
+          "commands": [
+            {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "clubs-12",
+                "hearts-13",
+                "diamonds-11",
+                "diamonds-5"
+              ]
+            }
+          ],
+          "seq": 6,
+          "phase": "await-input",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "e7ccb04cf21928e3d9c560ad36a034ec799b859ddce700ae63251fa60bf53b80"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayAssistedHand",
+              "selectedIds": [
+                "clubs-14",
+                "diamonds-14",
+                "diamonds-4",
+                "spades-4"
+              ],
+              "assistIds": [
+                "hearts-2",
+                "spades-2"
+              ]
+            }
+          ],
+          "seq": 7,
+          "phase": "await-input",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": "380",
+          "assist": {
+            "ids": [
+              "hearts-2",
+              "spades-2"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "10",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "stateSha256": "0b25b621a8005291007bf5c0bd2d3cd998c09f06a71ee78815626879142923f4"
+        },
+        {
+          "note": "First committed hand reload/continue keeps complete run and RNG",
+          "commands": [],
+          "seq": 7,
+          "phase": "await-input",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": "380",
+          "assist": {
+            "ids": [
+              "hearts-2",
+              "spades-2"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "10",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "stateSha256": "0b25b621a8005291007bf5c0bd2d3cd998c09f06a71ee78815626879142923f4"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayHand",
+              "selectedIds": [
+                "clubs-5",
+                "diamonds-10",
+                "hearts-5",
+                "clubs-10"
+              ]
+            }
+          ],
+          "seq": 8,
+          "phase": "stage-cleared",
+          "stage": 1,
+          "gold": 8,
+          "lastScore": "210",
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "stateSha256": "76d5a3e3ca6600fc7fa2993fbe4762725cd171dc6ab4ebe9117bb671db5a9772"
+        },
+        {
+          "note": "Continue after stage via actual UI",
+          "commands": [
+            {
+              "type": "OpenShop"
+            }
+          ],
+          "seq": 9,
+          "phase": "shop",
+          "stage": 1,
+          "gold": 8,
+          "lastScore": "210",
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "stateSha256": "24702951ccf5b0f77896cc2ac2acecec7a77ae5370ff21477318664cddf5d186"
+        },
+        {
+          "note": "Real purchase",
+          "commands": [
+            {
+              "type": "BuyOffer",
+              "offerId": "run/group-natural-17/amo/shop/1/0/joker/0"
+            }
+          ],
+          "seq": 10,
+          "phase": "shop",
+          "stage": 1,
+          "gold": 4,
+          "lastScore": "210",
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "9c2e3a4274b8dfe8841dacd577e968bdb2c26c4f24dcb7ad320d1f9756a9d050"
+        },
+        {
+          "note": "Real shop leave and stage entry",
+          "commands": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "seq": 12,
+          "phase": "await-input",
+          "stage": 1,
+          "gold": 4,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "10305d325e53ec452269231f2e60f6e8fe182065d1836f995f66b62049bfd953"
+        },
+        {
+          "note": "Keep public groups; discard singles to seek a spare assist group (no future draw read)",
+          "commands": [
+            {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "diamonds-2",
+                "clubs-7",
+                "diamonds-8",
+                "diamonds-12"
+              ]
+            }
+          ],
+          "seq": 13,
+          "phase": "await-input",
+          "stage": 1,
+          "gold": 4,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "3fb2ca505eb306e3695881eff349f55289d5485a0b9d05d489591c659f310541"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayHand",
+              "selectedIds": [
+                "hearts-5",
+                "clubs-5",
+                "spades-10",
+                "diamonds-10"
+              ]
+            }
+          ],
+          "seq": 14,
+          "phase": "await-input",
+          "stage": 1,
+          "gold": 4,
+          "lastScore": "460",
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "30",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "db8056a7ce21b20fc0014d183d180edefe00c5d38f03bb069ef83fb4894f3892"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayAssistedHand",
+              "selectedIds": [
+                "diamonds-14",
+                "spades-13",
+                "hearts-13",
+                "clubs-14"
+              ],
+              "assistIds": [
+                "hearts-7",
+                "spades-7"
+              ]
+            }
+          ],
+          "seq": 15,
+          "phase": "stage-cleared",
+          "stage": 2,
+          "gold": 11,
+          "lastScore": "1096",
+          "assist": {
+            "ids": [
+              "hearts-7",
+              "spades-7"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "ccef4c9cdefc364a08d7033a34277d33606b118db3ccd1babfb0bfbea4705d1c"
+        },
+        {
+          "note": "Continue after stage via actual UI",
+          "commands": [
+            {
+              "type": "OpenShop"
+            }
+          ],
+          "seq": 16,
+          "phase": "shop",
+          "stage": 2,
+          "gold": 11,
+          "lastScore": "1096",
+          "assist": {
+            "ids": [
+              "hearts-7",
+              "spades-7"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "480cfbfc96497246a56c2b048d48c24e0a1cd4d37ced5eefff7a20e0b1fc1f56"
+        },
+        {
+          "note": "Real shop leave and stage entry",
+          "commands": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "seq": 18,
+          "phase": "await-input",
+          "stage": 2,
+          "gold": 11,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "d377ba8685d84925a51cd7520ed10af3b84989ab10fa98e02976ebd068f3bfd1"
+        },
+        {
+          "note": "Keep public groups; discard singles to seek a spare assist group (no future draw read)",
+          "commands": [
+            {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "diamonds-10",
+                "clubs-2",
+                "diamonds-4"
+              ]
+            }
+          ],
+          "seq": 19,
+          "phase": "await-input",
+          "stage": 2,
+          "gold": 11,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "e1709b48117ab6c511de65f84e2cff1b8a490baf1844a586f879b6f7b9a6cef8"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayAssistedHand",
+              "selectedIds": [
+                "diamonds-8",
+                "spades-8",
+                "clubs-8"
+              ],
+              "assistIds": [
+                "spades-11",
+                "hearts-11"
+              ]
+            }
+          ],
+          "seq": 20,
+          "phase": "stage-cleared",
+          "stage": 3,
+          "gold": 23,
+          "lastScore": "924",
+          "assist": {
+            "ids": [
+              "spades-11",
+              "hearts-11"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "50",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "b9bd63b24934b6b6ae22a51e5c22bd536ccb1d4c3d6a766019c94a63ae4aa036"
+        },
+        {
+          "note": "Continue after stage via actual UI",
+          "commands": [
+            {
+              "type": "OpenShop"
+            }
+          ],
+          "seq": 21,
+          "phase": "shop",
+          "stage": 3,
+          "gold": 23,
+          "lastScore": "924",
+          "assist": {
+            "ids": [
+              "spades-11",
+              "hearts-11"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "50",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "937d66cfb502aa94112891ede1725853d93e93cadd96b1ad25300ee8dd0fe307"
+        }
+      ],
+      "finalStateSha256": "937d66cfb502aa94112891ede1725853d93e93cadd96b1ad25300ee8dd0fe307"
+    },
+    "phone": {
+      "device": {
+        "name": "phone",
+        "width": 390,
+        "height": 740
+      },
+      "mode": "standard",
+      "difficulty": 0,
+      "character": "amo",
+      "initialGold": 6,
+      "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+      "contentHash": "json-fnv-v1:5025cc23c013987f",
+      "purchases": [
+        {
+          "offerId": "run/group-natural-17/amo/shop/0/0/joker/0",
+          "definitionId": "b10",
+          "price": 4,
+          "edition": "none",
+          "consumed": false
+        },
+        {
+          "offerId": "run/group-natural-17/amo/shop/1/0/joker/0",
+          "definitionId": "b04",
+          "price": 4,
+          "edition": "none",
+          "consumed": false
+        }
+      ],
+      "hands": [
+        {
+          "score": "380",
+          "assist": {
+            "ids": [
+              "hearts-2",
+              "spades-2"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "draft": {
+            "selectedIds": [
+              "clubs-14",
+              "diamonds-14",
+              "diamonds-4",
+              "spades-4"
+            ],
+            "assistIds": [
+              "hearts-2",
+              "spades-2"
+            ],
+            "copy": "助攻已选 ×2"
+          }
+        },
+        {
+          "score": "210",
+          "assist": null,
+          "draft": {
+            "selectedIds": [
+              "clubs-5",
+              "diamonds-10",
+              "hearts-5",
+              "clubs-10"
+            ],
+            "assistIds": [],
+            "copy": "满足1 · 待检查0 · 未满足0 · 点所选条件"
+          }
+        },
+        {
+          "score": "460",
+          "assist": null,
+          "draft": {
+            "selectedIds": [
+              "hearts-5",
+              "clubs-5",
+              "spades-10",
+              "diamonds-10"
+            ],
+            "assistIds": [],
+            "copy": "满足2 · 待检查0 · 未满足0 · 点所选条件"
+          }
+        },
+        {
+          "score": "1096",
+          "assist": {
+            "ids": [
+              "hearts-7",
+              "spades-7"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "draft": {
+            "selectedIds": [
+              "diamonds-14",
+              "spades-13",
+              "hearts-13",
+              "clubs-14"
+            ],
+            "assistIds": [
+              "hearts-7",
+              "spades-7"
+            ],
+            "copy": "助攻已选 ×2"
+          }
+        },
+        {
+          "score": "924",
+          "assist": {
+            "ids": [
+              "spades-11",
+              "hearts-11"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "draft": {
+            "selectedIds": [
+              "diamonds-8",
+              "spades-8",
+              "clubs-8"
+            ],
+            "assistIds": [
+              "spades-11",
+              "hearts-11"
+            ],
+            "copy": "助攻已选 ×2"
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "note": "Optional chapter program declined via public UI",
+          "commands": [
+            {
+              "type": "ChooseProgram",
+              "programId": null
+            }
+          ],
+          "seq": 2,
+          "phase": "shop",
+          "stage": 0,
+          "gold": 6,
+          "lastScore": null,
+          "assist": null,
+          "growth": [],
+          "stateSha256": "69018f02da02b1676cad076dc1e289ed24681a40995767954aca20252c18f2bc"
+        },
+        {
+          "note": "Real purchase",
+          "commands": [
+            {
+              "type": "BuyOffer",
+              "offerId": "run/group-natural-17/amo/shop/0/0/joker/0"
+            }
+          ],
+          "seq": 3,
+          "phase": "shop",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "b0a8bd3d04182c6c277a437e75ee552e3cb4eb2115ccd43d1487e3c92031baf0"
+        },
+        {
+          "note": "Real shop leave and stage entry",
+          "commands": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "seq": 5,
+          "phase": "await-input",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "044262c15478179c0e4604380275bb26f4cda479bb09a0950bd18b4c1eeca534"
+        },
+        {
+          "note": "Keep public groups; discard singles to seek a spare assist group (no future draw read)",
+          "commands": [
+            {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "clubs-12",
+                "hearts-13",
+                "diamonds-11",
+                "diamonds-5"
+              ]
+            }
+          ],
+          "seq": 6,
+          "phase": "await-input",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "e7ccb04cf21928e3d9c560ad36a034ec799b859ddce700ae63251fa60bf53b80"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayAssistedHand",
+              "selectedIds": [
+                "clubs-14",
+                "diamonds-14",
+                "diamonds-4",
+                "spades-4"
+              ],
+              "assistIds": [
+                "hearts-2",
+                "spades-2"
+              ]
+            }
+          ],
+          "seq": 7,
+          "phase": "await-input",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": "380",
+          "assist": {
+            "ids": [
+              "hearts-2",
+              "spades-2"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "10",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "stateSha256": "0b25b621a8005291007bf5c0bd2d3cd998c09f06a71ee78815626879142923f4"
+        },
+        {
+          "note": "First committed hand reload/continue keeps complete run and RNG",
+          "commands": [],
+          "seq": 7,
+          "phase": "await-input",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": "380",
+          "assist": {
+            "ids": [
+              "hearts-2",
+              "spades-2"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "10",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "stateSha256": "0b25b621a8005291007bf5c0bd2d3cd998c09f06a71ee78815626879142923f4"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayHand",
+              "selectedIds": [
+                "clubs-5",
+                "diamonds-10",
+                "hearts-5",
+                "clubs-10"
+              ]
+            }
+          ],
+          "seq": 8,
+          "phase": "stage-cleared",
+          "stage": 1,
+          "gold": 8,
+          "lastScore": "210",
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "stateSha256": "76d5a3e3ca6600fc7fa2993fbe4762725cd171dc6ab4ebe9117bb671db5a9772"
+        },
+        {
+          "note": "Continue after stage via actual UI",
+          "commands": [
+            {
+              "type": "OpenShop"
+            }
+          ],
+          "seq": 9,
+          "phase": "shop",
+          "stage": 1,
+          "gold": 8,
+          "lastScore": "210",
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "stateSha256": "24702951ccf5b0f77896cc2ac2acecec7a77ae5370ff21477318664cddf5d186"
+        },
+        {
+          "note": "Real purchase",
+          "commands": [
+            {
+              "type": "BuyOffer",
+              "offerId": "run/group-natural-17/amo/shop/1/0/joker/0"
+            }
+          ],
+          "seq": 10,
+          "phase": "shop",
+          "stage": 1,
+          "gold": 4,
+          "lastScore": "210",
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "9c2e3a4274b8dfe8841dacd577e968bdb2c26c4f24dcb7ad320d1f9756a9d050"
+        },
+        {
+          "note": "Real shop leave and stage entry",
+          "commands": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "seq": 12,
+          "phase": "await-input",
+          "stage": 1,
+          "gold": 4,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "10305d325e53ec452269231f2e60f6e8fe182065d1836f995f66b62049bfd953"
+        },
+        {
+          "note": "Keep public groups; discard singles to seek a spare assist group (no future draw read)",
+          "commands": [
+            {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "diamonds-2",
+                "clubs-7",
+                "diamonds-8",
+                "diamonds-12"
+              ]
+            }
+          ],
+          "seq": 13,
+          "phase": "await-input",
+          "stage": 1,
+          "gold": 4,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "3fb2ca505eb306e3695881eff349f55289d5485a0b9d05d489591c659f310541"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayHand",
+              "selectedIds": [
+                "hearts-5",
+                "clubs-5",
+                "spades-10",
+                "diamonds-10"
+              ]
+            }
+          ],
+          "seq": 14,
+          "phase": "await-input",
+          "stage": 1,
+          "gold": 4,
+          "lastScore": "460",
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "30",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "db8056a7ce21b20fc0014d183d180edefe00c5d38f03bb069ef83fb4894f3892"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayAssistedHand",
+              "selectedIds": [
+                "diamonds-14",
+                "spades-13",
+                "hearts-13",
+                "clubs-14"
+              ],
+              "assistIds": [
+                "hearts-7",
+                "spades-7"
+              ]
+            }
+          ],
+          "seq": 15,
+          "phase": "stage-cleared",
+          "stage": 2,
+          "gold": 11,
+          "lastScore": "1096",
+          "assist": {
+            "ids": [
+              "hearts-7",
+              "spades-7"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "ccef4c9cdefc364a08d7033a34277d33606b118db3ccd1babfb0bfbea4705d1c"
+        },
+        {
+          "note": "Continue after stage via actual UI",
+          "commands": [
+            {
+              "type": "OpenShop"
+            }
+          ],
+          "seq": 16,
+          "phase": "shop",
+          "stage": 2,
+          "gold": 11,
+          "lastScore": "1096",
+          "assist": {
+            "ids": [
+              "hearts-7",
+              "spades-7"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "480cfbfc96497246a56c2b048d48c24e0a1cd4d37ced5eefff7a20e0b1fc1f56"
+        },
+        {
+          "note": "Real shop leave and stage entry",
+          "commands": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "seq": 18,
+          "phase": "await-input",
+          "stage": 2,
+          "gold": 11,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "d377ba8685d84925a51cd7520ed10af3b84989ab10fa98e02976ebd068f3bfd1"
+        },
+        {
+          "note": "Keep public groups; discard singles to seek a spare assist group (no future draw read)",
+          "commands": [
+            {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "diamonds-10",
+                "clubs-2",
+                "diamonds-4"
+              ]
+            }
+          ],
+          "seq": 19,
+          "phase": "await-input",
+          "stage": 2,
+          "gold": 11,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "e1709b48117ab6c511de65f84e2cff1b8a490baf1844a586f879b6f7b9a6cef8"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayAssistedHand",
+              "selectedIds": [
+                "diamonds-8",
+                "spades-8",
+                "clubs-8"
+              ],
+              "assistIds": [
+                "spades-11",
+                "hearts-11"
+              ]
+            }
+          ],
+          "seq": 20,
+          "phase": "stage-cleared",
+          "stage": 3,
+          "gold": 23,
+          "lastScore": "924",
+          "assist": {
+            "ids": [
+              "spades-11",
+              "hearts-11"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "50",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "b9bd63b24934b6b6ae22a51e5c22bd536ccb1d4c3d6a766019c94a63ae4aa036"
+        },
+        {
+          "note": "Continue after stage via actual UI",
+          "commands": [
+            {
+              "type": "OpenShop"
+            }
+          ],
+          "seq": 21,
+          "phase": "shop",
+          "stage": 3,
+          "gold": 23,
+          "lastScore": "924",
+          "assist": {
+            "ids": [
+              "spades-11",
+              "hearts-11"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "50",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "937d66cfb502aa94112891ede1725853d93e93cadd96b1ad25300ee8dd0fe307"
+        }
+      ],
+      "finalStateSha256": "937d66cfb502aa94112891ede1725853d93e93cadd96b1ad25300ee8dd0fe307"
+    },
+    "narrow": {
+      "device": {
+        "name": "narrow",
+        "width": 320,
+        "height": 740
+      },
+      "mode": "standard",
+      "difficulty": 0,
+      "character": "amo",
+      "initialGold": 6,
+      "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+      "contentHash": "json-fnv-v1:5025cc23c013987f",
+      "purchases": [
+        {
+          "offerId": "run/group-natural-17/amo/shop/0/0/joker/0",
+          "definitionId": "b10",
+          "price": 4,
+          "edition": "none",
+          "consumed": false
+        },
+        {
+          "offerId": "run/group-natural-17/amo/shop/1/0/joker/0",
+          "definitionId": "b04",
+          "price": 4,
+          "edition": "none",
+          "consumed": false
+        }
+      ],
+      "hands": [
+        {
+          "score": "380",
+          "assist": {
+            "ids": [
+              "hearts-2",
+              "spades-2"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "draft": {
+            "selectedIds": [
+              "clubs-14",
+              "diamonds-14",
+              "diamonds-4",
+              "spades-4"
+            ],
+            "assistIds": [
+              "hearts-2",
+              "spades-2"
+            ],
+            "copy": "助攻已选 ×2"
+          }
+        },
+        {
+          "score": "210",
+          "assist": null,
+          "draft": {
+            "selectedIds": [
+              "clubs-5",
+              "diamonds-10",
+              "hearts-5",
+              "clubs-10"
+            ],
+            "assistIds": [],
+            "copy": "满足1 · 待检查0 · 未满足0 · 点所选条件"
+          }
+        },
+        {
+          "score": "460",
+          "assist": null,
+          "draft": {
+            "selectedIds": [
+              "hearts-5",
+              "clubs-5",
+              "spades-10",
+              "diamonds-10"
+            ],
+            "assistIds": [],
+            "copy": "满足2 · 待检查0 · 未满足0 · 点所选条件"
+          }
+        },
+        {
+          "score": "1096",
+          "assist": {
+            "ids": [
+              "hearts-7",
+              "spades-7"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "draft": {
+            "selectedIds": [
+              "diamonds-14",
+              "spades-13",
+              "hearts-13",
+              "clubs-14"
+            ],
+            "assistIds": [
+              "hearts-7",
+              "spades-7"
+            ],
+            "copy": "助攻已选 ×2"
+          }
+        },
+        {
+          "score": "924",
+          "assist": {
+            "ids": [
+              "spades-11",
+              "hearts-11"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "draft": {
+            "selectedIds": [
+              "diamonds-8",
+              "spades-8",
+              "clubs-8"
+            ],
+            "assistIds": [
+              "spades-11",
+              "hearts-11"
+            ],
+            "copy": "助攻已选 ×2"
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "note": "Optional chapter program declined via public UI",
+          "commands": [
+            {
+              "type": "ChooseProgram",
+              "programId": null
+            }
+          ],
+          "seq": 2,
+          "phase": "shop",
+          "stage": 0,
+          "gold": 6,
+          "lastScore": null,
+          "assist": null,
+          "growth": [],
+          "stateSha256": "69018f02da02b1676cad076dc1e289ed24681a40995767954aca20252c18f2bc"
+        },
+        {
+          "note": "Real purchase",
+          "commands": [
+            {
+              "type": "BuyOffer",
+              "offerId": "run/group-natural-17/amo/shop/0/0/joker/0"
+            }
+          ],
+          "seq": 3,
+          "phase": "shop",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "b0a8bd3d04182c6c277a437e75ee552e3cb4eb2115ccd43d1487e3c92031baf0"
+        },
+        {
+          "note": "Real shop leave and stage entry",
+          "commands": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "seq": 5,
+          "phase": "await-input",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "044262c15478179c0e4604380275bb26f4cda479bb09a0950bd18b4c1eeca534"
+        },
+        {
+          "note": "Keep public groups; discard singles to seek a spare assist group (no future draw read)",
+          "commands": [
+            {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "clubs-12",
+                "hearts-13",
+                "diamonds-11",
+                "diamonds-5"
+              ]
+            }
+          ],
+          "seq": 6,
+          "phase": "await-input",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "e7ccb04cf21928e3d9c560ad36a034ec799b859ddce700ae63251fa60bf53b80"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayAssistedHand",
+              "selectedIds": [
+                "clubs-14",
+                "diamonds-14",
+                "diamonds-4",
+                "spades-4"
+              ],
+              "assistIds": [
+                "hearts-2",
+                "spades-2"
+              ]
+            }
+          ],
+          "seq": 7,
+          "phase": "await-input",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": "380",
+          "assist": {
+            "ids": [
+              "hearts-2",
+              "spades-2"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "10",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "stateSha256": "0b25b621a8005291007bf5c0bd2d3cd998c09f06a71ee78815626879142923f4"
+        },
+        {
+          "note": "First committed hand reload/continue keeps complete run and RNG",
+          "commands": [],
+          "seq": 7,
+          "phase": "await-input",
+          "stage": 0,
+          "gold": 2,
+          "lastScore": "380",
+          "assist": {
+            "ids": [
+              "hearts-2",
+              "spades-2"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "10",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "stateSha256": "0b25b621a8005291007bf5c0bd2d3cd998c09f06a71ee78815626879142923f4"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayHand",
+              "selectedIds": [
+                "clubs-5",
+                "diamonds-10",
+                "hearts-5",
+                "clubs-10"
+              ]
+            }
+          ],
+          "seq": 8,
+          "phase": "stage-cleared",
+          "stage": 1,
+          "gold": 8,
+          "lastScore": "210",
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "stateSha256": "76d5a3e3ca6600fc7fa2993fbe4762725cd171dc6ab4ebe9117bb671db5a9772"
+        },
+        {
+          "note": "Continue after stage via actual UI",
+          "commands": [
+            {
+              "type": "OpenShop"
+            }
+          ],
+          "seq": 9,
+          "phase": "shop",
+          "stage": 1,
+          "gold": 8,
+          "lastScore": "210",
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "stateSha256": "24702951ccf5b0f77896cc2ac2acecec7a77ae5370ff21477318664cddf5d186"
+        },
+        {
+          "note": "Real purchase",
+          "commands": [
+            {
+              "type": "BuyOffer",
+              "offerId": "run/group-natural-17/amo/shop/1/0/joker/0"
+            }
+          ],
+          "seq": 10,
+          "phase": "shop",
+          "stage": 1,
+          "gold": 4,
+          "lastScore": "210",
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "9c2e3a4274b8dfe8841dacd577e968bdb2c26c4f24dcb7ad320d1f9756a9d050"
+        },
+        {
+          "note": "Real shop leave and stage entry",
+          "commands": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "seq": 12,
+          "phase": "await-input",
+          "stage": 1,
+          "gold": 4,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "10305d325e53ec452269231f2e60f6e8fe182065d1836f995f66b62049bfd953"
+        },
+        {
+          "note": "Keep public groups; discard singles to seek a spare assist group (no future draw read)",
+          "commands": [
+            {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "diamonds-2",
+                "clubs-7",
+                "diamonds-8",
+                "diamonds-12"
+              ]
+            }
+          ],
+          "seq": 13,
+          "phase": "await-input",
+          "stage": 1,
+          "gold": 4,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "3fb2ca505eb306e3695881eff349f55289d5485a0b9d05d489591c659f310541"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayHand",
+              "selectedIds": [
+                "hearts-5",
+                "clubs-5",
+                "spades-10",
+                "diamonds-10"
+              ]
+            }
+          ],
+          "seq": 14,
+          "phase": "await-input",
+          "stage": 1,
+          "gold": 4,
+          "lastScore": "460",
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "30",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "db8056a7ce21b20fc0014d183d180edefe00c5d38f03bb069ef83fb4894f3892"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayAssistedHand",
+              "selectedIds": [
+                "diamonds-14",
+                "spades-13",
+                "hearts-13",
+                "clubs-14"
+              ],
+              "assistIds": [
+                "hearts-7",
+                "spades-7"
+              ]
+            }
+          ],
+          "seq": 15,
+          "phase": "stage-cleared",
+          "stage": 2,
+          "gold": 11,
+          "lastScore": "1096",
+          "assist": {
+            "ids": [
+              "hearts-7",
+              "spades-7"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "ccef4c9cdefc364a08d7033a34277d33606b118db3ccd1babfb0bfbea4705d1c"
+        },
+        {
+          "note": "Continue after stage via actual UI",
+          "commands": [
+            {
+              "type": "OpenShop"
+            }
+          ],
+          "seq": 16,
+          "phase": "shop",
+          "stage": 2,
+          "gold": 11,
+          "lastScore": "1096",
+          "assist": {
+            "ids": [
+              "hearts-7",
+              "spades-7"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "480cfbfc96497246a56c2b048d48c24e0a1cd4d37ced5eefff7a20e0b1fc1f56"
+        },
+        {
+          "note": "Real shop leave and stage entry",
+          "commands": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "seq": 18,
+          "phase": "await-input",
+          "stage": 2,
+          "gold": 11,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "d377ba8685d84925a51cd7520ed10af3b84989ab10fa98e02976ebd068f3bfd1"
+        },
+        {
+          "note": "Keep public groups; discard singles to seek a spare assist group (no future draw read)",
+          "commands": [
+            {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "diamonds-10",
+                "clubs-2",
+                "diamonds-4"
+              ]
+            }
+          ],
+          "seq": 19,
+          "phase": "await-input",
+          "stage": 2,
+          "gold": 11,
+          "lastScore": null,
+          "assist": null,
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "e1709b48117ab6c511de65f84e2cff1b8a490baf1844a586f879b6f7b9a6cef8"
+        },
+        {
+          "note": "Real hand; core and assist consume only chosen public cards",
+          "commands": [
+            {
+              "type": "PlayAssistedHand",
+              "selectedIds": [
+                "diamonds-8",
+                "spades-8",
+                "clubs-8"
+              ],
+              "assistIds": [
+                "spades-11",
+                "hearts-11"
+              ]
+            }
+          ],
+          "seq": 20,
+          "phase": "stage-cleared",
+          "stage": 3,
+          "gold": 23,
+          "lastScore": "924",
+          "assist": {
+            "ids": [
+              "spades-11",
+              "hearts-11"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "50",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "b9bd63b24934b6b6ae22a51e5c22bd536ccb1d4c3d6a766019c94a63ae4aa036"
+        },
+        {
+          "note": "Continue after stage via actual UI",
+          "commands": [
+            {
+              "type": "OpenShop"
+            }
+          ],
+          "seq": 21,
+          "phase": "shop",
+          "stage": 3,
+          "gold": 23,
+          "lastScore": "924",
+          "assist": {
+            "ids": [
+              "spades-11",
+              "hearts-11"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "50",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b04",
+              "growth": {}
+            }
+          ],
+          "stateSha256": "937d66cfb502aa94112891ede1725853d93e93cadd96b1ad25300ee8dd0fe307"
+        }
+      ],
+      "finalStateSha256": "937d66cfb502aa94112891ede1725853d93e93cadd96b1ad25300ee8dd0fe307"
+    }
+  },
+  "notAccepted": [
+    "Human novice understanding / retention / 120-second benchmark: NOT_RUN",
+    "Physical PC / phone fluidity and GPU FPS: NOT_RUN",
+    "Audio listening and overall art / motion acceptance: NOT_RUN",
+    "Full W6/W7/W8/W9 acceptance: NOT_APPROVED"
+  ]
+}
