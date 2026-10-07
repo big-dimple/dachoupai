@@ -41,3 +41,7 @@
 最终本地冻结935d667a77fe13feaf6580d8a7e2f83e896ef01e：一次verify:ci完整套件2492PASS/4FAIL、139filesPASS/2filesFAIL，四项均默认5000ms超时（V00三样式、b9手绘回执），原始日志和FAIL元数据保留。仅重查这两个文件21tests/2files按原超时PASS，再完成content、含typecheck的build、标准Chromium desktop/phone smoke、production-plan全部PASS。两次检查源码/索引/HEAD均前后一致；没有重跑全套、提高超时或把首次FAIL改写PASS。最终head的常规CI仍需推送后确认。
 
 支付值按实际保存：借东风本样本带版次，24→16实付8金，不拿基础6金当实付；P05 16→12、P06 9→5，均4金，使用不另扣金。价格与余额并不承诺下一店供给。产品754d8048a05464af59b42b6fb52645a152ba8c33；935d667仅加默认确认可用断言/定向测试入口。早期normal/FAIL报告的输入head+working状态原样保留，不改标签冒充clean最终SHA。
+
+## 2026-10-07 父独审后的策划校准
+
+PR45独审有界通过、精确CI2496全绿，父FF并重读main3d4ec572028bc08609b748a1f3f63b310db93032。上文“三样本未见成长”不能推成无泛用持续成长：共享a05同场连续两手同种合格主手（含普通顺子）afterHand+6/cap90、下手读且跨场保存；d03留≥3牌afterHand+4/cap60也是泛用。既有a05/d03仍待正常/晚到获取与持续兑现核查，先走零规则方向；c04仅在既有来源机会和经营断点有证据时保留为条件候选，不先实现。历史样本与FAIL不改标签。
