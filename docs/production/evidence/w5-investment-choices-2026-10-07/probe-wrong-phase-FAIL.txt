@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: {"action":{"type":"OpenShop"},"code":"wrong-phase"}
+    at send (file:///tmp/w5-investment-probe.mjs:3:151)
+    at file:///tmp/w5-investment-probe.mjs:4:608 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

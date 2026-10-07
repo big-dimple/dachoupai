@@ -1,0 +1,206 @@
+{
+  "date": "2026-10-07",
+  "scope": "Public existing-shelf investment facts and acquired-tool target route; zero rules/economy/content/save changes",
+  "baseMain": "6d6576cd69007405dde7cffa8ec5cd08ca12caab",
+  "productHead": "3f55eaa0c2aa89aed901109b24569ab78947f5b5",
+  "execution": "serial GPT-6.1 default Medium; no subagents",
+  "originalNaturalArtifact": {
+    "path": "../w5-growth-opportunities-2026-10-07/natural-three.json.gz",
+    "sha256": "f6cafa4bda16ae663c46f8d0cf5957eaa6ca6705fba04565b353a1e9f554923a",
+    "head": "3d4ec572028bc08609b748a1f3f63b310db93032"
+  },
+  "diagnosis": {
+    "observed": "Declared policy ignored affordable offered upgrade and conditional multiplier; exact fixed public route checkpoints have a recoverable failure",
+    "sourceObservation": "Baseline buy details do not expose current level foundation before/after; interest tier is in collapsed body; concrete level foundation shown on acquired tool use page",
+    "notConcluded": [
+      "actual players cannot understand investment",
+      "all mechanisms/economy adequate",
+      "eight chapters clear",
+      "no growth or insufficient gold"
+    ]
+  },
+  "boundedWindows": [
+    {
+      "stageIndex": 2,
+      "baseline": {
+        "plays": [
+          "600",
+          "507"
+        ],
+        "heat": "1107",
+        "target": "800",
+        "endGold": 30
+      },
+      "counterfactual": {
+        "offer": "P05",
+        "purchaseGold": [
+          18,
+          14
+        ],
+        "interestTierSnapshot": [
+          3,
+          2
+        ],
+        "confirmedUse": "straight Lv1→2; base heat125→160, multiplier4→4.5",
+        "plays": [
+          "832"
+        ],
+        "heat": "832",
+        "target": "800",
+        "endGold": 26
+      }
+    },
+    {
+      "stageIndex": 4,
+      "baseline": {
+        "plays": [
+          "660",
+          "640",
+          "30",
+          "30"
+        ],
+        "heat": "1360",
+        "target": "1500",
+        "endGold": 42,
+        "phase": "run-lost"
+      },
+      "counterfactual": {
+        "offer": "f03",
+        "purchaseGold": [
+          42,
+          38
+        ],
+        "interestTierSnapshot": [
+          5,
+          5
+        ],
+        "plays": [
+          "990",
+          "640"
+        ],
+        "heat": "1630",
+        "target": "1500",
+        "endGold": 50,
+        "phase": "stage-cleared"
+      }
+    }
+  ],
+  "boundaries": "Two independent original-route windows, stop at clear/loss; no new seed, injected money/cards/outcome or scoring-preview decision; not a concatenated improved route",
+  "gates": {
+    "status": "PASS",
+    "exitCode": 0,
+    "before": {
+      "source": "5685539e723ab5b54ad515092b5ea59f6ad605a5c8e45beb8cafdba1e4f60cc3",
+      "index": "e7aba8fae3a05a830c31707d8379f806249d7f3d089dde19db773fa76c571e4e",
+      "head": "3f55eaa0c2aa89aed901109b24569ab78947f5b5",
+      "branch": "refs/heads/feat/w5-investment-choices-20261007"
+    },
+    "after": {
+      "source": "5685539e723ab5b54ad515092b5ea59f6ad605a5c8e45beb8cafdba1e4f60cc3",
+      "index": "e7aba8fae3a05a830c31707d8379f806249d7f3d089dde19db773fa76c571e4e",
+      "head": "3f55eaa0c2aa89aed901109b24569ab78947f5b5",
+      "branch": "refs/heads/feat/w5-investment-choices-20261007"
+    },
+    "steps": [
+      {
+        "name": "directed",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 2470
+      },
+      {
+        "name": "content",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 9345
+      },
+      {
+        "name": "build",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 14596
+      },
+      {
+        "name": "smoke",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 159432
+      },
+      {
+        "name": "production-plan",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 326
+      }
+    ]
+  },
+  "localTests": {
+    "tests": 28,
+    "files": 4,
+    "status": "PASS",
+    "fullSuite": "NOT_RUN — no repeated local full suite; normal remote CI unchanged"
+  },
+  "native": {
+    "viewportCases": [
+      "1280×720 P05",
+      "390×740 P05",
+      "740×390 f03 inspection/T03 purchase and actual use"
+    ],
+    "status": "PASS for scoped cases after fixes",
+    "identity": "original report base HEAD6d6576c + sequential worktrees retained; not clean product-head screenshots",
+    "checks": [
+      "direction/inspect/cancel no full-run/RNG mutation",
+      "purchase matches real command; no automatic tool use",
+      "receipt opens actual purchased tool; cancel/reopen no mutation",
+      "explicit use and save/reload full-state equals domain result"
+    ],
+    "lateSourceChanges": "classifier names, unrelated tool wording scope and genuine RNG-state test changed after screenshots; the three tested case semantics stay unchanged"
+  },
+  "failures": [
+    "manual probe fixed-star handType/missing targetIds invalid-targets; corrected command only",
+    "manual probe included prior-window OpenShop in already-open shop wrong-phase; corrected window boundary only",
+    "test referenced missing rng.shuffle (22PASS/1FAIL), then corrected to actual deck state for final risk gate",
+    "first software functional PASS had 390 visible investment facts below first screen: actual view readability FAIL retained; reordered existing detail content",
+    "second native 1280/390 PASS, 740 explicit subsequent-hand-limit assertion FAIL; retained and only affected740 rerunPASS"
+  ],
+  "sourceFilesSha256": {
+    "harness/fixtures/straight-investment.ts": "a269ddde324742040777029eea97aeba9c1e5d03b3d9189e489b3d652dd2e8d7",
+    "harness/w5-investment-routes.mjs": "b24e4a5bd19bc476cc4a7bc26f99fce20a2ad24d6a34214d3357064cdd2bf405",
+    "harness/w5-investment-ui.mjs": "0be493658aa4da9065cd89ce7398fccc902b73c8c836ffc80bc51986de67382f",
+    "src/game/BuildJourney.ts": "d8079e02013b4e6195c6e10edcccc2a3a861de8883c7aecf9083eba85c904e40",
+    "src/game/ShopInvestment.ts": "fa1c9a68a4827642ec4b9158c0cd69647d6dfacf8bc40c13885f47ade575b0d6",
+    "src/game/ShopScene.ts": "01121565cc334a4b34b481e377c4e957052b54471a5f215f54d07d2ba92664cb",
+    "tests/shop-investment.test.ts": "31d37f92e5c704111cd66a29d335c378386cf97d231cb0471c752262eb61cef4"
+  },
+  "artifactsSha256": {
+    "probe-wrong-phase-FAIL.txt": "2d4aaa6d0b32744c59fd23940e6d2c217fcbc5f0c2272c53dce1c6ac131e1dcc",
+    "final-gates-PASS.txt": "7fe8c749ab33d7b152fca55072624f0bf7ad8210c37079b8996c62eb1ee40909",
+    "shelf-1280.png": "23a57d90aa0869376d030d1f39c4884b9032063eac57b21310c22f567a1f330c",
+    "README.md": "b81aff6088d874d4c4f42328edd1aba9bf7b04f206061c46aa452228aa4e9e3e",
+    "rng-fixture-FAIL.txt": "9e6e45f684f98e7789060b5758a3bd7d535ca9999c035d4fe26eaf120cd1f8ba",
+    "purchase-390.png": "19d80844696482d56c79726e4d9e8c5bb2147257a340893c40803b08332f0b6b",
+    "purchase-1280.png": "6e5a33f916ec758559b2c1f95ce379e1ecf0c19d437f466c0979de55a3d6abc2",
+    "detail-limit-FAIL.json.gz": "c55e8fb4ec75637d557c482a94fc83cbf6a0362cf6fdb20d57650b79207d2cc0",
+    "first-ui-functional-PASS.txt": "11d8fecb9c19e807a9a2fea0542611ceaae8b805c5f9919a34483f00c25fa62e",
+    "bounded-window-routes.json.gz": "61a4ce14fbf52a1550ac7d5ee6a623a0bf6f03d9d4bba8a0718cfeaf8f1e9d09",
+    "detail-limit-FAIL-740.png": "7b7fe66f66c2b4626a32ae006491d0a36076547fba283010e5576744e4b45d2c",
+    "purchase-740.png": "1cabd81f041e99e3ed271731bd60d42953e3be76cdb41d1a218e2f2e20fe639c",
+    "base-source-observation.txt": "91a5cf55e426e1757c3c64bbbfc4ca85dcce5446518d6132c2d218f574cad189",
+    "first-ui-functional-PASS.json.gz": "7a62536ae327536d8cdb91b84dc197af514a9e6cd034aa5b32373851ca0690d4",
+    "first-page-readability-FAIL-390.png": "5d3ea0887f83681ab254a658b79e47a8b35fb8de16e5815d4fd087008ad69740",
+    "short-final-PASS.txt": "a4d2c21626b74a9beea4fb695aa84cdff26b5905a64bdc021c19bda8b9bc045b",
+    "first-hand-740.png": "238c0f991aa383102384f3ceec729a3310d3a181795014d1298c3ffdfe1fa430",
+    "detail-limit-FAIL.txt": "afc76946c168c796c52f0d8effe2bb2df1daf830f975279474a1a251b7bd2d4a",
+    "final-gates-PASS.json": "8f85db37fc26fe563205da35d0ff904beee9a47613e4e644c925e567a32ce1bb",
+    "short-final-PASS.json.gz": "043807252cb580e84aa456509e6f70411919f2cff713501982a444f172813fbd",
+    "shelf-390.png": "49fec1683455595501674c3dac2d6555d2b4d4ea8d67fb2cc0b3f184669ad934"
+  },
+  "remaining": [
+    "natural d03 acquisition NOT_OBSERVED",
+    "natural ordinary straight a05 continuation NOT_OBSERVED",
+    "eight chapters NOT_CLEARED",
+    "real-device performance/touch/audio and human comprehension/whole-art acceptance NOT_RUN",
+    "P08 in_progress, C04 D32, W2/W3/W4/W6/W7/W8 gates unchanged; no c04 mechanism"
+  ],
+  "remoteCI": "pending exact final evidence-doc commit, reported separately with draft PR; main left to parent"
+}

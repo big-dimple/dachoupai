@@ -1,0 +1,259 @@
+CHECK directed: npx vitest run tests/shop-investment.test.ts tests/build-journey.test.ts tests/shop-purchase-receipt.test.ts tests/purchase-payment-facts.test.ts
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+
+ Test Files  4 passed (4)
+      Tests  28 passed (28)
+   Start at  18:04:26
+   Duration  1.67s (transform 1.45s, setup 0ms, import 2.01s, tests 939ms, environment 3ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+directed: PASS
+CHECK content: npm run verify:content
+
+> dachoupai@0.1.0 verify:content
+> node scripts/verify-content.mjs
+
+{"check":"public-art-privacy","status":"PASS","filesScanned":66,"issues":[]}
+{
+  "status": "PASS",
+  "definitions": 72,
+  "contentVersion": "quality-r2-content-v11",
+  "contentHash": "json-fnv-v1:bd4a1230833ab884",
+  "modeConfigurations": {
+    "scope": "C04.2 explicit v10 shared-command profiles and separate save partitions; UI/device acceptance is recorded separately.",
+    "modes": [
+      "standard",
+      "challenge",
+      "tutorial"
+    ],
+    "difficulties": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "challenges": [
+      "Q01",
+      "Q02",
+      "Q03",
+      "Q04",
+      "Q05",
+      "Q06",
+      "Q07",
+      "Q08",
+      "Q09",
+      "Q10",
+      "Q11",
+      "Q12"
+    ],
+    "programs": [
+      "PG01",
+      "PG02",
+      "PG03",
+      "PG04"
+    ]
+  },
+  "conservativeEventBound": 320,
+  "eventBoundBreakdown": {
+    "baseCharacterFinal": 3,
+    "bossTrace": 1,
+    "cardPoints": 25,
+    "scoringEnhancement": 100,
+    "cardEdition": 25,
+    "ordinarySuppression": 5,
+    "postFinalCard": 10,
+    "heldEnhancement": 9,
+    "winningHeldGold": 5,
+    "jokerCardHooks": 125,
+    "jokerHeldHooks": 0,
+    "jokerScoreHooks": 0,
+    "jokerAfterHand": 0,
+    "jokerStageClear": 0,
+    "jokerInterest": 0,
+    "jokerEdition": 5,
+    "clearRules": 5,
+    "rescue": 2
+  },
+  "eventBoundModel": {
+    "handLimit": 14,
+    "selectedLimit": 5,
+    "jokerLimit": 5,
+    "extraRetriggers": 4,
+    "maxScoringPasses": 5,
+    "scoringEnhancementEventsPerPass": 4,
+    "heldEnhancementEventsPerCard": 1,
+    "postFinalCardEventsPerOriginal": 2,
+    "winningHeldGoldEventCap": 5,
+    "editionEventsPerSource": 1,
+    "clearRuleDefinitions": [
+      "U04",
+      "U09",
+      "U12",
+      "T16"
+    ],
+    "programRewardEventMaximum": 1,
+    "jokerMaximumEvents": {
+      "ordinaryCard": 2,
+      "extraCard": 1,
+      "held": 1,
+      "jokerScore": 2,
+      "afterHand": 2,
+      "stageClear": 2,
+      "interest": 1
+    },
+    "maximizingPlayedCount": 5,
+    "worstJokerSources": [
+      {
+        "definitionId": "tiesuanpan",
+        "events": 26
+      },
+      {
+        "definitionId": "b02",
+        "events": 26
+      },
+      {
+        "definitionId": "c02",
+        "events": 26
+      },
+      {
+        "definitionId": "a08",
+        "events": 26
+      },
+      {
+        "definitionId": "b05",
+        "events": 26
+      }
+    ],
+    "assumptions": [
+      "All five equipped sources may hit every eligible hook; mutually exclusive conditions are overcounted.",
+      "Maximum repeated lucky/edition, once-only glass, held voice/gold and success/failure rewards are overcounted together.",
+      "One edition and enhancement per source; held editions do not score; all extras share the fixed per-card cap.",
+      "This is a definition-based conservative trace bound, not an observed maximum or a seed search."
+    ]
+  },
+  "legalEventEnvelope": {
+    "maximumEvents": 92,
+    "definitionCount": 72,
+    "statesChecked": 3280,
+    "maximumEntryHand": 13,
+    "retriggerCapNoticesReachable": false,
+    "abstractWitness": {
+      "boss": "B02",
+      "played": 5,
+      "active": 5,
+      "normalCardGroups": 3,
+      "retriggerSources": [
+        "c07",
+        "d04"
+      ],
+      "handModifierSources": [],
+      "held": 5,
+      "cleared": true,
+      "residualSources": [],
+      "breakdown": {
+        "baseCharacterFinal": 3,
+        "cardEvents": 73,
+        "ordinarySuppression": 2,
+        "bossTrace": 0,
+        "heldEnhancementOrGold": 5,
+        "jokerEdition": 5,
+        "residualSources": 0,
+        "clearRules": 4
+      }
+    },
+    "scope": "Current72 command-reachable configurations, v10 mode resources, B01–B16 and at most one selected program payout; upper event envelope, not attained maximum score or natural acquisition probability.",
+    "bossTraceBudgets": {
+      "B01": 0,
+      "B02": 0,
+      "B03": 0,
+      "B04": 0,
+      "B05": 1,
+      "B06": 0,
+      "B07": 0,
+      "B08": 0,
+      "B09": 0,
+      "B10": 0,
+      "B11": 0,
+      "B12": 1,
+      "B13": 0,
+      "B14": 0,
+      "B15": 1,
+      "B16": 0
+    },
+    "proof": [
+      "Each equipped source spends one of the same five slots across all phases; A04/D06 spend slots to increase held count.",
+      "The six normal card definitions provide at most four simultaneous groups; overlapping groups are overcounted with fewer slots.",
+      "A11 requires played1; B06 requires pair and cannot coexist effectively with C07/D11. Other positions contribute at most three repeats.",
+      "Encore adds at most one intrinsic repeat: at most four extras, so no legal retrigger-cap rejection event is omitted.",
+      "Enhancement is one layer: lucky can emit four per pass including a gold-cap notice; glass destruction is counted once per original.",
+      "Held voice and winning gold share a layer and contribute at most one event per held card; held editions do not score.",
+      "Success and failure tails are alternatives; F06 count/destruction, F08 check/heat, E10 cycle/reward and rescue/destroy count two when applicable.",
+      "U12 cannot coexist with boss-only U09/T16 on one clear; base reward, base interest and last-hand character gold add no separate trace.",
+      "Only one Boss applies: B02 adds at most two ordinary-suppression notices; B05/B12 halve-base or B15 seal adds at most one, never alongside B02.",
+      "Other Bosses add no score-trace entries: suppression and resource reductions cannot increase this overcounted source envelope; B13 reverses order only.",
+      "An upper envelope is not an attained witness. Independent88 pure /91 shared goldens and the exported checkpoint provide attainment."
+    ]
+  },
+  "readOnly": true
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+content: PASS
+CHECK build: npm run build
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 150 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.17 kB │ gzip:   0.15 kB
+dist/index.html                     0.55 kB │ gzip:   0.36 kB
+dist/assets/index-CU5xA7jf.css     32.39 kB │ gzip:   7.35 kB
+dist/assets/index-RIYQlcOJ.js   2,195.70 kB │ gzip: 620.87 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.72s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+build: PASS
+CHECK smoke: npm run verify:smoke
+
+> dachoupai@0.1.0 verify:smoke
+> node harness/screenshot.mjs --verify-smoke
+
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+chromium/desktop: ok
+chromium/mobile: ok
+smoke: ok
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+smoke: PASS
+CHECK production-plan: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node scripts/check-production-plan.mjs
+PLAN_VALID: 32 work packages; current=P08; not a gameplay acceptance
+production-plan: PASS
+{"status":"PASS","exitCode":0,"before":{"source":"5685539e723ab5b54ad515092b5ea59f6ad605a5c8e45beb8cafdba1e4f60cc3","index":"e7aba8fae3a05a830c31707d8379f806249d7f3d089dde19db773fa76c571e4e","head":"3f55eaa0c2aa89aed901109b24569ab78947f5b5","branch":"refs/heads/feat/w5-investment-choices-20261007"},"after":{"source":"5685539e723ab5b54ad515092b5ea59f6ad605a5c8e45beb8cafdba1e4f60cc3","index":"e7aba8fae3a05a830c31707d8379f806249d7f3d089dde19db773fa76c571e4e","head":"3f55eaa0c2aa89aed901109b24569ab78947f5b5","branch":"refs/heads/feat/w5-investment-choices-20261007"},"steps":[{"name":"directed","status":"PASS","childExitCode":0,"elapsedMs":2470},{"name":"content","status":"PASS","childExitCode":0,"elapsedMs":9345},{"name":"build","status":"PASS","childExitCode":0,"elapsedMs":14596},{"name":"smoke","status":"PASS","childExitCode":0,"elapsedMs":159432},{"name":"production-plan","status":"PASS","childExitCode":0,"elapsedMs":326}]}

@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "5685539e723ab5b54ad515092b5ea59f6ad605a5c8e45beb8cafdba1e4f60cc3",
+    "index": "e7aba8fae3a05a830c31707d8379f806249d7f3d089dde19db773fa76c571e4e",
+    "head": "3f55eaa0c2aa89aed901109b24569ab78947f5b5",
+    "branch": "refs/heads/feat/w5-investment-choices-20261007"
+  },
+  "after": {
+    "source": "5685539e723ab5b54ad515092b5ea59f6ad605a5c8e45beb8cafdba1e4f60cc3",
+    "index": "e7aba8fae3a05a830c31707d8379f806249d7f3d089dde19db773fa76c571e4e",
+    "head": "3f55eaa0c2aa89aed901109b24569ab78947f5b5",
+    "branch": "refs/heads/feat/w5-investment-choices-20261007"
+  },
+  "steps": [
+    {
+      "name": "directed",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 2470
+    },
+    {
+      "name": "content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 9345
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 14596
+    },
+    {
+      "name": "smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 159432
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 326
+    }
+  ]
+}

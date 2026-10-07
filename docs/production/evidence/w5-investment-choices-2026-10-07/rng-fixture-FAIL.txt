@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-investment.test.ts (7 tests | 1 failed) 753ms
+   × hidden draw ordering and RNG cannot influence investment facts; current content profile stays authoritative 77ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-investment.test.ts > hidden draw ordering and RNG cannot influence investment facts; current content profile stays authoritative
+TypeError: Cannot read properties of undefined (reading 'cursor')
+ ❯ tests/shop-investment.test.ts:11:264
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 22 passed (23)
+   Start at  17:58:40
+   Duration  1.53s (transform 1.31s, setup 0ms, import 1.77s, tests 855ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
