@@ -26,10 +26,21 @@ describe('executable CI and read-only gates',()=>{
     for(const script of ['test:e2e','verify:ci']){expect(p.scripts[script]).toBeTruthy();expect(p.scripts[script]).not.toMatch(/echo|exit 0/);}
     for(const file of ['harness/e2e.mjs','scripts/verify-ci.mjs'])expect(fs.existsSync(path.join(root,file))).toBe(true);
   });
-  it('CI installs the lockfile, runs gates and retains failed browser artifacts',()=>{
+  it('CI uses locked packages and verified preinstalled engines, runs gates and retains failed browser artifacts',()=>{
     const workflow=text('.github/workflows/ci.yml');
     expect(workflow).toMatch(/npm ci/);expect(workflow).not.toMatch(/npm install\s*$/m);
-    expect(workflow).toMatch(/verify:ci/);expect(workflow).toMatch(/playwright install/);expect(workflow).toMatch(/upload-artifact/);expect(workflow).toMatch(/always\(\)/);
+    const browser=workflow.split('  browser:\n')[1]?.split('  docs:\n')[0];expect(browser).toBeTruthy();
+    const version=JSON.parse(text('package-lock.json')).packages['node_modules/playwright'].version;
+    expect(browser).toContain('image: mcr.microsoft.com/playwright:v'+version+'-noble@sha256:');
+    expect(browser).toMatch(/-noble@sha256:[a-f0-9]{64}/);
+    expect(browser).toContain('options: --user 1001 --ipc=host');
+    expect(browser).toContain("if (version !== '"+version+"') throw new Error");
+    expect(browser).toContain('for (const browser of [chromium, firefox, webkit])');
+    expect(browser).toContain('fs.accessSync(executable, fs.constants.X_OK)');
+    expect(browser).toContain('npm run verify:ci -- --scope=browser');
+    expect(browser).toContain('SMOKE_BROWSERS: chromium,firefox,webkit');
+    expect(browser).not.toMatch(/continue-on-error:\s*true|playwright install --with-deps|SHOT_PROFILES:/);
+    expect(workflow).toMatch(/verify:ci/);expect(workflow).toMatch(/upload-artifact/);expect(workflow).toMatch(/always\(\)/);
   });
   it('release checking cannot automatically commit or push any branch',()=>{
     const script=text('scripts/release-checked.mjs');

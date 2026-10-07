@@ -5,7 +5,7 @@
 ## 有界诊断与合同
 
 - requirementId：U11/U13，W9必要质量门禁基础设施；不改任务状态。dependencies：现有三引擎双端smoke、verify-ci/check-runner及锁定Playwright1.63.0。
-- allowedFiles：`.github/workflows/ci.yml`的browser安装环境与必要预检、本记录及同目录registry索引证据。nonGoals：src/harness/tests/assets、领域/产品行为/规则/锁文件/依赖版本、门禁命令/引擎/视口/断言、domain/docs job、触发器/权限/保护、加并发或无限增大时限。
+- allowedFiles：`.github/workflows/ci.yml`的browser安装环境与必要预检、本记录及同目录registry索引证据；必要的既有CI结构测试`tests/ci-gates.test.mjs`一条安装合同断言。nonGoals：src/harness/其余tests/assets、领域/产品行为/规则/锁文件/依赖版本、门禁命令/引擎/视口/断言、domain/docs job、触发器/权限/保护、加并发或无限增大时限。
 - outputs：独立CI提交；官方版本匹配且固定digest的预装环境，三个执行文件存在且可执行的失败前置检查；最终精确HEAD原工作流结果。acceptance：workflow结构核对、产品diff为零、必要计划检查及远端原三引擎双端验证。stopConditions：镜像版本/任一执行文件不符、原门禁失败或镜像拉取受阻如实报错，不跳过、不改PASS判据、不继续盲重跑。
 
 ## 失败证据与方案选择
@@ -24,3 +24,13 @@
 ## 首次容器CI及工作区所有权适配
 
 独立CI候选844c79f7a0ec05761ac5d4e915ec9975dd8d7c9b的[run37674588331/browser112974688322](https://github.com/big-dimple/dachoupai/actions/runs/37674588331/job/112974688322)成功拉取/初始化固定镜像，npm ci约6秒，19:28:15预检确认chromium1243/firefox1543/webkit2359三执行文件；19:28:16 verify-ci首次git ls-files报dubious ownership，未进入build/smoke。原失败保留，不记产品PASS。容器root与宿主挂载工作区所有者不同，checkout action的临时HOME信任配置没有覆盖运行脚本所用配置。补一个仅browser checkout之后的步骤，将当前精确checkout路径GITHUB_WORKSPACE加入该临时job全局safe.directory；不用通配符、不关闭Git/源码变化守卫，不改产品或测试判据。此为同一CI基础修复的必要所有权适配，独立修正提交，最终精确HEAD仍跑原三引擎双端门禁。
+
+
+## 既有CI结构测试的安装合同适配
+
+cdc5324的[domain112975991705](https://github.com/big-dimple/dachoupai/actions/runs/37674968585/job/112975991705)2511项通过，唯`tests/ci-gates.test.mjs`仍强制旧playwright install字面量而失败。首CI提交漏核该依赖，失败保持。把该现有检查适配为锁文件版本一致的固定digest官方镜像、同版本失败前置条件、全部三引擎执行文件可执行检查、原browser门禁和三引擎列表；仍要求npm ci、上传失败制品及always，不允许continue-on-error。仅这一条CI配置合同扩展到allowedFiles，其余产品/浏览器测试/领域测试不改，不通过添加无效install注释骗旧测试。当前浏览器运行先收完整结果，随后才推必要测试适配的独立提交，避免中途取消和重复浪费。
+
+
+## Firefox用户与HOME所有者统一
+
+cdc5324的[browser112975991317](https://github.com/big-dimple/dachoupai/actions/runs/37674968585/job/112975991317)固定镜像与三执行文件预检、build/typecheck、Chromium desktop/mobile通过；19:35:31 Firefox启动失败，明确报告root进程使用pwuser所有的/github/home。没有Firefox/WebKit产品验收结论，原FAIL与制品保留。root方案连续暴露Git工作区和Firefox HOME身份不一致，因此回到[官方CI container示例](https://playwright.dev/docs/ci#via-containers)的--user 1001，并保留--ipc=host；统一运行UID与挂载工作区/HOME所有者，不设置HOME替代路径、不禁用Firefox检查或减少引擎。原精确workspace信任步骤保留，原门禁与10分钟时限保持。必要CI结构测试同时检查此身份配置；只定向7项通过后推独立提交，最终新head的原三引擎双端CI另核。
