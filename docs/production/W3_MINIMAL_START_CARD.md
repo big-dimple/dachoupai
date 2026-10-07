@@ -76,3 +76,9 @@ inputSHA：`3ee210f3b0c5c2d04c00facb09cc1610adae2d0e`，父确认PR40独审/精�
 allowedFiles：`src/game/IntermissionScene.ts`、新只读`src/game/StageGiftReceipt.ts`、`tests/stage-gift-receipt.test.ts`、`harness/fixtures/stage-gift.ts`、`harness/w3-stage-gift.mjs`与必要证据。只读成功保存的真实onStageClear c12事件，复用既有footer和详情/工具图；未满足/特殊同花顺/无trace/未保存不假发奖，满包不假入工具。相关单测为主，有限PC/窄竖/短横原生真实两手→赠品/满包→查看/取消/重入→商店使用；最终必要门禁一次。P2特写/音效/角色/数值/存档/RNG/共享布局不改，真实玩家与真机待验；仅draft父审，不合main。
 
 本批软件结果：[换一身已保存过关赠品](evidence/w3-stage-gift-2026-10-07/README.md)。产品7e0b216，三个正常赠品/短横满包/普通同花顺反例共五原生案通过；查看/重入不重奖，赠品接到商店实际改牌并消费一次。68相关检查及一次默认verify2475 tests/138 files、content/plan通过。仅c12普通成功过关样板，其他来源/最终胜利/P2特写及真实理解/真机按原计划；新headCI/父独审待接，未合main。
+
+## 2026-10-07 W3/W4-P1 共用购物折扣反馈
+
+inputSHA：`29d6c5ee32d2f320f061c83b87f07b4746b3eb6f`，父确认PR41独审/精确CI/FF main，fetch一致。原W3实际支付/经营闭环与W4-P1折扣基础反馈（U06/U10/U11、SG10），按七类合同和采购证已核样板。真实r2PurchasePrice、成功购买前后状态、名义modifier来源、三货购物结果及既有提示队列已存在。现有结果只有金币余额变化，缺原价/实付/实际总省额与首购状态。
+
+只做可复用三货payment facts及当前优惠状态，按当前profile/item modifier抽取所有名义来源，不逐卡加if；实际总省额为原价减领域真实实付，不做逐来源实际贡献分摊。成功保存后才入原反馈队列/购物结果；购买采购证自身无预持有优惠，最低价截断不重复认领，次购/下店/券状态分开。allowedFiles：`src/game/PurchasePaymentFacts.ts`、`src/game/ShopPurchaseReceipt.ts`、`src/game/ShopScene.ts`、`tests/purchase-payment-facts.test.ts`、`harness/w3-purchase-discount.mjs`与必要证据。现有手绘商品/详情继续复用，不改领域/价格/经济/RNG/存档/布局或P2演出。当前会话交易快照不冒称新增永久交易历史；重入仅核当前事实和不重复获益。定向首购/次购/自身/多来源floor/下店/失败反例与有限PC/手机原生支付，最终必要门禁一次，仅draft父审，不合main。
