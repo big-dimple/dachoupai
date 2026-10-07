@@ -1,0 +1,170 @@
+{
+  "source": "fb969046dc25b0b0c871eb1a3d9e36d1847c13e6",
+  "sourceStatus": "M src/game/GameScene.ts\n M src/game/IntermissionScene.ts\n M src/game/JokerGrowthCausality.ts\n M src/game/ShopScene.ts\n M tests/joker-growth-causality.test.ts\n?? harness/w3-growth-discovery.mjs",
+  "scope": "Saved group-growth causal UI, actual next-hand read, cross-stage and reload. Existing natural route plus labeled controlled fixtures; no physical/aesthetic/audio/FPS acceptance.",
+  "screenshots": [],
+  "routeOrigin": {
+    "source": "5905d4c4129e42af0d0a2e9f081662097ccd9cdd",
+    "name": "normal-erxiang",
+    "classification": "Resumed existing recorded natural checkpoint; current UI/commands are rechecked, not a fresh natural acquisition claim."
+  },
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-07T12:10:59.573Z",
+    "revision": "fb969046dc25b0b0c871eb1a3d9e36d1847c13e6",
+    "sourceStatus": "dirty",
+    "modified": true,
+    "modifiedFileCount": 5,
+    "modifiedFiles": [
+      "src/game/GameScene.ts",
+      "src/game/IntermissionScene.ts",
+      "src/game/JokerGrowthCausality.ts",
+      "src/game/ShopScene.ts",
+      "tests/joker-growth-causality.test.ts"
+    ]
+  },
+  "browser": "151.0.7922.173",
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: growth discoverable on game",
+  "rawSha256": "26b043ee07e79c9cb175dc3fca3d26b2c9054ecbc4908b5c6b9b5f8760cd3f12",
+  "cases": [
+    {
+      "spec": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": null,
+      "steps": [
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 252,
+              "y": 658,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          },
+          "growthTexts": [
+            {
+              "name": "",
+              "text": "热+10",
+              "bounds": {
+                "type": 5,
+                "x": 591,
+                "y": 137.60000305175782,
+                "width": 38,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "name": "growth/discovery",
+              "text": "练对子成长+10→10 · 下手按条件读",
+              "bounds": {
+                "type": 5,
+                "x": 252,
+                "y": 658,
+                "width": 220,
+                "height": 16
+              },
+              "font": "14px"
+            }
+          ]
+        },
+        {
+          "key": "intermission",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 150,
+              "y": 646,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          },
+          "growthTexts": [
+            {
+              "name": "growth/discovery",
+              "text": "练对子成长+10→20 · 下手按条件读",
+              "bounds": {
+                "type": 5,
+                "x": 150,
+                "y": 646,
+                "width": 220,
+                "height": 16
+              },
+              "font": "14px"
+            }
+          ]
+        },
+        {
+          "key": "shop",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 666,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          },
+          "growthTexts": [
+            {
+              "name": "growth/discovery",
+              "text": "练对子成长+10→20 · 下手按条件读",
+              "bounds": {
+                "type": 5,
+                "x": 12,
+                "y": 666,
+                "width": 220,
+                "height": 16
+              },
+              "font": "14px"
+            }
+          ]
+        },
+        {
+          "key": "game",
+          "notice": null,
+          "growthTexts": [
+            {
+              "name": "",
+              "text": "热+20",
+              "bounds": {
+                "type": 5,
+                "x": 591,
+                "y": 137.60000305175782,
+                "width": 38,
+                "height": 16
+              },
+              "font": "14px"
+            },
+            {
+              "name": "",
+              "text": "练对子 · 热+20 · 长按条件",
+              "bounds": {
+                "type": 5,
+                "x": 252,
+                "y": 658,
+                "width": 161,
+                "height": 16
+              },
+              "font": "14px"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -51,4 +51,6 @@ allowedFiles补充：`src/game/JokerGrowthCausality.ts`、`tests/joker-growth-ca
 
 inputSHA：`f6d0f85199416e5b1b290d0d83ee0f21a93febcb`，父确认PR38已独审/精确CI全绿并FF main，fetch一致。一次390原生路径走查（未打开成长详情）观察到仅热+10/20/30及条件见详情，过关/商店没有成长新增与下手时点反馈；这是界面检查，不冒称真实新人学会。最高优先补最近已保存成长的短可见反馈，复用GameScene/IntermissionScene/ShopScene既有提示文字位，不加弹窗/新布局/素材。
 
-allowedFiles补充：`src/game/IntermissionScene.ts`、`harness/w3-growth-discovery.mjs`；现有JokerGrowthCausality.ts、GameScene.ts、ShopScene.ts、tests/joker-growth-causality.test.ts及必要证据。只消费同实例成功保存的正增长事件；选牌/错误/封禁/购买消息优先，窄位用有界短句，不缩字裁条件。验证实际选牌/出牌/过关/商店/继续/取消和重入，PC三档/手机三档。原W3/W5、无总分预测/数值/存档/RNG变更保持；真实新人理解待玩家测。证据`docs/production/evidence/w3-growth-discovery-2026-10-07/`。
+allowedFiles补充：`src/game/IntermissionScene.ts`、`harness/w3-growth-discovery.mjs`；现有JokerGrowthCausality.ts、GameScene.ts、ShopScene.ts、tests/joker-growth-causality.test.ts及必要证据。只消费同实例成功保存的正增长事件；跨场缺trace只显示当前已存累计及条件读取，不造历史。选牌/错误/封禁/购买消息优先，窄位用有界短句，不缩字裁条件。验证实际选牌/出牌/过关/商店/继续/取消和重入，PC三档/手机三档。原W3/W5、无总分预测/数值/存档/RNG变更保持；真实新人理解待玩家测。证据`docs/production/evidence/w3-growth-discovery-2026-10-07/`。
+
+本批软件结果：[成长常规路径发现性](evidence/w3-growth-discovery-2026-10-07/README.md)。冻结产品a6bbc66，六尺寸未开成长详情的真实选牌/出牌/过关/商店/继续/取消/重入通过；跨场trace清空使用当前已存成长，不冒称刚新增。玩家理解、真机共同验收及完整W3仍待验。

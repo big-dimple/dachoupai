@@ -1,0 +1,49 @@
+
+> dachoupai@0.1.0 verify
+> npm run typecheck && npm test && npm run build
+
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/v00-bot.test.ts (5 tests | 1 failed) 11736ms
+     × groups emits only valid ordinary commands on a natural run 5412ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/v00-bot.test.ts > V00 policies receive only player-visible information > groups emits only valid ordinary commands on a natural run
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/v00-bot.test.ts:19:51
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 136 passed (137)
+      Tests  1 failed | 2469 passed (2470)
+   Start at  12:19:49
+   Duration  40.64s (transform 5.98s, setup 0ms, import 20.86s, tests 76.59s, environment 14ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
