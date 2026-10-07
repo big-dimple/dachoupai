@@ -1,0 +1,40 @@
+{
+  "source": "e6b03ebc44882a50edcde2e743e7c91df89c56ea",
+  "sourceStatus": "M src/game/DetailDialog.ts\n M src/game/GameScene.ts\n M src/game/IntermissionScene.ts\n M src/game/StageGiftReceipt.ts\n M src/style.css\n?? harness/fixtures/joker-experience.ts\n?? harness/w3-w4-experience.mjs\n?? src/game/JokerExperience.ts\n?? tests/joker-experience.test.ts",
+  "scope": "Controlled saved commands and software Chromium UI. Not natural acquisition, newcomer retention, physical device, audio or FPS acceptance.",
+  "cases": [
+    {
+      "spec": {
+        "width": 1280,
+        "height": 720,
+        "mode": "default"
+      },
+      "selection": [
+        {
+          "id": "owned/b10",
+          "label": "所选满足",
+          "state": "ready"
+        },
+        {
+          "id": "owned/b03",
+          "label": "所选满足",
+          "state": "ready"
+        },
+        {
+          "id": "owned/b06",
+          "label": "所选满足",
+          "state": "ready"
+        },
+        {
+          "id": "owned/b08",
+          "label": "事件时检查",
+          "state": "pending"
+        }
+      ],
+      "conditions": "对子 · 已选2张\n\n所选条件 · 满足不代表已发动\n\n练对子 · 所选满足\n\n整手大丑牌时 · 条件满足\n每到这个时点检查；满足条件不等于效果已经发生\n读取已保存成长，作用于热度\n\n实际结算后 · 事件时检查\n实际牌型是对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）\n单次成长 +10，封顶100\n\n已保存：热度成长 10\n\n下一步：选择1–5张；满足公开条件仍须成功出牌与保存，随机和结算结果在事件时确认。\n\n查看来源与成长\n老搭档 · 所选满足\n\n整手大丑牌时 · 条件满足\n每到这个时点检查；满足条件不等于效果已经发生\n读取已保存成长，作用于倍率\n\n实际结算后 · 事件时检查\n实际牌型是对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）\n单次成长 +0.25，封顶3\n\n已保存：倍率成长 0.25\n\n下一步：选择1–5张；满足公开条件仍须成功出牌与保存，随机和结算结果在事件时确认。\n\n查看来源与成长\n再说一遍 · 所选满足\n\n计分牌逐张时 · 条件满足\n对子、两对、三条、葫芦等同点数组合：按主手原始计分牌选最多同点组，平手取左边先出现组；失效参与选组，仅有效牌再计\n请求额外触发1次；实际执行受每牌上限与深度限制\n\n已保存：无成长或使用计数\n\n下一步：选择1–5张；满足公开条件仍须成功出牌与保存，随机和结算结果在事件时确认。\n\n查看来源与成长\n对半分 · 事件时检查\n\n实际过关时 · 事件时检查\n实际牌型是对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）\n实际事件金币 +3\n\n已保存：无成长或使用计数\n\n下一步：选择1–5张；满足公开条件仍须成功出牌与保存，随机和结算结果在事件时确认。\n\n查看来源与成长\n\n2张相同点数\n计分牌2张 · 附带0张\n★代表当前计分牌；附带也随本手打出。\n成型：7♣、7♥\n附带：无（随本手打出，仍可参与其他规则）\n\n\n\n选1–5张；按全部所选牌判型。三条可选3／4／5张，但补成另一对子会转葫芦，第四张同点会转四条。失效牌仍参与判型，其效果停用；点数0只停普通点数。\n\n本轮可成牌型\n关闭"
+    }
+  ],
+  "browser": "151.0.7922.173",
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}

@@ -90,3 +90,5 @@ inputSHA：`29d6c5ee32d2f320f061c83b87f07b4746b3eb6f`，父确认PR41独审/精�
 inputSHA：`4e0501a5f4b2c8e5268d097a50404c08c145dee7`，父确认PR42独审/CI/FF main，fetch一致。沿原W3/W4-P1（U06/U07/U08/U10/U11、SG10），依赖公开条件facts、成功保存trace、既有手绘卡面与支付/赠品/工具模块。一次候选接通：选择条件与准备状态→真实来源轻高光→收益/去向→当前可用工具或继续构筑入口。共用条件类型和实际operation，不按单张牌拆PR；折扣继续消费已审共用支付模块。首120秒是体验改善目标，未测得真实留存或新人理解。
 
 范围：GameScene、IntermissionScene、JokerMemory相关纯展示facts、DetailDialog共用来源卡片及必要CSS/定向tests/harness。已有卡面复用到条件与收益高频入口；现有default/fast/reduced/skip队列保障只改变展示。领域/数值/RNG/save/reward/角色/新美术/CI配置不改，P2完整特写及W5自然构筑证据不抢跑。工作中只定向验证，整包一次必要最终门禁和父独审，真机/音频/观感与玩家理解待另验。
+
+本包软件候选：产品`ad60c9c`，[来源到下一步的整包证据](evidence/w3-w4-experience-2026-10-07/README.md)。七原生模式实际保存/刷新同状态；6新增语义检查及2486 tests/140 files、content/type/build、系统Chromium标准双端smoke通过；默认缺下载浏览器的原FAIL与脚本初轮FAIL保留。不是新人120秒留存/真实理解或真机通过，不签完整W3/W4；父独审和精确新head CI待接。

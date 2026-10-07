@@ -1,0 +1,506 @@
+{
+  "status": "PASS",
+  "inputMain": "4e0501a5f4b2c8e5268d097a50404c08c145dee7",
+  "codeCommit": "ad60c9c5d5931d63116a037976648d21031ae108",
+  "nativeOriginalSource": "e6b03ebc44882a50edcde2e743e7c91df89c56ea",
+  "nativeOriginalStatus": "M src/game/DetailDialog.ts\n M src/game/GameScene.ts\n M src/game/IntermissionScene.ts\n M src/game/StageGiftReceipt.ts\n M src/style.css\n?? docs/production/evidence/w3-w4-experience-2026-10-07/\n?? harness/fixtures/joker-experience.ts\n?? harness/w3-w4-experience.mjs\n?? src/game/JokerExperience.ts\n?? tests/joker-experience.test.ts",
+  "nativeSourceNote": "Original dirty-working-tree identity preserved. Files unchanged when frozen in codeCommit; no screenshot identity rewritten.",
+  "files": {
+    "src/game/DetailDialog.ts": "fd46a00009266d71860c8bd7f6e0c9f9d3a00187120007144c23b9c2e666380b",
+    "src/game/GameScene.ts": "6ed15a1f62a8b3cc9086185f01eb39d9c38cc5e5948dec279d848c42b16e4115",
+    "src/game/IntermissionScene.ts": "8a2c4a370d9b8e04009b1e32b54d36242e9816ecb1619745fd82361b97673375",
+    "src/game/StageGiftReceipt.ts": "f369551913edd4c62a179b075385acfbca145714d5cc66cd998bead30a6b2751",
+    "src/game/JokerExperience.ts": "fbec461280348fa7fb32c3cf444772a71d8b256fcd5ff18de1ad7137c0bfb65e",
+    "src/style.css": "14e0923c21c6ba139ca615ef98b95d145e268871718670818df2d0b4b5e782f2",
+    "harness/fixtures/joker-experience.ts": "a8fa00a336871db48967430d7803fd769ee23e99b8c04e013faec088ee13090a",
+    "harness/w3-w4-experience.mjs": "a7e9414c5a610656480533db0bd3d58a6597290674e83a1e87e6ab6a648f02dd",
+    "tests/joker-experience.test.ts": "51015b42505c86b4e33fbe463755aa112c9871e102f3bc81da487060437a08b3"
+  },
+  "browser": "151.0.7922.173",
+  "cases": [
+    {
+      "spec": {
+        "width": 1280,
+        "height": 720,
+        "mode": "default"
+      },
+      "status": "PASS",
+      "final": {
+        "phase": "await-input",
+        "score": "273",
+        "growth": [
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "20",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "id": "b03",
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "2"
+              }
+            }
+          },
+          {
+            "id": "b06",
+            "growth": {}
+          },
+          {
+            "id": "b08",
+            "growth": {}
+          }
+        ],
+        "commandSeq": 3,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2151395247
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2429633615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1461855557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 0
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2459264930
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3497781299
+          }
+        }
+      }
+    },
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768,
+        "mode": "fast"
+      },
+      "status": "PASS",
+      "final": {
+        "phase": "await-input",
+        "score": "273",
+        "growth": [
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "20",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "id": "b03",
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "2"
+              }
+            }
+          },
+          {
+            "id": "b06",
+            "growth": {}
+          },
+          {
+            "id": "b08",
+            "growth": {}
+          }
+        ],
+        "commandSeq": 3,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2151395247
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2429633615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1461855557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 0
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2459264930
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3497781299
+          }
+        }
+      }
+    },
+    {
+      "spec": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "skip"
+      },
+      "status": "PASS",
+      "final": {
+        "phase": "await-input",
+        "score": "273",
+        "growth": [
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "20",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "id": "b03",
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "2"
+              }
+            }
+          },
+          {
+            "id": "b06",
+            "growth": {}
+          },
+          {
+            "id": "b08",
+            "growth": {}
+          }
+        ],
+        "commandSeq": 3,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2151395247
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2429633615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1461855557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 0
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2459264930
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3497781299
+          }
+        }
+      }
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 740,
+        "mode": "reduce"
+      },
+      "status": "PASS",
+      "final": {
+        "phase": "await-input",
+        "score": "273",
+        "growth": [
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "20",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "id": "b03",
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "2"
+              }
+            }
+          },
+          {
+            "id": "b06",
+            "growth": {}
+          },
+          {
+            "id": "b08",
+            "growth": {}
+          }
+        ],
+        "commandSeq": 3,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2151395247
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2429633615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1461855557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 0
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2459264930
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3497781299
+          }
+        }
+      }
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 740,
+        "mode": "skip"
+      },
+      "status": "PASS",
+      "final": {
+        "phase": "await-input",
+        "score": "273",
+        "growth": [
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "20",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "id": "b03",
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "2"
+              }
+            }
+          },
+          {
+            "id": "b06",
+            "growth": {}
+          },
+          {
+            "id": "b08",
+            "growth": {}
+          }
+        ],
+        "commandSeq": 3,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2151395247
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2429633615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1461855557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 0
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2459264930
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3497781299
+          }
+        }
+      }
+    },
+    {
+      "spec": {
+        "width": 740,
+        "height": 390,
+        "mode": "resize"
+      },
+      "status": "PASS",
+      "final": {
+        "phase": "await-input",
+        "score": "273",
+        "growth": [
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "20",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "id": "b03",
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "2"
+              }
+            }
+          },
+          {
+            "id": "b06",
+            "growth": {}
+          },
+          {
+            "id": "b08",
+            "growth": {}
+          }
+        ],
+        "commandSeq": 3,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2151395247
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2429633615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1461855557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 0
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2459264930
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3497781299
+          }
+        }
+      }
+    },
+    {
+      "spec": {
+        "width": 768,
+        "height": 1024,
+        "mode": "background"
+      },
+      "status": "PASS",
+      "final": {
+        "phase": "await-input",
+        "score": "273",
+        "growth": [
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "20",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "id": "b03",
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "2"
+              }
+            }
+          },
+          {
+            "id": "b06",
+            "growth": {}
+          },
+          {
+            "id": "b08",
+            "growth": {}
+          }
+        ],
+        "commandSeq": 3,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2151395247
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2429633615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1461855557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 0
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2459264930
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3497781299
+          }
+        }
+      }
+    }
+  ],
+  "nativeReportSha256": "213852141ae7b7cc7bd89e4a5a1acbe3ffde775b521ba68b9b9680a63bd02a09",
+  "physicalNewcomerRetentionAudio": "NOT_RUN",
+  "originalFailures": [
+    "native-first-FAIL.json",
+    "native-command-identity-FAIL.json",
+    "native-reload-entry-FAIL.json",
+    "gate-first-FAIL.json"
+  ],
+  "notes": [
+    "First new unit fixture initially used the wrong stage roster field; fixed fixture only. Second failure was a wrong expected source name. Product/domain unchanged for those corrections.",
+    "Native first play was blocked by existing 350ms modal dismissal guard; harness waits400ms after close.",
+    "Native expected command identity used gift/3 instead of runId/command/3; corrected oracle without stripping trace identity.",
+    "390 reload input awaited settled layout plus400ms before source entry; original timeout preserved.",
+    "Default Playwright download missing; browser-only gate rerun with existing system Chromium option, no test/CI/timeout changes."
+  ]
+}
