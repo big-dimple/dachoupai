@@ -1,0 +1,7 @@
+{
+  "source": "3c361deac5675c5d4593692c0ce9fe3e0e88074f",
+  "sourceStatus": "M src/game/ShopLayout.ts\n M src/game/ShopScene.ts\n M tests/shop-layout.test.ts\n?? harness/pc-shop-p2.mjs",
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: {\"t\":{\"name\":\"shop/offer-purpose\",\"text\":\"商店/待出牌：选1–3张永久改黑桃♠；成功消耗，保留其余属性。\",\"offerId\":\"w1-controlled-20261007/shop/0/0/tool/0\",\"fullText\":\"商店/待出牌：选1–3张永久改黑桃♠；成功消耗，保留其余属性。\",\"font\":14,\"bounds\":{\"x\":742,\"y\":576,\"width\":399,\"height\":16}},\"tile\":{\"x\":672,\"y\":228,\"width\":328,\"height\":276}}",
+  "cause": "Harness chose the upper joker tile using x only; repaired to use exact offerId -> final pcOfferBoxes identity. No product bounds assertion was loosened."
+}
