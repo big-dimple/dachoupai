@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "fd7737b18471cfc941d463129a46b234a4f3a76a77ba7f13e55de4c866e15c54",
+    "index": "feb975377808da4b43fb469cc3069df7b951890a74f21fcabdd80fb9e624e6c8",
+    "head": "2bc941fb4a5818f82226d7df17cdeb58c94914ca",
+    "branch": "refs/heads/feat/w6-choice-growth-20261007"
+  },
+  "after": {
+    "source": "fd7737b18471cfc941d463129a46b234a4f3a76a77ba7f13e55de4c866e15c54",
+    "index": "feb975377808da4b43fb469cc3069df7b951890a74f21fcabdd80fb9e624e6c8",
+    "head": "2bc941fb4a5818f82226d7df17cdeb58c94914ca",
+    "branch": "refs/heads/feat/w6-choice-growth-20261007"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 29852
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 2299
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 13618
+    },
+    {
+      "name": "first-chapter-choice-growth-native",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 125048
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 159806
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 316
+    }
+  ]
+}

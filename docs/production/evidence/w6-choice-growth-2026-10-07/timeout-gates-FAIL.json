@@ -1,0 +1,25 @@
+{
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "28909caad21fb1fd70d692950a4596082021d4a92d9d390fa8cf50b61c31c0cc",
+    "index": "a2e06d305c713b1148e982ecf52825760985ee7b452c6f6da525701d83d028b2",
+    "head": "08cc8ab84e57081839b998ccccdd3444c2f00e72",
+    "branch": "refs/heads/feat/w6-choice-growth-20261007"
+  },
+  "after": {
+    "source": "28909caad21fb1fd70d692950a4596082021d4a92d9d390fa8cf50b61c31c0cc",
+    "index": "a2e06d305c713b1148e982ecf52825760985ee7b452c6f6da525701d83d028b2",
+    "head": "08cc8ab84e57081839b998ccccdd3444c2f00e72",
+    "branch": "refs/heads/feat/w6-choice-growth-20261007"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 83094,
+      "reason": "child exited 1"
+    }
+  ]
+}

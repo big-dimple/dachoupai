@@ -1,0 +1,878 @@
+{
+  "input": "4048b28a333dca08a3b9aa3370a9423d2a565ee7",
+  "product": "2bc941fb4a5818f82226d7df17cdeb58c94914ca",
+  "software": "PASS",
+  "humanUnderstandingAndWillingness": "NOT_RUN",
+  "physicalDevicePerformance": "NOT_RUN",
+  "audio": "NOT_RUN",
+  "newArtOrGameplay": "NOT_CHANGED",
+  "cases": {
+    "pc": {
+      "scores": [
+        "380",
+        "210",
+        "460",
+        "1096",
+        "924"
+      ],
+      "growth": [
+        {
+          "heat": {
+            "n": "10",
+            "d": "1"
+          }
+        },
+        {
+          "heat": {
+            "n": "20",
+            "d": "1"
+          }
+        },
+        {
+          "heat": {
+            "n": "30",
+            "d": "1"
+          }
+        },
+        {
+          "heat": {
+            "n": "40",
+            "d": "1"
+          }
+        },
+        {
+          "heat": {
+            "n": "50",
+            "d": "1"
+          }
+        }
+      ],
+      "finalGold": 23,
+      "finalGrowth": {
+        "heat": {
+          "n": "50",
+          "d": "1"
+        }
+      },
+      "finalRunSha256": "937d66cfb502aa94112891ede1725853d93e93cadd96b1ad25300ee8dd0fe307",
+      "firstOffer": {
+        "top": 165.5,
+        "bottom": 325.1875,
+        "dialog": 756,
+        "visibleBottom": 674,
+        "text": "练对子 · 实付4金\n买后余2金 · 当前利息档1→0\n\n任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n\n查看并选择这件"
+      },
+      "firstRestoredGrowth": [
+        {
+          "note": "Restored first growth measured on actual canvas",
+          "growthCopy": [
+            {
+              "name": "growth/current",
+              "text": "已积攒 +10 热度",
+              "bounds": {
+                "type": 5,
+                "x": 635,
+                "y": 217,
+                "width": 146,
+                "height": 23
+              }
+            },
+            {
+              "name": "growth/cause",
+              "text": "上手两对促成 0 → 10",
+              "bounds": {
+                "type": 5,
+                "x": 635,
+                "y": 246,
+                "width": 134,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ],
+      "resultRegions": [
+        {
+          "note": "Measured actual result text regions",
+          "regions": [
+            {
+              "name": "result/score",
+              "text": "+210",
+              "bounds": {
+                "type": 5,
+                "x": 636.4951240539551,
+                "y": 154,
+                "width": 93.00975189208987,
+                "height": 47.43497346496582
+              }
+            },
+            {
+              "name": "growth/current",
+              "text": "已积攒 +20 热度",
+              "bounds": {
+                "type": 5,
+                "x": 515,
+                "y": 238,
+                "width": 146,
+                "height": 23
+              }
+            },
+            {
+              "name": "growth/cause",
+              "text": "上手两对促成 10 → 20",
+              "bounds": {
+                "type": 5,
+                "x": 515,
+                "y": 267,
+                "width": 141,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/next",
+              "text": "下手试对子／两对",
+              "bounds": {
+                "type": 5,
+                "x": 515,
+                "y": 290,
+                "width": 112,
+                "height": 16
+              }
+            },
+            {
+              "name": "result/gap",
+              "text": "全场 590 / 400",
+              "bounds": {
+                "type": 5,
+                "x": 618.5,
+                "y": 436,
+                "width": 129,
+                "height": 23
+              }
+            }
+          ]
+        },
+        {
+          "note": "Measured actual result text regions",
+          "regions": [
+            {
+              "name": "result/score",
+              "text": "+1,096",
+              "bounds": {
+                "type": 5,
+                "x": 618.1639051112019,
+                "y": 154,
+                "width": 129.67218977759637,
+                "height": 48.627071166598625
+              }
+            },
+            {
+              "name": "result/assist-source",
+              "text": "阿默助攻 ×2 · 用掉2张",
+              "bounds": {
+                "type": 5,
+                "x": 613.5,
+                "y": 217,
+                "width": 139,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/current",
+              "text": "已积攒 +40 热度",
+              "bounds": {
+                "type": 5,
+                "x": 515,
+                "y": 258,
+                "width": 146,
+                "height": 23
+              }
+            },
+            {
+              "name": "growth/cause",
+              "text": "上手两对促成 30 → 40",
+              "bounds": {
+                "type": 5,
+                "x": 515,
+                "y": 287,
+                "width": 141,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/next",
+              "text": "下手试对子／两对",
+              "bounds": {
+                "type": 5,
+                "x": 515,
+                "y": 310,
+                "width": 112,
+                "height": 16
+              }
+            },
+            {
+              "name": "result/gap",
+              "text": "全场 1,556 / 600",
+              "bounds": {
+                "type": 5,
+                "x": 610,
+                "y": 436,
+                "width": 146,
+                "height": 23
+              }
+            }
+          ]
+        },
+        {
+          "note": "Measured actual result text regions",
+          "regions": [
+            {
+              "name": "result/score",
+              "text": "+924",
+              "bounds": {
+                "type": 5,
+                "x": 637.866983350084,
+                "y": 154,
+                "width": 90.2660332998322,
+                "height": 46.035676982914424
+              }
+            },
+            {
+              "name": "result/assist-source",
+              "text": "阿默助攻 ×2 · 用掉2张",
+              "bounds": {
+                "type": 5,
+                "x": 613.5,
+                "y": 217,
+                "width": 139,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/current",
+              "text": "已积攒 +50 热度",
+              "bounds": {
+                "type": 5,
+                "x": 515,
+                "y": 258,
+                "width": 146,
+                "height": 23
+              }
+            },
+            {
+              "name": "growth/cause",
+              "text": "上手三条促成 40 → 50",
+              "bounds": {
+                "type": 5,
+                "x": 515,
+                "y": 287,
+                "width": 141,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/next",
+              "text": "下手试对子／两对",
+              "bounds": {
+                "type": 5,
+                "x": 515,
+                "y": 310,
+                "width": 112,
+                "height": 16
+              }
+            },
+            {
+              "name": "result/gap",
+              "text": "全场 924 / 800",
+              "bounds": {
+                "type": 5,
+                "x": 618.5,
+                "y": 436,
+                "width": 129,
+                "height": 23
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "phone": {
+      "scores": [
+        "380",
+        "210",
+        "460",
+        "1096",
+        "924"
+      ],
+      "growth": [
+        {
+          "heat": {
+            "n": "10",
+            "d": "1"
+          }
+        },
+        {
+          "heat": {
+            "n": "20",
+            "d": "1"
+          }
+        },
+        {
+          "heat": {
+            "n": "30",
+            "d": "1"
+          }
+        },
+        {
+          "heat": {
+            "n": "40",
+            "d": "1"
+          }
+        },
+        {
+          "heat": {
+            "n": "50",
+            "d": "1"
+          }
+        }
+      ],
+      "finalGold": 23,
+      "finalGrowth": {
+        "heat": {
+          "n": "50",
+          "d": "1"
+        }
+      },
+      "finalRunSha256": "937d66cfb502aa94112891ede1725853d93e93cadd96b1ad25300ee8dd0fe307",
+      "firstOffer": {
+        "top": 161.5,
+        "bottom": 410.25,
+        "dialog": 728,
+        "visibleBottom": 546,
+        "text": "练对子 · 实付4金\n买后余2金 · 当前利息档1→0\n\n任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n\n查看并选择这件"
+      },
+      "firstRestoredGrowth": [
+        {
+          "note": "Restored first growth measured on actual canvas",
+          "growthCopy": [
+            {
+              "name": "growth/current",
+              "text": "已积攒 +10 热度",
+              "bounds": {
+                "type": 5,
+                "x": 84,
+                "y": 325,
+                "width": 146,
+                "height": 23
+              }
+            },
+            {
+              "name": "growth/cause",
+              "text": "上手两对促成 0 → 10",
+              "bounds": {
+                "type": 5,
+                "x": 84,
+                "y": 354,
+                "width": 134,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ],
+      "resultRegions": [
+        {
+          "note": "Measured actual result text regions",
+          "regions": [
+            {
+              "name": "result/score",
+              "text": "+210",
+              "bounds": {
+                "type": 5,
+                "x": 145,
+                "y": 168,
+                "width": 100,
+                "height": 51
+              }
+            },
+            {
+              "name": "growth/current",
+              "text": "已积攒 +20 热度",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 252,
+                "width": 146,
+                "height": 23
+              }
+            },
+            {
+              "name": "growth/cause",
+              "text": "上手两对促成 10 → 20",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 281,
+                "width": 141,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/next",
+              "text": "下手试对子／两对",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 304,
+                "width": 112,
+                "height": 16
+              }
+            },
+            {
+              "name": "result/gap",
+              "text": "全场 590 / 400",
+              "bounds": {
+                "type": 5,
+                "x": 130.5,
+                "y": 376,
+                "width": 129,
+                "height": 23
+              }
+            }
+          ]
+        },
+        {
+          "note": "Measured actual result text regions",
+          "regions": [
+            {
+              "name": "result/score",
+              "text": "+1,096",
+              "bounds": {
+                "type": 5,
+                "x": 127,
+                "y": 168,
+                "width": 136,
+                "height": 51
+              }
+            },
+            {
+              "name": "result/assist-source",
+              "text": "阿默助攻 ×2 · 用掉2张",
+              "bounds": {
+                "type": 5,
+                "x": 125.5,
+                "y": 231,
+                "width": 139,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/current",
+              "text": "已积攒 +40 热度",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 272,
+                "width": 146,
+                "height": 23
+              }
+            },
+            {
+              "name": "growth/cause",
+              "text": "上手两对促成 30 → 40",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 301,
+                "width": 141,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/next",
+              "text": "下手试对子／两对",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 324,
+                "width": 112,
+                "height": 16
+              }
+            },
+            {
+              "name": "result/gap",
+              "text": "全场 1,556 / 600",
+              "bounds": {
+                "type": 5,
+                "x": 122,
+                "y": 376,
+                "width": 146,
+                "height": 23
+              }
+            }
+          ]
+        },
+        {
+          "note": "Measured actual result text regions",
+          "regions": [
+            {
+              "name": "result/score",
+              "text": "+924",
+              "bounds": {
+                "type": 5,
+                "x": 145,
+                "y": 168,
+                "width": 100,
+                "height": 51
+              }
+            },
+            {
+              "name": "result/assist-source",
+              "text": "阿默助攻 ×2 · 用掉2张",
+              "bounds": {
+                "type": 5,
+                "x": 125.5,
+                "y": 231,
+                "width": 139,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/current",
+              "text": "已积攒 +50 热度",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 272,
+                "width": 146,
+                "height": 23
+              }
+            },
+            {
+              "name": "growth/cause",
+              "text": "上手三条促成 40 → 50",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 301,
+                "width": 141,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/next",
+              "text": "下手试对子／两对",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 324,
+                "width": 112,
+                "height": 16
+              }
+            },
+            {
+              "name": "result/gap",
+              "text": "全场 924 / 800",
+              "bounds": {
+                "type": 5,
+                "x": 130.5,
+                "y": 376,
+                "width": 129,
+                "height": 23
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "narrow": {
+      "scores": [
+        "380",
+        "210",
+        "460",
+        "1096",
+        "924"
+      ],
+      "growth": [
+        {
+          "heat": {
+            "n": "10",
+            "d": "1"
+          }
+        },
+        {
+          "heat": {
+            "n": "20",
+            "d": "1"
+          }
+        },
+        {
+          "heat": {
+            "n": "30",
+            "d": "1"
+          }
+        },
+        {
+          "heat": {
+            "n": "40",
+            "d": "1"
+          }
+        },
+        {
+          "heat": {
+            "n": "50",
+            "d": "1"
+          }
+        }
+      ],
+      "finalGold": 23,
+      "finalGrowth": {
+        "heat": {
+          "n": "50",
+          "d": "1"
+        }
+      },
+      "finalRunSha256": "937d66cfb502aa94112891ede1725853d93e93cadd96b1ad25300ee8dd0fe307",
+      "firstOffer": {
+        "top": 184,
+        "bottom": 424.75,
+        "dialog": 728,
+        "visibleBottom": 490,
+        "text": "练对子 · 实付4金\n买后余2金 · 当前利息档1→0\n\n任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n\n查看并选择这件"
+      },
+      "firstRestoredGrowth": [
+        {
+          "note": "Restored first growth measured on actual canvas",
+          "growthCopy": [
+            {
+              "name": "growth/current",
+              "text": "已积攒 +10 热度",
+              "bounds": {
+                "type": 5,
+                "x": 80,
+                "y": 327,
+                "width": 146,
+                "height": 23
+              }
+            },
+            {
+              "name": "growth/cause",
+              "text": "上手两对促成 0 → 10",
+              "bounds": {
+                "type": 5,
+                "x": 80,
+                "y": 356,
+                "width": 134,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ],
+      "resultRegions": [
+        {
+          "note": "Measured actual result text regions",
+          "regions": [
+            {
+              "name": "result/score",
+              "text": "+210",
+              "bounds": {
+                "type": 5,
+                "x": 110,
+                "y": 172,
+                "width": 100,
+                "height": 51
+              }
+            },
+            {
+              "name": "growth/current",
+              "text": "已积攒 +20 热度",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 256,
+                "width": 146,
+                "height": 23
+              }
+            },
+            {
+              "name": "growth/cause",
+              "text": "上手两对促成 10 → 20",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 285,
+                "width": 141,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/next",
+              "text": "下手试对子／两对",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 308,
+                "width": 112,
+                "height": 16
+              }
+            },
+            {
+              "name": "result/gap",
+              "text": "全场 590 / 400",
+              "bounds": {
+                "type": 5,
+                "x": 95.5,
+                "y": 376,
+                "width": 129,
+                "height": 23
+              }
+            }
+          ]
+        },
+        {
+          "note": "Measured actual result text regions",
+          "regions": [
+            {
+              "name": "result/score",
+              "text": "+1,096",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 172,
+                "width": 136,
+                "height": 51
+              }
+            },
+            {
+              "name": "result/assist-source",
+              "text": "阿默助攻 ×2 · 用掉2张",
+              "bounds": {
+                "type": 5,
+                "x": 90.5,
+                "y": 235,
+                "width": 139,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/current",
+              "text": "已积攒 +40 热度",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 276,
+                "width": 146,
+                "height": 23
+              }
+            },
+            {
+              "name": "growth/cause",
+              "text": "上手两对促成 30 → 40",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 305,
+                "width": 141,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/next",
+              "text": "下手试对子／两对",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 328,
+                "width": 112,
+                "height": 16
+              }
+            },
+            {
+              "name": "result/gap",
+              "text": "全场 1,556 / 600",
+              "bounds": {
+                "type": 5,
+                "x": 87,
+                "y": 376,
+                "width": 146,
+                "height": 23
+              }
+            }
+          ]
+        },
+        {
+          "note": "Measured actual result text regions",
+          "regions": [
+            {
+              "name": "result/score",
+              "text": "+924",
+              "bounds": {
+                "type": 5,
+                "x": 110,
+                "y": 172,
+                "width": 100,
+                "height": 51
+              }
+            },
+            {
+              "name": "result/assist-source",
+              "text": "阿默助攻 ×2 · 用掉2张",
+              "bounds": {
+                "type": 5,
+                "x": 90.5,
+                "y": 235,
+                "width": 139,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/current",
+              "text": "已积攒 +50 热度",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 276,
+                "width": 146,
+                "height": 23
+              }
+            },
+            {
+              "name": "growth/cause",
+              "text": "上手三条促成 40 → 50",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 305,
+                "width": 141,
+                "height": 16
+              }
+            },
+            {
+              "name": "growth/next",
+              "text": "下手试对子／两对",
+              "bounds": {
+                "type": 5,
+                "x": 92,
+                "y": 328,
+                "width": 112,
+                "height": 16
+              }
+            },
+            {
+              "name": "result/gap",
+              "text": "全场 924 / 800",
+              "bounds": {
+                "type": 5,
+                "x": 95.5,
+                "y": 376,
+                "width": 129,
+                "height": 23
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
