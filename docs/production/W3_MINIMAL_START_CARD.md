@@ -92,3 +92,11 @@ inputSHA：`4e0501a5f4b2c8e5268d097a50404c08c145dee7`，父确认PR42独审/CI/F
 范围：GameScene、IntermissionScene、JokerMemory相关纯展示facts、DetailDialog共用来源卡片及必要CSS/定向tests/harness。已有卡面复用到条件与收益高频入口；现有default/fast/reduced/skip队列保障只改变展示。领域/数值/RNG/save/reward/角色/新美术/CI配置不改，P2完整特写及W5自然构筑证据不抢跑。工作中只定向验证，整包一次必要最终门禁和父独审，真机/音频/观感与玩家理解待另验。
 
 本包软件候选：产品`ad60c9c`，[来源到下一步的整包证据](evidence/w3-w4-experience-2026-10-07/README.md)。七原生模式实际保存/刷新同状态；6新增语义检查及2486 tests/140 files、content/type/build、系统Chromium标准双端smoke通过；默认缺下载浏览器的原FAIL与脚本初轮FAIL保留。不是新人120秒留存/真实理解或真机通过，不签完整W3/W4；父独审和精确新head CI待接。
+
+## 2026-10-07 W5经营构筑／W6首章连贯候选
+
+inputSHA：`ca15560c679f60ecbb9c9751b243a61367467c70`，父确认PR43独审/精确CI/FF main，fetch一致。承接原W5三线起步/成长转型/缺件替代/现金取舍（U06/U10/U11、SG01/SG02/SG05）及W6首章连贯功能候选，不签自然平衡、真人理解、设备/审美或整体W6。已满足软件依赖：当前profile、公开牌组和手牌、已存成长、工具选择确认、真实支付/余额、PR43来源账本与现有手绘素材。
+
+同一候选串起：玩家选择成组/顺子/同花培养方向→查看已有成长和实际可用工具→自选工具/目标并确认→本店商品投资或保留金币→下一场查看已保存收益。培养选择仅本次页面会话记忆，刷新后明确重新选择；不改run/save/RNG/角色，不模拟未来手牌/总分，不自动买牌、选目标、出牌或发奖。缺工具/来源/现金时展示当前缺口和既有公开牌型、留金/转向入口；不给虚假必胜路线。
+
+allowedFiles：新增src/game/BuildJourney.ts、BuildJourneyDialog.ts及相关tests/build-journey.test.ts、harness/w5-build-journey.mjs、harness/fixtures/build-journey.ts；复用GameScene、ShopScene、IntermissionScene、DetailDialog、ConsumableDialog、现有CSS/手绘来源。消费已有价格/容量/工具校验，领域/content/application/platform/资产/CI/锁文件不改。仅定向风险测试与本包一次必要最终门禁；一条有限正常入口路线与受控工具/缺件/现金对照分别留证，不扫种子、不混称自然获取，不长录屏或软件GPU帧率签收。
