@@ -1,0 +1,49 @@
+CHECK build: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run build
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 149 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.17 kB │ gzip:   0.15 kB
+dist/index.html                     0.55 kB │ gzip:   0.36 kB
+dist/assets/index-CU5xA7jf.css     32.39 kB │ gzip:   7.35 kB
+dist/assets/index-DPK_UbrW.js   2,191.33 kB │ gzip: 619.09 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.42s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+build: PASS
+CHECK verify:smoke: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run verify:smoke
+
+> dachoupai@0.1.0 verify:smoke
+> node harness/screenshot.mjs --verify-smoke
+
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+chromium/desktop: ok
+chromium/mobile: ok
+smoke: ok
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+verify:smoke: PASS
+CHECK production-plan: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node scripts/check-production-plan.mjs
+PLAN_VALID: 32 work packages; current=P08; not a gameplay acceptance
+production-plan: PASS
+{"status":"PASS","exitCode":0,"before":{"source":"09127179e652cb5dd0830dfb138e3ec4b1f97389cf6f4e781446eb7fb898b05a","index":"327fa99df367232b2e155317934c0a9330451471288e700dac8f7ffd5a810684","head":"08b944e82adf206a27d21849ea8ebbc05beaa9a3","branch":"refs/heads/feat/w5-growth-opportunities-20261007"},"after":{"source":"09127179e652cb5dd0830dfb138e3ec4b1f97389cf6f4e781446eb7fb898b05a","index":"327fa99df367232b2e155317934c0a9330451471288e700dac8f7ffd5a810684","head":"08b944e82adf206a27d21849ea8ebbc05beaa9a3","branch":"refs/heads/feat/w5-growth-opportunities-20261007"},"steps":[{"name":"build","status":"PASS","childExitCode":0,"elapsedMs":14499},{"name":"verify:smoke","status":"PASS","childExitCode":0,"elapsedMs":168478},{"name":"production-plan","status":"PASS","childExitCode":0,"elapsedMs":338}]}

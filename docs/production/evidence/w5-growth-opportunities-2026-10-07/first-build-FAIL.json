@@ -1,0 +1,25 @@
+{
+  "status": "FAIL",
+  "exitCode": 2,
+  "before": {
+    "source": "41cba2fa212ba68b6b0bc0645a9ee0a354f2c38f623af757450f9d649c7e9f4d",
+    "index": "a63c5858ea84af39d06152870a4ee64d08818e12d4e63e95c486da950b78f626",
+    "head": "ef58cc3a1be5d5f5b60fd06ed5e1c9226e2f31f5",
+    "branch": "refs/heads/feat/w5-growth-opportunities-20261007"
+  },
+  "after": {
+    "source": "41cba2fa212ba68b6b0bc0645a9ee0a354f2c38f623af757450f9d649c7e9f4d",
+    "index": "a63c5858ea84af39d06152870a4ee64d08818e12d4e63e95c486da950b78f626",
+    "head": "ef58cc3a1be5d5f5b60fd06ed5e1c9226e2f31f5",
+    "branch": "refs/heads/feat/w5-growth-opportunities-20261007"
+  },
+  "steps": [
+    {
+      "name": "build",
+      "status": "FAIL",
+      "childExitCode": 2,
+      "elapsedMs": 8792,
+      "reason": "child exited 2"
+    }
+  ]
+}

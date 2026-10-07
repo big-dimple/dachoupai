@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "09127179e652cb5dd0830dfb138e3ec4b1f97389cf6f4e781446eb7fb898b05a",
+    "index": "327fa99df367232b2e155317934c0a9330451471288e700dac8f7ffd5a810684",
+    "head": "08b944e82adf206a27d21849ea8ebbc05beaa9a3",
+    "branch": "refs/heads/feat/w5-growth-opportunities-20261007"
+  },
+  "after": {
+    "source": "09127179e652cb5dd0830dfb138e3ec4b1f97389cf6f4e781446eb7fb898b05a",
+    "index": "327fa99df367232b2e155317934c0a9330451471288e700dac8f7ffd5a810684",
+    "head": "08b944e82adf206a27d21849ea8ebbc05beaa9a3",
+    "branch": "refs/heads/feat/w5-growth-opportunities-20261007"
+  },
+  "steps": [
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 14499
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 168478
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 338
+    }
+  ]
+}

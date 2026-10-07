@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-07",
+  "scope": "Existing public fixed-additive afterHand growth opportunities; zero rule/content/economy changes; draft only",
+  "baseMain": "3d4ec572028bc08609b748a1f3f63b310db93032",
+  "productHead": "08b944e82adf206a27d21849ea8ebbc05beaa9a3",
+  "execution": "serial GPT-6.1 default Medium; no subagents",
+  "gates": {
+    "status": "PASS",
+    "exitCode": 0,
+    "before": {
+      "source": "09127179e652cb5dd0830dfb138e3ec4b1f97389cf6f4e781446eb7fb898b05a",
+      "index": "327fa99df367232b2e155317934c0a9330451471288e700dac8f7ffd5a810684",
+      "head": "08b944e82adf206a27d21849ea8ebbc05beaa9a3",
+      "branch": "refs/heads/feat/w5-growth-opportunities-20261007"
+    },
+    "after": {
+      "source": "09127179e652cb5dd0830dfb138e3ec4b1f97389cf6f4e781446eb7fb898b05a",
+      "index": "327fa99df367232b2e155317934c0a9330451471288e700dac8f7ffd5a810684",
+      "head": "08b944e82adf206a27d21849ea8ebbc05beaa9a3",
+      "branch": "refs/heads/feat/w5-growth-opportunities-20261007"
+    },
+    "steps": [
+      {
+        "name": "build",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 14499
+      },
+      {
+        "name": "verify:smoke",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 168478
+      },
+      {
+        "name": "production-plan",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 338
+      }
+    ]
+  },
+  "directed": {
+    "status": "PASS",
+    "uniqueTests": 35,
+    "uniqueFiles": 5,
+    "afterFractionSerializationFix": {
+      "tests": 7,
+      "files": 1,
+      "status": "PASS"
+    },
+    "localFullSuite": "NOT_RUN — parent explicitly requested no repeated local full suite; normal remote CI unchanged"
+  },
+  "sourceFilesSha256": {
+    "docs/production/DELIVERY_PLAN.md": "aeb9ed169ea4e96bc3993a91af5d844a89497fd3595adc1267250c80f422f64a",
+    "docs/production/W3_MINIMAL_START_CARD.md": "8d5881c3b8c5f83618360e2adee902d2e8ceb8c9a1b9b9107f35d9d17068d96f",
+    "docs/production/evidence/w5-reachable-tools-2026-10-07/README.md": "1f924435e9eebc02cce0c3b1157a736362f3c28d14eca342b4761ce8e2e750c2",
+    "harness/fixtures/growth-opportunity.ts": "39324e68e08f7a8dbebb491f58fc03692d16b14e5812c23f6231ecde94ad99fa",
+    "harness/w5-growth-routes.mjs": "ced84ba2f6d55203ad181956b86084de52a01a1020a916b65a698b608ff43e0b",
+    "harness/w5-growth-ui.mjs": "cf9b030542af0f58e055f7738f64383df5648005257e4dae6555007b8a5df49c",
+    "src/game/BuildJourney.ts": "f43a4f27c357722c4920ef7115538800bb86d53c362718e1ffda2dc138a84b69",
+    "src/game/GameScene.ts": "0e7dd05dd45a1cf1ae308615edded64bb30f7250cdb37f0aefa8a5bd7b88b1d4",
+    "src/game/GrowthOpportunity.ts": "e221849bca71e324ac85d0aebc0f46783cf566161a19d28782d45597a7c9251b",
+    "src/game/JokerExperience.ts": "b0979cb020d56e8f6553921bdb0fdbc0791d6e4908dbc7d3b71887009931f414",
+    "tests/growth-opportunity.test.ts": "a4c483b2342960eb14ebd76eaa43b648c60cdf5b165d0b84406a876ed09ed7af"
+  },
+  "artifactsSha256": {
+    "assist-held-count-1366.png": "3d9360d7bdf0ce25184d8e4f174a96921a5b926d90391e98f8bd8f52ddd18b92",
+    "first-build-FAIL.txt": "494ae484580b1a1b8d7958c7a08d47517df6789911e946ea5c08e953743f53b9",
+    "assist-fixture-FAIL.txt": "4bac221123a8630475b48055fb750fffb6f5ff33125c3841f3394eb3d1969ee7",
+    "final-gates-PASS.txt": "87e1b30ea9ec13a5774b12b5228be6c24505267ba645d7ae8afcb12c8848c425",
+    "native-assist-PASS.json.gz": "9a57b4054f9664092a98b15b3eeaa479c39862dc42dd4f7fe18b1632678a0ecb",
+    "late-a05-740.png": "874df1e3e799b30a3c1da3f5d293d8dd6813ddafbd1fa7313f951dee1dbd5a69",
+    "historical-seed-supplement.json.gz": "4f550033514601f31d3a9a66e8917e286208284a5a83a5dd3da34c4bcbc15d56",
+    "README.md": "d17a733ce8115dfa691c937fcc485e5fcf9361ad64a8edea32fe810f7653a458",
+    "native-assist-final-PASS.json.gz": "b2cf544ae2efb9663aee107fbee019989af2e041632c98c803eacda9c897dbe8",
+    "directed-32-PASS.txt": "40831eef1877be116d9e45b4152116dc1495d83adbb42953778fde79202af109",
+    "native-sort-command-FAIL.json": "4198c25ce6c6240ebc573d596dfc978462ab7b390e315a6998543db96c3429ce",
+    "fraction-fix-7-PASS.txt": "6a1add1cac3583221e2755f71e3521722e943c5cd4ab5ce9b04d4b82a273cfa1",
+    "natural-three.json.gz": "f6cafa4bda16ae663c46f8d0cf5957eaa6ca6705fba04565b353a1e9f554923a",
+    "growth-options-390.png": "26e12cb38edfb9c93776884a674aca186c763db12e5fdf4005ec477b2445e182",
+    "selected-growth-1280.png": "bf5b8d0f4c0747fbc5b7687caafd7f6c7bbc4c4390adeb723597be758a8bb6b1",
+    "assist-existing-3-PASS.txt": "e17136a6d1b81947d15cd4fe6c7a91eded9721cad50310ea29bad0c083be10d9",
+    "native-three-PASS.json.gz": "e09497de8ca72b3552ad3f03574ffb63f27699f72dfd09faad0d3066c5f536f3",
+    "first-build-FAIL.json": "016993b513c2371284a11ad326bc2c6cdde3533267fdfb22c95951e4ccf69ada",
+    "final-gates-PASS.json": "20935655c3ea318b7c37a77584c14bf54c89e8ed8fc40101daf79095226f0bc1"
+  },
+  "evidenceIdentity": {
+    "natural": "base HEAD with worktree recorded by raw report; three prior seeds plus one explicitly historical targeted seed, max150 actual commands each, stop on natural loss",
+    "native": "base HEAD with sequential worktree edits; original report HEAD/worktree retained; not final clean-HEAD hardware validation",
+    "controlled": "d03 uses normal cash and actual commands with a controlled source shelf; assist uses one actual public discard; not normal acquisition evidence",
+    "lateA05": "unmodified acquired normal route checkpoint; not browser Title-to-stage8 proof",
+    "finalChanges": "toJSON serialization and narrower additive-growth scope wording verified by 7 affected tests plus type/build/standard smoke; no new screenshots"
+  },
+  "normalRoutes": {
+    "group-natural-17": {
+      "a05": "late actual buy stage7, cost6, gold65→59; grows18, stage8 reads18",
+      "failure": "chapter3 stage8 score3848/4800; gold69"
+    },
+    "policy-valid-suit": {
+      "a05": "early actual buy stage1, cost6, gold14→8; one-hand clear produces no growth; later grows18",
+      "failure": "chapter3 stage7 score2490/3600; gold60"
+    },
+    "policy-valid-groups": {
+      "a05AndD03": "NOT_OBSERVED",
+      "failure": "chapter2 stage4 score1360/1500; gold42"
+    },
+    "v00-sample-004": {
+      "selection": "targeted historical d03 report with different identity/character",
+      "a05AndD03": "NOT_OBSERVED in current identity",
+      "failure": "chapter3 stage8 score4185/4800; gold78"
+    }
+  },
+  "remaining": [
+    "normal or late d03 acquisition NOT_OBSERVED",
+    "natural ordinary-straight a05 continuation NOT_OBSERVED",
+    "eight chapters NOT_CLEARED; limited policies leave cash and ignore other tools/offers; not proof of impossibility",
+    "user PC/phone real-device readability, performance, audio, comprehension and W5/W6/W8 acceptance pending",
+    "P08 in_progress, C04 D32 and W7 dependencies unchanged; no c04 rule implemented"
+  ],
+  "remoteCI": "pending exact final evidence commit; reported separately via PR"
+}
