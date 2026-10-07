@@ -1,3 +1,4 @@
+import {currentBuildFocus,focusedUpgradeTypes} from './BuildJourney';
 import type {Action,R2RunState} from '../domain/run';
 import {HAND_LABELS} from '../content/handLabels';
 import {rankLabel,SUITS,SUIT_SYMBOL,type PlayingCard,type Suit} from '../cards/types';
@@ -124,7 +125,7 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
 }
 
 export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boolean,send:(action:Action,expectedSeq?:number)=>Promise<boolean>,initialInstanceId?:string):void {
-  const expectedSeq=state.commandSeq;
+  const expectedSeq=state.commandSeq,focus=currentBuildFocus(state.runId);
   const known=(state.phase==='shop'?state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)):state.phase==='await-input'?state.handOrder.map(id=>state.deckInstances.find(card=>card.id===id)!):[]);
   const cardChoices:Choice[]=known.map((card,index)=>({id:card.id,name:cardName(card),detail:`${enhancementName(card)} · ${editionLabel(card.edition)}\n第 ${index+1} 张`,card}));
   const jokerChoices:Choice[]=state.jokers.map(joker=>({id:joker.instanceId,name:R2_JOKERS.find(definition=>definition.id===joker.definitionId)!.name,detail:`${editionLabel(joker.edition)} · 原支付 ${joker.paidPrice} 金`,joker}));
@@ -169,6 +170,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         const sorting=document.createElement('div');sorting.className='tool-target-sort';sorting.setAttribute('role','group');sorting.setAttribute('aria-label',title+'整理');
         for(const [mode,text] of [['rank','点数整理'],['suit','花色整理']] as const){const button=document.createElement('button');button.type='button';button.textContent=text;button.setAttribute('aria-pressed','false');button.onclick=()=>{if(busy)return;const ordered=[...rows].sort((a,b)=>{const x=a.choice.card!,y=b.choice.card!,rank=y.rank-x.rank,suit=SUITS.indexOf(x.suit)-SUITS.indexOf(y.suit);return mode==='rank'?rank||suit:suit||rank;});grid.append(...ordered.map(row=>row.label));for(const b of sorting.querySelectorAll('button'))b.setAttribute('aria-pressed',String(b===button));};sortButtons.push(button);sorting.append(button);}
         field.insertBefore(sorting,grid);
+        if(focus){const mode=focus==='flush'?'suit':'rank';queueMicrotask(()=>{if(grid.isConnected)sorting.querySelector<HTMLButtonElement>(mode==='suit'?'button:last-child':'button:first-child')?.click();});}
       }
       if(!choices.length){const empty=document.createElement('p');empty.textContent='当前没有可选对象。';grid.append(empty);}
       for(const choice of choices){
@@ -202,7 +204,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         label.append(name,select);panel.append(label,host);selects.push(select);gallery('普通版次目标',cardChoices,'target',1,host);
         select.onchange=()=>{selection.targetKind=select.value as 'card'|'joker';selection.ids.clear();for(let index=controls.length-1;index>=0;index--)if(controls[index].role==='target')controls.splice(index,1);host.replaceChildren();gallery('普通版次目标',targetChoices(),'target',1,host);refresh();};break;
       }
-      case 'discovered-hand':if(tool.target.selection==='chosen'){const types=discovered.filter(type=>state.handLevels[type]!<R2_TOOL_CATALOG.limits.handLevelMaximum);handSelect('升级牌型',types,type=>{selection.handType=type;},types[0]);}break;
+      case 'discovered-hand':if(tool.target.selection==='chosen'){const types=focusedUpgradeTypes(state,focus);handSelect('升级牌型',types,type=>{selection.handType=type;},types[0]);}break;
       case 'suit': {
         const label=document.createElement('label'),name=document.createElement('span'),select=document.createElement('select'),empty=document.createElement('option');label.className='tool-field';name.textContent='全副花色';select.setAttribute('aria-label','全副花色');empty.value='';empty.textContent='请选择';select.append(empty);
         for(const suit of SUITS){const option=document.createElement('option');option.value=suit;option.textContent=SUIT_SYMBOL[suit]+' '+SUIT_NAMES[suit];select.append(option);}
