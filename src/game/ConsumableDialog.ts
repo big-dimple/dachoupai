@@ -123,7 +123,7 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
   }
 }
 
-export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boolean,send:(action:Action,expectedSeq?:number)=>Promise<boolean>):void {
+export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boolean,send:(action:Action,expectedSeq?:number)=>Promise<boolean>,initialInstanceId?:string):void {
   const expectedSeq=state.commandSeq;
   const known=(state.phase==='shop'?state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)):state.phase==='await-input'?state.handOrder.map(id=>state.deckInstances.find(card=>card.id===id)!):[]);
   const cardChoices:Choice[]=known.map((card,index)=>({id:card.id,name:cardName(card),detail:`${enhancementName(card)} · ${editionLabel(card.edition)}\n第 ${index+1} 张`,card}));
@@ -274,4 +274,5 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
   }
   inventoryGroup('消耗工具',state.consumables.map(item=>{const info=toolInfo(item.definitionId),shopOnly=R2_TOOLS.find(tool=>tool.id===item.definitionId)!.phases.every(phase=>phase==='shop');return {id:item.instanceId,name:info.name,label:info.label+(shopOnly?' · 商店使用':''),artUrl:info.artUrl,run:()=>openTool(item.instanceId)};}));
   inventoryGroup('本局道具',state.longTermItems.map(id=>{const info=itemInfo(id);return {id,name:info.name,label:'本局持续生效 · 不消耗',artUrl:info.artUrl,run:()=>showItem(id)};}));
+  if(initialInstanceId)openTool(initialInstanceId);
 }

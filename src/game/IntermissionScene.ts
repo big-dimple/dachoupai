@@ -1,3 +1,5 @@
+import {showBuildJourney} from './BuildJourneyDialog';
+import {showDeckInspection} from './DeckInspector';
 import {savedExperienceCards} from './JokerExperience';
 import {stageGiftReceipt} from './StageGiftReceipt';
 import {toolInfo,goodsArtPortrait} from './r2ToolInfo';
@@ -198,6 +200,11 @@ export class IntermissionScene extends Phaser.Scene {
       this.celebrationTimer=this.time.delayedCall(1000,()=>{this.celebration?.destroy();this.celebration=undefined;skipLabel.destroy();skipArt.destroy();skip.destroy();});
     }
   }
+  private inspectJourney():void {
+    const run=runController(this)!.state;
+    const go=()=>this.next();
+    showBuildJourney(this.dialog,run,{ready:this.ready&&run.phase==='stage-cleared',source:()=>this.inspectLastHand(),deck:()=>showDeckInspection(this.dialog,run),tools:()=>this.dialog.open('工具包 · 过关只读',run.consumables.map(c=>toolInfo(c.definitionId).name).join('、')+'\n过关页只查看；前往商店后再选择工具和对象。',[{label:'前往商店继续培养',run:go}]),tool:id=>{const item=run.consumables.find(c=>c.instanceId===id);if(!item)return;const info=toolInfo(item.definitionId);this.dialog.open(info.name+' · 过关只读',info.description+'\n'+info.cost+'\n前往商店后自己选择目标并确认。',[{label:'前往商店继续培养',run:go}],{portrait:goodsArtPortrait(info)});},continueLabel:'前往商店继续培养',continue:go});
+  }
   private inspectGift():void {
     const gift=stageGiftReceipt(runController(this)!.state);if(!gift)return;
     this.dialog.open(gift.title,gift.body,[{label:'前往商店',primary:true,disabled:!this.ready,run:()=>this.next()},{label:'本场详情',run:()=>this.inspectResult()}],{...(gift.toolId?{portrait:goodsArtPortrait(toolInfo(gift.toolId))}:{})});
@@ -223,7 +230,7 @@ export class IntermissionScene extends Phaser.Scene {
       const edition=trace.events.filter(event=>event.sourceType==='joker'&&event.sourceInstanceId===joker.instanceId&&event.reasonKey.startsWith('edition.')).map(event=>r2ScoreOperationText(event,this.jokerDefinition(event.sourceDefinitionId))).join('、');
       return [this.jokerDefinition(joker.definitionId).name+'：'+copy.state+(edition?'；版次 '+edition:'')];
     });
-    this.dialog.open('最后一手 · 已保存的结算',summary+'\n\n'+lines.join('\n'),run.phase==='stage-cleared'?[{label:'前往商店继续培养',primary:true,disabled:!this.ready,run:()=>this.next()}]:[],benefits.length?{cards:savedExperienceCards(run,trace),effectBody:summary,collapseRules:true,rulesLabel:'完整计分明细'}:{cards:savedExperienceCards(run,trace)});
+    this.dialog.open('最后一手 · 已保存的结算',summary+'\n\n'+lines.join('\n'),run.phase==='stage-cleared'?[{label:'查看培养路线',disabled:!this.ready,run:()=>this.inspectJourney()},{label:'前往商店继续培养',primary:true,disabled:!this.ready,run:()=>this.next()}]:[],benefits.length?{cards:savedExperienceCards(run,trace),effectBody:summary,collapseRules:true,rulesLabel:'完整计分明细'}:{cards:savedExperienceCards(run,trace)});
   }
   private returnToSelect():void {
     if(this.busy)return;this.exitResult('character-select',{freshSeed:true});

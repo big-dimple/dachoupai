@@ -1,3 +1,4 @@
+import {showBuildJourney} from './BuildJourneyDialog';
 import {selectionExperience,hasActualBenefit,savedBenefit,savedExperienceCards,experienceBeat} from './JokerExperience';
 import {groupGrowthCausality,savedGrowthDiscovery} from './JokerGrowthCausality';
 import {courtArtKey,queueCourtArtLoads} from './HanddrawnArt';
@@ -916,9 +917,12 @@ export class GameScene extends Phaser.Scene {
       display(shown);button.onclick=choose;section.append(variants,button);
     }
   }
+  private inspectJourney():void {
+    showBuildJourney(this.dialog,this.run,{ready:this.ready,source:id=>this.inspectJoker(id),tools:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq)),tool:id=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq),id),deck:()=>showDeckInspection(this.dialog,this.run),publicHands:()=>this.inspectCandidates(),continueLabel:'回到牌桌自己选牌',continue:()=>this.dialog.close()});
+  }
   private inspectHeldConditions():void {
     const preview=this.selectionPreview();
-    this.dialog.open('持有构筑 · '+(preview?'所选条件':'选牌与培养'),this.run.jokers.length?'先看每张来源的条件，选牌后描边和状态随所选更新；实际收益在保存成功后显示。':'尚未持有大丑牌。先选1–5张成型牌，过关后在商店按牌组购买来源。',[],{cards:this.run.jokers.map(j=>({...selectionExperience(this.run,j,this.memoryContext(j,preview)),action:{label:'查看来源与成长',run:()=>this.inspectJoker(j.instanceId)}}))});
+    this.dialog.open('持有构筑 · '+(preview?'所选条件':'选牌与培养'),this.run.jokers.length?'先看每张来源的条件，选牌后描边和状态随所选更新；实际收益在保存成功后显示。':'尚未持有大丑牌。先选1–5张成型牌，过关后在商店按牌组购买来源。',[{label:'选择培养方向',primary:true,run:()=>this.inspectJourney()}],{cards:this.run.jokers.map(j=>({...selectionExperience(this.run,j,this.memoryContext(j,preview)),action:{label:'查看来源与成长',run:()=>this.inspectJoker(j.instanceId)}}))});
   }
   private selectionPreview():HandPreview|undefined {
     if(this.playing||this.presentation||this.run.phase!=='await-input'||this.handsLeft<=0||!this.selectedIds.size||[...this.selectedIds].some(id=>!this.hand.some(card=>card.id===id)))return undefined;
@@ -1670,7 +1674,7 @@ export class GameScene extends Phaser.Scene {
       const edition=score.events.filter(event=>event.sourceType==='joker'&&event.sourceInstanceId===joker.instanceId&&event.reasonKey.startsWith('edition.')).map(event=>this.operationText(event)).join('、');
       return [this.jokerDefinition(joker.definitionId).name+'：'+copy.state+(edition?'；版次 '+edition:'')];
     });
-    this.dialog.open('上手已入账 · '+HAND_LABELS[score.handType]+' +'+heatText(score.finalScore),this.formatBreakdown(score)+'\n\n'+score.events.filter(event=>event.phase!=='base'&&event.phase!=='finalScore').map(event=>this.eventSource(event)+' '+this.operationText(event)+(['afterHand','beforeFailure','onStageClear'].includes(event.phase)?'':' → 热度 '+fractionText(event.after.H)+' / 倍率 '+fractionText(event.after.M))).join('\n'),[...(this.run.consumables.length?[{label:'打开工具包',disabled:!this.ready,primary:true,run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))}]:[]),{label:'回看演出',disabled:!this.ready,run:()=>{this.dialog.close();this.replayLastTrace();}}],benefits.length?{cards:savedExperienceCards(this.run,score),effectBody:this.formatBreakdown(score),collapseRules:true,rulesLabel:'完整计分明细'}:{cards:savedExperienceCards(this.run,score)});
+    this.dialog.open('上手已入账 · '+HAND_LABELS[score.handType]+' +'+heatText(score.finalScore),this.formatBreakdown(score)+'\n\n'+score.events.filter(event=>event.phase!=='base'&&event.phase!=='finalScore').map(event=>this.eventSource(event)+' '+this.operationText(event)+(['afterHand','beforeFailure','onStageClear'].includes(event.phase)?'':' → 热度 '+fractionText(event.after.H)+' / 倍率 '+fractionText(event.after.M))).join('\n'),[{label:'继续培养',primary:true,disabled:!this.ready,run:()=>this.inspectJourney()},...(this.run.consumables.length?[{label:'打开工具包',disabled:!this.ready,primary:true,run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))}]:[]),{label:'回看演出',disabled:!this.ready,run:()=>{this.dialog.close();this.replayLastTrace();}}],benefits.length?{cards:savedExperienceCards(this.run,score),effectBody:this.formatBreakdown(score),collapseRules:true,rulesLabel:'完整计分明细'}:{cards:savedExperienceCards(this.run,score)});
   }
 
   /** 本关结束：先让玩家看清结果，再进入明确的过场状态 */
