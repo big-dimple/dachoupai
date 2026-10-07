@@ -1,0 +1,57 @@
+
+> dachoupai@0.1.0 verify
+> npm run typecheck && npm test && npm run build
+
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/hand-action-controls.test.ts (12 tests | 1 failed) 32ms
+     × preserves the complete non-control layout from main88b17e2, including every hand seat and vertical budget 14ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/hand-action-controls.test.ts > sorting shares one group beside the unchanged primary action sizes > preserves the complete non-control layout from main88b17e2, including every hand seat and vertical budget
+AssertionError: expected 'd8ddfd11aeb993e4349c21489f4031d5802a7…' to be 'cff0c393264eb2e2508c92a6f155ca5de319e…' // Object.is equality
+
+Expected: "cff0c393264eb2e2508c92a6f155ca5de319e6b1868fe42430d6adfa331dcb8c"
+Received: "d8ddfd11aeb993e4349c21489f4031d5802a7fe37531adebcc62e03a1d776391"
+
+ ❯ tests/hand-action-controls.test.ts:13:76
+     11|   // Short-landscape status only gives its former spare right gutter t…
+     12|   const fixed=layouts().map(l=>{const {buttons,tableActions,tools,tool…
+     13|   expect(createHash('sha256').update(JSON.stringify(fixed)).digest('he…
+       |                                                                            ^
+     14|  });
+     15|  it.each(profiles)('%s×%s safe %s/%s keeps three44px sort targets toge…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 134 passed (135)
+      Tests  1 failed | 2448 passed (2449)
+   Start at  06:44:39
+   Duration  27.95s (transform 4.20s, setup 0ms, import 15.54s, tests 41.27s, environment 16ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

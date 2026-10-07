@@ -7,7 +7,7 @@ export const toolInventoryLabel=(state:Pick<R2RunState,'consumables'|'longTermIt
 export function gameToolInventoryBox(l:TableLayout):Box {
   if(l.mode==='portrait')return {x:l.hand.x+l.hand.width-112,y:l.hand.y-48,width:112,height:44};
   if(l.mode==='landscape')return {x:l.hud.x+4,y:l.status.y-45,width:112,height:44};
-  return {x:l.hud.x+12,y:l.hud.y+380,width:l.hud.width-24,height:44};
+  return {x:l.hud.x+12,y:l.scoreBoard.y+l.scoreBoard.height+12,width:l.hud.width-24,height:44};
 }
 /** Only expanded portrait hands need to reserve the entry below their preview. */
 export function toolInventoryPlayedArea(l:TableLayout):Box {

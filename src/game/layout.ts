@@ -101,22 +101,22 @@ export function scorePedestal(s:Box):Box|undefined {
 export function layout(viewport:{width:number;height:number},safe:Insets,requested?:LayoutMode,handWindow:HandWindow={count:8}){
   const l=capacityLayout(viewport,safe,requested,handWindow),{width,height}=viewport,count=l.cards.length;
   const portrait=l.mode==='portrait',desktop=l.mode==='desktop';
-  const handWidth=l.hand.width,cardWidth=portrait?(count>=10?64:width<380?52:64):80;
+  const cardWidth=portrait?(count>=10?64:width<380?52:64):Math.min(96,Math.max(80,(height-safe.top-safe.bottom)*.09));
   const rows=portrait&&count>=10&&count<=14?2:1,handHeight=rows*(cardWidth*1.4+22);
   const net=height-safe.top-safe.bottom;
   const scoreBudget=net-(52+89.6+18+88+handHeight+56+20+16+18)-.01;
   if((portrait&&width>=360&&count<=14&&scoreBudget>=108)||desktop){
     const x=safe.left+(portrait?(width<380?8:12):12),w=width-safe.left-safe.right-2*(portrait?(width<380?8:12):12);
     const mainW=portrait?w:Math.min(1100,w-240),mainX=portrait?x:x+240+(w-240-mainW)/2;
-    l.hud=box(x,safe.top+8,portrait?w:224,portrait?52:180);
+    l.hud=box(x,safe.top+8,portrait?w:224,portrait?52:250);
     l.status=box(mainX,height-safe.bottom-28,mainW,20);
     const actionW=portrait?mainW:Math.min(480,mainW),actionX=mainX+(mainW-actionW)/2;
     l.actions=box(actionX,l.status.y-60,actionW,56);
     l.hand=box(mainX,l.actions.y-4-handHeight,mainW,handHeight);
-    l.jokers=box(mainX,portrait?l.hud.y+54:safe.top+12,mainW,89.6);
+    l.jokers=box(mainX,portrait?l.hud.y+54:safe.top+64,mainW,89.6);
     const slotGap=6,slotWidth=Math.min(64,(mainW-4*slotGap)/5),rackWidth=5*slotWidth+4*slotGap;
     l.slots=Array.from({length:5},(_,i)=>box(mainX+(mainW-rackWidth)/2+i*(slotWidth+slotGap),l.jokers.y,slotWidth,slotWidth*1.4));l.jokerLabels=l.slots;
-    l.scoreBoard=portrait?box(mainX,l.jokers.y+91.6,mainW,Math.min(rows===2?120:132,scoreBudget)):box(x,safe.top+210,224,164);
+    l.scoreBoard=portrait?box(mainX,l.jokers.y+91.6,mainW,Math.min(rows===2?120:132,scoreBudget)):box(x,l.hud.y+l.hud.height+12,224,164);
     const playedTop=portrait?l.scoreBoard.y+l.scoreBoard.height+20:l.jokers.y+112;
     l.playedArea=box(mainX,playedTop,mainW,l.hand.y-4-playedTop);
     l.preview=portrait?box(mainX,l.scoreBoard.y,mainW,l.hand.y-4-l.scoreBoard.y):l.playedArea;
@@ -125,9 +125,16 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
     l.tableActions={discard:box(l.actions.x,l.actions.y,70,56),play:box(sortX+100,l.actions.y,l.actions.width-176,56)};
     l.tools=box(sortX,l.actions.y,94,56);l.toolsInHud=false;l.labelHeight=0;
     l.handLabel=box(mainX,l.hand.y-18,116,18);l.piles=box(mainX+116,l.hand.y-18,mainW-116,18);
-    l.handRows=rows;l.handOverflow=false;l.handStart=0;l.visibleCardCount=count;
-    const columns=rows===2?Math.ceil(count/2):count,bandWidth=portrait?mainW:Math.min(mainW,cardWidth*columns+8*(columns-1)),bandX=mainX+(mainW-bandWidth)/2,pitch=columns>1?(bandWidth-cardWidth)/(columns-1):0,rowHeight=handHeight/rows;
-    l.cards=Array.from({length:count},(_,i)=>{const row=rows===2?Math.floor(i/columns):0,col=i%columns,last=col===columns-1||i===count-1,seatX=bandX+(columns===1?(bandWidth-cardWidth)/2:col*pitch),seatY=l.hand.y+row*rowHeight;return {visible:true,visual:box(seatX,seatY+22,cardWidth,cardWidth*1.4),hit:box(seatX,seatY,last?cardWidth:Math.min(cardWidth,pitch),rowHeight)};});
+    const columns=rows===2?Math.ceil(count/2):count;
+    // Compute capacity from the final hand, including the two arrow gutters.
+    l.handRows=rows;l.handOverflow=rows===1&&count>Math.floor((mainW-cardWidth)/36)+1;
+    const cardArea=l.handOverflow?box(mainX+48,l.hand.y,mainW-96,handHeight):l.hand;
+    l.visibleCardCount=rows===2?count:Math.min(count,Math.max(1,Math.floor((cardArea.width-cardWidth)/36)+1));
+    l.handStart=Math.max(0,Math.min(count-l.visibleCardCount,Number.isSafeInteger(handWindow.start)?handWindow.start!:0));
+    const visibleColumns=rows===2?columns:l.visibleCardCount;
+    const bandWidth=portrait?cardArea.width:Math.min(cardArea.width,cardWidth*visibleColumns+8*Math.max(0,visibleColumns-1)),bandX=cardArea.x+(cardArea.width-bandWidth)/2,pitch=visibleColumns>1?(bandWidth-cardWidth)/(visibleColumns-1):0,rowHeight=handHeight/rows;
+    l.cards=Array.from({length:count},(_,i)=>{const row=rows===2?Math.floor(i/columns):0,col=rows===2?i%columns:i-l.handStart,last=col===visibleColumns-1||i===count-1,seatX=bandX+(visibleColumns===1?(bandWidth-cardWidth)/2:col*pitch),seatY=l.hand.y+row*rowHeight;return {visible:i>=l.handStart&&i<l.handStart+l.visibleCardCount,visual:box(seatX,seatY+22,cardWidth,cardWidth*1.4),hit:box(seatX,seatY,last?cardWidth:Math.min(cardWidth,pitch),rowHeight)};});
+    if(desktop)l.handNavigation={previous:box(l.hand.x,l.hand.y+(l.hand.height-44)/2,44,44),next:box(l.hand.x+l.hand.width-44,l.hand.y+(l.hand.height-44)/2,44,44)};
   }
   // On capacity-limited short screens retain the established readable window.
   // Every troupe exterior still has the same 5:7 proportion.
@@ -154,5 +161,6 @@ export type TableLayout=ReturnType<typeof layout>;
 
 /** Visual mat follows the five-card footprint; logical played area stays unchanged. */
 export function playedFootprint(area:Box,portrait:boolean):Box {
- const width=Math.min(area.width,portrait?316:480),height=Math.min(area.height,portrait?100:136);return box(area.x+(area.width-width)/2,area.y+(area.height-height)/2,width,height);
+ const scale=portrait?1:Math.min(1.25,Math.max(1,area.width/900),Math.max(1,area.height/500));
+ const width=Math.min(area.width,portrait?316:480*scale),height=Math.min(area.height,portrait?100:136*scale);return box(area.x+(area.width-width)/2,area.y+(area.height-height)/2,width,height);
 }

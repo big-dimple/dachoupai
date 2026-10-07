@@ -194,6 +194,22 @@ it('foreground total protects digits without holes in short and safe-inset layou
  for(const [width,height,count] of [[360,740,14],[390,740,9],[844,300,9],[1280,720,9]])for(const bottom of [0,12,34]){
   const l=layout({width,height},{top:12,left:0,right:0,bottom},undefined,{count}),base=scorePedestal(l.scoreBoard)!,total=scoreCells(l.scoreBoard)[2];
   expect(l.scoreFire.height).toBeGreaterThan(0);expect(base.y+base.height).toBeLessThanOrEqual(l.scoreBoard.y+l.scoreBoard.height);expect(l.scoreFire.y+l.scoreFire.height).toBeLessThan(total.y);expect(intersects(base,l.playedArea)).toBe(false);
-  const mat=playedFootprint(l.playedArea,l.mode==='portrait');expect(mat.width).toBeLessThanOrEqual(l.mode==='portrait'?316:480);expect(mat.height).toBeLessThanOrEqual(l.playedArea.height);
+  const mat=playedFootprint(l.playedArea,l.mode==='portrait');expect(mat.width).toBeLessThanOrEqual(l.mode==='portrait'?316:600);expect(mat.height).toBeLessThanOrEqual(l.playedArea.height);
  }
 });
+
+ describe('desktop final shared rectangles',()=>{
+  for(const [width,height] of [[1280,720],[1366,768],[1920,1080],[1912,954],[768,1024],[811,812],[812,811]])for(const count of [8,9,14])it(`${width}x${height} / ${count}`,()=>{
+    const l=layout({width,height},{top:0,right:0,bottom:0,left:0},undefined,{count,start:100});
+    const utility={x:width-148,y:12,width:136,height:44};
+    for(const slot of l.slots)expect(intersects(slot,utility)).toBe(false);
+    expect(intersects(l.hud,l.scoreBoard)).toBe(false);
+    if(count===9)expect(l.visibleCardCount).toBe(9);
+    for(const card of l.cards.filter(c=>c.visible)){
+      expect(card.hit.width).toBeGreaterThanOrEqual(36);
+      expect(card.visual.y-16).toBeGreaterThanOrEqual(l.hand.y);
+      if(l.handOverflow)for(const arrow of Object.values(l.handNavigation))expect(intersects(arrow,card.hit)).toBe(false);
+    }
+    if(l.handOverflow){expect(l.handNavigation.previous.x).toBe(l.hand.x);expect(l.handNavigation.next.x+l.handNavigation.next.width).toBe(l.hand.x+l.hand.width);expect(l.handStart+l.visibleCardCount).toBe(count);}
+  });
+ });

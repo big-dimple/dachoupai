@@ -304,12 +304,12 @@ export class GameScene extends Phaser.Scene {
     this.roleText=v.text(h.x+(portrait?64:76),avatarY+(portrait?23:28),this.roleCaption(),14,C.mutedInk,portrait?h.width-160:h.width-88);
     if(!portrait&&!l.shortLandscape)v.text(h.x+12,h.y+(short?96:96),this.stage.index%3===2?'压轴 · '+bossName:this.stage.name,14,C.paper,h.width-24);
     this.heatText=v.text(h.x+12,h.y+(portrait?27:l.shortLandscape?94:short?108:118),'',portrait?20:short?28:24,C.paper,h.width-24).setFontStyle('bold');
-    const goldY=h.y+(portrait?31:l.shortLandscape?11:short?180:178);
+    const goldY=h.y+(portrait?31:l.shortLandscape?11:180);
     this.goldText=l.shortLandscape?v.text(h.x+h.width-12,goldY,'',14,C.brass).setOrigin(1,0):v.text(h.x+12,goldY,'',14,C.brass,h.width-24);
     if(!portrait){
 
       v.text(h.x+12,h.y+(l.shortLandscape?130:short?146:156),'目标 '+heatText(this.stage.targetHeat),14,C.jade,h.width-24).setName('hud/target');
-      const progressY=toolInventoryProgressY(l,h.y+(l.shortLandscape?152:short?168:196));v.rect({x:h.x+12,y:progressY,width:h.width-24,height:5},0x45595b).setStrokeStyle();
+      const progressY=toolInventoryProgressY(l,h.y+(l.shortLandscape?152:short?168:238));v.rect({x:h.x+12,y:progressY,width:h.width-24,height:5},0x45595b).setStrokeStyle();
       this.progressBar=v.rect({x:h.x+12,y:progressY,width:1,height:5},T.jade).setOrigin(0,.5).setPosition(h.x+12,progressY+2.5).setStrokeStyle();
     }
     if(portrait){this.roleText.setVisible(false);this.goldText.setFontSize(14).setOrigin(0,0).setPosition(h.x+144,h.y+6);this.heatText.setPosition(h.x+64,h.y+28).setFontSize(16).setWordWrapWidth(h.width-168);}
@@ -1700,6 +1700,12 @@ export class GameScene extends Phaser.Scene {
     if(this.resourceCounts.discard.style.color!==discardColor)this.resourceCounts.discard.setColor(discardColor);
     const gold=this.presentation?.resourceGold??this.run.gold;
     this.goldText.setText(l.shortLandscape?gold+' 金':'金币 '+gold+(l.mode==='desktop'?'\n还需 '+heatText(remaining)+' 热度':''));
+    if(l.mode==='desktop'){
+      // Keep the two actual text rows within the HUD's dedicated gold region.
+      fitScoreLine(this.goldText,{x:l.hud.x+12,y:l.hud.y+180,width:l.hud.width-24,height:48},14);
+      const progressY=Math.max(l.hud.y+238,this.goldText.getBounds().bottom+6);
+      this.progressBar.setY(progressY+2.5);
+    }
     this.updateHandCount();
     this.pileText.setText('抽牌 '+this.deck.length+' · 已打 '+this.run.playedPile.length+' · 已弃 '+this.run.discardPile.length);
     const last=this.presentation?(this.presentation.credited?this.presentation.score:this.presentation.previousTrace):this.run.lastTrace;
