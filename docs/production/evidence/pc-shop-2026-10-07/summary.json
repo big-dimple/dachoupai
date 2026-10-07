@@ -1,0 +1,109 @@
+{
+  "source": "b4de48f85b13731ca1cc11dc65a54f8fef245b31",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-07T08:21:28.577Z",
+    "revision": "b4de48f85b13731ca1cc11dc65a54f8fef245b31",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "151.0.7922.173",
+  "status": "PASS",
+  "cases": [
+    {
+      "spec": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "remaining": null
+    },
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768
+      },
+      "status": "PASS",
+      "remaining": null
+    },
+    {
+      "spec": {
+        "width": 1912,
+        "height": 954
+      },
+      "status": "PASS",
+      "remaining": null
+    },
+    {
+      "spec": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": "PASS",
+      "remaining": null
+    },
+    {
+      "spec": {
+        "width": 1024,
+        "height": 500,
+        "safe": {
+          "top": 24,
+          "bottom": 34
+        }
+      },
+      "status": "PASS",
+      "remaining": null
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 740
+      },
+      "status": "PASS",
+      "remaining": null
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 740
+      },
+      "status": "PASS",
+      "remaining": null
+    },
+    {
+      "spec": {
+        "width": 740,
+        "height": 390
+      },
+      "status": "PASS",
+      "remaining": "NOT_AVAILABLE: existing collapsed short-landscape build dialog lists owned cards but exposes no reorder/sell entry; W3 gap, not claimed passed."
+    }
+  ],
+  "localChecks": {
+    "targeted": "34/3files PASS",
+    "tests": "2455/135files PASS",
+    "typecheck": "PASS",
+    "build": "PASS",
+    "content": "PASS",
+    "plan": "PASS"
+  },
+  "limits": [
+    "software Canvas only",
+    "no physical PC/phone/GPU/FPS/audio/user satisfaction acceptance",
+    "740x390 collapsed build lacks reorder/sell entry",
+    "detail close still44px;48px W3 pending",
+    "Library image.png download failed twice, no pixel inspection of user file",
+    "adjacent pages region audit only; no product modifications outside shop",
+    "W1 A/B and P2 four current full-screen states still pending"
+  ],
+  "screenshots": [
+    "shop-1912.png",
+    "full-build-1912.png",
+    "shop-320.png",
+    "shop-740.png",
+    "selector-1912.png",
+    "table-1912.png",
+    "success-1912.png",
+    "failure-1912.png"
+  ]
+}
