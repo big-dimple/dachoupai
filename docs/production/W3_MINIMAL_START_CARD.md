@@ -46,3 +46,9 @@ inputSHA：`5c9836bc5ae9bbb256012596a00d60bd7a5a2067`，父确认PR37已独审/�
 allowedFiles补充：`src/game/JokerGrowthCausality.ts`、`tests/joker-growth-causality.test.ts`、`harness/w3-growth-causality.mjs`；现有GameScene.ts/ShopScene.ts及必要文档证据。只读已成功保存的state/trace与当前profile。验收自然练对子既有路线、真实下一手读入、跨場/重入/回看状态不变、封禁不假读、非成组不假增长、cap实际差值、重买不串旧实例；必要PC三档/手机三档与九牌安全回归，软件不签实机。证据`docs/production/evidence/w3-growth-causality-2026-10-07/`，原W3/W5顺序保持。
 
 本批软件结果：[已存成组成长因果](evidence/w3-growth-causality-2026-10-07/README.md)。产品5e34d78，接续既有自然局并实际跨场读20/保存30，重入不变，受控封禁/cap/非成组反例及必要双端/九牌回归通过。最终2469 tests/137 files，首次既有机器人超时保留。仍待父独审/精确CI/玩家解释和真机，不宣布W3/W5全部完成。
+
+## 2026-10-07 成长常规路径发现性小批
+
+inputSHA：`f6d0f85199416e5b1b290d0d83ee0f21a93febcb`，父确认PR38已独审/精确CI全绿并FF main，fetch一致。一次390原生路径走查（未打开成长详情）观察到仅热+10/20/30及条件见详情，过关/商店没有成长新增与下手时点反馈；这是界面检查，不冒称真实新人学会。最高优先补最近已保存成长的短可见反馈，复用GameScene/IntermissionScene/ShopScene既有提示文字位，不加弹窗/新布局/素材。
+
+allowedFiles补充：`src/game/IntermissionScene.ts`、`harness/w3-growth-discovery.mjs`；现有JokerGrowthCausality.ts、GameScene.ts、ShopScene.ts、tests/joker-growth-causality.test.ts及必要证据。只消费同实例成功保存的正增长事件；选牌/错误/封禁/购买消息优先，窄位用有界短句，不缩字裁条件。验证实际选牌/出牌/过关/商店/继续/取消和重入，PC三档/手机三档。原W3/W5、无总分预测/数值/存档/RNG变更保持；真实新人理解待玩家测。证据`docs/production/evidence/w3-growth-discovery-2026-10-07/`。
