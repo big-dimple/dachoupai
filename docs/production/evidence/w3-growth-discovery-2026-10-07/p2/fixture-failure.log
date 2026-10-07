@@ -1,0 +1,39 @@
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/joker-growth-causality.test.ts (8 tests | 1 failed) 33ms
+   × every narrow discovery retains source, actual gain and saved total, and conditional timing 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/joker-growth-causality.test.ts > every narrow discovery retains source, actual gain and saved total, and conditional timing
+AssertionError: expected '练对子已存成长20 · 出牌按条件读' to contain '本手按条件读'
+
+Expected: "本手按条件读"
+Received: "练对子已存成长20 · 出牌按条件读"
+
+ ❯ tests/joker-growth-causality.test.ts:19:586
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 34 passed (35)
+   Start at  12:36:58
+   Duration  976ms (transform 1.06s, setup 0ms, import 1.48s, tests 256ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -58,3 +58,5 @@ allowedFiles补充：`src/game/IntermissionScene.ts`、`harness/w3-growth-discov
 ### PR39父审短横语义必修
 
 旧head50753ba独审发现740×390短句丢累计/条件；旧精确CI全绿不代表该语义通过。本批维持区域坐标/字号/按钮，复用提示位与其既有底部安全留白容纳两行：来源+实际新增→累计／下手按条件读；缺trace为来源已存累计／本手按条件读。移除语义删减fallback，helper及原生断言直接核来源、累计和条件；740及邻近短横、既有PC/竖屏路径保护。只限此前allowedFiles及必要证据，真实新人/实机仍待验，不合main。
+
+PR39父审必修结果：[短横完整成长语义](evidence/w3-growth-discovery-2026-10-07/p2/README.md)。产品2e6d1e9移除缺累计/条件短句，复用原底部安全留白容纳两行14px；九尺寸真实路径/语义/控件避让通过。测试样本阶段修正adc0848后默认verify2471 tests/137 files及content/plan全过；旧超时不称历史flake，旧短横PASS不再作为完整语义证据。新headCI/父复核及玩家验收另接，未合main。

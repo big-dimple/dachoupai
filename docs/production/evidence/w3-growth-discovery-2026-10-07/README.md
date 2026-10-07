@@ -28,3 +28,7 @@
 这是系统Chromium软件输入/截图检查；真实新人能否不靠隐藏详情解释“来源/新增/下一手读取”、用户PC/手机实机、流畅度、听感与审美仍待验收。不是成长体验或W3整体完成。
 
 最终有界复查：`npx vitest run --maxWorkers=1` 在原5000ms超时下2470 tests/137 files全部通过；`npm run build`（含typecheck）、content、production-plan通过。两次默认verify的机器人超时仍为本地门禁限制，未把串行CLI结果冒充默认verify全绿；精确head CI需另核。
+
+## PR39父审修正（旧短横语义未通过）
+
+旧740短句删除了累计/条件，以上旧PASS不能证明成长语义完整。[父审必修与新证据](p2/README.md)保留来源、新增→累计、按条件读取，九尺寸原生语义/边界检查通过；最终默认verify2471 tests/137 files全过。旧失败与身份保持，不代签玩家验收。

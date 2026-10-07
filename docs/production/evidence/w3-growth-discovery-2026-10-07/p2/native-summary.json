@@ -1,0 +1,1054 @@
+{
+  "source": "2e6d1e95de3410b437377b78d076070a93fd7395",
+  "sourceStatus": "",
+  "scope": "Ordinary select/play/intermission/shop/continue route without growth details; saved feedback, cross-stage and reload. Resumed historical natural checkpoint; no newcomer/physical/aesthetic/audio/FPS acceptance.",
+  "screenshots": [
+    "after-growth-390.png",
+    "table-growth-390.png",
+    "entry-growth-740.png",
+    "table-growth-740.png"
+  ],
+  "routeOrigin": {
+    "source": "5905d4c4129e42af0d0a2e9f081662097ccd9cdd",
+    "name": "normal-erxiang",
+    "classification": "Resumed existing recorded natural checkpoint; current UI/commands are rechecked, not a fresh natural acquisition claim."
+  },
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-07T12:37:16.256Z",
+    "revision": "2e6d1e95de3410b437377b78d076070a93fd7395",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "151.0.7922.173",
+  "status": "PASS",
+  "rawSha256": "3448c9e7e6b17f57dba3c0efd0fc240d6dad4bae0464dc83c983c3a71fec3d70",
+  "cases": [
+    {
+      "spec": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "notices": [
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 252,
+              "y": 658,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 252,
+              "y": 658,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "intermission",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 150,
+              "y": 646,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "shop",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 666,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子已存成长20 · 本手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 252,
+              "y": 658,
+              "width": 211,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 252,
+              "y": 658,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 252,
+              "y": 658,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        }
+      ]
+    },
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768
+      },
+      "status": "PASS",
+      "notices": [
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 253,
+              "y": 706,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 253,
+              "y": 706,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "intermission",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 694,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "shop",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 290,
+              "y": 702,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子已存成长20 · 本手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 253,
+              "y": 706,
+              "width": 211,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 253,
+              "y": 706,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 253,
+              "y": 706,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        }
+      ]
+    },
+    {
+      "spec": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": "PASS",
+      "notices": [
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 530,
+              "y": 1018,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 530,
+              "y": 1018,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "intermission",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 470,
+              "y": 1006,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "shop",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 518,
+              "y": 1014,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子已存成长20 · 本手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 530,
+              "y": 1018,
+              "width": 211,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 530,
+              "y": 1018,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 530,
+              "y": 1018,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        }
+      ]
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 740
+      },
+      "status": "PASS",
+      "notices": [
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 8,
+              "y": 674,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 8,
+              "y": 674,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "intermission",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 674,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "shop",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 678,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子已存成长20 · 本手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 8,
+              "y": 674,
+              "width": 211,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 8,
+              "y": 674,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 8,
+              "y": 674,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        }
+      ]
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 740
+      },
+      "status": "PASS",
+      "notices": [
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 678,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 678,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "intermission",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 674,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "shop",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 678,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子已存成长20 · 本手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 678,
+              "width": 211,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 678,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 678,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        }
+      ]
+    },
+    {
+      "spec": {
+        "width": 740,
+        "height": 390
+      },
+      "status": "PASS",
+      "notices": [
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "intermission",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "shop",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 336,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子已存成长20 · 本手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 114,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        }
+      ]
+    },
+    {
+      "spec": {
+        "width": 700,
+        "height": 390
+      },
+      "status": "PASS",
+      "notices": [
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "intermission",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "shop",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 336,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子已存成长20 · 本手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 114,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        }
+      ]
+    },
+    {
+      "spec": {
+        "width": 811,
+        "height": 390
+      },
+      "status": "PASS",
+      "notices": [
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "intermission",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "shop",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 336,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子已存成长20 · 本手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 114,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        }
+      ]
+    },
+    {
+      "spec": {
+        "width": 812,
+        "height": 390
+      },
+      "status": "PASS",
+      "notices": [
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→10 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "intermission",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "shop",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→20 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 336,
+              "width": 220,
+              "height": 16
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子已存成长20 · 本手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 114,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        },
+        {
+          "key": "game",
+          "notice": {
+            "name": "growth/discovery",
+            "text": "练对子成长+10→30 · 下手按条件读",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 316,
+              "width": 124,
+              "height": 32
+            },
+            "font": "14px"
+          }
+        }
+      ]
+    }
+  ]
+}
