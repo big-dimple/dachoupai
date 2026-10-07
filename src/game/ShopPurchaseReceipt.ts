@@ -17,7 +17,7 @@ export function shopPurchaseReceipt(before:R2RunState,after:R2RunState,kind:Shop
   if(after.contentVersion==='quality-r2-group-upgrade-prototype-v1'&&['b10','b03'].includes(j.definitionId))destination+='\n成组成长：本手读取已保存值；成组手结算后新增的成长，从下一手起生效，不补加到本手。';
  }else if(kind==='tools'){
   const t=after.consumables.find(t=>t.definitionId===offer.definitionId&&!before.consumables.some(old=>old.instanceId===t.instanceId));if(!t)return;
-  id=t.instanceId;name=toolInfo(t.definitionId).name;destination=`购入时收入工具包第 ${after.consumables.indexOf(t)+1} 件，尚未使用。\n下一步：打开工具包查看可用时点与目标，再确认使用；不选目标或取消不会消耗。`;
+  id=t.instanceId;name=toolInfo(t.definitionId).name;destination=`购入时收入工具包第 ${after.consumables.indexOf(t)+1} 件，尚未使用。\n下一步：打开工具包查看可用时点；需要目标时先选择，再确认使用。查看或取消不会消耗。`;
  }else{
   if(before.longTermItems.includes(offer.definitionId)||!after.longTermItems.includes(offer.definitionId))return;
   const info=itemInfo(offer.definitionId);id=offer.definitionId;name=info.name;destination=`已加入长期道具，本局持续持有，不能出售。\n实际作用与时机：${info.description}\n下一步：在物品与道具中查看，无需手动使用。`;
