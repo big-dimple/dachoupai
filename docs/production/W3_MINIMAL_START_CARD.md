@@ -118,3 +118,8 @@ W5/W6本包软件候选：[培养—工具—现金—下一场整包证据](evi
 ## W5/W8接续校准：已有泛用成长与可用机会（2026-10-07）
 
 输入父FF main3d4ec572028bc08609b748a1f3f63b310db93032，PR45精确2496CI全绿。已有a05同场同种合格主手连续两手后+6/cap90、下手读跨场保留；d03留≥3牌后+4/cap60泛用。原三样本未购买不证明无持续成长。先有限核已有a05/d03正常/晚到获取、成长机会/留金与八章最早断点，补未持有d03的培养发现与实际公开选牌机会；c04仅条件候选，不新增规则/经济identity，不扫种子、不注入通关。整包定向风险检查后收尾；原P08、C04 D32、W6/W7与人测/实机门槛保持。
+
+
+## W5/W8 顺子断点的现货投资入口（2026-10-07，在制）
+
+输入 main6d6576cd69007405dde7cffa8ec5cd08ca12caab；父已独审PR46并确认精确CI全绿/FF。只复盘既有 policy-valid-groups 第2章正场1360/1500、留42金断点，不扫seed、不注入钱牌或过关、不加c04规则。单线6.1默认Medium，不创建并发工作者。现货类别、已发现升级前后基础值、条件与余额/利息代价放入既有手绘商品/详情/购物结果及培养入口；购买/使用均保持人类确认与原校验。不预测总分、不窥未来抽牌。允许文件：src/game/ShopInvestment.ts、ShopScene.ts、BuildJourney.ts，相关tests/shop-investment.test.ts与harness/fixtures/straight-investment.ts、harness/w5-investment-{routes,ui}.mjs，以及本开工卡/DELIVERY_PLAN和本批evidence。领域/内容/价格/权重/身份/旧档不改；自然d03、普通顺子a05仍NOT_OBSERVED，P08/W6/W7/W8门槛保持。关键风险定向检查与必要门禁一次，draft交父，不合main。
