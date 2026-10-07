@@ -1,0 +1,212 @@
+{
+  "source": "a3396edb562edfa942047fc626eb3dec7eec5b9d",
+  "sourceStatus": "M src/game/GameScene.ts\n M src/game/ShopScene.ts\n?? harness/w3-growth-causality.mjs\n?? src/game/JokerGrowthCausality.ts\n?? tests/joker-growth-causality.test.ts",
+  "scope": "Saved group-growth causal UI, actual next-hand read, cross-stage and reload. Existing natural route plus labeled controlled fixtures; no physical/aesthetic/audio/FPS acceptance.",
+  "cases": [
+    {
+      "spec": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "dialog": {
+        "text": "练对子 · 成长因果\n\n当前持有已保存热度成长：+10。\n\n最近一次已保存出牌：两对。\n\n结算前已存热度成长：+0。\n\n本次实际读取热度成长：+0。\n\n结算后实际新增热度成长：+10。\n\n该次结算后累计保存：+10。\n\n新增成长不补加到刚结算的本手；后续出牌按当时条件读取，计分封禁时不读加成。\n\n成长跨场保留；进入新场或重入不会凭空再次增长。下一次是否实际读入，以成功保存后的事件为准。\n\n关闭",
+        "buttons": [
+          {
+            "text": "关闭",
+            "disabled": false,
+            "bounds": {
+              "x": 221,
+              "y": 613,
+              "width": 838,
+              "height": 48,
+              "top": 613,
+              "right": 1059,
+              "bottom": 661,
+              "left": 221
+            }
+          }
+        ],
+        "rect": {
+          "x": 200,
+          "y": 12,
+          "width": 880,
+          "height": 662,
+          "top": 12,
+          "right": 1080,
+          "bottom": 674,
+          "left": 200
+        }
+      }
+    },
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768
+      },
+      "status": "PASS",
+      "dialog": {
+        "text": "练对子 · 成长因果\n\n当前持有已保存热度成长：+10。\n\n最近一次已保存出牌：两对。\n\n结算前已存热度成长：+0。\n\n本次实际读取热度成长：+0。\n\n结算后实际新增热度成长：+10。\n\n该次结算后累计保存：+10。\n\n新增成长不补加到刚结算的本手；后续出牌按当时条件读取，计分封禁时不读加成。\n\n成长跨场保留；进入新场或重入不会凭空再次增长。下一次是否实际读入，以成功保存后的事件为准。\n\n关闭",
+        "buttons": [
+          {
+            "text": "关闭",
+            "disabled": false,
+            "bounds": {
+              "x": 264,
+              "y": 661,
+              "width": 838,
+              "height": 48,
+              "top": 661,
+              "right": 1102,
+              "bottom": 709,
+              "left": 264
+            }
+          }
+        ],
+        "rect": {
+          "x": 243,
+          "y": 12,
+          "width": 880,
+          "height": 710,
+          "top": 12,
+          "right": 1123,
+          "bottom": 722,
+          "left": 243
+        }
+      }
+    },
+    {
+      "spec": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": "PASS",
+      "dialog": {
+        "text": "练对子 · 成长因果\n\n当前持有已保存热度成长：+10。\n\n最近一次已保存出牌：两对。\n\n结算前已存热度成长：+0。\n\n本次实际读取热度成长：+0。\n\n结算后实际新增热度成长：+10。\n\n该次结算后累计保存：+10。\n\n新增成长不补加到刚结算的本手；后续出牌按当时条件读取，计分封禁时不读加成。\n\n成长跨场保留；进入新场或重入不会凭空再次增长。下一次是否实际读入，以成功保存后的事件为准。\n\n关闭",
+        "buttons": [
+          {
+            "text": "关闭",
+            "disabled": false,
+            "bounds": {
+              "x": 541,
+              "y": 852,
+              "width": 838,
+              "height": 48,
+              "top": 852,
+              "right": 1379,
+              "bottom": 900,
+              "left": 541
+            }
+          }
+        ],
+        "rect": {
+          "x": 520,
+          "y": 133,
+          "width": 880,
+          "height": 780,
+          "top": 133,
+          "right": 1400,
+          "bottom": 913,
+          "left": 520
+        }
+      }
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 740
+      },
+      "status": "PASS",
+      "dialog": {
+        "text": "练对子 · 成长因果\n\n当前持有已保存热度成长：+10。\n\n最近一次已保存出牌：两对。\n\n结算前已存热度成长：+0。\n\n本次实际读取热度成长：+0。\n\n结算后实际新增热度成长：+10。\n\n该次结算后累计保存：+10。\n\n新增成长不补加到刚结算的本手；后续出牌按当时条件读取，计分封禁时不读加成。\n\n成长跨场保留；进入新场或重入不会凭空再次增长。下一次是否实际读入，以成功保存后的事件为准。\n\n关闭",
+        "buttons": [
+          {
+            "text": "关闭",
+            "disabled": false,
+            "bounds": {
+              "x": 36,
+              "y": 635,
+              "width": 248,
+              "height": 48,
+              "top": 635,
+              "right": 284,
+              "bottom": 683,
+              "left": 36
+            }
+          }
+        ],
+        "rect": {
+          "x": 19,
+          "y": 12,
+          "width": 282,
+          "height": 682,
+          "top": 12,
+          "right": 301,
+          "bottom": 694,
+          "left": 19
+        }
+      }
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 740
+      },
+      "status": "PASS",
+      "dialog": {
+        "text": "练对子 · 成长因果\n\n当前持有已保存热度成长：+10。\n\n最近一次已保存出牌：两对。\n\n结算前已存热度成长：+0。\n\n本次实际读取热度成长：+0。\n\n结算后实际新增热度成长：+10。\n\n该次结算后累计保存：+10。\n\n新增成长不补加到刚结算的本手；后续出牌按当时条件读取，计分封禁时不读加成。\n\n成长跨场保留；进入新场或重入不会凭空再次增长。下一次是否实际读入，以成功保存后的事件为准。\n\n关闭",
+        "buttons": [
+          {
+            "text": "关闭",
+            "disabled": false,
+            "bounds": {
+              "x": 36,
+              "y": 635,
+              "width": 318,
+              "height": 48,
+              "top": 635,
+              "right": 354,
+              "bottom": 683,
+              "left": 36
+            }
+          }
+        ],
+        "rect": {
+          "x": 19,
+          "y": 12,
+          "width": 352,
+          "height": 682,
+          "top": 12,
+          "right": 371,
+          "bottom": 694,
+          "left": 19
+        }
+      }
+    }
+  ],
+  "pages": [],
+  "screenshots": [
+    "saved-growth-1366.png",
+    "saved-growth-320.png"
+  ],
+  "routeOrigin": {
+    "source": "5905d4c4129e42af0d0a2e9f081662097ccd9cdd",
+    "name": "normal-erxiang",
+    "classification": "Resumed existing recorded natural checkpoint; current UI/commands are rechecked, not a fresh natural acquisition claim."
+  },
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-07T11:41:40.239Z",
+    "revision": "a3396edb562edfa942047fc626eb3dec7eec5b9d",
+    "sourceStatus": "dirty",
+    "modified": true,
+    "modifiedFileCount": 2,
+    "modifiedFiles": [
+      "src/game/GameScene.ts",
+      "src/game/ShopScene.ts"
+    ]
+  },
+  "browser": "151.0.7922.173",
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}

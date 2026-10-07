@@ -44,3 +44,5 @@ allowedFiles补充：`src/game/ShopPurchaseReceipt.ts`、`tests/shop-purchase-re
 inputSHA：`5c9836bc5ae9bbb256012596a00d60bd7a5a2067`，父确认PR37已独审/精确CI全绿并FF main，本地fetch一致。现有lastTrace含结算前sourceJokers、真实read-growth/add-growth事件与结算后jokers，当前存档含实例累计成长，依赖已满足。只做b10优先、同合同b03的既有详情“成长因果”入口，跨場/重入显示实际读入→本次新增→累计已存→后续按条件读取。没有同实例trace明确缺记录，不造完整历史、不预报本手总分，不改数值/存档/RNG/六角色。
 
 allowedFiles补充：`src/game/JokerGrowthCausality.ts`、`tests/joker-growth-causality.test.ts`、`harness/w3-growth-causality.mjs`；现有GameScene.ts/ShopScene.ts及必要文档证据。只读已成功保存的state/trace与当前profile。验收自然练对子既有路线、真实下一手读入、跨場/重入/回看状态不变、封禁不假读、非成组不假增长、cap实际差值、重买不串旧实例；必要PC三档/手机三档与九牌安全回归，软件不签实机。证据`docs/production/evidence/w3-growth-causality-2026-10-07/`，原W3/W5顺序保持。
+
+本批软件结果：[已存成组成长因果](evidence/w3-growth-causality-2026-10-07/README.md)。产品5e34d78，接续既有自然局并实际跨场读20/保存30，重入不变，受控封禁/cap/非成组反例及必要双端/九牌回归通过。最终2469 tests/137 files，首次既有机器人超时保留。仍待父独审/精确CI/玩家解释和真机，不宣布W3/W5全部完成。
