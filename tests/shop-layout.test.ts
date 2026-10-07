@@ -84,3 +84,13 @@ it('desktop summary wrapping never splits a numeric cap or decimal gain across l
  const wrapped=shopSummaryWrap(source,7,s=>s.length);
  expect(wrapped.replaceAll('\n','')).toBe(source);expect(wrapped).toContain('100');expect(wrapped).toContain('0.5');expect(wrapped.split('\n').every(s=>s.length<=7)).toBe(true);
 });
+
+it('wide PC low heights reserve lower goods and feedback before sizing either card rail',()=>{
+ for(const width of [1912,1920])for(const height of [712,720,768])for(const top of [0,8,12,24])for(const bottom of [0,12,34]){
+  const p=shopLayout(width,height,top,bottom,3);
+  if(!p.pc){expect(p.short).toBe(true);continue;}
+  for(const b of [...p.slots,...p.shelf,...p.pc.jokerOffers,p.pc.toolOffers,p.pc.itemOffers,p.pc.feedback]){expect(b.y).toBeGreaterThanOrEqual(top);expect(b.y+b.height).toBeLessThanOrEqual(height-bottom+.001);}
+  for(const b of [p.pc.toolOffers,p.pc.itemOffers]){expect(b.height).toBeGreaterThanOrEqual(128-.001);expect(intersects(b,p.pc.feedback)).toBe(false);expect(b.y+b.height).toBeLessThanOrEqual(p.pc.feedback.y-8+.001);}
+  for(const b of [p.play,p.reroll,p.build,p.pc.inventoryEntry])expect(b.height).toBeGreaterThanOrEqual(44);
+ }
+});

@@ -27,13 +27,16 @@ function shortShopLayout(width:number,height:number,top:number,bottom:number,col
 /** Left state, upper owned resources, lower sale panel. Short PC reuses the short branch. */
 function desktopShopLayout(width:number,height:number,top:number,bottom:number,_cols:number){
   const w=Math.min(1480,width-48),x=(width-w)/2,leftWidth=width>=1600?248:224,gap=width>=1600?32:24,rightX=x+leftWidth+gap,rightWidth=w-leftWidth-gap;
-  const ownedWidth=width>=1600?96:80,ownedHeight=ownedWidth*1.4,slotY=top+56;
+  const usableHeight=height-top-bottom;
+  const ownedWidth=width>=1600&&usableHeight>=800?96:80,ownedHeight=ownedWidth*1.4,slotY=top+56;
   const slots:Box[]=Array.from({length:5},(_,i)=>({x:rightX+i*(ownedWidth+12),y:slotY,width:ownedWidth,height:ownedHeight}));
   const ownedRail={x:rightX,y:top,width:rightWidth,height:56+ownedHeight};
   const inventoryEntry={x:rightX+rightWidth-168,y:top+64,width:168,height:44};
   const shopPanel={x:rightX,y:slotY+ownedHeight+24,width:rightWidth,height:height-bottom-8-(slotY+ownedHeight+24)};
   const actionWidth=width>=1600?144:128,goodsX=shopPanel.x+actionWidth+32,goodsWidth=shopPanel.width-actionWidth-48;
-  const seat=(goodsWidth-24)/3,cardWidth=width>=1600?144:88,cardHeight=cardWidth*1.4;
+  // Reserve the lower 128px goods row, its headings and the feedback gap first.
+  const faceHeightBudget=usableHeight-332-ownedHeight-128;
+  const seat=(goodsWidth-24)/3,cardWidth=width>=1600?Math.min(144,faceHeightBudget/1.4):88,cardHeight=cardWidth*1.4;
   const upperY=shopPanel.y+28,upperHeight=cardHeight+136;
   const jokerOffers:Box[]=Array.from({length:3},(_,i)=>({x:goodsX+i*(seat+12),y:upperY,width:seat,height:upperHeight}));
   const shelf=jokerOffers.map(b=>({x:b.x+(b.width-cardWidth)/2,y:b.y+6,width:cardWidth,height:cardHeight}));

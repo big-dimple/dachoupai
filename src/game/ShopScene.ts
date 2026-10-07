@@ -203,10 +203,6 @@ export class ShopScene extends Phaser.Scene {
   private drawPCOffer(o:R2Offer,kind:ShelfKind,tile:Box,face:Box):void {
     const v=this.view,first=v.root.length,d=kind==='jokers'?this.jokerDefinition(o.definitionId):undefined,info=kind==='tools'?toolInfo(o.definitionId):kind==='items'?itemInfo(o.definitionId):undefined;
     v.material(tile,0xf3eadb,0xf3eadb,5);v.add(this.add.graphics().lineStyle(1,this.selectedOfferId===o.offerId?0x3f606b:0xa69778,.5).strokeRoundedRect(tile.x,tile.y,tile.width,tile.height,5));
-    if(d){this.drawJokerPicture(d.id,face,o.consumed?.35:1);v.add(createJokerRarityBadge(this,d.rarity,{x:face.x+face.width-31,y:face.y+face.height-21,compact:true}).setData('definitionId',d.id).setData('surface','offer'));}
-    else this.drawGoodsArt(o.definitionId,info!.artUrl,face,o.consumed?.55:1,info!.fallbackArtUrl);
-    const copyX=d?tile.x+10:face.x+face.width+10,copyY=d?face.y+face.height+2:tile.y+2,width=tile.x+tile.width-copyX-10;
-    const name=v.text(copyX,copyY,d?.name??info!.name,14,'#26313A').setName('shop/offer-name');this.ellipsis(name,width);
     const ability=d?this.jokerCopy(d.id):undefined;
     let summary=ability?.summary??info!.description;
     if(d&&this.run.contentVersion==='quality-r2-group-upgrade-prototype-v1'&&(d.id==='b10'||d.id==='b03')){
@@ -216,11 +212,20 @@ export class ShopScene extends Phaser.Scene {
     if(!d&&/^T0[3-6]$/.test(o.definitionId)){const suit=info!.description.match(/改为(.+?)，/)?.[1];summary=`商店/待出牌：选1–3张永久改${suit}；成功消耗，保留其余属性。`;}
     if(!d&&o.definitionId==='U11')summary='后续开店长期货位1→2；当前不补，刷新不重抽。同种限一件，不可售。';
     if(!d&&o.definitionId==='U01')summary='下场手牌上限+1，最多14；当前不补。同种限一件，不可售。';
-    const purpose=v.text(copyX,copyY+22,'',14,'#3F606B').setName('shop/offer-purpose');purpose.setText(shopSummaryWrap(summary,width,text=>{purpose.setText(text);return purpose.width;})).setData('fullText',summary);
-    // Keep the entire comparative rule visible; overflow is evidence to fix, never a silent line clamp.
+    const initialX=d?tile.x+10:face.x+face.width+10,initialY=d?face.y+face.height+2:tile.y+2,width=tile.x+tile.width-initialX-10;
     const priceY=d?tile.y+face.height+98:tile.y+tile.height-36;
-    v.text(copyX,priceY,o.consumed?'已购':`${r2PurchasePrice(this.run,o)} 金 · ${d?editionLabel(o.edition):'查看'}`,16,'#26313A').setName('shop/offer-price');
-    const reason=o.consumed?'':this.purchaseReason(o,true);if(reason){const note=v.text(copyX,priceY+20,reason,14,'#B8473A').setName('shop/offer-reason');this.ellipsis(note,width);}
+    const probe=v.text(0,0,'',14,'#3F606B');
+    const wrapped=shopSummaryWrap(summary,width,text=>{probe.setText(text);return probe.width;});probe.setText(wrapped);
+    const column=!d&&probe.height>priceY-(initialY+22)-4;probe.destroy();
+    const artFace=column?{...face,y:tile.y+24}:face;
+    if(d){this.drawJokerPicture(d.id,artFace,o.consumed?.35:1);v.add(createJokerRarityBadge(this,d.rarity,{x:artFace.x+artFace.width-31,y:artFace.y+artFace.height-21,compact:true}).setData('definitionId',d.id).setData('surface','offer'));}
+    else this.drawGoodsArt(o.definitionId,info!.artUrl,artFace,o.consumed?.55:1,info!.fallbackArtUrl);
+    const name=v.text(column?tile.x+8:initialX,column?tile.y+2:initialY,d?.name??info!.name,14,'#26313A').setName('shop/offer-name').setData('offerId',o.offerId);this.ellipsis(name,column?64:width);
+    v.text(initialX,column?tile.y+2:initialY+22,wrapped,14,'#3F606B').setName('shop/offer-purpose').setData('fullText',summary).setData('offerId',o.offerId);
+    // A long full rule owns the right column; the price stays below the art on the left.
+    const priceX=column?tile.x+8:initialX;
+    v.text(priceX,priceY,o.consumed?'已购':`${r2PurchasePrice(this.run,o)} 金${column?'':` · ${d?editionLabel(o.edition):'查看'}`}`,16,'#26313A').setName('shop/offer-price').setData('offerId',o.offerId);
+    const reason=o.consumed?'':this.purchaseReason(o,true);if(reason){const note=v.text(priceX,priceY+20,reason,14,'#B8473A').setName('shop/offer-reason').setData('offerId',o.offerId);this.ellipsis(note,column?64:width);}
     const hover=this.hoverCard(first,tile,d?.id),hit=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',this.selectedOfferId===o.offerId);
     this.pcOfferBoxes.set(o.offerId,tile);this.offerArts.push(hover.art);v.target(hit,'offer/'+o.offerId,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
   }
