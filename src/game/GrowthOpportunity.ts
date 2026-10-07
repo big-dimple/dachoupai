@@ -23,5 +23,5 @@ export function growthOpportunity(state:R2RunState,joker:R2JokerInstance,ctx:Jok
  }
  const label={ready:'成长条件可用',prepare:'建立接续',unmet:'不新增成长',capped:'成长已封顶',waiting:'待选牌核成长'}[status];
  const compactLabel={ready:'可成长',prepare:'先接续',unmet:'不成长',capped:'成长满',waiting:'待选牌'}[status];
- return {status,label,compactLabel,name:d.name,body:label+' · 已存'+fractionText(stored)+(status==='ready'?' · 结算后最多+'+fractionText(delta):'')+'\n'+reason+'\n新增下手生效；不预演总分、不保证再出一手。'+(ctx.scoringLimited?'本手计分停用；结算后成长仍按独立阶段条件检查。':'')};
+ return {status,label,compactLabel,name:d.name,body:label+' · 已存'+fractionText(stored.toJSON())+(status==='ready'?' · 结算后最多+'+fractionText(delta.toJSON()):'')+'\n'+reason+'\n新增下手生效；不预演总分、不保证再出一手。'+(ctx.scoringLimited?'本手计分停用；结算后成长仍按独立阶段条件检查。':'')};
 }
