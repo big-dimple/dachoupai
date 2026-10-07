@@ -1,5 +1,5 @@
 import {keyHighlight,keyHighlightBeat,savedGrowthStamp,type JokerKeyHighlight} from './JokerKeyHighlight';
-import {mountKeyHighlight} from './JokerKeyHighlightView';
+import {mountKeyHighlight,keyFocusPlacement} from './JokerKeyHighlightView';
 import {renderCandidateCards} from './CandidateCardPreview';
 import {growthOpportunity} from './GrowthOpportunity';
 import {showBuildJourney} from './BuildJourneyDialog';
@@ -1404,17 +1404,10 @@ export class GameScene extends Phaser.Scene {
   private showKeyHighlight(key:JokerKeyHighlight,context:EffectContext):()=>void {
     const l=this.view.layout,area=toolInventoryPlayedArea(l),mat=playedFootprint(area,l.mode==='portrait'),source=this.jokerViews.get(key.fact.sourceInstanceId);
     const poses=[...this.settledCards.values()].map(v=>({c:v.container,x:v.container.x,y:v.container.y}));
-    let box:Box,compact=false;
-    if(l.mode==='desktop'&&area.x+area.width-mat.x-mat.width-16>=180){
-      const width=Math.min(220,area.x+area.width-mat.x-mat.width-16);
-      box={x:area.x+area.width-width-8,y:area.y+Math.max(8,(area.height-240)/2),width,height:Math.min(240,area.height-16)};
-    }else if(l.shortLandscape){
-      compact=true;box={x:Number(source?.getData('baseX')??area.x)-30,y:12,width:60,height:72};
-    }else{
-      const bottom=l.mode==='portrait'?Math.min(area.y+area.height,gameToolInventoryBox(l).y-4):area.y+area.height,cardHeight=Math.max(...poses.map(p=>Number(p.c.getData('height'))*p.c.scaleY),0);
-      box={x:area.x+4,y:area.y+4,width:area.width-8,height:Math.max(72,bottom-area.y-cardHeight-12)};
-      for(const p of poses)p.c.setY(bottom-cardHeight/2-2);
-    }
+    const bottom=l.mode==='portrait'?Math.min(area.y+area.height,gameToolInventoryBox(l).y-4):area.y+area.height,cardHeight=Math.max(...poses.map(p=>Number(p.c.getData('height'))*p.c.scaleY),0);
+    const frame=source?.getData('frame') as Phaser.GameObjects.Rectangle|undefined,bounds=frame?.getBounds(),slot=bounds?{x:bounds.x,y:bounds.y,width:bounds.width,height:bounds.height}:l.slots[0];
+    const {box,compact,cardY}=keyFocusPlacement(l.mode,l.shortLandscape,area,mat,bottom,cardHeight,slot);
+    if(cardY!==undefined)for(const p of poses)p.c.setY(cardY);
     const oldVisible=source?.visible;if(compact)source?.setVisible(false);
     const group=mountKeyHighlight(this,this.view.root,box,key,compact);
     this.statusText.setText(key.fact.title+' · '+key.cause).setData('keyCause',key.fact.condition);
