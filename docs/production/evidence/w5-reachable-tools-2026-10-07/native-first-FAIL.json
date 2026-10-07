@@ -1,0 +1,324 @@
+{
+  "source": "2974e7310243bfe60c1025f8a802787c2237c72d",
+  "statusBefore": "M src/game/BuildJourney.ts\n M src/game/BuildJourneyDialog.ts\n M src/game/ConsumableDialog.ts\n M src/game/ShopScene.ts\n M tests/build-journey.test.ts\n?? harness/w5-natural-routes.mjs\n?? harness/w5-reachable.mjs",
+  "scope": "Normal new entry, three bounded fixed seeds, real shelf/deal/buy/use/clear. Not continuous-growth coverage, eight chapters, human understanding, physical or FPS acceptance.",
+  "cases": [
+    {
+      "focus": "group",
+      "seed": "group-natural-17",
+      "spec": {
+        "width": 1366,
+        "height": 768
+      },
+      "steps": [
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/0"
+          },
+          "definitionId": "b10",
+          "beforeGold": 6,
+          "afterGold": 2,
+          "phase": "shop",
+          "levels": {},
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {}
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "LeaveShop"
+          },
+          "beforeGold": 2,
+          "afterGold": 2,
+          "phase": "await-input",
+          "levels": {},
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {}
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "clubs-12",
+              "hearts-2",
+              "spades-2",
+              "clubs-14",
+              "diamonds-14"
+            ]
+          },
+          "beforeGold": 2,
+          "afterGold": 2,
+          "phase": "await-input",
+          "levels": {
+            "two-pair": 1
+          },
+          "score": "318",
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "10",
+                  "d": "1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "diamonds-5",
+              "diamonds-4",
+              "spades-4",
+              "clubs-5",
+              "hearts-5"
+            ]
+          },
+          "beforeGold": 2,
+          "afterGold": 8,
+          "phase": "stage-cleared",
+          "levels": {
+            "two-pair": 1,
+            "full-house": 1
+          },
+          "score": "1215",
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "OpenShop"
+          },
+          "beforeGold": 8,
+          "afterGold": 8,
+          "phase": "shop",
+          "levels": {
+            "two-pair": 1,
+            "full-house": 1
+          },
+          "score": "1215",
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/group-natural-17/erxiang/shop/1/0/joker/2"
+          },
+          "definitionId": "b07",
+          "beforeGold": 8,
+          "afterGold": 4,
+          "phase": "shop",
+          "levels": {
+            "two-pair": 1,
+            "full-house": 1
+          },
+          "score": "1215",
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b07",
+              "growth": {}
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "LeaveShop"
+          },
+          "beforeGold": 4,
+          "afterGold": 4,
+          "phase": "await-input",
+          "levels": {
+            "two-pair": 1,
+            "full-house": 1
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b07",
+              "growth": {}
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "diamonds-2",
+              "hearts-5",
+              "clubs-5",
+              "spades-10",
+              "diamonds-10"
+            ]
+          },
+          "beforeGold": 4,
+          "afterGold": 4,
+          "phase": "await-input",
+          "levels": {
+            "two-pair": 1,
+            "full-house": 1
+          },
+          "score": "402",
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "30",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b07",
+              "growth": {}
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "clubs-7",
+              "diamonds-8",
+              "diamonds-12",
+              "hearts-7",
+              "spades-7"
+            ]
+          },
+          "beforeGold": 4,
+          "afterGold": 11,
+          "phase": "stage-cleared",
+          "levels": {
+            "two-pair": 1,
+            "full-house": 1,
+            "three-kind": 1
+          },
+          "score": "634",
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b07",
+              "growth": {}
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "OpenShop"
+          },
+          "beforeGold": 11,
+          "afterGold": 11,
+          "phase": "shop",
+          "levels": {
+            "two-pair": 1,
+            "full-house": 1,
+            "three-kind": 1
+          },
+          "score": "634",
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b07",
+              "growth": {}
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "LeaveShop"
+          },
+          "beforeGold": 11,
+          "afterGold": 11,
+          "phase": "await-input",
+          "levels": {
+            "two-pair": 1,
+            "full-house": 1,
+            "three-kind": 1
+          },
+          "growth": [
+            {
+              "id": "b10",
+              "growth": {
+                "heat": {
+                  "n": "40",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "b07",
+              "growth": {}
+            }
+          ]
+        }
+      ],
+      "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded.",
+      "dialog": []
+    }
+  ],
+  "browser": "151.0.7922.173",
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}

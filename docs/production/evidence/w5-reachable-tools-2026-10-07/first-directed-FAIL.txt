@@ -1,0 +1,5 @@
+Captured tool output excerpt; 2026-10-07 16:04:52 UTC.
+Test Files 1 failed (1); Tests 1 failed | 9 passed (10).
+existing per-card and repeat bridges remain available across route changes without inventing growth
+AssertionError: expected true to be false.
+New assertion erroneously excluded c06 from the straight direction, although the existing hook includes straight-flush. Test expectation corrected; no domain change.

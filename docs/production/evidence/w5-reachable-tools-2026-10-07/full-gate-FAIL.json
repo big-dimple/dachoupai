@@ -1,0 +1,43 @@
+{
+  "scope": "all",
+  "testedCommit": "935d667a77fe13feaf6580d8a7e2f83e896ef01e",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "d0582bc2e6198f32369576072d82ee11c5055ac0ca7c7df2b1327463ad31c235",
+    "index": "f7468d3a47b2c9f10e27345b99bbc7493d5dd9c688cf21cece6729fd3b4c4d9e",
+    "head": "935d667a77fe13feaf6580d8a7e2f83e896ef01e",
+    "branch": "refs/heads/feat/w5-reachable-tools-20261007"
+  },
+  "after": {
+    "source": "d0582bc2e6198f32369576072d82ee11c5055ac0ca7c7df2b1327463ad31c235",
+    "index": "f7468d3a47b2c9f10e27345b99bbc7493d5dd9c688cf21cece6729fd3b4c4d9e",
+    "head": "935d667a77fe13feaf6580d8a7e2f83e896ef01e",
+    "branch": "refs/heads/feat/w5-reachable-tools-20261007"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 58342,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

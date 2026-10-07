@@ -1,0 +1,207 @@
+{
+  "inputMain": "2974e7310243bfe60c1025f8a802787c2237c72d",
+  "scopeCommit": "537e421",
+  "productCommit": "754d8048a05464af59b42b6fb52645a152ba8c33",
+  "finalTestCommit": "935d667a77fe13feaf6580d8a7e2f83e896ef01e",
+  "sourceFiles": {
+    "src/game/BuildJourney.ts": "0d3bb376072813025341e3665fa0b78cca2a28e07aa31eaf24f5e718d07bab6a",
+    "src/game/BuildJourneyDialog.ts": "1138d86e3724ef9e430034c8ea1a4a7117cc594048c41371a940822239fcf438",
+    "src/game/ConsumableDialog.ts": "e09dfe19e6380d33caebf2792f12582146682fed22ab765fb7566b2fd7bc556e",
+    "src/game/ShopScene.ts": "1f86b1062ab1da55bb8aa90ce49d4a9fcd41e09e7e17307e89fd6a9d84a85293",
+    "tests/build-journey.test.ts": "766bc6c66d47232fecda6816dde233d9fc35e0fc494606aa16238192987fc4d5",
+    "harness/w5-natural-routes.mjs": "2c4d730c077ee926d4906a8e4a07fb862ffd15776b23acb76a0f9b004f0dafa4",
+    "harness/w5-reachable.mjs": "5534cbc52e9fcd1c234a61cdbc0e5e44dc78085c7ef0ef19b5d693f9c0f9c4c8",
+    "harness/w5-focus-tools.mjs": "110b47daa24eee9039e1a2eb145c0cca92f869878c5e2d8c70c532bcadff9bbf"
+  },
+  "scope": "W5 normal first-chapter tool investment / missing-component bridges, plus controlled focus choices; rules/economy unchanged",
+  "normal": {
+    "group": {
+      "seed": "group-natural-17",
+      "viewport": [
+        1366,
+        768
+      ],
+      "b10Growth": "50",
+      "stage": 3,
+      "status": "PASS",
+      "record": "native-mobile-offer-FAIL.json.gz case group retained original overall FAIL"
+    },
+    "straight": {
+      "seed": "policy-valid-groups",
+      "viewport": [
+        1280,
+        720
+      ],
+      "level": 2,
+      "tool": "P05",
+      "paidGold": 4,
+      "sourcePaidGold": 8,
+      "status": "PASS",
+      "record": "native-mobile-offer-FAIL.json.gz case straight retained original overall FAIL"
+    },
+    "flush": {
+      "seed": "policy-valid-suit",
+      "viewport": [
+        390,
+        740
+      ],
+      "level": 2,
+      "tool": "P06",
+      "paidGold": 4,
+      "status": "PASS",
+      "record": "native-flush-final-PASS.json.gz after mobile resolver correction only affected route repeated"
+    }
+  },
+  "controlled": {
+    "viewports": [
+      [
+        320,
+        740
+      ],
+      [
+        740,
+        390
+      ]
+    ],
+    "status": "PASS",
+    "records": [
+      "native-focused-two-PASS.json.gz",
+      "native-focused-enabled-PASS.json.gz"
+    ],
+    "notNaturalAcquisition": true
+  },
+  "checks": {
+    "directed": "40 tests/3 files PASS",
+    "firstFullGate": {
+      "scope": "all",
+      "testedCommit": "935d667a77fe13feaf6580d8a7e2f83e896ef01e",
+      "status": "FAIL",
+      "exitCode": 1,
+      "before": {
+        "source": "d0582bc2e6198f32369576072d82ee11c5055ac0ca7c7df2b1327463ad31c235",
+        "index": "f7468d3a47b2c9f10e27345b99bbc7493d5dd9c688cf21cece6729fd3b4c4d9e",
+        "head": "935d667a77fe13feaf6580d8a7e2f83e896ef01e",
+        "branch": "refs/heads/feat/w5-reachable-tools-20261007"
+      },
+      "after": {
+        "source": "d0582bc2e6198f32369576072d82ee11c5055ac0ca7c7df2b1327463ad31c235",
+        "index": "f7468d3a47b2c9f10e27345b99bbc7493d5dd9c688cf21cece6729fd3b4c4d9e",
+        "head": "935d667a77fe13feaf6580d8a7e2f83e896ef01e",
+        "branch": "refs/heads/feat/w5-reachable-tools-20261007"
+      },
+      "steps": [
+        {
+          "name": "test",
+          "status": "FAIL",
+          "childExitCode": 1,
+          "elapsedMs": 58342,
+          "reason": "child exited 1"
+        }
+      ],
+      "notIncluded": [
+        {
+          "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+          "status": "NOT_INCLUDED",
+          "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+        },
+        {
+          "name": "balance/benchmark acceptance",
+          "status": "NOT_INCLUDED",
+          "reason": "later work packages; no gameplay approval inferred from checks"
+        },
+        {
+          "name": "physical devices / human / art approval",
+          "status": "NOT_RUN"
+        }
+      ]
+    },
+    "failedFilesRecheck": "21 tests/2 files PASS, original timeout unchanged",
+    "remaining": {
+      "status": "PASS",
+      "exitCode": 0,
+      "before": {
+        "source": "d0582bc2e6198f32369576072d82ee11c5055ac0ca7c7df2b1327463ad31c235",
+        "index": "f7468d3a47b2c9f10e27345b99bbc7493d5dd9c688cf21cece6729fd3b4c4d9e",
+        "head": "935d667a77fe13feaf6580d8a7e2f83e896ef01e",
+        "branch": "refs/heads/feat/w5-reachable-tools-20261007"
+      },
+      "after": {
+        "source": "d0582bc2e6198f32369576072d82ee11c5055ac0ca7c7df2b1327463ad31c235",
+        "index": "f7468d3a47b2c9f10e27345b99bbc7493d5dd9c688cf21cece6729fd3b4c4d9e",
+        "head": "935d667a77fe13feaf6580d8a7e2f83e896ef01e",
+        "branch": "refs/heads/feat/w5-reachable-tools-20261007"
+      },
+      "steps": [
+        {
+          "name": "failed-files-default-timeout",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 6837
+        },
+        {
+          "name": "verify:content",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 7100
+        },
+        {
+          "name": "build",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 14444
+        },
+        {
+          "name": "verify:smoke",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 164359
+        },
+        {
+          "name": "production-plan",
+          "status": "PASS",
+          "childExitCode": 0,
+          "elapsedMs": 317
+        }
+      ]
+    },
+    "repeatFullSuite": false
+  },
+  "actualViews": [
+    "natural-group-1366.png",
+    "natural-straight-1280.png",
+    "natural-flush-390.png",
+    "focused-upgrade-320.png",
+    "focused-dye-740.png",
+    "boss-entry-FAIL.png",
+    "mobile-offer-FAIL.png"
+  ],
+  "pending": [
+    "Exact final-head CI and independent parent review",
+    "Ordinary straight independent persistent growth / late engine recovery / eight-chapter supply decision",
+    "Human understanding / physical devices / audio / overall visual W5-W6 acceptance"
+  ],
+  "evidenceHashes": {
+    "focused-upgrade-320.png": "d945f5391ed63aa65d0bf76417e0b200fcb5f8abc6da4fd64dbe587cf0f20d06",
+    "mobile-offer-FAIL.png": "acabbe72d6404abbed4cddd3e8bd2ea6fbb0c666a4f71abcc192242c65fcf3d8",
+    "README.md": "7123a81ba7f6328b60ef709a5eb7826edea6d9b59236ec8ef84e0044039eda90",
+    "boss-entry-FAIL.png": "202cf2ace698488e4c4a5a5046f78eae06767db3424cf4e414f53d7ce2ac874a",
+    "baseline-three-routes.json.gz": "c8e997ba62b25fae571b755df06cf6475ecca5746b9c77cdaec4bf8482ff9a68",
+    "native-flush-final-PASS.json.gz": "c57a5813ba8c4d2df4a6a655833a06228316b22004a1d8cea8a0f75fc86f2c02",
+    "remaining-gates-PASS.txt": "4ff73692a9952d052a5894e415e872bc396ebfe6bf325b7113c41e5ced7f3d5b",
+    "first-directed-FAIL.txt": "ed299938c7de9b5269b65fceed1d516dea5b850a7487b8e62d51ee7ec233db37",
+    "natural-group-1366.png": "3f54a2558a37d4f77ae07913935cc6977b9511b149a3e1c22654ec0c98f4fa05",
+    "native-boss-entry-FAIL.json": "92a7390dbfc4ec356a6121e2f6b1dd5d613e6260fc28830f5603782585d8400d",
+    "focused-dye-740.png": "f07aca3bd42fb45b5483f91b4b483d6a65e592c0c309ffb2d7a8f048650b6147",
+    "remaining-gates-PASS.json": "cb0d82b11b9a4cec4af46843efb061b7ef97a155163e286276ef28dfaafa871d",
+    "natural-routes.json.gz": "508b5527b975110e066d053a2c9f8c9d599c71bcc96c55cb2b57e67d3b3a5305",
+    "directed-PASS.txt": "19f50fcf84f5ec1720faf30586cfe8fe4ebe38da4c7535a370e16167ecbb5b18",
+    "full-gate-FAIL.json": "b811552df7d5d25a6e186846427da7361f3acf9f0931684d37896172013b1096",
+    "native-mobile-offer-FAIL.json.gz": "2a952981ce7af7c59ba528ba700837a8992150208d9c90d63565c63d9a16617b",
+    "natural-flush-390.png": "5292d62a4c66190f4e391a7d4337fce2bbef143d7b7c2358556e52a64aac899a",
+    "native-focused-enabled-PASS.json.gz": "b99d1e941c080c42a853d09075a6e804b7b0fbefb82e781e923174083fa5313f",
+    "native-first-FAIL.json": "33748274772e0d8b163339d4c9159ff659f39d28f8b5818a5ac758ba6ece8b00",
+    "native-focused-two-PASS.json.gz": "678a03ab839eede25098aa80bc9f6273805626e2f1fee4797aec8bd2d4e9f3cd",
+    "natural-straight-1280.png": "ae45817bcb1a6cc433b1424ed978cb7c9c1ac72af30eb5260f521c83dc4c9d37",
+    "full-gate-FAIL.txt": "97831d8ea9278b130d48ae02edb75b743de4d9668838ba2cd9a0fc41d55d147b"
+  }
+}

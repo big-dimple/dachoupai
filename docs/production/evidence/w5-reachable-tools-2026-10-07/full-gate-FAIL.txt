@@ -1,0 +1,104 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs
+
+CHECK test: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run test
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/handdrawn-art.test.ts (16 tests | 1 failed) 10253ms
+   × 'b9' consumes the exact approved receipt and same-ID on-demand derivatives 6777ms
+ ❯ tests/v00-bot.test.ts (5 tests | 3 failed) 22380ms
+     × single-held emits only valid ordinary commands on a natural run 7586ms
+     × groups emits only valid ordinary commands on a natural run 5666ms
+     × suit emits only valid ordinary commands on a natural run 8992ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/handdrawn-art.test.ts > 'b9' consumes the exact approved receipt and same-ID on-demand derivatives
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/handdrawn-art.test.ts:97:22
+     95|  {batch:'b11',commit:'a6dbecb0b0612777d7c960dd8de65c9a1c897acc',receip…
+     96| ];
+     97| it.each(finalReceipts)('$batch consumes the exact approved receipt and…
+       |                      ^
+     98|  const root=new URL('../art/sources/handdrawn-runtime-20261004-'+batch…
+     99|  expect(createHash('sha256').update(bytes).digest('hex')).toBe(receipt…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/v00-bot.test.ts > V00 policies receive only player-visible information > single-held emits only valid ordinary commands on a natural run
+ FAIL  tests/v00-bot.test.ts > V00 policies receive only player-visible information > groups emits only valid ordinary commands on a natural run
+ FAIL  tests/v00-bot.test.ts > V00 policies receive only player-visible information > suit emits only valid ordinary commands on a natural run
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/v00-bot.test.ts:19:51
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+
+ Test Files  2 failed | 139 passed (141)
+      Tests  4 failed | 2492 passed (2496)
+   Start at  16:20:59
+   Duration  56.85s (transform 6.76s, setup 0ms, import 24.87s, tests 116.66s, environment 17ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+test: FAIL
+{
+  "scope": "all",
+  "testedCommit": "935d667a77fe13feaf6580d8a7e2f83e896ef01e",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "d0582bc2e6198f32369576072d82ee11c5055ac0ca7c7df2b1327463ad31c235",
+    "index": "f7468d3a47b2c9f10e27345b99bbc7493d5dd9c688cf21cece6729fd3b4c4d9e",
+    "head": "935d667a77fe13feaf6580d8a7e2f83e896ef01e",
+    "branch": "refs/heads/feat/w5-reachable-tools-20261007"
+  },
+  "after": {
+    "source": "d0582bc2e6198f32369576072d82ee11c5055ac0ca7c7df2b1327463ad31c235",
+    "index": "f7468d3a47b2c9f10e27345b99bbc7493d5dd9c688cf21cece6729fd3b4c4d9e",
+    "head": "935d667a77fe13feaf6580d8a7e2f83e896ef01e",
+    "branch": "refs/heads/feat/w5-reachable-tools-20261007"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 58342,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
