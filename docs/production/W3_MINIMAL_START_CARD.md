@@ -28,3 +28,9 @@ allowedFiles 精确补充：`src/game/ShopLayout.ts`、`harness/w3-shop-manageme
 保留 PC 新区域、手机九牌及811/812容量临界；管理入口点开/取消不改完整state与RNG，调序边界禁用，出售二次确认。共享详情使用已有正文滚动并把主关闭与整框放在安全区内，不缩字、不用固定高度裁正文。软件与部署证据不代签用户PC/审美。
 
 本批修复分支软件结果：[安全商店管理证据](evidence/w3-shop-management-2026-10-07/README.md)。320误扣款、短横持有管理与安全弹窗已按受控原生输入复查；产品79a4b00、规则展开harness f5ad8b9。仅这批软件验证通过，仍待独立复核、用户PC/手机共同验收与整体信息闭环，不宣布W3全部完成。
+
+## 2026-10-07 购物去向小批
+
+inputSHA：`4a0fdf07cbc1f9bdca891cb16256bcb88997f60f`，父任务确认PR36已正常快进main且精确CI通过，本地fetch一致。继续原W3，不重排总计划。有限核对发现成功购买只有名称/金币反馈，未直接连到实际所得与下一步。本批在已保存成功后呈现三类购物去向，复用既有卡面/商品图与持有详情/工具包；成组成长牌沿用既有读取→结算后新增→下一手生效合同。
+
+allowedFiles补充：`src/game/ShopPurchaseReceipt.ts`、`tests/shop-purchase-receipt.test.ts`、`harness/w3-purchase-destination.mjs`；现有`src/game/ShopScene.ts`及文档证据。只消费提交后的真实state与当前profile定义，不改domain/content/application/platform、存档、RNG、数值、CI、资产。验收：大丑牌实际槽/实例、工具实际库存且未自动用、长期道具已持有/实际生效时机可查；查看/取消不扣款；保存失败或重复提交不假成功；PC三档及手机320/390/740检查、已有九牌回归保护。证据保存`docs/production/evidence/w3-purchase-destination-2026-10-07/`；真机/审美/完整W3继续待验。
