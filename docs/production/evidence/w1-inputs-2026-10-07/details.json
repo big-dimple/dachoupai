@@ -1,0 +1,47 @@
+{
+  "source": "27d31fc50bcbbdc4a7a3405eece92c54e9aa8314",
+  "scope": "Supplementary existing checkpoint detail extraction, no new seed or purchase.",
+  "tools": [
+    {
+      "id": "T03",
+      "name": "红桃染",
+      "family": "tarot",
+      "label": "塔罗 · 红桃染",
+      "description": "商店 / 待出牌可用。选择1–3张可见扑克。所选扑克永久改为红桃♥，保留点数、增强和版次。",
+      "cost": "商店基准售价：4金\n额外使用代价：无额外金币或牺牲代价。成功后消耗1件工具。",
+      "risk": "商店只选有效牌组，待出牌时只选当前可见手牌。取消、过期、非法目标、没有变化或代价不足均不消费工具与资源。",
+      "artUrl": "/assets/handdrawn-tools/tool-t03.thumbnail.webp",
+      "detailArtUrl": "/assets/handdrawn-tools/tool-t03.detail.webp"
+    },
+    {
+      "id": "T06",
+      "name": "黑桃染",
+      "family": "tarot",
+      "label": "塔罗 · 黑桃染",
+      "description": "商店 / 待出牌可用。选择1–3张可见扑克。所选扑克永久改为黑桃♠，保留点数、增强和版次。",
+      "cost": "商店基准售价：4金\n额外使用代价：无额外金币或牺牲代价。成功后消耗1件工具。",
+      "risk": "商店只选有效牌组，待出牌时只选当前可见手牌。取消、过期、非法目标、没有变化或代价不足均不消费工具与资源。",
+      "artUrl": "/assets/handdrawn-tools/tool-t06.thumbnail.webp",
+      "detailArtUrl": "/assets/handdrawn-tools/tool-t06.detail.webp"
+    }
+  ],
+  "items": [
+    {
+      "id": "U01",
+      "name": "宽桌面",
+      "description": "商店基准售价10金。下一场入场手牌上限+1，最多14张，当前场不补手牌。本局持续生效，每种不可重复持有、不可出售，共最多4件长期道具。",
+      "artUrl": "/assets/handdrawn-tools/item-u01.thumbnail.webp",
+      "detailArtUrl": "/assets/handdrawn-tools/item-u01.detail.webp"
+    },
+    {
+      "id": "U11",
+      "name": "另一间摊",
+      "description": "商店基准售价10金。后续开店长期道具货位1→2；当前货架不补货，刷新也不重抽该货架。本局持续生效，每种不可重复持有、不可出售，共最多4件长期道具。",
+      "artUrl": "/assets/handdrawn-tools/item-u11.thumbnail.webp",
+      "detailArtUrl": "/assets/handdrawn-tools/item-u11.detail.webp"
+    }
+  ],
+  "heldText": "练对子 · 第 1 槽\n● 普通\n每次出牌加入已保存的热度成长；打出对子、两对、三条、葫芦等同点数组合后，热度成长+10，最多+100。\n本次出牌使用旧值；新成长从下一次出牌起生效，每次出牌只长一次，额外计分不会多长。\n当前加成按保存值结算；出牌结算后才更新\n当前保存：+0\n\n版次：普通（无额外计分）\n\n规则与操作\n\n成组指最终牌型为对子、两对、三条、葫芦、四条、五条、同花葫芦、同花五条；普通同花即使含同点牌也不算。\n已有成长跨场保留，改打顺子、普通同花或高牌仍可使用，但不增长；出售后丢失，重买初始为0。\n计分封禁时不读取加成，非计分成长仍照常判断。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。\n\n版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。\n\n当前实例：无成长或使用计数\n实际买价 4 金；出售可得 2 金。\n出售后余额 6 → 8 金。\n\n大丑牌按从左至右的顺序触发。\n\n左移\n右移\n出售\n关闭",
+  "inventoryText": "工具包\n\n工具包 1 / 2：塔罗、星球、幻灵和补给，使用后会消耗。\n本局道具 1 / 4：持有即持续生效，不会用掉。\n点工具查看详情，选择目标后确认使用。\n\n消耗工具\n红桃染\n塔罗 · 红桃染\n本局道具\n宽桌面\n本局持续生效 · 不消耗\n关闭",
+  "status": "PASS"
+}

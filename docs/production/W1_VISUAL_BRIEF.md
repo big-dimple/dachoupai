@@ -72,3 +72,10 @@ W1下一步只需把四项候选转成同状态、同尺寸的比较任务；静
 - [B与C的冻结构建](https://github.com/big-dimple/dachoupai/blob/14a9a747fa42764ab8000b6f71382c7bd6bec8ac/docs/production/evidence/p1-j-group-upgrade-ui-2026-10-05/final/native-build.json)
 - [final逐图审阅记录](https://github.com/big-dimple/dachoupai/blob/14a9a747fa42764ab8000b6f71382c7bd6bec8ac/docs/production/evidence/p1-j-group-upgrade-ui-2026-10-05/final/png-review.json)
 - [PR27范围与未验项目汇总](https://github.com/big-dimple/dachoupai/blob/14a9a747fa42764ab8000b6f71382c7bd6bec8ac/docs/production/evidence/p1-j-group-upgrade-ui-2026-10-05/summary.json)
+
+
+## 2026-10-07 当前必要输入承接
+
+[同版原生输入](evidence/w1-inputs-2026-10-07/INPUTS.md)补齐当前合法受控九牌完整HUD、同seed正常三货/独立工具和长期物品、受控非空库存与P4价格/移动/出售确认取消。素材仅检查本批实际消费的10个稳定ID/12输出，原画继续复用。原5张生成候选与5905d4c旧trace保留身份，不冒充当前实现或用户认可。
+
+PC商店固定420px窄列和占位式条件提示由同一串行PC全流程修复批处理；A/B选定、P2四态同版整屏、主关闭48px、玩家观感、320/短横/真机等仍见[REVIEW](evidence/w1-inputs-2026-10-07/REVIEW.md)，不称W1全部完成。后续公开条件/五步发现验收挂钩见[W3最小卡](W3_MINIMAL_START_CARD.md)，不重排W0–W9。

@@ -1,0 +1,7 @@
+import {readFile,writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';import sharp from 'sharp';
+const rows=[],tiles=[];let i=0;
+for(const [root,ids] of [['handdrawn-p08',['erxiang','b10','b11','mantangcai','c11','q']],['handdrawn-tools',['tool-t03','tool-t06','item-u01','item-u11']]]){
+ const m=JSON.parse(await readFile('public/assets/'+root+'/manifest.json','utf8'));
+ for(const id of ids){const a=m.assets.find(a=>a.id===id);const purposes=id==='erxiang'?['avatar','selection']:id==='q'?['court']:id==='b10'?['thumbnail','detail']:['thumbnail'];for(const o of a.outputs.filter(o=>purposes.includes(o.purpose))){const path='public/assets/'+root+'/'+o.path,buf=await readFile(path),meta=await sharp(buf).metadata(),sha=createHash('sha256').update(buf).digest('hex');rows.push({id,domainId:a.domainId,purpose:o.purpose,path,bytes:buf.length,sha256:sha,manifestMatches:sha===o.sha256&&buf.length===o.bytes,width:meta.width,height:meta.height});if(o.purpose!=='detail'){tiles.push({input:await sharp(buf).resize(128,160,{fit:'contain',background:'#f3eadb'}).png().toBuffer(),left:(i%6)*128,top:Math.floor(i/6)*160});i++;}}}
+}
+await writeFile('shots/w1-inputs-20261007/assets.json',JSON.stringify({scope:'Only outputs actually consumed by the bounded first-chapter scenes; pixel review distinct from hashes.',rows},null,2)+'\n');await sharp({create:{width:768,height:Math.ceil(i/6)*160,channels:3,background:'#f3eadb'}}).composite(tiles).png().toFile('shots/w1-inputs-20261007/asset-contact.png');

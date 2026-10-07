@@ -1,5 +1,7 @@
 # 首轮 W1 样稿开工卡
 
+当前承接记录：[2026-10-07 原生输入与 W3 最小交接](evidence/w1-inputs-2026-10-07/INPUTS.md)，冻结运行源码 `27d31fc50bcbbdc4a7a3405eece92c54e9aa8314`。以下旧 SHA、生成候选和未完成项保留原历史身份；本批仅补必要输入，不代表 W1 整体通过。
+
 本卡只收口首轮 P1–P4 对照的输入、输出与止损，不扩大现有策划。设计输入足够开始有限样稿准备；完整自然三货状态和当前资源可读性仍待提取核实；已补齐受控商店陈列及b10未读取的历史trace。本卡归档本轮输入与交接边界，不代表已启动执行器或获准修改游戏代码；本轮游戏代码未更新，候选未接入。
 
 ## 目标与责任
@@ -106,3 +108,13 @@ A为三张短卡同屏，B为三条紧凑行＋选中详情；均保留独立工
 - [PR27已有轨迹与边界](https://github.com/big-dimple/dachoupai/blob/45bd8a8ffd9d27e2e0e2352aa2e6946fe4b1e596/docs/production/evidence/p1-j-group-upgrade-ui-2026-10-05/summary.json)：实际runtime `5905d4c4129e42af0d0a2e9f081662097ccd9cdd`，不能回填为45bd运行通过。
 - [成组规则](https://github.com/big-dimple/dachoupai/blob/45bd8a8ffd9d27e2e0e2352aa2e6946fe4b1e596/src/content/r2GroupUpgradeJokers.ts)及[合格牌型](https://github.com/big-dimple/dachoupai/blob/45bd8a8ffd9d27e2e0e2352aa2e6946fe4b1e596/src/domain/r2GroupHands.ts)。
 - [既有尺寸合同](https://github.com/big-dimple/dachoupai/blob/45bd8a8ffd9d27e2e0e2352aa2e6946fe4b1e596/docs/production/UX.md)及[资产历史](https://github.com/big-dimple/dachoupai/blob/45bd8a8ffd9d27e2e0e2352aa2e6946fe4b1e596/docs/production/ART.md)：遇到历史条款与当前合同冲突，以当前DELIVERY_PLAN为准。
+
+## 2026-10-07 当前输入补齐批次
+
+由用户恢复开发授权及本次有界委托承接；游戏单线、6.1 默认 Medium，无并发工作者。当前 main 27d31fc 为读取和运行基线，不把旧 5905d4c 报告重标为新运行。PC 布局上一批的真实 Edge 8 牌反馈由父协调者保管；本批云端九牌结果不替代真实 9/14 牌或手机验收。
+
+本批允许修改本卡、W1_VISUAL_BRIEF、DELIVERY_PLAN、ASSET_RECONCILIATION_2026-10-07，新增 W3_MINIMAL_START_CARD.md 与 `evidence/w1-inputs-2026-10-07/` 下 INPUTS.md、REVIEW.md、report.json、details.json、assets.json、controlled-shop.json、controlled-nine.json、natural-1280.json、natural-390.json、RUNNER.mjs、DETAIL_RUNNER.mjs、ASSET_RUNNER.mjs、SHA256SUMS，以及 natural-shop-1280/390、natural-tools-390、natural-items-390、held-b10-1280/390、nine-unselected-390、nine-selected-1280/390、controlled-inventory-390、asset-contact 的 PNG。生产代码、资源与任务状态不改，独立文档提交。
+
+**本批完成：** P1 当前合法九牌 checkpoint 与完整 HUD/库存/选择态；P3 同 seed 的当前正常入口完整三货、独立工具/物品及空库存，另留明确受控的非空库存；P4 同一持有 b10 的全文、买价/售价/确认、首末槽移动边界与取消保存不变。首章实际使用的 10 个稳定资源 ID / 12 个输出经字节 hash、解码和有限实际图像/界面查看；这不是全部素材验收。
+
+**仍未完成：** P1 单排/5＋4 A/B 选择、P2 四种状态的同版整屏对照、P3 A/B 改善对照、P4 改进后误触/返回验证、完整独立审美及用户认可；320/短横与真实触控/GPU/听感；自然取得宽桌面、完整九牌自然路线、自然 b03/b06 与顺同转型仍未知/未观察。原卡中的实际环境已在这次云端提取可用，用户 PC shell 状态和额度面板未在此证明。允许 [W3最小批次](W3_MINIMAL_START_CARD.md)消费已验证的必要输入，不将 W1/W2 全部签收或改 W0–W9 排期。
