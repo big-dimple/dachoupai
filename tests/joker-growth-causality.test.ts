@@ -1,0 +1,15 @@
+import {expect,it} from 'vitest';
+import {readFileSync} from 'node:fs';
+import {groupGrowthCausality} from '../src/game/JokerGrowthCausality';
+import {applyCommand,type R2RunState} from '../src/domain/run';
+const report=JSON.parse(readFileSync('docs/production/evidence/p1-j-group-upgrade-ui-2026-10-05/final/native-PASS.json','utf8'));
+const natural=report.cases.find((c:{name:string})=>c.name==='normal-erxiang');
+const copy=(s:R2RunState)=>groupGrowthCausality(s,s.jokers.find(j=>j.definitionId==='b10')!)!;
+it('saved natural two hands show actual old read, new growth and separate saved totals without mutating state',()=>{
+ for(const [state,read,total] of [[natural.first.state,0,10],[natural.second.state,10,20]] as const){const before=JSON.stringify(state),body=copy(state).body;expect(body).toContain(`本次实际读取热度成长：+${read}`);expect(body).toContain('结算后实际新增热度成长：+10');expect(body).toContain(`该次结算后累计保存：+${total}`);expect(body).toContain('新增成长不补加');expect(JSON.stringify(state)).toBe(before);expect(body).not.toContain('预计');}
+});
+it('sealed source has no invented read but can have real non-scoring growth',()=>{const s=report.cases.find((c:{name:string})=>c.name==='growth-b10-sealed').after.state;expect(copy(s).body).toContain('没有该实例读取成长的事件');expect(copy(s).body).toContain('实际新增热度成长：+10');});
+it('cap describes the actual +5 event rather than the rule max increment',()=>{const s=structuredClone(natural.first.state) as R2RunState;s.jokers[0].growth.heat={n:'95',d:'1'};const out=applyCommand(s,{runId:s.runId,commandId:'growth-cap',expectedSeq:s.commandSeq,action:{type:'PlayHand',selectedIds:natural.second.state.lastTrace.sets.playedIds}});if(!out.ok)throw Error(out.code);const body=copy(out.state).body;expect(body).toContain('实际读取热度成长：+95');expect(body).toContain('实际新增热度成长：+5');expect(body).toContain('累计保存：+100');});
+it('missing history and new instance never inherit an old instance trigger',()=>{const s=structuredClone(natural.first.state) as R2RunState;s.jokers[0].instanceId+='-new';s.jokers[0].growth={};expect(copy(s).body).toContain('没有保留该实例');expect(copy(s).body).not.toContain('本次实际读取');s.lastTrace=null;expect(copy(s).body).toContain('当前持有已保存热度成长：+0');});
+it('old profile and unrelated cards have no group-growth entry',()=>{const s=report.cases.find((c:{name:string})=>c.name==='legacy-e7-b10').first.state;expect(groupGrowthCausality(s,s.jokers[0])).toBeUndefined();});
+it('a real non-group hand reads carried growth but does not invent another increment',()=>{const s=structuredClone(natural.first.state) as R2RunState;const out=applyCommand(s,{runId:s.runId,commandId:'growth-high',expectedSeq:s.commandSeq,action:{type:'PlayHand',selectedIds:[s.handOrder[0]]}});if(!out.ok)throw Error(out.code);expect(copy(out.state).body).toContain('实际读取热度成长：+10');expect(copy(out.state).body).toContain('没有新增成长事件');expect(copy(out.state).body).toContain('累计保存：+10');});

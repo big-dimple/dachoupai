@@ -1,3 +1,4 @@
+import {groupGrowthCausality} from './JokerGrowthCausality';
 import {courtArtKey,queueCourtArtLoads} from './HanddrawnArt';
 import {R2HandCandidateCache,r2CandidateKey,r2HandRevision,type R2CandidateInput,type R2CandidateResult} from '../domain/r2HandCandidates';
 import {AI_HAND_POLICY,AiHandCandidateCache,aiHandKey,nextAiHand,type AiHandInput,type AiHandCursor} from './AiHandCandidates';
@@ -942,9 +943,10 @@ export class GameScene extends Phaser.Scene {
     const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=this.jokerDefinition(j.definitionId),index=this.run.jokers.indexOf(j),art=jokerArtUrl(d.id),artKey=jokerArtKey(d.id),rarity=JOKER_RARITY[d.rarity];
     const move=async(delta:number)=>{const current=this.run.jokers.map(j=>j.instanceId),ids=reorderJokerIds(current,id,current.indexOf(id)+delta);if(ids===current)return;await this.command({type:'ReorderJokers',ids});if(this.dialog.active(dialog))this.inspectJoker(id);};
     const notice=stageNotice(this.run),reason=this.jokerRestriction(j),restriction=reason?'\n'+reason:'';
-    const ability=this.jokerAbility(j,this.selectionPreview());
+    const ability=this.jokerAbility(j,this.selectionPreview()),growth=groupGrowthCausality(this.run,j);
     const body=ability?rarity.label+restriction+'\n版次：'+editionEffectText(j.edition)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 从右向左结算':' · 从左向右结算')+'。\n用下方按钮调序；出售须在商店确认。':rarity.symbol+' '+rarity.label+' · 当前 '+this.jokerValue(j)+restriction+'\n'+editionEffectText(j.edition)+'\n'+d.description+r2JokerExtraHelp(d)+'\n当前实例：'+r2JokerStateText(j,d)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 整手计分从右向左':' · 整手计分从左向右')+'；长按后拖动可调序，出售只在商店确认。';
     const dialog=this.dialog.open(d.name,body,[
+      ...(growth?[{label:'成长因果',disabled:!this.ready,run:()=>{const saved=groupGrowthCausality(this.run,j);if(saved)this.dialog.open(saved.title,saved.body);}}]:[]),
       {label:'左移',disabled:!this.ready||index===0,run:()=>move(-1)},{label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:()=>move(1)},
     ],{rarity:d.rarity,artLoad:{status:jokerArtLoadState(this,d.id).status,readStatus:()=>jokerArtLoadState(this,d.id).status,retry:()=>retryJokerArt(this,[d.id],()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();})},ability,collapseRules:!!ability,...(ability?{editionBody:'版次：'+editionEffectText(j.edition).split('。')[0]+(restriction?' · '+(this.presentation?'本手暂停':'当前暂停'):'')} :{}),...(j.definitionId==='f09'?{f09:{inactive:!!restriction,bodyInactive:this.presentation?ability?.bodyActive===false:(this.run.stage?.discardsUsed??0)>0,reduced:this.reducedMotion,alignedLayers:jokerArtAlignedLayers(j.definitionId),reason:restriction||undefined}}:{}),...(art?{portrait:{url:art,thumbnailUrl:jokerArtPreviewUrl(d.id),alt:d.name+'完整卡面',layout:'card' as const,caption:d.name}}:{})});
     if(!artKey||!this.textures.exists(artKey))this.attachJokerFallback(dialog,d.id);
