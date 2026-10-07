@@ -20,9 +20,9 @@ npm notice
 
 
  Test Files  136 passed (136)
-      Tests  2461 passed (2461)
-   Start at  11:04:01
-   Duration  36.67s (transform 5.02s, setup 0ms, import 18.22s, tests 69.35s, environment 18ms)
+      Tests  2462 passed (2462)
+   Start at  11:08:25
+   Duration  37.44s (transform 5.35s, setup 0ms, import 18.22s, tests 71.84s, environment 13ms)
 
 npm notice
 npm notice New major version of npm available! 11.9.0 -> 12.2.0
@@ -41,13 +41,13 @@ computing gzip size...
 dist/build-info.json                0.17 kB │ gzip:   0.15 kB
 dist/index.html                     0.55 kB │ gzip:   0.36 kB
 dist/assets/index-7M164BGR.css     31.21 kB │ gzip:   7.15 kB
-dist/assets/index-Cwvr8cEC.js   2,158.44 kB │ gzip: 607.95 kB
+dist/assets/index-D3kRPw9z.js   2,158.46 kB │ gzip: 607.96 kB
 
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
-✓ built in 5.17s
+✓ built in 5.28s
 npm notice
 npm notice New major version of npm available! 11.9.0 -> 12.2.0
 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0

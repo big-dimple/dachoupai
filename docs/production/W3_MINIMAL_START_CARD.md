@@ -35,4 +35,4 @@ inputSHA：`4a0fdf07cbc1f9bdca891cb16256bcb88997f60f`，父任务确认PR36已�
 
 allowedFiles补充：`src/game/ShopPurchaseReceipt.ts`、`tests/shop-purchase-receipt.test.ts`、`harness/w3-purchase-destination.mjs`；现有`src/game/ShopScene.ts`及文档证据。只消费提交后的真实state与当前profile定义，不改domain/content/application/platform、存档、RNG、数值、CI、资产。验收：大丑牌实际槽/实例、工具实际库存且未自动用、长期道具已持有/实际生效时机可查；查看/取消不扣款；保存失败或重复提交不假成功；PC三档及手机320/390/740检查、已有九牌回归保护。证据保存`docs/production/evidence/w3-purchase-destination-2026-10-07/`；真机/审美/完整W3继续待验。
 
-本批有界软件结果：[购物所得、去向与下一步](evidence/w3-purchase-destination-2026-10-07/README.md)。clean产品6d7d7f9，三类实际购入/入口、一次工具使用及保存失败检查通过；原PC/手机安全与九牌回归保护，仍待父独审/精确CI/真机共同验收。完整W3及自然成长路线因果理解不冒称完成。
+本批有界软件结果：[购物所得、去向与下一步](evidence/w3-purchase-destination-2026-10-07/README.md)。首轮clean产品6d7d7f9、最终工具引导/单测591955b，三类实际购入/入口、一次工具使用及保存失败检查通过；原PC/手机安全与九牌回归保护，仍待父独审/精确CI/真机共同验收。完整W3及自然成长路线因果理解不冒称完成。

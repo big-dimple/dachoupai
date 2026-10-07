@@ -4,7 +4,7 @@
 
 ## 身份和实际实现
 
-输入main：`4a0fdf07cbc1f9bdca891cb16256bcb88997f60f`。父任务确认PR36已独审、正常快进main且精确CI通过；本地fetch一致。执行卡独立文档提交`91d8fe6dcd74a05b00054dc0d1cfaef907f19697`；冻结产品/定向harness提交`6d7d7f99a8bb27fce66c8620fffba0aba80b1cfc`。按原DELIVERY_PLAN/W3卡选依赖已满足的购物闭环，不重排W0–W9。
+输入main：`4a0fdf07cbc1f9bdca891cb16256bcb88997f60f`。父任务确认PR36已独审、正常快进main且精确CI通过；本地fetch一致。执行卡独立文档提交`91d8fe6dcd74a05b00054dc0d1cfaef907f19697`；首轮产品/定向harness提交`6d7d7f99a8bb27fce66c8620fffba0aba80b1cfc`；最终无需目标工具引导与单测修正`591955b3e07df2d3cd77ec630a7fc8e3cc75b636`，仍无布局、领域、存档或RNG改动。按原DELIVERY_PLAN/W3卡选依赖已满足的购物闭环，不重排W0–W9。
 
 有限核对发现：购买成功原来主要显示已买名称/金币，玩家要自己找到新牌、工具或道具。本批成功保存后将既有构筑入口显示为“购物结果”，明确去向并提供现有新牌详情、工具包和构筑详情入口，不强制弹窗打断继续购物。
 
@@ -18,15 +18,17 @@
 
 ## 证据与门禁
 
-`report.json`来自clean源码6d7d7f9、C03构建11:02:31Z、系统Chromium151、DPR1、减少动态，原生鼠标输入。三类购物分别覆盖1280×720、1366×768、1920×1080、320×740、390×740、740×390，共18例。手机bottom34。确认后state实际commandSeq+1、金币按该受控商品价格扣除、RNG一致；购买取消/结果查看/关闭不再改变完整state，按钮至少48px且安全区内。
+`report.json`来自clean最终源码591955b、C03构建11:07:39Z、系统Chromium151、DPR1、减少动态，原生鼠标输入。三类购物分别覆盖1280×720、1366×768、1920×1080、320×740、390×740、740×390，共18例。手机bottom34。确认后state实际commandSeq+1、金币按该受控商品价格扣除、RNG一致；购买取消/结果查看/关闭不再改变完整state，按钮至少48px且安全区内。
 
 390工具完整下一步：新T06从工具包打开，选hearts-2后取消保持完整state；重开、选目标、确认使用，commandSeq只+1、库存减1、目标永久变spades，金币/RNG保持。注入真实IndexedDB quota保存失败：state保持，未出现已保存购物记录。此检查不宣称所有工具/经济路径完成。
 
 `controlled-purchase.json`是明确受控输入：沿用W1合法状态，将金币设30、已有b10改为b03且存倍率成长2，以允许合法购入新b10；使用既有makeCheckpoint校验并重算完整封套，非自然获取或玩家成功路线。没有大量种子搜索。
 
-`regression-summary.json`/`regression-full.json.gz`来自相同clean源码，后者是原始完整报告gzip（前者含SHA256）。原W3安全harness检查11个商店尺寸/安全区、五槽首末/调序/出售/取消，以及320/390×740、811/812×390九牌未选/已选均通过。保留PC区域与手机布局，不做反复美化。解压查看：`gzip -dc regression-full.json.gz`。
+`regression-summary.json`/`regression-full.json.gz`来自clean首轮源码6d7d7f9，后者是原始完整报告gzip（前者含SHA256）。原W3安全harness检查11个商店尺寸/安全区、五槽首末/调序/出售/取消，以及320/390×740、811/812×390九牌未选/已选均通过。保留PC区域与手机布局，不做反复美化。解压查看：`gzip -dc regression-full.json.gz`。
 
-定向29 tests/3 files和typecheck通过；最终`npm run verify`：2461 tests/136 files、typecheck及build通过；content与production-plan通过。见同目录日志。未用软件GPU帧率签收、未长录屏。
+最终仅补“需要目标时先选择”，避免把T17等无需目标工具误说成必须选目标；新增实际T17购买单测通过。18购买案例在591955b重查，九牌/安全管理等未动部分保留6d7d7f9原证据与身份。
+
+定向30 tests/3 files和typecheck通过；最终`npm run verify`：2462 tests/136 files、typecheck及build通过；content与production-plan通过。见同目录日志。未用软件GPU帧率签收、未长录屏。
 
 保留失败：`w3-purchase-fixture-failure.json`是初始受控封套未重算checksum导致导入未进入场景，后改用既有makeCheckpoint；`w3-purchase-label-failure.json`是脚本误以为工具包既有分组名是“长期道具”，实际为“本局道具”，只修检查名称。初期单测也由领域拒绝已有b10重复购买及超cap的b03测试数据；将样本改为未持有新b10/合法已存成长2，未改购买或成长规则。以上失败不伪造为产品或自然流程成功。
 
