@@ -34,3 +34,11 @@ W4/P2首样板仅软件候选，W6完整首章、新人理解、真机PC/手机�
 产品冻结更新为 `9f12669c7616d8b20ecd59cd5bb36f47c53e2f2d`：侧边剩余至少180px才用侧栏，否则在既有出牌区域上下分配特写和同尺寸已出牌行；桌面不借左侧工具入口作为该区域的下边界。仅GameScene两处条件/边界与原专项驱动增加两例，共用layout、手牌容量、规则和素材保持。
 
 62相关tests/3files与typecheck通过。`boundary-native-summary.json`、两张811/812截图及`boundary-frozen-gates.json`为冻结干净补强源码上的两个实际发动案例：特写正尺寸、所有文字/卡面在框内，不覆盖已出牌或计分数字；完整state-RNG/一次消费/刷新保持。source/index/HEAD严格相同。原10案例及原一次仓库聚合保留原SHA，未重复本地大回归；最终PR head另跑完整CI再由父核定。环境starting提示后原shell、文件、原分支与全部提交实际核实仍在，未创建新环境或丢弃树。
+
+## 当前最终容量补强（f685091，2026-10-07）
+
+`52a6201`的CI37684282964及production-docs37684282973成功，仍仅是上一版本。进一步核扩容发现两行手牌可能把出牌区域高度压至不足72px；仅上下分配仍会重叠。当前最终产品冻结为`f6850918c5fb1aafae7a667ece98f60d82cf61de`：共享特写区域选择改为侧栏→上下分配→实际来源卡槽的三段回退；紧凑名行不挤压牌面。没有修改共用layout、手牌窗口/容量、事件顺序或数值。
+
+新增64相关tests/3files与typecheck PASS。`capacity-final-native-summary.json`/`capacity-final-frozen-gates.json`为干净f685091上七个原生案例：390和320的9/14、740短横14，以及811/812初始发动。特写与计分数字/已出牌区域不交叠、内容在框内，实际一次消费、完整state-RNG和刷新保持，source/index/HEAD完全一致。原10例留在初版SHA，不冒充17例同一冻结源码。最终PR head完整CI另核，未重复本地全仓大回归。
+
+9/14均明确为受控入场容量检查点，领域实际PlayHand产生保存结果；14不是自然资源获得证明。最初用重复a04试造容量，被严格保存校验`duplicate-save-joker`拒绝，原`FAIL-capacity-duplicate-snapshot.json`保留。没有绕过或削弱唯一来源校验；改为明确的受控入场上限14/公共手牌快照，正常规则可达仍NOT_OBSERVED。七例每次导入与保存都通过现有严格checkpoint，不能拿它代签规则可达/用户设备。
