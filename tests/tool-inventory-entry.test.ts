@@ -2,7 +2,7 @@ import {describe,it,expect} from 'vitest';
 import {createRun} from '../src/domain/run';
 import {layout,playedFootprint,intersects} from '../src/game/layout';
 import {shopLayout} from '../src/game/ShopLayout';
-import {gameToolInventoryBox,toolInventoryPlayedArea,toolInventoryProgressY,shopToolInventoryRow,toolInventoryLabel} from '../src/game/ToolInventoryEntry';
+import {gameToolInventoryBox,toolInventoryPlayedArea,toolInventoryProgressY,shopToolInventoryRow,shopInventoryEntry,toolInventoryLabel} from '../src/game/ToolInventoryEntry';
 const profiles=[[320,568,0,0],[390,740,0,0],[844,300,12,12],[844,300,12,34],[1280,720,0,0]];
 describe('visible tool inventory entry reuses space around existing actions',()=>{
  it.each(profiles)('%s×%s safe%s/%s protects every hand seat, main action, status and current workplane', (width,height,top,bottom)=>{
@@ -41,4 +41,8 @@ describe('desktop height boundary respects the usable safe viewport',()=>{
    for(const b of [...Object.values(l.buttons),...Object.values(l.tableActions)]){expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);}
   }
  });
+});
+
+it('PC has one explicit inventory entry clear of the horizontal rack and sale panel',()=>{
+ for(const [width,height] of [[1000,768],[1280,720],[1912,954]]){const p=shopLayout(width,height,8,0,3),entry=shopInventoryEntry(p.tabs,p.pc!.inventoryEntry);expect(entry).toEqual(p.pc!.inventoryEntry);expect(entry.height).toBe(44);for(const b of [...p.slots,p.build,p.pc!.shopPanel])expect(intersects(entry,b)).toBe(false);}
 });

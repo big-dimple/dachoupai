@@ -23,3 +23,8 @@ export function shopToolInventoryRow(tabs:Box){
   const inventory={x:tabs.x+tabs.width-88,y:tabs.y,width:88,height:44};
   return {inventory,shelves:{...tabs,width:tabs.width-94}};
 }
+
+/** PC stock is already above the shop; its entry must never join sale-category tabs. */
+export function shopInventoryEntry(tabs:Box,pcEntry?:Box|null):Box {
+  return pcEntry??shopToolInventoryRow(tabs).inventory;
+}

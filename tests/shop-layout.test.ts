@@ -55,29 +55,22 @@ it('actual short-safe-top24 inventory reserves its whole61.6px frame above the a
 });
 
 
-it('wide PC shops use independent readable goods and build regions without huge cards or action overlap',()=>{
- for(const [width,height] of [[1024,768],[1280,720],[1366,768],[1912,954],[1920,1080]])for(const top of [8,24])for(const bottom of [0,34])for(const cols of [1,2,3]){
-  const l=shopLayout(width,height,top,bottom,cols,true);expect(l.desktop).toBe(true);expect(l.tabs.width).toBeGreaterThan(420);
-  const actions=[l.chapter,l.items,l.reroll,l.build,l.play],tiles=l.shelf.map(b=>shopOfferCopy(l,b).tile);
-  for(const b of [...tiles,...l.slots,...actions,l.tabs]){expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(top);expect(b.x+b.width).toBeLessThanOrEqual(width);expect(b.y+b.height).toBeLessThanOrEqual(height-bottom);}
-  for(const tile of tiles)for(const b of [...l.slots,...actions,l.tabs])expect(intersects(tile,b)).toBe(false);
-  for(const [i,b] of l.slots.entries()){for(const other of [...l.slots.slice(i+1),...actions,l.tabs])expect(intersects(shopOwnedHitBox(b,l.reroll.y,true),other)).toBe(false);}
-  for(const [i,b] of actions.entries()){expect(b.height).toBeGreaterThanOrEqual(44);for(const other of actions.slice(i+1))expect(intersects(b,other)).toBe(false);}
-  for(const b of l.shelf){expect(b.width).toBeGreaterThanOrEqual(112);expect(b.width).toBeLessThanOrEqual(144);expect(b.height/b.width).toBeCloseTo(1.4);expect(shopOfferCopy(l,b).width).toBeGreaterThan(b.width);}
+it('PC regions preserve left state, upper horizontal owned rail and lower simultaneous sale groups',()=>{
+ for(const [width,height] of [[1000,768],[1024,768],[1280,720],[1366,768],[1912,954],[1920,1080]]){
+  const l=shopLayout(width,height,8,0,3,true),p=l.pc!;expect(p).toBeTruthy();expect(l.slots.every(b=>b.y===l.slots[0].y)).toBe(true);
+  expect(p.left.x+p.left.width).toBeLessThan(p.ownedRail.x);expect(l.slots[0].y+l.slots[0].height).toBeLessThan(p.shopPanel.y);
+  const actions=[l.chapter,l.build,l.play,l.reroll,p.inventoryEntry];
+  for(const [i,b] of actions.entries()){expect(intersects(b,{x:width-148,y:8,width:148,height:44})).toBe(false);expect(b.height).toBeGreaterThanOrEqual(44);for(const other of actions.slice(i+1))expect(intersects(b,other)).toBe(false);}
+  for(const b of [...l.slots,...actions,...p.jokerOffers,p.toolOffers,p.itemOffers,p.feedback]){expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(8);expect(b.x+b.width).toBeLessThanOrEqual(width);expect(b.y+b.height).toBeLessThanOrEqual(height);}
+  for(const b of [...p.jokerOffers,p.toolOffers,p.itemOffers])for(const a of [...actions,p.feedback])expect(intersects(b,a)).toBe(false);
+  for(const [i,b] of l.slots.entries())expect(shopOwnedDropIndex(l,b.x+b.width/2,b.y+b.height/2)).toBe(i);
+  expect(shopOfferCopy(l,l.shelf[0]).tile).toEqual(p.jokerOffers[0]);
  }
 });
 
-it('desktop entry falls back when safe height cannot fit its separate inventory/actions',()=>{
- for(const [width,height,top,bottom] of [[1280,640,8,0],[1280,700,34,34],[1920,500,24,34],[768,1024,8,0],[740,390,0,0],[390,740,12,0],[320,740,12,0]])expect(shopLayout(width,height,top,bottom,3,true).desktop).toBe(false);
-});
-
-
-it('wrapped owned cards drop into the actual row and gaps do not reorder',()=>{
- const l=shopLayout(1912,954,8,0,3,true);
- for(const [i,b] of l.slots.entries())expect(shopOwnedDropIndex(l,b.x+b.width/2,b.y+b.height/2)).toBe(i);
- expect(shopOwnedDropIndex(l,l.slots[0].x,l.slots[0].y-1)).toBe(-1);
- expect(shopOwnedDropIndex(l,l.slots[0].x,l.slots[0].y+l.slots[0].height+8)).toBe(-1);
- const phone=shopLayout(390,740,8,0,3,true);expect(shopOwnedDropIndex(phone,phone.slots[2].x+2,0)).toBe(2);
+it('short PC uses the existing broad short layout, while mobile keeps its exact layout',()=>{
+ for(const [width,height,top,bottom] of [[1280,640,8,0],[1280,720,24,34],[1024,500,24,34],[1912,710,8,0]]){const l=shopLayout(width,height,top,bottom,3,true);expect(l.pc).toBeNull();expect(l.short).toBe(true);expect(l.tabs.width).toBeGreaterThan(420);}
+ for(const [width,height] of [[320,568],[360,640],[390,740],[430,932],[844,300]])expect(shopLayout(width,height,8,0,3,true).pc).toBeNull();
 });
 
 it('physical500 with safe insets uses short shop and keeps full inventory targets inside usable height',()=>{

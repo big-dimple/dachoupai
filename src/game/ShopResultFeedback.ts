@@ -2,6 +2,7 @@ import type {Box}from'./layout';import type{shopLayout}from'./ShopLayout';
 export interface ShopResultLine {name:string;text:string}
 /** The existing footer message slot is below actions, never a card/button overlay. */
 export function shopResultBox(p:ReturnType<typeof shopLayout>,height:number,bottom:number):Box {
+ if(p.pc)return p.pc.feedback;
  const x=p.short?p.x:p.tabs.x,width=p.short?p.w:p.tabs.width;
  return{x,y:Math.min(p.noticeY-1,height-bottom-21),width,height:20};
 }
