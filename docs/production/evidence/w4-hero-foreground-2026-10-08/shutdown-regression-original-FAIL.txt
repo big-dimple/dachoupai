@@ -1,0 +1,33 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/hero-climax.test.ts (6 tests | 1 failed) 104ms
+   × external Phaser destruction clears owned tweens and release wait without recursively destroying the group 16ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/hero-climax.test.ts > external Phaser destruction clears owned tweens and release wait without recursively destroying the group
+AssertionError: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/hero-climax.test.ts:37:134
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  16:53:20
+   Duration  1.14s (transform 706ms, setup 0ms, import 878ms, tests 104ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

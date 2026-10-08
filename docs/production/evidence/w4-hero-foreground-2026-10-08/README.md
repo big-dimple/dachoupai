@@ -22,7 +22,7 @@
 
 保存退出确有产品错误：[带原因原生FAIL](native-exit-cause-original-FAIL.json)记录SceneManager.stop→DisplayList.shutdown→Container.destroy/removeFromDisplayList的sys异常。Phaser DESTROY在active/scene清除之前发出；原前景监听器再次destroy自身，递归销毁中断场景退出。关页时又触发可见性监听resetFX异常是原退出未完成的后续错误，不冒称无异常。
 
-新增回归在原产品上实测[1 FAIL/5 PASS](shutdown-regression-original-FAIL.log)，外部销毁次数为2；最终 `f7af327` 把资源清理和主动销毁分开，外部销毁仅清理、不再destroy容器。待退场Promise也在销毁或中途减少动态时释放，专属tween取消、重复dispose无副作用。[57项/7文件定向PASS](targeted-57-PASS.log)、[最终typecheck](typecheck-shutdown-PASS.log)；保存退出和窗口变化原生最终PASS。初版55项/type保其原检查范围，不改成最终57项。最终标准完整CI一次在文档head运行，精确SHA、测试数量、六浏览器profile/resource pulse、各scope before=after按PR最终回执核，不重复本地整包。
+新增回归在原产品上实测[1 FAIL/5 PASS](shutdown-regression-original-FAIL.txt)，外部销毁次数为2；最终 `f7af327` 把资源清理和主动销毁分开，外部销毁仅清理、不再destroy容器。待退场Promise也在销毁或中途减少动态时释放，专属tween取消、重复dispose无副作用。[57项/7文件定向PASS](targeted-57-PASS.txt)、[最终typecheck](typecheck-shutdown-PASS.txt)；保存退出和窗口变化原生最终PASS。初版55项/type保其原检查范围，不改成最终57项。最终标准完整CI一次在文档head运行，精确SHA、测试数量、六浏览器profile/resource pulse、各scope before=after按PR最终回执核，不重复本地整包。
 
 ## 音乐与资源
 
