@@ -105,6 +105,7 @@ export function r2CreateJoker(definitionId:string,instanceId:string,paidPrice:nu
 }
 
 export function assertR2Invariants(state:R2RunState):void {
+  const activeStage=state.phase==='await-input'||state.phase==='pending-refill';
   const R2_JOKERS=r2JokerDefinitionsFor(state);
   const check=(condition:boolean,label:string)=>{if(!condition)throw new Error(`Run invariant: ${label}`);};
   check(state.schemaVersion===2 && state.rulesVersion==='r2' && !!r2RulesetFor(state),'r2 versions');
@@ -138,8 +139,8 @@ export function assertR2Invariants(state:R2RunState):void {
     }
   }
   if(hasR2ComboGrowthContract(state))for(const joker of state.jokers){
-    if(joker.definitionId==='f10')check(joker.counters?.rescueArmed===((state.phase==='await-input'||state.phase==='pending-refill')&&!!state.stage&&state.stage.playIndex===0&&state.stage.discardsUsed>0&&r2ColdOpening(state.stage.openingDiscard)),'armed rescue stage');
-    if(joker.definitionId==='a06'&&joker.counters?.alternationUsed&&state.phase==='await-input')check(!!state.stage&&state.stage.playIndex>=2,'alternation stage');
+    if(joker.definitionId==='f10')check(joker.counters?.rescueArmed===(activeStage&&!!state.stage&&state.stage.playIndex===0&&state.stage.discardsUsed>0&&r2ColdOpening(state.stage.openingDiscard)),'armed rescue stage');
+    if(joker.definitionId==='a06'&&joker.counters?.alternationUsed&&activeStage)check(!!state.stage&&state.stage.playIndex>=2,'alternation stage');
   }
   check(typeof state.safetyNetUsed==='boolean'&&(!state.safetyNetUsed||state.jokers.every(j=>j.definitionId!=='f07')),'safety-net lifetime');
   check(state.consumables.length<=r2ConsumableCapacity(state)&&new Set(state.consumables.map(c=>c.instanceId)).size===state.consumables.length&&state.consumables.every(c=>!!c.instanceId&&r2ToolSupported(c.definitionId)&&r2ToolAllowed(state,c.definitionId)),'consumable schema/slots/capability');
@@ -156,13 +157,13 @@ export function assertR2Invariants(state:R2RunState):void {
   check(R2_IMPLEMENTED_TOOL_FEATURES.includes('first-boss-supply')||!state.supplyRewardClaimed,'executable first-boss reward');
   check(Object.entries(state.chapterHandUsage).every(([type,count])=>R2_HAND_TYPES.includes(type as R2HandType)&&integer(count)&&Object.hasOwn(state.handLevels,type)),'chapter hand usage');
   check(Object.values(state.chapterHandUsage).reduce((sum,count)=>sum+BigInt(count!),0n)<=BigInt(state.commandSeq),'chapter use count budget');
-  check(integer(state.stageIndex)&&state.stageIndex<=chapterMaximum*3&&(!['shop','stage-ready','await-input'].includes(state.phase)||state.stageIndex<chapterMaximum*3),'available stage/phase');
+  check(integer(state.stageIndex)&&state.stageIndex<=chapterMaximum*3&&(!(['shop','stage-ready'].includes(state.phase)||activeStage)||state.stageIndex<chapterMaximum*3),'available stage/phase');
   if(state.phase==='stage-cleared')check(state.stageIndex<chapterMaximum*3||state.tourMode==='endless','available cleared stage');
   const completion=state.normalCompletion;
   if(completion!==null)check(!!completion&&Object.keys(completion).length===2&&completion.clearId===`${state.runId}/clear/23`&&scoreString(completion.totalHeat)&&BigInt(completion.totalHeat)>0n&&BigInt(completion.totalHeat)<=BigInt(state.totalHeat),'normal clear qualification');
   if(state.tourMode==='endless')check(completion!==null&&state.chapter>=9&&state.stageIndex>=24&&state.phase!=='run-won','qualified endless tour');
   else check(state.phase==='run-won'&&state.mode==='standard'?completion!==null&&completion.totalHeat===state.totalHeat:completion===null,'normal completion lifetime');
-  if(state.phase==='await-input'||state.phase==='run-lost'&&state.outcome?.reason!=='abandoned')check(state.stage?.index===state.stageIndex,'active stage pointer');
+  if(activeStage||state.phase==='run-lost'&&state.outcome?.reason!=='abandoned')check(state.stage?.index===state.stageIndex,'active stage pointer');
   if(['stage-cleared','run-won'].includes(state.phase))check(state.stage!==null&&state.stage.index+1===state.stageIndex,'completed stage pointer');
   if(state.phase==='run-won')check(state.tourMode==='normal'&&state.stageIndex===R2_AVAILABLE_CHAPTERS*3&&state.outcome?.reason==='all-stages-cleared'&&!!state.stage?.clearId&&(state.mode!=='standard'||state.stage.clearId===completion?.clearId),'normal completion');
   if(state.stage) {
@@ -172,15 +173,15 @@ export function assertR2Invariants(state:R2RunState):void {
     check(state.stage.handLimit===(state.stage.boss?.definitionId==='B11'?Math.max(R2_RESOURCE_CONTRACT.handMinimum,state.stage.initialHandLimit-state.stage.playIndex):state.stage.initialHandLimit),'stage hand limit');
     check(integer(state.stage.initialHands)&&state.stage.initialHands>=2&&state.stage.initialHands<=5&&integer(state.stage.initialDiscards)&&state.stage.initialDiscards>=config.baseDiscards&&state.stage.initialDiscards<=4,'entry budgets');
     check(config.chapterJokerBanCount===1?R2_JOKERS.some(definition=>definition.id===state.stage!.challengeDisabledJokerId):state.stage.challengeDisabledJokerId===null,'stage challenge ban');
-    if(state.phase==='await-input')check(state.stage.challengeDisabledJokerId===state.chapterDisabledJokerId,'active challenge snapshot');
+    if(activeStage)check(state.stage.challengeDisabledJokerId===state.chapterDisabledJokerId,'active challenge snapshot');
     check(typeof state.stage.doubleDiscardBeforeFirstPlay==='boolean','discard rule snapshot');
     check(state.stage.index%3===2?r2BossPlanValid(state.stage.boss)&&state.stage.boss.definitionId===state.seenBossIds[Math.floor(state.stage.index/3)]:state.stage.boss===null,'entry boss snapshot');
-    if(state.stage.index===state.stageIndex&&state.phase==='await-input'&&state.stage.boss)check(stableHash(state.stage.boss)===stableHash(state.boss),'active boss snapshot');
+    if(state.stage.index===state.stageIndex&&activeStage&&state.stage.boss)check(stableHash(state.stage.boss)===stableHash(state.boss),'active boss snapshot');
     check(state.stage.doubleDiscardBeforeFirstPlay===(state.stage.boss?.definitionId==='B01'),'active discard rule');
     const validIds=(values:readonly string[],maximum:number)=>Array.isArray(values)&&values.length<=maximum&&new Set(values).size===values.length&&values.every(id=>typeof id==='string'&&id.length>0&&id.length<=512);
     check(validIds(state.stage.initialJokerIds,r2JokerCapacity(state)),'entry joker identities');
     check(validIds(state.stage.sealedJokerIds,state.stage.playIndex)&&state.stage.sealedJokerIds.every(id=>state.stage!.initialJokerIds.includes(id))&&(state.stage.boss?.definitionId==='B15'||state.stage.sealedJokerIds.length===0),'sealed joker ledger');
-    if(state.phase==='await-input')check(state.jokers.every(joker=>state.stage!.initialJokerIds.includes(joker.instanceId)),'live stage joker identities');
+    if(activeStage)check(state.jokers.every(joker=>state.stage!.initialJokerIds.includes(joker.instanceId)),'live stage joker identities');
     check(state.stage.boss?.definitionId!=='B08'||!state.stage.wagerSelected&&!state.stage.wagerUsed,'disabled character wager');
     check(r2UsesAssist(state)?typeof state.stage.assistUsed==='boolean'&&(!state.stage.assistUsed||state.stage.playIndex>0):!Object.hasOwn(state.stage,'assistUsed'),'assist stage shape');
     check(typeof state.stage.rescueUsed==='boolean'&&(!state.stage.rescueUsed||state.safetyNetUsed),'stage rescue');
@@ -201,7 +202,7 @@ export function assertR2Invariants(state:R2RunState):void {
     check(state.stage.disabledIds.every(id=>ids.includes(id)),'disabled IDs');
   }
   for(const [type,level] of Object.entries(state.handLevels))check(R2_HAND_TYPES.includes(type as R2HandType)&&Number.isInteger(level)&&level!>=1&&level!<=30,'hand levels');
-  check(state.phase!=='await-input'||state.stage!==null,'play stage');
+  check(!activeStage||state.stage!==null,'play stage');
   check(state.phase!=='shop'||state.shop!==null,'shop shelf');
   if(state.shop){
     const s=state.shop,offers=[...s.offers,...s.toolOffers,...s.itemOffers];
