@@ -51,7 +51,10 @@ describe('normal new-game policy and exact retry creation',()=>{
   expect(amo.buildTip).not.toMatch(/单张|Lv3|高牌升级/);expect(amo.buildTip).toContain('不能助攻');
   expect(amo.passiveDescription).toMatch(/每场1次/);expect(amo.passiveDescription).toContain('对子×2／三条×4');
   expect(characterForNewRun('azao').passiveDescription).toContain('重复合格牌也可释放');
+  expect(characterForNewRun('xiemu').passiveName).toBe('留钱／燃金（试行）');
+  expect(characterForNewRun('xiemu').passiveDescription).toContain('替换旧末手×2与末手+2金');
+  expect(getCharacter('xiemu').passiveDescription).toContain('最后可用出牌');
   expect(getCharacter('amo').buildTip).toContain('单张');
-  for(const id of CHARACTER_IDS.filter(id=>id!=='amo'&&id!=='azao'))expect(characterForNewRun(id)).toBe(getCharacter(id));
+  for(const id of CHARACTER_IDS.filter(id=>id!=='amo'&&id!=='azao'&&id!=='xiemu'))expect(characterForNewRun(id)).toBe(getCharacter(id));
  });
 });
