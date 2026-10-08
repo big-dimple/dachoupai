@@ -1,3 +1,4 @@
+import {attachFirstChapterGuide} from './FirstChapterGuide';
 import type {R2RunState} from '../domain/r2Run';
 import {DetailDialog} from './DetailDialog';
 import {BUILD_FOCUS,BUILD_LABEL,buildJourneyFacts,currentBuildFocus,chooseBuildFocus,type BuildFocus} from './BuildJourney';
@@ -11,11 +12,11 @@ export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:Jo
   const art:Record<BuildFocus,string>={group:'b10',straight:'c11',flush:'c09'};
   dialog.open('你想怎样组牌？','方向只整理货架，不锁玩法；随时可换。',[
    ...(actions.chapter?[{label:'本章节目',run:actions.chapter}]:[]),...(actions.manage?[{label:'持有牌管理',run:actions.manage}]:[])
-  ],{summaryBody:'选一个想试的方向',collapseRules:true,rulesLabel:'路线与使用说明',cards:BUILD_FOCUS.map(f=>{const facts=buildJourneyFacts(state,f),stock=facts.offers.find(o=>o.kind==='jokers'),owned=facts.owned[0];return {title:BUILD_LABEL[f],url:stock?.url??owned?.url??jokerArtPreviewUrl(art[f]),body:shortGuide[f]+'\n'+(stock?'现货：'+stock.title:owned?'持有：'+owned.title:'路线示意 · 现货可进入后比较'),action:{label:'选择'+BUILD_LABEL[f],run:()=>{chooseBuildFocus(state.runId,f);actions.onFocus?.();showBuildJourney(dialog,state,actions);}}};})});return;
+  ],{summaryBody:'选一个想试的方向',collapseRules:true,rulesLabel:'路线与使用说明',cards:BUILD_FOCUS.map(f=>{const facts=buildJourneyFacts(state,f),stock=facts.offers.find(o=>o.kind==='jokers'),owned=facts.owned[0];return {title:BUILD_LABEL[f],url:stock?.url??owned?.url??jokerArtPreviewUrl(art[f]),body:shortGuide[f]+'\n'+(stock?'现货：'+stock.title:owned?'持有：'+owned.title:'路线示意 · 现货可进入后比较'),action:{label:'选择'+BUILD_LABEL[f],run:()=>{chooseBuildFocus(state.runId,f);actions.onFocus?.();showBuildJourney(dialog,state,actions);}}};})});attachFirstChapterGuide(state,actions.onFocus);return;
  }
  const facts=buildJourneyFacts(state,focus);
  const offers=facts.offers.map(o=>({title:o.title,url:o.url,stat:o.decision,body:o.brief,action:{label:o.affordable?'查看并选择这件':'查看差额与条件',run:()=>actions.offers?.(o.id,o.kind)}}));
- const owned=facts.owned.map(o=>{const p=facts.progress.find(p=>p.instanceId===o.id);return {title:o.title,url:o.url,stat:p?.metric,body:p?p.cause+'\n'+p.next:'已持有 · 按来源条件生效',action:{label:'查看来源与成长',run:()=>actions.source(o.id)}};});
+ const owned=facts.owned.map(o=>{const p=facts.progress.find(p=>p.instanceId===o.id);return {title:o.title,url:o.url,stat:p?.metric,body:o.body+'\n'+(p?p.cause+'\n'+p.next:''),action:{label:'查看来源与成长',run:()=>actions.source(o.id)}};});
  const tools=facts.tools.map(t=>({...t,action:{label:t.openable?'选择工具与目标':'查看工具规则',run:()=>actions.tool(t.id)}}));
  const cards=state.phase==='shop'?[...offers,...owned,...tools]:[...owned,...tools];
  const summary=state.phase==='shop'?'手头 '+state.gold+' 金 · 买组件或留金入场':facts.progress[0]?.metric??'用已有牌继续尝试';
@@ -27,5 +28,5 @@ export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:Jo
   ...(actions.publicHands?[{label:'当前手牌可成型',run:actions.publicHands}]:[]),
   {label:'打开工具包',disabled:!actions.ready||!state.consumables.length,run:actions.tools},
   {label:actions.continueLabel,primary:true,disabled:!actions.ready,run:actions.continue},
- ],{summaryBody:summary+'\n'+shortGuide[focus]+(state.phase==='shop'&&!offers.length?'\n本店无对应现货，可留金或换方向':''),cards,collapseRules:true,rulesLabel:'利息、牌组与完整来源规则'});
+ ],{summaryBody:summary+'\n'+shortGuide[focus]+(state.phase==='shop'&&!offers.length?'\n本店无对应现货，可留金或换方向':''),cards,collapseRules:true,rulesLabel:'利息、牌组与完整来源规则'});attachFirstChapterGuide(state,actions.onFocus);
 }

@@ -1,3 +1,4 @@
+import {firstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
 import {buildGrowthProgress} from './BuildGrowthProgress';
 import {showBuildGrowth} from './BuildGrowthView';
 import {keyHighlight,keyHighlightBeat,savedGrowthStamp,type JokerKeyHighlight} from './JokerKeyHighlight';
@@ -829,7 +830,7 @@ export class GameScene extends Phaser.Scene {
     if(!this.ready||this.presentation||this.run.phase!=='await-input')return;
     this.handInput?.cancel();this.view.cancelInteraction();this.candidateGhost=undefined;
     const context=r2ScoreContext(this.run,this.hand,[]),mods=readR2Modifiers(this.run.jokers,this.jokerDefinitions);
-    this.dialog.open('牌型规则',(this.assistProfile?ASSIST_AI_EXPLANATION+'\n'+ASSIST_EXPLANATION+'\n\n':'')+AI_HAND_POLICY+'\n\n'+handRuleReference(this.run.handLevels,{fourStraight:!!(context.handRules?.fourStraight||mods.fourStraight),fourFlush:!!(context.handRules?.fourFlush||mods.fourFlush)}),[{label:'看当前手牌怎么凑',primary:true,run:()=>this.inspectCandidates()}]);
+    this.dialog.open('牌型规则',(this.assistProfile?ASSIST_AI_EXPLANATION+'\n'+ASSIST_EXPLANATION+'\n\n':'')+AI_HAND_POLICY+'\n\n'+handRuleReference(this.run.handLevels,{fourStraight:!!(context.handRules?.fourStraight||mods.fourStraight),fourFlush:!!(context.handRules?.fourFlush||mods.fourFlush)}),[{label:'看当前手牌怎么凑',primary:true,run:()=>this.inspectCandidates()}]);attachFirstChapterGuide(this.run,()=>this.render());
   }
   private updateControls():void {
     if(!this.controlsLive)return;
@@ -855,7 +856,8 @@ export class GameScene extends Phaser.Scene {
     const latestBenefit=!this.presentation&&this.run.lastTrace&&!this.selectedIds.size?[...this.run.lastTrace.events].reverse().map(e=>savedBenefit(this.run,this.run.lastTrace!,e)).find(Boolean):undefined;
     const benefitReminder=latestBenefit?latestBenefit.title+' · '+latestBenefit.effect+' · 上手详情':'';
     const discovery=this.ready&&!this.presentation&&!this.selectedIds.size&&!this.statusMessage&&!reminders?savedGrowthDiscovery(this.run):undefined;
-    this.statusText.setName(discovery?'growth/discovery':'').setText(discovery?.full||sweepReminder||this.statusMessage||selectedReminder||reminders||entryReminder||benefitReminder||memoryReminder||reason);
+    const guideCue=this.ready&&!this.presentation&&!this.selectedIds.size&&this.handsLeft>1?firstChapterGuide(this.run)?.cue:undefined;
+    this.statusText.setName(discovery?'growth/discovery':'').setText(discovery?.full||sweepReminder||this.statusMessage||selectedReminder||guideCue||reminders||entryReminder||benefitReminder||memoryReminder||reason);
     if(!discovery&&benefitReminder&&!sweepReminder&&!this.statusMessage&&!selectedReminder&&!reminders&&!entryReminder&&this.statusText.width>handWindow.status.width)this.statusText.setText('已保存收益 · 菜单查看上手');
     if(selectedReminder&&this.statusText.width>handWindow.status.width)this.statusText.setText('点所选条件 · 查看来源');
     // Short landscape has an existing 12px bottom table margin: two normal 16px rows fit without moving controls.
@@ -1721,6 +1723,7 @@ export class GameScene extends Phaser.Scene {
       return [this.jokerDefinition(joker.definitionId).name+'：'+copy.state+(edition?'；版次 '+edition:'')];
     });
     this.dialog.open('上手已入账 · '+HAND_LABELS[score.handType]+' +'+heatText(score.finalScore),this.formatBreakdown(score)+'\n\n'+score.events.filter(event=>event.phase!=='base'&&event.phase!=='finalScore').map(event=>this.eventSource(event)+' '+this.operationText(event)+(['afterHand','beforeFailure','onStageClear'].includes(event.phase)?'':' → 热度 '+fractionText(event.after.H)+' / 倍率 '+fractionText(event.after.M))).join('\n'),[{label:'继续培养',primary:true,disabled:!this.ready,run:()=>this.inspectJourney()},...(this.run.consumables.length?[{label:'打开工具包',disabled:!this.ready,primary:true,run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))}]:[]),{label:'回看演出',disabled:!this.ready,run:()=>{this.dialog.close();this.replayLastTrace();}}],benefits.length?{cards:savedExperienceCards(this.run,score),effectBody:this.formatBreakdown(score),collapseRules:true,rulesLabel:'完整计分明细'}:{cards:savedExperienceCards(this.run,score)});
+    attachFirstChapterGuide(this.run,()=>this.render());
   }
 
   /** 本关结束：先让玩家看清结果，再进入明确的过场状态 */

@@ -1,3 +1,4 @@
+import {enrollFirstChapterGuide} from './FirstChapterGuide';
 import type {RunLaunchIntent} from './RunLaunch';
 import type Phaser from 'phaser';
 import type {SavedRun} from '../application/SavedRun';
@@ -15,6 +16,7 @@ export async function startRun(scene: Phaser.Scene, seed: string, characterId: C
   if(!r2ModeSeedAllowed(config,seed)){session.notice='此模式需要使用规定的固定种子。';return;}
   const controller=await session.start(seed,characterId,modeConfig,intent);
   if(!controller)return;
+  if(intent.kind==='new')enrollFirstChapterGuide(controller.state);
   scene.registry.set('runController', controller);
   scene.registry.set('runState', controller.state);
   return controller;

@@ -148,6 +148,7 @@ export class DetailDialog {
         item.className='experience-card';title.textContent=card.title;text.textContent=card.body;copy.append(title);if(card.stat){const stat=document.createElement('strong');stat.className='experience-card-stat';stat.textContent=card.stat;copy.append(stat);}copy.append(text);
         if(card.url){const image=document.createElement('img');image.src=card.url;image.alt=card.title+'卡面';image.width=80;image.height=112;image.decoding='async';image.onerror=()=>{image.hidden=true;};item.append(image);cleanups.push(()=>{image.onerror=null;});}
         if(card.action){const b=document.createElement('button');b.type='button';b.textContent=card.action.label;b.onclick=card.action.run;copy.append(b);}
+        if(card.details){const details=document.createElement('details'),label=document.createElement('summary'),text=document.createElement('p');details.className='card-rules';label.textContent='条件、配合与完整损失';text.textContent=card.details;details.append(label,text);copy.append(details);}
         item.append(copy);gallery.append(item);
       }intro.append(gallery);
     }

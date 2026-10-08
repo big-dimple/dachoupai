@@ -371,3 +371,7 @@ button[aria-busy=true] { border-style:dashed; }
 .detail-dialog.hand-candidate-dialog[open] { overflow:clip; }
 
 .hand-candidates p.candidate-caption { margin:6px 0; }
+
+.first-chapter-guide { margin-top:12px; padding:10px; border-top:1px solid #a38b66; font-size:14px; line-height:1.55; }
+.first-chapter-guide summary { cursor:pointer; min-height:44px; display:flex; align-items:center; }
+.first-chapter-guide .dialog-actions { position:static; padding:0; flex-wrap:wrap; background:transparent; }

@@ -13,7 +13,7 @@ import {R2_MODE_CATALOG} from '../content/r2Modes';
 import {HAND_LABELS} from '../content/handLabels';
 import type {ScoreBeat} from './scorePresentation';
 import {toolInfo} from './r2ToolInfo';
-export interface ExperienceCard {title:string;body:string;stat?:string;url?:string;action?:{label:string;run:()=>void}}
+export interface ExperienceCard {title:string;body:string;details?:string;stat?:string;url?:string;action?:{label:string;run:()=>void}}
 export type SelectionReadiness='ready'|'pending'|'unmet'|'limited';
 /** Public condition facts only: no score projection, future hand, RNG or command. */
 export function selectionExperience(state:R2RunState,joker:R2RunState['jokers'][number],ctx:JokerMemoryContext){
