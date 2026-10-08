@@ -32,7 +32,7 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  const id=key.heroId;if(!id)return;
  const heroKey=['opening-portrait-'+id,selectionPortraitKey(id),avatarKey(id)].find(k=>scene.textures.exists(k));if(!heroKey)return;
  const {width:w,height:h}=viewport,portrait=w<h,short=h<450,panelY=portrait?h*.105:h*.13,panelH=portrait?h*.72:h*.72;
- const group=scene.add.container(0,0).setName('joker/key-focus').setData('eventId',key.eventId).setData('benefit',key.fact).setData('heroClimax',true).setData('phase',reduced?'still':'charge').setData('bounds',viewport);root.add(group);
+ const group=scene.add.container(0,0).setName('joker/key-focus').setData('eventId',key.eventId).setData('benefit',key.fact).setData('heroClimax',true).setData('starter',key.kind==='starter').setData('phase',reduced?'still':'charge').setData('bounds',viewport);root.add(group);
  const dim=scene.add.rectangle(w/2,h/2,w,h,T.ink,.66);group.add(dim);
  const board=scene.add.container(0,0),shapes=scene.add.graphics();group.add(board);board.add(shapes);
  shapes.fillStyle(T.red,1).fillPoints([{x:-w*.04,y:panelY+24},{x:w*1.04,y:panelY-10},{x:w*1.04,y:panelY+panelH-12},{x:-w*.04,y:panelY+panelH+26}],true);
