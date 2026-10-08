@@ -1,3 +1,4 @@
+import {savedErxiangCore} from './SavedErxiangCore';
 import {savedBossImpact} from './SavedBossImpact';
 import {buildGrowthProgress} from './BuildGrowthProgress';
 import {showBuildGrowth} from './BuildGrowthView';
@@ -227,12 +228,12 @@ export class IntermissionScene extends Phaser.Scene {
   }
   private inspectResult():void {
     const run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty)!,targetHeat:run.stage!.targetHeat};
-    const last=stageOutcome(run.stage!,run.lastTrace).last,impact=last?savedBossImpact(run,last):'';
+    const last=stageOutcome(run.stage!,run.lastTrace).last,impact=last?[savedErxiangCore(last),savedBossImpact(run,last)].filter(Boolean).join('\n'):'';
     this.dialog.open('本场详情',`${run.tourMode==='endless'?'无尽 · ':''}${stage.name}\n热度 ${heatText(this.result.stageHeat)} / ${heatText(stage.targetHeat)}\n${this.result.cleared?'过关收益':'本场收益'} ${this.result.goldEarned} 金 · 余额 ${run.gold} 金\n剩余出牌 ${this.result.handsLeft} · 剩余弃牌 ${run.stage?.discardsLeft??0}\n\n当前构筑：`+(run.jokers.map(j=>this.jokerDefinition(j.definitionId).name).join('、')||'空')+'\n\n'+(run.stage?.boss?'本场压轴：'+r2BossText(run.stage.boss):'本场为普通场。')+(impact?'\n\n'+impact:''),last?[{label:'回看最后一手',run:()=>this.inspectLastHand()}]:[]);
   }
   private inspectLastHand():void {
     const run=runController(this)!.state,trace=stageOutcome(run.stage!,run.lastTrace).last;if(!trace)return;
-    const impact=savedBossImpact(run,trace);
+    const impact=[savedErxiangCore(trace),savedBossImpact(run,trace)].filter(Boolean).join('\n');
     const cardName=(id:string)=>{const c=trace.cards.find(c=>c.id===id);return c?rankLabel(c.rank)+SUIT_SYMBOL[c.suit]:'已移除的牌';};
     const lines=trace.events.map(e=>{
       const source=e.sourceType==='joker'?this.jokerDefinition(e.sourceDefinitionId).name:e.sourceType==='character'?getCharacter(run.characterId).name:e.sourceType==='card'?cardName(e.targetCardId??e.sourceInstanceId):e.sourceDefinitionId===trace.bossContext.boss?.definitionId?r2BossText(trace.bossContext.boss).split('：')[0]:R2_MODE_CATALOG.programs.find(program=>program.id===e.sourceDefinitionId)?.name??'牌型';

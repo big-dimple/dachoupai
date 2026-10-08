@@ -1,3 +1,4 @@
+import {savedErxiangCore} from './SavedErxiangCore';
 import {savedBossImpact} from './SavedBossImpact';
 import {numberImpact,impactBeat,numberPulse,type NumberImpact} from './ScoreEnergy';
 import {starterSelection} from './RouteStarter';
@@ -46,6 +47,8 @@ import {scoreBeat,scoreFireLevel,fourCardFormation,scorePacketSymbol,scoreImpact
 import {ScoreFlame,orderScoreBrushLayers} from './ScoreFlame';
 import {stageNotice,discardReferenceCopy} from './stageNotice';
 import type {R2RunState as RunState,DomainEvent} from '../domain/run';
+import {usesR2ErxiangCore} from '../domain/r2GroupUpgrade';
+import {erxiangCoreFacts,type ErxiangCoreTrace} from '../domain/r2ErxiangCore';
 import {r2UsesAssist,R2_LIMITS,getR2Stage as getStage,r2ScoreContext,r2DiscardCost} from '../domain/r2Run';
 import {r2ScoringDisabledJokerIds,type Accumulator,type ScoreTrace,type ScoreEvent} from '../domain/scoreR2';
 import {Rational} from '../domain/rational';
@@ -129,6 +132,8 @@ export class GameScene extends Phaser.Scene {
   private get deck(): string[] { return this.run.drawPile; }
   private get hand(): readonly PlayingCard[] { return this.presentation?.hand??this.toolHand??this.run.handOrder.map(id => this.run.deckInstances.find(card => card.id === id)!); }
   private toolHand?:readonly PlayingCard[];
+  private coreTargetId:string|undefined;
+  private coreGestureStart:string|undefined;
   private selectedIds = new Set<string>();
   private assistIds:string[]=[];
   private assistPage=0;
@@ -220,7 +225,7 @@ export class GameScene extends Phaser.Scene {
     // Keep committed score playback moving on slow renderers; bound background gaps to 1s.
     this.tweens.setLagSmooth(1000,1000);
     const lifecycle=++this.lifecycle;this.intent++;
-    this.effects.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.keyboardFocus=false;this.handStart=0;this.handNavigationButtons=[];
+    this.effects.clear();this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.coreTargetId=undefined;this.coreGestureStart=undefined;this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.keyboardFocus=false;this.handStart=0;this.handNavigationButtons=[];
     const settings=()=>{
       const hintVisible=!!this.handHint;this.stopHandHint();if(hintVisible&&this.reducedMotion)this.showHandHint(false);
       this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;
@@ -242,7 +247,7 @@ export class GameScene extends Phaser.Scene {
       this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;this.candidateGhost=undefined;this.candidateUndo=undefined;this.handInput?.destroy();this.handInput=undefined;this.assistIds=[];this.assistGestureStart=undefined;this.controlsLive=false;this.stopScoreFire();
       if(this.registry.get('runMenuActions')===this.menuActions)this.registry.remove('runMenuActions');
       this.menuActions=undefined;
-      this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.stopJokerIdle();this.tweens.killAll();this.time.removeAllEvents();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.previewCards=undefined;this.presentation=undefined;this.playAuraPulse=undefined;this.playing=false;this.rollingHeat=false;this.dialog.close();
+      this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.stopJokerIdle();this.tweens.killAll();this.time.removeAllEvents();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.coreTargetId=undefined;this.coreGestureStart=undefined;this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.previewCards=undefined;this.presentation=undefined;this.playAuraPulse=undefined;this.playing=false;this.rollingHeat=false;this.dialog.close();
       window.removeEventListener('keydown',this.keyboard);
       window.removeEventListener('dachoupai-presentation',settings);
     });
@@ -706,13 +711,17 @@ export class GameScene extends Phaser.Scene {
   private refreshSelection(animateId?:string):void {
     if(!this.presentation&&!this.playing&&this.run.phase==='await-input'){this.validateAssistSelection();this.ensureCandidates();}
     const preview=this.selectionPreview();
+    const core=this.coreDraft(preview);
+    if(!this.presentation&&!this.playing&&this.coreTargetId&&!core)this.coreTargetId=undefined;
+    const coreIds=this.presentation?.score.erxiangCore?.targetIds??core?.targetIds??[];
     const active=this.presentation?.score.sets.activeScoringIds??preview?.activeScoringIds??[];
     const disabledIds=r2DisabledCards(this.run.boss,this.stage.index,this.hand),suppressed=this.presentation?.score.events.filter(e=>e.operation==='ordinary-points-suppressed').map(e=>e.targetCardId)??r2ScoreContext(this.run,this.hand,[...this.selectedIds]).ordinaryPointsSuppressedIds;
     this.cardViews.forEach((v,i)=>{
       const selected=this.selectedIds.has(v.card.id),scoring=active.includes(v.card.id);
       v.container.setData('selected',selected).setData('activeScoring',scoring);
       const assisted=(this.presentation?.score.sets.assistConsumedIds??this.assistIds).includes(v.card.id);
-      v.selectionMark?.setText(assisted?'助':this.assistProfile?'主':'✓').setVisible(selected||assisted);
+      v.container.setData('coreTarget',coreIds.includes(v.card.id));
+      v.selectionMark?.setText(coreIds.includes(v.card.id)?'核':assisted?'助':this.assistProfile?'主':'✓').setVisible(selected||assisted);
       if(this.assistProfile&&v.selectionMark)v.selectionMark.setPosition(-Number(v.container.getData('width'))/2+12,Number(v.container.getData('height'))/2+10).setBackgroundColor(assisted?C.paperLight:C.jadeSoft).setName('selection/draft-role').setData('cardId',v.card.id);
       const disabled=disabledIds.includes(v.card.id),pointsZero=suppressed.includes(v.card.id);v.background.setFillStyle(disabled?0xd2d0cb:T.paper);
       this.restingCard(v,i,animateId===v.card.id);
@@ -974,9 +983,19 @@ export class GameScene extends Phaser.Scene {
     const input={hand:this.hand,selectedIds:[...this.selectedIds],disabledIds:this.run.stage!.disabledIds,jokers:this.run.jokers,definitions:this.jokerDefinitions,handRules:context.handRules,ordinaryPointsSuppressedIds:context.ordinaryPointsSuppressedIds};
     return validAssistDraft(input,this.assistProfile&&r2AssistAvailability(this.run).available,this.assistIds)??r2SelectionFacts(input);
   }
+  private coreDraft(facts=this.selectionPreview(),targetId=this.coreTargetId):ErxiangCoreTrace|undefined {
+    if(!usesR2ErxiangCore(this.run)||!facts||!targetId)return;
+    try{return erxiangCoreFacts(this.hand,facts,{targetId,previousRank:this.run.stage?.erxiangPreviousRank??null},r2RunModeConfig(this.run).characterAbilityEnabled&&this.run.stage?.boss?.definitionId!=='B08');}catch{return;}
+  }
+  private coreCopy():string {
+    if(!usesR2ErxiangCore(this.run))return '';
+    if(!r2RunModeConfig(this.run).characterAbilityEnabled||this.run.stage?.boss?.definitionId==='B08')return '同点核心本场停用，不记录连锁。';
+    const core=this.coreDraft(),previous=this.run.stage?.erxiangPreviousRank;
+    return (core?'本手核心 '+rankLabel(core.targetRank!)+' · '+core.targetIds.length+'张，每张额外'+core.extraPerCard+'次。':'本手未指定核心；直接出牌会清连锁。')+'\n'+(previous?'接上手'+rankLabel(previous)+'：额外2次；换点：1次。':'首次指定：每张额外1次。')+'\n长按已选★计分牌指定同点核心；两对及以上可用，附带/助攻/留手牌不参与。弃牌保留连锁，入场重置；总额外上限4次。';
+  }
   private inspectSelection(facts:HandPreview):void {
     const copy=selectionCopy(facts),label=(ids:string[])=>this.hand.filter(c=>ids.includes(c.id)).map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join('、')||'无';
-    this.dialog.open(copy.title,copy.pattern+'\n'+copy.membership+'\n★代表当前计分牌；附带也随本手打出。\n成型：'+label(facts.scoringIds)+'\n附带：'+label(facts.accompanyingIds)+'（随本手打出，仍可参与其他规则）\n'+copy.restrictions.join('\n')+'\n'+copy.fullRules+'\n\n选1–5张；按全部所选牌判型。三条可选3／4／5张，但补成另一对子会转葫芦，第四张同点会转四条。失效牌仍参与判型，其效果停用；点数0只停普通点数。',[{label:'本轮可成牌型',run:()=>this.inspectCandidates()},...(this.run.lastTrace?[{label:'回看上手',run:()=>this.inspectLastTrace()}]:[])],{effectBody:this.run.jokers.length?'所选条件 · 满足不代表已发动':'尚未持有大丑牌；购买后条件列在这里。',cards:this.run.jokers.map(j=>({...selectionExperience(this.run,j,this.memoryContext(j,facts)),action:{label:'查看来源与成长',run:()=>this.inspectJoker(j.instanceId)}})),collapseRules:false});
+    this.dialog.open(copy.title,this.coreCopy()+'\n'+copy.pattern+'\n'+copy.membership+'\n★代表当前计分牌；附带也随本手打出。\n成型：'+label(facts.scoringIds)+'\n附带：'+label(facts.accompanyingIds)+'（随本手打出，仍可参与其他规则）\n'+copy.restrictions.join('\n')+'\n'+copy.fullRules+'\n\n选1–5张；按全部所选牌判型。三条可选3／4／5张，但补成另一对子会转葫芦，第四张同点会转四条。失效牌仍参与判型，其效果停用；点数0只停普通点数。',[{label:'本轮可成牌型',run:()=>this.inspectCandidates()},...(this.run.lastTrace?[{label:'回看上手',run:()=>this.inspectLastTrace()}]:[])],{effectBody:this.run.jokers.length?'所选条件 · 满足不代表已发动':'尚未持有大丑牌；购买后条件列在这里。',cards:this.run.jokers.map(j=>({...selectionExperience(this.run,j,this.memoryContext(j,facts)),action:{label:'查看来源与成长',run:()=>this.inspectJoker(j.instanceId)}})),collapseRules:false});
   }
   private inspectCard(id:string):void {
     const c=this.hand.find(c=>c.id===id);if(!c)return;
@@ -986,8 +1005,10 @@ export class GameScene extends Phaser.Scene {
     const assist=validAssistDraft(this.assistInput(),r2AssistAvailability(this.run).available,this.assistIds),group=assist?.assistIds.includes(id)?[...assist.assistIds]:undefined,revision=this.draftRevision();
     const current=()=>this.ready&&!this.presentation&&revision===this.draftRevision()&&(!group||group.length===this.assistIds.length&&group.every(id=>this.assistIds.includes(id)));
     const cancelAssist=()=>{if(!current()){this.dialog.close();this.statusMessage='选择已变化，请重新查看';this.updateControls();return;}this.chooseAssist(group!);this.dialog.close();};
+    const core=this.coreDraft(facts,id),chosen=!!core&&this.coreDraft(facts)?.targetRank===core.targetRank;
+    const coreActions=core?[{label:chosen?'取消本手核心':'指定'+rankLabel(core.targetRank!)+'核心（'+core.targetIds.length+'张）',primary:true,disabled:!this.ready,run:()=>{if(!current()){this.dialog.close();return;}this.coreTargetId=chosen?undefined:id;this.dialog.close();this.refreshSelection();}}]:[];
     const role=group?'已选为助攻 · '+(assist!.assistKind==='pair'?'对子':'三条')+' ×'+assist!.assistMultiplier+'\n'+ASSIST_EXPLANATION+'\n不计主手、计分牌或留手效果。':selectionCardCopy(facts,id);
-    const dialog=this.dialog.open(rankLabel(c.rank)+SUIT_SYMBOL[c.suit]+' · 手牌详情',role+limitation+'\n★代表当前计分牌；附带牌也随本手打出。停用牌仍参与判型。\n'+cardSpecialText(c)+'\n横滑连续选择；从已选牌开始则连续取消。长按只查看，调序使用下方按钮。',group?[{label:'取消这组助攻',primary:true,disabled:!this.ready,run:cancelAssist}]:[{label:'左移',disabled:!this.ready||index<=0,run:async()=>{await this.moveHandCard(id,-1);if(this.dialog.active(dialog))this.inspectCard(id);}},{label:'右移',disabled:!this.ready||index>=this.hand.length-1,run:async()=>{await this.moveHandCard(id,1);if(this.dialog.active(dialog))this.inspectCard(id);}},{label:this.selectedIds.has(id)?'取消选择':'选择此牌',disabled:!this.ready,run:()=>{if(!current()){this.dialog.close();this.statusMessage='选择已变化，请重新查看';this.updateControls();return;}this.toggleCard(id);this.dialog.close();}}]);
+    const dialog=this.dialog.open(rankLabel(c.rank)+SUIT_SYMBOL[c.suit]+' · 手牌详情',role+limitation+'\n'+this.coreCopy()+'\n★代表当前计分牌；附带牌也随本手打出。停用牌仍参与判型。\n'+cardSpecialText(c)+'\n横滑连续选择；从已选牌开始则连续取消。'+(usesR2ErxiangCore(this.run)?'长按查看并指定核心，':'长按只查看，')+'调序使用下方按钮。',group?[{label:'取消这组助攻',primary:true,disabled:!this.ready,run:cancelAssist}]:[...coreActions,{label:'左移',disabled:!this.ready||index<=0,run:async()=>{await this.moveHandCard(id,-1);if(this.dialog.active(dialog))this.inspectCard(id);}},{label:'右移',disabled:!this.ready||index>=this.hand.length-1,run:async()=>{await this.moveHandCard(id,1);if(this.dialog.active(dialog))this.inspectCard(id);}},{label:this.selectedIds.has(id)?'取消选择':'选择此牌',disabled:!this.ready,run:()=>{if(!current()){this.dialog.close();this.statusMessage='选择已变化，请重新查看';this.updateControls();return;}this.toggleCard(id);this.dialog.close();}}]);
     const face=this.cardPiece(c,{x:0,y:0,width:240,height:336}),image=this.add.renderTexture(0,0,240,336).setVisible(false);
     image.draw(face.container,120,168);face.container.destroy();
     image.snapshot(snapshot=>{
@@ -999,7 +1020,7 @@ export class GameScene extends Phaser.Scene {
     const c=characterForRun(this.run),stage=this.run.stage!,notice=stageNotice(this.run),ability=r2RunModeConfig(this.run).characterAbilityEnabled;
     const challenge=R2_MODE_CATALOG.challenges.find(row=>row.id===this.run.challengeId);
     const roleState=!ability?'本次挑战关闭角色被动、初始赠送与押注。':notice?.wagerDisabled?'静场：本场角色计分与押注停用；非计分过关奖励保留。':this.characterId==='xiemu'?(stage.handsLeft===1?'当前为最后一手：倍率 ×2，过关额外 +2 金。':'距离最后一手还有 '+(stage.handsLeft-1)+' 次。'):this.characterId==='touye'?(stage.wagerUsed?'本场押注已用。':stage.wagerSelected?'本手已押注：50% ×2 / 50% ×0.75。':'本场押注未用；默认倍率 ×1.15。'):'';
-    const body=(challenge?challenge.name+'：'+challenge.description+'\n\n':'')+(ability?(c.passiveDescription)+'\n':'')+roleState+'\n'+this.stage.name+'：'+this.stage.intro+'\n'+(notice?.warning?notice.details+'\n':'')+(stage.boss?'本场压轴':'本章压轴预告')+' '+r2BossText(stage.boss??this.run.boss)+'\n弃牌成本：'+r2DiscardCost(this.run)+(notice?.discardGoldCost?' 次 +1金币':' 次')+'；本场已弃 '+stage.discardsUsed+' 次。\n当前手牌上限 '+stage.handLimit+'，扩容修正后的硬上限14。\n'+(this.run.jokers.some(joker=>joker.definitionId==='c08')?'少一级：普通顺子可用4张，A234合法；同花顺仍须5张。\n':'')+(this.run.safetyNetUsed?'安全网本局已经使用，不会再次触发。':this.run.jokers.some(joker=>joker.definitionId==='f07')?'安全网：耗尽出牌且仍有可用手牌时救场一次，成功过关不触发。':'');
+    const body=(challenge?challenge.name+'：'+challenge.description+'\n\n':'')+(ability?(c.passiveDescription)+'\n':'')+roleState+'\n'+this.coreCopy()+'\n'+this.stage.name+'：'+this.stage.intro+'\n'+(notice?.warning?notice.details+'\n':'')+(stage.boss?'本场压轴':'本章压轴预告')+' '+r2BossText(stage.boss??this.run.boss)+'\n弃牌成本：'+r2DiscardCost(this.run)+(notice?.discardGoldCost?' 次 +1金币':' 次')+'；本场已弃 '+stage.discardsUsed+' 次。\n当前手牌上限 '+stage.handLimit+'，扩容修正后的硬上限14。\n'+(this.run.jokers.some(joker=>joker.definitionId==='c08')?'少一级：普通顺子可用4张，A234合法；同花顺仍须5张。\n':'')+(this.run.safetyNetUsed?'安全网本局已经使用，不会再次触发。':this.run.jokers.some(joker=>joker.definitionId==='f07')?'安全网：耗尽出牌且仍有可用手牌时救场一次，成功过关不触发。':'');
     const dialog=this.dialog.open(c.name+' · 角色与本场规则',body,[{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},...(this.run.program?[{label:'本章节目单',run:()=>showPrograms(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))}]:[]),...(this.characterId==='touye'?[{label:notice?.wagerDisabled?'本场不能押注':stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed||notice?.wagerDisabled,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[])],{portrait:{url:portraitURL(c.id),alt:c.name+'完整立绘'}});
   }
   private inspectJoker(id:string):void {
@@ -1075,7 +1096,7 @@ export class GameScene extends Phaser.Scene {
   private async sortHand(mode:'rank'|'suit'):Promise<void> {
     if(!this.ready||this.presentation||this.run.phase!=='await-input')return;
     this.handInput?.cancel();this.view.cancelInteraction();
-    this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.candidateGhost=undefined;this.candidateUndo=undefined;this.aiCursor=undefined;this.statusMessage='';
+    this.selectedIds.clear();this.coreTargetId=undefined;this.coreGestureStart=undefined;this.assistIds=[];this.assistPage=0;this.candidateGhost=undefined;this.candidateUndo=undefined;this.aiCursor=undefined;this.statusMessage='';
     this.refreshSelection();
     const cards=[...this.hand].sort((a,b)=>mode==='rank'?b.rank-a.rank||SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit):SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit)||b.rank-a.rank);
     const before=this.handPositions();
@@ -1106,6 +1127,9 @@ export class GameScene extends Phaser.Scene {
 
   private applyHandSelection(update:HandSelectionUpdate):void {
     this.sweepHint.observe(update);
+    if(update.phase==='pending')this.coreGestureStart=this.coreTargetId;
+    if(update.phase==='cancelled')this.coreTargetId=this.coreGestureStart;
+    if(['committed','interrupted','cancelled'].includes(update.phase))this.coreGestureStart=undefined;
     if(update.phase==='pending'&&!this.assistGestureStart)this.assistGestureStart=[...this.assistIds];
     if(update.phase==='cancelled'&&this.assistGestureStart)this.assistIds=[...this.assistGestureStart];
     if(['committed','interrupted','cancelled'].includes(update.phase))this.assistGestureStart=undefined;
@@ -1201,6 +1225,7 @@ export class GameScene extends Phaser.Scene {
     return '牌型 '+fractionText(first.H)+' 热度 × '+fractionText(first.M)+' 倍率\n'
       +'计分 '+score.sets.activeScoringIds.length+' 张 / '+(this.assistProfile?'主手':'打出')+' '+score.sets.playedIds.length+' 张\n'
       +(score.assist?savedAssistCopy(score)+'\n':'')
+      +(score.erxiangCore?savedErxiangCore(score)+'\n':'')
       +(impact?impact+'\n':'')
       +'结算 '+fractionText(score.accumulator.H)+' × '+fractionText(score.accumulator.M)+' = '+heatText(score.finalScore);
   }
@@ -1211,7 +1236,8 @@ export class GameScene extends Phaser.Scene {
     [this.scoreHeat,this.scoreMult,this.scoreTotal].forEach(text=>text.setText('').setData('fullText','').setData('eventId',undefined).setData('eventPhase',undefined).setVisible(false));
     (this.view.root.list.find(o=>o.name==='score/total-pedestal') as Phaser.GameObjects.Graphics|undefined)?.setVisible(false);
     const score=this.view.layout.scoreBoard;
-    this.resultText.setVisible(true).setText(preview?selectionCopy(preview).title:'当前选择 · 选1–5张');
+    const core=this.coreDraft(preview);
+    this.resultText.setVisible(true).setText((preview?selectionCopy(preview).title:'当前选择 · 选1–5张')+(usesR2ErxiangCore(this.run)?core?' · '+rankLabel(core.targetRank!)+'核'+core.targetIds.length+'张·+'+core.extraPerCard+'次':' · 长按★指定核心':''));
     fitScoreLine(this.resultText,{x:score.x+10,y:score.y+(score.height<90?4:7),width:score.width-20-(this.selectionQuickInScore(score)?104:0),height:score.height<90?18:30},score.height<90?18:24);
   }
   /** Reflow real text bounds inside the reserved score/body/fire lanes. */
@@ -1270,18 +1296,19 @@ export class GameScene extends Phaser.Scene {
         this.audio.sourceCue('boss');await Promise.all([this.floatNote(event.operation==='charge-discard'?'-1 金币':'目标 +'+heatText(event.amount),b.x+b.width/2,b.y+b.height,'#ffd0a2',this.reducedMotion?180:460,context),this.reducedMotion?this.wait(180,context):this.animate({targets:target,scale:{from:1.14,to:1},duration:360,ease:'Back.easeOut'},context)]);
       });
       await this.effects.drain();if(!this.alive(lifecycle,intent))return;
-      this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage='已弃 '+selectedIds.length+' 张 · '+(this.deck.length?'补抽完成':'牌堆已空');this.updateHud();this.renderHand();this.revealDrawnCards(previousIds);
+      this.selectedIds.clear();this.coreTargetId=undefined;this.coreGestureStart=undefined;this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage='已弃 '+selectedIds.length+' 张 · '+(this.deck.length?'补抽完成':'牌堆已空');this.updateHud();this.renderHand();this.revealDrawnCards(previousIds);
       if(this.run.phase==='run-lost')this.finishStage(false);
     } finally {if(this.alive(lifecycle,intent)&&this.run.phase==='await-input'){this.playing=false;this.refreshSelection();}}
   }
 
   private async playSelected():Promise<void> {
     if(!this.ready||this.selectedIds.size===0||this.handsLeft<=0)return;
+    const core=this.coreDraft();
     const selectedIds=[...this.selectedIds],assistIds=[...this.assistIds],lifecycle=this.lifecycle,intent=++this.intent,beforeHeat=this.heat,previousTrace=this.run.lastTrace,beforeHands=this.handsLeft,beforeGold=this.run.gold;
     this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();
     const selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id)||assistIds.includes(v.card.id));
     try {
-      const result=await dispatchRun(this,assistIds.length?{type:'PlayAssistedHand',selectedIds,assistIds}:{type:'PlayHand',selectedIds});
+      const result=await dispatchRun(this,assistIds.length?{type:'PlayAssistedHand',selectedIds,assistIds}:{type:'PlayHand',selectedIds,...(core?{coreTargetId:core.targetId!,coreTargetRank:core.targetRank!}:{})});
       if(!this.alive(lifecycle,intent))return;
       if(!result.ok||result.duplicate){if(!result.ok)this.statusMessage=result.code==='save-failed'?'未保存，请在菜单中重试或导出':result.code==='score-diagnostic'?'本手无法结算，资源与原状态已保留':'出牌未提交，请查看菜单或选择。';return;}
       this.run=result.state;
@@ -1750,7 +1777,7 @@ export class GameScene extends Phaser.Scene {
   private completePresentation(presentation:NonNullable<GameScene['presentation']>):void {
     if(!this.alive(presentation.lifecycle,presentation.intent))return;
     this.stopScoreFire();
-    this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage='';this.updateHud();
+    this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.coreTargetId=undefined;this.coreGestureStart=undefined;this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage='';this.updateHud();
     if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true,true,!presentation.replay);return;}
     if(this.run.phase==='run-lost'){this.finishStage(false,!presentation.replay);return;}
     this.playing=false;this.render();this.revealDrawnCards(presentation.hand.map(card=>card.id));

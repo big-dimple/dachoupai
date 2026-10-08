@@ -51,6 +51,7 @@ describe('normal new-game policy and exact retry creation',()=>{
   expect(amo.buildTip).not.toMatch(/单张|Lv3|高牌升级/);expect(amo.buildTip).toContain('不能助攻');
   expect(amo.passiveDescription).toMatch(/每场1次/);expect(amo.passiveDescription).toContain('对子×2／三条×4');
   expect(getCharacter('amo').buildTip).toContain('单张');
-  for(const id of CHARACTER_IDS.filter(id=>id!=='amo'))expect(characterForNewRun(id)).toBe(getCharacter(id));
+  expect(characterForNewRun('erxiang').passiveName).toBe('同点核心（候选）');
+  for(const id of CHARACTER_IDS.filter(id=>id!=='amo'&&id!=='erxiang'))expect(characterForNewRun(id)).toBe(getCharacter(id));
  });
 });

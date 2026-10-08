@@ -1,3 +1,4 @@
+import {erxiangCoreFacts,type ErxiangCoreIntent,type ErxiangCoreTrace} from './r2ErxiangCore';
 import {R2_PUBLISHED_CONTENT} from './r2PublishedContent';
 import {r2AssistFacts,AMO_ASSIST_TYPES} from './r2Assist';
 import {r2ScoreConditionMatches} from './r2Conditions';
@@ -27,6 +28,7 @@ export const SCORE_OPERATIONS = Object.freeze([
 export type ScoreOperation = typeof SCORE_OPERATIONS[number];
 export const R2_BASE_SCORES = R2_PUBLISHED_CONTENT.snapshot.hands as unknown as Record<R2HandType, readonly [number, Fraction, number, Fraction]>;
 export interface ScoreInput {
+  erxiangCore?:ErxiangCoreIntent;
   rulesVersion: 'r2'; runId: string; rootId: string; characterId: CharacterId | 'neutral';
   hand: readonly PlayingCard[]; selectedIds: readonly string[]; disabledIds: readonly string[];
   jokers: readonly R2JokerInstance[]; definitions: readonly R2JokerDefinition[];
@@ -65,7 +67,7 @@ interface ScoreTraceBase {
 export type ScoreTrace = ScoreTraceBase & (
   {assist:{ids:string[];kind:'pair'|'three-kind';multiplier:2|4}|null;sets:ScoreTraceBase['sets']&{assistConsumedIds:string[]}} |
   {assist?:never;sets:ScoreTraceBase['sets']&{assistConsumedIds?:never}}
-) & ({combo:{goldBeforeRewards:number|null}}|{combo?:never});
+) & ({combo:{goldBeforeRewards:number|null}}|{combo?:never}) & ({erxiangCore:ErxiangCoreTrace}|{erxiangCore?:never});
 export class ScoreFault extends Error {
   constructor(readonly code: string, readonly events: readonly ScoreEvent[]) { super(code); }
 }
@@ -158,6 +160,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   const facts=r2SelectionFacts({hand:cards,selectedIds:input.selectedIds,jokers,definitions:input.definitions,handRules:input.handRules,disabledIds:input.disabledIds,ordinaryPointsSuppressedIds:input.ordinaryPointsSuppressedIds});
   const evaluated={type:facts.type,scoringIds:facts.scoringIds};
   const active=played.filter(c=>facts.activeScoringIds.includes(c.id));
+  const core=input.erxiangCore===undefined?undefined:erxiangCoreFacts(cards,facts,input.erxiangCore,input.characterId==='erxiang'&&input.boss?.definitionId!=='B08');
   const level = input.handLevels[evaluated.type] ?? 1;
   let H = new Rational(0n), M = new Rational(0n);
   const events: ScoreEvent[] = [];
@@ -327,7 +330,13 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     emit('onCardScore', source, 'add-heat', points, () => { H = H.add(points); }, {kind:'always'}, card);
     const intrinsic = enhancement('onCardScore', card, 0, root);
     edition('onCardScore', card.edition, cardSource(card), card, 0, root);
-    const extra = hook('onCardScore', card, 0, root, intrinsic);
+    let extra = hook('onCardScore', card, 0, root, intrinsic);
+    if(core?.targetIds.includes(card.id)){
+      const requested=core.extraPerCard,available=Math.min(requested,SCORE_LIMITS.extraRetriggers-extra);
+      const source:Source={sourceType:'character',sourceDefinitionId:'erxiang',sourceInstanceId:input.runId+'/character'};
+      emit('onCardScore',source,'retrigger-card',new Rational(BigInt(available)),()=>{extra+=available;},{kind:'always'},card,0,root,{reasonKey:'erxiang.retrigger-card'});
+      if(available<requested)emit('onCardScore',source,'retrigger-cap',new Rational(BigInt(SCORE_LIMITS.extraRetriggers)),()=>{},{kind:'always'},card,0,root,{reasonKey:'erxiang.retrigger-cap'});
+    }
     for (let i = 0; i < extra; i++) {
       extraExecutions++;
       emit('onCardScore', source, 'add-heat', points, () => { H = H.add(points); }, {kind:'always'}, card, 1, root);
@@ -348,7 +357,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   }, condition);
   if(boss?.definitionId!=='B08')switch (input.characterId) {
     case 'amo': if ((input.amoScoreTiming??'before-joker') === 'before-joker' && played.length === 1) char('multiply-multiplier', new Rational(3n), {kind:'played-count',equals:1}); break;
-    case 'erxiang': if (['pair','two-pair','three-kind'].includes(evaluated.type)) char('add-multiplier', new Rational(3n,2n), {kind:'hand-type-in',values:['pair','two-pair','three-kind']}); break;
+    case 'erxiang': if (!core&&['pair','two-pair','three-kind'].includes(evaluated.type)) char('add-multiplier', new Rational(3n,2n), {kind:'hand-type-in',values:['pair','two-pair','three-kind']}); break;
     case 'laohuan': if (['straight','flush','straight-flush'].includes(evaluated.type)) char('add-heat', new Rational(120n), {kind:'hand-type-in',values:['straight','flush','straight-flush']}); break;
     case 'azao': if (input.previousHandType !== null && input.previousHandType !== evaluated.type) char('add-multiplier', new Rational(1n)); break;
     case 'touye': char('multiply-multiplier', input.wager ? (chance({n:1,d:2}) ? new Rational(2n) : new Rational(3n,4n)) : new Rational(23n,20n)); break;
@@ -372,6 +381,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   }
   hook('afterHand');
   return immutable({ rulesVersion:'r2', rootId:input.rootId, handType:evaluated.type, level,
+    ...(core?{erxiangCore:core}:{}),
     sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id)},
     ...(input.amoScoreTiming==='assist-v1'?{sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id),assistConsumedIds:assist?.assistIds??[]},assist:assist?{ids:assist.assistIds,kind:assist.assistKind,multiplier:assist.assistMultiplier}:null}:{}),finalScore:final.toString(),accumulator:snapshot(),events,jokers:jokers.filter(j=>!destroyedJokerIds.includes(j.instanceId)),
     ...(rng ? {rng:rng.snapshot()} : {}),goldDelta,destroyedCardIds,destroyedJokerIds,cards,sourceJokers,bossContext });

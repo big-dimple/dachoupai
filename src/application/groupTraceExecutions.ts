@@ -40,6 +40,11 @@ export function assertGroupTraceExecutions(trace:ScoreTrace,definitions:readonly
     if(granted<operation.count)expected.push({...event,operation:'retrigger-cap',value:{n:String(SCORE_LIMITS.extraRetriggers),d:'1'},reasonKey:`${joker.definitionId}.retrigger-cap`});
    }
   }}
+  if(trace.erxiangCore?.targetIds.includes(card.id)){
+   const granted=Math.min(trace.erxiangCore.extraPerCard,SCORE_LIMITS.extraRetriggers-budget);budget+=granted;
+   const event={sourceType:'character' as const,sourceDefinitionId:'erxiang',sourceInstanceId:trace.events[0].sourceInstanceId+'/character',targetCardId:card.id,operation:'retrigger-card',value:{n:String(granted),d:'1'},reasonKey:'erxiang.retrigger-card',visibleCondition:{kind:'always' as const},retriggerDepth:0,rootEventId:root!};expected.push(event);
+   if(granted<trace.erxiangCore.extraPerCard)expected.push({...event,operation:'retrigger-cap',value:{n:'4',d:'1'},reasonKey:'erxiang.retrigger-cap'});
+  }
   for(let i=0;i<budget;i++)rank(1);
  }
  if(stableHash(actual)!==stableHash(expected))fail();
@@ -47,7 +52,7 @@ export function assertGroupTraceExecutions(trace:ScoreTrace,definitions:readonly
  for(const event of onCard){
   if(event.operation==='ordinary-points-suppressed'){execution=undefined;continue;}
   if(isRank(event)){execution=event;continue;}
-  if(!execution||event.targetCardId!==execution.targetCardId||event.retriggerDepth!==execution.retriggerDepth||event.rootEventId!==roots.get(event.targetCardId!)||!['card','joker'].includes(event.sourceType))fail();
+  if(!execution||event.targetCardId!==execution.targetCardId||event.retriggerDepth!==execution.retriggerDepth||event.rootEventId!==roots.get(event.targetCardId!)||!['card','joker',...(trace.erxiangCore&&['retrigger-card','retrigger-cap'].includes(event.operation)?['character']:[])].includes(event.sourceType))fail();
   if(event.operation==='retrigger-card'||event.operation==='retrigger-cap'){
    if(event.retriggerDepth!==0||Rational.fromJSON(event.before.H).compare(Rational.fromJSON(event.after.H))||Rational.fromJSON(event.before.M).compare(Rational.fromJSON(event.after.M)))fail();
   }
