@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "8dab41aa3830aa9a4313c8fa95c92b5803b03e4451dae96a80a17122a27355fb",
+    "index": "22468e7cc2f2b517f2cac60d253f56a375e6de90a068a3b6bd3f7551f6b2d1cf",
+    "head": "4f986c60aa6749ff7c24eb1dd200b309c0915db4",
+    "branch": "refs/heads/feat/w6-current-decisions-20261008"
+  },
+  "after": {
+    "source": "8dab41aa3830aa9a4313c8fa95c92b5803b03e4451dae96a80a17122a27355fb",
+    "index": "22468e7cc2f2b517f2cac60d253f56a375e6de90a068a3b6bd3f7551f6b2d1cf",
+    "head": "4f986c60aa6749ff7c24eb1dd200b309c0915db4",
+    "branch": "refs/heads/feat/w6-current-decisions-20261008"
+  },
+  "steps": [
+    {
+      "name": "review-directed",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 1965
+    },
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8320
+    },
+    {
+      "name": "two-review-ui-examples",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 6140
+    }
+  ]
+}

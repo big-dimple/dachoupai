@@ -1,0 +1,43 @@
+{
+  "testedCommit": "4f986c60aa6749ff7c24eb1dd200b309c0915db4",
+  "previousProduct": "f0b77efe3b34965f0196fc500ca30bcf4b34983b",
+  "previousReviewHead": "eb0f35a464a75025640827163e18bf6d300e4424",
+  "scope": "Only retained gold-condition losses and exact hook route qualification; software/controlled public fixtures, not human/device acceptance",
+  "oldImages": {
+    "pc-decision": {
+      "testedCommit": "f0b77efe3b34965f0196fc500ca30bcf4b34983b",
+      "sha256": "de2fd43a01d2a185202e557a26ab7002c10da887f608f38f9b0e02f724326b1e",
+      "unchanged": true
+    },
+    "phone-decision": {
+      "testedCommit": "f0b77efe3b34965f0196fc500ca30bcf4b34983b",
+      "sha256": "63670af6d21d46a39243f2984552abb3e76c5c90eb74d351df659b22bd754fa0",
+      "unchanged": true
+    },
+    "narrow-decision": {
+      "testedCommit": "f0b77efe3b34965f0196fc500ca30bcf4b34983b",
+      "sha256": "53be3984c5d289d7092d6e9d721847ebfbc2d2159b2e1aa2a79d14fdc8747472",
+      "unchanged": true
+    },
+    "phone-hand-help": {
+      "testedCommit": "f0b77efe3b34965f0196fc500ca30bcf4b34983b",
+      "sha256": "c8eb4632837871b98579ba7aab32b2ca218af3543ac4633472859545495f2462",
+      "unchanged": true
+    },
+    "pc-replacement": {
+      "testedCommit": "f0b77efe3b34965f0196fc500ca30bcf4b34983b",
+      "sha256": "18333972c361bfba8a30c26ed11ae70d9af40ab9f74ac7f24c5d334275281c02",
+      "unchanged": true
+    }
+  },
+  "attachments": {
+    "flush-only-phone.png": "713f5f54d159ea6d9392965f7b2ba4998cbfb9293c5f57eaaaa9ccb0917379a0",
+    "frozen-gate.json": "af1210eb98b110bea4a5a05c8b8b2672d662883c5852d327bf3fc4300c9060e5",
+    "frozen-gate.log.gz": "bc3792772ee01768511692907b9f648a976720ca41534475cc36962a1f9705a4",
+    "gate-driver.mjs.gz": "3beb205bb64b124e6c91d7318a6f43c9e67e77d011eb814a779b2af3c036129e",
+    "gold-gate-pc.png": "ca74212ab7728b7ff43bfbaaea7e535f1152165f17b11fbabbff6d31d405d782",
+    "native-ui.json.gz": "10f944707ce6bf8b6f30bbfec21f3cdf5d3d76e599ae6ff0168f0c9765b8aff8",
+    "optional-types-FAIL.log.gz": "2ad41e4935a81797aa27548441505fb080ac11937df49dbbdf235b1f2c8e81d7",
+    "two-example-driver.mjs.gz": "63ac23f826252abb55d5e345af005607dd26c7342d11bd48850ac447a7495da1"
+  }
+}

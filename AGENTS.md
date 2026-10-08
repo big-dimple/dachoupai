@@ -1,5 +1,8 @@
 # 开发入口
 
+PR55两项独审补正产品 `4f986c6` 已定向冻结33项/4文件、type和两反例UI通过。持牌金币门槛按实际折扣/替换净金币，具体hook允许牌型不混普通顺子/同花顺。见[增量证据](docs/production/evidence/w6-current-decisions-2026-10-08/review-fixes/README.md)。旧五图保持f0b77ef；只一次最终head标准CI/父增量复核，不重复本地整包，未main/真人/实机/W6签收。
+
+
 当前输入main已父FF PR54 `93d827c`；当前产品 `f0b77ef` 为公开现货买/替换/留金建议与既有怎么凑牌直连，44项定向/type/五张有限UI冻结通过。见[本批证据](docs/production/evidence/w6-current-decisions-2026-10-08/README.md)。仅draft父独审协调main，最终head CI另核；不重复全章矩阵/本地全回归，游戏6.1默认Medium串行。先首章自主可用/因果趣味，保留后续深度；原反馈Library下载失败未看原图，不冒称真人/设备/听感/W6通过，W7/W8不推进。旧记录按各自SHA读。
 
 PR53已由父独审并普通FF到main ed3be1a；当前仅补首章首次提示的主画面发现性，最终产品6349900，48项定向/5文件、typecheck、PC/390/320首屏及短横退出恢复的有限UI冻结通过，源码/index/HEAD保持。旧局不强塞，原FAIL与当前像素见[入口补全证据](docs/production/evidence/w6-guide-discovery-2026-10-08/README.md)。候选待精确headCI/父独审，不重复首章矩阵或本地全回归；真人理解/继续、设备/GPU/听感/W6仍未签，W7/W8不推进。6.1默认Medium单线，下一产品改动待实际试玩高影响问题。
