@@ -1,0 +1,34 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/xiemu-burn.test.ts (10 tests | 1 failed) 436ms
+     × B08 blocks burn keeps resource interest; Q01 disables both 28ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/xiemu-burn.test.ts > xiemu bounded pay/score/clear transaction > B08 blocks burn keeps resource interest; Q01 disables both
+Error: Run invariant: chapter boss history
+ ❯ check src/domain/r2Run.ts:105:70
+    103| export function assertR2Invariants(state:R2RunState):void {
+    104|   const R2_JOKERS=r2JokerDefinitionsFor(state);
+    105|   const check=(condition:boolean,label:string)=>{if(!condition)throw n…
+       |                                                                      ^
+    106|   check(state.schemaVersion===2 && state.rulesVersion==='r2' && !!r2Ru…
+    107|   check(isR2RouteStarter(state)?!!state.openingRoute&&Object.hasOwn(R2…
+ ❯ assertR2Invariants src/domain/r2Run.ts:144:3
+ ❯ applyCommand src/domain/run.ts:199:5
+ ❯ tests/xiemu-burn.test.ts:26:401
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 44 passed (45)
+   Start at  21:32:44
+   Duration  1.63s (transform 1.92s, setup 0ms, import 2.41s, tests 1.50s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
