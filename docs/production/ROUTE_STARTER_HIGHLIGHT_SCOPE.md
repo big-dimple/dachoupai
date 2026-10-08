@@ -27,3 +27,5 @@
 先定向：六英雄×三路线的新局、模式/种子确定性、三货/原价/普通版/原子保存恢复、旧身份回放、拒绝篡改、真/假触发与成长读取/新增、取消/跳过/低动态。有限PC1366与手机390真实入口→买牌→实际触发，固定自然种子，不伪装注入；没有自然观察则标NOT_OBSERVED。源/index/HEAD冻结；最后一次最终head标准CI与draft父独审，不每个小改动大回归。截图/软件数量不代签真人满意或设备流畅。
 
 父有界只读参考：Phaser3 [Tween Timeline](https://phaser.io/examples/v3.85.0/time/timeline/view/tween-action)、[Sound Timeline](https://phaser.io/examples/v3.85.0/time/timeline/view/sound-action)、[Graphics](https://docs.phaser.io/phaser/concepts/gameobjects/graphics)、[Camera](https://docs.phaser.io/phaser/concepts/cameras)。只参考方法，未接入其它库；暂停Timeline不等于暂停已有Tween，定格只控表演。静态形状复用、HUD稳定、现有短音；不复制示例素材或与当前Phaser3.90不符的Phaser4代码。若复制MIT代码需保版权，示例素材不视为MIT；本包不复制。拳皇仅节奏启发。
+
+当前收尾：首发产品d15cdd7＋重复跨目标补正55f0a57；同花下一自然单牌实际读取0.25倍率、28×1.25=35，条件always无需再次同花，见[兑现证据](evidence/w6-route-starter-highlight-2026-10-08/flush-redemption/README.md)。固定自然种子为扫描筛选样本，不推随机成功率；标准最终head CI和父审另核。
