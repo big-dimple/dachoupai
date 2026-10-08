@@ -27,7 +27,7 @@ before/report 的 `all` 是 DOM innerText，确认折叠明细未展开时无具
 | PC1366、手机390 胜利 | 导入合法最后一手前检查点→逐张原生选择/出牌→完整 state 等于 canonical→回看首层包含10♦/4♦限制→原生继续到商店；frozen/report.json，modified=false |
 | 手机390 失败 | 同种子有限失败分支最后一手前导入→原生出牌→完整 state 等于 canonical→本场详情/最后一手7♣/7♥限制→原生同局重试；相同种子/角色/身份/路线、stage0、6金；loss-report.json，modified=false |
 | PC 下一 Boss | 由同一合法命令重建第二章正场过关→导入→实际下一场低调点第4/5张提示→原生前往商店，完整 state 等于一次 OpenShop |
-| PC 战斗上手 | 导入同局B02首次已保存出牌后的await-input→原生菜单“上手详情”→首层J♠/J♣限制，查看全state不变；entry-and-saved脚本/两图及报告 |
+| PC 战斗上手 | 导入同局B02首次已保存出牌后的await-input→原生菜单“上手详情”→首层J♠/J♣限制，查看全state不变；entry-and-saved脚本/两图及entry-report.json |
 
 1366/390 均 DPR1 系统 Chromium，低动态，软件 Canvas；没有录屏或软件 GPU 帧率验收。只看有限关键截图，无真人理解/继续意愿、用户PC/OnePlus实机、GPU、听感或W6/W7正式平衡签收。失败差额实际由共享配色映射成可读墨色，未复现色值缺陷、未改颜色。原图/正向和失败图实际查看，新增摘要在首层；手机长收益列表仍正常滚动，底部关闭/继续可用。
 
