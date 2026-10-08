@@ -1,3 +1,4 @@
+import {savedTouyeWager} from './TouyeWagerCopy';
 import {savedBossImpact} from './SavedBossImpact';
 import {buildGrowthProgress} from './BuildGrowthProgress';
 import {showBuildGrowth} from './BuildGrowthView';
@@ -113,6 +114,7 @@ export class IntermissionScene extends Phaser.Scene {
     }else if(capped){
       heading='已达数值上限';body='进度已保存。可查看本场、在菜单导出，或返回选角。';
     }
+    const touye=savedTouyeWager(trace);if(touye)body=touye+'\n'+body;
     const xiemuInterest=trace?.events.find(e=>e.sourceType==='character'&&e.sourceDefinitionId==='xiemu'&&e.phase==='onStageClear');
     if(!p.short&&!skipped&&this.result.cleared&&xiemuInterest)heading+=' · 额外关末息+'+xiemuInterest.value.n+'金';
     if(p.short&&trace&&!skipped&&this.result.cleared){const fact=victorySourceFact(run,trace);if(fact)body=fact.title+' · '+fact.effect+'\n'+body;}
@@ -145,7 +147,7 @@ export class IntermissionScene extends Phaser.Scene {
   private jokerDefinition(id:string){return r2JokerDefinitionFor(runController(this)!.state,id);}
   private traceSources(trace:ScoreTrace):string[] {
     const character=getCharacter(runController(this)!.state.characterId);
-    return [...new Set(trace.events.filter(e=>(e.sourceType==='joker'||e.sourceType==='character')&&e.phase!=='afterHand'&&(e.before.H.n!==e.after.H.n||e.before.H.d!==e.after.H.d||e.before.M.n!==e.after.M.n||e.before.M.d!==e.after.M.d||e.operation==='retrigger-card'&&BigInt(e.value.n)>0n)).map(e=>e.sourceType==='character'?character.name:this.jokerDefinition(e.sourceDefinitionId).name))];
+    return [...new Set(trace.events.filter(e=>(e.sourceType==='joker'||e.sourceType==='character')&&e.phase!=='afterHand'&&(e.before.H.n!==e.after.H.n||e.before.H.d!==e.after.H.d||e.before.M.n!==e.after.M.n||e.before.M.d!==e.after.M.d||e.operation==='retrigger-card'&&BigInt(e.value.n)>0n)).map(e=>e.sourceType==='character'?(savedTouyeWager(trace)||character.name):this.jokerDefinition(e.sourceDefinitionId).name))];
   }
   private stopCelebration():void {
     this.rewardEffects.clear();

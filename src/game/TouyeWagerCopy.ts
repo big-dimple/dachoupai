@@ -1,3 +1,4 @@
+import type {ScoreTrace} from '../domain/scoreR2';
 import {usesTouyeWager,TOUYE_TARGETS,TOUYE_ACCEPTED,touyeReachableTypes,touyeTargetReached,touyeSnapshotToken,type TouyeTarget} from '../domain/r2TouyeWager';
 import {r2DiscardCost,type R2RunState} from '../domain/r2Run';
 import {readR2Modifiers} from '../content/r2Schema';
@@ -17,3 +18,5 @@ export function touyeChoice(run:R2RunState,selectedIds:readonly string[]=[]){
  return{enabled,pending,used,choices,compact,settled,snapshotToken:stage?touyeSnapshotToken(hand,rules,stage.index,stage.playIndex+1,run.commandSeq):'',status:pending?`下一手押${label} · 成×2／未成×0.85 · 不可再弃`:settled,details:pending?`已押${label}，只绑定下一次真实出牌。\n${TOUYE_RISK}\n达成类型：${TOUYE_ACCEPTED[pending.target].map(t=>HAND_LABELS[t]).join('／')}。返回或恢复保留；工具和大丑牌调序暂不可用。`:settled||'每场一次；弃牌前押当前整手尚凑不出的目标。成型×2，未成×0.85，替代该手普通×1.15。'};
 }
 export function touyeBetLabel(target:TouyeTarget){return '押'+HAND_LABELS[target];}
+
+export function savedTouyeWager(trace:ScoreTrace|null):string {const t=trace?.touyeWager;if(!t?.commit)return '';return '押'+HAND_LABELS[t.commit.target]+' · '+(t.outcome==='won'?'达成×2':'未成×0.85');}
