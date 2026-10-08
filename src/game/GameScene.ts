@@ -1,3 +1,4 @@
+import {savedBossImpact} from './SavedBossImpact';
 import {numberImpact,impactBeat,numberPulse,type NumberImpact} from './ScoreEnergy';
 import {starterSelection} from './RouteStarter';
 import {firstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
@@ -1196,10 +1197,11 @@ export class GameScene extends Phaser.Scene {
   }
 
   private formatBreakdown(score: ScoreTrace): string {
-    const first=score.events[0].after;
+    const first=score.events[0].after,impact=savedBossImpact(this.run,score);
     return '牌型 '+fractionText(first.H)+' 热度 × '+fractionText(first.M)+' 倍率\n'
       +'计分 '+score.sets.activeScoringIds.length+' 张 / '+(this.assistProfile?'主手':'打出')+' '+score.sets.playedIds.length+' 张\n'
       +(score.assist?savedAssistCopy(score)+'\n':'')
+      +(impact?impact+'\n':'')
       +'结算 '+fractionText(score.accumulator.H)+' × '+fractionText(score.accumulator.M)+' = '+heatText(score.finalScore);
   }
 
