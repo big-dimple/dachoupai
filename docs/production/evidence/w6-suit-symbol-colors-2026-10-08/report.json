@@ -1,0 +1,2496 @@
+{
+  "head": "c157027de2b135cbfa54ebfce0e85b70e316ff3d",
+  "scope": "Finite native PC/phone references and one naturally purchased dye. Software browser only; no physical/GPU/audio/human sign-off.",
+  "browser": "151.0.7922.173",
+  "runs": [
+    {
+      "device": {
+        "width": 1366,
+        "height": 768
+      },
+      "views": [
+        {
+          "name": "examples",
+          "text": "牌桌手记当前手牌怎么凑可先试两对：2♥ 2♠ A♣ A♦\n点“换为这组”只选牌，再由你出牌。牌型与成长说明尚未选择牌\n共2种：两对 · 对子\n★代表计分牌。已成型示例只用当前手牌；未成型参考标“留”，不是计分牌型。\n点示例不改选择；换组后仍需自己出牌。成长不是通关必选，不必为成长强留场。想尝试的组合全部已成型同点成组顺子同花两对 · 可选4／5张4张示例5张示例2♥♥★2♠♠★A♣♣★A♦♦★计分牌4张 · 附带0张对子 · 可选2／3／4／5张2张示例3张示例4张示例5张示例2♥♥★2♠♠★计分牌2张 · 附带0张仅示例 · 两对 · 已选4张\n\n当前手牌选择未改变。首次提示 · 可略过只用当前公开手牌找同点、连续或同花；自己选择保留与弃牌。参考不自动选牌，也不保证抽到缺牌；弃牌成本看实际按钮。略过此提示本局不提示不再显示换为这组撤销换组查看成长机会工具包 1/2构筑条件完整牌型规则关闭",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [
+            {
+              "red": "true",
+              "color": "rgb(184, 71, 58)"
+            },
+            {
+              "red": "false",
+              "color": "rgb(38, 49, 58)"
+            },
+            {
+              "red": "false",
+              "color": "rgb(38, 49, 58)"
+            },
+            {
+              "red": "true",
+              "color": "rgb(184, 71, 58)"
+            },
+            {
+              "red": "true",
+              "color": "rgb(184, 71, 58)"
+            },
+            {
+              "red": "false",
+              "color": "rgb(38, 49, 58)"
+            }
+          ],
+          "selected": 0,
+          "disabled": 0
+        },
+        {
+          "name": "rules",
+          "text": "牌桌手记牌型规则AI只整理主手，助攻自己选\n助攻会一同用掉，不算主手或留手牌\n\n成牌优先，高牌仅兜底。按当前规则的稳妥得分从高到低选牌；随机效果按保底比较，实际结果可能不同。平分先少出牌，再按当前座位顺序。只选牌，仍需自己出牌。\n\n按当前保存的等级列出全部12型；同一次选牌只判一种牌型。目录顺序不代表当前收益高低。\n\n高牌 · 未发现 · 按Lv1基准\n所选1–5张未组成其他牌型时，最高点数的一张计分。\n基础热度 20 · 基础倍率 1\n每级：热度 +10 · 倍率 +0.25\n\n对子 · 未发现 · 按Lv1基准\n2张相同点数成型；可选2–5张，其余为附带牌。\n基础热度 35 · 基础倍率 2\n每级：热度 +15 · 倍率 +0.5\n\n两对 · 未发现 · 按Lv1基准\n两组不同点数的对子成型；可选4或5张。\n基础热度 65 · 基础倍率 2\n每级：热度 +20 · 倍率 +0.5\n\n三条 · 未发现 · 按Lv1基准\n3张相同点数成型；可选3／4／5张。补另一对子会成为葫芦，第四张同点会成为四条。\n基础热度 90 · 基础倍率 3\n每级：热度 +25 · 倍率 +0.5\n\n顺子 · 未发现 · 按Lv1基准\n5张不同点数连续，花色不限。A可用于A2345或10JQKA，不能跨越QKA2。\n基础热度 125 · 基础倍率 4\n每级：热度 +35 · 倍率 +0.5\n\n同花 · 未发现 · 按Lv1基准\n5张相同花色，点数不限。\n基础热度 140 · 基础倍率 4\n每级：热度 +30 · 倍率 +0.5\n\n葫芦 · 未发现 · 按Lv1基准\n5张中，3张相同点数＋另2张相同点数。\n基础热度 210 · 基础倍率 5\n每级：热度 +40 · 倍率 +1\n\n四条 · 未发现 · 按Lv1基准\n4张相同点数成型；可选4或5张。\n基础热度 320 · 基础倍率 7\n每级：热度 +55 · 倍率 +1\n\n同花顺 · 未发现 · 按Lv1基准\n5张相同花色且点数连续；始终需要5张。只判同花顺，不另叠顺子或同花。\n基础热度 450 · 基础倍率 9\n每级：热度 +65 · 倍率 +1\n\n五条 · 未发现 · 按Lv1基准\n5张相同点数；复制牌须有不同实例身份。\n基础热度 700 · 基础倍率 10\n每级：热度 +70 · 倍率 +1\n\n同花葫芦 · 未发现 · 按Lv1基准\n5张相同花色且组成葫芦；复制牌须有不同实例身份。\n基础热度 850 · 基础倍率 12\n每级：热度 +80 · 倍率 +1\n\n同花五条 · 未发现 · 按Lv1基准\n5张相同花色、相同点数；复制牌须有不同实例身份。\n基础热度 1200 · 基础倍率 15\n每级：热度 +100 · 倍率 +1\n\n判型优先顺序（先符合者）：同花五条 → 同花葫芦 → 五条 → 同花顺 → 四条 → 葫芦 → 同花 → 顺子 → 三条 → 两对 → 对子 → 高牌\n\n普通点数：2–10按牌面，J／Q／K为10，A为11。只加有效计分牌；附带牌仍参与判型、打出张数和重复条件。Boss停用的牌仍成型但计分效果停用；普通点数0只停止普通点数，其他效果保留。\n\n计分顺序：当前等级牌型基础 → 逐有效计分牌的普通点数、强化、版次、该牌大丑牌与重触发 → 留手强化／大丑牌 → 角色 → 按持有顺序的整手大丑牌及各自版次（逆场按相反顺序）。阿默新规则局仅打出1张时，角色 ×3 放在整手大丑牌之后；旧规则局仍按原顺序结算。各次 +热度、+倍率、×倍率即时发生；先乘不会追溯乘后加的倍率。最后热度×倍率，只向下取整一次。\n固定顺序示例：4倍先+2再×1.5为9倍；先×1.5再+2为8倍。\n\n仅正式打出会发现牌型，不自动升级；升级只作用已有发现型，满级30。未发现项按Lv1参考显示，不写入存档。首次提示 · 可略过只用当前公开手牌找同点、连续或同花；自己选择保留与弃牌。参考不自动选牌，也不保证抽到缺牌；弃牌成本看实际按钮。略过此提示本局不提示不再显示看当前手牌怎么凑关闭",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [],
+          "faces": [],
+          "selected": 0,
+          "disabled": 0
+        },
+        {
+          "name": "retention",
+          "text": "牌桌手记当前手牌怎么凑建议留 J♦ 5♦ A♦；其余可尝试换。\n还差 2 张♦，需共5张同色牌型与成长说明尚未选择牌\n共0种：\n★代表计分牌。已成型示例只用当前手牌；未成型参考标“留”，不是计分牌型。\n点示例不改选择；换组后仍需自己出牌。成长不是通关必选，不必为成长强留场。想尝试的组合全部已成型同点成组顺子同花未成型留换参考，也可试其他组合。♦ 同花参考还差 2 张♦，需共5张同色可尝试保留：J♦ 5♦ A♦J♦留5♦♦留A♦♦留其余可按需求尝试换：Q♣ K♥ 2♥ 2♠ A♣\n本场剩余弃牌3次；当前每次消耗1次。自己选1–5张后点桌上弃牌。全有效牌组：♦ 13张；不是下次抽牌保证。回牌桌自己选牌查公开牌组♣ 同花参考还差 3 张♣，需共5张同色可尝试保留：Q♣ A♣Q♣留A♣♣留其余可按需求尝试换：K♥ 2♥ 2♠ J♦ 5♦ A♦\n本场剩余弃牌3次；当前每次消耗1次。自己选1–5张后点桌上弃牌。全有效牌组：♣ 13张；不是下次抽牌保证。回牌桌自己选牌查公开牌组参考只查看，不改当前选择；换牌仍由你决定，不保证补齐。首次提示 · 可略过只用当前公开手牌找同点、连续或同花；自己选择保留与弃牌。参考不自动选牌，也不保证抽到缺牌；弃牌成本看实际按钮。略过此提示本局不提示不再显示换为这组撤销换组查看成长机会工具包 1/2构筑条件完整牌型规则关闭",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [
+            {
+              "red": "true",
+              "color": "rgb(184, 71, 58)"
+            },
+            {
+              "red": "true",
+              "color": "rgb(184, 71, 58)"
+            },
+            {
+              "red": "true",
+              "color": "rgb(184, 71, 58)"
+            },
+            {
+              "red": "false",
+              "color": "rgb(38, 49, 58)"
+            },
+            {
+              "red": "false",
+              "color": "rgb(38, 49, 58)"
+            }
+          ],
+          "selected": 0,
+          "disabled": 0
+        },
+        {
+          "name": "deck",
+          "text": "牌桌手记牌组查看牌组范围剩余牌堆全部牌组增强筛选所有增强无增强有增强按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 13 · ♥ 13 · ♣ 13 · ♦ 13\n\n点数：A：4张 · K：4张 · Q：4张 · J：4张 · 10：4张 · 9：4张 · 8：4张 · 7：4张 · 6：4张 · 5：4张 · 4：4张 · 3：4张 · 2：4张\n\n2♠ 手牌、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠、2♥ 手牌、3♥、4♥、5♥、6♥、7♥、8♥、9♥、10♥、J♥、Q♥、K♥ 手牌、A♥、2♣、3♣、4♣、5♣、6♣、7♣、8♣、9♣、10♣、J♣、Q♣ 手牌、K♣、A♣ 手牌、2♦、3♦、4♦、5♦ 手牌、6♦、7♦、8♦、9♦、10♦、J♦ 手牌、Q♦、K♦、A♦ 手牌关闭",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [],
+          "selected": 0,
+          "disabled": 0
+        },
+        {
+          "name": "deck-refreshed",
+          "text": "牌桌手记牌组查看牌组范围剩余牌堆全部牌组增强筛选所有增强无增强有增强按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 13 · ♥ 13 · ♣ 13 · ♦ 13\n\n点数：A：4张 · K：4张 · Q：4张 · J：4张 · 10：4张 · 9：4张 · 8：4张 · 7：4张 · 6：4张 · 5：4张 · 4：4张 · 3：4张 · 2：4张\n\n2♠ 手牌、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠、2♥ 手牌、3♥、4♥、5♥、6♥、7♥、8♥、9♥、10♥、J♥、Q♥、K♥ 手牌、A♥、2♣、3♣、4♣、5♣、6♣、7♣、8♣、9♣、10♣、J♣、Q♣ 手牌、K♣、A♣ 手牌、2♦、3♦、4♦、5♦ 手牌、6♦、7♦、8♦、9♦、10♦、J♦ 手牌、Q♦、K♦、A♦ 手牌关闭",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [],
+          "selected": 0,
+          "disabled": 0
+        },
+        {
+          "name": "tool-unselected",
+          "text": "巡演藏牌塔罗 · 黑桃染 · 使用详情手绘卡面重试卡面重试高清商店 / 待出牌可用。选择1–3张可见扑克。所选扑克永久改为黑桃♠，保留点数、增强和版次。\n\n商店基准售价：4金\n额外使用代价：无额外金币或牺牲代价。成功后消耗1件工具。只展示当前已知手牌。整理不改手牌或已选目标，不提供隐藏牌目标。当前手牌点数整理花色整理2♠无增强 · 普通\n第 4 张K♥无增强 · 普通\n第 2 张2♥无增强 · 普通\n第 3 张A♣无增强 · 普通\n第 7 张Q♣无增强 · 普通\n第 1 张A♦无增强 · 普通\n第 8 张J♦无增强 · 普通\n第 5 张5♦无增强 · 普通\n第 6 张选择目标后，这里会显示变化与代价。请选择 1～3 张受益牌。风险与完整说明商店只选有效牌组，待出牌时只选当前可见手牌。取消、过期、非法目标、没有变化或代价不足均不消费工具与资源。确认使用销毁物品取消",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [],
+          "selected": 0,
+          "disabled": 0
+        },
+        {
+          "name": "tool-selected",
+          "text": "巡演藏牌塔罗 · 黑桃染 · 使用详情手绘卡面重试卡面重试高清商店 / 待出牌可用。选择1–3张可见扑克。所选扑克永久改为黑桃♠，保留点数、增强和版次。\n\n商店基准售价：4金\n额外使用代价：无额外金币或牺牲代价。成功后消耗1件工具。只展示当前已知手牌。整理不改手牌或已选目标，不提供隐藏牌目标。当前手牌点数整理花色整理2♠无增强 · 普通\n第 4 张K♥无增强 · 普通\n第 2 张2♥无增强 · 普通\n第 3 张A♣无增强 · 普通\n第 7 张Q♣无增强 · 普通\n第 1 张A♦无增强 · 普通\n第 8 张J♦无增强 · 普通\n第 5 张5♦无增强 · 普通\n第 6 张目标顺序：1. 2♥ · 无增强 · 普通 · 第 3 张\n\n2♥ → 2♠；增强：无；版次：普通目标有效。确认后使用物品并支付上述代价。风险与完整说明商店只选有效牌组，待出牌时只选当前可见手牌。取消、过期、非法目标、没有变化或代价不足均不消费工具与资源。确认使用销毁物品取消",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [],
+          "selected": 1,
+          "disabled": 0
+        },
+        {
+          "name": "tool-cap-disabled",
+          "text": "巡演藏牌塔罗 · 黑桃染 · 使用详情手绘卡面重试卡面重试高清商店 / 待出牌可用。选择1–3张可见扑克。所选扑克永久改为黑桃♠，保留点数、增强和版次。\n\n商店基准售价：4金\n额外使用代价：无额外金币或牺牲代价。成功后消耗1件工具。只展示当前已知手牌。整理不改手牌或已选目标，不提供隐藏牌目标。当前手牌点数整理花色整理2♠无增强 · 普通\n第 4 张K♥无增强 · 普通\n第 2 张2♥无增强 · 普通\n第 3 张A♣无增强 · 普通\n第 7 张Q♣无增强 · 普通\n第 1 张A♦无增强 · 普通\n第 8 张J♦无增强 · 普通\n第 5 张5♦无增强 · 普通\n第 6 张目标顺序：1. Q♣ · 无增强 · 普通 · 第 1 张 → 2. K♥ · 无增强 · 普通 · 第 2 张 → 3. 2♥ · 无增强 · 普通 · 第 3 张\n\nQ♣ → Q♠；增强：无；版次：普通\n\nK♥ → K♠；增强：无；版次：普通\n\n2♥ → 2♠；增强：无；版次：普通目标有效。确认后使用物品并支付上述代价。风险与完整说明商店只选有效牌组，待出牌时只选当前可见手牌。取消、过期、非法目标、没有变化或代价不足均不消费工具与资源。确认使用销毁物品取消",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [],
+          "selected": 3,
+          "disabled": 5
+        }
+      ],
+      "componentOnly": {
+        "textPreserved": true,
+        "selectColors": [
+          "rgb(38, 49, 58)",
+          "rgb(38, 49, 58)",
+          "rgb(159, 50, 40)",
+          "rgb(159, 50, 40)"
+        ],
+        "primaryColors": [
+          "rgb(255, 249, 238)",
+          "rgb(255, 237, 227)"
+        ]
+      },
+      "stateUnchanged": true,
+      "closeDisconnectsObserver": true,
+      "originalInputPreserved": true,
+      "status": "PASS"
+    },
+    {
+      "device": {
+        "width": 390,
+        "height": 740
+      },
+      "views": [
+        {
+          "name": "examples",
+          "text": "牌桌手记当前手牌怎么凑可先试两对：2♥ 2♠ A♣ A♦\n点“换为这组”只选牌，再由你出牌。牌型与成长说明尚未选择牌\n共2种：两对 · 对子\n★代表计分牌。已成型示例只用当前手牌；未成型参考标“留”，不是计分牌型。\n点示例不改选择；换组后仍需自己出牌。成长不是通关必选，不必为成长强留场。想尝试的组合全部已成型同点成组顺子同花两对 · 可选4／5张4张示例5张示例2♥♥★2♠♠★A♣♣★A♦♦★计分牌4张 · 附带0张对子 · 可选2／3／4／5张2张示例3张示例4张示例5张示例2♥♥★2♠♠★计分牌2张 · 附带0张仅示例 · 两对 · 已选4张\n\n当前手牌选择未改变。首次提示 · 可略过只用当前公开手牌找同点、连续或同花；自己选择保留与弃牌。参考不自动选牌，也不保证抽到缺牌；弃牌成本看实际按钮。略过此提示本局不提示不再显示换为这组撤销换组查看成长机会工具包 1/2构筑条件完整牌型规则关闭",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [
+            {
+              "red": "true",
+              "color": "rgb(184, 71, 58)"
+            },
+            {
+              "red": "false",
+              "color": "rgb(38, 49, 58)"
+            },
+            {
+              "red": "false",
+              "color": "rgb(38, 49, 58)"
+            },
+            {
+              "red": "true",
+              "color": "rgb(184, 71, 58)"
+            },
+            {
+              "red": "true",
+              "color": "rgb(184, 71, 58)"
+            },
+            {
+              "red": "false",
+              "color": "rgb(38, 49, 58)"
+            }
+          ],
+          "selected": 0,
+          "disabled": 0
+        },
+        {
+          "name": "rules",
+          "text": "牌桌手记牌型规则AI只整理主手，助攻自己选\n助攻会一同用掉，不算主手或留手牌\n\n成牌优先，高牌仅兜底。按当前规则的稳妥得分从高到低选牌；随机效果按保底比较，实际结果可能不同。平分先少出牌，再按当前座位顺序。只选牌，仍需自己出牌。\n\n按当前保存的等级列出全部12型；同一次选牌只判一种牌型。目录顺序不代表当前收益高低。\n\n高牌 · 未发现 · 按Lv1基准\n所选1–5张未组成其他牌型时，最高点数的一张计分。\n基础热度 20 · 基础倍率 1\n每级：热度 +10 · 倍率 +0.25\n\n对子 · 未发现 · 按Lv1基准\n2张相同点数成型；可选2–5张，其余为附带牌。\n基础热度 35 · 基础倍率 2\n每级：热度 +15 · 倍率 +0.5\n\n两对 · 未发现 · 按Lv1基准\n两组不同点数的对子成型；可选4或5张。\n基础热度 65 · 基础倍率 2\n每级：热度 +20 · 倍率 +0.5\n\n三条 · 未发现 · 按Lv1基准\n3张相同点数成型；可选3／4／5张。补另一对子会成为葫芦，第四张同点会成为四条。\n基础热度 90 · 基础倍率 3\n每级：热度 +25 · 倍率 +0.5\n\n顺子 · 未发现 · 按Lv1基准\n5张不同点数连续，花色不限。A可用于A2345或10JQKA，不能跨越QKA2。\n基础热度 125 · 基础倍率 4\n每级：热度 +35 · 倍率 +0.5\n\n同花 · 未发现 · 按Lv1基准\n5张相同花色，点数不限。\n基础热度 140 · 基础倍率 4\n每级：热度 +30 · 倍率 +0.5\n\n葫芦 · 未发现 · 按Lv1基准\n5张中，3张相同点数＋另2张相同点数。\n基础热度 210 · 基础倍率 5\n每级：热度 +40 · 倍率 +1\n\n四条 · 未发现 · 按Lv1基准\n4张相同点数成型；可选4或5张。\n基础热度 320 · 基础倍率 7\n每级：热度 +55 · 倍率 +1\n\n同花顺 · 未发现 · 按Lv1基准\n5张相同花色且点数连续；始终需要5张。只判同花顺，不另叠顺子或同花。\n基础热度 450 · 基础倍率 9\n每级：热度 +65 · 倍率 +1\n\n五条 · 未发现 · 按Lv1基准\n5张相同点数；复制牌须有不同实例身份。\n基础热度 700 · 基础倍率 10\n每级：热度 +70 · 倍率 +1\n\n同花葫芦 · 未发现 · 按Lv1基准\n5张相同花色且组成葫芦；复制牌须有不同实例身份。\n基础热度 850 · 基础倍率 12\n每级：热度 +80 · 倍率 +1\n\n同花五条 · 未发现 · 按Lv1基准\n5张相同花色、相同点数；复制牌须有不同实例身份。\n基础热度 1200 · 基础倍率 15\n每级：热度 +100 · 倍率 +1\n\n判型优先顺序（先符合者）：同花五条 → 同花葫芦 → 五条 → 同花顺 → 四条 → 葫芦 → 同花 → 顺子 → 三条 → 两对 → 对子 → 高牌\n\n普通点数：2–10按牌面，J／Q／K为10，A为11。只加有效计分牌；附带牌仍参与判型、打出张数和重复条件。Boss停用的牌仍成型但计分效果停用；普通点数0只停止普通点数，其他效果保留。\n\n计分顺序：当前等级牌型基础 → 逐有效计分牌的普通点数、强化、版次、该牌大丑牌与重触发 → 留手强化／大丑牌 → 角色 → 按持有顺序的整手大丑牌及各自版次（逆场按相反顺序）。阿默新规则局仅打出1张时，角色 ×3 放在整手大丑牌之后；旧规则局仍按原顺序结算。各次 +热度、+倍率、×倍率即时发生；先乘不会追溯乘后加的倍率。最后热度×倍率，只向下取整一次。\n固定顺序示例：4倍先+2再×1.5为9倍；先×1.5再+2为8倍。\n\n仅正式打出会发现牌型，不自动升级；升级只作用已有发现型，满级30。未发现项按Lv1参考显示，不写入存档。首次提示 · 可略过只用当前公开手牌找同点、连续或同花；自己选择保留与弃牌。参考不自动选牌，也不保证抽到缺牌；弃牌成本看实际按钮。略过此提示本局不提示不再显示看当前手牌怎么凑关闭",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [],
+          "faces": [],
+          "selected": 0,
+          "disabled": 0
+        },
+        {
+          "name": "retention",
+          "text": "牌桌手记当前手牌怎么凑建议留 J♦ 5♦ A♦；其余可尝试换。\n还差 2 张♦，需共5张同色牌型与成长说明尚未选择牌\n共0种：\n★代表计分牌。已成型示例只用当前手牌；未成型参考标“留”，不是计分牌型。\n点示例不改选择；换组后仍需自己出牌。成长不是通关必选，不必为成长强留场。想尝试的组合全部已成型同点成组顺子同花未成型留换参考，也可试其他组合。♦ 同花参考还差 2 张♦，需共5张同色可尝试保留：J♦ 5♦ A♦J♦留5♦♦留A♦♦留其余可按需求尝试换：Q♣ K♥ 2♥ 2♠ A♣\n本场剩余弃牌3次；当前每次消耗1次。自己选1–5张后点桌上弃牌。全有效牌组：♦ 13张；不是下次抽牌保证。回牌桌自己选牌查公开牌组♣ 同花参考还差 3 张♣，需共5张同色可尝试保留：Q♣ A♣Q♣留A♣♣留其余可按需求尝试换：K♥ 2♥ 2♠ J♦ 5♦ A♦\n本场剩余弃牌3次；当前每次消耗1次。自己选1–5张后点桌上弃牌。全有效牌组：♣ 13张；不是下次抽牌保证。回牌桌自己选牌查公开牌组参考只查看，不改当前选择；换牌仍由你决定，不保证补齐。首次提示 · 可略过只用当前公开手牌找同点、连续或同花；自己选择保留与弃牌。参考不自动选牌，也不保证抽到缺牌；弃牌成本看实际按钮。略过此提示本局不提示不再显示换为这组撤销换组查看成长机会工具包 1/2构筑条件完整牌型规则关闭",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [
+            {
+              "red": "true",
+              "color": "rgb(184, 71, 58)"
+            },
+            {
+              "red": "true",
+              "color": "rgb(184, 71, 58)"
+            },
+            {
+              "red": "true",
+              "color": "rgb(184, 71, 58)"
+            },
+            {
+              "red": "false",
+              "color": "rgb(38, 49, 58)"
+            },
+            {
+              "red": "false",
+              "color": "rgb(38, 49, 58)"
+            }
+          ],
+          "selected": 0,
+          "disabled": 0
+        },
+        {
+          "name": "deck",
+          "text": "牌桌手记牌组查看牌组范围剩余牌堆全部牌组增强筛选所有增强无增强有增强按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 13 · ♥ 13 · ♣ 13 · ♦ 13\n\n点数：A：4张 · K：4张 · Q：4张 · J：4张 · 10：4张 · 9：4张 · 8：4张 · 7：4张 · 6：4张 · 5：4张 · 4：4张 · 3：4张 · 2：4张\n\n2♠ 手牌、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠、2♥ 手牌、3♥、4♥、5♥、6♥、7♥、8♥、9♥、10♥、J♥、Q♥、K♥ 手牌、A♥、2♣、3♣、4♣、5♣、6♣、7♣、8♣、9♣、10♣、J♣、Q♣ 手牌、K♣、A♣ 手牌、2♦、3♦、4♦、5♦ 手牌、6♦、7♦、8♦、9♦、10♦、J♦ 手牌、Q♦、K♦、A♦ 手牌关闭",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [],
+          "selected": 0,
+          "disabled": 0
+        },
+        {
+          "name": "deck-refreshed",
+          "text": "牌桌手记牌组查看牌组范围剩余牌堆全部牌组增强筛选所有增强无增强有增强按花色与点数统计，不展示抽牌顺序。\n\n全部有效牌组 · 所有增强 · 52 张\n\n花色：♠ 13 · ♥ 13 · ♣ 13 · ♦ 13\n\n点数：A：4张 · K：4张 · Q：4张 · J：4张 · 10：4张 · 9：4张 · 8：4张 · 7：4张 · 6：4张 · 5：4张 · 4：4张 · 3：4张 · 2：4张\n\n2♠ 手牌、3♠、4♠、5♠、6♠、7♠、8♠、9♠、10♠、J♠、Q♠、K♠、A♠、2♥ 手牌、3♥、4♥、5♥、6♥、7♥、8♥、9♥、10♥、J♥、Q♥、K♥ 手牌、A♥、2♣、3♣、4♣、5♣、6♣、7♣、8♣、9♣、10♣、J♣、Q♣ 手牌、K♣、A♣ 手牌、2♦、3♦、4♦、5♦ 手牌、6♦、7♦、8♦、9♦、10♦、J♦ 手牌、Q♦、K♦、A♦ 手牌关闭",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [],
+          "selected": 0,
+          "disabled": 0
+        },
+        {
+          "name": "tool-unselected",
+          "text": "巡演藏牌塔罗 · 黑桃染 · 使用详情手绘卡面重试卡面重试高清商店 / 待出牌可用。选择1–3张可见扑克。所选扑克永久改为黑桃♠，保留点数、增强和版次。\n\n商店基准售价：4金\n额外使用代价：无额外金币或牺牲代价。成功后消耗1件工具。只展示当前已知手牌。整理不改手牌或已选目标，不提供隐藏牌目标。当前手牌点数整理花色整理2♠无增强 · 普通\n第 4 张K♥无增强 · 普通\n第 2 张2♥无增强 · 普通\n第 3 张A♣无增强 · 普通\n第 7 张Q♣无增强 · 普通\n第 1 张A♦无增强 · 普通\n第 8 张J♦无增强 · 普通\n第 5 张5♦无增强 · 普通\n第 6 张选择目标后，这里会显示变化与代价。请选择 1～3 张受益牌。风险与完整说明商店只选有效牌组，待出牌时只选当前可见手牌。取消、过期、非法目标、没有变化或代价不足均不消费工具与资源。确认使用销毁物品取消",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [],
+          "selected": 0,
+          "disabled": 0
+        },
+        {
+          "name": "tool-selected",
+          "text": "巡演藏牌塔罗 · 黑桃染 · 使用详情手绘卡面重试卡面重试高清商店 / 待出牌可用。选择1–3张可见扑克。所选扑克永久改为黑桃♠，保留点数、增强和版次。\n\n商店基准售价：4金\n额外使用代价：无额外金币或牺牲代价。成功后消耗1件工具。只展示当前已知手牌。整理不改手牌或已选目标，不提供隐藏牌目标。当前手牌点数整理花色整理2♠无增强 · 普通\n第 4 张K♥无增强 · 普通\n第 2 张2♥无增强 · 普通\n第 3 张A♣无增强 · 普通\n第 7 张Q♣无增强 · 普通\n第 1 张A♦无增强 · 普通\n第 8 张J♦无增强 · 普通\n第 5 张5♦无增强 · 普通\n第 6 张目标顺序：1. 2♥ · 无增强 · 普通 · 第 3 张\n\n2♥ → 2♠；增强：无；版次：普通目标有效。确认后使用物品并支付上述代价。风险与完整说明商店只选有效牌组，待出牌时只选当前可见手牌。取消、过期、非法目标、没有变化或代价不足均不消费工具与资源。确认使用销毁物品取消",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [],
+          "selected": 1,
+          "disabled": 0
+        },
+        {
+          "name": "tool-cap-disabled",
+          "text": "巡演藏牌塔罗 · 黑桃染 · 使用详情手绘卡面重试卡面重试高清商店 / 待出牌可用。选择1–3张可见扑克。所选扑克永久改为黑桃♠，保留点数、增强和版次。\n\n商店基准售价：4金\n额外使用代价：无额外金币或牺牲代价。成功后消耗1件工具。只展示当前已知手牌。整理不改手牌或已选目标，不提供隐藏牌目标。当前手牌点数整理花色整理2♠无增强 · 普通\n第 4 张K♥无增强 · 普通\n第 2 张2♥无增强 · 普通\n第 3 张A♣无增强 · 普通\n第 7 张Q♣无增强 · 普通\n第 1 张A♦无增强 · 普通\n第 8 张J♦无增强 · 普通\n第 5 张5♦无增强 · 普通\n第 6 张目标顺序：1. Q♣ · 无增强 · 普通 · 第 1 张 → 2. K♥ · 无增强 · 普通 · 第 2 张 → 3. 2♥ · 无增强 · 普通 · 第 3 张\n\nQ♣ → Q♠；增强：无；版次：普通\n\nK♥ → K♠；增强：无；版次：普通\n\n2♥ → 2♠；增强：无；版次：普通目标有效。确认后使用物品并支付上述代价。风险与完整说明商店只选有效牌组，待出牌时只选当前可见手牌。取消、过期、非法目标、没有变化或代价不足均不消费工具与资源。确认使用销毁物品取消",
+          "bodyColor": "rgb(38, 49, 58)",
+          "overflow": false,
+          "symbols": [
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♦",
+              "suit": "diamonds",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♣",
+              "suit": "clubs",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♥",
+              "suit": "hearts",
+              "color": "rgb(159, 50, 40)",
+              "pointer": "none"
+            },
+            {
+              "glyph": "♠",
+              "suit": "spades",
+              "color": "rgb(38, 49, 58)",
+              "pointer": "none"
+            }
+          ],
+          "faces": [],
+          "selected": 3,
+          "disabled": 5
+        }
+      ],
+      "componentOnly": {
+        "textPreserved": true,
+        "selectColors": [
+          "rgb(38, 49, 58)",
+          "rgb(38, 49, 58)",
+          "rgb(159, 50, 40)",
+          "rgb(159, 50, 40)"
+        ],
+        "primaryColors": [
+          "rgb(255, 249, 238)",
+          "rgb(255, 237, 227)"
+        ]
+      },
+      "stateUnchanged": true,
+      "closeDisconnectsObserver": true,
+      "originalInputPreserved": true,
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}
