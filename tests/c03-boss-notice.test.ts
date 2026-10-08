@@ -2,7 +2,7 @@ import {describe,expect,it} from 'vitest';
 import {createDeck} from '../src/cards/deck';
 import type {R2JokerInstance} from '../src/content/r2Schema';
 import type {R2BossId} from '../src/domain/r2Chapter';
-import {stageNotice,type StageNotice,type StageNoticeInput} from '../src/game/stageNotice';
+import {stageNotice,discardReferenceCopy,type StageNotice,type StageNoticeInput} from '../src/game/stageNotice';
 
 const ids=['hearts-11','hearts-14','clubs-12','diamonds-13','spades-2'];
 const owned=(definitionId:string):R2JokerInstance=>({instanceId:`owned/${definitionId}`,definitionId,paidPrice:4,growth:{}});
@@ -17,6 +17,23 @@ const notice=(run:StageNoticeInput,selected:readonly string[]=ids):StageNotice=>
 const withJokers=(id:R2BossId,definitions:readonly string[])=>({...fixture(id),jokers:definitions.map(owned)});
 
 describe('C03 compact sixteen-Boss entered-stage notices',()=>{
+  it.each([0,2])('discard reference B07 with %i gold reports the real upfront fee and only suggests legal discard',gold=>{
+    const run={...fixture('B07'),gold},before=JSON.stringify(run),copy=discardReferenceCopy(run);
+    expect(copy).toContain('每次消耗1次 +1金币');expect(copy).toContain('手头'+gold+'金币');
+    if(gold===0){expect(copy).toContain('当前不能弃牌：金币不足');expect(copy).not.toContain('自己选1–5张');}
+    else{expect(copy).toContain('自己选1–5张');expect(copy).not.toContain('当前不能弃牌');}
+    expect(JSON.stringify(run)).toBe(before);
+  });
+  it.each([0,2])('discard reference ordinary stage with %i gold has no extra fee or false gold block',gold=>{
+    const run={...fixture('B07'),gold};run.stage!.index=0;run.stage!.boss=null;
+    expect(discardReferenceCopy(run)).toContain('每次消耗1次');expect(discardReferenceCopy(run)).toContain('自己选1–5张');expect(discardReferenceCopy(run)).not.toMatch(/金币|不能弃牌/);
+  });
+  it('discard reference distinguishes exhausted attempts and actual B01 double cost before first play',()=>{
+    const run={...fixture('B01'),gold:0};run.stage!.discardsLeft=1;
+    expect(discardReferenceCopy(run)).toContain('每次消耗2次');expect(discardReferenceCopy(run)).toContain('弃牌次数不足（需2次）');expect(discardReferenceCopy(run)).not.toContain('自己选1–5张');
+    run.stage!.playIndex=1;expect(discardReferenceCopy(run)).toContain('每次消耗1次');expect(discardReferenceCopy(run)).toContain('自己选1–5张');
+    run.stage!.discardsLeft=0;expect(discardReferenceCopy(run)).toContain('弃牌次数不足');
+  });
   it.each([
     ['B01','贵宾场'],['B02','低调点'],['B03','单色灯'],['B04','素颜场'],['B05','回音墙'],['B06','半边灯'],['B07','验票员'],['B08','静场'],
     ['B09','快板'],['B10','小舞台'],['B11','谢客'],['B12','挑剔'],['B13','逆着来'],['B14','催场'],['B15','逐个谢幕'],['B16','不吃名气'],

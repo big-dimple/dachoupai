@@ -2,7 +2,7 @@ import {SUIT_SYMBOL} from '../cards/types';
 import {HAND_LABELS} from '../content/handLabels';
 import {r2JokerDefinitionsForContext} from '../domain/r2ContentProfiles';
 import {R2_BOSSES,r2DisabledCards,r2OrdinarySuppression} from '../domain/r2Chapter';
-import {r2DiscardCost} from '../domain/r2Run';
+import {r2DiscardCost,R2_LIMITS} from '../domain/r2Run';
 import type {R2RunState} from '../domain/run';
 import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {heatText} from './scoreText';
@@ -23,6 +23,15 @@ export interface StageNotice {
   jokerScoreDirection:'left-to-right'|'right-to-left';
   discardGoldCost:number;
   targetIncreasePerDiscard:string;
+}
+
+/** The same entered-stage costs used by the discard control; never assumes a later refund. */
+export function discardReferenceCopy(run:StageNoticeInput&Pick<R2RunState,'gold'>):string {
+  const notice=stageNotice(run);if(!notice||!run.stage)return '当前不能弃牌：不在选牌阶段。';
+  const cost=notice.discardCost,goldCost=notice.discardGoldCost,left=run.stage.discardsLeft;
+  const budget='本场剩余弃牌'+left+'次'+(goldCost?'，手头'+run.gold+'金币':'')+'；当前每次消耗'+cost+'次'+(goldCost?' +'+goldCost+'金币':'')+'。';
+  const reasons=[...(left<cost?['弃牌次数不足（需'+cost+'次）']:[]),...(run.gold<goldCost?['金币不足（需'+goldCost+'金币）']:[])];
+  return budget+(reasons.length?'当前不能弃牌：'+reasons.join('、')+'；可用已成牌型或已有工具。':'自己选1–'+R2_LIMITS.maxSelected+'张后点桌上弃牌。');
 }
 
 /** Presentation of the entered stage only; chapter forecasts never disable current cards. */
