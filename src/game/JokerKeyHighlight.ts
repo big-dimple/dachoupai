@@ -5,10 +5,21 @@ import {hasActualBenefit,savedBenefit,type SavedBenefit} from './JokerExperience
 import {fractionText} from './scoreText';
 import {HAND_LABELS} from '../content/handLabels';
 import type {ScoreBeat} from './scorePresentation';
-export interface JokerKeyHighlight {eventId:string;fact:SavedBenefit;kind:'multiply'|'crossing';landing:string;cause:string}
+import type {R2OpeningRoute} from '../domain/r2GroupUpgrade';
+import type {CharacterId} from '../domain/characters';
+export interface JokerKeyHighlight {eventId:string;fact:SavedBenefit;kind:'multiply'|'crossing'|'starter';landing:string;cause:string;route?:R2OpeningRoute;heroId?:CharacterId}
 const product=(a:ScoreEvent['after'])=>Rational.fromJSON(a.H).multiply(Rational.fromJSON(a.M)).floor();
 /** Select from committed events only, never selection forecasts. Stable tie keeps trace order. */
-export function keyHighlight(state:R2RunState,trace:ScoreTrace,originHeat='0',target=state.stage?.targetHeat):JokerKeyHighlight|undefined {
+export function keyHighlight(state:R2RunState,trace:ScoreTrace,originHeat='0',target=state.stage?.targetHeat,includeOpening=true):JokerKeyHighlight|undefined {
+ const stamp=state.routeStarter;
+ if(includeOpening&&state.openingRoute&&stamp?.rootId===trace.rootId){
+  const event=trace.events.find(e=>e.eventId===stamp.eventId&&e.sourceInstanceId===stamp.instanceId),fact=event&&savedBenefit(state,trace,event);
+  if(event&&fact){
+   const growthBefore=trace.sourceJokers.find(j=>j.instanceId===event.sourceInstanceId)?.growth.multiplier??{n:'0',d:'1'},growthAfter=trace.jokers.find(j=>j.instanceId===event.sourceInstanceId)?.growth.multiplier;
+   const shown=event.operation==='add-growth'&&growthAfter?{...fact,effect:'保存成长 '+fractionText(growthBefore)+' → '+fractionText(growthAfter)}:fact;
+   return {eventId:event.eventId,fact:shown,kind:'starter',route:state.openingRoute,heroId:state.characterId,cause:HAND_LABELS[trace.handType]+'已成型',landing:event.operation==='add-growth'?'已存成长 · 下手生效，本手分数不变':'热度 '+fractionText(event.before.H)+' → '+fractionText(event.after.H)};
+  }
+ }
  let selected:JokerKeyHighlight|undefined,priority=0;
  for(const e of trace.events){
   if(e.sourceType!=='joker'||!hasActualBenefit(e)||['base','finalScore','afterHand','onStageClear','beforeFailure'].includes(e.phase))continue;
@@ -19,7 +30,11 @@ export function keyHighlight(state:R2RunState,trace:ScoreTrace,originHeat='0',ta
  }
  return selected;
 }
-export function keyHighlightBeat(base:ScoreBeat,reduced=false):ScoreBeat {return {...base,windup:reduced?0:100,flight:reduced?0:base.flight?140:0,impact:reduced?280:220,rest:120};}
+export function keyHighlightBeat(base:ScoreBeat,reduced=false,kind?:JokerKeyHighlight['kind']):ScoreBeat {
+ if(kind==='starter')return {...base,windup:reduced?0:120,flight:reduced?0:base.flight?140:0,impact:reduced?320:600,rest:reduced?80:base.flight?140:280};
+ return {...base,windup:reduced?0:100,flight:reduced?0:base.flight?140:0,impact:reduced?280:220,rest:120};
+}
+export function starterRepeatBeat(base:ScoreBeat,reduced=false):ScoreBeat{return {...base,windup:reduced?0:40,flight:reduced?0:base.flight?70:0,impact:reduced?120:120,rest:reduced?80:base.flight?60:130};}
 /** Growth stamp reports the saved destination, never adds this growth to the current score. */
 export function savedGrowthStamp(state:R2RunState,trace:ScoreTrace,e:ScoreEvent):string|undefined {
  if(!['afterHand','onStageClear'].includes(e.phase)||!['add-growth','add-coefficient','multiply-coefficient'].includes(e.operation))return;

@@ -1,5 +1,5 @@
 import {assertGroupTraceExecutions} from './groupTraceExecutions';
-import {hasR2ComboGrowthContract,isR2GroupUpgrade} from '../domain/r2GroupUpgrade';
+import {hasR2ComboGrowthContract,isR2GroupUpgrade,hasR2GroupUpgradeContract,isR2RouteStarter,R2_ROUTE_STARTERS} from '../domain/r2GroupUpgrade';
 import {R2_GROUP_UPGRADE_IDS} from '../content/r2GroupUpgradeJokers';
 import {R2_GROUP_HAND_TYPES,r2LargestScoringRankGroup} from '../domain/r2GroupHands';
 import {R2_COMBO_GROWTH_IDS} from '../content/r2ComboGrowthJokers';
@@ -12,7 +12,8 @@ import {r2AssistFacts,AMO_ASSIST_TYPES} from '../domain/r2Assist';
 import {r2SelectionFacts} from '../domain/r2SelectionFacts';
 import {R2_PUBLISHED_JOKERS as R2_JOKERS} from '../domain/r2PublishedContent';
 import {assertR2Invariants,r2RulesetFor,r2UsesAssist,r2ScoreTimingFor,R2_LIMITS,R2_RESOURCE_CONTRACT} from '../domain/r2Run';
-import type {R2RunState,Command,Action} from '../domain/run';
+import {createRun,type R2RunState,type Command,type Action} from '../domain/run';
+import {routeStarterStartCommand,routeStarterScoreEvent} from '../domain/r2RouteStarter';
 import {CHARACTER_IDS} from '../domain/characters';
 import {R2_HAND_TYPES,type R2HandType} from '../domain/evaluateR2';
 import {r2GrowthCaps,r2GrowthInitials,r2GrowthMinimums,supportsR2Joker,validR2JokerCounters,validR2Condition,type R2JokerInstance} from '../content/r2Schema';
@@ -607,10 +608,10 @@ function trace(value:unknown,context:{group:boolean;combo:boolean;definitions:Re
 }
 function action(value:unknown,state:R2RunState):void {
   const prototype=r2UsesAssist(state),combo=hasR2ComboGrowthContract(state),profile=isR2GroupUpgrade(state)?'group-upgrade-v1':combo?'combo-growth-v1':'amo-assist-v1';
-  const a=record(value,['type'],['seed','characterId','rulesVersion','modeConfig','r2Profile','r2Identity','assistIds','programId','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind']);
+  const a=record(value,['type'],['seed','characterId','rulesVersion','openingRoute','modeConfig','r2Profile','r2Identity','assistIds','programId','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind']);
   const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],ContinueEndless:[],ChooseProgram:['programId'],AbandonProgram:[],PlayHand:['selectedIds'],PlayAssistedHand:['selectedIds','assistIds'],DiscardHand:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
   if(typeof a.type!=='string'||!Object.hasOwn(keys,a.type))fail('unknown-save-command');
-  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='StartRun'?['modeConfig','r2Identity',...(prototype||combo?['r2Profile']:[])]:[]);
+  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='StartRun'?['modeConfig','r2Identity',...(isR2RouteStarter(state)?['openingRoute']:[]),...(prototype||combo?['r2Profile']:[])]:[]);
   if(a.type==='PlayAssistedHand'&&!prototype)fail('invalid-save-assist-profile');
   if(a.type==='StartRun'&&prototype&&((a.r2Identity===undefined&&a.r2Profile!==profile)||a.characterId!=='amo'))fail('invalid-save-assist-profile');
   if(a.type==='PlayAssistedHand'){uniqueIds(a.selectedIds,5);uniqueIds(a.assistIds,3);const main=a.selectedIds as string[],assist=a.assistIds as string[];if(!main.length||assist.length<2||assist.some(id=>main.includes(id)))fail('invalid-save-assist-command');}
@@ -620,6 +621,7 @@ function action(value:unknown,state:R2RunState):void {
   if(a.sacrificeId!==undefined)text(a.sacrificeId);
   if(a.targetKind!==undefined)oneOf(a.targetKind,['card','joker']);
   if(a.type==='StartRun'){
+    if(isR2RouteStarter(state)&&(a.openingRoute!==state.openingRoute||!Object.hasOwn(R2_ROUTE_STARTERS,String(a.openingRoute))))fail('invalid-save-opening-route');
     if(combo&&a.r2Identity===undefined&&a.r2Profile!==profile)fail('invalid-save-start-profile');
     if(a.r2Profile!==undefined&&a.r2Profile!==profile)fail('invalid-save-start-profile');
     text(a.seed,4096);oneOf(a.characterId,CHARACTER_IDS);oneOf(a.rulesVersion,['r2']);
@@ -651,8 +653,9 @@ function safeTree(value:unknown):void {
 function validateState(value:unknown):asserts value is R2RunState {
   // Diagnose old versions before changed fields; retaining/exporting raw saves remains explicit.
   if(value&&typeof value==='object'&&!Array.isArray(value)){const tags=value as Record<string,unknown>;if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||!r2RulesetFor(tags))fail('incompatible-version');}
-  const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','mode','difficulty','challengeId','programsEnabled','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons','safetyNetUsed','spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed','tourMode','normalCompletion','chapterDisabledJokerId','programRerollCoupon']);
+  const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','mode','difficulty','challengeId','programsEnabled','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons','safetyNetUsed','spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed','tourMode','normalCompletion','chapterDisabledJokerId','programRerollCoupon',...(isR2RouteStarter(value as R2RunState)?['openingRoute','routeStarter']:[])]);
   if(s.schemaVersion!==2||s.rulesVersion!=='r2'||!r2RulesetFor(s))fail('incompatible-version');
+  if(isR2RouteStarter(s))oneOf(s.openingRoute,Object.keys(R2_ROUTE_STARTERS));
   const prototype=r2UsesAssist(s),combo=hasR2ComboGrowthContract(s),definitions=r2JokerDefinitionsFor(s);
   if(s.contentVersion===R2_ASSIST_VERSION&&s.characterId!=='amo')fail('invalid-save-assist-profile');
   const selected=resolveR2ModeConfig({mode:s.mode,difficulty:s.difficulty,challengeId:s.challengeId,programsEnabled:s.programsEnabled});
@@ -745,8 +748,26 @@ function validateState(value:unknown):asserts value is R2RunState {
   const receipts=array(s.receipts,100000);let seq=0;const ids=new Set();
   for(const r of receipts){const v=record(r,['commandId','fingerprint','seq']);text(v.commandId);text(v.fingerprint);integer(v.seq,1);if(v.seq!==++seq||ids.has(v.commandId))fail('invalid-save-receipts');ids.add(v.commandId);}
   if(seq!==s.commandSeq)fail('invalid-save-sequence');
+  if(isR2RouteStarter(s)){
+    const state=s as unknown as R2RunState,start=routeStarterStartCommand(state),initial=createRun({...start.action as Extract<Action,{type:'StartRun'}>,runId:state.runId,rulesVersion:'r2'});
+    if(state.receipts[0]?.fingerprint!==stableHash(start))fail('invalid-save-opening-receipt');
+    if(state.commandSeq===1&&stableHash(state)!==stableHash(initial))fail('invalid-save-opening-state');
+    const stamp=record(s.routeStarter,['instanceId','rootId','eventId']);
+    for(const key of ['instanceId','rootId','eventId'])if(stamp[key]!==null)text(stamp[key]);
+    if((stamp.rootId===null)!==(stamp.eventId===null)||stamp.instanceId===null&&stamp.rootId!==null)fail('invalid-save-starter-record');
+    if(stamp.instanceId!==null){
+      const prefix=state.runId+'/joker/';if(!(stamp.instanceId as string).startsWith(prefix))fail('invalid-save-starter-source');
+      const commandId=(stamp.instanceId as string).slice(prefix.length),receipt=state.receipts.find(r=>r.commandId===commandId),offers=initial.shop!.offers.filter(o=>o.definitionId===R2_ROUTE_STARTERS[state.openingRoute!]);
+      if(!receipt||!offers.some(o=>receipt.fingerprint===stableHash({runId:state.runId,commandId,expectedSeq:receipt.seq-1,action:{type:'BuyOffer',offerId:o.offerId}})))fail('invalid-save-starter-purchase');
+      if(stamp.rootId!==null){
+        const rootPrefix=state.runId+'/hand/';if(!(stamp.rootId as string).startsWith(rootPrefix)||!(stamp.eventId as string).startsWith((stamp.rootId as string)+'/'))fail('invalid-save-starter-event');
+        const trigger=state.receipts.find(r=>rootPrefix+r.commandId===stamp.rootId);if(!trigger||trigger.seq<=receipt!.seq)fail('invalid-save-starter-trigger-receipt');
+        if(state.lastTrace?.rootId===stamp.rootId&&routeStarterScoreEvent(state,state.lastTrace!)?.eventId!==stamp.eventId)fail('invalid-save-starter-event-benefit');
+      }else if(state.lastTrace&&routeStarterScoreEvent(state,state.lastTrace))fail('invalid-save-missing-starter-trigger');
+    }
+  }
   const stage=s.stage as R2RunState['stage'],sameStage=stage?.index===s.stageIndex&&['await-input','run-lost'].includes(s.phase as string);
-  trace(s.lastTrace,{group:isR2GroupUpgrade(s),combo,definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2ScoreTimingFor(s),discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
+  trace(s.lastTrace,{group:hasR2GroupUpgradeContract(s),combo,definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2ScoreTimingFor(s),discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
     config,program:s.program as R2ProgramState|null,usage:usage as R2RunState['chapterHandUsage'],
     liveJokerIds:sameStage?(s.jokers as R2JokerInstance[]).map(joker=>joker.instanceId):undefined,liveJokers:combo||sameStage?s.jokers as R2JokerInstance[]:undefined,settledGold:['stage-cleared','run-won'].includes(s.phase as string)?s.gold as number:undefined});
   const program=s.program as R2ProgramState|null;

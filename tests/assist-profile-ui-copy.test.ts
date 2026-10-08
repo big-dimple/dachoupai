@@ -1,3 +1,4 @@
+import {isR2RouteStarter} from '../src/domain/r2GroupUpgrade';
 import {expect,it,vi} from 'vitest';
 vi.mock('phaser',()=>({default:{Scene:class {}}}));
 import {GameScene} from '../src/game/GameScene';
@@ -37,7 +38,7 @@ it('saved Amo role copy distinguishes assist, before-Joker v10 and after-Joker v
 
 it('all known identities bind game, shop and AI to the exact definition; only Amo shows assist',()=>{
  const game=Object.create(GameScene.prototype) as any,shop=Object.create(ShopScene.prototype) as any;
- for(const profile of R2_RULESETS)for(const characterId of CHARACTER_IDS){
+ for(const profile of R2_RULESETS.filter(p=>!isR2RouteStarter(p)))for(const characterId of CHARACTER_IDS){
   if(profile.contentVersion==='quality-r2-amo-assist-prototype-v1'&&characterId!=='amo')continue;
   const s=state(false,{contentVersion:profile.contentVersion,contentHash:profile.contentHash},characterId),defs=r2JokerDefinitionsFor(s);
   Object.assign(game,{run:s,selectedIds:new Set(main),assistIds:[],playing:false,presentation:undefined});shop.run=s;

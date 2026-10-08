@@ -7,7 +7,7 @@ import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 interface JourneyActions {onFocus?:()=>void;tools:()=>void;tool:(id:string)=>void;source:(id:string)=>void;deck:()=>void;offers?:(id:string,kind:'jokers'|'tools'|'items')=>void;compare?:(offerId:string,heldId:string)=>void;continue:()=>void;continueLabel:string;ready:boolean;publicHands?:()=>void;manage?:()=>void;chapter?:()=>void}
 /** Player chooses a direction, then takes an existing validated action. No command is submitted here. */
 export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:JourneyActions,choose=false,all=false):void {
- const focus=choose?undefined:currentBuildFocus(state.runId);
+ const focus=choose?undefined:currentBuildFocus(state.runId,state.openingRoute);
  const shortGuide:Record<BuildFocus,string>={group:'保留同点牌，试两对、三条等成组。',straight:'用不同点数接出连续牌。',flush:'选一种花色，集中成同花。'};
  if(!focus){
   const art:Record<BuildFocus,string>={group:'b10',straight:'c11',flush:'c09'};

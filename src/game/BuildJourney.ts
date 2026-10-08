@@ -18,9 +18,9 @@ import {savedExperienceCards} from './JokerExperience';
 export type BuildFocus='group'|'straight'|'flush';
 export const BUILD_FOCUS:readonly BuildFocus[]=['group','straight','flush'];
 export const BUILD_LABEL:Record<BuildFocus,string>={group:'同点成组',straight:'顺子接续',flush:'同花集中'};
-// UI intent only. Keep one run, never add a save field or reuse the intent for a new run.
+// Mutable direction remains UI-only; the new saved opening route is merely its reload fallback.
 let intent:{runId:string;focus:BuildFocus}|undefined;
-export const currentBuildFocus=(runId:string)=>intent?.runId===runId?intent.focus:undefined;
+export const currentBuildFocus=(runId:string,fallback?:BuildFocus)=>intent?.runId===runId?intent.focus:fallback;
 export function chooseBuildFocus(runId:string,focus:BuildFocus):void {if(BUILD_FOCUS.includes(focus))intent={runId,focus};}
 export const buildHandTypes=(focus:BuildFocus)=>focus==='group'?R2_GROUP_HAND_TYPES:focus==='straight'?['straight','straight-flush']:['flush','straight-flush'];
 export function jokerSupportsFocus(state:R2RunState,id:string,focus:BuildFocus):boolean {

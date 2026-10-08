@@ -16,7 +16,7 @@ export async function point(page,key,name){
 }
 export async function tapUI(page,key,name,touch=false){
   if(key==='shop'&&['action/chapter','action/items'].includes(name)&&await page.evaluate(()=>window.__harness.game.scene.getScene('shop').view.layout.mode==='portrait')){
-    await tapUI(page,'shop','action/build',touch);if(name==='action/items'){const manage=page.getByRole('button',{name:'持有牌管理',exact:true});if(touch)await manage.tap();else await manage.click();}const button=page.getByRole('button',{name:name==='action/chapter'?'本章节目':'物品与道具',exact:true});if(touch)await button.tap();else await button.click();return;
+    await tapUI(page,'shop','action/build',touch);const all=page.getByRole('button',{name:'查看全部现货与持牌',exact:true});if(await all.count()){if(touch)await all.tap();else await all.click();}if(name==='action/items'){const manage=page.getByRole('button',{name:'持有牌管理',exact:true});if(touch)await manage.tap();else await manage.click();}const button=page.getByRole('button',{name:name==='action/chapter'?'本章节目':'物品与道具',exact:true});if(touch)await button.tap();else await button.click();return;
   }
   if(key==='shop'&&name.startsWith('offer/'))for(let i=0;i<8;i++){
     const visible=await page.evaluate(name=>{const s=window.__harness.game.scene.getScene('shop'),walk=list=>list.some(o=>o.name===name||o.list&&walk(o.list));return walk(s.children.list);},name);if(visible)break;

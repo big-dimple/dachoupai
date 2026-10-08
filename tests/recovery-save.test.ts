@@ -1,3 +1,4 @@
+import {isR2RouteStarter} from '../src/domain/r2GroupUpgrade';
 import {R2_RULESETS} from '../src/domain/r2Run';
 import {CHARACTER_IDS} from '../src/domain/characters';
 import {afterEach,describe,expect,it,vi} from 'vitest';
@@ -37,6 +38,14 @@ async function existingSession(){
 
 function guideStorage(){const data=new Map<string,string>();vi.stubGlobal('localStorage',{getItem:(k:string)=>data.get(k)??null,setItem:(k:string,v:string)=>data.set(k,v)});}
 describe('optional first-guide save boundaries',()=>{
+  it('new saved route survives unique failed candidate retry and exact same-route restart; cancel preserves old progress',async()=>{
+    const {session,run,store}=await existingSession(),old=run.exportJSON();store.fail=true;
+    expect(await session.start('route-save','amo',undefined,{kind:'new',openingRoute:'flush'})).toBeUndefined();
+    const pending=session.pendingRun!;expect(pending.state.openingRoute).toBe('flush');expect(isR2RouteStarter(pending.state)).toBe(true);const candidate=pending.exportJSON();expect(readCheckpoint(JSON.parse(candidate)).ok).toBe(true);expect(session.run).toBe(run);
+    expect(await session.retry()).toBe(false);expect(pending.exportJSON()).toBe(candidate);store.fail=false;expect(await session.retry()).toBe(true);expect(session.run!.exportJSON()).toBe(candidate);
+    const source=session.run!.state,restarted=await session.start(source.seed,source.characterId,undefined,{kind:'retry',run:source});expect(restarted?.state).toEqual(source);expect(restarted?.state.routeStarter).toEqual({instanceId:null,rootId:null,eventId:null});
+    const current=session.run!.exportJSON();store.fail=true;expect(await session.start('other-route','erxiang',undefined,{kind:'new',openingRoute:'straight'})).toBeUndefined();expect(session.cancelPending()).toBe(true);expect(session.run!.exportJSON()).toBe(current);expect(old).not.toBe(current);
+  });
   it('restoring the registered run keeps the hint, successful same-identity import clears it',async()=>{
     guideStorage();const {session,run}=await existingSession();enrollFirstChapterGuide(run.state);expect(firstChapterGuide(run.state)).toBeDefined();
     const restored=new GameSession();await restored.initialize();expect(firstChapterGuide(restored.state()!)).toBeDefined();
@@ -184,7 +193,7 @@ describe('normal session launch intent',()=>{
     const {session}=await existingSession();
     for(const id of CHARACTER_IDS){const run=await session.start('all-six',id);expect(run?.state.contentHash).toBe('json-fnv-v1:5025cc23c013987f');}
   });
-  it.each(R2_RULESETS)('retries $contentVersion with exact seed, mode, role and fresh journal',async(profile)=>{
+  it.each(R2_RULESETS.filter(p=>!isR2RouteStarter(p)))('retries $contentVersion with exact seed, mode, role and fresh journal',async(profile)=>{
     const {session}=await existingSession();
     const modeConfig={mode:'standard' as const,difficulty:2 as const,challengeId:null,programsEnabled:false};
     let state=createRun({seed:'retry-original',runId:'old-retry',characterId:'amo',rulesVersion:'r2',modeConfig,r2Identity:{contentVersion:profile.contentVersion,contentHash:profile.contentHash}});

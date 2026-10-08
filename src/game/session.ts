@@ -74,7 +74,8 @@ export class GameSession {
       if(this.run&&!(await this.run.flush())){this.notice='本局尚未保存，请先重试或导出；未替换已有进度。';return;}
       if(intent.kind==='retry'&&(intent.run!==this.run?.state||seed!==intent.run.seed||r2ModeStorageKey(r2RunModeConfig(modeConfig??{mode:'standard',difficulty:0,challengeId:null,programsEnabled:true}),intent.run.contentHash)!==r2ModeStorageKey(intent.run,intent.run.contentHash)))throw Error('stale-retry-run');
       const r2Identity=launchIdentity(characterId,intent);
-      const state=createRun({r2Identity,seed,characterId,runId:`run/${seed}/${characterId}`,rulesVersion:'r2',...(modeConfig===undefined?{}:{modeConfig})});
+      const openingRoute=intent.kind==='new'?intent.openingRoute:intent.run.openingRoute;
+      const state=createRun({r2Identity,...(openingRoute===undefined?{}:{openingRoute}),seed,characterId,runId:`run/${seed}/${characterId}`,rulesVersion:'r2',...(modeConfig===undefined?{}:{modeConfig})});
       const slots=await this.storage.readPartition(state);
       const run=await SavedRun.start(this.storage,state,slots);
       if(!await this.publishReplacement(run))return;

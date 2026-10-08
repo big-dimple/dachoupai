@@ -125,7 +125,7 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
 }
 
 export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boolean,send:(action:Action,expectedSeq?:number)=>Promise<boolean>,initialInstanceId?:string):void {
-  const expectedSeq=state.commandSeq,focus=currentBuildFocus(state.runId);
+  const expectedSeq=state.commandSeq,focus=currentBuildFocus(state.runId,state.openingRoute);
   const known=(state.phase==='shop'?state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)):state.phase==='await-input'?state.handOrder.map(id=>state.deckInstances.find(card=>card.id===id)!):[]);
   const cardChoices:Choice[]=known.map((card,index)=>({id:card.id,name:cardName(card),detail:`${enhancementName(card)} · ${editionLabel(card.edition)}\n第 ${index+1} 张`,card}));
   const jokerChoices:Choice[]=state.jokers.map(joker=>({id:joker.instanceId,name:R2_JOKERS.find(definition=>definition.id===joker.definitionId)!.name,detail:`${editionLabel(joker.edition)} · 原支付 ${joker.paidPrice} 金`,joker}));

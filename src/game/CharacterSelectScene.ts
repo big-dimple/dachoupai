@@ -211,7 +211,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     this.choosing=true;this.notice='';const lifecycle=this.lifecycle,id=this.selectedId,focus=this.selectedRoute;this.render();
     const seed=this.seed??String(Date.now());
     try {
-      const controller=await startRun(this,seed,id,this.modeConfig,{kind:'new'}),session=gameSession();
+      const controller=await startRun(this,seed,id,this.modeConfig,{kind:'new',openingRoute:focus}),session=gameSession();
       if(controller&&controller.status==='idle'&&session.run===controller)chooseBuildFocus(controller.state.runId,focus);
       else if(!controller&&session.pendingRun&&session.pendingRun.state.seed===seed&&session.pendingRun.state.characterId===id)deferOpeningIntent(session,session.pendingRun,focus);
       if(lifecycle!==this.lifecycle||!this.scene.isActive())return false;

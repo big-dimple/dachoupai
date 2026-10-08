@@ -1,4 +1,5 @@
-import {hasR2ComboGrowthContract,R2_GROUP_UPGRADE_VERSION,R2_GROUP_UPGRADE_HASH} from './r2GroupUpgrade';
+import {hasR2ComboGrowthContract,R2_GROUP_UPGRADE_VERSION,R2_GROUP_UPGRADE_HASH,isR2RouteStarter,R2_ROUTE_STARTER_VERSION,R2_ROUTE_STARTER_HASH,R2_ROUTE_STARTERS,type R2OpeningRoute} from './r2GroupUpgrade';
+import {routeStarterStartCommand,routeStarterScoreEvent,type R2StarterRecord} from './r2RouteStarter';
 import {r2ColdOpening,type R2OpeningDiscard,R2_COMBO_GROWTH_VERSION,R2_COMBO_GROWTH_HASH} from './r2ComboGrowth';
 import {r2JokerDefinitionsFor} from './r2ContentProfiles';
 import {r2AssistAvailability,r2AssistFacts,R2_ASSIST_VERSION,R2_ASSIST_HASH} from './r2Assist';
@@ -41,6 +42,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_ROUTE_STARTER_VERSION,contentHash:R2_ROUTE_STARTER_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_GROUP_UPGRADE_VERSION,contentHash:R2_GROUP_UPGRADE_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_COMBO_GROWTH_VERSION,contentHash:R2_COMBO_GROWTH_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH,amoScoreTiming:'assist-v1' as const}),
@@ -65,6 +67,8 @@ interface R2StageBase extends Omit<StageState,'targetHeat'|'heat'|'previousHandT
 /** Profile parsing requires assistUsed for the prototype and forbids it for published runs. */
 export type R2StageState = R2StageBase & ({assistUsed:boolean}|{assistUsed?:never}) & ({openingDiscard:R2OpeningDiscard|null}|{openingDiscard?:never});
 export interface R2RunState extends Omit<RunState,'schemaVersion'|'rulesVersion'|'stage'|'totalHeat'|'jokers'|'lastScore'|'shop'|'boss'|'outcome'|'difficulty'|'program'|'rng'> {
+  openingRoute?:R2OpeningRoute;
+  routeStarter?:R2StarterRecord;
   schemaVersion:2; rulesVersion:'r2'; stage:R2StageState|null; totalHeat:string; jokers:R2JokerInstance[];
   lastTrace:ScoreTrace|null; handLevels:Partial<Record<R2HandType,number>>;shop:R2ShopState|null;
   boss:R2BossPlan;seenBossIds:string[];chapterSkipConsumable:R2SkipConsumable;purchaseCoupons:number;safetyNetUsed:boolean;
@@ -93,6 +97,8 @@ export function assertR2Invariants(state:R2RunState):void {
   const R2_JOKERS=r2JokerDefinitionsFor(state);
   const check=(condition:boolean,label:string)=>{if(!condition)throw new Error(`Run invariant: ${label}`);};
   check(state.schemaVersion===2 && state.rulesVersion==='r2' && !!r2RulesetFor(state),'r2 versions');
+  check(isR2RouteStarter(state)?!!state.openingRoute&&Object.hasOwn(R2_ROUTE_STARTERS,state.openingRoute):!Object.hasOwn(state,'openingRoute'),'opening route identity');
+  check(isR2RouteStarter(state)?!!state.routeStarter:!Object.hasOwn(state,'routeStarter'),'starter identity');
   check(state.contentVersion!==R2_ASSIST_VERSION||state.characterId==='amo','assist character identity');
   const config=r2RunModeConfig(state);
   check(r2ModeSeedAllowed(config,state.seed)&&(config.mode!=='tutorial'||state.characterId==='erxiang'),'mode seed/identity');
@@ -316,6 +322,10 @@ export function makeR2Shop(state:R2RunState,reset:boolean):void {
   if(initial&&offers.length&&!offers.some(offer=>offer.price<=state.gold&&offer.edition==='none')){
     const ordinary=offers.find(offer=>r2Price(offer.definitionId,undefined,state)<=state.gold);if(ordinary){ordinary.edition='none';ordinary.price=r2Price(ordinary.definitionId,undefined,state);}
   }
+  if(initial&&isR2RouteStarter(state)&&state.openingRoute&&r2Price(R2_ROUTE_STARTERS[state.openingRoute],undefined,state)<=state.gold){
+    const definitionId=R2_ROUTE_STARTERS[state.openingRoute],existing=offers.find(o=>o.definitionId===definitionId),offer=existing??offers.at(-1);
+    if(offer){offer.definitionId=definitionId;offer.edition='none';offer.price=r2Price(definitionId,undefined,state);}
+  }
   const toolId=drawR2Tool(rng,r2ToolAcquisitionPool(state));
   const toolOffers=toolId?[{offerId:`${prefix}/tool/0`,definitionId:toolId,price:r2ToolPrice(toolId),consumed:false}]:[];
   const itemOffers=reset?drawR2Items(rng,state.longTermItems,1+itemAmount(state,'item-offer-count')).map((id,slot)=>({offerId:`${prefix}/item/${slot}`,definitionId:id,price:r2ItemPrice(id),consumed:false})):state.shop!.itemOffers;
@@ -467,16 +477,19 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
     const identity=action.r2Identity;
     if(identity!==undefined&&(!identity||typeof identity!=='object'||Object.getPrototypeOf(identity)!==Object.prototype||Object.keys(identity).sort().join(',')!=='contentHash,contentVersion'||action.r2Profile!==undefined||!r2RulesetFor(identity)))return fail('invalid-r2-identity');
     const profile=r2RulesetFor(identity??(action.r2Profile==='group-upgrade-v1'?{contentVersion:R2_GROUP_UPGRADE_VERSION,contentHash:R2_GROUP_UPGRADE_HASH}:action.r2Profile==='combo-growth-v1'?{contentVersion:R2_COMBO_GROWTH_VERSION,contentHash:R2_COMBO_GROWTH_HASH}:action.r2Profile==='amo-assist-v1'?{contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH}:{contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH}))!;
+    if(isR2RouteStarter(profile)?!action.openingRoute||!Object.hasOwn(R2_ROUTE_STARTERS,action.openingRoute):Object.hasOwn(action,'openingRoute'))return fail('invalid-opening-route');
     const assisted=profile.amoScoreTiming==='assist-v1'&&action.characterId==='amo';
     if(profile.contentVersion===R2_ASSIST_VERSION&&action.characterId!=='amo')return fail('invalid-r2-profile');
     if(!r2ModeSeedAllowed(config,action.seed)||config.mode==='tutorial'&&action.characterId!=='erxiang')return fail('invalid-mode-seed-or-character');
     const cards=createDeck().filter(card=>config.startingRanks.includes(card.rank));
     state={schemaVersion:2,rulesVersion:'r2',contentVersion:profile.contentVersion,contentHash:profile.contentHash,runId:command.runId,seed:action.seed,commandSeq:0,difficulty:config.difficulty,characterId:action.characterId,
+      ...(isR2RouteStarter(profile)?{openingRoute:action.openingRoute,routeStarter:{instanceId:null,rootId:null,eventId:null}}:{}),
       mode:config.mode,challengeId:config.challengeId,programsEnabled:config.programsEnabled,programRerollCoupon:false,chapterDisabledJokerId:null,
       chapter:config.startingChapter,stageIndex:config.startingStageIndex,phase:'shop',deckInstances:cards,drawPile:cards.map(c=>c.id),handOrder:[],playedPile:[],discardPile:[],destroyedIds:[],stage:null,totalHeat:'0',gold:config.initialGold,jokers:config.startingJokers.map((joker,index)=>r2CreateJoker(joker.definitionId,`${command.runId}/initial/${index}`,joker.paidPrice,joker.edition,profile)),consumables:[],longTermItems:[],program:null,boss:{definitionId:'B01',disabledSuit:null},seenBossIds:[],chapterSkipConsumable:'T01',purchaseCoupons:0,safetyNetUsed:false,shop:null,
       spectralModifiers:{handsPenalty:0,handPenalty:0,cleanSlateBonus:0},supplyRewardClaimed:false,chapterHandUsage:{},normalClearClaimed:false,tourMode:'normal',normalCompletion:null,
       rng:{deck:new SeededRng(`${action.seed}/r2/deck/0`).snapshot(),rule:new SeededRng(`${action.seed}/r2/rule/0`).snapshot(),shop:new SeededRng(`${action.seed}/r2/shop/0`).snapshot(),reward:new SeededRng(`${action.seed}/r2/reward/0`).snapshot(),program:new SeededRng(`${action.seed}/r2/program/0`).snapshot(),challenge:new SeededRng(`${action.seed}/r2/challenge/0`).snapshot()},
       receipts:[],lastTrace:null,handLevels:config.characterAbilityEnabled&&!assisted?structuredClone(R2_STARTING_HAND_LEVELS[action.characterId]??{}):{},outcome:null};
+    if(isR2RouteStarter(state)&&stableHash(command)!==stableHash(routeStarterStartCommand(state)))return fail('invalid-opening-initialization');
     if(config.startingChapter>1){const rule=SeededRng.restore(state.rng.rule);for(let chapter=1;chapter<config.startingChapter;chapter++)state.seenBossIds.push(drawR2Boss(rule,state.seenBossIds,chapter).definitionId);state.rng.rule=rule.snapshot();}
     makeChapter(state);makeR2Shop(state,true);
   } else {
@@ -521,6 +534,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(shelf==='offers'){
           economicHooks(state,'onBuyOffer',events,[...state.jokers]);
           state.jokers.push(r2CreateJoker(offer.definitionId,`${state.runId}/joker/${command.commandId}`,price,offer.edition,state));
+          if(state.routeStarter&&state.routeStarter.instanceId===null&&state.stageIndex===0&&state.shop.rerollCount===0&&state.openingRoute&&offer.definitionId===R2_ROUTE_STARTERS[state.openingRoute])state.routeStarter.instanceId=state.jokers.at(-1)!.instanceId;
         }else if(shelf==='toolOffers')state.consumables.push({instanceId:`${state.runId}/tool/${command.commandId}`,definitionId:offer.definitionId});
         else state.longTermItems.push(offer.definitionId);
         break;
@@ -637,6 +651,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(hasR2ComboGrowthContract(state))trace=Object.freeze({...trace,combo:Object.freeze({goldBeforeRewards:null})});
         if(assisted)state.stage.assistUsed=true;
         state.rng.rule={...trace.rng};state.lastTrace=trace;state.jokers=structuredClone(trace.jokers);state.gold+=trace.goldDelta;
+        if(state.routeStarter&&!state.routeStarter.eventId){const first=routeStarterScoreEvent(state,trace);if(first){state.routeStarter.rootId=trace.rootId;state.routeStarter.eventId=first.eventId;}}
         state.destroyedIds.push(...trace.destroyedCardIds);state.handLevels[trace.handType]??=1;
         state.chapterHandUsage[trace.handType]=(state.chapterHandUsage[trace.handType]??0)+1;
         const heat=(BigInt(state.stage.heat)+BigInt(trace.finalScore)).toString();

@@ -1,3 +1,4 @@
+import {isR2RouteStarter} from '../src/domain/r2GroupUpgrade';
 import {describe,expect,it} from 'vitest';
 import {createRun,applyCommand,assertRunInvariants,type R2RunState} from '../src/domain/run';
 import {CHARACTER_IDS} from '../src/domain/characters';
@@ -21,7 +22,7 @@ describe('normal new-game policy and exact retry creation',()=>{
   expect(createRun(base).contentHash).toBe('json-fnv-v1:bd4a1230833ab884');
   expect(createRun(base).handLevels).toEqual({'high-card':3});
  });
- it.each(R2_RULESETS)('retry creates $contentVersion directly with fresh counters and exact identity',profile=>{
+ it.each(R2_RULESETS.filter(p=>!isR2RouteStarter(p)))('retry creates $contentVersion directly with fresh counters and exact identity',profile=>{
   const r2Identity={contentVersion:profile.contentVersion,contentHash:profile.contentHash};
   const old=step(step(createRun({...base,r2Identity}),'LeaveShop'),'EnterStage');
   const fresh=createRun({...base,r2Identity:launchIdentity('amo',{kind:'retry',run:old})});

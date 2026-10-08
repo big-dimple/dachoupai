@@ -1,3 +1,5 @@
+import {isR2RouteStarter,R2_ROUTE_STARTERS,type R2OpeningRoute} from './r2GroupUpgrade';
+import {routeStarterStartCommand} from './r2RouteStarter';
 import { createDeck } from '../cards/deck';
 import { evaluateHand, type HandType } from '../cards/handEvaluator';
 import type { PlayingCard } from '../cards/types';
@@ -14,7 +16,7 @@ import { stableHash } from './hash';
 import { assertR2Invariants, r2RulesetFor, transactR2, type R2RunState, type R2StageState } from './r2Run';
 import type { ScoreTrace } from './scoreR2';
 import type { Condition } from '../content/r2Schema';
-import type {R2ModeSelection,R2ProgramId} from '../content/r2Modes';
+import {resolveR2ModeConfig,type R2ModeSelection,type R2ProgramId} from '../content/r2Modes';
 export type { R2RunState } from './r2Run';
 
 export const R1_LIMITS = { handSize: 8, maxSelected: 5, jokerSlots: MAX_JOKER_SLOTS } as const;
@@ -95,7 +97,7 @@ export interface RunState {
 }
 
 export type Action =
-  | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2';modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1'|'combo-growth-v1'|'group-upgrade-v1';r2Identity?:{contentVersion:string;contentHash:string} }
+  | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2';modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1'|'combo-growth-v1'|'group-upgrade-v1';r2Identity?:{contentVersion:string;contentHash:string};openingRoute?:R2OpeningRoute }
   | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' | 'SkipStage' | 'ContinueEndless' }
   | { type: 'PlayHand'; selectedIds: readonly string[] }
   | { type: 'PlayAssistedHand'; selectedIds: readonly string[]; assistIds:readonly string[] }
@@ -324,14 +326,20 @@ export function applyCommand(input: AnyRunState | null, command: Command): Comma
   return { ok: true, state, events, receipt, duplicate: false };
 }
 
-type StartOptions = { seed: string; characterId: CharacterId; runId: string;modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1'|'combo-growth-v1'|'group-upgrade-v1';r2Identity?:{contentVersion:string;contentHash:string} };
+type StartOptions = { seed: string; characterId: CharacterId; runId: string;modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1'|'combo-growth-v1'|'group-upgrade-v1';r2Identity?:{contentVersion:string;contentHash:string};openingRoute?:R2OpeningRoute };
 export function createRun(options: StartOptions & {rulesVersion:'r2'}): R2RunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'}): RunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState {
+  if(options.rulesVersion==='r2'&&isR2RouteStarter(options.r2Identity??{})&&options.r2Profile===undefined&&Object.keys(options.r2Identity!).sort().join(',')==='contentHash,contentVersion'){
+    if(!options.openingRoute||!Object.hasOwn(R2_ROUTE_STARTERS,options.openingRoute))throw Error('invalid-opening-route');
+    const mode=resolveR2ModeConfig(options.modeConfig??{mode:'standard'});if(!mode.ok)throw Error(mode.code);
+    const result=applyCommand(null,routeStarterStartCommand({...options,...options.r2Identity!,...mode.config}));
+    if(!result.ok)throw Error(result.code);return result.state;
+  }
   const result = applyCommand(null, {
     runId: options.runId, commandId: `${options.runId}/start`, expectedSeq: 0,
-    action: { type: 'StartRun', seed: options.seed, characterId: options.characterId, ...(options.rulesVersion ? { rulesVersion: options.rulesVersion } : {}),...(options.modeConfig===undefined?{}:{modeConfig:options.modeConfig}),...(options.r2Profile===undefined?{}:{r2Profile:options.r2Profile}),...(options.r2Identity===undefined?{}:{r2Identity:options.r2Identity}) },
+    action: { type: 'StartRun', seed: options.seed, characterId: options.characterId, ...(options.rulesVersion ? { rulesVersion: options.rulesVersion } : {}),...(options.modeConfig===undefined?{}:{modeConfig:options.modeConfig}),...(options.r2Profile===undefined?{}:{r2Profile:options.r2Profile}),...(options.r2Identity===undefined?{}:{r2Identity:options.r2Identity}),...(options.openingRoute===undefined?{}:{openingRoute:options.openingRoute}) },
   });
   if (!result.ok) throw new Error(result.code);
   return result.state;

@@ -1,7 +1,8 @@
+import {starterSelection} from './RouteStarter';
 import {firstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
 import {buildGrowthProgress} from './BuildGrowthProgress';
 import {showBuildGrowth} from './BuildGrowthView';
-import {keyHighlight,keyHighlightBeat,savedGrowthStamp,type JokerKeyHighlight} from './JokerKeyHighlight';
+import {keyHighlight,keyHighlightBeat,starterRepeatBeat,savedGrowthStamp,type JokerKeyHighlight} from './JokerKeyHighlight';
 import {mountKeyHighlight,keyFocusPlacement} from './JokerKeyHighlightView';
 import {renderCandidateCards} from './CandidateCardPreview';
 import {growthOpportunity} from './GrowthOpportunity';
@@ -465,6 +466,8 @@ export class GameScene extends Phaser.Scene {
       const frame=view?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;
       frame?.setStrokeStyle(preview?2:1,readiness.readiness==='limited'?T.red:preview&&readiness.readiness==='ready'?T.brass:preview&&readiness.readiness==='pending'?T.jade:Number(view?.getData('frameColor')),.9);
       if(label&&preview&&!view?.getData('bossDisabled')){label.setData('savedLabel',label.text);const room=jokerLabelRoom(this.view.layout,Number(view?.getData('slotIndex')));label.setText(fitConditionEntry(readiness.label,text=>{label.setText(text);return label.width<=room;},true));}
+      const starter=starterSelection(this.run,joker.instanceId,preview?.type,!!this.jokerRestriction(joker));
+      if(starter){view?.setData('starterReady',starter.ready).setData('starterLabel',starter.label);frame?.setStrokeStyle(starter.ready?3:2,starter.ready?T.red:T.jade,.95);if(label){const room=jokerLabelRoom(this.view.layout,Number(view?.getData('slotIndex')));label.setText(fitConditionEntry(starter.label,text=>{label.setText(text);return label.width<=room;},true));}}
       const art=view?.getData('f09-art') as Phaser.GameObjects.Container|undefined;art?.setData('f09-active',!view?.getData('bossDisabled')&&(this.run.stage?.discardsUsed??0)===0);
     }
   }
@@ -900,7 +903,7 @@ export class GameScene extends Phaser.Scene {
     const result=this.candidates.result;
     return result?.status==='ready'?'本轮可成'+result.groups.length+'种 · 查看':result?.status==='working'?'本轮牌型整理中 · 选牌照常':'选择说明 · 完整规则 ›';
   }
-  private inspectCandidates(growthOnly=false,focus:BuildFocus|null=currentBuildFocus(this.run.runId)??null):void {
+  private inspectCandidates(growthOnly=false,focus:BuildFocus|null=currentBuildFocus(this.run.runId,this.run.openingRoute)??null):void {
     if(!this.ready||this.presentation||this.run.phase!=='await-input')return;
     this.handInput?.cancel();this.view.cancelInteraction();this.ensureCandidates();this.candidateGhost=undefined;
     const result=this.candidates.result!,key=result.key,assistKey=this.assistIds.join('|');
@@ -1435,6 +1438,10 @@ export class GameScene extends Phaser.Scene {
     if(cardY!==undefined)for(const p of poses)p.c.setY(cardY);
     const oldVisible=source?.visible;if(compact)source?.setVisible(false);
     const group=mountKeyHighlight(this,this.view.root,box,key,compact);
+    if(key.kind==='starter'&&!this.reducedMotion){
+      const marks=group.getData('routeMarks') as Phaser.GameObjects.Graphics[]|undefined;
+      for(const [i,mark] of (marks??[]).entries())void this.animate(key.route==='group'?{targets:mark,x:box.width-22+(i-1)*3,duration:140,delay:i*40}:key.route==='straight'?{targets:mark,alpha:{from:.4,to:1},duration:90,delay:i*70}:{targets:mark,scale:{from:.75,to:1},duration:180,delay:i*35,ease:'Sine.easeOut'},context);
+    }
     this.statusText.setText(key.fact.title+' · '+key.cause).setData('keyCause',key.fact.condition);
     let cleaned=false;
     const cleanup=()=>{if(cleaned)return;cleaned=true;context.signal.removeEventListener('abort',cleanup);for(const p of poses)if(p.c.active)p.c.setPosition(p.x,p.y);if(compact&&source?.active)source.setVisible(oldVisible!);group.destroy();};
@@ -1445,11 +1452,12 @@ export class GameScene extends Phaser.Scene {
     this.ensureTraceSource(event);
     const benefit=this.presentation?savedBenefit(this.run,this.presentation.score,event):undefined;
     const sourceBenefit=hasActualBenefit(event);
+    if(sourceBenefit&&event.sourceInstanceId===this.presentation?.state.routeStarter?.instanceId){const label=this.jokerViews.get(event.sourceInstanceId)?.getData('valueLabel') as Phaser.GameObjects.Text|undefined;label?.setText(event.operation==='add-growth'?'已存成长':'实际生效').setColor(C.red);}
     if(benefit){this.statusText.setName('benefit/live').setText(benefit.effect);this.statusText.setData('benefit',benefit);if(this.statusText.width>this.view.layout.status.width)this.statusText.setText(benefit.title+' · 收益见上手详情');}
 
     const restoreKey=key?this.showKeyHighlight(key,context):undefined;
     if(event.targetCardId)this.showTraceHeldCard(event.targetCardId);
-    const timing=key?keyHighlightBeat(beat,this.reducedMotion):this.reducedMotion?{...beat,windup:0,flight:0,impact:Math.min(180,beat.impact),rest:120}:beat,duration=timing.windup+timing.flight+timing.impact;
+    const timing=key?keyHighlightBeat(beat,this.reducedMotion,key.kind):this.reducedMotion?{...beat,windup:0,flight:0,impact:Math.min(180,beat.impact),rest:120}:beat,duration=timing.windup+timing.flight+timing.impact;
     const note=this.operationText(event),source=this.eventSource(event),card=this.settledCards.get(event.targetCardId??'')??this.cardViews.find(view=>view.card.id===event.targetCardId);
     this.resultText.setVisible(true).setText(source+' · '+note);this.breakdownText.setText((event.phase==='onStageClear'?'过关收益':event.phase==='beforeFailure'?'失败前救场':event.phase==='afterHand'?'结算后状态':event.sourceType==='joker'?'大丑牌连锁':'逐项计分')+' · '+source+' '+note);this.setAccumulator(event.before);
     this.scoreTotal.setData('eventId',event.eventId).setData('eventPhase','windup');
@@ -1690,13 +1698,13 @@ export class GameScene extends Phaser.Scene {
       await Promise.all(baseEffects);
     });
     this.effects.enqueue(context=>this.wait(this.reducedMotion?120:baseCue&&!fourCardFormation(score)?200:460,context));
-    const key=keyHighlight(state,score,originHeat,this.stage.targetHeat);
+    const key=keyHighlight(state,score,originHeat,this.stage.targetHeat,!replay);
     let jokerIndex=0,scoreOrdinal=0,previousSource:string|undefined;
     for(const event of score.events){
       if(event.phase==='base')continue;
       if(event.phase==='finalScore'){this.effects.enqueue(context=>this.award(score,presentation,context));continue;}
       const index=event.sourceType==='joker'?jokerIndex++:event.sourceType==='character'?0:score.sets.activeScoringIds.indexOf(event.targetCardId??'');
-      const beat=experienceBeat(event,previousSource,scoreBeat(event,scoreOrdinal++));if(event.sourceType==='joker'&&hasActualBenefit(event))previousSource=event.sourceInstanceId;else previousSource=undefined;this.effects.enqueue(context=>this.showScoreEvent(event,Math.max(0,index),beat,context,key?.eventId===event.eventId?key:undefined));
+      let beat=experienceBeat(event,previousSource,scoreBeat(event,scoreOrdinal++));if(event.sourceInstanceId===state.routeStarter?.instanceId&&key?.eventId!==event.eventId)beat=starterRepeatBeat(beat,this.reducedMotion);if(event.sourceType==='joker'&&hasActualBenefit(event))previousSource=event.sourceInstanceId;else previousSource=undefined;this.effects.enqueue(context=>this.showScoreEvent(event,Math.max(0,index),beat,context,key?.eventId===event.eventId?key:undefined));
     }
     let failed=false;
     try {await this.effects.drain();}
