@@ -8,7 +8,7 @@ import {mountKeyHighlight,keyFocusPlacement} from './JokerKeyHighlightView';
 import {renderCandidateCards} from './CandidateCardPreview';
 import {growthOpportunity} from './GrowthOpportunity';
 import {showBuildJourney} from './BuildJourneyDialog';
-import {BUILD_LABEL,buildHandTypes,currentBuildFocus,chooseBuildFocus,type BuildFocus} from './BuildJourney';
+import {BUILD_LABEL,buildDirectionCaption,buildHandTypes,currentBuildFocus,chooseBuildFocus,type BuildFocus} from './BuildJourney';
 import {handRouteReferences} from './HandRouteGuidance';
 import {mountHandRouteReferences} from './HandRouteGuidanceView';
 import {selectionExperience,hasActualBenefit,savedBenefit,savedExperienceCards,experienceBeat} from './JokerExperience';
@@ -935,7 +935,7 @@ export class GameScene extends Phaser.Scene {
     dialog.classList.add('hand-candidate-dialog');
     const scroll=dialog.querySelector('.dialog-scroll')!,list=document.createElement('section'),message=document.createElement('p');list.className='hand-candidates';message.className='candidate-example';message.setAttribute('role','status');message.textContent='示例尚未选择；手牌选择保持原样。';scroll.append(list,message);const gallery=dialog.querySelector('.experience-cards');if(gallery){const sources=document.createElement('details'),heading=document.createElement('summary');sources.className='candidate-source-details';heading.textContent='成长来源与时点';sources.append(heading,gallery);scroll.append(sources);}
     const route=document.createElement('label'),routeTitle=document.createElement('span'),select=document.createElement('select');route.className='candidate-route-control';routeTitle.textContent='想尝试的组合';select.setAttribute('aria-label','想尝试的组合');
-    for(const [value,name] of [['','全部已成型'],['group','同点成组'],['straight','顺子'],['flush','同花']]){const option=document.createElement('option');option.value=value;option.textContent=name;select.append(option);}select.value=focus??'';select.onchange=()=>{if(!isCurrent())return;const choice=select.value as BuildFocus|'';if(choice)chooseBuildFocus(this.run.runId,choice);this.inspectCandidates(false,choice||null);};route.append(routeTitle,select);if(!growthOnly)list.append(route);
+    for(const [value,name] of [['','全部已成型'],['group','同点成组'],['straight','顺子'],['flush','同花']]){const option=document.createElement('option');option.value=value;option.textContent=name;select.append(option);}select.value=focus??'';select.onchange=()=>{if(!isCurrent())return;const choice=select.value as BuildFocus|'';if(choice)chooseBuildFocus(this.run.runId,choice);this.inspectCandidates(false,choice||null);};route.append(routeTitle,select);if(!growthOnly){list.append(route);const direction=document.createElement('p');direction.className='candidate-example';direction.textContent=buildDirectionCaption(this.run)+'；选择方向可换，查看全部不改变培养方向。';list.append(direction);}
     if(references.length){mountHandRouteReferences(list,this.hand,references,this.run.stage!.disabledIds,discardReferenceCopy(this.run),()=>{if(!isCurrent())return;this.dialog.close(dialog);this.statusMessage='参考已查看 · 自己选牌，出弃由你决定';this.updateControls();},()=>{if(isCurrent())showDeckInspection(this.dialog,this.run);});message.textContent='参考只查看，不改当前选择；换牌仍由你决定，不保证补齐。';}
     if(growthOnly&&result.status==='ready'&&!groups.length){message.textContent='当前这些来源没有可新增成长的示例；其他来源见构筑条件，也可正常出牌或看全部牌型。成长不是通关必选。';}
     attachFirstChapterGuide(this.run,()=>this.render());
@@ -955,7 +955,7 @@ export class GameScene extends Phaser.Scene {
     }
   }
   private inspectJourney():void {
-    showBuildJourney(this.dialog,this.run,{ready:this.ready,source:id=>this.inspectJoker(id),tools:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq)),tool:id=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq),id),deck:()=>showDeckInspection(this.dialog,this.run),publicHands:()=>this.inspectCandidates(),continueLabel:'回到牌桌自己选牌',continue:()=>this.dialog.close()});
+    showBuildJourney(this.dialog,this.run,{ready:this.ready,onFocus:()=>this.updateControls(),source:id=>this.inspectJoker(id),tools:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq)),tool:id=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq),id),deck:()=>showDeckInspection(this.dialog,this.run),publicHands:()=>this.inspectCandidates(),continueLabel:'回到牌桌自己选牌',continue:()=>this.dialog.close()});
   }
   private inspectHeldConditions():void {
     const preview=this.selectionPreview();
