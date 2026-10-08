@@ -9,3 +9,5 @@
 [PC](target-1366.png)、[390](target-390.png)、[真实过场](second-clear.png)与[哈希](sha256.json)。只是当前软件检查，不是设备/GPU/听感/三线均衡或真人通过。最终标准CI仍按最终文档head另核，不套用原失败head的通过项。
 
 986f275最终CI：domain 165文件/2680检查与build已通过；smoke在正常阿默新局仍断言旧route-starter版本/hash，见[原身份断言失败](initial-browser-identity-failure.txt)。仅把两条正常新局断言改为本候选的精确共享版本/hash，保持取消、保存、行为与三浏览器检查；不放宽为“任意已知版本”或移除断言，不修改玩法/产品源码。新head标准CI另核。
+
+[结束状态保存增量bc6cc51](terminal-save-review.md)只修验证实际phase，新增主动放弃/余次仍有但牌已空的当前保存用例；18项定向/type通过。原正常入口证据保36822a4，不冒称这两条终止命令是浏览器自然尝试。最新head标准CI另核。
