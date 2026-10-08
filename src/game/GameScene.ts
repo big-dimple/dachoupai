@@ -983,8 +983,9 @@ export class GameScene extends Phaser.Scene {
     const input={hand:this.hand,selectedIds:[...this.selectedIds],disabledIds:this.run.stage!.disabledIds,jokers:this.run.jokers,definitions:this.jokerDefinitions,handRules:context.handRules,ordinaryPointsSuppressedIds:context.ordinaryPointsSuppressedIds};
     return validAssistDraft(input,this.assistProfile&&r2AssistAvailability(this.run).available,this.assistIds)??r2SelectionFacts(input);
   }
-  private coreDraft(facts=this.selectionPreview(),targetId=this.coreTargetId):ErxiangCoreTrace|undefined {
-    if(!usesR2ErxiangCore(this.run)||!facts||!targetId)return;
+  private coreDraft(facts?:HandPreview,targetId=this.coreTargetId):ErxiangCoreTrace|undefined {
+    if(!usesR2ErxiangCore(this.run)||!targetId)return;
+    facts??=this.selectionPreview();if(!facts)return;
     try{return erxiangCoreFacts(this.hand,facts,{targetId,previousRank:this.run.stage?.erxiangPreviousRank??null},r2RunModeConfig(this.run).characterAbilityEnabled&&this.run.stage?.boss?.definitionId!=='B08');}catch{return;}
   }
   private coreCopy():string {
