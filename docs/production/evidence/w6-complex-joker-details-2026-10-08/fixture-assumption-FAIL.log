@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/joker-detail-steps.test.ts (4 tests | 1 failed) 99ms
+   × coefficient ceilings stay upfront for growth and reset families 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/joker-detail-steps.test.ts > coefficient ceilings stay upfront for growth and reset families
+Error: coefficient cap required
+ ❯ tests/joker-detail-steps.test.ts:31:201
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 45 passed (46)
+   Start at  08:26:43
+   Duration  957ms (transform 1.08s, setup 0ms, import 1.61s, tests 513ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

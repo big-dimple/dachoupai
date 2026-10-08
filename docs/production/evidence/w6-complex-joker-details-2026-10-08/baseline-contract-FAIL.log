@@ -1,0 +1,50 @@
+
+ RUN  v4.1.11 /tmp/w6-complex-baseline
+
+ ❯ tests/joker-detail-steps.test.ts (4 tests | 4 failed) 13ms
+   × five identities preserve all default condition/effect words and limits across the shared grouping 9ms
+   × rescue groups startup and next-play payoff without losing qualification or mandatory consumption 1ms
+   × coefficient ceilings stay upfront for growth and reset families 1ms
+   × resource overflow and repeat-use restrictions survive progressive disclosure 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/joker-detail-steps.test.ts > five identities preserve all default condition/effect words and limits across the shared grouping
+AssertionError: expected undefined to be defined
+ ❯ tests/joker-detail-steps.test.ts:17:34
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/joker-detail-steps.test.ts > rescue groups startup and next-play payoff without losing qualification or mandatory consumption
+TypeError: Cannot read properties of undefined (reading 'steps')
+ ❯ tests/joker-detail-steps.test.ts:25:15
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/joker-detail-steps.test.ts > coefficient ceilings stay upfront for growth and reset families
+TypeError: Cannot read properties of undefined (reading 'limits')
+ ❯ tests/joker-detail-steps.test.ts:31:206
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/joker-detail-steps.test.ts > resource overflow and repeat-use restrictions survive progressive disclosure
+TypeError: Cannot read properties of undefined (reading 'limits')
+ ❯ tests/joker-detail-steps.test.ts:37:21
+     35| });
+     36| it('resource overflow and repeat-use restrictions survive progressive …
+     37|  expect(copy('e10').steps!.limits.join('\n')).toContain('放满');
+       |                     ^
+     38|  expect(copy('b06').steps!.limits.join('\n')).toContain('失效牌参与选组');
+     39|  expect(copy('c12').steps!.steps.map(s=>s.when+s.effect).join('')).toC…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  08:36:29
+   Duration  718ms (transform 457ms, setup 0ms, import 568ms, tests 13ms, environment 0ms)
+

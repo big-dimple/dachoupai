@@ -1,0 +1,260 @@
+{
+  "head": "a7ec43932c05218fec717aeb7f6b94a3ee210ecb",
+  "provenance": "read-only git archive of baseline source; public tree identical; build metadata may be unknown outside repository",
+  "scope": "Limited controlled validated current-shop examples and actual UI decisions; known fixed seed, no future decisions/seed search/scored chapter matrix. Not the user save/screenshot, not human/device acceptance.",
+  "cases": [
+    {
+      "device": {
+        "name": "narrow",
+        "width": 320,
+        "height": 740,
+        "fixture": "narrow"
+      },
+      "checks": [
+        "three actual purpose blocks complete within their price budgets; no generic empty fallback",
+        "one page has condition/result, adjacent state, visible decision limits and folded full details; cancel unchanged"
+      ],
+      "shop": {
+        "geometry": {
+          "x": 12,
+          "w": 296,
+          "top": 12,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": 12,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 72.4,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 132.8,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 193.2,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 253.6,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            }
+          ],
+          "shelf": [
+            {
+              "x": 14.666666666666664,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 116,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 217.33333333333331,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 64,
+            "width": 296,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 423.36,
+            "width": 144,
+            "height": 44
+          },
+          "items": {
+            "x": 164,
+            "y": 423.36,
+            "width": 144,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 144,
+            "height": 44
+          },
+          "build": {
+            "x": 164,
+            "y": 596,
+            "width": 144,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 296,
+            "height": 56
+          },
+          "noticeY": 712
+        },
+        "texts": [
+          {
+            "name": "shop/gold",
+            "text": "金币 21",
+            "x": 98,
+            "y": 16,
+            "width": 55,
+            "height": 19
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "待选",
+            "x": 25.00000076293945,
+            "y": 417.9999987792969,
+            "width": 28,
+            "height": 16
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "待选",
+            "x": 85.99999847412109,
+            "y": 417.9999987792969,
+            "width": 28,
+            "height": 16
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "待选",
+            "x": 146,
+            "y": 417.9999987792969,
+            "width": 28,
+            "height": 16
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "待选",
+            "x": 205.9999938964844,
+            "y": 417.9999987792969,
+            "width": 28,
+            "height": 16
+          },
+          {
+            "name": "shop/held-purpose",
+            "text": "一次性招牌 · 本牌共可用 4 手，本次出牌的倍率 ×2；最后一手结算后消失。\n还可用1手（跨场共用）",
+            "x": 12,
+            "y": 475,
+            "width": 170,
+            "height": 64
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "冷场救火",
+            "fullText": "冷场救火",
+            "x": 15.000001271565758,
+            "y": 243.00000610351563,
+            "width": 56.00000000000001,
+            "height": 15.999999999999972
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "多步条件\n分时点生效\n点牌查条件",
+            "fullText": "本场未出牌，第一次成功弃牌前手牌凑不出两对及以上时，备好一次救火；下一次出牌若为两对及以上，本次出牌的倍率×3。",
+            "offerId": "plain/0",
+            "x": 15.000001271565758,
+            "y": 262.0000061035156,
+            "width": 70,
+            "height": 48
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8 金 · 查看",
+            "offerId": "plain/0",
+            "x": 15.000001271565758,
+            "y": 315.0000061035156,
+            "width": 76,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "长期捧场",
+            "fullText": "长期捧场",
+            "x": 116,
+            "y": 243.00000610351563,
+            "width": 56,
+            "height": 15.999999999999972
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "多步条件\n倍率×保存值\n点牌查重置",
+            "fullText": "每手按本牌攒下的倍数加成；这场没卖过大丑牌又过关，倍数加 0.1，最高 ×2。",
+            "offerId": "plain/1",
+            "x": 116,
+            "y": 262.0000061035156,
+            "width": 79,
+            "height": 48
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8 金 · 查看",
+            "offerId": "plain/1",
+            "x": 116,
+            "y": 315.0000061035156,
+            "width": 76,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "拖个尾音",
+            "fullText": "拖个尾音",
+            "x": 217.00001017252606,
+            "y": 243.00000610351563,
+            "width": 56,
+            "height": 15.999999999999972
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "同花/同花顺末计分牌\n再计1次",
+            "fullText": "同花/同花顺的末张计分牌 → 对应有效计分牌再计1次",
+            "offerId": "plain/2",
+            "x": 217.00001017252606,
+            "y": 262.0000061035156,
+            "width": 88,
+            "height": 48
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8 金 · 查看",
+            "offerId": "plain/2",
+            "x": 217.00001017252606,
+            "y": 315.0000061035156,
+            "width": 76,
+            "height": 19
+          }
+        ]
+      },
+      "detail": "冷场救火 · 购买详情\n✦ 稀有\n本场未出牌，第一次成功弃牌前手牌凑不出两对及以上时，备好一次救火；下一次出牌若为两对及以上，本次出牌的倍率×3。\n下一次出牌后必消耗：未成型或计分被封禁也作废；继续弃牌不叠加、不重武装。\n尚未购买，买入后才会生效\n\n版次：普通（无额外计分）\n\n实付 8 金 · 余额 21 → 13 金\n买后金币21→13；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n\n规则与操作\n与持有牌比较\n确认购买\n取消",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}
