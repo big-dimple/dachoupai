@@ -1,0 +1,84 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/joker-plain-copy.test.ts (10 tests | 2 failed) 125ms
+   × four-card cardinality exceptions, entry snapshot and shared lifetime remain upfront 8ms
+   × random and next-stage counters do not become promised earnings 3ms
+ ❯ tests/joker-experience.test.ts (6 tests | 2 failed) 78ms
+   × selection readiness uses public shared conditions and limits, never forecasts the final score 11ms
+   × first transition is preparation, opposite ordinary type is eligible, special type is not a substitute 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/joker-experience.test.ts > selection readiness uses public shared conditions and limits, never forecasts the final score
+AssertionError: expected '对子等同点组合出牌后 → 热度成长+10；新增下次用\n本次用已存热度+1…' to contain '成功出牌与保存'
+
+- Expected
++ Received
+
+- 成功出牌与保存
++ 对子等同点组合出牌后 → 热度成长+10；新增下次用
++ 本次用已存热度+10；新成长尚未到账
++ 本次出牌使用旧值；新成长从下一次出牌起生效，每次出牌只长一次，额外计分不会多长。
++ 每次出牌用已保存的热度；新增从后续出牌生效。
++ 普通顺子、普通同花不增长；同花葫芦/同花五条可增长。
+
+ ❯ tests/joker-experience.test.ts:24:209
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/joker-experience.test.ts > first transition is preparation, opposite ordinary type is eligible, special type is not a substitute
+AssertionError: expected '上一手是普通顺子、这手是普通同花，或反过来，本次出牌的倍率 ×1.75。\…' to contain '下一手同花'
+
+- Expected
++ Received
+
+- 下一手同花
++ 上一手是普通顺子、这手是普通同花，或反过来，本次出牌的倍率 ×1.75。
++ 这手还不符合条件
++ 上一手牌型：没有上一手
++ 必须是紧挨着的两手；本场第一手和同花顺都不算。
+
+ ❯ tests/joker-experience.test.ts:31:120
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/joker-plain-copy.test.ts > four-card cardinality exceptions, entry snapshot and shared lifetime remain upfront
+AssertionError: expected '所有加成合计后的手牌上限最多为 14；本场不会立即补牌。' to contain '进场'
+
+Expected: "进场"
+Received: "所有加成合计后的手牌上限最多为 14；本场不会立即补牌。"
+
+ ❯ tests/joker-plain-copy.test.ts:31:73
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/joker-plain-copy.test.ts > random and next-stage counters do not become promised earnings
+AssertionError: expected '必须成功弃牌；返还弃牌次数不会恢复已经用掉的赚钱次数。\n成功弃牌后才兑现。' to contain '每场'
+
+- Expected
++ Received
+
+- 每场
++ 必须成功弃牌；返还弃牌次数不会恢复已经用掉的赚钱次数。
++ 成功弃牌后才兑现。
+
+ ❯ tests/joker-plain-copy.test.ts:48:333
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed | 3 passed (5)
+      Tests  4 failed | 39 passed (43)
+   Start at  06:46:15
+   Duration  1.20s (transform 1.20s, setup 0ms, import 1.87s, tests 529ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

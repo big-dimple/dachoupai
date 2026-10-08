@@ -1,0 +1,35 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/joker-experience.test.ts (6 tests | 1 failed) 112ms
+   × selection readiness uses public shared conditions and limits, never forecasts the final score 23ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/joker-experience.test.ts > selection readiness uses public shared conditions and limits, never forecasts the final score
+AssertionError: expected '对子等同点组合并过关 → 获得3金\n到对应时点检查；尚未兑现\n同一次过…' to contain '成功出牌与保存'
+
+- Expected
++ Received
+
+- 成功出牌与保存
++ 对子等同点组合并过关 → 获得3金
++ 到对应时点检查；尚未兑现
++ 同一次过关只发一次；失败、跳场不发。无需保留牌数量，助攻不改变主手牌型。
+
+ ❯ tests/joker-experience.test.ts:24:209
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  1 failed | 56 passed (57)
+   Start at  06:49:14
+   Duration  1.19s (transform 1.22s, setup 0ms, import 1.99s, tests 618ms, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
