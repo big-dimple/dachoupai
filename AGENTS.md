@@ -1,8 +1,8 @@
 # 开发入口
-PR53父独审三项补正产品0bf84ed：出售续接遵守弹窗归属、显示保留牌确定出售联动、未选路线预览按实际对应来源；70项定向/6文件及typecheck冻结通过。旧fed4634整包与画面不重标，新最终head双事件CI待核；main仍由父独审协调。
+PR53已由父独审并普通FF到main ed3be1a；当前仅补首章首次提示的主画面发现性，最终产品6349900，48项定向/5文件、typecheck、PC/390/320首屏及短横退出恢复的有限UI冻结通过，源码/index/HEAD保持。旧局不强塞，原FAIL与当前像素见[入口补全证据](docs/production/evidence/w6-guide-discovery-2026-10-08/README.md)。候选待精确headCI/父独审，不重复首章矩阵或本地全回归；真人理解/继续、设备/GPU/听感/W6仍未签，W7/W8不推进。6.1默认Medium单线，下一产品改动待实际试玩高影响问题。
 
 
-## 首章统一包当前候选（2026-10-08，仅draft待父独审）
+## 首章统一包历史候选（PR53 review阶段，后已父FF main ed3be1a）
 
 PR52已由父FF到main795c140；本包产品fed4634完成持牌/现货用途、逐槽实际损失比较和可关闭首次实战提示，独立UI登记绑定既有身份，成功替换清除且失败保原。2559tests/150files、content/type/build、标准Chromium双端smoke和三端真实首章通过，source/index/HEAD保持；原FAIL与有限画面见[统一证据](docs/production/evidence/w6-shop-guide-2026-10-08/README.md)。当前只draft/main父串行，精确最终head CI另核；真人自主理解/继续、设备/GPU/听感/W6未签。完整C04、高光特效、角色/后期扩展不提前。6.1默认Medium单线，原历史保各自来源。
 

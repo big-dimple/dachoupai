@@ -1,0 +1,37 @@
+{
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "0f5482f3b58388cf82635c088863bb3f5b1e96fbc8842faa6e19e8a11a6c0500",
+    "index": "3994432c0964657e9ce7fc21e449928c4805be494a5306bf149f1b3d1fe7b4ae",
+    "head": "75a9f0563c86f0b4f6065d241b70deb42e979eae",
+    "branch": "refs/heads/fix/w6-first-guide-discovery-20261008"
+  },
+  "after": {
+    "source": "0f5482f3b58388cf82635c088863bb3f5b1e96fbc8842faa6e19e8a11a6c0500",
+    "index": "3994432c0964657e9ce7fc21e449928c4805be494a5306bf149f1b3d1fe7b4ae",
+    "head": "75a9f0563c86f0b4f6065d241b70deb42e979eae",
+    "branch": "refs/heads/fix/w6-first-guide-discovery-20261008"
+  },
+  "steps": [
+    {
+      "name": "guide-directed",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 1891
+    },
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 7274
+    },
+    {
+      "name": "guide-ui",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 8129,
+      "reason": "child exited 1"
+    }
+  ]
+}

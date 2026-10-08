@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "f2afc9a5522bc8d95e645d18c69e99871fa0e4828644f1c06b54649843095fab",
+    "index": "ef6b76a48f6bd6367626452d7fc40d941f274497f34f1f2a8c35ac5bf9f37968",
+    "head": "6349900259aaa73f9a5ce2ed9a8d008ee50cd0e0",
+    "branch": "refs/heads/fix/w6-first-guide-discovery-20261008"
+  },
+  "after": {
+    "source": "f2afc9a5522bc8d95e645d18c69e99871fa0e4828644f1c06b54649843095fab",
+    "index": "ef6b76a48f6bd6367626452d7fc40d941f274497f34f1f2a8c35ac5bf9f37968",
+    "head": "6349900259aaa73f9a5ce2ed9a8d008ee50cd0e0",
+    "branch": "refs/heads/fix/w6-first-guide-discovery-20261008"
+  },
+  "steps": [
+    {
+      "name": "guide-directed",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 2166
+    },
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 8209
+    },
+    {
+      "name": "guide-ui",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 11264
+    }
+  ]
+}
