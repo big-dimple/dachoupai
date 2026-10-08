@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "52cd065fbf469bab9de243e8aad0cb7e8905cc7268a123c966dbe4227cc5789e",
+    "index": "09f6dea6d19510de59b0ffc9f3776d6d20123f2db95a84377894b92df2b17de5",
+    "head": "147da58dc46b85101bf9210f96c526379c58894b",
+    "branch": "refs/heads/feat/w6-hand-path-20261008"
+  },
+  "after": {
+    "source": "52cd065fbf469bab9de243e8aad0cb7e8905cc7268a123c966dbe4227cc5789e",
+    "index": "09f6dea6d19510de59b0ffc9f3776d6d20123f2db95a84377894b92df2b17de5",
+    "head": "147da58dc46b85101bf9210f96c526379c58894b",
+    "branch": "refs/heads/feat/w6-hand-path-20261008"
+  },
+  "steps": [
+    {
+      "name": "review-directed",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 1464
+    }
+  ]
+}
