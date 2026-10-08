@@ -859,7 +859,7 @@ export class GameScene extends Phaser.Scene {
     this.view.setEnabled(this.playButton,this.ready&&this.selectedIds.size>0&&this.handsLeft>0);
     const azao=usesAzaoCharge(this.run)?azaoChoice(this.run,this.selectionPreview()?.type):undefined;
     if(azao&&!azao.available)this.azaoRelease=false;
-    if(azao){(this.playButton.getData('label') as Phaser.GameObjects.Text).setText(this.azaoRelease?'爆发×'+azao.multiplier:'出牌蓄势');this.roleText.setText(azao.compact);}
+    if(azao){(this.playButton.getData('label') as Phaser.GameObjects.Text).setText(this.azaoRelease?'爆发×'+azao.multiplier:'出牌');this.roleText.setText(azao.compact);}
     this.resourceCounts.play.setColor(handActionCountColor('play',!!this.playButton.input?.enabled));
     this.resourceCounts.discard.setColor(handActionCountColor('discard',!!this.discardButton.input?.enabled,this.run.stage!.discardsLeft<2*r2DiscardCost(this.run)));
     const portrait=this.view.layout.mode==='portrait';
