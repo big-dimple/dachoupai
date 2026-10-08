@@ -1,0 +1,63 @@
+{
+  "scope": "Bounded current-shop decision and direct existing hand-help UI; not chapter/device/human acceptance",
+  "baseline": "93d827c415dc75939e795e2ae77221dcb6d0a1ca",
+  "testedCommit": "f0b77efe3b34965f0196fc500ca30bcf4b34983b",
+  "protectedTrees": {
+    "src/domain": {
+      "baseline": "067e1e875dcb64c49672ba8127316190fe7c51b4",
+      "product": "067e1e875dcb64c49672ba8127316190fe7c51b4"
+    },
+    "src/content": {
+      "baseline": "6018132526ce72176f016f99ead53022480ab429",
+      "product": "6018132526ce72176f016f99ead53022480ab429"
+    },
+    "src/application": {
+      "baseline": "85202f3d21213d820ffa8533382c2e1e34045efc",
+      "product": "85202f3d21213d820ffa8533382c2e1e34045efc"
+    },
+    "src/platform": {
+      "baseline": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "product": "860a9f8883cc158ac0c56ad6399518cc897a67b7"
+    },
+    "public": {
+      "baseline": "df6f037e9b2a18cbcf8f82c045dcc002b8e8b017",
+      "product": "df6f037e9b2a18cbcf8f82c045dcc002b8e8b017"
+    },
+    "art/sources": {
+      "baseline": "47067728e0f15588b56199ff8ecc3b4e40c2dc53",
+      "product": "47067728e0f15588b56199ff8ecc3b4e40c2dc53"
+    },
+    "src/audio": {
+      "baseline": "a4b9f376c79895628c14904be8886da017e73d74",
+      "product": "a4b9f376c79895628c14904be8886da017e73d74"
+    }
+  },
+  "humanReview": "NOT_RUN",
+  "originalFeedbackImage": {
+    "libraryFileId": "libfile_f21d1342d2888191930f846a8b2b86c7",
+    "name": "16148.jpg",
+    "materialization": "FAILED: canonical Library transfer helper returned download failed; no original pixels read, code/user description used"
+  },
+  "failures": [
+    "Initial wrong capacity import corrected",
+    "Actual cross-route upgrade fallback discovered, filtered at advice consumer; retained FAIL",
+    "Controlled b06 offer wrongly set at4; validator rejected invalid-save-offer-price. Driver corrected to actual rare8, no guard bypass"
+  ],
+  "attachments": {
+    "first-type-FAIL.log.gz": "c2b1408f18ebc4b7d1b3567d20e646ff8de8d94f3eba0002a38ba591002405b5",
+    "frozen-gate.json": "f2b5051e72dc6552640f300a6770b6e8355caa59a8a56f291d529b41a0bb53c4",
+    "frozen-gate.log.gz": "6ded6ed9258783ab43780ec378b67a9d9745572feef362c7961b8b6e9ec1f698",
+    "gate-driver.mjs.gz": "81d88531f48a23b44245b6d45e831839d7aa599663a61f34c76ae865ef7f143a",
+    "invalid-fixture-FAIL.json.gz": "91eaedee2f2978d9d911c79a764754138a92d6c0769e609ef295bbf4c576317e",
+    "invalid-fixture-FAIL.log.gz": "4142ec62c75ae8b99a55b01074aef9b06258c7433d174affbbd5be447eece05b",
+    "invalid-fixture-FAIL.png": "cec3451978ff42da5bb5b8f7be58f1346d466114874bed08430471d1994ded4a",
+    "limited-ui-driver.mjs.gz": "5639f176c5c60ff6edf1a439e34287264a3c607295a3d0223d569f69decdd5fc",
+    "narrow-decision.png": "53be3984c5d289d7092d6e9d721847ebfbc2d2159b2e1aa2a79d14fdc8747472",
+    "native-ui.json.gz": "7c7a2dafb09a5639d26119e4a3860ea050107c26193e371dac8a3d3e654729e9",
+    "pc-decision.png": "de2fd43a01d2a185202e557a26ab7002c10da887f608f38f9b0e02f724326b1e",
+    "pc-replacement.png": "18333972c361bfba8a30c26ed11ae70d9af40ab9f74ac7f24c5d334275281c02",
+    "phone-decision.png": "63670af6d21d46a39243f2984552abb3e76c5c90eb74d351df659b22bd754fa0",
+    "phone-hand-help.png": "c8eb4632837871b98579ba7aab32b2ca218af3543ac4633472859545495f2462",
+    "route-fallback-FAIL.log.gz": "4fb2ebc9b0046485abe763267f0b57d3532d881abf68173bbd14ae1312a15ec5"
+  }
+}

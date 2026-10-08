@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "6e692e65cb2a376bdec6fadc8c01fd1afb1c5fcba6e0c82b9635541d14c03faf",
+    "index": "57dae55f471ff5ca2ff59feb0c6a6fb866f4990c6de23ddd136596defa709968",
+    "head": "f0b77efe3b34965f0196fc500ca30bcf4b34983b",
+    "branch": "refs/heads/feat/w6-current-decisions-20261008"
+  },
+  "after": {
+    "source": "6e692e65cb2a376bdec6fadc8c01fd1afb1c5fcba6e0c82b9635541d14c03faf",
+    "index": "57dae55f471ff5ca2ff59feb0c6a6fb866f4990c6de23ddd136596defa709968",
+    "head": "f0b77efe3b34965f0196fc500ca30bcf4b34983b",
+    "branch": "refs/heads/feat/w6-current-decisions-20261008"
+  },
+  "steps": [
+    {
+      "name": "directed-current-decisions",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 1975
+    },
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 7082
+    },
+    {
+      "name": "limited-current-ui",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 11481
+    }
+  ]
+}
