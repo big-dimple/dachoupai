@@ -870,6 +870,7 @@ export class GameScene extends Phaser.Scene {
     this.view.setEnabled(this.aiButton,this.ready&&!this.pendingRefill&&!this.presentation&&aiResult?.status==='ready'&&aiResult.key===aiHandKey(aiInput)&&aiResult.ordered.length>0);
     const handWindow=this.view.layout;this.handNavigationButtons.forEach((button,i)=>this.view.setEnabled(button,this.ready&&(i===0?handWindow.handStart>0:handWindow.handStart+handWindow.visibleCardCount<this.hand.length)));
     const notice=stageNotice(this.run),discardGoldCost=notice?.discardGoldCost??0;
+    (this.playButton.getData('label') as Phaser.GameObjects.Text).setText('出牌');
     (this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(discardGoldCost?'弃 -1金':r2DiscardCost(this.run)===2?'弃 ×2':'弃牌');
     this.view.setEnabled(this.discardButton,this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run)&&this.run.gold>=discardGoldCost);
     this.view.setEnabled(this.playButton,this.ready&&this.selectedIds.size>0&&this.handsLeft>0);
