@@ -25,6 +25,8 @@ export class AudioEngine {
   private leadWave?: PeriodicWave;
   private pianoWave?: PeriodicWave;
   private rollBuffer?: AudioBuffer;
+  private scoreSamples=new Map<string,AudioBuffer>();
+  private scoreSampleTask?:Promise<void>;
   private readonly scoreCues=new WeakMap<object,Set<string>>();
   private voices = new Set<Voice>();
   private volumes: Record<AudioBus, number> = { master: 1, music: DEFAULT_AUDIO.music, sfx: DEFAULT_AUDIO.sfx, ui: DEFAULT_AUDIO.sfx };
@@ -152,6 +154,7 @@ export class AudioEngine {
         compressor.connect(ceiling);
         ceiling.connect(context.destination);
         this.gains = gains;
+        void this.loadScoreSamples();
         for (const bus of Object.keys(gains) as AudioBus[]) this.applyVolume(bus);
         try {
           this.pluckedWave = context.createPeriodicWave(
@@ -303,6 +306,26 @@ export class AudioEngine {
     for(const voice of [this.note(45,duration,.055+level*.009,'sfx',0,'sine',undefined,33,'warm'),
       this.paper(.03+level/150,.020+level*.003,0,'sfx',undefined,900)])if(voice)voice.scoreAccent=true;
     this.duckMusic(.18);
+  }
+
+  private loadScoreSamples():Promise<void> {
+    if(this.scoreSampleTask)return this.scoreSampleTask;
+    const context=this.context;if(!context)return Promise.resolve();
+    return this.scoreSampleTask=Promise.all(['impactMetal_light_002','impactMetal_medium_002','impactMetal_heavy_000','cloth2','chop'].map(async name=>{
+      try{const response=await fetch(new URL(`assets/audio/score-impact/${name}.ogg`,document.baseURI));if(!response.ok)return;const buffer=await context.decodeAudioData(await response.arrayBuffer());this.scoreSamples.set(name,buffer);}catch{/* A missing clip is silent; saved source information remains. */}
+    })).then(()=>undefined);
+  }
+  /** Recorded foley, one bounded hit per number arrival; no retroactive playback or synth fallback. */
+  scoreImpact(presentation:object,eventId:string,kind:'add'|'key'|'multiply'|'award'|'flight',tier=0,chain=0):void {
+    let seen=this.scoreCues.get(presentation);if(!seen){seen=new Set();this.scoreCues.set(presentation,seen);}const id='recorded/'+eventId+'/'+kind;
+    if(seen.has(id)||seen.size>=1024)return;seen.add(id);if(!this.canPlay('sfx'))return;
+    for(const voice of this.voices)if(voice.scoreAccent)this.release(voice);
+    const name=kind==='flight'?'cloth2':kind==='add'?'chop':tier>=2?'impactMetal_heavy_000':tier>=1?'impactMetal_medium_002':'impactMetal_light_002',buffer=this.scoreSamples.get(name);if(!buffer)return;
+    try{const context=this.context!,source=context.createBufferSource(),gain=context.createGain();source.buffer=buffer;source.playbackRate.value=kind==='multiply'?1+Math.min(4,Math.max(0,chain))*.035:1;
+      const length=Math.min(kind==='flight'?.12:kind==='award'?.34:.23,buffer.duration/source.playbackRate.value),time=context.currentTime;
+      gain.gain.setValueAtTime(0,time);gain.gain.linearRampToValueAtTime((kind==='flight'?.025:kind==='add'?.055:.085+Math.min(3,tier)*.018)*SOURCE_GAIN.sfx,time+.005);gain.gain.setValueAtTime((kind==='flight'?.025:kind==='add'?.055:.085+Math.min(3,tier)*.018)*SOURCE_GAIN.sfx,time+length*.55);gain.gain.linearRampToValueAtTime(0,time+length);
+      source.connect(gain);gain.connect(this.gains!.sfx);this.retain({source,gain,bus:'sfx',scoreAccent:true});source.start(time);source.stop(time+length);this.duckMusic(length+.05);
+    }catch{/* Device teardown never changes the committed hand. */}
   }
 
   /** Compatibility cleanup name; no continuous burning sources remain. */

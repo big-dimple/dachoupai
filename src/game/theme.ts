@@ -21,6 +21,7 @@ export const PAPER_CSS = Object.fromEntries(
   Object.entries(PAPER_THEME).map(([name, value]) => [name, `#${value.toString(16).padStart(6, '0')}`]),
 ) as { readonly [K in keyof typeof PAPER_THEME]: string };
 
+export const SCORE_FONT = '"Dachoupai Score", "Arial Narrow", "Roboto Condensed", sans-serif';
 export const UI_FONT = '"Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif';
 
 /** Small procedural borders, not generated character pictures; no gradients or baked text. */

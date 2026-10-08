@@ -1,0 +1,1 @@
+只取5段未改录音：Impact Sounds三档落点、RPG Audio cloth2/chop。官方包下载HTTP403；使用有作者/包/许可标注的副本，不把副本大小称为官方ZIP已测大小。三个Impact哈希与镜像CREDITS声明逐项一致；RPG副本CREDITS明确miss=cloth2、kill=chop。声明来源：https://github.com/euuuuuuan/voidclad-public/blob/main/CREDITS.md 与 https://github.com/jarlah/dungeon-haskell/blob/master/assets/CREDITS.md 。仅数字/来源运动时使用，默认30%音乐80%音效；不凭文件名宣称主观音色已验收。

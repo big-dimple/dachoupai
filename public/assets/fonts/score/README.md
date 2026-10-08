@@ -1,0 +1,1 @@
+数字字体基于 Barlow Condensed ExtraBold（2017 The Barlow Project Authors），SIL OFL 1.1，许可证同目录OFL.txt。来源 https://github.com/google/fonts/tree/main/ofl/barlowcondensed （2026-10-08取得）。仅保留数字/计分符号，数字advance统一508并居中，删除GSUB、GPOS及kern以保持等宽；派生名 Dachoupai Score。fontTools4.61.1生成WOFF，无运行时依赖。仅数字使用，中文回退原UI_FONT；字体加载失败不阻断。

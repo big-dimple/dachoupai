@@ -27,7 +27,7 @@ export class BootScene extends Phaser.Scene {
   }
 
   async create(): Promise<void> {
-    await gameSession().initialize();
+    await Promise.all([gameSession().initialize(),Promise.race([document.fonts.load('800 36px "Dachoupai Score"').catch(()=>[]),new Promise(resolve=>setTimeout(resolve,800))])]);
     if(!this.scene.isActive())return;
     const query=new URLSearchParams(location.search),seed=query.get('seed')??undefined;
     this.scene.start('title',{seed});

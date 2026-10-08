@@ -1,3 +1,4 @@
+import {freshOpeningShow,recordOpeningShow,type OpeningShow} from './openingShow';
 import {hasR2ComboGrowthContract,R2_GROUP_UPGRADE_VERSION,R2_GROUP_UPGRADE_HASH,isR2RouteStarter,R2_ROUTE_STARTER_VERSION,R2_ROUTE_STARTER_HASH,R2_ROUTE_STARTERS,type R2OpeningRoute} from './r2GroupUpgrade';
 import {routeStarterStartCommand,routeStarterScoreEvent,type R2StarterRecord} from './r2RouteStarter';
 import {r2ColdOpening,type R2OpeningDiscard,R2_COMBO_GROWTH_VERSION,R2_COMBO_GROWTH_HASH} from './r2ComboGrowth';
@@ -68,6 +69,7 @@ interface R2StageBase extends Omit<StageState,'targetHeat'|'heat'|'previousHandT
 export type R2StageState = R2StageBase & ({assistUsed:boolean}|{assistUsed?:never}) & ({openingDiscard:R2OpeningDiscard|null}|{openingDiscard?:never});
 export interface R2RunState extends Omit<RunState,'schemaVersion'|'rulesVersion'|'stage'|'totalHeat'|'jokers'|'lastScore'|'shop'|'boss'|'outcome'|'difficulty'|'program'|'rng'> {
   openingRoute?:R2OpeningRoute;
+  openingShow?:OpeningShow;
   routeStarter?:R2StarterRecord;
   schemaVersion:2; rulesVersion:'r2'; stage:R2StageState|null; totalHeat:string; jokers:R2JokerInstance[];
   lastTrace:ScoreTrace|null; handLevels:Partial<Record<R2HandType,number>>;shop:R2ShopState|null;
@@ -483,7 +485,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
     if(!r2ModeSeedAllowed(config,action.seed)||config.mode==='tutorial'&&action.characterId!=='erxiang')return fail('invalid-mode-seed-or-character');
     const cards=createDeck().filter(card=>config.startingRanks.includes(card.rank));
     state={schemaVersion:2,rulesVersion:'r2',contentVersion:profile.contentVersion,contentHash:profile.contentHash,runId:command.runId,seed:action.seed,commandSeq:0,difficulty:config.difficulty,characterId:action.characterId,
-      ...(isR2RouteStarter(profile)?{openingRoute:action.openingRoute,routeStarter:{instanceId:null,rootId:null,eventId:null}}:{}),
+      ...(isR2RouteStarter(profile)?{openingRoute:action.openingRoute,openingShow:freshOpeningShow(),routeStarter:{instanceId:null,rootId:null,eventId:null}}:{}),
       mode:config.mode,challengeId:config.challengeId,programsEnabled:config.programsEnabled,programRerollCoupon:false,chapterDisabledJokerId:null,
       chapter:config.startingChapter,stageIndex:config.startingStageIndex,phase:'shop',deckInstances:cards,drawPile:cards.map(c=>c.id),handOrder:[],playedPile:[],discardPile:[],destroyedIds:[],stage:null,totalHeat:'0',gold:config.initialGold,jokers:config.startingJokers.map((joker,index)=>r2CreateJoker(joker.definitionId,`${command.runId}/initial/${index}`,joker.paidPrice,joker.edition,profile)),consumables:[],longTermItems:[],program:null,boss:{definitionId:'B01',disabledSuit:null},seenBossIds:[],chapterSkipConsumable:'T01',purchaseCoupons:0,safetyNetUsed:false,shop:null,
       spectralModifiers:{handsPenalty:0,handPenalty:0,cleanSlateBonus:0},supplyRewardClaimed:false,chapterHandUsage:{},normalClearClaimed:false,tourMode:'normal',normalCompletion:null,
@@ -702,6 +704,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
           }
           catch(error){return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
         }
+        if(state.openingShow)state.openingShow=recordOpeningShow(state.openingShow,state.lastTrace!,routeStarterScoreEvent(state,state.lastTrace!),state.stage.targetHeat,state.phase==='run-lost'||state.phase==='run-won');
         break;
       }
       case 'SkipStage': {
