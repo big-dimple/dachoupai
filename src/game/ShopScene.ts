@@ -1,4 +1,4 @@
-import {firstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
+import {firstChapterGuide,firstChapterShopPrompt,dismissFirstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
 import {shopRouteRelation,shopOfferRelation,shopReplacementFacts,shopSaleConsequences} from './ShopRouteRelations';
 import {buildGrowthProgress} from './BuildGrowthProgress';
 import {shopInvestment} from './ShopInvestment';
@@ -11,7 +11,7 @@ import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {r2JokerDefinitionsFor,r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {jokerAbilityCopyForRun,publicJokerMemoryContext} from './JokerMemory';
 import type {R2JokerInstance} from '../content/r2Schema';
-import {shopLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea} from './ShopLayout';
+import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea} from './ShopLayout';
 import {goodsArtKey,goodsArtLoadState,requestGoodsArt,retryGoodsArt} from './GoodsArtLoading';
 import {ShopResultFeedback,shopResultBox,shopResultPages,type ShopResultLine} from './ShopResultFeedback';
 import {requestJokerArt,jokerArtLoadState,retryJokerArt} from './JokerArtLoading';
@@ -157,6 +157,7 @@ export class ShopScene extends Phaser.Scene {
     const reason=!this.ready?'当前进度未保存或只读，请查看菜单。':allowed&&this.run.gold<cost?`换牌还差 ${cost-this.run.gold} 金。可直接入场。`:this.shelfKind==='jokers'&&this.run.jokers.length===r2JokerCapacity(this.run)?`${r2JokerCapacity(this.run)}槽已满，点随身牌出售后再买。`:this.shelfKind==='tools'?'购买后收入库存；查看详情，再确认使用。':this.shelfKind==='items'?'道具本局生效；换牌不重抽道具货架。':p.portrait?'点卡牌看详情，确认后扣款。':'点卡牌不会扣钱；点随身牌可出售或左移、右移。';
     const discovery=this.ready&&!this.notice?savedGrowthDiscovery(this.run):undefined;
     this.noticeLabel=v.text(p.short?p.x:p.tabs.x,p.noticeY,this.busy?'正在保存…':this.notice||discovery?.full||firstChapterGuide(this.run)?.cue||reason,14,this.notice?'#B8473A':'#3F606B',p.short?p.w:p.tabs.width).setStyle({maxLines:p.short?1:2}).setName(discovery?'growth/discovery':'');
+    this.drawFirstGuide(p);
     this.drawResultCue();
   }
   private drawOwned(p:ReturnType<typeof shopLayout>):void {
@@ -174,7 +175,8 @@ export class ShopScene extends Phaser.Scene {
       const hover=this.hoverCard(first,b,j.definitionId),r=v.rect(p.pc?b:shopOwnedHitBox(b,p.reroll.y,!!ability||!p.portrait)).setFillStyle(0,0).setStrokeStyle();
       v.target(r,`joker/${j.instanceId}`,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:(x,y)=>this.moveJoker(j.instanceId,x,y),holdToDrag:true,...hover});
     });
-    for(let i=this.run.jokers.length;!p.inventoryCollapsed&&i<r2JokerCapacity(this.run);i++){
+    const guide=firstChapterShopPrompt(this.run)&&this.ready?shopFirstGuideLayout(p,this.view.layout.height,this.run.jokers.length===0):undefined;
+    for(let i=this.run.jokers.length;!p.inventoryCollapsed&&!guide?.replacesEmptySlots&&i<r2JokerCapacity(this.run);i++){
       const b=p.slots[i];this.drawSlot(b,false);v.text(b.x+b.width/2,b.y+b.height-21,p.portrait?String(i+1):`空槽 ${i+1}`,14,'#a6bab0').setOrigin(.5,0);
     }
   }
@@ -210,6 +212,14 @@ export class ShopScene extends Phaser.Scene {
     }
     const discovery=this.ready&&!this.notice?savedGrowthDiscovery(this.run):undefined;
     this.noticeLabel=v.text(pc.feedback.x+6,pc.feedback.y,this.busy?'正在保存…':this.notice||discovery?.full||firstChapterGuide(this.run)?.cue||'点商品只看详情，确认才扣款；购买工具不会自动使用。',14,this.notice?'#B8473A':'#3F606B',pc.feedback.width-12).setStyle({maxLines:1}).setName(discovery?'growth/discovery':'');this.drawResultCue();
+    this.drawFirstGuide(p);
+  }
+  private drawFirstGuide(p:ReturnType<typeof shopLayout>):void {
+    const hint=firstChapterShopPrompt(this.run),g=hint&&this.ready?shopFirstGuideLayout(p,this.view.layout.height,this.run.jokers.length===0):undefined;if(!hint||!g)return;
+    const v=this.view;v.material(g.box,0xe2e8e5,0xe2e8e5,6);
+    v.text(g.box.x+g.padding,g.box.y+g.padding,hint.text,14,'#26313A',g.box.width-g.padding*2).setFontStyle('bold').setName('first-guide/shop-copy');
+    v.button(g.buttons[0],hint.action,'first-guide/shop-open',()=>this.inspectJourney());
+    for(const [i,scope,label] of [[1,'step','略过'],[2,'run','本局关闭'],[3,'forever','不再显示']] as const)v.button(g.buttons[i],label,'first-guide/shop-'+scope,()=>{dismissFirstChapterGuide(this.run,scope);this.render();});
   }
   /** Long real rules may need a whole group; paging must use the same final capacity. */
   private pcGroupCapacity(kind:'tools'|'items',p:ReturnType<typeof shopLayout>):number {

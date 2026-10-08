@@ -69,6 +69,22 @@ export function shopLayout(width:number,height:number,top:number,bottom:number,c
     reroll:{x:actionX,y:secondaryY,width:toolWidth,height:44},build:{x:actionX+toolWidth+8,y:secondaryY,width:toolWidth,height:44},play:{x:actionX,y:secondaryY+52,width:Math.min(w,420),height:56},noticeY:secondaryY+116};
 }
 
+/** Use existing empty inventory/rail space, never goods, live owned cards or primary actions. */
+export function shopFirstGuideLayout(p:ReturnType<typeof shopLayout>,height:number,emptyOwned:boolean){
+ let x=p.x,width=p.w,y:number,limit:number,replacesEmptySlots=false;
+ if(p.pc){x=p.x+12;width=p.pc.left.width-24;y=p.chapter.y+p.chapter.height+12;limit=p.pc.left.y+p.pc.left.height-8;}
+ else if(p.short){
+  if(!p.inventoryCollapsed&&emptyOwned){width=p.chapter.width;y=p.slots[0].y;limit=p.chapter.y-6;replacesEmptySlots=true;}
+  else{x=p.tabs.x;width=p.tabs.width;y=Math.max(...p.shelf.map(b=>b.y+b.height))+6;limit=p.play.y-4;}
+ }else if(p.portrait){y=emptyOwned?p.slots[0].y:Math.max(...p.slots.map(b=>b.y+b.height))+26;limit=p.reroll.y-8;replacesEmptySlots=emptyOwned;}
+ else{y=p.noticeY+28;limit=height-12;}
+ const columns=width<284?2:4,padding=p.short&&columns===4?4:6,textHeight=p.short&&columns===4?18:columns===2?56:40,gap=columns===4&&p.short?2:4;
+ const rows=4/columns,boxHeight=padding*2+textHeight+gap+rows*44+(rows-1)*6;if(y+boxHeight>limit)return;
+ const box={x,y,width,height:boxHeight},buttonWidth=(width-padding*2-(columns-1)*6)/columns;
+ const buttons:Array<Box>=Array.from({length:4},(_,i)=>({x:x+padding+(i%columns)*(buttonWidth+6),y:y+padding+textHeight+gap+Math.floor(i/columns)*50,width:buttonWidth,height:44}));
+ return {box,buttons,padding,textHeight,replacesEmptySlots};
+}
+
 /** Text uses the goods seat on desktop, independently of the bounded card face. */
 export function shopOfferCopy(p:ReturnType<typeof shopLayout>,b:Box){
   if(p.pc){const seat=p.pc.jokerOffers.find(t=>b.x>=t.x&&b.x<t.x+t.width)!;return {x:seat.x+10,y:b.y+b.height+2,width:seat.width-20,priceY:seat.y+b.height+98,lines:4,tile:seat};}

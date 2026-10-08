@@ -29,6 +29,11 @@ export function dismissFirstChapterGuide(state:R2RunState,scope:'step'|'run'|'fo
  const p=read();if(scope==='forever'){write({...p,disabled:true});return;}if(p.enrolled!==guideRunKey(state))return;
  write(scope==='run'?{...p,enrolled:undefined}:{...p,skipped:[...new Set([...p.skipped,firstChapterGuide(state)?.step].filter((s):s is GuideStep=>!!s))]});
 }
+/** A current shop decision, visible before opening any detail panel. */
+export function firstChapterShopPrompt(state:R2RunState){
+ const hint=firstChapterGuide(state);if(state.phase!=='shop'||!hint)return;
+ return {text:hint.step==='shop'?`首次逛店 · 金币 ${state.gold}：先看用途，再决定买牌或留金。`:'再逛商店 · 先比较成长，再决定保留或换牌。',action:hint.step==='shop'?'看用途':'看持牌'};
+}
 /** Inline in the real operation panel; no forced modal, game commands or input locks. */
 export function attachFirstChapterGuide(state:R2RunState,refresh?:()=>void):void {
  const hint=firstChapterGuide(state),dialog=document.querySelector('dialog[open]');if(!hint||!dialog||dialog.querySelector('.first-chapter-guide'))return;
