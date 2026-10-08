@@ -1,3 +1,4 @@
+import {TOUYE_ACCEPTED} from './r2TouyeTargets';
 import {R2_COMBO_GROWTH_HASH,isR2ComboGrowth} from './r2ComboGrowth';
 import {R2_GROUP_UPGRADE_JOKERS} from '../content/r2GroupUpgradeJokers';
 import {R2_GROUP_HAND_TYPES} from './r2GroupHands';
@@ -21,7 +22,11 @@ export const R2_XIEMU_BURN_HASH=stableHash(R2_XIEMU_BURN_CONTRACT);
 export const R2_LAOHUAN_REFILL_VERSION='quality-r2-laohuan-refill-v1';
 export const R2_LAOHUAN_REFILL_CONTRACT=Object.freeze({inherits:R2_XIEMU_BURN_HASH,allCharacters:true,uses:1,extra:2,replace:'old-straight-flush-add120',consume:'saved-real-discard-before-reveal',pending:'fixed-ids-choose-gap-close-preserves',unselected:'played-no-discard-hooks',short:'all-if-candidates-not-above-gap',disabled:'Q01-only-B08-allowed',reset:'entry-no-refund'});
 export const R2_LAOHUAN_REFILL_HASH=stableHash(R2_LAOHUAN_REFILL_CONTRACT);
-export function isR2LaohuanRefill(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_LAOHUAN_REFILL_VERSION&&identity.contentHash===R2_LAOHUAN_REFILL_HASH;}
+export const R2_TOUYE_WAGER_VERSION='quality-r2-touye-wager-v1';
+export const R2_TOUYE_WAGER_CONTRACT=Object.freeze({inherits:R2_LAOHUAN_REFILL_HASH,allCharacters:true,uses:1,accepted:TOUYE_ACCEPTED,ordinary:'1.15',success:'2',failure:'0.85',clock:'replace-characterScore-before-jokerScore-no-role-rng',commit:'same-real-discard-public-whole-hand-unreachable-snapshot',due:'next-real-play',locked:'no-discard-tools-joker-changes',disabled:'B08-Q01',reset:'entry-no-refund'});
+export const R2_TOUYE_WAGER_HASH=stableHash(R2_TOUYE_WAGER_CONTRACT);
+export function isR2TouyeWager(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_TOUYE_WAGER_VERSION&&identity.contentHash===R2_TOUYE_WAGER_HASH;}
+export function isR2LaohuanRefill(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_LAOHUAN_REFILL_VERSION&&identity.contentHash===R2_LAOHUAN_REFILL_HASH||isR2TouyeWager(identity);}
 export function isR2XiemuBurn(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_XIEMU_BURN_VERSION&&identity.contentHash===R2_XIEMU_BURN_HASH||isR2LaohuanRefill(identity);}
 export function isR2AzaoCharge(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_AZAO_CHARGE_VERSION&&identity.contentHash===R2_AZAO_CHARGE_HASH||isR2XiemuBurn(identity);}
 export function isR2RouteStarter(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ROUTE_STARTER_VERSION&&identity.contentHash===R2_ROUTE_STARTER_HASH||isR2AzaoCharge(identity);}

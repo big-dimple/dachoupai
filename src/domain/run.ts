@@ -1,3 +1,4 @@
+import type {TouyeBet} from './r2TouyeWager';
 import {isR2RouteStarter,R2_ROUTE_STARTERS,type R2OpeningRoute} from './r2GroupUpgrade';
 import {routeStarterStartCommand} from './r2RouteStarter';
 import { createDeck } from '../cards/deck';
@@ -101,7 +102,7 @@ export type Action =
   | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' | 'SkipStage' | 'ContinueEndless' }
   | { type: 'PlayHand'; selectedIds: readonly string[]; azaoRelease?:boolean; xiemuBurn?:10|20|30 }
   | { type: 'PlayAssistedHand'; selectedIds: readonly string[]; assistIds:readonly string[] }
-  | { type: 'DiscardHand'; selectedIds: readonly string[]; laohuanTrick?:boolean }
+  | { type: 'DiscardHand'; selectedIds: readonly string[]; laohuanTrick?:boolean; touyeBet?:TouyeBet }
   | {type:'ChooseRefill';selectedIds:readonly string[]}
   | { type: 'SellJoker'; instanceId:string }
   | { type: 'UseConsumable'; instanceId:string; targetIds:readonly string[]; handType?:import('./evaluateR2').R2HandType; secondaryHandType?:import('./evaluateR2').R2HandType; suit?:import('../cards/types').Suit; sacrificeId?:string; targetKind?:'card'|'joker' }
