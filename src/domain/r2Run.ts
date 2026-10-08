@@ -138,7 +138,7 @@ export function assertR2Invariants(state:R2RunState):void {
     }
   }
   if(hasR2ComboGrowthContract(state))for(const joker of state.jokers){
-    if(joker.definitionId==='f10')check(joker.counters?.rescueArmed===(state.phase==='await-input'&&!!state.stage&&state.stage.playIndex===0&&state.stage.discardsUsed>0&&r2ColdOpening(state.stage.openingDiscard)),'armed rescue stage');
+    if(joker.definitionId==='f10')check(joker.counters?.rescueArmed===((state.phase==='await-input'||state.phase==='pending-refill')&&!!state.stage&&state.stage.playIndex===0&&state.stage.discardsUsed>0&&r2ColdOpening(state.stage.openingDiscard)),'armed rescue stage');
     if(joker.definitionId==='a06'&&joker.counters?.alternationUsed&&state.phase==='await-input')check(!!state.stage&&state.stage.playIndex>=2,'alternation stage');
   }
   check(typeof state.safetyNetUsed==='boolean'&&(!state.safetyNetUsed||state.jokers.every(j=>j.definitionId!=='f07')),'safety-net lifetime');
