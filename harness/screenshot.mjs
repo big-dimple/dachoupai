@@ -6,6 +6,7 @@ import path from 'node:path';
 import {chromium,firefox,webkit} from 'playwright';
 import {build,preview} from 'vite';
 import {waitScene,tapUI,point,tapMenuAction} from './ui.mjs';
+import {armResourcePulse,waitResourcePulse} from './resource-pulse.mjs';
 const root=process.cwd(),port=Number(process.env.SHOT_PORT||5199),outDir=path.join(root,'shots/smoke-build'),verify=process.argv.includes('--verify-smoke');
 const saveScreens=!verify||process.env.SMOKE_SHOTS==='1';
 const engines={chromium,firefox,webkit},selected=(process.env.SMOKE_BROWSERS||'chromium').split(',');
@@ -125,13 +126,14 @@ try {
     await tapUI(page,'game','card/'+chosen,touch);
     await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),chosen);
     await ready(page);const beforeDiscard=await state(page);assert.equal((await point(page,'game','action/discard')).enabled,true,'selected cards permit discard');
+    await page.evaluate(armResourcePulse,{kind:'discard',seq:beforeDiscard.commandSeq+1,remaining:beforeDiscard.stage.discardsLeft-1});
     if(process.env.SMOKE_FEEDBACK==='1'&&engine==='chromium'&&name==='mobile'){
       const p=await point(page,'game','action/discard'),cdp=await context.newCDPSession(page);
       await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:p.x,y:p.y}]});await new Promise(resolve=>setTimeout(resolve,450));
       await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await cdp.detach();
     }else await tapUI(page,'game','action/discard',touch);
     await next(page,beforeDiscard.commandSeq);
-    await page.waitForFunction(expected=>{const s=window.__harness.game.scene.getScene('game'),count=s.resourceCounts.discard;return count.text===expected+' 次'&&count.scaleX>1.05;},beforeDiscard.stage.discardsLeft-1,{timeout:5000});
+    const discardFeedback=await waitResourcePulse(page,'discard');
     if(saveScreens&&touch&&engine===selected[0])await page.screenshot({path:`shots/${name}-discard-feedback.png`});
     await ready(page);const discarded=await state(page);
     await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(c=>!c.back?.visible&&c.container.alpha===1));
@@ -141,8 +143,9 @@ try {
     await tapUI(page,'game','card/'+discarded.handOrder[0],touch);
     await page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),discarded.handOrder[0]);
     if(saveScreens&&engine===selected[0])await page.screenshot({path:`shots/${name}-game.png`});
+    await page.evaluate(armResourcePulse,{kind:'play',seq:discarded.commandSeq+1,remaining:discarded.stage.handsLeft-1});
     await tapUI(page,'game','action/play',touch);await next(page,discarded.commandSeq);
-    await page.waitForFunction(expected=>{const s=window.__harness.game.scene.getScene('game'),count=s.resourceCounts.play;return count.text===expected+' 次'&&count.scaleX>1.05;},discarded.stage.handsLeft-1,{timeout:5000});
+    const playFeedback=await waitResourcePulse(page,'play');
     await ready(page);const played=await state(page);
     assert.equal(played.stage.handsLeft,discarded.stage.handsLeft-1);assert.equal(played.stage.discardsLeft,discarded.stage.discardsLeft);assert.ok(BigInt(played.stage.heat)>BigInt(discarded.stage.heat));assert.ok(played.lastTrace);
     await page.reload();await waitScene(page,'title');assert.deepEqual(await state(page),played,'refresh restores the full determined result');
@@ -158,7 +161,7 @@ try {
       await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').selectedIds.size===0);
       if(saveScreens&&engine===selected[0])await page.screenshot({path:`shots/${name}-short.png`});
     }
-    assert.deepEqual(errors,[]);report.checks.push({engine,browserVersion:browser.version(),profile:name,viewport,deviceScaleFactor,framebufferDensity:density,fullscreen,status:'PASS',input:touch?'touchscreen.tap / DOM tap':'mouse.click / DOM click',covered:['select-confirm-cancel','buy-cancel','rank/suit-sort','discard-refill','live-discard-count-pulse','live-play-count-pulse','play-preview-feedback','reload-continue','fixed-menu-anchor','menu-preserves-selection',...(touch?['high-DPR','left/right-selected-rank-visible','rotation-preserves-state']:[])]});const video=page.video();await context.close();if(recordVideo)await video.saveAs('shots/p00-play.webm');console.log(`${engine}/${name}: ok`);
+    assert.deepEqual(errors,[]);report.checks.push({engine,browserVersion:browser.version(),profile:name,viewport,deviceScaleFactor,framebufferDensity:density,fullscreen,resourceFeedback:{discard:discardFeedback,play:playFeedback},status:'PASS',input:touch?'touchscreen.tap / DOM tap':'mouse.click / DOM click',covered:['select-confirm-cancel','buy-cancel','rank/suit-sort','discard-refill','live-discard-count-pulse','live-play-count-pulse','play-preview-feedback','reload-continue','fixed-menu-anchor','menu-preserves-selection',...(touch?['high-DPR','left/right-selected-rank-visible','rotation-preserves-state']:[])]});const video=page.video();await context.close();if(recordVideo)await video.saveAs('shots/p00-play.webm');console.log(`${engine}/${name}: ok`);
   }
   if(checkFeedback&&engine===selected[0]){
     const viewport={width:390,height:740},context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:3}),page=await context.newPage(),errors=[];activePage=page;
