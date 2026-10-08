@@ -18,7 +18,11 @@ export const R2_AZAO_CHARGE_HASH=stableHash(R2_AZAO_CHARGE_CONTRACT);
 export const R2_XIEMU_BURN_VERSION='quality-r2-xiemu-burn-v1';
 export const R2_XIEMU_BURN_CONTRACT=Object.freeze({inherits:R2_AZAO_CHARGE_HASH,allCharacters:true,costs:[10,20,30],multipliers:[2,3,4],qualified:AMO_ASSIST_TYPES,uses:1,clock:'pay-before-score-characterScore-before-jokerScore-replace-old-last-hand-and-clear-gold',interest:'min2-floor-common-reward-before-capital-div5-once-clearId',reset:'entry-only-no-refund-on-end-abandon',disabled:'B08-no-burn-keep-interest-Q01-disable-all'});
 export const R2_XIEMU_BURN_HASH=stableHash(R2_XIEMU_BURN_CONTRACT);
-export function isR2XiemuBurn(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_XIEMU_BURN_VERSION&&identity.contentHash===R2_XIEMU_BURN_HASH;}
+export const R2_LAOHUAN_REFILL_VERSION='quality-r2-laohuan-refill-v1';
+export const R2_LAOHUAN_REFILL_CONTRACT=Object.freeze({inherits:R2_XIEMU_BURN_HASH,allCharacters:true,uses:1,extra:2,replace:'old-straight-flush-add120',consume:'saved-real-discard-before-reveal',pending:'fixed-ids-choose-gap-close-preserves',unselected:'played-no-discard-hooks',short:'all-if-candidates-not-above-gap',disabled:'Q01-only-B08-allowed',reset:'entry-no-refund'});
+export const R2_LAOHUAN_REFILL_HASH=stableHash(R2_LAOHUAN_REFILL_CONTRACT);
+export function isR2LaohuanRefill(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_LAOHUAN_REFILL_VERSION&&identity.contentHash===R2_LAOHUAN_REFILL_HASH;}
+export function isR2XiemuBurn(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_XIEMU_BURN_VERSION&&identity.contentHash===R2_XIEMU_BURN_HASH||isR2LaohuanRefill(identity);}
 export function isR2AzaoCharge(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_AZAO_CHARGE_VERSION&&identity.contentHash===R2_AZAO_CHARGE_HASH||isR2XiemuBurn(identity);}
 export function isR2RouteStarter(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ROUTE_STARTER_VERSION&&identity.contentHash===R2_ROUTE_STARTER_HASH||isR2AzaoCharge(identity);}
 export function hasR2GroupUpgradeContract(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return isR2GroupUpgrade(identity)||isR2RouteStarter(identity);}

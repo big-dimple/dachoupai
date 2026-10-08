@@ -31,6 +31,7 @@ export const R2_BASE_SCORES = R2_PUBLISHED_CONTENT.snapshot.hands as unknown as 
 export interface ScoreInput {
   azaoCharge?:AzaoChargeIntent;
   xiemuBurn?:XiemuBurnIntent;
+  laohuanTrick?:true;
   rulesVersion: 'r2'; runId: string; rootId: string; characterId: CharacterId | 'neutral';
   hand: readonly PlayingCard[]; selectedIds: readonly string[]; disabledIds: readonly string[];
   jokers: readonly R2JokerInstance[]; definitions: readonly R2JokerDefinition[];
@@ -69,7 +70,7 @@ interface ScoreTraceBase {
 export type ScoreTrace = ScoreTraceBase & (
   {assist:{ids:string[];kind:'pair'|'three-kind';multiplier:2|4}|null;sets:ScoreTraceBase['sets']&{assistConsumedIds:string[]}} |
   {assist?:never;sets:ScoreTraceBase['sets']&{assistConsumedIds?:never}}
-) & ({combo:{goldBeforeRewards:number|null}}|{combo?:never}) & ({azaoCharge:AzaoChargeTrace}|{azaoCharge?:never}) & ({xiemuBurn:XiemuBurnTrace}|{xiemuBurn?:never});
+) & ({laohuanTrick:true}|{laohuanTrick?:never}) & ({combo:{goldBeforeRewards:number|null}}|{combo?:never}) & ({azaoCharge:AzaoChargeTrace}|{azaoCharge?:never}) & ({xiemuBurn:XiemuBurnTrace}|{xiemuBurn?:never});
 export class ScoreFault extends Error {
   constructor(readonly code: string, readonly events: readonly ScoreEvent[]) { super(code); }
 }
@@ -161,6 +162,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   const validHeld = held.filter(c => !input.disabledIds.includes(c.id));
   const facts=r2SelectionFacts({hand:cards,selectedIds:input.selectedIds,jokers,definitions:input.definitions,handRules:input.handRules,disabledIds:input.disabledIds,ordinaryPointsSuppressedIds:input.ordinaryPointsSuppressedIds});
   const evaluated={type:facts.type,scoringIds:facts.scoringIds};
+  if(input.laohuanTrick!==undefined&&(input.laohuanTrick!==true||!['laohuan','neutral'].includes(input.characterId)))throw Error('invalid-laohuan-character');
   if(input.xiemuBurn&&input.characterId!=='xiemu'&&input.characterId!=='neutral')throw Error('invalid-xiemu-character');
   const xiemuBurn=input.xiemuBurn?xiemuBurnStep(evaluated.type,input.xiemuBurn,input.characterId==='xiemu'&&input.boss?.definitionId!=='B08'):undefined;
   if(xiemuBurn&&xiemuBurn.goldAfter!==input.gold)throw Error('invalid-xiemu-payment');
@@ -358,7 +360,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   if(boss?.definitionId!=='B08')switch (input.characterId) {
     case 'amo': if ((input.amoScoreTiming??'before-joker') === 'before-joker' && played.length === 1) char('multiply-multiplier', new Rational(3n), {kind:'played-count',equals:1}); break;
     case 'erxiang': if (['pair','two-pair','three-kind'].includes(evaluated.type)) char('add-multiplier', new Rational(3n,2n), {kind:'hand-type-in',values:['pair','two-pair','three-kind']}); break;
-    case 'laohuan': if (['straight','flush','straight-flush'].includes(evaluated.type)) char('add-heat', new Rational(120n), {kind:'hand-type-in',values:['straight','flush','straight-flush']}); break;
+    case 'laohuan': if (!input.laohuanTrick&&(['straight','flush','straight-flush'].includes(evaluated.type))) char('add-heat', new Rational(120n), {kind:'hand-type-in',values:['straight','flush','straight-flush']}); break;
     case 'azao': if(azaoCharge){if(azaoCharge.multiplier)char('multiply-multiplier',azaoCharge.multiplier==='1.5'?new Rational(3n,2n):azaoCharge.multiplier==='2.5'?new Rational(5n,2n):new Rational(4n));}else if (input.previousHandType !== null && input.previousHandType !== evaluated.type) char('add-multiplier', new Rational(1n)); break;
     case 'touye': char('multiply-multiplier', input.wager ? (chance({n:1,d:2}) ? new Rational(2n) : new Rational(3n,4n)) : new Rational(23n,20n)); break;
     case 'xiemu': if(xiemuBurn){if(xiemuBurn.multiplier)char('multiply-multiplier',new Rational(BigInt(xiemuBurn.multiplier)));}else if (input.handsBeforePlay === 1) char('multiply-multiplier', new Rational(2n)); break;
@@ -380,7 +382,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
       {reasonKey:`enhancement.${card.enhancement}.destroy-card`});
   }
   hook('afterHand');
-  return immutable({ ...(xiemuBurn?{xiemuBurn}:{}),...(azaoCharge?{azaoCharge}:{}),rulesVersion:'r2', rootId:input.rootId, handType:evaluated.type, level,
+  return immutable({ ...(input.laohuanTrick?{laohuanTrick:true as const}:{}),...(xiemuBurn?{xiemuBurn}:{}),...(azaoCharge?{azaoCharge}:{}),rulesVersion:'r2', rootId:input.rootId, handType:evaluated.type, level,
     sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id)},
     ...(input.amoScoreTiming==='assist-v1'?{sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id),assistConsumedIds:assist?.assistIds??[]},assist:assist?{ids:assist.assistIds,kind:assist.assistKind,multiplier:assist.assistMultiplier}:null}:{}),finalScore:final.toString(),accumulator:snapshot(),events,jokers:jokers.filter(j=>!destroyedJokerIds.includes(j.instanceId)),
     ...(rng ? {rng:rng.snapshot()} : {}),goldDelta,destroyedCardIds,destroyedJokerIds,cards,sourceJokers,bossContext });

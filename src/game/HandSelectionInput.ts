@@ -5,6 +5,7 @@ import {modalBlocksCanvas} from './DetailDialog';
 
 interface HandInputOptions {
   ready:()=>boolean;
+  selectionLimit?:()=>number;
   cards:()=>HandSelectionHitBox[];
   selected:()=>ReadonlySet<string>;
   update:(update:HandSelectionUpdate)=>void;
@@ -62,7 +63,7 @@ export class HandSelectionInput {
     this.owner=event.pointerId;this.pointers.add(event.pointerId);this.savedInput=this.scene.input.enabled;this.scene.input.enabled=false;
     this.options.hover(undefined);this.scene.game.canvas.focus({preventScroll:true});
     try {this.surface.setPointerCapture(event.pointerId);}catch {/* Window events still own this contact. */}
-    this.apply(this.gesture.begin(event.pointerId,x,y,card.id,this.options.selected(),this.options.cards(),5,this.allowVertical));
+    this.apply(this.gesture.begin(event.pointerId,x,y,card.id,this.options.selected(),this.options.cards(),this.options.selectionLimit?.()??5,this.allowVertical));
     // Stationary hold still inspects. A moved pointer clears this timer before it can open.
     this.timer=setTimeout(()=>{if(this.gesture.state?.phase==='pending'){this.cancel('hold');if(this.options.ready()&&!document.querySelector('dialog[open]'))this.options.detail(card.id);}},355);
     if(event.pointerType==='mouse')event.preventDefault();

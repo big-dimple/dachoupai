@@ -26,7 +26,7 @@ export function routeSavedRun(game:Phaser.Game):void {
   const session=gameSession(),run=session.run;if(!run||session.pendingRun||session.working)return;
   game.registry.set('runController',run);game.registry.set('runState',run.state);game.registry.set('characterId',run.state.characterId);game.registry.set('seed',run.state.seed);
   const state=run.state;
-  const target=state.phase==='shop'?'shop':['stage-ready','await-input'].includes(state.phase)?'game':state.stage?'intermission':'character-select';
+  const target=state.phase==='shop'?'shop':['stage-ready','await-input','pending-refill'].includes(state.phase)?'game':state.stage?'intermission':'character-select';
   for(const key of ['title','character-select','shop','game','intermission'])game.scene.stop(key);
   game.scene.start(target,target==='intermission'?{cleared:state.phase==='stage-cleared'||state.phase==='run-won',stageIndex:state.stage!.index,stageHeat:state.stage!.heat,handsLeft:state.stage!.handsLeft,goldEarned:state.stage!.goldEarned}:undefined);
 }
@@ -79,7 +79,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   const primary=document.createElement('div');primary.className='run-menu-primary';panel.append(primary);
   const resume=button('继续本局',()=>{
     const run=session.run;if(!run){close();return;}
-    const target=run.state.phase==='shop'?'shop':['stage-ready','await-input'].includes(run.state.phase)?'game':run.state.stage?'intermission':'character-select';
+    const target=run.state.phase==='shop'?'shop':['stage-ready','await-input','pending-refill'].includes(run.state.phase)?'game':run.state.stage?'intermission':'character-select';
     // Closing a menu on the current scene preserves the player's unsubmitted card selection.
     if(game.registry.get('runController')!==run||!game.scene.isActive(target))routeSavedRun(game);close();
   },primary);resume.className='dialog-primary';

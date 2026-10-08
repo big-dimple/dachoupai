@@ -1,3 +1,5 @@
+import {usesLaohuanRefill,type PendingRefill} from './r2LaohuanRefill';
+import {R2_LAOHUAN_REFILL_VERSION,R2_LAOHUAN_REFILL_HASH} from './r2GroupUpgrade';
 import {usesXiemuBurn,xiemuInterest,type XiemuBurnCost} from './r2XiemuBurn';
 import {usesAzaoCharge,validAzaoCharge,emptyAzaoCharge,type AzaoCharge} from './r2AzaoCharge';
 import {R2_XIEMU_BURN_VERSION,R2_XIEMU_BURN_HASH,R2_AZAO_CHARGE_VERSION,R2_AZAO_CHARGE_HASH} from './r2GroupUpgrade';
@@ -46,6 +48,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_LAOHUAN_REFILL_VERSION,contentHash:R2_LAOHUAN_REFILL_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_XIEMU_BURN_VERSION,contentHash:R2_XIEMU_BURN_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_AZAO_CHARGE_VERSION,contentHash:R2_AZAO_CHARGE_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_ROUTE_STARTER_VERSION,contentHash:R2_ROUTE_STARTER_HASH,amoScoreTiming:'assist-v1' as const}),
@@ -71,8 +74,9 @@ interface R2StageBase extends Omit<StageState,'targetHeat'|'heat'|'previousHandT
   challengeDisabledJokerId:string|null;
 }
 /** Profile parsing requires assistUsed for the prototype and forbids it for published runs. */
-export type R2StageState = R2StageBase & ({assistUsed:boolean}|{assistUsed?:never}) & ({openingDiscard:R2OpeningDiscard|null}|{openingDiscard?:never}) & ({azaoCharge:AzaoCharge}|{azaoCharge?:never}) & ({xiemuBurnUsed:boolean}|{xiemuBurnUsed?:never});
+export type R2StageState = R2StageBase & {laohuanTrickUsed?:boolean} & ({assistUsed:boolean}|{assistUsed?:never}) & ({openingDiscard:R2OpeningDiscard|null}|{openingDiscard?:never}) & ({azaoCharge:AzaoCharge}|{azaoCharge?:never}) & ({xiemuBurnUsed:boolean}|{xiemuBurnUsed?:never});
 export interface R2RunState extends Omit<RunState,'schemaVersion'|'rulesVersion'|'stage'|'totalHeat'|'jokers'|'lastScore'|'shop'|'boss'|'outcome'|'difficulty'|'program'|'rng'> {
+  pendingRefill?:PendingRefill|null;
   openingRoute?:R2OpeningRoute;
   openingShow?:OpeningShow;
   routeStarter?:R2StarterRecord;
@@ -115,7 +119,8 @@ export function assertR2Invariants(state:R2RunState):void {
   check(r2ProgramStateValid(state.program,config,state.chapter),'program snapshot');
   check(typeof state.programRerollCoupon==='boolean'&&(!state.programRerollCoupon||config.reroll.allowed),'program coupon');
   check(config.chapterJokerBanCount===1?R2_JOKERS.some(definition=>definition.id===state.chapterDisabledJokerId):state.chapterDisabledJokerId===null,'chapter challenge ban');
-  const ids=state.deckInstances.map(c=>c.id), zones=[...state.drawPile,...state.handOrder,...state.playedPile,...state.discardPile];
+  if(usesLaohuanRefill(state)){check(state.stage===null||typeof state.stage.laohuanTrickUsed==='boolean'&&(!state.stage.laohuanTrickUsed||state.stage.discardsUsed>0&&config.characterAbilityEnabled),'trick used');check(Object.hasOwn(state,'pendingRefill'),'trick pending identity');const p=state.pendingRefill;check(!!p===(state.phase==='pending-refill'),'pending phase');if(p)check(!!state.stage&&state.stage.laohuanTrickUsed===true&&p.candidateIds.length>p.required&&p.required===p.gap&&p.gap===state.stage.handLimit-state.handOrder.length&&p.gap>0&&p.candidateIds.length<=p.gap+2&&!!p.discardCommandId,'pending candidates');}else check(!Object.hasOwn(state,'pendingRefill')&&!Object.hasOwn(state.stage??{},'laohuanTrickUsed')&&state.phase!=='pending-refill','trick identity');
+  const ids=state.deckInstances.map(c=>c.id), zones=[...(state.pendingRefill?.candidateIds??[]),...state.drawPile,...state.handOrder,...state.playedPile,...state.discardPile];
   validateCardInstances(state.deckInstances);
   check(state.deckInstances.length-state.destroyedIds.length<=R2_RESOURCE_CONTRACT.deckMaximum&&state.deckInstances.every(card=>r2CardSpecialsSupported(card)&&r2CardSpecialsAllowed(state,card)),'executable card specials/deck maximum');
   check(new Set(ids).size===ids.length && new Set(zones).size===zones.length && zones.every(id=>ids.includes(id)) && ids.every(id=>zones.includes(id)||state.destroyedIds.includes(id)),'card conservation');
@@ -228,14 +233,14 @@ export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stag
   const modifiers=readR2Modifiers(state.jokers,r2JokerDefinitionsFor(state));
   const config=r2RunModeConfig(state),profile=r2RulesetFor(state);
   if(!profile)throw Error('incompatible-version');
-  return {...(usesXiemuBurn(state)?{xiemuBurn:{cost:0 as XiemuBurnCost,goldBefore:state.gold,beforeUsed:state.stage?.xiemuBurnUsed??false}}:{}),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage?.azaoCharge??emptyAzaoCharge(),release:false}}:{}),amoScoreTiming:r2ScoreTimingFor(state),characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
+  return {...(usesLaohuanRefill(state)?{laohuanTrick:true as const}:{}),...(usesXiemuBurn(state)?{xiemuBurn:{cost:0 as XiemuBurnCost,goldBefore:state.gold,beforeUsed:state.stage?.xiemuBurnUsed??false}}:{}),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage?.azaoCharge??emptyAzaoCharge(),release:false}}:{}),amoScoreTiming:r2ScoreTimingFor(state),characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
     ...(state.stage?{stageHeatBefore:state.stage.heat,stageTargetHeat:state.stage.targetHeat}:{}),
     handRules:{fourStraight:modifiers.fourStraight,fourFlush:modifiers.fourFlush},ordinaryPointsSuppressedIds:r2OrdinarySuppression(state.boss,state.stage?.index??state.stageIndex,hand,ids)};
 }
 function entryStage(state:R2RunState,targetHeat:string,skipResult:R2SkipResult|null=null):R2StageState {
   const handLimit=r2HandLimit(state),hands=r2HandsBudget(state),discards=r2DiscardBudget(state),initialJokerIds=state.jokers.map(joker=>joker.instanceId);
   const boss=state.stageIndex%3===2?structuredClone(state.boss):null;
-  return {...(usesXiemuBurn(state)?{xiemuBurnUsed:false}:{}),...(usesAzaoCharge(state)?{azaoCharge:emptyAzaoCharge()}:{}),...(hasR2ComboGrowthContract(state)?{openingDiscard:null}:{}),...(r2UsesAssist(state)?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
+  return {...(usesLaohuanRefill(state)?{laohuanTrickUsed:false as boolean}:{}),...(usesXiemuBurn(state)?{xiemuBurnUsed:false}:{}),...(usesAzaoCharge(state)?{azaoCharge:emptyAzaoCharge()}:{}),...(hasR2ComboGrowthContract(state)?{openingDiscard:null}:{}),...(r2UsesAssist(state)?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
     discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:boss?.definitionId==='B01',discardsUsed:0,skipResult,playIndex:0,previousHandType:null,previousHandScore:null,
     handLimit,initialHandLimit:handLimit,boss,initialJokerIds,sealedJokerIds:[],challengeDisabledJokerId:state.chapterDisabledJokerId,rescueUsed:false,clearId:null,goldEarned:0,disabledIds:[],wagerSelected:false,wagerUsed:false,
     maxPlayedCount:0,ordinaryStraightSeen:false,ordinaryFlushSeen:false,quadRefundUsed:false,jokerSold:state.shop?.soldJoker??false};
@@ -495,7 +500,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
     state={schemaVersion:2,rulesVersion:'r2',contentVersion:profile.contentVersion,contentHash:profile.contentHash,runId:command.runId,seed:action.seed,commandSeq:0,difficulty:config.difficulty,characterId:action.characterId,
       ...(isR2RouteStarter(profile)?{openingRoute:action.openingRoute,openingShow:freshOpeningShow(),routeStarter:{instanceId:null,rootId:null,eventId:null}}:{}),
       mode:config.mode,challengeId:config.challengeId,programsEnabled:config.programsEnabled,programRerollCoupon:false,chapterDisabledJokerId:null,
-      chapter:config.startingChapter,stageIndex:config.startingStageIndex,phase:'shop',deckInstances:cards,drawPile:cards.map(c=>c.id),handOrder:[],playedPile:[],discardPile:[],destroyedIds:[],stage:null,totalHeat:'0',gold:config.initialGold,jokers:config.startingJokers.map((joker,index)=>r2CreateJoker(joker.definitionId,`${command.runId}/initial/${index}`,joker.paidPrice,joker.edition,profile)),consumables:[],longTermItems:[],program:null,boss:{definitionId:'B01',disabledSuit:null},seenBossIds:[],chapterSkipConsumable:'T01',purchaseCoupons:0,safetyNetUsed:false,shop:null,
+      ...(usesLaohuanRefill({characterId:action.characterId,...profile})?{pendingRefill:null}:{}),chapter:config.startingChapter,stageIndex:config.startingStageIndex,phase:'shop',deckInstances:cards,drawPile:cards.map(c=>c.id),handOrder:[],playedPile:[],discardPile:[],destroyedIds:[],stage:null,totalHeat:'0',gold:config.initialGold,jokers:config.startingJokers.map((joker,index)=>r2CreateJoker(joker.definitionId,`${command.runId}/initial/${index}`,joker.paidPrice,joker.edition,profile)),consumables:[],longTermItems:[],program:null,boss:{definitionId:'B01',disabledSuit:null},seenBossIds:[],chapterSkipConsumable:'T01',purchaseCoupons:0,safetyNetUsed:false,shop:null,
       spectralModifiers:{handsPenalty:0,handPenalty:0,cleanSlateBonus:0},supplyRewardClaimed:false,chapterHandUsage:{},normalClearClaimed:false,tourMode:'normal',normalCompletion:null,
       rng:{deck:new SeededRng(`${action.seed}/r2/deck/0`).snapshot(),rule:new SeededRng(`${action.seed}/r2/rule/0`).snapshot(),shop:new SeededRng(`${action.seed}/r2/shop/0`).snapshot(),reward:new SeededRng(`${action.seed}/r2/reward/0`).snapshot(),program:new SeededRng(`${action.seed}/r2/program/0`).snapshot(),challenge:new SeededRng(`${action.seed}/r2/challenge/0`).snapshot()},
       receipts:[],lastTrace:null,handLevels:config.characterAbilityEnabled&&!assisted?structuredClone(R2_STARTING_HAND_LEVELS[action.characterId]??{}):{},outcome:null};
@@ -505,6 +510,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
   } else {
     if(!input)return fail('run-not-started');
     state=structuredClone(input);
+    if(state.phase==='pending-refill'&&!['ChooseRefill','AbandonRun'].includes(action.type))return fail('refill-pending');
     if(state.longTermItems.some(id=>!r2ItemSupported(id))&&action.type!=='AbandonRun')return fail('long-term-not-enabled');
     switch(action.type) {
       case 'LeaveShop':
@@ -607,6 +613,10 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
       case 'DiscardHand': {
         if(state.phase!=='await-input'||!state.stage)return fail('wrong-phase');
         const ids=action.selectedIds;
+        if(action.laohuanTrick!==undefined&&(!usesLaohuanRefill(state)||typeof action.laohuanTrick!=='boolean'))return fail('invalid-laohuan-trick');
+        const trick=action.laohuanTrick===true;
+        if(trick&&!r2RunModeConfig(state).characterAbilityEnabled)return fail('laohuan-disabled');
+        if(trick&&state.stage.laohuanTrickUsed)return fail('laohuan-already-used');
         if(!Array.isArray(ids)||!ids.length)return fail('empty-selection');
         if(ids.length>R2_LIMITS.maxSelected)return fail('too-many-cards');
         if(new Set(ids).size!==ids.length)return fail('duplicate-card');
@@ -623,13 +633,19 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(firstOpening)state.stage.openingDiscard=structuredClone({hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),discardedIds:state.handOrder.filter(id=>ids.includes(id)),jokers:state.jokers});
         const coldOpeningDiscard=firstOpening&&r2ColdOpening(state.stage.openingDiscard);
         const ordered=state.handOrder.filter(id=>ids.includes(id));state.handOrder=state.handOrder.filter(id=>!ids.includes(id));
-        state.discardPile.push(...ordered);state.stage.discardsLeft-=discardCost;state.stage.discardSpent+=discardCost;state.stage.discardsUsed++;economicHooks(state,'onDiscard',events,state.jokers,ordered.map(id=>state.deckInstances.find(c=>c.id===id)!),{coldOpeningDiscard});refill(state);refreshDisabled(state);
+        state.discardPile.push(...ordered);state.stage.discardsLeft-=discardCost;state.stage.discardSpent+=discardCost;state.stage.discardsUsed++;economicHooks(state,'onDiscard',events,state.jokers,ordered.map(id=>state.deckInstances.find(c=>c.id===id)!),{coldOpeningDiscard});
+        if(trick){const gap=state.stage.handLimit-state.handOrder.length;if(gap<=0)return fail('no-refill-gap');state.stage.laohuanTrickUsed=true;const candidateIds:string[]=[];while(candidateIds.length<gap+2&&state.drawPile.length)candidateIds.push(state.drawPile.pop()!);if(candidateIds.length>gap){state.pendingRefill={discardCommandId:command.commandId,candidateIds,required:gap,gap};state.phase='pending-refill';}else state.handOrder.push(...candidateIds);}else refill(state);refreshDisabled(state);
         if(state.stage.boss?.definitionId==='B14'){
           const before=state.stage.targetHeat,amount=(BigInt(state.stage.initialTargetHeat)+19n)/20n;
           state.stage.targetHeat=(BigInt(before)+amount).toString();
           events.push({type:'boss-transaction',definitionId:'B14',operation:'increase-target',amount:amount.toString(),resourceBefore:before,resourceAfter:state.stage.targetHeat});
         }
-        events.push({type:'cards-discarded',cardIds:ordered,discardsLeft:state.stage.discardsLeft});noCards(state,events);break;
+        events.push({type:'cards-discarded',cardIds:ordered,discardsLeft:state.stage.discardsLeft});if(!state.pendingRefill)noCards(state,events);break;
+      }
+      case 'ChooseRefill': {
+        const p=state.pendingRefill,ids=action.selectedIds;if(!usesLaohuanRefill(state)||state.phase!=='pending-refill'||!p)return fail('wrong-phase');
+        if(!Array.isArray(ids)||ids.length!==p.required||new Set(ids).size!==ids.length||ids.some(id=>!p.candidateIds.includes(id)))return fail('invalid-refill-selection');
+        state.handOrder.push(...p.candidateIds.filter(id=>ids.includes(id)));state.playedPile.push(...p.candidateIds.filter(id=>!ids.includes(id)));state.pendingRefill=null;state.phase='await-input';refreshDisabled(state);noCards(state,events);break;
       }
       case 'UseConsumable': {
         const code=applyR2Tool(state,command,events);if(code)return fail(code);break;
@@ -740,7 +756,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
       }
       case 'AbandonRun':
         if(['run-won','run-lost'].includes(state.phase))return fail('wrong-phase');
-        clearStageEffects(state);state.phase='run-lost';state.outcome={reason:'abandoned',stageIndex:state.stageIndex};events.push({type:'run-abandoned'});break;
+        if(state.pendingRefill){state.playedPile.push(...state.pendingRefill.candidateIds);state.pendingRefill=null;}clearStageEffects(state);state.phase='run-lost';state.outcome={reason:'abandoned',stageIndex:state.stageIndex};events.push({type:'run-abandoned'});break;
       default:return fail('r2-interaction-not-enabled');
     }
   }

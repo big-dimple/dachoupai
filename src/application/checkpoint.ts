@@ -1,3 +1,4 @@
+import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
 import {usesXiemuBurn,xiemuBurnStep,xiemuInterest,type XiemuBurnTrace} from '../domain/r2XiemuBurn';
 import {usesAzaoCharge,validAzaoCharge,azaoChargeStep,type AzaoCharge,type AzaoChargeTrace} from '../domain/r2AzaoCharge';
 import {assertGroupTraceExecutions} from './groupTraceExecutions';
@@ -126,13 +127,14 @@ function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeC
     }
   }
 }
-function trace(value:unknown,context:{xiemu:boolean;azao:boolean;phase:R2RunState['phase'];group:boolean;combo:boolean;definitions:ReturnType<typeof r2JokerDefinitionsFor>;runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[];liveJokers?:readonly R2JokerInstance[];settledGold?:number}):void {
+function trace(value:unknown,context:{laohuan:boolean;xiemu:boolean;azao:boolean;phase:R2RunState['phase'];group:boolean;combo:boolean;definitions:ReturnType<typeof r2JokerDefinitionsFor>;runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[];liveJokers?:readonly R2JokerInstance[];settledGold?:number}):void {
   if(value===null)return;
   const R2_JOKERS=context.definitions,combo=context.combo,group=context.group;
   const stage=context.stage;if(!stage)return fail('invalid-save-trace-stage');
   const successfulStage=stage.skipResult===null&&stage.clearId!==null&&stage.index+1===context.stageIndex&&BigInt(stage.heat)>=BigInt(stage.targetHeat);
   const prototype=context.amoScoreTiming==='assist-v1';
-  const t=record(value,[...(context.xiemu?['xiemuBurn']:[]),...(context.azao?['azaoCharge']:[]),...(combo?['combo']:[]),...(prototype?['assist']:[]),'rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng','destroyedJokerIds','goldDelta','destroyedCardIds','cards','sourceJokers','bossContext']);
+  const t=record(value,[...(context.laohuan?['laohuanTrick']:[]),...(context.xiemu?['xiemuBurn']:[]),...(context.azao?['azaoCharge']:[]),...(combo?['combo']:[]),...(prototype?['assist']:[]),'rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng','destroyedJokerIds','goldDelta','destroyedCardIds','cards','sourceJokers','bossContext']);
+  if(context.laohuan&&(t.laohuanTrick!==true||(t.events as ScoreEvent[]).some(e=>e.sourceType==='character')))fail('invalid-save-laohuan-score');
   let clearCapital:number|null=null;
   if(combo){const clock=record(t.combo,['goldBeforeRewards']);if(clock.goldBeforeRewards!==null)integer(clock.goldBeforeRewards);clearCapital=clock.goldBeforeRewards as number|null;if(successfulStage!==(clearCapital!==null))fail('invalid-save-combo-clear-clock');}
   oneOf(t.rulesVersion,['r2']);text(t.rootId);oneOf(t.handType,R2_HAND_TYPES);integer(t.level,1,30);score(t.finalScore);accumulator(t.accumulator);cursor(t.rng);jokers(t.jokers,context.config.jokerSlots,R2_JOKERS);
@@ -640,10 +642,12 @@ function trace(value:unknown,context:{xiemu:boolean;azao:boolean;phase:R2RunStat
 }
 function action(value:unknown,state:R2RunState):void {
   const prototype=r2UsesAssist(state),combo=hasR2ComboGrowthContract(state),profile=isR2GroupUpgrade(state)?'group-upgrade-v1':combo?'combo-growth-v1':'amo-assist-v1';
-  const a=record(value,['type'],['seed','characterId','rulesVersion','openingRoute','modeConfig','r2Profile','r2Identity','assistIds','programId','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind','azaoRelease','xiemuBurn']);
-  const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],ContinueEndless:[],ChooseProgram:['programId'],AbandonProgram:[],PlayHand:['selectedIds'],PlayAssistedHand:['selectedIds','assistIds'],DiscardHand:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
+  const a=record(value,['type'],['seed','characterId','rulesVersion','openingRoute','modeConfig','r2Profile','r2Identity','assistIds','programId','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind','azaoRelease','xiemuBurn','laohuanTrick']);
+  const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],ContinueEndless:[],ChooseProgram:['programId'],AbandonProgram:[],PlayHand:['selectedIds'],PlayAssistedHand:['selectedIds','assistIds'],DiscardHand:['selectedIds'],ChooseRefill:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
   if(typeof a.type!=='string'||!Object.hasOwn(keys,a.type))fail('unknown-save-command');
-  record(a,['type',...keys[a.type as Action['type']]],a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='PlayHand'?[...(usesAzaoCharge(state)?['azaoRelease']:[]),...(usesXiemuBurn(state)?['xiemuBurn']:[])]:a.type==='StartRun'?['modeConfig','r2Identity',...(isR2RouteStarter(state)?['openingRoute']:[]),...(prototype||combo?['r2Profile']:[])]:[]);
+  record(a,['type',...keys[a.type as Action['type']]],a.type==='DiscardHand'&&usesLaohuanRefill(state)?['laohuanTrick']:a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='PlayHand'?[...(usesAzaoCharge(state)?['azaoRelease']:[]),...(usesXiemuBurn(state)?['xiemuBurn']:[])]:a.type==='StartRun'?['modeConfig','r2Identity',...(isR2RouteStarter(state)?['openingRoute']:[]),...(prototype||combo?['r2Profile']:[])]:[]);
+  if(a.laohuanTrick!==undefined){bool(a.laohuanTrick);if(!usesLaohuanRefill(state)||a.type!=='DiscardHand')fail('invalid-save-laohuan-command');}
+  if(a.type==='ChooseRefill'){if(!usesLaohuanRefill(state))fail('invalid-save-laohuan-command');uniqueIds(a.selectedIds,14);if(!(a.selectedIds as string[]).length)fail('invalid-save-laohuan-command');}
   if(a.xiemuBurn!==undefined){oneOf(a.xiemuBurn,[10,20,30]);if(!usesXiemuBurn(state)||a.type!=='PlayHand')fail('invalid-save-xiemu-command');}
   if(a.azaoRelease!==undefined){bool(a.azaoRelease);if(!usesAzaoCharge(state)||a.type!=='PlayHand')fail('invalid-save-azao-command');}
   if(a.type==='PlayAssistedHand'&&!prototype)fail('invalid-save-assist-profile');
@@ -687,7 +691,7 @@ function safeTree(value:unknown):void {
 function validateState(value:unknown):asserts value is R2RunState {
   // Diagnose old versions before changed fields; retaining/exporting raw saves remains explicit.
   if(value&&typeof value==='object'&&!Array.isArray(value)){const tags=value as Record<string,unknown>;if(tags.schemaVersion!==2||tags.rulesVersion!=='r2'||!r2RulesetFor(tags))fail('incompatible-version');}
-  const s=record(value,['schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','mode','difficulty','challengeId','programsEnabled','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons','safetyNetUsed','spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed','tourMode','normalCompletion','chapterDisabledJokerId','programRerollCoupon',...(isR2RouteStarter(value as R2RunState)?['openingRoute','routeStarter']:[])],isR2RouteStarter(value as R2RunState)?['openingShow']:[]);
+  const s=record(value,[...(usesLaohuanRefill(value as R2RunState)?['pendingRefill']:[]),'schemaVersion','rulesVersion','contentVersion','contentHash','runId','seed','commandSeq','mode','difficulty','challengeId','programsEnabled','characterId','chapter','stageIndex','phase','deckInstances','drawPile','handOrder','playedPile','discardPile','destroyedIds','stage','totalHeat','gold','jokers','consumables','longTermItems','program','boss','shop','rng','receipts','lastTrace','handLevels','outcome','seenBossIds','chapterSkipConsumable','purchaseCoupons','safetyNetUsed','spectralModifiers','supplyRewardClaimed','chapterHandUsage','normalClearClaimed','tourMode','normalCompletion','chapterDisabledJokerId','programRerollCoupon',...(isR2RouteStarter(value as R2RunState)?['openingRoute','routeStarter']:[])],isR2RouteStarter(value as R2RunState)?['openingShow']:[]);
   if(s.schemaVersion!==2||s.rulesVersion!=='r2'||!r2RulesetFor(s))fail('incompatible-version');
   if(isR2RouteStarter(s))oneOf(s.openingRoute,Object.keys(R2_ROUTE_STARTERS));
   const prototype=r2UsesAssist(s),combo=hasR2ComboGrowthContract(s),definitions=r2JokerDefinitionsFor(s);
@@ -698,7 +702,7 @@ function validateState(value:unknown):asserts value is R2RunState {
   oneOf(s.tourMode,['normal','endless']);const tourMode=s.tourMode as R2TourMode,chapterMaximum=tourMode==='endless'?R2_ENDLESS_MAX_CHAPTER:R2_AVAILABLE_CHAPTERS,stageMaximum=chapterMaximum*3;
   if(config.mode!=='standard'&&tourMode==='endless')fail('invalid-save-mode-endless');
   text(s.runId);text(s.seed,4096);integer(s.commandSeq,1);oneOf(s.characterId,CHARACTER_IDS);integer(s.chapter,config.startingChapter,chapterMaximum);integer(s.stageIndex,config.startingStageIndex,stageMaximum);
-  oneOf(s.phase,['shop','stage-ready','await-input','stage-cleared','run-won','run-lost']);
+  oneOf(s.phase,['shop','stage-ready','await-input',...(usesLaohuanRefill(s)?['pending-refill']:[]),'stage-cleared','run-won','run-lost']);
   cards(s.deckInstances,R2_RESOURCE_CONTRACT.deckMaximum,config.enhancementsAllowed);
   for(const k of ['drawPile','handOrder','playedPile','discardPile','destroyedIds','longTermItems'])strings(s[k]);
   score(s.totalHeat);integer(s.gold);jokers(s.jokers,config.jokerSlots,definitions);
@@ -735,7 +739,7 @@ function validateState(value:unknown):asserts value is R2RunState {
   bossPlan(s.boss);strings(s.seenBossIds,chapterMaximum);
   if(!r2BossHistoryValid(s.seenBossIds as string[],s.chapter as number,tourMode)||(s.seenBossIds as string[]).at(-1)!==s.boss.definitionId)fail('invalid-save-boss-history');
   oneOf(s.chapterSkipConsumable,R2_SKIP_CONSUMABLES);integer(s.purchaseCoupons,0,chapterMaximum);bool(s.safetyNetUsed);
-  if(s.stage!==null){const t=record(s.stage,[...(usesXiemuBurn(s)?['xiemuBurnUsed']:[]),...(usesAzaoCharge(s)?['azaoCharge']:[]),...(combo?['openingDiscard']:[]),...(prototype?['assistUsed']:[]),'index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult','initialHands','initialDiscards','discardSpent','discardGained','doubleDiscardBeforeFirstPlay','maxPlayedCount','ordinaryStraightSeen','ordinaryFlushSeen','quadRefundUsed','jokerSold','boss','initialTargetHeat','initialHandLimit','initialJokerIds','sealedJokerIds','challengeDisabledJokerId']);
+  if(s.stage!==null){const t=record(s.stage,[...(usesLaohuanRefill(s)?['laohuanTrickUsed']:[]),...(usesXiemuBurn(s)?['xiemuBurnUsed']:[]),...(usesAzaoCharge(s)?['azaoCharge']:[]),...(combo?['openingDiscard']:[]),...(prototype?['assistUsed']:[]),'index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult','initialHands','initialDiscards','discardSpent','discardGained','doubleDiscardBeforeFirstPlay','maxPlayedCount','ordinaryStraightSeen','ordinaryFlushSeen','quadRefundUsed','jokerSold','boss','initialTargetHeat','initialHandLimit','initialJokerIds','sealedJokerIds','challengeDisabledJokerId']);
     if(combo&&t.openingDiscard!==null){
       const opening=record(t.openingDiscard,['hand','discardedIds','jokers']);cards(opening.hand,R2_RESOURCE_CONTRACT.handMaximum,config.enhancementsAllowed);jokers(opening.jokers,config.jokerSlots,definitions);uniqueIds(opening.discardedIds,5);
       const hand=opening.hand as PlayingCard[],ids=opening.discardedIds as string[],sources=opening.jokers as R2JokerInstance[];
@@ -744,6 +748,7 @@ function validateState(value:unknown):asserts value is R2RunState {
       if(stableHash(ids)!==stableHash(hand.filter(c=>ids.includes(c.id)).map(c=>c.id)))fail('invalid-save-opening-discard-order');
     }
     if(combo&&t.playIndex===0&&(t.discardsUsed as number)>0&&(s.jokers as R2JokerInstance[]).some(j=>j.definitionId==='f10')&&t.openingDiscard===null)fail('invalid-save-opening-discard-missing');
+    if(usesLaohuanRefill(s)){bool(t.laohuanTrickUsed);if(t.laohuanTrickUsed&&(!(t.discardsUsed as number)||!config.characterAbilityEnabled))fail('invalid-save-laohuan-used');}
     if(usesXiemuBurn(s)){bool(t.xiemuBurnUsed);if(t.xiemuBurnUsed&&(!(t.playIndex as number)||!config.characterAbilityEnabled||(t.boss as R2BossPlan|null)?.definitionId==='B08'))fail('invalid-save-xiemu-state');}
     if(usesAzaoCharge(s)){if(!validAzaoCharge(t.azaoCharge))fail('invalid-save-azao-charge');const charge=t.azaoCharge as AzaoCharge;if(charge.charge>(t.playIndex as number)||(!config.characterAbilityEnabled||(t.boss as R2BossPlan|null)?.definitionId==='B08'||s.phase!=='await-input')&&charge.charge!==0||t.playIndex===0&&charge.charge!==0)fail('invalid-save-azao-state');}
     if(prototype){bool(t.assistUsed);if(t.assistUsed&&(!config.characterAbilityEnabled||t.playIndex===0||(t.boss as R2BossPlan|null)?.definitionId==='B08'))fail('invalid-save-assist-usage');}
@@ -756,7 +761,7 @@ function validateState(value:unknown):asserts value is R2RunState {
     if(t.initialTargetHeat!==r2StageSpec(t.index as number,tourMode,config.difficulty)?.targetHeat)fail('invalid-save-initial-target');
     integer(t.initialHands,R2_RESOURCE_CONTRACT.handsMinimum,config.baseHands+R2_RESOURCE_CONTRACT.handsMaximum-R2_LIMITS.hands);
     integer(t.initialDiscards,config.baseDiscards,config.baseDiscards+R2_RESOURCE_CONTRACT.discardsMaximum-R2_LIMITS.discards);bool(t.doubleDiscardBeforeFirstPlay);
-    if(t.index===s.stageIndex&&['await-input','run-lost'].includes(s.phase as string)){
+    if(t.index===s.stageIndex&&['await-input','pending-refill','run-lost'].includes(s.phase as string)){
       const live=value as R2RunState;
       if(t.initialHands!==r2HandsBudget(live)||t.initialDiscards!==r2DiscardBudget(live))fail('invalid-save-mode-resource-budget');
     }
@@ -804,8 +809,8 @@ function validateState(value:unknown):asserts value is R2RunState {
       }else if(state.lastTrace&&routeStarterScoreEvent(state,state.lastTrace))fail('invalid-save-missing-starter-trigger');
     }
   }
-  const stage=s.stage as R2RunState['stage'],sameStage=stage?.index===s.stageIndex&&['await-input','run-lost'].includes(s.phase as string);
-  trace(s.lastTrace,{xiemu:usesXiemuBurn(s),azao:usesAzaoCharge(s),phase:s.phase as R2RunState['phase'],group:hasR2GroupUpgradeContract(s),combo,definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2ScoreTimingFor(s),discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
+  const stage=s.stage as R2RunState['stage'],sameStage=stage?.index===s.stageIndex&&['await-input','pending-refill','run-lost'].includes(s.phase as string);
+  trace(s.lastTrace,{laohuan:usesLaohuanRefill(s),xiemu:usesXiemuBurn(s),azao:usesAzaoCharge(s),phase:s.phase as R2RunState['phase'],group:hasR2GroupUpgradeContract(s),combo,definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2ScoreTimingFor(s),discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
     config,program:s.program as R2ProgramState|null,usage:usage as R2RunState['chapterHandUsage'],
     liveJokerIds:sameStage?(s.jokers as R2JokerInstance[]).map(joker=>joker.instanceId):undefined,liveJokers:combo||sameStage?s.jokers as R2JokerInstance[]:undefined,settledGold:['stage-cleared','run-won'].includes(s.phase as string)?s.gold as number:undefined});
   const program=s.program as R2ProgramState|null;
@@ -835,6 +840,13 @@ export function readCheckpoint(value:unknown):ReadResult {
       const receipt=state.receipts.find(r=>r.commandId===command.commandId);if(!receipt||receipt.seq!==seq||receipt.fingerprint!==stableHash(command))fail('invalid-save-command-receipt');
     }
     if(seq!==state.commandSeq)fail('invalid-save-journal-sequence');
+    if(usesLaohuanRefill(state)){
+      let used:boolean|undefined,pendingId:string|undefined;
+      if(state.pendingRefill!==null){const p=record(state.pendingRefill,['discardCommandId','candidateIds','required','gap']);text(p.discardCommandId);uniqueIds(p.candidateIds,16);integer(p.required,1,14);integer(p.gap,1,14);if(state.phase!=='pending-refill'||!state.stage||p.required!==p.gap||p.gap!==state.stage.handLimit-state.handOrder.length||(p.candidateIds as string[]).length<=(p.required as number)||(p.candidateIds as string[]).length>(p.gap as number)+2)fail('invalid-save-refill-pending');}else if(state.phase==='pending-refill')fail('invalid-save-refill-phase');
+      for(const entry of journal as Command[]){if(entry.action.type==='EnterStage'){used=false;pendingId=undefined;}if(entry.action.type==='DiscardHand'&&entry.action.laohuanTrick){if(used)fail('invalid-save-refill-reuse');used=true;pendingId=entry.commandId;}if(entry.action.type==='ChooseRefill'||entry.action.type==='AbandonRun')pendingId=undefined;}
+      if(used!==undefined&&used!==state.stage?.laohuanTrickUsed||state.pendingRefill&&journal.length&&pendingId!==state.pendingRefill.discardCommandId)fail('invalid-save-refill-journal');
+      if(state.pendingRefill&&!state.receipts.some(r=>r.commandId===state.pendingRefill!.discardCommandId))fail('invalid-save-refill-source');
+    }
     if(usesXiemuBurn(state)&&state.lastTrace){
       let used:boolean|undefined;
       for(const entry of journal as Command[]){if(entry.action.type==='EnterStage')used=false;if(entry.action.type==='PlayHand'){if(entry.action.xiemuBurn){if(used)fail('invalid-save-xiemu-journal-used');used=true;}if(state.lastTrace.rootId===`${state.runId}/hand/${entry.commandId}`&&((entry.action.xiemuBurn??0)!==state.lastTrace.xiemuBurn!.cost||stableHash(state.lastTrace.cards.filter(c=>entry.action.type==='PlayHand'&&entry.action.selectedIds.includes(c.id)).map(c=>c.id))!==stableHash(state.lastTrace.sets.playedIds)))fail('invalid-save-xiemu-journal-trace');}}

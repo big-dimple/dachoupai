@@ -22,7 +22,7 @@ export type { R2RunState } from './r2Run';
 export const R1_LIMITS = { handSize: 8, maxSelected: 5, jokerSlots: MAX_JOKER_SLOTS } as const;
 export const CONTENT_VERSION = 'phase2b-r1';
 export const CONTENT_HASH = stableHash({ jokers: JOKERS, stages: STAGES, limits: R1_LIMITS });
-export type Phase = 'shop' | 'stage-ready' | 'await-input' | 'stage-cleared' | 'run-won' | 'run-lost';
+export type Phase = 'shop' | 'stage-ready' | 'await-input' | 'pending-refill' | 'stage-cleared' | 'run-won' | 'run-lost';
 
 export interface JokerInstance {
   instanceId: string;
@@ -101,7 +101,8 @@ export type Action =
   | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' | 'SkipStage' | 'ContinueEndless' }
   | { type: 'PlayHand'; selectedIds: readonly string[]; azaoRelease?:boolean; xiemuBurn?:10|20|30 }
   | { type: 'PlayAssistedHand'; selectedIds: readonly string[]; assistIds:readonly string[] }
-  | { type: 'DiscardHand'; selectedIds: readonly string[] }
+  | { type: 'DiscardHand'; selectedIds: readonly string[]; laohuanTrick?:boolean }
+  | {type:'ChooseRefill';selectedIds:readonly string[]}
   | { type: 'SellJoker'; instanceId:string }
   | { type: 'UseConsumable'; instanceId:string; targetIds:readonly string[]; handType?:import('./evaluateR2').R2HandType; secondaryHandType?:import('./evaluateR2').R2HandType; suit?:import('../cards/types').Suit; sacrificeId?:string; targetKind?:'card'|'joker' }
   | { type: 'DestroyConsumable'; instanceId:string }

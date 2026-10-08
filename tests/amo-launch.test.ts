@@ -54,7 +54,9 @@ describe('normal new-game policy and exact retry creation',()=>{
   expect(characterForNewRun('xiemu').passiveName).toBe('留钱／燃金（试行）');
   expect(characterForNewRun('xiemu').passiveDescription).toContain('替换旧末手×2与末手+2金');
   expect(getCharacter('xiemu').passiveDescription).toContain('最后可用出牌');
+  expect(characterForNewRun('laohuan').passiveDescription).toContain('替换旧顺子/同花/同花顺+120');
+  expect(getCharacter('laohuan').passiveDescription).toContain('额外 +120');
   expect(getCharacter('amo').buildTip).toContain('单张');
-  for(const id of CHARACTER_IDS.filter(id=>id!=='amo'&&id!=='azao'&&id!=='xiemu'))expect(characterForNewRun(id)).toBe(getCharacter(id));
+  for(const id of CHARACTER_IDS.filter(id=>id!=='amo'&&id!=='azao'&&id!=='xiemu'&&id!=='laohuan'))expect(characterForNewRun(id)).toBe(getCharacter(id));
  });
 });
