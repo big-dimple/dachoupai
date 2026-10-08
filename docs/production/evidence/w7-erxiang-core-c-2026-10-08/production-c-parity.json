@@ -1,0 +1,255 @@
+{
+  "scope": "Final production scorer vs the same finite isolated C inputs, scores/RNG/Jokers/gold identical; not native acquisition or balance acceptance",
+  "rows": [
+    {
+      "name": "Observed normal straight, first target8",
+      "score": "852",
+      "core": {
+        "targetId": "clubs-8",
+        "previousRank": null,
+        "targetRank": 8,
+        "targetIds": [
+          "clubs-8"
+        ],
+        "extraPerCard": 1
+      },
+      "eventCount": 10
+    },
+    {
+      "name": "Same straight hypothetical continuity8",
+      "score": "884",
+      "core": {
+        "targetId": "clubs-8",
+        "previousRank": 8,
+        "targetRank": 8,
+        "targetIds": [
+          "clubs-8"
+        ],
+        "extraPerCard": 2
+      },
+      "eventCount": 11
+    },
+    {
+      "name": "Recorded normal group opening, b10 + two-pair, first A target",
+      "score": "226",
+      "core": {
+        "targetId": "clubs-14",
+        "previousRank": null,
+        "targetRank": 14,
+        "targetIds": [
+          "clubs-14",
+          "diamonds-14"
+        ],
+        "extraPerCard": 1
+      },
+      "eventCount": 12
+    },
+    {
+      "name": "Same group opening hypothetical A continuity",
+      "score": "270",
+      "core": {
+        "targetId": "clubs-14",
+        "previousRank": 14,
+        "targetRank": 14,
+        "targetIds": [
+          "clubs-14",
+          "diamonds-14"
+        ],
+        "extraPerCard": 2
+      },
+      "eventCount": 14
+    },
+    {
+      "name": "Observed fallback pair, no qualified target",
+      "score": "94",
+      "core": {
+        "targetId": null,
+        "previousRank": null,
+        "targetRank": null,
+        "targetIds": [],
+        "extraPerCard": 0
+      },
+      "eventCount": 4
+    },
+    {
+      "name": "Controlled ordinary two-pair 8/A, target8",
+      "score": "270",
+      "core": {
+        "targetId": "s8",
+        "previousRank": 8,
+        "targetRank": 8,
+        "targetIds": [
+          "s8",
+          "h8"
+        ],
+        "extraPerCard": 2
+      },
+      "eventCount": 12
+    },
+    {
+      "name": "Controlled ordinary two-pair 8/A, target14",
+      "score": "250",
+      "core": {
+        "targetId": "as",
+        "previousRank": 8,
+        "targetRank": 14,
+        "targetIds": [
+          "as",
+          "ah"
+        ],
+        "extraPerCard": 1
+      },
+      "eventCount": 10
+    },
+    {
+      "name": "Controlled ordinary two-pair 6/A, target6",
+      "score": "246",
+      "core": {
+        "targetId": "s6",
+        "previousRank": 6,
+        "targetRank": 6,
+        "targetIds": [
+          "s6",
+          "h6"
+        ],
+        "extraPerCard": 2
+      },
+      "eventCount": 12
+    },
+    {
+      "name": "Controlled ordinary two-pair 6/A, target14",
+      "score": "242",
+      "core": {
+        "targetId": "as",
+        "previousRank": 6,
+        "targetRank": 14,
+        "targetIds": [
+          "as",
+          "ah"
+        ],
+        "extraPerCard": 1
+      },
+      "eventCount": 10
+    },
+    {
+      "name": "Controlled multiplier-paper8 + even-hand d04",
+      "score": "2748",
+      "core": {
+        "targetId": "clubs-8",
+        "previousRank": 8,
+        "targetRank": 8,
+        "targetIds": [
+          "clubs-8"
+        ],
+        "extraPerCard": 2
+      },
+      "eventCount": 17
+    },
+    {
+      "name": "Controlled encore8 + d04, shared cap",
+      "score": "948",
+      "core": {
+        "targetId": "clubs-8",
+        "previousRank": 8,
+        "targetRank": 8,
+        "targetIds": [
+          "clubs-8"
+        ],
+        "extraPerCard": 2
+      },
+      "eventCount": 15
+    },
+    {
+      "name": "Recorded full-house fresh core5",
+      "score": "1290",
+      "core": {
+        "targetId": "diamonds-5",
+        "previousRank": null,
+        "targetRank": 5,
+        "targetIds": [
+          "diamonds-5",
+          "clubs-5",
+          "hearts-5"
+        ],
+        "extraPerCard": 1
+      },
+      "eventCount": 15
+    },
+    {
+      "name": "Recorded full-house hypothetical same core5",
+      "score": "1365",
+      "core": {
+        "targetId": "diamonds-5",
+        "previousRank": 5,
+        "targetRank": 5,
+        "targetIds": [
+          "diamonds-5",
+          "clubs-5",
+          "hearts-5"
+        ],
+        "extraPerCard": 2
+      },
+      "eventCount": 18
+    },
+    {
+      "name": "Recorded three-kind fresh core7",
+      "score": "486",
+      "core": {
+        "targetId": "clubs-7",
+        "previousRank": null,
+        "targetRank": 7,
+        "targetIds": [
+          "clubs-7",
+          "hearts-7",
+          "spades-7"
+        ],
+        "extraPerCard": 1
+      },
+      "eventCount": 13
+    },
+    {
+      "name": "Recorded three-kind hypothetical same core7",
+      "score": "549",
+      "core": {
+        "targetId": "clubs-7",
+        "previousRank": 7,
+        "targetRank": 7,
+        "targetIds": [
+          "clubs-7",
+          "hearts-7",
+          "spades-7"
+        ],
+        "extraPerCard": 2
+      },
+      "eventCount": 16
+    },
+    {
+      "name": "Recorded flush first visible core14",
+      "score": "1116",
+      "core": {
+        "targetId": "diamonds-14",
+        "previousRank": null,
+        "targetRank": 14,
+        "targetIds": [
+          "diamonds-14"
+        ],
+        "extraPerCard": 1
+      },
+      "eventCount": 12
+    },
+    {
+      "name": "Recorded flush hypothetical continuity14",
+      "score": "1160",
+      "core": {
+        "targetId": "diamonds-14",
+        "previousRank": 14,
+        "targetRank": 14,
+        "targetIds": [
+          "diamonds-14"
+        ],
+        "extraPerCard": 2
+      },
+      "eventCount": 13
+    }
+  ]
+}
