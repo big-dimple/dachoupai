@@ -1,0 +1,209 @@
+{
+  "sourceHead": "3d0c1f2084517b6d1d48de00b98498eb29044359",
+  "baselineHead": "f66cfb1ae557c44469632d0f0b8ebfa448b34503",
+  "scope": "Two serial bounded UI/fault fixtures, not new natural game routes. Baseline serves only prior GameScene/AzaoChargeCopy through a Vite transform. score-diagnostic is injected at dispatch return then uses actual Play->finally->refreshSelection->updateControls; last-hand and saved-source display use scene-only fixtures without writing controller/save state. No long recording/device/GPU acceptance.",
+  "runs": [
+    {
+      "label": "baseline",
+      "errors": [],
+      "cases": [
+        {
+          "case": "ordinary-charge",
+          "snapshot": {
+            "text": "蓄0层 · 本手不合格，出牌清空蓄势",
+            "name": "hero/azao-charge-status",
+            "message": "",
+            "playing": false,
+            "hands": 4,
+            "bounds": {
+              "width": 217,
+              "height": 16
+            },
+            "room": {
+              "x": 253,
+              "y": 740,
+              "width": 1100,
+              "height": 20
+            }
+          }
+        },
+        {
+          "case": "score-diagnostic-finally",
+          "snapshot": {
+            "text": "蓄0层 · 本手不合格，出牌清空蓄势",
+            "name": "hero/azao-charge-status",
+            "message": "本手无法结算，资源与原状态已保留",
+            "playing": false,
+            "hands": 4,
+            "bounds": {
+              "width": 217,
+              "height": 16
+            },
+            "room": {
+              "x": 253,
+              "y": 740,
+              "width": 1100,
+              "height": 20
+            }
+          },
+          "controllerUnchanged": true
+        },
+        {
+          "case": "last-hand",
+          "snapshot": {
+            "text": "蓄0层 · 本手不合格，出牌清空蓄势",
+            "name": "hero/azao-charge-status",
+            "message": "",
+            "playing": false,
+            "hands": 1,
+            "bounds": {
+              "width": 217,
+              "height": 16
+            },
+            "room": {
+              "x": 253,
+              "y": 740,
+              "width": 1100,
+              "height": 20
+            }
+          }
+        },
+        {
+          "case": "last-hand-hold-copy",
+          "text": "不释放：结算后蓄 2 层"
+        },
+        {
+          "case": "saved-source-growth",
+          "snapshot": {
+            "text": "蓄1层 · 可放×1.5 · 两对及以上蓄势 · 点英雄选释放",
+            "name": "hero/azao-charge-status",
+            "message": "",
+            "playing": false,
+            "hands": 3,
+            "bounds": {
+              "width": 311,
+              "height": 16
+            },
+            "room": {
+              "x": 253,
+              "y": 740,
+              "width": 1100,
+              "height": 20
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "fixed",
+      "errors": [],
+      "cases": [
+        {
+          "case": "ordinary-charge",
+          "snapshot": {
+            "text": "蓄0层 · 本手不合格，出牌清空蓄势",
+            "name": "hero/azao-charge-status",
+            "message": "",
+            "playing": false,
+            "hands": 4,
+            "bounds": {
+              "width": 217,
+              "height": 16
+            },
+            "room": {
+              "x": 253,
+              "y": 740,
+              "width": 1100,
+              "height": 20
+            }
+          }
+        },
+        {
+          "case": "score-diagnostic-finally",
+          "snapshot": {
+            "text": "本手无法结算，资源与原状态已保留",
+            "name": "",
+            "message": "本手无法结算，资源与原状态已保留",
+            "playing": false,
+            "hands": 4,
+            "bounds": {
+              "width": 224,
+              "height": 16
+            },
+            "room": {
+              "x": 253,
+              "y": 740,
+              "width": 1100,
+              "height": 20
+            }
+          },
+          "controllerUnchanged": true
+        },
+        {
+          "case": "last-hand",
+          "snapshot": {
+            "text": "最后 1 次出牌 · 达到目标才能过关",
+            "name": "",
+            "message": "",
+            "playing": false,
+            "hands": 1,
+            "bounds": {
+              "width": 211,
+              "height": 16
+            },
+            "room": {
+              "x": 253,
+              "y": 740,
+              "width": 1100,
+              "height": 20
+            }
+          }
+        },
+        {
+          "case": "last-hand-hold-copy",
+          "text": "不释放：合格异型可蓄至 2 层；本场结束即清空"
+        },
+        {
+          "case": "saved-source-growth",
+          "snapshot": {
+            "text": "练对子 · 成长 +10 · 下手生效 · 上手详情",
+            "name": "",
+            "message": "",
+            "playing": false,
+            "hands": 3,
+            "bounds": {
+              "width": 247,
+              "height": 16
+            },
+            "room": {
+              "x": 253,
+              "y": 740,
+              "width": 1100,
+              "height": 20
+            }
+          }
+        },
+        {
+          "case": "mobile-error-over-sweep-and-source",
+          "snapshot": {
+            "text": "本手无法结算，资源与原状态已保留",
+            "name": "",
+            "message": "本手无法结算，资源与原状态已保留",
+            "playing": false,
+            "hands": 3,
+            "bounds": {
+              "width": 224,
+              "height": 16
+            },
+            "room": {
+              "x": 12,
+              "y": 712,
+              "width": 366,
+              "height": 20
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
