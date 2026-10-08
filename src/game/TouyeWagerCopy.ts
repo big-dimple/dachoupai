@@ -14,6 +14,6 @@ export function touyeChoice(run:R2RunState,selectedIds:readonly string[]=[]){
  const label=pending?HAND_LABELS[pending.target]:null;
  const compact=pending?'骰爷·押'+label:!enabled?'骰爷·赌约停用':used?'骰爷·赌约已用':'骰爷·赌约↗';
  const saved=run.lastTrace?.touyeWager,settled=saved?.commit?`上手押${HAND_LABELS[saved.commit.target]} · 实际${HAND_LABELS[run.lastTrace!.handType]} · ${saved.outcome==='won'?'达成×2':'未成×0.85'}`:'';
- return{enabled,pending,used,choices,compact,settled,snapshotToken:stage?touyeSnapshotToken(hand,rules,stage.index,stage.playIndex+1,run.commandSeq):'',status:pending?`已押${label} · 下一手成×2／未成×0.85 · 不可再弃`:settled,details:pending?`已押${label}，只绑定下一次真实出牌。\n${TOUYE_RISK}\n达成类型：${TOUYE_ACCEPTED[pending.target].map(t=>HAND_LABELS[t]).join('／')}。返回或恢复保留；工具和大丑牌调序暂不可用。`:settled||'每场一次；弃牌前押当前整手尚凑不出的目标。成型×2，未成×0.85，替代该手普通×1.15。'};
+ return{enabled,pending,used,choices,compact,settled,snapshotToken:stage?touyeSnapshotToken(hand,rules,stage.index,stage.playIndex+1,run.commandSeq):'',status:pending?`下一手押${label} · 成×2／未成×0.85 · 不可再弃`:settled,details:pending?`已押${label}，只绑定下一次真实出牌。\n${TOUYE_RISK}\n达成类型：${TOUYE_ACCEPTED[pending.target].map(t=>HAND_LABELS[t]).join('／')}。返回或恢复保留；工具和大丑牌调序暂不可用。`:settled||'每场一次；弃牌前押当前整手尚凑不出的目标。成型×2，未成×0.85，替代该手普通×1.15。'};
 }
 export function touyeBetLabel(target:TouyeTarget){return '押'+HAND_LABELS[target];}

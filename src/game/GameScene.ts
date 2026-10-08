@@ -1323,7 +1323,7 @@ export class GameScene extends Phaser.Scene {
         this.audio.sourceCue('boss');await Promise.all([this.floatNote(event.operation==='charge-discard'?'-1 金币':'目标 +'+heatText(event.amount),b.x+b.width/2,b.y+b.height,'#ffd0a2',this.reducedMotion?180:460,context),this.reducedMotion?this.wait(180,context):this.animate({targets:target,scale:{from:1.14,to:1},duration:360,ease:'Back.easeOut'},context)]);
       });
       await this.effects.drain();if(!this.alive(lifecycle,intent))return;
-      this.azaoRelease=false;this.xiemuBurn=0;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=this.pendingRefill?'':trick?'戏法已用 · 候选不足，全留':'已弃 '+selectedIds.length+' 张 · '+(this.deck.length?'补抽完成':'牌堆已空');this.updateHud();this.renderHand();this.revealDrawnCards(previousIds);
+      this.azaoRelease=false;this.xiemuBurn=0;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=bet||this.pendingRefill?'':trick?'戏法已用 · 候选不足，全留':'已弃 '+selectedIds.length+' 张 · '+(this.deck.length?'补抽完成':'牌堆已空');this.updateHud();this.renderHand();this.revealDrawnCards(previousIds);
       if(this.run.phase==='run-lost')this.finishStage(false);
     } finally {if(this.alive(lifecycle,intent)&&['await-input','pending-refill'].includes(this.run.phase)){this.playing=false;this.refreshSelection();}}
   }
