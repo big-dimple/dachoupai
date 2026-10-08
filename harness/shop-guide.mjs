@@ -95,6 +95,10 @@ try {
                         await p.getByRole('button',{name:'出售',exact:true}).click();
                         await p.getByRole('button',{name:'取消',exact:true}).click();
                         assert.deepEqual(await state(),shop,'comparison and sale cancellation must leave the full saved run unchanged');
+                        await p.reload();await waitScene(p,'title');assert.deepEqual(await state(),shop);
+                        await tapUI(p,'title','action/title-continue');await waitScene(p,'shop');await settle();
+                        await tapUI(p,'shop','offer/'+offer.offerId);assert.equal(await p.locator('.first-chapter-guide').count(),0,'skipping must survive reload while the next-shop hint would otherwise be eligible');
+                        await p.getByRole('button',{name:'取消',exact:true}).click();assert.deepEqual(await state(),shop);report.eligibleSkipRestored=true;
                     }
                     await tapUI(p, 'shop', 'offer/' + offer.offerId);
                     report.steps.push({ note: 'Public purchase reasoning: group growth, two-pair multiplier or black scoring support; current offer copy retained', offer, copy: await p.locator('dialog[open]').innerText() });

@@ -5,6 +5,7 @@ import {createRun,applyCommand,stateHash,type Command} from '../src/domain/run';
 import {makeCheckpoint,readCheckpoint,restoreSlots,MAX_JOURNAL} from '../src/application/checkpoint';
 import {SavedRun,type SaveStore,type SaveSlots} from '../src/application/SavedRun';
 import {GameSession} from '../src/game/session';
+import {enrollFirstChapterGuide,firstChapterGuide} from '../src/game/FirstChapterGuide';
 
 let sessionStore:MemoryStore;
 vi.mock('../src/platform/IndexedDbSave',()=>({IndexedDbSave:class {constructor(){return sessionStore;}}}));
@@ -33,6 +34,24 @@ async function existingSession(){
   const run=await session.start('existing-session','erxiang');if(!run)throw Error('session setup failed');
   return {session,run,store:sessionStore};
 }
+
+function guideStorage(){const data=new Map<string,string>();vi.stubGlobal('localStorage',{getItem:(k:string)=>data.get(k)??null,setItem:(k:string,v:string)=>data.set(k,v)});}
+describe('optional first-guide save boundaries',()=>{
+  it('restoring the registered run keeps the hint, successful same-identity import clears it',async()=>{
+    guideStorage();const {session,run}=await existingSession();enrollFirstChapterGuide(run.state);expect(firstChapterGuide(run.state)).toBeDefined();
+    const restored=new GameSession();await restored.initialize();expect(firstChapterGuide(restored.state()!)).toBeDefined();
+    const before=structuredClone(run.state);expect(await session.importJSON(run.exportJSON())).toBe(true);expect(session.state()).toEqual(before);expect(firstChapterGuide(session.state()!)).toBeUndefined();
+  });
+  it('failed replacement preserves the old hint, exact saved pending replacement clears it',async()=>{
+    guideStorage();const {session,run,store}=await existingSession();enrollFirstChapterGuide(run.state);store.fail=true;
+    expect(await session.start('replacement','erxiang')).toBeUndefined();expect(firstChapterGuide(run.state)).toBeDefined();store.fail=false;
+    expect(await session.retry()).toBe(true);expect(firstChapterGuide(session.state()!)).toBeUndefined();
+  });
+  it('same-identity successful retry does not inherit the previous run tutorial marker',async()=>{
+    guideStorage();const {session,run}=await existingSession();enrollFirstChapterGuide(run.state);
+    const retry=await session.start(run.state.seed,run.state.characterId,undefined,{kind:'retry',run:run.state});expect(retry).toBeDefined();expect(firstChapterGuide(retry!.state)).toBeUndefined();
+  });
+});
 
 describe('complete checkpoint validation and save-before-publish',()=>{
   it('round trips full state and bounds the journal without truncating the checkpoint',()=>{

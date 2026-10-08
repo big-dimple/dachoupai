@@ -1,3 +1,4 @@
+import {stopFirstChapterGuide} from './FirstChapterGuide';
 import {launchIdentity,type RunLaunchIntent} from './RunLaunch';
 import {SavedRun} from '../application/SavedRun';
 import {MAX_IMPORT_BYTES,readCheckpoint,restoreSlots} from '../application/checkpoint';
@@ -61,7 +62,7 @@ export class GameSession {
     this.run=run;run.onChange=()=>{this.recordProgress(run);this.changed();};if(!this.lease.writable)run.setReadOnly();this.recordProgress(run);this.changed();
   }
   private async publishReplacement(run:SavedRun):Promise<boolean> {
-    if(await run.flush()){this.attach(run);return true;}
+    if(await run.flush()){stopFirstChapterGuide();this.attach(run);return true;}
     this.replacement=run;run.onChange=()=>this.changed();if(!this.lease.writable)run.setReadOnly();
     this.notice=this.pendingNotice();this.changed();return false;
   }
@@ -118,7 +119,7 @@ export class GameSession {
     try {
       const result=await run.retry();
       if(!result.ok){this.notice=this.replacement?this.pendingNotice():previousNotice;return false;}
-      if(this.replacement===run){this.replacement=undefined;this.notice='候选已保存，现已切换到该进度。';this.attach(run);}
+      if(this.replacement===run){stopFirstChapterGuide();this.replacement=undefined;this.notice='候选已保存，现已切换到该进度。';this.attach(run);}
       else if(!this.notice)this.notice='本局已保存。';
       return true;
     }finally {this.working=false;this.changed();}

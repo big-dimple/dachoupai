@@ -2,6 +2,7 @@ import type {R2RunState} from '../domain/r2Run';
 export const FIRST_GUIDE_KEY='dachoupai-first-chapter-guide-v1';
 export type GuideStep='shop'|'hand'|'saved'|'return';
 interface GuidePreferences {disabled:boolean;enrolled?:string;skipped:GuideStep[]}
+const guideRunKey=(s:R2RunState)=>JSON.stringify([s.runId,s.characterId,s.contentVersion,s.contentHash,s.mode,s.difficulty,s.challengeId,s.tourMode]);
 const steps:readonly GuideStep[]=['shop','hand','saved','return'];
 const empty=():GuidePreferences=>({disabled:false,skipped:[]});
 export function decodeGuidePreferences(raw:string|null):GuidePreferences {
@@ -12,11 +13,12 @@ function read(){if(unpersisted)return fallback;try{return fallback=decodeGuidePr
 function write(p:GuidePreferences){fallback=p;try{localStorage.setItem(FIRST_GUIDE_KEY,JSON.stringify(p));unpersisted=false;}catch{unpersisted=true;/* Never block a run on optional preferences. */}}
 /** Call only after the ordinary new-run save succeeded; retry/continue/import never enroll. */
 export function enrollFirstChapterGuide(state:R2RunState):void {
- const p=read();if(p.disabled||state.mode!=='standard'||state.difficulty!==0||state.stageIndex!==0)return;
- write({...p,enrolled:state.runId,skipped:[]});
+ const p=read();if(p.disabled||state.mode!=='standard'||state.difficulty!==0||state.stageIndex!==0||state.tourMode!=='normal')return;
+ write({...p,enrolled:guideRunKey(state),skipped:[]});
 }
+export function stopFirstChapterGuide():void {const p=read();if(p.enrolled)write({...p,enrolled:undefined,skipped:[]});}
 export function firstChapterGuide(state:R2RunState){
- const p=read();if(p.disabled||p.enrolled!==state.runId||state.stageIndex>1)return;
+ const p=read();if(p.disabled||p.enrolled!==guideRunKey(state)||state.stageIndex>1)return;
  if(state.phase!=='shop'&&state.phase!=='await-input'&&!(state.phase==='stage-cleared'&&state.lastTrace))return;
  const step:GuideStep=state.phase==='shop'?(state.stageIndex===0?'shop':'return'):state.phase==='await-input'?(state.lastTrace?'saved':'hand'):'saved';
  if(p.skipped.includes(step))return;
@@ -24,7 +26,7 @@ export function firstChapterGuide(state:R2RunState){
  return {step,cue:copy[step][0],body:copy[step][1]};
 }
 export function dismissFirstChapterGuide(state:R2RunState,scope:'step'|'run'|'forever'):void {
- const p=read();if(scope==='forever'){write({...p,disabled:true});return;}if(p.enrolled!==state.runId)return;
+ const p=read();if(scope==='forever'){write({...p,disabled:true});return;}if(p.enrolled!==guideRunKey(state))return;
  write(scope==='run'?{...p,enrolled:undefined}:{...p,skipped:[...new Set([...p.skipped,firstChapterGuide(state)?.step].filter((s):s is GuideStep=>!!s))]});
 }
 /** Inline in the real operation panel; no forced modal, game commands or input locks. */
