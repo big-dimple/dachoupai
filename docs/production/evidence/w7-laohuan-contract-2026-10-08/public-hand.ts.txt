@@ -1,0 +1,6 @@
+import {createRun,applyCommand} from '/workspace/dachoupai/src/domain/run';
+import {newRunIdentity} from '/workspace/dachoupai/src/game/RunLaunch';
+let s=createRun({seed:'group-natural-17',runId:'laohuan-public-20261008',characterId:'laohuan',rulesVersion:'r2',r2Identity:newRunIdentity('laohuan','group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
+const journal=[];
+for(const action of [{type:'LeaveShop'},{type:'EnterStage'}] as const){const c={runId:s.runId,commandId:'public/'+s.commandSeq,expectedSeq:s.commandSeq,action};const r=applyCommand(s,c);if(!r.ok)throw Error(r.code);s=r.state;journal.push(c);}
+console.log(JSON.stringify({source:'fa4a463b2bc5eae72f7e034e7b26049b487f1965',seed:s.seed,runId:s.runId,character:s.characterId,route:s.openingRoute,identity:{version:s.contentVersion,hash:s.contentHash},commands:journal,public:{gold:s.gold,handLimit:s.stage?.handLimit,discards:s.stage?.discardsLeft,hand:s.handOrder.map(id=>{const c=s.deckInstances.find(c=>c.id===id)!;return {id:c.id,rank:c.rank,suit:c.suit};})},scope:'one declared ordinary creation, no buy/injection/seed scan; only public hand exported; hidden draw order never read'},null,2));

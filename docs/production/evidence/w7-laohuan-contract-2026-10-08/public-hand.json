@@ -1,0 +1,77 @@
+{
+  "source": "fa4a463b2bc5eae72f7e034e7b26049b487f1965",
+  "seed": "group-natural-17",
+  "runId": "laohuan-public-20261008",
+  "character": "laohuan",
+  "route": "group",
+  "identity": {
+    "version": "quality-r2-xiemu-burn-v1",
+    "hash": "json-fnv-v1:6e02b035c1b14da1"
+  },
+  "commands": [
+    {
+      "runId": "laohuan-public-20261008",
+      "commandId": "public/1",
+      "expectedSeq": 1,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "laohuan-public-20261008",
+      "commandId": "public/2",
+      "expectedSeq": 2,
+      "action": {
+        "type": "EnterStage"
+      }
+    }
+  ],
+  "public": {
+    "gold": 6,
+    "handLimit": 8,
+    "discards": 3,
+    "hand": [
+      {
+        "id": "clubs-12",
+        "rank": 12,
+        "suit": "clubs"
+      },
+      {
+        "id": "hearts-13",
+        "rank": 13,
+        "suit": "hearts"
+      },
+      {
+        "id": "hearts-2",
+        "rank": 2,
+        "suit": "hearts"
+      },
+      {
+        "id": "spades-2",
+        "rank": 2,
+        "suit": "spades"
+      },
+      {
+        "id": "diamonds-11",
+        "rank": 11,
+        "suit": "diamonds"
+      },
+      {
+        "id": "diamonds-5",
+        "rank": 5,
+        "suit": "diamonds"
+      },
+      {
+        "id": "clubs-14",
+        "rank": 14,
+        "suit": "clubs"
+      },
+      {
+        "id": "diamonds-14",
+        "rank": 14,
+        "suit": "diamonds"
+      }
+    ]
+  },
+  "scope": "one declared ordinary creation, no buy/injection/seed scan; only public hand exported; hidden draw order never read"
+}
