@@ -936,11 +936,11 @@ export class GameScene extends Phaser.Scene {
       {label:'换为这组',primary:true,disabled:true,run:()=>{
         const ghost=this.candidateGhost;if(!isCurrent()||!ghost||ghost.key!==key){message.textContent=isCurrent()?'先点一个示例，只查看不会改选择。':'手牌或规则已变化，请关闭后重新查看。';return;}
         this.candidateUndo={revision:this.draftRevision(),ids:[...this.selectedIds],assistIds:[...this.assistIds]};
-        this.aiCursor=undefined;this.selectedIds=new Set(ghost.facts.playedIds);this.validateAssistSelection();this.candidateGhost=undefined;this.dialog.close(dialog);this.refreshSelection();this.statusMessage='已换组，仍需自己出牌；查看牌型可撤销';this.updateControls();
+        this.azaoRelease=false;this.aiCursor=undefined;this.selectedIds=new Set(ghost.facts.playedIds);this.validateAssistSelection();this.candidateGhost=undefined;this.dialog.close(dialog);this.refreshSelection();this.statusMessage='已换组，仍需自己出牌；查看牌型可撤销';this.updateControls();
       }},
       {label:'撤销换组',disabled:!this.candidateUndo,run:()=>{
         const undo=this.candidateUndo;if(!isCurrent()||!undo||undo.revision!==this.draftRevision()){message.textContent='手牌或选择已变化，旧换组不能撤销。';return;}
-        this.aiCursor=undefined;this.selectedIds=new Set(undo.ids);this.assistIds=[...(undo.assistIds??[])];this.candidateUndo=undefined;this.candidateGhost=undefined;this.dialog.close(dialog);this.statusMessage='已撤销换组，恢复原选择';this.refreshSelection();
+        this.azaoRelease=false;this.aiCursor=undefined;this.selectedIds=new Set(undo.ids);this.assistIds=[...(undo.assistIds??[])];this.candidateUndo=undefined;this.candidateGhost=undefined;this.dialog.close(dialog);this.statusMessage='已撤销换组，恢复原选择';this.refreshSelection();
       }},
       {label:growthOnly?'全部可成牌型':'查看成长机会',run:()=>this.inspectCandidates(!growthOnly,focus)},
       {label:toolInventoryLabel(this.run),run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))},
@@ -1121,7 +1121,7 @@ export class GameScene extends Phaser.Scene {
     const previous=this.selectedIds,next=new Set(update.selectedIds),changed=previous.size!==next.size||[...previous].some(id=>!next.has(id));
     this.statusMessage=update.limitReached?'每手最多选择 5 张牌':'';
     if(!changed){if(update.limitReached)this.updateControls();return;}
-    const endedUndo=!!this.candidateUndo;this.aiCursor=undefined;this.candidateUndo=undefined;this.candidateGhost=undefined;this.selectedIds=next;this.validateAssistSelection();if(endedUndo&&!update.limitReached&&this.statusMessage!=='主手或可用条件已变化，助攻已取消')this.statusMessage='已手动改选，换组撤销已结束';
+    const endedUndo=!!this.candidateUndo;this.aiCursor=undefined;this.candidateUndo=undefined;this.candidateGhost=undefined;this.azaoRelease=false;this.selectedIds=next;this.validateAssistSelection();if(endedUndo&&!update.limitReached&&this.statusMessage!=='主手或可用条件已变化，助攻已取消')this.statusMessage='已手动改选，换组撤销已结束';
     const changedViews=this.cardViews.filter(view=>previous.has(view.card.id)!==next.has(view.card.id));changedViews.forEach(view=>this.revealCard(view));
     if(update.phase!=='cancelled'){if(update.mode==='select')this.audio.select();else this.audio.deselect();}
     // Batch a fast crossing into one preview; no rules command, RNG or save is touched.
