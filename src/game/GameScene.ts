@@ -495,7 +495,7 @@ export class GameScene extends Phaser.Scene {
       const art=view?.getData('f09-art') as Phaser.GameObjects.Container|undefined;art?.setData('f09-active',!view?.getData('bossDisabled')&&(this.run.stage?.discardsUsed??0)===0);
     }
   }
-  private roleCaption():string {const notice=stageNotice(this.run);return usesLaohuanRefill(this.run)?this.pendingRefill?'老幻·继续选补牌↗':!r2RunModeConfig(this.run).characterAbilityEnabled?'老幻·戏法停用':this.run.stage?.laohuanTrickUsed?'老幻·戏法已用':'老幻·戏法弃↗':usesXiemuBurn(this.run)?xiemuChoice(this.run).compact:usesAzaoCharge(this.run)?azaoChoice(this.run).compact:notice?.warning?notice.title:characterForRun(this.run).passiveName;}
+  private roleCaption():string {const notice=stageNotice(this.run);return usesLaohuanRefill(this.run)?this.pendingRefill?'老幻·选补牌↗':!r2RunModeConfig(this.run).characterAbilityEnabled?'老幻·戏法停用':this.run.stage?.laohuanTrickUsed?'老幻·戏法已用':'老幻·戏法弃↗':usesXiemuBurn(this.run)?xiemuChoice(this.run).compact:usesAzaoCharge(this.run)?azaoChoice(this.run).compact:notice?.warning?notice.title:characterForRun(this.run).passiveName;}
   private cardPiece(card:PlayingCard,b:Box):CardView {
     const c=this.view.add(this.add.container(b.x+b.width/2,b.y+b.height/2)).setData('width',b.width).setData('height',b.height).setData('cardFace',true).setData('cardId',card.id);
     const radius=Math.min(7,b.width*.09),shadow=this.add.graphics(),edgeGlow=this.add.graphics();
@@ -904,6 +904,7 @@ export class GameScene extends Phaser.Scene {
     if(azao&&!this.presentation&&!this.playing&&!discovery&&!sweepReminder&&!selectedReminder&&!guideCue&&!reminders&&!entryReminder&&!benefitReminder&&!memoryReminder)this.statusText.setText(azao.compact+' · '+(this.azaoRelease?'本手释放，消耗全部层':azao.hold)).setName('hero/azao-charge-status');
     }
     if(usesLaohuanRefill(this.run))this.roleText.setText(this.roleCaption());
+    this.resourceCounts.play.setVisible(!this.pendingRefill);this.resourceCounts.discard.setVisible(!this.pendingRefill);
     if(this.pendingRefill){this.view.setEnabled(this.aiButton,false);this.view.setEnabled(this.playButton,this.ready&&!this.refillHidden&&this.selectedIds.size===this.pendingRefill.required);(this.playButton.getData('label') as Phaser.GameObjects.Text).setText('确认留'+this.pendingRefill.required);this.view.setEnabled(this.discardButton,this.ready);(this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(this.refillHidden?'继续选牌':'收起候选');if(this.inventoryButton)this.view.setEnabled(this.inventoryButton,false);}
     // Balatro-style call-to-action: the playable state breathes a warm aura.
     const auraOn=!!this.playButton.input?.enabled&&this.selectedIds.size>0&&!this.presentation&&!this.playing;
