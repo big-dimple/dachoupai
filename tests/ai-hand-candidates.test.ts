@@ -1,3 +1,4 @@
+import * as scoring from '../src/domain/scoreR2';
 import {afterEach,expect,it,vi} from 'vitest';
 import type {PlayingCard,Rank,Suit} from '../src/cards/types';
 import {R2_JOKERS} from '../src/content/r2Schema';
@@ -41,4 +42,10 @@ it('first AI tap ignores manual type, follows descending picks, wraps and reject
 });
 it('new key cancels old idle work and disposal cannot publish a stale selection',async()=>{
  vi.useFakeTimers();try{const cache=new AiHandCandidateCache(),called=vi.fn(),s=input(hand());cache.update(s,called);s.score.handLevels.pair=30;cache.update(s,called);await vi.runAllTimersAsync();expect(called).toHaveBeenCalledTimes(1);expect(cache.result?.ordered[0].type).toBe('pair');cache.update({...s,resources:{...s.resources,gold:9}},called);cache.dispose();await vi.runAllTimersAsync();expect(called).toHaveBeenCalledTimes(1);}finally{vi.useRealTimers();}
+});
+
+it('current xiemu AI compares holding money without restoring the old free last-hand x2',()=>{
+ const s=input(hand());s.resources.handsLeft=1;s.score.characterId='xiemu';s.score.xiemuBurn={cost:0,goldBefore:s.resources.gold,beforeUsed:false};const before=structuredClone(s),real=scoring.previewR2Hand;
+ const spy=vi.spyOn(scoring,'previewR2Hand').mockImplementation(request=>{const t=scoring.scoreR2Hand({...request,rng:new SeededRng('xiemu-ai-check').snapshot()});expect(t.events.some(e=>e.sourceType==='character')).toBe(false);return real(request);});
+ expect(rankAiHandCandidates(s).status).toBe('ready');expect(spy).toHaveBeenCalled();expect(s).toEqual(before);const key=aiHandKey(s);s.score.xiemuBurn.beforeUsed=true;expect(aiHandKey(s)).not.toBe(key);
 });

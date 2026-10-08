@@ -114,7 +114,7 @@ export class IntermissionScene extends Phaser.Scene {
       heading='已达数值上限';body='进度已保存。可查看本场、在菜单导出，或返回选角。';
     }
     const xiemuInterest=trace?.events.find(e=>e.sourceType==='character'&&e.sourceDefinitionId==='xiemu'&&e.phase==='onStageClear');
-    if(!p.short&&!skipped&&this.result.cleared&&xiemuInterest)body+='\n额外关末息 +'+xiemuInterest.value.n+'金 · 奖励前本金'+xiemuInterest.goldBeforeRewards+'金';
+    if(!p.short&&!skipped&&this.result.cleared&&xiemuInterest)heading+=' · 额外关末息+'+xiemuInterest.value.n+'金';
     if(p.short&&trace&&!skipped&&this.result.cleared){const fact=victorySourceFact(run,trace);if(fact)body=fact.title+' · '+fact.effect+'\n'+body;}
     if(!lost){
       v.material(n,0x21474a,0x21474a,4);
