@@ -1,0 +1,10 @@
+{
+  "sourceHead": "7a8c2e375aa5f22f00b84f7b9814b0137cf20c05",
+  "originalNaturalSource": "b03c9f9a5dfdd2639178603a990b739fac4f3b2e",
+  "scope": "Bounded production DOM import of the exact original normal pending/completed state and actual journal. No new normal acquisition, cash/cards/RNG edits, or matrix. 390 touch label vs actual ChooseRefill/PlayHand, hide/reopen/reload checks. Not physical device/FPS/human acceptance.",
+  "cases": [],
+  "errors": [],
+  "status": "FAIL",
+  "error": "Error: invalid-save-journal",
+  "stack": "Error: invalid-save-journal\n    at fail (/workspace/dachoupai/src/application/checkpoint.ts:91:9)\n    at makeCheckpoint (/workspace/dachoupai/src/application/checkpoint.ts:1164:17)\n    at restore (file:///tmp/laohuan-review-actions.mjs:5:445)\n    at async file:///tmp/laohuan-review-actions.mjs:7:208"
+}

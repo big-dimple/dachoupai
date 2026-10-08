@@ -2,6 +2,10 @@
 
 2026-10-08。输入main `fa4a463b2bc5eae72f7e034e7b26049b487f1965`；同PR69有限可玩候选，未main/真人/设备/GPU/听感/平衡验收。6.1 Medium串行，PR66不混、BGM待选不阻。最终统一精确head CI以PR回执为准，不预记。
 
+## 独审补正（原截图标签失败保留）
+
+产品20d981a，48项定向/type及原390保存的有限实际动作复查通过，见[补正证据](review-actions-f10/README.md)。旧native-b03c9f9/retained-390.png残留“确认留1”而真实后续出牌，必须按P1历史失败读；原流程守恒不等于标签通过。旧c30c87e精确CI绿仅历史，最终补正head以PR69回执为准。
+
 ## 固定来源与真实失败
 
 - 产品 `bd694bc4cf133939d8fc94e8cc7f08dd3a338508`。首次脚本把进入牌桌名字误写action/start，停在商店、未戏法弃/未看候选（runner-fail-bd694bc），纯runner错误。修为现有action/start-stage、换场action/continue-stage后继续同一预声明路线。

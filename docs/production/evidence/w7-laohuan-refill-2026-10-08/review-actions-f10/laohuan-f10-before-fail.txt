@@ -1,0 +1,37 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/laohuan-refill.test.ts (10 tests | 2 failed) 389ms
+     × cold f10 remains armed through fixed refill (ordinary first=false), then next real play consumes once 16ms
+     × cold f10 remains armed through fixed refill (ordinary first=true), then next real play consumes once 18ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/laohuan-refill.test.ts > laohuan real discard and fixed refill > cold f10 remains armed through fixed refill (ordinary first=false), then next real play consumes once
+ FAIL  tests/laohuan-refill.test.ts > laohuan real discard and fixed refill > cold f10 remains armed through fixed refill (ordinary first=true), then next real play consumes once
+Error: Run invariant: armed rescue stage
+ ❯ check src/domain/r2Run.ts:109:70
+    107| export function assertR2Invariants(state:R2RunState):void {
+    108|   const R2_JOKERS=r2JokerDefinitionsFor(state);
+    109|   const check=(condition:boolean,label:string)=>{if(!condition)throw n…
+       |                                                                      ^
+    110|   check(state.schemaVersion===2 && state.rulesVersion==='r2' && !!r2Ru…
+    111|   check(isR2RouteStarter(state)?!!state.openingRoute&&Object.hasOwn(R2…
+ ❯ assertR2Invariants src/domain/r2Run.ts:141:35
+ ❯ applyCommand src/domain/run.ts:200:5
+ ❯ send tests/laohuan-refill.test.ts:12:88
+ ❯ tests/laohuan-refill.test.ts:25:636
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 8 passed (10)
+   Start at  22:50:45
+   Duration  1.08s (transform 477ms, setup 0ms, import 574ms, tests 389ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
