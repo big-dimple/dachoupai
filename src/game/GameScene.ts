@@ -875,13 +875,16 @@ export class GameScene extends Phaser.Scene {
     const benefitReminder=latestBenefit?latestBenefit.title+' · '+latestBenefit.effect+' · 上手详情':'';
     const discovery=this.ready&&!this.presentation&&!this.selectedIds.size&&!this.statusMessage&&!reminders?savedGrowthDiscovery(this.run):undefined;
     const guideCue=this.ready&&!this.presentation&&!this.selectedIds.size&&this.handsLeft>1?firstChapterGuide(this.run)?.cue:undefined;
-    this.statusText.setName(discovery?'growth/discovery':'').setText(discovery?.full||sweepReminder||this.statusMessage||selectedReminder||guideCue||reminders||entryReminder||benefitReminder||memoryReminder||reason);
+    const criticalStatus=this.statusMessage||(!this.playing&&!this.presentation&&this.handsLeft===1?reason:'');
+    this.statusText.setName(discovery&&!criticalStatus?'growth/discovery':'').setText(criticalStatus||discovery?.full||sweepReminder||selectedReminder||guideCue||reminders||entryReminder||benefitReminder||memoryReminder||reason);
+    if(!criticalStatus){
     if(!discovery&&benefitReminder&&!sweepReminder&&!this.statusMessage&&!selectedReminder&&!reminders&&!entryReminder&&this.statusText.width>handWindow.status.width)this.statusText.setText('已保存收益 · 菜单查看上手');
     if(selectedReminder&&this.statusText.width>handWindow.status.width)this.statusText.setText('点所选条件 · 查看来源');
     // Short landscape has an existing 12px bottom table margin: two normal 16px rows fit without moving controls.
     if(discovery)for(const text of [discovery.full,discovery.compact]){this.statusText.setText(text);if(this.statusText.width<=handWindow.status.width&&this.statusText.height<=handWindow.status.height+(handWindow.mode==='landscape'?12:0))break;}
     if(!discovery&&this.statusText.width>this.view.layout.status.width&&memoryReminder&&!sweepReminder&&!this.statusMessage&&!reminders&&!entryReminder)this.statusText.setText(savedReminder!.name+' · 保存状态见详情');
-    if(azao&&!this.presentation&&!this.playing)this.statusText.setText(azao.compact+' · '+(this.azaoRelease?'本手释放，消耗全部层':azao.hold)).setName('hero/azao-charge-status');
+    if(azao&&!this.presentation&&!this.playing&&!discovery&&!sweepReminder&&!selectedReminder&&!guideCue&&!reminders&&!entryReminder&&!benefitReminder&&!memoryReminder)this.statusText.setText(azao.compact+' · '+(this.azaoRelease?'本手释放，消耗全部层':azao.hold)).setName('hero/azao-charge-status');
+    }
     // Balatro-style call-to-action: the playable state breathes a warm aura.
     const auraOn=!!this.playButton.input?.enabled&&this.selectedIds.size>0&&!this.presentation&&!this.playing;
     if(this.playAura){
