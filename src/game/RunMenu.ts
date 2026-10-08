@@ -141,7 +141,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
     row.append(name,range,value);audioControls.append(row);
     range.oninput=()=>{const volume=Number(range.value)/100;audio.setVolume(bus,volume);if(bus==='sfx')audio.setVolume('ui',volume);value.textContent=range.value+'%';void audio.unlock();saveAudio();};
   }
-  const audioHint=document.createElement('small');audioHint.className='audio-controls-hint';audioHint.textContent='拖到 0% 即关闭这一类声音';audioControls.append(audioHint);
+  const audioHint=document.createElement('small');audioHint.className='audio-controls-hint';audioHint.textContent=audio.musicAvailable?'拖到 0% 即关闭这一类声音':'背景音乐已撤下，等待新曲；音量偏好保留，音效独立可用。';audioControls.append(audioHint);
   function saveAudio():void {try{localStorage.setItem('dachoupai-audio-v2',JSON.stringify({version:2,music:audio.getVolume('music'),sfx:audio.getVolume('sfx')}));}catch{/* Audio preferences are optional. */}}
   saveAudio();
   const playbackTools=document.createElement('details'),playbackSummary=document.createElement('summary');playbackSummary.textContent='回看与演出';playbackTools.className='run-menu-playback-tools';playbackTools.append(playbackSummary);panel.append(playbackTools);

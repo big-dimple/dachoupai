@@ -78,6 +78,10 @@ import {R2_OFFER_USE,r2JokerStateText,r2JokerExtraHelp,r2ScoreOperationText,r2Tr
 import {R2_TOOLS,R2_LONG_TERM_ITEMS} from '../content/r2Tools';
 import {cardSpecialText,editionLabel,editionEffectText,toolInfo} from './r2ToolInfo';
 
+import {mountHeroClimax,heroClimaxValue,type HeroClimaxView} from './HeroClimax';
+import {cssViewport} from '../platform/Viewport';
+type KeyCueCleanup=(()=>void)&{strike?:()=>void;release?:()=>Promise<void>};
+
 const MAX_SELECTED = R2_LIMITS.maxSelected;
 
 /** Each suit owns an enamel identity colour, not just red vs black. */
@@ -199,9 +203,11 @@ export class GameScene extends Phaser.Scene {
   constructor() {
     super('game');
   }
+  private heroClimax?:HeroClimaxView;
   preload():void {
     const xhr:Phaser.Types.Loader.XHRSettingsObject={responseType:'text',timeout:5000};this.load.maxRetries=0;
     queueCourtArtLoads(this);
+    const hero=runController(this)?.state.characterId;if(hero&&!this.textures.exists('opening-portrait-'+hero))this.load.image('opening-portrait-'+hero,portraitURL(hero),{responseType:'blob',timeout:1800});
     for(const asset of P00_ASSETS)if(!this.textures.exists(asset.key))this.load.svg(asset.key,assetUrl(asset.path),{width:asset.width,height:asset.height},xhr);
   }
   private get reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
@@ -219,7 +225,7 @@ export class GameScene extends Phaser.Scene {
       this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;
       if(this.reducedMotion){
         if(this.toolHand){this.effects.clear();this.toolHand=undefined;this.render();}
-        this.stopJokerIdle();this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.cameras.main.resetFX();
+        this.heroClimax?.reduce();this.stopJokerIdle();this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.cameras.main.resetFX();
         this.cardViews.forEach(view=>{view.sheenTween?.remove();view.sheen?.setAlpha(0);this.revealCard(view);});
         for(const container of [...this.cardViews.map(view=>view.container),...this.jokerViews.values()]){
           const rim=container.getData('editionRim') as Phaser.GameObjects.Graphics|undefined;
@@ -1381,6 +1387,7 @@ export class GameScene extends Phaser.Scene {
     const foreground=[this.roleAvatar,...this.cardViews.map(v=>v.container),...[...this.settledCards.values()].map(v=>v.container),...this.jokerViews.values(),
       ...this.view.root.list.filter(o=>o.name==='joker/key-focus'),...controls.flatMap(o=>[o,o.getData('buttonArt'),o.getData('label')])].filter(o=>o?.active);
     orderScoreBrushLayers(this.view.root,foreground,[this.resultText,...this.scoreLabels,this.scoreHeat,this.scoreMult,this.scoreTotal,this.breakdownText,this.previousHandText]);
+    if(this.heroClimax?.group.active)this.view.root.bringToTop(this.heroClimax.group);
   }
   private transferToAccumulator(event:ScoreEvent,card:CardView|undefined,duration:number,context:EffectContext):Promise<void> {
     if(this.reducedMotion||context.signal.aborted)return Promise.resolve();
@@ -1430,7 +1437,16 @@ export class GameScene extends Phaser.Scene {
       this.setDisplayedProduct(Math.max(0,Math.floor(hv*mv)).toString());
     }},context).then(()=>{if(!context.signal.aborted)this.setAccumulator(event.after);});
   }
-  private showKeyHighlight(key:JokerKeyHighlight,context:EffectContext):()=>void {
+  private showKeyHighlight(key:JokerKeyHighlight,context:EffectContext):KeyCueCleanup {
+    const presentation=this.presentation,value=presentation&&heroClimaxValue(presentation.state,presentation.score,key,presentation.replay);
+    if(value){
+      this.handInput?.cancel();this.view.cancelInteraction();
+      const viewport=cssViewport(this),stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...viewport},key,value,this.reducedMotion);
+      if(stage){
+        this.heroClimax=stage;let cleaned=false;const cleanup:KeyCueCleanup=()=>{if(cleaned)return;cleaned=true;context.signal.removeEventListener('abort',cleanup);if(this.heroClimax===stage)this.heroClimax=undefined;stage.dispose();};
+        cleanup.strike=stage.strike;cleanup.release=stage.release;context.signal.addEventListener('abort',cleanup,{once:true});return cleanup;
+      }
+    }
     const l=this.view.layout,area=toolInventoryPlayedArea(l),mat=playedFootprint(area,l.mode==='portrait'),source=this.jokerViews.get(key.fact.sourceInstanceId);
     const poses=[...this.settledCards.values()].map(v=>({c:v.container,x:v.container.x,y:v.container.y}));
     const bottom=l.mode==='portrait'?Math.min(area.y+area.height,gameToolInventoryBox(l).y-4):area.y+area.height,cardHeight=Math.max(...poses.map(p=>Number(p.c.getData('height'))*p.c.scaleY),0);
@@ -1495,7 +1511,9 @@ export class GameScene extends Phaser.Scene {
     if(context.signal.aborted)return;
     // The domain result is already saved. Only the display and SFX arrive with this hit.
     this.scoreTotal.setData('eventPhase','impact');
-    if(number||benefit){if(!number&&benefit&&this.presentation&&!this.presentation.replay)this.audio.scoreImpact(this.presentation,event.eventId,'add');}
+    restoreKey?.strike?.();
+    if(restoreKey?.strike&&number)number={...number,tier:number.tier===3?3:2,peak:1.48};
+    if(number||benefit){if(!number&&benefit&&this.presentation&&!this.presentation.replay)this.audio.scoreImpact(this.presentation,event.eventId,restoreKey?.strike?'key':'add',restoreKey?.strike?2:0);}
     else if(event.sourceType==='character')this.audio.sourceCue('character');
     else if(key?.kind==='multiply')this.audio.multiplier('multiply',index);
     else if(event.sourceType==='joker'&&sourceBenefit)this.audio.sourceCue(event.phase==='onHeldCard'?'held':'joker',index);
@@ -1542,7 +1560,7 @@ export class GameScene extends Phaser.Scene {
     this.scoreTotal.setData('eventPhase','rest');
     const growth=this.presentation?savedGrowthStamp(this.run,this.presentation.score,event):undefined;
     if(growth){this.statusText.setText(benefit!.title+' · 已存成长，下手生效').setData('growthStamp',growth);this.resultText.setText(benefit!.title+' · 成长已保存');}
-    await Promise.all([this.wait(timing.rest,context),...notes]);
+    await Promise.all([this.wait(timing.rest,context),restoreKey?.release?.()??Promise.resolve(),...notes]);
     if(context.signal.aborted)return;
     restoreKey?.();
     if(event.operation==='destroy-card'&&card){
@@ -1609,7 +1627,7 @@ export class GameScene extends Phaser.Scene {
       ]);
     } finally {if(count.active){count.setScale(1);if(this.statusMessage===note){this.statusMessage='';this.updateControls();}}halo.destroy();}
   }
-  private showOpeningScore(score:ScoreTrace,context:EffectContext):()=>void {
+  private showOpeningScore(score:ScoreTrace,context:EffectContext):KeyCueCleanup {
     const event=score.events.find(e=>e.phase==='finalScore')!;
     const key:JokerKeyHighlight={eventId:event.eventId,kind:'opening',heroId:this.run.characterId,cause:'本局前五手内真实结算',landing:fractionText(score.accumulator.H)+' × '+fractionText(score.accumulator.M)+' = '+heatText(score.finalScore),fact:{eventId:event.eventId,sourceInstanceId:event.sourceInstanceId,definitionId:'',title:(this.run.phase==='run-lost'?'本局结束 · 实际得分 · ':'开场得分 · ')+HAND_LABELS[score.handType],effect:'已结算 '+heatText(score.finalScore),condition:'真实已保存得分',destination:'本手实际得分',next:'继续自主选牌'}};
     return this.showKeyHighlight(key,context);
@@ -1627,9 +1645,12 @@ export class GameScene extends Phaser.Scene {
     presentation.credited=true;this.updateHud();
     this.scoreTotal.setData('eventId',score.events.find(event=>event.phase==='finalScore')?.eventId).setData('eventPhase','award');
     this.scoreTotal.setColor(celebration.cleared&&celebration.tier>=2?'#80551f':tier?C.red:C.ink);
-    if(!presentation.replay){const level=presentation.state.phase==='run-lost'?0:scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat);this.ensureScoreFlame().impact('award',level===3?1:level===2?.85:.65);this.audio.scoreImpact(presentation,'award','award',level,score.events.filter(e=>numberImpact(e,this.stage.targetHeat)?.kind==='multiply').length);this.keepScoreReadable();}
     const opening= !presentation.replay&&presentation.state.openingShow?.rootId===score.rootId&&presentation.state.openingShow.reason==='score';
     const closeOpening=opening?this.showOpeningScore(score,context):undefined;
+    if(closeOpening?.strike&&!this.reducedMotion)await this.wait(180,context);
+    if(context.signal.aborted)return;
+    closeOpening?.strike?.();
+    if(!presentation.replay){const level=presentation.state.phase==='run-lost'?0:scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat);this.ensureScoreFlame().impact('award',level===3?1:level===2?.85:.65);this.audio.scoreImpact(presentation,'award','award',closeOpening?.strike&&level<2?2:level,score.events.filter(e=>numberImpact(e,this.stage.targetHeat)?.kind==='multiply').length);this.keepScoreReadable();}
     const effects:Promise<void>[]=[];
     // The credited heat rolls up in the HUD; the exact saved value always lands last.
     const heatFrom=BigInt(presentation.displayHeat),heatTo=BigInt(presentation.state.stage!.heat);
@@ -1644,7 +1665,7 @@ export class GameScene extends Phaser.Scene {
       effects.push(this.pulseScoreNumber(this.scoreTotal,1.28+scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat)*.04,260,context));
       effects.push(this.animate({targets:this.heatText,scale:{from:celebration.cleared?1.1:1.04,to:1},duration:celebration.cleared?620:310,ease:'Back.easeOut'},context));
     }
-    effects.push(this.wait(this.reducedMotion?360:opening?900:presentation.state.openingShow?.rootId===score.rootId?420:celebration.cleared?700:tier>=2?500:320,context));await Promise.all(effects);closeOpening?.();this.scoreTotal.setColor(C.ink);this.scoreHeat.setColor(C.jade);this.scoreMult.setColor(C.red);
+    effects.push(this.wait(this.reducedMotion?360:opening?(closeOpening?.strike?590:900):presentation.state.openingShow?.rootId===score.rootId?420:celebration.cleared?700:tier>=2?500:320,context));await Promise.all(effects);await closeOpening?.release?.();closeOpening?.();if(context.signal.aborted)return;this.scoreTotal.setColor(C.ink);this.scoreHeat.setColor(C.jade);this.scoreMult.setColor(C.red);
   }
   private convergeScore(context:EffectContext):Promise<void> {
     if(this.reducedMotion||context.signal.aborted)return Promise.resolve();
