@@ -20,7 +20,11 @@ export function stopResourcePulse(kind) {
 
 export async function waitResourcePulse(page,kind) {
   try {
+    const pollingStarted=await page.evaluate(kind=>{
+      const game=window.__harness.game,count=game.scene.getScene('game').resourceCounts[kind];
+      return {commandSeq:game.registry.get('runController').state.commandSeq,text:count.text,scaleX:count.scaleX,capturedBeforeWait:!!window.__smokeResourcePulses?.[kind]?.sample};
+    },kind);
     await page.waitForFunction(kind=>!!window.__smokeResourcePulses?.[kind]?.sample,kind,{timeout:5000});
-    return await page.evaluate(stopResourcePulse,kind);
+    return {...await page.evaluate(stopResourcePulse,kind),pollingStarted};
   } finally {await page.evaluate(stopResourcePulse,kind);}
 }
