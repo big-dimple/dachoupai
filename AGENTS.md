@@ -1,5 +1,8 @@
 # 开发入口
 
+2026-10-08谢幕有限候选：输入main `6e450bebe3a750704f6b1d811ad0accaf898ebd8`（父已FF PR67，阿燥不再冒称未合）。同PR68 draft实现父锁一场一次燃金与独立封顶2关末息；角色时钟先于整手Joker，原子支付/保存重试、B08/Q01、固定手机入口与错误优先保持。见[当前合同](docs/production/XIEMU_BURN_CONTRACT_REVIEW.md)与[有限证据](docs/production/evidence/w7-xiemu-burn-2026-10-08/README.md)。自然16金首次燃10可运行，但不燃已够目标，没有证明战术必要/有趣/30档价值。最终精确head CI另核，parent产品审查协调main；真人/设备/GPU/听感/完整平衡未验，PR66仍draft停迭代。6.1默认Medium串行，不跑旧档矩阵/种子扫描或本地整包。
+
+
 2026-10-08阿燥最小候选：基线main832823d，独立分支，二响保持旧能力、PR66 C仍draft停迭代。按父锁定第6节实现场内异型蓄1/2/3与主动×1.5/2.5/4，重复合格可释放，不放才清空；当前保存原子重试与终态清空。见[有限证据与真实释放FAIL补正](docs/production/evidence/w7-azao-charge-2026-10-08/README.md)。普通首手182蓄1→葫芦释放1822→下一场0；不是真人玩法/三层自然可达/main发布。只draft父审，最终精确head CI另核，6.1 Medium串行；历史状态保原SHA。
 
 2026-10-08 16:20UTC执行基线更新：父已普通FF合入PR63至 main `56aee224be55f47d92263492872ef61ca2ca93bd`，精确head四项CI绿；方向分区修复历史证据保原SHA。当前按15:54UTC用户反馈实施[W4英雄前景高潮与撤下旧BGM](docs/production/HERO_FOREGROUND_CLIMAX_SCOPE.md)，完整英雄构图消费已保存首次开场事件，真实成长/倍率/得分、低动态和取消边界保持。新BGM授权音源/替代选择仍由父协调，本包不冒称已换曲。软件候选待父独审与实机观感/听感，不预记main或W6；6.1默认Medium串行。
