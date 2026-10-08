@@ -49,7 +49,7 @@ it('current xiemu AI compares holding money without restoring the old free last-
  const spy=vi.spyOn(scoring,'previewR2Hand').mockImplementation(request=>{const t=scoring.scoreR2Hand({...request,rng:new SeededRng('xiemu-ai-check').snapshot()});expect(t.events.some(e=>e.sourceType==='character')).toBe(false);return real(request);});
  expect(rankAiHandCandidates(s).status).toBe('ready');expect(spy).toHaveBeenCalled();expect(s).toEqual(before);const key=aiHandKey(s);s.score.xiemuBurn.beforeUsed=true;expect(aiHandKey(s)).not.toBe(key);
 });
-it('new laohuan ranking removes old guaranteed120 and keeps the old identity comparison separate',()=>{
- const s=input([card('a1',14,'clubs'),card('a2',14,'hearts'),card('a3',14,'spades'),card('k1',13,'diamonds'),card('k2',13,'spades'),card('q',12,'clubs'),card('j',11,'diamonds'),card('10',10,'hearts')]);s.score.characterId='laohuan';
- expect(rankAiHandCandidates(s).ordered[0].type).toBe('straight');const oldKey=aiHandKey(s);s.score.laohuanTrick=true;expect(aiHandKey(s)).not.toBe(oldKey);expect(rankAiHandCandidates(s).ordered[0].type).toBe('full-house');
+it('new laohuan AI carries the replaced bonus contract through every candidate preview',()=>{
+ const s=input([card('a1',14,'clubs'),card('a2',14,'hearts'),card('a3',14,'spades'),card('k1',13,'diamonds'),card('k2',13,'spades'),card('q',12,'clubs'),card('j',11,'diamonds'),card('10',10,'hearts')]);s.score.characterId='laohuan';const oldKey=aiHandKey(s);s.score.laohuanTrick=true;expect(aiHandKey(s)).not.toBe(oldKey);const before=structuredClone(s),real=scoring.previewR2Hand;
+ const spy=vi.spyOn(scoring,'previewR2Hand').mockImplementation(request=>{const t=real(request);expect(t.breakdown.events.some(e=>e.sourceType==='character')).toBe(false);return t;});expect(rankAiHandCandidates(s).status).toBe('ready');expect(spy).toHaveBeenCalled();expect(s).toEqual(before);
 });
