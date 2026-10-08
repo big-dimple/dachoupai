@@ -7,13 +7,13 @@ import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 interface JourneyActions {onFocus?:()=>void;tools:()=>void;tool:(id:string)=>void;source:(id:string)=>void;deck:()=>void;offers?:(id:string,kind:'jokers'|'tools'|'items')=>void;compare?:(offerId:string,heldId:string)=>void;continue:()=>void;continueLabel:string;ready:boolean;publicHands?:()=>void;manage?:()=>void;chapter?:()=>void}
 /** Player chooses a direction, then takes an existing validated action. No command is submitted here. */
 export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:JourneyActions,choose=false,all=false):void {
- const selected=currentBuildFocus(state.runId,state.openingRoute),focus=choose?undefined:selected;
+ const selected=currentBuildFocus(state,state.openingRoute),focus=choose?undefined:selected;
  const shortGuide:Record<BuildFocus,string>={group:'保留同点牌，试两对、三条等成组。',straight:'用不同点数接出连续牌。',flush:'选一种花色，集中成同花。'};
  if(!focus){
   const art:Record<BuildFocus,string>={group:'b10',straight:'c11',flush:'c09'};
   dialog.open('你想怎样组牌？',buildDirectionSummary(state),[
    ...(actions.chapter?[{label:'本章节目',run:actions.chapter}]:[]),...(actions.manage?[{label:'持有牌管理',run:actions.manage}]:[])
-  ],{summaryBody:buildDirectionSummary(state),collapseRules:true,rulesLabel:'路线与使用说明',cards:BUILD_FOCUS.map(f=>{const facts=buildJourneyFacts(state,f),stock=facts.offers.find(o=>o.kind==='jokers'&&o.relation?.kind==='direct')??facts.offers.find(o=>o.kind==='jokers'&&o.relation?.kind==='support'),owned=facts.owned.find(o=>o.relation.kind==='direct')??facts.owned.find(o=>o.relation.kind==='support');return {title:BUILD_LABEL[f],url:stock?.url??owned?.url??jokerArtPreviewUrl(art[f]),body:(selected===f?'当前方向 · ':'')+shortGuide[f]+'\n'+(stock?'现货 · '+stock.relation!.label+'：'+stock.title:owned?'持有 · '+owned.relation.label+'：'+owned.title+'\n本店暂无对应直接/辅助现货':'路线示意 · 暂无对应直接/辅助现货或持牌；进入后可比较其它路线机会'),action:{label:'选择'+BUILD_LABEL[f],run:()=>{chooseBuildFocus(state.runId,f);actions.onFocus?.();showBuildJourney(dialog,state,actions);}}};})});attachFirstChapterGuide(state,actions.onFocus);return;
+  ],{summaryBody:buildDirectionSummary(state),collapseRules:true,rulesLabel:'路线与使用说明',cards:BUILD_FOCUS.map(f=>{const facts=buildJourneyFacts(state,f),stock=facts.offers.find(o=>o.kind==='jokers'&&o.relation?.kind==='direct')??facts.offers.find(o=>o.kind==='jokers'&&o.relation?.kind==='support'),owned=facts.owned.find(o=>o.relation.kind==='direct')??facts.owned.find(o=>o.relation.kind==='support');return {title:BUILD_LABEL[f],url:stock?.url??owned?.url??jokerArtPreviewUrl(art[f]),body:(selected===f?'当前方向 · ':'')+shortGuide[f]+'\n'+(stock?'现货 · '+stock.relation!.label+'：'+stock.title:owned?'持有 · '+owned.relation.label+'：'+owned.title+'\n本店暂无对应直接/辅助现货':'路线示意 · 暂无对应直接/辅助现货或持牌；进入后可比较其它路线机会'),action:{label:'选择'+BUILD_LABEL[f],run:()=>{chooseBuildFocus(state,f);actions.onFocus?.();showBuildJourney(dialog,state,actions);}}};})});attachFirstChapterGuide(state,actions.onFocus);return;
  }
  const facts=buildJourneyFacts(state,focus);
  if(state.phase==='shop'&&!all){

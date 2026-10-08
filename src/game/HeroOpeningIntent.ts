@@ -9,7 +9,7 @@ export function deferOpeningIntent(session:OpeningSession,candidate:Candidate,fo
   if(session.pendingRun===candidate)return;
   stop();
   if(session.run===candidate&&candidate.status==='idle'){
-   chooseBuildFocus(candidate.state.runId,focus);enrollFirstChapterGuide(candidate.state);
+   chooseBuildFocus(candidate.state,focus);enrollFirstChapterGuide(candidate.state);
   }
  });
 }

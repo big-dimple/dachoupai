@@ -19,12 +19,12 @@ import {currentBuildFocus,buildFocusRetention,type BuildFocus} from './BuildDire
 export {currentBuildFocus,chooseBuildFocus,BUILD_FOCUS,buildFocusRetention,type BuildFocus} from './BuildDirectionPreferences';
 export const BUILD_LABEL:Record<BuildFocus,string>={group:'同点成组',straight:'顺子接续',flush:'同花集中'};
 export function buildDirectionSummary(state:R2RunState):string {
- const current=currentBuildFocus(state.runId,state.openingRoute),retention=buildFocusRetention(state.runId);
+ const current=currentBuildFocus(state,state.openingRoute),retention=buildFocusRetention(state);
  return (current?'当前培养：'+BUILD_LABEL[current]:'尚未选择培养方向')+(state.openingRoute?' · 开局路线：'+BUILD_LABEL[state.openingRoute]:'')+'\n'+(retention==='session'?'本机偏好未能保存，当前方向仅本次页面保留；下次续局可重新选择。':current?'当前方向在本机续局保留；导入到其它设备仍可重新选择。':'选好后在本机续局保留；导入到其它设备仍可重新选择。')+'方向可随时换，不卖牌、不改成长或自动操作。';
 }
 export function buildDirectionCaption(state:R2RunState):string {
- const current=currentBuildFocus(state.runId,state.openingRoute),short={group:'成组',straight:'顺子',flush:'同花'};
- return (current?'当前培养 '+short[current]:'尚未选择方向')+(state.openingRoute&&state.openingRoute!==current?' · 开局 '+short[state.openingRoute]:'')+(buildFocusRetention(state.runId)==='session'?' · 仅本页保留':' · 本机续局保留');
+ const current=currentBuildFocus(state,state.openingRoute),short={group:'成组',straight:'顺子',flush:'同花'};
+ return (current?'当前培养 '+short[current]:'尚未选择方向')+(state.openingRoute&&state.openingRoute!==current?' · 开局 '+short[state.openingRoute]:'')+(buildFocusRetention(state)==='session'?' · 仅本页保留':' · 本机续局保留');
 }
 export const buildHandTypes=(focus:BuildFocus)=>focus==='group'?R2_GROUP_HAND_TYPES:focus==='straight'?['straight','straight-flush']:['flush','straight-flush'];
 export function jokerSupportsFocus(state:R2RunState,id:string,focus:BuildFocus):boolean {

@@ -212,7 +212,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     const seed=this.seed??String(Date.now());
     try {
       const controller=await startRun(this,seed,id,this.modeConfig,{kind:'new',openingRoute:focus}),session=gameSession();
-      if(controller&&controller.status==='idle'&&session.run===controller)chooseBuildFocus(controller.state.runId,focus);
+      if(controller&&controller.status==='idle'&&session.run===controller)chooseBuildFocus(controller.state,focus);
       else if(!controller&&session.pendingRun&&session.pendingRun.state.seed===seed&&session.pendingRun.state.characterId===id)deferOpeningIntent(session,session.pendingRun,focus);
       if(lifecycle!==this.lifecycle||!this.scene.isActive())return false;
       if(!controller||controller.status!=='idle'||session.run!==controller){this.notice=session.notice||'新局尚未保存，请从菜单重试保存。';this.audio.invalid();return false;}

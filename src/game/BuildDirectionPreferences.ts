@@ -1,6 +1,8 @@
+import {r2ModeStorageKey} from '../content/r2Modes';
+import type {R2RunState} from '../domain/r2Run';
 export type BuildFocus='group'|'straight'|'flush';
 export const BUILD_FOCUS:readonly BuildFocus[]=['group','straight','flush'];
-export const BUILD_DIRECTION_KEY='dachoupai.build-direction.v1';
+export const BUILD_DIRECTION_KEY='dachoupai.build-direction.v2';
 const LIMIT=8;
 interface Entry {runId:string;focus:BuildFocus}
 interface Storage {getItem(key:string):string|null;setItem(key:string,value:string):void}
@@ -24,7 +26,10 @@ export function createBuildDirections(storage:()=>Storage){
   retention(runId:string):'local'|'session'|'opening'{return load().some(e=>e.runId===runId)?local?'local':'session':'opening';},
  };
 }
+type DirectionRun=Pick<R2RunState,'runId'|'contentHash'|'mode'|'challengeId'|'difficulty'|'programsEnabled'>;
+/** Reuse the current save partition; deterministic runId alone is not a slot identity. */
+export const buildDirectionRunKey=(state:DirectionRun)=>JSON.stringify([r2ModeStorageKey(state,state.contentHash),state.runId]);
 const directions=createBuildDirections(()=>globalThis.localStorage);
-export const currentBuildFocus=directions.current;
-export const chooseBuildFocus=directions.choose;
-export const buildFocusRetention=directions.retention;
+export const currentBuildFocus=(state:DirectionRun,fallback?:BuildFocus)=>directions.current(buildDirectionRunKey(state),fallback);
+export const chooseBuildFocus=(state:DirectionRun,focus:BuildFocus)=>directions.choose(buildDirectionRunKey(state),focus);
+export const buildFocusRetention=(state:DirectionRun)=>directions.retention(buildDirectionRunKey(state));

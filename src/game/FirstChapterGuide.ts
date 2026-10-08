@@ -24,7 +24,7 @@ export function firstChapterGuide(state:R2RunState){
  if(state.phase!=='shop'&&state.phase!=='await-input'&&!(state.phase==='stage-cleared'&&state.lastTrace))return;
  const step:GuideStep=state.phase==='shop'?(state.stageIndex===0?'shop':'return'):state.phase==='await-input'?(state.lastTrace?'saved':'hand'):'saved';
  if(p.skipped.includes(step))return;
- const focus=currentBuildFocus(state.runId,state.openingRoute);
+ const focus=currentBuildFocus(state,state.openingRoute);
  const copy={shop:['首次：点培养看用途',focus?'你选了'+BUILD_LABEL[focus]+'，先看本店实际用途和金币代价；方向可换，没有对应现货也可留金出场。':'先挑想试的方向，再看这家店的实际条件与金币代价。方向可换；没有对应现货也可以保留金币出场。'],hand:['首次：点怎么凑牌，看留换','只用当前公开手牌找同点、连续或同花；自己选择保留与弃牌。参考不自动选牌，也不保证抽到缺牌；弃牌成本看实际按钮。'],saved:['首次：上手收益看来源','回看已保存的计分与来源，区分读已有成长和本手新增。总分与成长以本次真实事件为准，不是出牌前预估。'],return:['首次：培养→比较持牌','回到商店，先看实际条件和现存成长，再比较保留、换方向或换牌。出售会丢失这张实例的成长；卖和买各自确认，可以都不做。']} as const;
  const opening=step==='shop'?starterShopCue(state):undefined;
  return {step,cue:opening?'首次：路线起手组件':copy[step][0],body:opening?opening+'\n点高亮牌看真实条件与代价，确认才扣款；也可留金币入场。路线可随时调整。':copy[step][1]};
