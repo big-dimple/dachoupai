@@ -1,0 +1,73 @@
+{
+  "status": "PUBLIC_CLASSIFICATION_ONLY",
+  "rulesHead": "1317e6ef757c25960ad0d6056b79bd913eaf2914",
+  "actualHandSource": "b03c9f9a5dfdd2639178603a990b739fac4f3b2e",
+  "sourceCharacter": "laohuan",
+  "sourceRoute": "group",
+  "sourceSeed": "group-natural-17",
+  "sourceCommandSeq": 5,
+  "hand": [
+    {
+      "id": "clubs-12",
+      "rank": 12,
+      "suit": "clubs"
+    },
+    {
+      "id": "hearts-13",
+      "rank": 13,
+      "suit": "hearts"
+    },
+    {
+      "id": "hearts-2",
+      "rank": 2,
+      "suit": "hearts"
+    },
+    {
+      "id": "spades-2",
+      "rank": 2,
+      "suit": "spades"
+    },
+    {
+      "id": "diamonds-11",
+      "rank": 11,
+      "suit": "diamonds"
+    },
+    {
+      "id": "diamonds-5",
+      "rank": 5,
+      "suit": "diamonds"
+    },
+    {
+      "id": "clubs-14",
+      "rank": 14,
+      "suit": "clubs"
+    },
+    {
+      "id": "diamonds-14",
+      "rank": 14,
+      "suit": "diamonds"
+    }
+  ],
+  "rules": {
+    "fourStraight": false,
+    "fourFlush": false
+  },
+  "jokerIds": [
+    "b10"
+  ],
+  "examinedSubsets": 218,
+  "reachableTypes": [
+    "high-card",
+    "pair",
+    "two-pair"
+  ],
+  "notAnActualTouyeBet": true,
+  "proposalTargets": [
+    "two-pair",
+    "three-kind",
+    "full-house",
+    "straight",
+    "flush"
+  ],
+  "eligibilityComment": "same public hand projected to the proposed contract; two-pair already reachable cannot wager; three-kind/full-house/straight/flush absent. Does not predict replacements, score or success probability."
+}
