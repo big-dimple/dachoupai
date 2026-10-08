@@ -1,5 +1,5 @@
 import {firstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
-import {shopRouteRelation,shopOfferRelation,shopReplacementFacts} from './ShopRouteRelations';
+import {shopRouteRelation,shopOfferRelation,shopReplacementFacts,shopSaleConsequences} from './ShopRouteRelations';
 import {buildGrowthProgress} from './BuildGrowthProgress';
 import {shopInvestment} from './ShopInvestment';
 import {currentBuildFocus,BUILD_LABEL,toolSupportsFocus} from './BuildJourney';
@@ -526,7 +526,7 @@ export class ShopScene extends Phaser.Scene {
   private inspectReplacement(offerId:string):void {
     const found=this.findOffer(offerId);if(!found||found.kind!=='jokers'||found.offer.consumed||this.busy)return;
     const o=found.offer,focus=currentBuildFocus(this.run.runId),d=this.jokerDefinition(o.definitionId);
-    const cards=this.run.jokers.map((j,i)=>{const f=shopReplacementFacts(this.run,o,j,focus),held=this.jokerDefinition(j.definitionId);return {title:`第 ${i+1} 槽 · ${held.name}`,url:jokerArtPreviewUrl(held.id),body:f.held.label+' · '+held.description+'\n出售失去：'+r2JokerStateText(j,held)+'；基础卖价 '+salePrice(j.paidPrice)+' 金。\n同名新购不继承成长。',details:f.loss+'\n'+f.connections+'\n'+f.money+'\n'+f.held.body,action:{label:'保留或管理这张',run:()=>this.inspectJoker(j.instanceId,offerId)}};});
+    const cards=this.run.jokers.map((j,i)=>{const f=shopReplacementFacts(this.run,o,j,focus),held=this.jokerDefinition(j.definitionId);return {title:`第 ${i+1} 槽 · ${held.name}`,url:jokerArtPreviewUrl(held.id),body:f.held.label+' · '+held.description+'\n出售失去：'+r2JokerStateText(j,held)+'；基础卖价 '+salePrice(j.paidPrice)+' 金。\n同名新购不继承成长。'+(f.saleEffects.length?'\n成功出售后的联动：\n'+f.saleEffects.join('\n'):''),details:f.loss+'\n'+f.connections+'\n'+f.money+'\n'+f.held.body,action:{label:'保留或管理这张',run:()=>this.inspectJoker(j.instanceId,offerId)}};});
     this.dialog.open(d.name+' · 持有与现货比较','按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。',[{label:'返回购买详情',run:()=>this.inspectOffer(offerId)},{label:'更换培养方向',run:()=>this.inspectJourney()}],{summaryBody:'现货 · '+shopOfferRelation(this.run,o,focus).label+' · '+d.name+' · 实付'+r2PurchasePrice(this.run,o)+'金\n'+d.description,cards});attachFirstChapterGuide(this.run,()=>this.render());
   }
   private openPurchaseReceipt():void {
@@ -540,13 +540,14 @@ export class ShopScene extends Phaser.Scene {
   private inspectJoker(id:string,offerId?:string):void {
     const j=this.run.jokers.find(j=>j.instanceId===id);if(!j||this.busy)return;this.hideHoverPicture();const d=this.jokerDefinition(j.definitionId),index=this.run.jokers.indexOf(j),seq=this.run.commandSeq;
     const relation=shopRouteRelation(this.run,j,currentBuildFocus(this.run.runId));
+    const saleEffects=shopSaleConsequences(this.run,j);
     const growth=r2JokerStateText(j,d),ability=this.jokerCopy(d.id,j),causality=groupGrowthCausality(this.run,j);
     const dialog=this.dialog.open(d.name+' · 第 '+(index+1)+' 槽',(ability?'':d.description+r2JokerExtraHelp(d)+'\n')+'版次：'+editionEffectText(j.edition)+'\n\n当前实例：'+growth+`\n实际买价 ${j.paidPrice} 金；基础卖价 ${salePrice(j.paidPrice)} 金。\n当前余额 ${this.run.gold} 金；交易来源与售后余额按实际保存结果显示。\n\n大丑牌按从左至右的顺序触发。`,[
       ...(offerId?[{label:'返回现货比较',run:()=>this.inspectReplacement(offerId)}]:[]),
       ...(causality?[{label:'成长因果',run:()=>{const saved=groupGrowthCausality(this.run,j);if(saved)this.dialog.open(saved.title,saved.body);}}]:[]),
       {label:'左移',disabled:!this.ready||index===0,run:async()=>{if(await this.reorder(index,index-1,seq)&&this.dialog.active(dialog))this.inspectJoker(id,offerId);}},
       {label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:async()=>{if(await this.reorder(index,index+1,seq)&&this.dialog.active(dialog))this.inspectJoker(id,offerId);}},
-      {label:'出售',disabled:!this.ready,run:()=>{const confirmation=this.dialog.open('出售确认',`出售第 ${index+1} 槽的「${d.name}」基础卖价 ${salePrice(j.paidPrice)} 金币。\n当前余额 ${this.run.gold} 金；交易来源与售后余额以实际保存结果为准。\n\n该牌成长将丢失，当前成长：${growth}。`,[{label:'确认出售',primary:true,run:async()=>{if(await this.send({type:'SellJoker',instanceId:id},seq)){this.dialog.close(confirmation);if(offerId)this.inspectOffer(offerId);}}}],{closeLabel:'取消'});}},
+      {label:'出售',disabled:!this.ready,run:()=>{const confirmation=this.dialog.open('出售确认',`出售第 ${index+1} 槽的「${d.name}」基础卖价 ${salePrice(j.paidPrice)} 金币。\n当前余额 ${this.run.gold} 金；交易来源与售后余额以实际保存结果为准。\n\n该牌成长将丢失，当前成长：${growth}。`+(saleEffects.length?'\n\n成功出售后保留牌的确定影响：\n'+saleEffects.join('\n'):''),[{label:'确认出售',primary:true,run:async()=>{if(await this.send({type:'SellJoker',instanceId:id},seq)&&this.dialog.active(confirmation)){this.dialog.close(confirmation);if(offerId)this.inspectOffer(offerId);}}}],{closeLabel:'取消'});}},
     ],{summaryBody:relation.body+'\n现存：'+growth,portrait:this.jokerPortrait(d.id),rarity:d.rarity,artLoad:this.jokerArtStatus(d.id),editionBody:ability?this.jokerEditionSummary(j.edition,d.id):undefined,ability,collapseRules:!!ability});
     this.attachJokerFallback(dialog,d.id);
   }
