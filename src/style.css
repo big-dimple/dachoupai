@@ -376,3 +376,15 @@ button[aria-busy=true] { border-style:dashed; }
 .first-chapter-guide { margin-top:12px; padding:10px; border-top:1px solid #a38b66; font-size:14px; line-height:1.55; }
 .first-chapter-guide summary { cursor:pointer; min-height:44px; display:flex; align-items:center; }
 .first-chapter-guide .dialog-actions { position:static; padding:0; flex-wrap:wrap; background:transparent; }
+
+/* Complex Joker details retain full conditions as readable steps. */
+.card-ability.is-player-copy .ability-steps { margin:0;padding:0;list-style:none;font-size:15px;line-height:1.45; }
+.ability-steps>li { margin:0 0 8px;padding:0 0 8px;border-bottom:1px solid #d0cebc; }
+.ability-steps>li:last-child { border-bottom:0;margin-bottom:0; }
+.ability-steps .ability-when { margin:0 0 3px;color:#3F606B;font-size:15px;font-weight:normal; }
+.ability-steps strong { display:block;font-size:17px;line-height:1.4; }
+.card-ability.is-player-copy .ability-step-limits { margin:6px 0;padding-left:18px;font-size:14px;line-height:1.45;color:#26313A; }
+.card-ability.is-player-copy.is-stepped small { display:block;margin-top:8px;font-size:14px;line-height:1.45; }
+@media(max-width:560px) and (orientation:portrait) {
+ .detail-dialog--stepped-joker.detail-dialog--illustrated .dialog-content { grid-template-rows:minmax(0,20%) minmax(0,1fr); }
+}

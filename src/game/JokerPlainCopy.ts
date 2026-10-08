@@ -7,8 +7,9 @@ import {fractionText} from './scoreText';
 import {growthBounds,growthOpportunityForDefinition} from './GrowthOpportunity';
 import {r2ResourceHeatValue,r2ScoreOperationText} from './r2Help';
 import {R2_GROUP_HAND_TYPES} from '../domain/r2GroupHands';
+import {jokerDetailSteps,type JokerDetailSteps} from './JokerDetailSteps';
 
-export interface JokerPlainCopy {line:string;tile:string;status:string;essential:string;details:string;fallback:boolean}
+export interface JokerPlainCopy {line:string;tile:string;status:string;essential:string;details:string;fallback:boolean;steps?:JokerDetailSteps}
 type Memory=ReturnType<typeof jokerMemory>;
 const names=(types:readonly (keyof typeof HAND_LABELS)[])=>types.length===R2_GROUP_HAND_TYPES.length&&types.every(t=>R2_GROUP_HAND_TYPES.includes(t))?'对子等同点组合':types.map(t=>HAND_LABELS[t]).join('/');
 const allBeyondPair=(types:readonly (keyof typeof HAND_LABELS)[])=>types.length===Object.keys(HAND_LABELS).length-2&&Object.keys(HAND_LABELS).filter(t=>t!=='high-card'&&t!=='pair').every(t=>types.includes(t as keyof typeof HAND_LABELS));
@@ -151,5 +152,6 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
   else tile='多步条件\n'+(read?.kind==='retrigger-card'?'再计'+read.count+'次':read?gain(read,hooks[0].phase)??'分时点生效':'分时点生效')+'\n点牌查条件';
  }
 
- return {line,tile,status,essential:[...new Set(essential)].join('\n'),details:[main,...limits,state,rules].filter(Boolean).join('\n'),fallback};
+ const visibleLimits=[...new Set(essential)].join('\n');
+ return {line,tile,status,essential:visibleLimits,details:[main,...limits,state,rules].filter(Boolean).join('\n'),fallback,...(fallback?{steps:jokerDetailSteps(d,line,visibleLimits,status,rules)}:{})};
 }

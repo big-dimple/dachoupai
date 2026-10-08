@@ -134,13 +134,19 @@ export class DetailDialog {
     }
     if(options.ability){
       const ability=document.createElement('section'),condition=document.createElement('span'),value=document.createElement('strong'),state=document.createElement('small');
-      ability.className='card-ability f09-ability';ability.dataset.inactive=String(!!options.f09?.inactive);condition.textContent=options.ability.condition;value.textContent=options.ability.value;if(options.ability.playerCopy){ability.classList.add('is-player-copy');value.textContent=options.ability.plain?.line??options.ability.condition;condition.textContent=options.ability.plain?.essential??options.ability.value;value.className='ability-main';condition.className='ability-limits';ability.append(value);if(condition.textContent)ability.append(condition);}else ability.append(condition,value);
-      if(options.ability.state){state.textContent=options.ability.plain?.status??options.ability.state;ability.append(state);}intro.append(ability);
+      ability.className='card-ability f09-ability';ability.dataset.inactive=String(!!options.f09?.inactive);condition.textContent=options.ability.condition;value.textContent=options.ability.value;if(options.ability.playerCopy&&options.ability.plain?.steps){
+        dialog.classList.add('detail-dialog--stepped-joker');ability.classList.add('is-player-copy','is-stepped');
+        const steps=document.createElement('ol');steps.className='ability-main ability-steps';steps.setAttribute('aria-label','生效步骤');
+        for(const step of options.ability.plain.steps.steps){const item=document.createElement('li'),when=document.createElement('p'),effect=document.createElement('strong');when.className='ability-when';when.textContent=step.when;effect.textContent=step.effect;if(step.when)item.append(when);item.append(effect);steps.append(item);}ability.append(steps);
+        const limits=document.createElement('ul');limits.className='ability-limits ability-step-limits';limits.setAttribute('aria-label','关键限制');for(const text of options.ability.plain.steps.limits){const item=document.createElement('li');item.textContent=text;limits.append(item);}if(limits.childElementCount)ability.append(limits);
+      }else if(options.ability.playerCopy){ability.classList.add('is-player-copy');value.textContent=options.ability.plain?.line??options.ability.condition;condition.textContent=options.ability.plain?.essential??options.ability.value;value.className='ability-main';condition.className='ability-limits';ability.append(value);if(condition.textContent)ability.append(condition);}else ability.append(condition,value);
+      if(options.ability.state){state.textContent=(options.ability.plain?.steps?'现在：':'')+(options.ability.plain?.status??options.ability.state);ability.append(state);}intro.append(ability);
       if(options.ability.flavor.trim()){const flavor=document.createElement('p');flavor.className='card-flavor';flavor.textContent=options.ability.flavor;copy.append(flavor);}
     }
     if(options.effectBody&&!options.ability){const effect=document.createElement('p');effect.className='dialog-effect';effect.textContent=options.effectBody;intro.append(effect);}
+    if(options.summaryBody&&options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;intro.append(summary);}
     if(options.editionBody){const edition=document.createElement('p');edition.className='dialog-edition-summary';edition.textContent=options.editionBody;intro.append(edition);}
-    if(options.summaryBody){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;intro.append(summary);}
+    if(options.summaryBody&&!options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;intro.append(summary);}
     if(options.cards?.length){
       const gallery=document.createElement('section');gallery.className='experience-cards';gallery.setAttribute('aria-label','来源与下一步');
       for(const card of options.cards){
