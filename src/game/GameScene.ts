@@ -1626,6 +1626,7 @@ export class GameScene extends Phaser.Scene {
     this.breakdownText.setText(fractionText(score.accumulator.H)+' 热度 × '+fractionText(score.accumulator.M)+' 倍率 = '+heatText(score.finalScore));
     presentation.credited=true;this.updateHud();
     this.scoreTotal.setData('eventId',score.events.find(event=>event.phase==='finalScore')?.eventId).setData('eventPhase','award');
+    this.scoreTotal.setColor(celebration.cleared&&celebration.tier>=2?'#80551f':tier?C.red:C.ink);
     if(!presentation.replay){const level=scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat);this.ensureScoreFlame().impact('award',level===3?1:level===2?.85:.65);this.audio.scoreImpact(presentation,'award','award',level,score.events.filter(e=>numberImpact(e,this.stage.targetHeat)?.kind==='multiply').length);this.keepScoreReadable();}
     const opening= !presentation.replay&&presentation.state.openingShow?.rootId===score.rootId&&presentation.state.openingShow.reason==='score';
     const closeOpening=opening?this.showOpeningScore(score,context):undefined;
