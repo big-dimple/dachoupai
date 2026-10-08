@@ -5,7 +5,7 @@ import {access,mkdir,writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {chromium,firefox,webkit} from 'playwright';
 import {build,preview} from 'vite';
-import {waitScene,tapUI,point,tapMenuAction} from './ui.mjs';
+import {waitScene,tapUI,point,tapMenuAction,confirmHeroRoute} from './ui.mjs';
 import {armResourcePulse,waitResourcePulse} from './resource-pulse.mjs';
 const root=process.cwd(),port=Number(process.env.SHOT_PORT||5199),outDir=path.join(root,'shots/smoke-build'),verify=process.argv.includes('--verify-smoke');
 const saveScreens=!verify||process.env.SMOKE_SHOTS==='1';
@@ -58,7 +58,7 @@ try {
     assert.equal(await page.evaluate(()=>window.__harness.game.scene.isActive('shop')),false,'selection requires confirmation');
     await tapUI(page,'character-select','action/cancel-character',touch);
     assert.equal((await point(page,'character-select','action/confirm-character')).enabled,false);
-    await tapUI(page,'character-select','character/amo',touch);await tapUI(page,'character-select','action/confirm-character',touch);await waitScene(page,'shop');
+    await tapUI(page,'character-select','character/amo',touch);await confirmHeroRoute(page,touch);await waitScene(page,'shop');
     assert.equal((await state(page)).characterId,'amo');
     assert.equal((await state(page)).contentVersion,'quality-r2-group-upgrade-prototype-v1');
     assert.equal((await state(page)).contentHash,'json-fnv-v1:5025cc23c013987f');
@@ -167,7 +167,7 @@ try {
     const viewport={width:390,height:740},context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:3}),page=await context.newPage(),errors=[];activePage=page;
     page.on('pageerror',e=>errors.push(String(e)));await page.goto(`http://127.0.0.1:${port}/?harness=1&seed=p04-golden-02`);await waitScene(page,'title');
     await tapUI(page,'title','action/title-start',true);await waitScene(page,'character-select');
-    await tapUI(page,'character-select','character/touye',true);await tapUI(page,'character-select','action/confirm-character',true);await waitScene(page,'shop');
+    await tapUI(page,'character-select','character/touye',true);await confirmHeroRoute(page,true);await waitScene(page,'shop');
     // Confirm and Start-stage overlap on portrait. Respect the production350ms
     // click-through guard before this feedback-only route's next deliberate tap.
     await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);await page.waitForTimeout(370);
@@ -250,7 +250,7 @@ try {
     for(const fixture of fixtures){
       const viewport={width:390,height:740},context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:3}),page=await context.newPage(),errors=[];activePage=page;page.on('pageerror',e=>errors.push(String(e)));
       await page.goto(`http://127.0.0.1:${port}/?harness=1&seed=${fixture.seed}`);await waitScene(page,'title');
-      await tapUI(page,'title','action/title-start',true);await waitScene(page,'character-select');await tapUI(page,'character-select','character/'+fixture.character,true);await tapUI(page,'character-select','action/confirm-character',true);await waitScene(page,'shop');
+      await tapUI(page,'title','action/title-start',true);await waitScene(page,'character-select');await tapUI(page,'character-select','character/'+fixture.character,true);await confirmHeroRoute(page,true);await waitScene(page,'shop');
       const shop=await state(page),offer=shop.shop.offers.find(o=>o.definitionId===fixture.joker&&!o.consumed);assert.ok(offer&&offer.price===6&&shop.gold===6,'natural shelf permits the target purchase without injected state');
       await tapUI(page,'shop','offer/'+offer.offerId,true);await dom(page,'确认购买',true);await next(page,shop.commandSeq);assert.equal((await state(page)).gold,0);
       await tapUI(page,'shop','action/start-stage',true);await waitScene(page,'game');await ready(page);

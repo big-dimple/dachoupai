@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {build,preview} from 'vite';
 import {chromium} from 'playwright';
-import {chooseCharacter,openSelector,tapUI,waitScene,openMenuSection} from './ui.mjs';
+import {chooseCharacter,openSelector,tapUI,waitScene,openMenuSection,confirmHeroRoute} from './ui.mjs';
 const dir=process.env.P08_DIR||'shots/p08-batch2-components';await mkdir(dir,{recursive:true});
 await build({mode:'e2e',build:{outDir:dir+'/build'},logLevel:'warn'});
 const server=await preview({build:{outDir:dir+'/build'},preview:{host:'127.0.0.1',port:5262,strictPort:true},logLevel:'warn'}),browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});
@@ -21,7 +21,7 @@ try{
   if(touch){
    await p.route('**/azao.portrait.webp',route=>route.fulfill({status:404,body:'missing'}));await tapUI(p,'character-select','character/azao',true);await tapUI(p,'character-select','action/character-details',true);await p.getByText('高清暂未加载，可重试',{exact:true}).waitFor();await detailBounds(p);await p.screenshot({path:dir+'/390-art-recovery.png'});await p.unroute('**/azao.portrait.webp');await p.getByRole('button',{name:'重试高清',exact:true}).click();await p.waitForFunction(()=>[...document.querySelectorAll('.detail-dialog[open] .detail-art-status')].every(e=>e.hidden));await p.getByRole('button',{name:'关闭',exact:true}).click();await tapUI(p,'character-select','character/laohuan',true);r.checks.push('failed HD preserves thumbnail/text/selection; explicit retry succeeds; closing keeps selected role');
   }
-  await tapUI(p,'character-select','action/confirm-character',touch);await waitScene(p,'shop');await p.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);await tapUI(p,'shop','action/start-stage',touch);await waitScene(p,'game');await ready(p);
+  await confirmHeroRoute(p,touch);await waitScene(p,'shop');await p.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);await tapUI(p,'shop','action/start-stage',touch);await waitScene(p,'game');await ready(p);
   if(touch){await openMenuSection(p,'settings',true);assert.equal(await p.getByLabel('背景音量',{exact:true}).inputValue(),'30');assert.equal(await p.getByLabel('音效音量',{exact:true}).inputValue(),'80');await p.screenshot({path:dir+'/390-menu-audio.png'});await p.getByLabel('演出速度').selectOption('4');await p.locator('.run-menu-toggle').tap();r.checks.push('menu reachable; fresh30/80 defaults; existing speed selector');}
   for(const id of ['diamonds-7','diamonds-9','diamonds-4','diamonds-12','diamonds-10'])await tapUI(p,'game','card/'+id,touch);await tapUI(p,'game','action/play',touch);await waitScene(p,'intermission');await p.waitForTimeout(900);const won=await save(p);assert.equal(won.lastTrace.finalScore,'1200');await p.screenshot({path:dir+'/'+width+'-victory.png'});
   await p.setViewportSize({width:width===390?390:1024,height:width===390?740:768});await p.waitForFunction(()=>window.__harness.game.scene.getScene('intermission').view.layout.width===window.innerWidth);assert.deepEqual(await save(p),won);await p.reload();await waitScene(p,'title');await tapUI(p,'title','action/title-continue',touch);await waitScene(p,'intermission');assert.deepEqual(await save(p),won);r.checks.push('natural1200 clear; actual reward unchanged by resize/reload/continue');await tapUI(p,'intermission','action/continue-stage',touch);await waitScene(p,'shop');assert.ok((await save(p)).phase==='shop');

@@ -1,10 +1,12 @@
 import {beforeEach,afterEach,it,expect,vi} from 'vitest';
 import {createRun} from '../src/domain/run';
 import {FIRST_GUIDE_KEY,decodeGuidePreferences,stopFirstChapterGuide,enrollFirstChapterGuide,firstChapterGuide,firstChapterShopPrompt,dismissFirstChapterGuide} from '../src/game/FirstChapterGuide';
+import {chooseBuildFocus} from '../src/game/BuildJourney';
 let data:Map<string,string>;
 beforeEach(()=>{data=new Map();vi.stubGlobal('localStorage',{getItem:(k:string)=>data.get(k)??null,setItem:(k:string,v:string)=>data.set(k,v)});});
 afterEach(()=>vi.unstubAllGlobals());
 const run=(id='new')=>createRun({seed:'group-natural-17',runId:id,characterId:'amo',rulesVersion:'r2',r2Profile:'group-upgrade-v1'});
+it('a confirmed opening direction reaches the first guide without reselecting or mutating the run',()=>{const s=run('opening-guide'),before=JSON.stringify(s);enrollFirstChapterGuide(s);chooseBuildFocus(s.runId,'flush');expect(firstChapterGuide(s)?.body).toContain('你选了同花集中');expect(firstChapterGuide(s)?.body).not.toContain('先挑想试的方向');expect(firstChapterGuide(s)?.body).toContain('方向可换');expect(firstChapterGuide(run('other'))).toBeUndefined();expect(JSON.stringify(s)).toBe(before);});
 it('old runs are not enrolled by reading and guide data is separate from complete state/RNG',()=>{const s=run(),before=JSON.stringify(s);expect(firstChapterGuide(s)).toBeUndefined();enrollFirstChapterGuide(s);expect(firstChapterGuide(s)?.step).toBe('shop');expect(JSON.stringify(s)).toBe(before);expect(firstChapterGuide(run('old'))).toBeUndefined();expect(data.has(FIRST_GUIDE_KEY)).toBe(true);});
 it('main-shop discovery uses current public gold and exits through the existing independent preferences',()=>{const s=run(),before=JSON.stringify(s);expect(firstChapterShopPrompt(s)).toBeUndefined();enrollFirstChapterGuide(s);expect(firstChapterShopPrompt(s)?.text).toContain('金币 '+s.gold);expect(firstChapterShopPrompt(s)?.action).toBe('看用途');dismissFirstChapterGuide(s,'step');expect(firstChapterShopPrompt(s)).toBeUndefined();s.stageIndex=1;expect(firstChapterShopPrompt(s)?.action).toBe('看持牌');s.stageIndex=0;expect(JSON.stringify(s)).toBe(before);});
 it('derives shop→hand→saved→next shop from actual phase and trace, never a timed score promise',()=>{const s=run();enrollFirstChapterGuide(s);s.phase='await-input';expect(firstChapterGuide(s)?.step).toBe('hand');s.phase='shop';s.stageIndex=1;expect(firstChapterGuide(s)?.step).toBe('return');s.stageIndex=3;expect(firstChapterGuide(s)).toBeUndefined();});

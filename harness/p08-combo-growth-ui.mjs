@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {build,preview} from 'vite';
 import {chromium} from 'playwright';
-import {waitScene,tapUI,point,tapMenuAction} from './ui.mjs';
+import {waitScene,tapUI,point,tapMenuAction,confirmHeroRoute} from './ui.mjs';
 import {snapshotSource} from '../scripts/check-runner.mjs';
 const dir=process.env.COMBO_UI_DIR||'shots/p08-combo-growth-ui',before=snapshotSource(process.cwd());
 await mkdir(dir,{recursive:true});
@@ -29,7 +29,7 @@ try{for(const spec of [{name:'select-320',width:320,height:568},{name:'select-39
   const description=g.texts.find(t=>t.text.includes('副组真消耗'));assert.ok(description);assert.ok(parseFloat(description.font)>=14,'description >=14px');for(const c of g.controls)assert.ok(!intersects(description.bounds,c.bounds),c.name+' description overlap');
   await shot(spec.name);row.checks.push('selected assist copy, title clear of mode/menu, 44px controls and description clear of actions');
   await tap('character-select','action/character-details');const detail=await p.getByRole('dialog').innerText();assert.match(detail,/两对、三条、顺子、同花/);assert.match(detail,/高牌和对子仅兜底/);assert.doesNotMatch(detail,/单张|Lv3|高牌升级/);await p.getByRole('button',{name:'关闭',exact:true}).tap();
-  await tap('character-select','action/cancel-character');assert.equal((await point(p,'character-select','action/confirm-character')).enabled,false);await tap('character-select','character/amo');await tap('character-select','action/confirm-character');await waitScene(p,'shop');
+  await tap('character-select','action/cancel-character');assert.equal((await point(p,'character-select','action/confirm-character')).enabled,false);await tap('character-select','character/amo');await confirmHeroRoute(p,true);await waitScene(p,'shop');
   const fresh=await saved();assert.equal(fresh.state.contentHash,'json-fnv-v1:e7d21fce68b80072');assert.equal(fresh.state.contentVersion,'quality-r2-combo-growth-prototype-v1');assert.deepEqual(fresh.state.handLevels,{});row.checks.push('normal Title → CharacterSelect → Shop creates frozen shared combo identity after explicit confirmation');
   if(spec.natural){
    await p.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);await p.waitForTimeout(370);await tap('shop','action/start-stage');await waitScene(p,'game');await settled();
@@ -56,9 +56,9 @@ try{for(const spec of [{name:'select-320',width:320,height:568},{name:'select-39
    const database=()=>p.evaluate(()=>new Promise((resolve,reject)=>{const open=indexedDB.open('dachoupai-checkpoints',1);open.onerror=()=>reject(open.error);open.onsuccess=()=>{const db=open.result,tx=db.transaction('saves','readonly'),store=tx.objectStore('saves'),keys=store.getAllKeys(),values=store.getAll();tx.oncomplete=()=>{db.close();resolve({keys:keys.result,values:values.result});};};}));
    const originalDB=await database();p.on('dialog',d=>d.accept());
    await p.locator('.run-menu-toggle').tap();await p.getByText('进度与存档',{exact:true}).tap();await p.getByRole('button',{name:'开始新局',exact:true}).tap();await waitScene(p,'character-select');
-   await tap('character-select','character/touye');await tap('character-select','action/confirm-character');await p.getByRole('button',{name:'取消',exact:true}).tap();assert.deepEqual(await saved(),original);assert.deepEqual(await database(),originalDB);
+   await tap('character-select','character/touye');await confirmHeroRoute(p,true);await p.getByRole('button',{name:'取消',exact:true}).tap();assert.deepEqual(await saved(),original);assert.deepEqual(await database(),originalDB);
    await p.evaluate(()=>{window.__launchPut=IDBObjectStore.prototype.put;window.__launchWrites=0;IDBObjectStore.prototype.put=function(...args){if(this.name==='saves'&&args[1]==='meta'){window.__launchWrites++;throw new DOMException('launch quota injection','QuotaExceededError');}return Reflect.apply(window.__launchPut,this,args);};});
-   await tap('character-select','action/confirm-character');await p.getByRole('button',{name:'确认开始新局',exact:true}).tap();await p.getByRole('button',{name:'导出未保存候选',exact:true}).waitFor();
+   await confirmHeroRoute(p,true);await p.getByRole('button',{name:'确认开始新局',exact:true}).tap();await p.getByRole('button',{name:'导出未保存候选',exact:true}).waitFor();
    const candidate=async()=>{const download=p.waitForEvent('download');await p.getByRole('button',{name:'导出未保存候选',exact:true}).tap();return readFile(await(await download).path(),'utf8');};
    const pending=await candidate();assert.equal(JSON.parse(pending).state.characterId,'touye');assert.equal(JSON.parse(pending).state.contentHash,'json-fnv-v1:e7d21fce68b80072');assert.deepEqual(await saved(),original);assert.deepEqual(await database(),originalDB);
    await p.getByRole('button',{name:'重试保存',exact:true}).tap();assert.equal(await candidate(),pending);assert.deepEqual(await saved(),original);assert.deepEqual(await database(),originalDB);assert.equal(await p.getByRole('button',{name:'开始新局',exact:true}).isDisabled(),true);

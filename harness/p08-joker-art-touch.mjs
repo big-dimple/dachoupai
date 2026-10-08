@@ -4,7 +4,7 @@ import {execFileSync} from 'node:child_process';
 import {mkdir,readFile,writeFile} from 'node:fs/promises';
 import {build,preview} from 'vite';
 import {chromium} from 'playwright';
-import {point,tapUI,waitScene} from './ui.mjs';
+import {point,tapUI,waitScene,confirmHeroRoute} from './ui.mjs';
 const dir='shots/p08-joker-art-touch',outDir=process.env.ART_TOUCH_REUSE_BUILD||dir+'/build',port=5295;
 await mkdir(dir,{recursive:true});
 if(!process.env.ART_TOUCH_REUSE_BUILD)await build({mode:'e2e',build:{outDir},logLevel:'error'});
@@ -17,7 +17,7 @@ try{
   page.on('pageerror',e=>report.errors.push(String(e)));page.on('request',r=>requests.push(new URL(r.url()).pathname));
   await page.route('**/cards/*.thumbnail.webp',r=>{if(released)return r.continue();held.push(r);});
   await page.goto(`http://127.0.0.1:${port}/?harness=1&seed=p00-core-ui`);await waitScene(page,'title');
-  await tapUI(page,'title','action/title-start',true);await waitScene(page,'character-select');await tapUI(page,'character-select','character/amo',true);await tapUI(page,'character-select','action/confirm-character',true);await waitScene(page,'shop');
+  await tapUI(page,'title','action/title-start',true);await waitScene(page,'character-select');await tapUI(page,'character-select','character/amo',true);await confirmHeroRoute(page,true);await waitScene(page,'shop');
   assert.equal(await page.evaluate(()=>window.__harness.game.renderer.type),1,'actual Canvas');
   const before=await page.evaluate(()=>window.__harness.game.registry.get('runController').state),offer=before.shop.offers.find(o=>!o.consumed&&o.price<=before.gold),name='offer/'+offer.offerId;
   assert.equal(offer.definitionId,'b11','natural seed exercises a newly registered final21 face');

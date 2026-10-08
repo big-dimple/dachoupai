@@ -8,7 +8,7 @@ import {createServer} from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
 import {chromium} from 'playwright';
-import {waitScene,tapUI} from './ui.mjs';
+import {waitScene,tapUI,confirmHeroRoute} from './ui.mjs';
 
 const option=(name,fallback)=>{const i=process.argv.indexOf(name);return i<0?fallback:process.argv[i+1];};
 const buildDir=option('--build-dir'),scenario=option('--scenario','all'),samples=Number(option('--samples','20'));
@@ -111,7 +111,7 @@ async function normal(prefix,touch){
     await characterImage.evaluate(image=>image.decode());
     const character=await characterImage.evaluate(image=>({path:new URL(image.src).pathname,width:image.naturalWidth,height:image.naturalHeight,fit:getComputedStyle(image).objectFit}));
     assert.equal(character.path,prefix+'assets/handdrawn-p08/characters/amo.portrait.webp');assert.equal(character.fit,'contain');
-    await clickDom(probe.page,'关闭');await tapUI(probe.page,'character-select','action/confirm-character',touch);await waitScene(probe.page,'shop');
+    await clickDom(probe.page,'关闭');await confirmHeroRoute(probe.page,touch);await waitScene(probe.page,'shop');
     const before=await probe.page.evaluate(()=>window.__harness.game.registry.get('runController').state),offer=before.shop.offers.find(o=>!o.consumed),art=jokers.find(j=>j.id===offer.definitionId);assert.ok(art);
     await tapUI(probe.page,'shop','offer/'+offer.offerId,touch);
     const cardImage=probe.page.locator('dialog[open] .dialog-card-image');await cardImage.evaluate(image=>image.decode());
@@ -143,7 +143,7 @@ async function missingPreviews(){
     await tapUI(probe.page,'title','action/title-start',true);await waitScene(probe.page,'character-select');await tapUI(probe.page,'character-select','character/amo',true);
     const letter=await probe.page.evaluate(()=>{const scene=window.__harness.game.scene.getScene('character-select'),find=list=>list.some(o=>o.text==='阿'||o.list&&find(o.list));return find(scene.children.list);});assert.ok(letter,'avatar/selection failure renders the character letter');
     await tapUI(probe.page,'character-select','action/character-details',true);await probe.page.locator('dialog[open] .dialog-portrait').waitFor({state:'detached'});assert.ok(await probe.page.locator('dialog[open] .dialog-body').textContent());await clickDom(probe.page,'关闭');
-    await tapUI(probe.page,'character-select','action/confirm-character',true);await waitScene(probe.page,'shop');await tapUI(probe.page,'shop','action/start-stage',true);await waitScene(probe.page,'game');
+    await confirmHeroRoute(probe.page,true);await waitScene(probe.page,'shop');await tapUI(probe.page,'shop','action/start-stage',true);await waitScene(probe.page,'game');
     await probe.page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.length===8);
     const run=await probe.page.evaluate(()=>window.__harness.game.registry.get('runController').state),cardId=run.handOrder[0];await tapUI(probe.page,'game','card/'+cardId,true);
     await probe.page.waitForFunction(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),cardId);
@@ -161,7 +161,7 @@ async function stalledPreview(){
     catch(error){record.blocked=await probe.page.evaluate(()=>{const game=window.__harness.game,boot=game.scene.getScene('boot');return {bootLoading:boot.load.isLoading(),titleActive:game.scene.isActive('title'),inflight:boot.load.inflight.entries.map(file=>({path:new URL(file.src,location.href).pathname,xhrTimeoutMs:file.xhrLoader?.timeout}))};});record.stalledRequests=stalledRequests;record.pageErrors=probe.errors;throw error;}
     assert.ok(record.loader.actualXHRTimeoutMs>0&&record.loader.actualXHRTimeoutMs<=5000,'each actual image XHR has a finite timeout');assert.equal(record.loader.retryAttempts,0,'no repeated stall delay');
     assert.equal(await probe.page.evaluate(()=>window.__harness.game.textures.exists('avatar-amo')),false);
-    await tapUI(probe.page,'title','action/title-start',true);await waitScene(probe.page,'character-select');await tapUI(probe.page,'character-select','character/amo',true);await tapUI(probe.page,'character-select','action/confirm-character',true);await waitScene(probe.page,'shop');
+    await tapUI(probe.page,'title','action/title-start',true);await waitScene(probe.page,'character-select');await tapUI(probe.page,'character-select','character/amo',true);await confirmHeroRoute(probe.page,true);await waitScene(probe.page,'shop');
     assert.deepEqual(probe.errors,[]);record.status='PASS';record.stalledRequests=stalledRequests;record.firstUsableMs=await probe.page.evaluate(()=>window.__assetFirstUsable);record.warnings=probe.warnings;
   }catch(error){record.status='FAIL';record.error=String(error);throw error;}
   finally{fault=undefined;await probe.context.close();}
@@ -173,7 +173,7 @@ async function stalledReloadedSVG(){
     await probe.page.goto(base+'/dachoupai/?harness=1&seed=p00-core-ui',{waitUntil:'domcontentloaded'});
     await probe.page.waitForFunction(()=>window.__harness.game.scene.getScene('boot').load.inflight.entries.some(f=>f.src.includes('mark-joker.svg')&&f.xhrLoader));record.boot=await actualXHR('boot');
     await startupSnapshot(probe);fault={kind:'stall',path:record.path};
-    await tapUI(probe.page,'title','action/title-start',true);await waitScene(probe.page,'character-select');await tapUI(probe.page,'character-select','character/amo',true);await tapUI(probe.page,'character-select','action/confirm-character',true);await waitScene(probe.page,'shop');await tapUI(probe.page,'shop','action/start-stage',true);
+    await tapUI(probe.page,'title','action/title-start',true);await waitScene(probe.page,'character-select');await tapUI(probe.page,'character-select','character/amo',true);await confirmHeroRoute(probe.page,true);await waitScene(probe.page,'shop');await tapUI(probe.page,'shop','action/start-stage',true);
     await probe.page.waitForFunction(()=>window.__harness.game.scene.getScene('game').load?.inflight.entries.some(f=>f.src.includes('mark-joker.svg')&&f.xhrLoader));record.game=await actualXHR('game');
     try{await probe.page.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.scene.isActive()&&s.cardViews.length===8;},undefined,{timeout:7000});}
     catch(error){record.blocked=await probe.page.evaluate(()=>{const game=window.__harness.game,scene=game.scene.getScene('game');return {gameLoading:scene.load.isLoading(),gameActive:game.scene.isActive('game'),inflight:scene.load.inflight.entries.map(f=>({path:new URL(f.src,location.href).pathname,xhrTimeoutMs:f.xhrLoader?.timeout}))};});record.stalledRequests=stalledRequests-stallBefore;record.pageErrors=probe.errors;throw error;}

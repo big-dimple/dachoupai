@@ -33,7 +33,7 @@ export class ModeSelectDialog {
     challenge.value=initial.modeConfig.challengeId??'Q01';
     field('玩法',mode);const difficultyField=field('难度',difficulty),challengeField=field('挑战规则',challenge);
     const seed=document.createElement('input');seed.type='text';seed.maxLength=4096;seed.autocomplete='off';seed.dataset.modeField='seed';
-    seed.value=initial.modeConfig.mode==='standard'?initial.seed??'':'';seed.placeholder='留空将在确认角色时生成新种子';
+    seed.value=initial.modeConfig.mode==='standard'?initial.seed??'':'';seed.placeholder='留空将在确认登台时生成新种子';
     const seedField=field('普通局种子',seed),fixedSeed=document.createElement('select');fixedSeed.dataset.modeField='fixed-seed';
     const fixedSeedField=field('固定种子',fixedSeed),tutorial=document.createElement('div'),skip=document.createElement('button');
     tutorial.style.lineHeight='1.7';tutorial.style.overflowWrap='anywhere';skip.type='button';skip.textContent='跳过教程，回普通 D0';skip.dataset.modeAction='skip-tutorial';

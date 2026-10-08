@@ -4,7 +4,7 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {chromium} from 'playwright';
 import {preview} from 'vite';
-import {waitScene,tapUI} from './ui.mjs';
+import {waitScene,tapUI,confirmHeroRoute} from './ui.mjs';
 const dir=process.env.RESOURCE_FLOW_EVIDENCE_DIR||'shots/resource-flow/after',build=process.env.RESOURCE_FLOW_BUILD_DIR||'shots/resource-flow/after/build',port=5221;
 await mkdir(dir,{recursive:true});
 const report={scope:'D40 registered-runtime resource flow: natural desktop/mobile, controlled slow HD after shelf replacement/exit and mobile revisit; only intentional reroll/EnterStage domain commands',node:process.version,runs:[],limits:['Linux Chromium Canvas, GPU/software rasterization disabled; no physical-phone/WebGL claim.','decode wrappers measure explicit HTMLImageElement.decode/createImageBitmap promises; browser implicit decode internals are not observable.','Scene readiness is first observed enabled public control, not a network-idle milestone.','Controlled slow HD is separate from natural local-server timing.']};
@@ -43,7 +43,7 @@ async function run(name,viewport,touch,variant='natural'){
 
  try{
   await p.goto(`http://127.0.0.1:${port}/?harness=1&seed=f09-sample-30`);await waitScene(p,'title');await mark('title-usable');assert.equal(r.marks.at(-1).renderer,'Canvas');assert.ok(!r.requests.some(q=>q.path.includes('jokers-p07')||q.path.includes('-detail.webp')||/characters-p07\/[a-z]+\.webp$/.test(q.path)),'Boot excludes Joker and full portraits');r.checks.push('Boot has no Joker/full portrait/HD requests');
-  await tapUI(p,'title','action/title-start',touch);await waitScene(p,'character-select');await mark('selector-usable');await tapUI(p,'character-select','character/amo',touch);assert.equal(await p.evaluate(()=>window.__harness.game.scene.getScene('character-select').selectedId),'amo');await tapUI(p,'character-select','action/confirm-character',touch);await waitScene(p,'shop');await mark('shop-usable');r.offers=await p.evaluate(()=>window.__harness.game.registry.get('runController').state.shop.offers);const before=await persisted(p);
+  await tapUI(p,'title','action/title-start',touch);await waitScene(p,'character-select');await mark('selector-usable');await tapUI(p,'character-select','character/amo',touch);assert.equal(await p.evaluate(()=>window.__harness.game.scene.getScene('character-select').selectedId),'amo');await confirmHeroRoute(p,touch);await waitScene(p,'shop');await mark('shop-usable');r.offers=await p.evaluate(()=>window.__harness.game.registry.get('runController').state.shop.offers);const before=await persisted(p);
   if(!slow){
    await open('f09');const low=await mark('f09-detail-controls-usable');assert.ok(low.dialog.ability.includes('×1.5'));assert.ok(low.dialog.footerBottom<=viewport.height+.5);const high=await readyHD('f09');sameFrame(low,high);await mark('f09-HD-visible');await p.screenshot({path:`${dir}/${name}-detail.png`});await close();assert.deepEqual(await persisted(p),before,'detail opening/closing cannot mutate state/RNG/save');r.checks.push('Natural f09 ability/footer, correct HD source, fixed visual, unchanged state/RNG/save');
   }else if(variant==='exit'){

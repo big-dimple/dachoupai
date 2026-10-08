@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { createServer, build, preview } from 'vite';
 import { chromium } from 'playwright';
-import { tapUI as tapNative, waitScene } from './ui.mjs';
+import { tapUI as tapNative, waitScene, confirmHeroRoute } from './ui.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 const base = process.env.SHOP_GUIDE_OUTPUT ?? 'shots/w6-shop-guide';
@@ -40,7 +40,7 @@ try {
             await waitScene(p, 'character-select');
             await tapUI(p, 'character-select', 'character/amo');
             await shot('amo-selected');
-            await tapUI(p, 'character-select', 'action/confirm-character');
+            await confirmHeroRoute(p);
             await waitScene(p, 'shop');
             await settle();
             report.initial = await state();

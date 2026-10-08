@@ -70,7 +70,7 @@ export class TitleScene extends Phaser.Scene {
       v.text(short?x+buttonWidth/2:w/2,short?primaryY+128:primaryY-28,modeLabel+' · '+(saved.state.tourMode==='endless'?'无尽 · ':'')+'第 '+saved.state.chapter+' 章 · 金币 '+saved.state.gold,14,textColor,buttonWidth).setOrigin(.5).setAlign('center');
     }else {
       v.button(primary,'点触开场','action/title-start',()=>this.enterNew(),!session.working,true);
-      if(!short)v.text(w/2,primaryY+66,'选角色即可开场，模式可在选角页调整。',14,'#fff0d2').setOrigin(.5).setShadow(0,1,'#172d36',3,true,true);
+      if(!short)v.text(w/2,primaryY+66,'选英雄、定路线，一起登台。',14,'#fff0d2').setOrigin(.5).setShadow(0,1,'#172d36',3,true,true);
     }
     if(session.notice)v.text(24,h-bottom-38,'存档提示请查看右上菜单。',14,'#ffd3b4',w-48).setShadow(0,1,'#172d36',3,true,true);
     title.setName('title/name');

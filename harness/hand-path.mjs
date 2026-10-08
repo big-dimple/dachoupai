@@ -3,7 +3,7 @@ import {build,preview,createServer} from 'vite';
 import {chromium} from 'playwright';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
-import {tapUI,waitScene} from './ui.mjs';
+import {tapUI,waitScene,confirmHeroRoute} from './ui.mjs';
 const base=process.env.HAND_PATH_OUTPUT??'shots/w6-hand-path';
 await mkdir(base,{recursive:true});
 const ssr=await createServer({optimizeDeps:{noDiscovery:true,include:[]},server:{middlewareMode:true},logLevel:'error'});let send;
@@ -22,7 +22,7 @@ try{for(const device of [{name:'pc',width:1366,height:768},{name:'phone',width:3
  const retainIds=()=>reference().locator('.candidate-card-face').evaluateAll(xs=>xs.map(e=>e.dataset.cardId));
  const recordView=async note=>{report.steps.push({note,copy:await p.locator('dialog[open]').innerText(),view:await p.locator('dialog[open]').evaluate(d=>{const footer=d.querySelector('.dialog-actions').getBoundingClientRect(),heading=d.querySelector('h2').getBoundingClientRect(),bounds=d.getBoundingClientRect();return{bounds:bounds.toJSON(),heading:heading.toJSON(),scrollTop:d.scrollTop,footer:footer.toJSON(),controls:[...d.querySelectorAll('button,select')].filter(e=>e.getClientRects().length).map(e=>({text:e.textContent,height:e.getBoundingClientRect().height})),faces:[...d.querySelectorAll('.candidate-card-face')].filter(e=>e.getClientRects().length).map(e=>({id:e.dataset.cardId,text:e.textContent,bounds:e.getBoundingClientRect().toJSON()}))};})});const view=report.steps.at(-1).view;if(await p.locator('dialog[open]').evaluate(d=>d.classList.contains('hand-candidate-dialog')))assert.ok(view.heading.y>=view.bounds.y&&view.heading.y+view.heading.height<=view.footer.y,'fixed candidate heading must stay inside actual modal');};
  try{
-  await p.goto('http://127.0.0.1:5425/?harness=1&seed=group-natural-17');await waitScene(p,'title');await tap('title','action/title-start');await waitScene(p,'character-select');await tap('character-select','character/amo');await tap('character-select','action/confirm-character');await waitScene(p,'shop');await settle();let s=await state();report.initial=s;
+  await p.goto('http://127.0.0.1:5425/?harness=1&seed=group-natural-17');await waitScene(p,'title');await tap('title','action/title-start');await waitScene(p,'character-select');await tap('character-select','character/amo');await confirmHeroRoute(p,true);await waitScene(p,'shop');await settle();let s=await state();report.initial=s;
   await tap('shop','action/chapter');await p.getByRole('button',{name:'选择节目单',exact:true}).click();await p.getByRole('button',{name:'本章不接',exact:true}).click();s=await command(s,[{type:'ChooseProgram',programId:null}],'Real optional program decision');
   const offer=s.shop.toolOffers.find(o=>o.definitionId==='T06');assert.ok(offer&&offer.price<=s.gold);if(device.name!=='pc')await tap('shop','action/shelf-tools');await tap('shop','offer/'+offer.offerId);await p.getByRole('button',{name:'取消',exact:true}).click();assert.deepEqual(await state(),s);await tap('shop','offer/'+offer.offerId);await p.getByRole('button',{name:'确认购买',exact:true}).click();s=await command(s,[{type:'BuyOffer',offerId:offer.offerId}],'Real four-gold black-suit dye purchase, no assumed future hand');
   await tap('shop','action/start-stage');await waitScene(p,'game');s=await command(s,[{type:'LeaveShop'},{type:'EnterStage'}],'Real entry with natural opening hand');

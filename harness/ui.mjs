@@ -46,5 +46,11 @@ export async function openSelector(page,touch=false){
   if(await page.evaluate(()=>window.__harness.game.scene.isActive('title')))await tapUI(page,'title','action/title-start',touch);
   await waitScene(page,'character-select');
 }
-export async function chooseCharacter(page,id,touch=false){await openSelector(page,touch);await tapUI(page,'character-select','character/'+id,touch);await tapUI(page,'character-select','action/confirm-character',touch);await waitScene(page,'shop');}
+/** Follow the production hero → route → joint confirmation, including old-save prompts. */
+export async function confirmHeroRoute(page,touch=false,focus='group'){
+  if(await page.evaluate(()=>window.__harness.game.scene.getScene('character-select').step==='hero'))await tapUI(page,'character-select','action/confirm-character',touch);
+  await tapUI(page,'character-select','route/'+focus,touch);
+  await tapUI(page,'character-select','action/confirm-character',touch);
+}
+export async function chooseCharacter(page,id,touch=false){await openSelector(page,touch);await tapUI(page,'character-select','character/'+id,touch);await confirmHeroRoute(page,touch);await waitScene(page,'shop');}
 export async function buyOffer(page,id,touch=false){await tapUI(page,'shop','offer/'+id,touch);const button=page.getByRole('button',{name:'确认购买',exact:true});if(touch)await button.tap();else await button.click();}
