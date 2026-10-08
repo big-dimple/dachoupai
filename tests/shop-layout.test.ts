@@ -3,7 +3,7 @@ import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedD
 import {intersects} from '../src/game/layout';
 it('first-shop guide has reachable exits without covering merchandise or primary shop actions',()=>{
  for(const [width,height] of [[1280,720],[1366,768],[1920,1080],[390,740],[320,740],[740,390],[768,1024]]){
-  const p=shopLayout(width,height,8,0,3),g=shopFirstGuideLayout(p,height,true);expect(g,'guide at '+width+'x'+height).toBeDefined();if(!g)continue;
+  const p=shopLayout(width,height,12,0,3),g=shopFirstGuideLayout(p,height,true);expect(g,'guide at '+width+'x'+height).toBeDefined();if(!g)continue;
   expect(g.box.y).toBeGreaterThanOrEqual(8);expect(g.box.x).toBeGreaterThanOrEqual(0);expect(g.box.x+g.box.width).toBeLessThanOrEqual(width);expect(g.box.y+g.box.height).toBeLessThanOrEqual(height);
   for(const action of [p.play,p.reroll,p.build])expect(intersects(g.box,action)).toBe(false);
   for(const b of p.shelf)expect(intersects(g.box,{...b,height:b.height+(p.copyBeside?0:76)}),width+'x'+height+' merchandise').toBe(false);

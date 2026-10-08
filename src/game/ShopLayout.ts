@@ -75,7 +75,7 @@ export function shopFirstGuideLayout(p:ReturnType<typeof shopLayout>,height:numb
  if(p.pc){x=p.x+12;width=p.pc.left.width-24;y=p.chapter.y+p.chapter.height+12;limit=p.pc.left.y+p.pc.left.height-8;}
  else if(p.short){
   if(!p.inventoryCollapsed&&emptyOwned){width=p.chapter.width;y=p.slots[0].y;limit=p.chapter.y-6;replacesEmptySlots=true;}
-  else{x=p.tabs.x;width=p.tabs.width;y=Math.max(...p.shelf.map(b=>b.y+b.height))+6;limit=p.play.y-4;}
+  else{x=p.tabs.x;width=p.tabs.width;y=Math.max(...p.shelf.map(b=>b.y+b.height))+4;limit=p.play.y-4;}
  }else if(p.portrait){y=emptyOwned?p.slots[0].y:Math.max(...p.slots.map(b=>b.y+b.height))+26;limit=p.reroll.y-8;replacesEmptySlots=emptyOwned;}
  else{y=p.noticeY+28;limit=height-12;}
  const columns=width<284?2:4,padding=p.short&&columns===4?4:6,textHeight=p.short&&columns===4?18:columns===2?56:40,gap=columns===4&&p.short?2:4;
