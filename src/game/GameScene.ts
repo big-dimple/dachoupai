@@ -858,7 +858,7 @@ export class GameScene extends Phaser.Scene {
     this.view.setEnabled(this.discardButton,this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run)&&this.run.gold>=discardGoldCost);
     this.view.setEnabled(this.playButton,this.ready&&this.selectedIds.size>0&&this.handsLeft>0);
     const azao=usesAzaoCharge(this.run)?azaoChoice(this.run,this.selectionPreview()?.type):undefined;
-    if(azao&&!azao.available)this.azaoRelease=false;
+    if(azao&&!azao.available&&this.ready&&!this.playing&&!this.presentation)this.azaoRelease=false;
     if(azao){(this.playButton.getData('label') as Phaser.GameObjects.Text).setText(this.azaoRelease?'爆发×'+azao.multiplier:'出牌');this.roleText.setText(azao.compact);}
     this.resourceCounts.play.setColor(handActionCountColor('play',!!this.playButton.input?.enabled));
     this.resourceCounts.discard.setColor(handActionCountColor('discard',!!this.discardButton.input?.enabled,this.run.stage!.discardsLeft<2*r2DiscardCost(this.run)));
@@ -1287,11 +1287,11 @@ export class GameScene extends Phaser.Scene {
 
   private async playSelected():Promise<void> {
     if(!this.ready||this.selectedIds.size===0||this.handsLeft<=0)return;
-    const selectedIds=[...this.selectedIds],assistIds=[...this.assistIds],lifecycle=this.lifecycle,intent=++this.intent,beforeHeat=this.heat,previousTrace=this.run.lastTrace,beforeHands=this.handsLeft,beforeGold=this.run.gold;
+    const azaoRelease=this.azaoRelease,selectedIds=[...this.selectedIds],assistIds=[...this.assistIds],lifecycle=this.lifecycle,intent=++this.intent,beforeHeat=this.heat,previousTrace=this.run.lastTrace,beforeHands=this.handsLeft,beforeGold=this.run.gold;
     this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();
     const selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id)||assistIds.includes(v.card.id));
     try {
-      const result=await dispatchRun(this,assistIds.length?{type:'PlayAssistedHand',selectedIds,assistIds}:{type:'PlayHand',selectedIds,...(usesAzaoCharge(this.run)?{azaoRelease:this.azaoRelease}:{})});
+      const result=await dispatchRun(this,assistIds.length?{type:'PlayAssistedHand',selectedIds,assistIds}:{type:'PlayHand',selectedIds,...(usesAzaoCharge(this.run)?{azaoRelease}:{})});
       if(!this.alive(lifecycle,intent))return;
       if(!result.ok||result.duplicate){if(!result.ok)this.statusMessage=result.code==='save-failed'?'未保存，请在菜单中重试或导出':result.code==='score-diagnostic'?'本手无法结算，资源与原状态已保留':'出牌未提交，请查看菜单或选择。';return;}
       this.run=result.state;
