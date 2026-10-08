@@ -126,7 +126,7 @@ function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeC
     }
   }
 }
-function trace(value:unknown,context:{core:boolean;group:boolean;combo:boolean;definitions:ReturnType<typeof r2JokerDefinitionsFor>;runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[];liveJokers?:readonly R2JokerInstance[];settledGold?:number}):void {
+function trace(value:unknown,context:{phase:R2RunState['phase'];core:boolean;group:boolean;combo:boolean;definitions:ReturnType<typeof r2JokerDefinitionsFor>;runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[];liveJokers?:readonly R2JokerInstance[];settledGold?:number}):void {
   if(value===null)return;
   const R2_JOKERS=context.definitions,combo=context.combo,group=context.group;
   const stage=context.stage;if(!stage)return fail('invalid-save-trace-stage');
@@ -180,7 +180,7 @@ function trace(value:unknown,context:{core:boolean;group:boolean;combo:boolean;d
     if(saved.targetId!==null)text(saved.targetId);oneOf(saved.previousRank,[null,...RANKS]);oneOf(saved.targetRank,[null,...RANKS]);uniqueIds(saved.targetIds,5);oneOf(saved.extraPerCard,[0,1,2]);
     core=erxiangCoreFacts(t.cards as PlayingCard[],{type:t.handType as R2HandType,activeScoringIds:active},{targetId:saved.targetId as string|null,previousRank:saved.previousRank as import('../cards/types').Rank|null},context.config.characterAbilityEnabled&&boss?.definitionId!=='B08');
     if(stableHash(core)!==stableHash(saved)||stage.playIndex===1&&core.previousRank!==null||(!context.config.characterAbilityEnabled||boss?.definitionId==='B08')&&core.previousRank!==null)fail('invalid-save-core-trace');
-    if(stage.erxiangPreviousRank!==(stage.index===context.stageIndex&&stage.handsLeft>0&&stage.clearId===null?core.targetRank:null))fail('invalid-save-core-chain');
+    if(stage.erxiangPreviousRank!==(context.phase==='await-input'&&stage.index===context.stageIndex&&stage.handsLeft>0&&stage.clearId===null?core.targetRank:null))fail('invalid-save-core-chain');
   }
   const coreEvents=new Set<string>(),coreCaps=new Set<string>();
   const groupRetriggers=new Map<string,number>(),groupCaps=new Set<string>(),cardRetriggers=new Map<string,number>(),cardRoots=new Map<string,string>();
@@ -794,7 +794,7 @@ function validateState(value:unknown):asserts value is R2RunState {
     }
   }
   const stage=s.stage as R2RunState['stage'],sameStage=stage?.index===s.stageIndex&&['await-input','run-lost'].includes(s.phase as string);
-  trace(s.lastTrace,{core:usesR2ErxiangCore(s),group:hasR2GroupUpgradeContract(s),combo,definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2ScoreTimingFor(s),discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
+  trace(s.lastTrace,{phase:s.phase as R2RunState['phase'],core:usesR2ErxiangCore(s),group:hasR2GroupUpgradeContract(s),combo,definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2ScoreTimingFor(s),discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
     config,program:s.program as R2ProgramState|null,usage:usage as R2RunState['chapterHandUsage'],
     liveJokerIds:sameStage?(s.jokers as R2JokerInstance[]).map(joker=>joker.instanceId):undefined,liveJokers:combo||sameStage?s.jokers as R2JokerInstance[]:undefined,settledGold:['stage-cleared','run-won'].includes(s.phase as string)?s.gold as number:undefined});
   const program=s.program as R2ProgramState|null;

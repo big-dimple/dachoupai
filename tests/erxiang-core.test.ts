@@ -74,6 +74,12 @@ describe('bounded same-rank core candidate',()=>{
   reject=false;expect((await saved.retry()).ok).toBe(true);expect(saved.state.stage!.erxiangPreviousRank).toBe(14);expect(saved.state.lastTrace!.erxiangCore!.extraPerCard).toBe(1);
   const restored=SavedRun.restore(store,slots);expect(restored.state).toEqual(saved.state);expect((await restored.submit(saved.journal.at(-1)!)).ok).toBe(true);expect(restored.state).toEqual(saved.state);
  });
+ it('saves cleared chain when abandoning or discarding the last available cards with hands still left',()=>{
+  const before=send(entered(),{type:'PlayHand',selectedIds:main,coreTargetId:'clubs-14',coreTargetRank:14});
+  const abandoned=send(before,{type:'AbandonRun'});expect(abandoned.outcome!.reason).toBe('abandoned');expect(abandoned.stage!.erxiangPreviousRank).toBeNull();expect(abandoned.lastTrace!.erxiangCore!.targetRank).toBe(14);
+  const emptying=structuredClone(before);emptying.handOrder=['hearts-14','spades-14'];emptying.drawPile=[];emptying.discardPile=emptying.deckInstances.map(c=>c.id).filter(id=>!emptying.handOrder.includes(id)&&!emptying.playedPile.includes(id));
+  const ended=send(emptying,{type:'DiscardHand',selectedIds:[...emptying.handOrder]});expect(ended.outcome!.reason).toBe('no-legal-cards');expect(ended.stage!.handsLeft).toBeGreaterThan(0);expect(ended.stage!.erxiangPreviousRank).toBeNull();
+ });
  it('requires complete truthful current metadata and rejects changed targets/extra requests/rank roots after checksum recomputation',()=>{
   const s=send(entered(),{type:'PlayHand',selectedIds:main,coreTargetId:'clubs-14',coreTargetRank:14});
   for(const fn of [(x:R2RunState)=>{delete x.stage!.erxiangPreviousRank;},(x:R2RunState)=>{delete x.lastTrace!.erxiangCore;},(x:R2RunState)=>{x.lastTrace!.erxiangCore!.targetIds=['clubs-12'];},(x:R2RunState)=>{x.lastTrace!.erxiangCore!.extraPerCard=2;},(x:R2RunState)=>{x.lastTrace!.events.find(e=>e.sourceType==='character')!.rootEventId=x.lastTrace!.events[0].eventId;}])expect(mutate(s,fn).ok).toBe(false);
