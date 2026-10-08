@@ -1226,7 +1226,7 @@ export class GameScene extends Phaser.Scene {
     return '牌型 '+fractionText(first.H)+' 热度 × '+fractionText(first.M)+' 倍率\n'
       +'计分 '+score.sets.activeScoringIds.length+' 张 / '+(this.assistProfile?'主手':'打出')+' '+score.sets.playedIds.length+' 张\n'
       +(score.assist?savedAssistCopy(score)+'\n':'')
-      +(score.erxiangCore?savedErxiangCore(score)+'\n':'')
+      +(score.erxiangCore?savedErxiangCore(score,this.run)+'\n':'')
       +(impact?impact+'\n':'')
       +'结算 '+fractionText(score.accumulator.H)+' × '+fractionText(score.accumulator.M)+' = '+heatText(score.finalScore);
   }

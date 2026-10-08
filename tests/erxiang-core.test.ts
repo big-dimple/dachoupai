@@ -22,7 +22,7 @@ describe('bounded same-rank core candidate',()=>{
   expect(trace.erxiangCore).toEqual({targetId:'clubs-14',targetRank:14,previousRank:null,targetIds:['clubs-14','diamonds-14'],extraPerCard:1});
   expect(trace.events.filter(e=>e.sourceType==='character').map(e=>e.value.n)).toEqual(['1','1']);expect(trace.events.some(e=>e.sourceType==='character'&&e.phase==='characterScore')).toBe(false);expect(after.stage!.erxiangPreviousRank).toBe(14);
   const duplicate=applyCommand(after,journal.at(-1)!);expect(duplicate.ok&&duplicate.duplicate).toBe(true);if(duplicate.ok)expect(duplicate.state).toEqual(after);
-  expect(savedErxiangCore(trace)).toContain('实际额外1次');
+  expect(savedErxiangCore(trace,after)).toContain('实际额外1次');expect(savedErxiangCore(trace,after)).toContain('当前本场连锁 A');expect(savedErxiangCore(trace,after)).toContain('每张请求2次');
  });
  it('different physical cards continue the same rank; discard preserves, untargeted hand clears, next stage resets',()=>{
   let s=send(entered(),{type:'PlayHand',selectedIds:main,coreTargetId:'clubs-14',coreTargetRank:14});
@@ -30,6 +30,7 @@ describe('bounded same-rank core candidate',()=>{
   s=send(s,{type:'DiscardHand',selectedIds:['spades-3']});expect(s.stage!.erxiangPreviousRank).toBe(14);
   const next=send(s,{type:'PlayHand',selectedIds:['spades-14','hearts-14','clubs-8','hearts-8'],coreTargetId:'spades-14',coreTargetRank:14});
   expect(next.lastTrace!.erxiangCore!.extraPerCard).toBe(2);expect(next.lastTrace!.erxiangCore!.previousRank).toBe(14);expect(next.phase).toBe('stage-cleared');expect(next.stage!.erxiangPreviousRank).toBeNull();
+  const endedCopy=savedErxiangCore(next.lastTrace!,next);expect(endedCopy).toContain('实际额外2次');expect(endedCopy).toContain('本场已结束，连锁已清');expect(endedCopy).toContain('每张请求1次');expect(endedCopy).not.toContain('每张请求2次');
   const entering=send(send(next,{type:'OpenShop'}),{type:'LeaveShop'});expect(send(entering,{type:'EnterStage'}).stage!.erxiangPreviousRank).toBeNull();
   const unselected=send(s,{type:'PlayHand',selectedIds:['spades-4']});expect(unselected.stage!.erxiangPreviousRank).toBeNull();expect(unselected.lastTrace!.erxiangCore!.targetId).toBeNull();
  });
@@ -76,7 +77,7 @@ describe('bounded same-rank core candidate',()=>{
  });
  it('saves cleared chain when abandoning or discarding the last available cards with hands still left',()=>{
   const before=send(entered(),{type:'PlayHand',selectedIds:main,coreTargetId:'clubs-14',coreTargetRank:14});
-  const abandoned=send(before,{type:'AbandonRun'});expect(abandoned.outcome!.reason).toBe('abandoned');expect(abandoned.stage!.erxiangPreviousRank).toBeNull();expect(abandoned.lastTrace!.erxiangCore!.targetRank).toBe(14);
+  const abandoned=send(before,{type:'AbandonRun'});expect(abandoned.outcome!.reason).toBe('abandoned');expect(abandoned.stage!.erxiangPreviousRank).toBeNull();expect(abandoned.lastTrace!.erxiangCore!.targetRank).toBe(14);expect(savedErxiangCore(abandoned.lastTrace!,abandoned)).toContain('本场已结束，连锁已清');
   const emptying=structuredClone(before);emptying.handOrder=['hearts-14','spades-14'];emptying.drawPile=[];emptying.discardPile=emptying.deckInstances.map(c=>c.id).filter(id=>!emptying.handOrder.includes(id)&&!emptying.playedPile.includes(id));
   const ended=send(emptying,{type:'DiscardHand',selectedIds:[...emptying.handOrder]});expect(ended.outcome!.reason).toBe('no-legal-cards');expect(ended.stage!.handsLeft).toBeGreaterThan(0);expect(ended.stage!.erxiangPreviousRank).toBeNull();
  });

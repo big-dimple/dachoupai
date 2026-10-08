@@ -80,7 +80,7 @@ export function savedExperienceCards(state:R2RunState,trace:ScoreTrace):Experien
   const last=groups[groups.length-1],head=last?.[0];
   if(head&&head.sourceInstanceId===fact.sourceInstanceId&&head.condition===fact.condition&&head.destination===fact.destination&&head.next===fact.next)last.push(fact);else groups.push([fact]);
  }
- return [...(trace.erxiangCore?.targetRank?[{title:'二响 · 同点核心',url:portraitURL('erxiang'),body:savedErxiangCore(trace)}]:[]),...groups.map(group=>{const first=group[0];return {title:first.title,url:first.url,body:group.map(f=>f.effect).join('\n')+'\n原因：'+first.condition+'\n去向：'+first.destination+'\n'+first.next};})];
+ return [...(trace.erxiangCore?.targetRank?[{title:'二响 · 同点核心',url:portraitURL('erxiang'),body:savedErxiangCore(trace,state)}]:[]),...groups.map(group=>{const first=group[0];return {title:first.title,url:first.url,body:group.map(f=>f.effect).join('\n')+'\n原因：'+first.condition+'\n去向：'+first.destination+'\n'+first.next};})];
 }
 
 /** P1 fits a source accent into a short existing beat; repeated sources do not repeat a full pause. */
