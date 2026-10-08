@@ -1,0 +1,135 @@
+{
+  "head": "0f887c70a51c307b49d9b5b781b7ba7ef382cbac",
+  "workflow_runs": [
+    {
+      "id": 37711302934,
+      "name": "production-docs",
+      "event": "pull_request",
+      "head_sha": "0f887c70a51c307b49d9b5b781b7ba7ef382cbac",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 37711302993,
+      "name": "CI",
+      "event": "pull_request",
+      "head_sha": "0f887c70a51c307b49d9b5b781b7ba7ef382cbac",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 37711297148,
+      "name": "production-docs",
+      "event": "push",
+      "head_sha": "0f887c70a51c307b49d9b5b781b7ba7ef382cbac",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 37711297168,
+      "name": "CI",
+      "event": "push",
+      "head_sha": "0f887c70a51c307b49d9b5b781b7ba7ef382cbac",
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ],
+  "push": {
+    "scope": "browser",
+    "testedCommit": "0f887c70a51c307b49d9b5b781b7ba7ef382cbac",
+    "status": "FAIL",
+    "exitCode": 1,
+    "before": {
+      "source": "f181b6007d0f141ad581b567a3f9c31b759a9388da9a852331e4908b6fdbf16e",
+      "index": "6366c64fc6777e3254e8a77f3b27bc391736448137bc7b780969bdaa6c531178",
+      "head": "0f887c70a51c307b49d9b5b781b7ba7ef382cbac",
+      "branch": null
+    },
+    "after": {
+      "source": "f181b6007d0f141ad581b567a3f9c31b759a9388da9a852331e4908b6fdbf16e",
+      "index": "6366c64fc6777e3254e8a77f3b27bc391736448137bc7b780969bdaa6c531178",
+      "head": "0f887c70a51c307b49d9b5b781b7ba7ef382cbac",
+      "branch": null
+    },
+    "steps": [
+      {
+        "name": "build",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 14088
+      },
+      {
+        "name": "verify:smoke",
+        "status": "FAIL",
+        "childExitCode": 1,
+        "elapsedMs": 198126,
+        "reason": "child exited 1"
+      }
+    ],
+    "notIncluded": [
+      {
+        "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+        "status": "NOT_INCLUDED",
+        "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+      },
+      {
+        "name": "balance/benchmark acceptance",
+        "status": "NOT_INCLUDED",
+        "reason": "later work packages; no gameplay approval inferred from checks"
+      },
+      {
+        "name": "physical devices / human / art approval",
+        "status": "NOT_RUN"
+      }
+    ]
+  },
+  "pullRequest": {
+    "scope": "browser",
+    "testedCommit": "0f887c70a51c307b49d9b5b781b7ba7ef382cbac",
+    "status": "FAIL",
+    "exitCode": 1,
+    "before": {
+      "source": "e309ed8700bd59a729c61cb5b65c9b214814e6d7e17e643947251c55b826b8a0",
+      "index": "6366c64fc6777e3254e8a77f3b27bc391736448137bc7b780969bdaa6c531178",
+      "head": "0f887c70a51c307b49d9b5b781b7ba7ef382cbac",
+      "branch": null
+    },
+    "after": {
+      "source": "e309ed8700bd59a729c61cb5b65c9b214814e6d7e17e643947251c55b826b8a0",
+      "index": "6366c64fc6777e3254e8a77f3b27bc391736448137bc7b780969bdaa6c531178",
+      "head": "0f887c70a51c307b49d9b5b781b7ba7ef382cbac",
+      "branch": null
+    },
+    "steps": [
+      {
+        "name": "build",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 17412
+      },
+      {
+        "name": "verify:smoke",
+        "status": "FAIL",
+        "childExitCode": 1,
+        "elapsedMs": 306123,
+        "reason": "child exited 1"
+      }
+    ],
+    "notIncluded": [
+      {
+        "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+        "status": "NOT_INCLUDED",
+        "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+      },
+      {
+        "name": "balance/benchmark acceptance",
+        "status": "NOT_INCLUDED",
+        "reason": "later work packages; no gameplay approval inferred from checks"
+      },
+      {
+        "name": "physical devices / human / art approval",
+        "status": "NOT_RUN"
+      }
+    ]
+  }
+}

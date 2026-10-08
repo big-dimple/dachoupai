@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "0fe6cae5d774e1d6dd7cc0a744e8b7d4147db02bfb3d4c4e189bdca9dec02f2e",
+    "index": "e53056732a627adc3bdb6b1971f1f64c03b0b13944cf87e82af89016db1b7c92",
+    "head": "172156d8f9363e0b2253cea42677362bf68cd45c",
+    "branch": "refs/heads/feat/w6-hand-path-20261008"
+  },
+  "after": {
+    "source": "0fe6cae5d774e1d6dd7cc0a744e8b7d4147db02bfb3d4c4e189bdca9dec02f2e",
+    "index": "e53056732a627adc3bdb6b1971f1f64c03b0b13944cf87e82af89016db1b7c92",
+    "head": "172156d8f9363e0b2253cea42677362bf68cd45c",
+    "branch": "refs/heads/feat/w6-hand-path-20261008"
+  },
+  "steps": [
+    {
+      "name": "resource-pulse-chromium-desktop",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 53051
+    }
+  ]
+}

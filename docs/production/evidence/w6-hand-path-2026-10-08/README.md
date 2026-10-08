@@ -38,3 +38,13 @@ PC1366×768鼠标默认动态、390×740和320×740软件触控低动态均走�
 冻结在该产品提交的[10项定向检查](review-directed-gates.json)与日志覆盖B07零/有金币、普通零/有金币、次数不足/B01双次数以及四牌同花实际优先级；三文件51项明确未运行，不冒充全量。source/index/HEAD前后一致。另[33项当前手牌参考与候选检查](review-candidates.txt.gz)及[typecheck](review-typecheck.txt.gz)通过。受控牌面明确核实际候选中有同花、没有顺子/同花顺，未修改领域规则；这些不是自然获取或人测证据。
 
 以上原生账本、七帧图与2533项本地全量结果均保留原 `7280d83` 身份；旧 `0c029e81` CI同样只属于旧head。此次按父要求不重跑本地全回归，不增加截图、设备矩阵或录屏；新最终文档head的正常CI以PR52精确回执另核。其余父审已结束，无其他阻塞；绿框含义的只读调查不混入本包。真人理解/继续、真机/GPU、听感仍NOT_RUN，main仍由父增量复核协调。
+
+## 同HEAD两条WebKit失败与观察器修正
+
+`0f887c70a51c307b49d9b5b781b7ba7ef382cbac` 的push CI [37711297168](https://github.com/big-dimple/dachoupai/actions/runs/37711297168) 与PR CI [37711302993](https://github.com/big-dimple/dachoupai/actions/runs/37711302993) 均失败，不能用另一运行或旧head绿色结果覆盖。浏览器jobs分别113097617323、113097776850；Chromium/Firefox桌面手机已通过，WebKit桌面在原screenshot.mjs:145的出牌次数缩放等待超时5000ms，WebKit手机尚未运行。两份完整失败日志及四个同SHA的push/PR运行状态见 `ci-*-0f887c7-*` 与[失败回执](ci-0f887c7-FAIL.json)，before/after源码、index、HEAD均一致。
+
+失败现场已完成命令8，controller idle、playing/presenting false、恢复空选；旧脚本在tapUI的输入/Phaser下一帧与idle RPC完成后才开始寻找短暂缩放。可确认存在晚开始观察瞬态反馈的结构缺陷；旧日志本身不能证明那次WebKit是否曾画出缩放，不武断宣称“纯环境偶发”，也不按日志中的软件帧率作实机/GPU验收。
+
+仅harness修正 `172156d8f9363e0b2253cea42677362bf68cd45c` 与诊断补充 `55220bc`：在真实点击前挂只读poststep观察器，记录正确新命令序号、精确次数文字、实际scaleX>1.05的同帧状态。仍需原真实指针输入、5000ms等待及原完整资源/保存断言；没有只凭最终次数放行、延长超时、改动画或设置计分状态。等待起点的实时缩放另列pollingStarted，区分“实际捕获的反馈”和“RPC返回时已收束的当前值”。观察器一次捕获后注销，失败/关闭清理，不作用于领域/玩家存档。
+
+[五项针对性测试](pulse-unit-tests.txt.gz)涵盖先捕获后收束、没有缩放不得通过、命令与文字须同时匹配、取消清理以及原5000ms与晚读状态区别。一次[系统Chromium桌面定向功能检查](pulse-desktop-gate.json)在 `172156d` 冻结通过：弃牌命令7为“2 次”、出牌命令8为“3 次”，两者捕获实际scaleX=1.6；[实际样本](pulse-desktop.json)。这是软件功能证据，不是真机动态验收；诊断补充之后只跑相关单测，不重复本地全回归。本地WebKit未安装，不冒称已验证WebKit；新最终head的正常push与PR两种CI将分别核实并回填PR52。产品src仍逐字节保持已修147da58，下一首章统一包仍仅文档待办。
