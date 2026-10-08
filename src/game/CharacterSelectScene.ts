@@ -47,7 +47,11 @@ export class CharacterSelectScene extends Phaser.Scene {
     this.choosing=false;this.notice='';this.animateChoice=false;this.lifecycle++;
     this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene('menu');
     this.view=new SceneView(this,()=>this.render());
-    this.events.once('shutdown',()=>{this.lifecycle++;this.dialog.close();this.modeDialog.close();});this.render();
+    const session=gameSession();let pending=session.pendingRun;
+    const unsubscribe=session.subscribe(()=>{const prior=pending;pending=session.pendingRun;
+      if(prior&&!pending&&!this.choosing&&this.scene.isActive()){this.notice=session.notice;this.render();}
+    });
+    this.events.once('shutdown',()=>{unsubscribe();this.lifecycle++;this.dialog.close();this.modeDialog.close();});this.render();
   }
   private render():void {
     const v=this.view,l=v.layout,style=getComputedStyle(document.documentElement),bottom=parseFloat(style.getPropertyValue('--safe-bottom'))||0;
