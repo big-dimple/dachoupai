@@ -1,6 +1,8 @@
 # 大丑牌低阅读呈现：当前统一包
 
-更新：2026-10-08。输入main `24ab214d3c7b954d3d7eb384a93f4a93d737f35f`；实现候选 `df4e61fcc736baa25ebda1e3a1133e10fb2a8618`。父独审/精确head CI另核，未main、未真人/实机/W6签收。
+更新：2026-10-08。当前补正产品 `144f25d`：默认成长／资源收益的上限与真实当前差额必须首层可见，旧b03真实完整回退。初版df4e61f在这些语义上未通过独审；[4个原断言FAIL与46项补正检查](evidence/w6-joker-low-reading-2026-10-08/review-caps/README.md)单列，最终新head CI另核。以下初版范围和证据保原SHA。
+
+输入main `24ab214d3c7b954d3d7eb384a93f4a93d737f35f`；实现候选 `df4e61fcc736baa25ebda1e3a1133e10fb2a8618`。父独审/精确head CI另核，未main、未真人/实机/W6签收。
 
 ## 目标与发现的缺口
 

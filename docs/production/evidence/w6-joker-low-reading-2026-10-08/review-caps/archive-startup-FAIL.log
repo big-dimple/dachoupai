@@ -1,0 +1,27 @@
+✘ [ERROR] Could not resolve "./scripts/build-info"
+
+    ../../tmp/w6-cap-original/vite.config.ts:4:33:
+      4 │ import { collectBuildInfo } from './scripts/build-info';
+        ╵                                  ~~~~~~~~~~~~~~~~~~~~~~
+
+failed to load config from /tmp/w6-cap-original/vite.config.ts
+
+⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯
+Error: Build failed with 1 error:
+../../tmp/w6-cap-original/vite.config.ts:4:33: ERROR: Could not resolve "./scripts/build-info"
+    at failureErrorWithLog (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1752:15)
+    at /workspace/dachoupai/node_modules/esbuild/lib/main.js:1211:25
+    at runOnEndCallbacks (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1592:45)
+    at buildResponseToResult (/workspace/dachoupai/node_modules/esbuild/lib/main.js:1209:7)
+    at /workspace/dachoupai/node_modules/esbuild/lib/main.js:1236:16
+    at responseCallbacks.<computed> (/workspace/dachoupai/node_modules/esbuild/lib/main.js:886:9)
+    at handleIncomingPacket (/workspace/dachoupai/node_modules/esbuild/lib/main.js:941:12)
+    at Socket.readFromStdout (/workspace/dachoupai/node_modules/esbuild/lib/main.js:864:7)
+    at Socket.emit (node:events:509:28)
+    at addChunk (node:internal/streams/readable:563:12) {
+  errors: [Getter/Setter],
+  warnings: [Getter/Setter]
+}
+
+
+

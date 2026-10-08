@@ -1,0 +1,6977 @@
+{
+  "head": "144f25d6065f4125037d776b5579678b0b649de4",
+  "scope": "Limited controlled validated current-shop examples and actual UI decisions; known fixed seed, no future decisions/seed search/scored chapter matrix. Not the user save/screenshot, not human/device acceptance.",
+  "cases": [
+    {
+      "device": {
+        "name": "pc",
+        "width": 1366,
+        "height": 768,
+        "fixture": "pc"
+      },
+      "checks": [
+        "three actual purpose blocks complete within their price budgets; no generic empty fallback",
+        "one page has condition/result, adjacent state, visible decision limits and folded full details; cancel unchanged"
+      ],
+      "shop": {
+        "geometry": {
+          "x": 24,
+          "w": 1318,
+          "top": 8,
+          "pc": {
+            "left": {
+              "x": 24,
+              "y": 8,
+              "width": 224,
+              "height": 752
+            },
+            "ownedRail": {
+              "x": 272,
+              "y": 8,
+              "width": 1070,
+              "height": 168
+            },
+            "inventoryEntry": {
+              "x": 1174,
+              "y": 72,
+              "width": 168,
+              "height": 44
+            },
+            "shopPanel": {
+              "x": 272,
+              "y": 200,
+              "width": 1070,
+              "height": 560
+            },
+            "actionRail": {
+              "x": 284,
+              "y": 228,
+              "width": 128,
+              "height": 508
+            },
+            "jokerOffers": [
+              {
+                "x": 432,
+                "y": 228,
+                "width": 290,
+                "height": 315.2
+              },
+              {
+                "x": 734,
+                "y": 228,
+                "width": 290,
+                "height": 315.2
+              },
+              {
+                "x": 1036,
+                "y": 228,
+                "width": 290,
+                "height": 315.2
+              }
+            ],
+            "toolOffers": {
+              "x": 432,
+              "y": 591.2,
+              "width": 439,
+              "height": 136.79999999999995
+            },
+            "itemOffers": {
+              "x": 887,
+              "y": 591.2,
+              "width": 439,
+              "height": 136.79999999999995
+            },
+            "feedback": {
+              "x": 284,
+              "y": 736,
+              "width": 1046,
+              "height": 20
+            },
+            "groupY": 567.2
+          },
+          "desktop": true,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": false,
+          "wideHeader": false,
+          "portrait": false,
+          "slots": [
+            {
+              "x": 272,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            },
+            {
+              "x": 364,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            },
+            {
+              "x": 456,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            },
+            {
+              "x": 548,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            },
+            {
+              "x": 640,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            }
+          ],
+          "shelf": [
+            {
+              "x": 513,
+              "y": 234,
+              "width": 128,
+              "height": 179.2
+            },
+            {
+              "x": 815,
+              "y": 234,
+              "width": 128,
+              "height": 179.2
+            },
+            {
+              "x": 1117,
+              "y": 234,
+              "width": 128,
+              "height": 179.2
+            }
+          ],
+          "tabs": {
+            "x": 432,
+            "y": 204,
+            "width": 894,
+            "height": 20
+          },
+          "chapter": {
+            "x": 24,
+            "y": 184,
+            "width": 224,
+            "height": 44
+          },
+          "items": {
+            "x": 1174,
+            "y": 72,
+            "width": 168,
+            "height": 44
+          },
+          "build": {
+            "x": 744,
+            "y": 14,
+            "width": 132,
+            "height": 44
+          },
+          "reroll": {
+            "x": 284,
+            "y": 296,
+            "width": 128,
+            "height": 44
+          },
+          "play": {
+            "x": 284,
+            "y": 228,
+            "width": 128,
+            "height": 56
+          },
+          "noticeY": 736
+        },
+        "texts": [
+          {
+            "name": "shop/gold",
+            "text": "金币 17",
+            "x": 40,
+            "y": 132,
+            "width": 82,
+            "height": 27
+          },
+          {
+            "name": "shop/owned-heading",
+            "text": "已积攒 +40 热度",
+            "x": 272,
+            "y": 20,
+            "width": 117,
+            "height": 19
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "待选·热度40",
+            "fullText": "待选·热度40",
+            "x": 272,
+            "y": 179,
+            "width": 77,
+            "height": 16
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "待选·倍+2",
+            "fullText": "待选·倍+2",
+            "x": 364,
+            "y": 179,
+            "width": 63,
+            "height": 16
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "待选·系数×1",
+            "fullText": "待选·系数×1",
+            "x": 456,
+            "y": 179,
+            "width": 77,
+            "height": 16
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "待选·红牌…",
+            "fullText": "待选·红牌加热",
+            "x": 548,
+            "y": 179,
+            "width": 75,
+            "height": 16
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "待选·留JQ…",
+            "fullText": "待选·留JQK+",
+            "x": 640,
+            "y": 179,
+            "width": 79,
+            "height": 16
+          },
+          {
+            "name": "shop/held-purpose",
+            "text": "练对子 · 对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用\n本次用已存热度+40；上限100；选牌后查看本手成长条件。",
+            "x": 744,
+            "y": 64,
+            "width": 370,
+            "height": 48
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "包场",
+            "fullText": "包场",
+            "offerId": "plain/0",
+            "x": 442,
+            "y": 415.0000061035156,
+            "width": 28,
+            "height": 16
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "出牌前≥20金 → 倍率×1.8\n现在17金 · 金币条件未满足，还差3金；未\n购，买后重查",
+            "fullText": "出牌前≥20金 → 倍率×1.8\n现在17金 · 金币条件未满足，还差3金；未购，买后重查",
+            "offerId": "plain/0",
+            "x": 442,
+            "y": 437.0000061035156,
+            "width": 260,
+            "height": 48
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8 金 · 普通",
+            "offerId": "plain/0",
+            "x": 442,
+            "y": 505.0000061035156,
+            "width": 76,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-reason",
+            "text": "槽位已满",
+            "fullText": "槽位已满",
+            "offerId": "plain/0",
+            "x": 442,
+            "y": 525.0000061035156,
+            "width": 56,
+            "height": 16
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "拖个尾音",
+            "fullText": "拖个尾音",
+            "offerId": "plain/1",
+            "x": 744,
+            "y": 415.0000061035156,
+            "width": 56,
+            "height": 16
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "同花/同花顺的末张计分牌 → 对应有效计分\n牌再计1次",
+            "fullText": "同花/同花顺的末张计分牌 → 对应有效计分牌再计1次",
+            "offerId": "plain/1",
+            "x": 744,
+            "y": 437.0000061035156,
+            "width": 264,
+            "height": 32
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8 金 · 普通",
+            "offerId": "plain/1",
+            "x": 744,
+            "y": 505.0000061035156,
+            "width": 76,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-reason",
+            "text": "槽位已满",
+            "fullText": "槽位已满",
+            "offerId": "plain/1",
+            "x": 744,
+            "y": 525.0000061035156,
+            "width": 56,
+            "height": 16
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "少一级",
+            "fullText": "少一级",
+            "offerId": "plain/2",
+            "x": 1046,
+            "y": 415.0000061035156,
+            "width": 42,
+            "height": 16
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "普通顺子 → 4张即可；同花顺仍5张",
+            "fullText": "普通顺子 → 4张即可；同花顺仍5张",
+            "offerId": "plain/2",
+            "x": 1046,
+            "y": 437.0000061035156,
+            "width": 220,
+            "height": 16
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6 金 · 普通",
+            "offerId": "plain/2",
+            "x": 1046,
+            "y": 505.0000061035156,
+            "width": 76,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-reason",
+            "text": "槽位已满",
+            "fullText": "槽位已满",
+            "offerId": "plain/2",
+            "x": 1046,
+            "y": 525.0000061035156,
+            "width": 56,
+            "height": 16
+          }
+        ]
+      },
+      "detail": "包场 · 购买详情\n✦ 稀有\n出牌前≥20金 → 倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在17金 · 金币条件未满足，还差3金；未购，买后重查\n\n版次：普通（无额外计分）\n\n实付 8 金 · 余额 17 → 9 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n高清细节加载中…\n规则与操作\n与持有牌比较\n确认购买\n取消",
+      "capCases": [
+        {
+          "mode": "95",
+          "defaultText": "练对子\n● 普通\n对子等同点组合出牌后 → 热度成长最多+5；上限100，新增下次用\n本次出牌使用旧值；新成长从下一次出牌起生效，每次出牌只长一次，额外计分不会多长。\n普通顺子、普通同花不增长。\n本次用已存热度+95；上限100；所选符合，成功结算后最多新增+5，下次用\n\n版次：普通（无额外计分）\n\n练对子\n高清细节加载中…\n规则与操作\n成长因果\n左移\n右移\n关闭",
+          "inspectCancelUnchanged": true
+        },
+        {
+          "mode": "100",
+          "defaultText": "练对子\n● 普通\n对子等同点组合出牌后 → 热度成长已封顶100，不再新增\n本次出牌使用旧值；新成长从下一次出牌起生效，每次出牌只长一次，额外计分不会多长。\n普通顺子、普通同花不增长。\n本次用已存热度+100；上限100；已封顶，不再新增\n\n版次：普通（无额外计分）\n\n练对子\n高清细节加载中…\n规则与操作\n成长因果\n左移\n右移\n关闭",
+          "inspectCancelUnchanged": true
+        },
+        {
+          "mode": "old",
+          "defaultText": "老搭档\n◆ 特别\n每手加上已攒的倍率；打出对子、两对、三条后，再攒 0.25，最多攒 3。\n新增从下一手生效；葫芦、四条、五条及其他牌型不增加成长。\n本次用已存倍率+3；上限3；已封顶，不再新增\n\n版次：普通（无额外计分）\n\n老搭档\n规则与操作\n左移\n右移\n关闭",
+          "inspectCancelUnchanged": true
+        },
+        {
+          "mode": "resource",
+          "defaultText": "家底 · 第 1 槽\n◆ 特别\n每次出牌 → 每1金热度+2，每次上限60（不花金币）\n按出牌开始时的金币算；本手新赚的金币留到之后的出牌再算。\n现在90金；按当前条件热度+60，上限60；出牌前重查\n\n版次：普通（无额外计分）\n\n尚未选方向 · 不专属某一种牌型。\n每持有1金币加2热度，最多60热度。\n\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。\n现存：无成长或使用计数\n\n高清细节加载中…\n规则与操作\n左移\n右移\n出售\n关闭",
+          "inspectCancelUnchanged": true
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "device": {
+        "name": "phone",
+        "width": 390,
+        "height": 740,
+        "fixture": "phone"
+      },
+      "checks": [
+        "three actual purpose blocks complete within their price budgets; no generic empty fallback",
+        "one page has condition/result, adjacent state, visible decision limits and folded full details; cancel unchanged",
+        "one native controlled saved play reads10, adds10 for later and shows saved20; all final state equals canonical command"
+      ],
+      "shop": {
+        "geometry": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": 23,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 363.2,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 460.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 712
+        },
+        "texts": [
+          {
+            "name": "shop/gold",
+            "text": "金币 21",
+            "x": 168,
+            "y": 12,
+            "width": 55,
+            "height": 19
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "待选",
+            "x": 41,
+            "y": 456,
+            "width": 28,
+            "height": 16
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "待选",
+            "x": 111,
+            "y": 456,
+            "width": 28,
+            "height": 16
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "待选",
+            "x": 181,
+            "y": 456,
+            "width": 28,
+            "height": 16
+          },
+          {
+            "name": "shop/held-purpose",
+            "text": "包场 · 出牌前≥20金 → 倍率×1.8\n现在21金 · 金币条件目前够；出牌前重查",
+            "x": 12,
+            "y": 513,
+            "width": 253,
+            "height": 32
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "练对子",
+            "fullText": "练对子",
+            "x": 16.0000025431315,
+            "y": 267.0000061035156,
+            "width": 42,
+            "height": 16
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "成组长热度\n+10顶100\n新增下次用",
+            "fullText": "对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用",
+            "offerId": "plain/0",
+            "x": 16.0000025431315,
+            "y": 286.0000061035156,
+            "width": 70,
+            "height": 48
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看",
+            "offerId": "plain/0",
+            "x": 16.0000025431315,
+            "y": 339.0000061035156,
+            "width": 76,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "再说一遍",
+            "fullText": "再说一遍",
+            "x": 140.99999999999997,
+            "y": 267.0000061035156,
+            "width": 56,
+            "height": 16
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "多步条件\n再计1次\n点牌查条件",
+            "fullText": "打出对子、两对、三条、葫芦等同点数组合时，主手原始计分牌里张数最多的同点组，各张有效牌再计1次。",
+            "offerId": "plain/1",
+            "x": 140.99999999999997,
+            "y": 286.0000061035156,
+            "width": 70,
+            "height": 48
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8 金 · 查看",
+            "offerId": "plain/1",
+            "x": 140.99999999999997,
+            "y": 339.0000061035156,
+            "width": 76,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "镜头不空",
+            "fullText": "镜头不空",
+            "x": 265.99998982747394,
+            "y": 267.0000061035156,
+            "width": 56,
+            "height": 16
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "≥1张都计分\n倍率+0.5",
+            "fullText": "≥1张都计分 → 倍率+0.5",
+            "offerId": "plain/2",
+            "x": 265.99998982747394,
+            "y": 286.0000061035156,
+            "width": 72,
+            "height": 32
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看",
+            "offerId": "plain/2",
+            "x": 265.99998982747394,
+            "y": 339.0000061035156,
+            "width": 76,
+            "height": 19
+          }
+        ]
+      },
+      "detail": "练对子 · 购买详情\n● 普通\n对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用\n本次出牌使用旧值；新成长从下一次出牌起生效，每次出牌只长一次，额外计分不会多长。\n普通顺子、普通同花不增长。\n未购买；新购保存热度+0\n\n版次：普通（无额外计分）\n\n实付 4 金 · 余额 21 → 17 金\n买后金币21→17；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n\n规则与操作\n与持有牌比较\n确认购买\n取消",
+      "actualPlay": {
+        "beforeGrowth": {
+          "n": "10",
+          "d": "1"
+        },
+        "afterGrowth": {
+          "n": "20",
+          "d": "1"
+        },
+        "events": [
+          {
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/3/event/10",
+            "rootId": "fixture/stage-gift/hand/fixture/stage-gift/command/3",
+            "rootEventId": "fixture/stage-gift/hand/fixture/stage-gift/command/3/event/10",
+            "phase": "jokerScore",
+            "sourceType": "joker",
+            "sourceDefinitionId": "b10",
+            "sourceInstanceId": "owned/b10",
+            "operation": "read-growth",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "111",
+                "d": "1"
+              },
+              "M": {
+                "n": "7",
+                "d": "2"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "121",
+                "d": "1"
+              },
+              "M": {
+                "n": "7",
+                "d": "2"
+              }
+            },
+            "reasonKey": "b10.read-growth",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/3/event/13",
+            "rootId": "fixture/stage-gift/hand/fixture/stage-gift/command/3",
+            "rootEventId": "fixture/stage-gift/hand/fixture/stage-gift/command/3/event/13",
+            "phase": "afterHand",
+            "sourceType": "joker",
+            "sourceDefinitionId": "b10",
+            "sourceInstanceId": "owned/b10",
+            "operation": "add-growth",
+            "value": {
+              "n": "10",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "121",
+                "d": "1"
+              },
+              "M": {
+                "n": "15",
+                "d": "4"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "121",
+                "d": "1"
+              },
+              "M": {
+                "n": "15",
+                "d": "4"
+              }
+            },
+            "reasonKey": "b10.add-growth",
+            "visibleCondition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair",
+                "two-pair",
+                "three-kind",
+                "full-house",
+                "four-kind",
+                "five-kind",
+                "flush-house",
+                "flush-five"
+              ]
+            },
+            "retriggerDepth": 0
+          }
+        ],
+        "canonicalStateEqual": true
+      },
+      "status": "PASS"
+    },
+    {
+      "device": {
+        "name": "narrow",
+        "width": 320,
+        "height": 740,
+        "fixture": "narrow"
+      },
+      "checks": [
+        "three actual purpose blocks complete within their price budgets; no generic empty fallback",
+        "one page has condition/result, adjacent state, visible decision limits and folded full details; cancel unchanged"
+      ],
+      "shop": {
+        "geometry": {
+          "x": 12,
+          "w": 296,
+          "top": 12,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "slots": [
+            {
+              "x": 12,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 72.4,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 132.8,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 193.2,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 253.6,
+              "y": 339.2,
+              "width": 54.4,
+              "height": 76.16
+            }
+          ],
+          "shelf": [
+            {
+              "x": 14.666666666666664,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 116,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 217.33333333333331,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 64,
+            "width": 296,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 423.36,
+            "width": 144,
+            "height": 44
+          },
+          "items": {
+            "x": 164,
+            "y": 423.36,
+            "width": 144,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 144,
+            "height": 44
+          },
+          "build": {
+            "x": 164,
+            "y": 596,
+            "width": 144,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 296,
+            "height": 56
+          },
+          "noticeY": 712
+        },
+        "texts": [
+          {
+            "name": "shop/gold",
+            "text": "金币 21",
+            "x": 98,
+            "y": 16,
+            "width": 55,
+            "height": 19
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "待选",
+            "x": 25.00000076293945,
+            "y": 417.9999987792969,
+            "width": 28,
+            "height": 16
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "待选",
+            "x": 85.99999847412109,
+            "y": 417.9999987792969,
+            "width": 28,
+            "height": 16
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "待选",
+            "x": 146,
+            "y": 417.9999987792969,
+            "width": 28,
+            "height": 16
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "待选",
+            "x": 205.9999938964844,
+            "y": 417.9999987792969,
+            "width": 28,
+            "height": 16
+          },
+          {
+            "name": "shop/held-purpose",
+            "text": "一次性招牌 · 本牌共可用 4 手，本次出牌的倍率 ×2；最后一手结算后消失。\n还可用1手（跨场共用）",
+            "x": 12,
+            "y": 475,
+            "width": 170,
+            "height": 64
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "冷场救火",
+            "fullText": "冷场救火",
+            "x": 15.000001271565758,
+            "y": 243.00000610351563,
+            "width": 56.00000000000001,
+            "height": 15.999999999999972
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "多步条件\n分时点生效\n点牌查条件",
+            "fullText": "本场未出牌，第一次成功弃牌前手牌凑不出两对及以上时，备好一次救火；下一次出牌若为两对及以上，本次出牌的倍率×3。",
+            "offerId": "plain/0",
+            "x": 15.000001271565758,
+            "y": 262.0000061035156,
+            "width": 70,
+            "height": 48
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8 金 · 查看",
+            "offerId": "plain/0",
+            "x": 15.000001271565758,
+            "y": 315.0000061035156,
+            "width": 76,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "长期捧场",
+            "fullText": "长期捧场",
+            "x": 116,
+            "y": 243.00000610351563,
+            "width": 56,
+            "height": 15.999999999999972
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "多步条件\n倍率×保存值\n点牌查重置",
+            "fullText": "每手按本牌攒下的倍数加成；这场没卖过大丑牌又过关，倍数加 0.1，最高 ×2。",
+            "offerId": "plain/1",
+            "x": 116,
+            "y": 262.0000061035156,
+            "width": 79,
+            "height": 48
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8 金 · 查看",
+            "offerId": "plain/1",
+            "x": 116,
+            "y": 315.0000061035156,
+            "width": 76,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "拖个尾音",
+            "fullText": "拖个尾音",
+            "x": 217.00001017252606,
+            "y": 243.00000610351563,
+            "width": 56,
+            "height": 15.999999999999972
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "同花/同花顺末计分牌\n再计1次",
+            "fullText": "同花/同花顺的末张计分牌 → 对应有效计分牌再计1次",
+            "offerId": "plain/2",
+            "x": 217.00001017252606,
+            "y": 262.0000061035156,
+            "width": 88,
+            "height": 48
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8 金 · 查看",
+            "offerId": "plain/2",
+            "x": 217.00001017252606,
+            "y": 315.0000061035156,
+            "width": 76,
+            "height": 19
+          }
+        ]
+      },
+      "detail": "冷场救火 · 购买详情\n✦ 稀有\n本场未出牌，第一次成功弃牌前手牌凑不出两对及以上时，备好一次救火；下一次出牌若为两对及以上，本次出牌的倍率×3。\n下一次出牌后必消耗：未成型或计分被封禁也作废；继续弃牌不叠加、不重武装。\n尚未购买，买入后才会生效\n\n版次：普通（无额外计分）\n\n实付 8 金 · 余额 21 → 13 金\n买后金币21→13；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n\n规则与操作\n与持有牌比较\n确认购买\n取消",
+      "status": "PASS"
+    },
+    {
+      "device": {
+        "name": "short",
+        "width": 740,
+        "height": 390,
+        "fixture": "phone"
+      },
+      "checks": [
+        "three actual purpose blocks complete within their price budgets; no generic empty fallback",
+        "one page has condition/result, adjacent state, visible decision limits and folded full details; cancel unchanged"
+      ],
+      "shop": {
+        "geometry": {
+          "x": 12,
+          "w": 716,
+          "top": 12,
+          "pc": null,
+          "desktop": false,
+          "short": true,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": false,
+          "copyBeside": true,
+          "inventoryCollapsed": true,
+          "slots": [
+            {
+              "x": 12,
+              "y": 64,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 64,
+              "y": 64,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 116,
+              "y": 64,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 168,
+              "y": 64,
+              "width": 44,
+              "height": 61.6
+            },
+            {
+              "x": 220,
+              "y": 64,
+              "width": 44,
+              "height": 61.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 12,
+              "y": 106,
+              "width": 88,
+              "height": 123.2
+            },
+            {
+              "x": 253.33333333333334,
+              "y": 106,
+              "width": 88,
+              "height": 123.2
+            },
+            {
+              "x": 494.6666666666667,
+              "y": 106,
+              "width": 88,
+              "height": 123.2
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 716,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 258,
+            "width": 0,
+            "height": 44
+          },
+          "items": {
+            "x": 12,
+            "y": 258,
+            "width": 0,
+            "height": 44
+          },
+          "reroll": {
+            "x": 72,
+            "y": 12,
+            "width": 104,
+            "height": 44
+          },
+          "build": {
+            "x": 184,
+            "y": 12,
+            "width": 120,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 310,
+            "width": 716,
+            "height": 56
+          },
+          "noticeY": 370
+        },
+        "texts": [
+          {
+            "name": "shop/gold",
+            "text": "金币 21",
+            "x": 478,
+            "y": 16,
+            "width": 55,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "练对子",
+            "fullText": "练对子",
+            "x": 105.99999745686848,
+            "y": 110.00000610351563,
+            "width": 41.999999999999986,
+            "height": 16
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "成组长热度\n+10顶100\n新增下次用",
+            "fullText": "对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用",
+            "offerId": "plain/0",
+            "x": 105.99999745686848,
+            "y": 129.00000610351563,
+            "width": 69.99999999999999,
+            "height": 48
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看",
+            "offerId": "plain/0",
+            "x": 105.99999745686848,
+            "y": 182.00000610351563,
+            "width": 75.99999999999999,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "再说一遍",
+            "fullText": "再说一遍",
+            "x": 347,
+            "y": 110.00000610351563,
+            "width": 56,
+            "height": 16
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "多步条件\n再计1次\n点牌查条件",
+            "fullText": "打出对子、两对、三条、葫芦等同点数组合时，主手原始计分牌里张数最多的同点组，各张有效牌再计1次。",
+            "offerId": "plain/1",
+            "x": 347,
+            "y": 129.00000610351563,
+            "width": 70,
+            "height": 48
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8 金 · 查看",
+            "offerId": "plain/1",
+            "x": 347,
+            "y": 182.00000610351563,
+            "width": 76,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "镜头不空",
+            "fullText": "镜头不空",
+            "x": 588.9999796549479,
+            "y": 110.00000610351563,
+            "width": 56,
+            "height": 16
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "≥1张都计分\n倍率+0.5",
+            "fullText": "≥1张都计分 → 倍率+0.5",
+            "offerId": "plain/2",
+            "x": 588.9999796549479,
+            "y": 129.00000610351563,
+            "width": 72,
+            "height": 32
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看",
+            "offerId": "plain/2",
+            "x": 588.9999796549479,
+            "y": 182.00000610351563,
+            "width": 76,
+            "height": 19
+          }
+        ]
+      },
+      "detail": "练对子 · 购买详情\n● 普通\n对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用\n本次出牌使用旧值；新成长从下一次出牌起生效，每次出牌只长一次，额外计分不会多长。\n普通顺子、普通同花不增长。\n未购买；新购保存热度+0\n\n版次：普通（无额外计分）\n\n实付 4 金 · 余额 21 → 17 金\n买后金币21→17；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n\n规则与操作\n与持有牌比较\n确认购买\n取消",
+      "status": "PASS"
+    }
+  ],
+  "tileAudit": [
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "pengci",
+      "width": 88,
+      "text": "高牌\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "pengci",
+      "width": 108,
+      "text": "高牌\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "mantangcai",
+      "width": 88,
+      "text": "对子/两对/三条/葫芦/四条\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "mantangcai",
+      "width": 108,
+      "text": "对子/两对/三条/葫芦/四条\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "tiesuanpan",
+      "width": 88,
+      "text": "J/Q/K/A计分\n每张热度+25",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "tiesuanpan",
+      "width": 108,
+      "text": "J/Q/K/A计分\n每张热度+25",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "huimaqiang",
+      "width": 88,
+      "text": "本场第3/6/9…次出牌\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "huimaqiang",
+      "width": 108,
+      "text": "本场第3/6/9…次出牌\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "jiedongfeng",
+      "width": 88,
+      "text": "顺子/同花/同花顺\n倍率+1.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "jiedongfeng",
+      "width": 108,
+      "text": "顺子/同花/同花顺\n倍率+1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a03",
+      "width": 88,
+      "text": "只出1张\n热度+35",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a03",
+      "width": 108,
+      "text": "只出1张\n热度+35",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a05",
+      "width": 88,
+      "text": "只出1张\n热度+6顶90\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a05",
+      "width": 108,
+      "text": "只出1张\n热度+6顶90\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b02",
+      "width": 88,
+      "text": "同点≥2张\n每张计分倍率+0.25",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b02",
+      "width": 108,
+      "text": "同点≥2张\n每张计分倍率+0.25",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b03",
+      "width": 88,
+      "text": "特定牌型\n倍率+0.25顶3\n新增下次用",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b03",
+      "width": 108,
+      "text": "特定牌型\n倍率+0.25顶3\n新增下次用",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b04",
+      "width": 88,
+      "text": "≥2组各≥2张同点\n倍率+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b04",
+      "width": 108,
+      "text": "≥2组各≥2张同点\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c02",
+      "width": 88,
+      "text": "♥/♦计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c02",
+      "width": 108,
+      "text": "♥/♦计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c04",
+      "width": 88,
+      "text": "顺子/同花顺\n热度+50",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c04",
+      "width": 108,
+      "text": "顺子/同花顺\n热度+50",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c06",
+      "width": 88,
+      "text": "同花/同花顺\n倍率+0.25顶4\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c06",
+      "width": 108,
+      "text": "同花/同花顺\n倍率+0.25顶4\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d01",
+      "width": 88,
+      "text": "留J/Q/K前4张\n每张倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d01",
+      "width": 108,
+      "text": "留J/Q/K前4张\n每张倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d03",
+      "width": 88,
+      "text": "实际留≥3张\n热度+4顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d03",
+      "width": 108,
+      "text": "实际留≥3张\n热度+4顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d05",
+      "width": 88,
+      "text": "本场首次成功弃牌\n返1次弃牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d05",
+      "width": 108,
+      "text": "本场首次成功弃牌\n返1次弃牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d10",
+      "width": 88,
+      "text": "每空槽+12\n当前热度+0\n上限48",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d10",
+      "width": 108,
+      "text": "每空槽+12\n当前热度+0\n上限48",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e01",
+      "width": 88,
+      "text": "成功过关\n获得2金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e01",
+      "width": 108,
+      "text": "成功过关\n获得2金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e03",
+      "width": 88,
+      "text": "每1金热度+2\n当前+34\n上限60",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e03",
+      "width": 108,
+      "text": "每1金热度+2\n当前+34\n上限60",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e05",
+      "width": 88,
+      "text": "成功买牌\n热度+8顶80\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e05",
+      "width": 108,
+      "text": "成功买牌\n热度+8顶80\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e08",
+      "width": 88,
+      "text": "出牌前≥20金\n倍率×1.8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e08",
+      "width": 108,
+      "text": "出牌前≥20金\n倍率×1.8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f02",
+      "width": 88,
+      "text": "出牌后剩0次\n热度+70",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f02",
+      "width": 108,
+      "text": "出牌后剩0次\n热度+70",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f03",
+      "width": 88,
+      "text": "本场第1次出牌\n倍率+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f03",
+      "width": 108,
+      "text": "本场第1次出牌\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f09",
+      "width": 88,
+      "text": "本场未弃过牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f09",
+      "width": 108,
+      "text": "本场未弃过牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a04",
+      "width": 88,
+      "text": "进场时牌组≤40张\n手牌上限+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a04",
+      "width": 108,
+      "text": "进场时牌组≤40张\n手牌上限+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a06",
+      "width": 88,
+      "text": "高牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a06",
+      "width": 108,
+      "text": "高牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a07",
+      "width": 88,
+      "text": "成功弃1张\n获得1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a07",
+      "width": 108,
+      "text": "成功弃1张\n获得1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a08",
+      "width": 88,
+      "text": "2/3/4/5计分\n每张热度+20",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a08",
+      "width": 108,
+      "text": "2/3/4/5计分\n每张热度+20",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b05",
+      "width": 88,
+      "text": "同点≥3张\n每张计分热度+15",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b05",
+      "width": 108,
+      "text": "同点≥3张\n每张计分热度+15",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b06",
+      "width": 88,
+      "text": "对子\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b06",
+      "width": 108,
+      "text": "对子\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b07",
+      "width": 88,
+      "text": "≥2张都计分\n热度+30",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b07",
+      "width": 108,
+      "text": "≥2张都计分\n热度+30",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b08",
+      "width": 88,
+      "text": "对子/两对并过关\n获得3金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b08",
+      "width": 108,
+      "text": "对子/两对并过关\n获得3金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c03",
+      "width": 88,
+      "text": "♠/♣计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c03",
+      "width": 108,
+      "text": "♠/♣计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c05",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c05",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c07",
+      "width": 88,
+      "text": "同花/同花顺末计分牌\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c07",
+      "width": 108,
+      "text": "同花/同花顺末计分牌\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c08",
+      "width": 88,
+      "text": "顺子4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c08",
+      "width": 108,
+      "text": "顺子4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d02",
+      "width": 88,
+      "text": "留2/3/4/5前4张\n每张热度+6",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d02",
+      "width": 108,
+      "text": "留2/3/4/5前4张\n每张热度+6",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d04",
+      "width": 88,
+      "text": "首计分牌第2手\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d04",
+      "width": 108,
+      "text": "首计分牌第2手\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d06",
+      "width": 88,
+      "text": "进场时\n手牌上限+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d06",
+      "width": 108,
+      "text": "进场时\n手牌上限+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d07",
+      "width": 88,
+      "text": "≥1张都计分\n倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d07",
+      "width": 108,
+      "text": "≥1张都计分\n倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e02",
+      "width": 88,
+      "text": "本店首购-1金\n最低1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e02",
+      "width": 108,
+      "text": "本店首购-1金\n最低1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e04",
+      "width": 88,
+      "text": "持有这张牌\n利息上限+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e04",
+      "width": 108,
+      "text": "持有这张牌\n利息上限+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e06",
+      "width": 88,
+      "text": "成功卖牌\n倍率+0.5顶3\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e06",
+      "width": 108,
+      "text": "成功卖牌\n倍率+0.5顶3\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e07",
+      "width": 88,
+      "text": "剩0次出牌过关并过关\n获得4金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e07",
+      "width": 108,
+      "text": "剩0次出牌过关并过关\n获得4金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f04",
+      "width": 88,
+      "text": "出牌前≤3金\n倍率+3",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f04",
+      "width": 108,
+      "text": "出牌前≤3金\n倍率+3",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f05",
+      "width": 88,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f05",
+      "width": 108,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f06",
+      "width": 88,
+      "text": "出牌倍率×2\n总共4手",
+      "height": 32,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f06",
+      "width": 108,
+      "text": "出牌倍率×2\n总共4手",
+      "height": 32,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f07",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f07",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a09",
+      "width": 88,
+      "text": "出1–2张\n倍率+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a09",
+      "width": 108,
+      "text": "出1–2张\n倍率+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a10",
+      "width": 88,
+      "text": "只出1张，留J/Q/K前3张\n每张倍率+1",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a10",
+      "width": 108,
+      "text": "只出1张，留J/Q/K前3张\n每张倍率+1",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a11",
+      "width": 88,
+      "text": "只出1张\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a11",
+      "width": 108,
+      "text": "只出1张\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a12",
+      "width": 88,
+      "text": "多步条件\n获得3金\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "a12",
+      "width": 108,
+      "text": "多步条件\n获得3金\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b09",
+      "width": 88,
+      "text": "四条/五条/同花五条\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b09",
+      "width": 108,
+      "text": "四条/五条/同花五条\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b10",
+      "width": 88,
+      "text": "对子\n热度+5顶50\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b10",
+      "width": 108,
+      "text": "对子\n热度+5顶50\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b11",
+      "width": 88,
+      "text": "留牌与计分牌同点，前3张\n每张倍率+0.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b11",
+      "width": 108,
+      "text": "留牌与计分牌同点，前3张\n每张倍率+0.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b12",
+      "width": 88,
+      "text": "四条结算后未过关\n返1次出牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "b12",
+      "width": 108,
+      "text": "四条结算后未过关\n返1次出牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c09",
+      "width": 88,
+      "text": "同花4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c09",
+      "width": 108,
+      "text": "同花4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c10",
+      "width": 88,
+      "text": "留A前2张\n每张倍率+0.75",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c10",
+      "width": 108,
+      "text": "留A前2张\n每张倍率+0.75",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c11",
+      "width": 88,
+      "text": "多步条件\n倍率×1.75\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c11",
+      "width": 108,
+      "text": "多步条件\n倍率×1.75\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c12",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "c12",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d08",
+      "width": 88,
+      "text": "留声纸前2张\n每张倍率×1.2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d08",
+      "width": 108,
+      "text": "留声纸前2张\n每张倍率×1.2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d09",
+      "width": 88,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d09",
+      "width": 108,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d11",
+      "width": 88,
+      "text": "原第3牌\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d11",
+      "width": 108,
+      "text": "原第3牌\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d12",
+      "width": 88,
+      "text": "实际留≥4张并过关\n获得2金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "d12",
+      "width": 108,
+      "text": "实际留≥4张并过关\n获得2金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e09",
+      "width": 88,
+      "text": "持有这张牌\n工具容量+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e09",
+      "width": 108,
+      "text": "持有这张牌\n工具容量+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e10",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e10",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e11",
+      "width": 88,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e11",
+      "width": 108,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e12",
+      "width": 88,
+      "text": "成功换商店货\n热度+3顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "e12",
+      "width": 108,
+      "text": "成功换商店货\n热度+3顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f08",
+      "width": 88,
+      "text": "每次出牌揭晓\n1/3机会\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f08",
+      "width": 108,
+      "text": "每次出牌揭晓\n1/3机会\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f10",
+      "width": 88,
+      "text": "多步条件\n倍率×1.5\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f10",
+      "width": 108,
+      "text": "多步条件\n倍率×1.5\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f11",
+      "width": 88,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f11",
+      "width": 108,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f12",
+      "width": 88,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v10",
+      "id": "f12",
+      "width": 108,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "pengci",
+      "width": 88,
+      "text": "高牌\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "pengci",
+      "width": 108,
+      "text": "高牌\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "mantangcai",
+      "width": 88,
+      "text": "对子/两对/三条/葫芦/四条\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "mantangcai",
+      "width": 108,
+      "text": "对子/两对/三条/葫芦/四条\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "tiesuanpan",
+      "width": 88,
+      "text": "J/Q/K/A计分\n每张热度+25",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "tiesuanpan",
+      "width": 108,
+      "text": "J/Q/K/A计分\n每张热度+25",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "huimaqiang",
+      "width": 88,
+      "text": "本场第3/6/9…次出牌\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "huimaqiang",
+      "width": 108,
+      "text": "本场第3/6/9…次出牌\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "jiedongfeng",
+      "width": 88,
+      "text": "顺子/同花/同花顺\n倍率+1.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "jiedongfeng",
+      "width": 108,
+      "text": "顺子/同花/同花顺\n倍率+1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a03",
+      "width": 88,
+      "text": "只出1张\n热度+35",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a03",
+      "width": 108,
+      "text": "只出1张\n热度+35",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a05",
+      "width": 88,
+      "text": "只出1张\n热度+6顶90\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a05",
+      "width": 108,
+      "text": "只出1张\n热度+6顶90\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b02",
+      "width": 88,
+      "text": "同点≥2张\n每张计分倍率+0.25",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b02",
+      "width": 108,
+      "text": "同点≥2张\n每张计分倍率+0.25",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b03",
+      "width": 88,
+      "text": "特定牌型\n倍率+0.25顶3\n新增下次用",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b03",
+      "width": 108,
+      "text": "特定牌型\n倍率+0.25顶3\n新增下次用",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b04",
+      "width": 88,
+      "text": "≥2组各≥2张同点\n倍率+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b04",
+      "width": 108,
+      "text": "≥2组各≥2张同点\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c02",
+      "width": 88,
+      "text": "♥/♦计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c02",
+      "width": 108,
+      "text": "♥/♦计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c04",
+      "width": 88,
+      "text": "顺子/同花顺\n热度+50",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c04",
+      "width": 108,
+      "text": "顺子/同花顺\n热度+50",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c06",
+      "width": 88,
+      "text": "同花/同花顺\n倍率+0.25顶4\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c06",
+      "width": 108,
+      "text": "同花/同花顺\n倍率+0.25顶4\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d01",
+      "width": 88,
+      "text": "留J/Q/K前4张\n每张倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d01",
+      "width": 108,
+      "text": "留J/Q/K前4张\n每张倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d03",
+      "width": 88,
+      "text": "实际留≥3张\n热度+4顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d03",
+      "width": 108,
+      "text": "实际留≥3张\n热度+4顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d05",
+      "width": 88,
+      "text": "本场首次成功弃牌\n返1次弃牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d05",
+      "width": 108,
+      "text": "本场首次成功弃牌\n返1次弃牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d10",
+      "width": 88,
+      "text": "每空槽+12\n当前热度+0\n上限48",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d10",
+      "width": 108,
+      "text": "每空槽+12\n当前热度+0\n上限48",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e01",
+      "width": 88,
+      "text": "成功过关\n获得2金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e01",
+      "width": 108,
+      "text": "成功过关\n获得2金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e03",
+      "width": 88,
+      "text": "每1金热度+2\n当前+34\n上限60",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e03",
+      "width": 108,
+      "text": "每1金热度+2\n当前+34\n上限60",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e05",
+      "width": 88,
+      "text": "成功买牌\n热度+8顶80\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e05",
+      "width": 108,
+      "text": "成功买牌\n热度+8顶80\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e08",
+      "width": 88,
+      "text": "出牌前≥20金\n倍率×1.8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e08",
+      "width": 108,
+      "text": "出牌前≥20金\n倍率×1.8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f02",
+      "width": 88,
+      "text": "出牌后剩0次\n热度+70",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f02",
+      "width": 108,
+      "text": "出牌后剩0次\n热度+70",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f03",
+      "width": 88,
+      "text": "本场第1次出牌\n倍率+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f03",
+      "width": 108,
+      "text": "本场第1次出牌\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f09",
+      "width": 88,
+      "text": "本场未弃过牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f09",
+      "width": 108,
+      "text": "本场未弃过牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a04",
+      "width": 88,
+      "text": "进场时牌组≤40张\n手牌上限+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a04",
+      "width": 108,
+      "text": "进场时牌组≤40张\n手牌上限+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a06",
+      "width": 88,
+      "text": "高牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a06",
+      "width": 108,
+      "text": "高牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a07",
+      "width": 88,
+      "text": "成功弃1张\n获得1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a07",
+      "width": 108,
+      "text": "成功弃1张\n获得1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a08",
+      "width": 88,
+      "text": "2/3/4/5计分\n每张热度+20",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a08",
+      "width": 108,
+      "text": "2/3/4/5计分\n每张热度+20",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b05",
+      "width": 88,
+      "text": "同点≥3张\n每张计分热度+15",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b05",
+      "width": 108,
+      "text": "同点≥3张\n每张计分热度+15",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b06",
+      "width": 88,
+      "text": "对子\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b06",
+      "width": 108,
+      "text": "对子\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b07",
+      "width": 88,
+      "text": "≥2张都计分\n热度+30",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b07",
+      "width": 108,
+      "text": "≥2张都计分\n热度+30",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b08",
+      "width": 88,
+      "text": "对子/两对并过关\n获得3金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b08",
+      "width": 108,
+      "text": "对子/两对并过关\n获得3金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c03",
+      "width": 88,
+      "text": "♠/♣计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c03",
+      "width": 108,
+      "text": "♠/♣计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c05",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c05",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c07",
+      "width": 88,
+      "text": "同花/同花顺末计分牌\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c07",
+      "width": 108,
+      "text": "同花/同花顺末计分牌\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c08",
+      "width": 88,
+      "text": "顺子4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c08",
+      "width": 108,
+      "text": "顺子4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d02",
+      "width": 88,
+      "text": "留2/3/4/5前4张\n每张热度+6",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d02",
+      "width": 108,
+      "text": "留2/3/4/5前4张\n每张热度+6",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d04",
+      "width": 88,
+      "text": "首计分牌第2手\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d04",
+      "width": 108,
+      "text": "首计分牌第2手\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d06",
+      "width": 88,
+      "text": "进场时\n手牌上限+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d06",
+      "width": 108,
+      "text": "进场时\n手牌上限+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d07",
+      "width": 88,
+      "text": "≥1张都计分\n倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d07",
+      "width": 108,
+      "text": "≥1张都计分\n倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e02",
+      "width": 88,
+      "text": "本店首购-1金\n最低1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e02",
+      "width": 108,
+      "text": "本店首购-1金\n最低1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e04",
+      "width": 88,
+      "text": "持有这张牌\n利息上限+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e04",
+      "width": 108,
+      "text": "持有这张牌\n利息上限+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e06",
+      "width": 88,
+      "text": "成功卖牌\n倍率+0.5顶3\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e06",
+      "width": 108,
+      "text": "成功卖牌\n倍率+0.5顶3\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e07",
+      "width": 88,
+      "text": "剩0次出牌过关并过关\n获得4金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e07",
+      "width": 108,
+      "text": "剩0次出牌过关并过关\n获得4金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f04",
+      "width": 88,
+      "text": "出牌前≤3金\n倍率+3",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f04",
+      "width": 108,
+      "text": "出牌前≤3金\n倍率+3",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f05",
+      "width": 88,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f05",
+      "width": 108,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f06",
+      "width": 88,
+      "text": "出牌倍率×2\n总共4手",
+      "height": 32,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f06",
+      "width": 108,
+      "text": "出牌倍率×2\n总共4手",
+      "height": 32,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f07",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f07",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a09",
+      "width": 88,
+      "text": "出1–2张\n倍率+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a09",
+      "width": 108,
+      "text": "出1–2张\n倍率+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a10",
+      "width": 88,
+      "text": "只出1张，留J/Q/K前3张\n每张倍率+1",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a10",
+      "width": 108,
+      "text": "只出1张，留J/Q/K前3张\n每张倍率+1",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a11",
+      "width": 88,
+      "text": "只出1张\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a11",
+      "width": 108,
+      "text": "只出1张\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a12",
+      "width": 88,
+      "text": "多步条件\n获得3金\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "a12",
+      "width": 108,
+      "text": "多步条件\n获得3金\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b09",
+      "width": 88,
+      "text": "四条/五条/同花五条\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b09",
+      "width": 108,
+      "text": "四条/五条/同花五条\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b10",
+      "width": 88,
+      "text": "对子\n热度+5顶50\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b10",
+      "width": 108,
+      "text": "对子\n热度+5顶50\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b11",
+      "width": 88,
+      "text": "留牌与计分牌同点，前3张\n每张倍率+0.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b11",
+      "width": 108,
+      "text": "留牌与计分牌同点，前3张\n每张倍率+0.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b12",
+      "width": 88,
+      "text": "四条结算后未过关\n返1次出牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "b12",
+      "width": 108,
+      "text": "四条结算后未过关\n返1次出牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c09",
+      "width": 88,
+      "text": "同花4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c09",
+      "width": 108,
+      "text": "同花4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c10",
+      "width": 88,
+      "text": "留A前2张\n每张倍率+0.75",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c10",
+      "width": 108,
+      "text": "留A前2张\n每张倍率+0.75",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c11",
+      "width": 88,
+      "text": "多步条件\n倍率×1.75\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c11",
+      "width": 108,
+      "text": "多步条件\n倍率×1.75\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c12",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "c12",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d08",
+      "width": 88,
+      "text": "留声纸前2张\n每张倍率×1.2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d08",
+      "width": 108,
+      "text": "留声纸前2张\n每张倍率×1.2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d09",
+      "width": 88,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d09",
+      "width": 108,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d11",
+      "width": 88,
+      "text": "原第3牌\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d11",
+      "width": 108,
+      "text": "原第3牌\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d12",
+      "width": 88,
+      "text": "实际留≥4张并过关\n获得2金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "d12",
+      "width": 108,
+      "text": "实际留≥4张并过关\n获得2金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e09",
+      "width": 88,
+      "text": "持有这张牌\n工具容量+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e09",
+      "width": 108,
+      "text": "持有这张牌\n工具容量+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e10",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e10",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e11",
+      "width": 88,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e11",
+      "width": 108,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e12",
+      "width": 88,
+      "text": "成功换商店货\n热度+3顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "e12",
+      "width": 108,
+      "text": "成功换商店货\n热度+3顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f08",
+      "width": 88,
+      "text": "每次出牌揭晓\n1/3机会\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f08",
+      "width": 108,
+      "text": "每次出牌揭晓\n1/3机会\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f10",
+      "width": 88,
+      "text": "多步条件\n倍率×1.5\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f10",
+      "width": 108,
+      "text": "多步条件\n倍率×1.5\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f11",
+      "width": 88,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f11",
+      "width": 108,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f12",
+      "width": 88,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-content-v11",
+      "id": "f12",
+      "width": 108,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "pengci",
+      "width": 88,
+      "text": "三条\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "pengci",
+      "width": 108,
+      "text": "三条\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "mantangcai",
+      "width": 88,
+      "text": "对子/两对/三条/葫芦/四条\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "mantangcai",
+      "width": 108,
+      "text": "对子/两对/三条/葫芦/四条\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "tiesuanpan",
+      "width": 88,
+      "text": "J/Q/K/A计分\n每张热度+25",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "tiesuanpan",
+      "width": 108,
+      "text": "J/Q/K/A计分\n每张热度+25",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "huimaqiang",
+      "width": 88,
+      "text": "本场第3/6/9…次出牌\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "huimaqiang",
+      "width": 108,
+      "text": "本场第3/6/9…次出牌\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "jiedongfeng",
+      "width": 88,
+      "text": "顺子/同花/同花顺\n倍率+1.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "jiedongfeng",
+      "width": 108,
+      "text": "顺子/同花/同花顺\n倍率+1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a03",
+      "width": 88,
+      "text": "非高牌/对子\n首计分牌\n热度+15",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a03",
+      "width": 108,
+      "text": "非高牌/对子\n首计分牌\n热度+15",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a05",
+      "width": 88,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a05",
+      "width": 108,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b02",
+      "width": 88,
+      "text": "同点≥2张\n每张计分倍率+0.25",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b02",
+      "width": 108,
+      "text": "同点≥2张\n每张计分倍率+0.25",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b03",
+      "width": 88,
+      "text": "特定牌型\n倍率+0.25顶3\n新增下次用",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b03",
+      "width": 108,
+      "text": "特定牌型\n倍率+0.25顶3\n新增下次用",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b04",
+      "width": 88,
+      "text": "≥2组各≥2张同点\n倍率+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b04",
+      "width": 108,
+      "text": "≥2组各≥2张同点\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c02",
+      "width": 88,
+      "text": "♥/♦计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c02",
+      "width": 108,
+      "text": "♥/♦计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c04",
+      "width": 88,
+      "text": "顺子/同花顺\n热度+50",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c04",
+      "width": 108,
+      "text": "顺子/同花顺\n热度+50",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c06",
+      "width": 88,
+      "text": "同花/同花顺\n倍率+0.25顶4\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c06",
+      "width": 108,
+      "text": "同花/同花顺\n倍率+0.25顶4\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d01",
+      "width": 88,
+      "text": "留J/Q/K前4张\n每张倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d01",
+      "width": 108,
+      "text": "留J/Q/K前4张\n每张倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d03",
+      "width": 88,
+      "text": "实际留≥3张\n热度+4顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d03",
+      "width": 108,
+      "text": "实际留≥3张\n热度+4顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d05",
+      "width": 88,
+      "text": "本场首次成功弃牌\n返1次弃牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d05",
+      "width": 108,
+      "text": "本场首次成功弃牌\n返1次弃牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d10",
+      "width": 88,
+      "text": "每空槽+12\n当前热度+0\n上限48",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d10",
+      "width": 108,
+      "text": "每空槽+12\n当前热度+0\n上限48",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e01",
+      "width": 88,
+      "text": "成功过关\n获得2金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e01",
+      "width": 108,
+      "text": "成功过关\n获得2金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e03",
+      "width": 88,
+      "text": "每1金热度+2\n当前+34\n上限60",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e03",
+      "width": 108,
+      "text": "每1金热度+2\n当前+34\n上限60",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e05",
+      "width": 88,
+      "text": "成功买牌\n热度+8顶80\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e05",
+      "width": 108,
+      "text": "成功买牌\n热度+8顶80\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e08",
+      "width": 88,
+      "text": "出牌前≥20金\n倍率×1.8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e08",
+      "width": 108,
+      "text": "出牌前≥20金\n倍率×1.8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f02",
+      "width": 88,
+      "text": "出牌后剩0次\n热度+70",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f02",
+      "width": 108,
+      "text": "出牌后剩0次\n热度+70",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f03",
+      "width": 88,
+      "text": "本场第1次出牌\n倍率+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f03",
+      "width": 108,
+      "text": "本场第1次出牌\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f09",
+      "width": 88,
+      "text": "本场未弃过牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f09",
+      "width": 108,
+      "text": "本场未弃过牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a04",
+      "width": 88,
+      "text": "进场时牌组≤40张\n手牌上限+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a04",
+      "width": 108,
+      "text": "进场时牌组≤40张\n手牌上限+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a06",
+      "width": 88,
+      "text": "多步条件\n倍率×1.5\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a06",
+      "width": 108,
+      "text": "多步条件\n倍率×1.5\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a07",
+      "width": 88,
+      "text": "成功弃1张\n获得1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a07",
+      "width": 108,
+      "text": "成功弃1张\n获得1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a08",
+      "width": 88,
+      "text": "2/3/4/5计分\n每张热度+20",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a08",
+      "width": 108,
+      "text": "2/3/4/5计分\n每张热度+20",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b05",
+      "width": 88,
+      "text": "同点≥3张\n每张计分热度+15",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b05",
+      "width": 108,
+      "text": "同点≥3张\n每张计分热度+15",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b06",
+      "width": 88,
+      "text": "对子\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b06",
+      "width": 108,
+      "text": "对子\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b07",
+      "width": 88,
+      "text": "≥2张都计分\n热度+30",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b07",
+      "width": 108,
+      "text": "≥2张都计分\n热度+30",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b08",
+      "width": 88,
+      "text": "对子/两对并过关\n获得3金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b08",
+      "width": 108,
+      "text": "对子/两对并过关\n获得3金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c03",
+      "width": 88,
+      "text": "♠/♣计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c03",
+      "width": 108,
+      "text": "♠/♣计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c05",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c05",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c07",
+      "width": 88,
+      "text": "同花/同花顺末计分牌\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c07",
+      "width": 108,
+      "text": "同花/同花顺末计分牌\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c08",
+      "width": 88,
+      "text": "顺子4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c08",
+      "width": 108,
+      "text": "顺子4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d02",
+      "width": 88,
+      "text": "留2/3/4/5前4张\n每张热度+6",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d02",
+      "width": 108,
+      "text": "留2/3/4/5前4张\n每张热度+6",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d04",
+      "width": 88,
+      "text": "首计分牌第2手\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d04",
+      "width": 108,
+      "text": "首计分牌第2手\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d06",
+      "width": 88,
+      "text": "进场时\n手牌上限+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d06",
+      "width": 108,
+      "text": "进场时\n手牌上限+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d07",
+      "width": 88,
+      "text": "≥1张都计分\n倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d07",
+      "width": 108,
+      "text": "≥1张都计分\n倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e02",
+      "width": 88,
+      "text": "本店首购-1金\n最低1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e02",
+      "width": 108,
+      "text": "本店首购-1金\n最低1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e04",
+      "width": 88,
+      "text": "持有这张牌\n利息上限+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e04",
+      "width": 108,
+      "text": "持有这张牌\n利息上限+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e06",
+      "width": 88,
+      "text": "成功卖牌\n倍率+0.5顶3\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e06",
+      "width": 108,
+      "text": "成功卖牌\n倍率+0.5顶3\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e07",
+      "width": 88,
+      "text": "剩0次出牌过关并过关\n获得4金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e07",
+      "width": 108,
+      "text": "剩0次出牌过关并过关\n获得4金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f04",
+      "width": 88,
+      "text": "出牌前≤3金\n倍率+3",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f04",
+      "width": 108,
+      "text": "出牌前≤3金\n倍率+3",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f05",
+      "width": 88,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f05",
+      "width": 108,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f06",
+      "width": 88,
+      "text": "出牌倍率×2\n总共4手",
+      "height": 32,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f06",
+      "width": 108,
+      "text": "出牌倍率×2\n总共4手",
+      "height": 32,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f07",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f07",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a09",
+      "width": 88,
+      "text": "出1–2张\n倍率+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a09",
+      "width": 108,
+      "text": "出1–2张\n倍率+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a10",
+      "width": 88,
+      "text": "留J/Q/K前1张\n每张倍率×1.25",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a10",
+      "width": 108,
+      "text": "留J/Q/K前1张\n每张倍率×1.25",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a11",
+      "width": 88,
+      "text": "葫芦/同花葫芦\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a11",
+      "width": 108,
+      "text": "葫芦/同花葫芦\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a12",
+      "width": 88,
+      "text": "多步条件\n获得3金\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "a12",
+      "width": 108,
+      "text": "多步条件\n获得3金\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b09",
+      "width": 88,
+      "text": "四条/五条/同花五条\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b09",
+      "width": 108,
+      "text": "四条/五条/同花五条\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b10",
+      "width": 88,
+      "text": "对子\n热度+5顶50\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b10",
+      "width": 108,
+      "text": "对子\n热度+5顶50\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b11",
+      "width": 88,
+      "text": "留牌与计分牌同点，前3张\n每张倍率+0.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b11",
+      "width": 108,
+      "text": "留牌与计分牌同点，前3张\n每张倍率+0.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b12",
+      "width": 88,
+      "text": "四条结算后未过关\n返1次出牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "b12",
+      "width": 108,
+      "text": "四条结算后未过关\n返1次出牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c09",
+      "width": 88,
+      "text": "同花4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c09",
+      "width": 108,
+      "text": "同花4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c10",
+      "width": 88,
+      "text": "留A前2张\n每张倍率+0.75",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c10",
+      "width": 108,
+      "text": "留A前2张\n每张倍率+0.75",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c11",
+      "width": 88,
+      "text": "多步条件\n倍率×1.75\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c11",
+      "width": 108,
+      "text": "多步条件\n倍率×1.75\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c12",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "c12",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d08",
+      "width": 88,
+      "text": "留声纸前2张\n每张倍率×1.2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d08",
+      "width": 108,
+      "text": "留声纸前2张\n每张倍率×1.2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d09",
+      "width": 88,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d09",
+      "width": 108,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d11",
+      "width": 88,
+      "text": "原第3牌\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d11",
+      "width": 108,
+      "text": "原第3牌\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d12",
+      "width": 88,
+      "text": "实际留≥4张并过关\n获得2金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "d12",
+      "width": 108,
+      "text": "实际留≥4张并过关\n获得2金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e09",
+      "width": 88,
+      "text": "持有这张牌\n工具容量+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e09",
+      "width": 108,
+      "text": "持有这张牌\n工具容量+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e10",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e10",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e11",
+      "width": 88,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e11",
+      "width": 108,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e12",
+      "width": 88,
+      "text": "成功换商店货\n热度+3顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "e12",
+      "width": 108,
+      "text": "成功换商店货\n热度+3顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f08",
+      "width": 88,
+      "text": "每次出牌揭晓\n1/3机会\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f08",
+      "width": 108,
+      "text": "每次出牌揭晓\n1/3机会\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f10",
+      "width": 88,
+      "text": "多步条件\n倍率×1.5\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f10",
+      "width": 108,
+      "text": "多步条件\n倍率×1.5\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f11",
+      "width": 88,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f11",
+      "width": 108,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f12",
+      "width": 88,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-amo-assist-prototype-v1",
+      "id": "f12",
+      "width": 108,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "pengci",
+      "width": 88,
+      "text": "三条\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "pengci",
+      "width": 108,
+      "text": "三条\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "mantangcai",
+      "width": 88,
+      "text": "对子/两对/三条/葫芦/四条\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "mantangcai",
+      "width": 108,
+      "text": "对子/两对/三条/葫芦/四条\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "tiesuanpan",
+      "width": 88,
+      "text": "J/Q/K/A计分\n每张热度+25",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "tiesuanpan",
+      "width": 108,
+      "text": "J/Q/K/A计分\n每张热度+25",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "huimaqiang",
+      "width": 88,
+      "text": "本场第3/6/9…次出牌\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "huimaqiang",
+      "width": 108,
+      "text": "本场第3/6/9…次出牌\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "jiedongfeng",
+      "width": 88,
+      "text": "顺子/同花/同花顺\n倍率+1.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "jiedongfeng",
+      "width": 108,
+      "text": "顺子/同花/同花顺\n倍率+1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a03",
+      "width": 88,
+      "text": "非高牌/对子\n首计分牌\n热度+15",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a03",
+      "width": 108,
+      "text": "非高牌/对子\n首计分牌\n热度+15",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a05",
+      "width": 88,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a05",
+      "width": 108,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b02",
+      "width": 88,
+      "text": "同点≥2张\n每张计分倍率+0.25",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b02",
+      "width": 108,
+      "text": "同点≥2张\n每张计分倍率+0.25",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b03",
+      "width": 88,
+      "text": "特定牌型\n倍率+0.25顶3\n新增下次用",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b03",
+      "width": 108,
+      "text": "特定牌型\n倍率+0.25顶3\n新增下次用",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b04",
+      "width": 88,
+      "text": "≥2组各≥2张同点\n倍率+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b04",
+      "width": 108,
+      "text": "≥2组各≥2张同点\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c02",
+      "width": 88,
+      "text": "♥/♦计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c02",
+      "width": 108,
+      "text": "♥/♦计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c04",
+      "width": 88,
+      "text": "顺子/同花顺\n热度+50",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c04",
+      "width": 108,
+      "text": "顺子/同花顺\n热度+50",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c06",
+      "width": 88,
+      "text": "同花/同花顺\n倍率+0.25顶4\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c06",
+      "width": 108,
+      "text": "同花/同花顺\n倍率+0.25顶4\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d01",
+      "width": 88,
+      "text": "留J/Q/K前4张\n每张倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d01",
+      "width": 108,
+      "text": "留J/Q/K前4张\n每张倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d03",
+      "width": 88,
+      "text": "实际留≥3张\n热度+4顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d03",
+      "width": 108,
+      "text": "实际留≥3张\n热度+4顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d05",
+      "width": 88,
+      "text": "本场首次成功弃牌\n返1次弃牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d05",
+      "width": 108,
+      "text": "本场首次成功弃牌\n返1次弃牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d10",
+      "width": 88,
+      "text": "每空槽+12\n当前热度+0\n上限48",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d10",
+      "width": 108,
+      "text": "每空槽+12\n当前热度+0\n上限48",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e01",
+      "width": 88,
+      "text": "成功过关\n获得2金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e01",
+      "width": 108,
+      "text": "成功过关\n获得2金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e03",
+      "width": 88,
+      "text": "每1金热度+2\n当前+34\n上限60",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e03",
+      "width": 108,
+      "text": "每1金热度+2\n当前+34\n上限60",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e05",
+      "width": 88,
+      "text": "成功买牌\n热度+8顶80\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e05",
+      "width": 108,
+      "text": "成功买牌\n热度+8顶80\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e08",
+      "width": 88,
+      "text": "出牌前≥20金\n倍率×1.8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e08",
+      "width": 108,
+      "text": "出牌前≥20金\n倍率×1.8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f02",
+      "width": 88,
+      "text": "出牌后剩0次\n热度+70",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f02",
+      "width": 108,
+      "text": "出牌后剩0次\n热度+70",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f03",
+      "width": 88,
+      "text": "本场第1次出牌\n倍率+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f03",
+      "width": 108,
+      "text": "本场第1次出牌\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f09",
+      "width": 88,
+      "text": "本场未弃过牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f09",
+      "width": 108,
+      "text": "本场未弃过牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a04",
+      "width": 88,
+      "text": "进场时牌组≤40张\n手牌上限+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a04",
+      "width": 108,
+      "text": "进场时牌组≤40张\n手牌上限+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a06",
+      "width": 88,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a06",
+      "width": 108,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a07",
+      "width": 88,
+      "text": "成功弃1张\n获得1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a07",
+      "width": 108,
+      "text": "成功弃1张\n获得1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a08",
+      "width": 88,
+      "text": "2/3/4/5计分\n每张热度+20",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a08",
+      "width": 108,
+      "text": "2/3/4/5计分\n每张热度+20",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b05",
+      "width": 88,
+      "text": "同点≥3张\n每张计分热度+15",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b05",
+      "width": 108,
+      "text": "同点≥3张\n每张计分热度+15",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b06",
+      "width": 88,
+      "text": "对子\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b06",
+      "width": 108,
+      "text": "对子\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b07",
+      "width": 88,
+      "text": "≥2张都计分\n热度+30",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b07",
+      "width": 108,
+      "text": "≥2张都计分\n热度+30",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b08",
+      "width": 88,
+      "text": "对子/两对并过关\n获得3金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b08",
+      "width": 108,
+      "text": "对子/两对并过关\n获得3金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c03",
+      "width": 88,
+      "text": "♠/♣计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c03",
+      "width": 108,
+      "text": "♠/♣计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c05",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c05",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c07",
+      "width": 88,
+      "text": "同花/同花顺末计分牌\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c07",
+      "width": 108,
+      "text": "同花/同花顺末计分牌\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c08",
+      "width": 88,
+      "text": "顺子4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c08",
+      "width": 108,
+      "text": "顺子4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d02",
+      "width": 88,
+      "text": "留2/3/4/5前4张\n每张热度+6",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d02",
+      "width": 108,
+      "text": "留2/3/4/5前4张\n每张热度+6",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d04",
+      "width": 88,
+      "text": "首计分牌第2手\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d04",
+      "width": 108,
+      "text": "首计分牌第2手\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d06",
+      "width": 88,
+      "text": "进场时\n手牌上限+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d06",
+      "width": 108,
+      "text": "进场时\n手牌上限+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d07",
+      "width": 88,
+      "text": "≥1张都计分\n倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d07",
+      "width": 108,
+      "text": "≥1张都计分\n倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e02",
+      "width": 88,
+      "text": "本店首购-1金\n最低1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e02",
+      "width": 108,
+      "text": "本店首购-1金\n最低1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e04",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e04",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e06",
+      "width": 88,
+      "text": "成功卖牌\n倍率+0.5顶3\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e06",
+      "width": 108,
+      "text": "成功卖牌\n倍率+0.5顶3\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e07",
+      "width": 88,
+      "text": "剩0次出牌过关并过关\n获得4金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e07",
+      "width": 108,
+      "text": "剩0次出牌过关并过关\n获得4金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f04",
+      "width": 88,
+      "text": "出牌前≤3金\n倍率+3",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f04",
+      "width": 108,
+      "text": "出牌前≤3金\n倍率+3",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f05",
+      "width": 88,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f05",
+      "width": 108,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f06",
+      "width": 88,
+      "text": "出牌倍率×2\n总共4手",
+      "height": 32,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f06",
+      "width": 108,
+      "text": "出牌倍率×2\n总共4手",
+      "height": 32,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f07",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f07",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a09",
+      "width": 88,
+      "text": "出1–2张\n倍率+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a09",
+      "width": 108,
+      "text": "出1–2张\n倍率+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a10",
+      "width": 88,
+      "text": "留J/Q/K前1张\n每张倍率×1.25",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a10",
+      "width": 108,
+      "text": "留J/Q/K前1张\n每张倍率×1.25",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a11",
+      "width": 88,
+      "text": "葫芦/同花葫芦\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a11",
+      "width": 108,
+      "text": "葫芦/同花葫芦\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a12",
+      "width": 88,
+      "text": "多步条件\n获得3金\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "a12",
+      "width": 108,
+      "text": "多步条件\n获得3金\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b09",
+      "width": 88,
+      "text": "四条/五条/同花五条\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b09",
+      "width": 108,
+      "text": "四条/五条/同花五条\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b10",
+      "width": 88,
+      "text": "对子\n热度+5顶50\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b10",
+      "width": 108,
+      "text": "对子\n热度+5顶50\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b11",
+      "width": 88,
+      "text": "留牌与计分牌同点，前3张\n每张倍率+0.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b11",
+      "width": 108,
+      "text": "留牌与计分牌同点，前3张\n每张倍率+0.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b12",
+      "width": 88,
+      "text": "四条结算后未过关\n返1次出牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "b12",
+      "width": 108,
+      "text": "四条结算后未过关\n返1次出牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c09",
+      "width": 88,
+      "text": "同花4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c09",
+      "width": 108,
+      "text": "同花4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c10",
+      "width": 88,
+      "text": "留A前2张\n每张倍率+0.75",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c10",
+      "width": 108,
+      "text": "留A前2张\n每张倍率+0.75",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c11",
+      "width": 88,
+      "text": "多步条件\n倍率×1.75\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c11",
+      "width": 108,
+      "text": "多步条件\n倍率×1.75\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c12",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "c12",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d08",
+      "width": 88,
+      "text": "留声纸前2张\n每张倍率×1.2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d08",
+      "width": 108,
+      "text": "留声纸前2张\n每张倍率×1.2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d09",
+      "width": 88,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d09",
+      "width": 108,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d11",
+      "width": 88,
+      "text": "原第3牌\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d11",
+      "width": 108,
+      "text": "原第3牌\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d12",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "d12",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e09",
+      "width": 88,
+      "text": "持有这张牌\n工具容量+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e09",
+      "width": 108,
+      "text": "持有这张牌\n工具容量+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e10",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e10",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e11",
+      "width": 88,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e11",
+      "width": 108,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e12",
+      "width": 88,
+      "text": "成功换商店货\n热度+3顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "e12",
+      "width": 108,
+      "text": "成功换商店货\n热度+3顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f08",
+      "width": 88,
+      "text": "每次出牌揭晓\n1/3机会\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f08",
+      "width": 108,
+      "text": "每次出牌揭晓\n1/3机会\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f10",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f10",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f11",
+      "width": 88,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f11",
+      "width": 108,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f12",
+      "width": 88,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-combo-growth-prototype-v1",
+      "id": "f12",
+      "width": 108,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "pengci",
+      "width": 88,
+      "text": "三条\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "pengci",
+      "width": 108,
+      "text": "三条\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "mantangcai",
+      "width": 88,
+      "text": "对子/两对/三条/葫芦/四条\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "mantangcai",
+      "width": 108,
+      "text": "对子/两对/三条/葫芦/四条\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "tiesuanpan",
+      "width": 88,
+      "text": "J/Q/K/A计分\n每张热度+25",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "tiesuanpan",
+      "width": 108,
+      "text": "J/Q/K/A计分\n每张热度+25",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "huimaqiang",
+      "width": 88,
+      "text": "本场第3/6/9…次出牌\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "huimaqiang",
+      "width": 108,
+      "text": "本场第3/6/9…次出牌\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "jiedongfeng",
+      "width": 88,
+      "text": "顺子/同花/同花顺\n倍率+1.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "jiedongfeng",
+      "width": 108,
+      "text": "顺子/同花/同花顺\n倍率+1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a03",
+      "width": 88,
+      "text": "非高牌/对子\n首计分牌\n热度+15",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a03",
+      "width": 108,
+      "text": "非高牌/对子\n首计分牌\n热度+15",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a05",
+      "width": 88,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a05",
+      "width": 108,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b02",
+      "width": 88,
+      "text": "同点≥2张\n每张计分倍率+0.25",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b02",
+      "width": 108,
+      "text": "同点≥2张\n每张计分倍率+0.25",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b03",
+      "width": 88,
+      "text": "成组长倍率\n+0.25顶3\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b03",
+      "width": 108,
+      "text": "成组长倍率\n+0.25顶3\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b04",
+      "width": 88,
+      "text": "≥2组各≥2张同点\n倍率+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b04",
+      "width": 108,
+      "text": "≥2组各≥2张同点\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c02",
+      "width": 88,
+      "text": "♥/♦计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c02",
+      "width": 108,
+      "text": "♥/♦计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c04",
+      "width": 88,
+      "text": "顺子/同花顺\n热度+50",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c04",
+      "width": 108,
+      "text": "顺子/同花顺\n热度+50",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c06",
+      "width": 88,
+      "text": "同花/同花顺\n倍率+0.25顶4\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c06",
+      "width": 108,
+      "text": "同花/同花顺\n倍率+0.25顶4\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d01",
+      "width": 88,
+      "text": "留J/Q/K前4张\n每张倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d01",
+      "width": 108,
+      "text": "留J/Q/K前4张\n每张倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d03",
+      "width": 88,
+      "text": "实际留≥3张\n热度+4顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d03",
+      "width": 108,
+      "text": "实际留≥3张\n热度+4顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d05",
+      "width": 88,
+      "text": "本场首次成功弃牌\n返1次弃牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d05",
+      "width": 108,
+      "text": "本场首次成功弃牌\n返1次弃牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d10",
+      "width": 88,
+      "text": "每空槽+12\n当前热度+0\n上限48",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d10",
+      "width": 108,
+      "text": "每空槽+12\n当前热度+0\n上限48",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e01",
+      "width": 88,
+      "text": "成功过关\n获得2金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e01",
+      "width": 108,
+      "text": "成功过关\n获得2金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e03",
+      "width": 88,
+      "text": "每1金热度+2\n当前+34\n上限60",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e03",
+      "width": 108,
+      "text": "每1金热度+2\n当前+34\n上限60",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e05",
+      "width": 88,
+      "text": "成功买牌\n热度+8顶80\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e05",
+      "width": 108,
+      "text": "成功买牌\n热度+8顶80\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e08",
+      "width": 88,
+      "text": "出牌前≥20金\n倍率×1.8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e08",
+      "width": 108,
+      "text": "出牌前≥20金\n倍率×1.8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f02",
+      "width": 88,
+      "text": "出牌后剩0次\n热度+70",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f02",
+      "width": 108,
+      "text": "出牌后剩0次\n热度+70",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f03",
+      "width": 88,
+      "text": "本场第1次出牌\n倍率+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f03",
+      "width": 108,
+      "text": "本场第1次出牌\n倍率+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f09",
+      "width": 88,
+      "text": "本场未弃过牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f09",
+      "width": 108,
+      "text": "本场未弃过牌\n倍率×1.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a04",
+      "width": 88,
+      "text": "进场时牌组≤40张\n手牌上限+2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a04",
+      "width": 108,
+      "text": "进场时牌组≤40张\n手牌上限+2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a06",
+      "width": 88,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a06",
+      "width": 108,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a07",
+      "width": 88,
+      "text": "成功弃1张\n获得1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a07",
+      "width": 108,
+      "text": "成功弃1张\n获得1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a08",
+      "width": 88,
+      "text": "2/3/4/5计分\n每张热度+20",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a08",
+      "width": 108,
+      "text": "2/3/4/5计分\n每张热度+20",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b05",
+      "width": 88,
+      "text": "同点≥3张\n每张计分热度+15",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b05",
+      "width": 108,
+      "text": "同点≥3张\n每张计分热度+15",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b06",
+      "width": 88,
+      "text": "多步条件\n再计1次\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b06",
+      "width": 108,
+      "text": "多步条件\n再计1次\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b07",
+      "width": 88,
+      "text": "≥2张都计分\n热度+30",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b07",
+      "width": 108,
+      "text": "≥2张都计分\n热度+30",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b08",
+      "width": 88,
+      "text": "对子等同点组合并过关\n获得3金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b08",
+      "width": 108,
+      "text": "对子等同点组合并过关\n获得3金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c03",
+      "width": 88,
+      "text": "♠/♣计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c03",
+      "width": 108,
+      "text": "♠/♣计分\n每张热度+8",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c05",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c05",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c07",
+      "width": 88,
+      "text": "同花/同花顺末计分牌\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c07",
+      "width": 108,
+      "text": "同花/同花顺末计分牌\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c08",
+      "width": 88,
+      "text": "顺子4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c08",
+      "width": 108,
+      "text": "顺子4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d02",
+      "width": 88,
+      "text": "留2/3/4/5前4张\n每张热度+6",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d02",
+      "width": 108,
+      "text": "留2/3/4/5前4张\n每张热度+6",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d04",
+      "width": 88,
+      "text": "首计分牌第2手\n再计1次",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d04",
+      "width": 108,
+      "text": "首计分牌第2手\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d06",
+      "width": 88,
+      "text": "进场时\n手牌上限+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d06",
+      "width": 108,
+      "text": "进场时\n手牌上限+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d07",
+      "width": 88,
+      "text": "≥1张都计分\n倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d07",
+      "width": 108,
+      "text": "≥1张都计分\n倍率+0.5",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e02",
+      "width": 88,
+      "text": "本店首购-1金\n最低1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e02",
+      "width": 108,
+      "text": "本店首购-1金\n最低1金",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e04",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e04",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e06",
+      "width": 88,
+      "text": "成功卖牌\n倍率+0.5顶3\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e06",
+      "width": 108,
+      "text": "成功卖牌\n倍率+0.5顶3\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e07",
+      "width": 88,
+      "text": "剩0次出牌过关并过关\n获得4金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e07",
+      "width": 108,
+      "text": "剩0次出牌过关并过关\n获得4金",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f04",
+      "width": 88,
+      "text": "出牌前≤3金\n倍率+3",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f04",
+      "width": 108,
+      "text": "出牌前≤3金\n倍率+3",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f05",
+      "width": 88,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f05",
+      "width": 108,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f06",
+      "width": 88,
+      "text": "出牌倍率×2\n总共4手",
+      "height": 32,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f06",
+      "width": 108,
+      "text": "出牌倍率×2\n总共4手",
+      "height": 32,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f07",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f07",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a09",
+      "width": 88,
+      "text": "出1–2张\n倍率+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a09",
+      "width": 108,
+      "text": "出1–2张\n倍率+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a10",
+      "width": 88,
+      "text": "留J/Q/K前1张\n每张倍率×1.25",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a10",
+      "width": 108,
+      "text": "留J/Q/K前1张\n每张倍率×1.25",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a11",
+      "width": 88,
+      "text": "葫芦/同花葫芦\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a11",
+      "width": 108,
+      "text": "葫芦/同花葫芦\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a12",
+      "width": 88,
+      "text": "多步条件\n获得3金\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "a12",
+      "width": 108,
+      "text": "多步条件\n获得3金\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b09",
+      "width": 88,
+      "text": "四条/五条/同花五条\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b09",
+      "width": 108,
+      "text": "四条/五条/同花五条\n倍率×2",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b10",
+      "width": 88,
+      "text": "成组长热度\n+10顶100\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b10",
+      "width": 108,
+      "text": "成组长热度\n+10顶100\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b11",
+      "width": 88,
+      "text": "留牌与计分牌同点，前3张\n每张倍率+0.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b11",
+      "width": 108,
+      "text": "留牌与计分牌同点，前3张\n每张倍率+0.5",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b12",
+      "width": 88,
+      "text": "四条结算后未过关\n返1次出牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "b12",
+      "width": 108,
+      "text": "四条结算后未过关\n返1次出牌",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c09",
+      "width": 88,
+      "text": "同花4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c09",
+      "width": 108,
+      "text": "同花4张\n同花顺5张",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c10",
+      "width": 88,
+      "text": "留A前2张\n每张倍率+0.75",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c10",
+      "width": 108,
+      "text": "留A前2张\n每张倍率+0.75",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c11",
+      "width": 88,
+      "text": "多步条件\n倍率×1.75\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c11",
+      "width": 108,
+      "text": "多步条件\n倍率×1.75\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c12",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "c12",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d08",
+      "width": 88,
+      "text": "留声纸前2张\n每张倍率×1.2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d08",
+      "width": 108,
+      "text": "留声纸前2张\n每张倍率×1.2",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d09",
+      "width": 88,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d09",
+      "width": 108,
+      "text": "多步成长\n倍率+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d11",
+      "width": 88,
+      "text": "原第3牌\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d11",
+      "width": 108,
+      "text": "原第3牌\n再计1次",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d12",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "d12",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e09",
+      "width": 88,
+      "text": "持有这张牌\n工具容量+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e09",
+      "width": 108,
+      "text": "持有这张牌\n工具容量+1",
+      "height": 32,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e10",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e10",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e11",
+      "width": 88,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e11",
+      "width": 108,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e12",
+      "width": 88,
+      "text": "成功换商店货\n热度+3顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "e12",
+      "width": 108,
+      "text": "成功换商店货\n热度+3顶60\n新增下次用",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f08",
+      "width": 88,
+      "text": "每次出牌揭晓\n1/3机会\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f08",
+      "width": 108,
+      "text": "每次出牌揭晓\n1/3机会\n热度+90",
+      "height": 48,
+      "fallback": false
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f10",
+      "width": 88,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f10",
+      "width": 108,
+      "text": "多步条件\n分时点生效\n点牌查条件",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f11",
+      "width": 88,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f11",
+      "width": 108,
+      "text": "多步成长\n热度+保存值\n点牌查增减",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f12",
+      "width": 88,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    },
+    {
+      "identity": "quality-r2-group-upgrade-prototype-v1",
+      "id": "f12",
+      "width": 108,
+      "text": "多步条件\n倍率×保存值\n点牌查重置",
+      "height": 48,
+      "fallback": true
+    }
+  ],
+  "status": "PASS"
+}

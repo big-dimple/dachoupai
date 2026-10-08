@@ -1,0 +1,64 @@
+
+ RUN  v4.1.11 /tmp/w6-cap-original
+
+ ❯ tests/joker-plain-copy.test.ts (15 tests | 3 failed | 12 skipped) 24ms
+   × old growth identities keep their three exact types instead of adopting the new group rule 14ms
+   × growth headroom and capped default facts agree with actual trace in each content identity 7ms
+   × current capped resource heat and its limit are visible before expanding rules 2ms
+ ❯ tests/joker-experience.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/joker-experience.test.ts [ tests/joker-experience.test.ts ]
+Error: Cannot find module '../../public/assets/handdrawn-p08/manifest.json' imported from /tmp/w6-cap-original/src/game/HanddrawnArt.ts
+ ❯ src/game/HanddrawnArt.ts:1:1
+      1| import manifest from '../../public/assets/handdrawn-p08/manifest.json';
+       | ^
+      2| import {assetUrl} from './theme';
+      3| import type Phaser from 'phaser';
+ ❯ src/game/jokerArt.ts:2:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/joker-plain-copy.test.ts > old growth identities keep their three exact types instead of adopting the new group rule
+AssertionError: expected '对子/两对/三条出牌后 → 倍率成长+0.25；新增下次用' to be '每手加上已攒的倍率；打出对子、两对、三条后，再攒 0.25，最多攒 3。' // Object.is equality
+
+Expected: "每手加上已攒的倍率；打出对子、两对、三条后，再攒 0.25，最多攒 3。"
+Received: "对子/两对/三条出牌后 → 倍率成长+0.25；新增下次用"
+
+ ❯ tests/joker-plain-copy.test.ts:60:18
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/joker-plain-copy.test.ts > growth headroom and capped default facts agree with actual trace in each content identity
+AssertionError: expected '本次用已存热度+0；新增到对应时点检查；所选对子可在结算后增长' to contain '上限50'
+
+Expected: "上限50"
+Received: "本次用已存热度+0；新增到对应时点检查；所选对子可在结算后增长"
+
+ ❯ tests/joker-plain-copy.test.ts:72:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/joker-plain-copy.test.ts > current capped resource heat and its limit are visible before expanding rules
+AssertionError: expected '每次出牌 → 每1金热度+2（不花金币）' to contain '上限60'
+
+Expected: "上限60"
+Received: "每次出牌 → 每1金热度+2（不花金币）"
+
+ ❯ tests/joker-plain-copy.test.ts:83:19
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  3 failed | 12 skipped (15)
+   Start at  07:51:27
+   Duration  651ms (transform 766ms, setup 0ms, import 486ms, tests 24ms, environment 0ms)
+

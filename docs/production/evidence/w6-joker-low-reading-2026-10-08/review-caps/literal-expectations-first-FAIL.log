@@ -1,0 +1,47 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/joker-plain-copy.test.ts (12 tests | 2 failed) 149ms
+   × new growth is for later plays while already saved growth is the current contribution 8ms
+   × old growth identities keep their three exact types instead of adopting the new group rule 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/joker-plain-copy.test.ts > new growth is for later plays while already saved growth is the current contribution
+AssertionError: expected '对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用' to contain '成长+10'
+
+Expected: "成长+10"
+Received: "对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用"
+
+ ❯ tests/joker-plain-copy.test.ts:34:250
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/joker-plain-copy.test.ts > old growth identities keep their three exact types instead of adopting the new group rule
+AssertionError: expected '每手加上已攒的倍率；打出对子、两对、三条后，再攒 0.25，最多攒 3。' to contain '对子/两对/三条'
+
+Expected: "对子/两对/三条"
+Received: "每手加上已攒的倍率；打出对子、两对、三条后，再攒 0.25，最多攒 3。"
+
+ ❯ tests/joker-plain-copy.test.ts:60:18
+     58|  for(const identity of identities.slice(0,-1)){
+     59|   const c=jokerAbilityCopyForRun(identity,'b03',undefined,ctx()).plain…
+     60|   expect(c.line).toContain('对子/两对/三条');expect(c.line).toContain('新增下次用…
+       |                  ^
+     61|  }
+     62| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  2 failed | 31 passed (33)
+   Start at  07:38:53
+   Duration  1.16s (transform 1.19s, setup 0ms, import 1.73s, tests 476ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
