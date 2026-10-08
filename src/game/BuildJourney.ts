@@ -1,4 +1,4 @@
-import {shopRouteRelation,shopOfferRelation} from './ShopRouteRelations';
+import {shopRouteRelation,shopOfferRelation,shopRouteAdvice} from './ShopRouteRelations';
 import {buildGrowthProgress} from './BuildGrowthProgress';
 import {shopInvestment} from './ShopInvestment';
 import {R2_HAND_TYPES} from '../domain/evaluateR2';
@@ -6,7 +6,7 @@ import type {R2RunState} from '../domain/r2Run';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {R2_GROUP_HAND_TYPES} from '../domain/r2GroupHands';
 import {r2PurchasePrice,type R2Offer} from '../domain/r2Shop';
-import {r2InterestCap} from '../domain/r2Run';
+import {r2InterestCap,r2ConsumableCapacity} from '../domain/r2Run';
 import {r2ToolAllowed,r2ToolSupported} from '../domain/r2ToolRuntime';
 import {R2_TOOLS,R2_TOOL_CATALOG} from '../content/r2Tools';
 import {HAND_LABELS} from '../content/handLabels';
@@ -57,5 +57,20 @@ export function buildJourneyFacts(state:R2RunState,focus:BuildFocus){
  if(state.phase==='shop'&&shop){for(const o of shop.offers)add(o,'jokers');for(const o of shop.toolOffers)if(toolSupportsFocus(o.definitionId,focus))add(o,'tools');for(const o of shop.itemOffers)add(o,'items');}
  const discovered=Object.entries(state.handLevels).filter(([t])=>buildHandTypes(focus).includes(t as keyof typeof HAND_LABELS)).map(([t,l])=>HAND_LABELS[t as keyof typeof HAND_LABELS]+' Lv.'+l).join(' · ')||'该方向牌型尚未发现；工具升型资格以使用页为准。';
  const trace=state.lastTrace,saved=trace?savedExperienceCards(state,trace):[];
- return {progress:buildGrowthProgress(state),focus,title:BUILD_LABEL[focus],guide,composition,deckSize:live.length,discovered,owned,tools,offers,cash:cashDecision(state),saved,gaps:[!state.jokers.some(j=>shopRouteRelation(state,j,focus).kind!=='other')?'尚无该方向对应的持有来源；先看公开可成牌型，也可换培养方向。':'',!tools.length?'当前没有对应改牌/升型工具；可用现有牌出场，或查看本店货架。':'',state.phase==='shop'&&!offers.some(o=>o.kind!=='jokers'||shopOfferRelation(state,state.shop!.offers.find(x=>x.offerId===o.id)!,focus).kind!=='other')?'本店没有该方向对应商品；保留金币直接入场或换方向，不保证刷新补齐。':''].filter(Boolean)};
+ const advice=shopRouteAdvice(state,focus),choices:{id:string;kind:'jokers'|'tools';reason:string;replaceId?:string;loss?:string}[]=advice.candidates.map(i=>({id:i.offer.offerId,kind:'jokers',reason:i.reason,replaceId:i.replaceId,loss:i.loss}));
+ if(state.phase==='shop'&&state.consumables.length<r2ConsumableCapacity(state))for(const o of offers.filter(o=>o.kind==='tools'&&o.affordable)){
+  const d=R2_TOOLS.find(t=>t.id===state.shop!.toolOffers.find(x=>x.offerId===o.id)!.definitionId)!,op=d.operation;
+  if(!r2ToolSupported(d.id)||!r2ToolAllowed(state,d.id))continue;
+  if(op.kind==='upgrade-hand'){
+   const types=focusedUpgradeTypes(state,focus).filter(t=>buildHandTypes(focus).includes(t)&&(!op.handType||t===op.handType));
+   const type=types.find(t=>focus==='group'?['two-pair','three-kind','full-house'].includes(t):buildHandTypes(focus).includes(t))??types[0];
+   if(type)choices.push({id:o.id,kind:'tools',reason:`继续${BUILD_LABEL[focus]}：可把已发现的${HAND_LABELS[type]}Lv.${state.handLevels[type]}再升级；买后自己选择使用。`});
+  }else if(focus==='flush'&&op.kind==='set-suit'){
+   const bonus=state.jokers.some(j=>r2JokerDefinitionFor(state,j.definitionId).hooks.some(h=>h.condition.kind==='suit-in'&&h.condition.values.includes(op.suit)));
+   const leading=[...suits].sort((a,b)=>b[1]-a[1]);
+   if(live.some(c=>c.suit!==op.suit)&&(bonus||leading[0]?.[0]===op.suit&&leading[0][1]>(leading[1]?.[1]??0)))choices.push({id:o.id,kind:'tools',reason:`同花集中到${SUIT_SYMBOL[op.suit]}：${bonus?'现持有对应花色加成':'公开牌组已偏这色'}，可把一张牌改成这色；目标由你确认。`});
+  }
+ }
+ const decision={...advice,choices,headline:choices.length?(choices[0].replaceId?'先看替换：':'优先考虑：')+offers.find(o=>o.id===choices[0].id)!.title.split(' · ')[0]:advice.headline,reason:choices[0]?.reason??(advice.items.length?r2JokerDefinitionFor(state,advice.items[0].offer.definitionId).name+'：'+advice.items[0].reason:advice.reason)};
+ return {decision,progress:buildGrowthProgress(state),focus,title:BUILD_LABEL[focus],guide,composition,deckSize:live.length,discovered,owned,tools,offers,cash:cashDecision(state),saved,gaps:[!state.jokers.some(j=>shopRouteRelation(state,j,focus).kind!=='other')?'尚无该方向对应的持有来源；先看公开可成牌型，也可换培养方向。':'',!tools.length?'当前没有对应改牌/升型工具；可用现有牌出场，或查看本店货架。':'',state.phase==='shop'&&!offers.some(o=>o.kind!=='jokers'||shopOfferRelation(state,state.shop!.offers.find(x=>x.offerId===o.id)!,focus).kind!=='other')?'本店没有该方向对应商品；保留金币直接入场或换方向，不保证刷新补齐。':''].filter(Boolean)};
 }

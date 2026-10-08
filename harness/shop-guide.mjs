@@ -129,7 +129,7 @@ try {
                 await shot('stage-' + stage + '-entry');
                 if(stage===0){
                     const beforeGuide=await state();
-                    report.firstHandStatus=await p.evaluate(()=>window.__harness.game.scene.getScene('game').statusText.text);assert.ok(report.firstHandStatus.includes('牌型规则'));await shot('first-hand-entry');
+                    report.firstHandStatus=await p.evaluate(()=>window.__harness.game.scene.getScene('game').statusText.text);assert.ok(report.firstHandStatus.includes('怎么凑牌'));await shot('first-hand-entry');
                     await tapUI(p,'game','selection/hand-rules');
                     report.handGuideCopy=await p.locator('dialog[open]').innerText();
                     assert.ok(report.handGuideCopy.includes('当前公开手牌'));
