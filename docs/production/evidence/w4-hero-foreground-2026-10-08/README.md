@@ -1,6 +1,6 @@
 # W4 英雄前景：有限软件证据
 
-输入 main `56aee224be55f47d92263492872ef61ca2ca93bd`，父16:20UTC已合PR63。产品 `7fbfc344bfe6600be6bcd5989639baa5b99bb193`；仅原生设置步骤修正 `3280bbe271117d08f1b4cc30a224de0fae8f5062`；销毁补正最终产品 `f7af32712f5c81ccb833914b9e57ea67de468b66`。文档独立提交，最终精确head标准CI/父独审见本PR，不预记main或真人验收。
+输入 main `56aee224be55f47d92263492872ef61ca2ca93bd`，父16:20UTC已合PR63。产品 `7fbfc344bfe6600be6bcd5989639baa5b99bb193`；仅原生设置步骤修正 `3280bbe271117d08f1b4cc30a224de0fae8f5062`；销毁补正 `f7af32712f5c81ccb833914b9e57ea67de468b66`；保留首发显示标记/既有回归层级断言补正最终产品 `73c9b0c1ac251750dced6ee15da29da6c21a07f4`。文档独立提交，最终精确head标准CI/父独审见本PR，不预记main或真人验收。
 
 ## 原生画面与动态落点
 
@@ -23,6 +23,10 @@
 保存退出确有产品错误：[带原因原生FAIL](native-exit-cause-original-FAIL.json)记录SceneManager.stop→DisplayList.shutdown→Container.destroy/removeFromDisplayList的sys异常。Phaser DESTROY在active/scene清除之前发出；原前景监听器再次destroy自身，递归销毁中断场景退出。关页时又触发可见性监听resetFX异常是原退出未完成的后续错误，不冒称无异常。
 
 新增回归在原产品上实测[1 FAIL/5 PASS](shutdown-regression-original-FAIL.txt)，外部销毁次数为2；最终 `f7af327` 把资源清理和主动销毁分开，外部销毁仅清理、不再destroy容器。待退场Promise也在销毁或中途减少动态时释放，专属tween取消、重复dispose无副作用。[57项/7文件定向PASS](targeted-57-PASS.txt)、[最终typecheck](typecheck-shutdown-PASS.txt)；保存退出和窗口变化原生最终PASS。初版55项/type保其原检查范围，不改成最终57项。最终标准完整CI一次在文档head运行，精确SHA、测试数量、六浏览器profile/resource pulse、各scope before=after按PR最终回执核，不重复本地整包。
+
+## 既有正常首发回归接续
+
+最终 `73c9b0c` 保留前景容器的 `starter` 标记，原生首发脚本递归读取前景层级，并兼容旧小框/新前景的立绘与来源节点名；不改规则、保存标记、画面或时槽。仅一条390正常标题→选二响/同花→首店原价买c06→真实同花→首发→菜单快进，整份state等于canonical、开场/来源eventId一致、清理无残留，[原生PASS](native-starter-marker-PASS.json)、[本次前景帧](390-flush-first-highlight.png)、[增量typecheck](typecheck-marker-PASS.txt)。13项旧包保各自SHA，不重跑旧矩阵；最终标准CI以含此接续的文档head为准，较早9509b72结果不代签新head。
 
 ## 音乐与资源
 
