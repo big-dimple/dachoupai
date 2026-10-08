@@ -14,9 +14,9 @@
 - [成长真实0→0.25](390-growth-normal.png)明确下手生效、本手不加分；[第五手实际得分](390-fifth-normal.png)只展示保存值；[失败克制收束](390-failure-normal.png)没有英雄前景、没有通关庆祝。
 - [低动态](390-multiply-reduce.png)、[中途减少动态](390-multiply-mid-reduce.png)、[4×速度](390-multiply-fast.png)、[快进前帧](390-multiply-skip.png)、[退出前帧](390-multiply-exit.png)、[窗口变化前帧](390-multiply-resize.png)。前景期间ready=false/playing=true，实际文字边界在视口内；完成、快进、退出、窗口变化后前景字段/容器及录制尾音均清零，整份已保存状态保持。
 
-[PC短序列](1366-multiply-normal-sequence.mp4)与[手机短序列](390-multiply-normal-sequence.mp4)分别约1.1秒，来自**实际render-loop canvas帧**按原采样时间组装，非新绘图、长录屏或帧率测量。PNG收势/重击/退场及JSON里位置、缩放、相位、时刻可核；PC65帧/手机69帧只说明这次软件观测，不能当实机FPS。首次source只产生一个完整舞台；手机再正常进下一店/场并实际出第二手，opening标记保持，完整舞台不再进入。
+[PC短序列](1366-multiply-normal-sequence.mp4)与[手机短序列](390-multiply-normal-sequence.mp4)采样跨度分别约1.1秒，来自实际canvas帧按原采样时间组装，非新绘图、长录屏或帧率测量。**采样标签与像素有一帧偏移：** harness在poststep读取逻辑phase，但此时canvas仍是上一render的像素；PC/手机charge PNG没有舞台，390 strike PNG仍显示×2，后续序列中真实×3和退场可见。因此charge/strike/release文件名、JSON phase和对应逻辑时刻不能签精确可见帧或音画同步；原图、JSON保持不变。PC65帧/手机69帧只说明这次软件观测，不能当实机FPS。首次source只产生一个完整舞台；手机再正常进下一店/场并实际出第二手，opening标记保持，完整舞台不再进入。
 
-[PC实际WebAudio混音](1366-multiply-normal-audio.webm)、[手机实际WebAudio混音](390-multiply-normal-audio.webm)来自真实master WaveShaper接MediaStreamDestination/MediaRecorder，不是复制素材文件。首次重击记录声部与strike首帧音频时钟差小于150ms；已有CC0短录音/限幅/尾音互斥。工具未主观试听，音量、角色冲击魅力与真实设备流畅度待用户/父验收。
+[PC实际WebAudio混音](1366-multiply-normal-audio.webm)、[手机实际WebAudio混音](390-multiply-normal-audio.webm)来自真实master WaveShaper接MediaStreamDestination/MediaRecorder，不是复制素材文件。日志中首次重击声部与poststep读取strike逻辑phase的音频时钟差小于150ms；受上述一帧偏移影响，这只是逻辑事件与音频时钟的关联，不能证明精确的可见重击/音频同步。已有CC0短录音/限幅/尾音互斥。工具未主观试听，音画同步、音量、角色冲击魅力与真实设备流畅度待用户/父验收。
 
 ## 原失败、修复与冻结
 
@@ -32,4 +32,4 @@
 
 旧BGM已停止播放/请求，设置明确等待新曲；音乐30%/音效80%偏好和独立音效保留。原运行时mp3 **3,487,912 bytes** 和未引用manifest撤下；[原来源manifest备查](withdrawn-recording-original.json)仅是历史记录。新BGM没有选定/上传，《怪奇物语》原曲的可公开使用授权源仍未提供；父协调源/替代选曲，不把撤旧曲冒称新曲完成。
 
-没有新专用大图、视频运行资源、依赖或规则变动；前景复用已有立绘和矢量笔刷，仅直接进入战斗且未缓存时补载当前英雄原图（34,664–94,756 bytes，不一次加载六张）。两短序列和混音是离线证据，不由游戏运行加载。原W2/W3、当前保存/防重奖与失败重试保持。真人/实机/GPU/听感/W6未签，游戏6.1默认Medium串行，无并发。
+没有新专用大图、视频运行资源、依赖或规则变动；前景复用已有立绘和矢量笔刷。GameScene.preload按当前英雄的opening-portrait纹理是否已缓存判断补载完整原图；正常首战和直接进入战斗均可能补载，并非仅直接进入战斗。selection预览是另一资源，不能据此认定完整原图已经缓存。补载限当前英雄（34,664–94,756 bytes，不一次加载六张）。两短序列和混音是离线证据，不由游戏运行加载。原W2/W3、当前保存/防重奖与失败重试保持。真人/实机/GPU/听感/W6未签，游戏6.1默认Medium串行，无并发。
