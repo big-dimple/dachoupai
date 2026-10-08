@@ -350,7 +350,7 @@ button[aria-busy=true] { border-style:dashed; }
 
 /* Public candidate cards share the table's paper and reviewed J/Q/K artwork. */
 .candidate-card-row { display:flex; justify-content:center; gap:6px; margin:4px 0 8px; }
-.candidate-card-face { position:relative; display:flex; flex-direction:column; align-items:center; flex:0 1 52px; min-width:30px; height:76px; border:1px solid #a38b66; border-radius:4px; background:#fff9ee; box-shadow:1px 2px 0 #d7cbb7; color:#3f606b; }
+.candidate-card-face { position:relative; display:flex; flex-direction:column; align-items:center; flex:0 1 52px; min-width:30px; height:76px; border:1px solid #a38b66; border-radius:4px; background:#fff9ee; box-shadow:1px 2px 0 #d7cbb7; color:#26313a; }
 .candidate-card-face[data-red="true"] { color:#b8473a; }
 .candidate-card-face[data-disabled="true"] { background:#e2e0da; border-style:dashed; }
 .candidate-card-face strong { align-self:flex-start; padding:1px 3px; font-size:14px; line-height:18px; white-space:nowrap; }
@@ -388,3 +388,12 @@ button[aria-busy=true] { border-style:dashed; }
 @media(max-width:560px) and (orientation:portrait) {
  .detail-dialog--stepped-joker.detail-dialog--illustrated .dialog-content { grid-template-rows:minmax(0,20%) minmax(0,1fr); }
 }
+
+/* Suit glyphs retain their shape; prose and rank labels keep their original ink. */
+.suit-symbol { pointer-events:none; }
+.suit-symbol--black { color:#26313a; }
+.suit-symbol--red { color:#9f3228; }
+.dialog-primary .suit-symbol--black { color:#fff9ee; }
+.dialog-primary .suit-symbol--red { color:#ffede3; }
+.suit-select[data-suit="spades"],.suit-select[data-suit="clubs"] { color:#26313a; }
+.suit-select[data-suit="hearts"],.suit-select[data-suit="diamonds"] { color:#9f3228; }

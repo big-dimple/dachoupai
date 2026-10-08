@@ -1,3 +1,4 @@
+import {observeSuitSymbols} from './SuitSymbols';
 import type {ExperienceCard} from './JokerExperience';
 import {decodeArtImage,progressiveArt} from './DetailArt';
 import type {CardAbilityCopy} from './CardCopy';
@@ -163,6 +164,6 @@ export class DetailDialog {
     const scroll=document.createElement('div');scroll.className='dialog-scroll';if(intro.childElementCount)scroll.append(intro);for(const selector of ['figcaption','.detail-art-status','.detail-art-retry'])for(const node of layout.querySelectorAll(selector))scroll.append(node);scroll.append(copy);layout.append(scroll);dialog.append(layout,row);document.body.append(dialog);
     dialog.addEventListener('cancel',event=>{event.preventDefault();this.close(dialog);});
     dialog.addEventListener('pointerup',event=>{this.lastPointer={x:event.clientX,y:event.clientY};});
-    dialog.showModal();this.dialog=dialog;close.focus({preventScroll:true});dialog.scrollTop=0;return dialog;
+    dialog.showModal();this.dialog=dialog;cleanups.push(observeSuitSymbols(dialog));close.focus({preventScroll:true});dialog.scrollTop=0;return dialog;
   }
 }
