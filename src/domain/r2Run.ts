@@ -1,5 +1,6 @@
+import {usesXiemuBurn,xiemuInterest,type XiemuBurnCost} from './r2XiemuBurn';
 import {usesAzaoCharge,validAzaoCharge,emptyAzaoCharge,type AzaoCharge} from './r2AzaoCharge';
-import {R2_AZAO_CHARGE_VERSION,R2_AZAO_CHARGE_HASH} from './r2GroupUpgrade';
+import {R2_XIEMU_BURN_VERSION,R2_XIEMU_BURN_HASH,R2_AZAO_CHARGE_VERSION,R2_AZAO_CHARGE_HASH} from './r2GroupUpgrade';
 import {freshOpeningShow,recordOpeningShow,type OpeningShow} from './openingShow';
 import {hasR2ComboGrowthContract,R2_GROUP_UPGRADE_VERSION,R2_GROUP_UPGRADE_HASH,isR2RouteStarter,R2_ROUTE_STARTER_VERSION,R2_ROUTE_STARTER_HASH,R2_ROUTE_STARTERS,type R2OpeningRoute} from './r2GroupUpgrade';
 import {routeStarterStartCommand,routeStarterScoreEvent,type R2StarterRecord} from './r2RouteStarter';
@@ -45,6 +46,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_XIEMU_BURN_VERSION,contentHash:R2_XIEMU_BURN_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_AZAO_CHARGE_VERSION,contentHash:R2_AZAO_CHARGE_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_ROUTE_STARTER_VERSION,contentHash:R2_ROUTE_STARTER_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_GROUP_UPGRADE_VERSION,contentHash:R2_GROUP_UPGRADE_HASH,amoScoreTiming:'assist-v1' as const}),
@@ -69,7 +71,7 @@ interface R2StageBase extends Omit<StageState,'targetHeat'|'heat'|'previousHandT
   challengeDisabledJokerId:string|null;
 }
 /** Profile parsing requires assistUsed for the prototype and forbids it for published runs. */
-export type R2StageState = R2StageBase & ({assistUsed:boolean}|{assistUsed?:never}) & ({openingDiscard:R2OpeningDiscard|null}|{openingDiscard?:never}) & ({azaoCharge:AzaoCharge}|{azaoCharge?:never});
+export type R2StageState = R2StageBase & ({assistUsed:boolean}|{assistUsed?:never}) & ({openingDiscard:R2OpeningDiscard|null}|{openingDiscard?:never}) & ({azaoCharge:AzaoCharge}|{azaoCharge?:never}) & ({xiemuBurnUsed:boolean}|{xiemuBurnUsed?:never});
 export interface R2RunState extends Omit<RunState,'schemaVersion'|'rulesVersion'|'stage'|'totalHeat'|'jokers'|'lastScore'|'shop'|'boss'|'outcome'|'difficulty'|'program'|'rng'> {
   openingRoute?:R2OpeningRoute;
   openingShow?:OpeningShow;
@@ -106,6 +108,7 @@ export function assertR2Invariants(state:R2RunState):void {
   check(isR2RouteStarter(state)?!!state.routeStarter:!Object.hasOwn(state,'routeStarter'),'starter identity');
   check(state.contentVersion!==R2_ASSIST_VERSION||state.characterId==='amo','assist character identity');
   const config=r2RunModeConfig(state);
+  if(state.stage)check(usesXiemuBurn(state)?typeof state.stage.xiemuBurnUsed==='boolean'&&(!state.stage.xiemuBurnUsed||state.stage.playIndex>0&&config.characterAbilityEnabled&&state.stage.boss?.definitionId!=='B08'):!Object.hasOwn(state.stage,'xiemuBurnUsed'),'xiemu burn state');
   if(state.stage)check(usesAzaoCharge(state)?validAzaoCharge(state.stage.azaoCharge)&&((state.phase==='await-input'&&config.characterAbilityEnabled&&state.stage.boss?.definitionId!=='B08')||state.stage.azaoCharge!.charge===0):!Object.hasOwn(state.stage,'azaoCharge'),'azao charge state');
   check(r2ModeSeedAllowed(config,state.seed)&&(config.mode!=='tutorial'||state.characterId==='erxiang'),'mode seed/identity');
   check(state.mode==='standard'||state.tourMode==='normal','mode tour');
@@ -225,14 +228,14 @@ export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stag
   const modifiers=readR2Modifiers(state.jokers,r2JokerDefinitionsFor(state));
   const config=r2RunModeConfig(state),profile=r2RulesetFor(state);
   if(!profile)throw Error('incompatible-version');
-  return {...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage?.azaoCharge??emptyAzaoCharge(),release:false}}:{}),amoScoreTiming:r2ScoreTimingFor(state),characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
+  return {...(usesXiemuBurn(state)?{xiemuBurn:{cost:0 as XiemuBurnCost,goldBefore:state.gold,beforeUsed:state.stage?.xiemuBurnUsed??false}}:{}),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage?.azaoCharge??emptyAzaoCharge(),release:false}}:{}),amoScoreTiming:r2ScoreTimingFor(state),characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
     ...(state.stage?{stageHeatBefore:state.stage.heat,stageTargetHeat:state.stage.targetHeat}:{}),
     handRules:{fourStraight:modifiers.fourStraight,fourFlush:modifiers.fourFlush},ordinaryPointsSuppressedIds:r2OrdinarySuppression(state.boss,state.stage?.index??state.stageIndex,hand,ids)};
 }
 function entryStage(state:R2RunState,targetHeat:string,skipResult:R2SkipResult|null=null):R2StageState {
   const handLimit=r2HandLimit(state),hands=r2HandsBudget(state),discards=r2DiscardBudget(state),initialJokerIds=state.jokers.map(joker=>joker.instanceId);
   const boss=state.stageIndex%3===2?structuredClone(state.boss):null;
-  return {...(usesAzaoCharge(state)?{azaoCharge:emptyAzaoCharge()}:{}),...(hasR2ComboGrowthContract(state)?{openingDiscard:null}:{}),...(r2UsesAssist(state)?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
+  return {...(usesXiemuBurn(state)?{xiemuBurnUsed:false}:{}),...(usesAzaoCharge(state)?{azaoCharge:emptyAzaoCharge()}:{}),...(hasR2ComboGrowthContract(state)?{openingDiscard:null}:{}),...(r2UsesAssist(state)?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
     discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:boss?.definitionId==='B01',discardsUsed:0,skipResult,playIndex:0,previousHandType:null,previousHandScore:null,
     handLimit,initialHandLimit:handLimit,boss,initialJokerIds,sealedJokerIds:[],challengeDisabledJokerId:state.chapterDisabledJokerId,rescueUsed:false,clearId:null,goldEarned:0,disabledIds:[],wagerSelected:false,wagerUsed:false,
     maxPlayedCount:0,ordinaryStraightSeen:false,ordinaryFlushSeen:false,quadRefundUsed:false,jokerSold:state.shop?.soldJoker??false};
@@ -412,11 +415,11 @@ function grantHeldGoldPaper(state:R2RunState):void {
   if(grants.length){const rewardedTrace={...trace,events:[...trace.events,...grants]};Object.freeze(rewardedTrace.events);state.lastTrace=Object.freeze(rewardedTrace);}
 }
 
-function clearResourceSource(state:R2RunState,definitionId:string,operation:'add-gold'|'upgrade-hand'|'reward-consumable'|'reward-free-reroll'|'program-reward-skipped',amount:number,before:number,after:number,jokerId?:string,targetHandType?:R2HandType,rewardDefinitionId?:string,programGoldBeforeReward?:number):void {
+function clearResourceSource(state:R2RunState,definitionId:string,operation:'add-gold'|'upgrade-hand'|'reward-consumable'|'reward-free-reroll'|'program-reward-skipped',amount:number,before:number,after:number,jokerId?:string,targetHandType?:R2HandType,rewardDefinitionId?:string,programGoldBeforeReward?:number,goldBeforeRewards?:number):void {
   const trace=state.lastTrace!;
   if(trace.events.length>=SCORE_LIMITS.eventCount)throw new ScoreFault('event-limit',trace.events);
   const eventId=`${trace.rootId}/event/${trace.events.length}`;
-  const event:ScoreEvent=Object.freeze({eventId,rootId:trace.rootId,rootEventId:eventId,phase:'onStageClear',sourceType:jokerId?'joker':'rule',sourceDefinitionId:definitionId,sourceInstanceId:jokerId??state.runId,operation,value:Object.freeze({n:String(amount),d:'1'}),before:trace.accumulator,after:trace.accumulator,reasonKey:`${definitionId}.${operation}`,visibleCondition:Object.freeze({kind:'always'}),retriggerDepth:0,resourceBefore:before,resourceAfter:after,...(targetHandType?{targetHandType}:{}),...(rewardDefinitionId?{rewardDefinitionId}:{}),...(programGoldBeforeReward===undefined?{}:{programGoldBeforeReward})});
+  const event:ScoreEvent=Object.freeze({eventId,rootId:trace.rootId,rootEventId:eventId,phase:'onStageClear',sourceType:definitionId==='xiemu'?'character':jokerId?'joker':'rule',sourceDefinitionId:definitionId,sourceInstanceId:definitionId==='xiemu'?`${state.runId}/character`:jokerId??state.runId,operation,value:Object.freeze({n:String(amount),d:'1'}),before:trace.accumulator,after:trace.accumulator,reasonKey:`${definitionId}.${operation}`,visibleCondition:Object.freeze({kind:'always'}),retriggerDepth:0,resourceBefore:before,resourceAfter:after,...(targetHandType?{targetHandType}:{}),...(rewardDefinitionId?{rewardDefinitionId}:{}),...(programGoldBeforeReward===undefined?{}:{programGoldBeforeReward}),...(goldBeforeRewards===undefined?{}:{goldBeforeRewards})});
   const events=[...trace.events,event];Object.freeze(events);state.lastTrace=Object.freeze({...trace,events});
 }
 function clearGoldSource(state:R2RunState,definitionId:string,amount:number,jokerId?:string,rewardDefinitionId?:string):void {
@@ -652,12 +655,19 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(assisted){try{assistIds=r2AssistFacts({hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),selectedIds:ids,assistIds:action.assistIds,disabledIds:state.stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS}).assistIds;}catch(error){return fail(error instanceof Error?error.message:'invalid-assist');}}
         const release=action.type==='PlayHand'&&Object.hasOwn(action,'azaoRelease')?action.azaoRelease:undefined;
         if(release!==undefined&&(!usesAzaoCharge(state)||typeof release!=='boolean'))return fail('invalid-azao-release');
+        const burn=action.type==='PlayHand'&&Object.hasOwn(action,'xiemuBurn')?action.xiemuBurn:undefined;
+        if(burn!==undefined&&(!usesXiemuBurn(state)||![10,20,30].includes(burn)))return fail('invalid-xiemu-burn');
+        if(burn&&(!r2RunModeConfig(state).characterAbilityEnabled||state.stage.boss?.definitionId==='B08'))return fail('xiemu-disabled');
+        if(burn&&state.stage.xiemuBurnUsed)return fail('xiemu-already-used');
+        if(burn&&state.gold<burn)return fail('insufficient-gold');
+        const goldBeforeBurn=state.gold;if(burn)state.gold-=burn;
         let trace:ScoreTrace;
         try {trace=scoreR2Hand({rulesVersion:'r2',runId:state.runId,rootId:`${state.runId}/hand/${command.commandId}`,
           hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),selectedIds:ids,disabledIds:state.stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS,
-          ...(assisted?{assistIds}:{}),handLevels:state.handLevels,playIndex:state.stage.playIndex+1,handsBeforePlay:state.stage.handsLeft,previousHandType:state.stage.previousHandType,wager:state.stage.wagerSelected,rng:state.rng.rule,...r2ScoreContext(state,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),ids),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage.azaoCharge!,release:release??false}}:{})});}
+          ...(assisted?{assistIds}:{}),handLevels:state.handLevels,playIndex:state.stage.playIndex+1,handsBeforePlay:state.stage.handsLeft,previousHandType:state.stage.previousHandType,wager:state.stage.wagerSelected,rng:state.rng.rule,...r2ScoreContext(state,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),ids),...(usesXiemuBurn(state)?{xiemuBurn:{cost:burn??0,goldBefore:goldBeforeBurn,beforeUsed:state.stage.xiemuBurnUsed!}}:{}),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage.azaoCharge!,release:release??false}}:{})});}
         catch(error) {return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
         if(hasR2ComboGrowthContract(state))trace=Object.freeze({...trace,combo:Object.freeze({goldBeforeRewards:null})});
+        if(usesXiemuBurn(state))state.stage.xiemuBurnUsed=trace.xiemuBurn!.afterUsed;
         if(usesAzaoCharge(state))state.stage.azaoCharge={...trace.azaoCharge!.after};
         if(assisted)state.stage.assistUsed=true;
         state.rng.rule={...trace.rng};state.lastTrace=trace;state.jokers=structuredClone(trace.jokers);state.gold+=trace.goldDelta;
@@ -685,10 +695,11 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
           catch(error){return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
           const config=r2RunModeConfig(state),interest=Math.floor(state.gold/5),baseInterest=Math.min(config.baseInterestCap,interest),jokerBonus=readR2Modifiers(state.jokers,R2_JOKERS).interestCapBonus;
           const jokerInterest=Math.min(config.baseInterestCap+jokerBonus,interest)-baseInterest,itemInterest=Math.min(r2InterestCap(state),interest)-baseInterest-jokerInterest;
-          const reward=[4,5,7][state.stageIndex%3]+state.stage.handsLeft+baseInterest+(config.characterAbilityEnabled&&state.characterId==='xiemu'&&state.stage.handsLeft===0?2:0);
+          const reward=[4,5,7][state.stageIndex%3]+state.stage.handsLeft+baseInterest+(config.characterAbilityEnabled&&state.characterId==='xiemu'&&!usesXiemuBurn(state)&&state.stage.handsLeft===0?2:0);
           state.stage.goldEarned=reward;state.stage.clearId=`${state.runId}/clear/${state.stageIndex}`;
           state.gold+=reward;
           try{
+            if(usesXiemuBurn(state)&&config.characterAbilityEnabled){const amount=xiemuInterest(goldBeforeRewards);if(amount){const before=state.gold;state.gold+=amount;state.stage.goldEarned+=amount;clearResourceSource(state,'xiemu','add-gold',amount,before,state.gold,undefined,undefined,undefined,undefined,goldBeforeRewards);}}
             const interestJoker=state.jokers.find(j=>j.definitionId==='e04');
             if(interestJoker&&!hasR2ComboGrowthContract(state))clearGoldSource(state,'e04',jokerInterest,interestJoker.instanceId);
             clearGoldSource(state,'U04',itemInterest);grantHeldGoldPaper(state);grantClearItems(state);

@@ -37,6 +37,8 @@ export interface SavedBenefit {eventId:string;sourceInstanceId:string;definition
 /** Ordered saved events; current balances never pretend to be the historic transaction. */
 export function savedBenefit(state:R2RunState,trace:ScoreTrace,e:ScoreEvent):SavedBenefit|undefined {
  if(!hasActualBenefit(e)||e.phase==='base'||e.phase==='finalScore')return;
+ if(trace.xiemuBurn?.cost&&e.sourceType==='character'&&e.sourceDefinitionId==='xiemu'&&e.phase==='characterScore')return {eventId:e.eventId,sourceInstanceId:e.sourceInstanceId,definitionId:'',title:'谢幕人 · 主动燃金',effect:'支付'+trace.xiemuBurn.cost+'金，'+trace.xiemuBurn.goldBefore+'→'+trace.xiemuBurn.goldAfter+'；角色时点实际×'+trace.xiemuBurn.multiplier,condition:'本场一次，两对及以上，已确认燃金',destination:'本手真实倍率 · 已保存',next:'本场已用，入场重置；息与持币收益读扣后余额'};
+ if(trace.xiemuBurn&&e.sourceType==='character'&&e.sourceDefinitionId==='xiemu'&&e.phase==='onStageClear')return {eventId:e.eventId,sourceInstanceId:e.sourceInstanceId,definitionId:'',title:'谢幕人 · 额外关末息',effect:'额外+'+e.value.n+'金；奖励前本金'+e.goldBeforeRewards,condition:'真实成功，奖励前余额每5金给1、封顶2',destination:'实际金币 '+e.resourceBefore+'→'+e.resourceAfter+' · 已保存',next:'本次奖励不再生息；继续经营或下场主动燃金'};
  if(trace.azaoCharge?.release&&e.sourceType==='character'&&e.sourceDefinitionId==='azao'&&e.operation==='multiply-multiplier')return {eventId:e.eventId,sourceInstanceId:e.sourceInstanceId,definitionId:'',title:'阿燥 · 主动爆发',effect:'消耗'+trace.azaoCharge.before.charge+'层，实际 ×'+trace.azaoCharge.multiplier,condition:'本手两对及以上，已确认释放',destination:'本手真实倍率 · 已保存',next:'释放手不蓄；当前'+(state.stage?.azaoCharge?.charge??0)+'层，场间清空'};
  const joker=e.sourceType==='joker'?r2JokerDefinitionFor(state,e.sourceDefinitionId):undefined;
  // Poker effects remain in the normal ledger. This surface teaches acquired sources.

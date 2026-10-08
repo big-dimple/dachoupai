@@ -51,6 +51,8 @@ import {r2ScoringDisabledJokerIds,type Accumulator,type ScoreTrace,type ScoreEve
 import {Rational} from '../domain/rational';
 
 import {usesAzaoCharge} from '../domain/r2AzaoCharge';
+import {usesXiemuBurn,type XiemuBurnCost} from '../domain/r2XiemuBurn';
+import {xiemuChoice,savedXiemuBurn} from './XiemuBurnCopy';
 import {azaoChoice,savedAzaoCharge} from './AzaoChargeCopy';
 import {characterForRun} from './CharacterRunCopy';
 import { getCharacter, type CharacterId } from './characters';
@@ -155,6 +157,7 @@ export class GameScene extends Phaser.Scene {
   private presentation?:{generation:number;lifecycle:number;intent:number;state:RunState;score:ScoreTrace;hand:readonly PlayingCard[];displayHeat:string;originHeat:string;replay:boolean;previousTrace:ScoreTrace|null;credited:boolean;resourcePlayLeft?:number;resourceGold?:number};
   private characterId!: CharacterId;
   private azaoRelease=false;
+  private xiemuBurn:XiemuBurnCost=0;
   private readonly effects = new EffectQueue();
   private readonly audio = AudioEngine.shared;
 
@@ -223,7 +226,7 @@ export class GameScene extends Phaser.Scene {
     // Keep committed score playback moving on slow renderers; bound background gaps to 1s.
     this.tweens.setLagSmooth(1000,1000);
     const lifecycle=++this.lifecycle;this.intent++;
-    this.effects.clear();this.azaoRelease=false;this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.keyboardFocus=false;this.handStart=0;this.handNavigationButtons=[];
+    this.effects.clear();this.azaoRelease=false;this.xiemuBurn=0;this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.keyboardFocus=false;this.handStart=0;this.handNavigationButtons=[];
     const settings=()=>{
       const hintVisible=!!this.handHint;this.stopHandHint();if(hintVisible&&this.reducedMotion)this.showHandHint(false);
       this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;
@@ -322,11 +325,11 @@ export class GameScene extends Phaser.Scene {
     const avatarSize=portrait?30:44,avatarY=h.y+(portrait?6:short?34:42);
     this.roleAvatar=v.add(this.add.container(h.x+12+avatarSize/2,avatarY+avatarSize/2)).setData('baseY',avatarY+avatarSize/2);
     addAvatar(this,this.roleAvatar,c,0,0,avatarSize);
-    if(usesAzaoCharge(this.run)){const hit=v.add(this.add.rectangle(h.x+12+avatarSize/2,avatarY+avatarSize/2,avatarSize+8,avatarSize+8,0,0));v.target(hit,'hero/azao-charge',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});}
+    if(usesAzaoCharge(this.run)||usesXiemuBurn(this.run)){const hit=v.add(this.add.rectangle(h.x+12+avatarSize/2,avatarY+avatarSize/2,avatarSize+8,avatarSize+8,0,0));v.target(hit,usesXiemuBurn(this.run)?'hero/xiemu-burn':'hero/azao-charge',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});}
     this.roleFrame=this.add.rectangle(0,0,avatarSize+4,avatarSize+4,T.brass).setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);this.roleAvatar.add(this.roleFrame);
     const bossName=r2BossText(this.run.boss).split('：')[0];
     if(!portrait)v.text(h.x+12,h.y+8,this.run.tourMode==='endless'?'无尽巡演':'大 丑 牌',short?20:28,C.paper);
-    if(!portrait||!usesAzaoCharge(this.run))v.text(h.x+(portrait?64:76),avatarY,(portrait&&this.run.tourMode==='endless'?'无尽 · ':'')+c.name,portrait?18:short?20:22,C.paper,portrait?h.width-160:h.width-88);
+    if(!portrait||!usesAzaoCharge(this.run)&&!usesXiemuBurn(this.run))v.text(h.x+(portrait?64:76),avatarY,(portrait&&this.run.tourMode==='endless'?'无尽 · ':'')+c.name,portrait?18:short?20:22,C.paper,portrait?h.width-160:h.width-88);
     this.roleText=v.text(h.x+(portrait?64:76),avatarY+(portrait?23:28),this.roleCaption(),14,C.mutedInk,portrait?h.width-160:h.width-88);
     if(!portrait&&!l.shortLandscape)v.text(h.x+12,h.y+(short?96:96),this.stage.index%3===2?'压轴 · '+bossName:this.stage.name,14,C.paper,h.width-24);
     this.heatText=v.text(h.x+12,h.y+(portrait?27:l.shortLandscape?94:short?108:118),'',portrait?20:short?28:24,C.paper,h.width-24).setFontStyle('bold');
@@ -339,9 +342,9 @@ export class GameScene extends Phaser.Scene {
       this.progressBar=v.rect({x:h.x+12,y:progressY,width:1,height:5},T.jade).setOrigin(0,.5).setPosition(h.x+12,progressY+2.5).setStrokeStyle();
     }
     if(portrait){this.roleText.setVisible(false);this.goldText.setFontSize(14).setOrigin(0,0).setPosition(h.x+144,h.y+6);this.heatText.setPosition(h.x+64,h.y+28).setFontSize(16).setWordWrapWidth(h.width-168);}
-    if(usesAzaoCharge(this.run)){
+    if(usesAzaoCharge(this.run)||usesXiemuBurn(this.run)){
       if(portrait){this.roleText.setVisible(true).setPosition(h.x+64,avatarY).setFontSize(13).setColor(C.jade).setWordWrapWidth(108);this.goldText.setPosition(h.x+166,h.y+6).setFontSize(12);}
-      const hit=v.add(this.add.rectangle(this.roleText.x+54,this.roleText.y+9,108,30,0,0));v.target(hit,'hero/azao-charge-label',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});
+      const hit=v.add(this.add.rectangle(this.roleText.x+54,this.roleText.y+9,108,30,0,0));v.target(hit,usesXiemuBurn(this.run)?'hero/xiemu-burn-label':'hero/azao-charge-label',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});
     }
     this.renderJokerRack();
     const s=l.scoreBoard;
@@ -487,7 +490,7 @@ export class GameScene extends Phaser.Scene {
       const art=view?.getData('f09-art') as Phaser.GameObjects.Container|undefined;art?.setData('f09-active',!view?.getData('bossDisabled')&&(this.run.stage?.discardsUsed??0)===0);
     }
   }
-  private roleCaption():string {const notice=stageNotice(this.run);return usesAzaoCharge(this.run)?azaoChoice(this.run).compact:notice?.warning?notice.title:characterForRun(this.run).passiveName;}
+  private roleCaption():string {const notice=stageNotice(this.run);return usesXiemuBurn(this.run)?xiemuChoice(this.run).compact:usesAzaoCharge(this.run)?azaoChoice(this.run).compact:notice?.warning?notice.title:characterForRun(this.run).passiveName;}
   private cardPiece(card:PlayingCard,b:Box):CardView {
     const c=this.view.add(this.add.container(b.x+b.width/2,b.y+b.height/2)).setData('width',b.width).setData('height',b.height).setData('cardFace',true).setData('cardId',card.id);
     const radius=Math.min(7,b.width*.09),shadow=this.add.graphics(),edgeGlow=this.add.graphics();
@@ -843,7 +846,7 @@ export class GameScene extends Phaser.Scene {
     if(!next)return;const facts=next.facts;
     this.handInput?.cancel();this.view.cancelInteraction();this.candidateGhost=undefined;
     this.candidateUndo={revision:this.draftRevision(),ids:[...this.selectedIds],assistIds:[...this.assistIds]};
-    this.azaoRelease=false;this.aiCursor=next.cursor;this.selectedIds=new Set(facts.playedIds);this.assistIds=[];this.assistPage=0;this.statusMessage=this.assistProfile?'已换主手，助攻请重新选':'AI已选'+HAND_LABELS[facts.type]+' · 查看牌型可撤销';this.refreshSelection();
+    this.azaoRelease=false;this.xiemuBurn=0;this.aiCursor=next.cursor;this.selectedIds=new Set(facts.playedIds);this.assistIds=[];this.assistPage=0;this.statusMessage=this.assistProfile?'已换主手，助攻请重新选':'AI已选'+HAND_LABELS[facts.type]+' · 查看牌型可撤销';this.refreshSelection();
   }
   private inspectHandRules():void {
     if(!this.ready||this.presentation||this.run.phase!=='await-input')return;
@@ -861,9 +864,11 @@ export class GameScene extends Phaser.Scene {
     (this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(discardGoldCost?'弃 -1金':r2DiscardCost(this.run)===2?'弃 ×2':'弃牌');
     this.view.setEnabled(this.discardButton,this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run)&&this.run.gold>=discardGoldCost);
     this.view.setEnabled(this.playButton,this.ready&&this.selectedIds.size>0&&this.handsLeft>0);
+    const xiemu=usesXiemuBurn(this.run)?xiemuChoice(this.run,this.selectionPreview()?.type,this.xiemuBurn):undefined;
     const azao=usesAzaoCharge(this.run)?azaoChoice(this.run,this.selectionPreview()?.type):undefined;
-    if(azao&&!azao.available&&this.ready&&!this.playing&&!this.presentation)this.azaoRelease=false;
+    if(azao&&!azao.available&&this.ready&&!this.playing&&!this.presentation)this.azaoRelease=false;this.xiemuBurn=0;
     if(azao){(this.playButton.getData('label') as Phaser.GameObjects.Text).setText(this.azaoRelease?'爆发×'+azao.multiplier:'出牌');this.roleText.setText(this.view.layout.mode==='portrait'?(azao.enabled?'阿燥·蓄'+azao.charge+'·'+(this.azaoRelease?'已选×'+azao.multiplier:azao.charge?'放×'+azao.multiplier:'点英雄'):'蓄势停用'):azao.compact);}
+    if(xiemu){if(this.ready&&!this.playing&&!this.presentation&&this.xiemuBurn&&!xiemu.choices.find(c=>c.cost===this.xiemuBurn)?.available)this.xiemuBurn=0;const copy=xiemuChoice(this.run,this.selectionPreview()?.type,this.xiemuBurn);this.roleText.setText(this.view.layout.mode==='portrait'?copy.mobile:copy.compact);(this.playButton.getData('label') as Phaser.GameObjects.Text).setText(this.xiemuBurn?'燃'+this.xiemuBurn+'·出牌':'出牌');}
     this.resourceCounts.play.setColor(handActionCountColor('play',!!this.playButton.input?.enabled));
     this.resourceCounts.discard.setColor(handActionCountColor('discard',!!this.discardButton.input?.enabled,this.run.stage!.discardsLeft<2*r2DiscardCost(this.run)));
     const portrait=this.view.layout.mode==='portrait';
@@ -943,11 +948,11 @@ export class GameScene extends Phaser.Scene {
       {label:'换为这组',primary:true,disabled:true,run:()=>{
         const ghost=this.candidateGhost;if(!isCurrent()||!ghost||ghost.key!==key){message.textContent=isCurrent()?'先点一个示例，只查看不会改选择。':'手牌或规则已变化，请关闭后重新查看。';return;}
         this.candidateUndo={revision:this.draftRevision(),ids:[...this.selectedIds],assistIds:[...this.assistIds]};
-        this.azaoRelease=false;this.aiCursor=undefined;this.selectedIds=new Set(ghost.facts.playedIds);this.validateAssistSelection();this.candidateGhost=undefined;this.dialog.close(dialog);this.refreshSelection();this.statusMessage='已换组，仍需自己出牌；查看牌型可撤销';this.updateControls();
+        this.azaoRelease=false;this.xiemuBurn=0;this.aiCursor=undefined;this.selectedIds=new Set(ghost.facts.playedIds);this.validateAssistSelection();this.candidateGhost=undefined;this.dialog.close(dialog);this.refreshSelection();this.statusMessage='已换组，仍需自己出牌；查看牌型可撤销';this.updateControls();
       }},
       {label:'撤销换组',disabled:!this.candidateUndo,run:()=>{
         const undo=this.candidateUndo;if(!isCurrent()||!undo||undo.revision!==this.draftRevision()){message.textContent='手牌或选择已变化，旧换组不能撤销。';return;}
-        this.azaoRelease=false;this.aiCursor=undefined;this.selectedIds=new Set(undo.ids);this.assistIds=[...(undo.assistIds??[])];this.candidateUndo=undefined;this.candidateGhost=undefined;this.dialog.close(dialog);this.statusMessage='已撤销换组，恢复原选择';this.refreshSelection();
+        this.azaoRelease=false;this.xiemuBurn=0;this.aiCursor=undefined;this.selectedIds=new Set(undo.ids);this.assistIds=[...(undo.assistIds??[])];this.candidateUndo=undefined;this.candidateGhost=undefined;this.dialog.close(dialog);this.statusMessage='已撤销换组，恢复原选择';this.refreshSelection();
       }},
       {label:growthOnly?'全部可成牌型':'查看成长机会',run:()=>this.inspectCandidates(!growthOnly,focus)},
       {label:toolInventoryLabel(this.run),run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))},
@@ -1013,10 +1018,11 @@ export class GameScene extends Phaser.Scene {
   private inspectRole():void {
     const c=characterForRun(this.run),stage=this.run.stage!,notice=stageNotice(this.run),ability=r2RunModeConfig(this.run).characterAbilityEnabled;
     const challenge=R2_MODE_CATALOG.challenges.find(row=>row.id===this.run.challengeId);
+    const xiemu=usesXiemuBurn(this.run)?xiemuChoice(this.run,this.selectionPreview()?.type,this.xiemuBurn):undefined;
     const azao=usesAzaoCharge(this.run)?azaoChoice(this.run,this.selectionPreview()?.type):undefined;
-    const roleState=azao?azao.compact+'\n'+azao.hold+'\n默认不释放；在确认出牌前选择，取消不消耗。':!ability?'本次挑战关闭角色被动、初始赠送与押注。':notice?.wagerDisabled?'静场：本场角色计分与押注停用；非计分过关奖励保留。':this.characterId==='xiemu'?(stage.handsLeft===1?'当前为最后一手：倍率 ×2，过关额外 +2 金。':'距离最后一手还有 '+(stage.handsLeft-1)+' 次。'):this.characterId==='touye'?(stage.wagerUsed?'本场押注已用。':stage.wagerSelected?'本手已押注：50% ×2 / 50% ×0.75。':'本场押注未用；默认倍率 ×1.15。'):'';
-    const body=(savedAzaoCharge(this.run)?savedAzaoCharge(this.run)+'\n\n':'')+(challenge?challenge.name+'：'+challenge.description+'\n\n':'')+(ability?(c.passiveDescription)+'\n':'')+roleState+'\n'+this.stage.name+'：'+this.stage.intro+'\n'+(notice?.warning?notice.details+'\n':'')+(stage.boss?'本场压轴':'本章压轴预告')+' '+r2BossText(stage.boss??this.run.boss)+'\n弃牌成本：'+r2DiscardCost(this.run)+(notice?.discardGoldCost?' 次 +1金币':' 次')+'；本场已弃 '+stage.discardsUsed+' 次。\n当前手牌上限 '+stage.handLimit+'，扩容修正后的硬上限14。\n'+(this.run.jokers.some(joker=>joker.definitionId==='c08')?'少一级：普通顺子可用4张，A234合法；同花顺仍须5张。\n':'')+(this.run.safetyNetUsed?'安全网本局已经使用，不会再次触发。':this.run.jokers.some(joker=>joker.definitionId==='f07')?'安全网：耗尽出牌且仍有可用手牌时救场一次，成功过关不触发。':'');
-    const dialog=this.dialog.open(c.name+' · 角色与本场规则',body,[...(azao?[{label:this.azaoRelease?'取消本手释放':azao.available?'本手释放 ×'+azao.multiplier:'先选两对及以上，才能释放',primary:true,disabled:!this.ready||(!this.azaoRelease&&!azao.available),run:()=>{if(!this.ready||!azaoChoice(this.run,this.selectionPreview()?.type).available){this.azaoRelease=false;this.dialog.close();this.updateControls();return;}this.azaoRelease=!this.azaoRelease;this.dialog.close();this.updateControls();}}]:[]),{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},...(this.run.program?[{label:'本章节目单',run:()=>showPrograms(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))}]:[]),...(this.characterId==='touye'?[{label:notice?.wagerDisabled?'本场不能押注':stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed||notice?.wagerDisabled,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[])],{portrait:{url:portraitURL(c.id),alt:c.name+'完整立绘'}});
+    const roleState=xiemu?xiemu.details:azao?azao.compact+'\n'+azao.hold+'\n默认不释放；在确认出牌前选择，取消不消耗。':!ability?'本次挑战关闭角色被动、初始赠送与押注。':notice?.wagerDisabled?'静场：本场角色计分与押注停用；非计分过关奖励保留。':this.characterId==='xiemu'?(stage.handsLeft===1?'当前为最后一手：倍率 ×2，过关额外 +2 金。':'距离最后一手还有 '+(stage.handsLeft-1)+' 次。'):this.characterId==='touye'?(stage.wagerUsed?'本场押注已用。':stage.wagerSelected?'本手已押注：50% ×2 / 50% ×0.75。':'本场押注未用；默认倍率 ×1.15。'):'';
+    const body=(savedXiemuBurn(this.run)?savedXiemuBurn(this.run)+'\n\n':'')+(savedAzaoCharge(this.run)?savedAzaoCharge(this.run)+'\n\n':'')+(challenge?challenge.name+'：'+challenge.description+'\n\n':'')+(ability?(c.passiveDescription)+'\n':'')+roleState+'\n'+this.stage.name+'：'+this.stage.intro+'\n'+(notice?.warning?notice.details+'\n':'')+(stage.boss?'本场压轴':'本章压轴预告')+' '+r2BossText(stage.boss??this.run.boss)+'\n弃牌成本：'+r2DiscardCost(this.run)+(notice?.discardGoldCost?' 次 +1金币':' 次')+'；本场已弃 '+stage.discardsUsed+' 次。\n当前手牌上限 '+stage.handLimit+'，扩容修正后的硬上限14。\n'+(this.run.jokers.some(joker=>joker.definitionId==='c08')?'少一级：普通顺子可用4张，A234合法；同花顺仍须5张。\n':'')+(this.run.safetyNetUsed?'安全网本局已经使用，不会再次触发。':this.run.jokers.some(joker=>joker.definitionId==='f07')?'安全网：耗尽出牌且仍有可用手牌时救场一次，成功过关不触发。':'');
+    const dialog=this.dialog.open(c.name+' · 角色与本场规则',body,[...(xiemu?[...xiemu.choices.map(choice=>({label:this.xiemuBurn===choice.cost?'已选'+choice.label:choice.label,primary:this.xiemuBurn===choice.cost,disabled:!this.ready||!choice.available,run:()=>{if(!this.ready||!xiemuChoice(this.run,this.selectionPreview()?.type).choices.find(c=>c.cost===choice.cost)?.available)return;this.xiemuBurn=choice.cost;this.dialog.close();this.updateControls();}})),...(this.xiemuBurn?[{label:'取消本手燃金',run:()=>{this.xiemuBurn=0;this.dialog.close();this.updateControls();}}]:[])]:[]),...(azao?[{label:this.azaoRelease?'取消本手释放':azao.available?'本手释放 ×'+azao.multiplier:'先选两对及以上，才能释放',primary:true,disabled:!this.ready||(!this.azaoRelease&&!azao.available),run:()=>{if(!this.ready||!azaoChoice(this.run,this.selectionPreview()?.type).available){this.azaoRelease=false;this.xiemuBurn=0;this.dialog.close();this.updateControls();return;}this.azaoRelease=!this.azaoRelease;this.dialog.close();this.updateControls();}}]:[]),{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},...(this.run.program?[{label:'本章节目单',run:()=>showPrograms(this.dialog,this.run,this.ready,(a,seq)=>this.command(a,seq))}]:[]),...(this.characterId==='touye'?[{label:notice?.wagerDisabled?'本场不能押注':stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed||notice?.wagerDisabled,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[])],{portrait:{url:portraitURL(c.id),alt:c.name+'完整立绘'}});
   }
   private inspectJoker(id:string):void {
     const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=this.jokerDefinition(j.definitionId),index=this.run.jokers.indexOf(j),art=jokerArtUrl(d.id),artKey=jokerArtKey(d.id),rarity=JOKER_RARITY[d.rarity];
@@ -1091,7 +1097,7 @@ export class GameScene extends Phaser.Scene {
   private async sortHand(mode:'rank'|'suit'):Promise<void> {
     if(!this.ready||this.presentation||this.run.phase!=='await-input')return;
     this.handInput?.cancel();this.view.cancelInteraction();
-    this.azaoRelease=false;this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.candidateGhost=undefined;this.candidateUndo=undefined;this.aiCursor=undefined;this.statusMessage='';
+    this.azaoRelease=false;this.xiemuBurn=0;this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.candidateGhost=undefined;this.candidateUndo=undefined;this.aiCursor=undefined;this.statusMessage='';
     this.refreshSelection();
     const cards=[...this.hand].sort((a,b)=>mode==='rank'?b.rank-a.rank||SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit):SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit)||b.rank-a.rank);
     const before=this.handPositions();
@@ -1128,7 +1134,7 @@ export class GameScene extends Phaser.Scene {
     const previous=this.selectedIds,next=new Set(update.selectedIds),changed=previous.size!==next.size||[...previous].some(id=>!next.has(id));
     this.statusMessage=update.limitReached?'每手最多选择 5 张牌':'';
     if(!changed){if(update.limitReached)this.updateControls();return;}
-    const endedUndo=!!this.candidateUndo;this.aiCursor=undefined;this.candidateUndo=undefined;this.candidateGhost=undefined;this.azaoRelease=false;this.selectedIds=next;this.validateAssistSelection();if(endedUndo&&!update.limitReached&&this.statusMessage!=='主手或可用条件已变化，助攻已取消')this.statusMessage='已手动改选，换组撤销已结束';
+    const endedUndo=!!this.candidateUndo;this.aiCursor=undefined;this.candidateUndo=undefined;this.candidateGhost=undefined;this.azaoRelease=false;this.xiemuBurn=0;this.selectedIds=next;this.validateAssistSelection();if(endedUndo&&!update.limitReached&&this.statusMessage!=='主手或可用条件已变化，助攻已取消')this.statusMessage='已手动改选，换组撤销已结束';
     const changedViews=this.cardViews.filter(view=>previous.has(view.card.id)!==next.has(view.card.id));changedViews.forEach(view=>this.revealCard(view));
     if(update.phase!=='cancelled'){if(update.mode==='select')this.audio.select();else this.audio.deselect();}
     // Batch a fast crossing into one preview; no rules command, RNG or save is touched.
@@ -1137,7 +1143,7 @@ export class GameScene extends Phaser.Scene {
 
   private toggleCard(id: string): void {
     if (!this.ready) return;
-    this.azaoRelease=false;
+    this.azaoRelease=false;this.xiemuBurn=0;
     const view=this.cardViews.find(view=>view.card.id===id);if(view)this.revealCard(view);
     this.statusMessage='';
     if(!this.selectedIds.has(id)&&this.selectedIds.size>=MAX_SELECTED){this.statusMessage='每手最多选择 5 张牌';this.audio.invalid();if(view)this.wiggleCard(view,this.cardViews.indexOf(view));this.updateControls();return;}
@@ -1170,7 +1176,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private animateRole(note:string,duration:number,context:EffectContext,beat?:ScoreBeat,impact?:Promise<void>):Promise<void> {
-    const frame=this.roleFrame;if(this.view.layout.mode!=='portrait'||!usesAzaoCharge(this.run))this.roleText.setText(note);frame.setFillStyle(T.brass,.16).setStrokeStyle(4,T.brass);
+    const frame=this.roleFrame;if(this.view.layout.mode!=='portrait'||!usesAzaoCharge(this.run)&&!usesXiemuBurn(this.run))this.roleText.setText(note);frame.setFillStyle(T.brass,.16).setStrokeStyle(4,T.brass);
     return this.focusSource(this.roleAvatar,frame,T.brass,true,duration,context,beat,impact).then(()=>{if(frame.active)frame.setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);});
   }
 
@@ -1287,18 +1293,18 @@ export class GameScene extends Phaser.Scene {
         this.audio.sourceCue('boss');await Promise.all([this.floatNote(event.operation==='charge-discard'?'-1 金币':'目标 +'+heatText(event.amount),b.x+b.width/2,b.y+b.height,'#ffd0a2',this.reducedMotion?180:460,context),this.reducedMotion?this.wait(180,context):this.animate({targets:target,scale:{from:1.14,to:1},duration:360,ease:'Back.easeOut'},context)]);
       });
       await this.effects.drain();if(!this.alive(lifecycle,intent))return;
-      this.azaoRelease=false;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage='已弃 '+selectedIds.length+' 张 · '+(this.deck.length?'补抽完成':'牌堆已空');this.updateHud();this.renderHand();this.revealDrawnCards(previousIds);
+      this.azaoRelease=false;this.xiemuBurn=0;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage='已弃 '+selectedIds.length+' 张 · '+(this.deck.length?'补抽完成':'牌堆已空');this.updateHud();this.renderHand();this.revealDrawnCards(previousIds);
       if(this.run.phase==='run-lost')this.finishStage(false);
     } finally {if(this.alive(lifecycle,intent)&&this.run.phase==='await-input'){this.playing=false;this.refreshSelection();}}
   }
 
   private async playSelected():Promise<void> {
     if(!this.ready||this.selectedIds.size===0||this.handsLeft<=0)return;
-    const azaoRelease=this.azaoRelease,selectedIds=[...this.selectedIds],assistIds=[...this.assistIds],lifecycle=this.lifecycle,intent=++this.intent,beforeHeat=this.heat,previousTrace=this.run.lastTrace,beforeHands=this.handsLeft,beforeGold=this.run.gold;
+    const xiemuBurn=this.xiemuBurn,azaoRelease=this.azaoRelease,selectedIds=[...this.selectedIds],assistIds=[...this.assistIds],lifecycle=this.lifecycle,intent=++this.intent,beforeHeat=this.heat,previousTrace=this.run.lastTrace,beforeHands=this.handsLeft,beforeGold=this.run.gold;
     this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();
     const selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id)||assistIds.includes(v.card.id));
     try {
-      const result=await dispatchRun(this,assistIds.length?{type:'PlayAssistedHand',selectedIds,assistIds}:{type:'PlayHand',selectedIds,...(usesAzaoCharge(this.run)?{azaoRelease}:{})});
+      const result=await dispatchRun(this,assistIds.length?{type:'PlayAssistedHand',selectedIds,assistIds}:{type:'PlayHand',selectedIds,...(usesAzaoCharge(this.run)?{azaoRelease}:{}),...(usesXiemuBurn(this.run)&&xiemuBurn?{xiemuBurn:xiemuBurn as 10|20|30}:{})});
       if(!this.alive(lifecycle,intent))return;
       if(!result.ok||result.duplicate){if(!result.ok)this.statusMessage=result.code==='save-failed'?'未保存，请在菜单中重试或导出':result.code==='score-diagnostic'?'本手无法结算，资源与原状态已保留':'出牌未提交，请查看菜单或选择。';return;}
       this.run=result.state;
@@ -1767,7 +1773,7 @@ export class GameScene extends Phaser.Scene {
   private completePresentation(presentation:NonNullable<GameScene['presentation']>):void {
     if(!this.alive(presentation.lifecycle,presentation.intent))return;
     this.stopScoreFire();
-    this.azaoRelease=false;this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage='';this.updateHud();
+    this.azaoRelease=false;this.xiemuBurn=0;this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage='';this.updateHud();
     if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true,true,!presentation.replay);return;}
     if(this.run.phase==='run-lost'){this.finishStage(false,!presentation.replay);return;}
     this.playing=false;this.render();this.revealDrawnCards(presentation.hand.map(card=>card.id));

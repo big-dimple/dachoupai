@@ -15,7 +15,11 @@ export const R2_ROUTE_STARTER_HASH=stableHash(R2_ROUTE_STARTER_CONTRACT);
 export const R2_AZAO_CHARGE_VERSION='quality-r2-azao-charge-v1';
 export const R2_AZAO_CHARGE_CONTRACT=Object.freeze({inherits:R2_ROUTE_STARTER_HASH,allCharacters:true,qualified:AMO_ASSIST_TYPES,tiers:['1.5','2.5','4'],first:1,cap:3,hold:'different-increments-repeat-or-unqualified-clears-both',discard:'preserve',release:'any-qualified-pre-play-charge-consumed-once-no-gain',clock:'characterScore-before-jokerScore-replaces-old-add1',reset:'entry-end-abandon',disabled:'B08-Q01-no-gain-no-release'});
 export const R2_AZAO_CHARGE_HASH=stableHash(R2_AZAO_CHARGE_CONTRACT);
-export function isR2AzaoCharge(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_AZAO_CHARGE_VERSION&&identity.contentHash===R2_AZAO_CHARGE_HASH;}
+export const R2_XIEMU_BURN_VERSION='quality-r2-xiemu-burn-v1';
+export const R2_XIEMU_BURN_CONTRACT=Object.freeze({inherits:R2_AZAO_CHARGE_HASH,allCharacters:true,costs:[10,20,30],multipliers:[2,3,4],qualified:AMO_ASSIST_TYPES,uses:1,clock:'pay-before-score-characterScore-before-jokerScore-replace-old-last-hand-and-clear-gold',interest:'min2-floor-common-reward-before-capital-div5-once-clearId',reset:'entry-only-no-refund-on-end-abandon',disabled:'B08-no-burn-keep-interest-Q01-disable-all'});
+export const R2_XIEMU_BURN_HASH=stableHash(R2_XIEMU_BURN_CONTRACT);
+export function isR2XiemuBurn(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_XIEMU_BURN_VERSION&&identity.contentHash===R2_XIEMU_BURN_HASH;}
+export function isR2AzaoCharge(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_AZAO_CHARGE_VERSION&&identity.contentHash===R2_AZAO_CHARGE_HASH||isR2XiemuBurn(identity);}
 export function isR2RouteStarter(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ROUTE_STARTER_VERSION&&identity.contentHash===R2_ROUTE_STARTER_HASH||isR2AzaoCharge(identity);}
 export function hasR2GroupUpgradeContract(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return isR2GroupUpgrade(identity)||isR2RouteStarter(identity);}
 /** Explicit shared capability, never an alias that changes the frozen e7d identity. */
