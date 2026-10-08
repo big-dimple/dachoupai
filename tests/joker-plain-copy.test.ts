@@ -31,7 +31,7 @@ it('four-card cardinality exceptions, entry snapshot and shared lifetime remain 
  const p=copy('d06');expect(p.line).toContain('进场');expect(p.essential).toContain('进场');const j=r2CreateJoker('f06','life',0);j.counters={...j.counters,handsScored:3};const life=jokerMemoryAbility(def('f06'),j,ctx()).plain!;expect(life.tile).toContain('总共4手');expect(life.status).toContain('还可用1手');expect(life.essential).toContain('换场不重置');
 });
 it('new growth is for later plays while already saved growth is the current contribution',()=>{
- const identity=identities.at(-1)!,d=r2JokerDefinitionsFor(identity).find(d=>d.id==='b10')!,j=r2CreateJoker('b10','grow',4,undefined,identity);j.growth.heat={n:'40',d:'1'};const p=jokerAbilityCopyForRun(identity,'b10',j,ctx()).plain!;expect(p.line).toContain('成长+10');expect(p.status).toContain('本次用已存热度+40');expect(p.line).toContain('新增下次用');expect(p.essential).toContain('普通顺子、普通同花不增长');expect(p.details).toContain('出售后丢失');
+ const identity=identities.at(-1)!,d=r2JokerDefinitionsFor(identity).find(d=>d.id==='b10')!,j=r2CreateJoker('b10','grow',4,undefined,identity);j.growth.heat={n:'40',d:'1'};const p=jokerAbilityCopyForRun(identity,'b10',j,ctx()).plain!;expect(p.line).toContain('成长最多+10');expect(p.status).toContain('本次用已存热度+40');expect(p.line).toContain('新增下次用');expect(p.essential).toContain('普通顺子、普通同花不增长');expect(p.details).toContain('出售后丢失');
 });
 it('complex rescue, reset and reward rotation keep complete main and essential timing by default',()=>{
  const identity=identities.at(-1)!;for(const id of ['f10','a06','e11','c12','e10','f05']){const c=jokerAbilityCopyForRun(identity,id,r2CreateJoker(id,id,0,undefined,identity),ctx()),p=c.plain!;expect(p.fallback).toBe(true);expect(p.line).toBe(c.condition);expect(p.essential).toBe(c.value);}
@@ -56,7 +56,36 @@ it('compact exclusions bind to the complete type set and probabilities remain ex
 });
 it('old growth identities keep their three exact types instead of adopting the new group rule',()=>{
  for(const identity of identities.slice(0,-1)){
-  const c=jokerAbilityCopyForRun(identity,'b03',undefined,ctx()).plain!;
-  expect(c.line).toContain('对子/两对/三条');expect(c.line).toContain('新增下次用');expect(c.tile).toContain('特定牌型成长');expect(c.fallback).toBe(true);expect(c.line).not.toContain('对子等同点组合');
+  const full=jokerAbilityCopyForRun(identity,'b03',undefined,ctx()),c=full.plain!;
+  expect(c.line).toBe(full.condition);expect(c.line).toContain('对子、两对、三条');expect(c.line).toContain('最多攒 3');expect(c.essential).toContain('下一手生效');expect(c.tile).toContain('特定牌型');expect(c.fallback).toBe(true);expect(c.line).not.toContain('对子等同点组合');
  }
+});
+it('growth headroom and capped default facts agree with actual trace in each content identity',()=>{
+ for(const identity of identities){const definitions=r2JokerDefinitionsFor(identity);for(const id of ['b10','b03']){
+  const d=definitions.find(d=>d.id===id)!,grow=d.hooks.flatMap(h=>h.operations).find(o=>o.kind==='add-growth');if(grow?.kind!=='add-growth')throw Error('growth required');
+  const cap=Number(grow.cap.n)/Number(grow.cap.d),step=Number(grow.value.n)/Number(grow.value.d);
+  for(const stored of [0,cap-step/2,cap]){
+   const j=r2CreateJoker(id,'cap/'+id,0,undefined,identity);j.growth[grow.key]={n:String(Math.round(stored*100)),d:'100'};
+   const facts=r2SelectionFacts({hand,selectedIds:hand.slice(0,2).map(c=>c.id),jokers:[j],definitions,disabledIds:[]}),context=ctx({facts});const before=JSON.stringify({j,context});
+   const trace=scoreR2Hand({rulesVersion:'r2',runId:'cap',rootId:'cap/1',hand,disabledIds:[],selectedIds:facts.playedIds,jokers:[j],definitions,characterId:'neutral',handLevels:{},playIndex:1,handsBeforePlay:4,previousHandType:null,wager:false,rng:{algorithm:'fnv1a-mulberry32-v1',state:41}});
+   const event=trace.events.find(e=>e.sourceInstanceId===j.instanceId&&e.operation==='add-growth')!;const delta=Number(event.value.n)/Number(event.value.d),p=jokerAbilityCopyForRun(identity,id,j,context).plain!;
+   expect(p.status).toContain('上限'+cap);expect(p.line).toMatch(/上限|最多攒|已封顶/);
+   if(delta===0){expect(p.status).toContain('已封顶，不再新增');expect(p.status).not.toContain('可在结算后增长');}
+   else expect(p.status).toContain('最多新增+'+delta);
+   expect(JSON.stringify({j,context})).toBe(before);
+  }
+ }}
+});
+it('current capped resource heat and its limit are visible before expanding rules',()=>{
+ for(const identity of identities){const definitions=r2JokerDefinitionsFor(identity),d=definitions.find(d=>d.id==='e03')!,j=r2CreateJoker('e03','cash',0,undefined,identity);
+  for(const gold of [0,29,30,31,90]){
+   const p=jokerAbilityCopyForRun(identity,'e03',j,ctx({gold})).plain!,trace=scoreR2Hand({rulesVersion:'r2',runId:'cash',rootId:'cash/1',hand,disabledIds:[],selectedIds:hand.slice(0,2).map(c=>c.id),jokers:[j],definitions,characterId:'neutral',handLevels:{},playIndex:1,handsBeforePlay:4,previousHandType:null,wager:false,gold,rng:{algorithm:'fnv1a-mulberry32-v1',state:41}}),e=trace.events.find(e=>e.sourceInstanceId==='cash'&&e.operation==='add-heat-per-gold')!;
+   expect(p.line).toContain('上限60');expect(p.status).toContain('热度+'+(Number(e.value.n)/Number(e.value.d)));expect(p.status).toContain('上限60');expect(p.tile).toContain('上限60');
+  }
+ }
+});
+it('growth headroom remains separate from a suppressed current read',()=>{
+ const identity=identities.at(-1)!,j=r2CreateJoker('b10','limited-grow',0,undefined,identity);j.growth.heat={n:'95',d:'1'};
+ const p=jokerAbilityCopyForRun(identity,'b10',j,ctx({scoringLimited:true})).plain!;
+ expect(p.status).toContain('本手不计入');expect(p.status).toContain('最多新增+5');expect(p.status).not.toContain('本次用已存');
 });

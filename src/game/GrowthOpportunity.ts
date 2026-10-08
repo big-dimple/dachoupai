@@ -1,18 +1,27 @@
 import type {R2RunState} from '../domain/r2Run';
-import type {R2JokerInstance} from '../content/r2Schema';
+import {r2GrowthMinimums,type R2JokerInstance,type R2JokerDefinition,type Operation} from '../content/r2Schema';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {r2ScoreConditionMatches,type R2ScoreConditionContext} from '../domain/r2Conditions';
 import {Rational} from '../domain/rational';
 import {HAND_LABELS} from '../content/handLabels';
 import type {JokerMemoryContext} from './JokerMemory';
 import {fractionText} from './scoreText';
+/** Shared saved growth and cap headroom; no conditions, scores or random actions. */
+export function growthBounds(definition:R2JokerDefinition,joker:R2JokerInstance|undefined,op:Extract<Operation,{kind:'add-growth'}>){
+ const stored=Rational.fromJSON(joker?.growth[op.key]??r2GrowthMinimums(definition)[op.key]??{n:'0',d:'1'}),cap=Rational.fromJSON(op.cap),remaining=cap.add(stored.multiply(new Rational(-1n))),value=Rational.fromJSON(op.value),zero=new Rational(0n);
+ const delta=remaining.compare(zero)<=0?zero:remaining.compare(value)<0?remaining:value;
+ return {stored:stored.toJSON(),cap:cap.toJSON(),delta:delta.toJSON(),capped:remaining.compare(zero)<=0};
+}
 /** Existing after-hand growth only. Public conditions, no scoring preview or future deal. */
 export function growthOpportunity(state:R2RunState,joker:R2JokerInstance,ctx:JokerMemoryContext){
- const d=r2JokerDefinitionFor(state,joker.definitionId),hook=d.hooks.find(h=>h.phase==='afterHand'&&h.operations.some(o=>o.kind==='add-growth'));
+ return growthOpportunityForDefinition(r2JokerDefinitionFor(state,joker.definitionId),joker,ctx);
+}
+export function growthOpportunityForDefinition(d:R2JokerDefinition,joker:R2JokerInstance,ctx:JokerMemoryContext){
+ const hook=d.hooks.find(h=>h.phase==='afterHand'&&h.operations.some(o=>o.kind==='add-growth'));
  const op=hook?.operations.find(o=>o.kind==='add-growth');if(!hook||op?.kind!=='add-growth')return;
- const stored=Rational.fromJSON(joker.growth[op.key]??{n:'0',d:'1'}),remaining=Rational.fromJSON(op.cap).add(stored.multiply(new Rational(-1n))),delta=remaining.compare(Rational.fromJSON(op.value))<0?remaining:Rational.fromJSON(op.value);
+ const bounds=growthBounds(d,joker,op);
  let status:'ready'|'prepare'|'unmet'|'capped'|'waiting'='waiting',reason='选牌后查看本手成长条件。';
- if(remaining.compare(new Rational(0n))<=0){status='capped';reason='已达成长上限，不再新增；已存值按读取条件使用。';}
+ if(bounds.capped){status='capped';reason='已达成长上限，不再新增；已存值按读取条件使用。';}
  else if(ctx.inStage&&ctx.facts){
   const facts=ctx.facts,played=ctx.hand.filter(c=>facts.playedIds.includes(c.id)),held=ctx.hand.filter(c=>facts.heldIds.includes(c.id));
   const score:R2ScoreConditionContext={played,held,validHeld:held.filter(c=>!ctx.disabledIds.includes(c.id)),active:played.filter(c=>facts.activeScoringIds.includes(c.id)),scoringIds:facts.scoringIds,handType:facts.type,previousHandType:ctx.previousHandType,playIndex:ctx.playIndex+1,handsAfter:ctx.handsLeft-1,gold:ctx.gold,discardsUsed:ctx.discardsUsed,extraExecutions:0,resolvedFinal:null};
@@ -23,5 +32,5 @@ export function growthOpportunity(state:R2RunState,joker:R2JokerInstance,ctx:Jok
  }
  const label={ready:'成长条件可用',prepare:'建立接续',unmet:'不新增成长',capped:'成长已封顶',waiting:'待选牌核成长'}[status];
  const compactLabel={ready:'可成长',prepare:'先接续',unmet:'不成长',capped:'成长满',waiting:'待选牌'}[status];
- return {status,label,compactLabel,name:d.name,body:label+' · 已存'+fractionText(stored.toJSON())+(status==='ready'?' · 结算后最多+'+fractionText(delta.toJSON()):'')+'\n'+reason+'\n新增下手生效；不预演总分、不保证再出一手。'+(ctx.scoringLimited?'本手计分停用；结算后成长仍按独立阶段条件检查。':'')};
+ return {...bounds,status,label,compactLabel,reason,name:d.name,body:label+' · 已存'+fractionText(bounds.stored)+' · 上限'+fractionText(bounds.cap)+(status==='ready'?' · 结算后最多+'+fractionText(bounds.delta):'')+'\n'+reason+'\n新增下手生效；不预演总分、不保证再出一手。'+(ctx.scoringLimited?'本手计分停用；结算后成长仍按独立阶段条件检查。':'')};
 }

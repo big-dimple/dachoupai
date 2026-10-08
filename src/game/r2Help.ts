@@ -1,4 +1,4 @@
-import type {R2JokerDefinition,R2JokerInstance} from '../content/r2Schema';
+import type {R2JokerDefinition,R2JokerInstance,Operation} from '../content/r2Schema';
 import {getR2Joker} from '../domain/r2Shop';
 import type {DomainEvent} from '../domain/run';
 import {SCORE_LIMITS,type ScoreEvent} from '../domain/scoreR2';
@@ -70,6 +70,10 @@ export function r2MechanismBadge(definition:R2JokerDefinition){
   return {label:'构筑计分',value:'',paper:0xf2dfbc};
 }
 
+export function r2ResourceHeatValue(operation:Extract<Operation,{kind:'add-heat-per-gold'|'add-heat-per-empty-slot'}>,context:{gold:number;jokerSlots:number;jokerCount:number}){
+ const count=operation.kind==='add-heat-per-gold'?context.gold:Math.max(0,context.jokerSlots-context.jokerCount),raw=Rational.fromJSON(operation.value).multiply(new Rational(BigInt(count))),cap=Rational.fromJSON(operation.cap);
+ return (raw.compare(cap)>0?cap:raw).toJSON();
+}
 export function r2JokerValue(joker:R2JokerInstance,context:{gold:number;jokerCount:number;jokerSlots:number;deckSize:number;discardsUsed?:number;quadRefundUsed?:boolean},definition:R2JokerDefinition=getR2Joker(joker.definitionId)):string {
   const operations=definition.hooks.flatMap(hook=>hook.operations);
   if(joker.definitionId==='f09'&&(context.discardsUsed??0)>0)return '不再×1.5';
@@ -86,8 +90,7 @@ export function r2JokerValue(joker:R2JokerInstance,context:{gold:number;jokerCou
   if(growth?.kind==='read-growth')return '+'+fractionText(joker.growth[growth.key]??{n:'0',d:'1'});
   const heat=operations.find(operation=>operation.kind==='add-heat-per-gold'||operation.kind==='add-heat-per-empty-slot');
   if(heat?.kind==='add-heat-per-gold'||heat?.kind==='add-heat-per-empty-slot'){
-    const count=heat.kind==='add-heat-per-gold'?context.gold:Math.max(0,context.jokerSlots-context.jokerCount),raw=Rational.fromJSON(heat.value).multiply(new Rational(BigInt(count))),cap=Rational.fromJSON(heat.cap);
-    return '+'+fractionText((raw.compare(cap)>0?cap:raw).toJSON());
+    return '+'+fractionText(r2ResourceHeatValue(heat,context));
   }
   const modifier=definition.modifiers?.find(modifier=>modifier.kind==='hand-limit');
   if(modifier?.kind==='hand-limit'&&modifier.deckMaximum!==undefined&&context.deckSize>modifier.deckMaximum)return '未生效';

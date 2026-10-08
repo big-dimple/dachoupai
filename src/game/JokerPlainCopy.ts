@@ -4,7 +4,8 @@ import type {ScoreEvent} from '../domain/scoreR2';
 import {HAND_LABELS} from '../content/handLabels';
 import {rankLabel,SUIT_SYMBOL} from '../cards/types';
 import {fractionText} from './scoreText';
-import {r2ScoreOperationText} from './r2Help';
+import {growthBounds,growthOpportunityForDefinition} from './GrowthOpportunity';
+import {r2ResourceHeatValue,r2ScoreOperationText} from './r2Help';
 import {R2_GROUP_HAND_TYPES} from '../domain/r2GroupHands';
 
 export interface JokerPlainCopy {line:string;tile:string;status:string;essential:string;details:string;fallback:boolean}
@@ -45,8 +46,8 @@ function gain(o:Operation,phase:HookPhase):string|undefined{
   case'refund-discard':return '返'+o.amount+'次弃牌';
   case'refund-hand-limited':return '返'+o.amount+'次出牌';
   case'chance-add-heat':return o.probability.n+'/'+o.probability.d+'机会热度+'+fractionText(o.value)+'（出牌时揭晓）';
-  case'add-heat-per-gold':return '每1金热度+'+fractionText(o.value)+'（不花金币）';
-  case'add-heat-per-empty-slot':return '每空槽热度+'+fractionText(o.value);
+  case'add-heat-per-gold':return '每1金热度+'+fractionText(o.value)+'，每次上限'+fractionText(o.cap)+'（不花金币）';
+  case'add-heat-per-empty-slot':return '每空槽热度+'+fractionText(o.value)+'，每次上限'+fractionText(o.cap);
   default:return undefined;
  }
 }
@@ -65,7 +66,7 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
   if(['onDiscard','afterHand'].includes(h.phase))essential.push(h.phase==='onDiscard'?'成功弃牌后才兑现。':'实际出牌结算后才兑现。');
  }else if(hooks.length===2&&hooks[0].operations.length===1&&hooks[0].operations[0].kind==='read-growth'&&hooks[1].operations.length===1&&hooks[1].operations[0].kind==='add-growth'&&!d.modifiers?.length){
   const read=hooks[0].operations[0],grow=hooks[1].operations[0],h=hooks[1];
-  if(read.key===grow.key){condition=when(h.condition,h.phase);effect=unit(read.target)+'成长+'+fractionText(grow.value)+'；新增下次用';if(condition&&h.phase==='afterHand')condition+='出牌后';if(!limits.some(s=>/下次|下一|后续/.test(s)))essential.push('每次出牌用已保存的'+unit(read.target)+'；新增从后续出牌生效。');if(h.condition.kind==='hand-type-in'&&h.condition.values.length===R2_GROUP_HAND_TYPES.length&&h.condition.values.every(t=>R2_GROUP_HAND_TYPES.includes(t)))essential.push('普通顺子、普通同花不增长。');}
+  if(read.key===grow.key){condition=when(h.condition,h.phase);const bounds=growthBounds(d,j,grow);effect=unit(read.target)+(bounds.capped?'成长已封顶'+fractionText(bounds.cap)+'，不再新增':'成长最多+'+fractionText(bounds.delta)+'；上限'+fractionText(bounds.cap)+'，新增下次用');if(condition&&h.phase==='afterHand')condition+='出牌后';if(!limits.some(s=>/下次|下一|后续/.test(s)))essential.push('每次出牌用已保存的'+unit(read.target)+'；新增从后续出牌生效。');if(h.condition.kind==='hand-type-in'&&h.condition.values.length===R2_GROUP_HAND_TYPES.length&&h.condition.values.every(t=>R2_GROUP_HAND_TYPES.includes(t)))essential.push('普通顺子、普通同花不增长。');}
  }else if(!hooks.length&&d.modifiers?.length===1){
   const mod=d.modifiers[0];condition='持有这张牌';
   switch(mod.kind){
@@ -77,7 +78,8 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
    case'interest-cap':effect='利息上限+'+mod.amount;break;
   }
  }
- if(!condition||!effect){fallback=true;condition=main;effect='';}
+ const legacyGrowth=hooks[0]?.operations[0].kind==='read-growth'&&hooks[1]?.condition.kind==='hand-type-in'&&hooks[1].condition.values.length===3&&hooks[1].condition.values.every(t=>['pair','two-pair','three-kind'].includes(t));
+ if(!condition||!effect||legacyGrowth){fallback=true;condition=main;effect='';}
  const line=effect?condition+' → '+effect:main.replaceAll('整手倍率','出牌倍率').replaceAll('整手热度','出牌热度');
  let status=state;
  const selected=ctx.facts;const firstCondition=hooks[0]?.condition;
@@ -106,6 +108,12 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
   else if(!fallback&&m.status==='静态仍有效')status='持有时有效';
   else if(!fallback&&hooks.length===1)status='到对应时点检查；尚未兑现';
  }
+ if(!events&&j){
+  const opportunity=growthOpportunityForDefinition(d,j,ctx),read=hooks.flatMap(h=>h.operations).find(o=>o.kind==='read-growth');
+  if(opportunity){const saved=(ctx.scoringLimited?'已存':'本次用已存')+(read?.kind==='read-growth'?unit(read.target):'成长')+'+'+fractionText(opportunity.stored)+(ctx.scoringLimited?'（本手不计入）':'');status=(ctx.scoringLimited?'本手计分停用；':'')+saved+'；上限'+fractionText(opportunity.cap)+'；'+(opportunity.status==='capped'?'已封顶，不再新增':opportunity.status==='ready'?'所选符合，成功结算后最多新增+'+fractionText(opportunity.delta)+'，下次用':opportunity.status==='unmet'?'所选不增长；'+opportunity.reason:opportunity.reason);}
+ }
+ const resourceHeat=hooks.length===1&&hooks[0].operations.length===1?hooks[0].operations[0]:undefined;
+ if(!events&&(resourceHeat?.kind==='add-heat-per-gold'||resourceHeat?.kind==='add-heat-per-empty-slot')&&!ctx.scoringLimited){status=(resourceHeat.kind==='add-heat-per-gold'?'现在'+ctx.gold+'金':'现在'+Math.max(0,ctx.jokerSlots-ctx.jokerCount)+'个空槽')+'；按当前条件热度+'+fractionText(r2ResourceHeatValue(resourceHeat,ctx))+'，上限'+fractionText(resourceHeat.cap)+(j?'；出牌前重查':'；未购，买后重查');}
  if(events&&j){
   const own=events.filter(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId&&e.sourceDefinitionId===d.id&&!e.reasonKey.startsWith('edition.'));
   if(own.length)status=own.map(e=>{
@@ -125,8 +133,10 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
   if(h?.condition.kind==='paired-rank')tileEffect='每张计分'+tileEffect?.replace(/^每张/,'');
   if(h?.condition.kind==='scoring-position')tileCondition=(h.condition.handTypes?names(h.condition.handTypes):'')+(h.condition.position==='third-original'?'原第3牌':h.condition.position==='first'?'首计分牌':'末计分牌')+(h.condition.playModulo?'第'+h.condition.playModulo.divisor+'手':'');
   if(o?.kind==='retrigger-card')tileEffect='再计'+o.count+'次';
-  if(o?.kind==='read-growth'){const grow=hooks[1].operations[0];if(grow.kind==='add-growth'){tileCondition=hooks[1].condition.kind==='hand-type-in'&&hooks[1].condition.values.length===R2_GROUP_HAND_TYPES.length&&hooks[1].condition.values.every(t=>R2_GROUP_HAND_TYPES.includes(t))?'成组后成长':when(hooks[1].condition,hooks[1].phase)??condition;tileEffect=unit(o.target)+'+'+fractionText(grow.value)+'\n新增下次用';if(hooks[1].condition.kind==='hand-type-in'&&hooks[1].condition.values.length===3&&hooks[1].condition.values.every(t=>['pair','two-pair','three-kind'].includes(t))){tileCondition='特定牌型成长';fallback=true;}}}
+  if(o?.kind==='read-growth'){const grow=hooks[1].operations[0];if(grow.kind==='add-growth'){const bounds=growthBounds(d,j,grow),c=hooks[1].condition;const grouped=c.kind==='hand-type-in'&&c.values.length===R2_GROUP_HAND_TYPES.length&&c.values.every(t=>R2_GROUP_HAND_TYPES.includes(t));tileCondition=grouped?'成组长'+unit(o.target):when(c,hooks[1].phase)??condition;tileEffect=bounds.capped?(grouped?'':unit(o.target))+'封顶'+fractionText(bounds.cap)+'\n不再新增':(grouped?'':unit(o.target))+'+'+fractionText(bounds.delta)+'顶'+fractionText(bounds.cap)+'\n新增下次用';}}
   if(h?.condition.kind==='scoring-position'&&h.condition.position==='first'&&!h.condition.playModulo&&h.condition.handTypes&&allBeyondPair(h.condition.handTypes))tile='非高牌/对子\n首计分牌\n'+tileEffect?.replace(/^每张/,'');
+  else if(o?.kind==='add-heat-per-gold')tile='每1金热度+'+fractionText(o.value)+'\n当前+'+fractionText(r2ResourceHeatValue(o,ctx))+'\n上限'+fractionText(o.cap);
+  else if(o?.kind==='add-heat-per-empty-slot')tile='每空槽+'+fractionText(o.value)+'\n当前热度+'+fractionText(r2ResourceHeatValue(o,ctx))+'\n上限'+fractionText(o.cap);
   else if(o?.kind==='chance-add-heat')tile='每次出牌揭晓\n'+o.probability.n+'/'+o.probability.d+'机会\n热度+'+fractionText(o.value);
   else if(d.modifiers?.[0]?.kind==='first-purchase-discount'){const mod=d.modifiers[0];tile='本店首购-'+mod.amount+'金\n最低'+mod.minimum+'金';}
   else if(d.modifiers?.[0]?.kind==='four-straight')tile='顺子4张\n同花顺5张';
@@ -136,6 +146,7 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
   const read=hooks[0]?.operations[0],life=hooks.flatMap(h=>h.operations).find(o=>o.kind==='expire-after-hands');
   if(life?.kind==='expire-after-hands'&&read?.kind==='multiply-multiplier')tile='出牌倍率×'+fractionText(read.value)+'\n总共'+life.limit+'手';
   else if(read?.kind==='read-coefficient')tile='多步条件\n倍率×'+(j?fractionText(growth[read.key]):'保存值')+'\n点牌查重置';
+  else if(legacyGrowth&&read?.kind==='read-growth'){const grow=hooks[1].operations[0];if(grow.kind==='add-growth'){const bounds=growthBounds(d,j,grow);tile='特定牌型\n'+(bounds.capped?unit(read.target)+'封顶'+fractionText(bounds.cap):unit(read.target)+'+'+fractionText(bounds.delta)+'顶'+fractionText(bounds.cap))+'\n'+(bounds.capped?'不再新增':'新增下次用');}}
   else if(read?.kind==='read-growth')tile='多步成长\n'+unit(read.target)+'+保存值\n点牌查增减';
   else tile='多步条件\n'+(read?.kind==='retrigger-card'?'再计'+read.count+'次':read?gain(read,hooks[0].phase)??'分时点生效':'分时点生效')+'\n点牌查条件';
  }
