@@ -1,0 +1,281 @@
+{
+  "testedHead": "2805ef569d88984ac2f1ecba75299a3ba9c859bc",
+  "scope": "Controlled current-version legal owned growth/tool/public-hand snapshot; native import, turn, cancel, tool use, saved plays, cold continue and next shop. No natural-rate/human/device/FPS acceptance.",
+  "status": "PASS",
+  "cases": [
+    {
+      "key": "1366-continuity",
+      "status": "PASS",
+      "opening": "group",
+      "caption": [
+        "培养路线 · 同花集中",
+        "",
+        "已积攒 +30 热度",
+        "选一种花色，集中成同花。",
+        "当前培养 同花 · 开局 成组 · 本机续局保留",
+        "",
+        "练对子",
+        "已积攒 +30 热度"
+      ],
+      "flushScore": "808",
+      "flushType": "flush",
+      "ownedGrowthAfter": [
+        {
+          "instanceId": "controlled/growth",
+          "definitionId": "b10",
+          "paidPrice": 4,
+          "growth": {
+            "heat": {
+              "n": "30",
+              "d": "1"
+            }
+          },
+          "edition": "none"
+        }
+      ],
+      "nextStage": 1,
+      "errors": [],
+      "actions": [
+        {
+          "label": "查看全部现货与持牌",
+          "r": {
+            "x": 264,
+            "y": 687,
+            "width": 245.5,
+            "height": 56,
+            "top": 687,
+            "right": 509.5,
+            "bottom": 743,
+            "left": 264
+          }
+        },
+        {
+          "label": "更换方向",
+          "r": {
+            "x": 517.5,
+            "y": 687,
+            "width": 175.5,
+            "height": 56,
+            "top": 687,
+            "right": 693,
+            "bottom": 743,
+            "left": 517.5
+          }
+        },
+        {
+          "label": "这轮不买，留金入场",
+          "r": {
+            "x": 701,
+            "y": 687,
+            "width": 245.5,
+            "height": 56,
+            "top": 687,
+            "right": 946.5,
+            "bottom": 743,
+            "left": 701
+          }
+        },
+        {
+          "label": "关闭",
+          "r": {
+            "x": 954.5,
+            "y": 687,
+            "width": 147.5,
+            "height": 56,
+            "top": 687,
+            "right": 1102,
+            "bottom": 743,
+            "left": 954.5
+          }
+        }
+      ]
+    },
+    {
+      "key": "390-continuity",
+      "status": "PASS",
+      "opening": "group",
+      "caption": [
+        "培养路线 · 同花集中",
+        "",
+        "已积攒 +30 热度",
+        "选一种花色，集中成同花。",
+        "当前培养 同花 · 开局 成组 · 本机续局保留",
+        "",
+        "练对子",
+        "已积攒 +30 热度"
+      ],
+      "flushScore": "808",
+      "flushType": "flush",
+      "ownedGrowthAfter": [
+        {
+          "instanceId": "controlled/growth",
+          "definitionId": "b10",
+          "paidPrice": 4,
+          "growth": {
+            "heat": {
+              "n": "30",
+              "d": "1"
+            }
+          },
+          "edition": "none"
+        }
+      ],
+      "nextStage": 1,
+      "errors": [],
+      "actions": [
+        {
+          "label": "查看全部现货与持牌",
+          "r": {
+            "x": 36,
+            "y": 609,
+            "width": 190,
+            "height": 44,
+            "top": 609,
+            "right": 226,
+            "bottom": 653,
+            "left": 36
+          }
+        },
+        {
+          "label": "更换方向",
+          "r": {
+            "x": 234,
+            "y": 609,
+            "width": 120,
+            "height": 44,
+            "top": 609,
+            "right": 354,
+            "bottom": 653,
+            "left": 234
+          }
+        },
+        {
+          "label": "这轮不买，留金入场",
+          "r": {
+            "x": 36,
+            "y": 661,
+            "width": 204,
+            "height": 56,
+            "top": 661,
+            "right": 240,
+            "bottom": 717,
+            "left": 36
+          }
+        },
+        {
+          "label": "关闭",
+          "r": {
+            "x": 248,
+            "y": 661,
+            "width": 106,
+            "height": 56,
+            "top": 661,
+            "right": 354,
+            "bottom": 717,
+            "left": 248
+          }
+        }
+      ]
+    },
+    {
+      "key": "390-storage-denied",
+      "status": "PASS",
+      "opening": "group",
+      "caption": [
+        "培养路线 · 同花集中",
+        "",
+        "已积攒 +30 热度",
+        "选一种花色，集中成同花。",
+        "当前培养 同花 · 开局 成组 · 仅本页保留",
+        "",
+        "练对子",
+        "已积攒 +30 热度"
+      ],
+      "flushScore": null,
+      "flushType": null,
+      "ownedGrowthAfter": null,
+      "nextStage": null,
+      "errors": [],
+      "actions": [
+        {
+          "label": "更换方向",
+          "r": {
+            "x": 36,
+            "y": 557,
+            "width": 141,
+            "height": 44,
+            "top": 557,
+            "right": 177,
+            "bottom": 601,
+            "left": 36
+          }
+        },
+        {
+          "label": "查看公开牌组",
+          "r": {
+            "x": 185,
+            "y": 557,
+            "width": 169,
+            "height": 44,
+            "top": 557,
+            "right": 354,
+            "bottom": 601,
+            "left": 185
+          }
+        },
+        {
+          "label": "当前手牌可成型",
+          "r": {
+            "x": 36,
+            "y": 609,
+            "width": 169,
+            "height": 44,
+            "top": 609,
+            "right": 205,
+            "bottom": 653,
+            "left": 36
+          }
+        },
+        {
+          "label": "打开工具包",
+          "r": {
+            "x": 213,
+            "y": 609,
+            "width": 141,
+            "height": 44,
+            "top": 609,
+            "right": 354,
+            "bottom": 653,
+            "left": 213
+          }
+        },
+        {
+          "label": "回到牌桌自己选牌",
+          "r": {
+            "x": 36,
+            "y": 661,
+            "width": 197,
+            "height": 56,
+            "top": 661,
+            "right": 233,
+            "bottom": 717,
+            "left": 36
+          }
+        },
+        {
+          "label": "关闭",
+          "r": {
+            "x": 241,
+            "y": 661,
+            "width": 113,
+            "height": 56,
+            "top": 661,
+            "right": 354,
+            "bottom": 717,
+            "left": 241
+          }
+        }
+      ]
+    }
+  ]
+}
