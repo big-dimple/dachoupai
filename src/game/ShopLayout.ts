@@ -86,11 +86,11 @@ export function shopFirstGuideLayout(p:ReturnType<typeof shopLayout>,height:numb
 }
 
 /** Text uses the goods seat on desktop, independently of the bounded card face. */
-export function shopOfferCopy(p:ReturnType<typeof shopLayout>,b:Box){
+export function shopOfferCopy(p:ReturnType<typeof shopLayout>,b:Box,plainJoker=false){
   if(p.pc){const seat=p.pc.jokerOffers.find(t=>b.x>=t.x&&b.x<t.x+t.width)!;return {x:seat.x+10,y:b.y+b.height+2,width:seat.width-20,priceY:seat.y+b.height+98,lines:4,tile:seat};}
   const seat=(p.tabs.width-8*(p.shelf.length-1))/p.shelf.length;
   const x=p.copyBeside?b.x+b.width+6:b.x,y=p.copyBeside?b.y:b.y+b.height,width=p.copyBeside?seat-b.width-8:b.width+6;
-  return {x,y,width,priceY:y+58,lines:2,tile:{...b,width:p.copyBeside?b.width+6+width:b.width,height:p.copyBeside?b.height:b.height+76}};
+  return {x,y,width,priceY:y+(plainJoker?76:58),lines:plainJoker?3:2,tile:{...b,width:p.copyBeside?b.width+6+width:b.width,height:p.copyBeside?b.height:b.height+(plainJoker?94:76)}};
 }
 
 /** Wrapped desktop racks need both axes; horizontal legacy racks retain their drop rule. */

@@ -21,7 +21,7 @@ it('caps and zero reads produce no fake benefit, while source rules remain avail
 });
 it('selection readiness uses public shared conditions and limits, never forecasts the final score',()=>{
  const p=experiencePlan(),hand=p.state.handOrder.map(id=>p.state.deckInstances.find(c=>c.id===id)!),facts=r2SelectionFacts({hand,selectedIds:p.first,disabledIds:[],jokers:p.state.jokers,definitions:r2JokerDefinitionsFor(p.state)}),before=JSON.stringify(p.state);
- for(const joker of p.state.jokers){const ctx=publicJokerMemoryContext(p.state,{hand,facts,scoringLimited:false,deckSize:52,jokerSlots:5,jokerCount:4}),r=selectionExperience(p.state,joker,ctx);expect(r.body).toContain('成功出牌与保存');expect(r.body).not.toContain('预计总分');expect(selectionExperience(p.state,joker,{...ctx,scoringLimited:true}).readiness).toBe('limited');}
+ for(const joker of p.state.jokers){const ctx=publicJokerMemoryContext(p.state,{hand,facts,scoringLimited:false,deckSize:52,jokerSlots:5,jokerCount:4}),r=selectionExperience(p.state,joker,ctx);expect([r.body,r.details].join('\n')).toContain('成功出牌与保存');expect(r.body).not.toContain('预计总分');expect(selectionExperience(p.state,joker,{...ctx,scoringLimited:true}).readiness).toBe('limited');}
  expect(JSON.stringify(p.state)).toBe(before);
 });
 it('first transition is preparation, opposite ordinary type is eligible, special type is not a substitute',()=>{

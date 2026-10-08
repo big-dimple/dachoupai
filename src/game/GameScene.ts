@@ -671,7 +671,7 @@ export class GameScene extends Phaser.Scene {
     panel.add(this.add.text(tx,14,d.name,{...style,fontSize:'20px',fontStyle:'bold',color:'#203744'}));
     const copy=this.jokerAbility(j,this.selectionPreview());
     panel.add(this.add.text(tx,46,copy?.compact??this.jokerValue(j),{...style,fontSize:'20px',fontStyle:'bold',color:'#a14b38'}));
-    const summary=this.add.text(tx,80,copy?.summary??d.description,{...style,fontSize:'14px',color:'#314a50'}).setLineSpacing(3).setName('joker/hover-purpose'),full=summary.text;
+    const summary=this.add.text(tx,80,copy?.plain?.line??copy?.summary??d.description,{...style,fontSize:'14px',color:'#314a50'}).setLineSpacing(3).setName('joker/hover-purpose'),full=summary.text;
     if(summary.height>height-118||summary.width>tw)summary.setText('条件与效果\n点击查看');summary.setData('fullText',full).setData('availableWidth',tw).setData('availableHeight',height-118);panel.add(summary);
     panel.add(this.add.text(tx,height-30,'点击看完整卡面',{...style,fontSize:'14px',color:'#486a63'}));
     this.view.root.bringToTop(panel);panel.once('destroy',()=>this.tweens.killTweensOf(panel));

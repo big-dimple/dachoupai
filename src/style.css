@@ -281,6 +281,7 @@ button[aria-busy=true] { border-style:dashed; }
 .audio-controls,.run-menu-settings { background:#FFF9EE;border:1px solid #3F606B;box-shadow:none; }
 @media(max-width:560px) and (orientation:portrait) {
  .detail-dialog--illustrated .dialog-content { grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,42%) minmax(0,1fr);gap:12px; }
+ .detail-dialog--plain-joker.detail-dialog--illustrated .dialog-content { grid-template-rows:minmax(0,28%) minmax(0,1fr); }
  .dialog-card-art,.dialog-portrait-art { height:100%;width:auto;max-width:100%; }
  .dialog-card-art .dialog-art-visual { height:100%;width:auto; }
  .detail-dialog .dialog-scroll { height:100%; }

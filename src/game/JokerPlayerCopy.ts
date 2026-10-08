@@ -1,3 +1,4 @@
+import {jokerPlainCopy} from './JokerPlainCopy';
 import {R2_GROUP_HAND_TYPES,r2LargestScoringRankGroup} from '../domain/r2GroupHands';
 import {R2_GROUP_UPGRADE_IDS,R2_GROUP_UPGRADE_JOKERS} from '../content/r2GroupUpgradeJokers';
 import {JOKER_GROUP_UPGRADE_TEMPLATES} from './JokerGroupUpgradeTemplates';
@@ -140,5 +141,5 @@ export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerIns
   if(memory.scoreLimited)state.push('当前计分加成暂停');
  }
  if(definition.hooks.some(h=>h.operations.some(o=>o.kind==='add-heat'||o.kind==='add-multiplier'||o.kind==='multiply-multiplier'||o.kind==='read-growth'||o.kind==='read-coefficient'))){rules.push('热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。');}
- return{condition:main,value:limits.join('\n'),state:state.join('\n'),rules:rules.join('\n'),flavor:'',summary:main,compact:memory.short,narrow:memory.short,benefit:'条件与效果',bodyActive,editionActive,playerCopy:true};
+ return{plain:jokerPlainCopy(definition,instance,ctx,memory,main,limits,rules.join('\n'),state.join('\n'),events),condition:main,value:limits.join('\n'),state:state.join('\n'),rules:rules.join('\n'),flavor:'',summary:main,compact:memory.short,narrow:memory.short,benefit:'条件与效果',bodyActive,editionActive,playerCopy:true};
 }
