@@ -1,0 +1,159 @@
+{
+  "scope": "Three controlled pre-existing charge tiers on exact recorded first ordinary two-pair input, no enhancement. This is scalar scoring only: no command/route or natural charge2/3 acquisition. Stage0 first-play tier2/3 is not claimed reachable.",
+  "baseActual": "182",
+  "rows": [
+    {
+      "hypotheticalPrePlayCharge": 1,
+      "score": "273",
+      "multiplier": "1.5",
+      "after": {
+        "charge": 0,
+        "previousQualifiedType": null
+      },
+      "characterEvents": [
+        {
+          "eventId": "run/group-natural-17/azao/hand/run/group-natural-17/azao/command/6/event/5",
+          "rootId": "run/group-natural-17/azao/hand/run/group-natural-17/azao/command/6",
+          "rootEventId": "run/group-natural-17/azao/hand/run/group-natural-17/azao/command/6/event/5",
+          "phase": "characterScore",
+          "sourceType": "character",
+          "sourceDefinitionId": "azao",
+          "sourceInstanceId": "run/group-natural-17/azao/character",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "3",
+            "d": "2"
+          },
+          "before": {
+            "H": {
+              "n": "91",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "91",
+              "d": "1"
+            },
+            "M": {
+              "n": "3",
+              "d": "1"
+            }
+          },
+          "reasonKey": "azao.multiply-multiplier",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "rngUnchanged": true
+    },
+    {
+      "hypotheticalPrePlayCharge": 2,
+      "score": "455",
+      "multiplier": "2.5",
+      "after": {
+        "charge": 0,
+        "previousQualifiedType": null
+      },
+      "characterEvents": [
+        {
+          "eventId": "run/group-natural-17/azao/hand/run/group-natural-17/azao/command/6/event/5",
+          "rootId": "run/group-natural-17/azao/hand/run/group-natural-17/azao/command/6",
+          "rootEventId": "run/group-natural-17/azao/hand/run/group-natural-17/azao/command/6/event/5",
+          "phase": "characterScore",
+          "sourceType": "character",
+          "sourceDefinitionId": "azao",
+          "sourceInstanceId": "run/group-natural-17/azao/character",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "5",
+            "d": "2"
+          },
+          "before": {
+            "H": {
+              "n": "91",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "91",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "azao.multiply-multiplier",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "rngUnchanged": true
+    },
+    {
+      "hypotheticalPrePlayCharge": 3,
+      "score": "728",
+      "multiplier": "4",
+      "after": {
+        "charge": 0,
+        "previousQualifiedType": null
+      },
+      "characterEvents": [
+        {
+          "eventId": "run/group-natural-17/azao/hand/run/group-natural-17/azao/command/6/event/5",
+          "rootId": "run/group-natural-17/azao/hand/run/group-natural-17/azao/command/6",
+          "rootEventId": "run/group-natural-17/azao/hand/run/group-natural-17/azao/command/6/event/5",
+          "phase": "characterScore",
+          "sourceType": "character",
+          "sourceDefinitionId": "azao",
+          "sourceInstanceId": "run/group-natural-17/azao/character",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "4",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "91",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "91",
+              "d": "1"
+            },
+            "M": {
+              "n": "8",
+              "d": "1"
+            }
+          },
+          "reasonKey": "azao.multiply-multiplier",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "rngUnchanged": true
+    }
+  ]
+}
