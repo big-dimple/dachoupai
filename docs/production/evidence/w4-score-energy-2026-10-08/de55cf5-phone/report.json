@@ -1,0 +1,3108 @@
+{
+  "head": "de55cf59838ad19ded1c64a8fbe0448a8adfa4a2",
+  "scope": "Controlled current-version legal inventory/public-hand snapshots; actual native import/selection/assist/play/saved commands. Fifth snapshot explicitly starts at four counted hands, not naturally acquired. Software only; audio output recorded, not subjectively listened. No physical FPS/acceptance.",
+  "cases": [
+    {
+      "key": "390-multiply-normal",
+      "spec": {
+        "width": 390,
+        "kind": "multiply"
+      },
+      "errors": [],
+      "before": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-route-starter-v1",
+        "contentHash": "json-fnv-v1:11ce8fcda2f04c51",
+        "runId": "controlled/score-energy/multiply",
+        "seed": "score-energy-controlled",
+        "commandSeq": 3,
+        "difficulty": 0,
+        "characterId": "amo",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 0,
+          "rootId": null,
+          "eventId": null,
+          "reason": null
+        },
+        "routeStarter": {
+          "instanceId": null,
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": false,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "await-input",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "spades-3",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-5",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "spades-6",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-8",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "spades-9",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14",
+          "hearts-2",
+          "hearts-3",
+          "hearts-4",
+          "hearts-5",
+          "hearts-6",
+          "hearts-7",
+          "hearts-8",
+          "hearts-9",
+          "hearts-10",
+          "hearts-11",
+          "hearts-12",
+          "hearts-13",
+          "hearts-14",
+          "clubs-2",
+          "clubs-3",
+          "clubs-4",
+          "clubs-5",
+          "clubs-6",
+          "clubs-7",
+          "clubs-8",
+          "clubs-9",
+          "clubs-10",
+          "clubs-11",
+          "clubs-12",
+          "clubs-13",
+          "clubs-14",
+          "diamonds-2",
+          "diamonds-3",
+          "diamonds-4",
+          "diamonds-5",
+          "diamonds-6",
+          "diamonds-7",
+          "diamonds-8",
+          "diamonds-9",
+          "diamonds-10",
+          "diamonds-11",
+          "diamonds-12",
+          "diamonds-13",
+          "diamonds-14"
+        ],
+        "handOrder": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6",
+          "spades-7",
+          "spades-8",
+          "spades-9"
+        ],
+        "playedPile": [],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": {
+          "openingDiscard": null,
+          "assistUsed": false,
+          "index": 0,
+          "targetHeat": "400",
+          "initialTargetHeat": "400",
+          "heat": "0",
+          "handsLeft": 4,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 0,
+          "previousHandType": null,
+          "previousHandScore": null,
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [
+            "controlled/source/0",
+            "controlled/source/1",
+            "controlled/source/2"
+          ],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 0,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "totalHeat": "0",
+        "gold": 20,
+        "jokers": [
+          {
+            "instanceId": "controlled/source/0",
+            "definitionId": "f09",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "controlled/source/1",
+            "definitionId": "f06",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "controlled/source/2",
+            "definitionId": "e08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "consumables": [],
+        "longTermItems": [],
+        "program": null,
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T03",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": null,
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {},
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 930748328
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2222665615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1254887557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3790170128
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 932151522
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 750765427
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "controlled/score-energy/multiply/start",
+            "fingerprint": "json-fnv-v1:53fc991179ca44dd",
+            "seq": 1
+          },
+          {
+            "commandId": "controlled/score-energy/multiply/command/2",
+            "fingerprint": "json-fnv-v1:1b7c3821ad014595",
+            "seq": 2
+          },
+          {
+            "commandId": "controlled/score-energy/multiply/command/3",
+            "fingerprint": "json-fnv-v1:307674d22a5a6d56",
+            "seq": 3
+          }
+        ],
+        "lastTrace": null,
+        "handLevels": {},
+        "outcome": null
+      },
+      "step": "samples",
+      "font": {
+        "loaded": true,
+        "widths": [
+          109.72805786132812,
+          109.72805786132812,
+          109.72805786132812
+        ]
+      },
+      "expected": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-route-starter-v1",
+        "contentHash": "json-fnv-v1:11ce8fcda2f04c51",
+        "runId": "controlled/score-energy/multiply",
+        "seed": "score-energy-controlled",
+        "commandSeq": 4,
+        "difficulty": 0,
+        "characterId": "amo",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 1,
+          "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "reason": "multiply"
+        },
+        "routeStarter": {
+          "instanceId": null,
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": false,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 1,
+        "phase": "stage-cleared",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "spades-3",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-5",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "spades-6",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-8",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "spades-9",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14",
+          "hearts-2",
+          "hearts-3",
+          "hearts-4",
+          "hearts-5",
+          "hearts-6",
+          "hearts-7",
+          "hearts-8",
+          "hearts-9",
+          "hearts-10",
+          "hearts-11",
+          "hearts-12",
+          "hearts-13",
+          "hearts-14",
+          "clubs-2",
+          "clubs-3",
+          "clubs-4",
+          "clubs-5",
+          "clubs-6",
+          "clubs-7",
+          "clubs-8",
+          "clubs-9",
+          "clubs-10",
+          "clubs-11",
+          "clubs-12",
+          "clubs-13",
+          "clubs-14",
+          "diamonds-2",
+          "diamonds-3",
+          "diamonds-4",
+          "diamonds-5",
+          "diamonds-6",
+          "diamonds-7",
+          "diamonds-8",
+          "diamonds-9",
+          "diamonds-10",
+          "diamonds-11",
+          "diamonds-12",
+          "diamonds-13",
+          "diamonds-14"
+        ],
+        "handOrder": [
+          "spades-8",
+          "spades-9"
+        ],
+        "playedPile": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6",
+          "spades-7"
+        ],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": {
+          "openingDiscard": null,
+          "assistUsed": true,
+          "index": 0,
+          "targetHeat": "400",
+          "initialTargetHeat": "400",
+          "heat": "2095",
+          "handsLeft": 3,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 1,
+          "previousHandType": "two-pair",
+          "previousHandScore": "2095",
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [
+            "controlled/source/0",
+            "controlled/source/1",
+            "controlled/source/2"
+          ],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": "controlled/score-energy/multiply/clear/0",
+          "goldEarned": 11,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 4,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "totalHeat": "2095",
+        "gold": 31,
+        "jokers": [
+          {
+            "instanceId": "controlled/source/0",
+            "definitionId": "f09",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "controlled/source/1",
+            "definitionId": "f06",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none",
+            "counters": {
+              "handsScored": 1
+            }
+          },
+          {
+            "instanceId": "controlled/source/2",
+            "definitionId": "e08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "consumables": [],
+        "longTermItems": [],
+        "program": null,
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T03",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": null,
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {
+          "two-pair": 1
+        },
+        "normalClearClaimed": true,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 930748328
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2222665615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1254887557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3790170128
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 932151522
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 750765427
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "controlled/score-energy/multiply/start",
+            "fingerprint": "json-fnv-v1:53fc991179ca44dd",
+            "seq": 1
+          },
+          {
+            "commandId": "controlled/score-energy/multiply/command/2",
+            "fingerprint": "json-fnv-v1:1b7c3821ad014595",
+            "seq": 2
+          },
+          {
+            "commandId": "controlled/score-energy/multiply/command/3",
+            "fingerprint": "json-fnv-v1:307674d22a5a6d56",
+            "seq": 3
+          },
+          {
+            "commandId": "controlled/score-energy/multiply/command/4",
+            "fingerprint": "json-fnv-v1:ddee93be495c60fa",
+            "seq": 4
+          }
+        ],
+        "lastTrace": {
+          "rulesVersion": "r2",
+          "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+          "handType": "two-pair",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "spades-2",
+              "spades-3",
+              "spades-4",
+              "spades-5"
+            ],
+            "scoringIds": [
+              "spades-2",
+              "spades-3",
+              "spades-4",
+              "spades-5"
+            ],
+            "activeScoringIds": [
+              "spades-2",
+              "spades-3",
+              "spades-4",
+              "spades-5"
+            ],
+            "heldIds": [
+              "spades-8",
+              "spades-9"
+            ],
+            "assistConsumedIds": [
+              "spades-6",
+              "spades-7"
+            ]
+          },
+          "assist": {
+            "ids": [
+              "spades-6",
+              "spades-7"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "finalScore": "2095",
+          "accumulator": {
+            "H": {
+              "n": "97",
+              "d": "1"
+            },
+            "M": {
+              "n": "108",
+              "d": "5"
+            }
+          },
+          "events": [
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "controlled/score-energy/multiply",
+              "operation": "base",
+              "value": {
+                "n": "65",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-2",
+              "targetCardId": "spades-2",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-3",
+              "targetCardId": "spades-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-9",
+              "sourceInstanceId": "spades-4",
+              "targetCardId": "spades-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "9",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "88",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-9.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-9",
+              "sourceInstanceId": "spades-5",
+              "targetCardId": "spades-5",
+              "operation": "add-heat",
+              "value": {
+                "n": "9",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "88",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-9.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "f09",
+              "sourceInstanceId": "controlled/source/0",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "3",
+                "d": "2"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "f09.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "resource",
+                "resource": "discards-used",
+                "equals": 0
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "f06",
+              "sourceInstanceId": "controlled/source/1",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "f06.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "e08",
+              "sourceInstanceId": "controlled/source/2",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "9",
+                "d": "5"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "54",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "e08.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "resource-minimum",
+                "resource": "gold",
+                "minimum": 20
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+              "phase": "characterScore",
+              "sourceType": "character",
+              "sourceDefinitionId": "amo",
+              "sourceInstanceId": "controlled/score-energy/multiply/character",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "54",
+                  "d": "5"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "amo.assist.pair",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "two-pair",
+                  "three-kind",
+                  "straight",
+                  "flush",
+                  "full-house",
+                  "four-kind",
+                  "straight-flush",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "controlled/score-energy/multiply",
+              "operation": "final-score",
+              "value": {
+                "n": "2095",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "two-pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+              "phase": "afterHand",
+              "sourceType": "joker",
+              "sourceDefinitionId": "f06",
+              "sourceInstanceId": "controlled/source/1",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "f06.increment-hands-scored",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [
+            {
+              "instanceId": "controlled/source/0",
+              "definitionId": "f09",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            },
+            {
+              "instanceId": "controlled/source/1",
+              "definitionId": "f06",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none",
+              "counters": {
+                "handsScored": 1
+              }
+            },
+            {
+              "instanceId": "controlled/source/2",
+              "definitionId": "e08",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            }
+          ],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2222665615
+          },
+          "goldDelta": 0,
+          "destroyedCardIds": [],
+          "destroyedJokerIds": [],
+          "cards": [
+            {
+              "id": "spades-2",
+              "suit": "clubs",
+              "rank": 7
+            },
+            {
+              "id": "spades-3",
+              "suit": "hearts",
+              "rank": 7
+            },
+            {
+              "id": "spades-4",
+              "suit": "spades",
+              "rank": 9
+            },
+            {
+              "id": "spades-5",
+              "suit": "diamonds",
+              "rank": 9
+            },
+            {
+              "id": "spades-6",
+              "suit": "clubs",
+              "rank": 2
+            },
+            {
+              "id": "spades-7",
+              "suit": "spades",
+              "rank": 2
+            },
+            {
+              "id": "spades-8",
+              "suit": "hearts",
+              "rank": 11
+            },
+            {
+              "id": "spades-9",
+              "suit": "diamonds",
+              "rank": 12
+            }
+          ],
+          "sourceJokers": [
+            {
+              "instanceId": "controlled/source/0",
+              "definitionId": "f09",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            },
+            {
+              "instanceId": "controlled/source/1",
+              "definitionId": "f06",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            },
+            {
+              "instanceId": "controlled/source/2",
+              "definitionId": "e08",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            }
+          ],
+          "bossContext": {
+            "boss": null,
+            "previousHandType": null,
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null
+          },
+          "combo": {
+            "goldBeforeRewards": 20
+          }
+        },
+        "handLevels": {
+          "two-pair": 1
+        },
+        "outcome": null
+      },
+      "impacts": [
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+          "impact": {
+            "kind": "add",
+            "tier": 0,
+            "chain": 0,
+            "peak": 1.14,
+            "color": "#26313a"
+          }
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "impact": {
+            "kind": "add",
+            "tier": 0,
+            "chain": 0,
+            "peak": 1.14,
+            "color": "#26313a"
+          }
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "impact": {
+            "kind": "add",
+            "tier": 0,
+            "chain": 0,
+            "peak": 1.14,
+            "color": "#26313a"
+          }
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "impact": {
+            "kind": "add",
+            "tier": 0,
+            "chain": 0,
+            "peak": 1.14,
+            "color": "#26313a"
+          }
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "impact": {
+            "kind": "multiply",
+            "tier": 1,
+            "chain": 0,
+            "factor": "1.5",
+            "peak": 1.36,
+            "color": "#b8473a"
+          }
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+          "impact": {
+            "kind": "multiply",
+            "tier": 2,
+            "chain": 0,
+            "factor": "2",
+            "peak": 1.3800000000000001,
+            "color": "#b8473a"
+          }
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "impact": {
+            "kind": "multiply",
+            "tier": 1,
+            "chain": 0,
+            "factor": "1.8",
+            "peak": 1.36,
+            "color": "#b8473a"
+          }
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "impact": {
+            "kind": "multiply",
+            "tier": 2,
+            "chain": 0,
+            "factor": "2",
+            "peak": 1.3800000000000001,
+            "color": "#b8473a"
+          }
+        }
+      ],
+      "frame": {
+        "H": "97",
+        "M": "× 3",
+        "total": "291",
+        "caption": "不换词 · 实际 ×1.5 · 2 → 3",
+        "key": {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "sourceInstanceId": "controlled/source/0",
+          "definitionId": "f09",
+          "title": "不换词",
+          "effect": "×1.5 倍率",
+          "condition": "本手计分时 · 本场成功弃牌次数为0；计分与事件时点分别读取",
+          "destination": "本次计分 · 已计入本手保存结果",
+          "next": "下一步：按来源条件选牌；查看完整计分明细。",
+          "url": "/assets/handdrawn-p08/cards/f09.thumbnail.webp"
+        },
+        "numbers": [
+          {
+            "name": "score/heat",
+            "font": "\"Dachoupai Score\", \"Arial Narrow\", \"Roboto Condensed\", sans-serif",
+            "color": "#26313a",
+            "bounds": {
+              "type": 5,
+              "x": 72.54,
+              "y": 197.6,
+              "width": 22,
+              "height": 22
+            },
+            "scale": 1
+          },
+          {
+            "name": "score/multiplier",
+            "font": "\"Dachoupai Score\", \"Arial Narrow\", \"Roboto Condensed\", sans-serif",
+            "color": "#b8473a",
+            "bounds": {
+              "type": 5,
+              "x": 73.7,
+              "y": 244.57999999999998,
+              "width": 19.679999999999993,
+              "height": 18.04000000000002
+            },
+            "scale": 0.82
+          },
+          {
+            "name": "score/total",
+            "font": "\"Dachoupai Score\", \"Arial Narrow\", \"Roboto Condensed\", sans-serif",
+            "color": "#b8473a",
+            "bounds": {
+              "type": 5,
+              "x": 234.66000000000003,
+              "y": 229.19000000000003,
+              "width": 55.75999999999999,
+              "height": 41.82000000000002
+            },
+            "scale": 0.82,
+            "data": {
+              "kind": "multiply",
+              "tier": 1,
+              "chain": 1,
+              "factor": "1.5",
+              "peak": 1.36,
+              "color": "#b8473a"
+            }
+          }
+        ]
+      },
+      "climax": {
+        "H": "97",
+        "M": "× 21.6",
+        "total": "2,095",
+        "color": "#80551f",
+        "caption": "阿默 · 助攻 · 实际 ×2 · 10.8 → 21.6"
+      },
+      "rhythm": [
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+          "frames": 25,
+          "minScale": 0.93,
+          "maxScale": 1.1379594234420738,
+          "minY": 246.15830218736934,
+          "maxY": 250.10000000000002,
+          "colors": [
+            "#26313a"
+          ]
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "frames": 25,
+          "minScale": 0.93,
+          "maxScale": 1.1379594234420738,
+          "minY": 246.15830218736934,
+          "maxY": 250.10000000000002,
+          "colors": [
+            "#26313a"
+          ]
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "frames": 25,
+          "minScale": 0.93,
+          "maxScale": 1.1379594234420738,
+          "minY": 246.15830218736934,
+          "maxY": 250.10000000000002,
+          "colors": [
+            "#26313a"
+          ]
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "frames": 25,
+          "minScale": 0.93,
+          "maxScale": 1.1379594234420738,
+          "minY": 246.15830218736934,
+          "maxY": 250.10000000000002,
+          "colors": [
+            "#26313a"
+          ]
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "frames": 68,
+          "minScale": 0.82,
+          "maxScale": 1.2745098039215685,
+          "minY": 246.16382037933704,
+          "maxY": 250.10000000000002,
+          "colors": [
+            "#26313a",
+            "#b8473a"
+          ]
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+          "frames": 42,
+          "minScale": 0.82,
+          "maxScale": 1.2745098039215685,
+          "minY": 246.16382037933704,
+          "maxY": 250.10000000000002,
+          "colors": [
+            "#26313a",
+            "#b8473a"
+          ]
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "frames": 42,
+          "minScale": 0.82,
+          "maxScale": 1.2745098039215685,
+          "minY": 246.16382037933704,
+          "maxY": 250.10000000000002,
+          "colors": [
+            "#b8473a",
+            "#80551f"
+          ]
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "frames": 52,
+          "minScale": 0.82,
+          "maxScale": 1.2745098039215685,
+          "minY": 246.16382037933704,
+          "maxY": 250.10000000000002,
+          "colors": [
+            "#b8473a",
+            "#80551f"
+          ]
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+          "frames": 39,
+          "minScale": 0.93,
+          "maxScale": 1.2745098039215685,
+          "minY": 246.1043156492861,
+          "maxY": 250.10000000000002,
+          "colors": [
+            "#80551f"
+          ]
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+          "frames": 26,
+          "minScale": 1,
+          "maxScale": 1,
+          "minY": 250.10000000000002,
+          "maxY": 250.10000000000002,
+          "colors": [
+            "#b8473a"
+          ]
+        }
+      ],
+      "hits": [
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+          "kind": "add",
+          "tier": 0,
+          "chain": 1,
+          "time": 2.440997732426304
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "kind": "add",
+          "tier": 0,
+          "chain": 1,
+          "time": 2.861859410430839
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "kind": "add",
+          "tier": 0,
+          "chain": 1,
+          "time": 3.2711111111111113
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "kind": "add",
+          "tier": 0,
+          "chain": 1,
+          "time": 3.6919727891156464
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "kind": "flight",
+          "tier": 1,
+          "chain": 1,
+          "time": 3.961904761904762
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "kind": "multiply",
+          "tier": 1,
+          "chain": 1,
+          "time": 4.272471655328798
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+          "kind": "flight",
+          "tier": 2,
+          "chain": 2,
+          "time": 5.090975056689342
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+          "kind": "multiply",
+          "tier": 2,
+          "chain": 2,
+          "time": 5.340589569160998
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "kind": "flight",
+          "tier": 3,
+          "chain": 3,
+          "time": 5.79047619047619
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "kind": "multiply",
+          "tier": 3,
+          "chain": 3,
+          "time": 6.040090702947846
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "kind": "flight",
+          "tier": 3,
+          "chain": 4,
+          "time": 6.492879818594104
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "kind": "multiply",
+          "tier": 3,
+          "chain": 4,
+          "time": 6.7424943310657595
+        },
+        {
+          "eventId": "award",
+          "kind": "award",
+          "tier": 3,
+          "chain": 4,
+          "time": 7.360725623582766
+        }
+      ],
+      "audioBytes": 136502,
+      "after": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-route-starter-v1",
+        "contentHash": "json-fnv-v1:11ce8fcda2f04c51",
+        "runId": "controlled/score-energy/multiply",
+        "seed": "score-energy-controlled",
+        "commandSeq": 4,
+        "difficulty": 0,
+        "characterId": "amo",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 1,
+          "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "reason": "multiply"
+        },
+        "routeStarter": {
+          "instanceId": null,
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": false,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 1,
+        "phase": "stage-cleared",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "spades-3",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-5",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "spades-6",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-8",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "spades-9",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14",
+          "hearts-2",
+          "hearts-3",
+          "hearts-4",
+          "hearts-5",
+          "hearts-6",
+          "hearts-7",
+          "hearts-8",
+          "hearts-9",
+          "hearts-10",
+          "hearts-11",
+          "hearts-12",
+          "hearts-13",
+          "hearts-14",
+          "clubs-2",
+          "clubs-3",
+          "clubs-4",
+          "clubs-5",
+          "clubs-6",
+          "clubs-7",
+          "clubs-8",
+          "clubs-9",
+          "clubs-10",
+          "clubs-11",
+          "clubs-12",
+          "clubs-13",
+          "clubs-14",
+          "diamonds-2",
+          "diamonds-3",
+          "diamonds-4",
+          "diamonds-5",
+          "diamonds-6",
+          "diamonds-7",
+          "diamonds-8",
+          "diamonds-9",
+          "diamonds-10",
+          "diamonds-11",
+          "diamonds-12",
+          "diamonds-13",
+          "diamonds-14"
+        ],
+        "handOrder": [
+          "spades-8",
+          "spades-9"
+        ],
+        "playedPile": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6",
+          "spades-7"
+        ],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": {
+          "openingDiscard": null,
+          "assistUsed": true,
+          "index": 0,
+          "targetHeat": "400",
+          "initialTargetHeat": "400",
+          "heat": "2095",
+          "handsLeft": 3,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 1,
+          "previousHandType": "two-pair",
+          "previousHandScore": "2095",
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [
+            "controlled/source/0",
+            "controlled/source/1",
+            "controlled/source/2"
+          ],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": "controlled/score-energy/multiply/clear/0",
+          "goldEarned": 11,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 4,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "totalHeat": "2095",
+        "gold": 31,
+        "jokers": [
+          {
+            "instanceId": "controlled/source/0",
+            "definitionId": "f09",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "controlled/source/1",
+            "definitionId": "f06",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none",
+            "counters": {
+              "handsScored": 1
+            }
+          },
+          {
+            "instanceId": "controlled/source/2",
+            "definitionId": "e08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "consumables": [],
+        "longTermItems": [],
+        "program": null,
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T03",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": null,
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {
+          "two-pair": 1
+        },
+        "normalClearClaimed": true,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 930748328
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2222665615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1254887557
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3790170128
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 932151522
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 750765427
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "controlled/score-energy/multiply/start",
+            "fingerprint": "json-fnv-v1:53fc991179ca44dd",
+            "seq": 1
+          },
+          {
+            "commandId": "controlled/score-energy/multiply/command/2",
+            "fingerprint": "json-fnv-v1:1b7c3821ad014595",
+            "seq": 2
+          },
+          {
+            "commandId": "controlled/score-energy/multiply/command/3",
+            "fingerprint": "json-fnv-v1:307674d22a5a6d56",
+            "seq": 3
+          },
+          {
+            "commandId": "controlled/score-energy/multiply/command/4",
+            "fingerprint": "json-fnv-v1:ddee93be495c60fa",
+            "seq": 4
+          }
+        ],
+        "lastTrace": {
+          "rulesVersion": "r2",
+          "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+          "handType": "two-pair",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "spades-2",
+              "spades-3",
+              "spades-4",
+              "spades-5"
+            ],
+            "scoringIds": [
+              "spades-2",
+              "spades-3",
+              "spades-4",
+              "spades-5"
+            ],
+            "activeScoringIds": [
+              "spades-2",
+              "spades-3",
+              "spades-4",
+              "spades-5"
+            ],
+            "heldIds": [
+              "spades-8",
+              "spades-9"
+            ],
+            "assistConsumedIds": [
+              "spades-6",
+              "spades-7"
+            ]
+          },
+          "assist": {
+            "ids": [
+              "spades-6",
+              "spades-7"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "finalScore": "2095",
+          "accumulator": {
+            "H": {
+              "n": "97",
+              "d": "1"
+            },
+            "M": {
+              "n": "108",
+              "d": "5"
+            }
+          },
+          "events": [
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "controlled/score-energy/multiply",
+              "operation": "base",
+              "value": {
+                "n": "65",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-2",
+              "targetCardId": "spades-2",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-3",
+              "targetCardId": "spades-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-9",
+              "sourceInstanceId": "spades-4",
+              "targetCardId": "spades-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "9",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "88",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-9.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-9",
+              "sourceInstanceId": "spades-5",
+              "targetCardId": "spades-5",
+              "operation": "add-heat",
+              "value": {
+                "n": "9",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "88",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-9.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "f09",
+              "sourceInstanceId": "controlled/source/0",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "3",
+                "d": "2"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "f09.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "resource",
+                "resource": "discards-used",
+                "equals": 0
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "f06",
+              "sourceInstanceId": "controlled/source/1",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "f06.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "e08",
+              "sourceInstanceId": "controlled/source/2",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "9",
+                "d": "5"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "54",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "e08.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "resource-minimum",
+                "resource": "gold",
+                "minimum": 20
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+              "phase": "characterScore",
+              "sourceType": "character",
+              "sourceDefinitionId": "amo",
+              "sourceInstanceId": "controlled/score-energy/multiply/character",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "54",
+                  "d": "5"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "amo.assist.pair",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "two-pair",
+                  "three-kind",
+                  "straight",
+                  "flush",
+                  "full-house",
+                  "four-kind",
+                  "straight-flush",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "controlled/score-energy/multiply",
+              "operation": "final-score",
+              "value": {
+                "n": "2095",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "two-pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+              "phase": "afterHand",
+              "sourceType": "joker",
+              "sourceDefinitionId": "f06",
+              "sourceInstanceId": "controlled/source/1",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "f06.increment-hands-scored",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [
+            {
+              "instanceId": "controlled/source/0",
+              "definitionId": "f09",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            },
+            {
+              "instanceId": "controlled/source/1",
+              "definitionId": "f06",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none",
+              "counters": {
+                "handsScored": 1
+              }
+            },
+            {
+              "instanceId": "controlled/source/2",
+              "definitionId": "e08",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            }
+          ],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2222665615
+          },
+          "goldDelta": 0,
+          "destroyedCardIds": [],
+          "destroyedJokerIds": [],
+          "cards": [
+            {
+              "id": "spades-2",
+              "suit": "clubs",
+              "rank": 7
+            },
+            {
+              "id": "spades-3",
+              "suit": "hearts",
+              "rank": 7
+            },
+            {
+              "id": "spades-4",
+              "suit": "spades",
+              "rank": 9
+            },
+            {
+              "id": "spades-5",
+              "suit": "diamonds",
+              "rank": 9
+            },
+            {
+              "id": "spades-6",
+              "suit": "clubs",
+              "rank": 2
+            },
+            {
+              "id": "spades-7",
+              "suit": "spades",
+              "rank": 2
+            },
+            {
+              "id": "spades-8",
+              "suit": "hearts",
+              "rank": 11
+            },
+            {
+              "id": "spades-9",
+              "suit": "diamonds",
+              "rank": 12
+            }
+          ],
+          "sourceJokers": [
+            {
+              "instanceId": "controlled/source/0",
+              "definitionId": "f09",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            },
+            {
+              "instanceId": "controlled/source/1",
+              "definitionId": "f06",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            },
+            {
+              "instanceId": "controlled/source/2",
+              "definitionId": "e08",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            }
+          ],
+          "bossContext": {
+            "boss": null,
+            "previousHandType": null,
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null
+          },
+          "combo": {
+            "goldBeforeRewards": 20
+          }
+        },
+        "handLevels": {
+          "two-pair": 1
+        },
+        "outcome": null
+      },
+      "cleanup": {
+        "scoreVoices": 0,
+        "keyAlive": false
+      },
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}
