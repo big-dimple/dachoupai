@@ -19,3 +19,23 @@ afterEach(()=>vi.unstubAllGlobals());
 it('withdrawn BGM never creates or requests a media element while recorded effects remain available',()=>{
  const Audio=vi.fn(),engine=new AudioEngine();vi.stubGlobal('Audio',Audio);expect(engine.musicAvailable).toBe(false);(engine as any).startMusic();expect(Audio).not.toHaveBeenCalled();expect((engine as any).scoreSamples).toBeInstanceOf(Map);
 });
+
+import {mountHeroClimax} from '../src/game/HeroClimax';
+// Phaser emits DESTROY before clearing `active`/`scene`; mirror that order to catch recursive destruction.
+function stageFixture(){
+ const tweens:any[]=[];
+ const object=(type='Object',text=''):any=>{const data=new Map(),events=new Map();const o:any={type,text,width:Math.max(10,text.length*20),height:24,scaleX:1,scaleY:1,alpha:1,active:true,list:[],scene:{},destroyCount:0};
+  for(const name of ['setName','setAlpha','setX','setAngle'] as const)o[name]=(v:any)=>{o[{setName:'name',setAlpha:'alpha',setX:'x',setAngle:'angle'}[name]!]=v;return o;};
+  for(const name of ['setOrigin','setStrokeStyle','setDisplaySize','fillStyle','fillPoints'])o[name]=()=>o;
+  o.setText=(v:string)=>{o.text=v;o.width=v.length*20;return o;};o.setData=(k:string,v:any)=>{data.set(k,v);return o;};o.getData=(k:string)=>data.get(k);o.setPosition=(x:number,y:number)=>{o.x=x;o.y=y;return o;};o.setScale=(x:number,y=x)=>{o.scaleX=x;o.scaleY=y;return o;};o.add=(v:any)=>{o.list.push(v);return o;};o.addAt=(v:any,i:number)=>{o.list.splice(i,0,v);return o;};o.once=(e:string,f:()=>void)=>{events.set(e,f);return o;};o.destroy=()=>{o.destroyCount++;const f=events.get('destroy');events.delete('destroy');f?.();o.active=false;o.scene=undefined;};return o;
+ };
+ const scene:any={scale:{zoom:1},textures:{exists:()=>true,get:()=>({getSourceImage:()=>({width:160,height:200})})},tweens:{add:(config:any)=>{const t={config,remove:vi.fn()};tweens.push(t);return t;}},add:{container:()=>object('Container'),graphics:()=>object('Graphics'),rectangle:()=>object('Rectangle'),image:()=>object('Image'),text:(_:number,__:number,s:string)=>object('Text',s)}};
+ const p=play('multiply'),key=keyHighlight(p.s,p.t)!,stage=mountHeroClimax(scene,object('Container'),{x:0,y:0,width:390,height:740},key,heroClimaxValue(p.s,p.t,key)!,false)!;
+ return {stage,tweens};
+}
+it('external Phaser destruction clears owned tweens and release wait without recursively destroying the group',async()=>{
+ const {stage,tweens}=stageFixture(),done=stage.release();stage.group.destroy();await done;expect((stage.group as any).destroyCount).toBe(1);expect(tweens.every(t=>t.remove.mock.calls.length===1)).toBe(true);stage.dispose();expect((stage.group as any).destroyCount).toBe(1);
+});
+it('switching to reduced motion during release settles its wait and leaves disposal idempotent',async()=>{
+ const {stage}=stageFixture(),done=stage.release();stage.reduce();await done;stage.dispose();stage.dispose();expect((stage.group as any).destroyCount).toBe(1);
+});

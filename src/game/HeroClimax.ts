@@ -64,8 +64,8 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  const tween=(config:Phaser.Types.Tweens.TweenBuilderConfig)=>{if(disposed)return;const t=scene.tweens.add(config);owned.add(t);return t;};
  const neutral=()=>{board.setPosition(0,0).setAlpha(1);hero.setPosition(heroX,heroY).setScale(heroScale).setAngle(-5);fitValue();burst.setAlpha(0);};
  if(!still){board.setX(-w*.2).setAlpha(.4);hero.setScale(heroScale*.86);readout.setScale(readout.scaleX*.88);tween({targets:board,x:0,alpha:1,duration:180,ease:'Cubic.easeOut'});tween({targets:hero,scaleX:heroScale*.96,scaleY:heroScale*.96,x:heroX-12,duration:230,ease:'Cubic.easeIn'});}
- const dispose=()=>{if(disposed)return;disposed=true;for(const t of owned)t.remove();owned.clear();releaseDone?.();releaseDone=undefined;if(group.active)group.destroy();};
- group.once('destroy',dispose);
+ const dispose=(destroyGroup=true)=>{if(disposed)return;disposed=true;for(const t of owned)t.remove();owned.clear();releaseDone?.();releaseDone=undefined;if(destroyGroup&&group.active)group.destroy();};
+ group.once('destroy',()=>dispose(false));
  return {group,dispose,
   reduce:()=>{still=true;for(const t of owned)t.remove();owned.clear();neutral();releaseDone?.();releaseDone=undefined;},
   strike:()=>{if(disposed)return;group.setData('phase','strike');readout.setText(value.after);fitValue();note.setText(value.note);if(still)return;
