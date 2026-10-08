@@ -1,0 +1,4110 @@
+{
+  "source": "c73e70f81fda45e7499bcbcb7deeb4f17884dd13",
+  "dirty": "",
+  "cases": [
+    {
+      "device": {
+        "name": "pc",
+        "width": 1613,
+        "height": 954
+      },
+      "errors": [],
+      "hero": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 619,
+              "y": 236,
+              "width": 145,
+              "height": 77
+            },
+            "font": 72
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 619,
+              "y": 317,
+              "width": 60,
+              "height": 23
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 619,
+              "y": 348,
+              "width": 337,
+              "height": 31
+            },
+            "font": 28
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 619,
+              "y": 387,
+              "width": 252,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 619,
+              "y": 442,
+              "width": 576,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/freedom",
+            "text": "喜欢谁就选谁 · 每位英雄都能尝试三条路线",
+            "bounds": {
+              "x": 619,
+              "y": 473,
+              "width": 265,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 下一步选路线",
+            "bounds": {
+              "x": 147,
+              "y": 914,
+              "width": 125,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 146.5,
+            "y": 712,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/touye",
+            "x": 368.5,
+            "y": 712,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/laohuan",
+            "x": 590.5,
+            "y": 712,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/erxiang",
+            "x": 812.5,
+            "y": 712,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/azao",
+            "x": 1034.5,
+            "y": 712,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/xiemu",
+            "x": 1256.5,
+            "y": 712,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 146.5,
+            "y": 850,
+            "width": 290,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 444.5,
+            "y": 850,
+            "width": 330,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 782.5,
+            "y": 850,
+            "width": 684,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "step": "hero",
+        "width": 1613,
+        "height": 954,
+        "bottom": 0
+      },
+      "voices": [
+        {
+          "items": [
+            {
+              "name": "opening/name",
+              "text": "阿默",
+              "bounds": {
+                "x": 619,
+                "y": 236,
+                "width": 145,
+                "height": 77
+              },
+              "font": 72
+            },
+            {
+              "name": "opening/title",
+              "text": "默剧王",
+              "bounds": {
+                "x": 619,
+                "y": 317,
+                "width": 60,
+                "height": 23
+              },
+              "font": 20
+            },
+            {
+              "name": "opening/taunt",
+              "text": "少说一句，照样抢你的场。",
+              "bounds": {
+                "x": 619,
+                "y": 348,
+                "width": 337,
+                "height": 31
+              },
+              "font": 28
+            },
+            {
+              "name": "opening/story",
+              "text": "灯坏了，他照样演完最后一幕。",
+              "bounds": {
+                "x": 619,
+                "y": 387,
+                "width": 252,
+                "height": 21
+              },
+              "font": 18
+            },
+            {
+              "name": "opening/play",
+              "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+              "bounds": {
+                "x": 619,
+                "y": 442,
+                "width": 576,
+                "height": 21
+              },
+              "font": 18
+            },
+            {
+              "name": "opening/freedom",
+              "text": "喜欢谁就选谁 · 每位英雄都能尝试三条路线",
+              "bounds": {
+                "x": 619,
+                "y": 473,
+                "width": 265,
+                "height": 16
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/status",
+              "text": "阿默 · 下一步选路线",
+              "bounds": {
+                "x": 147,
+                "y": 914,
+                "width": 125,
+                "height": 16
+              },
+              "font": 14
+            }
+          ],
+          "hits": [
+            {
+              "name": "character/amo",
+              "x": 146.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/touye",
+              "x": 368.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/laohuan",
+              "x": 590.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/erxiang",
+              "x": 812.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/azao",
+              "x": 1034.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/xiemu",
+              "x": 1256.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "action/cancel-character",
+              "x": 146.5,
+              "y": 850,
+              "width": 290,
+              "height": 56
+            },
+            {
+              "name": "action/character-details",
+              "x": 444.5,
+              "y": 850,
+              "width": 330,
+              "height": 56
+            },
+            {
+              "name": "action/confirm-character",
+              "x": 782.5,
+              "y": 850,
+              "width": 684,
+              "height": 56
+            }
+          ],
+          "id": "amo",
+          "step": "hero",
+          "width": 1613,
+          "height": 954,
+          "bottom": 0
+        },
+        {
+          "items": [
+            {
+              "name": "opening/name",
+              "text": "骰爷",
+              "bounds": {
+                "x": 619,
+                "y": 236,
+                "width": 145,
+                "height": 77
+              },
+              "font": 72
+            },
+            {
+              "name": "opening/title",
+              "text": "赌命客",
+              "bounds": {
+                "x": 619,
+                "y": 317,
+                "width": 60,
+                "height": 23
+              },
+              "font": 20
+            },
+            {
+              "name": "opening/taunt",
+              "text": "你算你的，我敢再押一手。",
+              "bounds": {
+                "x": 619,
+                "y": 348,
+                "width": 337,
+                "height": 31
+              },
+              "font": 28
+            },
+            {
+              "name": "opening/story",
+              "text": "收工后的最后一盏灯，总留给他再试一把。",
+              "bounds": {
+                "x": 619,
+                "y": 387,
+                "width": 342,
+                "height": 21
+              },
+              "font": 18
+            },
+            {
+              "name": "opening/play",
+              "text": "平时有稳定加成；每场可押一手，有机会翻倍，也可能变弱。",
+              "bounds": {
+                "x": 619,
+                "y": 442,
+                "width": 486,
+                "height": 21
+              },
+              "font": 18
+            },
+            {
+              "name": "opening/freedom",
+              "text": "喜欢谁就选谁 · 每位英雄都能尝试三条路线",
+              "bounds": {
+                "x": 619,
+                "y": 473,
+                "width": 265,
+                "height": 16
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/status",
+              "text": "骰爷 · 下一步选路线",
+              "bounds": {
+                "x": 147,
+                "y": 914,
+                "width": 125,
+                "height": 16
+              },
+              "font": 14
+            }
+          ],
+          "hits": [
+            {
+              "name": "character/amo",
+              "x": 146.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/touye",
+              "x": 368.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/laohuan",
+              "x": 590.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/erxiang",
+              "x": 812.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/azao",
+              "x": 1034.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/xiemu",
+              "x": 1256.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "action/cancel-character",
+              "x": 146.5,
+              "y": 850,
+              "width": 290,
+              "height": 56
+            },
+            {
+              "name": "action/character-details",
+              "x": 444.5,
+              "y": 850,
+              "width": 330,
+              "height": 56
+            },
+            {
+              "name": "action/confirm-character",
+              "x": 782.5,
+              "y": 850,
+              "width": 684,
+              "height": 56
+            }
+          ],
+          "id": "touye",
+          "route": "flush",
+          "step": "hero",
+          "width": 1613,
+          "height": 954,
+          "bottom": 0
+        },
+        {
+          "items": [
+            {
+              "name": "opening/name",
+              "text": "老幻",
+              "bounds": {
+                "x": 619,
+                "y": 236,
+                "width": 145,
+                "height": 77
+              },
+              "font": 72
+            },
+            {
+              "name": "opening/title",
+              "text": "空袖",
+              "bounds": {
+                "x": 619,
+                "y": 317,
+                "width": 40,
+                "height": 23
+              },
+              "font": 20
+            },
+            {
+              "name": "opening/taunt",
+              "text": "袖子空的？你的掌声可不空。",
+              "bounds": {
+                "x": 619,
+                "y": 348,
+                "width": 365,
+                "height": 31
+              },
+              "font": 28
+            },
+            {
+              "name": "opening/story",
+              "text": "漏雨的小后台，也能被他变成惊喜登场。",
+              "bounds": {
+                "x": 619,
+                "y": 387,
+                "width": 324,
+                "height": 21
+              },
+              "font": 18
+            },
+            {
+              "name": "opening/play",
+              "text": "连续的顺子、同花或同花顺，能多添热度。也可以尝试其他路线。",
+              "bounds": {
+                "x": 619,
+                "y": 442,
+                "width": 522,
+                "height": 21
+              },
+              "font": 18
+            },
+            {
+              "name": "opening/freedom",
+              "text": "喜欢谁就选谁 · 每位英雄都能尝试三条路线",
+              "bounds": {
+                "x": 619,
+                "y": 473,
+                "width": 265,
+                "height": 16
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/status",
+              "text": "老幻 · 下一步选路线",
+              "bounds": {
+                "x": 147,
+                "y": 914,
+                "width": 125,
+                "height": 16
+              },
+              "font": 14
+            }
+          ],
+          "hits": [
+            {
+              "name": "character/amo",
+              "x": 146.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/touye",
+              "x": 368.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/laohuan",
+              "x": 590.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/erxiang",
+              "x": 812.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/azao",
+              "x": 1034.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/xiemu",
+              "x": 1256.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "action/cancel-character",
+              "x": 146.5,
+              "y": 850,
+              "width": 290,
+              "height": 56
+            },
+            {
+              "name": "action/character-details",
+              "x": 444.5,
+              "y": 850,
+              "width": 330,
+              "height": 56
+            },
+            {
+              "name": "action/confirm-character",
+              "x": 782.5,
+              "y": 850,
+              "width": 684,
+              "height": 56
+            }
+          ],
+          "id": "laohuan",
+          "route": "flush",
+          "step": "hero",
+          "width": 1613,
+          "height": 954,
+          "bottom": 0
+        },
+        {
+          "items": [
+            {
+              "name": "opening/name",
+              "text": "二响",
+              "bounds": {
+                "x": 619,
+                "y": 236,
+                "width": 145,
+                "height": 77
+              },
+              "font": 72
+            },
+            {
+              "name": "opening/title",
+              "text": "捧哏王",
+              "bounds": {
+                "x": 619,
+                "y": 317,
+                "width": 60,
+                "height": 23
+              },
+              "font": 20
+            },
+            {
+              "name": "opening/taunt",
+              "text": "你刚开口，场子已经归我了。",
+              "bounds": {
+                "x": 619,
+                "y": 348,
+                "width": 365,
+                "height": 31
+              },
+              "font": 28
+            },
+            {
+              "name": "opening/story",
+              "text": "从街边到大舞台，他总能接住冷场。",
+              "bounds": {
+                "x": 619,
+                "y": 387,
+                "width": 288,
+                "height": 21
+              },
+              "font": 18
+            },
+            {
+              "name": "opening/play",
+              "text": "对子、两对、三条会多添倍率；更大的同点组合不享受这项加成。",
+              "bounds": {
+                "x": 619,
+                "y": 442,
+                "width": 522,
+                "height": 21
+              },
+              "font": 18
+            },
+            {
+              "name": "opening/freedom",
+              "text": "喜欢谁就选谁 · 每位英雄都能尝试三条路线",
+              "bounds": {
+                "x": 619,
+                "y": 473,
+                "width": 265,
+                "height": 16
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/status",
+              "text": "二响 · 下一步选路线",
+              "bounds": {
+                "x": 147,
+                "y": 914,
+                "width": 125,
+                "height": 16
+              },
+              "font": 14
+            }
+          ],
+          "hits": [
+            {
+              "name": "character/amo",
+              "x": 146.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/touye",
+              "x": 368.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/laohuan",
+              "x": 590.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/erxiang",
+              "x": 812.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/azao",
+              "x": 1034.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/xiemu",
+              "x": 1256.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "action/cancel-character",
+              "x": 146.5,
+              "y": 850,
+              "width": 290,
+              "height": 56
+            },
+            {
+              "name": "action/character-details",
+              "x": 444.5,
+              "y": 850,
+              "width": 330,
+              "height": 56
+            },
+            {
+              "name": "action/confirm-character",
+              "x": 782.5,
+              "y": 850,
+              "width": 684,
+              "height": 56
+            }
+          ],
+          "id": "erxiang",
+          "route": "flush",
+          "step": "hero",
+          "width": 1613,
+          "height": 954,
+          "bottom": 0
+        },
+        {
+          "items": [
+            {
+              "name": "opening/name",
+              "text": "阿燥",
+              "bounds": {
+                "x": 619,
+                "y": 236,
+                "width": 145,
+                "height": 77
+              },
+              "font": 72
+            },
+            {
+              "name": "opening/title",
+              "text": "热场王",
+              "bounds": {
+                "x": 619,
+                "y": 317,
+                "width": 60,
+                "height": 23
+              },
+              "font": 20
+            },
+            {
+              "name": "opening/taunt",
+              "text": "老一套？我换个活儿压你一头。",
+              "bounds": {
+                "x": 619,
+                "y": 348,
+                "width": 393,
+                "height": 31
+              },
+              "font": 28
+            },
+            {
+              "name": "opening/story",
+              "text": "这个包袱没收尾，他已经想好下一招。",
+              "bounds": {
+                "x": 619,
+                "y": 387,
+                "width": 306,
+                "height": 21
+              },
+              "font": 18
+            },
+            {
+              "name": "opening/play",
+              "text": "换一种牌型会多添倍率；第一手和重复牌型不触发。",
+              "bounds": {
+                "x": 619,
+                "y": 442,
+                "width": 414,
+                "height": 21
+              },
+              "font": 18
+            },
+            {
+              "name": "opening/freedom",
+              "text": "喜欢谁就选谁 · 每位英雄都能尝试三条路线",
+              "bounds": {
+                "x": 619,
+                "y": 473,
+                "width": 265,
+                "height": 16
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/status",
+              "text": "阿燥 · 下一步选路线",
+              "bounds": {
+                "x": 147,
+                "y": 914,
+                "width": 125,
+                "height": 16
+              },
+              "font": 14
+            }
+          ],
+          "hits": [
+            {
+              "name": "character/amo",
+              "x": 146.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/touye",
+              "x": 368.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/laohuan",
+              "x": 590.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/erxiang",
+              "x": 812.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/azao",
+              "x": 1034.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/xiemu",
+              "x": 1256.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "action/cancel-character",
+              "x": 146.5,
+              "y": 850,
+              "width": 290,
+              "height": 56
+            },
+            {
+              "name": "action/character-details",
+              "x": 444.5,
+              "y": 850,
+              "width": 330,
+              "height": 56
+            },
+            {
+              "name": "action/confirm-character",
+              "x": 782.5,
+              "y": 850,
+              "width": 684,
+              "height": 56
+            }
+          ],
+          "id": "azao",
+          "route": "flush",
+          "step": "hero",
+          "width": 1613,
+          "height": 954,
+          "bottom": 0
+        },
+        {
+          "items": [
+            {
+              "name": "opening/name",
+              "text": "谢幕人",
+              "bounds": {
+                "x": 619,
+                "y": 236,
+                "width": 217,
+                "height": 77
+              },
+              "font": 72
+            },
+            {
+              "name": "opening/title",
+              "text": "压轴",
+              "bounds": {
+                "x": 619,
+                "y": 317,
+                "width": 40,
+                "height": 23
+              },
+              "font": 20
+            },
+            {
+              "name": "opening/taunt",
+              "text": "别急着鼓掌，最后才轮到我。",
+              "bounds": {
+                "x": 619,
+                "y": 348,
+                "width": 365,
+                "height": 31
+              },
+              "font": 28
+            },
+            {
+              "name": "opening/story",
+              "text": "散场前，他还会向空座位鞠一次躬。",
+              "bounds": {
+                "x": 619,
+                "y": 387,
+                "width": 288,
+                "height": 21
+              },
+              "font": 18
+            },
+            {
+              "name": "opening/play",
+              "text": "最后可用出牌翻倍；这一手过关还能多收金币。也可以提早过关。",
+              "bounds": {
+                "x": 619,
+                "y": 442,
+                "width": 522,
+                "height": 21
+              },
+              "font": 18
+            },
+            {
+              "name": "opening/freedom",
+              "text": "喜欢谁就选谁 · 每位英雄都能尝试三条路线",
+              "bounds": {
+                "x": 619,
+                "y": 473,
+                "width": 265,
+                "height": 16
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/status",
+              "text": "谢幕人 · 下一步选路线",
+              "bounds": {
+                "x": 147,
+                "y": 914,
+                "width": 139,
+                "height": 16
+              },
+              "font": 14
+            }
+          ],
+          "hits": [
+            {
+              "name": "character/amo",
+              "x": 146.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/touye",
+              "x": 368.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/laohuan",
+              "x": 590.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/erxiang",
+              "x": 812.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/azao",
+              "x": 1034.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "character/xiemu",
+              "x": 1256.5,
+              "y": 712,
+              "width": 210,
+              "height": 126
+            },
+            {
+              "name": "action/cancel-character",
+              "x": 146.5,
+              "y": 850,
+              "width": 290,
+              "height": 56
+            },
+            {
+              "name": "action/character-details",
+              "x": 444.5,
+              "y": 850,
+              "width": 330,
+              "height": 56
+            },
+            {
+              "name": "action/confirm-character",
+              "x": 782.5,
+              "y": 850,
+              "width": 684,
+              "height": 56
+            }
+          ],
+          "id": "xiemu",
+          "route": "flush",
+          "step": "hero",
+          "width": 1613,
+          "height": 954,
+          "bottom": 0
+        }
+      ],
+      "all18DraftChoicesBeforeSave": true,
+      "route": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 619,
+              "y": 236,
+              "width": 145,
+              "height": 77
+            },
+            "font": 72
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 619,
+              "y": 317,
+              "width": 60,
+              "height": 23
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 619,
+              "y": 348,
+              "width": 337,
+              "height": 31
+            },
+            "font": 28
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 619,
+              "y": 387,
+              "width": 252,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 619,
+              "y": 442,
+              "width": 576,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/freedom",
+            "text": "方向只整理建议 · 不锁牌型，进店还能换",
+            "bounds": {
+              "x": 619,
+              "y": 473,
+              "width": 251,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 同点成组 · 确认才开局",
+            "bounds": {
+              "x": 147,
+              "y": 914,
+              "width": 179,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "route/group",
+            "x": 146.50000000000003,
+            "y": 712,
+            "width": 434.66666666666674,
+            "height": 126
+          },
+          {
+            "name": "route/straight",
+            "x": 589.1666666666667,
+            "y": 712,
+            "width": 434.66666666666674,
+            "height": 126
+          },
+          {
+            "name": "route/flush",
+            "x": 1031.8333333333335,
+            "y": 712,
+            "width": 434.66666666666674,
+            "height": 126
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 146.5,
+            "y": 850,
+            "width": 290,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 444.5,
+            "y": 850,
+            "width": 330,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 782.5,
+            "y": 850,
+            "width": 684,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "route": "group",
+        "step": "route",
+        "width": 1613,
+        "height": 954,
+        "bottom": 0
+      },
+      "saved": {
+        "id": "run/opening-review-pc/amo",
+        "character": "amo",
+        "identity": {
+          "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+          "contentHash": "json-fnv-v1:5025cc23c013987f"
+        },
+        "focus": "group",
+        "guide": {
+          "step": "shop",
+          "cue": "首次：点培养看用途",
+          "body": "你选了同点成组，先看本店实际用途和金币代价；方向可换，没有对应现货也可留金出场。"
+        },
+        "allStateEqualCanonical": true
+      },
+      "status": "PASS"
+    },
+    {
+      "device": {
+        "name": "pc1280",
+        "width": 1280,
+        "height": 720
+      },
+      "errors": [],
+      "hero": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 484,
+              "y": 119,
+              "width": 112,
+              "height": 61
+            },
+            "font": 56
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 484,
+              "y": 184,
+              "width": 60,
+              "height": 23
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 484,
+              "y": 215,
+              "width": 337,
+              "height": 31
+            },
+            "font": 28
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 484,
+              "y": 254,
+              "width": 252,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 484,
+              "y": 309,
+              "width": 576,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/freedom",
+            "text": "喜欢谁就选谁 · 每位英雄都能尝试三条路线",
+            "bounds": {
+              "x": 484,
+              "y": 340,
+              "width": 265,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 下一步选路线",
+            "bounds": {
+              "x": 12,
+              "y": 680,
+              "width": 125,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 12,
+            "y": 478,
+            "width": 199.33333333333334,
+            "height": 126
+          },
+          {
+            "name": "character/touye",
+            "x": 223.33333333333331,
+            "y": 478,
+            "width": 199.33333333333331,
+            "height": 126
+          },
+          {
+            "name": "character/laohuan",
+            "x": 434.6666666666667,
+            "y": 478,
+            "width": 199.33333333333331,
+            "height": 126
+          },
+          {
+            "name": "character/erxiang",
+            "x": 646,
+            "y": 478,
+            "width": 199.33333333333337,
+            "height": 126
+          },
+          {
+            "name": "character/azao",
+            "x": 857.3333333333334,
+            "y": 478,
+            "width": 199.33333333333337,
+            "height": 126
+          },
+          {
+            "name": "character/xiemu",
+            "x": 1068.6666666666667,
+            "y": 478,
+            "width": 199.33333333333326,
+            "height": 126
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 12,
+            "y": 616,
+            "width": 276,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 296,
+            "y": 616,
+            "width": 314,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 618,
+            "y": 616,
+            "width": 650,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "step": "hero",
+        "width": 1280,
+        "height": 720,
+        "bottom": 0
+      },
+      "route": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 484,
+              "y": 119,
+              "width": 112,
+              "height": 61
+            },
+            "font": 56
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 484,
+              "y": 184,
+              "width": 60,
+              "height": 23
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 484,
+              "y": 215,
+              "width": 337,
+              "height": 31
+            },
+            "font": 28
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 484,
+              "y": 254,
+              "width": 252,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 484,
+              "y": 309,
+              "width": 576,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/freedom",
+            "text": "方向只整理建议 · 不锁牌型，进店还能换",
+            "bounds": {
+              "x": 484,
+              "y": 340,
+              "width": 251,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 同点成组 · 确认才开局",
+            "bounds": {
+              "x": 12,
+              "y": 680,
+              "width": 179,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "route/group",
+            "x": 12,
+            "y": 478,
+            "width": 413.3333333333333,
+            "height": 126
+          },
+          {
+            "name": "route/straight",
+            "x": 433.33333333333337,
+            "y": 478,
+            "width": 413.33333333333337,
+            "height": 126
+          },
+          {
+            "name": "route/flush",
+            "x": 854.6666666666666,
+            "y": 478,
+            "width": 413.33333333333337,
+            "height": 126
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 12,
+            "y": 616,
+            "width": 276,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 296,
+            "y": 616,
+            "width": 314,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 618,
+            "y": 616,
+            "width": 650,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "route": "group",
+        "step": "route",
+        "width": 1280,
+        "height": 720,
+        "bottom": 0
+      },
+      "saved": {
+        "id": "run/opening-review-pc1280/amo",
+        "character": "amo",
+        "identity": {
+          "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+          "contentHash": "json-fnv-v1:5025cc23c013987f"
+        },
+        "focus": "group",
+        "guide": {
+          "step": "shop",
+          "cue": "首次：点培养看用途",
+          "body": "你选了同点成组，先看本店实际用途和金币代价；方向可换，没有对应现货也可留金出场。"
+        },
+        "allStateEqualCanonical": true
+      },
+      "status": "PASS"
+    },
+    {
+      "device": {
+        "name": "pc1366",
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "hero": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 495,
+              "y": 143,
+              "width": 145,
+              "height": 77
+            },
+            "font": 72
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 495,
+              "y": 224,
+              "width": 60,
+              "height": 23
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 495,
+              "y": 255,
+              "width": 337,
+              "height": 31
+            },
+            "font": 28
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 495,
+              "y": 294,
+              "width": 252,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 495,
+              "y": 349,
+              "width": 576,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/freedom",
+            "text": "喜欢谁就选谁 · 每位英雄都能尝试三条路线",
+            "bounds": {
+              "x": 495,
+              "y": 380,
+              "width": 265,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 下一步选路线",
+            "bounds": {
+              "x": 23,
+              "y": 728,
+              "width": 125,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 23,
+            "y": 526,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/touye",
+            "x": 245,
+            "y": 526,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/laohuan",
+            "x": 467,
+            "y": 526,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/erxiang",
+            "x": 689,
+            "y": 526,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/azao",
+            "x": 911,
+            "y": 526,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/xiemu",
+            "x": 1133,
+            "y": 526,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 23,
+            "y": 664,
+            "width": 290,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 321,
+            "y": 664,
+            "width": 330,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 659,
+            "y": 664,
+            "width": 684,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "step": "hero",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      "route": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 495,
+              "y": 143,
+              "width": 145,
+              "height": 77
+            },
+            "font": 72
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 495,
+              "y": 224,
+              "width": 60,
+              "height": 23
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 495,
+              "y": 255,
+              "width": 337,
+              "height": 31
+            },
+            "font": 28
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 495,
+              "y": 294,
+              "width": 252,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 495,
+              "y": 349,
+              "width": 576,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/freedom",
+            "text": "方向只整理建议 · 不锁牌型，进店还能换",
+            "bounds": {
+              "x": 495,
+              "y": 380,
+              "width": 251,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 同点成组 · 确认才开局",
+            "bounds": {
+              "x": 23,
+              "y": 728,
+              "width": 179,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "route/group",
+            "x": 23,
+            "y": 526,
+            "width": 434.6666666666667,
+            "height": 126
+          },
+          {
+            "name": "route/straight",
+            "x": 465.66666666666663,
+            "y": 526,
+            "width": 434.66666666666663,
+            "height": 126
+          },
+          {
+            "name": "route/flush",
+            "x": 908.3333333333334,
+            "y": 526,
+            "width": 434.66666666666663,
+            "height": 126
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 23,
+            "y": 664,
+            "width": 290,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 321,
+            "y": 664,
+            "width": 330,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 659,
+            "y": 664,
+            "width": 684,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "route": "group",
+        "step": "route",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      "saved": {
+        "id": "run/opening-review-pc1366/amo",
+        "character": "amo",
+        "identity": {
+          "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+          "contentHash": "json-fnv-v1:5025cc23c013987f"
+        },
+        "focus": "group",
+        "guide": {
+          "step": "shop",
+          "cue": "首次：点培养看用途",
+          "body": "你选了同点成组，先看本店实际用途和金币代价；方向可换，没有对应现货也可留金出场。"
+        },
+        "allStateEqualCanonical": true
+      },
+      "status": "PASS"
+    },
+    {
+      "device": {
+        "name": "pc1920",
+        "width": 1920,
+        "height": 1080
+      },
+      "errors": [],
+      "hero": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 772,
+              "y": 299,
+              "width": 145,
+              "height": 77
+            },
+            "font": 72
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 772,
+              "y": 380,
+              "width": 60,
+              "height": 23
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 772,
+              "y": 411,
+              "width": 337,
+              "height": 31
+            },
+            "font": 28
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 772,
+              "y": 450,
+              "width": 252,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 772,
+              "y": 505,
+              "width": 576,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/freedom",
+            "text": "喜欢谁就选谁 · 每位英雄都能尝试三条路线",
+            "bounds": {
+              "x": 772,
+              "y": 536,
+              "width": 265,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 下一步选路线",
+            "bounds": {
+              "x": 300,
+              "y": 1040,
+              "width": 125,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 300,
+            "y": 838,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/touye",
+            "x": 522,
+            "y": 838,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/laohuan",
+            "x": 744,
+            "y": 838,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/erxiang",
+            "x": 966,
+            "y": 838,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/azao",
+            "x": 1188,
+            "y": 838,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "character/xiemu",
+            "x": 1410,
+            "y": 838,
+            "width": 210,
+            "height": 126
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 300,
+            "y": 976,
+            "width": 290,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 598,
+            "y": 976,
+            "width": 330,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 936,
+            "y": 976,
+            "width": 684,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "step": "hero",
+        "width": 1920,
+        "height": 1080,
+        "bottom": 0
+      },
+      "route": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 772,
+              "y": 299,
+              "width": 145,
+              "height": 77
+            },
+            "font": 72
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 772,
+              "y": 380,
+              "width": 60,
+              "height": 23
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 772,
+              "y": 411,
+              "width": 337,
+              "height": 31
+            },
+            "font": 28
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 772,
+              "y": 450,
+              "width": 252,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 772,
+              "y": 505,
+              "width": 576,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/freedom",
+            "text": "方向只整理建议 · 不锁牌型，进店还能换",
+            "bounds": {
+              "x": 772,
+              "y": 536,
+              "width": 251,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 同点成组 · 确认才开局",
+            "bounds": {
+              "x": 300,
+              "y": 1040,
+              "width": 179,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "route/group",
+            "x": 300,
+            "y": 838,
+            "width": 434.66666666666674,
+            "height": 126
+          },
+          {
+            "name": "route/straight",
+            "x": 742.6666666666667,
+            "y": 838,
+            "width": 434.66666666666674,
+            "height": 126
+          },
+          {
+            "name": "route/flush",
+            "x": 1185.3333333333335,
+            "y": 838,
+            "width": 434.66666666666674,
+            "height": 126
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 300,
+            "y": 976,
+            "width": 290,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 598,
+            "y": 976,
+            "width": 330,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 936,
+            "y": 976,
+            "width": 684,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "route": "group",
+        "step": "route",
+        "width": 1920,
+        "height": 1080,
+        "bottom": 0
+      },
+      "saved": {
+        "id": "run/opening-review-pc1920/amo",
+        "character": "amo",
+        "identity": {
+          "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+          "contentHash": "json-fnv-v1:5025cc23c013987f"
+        },
+        "focus": "group",
+        "guide": {
+          "step": "shop",
+          "cue": "首次：点培养看用途",
+          "body": "你选了同点成组，先看本店实际用途和金币代价；方向可换，没有对应现货也可留金出场。"
+        },
+        "allStateEqualCanonical": true
+      },
+      "status": "PASS"
+    },
+    {
+      "device": {
+        "name": "phone",
+        "width": 390,
+        "height": 740
+      },
+      "errors": [],
+      "hero": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 176,
+              "y": 112,
+              "width": 73,
+              "height": 39
+            },
+            "font": 36
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 176,
+              "y": 155,
+              "width": 42,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 176,
+              "y": 179,
+              "width": 180,
+              "height": 44
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 176,
+              "y": 231,
+              "width": 182,
+              "height": 32
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 24,
+              "y": 334,
+              "width": 336,
+              "height": 32
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 下一步选路线",
+            "bounds": {
+              "x": 12,
+              "y": 700,
+              "width": 125,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 12.000000000000007,
+            "y": 440,
+            "width": 116.66666666666669,
+            "height": 88
+          },
+          {
+            "name": "character/touye",
+            "x": 136.66666666666669,
+            "y": 440,
+            "width": 116.66666666666669,
+            "height": 88
+          },
+          {
+            "name": "character/laohuan",
+            "x": 261.33333333333337,
+            "y": 440,
+            "width": 116.66666666666669,
+            "height": 88
+          },
+          {
+            "name": "character/erxiang",
+            "x": 12.000000000000007,
+            "y": 536,
+            "width": 116.66666666666669,
+            "height": 88
+          },
+          {
+            "name": "character/azao",
+            "x": 136.66666666666669,
+            "y": 536,
+            "width": 116.66666666666669,
+            "height": 88
+          },
+          {
+            "name": "character/xiemu",
+            "x": 261.33333333333337,
+            "y": 536,
+            "width": 116.66666666666669,
+            "height": 88
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 12,
+            "y": 636,
+            "width": 80,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 100,
+            "y": 636,
+            "width": 91,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 199,
+            "y": 636,
+            "width": 179,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "step": "hero",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      "voices": [
+        {
+          "items": [
+            {
+              "name": "opening/name",
+              "text": "阿默",
+              "bounds": {
+                "x": 176,
+                "y": 112,
+                "width": 73,
+                "height": 39
+              },
+              "font": 36
+            },
+            {
+              "name": "opening/title",
+              "text": "默剧王",
+              "bounds": {
+                "x": 176,
+                "y": 155,
+                "width": 42,
+                "height": 16
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/taunt",
+              "text": "少说一句，照样抢你的场。",
+              "bounds": {
+                "x": 176,
+                "y": 179,
+                "width": 180,
+                "height": 44
+              },
+              "font": 20
+            },
+            {
+              "name": "opening/story",
+              "text": "灯坏了，他照样演完最后一幕。",
+              "bounds": {
+                "x": 176,
+                "y": 231,
+                "width": 182,
+                "height": 32
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/play",
+              "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+              "bounds": {
+                "x": 24,
+                "y": 334,
+                "width": 336,
+                "height": 32
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/status",
+              "text": "阿默 · 下一步选路线",
+              "bounds": {
+                "x": 12,
+                "y": 700,
+                "width": 125,
+                "height": 16
+              },
+              "font": 14
+            }
+          ],
+          "hits": [
+            {
+              "name": "character/amo",
+              "x": 12.000000000000007,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/touye",
+              "x": 136.66666666666669,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/laohuan",
+              "x": 261.33333333333337,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/erxiang",
+              "x": 12.000000000000007,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/azao",
+              "x": 136.66666666666669,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/xiemu",
+              "x": 261.33333333333337,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "action/cancel-character",
+              "x": 12,
+              "y": 636,
+              "width": 80,
+              "height": 56
+            },
+            {
+              "name": "action/character-details",
+              "x": 100,
+              "y": 636,
+              "width": 91,
+              "height": 56
+            },
+            {
+              "name": "action/confirm-character",
+              "x": 199,
+              "y": 636,
+              "width": 179,
+              "height": 56
+            }
+          ],
+          "id": "amo",
+          "step": "hero",
+          "width": 390,
+          "height": 740,
+          "bottom": 0
+        },
+        {
+          "items": [
+            {
+              "name": "opening/name",
+              "text": "骰爷",
+              "bounds": {
+                "x": 176,
+                "y": 112,
+                "width": 73,
+                "height": 39
+              },
+              "font": 36
+            },
+            {
+              "name": "opening/title",
+              "text": "赌命客",
+              "bounds": {
+                "x": 176,
+                "y": 155,
+                "width": 42,
+                "height": 16
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/taunt",
+              "text": "你算你的，我敢再押一手。",
+              "bounds": {
+                "x": 176,
+                "y": 179,
+                "width": 180,
+                "height": 44
+              },
+              "font": 20
+            },
+            {
+              "name": "opening/story",
+              "text": "收工后的最后一盏灯，总留给他再试一把。",
+              "bounds": {
+                "x": 176,
+                "y": 231,
+                "width": 182,
+                "height": 32
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/play",
+              "text": "平时有稳定加成；每场可押一手，有机会翻倍，也可能变弱。",
+              "bounds": {
+                "x": 24,
+                "y": 334,
+                "width": 336,
+                "height": 32
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/status",
+              "text": "骰爷 · 下一步选路线",
+              "bounds": {
+                "x": 12,
+                "y": 700,
+                "width": 125,
+                "height": 16
+              },
+              "font": 14
+            }
+          ],
+          "hits": [
+            {
+              "name": "character/amo",
+              "x": 12.000000000000007,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/touye",
+              "x": 136.66666666666669,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/laohuan",
+              "x": 261.33333333333337,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/erxiang",
+              "x": 12.000000000000007,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/azao",
+              "x": 136.66666666666669,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/xiemu",
+              "x": 261.33333333333337,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "action/cancel-character",
+              "x": 12,
+              "y": 636,
+              "width": 80,
+              "height": 56
+            },
+            {
+              "name": "action/character-details",
+              "x": 100,
+              "y": 636,
+              "width": 91,
+              "height": 56
+            },
+            {
+              "name": "action/confirm-character",
+              "x": 199,
+              "y": 636,
+              "width": 179,
+              "height": 56
+            }
+          ],
+          "id": "touye",
+          "route": "flush",
+          "step": "hero",
+          "width": 390,
+          "height": 740,
+          "bottom": 0
+        },
+        {
+          "items": [
+            {
+              "name": "opening/name",
+              "text": "老幻",
+              "bounds": {
+                "x": 176,
+                "y": 112,
+                "width": 73,
+                "height": 39
+              },
+              "font": 36
+            },
+            {
+              "name": "opening/title",
+              "text": "空袖",
+              "bounds": {
+                "x": 176,
+                "y": 155,
+                "width": 28,
+                "height": 16
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/taunt",
+              "text": "袖子空的？你的掌声可不空。",
+              "bounds": {
+                "x": 176,
+                "y": 179,
+                "width": 180,
+                "height": 44
+              },
+              "font": 20
+            },
+            {
+              "name": "opening/story",
+              "text": "漏雨的小后台，也能被他变成惊喜登场。",
+              "bounds": {
+                "x": 176,
+                "y": 231,
+                "width": 182,
+                "height": 32
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/play",
+              "text": "连续的顺子、同花或同花顺，能多添热度。也可以尝试其他路线。",
+              "bounds": {
+                "x": 24,
+                "y": 334,
+                "width": 336,
+                "height": 32
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/status",
+              "text": "老幻 · 下一步选路线",
+              "bounds": {
+                "x": 12,
+                "y": 700,
+                "width": 125,
+                "height": 16
+              },
+              "font": 14
+            }
+          ],
+          "hits": [
+            {
+              "name": "character/amo",
+              "x": 12.000000000000007,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/touye",
+              "x": 136.66666666666669,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/laohuan",
+              "x": 261.33333333333337,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/erxiang",
+              "x": 12.000000000000007,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/azao",
+              "x": 136.66666666666669,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/xiemu",
+              "x": 261.33333333333337,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "action/cancel-character",
+              "x": 12,
+              "y": 636,
+              "width": 80,
+              "height": 56
+            },
+            {
+              "name": "action/character-details",
+              "x": 100,
+              "y": 636,
+              "width": 91,
+              "height": 56
+            },
+            {
+              "name": "action/confirm-character",
+              "x": 199,
+              "y": 636,
+              "width": 179,
+              "height": 56
+            }
+          ],
+          "id": "laohuan",
+          "route": "flush",
+          "step": "hero",
+          "width": 390,
+          "height": 740,
+          "bottom": 0
+        },
+        {
+          "items": [
+            {
+              "name": "opening/name",
+              "text": "二响",
+              "bounds": {
+                "x": 176,
+                "y": 112,
+                "width": 73,
+                "height": 39
+              },
+              "font": 36
+            },
+            {
+              "name": "opening/title",
+              "text": "捧哏王",
+              "bounds": {
+                "x": 176,
+                "y": 155,
+                "width": 42,
+                "height": 16
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/taunt",
+              "text": "你刚开口，场子已经归我了。",
+              "bounds": {
+                "x": 176,
+                "y": 179,
+                "width": 180,
+                "height": 44
+              },
+              "font": 20
+            },
+            {
+              "name": "opening/story",
+              "text": "从街边到大舞台，他总能接住冷场。",
+              "bounds": {
+                "x": 176,
+                "y": 231,
+                "width": 182,
+                "height": 32
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/play",
+              "text": "对子、两对、三条会多添倍率；更大的同点组合不享受这项加成。",
+              "bounds": {
+                "x": 24,
+                "y": 334,
+                "width": 336,
+                "height": 32
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/status",
+              "text": "二响 · 下一步选路线",
+              "bounds": {
+                "x": 12,
+                "y": 700,
+                "width": 125,
+                "height": 16
+              },
+              "font": 14
+            }
+          ],
+          "hits": [
+            {
+              "name": "character/amo",
+              "x": 12.000000000000007,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/touye",
+              "x": 136.66666666666669,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/laohuan",
+              "x": 261.33333333333337,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/erxiang",
+              "x": 12.000000000000007,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/azao",
+              "x": 136.66666666666669,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/xiemu",
+              "x": 261.33333333333337,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "action/cancel-character",
+              "x": 12,
+              "y": 636,
+              "width": 80,
+              "height": 56
+            },
+            {
+              "name": "action/character-details",
+              "x": 100,
+              "y": 636,
+              "width": 91,
+              "height": 56
+            },
+            {
+              "name": "action/confirm-character",
+              "x": 199,
+              "y": 636,
+              "width": 179,
+              "height": 56
+            }
+          ],
+          "id": "erxiang",
+          "route": "flush",
+          "step": "hero",
+          "width": 390,
+          "height": 740,
+          "bottom": 0
+        },
+        {
+          "items": [
+            {
+              "name": "opening/name",
+              "text": "阿燥",
+              "bounds": {
+                "x": 176,
+                "y": 112,
+                "width": 73,
+                "height": 39
+              },
+              "font": 36
+            },
+            {
+              "name": "opening/title",
+              "text": "热场王",
+              "bounds": {
+                "x": 176,
+                "y": 155,
+                "width": 42,
+                "height": 16
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/taunt",
+              "text": "老一套？我换个活儿压你一头。",
+              "bounds": {
+                "x": 176,
+                "y": 179,
+                "width": 180,
+                "height": 44
+              },
+              "font": 20
+            },
+            {
+              "name": "opening/story",
+              "text": "这个包袱没收尾，他已经想好下一招。",
+              "bounds": {
+                "x": 176,
+                "y": 231,
+                "width": 182,
+                "height": 32
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/play",
+              "text": "换一种牌型会多添倍率；第一手和重复牌型不触发。",
+              "bounds": {
+                "x": 24,
+                "y": 334,
+                "width": 322,
+                "height": 16
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/status",
+              "text": "阿燥 · 下一步选路线",
+              "bounds": {
+                "x": 12,
+                "y": 700,
+                "width": 125,
+                "height": 16
+              },
+              "font": 14
+            }
+          ],
+          "hits": [
+            {
+              "name": "character/amo",
+              "x": 12.000000000000007,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/touye",
+              "x": 136.66666666666669,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/laohuan",
+              "x": 261.33333333333337,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/erxiang",
+              "x": 12.000000000000007,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/azao",
+              "x": 136.66666666666669,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/xiemu",
+              "x": 261.33333333333337,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "action/cancel-character",
+              "x": 12,
+              "y": 636,
+              "width": 80,
+              "height": 56
+            },
+            {
+              "name": "action/character-details",
+              "x": 100,
+              "y": 636,
+              "width": 91,
+              "height": 56
+            },
+            {
+              "name": "action/confirm-character",
+              "x": 199,
+              "y": 636,
+              "width": 179,
+              "height": 56
+            }
+          ],
+          "id": "azao",
+          "route": "flush",
+          "step": "hero",
+          "width": 390,
+          "height": 740,
+          "bottom": 0
+        },
+        {
+          "items": [
+            {
+              "name": "opening/name",
+              "text": "谢幕人",
+              "bounds": {
+                "x": 176,
+                "y": 112,
+                "width": 109,
+                "height": 39
+              },
+              "font": 36
+            },
+            {
+              "name": "opening/title",
+              "text": "压轴",
+              "bounds": {
+                "x": 176,
+                "y": 155,
+                "width": 28,
+                "height": 16
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/taunt",
+              "text": "别急着鼓掌，最后才轮到我。",
+              "bounds": {
+                "x": 176,
+                "y": 179,
+                "width": 180,
+                "height": 44
+              },
+              "font": 20
+            },
+            {
+              "name": "opening/story",
+              "text": "散场前，他还会向空座位鞠一次躬。",
+              "bounds": {
+                "x": 176,
+                "y": 231,
+                "width": 182,
+                "height": 32
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/play",
+              "text": "最后可用出牌翻倍；这一手过关还能多收金币。也可以提早过关。",
+              "bounds": {
+                "x": 24,
+                "y": 334,
+                "width": 336,
+                "height": 32
+              },
+              "font": 14
+            },
+            {
+              "name": "opening/status",
+              "text": "谢幕人 · 下一步选路线",
+              "bounds": {
+                "x": 12,
+                "y": 700,
+                "width": 139,
+                "height": 16
+              },
+              "font": 14
+            }
+          ],
+          "hits": [
+            {
+              "name": "character/amo",
+              "x": 12.000000000000007,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/touye",
+              "x": 136.66666666666669,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/laohuan",
+              "x": 261.33333333333337,
+              "y": 440,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/erxiang",
+              "x": 12.000000000000007,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/azao",
+              "x": 136.66666666666669,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "character/xiemu",
+              "x": 261.33333333333337,
+              "y": 536,
+              "width": 116.66666666666669,
+              "height": 88
+            },
+            {
+              "name": "action/cancel-character",
+              "x": 12,
+              "y": 636,
+              "width": 80,
+              "height": 56
+            },
+            {
+              "name": "action/character-details",
+              "x": 100,
+              "y": 636,
+              "width": 91,
+              "height": 56
+            },
+            {
+              "name": "action/confirm-character",
+              "x": 199,
+              "y": 636,
+              "width": 179,
+              "height": 56
+            }
+          ],
+          "id": "xiemu",
+          "route": "flush",
+          "step": "hero",
+          "width": 390,
+          "height": 740,
+          "bottom": 0
+        }
+      ],
+      "all18DraftChoicesBeforeSave": true,
+      "route": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 176,
+              "y": 112,
+              "width": 73,
+              "height": 39
+            },
+            "font": 36
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 176,
+              "y": 155,
+              "width": 42,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 176,
+              "y": 179,
+              "width": 180,
+              "height": 44
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 176,
+              "y": 231,
+              "width": 182,
+              "height": 32
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 24,
+              "y": 334,
+              "width": 336,
+              "height": 32
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 同花集中 · 确认才开局",
+            "bounds": {
+              "x": 12,
+              "y": 700,
+              "width": 179,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "route/group",
+            "x": 12,
+            "y": 460,
+            "width": 366,
+            "height": 49.333333333333314
+          },
+          {
+            "name": "route/straight",
+            "x": 12,
+            "y": 517.3333333333334,
+            "width": 366,
+            "height": 49.33333333333337
+          },
+          {
+            "name": "route/flush",
+            "x": 12,
+            "y": 574.6666666666666,
+            "width": 366,
+            "height": 49.33333333333337
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 12,
+            "y": 636,
+            "width": 80,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 100,
+            "y": 636,
+            "width": 91,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 199,
+            "y": 636,
+            "width": 179,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "route": "flush",
+        "step": "route",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      "saved": {
+        "id": "run/opening-review-phone/amo",
+        "character": "amo",
+        "identity": {
+          "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+          "contentHash": "json-fnv-v1:5025cc23c013987f"
+        },
+        "focus": "flush",
+        "guide": {
+          "step": "shop",
+          "cue": "首次：点培养看用途",
+          "body": "你选了同花集中，先看本店实际用途和金币代价；方向可换，没有对应现货也可留金出场。"
+        },
+        "allStateEqualCanonical": true
+      },
+      "status": "PASS"
+    },
+    {
+      "device": {
+        "name": "narrow",
+        "width": 320,
+        "height": 740
+      },
+      "errors": [],
+      "hero": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 148,
+              "y": 112,
+              "width": 73,
+              "height": 39
+            },
+            "font": 36
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 148,
+              "y": 155,
+              "width": 42,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 148,
+              "y": 179,
+              "width": 140,
+              "height": 44
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 148,
+              "y": 231,
+              "width": 140,
+              "height": 32
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 24,
+              "y": 334,
+              "width": 266,
+              "height": 32
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 下一步选路线",
+            "bounds": {
+              "x": 12,
+              "y": 700,
+              "width": 125,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 12,
+            "y": 440,
+            "width": 93.33333333333333,
+            "height": 88
+          },
+          {
+            "name": "character/touye",
+            "x": 113.33333333333334,
+            "y": 440,
+            "width": 93.33333333333334,
+            "height": 88
+          },
+          {
+            "name": "character/laohuan",
+            "x": 214.66666666666666,
+            "y": 440,
+            "width": 93.33333333333334,
+            "height": 88
+          },
+          {
+            "name": "character/erxiang",
+            "x": 12,
+            "y": 536,
+            "width": 93.33333333333333,
+            "height": 88
+          },
+          {
+            "name": "character/azao",
+            "x": 113.33333333333334,
+            "y": 536,
+            "width": 93.33333333333334,
+            "height": 88
+          },
+          {
+            "name": "character/xiemu",
+            "x": 214.66666666666666,
+            "y": 536,
+            "width": 93.33333333333334,
+            "height": 88
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 12,
+            "y": 636,
+            "width": 65,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 85,
+            "y": 636,
+            "width": 74,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 167,
+            "y": 636,
+            "width": 141,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "step": "hero",
+        "width": 320,
+        "height": 740,
+        "bottom": 0
+      },
+      "route": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 148,
+              "y": 112,
+              "width": 73,
+              "height": 39
+            },
+            "font": 36
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 148,
+              "y": 155,
+              "width": 42,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 148,
+              "y": 179,
+              "width": 140,
+              "height": 44
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 148,
+              "y": 231,
+              "width": 140,
+              "height": 32
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 24,
+              "y": 334,
+              "width": 266,
+              "height": 32
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 同点成组 · 确认才开局",
+            "bounds": {
+              "x": 12,
+              "y": 700,
+              "width": 179,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "route/group",
+            "x": 12,
+            "y": 460,
+            "width": 296,
+            "height": 49.333333333333314
+          },
+          {
+            "name": "route/straight",
+            "x": 12,
+            "y": 517.3333333333334,
+            "width": 296,
+            "height": 49.33333333333337
+          },
+          {
+            "name": "route/flush",
+            "x": 12,
+            "y": 574.6666666666666,
+            "width": 296,
+            "height": 49.33333333333337
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 12,
+            "y": 636,
+            "width": 65,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 85,
+            "y": 636,
+            "width": 74,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 167,
+            "y": 636,
+            "width": 141,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "route": "group",
+        "step": "route",
+        "width": 320,
+        "height": 740,
+        "bottom": 0
+      },
+      "resizePreservesDraft": true,
+      "saved": {
+        "id": "run/opening-review-narrow/amo",
+        "character": "amo",
+        "identity": {
+          "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+          "contentHash": "json-fnv-v1:5025cc23c013987f"
+        },
+        "focus": "group",
+        "guide": {
+          "step": "shop",
+          "cue": "首次：点培养看用途",
+          "body": "你选了同点成组，先看本店实际用途和金币代价；方向可换，没有对应现货也可留金出场。"
+        },
+        "allStateEqualCanonical": true
+      },
+      "status": "PASS"
+    },
+    {
+      "device": {
+        "name": "short",
+        "width": 740,
+        "height": 390
+      },
+      "errors": [],
+      "hero": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 302,
+              "y": 74,
+              "width": 65,
+              "height": 35
+            },
+            "font": 32
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 379,
+              "y": 88,
+              "width": 49,
+              "height": 19
+            },
+            "font": 16
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 302,
+              "y": 111,
+              "width": 216,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 302,
+              "y": 140,
+              "width": 196,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 302,
+              "y": 166,
+              "width": 392,
+              "height": 32
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 下一步选路线",
+            "bounds": {
+              "x": 12,
+              "y": 372,
+              "width": 125,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 11.999999999999993,
+            "y": 246,
+            "width": 109.33333333333331,
+            "height": 66
+          },
+          {
+            "name": "character/touye",
+            "x": 133.33333333333331,
+            "y": 246,
+            "width": 109.33333333333331,
+            "height": 66
+          },
+          {
+            "name": "character/laohuan",
+            "x": 254.66666666666666,
+            "y": 246,
+            "width": 109.33333333333334,
+            "height": 66
+          },
+          {
+            "name": "character/erxiang",
+            "x": 376,
+            "y": 246,
+            "width": 109.33333333333331,
+            "height": 66
+          },
+          {
+            "name": "character/azao",
+            "x": 497.3333333333333,
+            "y": 246,
+            "width": 109.33333333333331,
+            "height": 66
+          },
+          {
+            "name": "character/xiemu",
+            "x": 618.6666666666666,
+            "y": 246,
+            "width": 109.33333333333337,
+            "height": 66
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 12,
+            "y": 324,
+            "width": 157,
+            "height": 44
+          },
+          {
+            "name": "action/character-details",
+            "x": 177,
+            "y": 324,
+            "width": 179,
+            "height": 44
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 364,
+            "y": 324,
+            "width": 364,
+            "height": 44
+          }
+        ],
+        "id": "amo",
+        "step": "hero",
+        "width": 740,
+        "height": 390,
+        "bottom": 0
+      },
+      "route": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 302,
+              "y": 74,
+              "width": 65,
+              "height": 35
+            },
+            "font": 32
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 379,
+              "y": 88,
+              "width": 49,
+              "height": 19
+            },
+            "font": 16
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 302,
+              "y": 111,
+              "width": 216,
+              "height": 21
+            },
+            "font": 18
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 302,
+              "y": 140,
+              "width": 196,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 302,
+              "y": 166,
+              "width": 392,
+              "height": 32
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 同点成组 · 确认才开局",
+            "bounds": {
+              "x": 12,
+              "y": 372,
+              "width": 179,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "route/group",
+            "x": 12.000000000000014,
+            "y": 230,
+            "width": 233.33333333333337,
+            "height": 82
+          },
+          {
+            "name": "route/straight",
+            "x": 253.33333333333331,
+            "y": 230,
+            "width": 233.33333333333331,
+            "height": 82
+          },
+          {
+            "name": "route/flush",
+            "x": 494.6666666666667,
+            "y": 230,
+            "width": 233.33333333333331,
+            "height": 82
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 12,
+            "y": 324,
+            "width": 157,
+            "height": 44
+          },
+          {
+            "name": "action/character-details",
+            "x": 177,
+            "y": 324,
+            "width": 179,
+            "height": 44
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 364,
+            "y": 324,
+            "width": 364,
+            "height": 44
+          }
+        ],
+        "id": "amo",
+        "route": "group",
+        "step": "route",
+        "width": 740,
+        "height": 390,
+        "bottom": 0
+      },
+      "saved": {
+        "id": "run/opening-review-short/amo",
+        "character": "amo",
+        "identity": {
+          "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+          "contentHash": "json-fnv-v1:5025cc23c013987f"
+        },
+        "focus": "group",
+        "guide": {
+          "step": "shop",
+          "cue": "首次：点培养看用途",
+          "body": "你选了同点成组，先看本店实际用途和金币代价；方向可换，没有对应现货也可留金出场。"
+        },
+        "allStateEqualCanonical": true
+      },
+      "status": "PASS"
+    },
+    {
+      "device": {
+        "name": "compact",
+        "width": 360,
+        "height": 640,
+        "safe": 34
+      },
+      "errors": [],
+      "hero": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 164,
+              "y": 112,
+              "width": 73,
+              "height": 39
+            },
+            "font": 36
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 164,
+              "y": 155,
+              "width": 42,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 164,
+              "y": 179,
+              "width": 160,
+              "height": 44
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/story",
+            "text": "灯坏了，他照样演完最后一幕。",
+            "bounds": {
+              "x": 164,
+              "y": 231,
+              "width": 168,
+              "height": 32
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/play",
+            "text": "先凑两对或更大的组合，再用余下同点牌助攻。每场一次，副组会消耗。",
+            "bounds": {
+              "x": 24,
+              "y": 308,
+              "width": 308,
+              "height": 32
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 下一步选路线",
+            "bounds": {
+              "x": 12,
+              "y": 566,
+              "width": 125,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "character/amo",
+            "x": 12.000000000000007,
+            "y": 378,
+            "width": 106.66666666666669,
+            "height": 52
+          },
+          {
+            "name": "character/touye",
+            "x": 126.66666666666666,
+            "y": 378,
+            "width": 106.66666666666666,
+            "height": 52
+          },
+          {
+            "name": "character/laohuan",
+            "x": 241.33333333333334,
+            "y": 378,
+            "width": 106.66666666666666,
+            "height": 52
+          },
+          {
+            "name": "character/erxiang",
+            "x": 12.000000000000007,
+            "y": 438,
+            "width": 106.66666666666669,
+            "height": 52
+          },
+          {
+            "name": "character/azao",
+            "x": 126.66666666666666,
+            "y": 438,
+            "width": 106.66666666666666,
+            "height": 52
+          },
+          {
+            "name": "character/xiemu",
+            "x": 241.33333333333334,
+            "y": 438,
+            "width": 106.66666666666666,
+            "height": 52
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 12,
+            "y": 502,
+            "width": 73,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 93,
+            "y": 502,
+            "width": 84,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 185,
+            "y": 502,
+            "width": 163,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "step": "hero",
+        "width": 360,
+        "height": 640,
+        "bottom": 34
+      },
+      "route": {
+        "items": [
+          {
+            "name": "opening/name",
+            "text": "阿默",
+            "bounds": {
+              "x": 164,
+              "y": 112,
+              "width": 73,
+              "height": 39
+            },
+            "font": 36
+          },
+          {
+            "name": "opening/title",
+            "text": "默剧王",
+            "bounds": {
+              "x": 164,
+              "y": 155,
+              "width": 42,
+              "height": 16
+            },
+            "font": 14
+          },
+          {
+            "name": "opening/taunt",
+            "text": "少说一句，照样抢你的场。",
+            "bounds": {
+              "x": 164,
+              "y": 179,
+              "width": 160,
+              "height": 44
+            },
+            "font": 20
+          },
+          {
+            "name": "opening/status",
+            "text": "阿默 · 同点成组 · 确认才开局",
+            "bounds": {
+              "x": 12,
+              "y": 566,
+              "width": 179,
+              "height": 16
+            },
+            "font": 14
+          }
+        ],
+        "hits": [
+          {
+            "name": "route/group",
+            "x": 12,
+            "y": 326,
+            "width": 336,
+            "height": 49.333333333333314
+          },
+          {
+            "name": "route/straight",
+            "x": 12,
+            "y": 383.3333333333333,
+            "width": 336,
+            "height": 49.333333333333314
+          },
+          {
+            "name": "route/flush",
+            "x": 12,
+            "y": 440.6666666666667,
+            "width": 336,
+            "height": 49.333333333333314
+          },
+          {
+            "name": "action/cancel-character",
+            "x": 12,
+            "y": 502,
+            "width": 73,
+            "height": 56
+          },
+          {
+            "name": "action/character-details",
+            "x": 93,
+            "y": 502,
+            "width": 84,
+            "height": 56
+          },
+          {
+            "name": "action/confirm-character",
+            "x": 185,
+            "y": 502,
+            "width": 163,
+            "height": 56
+          }
+        ],
+        "id": "amo",
+        "route": "group",
+        "step": "route",
+        "width": 360,
+        "height": 640,
+        "bottom": 34
+      },
+      "saved": {
+        "id": "run/opening-review-compact/amo",
+        "character": "amo",
+        "identity": {
+          "contentVersion": "quality-r2-group-upgrade-prototype-v1",
+          "contentHash": "json-fnv-v1:5025cc23c013987f"
+        },
+        "focus": "group",
+        "guide": {
+          "step": "shop",
+          "cue": "首次：点培养看用途",
+          "body": "你选了同点成组，先看本店实际用途和金币代价；方向可换，没有对应现货也可留金出场。"
+        },
+        "allStateEqualCanonical": true
+      },
+      "status": "PASS"
+    }
+  ],
+  "scope": "Native bounded opening UI, system Chromium DPR1 no GPU; not human/device/GPU acceptance",
+  "status": "PASS"
+}

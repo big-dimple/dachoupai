@@ -1,0 +1,26 @@
+{
+  "source": "19892d7b4026b76e2b9cbe4bb5d6242247a44932 read-only git archive",
+  "dirty": false,
+  "cases": [
+    {
+      "device": {
+        "name": "pc",
+        "width": 1613,
+        "height": 954
+      },
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "device": {
+        "name": "phone",
+        "width": 390,
+        "height": 740
+      },
+      "errors": [],
+      "status": "PASS"
+    }
+  ],
+  "scope": "Native bounded opening UI, system Chromium DPR1 no GPU; not human/device/GPU acceptance",
+  "status": "PASS"
+}
