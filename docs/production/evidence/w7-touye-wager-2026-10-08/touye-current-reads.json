@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "scope": "Current strict read of exact original actual pending/settled snapshots; no new acquisition/play or changed state. Frozen tracked source/index/head before=after.",
+  "before": {
+    "head": "d85712a82f7f22c55ba8be58b8a6221ecb89a8e6",
+    "index": "ab5ef5716ada24ddef540b823c6268b141bc0a2f3e7bfaaf542190c8f5c43fa7",
+    "source": "c5c536e17db9efd8abeffc5b44858b8dd6a0ecc25d2cd3e3095ac10c936e4db4"
+  },
+  "after": {
+    "head": "d85712a82f7f22c55ba8be58b8a6221ecb89a8e6",
+    "index": "ab5ef5716ada24ddef540b823c6268b141bc0a2f3e7bfaaf542190c8f5c43fa7",
+    "source": "c5c536e17db9efd8abeffc5b44858b8dd6a0ecc25d2cd3e3095ac10c936e4db4"
+  },
+  "cases": [
+    {
+      "phase": "await-input",
+      "commandSeq": 6,
+      "exact": true
+    },
+    {
+      "phase": "stage-cleared",
+      "commandSeq": 9,
+      "exact": true
+    }
+  ]
+}

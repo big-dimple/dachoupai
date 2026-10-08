@@ -1,0 +1,122 @@
+{
+  "status": "LIMITED_CANDIDATE_NOT_ACCEPTED_GAMEPLAY",
+  "baseMain": "1317e6ef757c25960ad0d6056b79bd913eaf2914",
+  "firstProduct": "4a4894a9abf67e5dd0e2c0c80e8e60f09c73d21e",
+  "naturalAndPendingUISource": "ad1f5ab69922a25c4f2e6e3a2097ccc57de52593",
+  "finalProduct": "d85712a82f7f22c55ba8be58b8a6221ecb89a8e6",
+  "identity": {
+    "version": "quality-r2-touye-wager-v1",
+    "hash": "json-fnv-v1:0739df5a55a46b96"
+  },
+  "normalRoute": {
+    "seed": "touye-public-20261008",
+    "character": "touye",
+    "route": "group",
+    "visiblePurchase": {
+      "offerId": "run/touye-public-20261008/touye/shop/0/0/joker/2",
+      "definitionId": "mantangcai",
+      "price": 4,
+      "edition": "none",
+      "consumed": false
+    },
+    "beforeHand": [
+      "spades-10",
+      "diamonds-13",
+      "diamonds-14",
+      "diamonds-6",
+      "spades-5",
+      "clubs-13",
+      "diamonds-11",
+      "spades-3"
+    ],
+    "operatorBefore": {
+      "target": "three-kind",
+      "discardIds": [
+        "spades-10",
+        "spades-5",
+        "spades-3"
+      ],
+      "reason": "当前只有可见K对子，押补成K三条；先弃三张零散黑桃，保K对和四张方块材料作未成时的备用。没有读取补牌或预计分。"
+    },
+    "actualReplacementIds": [
+      "hearts-6",
+      "spades-4",
+      "diamonds-3"
+    ],
+    "operatorAfter": {
+      "selectedIds": [
+        "diamonds-13",
+        "diamonds-14",
+        "diamonds-6",
+        "diamonds-11",
+        "diamonds-3"
+      ],
+      "reason": "Actual publicly revealed hand has no three-kind, but now five diamonds. Manually play the completed flush rather than insist on the group route; it still loses the original three-kind promise, not higher-type success. No forecast, probabilities or automatic best."
+    },
+    "actualResult": {
+      "target": "three-kind",
+      "handType": "flush",
+      "outcome": "lost",
+      "multiplier": "0.85",
+      "finalScore": "612",
+      "heat": "612",
+      "gold": 9,
+      "phase": "stage-cleared"
+    },
+    "observedBetSuccess": false,
+    "successMultiplierEvidence": "controlled-domain-only",
+    "cancelUnchanged": true,
+    "pendingRestoreExact": true,
+    "sortingPreservesCommit": true,
+    "aiOnlySelection": true,
+    "sortedRestoreExact": true,
+    "nextStage": {
+      "wager": {
+        "commit": null,
+        "resolution": "unused"
+      },
+      "gold": 9
+    },
+    "note": "One normal acquisition and one actual bet/play. Runner failures kept. Subsequent production imports used exact original pending/settled saves, continuous actual tail journals; no new normal run, draw or manual state/funds/cards edit. Original auto EnterStage was not recorded as a separate initial step; it remains in original state receipts. All recorded commands compared canonical full-state."
+  },
+  "targeted": {
+    "baseline": "98 PASS /8 files at4a4894a",
+    "finalChanges": "14 PASS /1 file and type atd85712a, strengthened abandoned pointer and actual joker clock plus saved outcome text"
+  },
+  "freeze": {
+    "status": "PASS",
+    "scope": "Current strict read of exact original actual pending/settled snapshots; no new acquisition/play or changed state. Frozen tracked source/index/head before=after.",
+    "before": {
+      "head": "d85712a82f7f22c55ba8be58b8a6221ecb89a8e6",
+      "index": "ab5ef5716ada24ddef540b823c6268b141bc0a2f3e7bfaaf542190c8f5c43fa7",
+      "source": "c5c536e17db9efd8abeffc5b44858b8dd6a0ecc25d2cd3e3095ac10c936e4db4"
+    },
+    "after": {
+      "head": "d85712a82f7f22c55ba8be58b8a6221ecb89a8e6",
+      "index": "ab5ef5716ada24ddef540b823c6268b141bc0a2f3e7bfaaf542190c8f5c43fa7",
+      "source": "c5c536e17db9efd8abeffc5b44858b8dd6a0ecc25d2cd3e3095ac10c936e4db4"
+    },
+    "cases": [
+      {
+        "phase": "await-input",
+        "commandSeq": 6,
+        "exact": true
+      },
+      {
+        "phase": "stage-cleared",
+        "commandSeq": 9,
+        "exact": true
+      }
+    ]
+  },
+  "finalHeadCI": "pending-after-independent-doc-commit-see-PR70-receipt",
+  "notAccepted": [
+    "more fun",
+    "balanced",
+    "wager necessary",
+    "physical device/FPS",
+    "audio",
+    "W6 approval",
+    "old-save matrix"
+  ]
+}

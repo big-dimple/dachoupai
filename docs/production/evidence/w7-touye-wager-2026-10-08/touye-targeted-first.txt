@@ -1,0 +1,37 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/touye-wager.test.ts (12 tests | 1 failed) 632ms
+     × actual next hand settles one deterministic role multiplier (winning=false) 69ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/touye-wager.test.ts > Touye public pre-discard commitment > actual next hand settles one deterministic role multiplier (winning=false)
+AssertionError: expected { ok: false, …(2) } to match object { ok: false, …(1) }
+(51 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "code": "touye-already-used",
++   "code": "unknown-card",
+    "ok": false,
+  }
+
+ ❯ tests/touye-wager.test.ts:25:1274
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 43 passed (44)
+   Start at  23:21:18
+   Duration  1.99s (transform 1.67s, setup 0ms, import 2.21s, tests 2.15s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
