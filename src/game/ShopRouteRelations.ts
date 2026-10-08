@@ -11,6 +11,7 @@ import {r2JokerStateText} from './r2Help';
 import {buildGrowthProgress} from './BuildGrowthProgress';
 import {Rational} from '../domain/rational';
 import {fractionText} from './scoreText';
+import {HAND_LABELS} from '../content/handLabels';
 const labels={group:'同点成组',straight:'顺子接续',flush:'同花集中'};
 const focuses=['group','straight','flush'] as const;
 const effectNames:Record<string,string>={heat:'热度',multiplier:'倍率',multiply:'相乘倍率',retrigger:'再次计分',gold:'过关金币','four-straight':'四张顺子','four-flush':'四张同花'};
@@ -28,7 +29,12 @@ function routePossible(state:R2RunState,c:Condition,focus:BuildFocus,size=5){
  const cards=state.deckInstances.filter(c=>!state.destroyedIds.includes(c.id));
  const counts=[...new Set(cards.map(c=>c.rank))].map(r=>cards.filter(c=>c.rank===r).length);
  if(c.kind==='hand-type-transition'||c.kind==='hand-type-relation'||c.kind==='stage-hand-types-all'||c.kind==='hand-type-unfinished')return false;
- if(focus==='group'&&c.kind==='hand-type-in')return c.values.some(t=>t==='pair'?counts.some(n=>n>=2):t==='two-pair'?counts.filter(n=>n>=2).length>=2:t==='three-kind'?counts.some(n=>n>=3):t==='full-house'?counts.some((n,i)=>n>=3&&counts.some((m,j)=>j!==i&&m>=2)):t==='four-kind'?counts.some(n=>n>=4):false);
+ const types=c.kind==='hand-type-in'?c.values:c.kind==='scoring-position'?c.handTypes:undefined;
+ const consecutive=(pool:typeof cards,length:number)=>{const ranks=new Set(pool.flatMap(c=>c.rank===14?[1,14]:[c.rank]));return Array.from({length:15-length},(_,i)=>i+1).some(start=>Array.from({length},(_,i)=>start+i).every(r=>ranks.has(r)));};
+ const straightFlush=()=>[...new Set(cards.map(c=>c.suit))].some(s=>consecutive(cards.filter(c=>c.suit===s),5));
+ if(types&&focus==='straight')return types.some(t=>t==='straight-flush'?straightFlush():t==='straight'?consecutive(cards,size):false);
+ if(types&&focus==='flush')return types.some(t=>t==='straight-flush'?straightFlush():t==='flush'?[...new Set(cards.map(c=>c.suit))].some(s=>cards.filter(c=>c.suit===s).length>=size):false);
+ if(focus==='group'&&types)return types.some(t=>t==='pair'?counts.some(n=>n>=2):t==='two-pair'?counts.filter(n=>n>=2).length>=2:t==='three-kind'?counts.some(n=>n>=3):t==='full-house'?counts.some((n,i)=>n>=3&&counts.some((m,j)=>j!==i&&m>=2)):t==='four-kind'?counts.some(n=>n>=4):false);
  if(focus==='group'&&c.kind==='paired-rank')return counts.some(n=>n>=c.minimum);
  if(focus==='group'&&c.kind==='rank-groups')return counts.filter(n=>n>=c.groupSize).length>=c.minimum;
  if(focus==='group'&&c.kind==='largest-scoring-rank-group')return counts.some(n=>n>=2);
@@ -43,6 +49,12 @@ function savedInvestment(state:R2RunState,j:R2JokerInstance){
 function shortEffect(d:R2JokerDefinition){
  const values=d.hooks.flatMap(h=>h.operations).flatMap(o=>o.kind==='add-multiplier'?['倍率+'+fractionText(o.value)]:o.kind==='add-heat'?['热度+'+fractionText(o.value)]:o.kind==='multiply-multiplier'?['倍率×'+fractionText(o.value)]:[]);return [...new Set(values)].join('、')||d.description.split('；')[0];
 }
+/** Public transaction cash only; retained definitions and purchase discounts use the current identity. */
+export function shopPurchaseConditionLosses(state:R2RunState,offer:R2Offer,sold?:R2JokerInstance){
+ const jokers=state.jokers.filter(j=>j.instanceId!==sold?.instanceId),cash=state.gold+(sold?salePrice(sold.paidPrice):0)-r2PurchasePrice({...state,jokers},offer);
+ const matches=(c:Condition,gold:number)=>c.kind==='resource-minimum'?gold>=c.minimum:c.kind==='resource-maximum'?gold<=c.maximum:c.kind==='resource'?gold===c.equals:false;
+ return jokers.flatMap(j=>{const d=r2JokerDefinitionFor(state,j.definitionId);return d.hooks.filter(h=>(h.condition.kind==='resource-minimum'||h.condition.kind==='resource-maximum'||h.condition.kind==='resource')&&h.condition.resource==='gold'&&matches(h.condition,state.gold)&&!matches(h.condition,cash)).map(h=>`买后金币${state.gold}→${cash}；${d.name}的“${r2ConditionDescription(h.condition)}”条件不再满足（${shortEffect({...d,hooks:[h]})}）；这轮先留金。`);});
+}
 export interface ShopRouteAdviceItem {offer:R2Offer;verdict:'consider'|'compare'|'skip';reason:string;replaceId?:string;loss?:string}
 /** Conservative current-state advice layered on the existing relation/price/replacement facts. No score or future draws. */
 export function shopRouteAdvice(state:R2RunState,focus:BuildFocus){
@@ -55,16 +67,22 @@ export function shopRouteAdvice(state:R2RunState,focus:BuildFocus){
   if(relation.kind==='other')return {...base,reason:`它的条件不补当前${labels[focus]}；想用它时先主动换方向。`};
   const missing=effectRoles(d).filter(r=>!roles.has(r));
   const routeHooks=d.hooks.filter(h=>conditionRoutes(h.condition).includes(focus));
+  const wanted=focus==='group'?R2_GROUP_HAND_TYPES:focus==='straight'?['straight','straight-flush']:['flush','straight-flush'];
+  const targetTypes=[...new Set(routeHooks.flatMap(h=>h.condition.kind==='hand-type-in'?h.condition.values:h.condition.kind==='scoring-position'?h.condition.handTypes??[]:[]))].filter(t=>wanted.includes(t));
+  const target=targetTypes.length?targetTypes.map(t=>HAND_LABELS[t]).join('／'):labels[focus];
   const direct=relation.kind==='direct'&&missing.length>0&&(routeHooks.some(h=>routePossible(state,h.condition,focus))||(d.modifiers??[]).some(m=>m.kind==='four-'+focus&&routePossible(state,{kind:'always'},focus,4)));
+  if(relation.kind==='direct'&&missing.length>0&&routeHooks.length&&!direct)return {...base,reason:`当前公开牌组不能核实${target}的触发资格；这轮先留金，不把普通牌型当作已能触发。`};
   const multiplier=d.hooks.some(h=>h.condition.kind==='always'&&h.operations.some(o=>o.kind==='multiply-multiplier'&&Rational.fromJSON(o.value).compare(Rational.fromJSON({n:'1',d:'1'}))>0));
   const additive=held.filter(h=>h.relation.kind==='direct'&&effectRoles(h.d).includes('multiplier')&&Object.values(h.j.growth).some(v=>Rational.fromJSON(v).compare(Rational.fromJSON({n:'0',d:'1'}))>0));
   const support=relation.kind==='support'&&multiplier&&additive.length>0&&!roles.has('multiply');
   if(!direct&&!support){const same=held.filter(h=>effectRoles(h.d).some(r=>effectRoles(d).includes(r)));return {...base,reason:same.length?`已有${same[0].d.name}（${r2JokerStateText(same[0].j,same[0].d)}）；新牌${shortEffect(d)}，未补明确缺口，建议先不买。`:`当前构筑没有明确需要它的条件；${shortEffect(d)}，这轮先留金。`};}
-  const reason=direct?`补当前缺少的${missing.map(r=>effectNames[r]).join('／')}，用于${labels[focus]}；实付${price}金。`:`可接${additive.map(h=>h.d.name).join('、')}已存倍率，再作相乘；实付${price}金。`;
-  if(state.jokers.length<r2JokerCapacity(state))return {offer,verdict:'consider',reason};
+  const reason=direct?`补当前缺少的${missing.map(r=>effectNames[r]).join('／')}，用于${target}；实付${price}金。`:`可接${additive.map(h=>h.d.name).join('、')}已存倍率，再作相乘；实付${price}金。`;
+  if(state.jokers.length<r2JokerCapacity(state)){const losses=shopPurchaseConditionLosses(state,offer);return losses.length?{...base,reason:losses.join('\n')}:{offer,verdict:'consider',reason};}
   const replace=held.find(h=>h.relation.kind==='other'&&!savedInvestment(state,h.j));
   if(!replace){const investment=held.find(h=>savedInvestment(state,h.j));return {...base,reason:investment?`槽位已满；${investment.d.name}（${r2JokerStateText(investment.j,investment.d)}）应先保留，不为本件先丢成长/来源；这轮留金。`:'槽位已满；没有明确可换的非路线牌，建议这轮留金。'};}
   const loss=shopReplacementFacts(state,offer,replace.j,focus),saleEffects=shopSaleConsequences(state,replace.j);
+  const cashLosses=shopPurchaseConditionLosses(state,offer,replace.j);
+  if(cashLosses.length)return {...base,reason:cashLosses.join('\n')};
   if(saleEffects.length)return {...base,reason:`换掉${replace.d.name}还会影响保留牌的出售联动；先留金，完整损失可查看。`};
   return {offer,verdict:'compare',replaceId:replace.j.instanceId,reason:reason+`先比较第${state.jokers.indexOf(replace.j)+1}槽${replace.d.name}。`,loss:`出售会失去${replace.d.name}：${shortEffect(replace.d)}；基础卖价${salePrice(replace.j.paidPrice)}金。`,details:loss.loss};
  });
