@@ -1,0 +1,304 @@
+{
+  "sourceHead": "6e450bebe3a750704f6b1d811ad0accaf898ebd8",
+  "archiveHead": "3d4ec572028bc08609b748a1f3f63b310db93032",
+  "archivePath": "docs/production/evidence/w5-growth-opportunities-2026-10-07/natural-three.json.gz",
+  "archiveSha256": "f6cafa4bda16ae663c46f8d0cf5957eaa6ca6705fba04565b353a1e9f554923a",
+  "scope": "Three fixed archived legal erxiang route inputs, repriced/re-scored with current shared content and hypothetical xiemu identity. Not a new natural xiemu run or implemented burn/payment. Cash, deck, selected IDs, Jokers and growth are archived; no cash/card/item injections. Candidate bonus interest min(2,floor(reward-before gold/5)) is provisional.",
+  "candidate": {
+    "fuel": {
+      "10": 2,
+      "20": 3,
+      "30": 4
+    },
+    "maxBurnsPerStage": 1,
+    "qualified": [
+      "two-pair",
+      "three-kind",
+      "straight",
+      "flush",
+      "full-house",
+      "four-kind",
+      "straight-flush",
+      "five-kind",
+      "flush-house",
+      "flush-five"
+    ],
+    "replaceOldLastHand": true,
+    "interestDivisor": 5,
+    "extraInterestCap": 2
+  },
+  "cases": [
+    {
+      "stage": 2,
+      "index": 0,
+      "archivedCharacter": "erxiang",
+      "cash": 18,
+      "hands": 4,
+      "heat": "0",
+      "target": "800",
+      "remainingTarget": "800",
+      "selectedIds": [
+        "hearts-2",
+        "hearts-5",
+        "clubs-4",
+        "clubs-14",
+        "diamonds-3"
+      ],
+      "jokers": [
+        {
+          "id": "mantangcai",
+          "growth": {}
+        }
+      ],
+      "archivedActualScore": "600",
+      "archivedActualPhase": "await-input",
+      "currentOldXiemuScore": "600",
+      "candidateHoldScore": "600",
+      "handType": "straight",
+      "qualified": true,
+      "holdCapitalInterest": {
+        "base": 3,
+        "candidateExtra": 2
+      },
+      "choices": [
+        {
+          "cost": 10,
+          "multiplier": 2,
+          "cashAfterPay": 8,
+          "currentContentScoreAfterPayBeforeBurn": "600",
+          "hypotheticalBurnScore": "1200",
+          "immediateClear": true,
+          "capitalInterest": {
+            "base": 1,
+            "candidateExtra": 1
+          },
+          "baseInterestLost": 2,
+          "candidateExtraInterestLost": 1
+        },
+        {
+          "cost": 20,
+          "multiplier": 3,
+          "rejected": "insufficient-gold",
+          "noDowngrade": true
+        },
+        {
+          "cost": 30,
+          "multiplier": 4,
+          "rejected": "insufficient-gold",
+          "noDowngrade": true
+        }
+      ],
+      "archivedContinuation": {
+        "handType": "pair",
+        "currentSameInputScore": "290",
+        "twoHandScore": "890",
+        "clears": true,
+        "warning": "Archived continuation observed after first real play; not information available before deciding to burn."
+      },
+      "provisionalCashAfterClear": {
+        "burn10OneHand": 20,
+        "holdTwoHands": 32
+      }
+    },
+    {
+      "stage": 4,
+      "index": 0,
+      "archivedCharacter": "erxiang",
+      "cash": 42,
+      "hands": 4,
+      "heat": "0",
+      "target": "1500",
+      "remainingTarget": "1500",
+      "selectedIds": [
+        "diamonds-10",
+        "spades-9",
+        "hearts-6",
+        "spades-7",
+        "spades-8"
+      ],
+      "jokers": [
+        {
+          "id": "mantangcai",
+          "growth": {}
+        }
+      ],
+      "archivedActualScore": "660",
+      "archivedActualPhase": "await-input",
+      "currentOldXiemuScore": "660",
+      "candidateHoldScore": "660",
+      "handType": "straight",
+      "qualified": true,
+      "holdCapitalInterest": {
+        "base": 5,
+        "candidateExtra": 2
+      },
+      "choices": [
+        {
+          "cost": 10,
+          "multiplier": 2,
+          "cashAfterPay": 32,
+          "currentContentScoreAfterPayBeforeBurn": "660",
+          "hypotheticalBurnScore": "1320",
+          "immediateClear": false,
+          "capitalInterest": {
+            "base": 5,
+            "candidateExtra": 2
+          },
+          "baseInterestLost": 0,
+          "candidateExtraInterestLost": 0
+        },
+        {
+          "cost": 20,
+          "multiplier": 3,
+          "cashAfterPay": 22,
+          "currentContentScoreAfterPayBeforeBurn": "660",
+          "hypotheticalBurnScore": "1980",
+          "immediateClear": true,
+          "capitalInterest": {
+            "base": 4,
+            "candidateExtra": 2
+          },
+          "baseInterestLost": 1,
+          "candidateExtraInterestLost": 0
+        },
+        {
+          "cost": 30,
+          "multiplier": 4,
+          "cashAfterPay": 12,
+          "currentContentScoreAfterPayBeforeBurn": "660",
+          "hypotheticalBurnScore": "2640",
+          "immediateClear": true,
+          "capitalInterest": {
+            "base": 2,
+            "candidateExtra": 2
+          },
+          "baseInterestLost": 3,
+          "candidateExtraInterestLost": 0
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "index": 1,
+      "archivedCharacter": "erxiang",
+      "cash": 42,
+      "hands": 3,
+      "heat": "660",
+      "target": "1500",
+      "remainingTarget": "840",
+      "selectedIds": [
+        "hearts-9",
+        "clubs-7",
+        "diamonds-8",
+        "diamonds-6",
+        "hearts-5"
+      ],
+      "jokers": [
+        {
+          "id": "mantangcai",
+          "growth": {}
+        }
+      ],
+      "archivedActualScore": "640",
+      "archivedActualPhase": "await-input",
+      "currentOldXiemuScore": "640",
+      "candidateHoldScore": "640",
+      "handType": "straight",
+      "qualified": true,
+      "holdCapitalInterest": {
+        "base": 5,
+        "candidateExtra": 2
+      },
+      "choices": [
+        {
+          "cost": 10,
+          "multiplier": 2,
+          "cashAfterPay": 32,
+          "currentContentScoreAfterPayBeforeBurn": "640",
+          "hypotheticalBurnScore": "1280",
+          "immediateClear": true,
+          "capitalInterest": {
+            "base": 5,
+            "candidateExtra": 2
+          },
+          "baseInterestLost": 0,
+          "candidateExtraInterestLost": 0
+        },
+        {
+          "cost": 20,
+          "multiplier": 3,
+          "cashAfterPay": 22,
+          "currentContentScoreAfterPayBeforeBurn": "640",
+          "hypotheticalBurnScore": "1920",
+          "immediateClear": true,
+          "capitalInterest": {
+            "base": 4,
+            "candidateExtra": 2
+          },
+          "baseInterestLost": 1,
+          "candidateExtraInterestLost": 0
+        },
+        {
+          "cost": 30,
+          "multiplier": 4,
+          "cashAfterPay": 12,
+          "currentContentScoreAfterPayBeforeBurn": "640",
+          "hypotheticalBurnScore": "2560",
+          "immediateClear": true,
+          "capitalInterest": {
+            "base": 2,
+            "candidateExtra": 2
+          },
+          "baseInterestLost": 3,
+          "candidateExtraInterestLost": 0
+        }
+      ]
+    }
+  ],
+  "actualArchivedAlternatives": [
+    {
+      "stage": 2,
+      "cash": 18,
+      "offers": [
+        {
+          "id": "a04",
+          "price": 6
+        },
+        {
+          "id": "a12",
+          "price": 6
+        },
+        {
+          "id": "a03",
+          "price": 6
+        },
+        {
+          "id": "P05",
+          "price": 4
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "cash": 42,
+      "offers": [
+        {
+          "id": "c06",
+          "price": 6
+        },
+        {
+          "id": "f03",
+          "price": 4
+        },
+        {
+          "id": "e09",
+          "price": 4
+        },
+        {
+          "id": "T03",
+          "price": 4
+        }
+      ]
+    }
+  ]
+}
