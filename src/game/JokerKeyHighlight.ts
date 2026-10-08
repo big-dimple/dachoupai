@@ -22,6 +22,8 @@ export function keyHighlight(state:R2RunState,trace:ScoreTrace,originHeat='0',ta
  }
  let selected:JokerKeyHighlight|undefined,priority=0;
  for(const e of trace.events){
+  // This purchased source has already earned its one first cue; crossings still use its short source feedback.
+  if(stamp?.eventId&&e.sourceInstanceId===stamp.instanceId)continue;
   if(e.sourceType!=='joker'||!hasActualBenefit(e)||['base','finalScore','afterHand','onStageClear','beforeFailure'].includes(e.phase))continue;
   const multiply=['multiply-multiplier','read-coefficient'].includes(e.operation)&&Rational.fromJSON(e.after.M).compare(Rational.fromJSON(e.before.M))>0;
   const crossing=target!==undefined&&BigInt(originHeat)+product(e.before)<BigInt(target)&&BigInt(originHeat)+product(e.after)>=BigInt(target);

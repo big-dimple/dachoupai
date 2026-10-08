@@ -56,7 +56,7 @@ describe('first saved source highlight',()=>{
   const invalid=structuredClone(p.after);invalid.routeStarter!.eventId=stamp.rootId+'/event/0';expect(readChanged(p.after,invalid).ok).toBe(false);
   if(route==='flush'){expect(event.operation).toBe('add-growth');expect(event.before).toEqual(event.after);expect(key.landing).toContain('本手分数不变');expect(key.fact.effect).toContain('0.25');
    const next=p.after.phase==='stage-cleared'?send(send(send(p.after,{type:'OpenShop'}),{type:'LeaveShop'}),{type:'EnterStage'}):p.after;
-   const second=send(next,{type:'PlayHand',selectedIds:[next.handOrder[0]]});expect(second.routeStarter).toEqual(stamp);expect(keyHighlight(second,second.lastTrace!,'0','999999')).toBeUndefined();expect(second.lastTrace!.events.some(e=>e.operation==='read-growth'&&e.sourceInstanceId===stamp.instanceId&&e.value.n!=='0')).toBe(true);
+   const second=send(next,{type:'PlayHand',selectedIds:[next.handOrder[0]]});expect(second.routeStarter).toEqual(stamp);expect(keyHighlight(second,second.lastTrace!,'0','999999')).toBeUndefined();expect(second.lastTrace!.events.some(e=>e.operation==='read-growth'&&e.sourceInstanceId===stamp.instanceId&&e.value.n!=='0')).toBe(true);const read=second.lastTrace!.events.find(e=>e.operation==='read-growth'&&e.sourceInstanceId===stamp.instanceId)!;const crossing=(BigInt(read.before.H.n)*BigInt(read.before.M.n)/(BigInt(read.before.H.d)*BigInt(read.before.M.d))+1n).toString();expect(keyHighlight(second,second.lastTrace!,'0',crossing)).toBeUndefined();
   }
  });
  it('nonmatching first hand has no positive starter event or false full highlight',()=>{
