@@ -1611,7 +1611,7 @@ export class GameScene extends Phaser.Scene {
   }
   private showOpeningScore(score:ScoreTrace,context:EffectContext):()=>void {
     const event=score.events.find(e=>e.phase==='finalScore')!;
-    const key:JokerKeyHighlight={eventId:event.eventId,kind:'opening',heroId:this.run.characterId,cause:'本局前五手内真实结算',landing:fractionText(score.accumulator.H)+' × '+fractionText(score.accumulator.M)+' = '+heatText(score.finalScore),fact:{eventId:event.eventId,sourceInstanceId:event.sourceInstanceId,definitionId:'',title:'开场得分 · '+HAND_LABELS[score.handType],effect:'已结算 '+heatText(score.finalScore),condition:'真实已保存得分',destination:'本手实际得分',next:'继续自主选牌'}};
+    const key:JokerKeyHighlight={eventId:event.eventId,kind:'opening',heroId:this.run.characterId,cause:'本局前五手内真实结算',landing:fractionText(score.accumulator.H)+' × '+fractionText(score.accumulator.M)+' = '+heatText(score.finalScore),fact:{eventId:event.eventId,sourceInstanceId:event.sourceInstanceId,definitionId:'',title:(this.run.phase==='run-lost'?'本局结束 · 实际得分 · ':'开场得分 · ')+HAND_LABELS[score.handType],effect:'已结算 '+heatText(score.finalScore),condition:'真实已保存得分',destination:'本手实际得分',next:'继续自主选牌'}};
     return this.showKeyHighlight(key,context);
   }
   private async award(score:ScoreTrace,presentation:NonNullable<GameScene['presentation']>,context:EffectContext):Promise<void> {
@@ -1627,7 +1627,7 @@ export class GameScene extends Phaser.Scene {
     presentation.credited=true;this.updateHud();
     this.scoreTotal.setData('eventId',score.events.find(event=>event.phase==='finalScore')?.eventId).setData('eventPhase','award');
     this.scoreTotal.setColor(celebration.cleared&&celebration.tier>=2?'#80551f':tier?C.red:C.ink);
-    if(!presentation.replay){const level=scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat);this.ensureScoreFlame().impact('award',level===3?1:level===2?.85:.65);this.audio.scoreImpact(presentation,'award','award',level,score.events.filter(e=>numberImpact(e,this.stage.targetHeat)?.kind==='multiply').length);this.keepScoreReadable();}
+    if(!presentation.replay){const level=presentation.state.phase==='run-lost'?0:scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat);this.ensureScoreFlame().impact('award',level===3?1:level===2?.85:.65);this.audio.scoreImpact(presentation,'award','award',level,score.events.filter(e=>numberImpact(e,this.stage.targetHeat)?.kind==='multiply').length);this.keepScoreReadable();}
     const opening= !presentation.replay&&presentation.state.openingShow?.rootId===score.rootId&&presentation.state.openingShow.reason==='score';
     const closeOpening=opening?this.showOpeningScore(score,context):undefined;
     const effects:Promise<void>[]=[];
