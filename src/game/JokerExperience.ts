@@ -37,6 +37,7 @@ export interface SavedBenefit {eventId:string;sourceInstanceId:string;definition
 /** Ordered saved events; current balances never pretend to be the historic transaction. */
 export function savedBenefit(state:R2RunState,trace:ScoreTrace,e:ScoreEvent):SavedBenefit|undefined {
  if(!hasActualBenefit(e)||e.phase==='base'||e.phase==='finalScore')return;
+ if(trace.azaoCharge?.release&&e.sourceType==='character'&&e.sourceDefinitionId==='azao'&&e.operation==='multiply-multiplier')return {eventId:e.eventId,sourceInstanceId:e.sourceInstanceId,definitionId:'',title:'阿燥 · 主动爆发',effect:'消耗'+trace.azaoCharge.before.charge+'层，实际 ×'+trace.azaoCharge.multiplier,condition:'本手两对及以上，已确认释放',destination:'本手真实倍率 · 已保存',next:'释放手不蓄；当前'+(state.stage?.azaoCharge?.charge??0)+'层，场间清空'};
  const joker=e.sourceType==='joker'?r2JokerDefinitionFor(state,e.sourceDefinitionId):undefined;
  // Poker effects remain in the normal ledger. This surface teaches acquired sources.
  if(!joker&&e.sourceType!=='rule')return;

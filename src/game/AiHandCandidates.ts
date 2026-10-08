@@ -5,7 +5,7 @@ import {r2OrdinarySuppression} from '../domain/r2Chapter';
 import {previewR2Hand,type ScoreInput} from '../domain/scoreR2';
 
 export const AI_HAND_POLICY='成牌优先，高牌仅兜底。按当前规则的稳妥得分从高到低选牌；随机效果按保底比较，实际结果可能不同。平分先少出牌，再按当前座位顺序。只选牌，仍需自己出牌。';
-export type AiScoreContext=Pick<ScoreInput,'characterId'|'amoScoreTiming'|'handLevels'|'previousHandType'|'wager'|'jokerSlots'|'previousHandScore'>;
+export type AiScoreContext=Pick<ScoreInput,'azaoCharge'|'characterId'|'amoScoreTiming'|'handLevels'|'previousHandType'|'wager'|'jokerSlots'|'previousHandScore'>;
 export interface AiHandInput extends R2CandidateInput {score:AiScoreContext}
 export interface AiHandResult {key:string;status:'working'|'ready'|'unsupported';ordered:R2SelectionFacts[];examined:number;reason?:string}
 export interface AiHandCursor {key:string;index:number;selection:string}
@@ -14,7 +14,7 @@ export function nextAiHand(result:AiHandResult|undefined,key:string,selected:rea
  const selection=JSON.stringify([...selected].sort()),index=cursor?.key===key&&cursor.selection===selection?(cursor.index+1)%result.ordered.length:0,facts=result.ordered[index];
  return{facts,cursor:{key,index,selection:JSON.stringify([...facts.playedIds].sort())}};
 }
-const scoreContext=(s:AiScoreContext):AiScoreContext=>({characterId:s.characterId,amoScoreTiming:s.amoScoreTiming,handLevels:s.handLevels,previousHandType:s.previousHandType,wager:s.wager,jokerSlots:s.jokerSlots,previousHandScore:s.previousHandScore});
+const scoreContext=(s:AiScoreContext):AiScoreContext=>({... (s.azaoCharge?{azaoCharge:s.azaoCharge}:{}),characterId:s.characterId,amoScoreTiming:s.amoScoreTiming,handLevels:s.handLevels,previousHandType:s.previousHandType,wager:s.wager,jokerSlots:s.jokerSlots,previousHandScore:s.previousHandScore});
 /** Explicit public fields only: callers cannot smuggle an RNG or future pile into the key/snapshot. */
 export function aiHandKey(input:AiHandInput):string {return JSON.stringify([r2CandidateKey(input),scoreContext(input.score)]);}
 function publicSnapshot(input:AiHandInput):AiHandInput {
@@ -36,7 +36,7 @@ function collector(input:AiHandInput,key:string){
  return {next(){const next=iterator.next();if(next.done)return false;const ids=next.value;
   const suppression=input.boss?r2OrdinarySuppression(input.boss,input.stageIndex,input.hand,ids):[],ordinaryPointsSuppressedIds=[...new Set([...(input.ordinaryPointsSuppressedIds??[]).filter(id=>ids.includes(id)),...suppression])];
   const facts=r2SelectionFacts({...input,selectedIds:ids,ordinaryPointsSuppressedIds});
-  const preview=previewR2Hand({rulesVersion:'r2',runId:'ai-public',rootId:'ai-public/selection',hand:input.hand,selectedIds:ids,disabledIds:input.disabledIds,jokers:input.jokers,definitions:input.definitions,handRules:input.handRules,handLevels:input.score.handLevels,characterId:input.score.characterId,amoScoreTiming:input.score.amoScoreTiming,playIndex:input.resources.playIndex+1,handsBeforePlay:input.resources.handsLeft,previousHandType:input.score.previousHandType,wager:input.score.wager,jokerSlots:input.score.jokerSlots,previousHandScore:input.score.previousHandScore,gold:input.resources.gold,discardsUsed:input.resources.discardsUsed,stageHeatBefore:input.resources.stageHeat,stageTargetHeat:input.resources.target,boss:input.boss,sealedJokerIds:input.sealedJokerIds,challengeDisabledJokerId:input.challengeDisabledJokerId,ordinaryPointsSuppressedIds});
+  const preview=previewR2Hand({... (input.score.azaoCharge?{azaoCharge:input.score.azaoCharge}:{}),rulesVersion:'r2',runId:'ai-public',rootId:'ai-public/selection',hand:input.hand,selectedIds:ids,disabledIds:input.disabledIds,jokers:input.jokers,definitions:input.definitions,handRules:input.handRules,handLevels:input.score.handLevels,characterId:input.score.characterId,amoScoreTiming:input.score.amoScoreTiming,playIndex:input.resources.playIndex+1,handsBeforePlay:input.resources.handsLeft,previousHandType:input.score.previousHandType,wager:input.score.wager,jokerSlots:input.score.jokerSlots,previousHandScore:input.score.previousHandScore,gold:input.resources.gold,discardsUsed:input.resources.discardsUsed,stageHeatBefore:input.resources.stageHeat,stageTargetHeat:input.resources.target,boss:input.boss,sealedJokerIds:input.sealedJokerIds,challengeDisabledJokerId:input.challengeDisabledJokerId,ordinaryPointsSuppressedIds});
   const row={facts,lower:BigInt(preview.scoreRange.minimum)},prior=best.get(facts.type);if(!prior||compare(row,prior)<0)best.set(facts.type,row);examined++;return true;
  },result():AiHandResult {const rows=[...best.values()].sort((a,b)=>Number(a.facts.type==='high-card')-Number(b.facts.type==='high-card')||compare(a,b));return{key,status:'ready',examined,ordered:rows.map(r=>r.facts)};}};
 }

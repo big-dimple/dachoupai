@@ -1,3 +1,5 @@
+import {usesAzaoCharge,validAzaoCharge,emptyAzaoCharge,type AzaoCharge} from './r2AzaoCharge';
+import {R2_AZAO_CHARGE_VERSION,R2_AZAO_CHARGE_HASH} from './r2GroupUpgrade';
 import {freshOpeningShow,recordOpeningShow,type OpeningShow} from './openingShow';
 import {hasR2ComboGrowthContract,R2_GROUP_UPGRADE_VERSION,R2_GROUP_UPGRADE_HASH,isR2RouteStarter,R2_ROUTE_STARTER_VERSION,R2_ROUTE_STARTER_HASH,R2_ROUTE_STARTERS,type R2OpeningRoute} from './r2GroupUpgrade';
 import {routeStarterStartCommand,routeStarterScoreEvent,type R2StarterRecord} from './r2RouteStarter';
@@ -43,6 +45,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_AZAO_CHARGE_VERSION,contentHash:R2_AZAO_CHARGE_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_ROUTE_STARTER_VERSION,contentHash:R2_ROUTE_STARTER_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_GROUP_UPGRADE_VERSION,contentHash:R2_GROUP_UPGRADE_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_COMBO_GROWTH_VERSION,contentHash:R2_COMBO_GROWTH_HASH,amoScoreTiming:'assist-v1' as const}),
@@ -66,7 +69,7 @@ interface R2StageBase extends Omit<StageState,'targetHeat'|'heat'|'previousHandT
   challengeDisabledJokerId:string|null;
 }
 /** Profile parsing requires assistUsed for the prototype and forbids it for published runs. */
-export type R2StageState = R2StageBase & ({assistUsed:boolean}|{assistUsed?:never}) & ({openingDiscard:R2OpeningDiscard|null}|{openingDiscard?:never});
+export type R2StageState = R2StageBase & ({assistUsed:boolean}|{assistUsed?:never}) & ({openingDiscard:R2OpeningDiscard|null}|{openingDiscard?:never}) & ({azaoCharge:AzaoCharge}|{azaoCharge?:never});
 export interface R2RunState extends Omit<RunState,'schemaVersion'|'rulesVersion'|'stage'|'totalHeat'|'jokers'|'lastScore'|'shop'|'boss'|'outcome'|'difficulty'|'program'|'rng'> {
   openingRoute?:R2OpeningRoute;
   openingShow?:OpeningShow;
@@ -103,6 +106,7 @@ export function assertR2Invariants(state:R2RunState):void {
   check(isR2RouteStarter(state)?!!state.routeStarter:!Object.hasOwn(state,'routeStarter'),'starter identity');
   check(state.contentVersion!==R2_ASSIST_VERSION||state.characterId==='amo','assist character identity');
   const config=r2RunModeConfig(state);
+  if(state.stage)check(usesAzaoCharge(state)?validAzaoCharge(state.stage.azaoCharge)&&((state.phase==='await-input'&&config.characterAbilityEnabled&&state.stage.boss?.definitionId!=='B08')||state.stage.azaoCharge!.charge===0):!Object.hasOwn(state.stage,'azaoCharge'),'azao charge state');
   check(r2ModeSeedAllowed(config,state.seed)&&(config.mode!=='tutorial'||state.characterId==='erxiang'),'mode seed/identity');
   check(state.mode==='standard'||state.tourMode==='normal','mode tour');
   check(r2ProgramStateValid(state.program,config,state.chapter),'program snapshot');
@@ -221,14 +225,14 @@ export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stag
   const modifiers=readR2Modifiers(state.jokers,r2JokerDefinitionsFor(state));
   const config=r2RunModeConfig(state),profile=r2RulesetFor(state);
   if(!profile)throw Error('incompatible-version');
-  return {amoScoreTiming:r2ScoreTimingFor(state),characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
+  return {...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage?.azaoCharge??emptyAzaoCharge(),release:false}}:{}),amoScoreTiming:r2ScoreTimingFor(state),characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
     ...(state.stage?{stageHeatBefore:state.stage.heat,stageTargetHeat:state.stage.targetHeat}:{}),
     handRules:{fourStraight:modifiers.fourStraight,fourFlush:modifiers.fourFlush},ordinaryPointsSuppressedIds:r2OrdinarySuppression(state.boss,state.stage?.index??state.stageIndex,hand,ids)};
 }
 function entryStage(state:R2RunState,targetHeat:string,skipResult:R2SkipResult|null=null):R2StageState {
   const handLimit=r2HandLimit(state),hands=r2HandsBudget(state),discards=r2DiscardBudget(state),initialJokerIds=state.jokers.map(joker=>joker.instanceId);
   const boss=state.stageIndex%3===2?structuredClone(state.boss):null;
-  return {...(hasR2ComboGrowthContract(state)?{openingDiscard:null}:{}),...(r2UsesAssist(state)?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
+  return {...(usesAzaoCharge(state)?{azaoCharge:emptyAzaoCharge()}:{}),...(hasR2ComboGrowthContract(state)?{openingDiscard:null}:{}),...(r2UsesAssist(state)?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
     discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:boss?.definitionId==='B01',discardsUsed:0,skipResult,playIndex:0,previousHandType:null,previousHandScore:null,
     handLimit,initialHandLimit:handLimit,boss,initialJokerIds,sealedJokerIds:[],challengeDisabledJokerId:state.chapterDisabledJokerId,rescueUsed:false,clearId:null,goldEarned:0,disabledIds:[],wagerSelected:false,wagerUsed:false,
     maxPlayedCount:0,ordinaryStraightSeen:false,ordinaryFlushSeen:false,quadRefundUsed:false,jokerSold:state.shop?.soldJoker??false};
@@ -311,6 +315,7 @@ function economicHooks(state:R2RunState,phase:TransactionHookPhase,events:Domain
   }
 }
 function clearStageEffects(state:R2RunState):void {
+  if(usesAzaoCharge(state)&&state.stage)state.stage.azaoCharge=emptyAzaoCharge();
   if(hasR2ComboGrowthContract(state))for(const joker of state.jokers)if(joker.definitionId==='f10')joker.counters={rescueArmed:false};
   for(const joker of state.jokers)if(joker.definitionId==='c05')joker.growth.pendingHeat={n:'0',d:'1'};
 }
@@ -645,12 +650,15 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(assisted&&!r2AssistAvailability(state).available)return fail('assist-unavailable');
         let assistIds:string[]=[];
         if(assisted){try{assistIds=r2AssistFacts({hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),selectedIds:ids,assistIds:action.assistIds,disabledIds:state.stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS}).assistIds;}catch(error){return fail(error instanceof Error?error.message:'invalid-assist');}}
+        const release=action.type==='PlayHand'&&Object.hasOwn(action,'azaoRelease')?action.azaoRelease:undefined;
+        if(release!==undefined&&(!usesAzaoCharge(state)||typeof release!=='boolean'))return fail('invalid-azao-release');
         let trace:ScoreTrace;
         try {trace=scoreR2Hand({rulesVersion:'r2',runId:state.runId,rootId:`${state.runId}/hand/${command.commandId}`,
           hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),selectedIds:ids,disabledIds:state.stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS,
-          ...(assisted?{assistIds}:{}),handLevels:state.handLevels,playIndex:state.stage.playIndex+1,handsBeforePlay:state.stage.handsLeft,previousHandType:state.stage.previousHandType,wager:state.stage.wagerSelected,rng:state.rng.rule,...r2ScoreContext(state,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),ids)});}
+          ...(assisted?{assistIds}:{}),handLevels:state.handLevels,playIndex:state.stage.playIndex+1,handsBeforePlay:state.stage.handsLeft,previousHandType:state.stage.previousHandType,wager:state.stage.wagerSelected,rng:state.rng.rule,...r2ScoreContext(state,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),ids),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage.azaoCharge!,release:release??false}}:{})});}
         catch(error) {return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
         if(hasR2ComboGrowthContract(state))trace=Object.freeze({...trace,combo:Object.freeze({goldBeforeRewards:null})});
+        if(usesAzaoCharge(state))state.stage.azaoCharge={...trace.azaoCharge!.after};
         if(assisted)state.stage.assistUsed=true;
         state.rng.rule={...trace.rng};state.lastTrace=trace;state.jokers=structuredClone(trace.jokers);state.gold+=trace.goldDelta;
         if(state.routeStarter&&!state.routeStarter.eventId){const first=routeStarterScoreEvent(state,trace);if(first){state.routeStarter.rootId=trace.rootId;state.routeStarter.eventId=first.eventId;}}
