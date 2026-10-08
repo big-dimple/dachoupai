@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "sourceHead": "b03c9f9a5dfdd2639178603a990b739fac4f3b2e",
+  "candidateIds": [
+    "diamonds-4",
+    "spades-4",
+    "clubs-5"
+  ],
+  "selected": {
+    "id": "diamonds-4",
+    "reason": "当前A/2两对不会因任一候选升级；手选4方块保留A方块/J方块/4方块三张同花材料，而非4黑桃两张黑桃或5梅花三张梅花。立即两对不变，不按预测总分自动最优。"
+  },
+  "pendingRestoreExact": true,
+  "firstClear": {
+    "heat": "562",
+    "target": "400",
+    "plays": 3,
+    "gold": 7
+  },
+  "nextStageUsed": false,
+  "steps": 10,
+  "errors": []
+}
