@@ -11,7 +11,12 @@ export type R2OpeningRoute=keyof typeof R2_ROUTE_STARTERS;
 export const R2_ROUTE_STARTER_VERSION='quality-r2-route-starter-v1';
 export const R2_ROUTE_STARTER_CONTRACT=Object.freeze({inherits:R2_GROUP_UPGRADE_HASH,starters:R2_ROUTE_STARTERS,scope:'initial-first-chapter-affordable-only',shelf:'replace-last-missing-preserve-rng-three-ordinary-original-price',reroll:'original-random',openingRoute:'immutable-saved-in-canonical-start-receipt',firstTrigger:'first-shelf-purchased-instance-positive-saved-event-once'});
 export const R2_ROUTE_STARTER_HASH=stableHash(R2_ROUTE_STARTER_CONTRACT);
-export function isR2RouteStarter(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ROUTE_STARTER_VERSION&&identity.contentHash===R2_ROUTE_STARTER_HASH;}
+export const R2_ERXIANG_CORE_VERSION='quality-r2-erxiang-core-group-v1';
+export const R2_ERXIANG_CORE_CONTRACT=Object.freeze({inherits:R2_ROUTE_STARTER_HASH,allCharacters:true,scope:'erxiang-only-other-five-unchanged',target:'all-active-scoring-core-cards-with-anchor-original-rank-two-pair-or-higher',extra:{first:1,sameRank:2},chain:'committed-untargeted-or-unqualified-clears-discard-preserves-stage-entry-resets',disabled:'B08-and-Q01-no-target-no-record',priority:'intrinsic-then-existing-on-card-jokers-then-role-remaining-budget',limits:{extraPerCard:4,depth:1,events:512},wholeJokerReplay:false});
+export const R2_ERXIANG_CORE_HASH=stableHash(R2_ERXIANG_CORE_CONTRACT);
+export function isR2ErxiangCore(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ERXIANG_CORE_VERSION&&identity.contentHash===R2_ERXIANG_CORE_HASH;}
+export function usesR2ErxiangCore(identity:{contentVersion?:unknown;contentHash?:unknown;characterId?:unknown}):boolean{return identity.characterId==='erxiang'&&isR2ErxiangCore(identity);}
+export function isR2RouteStarter(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return isR2ErxiangCore(identity)||identity.contentVersion===R2_ROUTE_STARTER_VERSION&&identity.contentHash===R2_ROUTE_STARTER_HASH;}
 export function hasR2GroupUpgradeContract(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return isR2GroupUpgrade(identity)||isR2RouteStarter(identity);}
 /** Explicit shared capability, never an alias that changes the frozen e7d identity. */
 export function hasR2ComboGrowthContract(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return hasR2GroupUpgradeContract(identity)||isR2ComboGrowth(identity);}

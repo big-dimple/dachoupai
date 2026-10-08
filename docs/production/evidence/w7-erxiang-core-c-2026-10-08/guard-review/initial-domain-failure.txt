@@ -1,0 +1,30 @@
+Initial exact head: 2da049089e9514bec48c3953890e18db2c3ca8ad
+Push CI run: 37830329381, domain job: 113493703358
+Current failure was fixed in 36822a4; this original failure is retained.
+
+FAIL  tests/ai-hand-action-cancellation.test.ts > playSelected cancels pending old work before dispatch and rebuilds it after a failed action
+Error: incompatible-version
+ ❯ r2JokerDefinitionsFor src/domain/r2ContentProfiles.ts:16:8
+     14|  if(identity.contentVersion===R2_ASSIST_VERSION&&identity.contentHash=…
+     15|  if([R2_PUBLISHED_CONTENT.v10,R2_PUBLISHED_CONTENT.v11].some(p=>p.vers…
+     16|  throw Error('incompatible-version');
+       |        ^
+     17| }
+     18| export function r2JokerDefinitionsForContext(identity:R2ContentIdentit…
+ ❯ r2ScoreContext src/domain/r2Run.ts:226:48
+ ❯ GameScene.selectionPreview src/game/GameScene.ts:982:19
+
+ ❯ GameScene.coreDraft src/game/GameScene.ts:986:32
+ ❯ GameScene.playSelected src/game/GameScene.ts:1306:21
+ ❯ invoke tests/ai-hand-action-cancellation.test.ts:17:145
+ ❯ tests/ai-hand-action-cancellation.test.ts:22:8
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed | 164 passed (165)
+      Tests  1 failed | 2679 passed (2680)
+   Start at  19:13:55
+   Duration  45.39s (transform 5.90s, setup 0ms, import 25.71s, tests 70.95s, environment 33ms)
+
+
+

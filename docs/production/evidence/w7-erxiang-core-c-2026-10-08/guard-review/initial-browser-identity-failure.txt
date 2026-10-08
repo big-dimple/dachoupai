@@ -1,0 +1,22 @@
+Exact head: 986f275da9fa6c1e8300a01bc9425b9d9d7b0ea6
+PR CI run: 37830899789, browser job: 113495659209
+Domain 165 files / 2680 tests and build passed; smoke identity was still the prior normal-route version/hash.
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'quality-r2-erxiang-core-group-v1'
+- 'quality-r2-route-starter-v1'
+              ^
+
+    at file:///__w/dachoupai/dachoupai/harness/screenshot.mjs:63:12 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'quality-r2-erxiang-core-group-v1',
+  expected: 'quality-r2-route-starter-v1',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.3
+

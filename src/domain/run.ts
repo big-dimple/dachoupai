@@ -99,7 +99,7 @@ export interface RunState {
 export type Action =
   | { type: 'StartRun'; seed: string; characterId: CharacterId; rulesVersion?: 'r1' | 'r2';modeConfig?:R2ModeSelection;r2Profile?:'amo-assist-v1'|'combo-growth-v1'|'group-upgrade-v1';r2Identity?:{contentVersion:string;contentHash:string};openingRoute?:R2OpeningRoute }
   | { type: 'LeaveShop' | 'EnterStage' | 'OpenShop' | 'RerollShop' | 'AbandonRun' | 'SkipStage' | 'ContinueEndless' }
-  | { type: 'PlayHand'; selectedIds: readonly string[] }
+  | { type: 'PlayHand'; selectedIds: readonly string[]; coreTargetId?:string; coreTargetRank?:import('../cards/types').Rank }
   | { type: 'PlayAssistedHand'; selectedIds: readonly string[]; assistIds:readonly string[] }
   | { type: 'DiscardHand'; selectedIds: readonly string[] }
   | { type: 'SellJoker'; instanceId:string }
