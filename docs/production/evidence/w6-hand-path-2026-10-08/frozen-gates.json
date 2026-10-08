@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "4425c07287d28c025bf0ae48dd9b63de4b69aaf2b264379c1cc2db587e67f479",
+    "index": "159d9a95ca8323b3c355116048d4474f5a506be94ea5683d12c92cd1cd4ad86b",
+    "head": "7280d838895a7ae7ea6b040a24dcaa8bc8914aa2",
+    "branch": "refs/heads/feat/w6-hand-path-20261008"
+  },
+  "after": {
+    "source": "4425c07287d28c025bf0ae48dd9b63de4b69aaf2b264379c1cc2db587e67f479",
+    "index": "159d9a95ca8323b3c355116048d4474f5a506be94ea5683d12c92cd1cd4ad86b",
+    "head": "7280d838895a7ae7ea6b040a24dcaa8bc8914aa2",
+    "branch": "refs/heads/feat/w6-hand-path-20261008"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 29548
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 2231
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 14058
+    },
+    {
+      "name": "hand-path-native",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 30438
+    },
+    {
+      "name": "first-chapter-choice-growth-native",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 124780
+    },
+    {
+      "name": "verify:smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 160844
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 312
+    }
+  ]
+}
