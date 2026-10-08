@@ -1,0 +1,55 @@
+{
+  "status": "FAIL",
+  "exitCode": 143,
+  "before": {
+    "source": "21ca1be1dae1abc4b08adac17df483e3bd6c3d56e009e548cd581d07dbb0fae9",
+    "index": "dbab17366ae4053ad6557122afdb3bab08c36f348b03f4d6ce03f99f91d35902",
+    "head": "be3123e3150cda47ea033e4140eb563bd9722943",
+    "branch": "refs/heads/feat/w6-shop-first-guide-20261008"
+  },
+  "after": {
+    "source": "21ca1be1dae1abc4b08adac17df483e3bd6c3d56e009e548cd581d07dbb0fae9",
+    "index": "dbab17366ae4053ad6557122afdb3bab08c36f348b03f4d6ce03f99f91d35902",
+    "head": "be3123e3150cda47ea033e4140eb563bd9722943",
+    "branch": "refs/heads/feat/w6-shop-first-guide-20261008"
+  },
+  "steps": [
+    {
+      "name": "all-tests",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 28725
+    },
+    {
+      "name": "content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 2260
+    },
+    {
+      "name": "type-and-build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 14031
+    },
+    {
+      "name": "standard-chromium-desktop-mobile-smoke",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 158777
+    },
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 317
+    },
+    {
+      "name": "unified-real-chapter-pc-phone-narrow",
+      "status": "FAIL",
+      "childExitCode": 143,
+      "elapsedMs": 78481,
+      "reason": "child exited 143"
+    }
+  ]
+}

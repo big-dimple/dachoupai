@@ -1,5 +1,9 @@
 # 开发入口
 
+## 首章统一包当前候选（2026-10-08，仅draft待父独审）
+
+PR52已由父FF到main795c140；本包产品fed4634完成持牌/现货用途、逐槽实际损失比较和可关闭首次实战提示，独立UI登记绑定既有身份，成功替换清除且失败保原。2559tests/150files、content/type/build、标准Chromium双端smoke和三端真实首章通过，source/index/HEAD保持；原FAIL与有限画面见[统一证据](docs/production/evidence/w6-shop-guide-2026-10-08/README.md)。当前只draft/main父串行，精确最终head CI另核；真人自主理解/继续、设备/GPU/听感/W6未签。完整C04、高光特效、角色/后期扩展不提前。6.1默认Medium单线，原历史保各自来源。
+
 ## 当前执行校准（2026-10-07）
 
 2026-10-08用户更新：当前首章首次实战情境引导必须做，不能误按旧C04暂停或“仅补充”漏做；与持有区关系/现货替换比较合为[PR52合入后的下一统一包](docs/production/SHOP_OWNED_REPLACEMENT_SCOPE.md)。本PR只记范围，先完成当前修复精确CI；完整C04图鉴/历史等未授权扩展仍暂停，未记已实现或验收。

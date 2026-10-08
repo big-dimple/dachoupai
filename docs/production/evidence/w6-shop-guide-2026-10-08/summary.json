@@ -1,0 +1,113 @@
+{
+  "product": "fed463443e90c3d91bd7bfae6b5f88202d84bfc5",
+  "baseline": "795c140e98a632d639cece57d00f933d6396b2a5",
+  "localFinalGate": "PASS",
+  "tests": 2559,
+  "testFiles": 150,
+  "sourceIndexHeadUnchanged": true,
+  "native": [
+    {
+      "device": {
+        "name": "pc",
+        "width": 1366,
+        "height": 768
+      },
+      "status": "PROBE_COMPLETE",
+      "head": "fed463443e90c3d91bd7bfae6b5f88202d84bfc5",
+      "finalGold": 23,
+      "afterExplicitSaleGold": 25,
+      "growth": {
+        "heat": {
+          "n": "50",
+          "d": "1"
+        }
+      },
+      "eligibleSkipRestored": true,
+      "skipRestored": true,
+      "firstHandStatus": "首次：牌型规则→怎么凑",
+      "bossDismissWaitMs": 372.09999999403954,
+      "guidePreferenceAfterSkip": {
+        "disabled": false,
+        "skipped": [
+          "shop",
+          "hand",
+          "saved"
+        ]
+      }
+    },
+    {
+      "device": {
+        "name": "phone",
+        "width": 390,
+        "height": 740
+      },
+      "status": "PROBE_COMPLETE",
+      "head": "fed463443e90c3d91bd7bfae6b5f88202d84bfc5",
+      "finalGold": 23,
+      "afterExplicitSaleGold": 25,
+      "growth": {
+        "heat": {
+          "n": "50",
+          "d": "1"
+        }
+      },
+      "eligibleSkipRestored": true,
+      "skipRestored": true,
+      "firstHandStatus": "首次：牌型规则→怎么凑",
+      "bossDismissWaitMs": 372.70000000298023,
+      "guidePreferenceAfterSkip": {
+        "disabled": false,
+        "skipped": [
+          "shop",
+          "hand",
+          "saved"
+        ]
+      }
+    },
+    {
+      "device": {
+        "name": "narrow",
+        "width": 320,
+        "height": 740
+      },
+      "status": "PROBE_COMPLETE",
+      "head": "fed463443e90c3d91bd7bfae6b5f88202d84bfc5",
+      "finalGold": 23,
+      "afterExplicitSaleGold": 25,
+      "growth": {
+        "heat": {
+          "n": "50",
+          "d": "1"
+        }
+      },
+      "eligibleSkipRestored": true,
+      "skipRestored": true,
+      "firstHandStatus": "首次：牌型规则→怎么凑",
+      "bossDismissWaitMs": 372.70000000298023,
+      "guidePreferenceAfterSkip": {
+        "disabled": true,
+        "enrolled": "[\"run/group-natural-17/amo\",\"amo\",\"quality-r2-group-upgrade-prototype-v1\",\"json-fnv-v1:5025cc23c013987f\",\"standard\",0,null,\"normal\"]",
+        "skipped": [
+          "shop",
+          "hand",
+          "saved"
+        ]
+      }
+    }
+  ],
+  "screenshotsActualViewed": [
+    "pc-first-hand-entry.png",
+    "pc-replacement-growth-20.png",
+    "phone-saved-source-guide.png",
+    "narrow-replacement-growth-20.png",
+    "narrow-after-sale-fresh-price.png",
+    "phone-group-route.png"
+  ],
+  "notRun": [
+    "human understanding/retention/first120s",
+    "physical PC/phone/GPU",
+    "audio",
+    "complete C04",
+    "W6 acceptance"
+  ]
+}

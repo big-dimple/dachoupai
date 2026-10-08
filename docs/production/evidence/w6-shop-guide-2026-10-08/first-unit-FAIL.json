@@ -1,0 +1,8 @@
+{
+  "status": "FAIL",
+  "scope": "First identity-directed attempt, not the final frozen source",
+  "files": "1 failed, 5 passed",
+  "tests": "1 failed, 93 passed",
+  "failure": "tests/recovery-save.test.ts:48 TypeError: session.retrySave is not a function",
+  "resolution": "Test used a nonexistent method; corrected to the existing session.retry(). The six-file rerun passed 94 tests; final 2559-test gate passed."
+}
