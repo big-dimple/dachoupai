@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "fdb578be3048a4c2232d4200929c520d086f801cb9dd00a61406ef95a1baf18b",
+    "index": "1f8c5b9fcbb45cb5a09b2e9e3d23d602029295cdffee0471ea0f9ffac97ecf28",
+    "head": "0bf84eda8db07ee3d279ab3d633291478f352442",
+    "branch": "refs/heads/feat/w6-shop-first-guide-20261008"
+  },
+  "after": {
+    "source": "fdb578be3048a4c2232d4200929c520d086f801cb9dd00a61406ef95a1baf18b",
+    "index": "1f8c5b9fcbb45cb5a09b2e9e3d23d602029295cdffee0471ea0f9ffac97ecf28",
+    "head": "0bf84eda8db07ee3d279ab3d633291478f352442",
+    "branch": "refs/heads/feat/w6-shop-first-guide-20261008"
+  },
+  "steps": [
+    {
+      "name": "review-directed",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 2307
+    },
+    {
+      "name": "review-typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 7260
+    }
+  ]
+}

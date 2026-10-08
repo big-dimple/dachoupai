@@ -109,5 +109,17 @@
     "audio",
     "complete C04",
     "W6 acceptance"
-  ]
+  ],
+  "reviewFixes": {
+    "product": "0bf84eda8db07ee3d279ab3d633291478f352442",
+    "localDirectedTests": 70,
+    "localDirectedFiles": 6,
+    "typecheck": "PASS",
+    "sourceIndexHeadUnchanged": true,
+    "gate": "review-directed-frozen.json",
+    "localFullSuiteRepeated": false,
+    "screenshotsRetaken": false,
+    "priorNativeProduct": "fed463443e90c3d91bd7bfae6b5f88202d84bfc5",
+    "finalHeadCI": "verify exact head push and pull_request separately in PR53"
+  }
 }
