@@ -58,6 +58,8 @@ export class IntermissionScene extends Phaser.Scene {
   private view!:SceneView;
   private lifecycle=0;
   private sourceArtRequest?:AbortController;
+  private sourceArtLayer?:Phaser.GameObjects.Container;
+  private paintSourceArt?:()=>void;
   private busy=false;
   private notice='';
   private firstRender=true;
@@ -77,12 +79,12 @@ export class IntermissionScene extends Phaser.Scene {
     this.stopSourceArt();const request=this.sourceArtRequest=new AbortController(),lifecycle=this.lifecycle;
     const current=()=>this.sourceArtRequest===request&&!request.signal.aborted&&lifecycle===this.lifecycle&&this.sys.settings.active&&!this.busy&&runController(this)===controller&&controller.state===run;
     void loadResultSourceArt(this,key,url,request.signal,current).then(loaded=>{
-      if(loaded&&current()){this.firstRender=false;this.render();}
+      if(loaded&&current())this.paintSourceArt?.();
     });
   }
   create():void {
     this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;
-    const retire=()=>{this.events.off('shutdown',retire);this.events.off('destroy',retire);this.lifecycle++;this.stopSourceArt();this.dialog.close();this.stopCelebration();};
+    const retire=()=>{this.events.off('shutdown',retire);this.events.off('destroy',retire);this.lifecycle++;this.stopSourceArt();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;this.dialog.close();this.stopCelebration();};
     this.events.once('shutdown',retire);this.events.once('destroy',retire);
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
     this.cameras.main.setBackgroundColor('#F3EADB');
@@ -102,7 +104,7 @@ export class IntermissionScene extends Phaser.Scene {
     const p=resultLayout(l.width,l.height,l.hud.y,bottom),run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
     const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex,run.tourMode,run.difficulty):undefined,skipped=run.stage?.skipResult,won=run.phase==='run-won',capped=this.result.cleared&&run.phase==='stage-cleared'&&!nextStage,lost=!this.result.cleared&&!skipped&&!won;
     const outcome=stageOutcome(run.stage!,run.lastTrace),animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    this.stopCelebration();v.clear();v.paperBackground();
+    this.stopCelebration();v.clear();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;v.paperBackground();
     v.text(p.x,p.top,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,'#3F606B',p.w-116);
     const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?'八章好戏，满堂喝彩！':this.result.cleared?outcome.title:'演出失败';
     v.text(lost?l.width/2:p.x,lost?Math.max(p.top+34,l.height*.18):p.top+(p.short?23:p.portrait?52:34),title,p.short?22:p.portrait?26:34,'#26313A',p.w).setOrigin(lost?.5:0,0).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
@@ -184,15 +186,22 @@ export class IntermissionScene extends Phaser.Scene {
       return;
     }
     const facts=resultStageFacts(run,this.result.cleared,skipped),plan=resultStagePlan(b,v.layout.height<500),main=plan.score,center=main.x+main.width/2,short=v.layout.height<500;
-    const sourceView=resultStageSources(this,v,plan.source,facts,short),text=sourceView.text;
-    const source=facts.source,growth=facts.growth,small=main.height<200;
-    let y=text.y;
-    if(source){const name=v.text(text.x,y,growth?.name??source.title,14,PAPER_CSS.jade,text.width).setFontStyle('bold').setName('result/source-continuity');y+=name.height+6;}
-    if(growth){
-      const prefix=growth.metric.includes('×')?'×':'+',read=v.text(text.x,y,'本手读取 '+prefix+growth.before,14,PAPER_CSS.jade,text.width).setName('result/growth-read');y+=read.height+4;
-      const saved=v.text(text.x,y,prefix+growth.before+' → '+prefix+growth.after,text.width<150?19:24,PAPER_CSS.ink,text.width).setFontStyle('bold').setName('result/growth-saved');y+=saved.height+4;
-      v.text(text.x,y,'保存成长 · 下手生效',14,PAPER_CSS.jade,text.width).setName('result/growth-next');
-    }else if(source){v.text(text.x,y,source.effect,14,PAPER_CSS.jade,text.width).setStyle({maxLines:short?3:4}).setName('result/source-effect');}
+    const small=main.height<200;
+    const paint=()=>{
+      this.sourceArtLayer?.destroy();const start=v.root.length;
+      const sourceView=resultStageSources(this,v,plan.source,facts,short),text=sourceView.text;
+      const source=facts.source,growth=facts.growth;
+      let y=text.y;
+      if(source){const name=v.text(text.x,y,growth?.name??source.title,14,PAPER_CSS.jade,text.width).setFontStyle('bold').setName('result/source-continuity');y+=name.height+6;}
+      if(growth){
+        const prefix=growth.metric.includes('×')?'×':'+',read=v.text(text.x,y,'本手读取 '+prefix+growth.before,14,PAPER_CSS.jade,text.width).setName('result/growth-read');y+=read.height+4;
+        const saved=v.text(text.x,y,prefix+growth.before+' → '+prefix+growth.after,text.width<150?19:24,PAPER_CSS.ink,text.width).setFontStyle('bold').setName('result/growth-saved');y+=saved.height+4;
+        v.text(text.x,y,'保存成长 · 下手生效',14,PAPER_CSS.jade,text.width).setName('result/growth-next');
+      }else if(source){v.text(text.x,y,source.effect,14,PAPER_CSS.jade,text.width).setStyle({maxLines:short?3:4}).setName('result/source-effect');}
+      this.sourceArtLayer=this.add.container(0,0,v.root.list.slice(start)).setName('result-art/source-layer');v.add(this.sourceArtLayer);
+      return sourceView;
+    };
+    this.paintSourceArt=()=>{paint();};const sourceView=paint();
     const hand=facts.trace?HAND_LABELS[facts.trace.handType]:'本场热度';
     v.text(center,main.y,hand,16,PAPER_CSS.jade,main.width-16).setOrigin(.5,0).setName('result/hand');
     if(facts.trace)v.text(center,main.y+24,`${fractionText(facts.trace.accumulator.H)} 热度 × ${fractionText(facts.trace.accumulator.M)}`,14,PAPER_CSS.jade,main.width-8).setOrigin(.5,0).setName('result/formula');
