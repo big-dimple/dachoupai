@@ -19,14 +19,15 @@ function jokerUses(d:R2JokerDefinition):string[]{
  if(kinds.some(k=>['add-heat','add-multiplier','multiply-multiplier','read-growth','read-coefficient','consume-growth','chance-add-heat','add-heat-per-gold','add-heat-per-empty-slot','rescue-multiplier'].includes(k))||mods.some(m=>['four-straight','four-flush'].includes(m)))uses.push('计分');
  if(kinds.some(k=>['add-growth','add-coefficient','multiply-coefficient-once','update-score-growth'].includes(k)))uses.push('成长');
  if(kinds.includes('retrigger-card'))uses.push('重触');
- if(kinds.some(k=>/gold|refund|reward|rescue-hand/.test(k))||mods.some(m=>/discount|interest/.test(m)))uses.push('资源');
+ if(kinds.some(k=>/gold|refund|reward|rescue/.test(k))||mods.some(m=>/discount|interest/.test(m)))uses.push('资源');
  if(mods.some(m=>m==='hand-limit'||m==='consumable-capacity'))uses.push('扩容');
  return uses;
 }
 function operationUses(kind:string):string[]{
  if(/upgrade-hand|exchange-hand-levels|boss-most-used-hand-upgrade/.test(kind))return ['计分'];
- if(/limit|slots|capacity|offer-count/.test(kind)&&!kind.includes('deletion-floor'))return ['扩容'];
- if(/gold|discard|reroll|discount|interest/.test(kind))return ['资源'];
+ if(/hand-limit|slots|capacity|offer-count/.test(kind))return ['扩容'];
+ if(/gold|discard|hands-limit|reroll|discount|interest|reward|first-normal-clear-per-chapter/.test(kind))return ['资源'];
+ if(kind==='clear-deck-specials')return ['改牌','资源'];
  return ['改牌'];
 }
 /** Public definitions and committed visible sources only; no RNG, commands or storage. */

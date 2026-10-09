@@ -49,3 +49,9 @@ it('querying cannot mutate the checkpoint or use hidden draw order and RNG',()=>
  const s=growthPlan('d03'),before=structuredClone(s),facts=catalogFacts(s);queryCatalog(facts.entries,{...query,use:'成长'});expect(s).toEqual(before);
  const other=structuredClone(s);other.drawPile.reverse();for(const rng of Object.values(other.rng))rng.state=(rng.state+19)>>>0;expect(catalogFacts(other)).toEqual(facts);
 });
+it('purpose tags follow actual identity operations, including rescue and permanent resource rewards',()=>{
+ const current=growthPlan('d03'),legacy=growthPlan('d03',true);
+ for(const id of ['a06','c05','e11','f12'])expect(one(current,id).uses).toContain('成长');
+ expect(one(legacy,'a06').uses).not.toContain('成长');expect(one(current,'U12').uses).toContain('资源');
+ expect(one(current,'U03').uses).toContain('资源');expect(one(current,'f07').uses).toContain('资源');
+});
