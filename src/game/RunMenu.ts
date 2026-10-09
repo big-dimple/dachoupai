@@ -192,7 +192,8 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   button('菜单',()=>{collapseDock();open();},dockPanel);button('退出全屏',()=>{collapseDock();void fullscreen.toggle();},dockPanel);
   modal.append(panel);host.append(fullButton,toggle,dock,dockPanel,fullscreenNotice,modal);document.body.append(host);
   const unsubscribe=session.subscribe(refreshState);refreshState();
+  const refreshLivePlayback=()=>{if(modal.open)refreshPlayback();};game.events.on('poststep',refreshLivePlayback);
   const refreshMenuActions=(_parent:unknown,key:string)=>{if(key==='runMenuActions')refreshPlayback();};
   for(const event of ['setdata','changedata','removedata'])game.registry.events.on(event,refreshMenuActions);
-  game.events.once('destroy',()=>{catalogDialog.close();unsubscribe();unsubscribeFullscreen();for(const event of ['setdata','changedata','removedata'])game.registry.events.off(event,refreshMenuActions);clearTimeout(noticeTimer);fullscreen.dispose();if(modal.open)modal.close();host.remove();});
+  game.events.once('destroy',()=>{game.events.off('poststep',refreshLivePlayback);catalogDialog.close();unsubscribe();unsubscribeFullscreen();for(const event of ['setdata','changedata','removedata'])game.registry.events.off(event,refreshMenuActions);clearTimeout(noticeTimer);fullscreen.dispose();if(modal.open)modal.close();host.remove();});
 }
