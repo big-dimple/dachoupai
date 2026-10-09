@@ -1,3 +1,5 @@
+import {growthPayoffs,growthEventPayoff} from './GrowthPayoff';
+import {showGrowthPayoff} from './GrowthPayoffView';
 import {routeFrame} from './RouteFrame';
 import {routeFitCue,markRouteDetail} from './RouteFitCue';
 import {inventoryFeedback} from './InventoryFeedback';
@@ -769,7 +771,7 @@ export class GameScene extends Phaser.Scene {
       (this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('戏法补牌');this.resultText.setVisible(false);
       const text=this.add.text(p.x+p.width/2,p.y+p.height/2,this.refillHidden?'候选已收起 · 点英雄继续选择':`留 ${pending.required} 张 · 已选 ${this.selectedIds.size} / ${pending.required}\n确认后其余 ${pending.candidateIds.length-pending.required} 张进已用区`,{fontFamily:UI_FONT,fontSize:'16px',color:C.jade,align:'center',wordWrap:{width:p.width-16,useAdvancedWrap:true}}).setOrigin(.5).setName('refill/instruction');this.previewCards.add(text);
       const note=this.add.text(score.x+10,score.y+28,'原保留：'+held,{fontFamily:UI_FONT,fontSize:'14px',color:C.mutedInk,wordWrap:{width:score.width-20,useAdvancedWrap:true}}).setName('refill/held');this.previewCards.add(note);return;}
-    if(this.assistProfile){const growth=!preview&&p.height>=94&&p.width>=250?buildGrowthProgress(this.run)[0]:undefined;const shown=growth&&showBuildGrowth(this.view,this,this.previewCards,p,growth);this.renderAssistSelection(preview,p,!!shown);return;}
+    if(this.assistProfile){const growth=!preview&&p.height>=94&&p.width>=250?buildGrowthProgress(this.run)[0]:undefined,payoffs=growth?growthPayoffs(this.run):[],payoff=payoffs.find(p=>p.change!=='same')??payoffs[0];const shown=payoff&&showGrowthPayoff(this.view,this,this.previewCards,p,payoff)||growth&&showBuildGrowth(this.view,this,this.previewCards,p,growth);this.renderAssistSelection(preview,p,!!shown);return;}
     if(!preview){
       const notice=stageNotice(this.run),hint=notice?.warning?notice.title+(p.height>=90?'\n'+notice.description:''):this.run.stage!.playIndex===0?'选 1–5 张，凑牌型出牌\n不合适？弃牌换新牌':'选牌，准备下一手';
       const text=this.add.text(p.x+p.width/2,p.y+p.height/2,hint,{fontFamily:UI_FONT,fontSize:p.height<90||notice?.warning?'14px':'18px',color:notice?.warning?C.red:C.mutedInk,align:'center',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5);
@@ -1660,6 +1662,10 @@ export class GameScene extends Phaser.Scene {
     this.scoreTotal.setData('eventPhase','rest');
     const growth=this.presentation?savedGrowthStamp(this.run,this.presentation.score,event):undefined;
     if(growth){this.statusText.setText(benefit!.title+' · 已存成长，下手生效').setData('growthStamp',growth);this.resultText.setText(benefit!.title+' · 成长已保存');}
+    const earned=this.presentation&&!this.presentation.replay?growthEventPayoff(this.presentation.state,this.presentation.score,event):undefined;
+    if(earned){const label=this.jokerViews.get(earned.instanceId)?.getData('valueLabel') as Phaser.GameObjects.Text|undefined;
+      if(label){const value='↑'+earned.delta,previous=label.text;label.setText(value);const room=label.getData('labelRoom') as number|undefined;if(room&&label.width*1.08>room)label.setText(previous);else label.setColor(C.red).setData('growthPayoff',earned);if(!this.reducedMotion)notes.push(this.animate({targets:label,scaleX:{from:1.08,to:1},scaleY:{from:1.08,to:1},duration:Math.min(160,timing.rest),ease:'Sine.easeOut'},context));}
+    }
     await Promise.all([this.wait(timing.rest,context),restoreKey?.release?.()??Promise.resolve(),...notes]);
     if(context.signal.aborted)return;
     restoreKey?.();
