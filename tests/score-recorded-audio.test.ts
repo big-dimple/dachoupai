@@ -53,3 +53,9 @@ it('user 7/100 remains exact while internal music headroom, trimmed body and duc
  inside.scoreSamples.set('card-slide-1',{name:'card-slide-1',duration:.6});inside.sampleBodies.set('card-slide-1',{offset:.142,gain:.72});engine.select();expect(sources[0].start.mock.calls[0][1]).toBe(.142);expect(inside.gains.music.gain.linearRampToValueAtTime).toHaveBeenLastCalledWith(.035,1.12);
  engine.setVolume('music',0);expect(inside.gains.music.gain.setValueAtTime).toHaveBeenLastCalledWith(0,1);
 });
+
+it('key landing owns four recorded layers with low body, filtered air and bounded tail',()=>{
+ const {engine,inside,sources}=fixture(),filters:any[]=[];inside.context.createBiquadFilter=()=>{const f={type:'',Q:{value:0},frequency:{setValueAtTime:vi.fn(),linearRampToValueAtTime:vi.fn()},connect:vi.fn(),disconnect:vi.fn()};filters.push(f);return f;};
+ const show={};engine.scoreImpact(show,'actual-key','key',3);expect(sources.map(s=>s.buffer.name)).toEqual(['impactSoft_heavy_000','cloth2','impactWood_heavy_000','impactBell_heavy_003']);expect(filters.map(f=>f.type)).toEqual(['lowpass','bandpass','lowpass']);expect(filters[0].frequency.setValueAtTime).toHaveBeenCalledWith(620,1);expect(filters[0].frequency.linearRampToValueAtTime).toHaveBeenCalledWith(180,1.16);expect(sources.every(s=>s.stop.mock.calls[0][0]-s.start.mock.calls[0][0]<=.53)).toBe(true);
+ engine.cancelPresentation();engine.scoreImpact(show,'actual-key','key',3);expect(sources).toHaveLength(4);expect(filters.every(f=>f.disconnect.mock.calls.length===1)).toBe(true);
+});
