@@ -50,10 +50,10 @@ it('compact inventory names retain measured four-character14px room without cove
  }
 });
 
-it('the stock, toolbar/tool-inventory anchor and action rows stay at their exact old positions',()=>{
+it('toolbar and action anchors stay fixed while compact stock reserves an owned heading',()=>{
  for(const [width,height,top,bottom] of [[320,568,12,0],[390,740,12,0],[844,300,12,34]]){
   const l=shopLayout(width,height,top,bottom,3,true);
-  if(width===320){expect(l.tabs).toEqual({x:12,y:64,width:296,height:44});expect(l.reroll).toEqual({x:12,y:424,width:144,height:44});expect(l.play).toEqual({x:12,y:476,width:296,height:56});expect(l.shelf[0]).toMatchObject({y:116,width:88,height:88*1.4});}
+  if(width===320){expect(l.tabs).toEqual({x:12,y:64,width:296,height:44});expect(l.reroll).toEqual({x:12,y:424,width:144,height:44});expect(l.play).toEqual({x:12,y:476,width:296,height:56});expect(l.shelf[0]).toMatchObject({y:116,width:88,height:88*1.4});expect(l.slots[0].y+l.slots[0].height).toBeLessThanOrEqual(l.reroll.y-4);}
   for(const b of l.shelf)expect(b.x).toBeGreaterThanOrEqual(0);
   for(const b of l.slots){const hit=shopOwnedHitBox(b,l.reroll.y,true);for(const a of [l.reroll,l.build,l.play])expect(intersects(hit,a)).toBe(false);}
  }

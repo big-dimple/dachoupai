@@ -398,3 +398,19 @@ button[aria-busy=true] { border-style:dashed; }
 .dialog-primary .suit-symbol--red { color:#ffede3; }
 .suit-select[data-suit="spades"],.suit-select[data-suit="clubs"] { color:#26313a; }
 .suit-select[data-suit="hearts"],.suit-select[data-suit="diamonds"] { color:#9f3228; }
+
+/* W2 shop: existing ink/paper and real artwork; native confirmation stays explicit. */
+.detail-dialog[data-shop-context] .dialog-header { border-bottom:1px solid #3F606B;background:#E2E8E5; }
+.detail-dialog[data-shop-context] .dialog-eyebrow { display:block;font-size:14px;color:#3F606B;margin-bottom:4px; }
+.detail-dialog[data-shop-context] .dialog-purchase-summary { background:#FFF9EE;border:1px solid #3F606B;border-left:4px solid #B8473A;border-radius:4px;margin:0 0 14px;padding:12px;color:#26313A;font-size:16px;line-height:1.55; }
+.detail-dialog[data-shop-context] .dialog-actions { display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid #C7B89D;background:#FFF9EE; }
+.detail-dialog[data-shop-context] .dialog-actions button { min-height:44px;flex:1 1 120px; }
+.detail-dialog[data-shop-context] .dialog-actions .dialog-primary { background:#B8473A;color:#FFF9EE;border-color:#B8473A;min-height:56px; }
+.detail-dialog[data-shop-context] .dialog-actions .dialog-primary:disabled { background:#D8D1C3;color:#595B59;border-color:#858B89; }
+.detail-dialog[data-shop-context] .dialog-close { box-shadow:none;background:#FFF9EE; }
+@media(max-width:560px) and (orientation:portrait) {
+ .detail-dialog[data-shop-context=purchase] .dialog-actions .dialog-primary,
+ .detail-dialog[data-shop-context=sale] .dialog-actions .dialog-primary { flex-basis:100%;order:-1; }
+ .detail-dialog[data-shop-context=purchase].detail-dialog--illustrated .dialog-content,
+ .detail-dialog[data-shop-context=sale].detail-dialog--illustrated .dialog-content { grid-template-rows:minmax(0,27%) minmax(0,1fr); }
+}
