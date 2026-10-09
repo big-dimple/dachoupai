@@ -61,7 +61,8 @@ export function shopLayout(width:number,height:number,top:number,bottom:number,c
   const cardWidth=Math.min(Math.max(88,Math.min(108,seat-8)),portrait?portraitFaceBudget:Infinity),cardHeight=cardWidth*1.4;
   const shelfWidth=cols*seat+8*(cols-1),shelfX=x+(w-shelfWidth)/2,shelfTop=top+104;
   const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:shelfX+i*(seat+8)+(seat-cardWidth)/2,y:shelfTop,width:cardWidth,height:cardHeight}));
-  const rackWidth=5*slotWidth+4*slotGap,slotX=x+(w-rackWidth)/2,slotY=shelfTop+cardHeight+100;
+  const ownedGap=portrait?Math.min(24,Math.max(0,height-top-bottom-352-slotHeight-cardHeight)):24;
+  const rackWidth=5*slotWidth+4*slotGap,slotX=x+(w-rackWidth)/2,slotY=shelfTop+cardHeight+100+ownedGap;
   const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+slotGap),y:slotY,width:slotWidth,height:slotHeight}));
   const secondaryY=portrait?height-bottom-144:Math.min(height-bottom-144,slotY+slotHeight+20),toolWidth=(Math.min(w,420)-8)/2,actionX=x+(w-Math.min(w,420))/2,inventoryY=slotY+slotHeight+8;
   return {x,w,top,pc:null,desktop:false,short:false,copyBeside:false,inventoryCollapsed:false,compact:portrait,wideHeader:false,portrait,slots,shelf,tabs:{x:actionX,y:top+52,width:Math.min(w,420),height:44},
