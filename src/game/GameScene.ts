@@ -1,3 +1,4 @@
+import {drawStageTableArt} from './StageTableArt';
 import {paperSceneStart} from './PaperFlow';
 import {usesTouyeWager,type TouyeBet,type TouyeTarget} from '../domain/r2TouyeWager';
 import {touyeChoice,TOUYE_RISK} from './TouyeWagerCopy';
@@ -324,7 +325,7 @@ export class GameScene extends Phaser.Scene {
     requestJokerArt(this,this.run.jokers.map(j=>j.definitionId),()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();});
     this.stage={...this.stage,targetHeat:this.run.stage!.targetHeat};
     this.controlsLive=false;this.stopScoreFire();
-    const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.handNavigationButtons=[];v.paperBackground();this.settledCards.clear();this.previewCards=undefined;
+    const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.handNavigationButtons=[];v.paperBackground();drawStageTableArt(this,v,this.characterId);this.settledCards.clear();this.previewCards=undefined;
     this.stopJokerIdle();
     this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.playAura=undefined;
     if(this.progressBar)this.tweens.killTweensOf(this.progressBar);this.progressTarget=Number.NaN;
@@ -374,8 +375,7 @@ export class GameScene extends Phaser.Scene {
     this.breakdownText=v.text(0,0,'',14,C.mutedInk).setVisible(false);
     this.fitScoreReadouts();
     const p=playedFootprint(toolInventoryPlayedArea(l),portrait);
-    v.material(p,T.jadeSoft,T.jadeSoft,6);
-    v.rect(p,T.jadeSoft).setFillStyle(0,0).setStrokeStyle(1,T.jade,.22).setName('table/played-workplane');
+    v.rect(p,T.paperLight).setFillStyle(0,0).setStrokeStyle(1,T.jade,.22).setName('table/played-workplane');
     if(l.mode!=='landscape')v.text(p.x,p.y-18,'待出牌',14,C.jade).setName('table/played-label');
     this.previousHandText=v.text(portrait?p.x+10:h.x+12,portrait?p.y+p.height-20:h.y+(short?301:510),'',14,portrait?'#eddfbf':C.brass,portrait?p.width-20:h.width-24).setVisible(!portrait&&!l.shortLandscape);
     this.handCountText=v.text(l.handLabel.x,l.handLabel.y,'',14,'#f0e6cb').setVisible(!portrait&&l.labelHeight>0);
@@ -428,7 +428,7 @@ export class GameScene extends Phaser.Scene {
       if(!j){
         v.material(b,T.paperLight,T.paperLight,5);
         if(this.textures.exists('p00-card-back')){
-          v.add(this.add.image(b.x+b.width/2,b.y+b.height/2,'p00-card-back').setDisplaySize(b.width-6,b.height-6).setAlpha(.32));
+          v.add(this.add.image(b.x+b.width/2,b.y+b.height/2,'p00-card-back').setDisplaySize(b.width-6,b.height-6).setAlpha(.18));
         }
         v.add(this.add.graphics().lineStyle(1,0x8da498,.5).strokeRoundedRect(b.x,b.y,b.width,b.height,6));
         return;
@@ -506,7 +506,7 @@ export class GameScene extends Phaser.Scene {
     shadow.fillStyle(T.ink,.07).fillRoundedRect(-b.width/2+1,-b.height/2+3,b.width,b.height,radius);
     edgeGlow.setName('card/feedback').lineStyle(3,T.focus,.9).strokeRoundedRect(-b.width/2-1,-b.height/2-1,b.width+2,b.height+2,radius).setAlpha(0);
     const bg=this.add.rectangle(0,0,b.width,b.height,T.paper).setStrokeStyle(1,T.brass);
-    const face=this.view.material({x:-b.width/2+1,y:-b.height/2+1,width:b.width-2,height:b.height-2},0xfff8e8,0xe8d6b9,radius).setAlpha(.72);
+    const face=this.view.material({x:-b.width/2+1,y:-b.height/2+1,width:b.width-2,height:b.height-2},0xfff8e8,0xe8d6b9,radius);
     c.add([shadow,edgeGlow,bg,face]);
     const edgeLines=this.add.graphics();
     edgeLines.lineStyle(1,T.ink,.08).strokeRoundedRect(-b.width/2+2,-b.height/2+2,b.width-4,b.height-4,radius-1);
