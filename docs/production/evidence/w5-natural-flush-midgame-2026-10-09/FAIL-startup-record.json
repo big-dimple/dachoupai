@@ -1,0 +1,34 @@
+{
+  "status": "RUNNER_FAIL",
+  "facts": [
+    "First UI launch generated1791525882954 and same recorded public first shelf; no purchase/play/discard occurred.",
+    "ready() returned before runController publish, initial={} while subsequent STATE output already shop; initial report was overwritten by later successful continuation record.",
+    "An attempt to create checkpoint from undefined state failed non-json-save before browser import. Corrected by reproducing the same already-declared generated seed, not another seed.",
+    "Runner retained exactly; this file describes tool-observed startup errors, not a recovered original raw report/stdout."
+  ],
+  "initialSeed": "1791525882954",
+  "originalFirstShelf": [
+    [
+      "tiesuanpan",
+      6
+    ],
+    [
+      "e04",
+      6
+    ],
+    [
+      "c06",
+      6
+    ],
+    [
+      "T09",
+      2
+    ],
+    [
+      "T02",
+      2
+    ]
+  ],
+  "originalSnapshotRetained": false,
+  "ruleOrSaveChanged": false
+}

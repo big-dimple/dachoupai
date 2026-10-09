@@ -1,0 +1,3179 @@
+{
+  "testedCommit": "31c1d120bbfe2bff242f0bcb8d2f887973b3126a",
+  "seed": "1791525882954",
+  "identity": "quality-r2-basic-tool-supply-v1",
+  "scope": "Single current normal UI-generated-seed erxiang/flush run. Player decisions only public current hand/deck/real shelf; no seed search, future draw access, forecast score, fixture, injected card/gold/offer, or rule edit. Stop first natural loss or chapter3 middle. Software operator, not human acceptance.",
+  "initialSeedOrigin": "UI generated 1791525882954 on first launch; capture ran before saved controller published, initial snapshot empty; reproduced same declared seed and first shop without any purchase/play/discard, no seed selection or reroll",
+  "before": {
+    "source": "e4d2ad1c3ae4fc05ef841a015bfedc74cfa826b5af69cc56f786972198796fd5",
+    "index": "bfdbe374ef681c082d9e5857cd8d1a3a30f13d5c9bbf8996b3d5792cff6b035b",
+    "head": "31c1d120bbfe2bff242f0bcb8d2f887973b3126a",
+    "branch": "refs/heads/review/w5-natural-flush-20261009"
+  },
+  "after": {
+    "source": "e4d2ad1c3ae4fc05ef841a015bfedc74cfa826b5af69cc56f786972198796fd5",
+    "index": "bfdbe374ef681c082d9e5857cd8d1a3a30f13d5c9bbf8996b3d5792cff6b035b",
+    "head": "31c1d120bbfe2bff242f0bcb8d2f887973b3126a",
+    "branch": "refs/heads/review/w5-natural-flush-20261009"
+  },
+  "initialSeq": 1,
+  "finalSeq": 79,
+  "transactions": 70,
+  "actualCommands": 78,
+  "status": "RECORDED",
+  "outcome": "stage-cleared",
+  "nextStageIndex": 8,
+  "gold": 46,
+  "errors": [],
+  "humanAcceptance": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "naturalRates": "NOT_ESTABLISHED",
+  "eightChapters": "NOT_RUN",
+  "shops": [
+    {
+      "stage": 0,
+      "entryGold": 6,
+      "retainedGold": 0,
+      "originalOffers": {
+        "visitIndex": 0,
+        "rerollCount": 0,
+        "purchases": 0,
+        "soldJoker": false,
+        "freeRerolls": 0,
+        "offers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/0/0/joker/0",
+            "definitionId": "tiesuanpan",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/0/0/joker/1",
+            "definitionId": "e04",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/0/0/joker/2",
+            "definitionId": "c06",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          }
+        ],
+        "toolOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/0/0/tool/0",
+            "definitionId": "T09",
+            "price": 2,
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/0/0/tool/1",
+            "definitionId": "T02",
+            "price": 2,
+            "consumed": false
+          }
+        ],
+        "itemOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/0/0/item/0",
+            "definitionId": "U02",
+            "price": 12,
+            "consumed": false
+          }
+        ]
+      },
+      "choices": [
+        {
+          "note": "Choose flush growth core c06 for all 6 gold; real opportunity cost no T02 or interest source",
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791525882954/erxiang/shop/0/0/joker/2"
+          },
+          "goldBefore": 6,
+          "goldAfter": 0
+        }
+      ],
+      "counts": {
+        "clubs": 13,
+        "diamonds": 13,
+        "hearts": 13,
+        "spades": 13
+      },
+      "lostCards": []
+    },
+    {
+      "stage": 1,
+      "entryGold": 7,
+      "retainedGold": 5,
+      "originalOffers": {
+        "visitIndex": 1,
+        "rerollCount": 0,
+        "purchases": 0,
+        "soldJoker": false,
+        "freeRerolls": 0,
+        "offers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/1/0/joker/0",
+            "definitionId": "f02",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/1/0/joker/1",
+            "definitionId": "e09",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/1/0/joker/2",
+            "definitionId": "e01",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          }
+        ],
+        "toolOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/1/0/tool/0",
+            "definitionId": "S01",
+            "price": 8,
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/1/0/tool/1",
+            "definitionId": "T11",
+            "price": 2,
+            "consumed": false
+          }
+        ],
+        "itemOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/1/0/item/0",
+            "definitionId": "U03",
+            "price": 16,
+            "consumed": false
+          }
+        ]
+      },
+      "choices": [
+        {
+          "note": "7→5 gold: T11 costs2; choose permanent multiplier for two high club cards, retain5 for one interest; do not buy4-gold income source or unavailable8-gold spectral",
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791525882954/erxiang/shop/1/0/tool/1"
+          },
+          "goldBefore": 7,
+          "goldAfter": 5
+        },
+        {
+          "note": "Permanent T11 on public full-deck A/K clubs; both previously unenhanced. Not forcing future deal, tool consumed once.",
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/10",
+            "targetIds": [
+              "clubs-13",
+              "clubs-14"
+            ]
+          },
+          "goldBefore": 5,
+          "goldAfter": 5
+        }
+      ],
+      "counts": {
+        "clubs": 13,
+        "diamonds": 13,
+        "hearts": 13,
+        "spades": 13
+      },
+      "lostCards": []
+    },
+    {
+      "stage": 2,
+      "entryGold": 14,
+      "retainedGold": 10,
+      "originalOffers": {
+        "visitIndex": 2,
+        "rerollCount": 0,
+        "purchases": 0,
+        "soldJoker": false,
+        "freeRerolls": 0,
+        "offers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/2/0/joker/0",
+            "definitionId": "f03",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/2/0/joker/1",
+            "definitionId": "a12",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/2/0/joker/2",
+            "definitionId": "jiedongfeng",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          }
+        ],
+        "toolOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/2/0/tool/0",
+            "definitionId": "P06",
+            "price": 4,
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/2/0/tool/1",
+            "definitionId": "T08",
+            "price": 2,
+            "consumed": false
+          }
+        ],
+        "itemOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/2/0/item/0",
+            "definitionId": "U04",
+            "price": 10,
+            "consumed": false
+          }
+        ]
+      },
+      "choices": [
+        {
+          "note": "14→10: real P06 improve discovered flush base; skip6-gold BorrowWind to keep two-interest threshold, no guarantee offered next shop",
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791525882954/erxiang/shop/2/0/tool/0"
+          },
+          "goldBefore": 14,
+          "goldAfter": 10
+        },
+        {
+          "note": "Real P06 consumed; flush discovered1→2, fixed before/after base shown, retain10",
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/19",
+            "targetIds": []
+          },
+          "goldBefore": 10,
+          "goldAfter": 10
+        }
+      ],
+      "counts": {
+        "clubs": 13,
+        "diamonds": 13,
+        "hearts": 13,
+        "spades": 13
+      },
+      "lostCards": []
+    },
+    {
+      "stage": 3,
+      "entryGold": 21,
+      "retainedGold": 19,
+      "originalOffers": {
+        "visitIndex": 3,
+        "rerollCount": 0,
+        "purchases": 0,
+        "soldJoker": false,
+        "freeRerolls": 0,
+        "offers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/3/0/joker/0",
+            "definitionId": "a07",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/3/0/joker/1",
+            "definitionId": "c02",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/3/0/joker/2",
+            "definitionId": "d06",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          }
+        ],
+        "toolOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/3/0/tool/0",
+            "definitionId": "P01",
+            "price": 4,
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/3/0/tool/1",
+            "definitionId": "T02",
+            "price": 2,
+            "consumed": false
+          }
+        ],
+        "itemOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/3/0/item/0",
+            "definitionId": "U09",
+            "price": 14,
+            "consumed": false
+          }
+        ]
+      },
+      "choices": [
+        {
+          "note": "21→19: no dye/copy yet, use basic deletion2 to remove two low off-club cards; retain gold instead of high-card planet or off-route sources",
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791525882954/erxiang/shop/3/0/tool/1"
+          },
+          "goldBefore": 21,
+          "goldAfter": 19
+        },
+        {
+          "note": "Permanently delete two off-club2s, 52→50; clubs13 unchanged, gives up pair2 options and permanent cards",
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/28",
+            "targetIds": [
+              "spades-2",
+              "diamonds-2"
+            ]
+          },
+          "goldBefore": 19,
+          "goldAfter": 19
+        }
+      ],
+      "counts": {
+        "clubs": 13,
+        "diamonds": 12,
+        "hearts": 13,
+        "spades": 12
+      },
+      "lostCards": [
+        "spades-2",
+        "diamonds-2"
+      ]
+    },
+    {
+      "stage": 4,
+      "entryGold": 29,
+      "retainedGold": 25,
+      "originalOffers": {
+        "visitIndex": 4,
+        "rerollCount": 0,
+        "purchases": 0,
+        "soldJoker": false,
+        "freeRerolls": 0,
+        "offers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/4/0/joker/0",
+            "definitionId": "b06",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/4/0/joker/1",
+            "definitionId": "pengci",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/4/0/joker/2",
+            "definitionId": "f09",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          }
+        ],
+        "toolOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/4/0/tool/0",
+            "definitionId": "P06",
+            "price": 4,
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/4/0/tool/1",
+            "definitionId": "T11",
+            "price": 2,
+            "consumed": false
+          }
+        ],
+        "itemOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/4/0/item/0",
+            "definitionId": "U09",
+            "price": 14,
+            "consumed": false
+          }
+        ]
+      },
+      "choices": [
+        {
+          "note": "29→25: second natural P06 upgrade; hold at5-interest threshold, skip redundant2-gold enhancement and off-route sources; no dye/copy available",
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791525882954/erxiang/shop/4/0/tool/0"
+          },
+          "goldBefore": 29,
+          "goldAfter": 25
+        },
+        {
+          "note": "Actual flush2→3, consumed P06 once; keep25gold",
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/34",
+            "targetIds": []
+          },
+          "goldBefore": 25,
+          "goldAfter": 25
+        }
+      ],
+      "counts": {
+        "clubs": 13,
+        "diamonds": 12,
+        "hearts": 13,
+        "spades": 12
+      },
+      "lostCards": [
+        "spades-2",
+        "diamonds-2"
+      ]
+    },
+    {
+      "stage": 5,
+      "entryGold": 36,
+      "retainedGold": 30,
+      "originalOffers": {
+        "visitIndex": 5,
+        "rerollCount": 0,
+        "purchases": 0,
+        "soldJoker": false,
+        "freeRerolls": 0,
+        "offers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/5/0/joker/0",
+            "definitionId": "c08",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/5/0/joker/1",
+            "definitionId": "b10",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/5/0/joker/2",
+            "definitionId": "a03",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          }
+        ],
+        "toolOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/5/0/tool/0",
+            "definitionId": "T04",
+            "price": 4,
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/5/0/tool/1",
+            "definitionId": "T10",
+            "price": 2,
+            "consumed": false
+          }
+        ],
+        "itemOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/5/0/item/0",
+            "definitionId": "U06",
+            "price": 12,
+            "consumed": false
+          }
+        ]
+      },
+      "choices": [
+        {
+          "note": "36→32: first natural dye is diamondsT04 not clubs; adapt backup suit rather than reroll seekT05; change two off-diamond high cards, preserve club investments",
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791525882954/erxiang/shop/5/0/tool/0"
+          },
+          "goldBefore": 36,
+          "goldAfter": 32
+        },
+        {
+          "note": "Permanently dye public Q/K spades to diamonds; suit counts diamonds12→14,spades12→10; IDs preserved, all club enhancements unchanged, one use",
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/45",
+            "targetIds": [
+              "spades-12",
+              "spades-13"
+            ]
+          },
+          "goldBefore": 32,
+          "goldAfter": 32
+        },
+        {
+          "note": "32→30: heat-paper2 on two different club cards, avoids overwriting paid A/K multiplier; keeps maximum normal interest threshold",
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791525882954/erxiang/shop/5/0/tool/1"
+          },
+          "goldBefore": 32,
+          "goldAfter": 30
+        },
+        {
+          "note": "Actual T10 on clubQ/J previously plain; +heat faces, keep paid clubA/K multiplier,32→30 payment already saved",
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/47",
+            "targetIds": [
+              "clubs-11",
+              "clubs-12"
+            ]
+          },
+          "goldBefore": 30,
+          "goldAfter": 30
+        }
+      ],
+      "counts": {
+        "clubs": 13,
+        "diamonds": 14,
+        "hearts": 13,
+        "spades": 10
+      },
+      "lostCards": [
+        "spades-2",
+        "diamonds-2"
+      ]
+    },
+    {
+      "stage": 6,
+      "entryGold": 43,
+      "retainedGold": 35,
+      "originalOffers": {
+        "visitIndex": 6,
+        "rerollCount": 0,
+        "purchases": 0,
+        "soldJoker": false,
+        "freeRerolls": 0,
+        "offers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/6/0/joker/0",
+            "definitionId": "e09",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/6/0/joker/1",
+            "definitionId": "d07",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/6/0/joker/2",
+            "definitionId": "tiesuanpan",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          }
+        ],
+        "toolOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/6/0/tool/0",
+            "definitionId": "T03",
+            "price": 4,
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/6/0/tool/1",
+            "definitionId": "T11",
+            "price": 2,
+            "consumed": false
+          }
+        ],
+        "itemOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/6/0/item/0",
+            "definitionId": "U06",
+            "price": 12,
+            "consumed": false
+          }
+        ]
+      },
+      "choices": [
+        {
+          "note": "43→37: real Tiesuanpan common face-card heat support applies both investedclubs anddyeddiamonds; buy midgame helper rather than fourth-suit spread or slot-only source",
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791525882954/erxiang/shop/6/0/joker/2"
+          },
+          "goldBefore": 43,
+          "goldAfter": 37
+        },
+        {
+          "note": "37→35: T11 for the two already dyed diamondQ/K, combines real suit shaping and score enhancement without altering original clubs; skipT03heart thirdline",
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791525882954/erxiang/shop/6/0/tool/1"
+          },
+          "goldBefore": 37,
+          "goldAfter": 35
+        },
+        {
+          "note": "Actual dyeddiamondQ/K nowmultiplierpaper, preserved IDs/suits; both plainbefore, originalclub upgrades untouched",
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/59",
+            "targetIds": [
+              "spades-12",
+              "spades-13"
+            ]
+          },
+          "goldBefore": 35,
+          "goldAfter": 35
+        }
+      ],
+      "counts": {
+        "clubs": 13,
+        "diamonds": 14,
+        "hearts": 13,
+        "spades": 10
+      },
+      "lostCards": [
+        "spades-2",
+        "diamonds-2"
+      ]
+    },
+    {
+      "stage": 7,
+      "entryGold": 44,
+      "retainedGold": 34,
+      "originalOffers": {
+        "visitIndex": 7,
+        "rerollCount": 0,
+        "purchases": 0,
+        "soldJoker": false,
+        "freeRerolls": 0,
+        "offers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/7/0/joker/0",
+            "definitionId": "a10",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/7/0/joker/1",
+            "definitionId": "b02",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/7/0/joker/2",
+            "definitionId": "huimaqiang",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          }
+        ],
+        "toolOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/7/0/tool/0",
+            "definitionId": "P04",
+            "price": 4,
+            "consumed": false
+          },
+          {
+            "offerId": "run/1791525882954/erxiang/shop/7/0/tool/1",
+            "definitionId": "T10",
+            "price": 2,
+            "consumed": false
+          }
+        ],
+        "itemOffers": [
+          {
+            "offerId": "run/1791525882954/erxiang/shop/7/0/item/0",
+            "definitionId": "U09",
+            "price": 14,
+            "consumed": false
+          }
+        ]
+      },
+      "choices": [
+        {
+          "note": "44→36: late naturalhuimaqiang, every3plays x2 only; invest8 for midgame fallback chain, do not delay play to force it, skip offroutea10/pairsource",
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791525882954/erxiang/shop/7/0/joker/2"
+          },
+          "goldBefore": 44,
+          "goldAfter": 36
+        },
+        {
+          "note": "36→34: heatpaper2 on originaldiamondA/K, supports backup14diamonddeck, no overwrite dyedQ/Kmult; skipP04three-kindplanet4",
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791525882954/erxiang/shop/7/0/tool/1"
+          },
+          "goldBefore": 36,
+          "goldAfter": 34
+        },
+        {
+          "note": "Actualheatpaper on plain originaldiamondA/K; otherdiamondQ/K remainmult and clubpriorupgrades unchanged. Toolspentonce.",
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/72",
+            "targetIds": [
+              "diamonds-13",
+              "diamonds-14"
+            ]
+          },
+          "goldBefore": 34,
+          "goldAfter": 34
+        }
+      ],
+      "counts": {
+        "clubs": 13,
+        "diamonds": 14,
+        "hearts": 13,
+        "spades": 10
+      },
+      "lostCards": [
+        "spades-2",
+        "diamonds-2"
+      ]
+    }
+  ],
+  "hands": [
+    {
+      "stage": 0,
+      "playIndex": 1,
+      "note": "Real five-club flush; expect only event truth, not preview total; observe saved c06 growth for next hand",
+      "selected": [
+        "clubs-3",
+        "clubs-6",
+        "clubs-9",
+        "clubs-12",
+        "clubs-11"
+      ],
+      "type": "flush",
+      "score": "712",
+      "total": "712",
+      "target": "400",
+      "phase": "stage-cleared",
+      "discardsLeft": 0,
+      "handsLeft": 3,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/8/event/6",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/8",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/8/event/6",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "0",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "178",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "178",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/8/event/8",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/8",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/8/event/8",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "add-growth",
+          "value": {
+            "n": "1",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "178",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "178",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c06.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "flush",
+              "straight-flush"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "1",
+          "d": "4"
+        }
+      }
+    },
+    {
+      "stage": 1,
+      "playIndex": 1,
+      "note": "Actual hearts flush; enhanced clubA held not scoring. Observe read0.25 plus new0.25 after hand, retained5 interest",
+      "selected": [
+        "hearts-13",
+        "hearts-3",
+        "hearts-6",
+        "hearts-4",
+        "hearts-11"
+      ],
+      "type": "flush",
+      "score": "735",
+      "total": "735",
+      "target": "600",
+      "phase": "stage-cleared",
+      "discardsLeft": 0,
+      "handsLeft": 3,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/17/event/6",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/17",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/17/event/6",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "1",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "173",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "173",
+              "d": "1"
+            },
+            "M": {
+              "n": "17",
+              "d": "4"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/17/event/8",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/17",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/17/event/8",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "add-growth",
+          "value": {
+            "n": "1",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "173",
+              "d": "1"
+            },
+            "M": {
+              "n": "17",
+              "d": "4"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "173",
+              "d": "1"
+            },
+            "M": {
+              "n": "17",
+              "d": "4"
+            }
+          },
+          "reasonKey": "c06.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "flush",
+              "straight-flush"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "1",
+          "d": "2"
+        }
+      }
+    },
+    {
+      "stage": 2,
+      "playIndex": 1,
+      "note": "Open with one off-route J to remove B01 double-discard phase, retaining 3 current spades and both clubs; saved c06 0.5 can be read but high card cannot grow it",
+      "selected": [
+        "hearts-11"
+      ],
+      "type": "high-card",
+      "score": "45",
+      "total": "45",
+      "target": "800",
+      "phase": "await-input",
+      "discardsLeft": 3,
+      "handsLeft": 3,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/23/event/2",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/23",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/23/event/2",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "1",
+            "d": "2"
+          },
+          "before": {
+            "H": {
+              "n": "30",
+              "d": "1"
+            },
+            "M": {
+              "n": "1",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "30",
+              "d": "1"
+            },
+            "M": {
+              "n": "3",
+              "d": "2"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "1",
+          "d": "2"
+        }
+      }
+    },
+    {
+      "stage": 2,
+      "playIndex": 2,
+      "note": "Actual flush2 with natural enhancedK, observe original card source +2 multiplier and read0.5; no counterfactual simulation",
+      "selected": [
+        "clubs-6",
+        "clubs-12",
+        "clubs-7",
+        "clubs-13",
+        "clubs-4"
+      ],
+      "type": "flush",
+      "score": "1449",
+      "total": "1494",
+      "target": "800",
+      "phase": "stage-cleared",
+      "discardsLeft": 1,
+      "handsLeft": 2,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/26/event/5",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/26",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/26/event/4",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "clubs-13",
+          "sourceInstanceId": "clubs-13",
+          "targetCardId": "clubs-13",
+          "operation": "add-multiplier",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "203",
+              "d": "1"
+            },
+            "M": {
+              "n": "9",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "203",
+              "d": "1"
+            },
+            "M": {
+              "n": "13",
+              "d": "2"
+            }
+          },
+          "reasonKey": "enhancement.multiplier-paper.add-multiplier",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/26/event/7",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/26",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/26/event/7",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "1",
+            "d": "2"
+          },
+          "before": {
+            "H": {
+              "n": "207",
+              "d": "1"
+            },
+            "M": {
+              "n": "13",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "207",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/26/event/9",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/26",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/26/event/9",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "add-growth",
+          "value": {
+            "n": "1",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "207",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "207",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c06.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "flush",
+              "straight-flush"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "3",
+          "d": "4"
+        }
+      }
+    },
+    {
+      "stage": 3,
+      "playIndex": 1,
+      "note": "Actual first-hand club flush2 with upgraded A; saved c06 0.75 read,19gold retained; d06 not purchased",
+      "selected": [
+        "clubs-8",
+        "clubs-14",
+        "clubs-9",
+        "clubs-11",
+        "clubs-6"
+      ],
+      "type": "flush",
+      "score": "1551",
+      "total": "1551",
+      "target": "1000",
+      "phase": "stage-cleared",
+      "discardsLeft": 3,
+      "handsLeft": 3,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/32/event/3",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/32",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/32/event/2",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "clubs-14",
+          "sourceInstanceId": "clubs-14",
+          "targetCardId": "clubs-14",
+          "operation": "add-multiplier",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "189",
+              "d": "1"
+            },
+            "M": {
+              "n": "9",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "189",
+              "d": "1"
+            },
+            "M": {
+              "n": "13",
+              "d": "2"
+            }
+          },
+          "reasonKey": "enhancement.multiplier-paper.add-multiplier",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/32/event/7",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/32",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/32/event/7",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "3",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "214",
+              "d": "1"
+            },
+            "M": {
+              "n": "13",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "214",
+              "d": "1"
+            },
+            "M": {
+              "n": "29",
+              "d": "4"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/32/event/9",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/32",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/32/event/9",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "add-growth",
+          "value": {
+            "n": "1",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "214",
+              "d": "1"
+            },
+            "M": {
+              "n": "29",
+              "d": "4"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "214",
+              "d": "1"
+            },
+            "M": {
+              "n": "29",
+              "d": "4"
+            }
+          },
+          "reasonKey": "c06.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "flush",
+              "straight-flush"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "1",
+          "d": "1"
+        }
+      }
+    },
+    {
+      "stage": 4,
+      "playIndex": 1,
+      "note": "No remaining discard and both suits4. Actual fallback high-card uses four off-club hearts plus lowclub2 to cycle5, preserves paid clubA/club9/10; giftT16 is cash not discard restore; accept one consumed hand, no forced suit",
+      "selected": [
+        "hearts-7",
+        "hearts-3",
+        "hearts-6",
+        "clubs-2",
+        "hearts-14"
+      ],
+      "type": "high-card",
+      "score": "62",
+      "total": "62",
+      "target": "1500",
+      "phase": "await-input",
+      "discardsLeft": 0,
+      "handsLeft": 3,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/41/event/2",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/41",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/41/event/2",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "1",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "31",
+              "d": "1"
+            },
+            "M": {
+              "n": "1",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "31",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "1",
+          "d": "1"
+        }
+      }
+    },
+    {
+      "stage": 4,
+      "playIndex": 2,
+      "note": "Current4clubs still missing fifth; play off-club pair10 plus2 extras to cycle4 while keep clubA/9/10/8; consumes second hand, c06 reads1 but pair does not grow",
+      "selected": [
+        "diamonds-10",
+        "hearts-2",
+        "spades-10",
+        "spades-8"
+      ],
+      "type": "pair",
+      "score": "247",
+      "total": "309",
+      "target": "1500",
+      "phase": "await-input",
+      "discardsLeft": 0,
+      "handsLeft": 2,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/42/event/4",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/42",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/42/event/4",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "1",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "55",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "55",
+              "d": "1"
+            },
+            "M": {
+              "n": "9",
+              "d": "2"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "1",
+          "d": "1"
+        }
+      }
+    },
+    {
+      "stage": 4,
+      "playIndex": 3,
+      "note": "Natural flush finally assembled; enhancedA scores, level3 plus savedgrowth1; risk cost2hands already consumed",
+      "selected": [
+        "clubs-14",
+        "clubs-9",
+        "clubs-10",
+        "clubs-8",
+        "clubs-7"
+      ],
+      "type": "flush",
+      "score": "1960",
+      "total": "2269",
+      "target": "1500",
+      "phase": "stage-cleared",
+      "discardsLeft": 0,
+      "handsLeft": 1,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/43/event/2",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/43",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/43/event/1",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "clubs-14",
+          "sourceInstanceId": "clubs-14",
+          "targetCardId": "clubs-14",
+          "operation": "add-multiplier",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "211",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "211",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "reasonKey": "enhancement.multiplier-paper.add-multiplier",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/43/event/7",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/43",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/43/event/7",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "1",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "245",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "245",
+              "d": "1"
+            },
+            "M": {
+              "n": "8",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/43/event/9",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/43",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/43/event/9",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "add-growth",
+          "value": {
+            "n": "1",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "245",
+              "d": "1"
+            },
+            "M": {
+              "n": "8",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "245",
+              "d": "1"
+            },
+            "M": {
+              "n": "8",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c06.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "flush",
+              "straight-flush"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "5",
+          "d": "4"
+        }
+      }
+    },
+    {
+      "stage": 5,
+      "playIndex": 1,
+      "note": "Actual diamondflush avoids disabledspades; none are newly dyed cards, do not credit T04 yet. savedc06 1.25 read, no card enhancements in this hand",
+      "selected": [
+        "diamonds-14",
+        "diamonds-7",
+        "diamonds-13",
+        "diamonds-5",
+        "diamonds-10"
+      ],
+      "type": "flush",
+      "score": "1518",
+      "total": "1518",
+      "target": "2000",
+      "phase": "await-input",
+      "discardsLeft": 0,
+      "handsLeft": 3,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/54/event/6",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/54",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/54/event/6",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "5",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "243",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "243",
+              "d": "1"
+            },
+            "M": {
+              "n": "25",
+              "d": "4"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/54/event/8",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/54",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/54/event/8",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "add-growth",
+          "value": {
+            "n": "1",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "243",
+              "d": "1"
+            },
+            "M": {
+              "n": "25",
+              "d": "4"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "243",
+              "d": "1"
+            },
+            "M": {
+              "n": "25",
+              "d": "4"
+            }
+          },
+          "reasonKey": "c06.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "flush",
+              "straight-flush"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "3",
+          "d": "2"
+        }
+      }
+    },
+    {
+      "stage": 5,
+      "playIndex": 2,
+      "note": "1518/2000, no discards. Preserve3diamonds8/6/9 plus paidclubK, cycle4 off-target as actual high-card (disabledspade not scored), consumes one hand",
+      "selected": [
+        "clubs-7",
+        "hearts-3",
+        "hearts-11",
+        "spades-5"
+      ],
+      "type": "high-card",
+      "score": "75",
+      "total": "1593",
+      "target": "2000",
+      "phase": "await-input",
+      "discardsLeft": 0,
+      "handsLeft": 2,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/55/event/2",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/55",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/55/event/2",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "3",
+            "d": "2"
+          },
+          "before": {
+            "H": {
+              "n": "30",
+              "d": "1"
+            },
+            "M": {
+              "n": "1",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "30",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "3",
+          "d": "2"
+        }
+      }
+    },
+    {
+      "stage": 5,
+      "playIndex": 3,
+      "note": "Actual five diamonds include permanent T04-dyed K, originallyspades nowdiamond so not sealed by B03. Trace must retain cardID and actual scoring suit. Do not infer no-tool counterfactual",
+      "selected": [
+        "diamonds-8",
+        "diamonds-6",
+        "diamonds-9",
+        "diamonds-11",
+        "spades-13"
+      ],
+      "type": "flush",
+      "score": "1579",
+      "total": "3172",
+      "target": "2000",
+      "phase": "stage-cleared",
+      "discardsLeft": 0,
+      "handsLeft": 1,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/56/event/6",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/56",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/56/event/6",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "3",
+            "d": "2"
+          },
+          "before": {
+            "H": {
+              "n": "243",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "243",
+              "d": "1"
+            },
+            "M": {
+              "n": "13",
+              "d": "2"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/56/event/8",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/56",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/56/event/8",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "add-growth",
+          "value": {
+            "n": "1",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "243",
+              "d": "1"
+            },
+            "M": {
+              "n": "13",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "243",
+              "d": "1"
+            },
+            "M": {
+              "n": "13",
+              "d": "2"
+            }
+          },
+          "reasonKey": "c06.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "flush",
+              "straight-flush"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "7",
+          "d": "4"
+        }
+      }
+    },
+    {
+      "stage": 6,
+      "playIndex": 1,
+      "note": "All3discards spent, still4clubs. Play off-club pair3 plus extras to cycle4, keep three paidclubupgrades plusclub3. Real lack-piece risk, no desired-card injection.",
+      "selected": [
+        "spades-14",
+        "diamonds-3",
+        "diamonds-4",
+        "spades-3"
+      ],
+      "type": "pair",
+      "score": "215",
+      "total": "215",
+      "target": "2400",
+      "phase": "await-input",
+      "discardsLeft": 0,
+      "handsLeft": 3,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/66/event/4",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/66",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/66/event/4",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "7",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "41",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "41",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "4"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "7",
+          "d": "4"
+        }
+      }
+    },
+    {
+      "stage": 6,
+      "playIndex": 2,
+      "note": "Still4clubs; actualoff-club three-kind7 offers fallback payout while cycling4; preserve paidfaces, consumes secondhand, no c06 growth",
+      "selected": [
+        "hearts-7",
+        "diamonds-9",
+        "diamonds-7",
+        "spades-7"
+      ],
+      "type": "three-kind",
+      "score": "693",
+      "total": "908",
+      "target": "2400",
+      "phase": "await-input",
+      "discardsLeft": 0,
+      "handsLeft": 2,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/67/event/5",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/67",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/67/event/5",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "7",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "111",
+              "d": "1"
+            },
+            "M": {
+              "n": "9",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "111",
+              "d": "1"
+            },
+            "M": {
+              "n": "25",
+              "d": "4"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "7",
+          "d": "4"
+        }
+      }
+    },
+    {
+      "stage": 6,
+      "playIndex": 3,
+      "note": "Still4clubs,2hands left. Actual fallback pairK includes permanently dyed/enhanceddiamondK and newTiesuanpan, cycles4; preserve investedclubs, concede paidbackupK now used.",
+      "selected": [
+        "diamonds-10",
+        "hearts-13",
+        "spades-8",
+        "spades-13"
+      ],
+      "type": "pair",
+      "score": "761",
+      "total": "1669",
+      "target": "2400",
+      "phase": "await-input",
+      "discardsLeft": 0,
+      "handsLeft": 1,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/68/event/2",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/68",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/68/event/1",
+          "phase": "onCardScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "tiesuanpan",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/58",
+          "targetCardId": "hearts-13",
+          "operation": "add-heat",
+          "value": {
+            "n": "25",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "45",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "70",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "tiesuanpan.add-heat",
+          "visibleCondition": {
+            "kind": "rank-in",
+            "values": [
+              11,
+              12,
+              13,
+              14
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/68/event/4",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/68",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/68/event/3",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "spades-13",
+          "sourceInstanceId": "spades-13",
+          "targetCardId": "spades-13",
+          "operation": "add-multiplier",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "80",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "80",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "reasonKey": "enhancement.multiplier-paper.add-multiplier",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/68/event/5",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/68",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/68/event/3",
+          "phase": "onCardScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "tiesuanpan",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/58",
+          "targetCardId": "spades-13",
+          "operation": "add-heat",
+          "value": {
+            "n": "25",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "80",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "105",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "reasonKey": "tiesuanpan.add-heat",
+          "visibleCondition": {
+            "kind": "rank-in",
+            "values": [
+              11,
+              12,
+              13,
+              14
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/68/event/7",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/68",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/68/event/7",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "7",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "105",
+              "d": "1"
+            },
+            "M": {
+              "n": "11",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "105",
+              "d": "1"
+            },
+            "M": {
+              "n": "29",
+              "d": "4"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "7",
+          "d": "4"
+        }
+      }
+    },
+    {
+      "stage": 6,
+      "playIndex": 4,
+      "note": "Last actualhand flush3 with twoheatpaperfaces, multA,Tiesuanpan and savedgrowth1.75; measure realtraceandoutcome, no prediction",
+      "selected": [
+        "clubs-12",
+        "clubs-11",
+        "clubs-14",
+        "clubs-3",
+        "clubs-8"
+      ],
+      "type": "flush",
+      "score": "3123",
+      "total": "4792",
+      "target": "2400",
+      "phase": "stage-cleared",
+      "discardsLeft": 0,
+      "handsLeft": 0,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/2",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/1",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "clubs-12",
+          "sourceInstanceId": "clubs-12",
+          "targetCardId": "clubs-12",
+          "operation": "add-heat",
+          "value": {
+            "n": "20",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "210",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "230",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "enhancement.heat-paper.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/3",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/1",
+          "phase": "onCardScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "tiesuanpan",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/58",
+          "targetCardId": "clubs-12",
+          "operation": "add-heat",
+          "value": {
+            "n": "25",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "230",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "255",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "tiesuanpan.add-heat",
+          "visibleCondition": {
+            "kind": "rank-in",
+            "values": [
+              11,
+              12,
+              13,
+              14
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/5",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/4",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "clubs-11",
+          "sourceInstanceId": "clubs-11",
+          "targetCardId": "clubs-11",
+          "operation": "add-heat",
+          "value": {
+            "n": "20",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "265",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "285",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "enhancement.heat-paper.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/6",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/4",
+          "phase": "onCardScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "tiesuanpan",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/58",
+          "targetCardId": "clubs-11",
+          "operation": "add-heat",
+          "value": {
+            "n": "25",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "285",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "310",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "tiesuanpan.add-heat",
+          "visibleCondition": {
+            "kind": "rank-in",
+            "values": [
+              11,
+              12,
+              13,
+              14
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/8",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/7",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "clubs-14",
+          "sourceInstanceId": "clubs-14",
+          "targetCardId": "clubs-14",
+          "operation": "add-multiplier",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "321",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "321",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "reasonKey": "enhancement.multiplier-paper.add-multiplier",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/9",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/7",
+          "phase": "onCardScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "tiesuanpan",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/58",
+          "targetCardId": "clubs-14",
+          "operation": "add-heat",
+          "value": {
+            "n": "25",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "321",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "346",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "reasonKey": "tiesuanpan.add-heat",
+          "visibleCondition": {
+            "kind": "rank-in",
+            "values": [
+              11,
+              12,
+              13,
+              14
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/12",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/12",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "7",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "357",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "357",
+              "d": "1"
+            },
+            "M": {
+              "n": "35",
+              "d": "4"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/14",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/69/event/14",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "add-growth",
+          "value": {
+            "n": "1",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "357",
+              "d": "1"
+            },
+            "M": {
+              "n": "35",
+              "d": "4"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "357",
+              "d": "1"
+            },
+            "M": {
+              "n": "35",
+              "d": "4"
+            }
+          },
+          "reasonKey": "c06.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "flush",
+              "straight-flush"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "2",
+          "d": "1"
+        }
+      }
+    },
+    {
+      "stage": 7,
+      "playIndex": 1,
+      "note": "Naturalfive diamonds after1discard, play immediately. NewlyheatK+Tiesuanpan+c06saved2 read; huimaqiang firstplay NOT active, no delay to forceeverythird",
+      "selected": [
+        "diamonds-13",
+        "diamonds-4",
+        "diamonds-7",
+        "diamonds-10",
+        "diamonds-6"
+      ],
+      "type": "flush",
+      "score": "1974",
+      "total": "1974",
+      "target": "3600",
+      "phase": "await-input",
+      "discardsLeft": 2,
+      "handsLeft": 3,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/77/event/2",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/77",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/77/event/1",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "diamonds-13",
+          "sourceInstanceId": "diamonds-13",
+          "targetCardId": "diamonds-13",
+          "operation": "add-heat",
+          "value": {
+            "n": "20",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "210",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "230",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "enhancement.heat-paper.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/77/event/3",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/77",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/77/event/1",
+          "phase": "onCardScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "tiesuanpan",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/58",
+          "targetCardId": "diamonds-13",
+          "operation": "add-heat",
+          "value": {
+            "n": "25",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "230",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "255",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "tiesuanpan.add-heat",
+          "visibleCondition": {
+            "kind": "rank-in",
+            "values": [
+              11,
+              12,
+              13,
+              14
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/77/event/8",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/77",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/77/event/8",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "282",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "282",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/77/event/10",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/77",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/77/event/10",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "add-growth",
+          "value": {
+            "n": "1",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "282",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "282",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c06.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "flush",
+              "straight-flush"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "9",
+          "d": "4"
+        }
+      }
+    },
+    {
+      "stage": 7,
+      "playIndex": 2,
+      "note": "Actualsecondflush withthreepaidcards andTiesuanpan. huimaqiangsecondhandnotactive,8goldengine investment hasnotpaid yet; neverpretend source triggered",
+      "selected": [
+        "clubs-12",
+        "clubs-14",
+        "clubs-13",
+        "clubs-3",
+        "clubs-9"
+      ],
+      "type": "flush",
+      "score": "3802",
+      "total": "5776",
+      "target": "3600",
+      "phase": "stage-cleared",
+      "discardsLeft": 1,
+      "handsLeft": 2,
+      "causalEvents": [
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/2",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/1",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "clubs-12",
+          "sourceInstanceId": "clubs-12",
+          "targetCardId": "clubs-12",
+          "operation": "add-heat",
+          "value": {
+            "n": "20",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "210",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "230",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "enhancement.heat-paper.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/3",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/1",
+          "phase": "onCardScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "tiesuanpan",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/58",
+          "targetCardId": "clubs-12",
+          "operation": "add-heat",
+          "value": {
+            "n": "25",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "230",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "255",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "tiesuanpan.add-heat",
+          "visibleCondition": {
+            "kind": "rank-in",
+            "values": [
+              11,
+              12,
+              13,
+              14
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/5",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/4",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "clubs-14",
+          "sourceInstanceId": "clubs-14",
+          "targetCardId": "clubs-14",
+          "operation": "add-multiplier",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "266",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "266",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "reasonKey": "enhancement.multiplier-paper.add-multiplier",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/6",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/4",
+          "phase": "onCardScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "tiesuanpan",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/58",
+          "targetCardId": "clubs-14",
+          "operation": "add-heat",
+          "value": {
+            "n": "25",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "266",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "291",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "reasonKey": "tiesuanpan.add-heat",
+          "visibleCondition": {
+            "kind": "rank-in",
+            "values": [
+              11,
+              12,
+              13,
+              14
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/8",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/7",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "clubs-13",
+          "sourceInstanceId": "clubs-13",
+          "targetCardId": "clubs-13",
+          "operation": "add-multiplier",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "301",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "301",
+              "d": "1"
+            },
+            "M": {
+              "n": "9",
+              "d": "1"
+            }
+          },
+          "reasonKey": "enhancement.multiplier-paper.add-multiplier",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/9",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/7",
+          "phase": "onCardScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "tiesuanpan",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/58",
+          "targetCardId": "clubs-13",
+          "operation": "add-heat",
+          "value": {
+            "n": "25",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "301",
+              "d": "1"
+            },
+            "M": {
+              "n": "9",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "326",
+              "d": "1"
+            },
+            "M": {
+              "n": "9",
+              "d": "1"
+            }
+          },
+          "reasonKey": "tiesuanpan.add-heat",
+          "visibleCondition": {
+            "kind": "rank-in",
+            "values": [
+              11,
+              12,
+              13,
+              14
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/12",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/12",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "9",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "338",
+              "d": "1"
+            },
+            "M": {
+              "n": "9",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "338",
+              "d": "1"
+            },
+            "M": {
+              "n": "45",
+              "d": "4"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/14",
+          "rootId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79",
+          "rootEventId": "run/1791525882954/erxiang/hand/run/1791525882954/erxiang/command/79/event/14",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "run/1791525882954/erxiang/joker/run/1791525882954/erxiang/command/2",
+          "operation": "add-growth",
+          "value": {
+            "n": "1",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "338",
+              "d": "1"
+            },
+            "M": {
+              "n": "45",
+              "d": "4"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "338",
+              "d": "1"
+            },
+            "M": {
+              "n": "45",
+              "d": "4"
+            }
+          },
+          "reasonKey": "c06.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "flush",
+              "straight-flush"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "growthAfter": {
+        "multiplier": {
+          "n": "5",
+          "d": "2"
+        }
+      }
+    }
+  ],
+  "rawReport": {
+    "path": "report.json.gz",
+    "originalBytes": 4675517,
+    "originalSha256": "2d2aca111e197bd16a9667acdaf8e8a2895f3b26e7c92e95bd54fbd35ed02729",
+    "compression": "gzip; lossless decompressed original bytes"
+  }
+}

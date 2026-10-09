@@ -1,0 +1,903 @@
+[
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/2",
+    "expectedSeq": 1,
+    "action": {
+      "type": "BuyOffer",
+      "offerId": "run/1791525882954/erxiang/shop/0/0/joker/2"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/3",
+    "expectedSeq": 2,
+    "action": {
+      "type": "LeaveShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/4",
+    "expectedSeq": 3,
+    "action": {
+      "type": "EnterStage"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/5",
+    "expectedSeq": 4,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "hearts-10",
+        "spades-3",
+        "diamonds-3",
+        "hearts-9",
+        "spades-8"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/6",
+    "expectedSeq": 5,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "spades-14",
+        "hearts-12",
+        "hearts-13",
+        "diamonds-13"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/7",
+    "expectedSeq": 6,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "diamonds-5",
+        "spades-2",
+        "hearts-7",
+        "diamonds-6"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/8",
+    "expectedSeq": 7,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "clubs-3",
+        "clubs-6",
+        "clubs-9",
+        "clubs-12",
+        "clubs-11"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/9",
+    "expectedSeq": 8,
+    "action": {
+      "type": "OpenShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/10",
+    "expectedSeq": 9,
+    "action": {
+      "type": "BuyOffer",
+      "offerId": "run/1791525882954/erxiang/shop/1/0/tool/1"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/11",
+    "expectedSeq": 10,
+    "action": {
+      "type": "UseConsumable",
+      "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/10",
+      "targetIds": [
+        "clubs-13",
+        "clubs-14"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/12",
+    "expectedSeq": 11,
+    "action": {
+      "type": "LeaveShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/13",
+    "expectedSeq": 12,
+    "action": {
+      "type": "EnterStage"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/14",
+    "expectedSeq": 13,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "spades-2",
+        "diamonds-13",
+        "clubs-2",
+        "diamonds-10",
+        "spades-3"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/15",
+    "expectedSeq": 14,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "clubs-8",
+        "spades-13",
+        "diamonds-9",
+        "spades-6"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/16",
+    "expectedSeq": 15,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "clubs-12",
+        "diamonds-6",
+        "clubs-7"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/17",
+    "expectedSeq": 16,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "hearts-13",
+        "hearts-3",
+        "hearts-6",
+        "hearts-4",
+        "hearts-11"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/18",
+    "expectedSeq": 17,
+    "action": {
+      "type": "OpenShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/19",
+    "expectedSeq": 18,
+    "action": {
+      "type": "BuyOffer",
+      "offerId": "run/1791525882954/erxiang/shop/2/0/tool/0"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/20",
+    "expectedSeq": 19,
+    "action": {
+      "type": "UseConsumable",
+      "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/19",
+      "targetIds": []
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/21",
+    "expectedSeq": 20,
+    "action": {
+      "type": "LeaveShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/22",
+    "expectedSeq": 21,
+    "action": {
+      "type": "EnterStage"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/23",
+    "expectedSeq": 22,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "hearts-11"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/24",
+    "expectedSeq": 23,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "spades-10",
+        "diamonds-7",
+        "hearts-10",
+        "spades-3",
+        "spades-13"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/25",
+    "expectedSeq": 24,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "hearts-14",
+        "spades-14",
+        "spades-5",
+        "diamonds-2",
+        "hearts-2"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/26",
+    "expectedSeq": 25,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "clubs-6",
+        "clubs-12",
+        "clubs-7",
+        "clubs-13",
+        "clubs-4"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/27",
+    "expectedSeq": 26,
+    "action": {
+      "type": "OpenShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/28",
+    "expectedSeq": 27,
+    "action": {
+      "type": "BuyOffer",
+      "offerId": "run/1791525882954/erxiang/shop/3/0/tool/1"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/29",
+    "expectedSeq": 28,
+    "action": {
+      "type": "UseConsumable",
+      "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/28",
+      "targetIds": [
+        "spades-2",
+        "diamonds-2"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/30",
+    "expectedSeq": 29,
+    "action": {
+      "type": "LeaveShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/31",
+    "expectedSeq": 30,
+    "action": {
+      "type": "EnterStage"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/32",
+    "expectedSeq": 31,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "clubs-8",
+        "clubs-14",
+        "clubs-9",
+        "clubs-11",
+        "clubs-6"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/33",
+    "expectedSeq": 32,
+    "action": {
+      "type": "OpenShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/34",
+    "expectedSeq": 33,
+    "action": {
+      "type": "BuyOffer",
+      "offerId": "run/1791525882954/erxiang/shop/4/0/tool/0"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/35",
+    "expectedSeq": 34,
+    "action": {
+      "type": "UseConsumable",
+      "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/34",
+      "targetIds": []
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/36",
+    "expectedSeq": 35,
+    "action": {
+      "type": "LeaveShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/37",
+    "expectedSeq": 36,
+    "action": {
+      "type": "EnterStage"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/38",
+    "expectedSeq": 37,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "spades-9",
+        "clubs-3",
+        "clubs-6",
+        "diamonds-11",
+        "diamonds-14"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/39",
+    "expectedSeq": 38,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "diamonds-9",
+        "spades-4",
+        "spades-3",
+        "diamonds-3"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/40",
+    "expectedSeq": 39,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "clubs-11",
+        "diamonds-13",
+        "diamonds-8",
+        "spades-6"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/41",
+    "expectedSeq": 40,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "hearts-7",
+        "hearts-3",
+        "hearts-6",
+        "clubs-2",
+        "hearts-14"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/42",
+    "expectedSeq": 41,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "diamonds-10",
+        "hearts-2",
+        "spades-10",
+        "spades-8"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/43",
+    "expectedSeq": 42,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "clubs-14",
+        "clubs-9",
+        "clubs-10",
+        "clubs-8",
+        "clubs-7"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/44",
+    "expectedSeq": 43,
+    "action": {
+      "type": "OpenShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/45",
+    "expectedSeq": 44,
+    "action": {
+      "type": "BuyOffer",
+      "offerId": "run/1791525882954/erxiang/shop/5/0/tool/0"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/46",
+    "expectedSeq": 45,
+    "action": {
+      "type": "UseConsumable",
+      "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/45",
+      "targetIds": [
+        "spades-12",
+        "spades-13"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/47",
+    "expectedSeq": 46,
+    "action": {
+      "type": "BuyOffer",
+      "offerId": "run/1791525882954/erxiang/shop/5/0/tool/1"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/48",
+    "expectedSeq": 47,
+    "action": {
+      "type": "UseConsumable",
+      "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/47",
+      "targetIds": [
+        "clubs-11",
+        "clubs-12"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/49",
+    "expectedSeq": 48,
+    "action": {
+      "type": "LeaveShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/50",
+    "expectedSeq": 49,
+    "action": {
+      "type": "EnterStage"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/51",
+    "expectedSeq": 50,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "spades-4",
+        "clubs-2",
+        "spades-9",
+        "spades-7",
+        "hearts-7"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/52",
+    "expectedSeq": 51,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "clubs-4",
+        "clubs-8",
+        "spades-10",
+        "hearts-13",
+        "hearts-6"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/53",
+    "expectedSeq": 52,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "clubs-12",
+        "hearts-10",
+        "spades-14"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/54",
+    "expectedSeq": 53,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "diamonds-14",
+        "diamonds-7",
+        "diamonds-13",
+        "diamonds-5",
+        "diamonds-10"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/55",
+    "expectedSeq": 54,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "clubs-7",
+        "hearts-3",
+        "hearts-11",
+        "spades-5"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/56",
+    "expectedSeq": 55,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "diamonds-8",
+        "diamonds-6",
+        "diamonds-9",
+        "diamonds-11",
+        "spades-13"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/57",
+    "expectedSeq": 56,
+    "action": {
+      "type": "OpenShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/58",
+    "expectedSeq": 57,
+    "action": {
+      "type": "BuyOffer",
+      "offerId": "run/1791525882954/erxiang/shop/6/0/joker/2"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/59",
+    "expectedSeq": 58,
+    "action": {
+      "type": "BuyOffer",
+      "offerId": "run/1791525882954/erxiang/shop/6/0/tool/1"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/60",
+    "expectedSeq": 59,
+    "action": {
+      "type": "UseConsumable",
+      "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/59",
+      "targetIds": [
+        "spades-12",
+        "spades-13"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/61",
+    "expectedSeq": 60,
+    "action": {
+      "type": "LeaveShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/62",
+    "expectedSeq": 61,
+    "action": {
+      "type": "EnterStage"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/63",
+    "expectedSeq": 62,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "hearts-2",
+        "spades-5",
+        "spades-9",
+        "hearts-8",
+        "hearts-4"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/64",
+    "expectedSeq": 63,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "spades-11",
+        "hearts-5",
+        "diamonds-12",
+        "diamonds-8",
+        "hearts-3"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/65",
+    "expectedSeq": 64,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "diamonds-13",
+        "hearts-12",
+        "hearts-6",
+        "diamonds-11"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/66",
+    "expectedSeq": 65,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "spades-14",
+        "diamonds-3",
+        "diamonds-4",
+        "spades-3"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/67",
+    "expectedSeq": 66,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "hearts-7",
+        "diamonds-9",
+        "diamonds-7",
+        "spades-7"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/68",
+    "expectedSeq": 67,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "diamonds-10",
+        "hearts-13",
+        "spades-8",
+        "spades-13"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/69",
+    "expectedSeq": 68,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "clubs-12",
+        "clubs-11",
+        "clubs-14",
+        "clubs-3",
+        "clubs-8"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/70",
+    "expectedSeq": 69,
+    "action": {
+      "type": "OpenShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/71",
+    "expectedSeq": 70,
+    "action": {
+      "type": "BuyOffer",
+      "offerId": "run/1791525882954/erxiang/shop/7/0/joker/2"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/72",
+    "expectedSeq": 71,
+    "action": {
+      "type": "BuyOffer",
+      "offerId": "run/1791525882954/erxiang/shop/7/0/tool/1"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/73",
+    "expectedSeq": 72,
+    "action": {
+      "type": "UseConsumable",
+      "instanceId": "run/1791525882954/erxiang/tool/run/1791525882954/erxiang/command/72",
+      "targetIds": [
+        "diamonds-13",
+        "diamonds-14"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/74",
+    "expectedSeq": 73,
+    "action": {
+      "type": "LeaveShop"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/75",
+    "expectedSeq": 74,
+    "action": {
+      "type": "EnterStage"
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/76",
+    "expectedSeq": 75,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "clubs-4",
+        "spades-4",
+        "spades-5",
+        "hearts-5",
+        "spades-8"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/77",
+    "expectedSeq": 76,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "diamonds-13",
+        "diamonds-4",
+        "diamonds-7",
+        "diamonds-10",
+        "diamonds-6"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/78",
+    "expectedSeq": 77,
+    "action": {
+      "type": "DiscardHand",
+      "selectedIds": [
+        "hearts-4",
+        "hearts-12",
+        "spades-7",
+        "hearts-6"
+      ]
+    }
+  },
+  {
+    "runId": "run/1791525882954/erxiang",
+    "commandId": "run/1791525882954/erxiang/command/79",
+    "expectedSeq": 78,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "clubs-12",
+        "clubs-14",
+        "clubs-13",
+        "clubs-3",
+        "clubs-9"
+      ]
+    }
+  }
+]
