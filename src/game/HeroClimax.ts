@@ -50,6 +50,8 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  text(nameX,nameY,getCharacter(id).name,short?36:portrait?44:68).setName('hero/climax-name');
  text(portrait?w*.51:nameX,portrait?nameY+12:nameY+(short?44:78),key.kind==='starter'?'路线首发':key.cause==='实际乘法生效'?'倍率爆发':'开场得分',short?18:22,C.red,portrait?w*.4:contentW);
  const labelY=portrait?panelY+panelH*.36:panelY+panelH*.36;
+ // Portrait recoil can cross the number column; keep its saved facts on opaque paper.
+ if(portrait)board.add(scene.add.rectangle(contentX+contentW/2,labelY+78,contentW+14,174,T.paperLight,.97).setName('hero/climax-readout-paper'));
  text(contentX,labelY,value.label,short?16:18,C.jade,contentW);
  const readout=scene.add.text(contentX+contentW/2,labelY+(short?27:42),value.before,{fontFamily:SCORE_FONT,fontSize:(short?42:portrait?58:92)+'px',fontStyle:'800',color:C.red,resolution:Math.max(1.5,1/scene.scale.zoom)}).setOrigin(.5,0).setName('hero/climax-value');board.add(readout);
  const fitValue=()=>{readout.setScale(Math.min(1,contentW/readout.width));};fitValue();
