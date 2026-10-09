@@ -39,3 +39,11 @@ it('pre-scheduled deal train retains every future card and caps only overlapping
  const voices=[...inside.voices] as any[];for(const voice of voices)expect(voices.filter(v=>v.startsAt<=voice.startsAt&&v.endsAt>voice.startsAt).length).toBeLessThanOrEqual(3);
  engine.cancelPresentation();expect(inside.voices.size).toBe(0);expect(sources.every(s=>s.disconnect.mock.calls.length===1)).toBe(true);
 });
+
+it('future multi-resource cap ends earlier beats at the collision time instead of disconnecting now',()=>{
+ const {engine,inside,sources}=fixture();engine.resourceSpend('play',0,3,1);
+ expect(sources).toHaveLength(6);expect(sources.every(s=>s.disconnect.mock.calls.length===0)).toBe(true);
+ expect(sources[0].stop.mock.calls.at(-1)[0]).toBeCloseTo(1.11);
+ const voices=[...inside.voices] as any[];for(const voice of voices)expect(voices.filter(v=>v.startsAt<=voice.startsAt&&v.endsAt>voice.startsAt).length).toBeLessThanOrEqual(4);
+ engine.cancelPresentation();expect(inside.voices.size).toBe(0);
+});

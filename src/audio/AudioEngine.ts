@@ -318,7 +318,12 @@ export class AudioEngine {
     if(last!==undefined&&time>=last&&time-last<recipe.gap)return [];
     this.cueTimes.set(kind,time);
     const active=[...this.voices].filter(v=>v.semantic===kind&&(v.startsAt??0)<=time&&(v.endsAt??Infinity)>time);
-    while(active.length+recipe.layers.length>recipe.cap&&active.length)this.release(active.shift()!);
+    while(active.length+recipe.layers.length>recipe.cap&&active.length){
+      const oldest=active.shift()!;
+      // A future train reaches its cap in the future: retain earlier audible beats.
+      if(time>this.context!.currentTime){try{oldest.source.stop(time);oldest.endsAt=time;}catch{this.release(oldest);}}
+      else this.release(oldest);
+    }
     const variant=this.variants.get(kind)??0;this.variants.set(kind,variant+1);
     return recipe.layers.flatMap(layer=>{
       const voice=this.recordedCue(layer.samples[variant%layer.samples.length],duration===undefined?layer.duration:Math.min(duration,layer.duration),layer.gain*strength,bus,rate*(layer.rate??1),offset+(layer.delay??0));
