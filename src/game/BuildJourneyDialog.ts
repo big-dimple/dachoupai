@@ -1,3 +1,4 @@
+import {buildFallback} from './BuildFallback';
 import {buildKeepsake} from './BuildKeepsake';
 import {attachFirstChapterGuide} from './FirstChapterGuide';
 import type {R2RunState} from '../domain/r2Run';
@@ -5,7 +6,7 @@ import {DetailDialog} from './DetailDialog';
 import {BUILD_FOCUS,BUILD_LABEL,buildJourneyFacts,currentBuildFocus,chooseBuildFocus,buildDirectionSummary,buildDirectionCaption,type BuildFocus} from './BuildJourney';
 import {jokerArtPreviewUrl} from './jokerArt';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
-interface JourneyActions {onFocus?:()=>void;tools:()=>void;tool:(id:string)=>void;source:(id:string)=>void;deck:()=>void;offers?:(id:string,kind:'jokers'|'tools'|'items')=>void;compare?:(offerId:string,heldId:string)=>void;continue:()=>void;continueLabel:string;ready:boolean;publicHands?:()=>void;manage?:()=>void;chapter?:()=>void}
+interface JourneyActions {onFocus?:()=>void;tools:()=>void;tool:(id:string)=>void;source:(id:string)=>void;deck:()=>void;offers?:(id:string,kind:'jokers'|'tools'|'items')=>void;compare?:(offerId:string,heldId:string)=>void;continue:()=>void;continueLabel:string;ready:boolean;publicHands?:()=>void;manage?:()=>void;chapter?:()=>void;basicTool?:(id?:string)=>void}
 /** Player chooses a direction, then takes an existing validated action. No command is submitted here. */
 export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:JourneyActions,choose=false,all=false):void {
  const selected=currentBuildFocus(state,state.openingRoute),focus=choose?undefined:selected;
@@ -18,15 +19,16 @@ export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:Jo
  }
  const facts=buildJourneyFacts(state,focus);
  if(state.phase==='shop'&&!all){
-  const decision=facts.decision,choice=decision.choices[0],offer=choice&&facts.offers.find(o=>o.id===choice.id);
+  const decision=facts.decision,choice=decision.choices[0],offer=choice&&facts.offers.find(o=>o.id===choice.id),fallback=!choice?buildFallback(state,focus):undefined;
   const inspectChoice=()=>{if(!choice||!offer)return;if(choice.replaceId&&actions.compare)actions.compare(choice.id,choice.replaceId);else actions.offers?.(choice.id,offer.kind);};
-  const cards=offer&&choice?[{title:offer.title,url:offer.url,body:choice.loss??'查看后仍由你确认，不会自动购买。',action:{label:choice.replaceId?'查看这张替换':'查看这件购买',run:inspectChoice}}]:[];
+  const compareRepair=()=>{const c=fallback?.choice;if(!c)return;if(c.source==='held')actions.tool(c.id);else if(c.source==='offer')actions.offers?.(c.id,'tools');else actions.basicTool?.(c.id||undefined);};
+  const cards=offer&&choice?[{title:offer.title,url:offer.url,body:choice.loss??'查看后仍由你确认，不会自动购买。',action:{label:choice.replaceId?'查看这张替换':'查看这件购买',run:inspectChoice}}]:fallback?.choice?[{title:fallback.choice.title,url:fallback.choice.url,body:fallback.choice.body,action:{label:fallback.choice.label,run:compareRepair}}]:[];
   dialog.open('这轮怎么选 · '+facts.title,[buildDirectionSummary(state),'这是按当前持牌、已存成长、实际货架与成本给出的保守建议，可自行选择其它方案。不是数学最优，也不保证下手成型。',...decision.items.map(i=>r2JokerDefinitionFor(state,i.offer.definitionId).name+'：'+i.reason),facts.cash.body,...facts.owned.map(o=>o.title+'\n'+o.body)].join('\n\n'),[
    ...(choice&&offer?[{label:(choice.replaceId?'查看替换':'查看购买')+' · '+offer.price+'金',primary:true,disabled:!actions.ready||!offer.affordable,run:inspectChoice}]:[]),
    {label:'查看全部现货与持牌',run:()=>showBuildJourney(dialog,state,actions,false,true)},
    {label:'更换方向',run:()=>showBuildJourney(dialog,state,actions,true)},
-   {label:choice?'先留金，进入牌桌':'这轮不买，留金入场',primary:!choice,disabled:!actions.ready,run:actions.continue},
-  ],{keepsake:buildKeepsake(state),keepsakeCompact:true,summaryBody:decision.headline+'\n'+decision.reason+'\n'+buildDirectionCaption(state),cards,collapseRules:true,rulesLabel:'建议依据与完整规则'});attachFirstChapterGuide(state,actions.onFocus);return;
+   {label:choice?'先留金，进入牌桌':fallback?'先留'+state.gold+'金，进入牌桌':'这轮不买，留金入场',primary:!choice,disabled:!actions.ready,run:actions.continue},
+  ],{keepsake:buildKeepsake(state),keepsakeCompact:true,summaryBody:(fallback?.headline??decision.headline)+'\n'+(fallback?.reason??decision.reason)+'\n'+buildDirectionCaption(state),cards,collapseRules:true,rulesLabel:'建议依据与完整规则'});attachFirstChapterGuide(state,actions.onFocus);return;
  }
  const offers=facts.offers.map(o=>({title:o.title,url:o.url,stat:o.decision,body:o.brief,action:{label:o.affordable?'查看并选择这件':'查看差额与条件',run:()=>actions.offers?.(o.id,o.kind)}}));
  const owned=facts.owned.map(o=>({title:o.title,url:o.url,body:o.relation.label+' · '+o.relation.body,details:o.body,action:{label:'查看来源与成长',run:()=>actions.source(o.id)}}));
