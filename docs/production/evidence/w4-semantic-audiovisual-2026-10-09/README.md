@@ -9,7 +9,7 @@
 - [最终PC真实相乘高光](hero-final/1366-multiply-normal.png)、[手机中途减动态前strike](hero-final/390-multiply-mid-reduce.png)、[手机跳过前strike](hero-final/390-multiply-skip.png)、[相乘独立输出](hero-final/1366-multiply-normal-audio.webm)。图片捕捉在操作低动态／跳过之前；最终完整状态／清理见report，不冒充已显示低动态后的瞬间。
 - [最终受控trace完整报告](hero-final/report.json)、[正常新局完整状态报告](natural-report.json)、[所有生产调用审计](production-audio-calls.txt)。所有waitForFunction为同步Boolean，异步预热另行显式await。
 
-正常链录在3a63340，PC音画产品与最终相同；后续76b7497仅增加手机高光读数纸底，该链不冒称重录于新head。最终三项受控高光记录在76b7497，受控相乘fixture不当自然率／经营证明。62项9文件定向／构建通过，纸底增量7项／type通过；最终CI另核，不反复本地整包或旧档矩阵。
+正常链录在3a63340，PC音画产品与最终相同；后续76b7497仅增加手机高光读数纸底，该链不冒称重录于新head。最终三项受控高光记录在76b7497，受控相乘fixture不当自然率／经营证明。62项9文件定向／构建通过，纸底增量6项／type通过；最终CI另核，不反复本地整包或旧档矩阵。
 
 ## 真实动作与中断
 
