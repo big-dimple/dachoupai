@@ -7,4 +7,6 @@ MIT Copyright (c) 2026 Jayden Davis; exact original LICENSE alongside this notic
 - `src/audio/audio.js` L258–280: minGap and per-sound oldest-voice cap adapted to per-semantic multi-layer recipes in `AudioEngine.cue`. Existing app context, bus/mute/visibility, event identity and cleanup remain. Local round-robin variants replace pitch jitter; no domain RNG.
 - `src/audio/audio.js` L425–449: 75ms paired confirmation timing adapted to actual recorded chip transaction layers, not its synthesized voices.
 
-No InkWipe, V.tone/V.nz, shooter engine, fonts, songs, 3D assets or debug freeze were imported. Demo playback/hearing was not verified: parent's cloud browser stopped at5% with WebGL Disabled. These are actual code adaptations, not a claim of demo or human audiovisual acceptance.
+- `src/ui/menu-art.js` InkWipe L285–309, L344–384: cancellation/token guard, rAF starvation timeout and three-wave edge adapted in `src/game/PaperFlow.ts`. A 240ms narrow translucent paper/ink strip replaces the opaque full wipe, particles and SQUID mark. Scene routes execute immediately exactly once; no delayed onMid callback. App/OS reduced motion, blur, visibility, resize and game destruction cancel the visual layer. No asset or domain RNG added.
+
+No V.tone/V.nz, shooter engine, fonts, songs, 3D assets or debug freeze were imported. Demo playback/hearing was not verified: parent's cloud browser stopped at5% with WebGL Disabled. These are actual code adaptations, not a claim of demo or human audiovisual acceptance.

@@ -1,3 +1,4 @@
+import {paperSceneStart} from './PaperFlow';
 import {r2BasicToolShelfStatus} from '../domain/r2Shop';
 import {starterOffer,starterShopCue} from './RouteStarter';
 import {firstChapterGuide,firstChapterShopPrompt,dismissFirstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
@@ -710,9 +711,9 @@ export class ShopScene extends Phaser.Scene {
         if(oldGold!==this.run.gold)this.pendingGoldRoll=oldGold;
         if(previous.shop!.rerollCount!==this.run.shop!.rerollCount){this.selectedOfferId=undefined;this.audio.reroll();this.pendingRerollFlip=this.shelfKind!=='items';}
       }
-      if(action.type==='LeaveShop'){this.audio.select();this.scene.start('game');}
+      if(action.type==='LeaveShop'){this.audio.select();paperSceneStart(this,'game');}
       else if(action.type==='SkipStage'){
-        const s=this.run.stage!;this.scene.start('intermission',{cleared:true,stageIndex:s.index,stageHeat:s.heat,handsLeft:s.handsLeft,goldEarned:s.goldEarned} satisfies IntermissionResult);
+        const s=this.run.stage!;paperSceneStart(this,'intermission',{cleared:true,stageIndex:s.index,stageHeat:s.heat,handsLeft:s.handsLeft,goldEarned:s.goldEarned} satisfies IntermissionResult);
       }
       return true;
     }finally {if(lifecycle===this.lifecycle){this.busy=false;if(this.scene.isActive()&&this.run.phase==='shop'){this.render();this.afterRenderFx();}}}

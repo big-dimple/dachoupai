@@ -1,3 +1,4 @@
+import {paperSceneStart} from './PaperFlow';
 import Phaser from 'phaser';
 import {AudioEngine} from '../audio/AudioEngine';
 import {gameSession} from './session';
@@ -77,7 +78,7 @@ export class TitleScene extends Phaser.Scene {
   }
   private enterNew():void {
     if(this.leaving||gameSession().working)return;
-    this.leaving=true;this.audio.curtainOpen();this.scene.start('character-select',{seed:this.seed});
+    this.leaving=true;this.audio.curtainOpen();paperSceneStart(this,'character-select',{seed:this.seed});
   }
   private continueRun():void {
     const saved=gameSession().run;if(this.leaving||!saved||!['idle','readonly'].includes(saved.status))return;

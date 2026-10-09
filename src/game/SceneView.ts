@@ -1,3 +1,4 @@
+import {gameSession} from './session';
 import {AudioEngine} from '../audio/AudioEngine';
 import Phaser from 'phaser';
 import {layout,type Box,type TableLayout,type HandWindow} from './layout';
@@ -119,12 +120,21 @@ export class SceneView {
     const t=this.text(b.x+b.width/2,b.y+b.height/2-1,label,primary?22:15).setOrigin(.5).setFontStyle('bold').setColor(primary?PAPER_CSS.paperLight:PAPER_CSS.jade);
     const r=this.rect(b).setFillStyle(0,0).setStrokeStyle();
     r.setData('label',t).setData('buttonArt',art).setData('buttonFace',g).setData('buttonBounds',b).setData('buttonPrimary',primary).setData('buttonSkin',skin).setData('buttonGlyph',glyph);
-    const rest=()=>{art.y=b.y;t.y=Number(t.getData('restY')??b.y+b.height/2-1);glow.setAlpha(0);};
-    this.target(r,name,{tap:()=>{AudioEngine.shared.select();action();},press:()=>{art.y=b.y+2;t.y=Number(t.getData('restY')??b.y+b.height/2-1)+2;glow.setAlpha(.6);},release:rest,cancel:rest});
+    const stop=()=>this.scene.tweens.killTweensOf([art,t]);
+    const rest=()=>{stop();art.setScale(1).setPosition(b.x,b.y);t.setScale(1);t.y=Number(t.getData('restY')??b.y+b.height/2-1);glow.setAlpha(0);};
+    const press=()=>{
+      stop();glow.setAlpha(.6);
+      if(gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+      this.scene.tweens.add({targets:art,scaleX:.955,scaleY:.955,x:b.x+b.width*.045/2,y:b.y+b.height*.045/2,duration:80,ease:'Quad.Out'});
+      this.scene.tweens.add({targets:t,scaleX:.955,scaleY:.955,y:Number(t.getData('restY')??b.y+b.height/2-1)+1,duration:80,ease:'Quad.Out'});
+    };
+    r.once('destroy',stop);
+    this.target(r,name,{tap:()=>{AudioEngine.shared.select();action();},press,release:rest,cancel:rest});
     r.on('pointerover',()=>{if(r.input?.enabled)glow.setAlpha(.8);});r.on('pointerout',rest);
     this.setEnabled(r,enabled);return r;
   }
   setEnabled(object:Phaser.GameObjects.Rectangle,enabled:boolean):void {
+    if(!enabled&&this.pressed?.object===object)this.cancel();
     object.input!.enabled=enabled;object.setAlpha(1);
     const primary=!!object.getData('buttonPrimary'),label=object.getData('label') as Phaser.GameObjects.Text|undefined;
     label?.setAlpha(1).setColor(enabled?(primary?PAPER_CSS.paperLight:PAPER_CSS.jade):PAPER_CSS.disabledInk);

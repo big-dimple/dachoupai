@@ -1,3 +1,4 @@
+import {paperSceneStart} from './PaperFlow';
 import {savedTouyeWager} from './TouyeWagerCopy';
 import {savedBossImpact} from './SavedBossImpact';
 import {buildGrowthProgress} from './BuildGrowthProgress';
@@ -260,7 +261,7 @@ export class IntermissionScene extends Phaser.Scene {
   private exitResult(destination:'shop'|'character-select',data?:{freshSeed:true}):void {
     // Phaser queues the switch; retire this view before async finally can repaint a new run.
     this.lifecycle++;this.rewardEffects.clear();this.dialog.close();this.audio.select();
-    if(data)this.scene.start(destination,data);else this.scene.start(destination);
+    paperSceneStart(this,destination,data);
   }
   private confirmEndless():void {
     const controller=runController(this);if(!this.ready||!controller)return;

@@ -1,3 +1,4 @@
+import {paperSceneStart} from './PaperFlow';
 import {inkSettlingEase} from './inkwaveSpring';
 import {characterForNewRun} from './CharacterRunCopy';
 import {HERO_OPENING,OPENING_ROUTES} from './HeroOpeningCopy';
@@ -220,7 +221,7 @@ export class CharacterSelectScene extends Phaser.Scene {
       else if(!controller&&session.pendingRun&&session.pendingRun.state.seed===seed&&session.pendingRun.state.characterId===id)deferOpeningIntent(session,session.pendingRun,focus);
       if(lifecycle!==this.lifecycle||!this.scene.isActive())return false;
       if(!controller||controller.status!=='idle'||session.run!==controller){this.notice=session.notice||'新局尚未保存，请从菜单重试保存。';this.audio.invalid();return false;}
-      this.audio.select();this.scene.start('shop');return true;
+      this.audio.select();paperSceneStart(this,'shop');return true;
     }finally {if(lifecycle===this.lifecycle&&this.scene.isActive()){this.choosing=false;this.render();}}
   }
 }

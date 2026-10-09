@@ -1,3 +1,4 @@
+import {paperSceneStart} from './PaperFlow';
 import {usesTouyeWager,type TouyeBet,type TouyeTarget} from '../domain/r2TouyeWager';
 import {touyeChoice,TOUYE_RISK} from './TouyeWagerCopy';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
@@ -1852,7 +1853,7 @@ export class GameScene extends Phaser.Scene {
 
     this.tweens.add({targets:{t:0},t:1,duration:1000,onComplete:() => {
       if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
-      this.scene.start('intermission', {
+      paperSceneStart(this,'intermission', {
         cleared,
         stageIndex: completedIndex,
         stageHeat,

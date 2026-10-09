@@ -10,7 +10,7 @@ function fixture(){
  vi.stubGlobal('window',new EventTarget());
  const input=new EventEmitter(),events=new EventEmitter(),canvas=Object.assign(new EventTarget(),{getBoundingClientRect:()=>({left:0,top:0,width:100,height:100})});
  const scene={input,events,game:{canvas},scale:Object.assign(new EventEmitter(),{width:100,height:100}),scene:{isActive:()=>true},cameras:{main:{}},add:{container:()=>({setName(){return this;}})}} as unknown as Phaser.Scene;
- const object=Object.assign(new EventEmitter(),{name:'',setName(n:string){this.name=n;return this;},setInteractive(){return this;},getBounds:()=>({contains:()=>true})});
+ const object=Object.assign(new EventEmitter(),{name:'',input:{enabled:true},setAlpha(){return this;},getData(){return undefined;},setName(n:string){this.name=n;return this;},setInteractive(){return this;},getBounds:()=>({contains:()=>true})});
  const view=new SceneView(scene,()=>{}),tap=vi.fn();view.target(object as unknown as Phaser.GameObjects.Rectangle,'selection/assist-pair',{tap});
  const p={id:1,x:50,y:50,wasTouch:true,downTime:100,upTime:120,positionToCamera:()=>({x:50,y:50})};
  return {view,tap,input,object,p};
@@ -26,4 +26,9 @@ it('candidate completion preserves a pressed target and executes its tap before 
 it('cancel releases pending derived information without activating the cancelled action',async()=>{
  const {view,tap,input,object,p}=fixture(),refresh=vi.fn();input.emit('pointerdown',p,[object]);view.afterInteraction(refresh);input.emit('pointerupoutside');
  await Promise.resolve();expect(refresh).toHaveBeenCalledTimes(1);expect(tap).not.toHaveBeenCalled();view.afterInteraction(refresh);expect(refresh).toHaveBeenCalledTimes(2);
+});
+
+it('disabling the pressed target cancels activation before release',()=>{
+ const {view,tap,input,object,p}=fixture();input.emit('pointerdown',p,[object]);
+ view.setEnabled(object as unknown as Phaser.GameObjects.Rectangle,false);input.emit('pointerup',p);expect(tap).not.toHaveBeenCalled();expect(object.input.enabled).toBe(false);
 });
