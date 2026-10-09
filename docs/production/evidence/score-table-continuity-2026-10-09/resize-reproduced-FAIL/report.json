@@ -1,0 +1,205 @@
+{
+  "source": "6d0856ab34abab1364bea10819851b7797c2bd48",
+  "baseline": false,
+  "scope": "Fixed controlled ordinary public hand and fixed legal flush/starter growth. Bounded award frames, no recording/audio/natural-rate/human/device acceptance.",
+  "cases": [
+    {
+      "kind": "ordinary",
+      "width": 390,
+      "height": 740,
+      "mode": "resize",
+      "key": "ordinary-390-resize",
+      "status": "FAIL",
+      "errors": [
+        "TypeError: Cannot read properties of undefined (reading 'setDisplaySize')\n    at fy.updateHud (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:374:849)\n    at fy.completePresentation (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:370:42327)\n    at fy.fastForward (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:370:42770)\n    at view.Ar.count [as redraw] (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:287:26940)\n    at initialize.resize (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:185:16597)\n    at y.50792.s.emit (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:1:2895)\n    at initialize.refresh (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:63:9270)\n    at initialize.resize (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:63:8453)\n    at VisualViewport.y (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:185:11687)"
+      ],
+      "award": {
+        "sideTotalVisible": false,
+        "sideLabelVisible": false,
+        "hero": false,
+        "landing": true,
+        "texts": [
+          {
+            "name": "score/landing-label",
+            "text": "高牌 · 本手得分",
+            "bounds": {
+              "type": 5,
+              "x": 55,
+              "y": 378,
+              "width": 97,
+              "height": 16
+            }
+          },
+          {
+            "name": "score/landing-total",
+            "text": "27",
+            "exact": "27",
+            "bounds": {
+              "type": 5,
+              "x": 173.65399149487305,
+              "y": 389.3386553264974,
+              "width": 42.69201701025389,
+              "height": 46.96121871127929
+            }
+          },
+          {
+            "name": "score/landing-formula",
+            "text": "27 × 1",
+            "bounds": {
+              "type": 5,
+              "x": 175,
+              "y": 443,
+              "width": 40,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "resizedDuringAward": true,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   \"TypeError: Cannot read properties of undefined (reading 'setDisplaySize')\\n\" +\n+     '    at fy.updateHud (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:374:849)\\n' +\n+     '    at fy.completePresentation (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:370:42327)\\n' +\n+     '    at fy.fastForward (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:370:42770)\\n' +\n+     '    at view.Ar.count [as redraw] (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:287:26940)\\n' +\n+     '    at initialize.resize (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:185:16597)\\n' +\n+     '    at y.50792.s.emit (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:1:2895)\\n' +\n+     '    at initialize.refresh (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:63:9270)\\n' +\n+     '    at initialize.resize (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:63:8453)\\n' +\n+     '    at VisualViewport.y (http://127.0.0.1:5405/assets/index-DDWwnl-J.js:185:11687)'\n+ ]\n- []\n\n    at file:///workspace/dachoupai/harness/score-table-continuity.mjs:14:1278",
+      "frameCount": 6,
+      "representativeFrames": [
+        {
+          "time": 2980,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 41,
+            "y": 371,
+            "width": 308,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 55,
+                "y": 378,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 175,
+                "y": 393,
+                "width": 40,
+                "height": 44
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 175,
+                "y": 443,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 3024.4000000059605,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 41,
+            "y": 371,
+            "width": 308,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 55,
+                "y": 378,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 174.4807279813382,
+                "y": 390.44097064178425,
+                "width": 41.03854403732362,
+                "height": 45.142398441056
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 175,
+                "y": 443,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 3058,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 41,
+            "y": 371,
+            "width": 308,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 55,
+                "y": 378,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 173.4138888888889,
+                "y": 389.01851851851853,
+                "width": 43.17222222222222,
+                "height": 47.48944444444447
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 175,
+                "y": 443,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "browser": "151.0.7922.173",
+  "status": "FAIL"
+}

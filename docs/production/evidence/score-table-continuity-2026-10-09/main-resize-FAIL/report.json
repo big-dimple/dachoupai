@@ -1,0 +1,30 @@
+{
+  "source": "199c854fd9c61b796f713725b5481e4b0e125eaf",
+  "baseline": true,
+  "scope": "Fixed controlled ordinary public hand and fixed legal flush/starter growth. Bounded award frames, no recording/audio/natural-rate/human/device acceptance.",
+  "cases": [
+    {
+      "kind": "ordinary",
+      "width": 390,
+      "height": 740,
+      "mode": "resize",
+      "key": "ordinary-390-resize",
+      "status": "FAIL",
+      "errors": [
+        "TypeError: Cannot read properties of undefined (reading 'setDisplaySize')\n    at uy.updateHud (http://127.0.0.1:5405/assets/index-DuonnVPq.js:374:849)\n    at uy.completePresentation (http://127.0.0.1:5405/assets/index-DuonnVPq.js:370:41497)\n    at uy.fastForward (http://127.0.0.1:5405/assets/index-DuonnVPq.js:370:41940)\n    at view.Mr.count [as redraw] (http://127.0.0.1:5405/assets/index-DuonnVPq.js:287:26940)\n    at initialize.resize (http://127.0.0.1:5405/assets/index-DuonnVPq.js:185:16597)\n    at y.50792.s.emit (http://127.0.0.1:5405/assets/index-DuonnVPq.js:1:2895)\n    at initialize.refresh (http://127.0.0.1:5405/assets/index-DuonnVPq.js:63:9270)\n    at initialize.resize (http://127.0.0.1:5405/assets/index-DuonnVPq.js:63:8453)\n    at VisualViewport.y (http://127.0.0.1:5405/assets/index-DuonnVPq.js:185:11687)"
+      ],
+      "award": {
+        "sideTotalVisible": true,
+        "sideLabelVisible": true,
+        "hero": false,
+        "landing": false
+      },
+      "resizedDuringAward": true,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   \"TypeError: Cannot read properties of undefined (reading 'setDisplaySize')\\n\" +\n+     '    at uy.updateHud (http://127.0.0.1:5405/assets/index-DuonnVPq.js:374:849)\\n' +\n+     '    at uy.completePresentation (http://127.0.0.1:5405/assets/index-DuonnVPq.js:370:41497)\\n' +\n+     '    at uy.fastForward (http://127.0.0.1:5405/assets/index-DuonnVPq.js:370:41940)\\n' +\n+     '    at view.Mr.count [as redraw] (http://127.0.0.1:5405/assets/index-DuonnVPq.js:287:26940)\\n' +\n+     '    at initialize.resize (http://127.0.0.1:5405/assets/index-DuonnVPq.js:185:16597)\\n' +\n+     '    at y.50792.s.emit (http://127.0.0.1:5405/assets/index-DuonnVPq.js:1:2895)\\n' +\n+     '    at initialize.refresh (http://127.0.0.1:5405/assets/index-DuonnVPq.js:63:9270)\\n' +\n+     '    at initialize.resize (http://127.0.0.1:5405/assets/index-DuonnVPq.js:63:8453)\\n' +\n+     '    at VisualViewport.y (http://127.0.0.1:5405/assets/index-DuonnVPq.js:185:11687)'\n+ ]\n- []\n\n    at file:///workspace/dachoupai/harness/score-table-continuity.mjs:14:1278",
+      "frameCount": 0,
+      "representativeFrames": []
+    }
+  ],
+  "browser": "151.0.7922.173",
+  "status": "FAIL"
+}
