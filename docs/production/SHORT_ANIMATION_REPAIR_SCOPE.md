@@ -16,3 +16,14 @@ SavedToolResult所有结果无条件跳过按钮，但仅S01献牌random-enhance
 libfile_7e45fa1faf988191be67679f53e87b65（16176），libfile_a01967577c308191bd81908a1fa7296a（16174），libfile_70b9a7c270a08191b31188fc0fc634ef（16175）：本云mcp__codex_apps__library_prepare_materialize两次成功返回准备结果；当前Library scripts/library_file_transfer.py materialize均报“library file transfer failed: download failed”，没有HTTP状态/403或路径缺失证据。明确创建/workspace/mobile-repair-inputs后一次重试仍失败，目录文件0；本云未actual view，不再重复/猜URL/绕限制。基础自选现货/已购/选择/结果统一真实既有图形，双删结果去重复/紧凑与固定操作可达，待原图在本环境可读后实施；父本地已看不当本云存在。
 
 此按钮/短动作返修独立先推进；基础自选视觉与用户复验阻塞仍开放。默认30/80、小夜曲、领域/经济/身份/保存保持，原W2/W3/W4/W5/W6与整体六角/G1/P08/C04边界不变。
+
+## 全套说明返修（用户最新合同，仍按依赖串行）
+Sentinel_b0c3f534d7bc8191abd9fd581a7cbe81：练一招主说明“给一种牌型升级”；选定后显示真实等级与基础数字前后，价格留在购买处。214a68f49d84819192a1aef32fba3db4扩大至所有牌：第一层一句人话用途，突出关键触发与数值；重复、制作标签、无关提醒删除，复杂细则展开，覆盖/牺牲等真实风险只在对应确认保留。
+
+覆盖清单（不能以一张改完代表全套）：
+- 消耗道具与升级牌：共享货架、购买、库存、目标确认、保存结果、图鉴。
+- 长期道具：共享购买、持有与图鉴，说明真实生效时机。
+- 大丑牌：共享货架、购买、持有、图鉴与真实来源反馈；按hook、当前成长、重触与封禁梳理，复杂多段不牺牲准确性。
+- 扑克增强/版次、牌型：在相关目标/变更处显示有效差异，删无增强/普通等重复默认标签。
+
+先保全短演出检查与全套合同，再共用信息层级和逐类准确性复核；基础自选视觉和双删紧凑仍待原图。本次16177 libfile_3b20764ffc488191a23a7d408343f872也经当前Library准备后helper报“library file transfer failed: download failed”，无HTTP状态，本云未view。原W2/W3依赖、得分候选暂停与用户PC/手机复验保持；不新建并发线或长演出。
