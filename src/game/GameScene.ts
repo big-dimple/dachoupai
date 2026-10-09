@@ -1765,9 +1765,9 @@ export class GameScene extends Phaser.Scene {
     const opening= !presentation.replay&&presentation.state.openingShow?.rootId===score.rootId&&presentation.state.openingShow.reason==='score';
     const closeOpening=opening?this.showOpeningScore(score,context):undefined;
     const landing=closeOpening?.hero?undefined:mountScoreLanding(this,this.view.root,this.view.layout,score,presentation.replay,context.signal);
-    const sideTotal=[this.scoreTotal,this.scoreLabels[2],this.view.root.list.find(o=>o.name==='score/total-pedestal') as Phaser.GameObjects.Graphics|undefined].filter((o):o is Phaser.GameObjects.Text|Phaser.GameObjects.Graphics=>!!o),sideVisible=sideTotal.map(o=>o.visible);
-    if(landing){this.scoreLabels[2].setData('landingSuppressed',true);sideTotal.forEach(o=>o.setVisible(false));this.scoreFlame?.destroy();this.scoreFlame=undefined;}
-    const closeLanding=()=>{landing?.dispose();this.scoreLabels[2].setData('landingSuppressed',false);sideTotal.forEach((o,i)=>{if(o.active)o.setVisible(sideVisible[i]);});context.signal.removeEventListener('abort',closeLanding);};
+    const totalLabel=this.scoreLabels[2],sideTotal=[this.scoreTotal,totalLabel,this.view.root.list.find(o=>o.name==='score/total-pedestal') as Phaser.GameObjects.Graphics|undefined].filter((o):o is Phaser.GameObjects.Text|Phaser.GameObjects.Graphics=>!!o),sideVisible=sideTotal.map(o=>o.visible);
+    if(landing){totalLabel.setData('landingSuppressed',true);sideTotal.forEach(o=>o.setVisible(false));this.scoreFlame?.destroy();this.scoreFlame=undefined;}
+    let landingClosed=false;const closeLanding=()=>{if(landingClosed)return;landingClosed=true;landing?.dispose();totalLabel.setData('landingSuppressed',false);sideTotal.forEach((o,i)=>{if(o.active)o.setVisible(sideVisible[i]);});context.signal.removeEventListener('abort',closeLanding);};
     context.signal.addEventListener('abort',closeLanding,{once:true});
     if(closeOpening?.strike&&!this.reducedMotion)await this.wait(180,context);
     if(context.signal.aborted)return;
