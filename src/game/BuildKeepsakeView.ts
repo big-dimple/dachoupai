@@ -12,7 +12,7 @@ export function buildKeepsakeView(facts:BuildKeepsake,cleanups:(()=>void)[]):HTM
  const title=document.createElement('h3');title.textContent='已存成长 · 不补加到刚结算的本手';section.append(title);
  for(const row of facts.growth){
   const card=document.createElement('article'),copy=document.createElement('div'),name=document.createElement('h4'),value=document.createElement('strong');card.className='build-keepsake-growth';card.dataset.instanceId=row.instanceId;card.dataset.growthKey=row.key;
-  name.textContent=row.name;value.textContent=row.metric;value.className='build-keepsake-value';copy.append(name,value,p(row.cause,'build-keepsake-cause'),p(row.next+' · 以实际条件和保存事件为准','build-keepsake-next'));
+  name.textContent=row.name;value.textContent=row.metric;value.className='build-keepsake-value';copy.append(name,value,p(row.cause,'build-keepsake-cause'));if(row.read)copy.append(p(row.read,'build-keepsake-read'));copy.append(p(row.next+' · 以实际条件和保存事件为准','build-keepsake-next'));
   if(row.url)card.append(image(row.url,row.name+'已有卡面'));card.append(copy);section.append(card);
  }
  return section;

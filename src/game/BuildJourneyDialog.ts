@@ -27,10 +27,10 @@ export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:Jo
   ],{keepsake:buildKeepsake(state),summaryBody:decision.headline+'\n'+decision.reason+'\n'+buildDirectionCaption(state),cards,collapseRules:true,rulesLabel:'建议依据与完整规则'});attachFirstChapterGuide(state,actions.onFocus);return;
  }
  const offers=facts.offers.map(o=>({title:o.title,url:o.url,stat:o.decision,body:o.brief,action:{label:o.affordable?'查看并选择这件':'查看差额与条件',run:()=>actions.offers?.(o.id,o.kind)}}));
- const owned=facts.owned.map(o=>{const p=facts.progress.find(p=>p.instanceId===o.id);return {title:o.title,url:o.url,stat:p?.metric,body:o.body+'\n'+(p?p.cause+'\n'+p.next:''),action:{label:'查看来源与成长',run:()=>actions.source(o.id)}};});
+ const owned=facts.owned.map(o=>({title:o.title,url:o.url,body:o.relation.label+' · '+o.relation.body,details:o.body,action:{label:'查看来源与成长',run:()=>actions.source(o.id)}}));
  const tools=facts.tools.map(t=>({...t,action:{label:t.openable?'选择工具与目标':'查看工具规则',run:()=>actions.tool(t.id)}}));
  const cards=state.phase==='shop'?[...offers,...owned,...tools]:[...owned,...tools];
- const summary=state.phase==='shop'?'手头 '+state.gold+' 金 · 买组件或留金入场':facts.progress[0]?.metric??'用已有牌继续尝试';
+ const summary=state.phase==='shop'?'手头 '+state.gold+' 金 · 买组件或留金入场':facts.progress.length?'已存值与上手变化见成长手记':'用已有牌继续尝试';
  dialog.open('培养路线 · '+facts.title,[buildDirectionSummary(state),facts.guide,facts.cash.body,facts.composition,facts.discovered,...facts.gaps,'完整持有规则：',...facts.owned.map(o=>o.title+'\n'+o.body)].join('\n\n'),[
   ...(state.phase==='shop'?[{label:'回到这轮建议',run:()=>showBuildJourney(dialog,state,actions)}]:[]),{label:'更换方向',run:()=>showBuildJourney(dialog,state,actions,true)},
   {label:'查看公开牌组',run:actions.deck},

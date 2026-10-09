@@ -16,11 +16,16 @@ it('a disabled role is named but never sold as a current benefit',()=>{
 });
 it('real saved growth is separated from the just-scored hand and stays instance scoped',()=>{
  const p=buildTransitionPlan('straight');p.state.jokers[0].growth={};const ids=p.selected.slice(0,4);ids.forEach((id,i)=>{p.state.deckInstances.find(c=>c.id===id)!.rank=i<2?7:8;});
- const s=journeySend(p.state,{type:'PlayHand',selectedIds:ids}),before=JSON.stringify(s),g=buildKeepsake(s).growth[0];expect(g.metric).toContain('+10');expect(g.before).toBe('0');expect(g.after).toBe('10');expect(g.cause).toContain('两对');expect(JSON.stringify(s)).toBe(before);
- s.jokers[0].instanceId='new-instance';expect(buildKeepsake(s).growth[0].before).toBeUndefined();expect(buildKeepsake(s).growth[0].cause).toBe('从当前保存值继续培养');
+ const s=journeySend(p.state,{type:'PlayHand',selectedIds:ids}),before=JSON.stringify(s),g=buildKeepsake(s).growth[0];expect(g.metric).toContain('+10');expect(g.before).toBe('0');expect(g.after).toBe('10');expect(g.cause).toContain('两对');expect(g.read).toContain('实际读取 +0 热度');expect(JSON.stringify(s)).toBe(before);
+ s.jokers[0].instanceId='new-instance';expect(buildKeepsake(s).growth[0].before).toBeUndefined();expect(buildKeepsake(s).growth[0].read).toBeUndefined();expect(buildKeepsake(s).growth[0].cause).toBe('从当前保存值继续培养');
  s.jokers=[];expect(buildKeepsake(s).growth).toEqual([]);
 });
 it('different held sources and zero growth remain visible without borrowing another key',()=>{
  const p=buildTransitionPlan('straight');p.state.jokers.push(r2CreateJoker('b03','other-growth',0,undefined,p.state));const before=JSON.stringify(p.state),rows=buildKeepsake(p.state).growth;
  expect(rows).toHaveLength(2);expect(rows.map(r=>r.instanceId)).toEqual(p.state.jokers.map(j=>j.instanceId));expect(rows[1].current).toBe('0');expect(JSON.stringify(p.state)).toBe(before);
+});
+
+it('actual coefficient reads show multiplication instead of inventing an additive gain',()=>{
+ const p=buildTransitionPlan('straight');p.state.jokers=[r2CreateJoker('a06','coefficient',0,undefined,p.state)];
+ const s=journeySend(p.state,{type:'PlayHand',selectedIds:p.selected}),g=buildKeepsake(s).growth[0];expect(g.read).toContain('实际读取 ×1.5 倍率');expect(g.read).not.toContain('+1.5');
 });
