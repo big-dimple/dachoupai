@@ -1,0 +1,39 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/growth-payoff.test.ts (6 tests | 2 failed) 266ms
+   × sealed scoring still records an actual post-hand gain but never labels an absent read as zero 27ms
+   × an actual score-growth reset is a loss and never becomes a positive-growth stamp 30ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/growth-payoff.test.ts > sealed scoring still records an actual post-hand gain but never labels an absent read as zero
+Error: score-diagnostic
+ ❯ send tests/growth-payoff.test.ts:9:174
+
+ ❯ tests/growth-payoff.test.ts:14:175
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/growth-payoff.test.ts > an actual score-growth reset is a loss and never becomes a positive-growth stamp
+Error: Run invariant: live stage joker identities
+ ❯ check src/domain/r2Run.ts:122:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:206:20
+ ❯ applyCommand src/domain/run.ts:202:5
+ ❯ send tests/growth-payoff.test.ts:9:46
+ ❯ tests/growth-payoff.test.ts:17:259
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  2 failed | 26 passed (28)
+   Start at  20:26:28
+   Duration  1.21s (transform 1.64s, setup 0ms, import 2.23s, tests 518ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

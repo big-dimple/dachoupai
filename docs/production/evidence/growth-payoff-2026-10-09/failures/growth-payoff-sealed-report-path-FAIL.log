@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/growth-payoff.test.ts (6 tests | 1 failed) 311ms
+   × sealed scoring still records an actual post-hand gain but never labels an absent read as zero 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/growth-payoff.test.ts > sealed scoring still records an actual post-hand gain but never labels an absent read as zero
+TypeError: Cannot read properties of undefined (reading 'find')
+ ❯ tests/growth-payoff.test.ts:15:126
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 27 passed (28)
+   Start at  20:27:02
+   Duration  1.16s (transform 1.60s, setup 0ms, import 2.15s, tests 531ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

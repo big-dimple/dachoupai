@@ -1,0 +1,42 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/growth-payoff.test.ts (6 tests | 1 failed) 226ms
+   × sealed scoring still records an actual post-hand gain but never labels an absent read as zero 12ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/growth-payoff.test.ts > sealed scoring still records an actual post-hand gain but never labels an absent read as zero
+AssertionError: expected { instanceId: 'b10', …(13) } to match object { readCount: +0, readValue: '—', …(4) }
+(8 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "after": "10",
+-   "before": "0",
++   "after": "30",
++   "before": "20",
+    "change": "gain",
+    "readCount": 0,
+    "readLabel": "未读取",
+    "readValue": "—",
+  }
+
+ ❯ tests/growth-payoff.test.ts:16:305
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  20:27:21
+   Duration  982ms (transform 498ms, setup 0ms, import 612ms, tests 226ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

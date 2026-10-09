@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "beforeSource": "67fa9c3376b7f8d16f4cf62e23edfff350e8fea5",
+  "afterSource": "2c21cd1bb66e540e789a4c4a8a6d0ea66444177d",
+  "twoHandsPerSize": 2,
+  "fullStateJournalStorageEqual": true,
+  "assets": [
+    {
+      "path": "public/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+      "bytes": 4410,
+      "sha256": "ea36c7963037921a9b2ea7a9564bbb92edec1bd8f81835086e376715e7775097"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/b10.detail.webp",
+      "bytes": 68022,
+      "sha256": "e4ebe4c9f8e35b55ade5e06d65ec5d8af36e6d35d5db664a6588bf0efce58d21",
+      "use": "existing on-demand detail; receipt uses thumbnail"
+    }
+  ],
+  "newAssets": 0,
+  "deviceHumanAudioAcceptance": false
+}
