@@ -1,3 +1,5 @@
+import {r2ToolPrice} from '../domain/r2Shop';
+import type {R2ContentIdentity} from '../domain/r2ContentProfiles';
 import {SUIT_SYMBOL,type PlayingCard,type Edition} from '../cards/types';
 import {HAND_LABELS} from '../content/handLabels';
 import {R2_TOOL_CATALOG,R2_ENHANCEMENTS,R2_EDITIONS,R2_LONG_TERM_ITEMS,getR2Tool,
@@ -119,8 +121,8 @@ function costText(cost:R2ToolCost):string {
     default:return impossible(cost);
   }
 }
-function toolCost(tool:R2ToolDefinition):string {
-  const purchase=tool.shopWeight===0?'仅公开奖励，不可购买':`商店基准售价：${tool.price}金`;
+function toolCost(tool:R2ToolDefinition,price=tool.price):string {
+  const purchase=tool.shopWeight===0?'仅公开奖励，不可购买':`商店基准售价：${price}金`;
   const costs=tool.costs.map(costText);
   if(tool.operation.kind==='exchange-hand-levels')costs.push(`牺牲方等级−${tool.operation.loss}`);
   if(tool.operation.kind==='clear-deck-specials')costs.push('清除全牌组全部增强与特殊版次');
@@ -154,13 +156,14 @@ function toolRisk(tool:R2ToolDefinition):string {
 }
 
 const toolCache=new Map<string,ToolInfo>();
-export function toolInfo(id:string):ToolInfo {
-  const cached=toolCache.get(id);if(cached)return cached;
+export function toolInfo(id:string,identity:R2ContentIdentity={}):ToolInfo {
+  const price=r2ToolPrice(id,identity),cacheKey=id+'/'+price;
+  const cached=toolCache.get(cacheKey);if(cached)return cached;
   const tool=getR2Tool(id),family=toolFamilyLabel(tool.family);
   const info=Object.freeze({name:tool.name,family:tool.family,label:`${family} · ${tool.name}`,
     description:`${tool.phases.map(phase=>phase==='shop'?'商店':'待出牌').join(' / ')}可用。${targetText(tool)}${operationText(tool)}`,
-    cost:toolCost(tool),risk:toolRisk(tool),artUrl:goodsArtUrl(id,'tool-card','thumbnail')??toolArt(tool),detailArtUrl:goodsArtUrl(id,'tool-card','detail'),fallbackArtUrl:toolArt(tool)});
-  toolCache.set(id,info);return info;
+    cost:toolCost(tool,price),risk:toolRisk(tool),artUrl:goodsArtUrl(id,'tool-card','thumbnail')??toolArt(tool),detailArtUrl:goodsArtUrl(id,'tool-card','detail'),fallbackArtUrl:toolArt(tool)});
+  toolCache.set(cacheKey,info);return info;
 }
 function itemDescription(item:R2LongTermDefinition):string {
   const op=item.operation;let effect:string;

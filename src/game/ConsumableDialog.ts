@@ -128,13 +128,13 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
 export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boolean,send:(action:Action,expectedSeq?:number)=>Promise<boolean>,initialInstanceId?:string):void {
   const expectedSeq=state.commandSeq,focus=currentBuildFocus(state,state.openingRoute);
   const known=(state.phase==='shop'?state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)):state.phase==='await-input'?state.handOrder.map(id=>state.deckInstances.find(card=>card.id===id)!):[]);
-  const cardChoices:Choice[]=known.map((card,index)=>({id:card.id,name:cardName(card),detail:`${enhancementName(card)} · ${editionLabel(card.edition)}\n第 ${index+1} 张`,card}));
+  const cardChoices:Choice[]=known.map((card,index)=>({id:card.id,name:cardName(card),detail:`${card.enhancement?enhancementName(card):'普通'}${(card.edition??'none')==='none'?'':' · '+editionLabel(card.edition)}\n第 ${index+1} 张`,card}));
   const jokerChoices:Choice[]=state.jokers.map(joker=>({id:joker.instanceId,name:R2_JOKERS.find(definition=>definition.id===joker.definitionId)!.name,detail:`${editionLabel(joker.edition)} · 原支付 ${joker.paidPrice} 金`,joker}));
   const showItem=(id:string)=>{const info=itemInfo(id),d=dialog.open(info.name+' · 长期道具',info.description+'\n\n已持有；本局持续生效，不能出售。',[],{portrait:goodsArtPortrait(info)});d.classList.add('tool-item-detail');};
   const openTool=(instanceId:string)=>{
     const item=state.consumables.find(consumable=>consumable.instanceId===instanceId),definition=item&&R2_TOOLS.find(candidate=>candidate.id===item.definitionId);if(!item||!definition)return;
     const tool=definition;
-    const info=toolInfo(tool.id),selection:Selection={ids:new Set(),targetKind:'card'};let busy=false;
+    const info=toolInfo(tool.id,state),selection:Selection={ids:new Set(),targetKind:'card'};let busy=false;
     const useAction={label:'确认使用',primary:true,disabled:true,run:async()=>{
       if(busy||selectionIssue(tool,state,selection,known,ready))return;
       const action:Extract<Action,{type:'UseConsumable'}>={type:'UseConsumable',instanceId,targetIds:targetChoices().filter(choice=>selection.ids.has(choice.id)).map(choice=>choice.id)};
@@ -281,7 +281,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
     for(const entry of entries){const button=document.createElement('button'),image=document.createElement('img'),name=document.createElement('strong'),label=document.createElement('span');button.className='tool-inventory-card';button.setAttribute('aria-label',entry.name+' · 查看');button.dataset.itemId=entry.id;image.src=entry.artUrl;image.alt='';image.loading='lazy';name.textContent=entry.name;label.textContent=entry.label;button.append(image,name,label);button.onclick=entry.run;grid.append(button);}
     content.append(section);
   }
-  inventoryGroup('消耗工具',state.consumables.map(item=>{const info=toolInfo(item.definitionId),shopOnly=R2_TOOLS.find(tool=>tool.id===item.definitionId)!.phases.every(phase=>phase==='shop');return {id:item.instanceId,name:info.name,label:info.label+(shopOnly?' · 商店使用':''),artUrl:info.artUrl,run:()=>openTool(item.instanceId)};}));
+  inventoryGroup('消耗工具',state.consumables.map(item=>{const info=toolInfo(item.definitionId,state),shopOnly=R2_TOOLS.find(tool=>tool.id===item.definitionId)!.phases.every(phase=>phase==='shop');return {id:item.instanceId,name:info.name,label:info.label+(shopOnly?' · 商店使用':''),artUrl:info.artUrl,run:()=>openTool(item.instanceId)};}));
   inventoryGroup('本局道具',state.longTermItems.map(id=>{const info=itemInfo(id);return {id,name:info.name,label:'本局持续生效 · 不消耗',artUrl:info.artUrl,run:()=>showItem(id)};}));
   if(initialInstanceId)openTool(initialInstanceId);
 }
