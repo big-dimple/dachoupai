@@ -1,5 +1,8 @@
 # 开发入口
 
+2026-10-09 W5一店研究结束：原真实同花seq33/29金窗口，实际P06升型与反事实留钱两支仅到下一场；2269/1500与1921/1500同三手/11金奖/成长1→1.25，结算36/40金。4金花348热度余量与永久一级，不保成型、不少耗手；本窗现有工具有用，不新建供给/经济系统，完整SG01/02仍未签。[有限原支与反事实](docs/production/evidence/w5-one-window-2026-10-09/README.md)。转入[二响同点核心重触合同](docs/production/ERXIANG_SAME_RANK_CONTRACT_REVIEW.md)，仅1/2次单一建议待父锁，无实现；旧PR66 C拒收保持。只研究文档分支，无产品/CI/发布新版本，6.1 Medium串行。
+
+
 2026-10-09 PR81补图CI补正产品 `959ab67`：首新b28e8dd域2790通过/4个既有failure-audio失败，原因是失败页不该进入胜利来源计算；仅成功且未跳场入口保护，音频/断言不改。46相关/type通过，成功延迟案例保持原0a19921，未重跑经营或矩阵；[原失败日志及补正](docs/production/evidence/w2-result-stage-2026-10-09/async-art-p2/README.md)留存。新最终head一次CI另核，不重试旧head，仍draft父审协调main；6.1 Medium串行，真人/设备/听感/W6未签。
 
 
