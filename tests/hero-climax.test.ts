@@ -22,14 +22,14 @@ it('licensed transition BGM is named and remains gesture-gated before any media 
 
 import {mountHeroClimax} from '../src/game/HeroClimax';
 // Phaser emits DESTROY before clearing `active`/`scene`; mirror that order to catch recursive destruction.
-function stageFixture(){
+function stageFixture(detail=true){
  const tweens:any[]=[];
  const object=(type='Object',text=''):any=>{const data=new Map(),events=new Map();const o:any={type,text,width:Math.max(10,text.length*20),height:24,scaleX:1,scaleY:1,alpha:1,active:true,list:[],scene:{},destroyCount:0};
   for(const name of ['setName','setAlpha','setX','setY','setAngle'] as const)o[name]=(v:any)=>{o[{setName:'name',setAlpha:'alpha',setX:'x',setY:'y',setAngle:'angle'}[name]!]=v;return o;};
   for(const name of ['setOrigin','setStrokeStyle','setDisplaySize','fillStyle','fillPoints','clear','lineStyle','strokeCircle','lineBetween','fillEllipse'])o[name]=()=>o;
   o.setText=(v:string)=>{o.text=v;o.width=v.length*20;return o;};o.setData=(k:string,v:any)=>{data.set(k,v);return o;};o.getData=(k:string)=>data.get(k);o.setPosition=(x:number,y:number)=>{o.x=x;o.y=y;return o;};o.setScale=(x:number,y=x)=>{o.scaleX=x;o.scaleY=y;return o;};o.add=(v:any)=>{o.list.push(v);return o;};o.addAt=(v:any,i:number)=>{o.list.splice(i,0,v);return o;};o.once=(e:string,f:()=>void)=>{events.set(e,f);return o;};o.destroy=()=>{o.destroyCount++;const f=events.get('destroy');events.delete('destroy');f?.();o.active=false;o.scene=undefined;};return o;
  };
- const scene:any={scale:{zoom:1},textures:{exists:()=>true,get:()=>({getSourceImage:()=>({width:160,height:200})})},tweens:{add:(config:any)=>{const t={config,remove:vi.fn()};tweens.push(t);return t;}},add:{container:()=>object('Container'),graphics:()=>object('Graphics'),rectangle:()=>object('Rectangle'),tileSprite:()=>object('TileSprite'),image:()=>object('Image'),text:(_:number,__:number,s:string)=>object('Text',s)}};
+ const scene:any={scale:{zoom:1},textures:{exists:(key:string)=>detail||!key.startsWith('climax-source/'),get:()=>({getSourceImage:()=>({width:160,height:200})})},tweens:{add:(config:any)=>{const t={config,remove:vi.fn()};tweens.push(t);return t;}},add:{container:()=>object('Container'),graphics:()=>object('Graphics'),rectangle:()=>object('Rectangle'),tileSprite:()=>object('TileSprite'),image:()=>object('Image'),text:(_:number,__:number,s:string)=>object('Text',s)}};
  const p=play('multiply'),key=keyHighlight(p.s,p.t)!,stage=mountHeroClimax(scene,object('Container'),{x:0,y:0,width:390,height:740},key,heroClimaxValue(p.s,p.t,key)!,false)!;
  return {stage,tweens};
 }
@@ -43,3 +43,5 @@ it('switching to reduced motion during release settles its wait and leaves dispo
 it('one actual strike creates one bounded foreground motion and repeated strike cannot repeat it',()=>{
  const {stage,tweens}=stageFixture();stage.strike();const count=tweens.length;stage.strike();expect(tweens).toHaveLength(count);stage.reduce();expect(tweens.every(t=>t.remove.mock.calls.length===1)).toBe(true);stage.dispose();
 });
+
+it('missing optional detail keeps the same-source thumbnail still during the existing impact',()=>{const {stage,tweens}=stageFixture(false),board=(stage.group as any).list.find((o:any)=>o.type==='Container'),card=board.list.find((o:any)=>o.name==='hero/climax-source-card');expect(card.getData('detail')).toBe(false);stage.strike();expect(card.scaleX).toBe(1);expect(tweens.some(t=>t.config.targets===card)).toBe(false);stage.dispose();});
