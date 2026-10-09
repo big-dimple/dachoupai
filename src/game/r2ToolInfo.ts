@@ -12,11 +12,11 @@ import {PAPER_CSS} from './theme';
 import {goodsArtUrl} from './GoodsArt';
 
 export interface ToolInfo {
-  name:string;family:R2ToolFamily;label:string;description:string;cost:string;risk:string;artUrl:string;detailArtUrl?:string;fallbackArtUrl:string;
+  name:string;family:R2ToolFamily;label:string;summary:string;description:string;cost:string;risk:string;artUrl:string;detailArtUrl?:string;fallbackArtUrl:string;
 }
-export interface ItemInfo {name:string;description:string;artUrl:string;detailArtUrl?:string;fallbackArtUrl:string}
+export interface ItemInfo {name:string;summary:string;description:string;artUrl:string;detailArtUrl?:string;fallbackArtUrl:string}
 
-export function goodsArtPortrait(info:ToolInfo|ItemInfo){return {url:info.detailArtUrl??info.artUrl,thumbnailUrl:info.detailArtUrl?info.artUrl:undefined,fallbackUrl:info.fallbackArtUrl,alt:info.name,layout:'card' as const,caption:info.detailArtUrl?'手绘卡面':'机制示意'};}
+export function goodsArtPortrait(info:ToolInfo|ItemInfo){return {url:info.detailArtUrl??info.artUrl,thumbnailUrl:info.detailArtUrl?info.artUrl:undefined,fallbackUrl:info.fallbackArtUrl,alt:info.name,layout:'card' as const,caption:info.name};}
 
 const limits=R2_TOOL_CATALOG.limits;
 const familyNames:Record<R2ToolFamily,string>={tarot:'塔罗',planet:'星球',spectral:'幻灵',utility:'补给'};
@@ -84,6 +84,29 @@ function targetText(tool:R2ToolDefinition):string {
     case 'whole-deck':return '作用于整个有效牌组，无需逐张选择。';
     default:return impossible(target);
   }
+}
+/** First layer: purpose and actual effect only; full targeting and costs stay in confirmation. */
+export function toolSummary(tool:R2ToolDefinition):string {
+ const op=tool.operation;
+ switch(op.kind){
+ case 'upgrade-hand':return op.handType?`给${HAND_LABELS[op.handType]}升级`:'给一种牌型升级';
+ case 'delete-cards':return '永久删掉选中的扑克';
+ case 'set-suit':return `把选中的扑克改成${suitNames[op.suit]}${SUIT_SYMBOL[op.suit]}`;
+ case 'copy-card':return `复制选中的扑克${op.copies}张，原牌保留`;
+ case 'shift-rank':return `选中的扑克点数${op.delta>0?'+':'−'}${Math.abs(op.delta)}`;
+ case 'set-enhancement':return `${enhancementDefinition(op.enhancement).name}：${enhancementText(enhancementDefinition(op.enhancement))}`;
+ case 'add-gold':return `获得${op.amount}金`;
+ case 'restore-discard':return `恢复本场${op.amount}次弃牌，最多到入场次数`;
+ case 'free-reroll':return '免费刷新一次大丑牌和工具货架';
+ case 'random-enhancement':return '牺牲一张扑克，给受赠扑克随机增强';
+ case 'random-edition':return '给选中的牌随机增加闪箔、全息或多彩版次';
+ case 'set-deck-suit':return '把整个牌组改成一种花色';
+ case 'exchange-hand-levels':return `一种牌型升${op.gain}级，另一种降${op.loss}级`;
+ case 'rare-joker-reward':return `随机获得一张${editionLabel(op.edition)}稀有大丑牌`;
+ case 'set-joker-edition':return `牺牲一张大丑牌，让受赠牌变为${editionLabel(op.edition)}（${mathText(editionDefinition(op.edition).effect!)}）`;
+ case 'clear-deck-specials':return `清除全牌组增强和特殊版次，下一场起手牌上限+${op.handBonus}`;
+ default:return impossible(op);
+ }
 }
 function operationText(tool:R2ToolDefinition):string {
   const op=tool.operation;
@@ -161,7 +184,7 @@ export function toolInfo(id:string,identity:R2ContentIdentity={}):ToolInfo {
   const cached=toolCache.get(cacheKey);if(cached)return cached;
   const family=toolFamilyLabel(tool.family);
   const info=Object.freeze({name:tool.name,family:tool.family,label:`${family} · ${tool.name}`,
-    description:`${tool.phases.map(phase=>phase==='shop'?'商店':'待出牌').join(' / ')}可用。${targetText(tool)}${operationText(tool)}`,
+    summary:toolSummary(tool),description:`${tool.phases.map(phase=>phase==='shop'?'商店':'待出牌').join(' / ')}可用。${targetText(tool)}${operationText(tool)}`,
     cost:toolCost(tool,price),risk:toolRisk(tool),artUrl:goodsArtUrl(id,'tool-card','thumbnail')??toolArt(tool),detailArtUrl:goodsArtUrl(id,'tool-card','detail'),fallbackArtUrl:toolArt(tool)});
   toolCache.set(cacheKey,info);return info;
 }
@@ -188,7 +211,7 @@ const itemCache=new Map<string,ItemInfo>();
 export function itemInfo(id:string):ItemInfo {
   const cached=itemCache.get(id);if(cached)return cached;
   const item=R2_LONG_TERM_ITEMS.find(row=>row.id===id);if(!item)throw Error(`unknown-r2-item: ${id}`);
-  const info=Object.freeze({name:item.name,description:itemDescription(item),artUrl:goodsArtUrl(id,'item-card','thumbnail')??itemArt(item),detailArtUrl:goodsArtUrl(id,'item-card','detail'),fallbackArtUrl:itemArt(item)});
+  const info=Object.freeze({name:item.name,summary:itemDescription(item).replace(/^商店基准售价[^。]*。/,'').split('。')[0],description:itemDescription(item),artUrl:goodsArtUrl(id,'item-card','thumbnail')??itemArt(item),detailArtUrl:goodsArtUrl(id,'item-card','detail'),fallbackArtUrl:itemArt(item)});
   itemCache.set(id,info);return info;
 }
 

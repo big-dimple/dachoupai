@@ -123,7 +123,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
   const known=(state.phase==='shop'?state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)):state.phase==='await-input'?state.handOrder.map(id=>state.deckInstances.find(card=>card.id===id)!):[]);
   const cardChoices:Choice[]=known.map((card,index)=>({id:card.id,name:cardName(card),detail:`${card.enhancement?enhancementName(card):'普通'}${(card.edition??'none')==='none'?'':' · '+editionLabel(card.edition)}\n第 ${index+1} 张`,card}));
   const jokerChoices:Choice[]=state.jokers.map(joker=>({id:joker.instanceId,name:R2_JOKERS.find(definition=>definition.id===joker.definitionId)!.name,detail:`${editionLabel(joker.edition)} · 原支付 ${joker.paidPrice} 金`,joker}));
-  const showItem=(id:string)=>{const info=itemInfo(id),d=dialog.open(info.name+' · 长期道具',info.description+'\n\n已持有；本局持续生效，不能出售。',[],{portrait:goodsArtPortrait(info)});d.classList.add('tool-item-detail');};
+  const showItem=(id:string)=>{const info=itemInfo(id),d=dialog.open(info.name+' · 长期道具',info.description+'\n\n已持有；本局持续生效，不能出售。',[],{portrait:goodsArtPortrait(info),effectBody:info.summary,collapseRules:true});d.classList.add('tool-item-detail');};
   const openTool=(instanceId:string)=>{
     const item=state.consumables.find(consumable=>consumable.instanceId===instanceId),definition=item&&R2_TOOLS.find(candidate=>candidate.id===item.definitionId);if(!item||!definition)return;
     const tool=definition;
@@ -151,12 +151,11 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         catch{const status=confirmation.querySelector<HTMLParagraphElement>('.dialog-status')!;status.textContent='销毁未完成，请重试。';status.hidden=false;}
       }}],{closeLabel:'取消'});
     }};
-    const d=dialog.open(info.label+' · 使用详情',[info.description,info.cost].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消',portrait:goodsArtPortrait(info)});d.classList.add('tool-detail');markRouteDetail(d,routeFitCue(state,'tools',tool.id));
-    const instruction=document.createElement('p'),target=tool.target,shortOperation=tool.operation;
+    const d=dialog.open(info.label+' · 使用详情',[info.description,info.cost].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消',portrait:goodsArtPortrait(info),effectBody:info.summary,collapseRules:true});d.classList.add('tool-detail');markRouteDetail(d,routeFitCue(state,'tools',tool.id));
+    const instruction=document.createElement('p'),target=tool.target;
     instruction.className='tool-short-instruction';
-    const effect=shortOperation.kind==='delete-cards'?'永久删牌':shortOperation.kind==='shift-rank'?`点数${shortOperation.delta>0?'+1':'−1'}`:shortOperation.kind==='set-enhancement'?`改为${R2_ENHANCEMENTS.find(value=>value.id===shortOperation.enhancement)?.name??'增强牌'}`:shortOperation.kind==='set-suit'?`改为${SUIT_NAMES[shortOperation.suit]}`:shortOperation.kind==='copy-card'?'复制牌':'选择生效对象';
     const count=target.kind==='cards'||target.kind==='card-sacrifice'?`选 ${target.minimum===target.maximum?target.maximum:target.minimum+'–'+target.maximum} 张` :target.kind==='card-or-joker'?'选 1 个普通版次对象':target.kind==='joker-sacrifice'?'选 1 张牺牲牌与 1 张受益牌':target.kind==='discovered-hand'?'选已发现牌型':target.kind==='suit'?'选 1 种花色':target.kind==='hand-exchange'?'选 2 种不同牌型':target.kind==='whole-deck'?'整副有效牌组': '无需选牌';
-    instruction.textContent=effect+' · '+count+(target.kind==='card-sacrifice'?'；另选 1 张牺牲牌':'')+'。'+toolPurpose(state,tool.id);d.querySelector('.dialog-header')!.append(instruction);
+    instruction.textContent=count+(target.kind==='card-sacrifice'?'；另选 1 张牺牲牌':'')+'。'+toolPurpose(state,tool.id);d.querySelector('.dialog-header')!.append(instruction);
     const scroll=d.querySelector('.dialog-scroll')!,art=d.querySelector('.dialog-card-art');if(art)scroll.prepend(art);
     const panel=document.createElement('section'),preview=document.createElement('p'),hint=document.createElement('p');panel.className='tool-target-panel';preview.className='tool-preview';preview.setAttribute('aria-live','polite');hint.className='tool-validation';hint.setAttribute('role','status');
     const directoryUpdates:(()=>void)[]=[];

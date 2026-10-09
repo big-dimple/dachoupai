@@ -147,12 +147,12 @@ export class DetailDialog {
         const limits=document.createElement('ul');limits.className='ability-limits ability-step-limits';limits.setAttribute('aria-label','关键限制');for(const text of options.ability.plain.steps.limits){const item=document.createElement('li');item.textContent=text;limits.append(item);}if(limits.childElementCount)ability.append(limits);
       }else if(options.ability.playerCopy){ability.classList.add('is-player-copy');value.textContent=options.ability.plain?.line??options.ability.condition;condition.textContent=options.ability.plain?.essential??options.ability.value;value.className='ability-main';condition.className='ability-limits';ability.append(value);if(condition.textContent)ability.append(condition);}else ability.append(condition,value);
       if(options.ability.state){state.textContent=(options.ability.plain?.steps?'现在：':'')+(options.ability.plain?.status??options.ability.state);ability.append(state);}intro.append(ability);
-      if(options.ability.flavor.trim()){const flavor=document.createElement('p');flavor.className='card-flavor';flavor.textContent=options.ability.flavor;copy.append(flavor);}
+      if(options.ability.flavor.trim()&&!options.shopContext){const flavor=document.createElement('p');flavor.className='card-flavor';flavor.textContent=options.ability.flavor;copy.append(flavor);}
     }
     if(options.effectBody&&!options.ability){const effect=document.createElement('p');effect.className='dialog-effect';effect.textContent=options.effectBody;intro.append(effect);}
-    if(options.summaryBody&&options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;if(options.shopContext==='purchase'||options.shopContext==='sale')intro.prepend(summary);else intro.append(summary);}
+    if(options.summaryBody&&options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;intro.append(summary);}
     if(options.editionBody){const edition=document.createElement('p');edition.className='dialog-edition-summary';edition.textContent=options.editionBody;intro.append(edition);}
-    if(options.summaryBody&&!options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;if(options.shopContext==='purchase'||options.shopContext==='sale')intro.prepend(summary);else intro.append(summary);}
+    if(options.summaryBody&&!options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;intro.append(summary);}
     if(options.keepsake&&!options.keepsakeCompact)intro.prepend(buildKeepsakeView(options.keepsake,cleanups));
     if(options.cards?.length){
       const gallery=document.createElement('section');gallery.className='experience-cards';gallery.setAttribute('aria-label','来源与下一步');

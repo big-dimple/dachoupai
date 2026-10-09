@@ -13,7 +13,7 @@ export function routeFitCue(state:R2RunState,kind:'jokers'|'tools'|'items',id:st
  return matches?{...ROUTE_TONE[focus],focus,reason:relation?.body??'改牌或升型可服务该方向；目标与代价需自行确认。',note:'契合用途 · 不代表必买或最优'}:undefined;
 }
 export function markRouteDetail(host:HTMLElement,cue:ReturnType<typeof routeFitCue>):void {
- if(!cue)return;host.dataset.routeFit=cue.focus;host.style.setProperty('--route-fit',cue.css);const tag=document.createElement('p');tag.className='route-fit-caption';tag.textContent=cue.label+' · '+cue.note;host.querySelector('.dialog-header')?.append(tag);
+ if(!cue)return;host.dataset.routeFit=cue.focus;host.style.setProperty('--route-fit',cue.css);const tag=document.createElement('p');tag.className='route-fit-caption';tag.textContent=cue.label;host.querySelector('.dialog-header')?.append(tag);
 }
 
 /** A purpose cue follows the operation, not a tool name or a promised next draw. */
