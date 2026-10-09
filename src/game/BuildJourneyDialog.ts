@@ -19,12 +19,14 @@ export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:Jo
  const facts=buildJourneyFacts(state,focus);
  if(state.phase==='shop'&&!all){
   const decision=facts.decision,choice=decision.choices[0],offer=choice&&facts.offers.find(o=>o.id===choice.id);
-  const cards=offer&&choice?[{title:offer.title,url:offer.url,body:choice.loss??'查看后仍由你确认，不会自动购买。',action:{label:choice.replaceId?'查看这张替换':'查看这件购买',run:()=>choice.replaceId&&actions.compare?actions.compare(choice.id,choice.replaceId):actions.offers?.(choice.id,offer.kind)}}]:[];
+  const inspectChoice=()=>{if(!choice||!offer)return;if(choice.replaceId&&actions.compare)actions.compare(choice.id,choice.replaceId);else actions.offers?.(choice.id,offer.kind);};
+  const cards=offer&&choice?[{title:offer.title,url:offer.url,body:choice.loss??'查看后仍由你确认，不会自动购买。',action:{label:choice.replaceId?'查看这张替换':'查看这件购买',run:inspectChoice}}]:[];
   dialog.open('这轮怎么选 · '+facts.title,[buildDirectionSummary(state),'这是按当前持牌、已存成长、实际货架与成本给出的保守建议，可自行选择其它方案。不是数学最优，也不保证下手成型。',...decision.items.map(i=>r2JokerDefinitionFor(state,i.offer.definitionId).name+'：'+i.reason),facts.cash.body,...facts.owned.map(o=>o.title+'\n'+o.body)].join('\n\n'),[
+   ...(choice&&offer?[{label:(choice.replaceId?'查看替换':'查看购买')+' · '+offer.price+'金',primary:true,disabled:!actions.ready||!offer.affordable,run:inspectChoice}]:[]),
    {label:'查看全部现货与持牌',run:()=>showBuildJourney(dialog,state,actions,false,true)},
    {label:'更换方向',run:()=>showBuildJourney(dialog,state,actions,true)},
-   {label:choice?'先留金，进入牌桌':'这轮不买，留金入场',primary:true,disabled:!actions.ready,run:actions.continue},
-  ],{keepsake:buildKeepsake(state),summaryBody:decision.headline+'\n'+decision.reason+'\n'+buildDirectionCaption(state),cards,collapseRules:true,rulesLabel:'建议依据与完整规则'});attachFirstChapterGuide(state,actions.onFocus);return;
+   {label:choice?'先留金，进入牌桌':'这轮不买，留金入场',primary:!choice,disabled:!actions.ready,run:actions.continue},
+  ],{keepsake:buildKeepsake(state),keepsakeCompact:true,summaryBody:decision.headline+'\n'+decision.reason+'\n'+buildDirectionCaption(state),cards,collapseRules:true,rulesLabel:'建议依据与完整规则'});attachFirstChapterGuide(state,actions.onFocus);return;
  }
  const offers=facts.offers.map(o=>({title:o.title,url:o.url,stat:o.decision,body:o.brief,action:{label:o.affordable?'查看并选择这件':'查看差额与条件',run:()=>actions.offers?.(o.id,o.kind)}}));
  const owned=facts.owned.map(o=>({title:o.title,url:o.url,body:o.relation.label+' · '+o.relation.body,details:o.body,action:{label:'查看来源与成长',run:()=>actions.source(o.id)}}));

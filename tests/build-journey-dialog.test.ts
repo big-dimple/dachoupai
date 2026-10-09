@@ -19,3 +19,15 @@ it('carried growth is a held support example, never a matching zero-growth same-
  const s=buildJourneyPlan(true),j=r2CreateJoker('b10','carried',4,undefined,s);j.growth.heat={n:'20',d:'1'};s.jokers=[j];s.shop!.offers=[{offerId:'fresh/b10',definitionId:'b10',price:4,consumed:false}];
  for(const card of previews(s).slice(1)){expect(card.body).toContain('持有');expect(card.body).toContain('通用辅助');expect(card.body).toContain('暂无');}
 });
+
+it('default shop puts a priced inspection in the fixed actions and requests an opt-in ledger',async()=>{
+ const {chooseBuildFocus,buildJourneyFacts}=await import('../src/game/BuildJourney'),s=buildJourneyPlan();s.shop!.offers=[{offerId:'actual/b04',definitionId:'b04',price:4,consumed:false}];chooseBuildFocus(s,'group');const before=JSON.stringify(s),open=vi.fn(),offers=vi.fn();
+ showBuildJourney({open} as unknown as DetailDialog,s,{tools:()=>{},tool:()=>{},source:()=>{},deck:()=>{},offers,continue:()=>{},continueLabel:'继续',ready:true});
+ const [title,,actions,options]=open.mock.calls[0],facts=buildJourneyFacts(s,'group'),choice=facts.decision.choices[0],offer=facts.offers.find(o=>o.id===choice.id)!;
+ expect(title).toContain('这轮怎么选');expect(options.keepsakeCompact).toBe(true);expect(actions[0].label).toContain(offer.price+'金');expect(actions[0].primary).toBe(true);actions[0].run();expect(offers).toHaveBeenCalledWith(choice.id,offer.kind);expect(JSON.stringify(s)).toBe(before);
+});
+it('a no-buy decision keeps entry primary and an explicitly opened ledger retains the complete view',async()=>{
+ const {chooseBuildFocus}=await import('../src/game/BuildJourney'),s=buildJourneyPlan(true);chooseBuildFocus(s,'group');s.shop!.offers=[];s.shop!.toolOffers=[];const open=vi.fn(),actions={tools:()=>{},tool:()=>{},source:()=>{},deck:()=>{},continue:()=>{},continueLabel:'继续',ready:true};
+ showBuildJourney({open} as unknown as DetailDialog,s,actions);const row=open.mock.calls[0][2];expect(row.find((a:{primary?:boolean})=>a.primary)?.label).toBe('这轮不买，留金入场');expect(open.mock.calls[0][3].keepsakeCompact).toBe(true);
+ showBuildJourney({open} as unknown as DetailDialog,s,actions,false,true);expect(open.mock.calls[1][3].keepsakeCompact).toBeUndefined();expect(open.mock.calls[1][3].keepsake).toBeTruthy();
+});

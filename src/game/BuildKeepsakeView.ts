@@ -17,3 +17,11 @@ export function buildKeepsakeView(facts:BuildKeepsake,cleanups:(()=>void)[]):HTM
  }
  return section;
 }
+
+/** Default shop decisions lead with today's action; the saved ledger is opt-in. */
+export function compactBuildKeepsakeView(facts:BuildKeepsake,cleanups:(()=>void)[]):HTMLElement {
+ const details=document.createElement('details'),summary=document.createElement('summary');details.className='card-rules build-keepsake-compact';
+ const first=facts.growth[0];summary.textContent='成长手记 · '+(first?first.name+' '+first.metric+(facts.growth.length>1?' 等'+facts.growth.length+'项':''):'暂无成长来源');details.append(summary);
+ let mounted=false;const expand=()=>{if(details.open&&!mounted){mounted=true;details.append(buildKeepsakeView(facts,cleanups));}};
+ details.addEventListener('toggle',expand);cleanups.push(()=>details.removeEventListener('toggle',expand));return details;
+}
