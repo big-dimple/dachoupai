@@ -18,6 +18,7 @@ import {usesTouyeWager,type TouyeBet,type TouyeTarget} from '../domain/r2TouyeWa
 import {touyeChoice,TOUYE_RISK} from './TouyeWagerCopy';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
 import {savedBossImpact} from './SavedBossImpact';
+import {mountScoreLanding} from './ScoreLanding';
 import {numberImpact,impactBeat,numberPulse,type NumberImpact} from './ScoreEnergy';
 import {starterSelection} from './RouteStarter';
 import {firstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
@@ -1763,6 +1764,7 @@ export class GameScene extends Phaser.Scene {
     this.scoreTotal.setColor(celebration.cleared&&celebration.tier>=2?'#80551f':tier?C.red:C.ink);
     const opening= !presentation.replay&&presentation.state.openingShow?.rootId===score.rootId&&presentation.state.openingShow.reason==='score';
     const closeOpening=opening?this.showOpeningScore(score,context):undefined;
+    const closeLanding=closeOpening?.hero?undefined:mountScoreLanding(this,this.view.root,this.view.layout,score,presentation.replay,context.signal);
     if(closeOpening?.strike&&!this.reducedMotion)await this.wait(180,context);
     if(context.signal.aborted)return;
     closeOpening?.strike?.();
@@ -1781,7 +1783,7 @@ export class GameScene extends Phaser.Scene {
       effects.push(this.pulseScoreNumber(this.scoreTotal,1.28+scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat)*.04,260,context));
       effects.push(this.animate({targets:this.heatText,scale:{from:celebration.cleared?1.1:1.04,to:1},duration:celebration.cleared?620:310,ease:'Back.easeOut'},context));
     }
-    effects.push(this.wait(this.reducedMotion?360:opening?(closeOpening?.strike?590:900):presentation.state.openingShow?.rootId===score.rootId?420:celebration.cleared?700:tier>=2?500:320,context));await Promise.all(effects);if(closeOpening?.hero&&!this.reducedMotion)await this.wait(500,context);await closeOpening?.release?.();closeOpening?.();if(context.signal.aborted)return;this.scoreTotal.setColor(C.ink);this.scoreHeat.setColor(C.jade);this.scoreMult.setColor(C.red);
+    effects.push(this.wait(this.reducedMotion?360:opening?(closeOpening?.strike?590:900):presentation.state.openingShow?.rootId===score.rootId?420:celebration.cleared?700:tier>=2?500:320,context));await Promise.all(effects);if(closeOpening?.hero&&!this.reducedMotion)await this.wait(500,context);await closeOpening?.release?.();closeOpening?.();closeLanding?.();if(context.signal.aborted)return;this.scoreTotal.setColor(C.ink);this.scoreHeat.setColor(C.jade);this.scoreMult.setColor(C.red);
   }
   private convergeScore(context:EffectContext):Promise<void> {
     if(this.reducedMotion||context.signal.aborted)return Promise.resolve();
