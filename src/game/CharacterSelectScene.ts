@@ -19,6 +19,10 @@ import {r2ModeUnlocked} from '../domain/r2Progress';
 import {readRunProgress} from '../platform/RunProgress';
 import type {Box} from './layout';
 import {selectionLayout} from './SelectionLayout';
+import {openingShowcaseLayout} from './OpeningShowcaseLayout';
+import {heroSignature} from './HeroSignature';
+import {openingRouteDemo} from './OpeningRouteDemo';
+import {PAPER_THEME} from './theme';
 
 interface SelectionOptions {freshSeed?:boolean;seed?:string;characterId?:CharacterId;modeConfig?:R2ModeSelection}
 /** The selector reserves its action row before sizing cards; it never borrows table space. */
@@ -33,6 +37,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   private modeConfig:R2ModeSelection=DEFAULT_MODE_SELECTION;
   private notice='';
   private animateChoice=false;
+  private readonly openingMotion=new Map<Phaser.GameObjects.GameObject,()=>void>();
   private readonly portraitRequests=new Set<CharacterId>();
   private view!:SceneView;
   private readonly dialog=new DetailDialog();
@@ -53,7 +58,9 @@ export class CharacterSelectScene extends Phaser.Scene {
     const unsubscribe=session.subscribe(()=>{const prior=pending;pending=session.pendingRun;
       if(prior&&!pending&&!this.choosing&&this.scene.isActive()){this.notice=session.notice;this.render();}
     });
-    this.events.once('shutdown',()=>{unsubscribe();this.lifecycle++;this.portraitRequests.clear();this.dialog.close();this.modeDialog.close();});this.render();
+    const settle=()=>{for(const [target,finish] of this.openingMotion){this.tweens.killTweensOf(target);finish();}this.openingMotion.clear();};
+    const hide=()=>{if(document.hidden)settle();};window.addEventListener('blur',settle);window.addEventListener('dachoupai-presentation',settle);document.addEventListener('visibilitychange',hide);
+    this.events.once('shutdown',()=>{settle();window.removeEventListener('blur',settle);window.removeEventListener('dachoupai-presentation',settle);document.removeEventListener('visibilitychange',hide);unsubscribe();this.lifecycle++;this.portraitRequests.clear();this.dialog.close();this.modeDialog.close();});this.render();
   }
   private render():void {
     const v=this.view,l=v.layout,style=getComputedStyle(document.documentElement),bottom=parseFloat(style.getPropertyValue('--safe-bottom'))||0;
@@ -93,38 +100,57 @@ export class CharacterSelectScene extends Phaser.Scene {
     this.animateChoice=false;
     const existing=gameSession().run,canReturn=!!existing&&!['run-won','run-lost'].includes(existing.state.phase);
     v.button(p.cancel,this.step==='route'?'返回':this.modeConfig.mode==='tutorial'?'跳过':this.selectedId?'取消':canReturn?'回本局':'返回','action/cancel-character',()=>void this.cancelChoice(),!this.choosing);
-    v.button(p.details,'能力','action/character-details',()=>{if(this.selectedId)this.inspect(this.selectedId);},!this.choosing&&!!this.selectedId);
+    v.button(p.details,'比较','action/character-details',()=>this.compareHeroes(),!this.choosing&&!!this.selectedId);
     v.button(p.confirm,this.choosing?'正在登台…':this.step==='hero'?'选路线 →':'一起登台','action/confirm-character',()=>void this.confirmChoice(),!this.choosing&&!!this.selectedId&&(this.step==='hero'||!!this.selectedRoute),true);
     const status=this.selectedId?getCharacter(this.selectedId).name+(this.step==='route'?(this.selectedRoute?' · '+OPENING_ROUTES[this.selectedRoute].title+' · 确认才开局':' · 三条路线都能玩'):this.modeConfig.mode==='tutorial'?' · 教程固定角色':' · 下一步选路线'):'点一位英雄，决定谁来撑场。';
     v.text(p.x,p.noticeY,this.notice||status,14,this.notice?'#B8473A':'#3F606B',p.w).setName('opening/status');
   }
   private showHero(p:ReturnType<typeof selectionLayout>,abilityEnabled:boolean):void {
-    const v=this.view,c=characterForNewRun(this.selectedId??'amo'),copy=HERO_OPENING[c.id],b=p.hero;
-    v.material(b,0xfff9ee,0xfff9ee,8);
-    const artWidth=p.portrait?Math.min(148,b.width*.4):Math.min(440,b.width*.36);
-    const artHeight=p.portrait?Math.min(214,Math.max(96,b.height-72)):b.height-16;
-    this.queueHeroPortrait(c.id);
-    const picture={x:b.x+8,y:b.y+8,width:artWidth,height:artHeight};this.drawPortrait(c.id,picture,true);
-    const x=b.x+artWidth+(p.portrait?18:32),w=b.width-(x-b.x)-(p.portrait?10:24);
-    const bodyY=!p.portrait&&!p.short?b.y+Math.max(12,(b.height-330)/2):b.y+8;
-    const name=v.text(x,bodyY,c.name,p.short?32:p.portrait?36:p.w>=1280?72:56,copy.accent).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('opening/name');
-    let y=name.y+name.height+(p.short?2:4);
-    if(p.short){v.text(x+name.width+12,name.y+14,c.title,16,'#3F606B').setName('opening/title');}
-    else {const title=v.text(x,y,c.title,p.portrait?14:20,'#3F606B').setName('opening/title');y=title.y+title.height+8;}
-    const quote=v.text(x,y,copy.taunt,p.short?18:p.portrait?20:28,copy.accent,w).setFontStyle('bold').setName('opening/taunt');y=quote.y+quote.height+8;
-    if(!p.portrait||this.step==='hero'||b.height>280){const story=v.text(x,y,copy.story,p.portrait||p.short?14:18,'#59646A',w).setName('opening/story');y=story.y+story.height+10;}
-    const promise=abilityEnabled?c.openingPlay:'本挑战关闭角色能力与开局赠送；仍保留这位英雄的身份。';
-    if(p.portrait)y=Math.max(y,picture.y+picture.height)+8;
-    if(!p.portrait||this.step==='hero'||b.height>280){
-      const playX=p.portrait?b.x+12:x,playWidth=p.portrait?b.width-24:w;
-      if(!p.portrait&&!p.short){v.text(playX,y,'这回怎么打',14,'#3F606B');y+=24;}
-      const play=v.text(playX,y,promise,p.portrait||p.short?14:18,'#26313A',playWidth).setName('opening/play');y=play.y+play.height+10;
-    }
-    if(!p.portrait&&!p.short)v.text(x,y,this.step==='hero'?'喜欢谁就选谁 · 每位英雄都能尝试三条路线':'方向只整理建议 · 不锁牌型，进店还能换',14,'#3F606B',w).setName('opening/freedom');
+    const v=this.view,c=characterForNewRun(this.selectedId??'amo'),copy=HERO_OPENING[c.id],b=p.hero,q=openingShowcaseLayout(b,p.portrait,p.short);
+    v.material(b,PAPER_THEME.jadeSoft,PAPER_THEME.jadeSoft,8);
+    const trim=this.add.graphics().lineStyle(1,PAPER_THEME.jade,.25).strokeRoundedRect(b.x+4,b.y+4,b.width-8,b.height-8,6);v.add(trim);
+    this.queueHeroPortrait(c.id);this.drawPortrait(c.id,q.art,true);
+    const x=q.copy.x,w=q.copy.width;
+    const name=v.text(x,q.copy.y,c.name,p.short?30:p.portrait?34:p.w>=1280?66:52,copy.accent).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('opening/name');
+    const title=v.text(x,name.y+name.height+2,c.title,14,'#3F606B').setName('opening/title');
+    const quote=v.text(x,title.y+title.height+7,copy.taunt,p.short?16:p.portrait?18:24,copy.accent,w).setFontStyle('bold').setName('opening/taunt');
+    if(p.short){title.setPosition(x+name.width+10,name.y+14);quote.setPosition(x+name.width+title.width+24,name.y+12).setWordWrapWidth(Math.max(100,w-name.width-title.width-24),true);}
+    if(!abilityEnabled){v.text(q.demo.x,q.demo.y,'此挑战关闭角色能力',18,'#26313A',q.demo.width).setName('opening/play');v.text(q.demo.x,q.demo.y+28,'示例仅在普通局可用；原模式经济保持。',14,'#3F606B',q.demo.width);}
+    else if(this.step==='route')this.showRouteDemo(q.demo,c.id,p.short);
+    else this.showSignature(q.demo,c.id,p.short);
     if(this.animateChoice&&!this.reducedMotion()){
-      // Name first, then the character's voice; all input stays available throughout.
-      for(const [target,delay] of [[name,0],[quote,70]] as const){target.setAlpha(.35);this.tweens.add({targets:target,alpha:1,delay,duration:180,ease:inkSettlingEase(.24)});target.once('destroy',()=>this.tweens.killTweensOf(target));}
+      for(const [target,delay] of [[name,0],[quote,60]] as const){target.setAlpha(.65);this.trackOpening(target,()=>target.active&&target.setAlpha(1));this.tweens.add({targets:target,alpha:1,delay,duration:180,ease:inkSettlingEase(.24)});target.once('destroy',()=>this.tweens.killTweensOf(target));}
     }
+  }
+  private miniCards(values:string[],x:number,y:number,width:number,height=32):void {
+    const size=Math.min(height>40?40:28,(width-Math.max(0,values.length-1)*3)/Math.max(1,values.length));
+    const sameSuit=values.length>1&&values.every(v=>v.endsWith('♥'));values.forEach((value,i)=>{const bx=x+i*(size+3);this.view.material({x:bx,y,width:size,height},PAPER_THEME.paperLight,PAPER_THEME.paperLight,3);this.view.text(bx+size/2,y+height/2,size<22?(sameSuit?'♥':value.replace(/[♠♥♣♦]/g,'')):value,height>40?18:14,/[♥♦]/.test(value)?'#B8473A':'#26313A').setOrigin(.5);});
+  }
+  private trackOpening(target:Phaser.GameObjects.GameObject,finish:()=>void):void {this.openingMotion.set(target,finish);target.once('destroy',()=>{this.tweens.killTweensOf(target);this.openingMotion.delete(target);});}
+  private showSignature(b:Box,id:CharacterId,short:boolean,example?:Pick<ReturnType<typeof heroSignature>,'tag'|'cost'|'beats'>):void {
+    const v=this.view,signature=example??heroSignature(id),compact=b.height<110,foot=compact?0:20;
+    const narrowCompact=compact&&b.width<500,heading=compact&&!narrowCompact?signature.tag+' · 示例 · '+signature.cost:signature.tag+' · 玩法示例';
+    v.text(b.x,b.y,heading,14,'#3F606B').setName('opening/play');
+    const large=b.width>600,gap=large?10:6,seat=(b.width-gap*2)/3,y=b.y+(large?28:narrowCompact?40:22),beatHeight=Math.min(large?164:120,b.height-(large?28:narrowCompact?40:22)-foot);
+    if(narrowCompact)v.text(b.x,b.y+18,signature.cost,14,'#3F606B',b.width).setName('opening/compact-cost');
+    signature.beats.forEach((beat,i)=>{
+      const first=v.root.length,box={x:b.x+i*(seat+gap),y,width:seat,height:Math.max(45,beatHeight)};v.material(box,PAPER_THEME.paperLight,PAPER_THEME.paperLight,5);
+      const label=v.text(box.x+6,box.y+4,beat.label,large?18:14,'#3F606B',seat-12).setName('opening/beat-label');
+      const cardHeight=compact?0:large?56:24;if(cardHeight&&beat.cards.length)this.miniCards(beat.cards,box.x+6,box.y+label.height+10,seat-12,cardHeight);
+      const ry=compact?box.y+22:box.y+label.height+cardHeight+8;
+      v.text(box.x+6,ry,beat.result,large?22:14,i===2?'#B8473A':'#26313A',seat-12).setFontStyle('bold').setName('opening/beat-result');
+      if(this.animateChoice&&!this.reducedMotion()){
+        const art=this.add.container(0,0);for(const child of v.root.list.slice(first))art.add(child);v.add(art);art.setY(7).setAlpha(.6);
+        this.trackOpening(art,()=>{if(art.active)art.setY(0).setAlpha(1);});this.tweens.add({targets:art,y:0,alpha:1,delay:i*100,duration:280,ease:inkSettlingEase(.25)});art.once('destroy',()=>this.tweens.killTweensOf(art));
+      }
+    });
+    if(!compact)v.text(b.x,y+beatHeight+5,signature.cost,large?16:14,'#3F606B',b.width).setName('opening/cost');
+  }
+  private showRouteDemo(b:Box,id:CharacterId,short:boolean):void {
+    const v=this.view,focus=this.selectedRoute;
+    if(!focus){v.text(b.x,b.y,'选一条路，看第一步怎么变强',16,'#26313A',b.width).setName('opening/play');v.text(b.x,b.y+28,'每位英雄都能玩三路，进店还能换。',14,'#3F606B',b.width);return;}
+    const d=openingRouteDemo(focus,id),method={group:'改点／升型',straight:'补点／升型',flush:'染色／升型'}[focus];
+    this.showSignature(b,id,short,{tag:OPENING_ROUTES[focus].title,cost:d.payoff,beats:[{label:'留住核心',cards:d.shape,result:focus==='group'?'两对／三条':focus==='straight'?'连续5点':'同花色5张'},{label:'工具做牌',cards:[],result:method},{label:'首店看起手',cards:[],result:d.starter}]});
   }
   private reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
   private queueHeroPortrait(id:CharacterId):void {
@@ -172,9 +198,18 @@ export class CharacterSelectScene extends Phaser.Scene {
     if(this.modeConfig.mode==='tutorial'&&id!=='erxiang'){this.notice='教程固定二响；跳过教程后可自由选角。';this.audio.invalid();this.render();return;}
     this.selectedId=id;this.notice='';this.animateChoice=true;this.audio.select();this.render();
   }
+  private compareHeroes():void {
+    if(this.choosing)return;
+    const enabled=r2RunModeConfig(this.modeConfig).characterAbilityEnabled;
+    const d=this.dialog.open('谁来撑这场戏？',enabled?'每位英雄都能玩三路，差别在操作与代价。':'普通局玩法参考；当前挑战关闭角色能力。',[{label:'所选英雄完整能力',run:()=>{if(this.selectedId)this.inspect(this.selectedId);}}],{closeLabel:'回到选角'});
+    const grid=document.createElement('section');grid.className='hero-comparison';
+    for(const c of CHARACTERS){const s=heroSignature(c.id),button=document.createElement('button'),title=document.createElement('strong'),claim=document.createElement('span'),cost=document.createElement('small');button.type='button';button.disabled=this.modeConfig.mode==='tutorial'&&c.id!=='erxiang';button.dataset.hero=c.id;button.setAttribute('aria-pressed',String(c.id===this.selectedId));title.textContent=c.name+' · '+s.tag;claim.textContent=s.beats.map(b=>b.result).join(' → ');cost.textContent=s.cost;button.append(title,claim,cost);button.onclick=()=>{this.select(c.id);this.dialog.close(d);};grid.append(button);}
+    d.querySelector('.dialog-copy')!.append(grid);
+  }
+
   private inspect(id:CharacterId):void {
     if(this.choosing)return;const c=characterForNewRun(id);
-    const body=[c.passiveName+'\n'+c.passiveDescription,'构筑思路\n'+c.buildTip,'“'+c.quote+'”'];
+    const body=[HERO_OPENING[id].story,c.passiveName+'\n'+c.passiveDescription,'构筑思路\n'+c.buildTip,'“'+c.quote+'”'];
     if(!r2RunModeConfig(this.modeConfig).characterAbilityEnabled)body.unshift('当前挑战关闭角色被动与初始赠送，以下能力供普通局参考。');
     const tutorialOther=this.modeConfig.mode==='tutorial'&&id!=='erxiang';if(tutorialOther)body.push('教程固定二响；跳过教程后可选用此角色。');
     if(this.selectedId===id)body.push('该角色已选中。关闭详情后，选择路线并一起确认登台。');

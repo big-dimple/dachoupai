@@ -1,4 +1,5 @@
 import type {R2RunState} from '../domain/r2Run';
+import {openingShopStep} from './OpeningShopStep';
 import {starterShopCue} from './RouteStarter';
 import {currentBuildFocus,BUILD_LABEL} from './BuildJourney';
 export const FIRST_GUIDE_KEY='dachoupai-first-chapter-guide-v1';
@@ -36,7 +37,8 @@ export function dismissFirstChapterGuide(state:R2RunState,scope:'step'|'run'|'fo
 /** A current shop decision, visible before opening any detail panel. */
 export function firstChapterShopPrompt(state:R2RunState){
  const hint=firstChapterGuide(state);if(state.phase!=='shop'||!hint)return;
- return {text:hint.step==='shop'?starterShopCue(state)??`首次逛店 · 金币 ${state.gold}：先看用途，再决定买牌或留金。`:'再逛商店 · 先比较成长，再决定保留或换牌。',action:hint.step==='shop'?'看用途':'看持牌'};
+ const opening=hint.step==='shop'?openingShopStep(state):undefined;if(opening)return {text:opening.text,action:opening.action,opening};
+ return {opening:undefined,text:hint.step==='shop'?starterShopCue(state)??`首次逛店 · 金币 ${state.gold}：先看用途，再决定买牌或留金。`:'再逛商店 · 先比较成长，再决定保留或换牌。',action:hint.step==='shop'?'看用途':'看持牌'};
 }
 /** Inline in the real operation panel; no forced modal, game commands or input locks. */
 export function attachFirstChapterGuide(state:R2RunState,refresh?:()=>void):void {

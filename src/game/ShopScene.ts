@@ -261,8 +261,8 @@ export class ShopScene extends Phaser.Scene {
     const hint=firstChapterShopPrompt(this.run),g=hint&&this.ready?shopFirstGuideLayout(p,this.view.layout.height,this.run.jokers.length===0):undefined;if(!hint||!g)return;
     const v=this.view;v.material(g.box,0xe2e8e5,0xe2e8e5,6);
     v.text(g.box.x+g.padding,g.box.y+g.padding,hint.text,14,'#26313A',g.box.width-g.padding*2).setFontStyle('bold').setName('first-guide/shop-copy');
-    v.button(g.buttons[0],hint.action,'first-guide/shop-open',()=>this.inspectJourney());
-    for(const [i,scope,label] of [[1,'step','略过'],[2,'run','本局关闭'],[3,'forever','不再显示']] as const)v.button(g.buttons[i],label,'first-guide/shop-'+scope,()=>{dismissFirstChapterGuide(this.run,scope);this.render();});
+    v.button(g.buttons[0],hint.action,'first-guide/shop-open',()=>{const step=hint.opening;if(step?.kind==='jokers'||step?.kind==='tools'){this.shelfKind=step.kind;this.inspectOffer(step.offerId);}else if(step?.kind==='inventory')showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq),step.instanceId);else this.inspectJourney();});
+    for(const [i,scope,label] of [[1,'step','略过'],[2,'run','本局关闭'],[3,'forever','不再显示']] as const)if(g.buttons[i])v.button(g.buttons[i],label,'first-guide/shop-'+scope,()=>{dismissFirstChapterGuide(this.run,scope);this.render();});
   }
   /** Long real rules may need a whole group; paging must use the same final capacity. */
   private pcGroupCapacity(kind:'tools'|'items',p:ReturnType<typeof shopLayout>):number {
