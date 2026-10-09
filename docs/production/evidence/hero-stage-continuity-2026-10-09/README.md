@@ -27,7 +27,7 @@
 
 [reload-observer-FAIL](reload-observer-FAIL/report.json)：观察器错误假定刷新自动进入商店；实际图是可继续的正常标题。改为点击原“继续本局”，恢复完整存档相等；没有更改恢复产品。
 
-[before-setup-FAIL](before-setup-FAIL.log)：首次baseline输出目录在worktree外，被既有Vite构建边界拒绝。改为worktree内shots目录，原保护不改。两次编译草稿的Touye字段/Phaser命中类型错误日志保留[first-native-FAIL/typecheck-FAIL.log](first-native-FAIL/typecheck-FAIL.log)，最终类型检查通过。
+[before-setup-FAIL](before-setup-FAIL.log)：首次baseline输出目录在worktree外，被既有Vite构建边界拒绝。改为worktree内shots目录，原保护不改。编译草稿曾有Touye字段和Phaser命中类型错误；[留存类型FAIL](first-native-FAIL/typecheck-FAIL.log)只对应第二次Touye字段错误，首轮Phaser错误仅见工具输出，未另存文件。最终类型检查通过。
 
 ## 第3包及W0–W9边界
 
