@@ -1,0 +1,38 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/basic-tool-choice.test.ts (13 tests | 1 failed) 981ms
+   × rejects stale shop/seq, duplicate random supply, insufficient cash, full inventory and unsupported choices without mutation 53ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/basic-tool-choice.test.ts > rejects stale shop/seq, duplicate random supply, insufficient cash, full inventory and unsupported choices without mutation
+AssertionError: expected undefined to deeply equal { …(4) }
+
+- Expected:
+{
+  "consumed": false,
+  "definitionId": "T06",
+  "offerId": "choice/erxiang/shop/0/0/tool/0",
+  "price": 4,
+}
+
++ Received:
+undefined
+
+ ❯ tests/basic-tool-choice.test.ts:38:127
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 43 passed (44)
+   Start at  19:40:07
+   Duration  2.72s (transform 1.96s, setup 0ms, import 3.31s, tests 2.21s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

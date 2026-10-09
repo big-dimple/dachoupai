@@ -1,0 +1,18 @@
+{
+  "head": "e7b73c36475ccf9a613b9662dc8e3327efc1f4e1",
+  "scope": "Duplicate stock is explicitly controlled; IDB failure injected only at save/meta. Natural window replay uses recorded unchanged normal state. No physical/FPS/audio acceptance.",
+  "duplicate": {
+    "stock": {
+      "offerId": "basic-choice/window/shop/3/0/tool/0",
+      "definitionId": "T08",
+      "price": 2,
+      "consumed": false
+    },
+    "dialog": "现货 · 确认后付款\n塔罗 · 往上挪 · 购买详情\n\n成组契合 · 契合用途 · 不代表必买或最优\n\n实付 2 金 · 余额 29 → 27 金\n利息档 5→5 金（当前余额不降档）；仅过关按届时余额结算。\n买后选择目标并确认；不会自动整理牌组。\n\n永久改变所选牌点数；在使用页逐张比较前后，原点数会失去，不保证抽到所改牌。\n\n手绘卡面\n高清细节加载中…\n规则与操作\n购买 · 2 金\n取消"
+  },
+  "failedSaveExact": true,
+  "retryExact": true,
+  "usedExact": true,
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}

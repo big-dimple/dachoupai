@@ -1,0 +1,1055 @@
+{
+  "head": "d932a12733871ab2f5756dff97879c0ab83fae5e",
+  "scope": "Duplicate stock is explicitly controlled; IDB failure injected only at save/meta. Natural window replay uses recorded unchanged normal state. No physical/FPS/audio acceptance.",
+  "duplicate": {
+    "stock": {
+      "offerId": "basic-choice/window/shop/3/0/tool/0",
+      "definitionId": "T08",
+      "price": 2,
+      "consumed": false
+    },
+    "dialog": "现货 · 确认后付款\n塔罗 · 往上挪 · 购买详情\n\n成组契合 · 契合用途 · 不代表必买或最优\n\n实付 2 金 · 余额 29 → 27 金\n利息档 5→5 金（当前余额不降档）；仅过关按届时余额结算。\n买后选择目标并确认；不会自动整理牌组。\n\n永久改变所选牌点数；在使用页逐张比较前后，原点数会失去，不保证抽到所改牌。\n\n手绘卡面\n高清细节加载中…\n规则与操作\n购买 · 2 金\n取消"
+  },
+  "failedSaveExact": true,
+  "retryExact": true,
+  "usedExact": true,
+  "actualHand": {
+    "schemaVersion": 2,
+    "rulesVersion": "r2",
+    "contentVersion": "quality-r2-basic-tool-choice-v1",
+    "contentHash": "json-fnv-v1:74a532e990d14b0d",
+    "runId": "basic-choice/window",
+    "seed": "group-natural-17",
+    "commandSeq": 23,
+    "difficulty": 0,
+    "characterId": "erxiang",
+    "openingRoute": "group",
+    "openingShow": {
+      "handsScored": 6,
+      "rootId": "basic-choice/window/hand/basic-choice/window/command/5",
+      "eventId": "basic-choice/window/hand/basic-choice/window/command/5/event/5",
+      "reason": "starter"
+    },
+    "routeStarter": {
+      "instanceId": "basic-choice/window/joker/basic-choice/window/command/2",
+      "rootId": "basic-choice/window/hand/basic-choice/window/command/5",
+      "eventId": "basic-choice/window/hand/basic-choice/window/command/5/event/5"
+    },
+    "mode": "standard",
+    "challengeId": null,
+    "programsEnabled": false,
+    "programRerollCoupon": false,
+    "chapterDisabledJokerId": null,
+    "chapter": 2,
+    "stageIndex": 4,
+    "phase": "stage-cleared",
+    "deckInstances": [
+      {
+        "id": "spades-2",
+        "suit": "spades",
+        "rank": 2
+      },
+      {
+        "id": "spades-3",
+        "suit": "spades",
+        "rank": 3
+      },
+      {
+        "id": "spades-4",
+        "suit": "spades",
+        "rank": 4
+      },
+      {
+        "id": "spades-5",
+        "suit": "spades",
+        "rank": 5
+      },
+      {
+        "id": "spades-6",
+        "suit": "spades",
+        "rank": 6
+      },
+      {
+        "id": "spades-7",
+        "suit": "spades",
+        "rank": 8
+      },
+      {
+        "id": "spades-8",
+        "suit": "spades",
+        "rank": 8
+      },
+      {
+        "id": "spades-9",
+        "suit": "spades",
+        "rank": 9
+      },
+      {
+        "id": "spades-10",
+        "suit": "spades",
+        "rank": 10
+      },
+      {
+        "id": "spades-11",
+        "suit": "spades",
+        "rank": 11
+      },
+      {
+        "id": "spades-12",
+        "suit": "spades",
+        "rank": 12
+      },
+      {
+        "id": "spades-13",
+        "suit": "spades",
+        "rank": 13
+      },
+      {
+        "id": "spades-14",
+        "suit": "spades",
+        "rank": 14
+      },
+      {
+        "id": "hearts-2",
+        "suit": "hearts",
+        "rank": 2
+      },
+      {
+        "id": "hearts-3",
+        "suit": "hearts",
+        "rank": 3
+      },
+      {
+        "id": "hearts-4",
+        "suit": "hearts",
+        "rank": 4
+      },
+      {
+        "id": "hearts-5",
+        "suit": "hearts",
+        "rank": 5
+      },
+      {
+        "id": "hearts-6",
+        "suit": "hearts",
+        "rank": 6
+      },
+      {
+        "id": "hearts-7",
+        "suit": "hearts",
+        "rank": 7
+      },
+      {
+        "id": "hearts-8",
+        "suit": "hearts",
+        "rank": 8
+      },
+      {
+        "id": "hearts-9",
+        "suit": "hearts",
+        "rank": 9
+      },
+      {
+        "id": "hearts-10",
+        "suit": "hearts",
+        "rank": 10
+      },
+      {
+        "id": "hearts-11",
+        "suit": "hearts",
+        "rank": 11
+      },
+      {
+        "id": "hearts-12",
+        "suit": "hearts",
+        "rank": 12
+      },
+      {
+        "id": "hearts-13",
+        "suit": "hearts",
+        "rank": 13
+      },
+      {
+        "id": "hearts-14",
+        "suit": "hearts",
+        "rank": 14
+      },
+      {
+        "id": "clubs-2",
+        "suit": "clubs",
+        "rank": 2
+      },
+      {
+        "id": "clubs-3",
+        "suit": "clubs",
+        "rank": 3
+      },
+      {
+        "id": "clubs-4",
+        "suit": "clubs",
+        "rank": 4
+      },
+      {
+        "id": "clubs-5",
+        "suit": "clubs",
+        "rank": 5
+      },
+      {
+        "id": "clubs-6",
+        "suit": "clubs",
+        "rank": 6
+      },
+      {
+        "id": "clubs-7",
+        "suit": "clubs",
+        "rank": 7
+      },
+      {
+        "id": "clubs-8",
+        "suit": "clubs",
+        "rank": 8
+      },
+      {
+        "id": "clubs-9",
+        "suit": "clubs",
+        "rank": 9
+      },
+      {
+        "id": "clubs-10",
+        "suit": "clubs",
+        "rank": 10
+      },
+      {
+        "id": "clubs-11",
+        "suit": "clubs",
+        "rank": 11
+      },
+      {
+        "id": "clubs-12",
+        "suit": "clubs",
+        "rank": 12
+      },
+      {
+        "id": "clubs-13",
+        "suit": "clubs",
+        "rank": 13
+      },
+      {
+        "id": "clubs-14",
+        "suit": "clubs",
+        "rank": 14
+      },
+      {
+        "id": "diamonds-2",
+        "suit": "diamonds",
+        "rank": 2
+      },
+      {
+        "id": "diamonds-3",
+        "suit": "diamonds",
+        "rank": 3
+      },
+      {
+        "id": "diamonds-4",
+        "suit": "diamonds",
+        "rank": 4
+      },
+      {
+        "id": "diamonds-5",
+        "suit": "diamonds",
+        "rank": 5
+      },
+      {
+        "id": "diamonds-6",
+        "suit": "diamonds",
+        "rank": 6
+      },
+      {
+        "id": "diamonds-7",
+        "suit": "diamonds",
+        "rank": 7
+      },
+      {
+        "id": "diamonds-8",
+        "suit": "diamonds",
+        "rank": 8
+      },
+      {
+        "id": "diamonds-9",
+        "suit": "diamonds",
+        "rank": 9
+      },
+      {
+        "id": "diamonds-10",
+        "suit": "diamonds",
+        "rank": 10
+      },
+      {
+        "id": "diamonds-11",
+        "suit": "diamonds",
+        "rank": 11
+      },
+      {
+        "id": "diamonds-12",
+        "suit": "diamonds",
+        "rank": 12
+      },
+      {
+        "id": "diamonds-13",
+        "suit": "diamonds",
+        "rank": 13
+      },
+      {
+        "id": "diamonds-14",
+        "suit": "diamonds",
+        "rank": 14
+      }
+    ],
+    "drawPile": [
+      "clubs-7",
+      "spades-12",
+      "clubs-11",
+      "spades-2",
+      "clubs-9",
+      "clubs-13",
+      "spades-3",
+      "spades-11",
+      "diamonds-10",
+      "hearts-13",
+      "hearts-3",
+      "clubs-2",
+      "hearts-12",
+      "spades-9",
+      "hearts-4",
+      "hearts-9",
+      "clubs-12",
+      "diamonds-3",
+      "spades-13",
+      "diamonds-11",
+      "hearts-11",
+      "clubs-6",
+      "diamonds-2",
+      "hearts-6",
+      "spades-4",
+      "diamonds-4",
+      "hearts-7",
+      "clubs-10",
+      "clubs-3",
+      "spades-10",
+      "clubs-5",
+      "spades-5",
+      "diamonds-7",
+      "clubs-8",
+      "hearts-10",
+      "spades-6",
+      "clubs-14",
+      "hearts-14",
+      "diamonds-6"
+    ],
+    "handOrder": [
+      "diamonds-5",
+      "hearts-2",
+      "hearts-5"
+    ],
+    "playedPile": [
+      "diamonds-14",
+      "spades-14",
+      "spades-8",
+      "hearts-8",
+      "spades-7"
+    ],
+    "discardPile": [
+      "diamonds-13",
+      "diamonds-9",
+      "diamonds-8",
+      "clubs-4",
+      "diamonds-12"
+    ],
+    "destroyedIds": [],
+    "stage": {
+      "erxiangHandoffUsed": false,
+      "openingDiscard": null,
+      "index": 3,
+      "targetHeat": "1000",
+      "initialTargetHeat": "1000",
+      "heat": "1730",
+      "handsLeft": 3,
+      "initialHands": 4,
+      "discardsLeft": 2,
+      "initialDiscards": 3,
+      "discardSpent": 1,
+      "discardGained": 0,
+      "doubleDiscardBeforeFirstPlay": false,
+      "discardsUsed": 1,
+      "skipResult": null,
+      "playIndex": 1,
+      "previousHandType": "full-house",
+      "previousHandScore": "1730",
+      "handLimit": 8,
+      "initialHandLimit": 8,
+      "boss": null,
+      "initialJokerIds": [
+        "basic-choice/window/joker/basic-choice/window/command/2"
+      ],
+      "sealedJokerIds": [],
+      "challengeDisabledJokerId": null,
+      "rescueUsed": false,
+      "clearId": "basic-choice/window/clear/3",
+      "goldEarned": 12,
+      "disabledIds": [],
+      "wagerSelected": false,
+      "wagerUsed": false,
+      "maxPlayedCount": 5,
+      "ordinaryStraightSeen": false,
+      "ordinaryFlushSeen": false,
+      "quadRefundUsed": false,
+      "jokerSold": false
+    },
+    "totalHeat": "6233",
+    "gold": 39,
+    "jokers": [
+      {
+        "instanceId": "basic-choice/window/joker/basic-choice/window/command/2",
+        "definitionId": "mantangcai",
+        "paidPrice": 4,
+        "growth": {},
+        "edition": "none"
+      }
+    ],
+    "consumables": [
+      {
+        "instanceId": "basic-choice/window/first-boss/supply",
+        "definitionId": "T16"
+      }
+    ],
+    "longTermItems": [],
+    "program": null,
+    "boss": {
+      "definitionId": "B02",
+      "disabledSuit": null
+    },
+    "seenBossIds": [
+      "B01",
+      "B02"
+    ],
+    "chapterSkipConsumable": "T05",
+    "purchaseCoupons": 0,
+    "safetyNetUsed": false,
+    "shop": null,
+    "spectralModifiers": {
+      "handsPenalty": 0,
+      "handPenalty": 0,
+      "cleanSlateBonus": 0
+    },
+    "supplyRewardClaimed": true,
+    "chapterHandUsage": {
+      "full-house": 1
+    },
+    "normalClearClaimed": true,
+    "tourMode": "normal",
+    "normalCompletion": null,
+    "rng": {
+      "deck": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 1560597181
+      },
+      "rule": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 4237279114
+      },
+      "shop": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 4184962185
+      },
+      "reward": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 2259915851
+      },
+      "program": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 4127392240
+      },
+      "challenge": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 111812685
+      }
+    },
+    "receipts": [
+      {
+        "commandId": "basic-choice/window/start",
+        "fingerprint": "json-fnv-v1:9dbfec174c0baffb",
+        "seq": 1
+      },
+      {
+        "commandId": "basic-choice/window/command/2",
+        "fingerprint": "json-fnv-v1:6bead33ce2e896b8",
+        "seq": 2
+      },
+      {
+        "commandId": "basic-choice/window/command/3",
+        "fingerprint": "json-fnv-v1:a2dd3c51cdc3a89d",
+        "seq": 3
+      },
+      {
+        "commandId": "basic-choice/window/command/4",
+        "fingerprint": "json-fnv-v1:3feb69b6c0857e5a",
+        "seq": 4
+      },
+      {
+        "commandId": "basic-choice/window/command/5",
+        "fingerprint": "json-fnv-v1:f0de455b3cf0f46f",
+        "seq": 5
+      },
+      {
+        "commandId": "basic-choice/window/command/6",
+        "fingerprint": "json-fnv-v1:ca3f1ee9d2ca982d",
+        "seq": 6
+      },
+      {
+        "commandId": "basic-choice/window/command/7",
+        "fingerprint": "json-fnv-v1:074654f2adeecd3e",
+        "seq": 7
+      },
+      {
+        "commandId": "basic-choice/window/command/8",
+        "fingerprint": "json-fnv-v1:5ce90941d68d08dd",
+        "seq": 8
+      },
+      {
+        "commandId": "basic-choice/window/command/9",
+        "fingerprint": "json-fnv-v1:d0d08c56d762661a",
+        "seq": 9
+      },
+      {
+        "commandId": "basic-choice/window/command/10",
+        "fingerprint": "json-fnv-v1:8dcc2eda4d3fab16",
+        "seq": 10
+      },
+      {
+        "commandId": "basic-choice/window/command/11",
+        "fingerprint": "json-fnv-v1:d80ea000662f8c7c",
+        "seq": 11
+      },
+      {
+        "commandId": "basic-choice/window/command/12",
+        "fingerprint": "json-fnv-v1:aef0a4ad1b2c43b9",
+        "seq": 12
+      },
+      {
+        "commandId": "basic-choice/window/command/13",
+        "fingerprint": "json-fnv-v1:e12b12f63245b4a2",
+        "seq": 13
+      },
+      {
+        "commandId": "basic-choice/window/command/14",
+        "fingerprint": "json-fnv-v1:72d420df119b5013",
+        "seq": 14
+      },
+      {
+        "commandId": "basic-choice/window/command/15",
+        "fingerprint": "json-fnv-v1:0bb647e2791f7746",
+        "seq": 15
+      },
+      {
+        "commandId": "basic-choice/window/command/16",
+        "fingerprint": "json-fnv-v1:89c977f6aae3416a",
+        "seq": 16
+      },
+      {
+        "commandId": "basic-choice/window/command/17",
+        "fingerprint": "json-fnv-v1:6cc546d6e559ed42",
+        "seq": 17
+      },
+      {
+        "commandId": "basic-choice/window/command/18",
+        "fingerprint": "json-fnv-v1:950afc7f60d44003",
+        "seq": 18
+      },
+      {
+        "commandId": "basic-choice/window/command/19",
+        "fingerprint": "json-fnv-v1:fc68b45fd552a343",
+        "seq": 19
+      },
+      {
+        "commandId": "basic-choice/window/command/20",
+        "fingerprint": "json-fnv-v1:218679bc9ea661b0",
+        "seq": 20
+      },
+      {
+        "commandId": "basic-choice/window/command/21",
+        "fingerprint": "json-fnv-v1:291637e66842111a",
+        "seq": 21
+      },
+      {
+        "commandId": "basic-choice/window/command/22",
+        "fingerprint": "json-fnv-v1:f254ae38a78f84a4",
+        "seq": 22
+      },
+      {
+        "commandId": "basic-choice/window/command/23",
+        "fingerprint": "json-fnv-v1:aaa93ed0d0ab1974",
+        "seq": 23
+      }
+    ],
+    "lastTrace": {
+      "erxiangHandoff": {
+        "targetId": null,
+        "beforeUsed": false,
+        "points": 0,
+        "afterUsed": false
+      },
+      "rulesVersion": "r2",
+      "rootId": "basic-choice/window/hand/basic-choice/window/command/23",
+      "handType": "full-house",
+      "level": 1,
+      "sets": {
+        "playedIds": [
+          "diamonds-14",
+          "spades-14",
+          "spades-8",
+          "hearts-8",
+          "spades-7"
+        ],
+        "scoringIds": [
+          "diamonds-14",
+          "spades-14",
+          "spades-8",
+          "hearts-8",
+          "spades-7"
+        ],
+        "activeScoringIds": [
+          "diamonds-14",
+          "spades-14",
+          "spades-8",
+          "hearts-8",
+          "spades-7"
+        ],
+        "heldIds": [
+          "diamonds-5",
+          "hearts-2",
+          "hearts-5"
+        ]
+      },
+      "finalScore": "1730",
+      "accumulator": {
+        "H": {
+          "n": "346",
+          "d": "1"
+        },
+        "M": {
+          "n": "5",
+          "d": "1"
+        }
+      },
+      "events": [
+        {
+          "eventId": "basic-choice/window/hand/basic-choice/window/command/23/event/0",
+          "rootId": "basic-choice/window/hand/basic-choice/window/command/23",
+          "rootEventId": "basic-choice/window/hand/basic-choice/window/command/23/event/0",
+          "phase": "base",
+          "sourceType": "rule",
+          "sourceDefinitionId": "full-house",
+          "sourceInstanceId": "basic-choice/window",
+          "operation": "base",
+          "value": {
+            "n": "210",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "0",
+              "d": "1"
+            },
+            "M": {
+              "n": "0",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "210",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "full-house.base",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "basic-choice/window/hand/basic-choice/window/command/23/event/1",
+          "rootId": "basic-choice/window/hand/basic-choice/window/command/23",
+          "rootEventId": "basic-choice/window/hand/basic-choice/window/command/23/event/1",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-14",
+          "sourceInstanceId": "diamonds-14",
+          "targetCardId": "diamonds-14",
+          "operation": "add-heat",
+          "value": {
+            "n": "11",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "210",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "221",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "rank-14.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "basic-choice/window/hand/basic-choice/window/command/23/event/2",
+          "rootId": "basic-choice/window/hand/basic-choice/window/command/23",
+          "rootEventId": "basic-choice/window/hand/basic-choice/window/command/23/event/2",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-14",
+          "sourceInstanceId": "spades-14",
+          "targetCardId": "spades-14",
+          "operation": "add-heat",
+          "value": {
+            "n": "11",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "221",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "232",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "rank-14.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "basic-choice/window/hand/basic-choice/window/command/23/event/3",
+          "rootId": "basic-choice/window/hand/basic-choice/window/command/23",
+          "rootEventId": "basic-choice/window/hand/basic-choice/window/command/23/event/3",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-8",
+          "sourceInstanceId": "spades-8",
+          "targetCardId": "spades-8",
+          "operation": "add-heat",
+          "value": {
+            "n": "8",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "232",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "240",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "rank-8.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "basic-choice/window/hand/basic-choice/window/command/23/event/4",
+          "rootId": "basic-choice/window/hand/basic-choice/window/command/23",
+          "rootEventId": "basic-choice/window/hand/basic-choice/window/command/23/event/4",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-8",
+          "sourceInstanceId": "hearts-8",
+          "targetCardId": "hearts-8",
+          "operation": "add-heat",
+          "value": {
+            "n": "8",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "240",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "248",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "rank-8.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "basic-choice/window/hand/basic-choice/window/command/23/event/5",
+          "rootId": "basic-choice/window/hand/basic-choice/window/command/23",
+          "rootEventId": "basic-choice/window/hand/basic-choice/window/command/23/event/5",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-8",
+          "sourceInstanceId": "spades-7",
+          "targetCardId": "spades-7",
+          "operation": "add-heat",
+          "value": {
+            "n": "8",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "248",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "256",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "rank-8.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "basic-choice/window/hand/basic-choice/window/command/23/event/6",
+          "rootId": "basic-choice/window/hand/basic-choice/window/command/23",
+          "rootEventId": "basic-choice/window/hand/basic-choice/window/command/23/event/6",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "mantangcai",
+          "sourceInstanceId": "basic-choice/window/joker/basic-choice/window/command/2",
+          "operation": "add-heat",
+          "value": {
+            "n": "90",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "256",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "346",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "mantangcai.add-heat",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "pair",
+              "two-pair",
+              "three-kind",
+              "full-house",
+              "four-kind"
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "basic-choice/window/hand/basic-choice/window/command/23/event/7",
+          "rootId": "basic-choice/window/hand/basic-choice/window/command/23",
+          "rootEventId": "basic-choice/window/hand/basic-choice/window/command/23/event/7",
+          "phase": "finalScore",
+          "sourceType": "rule",
+          "sourceDefinitionId": "full-house",
+          "sourceInstanceId": "basic-choice/window",
+          "operation": "final-score",
+          "value": {
+            "n": "1730",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "346",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "346",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "reasonKey": "full-house.final-score",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "jokers": [
+        {
+          "instanceId": "basic-choice/window/joker/basic-choice/window/command/2",
+          "definitionId": "mantangcai",
+          "paidPrice": 4,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "rng": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 4237279114
+      },
+      "goldDelta": 0,
+      "destroyedCardIds": [],
+      "destroyedJokerIds": [],
+      "cards": [
+        {
+          "id": "diamonds-14",
+          "suit": "diamonds",
+          "rank": 14
+        },
+        {
+          "id": "diamonds-5",
+          "suit": "diamonds",
+          "rank": 5
+        },
+        {
+          "id": "spades-14",
+          "suit": "spades",
+          "rank": 14
+        },
+        {
+          "id": "spades-8",
+          "suit": "spades",
+          "rank": 8
+        },
+        {
+          "id": "hearts-2",
+          "suit": "hearts",
+          "rank": 2
+        },
+        {
+          "id": "hearts-8",
+          "suit": "hearts",
+          "rank": 8
+        },
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 8
+        },
+        {
+          "id": "hearts-5",
+          "suit": "hearts",
+          "rank": 5
+        }
+      ],
+      "sourceJokers": [
+        {
+          "instanceId": "basic-choice/window/joker/basic-choice/window/command/2",
+          "definitionId": "mantangcai",
+          "paidPrice": 4,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "bossContext": {
+        "boss": null,
+        "previousHandType": null,
+        "sealedJokerIds": [],
+        "challengeDisabledJokerId": null
+      },
+      "combo": {
+        "goldBeforeRewards": 27
+      }
+    },
+    "handLevels": {
+      "two-pair": 1,
+      "full-house": 1
+    },
+    "outcome": null
+  },
+  "handReloadExact": true,
+  "status": "PASS"
+}

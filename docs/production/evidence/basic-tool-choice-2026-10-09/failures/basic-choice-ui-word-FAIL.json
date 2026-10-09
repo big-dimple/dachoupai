@@ -1,0 +1,16 @@
+{
+  "head": "c24125bbb8d90f34eb5598eeb214dd45343d38ff",
+  "scope": "Native Chromium controls, actual unmodified normal-route window imported; complete state comparison and reload. Additional sizes read-only selector. No physical/FPS/audio acceptance.",
+  "cases": [
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768
+      },
+      "selector": "基础改牌 · 本店自选1件\n\n当前 29 金 · 道具箱 1/2\n每店只选购1件，刷新不补货；复制与献纸不在基础位。\n\n精简节目\n\n删去自己不准备保留的非核心牌，集中同点成组；永久删除，至少保留20张。\n实付 2 金 · 买后余额 27 金\n\n选择 · 2金\n往上挪\n\n例如2♠ → 3♠；把点数移到想凑的同点组，对象由你选。\n实付 2 金 · 买后余额 27 金\n\n选择 · 2金\n往下挪\n\n例如3♠ → 2♠；把点数移到想凑的同点组，对象由你选。\n实付 2 金 · 买后余额 27 金\n\n选择 · 2金\n加厚纸\n\n商店 / 待出牌可用。选择1–2张可见扑克。赋予热度纸：每次普通或额外计分热度+20。替换原增强，保留版次。\n实付 2 金 · 买后余额 27 金\n\n选择 · 2金\n大字号\n\n商店 / 待出牌可用。选择1–2张可见扑克。赋予倍率纸：每次普通或额外计分倍率+2。替换原增强，保留版次。\n实付 2 金 · 买后余额 27 金\n\n选择 · 2金\n路线用途与使用边界\n回到经营",
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(row.selector.includes('改点')||row.selector.includes('升'))\n"
+    }
+  ],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(row.selector.includes('改点')||row.selector.includes('升'))\n"
+}
