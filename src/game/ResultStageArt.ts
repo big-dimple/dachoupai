@@ -6,6 +6,28 @@ import {selectionPortraitKey} from './portraits';
 import {jokerArtKey} from './jokerArt';
 import type {resultStageFacts} from './ResultStage';
 
+/** Optional source art starts only after text/controls exist; never uses the scene preload queue. */
+export async function loadResultSourceArt(scene:Phaser.Scene,key:string,url:string,signal:AbortSignal,current:()=>boolean):Promise<boolean> {
+ if(signal.aborted||!current())return false;
+ if(scene.textures.exists(key))return true;
+ const transfer=new AbortController(),abort=()=>transfer.abort(),image=new Image();let objectUrl:string|undefined,loaded=false,rejectAbort!:()=>void;
+ signal.addEventListener('abort',abort,{once:true});
+ const canceled=new Promise<never>((_,reject)=>{rejectAbort=()=>reject(Error('result-source-canceled'));transfer.signal.addEventListener('abort',rejectAbort,{once:true});});
+ const timer=setTimeout(abort,5000);
+ const receive=async()=>{
+  const response=await fetch(url,{signal:transfer.signal,credentials:'same-origin',priority:'low'});
+  if(!response.ok||transfer.signal.aborted||!current())return false;
+  const blob=await response.blob();if(transfer.signal.aborted||!current())return false;
+  objectUrl=URL.createObjectURL(blob);image.decoding='async';image.src=objectUrl;await image.decode();
+  if(transfer.signal.aborted||!current()||!scene.sys.settings.active||!image.naturalWidth||!image.naturalHeight)return false;
+  if(!scene.textures.exists(key))scene.textures.addImage(key,image);
+  return true;
+ };
+ try {loaded=await Promise.race([receive(),canceled]);return loaded;}
+ catch {transfer.abort();return false;}
+ finally {clearTimeout(timer);signal.removeEventListener('abort',abort);transfer.signal.removeEventListener('abort',rejectAbort);if(!loaded)image.removeAttribute('src');if(objectUrl)URL.revokeObjectURL(objectUrl);}
+}
+
 /** Sparse paper stage and existing contained source art; decorative layers never own input. */
 export function resultStagePaper(scene:Phaser.Scene,view:SceneView,b:Box,lost=false):void {
  const g=scene.add.graphics().setName('result-art/stage').setData('bounds',b);

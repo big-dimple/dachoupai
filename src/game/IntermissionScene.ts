@@ -1,5 +1,5 @@
 import {resultStageFacts,resultStagePlan} from './ResultStage';
-import {resultStagePaper,resultStageSources} from './ResultStageArt';
+import {resultStagePaper,resultStageSources,loadResultSourceArt} from './ResultStageArt';
 import {jokerArtPreviewUrl} from './jokerArt';
 import {paperSceneStart} from './PaperFlow';
 import {savedTouyeWager} from './TouyeWagerCopy';
@@ -57,6 +57,7 @@ export class IntermissionScene extends Phaser.Scene {
   private result!:IntermissionResult;
   private view!:SceneView;
   private lifecycle=0;
+  private sourceArtRequest?:AbortController;
   private busy=false;
   private notice='';
   private firstRender=true;
@@ -68,13 +69,21 @@ export class IntermissionScene extends Phaser.Scene {
   constructor(){super('intermission');}
   init(data:IntermissionResult):void {this.result=data;}
   private get ready():boolean {const session=gameSession();return !this.busy&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
-  preload():void {
-    const run=runController(this)?.state;if(!run?.stage)return;
+  private stopSourceArt():void {this.sourceArtRequest?.abort();this.sourceArtRequest=undefined;}
+  private requestSourceArt():void {
+    const controller=runController(this),run=controller?.state;if(!controller||!run?.stage)return;
     const source=resultStageFacts(run,this.result.cleared,!!run.stage.skipResult).source,key=source&&jokerArtKey(source.definitionId),url=source&&jokerArtPreviewUrl(source.definitionId);
-    if(key&&url&&!this.textures.exists(key))this.load.image(key,url,{responseType:'blob',timeout:5000});
+    if(!key||!url||this.textures.exists(key))return;
+    this.stopSourceArt();const request=this.sourceArtRequest=new AbortController(),lifecycle=this.lifecycle;
+    const current=()=>this.sourceArtRequest===request&&!request.signal.aborted&&lifecycle===this.lifecycle&&this.scene.isActive()&&!this.busy&&runController(this)===controller&&controller.state===run;
+    void loadResultSourceArt(this,key,url,request.signal,current).then(loaded=>{
+      if(loaded&&current()){this.firstRender=false;this.render();}
+    });
   }
   create():void {
-    this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;this.events.once('shutdown',()=>{this.lifecycle++;this.dialog.close();this.stopCelebration();});
+    this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;
+    const retire=()=>{this.events.off('shutdown',retire);this.events.off('destroy',retire);this.lifecycle++;this.stopSourceArt();this.dialog.close();this.stopCelebration();};
+    this.events.once('shutdown',retire);this.events.once('destroy',retire);
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
     this.cameras.main.setBackgroundColor('#F3EADB');
     const skipped=!!run.stage.skipResult;this.audio.setScene(this.result.cleared?'success':'failure');
@@ -85,9 +94,10 @@ export class IntermissionScene extends Phaser.Scene {
         if(run.phase==='run-lost'&&run.outcome?.reason!=='abandoned'&&cue?.runId===run.runId&&cue.commandSeq===run.commandSeq)this.audio.failure(cue);
       }
     }
-    this.view=new SceneView(this,()=>this.render());this.render();
+    this.view=new SceneView(this,()=>this.render());this.render();this.requestSourceArt();
   }
   private render():void {
+    if(this.busy)this.stopSourceArt();
     const v=this.view,l=v.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
     const p=resultLayout(l.width,l.height,l.hud.y,bottom),run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
     const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex,run.tourMode,run.difficulty):undefined,skipped=run.stage?.skipResult,won=run.phase==='run-won',capped=this.result.cleared&&run.phase==='stage-cleared'&&!nextStage,lost=!this.result.cleared&&!skipped&&!won;
@@ -251,7 +261,7 @@ export class IntermissionScene extends Phaser.Scene {
   }
   private exitResult(destination:'shop'|'character-select',data?:{freshSeed:true}):void {
     // Phaser queues the switch; retire this view before async finally can repaint a new run.
-    this.lifecycle++;this.rewardEffects.clear();this.dialog.close();this.audio.select();
+    this.lifecycle++;this.stopSourceArt();this.rewardEffects.clear();this.dialog.close();this.audio.select();
     paperSceneStart(this,destination,data);
   }
   private confirmEndless():void {
