@@ -4,7 +4,7 @@ import {HAND_LABELS} from '../content/handLabels';
 import type {R2HandType} from '../domain/evaluateR2';
 import {R2_BASE_SCORES} from '../domain/scoreR2';
 import {Rational} from '../domain/rational';
-import {cardSpecialText} from './r2ToolInfo';
+import {cardSpecialText,editionLabel} from './r2ToolInfo';
 import {renderToolCard} from './CandidateCardPreview';
 
 export interface CardChange {before:PlayingCard;after?:PlayingCard;label:string;note:string}
@@ -37,13 +37,17 @@ export function handLevelChangeText(type:R2HandType,before:number,after:number):
 }
 export function renderCardChange(host:HTMLElement,change:CardChange,index:number):void {
  const row=document.createElement('figure'),caption=document.createElement('figcaption'),pair=document.createElement('div');row.className='tool-change-card';row.dataset.sourceId=change.before.id;caption.textContent=`${index+1}. 确认前 → ${change.label}`;pair.className='tool-change-pair';
- const before=document.createElement('span'),arrow=document.createElement('span'),after=document.createElement('span');renderToolCard(before,change.before);arrow.textContent='→';arrow.className='tool-change-arrow';
- if(change.after)renderToolCard(after,change.after);else{after.className='tool-change-removed';after.textContent='移除';}
+ const before=document.createElement('span'),arrow=document.createElement('span'),after=document.createElement('span');renderToolCard(before,change.before);appendAttributes(before,change.before);arrow.textContent='→';arrow.className='tool-change-arrow';
+ if(change.after){renderToolCard(after,change.after);appendAttributes(after,change.after);after.className='tool-change-after';}else{after.className='tool-change-removed';after.textContent='移除';}
  pair.setAttribute('aria-label',cardSpecialText(change.before)+' → '+(change.after?cardSpecialText(change.after):'永久删除'));
- const note=document.createElement('small');note.textContent=change.note||cardSpecialText(change.after??change.before);row.append(caption,pair,note);pair.append(before,arrow,after);host.append(row);
+ const note=document.createElement('small');note.textContent=change.note;row.append(caption,pair,note);pair.append(before,arrow,after);host.append(row);
 }
 export function renderHandChange(host:HTMLElement,type:R2HandType,before:number,after:number):void {
  const row=document.createElement('article'),name=document.createElement('strong'),pair=document.createElement('div');row.className='tool-change-level';name.textContent=HAND_LABELS[type]+' · 基础数值';pair.className='tool-change-level-pair';
  for(const [index,level] of [before,after].entries()){const facts=handLevelFacts(type,level),side=document.createElement('div');if(index){const arrow=document.createElement('span');arrow.textContent='→';pair.append(arrow);}const heading=document.createElement('b'),detail=document.createElement('span');heading.textContent=(index?'使用后':'当前')+` Lv.${level}`;detail.textContent=`热度 ${facts.heat} · 倍率 ${facts.mult}`;side.append(heading,detail);pair.append(side);}
  row.append(name,pair);host.append(row);
+}
+
+function appendAttributes(host:HTMLElement,card:PlayingCard):void {
+ const label=document.createElement('small');label.className='tool-change-attributes';label.textContent=[R2_ENHANCEMENTS.find(e=>e.id===card.enhancement)?.name??'无增强',editionLabel(card.edition)].join(' · ');host.append(label);
 }

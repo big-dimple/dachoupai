@@ -496,3 +496,17 @@ button[aria-busy=true] { border-style:dashed; }
 .tool-change-level-pair { display:flex;align-items:center;gap:6px; }
 .tool-change-level-pair > div { flex:1;min-width:0;display:grid;gap:3px;padding:6px;background:#f3eadb;border:1px solid #a38b66; }
 @media(min-width:900px) and (min-height:520px) { .tool-detail[open] .tool-selection-dock { max-height:none; }.tool-detail .tool-preview-scroll { flex:1; } }
+
+.tool-change-pair { align-items:flex-start; }
+.tool-change-arrow { align-self:center; }
+.tool-change-after .candidate-card-face { border:2px solid #337e71;box-sizing:border-box; }
+.tool-change-card .tool-change-attributes { font-size:11px;line-height:14px;margin-top:3px; }
+@media(min-width:600px) and (max-height:519px) {
+ .tool-detail[open] { display:grid;width:calc(100vw - 16px);grid-template-columns:minmax(0,1fr) 210px;grid-template-rows:auto minmax(0,1fr) auto auto; }
+ .tool-detail .dialog-header { grid-column:1/-1; }
+ .tool-detail .dialog-content { grid-column:1;grid-row:2; }
+ .tool-detail[open] .tool-selection-dock { grid-column:2;grid-row:2;max-height:none;border-top:0;border-left:1px solid #3F606B;padding:6px 8px; }
+ .tool-detail .dialog-actions,.tool-detail .dialog-status { grid-column:1/-1; }
+ .tool-detail .tool-preview-scroll { flex:1; }
+ .tool-detail .tool-target-group { grid-template-columns:140px minmax(0,1fr); }
+}
