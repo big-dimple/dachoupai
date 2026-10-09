@@ -13,7 +13,7 @@ export function basicChoiceSeat(s:R2RunState):R2Offer|undefined {
  if(!isR2BasicChoice(s)||!s.shop?.basicChoice)return;
  return {offerId:`basic-choice/${s.shop.basicChoice.shopSeq}`,definitionId:'T02',price:2,consumed:!!s.shop.basicChoice.purchase};
 }
-export const isBasicChoiceSeat=(o:R2Offer)=>o.offerId.startsWith('basic-choice/');
+export const isBasicChoiceSeat=(o:R2Offer)=>/^basic-choice\/[1-9]\d*$/.test(o.offerId);
 export function basicChoiceRows(s:R2RunState){
  const seat=basicChoiceSeat(s);if(!seat)return [];
  const eligible=r2BasicChoicePool(s),legal=r2ToolAcquisitionPool(s),live=s.deckInstances.filter(c=>!s.destroyedIds.includes(c.id)),focus=currentBuildFocus(s,s.openingRoute),route=focus?BUILD_LABEL[focus]:'当前路线';

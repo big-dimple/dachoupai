@@ -3,7 +3,7 @@ import {createRun,applyCommand,type R2RunState,type Action} from '../src/domain/
 import {newRunIdentity,launchIdentity} from '../src/game/RunLaunch';
 import {R2_BASIC_CHOICE_HASH,R2_ERXIANG_HANDOFF_VERSION,R2_ERXIANG_HANDOFF_HASH,R2_BASIC_TOOL_IDS} from '../src/domain/r2GroupUpgrade';
 import {r2BasicChoicePool,r2PurchasePrice} from '../src/domain/r2Shop';
-import {basicChoiceSeat,basicChoiceRows} from '../src/game/BasicToolChoice';
+import {basicChoiceSeat,basicChoiceRows,isBasicChoiceSeat} from '../src/game/BasicToolChoice';
 import {purchasePaymentFacts} from '../src/game/PurchasePaymentFacts';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
 import {stableHash} from '../src/domain/hash';
@@ -55,4 +55,9 @@ it('failed durable purchase keeps original cash/inventory/quota, then retry and 
  const s=start(),store=new Store(),run=await SavedRun.start(store,s,await store.read()),before=run.state,slots=await store.read();store.fail=true;const c=cmd(before,buy(before,'T08'));
  expect((await run.submit(c)).ok).toBe(false);expect(run.state).toBe(before);expect(await store.read()).toEqual(slots);const pending=run.exportJSON();expect(readCheckpoint(JSON.parse(pending)).ok).toBe(true);
  store.fail=false;expect((await run.retry()).ok).toBe(true);expect(run.exportJSON()).toBe(pending);const writes=store.writes;expect(await run.submit(c)).toMatchObject({ok:true,duplicate:true});expect(store.writes).toBe(writes);expect(run.state.gold).toBe(4);expect(run.state.consumables).toHaveLength(1);round(run.state);
+});
+
+it('the UI seat marker cannot match real offers when a run ID shares its prefix',()=>{
+ const s=createRun({seed:'group-natural-17',runId:'basic-choice/window',rulesVersion:'r2',characterId:'erxiang',openingRoute:'group',r2Identity:newRunIdentity('erxiang','group')});
+ expect(isBasicChoiceSeat(basicChoiceSeat(s)!)).toBe(true);for(const o of [...s.shop!.offers,...s.shop!.toolOffers,...s.shop!.itemOffers])expect(isBasicChoiceSeat(o)).toBe(false);
 });
