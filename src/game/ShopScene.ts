@@ -197,7 +197,7 @@ export class ShopScene extends Phaser.Scene {
     const scale=Math.min(width/source.width,height/source.height),x=p.x+pc.left.width/2;
     this.view.add(this.add.image(x,y+height/2,key).setScale(scale).setName('shop/hero-art'));
     const hit=this.view.add(this.add.rectangle(x,y+height/2,width,height,0,0));
-    this.view.target(hit,'shop/hero-preparation',{tap:()=>this.inspectJourney(),detail:()=>this.inspectJourney()});
+    this.view.target(hit,'shop/hero-preparation',{tap:()=>this.inspectJourney(true),detail:()=>this.inspectJourney(true)});
     this.view.text(x,y+height+8,character.name+' · 下场准备↗',16,'#3F606B').setOrigin(.5,0).setName('shop/hero-caption');
   }
   private drawOwned(p:ReturnType<typeof shopLayout>):void {
@@ -580,8 +580,9 @@ export class ShopScene extends Phaser.Scene {
     if(kind==='jokers'&&starterOffer(this.run,o)){this.view.material({x:b.x+4,y:b.y+4,width:76,height:22},0xfff9ee,0xfff9ee,3);this.view.text(b.x+8,b.y+6,'起手 · 可选',14,'#26313A').setFontStyle('bold').setName('shop/route-starter-label').setData('offerId',o.offerId);}
     if(this.selectedOfferId===o.offerId)this.view.text(b.x+b.width-20,b.y+b.height-25,'✓',18,'#26313A').setName('shop/offer-selected');
   }
-  private inspectJourney():void {
+  private inspectJourney(heroFocus=false):void {
     showBuildJourney(this.dialog,this.run,{ready:this.ready,onFocus:()=>this.render(),chapter:()=>this.inspectChapter(),manage:()=>this.inspectBuild(),source:id=>this.inspectJoker(id),compare:(o,j)=>this.inspectJoker(j,o),tools:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq)),tool:id=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq),id),deck:()=>this.inspectDeck(),offers:(id,kind)=>{this.shelfKind=kind;this.inspectOffer(id);},continueLabel:'保留金币进入牌桌',continue:()=>{this.dialog.close();void this.send({type:'LeaveShop'});}});
+    if(heroFocus){const panel=this.dialog.current,fold=panel?.querySelector<HTMLDetailsElement>('.build-keepsake-compact');if(panel&&fold){fold.addEventListener('toggle',()=>{if(this.dialog.active(panel))fold.querySelector('.build-keepsake-hero')?.scrollIntoView({block:'nearest'});},{once:true});fold.open=true;}}
   }
   private inspectBuild():void {
     const body=this.run.jokers.map((j,i)=>`${i+1}. ${this.jokerDefinition(j.definitionId).name} · ${editionEffectText(j.edition)} · 售价 ${salePrice(j.paidPrice)} 金\n${this.jokerCopy(j.definitionId,j)?.plain?.line??this.jokerCopy(j.definitionId,j)?.summary??this.jokerDefinition(j.definitionId).description}`).join('\n\n')||'尚无大丑牌。先看卡牌效果，也可以保留金币直接入场。';
