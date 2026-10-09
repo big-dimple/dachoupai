@@ -45,5 +45,5 @@ it('future multi-resource cap ends earlier beats at the collision time instead o
  expect(sources).toHaveLength(6);expect(sources.every(s=>s.disconnect.mock.calls.length===0)).toBe(true);
  expect(sources[0].stop.mock.calls.at(-1)[0]).toBeCloseTo(1.11);
  const voices=[...inside.voices] as any[];for(const voice of voices)expect(voices.filter(v=>v.startsAt<=voice.startsAt&&v.endsAt>voice.startsAt).length).toBeLessThanOrEqual(4);
- engine.cancelPresentation();expect(inside.voices.size).toBe(0);
+ engine.setSuspended(true);expect(inside.voices.size).toBe(0);
 });
