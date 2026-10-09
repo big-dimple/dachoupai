@@ -1,0 +1,27 @@
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+{"phase":"shop","commandSeq":1,"controller":"idle","playing":false,"presenting":false,"renderFps":14.966201782226562,"hidden":false,"selectedIds":[],"discardEnabled":false,"pointers":[{"id":0,"touch":false,"x":943,"y":644},{"id":1,"touch":false,"x":0,"y":0}]}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'json-fnv-v1:f87eea81b756b81d'
+- 'json-fnv-v1:0739df5a55a46b96'
+               ^
+
+    at file:///workspace/dachoupai/harness/screenshot.mjs:72:12 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'json-fnv-v1:f87eea81b756b81d',
+  expected: 'json-fnv-v1:0739df5a55a46b96',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

@@ -41,3 +41,9 @@ PC1366×768、手机390×740/320×740、740×390：最终对应11/4/3/4列（短
 原review head6d9cfa5141b4f70f780c02dc3c6ddf49da383c64、run37867153012/domain113616490072真实FAIL：goods-art未知工具T99须抛unknown-r2-tool，toolInfo新价格读取在getR2Tool之前引起TypeError。169files/2728tests通过、1file/1test失败，原FAIL raw日志gzip及元数据保留；不把内部runner故意失败样板当产品故障。没有重试旧job。
 
 产品补正 `cff6247e8abce9f5c5069830978662b797739901` 只把工具身份验证移回价格读取之前，保原未知ID拒绝合同；正常ID逻辑、供给、目录、音画、领域计分不改。三文件定向及typecheck结果见本目录原日志。不重拍已冻结原生矩阵，旧截图和完整state证据继续按各自SHA读取；最终新review head仅一次标准CI另核。
+
+## 浏览器精确身份门禁校准
+
+第二head0d938884e9e52daa500acab2a468a4ac2d21f754完整170files/2729tests与docs通过；run37867376601/browser113617222088真实FAIL停在旧quality-r2-touye-wager-v1版本断言。新版规则身份本来应为quality-r2-basic-tool-supply-v1。harness3a9134f补版本和两货不重复/基础位2金断言后，局部桌面smoke又拒绝相邻旧contentHash；该FAIL日志同样保留。最终harness7e5503282728a5727da17a7b01ddb2e6a9b682c1严格绑定新版本＋json-fnv-v1:f87eea81b756b81d，未删除门禁或改变超时。一次编译版Chromium/desktop1280×720真实smoke通过、dirty为空，原guard/UI输入全部保持；不重跑已冻结原生闭环或设备矩阵。两次CI失败不是被当成功，最终新head标准CI另核，不重试旧job。
+
+用户实际听后要求小夜曲恢复，将另从main独立小提交处理；不混入本未合商店分支。云shell短暂断连后已恢复，产品/source未因此被判通过或失败。

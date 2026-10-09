@@ -1,0 +1,58 @@
+{
+  "testedCommit": "7e5503282728a5727da17a7b01ddb2e6a9b682c1",
+  "dirty": "",
+  "checks": [
+    {
+      "engine": "chromium",
+      "browserVersion": "151.0.7922.173",
+      "profile": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "deviceScaleFactor": 1,
+      "framebufferDensity": 1,
+      "fullscreen": "NOT_RUN",
+      "resourceFeedback": {
+        "discard": {
+          "commandSeq": 7,
+          "text": "2 次",
+          "scaleX": 1.6,
+          "pollingStarted": {
+            "commandSeq": 7,
+            "text": "2 次",
+            "scaleX": 1.6,
+            "capturedBeforeWait": true
+          }
+        },
+        "play": {
+          "commandSeq": 8,
+          "text": "3 次",
+          "scaleX": 1.6,
+          "pollingStarted": {
+            "commandSeq": 8,
+            "text": "3 次",
+            "scaleX": 1.6,
+            "capturedBeforeWait": true
+          }
+        }
+      },
+      "status": "PASS",
+      "input": "mouse.click / DOM click",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "live-discard-count-pulse",
+        "live-play-count-pulse",
+        "play-preview-feedback",
+        "reload-continue",
+        "fixed-menu-anchor",
+        "menu-preserves-selection"
+      ]
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN"
+}

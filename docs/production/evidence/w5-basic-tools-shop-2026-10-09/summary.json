@@ -42,5 +42,11 @@
     "testsFailed": 1,
     "filesPassed": 169,
     "filesFailed": 1
+  },
+  "harnessAfterExactIdentityFix": "7e5503282728a5727da17a7b01ddb2e6a9b682c1",
+  "secondCIBrowserFailure": {
+    "run": 37867376601,
+    "job": 113617222088,
+    "reason": "stale contentVersion smoke assertion"
   }
 }
