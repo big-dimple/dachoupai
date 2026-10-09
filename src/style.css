@@ -298,8 +298,8 @@ button[aria-busy=true] { border-style:dashed; }
  .tool-detail[open] { display:grid;width:min(1100px,calc(100vw - 32px));grid-template-columns:minmax(0,1fr) 300px;grid-template-rows:auto minmax(0,1fr) auto auto; }
  .tool-detail .dialog-header { grid-column:1/-1; }
  .tool-detail .dialog-content { grid-column:1;grid-row:2; }
- .tool-detail .tool-selection-dock { grid-column:2;grid-row:2;max-height:none;border-top:0;border-left:1px solid #3F606B;padding:16px; }
- .tool-detail .tool-selection-dock .tool-preview,.tool-detail .tool-selection-dock .tool-validation { font-size:14px; }
+ .tool-detail[open] .tool-selection-dock { grid-column:2;grid-row:2;max-height:none;border-top:0;border-left:1px solid #3F606B;padding:16px; }
+ .tool-detail[open] .tool-selection-dock .tool-preview,.tool-detail[open] .tool-selection-dock .tool-validation { font-size:14px; }
  .tool-detail .dialog-actions,.tool-detail .dialog-status { grid-column:1/-1; }
  .tool-detail .tool-choice-grid { max-height:min(44dvh,380px); }
 }
