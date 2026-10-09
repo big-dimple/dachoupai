@@ -5,3 +5,16 @@ afterEach(()=>vi.unstubAllGlobals());
 it('recorded hits select different bodies, climb bounded pitch and replace prior tail rather than pile up',()=>{const {engine,inside,sources}=fixture(),show={};engine.scoreImpact(show,'one','add',0,0);expect(sources[0].buffer.name).toBe('chop');engine.scoreImpact(show,'two','multiply',3,3);expect(sources[1].buffer.name).toBe('impactMetal_heavy_000');expect(sources[1].playbackRate.value).toBeCloseTo(1.105);expect(sources[0].disconnect).toHaveBeenCalledOnce();expect(inside.voices.size).toBe(1);engine.cancelPresentation();expect(inside.voices.size).toBe(0);});
 it('mute and missing clip consume cue without late playback; duplicate saved event cannot sound again',()=>{const {engine,inside,sources}=fixture(),show={};engine.muted=true;engine.scoreImpact(show,'one','multiply',3,2);engine.muted=false;engine.scoreImpact(show,'one','multiply',3,2);expect(sources).toHaveLength(0);inside.scoreSamples.delete('chop');engine.scoreImpact(show,'two','add');inside.scoreSamples.set('chop',{duration:.3});engine.scoreImpact(show,'two','add');expect(sources).toHaveLength(0);engine.scoreImpact(show,'three','add');engine.scoreImpact(show,'three','add');expect(sources).toHaveLength(1);});
 it('hidden/scene exit cancel all recorded tails without rewards or replay',()=>{const {engine,inside,sources}=fixture();engine.scoreImpact({},'award','award',3);engine.setScene('shop');expect(inside.voices.size).toBe(0);expect(sources[0].disconnect).toHaveBeenCalledOnce();vi.stubGlobal('document',{hidden:true});engine.scoreImpact({},'hidden','award',3);expect(sources).toHaveLength(1);});
+
+it('selection, confirmation, source multiplication and endings use actual samples without oscillator layers',()=>{
+ const {engine,inside,sources}=fixture();inside.context.createOscillator=vi.fn(()=>{throw Error('synthetic tone');});
+ engine.select();engine.cancel();engine.purchase();engine.multiplier('multiply',2);engine.success();const failed={runId:'same',commandSeq:3};engine.failure(failed);engine.failure(failed);
+ expect(sources.map(s=>s.buffer.name)).toEqual(['cloth2','cloth2','impactMetal_light_002','impactMetal_heavy_000','impactMetal_heavy_000','impactMetal_light_002','impactMetal_medium_002','cloth2']);
+ expect(inside.context.createOscillator).not.toHaveBeenCalled();expect(engine.getVolume('music')).toBe(.3);expect(engine.getVolume('sfx')).toBe(.8);
+ engine.cancelPresentation();expect([...inside.voices].every((v:any)=>v.bus==='ui')).toBe(true);
+});
+it('number rolls replace their recorded texture, remain finite and cannot restart after mute',()=>{
+ const {engine,inside,sources}=fixture();engine.scoreRoll(600,'mult',2);engine.scoreRoll(900,'mult',2);
+ expect(sources.map(s=>s.buffer.name)).toEqual(['impactMetal_light_002','impactMetal_light_002']);expect(sources[0].disconnect).toHaveBeenCalledOnce();expect(sources.every(s=>!s.loop)).toBe(true);expect(sources[1].stop.mock.calls[0][0]).toBeCloseTo(1.18);
+ engine.setVolume('sfx',0);expect(inside.voices.size).toBe(0);engine.scoreRoll(900,'total',1);expect(sources).toHaveLength(2);
+});

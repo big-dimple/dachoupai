@@ -88,7 +88,7 @@ import {cardSpecialText,editionLabel,editionEffectText,toolInfo} from './r2ToolI
 
 import {mountHeroClimax,heroClimaxValue,type HeroClimaxView} from './HeroClimax';
 import {cssViewport} from '../platform/Viewport';
-type KeyCueCleanup=(()=>void)&{strike?:()=>void;release?:()=>Promise<void>};
+type KeyCueCleanup=(()=>void)&{hero?:boolean;strike?:()=>void;release?:()=>Promise<void>};
 
 const MAX_SELECTED = R2_LIMITS.maxSelected;
 
@@ -1504,7 +1504,7 @@ export class GameScene extends Phaser.Scene {
       const viewport=cssViewport(this),stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...viewport},key,value,this.reducedMotion);
       if(stage){
         this.heroClimax=stage;let cleaned=false;const cleanup:KeyCueCleanup=()=>{if(cleaned)return;cleaned=true;context.signal.removeEventListener('abort',cleanup);if(this.heroClimax===stage)this.heroClimax=undefined;stage.dispose();};
-        cleanup.strike=stage.strike;cleanup.release=stage.release;context.signal.addEventListener('abort',cleanup,{once:true});return cleanup;
+        cleanup.hero=true;cleanup.strike=stage.strike;cleanup.release=stage.release;context.signal.addEventListener('abort',cleanup,{once:true});return cleanup;
       }
     }
     const l=this.view.layout,area=toolInventoryPlayedArea(l),mat=playedFootprint(area,l.mode==='portrait'),source=this.jokerViews.get(key.fact.sourceInstanceId);
@@ -1617,6 +1617,7 @@ export class GameScene extends Phaser.Scene {
     await Promise.all(effects);
     if(context.signal.aborted)return;
     this.setAccumulator(event.after);
+    if(restoreKey?.hero&&!this.reducedMotion)await this.wait(500,context);
     this.scoreTotal.setData('eventPhase','rest');
     const growth=this.presentation?savedGrowthStamp(this.run,this.presentation.score,event):undefined;
     if(growth){this.statusText.setText(benefit!.title+' · 已存成长，下手生效').setData('growthStamp',growth);this.resultText.setText(benefit!.title+' · 成长已保存');}
@@ -1725,7 +1726,7 @@ export class GameScene extends Phaser.Scene {
       effects.push(this.pulseScoreNumber(this.scoreTotal,1.28+scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat)*.04,260,context));
       effects.push(this.animate({targets:this.heatText,scale:{from:celebration.cleared?1.1:1.04,to:1},duration:celebration.cleared?620:310,ease:'Back.easeOut'},context));
     }
-    effects.push(this.wait(this.reducedMotion?360:opening?(closeOpening?.strike?590:900):presentation.state.openingShow?.rootId===score.rootId?420:celebration.cleared?700:tier>=2?500:320,context));await Promise.all(effects);await closeOpening?.release?.();closeOpening?.();if(context.signal.aborted)return;this.scoreTotal.setColor(C.ink);this.scoreHeat.setColor(C.jade);this.scoreMult.setColor(C.red);
+    effects.push(this.wait(this.reducedMotion?360:opening?(closeOpening?.strike?590:900):presentation.state.openingShow?.rootId===score.rootId?420:celebration.cleared?700:tier>=2?500:320,context));await Promise.all(effects);if(closeOpening?.hero&&!this.reducedMotion)await this.wait(500,context);await closeOpening?.release?.();closeOpening?.();if(context.signal.aborted)return;this.scoreTotal.setColor(C.ink);this.scoreHeat.setColor(C.jade);this.scoreMult.setColor(C.red);
   }
   private convergeScore(context:EffectContext):Promise<void> {
     if(this.reducedMotion||context.signal.aborted)return Promise.resolve();

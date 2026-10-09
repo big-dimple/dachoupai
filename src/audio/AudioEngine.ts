@@ -9,7 +9,8 @@ export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 
 export type ScoreRollKind = 'heat' | 'mult' | 'total';
 
 // Only a verified recording may populate this manifest. No synthesized BGM fallback.
-const RECORDING_PATH: string | null = null; // Previous BGM withdrawn; awaiting an authorized replacement.
+const RECORDING_PATH = 'assets/audio/transition-bgm/dark-things-loop.mp3';
+export const TRANSITION_MUSIC = 'Dark Things Loop · iamoneabe · CC0（过渡曲）';
 const bounded = (value: number, max: number): number => Number.isFinite(value) ? Math.max(0, Math.min(max, value)) : 0;
 const midiHz = (note: number): number => 440 * 2 ** ((note - 69) / 12);
 const SOURCE_GAIN: Record<VoiceBus, number> = { music: 1, sfx: 5.7, ui: 4.5 };
@@ -50,7 +51,8 @@ export class AudioEngine {
     if (value) { this.stopScoreFire(); this.stopMusic(); this.stopVoices(); this.duckUntil = 0; this.applyVolume('music'); }
     else if (this.unlocked) void this.unlock();
   }
-  get musicAvailable(): boolean { return RECORDING_PATH!==null; }
+  get musicAvailable(): boolean { return true; }
+  get musicTitle(): string { return TRANSITION_MUSIC; }
   get musicMuted(): boolean { return this.musicIsMuted; }
   set musicMuted(value: boolean) {
     this.musicIsMuted = value;
@@ -337,7 +339,7 @@ export class AudioEngine {
     if (!RECORDING_PATH || this.musicFailed || !this.canPlay('music') || this.context!.state !== 'running') return;
     try {
       if (!this.musicElement) {
-        // Streaming avoids decoding a whole multi-minute stereo performance on phones.
+        // Streaming keeps the music decode buffer out of application memory on phones.
         // Neither an element nor a request exists before a real gesture and an open bus.
         const element = new Audio();
         element.preload = 'none'; element.loop = true; element.volume = 1;
@@ -385,239 +387,67 @@ export class AudioEngine {
     this.rollBuffer = buffer;
   }
 
-  /** One call per committed number roll. Same-kind overlap replaces, never piles up. */
-  scoreRoll(durationMs: number, kind: ScoreRollKind, strength = 1): void {
-    if (!['heat', 'mult', 'total'].includes(kind)) return;
-    for (const voice of this.voices) if (voice.roll === kind) this.release(voice);
-    if (!Number.isFinite(durationMs) || durationMs <= 0 || !this.canPlay('sfx') || !this.rollBuffer) return;
-    const level = bounded(strength, 3);
-    if (level === 0) return;
+  /** One short recorded texture per committed roll; no synthetic bed or tone. */
+  scoreRoll(durationMs:number,kind:ScoreRollKind,strength=1):void {
+    if(!['heat','mult','total'].includes(kind))return;
+    for(const voice of this.voices)if(voice.roll===kind)this.release(voice);
+    if(!Number.isFinite(durationMs)||durationMs<=0||bounded(strength,3)===0)return;
+    const voice=this.recordedCue(kind==='heat'?'chop':kind==='mult'?'impactMetal_light_002':'impactMetal_medium_002',Math.min(durationMs/1000,.18),.035,'sfx',kind==='mult'?1.08:1);
+    if(voice){voice.roll=kind;this.duckMusic(.2);}
+  }
+  /** A missing sample is silent; callbacks never schedule it retroactively. */
+  private recordedCue(name:string,duration:number,volume:number,bus:VoiceBus='sfx',rate=1,offset=0):Voice|undefined {
+    if(!this.canPlay(bus))return;
+    const buffer=this.scoreSamples.get(name);if(!buffer)return;
     try {
-      const context = this.context!, duration = Math.max(.04, Math.min(1.6, durationMs / 1000));
-      const time = context.currentTime, source = context.createBufferSource(), gain = context.createGain(), filter = context.createBiquadFilter();
-      const total = kind === 'total', mult = kind === 'mult';
-      source.buffer = this.rollBuffer; source.loop = true;
-      source.playbackRate.setValueAtTime(mult ? 1.4 : total ? .82 : 1, time);
-      source.playbackRate.linearRampToValueAtTime(mult ? 2.1 : total ? 1.1 : 1.5, time + duration);
-      filter.type = total ? 'lowpass' : 'bandpass'; filter.Q.value = .65;
-      filter.frequency.setValueAtTime(mult ? 1050 : total ? 1050 : 500, time);
-      filter.frequency.exponentialRampToValueAtTime(mult ? 2100 : total ? 1800 : 900, time + duration);
-      const peak = Math.min(.36, (total ? .19 : mult ? .16 : .14) * (.7 + level * .3));
-      gain.gain.setValueAtTime(0, time);
-      gain.gain.linearRampToValueAtTime(peak, time + Math.min(.015, duration * .2));
-      gain.gain.setValueAtTime(peak, time + duration * .65);
-      gain.gain.linearRampToValueAtTime(0, time + duration);
-      source.connect(filter); filter.connect(gain); gain.connect(this.gains!.sfx);
-      this.retain({source, gain, filter, bus: 'sfx', roll: kind});
-      source.start(time); source.stop(time + duration);
-      const body = context.createOscillator(), bodyGain = context.createGain();
-      body.type = 'sine';
-      body.frequency.setValueAtTime(mult ? 170 : total ? 70 : 105, time);
-      body.frequency.exponentialRampToValueAtTime(mult ? 370 : total ? 125 : 175, time + duration);
-      const bodyPeak = Math.min(.10, .045 + level * .014);
-      bodyGain.gain.setValueAtTime(0, time);
-      bodyGain.gain.linearRampToValueAtTime(bodyPeak, time + Math.min(.02, duration * .2));
-      // Small gain beads give the low layer a rounded gurgle, not another melody.
-      for (let i = 1; i < 17; i++) bodyGain.gain.linearRampToValueAtTime(bodyPeak * (i % 2 ? .42 : 1), time + duration * i / 18);
-      bodyGain.gain.linearRampToValueAtTime(0, time + duration);
-      body.connect(bodyGain); bodyGain.connect(this.gains!.sfx);
-      this.retain({source: body, gain: bodyGain, bus: 'sfx', roll: kind});
-      body.start(time); body.stop(time + duration);
-      this.duckMusic(Math.min(.45, duration));
-    } catch { /* Number animation and scoring never depend on sound. */ }
+      const context=this.context!,source=context.createBufferSource(),gain=context.createGain(),time=context.currentTime+offset;
+      const speed=Math.max(.65,Math.min(1.4,rate)),length=Math.min(Math.max(.035,duration),buffer.duration/speed);
+      source.buffer=buffer;source.playbackRate.value=speed;
+      const peak=bounded(volume,.14)*SOURCE_GAIN[bus];
+      gain.gain.setValueAtTime(0,time);gain.gain.linearRampToValueAtTime(peak,time+.005);gain.gain.setValueAtTime(peak,time+length*.55);gain.gain.linearRampToValueAtTime(0,time+length);
+      source.connect(gain);gain.connect(this.gains![bus]);const voice={source,gain,bus};this.retain(voice);source.start(time);source.stop(time+length);return voice;
+    }catch{return;}
   }
-
-  private whoosh(duration = .15, volume = .07, rising = false, bus: VoiceBus = 'sfx', offset = 0): void {
-    if (!this.canPlay(bus) || !this.noise) return;
-    try {
-      const context = this.context!, source = context.createBufferSource(), filter = context.createBiquadFilter(), gain = context.createGain();
-      const time = context.currentTime + offset, length = Math.max(.04, Math.min(.35, duration));
-      source.buffer = this.noise; source.loop = true;
-      filter.type = 'bandpass'; filter.Q.value = .45;
-      filter.frequency.setValueAtTime(rising ? 650 : 2400, time);
-      filter.frequency.exponentialRampToValueAtTime(rising ? 2000 : 450, time + length);
-      gain.gain.setValueAtTime(0, time);
-      gain.gain.linearRampToValueAtTime(bounded(volume, .18), time + length * .24);
-      gain.gain.linearRampToValueAtTime(0, time + length);
-      source.connect(filter); filter.connect(gain); gain.connect(this.gains![bus]);
-      this.retain({source, gain, filter, bus}); source.start(time); source.stop(time + length);
-    } catch { /* Card movement remains independent of audio. */ }
+  deal(index=0):void {this.recordedCue('cloth2',.11,.025,'sfx',1,Math.floor(bounded(index,8))*.055);}
+  cardLand():void {this.recordedCue('chop',.1,.035);}
+  private lastHoverTick=0;
+  hoverTick():void {const now=typeof performance==='undefined'?0:performance.now();if(now-this.lastHoverTick<55)return;this.lastHoverTick=now;this.recordedCue('cloth2',.045,.008,'ui',1.15);}
+  coin():void {this.recordedCue('impactMetal_light_002',.12,.03,'ui',1.2);}
+  titleBell():void {this.recordedCue('impactMetal_light_002',.23,.035,'sfx',.9);}
+  curtainOpen():void {this.duckMusic(.4);this.recordedCue('cloth2',.28,.045,'sfx',.85);}
+  select():void {this.recordedCue('cloth2',.09,.04,'ui',1.08);}
+  cancel():void {this.recordedCue('cloth2',.11,.035,'ui',.82);}
+  deselect():void {this.cancel();}
+  invalid():void {this.recordedCue('chop',.1,.04,'ui',.72);}
+  playHand():void {this.duckMusic(.3);this.recordedCue('cloth2',.18,.05);this.recordedCue('chop',.1,.055,'sfx',.9,.07);}
+  discard():void {this.recordedCue('cloth2',.24,.05,'sfx',.85);}
+  resourceSpend(kind:'play'|'discard',remaining:number,amount=1,cost=amount):void {
+    if(!['play','discard'].includes(kind)||!Number.isSafeInteger(remaining)||remaining<0||!Number.isSafeInteger(amount)||amount<1||!Number.isSafeInteger(cost)||cost<1)return;
+    const last=remaining<cost*2;this.duckMusic(last?.3:.16);
+    for(let i=0;i<Math.min(amount,3);i++)this.recordedCue(last?'impactMetal_medium_002':'chop',last?.16:.08,last?.045:.03,'ui',kind==='play'?1:.85,i*.045);
   }
-
-  /** Short filtered swish for one dealt card; the caller passes the visual stagger index. */
-  deal(index = 0): void {
-    const i = Math.floor(bounded(index, 8));
-    this.whoosh(.11, .065, true, 'sfx', i * .055);
-    this.note(57 + Math.min(i, 6), .05, .011, 'sfx', i * .055, 'sine', undefined, undefined, 'warm');
+  sourceCue(kind:ScoreSourceCue,index=0):void {
+    if(kind==='card')this.cardScore(index);else if(kind==='character')this.role();else if(kind==='joker')this.joker(index);else if(kind==='retrigger')this.retrigger(index);
+    else{this.duckMusic(.2);this.recordedCue(kind==='boss'?'impactMetal_medium_002':'chop',.17,.04,'sfx',kind==='boss'?.78:1);}
   }
-  /** Soft warm thump when a played card lands in the scoring area. */
-  cardLand(): void {
-    this.note(54, .07, .034, 'sfx', 0, 'sine', undefined, 45, 'warm');
-    this.paper(.04, .02, 0, 'sfx', undefined, 900);
-  }
-  private lastHoverTick = 0;
-  /** Nearly-silent paper tick on card hover; throttled so sweeping the hand cannot buzz. */
-  hoverTick(): void {
-    const now = typeof performance === 'undefined' ? 0 : performance.now();
-    if (now - this.lastHoverTick < 55) return;
-    this.lastHoverTick = now;
-    this.paper(.032, .011, 0, 'ui', undefined, 2100);
-  }
-  coin(): void { this.note(78, .07, .024, 'ui', 0, 'sine'); this.note(81, .09, .019, 'ui', .045, 'sine'); }
-  /** A gentle bell when the user continues a saved run from the title. */
-  titleBell(): void {
-    const pitch = 69;
-    this.note(pitch, .36, .027, 'sfx', 0, 'sine');
-    this.note(Math.min(81, pitch + 12), .21, .008, 'sfx', .009, 'sine');
-    this.note(pitch - 12, .16, .009, 'sfx', 0, 'triangle', undefined, undefined, 'warm');
-  }
-  /** A single soft fabric pull and warm chord when the user opens the curtain. */
-  curtainOpen(): void {
-    this.duckMusic(.55);
-    this.paper(.18, .018, 0, 'sfx', undefined, 850);
-    this.paper(.16, .016, .11, 'sfx', undefined, 1150);
-    this.paper(.14, .014, .24, 'sfx', undefined, 900);
-    this.note(45, .26, .027, 'sfx', 0, 'sine', undefined, 52, 'warm');
-    this.note(57, .24, .026, 'sfx', .10, 'triangle', undefined, undefined, 'pluck');
-    this.note(64, .25, .020, 'sfx', .16, 'sine', undefined, undefined, 'warm');
-  }
-  select(): void { this.whoosh(.085, .065, true, 'ui'); this.note(74, .07, .023, 'ui', 0, 'sine'); }
-  cancel(): void { this.whoosh(.10, .060, false, 'ui'); this.note(71, .08, .023, 'ui', 0, 'sine', undefined, 67); }
-  deselect(): void { this.cancel(); }
-  invalid(): void { this.note(55, .11, .035, 'ui'); this.note(54, .08, .025, 'ui', .095); }
-  playHand(): void { this.duckMusic(); this.whoosh(.21, .14, true); this.note(50, .13, .065, 'sfx', .02, 'sine', undefined, 43, 'warm'); }
-  discard(): void { this.whoosh(.26, .16); this.paper(.09, .03, .055, 'sfx', undefined, 650); this.note(62, .095, .027, 'sfx', .015, 'sine', undefined, 55, 'warm'); }
-  /** One committed counter decrement; the view passes the actual post-command balance. */
-  resourceSpend(kind: 'play' | 'discard', remaining: number, amount = 1, cost = amount): void {
-    if ((kind !== 'play' && kind !== 'discard') || !Number.isSafeInteger(remaining) || remaining < 0
-      || !Number.isSafeInteger(amount) || amount < 1 || !Number.isSafeInteger(cost) || cost < 1) return;
-    const pitch = kind === 'play' ? 60 : 55;
-    const exhausted = remaining < cost, last = !exhausted && remaining < cost * 2;
-    this.duckMusic(exhausted || last ? .4 : .16);
-    for (let i = 0; i < Math.min(amount, 3); i++) {
-      this.note(pitch, .065, .030, 'ui', i * .035, 'sine', undefined, pitch - 5, 'warm');
-      this.paper(.035, .018, i * .035, 'ui', undefined, kind === 'play' ? 1250 : 850);
-    }
-    if (last) {
-      this.note(pitch - 5, .16, .037, 'ui', .08, 'triangle', undefined, undefined, 'warm');
-      this.note(pitch + 2, .14, .028, 'ui', .18, 'sine');
-    } else if (exhausted) {
-      this.note(pitch - 10, .23, .045, 'ui', .07, 'sine', undefined, pitch - 17, 'warm');
-      this.paper(.07, .022, .09, 'ui', undefined, 650);
-    }
-  }
-  /** One source impact, called from a committed trace hit rather than a redraw. */
-  sourceCue(kind: ScoreSourceCue, index = 0): void {
-    if (kind === 'card') this.cardScore(index);
-    else if (kind === 'character') this.role();
-    else if (kind === 'joker') this.joker(index);
-    else if (kind === 'retrigger') this.retrigger(index);
-    else if (kind === 'held') {
-      this.duckMusic(.16);
-      this.note(52, .15, .050, 'sfx', 0, 'triangle', undefined, undefined, 'pluck');
-      this.note(64, .17, .027, 'sfx', .025, 'sine', undefined, undefined, 'piano');
-    } else if (kind === 'boss') {
-      this.duckMusic(.3);
-      this.note(40, .25, .078, 'sfx', 0, 'sine', undefined, 31, 'warm');
-      this.paper(.1, .042, 0, 'sfx', undefined, 650);
-    }
-  }
-  cardScore(index = 0): void {
-    this.duckMusic(.14);
-    this.note([64, 66, 69, 71, 73][Math.floor(bounded(index, 4))], .15, .052, 'sfx', 0, 'triangle', undefined, undefined, 'piano');
-    this.paper(.035, .014, 0, 'sfx', undefined, 1150);
-  }
-  role(): void {
-    this.duckMusic(.4);
-    [57, 64, 73].forEach((n, i) => this.note(n, .24, .045, 'sfx', i * .040, 'triangle', undefined, undefined, 'lead'));
-    this.paper(.06, .022, 0, 'sfx', undefined, 1050);
-  }
-  joker(chainIndex: number): void {
-    const index = Math.floor(bounded(chainIndex, 6));
-    this.duckMusic(.32);
-    const pitch = [64, 66, 68, 69, 71, 73, 76][index];
-    this.note(pitch, .20, .066, 'sfx', 0, 'triangle', undefined, undefined, 'pluck');
-    this.note(Math.min(81, pitch + 12), .16, .019, 'sfx', .028, 'sine');
-    if (index >= 3) this.note(57, .14, .033, 'sfx', 0, 'sine', undefined, undefined, 'warm');
-  }
-  multiplier(kind: 'add' | 'multiply', chainIndex = 0): void {
-    const step = [0, 2, 4, 7, 9][Math.floor(bounded(chainIndex, 4))];
-    this.duckMusic(kind === 'multiply' ? .4 : .2);
-    if (kind === 'add') {
-      this.note(64 + step, .17, .053, 'sfx', 0, 'triangle', undefined, undefined, 'piano');
-      this.note(69 + step, .18, .037, 'sfx', .028, 'sine');
-    }
-    else {
-      this.note(45, .29, .081, 'sfx', 0, 'sine', undefined, 31, 'warm');
-      this.note(57, .20, .046, 'sfx', .012, 'triangle', undefined, undefined, 'warm');
-      this.paper(.07, .029, 0, 'sfx', undefined, 720);
-      this.note(73, .21, .049, 'sfx', .042, 'triangle', undefined, undefined, 'lead');
-      this.note(81, .18, .026, 'sfx', .09, 'sine');
-    }
-  }
-  retrigger(chainIndex = 0): void {
-    this.duckMusic(.2);
-    const n = [69, 71, 73, 76, 78, 81][Math.floor(bounded(chainIndex, 5))];
-    this.note(n, .07, .059, 'sfx', 0, 'triangle', undefined, undefined, 'pluck');
-    this.note(n, .11, .064, 'sfx', .072, 'triangle', undefined, undefined, 'piano');
-  }
-  chanceRoll(kind:'lucky'|'glass'|'joker',hit:boolean):void {
-    this.duckMusic(.22);
-    this.whoosh(.12,.032,kind!=='glass');
-    if(kind==='joker')this.paper(.08,.022,0,'sfx',undefined,1600);
-    const pitches=kind==='glass'?[81,88]:kind==='joker'?(hit?[62,74,81]:[65,62]):hit?[69,76,81]:[64,62];
-    pitches.forEach((pitch,i)=>this.note(pitch,.09,.032,'sfx',i*.035,kind==='glass'?'sine':'triangle',undefined,undefined,'pluck'));
-  }
-  glassBreak():void {
-    this.duckMusic(.35);this.paper(.16,.07,0,'sfx',undefined,4200);
-    [93,88,81,76].forEach((pitch,i)=>this.note(pitch,.12,.035,'sfx',i*.022,'sine'));
-  }
-  toolUse(family:'tarot'|'planet'|'spectral'|'utility'):void {
-    this.duckMusic(.3);this.whoosh(.18,.09,true);
-    const pitches=family==='planet'?[69,76,81]:family==='spectral'?[45,64,78]:family==='tarot'?[62,69,74]:[64,71];
-    pitches.forEach((pitch,i)=>this.note(pitch,.17,.042,'sfx',i*.045,'triangle',undefined,undefined,'pluck'));
-  }
-  score(intensity = 0): void {
-    const tier = Math.floor(bounded(intensity, 2));
-    this.duckMusic(.5);
-    [64, 69, 73].forEach((n, i) => this.note(n, .26 + tier * .06, .053, 'sfx', i * .035, 'sine'));
-    if (tier > 0) this.note(76, .26, .054, 'sfx', .12, 'triangle', undefined, undefined, 'piano');
-    if (tier > 1) {
-      this.note(43, .25, .068, 'sfx', 0, 'sine', undefined, 31, 'warm');
-      this.paper(.06, .016, 0, 'sfx', undefined, 1000);
-      this.note(81, .16, .028, 'sfx', .20, 'sine');
-    }
-  }
-  /** Actual target crossing only; the view computes the tier from exact score values. */
-  overkill(tier: 1 | 2 | 3): void {
-    if (tier !== 1 && tier !== 2 && tier !== 3) return;
-    this.duckMusic(.4 + tier * .2);
-    this.note(tier === 3 ? 33 : 45, .21 + tier * .06, .066 + tier * .01, 'sfx', 0, 'sine', undefined, 30, 'warm');
-    this.paper(.06 + tier * .01, .030, 0, 'sfx', undefined, 850);
-    [64, 69, 73, ...(tier > 1 ? [76] : [])].forEach((pitch, i) =>
-      this.note(pitch, .23 + tier * .04, .051, 'sfx', .025 + i * .04, 'sine'));
-    if (tier > 1) this.note(57, .26, .052, 'sfx', .012, 'triangle', undefined, undefined, 'warm');
-    if (tier === 3) {
-      this.paper(.075, .040, .16, 'sfx', undefined, 1400);
-      [73, 76, 81].forEach((pitch, i) => this.note(pitch, .32, .045, 'sfx', .24 + i * .035, 'triangle', undefined, undefined, 'lead'));
-    }
-  }
-  purchase(): void { [78, 81, 74].forEach((n, i) => this.note(n, .13, .038, 'ui', i * .05, 'sine')); }
-  sale(): void { [76, 71, 67].forEach((n, i) => this.note(n, .12, .037, 'ui', i * .05)); }
-  reroll(): void { this.paper(.08, .036); this.paper(.08, .03, .075); [67, 74].forEach((n, i) => this.note(n, .11, .027, 'ui', .05 + i * .075)); }
-  rareReveal(): void { this.duckMusic(.65); [62, 69, 78, 81].forEach((n, i) => this.note(n, .36, .038, 'sfx', i * .075, 'sine')); }
-  success(): void { this.duckMusic(.9); [62, 66, 69, 74, 78, 81].forEach((n, i) => this.note(n, .38, .045, 'sfx', i * .07)); }
+  cardScore(index=0):void {this.duckMusic(.14);this.recordedCue('chop',.12,.04,'sfx',1+bounded(index,4)*.025);}
+  role():void {this.duckMusic(.4);this.recordedCue('impactMetal_heavy_000',.24,.08);}
+  joker(chainIndex:number):void {this.duckMusic(.28);this.recordedCue('impactMetal_medium_002',.2,.065,'sfx',1+bounded(chainIndex,6)*.025);}
+  multiplier(kind:'add'|'multiply',chainIndex=0):void {this.duckMusic(kind==='multiply'?.4:.2);this.recordedCue(kind==='multiply'?'impactMetal_heavy_000':'impactMetal_light_002',kind==='multiply'?.26:.16,kind==='multiply'?.085:.05,'sfx',1+bounded(chainIndex,4)*.035);}
+  retrigger(chainIndex=0):void {this.duckMusic(.2);this.recordedCue('chop',.09,.04,'sfx',1+bounded(chainIndex,5)*.025);this.recordedCue('chop',.09,.04,'sfx',1.08,.09);}
+  chanceRoll(kind:'lucky'|'glass'|'joker',hit:boolean):void {this.duckMusic(.2);this.recordedCue(hit?'impactMetal_light_002':'cloth2',.15,.035,'sfx',kind==='glass'?1.3:hit?1.08:.8);}
+  glassBreak():void {this.duckMusic(.3);this.recordedCue('impactMetal_heavy_000',.26,.075,'sfx',1.25);}
+  toolUse(family:'tarot'|'planet'|'spectral'|'utility'):void {this.duckMusic(.3);this.recordedCue(family==='spectral'?'impactMetal_heavy_000':'impactMetal_medium_002',.22,.06,'sfx',family==='planet'?1.12:family==='spectral'?.85:1);}
+  score(intensity=0):void {this.duckMusic(.4);this.recordedCue(bounded(intensity,2)>0?'impactMetal_heavy_000':'impactMetal_medium_002',.28,.08);}
+  overkill(tier:1|2|3):void {if(![1,2,3].includes(tier))return;this.duckMusic(.5);this.recordedCue('impactMetal_heavy_000',.32,.085,'sfx',1+(tier-1)*.04);if(tier>1)this.recordedCue('impactMetal_light_002',.18,.035,'sfx',1.12,.18);}
+  purchase():void {this.recordedCue('impactMetal_light_002',.2,.045,'ui',1.12);}
+  sale():void {this.recordedCue('cloth2',.18,.04,'ui',.85);}
+  reroll():void {this.recordedCue('cloth2',.16,.04,'ui');this.recordedCue('cloth2',.12,.03,'ui',1.1,.09);}
+  rareReveal():void {this.duckMusic(.4);this.recordedCue('impactMetal_medium_002',.25,.06,'sfx',1.15);}
+  success():void {this.duckMusic(.6);this.recordedCue('impactMetal_heavy_000',.28,.08);this.recordedCue('impactMetal_light_002',.2,.04,'sfx',1.15,.16);}
   /** A transient committed ending, never a saved result being reopened. */
-  failure(cue: FailureCue): void {
-    if (!cue || this.failureCues.has(cue)) return;
-    // Muted/background endings are consumed, not queued for a later scene redraw.
-    this.failureCues.add(cue);
-    if (!this.canPlay('sfx')) return;
-    this.duckMusic(.75);
-    this.note(50, .30, .062, 'sfx', 0, 'sine', undefined, undefined, 'warm');
-    this.note(69, .16, .061, 'sfx', 0, 'triangle', undefined, undefined, 'piano');
-    this.note(66, .16, .054, 'sfx', .11, 'triangle', undefined, undefined, 'piano');
-    this.note(62, .28, .058, 'sfx', .23, 'triangle', undefined, undefined, 'piano');
-    this.note(69, .26, .028, 'sfx', .25, 'sine');
+  failure(cue:FailureCue):void {
+    if(!cue||this.failureCues.has(cue))return;this.failureCues.add(cue);if(!this.canPlay('sfx'))return;
+    this.duckMusic(.6);this.recordedCue('impactMetal_medium_002',.28,.07,'sfx',.72);this.recordedCue('cloth2',.22,.035,'sfx',.75,.14);
   }
 }

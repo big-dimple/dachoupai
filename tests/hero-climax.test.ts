@@ -16,8 +16,8 @@ it('fifth fallback displays actual final score; a lost run cannot enter the hero
  const p=play('fifth');expect(p.s.openingShow?.handsScored).toBe(5);expect(heroClimaxValue(p.s,p.t,finalKey(p))).toMatchObject({label:'实际得分',after:p.t.finalScore});const lost=play('failure');expect(lost.s.phase).toBe('run-lost');expect(heroClimaxValue(lost.s,lost.t,finalKey(lost))).toBeUndefined();
 });
 afterEach(()=>vi.unstubAllGlobals());
-it('withdrawn BGM never creates or requests a media element while recorded effects remain available',()=>{
- const Audio=vi.fn(),engine=new AudioEngine();vi.stubGlobal('Audio',Audio);expect(engine.musicAvailable).toBe(false);(engine as any).startMusic();expect(Audio).not.toHaveBeenCalled();expect((engine as any).scoreSamples).toBeInstanceOf(Map);
+it('licensed transition BGM is named and remains gesture-gated before any media request',()=>{
+ const Audio=vi.fn(),engine=new AudioEngine();vi.stubGlobal('Audio',Audio);expect(engine.musicAvailable).toBe(true);expect(engine.musicTitle).toContain('Dark Things Loop');(engine as any).startMusic();expect(Audio).not.toHaveBeenCalled();expect((engine as any).scoreSamples).toBeInstanceOf(Map);
 });
 
 import {mountHeroClimax} from '../src/game/HeroClimax';
