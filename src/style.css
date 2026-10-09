@@ -456,4 +456,7 @@ button[aria-busy=true] { border-style:dashed; }
 @media(max-height:500px) and (orientation:landscape) {
  .tool-detail .tool-choice-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
  .tool-detail .tool-selection-dock { box-sizing:border-box;max-height:80px; }
+ .tool-detail .tool-target-group { display:grid;grid-template-columns:170px minmax(0,1fr);column-gap:8px; }
+ .tool-detail .tool-target-sort,.tool-detail .tool-target-directory,.tool-detail .tool-directory-count { grid-column:1; }
+ .tool-detail .tool-choice-grid { grid-column:2;grid-row:1/4;max-height:150px;align-self:start; }
 }

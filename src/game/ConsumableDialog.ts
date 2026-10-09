@@ -226,7 +226,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       case 'whole-deck': {const count=state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)&&(card.enhancement!==undefined||(card.edition??'none')!=='none')).length;const note=document.createElement('p');note.textContent=`整副有效牌组中 ${count} 张有特殊属性；同一张牌的增强与版次只计一张。`;panel.append(note);break;}
       case 'none':break;
     }
-    if(['cards','card-sacrifice','card-or-joker'].includes(tool.target.kind)){const scope=document.createElement('p');scope.className='tool-scope-note';scope.textContent=state.phase==='shop'?'仅展示有效持久牌组，不展示抽牌顺序。整理只改显示；实际目标顺序见下方。':'只展示当前已知手牌。整理不改手牌或已选目标，不提供隐藏牌目标。';panel.prepend(scope);}
+    if(['cards','card-sacrifice','card-or-joker'].includes(tool.target.kind)){const scope=document.createElement('p');scope.className='tool-scope-note';scope.textContent=state.phase==='shop'?'仅展示有效持久牌组，不展示抽牌顺序。整理只改显示；实际目标顺序见变化预览。':'只展示当前已知手牌。整理不改手牌或已选目标，不提供隐藏牌目标。';panel.prepend(scope);}
     const operation=tool.operation;
     if(operation.kind==='random-enhancement'||operation.kind==='random-edition'){
       const probability=document.createElement('p'),total=operation.choices.reduce((sum,choice)=>sum+choice.weight,0);probability.className='tool-public-probability';
