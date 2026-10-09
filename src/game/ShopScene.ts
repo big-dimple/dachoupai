@@ -120,8 +120,13 @@ export class ShopScene extends Phaser.Scene {
     this.shelfPage=Math.min(this.shelfPage,Math.max(0,Math.ceil(this.shelfOffers().length/this.pageSize)-1));
     const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty)!;this.hideHoverPicture();v.clear();this.starterMarkers=[];v.paperBackground();this.offerArts=[];this.artTargets.clear();this.jokerArtTargets.clear();
     this.pcOfferBoxes.clear();if(p.pc){this.renderPC(p);return;}
-    v.text(p.x,p.top,this.run.tourMode==='endless'?'无尽演出筹备':'演出筹备',20,'#26313A').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     const purse={x:p.x+p.w-(this.view.layout.width<=700?96:136)-124,y:p.top-1,width:116,height:34},purseArt=this.add.graphics();
+    const title=v.text(p.x,p.top,this.run.tourMode==='endless'?'无尽演出筹备':'演出筹备',20,'#26313A').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('shop/title');
+    const titleRight=Math.min(...[purse,p.reroll,p.build].filter(b=>b.y<title.y+title.height&&b.y+b.height>title.y&&b.x>=title.x).map(b=>b.x),p.x+p.w)-6;
+    if(title.x+title.width>titleRight){
+      title.setText(this.run.tourMode==='endless'?'无尽筹备':'筹备');
+      if(title.x+title.width>titleRight)title.setText('筹备');
+    }
     v.add(this.add.graphics().fillStyle(0x213d45,.2).fillRoundedRect(purse.x+1,purse.y+3,purse.width,purse.height,7));
     v.material(purse,0xfff9ee,0xfff9ee,7);
     purseArt.lineStyle(1,0x916738).strokeRoundedRect(purse.x+.5,purse.y+.5,purse.width-1,purse.height-1,7);v.add(purseArt);
