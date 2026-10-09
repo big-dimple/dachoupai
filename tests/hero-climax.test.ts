@@ -17,7 +17,7 @@ it('fifth fallback displays actual final score; a lost run cannot enter the hero
 });
 afterEach(()=>vi.unstubAllGlobals());
 it('licensed transition BGM is named and remains gesture-gated before any media request',()=>{
- const Audio=vi.fn(),engine=new AudioEngine();vi.stubGlobal('Audio',Audio);expect(engine.musicAvailable).toBe(true);expect(engine.musicTitle).toContain('Dark Things Loop');(engine as any).startMusic();expect(Audio).not.toHaveBeenCalled();expect((engine as any).scoreSamples).toBeInstanceOf(Map);
+ const Audio=vi.fn(),engine=new AudioEngine();vi.stubGlobal('Audio',Audio);expect(engine.musicAvailable).toBe(true);expect(engine.musicTitle).toContain('Serenade - Schubert');(engine as any).startMusic();expect(Audio).not.toHaveBeenCalled();expect((engine as any).scoreSamples).toBeInstanceOf(Map);
 });
 
 import {mountHeroClimax} from '../src/game/HeroClimax';

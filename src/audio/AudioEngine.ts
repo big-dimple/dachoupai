@@ -1,3 +1,4 @@
+import recording from '../../public/assets/audio/p06/recording.json';
 import {DEFAULT_AUDIO} from './preferences';
 
 export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
@@ -9,8 +10,8 @@ export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 
 export type ScoreRollKind = 'heat' | 'mult' | 'total';
 
 // Only a verified recording may populate this manifest. No synthesized BGM fallback.
-const RECORDING_PATH = 'assets/audio/transition-bgm/dark-things-loop.mp3';
-export const TRANSITION_MUSIC = 'Dark Things Loop · iamoneabe · CC0（过渡曲）';
+const RECORDING_PATH = recording.runtimePath;
+export const TRANSITION_MUSIC = 'Serenade - Schubert · Jérôme Chauvel / Abydos Music（临时恢复）';
 const bounded = (value: number, max: number): number => Number.isFinite(value) ? Math.max(0, Math.min(max, value)) : 0;
 const midiHz = (note: number): number => 440 * 2 ** ((note - 69) / 12);
 const SOURCE_GAIN: Record<VoiceBus, number> = { music: 1, sfx: 5.7, ui: 4.5 };
