@@ -20,3 +20,10 @@ it('delete never displays a surviving copy, while copying preserves properties w
 it('upgraded and exchanged levels expose exact base heat and rational multiplier, never final score',()=>{
  expect(handLevelFacts('pair',1)).toEqual({level:1,heat:35,mult:'2'});expect(handLevelFacts('pair',2)).toEqual({level:2,heat:50,mult:'2.5'});expect(handLevelFacts('high-card',1)).toEqual({level:1,heat:20,mult:'1'});
 });
+
+it('level-change facts follow actual upgrade and exchange commands rather than a projected score',()=>{
+ for(const id of ['T01','S05']){const state=createRun({rulesVersion:'r2',seed:'level-change',runId:'level/'+id,characterId:'amo'});state.consumables=[{instanceId:'level-tool',definitionId:id}];state.handLevels.pair=1;state.handLevels['high-card']=5;
+ const result=applyCommand(state,{runId:state.runId,commandId:'upgrade',expectedSeq:state.commandSeq,action:{type:'UseConsumable',instanceId:'level-tool',targetIds:[],handType:'pair',...(id==='S05'?{secondaryHandType:'high-card'}:{})}});expect(result.ok).toBe(true);if(!result.ok)return;
+ expect(result.state.handLevels.pair).toBe(id==='T01'?2:4);expect(handLevelFacts('pair',result.state.handLevels.pair!)).toEqual(id==='T01'?{level:2,heat:50,mult:'2.5'}:{level:4,heat:80,mult:'3.5'});if(id==='S05')expect(result.state.handLevels['high-card']).toBe(4);
+ }
+});

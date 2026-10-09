@@ -266,7 +266,8 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       if(operation.kind==='restore-discard')lines.push(`本场弃牌：${state.stage?.discardsLeft??'尚未入场'} → ${state.stage?Math.min(state.stage.initialDiscards,state.stage.discardsLeft+operation.amount):'须先入场'}；上限为本场初始预算 ${state.stage?.initialDiscards??'待入场确定'}。`);
       if(operation.kind==='add-gold')lines.push(`金币 ${state.gold} → ${state.gold+operation.amount}。`);
       if(operation.kind==='free-reroll')lines.push(state.shop?`本次免费刷新，不扣金币；刷新计数 ${state.shop.rerollCount} → ${state.shop.rerollCount+1}。\n下次收费刷新 ${r2PaidRerollPrice(state)} → ${r2PaidRerollPrice({...state,shop:{...state.shop,rerollCount:state.shop.rerollCount+1}})} 金。长期道具货架保留，不触发成长。`:'请在商店免费刷新货架。');
-      costs.textContent=lines.filter(line=>/^(永久牺牲|有效牌组|额外使用代价|清空全部金币|下一场起)/.test(line)).join('\n');costs.hidden=!costs.textContent;
+      const replacementNotes=selected.flatMap(choice=>choice.card?toolCardChange(tool,choice.card)?.note.startsWith('替换原增强')?[toolCardChange(tool,choice.card)!.note]:[]:[]);
+      costs.textContent=[...replacementNotes,...lines.filter(line=>/^(永久牺牲|有效牌组|额外使用代价|清空全部金币|下一场起)/.test(line))].join('\n');costs.hidden=!costs.textContent;
       preview.textContent=lines.join('\n\n')||'选择目标后，这里会显示变化与代价。';
     }
     refresh();

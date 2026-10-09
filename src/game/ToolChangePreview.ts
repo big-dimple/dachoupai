@@ -14,7 +14,7 @@ export function toolCardChange(tool:R2ToolDefinition,card:PlayingCard):CardChang
  switch(operation.kind){
   case 'shift-rank':after.rank=Math.max(operation.minimum,Math.min(operation.maximum,card.rank+operation.delta)) as PlayingCard['rank'];break;
   case 'set-suit':after.suit=operation.suit;break;
-  case 'set-enhancement':after.enhancement=operation.enhancement;note=R2_ENHANCEMENTS.find(e=>e.id===operation.enhancement)!.name+(card.enhancement&&card.enhancement!==operation.enhancement?' · 替换原增强':'');break;
+  case 'set-enhancement':after.enhancement=operation.enhancement;note=card.enhancement&&card.enhancement!==operation.enhancement?'替换原增强：'+R2_ENHANCEMENTS.find(e=>e.id===card.enhancement)!.name:'';break;
   case 'delete-cards':after=undefined;label='永久删除';note='该实例从有效牌组移除';break;
   case 'copy-card':label=`复制 ×${operation.copies}`;note='原牌保留；新实例确认后生成';break;
   default:return undefined;
