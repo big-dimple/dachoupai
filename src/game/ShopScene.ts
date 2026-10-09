@@ -271,6 +271,7 @@ export class ShopScene extends Phaser.Scene {
     const v=this.view,first=v.root.length,d=kind==='jokers'?this.jokerDefinition(o.definitionId):undefined,info=kind==='tools'?toolInfo(o.definitionId,this.run):kind==='items'?itemInfo(o.definitionId):undefined;
     shopSheet(this,v,'offer',tile,o.consumed?PAPER_THEME.jadeSoft:PAPER_THEME.paperLight,true);
     if(d)shopSheet(this,v,'offer-stage',{x:tile.x+4,y:tile.y+4,width:tile.width-8,height:face.height+10},PAPER_THEME.jadeSoft);
+    if(this.selectedOfferId===o.offerId)v.add(this.add.graphics().lineStyle(1,0x3f606b,.5).strokeRoundedRect(tile.x,tile.y,tile.width,tile.height,5).setName('shop/offer-selected'));
     const investment=shopInvestment(this.run,o,kind);
     let summary=investment&&(kind==='tools'&&['升型','改牌'].includes(investment.role)||investment.role==='倍率'&&investment.effect!==d?.description)?investment.short+'；'+investment.next:d?this.shopJokerSummary(d.id):info!.description;
     if(!investment&&!d&&/^T0[3-6]$/.test(o.definitionId)){const suit=info!.description.match(/改为(.+?)，/)?.[1];summary=`商店/待出牌：选1–3张永久改${suit}；成功消耗，保留其余属性。`;}

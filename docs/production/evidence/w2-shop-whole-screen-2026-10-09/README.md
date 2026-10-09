@@ -28,3 +28,7 @@
 六张after图、两张before图均为当前软件Canvas实际渲染画面，没有长录屏、软件GPU帧率签收。检查使用减少动态保证完成入场与静态可读，不冒称普通动画时序、听感或真机通过。没有新增/延长演出。PC/手机真人观感、设备流畅度、音频听感及W6保持未签；本包不自动签整套W2或W5玩法/经济价值。
 
 全部文件hash在files.json（不自哈希）；native-harness.mjs保真实执行路径/tmp/shop-w2-final，可按明确输入复跑。候选draft PR由父独审协调main，不强推、不绕保护。
+
+## 最终选中提示补正
+
+54f6a2c完整候选推送后代码复核发现PC普通边框删除同时移除了原选中商品的静态墨线。最终仅恢复选中时原1px/0.5青灰描边，普通货架仍使用分层纸托；手机、交易、原图均不动。selected-final记录同seq7存档PC1366原生查看第二件c10后取消，选中线实际可见，完整state/journal不变、0新交易，截图实际查看，typecheck再次通过。此前六张after/两笔交易按54f6a2c产品字节保存，不冒称重拍或重跑；选中补正产品hash见selected-final/product-files.json。最终新head CI替代原54f6a2c门禁，以最后精确head为交接依据。
