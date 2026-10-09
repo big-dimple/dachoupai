@@ -176,7 +176,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
     takeover.disabled=session.working||!!pending;
     start.disabled=session.working||!!pending||!session.loaded||!session.lease.writable||run?.status==='saving'||run?.status==='paused';exit.disabled=start.disabled;exportRun.disabled=!run;importRun.disabled=session.working||!!pending||!session.loaded||!session.lease.writable;
     refreshPlayback();
-    const warningNotice=session.notice&&!session.notice.startsWith('导入成功'),critical=session.loaded?!!pending||run?.status==='paused'||run?.status==='readonly'||!!warningNotice||!session.lease.writable:!!session.notice;
+    const warningNotice=session.notice&&!session.notice.startsWith('导入成功')&&!['本局已保存。','候选已保存，现已切换到该进度。'].includes(session.notice),critical=session.loaded?!!pending||run?.status==='paused'||run?.status==='readonly'||!!warningNotice||!session.lease.writable:!!session.notice;
     toggle.classList.toggle('needs-attention',critical);toggle.setAttribute('aria-label',modal.open?'关闭菜单':critical?'菜单，有进度提示待处理':'菜单');status.dataset.tone=critical?'warning':run?.status==='saving'?'pending':'normal';
     const key=critical?`${saving?.status}/${saving?.lastError}/${session.notice}/${session.lease.writable}/${!!pending}`:'';
     if(key&&key!==attentionKey){if(run?.status==='paused'||session.notice)saveTools.open=true;open();}attentionKey=key;
