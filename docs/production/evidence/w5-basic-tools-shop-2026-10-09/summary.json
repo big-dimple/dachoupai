@@ -1,0 +1,34 @@
+{
+  "status": "FINITE_SOFTWARE_PASS_WITH_ORIGINAL_FAILURES_PRESERVED",
+  "base": "1f58b994b9e050c4d3afa94ddf74cc23549154f4",
+  "product": "e519e8be840fce7e2d004f3cdb671e75de13b3c2",
+  "initialSeed": "1791506910545",
+  "identity": {
+    "version": "quality-r2-basic-tool-supply-v1",
+    "hash": "json-fnv-v1:f87eea81b756b81d"
+  },
+  "tools": [
+    {
+      "offerId": "run/1791506910545/erxiang/shop/0/0/tool/0",
+      "definitionId": "T18",
+      "price": 4,
+      "consumed": false
+    },
+    {
+      "offerId": "run/1791506910545/erxiang/shop/0/0/tool/1",
+      "definitionId": "T11",
+      "price": 2,
+      "consumed": false
+    }
+  ],
+  "actualHand": "pair",
+  "actualHeat": "507",
+  "actualEndGold": 7,
+  "actualPhase": "stage-cleared",
+  "sourceUnchangedBeforeAfter": true,
+  "subjectiveBalanceAccepted": false,
+  "physicalDeviceAccepted": false,
+  "oldAsyncWaitReliable": false,
+  "targetedTests": 61,
+  "targetedFiles": 5
+}

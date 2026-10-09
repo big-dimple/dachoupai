@@ -1,0 +1,35 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/basic-tool-supply.test.ts (7 tests | 1 failed) 117ms
+   × rejects forged price, duplicate products and excess capacity in current saved shelves 14ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/basic-tool-supply.test.ts > rejects forged price, duplicate products and excess capacity in current saved shelves
+Error: invalid-save-offer-price
+ ❯ fail src/application/checkpoint.ts:58:43
+     56| }
+     57| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     58| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     59| function record(value:unknown,required:string[],optional:string[]=[]):…
+     60|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ shop src/application/checkpoint.ts:126:59
+ ❯ validateState src/application/checkpoint.ts:807:5
+ ❯ makeCheckpoint src/application/checkpoint.ts:850:19
+ ❯ tests/basic-tool-supply.test.ts:16:383
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 57 passed (58)
+   Start at  00:45:07
+   Duration  1.67s (transform 1.27s, setup 0ms, import 1.75s, tests 899ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
