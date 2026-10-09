@@ -20,4 +20,4 @@
 游戏6.1默认Medium串行，无并发。超出Medium先说明理由；独立业务另会话不改游戏顺序。
 
 ## 本轮候选结果
-产品3f9bb0c与有限证据见[evidence](evidence/missing-core-choice-2026-10-09/README.md)。实际两条原生事务、三路线公开正负例/诚实留钱、main只读对照及320/740原滚动入口已核；顺子只读而非真实购买使用。33定向/type/plan32，不恢复G1/C04、不签自然成型/人类/设备/听感。最终精确HEAD一次CI与draft由父审main。
+产品3f9bb0c与有限证据见[evidence](evidence/missing-core-choice-2026-10-09/README.md)。实际两条原生事务、三路线公开正负例/诚实留钱、main只读对照及320/740原滚动入口已核；顺子只读而非真实购买使用。最终补纳两弹窗files为50定向/type/plan32；首CI旧按钮期待FAIL保留，产品不变。不恢复G1/C04、不签自然成型/人类/设备/听感。最终精确HEAD一次CI与draft由父审main。

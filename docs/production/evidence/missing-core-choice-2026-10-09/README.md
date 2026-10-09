@@ -22,3 +22,6 @@
 first-unit-FAIL：初次组例子选先序6→7、顺子窗口期待错、测试错以为没有其它合法修补；改组例示先2→3、修正真实3..7期待和不拆组负例，未放宽保存比对。first-type-FAIL：可选reason赋给必选string，补明确可选类型。second-FAIL：测试find回调遮蔽选择对象，访问PlayingCard.example，改变量名。原日志全部保留。一次view_image误取main工作树路径（图片实际仍写当前工作树）无产品问题，随后按实际路径查看；无新原生失败。
 
 这是有限云端软件证据。没有六英雄自然中盘/完整八章/长期平衡/人类理解/设备帧率或音频听感验收；W3/W5/W6/W7剩余及G1、P08、C04历史暂停不改变，整体第3包仍OPEN。游戏6.1默认Medium串行，无并发，最终draft父审并协调main。
+
+## 精确首CI期待补正
+34d9838首CI37999771455的domain：191files中189通过、2914tests中2912通过；build-journey-dialog与shop-current-decisions两条精确按钮文字仍期待旧“这轮不买，留金入场”，实际新“先留0/21金，进入牌桌”。本地初始定向漏纳这两files。补正仅两测试的明确新文案期待，primary/readonly/完整state断言不放宽，产品三文件与3f9bb0c保持逐字相同。扩大到五相关files50测试、typecheck通过，日志targeted-expanded/typecheck-expanded。ci-first-FAIL/domain.log及receipt.json保原FAIL、精确testedCommit和before/after不变；不冒称34d9838绿，也不借首轮docs成功或旧browser。新最终HEAD一次标准CI另核，不重复原生事务/主线对照。
