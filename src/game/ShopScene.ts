@@ -384,9 +384,9 @@ export class ShopScene extends Phaser.Scene {
       v.text(raw.x+raw.width/2,raw.y+18,'基础\n自选1件',16,PAPER_CSS.ink,raw.width-12).setOrigin(.5,0).setFontStyle('bold');
       v.text(raw.x+raw.width/2,raw.y+66,'升 降 删\n热 倍',14,PAPER_CSS.jade,raw.width-12).setOrigin(.5,0);
     }
-    v.text(copy.x,copy.y+4,'基础改牌 · 自选1件',14,PAPER_CSS.ink,copy.width).setFontStyle('bold').setName('shop/basic-choice-title');
-    v.text(copy.x,copy.y+27,o.consumed?'本店已购，下一店恢复':'升点／降点／删牌／热度／倍率\n每店一次，刷新不补货',14,PAPER_CSS.jade,copy.width).setStyle({maxLines:p.pc?3:2}).setName('shop/basic-choice-purpose');
-    v.text(copy.x,copy.priceY,o.consumed?'已选购':`标价2 · 实付${r2PurchasePrice(this.run,o)}金`,14,PAPER_CSS.ink,copy.width).setFontStyle('bold').setName('shop/basic-choice-price');
+    v.text(copy.x,copy.y+4,p.pc?'基础改牌 · 自选1件':'基础自选1件',14,PAPER_CSS.ink,copy.width).setFontStyle('bold').setName('shop/basic-choice-title');
+    v.text(copy.x,copy.y+27,o.consumed?(p.pc?'本店已购，下一店恢复':'已购 · 下店恢复'):(p.pc?'升点／降点／删牌／热度／倍率\n每店一次，刷新不补货':'升 降 删 热 倍\n本店一次'),p.pc?14:12,PAPER_CSS.jade,copy.width).setStyle({maxLines:p.pc?3:2}).setName('shop/basic-choice-purpose');
+    v.text(copy.x,copy.priceY,o.consumed?'已选购':p.pc?`标价2 · 实付${r2PurchasePrice(this.run,o)}金`:`实付${r2PurchasePrice(this.run,o)}金`,14,PAPER_CSS.ink,copy.width).setFontStyle('bold').setName('shop/basic-choice-price');
     const hover=this.hoverCard(first,copy.tile),r=v.rect(copy.tile).setFillStyle(0,0).setStrokeStyle();v.target(r,'offer/'+o.offerId,{tap:()=>this.inspectBasicChoice(),detail:()=>this.inspectBasicChoice(),...hover});this.offerArts.push(hover.art);
   }
   private inspectBasicChoice():void {
