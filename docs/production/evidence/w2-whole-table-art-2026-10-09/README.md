@@ -29,3 +29,5 @@
 初版12定向与type通过，最终仅标题补正8定向／type通过；最终仓库全套／构建仅精确head CI执行。files.json逐件hash/bytes（不自哈希），按Git HEAD blob核。脚本保实际执行/tmp路径；复跑前需既有基线report与仓库w2-build-keepsake/report.json，不把不同SHA历史PNG冒充当前实机截图。
 
 W5顺子／同花、晚到引擎、缺件转向连续自然路线及中期工具价值仍缺；W6真人路线理解、买／存／转向取舍、成长感／继续意愿、设备与听感仍未签。本画面包不自动解决或放行W7/W8新增，整体美术亦待真人签收。6.1默认Medium单线，无并发／seed扫描／旧档矩阵。draft父独审协调main，不强推或绕保护。
+
+较大的原始report仅gzip无损存储，解压字节与捕获原件完全相等，原始bytes/SHA256见report-packaging.json；没有删改原断言／状态或为缩小报告改事实。
