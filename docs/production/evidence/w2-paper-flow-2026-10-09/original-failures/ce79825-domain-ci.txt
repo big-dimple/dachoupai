@@ -1,0 +1,615 @@
+﻿2026-10-09T03:27:24.8361961Z Current runner version: '2.337.0'
+2026-10-09T03:27:24.8383330Z ##[group]Runner Image Provisioner
+2026-10-09T03:27:24.8383924Z Hosted Compute Agent
+2026-10-09T03:27:24.8384295Z Version: 20261002.596
+2026-10-09T03:27:24.8384744Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-09T03:27:24.8385178Z Build Date: 2026-10-02T22:28:27Z
+2026-10-09T03:27:24.8385592Z Worker ID: {ddbaf23f-cf6a-408d-90da-320f05164d60}
+2026-10-09T03:27:24.8386162Z Region: southcentralus
+2026-10-09T03:27:24.8386519Z Cloud: Azure
+2026-10-09T03:27:24.8386947Z ##[endgroup]
+2026-10-09T03:27:24.8387809Z ##[group]Operating System
+2026-10-09T03:27:24.8388166Z Ubuntu
+2026-10-09T03:27:24.8388541Z 24.04.5
+2026-10-09T03:27:24.8388861Z LTS
+2026-10-09T03:27:24.8389230Z ##[endgroup]
+2026-10-09T03:27:24.8389579Z ##[group]Runner Image
+2026-10-09T03:27:24.8389947Z Image: ubuntu-24.04
+2026-10-09T03:27:24.8390333Z Version: 20261004.327.1
+2026-10-09T03:27:24.8391205Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-09T03:27:24.8392148Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-09T03:27:24.8392853Z ##[endgroup]
+2026-10-09T03:27:24.8393626Z ##[group]GITHUB_TOKEN Permissions
+2026-10-09T03:27:24.8394977Z Contents: read
+2026-10-09T03:27:24.8395390Z Metadata: read
+2026-10-09T03:27:24.8395755Z ##[endgroup]
+2026-10-09T03:27:24.8397452Z Secret source: Actions
+2026-10-09T03:27:24.8397999Z Cache mode: write
+2026-10-09T03:27:24.8398466Z Prepare workflow directory
+2026-10-09T03:27:24.8641023Z Prepare all required actions
+2026-10-09T03:27:24.8679468Z Getting action download info
+2026-10-09T03:27:25.1208338Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-09T03:27:25.2151603Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-09T03:27:25.3469141Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-09T03:27:25.5571955Z Complete job name: domain
+2026-10-09T03:27:25.6120464Z ##[group]Run actions/checkout@v4
+2026-10-09T03:27:25.6120972Z with:
+2026-10-09T03:27:25.6121272Z   ref: ce798255125fb15303246366fd23962bca730378
+2026-10-09T03:27:25.6121626Z   repository: big-dimple/dachoupai
+2026-10-09T03:27:25.6124528Z   token: ***
+2026-10-09T03:27:25.6124791Z   ssh-strict: true
+2026-10-09T03:27:25.6125061Z   ssh-user: git
+2026-10-09T03:27:25.6125346Z   persist-credentials: true
+2026-10-09T03:27:25.6125654Z   clean: true
+2026-10-09T03:27:25.6125934Z   sparse-checkout-cone-mode: true
+2026-10-09T03:27:25.6126264Z   fetch-depth: 1
+2026-10-09T03:27:25.6126545Z   fetch-tags: false
+2026-10-09T03:27:25.6126823Z   show-progress: true
+2026-10-09T03:27:25.6127091Z   lfs: false
+2026-10-09T03:27:25.6127342Z   submodules: false
+2026-10-09T03:27:25.6127617Z   set-safe-directory: true
+2026-10-09T03:27:25.6127903Z   allow-unsafe-pr-checkout: false
+2026-10-09T03:27:25.6128308Z ##[endgroup]
+2026-10-09T03:27:25.6875662Z Syncing repository: big-dimple/dachoupai
+2026-10-09T03:27:25.6877616Z ##[group]Getting Git version info
+2026-10-09T03:27:25.6878212Z Working directory is '/home/runner/work/dachoupai/dachoupai'
+2026-10-09T03:27:25.6879163Z [command]/usr/bin/git version
+2026-10-09T03:27:25.6948528Z git version 2.55.0
+2026-10-09T03:27:25.6963360Z ##[endgroup]
+2026-10-09T03:27:25.6980169Z Temporarily overriding HOME='/home/runner/work/_temp/9b33f9b2-9f1f-4d9f-bb4b-cde1e7a3c43f' before making global git config changes
+2026-10-09T03:27:25.6981509Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T03:27:25.6985085Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dachoupai/dachoupai
+2026-10-09T03:27:25.7036308Z Deleting the contents of '/home/runner/work/dachoupai/dachoupai'
+2026-10-09T03:27:25.7043718Z ##[group]Initializing the repository
+2026-10-09T03:27:25.7044501Z [command]/usr/bin/git init /home/runner/work/dachoupai/dachoupai
+2026-10-09T03:27:25.7133086Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-09T03:27:25.7134560Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-09T03:27:25.7135694Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-09T03:27:25.7137286Z hint: call:
+2026-10-09T03:27:25.7137886Z hint:
+2026-10-09T03:27:25.7138568Z hint: 	git config --global init.defaultBranch <name>
+2026-10-09T03:27:25.7139330Z hint:
+2026-10-09T03:27:25.7140022Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-09T03:27:25.7141246Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-09T03:27:25.7142378Z hint:
+2026-10-09T03:27:25.7142976Z hint: 	git branch -m <name>
+2026-10-09T03:27:25.7143693Z hint:
+2026-10-09T03:27:25.7144451Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-09T03:27:25.7145760Z Initialized empty Git repository in /home/runner/work/dachoupai/dachoupai/.git/
+2026-10-09T03:27:25.7147966Z [command]/usr/bin/git remote add origin https://github.com/big-dimple/dachoupai
+2026-10-09T03:27:25.7224572Z ##[endgroup]
+2026-10-09T03:27:25.7225373Z ##[group]Disabling automatic garbage collection
+2026-10-09T03:27:25.7228462Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-09T03:27:25.7260876Z ##[endgroup]
+2026-10-09T03:27:25.7261696Z ##[group]Setting up auth
+2026-10-09T03:27:25.7268337Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T03:27:25.7298348Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T03:27:25.7624812Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T03:27:25.7659509Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T03:27:25.7854635Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-09T03:27:25.7888915Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-09T03:27:25.8097767Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-09T03:27:25.9168637Z ##[endgroup]
+2026-10-09T03:27:25.9170058Z ##[group]Fetching the repository
+2026-10-09T03:27:25.9171857Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin ce798255125fb15303246366fd23962bca730378
+2026-10-09T03:27:32.5250943Z From https://github.com/big-dimple/dachoupai
+2026-10-09T03:27:32.5252019Z  * branch            ce798255125fb15303246366fd23962bca730378 -> FETCH_HEAD
+2026-10-09T03:27:32.5254089Z ##[endgroup]
+2026-10-09T03:27:32.5254632Z ##[group]Determining the checkout info
+2026-10-09T03:27:32.5263509Z ##[endgroup]
+2026-10-09T03:27:32.5264207Z [command]/usr/bin/git sparse-checkout disable
+2026-10-09T03:27:32.5313942Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-09T03:27:32.5360294Z ##[group]Checking out the ref
+2026-10-09T03:27:32.5362877Z [command]/usr/bin/git checkout --progress --force ce798255125fb15303246366fd23962bca730378
+2026-10-09T03:27:33.1245724Z Note: switching to 'ce798255125fb15303246366fd23962bca730378'.
+2026-10-09T03:27:33.1247247Z 
+2026-10-09T03:27:33.1248291Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-09T03:27:33.1249457Z changes and commit them, and you can discard any commits you make in this
+2026-10-09T03:27:33.1250551Z state without impacting any branches by switching back to a branch.
+2026-10-09T03:27:33.1251182Z 
+2026-10-09T03:27:33.1251656Z If you want to create a new branch to retain commits you create, you may
+2026-10-09T03:27:33.1253261Z do so (now or later) by using -c with the switch command. Example:
+2026-10-09T03:27:33.1253807Z 
+2026-10-09T03:27:33.1254040Z   git switch -c <new-branch-name>
+2026-10-09T03:27:33.1254409Z 
+2026-10-09T03:27:33.1254666Z Or undo this operation with:
+2026-10-09T03:27:33.1255000Z 
+2026-10-09T03:27:33.1255193Z   git switch -
+2026-10-09T03:27:33.1255490Z 
+2026-10-09T03:27:33.1255951Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-09T03:27:33.1256641Z 
+2026-10-09T03:27:33.1257150Z HEAD is now at ce79825 docs: index bounded paper candidate and exact short clip duration
+2026-10-09T03:27:33.1293609Z ##[endgroup]
+2026-10-09T03:27:33.1342541Z [command]/usr/bin/git log -1 --format=%H
+2026-10-09T03:27:33.1379644Z ce798255125fb15303246366fd23962bca730378
+2026-10-09T03:27:33.1758710Z ##[group]Run actions/setup-node@v4
+2026-10-09T03:27:33.1759399Z with:
+2026-10-09T03:27:33.1759898Z   node-version: 22
+2026-10-09T03:27:33.1760391Z   cache: npm
+2026-10-09T03:27:33.1760904Z   always-auth: false
+2026-10-09T03:27:33.1761434Z   check-latest: false
+2026-10-09T03:27:33.1767141Z   token: ***
+2026-10-09T03:27:33.1767739Z ##[endgroup]
+2026-10-09T03:27:33.2855735Z Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+2026-10-09T03:27:33.2859363Z (node:2089) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-09T03:27:33.2860760Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-09T03:27:33.2862404Z ##[group]Environment details
+2026-10-09T03:27:33.5820003Z node: v22.23.3
+2026-10-09T03:27:33.5820451Z npm: 10.9.9
+2026-10-09T03:27:33.5820613Z yarn: 1.22.22
+2026-10-09T03:27:33.5821224Z ##[endgroup]
+2026-10-09T03:27:33.5833505Z [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+2026-10-09T03:27:33.6674706Z /home/runner/.npm
+2026-10-09T03:27:33.8344472Z Cache hit for: node-cache-Linux-x64-npm-0f079ee01ade4a5835fe99686f334c01324694e20f2d9805b8cc57300ed7c392
+2026-10-09T03:27:33.8423053Z (node:2089) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-09T03:27:34.8188942Z Received 59051628 of 59051628 (100.0%), 68.3 MBs/sec
+2026-10-09T03:27:34.8189692Z Cache Size: ~56 MB (59051628 B)
+2026-10-09T03:27:34.8253359Z [command]/usr/bin/tar -xf /home/runner/work/_temp/5c514829-be70-4a91-a18a-a1f145f8ba2c/cache.tzst -P -C /home/runner/work/dachoupai/dachoupai --use-compress-program unzstd
+2026-10-09T03:27:34.9124335Z Cache restored successfully
+2026-10-09T03:27:34.9158894Z Cache restored from key: node-cache-Linux-x64-npm-0f079ee01ade4a5835fe99686f334c01324694e20f2d9805b8cc57300ed7c392
+2026-10-09T03:27:34.9329806Z ##[group]Run npm ci
+2026-10-09T03:27:34.9330055Z [36;1mnpm ci[0m
+2026-10-09T03:27:34.9549904Z shell: /usr/bin/bash -e {0}
+2026-10-09T03:27:34.9550165Z ##[endgroup]
+2026-10-09T03:27:36.6595037Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-10-09T03:27:37.5926752Z 
+2026-10-09T03:27:37.5928003Z added 226 packages, and audited 227 packages in 3s
+2026-10-09T03:27:37.5928391Z 
+2026-10-09T03:27:37.5928578Z 53 packages are looking for funding
+2026-10-09T03:27:37.5928883Z   run `npm fund` for details
+2026-10-09T03:27:37.5962949Z 
+2026-10-09T03:27:37.5984389Z 4 high severity vulnerabilities
+2026-10-09T03:27:37.5993358Z 
+2026-10-09T03:27:37.5993998Z To address issues that do not require attention, run:
+2026-10-09T03:27:37.5994324Z   npm audit fix
+2026-10-09T03:27:37.5994512Z 
+2026-10-09T03:27:37.5994661Z To address all issues (including breaking changes), run:
+2026-10-09T03:27:37.5994994Z   npm audit fix --force
+2026-10-09T03:27:37.5995234Z 
+2026-10-09T03:27:37.5995364Z Run `npm audit` for details.
+2026-10-09T03:27:37.6552125Z ##[group]Run npm run verify:ci -- --scope=domain
+2026-10-09T03:27:37.6552652Z [36;1mnpm run verify:ci -- --scope=domain[0m
+2026-10-09T03:27:37.6611155Z shell: /usr/bin/bash -e {0}
+2026-10-09T03:27:37.6611394Z ##[endgroup]
+2026-10-09T03:27:37.7481598Z 
+2026-10-09T03:27:37.7482601Z > dachoupai@0.1.0 verify:ci
+2026-10-09T03:27:37.7483108Z > node scripts/verify-ci.mjs --scope=domain
+2026-10-09T03:27:37.7483327Z 
+2026-10-09T03:27:38.0518864Z CHECK test: /opt/hostedtoolcache/node/22.23.3/x64/bin/node /opt/hostedtoolcache/node/22.23.3/x64/lib/node_modules/npm/bin/npm-cli.js run test
+2026-10-09T03:27:38.1240880Z 
+2026-10-09T03:27:38.1241964Z > dachoupai@0.1.0 test
+2026-10-09T03:27:38.1242522Z > vitest run
+2026-10-09T03:27:38.1242647Z 
+2026-10-09T03:27:38.4471171Z 
+2026-10-09T03:27:38.4472931Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/home/runner/work/dachoupai/dachoupai[39m
+2026-10-09T03:27:38.4473359Z 
+2026-10-09T03:27:39.8846345Z  [32m✓[39m tests/c00-transactions.test.ts [2m([22m[2m26 tests[22m[2m)[22m[33m 704[2mms[22m[39m
+2026-10-09T03:27:40.1804613Z  [32m✓[39m tests/c01-checkpoint.test.ts [2m([22m[2m164 tests[22m[2m)[22m[33m 986[2mms[22m[39m
+2026-10-09T03:27:40.4563986Z  [32m✓[39m tests/c01-score.test.ts [2m([22m[2m40 tests[22m[2m)[22m[32m 271[2mms[22m[39m
+2026-10-09T03:27:40.7253675Z  [32m✓[39m tests/c04-mode-save.test.ts [2m([22m[2m40 tests[22m[2m)[22m[33m 1078[2mms[22m[39m
+2026-10-09T03:27:41.0904692Z  [32m✓[39m tests/c01-economy.test.ts [2m([22m[2m48 tests[22m[2m)[22m[33m 588[2mms[22m[39m
+2026-10-09T03:27:41.1074862Z  [32m✓[39m tests/c02-economy.test.ts [2m([22m[2m29 tests[22m[2m)[22m[33m 384[2mms[22m[39m
+2026-10-09T03:27:41.1759444Z  [32m✓[39m tests/detail-dialog.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 46[2mms[22m[39m
+2026-10-09T03:27:41.4752393Z  [32m✓[39m tests/joker-art-loading.test.ts [2m([22m[2m97 tests[22m[2m)[22m[32m 103[2mms[22m[39m
+2026-10-09T03:27:41.6965230Z  [32m✓[39m tests/c01-spectral.test.ts [2m([22m[2m34 tests[22m[2m)[22m[33m 334[2mms[22m[39m
+2026-10-09T03:27:41.8220942Z  [32m✓[39m tests/c04-program-rewards.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 438[2mms[22m[39m
+2026-10-09T03:27:42.2066522Z  [32m✓[39m tests/c00-score.test.ts [2m([22m[2m30 tests[22m[2m)[22m[32m 166[2mms[22m[39m
+2026-10-09T03:27:42.4084217Z  [32m✓[39m tests/amo-assist.test.ts [2m([22m[2m28 tests[22m[2m)[22m[33m 465[2mms[22m[39m
+2026-10-09T03:27:42.4482074Z  [32m✓[39m tests/recovery-save.test.ts [2m([22m[2m24 tests[22m[2m)[22m[33m 584[2mms[22m[39m
+2026-10-09T03:27:42.6004295Z  [32m✓[39m tests/c02-score.test.ts [2m([22m[2m45 tests[22m[2m)[22m[32m 129[2mms[22m[39m
+2026-10-09T03:27:42.7675717Z  [32m✓[39m tests/c03-boss-score.test.ts [2m([22m[2m38 tests[22m[2m)[22m[32m 101[2mms[22m[39m
+2026-10-09T03:27:42.8284622Z  [32m✓[39m tests/layout.test.ts [2m([22m[2m53 tests[22m[2m)[22m[32m 126[2mms[22m[39m
+2026-10-09T03:27:43.4704331Z  [32m✓[39m tests/c03-boss-save.test.ts [2m([22m[2m28 tests[22m[2m)[22m[33m 468[2mms[22m[39m
+2026-10-09T03:27:43.6561615Z  [32m✓[39m tests/c04-program-rules.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+2026-10-09T03:27:43.6914066Z  [32m✓[39m tests/group-upgrade.test.ts [2m([22m[2m30 tests[22m[2m)[22m[33m 755[2mms[22m[39m
+2026-10-09T03:27:44.0840017Z  [32m✓[39m tests/rules.test.ts [2m([22m[2m40 tests[22m[2m)[22m[32m 229[2mms[22m[39m
+2026-10-09T03:27:44.3904747Z  [32m✓[39m tests/c04-mode-config.test.ts [2m([22m[2m29 tests[22m[2m)[22m[32m 142[2mms[22m[39m
+2026-10-09T03:27:44.6466885Z  [32m✓[39m tests/combo-growth.test.ts [2m([22m[2m37 tests[22m[2m)[22m[33m 665[2mms[22m[39m
+2026-10-09T03:27:45.0053879Z  [32m✓[39m tests/amo-assist-jokers.test.ts [2m([22m[2m24 tests[22m[2m)[22m[33m 316[2mms[22m[39m
+2026-10-09T03:27:45.1987222Z  [32m✓[39m tests/c02-checkpoint.test.ts [2m([22m[2m35 tests[22m[2m)[22m[32m 299[2mms[22m[39m
+2026-10-09T03:27:45.4334507Z  [32m✓[39m tests/c01-catalog.test.ts [2m([22m[2m52 tests[22m[2m)[22m[32m 70[2mms[22m[39m
+2026-10-09T03:27:45.5395005Z  [32m✓[39m tests/handdrawn-art.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 2546[2mms[22m[39m
+2026-10-09T03:27:45.5409474Z    [33m[2m✓[22m[39m 'b9' consumes the exact approved receipt and same-ID on-demand derivatives [33m 885[2mms[22m[39m
+2026-10-09T03:27:45.5417493Z    [33m[2m✓[22m[39m 'b10' consumes the exact approved receipt and same-ID on-demand derivatives [33m 1016[2mms[22m[39m
+2026-10-09T03:27:45.5422207Z    [33m[2m✓[22m[39m 'b11' consumes the exact approved receipt and same-ID on-demand derivatives [33m 471[2mms[22m[39m
+2026-10-09T03:27:46.3014127Z  [32m✓[39m tests/c03-endless-save.test.ts [2m([22m[2m22 tests[22m[2m)[22m[33m 497[2mms[22m[39m
+2026-10-09T03:27:46.5404432Z  [32m✓[39m tests/touye-wager.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 1179[2mms[22m[39m
+2026-10-09T03:27:46.5405598Z      [33m[2m✓[22m[39m existing AI selection uses deterministic public wager context without changing state or exposing scores [33m 311[2mms[22m[39m
+2026-10-09T03:27:46.5869678Z  [32m✓[39m tests/score-flame.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+2026-10-09T03:27:47.0120340Z  [32m✓[39m tests/c01-tools.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 229[2mms[22m[39m
+2026-10-09T03:27:47.0256668Z  [32m✓[39m tests/joker-plain-copy.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 212[2mms[22m[39m
+2026-10-09T03:27:47.7192473Z  [32m✓[39m tests/v00-run.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 459[2mms[22m[39m
+2026-10-09T03:27:47.7225517Z      [33m[2m✓[22m[39m locks and publicly exposes chapter Boss/skip reward before purchases or rerolls, with no repeats [33m 319[2mms[22m[39m
+2026-10-09T03:27:47.9480606Z  [32m✓[39m tests/c01-tool-info.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+2026-10-09T03:27:48.0834568Z  [32m✓[39m tests/laohuan-refill.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 815[2mms[22m[39m
+2026-10-09T03:27:48.3952843Z  [32m✓[39m tests/detail-art.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 311[2mms[22m[39m
+2026-10-09T03:27:48.4404541Z  [32m✓[39m tests/c03-boss-run.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 111[2mms[22m[39m
+2026-10-09T03:27:48.7715032Z  [32m✓[39m tests/domain.test.ts [2m([22m[2m22 tests[22m[2m)[22m[33m 3074[2mms[22m[39m
+2026-10-09T03:27:48.7716298Z      [33m[2m✓[22m[39m keeps all active card instances in exactly one zone in 1000 fixed generated cases [33m 2857[2mms[22m[39m
+2026-10-09T03:27:48.8727380Z  [32m✓[39m tests/reward-coin.test.ts [2m([22m[2m28 tests[22m[2m)[22m[32m 167[2mms[22m[39m
+2026-10-09T03:27:48.9739131Z  [32m✓[39m tests/hand-selection-input.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+2026-10-09T03:27:49.2674203Z  [32m✓[39m tests/goods-art.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+2026-10-09T03:27:49.7285134Z  [32m✓[39m tests/xiemu-burn.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 549[2mms[22m[39m
+2026-10-09T03:27:49.7938160Z  [32m✓[39m tests/c04-mode-progress.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 273[2mms[22m[39m
+2026-10-09T03:27:49.9054040Z  [32m✓[39m tests/c02-catalog.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+2026-10-09T03:27:50.2534084Z  [32m✓[39m tests/r2-joker-memory.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 81[2mms[22m[39m
+2026-10-09T03:27:50.2710665Z  [32m✓[39m tests/c03-endless-run.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 225[2mms[22m[39m
+2026-10-09T03:27:50.4367360Z  [32m✓[39m tests/hand-selection-gesture.test.ts [2m([22m[2m33 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+2026-10-09T03:27:50.4525515Z  [32m✓[39m tests/c03-boss-plan.test.ts [2m([22m[2m94 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+2026-10-09T03:27:50.9284867Z  [32m✓[39m tests/c04-mode-resources.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 128[2mms[22m[39m
+2026-10-09T03:27:50.9944157Z  [32m✓[39m tests/amo-rule-version.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 200[2mms[22m[39m
+2026-10-09T03:27:51.2210562Z  [32m✓[39m tests/shop-layout.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 66[2mms[22m[39m
+2026-10-09T03:27:51.2324810Z  [32m✓[39m tests/c03-boss-notice.test.ts [2m([22m[2m35 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+2026-10-09T03:27:51.8307610Z  [32m✓[39m tests/r2-run.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 325[2mms[22m[39m
+2026-10-09T03:27:52.2191909Z  [32m✓[39m tests/azao-charge.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 617[2mms[22m[39m
+2026-10-09T03:27:52.2763691Z  [32m✓[39m tests/c03-boss-tools.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 168[2mms[22m[39m
+2026-10-09T03:27:52.7483898Z  [32m✓[39m tests/joker-player-copy.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 160[2mms[22m[39m
+2026-10-09T03:27:53.1874538Z  [32m✓[39m tests/c04-mode-run.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 113[2mms[22m[39m
+2026-10-09T03:27:53.5364190Z  [32m✓[39m tests/route-starter.test.ts [2m([22m[2m25 tests[22m[2m)[22m[33m 980[2mms[22m[39m
+2026-10-09T03:27:53.6798480Z  [32m✓[39m tests/r2-starting-profile.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 201[2mms[22m[39m
+2026-10-09T03:27:54.1685163Z  [32m✓[39m tests/joker-copy-ambiguity.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 114[2mms[22m[39m
+2026-10-09T03:27:54.5008856Z  [32m✓[39m tests/c01-enhancement-tools.test.ts [2m([22m[2m47 tests[22m[2m)[22m[33m 616[2mms[22m[39m
+2026-10-09T03:27:54.8872013Z  [32m✓[39m tests/card-copy.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 79[2mms[22m[39m
+2026-10-09T03:27:55.0468298Z  [32m✓[39m tests/c02-recovery.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 504[2mms[22m[39m
+2026-10-09T03:27:55.3014400Z  [32m✓[39m tests/r2-selection-facts.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 49[2mms[22m[39m
+2026-10-09T03:27:55.5544063Z  [32m✓[39m tests/r2-hand-candidates.test.ts [2m([22m[2m26 tests[22m[2m)[22m[32m 165[2mms[22m[39m
+2026-10-09T03:27:55.7363633Z  [32m✓[39m tests/joker-compact.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 123[2mms[22m[39m
+2026-10-09T03:27:55.8651056Z  [32m✓[39m tests/c02-chain.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 7121[2mms[22m[39m
+2026-10-09T03:27:55.8652682Z      [33m[2m✓[22m[39m adds one bounded program reward to the C03 envelope while retaining the independent conservative512 guard [33m 2120[2mms[22m[39m
+2026-10-09T03:27:55.8663382Z      [33m[2m✓[22m[39m refuses a tight proof for unknown-id rather than silently carrying the old classification [33m 2294[2mms[22m[39m
+2026-10-09T03:27:55.8664706Z      [33m[2m✓[22m[39m refuses a tight proof for changed-card-condition rather than silently carrying the old classification [33m 2562[2mms[22m[39m
+2026-10-09T03:27:55.8981107Z  [32m✓[39m tests/score-presentation.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+2026-10-09T03:27:56.0454174Z  [32m✓[39m tests/v00-score.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 146[2mms[22m[39m
+2026-10-09T03:27:56.0966689Z  [32m✓[39m tests/score-recorded-audio.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 41[2mms[22m[39m
+2026-10-09T03:27:56.1414234Z  [32m✓[39m tests/c03-endless-target.test.ts [2m([22m[2m63 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+2026-10-09T03:27:56.4594310Z  [32m✓[39m tests/shop-current-decisions.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 106[2mms[22m[39m
+2026-10-09T03:27:56.5640676Z  [32m✓[39m tests/public-art-privacy.test.mjs [2m([22m[2m19 tests[22m[2m)[22m[32m 256[2mms[22m[39m
+2026-10-09T03:27:56.9597382Z  [32m✓[39m tests/build-info.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 203[2mms[22m[39m
+2026-10-09T03:27:57.2274752Z  [32m✓[39m tests/amo-assist-consumption-save.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 347[2mms[22m[39m
+2026-10-09T03:27:57.5064536Z  [32m✓[39m tests/r2-command.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 200[2mms[22m[39m
+2026-10-09T03:27:57.5122980Z  [32m✓[39m tests/ai-hand-candidates.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 1160[2mms[22m[39m
+2026-10-09T03:27:57.5125349Z    [33m[2m✓[22m[39m non-high-card hands start strongest, changed levels reorder flush/straight/pair, high-card stays last [33m 365[2mms[22m[39m
+2026-10-09T03:27:57.6468410Z  [32m✓[39m tests/joker-experience.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 78[2mms[22m[39m
+2026-10-09T03:27:57.8367560Z  [32m✓[39m tests/joker-reorder.test.ts [2m([22m[2m66 tests[22m[2m)[22m[32m 65[2mms[22m[39m
+2026-10-09T03:27:57.9347307Z  [32m✓[39m tests/group-upgrade-ui-copy.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 154[2mms[22m[39m
+2026-10-09T03:27:57.9847963Z  [32m✓[39m tests/build-journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 80[2mms[22m[39m
+2026-10-09T03:27:57.9914440Z  [32m✓[39m tests/joker-rarity.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+2026-10-09T03:27:58.3199509Z  [32m✓[39m tests/c01-hand-resources.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 82[2mms[22m[39m
+2026-10-09T03:27:58.3501435Z  [32m✓[39m tests/basic-tool-supply.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 168[2mms[22m[39m
+2026-10-09T03:27:58.5118265Z  [32m✓[39m tests/c04-difficulty-target.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+2026-10-09T03:27:58.5153668Z  [32m✓[39m tests/amo-assist-edition-save.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 293[2mms[22m[39m
+2026-10-09T03:27:58.7128974Z  [32m✓[39m tests/hand-route-guidance.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+2026-10-09T03:27:58.7204363Z  [32m✓[39m tests/amo-launch.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 107[2mms[22m[39m
+2026-10-09T03:27:59.1003696Z  [32m✓[39m tests/hero-climax.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 75[2mms[22m[39m
+2026-10-09T03:27:59.3912096Z  [32m✓[39m tests/build-direction-preferences.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+2026-10-09T03:27:59.6315419Z  [32m✓[39m tests/assist-profile-ui-copy.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 319[2mms[22m[39m
+2026-10-09T03:27:59.6484235Z  [32m✓[39m tests/score-energy.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+2026-10-09T03:27:59.9378021Z  [32m✓[39m tests/c02-resources.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 53[2mms[22m[39m
+2026-10-09T03:28:00.0958558Z  [32m✓[39m tests/hand-action-controls.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+2026-10-09T03:28:00.1414495Z  [32m✓[39m tests/group-upgrade-save.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 288[2mms[22m[39m
+2026-10-09T03:28:00.3724726Z  [32m✓[39m tests/f09-presentation.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+2026-10-09T03:28:00.4904618Z  [32m✓[39m tests/tool-inventory-entry.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 1491[2mms[22m[39m
+2026-10-09T03:28:00.4907298Z      [33m[2m✓[22m[39m keeps inventory, history, primary controls and nine seats usable around 500 and the full-sidebar budget [33m 1469[2mms[22m[39m
+2026-10-09T03:28:00.6932436Z  [32m✓[39m tests/shop-route-relations.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 59[2mms[22m[39m
+2026-10-09T03:28:00.7674622Z [90mstdout[2m | tests/ci-gates.test.mjs[2m > [22m[2mexecutable CI and read-only gates[2m > [22m[2man ordinary successful child keeps source and index unchanged
+2026-10-09T03:28:00.7703938Z [22m[39mCHECK read: /opt/hostedtoolcache/node/22.23.3/x64/bin/node -e require("node:fs").readFileSync("source.txt")
+2026-10-09T03:28:00.7733509Z read: PASS
+2026-10-09T03:28:00.7734069Z 
+2026-10-09T03:28:00.8550193Z [90mstdout[2m | tests/ci-gates.test.mjs[2m > [22m[2mexecutable CI and read-only gates[2m > [22m[2ma zero-exit checker which writes source is rejected without hiding its write
+2026-10-09T03:28:00.8573926Z [22m[39mCHECK write: /opt/hostedtoolcache/node/22.23.3/x64/bin/node -e require("node:fs").writeFileSync("source.txt","changed")
+2026-10-09T03:28:00.8574845Z write: FAIL
+2026-10-09T03:28:00.8598306Z 
+2026-10-09T03:28:00.9372160Z  [32m✓[39m tests/c01-planets.test.ts [2m([22m[2m48 tests[22m[2m)[22m[33m 607[2mms[22m[39m
+2026-10-09T03:28:00.9454325Z [90mstdout[2m | tests/ci-gates.test.mjs[2m > [22m[2mexecutable CI and read-only gates[2m > [22m[2ma failing child stops the gate and cannot run a later false-success step
+2026-10-09T03:28:00.9462909Z [22m[39mCHECK fail: /opt/hostedtoolcache/node/22.23.3/x64/bin/node -e process.exit(9)
+2026-10-09T03:28:00.9471954Z fail: FAIL
+2026-10-09T03:28:00.9472450Z 
+2026-10-09T03:28:01.0218152Z [90mstdout[2m | tests/ci-gates.test.mjs[2m > [22m[2mexecutable CI and read-only gates[2m > [22m[2ma zero-exit checker which changes only the index is also rejected
+2026-10-09T03:28:01.0234029Z [22m[39mCHECK index-write: /opt/hostedtoolcache/node/22.23.3/x64/bin/node -e require("node:child_process").execFileSync("git",["rm","--cached","source.txt"])
+2026-10-09T03:28:01.0234575Z index-write: FAIL
+2026-10-09T03:28:01.0234816Z 
+2026-10-09T03:28:01.0258344Z  [32m✓[39m tests/ci-gates.test.mjs [2m([22m[2m7 tests[22m[2m)[22m[33m 410[2mms[22m[39m
+2026-10-09T03:28:01.0860405Z  [31m❯[39m tests/c03-result-transition.test.ts [2m([22m[2m4 tests[22m[2m | [22m[31m3 failed[39m[2m)[22m[32m 33[2mms[22m[39m
+2026-10-09T03:28:01.0862097Z [31m     [31m×[31m same-seed retry never repaints the old result against a fresh run without a stage[39m[32m 18[2mms[22m[39m
+2026-10-09T03:28:01.0863344Z      [32m✓[39m an unsuccessful retry keeps the result and redraws the save notice[32m 3[2mms[22m[39m
+2026-10-09T03:28:01.0864514Z [31m     [31m×[31m opening a shop does not repaint the completed result after the committed state switches[39m[32m 8[2mms[22m[39m
+2026-10-09T03:28:01.0868461Z [31m     [31m×[31m confirmed endless continuation does not redraw the normal victory after switching modes[39m[32m 3[2mms[22m[39m
+2026-10-09T03:28:01.2728962Z  [32m✓[39m tests/shop-sale-continuation.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+2026-10-09T03:28:01.3396106Z  [32m✓[39m tests/growth-opportunity.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 67[2mms[22m[39m
+2026-10-09T03:28:01.4107703Z  [32m✓[39m tests/first-chapter-guide.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 56[2mms[22m[39m
+2026-10-09T03:28:01.5920548Z  [32m✓[39m tests/hand-hint-status.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+2026-10-09T03:28:01.5985493Z  [32m✓[39m tests/shop-purchase-receipt.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+2026-10-09T03:28:01.7344938Z  [32m✓[39m tests/c02-preview.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 124[2mms[22m[39m
+2026-10-09T03:28:01.8056649Z  [32m✓[39m tests/c02-source-copy.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+2026-10-09T03:28:01.8618066Z  [32m✓[39m tests/joker-growth-causality.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+2026-10-09T03:28:02.0504367Z  [32m✓[39m tests/v00-consumables.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 98[2mms[22m[39m
+2026-10-09T03:28:02.0924172Z  [32m✓[39m tests/deck-inspector.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+2026-10-09T03:28:02.3429055Z  [32m✓[39m tests/stageNotice.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+2026-10-09T03:28:02.3594392Z  [32m✓[39m tests/v00-save.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 78[2mms[22m[39m
+2026-10-09T03:28:02.4938060Z  [32m✓[39m tests/shop-result-feedback.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+2026-10-09T03:28:02.6074630Z  [32m✓[39m tests/fallback-theme.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+2026-10-09T03:28:02.7805715Z  [32m✓[39m tests/fire-audio.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+2026-10-09T03:28:02.8106953Z  [32m✓[39m tests/shop-investment.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 739[2mms[22m[39m
+2026-10-09T03:28:02.8736283Z  [32m✓[39m tests/joker-key-highlight.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 102[2mms[22m[39m
+2026-10-09T03:28:03.0144772Z  [32m✓[39m tests/score-text-layout.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+2026-10-09T03:28:03.0518279Z  [32m✓[39m tests/c03-chapter-spec.test.ts [2m([22m[2m49 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+2026-10-09T03:28:03.1305948Z  [32m✓[39m tests/saved-boss-impact.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+2026-10-09T03:28:03.3477511Z  [32m✓[39m tests/joker-detail-steps.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 46[2mms[22m[39m
+2026-10-09T03:28:03.4144414Z  [32m✓[39m tests/purchase-payment-facts.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+2026-10-09T03:28:03.4214148Z  [32m✓[39m tests/hand-sort-selection.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+2026-10-09T03:28:03.4784106Z  [32m✓[39m tests/content-schema.test.ts [2m([22m[2m30 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+2026-10-09T03:28:03.5514140Z  [32m✓[39m tests/pointer-release-time.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+2026-10-09T03:28:03.6267997Z  [32m✓[39m tests/hand-rule-reference.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+2026-10-09T03:28:03.6862940Z  [32m✓[39m tests/goods-art-loading.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+2026-10-09T03:28:03.7677987Z  [32m✓[39m tests/shop.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+2026-10-09T03:28:04.0935107Z  [32m✓[39m tests/c01-boundary.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 88[2mms[22m[39m
+2026-10-09T03:28:04.1021512Z  [32m✓[39m tests/ai-hand-action-cancellation.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+2026-10-09T03:28:04.4152795Z  [32m✓[39m tests/failure-audio.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+2026-10-09T03:28:04.4314387Z  [32m✓[39m tests/build-growth-progress.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 63[2mms[22m[39m
+2026-10-09T03:28:04.5694107Z  [32m✓[39m tests/resource-pulse.test.mjs [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+2026-10-09T03:28:04.7278557Z  [32m✓[39m tests/paper-flow.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+2026-10-09T03:28:04.7293407Z  [32m✓[39m tests/hero-opening-intent.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 33[2mms[22m[39m
+2026-10-09T03:28:04.8482961Z  [32m✓[39m tests/run.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+2026-10-09T03:28:05.0080281Z  [32m✓[39m tests/scene-view-refresh.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+2026-10-09T03:28:05.1085580Z  [32m✓[39m tests/c04-mode-notice.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+2026-10-09T03:28:05.1519193Z  [32m✓[39m tests/joker-art.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+2026-10-09T03:28:05.2849849Z  [32m✓[39m tests/recovery-queue.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+2026-10-09T03:28:05.3834646Z  [32m✓[39m tests/assist-selection-ui.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+2026-10-09T03:28:05.4808573Z  [32m✓[39m tests/r2-ui.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+2026-10-09T03:28:05.5595114Z [90mstdout[2m | tests/c02-acquisition.test.ts[2m > [22m[2mC02 ordinary command acquisition and persistence[2m > [22m[2mcan buy, save, enter and score with every one of the 72 definitions from earned normal shops
+2026-10-09T03:28:05.5628799Z [22m[39mC02 ordinary command branches {"f03":{"seed":"c02-acquire-0","shelf":"initial","price":4,"seq":2},"tiesuanpan":{"seed":"c02-acquire-0","shelf":"initial","price":6,"seq":2},"jiedongfeng":{"seed":"c02-acquire-0","shelf":"initial","price":6,"seq":2},"d02":{"seed":"c02-acquire-0","shelf":"earned","price":4,"seq":7},"a08":{"seed":"c02-acquire-0","shelf":"earned","price":4,"seq":7},"e01":{"seed":"c02-acquire-0","shelf":"earned","price":4,"seq":7},"b07":{"seed":"c02-acquire-1","shelf":"initial","price":4,"seq":2},"mantangcai":{"seed":"c02-acquire-1","shelf":"initial","price":4,"seq":2},"a06":{"seed":"c02-acquire-1","shelf":"earned","price":8,"seq":7},"c12":{"seed":"c02-acquire-1","shelf":"earned","price":6,"seq":7},"d10":{"seed":"c02-acquire-2","shelf":"initial","price":4,"seq":2},"a12":{"seed":"c02-acquire-2","shelf":"earned","price":6,"seq":7},"f04":{"seed":"c02-acquire-2","shelf":"earned","price":6,"seq":7},"e07":{"seed":"c02-acquire-2","shelf":"earned","price":6,"seq":7},"f02":{"seed":"c02-acquire-3","shelf":"initial","price":4,"seq":2},"a03":{"seed":"c02-acquire-3","shelf":"initial","price":4,"seq":2},"d03":{"seed":"c02-acquire-3","shelf":"earned","price":6,"seq":7},"f10":{"seed":"c02-acquire-3","shelf":"earned","price":8,"seq":7},"d07":{"seed":"c02-acquire-4","shelf":"initial","price":4,"seq":2},"b02":{"seed":"c02-acquire-4","shelf":"initial","price":4,"seq":2},"f08":{"seed":"c02-acquire-4","shelf":"initial","price":6,"seq":2},"f11":{"seed":"c02-acquire-4","shelf":"earned","price":6,"seq":7},"e09":{"seed":"c02-acquire-4","shelf":"earned","price":4,"seq":7},"a07":{"seed":"c02-acquire-5","shelf":"initial","price":4,"seq":2},"a09":{"seed":"c02-acquire-5","shelf":"earned","price":4,"seq":7},"b05":{"seed":"c02-acquire-5","shelf":"earned","price":8,"seq":7},"e04":{"seed":"c02-acquire-5","shelf":"earned","price":6,"seq":7},"c04":{"seed":"c02-acquire-6","shelf":"initial","price":4,"seq":2},"e08":{"seed":"c02-acquire-6","shelf":"earned","price":13,"seq":7},"c06":{"seed":"c02-acquire-6","shelf":"earned","price":9,"seq":7},"e05":{"seed":"c02-acquire-7","shelf":"initial","price":6,"seq":2},"d01":{"seed":"c02-acquire-7","shelf":"earned","price":4,"seq":7},"c02":{"seed":"c02-acquire-7","shelf":"earned","price":4,"seq":7},"d09":{"seed":"c02-acquire-7","shelf":"earned","price":9,"seq":7},"e11":{"seed":"c02-acquire-9","shelf":"earned","price":8,"seq":7},"b12":{"seed":"c02-acquire-9","shelf":"earned","price":8,"seq":7},"b11":{"seed":"c02-acquire-10","shelf":"initial","price":6,"seq":2},"f12":{"seed":"c02-acquire-11","shelf":"earned","price":8,"seq":7},"f09":{"seed":"c02-acquire-11","shelf":"earned","price":6,"seq":7},"e03":{"seed":"c02-acquire-12","shelf":"earned","price":6,"seq":7},"b04":{"seed":"c02-acquire-12","shelf":"earned","price":4,"seq":7},"b10":{"seed":"c02-acquire-13","shelf":"initial","price":6,"seq":2},"pengci":{"seed":"c02-acquire-13","shelf":"initial","price":4,"seq":2},"a04":{"seed":"c02-acquire-13","shelf":"earned","price":6,"seq":7},"f07":{"seed":"c02-acquire-14","shelf":"initial","price":6,"seq":2},"c11":{"seed":"c02-acquire-14","shelf":"initial","price":6,"seq":2},"c09":{"seed":"c02-acquire-14","shelf":"earned","price":11,"seq":7},"e10":{"seed":"c02-acquire-15","shelf":"initial","price":6,"seq":2},"a05":{"seed":"c02-acquire-16","shelf":"initial","price":6,"seq":2},"a10":{"seed":"c02-acquire-16","shelf":"earned","price":6,"seq":7},"b03":{"seed":"c02-acquire-17","shelf":"initial","price":6,"seq":2},"b08":{"seed":"c02-acquire-17","shelf":"earned","price":6,"seq":7},"b09":{"seed":"c02-acquire-19","shelf":"earned","price":8,"seq":7},"e02":{"seed":"c02-acquire-19","shelf":"earned","price":4,"seq":7},"d05":{"seed":"c02-acquire-20","shelf":"initial","price":6,"seq":2},"d12":{"seed":"c02-acquire-20","shelf":"initial","price":6,"seq":2},"e12":{"seed":"c02-acquire-21","shelf":"initial","price":6,"seq":2},"c10":{"seed":"c02-acquire-26","shelf":"earned","price":6,"seq":7},"c03":{"seed":"c02-acquire-27","shelf":"initial","price":4,"seq":2},"f06":{"seed":"c02-acquire-27","shelf":"earned","price":8,"seq":7},"d06":{"seed":"c02-acquire-28","shelf":"initial","price":6,"seq":2},"c05":{"seed":"c02-acquire-31","shelf":"initial","price":6,"seq":2},"huimaqiang":{"seed":"c02-acquire-33","shelf":"earned","price":8,"seq":7},"e06":{"seed":"c02-acquire-34","shelf":"initial","price":6,"seq":2},"c08":{"seed":"c02-acquire-43","shelf":"initial","price":6,"seq":2},"b06":{"seed":"c02-acquire-43","shelf":"earned","price":8,"seq":7},"d04":{"seed":"c02-acquire-44","shelf":"earned","price":8,"seq":7},"a11":{"seed":"c02-acquire-48","shelf":"earned","price":8,"seq":7},"f05":{"seed":"c02-acquire-50","shelf":"initial","price":6,"seq":2},"c07":{"seed":"c02-acquire-64","shelf":"earned","price":8,"seq":7},"d08":{"seed":"c02-acquire-113","shelf":"earned","price":8,"seq":7},"d11":{"seed":"c02-acquire-187","shelf":"earned","price":8,"seq":7}}
+2026-10-09T03:28:05.5647570Z 
+2026-10-09T03:28:05.5648173Z  [32m✓[39m tests/c02-acquisition.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 1841[2mms[22m[39m
+2026-10-09T03:28:05.5649159Z      [33m[2m✓[22m[39m can buy, save, enter and score with every one of the 72 definitions from earned normal shops [33m 1840[2mms[22m[39m
+2026-10-09T03:28:05.6467632Z  [32m✓[39m tests/failure-summary.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+2026-10-09T03:28:05.6682893Z  [32m✓[39m tests/c02-formation-feedback.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+2026-10-09T03:28:05.7350818Z  [32m✓[39m tests/stage-outcome.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+2026-10-09T03:28:05.7871341Z  [32m✓[39m tests/hand-sweep-hint.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+2026-10-09T03:28:05.8724393Z  [32m✓[39m tests/characters.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+2026-10-09T03:28:05.9444264Z  [32m✓[39m tests/build-journey-dialog.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+2026-10-09T03:28:06.0179492Z  [32m✓[39m tests/rational.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+2026-10-09T03:28:06.1004326Z  [32m✓[39m tests/browslatro-reordering.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+2026-10-09T03:28:06.2534633Z  [32m✓[39m tests/scoreHand.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+2026-10-09T03:28:06.4124367Z  [32m✓[39m tests/jokers.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+2026-10-09T03:28:06.6634509Z  [32m✓[39m tests/c01-score-copy.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+2026-10-09T03:28:06.8580064Z  [32m✓[39m tests/selection-layout.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 41[2mms[22m[39m
+2026-10-09T03:28:07.0330612Z  [32m✓[39m tests/r2-shop.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 748[2mms[22m[39m
+2026-10-09T03:28:07.0331921Z      [33m[2m✓[22m[39m exposes only public information; policy previews never change the checkpoint [33m 735[2mms[22m[39m
+2026-10-09T03:28:07.1708011Z  [32m✓[39m tests/card-pip-layout.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+2026-10-09T03:28:07.2167466Z  [32m✓[39m tests/stage-gift-receipt.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+2026-10-09T03:28:07.3043591Z  [32m✓[39m tests/tool-target-directory.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+2026-10-09T03:28:07.4936470Z  [32m✓[39m tests/audio-preferences.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+2026-10-09T03:28:07.5154710Z  [32m✓[39m tests/hero-opening-copy.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+2026-10-09T03:28:07.6204161Z  [32m✓[39m tests/suit-symbols.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+2026-10-09T03:28:07.6543954Z  [32m✓[39m tests/score-celebration.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+2026-10-09T03:28:07.8758215Z  [32m✓[39m tests/card-boundary.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 16[2mms[22m[39m
+2026-10-09T03:28:08.0254973Z  [32m✓[39m tests/handEvaluator.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+2026-10-09T03:28:08.1816458Z  [32m✓[39m tests/legacy-r1-balance.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 299[2mms[22m[39m
+2026-10-09T03:28:08.2254489Z  [32m✓[39m tests/c01-preview-resource.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 14[2mms[22m[39m
+2026-10-09T03:28:08.3363906Z  [32m✓[39m tests/SeededRng.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+2026-10-09T03:28:08.3674214Z  [32m✓[39m tests/portraitCrop.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+2026-10-09T03:28:08.4974343Z  [32m✓[39m tests/inkwave-spring.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 9[2mms[22m[39m
+2026-10-09T03:28:08.5507660Z  [32m✓[39m tests/score-geometry.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 75[2mms[22m[39m
+2026-10-09T03:28:11.0141204Z  [32m✓[39m tests/v00-bot.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 5009[2mms[22m[39m
+2026-10-09T03:28:11.0142050Z      [33m[2m✓[22m[39m single-held emits only valid ordinary commands on a natural run [33m 1650[2mms[22m[39m
+2026-10-09T03:28:11.0142961Z      [33m[2m✓[22m[39m groups emits only valid ordinary commands on a natural run [33m 1912[2mms[22m[39m
+2026-10-09T03:28:11.0143521Z      [33m[2m✓[22m[39m suit emits only valid ordinary commands on a natural run [33m 1428[2mms[22m[39m
+2026-10-09T03:28:11.0204412Z 
+2026-10-09T03:28:11.0205295Z [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 3 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+2026-10-09T03:28:11.0205574Z 
+2026-10-09T03:28:11.0206990Z [41m[1m FAIL [22m[49m tests/c03-result-transition.test.ts[2m > [22mresult page exits while Phaser queues the next scene[2m > [22msame-seed retry never repaints the old result against a fresh run without a stage
+2026-10-09T03:28:11.0210161Z [31m[1mAssertionError[22m: expected "vi.fn()" to be called with arguments: [ 'shop' ][90m
+2026-10-09T03:28:11.0210468Z 
+2026-10-09T03:28:11.0210553Z Received:
+2026-10-09T03:28:11.0210658Z 
+2026-10-09T03:28:11.0210845Z [1m  1st vi.fn() call:
+2026-10-09T03:28:11.0210974Z 
+2026-10-09T03:28:11.0211083Z [22m[2m  [[22m
+2026-10-09T03:28:11.0211297Z [2m    "shop",[22m
+2026-10-09T03:28:11.0211537Z [31m+   undefined,[90m
+2026-10-09T03:28:11.0211762Z [2m  ][22m
+2026-10-09T03:28:11.0211946Z [31m[90m
+2026-10-09T03:28:11.0212046Z 
+2026-10-09T03:28:11.0212175Z Number of calls: [1m1[22m
+2026-10-09T03:28:11.0212504Z [31m[39m
+2026-10-09T03:28:11.0213116Z [36m [2m❯[22m tests/c03-result-transition.test.ts:[2m56:82[22m[39m
+2026-10-09T03:28:11.0236548Z 
+2026-10-09T03:28:11.0238295Z 
+2026-10-09T03:28:11.0239697Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯[22m[39m
+2026-10-09T03:28:11.0239980Z 
+2026-10-09T03:28:11.0241160Z [41m[1m FAIL [22m[49m tests/c03-result-transition.test.ts[2m > [22mresult page exits while Phaser queues the next scene[2m > [22mopening a shop does not repaint the completed result after the committed state switches
+2026-10-09T03:28:11.0242631Z [31m[1mAssertionError[22m: expected "vi.fn()" to be called with arguments: [ 'shop' ][90m
+2026-10-09T03:28:11.0242969Z 
+2026-10-09T03:28:11.0243052Z Received:
+2026-10-09T03:28:11.0243153Z 
+2026-10-09T03:28:11.0243278Z [1m  1st vi.fn() call:
+2026-10-09T03:28:11.0243407Z 
+2026-10-09T03:28:11.0243515Z [22m[2m  [[22m
+2026-10-09T03:28:11.0243736Z [2m    "shop",[22m
+2026-10-09T03:28:11.0243970Z [31m+   undefined,[90m
+2026-10-09T03:28:11.0244195Z [2m  ][22m
+2026-10-09T03:28:11.0244393Z [31m[90m
+2026-10-09T03:28:11.0244491Z 
+2026-10-09T03:28:11.0244625Z Number of calls: [1m1[22m
+2026-10-09T03:28:11.0244855Z [31m[39m
+2026-10-09T03:28:11.0245283Z [36m [2m❯[22m tests/c03-result-transition.test.ts:[2m67:53[22m[39m
+2026-10-09T03:28:11.0246102Z     [90m 65|[39m     [35mconst[39m {actions[33m,[39mstate[33m,[39mrendered}[33m=[39m[34mresultScene[39m([32m'stage-cleared'[39m)[33m;[39m
+2026-10-09T03:28:11.0246913Z     [90m 66|[39m     fixture.dispatch.mockImplementation(async()=>{fixture.controller.s…
+2026-10-09T03:28:11.0248057Z     [90m 67|[39m     await actions.next();expect(fixture.sceneStart).toHaveBeenCalledWi…
+2026-10-09T03:28:11.0248686Z     [90m   |[39m                                                     [31m^[39m
+2026-10-09T03:28:11.0248916Z     [90m 68|[39m   })[33m;[39m
+2026-10-09T03:28:11.0249077Z     [90m 69|[39m
+2026-10-09T03:28:11.0249153Z 
+2026-10-09T03:28:11.0249296Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯[22m[39m
+2026-10-09T03:28:11.0249416Z 
+2026-10-09T03:28:11.0250013Z [41m[1m FAIL [22m[49m tests/c03-result-transition.test.ts[2m > [22mresult page exits while Phaser queues the next scene[2m > [22mconfirmed endless continuation does not redraw the normal victory after switching modes
+2026-10-09T03:28:11.0250677Z [31m[1mAssertionError[22m: expected "vi.fn()" to be called with arguments: [ 'shop' ][90m
+2026-10-09T03:28:11.0250876Z 
+2026-10-09T03:28:11.0250924Z Received:
+2026-10-09T03:28:11.0250990Z 
+2026-10-09T03:28:11.0251076Z [1m  1st vi.fn() call:
+2026-10-09T03:28:11.0251157Z 
+2026-10-09T03:28:11.0251247Z [22m[2m  [[22m
+2026-10-09T03:28:11.0251391Z [2m    "shop",[22m
+2026-10-09T03:28:11.0251550Z [31m+   undefined,[90m
+2026-10-09T03:28:11.0251696Z [2m  ][22m
+2026-10-09T03:28:11.0251820Z [31m[90m
+2026-10-09T03:28:11.0251886Z 
+2026-10-09T03:28:11.0251972Z Number of calls: [1m1[22m
+2026-10-09T03:28:11.0252121Z [31m[39m
+2026-10-09T03:28:11.0252643Z [36m [2m❯[22m tests/c03-result-transition.test.ts:[2m73:82[22m[39m
+2026-10-09T03:28:11.0253413Z     [90m 71|[39m     [35mconst[39m {actions[33m,[39mstate[33m,[39mrendered}[33m=[39m[34mresultScene[39m([32m'run-won'[39m)[33m;[39m
+2026-10-09T03:28:11.0254181Z     [90m 72|[39m     fixture.dispatch.mockImplementation(async()=>{fixture.controller.s…
+2026-10-09T03:28:11.0254762Z     [90m 73|[39m     actions.confirmEndless();await fixture.confirm!();expect(fixture.s…
+2026-10-09T03:28:11.0255144Z     [90m   |[39m                                                                                  [31m^[39m
+2026-10-09T03:28:11.0255411Z     [90m 74|[39m   })[33m;[39m
+2026-10-09T03:28:11.0255592Z     [90m 75|[39m })[33m;[39m
+2026-10-09T03:28:11.0255691Z 
+2026-10-09T03:28:11.0255834Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯[22m[39m
+2026-10-09T03:28:11.0255954Z 
+2026-10-09T03:28:11.0255984Z 
+2026-10-09T03:28:11.0262864Z [2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m171 passed[39m[22m[90m (172)[39m
+2026-10-09T03:28:11.0282416Z [2m      Tests [22m [1m[31m3 failed[39m[22m[2m | [22m[1m[32m2739 passed[39m[22m[90m (2742)[39m
+2026-10-09T03:28:11.0282904Z [2m   Start at [22m 03:27:38
+2026-10-09T03:28:11.0285053Z [2m   Duration [22m 32.55s[2m (transform 5.50s, setup 0ms, import 21.95s, tests 49.51s, environment 14ms)[22m
+2026-10-09T03:28:11.0286789Z 
+2026-10-09T03:28:11.0311130Z 
+2026-10-09T03:28:11.0335096Z ##[error]AssertionError: expected "vi.fn()" to be called with arguments: [ 'shop' ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+    "shop",
++   undefined,
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/c03-result-transition.test.ts:56:82
+
+
+2026-10-09T03:28:11.0342609Z 
+2026-10-09T03:28:11.0344844Z ##[error]AssertionError: expected "vi.fn()" to be called with arguments: [ 'shop' ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+    "shop",
++   undefined,
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/c03-result-transition.test.ts:67:53
+
+
+2026-10-09T03:28:11.0346109Z 
+2026-10-09T03:28:11.0347757Z ##[error]AssertionError: expected "vi.fn()" to be called with arguments: [ 'shop' ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+    "shop",
++   undefined,
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/c03-result-transition.test.ts:73:82
+
+
+2026-10-09T03:28:11.3190586Z test: FAIL
+2026-10-09T03:28:11.3193244Z {
+2026-10-09T03:28:11.3193440Z   "scope": "domain",
+2026-10-09T03:28:11.3193797Z   "testedCommit": "ce798255125fb15303246366fd23962bca730378",
+2026-10-09T03:28:11.3194161Z   "status": "FAIL",
+2026-10-09T03:28:11.3194369Z   "exitCode": 1,
+2026-10-09T03:28:11.3194564Z   "before": {
+2026-10-09T03:28:11.3195323Z     "source": "23fb4fd351ac31652d6495be910c5c271820071105a9c874fd8ca794a0464332",
+2026-10-09T03:28:11.3195996Z     "index": "77a1e425b77d19e16db3dd924d743f513744d88fa327073630266b1917c5f6f6",
+2026-10-09T03:28:11.3196369Z     "head": "ce798255125fb15303246366fd23962bca730378",
+2026-10-09T03:28:11.3196545Z     "branch": null
+2026-10-09T03:28:11.3196669Z   },
+2026-10-09T03:28:11.3196781Z   "after": {
+2026-10-09T03:28:11.3197001Z     "source": "23fb4fd351ac31652d6495be910c5c271820071105a9c874fd8ca794a0464332",
+2026-10-09T03:28:11.3197328Z     "index": "77a1e425b77d19e16db3dd924d743f513744d88fa327073630266b1917c5f6f6",
+2026-10-09T03:28:11.3197592Z     "head": "ce798255125fb15303246366fd23962bca730378",
+2026-10-09T03:28:11.3197769Z     "branch": null
+2026-10-09T03:28:11.3197890Z   },
+2026-10-09T03:28:11.3198005Z   "steps": [
+2026-10-09T03:28:11.3198131Z     {
+2026-10-09T03:28:11.3198281Z       "name": "test",
+2026-10-09T03:28:11.3198437Z       "status": "FAIL",
+2026-10-09T03:28:11.3198582Z       "childExitCode": 1,
+2026-10-09T03:28:11.3198739Z       "elapsedMs": 33267,
+2026-10-09T03:28:11.3198918Z       "reason": "child exited 1"
+2026-10-09T03:28:11.3199088Z     }
+2026-10-09T03:28:11.3199212Z   ],
+2026-10-09T03:28:11.3199335Z   "notIncluded": [
+2026-10-09T03:28:11.3199459Z     {
+2026-10-09T03:28:11.3199692Z       "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+2026-10-09T03:28:11.3199953Z       "status": "NOT_INCLUDED",
+2026-10-09T03:28:11.3200328Z       "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+2026-10-09T03:28:11.3200652Z     },
+2026-10-09T03:28:11.3200781Z     {
+2026-10-09T03:28:11.3200951Z       "name": "balance/benchmark acceptance",
+2026-10-09T03:28:11.3201143Z       "status": "NOT_INCLUDED",
+2026-10-09T03:28:11.3201399Z       "reason": "later work packages; no gameplay approval inferred from checks"
+2026-10-09T03:28:11.3201643Z     },
+2026-10-09T03:28:11.3201749Z     {
+2026-10-09T03:28:11.3201924Z       "name": "physical devices / human / art approval",
+2026-10-09T03:28:11.3202132Z       "status": "NOT_RUN"
+2026-10-09T03:28:11.3202513Z     }
+2026-10-09T03:28:11.3202660Z   ]
+2026-10-09T03:28:11.3202771Z }
+2026-10-09T03:28:11.3334665Z ##[error]Process completed with exit code 1.
+2026-10-09T03:28:11.3417850Z ##[group]Run actions/upload-artifact@v4
+2026-10-09T03:28:11.3418030Z with:
+2026-10-09T03:28:11.3418153Z   name: domain-37879351327
+2026-10-09T03:28:11.3418290Z   path: shots/ci/
+2026-10-09T03:28:11.3418426Z   retention-days: 14
+2026-10-09T03:28:11.3418561Z   if-no-files-found: warn
+2026-10-09T03:28:11.3418696Z   compression-level: 6
+2026-10-09T03:28:11.3418827Z   overwrite: false
+2026-10-09T03:28:11.3418957Z   include-hidden-files: false
+2026-10-09T03:28:11.3419102Z ##[endgroup]
+2026-10-09T03:28:11.4596871Z (node:3664) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-09T03:28:11.4597646Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-09T03:28:11.4659356Z With the provided path, there will be 1 file uploaded
+2026-10-09T03:28:11.4660384Z Artifact name is valid!
+2026-10-09T03:28:11.4660740Z Root directory input is valid!
+2026-10-09T03:28:11.7644283Z Beginning upload of artifact content to blob storage
+2026-10-09T03:28:11.7765842Z (node:3664) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-09T03:28:11.9153726Z Uploaded bytes 694
+2026-10-09T03:28:11.9543027Z Finished uploading artifact content to blob storage!
+2026-10-09T03:28:11.9543876Z SHA256 digest of uploaded artifact zip is 8635430913e6615c63aae02d961289b60fc246493a74fdb7710cf0770e6acc13
+2026-10-09T03:28:11.9545027Z Finalizing artifact upload
+2026-10-09T03:28:12.2065986Z Artifact domain-37879351327.zip successfully finalized. Artifact ID 11594081327
+2026-10-09T03:28:12.2066914Z Artifact domain-37879351327 has been successfully uploaded! Final size is 694 bytes. Artifact ID is 11594081327
+2026-10-09T03:28:12.2071705Z Artifact download URL: https://github.com/big-dimple/dachoupai/actions/runs/37879351327/artifacts/11594081327
+2026-10-09T03:28:12.2232085Z Post job cleanup.
+2026-10-09T03:28:12.2855111Z [command]/usr/bin/git version
+2026-10-09T03:28:12.2891906Z git version 2.55.0
+2026-10-09T03:28:12.2922781Z Temporarily overriding HOME='/home/runner/work/_temp/b1d32ef0-fa72-45b6-97d1-ddfd2ce63c9f' before making global git config changes
+2026-10-09T03:28:12.2923862Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T03:28:12.2928561Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dachoupai/dachoupai
+2026-10-09T03:28:12.2971198Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T03:28:12.3011278Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T03:28:12.3236868Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T03:28:12.3262806Z http.https://github.com/.extraheader
+2026-10-09T03:28:12.3272437Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-09T03:28:12.3309442Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T03:28:12.3522036Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-09T03:28:12.3554644Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-09T03:28:12.3879644Z Cleaning up orphan processes
+2026-10-09T03:28:12.4117312Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

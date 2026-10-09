@@ -9,3 +9,7 @@
 原FAIL完整保留original-failures：观察器于文档根节点出现前安装在documentElement，换场计数0而实际正常命令已通过；改为观察Document后复查通过。并非原失败也通过，未掩盖失败。原与最终harness均保存。
 
 最终精确head CI随draft另核；本包仅候选，不预记main或实机通过。
+
+## 精确CI签名补正
+
+首轮head `ce798255125fb15303246366fd23962bca730378`／CI37879351327 domain：2739通过、3失败，均是既有c03-result-transition严格要求`start('shop')`而包装器多传undefined。完整日志见original-failures/ce79825-domain-ci.txt，原测试不放宽。产品补正 `b22f29ceec8596da1f8fdd8d64686a586cb233f8` 只恢复无data时单参数start，视觉、时钟、命中框与领域不变。paper-flow+c03-result-transition 11项／2文件及typecheck通过；原ba0b618原生短片按原SHA保留，不冒充新head重录。最终精确head CI另核，不重复整包本地验收。
