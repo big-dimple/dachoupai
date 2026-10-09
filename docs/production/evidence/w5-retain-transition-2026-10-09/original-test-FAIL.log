@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/hand-route-transition.test.ts (8 tests | 1 failed) 37ms
+   × actual last-play straight gap warns of no next hand while the completed flush remains in the full gallery 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/hand-route-transition.test.ts > actual last-play straight gap warns of no next hand while the completed flush remains in the full gallery
+AssertionError: expected 0 to be greater than 0
+ ❯ tests/hand-route-transition.test.ts:22:418
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 52 passed (53)
+   Start at  06:56:34
+   Duration  1.44s (transform 897ms, setup 0ms, import 1.35s, tests 973ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
