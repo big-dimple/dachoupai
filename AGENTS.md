@@ -1,6 +1,6 @@
 # 开发入口
 
-2026-10-09 C04.3只读图鉴查询候选：输入父已合PR85 main693275e，先270afa2原合同子包范围，不恢复整个C04或改plan.json历史。产品602914e菜单主动名字/用途/四分类、真实持有/现货/上手来源及同身份按需详情；独立724f83f只修短横Canvas摘要实际宽高，原14px/牌桌/按钮保持；2b23f08补真实资源用途。29定向/type/plan与PC1366/390代表查询、320/740必要边界软件通过，完整state/journal/storage/手选不改、零查询写入、PC延迟高清返回取消；原FAIL保留。[有限按SHA证据](docs/production/evidence/c04-readonly-catalog-2026-10-09/README.md)。新图/音频/保存字段0，最终精确head一次CI另核，draft父审协调main；真人/设备/听感/C04整包/W6/W8未签，6.1默认Medium串行，无并发。
+2026-10-09 C04.3只读图鉴查询候选：输入父已合PR85 main693275e，先270afa2原合同子包范围，不恢复整个C04或改plan.json历史。产品602914e菜单主动名字/用途/四分类、真实持有/现货/上手来源及同身份按需详情；独立724f83f只修短横Canvas摘要实际宽高，原14px/牌桌/按钮保持；2b23f08补真实资源用途，18d53ab共用回调后仍可连续翻页且另一个PC补证通过。29定向/type/plan与PC1366/390代表查询、320/740必要边界软件通过，完整state/journal/storage/手选不改、零查询写入、PC延迟高清返回取消；原FAIL保留。[有限按SHA证据](docs/production/evidence/c04-readonly-catalog-2026-10-09/README.md)。新图/音频/保存字段0，最终精确head一次CI另核，draft父审协调main；真人/设备/听感/C04整包/W6/W8未签，6.1默认Medium串行，无并发。
 
 2026-10-09 W3全类成长候选：输入main b5b68ba，先116a262规则/范围；原生产品579cf14补8类遗漏时点，最后e05限买大丑牌/工具负例、结果实际读取/消费分类保护补正，同源现存/机会/已保存变化，原规则/身份/数值/音频/素材保持。72相关/type/plan与PC相乘、390同花弃牌各一笔canonical相等；320/短横仅同状态查看，短横原汇总下缘限制明示，原FAIL保留。[有限证据](docs/production/evidence/w3-all-growth-opportunities-2026-10-09/README.md)。6.1 Medium串行；最终head CI另核，draft父审协调main，真人/设备/听感/W3/W6未签，C04依原恢复合同。
 
