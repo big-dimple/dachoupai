@@ -223,7 +223,7 @@ export class IntermissionScene extends Phaser.Scene {
   private inspectJourney():void {
     const run=runController(this)!.state;
     const go=()=>this.next();
-    showBuildJourney(this.dialog,run,{ready:this.ready&&run.phase==='stage-cleared',source:()=>this.inspectLastHand(),deck:()=>showDeckInspection(this.dialog,run),tools:()=>this.dialog.open('道具箱 · 过关只读',run.consumables.map(c=>toolInfo(c.definitionId).name).join('、')+'\n过关页只查看；前往筹备商店后再选择工具和对象。',[{label:'前往筹备商店继续培养',run:go}]),tool:id=>{const item=run.consumables.find(c=>c.instanceId===id);if(!item)return;const info=toolInfo(item.definitionId);this.dialog.open(info.name+' · 过关只读',info.description+'\n'+info.cost+'\n前往筹备商店后自己选择目标并确认。',[{label:'前往筹备商店继续培养',run:go}],{portrait:goodsArtPortrait(info)});},continueLabel:'前往筹备商店继续培养',continue:go});
+    showBuildJourney(this.dialog,run,{ready:this.ready&&run.phase==='stage-cleared',source:()=>this.inspectLastHand(),deck:()=>showDeckInspection(this.dialog,run),tools:()=>this.dialog.open('道具箱 · 过关只读',run.consumables.map(c=>toolInfo(c.definitionId).name).join('、')+'\n过关页只查看；前往筹备商店后再选择工具和对象。',[{label:'前往筹备商店继续培养',run:go}]),tool:id=>{const item=run.consumables.find(c=>c.instanceId===id);if(!item)return;const info=toolInfo(item.definitionId,run);this.dialog.open(info.name+' · 过关只读',info.description+'\n'+info.cost+'\n前往筹备商店后自己选择目标并确认。',[{label:'前往筹备商店继续培养',run:go}],{portrait:goodsArtPortrait(info)});},continueLabel:'前往筹备商店继续培养',continue:go});
   }
   private inspectGift():void {
     const gift=stageGiftReceipt(runController(this)!.state);if(!gift)return;
