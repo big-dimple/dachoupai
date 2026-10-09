@@ -1,15 +1,13 @@
-import {R2_ERXIANG_HANDOFF_VERSION,R2_ERXIANG_HANDOFF_HASH} from '../domain/r2GroupUpgrade';
-import {R2_TOOL_SUPPLY_VERSION,R2_TOOL_SUPPLY_HASH} from '../domain/r2GroupUpgrade';
-import {R2_XIEMU_BURN_VERSION,R2_XIEMU_BURN_HASH} from '../domain/r2GroupUpgrade';
+import {R2_BASIC_CHOICE_VERSION,R2_BASIC_CHOICE_HASH} from '../domain/r2GroupUpgrade';
 import type {CharacterId} from '../domain/characters';
 import type {R2RunState} from '../domain/r2Run';
 import {r2RulesetFor} from '../domain/r2Run';
-import {R2_GROUP_UPGRADE_VERSION,R2_GROUP_UPGRADE_HASH,R2_ROUTE_STARTER_VERSION,R2_ROUTE_STARTER_HASH,type R2OpeningRoute} from '../domain/r2GroupUpgrade';
+import {R2_GROUP_UPGRADE_VERSION,R2_GROUP_UPGRADE_HASH,type R2OpeningRoute} from '../domain/r2GroupUpgrade';
 
 export type RunLaunchIntent={kind:'new';openingRoute?:R2OpeningRoute}|{kind:'retry';run:R2RunState};
 /** Only the normal new-game route follows this policy. Saved runs carry their own identity. */
 export function newRunIdentity(characterId:CharacterId,route?:R2OpeningRoute){
-  if(route)return characterId==='erxiang'?{contentVersion:R2_ERXIANG_HANDOFF_VERSION,contentHash:R2_ERXIANG_HANDOFF_HASH}:{contentVersion:R2_TOOL_SUPPLY_VERSION,contentHash:R2_TOOL_SUPPLY_HASH};
+  if(route)return {contentVersion:R2_BASIC_CHOICE_VERSION,contentHash:R2_BASIC_CHOICE_HASH};
   return {contentVersion:R2_GROUP_UPGRADE_VERSION,contentHash:R2_GROUP_UPGRADE_HASH};
 }
 export function launchIdentity(characterId:CharacterId,intent:RunLaunchIntent){

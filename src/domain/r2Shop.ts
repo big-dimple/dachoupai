@@ -1,4 +1,4 @@
-import {isR2ToolSupply,R2_BASIC_TOOL_IDS} from './r2GroupUpgrade';
+import {isR2ToolSupply,isR2BasicChoice,R2_BASIC_TOOL_IDS} from './r2GroupUpgrade';
 import {r2JokerDefinitionsForContext,type R2ContentIdentity} from './r2ContentProfiles';
 import {R2_JOKERS,readR2Modifiers,supportsR2Joker,type R2JokerDefinition,type R2JokerInstance} from '../content/r2Schema';
 import {R2_EDITIONS,R2_LONG_TERM_ITEMS,R2_TOOLS,R2_TOOL_CATALOG,type R2Edition,type R2ToolDefinition} from '../content/r2Tools';
@@ -10,7 +10,8 @@ import {r2ItemSupported,r2ToolAllowed} from './r2ToolRuntime';
 import {r2StageSpec} from './r2Chapter';
 export const R2_ECONOMY={initialGold:6,shelfSlots:3,prices:{common:4,uncommon:6,rare:8},weights:{common:5,uncommon:3,rare:2},rerollStart:2,rerollCap:10} as const;
 export interface R2Offer {offerId:string;definitionId:string;price:number;consumed:boolean;edition?:R2Edition}
-export interface R2ShopState {visitIndex:number;rerollCount:number;freeRerolls:number;purchases:number;soldJoker:boolean;offers:R2Offer[];toolOffers:R2Offer[];itemOffers:R2Offer[]}
+export interface R2BasicChoice {shopSeq:number;purchase:null|{definitionId:string;commandId:string;paidPrice:number;seq:number}}
+export interface R2ShopState {visitIndex:number;rerollCount:number;freeRerolls:number;purchases:number;soldJoker:boolean;offers:R2Offer[];toolOffers:R2Offer[];itemOffers:R2Offer[];basicChoice?:R2BasicChoice}
 interface PurchaseContext extends R2ContentIdentity {purchaseCoupons:number;jokers?:readonly R2JokerInstance[];longTermItems?:readonly string[];shop?:Pick<R2ShopState,'purchases'>|null}
 export function getR2Joker(id:string,identity:R2ContentIdentity={}):R2JokerDefinition {
   const definition=r2JokerDefinitionsForContext(identity).find(d=>d.id===id);if(!definition)throw new Error(`unknown-joker: ${id}`);return definition;
@@ -71,6 +72,11 @@ export function r2ToolAcquisitionPool(state:R2RunState):R2ToolDefinition[] {
     }
   });
 }
+/** Public persistent legality; the UI may redirect duplicates, the atomic command rejects them. */
+export function r2BasicChoicePool(state:R2RunState):R2ToolDefinition[]{
+ if(!isR2BasicChoice(state)||state.phase!=='shop'||!state.shop||state.shop.basicChoice?.purchase)return [];
+ return r2ToolAcquisitionPool(state).filter(t=>R2_BASIC_TOOL_IDS.includes(t.id)&&!state.shop!.toolOffers.some(o=>o.definitionId===t.id));
+}
 export function drawR2Tool(rng:SeededRng,pool:readonly R2ToolDefinition[]):string|undefined {
   const families=Object.entries(R2_TOOL_CATALOG.acquisition.familyWeights).filter(([family])=>pool.some(tool=>tool.family===family));
   if(!families.length)return undefined;
@@ -90,6 +96,7 @@ export function drawR2BasicTool(rng:SeededRng,pool:readonly R2ToolDefinition[],e
  return eligible.length?pick(rng,eligible,tool=>tool.shopWeight).id:undefined;
 }
 export function r2BasicToolShelfStatus(state:R2RunState):string|undefined {
+ if(isR2BasicChoice(state)&&state.shop)return state.shop.basicChoice?.purchase?'基础改牌已售罄 · 刷新不重开，下一店恢复':'基础改牌 · 自选1件 · 每店一次，标价2金';
  if(!isR2ToolSupply(state)||!state.shop)return;
  const basic=state.shop.toolOffers.find(offer=>offer.offerId.endsWith('/tool/1'));
  return basic?basic.consumed?'基础改牌已售罄 · 本店不补货':'基础改牌 2 金 · 买后不补货':state.shop.toolOffers.some(offer=>R2_BASIC_TOOL_IDS.includes(offer.definitionId))?'无其他合法且不同的基础工具；保留现有货品':'当前没有合法基础改牌工具；该位缺货';

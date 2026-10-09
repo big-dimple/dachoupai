@@ -1,13 +1,12 @@
 import {toolInfo} from '../src/game/r2ToolInfo';
 import {expect,it} from 'vitest';
 import {createRun,applyCommand,assertRunInvariants,type R2RunState,type Action} from '../src/domain/run';
-import {newRunIdentity} from '../src/game/RunLaunch';
-import {R2_ERXIANG_HANDOFF_HASH,R2_BASIC_TOOL_IDS,R2_TOOL_SUPPLY_HASH,R2_TOUYE_WAGER_VERSION,R2_TOUYE_WAGER_HASH} from '../src/domain/r2GroupUpgrade';
+import {R2_ERXIANG_HANDOFF_VERSION,R2_ERXIANG_HANDOFF_HASH,R2_BASIC_TOOL_IDS,R2_TOOL_SUPPLY_HASH,R2_TOUYE_WAGER_VERSION,R2_TOUYE_WAGER_HASH} from '../src/domain/r2GroupUpgrade';
 import {r2ToolPrice,r2ToolAcquisitionPool,drawR2BasicTool,r2BasicToolShelfStatus} from '../src/domain/r2Shop';
 import {SeededRng} from '../src/core/SeededRng';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
 import {SavedRun,type SaveSlots,type SaveStore} from '../src/application/SavedRun';
-const start=()=>createRun({seed:'group-natural-17',runId:'basic-tools',characterId:'erxiang',rulesVersion:'r2',r2Identity:newRunIdentity('erxiang','group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
+const start=()=>createRun({seed:'group-natural-17',runId:'basic-tools',characterId:'erxiang',rulesVersion:'r2',r2Identity:{contentVersion:R2_ERXIANG_HANDOFF_VERSION,contentHash:R2_ERXIANG_HANDOFF_HASH},openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
 const cmd=(s:R2RunState,action:Action)=>({runId:s.runId,commandId:'basic/'+s.commandSeq,expectedSeq:s.commandSeq,action});
 const send=(s:R2RunState,a:Action)=>{const r=applyCommand(s,cmd(s,a));if(!r.ok)throw Error(r.code);assertRunInvariants(r.state);return r.state;};
 it('normal six gold buys its four-gold route starter and a legal two-gold basic tool without restocking or capacity growth',()=>{const s=start();expect(s.contentHash).toBe(R2_ERXIANG_HANDOFF_HASH);expect(s.shop!.toolOffers).toHaveLength(2);expect(new Set(s.shop!.toolOffers.map(o=>o.definitionId)).size).toBe(2);const basic=s.shop!.toolOffers[1];expect(R2_BASIC_TOOL_IDS).toContain(basic.definitionId);expect(basic.price).toBe(2);const starter=s.shop!.offers.find(o=>o.definitionId==='mantangcai')!;const b=send(send(s,{type:'BuyOffer',offerId:starter.offerId}),{type:'BuyOffer',offerId:basic.offerId});expect(b.gold).toBe(0);expect(b.shop!.toolOffers.map(o=>o.offerId)).toEqual(s.shop!.toolOffers.map(o=>o.offerId));expect(b.shop!.toolOffers[1].consumed).toBe(true);expect(b.consumables).toHaveLength(1);expect(r2BasicToolShelfStatus(b)).toContain('已售罄');expect(readCheckpoint(makeCheckpoint(b,[]))).toMatchObject({ok:true});});

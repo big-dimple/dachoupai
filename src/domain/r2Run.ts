@@ -1,4 +1,7 @@
 import {usesErxiangHandoff} from './r2ErxiangHandoff';
+import {R2_BASIC_CHOICE_VERSION,R2_BASIC_CHOICE_HASH,isR2BasicChoice} from './r2GroupUpgrade';
+import {r2BasicChoicePool} from './r2Shop';
+import {validR2BasicChoice} from './r2BasicChoice';
 import {R2_ERXIANG_HANDOFF_VERSION,R2_ERXIANG_HANDOFF_HASH} from './r2GroupUpgrade';
 import {R2_TOOL_SUPPLY_VERSION,R2_TOOL_SUPPLY_HASH,isR2ToolSupply} from './r2GroupUpgrade';
 import {usesTouyeWager,emptyTouyeWager,validTouyeCommit,touyeSnapshotToken,touyeReachableTypes,touyeTargetReached,TOUYE_TARGETS,type TouyeWager,type TouyeCommit} from './r2TouyeWager';
@@ -53,6 +56,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_BASIC_CHOICE_VERSION,contentHash:R2_BASIC_CHOICE_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_ERXIANG_HANDOFF_VERSION,contentHash:R2_ERXIANG_HANDOFF_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_TOOL_SUPPLY_VERSION,contentHash:R2_TOOL_SUPPLY_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_TOUYE_WAGER_VERSION,contentHash:R2_TOUYE_WAGER_HASH,amoScoreTiming:'assist-v1' as const}),
@@ -224,6 +228,8 @@ export function assertR2Invariants(state:R2RunState):void {
   check(state.phase!=='shop'||state.shop!==null,'shop shelf');
   if(state.shop){
     const s=state.shop,offers=[...s.offers,...s.toolOffers,...s.itemOffers];
+    check(validR2BasicChoice(state),'basic choice visit/receipt/quota');
+    check(!isR2BasicChoice(state)||s.toolOffers.length<=1&&s.toolOffers.every(o=>o.offerId.endsWith('/tool/0')),'basic choice random shelf');
     check(typeof s.soldJoker==='boolean','shop sales qualification');
     check(integer(s.rerollCount)&&integer(s.purchases)&&integer(s.visitIndex)&&s.visitIndex===state.stageIndex&&s.offers.length<=4&&s.toolOffers.length<=r2ToolShelfCapacity(state)&&s.itemOffers.length<=2&&new Set(offers.map(o=>o.offerId)).size===offers.length&&offers.every(o=>!!o.offerId&&typeof o.consumed==='boolean'),'shelf references/capacity');
     check(s.offers.every(o=>R2_JOKERS.some(d=>d.id===o.definitionId&&supportsR2Joker(d))&&(o.edition===undefined||EDITIONS.includes(o.edition))&&o.price===r2Price(o.definitionId,o.edition,state)),'joker shelf prices/edition');
@@ -365,10 +371,11 @@ export function makeR2Shop(state:R2RunState,reset:boolean):void {
   const toolId=drawR2Tool(rng,r2ToolAcquisitionPool(state));
   const toolOffers=toolId?[{offerId:`${prefix}/tool/0`,definitionId:toolId,price:r2ToolPrice(toolId,state),consumed:false}]:[];
   const itemOffers=reset?drawR2Items(rng,state.longTermItems,1+itemAmount(state,'item-offer-count')).map((id,slot)=>({offerId:`${prefix}/item/${slot}`,definitionId:id,price:r2ItemPrice(id),consumed:false})):state.shop!.itemOffers;
-  if(isR2ToolSupply(state)){const basicId=drawR2BasicTool(rng,r2ToolAcquisitionPool(state),toolId);if(basicId)toolOffers.push({offerId:`${prefix}/tool/1`,definitionId:basicId,price:r2ToolPrice(basicId,state),consumed:false});}
+  if(isR2ToolSupply(state)){const basicId=drawR2BasicTool(rng,r2ToolAcquisitionPool(state),toolId);if(!isR2BasicChoice(state)&&basicId)toolOffers.push({offerId:`${prefix}/tool/1`,definitionId:basicId,price:r2ToolPrice(basicId,state),consumed:false});}
   const freeRerolls=reset?(state.programRerollCoupon?1:0):state.shop!.freeRerolls;
   if(reset)state.programRerollCoupon=false;
-  state.shop={visitIndex:state.stageIndex,rerollCount:count,purchases:reset?0:state.shop!.purchases,soldJoker:reset?false:state.shop!.soldJoker,freeRerolls,offers,toolOffers,itemOffers};
+  const basicChoice=isR2BasicChoice(state)?reset?{shopSeq:state.commandSeq+1,purchase:null}:state.shop!.basicChoice:undefined;
+  state.shop={visitIndex:state.stageIndex,rerollCount:count,purchases:reset?0:state.shop!.purchases,soldJoker:reset?false:state.shop!.soldJoker,freeRerolls,offers,toolOffers,itemOffers,...(isR2BasicChoice(state)?{basicChoice}:{})};
   state.rng.shop=rng.snapshot();
 }
 function noCards(state:R2RunState,events:DomainEvent[]):void {
@@ -546,6 +553,20 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         const completion=state.normalCompletion;
         if(state.mode!=='standard'||state.tourMode!=='normal'||state.phase!=='run-won'||state.stageIndex!==24||state.chapter!==8||state.stage?.index!==23||state.stage.clearId!==`${state.runId}/clear/23`||state.outcome?.reason!=='all-stages-cleared'||!completion||completion.clearId!==state.stage.clearId||completion.totalHeat!==state.totalHeat)return fail('not-normal-win');
         state.tourMode='endless';state.outcome=null;makeChapter(state);makeR2Shop(state,true);state.phase='shop';break;
+      }
+      case 'BuyBasicTool': {
+        if(!isR2BasicChoice(state))return fail('basic-choice-unavailable');
+        if(state.phase!=='shop'||!state.shop)return fail('wrong-phase');
+        if(!Number.isSafeInteger(action.shopSeq)||action.shopSeq!==state.shop.basicChoice?.shopSeq)return fail('stale-shop');
+        if(state.shop.basicChoice.purchase)return fail('basic-choice-consumed');
+        if(!r2BasicChoicePool(state).some(t=>t.id===action.definitionId))return fail('basic-choice-not-legal');
+        if(state.consumables.length>=r2ConsumableCapacity(state))return fail('consumable-slots-full');
+        const price=r2PurchasePrice(state,{definitionId:action.definitionId,offerId:'',price:2,consumed:false});
+        if(state.gold<price)return fail('not-enough-gold');
+        state.gold-=price;state.shop.purchases++;if(state.purchaseCoupons>0)state.purchaseCoupons--;
+        state.consumables.push({instanceId:`${state.runId}/tool/${command.commandId}`,definitionId:action.definitionId});
+        state.shop.basicChoice.purchase={definitionId:action.definitionId,commandId:command.commandId,paidPrice:price,seq:state.commandSeq+1};
+        break;
       }
       case 'BuyOffer': {
         if(state.phase!=='shop'||!state.shop)return fail('wrong-phase');

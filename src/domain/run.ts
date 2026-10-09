@@ -109,6 +109,7 @@ export type Action =
   | { type: 'DestroyConsumable'; instanceId:string }
   | { type: 'SetWager'; enabled: boolean }
   | { type: 'BuyOffer'; offerId: string }
+  | { type:'BuyBasicTool';definitionId:string;shopSeq:number }
   | { type:'ChooseProgram';programId:R2ProgramId|null }
   | { type:'AbandonProgram' }
   | { type: 'ReorderHand' | 'ReorderJokers'; ids: readonly string[] };
