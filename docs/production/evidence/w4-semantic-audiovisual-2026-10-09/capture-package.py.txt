@@ -1,0 +1,19 @@
+import json,subprocess,hashlib,wave,array,math
+from pathlib import Path
+out=Path('/tmp/av-chain');r=json.loads((out/'report.json').read_text());frames=r['frames'];start=frames[0]['time'];audioStart=r['recordStart']['wall']/1000;offset=audioStart-start
+concat=[]
+for i,f in enumerate(frames):
+ concat.append("file '"+str(out/f['path'])+"'")
+ if i+1<len(frames):concat.append('duration '+str(max(.001,frames[i+1]['time']-f['time'])))
+concat.extend(['duration 0.1',"file '"+str(out/frames[-1]['path'])+"'"])
+(out/'frames.txt').write_text('\n'.join(concat)+'\n')
+subprocess.run(['ffmpeg','-y','-v','error','-f','concat','-safe','0','-i',str(out/'frames.txt'),'-vsync','vfr','-vf','scale=960:540','-c:v','libx264','-preset','veryfast','-crf','25','-pix_fmt','yuv420p',str(out/'actual-full-tab.mp4')],check=True)
+cmd=['ffmpeg','-y','-v','error']
+if offset>=0:cmd+=['-i',str(out/'actual-full-tab.mp4'),'-itsoffset',str(offset),'-i',str(out/'actual-audio.webm')]
+else:cmd+=['-i',str(out/'actual-full-tab.mp4'),'-ss',str(-offset),'-i',str(out/'actual-audio.webm')]
+cmd+=['-map','0:v','-map','1:a','-c:v','copy','-c:a','aac','-b:a','96k','-shortest','-movflags','+faststart',str(out/'actual-action-chain.mp4')];subprocess.run(cmd,check=True)
+subprocess.run(['ffmpeg','-y','-v','error','-i',str(out/'actual-audio.webm'),'-ac','1','-ar','48000','-c:a','pcm_s16le',str(out/'actual-output.wav')],check=True)
+w=wave.open(str(out/'actual-output.wav'));samples=array.array('h',w.readframes(w.getnframes()));rate=w.getframerate();peak=max(abs(x) for x in samples)/32768;rms=math.sqrt(sum(x*x for x in samples)/len(samples))/32768
+strike=next(f for f in r['runtime']['hero'] if f['phase']=='strike');key=next(c for c in r['runtime']['cues'] if c['kind']=='key' and c['voices']);alignment=(strike['audioTime']-key['audioTime'])*1000
+analysis=dict(durationSeconds=len(samples)/rate,peak=peak,rms=rms,fullScaleSamples=sum(abs(x)>=32767 for x in samples),audioStartMinusFirstVideoFrameSeconds=offset,keyAudioToFirstObservedStrikeMs=alignment,heroEventId=strike['eventId'],heard=False,claim='Actual recorded post-ceiling mixed output; sample/statistical and source/frame alignment only. Not subjective audition, physical FPS or user acceptance.',assetBytes=208651,newAssets=22,existingClothRetained=True)
+(out/'output-analysis.json').write_text(json.dumps(analysis,indent=2)+'\n');print(json.dumps(analysis))

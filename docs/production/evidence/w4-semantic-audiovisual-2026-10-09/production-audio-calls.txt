@@ -1,0 +1,92 @@
+src/game/TitleScene.ts:17:    this.leaving=false;this.firstRender=true;this.audio.setScene('menu');
+src/game/TitleScene.ts:80:    this.leaving=true;this.audio.curtainOpen();this.scene.start('character-select',{seed:this.seed});
+src/game/TitleScene.ts:84:    this.leaving=true;this.audio.titleBell();this.scene.stop();routeSavedRun(this.game);
+src/game/ShopScene.ts:108:    this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene('shop');this.view=new SceneView(this,()=>this.render());this.render();
+src/game/ShopScene.ts:330:        if(this.busy)return;this.shelfKind=kind;this.shelfPage=0;this.selectedOfferId=undefined;this.audio.select();this.render();
+src/game/ShopScene.ts:337:        if(this.busy)return;this.shelfPage=(this.shelfPage+1)%pages;this.selectedOfferId=undefined;this.audio.select();this.render();
+src/game/ShopScene.ts:567:    this.selectedOfferId=id;this.notice='';this.audio.select();this.render();
+src/game/ShopScene.ts:637:    this.audio.coin();
+src/game/ShopScene.ts:683:        this.audio.invalid();
+src/game/ShopScene.ts:693:        const {kind,offer}=purchase,name=kind==='jokers'?this.jokerDefinition(offer.definitionId).name:kind==='tools'?toolInfo(offer.definitionId,this.run).name:itemInfo(offer.definitionId).name;this.audio.purchase();
+src/game/ShopScene.ts:700:        const joker=previous.jokers.find(j=>j.instanceId===action.instanceId)!;this.audio.sale();
+src/game/ShopScene.ts:703:      }else if(action.type==='RerollShop'&&!result.duplicate){this.selectedOfferId=undefined;this.audio.reroll();this.notice=`大丑牌与工具已更新 · 道具保留 · 金币 ${oldGold} → ${this.run.gold}`;this.pendingGoldRoll=oldGold;this.pendingRerollFlip=this.shelfKind!=='items';}
+src/game/ShopScene.ts:704:      else if(action.type==='ReorderJokers'){this.audio.select();this.notice='顺序已保存 · 从左至右触发';}
+src/game/ShopScene.ts:705:      else if(action.type==='ChooseProgram'||action.type==='AbandonProgram'){this.audio.select();this.notice=programStatus(this.run);}
+src/game/ShopScene.ts:708:        if(used){const info=toolInfo(used.definitionId,this.run);this.audio.toolUse(info.family);this.pendingToolCue={instanceId:used.instanceId,label:info.label};}else this.audio.select();
+src/game/ShopScene.ts:711:        if(previous.shop!.rerollCount!==this.run.shop!.rerollCount){this.selectedOfferId=undefined;this.audio.reroll();this.pendingRerollFlip=this.shelfKind!=='items';}
+src/game/ShopScene.ts:713:      if(action.type==='LeaveShop'){this.audio.select();this.scene.start('game');}
+src/game/SceneView.ts:123:    this.target(r,name,{tap:()=>{AudioEngine.shared.select();action();},press:()=>{art.y=b.y+2;t.y=Number(t.getData('restY')??b.y+b.height/2-1)+2;glow.setAlpha(.6);},release:rest,cancel:rest});
+src/game/RunMenu.ts:46:  audio.setVolume('master',1);audio.muted=false;audio.musicMuted=false;
+src/game/RunMenu.ts:47:  audio.setVolume('music',audioPreferences.music);audio.setVolume('sfx',audioPreferences.sfx);audio.setVolume('ui',audioPreferences.sfx);
+src/game/RunMenu.ts:69:  toggle.onclick=()=>{if(modal.open){audio.cancel();close();}else{audio.select();open();}};
+src/game/RunMenu.ts:76:    b.onclick=async()=>{if(b.disabled)return;audio.select();try{await action();}catch{status.textContent='操作未完成，原进度保留。请重试或导出存档。';open();}};
+src/game/RunMenu.ts:140:    row.className='audio-volume-label';name.textContent=label;range.type='range';range.min='0';range.max='100';range.step='1';range.value=String(Math.round(audio.getVolume(bus)*100));range.setAttribute('aria-label',label);value.textContent=range.value+'%';value.className='audio-volume-value';
+src/game/RunMenu.ts:142:    range.oninput=()=>{const volume=Number(range.value)/100;audio.setVolume(bus,volume);if(bus==='sfx')audio.setVolume('ui',volume);value.textContent=range.value+'%';void audio.unlock();saveAudio();};
+src/game/RunMenu.ts:144:  const audioHint=document.createElement('small');audioHint.className='audio-controls-hint';audioHint.textContent=audio.musicTitle+'；拖到 0% 关闭音乐，音效独立。';audioControls.append(audioHint);
+src/game/RunMenu.ts:145:  function saveAudio():void {try{localStorage.setItem('dachoupai-audio-v2',JSON.stringify({version:2,music:audio.getVolume('music'),sfx:audio.getVolume('sfx')}));}catch{/* Audio preferences are optional. */}}
+src/game/IntermissionScene.ts:73:    const skipped=!!run.stage.skipResult;this.audio.setScene(this.result.cleared?'success':'failure');
+src/game/IntermissionScene.ts:75:      if(this.result.cleared){const outcome=stageOutcome(run.stage,run.lastTrace);if(outcome.intensity>1)this.audio.overkill(outcome.intensity);else this.audio.success();}
+src/game/IntermissionScene.ts:78:        if(run.phase==='run-lost'&&run.outcome?.reason!=='abandoned'&&cue?.runId===run.runId&&cue.commandSeq===run.commandSeq)this.audio.failure(cue);
+src/game/IntermissionScene.ts:217:      const skip=v.button({x:b.x+b.width-94,y:b.y+2,width:88,height:44},'跳过动效','action/skip-celebration',()=>{this.firstRender=false;this.audio.cancelPresentation();this.render();});
+src/game/IntermissionScene.ts:262:    this.lifecycle++;this.rewardEffects.clear();this.dialog.close();this.audio.select();
+src/game/IntermissionScene.ts:284:          this.dialog.close(dialog);this.audio.invalid();
+src/game/IntermissionScene.ts:286:          if(lifecycle===this.lifecycle&&this.scene.isActive()){this.notice='接续未保存，胜利进度仍保留；请在菜单重试保存。';this.dialog.close(dialog);this.audio.invalid();}
+src/game/IntermissionScene.ts:296:      this.notice=gameSession().notice||'新局未保存，请在菜单重试保存。';this.audio.invalid();
+src/game/IntermissionScene.ts:305:        this.notice='商店尚未保存，请在菜单重试保存。';this.audio.invalid();
+src/game/GameScene.ts:259:      this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.stopJokerIdle();this.tweens.killAll();this.time.removeAllEvents();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.previewCards=undefined;this.presentation=undefined;this.playAuraPulse=undefined;this.playing=false;this.rollingHeat=false;this.dialog.close();
+src/game/GameScene.ts:274:    this.stage=getStage(this.run.stage.index,this.run.tourMode,this.run.difficulty)!;this.characterId=this.run.characterId;settings();this.audio.setScene(this.stage.index%3===2?'boss':'table');
+src/game/GameScene.ts:616:      this.audio.deal(i);
+src/game/GameScene.ts:665:    if(enter){const previous=this.cardViews.find(card=>card.card.id===this.hoveredCardId);this.hoveredCardId=id;if(previous&&previous!==view)this.restingCard(previous,this.cardViews.indexOf(previous),true);this.revealCard(view);this.sweepSheen(view);this.audio.hoverTick();}else if(this.hoveredCardId===id)this.hoveredCardId=undefined;
+src/game/GameScene.ts:1089:        const info=toolInfo(used.definitionId);this.audio.toolUse(info.family);this.effects.clear();
+src/game/GameScene.ts:1167:    if(update.phase!=='cancelled'){if(update.mode==='select')this.audio.select();else this.audio.deselect();}
+src/game/GameScene.ts:1177:    if(!this.selectedIds.has(id)&&this.selectedIds.size>=this.selectionLimit){this.statusMessage='每手最多选择 5 张牌';this.audio.invalid();if(view)this.wiggleCard(view,this.cardViews.indexOf(view));this.updateControls();return;}
+src/game/GameScene.ts:1180:      this.selectedIds.delete(id);this.audio.deselect();
+src/game/GameScene.ts:1182:      if (this.selectedIds.size >= this.selectionLimit) {this.statusMessage='每手最多选择 5 张牌';this.audio.invalid();if(view)this.wiggleCard(view,this.cardViews.indexOf(view));this.updateControls();return;}
+src/game/GameScene.ts:1183:      this.selectedIds.add(id);this.audio.select();
+src/game/GameScene.ts:1298:      this.audio.coin();
+src/game/GameScene.ts:1299:    }else this.audio.sourceCue('joker');
+src/game/GameScene.ts:1317:      this.run=result.state;this.audio.discard();this.effects.clear();this.updateHud();
+src/game/GameScene.ts:1323:        this.audio.sourceCue('boss');await Promise.all([this.floatNote(event.operation==='charge-discard'?'-1 金币':'目标 +'+heatText(event.amount),b.x+b.width/2,b.y+b.height,'#ffd0a2',this.reducedMotion?180:460,context),this.reducedMotion?this.wait(180,context):this.animate({targets:target,scale:{from:1.14,to:1},duration:360,ease:'Back.easeOut'},context)]);
+src/game/GameScene.ts:1383:  private stopScoreFire():void {this.scoreFlame?.destroy();this.scoreFlame=undefined;this.audio.stopScoreFire();}
+src/game/GameScene.ts:1439:      this.audio.scoreImpact(this.presentation,event.eventId,impact?.kind??'add',impact?.tier??0,impact?.chain??0);
+src/game/GameScene.ts:1490:    if(!context.signal.aborted&&(h0!==h1||m0!==m1))this.audio.scoreRoll(duration/gameSession().speed,m0!==m1?'mult':'heat',event.operation==='multiply-multiplier'?2:1);
+src/game/GameScene.ts:1538:    if(number&&this.presentation&&!this.presentation.replay&&number.kind!=='add'&&!this.reducedMotion)this.audio.scoreImpact(this.presentation,event.eventId,'flight',number.tier,number.chain);
+src/game/GameScene.ts:1576:    if(number||benefit){if(!number&&benefit&&this.presentation&&!this.presentation.replay)this.audio.scoreImpact(this.presentation,event.eventId,restoreKey?.strike?'key':'add',restoreKey?.strike?2:0);}
+src/game/GameScene.ts:1577:    else if(event.sourceType==='character')this.audio.sourceCue('character');
+src/game/GameScene.ts:1578:    else if(key?.kind==='multiply')this.audio.multiplier('multiply',index);
+src/game/GameScene.ts:1579:    else if(event.sourceType==='joker'&&sourceBenefit)this.audio.sourceCue(event.phase==='onHeldCard'?'held':'joker',index);
+src/game/GameScene.ts:1580:    else if(event.sourceType==='card'&&event.value.n!=='0')this.audio.sourceCue('card',index);
+src/game/GameScene.ts:1581:    else if(event.sourceType==='rule')this.audio.sourceCue(event.phase==='onStageClear'?'held':'boss');
+src/game/GameScene.ts:1582:    if(!number&&(event.operation==='add-multiplier'||event.operation==='read-growth'&&(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)))this.audio.multiplier('add',index);
+src/game/GameScene.ts:1583:    else if(event.operation==='retrigger-card')this.audio.retrigger(index);
+src/game/GameScene.ts:1584:    if(['lucky-multiplier-check','lucky-gold-check','glass-check'].includes(event.operation))this.audio.chanceRoll(event.operation==='glass-check'?'glass':'lucky',event.value.n==='1');
+src/game/GameScene.ts:1585:    if(event.operation==='chance-heat-check')this.audio.chanceRoll('joker',event.value.n==='1');
+src/game/GameScene.ts:1586:    if(event.operation==='destroy-card')this.audio.glassBreak();
+src/game/GameScene.ts:1587:    if(event.operation==='upgrade-hand')this.audio.toolUse('planet');
+src/game/GameScene.ts:1588:    if(event.operation==='reward-consumable')this.audio.rareReveal();
+src/game/GameScene.ts:1589:    if(event.operation==='reward-free-reroll')this.audio.rareReveal();
+src/game/GameScene.ts:1599:      effects.push(this.pulseResource('play',event.resourceBefore,context,event.resourceAfter));this.audio.select();
+src/game/GameScene.ts:1605:      this.audio.coin();
+src/game/GameScene.ts:1645:    const counter={value:before};this.audio.scoreRoll(duration/gameSession().speed,'total',1);
+src/game/GameScene.ts:1676:    this.audio.resourceSpend(kind,remaining,amount,cost);
+src/game/GameScene.ts:1714:    if(!presentation.replay){const level=presentation.state.phase==='run-lost'?0:scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat);this.ensureScoreFlame().impact('award',level===3?1:level===2?.85:.65);this.audio.scoreImpact(presentation,'award','award',closeOpening?.strike&&level<2?2:level,score.events.filter(e=>numberImpact(e,this.stage.targetHeat)?.kind==='multiply').length);this.keepScoreReadable();}
+src/game/GameScene.ts:1763:      this.audio.playHand();
+src/game/GameScene.ts:1776:        this.audio.cardLand();
+src/game/GameScene.ts:1790:        if(view&&frame){this.audio.sourceCue('joker');await Promise.all([this.focusSource(view,frame,T.brass,false,380,context),this.floatNote('四张'+type,view.x,view.y-frame.height/2-8,'#ffe3ae',380,context)]);}
+src/game/GameScene.ts:1818:  fastForward():void {const presentation=this.presentation;if(!presentation)return;this.effects.clear();this.audio.cancelPresentation();this.cameras.main.resetFX();this.heatText.setScale(1);this.scoreTotal.setScale(1);this.completePresentation(presentation);}
+src/game/DetailDialog.ts:64:      b.onclick=async()=>{AudioEngine.shared.select();b.disabled=true;b.setAttribute('aria-busy','true');status.hidden=true;try{await action.run();}catch{if(this.active(dialog)){status.textContent='操作未完成，请重试。';status.hidden=false;}}finally{if(b.isConnected){b.disabled=!!action.disabled;b.removeAttribute('aria-busy');}}};row.append(b);
+src/game/DetailDialog.ts:66:    const close=document.createElement('button');close.textContent=options.closeLabel??'关闭';close.className='dialog-close';close.onclick=()=>{AudioEngine.shared.cancel();this.close(dialog);};row.append(close);
+src/game/CharacterSelectScene.ts:49:    this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene('menu');
+src/game/CharacterSelectScene.ts:90:      v.target(hit,'route/'+focus,{tap:()=>{if(!this.choosing){this.selectedRoute=focus;this.notice='';this.audio.select();this.render();}}});
+src/game/CharacterSelectScene.ts:171:    if(this.modeConfig.mode==='tutorial'&&id!=='erxiang'){this.notice='教程固定二响；跳过教程后可自由选角。';this.audio.invalid();this.render();return;}
+src/game/CharacterSelectScene.ts:172:    this.selectedId=id;this.notice='';this.animateChoice=true;this.audio.select();this.render();
+src/game/CharacterSelectScene.ts:193:    if(this.step==='route'){this.step='hero';this.notice='';this.audio.cancel();this.render();return;}
+src/game/CharacterSelectScene.ts:194:    if(this.modeConfig.mode==='tutorial'){this.modeConfig=DEFAULT_MODE_SELECTION;this.selectedId=undefined;this.seed=undefined;this.notice='已跳过教程，可自由选择角色。';this.audio.cancel();this.render();return;}
+src/game/CharacterSelectScene.ts:195:    if(this.selectedId){this.selectedId=undefined;this.selectedRoute=undefined;this.notice='已取消选择，进度没有改变。';this.audio.cancel();this.render();return;}
+src/game/CharacterSelectScene.ts:196:    const existing=gameSession().run;if(!existing){this.audio.cancel();this.scene.start('title');return;}
+src/game/CharacterSelectScene.ts:198:    this.audio.cancel();routeSavedRun(this.game);
+src/game/CharacterSelectScene.ts:202:    if(this.step==='hero'){this.step='route';this.notice='';this.audio.select();this.render();return;}
+src/game/CharacterSelectScene.ts:213:    if(gameSession().pendingRun){this.notice=gameSession().notice||'候选尚未保存，请先重试保存或取消候选。';this.audio.invalid();this.render();return false;}
+src/game/CharacterSelectScene.ts:214:    if(!r2ModeUnlocked(readRunProgress().progress,this.modeConfig)){this.notice='此模式尚未解锁，请先完成对应标准八章首通，或继续已有模式存档。';this.audio.invalid();this.render();return false;}
+src/game/CharacterSelectScene.ts:222:      if(!controller||controller.status!=='idle'||session.run!==controller){this.notice=session.notice||'新局尚未保存，请从菜单重试保存。';this.audio.invalid();return false;}
+src/game/CharacterSelectScene.ts:223:      this.audio.select();this.scene.start('shop');return true;

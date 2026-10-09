@@ -63,3 +63,5 @@
 本包实际采用：22件Kenney CC0实录（208651字节）及现有cloth2布料，`src/audio/foley.ts`逐语义配置，所有生产和兼容音效路径改为有限录音层；普通短轻，关键低频／木质／铃尾分层，购买双声75ms。已适配Inkwave Spring、minGap／每语义声部上限和确认时间差，精确来源／修改／MIT见 `third-party/inkwave/README.md`。仅现有英雄strike和数字收束、开场名字→台词70ms错峰；英雄→路线与+500ms保持。按钮共用入口补轻反馈，静音／低动态／跳过／取消仍走现有生命周期。
 
 未采用：InkWipe、V.tone/V.nz、确认冲击环、.955按压／80ms、3D、字体、曲目或debug freeze；它们保留可移植参考，不能写成已实现。原demo5%失败／未听限制保持。此处记录候选实施，不预记CI、main、真人听感／观感或设备验收。最终有限动作链、可播放片段和精确head结果另存证据。
+
+有限候选已保存：[实际动作链、可播放输出、采用与未采用、原FAIL](evidence/w4-semantic-audiovisual-2026-10-09/README.md)。最终产品76b7497，heard:false；最终精确head CI／父审／main与用户实机另核。
