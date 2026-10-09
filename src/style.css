@@ -562,3 +562,11 @@ button[aria-busy=true] { border-style:dashed; }
 .hero-comparison strong { color:#3f606b; font-size:15px; }
 .hero-comparison small { font-size:14px; color:#59646a; }
 @media (max-height:500px) and (min-width:640px) { .hero-comparison { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+
+/* Saved deletions show actual targets together; no duplicate empty after-side. */
+.tool-saved-result .tool-change-card.is-removal { flex:0 1 calc(50% - 6px); }
+.tool-saved-result .is-removal figcaption:empty,
+.tool-saved-result .is-removal small:empty,
+.tool-saved-result .is-removal .tool-change-arrow,
+.tool-saved-result .is-removal .tool-change-removed { display:none; }
+.tool-saved-result .is-removal .candidate-card-face { min-width:110px; }

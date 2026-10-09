@@ -37,11 +37,11 @@ export function handLevelChangeText(type:R2HandType,before:number,after:number):
  return `${HAND_LABELS[type]} · Lv.${before} → ${after}\n基础热度 ${a.heat} → ${b.heat}；基础倍率 ${a.mult} → ${b.mult}`;
 }
 export function renderCardChange(host:HTMLElement,change:CardChange,index:number):void {
- const row=document.createElement('figure'),caption=document.createElement('figcaption'),pair=document.createElement('div');row.className='tool-change-card'+(change.note.startsWith('替换原增强')?' is-replacement':'');row.dataset.sourceId=change.before.id;caption.textContent=`${index+1}. 确认前 → ${change.label}`;pair.className='tool-change-pair';
+ const row=document.createElement('figure'),caption=document.createElement('figcaption'),pair=document.createElement('div');row.className='tool-change-card'+(!change.after?' is-removal':'')+(change.note.startsWith('替换原增强')?' is-replacement':'');row.dataset.sourceId=change.before.id;caption.textContent=!change.after?'':`${index+1}. 确认前 → ${change.label}`;pair.className='tool-change-pair';
  const before=document.createElement('span'),arrow=document.createElement('span'),after=document.createElement('span');renderToolCard(before,change.before);appendAttributes(before,change.before);arrow.textContent='→';arrow.className='tool-change-arrow';
  if(change.after){renderToolCard(after,change.after);appendAttributes(after,change.after);after.className='tool-change-after';}else{after.className='tool-change-removed';after.textContent='移除';}
  pair.setAttribute('aria-label',cardSpecialText(change.before)+' → '+(change.after?cardSpecialText(change.after):'永久删除'));
- const note=document.createElement('small');note.textContent=change.note;row.append(caption,pair,note);pair.append(before,arrow,after);host.append(row);
+ const note=document.createElement('small');note.textContent=!change.after?'':change.note;row.append(caption,pair,note);pair.append(before,arrow,after);host.append(row);
 }
 export function renderHandChange(host:HTMLElement,type:R2HandType,before:number,after:number):void {
  const row=document.createElement('article'),name=document.createElement('strong'),pair=document.createElement('div');row.className='tool-change-level';name.textContent=HAND_LABELS[type]+' · 基础数值';pair.className='tool-change-level-pair';
@@ -50,5 +50,5 @@ export function renderHandChange(host:HTMLElement,type:R2HandType,before:number,
 }
 
 function appendAttributes(host:HTMLElement,card:PlayingCard):void {
- const label=document.createElement('small');label.className='tool-change-attributes';label.textContent=[enhancementText(card),editionLabel(card.edition)].join(' · ');host.append(label);
+ const label=document.createElement('small');label.className='tool-change-attributes';label.textContent=[card.enhancement?enhancementText(card):'',card.edition&&card.edition!=='none'?editionLabel(card.edition):''].filter(Boolean).join(' · ');if(label.textContent)host.append(label);
 }
