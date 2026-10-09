@@ -460,3 +460,17 @@ button[aria-busy=true] { border-style:dashed; }
  .tool-detail .tool-target-sort,.tool-detail .tool-target-directory,.tool-detail .tool-directory-count { grid-column:1; }
  .tool-detail .tool-choice-grid { grid-column:2;grid-row:1/4;max-height:150px;align-self:start; }
 }
+
+/* W2 shared character and saved-growth keepsake; original artwork, no new assets. */
+.build-keepsake { display:grid; gap:12px; margin:0 0 16px; padding:14px; background:#f3eadb; border:1px solid #a38b66; border-radius:8px; }
+.build-keepsake-hero,.build-keepsake-growth { display:flex; align-items:flex-start; gap:12px; min-width:0; }
+.build-keepsake-hero > img { flex:none; width:88px; height:124px; object-fit:contain; }
+.build-keepsake-growth { padding:10px; background:#fff9ee; border-left:3px solid #2f555c; border-radius:4px; }
+.build-keepsake-growth > img { flex:none; width:52px; height:74px; object-fit:contain; }
+.build-keepsake article > div { flex:1; min-width:0; }
+.build-keepsake h3,.build-keepsake h4 { margin:0 0 5px; color:#26313a; font-size:16px; line-height:1.4; overflow-wrap:anywhere; }
+.build-keepsake p { margin:4px 0 0; color:#26313a; font-size:14px; line-height:1.5; white-space:pre-wrap; overflow-wrap:anywhere; }
+.build-keepsake .build-keepsake-note,.build-keepsake .build-keepsake-next,.build-keepsake .build-keepsake-empty { color:#42605b; }
+.build-keepsake-value { display:block; font-size:20px; line-height:1.4; color:#a84437; }
+@media(max-width:480px) { .build-keepsake { padding:10px; gap:10px; } .build-keepsake-hero > img { width:60px; height:86px; } .build-keepsake-hero { gap:10px; } .build-keepsake-growth { gap:8px; padding:8px; } }
+@media(max-width:360px) { .build-keepsake { padding:8px; } .build-keepsake-growth > img { width:44px; height:62px; } }

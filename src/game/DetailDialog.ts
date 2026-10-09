@@ -1,3 +1,5 @@
+import type {BuildKeepsake} from './BuildKeepsake';
+import {buildKeepsakeView} from './BuildKeepsakeView';
 import {AudioEngine} from '../audio/AudioEngine';
 import {observeSuitSymbols} from './SuitSymbols';
 import type {ExperienceCard} from './JokerExperience';
@@ -13,7 +15,7 @@ export function modalBlocksCanvas(x:number,y:number):boolean {
 }
 interface DialogAction {label:string;run:()=>void|Promise<void>;disabled?:boolean;primary?:boolean}
 type ArtLoadStatus='unregistered'|'idle'|'loading'|'loaded'|'failed';
-interface DialogOptions {shopContext?:'purchase'|'held'|'compare'|'sale';cards?:readonly ExperienceCard[];onClose?:()=>void;summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;alignedLayers?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;fallbackUrl?:string;alt:string;layout?:'card';caption?:string}}
+interface DialogOptions {keepsake?:BuildKeepsake;shopContext?:'purchase'|'held'|'compare'|'sale';cards?:readonly ExperienceCard[];onClose?:()=>void;summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;alignedLayers?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;fallbackUrl?:string;alt:string;layout?:'card';caption?:string}}
 export class DetailDialog {
   private dialog?:HTMLDialogElement;
   private lastPointer?:{x:number;y:number};
@@ -150,6 +152,7 @@ export class DetailDialog {
     if(options.summaryBody&&options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;if(options.shopContext==='purchase'||options.shopContext==='sale')intro.prepend(summary);else intro.append(summary);}
     if(options.editionBody){const edition=document.createElement('p');edition.className='dialog-edition-summary';edition.textContent=options.editionBody;intro.append(edition);}
     if(options.summaryBody&&!options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;if(options.shopContext==='purchase'||options.shopContext==='sale')intro.prepend(summary);else intro.append(summary);}
+    if(options.keepsake)intro.prepend(buildKeepsakeView(options.keepsake,cleanups));
     if(options.cards?.length){
       const gallery=document.createElement('section');gallery.className='experience-cards';gallery.setAttribute('aria-label','来源与下一步');
       for(const card of options.cards){

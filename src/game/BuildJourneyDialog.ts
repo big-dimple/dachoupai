@@ -1,3 +1,4 @@
+import {buildKeepsake} from './BuildKeepsake';
 import {attachFirstChapterGuide} from './FirstChapterGuide';
 import type {R2RunState} from '../domain/r2Run';
 import {DetailDialog} from './DetailDialog';
@@ -13,7 +14,7 @@ export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:Jo
   const art:Record<BuildFocus,string>={group:'b10',straight:'c11',flush:'c09'};
   dialog.open('你想怎样组牌？',buildDirectionSummary(state),[
    ...(actions.chapter?[{label:'本章节目',run:actions.chapter}]:[]),...(actions.manage?[{label:'持有牌管理',run:actions.manage}]:[])
-  ],{summaryBody:buildDirectionSummary(state),collapseRules:true,rulesLabel:'路线与使用说明',cards:BUILD_FOCUS.map(f=>{const facts=buildJourneyFacts(state,f),stock=facts.offers.find(o=>o.kind==='jokers'&&o.relation?.kind==='direct')??facts.offers.find(o=>o.kind==='jokers'&&o.relation?.kind==='support'),owned=facts.owned.find(o=>o.relation.kind==='direct')??facts.owned.find(o=>o.relation.kind==='support');return {title:BUILD_LABEL[f],url:stock?.url??owned?.url??jokerArtPreviewUrl(art[f]),body:(selected===f?'当前方向 · ':'')+shortGuide[f]+'\n'+(stock?'现货 · '+stock.relation!.label+'：'+stock.title:owned?'持有 · '+owned.relation.label+'：'+owned.title+'\n本店暂无对应直接/辅助现货':'路线示意 · 暂无对应直接/辅助现货或持牌；进入后可比较其它路线机会'),action:{label:'选择'+BUILD_LABEL[f],run:()=>{chooseBuildFocus(state,f);actions.onFocus?.();showBuildJourney(dialog,state,actions);}}};})});attachFirstChapterGuide(state,actions.onFocus);return;
+  ],{keepsake:buildKeepsake(state),summaryBody:buildDirectionSummary(state),collapseRules:true,rulesLabel:'路线与使用说明',cards:BUILD_FOCUS.map(f=>{const facts=buildJourneyFacts(state,f),stock=facts.offers.find(o=>o.kind==='jokers'&&o.relation?.kind==='direct')??facts.offers.find(o=>o.kind==='jokers'&&o.relation?.kind==='support'),owned=facts.owned.find(o=>o.relation.kind==='direct')??facts.owned.find(o=>o.relation.kind==='support');return {title:BUILD_LABEL[f],url:stock?.url??owned?.url??jokerArtPreviewUrl(art[f]),body:(selected===f?'当前方向 · ':'')+shortGuide[f]+'\n'+(stock?'现货 · '+stock.relation!.label+'：'+stock.title:owned?'持有 · '+owned.relation.label+'：'+owned.title+'\n本店暂无对应直接/辅助现货':'路线示意 · 暂无对应直接/辅助现货或持牌；进入后可比较其它路线机会'),action:{label:'选择'+BUILD_LABEL[f],run:()=>{chooseBuildFocus(state,f);actions.onFocus?.();showBuildJourney(dialog,state,actions);}}};})});attachFirstChapterGuide(state,actions.onFocus);return;
  }
  const facts=buildJourneyFacts(state,focus);
  if(state.phase==='shop'&&!all){
@@ -23,7 +24,7 @@ export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:Jo
    {label:'查看全部现货与持牌',run:()=>showBuildJourney(dialog,state,actions,false,true)},
    {label:'更换方向',run:()=>showBuildJourney(dialog,state,actions,true)},
    {label:choice?'先留金，进入牌桌':'这轮不买，留金入场',primary:true,disabled:!actions.ready,run:actions.continue},
-  ],{summaryBody:decision.headline+'\n'+decision.reason+'\n'+buildDirectionCaption(state),cards,collapseRules:true,rulesLabel:'建议依据与完整规则'});attachFirstChapterGuide(state,actions.onFocus);return;
+  ],{keepsake:buildKeepsake(state),summaryBody:decision.headline+'\n'+decision.reason+'\n'+buildDirectionCaption(state),cards,collapseRules:true,rulesLabel:'建议依据与完整规则'});attachFirstChapterGuide(state,actions.onFocus);return;
  }
  const offers=facts.offers.map(o=>({title:o.title,url:o.url,stat:o.decision,body:o.brief,action:{label:o.affordable?'查看并选择这件':'查看差额与条件',run:()=>actions.offers?.(o.id,o.kind)}}));
  const owned=facts.owned.map(o=>{const p=facts.progress.find(p=>p.instanceId===o.id);return {title:o.title,url:o.url,stat:p?.metric,body:o.body+'\n'+(p?p.cause+'\n'+p.next:''),action:{label:'查看来源与成长',run:()=>actions.source(o.id)}};});
@@ -38,5 +39,5 @@ export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:Jo
   ...(actions.publicHands?[{label:'当前手牌可成型',run:actions.publicHands}]:[]),
   {label:'打开道具箱',disabled:!actions.ready||!state.consumables.length,run:actions.tools},
   {label:actions.continueLabel,primary:true,disabled:!actions.ready,run:actions.continue},
- ],{summaryBody:summary+'\n'+shortGuide[focus]+'\n'+buildDirectionCaption(state)+(state.phase==='shop'&&!offers.length?'\n本店无对应现货，可留金或换方向':''),cards,collapseRules:true,rulesLabel:'利息、牌组与完整来源规则'});attachFirstChapterGuide(state,actions.onFocus);
+ ],{keepsake:buildKeepsake(state),summaryBody:summary+'\n'+shortGuide[focus]+'\n'+buildDirectionCaption(state)+(state.phase==='shop'&&!offers.length?'\n本店无对应现货，可留金或换方向':''),cards,collapseRules:true,rulesLabel:'利息、牌组与完整来源规则'});attachFirstChapterGuide(state,actions.onFocus);
 }
