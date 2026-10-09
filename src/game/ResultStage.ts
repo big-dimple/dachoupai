@@ -16,8 +16,8 @@ export function resultStageFacts(run:R2RunState,cleared:boolean,skipped=false){
  return {trace,character,source:source||undefined,growth,intensity:trace?outcome.intensity:1};
 }
 export function resultStagePlan(b:Box,short:boolean){
- const split=b.width>=600||short,pad=short?12:18,gap=short?12:20,inner={x:b.x+pad,y:b.y+pad,width:b.width-pad*2,height:b.height-pad*2};
- const sourceWidth=short?Math.min(170,inner.width*.42):Math.min(300,inner.width*.32);
+ const compact=b.height<336,split=b.width>=600||short||compact,pad=short?12:18,gap=short?12:20,inner={x:b.x+pad,y:b.y+pad,width:b.width-pad*2,height:b.height-pad*2};
+ const sourceWidth=short?Math.min(170,inner.width*.42):b.width<600?Math.min(140,Math.max(120,inner.width*.4)):Math.min(300,inner.width*.32);
  const source:Box=split?{...inner,width:sourceWidth}:{...inner,y:inner.y+200,height:Math.max(0,inner.height-200)};
  const score:Box=split?{...inner,x:inner.x+sourceWidth+gap,width:inner.width-sourceWidth-gap}:{...inner,height:184};
  return {split,score,source,pad};

@@ -38,7 +38,8 @@ export function resultStagePaper(scene:Phaser.Scene,view:SceneView,b:Box,lost=fa
 }
 export function resultStageSources(scene:Phaser.Scene,view:SceneView,b:Box,facts:ReturnType<typeof resultStageFacts>,short:boolean):{text:Box;art:Phaser.GameObjects.Image[]} {
  const small=b.height<200,side=small&&!short&&b.width>=230,art:Phaser.GameObjects.Image[]=[];
- const height=short?70:small?88:156,cardWidth=height*5/7,charWidth=height*.67;
+ const reserved=facts.growth?132:facts.source?88:0;
+ const height=Math.min(short?70:small?88:156,side?b.height:Math.max(0,b.height-reserved-10)),cardWidth=height*5/7,charWidth=height*.67;
  const char=facts.character&&selectionPortraitKey(facts.character),card=facts.source&&jokerArtKey(facts.source.definitionId);
  const keys=[...(char&&scene.textures.exists(char)?[{key:char,width:charWidth,id:facts.character+'.selection'}]:[]),...(card&&scene.textures.exists(card)?[{key:card,width:cardWidth,id:facts.source!.definitionId+'.thumbnail'}]:[])];
  const total=keys.reduce((n,k)=>n+k.width,0)+Math.max(0,keys.length-1)*8,available=side?Math.min(total,b.width*.48):b.width;

@@ -142,7 +142,7 @@ export class IntermissionScene extends Phaser.Scene {
     if(!p.short&&!skipped&&this.result.cleared&&xiemuInterest)heading+=' · 额外关末息+'+xiemuInterest.value.n+'金';
     if(p.short&&trace&&!skipped&&this.result.cleared){const assist=savedAssistSummary(trace);if(assist)body=assist+'\n'+body;const fact=victorySourceFact(run,trace);if(fact)body=fact.title+' · '+fact.effect+'\n'+body;}
     if(!lost){
-      v.material(n,0x21474a,0x21474a,4);
+      v.material(n,0x21474a,0x21474a,4).setName('result/next-panel');
       const nextHeading=v.text(n.x+14,n.y+10,heading,18,'#26313A',n.width-28).setFontStyle('bold');
       const bodyY=nextHeading.y+nextHeading.height+8;
       v.text(n.x+14,bodyY,body,14,'#26313A',n.width-28).setLineSpacing(2).setStyle({maxLines:Math.max(1,Math.floor((n.y+n.height-12-bodyY)/19))});
@@ -202,7 +202,7 @@ export class IntermissionScene extends Phaser.Scene {
       if(source){const name=v.text(text.x,y,growth?.name??source.title,14,PAPER_CSS.jade,text.width).setFontStyle('bold').setName('result/source-continuity');y+=name.height+6;}
       if(growth){
         const prefix=growth.metric.includes('×')?'×':'+',read=v.text(text.x,y,'本手读取 '+prefix+growth.before,14,PAPER_CSS.jade,text.width).setName('result/growth-read');y+=read.height+4;
-        const saved=v.text(text.x,y,prefix+growth.before+' → '+prefix+growth.after,text.width<150?19:24,PAPER_CSS.ink,text.width).setFontStyle('bold').setName('result/growth-saved');y+=saved.height+4;
+        const saved=v.text(text.x,y,prefix+growth.before+' → '+prefix+growth.after,text.width<150?22:24,PAPER_CSS.ink,text.width).setFontStyle('bold').setName('result/growth-saved');y+=saved.height+4;
         v.text(text.x,y,'保存成长 · 下手生效',14,PAPER_CSS.jade,text.width).setName('result/growth-next');
       }else if(source){v.text(text.x,y,source.effect,14,PAPER_CSS.jade,text.width).setStyle({maxLines:short?3:4}).setName('result/source-effect');}
       this.sourceArtLayer=this.add.container(0,0,v.root.list.slice(start)).setName('result-art/source-layer');v.add(this.sourceArtLayer);
@@ -211,17 +211,18 @@ export class IntermissionScene extends Phaser.Scene {
     this.paintSourceArt=()=>{paint();};const sourceView=paint();
     const hand=facts.trace?HAND_LABELS[facts.trace.handType]:'本场热度';
     v.text(center,main.y,hand,16,PAPER_CSS.jade,main.width-16).setOrigin(.5,0).setName('result/hand');
-    if(facts.trace)v.text(center,main.y+24,`${fractionText(facts.trace.accumulator.H)} 热度 × ${fractionText(facts.trace.accumulator.M)}`,14,PAPER_CSS.jade,main.width-8).setOrigin(.5,0).setName('result/formula');
-    const scoreY=main.y+(facts.trace?44:26),scoreSize=short?38:small?48:68;
+    const formula=facts.trace?v.text(center,main.y+24,`${fractionText(facts.trace.accumulator.H)} 热度 × ${fractionText(facts.trace.accumulator.M)}`,14,PAPER_CSS.jade,main.width-8).setOrigin(.5,0).setName('result/formula'):undefined;
+    const scoreY=formula?formula.y+formula.height+6:main.y+26,scoreSize=short?38:main.width<220?32:small?48:68;
     const score=v.text(center,scoreY,(facts.trace?'+':'')+heatText(facts.trace?.finalScore??this.result.stageHeat),scoreSize,facts.intensity>1?PAPER_CSS.red:PAPER_CSS.ink,main.width-8).setOrigin(.5,0).setFontFamily(SCORE_FONT).setFontStyle('bold').setName('result/score');
     for(let font=scoreSize;score.width>main.width-8&&font>24;)score.setFontSize(--font);
     const totalY=scoreY+score.height+8;
     v.text(center,totalY,skipped?'本场跳过':`全场 ${heatText(this.result.stageHeat)} / ${heatText(run.stage!.targetHeat)}`,14,PAPER_CSS.jade,main.width).setOrigin(.5,0).setName('result/gap');
     const assist=facts.trace&&savedAssistSummary(facts.trace);
-    const rewardY=short?main.y+main.height-42:small?main.y+136:main.y+main.height-70;
+    const compact=main.width<220,rewardHeight=short?40:compact?(assist?78:58):assist?54:48;
+    const rewardY=short?main.y+main.height-42:compact?main.y+main.height-rewardHeight-8:small?main.y+136:main.y+main.height-70;
     if(this.result.cleared&&!skipped){
-      const band={x:main.x,y:rewardY,width:main.width,height:short?40:assist?54:48};v.material(band,T.paperLight,T.paperLight,6);
-      const reward=v.text(center,band.y+10,'过关奖励  +'+this.result.goldEarned+' 金',short?16:20,PAPER_CSS.ink,main.width-12).setOrigin(.5,0).setFontStyle('bold').setName('result/reward');
+      const band={x:main.x,y:rewardY,width:main.width,height:rewardHeight};v.material(band,T.paperLight,T.paperLight,6);
+      const reward=v.text(center,band.y+10,(compact?'奖励  +':'过关奖励  +')+this.result.goldEarned+' 金',short||compact?16:20,PAPER_CSS.ink,main.width-12).setOrigin(.5,0).setFontStyle('bold').setName('result/reward');
       if(assist&&!short)v.text(center,band.y+34,assist,14,PAPER_CSS.jade,main.width-12).setOrigin(.5,0).setName('result/assist-source');
       const cue=this.firstRender&&this.rewardCue.claim(run,this.result),size=40,diameter=size*.7,gap=8;
       const x=center-(reward.width+diameter+gap)/2+diameter/2,coinY=reward.y+reward.height/2-size*.04;
