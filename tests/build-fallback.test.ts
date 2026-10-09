@@ -35,3 +35,6 @@ it('phase, absent shop, rank caps and invalid current targets do not fabricate a
  const s=missingCoreFixture('group');s.phase='stage-ready';expect(buildFallback(s,'group')).toBeUndefined();s.phase='shop';s.shop=null;expect(buildFallback(s,'group')).toBeUndefined();
  const t=missingCoreFixture('generic');expect(publicRepairExample(t,'flush','T08')).toBeUndefined();expect(publicRepairExample(t,'group','unknown')).toBeUndefined();expect(publicRepairExample(t,'group','T10')).toBeUndefined();
 });
+it('actual discounted basic cost and consumed quota remain authoritative in the fallback',()=>{
+ const s=missingCoreFixture('group');s.purchaseCoupons=1;const c=buildFallback(s,'group')!.choice!;expect(c.body).toContain('实付1金；余额5→4金');expect(c.label).toContain('1金');const bought=missingSend(s,{type:'BuyBasicTool',definitionId:'T08',shopSeq:s.shop!.basicChoice!.shopSeq});const used=missingSend(bought,{type:'UseConsumable',instanceId:bought.consumables.find(t=>t.definitionId==='T08')!.instanceId,targetIds:[c.example!.targetId]});expect(buildFallback(used,'group')!.choice).toBeUndefined();expect(buildFallback(used,'group')!.reason).toContain('已购');
+});
