@@ -1,5 +1,7 @@
 # 开发入口
 
+2026-10-09完整首120秒AV候选：产品391cb59＋低动态归位2c466ee、55定向/7files及type/plan通过；PC1366/390各一条同正常seed原生前后初终state及actions完全相等，真实362、共享舞台一次、7/100保持，三受控中断native通过。[有限软件画面／真实最终音轨短片](docs/production/evidence/w4-opening-climax-2026-10-09/README.md)约27/26秒，前后图与运动分帧已actual view；云端未真人试听，非设备FPS／人类验收。原FAIL保留，domain/application/content/platform/assets/art/GameScene原文同main4d，新runtime图片音频视频0；旧额外500ms同。当前仅review，精确head CI/draft另核，父审main；下一工具＋经营／胜败缺口未实现，不把PR77/81代签。
+
 2026-10-09 22:36北京新增用户体验缺口已落原W3/W4入口及TOOL_CHANGE_PREVIEW_SCOPE：胜败音画仍OPEN，下一工具＋经营完整流程含对子养成／省钱／爆发、推荐用途与代价及框线不等于必买；根只读核规则，当前AV先收束、不重复研究／不并发。旧PR81不签完成，原依赖与真人／设备／听感门槛保留。
 
 2026-10-09当前唯一执行：[原W2/W4首120秒完整音画包](docs/production/OPENING_CLIMAX_EXPERIENCE_SCOPE.md)，输入main4d2d78e，历史仅合同c4dbaad已推暂停。用户要求Inkwave显著表现与7%/100%仍失衡修复；先锁节律/精确MIT/真实事件/身体截断与两路内部混音，再完整实现标题→确认揭幕→英雄单一高潮，原故事/路线/原图/小夜曲及额外500ms保持。6.1默认Medium串行，有限PC390前后与实际音轨短片，不跑八章/大回归；最终精确CI/draft父审main，真人/设备/听感分别注明。

@@ -1,0 +1,90 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/paper-flow.test.ts tests/hero-climax.test.ts tests/score-recorded-audio.test.ts tests/fire-audio.test.ts tests/failure-audio.test.ts tests/audio-preferences.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/score-recorded-audio.test.ts (9 tests | 1 failed) 44ms
+   × rapid ordinary input is throttled and longer sequences rotate variants under a per-semantic cap 10ms
+ ❯ tests/fire-audio.test.ts (15 tests | 4 failed) 59ms
+     × compatibility tier 0 uses short recorded key layers, no oscillator fallback 18ms
+     × compatibility tier 1 uses short recorded key layers, no oscillator fallback 4ms
+     × compatibility tier 2 uses short recorded key layers, no oscillator fallback 3ms
+     × compatibility tier 3 uses short recorded key layers, no oscillator fallback 5ms
+ ❯ tests/paper-flow.test.ts (9 tests | 1 failed) 23ms
+   × full cover/reveal remains bounded and its skip preserves the single immediate route 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/fire-audio.test.ts > owned short drum and paper accents > compatibility tier 0 uses short recorded key layers, no oscillator fallback
+ FAIL  tests/fire-audio.test.ts > owned short drum and paper accents > compatibility tier 1 uses short recorded key layers, no oscillator fallback
+ FAIL  tests/fire-audio.test.ts > owned short drum and paper accents > compatibility tier 2 uses short recorded key layers, no oscillator fallback
+ FAIL  tests/fire-audio.test.ts > owned short drum and paper accents > compatibility tier 3 uses short recorded key layers, no oscillator fallback
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/fire-audio.test.ts:21:95
+     19|   it.each([0,1,2,3] as const)('compatibility tier %i uses short record…
+     20|     const f=fixture();f.engine.scoreBrush({},'award',tier);expect(f.so…
+     21|     expect(f.sources.every(s=>s.stop.mock.calls[0][0]-s.start.mock.cal…
+       |                                                                                               ^
+     22|     f.engine.stopScoreFire();expect(f.internal.voices.size).toBe(0);
+     23|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/paper-flow.test.ts > full cover/reveal remains bounded and its skip preserves the single immediate route
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/paper-flow.test.ts:40:88
+     38|  expect(start).toHaveBeenCalledExactlyOnceWith('shop');
+     39|  const frame=[...raf.values()][0];frame(performance.now()+380);expect(…
+     40|  host.dispatchEvent(new Event('pointerdown'));expect(removed).toBe(1);…
+       |                                                                                        ^
+     41|  frame(performance.now()+700);vi.advanceTimersByTime(1400);expect(star…
+     42| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/score-recorded-audio.test.ts > rapid ordinary input is throttled and longer sequences rotate variants under a per-semantic cap
+AssertionError: expected 4 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 4
+
+ ❯ tests/score-recorded-audio.test.ts:26:89
+     24|  const {engine,inside,sources}=fixture();engine.select();for(let i=0;i…
+     25|  for(let i=0;i<7;i++){inside.context.currentTime+=.04;engine.select();}
+     26|  expect(new Set(sources.map(s=>s.buffer.name)).size).toBe(3);expect(in…
+       |                                                                                         ^
+     27|  engine.purchase();const confirmed=sources.slice(-2);expect(confirmed[…
+     28|  engine.setSuspended(true);expect(inside.voices.size).toBe(0);expect(s…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+
+ Test Files  3 failed | 3 passed (6)
+      Tests  6 failed | 44 passed (50)
+   Start at  14:27:36
+   Duration  1.73s (transform 2.16s, setup 0ms, import 2.73s, tests 223ms, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
