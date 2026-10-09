@@ -1,0 +1,31 @@
+{
+  "baselinePR90": "04c0f208950bc1106742076bc3656debb7e1df9a",
+  "product": "a3c4f05",
+  "review": "a84f9e6beb8d19688178c591481f2a6f5d4ba9f2",
+  "scope": "Three totalHeat captions plus a stable read-only text object name; no layout/number/domain/save/reward change.",
+  "protectedTreesUnchanged": {
+    "src/domain": true,
+    "src/application": true,
+    "src/content": true,
+    "src/platform": true,
+    "src/audio": true,
+    "public": true
+  },
+  "localChecks": {
+    "typecheck": "PASS",
+    "targetedTests": 12,
+    "testFiles": [
+      "finale-keepsake",
+      "failure-summary",
+      "c03-result-transition"
+    ],
+    "receipt": "2026-10-09 19:13:10 UTC tool output:3files/12tests passed; duration1.18s"
+  },
+  "runtimeChangedFiles": [
+    "src/game/FinaleKeepsake.ts",
+    "src/game/IntermissionScene.ts"
+  ],
+  "nativeTransactionsRepeated": false,
+  "newRecording": false,
+  "newNaturalRun": false
+}
