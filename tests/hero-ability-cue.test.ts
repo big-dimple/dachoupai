@@ -2,7 +2,7 @@ import {it,expect} from 'vitest';
 import {createRun,applyCommand,type R2RunState,type Action} from '../src/domain/run';
 import {newRunIdentity} from '../src/game/RunLaunch';
 import {CHARACTER_IDS,type CharacterId} from '../src/domain/characters';
-import {heroAbilityCue} from '../src/game/HeroAbilityCue';
+import {heroAbilityCue,savedHeroResult} from '../src/game/HeroAbilityCue';
 import {r2SelectionFacts} from '../src/domain/r2SelectionFacts';
 import {r2JokerDefinitionsFor} from '../src/domain/r2ContentProfiles';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
@@ -30,10 +30,10 @@ it('money, qualification, no discard budget, used handoff and old identities nev
 });
 it('committed handoff and wager results explain actual sources; promises and altered events cannot become receipts',()=>{
  const s=entered('erxiang'),a=send(s,{type:'PlayHand',selectedIds:cards.slice(0,2),erxiangTargetId:cards[0]}),t=a.lastTrace!,e=t.events.find(e=>e.reasonKey==='erxiang.handoff')!;
- expect(savedBenefit(a,t,e)).toMatchObject({title:'二响 · 交棒已兑现',effect:'8点热度改加倍率（首次普通计分）'});
+ expect(savedHeroResult(a)).toContain('8点热度 → 倍率');expect(savedBenefit(a,t,e)).toMatchObject({title:'二响 · 交棒已兑现',effect:'8点热度改加倍率（首次普通计分）'});
  expect(savedBenefit(a,t,{...e,eventId:'not-saved'})).toBeUndefined();
  const amo=entered('amo'),b=send(amo,{type:'PlayAssistedHand',selectedIds:main,assistIds:cards.slice(4,6)}),bt=b.lastTrace!,be=bt.events.find(e=>e.reasonKey==='amo.assist.pair')!;
- expect(savedBenefit(b,bt,be)?.effect).toBe('副组2张已用 · 实际×2');
+ expect(savedBenefit(b,bt,be)?.effect).toBe('副组2张已用 · 实际×2');expect(savedHeroResult(b)).toBe('阿默·助攻2张已用 · 实际×2');
 });
 
 it('B08 respects the non-scoring Laohuan exception and never advertises disabled scoring abilities',()=>{
