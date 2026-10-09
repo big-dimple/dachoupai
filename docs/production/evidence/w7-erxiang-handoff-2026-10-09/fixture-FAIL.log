@@ -1,0 +1,30 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/erxiang-handoff.test.ts (11 tests | 1 failed) 485ms
+     × retrigger/edition/enhancement only redirect first ordinary execution; whole Joker and growth clocks unchanged 17ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/erxiang-handoff.test.ts > Erxiang first ordinary points handoff > retrigger/edition/enhancement only redirect first ordinary execution; whole Joker and growth clocks unchanged
+Error: invalid-card-instances
+ ❯ validateCardInstances src/domain/evaluateR2.ts:9:298
+
+ ❯ resolveScore src/domain/scoreR2.ts:116:3
+ ❯ Module.scoreR2Hand src/domain/scoreR2.ts:106:10
+ ❯ score tests/erxiang-handoff.test.ts:22:147
+ ❯ tests/erxiang-handoff.test.ts:27:418
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 42 passed (43)
+   Start at  09:29:47
+   Duration  1.67s (transform 1.56s, setup 0ms, import 2.07s, tests 1.32s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

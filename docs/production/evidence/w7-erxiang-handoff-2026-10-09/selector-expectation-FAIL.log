@@ -1,0 +1,52 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/amo-launch.test.ts (9 tests | 1 failed) 83ms
+     × selector copy shares new-game policy without changing legacy or other character definitions 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/amo-launch.test.ts > normal new-game policy and exact retry creation > selector copy shares new-game policy without changing legacy or other character definitions
+AssertionError: expected { id: 'erxiang', name: '二响', …(9) } to be { id: 'erxiang', name: '二响', …(9) } // Object.is equality
+
+- Expected
++ Received
+
+@@ -1,12 +1,12 @@
+  {
+    "accent": 16745396,
+-   "buildTip": "用对子、两对、三条配「满堂彩」「对上眼」「老搭档」；葫芦、四条不会获得角色 +1.5。",
++   "buildTip": "对子及以上，选一张有效核心把首次普通点数改加倍率；每场一次，可留到后手。",
+    "id": "erxiang",
+    "name": "二响",
+-   "passiveDescription": "对子、两对、三条的倍率 +1.5。",
+-   "passiveName": "接得漂亮",
++   "passiveDescription": "每场一次，指定本手有效核心：首次普通点数不计热度、改加同值倍率，替换旧+1.5。增强、版次与后续重触保持原规则；0点、失效牌或角色封禁不可发动。取消不消耗，出牌保存成功才用掉。",
++   "passiveName": "交棒（试行）",
+    "portrait": "/assets/handdrawn-p08/characters/erxiang.portrait.webp",
+    "portraitFocusX": 0.57,
+    "portraitFocusY": 0.23,
+    "quote": "你出对子，我负责把场子接住。",
+    "title": "捧哏王",
+
+ ❯ tests/amo-launch.test.ts:62:144
+     60|   expect(getCharacter('laohuan').passiveDescription).toContain('额外 +12…
+     61|   expect(getCharacter('amo').buildTip).toContain('单张');
+     62|   for(const id of CHARACTER_IDS.filter(id=>id!=='amo'&&id!=='azao'&&id…
+       |                                                                                                                                                ^
+     63|  });
+     64| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  1 failed | 81 passed (82)
+   Start at  09:31:59
+   Duration  2.34s (transform 1.37s, setup 0ms, import 2.30s, tests 3.47s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
