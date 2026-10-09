@@ -987,6 +987,13 @@ floor(H×M) = 107,399,248。
 
 ### W0 当前计划与入口统一
 
+
+**2026-10-09父锁定二响交棒实施包（U09/U10/U11、SG07/SG08）：** 输入main `fcea984380fb4c8f7955dc5298957593091a6b5b`，承接文档 `cef7fac50f72b7242f30dd706f22572d41f6bcc6`。父明确授权本有界原型，真人/W6门槛未签不冒充通过。每场一次；对子及以上任何主型，从最终有效计分核心选一张（不要求同点组），其首次实际普通点数p改加倍率、不计热度；增强/版次/既有重触保持原规则，后续普通计分照旧，不重跑整手Joker/复制效果，替换旧+1.5。0点、失效核心、B08/Q01禁止发动，普通合法出牌继续；意图与Play同事务保存成功才消费，取消不消费，改手失效清除且不迁移。新显式身份隔离旧全部身份。
+
+精确allowedFiles：`src/domain/r2GroupUpgrade.ts`、`r2ErxiangHandoff.ts`（新增）、`r2Run.ts`、`run.ts`、`scoreR2.ts`；`src/application/checkpoint.ts`；`src/game/RunLaunch.ts`、`CharacterRunCopy.ts`、`ErxiangHandoffCopy.ts`（新增）、`GameScene.ts`、`AiHandCandidates.ts`、`scorePresentation.ts`；`tests/erxiang-handoff.test.ts`（新增）、`route-starter.test.ts`、`basic-tool-supply.test.ts`及若当前既有快照直接受新身份/文案影响的精确测试，修改前补列；本计划、`CHARACTER_PLAY_PLAN.md`第6节、`UX.md`、`AGENTS.md`与本包`evidence/w7-erxiang-handoff-2026-10-09/`。不重写其它五角、不新增图音/说明页/第二资源/预测总分、不延续旧PR66 C与拒收1/2重触案。
+
+输出/验收：现有英雄入口一句“这张的8点改加倍率，本场一次”，可选/取消/已用；真实反馈来自保存trace。定向覆盖88、22、顺子/同花核心、0普通点、既有重触只首次改道、失效/封禁、保存失败/幂等与旧身份隔离；一份普通牌实际UI路径PC1366/390、320与短横仅必要布局，保留软件/真人区别。完成单线产品包后一次最终CI与draft父有限独审，父协调main。不扫种子/八章、不扩兼容矩阵、不把430算例称作自然稳定过关或趣味验收。无资格/保存恢复不闭合或必须第二机制补救时停止扩大。
+
 - **requirementId：** U11、U13、U14。
 - **inputSHA：** 14a9a747fa42764ab8000b6f71382c7bd6bec8ac；每个现有文件预期blob须匹配。
 - **dependencies：** 本计划内容、事实与范围独立审查。
