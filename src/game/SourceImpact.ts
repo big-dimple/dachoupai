@@ -18,6 +18,6 @@ export function sourceImpact(trace:ScoreTrace,event:ScoreEvent):SourceImpact|und
   const before=Rational.fromJSON(event.before.M);if(before.n<=0n)return;
   const factor=Rational.fromJSON(event.after.M).multiply(new Rational(before.d,before.n)),v=fractionText(factor.toJSON());return {...base,kind:reads?'read-multiplier':'multiply',copies:reads?['读×'+v,'×'+v]:['×'+v]};
  }
- if(heat.n>0n){const v=fractionText(heat.toJSON());return {...base,kind:reads?'read-heat':'heat',copies:reads?['读热'+v,'读+'+v]:['热+'+v]};}
- if(multiplier.n>0n){const v=fractionText(multiplier.toJSON());return {...base,kind:reads?'read-multiplier':'multiplier',copies:reads?['读倍'+v,'读+'+v]:['倍+'+v]};}
+ if(heat.n>0n){const v=fractionText(heat.toJSON());return {...base,kind:reads?'read-heat':'heat',copies:reads?['读热'+v,'读+'+v,'读'+v]:['热+'+v,'+'+v]};}
+ if(multiplier.n>0n){const v=fractionText(multiplier.toJSON());return {...base,kind:reads?'read-multiplier':'multiplier',copies:reads?['读倍'+v,'读+'+v,'读'+v]:['倍+'+v,'+'+v]};}
 }

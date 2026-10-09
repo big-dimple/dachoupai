@@ -1650,7 +1650,7 @@ export class GameScene extends Phaser.Scene {
       }
       this.audio.coin();
     }
-    if(event.sourceType==='joker'&&sourceBenefit&&!key){
+    if(event.sourceType==='joker'&&sourceBenefit&&!key&&!releaseSourceImpact){
       const jv=this.jokerViews.get(event.sourceInstanceId);
       if(jv&&this.view.layout.mode!=='portrait'){const frame=jv.getData('frame') as Phaser.GameObjects.Rectangle;notes.push(this.floatNote(note,Number(jv.getData('baseX')),Number(jv.getData('baseY'))-frame.height/2-8,event.operation==='multiply-multiplier'||event.operation==='read-coefficient'?'#f6c0a4':'#ffe3ae',impactDuration+timing.rest,context));}
     }else if(event.sourceType==='character'){
