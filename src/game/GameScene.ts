@@ -1944,7 +1944,7 @@ export class GameScene extends Phaser.Scene {
     if(this.resourceCounts.discard.style.color!==discardColor)this.resourceCounts.discard.setColor(discardColor);
     const gold=this.presentation?.resourceGold??this.run.gold;
     this.goldText.setText(l.shortLandscape?gold+' 金':'金币 '+gold+(l.mode==='desktop'?'\n还需 '+heatText(remaining)+' 热度':''));
-    if(l.mode==='desktop'){
+    if(l.mode==='desktop'&&this.progressBar?.active){
       // Keep the two actual text rows within the HUD's dedicated gold region.
       fitScoreLine(this.goldText,{x:l.hud.x+12,y:l.hud.y+180,width:l.hud.width-24,height:48},14);
       const progressY=Math.max(l.hud.y+238,this.goldText.getBounds().bottom+6);
@@ -1954,7 +1954,8 @@ export class GameScene extends Phaser.Scene {
     this.pileText.setText('抽牌 '+this.deck.length+' · 已打 '+this.run.playedPile.length+' · 已弃 '+this.run.discardPile.length);
     const last=this.presentation?(this.presentation.credited?this.presentation.score:this.presentation.previousTrace):this.run.lastTrace;
     this.previousHandText.setText(last?'上手已入账：'+HAND_LABELS[last.handType]+' +'+heatText(last.finalScore):'上手记录：本场第一手');
-    if(l.mode!=='portrait'){
+    if(l.mode!=='portrait'&&this.progressBar?.active){
+      // During resize, the new layout can be read before its controls are rebuilt.
       const filled=BigInt(displayHeat)>=BigInt(this.stage.targetHeat)?1000n:BigInt(displayHeat)*1000n/BigInt(this.stage.targetHeat);
       const widthPx=Math.max(.5,(l.hud.width-24)*Number(filled)/1000);
       if(this.reducedMotion||this.rollingHeat){this.tweens.killTweensOf(this.progressBar);this.progressBar.setDisplaySize(widthPx,5);this.progressTarget=widthPx;}
