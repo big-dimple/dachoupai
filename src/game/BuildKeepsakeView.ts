@@ -5,7 +5,12 @@ export function buildKeepsakeView(facts:BuildKeepsake,cleanups:(()=>void)[]):HTM
  const image=(url:string,alt:string)=>{const img=document.createElement('img');img.src=url;img.alt=alt;img.decoding='async';img.onerror=()=>{img.hidden=true;};cleanups.push(()=>{img.onerror=null;});return img;};
  const p=(text:string,cls?:string)=>{const node=document.createElement('p');node.textContent=text;if(cls)node.className=cls;return node;};
  const hero=document.createElement('article'),copy=document.createElement('div'),heading=document.createElement('h3');hero.className='build-keepsake-hero';heading.textContent=facts.hero.name+' · '+facts.hero.ability;
- copy.append(heading,p(facts.hero.modeNote,'build-keepsake-note'),p(facts.hero.tip));
+ copy.append(heading,p(facts.hero.modeNote,'build-keepsake-note'));
+ if(!facts.continuity)copy.append(p(facts.hero.tip));
+ if(facts.continuity){
+  if(facts.continuity.last)copy.append(p('上一场 · '+facts.continuity.last,'build-keepsake-read'));
+  copy.append(p(facts.continuity.next,'build-keepsake-next'),p(facts.continuity.decision));
+ }
  if(facts.hero.details){const details=document.createElement('details'),summary=document.createElement('summary');details.className='card-rules';summary.textContent='完整角色打法';details.append(summary,p(facts.hero.details));copy.append(details);}
  hero.append(image(facts.hero.url,facts.hero.name+'既有立绘'),copy);section.append(hero);
  if(!facts.growth.length){section.append(p(facts.terminal?'本局最终未持有成长来源；这份留影不补发成长或奖励。':'尚无持有的成长来源；先用现有持牌尝试，按真实货架自主购买。','build-keepsake-empty'));return section;}
@@ -21,7 +26,7 @@ export function buildKeepsakeView(facts:BuildKeepsake,cleanups:(()=>void)[]):HTM
 /** Default shop decisions lead with today's action; the saved ledger is opt-in. */
 export function compactBuildKeepsakeView(facts:BuildKeepsake,cleanups:(()=>void)[]):HTMLElement {
  const details=document.createElement('details'),summary=document.createElement('summary');details.className='card-rules build-keepsake-compact';
- const first=facts.growth[0];summary.textContent='成长手记 · '+(first?first.name+' '+first.metric+(facts.growth.length>1?' 等'+facts.growth.length+'项':''):'暂无成长来源');details.append(summary);
+ const first=facts.growth[0];summary.textContent=(facts.continuity?facts.hero.name+' · '+facts.continuity.next+' · ':'成长手记 · ')+(first?first.name+' '+first.metric+(facts.growth.length>1?' 等'+facts.growth.length+'项':''):'暂无成长来源');details.append(summary);
  let mounted=false;const expand=()=>{if(details.open&&!mounted){mounted=true;details.append(buildKeepsakeView(facts,cleanups));}};
  details.addEventListener('toggle',expand);cleanups.push(()=>details.removeEventListener('toggle',expand));return details;
 }

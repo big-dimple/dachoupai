@@ -1,3 +1,4 @@
+import {heroStageContinuity} from './HeroStageContinuity';
 import {mountResultEntrance} from './ResultEntrance';
 import {resultStageFacts,resultStagePlan} from './ResultStage';
 import {resultStagePaper,resultStageSources,loadResultSourceArt} from './ResultStageArt';
@@ -126,8 +127,8 @@ export class IntermissionScene extends Phaser.Scene {
       const reward=skipped.kind==='coupon'?'下次买牌减2金券':skipped.kind==='gold'?'库存已满，+1金币':SKIP_ITEM_LABELS[skipped.definitionId];
       heading='跳场所得';body=reward+'。没有过关奖金或利息。'+(nextStage?'\n下一场：'+nextStage.name+' · 目标 '+heatText(nextStage.targetHeat):'');
     }else if(nextStage){
-      heading='准备下一场';
-      body=`${nextStage.name} · 目标 ${heatText(nextStage.targetHeat)}\n筹备后，出牌与弃牌次数补满。`+(nextStage.index%3===2?'\n压轴规则：'+r2BossText(run.boss):'');
+      heading='准备下一场';const hero=heroStageContinuity(run);
+      body=`${nextStage.name} · 目标 ${heatText(nextStage.targetHeat)}\n筹备后，出牌与弃牌次数补满。`+(!p.short&&nextStage.index%3!==2&&hero?'\n'+hero.next:'')+(nextStage.index%3===2?'\n压轴规则：'+r2BossText(run.boss):'');
     }else if(won){
       const progress=readRunProgress(),qualified=run.mode==='standard'&&!!run.normalCompletion;
       heading=run.mode==='challenge'?R2_MODE_CATALOG.challenges.find(row=>row.id===run.challengeId)!.name+' · 通关':run.mode==='tutorial'?'教学巡演通关':'八章通关';

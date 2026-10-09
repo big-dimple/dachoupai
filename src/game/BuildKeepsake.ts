@@ -1,3 +1,4 @@
+import {heroStageContinuity,type HeroStageContinuity} from './HeroStageContinuity';
 import type {R2RunState} from '../domain/r2Run';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {fractionText} from './scoreText';
@@ -7,13 +8,14 @@ import {selectionPortraitURL} from './portraits';
 import {buildGrowthProgress,type BuildGrowthProgress} from './BuildGrowthProgress';
 export interface BuildKeepsake {
  terminal?:boolean;
+ continuity?:HeroStageContinuity;
  hero:{name:string;ability:string;tip:string;details?:string;url:string;modeNote:string};
  growth:(BuildGrowthProgress&{read?:string})[];
 }
 /** Current identity and held instance ledger only; no command, forecast or invented history. */
 export function buildKeepsake(state:R2RunState):BuildKeepsake {
  const hero=characterForRun(state),tip=hero.buildTip.split('。')[0]+'。';
- return {hero:{name:hero.name,ability:hero.passiveName,tip,details:tip===hero.buildTip?undefined:hero.buildTip,url:selectionPortraitURL(state.characterId),modeNote:r2RunModeConfig(state).characterAbilityEnabled?'打法提示 · 能否使用按本场条件':'本模式角色能力停用 · 不产生角色收益'},growth:buildGrowthProgress(state).map(row=>{
+ return {continuity:heroStageContinuity(state),hero:{name:hero.name,ability:hero.passiveName,tip,details:tip===hero.buildTip?undefined:hero.buildTip,url:selectionPortraitURL(state.characterId),modeNote:r2RunModeConfig(state).characterAbilityEnabled?'打法提示 · 能否使用按本场条件':'本模式角色能力停用 · 不产生角色收益'},growth:buildGrowthProgress(state).map(row=>{
   const trace=state.lastTrace;if(!trace?.sourceJokers.some(j=>j.instanceId===row.instanceId&&j.definitionId===row.definitionId)||!trace.jokers.some(j=>j.instanceId===row.instanceId&&j.definitionId===row.definitionId))return row;
   const ops=r2JokerDefinitionFor(state,row.definitionId).hooks.flatMap(h=>h.operations).filter(o=>o.kind==='read-growth'||o.kind==='read-coefficient');
   if(new Set(ops.map(o=>'key' in o?o.key:'')).size!==1||new Set(ops.map(o=>o.kind+('target' in o?o.target:''))).size!==1)return {...row,read:'上手读取明细见该来源'};

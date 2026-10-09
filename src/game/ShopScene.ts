@@ -196,7 +196,9 @@ export class ShopScene extends Phaser.Scene {
     const source=this.textures.get(key).getSourceImage() as HTMLImageElement;
     const scale=Math.min(width/source.width,height/source.height),x=p.x+pc.left.width/2;
     this.view.add(this.add.image(x,y+height/2,key).setScale(scale).setName('shop/hero-art'));
-    this.view.text(x,y+height+8,character.name+' · '+character.title,16,'#3F606B').setOrigin(.5,0).setName('shop/hero-caption');
+    const hit=this.view.add(this.add.rectangle(x,y+height/2,width,height,0,0));
+    this.view.target(hit,'shop/hero-preparation',{tap:()=>this.inspectJourney(),detail:()=>this.inspectJourney()});
+    this.view.text(x,y+height+8,character.name+' · 下场准备↗',16,'#3F606B').setOrigin(.5,0).setName('shop/hero-caption');
   }
   private drawOwned(p:ReturnType<typeof shopLayout>):void {
     const v=this.view;
