@@ -1,0 +1,347 @@
+{
+  "testedCommit": "655ab4a3b8f18a13233394e51694b4157dd7dcad",
+  "before": {
+    "source": "9d583b3d003775d10c3bbba4b3c240af7c2a0d9fc0fbb114ff367c1b101c4a02",
+    "index": "b956682828a1171db2f199c0bcf6e7e57f97753a15a9b4d63d8d6ea55f9fe8e4",
+    "head": "655ab4a3b8f18a13233394e51694b4157dd7dcad",
+    "branch": "refs/heads/review/tool-change-preview-20261009"
+  },
+  "scope": "Same prior real purchased T11 checkpoint, production native import without edits. One real use only at390;1366/320/740 display/selection/cancel only. No old gameplay-chain replay.",
+  "originalSource": "f70b3eca8a0d6ba3b1f4269abd1394aa56d58bf6",
+  "checks": [
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768
+      },
+      "geometry": {
+        "dialog": {
+          "x": 133,
+          "y": 12,
+          "width": 1100,
+          "height": 744,
+          "top": 12,
+          "right": 1233,
+          "bottom": 756,
+          "left": 133
+        },
+        "scroll": {
+          "x": 949,
+          "y": 163.28125,
+          "width": 267,
+          "height": 494.71875,
+          "top": 163.28125,
+          "right": 1216,
+          "bottom": 658,
+          "left": 949
+        },
+        "face": {
+          "x": 949,
+          "y": 169.28125,
+          "width": 267,
+          "height": 106,
+          "top": 169.28125,
+          "right": 1216,
+          "bottom": 275.28125,
+          "left": 949
+        },
+        "hint": {
+          "bounds": {
+            "x": 949,
+            "y": 116.09375,
+            "width": 267,
+            "height": 47.1875,
+            "top": 116.09375,
+            "right": 1216,
+            "bottom": 163.28125,
+            "left": 949
+          },
+          "text": "目标有效。确认后使用物品并支付上述代价。"
+        },
+        "confirm": {
+          "bounds": {
+            "x": 154,
+            "y": 687,
+            "width": 356.65625,
+            "height": 56,
+            "top": 687,
+            "right": 510.65625,
+            "bottom": 743,
+            "left": 154
+          },
+          "disabled": false
+        },
+        "columns": 10,
+        "options": [
+          {
+            "x": 159,
+            "y": 478.640625,
+            "width": 69.390625,
+            "height": 101.09375,
+            "top": 478.640625,
+            "right": 228.390625,
+            "bottom": 579.734375,
+            "left": 159
+          }
+        ],
+        "faces": [
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 949,
+              "y": 191.28125,
+              "width": 48,
+              "height": 60,
+              "top": 191.28125,
+              "right": 997,
+              "bottom": 251.28125,
+              "left": 949
+            }
+          },
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 1025.015625,
+              "y": 191.28125,
+              "width": 48,
+              "height": 60,
+              "top": 191.28125,
+              "right": 1073.015625,
+              "bottom": 251.28125,
+              "left": 1025.015625
+            }
+          }
+        ],
+        "preview": "目标顺序：1. K♠ · 普通 · 第 12 张\n\nK♠：无增强 → 倍率纸；保留其他属性。\n当前 增强：无；版次：普通。"
+      },
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 740
+      },
+      "geometry": {
+        "dialog": {
+          "x": 19,
+          "y": 12,
+          "width": 352,
+          "height": 716,
+          "top": 12,
+          "right": 371,
+          "bottom": 728,
+          "left": 19
+        },
+        "scroll": {
+          "x": 32,
+          "y": 508.796875,
+          "width": 326,
+          "height": 135.203125,
+          "top": 508.796875,
+          "right": 358,
+          "bottom": 644,
+          "left": 32
+        },
+        "face": {
+          "x": 32,
+          "y": 514.796875,
+          "width": 326,
+          "height": 106,
+          "top": 514.796875,
+          "right": 358,
+          "bottom": 620.796875,
+          "left": 32
+        },
+        "hint": {
+          "bounds": {
+            "x": 32,
+            "y": 484,
+            "width": 326,
+            "height": 24.796875,
+            "top": 484,
+            "right": 358,
+            "bottom": 508.796875,
+            "left": 32
+          },
+          "text": "目标有效。确认后使用物品并支付上述代价。"
+        },
+        "confirm": {
+          "bounds": {
+            "x": 36,
+            "y": 661,
+            "width": 110,
+            "height": 56,
+            "top": 661,
+            "right": 146,
+            "bottom": 717,
+            "left": 36
+          },
+          "disabled": false
+        },
+        "columns": 4,
+        "options": [
+          {
+            "x": 39,
+            "y": 291.9375,
+            "width": 73.5,
+            "height": 101.09375,
+            "top": 291.9375,
+            "right": 112.5,
+            "bottom": 393.03125,
+            "left": 39
+          }
+        ],
+        "faces": [
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 32,
+              "y": 536.796875,
+              "width": 48,
+              "height": 60,
+              "top": 536.796875,
+              "right": 80,
+              "bottom": 596.796875,
+              "left": 32
+            }
+          },
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 108.015625,
+              "y": 536.796875,
+              "width": 48,
+              "height": 60,
+              "top": 536.796875,
+              "right": 156.015625,
+              "bottom": 596.796875,
+              "left": 108.015625
+            }
+          }
+        ],
+        "preview": "目标顺序：1. K♠ · 普通 · 第 12 张\n\nK♠：无增强 → 倍率纸；保留其他属性。\n当前 增强：无；版次：普通。"
+      },
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 740
+      },
+      "geometry": {
+        "dialog": {
+          "x": 19,
+          "y": 12,
+          "width": 282,
+          "height": 716,
+          "top": 12,
+          "right": 301,
+          "bottom": 728,
+          "left": 19
+        },
+        "scroll": {
+          "x": 32,
+          "y": 508.796875,
+          "width": 256,
+          "height": 135.203125,
+          "top": 508.796875,
+          "right": 288,
+          "bottom": 644,
+          "left": 32
+        },
+        "face": {
+          "x": 32,
+          "y": 514.796875,
+          "width": 256,
+          "height": 106,
+          "top": 514.796875,
+          "right": 288,
+          "bottom": 620.796875,
+          "left": 32
+        },
+        "hint": {
+          "bounds": {
+            "x": 32,
+            "y": 484,
+            "width": 256,
+            "height": 24.796875,
+            "top": 484,
+            "right": 288,
+            "bottom": 508.796875,
+            "left": 32
+          },
+          "text": "目标有效。确认后使用物品并支付上述代价。"
+        },
+        "confirm": {
+          "bounds": {
+            "x": 36,
+            "y": 661,
+            "width": 86.65625,
+            "height": 56,
+            "top": 661,
+            "right": 122.65625,
+            "bottom": 717,
+            "left": 36
+          },
+          "disabled": false
+        },
+        "columns": 3,
+        "options": [
+          {
+            "x": 39,
+            "y": 291.984375,
+            "width": 76.65625,
+            "height": 101.09375,
+            "top": 291.984375,
+            "right": 115.65625,
+            "bottom": 393.078125,
+            "left": 39
+          }
+        ],
+        "faces": [
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 32,
+              "y": 536.796875,
+              "width": 48,
+              "height": 60,
+              "top": 536.796875,
+              "right": 80,
+              "bottom": 596.796875,
+              "left": 32
+            }
+          },
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 108.015625,
+              "y": 536.796875,
+              "width": 48,
+              "height": 60,
+              "top": 536.796875,
+              "right": 156.015625,
+              "bottom": 596.796875,
+              "left": 108.015625
+            }
+          }
+        ],
+        "preview": "目标顺序：1. K♠ · 普通 · 第 12 张\n\nK♠：无增强 → 倍率纸；保留其他属性。\n当前 增强：无；版次：普通。"
+      },
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "humanAcceptance": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: comparison visible height",
+  "stack": "AssertionError [ERR_ASSERTION]: comparison visible height\n    at file:///tmp/tool-change-native.mjs:22:218",
+  "after": {
+    "source": "9d583b3d003775d10c3bbba4b3c240af7c2a0d9fc0fbb114ff367c1b101c4a02",
+    "index": "b956682828a1171db2f199c0bcf6e7e57f97753a15a9b4d63d8d6ea55f9fe8e4",
+    "head": "655ab4a3b8f18a13233394e51694b4157dd7dcad",
+    "branch": "refs/heads/review/tool-change-preview-20261009"
+  },
+  "sourceUnchanged": true
+}

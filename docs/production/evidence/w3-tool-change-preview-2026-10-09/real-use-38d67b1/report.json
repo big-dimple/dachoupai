@@ -1,0 +1,1525 @@
+{
+  "testedCommit": "38d67b18611c53ffd83703ef40aa0a18cc43ea8b",
+  "before": {
+    "source": "a9f3d45a5f05d6d74cc2deed7c2e3ed94fe7f63583e2fe0a720867c23a4c5278",
+    "index": "8880de4be9cd40355804a473176d3c311016b84c2a8b52ac9a941cdf5f5b6d6d",
+    "head": "38d67b18611c53ffd83703ef40aa0a18cc43ea8b",
+    "branch": "refs/heads/review/tool-change-preview-20261009"
+  },
+  "scope": "Same prior real purchased T11 checkpoint, production native import without edits. One real use only at390;1366/320/740 display/selection/cancel only. No old gameplay-chain replay.",
+  "originalSource": "f70b3eca8a0d6ba3b1f4269abd1394aa56d58bf6",
+  "checks": [
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768
+      },
+      "geometry": {
+        "dialog": {
+          "x": 133,
+          "y": 12,
+          "width": 1100,
+          "height": 744,
+          "top": 12,
+          "right": 1233,
+          "bottom": 756,
+          "left": 133
+        },
+        "scroll": {
+          "x": 949,
+          "y": 163.28125,
+          "width": 267,
+          "height": 494.71875,
+          "top": 163.28125,
+          "right": 1216,
+          "bottom": 658,
+          "left": 949
+        },
+        "face": {
+          "x": 949,
+          "y": 169.28125,
+          "width": 267,
+          "height": 134,
+          "top": 169.28125,
+          "right": 1216,
+          "bottom": 303.28125,
+          "left": 949
+        },
+        "hint": {
+          "bounds": {
+            "x": 949,
+            "y": 116.09375,
+            "width": 267,
+            "height": 47.1875,
+            "top": 116.09375,
+            "right": 1216,
+            "bottom": 163.28125,
+            "left": 949
+          },
+          "text": "目标有效。确认后使用物品并支付上述代价。"
+        },
+        "confirm": {
+          "bounds": {
+            "x": 154,
+            "y": 687,
+            "width": 356.65625,
+            "height": 56,
+            "top": 687,
+            "right": 510.65625,
+            "bottom": 743,
+            "left": 154
+          },
+          "disabled": false
+        },
+        "columns": 10,
+        "options": [
+          {
+            "x": 159,
+            "y": 478.640625,
+            "width": 69.390625,
+            "height": 101.09375,
+            "top": 478.640625,
+            "right": 228.390625,
+            "bottom": 579.734375,
+            "left": 159
+          }
+        ],
+        "faces": [
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 949,
+              "y": 191.28125,
+              "width": 48,
+              "height": 60,
+              "top": 191.28125,
+              "right": 997,
+              "bottom": 251.28125,
+              "left": 949
+            }
+          },
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 1025.015625,
+              "y": 191.28125,
+              "width": 48,
+              "height": 58,
+              "top": 191.28125,
+              "right": 1073.015625,
+              "bottom": 249.28125,
+              "left": 1025.015625
+            }
+          }
+        ],
+        "preview": "目标顺序：1. K♠ · 普通 · 第 12 张\n\nK♠：无增强 → 倍率纸；保留其他属性。\n当前 增强：无；版次：普通。"
+      },
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 740
+      },
+      "geometry": {
+        "dialog": {
+          "x": 19,
+          "y": 12,
+          "width": 352,
+          "height": 716,
+          "top": 12,
+          "right": 371,
+          "bottom": 728,
+          "left": 19
+        },
+        "scroll": {
+          "x": 32,
+          "y": 508.796875,
+          "width": 326,
+          "height": 135.203125,
+          "top": 508.796875,
+          "right": 358,
+          "bottom": 644,
+          "left": 32
+        },
+        "face": {
+          "x": 32,
+          "y": 514.796875,
+          "width": 326,
+          "height": 134,
+          "top": 514.796875,
+          "right": 358,
+          "bottom": 648.796875,
+          "left": 32
+        },
+        "hint": {
+          "bounds": {
+            "x": 32,
+            "y": 484,
+            "width": 326,
+            "height": 24.796875,
+            "top": 484,
+            "right": 358,
+            "bottom": 508.796875,
+            "left": 32
+          },
+          "text": "目标有效。确认后使用物品并支付上述代价。"
+        },
+        "confirm": {
+          "bounds": {
+            "x": 36,
+            "y": 661,
+            "width": 110,
+            "height": 56,
+            "top": 661,
+            "right": 146,
+            "bottom": 717,
+            "left": 36
+          },
+          "disabled": false
+        },
+        "columns": 4,
+        "options": [
+          {
+            "x": 39,
+            "y": 291.9375,
+            "width": 73.5,
+            "height": 101.09375,
+            "top": 291.9375,
+            "right": 112.5,
+            "bottom": 393.03125,
+            "left": 39
+          }
+        ],
+        "faces": [
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 32,
+              "y": 536.796875,
+              "width": 48,
+              "height": 60,
+              "top": 536.796875,
+              "right": 80,
+              "bottom": 596.796875,
+              "left": 32
+            }
+          },
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 108.015625,
+              "y": 536.796875,
+              "width": 48,
+              "height": 58,
+              "top": 536.796875,
+              "right": 156.015625,
+              "bottom": 594.796875,
+              "left": 108.015625
+            }
+          }
+        ],
+        "preview": "目标顺序：1. K♠ · 普通 · 第 12 张\n\nK♠：无增强 → 倍率纸；保留其他属性。\n当前 增强：无；版次：普通。"
+      },
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 740
+      },
+      "geometry": {
+        "dialog": {
+          "x": 19,
+          "y": 12,
+          "width": 282,
+          "height": 716,
+          "top": 12,
+          "right": 301,
+          "bottom": 728,
+          "left": 19
+        },
+        "scroll": {
+          "x": 32,
+          "y": 508.796875,
+          "width": 256,
+          "height": 135.203125,
+          "top": 508.796875,
+          "right": 288,
+          "bottom": 644,
+          "left": 32
+        },
+        "face": {
+          "x": 32,
+          "y": 514.796875,
+          "width": 256,
+          "height": 134,
+          "top": 514.796875,
+          "right": 288,
+          "bottom": 648.796875,
+          "left": 32
+        },
+        "hint": {
+          "bounds": {
+            "x": 32,
+            "y": 484,
+            "width": 256,
+            "height": 24.796875,
+            "top": 484,
+            "right": 288,
+            "bottom": 508.796875,
+            "left": 32
+          },
+          "text": "目标有效。确认后使用物品并支付上述代价。"
+        },
+        "confirm": {
+          "bounds": {
+            "x": 36,
+            "y": 661,
+            "width": 86.65625,
+            "height": 56,
+            "top": 661,
+            "right": 122.65625,
+            "bottom": 717,
+            "left": 36
+          },
+          "disabled": false
+        },
+        "columns": 3,
+        "options": [
+          {
+            "x": 39,
+            "y": 291.984375,
+            "width": 76.65625,
+            "height": 101.09375,
+            "top": 291.984375,
+            "right": 115.65625,
+            "bottom": 393.078125,
+            "left": 39
+          }
+        ],
+        "faces": [
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 32,
+              "y": 536.796875,
+              "width": 48,
+              "height": 60,
+              "top": 536.796875,
+              "right": 80,
+              "bottom": 596.796875,
+              "left": 32
+            }
+          },
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 108.015625,
+              "y": 536.796875,
+              "width": 48,
+              "height": 58,
+              "top": 536.796875,
+              "right": 156.015625,
+              "bottom": 594.796875,
+              "left": 108.015625
+            }
+          }
+        ],
+        "preview": "目标顺序：1. K♠ · 普通 · 第 12 张\n\nK♠：无增强 → 倍率纸；保留其他属性。\n当前 增强：无；版次：普通。"
+      },
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 740,
+        "height": 390
+      },
+      "geometry": {
+        "dialog": {
+          "x": 19,
+          "y": 12,
+          "width": 702,
+          "height": 366,
+          "top": 12,
+          "right": 721,
+          "bottom": 378,
+          "left": 19
+        },
+        "scroll": {
+          "x": 519,
+          "y": 130.6875,
+          "width": 193,
+          "height": 171.3125,
+          "top": 130.6875,
+          "right": 712,
+          "bottom": 302,
+          "left": 519
+        },
+        "face": {
+          "x": 519,
+          "y": 136.6875,
+          "width": 193,
+          "height": 134,
+          "top": 136.6875,
+          "right": 712,
+          "bottom": 270.6875,
+          "left": 519
+        },
+        "hint": {
+          "bounds": {
+            "x": 519,
+            "y": 89.09375,
+            "width": 193,
+            "height": 41.59375,
+            "top": 89.09375,
+            "right": 712,
+            "bottom": 130.6875,
+            "left": 519
+          },
+          "text": "目标有效。确认后使用物品并支付上述代价。"
+        },
+        "confirm": {
+          "bounds": {
+            "x": 36,
+            "y": 315,
+            "width": 226.65625,
+            "height": 56,
+            "top": 315,
+            "right": 262.65625,
+            "bottom": 371,
+            "left": 36
+          },
+          "disabled": false
+        },
+        "columns": 4,
+        "options": [
+          {
+            "x": 193,
+            "y": 97.4375,
+            "width": 68.5,
+            "height": 101.09375,
+            "top": 97.4375,
+            "right": 261.5,
+            "bottom": 198.53125,
+            "left": 193
+          }
+        ],
+        "faces": [
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 519,
+              "y": 158.6875,
+              "width": 48,
+              "height": 60,
+              "top": 158.6875,
+              "right": 567,
+              "bottom": 218.6875,
+              "left": 519
+            }
+          },
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 595.015625,
+              "y": 158.6875,
+              "width": 48,
+              "height": 58,
+              "top": 158.6875,
+              "right": 643.015625,
+              "bottom": 216.6875,
+              "left": 595.015625
+            }
+          }
+        ],
+        "preview": "目标顺序：1. K♠ · 普通 · 第 12 张\n\nK♠：无增强 → 倍率纸；保留其他属性。\n当前 增强：无；版次：普通。"
+      },
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "humanAcceptance": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "transaction": {
+    "before": {
+      "state": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-basic-tool-supply-v1",
+        "contentHash": "json-fnv-v1:f87eea81b756b81d",
+        "runId": "run/1791506910545/erxiang",
+        "seed": "1791506910545",
+        "commandSeq": 3,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 0,
+          "rootId": null,
+          "eventId": null,
+          "reason": null
+        },
+        "routeStarter": {
+          "instanceId": "run/1791506910545/erxiang/joker/run/1791506910545/erxiang/command/2",
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": true,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "shop",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6",
+          "spades-7",
+          "spades-8",
+          "spades-9",
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14",
+          "hearts-2",
+          "hearts-3",
+          "hearts-4",
+          "hearts-5",
+          "hearts-6",
+          "hearts-7",
+          "hearts-8",
+          "hearts-9",
+          "hearts-10",
+          "hearts-11",
+          "hearts-12",
+          "hearts-13",
+          "hearts-14",
+          "clubs-2",
+          "clubs-3",
+          "clubs-4",
+          "clubs-5",
+          "clubs-6",
+          "clubs-7",
+          "clubs-8",
+          "clubs-9",
+          "clubs-10",
+          "clubs-11",
+          "clubs-12",
+          "clubs-13",
+          "clubs-14",
+          "diamonds-2",
+          "diamonds-3",
+          "diamonds-4",
+          "diamonds-5",
+          "diamonds-6",
+          "diamonds-7",
+          "diamonds-8",
+          "diamonds-9",
+          "diamonds-10",
+          "diamonds-11",
+          "diamonds-12",
+          "diamonds-13",
+          "diamonds-14"
+        ],
+        "handOrder": [],
+        "playedPile": [],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": null,
+        "totalHeat": "0",
+        "gold": 0,
+        "jokers": [
+          {
+            "instanceId": "run/1791506910545/erxiang/joker/run/1791506910545/erxiang/command/2",
+            "definitionId": "mantangcai",
+            "paidPrice": 4,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "consumables": [
+          {
+            "instanceId": "run/1791506910545/erxiang/tool/run/1791506910545/erxiang/command/3",
+            "definitionId": "T11"
+          }
+        ],
+        "longTermItems": [],
+        "program": {
+          "chapter": 1,
+          "offerIds": [
+            "PG01",
+            "PG04"
+          ],
+          "selectedId": null,
+          "choiceMade": false,
+          "abandoned": false,
+          "lastOpportunityClear": false,
+          "claimed": false
+        },
+        "boss": {
+          "definitionId": "B03",
+          "disabledSuit": "clubs"
+        },
+        "seenBossIds": [
+          "B03"
+        ],
+        "chapterSkipConsumable": "T05",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": {
+          "visitIndex": 0,
+          "rerollCount": 0,
+          "purchases": 2,
+          "soldJoker": false,
+          "freeRerolls": 0,
+          "offers": [
+            {
+              "offerId": "run/1791506910545/erxiang/shop/0/0/joker/0",
+              "definitionId": "b03",
+              "price": 6,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/1791506910545/erxiang/shop/0/0/joker/1",
+              "definitionId": "f07",
+              "price": 6,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/1791506910545/erxiang/shop/0/0/joker/2",
+              "definitionId": "mantangcai",
+              "price": 4,
+              "edition": "none",
+              "consumed": true
+            }
+          ],
+          "toolOffers": [
+            {
+              "offerId": "run/1791506910545/erxiang/shop/0/0/tool/0",
+              "definitionId": "T18",
+              "price": 4,
+              "consumed": false
+            },
+            {
+              "offerId": "run/1791506910545/erxiang/shop/0/0/tool/1",
+              "definitionId": "T11",
+              "price": 2,
+              "consumed": true
+            }
+          ],
+          "itemOffers": [
+            {
+              "offerId": "run/1791506910545/erxiang/shop/0/0/item/0",
+              "definitionId": "U08",
+              "price": 12,
+              "consumed": false
+            }
+          ]
+        },
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {},
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1669223806
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1108081355
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1885744197
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3384626469
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2761946333
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1531561518
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "run/1791506910545/erxiang/start",
+            "fingerprint": "json-fnv-v1:d86372d9e1a29175",
+            "seq": 1
+          },
+          {
+            "commandId": "run/1791506910545/erxiang/command/2",
+            "fingerprint": "json-fnv-v1:bcf8aa6b480c2c6f",
+            "seq": 2
+          },
+          {
+            "commandId": "run/1791506910545/erxiang/command/3",
+            "fingerprint": "json-fnv-v1:dd20b3033955026f",
+            "seq": 3
+          }
+        ],
+        "lastTrace": null,
+        "handLevels": {},
+        "outcome": null
+      },
+      "journal": [
+        {
+          "runId": "run/1791506910545/erxiang",
+          "commandId": "run/1791506910545/erxiang/command/2",
+          "expectedSeq": 1,
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791506910545/erxiang/shop/0/0/joker/2"
+          }
+        },
+        {
+          "runId": "run/1791506910545/erxiang",
+          "commandId": "run/1791506910545/erxiang/command/3",
+          "expectedSeq": 2,
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791506910545/erxiang/shop/0/0/tool/1"
+          }
+        }
+      ]
+    },
+    "commands": [
+      {
+        "runId": "run/1791506910545/erxiang",
+        "commandId": "run/1791506910545/erxiang/command/4",
+        "expectedSeq": 3,
+        "action": {
+          "type": "UseConsumable",
+          "instanceId": "run/1791506910545/erxiang/tool/run/1791506910545/erxiang/command/3",
+          "targetIds": [
+            "spades-13"
+          ]
+        }
+      }
+    ],
+    "after": {
+      "state": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-basic-tool-supply-v1",
+        "contentHash": "json-fnv-v1:f87eea81b756b81d",
+        "runId": "run/1791506910545/erxiang",
+        "seed": "1791506910545",
+        "commandSeq": 4,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 0,
+          "rootId": null,
+          "eventId": null,
+          "reason": null
+        },
+        "routeStarter": {
+          "instanceId": "run/1791506910545/erxiang/joker/run/1791506910545/erxiang/command/2",
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": true,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "shop",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13,
+            "enhancement": "multiplier-paper"
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6",
+          "spades-7",
+          "spades-8",
+          "spades-9",
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14",
+          "hearts-2",
+          "hearts-3",
+          "hearts-4",
+          "hearts-5",
+          "hearts-6",
+          "hearts-7",
+          "hearts-8",
+          "hearts-9",
+          "hearts-10",
+          "hearts-11",
+          "hearts-12",
+          "hearts-13",
+          "hearts-14",
+          "clubs-2",
+          "clubs-3",
+          "clubs-4",
+          "clubs-5",
+          "clubs-6",
+          "clubs-7",
+          "clubs-8",
+          "clubs-9",
+          "clubs-10",
+          "clubs-11",
+          "clubs-12",
+          "clubs-13",
+          "clubs-14",
+          "diamonds-2",
+          "diamonds-3",
+          "diamonds-4",
+          "diamonds-5",
+          "diamonds-6",
+          "diamonds-7",
+          "diamonds-8",
+          "diamonds-9",
+          "diamonds-10",
+          "diamonds-11",
+          "diamonds-12",
+          "diamonds-13",
+          "diamonds-14"
+        ],
+        "handOrder": [],
+        "playedPile": [],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": null,
+        "totalHeat": "0",
+        "gold": 0,
+        "jokers": [
+          {
+            "instanceId": "run/1791506910545/erxiang/joker/run/1791506910545/erxiang/command/2",
+            "definitionId": "mantangcai",
+            "paidPrice": 4,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "consumables": [],
+        "longTermItems": [],
+        "program": {
+          "chapter": 1,
+          "offerIds": [
+            "PG01",
+            "PG04"
+          ],
+          "selectedId": null,
+          "choiceMade": false,
+          "abandoned": false,
+          "lastOpportunityClear": false,
+          "claimed": false
+        },
+        "boss": {
+          "definitionId": "B03",
+          "disabledSuit": "clubs"
+        },
+        "seenBossIds": [
+          "B03"
+        ],
+        "chapterSkipConsumable": "T05",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": {
+          "visitIndex": 0,
+          "rerollCount": 0,
+          "purchases": 2,
+          "soldJoker": false,
+          "freeRerolls": 0,
+          "offers": [
+            {
+              "offerId": "run/1791506910545/erxiang/shop/0/0/joker/0",
+              "definitionId": "b03",
+              "price": 6,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/1791506910545/erxiang/shop/0/0/joker/1",
+              "definitionId": "f07",
+              "price": 6,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/1791506910545/erxiang/shop/0/0/joker/2",
+              "definitionId": "mantangcai",
+              "price": 4,
+              "edition": "none",
+              "consumed": true
+            }
+          ],
+          "toolOffers": [
+            {
+              "offerId": "run/1791506910545/erxiang/shop/0/0/tool/0",
+              "definitionId": "T18",
+              "price": 4,
+              "consumed": false
+            },
+            {
+              "offerId": "run/1791506910545/erxiang/shop/0/0/tool/1",
+              "definitionId": "T11",
+              "price": 2,
+              "consumed": true
+            }
+          ],
+          "itemOffers": [
+            {
+              "offerId": "run/1791506910545/erxiang/shop/0/0/item/0",
+              "definitionId": "U08",
+              "price": 12,
+              "consumed": false
+            }
+          ]
+        },
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {},
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1669223806
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1108081355
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1885744197
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3384626469
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2761946333
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1531561518
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "run/1791506910545/erxiang/start",
+            "fingerprint": "json-fnv-v1:d86372d9e1a29175",
+            "seq": 1
+          },
+          {
+            "commandId": "run/1791506910545/erxiang/command/2",
+            "fingerprint": "json-fnv-v1:bcf8aa6b480c2c6f",
+            "seq": 2
+          },
+          {
+            "commandId": "run/1791506910545/erxiang/command/3",
+            "fingerprint": "json-fnv-v1:dd20b3033955026f",
+            "seq": 3
+          },
+          {
+            "commandId": "run/1791506910545/erxiang/command/4",
+            "fingerprint": "json-fnv-v1:572586ba5507c44e",
+            "seq": 4
+          }
+        ],
+        "lastTrace": null,
+        "handLevels": {},
+        "outcome": null
+      },
+      "journal": [
+        {
+          "runId": "run/1791506910545/erxiang",
+          "commandId": "run/1791506910545/erxiang/command/2",
+          "expectedSeq": 1,
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791506910545/erxiang/shop/0/0/joker/2"
+          }
+        },
+        {
+          "runId": "run/1791506910545/erxiang",
+          "commandId": "run/1791506910545/erxiang/command/3",
+          "expectedSeq": 2,
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "run/1791506910545/erxiang/shop/0/0/tool/1"
+          }
+        },
+        {
+          "runId": "run/1791506910545/erxiang",
+          "commandId": "run/1791506910545/erxiang/command/4",
+          "expectedSeq": 3,
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "run/1791506910545/erxiang/tool/run/1791506910545/erxiang/command/3",
+            "targetIds": [
+              "spades-13"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "status": "PASS",
+  "after": {
+    "source": "a9f3d45a5f05d6d74cc2deed7c2e3ed94fe7f63583e2fe0a720867c23a4c5278",
+    "index": "8880de4be9cd40355804a473176d3c311016b84c2a8b52ac9a941cdf5f5b6d6d",
+    "head": "38d67b18611c53ffd83703ef40aa0a18cc43ea8b",
+    "branch": "refs/heads/review/tool-change-preview-20261009"
+  },
+  "sourceUnchanged": true
+}

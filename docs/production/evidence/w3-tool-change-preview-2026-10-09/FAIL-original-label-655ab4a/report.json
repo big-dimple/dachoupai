@@ -1,0 +1,25 @@
+{
+  "testedCommit": "655ab4a3b8f18a13233394e51694b4157dd7dcad",
+  "before": {
+    "source": "9d583b3d003775d10c3bbba4b3c240af7c2a0d9fc0fbb114ff367c1b101c4a02",
+    "index": "b956682828a1171db2f199c0bcf6e7e57f97753a15a9b4d63d8d6ea55f9fe8e4",
+    "head": "655ab4a3b8f18a13233394e51694b4157dd7dcad",
+    "branch": "refs/heads/review/tool-change-preview-20261009"
+  },
+  "scope": "Same prior real purchased T11 checkpoint, production native import without edits. One real use only at390;1366/320/740 display/selection/cancel only. No old gameplay-chain replay.",
+  "originalSource": "f70b3eca8a0d6ba3b1f4269abd1394aa56d58bf6",
+  "checks": [],
+  "errors": [],
+  "humanAcceptance": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok((await d.locator('.tool-directory-count').innerText()).includes('隐藏已选'))\n",
+  "stack": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok((await d.locator('.tool-directory-count').innerText()).includes('隐藏已选'))\n\n    at file:///tmp/tool-change-native.mjs:20:240",
+  "after": {
+    "source": "9d583b3d003775d10c3bbba4b3c240af7c2a0d9fc0fbb114ff367c1b101c4a02",
+    "index": "b956682828a1171db2f199c0bcf6e7e57f97753a15a9b4d63d8d6ea55f9fe8e4",
+    "head": "655ab4a3b8f18a13233394e51694b4157dd7dcad",
+    "branch": "refs/heads/review/tool-change-preview-20261009"
+  },
+  "sourceUnchanged": true
+}

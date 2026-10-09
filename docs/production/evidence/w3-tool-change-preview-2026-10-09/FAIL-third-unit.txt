@@ -1,0 +1,37 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/tool-change-preview.test.ts (7 tests | 1 failed) 31ms
+   × upgraded and exchanged levels expose exact base heat and rational multiplier, never final score 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/tool-change-preview.test.ts > upgraded and exchanged levels expose exact base heat and rational multiplier, never final score
+AssertionError: expected { level: 1, heat: 20, mult: '1' } to deeply equal { level: 1, heat: 5, mult: '1' }
+
+- Expected
++ Received
+
+  {
+-   "heat": 5,
++   "heat": 20,
+    "level": 1,
+    "mult": "1",
+  }
+
+ ❯ tests/tool-change-preview.test.ts:21:180
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 9 passed (10)
+   Start at  04:44:13
+   Duration  687ms (transform 516ms, setup 0ms, import 649ms, tests 37ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

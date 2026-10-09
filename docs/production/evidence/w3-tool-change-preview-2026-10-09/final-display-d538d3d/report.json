@@ -1,0 +1,674 @@
+{
+  "testedCommit": "d538d3d12a36a14a1a9821546d9dce7937813046",
+  "before": {
+    "source": "0d5899b98a1a66260693002cc500576130f93cae0ac7a2dc0d64d5b4467eff0b",
+    "index": "8b622ebf8106f2bb4ccbf1339da39286226abb04eaf4bf32cda13b8ea64d6c86",
+    "head": "d538d3d12a36a14a1a9821546d9dce7937813046",
+    "branch": "refs/heads/review/tool-change-preview-20261009"
+  },
+  "scope": "Same prior real purchased T11 checkpoint, production native import without edits. Display/selection/cancel only at1366/390/320/740. Actual use preserved separately at38d67b1; explicit T01/S05 visual fixtures are not natural acquisition evidence. No old gameplay-chain replay.",
+  "originalSource": "f70b3eca8a0d6ba3b1f4269abd1394aa56d58bf6",
+  "checks": [
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768
+      },
+      "geometry": {
+        "dialog": {
+          "x": 133,
+          "y": 12,
+          "width": 1100,
+          "height": 744,
+          "top": 12,
+          "right": 1233,
+          "bottom": 756,
+          "left": 133
+        },
+        "scroll": {
+          "x": 949,
+          "y": 163.28125,
+          "width": 267,
+          "height": 494.71875,
+          "top": 163.28125,
+          "right": 1216,
+          "bottom": 658,
+          "left": 949
+        },
+        "face": {
+          "x": 949,
+          "y": 169.28125,
+          "width": 267,
+          "height": 118,
+          "top": 169.28125,
+          "right": 1216,
+          "bottom": 287.28125,
+          "left": 949
+        },
+        "hint": {
+          "bounds": {
+            "x": 949,
+            "y": 116.09375,
+            "width": 267,
+            "height": 47.1875,
+            "top": 116.09375,
+            "right": 1216,
+            "bottom": 163.28125,
+            "left": 949
+          },
+          "text": "目标有效。确认后使用物品并支付上述代价。"
+        },
+        "confirm": {
+          "bounds": {
+            "x": 154,
+            "y": 687,
+            "width": 356.65625,
+            "height": 56,
+            "top": 687,
+            "right": 510.65625,
+            "bottom": 743,
+            "left": 154
+          },
+          "disabled": false
+        },
+        "columns": 10,
+        "options": [
+          {
+            "x": 159,
+            "y": 478.640625,
+            "width": 69.390625,
+            "height": 101.09375,
+            "top": 478.640625,
+            "right": 228.390625,
+            "bottom": 579.734375,
+            "left": 159
+          }
+        ],
+        "faces": [
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 949,
+              "y": 191.28125,
+              "width": 48,
+              "height": 60,
+              "top": 191.28125,
+              "right": 997,
+              "bottom": 251.28125,
+              "left": 949
+            }
+          },
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 1025.015625,
+              "y": 191.28125,
+              "width": 48,
+              "height": 58,
+              "top": 191.28125,
+              "right": 1073.015625,
+              "bottom": 249.28125,
+              "left": 1025.015625
+            }
+          }
+        ],
+        "preview": "目标顺序：1. K♠ · 普通 · 第 12 张\n\nK♠：无增强 → 倍率纸；保留其他属性。\n当前 增强：无；版次：普通。"
+      },
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 740
+      },
+      "geometry": {
+        "dialog": {
+          "x": 19,
+          "y": 12,
+          "width": 352,
+          "height": 716,
+          "top": 12,
+          "right": 371,
+          "bottom": 728,
+          "left": 19
+        },
+        "scroll": {
+          "x": 32,
+          "y": 508.796875,
+          "width": 326,
+          "height": 135.203125,
+          "top": 508.796875,
+          "right": 358,
+          "bottom": 644,
+          "left": 32
+        },
+        "face": {
+          "x": 32,
+          "y": 514.796875,
+          "width": 326,
+          "height": 118,
+          "top": 514.796875,
+          "right": 358,
+          "bottom": 632.796875,
+          "left": 32
+        },
+        "hint": {
+          "bounds": {
+            "x": 32,
+            "y": 484,
+            "width": 326,
+            "height": 24.796875,
+            "top": 484,
+            "right": 358,
+            "bottom": 508.796875,
+            "left": 32
+          },
+          "text": "目标有效。确认后使用物品并支付上述代价。"
+        },
+        "confirm": {
+          "bounds": {
+            "x": 36,
+            "y": 661,
+            "width": 110,
+            "height": 56,
+            "top": 661,
+            "right": 146,
+            "bottom": 717,
+            "left": 36
+          },
+          "disabled": false
+        },
+        "columns": 4,
+        "options": [
+          {
+            "x": 39,
+            "y": 291.9375,
+            "width": 73.5,
+            "height": 101.09375,
+            "top": 291.9375,
+            "right": 112.5,
+            "bottom": 393.03125,
+            "left": 39
+          }
+        ],
+        "faces": [
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 32,
+              "y": 536.796875,
+              "width": 48,
+              "height": 60,
+              "top": 536.796875,
+              "right": 80,
+              "bottom": 596.796875,
+              "left": 32
+            }
+          },
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 108.015625,
+              "y": 536.796875,
+              "width": 48,
+              "height": 58,
+              "top": 536.796875,
+              "right": 156.015625,
+              "bottom": 594.796875,
+              "left": 108.015625
+            }
+          }
+        ],
+        "preview": "目标顺序：1. K♠ · 普通 · 第 12 张\n\nK♠：无增强 → 倍率纸；保留其他属性。\n当前 增强：无；版次：普通。"
+      },
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 740
+      },
+      "geometry": {
+        "dialog": {
+          "x": 19,
+          "y": 12,
+          "width": 282,
+          "height": 716,
+          "top": 12,
+          "right": 301,
+          "bottom": 728,
+          "left": 19
+        },
+        "scroll": {
+          "x": 32,
+          "y": 508.796875,
+          "width": 256,
+          "height": 135.203125,
+          "top": 508.796875,
+          "right": 288,
+          "bottom": 644,
+          "left": 32
+        },
+        "face": {
+          "x": 32,
+          "y": 514.796875,
+          "width": 256,
+          "height": 118,
+          "top": 514.796875,
+          "right": 288,
+          "bottom": 632.796875,
+          "left": 32
+        },
+        "hint": {
+          "bounds": {
+            "x": 32,
+            "y": 484,
+            "width": 256,
+            "height": 24.796875,
+            "top": 484,
+            "right": 288,
+            "bottom": 508.796875,
+            "left": 32
+          },
+          "text": "目标有效。确认后使用物品并支付上述代价。"
+        },
+        "confirm": {
+          "bounds": {
+            "x": 36,
+            "y": 661,
+            "width": 86.65625,
+            "height": 56,
+            "top": 661,
+            "right": 122.65625,
+            "bottom": 717,
+            "left": 36
+          },
+          "disabled": false
+        },
+        "columns": 3,
+        "options": [
+          {
+            "x": 39,
+            "y": 291.984375,
+            "width": 76.65625,
+            "height": 101.09375,
+            "top": 291.984375,
+            "right": 115.65625,
+            "bottom": 393.078125,
+            "left": 39
+          }
+        ],
+        "faces": [
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 32,
+              "y": 536.796875,
+              "width": 48,
+              "height": 60,
+              "top": 536.796875,
+              "right": 80,
+              "bottom": 596.796875,
+              "left": 32
+            }
+          },
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 108.015625,
+              "y": 536.796875,
+              "width": 48,
+              "height": 58,
+              "top": 536.796875,
+              "right": 156.015625,
+              "bottom": 594.796875,
+              "left": 108.015625
+            }
+          }
+        ],
+        "preview": "目标顺序：1. K♠ · 普通 · 第 12 张\n\nK♠：无增强 → 倍率纸；保留其他属性。\n当前 增强：无；版次：普通。"
+      },
+      "status": "PASS"
+    },
+    {
+      "spec": {
+        "width": 740,
+        "height": 390
+      },
+      "geometry": {
+        "dialog": {
+          "x": 19,
+          "y": 12,
+          "width": 702,
+          "height": 366,
+          "top": 12,
+          "right": 721,
+          "bottom": 378,
+          "left": 19
+        },
+        "scroll": {
+          "x": 519,
+          "y": 130.6875,
+          "width": 193,
+          "height": 171.3125,
+          "top": 130.6875,
+          "right": 712,
+          "bottom": 302,
+          "left": 519
+        },
+        "face": {
+          "x": 519,
+          "y": 136.6875,
+          "width": 193,
+          "height": 118,
+          "top": 136.6875,
+          "right": 712,
+          "bottom": 254.6875,
+          "left": 519
+        },
+        "hint": {
+          "bounds": {
+            "x": 519,
+            "y": 89.09375,
+            "width": 193,
+            "height": 41.59375,
+            "top": 89.09375,
+            "right": 712,
+            "bottom": 130.6875,
+            "left": 519
+          },
+          "text": "目标有效。确认后使用物品并支付上述代价。"
+        },
+        "confirm": {
+          "bounds": {
+            "x": 36,
+            "y": 315,
+            "width": 226.65625,
+            "height": 56,
+            "top": 315,
+            "right": 262.65625,
+            "bottom": 371,
+            "left": 36
+          },
+          "disabled": false
+        },
+        "columns": 4,
+        "options": [
+          {
+            "x": 193,
+            "y": 97.4375,
+            "width": 68.5,
+            "height": 101.09375,
+            "top": 97.4375,
+            "right": 261.5,
+            "bottom": 198.53125,
+            "left": 193
+          }
+        ],
+        "faces": [
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 519,
+              "y": 158.6875,
+              "width": 48,
+              "height": 60,
+              "top": 158.6875,
+              "right": 567,
+              "bottom": 218.6875,
+              "left": 519
+            }
+          },
+          {
+            "text": "K♠",
+            "bounds": {
+              "x": 595.015625,
+              "y": 158.6875,
+              "width": 48,
+              "height": 58,
+              "top": 158.6875,
+              "right": 643.015625,
+              "bottom": 216.6875,
+              "left": 595.015625
+            }
+          }
+        ],
+        "preview": "目标顺序：1. K♠ · 普通 · 第 12 张\n\nK♠：无增强 → 倍率纸；保留其他属性。\n当前 增强：无；版次：普通。"
+      },
+      "status": "PASS"
+    },
+    {
+      "explicitVisualFixture": "T01",
+      "facts": {
+        "scrollTop": 0,
+        "geometry": {
+          "dock": {
+            "x": 20,
+            "y": 491.609375,
+            "width": 280,
+            "height": 158.390625,
+            "top": 491.609375,
+            "right": 300,
+            "bottom": 650,
+            "left": 20
+          },
+          "hint": {
+            "x": 32,
+            "y": 502.609375,
+            "width": 256,
+            "height": 24.796875,
+            "top": 502.609375,
+            "right": 288,
+            "bottom": 527.40625,
+            "left": 32
+          },
+          "cost": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "confirm": {
+            "x": 36,
+            "y": 661,
+            "width": 86.65625,
+            "height": 56,
+            "top": 661,
+            "right": 122.65625,
+            "bottom": 717,
+            "left": 36
+          },
+          "confirmBackground": "rgb(184, 71, 58)"
+        },
+        "levels": "对子 · 基础数值\n当前 Lv.1\n热度 35 · 倍率 2\n→\n使用后 Lv.2\n热度 50 · 倍率 2.5",
+        "cost": "",
+        "valid": "目标有效。确认后使用物品并支付上述代价。",
+        "disabled": false
+      },
+      "status": "PASS"
+    },
+    {
+      "explicitVisualFixture": "S05",
+      "facts": {
+        "scrollTop": 0,
+        "geometry": {
+          "dock": {
+            "x": 20,
+            "y": 473,
+            "width": 280,
+            "height": 177,
+            "top": 473,
+            "right": 300,
+            "bottom": 650,
+            "left": 20
+          },
+          "hint": {
+            "x": 32,
+            "y": 484,
+            "width": 256,
+            "height": 24.796875,
+            "top": 484,
+            "right": 288,
+            "bottom": 508.796875,
+            "left": 32
+          },
+          "cost": {
+            "x": 32,
+            "y": 512.796875,
+            "width": 256,
+            "height": 33.59375,
+            "top": 512.796875,
+            "right": 288,
+            "bottom": 546.390625,
+            "left": 32
+          },
+          "confirm": {
+            "x": 36,
+            "y": 661,
+            "width": 86.65625,
+            "height": 56,
+            "top": 661,
+            "right": 122.65625,
+            "bottom": 717,
+            "left": 36
+          },
+          "confirmBackground": "rgb(184, 71, 58)"
+        },
+        "levels": "对子 · 基础数值\n当前 Lv.1\n热度 35 · 倍率 2\n→\n使用后 Lv.4\n热度 80 · 倍率 3.5\n高牌 · 基础数值\n当前 Lv.5\n热度 60 · 倍率 2\n→\n使用后 Lv.4\n热度 50 · 倍率 1.75",
+        "cost": "遗忘代价：高牌 Lv.5 → 4\n额外使用代价：3 金；金币 6 → 3。",
+        "valid": "目标有效。确认后使用物品并支付上述代价。",
+        "disabled": false
+      },
+      "status": "PASS"
+    },
+    {
+      "explicitVisualFixture": "T11",
+      "facts": {
+        "scrollTop": 0,
+        "geometry": {
+          "dock": {
+            "x": 20,
+            "y": 473,
+            "width": 280,
+            "height": 177,
+            "top": 473,
+            "right": 300,
+            "bottom": 650,
+            "left": 20
+          },
+          "hint": {
+            "x": 32,
+            "y": 484,
+            "width": 256,
+            "height": 24.796875,
+            "top": 484,
+            "right": 288,
+            "bottom": 508.796875,
+            "left": 32
+          },
+          "cost": {
+            "x": 32,
+            "y": 512.796875,
+            "width": 256,
+            "height": 16.796875,
+            "top": 512.796875,
+            "right": 288,
+            "bottom": 529.59375,
+            "left": 32
+          },
+          "confirm": {
+            "x": 36,
+            "y": 661,
+            "width": 86.65625,
+            "height": 56,
+            "top": 661,
+            "right": 122.65625,
+            "bottom": 717,
+            "left": 36
+          },
+          "confirmBackground": "rgb(184, 71, 58)"
+        },
+        "levels": "1. 确认前 → 使用后\nK♠\n热度纸 · 闪箔\n→\nK♠\n倍率纸 · 闪箔\n替换原增强：热度纸",
+        "cost": "替换原增强：热度纸",
+        "valid": "目标有效。确认后使用物品并支付上述代价。",
+        "disabled": false
+      },
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "humanAcceptance": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "actualAssets": [
+    "/assets/audio/foley-v1/card-fan-1.ogg",
+    "/assets/audio/foley-v1/card-place-1.ogg",
+    "/assets/audio/foley-v1/card-place-2.ogg",
+    "/assets/audio/foley-v1/card-place-3.ogg",
+    "/assets/audio/foley-v1/card-shove-1.ogg",
+    "/assets/audio/foley-v1/card-shuffle.ogg",
+    "/assets/audio/foley-v1/card-slide-1.ogg",
+    "/assets/audio/foley-v1/card-slide-2.ogg",
+    "/assets/audio/foley-v1/card-slide-3.ogg",
+    "/assets/audio/foley-v1/cards-pack-open-1.ogg",
+    "/assets/audio/foley-v1/chip-lay-1.ogg",
+    "/assets/audio/foley-v1/chip-lay-2.ogg",
+    "/assets/audio/foley-v1/chips-collide-1.ogg",
+    "/assets/audio/foley-v1/chips-stack-1.ogg",
+    "/assets/audio/foley-v1/impactBell_heavy_000.ogg",
+    "/assets/audio/foley-v1/impactBell_heavy_003.ogg",
+    "/assets/audio/foley-v1/impactGlass_heavy_002.ogg",
+    "/assets/audio/foley-v1/impactSoft_heavy_000.ogg",
+    "/assets/audio/foley-v1/impactSoft_medium_000.ogg",
+    "/assets/audio/foley-v1/impactWood_heavy_000.ogg",
+    "/assets/audio/foley-v1/impactWood_light_000.ogg",
+    "/assets/audio/foley-v1/impactWood_light_001.ogg",
+    "/assets/audio/score-impact/cloth2.ogg",
+    "/assets/fonts/score/dachoupai-score-numbers.woff",
+    "/assets/handdrawn-p08/cards/b03.thumbnail.webp",
+    "/assets/handdrawn-p08/cards/f07.thumbnail.webp",
+    "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+    "/assets/handdrawn-p08/characters/amo.avatar.webp",
+    "/assets/handdrawn-p08/characters/amo.selection.webp",
+    "/assets/handdrawn-p08/characters/azao.avatar.webp",
+    "/assets/handdrawn-p08/characters/azao.selection.webp",
+    "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+    "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+    "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+    "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+    "/assets/handdrawn-p08/characters/touye.avatar.webp",
+    "/assets/handdrawn-p08/characters/touye.selection.webp",
+    "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+    "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+    "/assets/handdrawn-p08/court/j.court.webp",
+    "/assets/handdrawn-p08/court/k.court.webp",
+    "/assets/handdrawn-p08/court/q.court.webp",
+    "/assets/handdrawn-tools/item-u08.thumbnail.webp",
+    "/assets/handdrawn-tools/tool-s05.detail.webp",
+    "/assets/handdrawn-tools/tool-s05.thumbnail.webp",
+    "/assets/handdrawn-tools/tool-t01.detail.webp",
+    "/assets/handdrawn-tools/tool-t01.thumbnail.webp",
+    "/assets/handdrawn-tools/tool-t11.detail.webp",
+    "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+    "/assets/handdrawn-tools/tool-t18.thumbnail.webp",
+    "/assets/p00/mark-joker.svg",
+    "/assets/p00/mark-plus.svg",
+    "/assets/p00/mark-times.svg",
+    "/assets/p00/paper.svg",
+    "/public/assets/audio/foley-v1/sources.json",
+    "/public/assets/audio/p06/recording.json",
+    "/public/assets/handdrawn-p08/manifest.json",
+    "/public/assets/handdrawn-tools/manifest.json"
+  ],
+  "status": "PASS",
+  "after": {
+    "source": "0d5899b98a1a66260693002cc500576130f93cae0ac7a2dc0d64d5b4467eff0b",
+    "index": "8b622ebf8106f2bb4ccbf1339da39286226abb04eaf4bf32cda13b8ea64d6c86",
+    "head": "d538d3d12a36a14a1a9821546d9dce7937813046",
+    "branch": "refs/heads/review/tool-change-preview-20261009"
+  },
+  "sourceUnchanged": true
+}
