@@ -855,7 +855,7 @@ export class GameScene extends Phaser.Scene {
   private selectionQuickInScore(score:Box):boolean {return this.assistProfile||this.view.layout.mode!=='desktop'||score.width>=300;}
   private renderSelectionQuickButtons(score:Box):void {
     const area=this.selectionQuickInScore(score)?selectionCandidateEntryBox(score):{x:this.view.layout.playedArea.x+8,y:score.y+2,width:92,height:44},first=this.view.root.length;
-    const buttons=[this.view.button({...area,width:44},this.selectedIds.size?'所选\n条件':this.run.lastTrace?'上手\n收益':'来源\n条件','selection/source-benefits',()=>{const facts=this.selectionPreview();if(facts)this.inspectSelection(facts);else if(this.run.lastTrace)this.inspectLastTrace();else this.inspectHeldConditions();},this.ready),this.view.button({...area,x:area.x+48,width:44},'怎么\n凑牌','selection/hand-rules',()=>this.inspectCandidates(),this.ready)];
+    const buttons=[this.view.button({...area,width:44},this.selectedIds.size?'所选\n条件':this.run.lastTrace?'上手\n结果':'来源\n条件','selection/source-benefits',()=>{const facts=this.selectionPreview();if(facts)this.inspectSelection(facts);else if(this.run.lastTrace)this.inspectLastTrace();else this.inspectHeldConditions();},this.ready),this.view.button({...area,x:area.x+48,width:44},'怎么\n凑牌','selection/hand-rules',()=>this.inspectCandidates(),this.ready)];
     buttons.forEach(button=>(button.getData('label') as Phaser.GameObjects.Text).setFontSize(14).setName('selection/quick-label'));
     this.previewCards!.add(this.view.root.list.slice(first));
   }
@@ -918,13 +918,12 @@ export class GameScene extends Phaser.Scene {
     if(usesTouyeWager(this.run)){const copy=touyeChoice(this.run,[...this.selectedIds]);this.roleText.setText(copy.compact);if(!criticalStatus&&!this.playing&&!this.presentation&&copy.status)this.statusText.setText(copy.status);if(this.pendingTouye){this.view.setEnabled(this.discardButton,false);if(this.inventoryButton)this.view.setEnabled(this.inventoryButton,false);}}
     if(usesLaohuanRefill(this.run))this.roleText.setText(this.roleCaption());
     const heroCue=heroAbilityCue(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0);
-    if(heroCue&&!this.presentation&&!this.playing){
-      const chosen=!!(this.erxiangTargetId||this.azaoRelease||this.xiemuBurn||this.assistIds.length);
-      if(!chosen)this.roleText.setText(heroCue.label);
-      const available=this.ready&&heroCue.available&&!chosen;
-      this.roleText.setColor(available?C.jade:C.mutedInk).setData('abilityAvailable',available);
-      this.roleFrame.setStrokeStyle(available?2:1,available?T.jade:T.brass,available?1:.6);
-    }
+    const heroChosen=!!(this.erxiangTargetId||this.azaoRelease||this.xiemuBurn||this.assistIds.length);
+    if(heroCue&&!this.presentation&&!this.playing&&!heroChosen)this.roleText.setText(heroCue.label);
+    // Every update clears the readiness accent while saving, paused or presenting.
+    const heroAvailable=!!heroCue?.available&&this.ready&&!this.presentation&&!this.playing&&!heroChosen;
+    this.roleText.setColor(heroAvailable?C.jade:C.mutedInk).setData('abilityAvailable',heroAvailable);
+    this.roleFrame.setStrokeStyle(heroAvailable?2:1,heroAvailable?T.jade:T.brass,heroAvailable?1:.6);
     this.resourceCounts.play.setVisible(!this.pendingRefill);this.resourceCounts.discard.setVisible(!this.pendingRefill);
     if(this.pendingRefill){this.view.setEnabled(this.aiButton,false);this.view.setEnabled(this.playButton,this.ready&&!this.refillHidden&&this.selectedIds.size===this.pendingRefill.required);(this.playButton.getData('label') as Phaser.GameObjects.Text).setText('确认留'+this.pendingRefill.required);this.view.setEnabled(this.discardButton,this.ready);(this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(this.refillHidden?'继续选牌':'收起候选');if(this.inventoryButton)this.view.setEnabled(this.inventoryButton,false);}
     // Balatro-style call-to-action: the playable state breathes a warm aura.
@@ -1602,7 +1601,7 @@ export class GameScene extends Phaser.Scene {
     this.scoreTotal.setData('eventPhase','impact');
     restoreKey?.strike?.();
     if(restoreKey?.strike&&number)number={...number,tier:number.tier===3?3:2,peak:1.48};
-    if(number||benefit){if(!number&&benefit&&this.presentation&&!this.presentation.replay)this.audio.scoreImpact(this.presentation,event.eventId,restoreKey?.strike?'key':'add',restoreKey?.strike?2:0);}
+    if(number||(sourceBenefit&&benefit)){if(!number&&sourceBenefit&&benefit&&this.presentation&&!this.presentation.replay)this.audio.scoreImpact(this.presentation,event.eventId,restoreKey?.strike?'key':'add',restoreKey?.strike?2:0);}
     else if(event.sourceType==='character')this.audio.sourceCue('character');
     else if(key?.kind==='multiply')this.audio.multiplier('multiply',index);
     else if(event.sourceType==='joker'&&sourceBenefit)this.audio.sourceCue(event.phase==='onHeldCard'?'held':'joker',index);

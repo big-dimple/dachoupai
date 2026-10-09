@@ -1,4 +1,9 @@
-import {it,expect} from 'vitest';
+import {it,expect,vi} from 'vitest';
+vi.mock('phaser',()=>({default:{Scene:class {}}}));
+import {GameScene} from '../src/game/GameScene';
+import {touyeChoice} from '../src/game/TouyeWagerCopy';
+import {numberImpact} from '../src/game/ScoreEnergy';
+import {scoreBeat} from '../src/game/scorePresentation';
 import {createRun,applyCommand,type R2RunState,type Action} from '../src/domain/run';
 import {newRunIdentity} from '../src/game/RunLaunch';
 import {CHARACTER_IDS,type CharacterId} from '../src/domain/characters';
@@ -41,4 +46,12 @@ it('B08 respects the non-scoring Laohuan exception and never advertises disabled
 });
 it('Q01 public current states disable every ability cue without a game mutation',()=>{
  for(const id of CHARACTER_IDS){const s=arrange(send(send(createRun({rulesVersion:'r2',characterId:id,runId:'q-cue-'+id,seed:'challenge/q01/0',r2Identity:newRunIdentity(id,'group'),openingRoute:'group',modeConfig:{mode:'challenge',difficulty:0,challengeId:'Q01',programsEnabled:false}}),{type:'LeaveShop'}),{type:'EnterStage'}));expect(heroAbilityCue(s,facts(s),main,id==='amo')).toMatchObject({available:false});}
+});
+
+it('actual lost wager keeps its recorded result and routes the existing character cue without positive score impact',async()=>{
+ let s=entered('touye');const ids=cards.slice(6),incoming=['clubs-8','diamonds-6'];s.drawPile=[...s.drawPile.filter(id=>!incoming.includes(id)),...incoming.toReversed()];const pending=send(s,{type:'DiscardHand',selectedIds:ids,touyeBet:{target:'three-kind',snapshotToken:touyeChoice(s,ids).snapshotToken}}),after=send(pending,{type:'PlayHand',selectedIds:['diamonds-6']}),trace=after.lastTrace!,event=trace.events.find(e=>e.sourceType==='character')!;
+ expect(trace.touyeWager!.outcome).toBe('lost');expect(numberImpact(event,after.stage!.targetHeat)).toBeUndefined();expect(savedBenefit(after,trace,event)?.effect).toContain('未成×0.85');
+ const text=()=>{const n:any={width:0,text:'',setText(v:string){n.text=v;return n;}};for(const key of ['setName','setData','setVisible','setColor'])n[key]=()=>n;return n;};
+ const game=Object.create(GameScene.prototype) as any;Object.defineProperty(game,'reducedMotion',{value:true});Object.assign(game,{run:after,presentation:{state:after,score:trace,replay:false},view:{layout:{mode:'portrait',status:{width:1000}}},statusText:text(),resultText:text(),breakdownText:text(),scoreTotal:text(),scoreMult:text(),scoreHeat:text(),settledCards:new Map(),cardViews:[],jokerViews:new Map(),audio:{scoreImpact:vi.fn(),sourceCue:vi.fn()},ensureTraceSource:vi.fn(),animateRole:vi.fn(async()=>{}),setAccumulator:vi.fn(),wait:vi.fn(async()=>{}),transferToAccumulator:vi.fn(async()=>{}),rollAccumulator:vi.fn(async()=>{}),pulseAccumulator:vi.fn(async()=>{}),impactAccumulator:vi.fn(async()=>{}),updateTraceSource:vi.fn()});
+ await game.showScoreEvent(event,0,scoreBeat(event),{signal:new AbortController().signal});expect(game.audio.scoreImpact).not.toHaveBeenCalled();expect(game.audio.sourceCue).toHaveBeenCalledExactlyOnceWith('character');expect(game.resultText.text).toContain('未成×0.85');expect(game.statusText.text).toContain('未成×0.85');
 });

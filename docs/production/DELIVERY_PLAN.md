@@ -1101,6 +1101,9 @@ W1对应场景的必要状态、可读性与最小尺寸合同可先独立验证
 
 #### 首章主动能力发现与真实兑现
 
+2026-10-09父审PR83三项补正：输入e23d304，旧绿色CI未覆盖忙碌强调残留及失败音路由，不据此合并。范围仅GameScene、现有hero-ability-cue测试和本包parent-review证据/入口：updateControls每次重算/清除可用强调，busy/saving/paused/presentation不亮、合法恢复才亮；“上手结果”中性按钮；正向scoreImpact仍依据真实hasActualBenefit，骰爷未成只用原角色sourceCue。先必要状态/事件路由定向与同公开状态像素，不重跑代表事务或六轮局；失败保留、最终修复head一次CI父另核，不签听感/真人。
+
+
 2026-10-09父授权单一公共交互包；输入main `df17594c737acb002ea2230b9d857c9162e065a9`。沿原W6操作前提示与W7公共UI合同补真实断点，不新增角色机制、不代签W6真人/设备/听感或改变W2/W3依赖。先纠正选角旧能力承诺，再贯通当前可用→已有主动选择→真实保存兑现。
 
 allowedFiles：`src/game/HeroOpeningCopy.ts`、`CharacterRunCopy.ts`、`CharacterSelectScene.ts`、`GameScene.ts`、`HeroAbilityCue.ts`（新增公共身份/资格提示）、`AzaoChargeCopy.ts`、`XiemuBurnCopy.ts`、`TouyeWagerCopy.ts`、`ErxiangHandoffCopy.ts`、`JokerExperience.ts`、`JokerKeyHighlight.ts`、`HeroClimax.ts`及必要现有反馈适配；`tests/hero-opening-copy.test.ts`、`hero-ability-cue.test.ts`（新增）、`hero-climax.test.ts`、`touye-wager.test.ts`（真实成功/未成来源回执）及直接受影响现有角色文案测试；本计划、UX、AGENTS与`evidence/w6-hero-ability-discovery-2026-10-09/`。不改domain、数值、身份、schema、BGM、资源、CI或锁文件；不加规则页/说明墙、不重写故事台词大立绘、不跑六轮自然局。
