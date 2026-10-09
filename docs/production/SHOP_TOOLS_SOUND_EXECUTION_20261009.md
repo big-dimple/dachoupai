@@ -37,3 +37,21 @@
 ## 后续表现参考输入（2026-10-09，待父只读研究）
 
 用户提供 [Inkwave demo](https://inkwave-aah.pages.dev/) 与 [源码仓库](https://github.com/jaydendavisnc/inkwave)，要求学习表现并复用可用代码／资源。来源挂在后续W4声音／高光包，不插队当前商店／道具构筑。父已承担一次只读demo与源码研究；等其明确可移植清单、源码位置、资源出处与许可结论后接入，当前未下载、复制、移植或声称许可可用。只采用适合当前真实事件与东方手绘的具体表现，不照搬射击框架、不替换既有美术方向，也不另开广搜。
+
+### 固定版本研究结果与后续单一音画包
+
+父只读研究已回传，固定SHA `98ea29694ab3eebaaeaa995c2b525ac883a48de5`，[LICENSE为MIT](https://github.com/jaydendavisnc/inkwave/blob/98ea29694ab3eebaaeaa995c2b525ac883a48de5/LICENSE)，实际移植时保留原版权／许可证，并记录精确源码位置、修改和资源许可。这是可移植清单，不是本包已采用或体验验收；当前商店先收口，再在同一执行线做一个开场微调／英雄／SFX音画包，不新开大重构。
+
+| 固定源码与范围 | 后续可移植小块与适配边界 |
+| --- | --- |
+| [ui-util.js L81–96](https://github.com/jaydendavisnc/inkwave/blob/98ea29694ab3eebaaeaa995c2b525ac883a48de5/src/ui/ui-util.js#L81-L96) | Spring/damp，用于克制按压／英雄收束，与现有低动态和取消合同适配 |
+| [menu-art.js L258–309](https://github.com/jaydendavisnc/inkwave/blob/98ea29694ab3eebaaeaa995c2b525ac883a48de5/src/ui/menu-art.js#L258-L309) | 2D InkWipe遮盖换场、token及保底结束；改为东方纸墨，不用SQUID元素，旧回调不得作用到新场景 |
+| [music.js L217–343](https://github.com/jaydendavisnc/inkwave/blob/98ea29694ab3eebaaeaa995c2b525ac883a48de5/src/audio/music.js#L217-L343) | V.tone/V.nz包络、缓存、节点清理可作小型适配，沿用现有播放器／总线；不是重新包装用户反感的裸哔声 |
+| [audio.js L258–280](https://github.com/jaydendavisnc/inkwave/blob/98ea29694ab3eebaaeaa995c2b525ac883a48de5/src/audio/audio.js#L258-L280) | minGap、voiceCap、pitch，约束重复触发与同声叠加 |
+| [audio.js L425–449](https://github.com/jaydendavisnc/inkwave/blob/98ea29694ab3eebaaeaa995c2b525ac883a48de5/src/audio/audio.js#L425-L449)、[L726–734](https://github.com/jaydendavisnc/inkwave/blob/98ea29694ab3eebaaeaa995c2b525ac883a48de5/src/audio/audio.js#L726-L734) | 确认双音间75ms、低频＋滤噪＋短尾音的层次；既有录音与低频／短空气层搭配，实际听感后才能签收，非纯加音量／震屏 |
+| [menus.js L582–589](https://github.com/jaydendavisnc/inkwave/blob/98ea29694ab3eebaaeaa995c2b525ac883a48de5/src/ui/menus.js#L582-L589)、[ui.css L778–785](https://github.com/jaydendavisnc/inkwave/blob/98ea29694ab3eebaaeaa995c2b525ac883a48de5/styles/ui.css#L778-L785) | 确认音、挤压、冲击环约200ms后遮幕的错峰节奏；优先整体阅读层次，不机械照搬全部效果 |
+| [ui.css L132–153](https://github.com/jaydendavisnc/inkwave/blob/98ea29694ab3eebaaeaa995c2b525ac883a48de5/styles/ui.css#L132-L153)、[menus.js L629–640](https://github.com/jaydendavisnc/inkwave/blob/98ea29694ab3eebaaeaa995c2b525ac883a48de5/src/ui/menus.js#L629-L640) | 按下.955／80ms和pointercancel清理，按当前鼠标／触控／生命周期适配 |
+
+开场保留用户已赞过的英雄路线，只完善大字／主按钮的阅读次序与错峰，英雄与SFX沿统一事件时间线接入；不盲抄英文涂鸦或霓虹。历史小夜曲音乐30／音效80保留。完整但有限的关键动作短录屏与可实听片段，分别验证峰值对齐、取消／低动态、首触预热、资源预算与真实听感，不扩大回归矩阵或长录屏。
+
+研究限制必须保留：父云Chrome WebGL Disabled，demo在5%失败，未完整试玩或听到；只能核源码时间线，不能写成实见演出。未发现普通hitstop，不搬debug freeze。fonts无汉字且另有OFL；songs只有README，无可搬曲目；3D地图截图／光照图不适合当前项目。清单中的“可移植”仍须实际适配、许可记录和验收完成后才改为“已采用”。
