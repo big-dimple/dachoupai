@@ -1764,7 +1764,7 @@ export class GameScene extends Phaser.Scene {
     this.scoreTotal.setColor(celebration.cleared&&celebration.tier>=2?'#80551f':tier?C.red:C.ink);
     const opening= !presentation.replay&&presentation.state.openingShow?.rootId===score.rootId&&presentation.state.openingShow.reason==='score';
     const closeOpening=opening?this.showOpeningScore(score,context):undefined;
-    const landing=closeOpening?.hero?undefined:mountScoreLanding(this,this.view.root,this.view.layout,score,presentation.replay,context.signal);
+    const landing=closeOpening?.hero?undefined:mountScoreLanding(this,this.view.root,this.view.layout,score,presentation.replay,context.signal,this.scoreTotal.style.color);
     const totalLabel=this.scoreLabels[2],sideTotal=[this.scoreTotal,totalLabel,this.view.root.list.find(o=>o.name==='score/total-pedestal') as Phaser.GameObjects.Graphics|undefined].filter((o):o is Phaser.GameObjects.Text|Phaser.GameObjects.Graphics=>!!o),sideVisible=sideTotal.map(o=>o.visible);
     if(landing){totalLabel.setData('landingSuppressed',true);sideTotal.forEach(o=>o.setVisible(false));this.scoreFlame?.destroy();this.scoreFlame=undefined;}
     let landingClosed=false;const closeLanding=()=>{if(landingClosed)return;landingClosed=true;landing?.dispose();totalLabel.setData('landingSuppressed',false);sideTotal.forEach((o,i)=>{if(o.active)o.setVisible(sideVisible[i]);});context.signal.removeEventListener('abort',closeLanding);};
