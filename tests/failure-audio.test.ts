@@ -11,7 +11,7 @@ vi.mock('../src/game/session',()=>({gameSession:()=>({reducedMotion:true})}));
 import {AudioEngine,type FailureCue} from '../src/audio/AudioEngine';
 import {IntermissionScene} from '../src/game/IntermissionScene';
 
-const audio=AudioEngine.shared as unknown as {note:()=>void;duckMusic:()=>void;canPlay:()=>boolean};
+const audio=AudioEngine.shared as unknown as {cue:()=>unknown[];duckMusic:()=>void;canPlay:()=>boolean};
 const enter=(cue?:FailureCue):IntermissionScene=>{
   const scene=new IntermissionScene();
   scene.init({cleared:false,stageIndex:0,stageHeat:'10',handsLeft:0,goldEarned:0,...(cue?{failureCue:cue}:{})});
@@ -21,7 +21,7 @@ const enter=(cue?:FailureCue):IntermissionScene=>{
 describe('committed failure cue identity',()=>{
   beforeEach(()=>{
     fixture.run.outcome.reason='hands-exhausted';
-    vi.spyOn(audio,'note').mockImplementation(()=>{});vi.spyOn(audio,'duckMusic').mockImplementation(()=>{});
+    vi.spyOn(audio,'cue').mockReturnValue([]);vi.spyOn(audio,'duckMusic').mockImplementation(()=>{});
     vi.spyOn(audio,'canPlay').mockReturnValue(true);
     vi.spyOn(AudioEngine.shared,'setScene').mockImplementation(()=>{});
     vi.spyOn(IntermissionScene.prototype as unknown as {render:()=>void},'render').mockImplementation(()=>{});
@@ -47,7 +47,7 @@ describe('committed failure cue identity',()=>{
     const cue={runId:fixture.run.runId,commandSeq:4};
     vi.mocked(audio.canPlay).mockReturnValue(false);enter(cue);
     vi.mocked(audio.canPlay).mockReturnValue(true);enter(cue);
-    expect(audio.note).not.toHaveBeenCalled();enter({...cue});
+    expect(audio.cue).not.toHaveBeenCalled();enter({...cue});
     expect(audio.duckMusic).toHaveBeenCalledTimes(1);
   });
 
@@ -55,6 +55,6 @@ describe('committed failure cue identity',()=>{
     fixture.run.runId='run/guarded-ending/amo';
     enter({runId:'other-run',commandSeq:4});enter({runId:fixture.run.runId,commandSeq:3});
     fixture.run.outcome.reason='abandoned';enter({runId:fixture.run.runId,commandSeq:4});
-    expect(audio.note).not.toHaveBeenCalled();
+    expect(audio.cue).not.toHaveBeenCalled();
   });
 });

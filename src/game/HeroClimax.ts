@@ -1,4 +1,5 @@
 import type Phaser from 'phaser';
+import {inkSettlingEase} from './inkwaveSpring';
 import type {Box} from './layout';
 import type {JokerKeyHighlight} from './JokerKeyHighlight';
 import type {R2RunState} from '../domain/r2Run';
@@ -69,8 +70,8 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  return {group,dispose,
   reduce:()=>{still=true;for(const t of owned)t.remove();owned.clear();neutral();releaseDone?.();releaseDone=undefined;},
   strike:()=>{if(disposed)return;group.setData('phase','strike');readout.setText(value.after);fitValue();note.setText(value.note);if(still)return;
-   for(const t of owned)t.remove();owned.clear();board.setPosition(0,0).setAlpha(1);hero.setPosition(heroX+12,heroY-9).setScale(heroScale*1.14).setAngle(-8);burst.setAlpha(1);readout.setScale(readout.scaleX*1.12);
-   tween({targets:hero,x:heroX,y:heroY,scaleX:heroScale,scaleY:heroScale,angle:-5,duration:240,ease:'Cubic.easeOut'});tween({targets:burst,alpha:0,duration:300,ease:'Cubic.easeOut'});tween({targets:readout,scaleX:Math.min(1,contentW/readout.width),scaleY:Math.min(1,contentW/readout.width),duration:220,ease:'Quad.easeOut'});
+   for(const t of owned)t.remove();owned.clear();board.setPosition(0,0).setAlpha(1);hero.setPosition(heroX+12,heroY-12).setScale(heroScale*1.18).setAngle(-8);burst.setAlpha(1);readout.setScale(readout.scaleX*1.16);
+   tween({targets:hero,x:heroX,y:heroY,scaleX:heroScale,scaleY:heroScale,angle:-5,duration:300,ease:inkSettlingEase(.30)});tween({targets:burst,alpha:0,duration:300,ease:'Cubic.easeOut'});tween({targets:readout,scaleX:Math.min(1,contentW/readout.width),scaleY:Math.min(1,contentW/readout.width),duration:260,ease:inkSettlingEase(.26)});
   },
   release:()=>new Promise<void>(resolve=>{if(disposed||still){resolve();return;}group.setData('phase','release');releaseDone=resolve;tween({targets:board,x:w*.13,alpha:0,duration:130,ease:'Cubic.easeIn',onComplete:()=>{releaseDone=undefined;resolve();}});tween({targets:dim,alpha:0,duration:130});}),
  };

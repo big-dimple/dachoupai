@@ -66,14 +66,14 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
     if(typeof modal.showModal==='function')modal.showModal();else modal.setAttribute('open','');syncDock();
     const action=[retry,reload,takeover,resume].find(button=>!button.hidden&&!button.disabled);(action??toggle).focus({preventScroll:true});
   };
-  toggle.onclick=()=>modal.open?close():open();
+  toggle.onclick=()=>{if(modal.open){audio.cancel();close();}else{audio.select();open();}};
   modal.addEventListener('cancel',event=>{event.preventDefault();close();});
   modal.addEventListener('close',()=>{if(toggle.parentElement===modal)restoreAnchor();});
   modal.addEventListener('click',event=>{if(event.target===modal)close();});
   modal.addEventListener('keydown',event=>{if(event.key==='Escape'&&typeof modal.showModal!=='function'){event.preventDefault();close();}});
   const button=(name:string,action:()=>void|Promise<unknown>,container:HTMLElement=panel)=>{
     const b=document.createElement('button');b.type='button';b.textContent=name;
-    b.onclick=async()=>{if(b.disabled)return;try{await action();}catch{status.textContent='操作未完成，原进度保留。请重试或导出存档。';open();}};
+    b.onclick=async()=>{if(b.disabled)return;audio.select();try{await action();}catch{status.textContent='操作未完成，原进度保留。请重试或导出存档。';open();}};
     container.append(b);return b;
   };
   const primary=document.createElement('div');primary.className='run-menu-primary';panel.append(primary);

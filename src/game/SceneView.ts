@@ -1,3 +1,4 @@
+import {AudioEngine} from '../audio/AudioEngine';
 import Phaser from 'phaser';
 import {layout,type Box,type TableLayout,type HandWindow} from './layout';
 import {PointerIntent} from './PointerIntent';
@@ -119,7 +120,7 @@ export class SceneView {
     const r=this.rect(b).setFillStyle(0,0).setStrokeStyle();
     r.setData('label',t).setData('buttonArt',art).setData('buttonFace',g).setData('buttonBounds',b).setData('buttonPrimary',primary).setData('buttonSkin',skin).setData('buttonGlyph',glyph);
     const rest=()=>{art.y=b.y;t.y=Number(t.getData('restY')??b.y+b.height/2-1);glow.setAlpha(0);};
-    this.target(r,name,{tap:action,press:()=>{art.y=b.y+2;t.y=Number(t.getData('restY')??b.y+b.height/2-1)+2;glow.setAlpha(.6);},release:rest,cancel:rest});
+    this.target(r,name,{tap:()=>{AudioEngine.shared.select();action();},press:()=>{art.y=b.y+2;t.y=Number(t.getData('restY')??b.y+b.height/2-1)+2;glow.setAlpha(.6);},release:rest,cancel:rest});
     r.on('pointerover',()=>{if(r.input?.enabled)glow.setAlpha(.8);});r.on('pointerout',rest);
     this.setEnabled(r,enabled);return r;
   }

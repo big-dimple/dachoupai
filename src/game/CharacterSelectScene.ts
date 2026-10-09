@@ -1,3 +1,4 @@
+import {inkSettlingEase} from './inkwaveSpring';
 import {characterForNewRun} from './CharacterRunCopy';
 import {HERO_OPENING,OPENING_ROUTES} from './HeroOpeningCopy';
 import {BUILD_FOCUS,chooseBuildFocus,type BuildFocus} from './BuildJourney';
@@ -119,7 +120,10 @@ export class CharacterSelectScene extends Phaser.Scene {
       const play=v.text(playX,y,promise,p.portrait||p.short?14:18,'#26313A',playWidth).setName('opening/play');y=play.y+play.height+10;
     }
     if(!p.portrait&&!p.short)v.text(x,y,this.step==='hero'?'喜欢谁就选谁 · 每位英雄都能尝试三条路线':'方向只整理建议 · 不锁牌型，进店还能换',14,'#3F606B',w).setName('opening/freedom');
-    if(this.animateChoice&&!this.reducedMotion()){quote.setAlpha(.45);this.tweens.add({targets:quote,alpha:1,duration:180});quote.once('destroy',()=>this.tweens.killTweensOf(quote));}
+    if(this.animateChoice&&!this.reducedMotion()){
+      // Name first, then the character's voice; all input stays available throughout.
+      for(const [target,delay] of [[name,0],[quote,70]] as const){target.setAlpha(.35);this.tweens.add({targets:target,alpha:1,delay,duration:180,ease:inkSettlingEase(.24)});target.once('destroy',()=>this.tweens.killTweensOf(target));}
+    }
   }
   private reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
   private queueHeroPortrait(id:CharacterId):void {

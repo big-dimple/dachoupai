@@ -1,3 +1,4 @@
+import {AudioEngine} from '../audio/AudioEngine';
 import {observeSuitSymbols} from './SuitSymbols';
 import type {ExperienceCard} from './JokerExperience';
 import {decodeArtImage,progressiveArt} from './DetailArt';
@@ -60,9 +61,9 @@ export class DetailDialog {
     const eyebrow=document.createElement('span');eyebrow.className='dialog-eyebrow';eyebrow.textContent=options.portrait?'巡演藏牌':'牌桌手记';eyebrow.textContent=options.shopContext==='purchase'?'现货 · 确认后付款':options.shopContext==='sale'?'已持 · 确认后出售':options.shopContext==='held'?'当前持有':options.shopContext==='compare'?'现货与已持':eyebrow.textContent;header.append(eyebrow,heading);
     for(const action of actions){
       const b=document.createElement('button');b.textContent=action.label;b.disabled=!!action.disabled;if(action.primary)b.className='dialog-primary';
-      b.onclick=async()=>{b.disabled=true;b.setAttribute('aria-busy','true');status.hidden=true;try{await action.run();}catch{if(this.active(dialog)){status.textContent='操作未完成，请重试。';status.hidden=false;}}finally{if(b.isConnected){b.disabled=!!action.disabled;b.removeAttribute('aria-busy');}}};row.append(b);
+      b.onclick=async()=>{AudioEngine.shared.select();b.disabled=true;b.setAttribute('aria-busy','true');status.hidden=true;try{await action.run();}catch{if(this.active(dialog)){status.textContent='操作未完成，请重试。';status.hidden=false;}}finally{if(b.isConnected){b.disabled=!!action.disabled;b.removeAttribute('aria-busy');}}};row.append(b);
     }
-    const close=document.createElement('button');close.textContent=options.closeLabel??'关闭';close.className='dialog-close';close.onclick=()=>this.close(dialog);row.append(close);
+    const close=document.createElement('button');close.textContent=options.closeLabel??'关闭';close.className='dialog-close';close.onclick=()=>{AudioEngine.shared.cancel();this.close(dialog);};row.append(close);
     dialog.append(header);
     if(options.portrait){
       const portrait=options.portrait,image=document.createElement('img'),card=portrait.layout==='card';image.className=card?'dialog-card-image':'dialog-portrait';image.alt=portrait.alt;image.decoding='async';
