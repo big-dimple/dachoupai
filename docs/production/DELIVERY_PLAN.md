@@ -1,5 +1,8 @@
 # 大丑牌完整策划与开发交付计划
 
+2026-10-09 首章主动能力公共交互包：输入main df17594（父已合PR82）；首屏短打法与详情同源，真实可用时克制英雄标签强调，弃前/出前、缺钱/封禁/已用明确；保存后读实际来源或固定留牌结果，不添第二舞台/停顿。产品8e6b358、标签0aadf1f及最终通用结果用词补正，56定向/type；PC骰爷弃前约定→真实未成19、390老幻候选→实际留1，四事务完整canonical/导出回载一致；窄标签7px重叠FAIL保留，仅同状态补正，回看快进不改保存。
+[按源码有限证据](evidence/w6-hero-ability-discovery-2026-10-09/README.md)；原故事立绘、领域/身份/schema/数值/BGM保持，最终head一次CI另核、draft父审协调main；真人/设备/听感/平衡/W6未签，6.1 Medium串行。
+
 2026-10-09 PR82父审保存阻塞补正：9a44fab的绿色CI未覆盖交棒过关→OpenShop→SkipStage；新增真实SavedRun检查先复现invalid-save-erxiang-journal-state，仅补交棒journal的跳场重置，13项定向/type/计划检查通过。[原FAIL与恢复证据](evidence/w7-erxiang-handoff-2026-10-09/parent-review/README.md)保留；原普通88 UI精确source4014173不重跑，最终修复head一次CI另核、父协调main。交棒唯一合同位于正确W7段；真人/设备/W6未签。
 
 2026-10-09 PR82交棒CI期待补正：首head7406de8域2805通过/1个构筑手记旧+1.5新身份期待失败；仅更新新交棒提示期待并同案保旧身份+1.5，原断言不放宽，局部10项/type通过。产品src与原生4014173保持，[原FAIL与补正](evidence/w7-erxiang-handoff-2026-10-09/ci-first-FAIL/README.md)保留；补正新head一次CI另核、draft父审main，真人/设备/趣味/平衡/W6未签，6.1 Medium串行。
