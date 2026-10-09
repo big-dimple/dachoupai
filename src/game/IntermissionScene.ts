@@ -89,13 +89,15 @@ export class IntermissionScene extends Phaser.Scene {
   }
   create():void {
     this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;
-    const preference=()=>{if(gameSession().reducedMotion&&this.scene.isActive()){this.firstRender=false;this.render();}};
-    const suspend=()=>{if(this.scene.isActive()){this.firstRender=false;this.stopCelebration();this.audio.cancelPresentation();}};
+    const motion=typeof window==='undefined'?undefined:window.matchMedia('(prefers-reduced-motion: reduce)');
+    const preference=()=>{if((gameSession().reducedMotion||motion?.matches)&&this.scene.isActive()){this.firstRender=false;this.render();}};
+    const suspend=()=>{if(this.scene.isActive()){this.firstRender=false;this.audio.cancelPresentation();this.render();}};
     const visibility=()=>{if(document.hidden)suspend();};
     if(typeof window!=='undefined')window.addEventListener('dachoupai-presentation',preference);
+    motion?.addEventListener('change',preference);
     if(typeof window!=='undefined')window.addEventListener('blur',suspend);
     if(typeof document!=='undefined')document.addEventListener('visibilitychange',visibility);
-    const retire=()=>{if(typeof window!=='undefined'){window.removeEventListener('dachoupai-presentation',preference);window.removeEventListener('blur',suspend);}if(typeof document!=='undefined')document.removeEventListener('visibilitychange',visibility);this.events.off('shutdown',retire);this.events.off('destroy',retire);this.lifecycle++;this.stopSourceArt();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;this.dialog.close();this.stopCelebration();};
+    const retire=()=>{if(typeof window!=='undefined'){window.removeEventListener('dachoupai-presentation',preference);window.removeEventListener('blur',suspend);}if(typeof document!=='undefined')document.removeEventListener('visibilitychange',visibility);motion?.removeEventListener('change',preference);this.events.off('shutdown',retire);this.events.off('destroy',retire);this.lifecycle++;this.stopSourceArt();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;this.dialog.close();this.stopCelebration();};
     this.events.once('shutdown',retire);this.events.once('destroy',retire);
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
     this.cameras.main.setBackgroundColor('#F3EADB');
@@ -165,8 +167,7 @@ export class IntermissionScene extends Phaser.Scene {
       v.button(p.left,'返回选角','action/continue-stage',()=>void this.next(),!this.busy);
       v.button(p.primary,this.busy?'正在开局…':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }
-    const canSkip=animateIn&&!skipped;
-    v.button(p.right,canSkip?'跳过动效':won||lost?'巡演留影':'回看上手',canSkip?'action/skip-celebration':'action/last-hand',()=>{if(canSkip){this.firstRender=false;this.audio.cancelPresentation();this.render();}else if(won||lost)this.inspectFinale();else this.inspectLastHand();},!this.busy&&(canSkip||won||lost||!!trace));
+    v.button(p.right,won||lost?'巡演留影':'回看上手','action/last-hand',()=>{if(won||lost)this.inspectFinale();else this.inspectLastHand();},!this.busy&&(won||lost||!!trace));
     const discovery=this.ready&&!this.notice&&!lost&&!skipped?savedGrowthDiscovery(run):undefined,gift=this.ready&&!this.notice&&!lost&&!skipped?stageGiftReceipt(run):undefined;
     v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?.banner||discovery?.full||'':lost?'重试从开局开始，不继承构筑。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w).setName(gift&&nextStage?'gift/discovery':discovery&&nextStage?'growth/discovery':'');
     this.firstRender=false;

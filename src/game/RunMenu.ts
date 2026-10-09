@@ -160,7 +160,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   function refreshPlayback():void {
     catalogButton.disabled=session.working||!session.loaded;
     const presenting=game.scene.isActive('game')&&(game.scene.getScene('game') as GameScene).isPresenting;
-    forward.disabled=!presenting;replay.disabled=presenting||!session.run?.state.lastTrace;
+    forward.hidden=!presenting;forward.disabled=!presenting;replay.disabled=presenting||!session.run?.state.lastTrace;
     const actions=getActions();for(const entry of inspectButtons)entry.button.hidden=typeof actions?.[entry.key]!=='function';
     inspect.hidden=inspectButtons.every(entry=>entry.button.hidden);
   }
