@@ -1,0 +1,147 @@
+{
+  "main": "68145eaab50636e91bc62bea5415000f036034e4",
+  "sameInputFinal": [
+    {
+      "key": "multiply-1366-normal",
+      "initialStateJournalStorageEqual": true,
+      "finalStateJournalStorageEqual": true
+    },
+    {
+      "key": "growth-390-normal",
+      "initialStateJournalStorageEqual": true,
+      "finalStateJournalStorageEqual": true
+    }
+  ],
+  "requestLimits": [
+    {
+      "source": "e496bf675ca83b8b253494aa46c4ad3af353bf83",
+      "key": "multiply-1366-normal",
+      "requests": 1,
+      "texture": "climax-source/f09",
+      "optionalTextures": null
+    },
+    {
+      "source": "e496bf675ca83b8b253494aa46c4ad3af353bf83",
+      "key": "growth-390-normal",
+      "requests": 1,
+      "texture": "climax-source/c06",
+      "optionalTextures": null
+    },
+    {
+      "source": "e496bf675ca83b8b253494aa46c4ad3af353bf83",
+      "key": "multiply-320-reduced",
+      "requests": 1,
+      "texture": "climax-source/f09",
+      "optionalTextures": null
+    },
+    {
+      "source": "e496bf675ca83b8b253494aa46c4ad3af353bf83",
+      "key": "multiply-740-normal",
+      "requests": 1,
+      "texture": "climax-source/f09",
+      "optionalTextures": null
+    },
+    {
+      "source": "e496bf675ca83b8b253494aa46c4ad3af353bf83",
+      "key": "growth-390-fast",
+      "requests": 1,
+      "texture": "climax-source/c06",
+      "optionalTextures": null
+    },
+    {
+      "source": "e496bf675ca83b8b253494aa46c4ad3af353bf83",
+      "key": "multiply-1366-delayed",
+      "requests": 1,
+      "texture": "p08-joker-f09",
+      "optionalTextures": null
+    },
+    {
+      "source": "b3ba3471fc4d46bf6a3b01090b6d3d5f7f1ce227",
+      "key": "growth-390-normal",
+      "requests": 1,
+      "texture": "climax-source/c06",
+      "optionalTextures": {
+        "pending": true,
+        "active": false,
+        "keys": []
+      }
+    },
+    {
+      "source": "b3ba3471fc4d46bf6a3b01090b6d3d5f7f1ce227",
+      "key": "multiply-320-normal",
+      "requests": 1,
+      "texture": "climax-source/f09",
+      "optionalTextures": {
+        "pending": true,
+        "active": false,
+        "keys": []
+      }
+    },
+    {
+      "source": "b3ba3471fc4d46bf6a3b01090b6d3d5f7f1ce227",
+      "key": "growth-390-fast",
+      "requests": 1,
+      "texture": "climax-source/c06",
+      "optionalTextures": {
+        "pending": true,
+        "active": false,
+        "keys": []
+      }
+    },
+    {
+      "source": "b3ba3471fc4d46bf6a3b01090b6d3d5f7f1ce227",
+      "key": "fifth-1366-normal",
+      "requests": 0,
+      "texture": null,
+      "optionalTextures": {
+        "active": true,
+        "keys": []
+      }
+    },
+    {
+      "source": "a2f8ad40b50484cb73a986571b070f210072fba1",
+      "key": "multiply-1366-delayed",
+      "requests": 1,
+      "texture": "p08-joker-f09",
+      "optionalTextures": {
+        "pending": true,
+        "active": false,
+        "keys": []
+      }
+    }
+  ],
+  "protectedTrees": {
+    "src/domain": {
+      "main": "5cbf79d6505eec84e042e46b31d3832e09ac1d78",
+      "candidate": "5cbf79d6505eec84e042e46b31d3832e09ac1d78"
+    },
+    "src/application": {
+      "main": "a3cca278fdecd7bbd96a13909c2f904fb36e4bd4",
+      "candidate": "a3cca278fdecd7bbd96a13909c2f904fb36e4bd4"
+    },
+    "src/platform": {
+      "main": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "candidate": "860a9f8883cc158ac0c56ad6399518cc897a67b7"
+    },
+    "src/content": {
+      "main": "6018132526ce72176f016f99ead53022480ab429",
+      "candidate": "6018132526ce72176f016f99ead53022480ab429"
+    },
+    "src/audio": {
+      "main": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "candidate": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000"
+    },
+    "public": {
+      "main": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "candidate": "c4a6ec74e7fd754b0f300b973020f8afed7542e1"
+    },
+    "art/sources": {
+      "main": "47067728e0f15588b56199ff8ecc3b4e40c2dc53",
+      "candidate": "47067728e0f15588b56199ff8ecc3b4e40c2dc53"
+    },
+    "third-party": {
+      "main": "bdf8cb7876416b8bf207b078e7d8a4d5402af185",
+      "candidate": "bdf8cb7876416b8bf207b078e7d8a4d5402af185"
+    }
+  }
+}

@@ -16,3 +16,6 @@
 HeroClimax/HeroClimaxLayout、JokerKeyHighlightView必要同纸墨、来源按需图辅助与GameScene少量生命周期接点；相关定向tests、有界native harness、原素材只读证据及AGENTS/DELIVERY_PLAN/UX/本范围。领域/application/platform/content/audio/public/art及身份/抽牌/数值不改；不整屏布局重构，不扩大美术生产。
 
 先核main同一真实保存event，PC1366/390各一个乘法或真实成长代表前后；当前身份真实命令，不扫种子/八章。有限运动关键帧说明英雄、卡面、数字各自可读，至少一个低动态/快进/延迟缺图/离场或缩窗取消，最终state/journal/storage与原领域命令/原版同输入完全相等。320/740同态必要边界；同ID图尺寸/hash及请求上限，菜单命中区域可达；不得截图边框冒称实机帧率/真人审美/听感。保存原FAIL，编辑定向、最终一次精确HEAD标准CI/draft父审main。不提前恢复G1/C04或签六角色/总体平衡。
+
+## 本轮候选结果
+已完成原英雄/真实来源同台前景与纸墨、高清按需上限及无来源/缺图回退；25相关/type/plan32、同态main前后完整保存比对与有限双端关键帧，姓名首视觉FAIL及型错误保持见[evidence](evidence/source-stage-art-2026-10-09/README.md)。精确最终CI/draft父审另核；不签整体艺术、人类/设备/听感。
