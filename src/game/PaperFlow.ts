@@ -51,7 +51,7 @@ export class PaperFlow {
 const flows=new WeakMap<Phaser.Game,PaperFlow>();
 export function paperSceneStart(scene:Phaser.Scene,key:string,data?:object):void {
   // Phaser retains its normal immediate queued route. No mid-animation submission.
-  scene.scene.start(key,data);
+  if(data===undefined)scene.scene.start(key);else scene.scene.start(key,data);
   const canvas=scene.game?.canvas;if(!canvas||typeof document==='undefined')return;
   let flow=flows.get(scene.game);
   if(!flow){flow=new PaperFlow(()=>gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches);flows.set(scene.game,flow);scene.game.events.once('destroy',()=>flow?.cancel());}
