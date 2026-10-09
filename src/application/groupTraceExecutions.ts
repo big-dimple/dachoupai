@@ -26,7 +26,7 @@ export function assertGroupTraceExecutions(trace:ScoreTrace,definitions:readonly
  for(const card of active){
   const root=roots.get(card.id);if(!root)fail();
   const source={sourceType:'card' as const,sourceDefinitionId:`rank-${card.rank}`,sourceInstanceId:card.id,targetCardId:card.id},points=suppressed.includes(card.id)?0:card.rank===14?11:Math.min(card.rank,10);
-  const rank=(depth:number)=>expected.push({...source,operation:'add-heat',value:{n:String(points),d:'1'},reasonKey:`rank-${card.rank}.add-heat`,visibleCondition:{kind:'always'},retriggerDepth:depth,rootEventId:root!});
+  const rank=(depth:number)=>expected.push({...source,operation:'add-heat',value:{n:String(depth===0&&trace.erxiangHandoff?.targetId===card.id?0:points),d:'1'},reasonKey:`rank-${card.rank}.add-heat`,visibleCondition:{kind:'always'},retriggerDepth:depth,rootEventId:root!});
   if(suppressed.includes(card.id)){const event=onCard.find(e=>e.targetCardId===card.id&&e.operation==='ordinary-points-suppressed');if(!event||event.rootEventId!==event.eventId)fail();expected.push({sourceType:'rule',sourceDefinitionId:'B02',sourceInstanceId:trace.events[0].sourceInstanceId,targetCardId:card.id,operation:'ordinary-points-suppressed',value:{n:'0',d:'1'},reasonKey:'B02.ordinary-points-suppressed',visibleCondition:{kind:'always'},retriggerDepth:0,rootEventId:event!.eventId});}
   rank(0);let budget=0;
   for(const effect of R2_ENHANCEMENTS.find(d=>d.id===card.enhancement)?.effects??[])if(effect.phase==='onCardScore'&&effect.kind==='retrigger-card'){
@@ -47,6 +47,7 @@ export function assertGroupTraceExecutions(trace:ScoreTrace,definitions:readonly
  for(const event of onCard){
   if(event.operation==='ordinary-points-suppressed'){execution=undefined;continue;}
   if(isRank(event)){execution=event;continue;}
+  if(event.sourceType==='character'&&event.reasonKey==='erxiang.handoff'&&trace.erxiangHandoff?.targetId===event.targetCardId)continue;
   if(!execution||event.targetCardId!==execution.targetCardId||event.retriggerDepth!==execution.retriggerDepth||event.rootEventId!==roots.get(event.targetCardId!)||!['card','joker'].includes(event.sourceType))fail();
   if(event.operation==='retrigger-card'||event.operation==='retrigger-cap'){
    if(event.retriggerDepth!==0||Rational.fromJSON(event.before.H).compare(Rational.fromJSON(event.after.H))||Rational.fromJSON(event.before.M).compare(Rational.fromJSON(event.after.M)))fail();

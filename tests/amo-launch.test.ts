@@ -59,6 +59,8 @@ describe('normal new-game policy and exact retry creation',()=>{
   expect(getCharacter('touye').passiveDescription).toContain('50%');
   expect(getCharacter('laohuan').passiveDescription).toContain('额外 +120');
   expect(getCharacter('amo').buildTip).toContain('单张');
-  for(const id of CHARACTER_IDS.filter(id=>id!=='amo'&&id!=='azao'&&id!=='xiemu'&&id!=='laohuan'&&id!=='touye'))expect(characterForNewRun(id)).toBe(getCharacter(id));
+  expect(characterForNewRun('erxiang').passiveName).toBe('交棒（试行）');
+  expect(characterForNewRun('erxiang').passiveDescription).toContain('首次普通点数不计热度');
+  expect(getCharacter('erxiang').passiveDescription).toBe('对子、两对、三条的倍率 +1.5。');
  });
 });

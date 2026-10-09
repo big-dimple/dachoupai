@@ -1,3 +1,4 @@
+import {erxiangHandoffStep,type ErxiangHandoffIntent,type ErxiangHandoffTrace} from './r2ErxiangHandoff';
 import {touyeWagerStep,type TouyeCommit,type TouyeWagerTrace} from './r2TouyeWager';
 import {xiemuBurnStep,type XiemuBurnIntent,type XiemuBurnTrace} from './r2XiemuBurn';
 import {azaoChargeStep,type AzaoChargeIntent,type AzaoChargeTrace} from './r2AzaoCharge';
@@ -30,6 +31,7 @@ export const SCORE_OPERATIONS = Object.freeze([
 export type ScoreOperation = typeof SCORE_OPERATIONS[number];
 export const R2_BASE_SCORES = R2_PUBLISHED_CONTENT.snapshot.hands as unknown as Record<R2HandType, readonly [number, Fraction, number, Fraction]>;
 export interface ScoreInput {
+  erxiangHandoff?:ErxiangHandoffIntent;
   touyeWager?:{commit:TouyeCommit|null};
   azaoCharge?:AzaoChargeIntent;
   xiemuBurn?:XiemuBurnIntent;
@@ -69,7 +71,7 @@ interface ScoreTraceBase {
   bossContext:{boss:R2BossPlan|null;previousHandType:R2HandType|null;sealedJokerIds:string[];challengeDisabledJokerId:string|null};
 }
 /** New-profile traces always carry both fields, including unassisted hands. */
-export type ScoreTrace = ScoreTraceBase & (
+export type ScoreTrace = ScoreTraceBase & ({erxiangHandoff:ErxiangHandoffTrace}|{erxiangHandoff?:never}) & (
   {assist:{ids:string[];kind:'pair'|'three-kind';multiplier:2|4}|null;sets:ScoreTraceBase['sets']&{assistConsumedIds:string[]}} |
   {assist?:never;sets:ScoreTraceBase['sets']&{assistConsumedIds?:never}}
 ) & ({touyeWager:TouyeWagerTrace}|{touyeWager?:never}) & ({laohuanTrick:true}|{laohuanTrick?:never}) & ({combo:{goldBeforeRewards:number|null}}|{combo?:never}) & ({azaoCharge:AzaoChargeTrace}|{azaoCharge?:never}) & ({xiemuBurn:XiemuBurnTrace}|{xiemuBurn?:never});
@@ -173,6 +175,8 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   if(xiemuBurn&&xiemuBurn.goldAfter!==input.gold)throw Error('invalid-xiemu-payment');
   if(input.azaoCharge&&input.characterId!=='azao'&&input.characterId!=='neutral')throw Error('invalid-azao-character');
   const azaoCharge=input.azaoCharge?azaoChargeStep(evaluated.type,input.azaoCharge,input.characterId==='azao'&&input.boss?.definitionId!=='B08'):undefined;
+  if(input.erxiangHandoff&&!['erxiang','neutral'].includes(input.characterId))throw Error('invalid-erxiang-character');
+  const erxiangHandoff=input.erxiangHandoff?erxiangHandoffStep(evaluated.type,cards,facts.activeScoringIds,facts.ordinaryPointsSuppressedIds,input.erxiangHandoff,input.characterId==='erxiang'&&input.boss?.definitionId!=='B08'):undefined;
   const active=played.filter(c=>facts.activeScoringIds.includes(c.id));
   const level = input.handLevels[evaluated.type] ?? 1;
   let H = new Rational(0n), M = new Rational(0n);
@@ -340,7 +344,10 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     if(ordinarySuppressed.includes(card.id))emit('onCardScore',{sourceType:'rule',sourceDefinitionId:'B02',sourceInstanceId:input.runId},'ordinary-points-suppressed',new Rational(0n),()=>{},{kind:'always'},card);
     const points = new Rational(BigInt(ordinarySuppressed.includes(card.id)?0:card.rank === 14 ? 11 : Math.min(card.rank, 10)));
     const root = `${input.rootId}/event/${events.length}`;
-    emit('onCardScore', source, 'add-heat', points, () => { H = H.add(points); }, {kind:'always'}, card);
+    const transferred=erxiangHandoff?.targetId===card.id;
+    const ordinary=transferred?new Rational(0n):points;
+    emit('onCardScore', source, 'add-heat', ordinary, () => { H = H.add(ordinary); }, {kind:'always'}, card);
+    if(transferred)emit('onCardScore',{sourceType:'character',sourceDefinitionId:'erxiang',sourceInstanceId:`${input.runId}/character`},'add-multiplier',points,()=>{M=M.add(points);},{kind:'always'},card,0,undefined,{reasonKey:'erxiang.handoff'});
     const intrinsic = enhancement('onCardScore', card, 0, root);
     edition('onCardScore', card.edition, cardSource(card), card, 0, root);
     const extra = hook('onCardScore', card, 0, root, intrinsic);
@@ -364,7 +371,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   }, condition,undefined,0,undefined,reasonKey?{reasonKey}:{});
   if(boss?.definitionId!=='B08')switch (input.characterId) {
     case 'amo': if ((input.amoScoreTiming??'before-joker') === 'before-joker' && played.length === 1) char('multiply-multiplier', new Rational(3n), {kind:'played-count',equals:1}); break;
-    case 'erxiang': if (['pair','two-pair','three-kind'].includes(evaluated.type)) char('add-multiplier', new Rational(3n,2n), {kind:'hand-type-in',values:['pair','two-pair','three-kind']}); break;
+    case 'erxiang': if (!erxiangHandoff&&['pair','two-pair','three-kind'].includes(evaluated.type)) char('add-multiplier', new Rational(3n,2n), {kind:'hand-type-in',values:['pair','two-pair','three-kind']}); break;
     case 'laohuan': if (!input.laohuanTrick&&(['straight','flush','straight-flush'].includes(evaluated.type))) char('add-heat', new Rational(120n), {kind:'hand-type-in',values:['straight','flush','straight-flush']}); break;
     case 'azao': if(azaoCharge){if(azaoCharge.multiplier)char('multiply-multiplier',azaoCharge.multiplier==='1.5'?new Rational(3n,2n):azaoCharge.multiplier==='2.5'?new Rational(5n,2n):new Rational(4n));}else if (input.previousHandType !== null && input.previousHandType !== evaluated.type) char('add-multiplier', new Rational(1n)); break;
     case 'touye': if(touyeWager){if(touyeWager.multiplier)char('multiply-multiplier',touyeWager.multiplier==='2'?new Rational(2n):touyeWager.multiplier==='0.85'?new Rational(17n,20n):new Rational(23n,20n),{kind:'always'},'touye.'+touyeWager.outcome+(touyeWager.commit?'.'+touyeWager.commit.target:''));}else char('multiply-multiplier', input.wager ? (chance({n:1,d:2}) ? new Rational(2n) : new Rational(3n,4n)) : new Rational(23n,20n)); break;
@@ -387,7 +394,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
       {reasonKey:`enhancement.${card.enhancement}.destroy-card`});
   }
   hook('afterHand');
-  return immutable({ ...(touyeWager?{touyeWager}:{}),...(input.laohuanTrick?{laohuanTrick:true as const}:{}),...(xiemuBurn?{xiemuBurn}:{}),...(azaoCharge?{azaoCharge}:{}),rulesVersion:'r2', rootId:input.rootId, handType:evaluated.type, level,
+  return immutable({ ...(erxiangHandoff?{erxiangHandoff}:{}),...(touyeWager?{touyeWager}:{}),...(input.laohuanTrick?{laohuanTrick:true as const}:{}),...(xiemuBurn?{xiemuBurn}:{}),...(azaoCharge?{azaoCharge}:{}),rulesVersion:'r2', rootId:input.rootId, handType:evaluated.type, level,
     sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id)},
     ...(input.amoScoreTiming==='assist-v1'?{sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id),assistConsumedIds:assist?.assistIds??[]},assist:assist?{ids:assist.assistIds,kind:assist.assistKind,multiplier:assist.assistMultiplier}:null}:{}),finalScore:final.toString(),accumulator:snapshot(),events,jokers:jokers.filter(j=>!destroyedJokerIds.includes(j.instanceId)),
     ...(rng ? {rng:rng.snapshot()} : {}),goldDelta,destroyedCardIds,destroyedJokerIds,cards,sourceJokers,bossContext });

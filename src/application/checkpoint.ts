@@ -1,3 +1,4 @@
+import {usesErxiangHandoff,erxiangHandoffStep,type ErxiangHandoffTrace} from '../domain/r2ErxiangHandoff';
 import {isR2ToolSupply} from '../domain/r2GroupUpgrade';
 import {usesTouyeWager,validTouyeCommit,touyeWagerStep,TOUYE_TARGETS,type TouyeCommit,type TouyeWagerTrace} from '../domain/r2TouyeWager';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
@@ -26,7 +27,7 @@ import {Rational,MAX_INTEGER_DIGITS} from '../domain/rational';
 import {SCORE_LIMITS,SCORE_OPERATIONS,r2ScoringDisabledJokerIds,type ScoreEvent,type ScoreTrace} from '../domain/scoreR2';
 import {SeededRng} from '../core/SeededRng';
 import {stableHash} from '../domain/hash';
-import {r2DisabledCards,R2_AVAILABLE_CHAPTERS,R2_ENDLESS_MAX_CHAPTER,R2_SKIP_CONSUMABLES,r2StageSpec,r2BossHistoryValid,r2BossPlanValid,type R2TourMode,type R2BossPlan} from '../domain/r2Chapter';
+import {r2OrdinarySuppression,r2DisabledCards,R2_AVAILABLE_CHAPTERS,R2_ENDLESS_MAX_CHAPTER,R2_SKIP_CONSUMABLES,r2StageSpec,r2BossHistoryValid,r2BossPlanValid,type R2TourMode,type R2BossPlan} from '../domain/r2Chapter';
 import {EDITIONS,ENHANCEMENTS,RANKS,SUITS,type PlayingCard} from '../cards/types';
 import {R2_TOOL_CATALOG,type R2LongTermOperation} from '../content/r2Tools';
 import {R2_IMPLEMENTED_TOOL_FEATURES,r2CardSpecialsSupported,r2EditionSupported,r2ItemSupported,r2ToolSupported} from '../domain/r2ToolRuntime';
@@ -135,13 +136,13 @@ function touyeCommit(value:unknown,enhancements:boolean):void {
  oneOf(c.target,TOUYE_TARGETS);text(c.snapshotToken);integer(c.stageIndex);integer(c.duePlayIndex,1);text(c.discardCommandId);integer(c.expectedSeq,1);cards(c.handBefore,14,enhancements);uniqueIds(c.selectedIds,5);
  const rules=record(c.rules,['fourStraight','fourFlush']);bool(rules.fourStraight);bool(rules.fourFlush);if(!validTouyeCommit(c as unknown as TouyeCommit))fail('invalid-save-touye-commit');
 }
-function trace(value:unknown,context:{touye:boolean;laohuan:boolean;xiemu:boolean;azao:boolean;phase:R2RunState['phase'];group:boolean;combo:boolean;definitions:ReturnType<typeof r2JokerDefinitionsFor>;runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[];liveJokers?:readonly R2JokerInstance[];settledGold?:number}):void {
+function trace(value:unknown,context:{erxiang:boolean;touye:boolean;laohuan:boolean;xiemu:boolean;azao:boolean;phase:R2RunState['phase'];group:boolean;combo:boolean;definitions:ReturnType<typeof r2JokerDefinitionsFor>;runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[];liveJokers?:readonly R2JokerInstance[];settledGold?:number}):void {
   if(value===null)return;
   const R2_JOKERS=context.definitions,combo=context.combo,group=context.group;
   const stage=context.stage;if(!stage)return fail('invalid-save-trace-stage');
   const successfulStage=stage.skipResult===null&&stage.clearId!==null&&stage.index+1===context.stageIndex&&BigInt(stage.heat)>=BigInt(stage.targetHeat);
   const prototype=context.amoScoreTiming==='assist-v1';
-  const t=record(value,[...(context.touye?['touyeWager']:[]),...(context.laohuan?['laohuanTrick']:[]),...(context.xiemu?['xiemuBurn']:[]),...(context.azao?['azaoCharge']:[]),...(combo?['combo']:[]),...(prototype?['assist']:[]),'rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng','destroyedJokerIds','goldDelta','destroyedCardIds','cards','sourceJokers','bossContext']);
+  const t=record(value,[...(context.erxiang?['erxiangHandoff']:[]),...(context.touye?['touyeWager']:[]),...(context.laohuan?['laohuanTrick']:[]),...(context.xiemu?['xiemuBurn']:[]),...(context.azao?['azaoCharge']:[]),...(combo?['combo']:[]),...(prototype?['assist']:[]),'rulesVersion','rootId','handType','level','sets','finalScore','accumulator','events','jokers','rng','destroyedJokerIds','goldDelta','destroyedCardIds','cards','sourceJokers','bossContext']);
   if(context.laohuan&&(t.laohuanTrick!==true||(t.events as ScoreEvent[]).some(e=>e.sourceType==='character')))fail('invalid-save-laohuan-score');
   let clearCapital:number|null=null;
   if(combo){const clock=record(t.combo,['goldBeforeRewards']);if(clock.goldBeforeRewards!==null)integer(clock.goldBeforeRewards);clearCapital=clock.goldBeforeRewards as number|null;if(successfulStage!==(clearCapital!==null))fail('invalid-save-combo-clear-clock');}
@@ -558,6 +559,19 @@ function trace(value:unknown,context:{touye:boolean;laohuan:boolean;xiemu:boolea
       if(earned!==BigInt(stage.goldEarned)||context.settledGold!==undefined&&balance!==BigInt(context.settledGold))fail('invalid-save-combo-clear-ledger');
     }
   }
+  if(context.erxiang){
+    const saved=record(t.erxiangHandoff,['targetId','beforeUsed','points','afterUsed']) as unknown as ErxiangHandoffTrace;
+    bool(saved.beforeUsed);bool(saved.afterUsed);integer(saved.points,0,11);if(saved.targetId!==null)text(saved.targetId);
+    const enabled=context.config.characterAbilityEnabled&&boss?.definitionId!=='B08';
+    const expected=erxiangHandoffStep(t.handType as R2HandType,t.cards as PlayingCard[],active,boss?r2OrdinarySuppression(boss,stage.index,t.cards as PlayingCard[],played):[],{targetId:saved.targetId,beforeUsed:saved.beforeUsed},enabled);
+    if(stableHash(expected)!==stableHash(saved)||stage.erxiangHandoffUsed!==saved.afterUsed||stage.playIndex===1&&saved.beforeUsed||!enabled&&saved.beforeUsed)fail('invalid-save-erxiang-transition');
+    const roles=(events as ScoreEvent[]).filter(e=>e.sourceType==='character');if(roles.length!==(saved.targetId===null?0:1))fail('invalid-save-erxiang-events');
+    if(saved.targetId!==null){
+      const e=roles[0],index=(events as ScoreEvent[]).indexOf(e),previous=(events as ScoreEvent[])[index-1],card=cardSources.get(saved.targetId)!;
+      const value=new Rational(BigInt(saved.points));
+      if(e.phase!=='onCardScore'||e.operation!=='add-multiplier'||e.reasonKey!=='erxiang.handoff'||e.targetCardId!==saved.targetId||e.retriggerDepth!==0||e.rootEventId!==e.eventId||stableHash(e.visibleCondition)!==stableHash({kind:'always'})||Rational.fromJSON(e.value).compare(value)||Rational.fromJSON(e.before.H).compare(Rational.fromJSON(e.after.H))||Rational.fromJSON(e.before.M).add(value).compare(Rational.fromJSON(e.after.M))||!previous||previous.sourceType!=='card'||previous.sourceDefinitionId!==`rank-${card.rank}`||previous.targetCardId!==saved.targetId||previous.retriggerDepth!==0||previous.operation!=='add-heat'||previous.value.n!=='0'||stableHash(previous.before)!==stableHash(previous.after)||stableHash(previous.after)!==stableHash(e.before))fail('invalid-save-erxiang-event');
+    }
+  }
   if(context.xiemu){
     const b=record(t.xiemuBurn,['cost','goldBefore','goldAfter','beforeUsed','afterUsed','multiplier']);
     integer(b.goldBefore);integer(b.goldAfter);bool(b.beforeUsed);bool(b.afterUsed);oneOf(b.cost,[0,10,20,30]);oneOf(b.multiplier,[null,2,3,4]);
@@ -661,14 +675,15 @@ function trace(value:unknown,context:{touye:boolean;laohuan:boolean;xiemu:boolea
 }
 function action(value:unknown,state:R2RunState):void {
   const prototype=r2UsesAssist(state),combo=hasR2ComboGrowthContract(state),profile=isR2GroupUpgrade(state)?'group-upgrade-v1':combo?'combo-growth-v1':'amo-assist-v1';
-  const a=record(value,['type'],['seed','characterId','rulesVersion','openingRoute','modeConfig','r2Profile','r2Identity','assistIds','programId','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind','azaoRelease','xiemuBurn','laohuanTrick','touyeBet']);
+  const a=record(value,['type'],['seed','characterId','rulesVersion','openingRoute','modeConfig','r2Profile','r2Identity','assistIds','programId','selectedIds','instanceId','targetIds','enabled','offerId','ids','handType','secondaryHandType','suit','sacrificeId','targetKind','erxiangTargetId','azaoRelease','xiemuBurn','laohuanTrick','touyeBet']);
   const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],ContinueEndless:[],ChooseProgram:['programId'],AbandonProgram:[],PlayHand:['selectedIds'],PlayAssistedHand:['selectedIds','assistIds'],DiscardHand:['selectedIds'],ChooseRefill:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],ReorderHand:['ids'],ReorderJokers:['ids']};
   if(typeof a.type!=='string'||!Object.hasOwn(keys,a.type))fail('unknown-save-command');
-  record(a,['type',...keys[a.type as Action['type']]],a.type==='DiscardHand'?[...(usesLaohuanRefill(state)?['laohuanTrick']:[]),...(usesTouyeWager(state)?['touyeBet']:[])]:a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='PlayHand'?[...(usesAzaoCharge(state)?['azaoRelease']:[]),...(usesXiemuBurn(state)?['xiemuBurn']:[])]:a.type==='StartRun'?['modeConfig','r2Identity',...(isR2RouteStarter(state)?['openingRoute']:[]),...(prototype||combo?['r2Profile']:[])]:[]);
+  record(a,['type',...keys[a.type as Action['type']]],a.type==='DiscardHand'?[...(usesLaohuanRefill(state)?['laohuanTrick']:[]),...(usesTouyeWager(state)?['touyeBet']:[])]:a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='PlayHand'?[...(usesErxiangHandoff(state)?['erxiangTargetId']:[]),...(usesAzaoCharge(state)?['azaoRelease']:[]),...(usesXiemuBurn(state)?['xiemuBurn']:[])]:a.type==='StartRun'?['modeConfig','r2Identity',...(isR2RouteStarter(state)?['openingRoute']:[]),...(prototype||combo?['r2Profile']:[])]:[]);
   if(a.touyeBet!==undefined){if(!usesTouyeWager(state)||a.type!=='DiscardHand')fail('invalid-save-touye-command');const b=record(a.touyeBet,['target','snapshotToken']);oneOf(b.target,TOUYE_TARGETS);text(b.snapshotToken);}
   if(a.type==='SetWager'&&usesTouyeWager(state))fail('invalid-save-touye-random-wager');
   if(a.laohuanTrick!==undefined){bool(a.laohuanTrick);if(!usesLaohuanRefill(state)||a.type!=='DiscardHand')fail('invalid-save-laohuan-command');}
   if(a.type==='ChooseRefill'){if(!usesLaohuanRefill(state))fail('invalid-save-laohuan-command');uniqueIds(a.selectedIds,14);if(!(a.selectedIds as string[]).length)fail('invalid-save-laohuan-command');}
+  if(a.erxiangTargetId!==undefined){text(a.erxiangTargetId);if(!usesErxiangHandoff(state)||a.type!=='PlayHand')fail('invalid-save-erxiang-command');}
   if(a.xiemuBurn!==undefined){oneOf(a.xiemuBurn,[10,20,30]);if(!usesXiemuBurn(state)||a.type!=='PlayHand')fail('invalid-save-xiemu-command');}
   if(a.azaoRelease!==undefined){bool(a.azaoRelease);if(!usesAzaoCharge(state)||a.type!=='PlayHand')fail('invalid-save-azao-command');}
   if(a.type==='PlayAssistedHand'&&!prototype)fail('invalid-save-assist-profile');
@@ -760,7 +775,7 @@ function validateState(value:unknown):asserts value is R2RunState {
   bossPlan(s.boss);strings(s.seenBossIds,chapterMaximum);
   if(!r2BossHistoryValid(s.seenBossIds as string[],s.chapter as number,tourMode)||(s.seenBossIds as string[]).at(-1)!==s.boss.definitionId)fail('invalid-save-boss-history');
   oneOf(s.chapterSkipConsumable,R2_SKIP_CONSUMABLES);integer(s.purchaseCoupons,0,chapterMaximum);bool(s.safetyNetUsed);
-  if(s.stage!==null){const t=record(s.stage,[...(usesTouyeWager(s)?['touyeWager']:[]),...(usesLaohuanRefill(s)?['laohuanTrickUsed']:[]),...(usesXiemuBurn(s)?['xiemuBurnUsed']:[]),...(usesAzaoCharge(s)?['azaoCharge']:[]),...(combo?['openingDiscard']:[]),...(prototype?['assistUsed']:[]),'index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult','initialHands','initialDiscards','discardSpent','discardGained','doubleDiscardBeforeFirstPlay','maxPlayedCount','ordinaryStraightSeen','ordinaryFlushSeen','quadRefundUsed','jokerSold','boss','initialTargetHeat','initialHandLimit','initialJokerIds','sealedJokerIds','challengeDisabledJokerId']);
+  if(s.stage!==null){const t=record(s.stage,[...(usesErxiangHandoff(s)?['erxiangHandoffUsed']:[]),...(usesTouyeWager(s)?['touyeWager']:[]),...(usesLaohuanRefill(s)?['laohuanTrickUsed']:[]),...(usesXiemuBurn(s)?['xiemuBurnUsed']:[]),...(usesAzaoCharge(s)?['azaoCharge']:[]),...(combo?['openingDiscard']:[]),...(prototype?['assistUsed']:[]),'index','targetHeat','heat','handsLeft','discardsLeft','playIndex','previousHandType','previousHandScore','handLimit','rescueUsed','clearId','goldEarned','disabledIds','wagerSelected','wagerUsed','discardsUsed','skipResult','initialHands','initialDiscards','discardSpent','discardGained','doubleDiscardBeforeFirstPlay','maxPlayedCount','ordinaryStraightSeen','ordinaryFlushSeen','quadRefundUsed','jokerSold','boss','initialTargetHeat','initialHandLimit','initialJokerIds','sealedJokerIds','challengeDisabledJokerId']);
     if(combo&&t.openingDiscard!==null){
       const opening=record(t.openingDiscard,['hand','discardedIds','jokers']);cards(opening.hand,R2_RESOURCE_CONTRACT.handMaximum,config.enhancementsAllowed);jokers(opening.jokers,config.jokerSlots,definitions);uniqueIds(opening.discardedIds,5);
       const hand=opening.hand as PlayingCard[],ids=opening.discardedIds as string[],sources=opening.jokers as R2JokerInstance[];
@@ -771,6 +786,7 @@ function validateState(value:unknown):asserts value is R2RunState {
     if(combo&&t.playIndex===0&&(t.discardsUsed as number)>0&&(s.jokers as R2JokerInstance[]).some(j=>j.definitionId==='f10')&&t.openingDiscard===null)fail('invalid-save-opening-discard-missing');
     if(usesTouyeWager(s)){const w=record(t.touyeWager,['commit','resolution']);oneOf(w.resolution,['unused','pending','played','abandoned']);if(w.commit!==null)touyeCommit(w.commit,config.enhancementsAllowed);}
     if(usesLaohuanRefill(s)){bool(t.laohuanTrickUsed);if(t.laohuanTrickUsed&&(!(t.discardsUsed as number)||!config.characterAbilityEnabled))fail('invalid-save-laohuan-used');}
+    if(usesErxiangHandoff(s)){bool(t.erxiangHandoffUsed);if(t.erxiangHandoffUsed&&(!(t.playIndex as number)||!config.characterAbilityEnabled||(t.boss as R2BossPlan|null)?.definitionId==='B08'))fail('invalid-save-erxiang-state');}
     if(usesXiemuBurn(s)){bool(t.xiemuBurnUsed);if(t.xiemuBurnUsed&&(!(t.playIndex as number)||!config.characterAbilityEnabled||(t.boss as R2BossPlan|null)?.definitionId==='B08'))fail('invalid-save-xiemu-state');}
     if(usesAzaoCharge(s)){if(!validAzaoCharge(t.azaoCharge))fail('invalid-save-azao-charge');const charge=t.azaoCharge as AzaoCharge;if(charge.charge>(t.playIndex as number)||(!config.characterAbilityEnabled||(t.boss as R2BossPlan|null)?.definitionId==='B08'||s.phase!=='await-input')&&charge.charge!==0||t.playIndex===0&&charge.charge!==0)fail('invalid-save-azao-state');}
     if(prototype){bool(t.assistUsed);if(t.assistUsed&&(!config.characterAbilityEnabled||t.playIndex===0||(t.boss as R2BossPlan|null)?.definitionId==='B08'))fail('invalid-save-assist-usage');}
@@ -832,7 +848,7 @@ function validateState(value:unknown):asserts value is R2RunState {
     }
   }
   const stage=s.stage as R2RunState['stage'],sameStage=stage?.index===s.stageIndex&&['await-input','pending-refill','run-lost'].includes(s.phase as string);
-  trace(s.lastTrace,{touye:usesTouyeWager(s),laohuan:usesLaohuanRefill(s),xiemu:usesXiemuBurn(s),azao:usesAzaoCharge(s),phase:s.phase as R2RunState['phase'],group:hasR2GroupUpgradeContract(s),combo,definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2ScoreTimingFor(s),discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
+  trace(s.lastTrace,{erxiang:usesErxiangHandoff(s),touye:usesTouyeWager(s),laohuan:usesLaohuanRefill(s),xiemu:usesXiemuBurn(s),azao:usesAzaoCharge(s),phase:s.phase as R2RunState['phase'],group:hasR2GroupUpgradeContract(s),combo,definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2ScoreTimingFor(s),discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
     config,program:s.program as R2ProgramState|null,usage:usage as R2RunState['chapterHandUsage'],
     liveJokerIds:sameStage?(s.jokers as R2JokerInstance[]).map(joker=>joker.instanceId):undefined,liveJokers:combo||sameStage?s.jokers as R2JokerInstance[]:undefined,settledGold:['stage-cleared','run-won'].includes(s.phase as string)?s.gold as number:undefined});
   const program=s.program as R2ProgramState|null;
@@ -880,6 +896,17 @@ export function readCheckpoint(value:unknown):ReadResult {
       for(const entry of journal as Command[]){if(entry.action.type==='EnterStage'){used=false;pendingId=undefined;}if(entry.action.type==='DiscardHand'&&entry.action.laohuanTrick){if(used)fail('invalid-save-refill-reuse');used=true;pendingId=entry.commandId;}if(entry.action.type==='ChooseRefill'||entry.action.type==='AbandonRun')pendingId=undefined;}
       if(used!==undefined&&used!==state.stage?.laohuanTrickUsed||state.pendingRefill&&journal.length&&pendingId!==state.pendingRefill.discardCommandId)fail('invalid-save-refill-journal');
       if(state.pendingRefill&&!state.receipts.some(r=>r.commandId===state.pendingRefill!.discardCommandId))fail('invalid-save-refill-source');
+    }
+    if(usesErxiangHandoff(state)){
+      let used:boolean|undefined;
+      for(const entry of journal as Command[]){
+        if(entry.action.type==='EnterStage')used=false;
+        if(entry.action.type==='PlayHand'){
+          if(entry.action.erxiangTargetId!==undefined){if(used)fail('invalid-save-erxiang-reuse');used=true;}
+          if(state.lastTrace?.rootId===`${state.runId}/hand/${entry.commandId}`&&((entry.action.erxiangTargetId??null)!==state.lastTrace.erxiangHandoff!.targetId||stableHash(state.lastTrace.cards.filter(c=>entry.action.type==='PlayHand'&&entry.action.selectedIds.includes(c.id)).map(c=>c.id))!==stableHash(state.lastTrace.sets.playedIds)))fail('invalid-save-erxiang-journal-trace');
+        }
+      }
+      if(used!==undefined&&used!==state.stage?.erxiangHandoffUsed)fail('invalid-save-erxiang-journal-state');
     }
     if(usesXiemuBurn(state)&&state.lastTrace){
       let used:boolean|undefined;
