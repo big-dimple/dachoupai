@@ -37,3 +37,10 @@
 finish从完全相同真实index5 checkpoint继续，实际读规则后点“开始出牌”；后续压轴同样走该入口，最终软件记录PASS。三段journal严格连续（原首店7步＋各段真实命令），每笔实际command比较完整state，未重做原购买／随机结果。只有finish完整before/after source/index/HEAD冻结通过，不把失败段缺少after快照说成通过。截图、正常选择策略和全部真实trace保留；软件GPU/FPS、用户设备、主观趣味／听感与W6未验。
 
 全流程声音升级只先锁计划与五源缺口，本增量不换音效、不改分值。PR73历史小夜曲head1642f55已独立CI37868365575及production-docs37868365567绿；由父优先审查main，当前商店分支不混该音源恢复。
+
+
+## 承接已合main
+
+父01:31UTC已FF PR73 main1642f557；普通merge a7fd366a5507511e0e63587de54935575a9699a9承接，不强推。三处文档首部冲突保留两边范围／历史及最新串行入口；AudioEngine／原P06文件／HeroClimax／其harness逐字节同新main。原MP3 SHA256仍e07b53322fd650fb5929215cef3b07b34977a2c486e140f8b71c5a23017daead。原音频矩阵、已冻结目录／经营不重跑或改签新源码；当前集成最终head CI另核。
+
+最后只读检查发现Intermission道具详情漏传run，仍会按旧身份展示基础4金；局部产品只为toolInfo加当前run，实际支付／保存／目录／声音未改。既有goods-art价格身份／缓存测试与集成type通过，日志同目录；完整trace与原画面继续按各自SHA读取，不冒称新画面验收。
