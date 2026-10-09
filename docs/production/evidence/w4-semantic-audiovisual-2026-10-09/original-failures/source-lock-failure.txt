@@ -1,0 +1,37 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
+    branch: 'refs/heads/review/audiovisual-semantics-20261009',
++   head: 'd54394762f73e9796bcac170f8585688cebba2a3',
++   index: '1661258fe1f5fc1418131ac8ddc87beab0e78b9dd562c3bd403d715bd7c417a1',
++   source: '189b816ea9af38cb8c7169ac3b6f04055b42b7f66fa208c18856797f78cf6ef3'
+-   head: 'cc2e972f9a3ed3a3e02bf3b77f757e0576f23f34',
+-   index: '2309a6393e0474746bf34a495e2f91d53c9725c3cebdcc3700913dfe249368fa',
+-   source: 'c23083b4e79df4e30ae6838ca14720cbef8da96ade433bbc81fcecc04b17418e'
+  }
+
+    at file:///tmp/av-chain.mjs:29:378 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: {
+    source: '189b816ea9af38cb8c7169ac3b6f04055b42b7f66fa208c18856797f78cf6ef3',
+    index: '1661258fe1f5fc1418131ac8ddc87beab0e78b9dd562c3bd403d715bd7c417a1',
+    head: 'd54394762f73e9796bcac170f8585688cebba2a3',
+    branch: 'refs/heads/review/audiovisual-semantics-20261009'
+  },
+  expected: {
+    source: 'c23083b4e79df4e30ae6838ca14720cbef8da96ade433bbc81fcecc04b17418e',
+    index: '2309a6393e0474746bf34a495e2f91d53c9725c3cebdcc3700913dfe249368fa',
+    head: 'cc2e972f9a3ed3a3e02bf3b77f757e0576f23f34',
+    branch: 'refs/heads/review/audiovisual-semantics-20261009'
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
