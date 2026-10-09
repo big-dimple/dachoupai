@@ -774,8 +774,9 @@ export class GameScene extends Phaser.Scene {
     if(this.assistProfile){const growth=!preview&&p.height>=94&&p.width>=250?buildGrowthProgress(this.run)[0]:undefined,payoffs=growth?growthPayoffs(this.run):[],payoff=payoffs.find(p=>p.change!=='same')??payoffs[0];const shown=payoff&&showGrowthPayoff(this.view,this,this.previewCards,p,payoff)||growth&&showBuildGrowth(this.view,this,this.previewCards,p,growth);this.renderAssistSelection(preview,p,!!shown);return;}
     if(!preview){
       const notice=stageNotice(this.run),hint=notice?.warning?notice.title+(p.height>=90?'\n'+notice.description:''):this.run.stage!.playIndex===0?'选 1–5 张，凑牌型出牌\n不合适？弃牌换新牌':'选牌，准备下一手';
-      const text=this.add.text(p.x+p.width/2,p.y+p.height/2,hint,{fontFamily:UI_FONT,fontSize:p.height<90||notice?.warning?'14px':'18px',color:notice?.warning?C.red:C.mutedInk,align:'center',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5);
-      this.previewCards.add(text);
+      const payoffs=notice?.warning?[]:growthPayoffs(this.run),payoff=payoffs.find(p=>p.change!=='same')??payoffs[0],shown=payoff&&showGrowthPayoff(this.view,this,this.previewCards,p,payoff);
+      const text=!shown?this.add.text(p.x+p.width/2,p.y+p.height/2,hint,{fontFamily:UI_FONT,fontSize:p.height<90||notice?.warning?'14px':'18px',color:notice?.warning?C.red:C.mutedInk,align:'center',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5):undefined;
+      if(text)this.previewCards.add(text);
       const score=this.view.layout.scoreBoard,mods=readR2Modifiers(this.run.jokers,this.jokerDefinitions),handRules=r2ScoreContext(this.run,this.hand,[]).handRules;
       const rule=fourCardRuleCopy({fourStraight:mods.fourStraight||handRules?.fourStraight,fourFlush:mods.fourFlush||handRules?.fourFlush});
       const idleRows=score.height>=90?['按全部所选牌判型，最多5张',...(rule?[rule]:[])]:rule?[rule]:[];
