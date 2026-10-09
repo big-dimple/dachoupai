@@ -157,9 +157,9 @@ function toolRisk(tool:R2ToolDefinition):string {
 
 const toolCache=new Map<string,ToolInfo>();
 export function toolInfo(id:string,identity:R2ContentIdentity={}):ToolInfo {
-  const price=r2ToolPrice(id,identity),cacheKey=id+'/'+price;
+  const tool=getR2Tool(id),price=r2ToolPrice(id,identity),cacheKey=id+'/'+price;
   const cached=toolCache.get(cacheKey);if(cached)return cached;
-  const tool=getR2Tool(id),family=toolFamilyLabel(tool.family);
+  const family=toolFamilyLabel(tool.family);
   const info=Object.freeze({name:tool.name,family:tool.family,label:`${family} · ${tool.name}`,
     description:`${tool.phases.map(phase=>phase==='shop'?'商店':'待出牌').join(' / ')}可用。${targetText(tool)}${operationText(tool)}`,
     cost:toolCost(tool,price),risk:toolRisk(tool),artUrl:goodsArtUrl(id,'tool-card','thumbnail')??toolArt(tool),detailArtUrl:goodsArtUrl(id,'tool-card','detail'),fallbackArtUrl:toolArt(tool)});
