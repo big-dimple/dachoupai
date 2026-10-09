@@ -75,7 +75,7 @@ export class IntermissionScene extends Phaser.Scene {
     const source=resultStageFacts(run,this.result.cleared,!!run.stage.skipResult).source,key=source&&jokerArtKey(source.definitionId),url=source&&jokerArtPreviewUrl(source.definitionId);
     if(!key||!url||this.textures.exists(key))return;
     this.stopSourceArt();const request=this.sourceArtRequest=new AbortController(),lifecycle=this.lifecycle;
-    const current=()=>this.sourceArtRequest===request&&!request.signal.aborted&&lifecycle===this.lifecycle&&this.scene.isActive()&&!this.busy&&runController(this)===controller&&controller.state===run;
+    const current=()=>this.sourceArtRequest===request&&!request.signal.aborted&&lifecycle===this.lifecycle&&this.sys.settings.active&&!this.busy&&runController(this)===controller&&controller.state===run;
     void loadResultSourceArt(this,key,url,request.signal,current).then(loaded=>{
       if(loaded&&current()){this.firstRender=false;this.render();}
     });

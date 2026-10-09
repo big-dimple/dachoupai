@@ -23,10 +23,10 @@ it('leaving/retrying cancels a delayed request even when transport ignores abort
  const request=new AbortController(),loading=loadResultSourceArt(scene,'card','/card.webp',request.signal,()=>true);request.abort();expect(await loading).toBe(false);
  respond(new Response('late'));await Promise.resolve();await Promise.resolve();expect(scene.textures.addImage).not.toHaveBeenCalled();expect(URL.createObjectURL).not.toHaveBeenCalled();
 });
-it('an old decoded image cannot mutate a destroyed or reused scene and releases image/URL resources',async()=>{
+it.each(['destroyed','reused'])('an old decoded image cannot mutate a %s scene and releases image/URL resources',async kind=>{
  let finish!:()=>void,current=true;const {scene,image}=transport(()=>new Promise<void>(r=>finish=r));vi.stubGlobal('fetch',vi.fn(async()=>new Response('art')));
  const loading=loadResultSourceArt(scene,'card','/card.webp',new AbortController().signal,()=>current);await vi.waitFor(()=>expect(finish).toBeTypeOf('function'));
- current=false;finish();expect(await loading).toBe(false);expect(scene.textures.addImage).not.toHaveBeenCalled();expect(image.src).toBe('');expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:result-source');
+ current=kind==='destroyed';scene.sys.settings.active=kind!=='destroyed';finish();expect(await loading).toBe(false);expect(scene.textures.addImage).not.toHaveBeenCalled();expect(image.src).toBe('');expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:result-source');
 });
 it('optional stalled art times out without installing a late response or leaving timers',async()=>{
  vi.useFakeTimers();const {scene}=transport();let respond!:(r:Response)=>void;vi.stubGlobal('fetch',vi.fn(()=>new Promise<Response>(r=>respond=r)));
