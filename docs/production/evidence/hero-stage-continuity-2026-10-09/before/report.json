@@ -1,0 +1,209 @@
+{
+  "source": "624f389b7bef3fe914c2fc0130f4dd8df6e5275a",
+  "baseline": true,
+  "scope": "Controlled first public hand and 12 gold. Azao and Xiemu actual PlayHand/OpenShop/LeaveShop/EnterStage only; other four roles unit contract, not native six-hero acceptance. Small-screen reinspection only. No natural acquisition, rates, device, human, audio or FPS acceptance.",
+  "cases": [
+    {
+      "id": "azao",
+      "width": 1366,
+      "height": 768,
+      "status": "PASS",
+      "before": {
+        "hero": {
+          "text": "阿燥 · 蓄势／爆发（试行）\n\n打法提示 · 能否使用按本场条件\n\n两对及以上先蓄1层，下一手可主动释放。\n\n完整角色打法",
+          "bounds": {
+            "x": 275,
+            "y": 377.6875,
+            "width": 816,
+            "height": 124,
+            "top": 377.6875,
+            "right": 1091,
+            "bottom": 501.6875,
+            "left": 275
+          },
+          "image": "http://127.0.0.1:5403/assets/handdrawn-p08/characters/azao.selection.webp",
+          "font": "14px",
+          "scroll": {
+            "x": 260,
+            "y": 88.5,
+            "width": 846,
+            "height": 569.5,
+            "top": 88.5,
+            "right": 1106,
+            "bottom": 658,
+            "left": 260
+          }
+        },
+        "buttons": [
+          {
+            "text": "查看购买 · 4金",
+            "r": {
+              "x": 264,
+              "y": 687,
+              "width": 168.21875,
+              "height": 56,
+              "top": 687,
+              "right": 432.21875,
+              "bottom": 743,
+              "left": 264
+            }
+          },
+          {
+            "text": "查看全部现货与持牌",
+            "r": {
+              "x": 440.21875,
+              "y": 687,
+              "width": 204.953125,
+              "height": 56,
+              "top": 687,
+              "right": 645.171875,
+              "bottom": 743,
+              "left": 440.21875
+            }
+          },
+          {
+            "text": "更换方向",
+            "r": {
+              "x": 653.171875,
+              "y": 687,
+              "width": 134.9375,
+              "height": 56,
+              "top": 687,
+              "right": 788.109375,
+              "bottom": 743,
+              "left": 653.171875
+            }
+          },
+          {
+            "text": "先留金，进入牌桌",
+            "r": {
+              "x": 796.109375,
+              "y": 687,
+              "width": 190.953125,
+              "height": 56,
+              "top": 687,
+              "right": 987.0625,
+              "bottom": 743,
+              "left": 796.109375
+            }
+          },
+          {
+            "text": "关闭",
+            "r": {
+              "x": 995.0625,
+              "y": 687,
+              "width": 106.9375,
+              "height": 56,
+              "top": 687,
+              "right": 1102,
+              "bottom": 743,
+              "left": 995.0625
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "xiemu",
+      "width": 390,
+      "height": 740,
+      "status": "PASS",
+      "before": {
+        "hero": {
+          "text": "谢幕人 · 留钱／燃金（试行）\n\n打法提示 · 能否使用按本场条件\n\n每场一次，两对及以上可燃10／20／30金，角色时点×2／3／4；先扣真金，持币收益和关末息读余钱。\n\n完整角色打法",
+          "bounds": {
+            "x": 47,
+            "y": 413.875,
+            "width": 296,
+            "height": 160.390625,
+            "top": 413.875,
+            "right": 343,
+            "bottom": 574.265625,
+            "left": 47
+          },
+          "image": "http://127.0.0.1:5403/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "font": "14px",
+          "scroll": {
+            "x": 36,
+            "y": 84.5,
+            "width": 318,
+            "height": 493.5,
+            "top": 84.5,
+            "right": 354,
+            "bottom": 578,
+            "left": 36
+          }
+        },
+        "buttons": [
+          {
+            "text": "查看购买 · 4金",
+            "r": {
+              "x": 36,
+              "y": 605,
+              "width": 136.640625,
+              "height": 56,
+              "top": 605,
+              "right": 172.640625,
+              "bottom": 661,
+              "left": 36
+            }
+          },
+          {
+            "text": "查看全部现货与持牌",
+            "r": {
+              "x": 180.640625,
+              "y": 605,
+              "width": 173.359375,
+              "height": 56,
+              "top": 605,
+              "right": 354,
+              "bottom": 661,
+              "left": 180.640625
+            }
+          },
+          {
+            "text": "更换方向",
+            "r": {
+              "x": 36,
+              "y": 669,
+              "width": 91.328125,
+              "height": 48,
+              "top": 669,
+              "right": 127.328125,
+              "bottom": 717,
+              "left": 36
+            }
+          },
+          {
+            "text": "先留金，进入牌桌",
+            "r": {
+              "x": 135.328125,
+              "y": 669,
+              "width": 147.34375,
+              "height": 48,
+              "top": 669,
+              "right": 282.671875,
+              "bottom": 717,
+              "left": 135.328125
+            }
+          },
+          {
+            "text": "关闭",
+            "r": {
+              "x": 290.671875,
+              "y": 669,
+              "width": 63.328125,
+              "height": 48,
+              "top": 669,
+              "right": 354,
+              "bottom": 717,
+              "left": 290.671875
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "browser": "151.0.7922.173",
+  "status": "PASS"
+}

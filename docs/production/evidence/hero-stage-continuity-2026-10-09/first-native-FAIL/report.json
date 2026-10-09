@@ -1,0 +1,16 @@
+{
+  "source": "75b8643c1490f30509321b6e6ccc7cd2a8f5cacf",
+  "baseline": false,
+  "scope": "Controlled first public hand and 12 gold. Azao and Xiemu actual PlayHand/OpenShop/LeaveShop/EnterStage only; other four roles unit contract, not native six-hero acceptance. Small-screen reinspection only. No natural acquisition, rates, device, human, audio or FPS acceptance.",
+  "cases": [
+    {
+      "id": "azao",
+      "width": 1366,
+      "height": 768,
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    boss: {\n      definitionId: 'B01',\n      disabledSuit: null\n    },\n...\n        commandId: 'hero-stage/azao/command/4',\n+       fingerprint: 'json-fnv-v1:30afc2bb6d009d47',\n-       fingerprint: 'json-fnv-v1:6c1188b461e0b758',\n        seq: 4\n      }\n    ],\n    rng: {\n      challenge: {\n\n    at file:///workspace/dachoupai/harness/hero-stage-continuity.mjs:18:114"
+    }
+  ],
+  "browser": "151.0.7922.173",
+  "status": "FAIL"
+}

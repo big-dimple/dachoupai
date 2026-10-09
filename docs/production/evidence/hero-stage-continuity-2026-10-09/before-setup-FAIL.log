@@ -1,0 +1,14 @@
+file:///workspace/dachoupai/node_modules/.vite-temp/vite.config.ts.timestamp-1791582113066-34f2bb64171ce.mjs:63
+        throw new Error("Build output must be inside the workspace, separate from source.");
+              ^
+
+Error: Build output must be inside the workspace, separate from source.
+    at BasicMinimalPluginContext.configResolved (file:///workspace/dachoupai/node_modules/.vite-temp/vite.config.ts.timestamp-1791582113066-34f2bb64171ce.mjs:63:15)
+    at file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:35762:87
+    at Array.map (<anonymous>)
+    at resolveConfig (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:35762:68)
+    at async createBuilder (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:33955:19)
+    at async build$1 (file:///workspace/dachoupai/node_modules/vite/dist/node/chunks/config.js:33517:18)
+    at async file:///tmp/hero-stage-before/harness/hero-stage-continuity.mjs:7:1
+
+Node.js v24.19.0

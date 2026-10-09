@@ -31,3 +31,7 @@ it('skip has no role activation, no old identity promise, and terminal has no ne
 it('disabled challenge never promises an upcoming use or interest gain',()=>{
  const s=createRun({rulesVersion:'r2',openingRoute:'group',runId:'disabled',seed:'challenge/q01/0',characterId:'xiemu',r2Identity:newRunIdentity('xiemu','group'),modeConfig:{mode:'challenge',difficulty:0,challengeId:'Q01',programsEnabled:false}}),c=heroStageContinuity(s)!;expect(c.next).toContain('停用');expect(c.decision).not.toContain('关末息');
 });
+
+it.each(['amo','erxiang','touye','laohuan'] as const)('%s returns through real commands without treating an ordinary hand as a used active ability',id=>{
+ const f=heroStageFixture(id);expect(f.cleared.phase).toBe('stage-cleared');const c=heroStageContinuity(f.shop)!;expect(c.next).toContain('恢复为1次');expect(c.last).not.toContain('能力已用');expect(c.last).not.toContain('实际×2');expect(f.entered.phase).toBe('await-input');expect(heroStageContinuity(f.entered)).toBeUndefined();
+});
